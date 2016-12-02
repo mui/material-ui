@@ -12,3 +12,4 @@ DeviceNfc.displayName = 'DeviceNfc';
 DeviceNfc.muiName = 'SvgIcon';
 
 export default DeviceNfc;
+export {DeviceNfc};

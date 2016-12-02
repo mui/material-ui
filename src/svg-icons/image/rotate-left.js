@@ -12,3 +12,4 @@ ImageRotateLeft.displayName = 'ImageRotateLeft';
 ImageRotateLeft.muiName = 'SvgIcon';
 
 export default ImageRotateLeft;
+export {ImageRotateLeft};

@@ -12,3 +12,4 @@ HardwareComputer.displayName = 'HardwareComputer';
 HardwareComputer.muiName = 'SvgIcon';
 
 export default HardwareComputer;
+export {HardwareComputer};

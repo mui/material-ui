@@ -12,3 +12,4 @@ CommunicationComment.displayName = 'CommunicationComment';
 CommunicationComment.muiName = 'SvgIcon';
 
 export default CommunicationComment;
+export {CommunicationComment};

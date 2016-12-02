@@ -12,3 +12,4 @@ NotificationPhonePaused.displayName = 'NotificationPhonePaused';
 NotificationPhonePaused.muiName = 'SvgIcon';
 
 export default NotificationPhonePaused;
+export {NotificationPhonePaused};

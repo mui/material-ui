@@ -12,3 +12,4 @@ MapsAddLocation.displayName = 'MapsAddLocation';
 MapsAddLocation.muiName = 'SvgIcon';
 
 export default MapsAddLocation;
+export {MapsAddLocation};

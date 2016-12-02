@@ -12,3 +12,4 @@ HardwareWatch.displayName = 'HardwareWatch';
 HardwareWatch.muiName = 'SvgIcon';
 
 export default HardwareWatch;
+export {HardwareWatch};

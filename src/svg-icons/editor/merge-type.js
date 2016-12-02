@@ -12,3 +12,4 @@ EditorMergeType.displayName = 'EditorMergeType';
 EditorMergeType.muiName = 'SvgIcon';
 
 export default EditorMergeType;
+export {EditorMergeType};

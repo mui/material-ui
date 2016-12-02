@@ -12,3 +12,4 @@ PlacesCasino.displayName = 'PlacesCasino';
 PlacesCasino.muiName = 'SvgIcon';
 
 export default PlacesCasino;
+export {PlacesCasino};

@@ -12,3 +12,4 @@ NavigationCancel.displayName = 'NavigationCancel';
 NavigationCancel.muiName = 'SvgIcon';
 
 export default NavigationCancel;
+export {NavigationCancel};

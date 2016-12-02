@@ -12,3 +12,4 @@ ActionPageview.displayName = 'ActionPageview';
 ActionPageview.muiName = 'SvgIcon';
 
 export default ActionPageview;
+export {ActionPageview};

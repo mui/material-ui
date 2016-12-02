@@ -12,3 +12,4 @@ ActionRoom.displayName = 'ActionRoom';
 ActionRoom.muiName = 'SvgIcon';
 
 export default ActionRoom;
+export {ActionRoom};

@@ -12,3 +12,4 @@ ContentRemoveCircleOutline.displayName = 'ContentRemoveCircleOutline';
 ContentRemoveCircleOutline.muiName = 'SvgIcon';
 
 export default ContentRemoveCircleOutline;
+export {ContentRemoveCircleOutline};

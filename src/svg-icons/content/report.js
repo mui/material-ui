@@ -12,3 +12,4 @@ ContentReport.displayName = 'ContentReport';
 ContentReport.muiName = 'SvgIcon';
 
 export default ContentReport;
+export {ContentReport};

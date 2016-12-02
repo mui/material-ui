@@ -12,3 +12,4 @@ ImageCenterFocusStrong.displayName = 'ImageCenterFocusStrong';
 ImageCenterFocusStrong.muiName = 'SvgIcon';
 
 export default ImageCenterFocusStrong;
+export {ImageCenterFocusStrong};

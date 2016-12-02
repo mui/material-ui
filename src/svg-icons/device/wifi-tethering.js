@@ -12,3 +12,4 @@ DeviceWifiTethering.displayName = 'DeviceWifiTethering';
 DeviceWifiTethering.muiName = 'SvgIcon';
 
 export default DeviceWifiTethering;
+export {DeviceWifiTethering};

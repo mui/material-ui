@@ -12,3 +12,4 @@ MapsLocalCarWash.displayName = 'MapsLocalCarWash';
 MapsLocalCarWash.muiName = 'SvgIcon';
 
 export default MapsLocalCarWash;
+export {MapsLocalCarWash};

@@ -12,3 +12,4 @@ ContentGesture.displayName = 'ContentGesture';
 ContentGesture.muiName = 'SvgIcon';
 
 export default ContentGesture;
+export {ContentGesture};

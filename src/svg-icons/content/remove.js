@@ -12,3 +12,4 @@ ContentRemove.displayName = 'ContentRemove';
 ContentRemove.muiName = 'SvgIcon';
 
 export default ContentRemove;
+export {ContentRemove};

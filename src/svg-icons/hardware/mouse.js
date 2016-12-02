@@ -12,3 +12,4 @@ HardwareMouse.displayName = 'HardwareMouse';
 HardwareMouse.muiName = 'SvgIcon';
 
 export default HardwareMouse;
+export {HardwareMouse};

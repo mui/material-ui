@@ -12,3 +12,4 @@ ImageHdrStrong.displayName = 'ImageHdrStrong';
 ImageHdrStrong.muiName = 'SvgIcon';
 
 export default ImageHdrStrong;
+export {ImageHdrStrong};

@@ -12,3 +12,4 @@ ToggleStarBorder.displayName = 'ToggleStarBorder';
 ToggleStarBorder.muiName = 'SvgIcon';
 
 export default ToggleStarBorder;
+export {ToggleStarBorder};

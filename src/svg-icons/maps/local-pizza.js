@@ -12,3 +12,4 @@ MapsLocalPizza.displayName = 'MapsLocalPizza';
 MapsLocalPizza.muiName = 'SvgIcon';
 
 export default MapsLocalPizza;
+export {MapsLocalPizza};

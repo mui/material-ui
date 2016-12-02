@@ -12,3 +12,4 @@ ToggleCheckBox.displayName = 'ToggleCheckBox';
 ToggleCheckBox.muiName = 'SvgIcon';
 
 export default ToggleCheckBox;
+export {ToggleCheckBox};

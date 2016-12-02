@@ -12,3 +12,4 @@ ActionViewCarousel.displayName = 'ActionViewCarousel';
 ActionViewCarousel.muiName = 'SvgIcon';
 
 export default ActionViewCarousel;
+export {ActionViewCarousel};

@@ -12,3 +12,4 @@ HardwareLaptopChromebook.displayName = 'HardwareLaptopChromebook';
 HardwareLaptopChromebook.muiName = 'SvgIcon';
 
 export default HardwareLaptopChromebook;
+export {HardwareLaptopChromebook};

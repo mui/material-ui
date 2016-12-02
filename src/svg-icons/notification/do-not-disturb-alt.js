@@ -12,3 +12,4 @@ NotificationDoNotDisturbAlt.displayName = 'NotificationDoNotDisturbAlt';
 NotificationDoNotDisturbAlt.muiName = 'SvgIcon';
 
 export default NotificationDoNotDisturbAlt;
+export {NotificationDoNotDisturbAlt};

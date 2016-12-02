@@ -12,3 +12,4 @@ AvLoop.displayName = 'AvLoop';
 AvLoop.muiName = 'SvgIcon';
 
 export default AvLoop;
+export {AvLoop};

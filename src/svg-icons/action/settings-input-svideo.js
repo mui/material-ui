@@ -12,3 +12,4 @@ ActionSettingsInputSvideo.displayName = 'ActionSettingsInputSvideo';
 ActionSettingsInputSvideo.muiName = 'SvgIcon';
 
 export default ActionSettingsInputSvideo;
+export {ActionSettingsInputSvideo};

@@ -12,3 +12,4 @@ HardwareKeyboardReturn.displayName = 'HardwareKeyboardReturn';
 HardwareKeyboardReturn.muiName = 'SvgIcon';
 
 export default HardwareKeyboardReturn;
+export {HardwareKeyboardReturn};

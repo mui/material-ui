@@ -12,3 +12,4 @@ ImageTagFaces.displayName = 'ImageTagFaces';
 ImageTagFaces.muiName = 'SvgIcon';
 
 export default ImageTagFaces;
+export {ImageTagFaces};

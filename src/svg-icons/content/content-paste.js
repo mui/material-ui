@@ -12,3 +12,4 @@ ContentContentPaste.displayName = 'ContentContentPaste';
 ContentContentPaste.muiName = 'SvgIcon';
 
 export default ContentContentPaste;
+export {ContentContentPaste};

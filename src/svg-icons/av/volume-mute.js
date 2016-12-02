@@ -12,3 +12,4 @@ AvVolumeMute.displayName = 'AvVolumeMute';
 AvVolumeMute.muiName = 'SvgIcon';
 
 export default AvVolumeMute;
+export {AvVolumeMute};

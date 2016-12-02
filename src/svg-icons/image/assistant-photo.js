@@ -12,3 +12,4 @@ ImageAssistantPhoto.displayName = 'ImageAssistantPhoto';
 ImageAssistantPhoto.muiName = 'SvgIcon';
 
 export default ImageAssistantPhoto;
+export {ImageAssistantPhoto};

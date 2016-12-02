@@ -388,3 +388,4 @@ class EnhancedSwitch extends Component {
 }
 
 export default EnhancedSwitch;
+export {EnhancedSwitch};

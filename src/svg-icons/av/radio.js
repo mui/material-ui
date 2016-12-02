@@ -12,3 +12,4 @@ AvRadio.displayName = 'AvRadio';
 AvRadio.muiName = 'SvgIcon';
 
 export default AvRadio;
+export {AvRadio};

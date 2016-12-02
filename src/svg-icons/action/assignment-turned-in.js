@@ -12,3 +12,4 @@ ActionAssignmentTurnedIn.displayName = 'ActionAssignmentTurnedIn';
 ActionAssignmentTurnedIn.muiName = 'SvgIcon';
 
 export default ActionAssignmentTurnedIn;
+export {ActionAssignmentTurnedIn};

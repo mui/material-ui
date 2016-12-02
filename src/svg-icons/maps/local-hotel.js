@@ -12,3 +12,4 @@ MapsLocalHotel.displayName = 'MapsLocalHotel';
 MapsLocalHotel.muiName = 'SvgIcon';
 
 export default MapsLocalHotel;
+export {MapsLocalHotel};

@@ -46,3 +46,4 @@ class InkBar extends Component {
 }
 
 export default InkBar;
+export {InkBar};

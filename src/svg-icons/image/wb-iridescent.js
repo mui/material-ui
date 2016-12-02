@@ -12,3 +12,4 @@ ImageWbIridescent.displayName = 'ImageWbIridescent';
 ImageWbIridescent.muiName = 'SvgIcon';
 
 export default ImageWbIridescent;
+export {ImageWbIridescent};

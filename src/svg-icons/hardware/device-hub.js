@@ -12,3 +12,4 @@ HardwareDeviceHub.displayName = 'HardwareDeviceHub';
 HardwareDeviceHub.muiName = 'SvgIcon';
 
 export default HardwareDeviceHub;
+export {HardwareDeviceHub};

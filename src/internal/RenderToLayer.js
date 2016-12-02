@@ -122,3 +122,4 @@ class RenderToLayer extends Component {
 }
 
 export default RenderToLayer;
+export {RenderToLayer};

@@ -12,3 +12,4 @@ AvVideocam.displayName = 'AvVideocam';
 AvVideocam.muiName = 'SvgIcon';
 
 export default AvVideocam;
+export {AvVideocam};

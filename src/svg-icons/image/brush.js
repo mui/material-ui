@@ -12,3 +12,4 @@ ImageBrush.displayName = 'ImageBrush';
 ImageBrush.muiName = 'SvgIcon';
 
 export default ImageBrush;
+export {ImageBrush};

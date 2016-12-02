@@ -12,3 +12,4 @@ ImageCenterFocusWeak.displayName = 'ImageCenterFocusWeak';
 ImageCenterFocusWeak.muiName = 'SvgIcon';
 
 export default ImageCenterFocusWeak;
+export {ImageCenterFocusWeak};

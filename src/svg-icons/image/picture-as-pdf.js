@@ -12,3 +12,4 @@ ImagePictureAsPdf.displayName = 'ImagePictureAsPdf';
 ImagePictureAsPdf.muiName = 'SvgIcon';
 
 export default ImagePictureAsPdf;
+export {ImagePictureAsPdf};

@@ -12,3 +12,4 @@ ActionLoyalty.displayName = 'ActionLoyalty';
 ActionLoyalty.muiName = 'SvgIcon';
 
 export default ActionLoyalty;
+export {ActionLoyalty};

@@ -12,3 +12,4 @@ AvSlowMotionVideo.displayName = 'AvSlowMotionVideo';
 AvSlowMotionVideo.muiName = 'SvgIcon';
 
 export default AvSlowMotionVideo;
+export {AvSlowMotionVideo};

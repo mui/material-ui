@@ -12,3 +12,4 @@ MapsLocalHospital.displayName = 'MapsLocalHospital';
 MapsLocalHospital.muiName = 'SvgIcon';
 
 export default MapsLocalHospital;
+export {MapsLocalHospital};

@@ -12,3 +12,4 @@ EditorFormatListBulleted.displayName = 'EditorFormatListBulleted';
 EditorFormatListBulleted.muiName = 'SvgIcon';
 
 export default EditorFormatListBulleted;
+export {EditorFormatListBulleted};

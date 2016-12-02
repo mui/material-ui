@@ -12,3 +12,4 @@ MapsRestaurant.displayName = 'MapsRestaurant';
 MapsRestaurant.muiName = 'SvgIcon';
 
 export default MapsRestaurant;
+export {MapsRestaurant};

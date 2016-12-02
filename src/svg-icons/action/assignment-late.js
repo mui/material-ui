@@ -12,3 +12,4 @@ ActionAssignmentLate.displayName = 'ActionAssignmentLate';
 ActionAssignmentLate.muiName = 'SvgIcon';
 
 export default ActionAssignmentLate;
+export {ActionAssignmentLate};

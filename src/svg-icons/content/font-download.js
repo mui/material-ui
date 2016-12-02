@@ -12,3 +12,4 @@ ContentFontDownload.displayName = 'ContentFontDownload';
 ContentFontDownload.muiName = 'SvgIcon';
 
 export default ContentFontDownload;
+export {ContentFontDownload};

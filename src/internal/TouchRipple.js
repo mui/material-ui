@@ -228,3 +228,4 @@ class TouchRipple extends Component {
 }
 
 export default TouchRipple;
+export {TouchRipple};

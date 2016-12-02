@@ -12,3 +12,4 @@ NotificationSdCard.displayName = 'NotificationSdCard';
 NotificationSdCard.muiName = 'SvgIcon';
 
 export default NotificationSdCard;
+export {NotificationSdCard};

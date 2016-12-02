@@ -102,3 +102,4 @@ class PopoverAnimationDefault extends Component {
 }
 
 export default PopoverAnimationDefault;
+export {PopoverAnimationDefault};

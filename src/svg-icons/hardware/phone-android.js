@@ -12,3 +12,4 @@ HardwarePhoneAndroid.displayName = 'HardwarePhoneAndroid';
 HardwarePhoneAndroid.muiName = 'SvgIcon';
 
 export default HardwarePhoneAndroid;
+export {HardwarePhoneAndroid};

@@ -115,3 +115,4 @@ class Badge extends Component {
 }
 
 export default Badge;
+export {Badge};

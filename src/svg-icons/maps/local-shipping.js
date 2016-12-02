@@ -12,3 +12,4 @@ MapsLocalShipping.displayName = 'MapsLocalShipping';
 MapsLocalShipping.muiName = 'SvgIcon';
 
 export default MapsLocalShipping;
+export {MapsLocalShipping};

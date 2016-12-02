@@ -177,3 +177,4 @@ class Tooltip extends Component {
 }
 
 export default Tooltip;
+export {Tooltip};

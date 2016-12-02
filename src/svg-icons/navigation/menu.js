@@ -12,3 +12,4 @@ NavigationMenu.displayName = 'NavigationMenu';
 NavigationMenu.muiName = 'SvgIcon';
 
 export default NavigationMenu;
+export {NavigationMenu};

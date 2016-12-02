@@ -12,3 +12,4 @@ ImageTransform.displayName = 'ImageTransform';
 ImageTransform.muiName = 'SvgIcon';
 
 export default ImageTransform;
+export {ImageTransform};

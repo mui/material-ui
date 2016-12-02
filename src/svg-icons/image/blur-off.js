@@ -12,3 +12,4 @@ ImageBlurOff.displayName = 'ImageBlurOff';
 ImageBlurOff.muiName = 'SvgIcon';
 
 export default ImageBlurOff;
+export {ImageBlurOff};

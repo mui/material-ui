@@ -12,3 +12,4 @@ DeviceAddAlarm.displayName = 'DeviceAddAlarm';
 DeviceAddAlarm.muiName = 'SvgIcon';
 
 export default DeviceAddAlarm;
+export {DeviceAddAlarm};

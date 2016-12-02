@@ -12,3 +12,4 @@ ActionSettingsRemote.displayName = 'ActionSettingsRemote';
 ActionSettingsRemote.muiName = 'SvgIcon';
 
 export default ActionSettingsRemote;
+export {ActionSettingsRemote};

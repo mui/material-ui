@@ -12,3 +12,4 @@ DeviceBatteryChargingFull.displayName = 'DeviceBatteryChargingFull';
 DeviceBatteryChargingFull.muiName = 'SvgIcon';
 
 export default DeviceBatteryChargingFull;
+export {DeviceBatteryChargingFull};

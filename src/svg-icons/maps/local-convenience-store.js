@@ -12,3 +12,4 @@ MapsLocalConvenienceStore.displayName = 'MapsLocalConvenienceStore';
 MapsLocalConvenienceStore.muiName = 'SvgIcon';
 
 export default MapsLocalConvenienceStore;
+export {MapsLocalConvenienceStore};

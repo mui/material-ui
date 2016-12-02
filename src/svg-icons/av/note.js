@@ -12,3 +12,4 @@ AvNote.displayName = 'AvNote';
 AvNote.muiName = 'SvgIcon';
 
 export default AvNote;
+export {AvNote};

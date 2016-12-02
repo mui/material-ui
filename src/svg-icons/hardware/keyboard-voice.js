@@ -12,3 +12,4 @@ HardwareKeyboardVoice.displayName = 'HardwareKeyboardVoice';
 HardwareKeyboardVoice.muiName = 'SvgIcon';
 
 export default HardwareKeyboardVoice;
+export {HardwareKeyboardVoice};

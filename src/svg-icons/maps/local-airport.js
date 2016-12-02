@@ -12,3 +12,4 @@ MapsLocalAirport.displayName = 'MapsLocalAirport';
 MapsLocalAirport.muiName = 'SvgIcon';
 
 export default MapsLocalAirport;
+export {MapsLocalAirport};

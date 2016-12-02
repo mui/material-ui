@@ -12,3 +12,4 @@ MapsRateReview.displayName = 'MapsRateReview';
 MapsRateReview.muiName = 'SvgIcon';
 
 export default MapsRateReview;
+export {MapsRateReview};

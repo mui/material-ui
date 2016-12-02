@@ -12,3 +12,4 @@ AvPlayCircleFilled.displayName = 'AvPlayCircleFilled';
 AvPlayCircleFilled.muiName = 'SvgIcon';
 
 export default AvPlayCircleFilled;
+export {AvPlayCircleFilled};

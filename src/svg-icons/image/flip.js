@@ -12,3 +12,4 @@ ImageFlip.displayName = 'ImageFlip';
 ImageFlip.muiName = 'SvgIcon';
 
 export default ImageFlip;
+export {ImageFlip};

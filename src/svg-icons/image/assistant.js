@@ -12,3 +12,4 @@ ImageAssistant.displayName = 'ImageAssistant';
 ImageAssistant.muiName = 'SvgIcon';
 
 export default ImageAssistant;
+export {ImageAssistant};

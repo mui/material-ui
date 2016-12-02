@@ -12,3 +12,4 @@ ActionLock.displayName = 'ActionLock';
 ActionLock.muiName = 'SvgIcon';
 
 export default ActionLock;
+export {ActionLock};

@@ -12,3 +12,4 @@ AvEqualizer.displayName = 'AvEqualizer';
 AvEqualizer.muiName = 'SvgIcon';
 
 export default AvEqualizer;
+export {AvEqualizer};

@@ -42,3 +42,4 @@ NestedList.propTypes = {
 };
 
 export default NestedList;
+export {NestedList};

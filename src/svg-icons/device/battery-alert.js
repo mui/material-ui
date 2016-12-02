@@ -12,3 +12,4 @@ DeviceBatteryAlert.displayName = 'DeviceBatteryAlert';
 DeviceBatteryAlert.muiName = 'SvgIcon';
 
 export default DeviceBatteryAlert;
+export {DeviceBatteryAlert};

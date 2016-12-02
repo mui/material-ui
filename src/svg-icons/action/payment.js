@@ -12,3 +12,4 @@ ActionPayment.displayName = 'ActionPayment';
 ActionPayment.muiName = 'SvgIcon';
 
 export default ActionPayment;
+export {ActionPayment};

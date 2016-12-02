@@ -12,3 +12,4 @@ NotificationAdb.displayName = 'NotificationAdb';
 NotificationAdb.muiName = 'SvgIcon';
 
 export default NotificationAdb;
+export {NotificationAdb};

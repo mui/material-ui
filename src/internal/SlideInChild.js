@@ -88,3 +88,4 @@ class SlideInChild extends Component {
 }
 
 export default SlideInChild;
+export {SlideInChild};

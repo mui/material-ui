@@ -12,3 +12,4 @@ ActionAutorenew.displayName = 'ActionAutorenew';
 ActionAutorenew.muiName = 'SvgIcon';
 
 export default ActionAutorenew;
+export {ActionAutorenew};

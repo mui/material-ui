@@ -50,3 +50,4 @@ Divider.contextTypes = {
 };
 
 export default Divider;
+export {Divider};

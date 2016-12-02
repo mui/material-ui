@@ -12,3 +12,4 @@ HardwareKeyboardTab.displayName = 'HardwareKeyboardTab';
 HardwareKeyboardTab.muiName = 'SvgIcon';
 
 export default HardwareKeyboardTab;
+export {HardwareKeyboardTab};

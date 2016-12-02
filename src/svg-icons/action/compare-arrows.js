@@ -12,3 +12,4 @@ ActionCompareArrows.displayName = 'ActionCompareArrows';
 ActionCompareArrows.muiName = 'SvgIcon';
 
 export default ActionCompareArrows;
+export {ActionCompareArrows};

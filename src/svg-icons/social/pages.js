@@ -12,3 +12,4 @@ SocialPages.displayName = 'SocialPages';
 SocialPages.muiName = 'SvgIcon';
 
 export default SocialPages;
+export {SocialPages};

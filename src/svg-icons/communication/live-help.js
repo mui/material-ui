@@ -12,3 +12,4 @@ CommunicationLiveHelp.displayName = 'CommunicationLiveHelp';
 CommunicationLiveHelp.muiName = 'SvgIcon';
 
 export default CommunicationLiveHelp;
+export {CommunicationLiveHelp};

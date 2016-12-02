@@ -12,3 +12,4 @@ ActionChromeReaderMode.displayName = 'ActionChromeReaderMode';
 ActionChromeReaderMode.muiName = 'SvgIcon';
 
 export default ActionChromeReaderMode;
+export {ActionChromeReaderMode};

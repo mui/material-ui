@@ -12,3 +12,4 @@ NotificationPower.displayName = 'NotificationPower';
 NotificationPower.muiName = 'SvgIcon';
 
 export default NotificationPower;
+export {NotificationPower};

@@ -12,3 +12,4 @@ HardwareDevicesOther.displayName = 'HardwareDevicesOther';
 HardwareDevicesOther.muiName = 'SvgIcon';
 
 export default HardwareDevicesOther;
+export {HardwareDevicesOther};

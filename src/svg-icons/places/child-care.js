@@ -12,3 +12,4 @@ PlacesChildCare.displayName = 'PlacesChildCare';
 PlacesChildCare.muiName = 'SvgIcon';
 
 export default PlacesChildCare;
+export {PlacesChildCare};

@@ -12,3 +12,4 @@ ActionPrint.displayName = 'ActionPrint';
 ActionPrint.muiName = 'SvgIcon';
 
 export default ActionPrint;
+export {ActionPrint};

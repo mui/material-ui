@@ -12,3 +12,4 @@ AvFiberPin.displayName = 'AvFiberPin';
 AvFiberPin.muiName = 'SvgIcon';
 
 export default AvFiberPin;
+export {AvFiberPin};

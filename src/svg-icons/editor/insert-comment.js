@@ -12,3 +12,4 @@ EditorInsertComment.displayName = 'EditorInsertComment';
 EditorInsertComment.muiName = 'SvgIcon';
 
 export default EditorInsertComment;
+export {EditorInsertComment};

@@ -12,3 +12,4 @@ ActionTheaters.displayName = 'ActionTheaters';
 ActionTheaters.muiName = 'SvgIcon';
 
 export default ActionTheaters;
+export {ActionTheaters};

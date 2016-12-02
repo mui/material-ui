@@ -12,3 +12,4 @@ ImageFilterHdr.displayName = 'ImageFilterHdr';
 ImageFilterHdr.muiName = 'SvgIcon';
 
 export default ImageFilterHdr;
+export {ImageFilterHdr};

@@ -12,3 +12,4 @@ MapsDirectionsBus.displayName = 'MapsDirectionsBus';
 MapsDirectionsBus.muiName = 'SvgIcon';
 
 export default MapsDirectionsBus;
+export {MapsDirectionsBus};

@@ -12,3 +12,4 @@ ImageColorLens.displayName = 'ImageColorLens';
 ImageColorLens.muiName = 'SvgIcon';
 
 export default ImageColorLens;
+export {ImageColorLens};

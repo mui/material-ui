@@ -12,3 +12,4 @@ AvRemoveFromQueue.displayName = 'AvRemoveFromQueue';
 AvRemoveFromQueue.muiName = 'SvgIcon';
 
 export default AvRemoveFromQueue;
+export {AvRemoveFromQueue};

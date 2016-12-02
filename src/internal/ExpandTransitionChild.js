@@ -110,3 +110,4 @@ class ExpandTransitionChild extends Component {
 }
 
 export default ExpandTransitionChild;
+export {ExpandTransitionChild};

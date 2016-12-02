@@ -12,3 +12,4 @@ ImageCropRotate.displayName = 'ImageCropRotate';
 ImageCropRotate.muiName = 'SvgIcon';
 
 export default ImageCropRotate;
+export {ImageCropRotate};

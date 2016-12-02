@@ -12,3 +12,4 @@ ActionPermIdentity.displayName = 'ActionPermIdentity';
 ActionPermIdentity.muiName = 'SvgIcon';
 
 export default ActionPermIdentity;
+export {ActionPermIdentity};

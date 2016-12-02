@@ -12,3 +12,4 @@ EditorMonetizationOn.displayName = 'EditorMonetizationOn';
 EditorMonetizationOn.muiName = 'SvgIcon';
 
 export default EditorMonetizationOn;
+export {EditorMonetizationOn};

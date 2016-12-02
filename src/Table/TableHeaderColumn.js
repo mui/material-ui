@@ -145,3 +145,4 @@ class TableHeaderColumn extends Component {
 }
 
 export default TableHeaderColumn;
+export {TableHeaderColumn};

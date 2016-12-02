@@ -12,3 +12,4 @@ EditorAttachFile.displayName = 'EditorAttachFile';
 EditorAttachFile.muiName = 'SvgIcon';
 
 export default EditorAttachFile;
+export {EditorAttachFile};

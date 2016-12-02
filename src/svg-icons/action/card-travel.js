@@ -12,3 +12,4 @@ ActionCardTravel.displayName = 'ActionCardTravel';
 ActionCardTravel.muiName = 'SvgIcon';
 
 export default ActionCardTravel;
+export {ActionCardTravel};

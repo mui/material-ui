@@ -12,3 +12,4 @@ AlertAddAlert.displayName = 'AlertAddAlert';
 AlertAddAlert.muiName = 'SvgIcon';
 
 export default AlertAddAlert;
+export {AlertAddAlert};

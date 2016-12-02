@@ -12,3 +12,4 @@ ActionLaunch.displayName = 'ActionLaunch';
 ActionLaunch.muiName = 'SvgIcon';
 
 export default ActionLaunch;
+export {ActionLaunch};

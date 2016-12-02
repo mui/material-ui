@@ -12,3 +12,4 @@ HardwarePhoneIphone.displayName = 'HardwarePhoneIphone';
 HardwarePhoneIphone.muiName = 'SvgIcon';
 
 export default HardwarePhoneIphone;
+export {HardwarePhoneIphone};

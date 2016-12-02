@@ -12,3 +12,4 @@ EditorFormatColorReset.displayName = 'EditorFormatColorReset';
 EditorFormatColorReset.muiName = 'SvgIcon';
 
 export default EditorFormatColorReset;
+export {EditorFormatColorReset};

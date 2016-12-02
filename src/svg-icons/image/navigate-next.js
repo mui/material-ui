@@ -12,3 +12,4 @@ ImageNavigateNext.displayName = 'ImageNavigateNext';
 ImageNavigateNext.muiName = 'SvgIcon';
 
 export default ImageNavigateNext;
+export {ImageNavigateNext};

@@ -12,3 +12,4 @@ AvVolumeDown.displayName = 'AvVolumeDown';
 AvVolumeDown.muiName = 'SvgIcon';
 
 export default AvVolumeDown;
+export {AvVolumeDown};

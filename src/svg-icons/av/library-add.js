@@ -12,3 +12,4 @@ AvLibraryAdd.displayName = 'AvLibraryAdd';
 AvLibraryAdd.muiName = 'SvgIcon';
 
 export default AvLibraryAdd;
+export {AvLibraryAdd};

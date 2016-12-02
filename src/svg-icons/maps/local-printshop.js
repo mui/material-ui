@@ -12,3 +12,4 @@ MapsLocalPrintshop.displayName = 'MapsLocalPrintshop';
 MapsLocalPrintshop.muiName = 'SvgIcon';
 
 export default MapsLocalPrintshop;
+export {MapsLocalPrintshop};

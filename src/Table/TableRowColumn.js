@@ -128,3 +128,4 @@ class TableRowColumn extends Component {
 }
 
 export default TableRowColumn;
+export {TableRowColumn};

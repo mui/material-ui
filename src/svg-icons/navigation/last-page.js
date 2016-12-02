@@ -12,3 +12,4 @@ NavigationLastPage.displayName = 'NavigationLastPage';
 NavigationLastPage.muiName = 'SvgIcon';
 
 export default NavigationLastPage;
+export {NavigationLastPage};

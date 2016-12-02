@@ -12,3 +12,4 @@ ImagePanoramaFishEye.displayName = 'ImagePanoramaFishEye';
 ImagePanoramaFishEye.muiName = 'SvgIcon';
 
 export default ImagePanoramaFishEye;
+export {ImagePanoramaFishEye};

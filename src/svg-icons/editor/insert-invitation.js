@@ -12,3 +12,4 @@ EditorInsertInvitation.displayName = 'EditorInsertInvitation';
 EditorInsertInvitation.muiName = 'SvgIcon';
 
 export default EditorInsertInvitation;
+export {EditorInsertInvitation};

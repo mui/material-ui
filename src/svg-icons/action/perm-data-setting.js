@@ -12,3 +12,4 @@ ActionPermDataSetting.displayName = 'ActionPermDataSetting';
 ActionPermDataSetting.muiName = 'SvgIcon';
 
 export default ActionPermDataSetting;
+export {ActionPermDataSetting};

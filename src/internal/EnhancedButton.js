@@ -352,3 +352,4 @@ class EnhancedButton extends Component {
 }
 
 export default EnhancedButton;
+export {EnhancedButton};

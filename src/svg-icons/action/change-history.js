@@ -12,3 +12,4 @@ ActionChangeHistory.displayName = 'ActionChangeHistory';
 ActionChangeHistory.muiName = 'SvgIcon';
 
 export default ActionChangeHistory;
+export {ActionChangeHistory};

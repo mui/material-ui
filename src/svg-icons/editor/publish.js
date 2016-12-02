@@ -12,3 +12,4 @@ EditorPublish.displayName = 'EditorPublish';
 EditorPublish.muiName = 'SvgIcon';
 
 export default EditorPublish;
+export {EditorPublish};

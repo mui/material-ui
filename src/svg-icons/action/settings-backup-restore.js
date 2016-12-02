@@ -12,3 +12,4 @@ ActionSettingsBackupRestore.displayName = 'ActionSettingsBackupRestore';
 ActionSettingsBackupRestore.muiName = 'SvgIcon';
 
 export default ActionSettingsBackupRestore;
+export {ActionSettingsBackupRestore};

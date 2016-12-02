@@ -12,3 +12,4 @@ PlacesFreeBreakfast.displayName = 'PlacesFreeBreakfast';
 PlacesFreeBreakfast.muiName = 'SvgIcon';
 
 export default PlacesFreeBreakfast;
+export {PlacesFreeBreakfast};

@@ -12,3 +12,4 @@ ContentSort.displayName = 'ContentSort';
 ContentSort.muiName = 'SvgIcon';
 
 export default ContentSort;
+export {ContentSort};

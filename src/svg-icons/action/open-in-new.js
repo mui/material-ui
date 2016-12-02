@@ -12,3 +12,4 @@ ActionOpenInNew.displayName = 'ActionOpenInNew';
 ActionOpenInNew.muiName = 'SvgIcon';
 
 export default ActionOpenInNew;
+export {ActionOpenInNew};

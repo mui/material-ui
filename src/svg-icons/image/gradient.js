@@ -12,3 +12,4 @@ ImageGradient.displayName = 'ImageGradient';
 ImageGradient.muiName = 'SvgIcon';
 
 export default ImageGradient;
+export {ImageGradient};

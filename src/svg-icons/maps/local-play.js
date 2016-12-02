@@ -12,3 +12,4 @@ MapsLocalPlay.displayName = 'MapsLocalPlay';
 MapsLocalPlay.muiName = 'SvgIcon';
 
 export default MapsLocalPlay;
+export {MapsLocalPlay};

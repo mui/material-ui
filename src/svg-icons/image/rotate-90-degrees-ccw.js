@@ -12,3 +12,4 @@ ImageRotate90DegreesCcw.displayName = 'ImageRotate90DegreesCcw';
 ImageRotate90DegreesCcw.muiName = 'SvgIcon';
 
 export default ImageRotate90DegreesCcw;
+export {ImageRotate90DegreesCcw};

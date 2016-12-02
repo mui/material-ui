@@ -12,3 +12,4 @@ ImageGridOff.displayName = 'ImageGridOff';
 ImageGridOff.muiName = 'SvgIcon';
 
 export default ImageGridOff;
+export {ImageGridOff};

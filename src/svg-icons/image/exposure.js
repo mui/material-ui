@@ -12,3 +12,4 @@ ImageExposure.displayName = 'ImageExposure';
 ImageExposure.muiName = 'SvgIcon';
 
 export default ImageExposure;
+export {ImageExposure};

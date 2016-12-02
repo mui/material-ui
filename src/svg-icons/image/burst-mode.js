@@ -12,3 +12,4 @@ ImageBurstMode.displayName = 'ImageBurstMode';
 ImageBurstMode.muiName = 'SvgIcon';
 
 export default ImageBurstMode;
+export {ImageBurstMode};

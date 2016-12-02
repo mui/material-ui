@@ -12,3 +12,4 @@ DeviceScreenLockLandscape.displayName = 'DeviceScreenLockLandscape';
 DeviceScreenLockLandscape.muiName = 'SvgIcon';
 
 export default DeviceScreenLockLandscape;
+export {DeviceScreenLockLandscape};

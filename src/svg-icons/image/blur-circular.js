@@ -12,3 +12,4 @@ ImageBlurCircular.displayName = 'ImageBlurCircular';
 ImageBlurCircular.muiName = 'SvgIcon';
 
 export default ImageBlurCircular;
+export {ImageBlurCircular};

@@ -12,3 +12,4 @@ PlacesRoomService.displayName = 'PlacesRoomService';
 PlacesRoomService.muiName = 'SvgIcon';
 
 export default PlacesRoomService;
+export {PlacesRoomService};

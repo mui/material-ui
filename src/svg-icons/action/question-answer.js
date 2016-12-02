@@ -12,3 +12,4 @@ ActionQuestionAnswer.displayName = 'ActionQuestionAnswer';
 ActionQuestionAnswer.muiName = 'SvgIcon';
 
 export default ActionQuestionAnswer;
+export {ActionQuestionAnswer};

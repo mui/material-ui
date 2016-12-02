@@ -12,3 +12,4 @@ ImageImageAspectRatio.displayName = 'ImageImageAspectRatio';
 ImageImageAspectRatio.muiName = 'SvgIcon';
 
 export default ImageImageAspectRatio;
+export {ImageImageAspectRatio};

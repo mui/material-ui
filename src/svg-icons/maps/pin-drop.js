@@ -12,3 +12,4 @@ MapsPinDrop.displayName = 'MapsPinDrop';
 MapsPinDrop.muiName = 'SvgIcon';
 
 export default MapsPinDrop;
+export {MapsPinDrop};

@@ -12,3 +12,4 @@ ContentLowPriority.displayName = 'ContentLowPriority';
 ContentLowPriority.muiName = 'SvgIcon';
 
 export default ContentLowPriority;
+export {ContentLowPriority};

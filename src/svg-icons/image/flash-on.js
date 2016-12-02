@@ -12,3 +12,4 @@ ImageFlashOn.displayName = 'ImageFlashOn';
 ImageFlashOn.muiName = 'SvgIcon';
 
 export default ImageFlashOn;
+export {ImageFlashOn};

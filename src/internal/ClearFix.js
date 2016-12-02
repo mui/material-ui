@@ -35,3 +35,4 @@ ClearFix.propTypes = {
 };
 
 export default ClearFix;
+export {ClearFix};

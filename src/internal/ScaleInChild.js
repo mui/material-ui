@@ -98,3 +98,4 @@ class ScaleInChild extends Component {
 }
 
 export default ScaleInChild;
+export {ScaleInChild};

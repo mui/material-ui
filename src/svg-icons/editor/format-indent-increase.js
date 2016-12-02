@@ -12,3 +12,4 @@ EditorFormatIndentIncrease.displayName = 'EditorFormatIndentIncrease';
 EditorFormatIndentIncrease.muiName = 'SvgIcon';
 
 export default EditorFormatIndentIncrease;
+export {EditorFormatIndentIncrease};

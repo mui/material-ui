@@ -12,3 +12,4 @@ EditorSpaceBar.displayName = 'EditorSpaceBar';
 EditorSpaceBar.muiName = 'SvgIcon';
 
 export default EditorSpaceBar;
+export {EditorSpaceBar};

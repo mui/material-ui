@@ -12,3 +12,4 @@ ActionTrackChanges.displayName = 'ActionTrackChanges';
 ActionTrackChanges.muiName = 'SvgIcon';
 
 export default ActionTrackChanges;
+export {ActionTrackChanges};

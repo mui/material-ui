@@ -12,3 +12,4 @@ ImageVignette.displayName = 'ImageVignette';
 ImageVignette.muiName = 'SvgIcon';
 
 export default ImageVignette;
+export {ImageVignette};

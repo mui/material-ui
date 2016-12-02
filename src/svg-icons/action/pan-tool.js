@@ -12,3 +12,4 @@ ActionPanTool.displayName = 'ActionPanTool';
 ActionPanTool.muiName = 'SvgIcon';
 
 export default ActionPanTool;
+export {ActionPanTool};

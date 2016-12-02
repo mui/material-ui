@@ -12,3 +12,4 @@ ActionRestorePage.displayName = 'ActionRestorePage';
 ActionRestorePage.muiName = 'SvgIcon';
 
 export default ActionRestorePage;
+export {ActionRestorePage};

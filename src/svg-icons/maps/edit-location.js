@@ -12,3 +12,4 @@ MapsEditLocation.displayName = 'MapsEditLocation';
 MapsEditLocation.muiName = 'SvgIcon';
 
 export default MapsEditLocation;
+export {MapsEditLocation};

@@ -12,3 +12,4 @@ ImageViewCompact.displayName = 'ImageViewCompact';
 ImageViewCompact.muiName = 'SvgIcon';
 
 export default ImageViewCompact;
+export {ImageViewCompact};

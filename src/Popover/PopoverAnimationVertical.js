@@ -80,3 +80,4 @@ class PopoverAnimationVertical extends Component {
 }
 
 export default PopoverAnimationVertical;
+export {PopoverAnimationVertical};

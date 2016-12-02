@@ -12,3 +12,4 @@ EditorFormatItalic.displayName = 'EditorFormatItalic';
 EditorFormatItalic.muiName = 'SvgIcon';
 
 export default EditorFormatItalic;
+export {EditorFormatItalic};

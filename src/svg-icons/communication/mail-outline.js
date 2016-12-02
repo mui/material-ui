@@ -12,3 +12,4 @@ CommunicationMailOutline.displayName = 'CommunicationMailOutline';
 CommunicationMailOutline.muiName = 'SvgIcon';
 
 export default CommunicationMailOutline;
+export {CommunicationMailOutline};

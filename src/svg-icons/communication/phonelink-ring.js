@@ -12,3 +12,4 @@ CommunicationPhonelinkRing.displayName = 'CommunicationPhonelinkRing';
 CommunicationPhonelinkRing.muiName = 'SvgIcon';
 
 export default CommunicationPhonelinkRing;
+export {CommunicationPhonelinkRing};

@@ -12,3 +12,4 @@ EditorPieChartOutlined.displayName = 'EditorPieChartOutlined';
 EditorPieChartOutlined.muiName = 'SvgIcon';
 
 export default EditorPieChartOutlined;
+export {EditorPieChartOutlined};

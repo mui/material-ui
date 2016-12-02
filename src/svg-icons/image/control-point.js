@@ -12,3 +12,4 @@ ImageControlPoint.displayName = 'ImageControlPoint';
 ImageControlPoint.muiName = 'SvgIcon';
 
 export default ImageControlPoint;
+export {ImageControlPoint};

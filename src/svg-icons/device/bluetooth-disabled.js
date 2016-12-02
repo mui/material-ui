@@ -12,3 +12,4 @@ DeviceBluetoothDisabled.displayName = 'DeviceBluetoothDisabled';
 DeviceBluetoothDisabled.muiName = 'SvgIcon';
 
 export default DeviceBluetoothDisabled;
+export {DeviceBluetoothDisabled};

@@ -12,3 +12,4 @@ ActionEventSeat.displayName = 'ActionEventSeat';
 ActionEventSeat.muiName = 'SvgIcon';
 
 export default ActionEventSeat;
+export {ActionEventSeat};

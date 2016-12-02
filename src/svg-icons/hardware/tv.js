@@ -12,3 +12,4 @@ HardwareTv.displayName = 'HardwareTv';
 HardwareTv.muiName = 'SvgIcon';
 
 export default HardwareTv;
+export {HardwareTv};

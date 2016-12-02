@@ -12,3 +12,4 @@ NotificationLiveTv.displayName = 'NotificationLiveTv';
 NotificationLiveTv.muiName = 'SvgIcon';
 
 export default NotificationLiveTv;
+export {NotificationLiveTv};

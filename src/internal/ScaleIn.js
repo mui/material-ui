@@ -69,3 +69,4 @@ class ScaleIn extends Component {
 }
 
 export default ScaleIn;
+export {ScaleIn};

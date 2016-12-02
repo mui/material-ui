@@ -12,3 +12,4 @@ ImageWbIncandescent.displayName = 'ImageWbIncandescent';
 ImageWbIncandescent.muiName = 'SvgIcon';
 
 export default ImageWbIncandescent;
+export {ImageWbIncandescent};

@@ -12,3 +12,4 @@ ActionSwapVert.displayName = 'ActionSwapVert';
 ActionSwapVert.muiName = 'SvgIcon';
 
 export default ActionSwapVert;
+export {ActionSwapVert};

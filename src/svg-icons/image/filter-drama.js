@@ -12,3 +12,4 @@ ImageFilterDrama.displayName = 'ImageFilterDrama';
 ImageFilterDrama.muiName = 'SvgIcon';
 
 export default ImageFilterDrama;
+export {ImageFilterDrama};

@@ -12,3 +12,4 @@ ImageFilterCenterFocus.displayName = 'ImageFilterCenterFocus';
 ImageFilterCenterFocus.muiName = 'SvgIcon';
 
 export default ImageFilterCenterFocus;
+export {ImageFilterCenterFocus};

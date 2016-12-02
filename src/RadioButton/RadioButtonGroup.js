@@ -162,3 +162,4 @@ class RadioButtonGroup extends Component {
 }
 
 export default RadioButtonGroup;
+export {RadioButtonGroup};

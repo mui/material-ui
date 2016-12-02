@@ -12,3 +12,4 @@ ActionSettingsVoice.displayName = 'ActionSettingsVoice';
 ActionSettingsVoice.muiName = 'SvgIcon';
 
 export default ActionSettingsVoice;
+export {ActionSettingsVoice};

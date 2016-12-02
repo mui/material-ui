@@ -12,3 +12,4 @@ ContentFlag.displayName = 'ContentFlag';
 ContentFlag.muiName = 'SvgIcon';
 
 export default ContentFlag;
+export {ContentFlag};

@@ -12,3 +12,4 @@ EditorModeComment.displayName = 'EditorModeComment';
 EditorModeComment.muiName = 'SvgIcon';
 
 export default EditorModeComment;
+export {EditorModeComment};

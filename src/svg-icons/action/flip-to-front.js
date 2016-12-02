@@ -12,3 +12,4 @@ ActionFlipToFront.displayName = 'ActionFlipToFront';
 ActionFlipToFront.muiName = 'SvgIcon';
 
 export default ActionFlipToFront;
+export {ActionFlipToFront};

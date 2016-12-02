@@ -12,3 +12,4 @@ ActionSwapVerticalCircle.displayName = 'ActionSwapVerticalCircle';
 ActionSwapVerticalCircle.muiName = 'SvgIcon';
 
 export default ActionSwapVerticalCircle;
+export {ActionSwapVerticalCircle};

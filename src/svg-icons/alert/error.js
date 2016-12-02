@@ -12,3 +12,4 @@ AlertError.displayName = 'AlertError';
 AlertError.muiName = 'SvgIcon';
 
 export default AlertError;
+export {AlertError};

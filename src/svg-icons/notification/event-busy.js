@@ -12,3 +12,4 @@ NotificationEventBusy.displayName = 'NotificationEventBusy';
 NotificationEventBusy.muiName = 'SvgIcon';
 
 export default NotificationEventBusy;
+export {NotificationEventBusy};

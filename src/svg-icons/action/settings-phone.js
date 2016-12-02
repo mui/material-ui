@@ -12,3 +12,4 @@ ActionSettingsPhone.displayName = 'ActionSettingsPhone';
 ActionSettingsPhone.muiName = 'SvgIcon';
 
 export default ActionSettingsPhone;
+export {ActionSettingsPhone};

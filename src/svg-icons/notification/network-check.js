@@ -12,3 +12,4 @@ NotificationNetworkCheck.displayName = 'NotificationNetworkCheck';
 NotificationNetworkCheck.muiName = 'SvgIcon';
 
 export default NotificationNetworkCheck;
+export {NotificationNetworkCheck};

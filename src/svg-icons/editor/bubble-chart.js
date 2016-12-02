@@ -12,3 +12,4 @@ EditorBubbleChart.displayName = 'EditorBubbleChart';
 EditorBubbleChart.muiName = 'SvgIcon';
 
 export default EditorBubbleChart;
+export {EditorBubbleChart};

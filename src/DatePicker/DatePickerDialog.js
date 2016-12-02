@@ -181,3 +181,4 @@ class DatePickerDialog extends Component {
 }
 
 export default DatePickerDialog;
+export {DatePickerDialog};

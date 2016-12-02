@@ -12,3 +12,4 @@ MapsTraffic.displayName = 'MapsTraffic';
 MapsTraffic.muiName = 'SvgIcon';
 
 export default MapsTraffic;
+export {MapsTraffic};

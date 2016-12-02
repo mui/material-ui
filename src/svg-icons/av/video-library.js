@@ -12,3 +12,4 @@ AvVideoLibrary.displayName = 'AvVideoLibrary';
 AvVideoLibrary.muiName = 'SvgIcon';
 
 export default AvVideoLibrary;
+export {AvVideoLibrary};

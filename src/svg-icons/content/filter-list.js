@@ -12,3 +12,4 @@ ContentFilterList.displayName = 'ContentFilterList';
 ContentFilterList.muiName = 'SvgIcon';
 
 export default ContentFilterList;
+export {ContentFilterList};

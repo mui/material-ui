@@ -194,3 +194,4 @@ class CircularProgress extends Component {
 }
 
 export default CircularProgress;
+export {CircularProgress};

@@ -12,3 +12,4 @@ ActionDonutSmall.displayName = 'ActionDonutSmall';
 ActionDonutSmall.muiName = 'SvgIcon';
 
 export default ActionDonutSmall;
+export {ActionDonutSmall};

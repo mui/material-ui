@@ -12,3 +12,4 @@ AvFeaturedVideo.displayName = 'AvFeaturedVideo';
 AvFeaturedVideo.muiName = 'SvgIcon';
 
 export default AvFeaturedVideo;
+export {AvFeaturedVideo};

@@ -12,3 +12,4 @@ AvVideoCall.displayName = 'AvVideoCall';
 AvVideoCall.muiName = 'SvgIcon';
 
 export default AvVideoCall;
+export {AvVideoCall};

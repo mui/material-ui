@@ -12,3 +12,4 @@ PlacesAirportShuttle.displayName = 'PlacesAirportShuttle';
 PlacesAirportShuttle.muiName = 'SvgIcon';
 
 export default PlacesAirportShuttle;
+export {PlacesAirportShuttle};

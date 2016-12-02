@@ -12,3 +12,4 @@ DeviceWifiLock.displayName = 'DeviceWifiLock';
 DeviceWifiLock.muiName = 'SvgIcon';
 
 export default DeviceWifiLock;
+export {DeviceWifiLock};

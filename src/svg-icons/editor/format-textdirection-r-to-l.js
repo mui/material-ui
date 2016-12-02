@@ -12,3 +12,4 @@ EditorFormatTextdirectionRToL.displayName = 'EditorFormatTextdirectionRToL';
 EditorFormatTextdirectionRToL.muiName = 'SvgIcon';
 
 export default EditorFormatTextdirectionRToL;
+export {EditorFormatTextdirectionRToL};

@@ -12,3 +12,4 @@ DeviceSignalWifiOff.displayName = 'DeviceSignalWifiOff';
 DeviceSignalWifiOff.muiName = 'SvgIcon';
 
 export default DeviceSignalWifiOff;
+export {DeviceSignalWifiOff};

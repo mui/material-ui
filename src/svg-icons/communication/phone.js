@@ -12,3 +12,4 @@ CommunicationPhone.displayName = 'CommunicationPhone';
 CommunicationPhone.muiName = 'SvgIcon';
 
 export default CommunicationPhone;
+export {CommunicationPhone};

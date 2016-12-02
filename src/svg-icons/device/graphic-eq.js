@@ -12,3 +12,4 @@ DeviceGraphicEq.displayName = 'DeviceGraphicEq';
 DeviceGraphicEq.muiName = 'SvgIcon';
 
 export default DeviceGraphicEq;
+export {DeviceGraphicEq};

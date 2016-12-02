@@ -65,3 +65,4 @@ TextFieldHint.defaultProps = {
 };
 
 export default TextFieldHint;
+export {TextFieldHint};

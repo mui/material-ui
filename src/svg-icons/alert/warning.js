@@ -12,3 +12,4 @@ AlertWarning.displayName = 'AlertWarning';
 AlertWarning.muiName = 'SvgIcon';
 
 export default AlertWarning;
+export {AlertWarning};

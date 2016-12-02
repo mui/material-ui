@@ -12,3 +12,4 @@ ActionHttp.displayName = 'ActionHttp';
 ActionHttp.muiName = 'SvgIcon';
 
 export default ActionHttp;
+export {ActionHttp};

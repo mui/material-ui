@@ -12,3 +12,4 @@ DeviceDataUsage.displayName = 'DeviceDataUsage';
 DeviceDataUsage.muiName = 'SvgIcon';
 
 export default DeviceDataUsage;
+export {DeviceDataUsage};

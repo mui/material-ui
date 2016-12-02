@@ -12,3 +12,4 @@ ActionLabel.displayName = 'ActionLabel';
 ActionLabel.muiName = 'SvgIcon';
 
 export default ActionLabel;
+export {ActionLabel};

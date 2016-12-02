@@ -12,3 +12,4 @@ NavigationArrowDownward.displayName = 'NavigationArrowDownward';
 NavigationArrowDownward.muiName = 'SvgIcon';
 
 export default NavigationArrowDownward;
+export {NavigationArrowDownward};

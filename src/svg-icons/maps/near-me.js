@@ -12,3 +12,4 @@ MapsNearMe.displayName = 'MapsNearMe';
 MapsNearMe.muiName = 'SvgIcon';
 
 export default MapsNearMe;
+export {MapsNearMe};

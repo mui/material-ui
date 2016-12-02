@@ -12,3 +12,4 @@ ImageGrain.displayName = 'ImageGrain';
 ImageGrain.muiName = 'SvgIcon';
 
 export default ImageGrain;
+export {ImageGrain};

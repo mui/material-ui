@@ -99,3 +99,4 @@ class CircleRipple extends Component {
 }
 
 export default CircleRipple;
+export {CircleRipple};

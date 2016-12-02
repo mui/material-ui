@@ -12,3 +12,4 @@ ActionSchedule.displayName = 'ActionSchedule';
 ActionSchedule.muiName = 'SvgIcon';
 
 export default ActionSchedule;
+export {ActionSchedule};

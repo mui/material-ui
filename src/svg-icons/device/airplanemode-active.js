@@ -12,3 +12,4 @@ DeviceAirplanemodeActive.displayName = 'DeviceAirplanemodeActive';
 DeviceAirplanemodeActive.muiName = 'SvgIcon';
 
 export default DeviceAirplanemodeActive;
+export {DeviceAirplanemodeActive};

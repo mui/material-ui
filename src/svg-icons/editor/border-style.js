@@ -12,3 +12,4 @@ EditorBorderStyle.displayName = 'EditorBorderStyle';
 EditorBorderStyle.muiName = 'SvgIcon';
 
 export default EditorBorderStyle;
+export {EditorBorderStyle};

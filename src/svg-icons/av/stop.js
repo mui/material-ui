@@ -12,3 +12,4 @@ AvStop.displayName = 'AvStop';
 AvStop.muiName = 'SvgIcon';
 
 export default AvStop;
+export {AvStop};

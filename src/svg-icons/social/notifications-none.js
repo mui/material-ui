@@ -12,3 +12,4 @@ SocialNotificationsNone.displayName = 'SocialNotificationsNone';
 SocialNotificationsNone.muiName = 'SvgIcon';
 
 export default SocialNotificationsNone;
+export {SocialNotificationsNone};

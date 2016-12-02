@@ -12,3 +12,4 @@ EditorFormatShapes.displayName = 'EditorFormatShapes';
 EditorFormatShapes.muiName = 'SvgIcon';
 
 export default EditorFormatShapes;
+export {EditorFormatShapes};

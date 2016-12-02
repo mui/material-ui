@@ -12,3 +12,4 @@ ActionLightbulbOutline.displayName = 'ActionLightbulbOutline';
 ActionLightbulbOutline.muiName = 'SvgIcon';
 
 export default ActionLightbulbOutline;
+export {ActionLightbulbOutline};

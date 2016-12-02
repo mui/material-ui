@@ -12,3 +12,4 @@ MapsLocalParking.displayName = 'MapsLocalParking';
 MapsLocalParking.muiName = 'SvgIcon';
 
 export default MapsLocalParking;
+export {MapsLocalParking};

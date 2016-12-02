@@ -12,3 +12,4 @@ HardwareTablet.displayName = 'HardwareTablet';
 HardwareTablet.muiName = 'SvgIcon';
 
 export default HardwareTablet;
+export {HardwareTablet};

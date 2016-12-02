@@ -12,3 +12,4 @@ ImageBrightness7.displayName = 'ImageBrightness7';
 ImageBrightness7.muiName = 'SvgIcon';
 
 export default ImageBrightness7;
+export {ImageBrightness7};

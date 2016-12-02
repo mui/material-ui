@@ -12,3 +12,4 @@ ActionAlarmOn.displayName = 'ActionAlarmOn';
 ActionAlarmOn.muiName = 'SvgIcon';
 
 export default ActionAlarmOn;
+export {ActionAlarmOn};

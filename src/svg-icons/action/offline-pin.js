@@ -12,3 +12,4 @@ ActionOfflinePin.displayName = 'ActionOfflinePin';
 ActionOfflinePin.muiName = 'SvgIcon';
 
 export default ActionOfflinePin;
+export {ActionOfflinePin};

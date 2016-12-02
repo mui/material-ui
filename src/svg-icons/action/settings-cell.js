@@ -12,3 +12,4 @@ ActionSettingsCell.displayName = 'ActionSettingsCell';
 ActionSettingsCell.muiName = 'SvgIcon';
 
 export default ActionSettingsCell;
+export {ActionSettingsCell};

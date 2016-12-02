@@ -12,3 +12,4 @@ ActionPermDeviceInformation.displayName = 'ActionPermDeviceInformation';
 ActionPermDeviceInformation.muiName = 'SvgIcon';
 
 export default ActionPermDeviceInformation;
+export {ActionPermDeviceInformation};

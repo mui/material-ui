@@ -12,3 +12,4 @@ ActionShopTwo.displayName = 'ActionShopTwo';
 ActionShopTwo.muiName = 'SvgIcon';
 
 export default ActionShopTwo;
+export {ActionShopTwo};

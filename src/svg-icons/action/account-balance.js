@@ -12,3 +12,4 @@ ActionAccountBalance.displayName = 'ActionAccountBalance';
 ActionAccountBalance.muiName = 'SvgIcon';
 
 export default ActionAccountBalance;
+export {ActionAccountBalance};

@@ -12,3 +12,4 @@ HardwarePowerInput.displayName = 'HardwarePowerInput';
 HardwarePowerInput.muiName = 'SvgIcon';
 
 export default HardwarePowerInput;
+export {HardwarePowerInput};

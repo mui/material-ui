@@ -180,3 +180,4 @@ class ClockHours extends Component {
 }
 
 export default ClockHours;
+export {ClockHours};

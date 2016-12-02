@@ -12,3 +12,4 @@ CommunicationClearAll.displayName = 'CommunicationClearAll';
 CommunicationClearAll.muiName = 'SvgIcon';
 
 export default CommunicationClearAll;
+export {CommunicationClearAll};

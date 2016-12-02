@@ -12,3 +12,4 @@ FileFileDownload.displayName = 'FileFileDownload';
 FileFileDownload.muiName = 'SvgIcon';
 
 export default FileFileDownload;
+export {FileFileDownload};

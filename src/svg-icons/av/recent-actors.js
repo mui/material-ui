@@ -12,3 +12,4 @@ AvRecentActors.displayName = 'AvRecentActors';
 AvRecentActors.muiName = 'SvgIcon';
 
 export default AvRecentActors;
+export {AvRecentActors};

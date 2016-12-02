@@ -157,3 +157,4 @@ class ToolbarGroup extends Component {
 }
 
 export default ToolbarGroup;
+export {ToolbarGroup};

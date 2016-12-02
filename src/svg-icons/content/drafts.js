@@ -12,3 +12,4 @@ ContentDrafts.displayName = 'ContentDrafts';
 ContentDrafts.muiName = 'SvgIcon';
 
 export default ContentDrafts;
+export {ContentDrafts};

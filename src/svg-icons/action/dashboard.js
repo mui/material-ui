@@ -12,3 +12,4 @@ ActionDashboard.displayName = 'ActionDashboard';
 ActionDashboard.muiName = 'SvgIcon';
 
 export default ActionDashboard;
+export {ActionDashboard};

@@ -12,3 +12,4 @@ ActionHelpOutline.displayName = 'ActionHelpOutline';
 ActionHelpOutline.muiName = 'SvgIcon';
 
 export default ActionHelpOutline;
+export {ActionHelpOutline};

@@ -12,3 +12,4 @@ CommunicationLocationOff.displayName = 'CommunicationLocationOff';
 CommunicationLocationOff.muiName = 'SvgIcon';
 
 export default CommunicationLocationOff;
+export {CommunicationLocationOff};

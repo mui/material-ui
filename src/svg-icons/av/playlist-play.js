@@ -12,3 +12,4 @@ AvPlaylistPlay.displayName = 'AvPlaylistPlay';
 AvPlaylistPlay.muiName = 'SvgIcon';
 
 export default AvPlaylistPlay;
+export {AvPlaylistPlay};

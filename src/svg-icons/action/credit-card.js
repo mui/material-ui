@@ -12,3 +12,4 @@ ActionCreditCard.displayName = 'ActionCreditCard';
 ActionCreditCard.muiName = 'SvgIcon';
 
 export default ActionCreditCard;
+export {ActionCreditCard};

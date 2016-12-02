@@ -12,3 +12,4 @@ ActionViewModule.displayName = 'ActionViewModule';
 ActionViewModule.muiName = 'SvgIcon';
 
 export default ActionViewModule;
+export {ActionViewModule};

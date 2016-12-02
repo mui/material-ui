@@ -12,3 +12,4 @@ ImageFilterTiltShift.displayName = 'ImageFilterTiltShift';
 ImageFilterTiltShift.muiName = 'SvgIcon';
 
 export default ImageFilterTiltShift;
+export {ImageFilterTiltShift};

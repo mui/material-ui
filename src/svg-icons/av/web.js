@@ -12,3 +12,4 @@ AvWeb.displayName = 'AvWeb';
 AvWeb.muiName = 'SvgIcon';
 
 export default AvWeb;
+export {AvWeb};

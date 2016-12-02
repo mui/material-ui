@@ -12,3 +12,4 @@ AvLibraryMusic.displayName = 'AvLibraryMusic';
 AvLibraryMusic.muiName = 'SvgIcon';
 
 export default AvLibraryMusic;
+export {AvLibraryMusic};

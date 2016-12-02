@@ -12,3 +12,4 @@ HardwareLaptopWindows.displayName = 'HardwareLaptopWindows';
 HardwareLaptopWindows.muiName = 'SvgIcon';
 
 export default HardwareLaptopWindows;
+export {HardwareLaptopWindows};

@@ -12,3 +12,4 @@ MapsLocalPharmacy.displayName = 'MapsLocalPharmacy';
 MapsLocalPharmacy.muiName = 'SvgIcon';
 
 export default MapsLocalPharmacy;
+export {MapsLocalPharmacy};

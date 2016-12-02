@@ -12,3 +12,4 @@ MapsBeenhere.displayName = 'MapsBeenhere';
 MapsBeenhere.muiName = 'SvgIcon';
 
 export default MapsBeenhere;
+export {MapsBeenhere};

@@ -12,3 +12,4 @@ CommunicationChat.displayName = 'CommunicationChat';
 CommunicationChat.muiName = 'SvgIcon';
 
 export default CommunicationChat;
+export {CommunicationChat};

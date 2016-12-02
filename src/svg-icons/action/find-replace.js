@@ -12,3 +12,4 @@ ActionFindReplace.displayName = 'ActionFindReplace';
 ActionFindReplace.muiName = 'SvgIcon';
 
 export default ActionFindReplace;
+export {ActionFindReplace};

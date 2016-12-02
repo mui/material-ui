@@ -12,3 +12,4 @@ NotificationVpnLock.displayName = 'NotificationVpnLock';
 NotificationVpnLock.muiName = 'SvgIcon';
 
 export default NotificationVpnLock;
+export {NotificationVpnLock};

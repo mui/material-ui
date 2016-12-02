@@ -12,3 +12,4 @@ ActionFlipToBack.displayName = 'ActionFlipToBack';
 ActionFlipToBack.muiName = 'SvgIcon';
 
 export default ActionFlipToBack;
+export {ActionFlipToBack};

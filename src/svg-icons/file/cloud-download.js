@@ -12,3 +12,4 @@ FileCloudDownload.displayName = 'FileCloudDownload';
 FileCloudDownload.muiName = 'SvgIcon';
 
 export default FileCloudDownload;
+export {FileCloudDownload};

@@ -12,3 +12,4 @@ ImagePanoramaHorizontal.displayName = 'ImagePanoramaHorizontal';
 ImagePanoramaHorizontal.muiName = 'SvgIcon';
 
 export default ImagePanoramaHorizontal;
+export {ImagePanoramaHorizontal};

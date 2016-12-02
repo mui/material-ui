@@ -12,3 +12,4 @@ CommunicationImportExport.displayName = 'CommunicationImportExport';
 CommunicationImportExport.muiName = 'SvgIcon';
 
 export default CommunicationImportExport;
+export {CommunicationImportExport};

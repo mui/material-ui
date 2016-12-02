@@ -12,3 +12,4 @@ ActionLabelOutline.displayName = 'ActionLabelOutline';
 ActionLabelOutline.muiName = 'SvgIcon';
 
 export default ActionLabelOutline;
+export {ActionLabelOutline};

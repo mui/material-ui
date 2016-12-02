@@ -12,3 +12,4 @@ ActionAnnouncement.displayName = 'ActionAnnouncement';
 ActionAnnouncement.muiName = 'SvgIcon';
 
 export default ActionAnnouncement;
+export {ActionAnnouncement};

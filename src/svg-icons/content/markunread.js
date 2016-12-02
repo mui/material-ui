@@ -12,3 +12,4 @@ ContentMarkunread.displayName = 'ContentMarkunread';
 ContentMarkunread.muiName = 'SvgIcon';
 
 export default ContentMarkunread;
+export {ContentMarkunread};

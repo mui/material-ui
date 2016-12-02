@@ -12,3 +12,4 @@ HardwareHeadset.displayName = 'HardwareHeadset';
 HardwareHeadset.muiName = 'SvgIcon';
 
 export default HardwareHeadset;
+export {HardwareHeadset};

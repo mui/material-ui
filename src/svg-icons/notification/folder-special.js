@@ -12,3 +12,4 @@ NotificationFolderSpecial.displayName = 'NotificationFolderSpecial';
 NotificationFolderSpecial.muiName = 'SvgIcon';
 
 export default NotificationFolderSpecial;
+export {NotificationFolderSpecial};

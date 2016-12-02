@@ -12,3 +12,4 @@ AlertErrorOutline.displayName = 'AlertErrorOutline';
 AlertErrorOutline.muiName = 'SvgIcon';
 
 export default AlertErrorOutline;
+export {AlertErrorOutline};

@@ -12,3 +12,4 @@ ImageMonochromePhotos.displayName = 'ImageMonochromePhotos';
 ImageMonochromePhotos.muiName = 'SvgIcon';
 
 export default ImageMonochromePhotos;
+export {ImageMonochromePhotos};

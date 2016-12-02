@@ -12,3 +12,4 @@ NavigationMoreVert.displayName = 'NavigationMoreVert';
 NavigationMoreVert.muiName = 'SvgIcon';
 
 export default NavigationMoreVert;
+export {NavigationMoreVert};

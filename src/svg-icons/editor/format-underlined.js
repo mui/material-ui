@@ -12,3 +12,4 @@ EditorFormatUnderlined.displayName = 'EditorFormatUnderlined';
 EditorFormatUnderlined.muiName = 'SvgIcon';
 
 export default EditorFormatUnderlined;
+export {EditorFormatUnderlined};

@@ -12,3 +12,4 @@ CommunicationStayCurrentLandscape.displayName = 'CommunicationStayCurrentLandsca
 CommunicationStayCurrentLandscape.muiName = 'SvgIcon';
 
 export default CommunicationStayCurrentLandscape;
+export {CommunicationStayCurrentLandscape};

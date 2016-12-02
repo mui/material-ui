@@ -62,3 +62,4 @@ class ToolbarTitle extends Component {
 }
 
 export default ToolbarTitle;
+export {ToolbarTitle};

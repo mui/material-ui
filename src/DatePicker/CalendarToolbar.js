@@ -99,3 +99,4 @@ class CalendarToolbar extends Component {
 }
 
 export default CalendarToolbar;
+export {CalendarToolbar};

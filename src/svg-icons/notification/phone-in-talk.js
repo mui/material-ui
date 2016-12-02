@@ -12,3 +12,4 @@ NotificationPhoneInTalk.displayName = 'NotificationPhoneInTalk';
 NotificationPhoneInTalk.muiName = 'SvgIcon';
 
 export default NotificationPhoneInTalk;
+export {NotificationPhoneInTalk};

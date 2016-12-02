@@ -12,3 +12,4 @@ ActionGavel.displayName = 'ActionGavel';
 ActionGavel.muiName = 'SvgIcon';
 
 export default ActionGavel;
+export {ActionGavel};

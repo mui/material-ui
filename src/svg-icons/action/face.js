@@ -12,3 +12,4 @@ ActionFace.displayName = 'ActionFace';
 ActionFace.muiName = 'SvgIcon';
 
 export default ActionFace;
+export {ActionFace};

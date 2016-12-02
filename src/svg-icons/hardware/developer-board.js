@@ -12,3 +12,4 @@ HardwareDeveloperBoard.displayName = 'HardwareDeveloperBoard';
 HardwareDeveloperBoard.muiName = 'SvgIcon';
 
 export default HardwareDeveloperBoard;
+export {HardwareDeveloperBoard};

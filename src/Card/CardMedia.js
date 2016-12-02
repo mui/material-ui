@@ -145,3 +145,4 @@ class CardMedia extends Component {
 }
 
 export default CardMedia;
+export {CardMedia};

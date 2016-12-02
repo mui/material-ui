@@ -12,3 +12,4 @@ ActionYoutubeSearchedFor.displayName = 'ActionYoutubeSearchedFor';
 ActionYoutubeSearchedFor.muiName = 'SvgIcon';
 
 export default ActionYoutubeSearchedFor;
+export {ActionYoutubeSearchedFor};

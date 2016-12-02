@@ -391,3 +391,4 @@ class Drawer extends Component {
 }
 
 export default Drawer;
+export {Drawer};

@@ -12,3 +12,4 @@ AvAvTimer.displayName = 'AvAvTimer';
 AvAvTimer.muiName = 'SvgIcon';
 
 export default AvAvTimer;
+export {AvAvTimer};

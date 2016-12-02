@@ -12,3 +12,4 @@ ActionTurnedInNot.displayName = 'ActionTurnedInNot';
 ActionTurnedInNot.muiName = 'SvgIcon';
 
 export default ActionTurnedInNot;
+export {ActionTurnedInNot};

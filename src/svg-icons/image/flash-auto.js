@@ -12,3 +12,4 @@ ImageFlashAuto.displayName = 'ImageFlashAuto';
 ImageFlashAuto.muiName = 'SvgIcon';
 
 export default ImageFlashAuto;
+export {ImageFlashAuto};

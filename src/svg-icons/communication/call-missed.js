@@ -12,3 +12,4 @@ CommunicationCallMissed.displayName = 'CommunicationCallMissed';
 CommunicationCallMissed.muiName = 'SvgIcon';
 
 export default CommunicationCallMissed;
+export {CommunicationCallMissed};

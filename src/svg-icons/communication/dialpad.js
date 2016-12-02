@@ -12,3 +12,4 @@ CommunicationDialpad.displayName = 'CommunicationDialpad';
 CommunicationDialpad.muiName = 'SvgIcon';
 
 export default CommunicationDialpad;
+export {CommunicationDialpad};

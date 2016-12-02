@@ -12,3 +12,4 @@ ActionRoundedCorner.displayName = 'ActionRoundedCorner';
 ActionRoundedCorner.muiName = 'SvgIcon';
 
 export default ActionRoundedCorner;
+export {ActionRoundedCorner};

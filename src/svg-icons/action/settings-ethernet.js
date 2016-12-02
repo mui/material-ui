@@ -12,3 +12,4 @@ ActionSettingsEthernet.displayName = 'ActionSettingsEthernet';
 ActionSettingsEthernet.muiName = 'SvgIcon';
 
 export default ActionSettingsEthernet;
+export {ActionSettingsEthernet};

@@ -12,3 +12,4 @@ NotificationBluetoothAudio.displayName = 'NotificationBluetoothAudio';
 NotificationBluetoothAudio.muiName = 'SvgIcon';
 
 export default NotificationBluetoothAudio;
+export {NotificationBluetoothAudio};

@@ -12,3 +12,4 @@ ImageLandscape.displayName = 'ImageLandscape';
 ImageLandscape.muiName = 'SvgIcon';
 
 export default ImageLandscape;
+export {ImageLandscape};

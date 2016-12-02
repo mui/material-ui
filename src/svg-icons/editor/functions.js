@@ -12,3 +12,4 @@ EditorFunctions.displayName = 'EditorFunctions';
 EditorFunctions.muiName = 'SvgIcon';
 
 export default EditorFunctions;
+export {EditorFunctions};

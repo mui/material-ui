@@ -12,3 +12,4 @@ EditorFormatQuote.displayName = 'EditorFormatQuote';
 EditorFormatQuote.muiName = 'SvgIcon';
 
 export default EditorFormatQuote;
+export {EditorFormatQuote};

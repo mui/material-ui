@@ -12,3 +12,4 @@ EditorBorderBottom.displayName = 'EditorBorderBottom';
 EditorBorderBottom.muiName = 'SvgIcon';
 
 export default EditorBorderBottom;
+export {EditorBorderBottom};

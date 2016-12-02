@@ -12,3 +12,4 @@ AvMicOff.displayName = 'AvMicOff';
 AvMicOff.muiName = 'SvgIcon';
 
 export default AvMicOff;
+export {AvMicOff};

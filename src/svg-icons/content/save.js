@@ -12,3 +12,4 @@ ContentSave.displayName = 'ContentSave';
 ContentSave.muiName = 'SvgIcon';
 
 export default ContentSave;
+export {ContentSave};

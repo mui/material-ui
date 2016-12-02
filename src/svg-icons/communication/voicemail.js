@@ -12,3 +12,4 @@ CommunicationVoicemail.displayName = 'CommunicationVoicemail';
 CommunicationVoicemail.muiName = 'SvgIcon';
 
 export default CommunicationVoicemail;
+export {CommunicationVoicemail};

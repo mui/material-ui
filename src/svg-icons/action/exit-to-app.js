@@ -12,3 +12,4 @@ ActionExitToApp.displayName = 'ActionExitToApp';
 ActionExitToApp.muiName = 'SvgIcon';
 
 export default ActionExitToApp;
+export {ActionExitToApp};

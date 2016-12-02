@@ -12,3 +12,4 @@ ActionSettings.displayName = 'ActionSettings';
 ActionSettings.muiName = 'SvgIcon';
 
 export default ActionSettings;
+export {ActionSettings};

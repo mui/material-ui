@@ -12,3 +12,4 @@ ImageMusicNote.displayName = 'ImageMusicNote';
 ImageMusicNote.muiName = 'SvgIcon';
 
 export default ImageMusicNote;
+export {ImageMusicNote};

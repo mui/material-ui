@@ -12,3 +12,4 @@ ImageCameraRear.displayName = 'ImageCameraRear';
 ImageCameraRear.muiName = 'SvgIcon';
 
 export default ImageCameraRear;
+export {ImageCameraRear};

@@ -12,3 +12,4 @@ MapsLocalMall.displayName = 'MapsLocalMall';
 MapsLocalMall.muiName = 'SvgIcon';
 
 export default MapsLocalMall;
+export {MapsLocalMall};

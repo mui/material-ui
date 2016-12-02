@@ -12,3 +12,4 @@ CommunicationCallMade.displayName = 'CommunicationCallMade';
 CommunicationCallMade.muiName = 'SvgIcon';
 
 export default CommunicationCallMade;
+export {CommunicationCallMade};

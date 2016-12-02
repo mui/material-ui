@@ -12,3 +12,4 @@ NavigationArrowDropUp.displayName = 'NavigationArrowDropUp';
 NavigationArrowDropUp.muiName = 'SvgIcon';
 
 export default NavigationArrowDropUp;
+export {NavigationArrowDropUp};

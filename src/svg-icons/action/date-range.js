@@ -12,3 +12,4 @@ ActionDateRange.displayName = 'ActionDateRange';
 ActionDateRange.muiName = 'SvgIcon';
 
 export default ActionDateRange;
+export {ActionDateRange};

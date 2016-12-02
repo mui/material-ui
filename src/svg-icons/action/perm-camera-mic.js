@@ -12,3 +12,4 @@ ActionPermCameraMic.displayName = 'ActionPermCameraMic';
 ActionPermCameraMic.muiName = 'SvgIcon';
 
 export default ActionPermCameraMic;
+export {ActionPermCameraMic};

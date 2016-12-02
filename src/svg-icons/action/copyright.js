@@ -12,3 +12,4 @@ ActionCopyright.displayName = 'ActionCopyright';
 ActionCopyright.muiName = 'SvgIcon';
 
 export default ActionCopyright;
+export {ActionCopyright};

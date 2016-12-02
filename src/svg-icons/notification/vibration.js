@@ -12,3 +12,4 @@ NotificationVibration.displayName = 'NotificationVibration';
 NotificationVibration.muiName = 'SvgIcon';
 
 export default NotificationVibration;
+export {NotificationVibration};

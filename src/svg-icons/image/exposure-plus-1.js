@@ -12,3 +12,4 @@ ImageExposurePlus1.displayName = 'ImageExposurePlus1';
 ImageExposurePlus1.muiName = 'SvgIcon';
 
 export default ImageExposurePlus1;
+export {ImageExposurePlus1};

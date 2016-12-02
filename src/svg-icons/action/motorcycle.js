@@ -12,3 +12,4 @@ ActionMotorcycle.displayName = 'ActionMotorcycle';
 ActionMotorcycle.muiName = 'SvgIcon';
 
 export default ActionMotorcycle;
+export {ActionMotorcycle};

@@ -12,3 +12,4 @@ ActionClass.displayName = 'ActionClass';
 ActionClass.muiName = 'SvgIcon';
 
 export default ActionClass;
+export {ActionClass};

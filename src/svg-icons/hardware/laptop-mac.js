@@ -12,3 +12,4 @@ HardwareLaptopMac.displayName = 'HardwareLaptopMac';
 HardwareLaptopMac.muiName = 'SvgIcon';
 
 export default HardwareLaptopMac;
+export {HardwareLaptopMac};

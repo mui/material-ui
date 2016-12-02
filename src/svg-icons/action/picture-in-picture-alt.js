@@ -12,3 +12,4 @@ ActionPictureInPictureAlt.displayName = 'ActionPictureInPictureAlt';
 ActionPictureInPictureAlt.muiName = 'SvgIcon';
 
 export default ActionPictureInPictureAlt;
+export {ActionPictureInPictureAlt};

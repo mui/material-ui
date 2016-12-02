@@ -95,3 +95,4 @@ class TableFooter extends Component {
 }
 
 export default TableFooter;
+export {TableFooter};

@@ -12,3 +12,4 @@ ActionSettingsOverscan.displayName = 'ActionSettingsOverscan';
 ActionSettingsOverscan.muiName = 'SvgIcon';
 
 export default ActionSettingsOverscan;
+export {ActionSettingsOverscan};

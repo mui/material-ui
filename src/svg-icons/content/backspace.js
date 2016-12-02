@@ -12,3 +12,4 @@ ContentBackspace.displayName = 'ContentBackspace';
 ContentBackspace.muiName = 'SvgIcon';
 
 export default ContentBackspace;
+export {ContentBackspace};

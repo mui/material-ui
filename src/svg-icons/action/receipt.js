@@ -12,3 +12,4 @@ ActionReceipt.displayName = 'ActionReceipt';
 ActionReceipt.muiName = 'SvgIcon';
 
 export default ActionReceipt;
+export {ActionReceipt};

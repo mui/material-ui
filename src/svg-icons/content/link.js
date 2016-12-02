@@ -12,3 +12,4 @@ ContentLink.displayName = 'ContentLink';
 ContentLink.muiName = 'SvgIcon';
 
 export default ContentLink;
+export {ContentLink};

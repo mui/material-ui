@@ -170,3 +170,4 @@ class DateDisplay extends Component {
 }
 
 export default DateDisplay;
+export {DateDisplay};

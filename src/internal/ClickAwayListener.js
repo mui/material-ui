@@ -61,3 +61,4 @@ class ClickAwayListener extends Component {
 }
 
 export default ClickAwayListener;
+export {ClickAwayListener};

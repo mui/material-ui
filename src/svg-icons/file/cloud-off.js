@@ -12,3 +12,4 @@ FileCloudOff.displayName = 'FileCloudOff';
 FileCloudOff.muiName = 'SvgIcon';
 
 export default FileCloudOff;
+export {FileCloudOff};

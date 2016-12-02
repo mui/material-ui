@@ -12,3 +12,4 @@ ImageCropFree.displayName = 'ImageCropFree';
 ImageCropFree.muiName = 'SvgIcon';
 
 export default ImageCropFree;
+export {ImageCropFree};

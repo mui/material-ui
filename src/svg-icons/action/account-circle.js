@@ -12,3 +12,4 @@ ActionAccountCircle.displayName = 'ActionAccountCircle';
 ActionAccountCircle.muiName = 'SvgIcon';
 
 export default ActionAccountCircle;
+export {ActionAccountCircle};

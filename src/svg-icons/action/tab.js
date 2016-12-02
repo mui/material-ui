@@ -12,3 +12,4 @@ ActionTab.displayName = 'ActionTab';
 ActionTab.muiName = 'SvgIcon';
 
 export default ActionTab;
+export {ActionTab};

@@ -12,3 +12,4 @@ ImageLoupe.displayName = 'ImageLoupe';
 ImageLoupe.muiName = 'SvgIcon';
 
 export default ImageLoupe;
+export {ImageLoupe};

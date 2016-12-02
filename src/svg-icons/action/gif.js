@@ -12,3 +12,4 @@ ActionGif.displayName = 'ActionGif';
 ActionGif.muiName = 'SvgIcon';
 
 export default ActionGif;
+export {ActionGif};

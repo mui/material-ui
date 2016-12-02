@@ -12,3 +12,4 @@ MapsLocalLibrary.displayName = 'MapsLocalLibrary';
 MapsLocalLibrary.muiName = 'SvgIcon';
 
 export default MapsLocalLibrary;
+export {MapsLocalLibrary};

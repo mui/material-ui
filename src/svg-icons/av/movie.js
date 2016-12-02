@@ -12,3 +12,4 @@ AvMovie.displayName = 'AvMovie';
 AvMovie.muiName = 'SvgIcon';
 
 export default AvMovie;
+export {AvMovie};

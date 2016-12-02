@@ -12,3 +12,4 @@ NotificationEnhancedEncryption.displayName = 'NotificationEnhancedEncryption';
 NotificationEnhancedEncryption.muiName = 'SvgIcon';
 
 export default NotificationEnhancedEncryption;
+export {NotificationEnhancedEncryption};

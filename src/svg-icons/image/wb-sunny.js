@@ -12,3 +12,4 @@ ImageWbSunny.displayName = 'ImageWbSunny';
 ImageWbSunny.muiName = 'SvgIcon';
 
 export default ImageWbSunny;
+export {ImageWbSunny};

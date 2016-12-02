@@ -12,3 +12,4 @@ ActionRecordVoiceOver.displayName = 'ActionRecordVoiceOver';
 ActionRecordVoiceOver.muiName = 'SvgIcon';
 
 export default ActionRecordVoiceOver;
+export {ActionRecordVoiceOver};

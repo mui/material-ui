@@ -12,3 +12,4 @@ ImageHdrWeak.displayName = 'ImageHdrWeak';
 ImageHdrWeak.muiName = 'SvgIcon';
 
 export default ImageHdrWeak;
+export {ImageHdrWeak};

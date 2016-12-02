@@ -12,3 +12,4 @@ ActionPolymer.displayName = 'ActionPolymer';
 ActionPolymer.muiName = 'SvgIcon';
 
 export default ActionPolymer;
+export {ActionPolymer};

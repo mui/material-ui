@@ -12,3 +12,4 @@ NavigationRefresh.displayName = 'NavigationRefresh';
 NavigationRefresh.muiName = 'SvgIcon';
 
 export default NavigationRefresh;
+export {NavigationRefresh};

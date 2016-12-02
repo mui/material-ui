@@ -12,3 +12,4 @@ NotificationTapAndPlay.displayName = 'NotificationTapAndPlay';
 NotificationTapAndPlay.muiName = 'SvgIcon';
 
 export default NotificationTapAndPlay;
+export {NotificationTapAndPlay};

@@ -12,3 +12,4 @@ ActionPictureInPicture.displayName = 'ActionPictureInPicture';
 ActionPictureInPicture.muiName = 'SvgIcon';
 
 export default ActionPictureInPicture;
+export {ActionPictureInPicture};

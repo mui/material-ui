@@ -12,3 +12,4 @@ MapsStreetview.displayName = 'MapsStreetview';
 MapsStreetview.muiName = 'SvgIcon';
 
 export default MapsStreetview;
+export {MapsStreetview};

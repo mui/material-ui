@@ -12,3 +12,4 @@ ActionFavoriteBorder.displayName = 'ActionFavoriteBorder';
 ActionFavoriteBorder.muiName = 'SvgIcon';
 
 export default ActionFavoriteBorder;
+export {ActionFavoriteBorder};

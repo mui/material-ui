@@ -12,3 +12,4 @@ SocialSentimentVerySatisfied.displayName = 'SocialSentimentVerySatisfied';
 SocialSentimentVerySatisfied.muiName = 'SvgIcon';
 
 export default SocialSentimentVerySatisfied;
+export {SocialSentimentVerySatisfied};

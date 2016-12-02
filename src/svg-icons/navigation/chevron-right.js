@@ -12,3 +12,4 @@ NavigationChevronRight.displayName = 'NavigationChevronRight';
 NavigationChevronRight.muiName = 'SvgIcon';
 
 export default NavigationChevronRight;
+export {NavigationChevronRight};

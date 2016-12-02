@@ -12,3 +12,4 @@ MapsDirectionsBike.displayName = 'MapsDirectionsBike';
 MapsDirectionsBike.muiName = 'SvgIcon';
 
 export default MapsDirectionsBike;
+export {MapsDirectionsBike};

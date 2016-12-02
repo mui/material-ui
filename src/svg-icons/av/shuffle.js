@@ -12,3 +12,4 @@ AvShuffle.displayName = 'AvShuffle';
 AvShuffle.muiName = 'SvgIcon';
 
 export default AvShuffle;
+export {AvShuffle};

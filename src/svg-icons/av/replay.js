@@ -12,3 +12,4 @@ AvReplay.displayName = 'AvReplay';
 AvReplay.muiName = 'SvgIcon';
 
 export default AvReplay;
+export {AvReplay};

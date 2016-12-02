@@ -12,3 +12,4 @@ MapsLocalOffer.displayName = 'MapsLocalOffer';
 MapsLocalOffer.muiName = 'SvgIcon';
 
 export default MapsLocalOffer;
+export {MapsLocalOffer};

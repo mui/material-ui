@@ -12,3 +12,4 @@ PlacesChildFriendly.displayName = 'PlacesChildFriendly';
 PlacesChildFriendly.muiName = 'SvgIcon';
 
 export default PlacesChildFriendly;
+export {PlacesChildFriendly};

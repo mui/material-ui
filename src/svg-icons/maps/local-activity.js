@@ -12,3 +12,4 @@ MapsLocalActivity.displayName = 'MapsLocalActivity';
 MapsLocalActivity.muiName = 'SvgIcon';
 
 export default MapsLocalActivity;
+export {MapsLocalActivity};

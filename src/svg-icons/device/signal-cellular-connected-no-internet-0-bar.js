@@ -12,3 +12,4 @@ DeviceSignalCellularConnectedNoInternet0Bar.displayName = 'DeviceSignalCellularC
 DeviceSignalCellularConnectedNoInternet0Bar.muiName = 'SvgIcon';
 
 export default DeviceSignalCellularConnectedNoInternet0Bar;
+export {DeviceSignalCellularConnectedNoInternet0Bar};

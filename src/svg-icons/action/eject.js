@@ -12,3 +12,4 @@ ActionEject.displayName = 'ActionEject';
 ActionEject.muiName = 'SvgIcon';
 
 export default ActionEject;
+export {ActionEject};

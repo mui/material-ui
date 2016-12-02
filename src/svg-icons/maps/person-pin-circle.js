@@ -12,3 +12,4 @@ MapsPersonPinCircle.displayName = 'MapsPersonPinCircle';
 MapsPersonPinCircle.muiName = 'SvgIcon';
 
 export default MapsPersonPinCircle;
+export {MapsPersonPinCircle};

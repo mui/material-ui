@@ -12,3 +12,4 @@ CommunicationCallReceived.displayName = 'CommunicationCallReceived';
 CommunicationCallReceived.muiName = 'SvgIcon';
 
 export default CommunicationCallReceived;
+export {CommunicationCallReceived};

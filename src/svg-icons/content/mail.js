@@ -12,3 +12,4 @@ ContentMail.displayName = 'ContentMail';
 ContentMail.muiName = 'SvgIcon';
 
 export default ContentMail;
+export {ContentMail};

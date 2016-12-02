@@ -396,3 +396,4 @@ class Popover extends Component {
 }
 
 export default Popover;
+export {Popover};

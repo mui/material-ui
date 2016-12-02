@@ -12,3 +12,4 @@ MapsDirectionsRailway.displayName = 'MapsDirectionsRailway';
 MapsDirectionsRailway.muiName = 'SvgIcon';
 
 export default MapsDirectionsRailway;
+export {MapsDirectionsRailway};

@@ -217,3 +217,4 @@ class TableRow extends Component {
 }
 
 export default TableRow;
+export {TableRow};

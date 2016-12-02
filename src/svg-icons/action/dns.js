@@ -12,3 +12,4 @@ ActionDns.displayName = 'ActionDns';
 ActionDns.muiName = 'SvgIcon';
 
 export default ActionDns;
+export {ActionDns};

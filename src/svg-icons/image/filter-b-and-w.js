@@ -12,3 +12,4 @@ ImageFilterBAndW.displayName = 'ImageFilterBAndW';
 ImageFilterBAndW.muiName = 'SvgIcon';
 
 export default ImageFilterBAndW;
+export {ImageFilterBAndW};

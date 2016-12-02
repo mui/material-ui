@@ -69,3 +69,4 @@ class SlideIn extends Component {
 }
 
 export default SlideIn;
+export {SlideIn};

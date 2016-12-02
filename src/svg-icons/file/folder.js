@@ -12,3 +12,4 @@ FileFolder.displayName = 'FileFolder';
 FileFolder.muiName = 'SvgIcon';
 
 export default FileFolder;
+export {FileFolder};

@@ -66,3 +66,4 @@ class AutoLockScrolling extends Component {
 }
 
 export default AutoLockScrolling;
+export {AutoLockScrolling};

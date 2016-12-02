@@ -12,3 +12,4 @@ SocialNotificationsPaused.displayName = 'SocialNotificationsPaused';
 SocialNotificationsPaused.muiName = 'SvgIcon';
 
 export default SocialNotificationsPaused;
+export {SocialNotificationsPaused};

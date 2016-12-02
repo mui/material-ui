@@ -12,3 +12,4 @@ FileFileUpload.displayName = 'FileFileUpload';
 FileFileUpload.muiName = 'SvgIcon';
 
 export default FileFileUpload;
+export {FileFileUpload};

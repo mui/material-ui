@@ -12,3 +12,4 @@ MapsLocalCafe.displayName = 'MapsLocalCafe';
 MapsLocalCafe.muiName = 'SvgIcon';
 
 export default MapsLocalCafe;
+export {MapsLocalCafe};

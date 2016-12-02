@@ -12,3 +12,4 @@ NavigationUnfoldMore.displayName = 'NavigationUnfoldMore';
 NavigationUnfoldMore.muiName = 'SvgIcon';
 
 export default NavigationUnfoldMore;
+export {NavigationUnfoldMore};

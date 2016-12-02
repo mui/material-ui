@@ -92,3 +92,4 @@ class Paper extends Component {
 }
 
 export default Paper;
+export {Paper};

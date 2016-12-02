@@ -12,3 +12,4 @@ NotificationPriorityHigh.displayName = 'NotificationPriorityHigh';
 NotificationPriorityHigh.muiName = 'SvgIcon';
 
 export default NotificationPriorityHigh;
+export {NotificationPriorityHigh};

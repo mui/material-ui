@@ -127,3 +127,4 @@ class CalendarYear extends Component {
 }
 
 export default CalendarYear;
+export {CalendarYear};

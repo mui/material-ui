@@ -92,3 +92,4 @@ class ClockPointer extends Component {
 }
 
 export default ClockPointer;
+export {ClockPointer};

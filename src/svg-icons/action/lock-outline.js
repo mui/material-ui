@@ -12,3 +12,4 @@ ActionLockOutline.displayName = 'ActionLockOutline';
 ActionLockOutline.muiName = 'SvgIcon';
 
 export default ActionLockOutline;
+export {ActionLockOutline};

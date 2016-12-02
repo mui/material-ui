@@ -12,3 +12,4 @@ NavigationArrowBack.displayName = 'NavigationArrowBack';
 NavigationArrowBack.muiName = 'SvgIcon';
 
 export default NavigationArrowBack;
+export {NavigationArrowBack};

@@ -12,3 +12,4 @@ ActionEvent.displayName = 'ActionEvent';
 ActionEvent.muiName = 'SvgIcon';
 
 export default ActionEvent;
+export {ActionEvent};

@@ -12,3 +12,4 @@ DeviceSignalWifi3Bar.displayName = 'DeviceSignalWifi3Bar';
 DeviceSignalWifi3Bar.muiName = 'SvgIcon';
 
 export default DeviceSignalWifi3Bar;
+export {DeviceSignalWifi3Bar};

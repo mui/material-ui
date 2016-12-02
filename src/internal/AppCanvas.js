@@ -48,3 +48,4 @@ class AppCanvas extends Component {
 }
 
 export default AppCanvas;
+export {AppCanvas};

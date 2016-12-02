@@ -294,3 +294,4 @@ class Chip extends Component {
 }
 
 export default Chip;
+export {Chip};

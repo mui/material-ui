@@ -12,3 +12,4 @@ EditorMultilineChart.displayName = 'EditorMultilineChart';
 EditorMultilineChart.muiName = 'SvgIcon';
 
 export default EditorMultilineChart;
+export {EditorMultilineChart};

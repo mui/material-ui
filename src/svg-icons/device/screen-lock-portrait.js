@@ -12,3 +12,4 @@ DeviceScreenLockPortrait.displayName = 'DeviceScreenLockPortrait';
 DeviceScreenLockPortrait.muiName = 'SvgIcon';
 
 export default DeviceScreenLockPortrait;
+export {DeviceScreenLockPortrait};

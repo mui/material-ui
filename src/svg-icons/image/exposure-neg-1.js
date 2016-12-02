@@ -12,3 +12,4 @@ ImageExposureNeg1.displayName = 'ImageExposureNeg1';
 ImageExposureNeg1.muiName = 'SvgIcon';
 
 export default ImageExposureNeg1;
+export {ImageExposureNeg1};

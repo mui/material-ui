@@ -12,3 +12,4 @@ NotificationEventAvailable.displayName = 'NotificationEventAvailable';
 NotificationEventAvailable.muiName = 'SvgIcon';
 
 export default NotificationEventAvailable;
+export {NotificationEventAvailable};

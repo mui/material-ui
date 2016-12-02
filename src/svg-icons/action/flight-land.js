@@ -12,3 +12,4 @@ ActionFlightLand.displayName = 'ActionFlightLand';
 ActionFlightLand.muiName = 'SvgIcon';
 
 export default ActionFlightLand;
+export {ActionFlightLand};

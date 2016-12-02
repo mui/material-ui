@@ -12,3 +12,4 @@ ImageCropSquare.displayName = 'ImageCropSquare';
 ImageCropSquare.muiName = 'SvgIcon';
 
 export default ImageCropSquare;
+export {ImageCropSquare};

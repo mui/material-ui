@@ -12,3 +12,4 @@ AvMicNone.displayName = 'AvMicNone';
 AvMicNone.muiName = 'SvgIcon';
 
 export default AvMicNone;
+export {AvMicNone};

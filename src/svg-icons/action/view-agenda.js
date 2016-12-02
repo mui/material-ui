@@ -12,3 +12,4 @@ ActionViewAgenda.displayName = 'ActionViewAgenda';
 ActionViewAgenda.muiName = 'SvgIcon';
 
 export default ActionViewAgenda;
+export {ActionViewAgenda};

@@ -12,3 +12,4 @@ ActionSettingsBluetooth.displayName = 'ActionSettingsBluetooth';
 ActionSettingsBluetooth.muiName = 'SvgIcon';
 
 export default ActionSettingsBluetooth;
+export {ActionSettingsBluetooth};

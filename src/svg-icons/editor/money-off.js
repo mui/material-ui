@@ -12,3 +12,4 @@ EditorMoneyOff.displayName = 'EditorMoneyOff';
 EditorMoneyOff.muiName = 'SvgIcon';
 
 export default EditorMoneyOff;
+export {EditorMoneyOff};

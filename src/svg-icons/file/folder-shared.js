@@ -12,3 +12,4 @@ FileFolderShared.displayName = 'FileFolderShared';
 FileFolderShared.muiName = 'SvgIcon';
 
 export default FileFolderShared;
+export {FileFolderShared};

@@ -12,3 +12,4 @@ AvFastRewind.displayName = 'AvFastRewind';
 AvFastRewind.muiName = 'SvgIcon';
 
 export default AvFastRewind;
+export {AvFastRewind};

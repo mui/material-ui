@@ -12,3 +12,4 @@ MapsLocalGasStation.displayName = 'MapsLocalGasStation';
 MapsLocalGasStation.muiName = 'SvgIcon';
 
 export default MapsLocalGasStation;
+export {MapsLocalGasStation};

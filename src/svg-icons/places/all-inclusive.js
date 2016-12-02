@@ -12,3 +12,4 @@ PlacesAllInclusive.displayName = 'PlacesAllInclusive';
 PlacesAllInclusive.muiName = 'SvgIcon';
 
 export default PlacesAllInclusive;
+export {PlacesAllInclusive};

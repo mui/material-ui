@@ -12,3 +12,4 @@ HardwareKeyboardArrowLeft.displayName = 'HardwareKeyboardArrowLeft';
 HardwareKeyboardArrowLeft.muiName = 'SvgIcon';
 
 export default HardwareKeyboardArrowLeft;
+export {HardwareKeyboardArrowLeft};

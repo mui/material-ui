@@ -12,3 +12,4 @@ HardwareGamepad.displayName = 'HardwareGamepad';
 HardwareGamepad.muiName = 'SvgIcon';
 
 export default HardwareGamepad;
+export {HardwareGamepad};

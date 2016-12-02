@@ -12,3 +12,4 @@ NotificationOndemandVideo.displayName = 'NotificationOndemandVideo';
 NotificationOndemandVideo.muiName = 'SvgIcon';
 
 export default NotificationOndemandVideo;
+export {NotificationOndemandVideo};

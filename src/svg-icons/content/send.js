@@ -12,3 +12,4 @@ ContentSend.displayName = 'ContentSend';
 ContentSend.muiName = 'SvgIcon';
 
 export default ContentSend;
+export {ContentSend};

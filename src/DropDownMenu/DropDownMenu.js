@@ -340,3 +340,4 @@ class DropDownMenu extends Component {
 }
 
 export default DropDownMenu;
+export {DropDownMenu};

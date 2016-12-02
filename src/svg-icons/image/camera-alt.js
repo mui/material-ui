@@ -12,3 +12,4 @@ ImageCameraAlt.displayName = 'ImageCameraAlt';
 ImageCameraAlt.muiName = 'SvgIcon';
 
 export default ImageCameraAlt;
+export {ImageCameraAlt};

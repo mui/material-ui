@@ -12,3 +12,4 @@ DeviceScreenRotation.displayName = 'DeviceScreenRotation';
 DeviceScreenRotation.muiName = 'SvgIcon';
 
 export default DeviceScreenRotation;
+export {DeviceScreenRotation};

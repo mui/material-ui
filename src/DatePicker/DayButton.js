@@ -138,3 +138,4 @@ class DayButton extends Component {
 }
 
 export default DayButton;
+export {DayButton};

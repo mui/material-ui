@@ -157,3 +157,4 @@ class TimeDisplay extends Component {
 }
 
 export default TimeDisplay;
+export {TimeDisplay};

@@ -12,3 +12,4 @@ NotificationPersonalVideo.displayName = 'NotificationPersonalVideo';
 NotificationPersonalVideo.muiName = 'SvgIcon';
 
 export default NotificationPersonalVideo;
+export {NotificationPersonalVideo};

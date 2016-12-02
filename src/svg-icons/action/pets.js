@@ -12,3 +12,4 @@ ActionPets.displayName = 'ActionPets';
 ActionPets.muiName = 'SvgIcon';
 
 export default ActionPets;
+export {ActionPets};

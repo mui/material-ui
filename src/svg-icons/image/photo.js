@@ -12,3 +12,4 @@ ImagePhoto.displayName = 'ImagePhoto';
 ImagePhoto.muiName = 'SvgIcon';
 
 export default ImagePhoto;
+export {ImagePhoto};

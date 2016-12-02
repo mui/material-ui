@@ -12,3 +12,4 @@ AvSurroundSound.displayName = 'AvSurroundSound';
 AvSurroundSound.muiName = 'SvgIcon';
 
 export default AvSurroundSound;
+export {AvSurroundSound};

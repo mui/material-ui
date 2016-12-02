@@ -12,3 +12,4 @@ EditorDragHandle.displayName = 'EditorDragHandle';
 EditorDragHandle.muiName = 'SvgIcon';
 
 export default EditorDragHandle;
+export {EditorDragHandle};

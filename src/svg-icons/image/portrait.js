@@ -12,3 +12,4 @@ ImagePortrait.displayName = 'ImagePortrait';
 ImagePortrait.muiName = 'SvgIcon';
 
 export default ImagePortrait;
+export {ImagePortrait};

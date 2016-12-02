@@ -12,3 +12,4 @@ NotificationWc.displayName = 'NotificationWc';
 NotificationWc.muiName = 'SvgIcon';
 
 export default NotificationWc;
+export {NotificationWc};

@@ -12,3 +12,4 @@ ImageLooks5.displayName = 'ImageLooks5';
 ImageLooks5.muiName = 'SvgIcon';
 
 export default ImageLooks5;
+export {ImageLooks5};

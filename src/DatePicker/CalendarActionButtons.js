@@ -54,3 +54,4 @@ class CalendarActionButton extends Component {
 }
 
 export default CalendarActionButton;
+export {CalendarActionButton};

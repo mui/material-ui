@@ -12,3 +12,4 @@ DeviceGpsOff.displayName = 'DeviceGpsOff';
 DeviceGpsOff.muiName = 'SvgIcon';
 
 export default DeviceGpsOff;
+export {DeviceGpsOff};

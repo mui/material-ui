@@ -12,3 +12,4 @@ EditorFormatSize.displayName = 'EditorFormatSize';
 EditorFormatSize.muiName = 'SvgIcon';
 
 export default EditorFormatSize;
+export {EditorFormatSize};

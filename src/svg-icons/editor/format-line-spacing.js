@@ -12,3 +12,4 @@ EditorFormatLineSpacing.displayName = 'EditorFormatLineSpacing';
 EditorFormatLineSpacing.muiName = 'SvgIcon';
 
 export default EditorFormatLineSpacing;
+export {EditorFormatLineSpacing};

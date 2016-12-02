@@ -103,3 +103,4 @@ class FontIcon extends Component {
 }
 
 export default FontIcon;
+export {FontIcon};

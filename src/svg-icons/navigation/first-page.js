@@ -12,3 +12,4 @@ NavigationFirstPage.displayName = 'NavigationFirstPage';
 NavigationFirstPage.muiName = 'SvgIcon';
 
 export default NavigationFirstPage;
+export {NavigationFirstPage};
