@@ -6,8 +6,7 @@ import propTypes from '../utils/propTypes';
 import Paper from '../Paper';
 import throttle from 'lodash.throttle';
 import PopoverAnimationDefault from './PopoverAnimationDefault';
-import getOffsetTop from '../utils/offsetTop';
-import isIOS from '../utils/isIOS';
+import {isIOS, getOffsetTop} from '../utils/isIOS';
 
 class Popover extends Component {
   static propTypes = {
