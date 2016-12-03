@@ -233,7 +233,6 @@ class Popover extends Component {
     }
 
     const rect = el.getBoundingClientRect();
-    const offsetTop = getOffsetTop(el);
     const a = {
       top: rect.top,
       left: rect.left,
@@ -243,7 +242,7 @@ class Popover extends Component {
 
     a.right = rect.right || a.left + a.width;
     if (isIOS()) {
-      a.bottom = offsetTop + a.height;
+      a.bottom = getOffsetTop(el) + a.height;
     } else {
       a.bottom = rect.bottom || a.top + a.height;
     }
