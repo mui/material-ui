@@ -1,5 +1,5 @@
 /* eslint-env mocha */
-import isIOS from './isIOS';
+import {isIOS} from './isIOS';
 import {assert} from 'chai';
 
 describe('IOS detection helper', () => {
