@@ -30,6 +30,8 @@ export const MUI_SHEET_ORDER = [
   'Button',
   'IconButton',
 
+  'SvgIcon',
+
   'Switch',
   'Checkbox',
   'Radio',
