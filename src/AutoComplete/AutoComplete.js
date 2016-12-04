@@ -144,6 +144,7 @@ class AutoComplete extends Component {
      *
      * @param {string} searchText The auto-complete's `searchText` value.
      * @param {array} dataSource The auto-complete's `dataSource` array.
+     * @param {object} params Additional information linked the update.
      */
     onUpdateInput: PropTypes.func,
     /**
@@ -231,6 +232,7 @@ class AutoComplete extends Component {
 
   componentWillUnmount() {
     clearTimeout(this.timerTouchTapCloseId);
+    clearTimeout(this.timerBlurClose);
   }
 
   close() {
@@ -335,13 +337,17 @@ class AutoComplete extends Component {
       open: true,
       anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField),
     }, () => {
-      this.props.onUpdateInput(searchText, this.props.dataSource);
+      this.props.onUpdateInput(searchText, this.props.dataSource, {
+        source: 'change',
+      });
     });
   };
 
   handleBlur = (event) => {
     if (this.state.focusTextField && this.timerTouchTapCloseId === null) {
-      this.close();
+      this.timerBlurClose = setTimeout(() => {
+        this.close();
+      }, 0);
     }
 
     if (this.props.onBlur) {
