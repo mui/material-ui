@@ -4,7 +4,7 @@ import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 
-export const styleSheet = createStyleSheet('LabelBase', (theme) => {
+export const styleSheet = createStyleSheet('FormLabel', (theme) => {
   const focusColor = theme.palette.accent.A200;
   return {
     root: {
@@ -20,7 +20,7 @@ export const styleSheet = createStyleSheet('LabelBase', (theme) => {
   };
 });
 
-export default function LabelBase(props, context) {
+export default function FormLabel(props, context) {
   const {
     children,
     className: classNameProp,
@@ -44,7 +44,7 @@ export default function LabelBase(props, context) {
     <label className={className} {...other}>
       {children}
       {required && (
-        <span className={asteriskClassName} data-mui-test="LabelBaseAsterisk">
+        <span className={asteriskClassName} data-mui-test="FormLabelAsterisk">
           {'\u2009*'}
         </span>
       )}
@@ -52,9 +52,9 @@ export default function LabelBase(props, context) {
   );
 }
 
-LabelBase.propTypes = {
+FormLabel.propTypes = {
   /**
-   * The contents of the `LabelBase`.
+   * The contents of the `FormLabel`.
    */
   children: PropTypes.node,
   /**
@@ -66,7 +66,7 @@ LabelBase.propTypes = {
    */
   error: PropTypes.bool,
   /**
-   * Whether the input of this label is focused.
+   * Whether the input of this label is focused (used by `Group` components).
    */
   focused: PropTypes.bool,
   /**
@@ -76,12 +76,14 @@ LabelBase.propTypes = {
   required: PropTypes.bool,
 };
 
-LabelBase.defaultProps = {
+FormLabel.defaultProps = {
   focused: false,
   required: false,
   error: false,
 };
 
-LabelBase.contextTypes = {
+FormLabel.contextTypes = {
   styleManager: PropTypes.object.isRequired,
 };
+
+FormLabel.muiName = 'FormLabel';

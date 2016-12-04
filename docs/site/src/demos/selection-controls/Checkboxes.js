@@ -13,7 +13,7 @@ export default class Checkboxes extends Component {
 
   render() {
     return (
-      <FormGroup>
+      <FormGroup row>
         <Checkbox
           checked={this.state.checkedA}
           onChange={(event, checked) => this.setState({ checkedA: checked })}

@@ -8,6 +8,7 @@ export const styleSheet = createStyleSheet('FormGroup', () => {
   return {
     root: {
       display: 'flex',
+      flexDirection: 'column',
     },
     row: {
       flexDirection: 'row',
@@ -16,10 +17,8 @@ export const styleSheet = createStyleSheet('FormGroup', () => {
 });
 
 /**
- * Primary purpose of the FormGroup is to display form elements in a compact row layout to conform with
- *  the spec goal of preserving space.
- *
- *  @see https://material.google.com/components/selection-controls.html#selection-controls-checkbox
+ * FormGroup wraps controls such as Checkbox and Switch.  It provides compact row layout and FormLabel
+ * awareness.  Upon focusing on one of the child controls, it will propagate `focused` to the label.
  */
 export default function FormGroup(props, context) {
   const { className, children, row } = props;
@@ -41,11 +40,14 @@ FormGroup.propTypes = {
    * The CSS class name of the root element.
    */
   className: PropTypes.string,
+  /**
+   * Display group of elements in a compact row.
+   */
   row: PropTypes.bool,
 };
 
 FormGroup.defaultProps = {
-  row: true,
+  row: false,
 };
 
 FormGroup.contextTypes = {

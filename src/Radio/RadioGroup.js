@@ -74,6 +74,7 @@ export default class RadioGroup extends Component {
 
   state = {
     currentTabIndex: undefined,
+    focused: false, // used for optional label required/error
     selectedValue: undefined, // used for uncontrolled support
   };
 
@@ -105,9 +106,10 @@ export default class RadioGroup extends Component {
         const currentFocus = activeElement(ownerDocument(group));
         if (!contains(group, currentFocus)) {
           this.resetTabIndex();
+          this.setState({ focused: false });
         }
       }
-    }, 50);
+    }, 100);
 
     if (this.props.onBlur) {
       this.props.onBlur(event);
@@ -152,6 +154,7 @@ export default class RadioGroup extends Component {
   handleRadioFocus = (event) => {
     const group = findDOMNode(this.group);
     if (group) {
+      this.setState({ focused: true });
       const radios = querySelectorAll(group, '[role="radio"]');
       for (let i = 0; i < radios.length; i += 1) {
         if (radios[i] === event.currentTarget || contains(radios[i], event.currentTarget)) {
@@ -221,6 +224,13 @@ export default class RadioGroup extends Component {
         onBlur={this.handleBlur}
       >
         {Children.map(children, (child, index) => {
+          const { muiName } = child.type;
+          if (muiName === 'FormLabel') {
+            return cloneElement(child, {
+              focused: this.state.focused,
+            });
+          }
+
           return cloneElement(child, {
             key: index,
             name,

@@ -15,9 +15,9 @@ describe('<TextFieldLabel />', () => {
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
-  it('should render a LabelBase', () => {
+  it('should render a FormLabel', () => {
     const wrapper = shallow(<TextFieldLabel />);
-    assert.strictEqual(wrapper.is('LabelBase'), true, 'should be a LabelBase');
+    assert.strictEqual(wrapper.is('FormLabel'), true, 'should be a FormLabel');
   });
 
   it('should animate by default', () => {
