@@ -12,7 +12,7 @@ export default class IconTabs extends Component {
 
   handleChange = (event, index) => {
     this.setState({ index });
-  }
+  };
 
   render() {
     return (

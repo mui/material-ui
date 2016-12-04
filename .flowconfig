@@ -1,6 +1,7 @@
 [ignore]
 
 .*/node_modules/fbjs/*
+.*/node_modules/react-swipeable-views/src/.*
 ./scripts/*
 ./test/e2e/*
 
