@@ -341,7 +341,9 @@ class AutoComplete extends Component {
 
   handleBlur = (event) => {
     if (this.state.focusTextField && this.timerTouchTapCloseId === null) {
-      this.close();
+      setTimeout(() => {
+        this.close();
+      }, 0);
     }
 
     if (this.props.onBlur) {
