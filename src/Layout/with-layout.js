@@ -2,7 +2,7 @@
 import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
-import { mapKeys, flow, camelCase } from 'lodash/fp';
+import { cond, isNumber, isBoolean, T, mapKeys, camelCase } from 'lodash/fp';
 import layoutStyles from './layout-styles';
 
 export const styleSheet = createStyleSheet('Block', layoutStyles);
@@ -102,6 +102,11 @@ const breakpointShape = {
   xs: FlexPropsShape,
 };
 
+const nameFor = (prefix: string, val: string|boolean|number) => cond([
+  [isNumber, (v) => `${prefix}${v}`],
+  [isBoolean, () => prefix],
+  [T, (v) => camelCase(`${prefix}-${v}`)],
+])(val);
 
 function propsMapper({
   scroll,
@@ -117,20 +122,16 @@ function propsMapper({
   wrap,
   ...otherProps
 }, classes) {
-  const getClassName = flow(
-    camelCase,
-    (k) => classes[k],
-  );
-  const applyClasses = mapKeys(getClassName);
+  const applyClasses = mapKeys((k) => classes[k]);
   let layoutClassNames = {};
   if (layout) {
     layoutClassNames = applyClasses({
-      [`layout-${layout}`]: true,
+      [nameFor('layout', layout)]: true,
       layoutFill: fill,
       layoutPadding: padding,
       layoutMargin: margin,
-      [`justify-${justify}`]: true,
-      [`align-${align}`]: true,
+      [nameFor('justify', justify)]: true,
+      [nameFor('align', align)]: true,
       layoutScrollX: ((typeof scroll === 'boolean') && scroll) || scroll === 'x',
       layoutScrollY: ((typeof scroll === 'boolean') && scroll) || scroll === 'y',
     });
@@ -138,13 +139,12 @@ function propsMapper({
 
   let flexClassNames = {};
   if (flex) {
-    const flexClassName = (typeof flex === 'boolean') ? 'flex' : `flex-${flex}`;
     flexClassNames = applyClasses({
-      [flexClassName]: true,
+      [nameFor('flex', flex)]: true,
       flexWrap: wrap && wrap !== 'nowrap',
       flexNowrap: wrap === 'nowrap',
-      [`flexOrder${order}`]: !!order,
-      [`flexOffset${order}`]: !!order,
+      [nameFor('flexOrder', order)]: !!order,
+      [nameFor('flexOffset', offset)]: !!offset,
     });
   }
   return { ...otherProps, layoutClassNames, flexClassNames };

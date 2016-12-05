@@ -76,33 +76,51 @@ describe('<Block /> component', () => {
           <Block flex={50}>flex 50%</Block>
           <Block flex="none">flex none</Block>
           <Block flex="grow">flex none</Block>
+          <Block flex order={3}>flex none</Block>
+          <Block flex order={-10}>flex none</Block>
+          <Block flex offset={2}>flex none</Block>
         </Block>,
       );
     });
     it('should have .flex class', () => {
       const actual = wrapper.childAt(0).find('div').prop('className');
       const expected = classes.flex;
-      assert.strictEqual(actual, expected, `the class should be ${expected}`);
+      assert.strictEqual(actual, expected);
     });
     it('should have .flex33 class', () => {
       const actual = wrapper.childAt(1).find('div').prop('className');
       const expected = classes.flex33;
-      assert.strictEqual(actual, expected, `the class should be ${expected}`);
+      assert.strictEqual(actual, expected);
     });
     it('should have .flex50 class', () => {
       const actual = wrapper.childAt(2).find('div').prop('className');
       const expected = classes.flex50;
-      assert.strictEqual(actual, expected, `the class should be ${expected}`);
+      assert.strictEqual(actual, expected);
     });
     it('should have .flexNone class', () => {
       const actual = wrapper.childAt(3).find('div').prop('className');
       const expected = classes.flexNone;
-      assert.strictEqual(actual, expected, `the class should be ${expected}`);
+      assert.strictEqual(actual, expected);
     });
-    it('should have .flex-grow class', () => {
+    it('should have .flexGrow class', () => {
       const actual = wrapper.childAt(4).find('div').prop('className');
       const expected = classes.flexGrow;
-      assert.strictEqual(actual, expected, `the class should be ${expected}`);
+      assert.strictEqual(actual, expected);
+    });
+    it('should have .flexOrder3 class', () => {
+      const actual = wrapper.childAt(5).find('div').prop('className');
+      const expected = classes.flexOrder3;
+      assert.include(actual, expected);
+    });
+    it('should have .flexOrder-10 class', () => {
+      const actual = wrapper.childAt(6).find('div').prop('className');
+      const expected = classes['flexOrder-10'];
+      assert.include(actual, expected);
+    });
+    it('should have .flexOffset2 class', () => {
+      const actual = wrapper.childAt(7).find('div').prop('className');
+      const expected = classes.flexOffset2;
+      assert.include(actual, expected);
     });
   });
 });
