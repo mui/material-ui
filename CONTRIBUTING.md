@@ -47,7 +47,7 @@ All stable releases are tagged ([view tags](https://github.com/callemall/materia
 
 #### `master` is unsafe
 
-We will do our best to keep `master` in good shape, with tests passing at all times. But in order to move fast, we will make API changes that your application might not be compatible with. 
+We will do our best to keep `master` in good shape, with tests passing at all times. But in order to move fast, we will make API changes that your application might not be compatible with.
 
 
 ## Getting started
