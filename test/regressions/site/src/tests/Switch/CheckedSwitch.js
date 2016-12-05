@@ -3,7 +3,7 @@
 import React from 'react';
 import Switch from 'material-ui/Switch';
 
-export default function CheckedSwitch() {
+export default function CheckedDisabledSwitch() {
   return (
     <Switch checked />
   );

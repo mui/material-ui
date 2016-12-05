@@ -25,6 +25,9 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
       zIndex: 1,
       transition: transitions.create('background-color', '150ms'),
     },
+    disabled: {
+      opacity: 0.5,
+    },
     accent: {
       color: palette.accent.A200,
     },
@@ -97,7 +100,7 @@ export default class IconButton extends Component {
   };
 
   render() {
-    const { accent, children, className, contrast, ...other } = this.props;
+    const { accent, children, className, contrast, disabled, ...other } = this.props;
     const classes = this.context.styleManager.render(styleSheet);
     return (
       <ButtonBase
@@ -107,9 +110,14 @@ export default class IconButton extends Component {
         }, className)}
         centerRipple
         keyboardFocusedClassName={classes.keyboardFocused}
+        disabled={disabled}
         {...other}
       >
-        <span className={classes.label}>
+        <span
+          className={classNames(classes.label, {
+            [classes.disabled]: disabled,
+          })}
+        >
           {typeof children === 'string' ?
             <span className="material-icons">{children}</span> : children
           }

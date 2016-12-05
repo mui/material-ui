@@ -54,11 +54,19 @@ export const styleSheet = createStyleSheet('Switch', (theme) => {
       height: 20,
       borderRadius: '50%',
     },
+    disabled: {
+      opacity: 0.5,
+      cursor: 'not-allowed',
+    },
+    barDisabled: {
+      opacity: 0.16,
+      cursor: 'not-allowed',
+    },
   };
 });
 
 export default function Switch(props, context) {
-  const { className, checkedClassName, label, labelClassName, labelReverse, ...other } = props;
+  const { className, checkedClassName, disabled, label, labelClassName, labelReverse, ...other } = props;
   const classes = context.styleManager.render(styleSheet);
 
   const switchProps = {
@@ -67,18 +75,24 @@ export default function Switch(props, context) {
     icon: <div className={classes.icon} />,
     checkedIcon: <div className={classes.iconChecked} />,
     type: 'checkbox',
+    disabled,
     ...other,
   };
 
   if (label) {
     return (
-      <SelectionLabel label={label} labelReverse={labelReverse} className={labelClassName}>
+      <SelectionLabel
+        label={label}
+        labelReverse={labelReverse}
+        className={labelClassName}
+        disabled={disabled}
+      >
         <div className={classNames(classes.root, className)}>
           <SwitchBase
             aria-label={label}
             {...switchProps}
           />
-          <div className={classes.bar} />
+          <div className={classNames(classes.bar, { [classes.barDisabled]: disabled })} />
         </div>
       </SelectionLabel>
     );
@@ -89,7 +103,7 @@ export default function Switch(props, context) {
       <SwitchBase
         {...switchProps}
       />
-      <div className={classes.bar} />
+      <div className={classNames(classes.bar, { [classes.barDisabled]: disabled })} />
     </div>
   );
 }
@@ -100,6 +114,10 @@ Switch.propTypes = {
    * The CSS class name of the root element.
    */
   className: PropTypes.string,
+  /**
+   * If `true`, the control will be disabled.
+   */
+  disabled: PropTypes.bool,
   /**
    * The text to be used in an enclosing label element.
    */
@@ -115,6 +133,7 @@ Switch.propTypes = {
 };
 
 Switch.defaultProps = {
+  disabled: false,
   labelReverse: false,
 };
 
