@@ -13,6 +13,10 @@ export const light = {
     divider: 'rgba(0, 0, 0, 0.12)',
     lightDivider: 'rgba(0, 0, 0, 0.075)',
   },
+  action: {
+    active: 'rgba(0, 0, 0, 0.54)',
+    disabled: 'rgba(0, 0, 0, 0.26)',
+  },
   background: {
     default: grey[50],
     paper: white,
@@ -25,12 +29,16 @@ export const light = {
 export const dark = {
   text: {
     primary: 'rgba(255, 255, 255, 1)',
-    secondary: 'rgba(255, 255, 255, 0.70)',
-    disabled: 'rgba(255, 255, 255, 0.50)',
-    hint: 'rgba(255, 255, 255, 0.50)',
-    icon: 'rgba(255, 255, 255, 0.50)',
+    secondary: 'rgba(255, 255, 255, 0.7)',
+    disabled: 'rgba(255, 255, 255, 0.5)',
+    hint: 'rgba(255, 255, 255, 0.5)',
+    icon: 'rgba(255, 255, 255, 0.5)',
     divider: 'rgba(255, 255, 255, 0.12)',
     lightDivider: 'rgba(255, 255, 255, 0.075)',
+  },
+  action: {
+    active: 'rgba(255, 255, 255, 1)',
+    disabled: 'rgba(255, 255, 255, 0.3)',
   },
   background: {
     default: '#303030',
@@ -59,6 +67,7 @@ export default function createPalette({
   return {
     type,
     text: shades[type].text,
+    action: shades[type].action,
     background: shades[type].background,
     shades,
     primary,

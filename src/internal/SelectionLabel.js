@@ -17,7 +17,7 @@ export const styleSheet = createStyleSheet('SelectionLabel', (theme) => {
       flexDirection: 'row-reverse',
     },
     disabled: {
-      opacity: theme.opacity.disabled,
+      color: theme.palette.text.disabled,
       cursor: 'not-allowed',
     },
   };

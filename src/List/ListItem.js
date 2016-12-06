@@ -28,7 +28,7 @@ export const styleSheet = createStyleSheet('ListItem', (theme) => {
       paddingBottom: 8,
     },
     disabled: {
-      opacity: theme.opacity.disabled,
+      opacity: 0.5,
     },
     divider: {
       borderBottom: `1px solid ${theme.palette.text.lightDivider}`,

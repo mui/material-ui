@@ -27,14 +27,14 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       '&:hover': {
         textDecoration: 'none',
         backgroundColor: palette.text.divider,
+        '&$disabled': {
+          backgroundColor: 'transparent',
+        },
       },
     },
     compact: {
       padding: '0 8px',
       minWidth: 64,
-    },
-    disabled: {
-      opacity: 0.4,
     },
     label: {
       width: '100%',
@@ -58,14 +58,18 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
       '&$keyboardFocused': {
         boxShadow: shadows[6],
       },
-      '&:hover': {
-        backgroundColor: palette.grey.A100,
-      },
       '&:active': {
         boxShadow: shadows[8],
       },
       '&$disabled': {
         boxShadow: shadows[0],
+        backgroundColor: palette.text.divider,
+      },
+      '&:hover': {
+        backgroundColor: palette.grey.A100,
+        '&$disabled': {
+          backgroundColor: palette.text.divider,
+        },
       },
     },
     keyboardFocused: {},
@@ -85,6 +89,9 @@ export const styleSheet = createStyleSheet('Button', (theme) => {
     },
     raisedContrast: {
       color: palette.getContrastText(palette.primary[500]),
+    },
+    disabled: {
+      color: palette.action.disabled,
     },
     fab: {
       borderRadius: '50%',
