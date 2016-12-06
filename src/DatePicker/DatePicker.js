@@ -89,6 +89,10 @@ class DatePicker extends Component {
      */
     okLabel: PropTypes.node,
     /**
+     * Callback function that is fired when the Date Picker's `TextField` blurs.
+     */
+    onBlur: PropTypes.func,
+    /**
      * Callback function that is fired when the date value changes.
      *
      * @param {null} null Since there is no particular event associated with the change,
@@ -211,8 +215,21 @@ class DatePicker extends Component {
     }
   };
 
+  handleBlur = (event) => {
+    this.refs.dialogWindow.dismiss();
+
+    if (this.props.onBlur) {
+      this.props.onBlur(event);
+    }
+  };
+
   handleFocus = (event) => {
-    event.target.blur();
+    if (!this.props.disabled) {
+      setTimeout(() => {
+        this.openDialog();
+      }, 0);
+    }
+
     if (this.props.onFocus) {
       this.props.onFocus(event);
     }
@@ -288,6 +305,7 @@ class DatePicker extends Component {
         <TextField
           {...other}
           onFocus={this.handleFocus}
+          onBlur={this.handleBlur}
           onTouchTap={this.handleTouchTap}
           ref="input"
           style={textFieldStyle}

@@ -148,6 +148,7 @@ class DatePickerDialog extends Component {
           ref="dialog"
           repositionOnUpdate={true}
           open={open}
+          modal={true}
           onRequestClose={this.handleRequestClose}
           style={Object.assign(styles.dialogBodyContent, containerStyle)}
         >
