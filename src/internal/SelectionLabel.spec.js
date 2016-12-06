@@ -9,14 +9,23 @@ import SelectionLabel, { styleSheet } from './SelectionLabel';
 describe('<SelectionLabel />', () => {
   let shallow;
   let classes;
-  let wrapper;
 
   before(() => {
     shallow = createShallowWithContext();
-    wrapper = shallow(
-      <SelectionLabel label="Pizza" labelClassName="foo" labelReverse={false} />,
-    );
     classes = shallow.context.styleManager.render(styleSheet);
+  });
+
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallow(
+      <SelectionLabel
+        label="Pizza"
+        labelClassName="foo"
+        labelReverse={false}
+        disabled={false}
+      />,
+    );
   });
 
   it('should render a label', () => {
@@ -51,5 +60,19 @@ describe('<SelectionLabel />', () => {
   it('should render with the default and custom classes', () => {
     assert.strictEqual(wrapper.hasClass('foo'), true, 'should have the "foo" class');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the "root" class');
+  });
+
+  describe('prop: disabled', () => {
+    it('should disable the component', () => {
+      wrapper.setProps({
+        disabled: true,
+      });
+
+      assert.strictEqual(
+        wrapper.childAt(0).hasClass(classes.disabled),
+        true,
+        'should have the disabled class',
+      );
+    });
   });
 });

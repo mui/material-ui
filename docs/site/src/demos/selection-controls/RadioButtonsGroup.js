@@ -39,6 +39,7 @@ export default class RadioButtonsGroup extends Component {
           <Radio label="Male" value="male" />
           <Radio label="Female" value="female" />
           <Radio label="Other" value="other" />
+          <Radio label="Disabled" value="disabled" disabled />
         </RadioGroup>
       </div>
     );

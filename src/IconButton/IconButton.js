@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
@@ -24,6 +24,9 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
       color: palette.type === 'light' ? palette.text.secondary : palette.text.primary,
       zIndex: 1,
       transition: transitions.create('background-color', '150ms'),
+    },
+    disabled: {
+      opacity: theme.opacity.disabled,
     },
     accent: {
       color: palette.accent.A200,
@@ -56,65 +59,73 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
  * const Component = () => <IconButton>delete</IconButton>;
  * ```
  */
-export default class IconButton extends Component {
-  static propTypes = {
-    /**
-     * If true, will use the theme's accent color.
-     */
-    accent: PropTypes.bool,
-    /**
-     * The icon element. If a string is passed,
-     * it will be used as a material icon font ligature.
-     */
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-    /**
-     * If true, will use the theme's contrast color.
-     */
-    contrast: PropTypes.bool,
-    /**
-     * If `true`, the button will be disabled.
-     */
-    disabled: PropTypes.bool,
-    /**
-     * If false, the ripple effect will be disabled.
-     */
-    ripple: PropTypes.bool,
-  };
+export default function IconButton(props, context) {
+  const {
+    accent,
+    children,
+    className,
+    contrast,
+    disabled,
+    ...other
+  } = props;
+  const classes = context.styleManager.render(styleSheet);
 
-  static defaultProps = {
-    accent: false,
-    contrast: false,
-    disabled: false,
-    ripple: true,
-  };
-
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
-  };
-
-  render() {
-    const { accent, children, className, contrast, ...other } = this.props;
-    const classes = this.context.styleManager.render(styleSheet);
-    return (
-      <ButtonBase
-        className={classNames(classes.iconButton, {
-          [classes.accent]: accent,
-          [classes.contrast]: contrast,
-        }, className)}
-        centerRipple
-        keyboardFocusedClassName={classes.keyboardFocused}
-        {...other}
-      >
-        <span className={classes.label}>
-          {typeof children === 'string' ?
-            <span className="material-icons">{children}</span> : children
-          }
-        </span>
-      </ButtonBase>
-    );
-  }
+  return (
+    <ButtonBase
+      className={classNames(classes.iconButton, {
+        [classes.accent]: accent,
+        [classes.contrast]: contrast,
+        [classes.disabled]: disabled,
+      }, className)}
+      centerRipple
+      keyboardFocusedClassName={classes.keyboardFocused}
+      disabled={disabled}
+      {...other}
+    >
+      <span className={classNames(classes.label)}>
+        {typeof children === 'string' ?
+          <span className="material-icons">{children}</span> : children
+        }
+      </span>
+    </ButtonBase>
+  );
 }
+
+IconButton.propTypes = {
+  /**
+   * If true, will use the theme's accent color.
+   */
+  accent: PropTypes.bool,
+  /**
+   * The icon element. If a string is passed,
+   * it will be used as a material icon font ligature.
+   */
+  children: PropTypes.node,
+  /**
+   * The CSS class name of the root element.
+   */
+  className: PropTypes.string,
+  /**
+   * If true, will use the theme's contrast color.
+   */
+  contrast: PropTypes.bool,
+  /**
+   * If `true`, the button will be disabled.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * If false, the ripple effect will be disabled.
+   */
+  ripple: PropTypes.bool,
+};
+
+IconButton.defaultProps = {
+  accent: false,
+  contrast: false,
+  disabled: false,
+  ripple: true,
+};
+
+IconButton.contextTypes = {
+  styleManager: PropTypes.object.isRequired,
+};

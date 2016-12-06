@@ -23,7 +23,7 @@ export default class SwitchLabels extends Component {
           onChange={(event, checked) => this.setState({ checkedB: checked })}
           label="B"
         />
-        <Switch label="C" />
+        <Switch label="C" disabled />
       </div>
     );
   }
