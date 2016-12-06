@@ -74,6 +74,22 @@ font in mind. So be sure to include it in your project. Here are
 [some instructions](http://www.google.com/fonts#UsePlace:use/Collection:Roboto:400,300,500)
 on how to do so.
 
+### Packaging for use with separate React
+
+For using with React and React DOM from a CDN or as separate minified scripts, you can build
+files with UMD module support as follows:
+
+    npm install
+    npm run build:umd
+    npm run build:min
+    
+This will build two archives into the /dist folder
+
+To see what's going on under the hood, you can use webpack directly:
+
+    webpack --display-reasons --display-modules --progress --optimize-minimize --colors --entry ./src/index.js
+
+
 ## Usage
 
 Beginning with v0.15.0, Material-UI components require a theme to be provided. The quickest way to get up and running is by using the `MuiThemeProvider` to inject the theme into your application context. Following that, you can to use any of the components as demonstrated in the documentation.
