@@ -102,6 +102,13 @@ export default function AppRouter(props) {
           component={AppContent}
         >
           <Route
+            title="Icons"
+            path="/style/icons"
+            content={requireDocs('./site/src/pages/style/icons/icons.md')}
+            component={MarkdownDocs}
+            nav
+          />
+          <Route
             title="Typography"
             path="/style/typography"
             content={requireDocs('./site/src/pages/style/typography/typography.md')}
