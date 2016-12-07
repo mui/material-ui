@@ -119,14 +119,33 @@ describe('<EnhancedButton />', () => {
     assert.strictEqual(wrapper.node.props.style.background, 'none', 'should be none');
   });
 
-  it('should set the button type', () => {
-    const wrapper = shallowWithContext(
-      <EnhancedButton type="submit">Button</EnhancedButton>
-    );
-    assert.ok(wrapper.text(), 'Button', 'should say Button');
-    assert.ok(wrapper.is('button[type="submit"]'), 'should have the type attribute');
-    wrapper.setProps({type: 'reset'});
-    assert.ok(wrapper.is('button[type="reset"]'), 'should have the type attribute');
+  describe('prop: type', () => {
+    it('should set a button type by default', () => {
+      const wrapper = shallowWithContext(
+        <EnhancedButton>Button</EnhancedButton>
+      );
+
+      assert.strictEqual(wrapper.is('button[type="button"]'), true);
+    });
+
+    it('should not set a button type on span', () => {
+      const wrapper = shallowWithContext(
+        <EnhancedButton containerElement="span">Button</EnhancedButton>
+      );
+
+      assert.strictEqual(wrapper.props().type, undefined);
+    });
+
+    it('should set the button type', () => {
+      const wrapper = shallowWithContext(
+        <EnhancedButton type="submit">Button</EnhancedButton>
+      );
+
+      assert.strictEqual(wrapper.type(), 'button', 'should say Button');
+      assert.strictEqual(wrapper.is('button[type="submit"]'), true, 'should have the type attribute');
+      wrapper.setProps({type: 'reset'});
+      assert.strictEqual(wrapper.is('button[type="reset"]'), true, 'should have the type attribute');
+    });
   });
 
   it('should pass through other html attributes', () => {
