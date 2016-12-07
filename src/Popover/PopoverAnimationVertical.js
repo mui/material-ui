@@ -11,11 +11,11 @@ function getStyles(props, context, state) {
 
   return {
     root: {
+      position: 'fixed',
+      zIndex: muiTheme.zIndex.popover,
       opacity: open ? 1 : 0,
       transform: open ? 'scaleY(1)' : 'scaleY(0)',
       transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
-      position: 'fixed',
-      zIndex: muiTheme.zIndex.popover,
       transition: transitions.easeOut('450ms', ['transform', 'opacity']),
       maxHeight: '100%',
     },
