@@ -8,12 +8,13 @@ function getStyles(props, context, state) {
   const {open} = state;
   const {muiTheme} = context;
   const horizontal = targetOrigin.horizontal.replace('middle', 'vertical');
+  const vertical = targetOrigin.vertical.replace('top', 'bottom');
 
   return {
     root: {
       opacity: open ? 1 : 0,
       transform: open ? 'scaleY(1)' : 'scaleY(0)',
-      transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
+      transformOrigin: `${horizontal} ${vertical}`,
       position: 'fixed',
       zIndex: muiTheme.zIndex.popover,
       transition: transitions.easeOut('450ms', ['transform', 'opacity']),
