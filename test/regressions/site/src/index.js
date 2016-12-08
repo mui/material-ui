@@ -9,6 +9,15 @@ import App from './App';
 
 const rootEl = document.getElementById('app');
 
+function renderTree() {
+  render(
+    <AppContainer errorReporter={RedBox}>
+      <App />
+    </AppContainer>,
+    rootEl,
+  );
+}
+
 webFont.load({
   google: {
     families: [
@@ -16,14 +25,12 @@ webFont.load({
       'Material+Icons',
     ],
   },
-  active: () => {
-    render(
-      <AppContainer errorReporter={RedBox}>
-        <App />
-      </AppContainer>,
-      rootEl,
-    );
-  },
+  // This event is triggered when the fonts have rendered.
+  active: renderTree,
+  // This event is triggered when the browser does not support linked fonts.
+  inactive: renderTree,
+  // This event is triggered if the font can't be loaded.
+  fontinactive: renderTree,
 });
 
 if (module.hot) {

@@ -29,13 +29,13 @@ export default class RadioButtonsGroup extends Component {
 
     return (
       <div>
+        <FormLabel required>Gender</FormLabel>
         <RadioGroup
           aria-label="Gender"
           className={classes.group}
           selectedValue={this.state.selectedValue}
           onChange={this.handleChange}
         >
-          <FormLabel required>Gender</FormLabel>
           <Radio label="Male" value="male" />
           <Radio label="Female" value="female" />
           <Radio label="Other" value="other" />
