@@ -339,12 +339,16 @@ class EnhancedButton extends Component {
       onKeyDown: this.handleKeyDown,
       onTouchTap: this.handleTouchTap,
       tabIndex: disabled || disableKeyboardFocus ? -1 : tabIndex,
-      type: type,
     };
+
     const buttonChildren = this.createButtonChildren();
 
     if (React.isValidElement(containerElement)) {
       return React.cloneElement(containerElement, buttonProps, buttonChildren);
+    }
+
+    if (!href && containerElement === 'button') {
+      buttonProps.type = type;
     }
 
     return React.createElement(href ? 'a' : containerElement, buttonProps, buttonChildren);
