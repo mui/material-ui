@@ -495,7 +495,9 @@ class Menu extends Component {
       const childIsADivider = child.type && child.type.muiName === 'Divider';
       const childIsDisabled = child.props.disabled;
 
-      const clonedChild = childIsADivider ? React.cloneElement(child, {style: styles.divider}) :
+      const clonedChild = childIsADivider ? React.cloneElement(child, {
+        style: Object.assign({}, styles.divider, child.props.style),
+      }) :
         childIsDisabled ? React.cloneElement(child, {desktop: desktop}) :
         this.cloneMenuItem(child, menuItemIndex, styles, index);
 
