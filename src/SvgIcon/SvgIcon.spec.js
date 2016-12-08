@@ -21,7 +21,7 @@ describe('<SvgIcon />', () => {
     const wrapper = shallow(
       <SvgIcon>{path}</SvgIcon>,
     );
-    assert.ok(wrapper.contains(path), 'should contain the children');
+    assert.strictEqual(wrapper.contains(path), true, 'should contain the children');
   });
 
   it('should render an svg', () => {
@@ -40,6 +40,6 @@ describe('<SvgIcon />', () => {
   it('should render with the user and SvgIcon classes', () => {
     const wrapper = shallow(<SvgIcon className="meow">{path}</SvgIcon>);
     assert.strictEqual(wrapper.hasClass('meow'), true, 'should have the "meow" class');
-    assert.strictEqual(wrapper.hasClass(classes.SvgIcon), true, 'should have the SvgIcon class');
+    assert.strictEqual(wrapper.hasClass(classes.svgIcon), true, 'should have the SvgIcon class');
   });
 });

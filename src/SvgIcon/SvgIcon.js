@@ -3,17 +3,16 @@
 import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
-import { easing } from '../styles/transitions';
 
 export const styleSheet = createStyleSheet('SvgIcon', (theme) => {
   return {
-    SvgIcon: {
+    svgIcon: {
       display: 'inline-block',
       fill: 'currentColor',
       height: 24,
       width: 24,
       userSelect: 'none',
-      transition: theme.transitions.create('fill', '200ms', null, easing.easeInOut),
+      transition: theme.transitions.create('fill', '200ms'),
     },
   };
 });
@@ -29,7 +28,7 @@ export default function SvgIcon(props, context) {
   const classes = context.styleManager.render(styleSheet);
 
   const className = classNames({
-    [classes.SvgIcon]: true,
+    [classes.svgIcon]: true,
   }, classNameProp);
 
   return (
