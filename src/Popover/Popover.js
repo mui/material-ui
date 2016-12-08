@@ -189,6 +189,7 @@ class Popover extends Component {
     if (!animated) {
       styleRoot = {
         position: 'fixed',
+        zIndex: this.context.muiTheme.zIndex.popover,
       };
 
       if (!this.state.open) {
@@ -196,7 +197,7 @@ class Popover extends Component {
       }
 
       return (
-        <Paper style={Object.assign({}, styleRoot, style)} {...other}>
+        <Paper style={Object.assign(styleRoot, style)} {...other}>
           {children}
         </Paper>
       );
