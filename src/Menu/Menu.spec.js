@@ -2,15 +2,14 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
-import Divider from 'src/Divider';
-import Menu from 'src/Menu';
-import MenuItem from 'src/MenuItem';
-import getMuiTheme from 'src/styles/getMuiTheme';
+import Menu from './Menu';
+import MenuItem from '../MenuItem';
+import Divider from '../Divider';
+import getMuiTheme from '../styles/getMuiTheme';
 
 describe('<Menu />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
-
 
   it('should render MenuItem and Divider children', () => {
     const wrapper = shallowWithContext(
@@ -26,26 +25,36 @@ describe('<Menu />', () => {
     assert.strictEqual(menuItemsAndDividers.get(0).type, MenuItem, 'first child should be a MenuItem');
     assert.strictEqual(menuItemsAndDividers.get(1).type, Divider, 'second child should be a Divider');
     assert.strictEqual(menuItemsAndDividers.get(2).type, MenuItem, 'third child should be a MenuItem');
-
-    assert.deepEqual(menuItemsAndDividers.get(1).props.style,
-                     {marginTop: 7, marginBottom: 8},
-                     'the Divider gets default styles');
+    assert.deepEqual(
+      menuItemsAndDividers.get(1).props.style,
+      {
+        marginTop: 7,
+        marginBottom: 8,
+      },
+      'the Divider gets default styles'
+    );
   });
 
   it("should merge the Divider's styles over the Menu's default divider styles", () => {
-    const style = {color: 'red', marginTop: '999px'};
+    const style = {
+      color: 'red',
+      marginTop: '999px',
+    };
     const wrapper = shallowWithContext(
       <Menu>
         <Divider style={style} />
       </Menu>
     );
 
-    const divider = wrapper.find('Divider');
+    const divider = wrapper.find(Divider);
     assert.strictEqual(divider.length, 1, 'there should be one divider child');
 
-    const expectedMergedStyle = Object.assign({}, style, {marginBottom: 8});
-    assert.deepEqual(divider.props().style,
-                     expectedMergedStyle,
-                     "existing styles should be merged over Menu's styles");
+    assert.deepEqual(
+      divider.props().style,
+      Object.assign({}, style, {
+        marginBottom: 8,
+      }),
+      "existing styles should be merged over Menu's styles"
+    );
   });
 });
