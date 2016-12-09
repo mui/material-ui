@@ -6,6 +6,10 @@ import jssPreset from 'jss-preset-default';
 import { createMuiTheme } from './theme';
 
 export const MUI_SHEET_ORDER = [
+  'Collapse',
+  'Fade',
+  'Slide',
+
   'Backdrop',
   'Modal',
 
@@ -24,7 +28,7 @@ export const MUI_SHEET_ORDER = [
 
   'Popover',
   'Dialog',
-  'DialogAction',
+  'DialogActions',
   'DialogContent',
   'DialogContentText',
   'DialogTitle',
