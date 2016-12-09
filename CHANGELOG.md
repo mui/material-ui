@@ -1,5 +1,44 @@
 ## HEAD
 
+## 0.16.5
+###### _Dec 9, 2016_
+
+This is another release improving the stability of `v0.16.x`.
+
+##### Component Fixes / Enhancements
+
+- [AutoComplete] Add an onClose callback property (#5655)
+- [AutoComplete] Fix the controlled behavior (#5685)
+- [DatePicker] Auto switch the view when a year is selected (#5700)
+- [DropDownMenu] Add an onClose callback property (#5653)
+- [DropDownMenu] Do not wrap below dropdown menu (#4755)
+- [EnhancedButton] Fix an accessibility issue (#5657)
+- [EnhancedButton] Only apply type when needed (#5728)
+- [IconMenu] Add listStyle prop (#5630)
+- [IconMenu] Fix controlled IconMenus to honor onRequestChange (#5704)
+- [MenuItem] Add right padding when there is icon (#4762)
+- [Popover] Add the missing zIndex (#5730)
+- [List] Fix padding styles object (#5661)
+- [SelectField] Scroll wheel event bubbling to parent container (#4154)
+- [StepLabel] Address a box model issue (#5690)
+- [SelectField] Add listStyle prop (#5631)
+- [TextField] Fix errorStyle priority (#5654)
+- [TextField] Add a floatingLabelShrinkStyle property (#5669)
+- [autoprefixer] Fix a style issue with user agent all and display flex (#5668)
+- [makeSelectable] Fix missing check for existence of onChange (#5589)
+
+##### Docs
+
+- [docs] Add a Q&A section around the next branch (#5718)
+- [docs] Fix typo with sentence for AutoComplete (#5596)
+- [docs] Fix origin documentation (#5676)
+- [docs] Fix Linear Progress Prop Documentation (#5680)
+- [docs] Fix a scroll issue on (iOS) (a12dca847af6833dbf671e48c736047d6909ec53)
+
+##### Core
+
+- [core] Apply 3 different fixes (#5695)
+
 ## 0.16.4
 ###### _Nov 17, 2016_
 
