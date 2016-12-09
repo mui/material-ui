@@ -44,6 +44,7 @@ class Stepper extends Component {
   };
 
   static defaultProps = {
+    connector: <StepConnector />,
     orientation: 'horizontal',
     linear: true,
   };
@@ -92,7 +93,7 @@ class Stepper extends Component {
       }
 
       return [
-        index > 0 && (typeof connector === 'undefined' ? <StepConnector /> : connector),
+        index > 0 && connector,
         React.cloneElement(step, Object.assign(controlProps, step.props)),
       ];
     });
