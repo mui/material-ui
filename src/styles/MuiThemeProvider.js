@@ -27,14 +27,15 @@ export const MUI_SHEET_ORDER = [
   'Divider',
 
   'Popover',
+
+  'Button',
+  'IconButton',
+
   'Dialog',
   'DialogActions',
   'DialogContent',
   'DialogContentText',
   'DialogTitle',
-
-  'Button',
-  'IconButton',
 
   'Switch',
   'Checkbox',
