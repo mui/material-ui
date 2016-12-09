@@ -2,6 +2,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
+import Step from 'src/Stepper/Step';
 import StepConnector from 'src/Stepper/StepConnector';
 import Stepper from 'src/Stepper/Stepper';
 import FontIcon from 'src/FontIcon';
@@ -14,12 +15,11 @@ describe('<Stepper />', () => {
   it('should have a default step connector', () => {
     const wrapper = shallowWithContext(
       <Stepper>
-        <Step></Step>
-        <Step></Step>
+        <Step /><Step />
       </Stepper>
     );
 
-    assert.ok(wrapper.find(StepConnector), 'should contain a <StepConnector /> child');
+    assert.equal(wrapper.find(StepConnector).length, 1, 'should contain a <StepConnector /> child');
   });
 
   it('should allow the developer to specify a custom step connector', () => {
@@ -27,22 +27,21 @@ describe('<Stepper />', () => {
       <Stepper
         connector={<FontIcon className="material-icons">arrow-forward</FontIcon>}
       >
-        <Step></Step>
-        <Step></Step>
+        <Step /><Step />
       </Stepper>
     );
 
-    assert.ok(wrapper.find(FontIcon), 'should contain a <FontIcon /> child');
-    assert.notOk(wrapper.find(StepConnector), 'should not contain a <StepConnector /> child');
+    assert.equal(wrapper.find(FontIcon).length, 1, 'should contain a <FontIcon /> child');
+    assert.equal(wrapper.find(StepConnector).length, 0, 'should not contain a <StepConnector /> child');
   });
 
   it('should allow the step connector to be removed', () => {
     const wrapper = shallowWithContext(
       <Stepper connector={null}>
-        <Step></Step>
-        <Step></Step>
+        <Step /><Step />
       </Stepper>
     );
 
-    assert.notOk(wrapper.find(StepConnector), 'should not contain a <StepConnector /> child');
+    assert.equal(wrapper.find(StepConnector).length, 0, 'should not contain a <StepConnector /> child');
   });
+});
