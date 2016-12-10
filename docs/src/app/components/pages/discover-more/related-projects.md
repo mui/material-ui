@@ -11,6 +11,7 @@ A Formsy compatibility wrapper for Material-UI form components.
 - [storybook-addon-material-ui](https://github.com/sm-react/storybook-addon-material-ui)
 Addon for storybook.
 - [crema](https://bitbucket.org/pinturic/crema/) CReMa: Cordova React Material-UI.
+- [babel-plugin-material-ui](https://github.com/umidbekkarimov/babel-plugin-material-ui) Babel plugin to cherry-pick used material-ui modules
 
 ### Complementary Projects
 
