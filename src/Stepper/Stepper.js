@@ -26,6 +26,10 @@ class Stepper extends Component {
      */
     children: PropTypes.arrayOf(PropTypes.node),
     /**
+     * A component to be placed between each step.
+     */
+    connector: PropTypes.node,
+    /**
      * If set to `true`, the `Stepper` will assist in controlling steps for linear flow
      */
     linear: PropTypes.bool,
@@ -40,6 +44,7 @@ class Stepper extends Component {
   };
 
   static defaultProps = {
+    connector: <StepConnector />,
     orientation: 'horizontal',
     linear: true,
   };
@@ -57,6 +62,7 @@ class Stepper extends Component {
     const {
       activeStep,
       children,
+      connector,
       linear,
       style,
     } = this.props;
@@ -87,7 +93,7 @@ class Stepper extends Component {
       }
 
       return [
-        index > 0 && <StepConnector />,
+        index > 0 && connector,
         React.cloneElement(step, Object.assign(controlProps, step.props)),
       ];
     });
