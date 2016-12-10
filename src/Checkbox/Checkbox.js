@@ -14,6 +14,9 @@ export const styleSheet = createStyleSheet('Checkbox', (theme) => {
     checked: {
       color: theme.palette.accent[500],
     },
+    disabled: {
+      color: theme.palette.action.disabled,
+    },
   };
 });
 
@@ -22,6 +25,7 @@ export default function Checkbox(props, context) {
     className,
     checkedClassName,
     disabled,
+    disabledClassName,
     label,
     labelClassName,
     labelReverse,
@@ -33,6 +37,7 @@ export default function Checkbox(props, context) {
     className: classNames(classes.default, className),
     checkedClassName: classNames(classes.checked, checkedClassName),
     disabled,
+    disabledClassName: classNames(classes.disabled, disabledClassName),
     ...other,
   };
 
@@ -65,6 +70,10 @@ Checkbox.propTypes = {
    * If `true`, the control will be disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * The CSS class name of the switch element when disabled.
+   */
+  disabledClassName: PropTypes.string,
   /**
    * The text to be used in an enclosing label element.
    */

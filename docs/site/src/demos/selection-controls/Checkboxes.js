@@ -8,7 +8,6 @@ export default class Checkboxes extends Component {
   state = {
     checkedA: true,
     checkedB: false,
-    checkedC: false,
   };
 
   render() {
@@ -27,15 +26,19 @@ export default class Checkboxes extends Component {
           value="checkedB"
         />
         <Checkbox
-          disabled
-          checked={this.state.checkedC}
-          onChange={(event, checked) => this.setState({ checkedC: checked })}
           label="Option C"
           value="checkedC"
         />
         <Checkbox
-          label="Option D"
+          disabled
+          label="Disabled"
           value="checkedD"
+        />
+        <Checkbox
+          checked
+          disabled
+          label="Disabled"
+          value="checkedE"
         />
       </FormGroup>
     );

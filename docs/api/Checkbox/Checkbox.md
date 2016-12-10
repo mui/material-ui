@@ -11,6 +11,8 @@ Props
 |:-----|:-----|:-----|:-----|
 | checkedClassName | string |  |   |
 | className | string |  |  The CSS class name of the root element. |
+| disabled | bool | false |  If `true`, the control will be disabled. |
+| disabledClassName | string |  |  The CSS class name of the switch element when disabled. |
 | label | node |  |  The text to be used in an enclosing label element. |
 | labelClassName | string |  |  The className to be used in an enclosing label element. |
 | labelReverse | bool | false |  Will reverse the order of the element and the label. |

@@ -109,7 +109,7 @@ export default class RadioGroup extends Component {
           this.setState({ focused: false });
         }
       }
-    }, 100);
+    }, 50);
 
     if (this.props.onBlur) {
       this.props.onBlur(event);
@@ -224,13 +224,6 @@ export default class RadioGroup extends Component {
         onBlur={this.handleBlur}
       >
         {Children.map(children, (child, index) => {
-          const { muiName } = child.type;
-          if (muiName === 'FormLabel') {
-            return cloneElement(child, {
-              focused: this.state.focused,
-            });
-          }
-
           return cloneElement(child, {
             key: index,
             name,

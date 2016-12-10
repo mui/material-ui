@@ -21,12 +21,12 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
       padding: 0,
       borderRadius: '50%',
       backgroundColor: 'transparent',
-      color: palette.type === 'light' ? palette.text.secondary : palette.text.primary,
+      color: palette.action.active,
       zIndex: 1,
       transition: transitions.create('background-color', '150ms'),
     },
     disabled: {
-      opacity: theme.opacity.disabled,
+      color: palette.action.disabled,
     },
     accent: {
       color: palette.accent.A200,

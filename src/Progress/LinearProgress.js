@@ -182,10 +182,7 @@ export default class LinearProgress extends Component {
     }
 
     return (
-      <div
-        className={rootClasses}
-        {...other}
-      >
+      <div className={rootClasses} {...other}>
         <div className={dashedClasses} />
         <div className={bar1Classes} style={styles.bar1} />
         <div className={bar2Classes} style={styles.bar2} />

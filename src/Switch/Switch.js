@@ -27,10 +27,10 @@ export const styleSheet = createStyleSheet('Switch', (theme) => {
       },
     },
     disabled: {
-      opacity: 1, // Reset the IconButton opacity
       color: palette.type === 'light' ? palette.grey[400] : palette.grey[800],
       '& + $bar': {
-        opacity: 0.10,
+        backgroundColor: palette.type === 'light' ? '#000' : '#fff',
+        opacity: palette.type === 'light' ? 0.12 : 0.1,
       },
     },
     bar: {
@@ -43,9 +43,9 @@ export const styleSheet = createStyleSheet('Switch', (theme) => {
       marginTop: -7,
       left: '50%',
       marginLeft: -17,
-      backgroundColor: palette.type === 'light' ? '#000' : '#fff',
-      opacity: 0.38,
       transition: theme.transitions.multi(['opacity', 'background-color'], '150ms'),
+      backgroundColor: palette.type === 'light' ? '#000' : '#fff',
+      opacity: palette.type === 'light' ? 0.38 : 0.3,
     },
     icon: {
       boxShadow: theme.shadows[1],

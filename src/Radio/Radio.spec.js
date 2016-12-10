@@ -57,4 +57,16 @@ describe('<Radio />', () => {
       assert.strictEqual(wrapper.props().disabled, true, 'should pass the property down the tree');
     });
   });
+
+  describe('prop: disabledClassName', () => {
+    it('should provide the class', () => {
+      const className = 'foo';
+      const wrapper = shallow(<Radio disabledClassName={className} />);
+      assert.strictEqual(
+        wrapper.find('SwitchBase').props().disabledClassName.indexOf(className) !== -1,
+        true,
+        'should have the custom disabled class',
+      );
+    });
+  });
 });
