@@ -20,6 +20,9 @@ describe('IOS detection helper', () => {
   /* eslint-enable max-len */
 
   userAgentsWithIOS.forEach((agent) => {
+    const input = document.createElement('INPUT');
+    document.body.appendChild(input);
+    input.focus();
     it('should decect IOS', () => {
       window.navigator.__defineGetter__('userAgent', () => agent); // eslint-disable-line no-underscore-dangle,max-len
       assert.strictEqual(isIOS(), true);
