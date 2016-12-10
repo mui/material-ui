@@ -241,7 +241,7 @@ class Popover extends Component {
     };
 
     a.right = rect.right || a.left + a.width;
-    if (isIOS()) {
+    if (isIOS() && document.activeElement.tagName === 'INPUT') {
       a.bottom = getOffsetTop(el) + a.height;
     } else {
       a.bottom = rect.bottom || a.top + a.height;
