@@ -31,6 +31,8 @@ export const MUI_SHEET_ORDER = [
   'Button',
   'IconButton',
 
+  'SvgIcon',
+
   'Dialog',
   'DialogActions',
   'DialogContent',
