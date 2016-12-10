@@ -7,6 +7,8 @@ export default class Switches extends Component {
   state = {
     checkedA: true,
     checkedB: false,
+    checkedC: false,
+    checkedD: true,
   };
 
   render() {
@@ -23,7 +25,14 @@ export default class Switches extends Component {
           aria-label="checkedB"
         />
         <Switch
+          checked={this.state.checkedC}
           aria-label="checkedC"
+          disabled
+        />
+        <Switch
+          checked={this.state.checkedD}
+          aria-label="checkedD"
+          disabled
         />
       </div>
     );

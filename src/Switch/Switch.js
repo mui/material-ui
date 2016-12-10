@@ -14,6 +14,25 @@ export const styleSheet = createStyleSheet('Switch', (theme) => {
       width: 62,
       position: 'relative',
     },
+    default: {
+      color: palette.type === 'light' ? palette.grey[50] : palette.grey[400],
+      transition: theme.transitions.create('transform', '150ms'),
+    },
+    checked: {
+      color: palette.accent[500],
+      transform: 'translateX(14px)',
+      '& + $bar': {
+        backgroundColor: palette.accent[500],
+        opacity: 0.5,
+      },
+    },
+    disabled: {
+      opacity: 1, // Reset the IconButton opacity
+      color: palette.type === 'light' ? palette.grey[400] : palette.grey[800],
+      '& + $bar': {
+        opacity: 0.10,
+      },
+    },
     bar: {
       borderRadius: 7,
       display: 'block',
@@ -28,26 +47,7 @@ export const styleSheet = createStyleSheet('Switch', (theme) => {
       opacity: 0.38,
       transition: theme.transitions.multi(['opacity', 'background-color'], '150ms'),
     },
-    default: {
-      color: palette.text.secondary,
-      transition: theme.transitions.create('transform', '150ms'),
-    },
-    checked: {
-      color: palette.accent[500],
-      transform: 'translateX(14px)',
-      '& + $bar': {
-        backgroundColor: palette.accent[500],
-        opacity: 0.5,
-      },
-    },
     icon: {
-      boxShadow: theme.shadows[1],
-      backgroundColor: palette.type === 'light' ? palette.grey[50] : palette.grey[400],
-      width: 20,
-      height: 20,
-      borderRadius: '50%',
-    },
-    iconChecked: {
       boxShadow: theme.shadows[1],
       backgroundColor: 'currentColor',
       width: 20,
@@ -58,26 +58,40 @@ export const styleSheet = createStyleSheet('Switch', (theme) => {
 });
 
 export default function Switch(props, context) {
-  const { className, checkedClassName, label, labelClassName, labelReverse, ...other } = props;
+  const {
+    className,
+    checkedClassName,
+    disabled,
+    disabledClassName,
+    label,
+    labelClassName,
+    labelReverse,
+    ...other
+  } = props;
   const classes = context.styleManager.render(styleSheet);
 
+  const icon = <div className={classes.icon} />;
   const switchProps = {
     className: classes.default,
     checkedClassName: classNames(classes.checked, checkedClassName),
-    icon: <div className={classes.icon} />,
-    checkedIcon: <div className={classes.iconChecked} />,
+    disabledClassName: classNames(classes.disabled, disabledClassName),
+    icon,
+    checkedIcon: icon,
     type: 'checkbox',
+    disabled,
     ...other,
   };
 
   if (label) {
     return (
-      <SelectionLabel label={label} labelReverse={labelReverse} className={labelClassName}>
+      <SelectionLabel
+        label={label}
+        labelReverse={labelReverse}
+        className={labelClassName}
+        disabled={disabled}
+      >
         <div className={classNames(classes.root, className)}>
-          <SwitchBase
-            aria-label={label}
-            {...switchProps}
-          />
+          <SwitchBase aria-label={label} {...switchProps} />
           <div className={classes.bar} />
         </div>
       </SelectionLabel>
@@ -86,20 +100,29 @@ export default function Switch(props, context) {
 
   return (
     <div className={classNames(classes.root, className)}>
-      <SwitchBase
-        {...switchProps}
-      />
+      <SwitchBase {...switchProps} />
       <div className={classes.bar} />
     </div>
   );
 }
 
 Switch.propTypes = {
+  /**
+   * The CSS class name of the switch element when checked.
+   */
   checkedClassName: PropTypes.string,
   /**
    * The CSS class name of the root element.
    */
   className: PropTypes.string,
+  /**
+   * If `true`, the control will be disabled.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * The CSS class name of the switch element when disabled.
+   */
+  disabledClassName: PropTypes.string,
   /**
    * The text to be used in an enclosing label element.
    */
@@ -115,6 +138,7 @@ Switch.propTypes = {
 };
 
 Switch.defaultProps = {
+  disabled: false,
   labelReverse: false,
 };
 

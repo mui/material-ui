@@ -50,4 +50,11 @@ describe('<Radio />', () => {
     const switchBase = wrapper.find('SwitchBase');
     assert.strictEqual(switchBase.prop('data-my-prop'), 'woof', 'custom prop should be woof');
   });
+
+  describe('prop: disabled', () => {
+    it('should disable the component', () => {
+      const wrapper = shallow(<Radio disabled />);
+      assert.strictEqual(wrapper.props().disabled, true, 'should pass the property down the tree');
+    });
+  });
 });

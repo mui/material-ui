@@ -12,7 +12,7 @@ export const styleSheet = createStyleSheet('SwitchBase', () => {
       alignItems: 'center',
     },
     switch: {
-      cursor: 'pointer',
+      cursor: 'inherit',
       position: 'absolute',
       opacity: 0,
       width: '100%',
@@ -21,12 +21,6 @@ export const styleSheet = createStyleSheet('SwitchBase', () => {
       left: 0,
       margin: 0,
       padding: 0,
-    },
-    disabled: {
-      opacity: 0.5,
-      switch: {
-        cursor: 'not-allowed',
-      },
     },
   };
 });
@@ -37,6 +31,9 @@ export default class SwitchBase extends Component {
      * SwitchBase is checked if true.
      */
     checked: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+    /**
+     * The CSS class name of the root element when checked.
+     */
     checkedClassName: PropTypes.string,
     checkedIcon: PropTypes.node,
     /**
@@ -51,6 +48,10 @@ export default class SwitchBase extends Component {
      * If `true`, the switch will be disabled.
      */
     disabled: PropTypes.bool,
+    /**
+     * The CSS class name of the root element when disabled.
+     */
+    disabledClassName: PropTypes.string,
     icon: PropTypes.node,
     /**
      * Callback function that is fired when the switch is changed.
@@ -126,6 +127,7 @@ export default class SwitchBase extends Component {
       checkedIcon,
       icon: iconProp,
       disabled,
+      disabledClassName,
       onChange, // eslint-disable-line no-unused-vars
       ripple,
       type,
@@ -136,10 +138,9 @@ export default class SwitchBase extends Component {
     const classes = this.context.styleManager.render(styleSheet);
     const checked = this.isControlled ? checkedProp : this.state.checked;
 
-    const className = classNames(classes.root, {
-      [classes.disabled]: disabled,
-      [classNameProp]: true,
+    const className = classNames(classes.root, classNameProp, {
       [checkedClassName]: checkedClassName && checked,
+      [disabledClassName]: disabledClassName && disabled,
     });
 
     let icon = checked ? checkedIcon : iconProp;

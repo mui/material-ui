@@ -21,6 +21,7 @@ export default function Radio(props, context) {
   const {
     className,
     checkedClassName,
+    disabled,
     label,
     labelClassName,
     labelReverse,
@@ -39,12 +40,18 @@ export default function Radio(props, context) {
     type: 'radio',
     value,
     onChange,
+    disabled,
     ...other,
   };
 
   if (label) {
     return (
-      <SelectionLabel label={label} labelReverse={labelReverse} className={labelClassName}>
+      <SelectionLabel
+        label={label}
+        labelReverse={labelReverse}
+        className={labelClassName}
+        disabled={disabled}
+      >
         <SwitchBase
           aria-label={label}
           {...switchProps}
@@ -64,6 +71,10 @@ Radio.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * If `true`, the control will be disabled.
+   */
+  disabled: PropTypes.bool,
+  /**
    * The text to be used in an enclosing label element.
    */
   label: PropTypes.node,
@@ -81,6 +92,7 @@ Radio.propTypes = {
 };
 
 Radio.defaultProps = {
+  disabled: false,
   labelReverse: false,
 };
 
