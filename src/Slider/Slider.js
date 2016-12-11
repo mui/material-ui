@@ -317,13 +317,13 @@ class Slider extends Component {
     /**
      * Callback function that is fired when the slider has begun to move.
      *
-     * @param {object} event TouchStart event targeting the slider.
+     * @param {object} event MouseDown or TouchStart event targeting the slider.
      */
     onDragStart: PropTypes.func,
     /**
      * Callback function that is fired when the slide has stopped moving.
      *
-     * @param {object} event MouseEnd event targeting the slider.
+     * @param {object} event MouseEnd or TouchEnd event targeting the slider.
      */
     onDragStop: PropTypes.func,
     /** @ignore */
