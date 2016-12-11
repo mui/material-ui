@@ -16,7 +16,6 @@ export default class SwitchLabels extends Component {
           checked={this.state.checkedA}
           onChange={(event, checked) => this.setState({ checkedA: checked })}
           label="A"
-          labelReverse
         />
         <Switch
           checked={this.state.checkedB}

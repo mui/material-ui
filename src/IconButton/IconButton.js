@@ -62,6 +62,7 @@ export const styleSheet = createStyleSheet('IconButton', (theme) => {
 export default function IconButton(props, context) {
   const {
     accent,
+    buttonRef,
     children,
     className,
     contrast,
@@ -80,6 +81,7 @@ export default function IconButton(props, context) {
       centerRipple
       keyboardFocusedClassName={classes.keyboardFocused}
       disabled={disabled}
+      ref={buttonRef}
       {...other}
     >
       <span className={classNames(classes.label)}>
@@ -96,6 +98,10 @@ IconButton.propTypes = {
    * If true, will use the theme's accent color.
    */
   accent: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  buttonRef: PropTypes.func,
   /**
    * The icon element. If a string is passed,
    * it will be used as a material icon font ligature.

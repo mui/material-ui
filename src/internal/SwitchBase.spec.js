@@ -4,56 +4,16 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallowWithContext, createMountWithContext } from 'test/utils';
-import SwitchBase, { styleSheet } from './SwitchBase';
-
-function assertIsChecked(classes, wrapper) {
-  const iconButton = wrapper.find('span').at(0);
-
-  assert.strictEqual(
-    iconButton.hasClass('test-class-checked'),
-    true,
-    'should have the checked class on the root node',
-  );
-  assert.strictEqual(
-    iconButton.prop('aria-checked'),
-    true,
-    'should pass aria-checked=true to the root node',
-  );
-
-  const input = wrapper.find('input');
-  assert.strictEqual(input.node.checked, true, 'the DOM node should be checked');
-
-  const icon = wrapper.find('span.material-icons');
-  assert.strictEqual(icon.text(), 'check_box', 'should be the check_box icon');
-}
-
-function assertIsNotChecked(classes, wrapper) {
-  const iconButton = wrapper.find('span').at(0);
-
-  assert.strictEqual(
-    iconButton.hasClass('test-class-checked'),
-    false,
-    'should not have the checked class on the root node',
-  );
-  assert.strictEqual(
-    iconButton.prop('aria-checked'),
-    false,
-    'should pass aria-checked=false to the root node',
-  );
-
-  const input = wrapper.find('input');
-  assert.strictEqual(input.node.checked, false, 'the DOM node should not be checked');
-
-  const icon = wrapper.find('span.material-icons');
-  assert.strictEqual(icon.text(), 'check_box_outline_blank', 'should be the check_box_outline_blank icon');
-}
+import { createSwitch, styleSheet } from './SwitchBase';
 
 describe('<SwitchBase />', () => {
   let shallow;
   let classes;
   let mount;
+  let SwitchBase;
 
   before(() => {
+    SwitchBase = createSwitch();
     shallow = createShallowWithContext();
     mount = createMountWithContext();
     classes = shallow.context.styleManager.render(styleSheet);
@@ -121,7 +81,7 @@ describe('<SwitchBase />', () => {
   describe('controlled', () => {
     let wrapper;
 
-    before(() => {
+    beforeEach(() => {
       wrapper = mount(
         <SwitchBase
           className="test-class"
@@ -145,6 +105,7 @@ describe('<SwitchBase />', () => {
     });
 
     it('should uncheck the checkbox', () => {
+      wrapper.setProps({ checked: true });
       wrapper.setProps({ checked: false });
       assertIsNotChecked(classes, wrapper);
     });
@@ -153,7 +114,7 @@ describe('<SwitchBase />', () => {
   describe('uncontrolled', () => {
     let wrapper;
 
-    before(() => {
+    beforeEach(() => {
       wrapper = mount(
         <SwitchBase
           className="test-class"
@@ -171,17 +132,46 @@ describe('<SwitchBase />', () => {
     });
 
     it('should check the checkbox', () => {
-      const input = wrapper.find('input');
-      input.node.checked = true;
-      wrapper.instance().handleInputChange({});
+      wrapper.find('input').node.click();
       assertIsChecked(classes, wrapper);
     });
 
     it('should uncheck the checkbox', () => {
-      const input = wrapper.find('input');
-      input.node.checked = false;
-      wrapper.instance().handleInputChange({});
+      wrapper.find('input').node.click();
+      wrapper.find('input').node.click();
       assertIsNotChecked(classes, wrapper);
     });
   });
 });
+
+function assertIsChecked(classes, wrapper) {
+  const iconButton = wrapper.find('span').at(0);
+
+  assert.strictEqual(
+    iconButton.hasClass('test-class-checked'),
+    true,
+    'should have the checked class on the root node',
+  );
+
+  const input = wrapper.find('input');
+  assert.strictEqual(input.node.checked, true, 'the DOM node should be checked');
+
+  const icon = wrapper.find('span.material-icons');
+  assert.strictEqual(icon.text(), 'check_box', 'should be the check_box icon');
+}
+
+function assertIsNotChecked(classes, wrapper) {
+  const iconButton = wrapper.find('span').at(0);
+
+  assert.strictEqual(
+    iconButton.hasClass('test-class-checked'),
+    false,
+    'should not have the checked class on the root node',
+  );
+
+  const input = wrapper.find('input');
+  assert.strictEqual(input.node.checked, false, 'the DOM node should not be checked');
+
+  const icon = wrapper.find('span.material-icons');
+  assert.strictEqual(icon.text(), 'check_box_outline_blank', 'should be the check_box_outline_blank icon');
+}

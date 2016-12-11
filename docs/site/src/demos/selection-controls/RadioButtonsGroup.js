@@ -32,6 +32,7 @@ export default class RadioButtonsGroup extends Component {
         <FormLabel required>Gender</FormLabel>
         <RadioGroup
           aria-label="Gender"
+          name="gender"
           className={classes.group}
           selectedValue={this.state.selectedValue}
           onChange={this.handleChange}
