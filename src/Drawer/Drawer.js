@@ -175,7 +175,7 @@ class Drawer extends Component {
   }
 
   close(reason) {
-    if (this.props.open === null) this.setState({open: false});
+    if (this.props.open === null || reason === 'clickaway') this.setState({open: false});
     if (this.props.onRequestChange) this.props.onRequestChange(false, reason);
     return this;
   }
