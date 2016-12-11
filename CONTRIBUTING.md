@@ -57,7 +57,7 @@ Please create a new branch from an up to date master on your fork. (Note, urgent
 1. Fork the Material-UI repository on Github
 2. Clone your fork to your local machine `git clone git@github.com:<yourname>/material-ui.git`
 3. Create a branch `git checkout -b my-topic-branch`
-4. Make your changes, lint, then push to to github with `git push --set-upstream origin my-topic-branch`.
+4. Make your changes, lint, then push to github with `git push --set-upstream origin my-topic-branch`.
 5. Visit github and make your pull request.
 
 If you have an existing local repository, please update it before you start, to minimise the chance of merge conflicts.
