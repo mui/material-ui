@@ -308,7 +308,10 @@ class Slider extends Component {
     /** @ignore */
     onBlur: PropTypes.func,
     /**
-     * Callback function that is fired when the user changes the slider's value.
+     * Callback function that is fired when the slider's value changes.
+     *
+     * @param {object} event KeyDown event targeting the slider.
+     * @param {number} newValue The new value of the slider.
      */
     onChange: PropTypes.func,
     /**
