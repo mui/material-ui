@@ -94,7 +94,9 @@ class EnhancedButton extends Component {
     muiTheme: PropTypes.object.isRequired,
   };
 
-  state = {isKeyboardFocused: false};
+  state = {
+    isKeyboardFocused: false,
+  };
 
   componentWillMount() {
     const {disabled, disableKeyboardFocus, keyboardFocused} = this.props;
