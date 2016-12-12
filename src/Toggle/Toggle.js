@@ -134,7 +134,7 @@ class Toggle extends Component {
     /**
      * Where the label will be placed next to the toggle.
      */
-    labelPosition: PropTypes.oneOf(['left', 'right']),
+    labelPosition: PropTypes.oneOf(['left', 'right', 'above', 'below']),
     /**
      * Overrides the inline-styles of the Toggle element label.
      */

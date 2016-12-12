@@ -23,7 +23,7 @@ class RadioButtonGroup extends Component {
      * This takes precedence over the `labelPosition` property of the
      * `RadioButton` elements.
      */
-    labelPosition: PropTypes.oneOf(['left', 'right']),
+    labelPosition: PropTypes.oneOf(['left', 'right', 'above', 'below']),
     /**
      * The name that will be applied to all child radio buttons.
      */

@@ -79,7 +79,7 @@ class RadioButton extends Component {
      * Used internally by `RadioButtonGroup`. Use the `labelPosition` property of `RadioButtonGroup` instead.
      * Where the label will be placed next to the radio button.
      */
-    labelPosition: PropTypes.oneOf(['left', 'right']),
+    labelPosition: PropTypes.oneOf(['left', 'right', 'above', 'below']),
     /**
      * Override the inline-styles of the label element.
      */
