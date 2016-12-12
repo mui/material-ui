@@ -14,6 +14,11 @@ export const styleSheet = createStyleSheet('ListItemText', () => {
         paddingLeft: 0,
       },
     },
+    inset: {
+      '&:first-child': {
+        paddingLeft: 56,
+      },
+    },
   };
 });
 
@@ -22,10 +27,13 @@ export default function ListItemText(props, context) {
     className: classNameProp,
     primary,
     secondary,
+    inset,
     ...other
   } = props;
   const classes = context.styleManager.render(styleSheet);
-  const className = classNames(classes.root, classNameProp);
+  const className = classNames(classes.root, {
+    [classes.inset]: inset,
+  }, classNameProp);
 
   return (
     <div className={className} {...other}>
@@ -52,6 +60,10 @@ ListItemText.propTypes = {
    * The CSS class name of the root element.
    */
   className: PropTypes.string,
+  /**
+   * If true, the children will be indented by 72px. This is useful if there is no left avatar or left icon.
+   */
+  inset: PropTypes.bool,
   primary: PropTypes.node,
   secondary: PropTypes.node,
 };
@@ -59,6 +71,7 @@ ListItemText.propTypes = {
 ListItemText.defaultProps = {
   primary: false,
   secondary: false,
+  inset: false,
 };
 
 ListItemText.contextTypes = {

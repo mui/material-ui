@@ -12,7 +12,7 @@ import Avatar from 'material-ui/Avatar';
 const styleSheet = createStyleSheet('FolderList', (theme) => ({
   root: {
     width: '100%',
-    maxWidth: '360px',
+    maxWidth: 360,
     background: theme.palette.background.paper,
   },
 }));
