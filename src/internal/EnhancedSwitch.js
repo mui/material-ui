@@ -44,7 +44,7 @@ function getStyles(props, context) {
       width: 'calc(100% - 60px)',
       lineHeight: '24px',
       color: baseTheme.palette.textColor,
-      fontFamily: baseTheme.fontFamily
+      fontFamily: baseTheme.fontFamily,
     },
     verticallyAllignedLabel: {
       textAlign: 'center',
@@ -53,7 +53,7 @@ function getStyles(props, context) {
       width: '100%',
       lineHeight: '24px',
       color: baseTheme.palette.textColor,
-      fontFamily: baseTheme.fontFamily
+      fontFamily: baseTheme.fontFamily,
     },
     wrap: {
       transition: transitions.easeOut(),
@@ -301,7 +301,7 @@ class EnhancedSwitch extends Component {
       wrapStyles.marginRight /= 2;
     }
 
-    const baseLabelStyle = 
+    const baseLabelStyle =
         labelPosition === 'above' || labelPosition === 'below' ? styles.verticallyAllignedLabel :
         styles.horizontallyAllignedLabel;
     const labelElement = label && (
@@ -373,17 +373,18 @@ class EnhancedSwitch extends Component {
       </div>
     );
 
-    const controlLayoutStyle = 
-        labelPosition === 'right' ? { flexDirection: 'row' } :
-        labelPosition === 'left' ? { flexDirection: 'row-reverse' }:
-        labelPosition === 'above' ? { flexDirection: 'column-reverse', justifyContent: 'center', alignItems: 'center' } :
-        labelPosition === 'below' ? { flexDirection: 'column', justifyContent: 'center', alignItems: 'center' } :
-        { flexDirection: 'row' };
-    const elementsInOrder =
-        <div style={prepareStyles(Object.assign({}, styles.controls, controlLayoutStyle))}>
-          {switchOrThumbElement}
-          {labelElement}
-        </div>;
+    const controlLayoutStyle =
+        labelPosition === 'right' ? {flexDirection: 'row'} :
+        labelPosition === 'left' ? {flexDirection: 'row-reverse'}:
+        labelPosition === 'above' ? {flexDirection: 'column-reverse', justifyContent: 'center', alignItems: 'center'} :
+        labelPosition === 'below' ? {flexDirection: 'column', justifyContent: 'center', alignItems: 'center'} :
+        {flexDirection: 'row'};
+    const elementsInOrder = (
+      <div style={prepareStyles(Object.assign({}, styles.controls, controlLayoutStyle))}>
+      {switchOrThumbElement}
+      {labelElement}
+      </div>
+    );
     
     return (
       <div ref="root" className={className} style={prepareStyles(Object.assign(styles.root, style))}>
