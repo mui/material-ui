@@ -379,13 +379,12 @@ class EnhancedSwitch extends Component {
         labelPosition === 'above' ? { flexDirection: 'column-reverse', justifyContent: 'center', alignItems: 'center' } :
         labelPosition === 'below' ? { flexDirection: 'column', justifyContent: 'center', alignItems: 'center' } :
         { flexDirection: 'row' };
-    const elementsInOrder = _react2.default.createElement(
-        'div',
-        { style: prepareStyles((0, _simpleAssign2.default)({}, styles.controls, controlLayoutStyle)) },
-        switchOrThumbElement,
-        labelElement
-      );
-
+    const elementsInOrder =
+        <div style={prepareStyles(Object.assign({}, styles.controls, controlLayoutStyle))}>
+          {switchOrThumbElement}
+          {labelElement}
+        </div>;
+    
     return (
       <div ref="root" className={className} style={prepareStyles(Object.assign(styles.root, style))}>
         <EventListener
