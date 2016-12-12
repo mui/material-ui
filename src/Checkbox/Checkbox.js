@@ -85,7 +85,7 @@ class Checkbox extends Component {
     inputStyle: PropTypes.object,
     /**
      * Where the label will be placed next to the checkbox.
-     */   
+     */
     labelPosition: PropTypes.oneOf(['left', 'right', 'above', 'below']),
     /**
      * Overrides the inline-styles of the Checkbox element label.

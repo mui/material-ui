@@ -375,17 +375,17 @@ class EnhancedSwitch extends Component {
 
     const controlLayoutStyle =
         labelPosition === 'right' ? {flexDirection: 'row'} :
-        labelPosition === 'left' ? {flexDirection: 'row-reverse'}:
+        labelPosition === 'left' ? {flexDirection: 'row-reverse'} :
         labelPosition === 'above' ? {flexDirection: 'column-reverse', justifyContent: 'center', alignItems: 'center'} :
         labelPosition === 'below' ? {flexDirection: 'column', justifyContent: 'center', alignItems: 'center'} :
         {flexDirection: 'row'};
     const elementsInOrder = (
       <div style={prepareStyles(Object.assign({}, styles.controls, controlLayoutStyle))}>
-      {switchOrThumbElement}
-      {labelElement}
+        {switchOrThumbElement}
+        {labelElement}
       </div>
     );
-    
+
     return (
       <div ref="root" className={className} style={prepareStyles(Object.assign(styles.root, style))}>
         <EventListener
