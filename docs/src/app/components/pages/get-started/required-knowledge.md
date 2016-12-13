@@ -56,7 +56,7 @@ This is where Node comes into play.
 
 ### Node
 
-At its core, [Node](https://nodejs.org) is a program written in C that allows us
+At its core, [Node](https://nodejs.org) is a program written in C++ that allows us
 to run JavaScript in the shell (yes, your terminal, not the browser).
 To do this, It uses Chrome’s V8 JavaScript engine.
 Hence, Node is essentially a runtime environment.
