@@ -6,33 +6,35 @@ import { createStyleSheet } from 'jss-theme-reactor';
 const globalStyleSheet = createStyleSheet('global', (theme) => {
   const { palette, typography } = theme;
   return {
-    html: {
-      boxSizing: 'border-box',
-    },
-    '*, *:before, *:after': {
-      boxSizing: 'inherit',
-    },
-    body: {
-      margin: 0,
-      background: palette.background.default,
-      fontFamily: typography.fontFamily,
-      color: palette.text.primary,
-      lineHeight: '1.2',
-      overflowX: 'hidden',
-      WebkitFontSmoothing: 'antialiased',
-    },
-    a: {
-      color: palette.accent.A400,
-      textDecoration: 'none',
-      '&:hover': {
+    '@global': {
+      html: {
+        boxSizing: 'border-box',
+      },
+      '*, *:before, *:after': {
+        boxSizing: 'inherit',
+      },
+      body: {
+        margin: 0,
+        background: palette.background.default,
+        fontFamily: typography.fontFamily,
+        color: palette.text.primary,
+        lineHeight: '1.2',
+        overflowX: 'hidden',
+        WebkitFontSmoothing: 'antialiased',
+      },
+      a: {
+        color: palette.accent.A400,
+        textDecoration: 'none',
+      },
+      '@:hover': {
         textDecoration: 'underline',
       },
-    },
-    p: {
-      lineHeight: '1.6',
+      p: {
+        lineHeight: '1.6',
+      },
     },
   };
-}, { named: false });
+});
 
 const styleSheet = createStyleSheet('TestViewer', (theme) => {
   const { palette } = theme;

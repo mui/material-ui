@@ -12,37 +12,37 @@ import withWidth, { isWidthUp } from 'material-ui/utils/withWidth';
 import AppDrawer from './AppDrawer';
 
 const globalStyleSheet = createStyleSheet('global', (theme) => ({
-  html: {
-    boxSizing: 'border-box',
-  },
-  '*, *:before, *:after': {
-    boxSizing: 'inherit',
-  },
-  body: {
-    margin: 0,
-    background: theme.palette.background.default,
-    fontFamily: theme.typography.fontFamily,
-    color: theme.palette.text.primary,
-    lineHeight: '1.2',
-    overflowX: 'hidden',
-    WebkitFontSmoothing: 'antialiased', // Antialiasing.
-    MozOsxFontSmoothing: 'grayscale', // Antialiasing.
-  },
-  a: {
-    color: theme.palette.accent.A400,
-    textDecoration: 'none',
-    '&:hover': {
+  '@global': {
+    html: {
+      boxSizing: 'border-box',
+    },
+    '*, *:before, *:after': {
+      boxSizing: 'inherit',
+    },
+    body: {
+      margin: 0,
+      background: theme.palette.background.default,
+      fontFamily: theme.typography.fontFamily,
+      color: theme.palette.text.primary,
+      lineHeight: '1.2',
+      overflowX: 'hidden',
+      WebkitFontSmoothing: 'antialiased', // Antialiasing.
+      MozOsxFontSmoothing: 'grayscale', // Antialiasing.
+    },
+    a: {
+      color: theme.palette.accent.A400,
+      textDecoration: 'none',
+    },
+    'a:hover': {
       textDecoration: 'underline',
     },
+    img: {
+      maxWidth: '100%',
+      height: 'auto',
+      width: 'auto',
+    },
   },
-  img: {
-    maxWidth: '100%',
-    height: 'auto',
-    width: 'auto',
-  },
-}), {
-  named: false, // global CSS.
-});
+}));
 
 const styleSheet = createStyleSheet('AppFrame', (theme) => {
   return {
