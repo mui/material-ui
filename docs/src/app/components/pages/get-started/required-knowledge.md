@@ -9,7 +9,7 @@ If you're already familiar with single page applications (SPAs) and Node,
 feel free to skip this section and
 head straight to the [installation](#/get-started/installation) part.
 
-Otherwise, what follows is a quick and brief introduction to SPAs and Node.
+Otherwise, what follows is a brief introduction to SPAs and Node.
 You'll find this helpful, especially if you have limited prior experience
 with web development,
 or if your experience only consists of "traditional" websites built using
