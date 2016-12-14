@@ -1,15 +1,97 @@
 /* eslint-env mocha */
 import React from 'react';
-import {shallow} from 'enzyme';
+import {mount, shallow} from 'enzyme';
+import {match, spy} from 'sinon';
 import {assert} from 'chai';
 import Menu from './Menu';
 import MenuItem from '../MenuItem';
 import Divider from '../Divider';
 import getMuiTheme from '../styles/getMuiTheme';
+import keycode from 'keycode';
 
 describe('<Menu />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
+  const mountWithContext = (node) => mount(node, {context: {muiTheme}});
+  const keycodeEvent = (key) => ({keyCode: keycode(key)});
+
+  describe('onMenuItemFocusChange', () => {
+    function createMenu(props) {
+      return (
+        <Menu {...props}>
+          <MenuItem primaryText="item 1" />
+          <Divider />
+          <MenuItem primaryText="item 2" />
+          <MenuItem primaryText="item 3" />
+        </Menu>
+      );
+    }
+
+    it('is invoked when using the arrow key to go down to the bottom and back up to the top', () => {
+      const onMenuItemFocusChangeSpy = spy();
+      const menu = createMenu({
+        disableAutoFocus: false,
+        onMenuItemFocusChange: onMenuItemFocusChangeSpy,
+      });
+      const wrapper = mountWithContext(menu);
+
+      assert(onMenuItemFocusChangeSpy.calledWith(null, 0),
+             'initial focus should invoke callback with 0');
+      onMenuItemFocusChangeSpy.reset();
+
+      wrapper.simulate('keydown', keycodeEvent('down'));
+      assert(onMenuItemFocusChangeSpy.calledWith(match.object, 1),
+             'down-arrow invokes callback with index 1');
+      onMenuItemFocusChangeSpy.reset();
+
+      wrapper.simulate('keydown', keycodeEvent('down'));
+      assert(onMenuItemFocusChangeSpy.calledWith(match.object, 2),
+             'down-arrow invokes callback with index 2');
+      onMenuItemFocusChangeSpy.reset();
+
+      wrapper.simulate('keydown', keycodeEvent('down'));
+      assert(onMenuItemFocusChangeSpy.calledWith(match.object, 2),
+             'down-arrow at end invokes callback with unchanged index');
+      onMenuItemFocusChangeSpy.reset();
+
+      wrapper.simulate('keydown', keycodeEvent('up'));
+      assert(onMenuItemFocusChangeSpy.calledWith(match.object, 1),
+             'up-arrow invokes callback with 1');
+      onMenuItemFocusChangeSpy.reset();
+
+      wrapper.simulate('keydown', keycodeEvent('up'));
+      assert(onMenuItemFocusChangeSpy.calledWith(match.object, 0),
+             'up-arrow invokes callback with 0');
+      onMenuItemFocusChangeSpy.reset();
+
+      wrapper.simulate('keydown', keycodeEvent('up'));
+      assert(onMenuItemFocusChangeSpy.calledWith(match.object, 0),
+             'up-arrow at top invokes callback with unchanged index');
+      onMenuItemFocusChangeSpy.reset();
+    });
+
+    it('is invoked when props change', () => {
+      const onMenuItemFocusChangeSpy = spy();
+      const menu = createMenu({
+        disableAutoFocus: true,
+        onMenuItemFocusChange: onMenuItemFocusChangeSpy,
+      });
+      const wrapper = mountWithContext(menu);
+      assert(onMenuItemFocusChangeSpy.notCalled,
+             'should not be called when creating with disableAutoFocus=true');
+      onMenuItemFocusChangeSpy.reset();
+
+      wrapper.setProps({disableAutoFocus: false});
+      assert(onMenuItemFocusChangeSpy.calledWith(null, 0),
+             'changing disableAutoFocus to false invokes callback');
+      onMenuItemFocusChangeSpy.reset();
+
+      wrapper.setProps({disableAutoFocus: true});
+      assert(onMenuItemFocusChangeSpy.calledWith(null, -1),
+             'changing disableAutoFocus to true invokes callback');
+      onMenuItemFocusChangeSpy.reset();
+    });
+  });
 
   it('should render MenuItem and Divider children', () => {
     const wrapper = shallowWithContext(
