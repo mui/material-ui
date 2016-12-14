@@ -223,9 +223,9 @@ class AutoComplete extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-      this.setState({
-        searchText: nextProps.searchText,
-      });
+    this.setState({
+      searchText: nextProps.searchText,
+    });
   }
 
   componentWillUnmount() {
