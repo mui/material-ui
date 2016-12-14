@@ -17,7 +17,7 @@ const styleSheet = createStyleSheet('ListDividers', (theme) => ({
   },
 }));
 
-export default function FlatButtons(props, context) {
+export default function ListDividers(props, context) {
   const classes = context.styleManager.render(styleSheet);
   return (
     <List className={classes.root}>
@@ -36,6 +36,6 @@ export default function FlatButtons(props, context) {
   );
 }
 
-FlatButtons.contextTypes = {
+ListDividers.contextTypes = {
   styleManager: PropTypes.object.isRequired,
 };

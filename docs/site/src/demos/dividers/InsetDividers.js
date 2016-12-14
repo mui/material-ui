@@ -18,7 +18,7 @@ const styleSheet = createStyleSheet('InsetDividers', (theme) => ({
   },
 }));
 
-export default function FlatButtons(props, context) {
+export default function InsetDividers(props, context) {
   const classes = context.styleManager.render(styleSheet);
   return (
     <List className={classes.root}>
@@ -35,6 +35,6 @@ export default function FlatButtons(props, context) {
   );
 }
 
-FlatButtons.contextTypes = {
+InsetDividers.contextTypes = {
   styleManager: PropTypes.object.isRequired,
 };
