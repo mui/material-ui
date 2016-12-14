@@ -52,6 +52,7 @@ export const MUI_SHEET_ORDER = [
   'BottomNavigation',
 
   'CircularProgress',
+  'LinearProgress',
 
   'AppBar',
   'Drawer',

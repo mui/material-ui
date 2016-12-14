@@ -3,6 +3,7 @@
 .*/node_modules/fbjs/*
 .*/node_modules/jss/lib/.*\.js\.flow
 .*/node_modules/react-swipeable-views/src/.*
+.*/node_modules/react-native/*
 ./scripts/*
 ./test/e2e/*
 
