@@ -67,7 +67,7 @@ describe('<DropDownMenu />', () => {
       maxHeight: 10,
       menuStyle: {color: 'white'},
       menuItemStyle: {fontWeight: 'bold'},
-      menuItemSelectedStyle: {color: 'blue'},
+      selectedMenuItemStyle: {color: 'blue'},
       value: 1,
     };
 
@@ -87,7 +87,7 @@ describe('<DropDownMenu />', () => {
       listStyle: props.listStyle,
       maxHeight: props.maxHeight,
       menuItemStyle: props.menuItemStyle,
-      menuItemSelectedStyle: props.menuItemSelectedStyle,
+      selectedMenuItemStyle: props.selectedMenuItemStyle,
       style: props.menuStyle,
       value: props.value,
     });

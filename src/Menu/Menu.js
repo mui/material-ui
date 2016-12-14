@@ -78,10 +78,6 @@ class Menu extends Component {
      * height.
      */
     maxHeight: PropTypes.number,
-     /**
-     * Override the inline-styles of selected menu items.
-     */
-    menuItemSelectedStyle: PropTypes.object,
     /**
      * Override the inline-styles of menu items.
      */
@@ -119,6 +115,10 @@ class Menu extends Component {
     onItemTouchTap: PropTypes.func,
     /** @ignore */
     onKeyDown: PropTypes.func,
+     /**
+     * Override the inline-styles of selected menu items.
+     */
+    selectedMenuItemStyle: PropTypes.object,
     /**
      * Override the inline-styles of the root element.
      */
@@ -238,14 +238,14 @@ class Menu extends Component {
     const {
       desktop,
       menuItemStyle,
-      menuItemSelectedStyle,
+      selectedMenuItemStyle,
     } = this.props;
 
     const selected = this.isChildSelected(child, this.props);
     let selectedChildrenStyles = {};
 
     if (selected) {
-      selectedChildrenStyles = Object.assign(styles.selectedMenuItem, menuItemSelectedStyle);
+      selectedChildrenStyles = Object.assign(styles.selectedMenuItem, selectedMenuItemStyle);
     }
 
     const mergedChildrenStyles = Object.assign({}, child.props.style, menuItemStyle, selectedChildrenStyles);
@@ -479,7 +479,7 @@ class Menu extends Component {
       multiple, // eslint-disable-line no-unused-vars
       onItemTouchTap, // eslint-disable-line no-unused-vars
       onEscKeyDown, // eslint-disable-line no-unused-vars
-      menuItemSelectedStyle, // eslint-disable-line no-unused-vars
+      selectedMenuItemStyle, // eslint-disable-line no-unused-vars
       menuItemStyle, // eslint-disable-line no-unused-vars
       style,
       value, // eslint-disable-line no-unused-vars
