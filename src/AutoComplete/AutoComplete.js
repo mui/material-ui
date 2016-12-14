@@ -223,11 +223,9 @@ class AutoComplete extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.searchText !== nextProps.searchText) {
       this.setState({
         searchText: nextProps.searchText,
       });
-    }
   }
 
   componentWillUnmount() {
