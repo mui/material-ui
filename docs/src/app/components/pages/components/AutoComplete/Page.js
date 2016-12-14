@@ -13,6 +13,8 @@ import AutoCompleteExampleDataSources from './ExampleDataSources';
 import autoCompleteExampleDataSourcesCode from '!raw!./ExampleDataSources';
 import AutoCompleteExampleFilters from './ExampleFilters';
 import autoCompleteExampleFiltersCode from '!raw!./ExampleFilters';
+import AutoCompleteExampleTextFieldProps from './ExampleTextFieldProps';
+import autoCompleteExampleTextFieldPropsCode from '!raw!./ExampleTextFieldProps';
 
 const descriptions = {
   simple: 'The input is used to create the `dataSource`, so the input always matches three entries.',
@@ -21,6 +23,8 @@ const descriptions = {
   'Both examples have filtering disabled.',
   filters: 'Two examples of filtering. The first uses `caseInsensitiveFilter`, the second uses `fuzzyFilter`, ' +
   'and limits the number of results displayed using the `maxSearchResults` property.',
+  textFieldProps: 'Any props passed to the AutoComplete that are not listed in this documentation will be ' +
+  'passed to the underlaying TextField.',
 };
 
 const AutoCompletesPage = () => (
@@ -47,6 +51,13 @@ const AutoCompletesPage = () => (
       description={descriptions.filters}
     >
       <AutoCompleteExampleFilters />
+    </CodeExample>
+    <CodeExample
+      code={autoCompleteExampleTextFieldPropsCode}
+      title="Underlaying TextField props"
+      description={descriptions.textFieldProps}
+    >
+      <AutoCompleteExampleTextFieldProps />
     </CodeExample>
     <PropTypeDescription code={autoCompleteCode} />
   </div>
