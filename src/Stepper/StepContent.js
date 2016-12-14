@@ -75,12 +75,12 @@ class StepContent extends Component {
       style,
       transition,
       transitionDuration,
-      ...other,
+      ...other
     } = this.props;
     const {stepper, muiTheme: {prepareStyles}} = this.context;
 
     if (stepper.orientation !== 'vertical') {
-      warning(false, '<StepContent /> is only designed for use with the vertical stepper.');
+      warning(false, 'Material-UI: <StepContent /> is only designed for use with the vertical stepper.');
       return null;
     }
 

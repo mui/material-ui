@@ -70,7 +70,7 @@ export const SnackbarBody = (props, context) => {
     open, // eslint-disable-line no-unused-vars
     onActionTouchTap,
     style,
-    ...other,
+    ...other
   } = props;
 
   const {prepareStyles} = context.muiTheme;

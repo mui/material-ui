@@ -17,6 +17,7 @@ function getStyles(props, context) {
       width: '100%',
       backgroundColor: tabs.backgroundColor,
       whiteSpace: 'nowrap',
+      display: 'flex',
     },
   };
 }
@@ -183,7 +184,7 @@ class Tabs extends Component {
       tabItemContainerStyle,
       tabTemplate,
       tabTemplateStyle,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -195,11 +196,11 @@ class Tabs extends Component {
 
     const tabs = this.getTabs().map((tab, index) => {
       warning(tab.type && tab.type.muiName === 'Tab',
-        `Tabs only accepts Tab Components as children.
+        `Material-UI: Tabs only accepts Tab Components as children.
         Found ${tab.type.muiName || tab.type} as child number ${index + 1} of Tabs`);
 
       warning(!tabValue || tab.props.value !== undefined,
-        `Tabs value prop has been passed, but Tab ${index}
+        `Material-UI: Tabs value prop has been passed, but Tab ${index}
         does not have a value prop. Needs value if Tabs is going
         to be a controlled component.`);
 

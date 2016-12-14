@@ -27,7 +27,7 @@ const BottomNavigation = (props, context) => {
     children,
     style,
     selectedIndex,
-    ...other,
+    ...other
   } = props;
 
   const {prepareStyles} = context.muiTheme;

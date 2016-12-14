@@ -59,5 +59,22 @@ describe('<FloatingActionButton />', () => {
         'should apply inline style'
       );
     });
+
+    it('should work with two children', () => {
+      const wrapper = shallowWithContext(
+        <FloatingActionButton>
+          <ContentAdd />
+          <ContentAdd />
+        </FloatingActionButton>
+      );
+
+      const children = wrapper.find(ContentAdd);
+
+      assert.strictEqual(children.length, 2);
+      assert.strictEqual(children.at(0).props().style.fill,
+        '#ffffff',
+        'should use the default style'
+      );
+    });
   });
 });

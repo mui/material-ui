@@ -315,6 +315,7 @@ class RaisedButton extends Component {
 
   handleTouchEnd = (event) => {
     this.setState({
+      touched: true,
       zDepth: this.state.initialZDepth,
     });
 
@@ -352,7 +353,7 @@ class RaisedButton extends Component {
       rippleStyle,
       secondary, // eslint-disable-line no-unused-vars
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

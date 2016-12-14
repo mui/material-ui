@@ -77,7 +77,7 @@ class CircleRipple extends Component {
       opacity, // eslint-disable-line no-unused-vars
       style,
       touchGenerated, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

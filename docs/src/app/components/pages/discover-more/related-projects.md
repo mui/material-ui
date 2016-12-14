@@ -10,6 +10,8 @@ A Formsy compatibility wrapper for Material-UI form components.
 - [material-ui-rails](https://github.com/towonzhou/material-ui-rails) Material-UI for Rails.
 - [storybook-addon-material-ui](https://github.com/sm-react/storybook-addon-material-ui)
 Addon for storybook.
+- [crema](https://bitbucket.org/pinturic/crema/) CReMa: Cordova React Material-UI.
+- [babel-plugin-material-ui](https://github.com/umidbekkarimov/babel-plugin-material-ui) Babel plugin to cherry-pick used material-ui modules.
 
 ### Complementary Projects
 
@@ -18,3 +20,4 @@ A React component for swipeable views. Plays well with the `Tabs` component.
 - [UniversalRelayBoilerplate](https://github.com/codefoundries/UniversalRelayBoilerplate)
 Boilerplate + examples for React Native (iOS, Android), React (isomorphic, Material-UI), Relay, GraphQL, JWT, Node.js, Apache Cassandra.
 - [react-dnd](http://gaearon.github.io/react-dnd/examples-sortable-simple.html) Drag and Drop for React.
+- [redux-form](http://redux-form.com/6.1.1/examples/material-ui/) Manage your form state in Redux.

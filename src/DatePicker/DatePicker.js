@@ -277,7 +277,7 @@ class DatePicker extends Component {
       shouldDisableDate,
       style,
       textFieldStyle,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

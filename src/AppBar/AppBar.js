@@ -153,10 +153,10 @@ class AppBar extends Component {
   };
 
   componentDidMount() {
-    warning(!this.props.iconElementLeft || !this.props.iconClassNameLeft, `Properties iconElementLeft
+    warning(!this.props.iconElementLeft || !this.props.iconClassNameLeft, `Material-UI: Properties iconElementLeft
       and iconClassNameLeft cannot be simultaneously defined. Please use one or the other.`);
 
-    warning(!this.props.iconElementRight || !this.props.iconClassNameRight, `Properties iconElementRight
+    warning(!this.props.iconElementRight || !this.props.iconClassNameRight, `Material-UI: Properties iconElementRight
       and iconClassNameRight cannot be simultaneously defined. Please use one or the other.`);
   }
 
@@ -196,7 +196,7 @@ class AppBar extends Component {
       style,
       zDepth,
       children,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

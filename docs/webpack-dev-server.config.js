@@ -51,7 +51,6 @@ const config = {
       {
         test: /\.js$/,
         loaders: [
-          'react-hot',
           'babel-loader',
         ],
         exclude: /node_modules/,

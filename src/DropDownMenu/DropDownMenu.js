@@ -32,13 +32,16 @@ function getStyles(props, context) {
     label: {
       color: disabled ? palette.disabledColor : palette.textColor,
       lineHeight: `${spacing.desktopToolbarHeight}px`,
+      overflow: 'hidden',
       opacity: 1,
       position: 'relative',
       paddingLeft: spacing.desktopGutter,
       paddingRight: spacing.iconSize +
       spacing.desktopGutterLess +
       spacing.desktopGutterMini,
+      textOverflow: 'ellipsis',
       top: 0,
+      whiteSpace: 'nowrap',
     },
     labelWhenOpen: {
       opacity: 0,
@@ -139,6 +142,10 @@ class DropDownMenu extends Component {
      */
     onChange: PropTypes.func,
     /**
+     * Callback function fired when the menu is closed.
+     */
+    onClose: PropTypes.func,
+    /**
      * Set to true to have the `DropDownMenu` automatically open on mount.
      */
     openImmediately: PropTypes.bool,
@@ -234,6 +241,10 @@ class DropDownMenu extends Component {
     this.setState({
       open: false,
       anchorEl: null,
+    }, () => {
+      if (this.props.onClose) {
+        this.props.onClose();
+      }
     });
   };
 
@@ -242,6 +253,9 @@ class DropDownMenu extends Component {
     this.setState({
       open: false,
     }, () => {
+      if (this.props.onClose) {
+        this.props.onClose();
+      }
       if (this.props.onChange) {
         this.props.onChange(event, index, child.props.value);
       }
@@ -260,13 +274,14 @@ class DropDownMenu extends Component {
       listStyle,
       maxHeight,
       menuStyle: menuStyleProp,
+      onClose, // eslint-disable-line no-unused-vars
       openImmediately, // eslint-disable-line no-unused-vars
       menuItemStyle,
       menuItemSelectedStyle,
       style,
       underlineStyle,
       value,
-      ...other,
+      ...other
     } = this.props;
 
     const {
@@ -279,7 +294,7 @@ class DropDownMenu extends Component {
 
     let displayValue = '';
     React.Children.forEach(children, (child) => {
-      if (value === child.props.value) {
+      if (child && value === child.props.value) {
         // This will need to be improved (in case primaryText is a node)
         displayValue = child.props.label || child.props.primaryText;
       }
