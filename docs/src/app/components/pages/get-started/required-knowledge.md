@@ -73,7 +73,7 @@ dependency management, and created projects like:
 
 As Node became popular, independent developers and organizations wrote scripts
 (that ran using Node) to do almost everything web apps-related.
-Of course, the whole community could benefit from these "custom Node scripts.""
+Of course, the whole community could benefit from these "custom Node scripts."
 This called for some kind of package repository where anybody could upload their Node scripts, and other developers
 could use these scripts in their own projects.
 
