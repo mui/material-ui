@@ -63,6 +63,8 @@ function createPackageFile() {
       version,
       description,
       main: './index.js',
+      module: './index.es.js',
+      'jsnext:main': './index.es.js',
       keywords,
       repository,
       license,

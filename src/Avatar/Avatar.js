@@ -87,7 +87,7 @@ class Avatar extends Component {
       src,
       style,
       className,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

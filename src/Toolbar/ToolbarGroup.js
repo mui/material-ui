@@ -22,6 +22,7 @@ function getStyles(props, context) {
       marginRight: lastChild ? -marginHorizontal : undefined,
       display: 'flex',
       justifyContent: 'space-between',
+      alignItems: 'center',
     },
     dropDownMenu: {
       root: {
@@ -107,7 +108,7 @@ class ToolbarGroup extends Component {
       firstChild, // eslint-disable-line no-unused-vars
       lastChild, // eslint-disable-line no-unused-vars
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

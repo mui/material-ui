@@ -94,7 +94,9 @@ class EnhancedButton extends Component {
     muiTheme: PropTypes.object.isRequired,
   };
 
-  state = {isKeyboardFocused: false};
+  state = {
+    isKeyboardFocused: false,
+  };
 
   componentWillMount() {
     const {disabled, disableKeyboardFocus, keyboardFocused} = this.props;
@@ -278,7 +280,7 @@ class EnhancedButton extends Component {
       style,
       tabIndex,
       type,
-      ...other,
+      ...other
     } = this.props;
 
     const {
@@ -338,13 +340,17 @@ class EnhancedButton extends Component {
       onKeyUp: this.handleKeyUp,
       onKeyDown: this.handleKeyDown,
       onTouchTap: this.handleTouchTap,
-      tabIndex: tabIndex,
-      type: type,
+      tabIndex: disabled || disableKeyboardFocus ? -1 : tabIndex,
     };
+
     const buttonChildren = this.createButtonChildren();
 
     if (React.isValidElement(containerElement)) {
       return React.cloneElement(containerElement, buttonProps, buttonChildren);
+    }
+
+    if (!href && containerElement === 'button') {
+      buttonProps.type = type;
     }
 
     return React.createElement(href ? 'a' : containerElement, buttonProps, buttonChildren);

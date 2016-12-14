@@ -1,6 +1,6 @@
 {
   "name": "material-ui-docs",
-  "version": "0.16.0",
+  "version": "0.16.5",
   "description": "Documentation site for Material-UI",
   "repository": {
     "type": "git",
@@ -25,26 +25,25 @@
     "simple-assign": "^0.1.0"
   },
   "devDependencies": {
-    "copy-webpack-plugin": "^3.0.1",
+    "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.25.0",
-    "doctrine": "^1.5.0",
-    "highlight.js": "^9.7.0",
+    "doctrine": "^2.0.0",
+    "highlight.js": "^9.8.0",
     "history": "^2.0.0",
     "intl": "^1.2.5",
     "intl-locales-supported": "^1.0.0",
     "json-loader": "^0.5.4",
     "marked": "^0.3.5",
     "raw-loader": "^0.5.1",
-    "react-addons-perf": "^15.3.2",
-    "react-docgen": "^2.11.0",
-    "react-hot-loader": "^1.2.8",
+    "react-addons-perf": "^15.4.0",
+    "react-docgen": "^2.12.1",
     "react-motion": "^0.4.5",
     "react-native": "^0.17.0",
-    "react-router": "^2.8.1",
-    "react-swipeable-views": "^0.7.10",
-    "recast": "^0.11.14",
+    "react-router": "^3.0.0",
+    "react-swipeable-views": "^0.8.0",
+    "recast": "^0.11.17",
     "style-loader": "0.13.1",
-    "webpack": "^1.13.2",
+    "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"
   }
 }

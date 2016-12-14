@@ -7,12 +7,6 @@ import Paper from '../Paper';
 import throttle from 'lodash.throttle';
 import PopoverAnimationDefault from './PopoverAnimationDefault';
 
-const styles = {
-  root: {
-    display: 'none',
-  },
-};
-
 class Popover extends Component {
   static propTypes = {
     /**
@@ -24,8 +18,8 @@ class Popover extends Component {
      * This is the point on the anchor where the popover's
      * `targetOrigin` will attach to.
      * Options:
-     * vertical: [top, middle, bottom];
-     * horizontal: [left, center, right].
+     * vertical: [top, center, bottom]
+     * horizontal: [left, middle, right].
      */
     anchorOrigin: propTypes.origin,
     /**
@@ -74,8 +68,8 @@ class Popover extends Component {
      * This is the point on the popover which will attach to
      * the anchor's origin.
      * Options:
-     * vertical: [top, middle, bottom];
-     * horizontal: [left, center, right].
+     * vertical: [top, center, bottom]
+     * horizontal: [left, middle, right].
      */
     targetOrigin: propTypes.origin,
     /**
@@ -187,7 +181,7 @@ class Popover extends Component {
       style,
       targetOrigin,
       useLayerForClickAway, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     let styleRoot = style;
@@ -195,6 +189,7 @@ class Popover extends Component {
     if (!animated) {
       styleRoot = {
         position: 'fixed',
+        zIndex: this.context.muiTheme.zIndex.popover,
       };
 
       if (!this.state.open) {
@@ -202,7 +197,7 @@ class Popover extends Component {
       }
 
       return (
-        <Paper style={Object.assign({}, styleRoot, style)} {...other}>
+        <Paper style={Object.assign(styleRoot, style)} {...other}>
           {children}
         </Paper>
       );
@@ -228,7 +223,8 @@ class Popover extends Component {
     }
   }
 
-  componentClickAway = () => {
+  componentClickAway = (event) => {
+    event.preventDefault();
     this.requestClose('clickAway');
   };
 
@@ -383,7 +379,7 @@ class Popover extends Component {
 
   render() {
     return (
-      <div style={styles.root}>
+      <div>
         <EventListener
           target="window"
           onScroll={this.handleScroll}

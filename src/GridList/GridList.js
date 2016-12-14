@@ -18,8 +18,12 @@ class GridList extends Component {
   static propTypes = {
     /**
      * Number of px for one cell height.
+     * You can set `'auto'` if you want to let the children determine the height.
      */
-    cellHeight: PropTypes.number,
+    cellHeight: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.oneOf(['auto']),
+    ]),
     /**
      * Grid Tiles that will be in Grid List.
      */
@@ -55,7 +59,7 @@ class GridList extends Component {
       cellHeight,
       children,
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -70,7 +74,7 @@ class GridList extends Component {
       const childRows = currentChild.props.rows || 1;
       const itemStyle = Object.assign({}, styles.item, {
         width: `${(100 / cols * childCols)}%`,
-        height: cellHeight * childRows + padding,
+        height: cellHeight === 'auto' ? 'auto' : cellHeight * childRows + padding,
       });
 
       return <div style={prepareStyles(itemStyle)}>{currentChild}</div>;

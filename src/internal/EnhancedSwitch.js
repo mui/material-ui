@@ -12,8 +12,8 @@ function getStyles(props, context) {
 
   return {
     root: {
+      cursor: props.disabled ? 'not-allowed' : 'pointer',
       position: 'relative',
-      cursor: props.disabled ? 'default' : 'pointer',
       overflow: 'visible',
       display: 'table',
       height: 'auto',
@@ -21,7 +21,7 @@ function getStyles(props, context) {
     },
     input: {
       position: 'absolute',
-      cursor: props.disabled ? 'default' : 'pointer',
+      cursor: 'inherit',
       pointerEvents: 'all',
       opacity: 0,
       width: '100%',
@@ -150,7 +150,7 @@ class EnhancedSwitch extends Component {
       }
       this.refs.checkbox.checked = newSwitchedValue;
     } else {
-      warning(false, 'Cannot call set method while checked is defined as a property.');
+      warning(false, 'Material-UI: Cannot call set method while checked is defined as a property.');
     }
   }
 
@@ -279,7 +279,7 @@ class EnhancedSwitch extends Component {
       switchElement,
       thumbStyle,
       trackStyle,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

@@ -420,6 +420,30 @@ class Menu extends Component {
     }
   }
 
+  cancelScrollEvent(event) {
+    event.stopPropagation();
+    event.preventDefault();
+    return false;
+  }
+
+  handleOnWheel = (event) => {
+    const scrollContainer = this.refs.scrollContainer;
+    // Only scroll lock if the the Menu is scrollable.
+    if (scrollContainer.scrollHeight <= scrollContainer.clientHeight) return;
+
+    const {scrollTop, scrollHeight, clientHeight} = scrollContainer;
+    const wheelDelta = event.deltaY;
+    const isDeltaPositive = wheelDelta > 0;
+
+    if (isDeltaPositive && wheelDelta > scrollHeight - clientHeight - scrollTop) {
+      scrollContainer.scrollTop = scrollHeight;
+      return this.cancelScrollEvent(event);
+    } else if (!isDeltaPositive && -wheelDelta > scrollTop) {
+      scrollContainer.scrollTop = 0;
+      return this.cancelScrollEvent(event);
+    }
+  }
+
   setWidth() {
     const el = ReactDOM.findDOMNode(this);
     const listEl = ReactDOM.findDOMNode(this.refs.list);
@@ -455,7 +479,7 @@ class Menu extends Component {
       value, // eslint-disable-line no-unused-vars
       valueLink, // eslint-disable-line no-unused-vars
       width, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -471,7 +495,9 @@ class Menu extends Component {
       const childIsADivider = child.type && child.type.muiName === 'Divider';
       const childIsDisabled = child.props.disabled;
 
-      const clonedChild = childIsADivider ? React.cloneElement(child, {style: styles.divider}) :
+      const clonedChild = childIsADivider ? React.cloneElement(child, {
+        style: Object.assign({}, styles.divider, child.props.style),
+      }) :
         childIsDisabled ? React.cloneElement(child, {desktop: desktop}) :
         this.cloneMenuItem(child, menuItemIndex, styles, index);
 
@@ -486,6 +512,7 @@ class Menu extends Component {
       <ClickAwayListener onClickAway={this.handleClickAway}>
         <div
           onKeyDown={this.handleKeyDown}
+          onWheel={this.handleOnWheel}
           style={prepareStyles(mergedRootStyles)}
           ref="scrollContainer"
         >

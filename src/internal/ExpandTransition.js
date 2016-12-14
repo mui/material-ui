@@ -50,7 +50,7 @@ class ExpandTransition extends Component {
       style,
       transitionDelay, // eslint-disable-line no-unused-vars
       transitionDuration, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -58,7 +58,7 @@ class ExpandTransition extends Component {
     const mergedRootStyles = Object.assign({}, {
       position: 'relative',
       overflow: 'hidden',
-      height: '100%',
+      height: 'auto',
     }, style);
 
     const newChildren = loading ? [] : this.renderChildren(children);

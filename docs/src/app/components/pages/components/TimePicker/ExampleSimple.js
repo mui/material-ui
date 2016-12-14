@@ -7,6 +7,10 @@ const TimePickerExampleSimple = () => (
       hintText="12hr Format"
     />
     <TimePicker
+      hintText="12hr Format with auto ok"
+      autoOk={true}
+    />
+    <TimePicker
       format="24hr"
       hintText="24hr Format"
     />

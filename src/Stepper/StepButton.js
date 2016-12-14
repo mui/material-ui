@@ -53,6 +53,10 @@ class StepButton extends Component {
       PropTypes.string,
       PropTypes.number,
     ]),
+    /**
+     * Override the inline-styles of the icon container element.
+     */
+    iconContainerStyle: PropTypes.object,
     /** @ignore */
     last: PropTypes.bool,
     /** @ignore */
@@ -113,12 +117,13 @@ class StepButton extends Component {
       completed,
       disabled,
       icon,
+      iconContainerStyle,
       last, // eslint-disable-line no-unused-vars
       onMouseEnter, // eslint-disable-line no-unused-vars
       onMouseLeave, // eslint-disable-line no-unused-vars
       onTouchStart, // eslint-disable-line no-unused-vars
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const styles = getStyles(this.props, this.context, this.state);
@@ -134,7 +139,7 @@ class StepButton extends Component {
         onTouchStart={this.handleTouchStart}
         {...other}
       >
-        {React.cloneElement(child, {active, completed, disabled, icon})}
+        {React.cloneElement(child, {active, completed, disabled, icon, iconContainerStyle})}
       </EnhancedButton>
     );
   }

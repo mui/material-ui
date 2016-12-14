@@ -54,7 +54,7 @@ class ClockMinutes extends Component {
 
   handleTouch = (event) => {
     event.preventDefault();
-    this.setClock(event.changedTouches[0], false);
+    this.setClock(event.changedTouches[0], event.type === 'touchend');
   };
 
   setClock(event, finish) {

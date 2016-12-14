@@ -71,7 +71,7 @@ class BeforeAfterWrapper extends Component {
       beforeElementType, // eslint-disable-line no-unused-vars
       afterElementType, // eslint-disable-line no-unused-vars
       elementType, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

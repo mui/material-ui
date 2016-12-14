@@ -31,7 +31,7 @@ class ScaleIn extends Component {
       maxScale,
       minScale,
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

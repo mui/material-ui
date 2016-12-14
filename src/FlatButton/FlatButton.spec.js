@@ -191,4 +191,14 @@ describe('<FlatButton />', () => {
       assert.strictEqual(wrapper.find(ActionAndroid).props().style.foo, 'bar');
     });
   });
+
+  describe('props: other', () => {
+    it('should spread other properties to the root element', () => {
+      const wrapper = shallowWithContext(
+        <FlatButton target="_blank" label="Button" />
+      );
+
+      assert.strictEqual(wrapper.props().target, '_blank', 'should be _blank');
+    });
+  });
 });

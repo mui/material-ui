@@ -32,13 +32,16 @@ function getStyles(props, context) {
     label: {
       color: disabled ? palette.disabledColor : palette.textColor,
       lineHeight: `${spacing.desktopToolbarHeight}px`,
+      overflow: 'hidden',
       opacity: 1,
       position: 'relative',
       paddingLeft: spacing.desktopGutter,
       paddingRight: spacing.iconSize +
       spacing.desktopGutterLess +
       spacing.desktopGutterMini,
+      textOverflow: 'ellipsis',
       top: 0,
+      whiteSpace: 'nowrap',
     },
     labelWhenOpen: {
       opacity: 0,
@@ -130,6 +133,10 @@ class DropDownMenu extends Component {
      * @param {any} payload The `value` prop of the clicked menu item.
      */
     onChange: PropTypes.func,
+    /**
+     * Callback function fired when the menu is closed.
+     */
+    onClose: PropTypes.func,
     /**
      * Set to true to have the `DropDownMenu` automatically open on mount.
      */
@@ -226,6 +233,10 @@ class DropDownMenu extends Component {
     this.setState({
       open: false,
       anchorEl: null,
+    }, () => {
+      if (this.props.onClose) {
+        this.props.onClose();
+      }
     });
   };
 
@@ -234,6 +245,9 @@ class DropDownMenu extends Component {
     this.setState({
       open: false,
     }, () => {
+      if (this.props.onClose) {
+        this.props.onClose();
+      }
       if (this.props.onChange) {
         this.props.onChange(event, index, child.props.value);
       }
@@ -252,11 +266,12 @@ class DropDownMenu extends Component {
       listStyle,
       maxHeight,
       menuStyle: menuStyleProp,
+      onClose, // eslint-disable-line no-unused-vars
       openImmediately, // eslint-disable-line no-unused-vars
       style,
       underlineStyle,
       value,
-      ...other,
+      ...other
     } = this.props;
 
     const {

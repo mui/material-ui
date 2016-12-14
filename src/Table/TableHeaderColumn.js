@@ -106,7 +106,7 @@ class TableHeaderColumn extends Component {
       style,
       tooltip,
       tooltipStyle,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

@@ -308,15 +308,22 @@ class Slider extends Component {
     /** @ignore */
     onBlur: PropTypes.func,
     /**
-     * Callback function that is fired when the user changes the slider's value.
+     * Callback function that is fired when the slider's value changed.
+     *
+     * @param {object} event KeyDown event targeting the slider.
+     * @param {number} newValue The new value of the slider.
      */
     onChange: PropTypes.func,
     /**
      * Callback function that is fired when the slider has begun to move.
+     *
+     * @param {object} event MouseDown or TouchStart event targeting the slider.
      */
     onDragStart: PropTypes.func,
     /**
      * Callback function that is fired when the slide has stopped moving.
+     *
+     * @param {object} event MouseEnd or TouchEnd event targeting the slider.
      */
     onDragStop: PropTypes.func,
     /** @ignore */
@@ -730,7 +737,7 @@ class Slider extends Component {
       sliderStyle,
       step,
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {

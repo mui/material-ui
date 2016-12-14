@@ -160,7 +160,7 @@ class FlatButton extends Component {
       rippleColor,
       secondary,
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {

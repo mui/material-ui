@@ -63,16 +63,13 @@ function getStyles(props, context, state) {
     },
     trackWhenDisabled: {
       backgroundColor: toggle.trackDisabledColor,
-      cursor: 'not-allowed',
     },
     thumbWhenDisabled: {
       backgroundColor: toggle.thumbDisabledColor,
-      cursor: 'not-allowed',
     },
     label: {
       color: disabled ? toggle.labelDisabledColor : toggle.labelColor,
       width: `calc(100% - ${(toggleTrackWidth + 10)}px)`,
-      cursor: disabled ? 'not-allowed' : 'initial',
     },
   };
 
@@ -133,7 +130,7 @@ class Toggle extends Component {
     /**
      * Label for toggle.
      */
-    label: PropTypes.string,
+    label: PropTypes.node,
     /**
      * Where the label will be placed next to the toggle.
      */
@@ -232,7 +229,7 @@ class Toggle extends Component {
       trackSwitchedStyle, // eslint-disable-line no-unused-vars
       thumbSwitchedStyle, // eslint-disable-line no-unused-vars
       toggled,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

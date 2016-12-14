@@ -163,7 +163,7 @@ class CircularProgress extends Component {
       innerStyle,
       size,
       thickness,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

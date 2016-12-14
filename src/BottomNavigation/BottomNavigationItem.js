@@ -48,7 +48,7 @@ const BottomNavigationItem = (props, context) => {
     label,
     icon,
     style,
-    ...other,
+    ...other
   } = props;
 
   const {prepareStyles} = context.muiTheme;
