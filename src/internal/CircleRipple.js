@@ -90,6 +90,7 @@ class CircleRipple extends Component {
       width: '100%',
       borderRadius: '50%',
       backgroundColor: color,
+      cursor: 'auto',
     }, style);
 
     return (
