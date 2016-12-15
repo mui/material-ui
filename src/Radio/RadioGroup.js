@@ -3,7 +3,8 @@
 import React, { Component, Children, cloneElement, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
-import { createFormGroup } from '../Form/FormGroup';
+import FormGroup from '../Form/FormGroup';
+import { find } from '../utils/helpers';
 
 export const styleSheet = createStyleSheet('RadioGroup', () => {
   return {
@@ -22,12 +23,6 @@ class RadioGroup extends Component {
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
-    component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    /**
-     * @ignore
-     * For uncontrolled support
-     */
-    defaultValue: PropTypes.string,
     name: PropTypes.string,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
@@ -35,12 +30,26 @@ class RadioGroup extends Component {
     selectedValue: PropTypes.string,
   };
 
-  static defaultProps = {
-    component: 'div',
-  };
-
   static contextTypes = {
     styleManager: PropTypes.object.isRequired,
+  };
+
+  radios = undefined;
+
+  focus = () => {
+    if (this.props.selectedValue) {
+      const selectedRadio = find(this.radios, (n) => n.props.checked);
+      if (selectedRadio) {
+        selectedRadio.focus();
+        return;
+      }
+    }
+
+    const focusRadio = find(this.radios, (n) => !n.props.disabled);
+
+    if (focusRadio) {
+      focusRadio.focus();
+    }
   };
 
   handleRadioChange = (event, checked) => {
@@ -53,7 +62,6 @@ class RadioGroup extends Component {
     const {
       children,
       className: classNameProp,
-      component: ComponentProp,
       name,
       selectedValue,
       onChange, // eslint-disable-line no-unused-vars
@@ -62,24 +70,28 @@ class RadioGroup extends Component {
 
     const classes = this.context.styleManager.render(styleSheet);
 
+    this.radios = [];
+
     return (
-      <ComponentProp
+      <FormGroup
         className={classNames(classes.root, classNameProp)}
         data-mui-test="RadioGroup"
         role="radiogroup"
         {...other}
       >
         {Children.map(children, (child, index) => {
+          const selected = selectedValue === child.props.value;
           return cloneElement(child, {
             key: index,
             name,
-            checked: selectedValue === child.props.value,
+            ref: (c) => { this.radios.push(c); },
+            checked: selected,
             onChange: this.handleRadioChange,
           });
         })}
-      </ComponentProp>
+      </FormGroup>
     );
   }
 }
 
-export default createFormGroup(RadioGroup);
+export default RadioGroup;

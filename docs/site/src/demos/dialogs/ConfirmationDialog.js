@@ -53,7 +53,7 @@ class ConfirmationDialog extends Component {
   radioGroup = undefined;
 
   handleEntering = () => {
-    // this.radioGroup.focus();
+    this.radioGroup.focus();
   };
 
   handleCancel = () => {
@@ -82,6 +82,7 @@ class ConfirmationDialog extends Component {
           <RadioGroup
             ref={(c) => { this.radioGroup = c; }}
             aria-label="Gender"
+            name="gender"
             selectedValue={this.state.selectedValue}
             onChange={this.handleChange}
           >
