@@ -142,6 +142,10 @@ class DropDownMenu extends Component {
      */
     openImmediately: PropTypes.bool,
     /**
+     * Override the inline-styles of selected menu items.
+     */
+    selectedMenuItemStyle: PropTypes.object,
+    /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
@@ -268,6 +272,7 @@ class DropDownMenu extends Component {
       menuStyle: menuStyleProp,
       onClose, // eslint-disable-line no-unused-vars
       openImmediately, // eslint-disable-line no-unused-vars
+      selectedMenuItemStyle,
       style,
       underlineStyle,
       value,
@@ -324,12 +329,13 @@ class DropDownMenu extends Component {
           onRequestClose={this.handleRequestCloseMenu}
         >
           <Menu
-            maxHeight={maxHeight}
             desktop={true}
-            value={value}
-            style={menuStyle}
             listStyle={listStyle}
+            maxHeight={maxHeight}
             onItemTouchTap={this.handleItemTouchTap}
+            selectedMenuItemStyle={selectedMenuItemStyle}
+            style={menuStyle}
+            value={value}
           >
             {children}
           </Menu>
