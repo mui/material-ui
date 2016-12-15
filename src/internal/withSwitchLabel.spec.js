@@ -5,7 +5,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallowWithContext } from 'test/utils';
-import { withSwitchLabel, styleSheet } from './SwitchLabel';
+import withSwitchLabel, { styleSheet } from './withSwitchLabel';
 
 describe('<SwitchLabel />', () => {
   let shallow;

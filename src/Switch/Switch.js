@@ -4,7 +4,7 @@ import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import { createSwitch } from '../internal/SwitchBase';
-import { withSwitchLabel } from '../internal/SwitchLabel';
+import withSwitchLabel from '../internal/withSwitchLabel';
 
 export const styleSheet = createStyleSheet('Switch', (theme) => {
   const { palette } = theme;

@@ -2,7 +2,7 @@
 
 import { createStyleSheet } from 'jss-theme-reactor';
 import { createSwitch } from '../internal/SwitchBase';
-import { withSwitchLabel } from '../internal/SwitchLabel';
+import withSwitchLabel from '../internal/withSwitchLabel';
 
 export const styleSheet = createStyleSheet('Radio', (theme) => {
   return {

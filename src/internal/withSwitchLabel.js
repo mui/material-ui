@@ -3,6 +3,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
+import createHelper from 'recompose/createHelper';
 import classNames from 'classnames';
 
 export const styleSheet = createStyleSheet('SwitchLabel', (theme) => {
@@ -23,12 +24,8 @@ export const styleSheet = createStyleSheet('SwitchLabel', (theme) => {
   };
 });
 
-export function withSwitchLabel(SwitchComponent) {
-  const switchComponentName = SwitchComponent.displayName || SwitchComponent.name;
-
+function withSwitchLabel(SwitchComponent) {
   return class SwitchLabel extends Component {
-    static displayName = `withSwitchLabel(${switchComponentName})`;
-
     static propTypes = {
       /**
        * If `true`, the control will be disabled.
@@ -93,3 +90,5 @@ export function withSwitchLabel(SwitchComponent) {
     }
   };
 }
+
+export default createHelper(withSwitchLabel, 'withSwitchLabel', true, true);
