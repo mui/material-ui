@@ -3,7 +3,7 @@
 
 import { assert } from 'chai';
 import { createShallowWithContext } from 'test/utils';
-import LabelCheckbox, { Checkbox, styleSheet } from './Checkbox';
+import Checkbox, { LabelCheckbox, styleSheet } from './Checkbox';
 
 describe('<Checkbox />', () => {
   let shallow;
@@ -22,14 +22,14 @@ describe('<Checkbox />', () => {
     });
   });
 
-  describe('named Checkbox export', () => {
+  describe('default Checkbox export', () => {
     it('should be a SwitchBase with the displayName set for debugging', () => {
       assert.strictEqual(Checkbox.name, 'SwitchBase');
       assert.strictEqual(Checkbox.displayName, 'Checkbox');
     });
   });
 
-  describe('default export', () => {
+  describe('named LabelCheckbox export', () => {
     it('should be Checkbox wrapped with SwitchLabel', () => {
       assert.strictEqual(LabelCheckbox.name, 'SwitchLabel');
       assert.strictEqual(LabelCheckbox.displayName, 'withSwitchLabel(Checkbox)');

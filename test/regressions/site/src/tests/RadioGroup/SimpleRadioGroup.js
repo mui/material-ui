@@ -1,7 +1,7 @@
 // @flow weak
 
 import React from 'react';
-import { RadioGroup, Radio } from 'material-ui/Radio';
+import { RadioGroup, LabelRadio as Radio } from 'material-ui/Radio';
 
 export default function SimpleRadioGroup() {
   return (

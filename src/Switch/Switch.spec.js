@@ -4,7 +4,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallowWithContext } from 'test/utils';
-import LabelSwitch, { Switch, styleSheet } from './Switch';
+import Switch, { LabelSwitch, styleSheet } from './Switch';
 
 describe('<Switch />', () => {
   let shallow;
@@ -23,7 +23,7 @@ describe('<Switch />', () => {
     });
   });
 
-  describe('named Switch export', () => {
+  describe('default Switch export', () => {
     let wrapper;
 
     beforeEach(() => {
@@ -52,8 +52,8 @@ describe('<Switch />', () => {
     });
   });
 
-  describe('default export', () => {
-    it('should be Switch wrapped with SwitchLabelt', () => {
+  describe('named LabelSwitch export', () => {
+    it('should be Switch wrapped with SwitchLabel', () => {
       assert.strictEqual(LabelSwitch.name, 'SwitchLabel');
       assert.strictEqual(LabelSwitch.displayName, 'withSwitchLabel(Switch)');
     });

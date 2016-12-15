@@ -27,6 +27,8 @@ const Radio = createSwitch({
 
 Radio.displayName = 'Radio';
 
-export { Radio };
+export default Radio;
 
-export default withSwitchLabel(Radio);
+const LabelRadio = withSwitchLabel(Radio);
+
+export { LabelRadio };

@@ -3,7 +3,7 @@
 
 import { assert } from 'chai';
 import { createShallowWithContext } from 'test/utils';
-import LabelRadio, { Radio, styleSheet } from './Radio';
+import Radio, { LabelRadio, styleSheet } from './Radio';
 
 describe('<Radio />', () => {
   let shallow;
@@ -22,14 +22,14 @@ describe('<Radio />', () => {
     });
   });
 
-  describe('named Radio export', () => {
+  describe('default Radio export', () => {
     it('should be a SwitchBase with the displayName set for debugging', () => {
       assert.strictEqual(Radio.name, 'SwitchBase');
       assert.strictEqual(Radio.displayName, 'Radio');
     });
   });
 
-  describe('default export', () => {
+  describe('named LabelRadio export', () => {
     it('should be Radio wrapped with SwitchLabel', () => {
       assert.strictEqual(LabelRadio.name, 'SwitchLabel');
       assert.strictEqual(LabelRadio.displayName, 'withSwitchLabel(Radio)');

@@ -85,6 +85,8 @@ Switch.contextTypes = {
 };
 
 
-export { Switch };
+export default Switch;
 
-export default withSwitchLabel(Switch);
+const LabelSwitch = withSwitchLabel(Switch);
+
+export { LabelSwitch };

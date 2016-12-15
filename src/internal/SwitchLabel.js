@@ -70,13 +70,21 @@ export function withSwitchLabel(SwitchComponent) {
         [classes.hasLabel]: label && label.length,
       }, labelClassNameProp);
 
+      const switchElement = (
+        <SwitchComponent
+          ref={(c) => { this.switch = c; }}
+          disabled={disabled}
+          {...other}
+        />
+      );
+
+      if (!label) {
+        return switchElement;
+      }
+
       return (
         <label className={labelClassName}>
-          <SwitchComponent
-            ref={(c) => { this.switch = c; }}
-            disabled={disabled}
-            {...other}
-          />
+          {switchElement}
           <span className={disabled ? classes.disabled : ''}>
             {label}
           </span>

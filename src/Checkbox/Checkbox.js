@@ -22,6 +22,8 @@ const Checkbox = createSwitch({ styleSheet });
 
 Checkbox.displayName = 'Checkbox';
 
-export { Checkbox };
+export default Checkbox;
 
-export default withSwitchLabel(Checkbox);
+const LabelCheckbox = withSwitchLabel(Checkbox);
+
+export { LabelCheckbox };
