@@ -1,4 +1,4 @@
-  // @flow weak
+// @flow weak
 
 import React, { Component, Children, cloneElement, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
