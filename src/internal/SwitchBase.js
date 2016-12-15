@@ -75,6 +75,10 @@ export function createSwitch({
        * If false, the ripple effect will be disabled.
        */
       ripple: PropTypes.bool,
+      /**
+       * @ignore
+       */
+      tabIndex: PropTypes.string,
       value: PropTypes.string,
     };
 
@@ -135,6 +139,7 @@ export function createSwitch({
         name,
         onChange, // eslint-disable-line no-unused-vars
         ripple,
+        tabIndex,
         value,
         ...other
       } = this.props;
@@ -176,6 +181,7 @@ export function createSwitch({
             onChange={this.handleInputChange}
             className={classes.input}
             disabled={disabled}
+            tabIndex={tabIndex}
             value={value}
           />
         </IconButton>

@@ -37,19 +37,24 @@ class RadioGroup extends Component {
   radios = undefined;
 
   focus = () => {
-    if (this.props.selectedValue) {
-      const selectedRadio = find(this.radios, (n) => n.props.checked);
-      if (selectedRadio) {
-        selectedRadio.focus();
-        return;
-      }
+    if (!this.radios || !this.radios.length) {
+      return;
     }
 
-    const focusRadio = find(this.radios, (n) => !n.props.disabled);
+    const focusRadios = this.radios.filter((n) => !n.props.disabled);
 
-    if (focusRadio) {
-      focusRadio.focus();
+    if (!focusRadios.length) {
+      return;
     }
+
+    const selectedRadio = find(focusRadios, (n) => n.props.checked);
+
+    if (selectedRadio) {
+      selectedRadio.focus();
+      return;
+    }
+
+    focusRadios[0].focus();
   };
 
   handleRadioChange = (event, checked) => {

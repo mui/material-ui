@@ -45,14 +45,33 @@ describe('<SwitchBase />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
   });
 
-  // SHOULD APPLY CLASSNAME BASED ON STATUS
-
   it('should spread custom props on the root node', () => {
     const wrapper = shallow(<SwitchBase data-my-prop="woof" />);
     assert.strictEqual(wrapper.prop('data-my-prop'), 'woof', 'custom prop should be woof');
   });
 
-  it('should set the icon to aria-hidden="true" to avoid the ligature being read by screenreaders', () => {
+  it('should pass tabIndex to the input so it can be taken out of focus rotation', () => {
+    const wrapper = shallow(<SwitchBase tabIndex="-1" />);
+    const input = wrapper.find('input');
+    assert.strictEqual(input.prop('tabIndex'), '-1');
+  });
+
+  it('should pass value, disabled, checked, and name to the input', () => {
+    const props = {
+      name: 'gender',
+      disabled: true,
+      value: 'male',
+    };
+
+    const wrapper = shallow(<SwitchBase {...props} />);
+    const input = wrapper.find('input');
+
+    Object.keys(props).forEach((n) => {
+      assert.strictEqual(input.prop(n), props[n]);
+    });
+  });
+
+  it('should set the icon to aria-hidden="true" to avoid being read by screenreaders', () => {
     const wrapper = shallow(<SwitchBase />);
     assert.strictEqual(wrapper.childAt(0).prop('aria-hidden'), 'true');
   });
@@ -63,19 +82,19 @@ describe('<SwitchBase />', () => {
     assert.strictEqual(wrapper.childAt(1).prop('disabled'), true, 'should disable the input node');
   });
 
-  describe('prop: disabledClassName', () => {
-    it('should apply the custom disabled className when needed', () => {
-      const disabledClassName = 'foo';
-      const wrapperA = shallow(<SwitchBase disabled disabledClassName={disabledClassName} />);
-      assert.strictEqual(wrapperA.hasClass(disabledClassName), true, 'should have the custom disabled class');
+  it('should apply the custom disabled className when disabled', () => {
+    const disabledClassName = 'foo';
+    const wrapperA = shallow(<SwitchBase disabled disabledClassName={disabledClassName} />);
 
-      const wrapperB = shallow(<SwitchBase disabledClassName={disabledClassName} />);
-      assert.strictEqual(
-        wrapperB.hasClass(disabledClassName),
-        false,
-        'should not have the custom disabled class',
-      );
-    });
+    assert.strictEqual(wrapperA.hasClass(disabledClassName), true, 'should have the custom disabled class');
+
+    wrapperA.setProps({ disabled: false });
+
+    assert.strictEqual(
+      wrapperA.hasClass(disabledClassName),
+      false,
+      'should not have the custom disabled class',
+    );
   });
 
   describe('controlled', () => {

@@ -21,14 +21,14 @@ export const styleSheet = createStyleSheet('FormGroup', () => {
  * awareness.  Upon focusing on one of the child controls, it will propagate `focused` to the label.
  */
 export default function FormGroup(props, context) {
-  const { className, children, row } = props;
+  const { className, children, row, ...other } = props;
   const classes = context.styleManager.render(styleSheet);
   const rootClassName = classNames(classes.root, {
     [classes.row]: row,
   }, className);
 
   return (
-    <div className={rootClassName}>
+    <div className={rootClassName} {...other}>
       {children}
     </div>
   );
