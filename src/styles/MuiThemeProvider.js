@@ -17,7 +17,6 @@ export const MUI_SHEET_ORDER = [
   'TouchRipple',
 
   'ButtonBase',
-  'SwitchBase',
 
   'FormLabel',
   'FormGroup',
@@ -33,16 +32,18 @@ export const MUI_SHEET_ORDER = [
 
   'SvgIcon',
 
+  'SwitchBase',
+  'Switch',
+  'Checkbox',
+  'Radio',
+  'RadioGroup',
+  'SwitchLabel',
+
   'Dialog',
   'DialogActions',
   'DialogContent',
   'DialogContentText',
   'DialogTitle',
-
-  'Switch',
-  'Checkbox',
-  'Radio',
-  'RadioGroup',
 
   'TabIndicator',
   'Tab',

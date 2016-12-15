@@ -3,8 +3,8 @@
 import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
-import SwitchBase from '../internal/SwitchBase';
-import SelectionLabel from '../internal/SelectionLabel';
+import { createSwitch } from '../internal/SwitchBase';
+import withSwitchLabel from '../internal/withSwitchLabel';
 
 export const styleSheet = createStyleSheet('Switch', (theme) => {
   const { palette } = theme;
@@ -57,91 +57,36 @@ export const styleSheet = createStyleSheet('Switch', (theme) => {
   };
 });
 
-export default function Switch(props, context) {
+const SwitchBase = createSwitch({ styleSheet });
+
+function Switch(props, context) {
   const {
     className,
-    checkedClassName,
-    disabled,
-    disabledClassName,
-    label,
-    labelClassName,
-    labelReverse,
     ...other
   } = props;
+
   const classes = context.styleManager.render(styleSheet);
-
   const icon = <div className={classes.icon} />;
-  const switchProps = {
-    className: classes.default,
-    checkedClassName: classNames(classes.checked, checkedClassName),
-    disabledClassName: classNames(classes.disabled, disabledClassName),
-    icon,
-    checkedIcon: icon,
-    type: 'checkbox',
-    disabled,
-    ...other,
-  };
-
-  if (label) {
-    return (
-      <SelectionLabel
-        label={label}
-        labelReverse={labelReverse}
-        className={labelClassName}
-        disabled={disabled}
-      >
-        <div className={classNames(classes.root, className)}>
-          <SwitchBase aria-label={label} {...switchProps} />
-          <div className={classes.bar} />
-        </div>
-      </SelectionLabel>
-    );
-  }
 
   return (
     <div className={classNames(classes.root, className)}>
-      <SwitchBase {...switchProps} />
+      <SwitchBase icon={icon} checkedIcon={icon} {...other} />
       <div className={classes.bar} />
     </div>
   );
 }
 
 Switch.propTypes = {
-  /**
-   * The CSS class name of the switch element when checked.
-   */
-  checkedClassName: PropTypes.string,
-  /**
-   * The CSS class name of the root element.
-   */
   className: PropTypes.string,
-  /**
-   * If `true`, the control will be disabled.
-   */
-  disabled: PropTypes.bool,
-  /**
-   * The CSS class name of the switch element when disabled.
-   */
-  disabledClassName: PropTypes.string,
-  /**
-   * The text to be used in an enclosing label element.
-   */
-  label: PropTypes.node,
-  /**
-   * The className to be used in an enclosing label element.
-   */
-  labelClassName: PropTypes.string,
-  /**
-   * Will reverse the order of the element and the label.
-   */
-  labelReverse: PropTypes.bool,
-};
-
-Switch.defaultProps = {
-  disabled: false,
-  labelReverse: false,
 };
 
 Switch.contextTypes = {
   styleManager: PropTypes.object.isRequired,
 };
+
+
+export default Switch;
+
+const LabelSwitch = withSwitchLabel(Switch);
+
+export { LabelSwitch };

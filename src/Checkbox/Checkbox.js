@@ -1,10 +1,8 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
-import classNames from 'classnames';
-import SwitchBase from '../internal/SwitchBase';
-import SelectionLabel from '../internal/SelectionLabel';
+import { createSwitch } from '../internal/SwitchBase';
+import withSwitchLabel from '../internal/withSwitchLabel';
 
 export const styleSheet = createStyleSheet('Checkbox', (theme) => {
   return {
@@ -20,79 +18,12 @@ export const styleSheet = createStyleSheet('Checkbox', (theme) => {
   };
 });
 
-export default function Checkbox(props, context) {
-  const {
-    className,
-    checkedClassName,
-    disabled,
-    disabledClassName,
-    label,
-    labelClassName,
-    labelReverse,
-    ...other
-  } = props;
-  const classes = context.styleManager.render(styleSheet);
+const Checkbox = createSwitch({ styleSheet });
 
-  const switchProps = {
-    className: classNames(classes.default, className),
-    checkedClassName: classNames(classes.checked, checkedClassName),
-    disabled,
-    disabledClassName: classNames(classes.disabled, disabledClassName),
-    ...other,
-  };
+Checkbox.displayName = 'Checkbox';
 
-  if (label) {
-    return (
-      <SelectionLabel
-        label={label}
-        labelReverse={labelReverse}
-        className={labelClassName}
-        disabled={disabled}
-      >
-        <SwitchBase
-          aria-label={label}
-          {...switchProps}
-        />
-      </SelectionLabel>
-    );
-  }
+export default Checkbox;
 
-  return <SwitchBase {...switchProps} />;
-}
+const LabelCheckbox = withSwitchLabel(Checkbox);
 
-Checkbox.propTypes = {
-  checkedClassName: PropTypes.string,
-  /**
-   * The CSS class name of the root element.
-   */
-  className: PropTypes.string,
-  /**
-   * If `true`, the control will be disabled.
-   */
-  disabled: PropTypes.bool,
-  /**
-   * The CSS class name of the switch element when disabled.
-   */
-  disabledClassName: PropTypes.string,
-  /**
-   * The text to be used in an enclosing label element.
-   */
-  label: PropTypes.node,
-  /**
-   * The className to be used in an enclosing label element.
-   */
-  labelClassName: PropTypes.string,
-  /**
-   * Will reverse the order of the element and the label.
-   */
-  labelReverse: PropTypes.bool,
-};
-
-Checkbox.defaultProps = {
-  disabled: false,
-  labelReverse: false,
-};
-
-Checkbox.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
-};
+export { LabelCheckbox };

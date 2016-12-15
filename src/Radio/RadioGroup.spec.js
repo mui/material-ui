@@ -14,14 +14,14 @@ describe('<RadioGroup />', () => {
     shallow = createShallowWithContext();
   });
 
-  it('should render a radiogroup div', () => {
+  it('should render a FormGroup with the radiogroup role', () => {
     const wrapper = shallow(
       <RadioGroup />,
     );
     assert.strictEqual(
-      wrapper.is('div[role="radiogroup"]'),
+      wrapper.is('FormGroup[role="radiogroup"]'),
       true,
-      'should be a div with the correct role',
+      'should be a FormGroup with the correct role',
     );
   });
 
@@ -45,5 +45,73 @@ describe('<RadioGroup />', () => {
     wrapper.simulate('keyDown', event);
     assert.strictEqual(handleKeyDown.callCount, 1);
     assert.strictEqual(handleKeyDown.args[0][0], event);
+  });
+
+  describe('imperative focus()', () => {
+    let wrapper;
+
+    beforeEach(() => {
+      wrapper = shallow(
+        <RadioGroup />,
+      );
+    });
+
+    it('should focus the first non-disabled radio', () => {
+      const radios = [
+        { props: { disabled: true }, focus: spy() },
+        { props: { disabled: false }, focus: spy() },
+        { props: { disabled: false }, focus: spy() },
+      ];
+      wrapper.instance().radios = radios;
+      wrapper.instance().focus();
+
+      assert.strictEqual(radios[1].focus.callCount, 1);
+    });
+
+    it('should not focus any radios if all are disabled', () => {
+      const radios = [
+        { props: { disabled: true }, focus: spy() },
+        { props: { disabled: true }, focus: spy() },
+        { props: { disabled: true }, focus: spy() },
+      ];
+      wrapper.instance().radios = radios;
+      wrapper.instance().focus();
+
+      assert.strictEqual(radios[0].focus.callCount, 0);
+      assert.strictEqual(radios[1].focus.callCount, 0);
+      assert.strictEqual(radios[2].focus.callCount, 0);
+    });
+
+    it('should focus the selected radio', () => {
+      const radios = [
+        { props: { disabled: true }, focus: spy() },
+        { props: { disabled: false }, focus: spy() },
+        { props: { disabled: false, checked: true }, focus: spy() },
+        { props: { disabled: false }, focus: spy() },
+      ];
+      wrapper.instance().radios = radios;
+      wrapper.instance().focus();
+
+      assert.strictEqual(radios[0].focus.callCount, 0);
+      assert.strictEqual(radios[1].focus.callCount, 0);
+      assert.strictEqual(radios[2].focus.callCount, 1);
+      assert.strictEqual(radios[3].focus.callCount, 0);
+    });
+
+    it('should focus the non-disabled radio rather than the disabled selected radio', () => {
+      const radios = [
+        { props: { disabled: true }, focus: spy() },
+        { props: { disabled: true }, focus: spy() },
+        { props: { disabled: true, checked: true }, focus: spy() },
+        { props: { disabled: false }, focus: spy() },
+      ];
+      wrapper.instance().radios = radios;
+      wrapper.instance().focus();
+
+      assert.strictEqual(radios[0].focus.callCount, 0);
+      assert.strictEqual(radios[1].focus.callCount, 0);
+      assert.strictEqual(radios[2].focus.callCount, 0);
+      assert.strictEqual(radios[3].focus.callCount, 1);
+    });
   });
 });

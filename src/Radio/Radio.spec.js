@@ -1,10 +1,9 @@
 // @flow weak
 /* eslint-env mocha */
 
-import React from 'react';
 import { assert } from 'chai';
 import { createShallowWithContext } from 'test/utils';
-import Radio, { styleSheet } from './Radio';
+import Radio, { LabelRadio, styleSheet } from './Radio';
 
 describe('<Radio />', () => {
   let shallow;
@@ -15,58 +14,25 @@ describe('<Radio />', () => {
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
-  it('should render a SwitchBase when label not present', () => {
-    const wrapper = shallow(
-      <Radio />,
-    );
-    assert.strictEqual(wrapper.is('SwitchBase'), true, 'should be a SwitchBase');
-  });
-
-  it('should render a label', () => {
-    const wrapper = shallow(
-      <Radio label="Foo" />,
-    );
-    assert.strictEqual(wrapper.is('SelectionLabel'), true, 'should be a SelectionLabel');
-  });
-
-  it('should render with the default and checked classes', () => {
-    const wrapper = shallow(<Radio checked className="woof" checkedClassName="meow" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
-    assert.strictEqual(wrapper.hasClass(classes.default), true, 'should have the default class');
-    assert.strictEqual(
-      wrapper.prop('checkedClassName').indexOf('meow') !== -1,
-      true,
-      'should have the "meow" class',
-    );
-    assert.strictEqual(
-      wrapper.prop('checkedClassName').indexOf(classes.checked) !== -1,
-      true,
-      'should have the checked class',
-    );
-  });
-
-  it('should spread custom props on the switchBase node', () => {
-    const wrapper = shallow(<Radio label="Foo" data-my-prop="woof" />);
-    const switchBase = wrapper.find('SwitchBase');
-    assert.strictEqual(switchBase.prop('data-my-prop'), 'woof', 'custom prop should be woof');
-  });
-
-  describe('prop: disabled', () => {
-    it('should disable the component', () => {
-      const wrapper = shallow(<Radio disabled />);
-      assert.strictEqual(wrapper.props().disabled, true, 'should pass the property down the tree');
+  describe('styleSheet', () => {
+    it('should have the classes required for SwitchBase', () => {
+      assert.strictEqual(typeof classes.default, 'string');
+      assert.strictEqual(typeof classes.checked, 'string');
+      assert.strictEqual(typeof classes.disabled, 'string');
     });
   });
 
-  describe('prop: disabledClassName', () => {
-    it('should provide the class', () => {
-      const className = 'foo';
-      const wrapper = shallow(<Radio disabledClassName={className} />);
-      assert.strictEqual(
-        wrapper.find('SwitchBase').props().disabledClassName.indexOf(className) !== -1,
-        true,
-        'should have the custom disabled class',
-      );
+  describe('default Radio export', () => {
+    it('should be a SwitchBase with the displayName set for debugging', () => {
+      assert.strictEqual(Radio.name, 'SwitchBase');
+      assert.strictEqual(Radio.displayName, 'Radio');
+    });
+  });
+
+  describe('named LabelRadio export', () => {
+    it('should be Radio wrapped with SwitchLabel', () => {
+      assert.strictEqual(LabelRadio.name, 'SwitchLabel');
+      assert.strictEqual(LabelRadio.displayName, 'withSwitchLabel(Radio)');
     });
   });
 });

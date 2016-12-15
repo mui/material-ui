@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component } from 'react';
-import Checkbox from 'material-ui/Checkbox';
+import { LabelCheckbox } from 'material-ui/Checkbox';
 import { FormGroup } from 'material-ui/Form';
 
 export default class Checkboxes extends Component {
@@ -13,28 +13,28 @@ export default class Checkboxes extends Component {
   render() {
     return (
       <FormGroup row>
-        <Checkbox
+        <LabelCheckbox
           checked={this.state.checkedA}
           onChange={(event, checked) => this.setState({ checkedA: checked })}
           label="Option A"
           value="checkedA"
         />
-        <Checkbox
+        <LabelCheckbox
           checked={this.state.checkedB}
           onChange={(event, checked) => this.setState({ checkedB: checked })}
           label="Option B"
           value="checkedB"
         />
-        <Checkbox
+        <LabelCheckbox
           label="Option C"
           value="checkedC"
         />
-        <Checkbox
+        <LabelCheckbox
           disabled
           label="Disabled"
           value="checkedD"
         />
-        <Checkbox
+        <LabelCheckbox
           checked
           disabled
           label="Disabled"

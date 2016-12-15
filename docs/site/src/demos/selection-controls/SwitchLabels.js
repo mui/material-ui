@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component } from 'react';
-import Switch from 'material-ui/Switch';
+import { LabelSwitch } from 'material-ui/Switch';
 
 export default class SwitchLabels extends Component {
   state = {
@@ -12,18 +12,17 @@ export default class SwitchLabels extends Component {
   render() {
     return (
       <div>
-        <Switch
+        <LabelSwitch
           checked={this.state.checkedA}
           onChange={(event, checked) => this.setState({ checkedA: checked })}
           label="A"
-          labelReverse
         />
-        <Switch
+        <LabelSwitch
           checked={this.state.checkedB}
           onChange={(event, checked) => this.setState({ checkedB: checked })}
           label="B"
         />
-        <Switch label="C" disabled />
+        <LabelSwitch label="C" disabled />
       </div>
     );
   }
