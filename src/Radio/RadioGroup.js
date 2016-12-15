@@ -3,6 +3,7 @@
 import React, { Component, Children, cloneElement, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { createFormGroup } from '../Form/FormGroup';
 
 export const styleSheet = createStyleSheet('RadioGroup', () => {
   return {
@@ -14,7 +15,7 @@ export const styleSheet = createStyleSheet('RadioGroup', () => {
   };
 });
 
-export default class RadioGroup extends Component {
+class RadioGroup extends Component {
   static propTypes = {
     children: PropTypes.node,
     /**
@@ -80,3 +81,5 @@ export default class RadioGroup extends Component {
     );
   }
 }
+
+export default createFormGroup(RadioGroup);

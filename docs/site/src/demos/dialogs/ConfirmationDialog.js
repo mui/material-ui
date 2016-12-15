@@ -11,7 +11,7 @@ import {
   DialogActions,
   DialogTitle,
 } from 'material-ui/Dialog';
-import { Radio, RadioGroup } from 'material-ui/Radio';
+import { LabelRadio as Radio, RadioGroup } from 'material-ui/Radio';
 
 const options = [
   'None',
@@ -53,7 +53,7 @@ class ConfirmationDialog extends Component {
   radioGroup = undefined;
 
   handleEntering = () => {
-    this.radioGroup.focus();
+    // this.radioGroup.focus();
   };
 
   handleCancel = () => {
