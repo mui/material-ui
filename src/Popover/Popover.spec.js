@@ -62,7 +62,22 @@ describe('<Popover />', () => {
 
   describe('IOS detection', () => {
     // skip tests on PhantomJS because __defineGetter__ method seems not working
-    if (/PhantomJS/.test(window.navigator.userAgent)) return;
+    if (/PhantomJS/.test(window.navigator.userAgent)) {
+      return;
+    }
+
+    let input;
+
+    beforeEach(() => {
+      input = document.createElement('input');
+      document.body.appendChild(input);
+      input.focus();
+    });
+
+    afterEach(() => {
+      input.remove();
+    });
+
     const getBoundingClientRect = () => ({
       x: 10,
       y: 10,
@@ -73,6 +88,7 @@ describe('<Popover />', () => {
       bottom: 10,
       left: 10,
     });
+
     const el = {
       offsetHeight: 10,
       offsetWidth: 10,

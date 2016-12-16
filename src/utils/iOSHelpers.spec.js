@@ -1,10 +1,12 @@
 /* eslint-env mocha */
-import {isIOS} from './isIOS';
+import {isIOS} from './iOSHelpers';
 import {assert} from 'chai';
 
 describe('IOS detection helper', () => {
   // skip tests on PhantomJS because __defineGetter__ method doesn't work
-  if (/PhantomJS/.test(window.navigator.userAgent)) return;
+  if (/PhantomJS/.test(window.navigator.userAgent)) {
+    return;
+  }
 
   /* eslint-disable max-len */
   const userAgentsWithIOS = [
@@ -20,10 +22,7 @@ describe('IOS detection helper', () => {
   /* eslint-enable max-len */
 
   userAgentsWithIOS.forEach((agent) => {
-    const input = document.createElement('INPUT');
-    document.body.appendChild(input);
-    input.focus();
-    it('should decect IOS', () => {
+    it('should detect IOS', () => {
       window.navigator.__defineGetter__('userAgent', () => agent); // eslint-disable-line no-underscore-dangle,max-len
       assert.strictEqual(isIOS(), true);
     });
