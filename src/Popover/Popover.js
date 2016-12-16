@@ -8,6 +8,12 @@ import throttle from 'lodash.throttle';
 import PopoverAnimationDefault from './PopoverAnimationDefault';
 import {isIOS, getOffsetTop} from '../utils/iOSHelpers';
 
+const styles = {
+  root: {
+    display: 'none',
+  },
+};
+
 class Popover extends Component {
   static propTypes = {
     /**
@@ -391,7 +397,7 @@ class Popover extends Component {
 
   render() {
     return (
-      <div>
+      <div style={styles.root}>
         <EventListener
           target="window"
           onScroll={this.handleScroll}
