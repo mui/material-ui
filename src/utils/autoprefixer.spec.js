@@ -8,32 +8,25 @@ describe('./utils/autoprefixer', () => {
   const MSIE10_USER_AGENT = 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)';
 
   describe('server side', () => {
+    // skip tests on PhantomJS because __defineGetter__ method doesn't work
+    if (/PhantomJS/.test(window.navigator.userAgent)) {
+      return;
+    }
+
     let savedWindow;
-    let skip = false;
 
     beforeEach(() => {
       savedWindow = global.window;
 
-      try {
-        // We can reasign window when the test is runned in a real browser.
-        global.window = undefined;
-        skip = false;
-      } catch (err) {
-        skip = true;
-      }
+      // We can reasign window when the test is runned in a real browser.
+      global.window = undefined;
     });
 
     afterEach(() => {
-      if (!skip) {
-        global.window = savedWindow;
-      }
+      global.window = savedWindow;
     });
 
     it('should spread properties for display:flex when userAgent is all', () => {
-      if (skip) {
-        return;
-      }
-
       const autoprefix = autoprefixer({
         userAgent: 'all',
       });

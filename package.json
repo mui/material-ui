@@ -21,9 +21,11 @@
   },
   "homepage": "http://material-ui.com/",
   "scripts": {
-    "build": "npm run build:icon-index && npm run build:babel && npm run build:copy-files && npm run build:index",
-    "build:index": "BABEL_ENV=es babel ./src/index.js --out-file ./build/index.es.js",
+    "build": "npm run build:icon-index && npm run build:babel && npm run build:copy-files && npm run build:es",
     "build:icon-index": "babel-node ./scripts/icon-index-generator.js",
+    "build:es": "npm run build:es-index && npm run build:es-icon-index",
+    "build:es-index": "BABEL_ENV=es babel ./src/index.js --out-file ./build/index.es.js",
+    "build:es-icon-index": "BABEL_ENV=es babel ./src/svg-icons/index.js --out-file ./build/svg-icons/index.es.js",
     "build:babel": "NODE_ENV=release babel ./src --out-dir ./build --ignore spec.js",
     "build:copy-files": "babel-node ./scripts/copy-files.js",
     "clean:build": "rimraf build",
