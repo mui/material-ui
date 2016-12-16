@@ -115,7 +115,7 @@ class Menu extends Component {
     onItemTouchTap: PropTypes.func,
     /** @ignore */
     onKeyDown: PropTypes.func,
-     /**
+    /**
      * Override the inline-styles of selected menu items.
      */
     selectedMenuItemStyle: PropTypes.object,
