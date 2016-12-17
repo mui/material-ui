@@ -26,7 +26,7 @@ const globalStyleSheet = createStyleSheet('global', (theme) => {
         color: palette.accent.A400,
         textDecoration: 'none',
       },
-      '@:hover': {
+      'a:hover': {
         textDecoration: 'underline',
       },
       p: {
