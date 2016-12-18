@@ -186,6 +186,9 @@ class TextField extends Component {
     onBlur: PropTypes.func,
     /**
      * Callback function that is fired when the textfield's value changes.
+     *
+     * @param {object} event Change event targeting the text field.
+     * @param {string} newValue The new value of the text field.
      */
     onChange: PropTypes.func,
     /** @ignore */
