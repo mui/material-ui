@@ -187,8 +187,8 @@ class TextField extends Component {
     /**
      * Callback function that is fired when the textfield's value changes.
      *
-     * @param {object} event Change event targeting the TextField.
-     * @param {number} newValue The new value of the TextField.
+     * @param {object} event Change event targeting the text field.
+     * @param {number} newValue The new value of the text field.
      */
     onChange: PropTypes.func,
     /** @ignore */
