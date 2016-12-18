@@ -11,41 +11,38 @@ import IconButton from 'material-ui/IconButton';
 import withWidth, { isWidthUp } from 'material-ui/utils/withWidth';
 import AppDrawer from './AppDrawer';
 
-const globalStyleSheet = createStyleSheet('global', (theme) => ({
-  '@global': {
-    html: {
-      boxSizing: 'border-box',
-    },
-    '*, *:before, *:after': {
-      boxSizing: 'inherit',
-    },
-    body: {
-      margin: 0,
-      background: theme.palette.background.default,
-      fontFamily: theme.typography.fontFamily,
-      color: theme.palette.text.primary,
-      lineHeight: '1.2',
-      overflowX: 'hidden',
-      WebkitFontSmoothing: 'antialiased', // Antialiasing.
-      MozOsxFontSmoothing: 'grayscale', // Antialiasing.
-    },
-    a: {
-      color: theme.palette.accent.A400,
-      textDecoration: 'none',
-    },
-    'a:hover': {
-      textDecoration: 'underline',
-    },
-    img: {
-      maxWidth: '100%',
-      height: 'auto',
-      width: 'auto',
-    },
-  },
-}));
-
 const styleSheet = createStyleSheet('AppFrame', (theme) => {
   return {
+    '@global': {
+      html: {
+        boxSizing: 'border-box',
+      },
+      '*, *:before, *:after': {
+        boxSizing: 'inherit',
+      },
+      body: {
+        margin: 0,
+        background: theme.palette.background.default,
+        fontFamily: theme.typography.fontFamily,
+        color: theme.palette.text.primary,
+        lineHeight: '1.2',
+        overflowX: 'hidden',
+        WebkitFontSmoothing: 'antialiased', // Antialiasing.
+        MozOsxFontSmoothing: 'grayscale', // Antialiasing.
+      },
+      a: {
+        color: theme.palette.accent.A400,
+        textDecoration: 'none',
+      },
+      'a:hover': {
+        textDecoration: 'underline',
+      },
+      img: {
+        maxWidth: '100%',
+        height: 'auto',
+        width: 'auto',
+      },
+    },
     appFrame: {
       display: 'flex',
       alignItems: 'stretch',
@@ -103,10 +100,6 @@ class AppFrame extends Component {
   state = {
     drawerOpen: false,
   };
-
-  componentWillMount() {
-    this.context.styleManager.render(globalStyleSheet);
-  }
 
   handleDrawerOpen = () => {
     this.setState({ drawerOpen: true });
