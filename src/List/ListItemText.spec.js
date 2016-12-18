@@ -29,6 +29,12 @@ describe('<ListItemText />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
   });
 
+  it('should render with inset class', () => {
+    const wrapper = shallow(<ListItemText inset />);
+    assert.strictEqual(wrapper.hasClass(classes.inset), true, 'should have the inset class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+  });
+
   it('should render with no children', () => {
     const wrapper = shallow(<ListItemText />);
     assert.strictEqual(wrapper.children().length, 0, 'should have no children');

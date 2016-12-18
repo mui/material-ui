@@ -14,6 +14,10 @@ Lists are best suited for similar data types.
 
 {{demo='demos/lists/FolderList.js'}}
 
+### Inset List
+
+{{demo='demos/lists/InsetList.js'}}
+
 ## List Controls
 
 ### Checkbox
