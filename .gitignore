@@ -9,6 +9,7 @@ test/regressions/screenshots/output
 
 # Exclude compiled files
 /lib
+/dist
 icon-builder/js
 icon-builder/jsx
 
@@ -23,3 +24,4 @@ jsconfig.json
 
 # tmp
 tmp*
+*~
