@@ -1,27 +1,14 @@
-node_modules
-npm-debug.log
-local.log
-dist
+# Exclude compiled files
 build
 coverage
-selenium-output
-test/regressions/screenshots/output
-
-# Exclude compiled files
 /lib
 /dist
-icon-builder/js
-icon-builder/jsx
-
-# Exclude IDE project folders
-.idea
-*.sublime-project
-*.sublime-workspace
-jsconfig.json
+/test/regressions/screenshots/output
+/test/selenium-output
 
 # OS files
 .DS_STORE
 
-# tmp
-tmp*
-*~
+# npm files
+node_modules
+*.log

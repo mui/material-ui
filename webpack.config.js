@@ -1,11 +1,9 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-// webpack.config.js
+// @flow weak
 
 const path = require('path');
 
 const libraryName = 'material-ui';
 const outputFile = `${libraryName}.js`;
-
 const INDEX = path.join(__dirname, 'src/index.js');
 const DIST = path.join(__dirname, 'dist');
 
@@ -41,11 +39,10 @@ const config = {
       },
     },
   ],
-
   module: {
     loaders: [
       {
-        test: /(\.jsx|\.js)$/,
+        test: /\.js$/,
         loader: 'babel',
         exclude: /(node_modules)/,
       },
@@ -58,4 +55,3 @@ const config = {
 };
 
 module.exports = config;
-

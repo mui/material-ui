@@ -79,16 +79,19 @@ on how to do so.
 For using with React and React DOM from a CDN or as separate minified scripts, you can build
 files with UMD module support as follows:
 
-    npm install
-    npm run build:umd
-    npm run build:min
-    
+```sh
+npm install
+npm run build:umd
+npm run build:min
+```
+
 This will build two archives into the /dist folder
 
 To see what's going on under the hood, you can use webpack directly:
 
-    webpack --display-reasons --display-modules --progress --optimize-minimize --colors --entry ./src/index.js
-
+```sh
+webpack --display-reasons --display-modules --progress --optimize-minimize  --colors --entry ./src/index.js
+```
 
 ## Usage
 
