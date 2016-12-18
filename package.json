@@ -54,7 +54,7 @@
     "react-addons-create-fragment": "^15.0.0",
     "react-addons-transition-group": "^15.0.0",
     "react-event-listener": "^0.4.0",
-    "recompose": "^0.20.2",
+    "recompose": "^0.21.0",
     "simple-assign": "^0.1.0",
     "warning": "^3.0.0"
   },
@@ -81,7 +81,7 @@
     "enzyme": "^2.6.0",
     "eslint": "^3.10.2",
     "eslint-find-rules": "^1.14.3",
-    "eslint-plugin-babel": "^3.2.0",
+    "eslint-plugin-babel": "^4.0.0",
     "eslint-plugin-material-ui": "./packages/eslint-plugin-material-ui",
     "eslint-plugin-mocha": "^4.7.0",
     "eslint-plugin-react": "^6.7.1",
