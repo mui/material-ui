@@ -87,6 +87,12 @@ const appList = [
     img: 'images/showcase/lirelactu.png',
     link: 'http://lirelactu.fr/',
   },
+  {
+    title: 'Realty Advisors Elite',
+    author: 'Chicago Business Intelligence',
+    img: 'images/showcase/realty-advisors-elite.png',
+    link: 'https://www.realtyadvisorselite.com/',
+  },
 ];
 
 const Showcase = () => (
