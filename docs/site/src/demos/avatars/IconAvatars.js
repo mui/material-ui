@@ -32,18 +32,15 @@ export default function IconAvatars(props, context) {
   const classes = context.styleManager.render(styleSheet);
   return (
     <div className={classes.row}>
-      <Avatar
-        icon={<FolderIcon />}
-        className={classes.avatar}
-      />
-      <Avatar
-        icon={<PageviewIcon />}
-        className={classes.pinkAvatar}
-      />
-      <Avatar
-        icon={<AssignmentIcon />}
-        className={classes.greenAvatar}
-      />
+      <Avatar className={classes.avatar}>
+        <FolderIcon />
+      </Avatar>
+      <Avatar className={classes.pinkAvatar}>
+        <PageviewIcon />
+      </Avatar>
+      <Avatar className={classes.greenAvatar}>
+        <AssignmentIcon />
+      </Avatar>
     </div>
   );
 }

@@ -3,6 +3,7 @@
 import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { emphasize } from '../styles/colorManipulator';
 
 export const styleSheet = createStyleSheet('Avatar', (theme) => {
   const { palette } = theme;
@@ -14,13 +15,14 @@ export const styleSheet = createStyleSheet('Avatar', (theme) => {
       justifyContent: 'center',
       width: 40,
       height: 40,
-      fontSize: 24,
+      fontSize: 20,
       borderRadius: '50%',
       overflow: 'hidden',
+      userSelect: 'none',
     },
     defaultColor: {
-      color: palette.getContrastText(palette.text.disabled),
-      background: palette.text.disabled,
+      color: palette.background.default,
+      backgroundColor: emphasize(palette.background.default, 0.26),
     },
     img: {
       maxWidth: '100%',
@@ -34,8 +36,9 @@ export default function Avatar(props, context) {
   const {
     alt,
     className: classNameProp,
+    children: childrenProp,
+    childrenClassName: childrenClassNameProp,
     component,
-    icon,
     sizes,
     src,
     srcSet,
@@ -44,9 +47,8 @@ export default function Avatar(props, context) {
 
   const classes = context.styleManager.render(styleSheet);
   const className = classNames(classes.root, {
-    [classes.defaultColor]: icon && !src && !srcSet,
+    [classes.defaultColor]: childrenProp && !src && !srcSet,
   }, classNameProp);
-
   const containerProps = {
     className,
     ...other,
@@ -54,8 +56,13 @@ export default function Avatar(props, context) {
 
   let children = null;
 
-  if (icon) {
-    children = icon;
+  if (childrenProp) {
+    if (childrenClassNameProp && React.isValidElement(childrenProp)) {
+      const childrenClassName = classNames(childrenClassNameProp, childrenProp.props.className);
+      children = React.cloneElement(childrenProp, { className: childrenClassName });
+    } else {
+      children = childrenProp;
+    }
   } else if (src || srcSet) {
     const imgProps = {
       alt,
@@ -77,17 +84,27 @@ Avatar.propTypes = {
    */
   alt: PropTypes.string,
   /**
+   * Used to render icon or text elements inside the Avatar.
+   * `src` and `alt` props will not be used and no `img` will
+   * be rendered by default.
+   *
+   * This can be an element, or just a string.
+   */
+  children: PropTypes.node,
+  /**
+   * @ignore
+   * The className of the child element.
+   * Used by Chip to style the Avatar icon.
+   */
+  childrenClassName: PropTypes.string,
+  /**
    * The CSS class name of the root element.
    */
   className: PropTypes.string,
-  component: PropTypes.string,
   /**
-   * Supply a custom icon. `src` and `alt` props will
-   * not be used and no `img` will be renderd by default.
-   *
-   * This can be a custom element, or even just a string.
+   * The component type of the root element.
    */
-  icon: PropTypes.node,
+  component: PropTypes.string,
   /**
    * sizes desc
    */

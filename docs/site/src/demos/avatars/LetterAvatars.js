@@ -29,18 +29,9 @@ export default function LetterAvatars(props, context) {
   const classes = context.styleManager.render(styleSheet);
   return (
     <div className={classes.row}>
-      <Avatar
-        icon="H"
-        className={classes.avatar}
-      />
-      <Avatar
-        icon="N"
-        className={classes.orangeAvatar}
-      />
-      <Avatar
-        icon="O"
-        className={classes.purpleAvatar}
-      />
+      <Avatar className={classes.avatar}>H</Avatar>
+      <Avatar className={classes.orangeAvatar}>N</Avatar>
+      <Avatar className={classes.purpleAvatar}>OP</Avatar>
     </div>
   );
 }

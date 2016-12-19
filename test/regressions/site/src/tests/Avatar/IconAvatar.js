@@ -4,7 +4,7 @@ import React from 'react';
 import Avatar from 'material-ui/Avatar';
 import { deepOrange } from 'material-ui/styles/colors';
 
-export default function LetterAvatar() {
+export default function IconAvatar() {
   return (
     <Avatar
       style={{
@@ -12,7 +12,7 @@ export default function LetterAvatar() {
         backgroundColor: deepOrange[500],
       }}
     >
-      N
+      <span className="material-icons">favorite</span>
     </Avatar>
   );
 }

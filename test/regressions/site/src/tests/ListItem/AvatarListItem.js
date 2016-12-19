@@ -11,7 +11,7 @@ export default function AvatarListItem() {
   return (
     <div style={{ background: '#fff', width: 300 }}>
       <ListItem>
-        <Avatar icon={<span className="material-icons">folder</span>} />
+        <Avatar><span className="material-icons">folder</span></Avatar>
         <ListItemText primary="Avatar" />
       </ListItem>
     </div>
