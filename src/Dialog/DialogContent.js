@@ -35,6 +35,9 @@ export default function DialogContent(props, context) {
 }
 
 DialogContent.propTypes = {
+  /**
+   * The content of the component.
+   */
   children: PropTypes.node,
   /**
    * The CSS class name of the root element.

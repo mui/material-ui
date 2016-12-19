@@ -8,7 +8,10 @@ export default function ImageAvatar() {
   return (
     <Avatar
       icon="N"
-      style={{ color: '#fff', backgroundColor: deepOrange[500] }}
+      style={{
+        color: '#fff',
+        backgroundColor: deepOrange[500],
+      }}
     />
   );
 }

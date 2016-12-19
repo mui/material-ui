@@ -29,11 +29,17 @@ export const styleSheet = createStyleSheet('ButtonBase', () => {
 export default class ButtonBase extends Component {
   static propTypes = {
     centerRipple: PropTypes.bool,
+    /**
+     * The content of the component.
+     */
     children: PropTypes.node,
     /**
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
+    /**
+     * The element or component used for the root node.
+     */
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     /**
      * If `true`, the base button will be disabled.

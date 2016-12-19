@@ -24,6 +24,9 @@ export const styleSheet = createStyleSheet('DialogActions', () => {
 
 export default class DialogActions extends Component {
   static propTypes = {
+    /**
+     * The content of the component.
+     */
     children: PropTypes.node,
     /**
      * The CSS class name of the root element.

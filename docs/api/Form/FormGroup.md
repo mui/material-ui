@@ -10,7 +10,7 @@ Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | node |  |  |
+| children | node |  | The content of the component. |
 | className | string |  | The CSS class name of the root element. |
 | row | bool | false | Display group of elements in a compact row. |
 

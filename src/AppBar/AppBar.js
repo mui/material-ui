@@ -30,6 +30,9 @@ export const styleSheet = createStyleSheet('AppBar', (theme) => {
 export default class AppBar extends Component {
   static propTypes = {
     accent: PropTypes.bool,
+    /**
+     * The content of the component.
+     */
     children: PropTypes.node,
     /**
      * The CSS class name of the root element.

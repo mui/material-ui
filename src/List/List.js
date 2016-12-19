@@ -56,6 +56,9 @@ List.propTypes = {
    * The CSS class name of the root element.
    */
   className: PropTypes.string,
+  /**
+   * The element or component used for the root node.
+   */
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   padding: PropTypes.bool,
   /**
