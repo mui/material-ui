@@ -6,13 +6,14 @@ import {
   List,
   ListItem,
   ListItemText,
+  ListItemIcon,
 } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 
 const styleSheet = createStyleSheet('SimpleList', (theme) => ({
   root: {
     width: '100%',
-    maxWidth: '360px',
+    maxWidth: 360,
     background: theme.palette.background.paper,
   },
 }));
@@ -23,11 +24,15 @@ function SimpleList(props, context) {
     <div className={classes.root}>
       <List>
         <ListItem button>
-          <span className="material-icons">inbox</span>
+          <ListItemIcon>
+            <span className="material-icons">inbox</span>
+          </ListItemIcon>
           <ListItemText primary="Inbox" />
         </ListItem>
         <ListItem button>
-          <span className="material-icons">drafts</span>
+          <ListItemIcon>
+            <span className="material-icons">drafts</span>
+          </ListItemIcon>
           <ListItemText primary="Drafts" />
         </ListItem>
       </List>

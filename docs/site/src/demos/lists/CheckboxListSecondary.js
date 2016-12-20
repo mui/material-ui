@@ -11,15 +11,15 @@ import {
 import Checkbox from 'material-ui/Checkbox';
 import Avatar from 'material-ui/Avatar';
 
-const styleSheet = createStyleSheet('CheckboxList', (theme) => ({
+const styleSheet = createStyleSheet('CheckboxListSecondary', (theme) => ({
   root: {
     width: '100%',
-    maxWidth: '360px',
+    maxWidth: 360,
     background: theme.palette.background.paper,
   },
 }));
 
-export default class CheckboxList extends Component {
+export default class CheckboxListSecondary extends Component {
   static contextTypes = {
     styleManager: PropTypes.object.isRequired,
   };

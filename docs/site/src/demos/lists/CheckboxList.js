@@ -14,7 +14,7 @@ import IconButton from 'material-ui/IconButton';
 const styleSheet = createStyleSheet('CheckboxList', (theme) => ({
   root: {
     width: '100%',
-    maxWidth: '360px',
+    maxWidth: 360,
     background: theme.palette.background.paper,
   },
 }));

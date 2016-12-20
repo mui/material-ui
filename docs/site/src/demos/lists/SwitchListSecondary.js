@@ -11,15 +11,15 @@ import {
 } from 'material-ui/List';
 import Switch from 'material-ui/Switch';
 
-const styleSheet = createStyleSheet('CheckboxList', (theme) => ({
+const styleSheet = createStyleSheet('SwitchListSecondary', (theme) => ({
   root: {
     width: '100%',
-    maxWidth: '360px',
+    maxWidth: 360,
     background: theme.palette.background.paper,
   },
 }));
 
-export default class CheckboxList extends Component {
+export default class SwitchListSecondary extends Component {
   static contextTypes = {
     styleManager: PropTypes.object.isRequired,
   };
