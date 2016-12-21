@@ -1,6 +1,6 @@
 // @flow weak
 
-import { PropTypes, cloneElement } from 'react';
+import { PropTypes, cloneElement, Component } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 
@@ -12,18 +12,20 @@ export const styleSheet = createStyleSheet('ListItemIcon', () => {
   };
 });
 
-export default function ListItemIcon(props, context) {
-  const {
-    children,
-    className: classNameProp,
-    ...other
-  } = props;
-  const classes = context.styleManager.render(styleSheet);
+export default class ListItemIcon extends Component {
+  render() {
+    const {
+      children,
+      className: classNameProp,
+      ...other
+    } = this.props;
+    const classes = this.context.styleManager.render(styleSheet);
 
-  return cloneElement(children, {
-    className: classNames(classes.root, classNameProp, children.props.className),
-    ...other,
-  });
+    return cloneElement(children, {
+      className: classNames(classes.root, classNameProp, children.props.className),
+      ...other,
+    });
+  }
 }
 
 ListItemIcon.propTypes = {

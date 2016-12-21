@@ -86,7 +86,7 @@ function generatePropDescription(required, description, type) {
     }
   }
 
-  return `${deprecated} ${jsDocText}${signature}`;
+  return `${deprecated}${jsDocText}${signature}`;
 }
 
 function generatePropType(type) {
@@ -123,7 +123,7 @@ function generateProps(props) {
 
   let text = `${header}
 | Name | Type | Default | Description |
-|:-----|:-----|:-----|:-----|\n`;
+|:-----|:-----|:--------|:------------|\n`;
 
   text = Object
     .keys(props)
