@@ -70,7 +70,7 @@ class TimeDisplay extends Component {
         borderTopLeftRadius: 2,
         borderTopRightRadius: 2,
         backgroundColor: timePicker.headerColor,
-        color: 'white',
+        color: timePicker.textColor,
       },
       text: {
         margin: '6px 0',
