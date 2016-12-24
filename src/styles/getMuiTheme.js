@@ -293,7 +293,7 @@ export default function getMuiTheme(muiTheme, ...more) {
     },
     timePicker: {
       color: palette.alternateTextColor,
-      textColor: palette.textColor,
+      textColor: palette.alternateTextColor,
       accentColor: palette.primary1Color,
       clockColor: palette.textColor,
       clockCircleColor: palette.clockCircleColor,
