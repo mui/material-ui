@@ -52,7 +52,7 @@
     "classnames": "^2.2.5",
     "dom-helpers": "^3.0.0",
     "jss-preset-default": "^1.1.0",
-    "jss-theme-reactor": "^0.8.0",
+    "jss-theme-reactor": "^0.9.0",
     "keycode": "^2.1.1",
     "lodash": "^4.17.2",
     "object-assign": "^4.1.0",
