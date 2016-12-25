@@ -3,21 +3,16 @@
 [Text fields](https://material.google.com/components/text-fields.html) allow users to input text and usually appear in forms.
 Users may enter text, numbers, or mixed-format types of input.
 
-## Complete text field
+## Input
 
-The `<TextField>` wrapper component is a complete form control including an label, underline and help text.
-This component is made up of the smaller text field parts that you can also leverage yourself to significantly customize your input.
+{{demo='demos/text-fields/TextInputs.js'}}
 
-{{demo='demos/text-fields/CompleteTextField.js'}}
+## TextField
 
-## Basic Input
+The `<TextField>` wrapper component is a complete form control including a label, input and help text.
 
-The most basic component available is `<TextFieldInput>`, which implements the functionality of a regular `<input>` with basic material styling.
+{{demo='demos/text-fields/TextFields.js'}}
 
-{{demo='demos/text-fields/BasicTextFieldInput.js'}}
+This component is composed of smaller components that you can also leverage yourself to significantly customize your input.
 
-## Required fields
-
-To indicate that a field is required, display an asterisk (*) next to the field.
-
-{{demo='demos/text-fields/RequiredTextField.js'}}
+{{demo='demos/text-fields/ComposedTextField.js'}}

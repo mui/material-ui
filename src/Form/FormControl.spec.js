@@ -1,0 +1,131 @@
+// @flow weak
+/* eslint-env mocha */
+
+import React from 'react';
+import { assert } from 'chai';
+import { createShallowWithContext } from 'test/utils';
+import FormControl, { styleSheet } from './FormControl';
+
+describe('<FormControl />', () => {
+  let shallow;
+  let classes;
+
+  before(() => {
+    shallow = createShallowWithContext();
+    classes = shallow.context.styleManager.render(styleSheet);
+  });
+
+  it('should render a div with the root and user classes', () => {
+    const wrapper = shallow(
+      <FormControl className="woof" />,
+    );
+
+    assert.strictEqual(wrapper.is('div'), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass('woof'), true);
+  });
+
+  it('should have the focused class', () => {
+    const wrapper = shallow(
+      <FormControl className="woof" />,
+    );
+
+    assert.strictEqual(wrapper.is('div'), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass('woof'), true);
+  });
+
+  describe('initial state', () => {
+    let wrapper;
+
+    beforeEach(() => {
+      wrapper = shallow(<FormControl />);
+    });
+
+    it('should not be dirty initially', () => {
+      assert.strictEqual(wrapper.state().dirty, false);
+    });
+
+    it('should not be focused initially', () => {
+      assert.strictEqual(wrapper.state().focused, false);
+    });
+  });
+
+  describe('default props', () => {
+    it('should not have an error by default', () => {
+      assert.strictEqual(FormControl.defaultProps.error, false);
+    });
+
+    it('should not be required by default', () => {
+      assert.strictEqual(FormControl.defaultProps.required, false);
+    });
+  });
+
+  describe('muiFormControl child context', () => {
+    let wrapper;
+    let muiFormControlContext;
+
+    function loadChildContext() {
+      muiFormControlContext = wrapper.instance().getChildContext().muiFormControl;
+    }
+
+    beforeEach(() => {
+      wrapper = shallow(<FormControl />);
+      loadChildContext();
+    });
+
+    describe('from state', () => {
+      it('should have the dirty state from the instance', () => {
+        assert.strictEqual(muiFormControlContext.dirty, false);
+        wrapper.setState({ dirty: true });
+        loadChildContext();
+        assert.strictEqual(muiFormControlContext.dirty, true);
+      });
+
+      it('should have the focused state from the instance', () => {
+        assert.strictEqual(muiFormControlContext.focused, false);
+        wrapper.setState({ focused: true });
+        loadChildContext();
+        assert.strictEqual(muiFormControlContext.focused, true);
+      });
+    });
+
+    describe('from props', () => {
+      it('should have the required prop from the instance', () => {
+        assert.strictEqual(muiFormControlContext.required, false);
+        wrapper.setProps({ required: true });
+        loadChildContext();
+        assert.strictEqual(muiFormControlContext.required, true);
+      });
+
+      it('should have the error prop from the instance', () => {
+        assert.strictEqual(muiFormControlContext.error, false);
+        wrapper.setProps({ error: true });
+        loadChildContext();
+        assert.strictEqual(muiFormControlContext.error, true);
+      });
+    });
+
+    describe('callbacks', () => {
+      describe('onDirty', () => {
+        it('should set the dirty state', () => {
+          assert.strictEqual(muiFormControlContext.dirty, false);
+          muiFormControlContext.onDirty();
+          loadChildContext();
+          assert.strictEqual(muiFormControlContext.dirty, true);
+        });
+      });
+
+      describe('onClean', () => {
+        it('should clean the dirty state', () => {
+          muiFormControlContext.onDirty();
+          loadChildContext();
+          assert.strictEqual(muiFormControlContext.dirty, true);
+          muiFormControlContext.onClean();
+          loadChildContext();
+          assert.strictEqual(muiFormControlContext.dirty, false);
+        });
+      });
+    });
+  });
+});

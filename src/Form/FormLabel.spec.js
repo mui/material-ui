@@ -54,4 +54,56 @@ describe('<FormLabel />', () => {
       );
     });
   });
+
+  describe('with muiFormControl context', () => {
+    let wrapper;
+    let muiFormControl;
+
+    function setFormControlContext(muiFormControlContext) {
+      muiFormControl = muiFormControlContext;
+      wrapper.setContext({ ...wrapper.context(), muiFormControl });
+    }
+
+    beforeEach(() => {
+      wrapper = shallow(<FormLabel>Foo</FormLabel>);
+    });
+
+    ['error', 'focused'].forEach((visualState) => {
+      describe(visualState, () => {
+        beforeEach(() => {
+          setFormControlContext({ [visualState]: true });
+        });
+
+        it(`should have the ${visualState} class`, () => {
+          assert.strictEqual(wrapper.hasClass(classes[visualState]), true);
+        });
+
+        it('should be overridden by props', () => {
+          assert.strictEqual(wrapper.hasClass(classes[visualState]), true);
+          wrapper.setProps({ [visualState]: false });
+          assert.strictEqual(wrapper.hasClass(classes[visualState]), false);
+          wrapper.setProps({ [visualState]: true });
+          assert.strictEqual(wrapper.hasClass(classes[visualState]), true);
+        });
+      });
+    });
+
+    describe('required', () => {
+      beforeEach(() => {
+        setFormControlContext({ required: true });
+      });
+
+      it('should show an asterisk', () => {
+        assert.strictEqual(wrapper.find('[data-mui-test="FormLabelAsterisk"]').length, 1);
+      });
+
+      it('should be overridden by props', () => {
+        assert.strictEqual(wrapper.find('[data-mui-test="FormLabelAsterisk"]').length, 1);
+        wrapper.setProps({ required: false });
+        assert.strictEqual(wrapper.find('[data-mui-test="FormLabelAsterisk"]').length, 0);
+        wrapper.setProps({ required: true });
+        assert.strictEqual(wrapper.find('[data-mui-test="FormLabelAsterisk"]').length, 1);
+      });
+    });
+  });
 });
