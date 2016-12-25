@@ -29,7 +29,7 @@ const docs = (state = { dark: false }, action) => {
 
 export const store = createStore(docs);
 
-const rootEl = document.getElementById('app');
+const rootEl = document.querySelector('#app');
 
 render(
   <AppContainer errorReporter={({ error }) => { throw error; }}>
