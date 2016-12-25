@@ -1,5 +1,12 @@
 // @flow weak
+import { flow, map, sortBy, reverse, toPairs } from 'lodash/fp';
 
+const getPriority = flow(
+  toPairs,
+  sortBy(([, v]) => v),
+  reverse,
+  map(([k]) => k),
+);
 // Sorted ASC by size. That's important.
 export const keys = [
   'xs',
@@ -21,6 +28,7 @@ export default function createBreakpoints(
   step = 1,
 ) {
   const values = keys.map((n) => breakpoints[n]);
+  const priority = getPriority(breakpoints);
 
   function up(name) {
     const value = breakpoints[name] || name;
@@ -51,5 +59,22 @@ export default function createBreakpoints(
     return breakpoints[name];
   }
 
-  return { keys, values, up, down, only, getWidth };
+  let matched = priority
+    .reduce((a, k) => {
+      const media = window.matchMedia(breakpoints[k]);
+      if (media.matches) {
+        a = k;
+      }
+      return a;
+    });
+
+  function isMatch(breakpoint) {
+    if (matched === breakpoint) return true;
+    if (!breakpoints[breakpoint]) return false;
+    const media = window.matchMedia(breakpoints[breakpoint]);
+    if (media.matches) matched = breakpoint;
+    return media.matches;
+  }
+
+  return { keys, values, priority, up, down, between, only, getWidth, isMatch };
 }
