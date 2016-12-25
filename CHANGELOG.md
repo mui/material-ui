@@ -1,5 +1,48 @@
 ## HEAD
 
+## 0.16.6
+###### _Dec 25, 2016_
+
+We are releasing sooner than we use to for this **special day** :christmas_tree::gift:.
+17 contributors are making that last release of the year possible.
+
+2016 has been an exceptional year for Material-UI.
+- We went from 40k to 180k [downloads](https://npm-stat.com/charts.html?package=material-ui&from=2014-12-24&to=2016-12-25) a month. :package:
+- We went from 12k to 22k [stars](http://www.timqian.com/star-history/#callemall/material-ui). :star:
+
+That wouldn't have been possible without this awesome community.
+**Thank you!**
+
+But this's just the beginning, some [exiting stuffs](https://github.com/callemall/material-ui/blob/master/ROADMAP.md) are coming with 2017 :sparkles:.
+You can preview a **very early** version of the next branch following [that link](https://material-ui-1dab0.firebaseapp.com).
+
+##### Component Fixes / Enhancements
+
+- [IconButton] Add a hoveredStyle property (#5755)
+- [Menu] Add a dividerStyle property (#5734)
+- [Menu][DropDownMenu][SelectField] Add menuItemStyle and menuItemSelectedStyle properties (#5389)
+- [Popover] Fix ghost clicks in onRequestClose (#5749)
+- [Popover] Fix bad positioning on IOS devices (#4638)
+- [Popover] Revert the latest PR following a regression (#5797)
+- [Stepper] Allow custom step connector (#5741)
+- [Stepper] Fix content container's height expantion (#5733)
+- [TimeDisplay] Inherit text color from theme (#5816)
+- [TouchRipple] Fix issue #5626 (#5763)
+
+##### Docs
+
+- [AutoComplete] Add a controlled example (#5795)
+- [Slider] Add onChange callback signatures to docs (#5760)
+- [TextField] Add callback signatures to docs (#5804)
+- [docs] Add link to babel-plugin-material-ui (#5754)
+- [docs] Node is written mostly in C++, not in C (#5776)
+- [docs] Remove redundant words (#5778)
+- [docs] Add showcase item - Realty Advisors Elite (#5806)
+
+##### Core
+
+- [core] Add support for Webpack 2/Rollup tree shaking in `svg-icons` sub module (#5774)
+
 ## 0.16.5
 ###### _Dec 9, 2016_
 
