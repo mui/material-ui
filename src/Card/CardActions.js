@@ -37,6 +37,9 @@ export default function CardActions(props, context) {
 
 CardActions.propTypes = {
   actionSpacing: PropTypes.bool,
+  /**
+   * The content of the component.
+   */
   children: PropTypes.node,
   /**
    * The CSS class name of the root element.

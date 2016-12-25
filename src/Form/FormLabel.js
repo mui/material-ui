@@ -72,7 +72,7 @@ export default function FormLabel(props, context) {
 
 FormLabel.propTypes = {
   /**
-   * The contents of the `FormLabel`.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**

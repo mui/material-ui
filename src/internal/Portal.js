@@ -8,6 +8,9 @@ import {
 
 export default class Portal extends Component {
   static propTypes = {
+    /**
+     * The content of the component.
+     */
     children: PropTypes.node,
     container: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     open: PropTypes.bool,

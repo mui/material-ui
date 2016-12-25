@@ -74,7 +74,7 @@ export default class Popover extends Component {
      */
     anchorOrigin: customPropTypes.origin,
     /**
-     * The content of the popover.
+     * The content of the component.
      */
     children: PropTypes.node,
     /**

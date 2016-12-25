@@ -11,7 +11,7 @@ Props
 |:-----|:-----|:--------|:------------|
 | children | node |  |  |
 | className | string |  | The CSS class name of the root element. |
-| component | union | 'div' |  |
+| component | union | 'div' | The element or component used for the root node. |
 | padding | bool | true |  |
 | subheader | node |  |  |
 
