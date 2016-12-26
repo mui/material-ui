@@ -22,38 +22,38 @@ export default function FullWidthLayout(props, context) {
 
   return (
     <div className={classes.root}>
-      <Layout type="container" xsGutter={24}>
-        <Layout type="item" xs={12}>
+      <Layout container xsGutter={24}>
+        <Layout item xs={12}>
           <Paper className={classes.paper}>
             xs=12
           </Paper>
         </Layout>
-        <Layout type="item" xs={12} sm={6}>
+        <Layout item xs={12} sm={6}>
           <Paper className={classes.paper}>
             xs=12 sm=6
           </Paper>
         </Layout>
-        <Layout type="item" xs={12} sm={6}>
+        <Layout item xs={12} sm={6}>
           <Paper className={classes.paper}>
             xs=12 sm=6
           </Paper>
         </Layout>
-        <Layout type="item" xs={6} sm={3}>
+        <Layout item xs={6} sm={3}>
           <Paper className={classes.paper}>
             xs=6 sm=3
           </Paper>
         </Layout>
-        <Layout type="item" xs={6} sm={3}>
+        <Layout item xs={6} sm={3}>
           <Paper className={classes.paper}>
             xs=6 sm=3
           </Paper>
         </Layout>
-        <Layout type="item" xs={6} sm={3}>
+        <Layout item xs={6} sm={3}>
           <Paper className={classes.paper}>
             xs=6 sm=3
           </Paper>
         </Layout>
-        <Layout type="item" xs={6} sm={3}>
+        <Layout item xs={6} sm={3}>
           <Paper className={classes.paper}>
             xs=6 sm=3
           </Paper>

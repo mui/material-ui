@@ -58,17 +58,17 @@ export default class InteractiveLayout extends Component {
     } = this.state;
 
     return (
-      <Layout type="container" className={classes.root}>
-        <Layout type="item" xs={12}>
+      <Layout container className={classes.root}>
+        <Layout item xs={12}>
           <Layout
-            type="container"
+            container
             className={classes.demo}
             xsAlign={xsAlign}
             xsDirection={xsDirection}
             xsJustify={xsJustify}
           >
             {CELLS.map((cell, i) => (
-              <Layout key={i} type="item">
+              <Layout key={i} item>
                 <Paper className={classes.paper}>
                   {`Cell ${i + 1}`}
                 </Paper>
@@ -76,10 +76,10 @@ export default class InteractiveLayout extends Component {
             ))}
           </Layout>
         </Layout>
-        <Layout type="item" xs={12}>
+        <Layout item xs={12}>
           <Paper className={classes.control}>
-            <Layout type="container">
-              <Layout type="item" xs={6} sm={4}>
+            <Layout container>
+              <Layout item xs={6} sm={4}>
                 <FormLabel>xsDirection</FormLabel>
                 <RadioGroup
                   aria-label="xsDirection"
@@ -87,10 +87,12 @@ export default class InteractiveLayout extends Component {
                   onChange={this.handleChange('xsDirection')}
                 >
                   <LabelRadio label="row" value="row" />
+                  <LabelRadio label="row-reverse" value="row-reverse" />
                   <LabelRadio label="column" value="column" />
+                  <LabelRadio label="column-reverse" value="column-reverse" />
                 </RadioGroup>
               </Layout>
-              <Layout type="item" xs={6} sm={4}>
+              <Layout item xs={6} sm={4}>
                 <FormLabel>xsJustify</FormLabel>
                 <RadioGroup
                   aria-label="xsJustify"
@@ -104,7 +106,7 @@ export default class InteractiveLayout extends Component {
                   <LabelRadio label="space-around" value="space-around" />
                 </RadioGroup>
               </Layout>
-              <Layout type="item" xs={6} sm={4}>
+              <Layout item xs={6} sm={4}>
                 <FormLabel>xsAlign</FormLabel>
                 <RadioGroup
                   aria-label="xsAlign"
