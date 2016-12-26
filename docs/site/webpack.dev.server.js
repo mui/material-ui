@@ -10,8 +10,9 @@ const serverOptions = {
   hot: true,
   historyApiFallback: true,
   stats: {
+    // Remove built modules information.
     modules: false,
-    chunks: false,
+    // Remove built modules information to chunk information.
     chunkModules: false,
     colors: true,
   },

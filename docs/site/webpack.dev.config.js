@@ -26,23 +26,23 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loaders: ['babel'],
+        loaders: ['babel-loader'],
       },
       {
         test: /\.svg$/,
-        loader: 'file',
+        loader: 'file-loader',
       },
       {
         test: /\.(jpg|gif|png)$/,
-        loader: 'file!img',
+        loader: 'file-loader!img-loader',
       },
       {
         test: /\.md$/,
-        loader: 'raw',
+        loader: 'raw-loader',
       },
       {
         test: /\.css$/,
-        loader: 'style!css',
+        loader: 'style-loader!css-loader',
       },
     ],
   },
