@@ -10,7 +10,7 @@ describe('utils/withWidth', () => {
   const DumbWithWidth = withWidth()(Dumb);
 
   describe('server side rendering', () => {
-    it('should not render the children as the width is unkown', () => {
+    it('should not render the children as the width is unknown', () => {
       const wrapper = shallow(<DumbWithWidth />);
       assert.strictEqual(wrapper.type(), null, 'should render nothing');
     });
