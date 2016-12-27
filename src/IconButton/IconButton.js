@@ -203,7 +203,10 @@ class IconButton extends Component {
 
   handleTouchStart = (event) => {
     this.setState({touch: true});
-    this.props.onTouchStart(event);
+
+    if (this.props.onTouchStart) {
+      this.props.onTouchStart(event);
+    }
   };
 
   handleKeyboardFocus = (event, isKeyboardFocused) => {
