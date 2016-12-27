@@ -93,7 +93,7 @@ export function decomposeColor(color) {
   let values = color.substring(marker + 1, color.length - 1).split(',');
   values = values.map((value) => parseFloat(value));
 
-  return {type: type, values: values};
+  return {type, values};
 }
 
 /**
