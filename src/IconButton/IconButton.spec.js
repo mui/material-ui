@@ -3,6 +3,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
 import IconButton from './IconButton';
+import FontIcon from '../FontIcon';
 import getMuiTheme from '../styles/getMuiTheme';
 
 const dummy = <div />;
@@ -23,6 +24,22 @@ describe('<IconButton />', () => {
       <IconButton>{dummy}</IconButton>
     );
     assert.strictEqual(wrapper.containsMatchingElement(dummy), true, 'should contain the children');
+  });
+
+  it('should render children with custom color', () => {
+    const wrapper = shallowWithContext(
+      <IconButton>
+        <FontIcon className="material-icons" color="red">home</FontIcon>
+      </IconButton>
+    );
+
+    assert.strictEqual(wrapper.find(FontIcon).length, 1, 'should contain the FontIcon child');
+    assert.strictEqual(wrapper.find(FontIcon).props().color, 'red', 'FontIcon should have color set to red');
+    assert.strictEqual(
+      wrapper.find(FontIcon).props().style.color,
+      undefined,
+      'FontIcon style object has no color property'
+    );
   });
 
   describe('prop: hoveredStyle', () => {
