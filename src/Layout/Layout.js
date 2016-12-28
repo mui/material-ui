@@ -79,6 +79,12 @@ export const styleSheet = createStyleSheet('Layout', (theme) => {
     'direction-xs-column': {
       flexDirection: 'column',
     },
+    'direction-xs-column-reverse': {
+      flexDirection: 'column-reverse',
+    },
+    'direction-xs-row-reverse': {
+      flexDirection: 'row-reverse',
+    },
     'wrap-xs-nowrap': {
       flexWrap: 'nowrap',
     },
@@ -118,7 +124,8 @@ function Layout(props, context) {
     children,
     className,
     component: ComponentProp,
-    type,
+    container,
+    item,
     xsAlign,
     xsDirection,
     xs,
@@ -137,9 +144,9 @@ function Layout(props, context) {
   return (
     <ComponentProp
       className={classNames({
-        [classes.typeContainer]: type === 'container',
-        [classes.typeItem]: type === 'item',
-        [classes[`gutter-xs-${xsGutter}`]]: type === 'container' && xsGutter !== false,
+        [classes.typeContainer]: container,
+        [classes.typeItem]: item,
+        [classes[`gutter-xs-${xsGutter}`]]: container && xsGutter !== false,
         [classes[`direction-xs-${xsDirection}`]]: xsDirection !== Layout.defaultProps.xsDirection,
         [classes[`wrap-xs-${xsWrap}`]]: xsWrap !== Layout.defaultProps.xsWrap,
         [classes[`align-xs-${xsAlign}`]]: xsAlign !== Layout.defaultProps.xsAlign,
@@ -184,10 +191,15 @@ Layout.propTypes = {
     PropTypes.func,
   ]),
   /**
-   * Defines the type of the component.
-   * You should be wrapping a type `item` by a type `container`.
+   * It true, the component will have the flex *container* behavior.
+   * You should be wrapping *items* with a *container*.
    */
-  type: PropTypes.oneOf(['container', 'item']),
+  container: PropTypes.bool,
+  /**
+   * It true, the component will have the flex *item* behavior.
+   * You should be wrapping *items* with a *container*.
+   */
+  item: PropTypes.bool,
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for all the screen sizes with the lowest priority.
@@ -217,12 +229,22 @@ Layout.propTypes = {
    * Defines the `align-items` style property.
    * It's applied for all the screen sizes.
    */
-  xsAlign: PropTypes.oneOf(['flex-start', 'center', 'flex-end', 'stretch']),
+  xsAlign: PropTypes.oneOf([
+    'flex-start',
+    'center',
+    'flex-end',
+    'stretch',
+  ]),
   /**
    * Defines the `flex-direction` style property.
    * It's applied for all the screen sizes.
    */
-  xsDirection: PropTypes.oneOf(['column', 'row']),
+  xsDirection: PropTypes.oneOf([
+    'row',
+    'row-reverse',
+    'column',
+    'column-reverse',
+  ]),
   /**
    * Defines the space between the type `item` component.
    * It can only be used on a type `container` component.
@@ -235,17 +257,28 @@ Layout.propTypes = {
    * Defines the `justify-content` style property.
    * It's applied for all the screen sizes.
    */
-  xsJustify: PropTypes.oneOf(['flex-start', 'center', 'flex-end', 'space-between', 'space-around']),
+  xsJustify: PropTypes.oneOf([
+    'flex-start',
+    'center',
+    'flex-end',
+    'space-between',
+    'space-around',
+  ]),
   /**
    * Defines the `flex-wrap` style property.
    * It's applied for all the screen sizes.
    */
-  xsWrap: PropTypes.oneOf(['nowrap', 'wrap', 'wrap-reverse']),
+  xsWrap: PropTypes.oneOf([
+    'nowrap',
+    'wrap',
+    'wrap-reverse',
+  ]),
 };
 
 Layout.defaultProps = {
   component: 'div',
-  type: 'item',
+  container: false,
+  item: false,
   xsAlign: 'flex-start',
   xsDirection: 'row',
   xsGutter: 16,

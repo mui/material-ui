@@ -50,25 +50,25 @@ export default class GuttersLayout extends Component {
     } = this.state;
 
     return (
-      <Layout type="container" className={classes.root}>
-        <Layout type="item" xs={12}>
+      <Layout container className={classes.root}>
+        <Layout item xs={12}>
           <Layout
-            type="container"
+            container
             className={classes.demo}
             xsJustify="center"
             xsGutter={xsGutter === 'false' ? false : Number(xsGutter)}
           >
             {CELLS.map((cell, i) => (
-              <Layout key={i} type="item">
+              <Layout key={i} item>
                 <Paper className={classes.paper} />
               </Layout>
             ))}
           </Layout>
         </Layout>
-        <Layout type="item" xs={12}>
+        <Layout item xs={12}>
           <Paper className={classes.control}>
-            <Layout type="container">
-              <Layout type="item">
+            <Layout container>
+              <Layout item>
                 <FormLabel>xsGutter</FormLabel>
                 <RadioGroup
                   aria-label="xsGutter"

@@ -21,14 +21,16 @@ describe('<Layout />', () => {
     assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the user class');
   });
 
-  describe('prop: type', () => {
-    it('should apply the right container class', () => {
-      const wrapper = shallow(<Layout type="container" />);
+  describe('prop: container', () => {
+    it('should apply the container class', () => {
+      const wrapper = shallow(<Layout container />);
       assert.strictEqual(wrapper.hasClass(classes.typeContainer), true);
     });
+  });
 
-    it('should apply the right item class', () => {
-      const wrapper = shallow(<Layout type="item" />);
+  describe('prop: item', () => {
+    it('should apply the item class', () => {
+      const wrapper = shallow(<Layout item />);
       assert.strictEqual(wrapper.hasClass(classes.typeItem), true);
     });
   });
@@ -49,7 +51,7 @@ describe('<Layout />', () => {
 
   describe('prop: xsGutter', () => {
     it('should have a default gutter', () => {
-      const wrapper = shallow(<Layout type="container" />);
+      const wrapper = shallow(<Layout container />);
       assert.strictEqual(wrapper.hasClass(classes['gutter-xs-16']), true);
     });
   });
