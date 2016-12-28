@@ -14,7 +14,7 @@ describe('<IconMenu />', function() {
       <IconMenu iconButtonElement={<div data-test="my-icon-button" />} />
     );
 
-    assert.strictEqual(wrapper.find('[data-test="my-icon-button"]').props().iconStyle,
-      undefined, 'should leak property on the div');
+    assert.strictEqual(wrapper.find('[data-test="my-icon-button"]').props().hasOwnProperty('iconStyle'), false,
+      'should leak property on the div');
   });
 });
