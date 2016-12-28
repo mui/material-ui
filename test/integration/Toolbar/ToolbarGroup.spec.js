@@ -16,10 +16,9 @@ describe('<Toolbar />', () => {
       <Toolbar>
         <ToolbarGroup firstChild={true} />
       </Toolbar>
-
     );
 
-    assert.ok(wrapper.find(ToolbarGroup), 'should contain the ToolbarGroup child');
+    assert.strictEqual(wrapper.find(ToolbarGroup).length, 1, 'should contain the ToolbarGroup child');
   });
 
   it('should render FontIcon with custom color', () => {
@@ -29,7 +28,6 @@ describe('<Toolbar />', () => {
           <FontIcon className="muidocs-icon-custom-sort" color="red" />
         </ToolbarGroup>
       </Toolbar>
-
     );
 
     assert.strictEqual(wrapper.find(FontIcon).node.props.color, 'red', 'FontIcon should have the color set to red');
