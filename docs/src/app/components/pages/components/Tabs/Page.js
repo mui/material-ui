@@ -16,6 +16,8 @@ import tabsExampleIconCode from '!raw!./ExampleIcon';
 import TabsExampleIcon from './ExampleIcon';
 import tabsExampleIconTextCode from '!raw!./ExampleIconText';
 import TabsExampleIconText from './ExampleIconText';
+import tabsExampleLabelWidthCode from '!raw!./ExampleLabelWidth';
+import TabsExampleLabelWidth from './ExampleLabelWidth';
 import tabsCode from '!raw!material-ui/Tabs/Tabs';
 import tabCode from '!raw!material-ui/Tabs/Tab';
 
@@ -28,6 +30,8 @@ const descriptions = {
   'and allowing tabs to be swiped on touch devices.',
   icon: 'An example of tabs with icon.',
   iconText: 'An example of tabs with icon and text.',
+  labelWidth: 'An example using the `labelWidth` property. Each tab label specifies its own fixed width regardless ' +
+  'of the container\'s width and is aligned to the left. This prop must be set on every tab to work properly.',
 };
 
 const TabsPage = () => (
@@ -54,6 +58,13 @@ const TabsPage = () => (
       code={tabsExampleSwipeableCode}
     >
       <TabsExampleSwipeable />
+    </CodeExample>
+    <CodeExample
+      title="Fixed label width example"
+      description={descriptions.labelWidth}
+      code={tabsExampleLabelWidthCode}
+    >
+      <TabsExampleLabelWidth />
     </CodeExample>
     <CodeExample
       title="Icon example"
