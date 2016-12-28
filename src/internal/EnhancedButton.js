@@ -8,6 +8,7 @@ import TouchRipple from './TouchRipple';
 let styleInjected = false;
 let listening = false;
 let tabPressed = false;
+let queuedCallbacks = [];
 
 function injectStyle() {
   if (!styleInjected) {
@@ -171,6 +172,7 @@ class EnhancedButton extends Component {
         centerRipple={centerRipple}
         color={touchRippleColor}
         opacity={touchRippleOpacity}
+        onRippleStart={this.handleRippleStart}
       >
         {children}
       </TouchRipple>
@@ -181,6 +183,10 @@ class EnhancedButton extends Component {
       touchRipple,
       children: touchRipple ? undefined : children,
     });
+  }
+
+  handleRippleStart = () => {
+    this.flushCallbacksQueuedOnRippleStart();
   }
 
   handleKeyDown = (event) => {
@@ -236,11 +242,33 @@ class EnhancedButton extends Component {
 
   handleTouchTap = (event) => {
     this.cancelFocusTimeout();
-    if (!this.props.disabled) {
-      tabPressed = false;
-      this.removeKeyboardFocus(event);
-      this.props.onTouchTap(event);
+    if (this.props.disabled) {
+      return;
     }
+    tabPressed = false;
+    this.removeKeyboardFocus(event);
+    // If there's not going to be a ripple (ripple disabled or triggered by
+    // keyboard) then continue. If there is going to be a ripple then we trigger
+    // the callback after the ripple has started to ensure we don't block it
+    if (this.props.disableTouchRipple || keycode(event) === 'enter' || keycode(event) === 'space') {
+      this.props.onTouchTap(event);
+    } else {
+      this.queueCallbackOnRippleStart(() => {
+        this.props.onTouchTap(event);
+      });
+    }
+  };
+
+  queueCallbackOnRippleStart = (cb) => {
+    queuedCallbacks.push(cb);
+    // The queue should be flushed by ripples starting but set it to flush
+    // automatically just in case something goes wrong
+    setTimeout(this.flushCallbacksQueuedOnRippleStart, 100);
+  };
+
+  flushCallbacksQueuedOnRippleStart = () => {
+    queuedCallbacks.map((cb) => cb());
+    queuedCallbacks = [];
   };
 
   render() {
