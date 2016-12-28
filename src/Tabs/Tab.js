@@ -27,8 +27,8 @@ class Tab extends Component {
   static muiName = 'Tab';
 
   static propTypes = {
-     /**
-     * Override the inline-styles of the button element
+    /**
+     * Override the inline-styles of the button element.
      */
     buttonStyle: PropTypes.object,
     /**
