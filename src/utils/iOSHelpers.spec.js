@@ -29,7 +29,7 @@ describe('IOS detection helper', () => {
   });
 
   nonIOSuserAgents.forEach((agent) => {
-    it('should NOT decect IOS', () => {
+    it('should NOT detect IOS', () => {
       window.navigator.__defineGetter__('userAgent', () => agent); // eslint-disable-line no-underscore-dangle,max-len
       assert.strictEqual(isIOS(), false);
     });
