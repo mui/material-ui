@@ -68,6 +68,8 @@ describe('<Menu />', () => {
       assert(onMenuItemFocusChangeSpy.calledWith(match.object, 0),
              'up-arrow at top invokes callback with unchanged index');
       onMenuItemFocusChangeSpy.reset();
+
+      wrapper.unmount(); // Otherwise the timer in FocusRipple keeps Node from exiting
     });
 
     it('is invoked when props change', () => {
@@ -90,6 +92,8 @@ describe('<Menu />', () => {
       assert(onMenuItemFocusChangeSpy.calledWith(null, -1),
              'changing disableAutoFocus to true invokes callback');
       onMenuItemFocusChangeSpy.reset();
+
+      wrapper.unmount(); // Otherwise the timer in FocusRipple keeps Node from exiting
     });
   });
 
