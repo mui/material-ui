@@ -6,6 +6,7 @@ import shallowEqual from 'recompose/shallowEqual';
 import IconButton from 'material-ui/IconButton';
 import Collapse from 'material-ui/transitions/Collapse';
 import MarkdownElement from 'docs/site/src/components/MarkdownElement';
+import CodeIcon from 'material-ui/svg-icons/action/code';
 
 const requireDemos = require.context('docs/site/src', true, /\.js$/);
 const requireDemoSource = require.context('!raw!docs/site/src', true, /\.js$/);
@@ -98,7 +99,7 @@ export default class Demo extends Component {
           onClick={this.handleCodeButtonClick}
           className={classes.codeButton}
         >
-          code
+          <CodeIcon />
         </IconButton>
         <Collapse in={this.state.codeOpen}>
           <MarkdownElement className={classes.code} text={code} />

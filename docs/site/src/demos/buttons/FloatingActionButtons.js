@@ -3,6 +3,8 @@
 import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import Button from 'material-ui/Button';
+import AddIcon from 'material-ui/svg-icons/content/add';
+import ModeEditIcon from 'material-ui/svg-icons/editor/mode-edit';
 
 const styleSheet = createStyleSheet('FloatingActionButtons', () => ({
   button: {
@@ -15,10 +17,10 @@ export default function FloatingActionButtons(props, context) {
   return (
     <div>
       <Button fab primary className={classes.button}>
-        <span className="material-icons">add</span>
+        <AddIcon />
       </Button>
       <Button fab accent className={classes.button}>
-        <span className="material-icons">mode_edit</span>
+        <ModeEditIcon />
       </Button>
     </div>
   );
@@ -27,4 +29,3 @@ export default function FloatingActionButtons(props, context) {
 FloatingActionButtons.contextTypes = {
   styleManager: PropTypes.object.isRequired,
 };
-

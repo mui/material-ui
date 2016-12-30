@@ -9,6 +9,8 @@ import {
   ListItemIcon,
 } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
+import InboxIcon from 'material-ui/svg-icons/content/inbox';
+import DraftsIcon from 'material-ui/svg-icons/content/drafts';
 
 const styleSheet = createStyleSheet('SimpleList', (theme) => ({
   root: {
@@ -25,13 +27,13 @@ function SimpleList(props, context) {
       <List>
         <ListItem button>
           <ListItemIcon>
-            <span className="material-icons">inbox</span>
+            <InboxIcon />
           </ListItemIcon>
           <ListItemText primary="Inbox" />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
-            <span className="material-icons">drafts</span>
+            <DraftsIcon />
           </ListItemIcon>
           <ListItemText primary="Drafts" />
         </ListItem>
