@@ -5,8 +5,8 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import { CircularProgress } from 'material-ui/Progress';
 import { green } from 'material-ui/styles/colors';
 import Button from 'material-ui/Button';
-import CheckIcon from 'material-ui/svg-icons/navigation/check';
-import SaveIcon from 'material-ui/svg-icons/content/save';
+import CheckIcon from 'material-ui/svg-icons/check';
+import SaveIcon from 'material-ui/svg-icons/save';
 
 const styleSheet = createStyleSheet('CircularFab', () => ({
   wrapper: {

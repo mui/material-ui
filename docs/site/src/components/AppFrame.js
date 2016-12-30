@@ -9,8 +9,8 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
 import withWidth, { isWidthUp } from 'material-ui/utils/withWidth';
-import MenuIcon from 'material-ui/svg-icons/navigation/menu';
-import LightbulbOutlineIcon from 'material-ui/svg-icons/action/lightbulb-outline';
+import MenuIcon from 'material-ui/svg-icons/menu';
+import LightbulbOutlineIcon from 'material-ui/svg-icons/lightbulb-outline';
 import AppDrawer from './AppDrawer';
 
 function getTitle(routes) {

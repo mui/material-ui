@@ -3,8 +3,8 @@
 import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import Button from 'material-ui/Button';
-import AddIcon from 'material-ui/svg-icons/content/add';
-import ModeEditIcon from 'material-ui/svg-icons/editor/mode-edit';
+import AddIcon from 'material-ui/svg-icons/add';
+import ModeEditIcon from 'material-ui/svg-icons/mode-edit';
 
 const styleSheet = createStyleSheet('FloatingActionButtons', () => ({
   button: {

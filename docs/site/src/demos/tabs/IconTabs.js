@@ -4,9 +4,9 @@ import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
 import Tabs from 'material-ui/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
-import PhoneIcon from 'material-ui/svg-icons/communication/phone';
-import FavoriteIcon from 'material-ui/svg-icons/action/favorite';
-import PersonPinIcon from 'material-ui/svg-icons/maps/person-pin';
+import PhoneIcon from 'material-ui/svg-icons/phone';
+import FavoriteIcon from 'material-ui/svg-icons/favorite';
+import PersonPinIcon from 'material-ui/svg-icons/person-pin';
 
 export default class IconTabs extends Component {
   state = {

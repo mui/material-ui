@@ -10,8 +10,8 @@ import {
   ListSubheader,
 } from 'material-ui/List';
 import Switch from 'material-ui/Switch';
-import WifiIcon from 'material-ui/svg-icons/notification/wifi';
-import BluetoothIcon from 'material-ui/svg-icons/device/bluetooth';
+import WifiIcon from 'material-ui/svg-icons/wifi';
+import BluetoothIcon from 'material-ui/svg-icons/bluetooth';
 
 const styleSheet = createStyleSheet('SwitchListSecondary', (theme) => ({
   root: {

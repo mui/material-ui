@@ -8,7 +8,7 @@ import {
   ListItemText,
   ListItemIcon,
 } from 'material-ui/List';
-import StarIcon from 'material-ui/svg-icons/toggle/star';
+import StarIcon from 'material-ui/svg-icons/star';
 
 const styleSheet = createStyleSheet('InsetList', (theme) => ({
   root: {

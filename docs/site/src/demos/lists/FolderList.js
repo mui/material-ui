@@ -8,7 +8,7 @@ import {
   ListItemText,
 } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
-import FolderIcon from 'material-ui/svg-icons/file/folder';
+import FolderIcon from 'material-ui/svg-icons/folder';
 
 const styleSheet = createStyleSheet('FolderList', (theme) => ({
   root: {

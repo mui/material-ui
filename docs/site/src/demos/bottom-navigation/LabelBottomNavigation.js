@@ -3,10 +3,10 @@
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import { BottomNavigation, BottomNavigationButton } from 'material-ui/BottomNavigation';
-import RestoreIcon from 'material-ui/svg-icons/action/restore';
-import FavoriteIcon from 'material-ui/svg-icons/action/favorite';
-import LocationOnIcon from 'material-ui/svg-icons/communication/location-on';
-import FolderIcon from 'material-ui/svg-icons/file/folder';
+import RestoreIcon from 'material-ui/svg-icons/restore';
+import FavoriteIcon from 'material-ui/svg-icons/favorite';
+import LocationOnIcon from 'material-ui/svg-icons/location-on';
+import FolderIcon from 'material-ui/svg-icons/folder';
 
 const styleSheet = createStyleSheet('LabelBottomNavigation', () => ({
   root: {

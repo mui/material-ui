@@ -9,8 +9,8 @@ import {
   ListItemIcon,
 } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
-import InboxIcon from 'material-ui/svg-icons/content/inbox';
-import DraftsIcon from 'material-ui/svg-icons/content/drafts';
+import InboxIcon from 'material-ui/svg-icons/inbox';
+import DraftsIcon from 'material-ui/svg-icons/drafts';
 
 const styleSheet = createStyleSheet('SimpleList', (theme) => ({
   root: {

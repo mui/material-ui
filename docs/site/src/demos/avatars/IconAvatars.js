@@ -4,9 +4,9 @@ import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import Avatar from 'material-ui/Avatar';
 import { pink, green } from 'material-ui/styles/colors';
-import FolderIcon from 'material-ui/svg-icons/file/folder';
-import PageviewIcon from 'material-ui/svg-icons/action/pageview';
-import AssignmentIcon from 'material-ui/svg-icons/action/assignment';
+import FolderIcon from 'material-ui/svg-icons/folder';
+import PageviewIcon from 'material-ui/svg-icons/pageview';
+import AssignmentIcon from 'material-ui/svg-icons/assignment';
 
 const styleSheet = createStyleSheet('IconAvatars', () => ({
   avatar: {

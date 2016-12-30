@@ -6,7 +6,7 @@ import shallowEqual from 'recompose/shallowEqual';
 import IconButton from 'material-ui/IconButton';
 import Collapse from 'material-ui/transitions/Collapse';
 import MarkdownElement from 'docs/site/src/components/MarkdownElement';
-import CodeIcon from 'material-ui/svg-icons/action/code';
+import CodeIcon from 'material-ui/svg-icons/code';
 
 const requireDemos = require.context('docs/site/src', true, /\.js$/);
 const requireDemoSource = require.context('!raw!docs/site/src', true, /\.js$/);
