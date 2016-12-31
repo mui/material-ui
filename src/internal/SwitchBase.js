@@ -29,8 +29,8 @@ export const styleSheet = createStyleSheet('SwitchBase', () => {
 });
 
 export function createSwitch({
-  defaultIcon = <CheckBoxOutlineBlankIcon />,
-  defaultCheckedIcon = <CheckBoxIcon />,
+  defaultIcon = <CheckBoxOutlineBlankIcon aria-hidden="true" />,
+  defaultCheckedIcon = <CheckBoxIcon aria-hidden="true" />,
   inputType = 'checkbox',
   styleSheet: switchStyleSheet,
 } = {}) {

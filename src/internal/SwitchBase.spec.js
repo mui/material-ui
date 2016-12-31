@@ -31,7 +31,8 @@ describe('<SwitchBase />', () => {
     const wrapper = shallow(
       <SwitchBase />,
     );
-    assert.strictEqual(wrapper.childAt(0).is('span.material-icons'), true, 'should be a font icon');
+    console.log(wrapper.childAt(0).debug());
+    assert.strictEqual(wrapper.childAt(0).is('CheckBoxOutlineBlank'), true, 'should be an SVG icon');
     assert.strictEqual(wrapper.childAt(1).is('input[type="checkbox"]'), true, 'should be a checkbox input');
   });
 
@@ -71,7 +72,7 @@ describe('<SwitchBase />', () => {
     });
   });
 
-  it('should set the icon to aria-hidden="true" to avoid being read by screenreaders', () => {
+  it('should set the icon to aria-hidden="true" to avoid being read by screen readers', () => {
     const wrapper = shallow(<SwitchBase />);
     assert.strictEqual(wrapper.childAt(0).prop('aria-hidden'), 'true');
   });
