@@ -47,7 +47,7 @@ export default class AppDrawerNavItem extends Component {
     children: PropTypes.node,
     onClick: PropTypes.func,
     openImmediately: PropTypes.bool,
-    title: PropTypes.string,
+    title: PropTypes.string.isRequired,
     to: PropTypes.string,
   };
 
@@ -64,6 +64,10 @@ export default class AppDrawerNavItem extends Component {
       this.setState({ open: true });
     }
   }
+
+  handleClick = () => {
+    this.setState({ open: !this.state.open });
+  };
 
   render() {
     const { children, title, to } = this.props;
@@ -91,10 +95,7 @@ export default class AppDrawerNavItem extends Component {
 
     return (
       <ListItem className={classes.navItem} gutters={false}>
-        <Button
-          className={classes.button}
-          onClick={() => this.setState({ open: !this.state.open })}
-        >
+        <Button className={classes.button} onClick={this.handleClick}>
           {title}
         </Button>
         <Collapse in={this.state.open} transitionDuration="auto" unmountOnExit>

@@ -12,8 +12,6 @@ export const styleSheet = createStyleSheet('Home', (theme) => {
 
   return {
     root: {
-      display: 'flex',
-      flexDirection: 'column',
       flex: '1 0 100%',
     },
     hero: {

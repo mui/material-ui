@@ -43,13 +43,13 @@ const styleSheet = createStyleSheet('Demo', (theme) => {
         borderRadius: '0px !important',
       },
     },
-    codeContainer: {
-      color: palette.text.primary,
-      backgroundColor: palette.background.paper,
-    },
     [theme.breakpoints.up(600)]: {
-      codeButton: { display: 'block' },
-      code: { display: 'block' },
+      codeButton: {
+        display: 'block',
+      },
+      code: {
+        display: 'block',
+      },
       root: {
         marginLeft: 0,
         marginRight: 0,
@@ -80,10 +80,11 @@ export default class Demo extends Component {
     );
   }
 
-  handleCodeButtonClick = () =>
+  handleCodeButtonClick = () => {
     this.setState({
       codeOpen: !this.state.codeOpen,
     });
+  }
 
   render() {
     const DemoComponent = requireDemos(`./${this.props.demo}`).default;

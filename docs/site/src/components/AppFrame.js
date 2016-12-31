@@ -11,6 +11,16 @@ import IconButton from 'material-ui/IconButton';
 import withWidth, { isWidthUp } from 'material-ui/utils/withWidth';
 import AppDrawer from './AppDrawer';
 
+function getTitle(routes) {
+  for (let i = routes.length - 1; i >= 0; i -= 1) {
+    if (routes[i].hasOwnProperty('title')) {
+      return routes[i].title;
+    }
+  }
+
+  return null;
+}
+
 const styleSheet = createStyleSheet('AppFrame', (theme) => {
   return {
     '@global': {
@@ -117,31 +127,17 @@ class AppFrame extends Component {
     this.props.dispatch({ type: 'TOGGLE_THEME_SHADE' });
   };
 
-  getTitle() {
-    const { routes } = this.props;
-    for (let i = routes.length - 1; i >= 0; i -= 1) {
-      if (routes[i].hasOwnProperty('title')) {
-        return routes[i].title;
-      }
-    }
-    return null;
-  }
-
-  getCurrentPath() {
-    const { routes } = this.props;
-    for (let i = routes.length - 1; i >= 0; i -= 1) {
-      if (routes[i].hasOwnProperty('path')) {
-        return routes[i].path;
-      }
-    }
-    return null;
-  }
-
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
-    const title = this.getTitle();
+    const {
+      children,
+      routes,
+      width,
+    } = this.props;
 
-    let drawerDocked = isWidthUp('lg', this.props.width);
+    const classes = this.context.styleManager.render(styleSheet);
+    const title = getTitle(routes);
+
+    let drawerDocked = isWidthUp('lg', width);
     let navIconClassName = classes.navIcon;
     let appBarClassName = classes.appBar;
 
@@ -160,9 +156,11 @@ class AppFrame extends Component {
             <IconButton contrast onClick={this.handleDrawerToggle} className={navIconClassName}>
               menu
             </IconButton>
-            <Text className={classes.title} type="title" colorInherit>
-              {title}
-            </Text>
+            {title !== null && (
+              <Text className={classes.title} type="title" colorInherit>
+                {title}
+              </Text>
+            )}
             <div className={classes.grow} />
             <IconButton contrast onClick={this.handleToggleShade} className={classes.toggleShade}>
               lightbulb_outline
@@ -172,11 +170,11 @@ class AppFrame extends Component {
         <AppDrawer
           className={classes.drawer}
           docked={drawerDocked}
-          routes={this.props.routes}
+          routes={routes}
           onRequestClose={this.handleDrawerClose}
           open={this.state.drawerOpen}
         />
-        {this.props.children}
+        {children}
       </div>
     );
   }

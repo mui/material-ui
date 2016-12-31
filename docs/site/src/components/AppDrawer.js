@@ -27,13 +27,54 @@ export const styleSheet = createStyleSheet('AppDrawer', (theme) => {
   };
 });
 
+function renderNavItems(props, navRoot) {
+  let navItems = null;
+
+  if (navRoot.childRoutes && navRoot.childRoutes.length) {
+    navItems = navRoot.childRoutes.reduce(reduceChildRoutes.bind(null, props), []);
+  }
+
+  return (
+    <List>
+      {navItems}
+    </List>
+  );
+}
+
+function reduceChildRoutes(props, items, childRoute, index) {
+  if (childRoute.nav) {
+    if (childRoute.childRoutes && childRoute.childRoutes.length) {
+      const openImmediately = props.routes.indexOf(childRoute) !== -1 || false;
+      items.push(
+        <AppDrawerNavItem
+          key={index}
+          openImmediately={openImmediately}
+          title={childRoute.title}
+        >
+          {renderNavItems(props, childRoute)}
+        </AppDrawerNavItem>,
+      );
+    } else {
+      items.push(
+        <AppDrawerNavItem
+          key={index}
+          title={childRoute.title}
+          to={childRoute.path}
+          onClick={props.onRequestClose}
+        />,
+      );
+    }
+  }
+  return items;
+}
+
 export default class AppDrawer extends Component {
   static propTypes = {
     className: PropTypes.string,
-    docked: PropTypes.bool,
-    onRequestClose: PropTypes.func,
-    open: PropTypes.bool,
-    routes: PropTypes.array,
+    docked: PropTypes.bool.isRequired,
+    onRequestClose: PropTypes.func.isRequired,
+    open: PropTypes.bool.isRequired,
+    routes: PropTypes.array.isRequired,
   };
 
   static contextTypes = {
@@ -47,51 +88,6 @@ export default class AppDrawer extends Component {
       !shallowEqual(this.state, nextState) ||
       !shallowEqual(this.context, nextContext)
     );
-  }
-
-  activeParent = undefined;
-
-  reduceChildRoutes = (items, childRoute, index) => {
-    if (childRoute.nav) {
-      if (childRoute.childRoutes && childRoute.childRoutes.length) {
-        const openImmediately = this.props.routes.indexOf(childRoute) !== -1 || false;
-        items.push(
-          <AppDrawerNavItem
-            key={index}
-            openImmediately={openImmediately}
-            title={childRoute.title}
-          >
-            {this.renderNav(childRoute)}
-          </AppDrawerNavItem>,
-        );
-      } else {
-        items.push(
-          <AppDrawerNavItem
-            key={index}
-            title={childRoute.title}
-            to={childRoute.path}
-            onClick={this.props.onRequestClose}
-          />,
-        );
-      }
-    }
-    return items;
-  };
-
-  renderNav(navRoot, props = {}) {
-    return (
-      <List {...props}>
-        {this.renderNavItems(navRoot)}
-      </List>
-    );
-  }
-
-  renderNavItems(navRoot) {
-    this.activeParent = undefined;
-    if (navRoot.childRoutes && navRoot.childRoutes.length) {
-      return navRoot.childRoutes.reduce(this.reduceChildRoutes, []);
-    }
-    return null;
   }
 
   render() {
@@ -112,7 +108,7 @@ export default class AppDrawer extends Component {
             </Link>
             <Divider absolute />
           </Toolbar>
-          {this.renderNav(this.props.routes[0])}
+          {renderNavItems(this.props, this.props.routes[0])}
         </div>
       </Drawer>
     );

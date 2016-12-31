@@ -1,16 +1,43 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import marked from 'marked';
 import prism from 'docs/site/src/utils/prism';
 
+marked.setOptions({
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: false,
+  smartLists: true,
+  smartypants: false,
+  highlight(code) {
+    return prism.highlight(code, prism.languages.jsx);
+  },
+});
+
 const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
-  markdownElement: {
+  root: {
     marginTop: 20,
     marginBottom: 20,
     padding: '0 10px',
+    '& pre': {
+      margin: '25px 0',
+      padding: '12px 18px',
+      backgroundColor: theme.palette.background.paper,
+      borderRadius: 3,
+    },
+    '& code': {
+      lineHeight: 1.6,
+      fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
+      padding: '3px 6px',
+      color: theme.palette.text.primary,
+      backgroundColor: theme.palette.background.paper,
+      fontSize: 14,
+    },
     '& h1': {
       ...theme.typography.display2,
       color: theme.palette.text.secondary,
@@ -83,53 +110,31 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
   },
 }));
 
-class MarkdownElement extends Component {
+function MarkdownElement(props, context) {
+  const {
+    className,
+    text,
+  } = props;
 
-  static propTypes = {
-    className: PropTypes.string,
-    text: PropTypes.string.isRequired,
-  };
+  const classes = context.styleManager.render(styleSheet);
 
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
-  };
-
-  static defaultProps = {
-    text: '',
-  };
-
-  componentWillMount() {
-    marked.setOptions({
-      gfm: true,
-      tables: true,
-      breaks: false,
-      pedantic: false,
-      sanitize: false,
-      smartLists: true,
-      smartypants: false,
-      highlight(code) {
-        return prism.highlight(code, prism.languages.jsx);
-      },
-    });
-  }
-
-  render() {
-    const {
-      className,
-      text,
-    } = this.props;
-
-    const classes = this.context.styleManager.render(styleSheet);
-
-    /* eslint-disable react/no-danger */
-    return (
-      <div
-        className={classNames(classes.markdownElement, 'markdown-body', className)}
-        dangerouslySetInnerHTML={{ __html: marked(text) }}
-      />
-    );
-    /* eslint-enable */
-  }
+  /* eslint-disable react/no-danger */
+  return (
+    <div
+      className={classNames(classes.root, 'markdown-body', className)}
+      dangerouslySetInnerHTML={{ __html: marked(text) }}
+    />
+  );
+  /* eslint-enable */
 }
+
+MarkdownElement.propTypes = {
+  className: PropTypes.string,
+  text: PropTypes.string.isRequired,
+};
+
+MarkdownElement.contextTypes = {
+  styleManager: PropTypes.object.isRequired,
+};
 
 export default MarkdownElement;
