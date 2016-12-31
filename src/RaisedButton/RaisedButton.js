@@ -31,6 +31,7 @@ function getStyles(props, context, state) {
     primary,
     secondary,
     style,
+    buttonStyle,
   } = props;
 
   const amount = (primary || secondary) ? 0.4 : 0.08;
@@ -65,7 +66,7 @@ function getStyles(props, context, state) {
       transition: transitions.easeOut(),
       minWidth: fullWidth ? '100%' : button.minWidth,
     },
-    button: {
+    button: Object.assign({
       position: 'relative',
       height: buttonHeight,
       lineHeight: `${buttonHeight}px`,
@@ -76,7 +77,7 @@ function getStyles(props, context, state) {
       backgroundColor: backgroundColor,
       // That's the default value for a button but not a link
       textAlign: 'center',
-    },
+    }, buttonStyle),
     label: {
       position: 'relative',
       opacity: 1,

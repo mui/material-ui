@@ -30,12 +30,13 @@ describe('<RaisedButton />', () => {
     assert.ok(wrapper.contains(testChildren), 'should contain the children');
   });
 
-  it('passes props to the enhanced button', () => {
+  it('passes buttonStyle to the enhanced button', () => {
     const props = {
       ariaLabel: 'Say hello world',
       disabled: true,
       href: 'http://google.com',
       name: 'Hello World',
+      buttonStyle: {borderRadius: '20px'},
     };
 
     const wrapper = shallowWithContext(
@@ -43,7 +44,7 @@ describe('<RaisedButton />', () => {
     );
 
     assert.ok(wrapper.childAt(0).is('EnhancedButton'));
-    assert.ok(wrapper.childAt(0).is(props));
+    assert.equal(wrapper.childAt(0).props().style.borderRadius, '20px');
   });
 
   it('renders a label with an icon', () => {
