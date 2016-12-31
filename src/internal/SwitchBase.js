@@ -4,6 +4,8 @@ import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import IconButton from '../IconButton';
+import CheckBoxOutlineBlankIcon from '../svg-icons/check-box-outline-blank';
+import CheckBoxIcon from '../svg-icons/check-box';
 
 export const styleSheet = createStyleSheet('SwitchBase', () => {
   return {
@@ -27,8 +29,8 @@ export const styleSheet = createStyleSheet('SwitchBase', () => {
 });
 
 export function createSwitch({
-  defaultIcon = 'check_box_outline_blank',
-  defaultCheckedIcon = 'check_box',
+  defaultIcon = <CheckBoxOutlineBlankIcon />,
+  defaultCheckedIcon = <CheckBoxIcon />,
   inputType = 'checkbox',
   styleSheet: switchStyleSheet,
 } = {}) {
@@ -143,7 +145,6 @@ export function createSwitch({
         value,
         ...other
       } = this.props;
-
 
       const checked = this.isControlled ? checkedProp : this.state.checked;
       const classes = this.context.styleManager.render(styleSheet);
