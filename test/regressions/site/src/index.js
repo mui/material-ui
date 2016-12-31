@@ -21,7 +21,7 @@ function renderTree() {
 webFont.load({
   google: {
     families: [
-      'Roboto:400,500,700,400italic',
+      'Roboto:300,400,500',
       'Material+Icons',
     ],
   },
