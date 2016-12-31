@@ -31,7 +31,6 @@ describe('<SwitchBase />', () => {
     const wrapper = shallow(
       <SwitchBase />,
     );
-    console.log(wrapper.childAt(0).debug());
     assert.strictEqual(wrapper.childAt(0).is('CheckBoxOutlineBlank'), true, 'should be an SVG icon');
     assert.strictEqual(wrapper.childAt(1).is('input[type="checkbox"]'), true, 'should be a checkbox input');
   });
