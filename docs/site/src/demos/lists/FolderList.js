@@ -28,7 +28,7 @@ function FolderList(props, context) {
           <ListItemText primary="Photos" secondary="Jan 9, 2016" />
         </ListItem>
         <ListItem button>
-          <Avatar icon={FolderIcon} />
+          <Avatar icon={<FolderIcon />} />
           <ListItemText primary="Work" secondary="Jan 7, 2016" />
         </ListItem>
       </List>
