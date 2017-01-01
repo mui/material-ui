@@ -9,7 +9,7 @@ Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| align | string |  |  |
+| align | enum:&nbsp;'center'<br> |  |  |
 | children | node |  |  |
 | className | string |  | The CSS class name of the root element. |
 | colorInherit | bool | false |  |
