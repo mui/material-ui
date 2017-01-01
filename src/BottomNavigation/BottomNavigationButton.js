@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component, PropTypes, cloneElement, isValidElement } from 'react';
+import React, { Component, PropTypes, isValidElement } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
@@ -114,10 +114,11 @@ export default class BottomNavigationButton extends Component {
       [classes.selected]: selected,
       [classes.selectedIconOnly]: !showLabelProp && !selected,
     }, classNameProp);
-    const iconClassName = classNames(classes.icon,
-      isValidElement(iconProp) ? iconProp.props.className : null);
+    const iconClassName = classNames(classes.icon, isValidElement(iconProp) ?
+      iconProp.props.className :
+      null);
     const icon = isValidElement(iconProp) ?
-      cloneElement(iconProp, { className: iconClassName }) :
+      iconProp :
       <span className="material-icons">{iconProp}</span>;
     const labelClassName = classNames(classes.label, {
       [classes.selectedLabel]: selected,
@@ -131,7 +132,9 @@ export default class BottomNavigationButton extends Component {
         {...other}
         onClick={this.handleChange}
       >
-        {icon}
+        <div className={iconClassName}>
+          {icon}
+        </div>
         <span className={labelClassName}>
           {label}
         </span>
