@@ -35,7 +35,7 @@ class Clock extends Component {
     const {disableMinutes} = this.props;
 
     if (disableMinutes && mode === 'minute') {
-        return;
+      return;
     }
 
     setTimeout(() => {
@@ -94,9 +94,9 @@ class Clock extends Component {
         const {onChangeHours, disableMinutes} = this.props;
 
         if (!disableMinutes) {
-            this.setState({
-              mode: 'minute',
-            });
+          this.setState({
+            mode: 'minute',
+          });
         }
 
         if (onChangeHours) {

@@ -32,13 +32,13 @@ class TimePicker extends Component {
      */
     dialogStyle: PropTypes.object,
     /**
-     * If true, the TimePicker is disabled.
-     */
-    disabled: PropTypes.bool,
-    /**
      * If true, the minutes picker is disabled inside the TimePicker dialog.
      */
     disableMinutes: PropTypes.bool,
+    /**
+     * If true, the TimePicker is disabled.
+     */
+    disabled: PropTypes.bool,
     /**
      * Tells the component to display the picker in `ampm` (12hr) format or `24hr` format.
      */
