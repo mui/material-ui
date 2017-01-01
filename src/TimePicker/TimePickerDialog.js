@@ -10,6 +10,7 @@ class TimePickerDialog extends Component {
     autoOk: PropTypes.bool,
     bodyStyle: PropTypes.object,
     cancelLabel: PropTypes.node,
+    disableMinutes: PropTypes.bool,
     format: PropTypes.oneOf(['ampm', '24hr']),
     initialTime: PropTypes.object,
     okLabel: PropTypes.node,
@@ -22,6 +23,7 @@ class TimePickerDialog extends Component {
   static defaultProps = {
     okLabel: 'OK',
     cancelLabel: 'Cancel',
+    disableMinutes: false,
   };
 
   static contextTypes = {
@@ -74,6 +76,7 @@ class TimePickerDialog extends Component {
   render() {
     const {
       bodyStyle,
+      disableMinutes,
       initialTime,
       onAccept, // eslint-disable-line no-unused-vars
       format,
@@ -132,6 +135,7 @@ class TimePickerDialog extends Component {
         {open &&
           <Clock
             ref="clock"
+            disableMinutes={disableMinutes}
             format={format}
             initialTime={initialTime}
             onChangeMinutes={onClockChangeMinutes}

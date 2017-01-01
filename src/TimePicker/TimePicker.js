@@ -36,6 +36,10 @@ class TimePicker extends Component {
      */
     disabled: PropTypes.bool,
     /**
+     * If true, the minutes picker is disabled inside the TimePicker dialog.
+     */
+    disableMinutes: PropTypes.bool,
+    /**
      * Tells the component to display the picker in `ampm` (12hr) format or `24hr` format.
      */
     format: PropTypes.oneOf(['ampm', '24hr']),
@@ -92,6 +96,7 @@ class TimePicker extends Component {
     cancelLabel: 'Cancel',
     defaultTime: null,
     disabled: false,
+    disableMinutes: false,
     format: 'ampm',
     okLabel: 'OK',
     pedantic: false,
@@ -181,6 +186,7 @@ class TimePicker extends Component {
       defaultTime, // eslint-disable-line no-unused-vars
       dialogBodyStyle,
       dialogStyle,
+      disableMinutes,
       format,
       okLabel,
       onFocus, // eslint-disable-line no-unused-vars
@@ -209,6 +215,7 @@ class TimePicker extends Component {
         <TimePickerDialog
           ref="dialogWindow"
           bodyStyle={dialogBodyStyle}
+          disableMinutes={disableMinutes}
           initialTime={this.state.dialogTime}
           onAccept={this.handleAcceptDialog}
           onShow={onShow}

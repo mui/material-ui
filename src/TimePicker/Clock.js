@@ -5,6 +5,7 @@ import ClockMinutes from './ClockMinutes';
 
 class Clock extends Component {
   static propTypes = {
+    disableMinutes: PropTypes.bool,
     format: PropTypes.oneOf(['ampm', '24hr']),
     initialTime: PropTypes.object,
     onChangeHours: PropTypes.func,
@@ -31,6 +32,12 @@ class Clock extends Component {
   }
 
   setMode = (mode) => {
+    const {disableMinutes} = this.props;
+
+    if (disableMinutes && mode === 'minute') {
+        return;
+    }
+
     setTimeout(() => {
       this.setState({
         mode: mode,
@@ -84,11 +91,14 @@ class Clock extends Component {
 
     if (finished) {
       setTimeout(() => {
-        this.setState({
-          mode: 'minute',
-        });
+        const {onChangeHours, disableMinutes} = this.props;
 
-        const {onChangeHours} = this.props;
+        if (!disableMinutes) {
+            this.setState({
+              mode: 'minute',
+            });
+        }
+
         if (onChangeHours) {
           onChangeHours(time);
         }
