@@ -10,7 +10,6 @@ let Favorite = (props) => (
   </SvgIcon>
 );
 Favorite = pure(Favorite);
-Favorite.displayName = 'Favorite';
 Favorite.muiName = 'SvgIcon';
 
 export default Favorite;

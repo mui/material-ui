@@ -10,7 +10,6 @@ let Pageview = (props) => (
   </SvgIcon>
 );
 Pageview = pure(Pageview);
-Pageview.displayName = 'Pageview';
 Pageview.muiName = 'SvgIcon';
 
 export default Pageview;

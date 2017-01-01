@@ -10,7 +10,6 @@ let Bluetooth = (props) => (
   </SvgIcon>
 );
 Bluetooth = pure(Bluetooth);
-Bluetooth.displayName = 'Bluetooth';
 Bluetooth.muiName = 'SvgIcon';
 
 export default Bluetooth;

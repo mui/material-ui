@@ -10,7 +10,6 @@ let Drafts = (props) => (
   </SvgIcon>
 );
 Drafts = pure(Drafts);
-Drafts.displayName = 'Drafts';
 Drafts.muiName = 'SvgIcon';
 
 export default Drafts;

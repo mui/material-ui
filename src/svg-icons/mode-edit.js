@@ -10,7 +10,6 @@ let ModeEdit = (props) => (
   </SvgIcon>
 );
 ModeEdit = pure(ModeEdit);
-ModeEdit.displayName = 'ModeEdit';
 ModeEdit.muiName = 'SvgIcon';
 
 export default ModeEdit;

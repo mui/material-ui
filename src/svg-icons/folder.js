@@ -10,7 +10,6 @@ let Folder = (props) => (
   </SvgIcon>
 );
 Folder = pure(Folder);
-Folder.displayName = 'Folder';
 Folder.muiName = 'SvgIcon';
 
 export default Folder;

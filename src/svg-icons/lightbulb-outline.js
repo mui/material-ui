@@ -10,7 +10,6 @@ let LightbulbOutline = (props) => (
   </SvgIcon>
 );
 LightbulbOutline = pure(LightbulbOutline);
-LightbulbOutline.displayName = 'LightbulbOutline';
 LightbulbOutline.muiName = 'SvgIcon';
 
 export default LightbulbOutline;

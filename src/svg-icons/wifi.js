@@ -10,7 +10,6 @@ let Wifi = (props) => (
   </SvgIcon>
 );
 Wifi = pure(Wifi);
-Wifi.displayName = 'Wifi';
 Wifi.muiName = 'SvgIcon';
 
 export default Wifi;

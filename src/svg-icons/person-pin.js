@@ -10,7 +10,6 @@ let PersonPin = (props) => (
   </SvgIcon>
 );
 PersonPin = pure(PersonPin);
-PersonPin.displayName = 'PersonPin';
 PersonPin.muiName = 'SvgIcon';
 
 export default PersonPin;

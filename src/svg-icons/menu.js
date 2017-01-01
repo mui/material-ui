@@ -10,7 +10,6 @@ let Menu = (props) => (
   </SvgIcon>
 );
 Menu = pure(Menu);
-Menu.displayName = 'Menu';
 Menu.muiName = 'SvgIcon';
 
 export default Menu;

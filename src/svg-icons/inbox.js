@@ -10,7 +10,6 @@ let Inbox = (props) => (
   </SvgIcon>
 );
 Inbox = pure(Inbox);
-Inbox.displayName = 'Inbox';
 Inbox.muiName = 'SvgIcon';
 
 export default Inbox;

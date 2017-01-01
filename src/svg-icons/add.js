@@ -10,7 +10,6 @@ let Add = (props) => (
   </SvgIcon>
 );
 Add = pure(Add);
-Add.displayName = 'Add';
 Add.muiName = 'SvgIcon';
 
 export default Add;

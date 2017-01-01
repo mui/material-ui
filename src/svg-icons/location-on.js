@@ -10,7 +10,6 @@ let LocationOn = (props) => (
   </SvgIcon>
 );
 LocationOn = pure(LocationOn);
-LocationOn.displayName = 'LocationOn';
 LocationOn.muiName = 'SvgIcon';
 
 export default LocationOn;

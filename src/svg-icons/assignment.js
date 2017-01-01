@@ -10,7 +10,6 @@ let Assignment = (props) => (
   </SvgIcon>
 );
 Assignment = pure(Assignment);
-Assignment.displayName = 'Assignment';
 Assignment.muiName = 'SvgIcon';
 
 export default Assignment;

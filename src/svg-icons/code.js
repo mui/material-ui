@@ -10,7 +10,6 @@ let Code = (props) => (
   </SvgIcon>
 );
 Code = pure(Code);
-Code.displayName = 'Code';
 Code.muiName = 'SvgIcon';
 
 export default Code;

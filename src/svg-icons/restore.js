@@ -10,7 +10,6 @@ let Restore = (props) => (
   </SvgIcon>
 );
 Restore = pure(Restore);
-Restore.displayName = 'Restore';
 Restore.muiName = 'SvgIcon';
 
 export default Restore;

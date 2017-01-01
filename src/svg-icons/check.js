@@ -10,7 +10,6 @@ let Check = (props) => (
   </SvgIcon>
 );
 Check = pure(Check);
-Check.displayName = 'Check';
 Check.muiName = 'SvgIcon';
 
 export default Check;

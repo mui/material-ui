@@ -10,7 +10,6 @@ let RadioButtonUnchecked = (props) => (
   </SvgIcon>
 );
 RadioButtonUnchecked = pure(RadioButtonUnchecked);
-RadioButtonUnchecked.displayName = 'RadioButtonUnchecked';
 RadioButtonUnchecked.muiName = 'SvgIcon';
 
 export default RadioButtonUnchecked;

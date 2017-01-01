@@ -10,7 +10,6 @@ let Cancel = (props) => (
   </SvgIcon>
 );
 Cancel = pure(Cancel);
-Cancel.displayName = 'Cancel';
 Cancel.muiName = 'SvgIcon';
 
 export default Cancel;

@@ -10,7 +10,6 @@ let CheckBox = (props) => (
   </SvgIcon>
 );
 CheckBox = pure(CheckBox);
-CheckBox.displayName = 'CheckBox';
 CheckBox.muiName = 'SvgIcon';
 
 export default CheckBox;

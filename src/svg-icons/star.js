@@ -10,7 +10,6 @@ let Star = (props) => (
   </SvgIcon>
 );
 Star = pure(Star);
-Star.displayName = 'Star';
 Star.muiName = 'SvgIcon';
 
 export default Star;
