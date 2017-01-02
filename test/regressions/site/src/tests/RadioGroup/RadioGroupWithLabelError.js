@@ -6,7 +6,7 @@ import { RadioGroup, LabelRadio as Radio } from 'material-ui/Radio';
 
 export default function RadioGroupWithLabelError() {
   return (
-    <FormControl style={{ width: 100 }} required error={}>
+    <FormControl style={{ width: 100 }} required error>
       <FormLabel>Location</FormLabel>
       <RadioGroup selectedValue="home">
         <Radio label="Home" value="home" />
