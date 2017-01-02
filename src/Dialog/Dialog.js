@@ -127,6 +127,7 @@ function getStyles(props, context) {
     overlay: {
       zIndex: zIndex.dialogOverlay,
     },
+    paper: {},
     title: {
       margin: 0,
       padding: `${gutter}px ${gutter}px 20px ${gutter}px`,
@@ -165,6 +166,7 @@ class DialogInline extends Component {
     open: PropTypes.bool.isRequired,
     overlayClassName: PropTypes.string,
     overlayStyle: PropTypes.object,
+    paperStyle: PropTypes.object,
     repositionOnUpdate: PropTypes.bool,
     style: PropTypes.object,
     title: PropTypes.node,
@@ -273,6 +275,7 @@ class DialogInline extends Component {
       overlayClassName,
       overlayStyle,
       open,
+      paperStyle,
       titleClassName,
       titleStyle,
       title,
@@ -287,6 +290,7 @@ class DialogInline extends Component {
     styles.body = Object.assign(styles.body, bodyStyle);
     styles.actionsContainer = Object.assign(styles.actionsContainer, actionsContainerStyle);
     styles.overlay = Object.assign(styles.overlay, overlayStyle);
+    styles.paper = Object.assign(styles.paper, paperStyle);
     styles.title = Object.assign(styles.title, titleStyle);
 
     const actionsContainer = React.Children.count(actions) > 0 && (
@@ -331,7 +335,7 @@ class DialogInline extends Component {
               className={contentClassName}
               style={styles.content}
             >
-              <Paper zDepth={4}>
+              <Paper zDepth={4} style={prepareStyles(styles.paper)}>
                 {titleElement}
                 <div
                   ref="dialogContent"
