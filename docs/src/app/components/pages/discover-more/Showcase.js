@@ -98,7 +98,7 @@ const appList = [
     author: 'Minas Mina',
     img: 'images/showcase/humorista.png',
     link: 'https://humorista.org/',
-},
+  },
 ];
 
 const Showcase = () => (
