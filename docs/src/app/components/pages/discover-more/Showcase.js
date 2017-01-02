@@ -93,6 +93,12 @@ const appList = [
     img: 'images/showcase/realty-advisors-elite.png',
     link: 'https://www.realtyadvisorselite.com/',
   },
+  {
+    title: 'Humorista Jokes',
+    author: 'Minas Mina',
+    img: 'images/showcase/humorista.png',
+    link: 'https://humorista.org/',
+  },
 ];
 
 const Showcase = () => (
