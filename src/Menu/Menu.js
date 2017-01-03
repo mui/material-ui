@@ -228,7 +228,7 @@ class Menu extends Component {
       return;
     }
 
-    this.setFocusIndex(-1, false, event);
+    this.setFocusIndex(event, -1, false);
   };
 
   // Do not use outside of this component, it will be removed once valueLink is deprecated
@@ -296,7 +296,7 @@ class Menu extends Component {
     index--;
     if (index < 0) index = 0;
 
-    this.setFocusIndex(index, true, event);
+    this.setFocusIndex(event, index, true);
   }
 
   getMenuItemCount(filteredChildren) {
@@ -349,7 +349,7 @@ class Menu extends Component {
       default:
         if (key && key.length === 1) {
           const hotKeys = this.hotKeyHolder.append(key);
-          if (this.setFocusIndexStartsWith(hotKeys, event)) {
+          if (this.setFocusIndexStartsWith(event, hotKeys)) {
             event.preventDefault();
           }
         }
@@ -357,7 +357,7 @@ class Menu extends Component {
     this.props.onKeyDown(event);
   };
 
-  setFocusIndexStartsWith(keys, event) {
+  setFocusIndexStartsWith(event, keys) {
     let foundIndex = -1;
     React.Children.forEach(this.props.children, (child, index) => {
       if (foundIndex >= 0) {
@@ -369,7 +369,7 @@ class Menu extends Component {
       }
     });
     if (foundIndex >= 0) {
-      this.setFocusIndex(foundIndex, true, event);
+      this.setFocusIndex(event, foundIndex, true);
       return true;
     }
     return false;
@@ -383,7 +383,7 @@ class Menu extends Component {
     const itemValue = item.props.value;
     const focusIndex = React.isValidElement(children) ? 0 : children.indexOf(item);
 
-    this.setFocusIndex(focusIndex, false, event);
+    this.setFocusIndex(event, focusIndex, false);
 
     if (multiple) {
       const itemIndex = menuValue.indexOf(itemValue);
@@ -409,7 +409,7 @@ class Menu extends Component {
     index++;
     if (index > maxIndex) index = maxIndex;
 
-    this.setFocusIndex(index, true, event);
+    this.setFocusIndex(event, index, true);
   }
 
   isChildSelected(child, props) {
@@ -423,7 +423,7 @@ class Menu extends Component {
     }
   }
 
-  setFocusIndex(newIndex, isKeyboardFocused, event) {
+  setFocusIndex(event, newIndex, isKeyboardFocused) {
     if (this.props.onMenuItemFocusChange) {
       // Do this even if `newIndex === this.state.focusIndex` to allow users
       // to detect up-arrow on the first MenuItem or down-arrow on the last.
