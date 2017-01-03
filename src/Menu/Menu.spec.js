@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 import React from 'react';
 import {mount, shallow} from 'enzyme';
-import {match, spy} from 'sinon';
+import {spy} from 'sinon';
 import {assert} from 'chai';
 import Menu from './Menu';
 import MenuItem from '../MenuItem';
@@ -35,38 +35,38 @@ describe('<Menu />', () => {
       });
       const wrapper = mountWithContext(menu);
 
-      assert(onMenuItemFocusChangeSpy.calledWith(null, 0),
-             'initial focus should invoke callback with 0');
+      assert.deepEqual(onMenuItemFocusChangeSpy.args[0], [null, 0],
+        'initial focus should invoke callback with 0');
       onMenuItemFocusChangeSpy.reset();
 
       wrapper.simulate('keydown', keycodeEvent('down'));
-      assert(onMenuItemFocusChangeSpy.calledWith(match.object, 1),
-             'down-arrow invokes callback with index 1');
+      assert.strictEqual(onMenuItemFocusChangeSpy.args[0][1], 1,
+        'down-arrow invokes callback with index 1');
       onMenuItemFocusChangeSpy.reset();
 
       wrapper.simulate('keydown', keycodeEvent('down'));
-      assert(onMenuItemFocusChangeSpy.calledWith(match.object, 2),
-             'down-arrow invokes callback with index 2');
+      assert.strictEqual(onMenuItemFocusChangeSpy.args[0][1], 2,
+        'down-arrow invokes callback with index 2');
       onMenuItemFocusChangeSpy.reset();
 
       wrapper.simulate('keydown', keycodeEvent('down'));
-      assert(onMenuItemFocusChangeSpy.calledWith(match.object, 2),
-             'down-arrow at end invokes callback with unchanged index');
+      assert.strictEqual(onMenuItemFocusChangeSpy.args[0][1], 2,
+        'down-arrow at end invokes callback with unchanged index');
       onMenuItemFocusChangeSpy.reset();
 
       wrapper.simulate('keydown', keycodeEvent('up'));
-      assert(onMenuItemFocusChangeSpy.calledWith(match.object, 1),
-             'up-arrow invokes callback with 1');
+      assert.strictEqual(onMenuItemFocusChangeSpy.args[0][1], 1,
+        'up-arrow invokes callback with 1');
       onMenuItemFocusChangeSpy.reset();
 
       wrapper.simulate('keydown', keycodeEvent('up'));
-      assert(onMenuItemFocusChangeSpy.calledWith(match.object, 0),
-             'up-arrow invokes callback with 0');
+      assert.strictEqual(onMenuItemFocusChangeSpy.args[0][1], 0,
+        'up-arrow invokes callback with 0');
       onMenuItemFocusChangeSpy.reset();
 
       wrapper.simulate('keydown', keycodeEvent('up'));
-      assert(onMenuItemFocusChangeSpy.calledWith(match.object, 0),
-             'up-arrow at top invokes callback with unchanged index');
+      assert.strictEqual(onMenuItemFocusChangeSpy.args[0][1], 0,
+        'up-arrow at top invokes callback with unchanged index');
       onMenuItemFocusChangeSpy.reset();
 
       wrapper.unmount(); // Otherwise the timer in FocusRipple keeps Node from exiting
@@ -79,18 +79,18 @@ describe('<Menu />', () => {
         onMenuItemFocusChange: onMenuItemFocusChangeSpy,
       });
       const wrapper = mountWithContext(menu);
-      assert(onMenuItemFocusChangeSpy.notCalled,
-             'should not be called when creating with disableAutoFocus=true');
+      assert.strictEqual(onMenuItemFocusChangeSpy.callCount, 0,
+        'should not be called when creating with disableAutoFocus=true');
       onMenuItemFocusChangeSpy.reset();
 
       wrapper.setProps({disableAutoFocus: false});
-      assert(onMenuItemFocusChangeSpy.calledWith(null, 0),
-             'changing disableAutoFocus to false invokes callback');
+      assert.deepEqual(onMenuItemFocusChangeSpy.args[0], [null, 0],
+        'changing disableAutoFocus to false invokes callback');
       onMenuItemFocusChangeSpy.reset();
 
       wrapper.setProps({disableAutoFocus: true});
-      assert(onMenuItemFocusChangeSpy.calledWith(null, -1),
-             'changing disableAutoFocus to true invokes callback');
+      assert.deepEqual(onMenuItemFocusChangeSpy.args[0], [null, -1],
+        'changing disableAutoFocus to true invokes callback');
       onMenuItemFocusChangeSpy.reset();
 
       wrapper.unmount(); // Otherwise the timer in FocusRipple keeps Node from exiting
@@ -98,12 +98,11 @@ describe('<Menu />', () => {
 
     it('is invoked for hotkeys', () => {
       const onMenuItemFocusChangeSpy = spy();
-      const props = {
-        disableAutoFocus: false,
-        onMenuItemFocusChange: onMenuItemFocusChangeSpy,
-      };
       const menu = (
-        <Menu {...props}>
+        <Menu
+          disableAutoFocus={false}
+          onMenuItemFocusChange={onMenuItemFocusChangeSpy}
+        >
           <MenuItem primaryText="a00" />
           <MenuItem primaryText="b11" />
           <Divider />
@@ -113,25 +112,25 @@ describe('<Menu />', () => {
       const wrapper = mountWithContext(menu);
 
       wrapper.simulate('keydown', keycodeEvent('b'));
-      assert(onMenuItemFocusChangeSpy.calledWith(match.object, 1),
-             '"b" invokes callback with focus index 1');
+      assert.strictEqual(onMenuItemFocusChangeSpy.args[0][1], 0,
+        '"b" invokes callback with focus index 0');
       onMenuItemFocusChangeSpy.reset();
 
       wrapper.simulate('keydown', keycodeEvent('0'));
       // The Divider is incorrectly counted by Menu.setFocusIndexStartsWith().
-      assert(onMenuItemFocusChangeSpy.calledWith(match.object, 3),
-             '"b0" invokes callback with focus index 3, which is probably a bug');
+      assert.strictEqual(onMenuItemFocusChangeSpy.args[0][1], 3,
+        '"b0" invokes callback with focus index 3, which is probably a bug');
       onMenuItemFocusChangeSpy.reset();
 
       wrapper.simulate('keydown', keycodeEvent('0'));
-      assert(onMenuItemFocusChangeSpy.calledWith(match.object, 3),
-             '"b0" invokes callback with focus index 3');
+      assert.strictEqual(onMenuItemFocusChangeSpy.args[0][1], 3,
+        '"b0" invokes callback with focus index 3');
       onMenuItemFocusChangeSpy.reset();
 
       wrapper.simulate('keydown', keycodeEvent('!'));
       // It seems like the focus index should be changed to -1 here.
-      assert(onMenuItemFocusChangeSpy.notCalled,
-             '"b00!" does not change the focus index, which is probably a bug');
+      assert.strictEqual(onMenuItemFocusChangeSpy.callCount, 0,
+        '"b00!" does not change the focus index, which is probably a bug');
       onMenuItemFocusChangeSpy.reset();
 
       wrapper.unmount(); // Otherwise the timer in FocusRipple keeps Node from exiting
