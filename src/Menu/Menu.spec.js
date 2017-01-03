@@ -95,6 +95,47 @@ describe('<Menu />', () => {
 
       wrapper.unmount(); // Otherwise the timer in FocusRipple keeps Node from exiting
     });
+
+    it('is invoked for hotkeys', () => {
+      const onMenuItemFocusChangeSpy = spy();
+      const props = {
+        disableAutoFocus: false,
+        onMenuItemFocusChange: onMenuItemFocusChangeSpy,
+      };
+      const menu = (
+        <Menu {...props}>
+          <MenuItem primaryText="a00" />
+          <MenuItem primaryText="b11" />
+          <Divider />
+          <MenuItem primaryText="b00" />
+        </Menu>
+      );
+      const wrapper = mountWithContext(menu);
+
+      wrapper.simulate('keydown', keycodeEvent('b'));
+      assert(onMenuItemFocusChangeSpy.calledWith(match.object, 1),
+             '"b" invokes callback with focus index 1');
+      onMenuItemFocusChangeSpy.reset();
+
+      wrapper.simulate('keydown', keycodeEvent('0'));
+      // The Divider is incorrectly counted by Menu.setFocusIndexStartsWith().
+      assert(onMenuItemFocusChangeSpy.calledWith(match.object, 3),
+             '"b0" invokes callback with focus index 3, which is probably a bug');
+      onMenuItemFocusChangeSpy.reset();
+
+      wrapper.simulate('keydown', keycodeEvent('0'));
+      assert(onMenuItemFocusChangeSpy.calledWith(match.object, 3),
+             '"b0" invokes callback with focus index 3');
+      onMenuItemFocusChangeSpy.reset();
+
+      wrapper.simulate('keydown', keycodeEvent('!'));
+      // It seems like the focus index should be changed to -1 here.
+      assert(onMenuItemFocusChangeSpy.notCalled,
+             '"b00!" does not change the focus index, which is probably a bug');
+      onMenuItemFocusChangeSpy.reset();
+
+      wrapper.unmount(); // Otherwise the timer in FocusRipple keeps Node from exiting
+    });
   });
 
   it('should render MenuItem and Divider children', () => {
