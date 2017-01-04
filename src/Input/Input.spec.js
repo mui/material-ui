@@ -28,6 +28,7 @@ describe('<Input />', () => {
     assert.strictEqual(input.is('input'), true, 'should be a <input>');
     assert.strictEqual(input.prop('type'), 'text', 'should pass the text type prop');
     assert.strictEqual(input.hasClass(classes.input), true, 'should have the input class');
+    assert.strictEqual(input.prop('aria-required'), undefined, 'should not have the area-required prop');
   });
 
   it('should render a disabled <input />', () => {
@@ -205,6 +206,14 @@ describe('<Input />', () => {
         assert.strictEqual(wrapper.hasClass(classes.error), false);
         wrapper.setProps({ error: true });
         assert.strictEqual(wrapper.hasClass(classes.error), true);
+      });
+    });
+
+    describe('required', () => {
+      it('should have the aria-required prop with value true', () => {
+        setFormControlContext({ required: true });
+        const input = wrapper.find('input');
+        assert.strictEqual(input.prop('aria-required'), true);
       });
     });
   });
