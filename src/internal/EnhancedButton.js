@@ -249,7 +249,7 @@ class EnhancedButton extends Component {
       children,
       containerElement,
       disabled,
-      disableFocusRipple,
+      disableFocusRipple, // eslint-disable-line no-unused-vars
       disableKeyboardFocus, // eslint-disable-line no-unused-vars
       disableTouchRipple, // eslint-disable-line no-unused-vars
       focusRippleColor, // eslint-disable-line no-unused-vars
@@ -289,13 +289,6 @@ class EnhancedButton extends Component {
       outline: 'none',
       fontSize: 'inherit',
       fontWeight: 'inherit',
-      /**
-       * This is needed so that ripples do not bleed
-       * past border radius.
-       * See: http://stackoverflow.com/questions/17298739/
-       * css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
-       */
-      transform: disableTouchRipple && disableFocusRipple ? null : 'translate(0, 0)',
       verticalAlign: href ? 'middle' : null,
     }, style);
 
