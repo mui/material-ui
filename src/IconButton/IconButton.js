@@ -253,8 +253,8 @@ class IconButton extends Component {
 
     const mergedRootStyles = Object.assign(
       styles.root,
-      hovered ? hoveredStyle : {},
-      style
+      style,
+      hovered ? hoveredStyle : {}
     );
 
     const tooltipElement = tooltip ? (
