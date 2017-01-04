@@ -55,5 +55,21 @@ describe('<IconButton />', () => {
 
       assert.include(wrapper.props().style, hoveredStyle);
     });
+
+    it('should override the style prop', () => {
+      const buttonStyle = {
+        backgroundColor: 'blue',
+      };
+      const hoveredStyle = {
+        backgroundColor: 'green',
+      };
+      const wrapper = shallowWithContext(
+        <IconButton style={buttonStyle} hoveredStyle={hoveredStyle} />
+      );
+
+      wrapper.simulate('mouseEnter');
+
+      assert.include(wrapper.props().style, hoveredStyle);
+    });
   });
 });
