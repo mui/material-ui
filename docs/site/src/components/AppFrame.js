@@ -111,10 +111,6 @@ class AppFrame extends Component {
     drawerOpen: false,
   };
 
-  handleDrawerOpen = () => {
-    this.setState({ drawerOpen: true });
-  };
-
   handleDrawerClose = () => {
     this.setState({ drawerOpen: false });
   };
