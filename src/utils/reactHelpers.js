@@ -1,10 +1,10 @@
 // @flow weak
 
-import { cloneElement, Children } from 'react';
+import { cloneElement, Children, isValidElement } from 'react';
 
 export function cloneChildrenWithClassName(children, className) {
   return Children.map(children, (child) => {
-    return cloneElement(child, {
+    return isValidElement(child) && cloneElement(child, {
       className: child.props.hasOwnProperty('className') ?
         `${child.props.className} ${className}` : className,
     });
