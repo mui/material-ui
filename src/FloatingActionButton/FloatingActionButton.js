@@ -26,6 +26,7 @@ function getStyles(props, context) {
     root: {
       transition: transitions.easeOut(),
       display: 'inline-block',
+      backgroundColor: 'transparent',
     },
     container: {
       backgroundColor,
