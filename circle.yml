@@ -3,24 +3,30 @@ machine:
     version: 6.1.0
   services:
     - docker
+  environment:
+    YARN_VERSION: 0.18.1
+    PATH: "${PATH}:${HOME}/.yarn/bin:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
 general:
   branches:
     ignore:
       - master
       - gh-pages
   artifacts:
-    - "test/regressions/screenshots/output"
+    - test/regressions/screenshots/output
 dependencies:
   pre:
+    - |
+      if [[ ! -e ~/.yarn/bin/yarn || $(yarn --version) != "${YARN_VERSION}" ]]; then
+        curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version $YARN_VERSION
+      fi
     - cd test && docker-compose up -d chrome && cd ../
   override:
-    - npm install
-    - cd docs/site && npm install && cd ../../
-    - cd test/regressions/site && npm install && cd ../../../
+    - yarn install
+    - cd docs/site && yarn install && cd ../../
+    - cd test/regressions/site && yarn install && cd ../../../
   cache_directories:
-    - "node_modules"
-    - "docs/site/node_modules"
-    - "test/regressions/site/node_modules"
+    - ~/.yarn
+    - ~/.cache/yarn
 test:
   override:
     - ./scripts/run-travis-tests.sh && ./scripts/export-coverage.sh
