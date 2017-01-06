@@ -159,7 +159,7 @@ class PropTypeDescription extends Component {
       text += `| ${key} | ${generatePropType(prop.type)} | ${defaultValue} | ${description} |\n`;
     }
 
-    text += 'Other properties (no documented) are applied to the root element.';
+    text += 'Other properties (not documented) are applied to the root element.';
 
     const requiredPropFootnote = (requiredProps === 1) ? '* required property' :
       (requiredProps > 1) ? '* required properties' :
