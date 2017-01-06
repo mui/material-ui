@@ -6,7 +6,6 @@ This is a drawer.
 Props
 -----
 
-
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | anchor | enum:&nbsp;'left'<br>&nbsp;'top'<br>&nbsp;'right'<br>&nbsp;'bottom'<br> |  |  |
@@ -17,4 +16,4 @@ Props
 | paperClassName | string |  | The CSS class name of the paper element. |
 | zDepth | number | 16 |  |
 
-Other properties (not documented) are applied to the root element.
+Any other properties supplied will be spread to the root element.

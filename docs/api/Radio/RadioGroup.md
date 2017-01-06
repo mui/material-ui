@@ -6,7 +6,6 @@ RadioGroup
 Props
 -----
 
-
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  |  |
@@ -17,4 +16,4 @@ Props
 | onKeyDown | function |  |  |
 | selectedValue | string |  |  |
 
-Other properties (not documented) are applied to the root element.
+Any other properties supplied will be spread to the root element.

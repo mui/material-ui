@@ -12,7 +12,6 @@ When placed in a `TableHead`, this will automatically render a `th` element.
 Props
 -----
 
-
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | checkbox | bool | false | If `true`, the cell padding will be adjusted to better accomodate a checkbox. |
@@ -22,4 +21,4 @@ Props
 | numeric | bool | false | If set to true, will align content to the right hand side. |
 | padding | bool | true | If set to false, will disable left/right cell padding. |
 
-Other properties (not documented) are applied to the root element.
+Any other properties supplied will be spread to the root element.

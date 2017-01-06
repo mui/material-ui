@@ -11,7 +11,6 @@ touches them.
 Props
 -----
 
-
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | accent | bool | false | If `true`, the button will use the theme's accent color. |
@@ -28,4 +27,4 @@ Props
 | raised | bool | false | If `true`, the button will use raised styling. |
 | ripple | bool | true | If `true`, the button will have a ripple. |
 
-Other properties (not documented) are applied to the root element.
+Any other properties supplied will be spread to the root element.

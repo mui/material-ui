@@ -6,7 +6,6 @@ Divider
 Props
 -----
 
-
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | absolute | bool | false |  |
@@ -14,4 +13,4 @@ Props
 | inset | bool | false | If true, the `Divider` will be indented. |
 | light | bool | false |  |
 
-Other properties (not documented) are applied to the root element.
+Any other properties supplied will be spread to the root element.

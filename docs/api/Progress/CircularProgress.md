@@ -6,7 +6,6 @@ CircularProgress
 Props
 -----
 
-
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | className | string |  | The CSS class name of the root element. |
@@ -14,4 +13,4 @@ Props
 | size | number | 40 | The size of the circle. |
 | value | number |  | The value of progress, only works in determinate mode. |
 
-Other properties (not documented) are applied to the root element.
+Any other properties supplied will be spread to the root element.

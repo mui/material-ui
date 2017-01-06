@@ -6,7 +6,6 @@ Avatar
 Props
 -----
 
-
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | alt | string | '' | Used in combination with `src` or `srcSet` to provide an alt attribute for the rendered `img` element. |
@@ -17,4 +16,4 @@ Props
 | src | string |  | src desc |
 | srcSet | string |  | srcSet desc |
 
-Other properties (not documented) are applied to the root element.
+Any other properties supplied will be spread to the root element.

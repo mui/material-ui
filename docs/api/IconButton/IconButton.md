@@ -12,7 +12,6 @@ const Component = () => <IconButton>delete</IconButton>;
 Props
 -----
 
-
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | accent | bool | false | If true, will use the theme's accent color. |
@@ -22,4 +21,4 @@ Props
 | disabled | bool | false | If `true`, the button will be disabled. |
 | ripple | bool | true | If false, the ripple effect will be disabled. |
 
-Other properties (not documented) are applied to the root element.
+Any other properties supplied will be spread to the root element.

@@ -6,7 +6,6 @@ Menu
 Props
 -----
 
-
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | anchorEl | object |  | This is the DOM element that will be used to set the position of the menu. |
@@ -22,4 +21,4 @@ Props
 | open | bool | false | If `true`, the menu is visible. |
 | transitionDuration | union | 'auto' | The length of the transition in `ms`, or 'auto' |
 
-Other properties (not documented) are applied to the root element.
+Any other properties supplied will be spread to the root element.

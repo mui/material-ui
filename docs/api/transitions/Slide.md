@@ -6,7 +6,6 @@ Slide
 Props
 -----
 
-
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  | Can be used, for instance, to render a letter inside the avatar. |
@@ -21,4 +20,4 @@ Props
 | onExited | function |  | Callback fired when the component has exited. |
 | transitionDuration | number | 300 |  |
 
-Other properties (not documented) are applied to the root element.
+Any other properties supplied will be spread to the root element.
