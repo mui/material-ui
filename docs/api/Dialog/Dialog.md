@@ -13,7 +13,6 @@ Dialogs are overlayed modal paper based components with a backdrop.
 Props
 -----
 
-
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  | Dialog children, usually the included sub-components. |
@@ -35,4 +34,4 @@ Props
 | transition | union | Fade | Transition component. |
 | transitionDuration | number | 300 | Length of the transition in ms. |
 
-Other properties (not documented) are applied to the root element.
+Any other properties supplied will be spread to the root element.

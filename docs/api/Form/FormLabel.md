@@ -6,7 +6,6 @@ FormLabel
 Props
 -----
 
-
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  | The content of the component. |
@@ -15,4 +14,4 @@ Props
 | focused | bool |  | Whether the input of this label is focused (used by `Group` components). |
 | required | bool |  | Whether this label should indicate that the input. is required. |
 
-Other properties (not documented) are applied to the root element.
+Any other properties supplied will be spread to the root element.

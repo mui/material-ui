@@ -6,7 +6,6 @@ A simple list component.
 Props
 -----
 
-
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  |  |
@@ -15,4 +14,4 @@ Props
 | padding | bool | true |  |
 | subheader | node |  |  |
 
-Other properties (not documented) are applied to the root element.
+Any other properties supplied will be spread to the root element.

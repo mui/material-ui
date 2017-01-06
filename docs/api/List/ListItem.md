@@ -6,7 +6,6 @@ ListItem
 Props
 -----
 
-
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | button | bool | false |  |
@@ -17,4 +16,4 @@ Props
 | divider | bool | false |  |
 | gutters | bool | true |  |
 
-Other properties (not documented) are applied to the root element.
+Any other properties supplied will be spread to the root element.

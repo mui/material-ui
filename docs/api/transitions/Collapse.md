@@ -6,7 +6,6 @@ Collapse
 Props
 -----
 
-
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  | The content node to be collapsed. |
@@ -20,4 +19,4 @@ Props
 | onExited | function |  | Callback fired when the component has exited. |
 | transitionDuration | union | 300 | Set to 'auto' to automatically calculate transition time based on height. |
 
-Other properties (not documented) are applied to the root element.
+Any other properties supplied will be spread to the root element.

@@ -6,7 +6,6 @@ Tabs
 Props
 -----
 
-
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | centered | bool | false | If `true`, the tabs will be centered. This property is intended for large views. |
@@ -19,4 +18,4 @@ Props
 | onChange | function |  | Function called when the index change. |
 | textColor | union | 'inherit' | Determines the color of the `Tab`. |
 
-Other properties (not documented) are applied to the root element.
+Any other properties supplied will be spread to the root element.

@@ -14,7 +14,6 @@ const Component = () => <TextField value="Hello World">;
 Props
 -----
 
-
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | className | string |  | The CSS class name of the root element. |
@@ -25,4 +24,4 @@ Props
 | labelClassName | string |  | The CSS class name of the label element. |
 | required | bool |  | Whether the label should be displayed as required (asterisk). |
 
-Other properties (not documented) are applied to the root element.
+Any other properties supplied will be spread to the root element.

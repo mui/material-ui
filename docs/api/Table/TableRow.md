@@ -15,7 +15,6 @@ based on the material table element parent (head, body, etc)
 Props
 -----
 
-
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  | Should be valid `<tr>` children such as `TableCell`. |
@@ -23,4 +22,4 @@ Props
 | hover | bool | false | If set to true, the table row will shade on hover. |
 | selected | bool | false | If set to true, the table row will have the selected shading. |
 
-Other properties (not documented) are applied to the root element.
+Any other properties supplied will be spread to the root element.
