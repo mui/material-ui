@@ -31,7 +31,6 @@ function getStyles(props, context) {
     container: {
       backgroundColor,
       transition: transitions.easeOut(),
-      position: 'relative',
       height: floatingActionButton.buttonSize,
       width: floatingActionButton.buttonSize,
       padding: 0,
