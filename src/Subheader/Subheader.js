@@ -3,6 +3,8 @@ import React, {PropTypes} from 'react';
 const Subheader = (props, context) => {
   const {
     children,
+    desktop, // eslint-disable-line no-unused-vars
+    focusState, // eslint-disable-line no-unused-vars
     inset,
     style,
     ...other
@@ -39,6 +41,22 @@ Subheader.propTypes = {
    * Node that will be placed inside the `Subheader`.
    */
   children: PropTypes.node,
+  /**
+   * @ignore
+   * If true, the menu item will render with compact desktop
+   * styles.
+   */
+  desktop: PropTypes.bool,
+  /**
+   * @ignore
+   * The focus state of the menu item. This prop is used to set the focus
+   * state of the underlying `ListItem`.
+   */
+  focusState: PropTypes.oneOf([
+    'none',
+    'focused',
+    'keyboard-focused',
+  ]),
   /**
    * If true, the `Subheader` will be indented.
    */
