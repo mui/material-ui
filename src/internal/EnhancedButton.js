@@ -289,6 +289,7 @@ class EnhancedButton extends Component {
       outline: 'none',
       fontSize: 'inherit',
       fontWeight: 'inherit',
+      position: 'relative', // This is needed so that ripples do not bleed past border radius.
       verticalAlign: href ? 'middle' : null,
     }, style);
 

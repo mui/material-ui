@@ -11,7 +11,6 @@ function getStyles(props, context) {
 
   return {
     root: {
-      position: 'relative',
       boxSizing: 'border-box',
       overflow: 'visible',
       transition: transitions.easeOut(),
@@ -22,13 +21,6 @@ function getStyles(props, context) {
     },
     tooltip: {
       boxSizing: 'border-box',
-    },
-    overlay: {
-      position: 'relative',
-      top: 0,
-      width: '100%',
-      height: '100%',
-      background: baseTheme.palette.disabledColor,
     },
     disabled: {
       color: baseTheme.palette.disabledColor,

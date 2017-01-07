@@ -232,10 +232,7 @@ class Tabs extends Component {
       tabItemContainerStyle.width : '100%';
 
     return (
-      <div
-        style={prepareStyles(Object.assign({}, style))}
-        {...other}
-      >
+      <div style={prepareStyles(Object.assign({}, style))} {...other}>
         <div style={prepareStyles(Object.assign(styles.tabItemContainer, tabItemContainerStyle))}>
           {tabs}
         </div>

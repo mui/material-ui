@@ -66,7 +66,6 @@ function getStyles(props, context, state) {
       minWidth: fullWidth ? '100%' : button.minWidth,
     },
     button: {
-      position: 'relative',
       height: buttonHeight,
       lineHeight: `${buttonHeight}px`,
       width: '100%',
