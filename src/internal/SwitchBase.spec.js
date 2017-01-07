@@ -115,6 +115,7 @@ describe('<SwitchBase />', () => {
     });
 
     it('should not not be checked', () => {
+      // console.log(wrapper.debug());
       assertIsNotChecked(classes, wrapper);
     });
 
@@ -175,8 +176,9 @@ function assertIsChecked(classes, wrapper) {
   const input = wrapper.find('input');
   assert.strictEqual(input.node.checked, true, 'the DOM node should be checked');
 
-  const icon = wrapper.find('span.material-icons');
-  assert.strictEqual(icon.text(), 'check_box', 'should be the check_box icon');
+  const label = iconButton.childAt(0);
+  const icon = label.childAt(0);
+  assert.strictEqual(icon.is('pure(CheckBox)'), true, 'should be the CheckBox icon');
 }
 
 function assertIsNotChecked(classes, wrapper) {
@@ -191,6 +193,7 @@ function assertIsNotChecked(classes, wrapper) {
   const input = wrapper.find('input');
   assert.strictEqual(input.node.checked, false, 'the DOM node should not be checked');
 
-  const icon = wrapper.find('span.material-icons');
-  assert.strictEqual(icon.text(), 'check_box_outline_blank', 'should be the check_box_outline_blank icon');
+  const label = iconButton.childAt(0);
+  const icon = label.childAt(0);
+  assert.strictEqual(icon.is('pure(CheckBoxOutlineBlank)'), true, 'should be the CheckBoxOutlineBlank icon');
 }
