@@ -198,6 +198,20 @@ class Menu extends Component {
     if (this.props.autoWidth) this.setWidth();
   }
 
+  allowedNonMenuItemChildren = {
+    Divider: ({styles}) => {
+      return {
+        style: styles.divider,
+      };
+    },
+    Subheader: ({styles}) => {
+      return {
+        style: styles.subheader,
+      };
+    },
+  };
+
+
   handleClickAway = (event) => {
     if (event.defaultPrevented) {
       return;
@@ -273,12 +287,15 @@ class Menu extends Component {
     this.setFocusIndex(index, true);
   }
 
+  isIgnoredMenuItem(child) {
+    return child.type && typeof this.allowedNonMenuItemChildren[child.type.muiName] !== 'undefined';
+  }
+
   getMenuItemCount(filteredChildren) {
     let menuItemCount = 0;
     filteredChildren.forEach((child) => {
-      const childIsADivider = child.type && child.type.muiName === 'Divider';
       const childIsDisabled = child.props.disabled;
-      if (!childIsADivider && !childIsDisabled) menuItemCount++;
+      if (!this.isIgnoredMenuItem(child) && !childIsDisabled) menuItemCount++;
     });
     return menuItemCount;
   }
@@ -288,10 +305,8 @@ class Menu extends Component {
     let menuItemIndex = 0;
 
     filteredChildren.forEach((child) => {
-      const childIsADivider = child.type && child.type.muiName === 'Divider';
-
       if (this.isChildSelected(child, props)) selectedIndex = menuItemIndex;
-      if (!childIsADivider) menuItemIndex++;
+      if (!this.isIgnoredMenuItem(child)) menuItemIndex++;
     });
 
     return selectedIndex;
@@ -468,14 +483,16 @@ class Menu extends Component {
 
     let menuItemIndex = 0;
     const newChildren = React.Children.map(filteredChildren, (child, index) => {
-      const childIsADivider = child.type && child.type.muiName === 'Divider';
+      const getNonMenuItemChildProps = child.type && this.allowedNonMenuItemChildren[child.type.muiName];
+      const childIsNonMenuItem = typeof getNonMenuItemChildProps !== 'undefined';
+      const propsOfNonMenuItemChild = childIsNonMenuItem && getNonMenuItemChildProps({styles});
       const childIsDisabled = child.props.disabled;
 
-      const clonedChild = childIsADivider ? React.cloneElement(child, {style: styles.divider}) :
+      const clonedChild = childIsNonMenuItem ? React.cloneElement(child, propsOfNonMenuItemChild) :
         childIsDisabled ? React.cloneElement(child, {desktop: desktop}) :
         this.cloneMenuItem(child, menuItemIndex, styles, index);
 
-      if (!childIsADivider && !childIsDisabled) {
+      if (!childIsNonMenuItem && !childIsDisabled) {
         menuItemIndex++;
       }
 
