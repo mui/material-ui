@@ -1,5 +1,5 @@
 {
-  "presets": ["es2015", "stage-1", "react"],
+  "presets": ["./tools/material-ui-babel-preset-es2015", "stage-1", "react"],
   "plugins": [
     ["transform-replace-object-assign", "simple-assign"],
     "transform-dev-warning"
@@ -20,7 +20,7 @@
       "plugins": [
         "transform-runtime",
         ["transform-react-remove-prop-types", {"mode": "wrap"}]
-      ],
+      ]
     }
   }
 }

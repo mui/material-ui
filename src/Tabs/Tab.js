@@ -28,6 +28,10 @@ class Tab extends Component {
 
   static propTypes = {
     /**
+     * Override the inline-styles of the button element.
+     */
+    buttonStyle: PropTypes.object,
+    /**
      * The css class name of the root element.
      */
     className: PropTypes.string,
@@ -95,10 +99,11 @@ class Tab extends Component {
       onTouchTap, // eslint-disable-line no-unused-vars
       selected, // eslint-disable-line no-unused-vars
       label,
+      buttonStyle,
       style,
       value, // eslint-disable-line no-unused-vars
       width, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     const styles = getStyles(this.props, this.context);
@@ -132,7 +137,7 @@ class Tab extends Component {
         touchRippleOpacity={rippleOpacity}
         onTouchTap={this.handleTouchTap}
       >
-        <div style={styles.button} >
+        <div style={Object.assign(styles.button, buttonStyle)} >
           {iconElement}
           {label}
         </div>

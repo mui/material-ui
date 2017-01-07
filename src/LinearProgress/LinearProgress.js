@@ -65,8 +65,8 @@ function getStyles(props, context) {
 class LinearProgress extends Component {
   static propTypes = {
     /**
-     * The mode of show your progress, indeterminate for
-     * when there is no value for progress.
+     * The color of the progress bar, defaults to
+     * primary color of theme.
      */
     color: PropTypes.string,
     /**
@@ -150,7 +150,7 @@ class LinearProgress extends Component {
   render() {
     const {
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

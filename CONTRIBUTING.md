@@ -47,7 +47,7 @@ All stable releases are tagged ([view tags](https://github.com/callemall/materia
 
 #### `master` is unsafe
 
-We will do our best to keep `master` in good shape, with tests passing at all times. But in order to move fast, we will make API changes that your application might not be compatible with. 
+We will do our best to keep `master` in good shape, with tests passing at all times. But in order to move fast, we will make API changes that your application might not be compatible with.
 
 
 ## Getting started
@@ -57,7 +57,7 @@ Please create a new branch from an up to date master on your fork. (Note, urgent
 1. Fork the Material-UI repository on Github
 2. Clone your fork to your local machine `git clone git@github.com:<yourname>/material-ui.git`
 3. Create a branch `git checkout -b my-topic-branch`
-4. Make your changes, lint, then push to to github with `git push --set-upstream origin my-topic-branch`.
+4. Make your changes, lint, then push to github with `git push --set-upstream origin my-topic-branch`.
 5. Visit github and make your pull request.
 
 If you have an existing local repository, please update it before you start, to minimise the chance of merge conflicts.

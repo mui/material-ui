@@ -26,11 +26,11 @@ function getStyles(props, context) {
     root: {
       transition: transitions.easeOut(),
       display: 'inline-block',
+      backgroundColor: 'transparent',
     },
     container: {
       backgroundColor,
       transition: transitions.easeOut(),
-      position: 'relative',
       height: floatingActionButton.buttonSize,
       width: floatingActionButton.buttonSize,
       padding: 0,
@@ -158,7 +158,7 @@ class FloatingActionButton extends Component {
 
   componentDidMount() {
     warning(!this.props.iconClassName || !this.props.children,
-      'You have set both an iconClassName and a child icon. ' +
+      'Material-UI: You have set both an iconClassName and a child icon. ' +
       'It is recommended you use only one method when adding ' +
       'icons to FloatingActionButtons.');
   }
@@ -251,7 +251,7 @@ class FloatingActionButton extends Component {
       iconStyle,
       iconClassName,
       zDepth, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -273,13 +273,13 @@ class FloatingActionButton extends Component {
     let children;
 
     if (childrenProp) {
-      children = extendChildren(childrenProp, {
+      children = extendChildren(childrenProp, (child) => ({
         style: Object.assign({},
           styles.icon,
           mini && styles.iconWhenMini,
           iconStyle,
-          childrenProp.props.style),
-      });
+          child.props.style),
+      }));
     }
 
     const buttonEventHandlers = disabled ? null : {

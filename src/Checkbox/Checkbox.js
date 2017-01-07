@@ -32,7 +32,6 @@ function getStyles(props, context) {
     },
     checkWhenDisabled: {
       fill: checkbox.disabledColor,
-      cursor: 'not-allowed',
     },
     box: {
       position: 'absolute',
@@ -47,7 +46,6 @@ function getStyles(props, context) {
     },
     boxWhenDisabled: {
       fill: props.checked ? 'transparent' : checkbox.disabledColor,
-      cursor: 'not-allowed',
     },
     label: {
       color: props.disabled ? checkbox.labelDisabledColor : checkbox.labelColor,
@@ -172,7 +170,7 @@ class Checkbox extends Component {
       onCheck, // eslint-disable-line no-unused-vars
       checkedIcon,
       uncheckedIcon,
-      ...other,
+      ...other
     } = this.props;
     const styles = getStyles(this.props, this.context);
     const boxStyles =

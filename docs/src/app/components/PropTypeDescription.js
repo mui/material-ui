@@ -100,6 +100,13 @@ function generateDescription(required, description, type) {
   return `${deprecated} ${jsDocText}${signature}`;
 }
 
+const styles = {
+  footnote: {
+    fontSize: '90%',
+    paddingLeft: '15px',
+  },
+};
+
 class PropTypeDescription extends Component {
 
   static propTypes = {
@@ -152,6 +159,8 @@ class PropTypeDescription extends Component {
       text += `| ${key} | ${generatePropType(prop.type)} | ${defaultValue} | ${description} |\n`;
     }
 
+    text += 'Other properties (not documented) are applied to the root element.';
+
     const requiredPropFootnote = (requiredProps === 1) ? '* required property' :
       (requiredProps > 1) ? '* required properties' :
         '';
@@ -159,7 +168,9 @@ class PropTypeDescription extends Component {
     return (
       <div className="propTypeDescription">
         <MarkdownElement text={text} />
-        <div style={{fontSize: '90%', paddingLeft: '15px'}}>{requiredPropFootnote}</div>
+        <div style={styles.footnote}>
+          {requiredPropFootnote}
+        </div>
       </div>
     );
   }

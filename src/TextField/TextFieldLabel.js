@@ -8,7 +8,6 @@ function getStyles(props) {
     top: 38,
     transition: transitions.easeOut(),
     zIndex: 1, // Needed to display label above Chrome's autocomplete field background
-    cursor: props.disabled ? 'not-allowed' : 'text',
     transform: 'scale(1) translate(0, 0)',
     transformOrigin: 'left top',
     pointerEvents: 'auto',
@@ -73,6 +72,8 @@ TextFieldLabel.propTypes = {
   muiTheme: PropTypes.object.isRequired,
   /**
    * Callback function for when the label is selected via a touch tap.
+   *
+   * @param {object} event TouchTap event targeting the text field label.
    */
   onTouchTap: PropTypes.func,
   /**
@@ -80,7 +81,7 @@ TextFieldLabel.propTypes = {
    */
   shrink: PropTypes.bool,
   /**
-   * Override the inline-styles of the root element when focused.
+   * Override the inline-styles of the root element when shrunk.
    */
   shrinkStyle: PropTypes.object,
   /**

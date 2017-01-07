@@ -14,7 +14,7 @@ function getStyles(props, context, state) {
       resize: 'none',
       font: 'inherit',
       padding: 0,
-      cursor: props.disabled ? 'not-allowed' : 'initial',
+      cursor: 'inherit',
     },
     shadow: {
       resize: 'none',
@@ -140,14 +140,12 @@ class EnhancedTextarea extends Component {
       style,
       textareaStyle,
       valueLink, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
-    const rootStyles = Object.assign(styles.root, style, {
-      appearance: 'none', // Fix leaking property.
-    });
+    const rootStyles = Object.assign(styles.root, style);
     const textareaStyles = Object.assign(styles.textarea, textareaStyle);
     const shadowStyles = Object.assign({}, textareaStyles, styles.shadow, shadowStyle);
 

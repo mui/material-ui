@@ -32,13 +32,16 @@ function getStyles(props, context) {
     label: {
       color: disabled ? palette.disabledColor : palette.textColor,
       lineHeight: `${spacing.desktopToolbarHeight}px`,
+      overflow: 'hidden',
       opacity: 1,
       position: 'relative',
       paddingLeft: spacing.desktopGutter,
       paddingRight: spacing.iconSize +
       spacing.desktopGutterLess +
       spacing.desktopGutterMini,
+      textOverflow: 'ellipsis',
       top: 0,
+      whiteSpace: 'nowrap',
     },
     labelWhenOpen: {
       opacity: 0,
@@ -119,6 +122,10 @@ class DropDownMenu extends Component {
      */
     maxHeight: PropTypes.number,
     /**
+     * Override the inline-styles of menu items.
+     */
+    menuItemStyle: PropTypes.object,
+    /**
      * Overrides the styles of `Menu` when the `DropDownMenu` is displayed.
      */
     menuStyle: PropTypes.object,
@@ -131,9 +138,17 @@ class DropDownMenu extends Component {
      */
     onChange: PropTypes.func,
     /**
+     * Callback function fired when the menu is closed.
+     */
+    onClose: PropTypes.func,
+    /**
      * Set to true to have the `DropDownMenu` automatically open on mount.
      */
     openImmediately: PropTypes.bool,
+    /**
+     * Override the inline-styles of selected menu items.
+     */
+    selectedMenuItemStyle: PropTypes.object,
     /**
      * Override the inline-styles of the root element.
      */
@@ -226,6 +241,10 @@ class DropDownMenu extends Component {
     this.setState({
       open: false,
       anchorEl: null,
+    }, () => {
+      if (this.props.onClose) {
+        this.props.onClose();
+      }
     });
   };
 
@@ -234,6 +253,9 @@ class DropDownMenu extends Component {
     this.setState({
       open: false,
     }, () => {
+      if (this.props.onClose) {
+        this.props.onClose();
+      }
       if (this.props.onChange) {
         this.props.onChange(event, index, child.props.value);
       }
@@ -252,11 +274,14 @@ class DropDownMenu extends Component {
       listStyle,
       maxHeight,
       menuStyle: menuStyleProp,
+      onClose, // eslint-disable-line no-unused-vars
       openImmediately, // eslint-disable-line no-unused-vars
+      menuItemStyle,
+      selectedMenuItemStyle,
       style,
       underlineStyle,
       value,
-      ...other,
+      ...other
     } = this.props;
 
     const {
@@ -315,6 +340,8 @@ class DropDownMenu extends Component {
             style={menuStyle}
             listStyle={listStyle}
             onItemTouchTap={this.handleItemTouchTap}
+            menuItemStyle={menuItemStyle}
+            selectedMenuItemStyle={selectedMenuItemStyle}
           >
             {children}
           </Menu>

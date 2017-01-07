@@ -34,7 +34,12 @@ const dataSourceConfig = {
   value: 'valueKey',
 };
 
-const AutoCompleteExampleNoFilter = () => (
+/**
+ * The first example has `MenuItem`s in its data source that display on data entry.
+ * The second example uses an array of values as its `dataSource`, and updates on focus.
+ * Both examples have filtering disabled.
+ */
+const AutoCompleteExampleDataSource = () => (
   <div>
     <AutoComplete
       hintText="text-value data"
@@ -57,4 +62,4 @@ const AutoCompleteExampleNoFilter = () => (
   </div>
 );
 
-export default AutoCompleteExampleNoFilter;
+export default AutoCompleteExampleDataSource;

@@ -159,7 +159,7 @@ export default function getMuiTheme(muiTheme, ...more) {
     menuItem: {
       dataHeight: 32,
       height: 48,
-      hoverColor: fade(palette.textColor, 0.035),
+      hoverColor: fade(palette.textColor, 0.1),
       padding: spacing.desktopGutter,
       selectedTextColor: palette.accent1Color,
       rightIconDesktopFill: grey600,
@@ -284,7 +284,7 @@ export default function getMuiTheme(muiTheme, ...more) {
     textField: {
       textColor: palette.textColor,
       hintColor: palette.disabledColor,
-      floatingLabelColor: palette.textColor,
+      floatingLabelColor: palette.disabledColor,
       disabledTextColor: palette.disabledColor,
       errorColor: red500,
       focusColor: palette.primary1Color,
@@ -293,7 +293,7 @@ export default function getMuiTheme(muiTheme, ...more) {
     },
     timePicker: {
       color: palette.alternateTextColor,
-      textColor: palette.accent3Color,
+      textColor: palette.alternateTextColor,
       accentColor: palette.primary1Color,
       clockColor: palette.textColor,
       clockCircleColor: palette.clockCircleColor,
@@ -332,8 +332,10 @@ export default function getMuiTheme(muiTheme, ...more) {
     rawTheme: baseTheme, // To provide backward compatibility.
   });
 
-  const transformers = [autoprefixer, rtl, callOnce].map((t) => t(muiTheme))
+  const transformers = [autoprefixer, rtl, callOnce]
+    .map((t) => t(muiTheme))
     .filter((t) => t);
+
   muiTheme.prepareStyles = compose(...transformers);
 
   return muiTheme;

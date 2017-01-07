@@ -60,7 +60,7 @@ class TransitionItem extends Component {
     const {
       style,
       children,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

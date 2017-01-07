@@ -31,7 +31,7 @@ class SlideIn extends Component {
       childStyle,
       direction,
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

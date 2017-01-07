@@ -11,6 +11,7 @@ function getStyles(props, context) {
       paddingRight: baseTheme.spacing.desktopGutterLess,
       lineHeight: `${toolbar.height}px`,
       fontSize: toolbar.titleFontSize,
+      fontFamily: baseTheme.fontFamily,
       position: 'relative',
       textOverflow: 'ellipsis',
       whiteSpace: 'nowrap',
@@ -46,7 +47,7 @@ class ToolbarTitle extends Component {
       className,
       style,
       text,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

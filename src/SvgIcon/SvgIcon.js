@@ -71,7 +71,7 @@ class SvgIcon extends Component {
       onMouseLeave, // eslint-disable-line no-unused-vars
       style,
       viewBox,
-      ...other,
+      ...other
     } = this.props;
 
     const {

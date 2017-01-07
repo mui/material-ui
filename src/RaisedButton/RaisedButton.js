@@ -66,7 +66,6 @@ function getStyles(props, context, state) {
       minWidth: fullWidth ? '100%' : button.minWidth,
     },
     button: {
-      position: 'relative',
       height: buttonHeight,
       lineHeight: `${buttonHeight}px`,
       width: '100%',
@@ -315,6 +314,7 @@ class RaisedButton extends Component {
 
   handleTouchEnd = (event) => {
     this.setState({
+      touched: true,
       zDepth: this.state.initialZDepth,
     });
 
@@ -352,7 +352,7 @@ class RaisedButton extends Component {
       rippleStyle,
       secondary, // eslint-disable-line no-unused-vars
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

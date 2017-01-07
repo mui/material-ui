@@ -15,4 +15,13 @@ describe('<MenuItem />', () => {
     const wrapper = shallowWithContext(<MenuItem />);
     assert.strictEqual(wrapper.find(ListItem).props().style.minHeight, '48px');
   });
+
+  it('should pass hoverColor from the theme to the <ListItem />', () => {
+    const testColor = '#ededed';
+    const muiThemeWithHoverColor = getMuiTheme({menuItem: {hoverColor: testColor}});
+    const shallowWithHoverColor = (node) => shallow(node, {context: {muiTheme: muiThemeWithHoverColor}});
+
+    const wrapper = shallowWithHoverColor(<MenuItem />);
+    assert.strictEqual(wrapper.find(ListItem).prop('hoverColor'), testColor);
+  });
 });

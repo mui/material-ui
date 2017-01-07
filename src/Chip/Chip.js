@@ -240,21 +240,21 @@ class Chip extends Component {
       labelColor, // eslint-disable-line no-unused-vars,prefer-const
       backgroundColor, // eslint-disable-line no-unused-vars,prefer-const
       onRequestDelete, // eslint-disable-line no-unused-vars,prefer-const
-      ...other,
+      ...other
     } = this.props;
 
     const deletable = this.props.onRequestDelete;
     let avatar = null;
 
-    const deleteIcon = deletable ?
+    const deleteIcon = deletable ? (
       <DeleteIcon
         color={styles.deleteIcon.color}
         style={styles.deleteIcon}
         onTouchTap={this.handleTouchTapDeleteIcon}
         onMouseEnter={this.handleMouseEnterDeleteIcon}
         onMouseLeave={this.handleMouseLeaveDeleteIcon}
-      /> :
-      null;
+      />
+    ) : null;
 
     let children = childrenProp;
     const childCount = React.Children.count(children);

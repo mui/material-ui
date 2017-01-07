@@ -79,6 +79,10 @@ class Menu extends Component {
      */
     maxHeight: PropTypes.number,
     /**
+     * Override the inline-styles of menu items.
+     */
+    menuItemStyle: PropTypes.object,
+    /**
      * If true, `value` must be an array and the menu will support
      * multiple selections.
      */
@@ -111,6 +115,19 @@ class Menu extends Component {
     onItemTouchTap: PropTypes.func,
     /** @ignore */
     onKeyDown: PropTypes.func,
+    /**
+     * Callback function fired when the focus on a `MenuItem` is changed.
+     * There will be some "duplicate" changes reported if two different
+     * focusing event happen, for example if a `MenuItem` is focused via
+     * the keyboard and then it is clicked on.
+     *
+     * @param {object} event The event that triggered the focus change.
+     * The event can be null since the focus can be changed for non-event
+     * reasons such as prop changes.
+     * @param {number} newFocusIndex The index of the newly focused
+     * `MenuItem` or `-1` if focus was lost.
+     */
+    onMenuItemFocusChange: PropTypes.func,
     /**
      * Override the inline-styles of selected menu items.
      */
@@ -160,8 +177,12 @@ class Menu extends Component {
     const filteredChildren = this.getFilteredChildren(props.children);
     const selectedIndex = this.getSelectedIndex(props, filteredChildren);
 
+    const newFocusIndex = props.disableAutoFocus ? -1 : selectedIndex >= 0 ? selectedIndex : 0;
+    if (newFocusIndex !== -1 && props.onMenuItemFocusChange) {
+      props.onMenuItemFocusChange(null, newFocusIndex);
+    }
     this.state = {
-      focusIndex: props.disableAutoFocus ? -1 : selectedIndex >= 0 ? selectedIndex : 0,
+      focusIndex: newFocusIndex,
       isKeyboardFocused: props.initiallyKeyboardFocused,
       keyWidth: props.desktop ? 64 : 56,
     };
@@ -180,8 +201,12 @@ class Menu extends Component {
     const filteredChildren = this.getFilteredChildren(nextProps.children);
     const selectedIndex = this.getSelectedIndex(nextProps, filteredChildren);
 
+    const newFocusIndex = nextProps.disableAutoFocus ? -1 : selectedIndex >= 0 ? selectedIndex : 0;
+    if (newFocusIndex !== this.state.focusIndex && this.props.onMenuItemFocusChange) {
+      this.props.onMenuItemFocusChange(null, newFocusIndex);
+    }
     this.setState({
-      focusIndex: nextProps.disableAutoFocus ? -1 : selectedIndex >= 0 ? selectedIndex : 0,
+      focusIndex: newFocusIndex,
       keyWidth: nextProps.desktop ? 64 : 56,
     });
   }
@@ -203,7 +228,7 @@ class Menu extends Component {
       return;
     }
 
-    this.setFocusIndex(-1, false);
+    this.setFocusIndex(event, -1, false);
   };
 
   // Do not use outside of this component, it will be removed once valueLink is deprecated
@@ -233,6 +258,7 @@ class Menu extends Component {
   cloneMenuItem(child, childIndex, styles, index) {
     const {
       desktop,
+      menuItemStyle,
       selectedMenuItemStyle,
     } = this.props;
 
@@ -243,7 +269,7 @@ class Menu extends Component {
       selectedChildrenStyles = Object.assign(styles.selectedMenuItem, selectedMenuItemStyle);
     }
 
-    const mergedChildrenStyles = Object.assign({}, child.props.style, selectedChildrenStyles);
+    const mergedChildrenStyles = Object.assign({}, child.props.style, menuItemStyle, selectedChildrenStyles);
 
     const isFocused = childIndex === this.state.focusIndex;
     let focusState = 'none';
@@ -264,13 +290,13 @@ class Menu extends Component {
     });
   }
 
-  decrementKeyboardFocusIndex() {
+  decrementKeyboardFocusIndex(event) {
     let index = this.state.focusIndex;
 
     index--;
     if (index < 0) index = 0;
 
-    this.setFocusIndex(index, true);
+    this.setFocusIndex(event, index, true);
   }
 
   getMenuItemCount(filteredChildren) {
@@ -303,7 +329,7 @@ class Menu extends Component {
     switch (key) {
       case 'down':
         event.preventDefault();
-        this.incrementKeyboardFocusIndex(filteredChildren);
+        this.incrementKeyboardFocusIndex(event, filteredChildren);
         break;
       case 'esc':
         this.props.onEscKeyDown(event);
@@ -311,19 +337,19 @@ class Menu extends Component {
       case 'tab':
         event.preventDefault();
         if (event.shiftKey) {
-          this.decrementKeyboardFocusIndex();
+          this.decrementKeyboardFocusIndex(event);
         } else {
-          this.incrementKeyboardFocusIndex(filteredChildren);
+          this.incrementKeyboardFocusIndex(event, filteredChildren);
         }
         break;
       case 'up':
         event.preventDefault();
-        this.decrementKeyboardFocusIndex();
+        this.decrementKeyboardFocusIndex(event);
         break;
       default:
         if (key && key.length === 1) {
           const hotKeys = this.hotKeyHolder.append(key);
-          if (this.setFocusIndexStartsWith(hotKeys)) {
+          if (this.setFocusIndexStartsWith(event, hotKeys)) {
             event.preventDefault();
           }
         }
@@ -331,7 +357,7 @@ class Menu extends Component {
     this.props.onKeyDown(event);
   };
 
-  setFocusIndexStartsWith(keys) {
+  setFocusIndexStartsWith(event, keys) {
     let foundIndex = -1;
     React.Children.forEach(this.props.children, (child, index) => {
       if (foundIndex >= 0) {
@@ -343,7 +369,7 @@ class Menu extends Component {
       }
     });
     if (foundIndex >= 0) {
-      this.setFocusIndex(foundIndex, true);
+      this.setFocusIndex(event, foundIndex, true);
       return true;
     }
     return false;
@@ -357,7 +383,7 @@ class Menu extends Component {
     const itemValue = item.props.value;
     const focusIndex = React.isValidElement(children) ? 0 : children.indexOf(item);
 
-    this.setFocusIndex(focusIndex, false);
+    this.setFocusIndex(event, focusIndex, false);
 
     if (multiple) {
       const itemIndex = menuValue.indexOf(itemValue);
@@ -376,14 +402,14 @@ class Menu extends Component {
     this.props.onItemTouchTap(event, item, index);
   }
 
-  incrementKeyboardFocusIndex(filteredChildren) {
+  incrementKeyboardFocusIndex(event, filteredChildren) {
     let index = this.state.focusIndex;
     const maxIndex = this.getMenuItemCount(filteredChildren) - 1;
 
     index++;
     if (index > maxIndex) index = maxIndex;
 
-    this.setFocusIndex(index, true);
+    this.setFocusIndex(event, index, true);
   }
 
   isChildSelected(child, props) {
@@ -397,7 +423,12 @@ class Menu extends Component {
     }
   }
 
-  setFocusIndex(newIndex, isKeyboardFocused) {
+  setFocusIndex(event, newIndex, isKeyboardFocused) {
+    if (this.props.onMenuItemFocusChange) {
+      // Do this even if `newIndex === this.state.focusIndex` to allow users
+      // to detect up-arrow on the first MenuItem or down-arrow on the last.
+      this.props.onMenuItemFocusChange(event, newIndex);
+    }
     this.setState({
       focusIndex: newIndex,
       isKeyboardFocused: isKeyboardFocused,
@@ -417,6 +448,30 @@ class Menu extends Component {
       if (scrollTop < menuItemHeight) scrollTop = 0;
 
       ReactDOM.findDOMNode(this.refs.scrollContainer).scrollTop = scrollTop;
+    }
+  }
+
+  cancelScrollEvent(event) {
+    event.stopPropagation();
+    event.preventDefault();
+    return false;
+  }
+
+  handleOnWheel = (event) => {
+    const scrollContainer = this.refs.scrollContainer;
+    // Only scroll lock if the the Menu is scrollable.
+    if (scrollContainer.scrollHeight <= scrollContainer.clientHeight) return;
+
+    const {scrollTop, scrollHeight, clientHeight} = scrollContainer;
+    const wheelDelta = event.deltaY;
+    const isDeltaPositive = wheelDelta > 0;
+
+    if (isDeltaPositive && wheelDelta > scrollHeight - clientHeight - scrollTop) {
+      scrollContainer.scrollTop = scrollHeight;
+      return this.cancelScrollEvent(event);
+    } else if (!isDeltaPositive && -wheelDelta > scrollTop) {
+      scrollContainer.scrollTop = 0;
+      return this.cancelScrollEvent(event);
     }
   }
 
@@ -450,12 +505,14 @@ class Menu extends Component {
       multiple, // eslint-disable-line no-unused-vars
       onItemTouchTap, // eslint-disable-line no-unused-vars
       onEscKeyDown, // eslint-disable-line no-unused-vars
+      onMenuItemFocusChange, // eslint-disable-line no-unused-vars
       selectedMenuItemStyle, // eslint-disable-line no-unused-vars
+      menuItemStyle, // eslint-disable-line no-unused-vars
       style,
       value, // eslint-disable-line no-unused-vars
       valueLink, // eslint-disable-line no-unused-vars
       width, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -471,7 +528,9 @@ class Menu extends Component {
       const childIsADivider = child.type && child.type.muiName === 'Divider';
       const childIsDisabled = child.props.disabled;
 
-      const clonedChild = childIsADivider ? React.cloneElement(child, {style: styles.divider}) :
+      const clonedChild = childIsADivider ? React.cloneElement(child, {
+        style: Object.assign({}, styles.divider, child.props.style),
+      }) :
         childIsDisabled ? React.cloneElement(child, {desktop: desktop}) :
         this.cloneMenuItem(child, menuItemIndex, styles, index);
 
@@ -486,6 +545,7 @@ class Menu extends Component {
       <ClickAwayListener onClickAway={this.handleClickAway}>
         <div
           onKeyDown={this.handleKeyDown}
+          onWheel={this.handleOnWheel}
           style={prepareStyles(mergedRootStyles)}
           ref="scrollContainer"
         >

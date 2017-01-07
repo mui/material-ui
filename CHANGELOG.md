@@ -1,5 +1,154 @@
 ## HEAD
 
+## 0.16.6
+###### _Dec 25, 2016_
+
+We are releasing sooner than we use to for this **special day** :christmas_tree::gift:.
+17 contributors are making that last release of the year possible.
+
+2016 has been an exceptional year for Material-UI.
+- We went from 40k to 180k [downloads](https://npm-stat.com/charts.html?package=material-ui&from=2014-12-24&to=2016-12-25) a month. :package:
+- We went from 12k to 22k [stars](http://www.timqian.com/star-history/#callemall/material-ui). :star:
+
+That wouldn't have been possible without this awesome community.
+**Thank you!**
+
+But this's just the beginning, some [exciting stuff](https://github.com/callemall/material-ui/blob/master/ROADMAP.md) is coming in 2017 :sparkles:.
+You can preview a **very early** version of the `next` branch following [that link](https://material-ui-1dab0.firebaseapp.com).
+
+##### Component Fixes / Enhancements
+
+- [IconButton] Add a hoveredStyle property (#5755)
+- [Menu] Add a dividerStyle property (#5734)
+- [Menu][DropDownMenu][SelectField] Add menuItemStyle and menuItemSelectedStyle properties (#5389)
+- [Popover] Fix ghost clicks in onRequestClose (#5749)
+- [Popover] Fix bad positioning on IOS devices (#4638)
+- [Popover] Revert the latest PR following a regression (#5797)
+- [Stepper] Allow custom step connector (#5741)
+- [Stepper] Fix content container's height expantion (#5733)
+- [TimeDisplay] Inherit text color from theme (#5816)
+- [TouchRipple] Fix issue #5626 (#5763)
+
+##### Docs
+
+- [AutoComplete] Add a controlled example (#5795)
+- [Slider] Add onChange callback signatures to docs (#5760)
+- [TextField] Add callback signatures to docs (#5804)
+- [docs] Add link to babel-plugin-material-ui (#5754)
+- [docs] Node is written mostly in C++, not in C (#5776)
+- [docs] Remove redundant words (#5778)
+- [docs] Add showcase item - Realty Advisors Elite (#5806)
+
+##### Core
+
+- [core] Add support for Webpack 2/Rollup tree shaking in `svg-icons` sub module (#5774)
+
+## 0.16.5
+###### _Dec 9, 2016_
+
+This is another release improving the stability of `v0.16.x`.
+
+##### Component Fixes / Enhancements
+
+- [AutoComplete] Add an onClose callback property (#5655)
+- [AutoComplete] Fix the controlled behavior (#5685)
+- [DatePicker] Auto switch the view when a year is selected (#5700)
+- [DropDownMenu] Add an onClose callback property (#5653)
+- [DropDownMenu] Do not wrap below dropdown menu (#4755)
+- [EnhancedButton] Fix an accessibility issue (#5657)
+- [EnhancedButton] Only apply type when needed (#5728)
+- [IconMenu] Add listStyle prop (#5630)
+- [IconMenu] Fix controlled IconMenus to honor onRequestChange (#5704)
+- [MenuItem] Add right padding when there is icon (#4762)
+- [Popover] Add the missing zIndex (#5730)
+- [List] Fix padding styles object (#5661)
+- [SelectField] Scroll wheel event bubbling to parent container (#4154)
+- [StepLabel] Address a box model issue (#5690)
+- [SelectField] Add listStyle prop (#5631)
+- [TextField] Fix errorStyle priority (#5654)
+- [TextField] Add a floatingLabelShrinkStyle property (#5669)
+- [autoprefixer] Fix a style issue with user agent all and display flex (#5668)
+- [makeSelectable] Fix missing check for existence of onChange (#5589)
+
+##### Docs
+
+- [docs] Add a Q&A section around the next branch (#5718)
+- [docs] Fix typo with sentence for AutoComplete (#5596)
+- [docs] Fix origin documentation (#5676)
+- [docs] Fix Linear Progress Prop Documentation (#5680)
+- [docs] Fix a scroll issue on (iOS) (a12dca847af6833dbf671e48c736047d6909ec53)
+
+##### Core
+
+- [core] Apply 3 different fixes (#5695)
+
+## 0.16.4
+###### _Nov 17, 2016_
+
+##### Component Fixes / Enhancements
+
+- [npm] Rollback the react dependency path to `v15.0.0` (417913e41fbc3366c6997258263270c6d7465c1a)
+
+## 0.16.3
+###### _Nov 17, 2016_
+
+This release is intended to solve an [issue](https://github.com/callemall/material-ui/issues/5573) with `react-tap-event-plugin` following the release of React `v15.4.0`.
+
+##### Component Fixes / Enhancements
+
+- [ListItem] Fix hover on touch devices (#5566)
+- [core] include `react-tap-event-plugin@^2.0.0` for `react@^15.4.0` (#5572)
+- [core] Add support for Webpack 2/Rollup tree shaking (#5545)
+
+##### Docs
+
+- [docs] Upgrade React to v15.4.0 (#5575)
+
+## 0.16.2
+###### _Nov 13, 2016_
+
+This is another release improving the stability of `v0.16.x` while we are working on get `next` out of the door.
+
+##### Component Fixes / Enhancements
+
+- [AutoComplete] Fire onUpdateInput when an item from the dropdown is selected (#5518)
+- [AutoComplete] Fix Popover's style overriding popoverProps (#5516)
+- [Card] Add closeIcon and openIcon for customizability (#5513)
+- [FloatingActionButton] Fix regression with n children (#5468)
+- [GridList] Add the support for cellHeight="auto" (#5452)
+- [GridTitle] Add a titleStyle property (#5535)
+- [IconMenu] Change IconMenu to conditionally merge button styles (#5496)
+- [IE] Remove the unsupported initial property (#5539)
+- [MenuItem][ListItem] Allow overriding hoverColor (#5502)
+- [ListItem] Fix an issue with the controlled behavior (#5514)
+- [ListItem] Clear hover state if componet get's disabled (#5528)
+- [Popover] Fix support for invalid `anchorEl` (#5444)
+- [RaisedButton] Fix hover on touch devices (#5536)
+- [Stepper] Fix children count method (#5429)
+- [Stepper] Add iconContainerStyle to StepButton and StepLabel (#5507)
+- [Tabs] Fix Firefox height issue (bf25bc118523b359bba5a5540205174a1c2d9e27)
+- [Table] Warning on rendering attempt of unsupported child (#5520)
+- [TextField] Add ability to style label color when a value is present (#5490)
+- [TextField] Fix wrong style behing applied to div elements (#5446)
+- [TextField] Fix floatingLabelFocusStyle when floatingLabelFixed is true (#5487)
+- [TextField] Remove the isClean logic (#5540)
+- [TimePicker] Fix `autoOk` closing the dialog too early (#5511)
+- [ToolbarGroup] Fix vertical alignment (#5515)
+- [ToolbarTitle] Take font family from base theme (#5434)
+- [Toggle] Fix label propTypes from `string` to `node` (#5474)
+
+##### Core
+
+- [npm] Upgrade the dependencies (#5466, #5537)
+
+##### Docs
+
+- [docs] Add one more resource around the style migration (0d375d6271a2c65e6e608dde28ee4ca55defd81b)
+- [docs] Add a note regarding other properties (#5491)
+- [docs] Add redux-form in the Related projects section (3e10f203bc3a7d79f94011586c134b6e17a69016)
+- [docs] Add CReMa in the Related projects section (#5431)
+
+
 ## 0.16.1
 ###### _Oct 18, 2016_
 

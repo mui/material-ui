@@ -6,6 +6,7 @@ import propTypes from '../utils/propTypes';
 import Paper from '../Paper';
 import throttle from 'lodash.throttle';
 import PopoverAnimationDefault from './PopoverAnimationDefault';
+import {isIOS, getOffsetTop} from '../utils/iOSHelpers';
 
 const styles = {
   root: {
@@ -24,8 +25,8 @@ class Popover extends Component {
      * This is the point on the anchor where the popover's
      * `targetOrigin` will attach to.
      * Options:
-     * vertical: [top, middle, bottom];
-     * horizontal: [left, center, right].
+     * vertical: [top, center, bottom]
+     * horizontal: [left, middle, right].
      */
     anchorOrigin: propTypes.origin,
     /**
@@ -74,8 +75,8 @@ class Popover extends Component {
      * This is the point on the popover which will attach to
      * the anchor's origin.
      * Options:
-     * vertical: [top, middle, bottom];
-     * horizontal: [left, center, right].
+     * vertical: [top, center, bottom]
+     * horizontal: [left, middle, right].
      */
     targetOrigin: propTypes.origin,
     /**
@@ -187,7 +188,7 @@ class Popover extends Component {
       style,
       targetOrigin,
       useLayerForClickAway, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     let styleRoot = style;
@@ -195,6 +196,7 @@ class Popover extends Component {
     if (!animated) {
       styleRoot = {
         position: 'fixed',
+        zIndex: this.context.muiTheme.zIndex.popover,
       };
 
       if (!this.state.open) {
@@ -202,7 +204,7 @@ class Popover extends Component {
       }
 
       return (
-        <Paper style={Object.assign({}, styleRoot, style)} {...other}>
+        <Paper style={Object.assign(styleRoot, style)} {...other}>
           {children}
         </Paper>
       );
@@ -228,7 +230,8 @@ class Popover extends Component {
     }
   }
 
-  componentClickAway = () => {
+  componentClickAway = (event) => {
+    event.preventDefault();
     this.requestClose('clickAway');
   };
 
@@ -246,7 +249,14 @@ class Popover extends Component {
     };
 
     a.right = rect.right || a.left + a.width;
-    a.bottom = rect.bottom || a.top + a.height;
+
+    // The fixed positioning isn't respected on iOS when an input is focused.
+    // We need to compute the position from the top of the page and not the viewport.
+    if (isIOS() && document.activeElement.tagName === 'INPUT') {
+      a.bottom = getOffsetTop(el) + a.height;
+    } else {
+      a.bottom = rect.bottom || a.top + a.height;
+    }
     a.middle = a.left + ((a.right - a.left) / 2);
     a.center = a.top + ((a.bottom - a.top) / 2);
 
@@ -360,24 +370,28 @@ class Popover extends Component {
 
     if (targetPosition.top < 0 || targetPosition.top + target.bottom > window.innerHeight) {
       let newTop = anchor[anchorPos.vertical] - target[positions.y[0]];
-      if (newTop + target.bottom <= window.innerHeight)
+      if (newTop + target.bottom <= window.innerHeight) {
         targetPosition.top = Math.max(0, newTop);
-      else {
+      } else {
         newTop = anchor[anchorPos.vertical] - target[positions.y[1]];
-        if (newTop + target.bottom <= window.innerHeight)
+        if (newTop + target.bottom <= window.innerHeight) {
           targetPosition.top = Math.max(0, newTop);
+        }
       }
     }
+
     if (targetPosition.left < 0 || targetPosition.left + target.right > window.innerWidth) {
       let newLeft = anchor[anchorPos.horizontal] - target[positions.x[0]];
-      if (newLeft + target.right <= window.innerWidth)
+      if (newLeft + target.right <= window.innerWidth) {
         targetPosition.left = Math.max(0, newLeft);
-      else {
+      } else {
         newLeft = anchor[anchorPos.horizontal] - target[positions.x[1]];
-        if (newLeft + target.right <= window.innerWidth)
+        if (newLeft + target.right <= window.innerWidth) {
           targetPosition.left = Math.max(0, newLeft);
+        }
       }
     }
+
     return targetPosition;
   }
 

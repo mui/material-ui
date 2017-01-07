@@ -114,6 +114,10 @@ class GridTile extends Component {
      * Position of the title bar (container of title, subtitle and action icon).
      */
     titlePosition: PropTypes.oneOf(['top', 'bottom']),
+    /**
+     * Override the inline-styles of the title element.
+     */
+    titleStyle: PropTypes.object,
   };
 
   static defaultProps = {
@@ -171,12 +175,13 @@ class GridTile extends Component {
       subtitle,
       titlePosition, // eslint-disable-line no-unused-vars
       titleBackground, // eslint-disable-line no-unused-vars
+      titleStyle,
       actionIcon, // eslint-disable-line no-unused-vars
       actionPosition, // eslint-disable-line no-unused-vars
       style,
       children,
       containerElement,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -189,10 +194,20 @@ class GridTile extends Component {
       titleBar = (
         <div key="titlebar" style={prepareStyles(styles.titleBar)}>
           <div style={prepareStyles(styles.titleWrap)}>
-            <div style={prepareStyles(styles.title)}>{title}</div>
-            {subtitle ? (<div style={prepareStyles(styles.subtitle)}>{subtitle}</div>) : null}
+            <div style={prepareStyles(Object.assign(styles.title, titleStyle))}>
+              {title}
+            </div>
+            {subtitle ? (
+              <div style={prepareStyles(styles.subtitle)}>
+                {subtitle}
+              </div>
+            ) : null}
           </div>
-          {actionIcon ? (<div style={prepareStyles(styles.actionIcon)}>{actionIcon}</div>) : null}
+          {actionIcon ? (
+            <div style={prepareStyles(styles.actionIcon)}>
+              {actionIcon}
+            </div>
+          ) : null}
         </div>
       );
     }

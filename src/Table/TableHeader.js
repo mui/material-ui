@@ -169,7 +169,9 @@ class TableHeader extends Component {
   }
 
   handleCheckAll = (event, checked) => {
-    if (this.props.onSelectAll) this.props.onSelectAll(checked);
+    if (this.props.onSelectAll) {
+      this.props.onSelectAll(checked);
+    }
   };
 
   render() {
