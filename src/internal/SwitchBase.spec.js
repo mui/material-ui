@@ -115,7 +115,6 @@ describe('<SwitchBase />', () => {
     });
 
     it('should not not be checked', () => {
-      // console.log(wrapper.debug());
       assertIsNotChecked(classes, wrapper);
     });
 
