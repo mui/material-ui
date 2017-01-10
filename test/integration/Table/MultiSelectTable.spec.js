@@ -58,5 +58,17 @@ describe('<MultiSelectTable />', () => {
       ],
       'should uncheck all the checkboxes'
     );
+
+    wrapper.update();
+    assert.deepEqual(
+      wrapper.find('Checkbox').map((checkbox) => checkbox.props().checked),
+      [
+        false,
+        false,
+        false,
+        false,
+      ],
+      'should be invariant to update'
+    );
   });
 });
