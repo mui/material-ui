@@ -1,4 +1,7 @@
 import React, {Component, PropTypes} from 'react';
+import ReactDOM from 'react-dom';
+import EventListener from 'react-event-listener';
+import keycode from 'keycode';
 import {dateTimeFormat, formatIso, isEqualDate} from './dateUtils';
 import DatePickerDialog from './DatePickerDialog';
 import TextField from '../TextField';
@@ -154,6 +157,7 @@ class DatePicker extends Component {
 
   state = {
     date: undefined,
+    isFocused: false,
   };
 
   componentWillMount() {
@@ -195,8 +199,15 @@ class DatePicker extends Component {
    * Alias for `openDialog()` for an api consistent with TextField.
    */
   focus() {
-    this.openDialog();
+    this.handleFocus();
   }
+
+  createEvent = () => {
+    const inputComponent = ReactDOM.findDOMNode(this.refs.input);
+    const input = inputComponent.getElementsByTagName('input')[0];
+
+    input.focus();
+  };
 
   handleAccept = (date) => {
     if (!this.isControlled()) {
@@ -204,24 +215,53 @@ class DatePicker extends Component {
         date: date,
       });
     }
+
+    setTimeout(() => {
+      this.setState({
+        isFocused: false,
+      });
+    }, 0);
+    this.refs.input.focus();
+
     if (this.props.onChange) {
       this.props.onChange(null, date);
     }
   };
 
-  handleBlur = (event) => {
-    this.refs.dialogWindow.dismiss();
+  handleBlur = (event, shouldSetFocus) => {
+    if (shouldSetFocus) {
+      this.createEvent();
+    }
+
+    if (this.state.isFocused) {
+      this.setState({
+        isFocused: false,
+      }, this.refs.dialogWindow.dismiss);
+    }
 
     if (this.props.onBlur) {
       this.props.onBlur(event);
     }
   };
 
+  handleDismiss = () => {
+    if (this.state.isFocused) {
+      this.refs.input.focus();
+      this.setState({
+        isFocused: false,
+      });
+    }
+
+    if (this.props.onDismiss) {
+      this.props.onDismiss(event);
+    }
+  };
+
   handleFocus = (event) => {
-    if (!this.props.disabled) {
-      setTimeout(() => {
-        this.openDialog();
-      }, 0);
+    if (!this.props.disabled && !this.state.isFocused) {
+      this.setState({
+        isFocused: true,
+      }, this.openDialog);
     }
 
     if (this.props.onFocus) {
@@ -234,10 +274,18 @@ class DatePicker extends Component {
       this.props.onTouchTap(event);
     }
 
-    if (!this.props.disabled) {
-      setTimeout(() => {
-        this.openDialog();
-      }, 0);
+    this.handleFocus(event);
+  };
+
+  handleWindowKeyUp = (event) => {
+    if (!this.refs.dialogWindow.state.open) {
+      return;
+    }
+
+    switch (keycode(event)) {
+      case 'tab':
+        this.handleBlur(event, !this.element.contains(event.target));
+        break;
     }
   };
 
@@ -281,7 +329,6 @@ class DatePicker extends Component {
       minDate,
       mode,
       okLabel,
-      onDismiss,
       onFocus, // eslint-disable-line no-unused-vars
       onShow,
       onTouchTap, // eslint-disable-line no-unused-vars
@@ -295,15 +342,19 @@ class DatePicker extends Component {
     const formatDate = formatDateProp || this.formatDate;
 
     return (
-      <div className={className} style={prepareStyles(Object.assign({}, style))}>
+      <div ref={(node) => this.element = node} className={className} style={prepareStyles(Object.assign({}, style))}>
         <TextField
           {...other}
           onFocus={this.handleFocus}
-          onBlur={this.handleBlur}
           onTouchTap={this.handleTouchTap}
+          readOnly={true}
           ref="input"
           style={textFieldStyle}
           value={this.state.date ? formatDate(this.state.date) : ''}
+        />
+        <EventListener
+          target="window"
+          onKeyDown={this.handleWindowKeyUp}
         />
         <DatePickerDialog
           DateTimeFormat={DateTimeFormat}
@@ -321,7 +372,7 @@ class DatePicker extends Component {
           okLabel={okLabel}
           onAccept={this.handleAccept}
           onShow={onShow}
-          onDismiss={onDismiss}
+          onDismiss={this.handleDismiss}
           ref="dialogWindow"
           shouldDisableDate={shouldDisableDate}
         />
