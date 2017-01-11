@@ -177,6 +177,8 @@ class DatePicker extends Component {
     }
   }
 
+  element = null;
+
   getDate() {
     /**
      * if the date is not selected then set it to new date
