@@ -2,10 +2,10 @@
 
 import React, { Component, PropTypes } from 'react';
 import shallowEqual from 'recompose/shallowEqual';
-import { Input, InputLabel } from '../Input';
-import FormControl from '../Form/FormControl';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { Input, InputLabel } from '../Input';
+import FormControl from '../Form/FormControl';
 
 export const styleSheet = createStyleSheet('TextField', () => {
   return {
