@@ -9,6 +9,8 @@ import {
 } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import Divider from 'material-ui/Divider';
+import FolderIcon from 'material-ui/svg-icons/folder';
+import ImageIcon from 'material-ui/svg-icons/image';
 
 const styleSheet = createStyleSheet('InsetDividers', (theme) => ({
   root: {
@@ -23,12 +25,12 @@ export default function InsetDividers(props, context) {
   return (
     <List className={classes.root}>
       <ListItem button>
-        <Avatar icon={<span className="material-icons">folder</span>} />
+        <Avatar icon={<FolderIcon />} />
         <ListItemText primary="Work" secondary="Jan 28, 2014" />
       </ListItem>
       <Divider inset />
       <ListItem button>
-        <Avatar icon={<span className="material-icons">image</span>} />
+        <Avatar icon={<ImageIcon />} />
         <ListItemText primary="Vacation" secondary="Jan 20, 2014" />
       </ListItem>
     </List>

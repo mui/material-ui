@@ -4,6 +4,9 @@ import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
 import Tabs from 'material-ui/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
+import PhoneIcon from 'material-ui/svg-icons/phone';
+import FavoriteIcon from 'material-ui/svg-icons/favorite';
+import PersonPinIcon from 'material-ui/svg-icons/person-pin';
 
 export default class IconTabs extends Component {
   state = {
@@ -23,9 +26,9 @@ export default class IconTabs extends Component {
           textColor="accent"
           fullWidth
         >
-          <Tab icon={<span className="material-icons">phone</span>} />
-          <Tab icon={<span className="material-icons">favorite</span>} />
-          <Tab icon={<span className="material-icons">person_pin</span>} />
+          <Tab icon={<PhoneIcon />} />
+          <Tab icon={<FavoriteIcon />} />
+          <Tab icon={<PersonPinIcon />} />
         </Tabs>
       </Paper>
     );

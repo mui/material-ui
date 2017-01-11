@@ -8,6 +8,7 @@ import {
   ListItemText,
   ListItemIcon,
 } from 'material-ui/List';
+import StarIcon from 'material-ui/svg-icons/star';
 
 const styleSheet = createStyleSheet('InsetList', (theme) => ({
   root: {
@@ -23,7 +24,7 @@ function InsetList(props, context) {
     <List className={classes.root}>
       <ListItem button>
         <ListItemIcon>
-          <span className="material-icons">star</span>
+          <StarIcon />
         </ListItemIcon>
         <ListItemText inset primary="Chelsea Otakan" />
       </ListItem>

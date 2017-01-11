@@ -5,6 +5,8 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import { CircularProgress } from 'material-ui/Progress';
 import { green } from 'material-ui/styles/colors';
 import Button from 'material-ui/Button';
+import CheckIcon from 'material-ui/svg-icons/check';
+import SaveIcon from 'material-ui/svg-icons/save';
 
 const styleSheet = createStyleSheet('CircularFab', () => ({
   wrapper: {
@@ -67,11 +69,10 @@ export default class CircularFab extends Component {
           className={buttonClass}
           onClick={this.handleButtonClick}
         >
-          <span className="material-icons">{success ? 'check' : 'save'}</span>
+          {success ? <CheckIcon /> : <SaveIcon />}
         </Button>
         {loading && <CircularProgress size={60} className={classes.progress} />}
       </div>
     );
   }
 }
-

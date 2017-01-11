@@ -8,6 +8,7 @@ import {
   ListItemText,
 } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
+import FolderIcon from 'material-ui/svg-icons/folder';
 
 const styleSheet = createStyleSheet('FolderList', (theme) => ({
   root: {
@@ -23,11 +24,11 @@ function FolderList(props, context) {
     <div className={classes.root}>
       <List>
         <ListItem button>
-          <Avatar icon={<span className="material-icons">folder</span>} />
+          <Avatar icon={<FolderIcon />} />
           <ListItemText primary="Photos" secondary="Jan 9, 2016" />
         </ListItem>
         <ListItem button>
-          <Avatar icon={<span className="material-icons">folder</span>} />
+          <Avatar icon={<FolderIcon />} />
           <ListItemText primary="Work" secondary="Jan 7, 2016" />
         </ListItem>
       </List>

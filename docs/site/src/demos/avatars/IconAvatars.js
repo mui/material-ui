@@ -4,6 +4,9 @@ import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import Avatar from 'material-ui/Avatar';
 import { pink, green } from 'material-ui/styles/colors';
+import FolderIcon from 'material-ui/svg-icons/folder';
+import PageviewIcon from 'material-ui/svg-icons/pageview';
+import AssignmentIcon from 'material-ui/svg-icons/assignment';
 
 const styleSheet = createStyleSheet('IconAvatars', () => ({
   avatar: {
@@ -30,15 +33,15 @@ export default function IconAvatars(props, context) {
   return (
     <div className={classes.row}>
       <Avatar
-        icon={<span className="material-icons">folder</span>}
+        icon={<FolderIcon />}
         className={classes.avatar}
       />
       <Avatar
-        icon={<span className="material-icons">pageview</span>}
+        icon={<PageviewIcon />}
         className={classes.pinkAvatar}
       />
       <Avatar
-        icon={<span className="material-icons">assignment</span>}
+        icon={<AssignmentIcon />}
         className={classes.greenAvatar}
       />
     </div>

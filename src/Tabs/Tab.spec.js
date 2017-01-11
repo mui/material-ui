@@ -65,10 +65,9 @@ describe('<Tab />', () => {
   });
 
   describe('prop: icon', () => {
-    it('should render icon with the icon class', () => {
+    it('should render icon element', () => {
       const wrapper = shallow(<Tab icon={icon} />);
       const iconWrapper = wrapper.childAt(0);
-      assert.strictEqual(iconWrapper.hasClass(classes.icon), true);
       assert.strictEqual(iconWrapper.hasClass('material-icons'), true);
     });
 

@@ -1,8 +1,11 @@
 // @flow weak
 
+import React from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import { createSwitch } from '../internal/SwitchBase';
 import withSwitchLabel from '../internal/withSwitchLabel';
+import RadioButtonCheckedIcon from '../svg-icons/radio-button-checked';
+import RadioButtonUncheckedIcon from '../svg-icons/radio-button-unchecked';
 
 export const styleSheet = createStyleSheet('Radio', (theme) => {
   return {
@@ -21,8 +24,8 @@ export const styleSheet = createStyleSheet('Radio', (theme) => {
 const Radio = createSwitch({
   styleSheet,
   inputType: 'radio',
-  defaultIcon: 'radio_button_unchecked',
-  defaultCheckedIcon: 'radio_button_checked',
+  defaultIcon: <RadioButtonUncheckedIcon />,
+  defaultCheckedIcon: <RadioButtonCheckedIcon />,
 });
 
 Radio.displayName = 'Radio';

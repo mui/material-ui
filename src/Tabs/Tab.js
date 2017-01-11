@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component, PropTypes, cloneElement, isValidElement } from 'react';
+import React, { Component, PropTypes, isValidElement } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
@@ -49,9 +49,6 @@ export const styleSheet = createStyleSheet('Tab', (theme) => {
         paddingRight: 24,
         fontSize: theme.typography.fontSize - 1,
       },
-    },
-    icon: {
-      display: 'block',
     },
   };
 });
@@ -139,11 +136,7 @@ export default class Tab extends Component {
     let icon;
 
     if (iconProp !== undefined) {
-      const iconClassName = classNames(classes.icon,
-        isValidElement(iconProp) ? iconProp.props.className : null);
-      icon = isValidElement(iconProp) ?
-        cloneElement(iconProp, { className: iconClassName }) :
-        <span className="material-icons">{iconProp}</span>;
+      icon = isValidElement(iconProp) ? iconProp : <span className="material-icons">{iconProp}</span>;
     }
 
     let label;
