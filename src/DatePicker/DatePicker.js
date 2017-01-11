@@ -247,7 +247,7 @@ class DatePicker extends Component {
     }
 
     if (this.props.onDismiss) {
-      this.props.onDismiss(event);
+      this.props.onDismiss();
     }
   };
 
