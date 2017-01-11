@@ -253,6 +253,8 @@ export default class Input extends Component {
       [classes.disabled]: disabled,
     }, inputClassNameProp);
 
+    const required = muiFormControl && muiFormControl.required === true;
+
     return (
       <div className={wrapperClassName}>
         <ComponentProp
@@ -262,6 +264,7 @@ export default class Input extends Component {
           onFocus={this.handleFocus}
           onChange={this.handleChange}
           disabled={disabled}
+          aria-required={required ? true : undefined}
           {...other}
         />
       </div>
