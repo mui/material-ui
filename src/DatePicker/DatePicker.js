@@ -202,13 +202,6 @@ class DatePicker extends Component {
     this.handleFocus();
   }
 
-  createEvent = () => {
-    const inputComponent = ReactDOM.findDOMNode(this.refs.input);
-    const input = inputComponent.getElementsByTagName('input')[0];
-
-    input.focus();
-  };
-
   handleAccept = (date) => {
     if (!this.isControlled()) {
       this.setState({
@@ -230,7 +223,7 @@ class DatePicker extends Component {
 
   handleBlur = (event, shouldSetFocus) => {
     if (shouldSetFocus) {
-      this.createEvent();
+      this.refs.input.focus();
     }
 
     if (this.state.isFocused) {
