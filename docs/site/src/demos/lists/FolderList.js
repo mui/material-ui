@@ -24,11 +24,11 @@ function FolderList(props, context) {
     <div className={classes.root}>
       <List>
         <ListItem button>
-          <Avatar icon={<FolderIcon />} />
+          <Avatar><FolderIcon /></Avatar>
           <ListItemText primary="Photos" secondary="Jan 9, 2016" />
         </ListItem>
         <ListItem button>
-          <Avatar icon={<FolderIcon />} />
+          <Avatar><FolderIcon /></Avatar>
           <ListItemText primary="Work" secondary="Jan 7, 2016" />
         </ListItem>
       </List>
