@@ -2,18 +2,8 @@
 
 import React, { Component, PropTypes } from 'react';
 import shallowEqual from 'recompose/shallowEqual';
-import { createStyleSheet } from 'jss-theme-reactor';
-import classNames from 'classnames';
 import { Input, InputLabel } from '../Input';
 import FormControl from '../Form/FormControl';
-
-export const styleSheet = createStyleSheet('TextField', () => {
-  return {
-    root: {
-      marginTop: 16,
-    },
-  };
-});
 
 /**
  * TextField
@@ -72,7 +62,7 @@ export default class TextField extends Component {
   render() {
     const {
       error,
-      className: classNameProp,
+      className,
       inputClassName,
       label,
       labelClassName,
@@ -80,10 +70,9 @@ export default class TextField extends Component {
       ...other
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet);
     return (
       <FormControl
-        className={classNames(classes.root, classNameProp)}
+        className={className}
         error={error}
         required={required}
       >
