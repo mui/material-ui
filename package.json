@@ -33,7 +33,7 @@
     "clean:build": "rimraf build",
     "lint": "eslint . --cache && echo \"eslint: no lint errors\"",
     "prebuild": "npm run clean:build",
-    "start": "cd docs/site && npm start",
+    "start": "cd docs && npm start",
     "test": "npm run lint && npm run test:unit && npm run flow",
     "test:unit": "cross-env NODE_ENV=test mocha",
     "test:watch": "cross-env NODE_ENV=test mocha -w",

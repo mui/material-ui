@@ -17,7 +17,7 @@ dependencies:
     - ~/.docker
   override:
     - yarn install --cache-folder ~/.yarn-cache --pure-lockfile
-    - cd docs/site && yarn install --cache-folder ~/.yarn-cache && cd ../../
+    - cd docs && yarn install --cache-folder ~/.yarn-cache && cd ../../
     - mkdir -p ~/.docker
     - if [[ -e ~/.docker/hub.tar ]]; then docker load -i ~/.docker/hub.tar; fi
     - if [[ -e ~/.docker/node-chrome.tar ]]; then docker load -i ~/.docker/node-chrome.tar; fi

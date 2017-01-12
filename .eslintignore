@@ -2,7 +2,7 @@ node_modules
 /build
 /flow
 /tmp
-/docs/site/build
+/docs/build
 /packages/**/lib
 /packages/material-ui-icons
 /packages/material-ui-codemod/modules/v0.15.0
