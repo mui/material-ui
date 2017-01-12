@@ -58,7 +58,7 @@ describe('<DatePicker />', () => {
   it('should call the onFocus method when TextField receives focus', () => {
     const onFocus = spy();
     const wrapper = mountWithContext(
-      <DatePicker id="mock-id" onFocus={onFocus} />
+      <DatePicker onFocus={onFocus} />
     );
 
     wrapper.find('input').simulate('focus');
@@ -70,7 +70,7 @@ describe('<DatePicker />', () => {
   it('should call the onBlur method when TextField blurs', () => {
     const onBlur = spy();
     const wrapper = mountWithContext(
-      <DatePicker id="mock-id" onBlur={onBlur} />
+      <DatePicker onBlur={onBlur} />
     );
 
     wrapper.find('input').simulate('blur');
