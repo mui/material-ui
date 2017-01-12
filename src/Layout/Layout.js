@@ -16,8 +16,8 @@ import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 
-const GUTTERS = [8, 16, 24, 40];
-const GRID_SIZES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+const GUTTERS = [0, 8, 16, 24, 40];
+const GRID_SIZES = [true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 function generateGrid(globalStyles, theme, breakpoint) {
   // For the auto layouting
@@ -29,7 +29,11 @@ function generateGrid(globalStyles, theme, breakpoint) {
     },
   };
 
-  GRID_SIZES.forEach((size) => {
+  GRID_SIZES.forEach((size, index) => {
+    if (index === 0) { // Skip the first one as handle above.
+      return;
+    }
+
     // Only keep 6 significant numbers.
     const width = `${Math.round((size / 12) * (10 ** 6)) / (10 ** 4)}%`;
 
@@ -48,7 +52,11 @@ function generateGrid(globalStyles, theme, breakpoint) {
 function generateGutter(theme, breakpoint) {
   const styles = {};
 
-  GUTTERS.forEach((gutter) => {
+  GUTTERS.forEach((gutter, index) => {
+    if (index === 0) { // Skip the default style.
+      return;
+    }
+
     styles[`gutter-${breakpoint}-${gutter}`] = {
       margin: -gutter / 2,
       '& > $typeItem': {
@@ -146,7 +154,7 @@ function Layout(props, context) {
       className={classNames({
         [classes.typeContainer]: container,
         [classes.typeItem]: item,
-        [classes[`gutter-xs-${xsGutter}`]]: container && xsGutter !== false,
+        [classes[`gutter-xs-${xsGutter}`]]: container && xsGutter !== 0,
         [classes[`direction-xs-${xsDirection}`]]: xsDirection !== Layout.defaultProps.xsDirection,
         [classes[`wrap-xs-${xsWrap}`]]: xsWrap !== Layout.defaultProps.xsWrap,
         [classes[`align-xs-${xsAlign}`]]: xsAlign !== Layout.defaultProps.xsAlign,
@@ -169,10 +177,7 @@ function Layout(props, context) {
   );
 }
 
-const gridPropType = PropTypes.oneOfType([
-  PropTypes.bool,
-  PropTypes.oneOf(GRID_SIZES),
-]);
+const gridPropType = PropTypes.oneOf(GRID_SIZES);
 
 Layout.propTypes = {
   /**
@@ -249,10 +254,7 @@ Layout.propTypes = {
    * Defines the space between the type `item` component.
    * It can only be used on a type `container` component.
    */
-  xsGutter: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.oneOf(GUTTERS),
-  ]),
+  xsGutter: PropTypes.oneOf(GUTTERS),
   /**
    * Defines the `justify-content` style property.
    * It's applied for all the screen sizes.
