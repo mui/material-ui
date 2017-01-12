@@ -316,6 +316,7 @@ class DatePicker extends Component {
       minDate,
       mode,
       okLabel,
+      onDismiss, // eslint-disable-line no-unused-vars
       onFocus, // eslint-disable-line no-unused-vars
       onShow,
       onTouchTap, // eslint-disable-line no-unused-vars
