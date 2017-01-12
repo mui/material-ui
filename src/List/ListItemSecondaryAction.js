@@ -1,25 +1,12 @@
 // @flow weak
 
 import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import classNames from 'classnames';
 
-export const styleSheet = createStyleSheet('ListItemSecondaryAction', () => ({
-  secondaryAction: {
-    position: 'absolute',
-    right: 4,
-    top: '50%',
-    marginTop: -24,
-  },
-}));
-
-export default function ListItemSecondaryAction(props, context) {
+export default function ListItemSecondaryAction(props) {
   const {
     children,
-    className: classNameProp,
+    className,
   } = props;
-  const classes = context.styleManager.render(styleSheet);
-  const className = classNames(classes.secondaryAction, classNameProp);
 
   return (
     <div className={className}>

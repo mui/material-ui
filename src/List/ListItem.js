@@ -9,12 +9,14 @@ export const styleSheet = createStyleSheet('ListItem', (theme) => {
   return {
     listItem: {
       display: 'flex',
+      flex: '1 1 auto',  // grow primary portion so that secondary is right-aligned
       alignItems: 'center',
       position: 'relative',
       textDecoration: 'none',
     },
     listItemContainer: {
-      position: 'relative',
+      display: 'flex',
+      alignItems: 'center',
     },
     keyboardFocused: {
       background: theme.palette.text.divider,
