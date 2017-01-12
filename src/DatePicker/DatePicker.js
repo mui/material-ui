@@ -264,7 +264,7 @@ class DatePicker extends Component {
     this.handleFocus(event);
   };
 
-  handleWindowKeyUp = (event) => {
+  handleWindowKeyDown = (event) => {
     if (!this.refs.dialogWindow.state.open) {
       return;
     }
@@ -331,17 +331,16 @@ class DatePicker extends Component {
     return (
       <div ref={(node) => this.element = node} className={className} style={prepareStyles(Object.assign({}, style))}>
         <TextField
+          readOnly={true}
           {...other}
           onFocus={this.handleFocus}
-          onTouchTap={this.handleTouchTap}
-          readOnly={true}
           ref="input"
           style={textFieldStyle}
           value={this.state.date ? formatDate(this.state.date) : ''}
         />
         <EventListener
           target="window"
-          onKeyDown={this.handleWindowKeyUp}
+          onKeyDown={this.handleWindowKeyDown}
         />
         <DatePickerDialog
           DateTimeFormat={DateTimeFormat}
