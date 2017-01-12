@@ -9,6 +9,7 @@ import Layout from 'material-ui/Layout';
 const styleSheet = createStyleSheet('AutoLayout', (theme) => ({
   root: {
     flexGrow: 1,
+    marginTop: 30,
   },
   paper: {
     padding: 16,

@@ -11,8 +11,12 @@ import IconButton from 'material-ui/IconButton';
 import withWidth, { isWidthUp } from 'material-ui/utils/withWidth';
 import MenuIcon from 'material-ui-icons/Menu';
 import LightbulbOutlineIcon from 'material-ui-icons/LightbulbOutline';
+import PlayCircleOutlineIcon from 'material-ui/svg-icons/play-circle-outline';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import AppDrawer from './AppDrawer';
+import ApiMenu from './ApiMenu';
+import { componentMap, demoPaths } from './api-menu-data.js';
+import { apiMenuData } from './api-menu-data.js';
 
 function getTitle(routes) {
   for (let i = routes.length - 1; i >= 0; i -= 1) {
@@ -62,14 +66,11 @@ const styleSheet = createStyleSheet('AppFrame', (theme) => {
       minHeight: '100vh',
       width: '100%',
     },
-    navIcon: {
+    icon: {
       marginLeft: -12,
     },
     grow: {
       flex: '1 1 100%',
-    },
-    toggleShade: {
-      marginRight: -12,
     },
     title: {
       marginLeft: 24,
@@ -101,6 +102,7 @@ const styleSheet = createStyleSheet('AppFrame', (theme) => {
 class AppFrame extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
+    demos: PropTypes.array,
     dispatch: PropTypes.func.isRequired,
     routes: PropTypes.array.isRequired,
     width: PropTypes.string.isRequired,
@@ -122,6 +124,14 @@ class AppFrame extends Component {
     this.setState({ drawerOpen: !this.state.drawerOpen });
   };
 
+  handleDemoButtonClick = (component) => {
+    if (demoPaths[component]) {
+      window.location = '/#/' + demoPaths[component];
+    } else {
+      window.location = '/#/component-demos/' + component
+    }
+  };
+
   handleToggleShade = () => {
     this.props.dispatch({ type: 'TOGGLE_THEME_SHADE' });
   };
@@ -129,6 +139,7 @@ class AppFrame extends Component {
   render() {
     const {
       children,
+      demos: demosProp,
       routes,
       width,
     } = this.props;
@@ -137,7 +148,7 @@ class AppFrame extends Component {
     const title = getTitle(routes);
 
     let drawerDocked = isWidthUp('lg', width);
-    let navIconClassName = classes.navIcon;
+    let navIconClassName = classes.icon;
     let appBarClassName = classes.appBar;
 
     if (title === null) { // home route, don't shift app bar or dock drawer
@@ -147,6 +158,41 @@ class AppFrame extends Component {
       navIconClassName += ` ${classes.navIconHide}`;
       appBarClassName += ` ${classes.appBarShift}`;
     }
+
+
+    let hasDemo = false;
+    const path = window.location.hash.split('/');
+
+    // component is the last part of the path
+    let component = path[path.length - 1];
+
+    // If we're on an api page
+    if (path[1] === 'component-api') {
+      // Check if the component is in the exceptions map
+      if (componentMap[component]) {
+        component = componentMap[component];
+      } else {
+        // Otherwise extract and pluralise the base component name
+        component = component.split('-');
+        component = component[0] + 's';
+      }
+      // Is the component in the list of demos?
+      hasDemo = demosProp.some((demo) => demo.name === component) || componentMap[component];
+    }
+
+    const demoButton = hasDemo &&
+      <IconButton
+        contrast
+        onClick={(event) => this.handleDemoButtonClick(component)}
+        className={classes.icon}
+      >
+        <PlayCircleOutlineIcon />
+      </IconButton>;
+
+    const apiMenu = apiMenuData[component] &&
+      // Only show the menu on an api page if there's more than one entry
+      (path[1] !== 'component-api' || apiMenuData[component].length > 1) &&
+      <ApiMenu component={component} className={classes.icon} />;
 
     return (
       <div className={classes.appFrame}>
@@ -161,7 +207,9 @@ class AppFrame extends Component {
               </Text>
             )}
             <div className={classes.grow} />
-            <IconButton contrast onClick={this.handleToggleShade} className={classes.toggleShade}>
+            {demoButton}
+            {apiMenu}
+            <IconButton contrast onClick={this.handleToggleShade} className={classes.icon}>
               <LightbulbOutlineIcon />
             </IconButton>
           </Toolbar>

@@ -9,7 +9,7 @@ import Layout from 'material-ui/Layout';
 const styleSheet = createStyleSheet('FullWidthLayout', (theme) => ({
   root: {
     flexGrow: 1,
-    height: 400,
+    marginTop: 30,
   },
   paper: {
     padding: 16,

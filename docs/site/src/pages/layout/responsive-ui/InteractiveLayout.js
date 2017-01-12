@@ -12,6 +12,7 @@ const styleSheet = createStyleSheet('InteractiveLayout', () => {
   return {
     root: {
       flexGrow: 1,
+      marginTop: 30,
     },
     demo: {
       height: 240,
