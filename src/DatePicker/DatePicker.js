@@ -156,7 +156,6 @@ class DatePicker extends Component {
 
   state = {
     date: undefined,
-    isFocused: false,
   };
 
   componentWillMount() {
@@ -175,6 +174,8 @@ class DatePicker extends Component {
       }
     }
   }
+
+  isFocused = false;
 
   element = null;
 
@@ -210,11 +211,7 @@ class DatePicker extends Component {
       });
     }
 
-    setTimeout(() => {
-      this.setState({
-        isFocused: false,
-      });
-    }, 0);
+    this.isFocused = false;
     this.refs.input.focus();
 
     if (this.props.onChange) {
@@ -227,10 +224,9 @@ class DatePicker extends Component {
       this.refs.input.focus();
     }
 
-    if (this.state.isFocused) {
-      this.setState({
-        isFocused: false,
-      }, this.refs.dialogWindow.dismiss);
+    if (this.isFocused) {
+      this.isFocused = false;
+      this.refs.dialogWindow.dismiss();
     }
 
     if (this.props.onBlur) {
@@ -239,11 +235,9 @@ class DatePicker extends Component {
   };
 
   handleDismiss = () => {
-    if (this.state.isFocused) {
+    if (this.isFocused) {
       this.refs.input.focus();
-      this.setState({
-        isFocused: false,
-      });
+      this.isFocused = false;
     }
 
     if (this.props.onDismiss) {
@@ -252,10 +246,9 @@ class DatePicker extends Component {
   };
 
   handleFocus = (event) => {
-    if (!this.props.disabled && !this.state.isFocused) {
-      this.setState({
-        isFocused: true,
-      }, this.openDialog);
+    if (!this.isFocused) {
+      this.isFocused = true;
+      this.openDialog();
     }
 
     if (this.props.onFocus) {
