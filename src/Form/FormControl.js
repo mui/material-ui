@@ -7,7 +7,6 @@ import classNames from 'classnames';
 export const styleSheet = createStyleSheet('FormControl', () => {
   return {
     root: {
-      marginTop: 16,
       display: 'flex',
       flexDirection: 'column',
       position: 'relative',
@@ -19,7 +18,7 @@ export const styleSheet = createStyleSheet('FormControl', () => {
 });
 
 /**
- * FormControl
+ * FormControl - provides context such as dirty/focused/error/required for form inputs
  */
 export default class FormControl extends Component {
   static propTypes = {
