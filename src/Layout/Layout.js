@@ -38,7 +38,8 @@ function generateGrid(globalStyles, theme, breakpoint) {
     const width = `${Math.round((size / 12) * (10 ** 6)) / (10 ** 4)}%`;
 
     /* eslint-disable max-len */
-    // Close to the bootstrap implementation: https://github.com/twbs/bootstrap/blob/b0508a975d711d6b24c01f57dd5445c22699fac4/scss/mixins/_grid.scss#L69
+    // Close to the bootstrap implementation:
+    // https://github.com/twbs/bootstrap/blob/b0508a975d711d6b24c01f57dd5445c22699fac4/scss/mixins/_grid.scss#L69
     /* eslint-enable max-len */
     styles[`grid-${breakpoint}-${size}`] = {
       flexBasis: width,
@@ -46,7 +47,12 @@ function generateGrid(globalStyles, theme, breakpoint) {
     };
   });
 
-  globalStyles[theme.breakpoints.up(breakpoint)] = styles;
+  // No need for a media query for the first size.
+  if (breakpoint === 'xs') {
+    Object.assign(globalStyles, styles);
+  } else {
+    globalStyles[theme.breakpoints.up(breakpoint)] = styles;
+  }
 }
 
 function generateGutter(theme, breakpoint) {
