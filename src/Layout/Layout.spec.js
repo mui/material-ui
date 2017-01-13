@@ -54,7 +54,7 @@ describe('<Layout />', () => {
     });
   });
 
-  describe('prop: xsGutter', () => {
+  describe('prop: gutter', () => {
     it('should have a default gutter', () => {
       const wrapper = shallow(<Layout container />);
       assert.strictEqual(wrapper.hasClass(classes['gutter-xs-16']), true);

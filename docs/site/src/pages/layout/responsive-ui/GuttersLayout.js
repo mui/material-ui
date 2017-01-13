@@ -34,7 +34,7 @@ export default class GuttersLayout extends Component {
   }
 
   state = {
-    xsGutter: '16',
+    gutter: '16',
   }
 
   handleChange = (key) => (event, value) => {
@@ -46,7 +46,7 @@ export default class GuttersLayout extends Component {
   render() {
     const classes = this.context.styleManager.render(styleSheet);
     const {
-      xsGutter,
+      gutter,
     } = this.state;
 
     return (
@@ -55,8 +55,8 @@ export default class GuttersLayout extends Component {
           <Layout
             container
             className={classes.demo}
-            xsJustify="center"
-            xsGutter={Number(xsGutter)}
+            justify="center"
+            gutter={Number(gutter)}
           >
             {CELLS.map((cell, i) => (
               <Layout key={i} item>
@@ -69,11 +69,11 @@ export default class GuttersLayout extends Component {
           <Paper className={classes.control}>
             <Layout container>
               <Layout item>
-                <FormLabel>xsGutter</FormLabel>
+                <FormLabel>gutter</FormLabel>
                 <RadioGroup
-                  aria-label="xsGutter"
-                  selectedValue={xsGutter}
-                  onChange={this.handleChange('xsGutter')}
+                  aria-label="gutter"
+                  selectedValue={gutter}
+                  onChange={this.handleChange('gutter')}
                   row
                 >
                   <LabelRadio label="0" value="0" />
