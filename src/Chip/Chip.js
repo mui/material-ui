@@ -145,7 +145,7 @@ export default function Chip(props, context) {
     });
   }
 
-  const tabIndex = (onClick || onRequestDelete) ? tabIndexProp : undefined;
+  const tabIndex = (onClick || onRequestDelete) ? tabIndexProp : -1;
 
   return (
     <button
@@ -213,5 +213,4 @@ Chip.contextTypes = {
 
 Chip.defaultProps = {
   onKeyDown: () => {},
-  tabIndex: 0,
 };
