@@ -22,6 +22,12 @@ const appList = [
   //   link: '',
   // },
   {
+    title: 'Three.js Live - Interact with WebGL code in your browser',
+    author: 'Erick Katzenstein',
+    img: 'images/showcase/threejslive.jpg',
+    link: 'http://threejs.live',
+  },
+  {
     title: 'SplitMe - Split expenses with friends',
     author: 'Olivier Tassinari',
     img: 'images/showcase/splitme.png',
