@@ -56,7 +56,7 @@ export default class GuttersLayout extends Component {
             container
             className={classes.demo}
             xsJustify="center"
-            xsGutter={xsGutter === 'false' ? false : Number(xsGutter)}
+            xsGutter={Number(xsGutter)}
           >
             {CELLS.map((cell, i) => (
               <Layout key={i} item>
@@ -76,7 +76,7 @@ export default class GuttersLayout extends Component {
                   onChange={this.handleChange('xsGutter')}
                   row
                 >
-                  <LabelRadio label="false" value="false" />
+                  <LabelRadio label="0" value="0" />
                   <LabelRadio label="8" value="8" />
                   <LabelRadio label="16" value="16" />
                   <LabelRadio label="24" value="24" />
