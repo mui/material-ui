@@ -140,16 +140,16 @@ function Layout(props, context) {
     component: ComponentProp,
     container,
     item,
-    xsAlign,
-    xsDirection,
+    align,
+    direction,
     xs,
     sm,
     md,
     lg,
     xl,
-    xsGutter,
-    xsJustify,
-    xsWrap,
+    gutter,
+    justify,
+    wrap,
     ...other
   } = props;
 
@@ -160,11 +160,11 @@ function Layout(props, context) {
       className={classNames({
         [classes.typeContainer]: container,
         [classes.typeItem]: item,
-        [classes[`gutter-xs-${xsGutter}`]]: container && xsGutter !== 0,
-        [classes[`direction-xs-${xsDirection}`]]: xsDirection !== Layout.defaultProps.xsDirection,
-        [classes[`wrap-xs-${xsWrap}`]]: xsWrap !== Layout.defaultProps.xsWrap,
-        [classes[`align-xs-${xsAlign}`]]: xsAlign !== Layout.defaultProps.xsAlign,
-        [classes[`justify-xs-${xsJustify}`]]: xsJustify !== Layout.defaultProps.xsJustify,
+        [classes[`gutter-xs-${gutter}`]]: container && gutter !== 0,
+        [classes[`direction-xs-${direction}`]]: direction !== Layout.defaultProps.direction,
+        [classes[`wrap-xs-${wrap}`]]: wrap !== Layout.defaultProps.wrap,
+        [classes[`align-xs-${align}`]]: align !== Layout.defaultProps.align,
+        [classes[`justify-xs-${justify}`]]: justify !== Layout.defaultProps.justify,
         [classes['grid-xs']]: xs === true,
         [classes[`grid-xs-${xs}`]]: xs && xs !== true,
         [classes['grid-sm']]: sm === true,
@@ -240,7 +240,7 @@ Layout.propTypes = {
    * Defines the `align-items` style property.
    * It's applied for all the screen sizes.
    */
-  xsAlign: PropTypes.oneOf([
+  align: PropTypes.oneOf([ // eslint-disable-line react/sort-prop-types
     'flex-start',
     'center',
     'flex-end',
@@ -250,7 +250,7 @@ Layout.propTypes = {
    * Defines the `flex-direction` style property.
    * It's applied for all the screen sizes.
    */
-  xsDirection: PropTypes.oneOf([
+  direction: PropTypes.oneOf([ // eslint-disable-line react/sort-prop-types
     'row',
     'row-reverse',
     'column',
@@ -260,12 +260,12 @@ Layout.propTypes = {
    * Defines the space between the type `item` component.
    * It can only be used on a type `container` component.
    */
-  xsGutter: PropTypes.oneOf(GUTTERS),
+  gutter: PropTypes.oneOf(GUTTERS), // eslint-disable-line react/sort-prop-types
   /**
    * Defines the `justify-content` style property.
    * It's applied for all the screen sizes.
    */
-  xsJustify: PropTypes.oneOf([
+  justify: PropTypes.oneOf([ // eslint-disable-line react/sort-prop-types
     'flex-start',
     'center',
     'flex-end',
@@ -276,7 +276,7 @@ Layout.propTypes = {
    * Defines the `flex-wrap` style property.
    * It's applied for all the screen sizes.
    */
-  xsWrap: PropTypes.oneOf([
+  wrap: PropTypes.oneOf([ // eslint-disable-line react/sort-prop-types
     'nowrap',
     'wrap',
     'wrap-reverse',
@@ -287,11 +287,11 @@ Layout.defaultProps = {
   component: 'div',
   container: false,
   item: false,
-  xsAlign: 'flex-start',
-  xsDirection: 'row',
-  xsGutter: 16,
-  xsJustify: 'flex-start',
-  xsWrap: 'wrap',
+  align: 'flex-start',
+  direction: 'row',
+  gutter: 16,
+  justify: 'flex-start',
+  wrap: 'wrap',
 };
 
 Layout.contextTypes = {

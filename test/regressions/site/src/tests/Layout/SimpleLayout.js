@@ -20,7 +20,7 @@ export default function SimpleLayout(props, context) {
 
   return (
     <div className={classes.root}>
-      <Layout container xsGutter={24}>
+      <Layout container gutter={24}>
         <Layout item xs={12}>
           <Paper className={classes.paper}>
             xs=12

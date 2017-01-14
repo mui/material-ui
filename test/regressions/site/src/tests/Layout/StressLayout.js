@@ -21,8 +21,8 @@ export default function StressLayout(props, context) {
 
   return (
     <div className={classes.root}>
-      <Layout container xsGutter={24} xsDirection="column">
-        <Layout container item xsGutter={8}>
+      <Layout container gutter={24} direction="column">
+        <Layout container item gutter={8}>
           <Layout item xs={3}>
             <Paper className={classes.paper}>
               xs=3
@@ -37,8 +37,8 @@ export default function StressLayout(props, context) {
         <Layout
           container
           item
-          xsGutter={8}
-          xsDirection="row-reverse"
+          gutter={8}
+          direction="row-reverse"
         >
           <Layout item xs={3}>
             <Paper className={classes.paper}>
@@ -54,8 +54,8 @@ export default function StressLayout(props, context) {
         <Layout
           container
           item
-          xsGutter={8}
-          xsJustify="space-between"
+          gutter={8}
+          justify="space-between"
         >
           <Layout item xs={3}>
             <Paper className={classes.paper}>
@@ -71,9 +71,9 @@ export default function StressLayout(props, context) {
         <Layout
           container
           item
-          xsGutter={8}
-          xsAlign="stretch"
-          xsDirection="column-reverse"
+          gutter={8}
+          align="stretch"
+          direction="column-reverse"
         >
           <Layout item>
             <Paper className={classes.paper}>

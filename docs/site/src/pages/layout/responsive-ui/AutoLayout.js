@@ -21,7 +21,7 @@ export default function AutoLayout(props, context) {
 
   return (
     <div className={classes.root}>
-      <Layout container xsGutter={24}>
+      <Layout container gutter={24}>
         <Layout item xs>
           <Paper className={classes.paper}>
             xs
@@ -38,7 +38,7 @@ export default function AutoLayout(props, context) {
           </Paper>
         </Layout>
       </Layout>
-      <Layout container xsGutter={24}>
+      <Layout container gutter={24}>
         <Layout item xs>
           <Paper className={classes.paper}>
             xs
