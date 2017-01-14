@@ -4,6 +4,10 @@ import FontIcon from 'material-ui/FontIcon';
 import ActionAndroid from 'material-ui/svg-icons/action/android';
 
 const styles = {
+  button : {
+    verticalAlign: 'top',
+  },
+
   imageInput: {
     cursor: 'pointer',
     position: 'absolute',
@@ -18,7 +22,12 @@ const styles = {
 
 const FlatButtonExampleComplex = () => (
   <div>
-    <FlatButton label="Choose an Image" labelPosition="before">
+    <FlatButton
+      label="Choose an Image"
+      labelPosition="before"
+      style={styles.button}
+      containerElement="label"
+    >
       <input type="file" style={styles.imageInput} />
     </FlatButton>
     <FlatButton
@@ -32,6 +41,7 @@ const FlatButtonExampleComplex = () => (
       href="https://github.com/callemall/material-ui"
       target="_blank"
       label="GitHub Link"
+      style={styles.button}
       secondary={true}
       icon={<FontIcon className="muidocs-icon-custom-github" />}
     />
