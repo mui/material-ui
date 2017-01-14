@@ -7,7 +7,6 @@ const styles = {
   button : {
     verticalAlign: 'top',
   },
-
   imageInput: {
     cursor: 'pointer',
     position: 'absolute',
