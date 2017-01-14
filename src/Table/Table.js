@@ -10,7 +10,6 @@ function getStyles(props, context) {
   return {
     root: {
       backgroundColor: table.backgroundColor,
-      padding: `0 ${baseTheme.spacing.desktopGutter}px`,
       width: '100%',
       borderCollapse: 'collapse',
       borderSpacing: 0,
