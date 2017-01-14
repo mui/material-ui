@@ -19,7 +19,7 @@ For code issues please include:
 * A code example or link to a repo, gist or running site.
 
 For visual or layout problems, images or animated gifs can help explain your issue.
-It's even better with a live reproduction test case. You can use this playground to do so: http://www.webpackbin.com/Nk0Gu1QUf.
+It's even better with a live reproduction test case. You can use this playground to do so: http://www.webpackbin.com/EyKSRJ7UM.
 
 For feature requests please include a link to the relevant section of Material Design spec, or a screenshot.
 
