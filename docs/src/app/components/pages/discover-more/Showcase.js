@@ -106,7 +106,7 @@ const Showcase = () => (
     <Title render={(previousTitle) => `Showcase - ${previousTitle}`} />
     <MarkdownElement text={showcaseText} />
     <GridList
-      cols={3}
+      cols={4}
       cellHeight={200}
       style={styles.gridList}
     >
