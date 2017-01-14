@@ -4,7 +4,7 @@ import FontIcon from 'material-ui/FontIcon';
 import ActionAndroid from 'material-ui/svg-icons/action/android';
 
 const styles = {
-  button : {
+  button: {
     verticalAlign: 'top',
   },
   imageInput: {
