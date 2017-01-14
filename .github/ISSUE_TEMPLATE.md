@@ -15,7 +15,7 @@ For feature requests, please delete the template below and use this one instead:
 
 ### Link to minimally-working code that reproduces the issue
 
-<!-- You may provide a repository or use our template-ready webpackbin http://www.webpackbin.com/Nk0Gu1QUf -->
+<!-- You may provide a repository or use our template-ready webpackbin http://www.webpackbin.com/EyKSRJ7UM -->
 
 ### Versions
 
