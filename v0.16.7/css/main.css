@@ -1,0 +1,36 @@
+/* custom font icons */
+@import "font-icons/style.css";
+
+/* hightlight.js for syntax highlighting */
+@import "github.css";
+
+a {
+  color: #ff4081;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+body {
+  font-size: 15px;
+  line-height: 24px;
+}
+
+/* Used in StylesOverridingCssExample.js */
+.styles-overriding-css-example {
+  width: 50% !important;
+  margin: 0 auto !important;
+  border: 2px solid #FF9800 !important;
+  background-color: #ffd699 !important;
+}
