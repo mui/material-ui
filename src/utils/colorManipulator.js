@@ -1,3 +1,5 @@
+import warning from 'warning';
+
 /**
  * Returns a number whose value is limited to the given range.
  *
@@ -89,6 +91,10 @@ export function decomposeColor(color) {
   }
 
   const marker = color.indexOf('(');
+
+  warning(marker !== -1, `Material-UI: The ${color} color was not parsed correctly. This may cause issues in component rendering.
+  Use an RGB color representation instead.`);
+
   const type = color.substring(0, marker);
   let values = color.substring(marker + 1, color.length - 1).split(',');
   values = values.map((value) => parseFloat(value));
