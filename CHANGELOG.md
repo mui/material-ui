@@ -1,5 +1,45 @@
 ## HEAD
 
+## 0.16.7
+###### _Jan 15, 2017_
+
+A big thanks for the 20 contributors that are making that release possible.
+
+##### Component Fixes / Enhancements
+
+- [Table] Fix TableBody selectedRows state (#5829) @ovaldi
+- [Table] remove useless padding (#5932) @oliviertassinari
+- [IconButton] Fix a onTouchStart error (#5833) @oliviertassinari
+- [IconButton] Fix hoveredStyle prop override style prop (#5874) @MattCain
+- [test] Fix typo in the iOSHelpers.spec.js (#5837) @frooeyzanny
+- [style] Shorthand syntax for a color object (#5835) @frooeyzanny
+- [IconMenu] Fix React warning (#5843) @olee
+- [Tab] Allow overriding button style on tabs (#5844) @rhagigi
+- [Tabs] Fix a regression (#5891) @oliviertassinari
+- [DropDownMenu] Add keyboard accessibility (#5921) @caesay
+- [Table] Add an integration tests (#5845) @oliviertassinari
+- [TableBody] Fix row selection re-render (#5905) @dchambers
+- [Menu] Add onFocusIndexChange property (#5851) @gabrielmdeal
+- [Menu] Fix support of any type of children (#5904) @oliviertassinari
+- [EnhancedButton] remove unnecessary hack, improving overall performance (#5868) @jampy
+- [FloatingActionButton] Fix thin white border (#5881) @ludoviccyril
+- [style] Fix user-agent all with display flex (#5931) @oliviertassinari
+
+##### Docs
+
+- [docs] It is exciting (#5831) @ratson
+- [docs] Add payment components to Related projects (#5849) @lorensr
+- [docs] Add showcase for "humorista.org" (#5859) @minas1
+- [docs] Fix broken link (b7d9a373320b49f62e47f4e2e5ca4aa882265904) @oliviertassinari
+- [docs] Fix spelling mistake in PropTypeDescription.js (#5883) @Jbarget
+- [docs] Fix typo (#5889) @lucasbento
+- [withWidth] Fix typo in the withWidth.spec.js (#5836) @frooeyzanny
+- [Tabs] Fix typo in initialSelectedIndex prop description (#5923) @neonray
+
+##### Core
+
+- [test] Use simpler assert API (e017d365f45b07933e8b896f95d6d1455b666516) @oliviertassinari
+
 ## 0.16.6
 ###### _Dec 25, 2016_
 
