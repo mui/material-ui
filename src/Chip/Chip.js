@@ -26,7 +26,8 @@ export const styleSheet = createStyleSheet('Chip', (theme) => {
       whiteSpace: 'nowrap',
       width: 'fit-content',
       transition: transitions.create(),
-      cursor: 'default', // label will inherit this from root, then `clickable` class overrides this for both
+      // label will inherit this from root, then `clickable` class overrides this for both
+      cursor: 'default',
       outline: 'none', // No outline on focused element in Chrome (as triggered by tabIndex prop)
       border: 'none', // Remove `button` border
       padding: 0, // Remove `button` padding
@@ -78,7 +79,7 @@ export const styleSheet = createStyleSheet('Chip', (theme) => {
  * Chips represent complex entities in small blocks, such as a contact.
  *
  * ```jsx
- * <Chip avatar={<Avatar>} label="Label text" />
+ * <Chip avatar={<Avatar />} label="Label text" />
  * ```
  */
 export default function Chip(props, context) {
@@ -136,12 +137,9 @@ export default function Chip(props, context) {
 
   let avatar = null;
   if (avatarProp && isValidElement(avatarProp)) {
-    const avatarClassName = classNames(classes.avatar, avatarProp.props.className);
-    const avatarChildrenClassName = classNames(classes.avatarChildren, avatarProp.props.childrenClassName);
-
     avatar = cloneElement(avatarProp, {
-      className: avatarClassName,
-      childrenClassName: avatarChildrenClassName,
+      className: classNames(classes.avatar, avatarProp.props.className),
+      childrenClassName: classNames(classes.avatarChildren, avatarProp.props.childrenClassName),
     });
   }
 

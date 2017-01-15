@@ -36,9 +36,7 @@ export default function TabIndicator(props, context) {
     backgroundColor: indicatorColor,
   } : styleProp;
 
-  return (
-    <div className={className} style={style} />
-  );
+  return <div className={className} style={style} />;
 }
 
 TabIndicator.propTypes = {

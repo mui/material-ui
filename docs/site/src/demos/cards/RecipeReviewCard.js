@@ -46,7 +46,7 @@ export default class RecipeReviewCard extends Component {
       <div>
         <Card className={classes.card}>
           <CardHeader
-            avatar={<Avatar icon="R" aria-label="Recipe" className={classes.avatar} />}
+            avatar={<Avatar aria-label="Recipe" className={classes.avatar}>R</Avatar>}
             title="Shrimp and Chorizo Paella"
             subhead="September 14, 2016"
           />

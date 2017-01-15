@@ -204,7 +204,8 @@ export default class Dialog extends Component {
           <Paper
             data-mui-test="Dialog"
             zDepth={24}
-            className={classNames(classes.dialog, classes[`dialogWidth-${maxWidth}`], paperClassName)}
+            className={classNames(classes.dialog, classes[`dialogWidth-${maxWidth}`],
+              paperClassName)}
           >
             {children}
           </Paper>

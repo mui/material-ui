@@ -59,7 +59,11 @@ export default class DialogActions extends Component {
     this.classes = this.context.styleManager.render(styleSheet);
 
     return (
-      <div data-mui-test="DialogActions" className={classNames(this.classes.root, className)} {...other}>
+      <div
+        data-mui-test="DialogActions"
+        className={classNames(this.classes.root, className)}
+        {...other}
+      >
         {React.Children.map(children, this.renderButton)}
       </div>
     );

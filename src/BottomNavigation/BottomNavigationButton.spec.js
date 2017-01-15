@@ -58,7 +58,8 @@ describe('<BottomNavigationButton / />', () => {
     const wrapper = shallow(<BottomNavigationButton icon={icon} />);
 
     const iconWrapper = wrapper.childAt(0);
-    assert.strictEqual(iconWrapper.hasClass('material-icons'), true, 'should have the material-icons class');
+    assert.strictEqual(iconWrapper.hasClass('material-icons'), true,
+      'should have the material-icons class');
     assert.strictEqual(iconWrapper.hasClass(classes.icon), true, 'should have the icon class');
 
     const labelWrapper = wrapper.childAt(1);
@@ -75,13 +76,15 @@ describe('<BottomNavigationButton / />', () => {
   it('should render label with the hiddenLabel class', () => {
     const wrapper = shallow(<BottomNavigationButton icon={icon} showLabel={false} />);
     const labelWrapper = wrapper.childAt(1);
-    assert.strictEqual(labelWrapper.hasClass(classes.hiddenLabel), true, 'should have the hiddenLabel class');
+    assert.strictEqual(labelWrapper.hasClass(classes.hiddenLabel), true,
+      'should have the hiddenLabel class');
     assert.strictEqual(labelWrapper.hasClass(classes.label), true, 'should have the label class');
   });
 
   it('should render a font icon if a icon string is passed', () => {
     const wrapper = shallow(<BottomNavigationButton icon="book" />);
-    assert.strictEqual(wrapper.find('.material-icons').length, 1, 'should have the material icons class');
+    assert.strictEqual(wrapper.find('.material-icons').length, 1,
+      'should have the material icons class');
   });
 
   describe('prop: onClick', () => {

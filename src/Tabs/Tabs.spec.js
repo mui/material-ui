@@ -52,7 +52,8 @@ describe('<Tabs />', () => {
         </Tabs>,
       );
       const wrapperDiv = wrapper.childAt(0);
-      assert.strictEqual(wrapperDiv.childAt(0).props().selected, false, 'should have selected to false');
+      assert.strictEqual(wrapperDiv.childAt(0).props().selected, false,
+        'should have selected to false');
       assert.strictEqual(wrapperDiv.childAt(1).props().selected, true, 'should have selected');
     });
   });

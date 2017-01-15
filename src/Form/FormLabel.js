@@ -1,4 +1,5 @@
 // @flow weak
+/* eslint-disable jsx-a11y/label-has-for */
 
 import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';

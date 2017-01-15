@@ -35,6 +35,7 @@ describe('<Toolbar />', () => {
   it('should disable the gutters', () => {
     const wrapper = shallow(<Toolbar gutters={false} />);
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
-    assert.strictEqual(wrapper.hasClass(classes.gutters), false, 'should not have the gutters class');
+    assert.strictEqual(wrapper.hasClass(classes.gutters), false,
+      'should not have the gutters class');
   });
 });

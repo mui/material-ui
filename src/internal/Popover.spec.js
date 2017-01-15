@@ -26,13 +26,15 @@ describe('<Popover />', () => {
     it('should render a Modal with an invisible backdrop as the root node', () => {
       const wrapper = shallow(<Popover />);
       assert.strictEqual(wrapper.is('Modal'), true, 'should be a Modal');
-      assert.strictEqual(wrapper.prop('backdropVisible'), false, 'should have an invisible backdrop');
+      assert.strictEqual(wrapper.prop('backdropVisible'), false,
+        'should have an invisible backdrop');
     });
 
     it('should pass onRequestClose prop to Modal', () => {
       const fn = () => {};
       const wrapper = shallow(<Popover onRequestClose={fn} />);
-      assert.strictEqual(wrapper.prop('onRequestClose'), fn, 'should be the onRequestClose function');
+      assert.strictEqual(wrapper.prop('onRequestClose'), fn,
+        'should be the onRequestClose function');
     });
 
     it('should pass open prop to Modal as `show`', () => {
@@ -104,7 +106,8 @@ describe('<Popover />', () => {
 
     it('should have a zDepth prop passed down', () => {
       const wrapper = shallow(<Popover />);
-      assert.strictEqual(wrapper.childAt(0).childAt(0).prop('zDepth'), 8, 'should be 8 zDepth by default');
+      assert.strictEqual(wrapper.childAt(0).childAt(0).prop('zDepth'), 8,
+        'should be 8 zDepth by default');
       wrapper.setProps({ zDepth: 16 });
       assert.strictEqual(wrapper.childAt(0).childAt(0).prop('zDepth'), 16, 'should be 16 zDepth');
     });
@@ -148,7 +151,7 @@ describe('<Popover />', () => {
         );
         assert.strictEqual(
           element.style.transition,
-          'opacity 0ms cubic-bezier(0.4, 0.0, 0.2, 1) 0ms,transform 0ms cubic-bezier(0.4, 0.0, 0.2, 1) 0ms',
+          'opacity 0ms cubic-bezier(0.4, 0.0, 0.2, 1) 0ms,transform 0ms cubic-bezier(0.4, 0.0, 0.2, 1) 0ms', // eslint-disable-line max-len
           'should apply a transition for transform and opacity',
         );
         assert.strictEqual(

@@ -1,7 +1,14 @@
 // @flow weak
 
 import React from 'react';
-import { applyRouterMiddleware, hashHistory, Router, Route, IndexRoute, IndexRedirect } from 'react-router';
+import {
+  applyRouterMiddleware,
+  hashHistory,
+  Router,
+  Route,
+  IndexRoute,
+  IndexRedirect,
+} from 'react-router';
 import { useScroll } from 'react-router-scroll';
 import { kebabCase, titleize } from 'docs/site/src/utils/helpers';
 import AppFrame from './AppFrame';
@@ -140,13 +147,13 @@ export default function AppRouter() {
           nav
           component={AppContent}
         >
-          {demos.map(((n, i) => {
+          {demos.map(((demo) => {
             return (
               <Route
-                key={i}
-                title={titleize(n.name)}
-                path={`/component-demos/${n.name}`}
-                content={requireDemos(n.path)}
+                key={demo.name}
+                title={titleize(demo.name)}
+                path={`/component-demos/${demo.name}`}
+                content={requireDemos(demo.path)}
                 component={MarkdownDocs}
                 nav
               />
@@ -159,13 +166,13 @@ export default function AppRouter() {
           nav
           component={AppContent}
         >
-          {apiDocs.map(((n, i) => {
+          {apiDocs.map(((demo) => {
             return (
               <Route
-                key={i}
-                title={n.name}
-                path={`/component-api/${kebabCase(n.name)}`}
-                content={requireDocs(n.path)}
+                key={demo.name}
+                title={demo.name}
+                path={`/component-api/${kebabCase(demo.name)}`}
+                content={requireDocs(demo.path)}
                 component={MarkdownDocs}
                 nav
               />

@@ -63,14 +63,14 @@ export default class SimpleListMenu extends Component {
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
         >
-          {options.map((n, index) => {
+          {options.map((option, index) => {
             return (
               <MenuItem
-                key={index}
+                key={option}
                 selected={index === this.state.selectedIndex}
                 onClick={(event) => this.handleMenuItemClick(event, index)}
               >
-                {n}
+                {option}
               </MenuItem>
             );
           })}

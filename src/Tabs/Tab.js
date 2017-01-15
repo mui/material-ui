@@ -136,7 +136,9 @@ export default class Tab extends Component {
     let icon;
 
     if (iconProp !== undefined) {
-      icon = isValidElement(iconProp) ? iconProp : <span className="material-icons">{iconProp}</span>;
+      icon = isValidElement(iconProp) ?
+        iconProp :
+        <span className="material-icons">{iconProp}</span>;
     }
 
     let label;

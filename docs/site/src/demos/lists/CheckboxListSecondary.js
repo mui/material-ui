@@ -50,7 +50,7 @@ export default class CheckboxListSecondary extends Component {
     return (
       <div className={classes.root}>
         <List>
-          {Array.from({ length: 4 }, (v, k) => k).map((n, index) => (
+          {Array.from({ length: 4 }, (v, k) => k).map((index) => (
             <ListItem dense button key={index}>
               <Avatar
                 alt="Remy Sharp"

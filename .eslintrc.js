@@ -20,14 +20,15 @@ module.exports = {
     'material-ui',
   ],
   rules: {
-    'array-bracket-spacing': ['error', 'never'],
-    'arrow-body-style': 'off',
+    'arrow-body-style': 'off', // Not our taste?
     'arrow-parens': ['error', 'always'], // airbnb use as-needed
     'consistent-this': ['error', 'self'],
-    'max-len': ['error', 110], // airbnb use 100, wishlist, one day
+    'max-len': ['error', 100, 2, {
+      ignoreUrls: true,
+    }], // airbnb is allowing some edge cases
     'no-console': 'error', // airbnb is using warn
-    'no-param-reassign': 'off',
-    'no-prototype-builtins': 'off',
+    'no-param-reassign': 'off', // Not our taste?
+    'no-prototype-builtins': 'off', // airbnb use error
     'no-use-before-define': ['error', { 'functions': false }], // airbnb have functions: true, annoying
     'object-curly-spacing': 'off', // use babel plugin rule
     'operator-linebreak': ['error', 'after'], // aibnb is disabling this rule
@@ -41,6 +42,7 @@ module.exports = {
       eventHandlerPrefix: 'handle',
       eventHandlerPropPrefix: 'on',
     }],
+    'react/require-default-props': 'off', // airbnb use error
     'react/forbid-prop-types': 'off', // airbnb use error
     'react/jsx-filename-extension': ['error', {extensions: ['.js']}], // airbnb is using .jsx
     'react/jsx-max-props-per-line': ['error', {maximum: 3}], // airbnb is disabling this rule
@@ -61,7 +63,6 @@ module.exports = {
         'render'
       ],
     }],
-    'jsx-a11y/label-has-for': 'warn', // wishlist, one day
     'material-ui/docgen-ignore-before-comment': 'error',
     'mocha/handle-done-callback': 'error',
     'mocha/no-exclusive-tests': 'error',
