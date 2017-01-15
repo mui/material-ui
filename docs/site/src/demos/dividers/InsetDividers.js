@@ -25,12 +25,16 @@ export default function InsetDividers(props, context) {
   return (
     <List className={classes.root}>
       <ListItem button>
-        <Avatar icon={<FolderIcon />} />
+        <Avatar>
+          <FolderIcon />
+        </Avatar>
         <ListItemText primary="Work" secondary="Jan 28, 2014" />
       </ListItem>
       <Divider inset />
       <ListItem button>
-        <Avatar icon={<ImageIcon />} />
+        <Avatar>
+          <ImageIcon />
+        </Avatar>
         <ListItemText primary="Vacation" secondary="Jan 20, 2014" />
       </ListItem>
     </List>

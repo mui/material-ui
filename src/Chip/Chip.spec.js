@@ -98,12 +98,11 @@ describe('<Chip />', () => {
     before(() => {
       wrapper = shallow(
         <Chip
-          avatar={<Avatar
-            className="my-Avatar"
-            data-my-prop="woof"
-          >
-            MB
-          </Avatar>}
+          avatar={
+            <Avatar className="my-Avatar" data-my-prop="woof">
+              MB
+            </Avatar>
+          }
           label="Text Avatar Chip"
           onRequestDelete={() => {}}
           className="my-Chip"

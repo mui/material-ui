@@ -73,7 +73,8 @@ describe('<Tab />', () => {
 
     it('should render a font icon if a icon string is passed', () => {
       const wrapper = shallow(<Tab icon="book" />);
-      assert.strictEqual(wrapper.find('.material-icons').length, 1, 'should have the material icons class');
+      assert.strictEqual(wrapper.find('.material-icons').length, 1,
+        'should have the material icons class');
     });
   });
 

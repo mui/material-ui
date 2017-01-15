@@ -101,7 +101,9 @@ export function createSwitch({
       this.isControlled = props.checked !== undefined;
 
       if (!this.isControlled) { // not controlled, use internal state
-        this.setState({ checked: props.defaultChecked !== undefined ? props.defaultChecked : false });
+        this.setState({
+          checked: props.defaultChecked !== undefined ? props.defaultChecked : false,
+        });
       }
     }
 
@@ -148,7 +150,8 @@ export function createSwitch({
 
       const checked = this.isControlled ? checkedProp : this.state.checked;
       const classes = this.context.styleManager.render(styleSheet);
-      const switchClasses = switchStyleSheet ? this.context.styleManager.render(switchStyleSheet) : {};
+      const switchClasses = switchStyleSheet ?
+        this.context.styleManager.render(switchStyleSheet) : {};
 
       const className = classNames(classes.root, switchClasses.default, classNameProp, {
         [classNames(switchClasses.checked, checkedClassName)]: checked,

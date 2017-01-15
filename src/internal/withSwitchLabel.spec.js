@@ -25,7 +25,9 @@ describe('<SwitchLabel />', () => {
       const SwitchLabel = withSwitchLabel({ displayName: 'Foo' });
       assert.strictEqual(SwitchLabel.displayName, 'withSwitchLabel(Foo)');
 
-      const SwitchLabelFn = withSwitchLabel(function Foo() {}); // eslint-disable-line prefer-arrow-callback
+      /* eslint-disable prefer-arrow-callback */
+      const SwitchLabelFn = withSwitchLabel(function Foo() {});
+      /* eslint-enable prefer-arrow-callback */
       assert.strictEqual(SwitchLabelFn.displayName, 'withSwitchLabel(Foo)');
     });
   });

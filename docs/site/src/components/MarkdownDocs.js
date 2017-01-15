@@ -21,12 +21,12 @@ export default function MarkdownDocs(props, context) {
 
   return (
     <div className={classes.root}>
-      {contents.map((n, i) => {
-        if (demoRegexp.test(n)) {
-          return <Demo key={i} demo={n.match(demoRegexp)[1]} />;
+      {contents.map((content) => {
+        if (demoRegexp.test(content)) {
+          return <Demo key={content} demo={content.match(demoRegexp)[1]} />;
         }
 
-        return <MarkdownElement key={i} text={n} />;
+        return <MarkdownElement key={content} text={content} />;
       })}
     </div>
   );

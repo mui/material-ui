@@ -89,7 +89,8 @@ describe('<Modal />', () => {
 
       const handler = wrapper.instance().handleBackdropClick;
       const backdrop = wrapper.find('Backdrop');
-      assert.strictEqual(backdrop.prop('onClick'), handler, 'should attach the handleBackdropClick handler');
+      assert.strictEqual(backdrop.prop('onClick'), handler,
+        'should attach the handleBackdropClick handler');
 
       handler({});
       assert.strictEqual(onRequestClose.callCount, 1, 'should fire the onRequestClose callback');
@@ -102,7 +103,8 @@ describe('<Modal />', () => {
       const handler = wrapper.instance().handleBackdropClick;
 
       handler({});
-      assert.strictEqual(onRequestClose.callCount, 0, 'should not fire the onRequestClose callback');
+      assert.strictEqual(onRequestClose.callCount, 0,
+        'should not fire the onRequestClose callback');
     });
   });
 
@@ -133,15 +135,18 @@ describe('<Modal />', () => {
         const portalLayer = wrapper.find('Portal').node.layer;
         const container = document.getElementById('container');
         const heading = document.getElementById('heading');
-        assert.strictEqual(container.tagName.toLowerCase(), 'div', 'should have the element in the DOM');
-        assert.strictEqual(heading.tagName.toLowerCase(), 'h1', 'should have the element in the DOM');
+        assert.strictEqual(container.tagName.toLowerCase(), 'div',
+          'should have the element in the DOM');
+        assert.strictEqual(heading.tagName.toLowerCase(), 'h1',
+          'should have the element in the DOM');
         assert.strictEqual(contains(portalLayer, container), true, 'should be in the portal');
         assert.strictEqual(contains(portalLayer, heading), true, 'should be in the portal');
       });
 
-      it('should automatically add a role and tabIndex to the content root node if not provided', () => {
+      it('should automatically add a role and tabIndex if not provided', () => {
         const container = document.getElementById('container');
-        assert.strictEqual(container.getAttribute('role'), 'document', 'should add the document role');
+        assert.strictEqual(container.getAttribute('role'), 'document',
+          'should add the document role');
         assert.strictEqual(container.getAttribute('tabindex'), '-1', 'should add a -1 tab-index');
       });
     });
@@ -165,7 +170,8 @@ describe('<Modal />', () => {
         const container = document.getElementById('container');
         assert.strictEqual(modal.children.length, 2,
           'should have 2 children, the backdrop and the test container');
-        assert.ok(modal.children[0], 'this is the backdrop, so no assertions about implementation details');
+        assert.ok(modal.children[0],
+          'this is the backdrop, so no assertions about implementation details');
         assert.strictEqual(modal.children[1], container, 'should be the container');
       });
     });

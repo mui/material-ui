@@ -52,7 +52,8 @@ describe('<Menu />', () => {
 
   it('should pass `classes.entered` to the Popover for the enteredClassName', () => {
     const wrapper = shallow(<Menu />);
-    assert.strictEqual(wrapper.prop('enteredClassName'), classes.entered, 'should be classes.entered');
+    assert.strictEqual(wrapper.prop('enteredClassName'), classes.entered,
+      'should be classes.entered');
   });
 
   it('should pass the instance function `getContentAnchorEl` to Popover', () => {
@@ -97,7 +98,8 @@ describe('<Menu />', () => {
     });
 
     it('should render a MenuList inside the Popover', () => {
-      assert.strictEqual(list.is('MenuList'), true, 'should have a MenuList as the immediate child');
+      assert.strictEqual(list.is('MenuList'), true,
+        'should have a MenuList as the immediate child');
     });
 
     it('should spread other props on the list', () => {

@@ -86,11 +86,11 @@ class ConfirmationDialog extends Component {
             selectedValue={this.state.selectedValue}
             onChange={this.handleChange}
           >
-            {options.map((n, index) => (
+            {options.map((option) => (
               <Radio
-                label={n}
-                value={n}
-                key={index}
+                label={option}
+                value={option}
+                key={option}
               />
             ))}
           </RadioGroup>

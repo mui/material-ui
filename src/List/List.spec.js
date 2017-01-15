@@ -40,14 +40,16 @@ describe('<List />', () => {
   it('should disable the padding', () => {
     const wrapper = shallow(<List padding={false} />);
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
-    assert.strictEqual(wrapper.hasClass(classes.padding), false, 'should not have the padding class');
+    assert.strictEqual(wrapper.hasClass(classes.padding), false,
+      'should not have the padding class');
   });
 
   describe('prop: subheader', () => {
     it('should render with subheader class', () => {
       const wrapper = shallow(<List subheader={<ListSubheader>Title</ListSubheader>} />);
       assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
-      assert.strictEqual(wrapper.hasClass(classes.subheader), true, 'should have the subheader class');
+      assert.strictEqual(wrapper.hasClass(classes.subheader), true,
+        'should have the subheader class');
     });
 
     it('should render ListSubheader', () => {

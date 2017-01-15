@@ -40,11 +40,13 @@ export const styleSheet = createStyleSheet('CircularProgress', (theme) => {
         strokeDashoffset: 0,
       },
       '50%, 58%': {
-        strokeDasharray: `calc((65% - ${THICKNESS}px) * ${PI}), calc((100% - ${THICKNESS}px) * ${PI})`,
+        strokeDasharray: `calc((65% - ${THICKNESS}px) * ${PI}), calc((100% - ${
+          THICKNESS}px) * ${PI})`,
         strokeDashoffset: `calc((25% - ${THICKNESS}px) * -${PI})`,
       },
       '100%': {
-        strokeDasharray: `calc((65% - ${THICKNESS}px) * ${PI}), calc((100% - ${THICKNESS}px) * ${PI})`,
+        strokeDasharray: `calc((65% - ${THICKNESS}px) * ${PI}), calc((100% - ${
+          THICKNESS}px) * ${PI})`,
         strokeDashoffset: `calc((99% - ${THICKNESS}px) * -${PI})`,
       },
     },

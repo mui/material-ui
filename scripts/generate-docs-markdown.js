@@ -150,7 +150,8 @@ function generateProps(props) {
         }
       }
 
-      textProps += `| ${key} | ${generatePropType(prop.type)} | ${defaultValue} | ${description} |\n`;
+      textProps += `| ${key} | ${generatePropType(prop.type)} | ${defaultValue} | ${
+        description} |\n`;
 
       return textProps;
     }, text);

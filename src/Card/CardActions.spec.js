@@ -20,7 +20,8 @@ describe('<CardActions />', () => {
       <CardActions />,
     );
     assert.strictEqual(wrapper.is('div'), true, 'should be a div');
-    assert.strictEqual(wrapper.hasClass(classes.cardActions), true, 'should have the cardActions class');
+    assert.strictEqual(wrapper.hasClass(classes.cardActions), true,
+      'should have the cardActions class');
   });
 
   it('should pass the actionSpacing class to children', () => {

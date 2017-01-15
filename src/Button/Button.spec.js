@@ -20,7 +20,8 @@ describe('<Button />', () => {
       <Button>Hello World</Button>,
     );
     assert.strictEqual(wrapper.is('ButtonBase'), true, 'should be a <button>');
-    assert.strictEqual(wrapper.prop('type'), 'button', 'should render with the button type attribute');
+    assert.strictEqual(wrapper.prop('type'), 'button',
+      'should render with the button type attribute');
   });
 
   it('should render with the root class but no others', () => {
@@ -30,7 +31,8 @@ describe('<Button />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.raised), false, 'should not have the raised class');
     assert.strictEqual(wrapper.hasClass(classes.fab), false, 'should not have the fab class');
-    assert.strictEqual(wrapper.hasClass(classes.primary), false, 'should not have the primary class');
+    assert.strictEqual(wrapper.hasClass(classes.primary), false,
+      'should not have the primary class');
     assert.strictEqual(wrapper.hasClass(classes.accent), false, 'should not have the accent class');
   });
 
@@ -60,7 +62,8 @@ describe('<Button />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.raised), false, 'should have the raised class');
     assert.strictEqual(wrapper.hasClass(classes.fab), false, 'should not have the fab class');
-    assert.strictEqual(wrapper.hasClass(classes.primary), false, 'should not have the primary class');
+    assert.strictEqual(wrapper.hasClass(classes.primary), false,
+      'should not have the primary class');
     assert.strictEqual(wrapper.hasClass(classes.accent), true, 'should not have the accent class');
   });
 
@@ -71,7 +74,8 @@ describe('<Button />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.raised), true, 'should have the raised class');
     assert.strictEqual(wrapper.hasClass(classes.fab), false, 'should not have the fab class');
-    assert.strictEqual(wrapper.hasClass(classes.primary), false, 'should not have the primary class');
+    assert.strictEqual(wrapper.hasClass(classes.primary), false,
+      'should not have the primary class');
     assert.strictEqual(wrapper.hasClass(classes.accent), false, 'should not have the accent class');
   });
 
@@ -82,8 +86,10 @@ describe('<Button />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.raised), true, 'should have the raised class');
     assert.strictEqual(wrapper.hasClass(classes.fab), false, 'should not have the fab class');
-    assert.strictEqual(wrapper.hasClass(classes.raisedPrimary), true, 'should not have the primary class');
-    assert.strictEqual(wrapper.hasClass(classes.raisedAccent), false, 'should not have the accent class');
+    assert.strictEqual(wrapper.hasClass(classes.raisedPrimary), true,
+      'should not have the primary class');
+    assert.strictEqual(wrapper.hasClass(classes.raisedAccent), false,
+      'should not have the accent class');
   });
 
   it('should render a raised accent button', () => {
@@ -93,8 +99,10 @@ describe('<Button />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.raised), true, 'should have the raised class');
     assert.strictEqual(wrapper.hasClass(classes.fab), false, 'should not have the fab class');
-    assert.strictEqual(wrapper.hasClass(classes.raisedPrimary), false, 'should not have the primary class');
-    assert.strictEqual(wrapper.hasClass(classes.raisedAccent), true, 'should have the accent class');
+    assert.strictEqual(wrapper.hasClass(classes.raisedPrimary), false,
+      'should not have the primary class');
+    assert.strictEqual(wrapper.hasClass(classes.raisedAccent), true,
+      'should have the accent class');
   });
 
   it('should render a floating action button', () => {
@@ -104,7 +112,8 @@ describe('<Button />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.raised), true, 'should have the raised class');
     assert.strictEqual(wrapper.hasClass(classes.fab), true, 'should have the fab class');
-    assert.strictEqual(wrapper.hasClass(classes.primary), false, 'should not have the primary class');
+    assert.strictEqual(wrapper.hasClass(classes.primary), false,
+      'should not have the primary class');
     assert.strictEqual(wrapper.hasClass(classes.accent), false, 'should not have the accent class');
   });
 
@@ -115,8 +124,10 @@ describe('<Button />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.raised), true, 'should have the raised class');
     assert.strictEqual(wrapper.hasClass(classes.fab), true, 'should have the fab class');
-    assert.strictEqual(wrapper.hasClass(classes.raisedPrimary), true, 'should have the primary class');
-    assert.strictEqual(wrapper.hasClass(classes.raisedAccent), false, 'should not have the accent class');
+    assert.strictEqual(wrapper.hasClass(classes.raisedPrimary), true,
+      'should have the primary class');
+    assert.strictEqual(wrapper.hasClass(classes.raisedAccent), false,
+      'should not have the accent class');
   });
 
   it('should render an accent floating action button', () => {
@@ -126,7 +137,9 @@ describe('<Button />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.raised), true, 'should have the raised class');
     assert.strictEqual(wrapper.hasClass(classes.fab), true, 'should have the fab class');
-    assert.strictEqual(wrapper.hasClass(classes.raisedPrimary), false, 'should not have the primary class');
-    assert.strictEqual(wrapper.hasClass(classes.raisedAccent), true, 'should have the accent class');
+    assert.strictEqual(wrapper.hasClass(classes.raisedPrimary), false,
+      'should not have the primary class');
+    assert.strictEqual(wrapper.hasClass(classes.raisedAccent), true,
+      'should have the accent class');
   });
 });

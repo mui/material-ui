@@ -32,6 +32,7 @@ describe('<CircularProgress />', () => {
     assert.strictEqual(svg.is('svg'), true, 'should be a svg');
     assert.strictEqual(svg.hasClass(classes.svg), true, 'should have the svg class');
     assert.strictEqual(svg.childAt(0).is('circle'), true, 'should be a circle');
-    assert.strictEqual(svg.childAt(0).hasClass(classes.circle), true, 'should have the circle class');
+    assert.strictEqual(svg.childAt(0).hasClass(classes.circle), true,
+      'should have the circle class');
   });
 });

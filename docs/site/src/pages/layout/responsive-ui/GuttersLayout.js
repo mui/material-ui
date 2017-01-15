@@ -22,12 +22,6 @@ const styleSheet = createStyleSheet('GuttersLayout', () => {
   };
 });
 
-const CELLS = [
-  {},
-  {},
-  {},
-];
-
 export default class GuttersLayout extends Component {
   static contextTypes = {
     styleManager: PropTypes.object.isRequired,
@@ -58,8 +52,8 @@ export default class GuttersLayout extends Component {
             justify="center"
             gutter={Number(gutter)}
           >
-            {CELLS.map((cell, i) => (
-              <Layout key={i} item>
+            {Array.from({ length: 3 }, (v, k) => k).map((index) => (
+              <Layout key={index} item>
                 <Paper className={classes.paper} />
               </Layout>
             ))}

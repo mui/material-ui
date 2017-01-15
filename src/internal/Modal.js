@@ -194,7 +194,8 @@ export default class Modal extends Component {
         modalContent.setAttribute('tabIndex', -1);
         warning(false, (
           'The modal content node does not accept focus. ' +
-          'For the benefit of assistive technologies, the tabIndex of the node is being set to "-1".'
+          'For the benefit of assistive technologies, ' +
+          'the tabIndex of the node is being set to "-1".'
         ));
       }
 

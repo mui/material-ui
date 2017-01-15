@@ -80,7 +80,8 @@ describe('<CardHeader />', () => {
 
     it('should render the title as body2 text inside the second child', () => {
       const container = wrapper.childAt(1);
-      assert.strictEqual(container.hasClass(classes.content), true, 'should have the content class');
+      assert.strictEqual(container.hasClass(classes.content), true,
+        'should have the content class');
       const title = container.childAt(0);
       assert.strictEqual(title.is('Text'), true);
       assert.strictEqual(title.prop('type'), 'body2');
@@ -88,7 +89,8 @@ describe('<CardHeader />', () => {
 
     it('should render the subead as body2 secondary text inside the second child', () => {
       const container = wrapper.childAt(1);
-      assert.strictEqual(container.hasClass(classes.content), true, 'should have the content class');
+      assert.strictEqual(container.hasClass(classes.content), true,
+        'should have the content class');
       const subhead = container.childAt(1);
       assert.strictEqual(subhead.is('Text'), true);
       assert.strictEqual(subhead.prop('type'), 'body2');

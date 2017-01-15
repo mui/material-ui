@@ -28,7 +28,8 @@ describe('<Input />', () => {
     assert.strictEqual(input.is('input'), true, 'should be a <input>');
     assert.strictEqual(input.prop('type'), 'text', 'should pass the text type prop');
     assert.strictEqual(input.hasClass(classes.input), true, 'should have the input class');
-    assert.strictEqual(input.prop('aria-required'), undefined, 'should not have the area-required prop');
+    assert.strictEqual(input.prop('aria-required'), undefined,
+      'should not have the area-required prop');
   });
 
   it('should render a disabled <input />', () => {
@@ -84,7 +85,8 @@ describe('<Input />', () => {
     });
 
     it('should fire the onClean callback when dirtied', () => {
-      assert.strictEqual(handleClean.callCount, 1, 'should have called the onClean cb once already');
+      assert.strictEqual(handleClean.callCount, 1,
+        'should have called the onClean cb once already');
       wrapper.setProps({ value: '' });
       assert.strictEqual(handleClean.callCount, 2, 'should have called the onClean cb again');
     });

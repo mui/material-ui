@@ -58,7 +58,8 @@ describe('<LinearProgress />', () => {
   it('should render with buffer classes', () => {
     const wrapper = shallow(<LinearProgress mode="buffer" />);
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.dashed), true, 'should have the dashed class');
+    assert.strictEqual(wrapper.childAt(0).hasClass(classes.dashed), true,
+      'should have the dashed class');
     assert.strictEqual(wrapper.childAt(1).hasClass(classes.bar), true, 'should have the bar class');
     assert.strictEqual(wrapper.childAt(1).hasClass(classes.bufferBar1), true,
       'should have the bufferBar1 class');
@@ -77,7 +78,8 @@ describe('<LinearProgress />', () => {
   it('should render with query classes', () => {
     const wrapper = shallow(<LinearProgress mode="query" />);
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
-    assert.strictEqual(wrapper.hasClass(classes.rootQuery), true, 'should have the rootQuery class');
+    assert.strictEqual(wrapper.hasClass(classes.rootQuery), true,
+      'should have the rootQuery class');
     assert.strictEqual(wrapper.childAt(1).hasClass(classes.bar), true, 'should have the bar class');
     assert.strictEqual(wrapper.childAt(1).hasClass(classes.indeterminateBar1), true,
       'should have the indeterminateBar1 class');

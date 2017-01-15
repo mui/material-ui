@@ -4,7 +4,7 @@ Chip
 Chips represent complex entities in small blocks, such as a contact.
 
 ```jsx
-<Chip avatar={<Avatar>} label="Label text" />
+<Chip avatar={<Avatar />} label="Label text" />
 ```
 
 Props

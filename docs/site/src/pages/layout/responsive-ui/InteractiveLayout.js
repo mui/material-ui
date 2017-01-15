@@ -25,12 +25,6 @@ const styleSheet = createStyleSheet('InteractiveLayout', () => {
   };
 });
 
-const CELLS = [
-  {},
-  {},
-  {},
-];
-
 export default class InteractiveLayout extends Component {
   static contextTypes = {
     styleManager: PropTypes.object.isRequired,
@@ -67,10 +61,10 @@ export default class InteractiveLayout extends Component {
             direction={direction}
             justify={justify}
           >
-            {CELLS.map((cell, i) => (
-              <Layout key={i} item>
+            {Array.from({ length: 3 }, (v, k) => k).map((index) => (
+              <Layout key={index} item>
                 <Paper className={classes.paper}>
-                  {`Cell ${i + 1}`}
+                  {`Cell ${index + 1}`}
                 </Paper>
               </Layout>
             ))}

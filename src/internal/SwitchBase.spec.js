@@ -31,8 +31,10 @@ describe('<SwitchBase />', () => {
     const wrapper = shallow(
       <SwitchBase />,
     );
-    assert.strictEqual(wrapper.childAt(0).is('pure(CheckBoxOutlineBlank)'), true, 'should be an SVG icon');
-    assert.strictEqual(wrapper.childAt(1).is('input[type="checkbox"]'), true, 'should be a checkbox input');
+    assert.strictEqual(wrapper.childAt(0).is('pure(CheckBoxOutlineBlank)'), true,
+      'should be an SVG icon');
+    assert.strictEqual(wrapper.childAt(1).is('input[type="checkbox"]'), true,
+      'should be a checkbox input');
   });
 
   // IT SHOULD RENDER
@@ -86,7 +88,8 @@ describe('<SwitchBase />', () => {
     const disabledClassName = 'foo';
     const wrapperA = shallow(<SwitchBase disabled disabledClassName={disabledClassName} />);
 
-    assert.strictEqual(wrapperA.hasClass(disabledClassName), true, 'should have the custom disabled class');
+    assert.strictEqual(wrapperA.hasClass(disabledClassName), true,
+      'should have the custom disabled class');
 
     wrapperA.setProps({ disabled: false });
 
@@ -111,7 +114,8 @@ describe('<SwitchBase />', () => {
     });
 
     it('should recognize a controlled input', () => {
-      assert.strictEqual(wrapper.instance().isControlled, true, 'should set instance.isControlled to true');
+      assert.strictEqual(wrapper.instance().isControlled, true,
+        'should set instance.isControlled to true');
     });
 
     it('should not not be checked', () => {
@@ -143,7 +147,8 @@ describe('<SwitchBase />', () => {
     });
 
     it('should recognize an uncontrolled input', () => {
-      assert.strictEqual(wrapper.instance().isControlled, false, 'should set instance.isControlled to false');
+      assert.strictEqual(wrapper.instance().isControlled, false,
+        'should set instance.isControlled to false');
     });
 
     it('should not not be checked', () => {
@@ -194,5 +199,6 @@ function assertIsNotChecked(classes, wrapper) {
 
   const label = iconButton.childAt(0);
   const icon = label.childAt(0);
-  assert.strictEqual(icon.is('pure(CheckBoxOutlineBlank)'), true, 'should be the CheckBoxOutlineBlank icon');
+  assert.strictEqual(icon.is('pure(CheckBoxOutlineBlank)'), true,
+    'should be the CheckBoxOutlineBlank icon');
 }
