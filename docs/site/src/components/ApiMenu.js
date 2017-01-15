@@ -1,13 +1,16 @@
-import React, { Component, PropTypes } from 'react'
+// @flow weak
+
+import React, { PureComponent, PropTypes } from 'react';
+import { camelCase } from 'docs/site/src/utils/helpers';
 import IconButton from 'material-ui/IconButton';
 import { Menu, MenuItem } from 'material-ui/Menu';
 import MoreVertIcon from 'material-ui/svg-icons/more-vert';
-import { camelCase } from 'docs/site/src/utils/helpers';
-import { apiMenuData } from './api-menu-data.js';
 
-export default class ApiMenu extends Component {
+
+export default class ApiMenu extends PureComponent {
   static propTypes = {
-    component: PropTypes.string.isRequired,
+    className: PropTypes.string,
+    menuItems: PropTypes.array.isRequired,
   };
 
   state = {
@@ -15,18 +18,22 @@ export default class ApiMenu extends Component {
     open: false,
   };
 
-  handleMenuClick = (event) => this.setState({ open: true, anchorEl: event.currentTarget });
+  handleMenuClick = (event) => this.setState({
+    open: true,
+    anchorEl: event.currentTarget,
+  });
 
   handleMenuItemClick = (event) => {
-    this.setState({ open: false});
-    window.location = '/#/component-api/' + event.currentTarget.id
+    this.setState({ open: false });
+    window.location = `/#/component-api/${event.currentTarget.id}`;
   };
 
-  handleMenuRequestClose = () => this.setState({ open: false });
-
+  handleMenuRequestClose = () => this.setState({
+    open: false,
+  });
 
   render() {
-    const { component, className } = this.props;
+    const { menuItems, className } = this.props;
 
     return (
       <div>
@@ -45,7 +52,7 @@ export default class ApiMenu extends Component {
           open={this.state.open}
           onRequestClose={this.handleMenuRequestClose}
         >
-          {apiMenuData[component].map((menuItem) => (
+          {menuItems.map((menuItem) => (
             <MenuItem
               key={menuItem}
               id={menuItem}
@@ -56,6 +63,6 @@ export default class ApiMenu extends Component {
           ))}
         </Menu>
       </div>
-    )
+    );
   }
 }

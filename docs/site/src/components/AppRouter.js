@@ -35,7 +35,6 @@ const apiDocs = docFiles.reduce((res, n) => {
   }
   return res;
 }, []);
-//console.log('apiDocs', apiDocs);
 
 const requireDemos = require.context('../demos', true, /\.md$/);
 const demos = requireDemos
@@ -54,7 +53,11 @@ export default function AppRouter() {
       history={hashHistory}
       render={applyRouterMiddleware(useScroll())}
     >
-      <Route title="Material UI" path="/" component={props => <AppFrame demos={demos} {...props}/>}>
+      <Route
+        title="Material UI"
+        path="/"
+        component={(props) => <AppFrame demos={demos} apiDocs={apiDocs} {...props} />}
+      >
         <IndexRoute dockDrawer component={Home} title={null} />
         <Route
           title="Getting Started"
