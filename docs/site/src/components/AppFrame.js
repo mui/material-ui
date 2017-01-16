@@ -13,7 +13,8 @@ import MenuIcon from 'material-ui-icons/Menu';
 import LightbulbOutlineIcon from 'material-ui-icons/LightbulbOutline';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import AppDrawer from './AppDrawer';
-import ToolbarButtons from './ToolbarButtons';
+import DemoButton from './DemoButton';
+import ApiMenu from './ApiMenu';
 
 function getTitle(routes) {
   for (let i = routes.length - 1; i >= 0; i -= 1) {
@@ -63,7 +64,7 @@ const styleSheet = createStyleSheet('AppFrame', (theme) => {
       minHeight: '100vh',
       width: '100%',
     },
-    navIcon: {
+    icon: {
       marginLeft: -12,
     },
     grow: {
@@ -161,8 +162,9 @@ class AppFrame extends Component {
               </Text>
             )}
             <div className={classes.grow} />
-            <ToolbarButtons />
-            <IconButton contrast onClick={this.handleToggleShade} className={classes.navIcon}>
+            <DemoButton />
+            <ApiMenu className={classes.icon} />
+            <IconButton contrast onClick={this.handleToggleShade} className={classes.icon}>
               <LightbulbOutlineIcon />
             </IconButton>
           </Toolbar>
