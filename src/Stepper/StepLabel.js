@@ -9,6 +9,7 @@ const getStyles = ({active, completed, disabled}, {muiTheme, stepper}) => {
     iconColor,
     inactiveIconColor,
   } = muiTheme.stepper;
+  const {baseTheme} = muiTheme;
   const {orientation} = stepper;
 
   const styles = {
@@ -17,6 +18,7 @@ const getStyles = ({active, completed, disabled}, {muiTheme, stepper}) => {
       color: textColor,
       display: 'flex',
       alignItems: 'center',
+      fontFamily: baseTheme.fontFamily,
       fontSize: 14,
       paddingLeft: 14,
       paddingRight: 14,
