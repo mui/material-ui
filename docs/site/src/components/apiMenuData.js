@@ -1,6 +1,7 @@
 // @flow weak
 
-// API menus for components whose entries don't follow `component`, `componentSub1`, `componentSub2` pattern.
+// API menus for components whose entries don't follow
+// `component`, `componentSub1`, `componentSub2` pattern.
 export const apiMenus = {
   buttons: [
     'button',

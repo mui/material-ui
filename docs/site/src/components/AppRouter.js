@@ -1,6 +1,6 @@
 // @flow weak
 
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   applyRouterMiddleware,
   hashHistory,
@@ -47,7 +47,20 @@ const demos = requireDemos
     return res;
   }, []);
 
-export default function AppRouter() {
+export default class AppRouterextends Component {
+  static childContextTypes = {
+    apiDocs: PropTypes.array.isRequired,
+    demos: PropTypes.array.isRequired,
+  };
+
+  getChildContext() {
+    return {
+      apiDocs,
+      demos,
+    };
+  }
+
+  render() {
   return (
     <Router
       history={hashHistory}
@@ -56,7 +69,7 @@ export default function AppRouter() {
       <Route
         title="Material UI"
         path="/"
-        component={(props) => <AppFrame demos={demos} apiDocs={apiDocs} {...props} />}
+        component={(props) => <AppFrame  {...props} />}
       >
         <IndexRoute dockDrawer component={Home} title={null} />
         <Route
@@ -94,15 +107,14 @@ export default function AppRouter() {
             component={MarkdownDocs}
             nav
           />
-          <Route
-            title="Supported Components"
+        <Route
+        title="Supported Components"
             path="/getting-started/supported-components"
             content={requireDocs('./getting-started/supported-components.md')}
             component={MarkdownDocs}
             nav
           />
-        </Route>
-        <Route
+        </Route><Route
           title="Customization"
           path="/customization"
           nav
@@ -116,8 +128,8 @@ export default function AppRouter() {
             component={MarkdownDocs}
             nav
           />
-          <Route
-            title="Composition"
+        <Route
+        title="Composition"
             path="/customization/composition"
             content={requireDocs('./customization/composition.md')}
             component={MarkdownDocs}
@@ -130,20 +142,18 @@ export default function AppRouter() {
             component={MarkdownDocs}
             nav
           />
-        </Route>
-        <Route
+        </Route><Route
           title="Style"
           path="/style"
           nav
-          component={AppContent}
-        >
+          component={AppContent}>
           <Route
             title="Color"
             path="/style/color"
             content={requireDocs('./site/src/pages/style/color/color.md')}
             component={MarkdownDocs}
             nav
-          />
+        />
           <Route
             title="Icons"
             path="/style/icons"
@@ -242,5 +252,5 @@ export default function AppRouter() {
         </Route>
       </Route>
     </Router>
-  );
+  );}
 }

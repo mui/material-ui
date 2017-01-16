@@ -1,11 +1,10 @@
 // @flow weak
 
 import React, { PureComponent, PropTypes } from 'react';
-import { camelCase } from 'docs/site/src/utils/helpers';
 import IconButton from 'material-ui/IconButton';
 import { Menu, MenuItem } from 'material-ui/Menu';
 import MoreVertIcon from 'material-ui/svg-icons/more-vert';
-
+import { camelCase } from 'docs/site/src/utils/helpers';
 
 export default class ApiMenu extends PureComponent {
   static propTypes = {
@@ -13,24 +12,32 @@ export default class ApiMenu extends PureComponent {
     menuItems: PropTypes.array.isRequired,
   };
 
+  static contextTypes = {
+    router: PropTypes.object.isRequired,
+  };
+
   state = {
     anchorEl: undefined,
     open: false,
   };
 
-  handleMenuClick = (event) => this.setState({
-    open: true,
-    anchorEl: event.currentTarget,
-  });
+  handleMenuClick = (event) => {
+    this.setState({
+      open: true,
+      anchorEl: event.currentTarget,
+    });
+  };
 
   handleMenuItemClick = (event) => {
     this.setState({ open: false });
-    window.location = `/#/component-api/${event.currentTarget.id}`;
+    this.context.router.push(`/component-api/${event.currentTarget.id}`);
   };
 
-  handleMenuRequestClose = () => this.setState({
-    open: false,
-  });
+  handleMenuRequestClose = () => {
+    this.setState({
+      open: false,
+    });
+  };
 
   render() {
     const { menuItems, className } = this.props;
