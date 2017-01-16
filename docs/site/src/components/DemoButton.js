@@ -25,12 +25,12 @@ const DemoButton = (props, context) => {
     return null;
   }
 
-  // component is the last part of the path
-  const component = path[path.length - 1];
   let baseComponent;
 
   // If we're on an api page
   if (path[1] === 'component-api') {
+    // component is the last part of the path
+    const component = path[path.length - 1];
     // Check if the component is in the exceptions map
     if (componentMap[component]) {
       baseComponent = componentMap[component];

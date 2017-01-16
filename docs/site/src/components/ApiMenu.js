@@ -17,30 +17,38 @@ const ApiMenu = (props, context) => {
   const component = path[path.length - 1];
   let baseComponent;
 
-  // Check if the component is in the exceptions map
-  if (componentMap[component]) {
-    baseComponent = componentMap[component];
+  // If we're on an api page
+  if (path[1] === 'component-api') {
+    // Check if the component is in the exceptions map
+    if (componentMap[component]) {
+      baseComponent = componentMap[component];
+    } else {
+      // Otherwise extract and pluralise the base component
+      baseComponent = `${(component.split('-'))[0]}s`;
+    }
   } else {
-    // Otherwise extract and pluralise the base component
-    baseComponent = `${(component.split('-'))[0]}s`;
+    baseComponent = component;
   }
 
   let menuItems;
 
+  // If there's a specific menu defined, use it
   if (apiMenus[baseComponent]) {
     menuItems = apiMenus[baseComponent];
   } else {
+    // Otherwise build the menu dynamically
     const baseComponentName = camelCase(baseComponent.slice(0, -1));
     menuItems = context.apiDocs
       .filter((entry) => (entry.name.substr(0, baseComponentName.length) === baseComponentName))
       .map((item) => (kebabCase(item.name)));
   }
 
+
   return (
-    menuItems &&
+    menuItems.length >= 1 &&
     // Only show the menu on an api page if there's more than one entry
     (path[1] !== 'component-api' || menuItems.length > 1) &&
-    <ApiIconMenu menuItems={menuItems} {...props} />
+    <ApiIconMenu menuItems={menuItems} selectedItem={component} {...props} />
   );
 };
 

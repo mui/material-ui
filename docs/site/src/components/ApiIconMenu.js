@@ -10,6 +10,7 @@ export default class ApiIconMenu extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
     menuItems: PropTypes.array.isRequired,
+    selectedItem: PropTypes.string,
   };
 
   static contextTypes = {
@@ -30,7 +31,11 @@ export default class ApiIconMenu extends PureComponent {
 
   handleMenuItemClick = (event) => {
     this.setState({ open: false });
-    this.context.router.push(`/component-api/${event.currentTarget.id}`);
+
+    const path = window.location.hash.split('/');
+    if (event.currentTarget.id !== path[path.length - 1]) {
+      this.context.router.push(`/component-api/${event.currentTarget.id}`);
+    }
   };
 
   handleMenuRequestClose = () => {
@@ -40,7 +45,7 @@ export default class ApiIconMenu extends PureComponent {
   };
 
   render() {
-    const { menuItems, className } = this.props;
+    const { className, menuItems, selectedItem } = this.props;
 
     return (
       <div>
@@ -64,6 +69,7 @@ export default class ApiIconMenu extends PureComponent {
               key={menuItem}
               id={menuItem}
               onClick={this.handleMenuItemClick}
+              selected={menuItem === selectedItem}
             >
               {camelCase(menuItem)}
             </MenuItem>
