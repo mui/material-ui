@@ -230,8 +230,9 @@ class DialogInline extends Component {
       if (React.Children.count(actions)) {
         maxDialogContentHeight -= dialogContent.nextSibling.offsetHeight;
       }
-
-      dialogContent.style.maxHeight = `${maxDialogContentHeight}px`;
+      const maxHeight = `${maxDialogContentHeight}px`;
+      dialogContent.style.height = maxHeight; // important when the child is a flexbox
+      dialogContent.style.maxHeight = maxHeight;
     }
   }
 
