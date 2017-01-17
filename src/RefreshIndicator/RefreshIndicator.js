@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import autoPrefix from '../utils/autoPrefix';
+import propTypes from '../utils/customPropTypes';
 import transitions from '../styles/transitions';
 import Paper from '../Paper';
 
@@ -72,7 +73,7 @@ class RefreshIndicator extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   componentDidMount() {

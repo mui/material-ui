@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import transitions from '../styles/transitions';
+import propTypes from '../utils/customPropTypes';
 import EnhancedSwitch from '../internal/EnhancedSwitch';
 import RadioButtonOff from '../svg-icons/toggle/radio-button-unchecked';
 import RadioButtonOn from '../svg-icons/toggle/radio-button-checked';
@@ -116,7 +117,7 @@ class RadioButton extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   // Only called when selected, not when unselected.

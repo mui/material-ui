@@ -1,13 +1,14 @@
 import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
+import keycode from 'keycode';
 import transitions from '../styles/transitions';
 import DropDownArrow from '../svg-icons/navigation/arrow-drop-down';
 import Menu from '../Menu/Menu';
 import ClearFix from '../internal/ClearFix';
 import Popover from '../Popover/Popover';
 import PopoverAnimationVertical from '../Popover/PopoverAnimationVertical';
-import keycode from 'keycode';
 import Events from '../utils/events';
+import propTypes from '../utils/customPropTypes';
 import IconButton from '../IconButton';
 
 const anchorOrigin = {
@@ -177,7 +178,7 @@ class DropDownMenu extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {

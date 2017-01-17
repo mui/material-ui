@@ -1,5 +1,6 @@
 import React, {PropTypes, Component} from 'react';
 import transitions from '../styles/transitions';
+import propTypes from '../utils/customPropTypes';
 import ClickAwayListener from '../internal/ClickAwayListener';
 import SnackbarBody from './SnackbarBody';
 
@@ -99,7 +100,7 @@ class Snackbar extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   componentWillMount() {

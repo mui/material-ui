@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import transitions from '../styles/transitions';
+import propTypes from '../utils/customPropTypes';
 import SlideInTransitionGroup from '../internal/SlideIn';
 
 function getStyles(props, context, state) {
@@ -74,7 +75,7 @@ class DateDisplay extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {

@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import Events from '../utils/events';
-import propTypes from '../utils/propTypes';
+import propTypes from '../utils/customPropTypes';
 import Menu from '../Menu/Menu';
 import Popover from '../Popover/Popover';
 import warning from 'warning';
@@ -147,7 +147,7 @@ class IconMenu extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {

@@ -1,4 +1,5 @@
 import React, {Component, PropTypes, isValidElement} from 'react';
+import propTypes from '../utils/customPropTypes';
 import Avatar from '../Avatar';
 
 function getStyles(props, context) {
@@ -107,7 +108,7 @@ class CardHeader extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   render() {

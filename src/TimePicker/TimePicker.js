@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
-import TimePickerDialog from './TimePickerDialog';
+import propTypes from '../utils/customPropTypes';
 import TextField from '../TextField';
+import TimePickerDialog from './TimePickerDialog';
 import {formatTime} from './timeUtils';
 
 const emptyTime = new Date();
@@ -100,7 +101,7 @@ class TimePicker extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {

@@ -1,9 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
+import keycode from 'keycode';
 import shallowEqual from 'recompose/shallowEqual';
 import ClickAwayListener from '../internal/ClickAwayListener';
-import keycode from 'keycode';
-import propTypes from '../utils/propTypes';
+import propTypes from '../utils/customPropTypes';
 import List from '../List/List';
 import {HotKeyHolder} from './menuUtils';
 
@@ -169,7 +169,7 @@ class Menu extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   constructor(props, context) {

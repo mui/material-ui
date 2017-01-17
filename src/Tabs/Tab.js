@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import propTypes from '../utils/customPropTypes';
 import EnhancedButton from '../internal/EnhancedButton';
 
 function getStyles(props, context) {
@@ -82,7 +83,7 @@ class Tab extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   handleTouchTap = (event) => {

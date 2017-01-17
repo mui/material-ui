@@ -1,7 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import Checkbox from '../Checkbox';
-import TableRowColumn from './TableRowColumn';
+import propTypes from '../utils/customPropTypes';
 import ClickAwayListener from '../internal/ClickAwayListener';
+import TableRowColumn from './TableRowColumn';
 
 class TableBody extends Component {
   static muiName = 'TableBody';
@@ -117,7 +118,7 @@ class TableBody extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {

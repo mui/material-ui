@@ -6,7 +6,7 @@ import Menu from '../Menu';
 import MenuItem from '../MenuItem';
 import Divider from '../Divider';
 import Popover from '../Popover/Popover';
-import propTypes from '../utils/propTypes';
+import propTypes from '../utils/customPropTypes';
 
 function getStyles(props, context, state) {
   const {anchorEl} = state;
@@ -203,7 +203,7 @@ class AutoComplete extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {

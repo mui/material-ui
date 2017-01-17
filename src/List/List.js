@@ -1,4 +1,5 @@
 import React, {Component, PropTypes, Children, isValidElement} from 'react';
+import propTypes from '../utils/customPropTypes';
 import Subheader from '../Subheader';
 
 class List extends Component {
@@ -15,7 +16,7 @@ class List extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   render() {

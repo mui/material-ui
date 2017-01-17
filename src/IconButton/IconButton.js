@@ -1,10 +1,10 @@
 import React, {Component, PropTypes} from 'react';
 import transitions from '../styles/transitions';
-import propTypes from '../utils/propTypes';
+import propTypes from '../utils/customPropTypes';
+import {extendChildren} from '../utils/childUtils';
 import EnhancedButton from '../internal/EnhancedButton';
 import FontIcon from '../FontIcon';
 import Tooltip from '../internal/Tooltip';
-import {extendChildren} from '../utils/childUtils';
 
 function getStyles(props, context) {
   const {baseTheme} = context.muiTheme;
@@ -120,7 +120,7 @@ class IconButton extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {

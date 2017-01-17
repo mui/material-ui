@@ -1,6 +1,6 @@
-import transitions from '../styles/transitions';
 import React, {Component, PropTypes} from 'react';
-import propTypes from '../utils/propTypes';
+import transitions from '../styles/transitions';
+import propTypes from '../utils/customPropTypes';
 import Paper from '../Paper';
 
 function getStyles(props, context, state) {
@@ -58,7 +58,7 @@ class PopoverAnimationDefault extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {

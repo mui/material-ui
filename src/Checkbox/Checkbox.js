@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import EnhancedSwitch from '../internal/EnhancedSwitch';
 import transitions from '../styles/transitions';
+import propTypes from '../utils/customPropTypes';
 import CheckboxOutline from '../svg-icons/toggle/check-box-outline-blank';
 import CheckboxChecked from '../svg-icons/toggle/check-box';
 
@@ -119,7 +120,7 @@ class Checkbox extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {

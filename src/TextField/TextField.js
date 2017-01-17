@@ -1,12 +1,13 @@
 import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
+import warning from 'warning';
 import shallowEqual from 'recompose/shallowEqual';
+import propTypes from '../utils/customPropTypes';
 import transitions from '../styles/transitions';
 import EnhancedTextarea from './EnhancedTextarea';
 import TextFieldHint from './TextFieldHint';
 import TextFieldLabel from './TextFieldLabel';
 import TextFieldUnderline from './TextFieldUnderline';
-import warning from 'warning';
 
 const getStyles = (props, context, state) => {
   const {
@@ -252,7 +253,7 @@ class TextField extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {

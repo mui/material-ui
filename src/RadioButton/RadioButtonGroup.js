@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import RadioButton from '../RadioButton';
+import propTypes from '../utils/customPropTypes';
 import warning from 'warning';
 
 class RadioButtonGroup extends Component {
@@ -52,7 +53,7 @@ class RadioButtonGroup extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {

@@ -1,12 +1,12 @@
 import React, {Component, PropTypes} from 'react';
+import warning from 'warning';
 import transitions from '../styles/transitions';
 import {fade} from '../utils/colorManipulator';
 import EnhancedButton from '../internal/EnhancedButton';
 import FontIcon from '../FontIcon';
 import Paper from '../Paper';
 import {extendChildren} from '../utils/childUtils';
-import warning from 'warning';
-import propTypes from '../utils/propTypes';
+import propTypes from '../utils/customPropTypes';
 
 function getStyles(props, context) {
   const {floatingActionButton} = context.muiTheme;
@@ -141,7 +141,7 @@ class FloatingActionButton extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {

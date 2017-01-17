@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import OpenIcon from '../svg-icons/hardware/keyboard-arrow-up';
 import CloseIcon from '../svg-icons/hardware/keyboard-arrow-down';
 import IconButton from '../IconButton';
+import propTypes from '../utils/customPropTypes';
 
 function getStyles() {
   return {
@@ -25,7 +26,7 @@ class CardExpandable extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   static defaultProps = {

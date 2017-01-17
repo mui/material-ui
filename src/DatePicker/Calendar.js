@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
 import transitions from '../styles/transitions';
+import propTypes from '../utils/customPropTypes';
 import CalendarActionButtons from './CalendarActionButtons';
 import CalendarMonth from './CalendarMonth';
 import CalendarYear from './CalendarYear';
@@ -54,7 +55,7 @@ class Calendar extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {

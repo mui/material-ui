@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import propTypes from '../utils/customPropTypes';
 import transitions from '../styles/transitions';
 
 function getRelativeValue(value, min, max) {
@@ -100,7 +101,7 @@ class LinearProgress extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   componentDidMount() {

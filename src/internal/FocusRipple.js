@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import shallowEqual from 'recompose/shallowEqual';
+import propTypes from '../utils/customPropTypes';
 import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
 import ScaleInTransitionGroup from './ScaleIn';
@@ -17,7 +18,7 @@ class FocusRipple extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   componentDidMount() {

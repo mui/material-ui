@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import propTypes from '../utils/customPropTypes';
 import Tooltip from '../internal/Tooltip';
 
 function getStyles(props, context) {
@@ -69,7 +70,7 @@ class TableHeaderColumn extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {

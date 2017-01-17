@@ -2,7 +2,7 @@ import React, {Component, PropTypes, cloneElement} from 'react';
 import IconButton from '../IconButton';
 import NavigationMenu from '../svg-icons/navigation/menu';
 import Paper from '../Paper';
-import propTypes from '../utils/propTypes';
+import propTypes from '../utils/customPropTypes';
 import warning from 'warning';
 
 export function getStyles(props, context) {
@@ -149,7 +149,7 @@ class AppBar extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   componentDidMount() {

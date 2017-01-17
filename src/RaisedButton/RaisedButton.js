@@ -2,6 +2,7 @@ import React, {Component, cloneElement, PropTypes} from 'react';
 import transitions from '../styles/transitions';
 import {fade} from '../utils/colorManipulator';
 import {createChildFragment} from '../utils/childUtils';
+import propTypes from '../utils/customPropTypes';
 import EnhancedButton from '../internal/EnhancedButton';
 import Paper from '../Paper';
 
@@ -224,7 +225,7 @@ class RaisedButton extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {

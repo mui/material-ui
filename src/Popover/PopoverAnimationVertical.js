@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import Paper from '../Paper';
 import transitions from '../styles/transitions';
-import propTypes from '../utils/propTypes';
+import propTypes from '../utils/customPropTypes';
 
 function getStyles(props, context, state) {
   const {targetOrigin} = props;
@@ -41,7 +41,7 @@ class PopoverAnimationVertical extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {
