@@ -1,7 +1,8 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import Button from 'material-ui/Button';
 import AddIcon from 'material-ui/svg-icons/add';
 import ModeEditIcon from 'material-ui/svg-icons/mode-edit';
@@ -27,5 +28,5 @@ export default function FloatingActionButtons(props, context) {
 }
 
 FloatingActionButtons.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };

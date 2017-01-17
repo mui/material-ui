@@ -1,7 +1,8 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import InputLabel from 'material-ui/Input/InputLabel';
 
 const styleSheet = createStyleSheet('InputLabels', () => ({
@@ -30,5 +31,5 @@ export default function InputLabels(props, context) {
 }
 
 InputLabels.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };

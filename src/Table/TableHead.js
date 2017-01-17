@@ -1,8 +1,9 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from '../utils/customPropTypes';
 
 export const styleSheet = createStyleSheet('TableHead', (theme) => {
   return {
@@ -37,7 +38,7 @@ export default class TableHead extends Component {
 
   static contextTypes = {
     table: PropTypes.object,
-    styleManager: PropTypes.object.isRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   static childContextTypes = { table: PropTypes.object };

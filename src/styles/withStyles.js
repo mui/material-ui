@@ -1,8 +1,8 @@
 // @flow weak
 
-import { PropTypes } from 'react';
 import createHelper from 'recompose/createHelper';
 import createEagerFactory from 'recompose/createEagerFactory';
+import customPropTypes from '../utils/customPropTypes';
 
 const withStyles = (styleSheet) => (BaseComponent) => {
   const factory = createEagerFactory(BaseComponent);
@@ -15,7 +15,7 @@ const withStyles = (styleSheet) => (BaseComponent) => {
   );
 
   WithStyle.contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   return WithStyle;

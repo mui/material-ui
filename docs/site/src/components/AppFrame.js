@@ -11,6 +11,7 @@ import IconButton from 'material-ui/IconButton';
 import withWidth, { isWidthUp } from 'material-ui/utils/withWidth';
 import MenuIcon from 'material-ui/svg-icons/menu';
 import LightbulbOutlineIcon from 'material-ui/svg-icons/lightbulb-outline';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import AppDrawer from './AppDrawer';
 
 function getTitle(routes) {
@@ -106,7 +107,7 @@ class AppFrame extends Component {
   };
 
   static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   state = {

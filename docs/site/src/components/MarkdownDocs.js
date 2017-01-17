@@ -2,6 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import MarkdownElement from 'docs/site/src/components/MarkdownElement';
 import Demo from './Demo';
 
@@ -39,5 +40,5 @@ MarkdownDocs.propTypes = {
 };
 
 MarkdownDocs.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };

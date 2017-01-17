@@ -3,6 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import shallowEqual from 'recompose/shallowEqual';
 import { Input, InputLabel } from '../Input';
+import customPropTypes from '../utils/customPropTypes';
 import FormControl from '../Form/FormControl';
 
 /**
@@ -49,7 +50,7 @@ export default class TextField extends Component {
   };
 
   static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {

@@ -1,8 +1,9 @@
 // @flow weak
 
 import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from '../utils/customPropTypes';
 import { createSwitch } from '../internal/SwitchBase';
 import withSwitchLabel from '../internal/withSwitchLabel';
 
@@ -81,7 +82,7 @@ Switch.propTypes = {
 };
 
 Switch.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };
 
 

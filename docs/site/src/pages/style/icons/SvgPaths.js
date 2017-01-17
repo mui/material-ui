@@ -1,7 +1,8 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import { blue, red, green } from 'material-ui/styles/colors';
 import SvgIcon from 'material-ui/SvgIcon';
 
@@ -40,5 +41,5 @@ export default function SvgPath(props, context) {
 }
 
 SvgPath.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };

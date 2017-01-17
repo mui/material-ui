@@ -1,9 +1,10 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import EventListener from 'react-event-listener';
 import createHelper from 'recompose/createHelper';
 import createEagerFactory from 'recompose/createEagerFactory';
+import customPropTypes from '../utils/customPropTypes';
 import { keys } from '../styles/breakpoints';
 
 export const isWidthUp = (baseWidth, width) => (
@@ -24,7 +25,7 @@ function withWidth(options = {}) {
 
     return class WithWidth extends Component {
       static contextTypes = {
-        theme: PropTypes.object.isRequired,
+        theme: customPropTypes.muiRequired,
       };
 
       state = {

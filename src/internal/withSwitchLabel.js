@@ -2,9 +2,10 @@
 /* eslint-disable jsx-a11y/label-has-for */
 
 import React, { Component, PropTypes } from 'react';
+import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import createHelper from 'recompose/createHelper';
-import classNames from 'classnames';
+import customPropTypes from '../utils/customPropTypes';
 
 export const styleSheet = createStyleSheet('SwitchLabel', (theme) => {
   return {
@@ -42,7 +43,7 @@ function withSwitchLabel(SwitchComponent) {
     };
 
     static contextTypes = {
-      styleManager: PropTypes.object.isRequired,
+      styleManager: customPropTypes.muiRequired,
     };
 
     switch = undefined;

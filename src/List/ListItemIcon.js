@@ -1,8 +1,9 @@
 // @flow weak
 
 import { PropTypes, cloneElement, Component } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from '../utils/customPropTypes';
 
 export const styleSheet = createStyleSheet('ListItemIcon', () => {
   return {
@@ -37,5 +38,5 @@ ListItemIcon.propTypes = {
 };
 
 ListItemIcon.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };

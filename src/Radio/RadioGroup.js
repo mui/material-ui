@@ -1,8 +1,9 @@
 // @flow weak
 
 import React, { Component, Children, cloneElement, PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from '../utils/customPropTypes';
 import FormGroup from '../Form/FormGroup';
 import { find } from '../utils/helpers';
 
@@ -31,7 +32,7 @@ class RadioGroup extends Component {
   };
 
   static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   radios = undefined;

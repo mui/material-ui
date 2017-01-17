@@ -2,20 +2,21 @@
 
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { createStyleSheet } from 'jss-theme-reactor';
 import warning from 'warning';
 import keycode from 'keycode';
 import canUseDom from 'dom-helpers/util/inDOM';
 import contains from 'dom-helpers/query/contains';
 import activeElement from 'dom-helpers/activeElement';
 import ownerDocument from 'dom-helpers/ownerDocument';
+import addEventListener from '../utils/addEventListener';
+import { createChainedFunction } from '../utils/helpers';
+import Fade from '../transitions/Fade';
+import customPropTypes from '../utils/customPropTypes';
 import { createModalManager } from './modalManager';
 import Backdrop from './Backdrop';
 import Portal from './Portal';
-import Fade from '../transitions/Fade';
-import addEventListener from '../utils/addEventListener';
-import { createChainedFunction } from '../utils/helpers';
 
 // Modals don't open on the server
 // so this won't break concurrency
@@ -124,7 +125,7 @@ export default class Modal extends Component {
   };
 
   static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   state = {

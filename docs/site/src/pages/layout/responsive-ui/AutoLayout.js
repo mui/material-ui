@@ -1,8 +1,9 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
-import Paper from 'material-ui/Paper';
+import React from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from 'material-ui/utils/customPropTypes';
+import Paper from 'material-ui/Paper';
 import Layout from 'material-ui/Layout';
 
 const styleSheet = createStyleSheet('AutoLayout', (theme) => ({
@@ -60,5 +61,5 @@ export default function AutoLayout(props, context) {
 }
 
 AutoLayout.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };

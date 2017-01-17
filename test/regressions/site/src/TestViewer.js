@@ -2,6 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 
 const globalStyleSheet = createStyleSheet('global', (theme) => {
   const { palette, typography } = theme;
@@ -56,7 +57,7 @@ export default class TestViewer extends Component {
   };
 
   static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   componentWillMount() {
