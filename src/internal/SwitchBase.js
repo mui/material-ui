@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import IconButton from '../IconButton';
 import CheckBoxOutlineBlankIcon from '../svg-icons/check-box-outline-blank';
 import CheckBoxIcon from '../svg-icons/check-box';
+import Icon from '../Icon';
 
 export const styleSheet = createStyleSheet('SwitchBase', () => {
   return {
@@ -161,7 +162,7 @@ export function createSwitch({
       let icon = checked ? checkedIcon : iconProp;
 
       if (typeof icon === 'string') {
-        icon = <span className="material-icons" aria-hidden="true">{icon}</span>;
+        icon = <Icon aria-hidden="true">{icon}</Icon>;
       }
 
       return (

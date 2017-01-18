@@ -4,6 +4,7 @@ import React, { Component, PropTypes, cloneElement, isValidElement } from 'react
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
+import Icon from '../Icon';
 
 export const styleSheet = createStyleSheet('BottomNavigationButton', (theme) => {
   return {
@@ -122,7 +123,7 @@ export default class BottomNavigationButton extends Component {
 
     const icon = isValidElement(iconProp) ?
       cloneElement(iconProp, { className: iconClassName }) :
-      <span className="material-icons">{iconProp}</span>;
+      <Icon>{iconProp}</Icon>;
 
     const labelClassName = classNames(classes.label, {
       [classes.selectedLabel]: selected,

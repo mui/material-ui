@@ -32,6 +32,7 @@ export const MUI_SHEET_ORDER = [
   'IconButton',
 
   'SvgIcon',
+  'Icon',
 
   'SwitchBase',
   'Switch',

@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
+import Icon from '../Icon';
 
 export const styleSheet = createStyleSheet('IconButton', (theme) => {
   const { palette, transitions } = theme;
@@ -86,7 +87,7 @@ export default function IconButton(props, context) {
     >
       <span className={classNames(classes.label)}>
         {typeof children === 'string' ?
-          <span className="material-icons">{children}</span> : children
+          <Icon>{children}</Icon> : children
         }
       </span>
     </ButtonBase>
