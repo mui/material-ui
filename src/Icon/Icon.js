@@ -103,4 +103,6 @@ Icon.defaultProps = {
   primary: false,
 };
 
+Icon.muiName = 'Icon';
+
 export default Icon;
