@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Avatar from 'material-ui/Avatar';
+import Icon from 'material-ui/Icon';
 import {
   ListItem,
   ListItemText,
@@ -11,7 +12,7 @@ export default function AvatarListItem() {
   return (
     <div style={{ background: '#fff', width: 300 }}>
       <ListItem>
-        <Avatar><span className="material-icons">folder</span></Avatar>
+        <Avatar><Icon>folder</Icon></Avatar>
         <ListItemText primary="Avatar" />
       </ListItem>
     </div>
