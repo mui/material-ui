@@ -21,12 +21,20 @@ describe('<Collapse />', () => {
     assert.strictEqual(wrapper.is('Transition'), true, 'is a Transition component');
   });
 
-  it('should render a container around the wrapper', () => {
-    const wrapper = shallow(<Collapse containerClassName="woof" />);
-    assert.strictEqual(wrapper.childAt(0).is('div'), true, 'should be a div');
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.container), true,
-      'should have the container class');
-    assert.strictEqual(wrapper.childAt(0).hasClass('woof'), true, 'should have the user class');
+  describe('container', () => {
+    it('should render around the wrapper', () => {
+      const wrapper = shallow(<Collapse containerClassName="woof" />);
+      assert.strictEqual(wrapper.childAt(0).is('div'), true, 'should be a div');
+      assert.strictEqual(wrapper.childAt(0).hasClass(classes.container), true,
+        'should have the container class');
+      assert.strictEqual(wrapper.childAt(0).hasClass('woof'), true, 'should have the user class');
+    });
+
+    it('should render containerIn class', () => {
+      const wrapper = shallow(<Collapse in />);
+      assert.strictEqual(wrapper.childAt(0).hasClass(classes.containerIn), true,
+        'should have the containerIn class');
+    });
   });
 
   it('should render a wrapper around the children', () => {

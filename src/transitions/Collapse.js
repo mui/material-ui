@@ -14,6 +14,9 @@ export const styleSheet = createStyleSheet('Collapse', (theme) => {
       overflow: 'hidden',
       transition: theme.transitions.create('height'),
     },
+    containerIn: {
+      overflow: 'visible',
+    },
     entered: {
       height: 'auto',
       transitionDuration: '0ms',
@@ -146,6 +149,7 @@ export default class Collapse extends Component {
     const {
       children,
       containerClassName,
+      in: inProp,
       onEnter, // eslint-disable-line no-unused-vars
       onEntering, // eslint-disable-line no-unused-vars
       onExit, // eslint-disable-line no-unused-vars
@@ -155,10 +159,15 @@ export default class Collapse extends Component {
     } = this.props;
 
     const classes = this.context.styleManager.render(styleSheet);
-    const containerClasses = classNames(classes.container, containerClassName);
+    const containerClasses = classNames(
+      classes.container,
+      { [classes.containerIn]: inProp },
+      containerClassName,
+    );
 
     return (
       <Transition
+        in={inProp}
         onEntering={this.handleEntering}
         onEnter={this.handleEnter}
         onEntered={this.handleEntered}
