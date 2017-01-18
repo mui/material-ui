@@ -3,6 +3,7 @@
 import React from 'react';
 import Avatar from 'material-ui/Avatar';
 import { deepOrange } from 'material-ui/styles/colors';
+import Icon from 'material-ui/Icon';
 
 export default function IconAvatar() {
   return (
@@ -12,7 +13,7 @@ export default function IconAvatar() {
         backgroundColor: deepOrange[500],
       }}
     >
-      <span className="material-icons">favorite</span>
+      <Icon>favorite</Icon>
     </Avatar>
   );
 }

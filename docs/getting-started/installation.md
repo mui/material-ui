@@ -9,3 +9,7 @@ font in mind.
 So be sure to include it in your project.
 Here are [some instructions](http://www.google.com/fonts#UsePlace:use/Collection:Roboto:400,300,500)
 on how to do so.
+
+## Icon Font
+
+In order to use the font `Icon` component, you must add the add the material icons font. Here are [some instructions](http://google.github.io/material-design-icons/#icon-font-for-the-web) on how to do so.
