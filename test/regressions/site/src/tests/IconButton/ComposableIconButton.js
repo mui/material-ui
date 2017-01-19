@@ -3,7 +3,7 @@
 import React from 'react';
 import IconButton from 'material-ui/IconButton';
 
-export default function IconButton() {
+export default function ComposableIconButton() {
   return (
     <IconButton>
       <Icon>home</Icon>
