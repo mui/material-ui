@@ -9,7 +9,7 @@ import Text from 'material-ui/Text';
 const styleSheet = createStyleSheet('SimpleAppBar', () => ({
   root: {
     position: 'relative',
-    marginTop: 25,
+    marginTop: 30,
     width: '100%',
   },
   appBar: {

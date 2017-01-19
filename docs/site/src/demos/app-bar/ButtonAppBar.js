@@ -12,7 +12,7 @@ import MenuIcon from 'material-ui/svg-icons/menu';
 const styleSheet = createStyleSheet('ButtonAppBar', () => ({
   root: {
     position: 'relative',
-    marginTop: 25,
+    marginTop: 30,
     width: '100%',
   },
   appBar: {
@@ -32,8 +32,7 @@ export default function ButtonAppBar(props, context) {
           <IconButton contrast>
             <MenuIcon />
           </IconButton>
-          <Text type="title" colorInherit>Title</Text>
-          <div className={classes.flex} />
+          <Text type="title" colorInherit className={classes.flex}>Title</Text>
           <Button contrast>Login</Button>
         </Toolbar>
       </AppBar>
