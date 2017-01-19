@@ -28,6 +28,13 @@ export const apiMenus = {
     'tab',
     'tab-indicator',
   ],
+  text: [
+    'text',
+  ],
+  'text-fields': [
+    'text-field',
+    'text-field-label',
+  ],
   themes: [
     'mui-theme-provider',
   ],
@@ -41,6 +48,7 @@ export const apiMenus = {
 
 // Components whose name does not map as `name` -> `names` or `name-subname` -> `names`
 // The resulting name is used both to select the menu content, and in the demo path
+// 'component-name': 'demo-directory'
 export const componentMap = {
   'bottom-navigation': 'bottom-navigation',
   'bottom-navigation-button': 'bottom-navigation',
@@ -54,7 +62,7 @@ export const componentMap = {
   'svg-icon': 'svg-icon',
   tabs: 'tabs',
   text: 'text',
-  'text-fields': 'text-fields',
+  'text-field': 'text-fields',
   'form-control': 'selection-controls',
   'form-group': 'selection-controls',
   'form-label': 'selection-controls',
