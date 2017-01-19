@@ -1,8 +1,9 @@
 // @flow weak
 
 import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from '../utils/customPropTypes';
 import { easing } from '../styles/transitions';
 import { FormLabel } from '../Form';
 
@@ -76,7 +77,7 @@ TextFieldLabel.defaultProps = {
 };
 
 TextFieldLabel.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };
 
 TextFieldLabel.muiName = 'TextFieldLabel';

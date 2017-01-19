@@ -27,14 +27,14 @@ export default class SimpleMenu extends Component {
           onRequestClose={this.handleRequestClose}
           {...this.props}
         >
-          {options.map((n, index) => {
+          {options.map((label, index) => {
             return (
               <MenuItem
-                key={index}
+                key={label}
                 selected={index === this.state.selectedIndex}
                 onClick={(event) => this.handleMenuItemClick(event, index)}
               >
-                {n}
+                {label}
               </MenuItem>
             );
           })}

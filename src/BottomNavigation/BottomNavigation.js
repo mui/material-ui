@@ -3,6 +3,7 @@
 import React, { PropTypes, Children, cloneElement } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from '../utils/customPropTypes';
 
 export const styleSheet = createStyleSheet('BottomNavigation', (theme) => {
   return {
@@ -68,5 +69,5 @@ BottomNavigation.propTypes = {
 };
 
 BottomNavigation.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };

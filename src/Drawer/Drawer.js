@@ -1,11 +1,12 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
-import Paper from '../Paper';
+import { createStyleSheet } from 'jss-theme-reactor';
 import Modal from '../internal/Modal';
+import customPropTypes from '../utils/customPropTypes';
 import Slide from '../transitions/Slide';
+import Paper from '../Paper';
 
 function getSlideDirection(anchor) {
   if (anchor === 'left') {
@@ -83,7 +84,7 @@ export default class Drawer extends Component {
   };
 
   static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   render() {

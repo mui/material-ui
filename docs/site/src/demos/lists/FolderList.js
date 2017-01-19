@@ -1,7 +1,8 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import {
   List,
   ListItem,
@@ -37,7 +38,7 @@ function FolderList(props, context) {
 }
 
 FolderList.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };
 
 export default FolderList;

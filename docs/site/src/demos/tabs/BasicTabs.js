@@ -3,6 +3,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import Paper from 'material-ui/Paper';
 import Tabs from 'material-ui/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
@@ -30,7 +31,7 @@ const styleSheet = createStyleSheet('BasicTabs', (theme) => ({
 
 export default class BasicTabs extends Component {
   static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   state = {

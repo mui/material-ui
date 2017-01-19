@@ -2,6 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import Transition from '../internal/Transition';
+import customPropTypes from '../utils/customPropTypes';
 
 export default class Fade extends Component {
   static propTypes = {
@@ -43,7 +44,7 @@ export default class Fade extends Component {
   };
 
   static contextTypes = {
-    theme: PropTypes.object.isRequired,
+    theme: customPropTypes.muiRequired,
   };
 
   handleEnter = (element) => {

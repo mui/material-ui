@@ -1,9 +1,10 @@
 // @flow weak
 
 import React, { cloneElement, isValidElement, PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { createStyleSheet } from 'jss-theme-reactor';
 import keycode from 'keycode';
+import customPropTypes from '../utils/customPropTypes';
 import DeleteIcon from '../svg-icons/cancel';
 import { emphasize, fade } from '../styles/colorManipulator';
 
@@ -117,7 +118,10 @@ export default function Chip(props, context) {
       event.preventDefault();
       chipRef.blur();
     }
-    onKeyDown(event);
+
+    if (onKeyDown) {
+      onKeyDown(event);
+    }
   };
 
   const classes = context.styleManager.render(styleSheet);
@@ -206,9 +210,5 @@ Chip.propTypes = {
 };
 
 Chip.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
-};
-
-Chip.defaultProps = {
-  onKeyDown: () => {},
+  styleManager: customPropTypes.muiRequired,
 };

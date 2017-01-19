@@ -1,7 +1,8 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
 import Face from 'material-ui/svg-icons/face';
@@ -61,5 +62,5 @@ export default function Chips(props, context) {
 }
 
 Chips.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };

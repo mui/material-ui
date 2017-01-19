@@ -3,10 +3,11 @@
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import shallowEqual from 'recompose/shallowEqual';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import IconButton from 'material-ui/IconButton';
 import Collapse from 'material-ui/transitions/Collapse';
-import MarkdownElement from 'docs/site/src/components/MarkdownElement';
 import CodeIcon from 'material-ui/svg-icons/code';
+import MarkdownElement from 'docs/site/src/components/MarkdownElement';
 
 const requireDemos = require.context('docs/site/src', true, /\.js$/);
 const requireDemoSource = require.context('!raw!docs/site/src', true, /\.js$/);
@@ -65,8 +66,8 @@ export default class Demo extends Component {
   };
 
   static contextTypes = {
-    theme: PropTypes.object.isRequired,
-    styleManager: PropTypes.object.isRequired,
+    theme: customPropTypes.muiRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   state = {

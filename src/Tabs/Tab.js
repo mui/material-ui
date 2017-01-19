@@ -1,9 +1,10 @@
 // @flow weak
 
 import React, { Component, PropTypes, isValidElement } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { createStyleSheet } from 'jss-theme-reactor';
 import ButtonBase from '../internal/ButtonBase';
+import customPropTypes from '../utils/customPropTypes';
 
 export const styleSheet = createStyleSheet('Tab', (theme) => {
   return {
@@ -104,7 +105,7 @@ export default class Tab extends Component {
   };
 
   static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   handleChange = (event) => {

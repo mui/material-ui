@@ -1,8 +1,9 @@
 // @flow weak
 
 import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from '../utils/customPropTypes';
 import { cloneChildrenWithClassName } from '../utils/reactHelpers';
 
 export const styleSheet = createStyleSheet('CardActions', () => ({
@@ -52,5 +53,5 @@ CardActions.defaultProps = {
 };
 
 CardActions.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };

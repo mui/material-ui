@@ -1,8 +1,9 @@
 // @flow weak
 
 import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from '../utils/customPropTypes';
 import { emphasize } from '../styles/colorManipulator';
 
 export const styleSheet = createStyleSheet('Avatar', (theme) => {
@@ -125,5 +126,5 @@ Avatar.defaultProps = {
 };
 
 Avatar.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };

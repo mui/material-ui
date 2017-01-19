@@ -1,7 +1,8 @@
 // @flow weak
 
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import TextField from 'material-ui/TextField';
 
 const styleSheet = createStyleSheet('TextFields', () => ({
@@ -16,7 +17,7 @@ const styleSheet = createStyleSheet('TextFields', () => ({
 
 export default class TextFields extends Component {
   static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   state = {

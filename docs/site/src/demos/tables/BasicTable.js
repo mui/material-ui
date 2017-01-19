@@ -1,7 +1,8 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import {
   Table,
   TableHead,
@@ -66,5 +67,5 @@ export default function BasicTable(props, context) {
 }
 
 BasicTable.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };

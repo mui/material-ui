@@ -1,8 +1,9 @@
 // @flow weak
 
 import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from '../utils/customPropTypes';
 import ButtonBase from '../internal/ButtonBase';
 
 export const styleSheet = createStyleSheet('TableSortLabel', (theme) => {
@@ -96,5 +97,5 @@ TableSortLabel.defaultProps = {
 };
 
 TableSortLabel.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };

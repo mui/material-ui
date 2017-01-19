@@ -5,7 +5,8 @@ const screenshotElement = require('./screenshotElement');
 
 function createBaseline(client, testPath, done) {
   client.session(({ value }) => {
-    const profile = `${value.browserName.toLowerCase()}-${value.version}-${value.platform.toLowerCase()}`;
+    const profile = `${value.browserName.toLowerCase()}-${
+      value.version}-${value.platform.toLowerCase()}`;
     const baselinePath = path.resolve(__dirname, `screenshots/baseline/${testPath}/${profile}.png`);
     client.windowHandle((handle) => {
       client.windowSize(handle.value, (size) => {

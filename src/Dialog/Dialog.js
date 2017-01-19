@@ -1,11 +1,12 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
-import Paper from '../Paper';
+import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from '../utils/customPropTypes';
 import Modal from '../internal/Modal';
 import Fade from '../transitions/Fade';
+import Paper from '../Paper';
 
 export const styleSheet = createStyleSheet('Dialog', (theme) => {
   return {
@@ -140,7 +141,7 @@ export default class Dialog extends Component {
   };
 
   static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   render() {

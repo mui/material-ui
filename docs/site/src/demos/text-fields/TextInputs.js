@@ -1,7 +1,8 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import Input from 'material-ui/Input/Input';
 
 const styleSheet = createStyleSheet('TextInputs', () => ({
@@ -41,5 +42,5 @@ export default function TextInputs(props, context) {
 }
 
 TextInputs.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };

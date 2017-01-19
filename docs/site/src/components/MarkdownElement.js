@@ -1,9 +1,10 @@
 // @flow weak
 
 import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { createStyleSheet } from 'jss-theme-reactor';
 import marked from 'marked';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import prism from 'docs/site/src/utils/prism';
 
 marked.setOptions({
@@ -134,7 +135,7 @@ MarkdownElement.propTypes = {
 };
 
 MarkdownElement.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };
 
 export default MarkdownElement;

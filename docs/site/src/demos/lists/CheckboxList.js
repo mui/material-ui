@@ -1,7 +1,8 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import {
   List,
   ListItem,
@@ -21,7 +22,7 @@ const styleSheet = createStyleSheet('CheckboxList', (theme) => ({
 
 export default class CheckboxList extends Component {
   static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   state = {

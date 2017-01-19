@@ -1,8 +1,9 @@
 // @flow weak
 
 import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from '../utils/customPropTypes';
 
 export const styleSheet = createStyleSheet('Toolbar', (theme) => {
   return {
@@ -61,5 +62,5 @@ Toolbar.defaultProps = {
 };
 
 Toolbar.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };
