@@ -20,6 +20,7 @@ export default function Icons(props, context) {
       <Icon>add_circle</Icon>
       <Icon accent>add_circle</Icon>
       <Icon action>add_circle</Icon>
+      <Icon contrast>add_circle</Icon>
       <Icon disabled>add_circle</Icon>
       <Icon error>add_circle</Icon>
       <Icon primary>add_circle</Icon>

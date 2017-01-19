@@ -40,6 +40,7 @@ const Icon = (props, context) => {
     disabled,
     accent,
     action,
+    contrast,
     error,
     primary,
     ...other
@@ -52,6 +53,7 @@ const Icon = (props, context) => {
       [classes.primary]: primary,
       [classes.accent]: accent,
       [classes.action]: action,
+      [classes.contrast]: contrast,
       [classes.disabled]: disabled,
       [classes.error]: error,
     },
@@ -78,6 +80,10 @@ Icon.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * If true, the button will contrast the theme's primary color.
+   */
+  contrast: PropTypes.bool,
+  /**
    * If true, the button will use the theme's action.disabled color.
    */
   disabled: PropTypes.bool,
@@ -98,6 +104,7 @@ Icon.contextTypes = {
 Icon.defaultProps = {
   accent: false,
   action: false,
+  contrast: false,
   disabled: false,
   error: false,
   primary: false,

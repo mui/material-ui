@@ -46,6 +46,12 @@ describe('<Icon />', () => {
       assert.strictEqual(wrapper.hasClass(classes.action), true, 'should have the "action" class');
     });
 
+    it('should render with the contrast class', () => {
+      const wrapper = shallow(<Icon contrast>account_circle</Icon>);
+      assert.strictEqual(wrapper.hasClass(classes.contrast), true,
+        'should have the "contrast" class');
+    });
+
     it('should render with the error class', () => {
       const wrapper = shallow(<Icon error>account_circle</Icon>);
       assert.strictEqual(wrapper.hasClass(classes.error), true, 'should have the "error" class');
