@@ -99,6 +99,12 @@ const appList = [
     img: 'images/showcase/humorista.png',
     link: 'https://humorista.org/',
   },
+  {
+    title: 'Code.Liquid_Think',
+    author: 'Andrew Plaza',
+    img: 'images/showcase/code-liquidthink.png',
+    link: 'http://code.liquidthink.net',
+  },
 ];
 
 const Showcase = () => (
