@@ -6,11 +6,11 @@ import classNames from 'classnames';
 export const styleSheet = createStyleSheet('Icon', (theme) => {
   const { palette } = theme;
   return {
-    action: {
-      color: palette.action.active,
-    },
     accent: {
       color: palette.accent.A200,
+    },
+    action: {
+      color: palette.action.active,
     },
     contrast: {
       color: palette.getContrastText(palette.primary[500]),
@@ -35,12 +35,12 @@ export const styleSheet = createStyleSheet('Icon', (theme) => {
  */
 const Icon = (props, context) => {
   const {
-    children,
-    className: classNameProp,
-    disabled,
     accent,
     action,
+    children,
+    className: classNameProp,
     contrast,
+    disabled,
     error,
     primary,
     ...other
@@ -50,12 +50,12 @@ const Icon = (props, context) => {
   const className = classNames(
     'material-icons',
     {
-      [classes.primary]: primary,
       [classes.accent]: accent,
       [classes.action]: action,
       [classes.contrast]: contrast,
       [classes.disabled]: disabled,
       [classes.error]: error,
+      [classes.primary]: primary,
     },
     classNameProp);
 
