@@ -9,7 +9,7 @@ const styleSheet = createStyleSheet('Icons', () => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-around',
-    width: '70%'
+    width: '70%',
   },
 }));
 
