@@ -9,20 +9,20 @@ export const styleSheet = createStyleSheet('Icon', (theme) => {
     action: {
       color: palette.action.active,
     },
-    disabled: {
-      color: palette.action.disabled,
-    },
     accent: {
       color: palette.accent.A200,
     },
     contrast: {
       color: palette.getContrastText(palette.primary[500]),
     },
-    primary: {
-      color: palette.primary[500],
+    disabled: {
+      color: palette.action.disabled,
     },
     error: {
       color: palette.error[500],
+    },
+    primary: {
+      color: palette.primary[500],
     },
   };
 });
