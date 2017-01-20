@@ -97,7 +97,6 @@ class Tabs extends Component {
     inkBarWidth: 0,
     selectedIndex: 0,
   };
-  tabs = {};
 
   componentWillMount() {
     const valueLink = this.getValueLink(this.props);
@@ -134,6 +133,8 @@ class Tabs extends Component {
       this.updateInkBarPosition();
     }
   }
+
+  tabs = {};
 
   getTabs(props = this.props) {
     const tabs = [];
@@ -247,7 +248,9 @@ class Tabs extends Component {
 
       return cloneElement(tab, {
         key: index,
-        ref: (ref) => { this.tabs[index] = ReactDOM.findDOMNode(ref); },
+        ref: (ref) => {
+          this.tabs[index] = ReactDOM.findDOMNode(ref);
+        },
         index: index,
         padding: padding,
         selected: this.getSelected(tab, index),

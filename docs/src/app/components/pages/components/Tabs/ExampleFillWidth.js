@@ -11,7 +11,7 @@ const styles = {
 };
 
 const TabsExampleFillWidth = () => (
-  <Tabs fillWidth>
+  <Tabs fillWidth={true}>
     <Tab label="Item One">
       <div>
         <h2 style={styles.headline}>Tab One</h2>

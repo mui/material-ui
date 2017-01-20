@@ -139,7 +139,7 @@ class Tab extends Component {
     return (
       <EnhancedButton
         {...other}
-        style={Object.assign(styles.root, { padding }, style)}
+        style={Object.assign(styles.root, {padding}, style)}
         focusRippleColor={rippleColor}
         touchRippleColor={rippleColor}
         focusRippleOpacity={rippleOpacity}
