@@ -1,7 +1,8 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import Avatar from 'material-ui/Avatar';
 import { deepOrange, deepPurple } from 'material-ui/styles/colors';
 
@@ -37,5 +38,5 @@ export default function LetterAvatars(props, context) {
 }
 
 LetterAvatars.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };

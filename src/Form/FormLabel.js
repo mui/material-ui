@@ -2,8 +2,9 @@
 /* eslint-disable jsx-a11y/label-has-for */
 
 import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from '../utils/customPropTypes';
 
 export const styleSheet = createStyleSheet('FormLabel', (theme) => {
   const focusColor = theme.palette.accent.A200;
@@ -97,5 +98,5 @@ FormLabel.propTypes = {
 
 FormLabel.contextTypes = {
   muiFormControl: PropTypes.object,
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };

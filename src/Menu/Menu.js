@@ -5,6 +5,7 @@ import { findDOMNode } from 'react-dom';
 import { createStyleSheet } from 'jss-theme-reactor';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import Popover from '../internal/Popover';
+import customPropTypes from '../utils/customPropTypes';
 import MenuList from './MenuList';
 
 export const styleSheet = createStyleSheet('Menu', () => {
@@ -76,7 +77,7 @@ export default class Menu extends Component {
   };
 
   static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   menuList = undefined;

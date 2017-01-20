@@ -3,12 +3,13 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { createStyleSheet } from 'jss-theme-reactor';
+import shallowEqual from 'recompose/shallowEqual';
 import { List } from 'material-ui/List';
 import Toolbar from 'material-ui/Toolbar';
 import Drawer from 'material-ui/Drawer';
 import Text from 'material-ui/Text';
 import Divider from 'material-ui/Divider';
-import shallowEqual from 'recompose/shallowEqual';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import AppDrawerNavItem from './AppDrawerNavItem';
 
 export const styleSheet = createStyleSheet('AppDrawer', (theme) => {
@@ -78,8 +79,8 @@ export default class AppDrawer extends Component {
   };
 
   static contextTypes = {
-    theme: PropTypes.object.isRequired,
-    styleManager: PropTypes.object.isRequired,
+    theme: customPropTypes.muiRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {

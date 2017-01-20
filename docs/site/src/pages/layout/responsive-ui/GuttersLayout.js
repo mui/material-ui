@@ -1,7 +1,8 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import Layout from 'material-ui/Layout';
 import { LabelRadio, RadioGroup } from 'material-ui/Radio';
 import Paper from 'material-ui/Paper';
@@ -24,7 +25,7 @@ const styleSheet = createStyleSheet('GuttersLayout', () => {
 
 export default class GuttersLayout extends Component {
   static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: customPropTypes.muiRequired,
   }
 
   state = {

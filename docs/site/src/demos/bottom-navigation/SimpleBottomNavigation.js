@@ -1,7 +1,8 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import { BottomNavigation, BottomNavigationButton } from 'material-ui/BottomNavigation';
 import RestoreIcon from 'material-ui/svg-icons/restore';
 import FavoriteIcon from 'material-ui/svg-icons/favorite';
@@ -52,5 +53,5 @@ export default class SimpleBottomNavigation extends Component {
 }
 
 SimpleBottomNavigation.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };

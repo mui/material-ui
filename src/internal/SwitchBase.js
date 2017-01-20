@@ -1,8 +1,9 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from '../utils/customPropTypes';
 import IconButton from '../IconButton';
 import CheckBoxOutlineBlankIcon from '../svg-icons/check-box-outline-blank';
 import CheckBoxIcon from '../svg-icons/check-box';
@@ -90,7 +91,7 @@ export function createSwitch({
     };
 
     static contextTypes = {
-      styleManager: PropTypes.object.isRequired,
+      styleManager: customPropTypes.muiRequired,
     };
 
     state = {};

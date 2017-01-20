@@ -31,7 +31,7 @@ export default function Router() {
         {tests.map(((test, index) => {
           return (
             <Route
-              key={index}
+              key={test.name}
               title={test.name}
               testIndex={index}
               path={test.routePath}

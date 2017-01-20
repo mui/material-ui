@@ -1,7 +1,8 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import Button from 'material-ui/Button';
 
 const styleSheet = createStyleSheet('FlatButtons', () => ({
@@ -24,5 +25,5 @@ export default function FlatButtons(props, context) {
 }
 
 FlatButtons.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };

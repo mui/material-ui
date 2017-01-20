@@ -1,7 +1,8 @@
 // @flow weak
 
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import Input from 'material-ui/Input';
 import InputLabel from 'material-ui/Input/InputLabel';
 import FormControl from 'material-ui/Form/FormControl';
@@ -18,7 +19,7 @@ const styleSheet = createStyleSheet('ComposedTextField', () => ({
 
 export default class ComposedTextField extends Component {
   static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   state = {
