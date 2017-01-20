@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Children, cloneElement } from 'react';
+import React, { PropTypes, Children, cloneElement } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import ButtonBase from '../internal/ButtonBase';
@@ -90,11 +90,10 @@ export default function IconButton(props, context) {
       <span className={classes.label}>
         {typeof children === 'string' ?
           <Icon className={iconClassName}>{children}</Icon> :
-          Children.map(children, (child, index) => {
+          Children.map(children, (child) => {
             if (child.type && child.type.muiName === 'Icon') {
               return cloneElement(child, {
-                key: index,
-                className: iconClassName,
+                className: classNames(iconClassName, child.props.className),
               });
             }
 

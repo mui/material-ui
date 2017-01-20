@@ -6,6 +6,9 @@ import classNames from 'classnames';
 export const styleSheet = createStyleSheet('Icon', (theme) => {
   const { palette } = theme;
   return {
+    root: {
+      userSelect: 'none',
+    },
     accent: {
       color: palette.accent.A200,
     },
@@ -49,6 +52,7 @@ const Icon = (props, context) => {
   const classes = context.styleManager.render(styleSheet);
   const className = classNames(
     'material-icons',
+    classes.root,
     {
       [classes.accent]: accent,
       [classes.action]: action,
