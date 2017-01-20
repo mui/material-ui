@@ -22,12 +22,12 @@ function getStyles(props, context) {
 class InkBar extends Component {
   static propTypes = {
     color: PropTypes.string,
-    left: PropTypes.string.isRequired,
+    left: PropTypes.number.isRequired,
     /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-    width: PropTypes.string.isRequired,
+    width: PropTypes.number.isRequired,
   };
 
   static contextTypes = {

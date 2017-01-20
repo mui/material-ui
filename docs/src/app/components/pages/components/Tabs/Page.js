@@ -10,6 +10,8 @@ import tabsExampleSimpleCode from '!raw!./ExampleSimple';
 import TabsExampleSimple from './ExampleSimple';
 import tabsExampleControlledCode from '!raw!./ExampleControlled';
 import TabsExampleControlled from './ExampleControlled';
+import tabsExampleFillWidthCode from '!raw!./ExampleFillWidth';
+import TabsExampleFillWidth from './ExampleFillWidth';
 import tabsExampleSwipeableCode from '!raw!./ExampleSwipeable';
 import TabsExampleSwipeable from './ExampleSwipeable';
 import tabsExampleIconCode from '!raw!./ExampleIcon';
@@ -28,6 +30,7 @@ const descriptions = {
   'and allowing tabs to be swiped on touch devices.',
   icon: 'An example of tabs with icon.',
   iconText: 'An example of tabs with icon and text.',
+  fillWidth: 'An example of tabs filling the width of the Tabs component',
 };
 
 const TabsPage = () => (
@@ -68,6 +71,13 @@ const TabsPage = () => (
       code={tabsExampleIconTextCode}
     >
       <TabsExampleIconText />
+    </CodeExample>
+    <CodeExample
+      title="Fill width example"
+      description={descriptions.fillWidth}
+      code={tabsExampleFillWidthCode}
+    >
+      <TabsExampleFillWidth />
     </CodeExample>
     <PropTypeDescription code={tabsCode} header="### Tabs Properties" />
     <PropTypeDescription code={tabCode} header="### Tab Properties" />
