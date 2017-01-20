@@ -1,4 +1,6 @@
-/* eslint-disable flowtype/require-valid-file-annotation,no-console */
+/* eslint-disable flowtype/require-valid-file-annotation */
+/* eslint-disable no-console */
+/* eslint-disable comma-dangle */
 
 const fs = require('fs');
 const path = require('path');
@@ -41,7 +43,8 @@ function compareScreenshots(client, baselinePath, screenshotPath, done) {
       // client.assert.strictEqual(
       //   result.differences < max,
       //   true,
-      //   `should have less than ${max}/${result.dimension} differences, found ${result.differences}.`
+      //   `should have less than ${max}/${result.dimension} differences,
+      //      found ${result.differences}.`
       // );
       done();
     }
@@ -50,7 +53,8 @@ function compareScreenshots(client, baselinePath, screenshotPath, done) {
 
 function performRegressionTest(client, testPath, done) {
   client.session(({ value }) => {
-    const profile = `${value.browserName.toLowerCase()}-${value.version}-${value.platform.toLowerCase()}`;
+    const profile = `${value.browserName.toLowerCase()}-${
+      value.version}-${value.platform.toLowerCase()}`;
     const screenshotPath = path.resolve(__dirname, `screenshots/output/${testPath}/${profile}.png`);
     const baselinePath = path.resolve(__dirname, `screenshots/baseline/${testPath}/${profile}.png`);
 

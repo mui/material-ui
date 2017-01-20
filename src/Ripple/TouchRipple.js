@@ -4,8 +4,9 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import shallowEqual from 'recompose/shallowEqual';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from '../utils/customPropTypes';
 import Ripple, { styleSheet as rippleStyleSheet } from './Ripple';
 
 export const styleSheet = createStyleSheet('TouchRipple', () => ({
@@ -33,8 +34,8 @@ export default class TouchRipple extends Component {
   };
 
   static contextTypes = {
-    theme: PropTypes.object.isRequired,
-    styleManager: PropTypes.object.isRequired,
+    theme: customPropTypes.muiRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   state = {

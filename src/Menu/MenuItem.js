@@ -1,8 +1,9 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from '../utils/customPropTypes';
 import ListItem from '../List/ListItem';
 
 export const styleSheet = createStyleSheet('MenuItem', (theme) => {
@@ -55,7 +56,7 @@ export default class MenuItem extends Component {
   };
 
   static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   render() {

@@ -1,10 +1,11 @@
 // @flow weak
 
-import React, { PropTypes, Children, cloneElement } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
+import React, { Children, cloneElement } from 'react';
 import classNames from 'classnames';
+import { createStyleSheet } from 'jss-theme-reactor';
 import ButtonBase from '../internal/ButtonBase';
 import Icon from '../Icon';
+import customPropTypes from '../utils/customPropTypes';
 
 export const styleSheet = createStyleSheet('IconButton', (theme) => {
   const { palette, transitions } = theme;
@@ -149,5 +150,5 @@ IconButton.defaultProps = {
 };
 
 IconButton.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };

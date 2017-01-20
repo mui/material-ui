@@ -1,8 +1,9 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from '../utils/customPropTypes';
 import { easing } from '../styles/transitions';
 
 function isDirty(obj) {
@@ -140,7 +141,7 @@ export default class Input extends Component {
 
   static contextTypes = {
     muiFormControl: PropTypes.object,
-    styleManager: PropTypes.object.isRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   state = {

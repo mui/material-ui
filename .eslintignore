@@ -8,5 +8,4 @@ node_modules
 /packages/material-ui-codemod/modules/v0.15.0
 /src/svg-icons
 /test/coverage
-/test/regressions/
-/test/integration/
+/test/regressions/site/build

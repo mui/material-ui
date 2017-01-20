@@ -1,7 +1,8 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import Button from 'material-ui/Button';
 import { Menu, MenuItem } from 'material-ui/Menu';
 
@@ -14,7 +15,7 @@ const styleSheet = createStyleSheet('SimpleMenu', () => ({
 
 export default class SimpleMenu extends Component {
   static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   state = {

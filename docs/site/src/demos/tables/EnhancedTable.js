@@ -4,6 +4,7 @@
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import keycode from 'keycode';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import {
   Table,
   TableHead,
@@ -133,12 +134,12 @@ EnhancedTableToolbar.propTypes = {
 };
 
 EnhancedTableToolbar.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };
 
 export default class EnhancedTable extends Component {
   static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   state = {

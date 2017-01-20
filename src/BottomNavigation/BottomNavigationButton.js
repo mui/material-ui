@@ -1,8 +1,9 @@
 // @flow weak
 
 import React, { Component, PropTypes, cloneElement, isValidElement } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from '../utils/customPropTypes';
 import ButtonBase from '../internal/ButtonBase';
 import Icon from '../Icon';
 
@@ -87,7 +88,7 @@ export default class BottomNavigationButton extends Component {
   };
 
   static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   handleChange = (event) => {

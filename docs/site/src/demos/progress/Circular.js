@@ -1,7 +1,8 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import { CircularProgress } from 'material-ui/Progress';
 
 const styleSheet = createStyleSheet('Circular', () => ({
@@ -21,5 +22,5 @@ export default function Circular(props, context) {
 }
 
 Circular.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };

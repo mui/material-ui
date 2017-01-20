@@ -1,8 +1,9 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import Avatar from 'material-ui/Avatar';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import { pink, green } from 'material-ui/styles/colors';
 import FolderIcon from 'material-ui/svg-icons/folder';
 import PageviewIcon from 'material-ui/svg-icons/pageview';
@@ -46,5 +47,5 @@ export default function IconAvatars(props, context) {
 }
 
 IconAvatars.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };

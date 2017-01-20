@@ -1,10 +1,10 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { createStyleSheet } from 'jss-theme-reactor';
 import contains from 'dom-helpers/query/contains';
-import customPropTypes from '../utils/propTypes';
+import customPropTypes from '../utils/customPropTypes';
 import Modal from './Modal';
 import Transition from './Transition';
 import Paper from '../Paper';
@@ -173,7 +173,7 @@ export default class Popover extends Component {
   };
 
   static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   static getScale(value) {

@@ -1,10 +1,11 @@
 // @flow weak
 
 import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
-import CardContent from './CardContent';
+import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from '../utils/customPropTypes';
 import Text from '../Text';
+import CardContent from './CardContent';
 
 export const styleSheet = createStyleSheet('CardHeader', () => ({
   cardHeader: {
@@ -76,5 +77,5 @@ CardHeader.propTypes = {
 };
 
 CardHeader.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };

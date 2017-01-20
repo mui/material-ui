@@ -1,7 +1,8 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import { CircularProgress } from 'material-ui/Progress';
 import { green } from 'material-ui/styles/colors';
 import Button from 'material-ui/Button';
@@ -28,7 +29,7 @@ const styleSheet = createStyleSheet('CircularFab', () => ({
 
 export default class CircularFab extends Component {
   static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   state = {

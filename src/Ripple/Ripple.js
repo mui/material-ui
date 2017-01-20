@@ -1,9 +1,10 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { createStyleSheet } from 'jss-theme-reactor';
 import { easing } from '../styles/transitions';
+import customPropTypes from '../utils/customPropTypes';
 
 export const styleSheet = createStyleSheet('Ripple', () => ({
   ripple: {
@@ -86,7 +87,7 @@ export default class Ripple extends Component {
   };
 
   static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   state = {

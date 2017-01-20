@@ -3,6 +3,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import Button from 'material-ui/Button';
 import { List, ListItem, ListItemText } from 'material-ui/List';
 import {
@@ -118,7 +119,7 @@ const styleSheet = createStyleSheet('ConfirmationDialogDemo', (theme) => ({
 
 export default class ConfirmationDialogDemo extends Component {
   static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   state = {

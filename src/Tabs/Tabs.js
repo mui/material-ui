@@ -1,9 +1,10 @@
 // @flow weak
 
 import React, { Component, PropTypes, Children, cloneElement } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { createStyleSheet } from 'jss-theme-reactor';
 import EventListener from 'react-event-listener';
+import customPropTypes from '../utils/customPropTypes';
 import { throttle } from '../utils/helpers';
 import TabIndicator from './TabIndicator';
 
@@ -81,7 +82,7 @@ export default class Tabs extends Component {
   };
 
   static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   state = {

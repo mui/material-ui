@@ -1,8 +1,9 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import Link from 'react-router/lib/Link';
+import customPropTypes from 'material-ui/utils/customPropTypes';
 import Text from 'material-ui/Text';
 import Button from 'material-ui/Button';
 import muiLogo from 'docs/site/assets/images/material-ui-logo.svg';
@@ -71,7 +72,7 @@ function Home(props, context) {
 }
 
 Home.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };
 
 export default Home;

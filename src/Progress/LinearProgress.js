@@ -1,8 +1,9 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from '../utils/customPropTypes';
 
 export const styleSheet = createStyleSheet('LinearProgress', (theme) => {
   const { palette } = theme;
@@ -142,7 +143,7 @@ export default class LinearProgress extends Component {
   };
 
   static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   render() {

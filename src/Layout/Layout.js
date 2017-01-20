@@ -13,8 +13,9 @@
  * - https://css-tricks.com/snippets/css/a-guide-to-flexbox/
  */
 import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import { createStyleSheet } from 'jss-theme-reactor';
+import customPropTypes from '../utils/customPropTypes';
 
 const GUTTERS = [0, 8, 16, 24, 40];
 const GRID_SIZES = [true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -295,7 +296,7 @@ Layout.defaultProps = {
 };
 
 Layout.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+  styleManager: customPropTypes.muiRequired,
 };
 
 export default Layout;
