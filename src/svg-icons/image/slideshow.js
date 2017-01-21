@@ -1,5 +1,5 @@
 import React from 'react';
-import pure from 'recompose/pure';
+import pure from 'recompact/pure';
 import SvgIcon from '../../SvgIcon';
 
 let ImageSlideshow = (props) => (

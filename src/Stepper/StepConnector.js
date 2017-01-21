@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import pure from 'recompose/pure';
+import pure from 'recompact/pure';
 
 const propTypes = {
   /**

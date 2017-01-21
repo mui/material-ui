@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
-import shallowEqual from 'recompose/shallowEqual';
+import shallowEqual from 'recompact/shallowEqual';
 import ClickAwayListener from '../internal/ClickAwayListener';
 import keycode from 'keycode';
 import propTypes from '../utils/propTypes';
