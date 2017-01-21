@@ -1,6 +1,8 @@
 import React from 'react';
 import Title from 'react-title-component';
 import {GridList, GridTile} from 'material-ui/GridList';
+import IconButton from 'material-ui/IconButton';
+import FontIcon from 'material-ui/FontIcon';
 import MarkdownElement from '../../MarkdownElement';
 import showcaseText from './showcase.md';
 
@@ -26,12 +28,21 @@ const appList = [
     author: 'Olivier Tassinari',
     img: 'images/showcase/splitme.png',
     link: 'https://splitme.net/',
+    source: 'https://github.com/oliviertassinari/SplitMe',
   },
   {
     title: 'Syncano',
     author: 'Syncano',
     img: 'images/showcase/syncano.png',
     link: 'https://syncano.io/',
+    source: 'https://github.com/Syncano/syncano-dashboard',
+  },
+  {
+    title: 'admin-on-rest - A frontend framework for building admin SPAs on top of REST services',
+    author: 'marmelab.com',
+    img: 'http://static.marmelab.com/admin-on-rest.gif',
+    link: 'http://marmelab.com/admin-on-rest/',
+    source: 'https://github.com/marmelab/admin-on-rest',
   },
   {
     title: 'Cloudcraft',
@@ -58,22 +69,10 @@ const appList = [
     link: 'http://www.smaf.tv/',
   },
   {
-    title: 'Spouti - An events search engine',
-    author: 'Magino Marveaux-Cochet',
-    img: 'images/showcase/spouti.png',
-    link: 'https://www.spouti.com/',
-  },
-  {
     title: 'Dearborn Denim - American made jeans',
     author: 'Alexander Tanton',
     img: 'images/showcase/dearborn-denim.png',
     link: 'http://dearborndenim.us/get-my-size',
-  },
-  {
-    title: 'admin-on-rest - A frontend framework for building admin SPAs on top of REST services',
-    author: 'marmelab.com',
-    img: 'http://static.marmelab.com/admin-on-rest.gif',
-    link: 'https://github.com/marmelab/admin-on-rest',
   },
   {
     title: 'Casalova - Book your next rental',
@@ -106,21 +105,25 @@ const Showcase = () => (
     <Title render={(previousTitle) => `Showcase - ${previousTitle}`} />
     <MarkdownElement text={showcaseText} />
     <GridList
-      cols={4}
+      cols={3}
       cellHeight={200}
       style={styles.gridList}
     >
       {appList.map((app) => (
         <GridTile
           key={app.title}
-          containerElement="a"
-          href={app.link}
-          target="_blank"
+          containerElement="div"
           title={app.title}
           subtitle={<span>{'by '}<b>{app.author}</b></span>}
           style={styles.gridTile}
+          actionIcon={app.source &&
+            <IconButton href={app.source} target="_blank">
+              <FontIcon className="muidocs-icon-custom-github" color="white" />
+            </IconButton>
+          }
         >
-          <img src={app.img} />
+          {/* The GridTile `href` prop would nest the `actionIcon` link, so we wrap the image instead. */}
+          <a href={app.link} target="_blank"><img src={app.img} /></a>
         </GridTile>
       ))}
     </GridList>
