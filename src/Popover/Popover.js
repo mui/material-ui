@@ -132,7 +132,7 @@ class Popover extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.open === this.props.open) { 
+    if (nextProps.open === this.props.open) {
       return;
     }
 
