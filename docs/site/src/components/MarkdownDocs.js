@@ -15,10 +15,13 @@ const styleSheet = createStyleSheet('MarkdownDocs', () => {
 });
 
 const demoRegexp = /^demo='(.*)'$/;
+const emptyRegexp = /^\s*$/;
 
 export default function MarkdownDocs(props, context) {
   const classes = context.styleManager.render(styleSheet);
-  const contents = props.route.content.split(/(?:^{{)|(?:}}$)/gm);
+  const contents = props.route.content
+    .split(/^{{|}}$/gm)
+    .filter((content) => !emptyRegexp.test(content));
 
   return (
     <div className={classes.root}>
