@@ -132,7 +132,9 @@ class Popover extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.open === this.props.open) { return }
+    if (nextProps.open === this.props.open) { 
+      return;
+    }
 
     if (nextProps.open) {
       clearTimeout(this.timeout);
