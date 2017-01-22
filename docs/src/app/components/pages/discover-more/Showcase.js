@@ -10,7 +10,11 @@ const styles = {
   gridList: {
     margin: 10,
   },
-  gridTile: {
+  gridImage: {
+    height: '100%',
+    transform: 'translateX(-50%)',
+    position: 'relative',
+    left: '50%',
     cursor: 'pointer',
   },
 };
@@ -112,10 +116,8 @@ const Showcase = () => (
       {appList.map((app) => (
         <GridTile
           key={app.title}
-          containerElement="div"
           title={app.title}
           subtitle={<span>{'by '}<b>{app.author}</b></span>}
-          style={styles.gridTile}
           actionIcon={app.source &&
             <IconButton href={app.source} target="_blank">
               <FontIcon className="muidocs-icon-custom-github" color="white" />
@@ -123,7 +125,9 @@ const Showcase = () => (
           }
         >
           {/* The GridTile `href` prop would nest the `actionIcon` link, so we wrap the image instead. */}
-          <a href={app.link} target="_blank"><img src={app.img} /></a>
+          <a href={app.link} target="_blank">
+            <img src={app.img} style={styles.gridImage} />
+          </a>
         </GridTile>
       ))}
     </GridList>
