@@ -293,6 +293,9 @@ describe('<ButtonBase />', () => {
       );
 
       const button = document.getElementById('test-button');
+      if (!button) {
+        throw new Error('missing button');
+      }
       button.focus();
 
       const event = new window.Event('keyup');
