@@ -132,29 +132,33 @@ class Popover extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.open !== this.state.open) {
-      if (nextProps.open) {
-        this.anchorEl = nextProps.anchorEl || this.props.anchorEl;
-        this.setState({
-          open: true,
-          closing: false,
-        });
-      } else {
-        if (nextProps.animated) {
-          if (this.timeout !== null) return;
-          this.setState({closing: true});
-          this.timeout = setTimeout(() => {
-            this.setState({
-              open: false,
-            }, () => {
-              this.timeout = null;
-            });
-          }, 500);
-        } else {
+    if (nextProps.open === this.props.open) {
+      return;
+    }
+
+    if (nextProps.open) {
+      clearTimeout(this.timeout);
+      this.timeout = null;
+      this.anchorEl = nextProps.anchorEl || this.props.anchorEl;
+      this.setState({
+        open: true,
+        closing: false,
+      });
+    } else {
+      if (nextProps.animated) {
+        if (this.timeout !== null) return;
+        this.setState({closing: true});
+        this.timeout = setTimeout(() => {
           this.setState({
             open: false,
+          }, () => {
+            this.timeout = null;
           });
-        }
+        }, 500);
+      } else {
+        this.setState({
+          open: false,
+        });
       }
     }
   }
