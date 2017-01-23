@@ -36,3 +36,7 @@ Confirmation dialogs require users to explicitly confirm their choice before an 
 Touching “Cancel” in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
 
 {{demo='demos/dialogs/ConfirmationDialog.js'}}
+
+## Full-screen dialogs
+
+{{demo='demos/dialogs/FullScreenDialog.js'}}
