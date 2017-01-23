@@ -42,6 +42,13 @@ const ToggleExampleSimple = () => (
       style={styles.toggle}
     />
     <Toggle
+      label="Disabled with color if toggled"
+      disabled={true}
+      style={styles.toggle}
+      toggled={true}
+      showColorWhenDisabled={true}
+    />
+    <Toggle
       label="Label on the right"
       labelPosition="right"
       style={styles.toggle}
