@@ -135,6 +135,11 @@ describe('<Modal />', () => {
         const portalLayer = wrapper.find('Portal').node.layer;
         const container = document.getElementById('container');
         const heading = document.getElementById('heading');
+
+        if (!container || !heading) {
+          throw new Error('missing element');
+        }
+
         assert.strictEqual(container.tagName.toLowerCase(), 'div',
           'should have the element in the DOM');
         assert.strictEqual(heading.tagName.toLowerCase(), 'h1',
@@ -145,6 +150,11 @@ describe('<Modal />', () => {
 
       it('should automatically add a role and tabIndex if not provided', () => {
         const container = document.getElementById('container');
+
+        if (!container) {
+          throw new Error('missing container');
+        }
+
         assert.strictEqual(container.getAttribute('role'), 'document',
           'should add the document role');
         assert.strictEqual(container.getAttribute('tabindex'), '-1', 'should add a -1 tab-index');
@@ -168,6 +178,11 @@ describe('<Modal />', () => {
       it('should render a backdrop component into the portal before the modal content', () => {
         const modal = document.getElementById('modal');
         const container = document.getElementById('container');
+
+        if (!modal) {
+          throw new Error('missing modal');
+        }
+
         assert.strictEqual(modal.children.length, 2,
           'should have 2 children, the backdrop and the test container');
         assert.ok(modal.children[0],
@@ -193,6 +208,11 @@ describe('<Modal />', () => {
       it('should not render a backdrop component into the portal before the modal content', () => {
         const modal = document.getElementById('modal');
         const container = document.getElementById('container');
+
+        if (!modal) {
+          throw new Error('missing modal');
+        }
+
         assert.strictEqual(modal.children.length, 1, 'should have 1 child, the test container');
         assert.strictEqual(modal.children[0], container, 'should be the container');
       });

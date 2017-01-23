@@ -1,7 +1,7 @@
 FormControl
 ===========
 
-FormControl
+FormControl - provides context such as dirty/focused/error/required for form inputs
 
 Props
 -----

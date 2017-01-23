@@ -78,6 +78,11 @@ describe('<MenuList> integration', () => {
       wrapper.setProps({
         onBlur: handleBlur,
       });
+
+      if (!document.activeElement) {
+        throw new Error('missing active element');
+      }
+
       document.activeElement.blur();
       setTimeout(() => {
         assert.strictEqual(handleBlur.callCount, 1);
