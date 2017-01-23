@@ -33,6 +33,10 @@ export default class TouchRipple extends Component {
     className: PropTypes.string,
   };
 
+  static defaultProps = {
+    center: false,
+  };
+
   static contextTypes = {
     theme: customPropTypes.muiRequired,
     styleManager: customPropTypes.muiRequired,

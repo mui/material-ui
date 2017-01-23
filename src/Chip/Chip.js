@@ -181,7 +181,7 @@ Chip.propTypes = {
   /**
    * The label text.
    */
-  label: PropTypes.string,
+  label: PropTypes.node,
   /**
    * CSS `className` of the label.
    */

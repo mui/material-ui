@@ -15,7 +15,7 @@ Props
 | avatar | node |  | Avatar element. |
 | className | string |  | CSS `className` of the root element. |
 | deleteIconClassName | string |  | CSS `className` of the delete icon element. |
-| label | string |  | The label text. |
+| label | node |  | The label text. |
 | labelClassName | string |  | CSS `className` of the label. |
 | onRequestDelete | function |  | Callback function fired when the delete icon is clicked. If set, the delete icon will be shown.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* `onClick` event targeting the delete icon element. |
 

@@ -74,6 +74,7 @@ TextFieldLabel.propTypes = {
 
 TextFieldLabel.defaultProps = {
   animated: true,
+  shrink: false,
 };
 
 TextFieldLabel.contextTypes = {

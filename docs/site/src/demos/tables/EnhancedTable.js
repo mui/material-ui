@@ -42,10 +42,10 @@ const columnData = [
 
 class EnhancedTableHead extends Component {
   static propTypes = {
-    onRequestSort: PropTypes.func,
-    onSelectAllClick: PropTypes.func,
-    order: PropTypes.string,
-    orderBy: PropTypes.string,
+    onRequestSort: PropTypes.func.isRequired,
+    onSelectAllClick: PropTypes.func.isRequired,
+    order: PropTypes.string.isRequired,
+    orderBy: PropTypes.string.isRequired,
   };
 
   createSortHandler = (property) => {
@@ -130,7 +130,7 @@ function EnhancedTableToolbar(props, context) {
 }
 
 EnhancedTableToolbar.propTypes = {
-  numSelected: PropTypes.number,
+  numSelected: PropTypes.number.isRequired,
 };
 
 EnhancedTableToolbar.contextTypes = {

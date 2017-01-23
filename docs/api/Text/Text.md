@@ -8,7 +8,7 @@ Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| align | enum:&nbsp;'center'<br> |  |  |
+| align | enum:&nbsp;'left'<br>&nbsp;'center'<br> | 'left' |  |
 | children | node |  |  |
 | className | string |  | The CSS class name of the root element. |
 | colorInherit | bool | false |  |

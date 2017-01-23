@@ -100,9 +100,9 @@ const styleSheet = createStyleSheet('AppFrame', (theme) => {
 
 class AppFrame extends Component {
   static propTypes = {
-    children: PropTypes.node,
+    children: PropTypes.node.isRequired,
     dispatch: PropTypes.func.isRequired,
-    routes: PropTypes.array,
+    routes: PropTypes.array.isRequired,
     width: PropTypes.string.isRequired,
   };
 

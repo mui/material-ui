@@ -52,6 +52,10 @@ export default class AppDrawerNavItem extends Component {
     to: PropTypes.string,
   };
 
+  static defaultProps = {
+    openImmediately: false,
+  };
+
   static contextTypes = {
     styleManager: customPropTypes.muiRequired,
   };
