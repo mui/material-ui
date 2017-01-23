@@ -102,6 +102,12 @@ const appList = [
     img: 'images/showcase/humorista.png',
     link: 'https://humorista.org/',
   },
+    {
+    title: 'Three.js Live - Interact with WebGL code in your browser',
+    author: 'Erick Katzenstein',
+    img: 'images/showcase/threejslive.jpg',
+    link: 'http://threejs.live',
+  }
 ];
 
 const Showcase = () => (
