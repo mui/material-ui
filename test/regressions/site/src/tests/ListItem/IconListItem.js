@@ -1,6 +1,7 @@
 // @flow weak
 
 import React from 'react';
+import Icon from 'material-ui/Icon';
 import {
   ListItem,
   ListItemText,
@@ -12,13 +13,13 @@ export default function IconListItem() {
     <div style={{ background: '#fff', width: 300 }}>
       <ListItem dense button>
         <ListItemIcon>
-          <span className="material-icons">phone</span>
+          <Icon>phone</Icon>
         </ListItemIcon>
         <ListItemText primary="Icon dense with button" secondary="Work phone" />
       </ListItem>
       <ListItem>
         <ListItemIcon>
-          <span className="material-icons">inbox</span>
+          <Icon>inbox</Icon>
         </ListItemIcon>
         <ListItemText primary="Icon" />
       </ListItem>

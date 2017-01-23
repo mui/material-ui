@@ -2,17 +2,18 @@
 
 import React from 'react';
 import { BottomNavigation, BottomNavigationButton } from 'material-ui/BottomNavigation';
+import Icon from 'material-ui/Icon';
 
 export default function SimpleBottomNavigation() {
   return (
     <BottomNavigation index={0} showLabel>
       <BottomNavigationButton
         label="Recents"
-        icon={<span className="material-icons">restore</span>}
+        icon={<Icon>restore</Icon>}
       />
       <BottomNavigationButton
         label="Favorites"
-        icon={<span className="material-icons">favorite</span>}
+        icon={<Icon>favorite</Icon>}
       />
     </BottomNavigation>
   );

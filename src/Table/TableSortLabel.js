@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 import ButtonBase from '../internal/ButtonBase';
+import Icon from '../Icon';
 
 export const styleSheet = createStyleSheet('TableSortLabel', (theme) => {
   return {
@@ -57,7 +58,7 @@ export default function TableSortLabel(props, context) {
 
   const iconClasses = classNames(classes.icon, {
     [classes[direction]]: !!direction,
-  }, 'material-icons');
+  });
 
   return (
     <ButtonBase
@@ -67,7 +68,7 @@ export default function TableSortLabel(props, context) {
       {...other}
     >
       {children}
-      <span className={iconClasses}>arrow_downward</span>
+      <Icon className={iconClasses}>arrow_downward</Icon>
     </ButtonBase>
   );
 }

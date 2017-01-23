@@ -7,12 +7,13 @@ import { spy } from 'sinon';
 import { createShallowWithContext, createMountWithContext } from 'test/utils';
 import BottomNavigation, { styleSheet } from './BottomNavigation';
 import BottomNavigationButton from './BottomNavigationButton';
+import Icon from '../Icon';
 
 describe('<BottomNavigation />', () => {
   let shallow;
   let mount;
   let classes;
-  const icon = <span className="material-icons">restore</span>;
+  const icon = <Icon>restore</Icon>;
 
   before(() => {
     shallow = createShallowWithContext();

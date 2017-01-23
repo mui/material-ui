@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
+import Icon from 'material-ui/Icon';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import Paper from 'material-ui/Paper';
 import Tabs from 'material-ui/Tabs';
@@ -45,23 +46,23 @@ export default function SimpleTabs(props, context) {
       </Paper>
       <Paper>
         <Tabs index={0} textColor="accent" fullWidth >
-          <Tab icon={<span className="material-icons">phone</span>} />
-          <Tab icon={<span className="material-icons">favorite</span>} />
-          <Tab icon={<span className="material-icons">person_pin</span>} />
+          <Tab icon={<Icon>phone</Icon>} />
+          <Tab icon={<Icon>favorite</Icon>} />
+          <Tab icon={<Icon>person_pin</Icon>} />
         </Tabs>
       </Paper>
       <Paper>
         <Tabs index={1} fullWidth textColor="accent">
           <Tab
-            icon={<span className="material-icons">phone</span>}
+            icon={<Icon>phone</Icon>}
             label="RECENTS"
           />
           <Tab
-            icon={<span className="material-icons">favorite</span>}
+            icon={<Icon>favorite</Icon>}
             label="FAVORITES"
           />
           <Tab
-            icon={<span className="material-icons">person_pin</span>}
+            icon={<Icon>person_pin</Icon>}
             label="NEARBY"
           />
         </Tabs>
