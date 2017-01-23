@@ -43,7 +43,7 @@ export default class FullScreenDialog extends Component {
           Open full-screen dialog
         </Button>
         <Dialog
-          fullscreen
+          fullScreen
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
           transition={<Slide direction="up" />}
