@@ -7,9 +7,15 @@ import MenuItem from 'material-ui/MenuItem';
  * with no text and with a `null` value. For instance, for a boolean:
  */
 export default class SelectFieldExampleNullable extends Component {
-  state = {
-    value: null,
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      value: null,
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
 
   handleChange = (event, index, value) => this.setState({value});
 

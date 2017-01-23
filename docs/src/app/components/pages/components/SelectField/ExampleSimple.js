@@ -14,9 +14,15 @@ const styles = {
  * The `SelectField` can be disabled with the `disabled` property.
  */
 export default class SelectFieldExampleSimple extends Component {
-  state = {
-    value: 1,
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      value: 1,
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
 
   handleChange = (event, index, value) => this.setState({value});
 

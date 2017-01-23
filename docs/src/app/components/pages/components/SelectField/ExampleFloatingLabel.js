@@ -16,9 +16,15 @@ const items = [
  * and can be customised with the `floatingLabelText` property.
  */
 export default class SelectFieldExampleFloatingLabel extends Component {
-  state = {
-    value: null,
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      value: null,
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
 
   handleChange = (event, index, value) => this.setState({value});
 
