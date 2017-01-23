@@ -15,7 +15,7 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
 import Text from 'material-ui/Text';
-import CancelIcon from 'material-ui/svg-icons/cancel';
+import CloseIcon from 'material-ui/svg-icons/close';
 import Slide from 'material-ui/transitions/Slide';
 
 const styleSheet = createStyleSheet('FullScreenDialog', () => ({
@@ -51,7 +51,7 @@ export default class FullScreenDialog extends Component {
           <AppBar className={classes.appBar}>
             <Toolbar>
               <IconButton contrast onClick={this.handleRequestClose}>
-                <CancelIcon />
+                <CloseIcon />
               </IconButton>
               <Text type="title" colorInherit className={classes.flex}>Sound</Text>
               <Button contrast onClick={this.handleRequestClose}>save</Button>
