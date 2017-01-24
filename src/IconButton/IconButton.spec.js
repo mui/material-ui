@@ -31,12 +31,7 @@ describe('<IconButton />', () => {
     const wrapper = shallow(<IconButton>book</IconButton>);
     const label = wrapper.childAt(0);
     const icon = label.childAt(0);
-    assert.strictEqual(icon.is('span'), true, 'should be a span');
-    assert.strictEqual(
-      icon.hasClass('material-icons'),
-      true,
-      'should have the material icons class',
-    );
+    assert.strictEqual(icon.is('Icon'), true, 'should be an Icon');
   });
 
   it('should render the child normally inside the label span', () => {

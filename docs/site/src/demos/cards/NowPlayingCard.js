@@ -32,10 +32,8 @@ const styleSheet = createStyleSheet('NowPlayingCard', () => ({
     paddingLeft: 8,
     paddingBottom: 8,
   },
-  play: {
-    '& .material-icons': {
-      fontSize: 38,
-    },
+  playIcon: {
+    fontSize: 38,
   },
 }));
 
@@ -54,7 +52,7 @@ export default function NowPlayingCard(props, context) {
           </CardContent>
           <div className={classes.controls}>
             <IconButton>skip_previous</IconButton>
-            <IconButton className={classes.play}>play_arrow</IconButton>
+            <IconButton iconClassName={classes.playIcon}>play_arrow</IconButton>
             <IconButton>skip_next</IconButton>
           </div>
         </div>
