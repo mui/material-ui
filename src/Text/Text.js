@@ -76,6 +76,7 @@ export default function Text(props, context) {
 
 Text.propTypes = {
   align: PropTypes.oneOf([
+    'left',
     'center',
   ]),
   children: PropTypes.node,
@@ -105,6 +106,7 @@ Text.propTypes = {
 };
 
 Text.defaultProps = {
+  align: 'left',
   colorInherit: false,
   component: 'span',
   gutterBottom: false,

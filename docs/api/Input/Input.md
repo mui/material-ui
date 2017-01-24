@@ -10,7 +10,7 @@ Props
 |:-----|:-----|:--------|:------------|
 | className | string |  | The CSS class name of the wrapper element. |
 | component | union | 'input' | The element or component used for the root node. |
-| disabled | bool |  |  |
+| disabled | bool | false |  |
 | error | bool |  |  |
 | inputClassName | string |  | The CSS class name of the input element. |
 | type | string | 'text' | Input type. |

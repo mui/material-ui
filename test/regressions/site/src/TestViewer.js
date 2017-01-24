@@ -52,8 +52,6 @@ const styleSheet = createStyleSheet('TestViewer', () => {
 export default class TestViewer extends Component {
   static propTypes = {
     children: PropTypes.node,
-    dispatch: PropTypes.func,
-    routes: PropTypes.array,
   };
 
   static contextTypes = {

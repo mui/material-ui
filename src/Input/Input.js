@@ -135,6 +135,7 @@ export default class Input extends Component {
 
   static defaultProps = {
     component: 'input',
+    disabled: false,
     type: 'text',
     underline: true,
   };

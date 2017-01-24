@@ -38,7 +38,7 @@ export default class TextField extends Component {
     /**
      * The label text.
      */
-    label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+    label: PropTypes.node,
     /**
      * The CSS class name of the label element.
      */
@@ -47,6 +47,10 @@ export default class TextField extends Component {
      * Whether the label should be displayed as required (asterisk).
      */
     required: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    required: false,
   };
 
   static contextTypes = {
