@@ -107,7 +107,7 @@ const appList = [
     author: 'team@moesif.com',
     img: 'images/showcase/apirequest-capture-by-moesif.png',
     link: 'https://chrome.google.com/webstore/detail/apirequestio-capture/aeojbjinmmhjenohjehcidmappiodhjm',
-  }
+  },
 ];
 
 const Showcase = () => (
