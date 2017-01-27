@@ -1,10 +1,11 @@
-import {Component, PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import getMuiTheme from './getMuiTheme';
 
 class MuiThemeProvider extends Component {
 
   static propTypes = {
     children: PropTypes.element,
+    getGlobalStyle: PropTypes.func,
     muiTheme: PropTypes.object,
   };
 
@@ -19,7 +20,13 @@ class MuiThemeProvider extends Component {
   }
 
   render() {
-    return this.props.children;
+    const style = this.props.getGlobalStyle(this.context.muiTheme);
+
+    return (
+      <div style={style}>
+        {this.props.children}
+      </div>
+    );
   }
 }
 
