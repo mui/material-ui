@@ -84,8 +84,6 @@ class IconButton extends Component {
     onMouseLeave: PropTypes.func,
     /** @ignore */
     onMouseOut: PropTypes.func,
-    /** @ignore */
-    onTouchStart: PropTypes.func,
     /**
      * Override the inline-styles of the root element.
      */
@@ -193,14 +191,6 @@ class IconButton extends Component {
     }
   };
 
-  handleTouchStart = (event) => {
-    this.setState({touch: true});
-
-    if (this.props.onTouchStart) {
-      this.props.onTouchStart(event);
-    }
-  };
-
   handleKeyboardFocus = (event, isKeyboardFocused) => {
     const {disabled, onFocus, onBlur, onKeyboardFocus} = this.props;
     if (isKeyboardFocused && !disabled) {
@@ -290,7 +280,6 @@ class IconButton extends Component {
         {...other}
         centerRipple={true}
         disabled={disabled}
-        onTouchStart={this.handleTouchStart}
         style={mergedRootStyles}
         disableTouchRipple={disableTouchRipple}
         onBlur={this.handleBlur}
