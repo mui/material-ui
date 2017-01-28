@@ -9,6 +9,7 @@ A Formsy compatibility wrapper for Material-UI form components.
 - [react-payment](https://github.com/lorensr/react-payment) Components for credit card and bank account forms.
 - [material-auto-rotating-carousel](https://github.com/TeamWertarbyte/material-auto-rotating-carousel) A responsive [auto-rotating carousel](https://material.google.com/growth-communications/onboarding.html#onboarding-top-user-benefits) to display your app's benefits.
 - [material-ui-rails](https://github.com/towonzhou/material-ui-rails) Material-UI for Rails.
+- [material-ui-rating](https://github.com/TeamWertarbyte/material-ui-rating) A star rating component.
 - [storybook-addon-material-ui](https://github.com/sm-react/storybook-addon-material-ui)
 Addon for storybook.
 - [crema](https://bitbucket.org/pinturic/crema/) CReMa: Cordova React Material-UI.
