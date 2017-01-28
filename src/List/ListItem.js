@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
-import shallowEqual from 'recompose/shallowEqual';
+import shallowEqual from 'recompact/shallowEqual';
 import {fade} from '../utils/colorManipulator';
 import transitions from '../styles/transitions';
 import EnhancedButton from '../internal/EnhancedButton';

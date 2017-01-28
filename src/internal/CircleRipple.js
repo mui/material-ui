@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
-import shallowEqual from 'recompose/shallowEqual';
+import shallowEqual from 'recompact/shallowEqual';
 import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
 
