@@ -111,6 +111,10 @@ class DropDownMenu extends Component {
      */
     disabled: PropTypes.bool,
     /**
+     * Overrides default icon component
+     */
+    iconButtonElement: PropTypes.element,
+    /**
      * Overrides the styles of icon element.
      */
     iconStyle: PropTypes.object,
@@ -172,6 +176,7 @@ class DropDownMenu extends Component {
     animated: true,
     autoWidth: true,
     disabled: false,
+    iconButtonElement: <DropDownArrow />,
     openImmediately: false,
     maxHeight: 500,
   };
@@ -316,6 +321,7 @@ class DropDownMenu extends Component {
       style,
       underlineStyle,
       value,
+      iconButtonElement,
       ...other
     } = this.props;
 
@@ -344,6 +350,8 @@ class DropDownMenu extends Component {
       menuStyle = menuStyleProp;
     }
 
+    const iconButton = React.cloneElement(iconButtonElement);
+
     return (
       <div
         {...other}
@@ -366,7 +374,7 @@ class DropDownMenu extends Component {
             style={Object.assign({}, styles.icon, iconStyle)}
             iconStyle={styles.iconChildren}
           >
-            <DropDownArrow />
+            {iconButton}
           </IconButton>
           <div style={prepareStyles(Object.assign({}, styles.underline, underlineStyle))} />
         </ClearFix>
