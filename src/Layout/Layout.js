@@ -184,8 +184,6 @@ function Layout(props, context) {
   );
 }
 
-const gridPropType = PropTypes.oneOf(GRID_SIZES);
-
 Layout.propTypes = {
   /**
    * The content of the component.
@@ -213,27 +211,27 @@ Layout.propTypes = {
    * Defines the number of grids the component is going to use.
    * It's applied for all the screen sizes with the lowest priority.
    */
-  xs: gridPropType,
+  xs: PropTypes.oneOf(GRID_SIZES),
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `sm` breakpoint and wider screens if not overridden.
    */
-  sm: gridPropType, // eslint-disable-line react/sort-prop-types
+  sm: PropTypes.oneOf(GRID_SIZES), // eslint-disable-line react/sort-prop-types
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `md` breakpoint and wider screens if not overridden.
    */
-  md: gridPropType, // eslint-disable-line react/sort-prop-types
+  md: PropTypes.oneOf(GRID_SIZES), // eslint-disable-line react/sort-prop-types
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `lg` breakpoint and wider screens if not overridden.
    */
-  lg: gridPropType, // eslint-disable-line react/sort-prop-types
+  lg: PropTypes.oneOf(GRID_SIZES), // eslint-disable-line react/sort-prop-types
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `xl` breakpoint and wider screens.
    */
-  xl: gridPropType, // eslint-disable-line react/sort-prop-types
+  xl: PropTypes.oneOf(GRID_SIZES), // eslint-disable-line react/sort-prop-types
   /**
    * Defines the `align-items` style property.
    * It's applied for all the screen sizes.

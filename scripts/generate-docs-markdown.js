@@ -107,7 +107,13 @@ function generatePropType(type) {
     }
 
     case 'enum': {
-      const values = type.value.map((v) => v.value).join('<br>&nbsp;');
+      let values = type.value.map((v) => v.value);
+      // Display one value per line as it's better for lisibility.
+      if (values.length < 5) {
+        values = values.join('<br>&nbsp;');
+      } else {
+        values = values.join(', ');
+      }
       return `enum:&nbsp;${values}<br>`;
     }
 
