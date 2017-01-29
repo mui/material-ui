@@ -21,7 +21,6 @@ import Slide from 'material-ui/transitions/Slide';
 const styleSheet = createStyleSheet('FullScreenDialog', () => ({
   appBar: {
     position: 'relative',
-    width: '100%',
   },
   flex: {
     flex: 1,
