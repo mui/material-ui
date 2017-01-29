@@ -5,6 +5,7 @@ coverage
 /dist
 /test/regressions/screenshots/output
 /test/selenium-output
+.eslintcache
 
 # OS files
 .DS_STORE
@@ -12,3 +13,6 @@ coverage
 # npm files
 node_modules
 *.log
+
+# Editor files
+.idea

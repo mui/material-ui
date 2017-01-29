@@ -45,6 +45,9 @@ const config = {
         test: /\.js$/,
         loader: 'babel',
         exclude: /(node_modules)/,
+        query: {
+          cacheDirectory: true,
+        },
       },
     ],
   },
