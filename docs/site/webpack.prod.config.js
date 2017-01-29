@@ -22,8 +22,8 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel',
         query: {
-          cacheDirectory: true
-        }
+          cacheDirectory: true,
+        },
       },
       {
         test: /\.svg$/,
