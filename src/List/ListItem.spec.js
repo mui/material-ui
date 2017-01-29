@@ -45,4 +45,18 @@ describe('<ListItem />', () => {
     assert.strictEqual(wrapper.hasClass(classes.gutters), false,
       'should not have the gutters class');
   });
+
+  describe('prop: button', () => {
+    it('should render a div', () => {
+      const wrapper = shallow(<ListItem button />);
+      assert.strictEqual(wrapper.props().component, 'div');
+    });
+  });
+
+  describe('prop: component', () => {
+    it('should change the component', () => {
+      const wrapper = shallow(<ListItem button component="a" />);
+      assert.strictEqual(wrapper.props().component, 'a');
+    });
+  });
 });
