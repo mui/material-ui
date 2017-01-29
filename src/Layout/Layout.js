@@ -85,10 +85,12 @@ export const styleSheet = createStyleSheet('Layout', (theme) => {
 
   return {
     typeContainer: {
+      boxSizing: 'border-box',
       display: 'flex',
       flexWrap: 'wrap',
     },
     typeItem: {
+      boxSizing: 'border-box',
       flex: '0 0 auto',
     },
     'direction-xs-column': {
