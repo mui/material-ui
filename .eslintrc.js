@@ -33,6 +33,7 @@ module.exports = {
     'object-curly-spacing': 'off', // use babel plugin rule
     'operator-linebreak': ['error', 'after'], // aibnb is disabling this rule
     'babel/object-curly-spacing': ['error', 'always'],
+    'no-restricted-properties': 'off', // To remove once react-docgen support ** operator.
     'import/no-unresolved': 'off',
     'import/no-named-as-default': 'off',
     'import/extensions': 'off',

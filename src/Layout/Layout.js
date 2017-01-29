@@ -36,7 +36,7 @@ function generateGrid(globalStyles, theme, breakpoint) {
     }
 
     // Only keep 6 significant numbers.
-    const width = `${Math.round((size / 12) * (10 ** 6)) / (10 ** 4)}%`;
+    const width = `${Math.round((size / 12) * Math.pow(10, 6)) / Math.pow(10, 4)}%`;
 
     /* eslint-disable max-len */
     // Close to the bootstrap implementation:
@@ -198,10 +198,7 @@ Layout.propTypes = {
   /**
    * The element or component used for the root node.
    */
-  component: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * It true, the component will have the flex *container* behavior.
    * You should be wrapping *items* with a *container*.

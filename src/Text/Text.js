@@ -85,7 +85,7 @@ Text.propTypes = {
    */
   className: PropTypes.string,
   colorInherit: PropTypes.bool,
-  component: PropTypes.string,
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   gutterBottom: PropTypes.bool,
   noWrap: PropTypes.bool,
   paragraph: PropTypes.bool,

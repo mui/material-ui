@@ -7,12 +7,13 @@ import createBreakpoints from './breakpoints';
 import createPalette from './palette';
 import zIndex from './zIndex';
 import createMixins from './mixins';
+import spacing from './spacing';
 
 export function createMuiTheme(config = {}) {
   const {
     palette = createPalette(),
     breakpoints = createBreakpoints(),
-    mixins = createMixins(breakpoints),
+    mixins = createMixins(breakpoints, spacing),
     typography = createTypography(palette),
     ...more
   } = config;
@@ -24,6 +25,7 @@ export function createMuiTheme(config = {}) {
     shadows,
     transitions,
     mixins,
+    spacing,
     breakpoints,
     zIndex,
     ...more,

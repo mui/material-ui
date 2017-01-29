@@ -12,7 +12,7 @@ Props
 | children | node |  |  |
 | className | string |  | The CSS class name of the root element. |
 | colorInherit | bool | false |  |
-| component | string | 'span' |  |
+| component | union | 'span' |  |
 | gutterBottom | bool | false |  |
 | noWrap | bool | false |  |
 | paragraph | bool | false |  |
