@@ -44,6 +44,23 @@ describe('<DropDownMenu />', () => {
     });
   });
 
+  describe('prop: iconButton', () => {
+    it('should render IconButton with given icon node', () => {
+      const iconNode = <div>test</div>;
+      const wrapper = shallowWithContext(
+        <DropDownMenu iconButton={iconNode} />
+      );
+      assert.strictEqual(wrapper.find(IconButton).childAt(0).node, iconNode);
+    });
+
+    it('should render IconButton with default icon node', () => {
+      const wrapper = shallowWithContext(
+        <DropDownMenu />
+      );
+      assert.strictEqual(wrapper.find(IconButton).childAt(0).node, DropDownMenu.defaultProps.iconButton);
+    });
+  });
+
   describe('prop: onClose', () => {
     it('should call onClose when an item is selected', (done) => {
       const handleClose = spy();
