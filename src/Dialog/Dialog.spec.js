@@ -54,6 +54,12 @@ describe('<Dialog />', () => {
     assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
   });
 
+  it('should render with the fullscreen class on the Paper element', () => {
+    const wrapper = shallow(<Dialog fullScreen />);
+    assert.strictEqual(wrapper.find('Paper').hasClass(classes.fullScreen), true,
+      'should have the "fullScreen" class');
+  });
+
   it('should render Fade > Paper > children inside the Modal', () => {
     const children = <p>Hello</p>;
     const wrapper = shallow(<Dialog>{children}</Dialog>);
