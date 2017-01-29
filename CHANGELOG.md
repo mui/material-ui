@@ -24,13 +24,13 @@ Below is a summary of major changes.
 - [Ripple/TouchRipple] Refactored and now works properly inside a button in firefox!
 - [Button] Raised/flat/fab are now combined into a single component.
 
-## 1.0.0-beta.1
+## 1.0.0-alpha.1
 ###### _Jan 28, 2017_
 
-This is the first public beta release. It's still work in progress.
+This is the first public alpha release. It's still work in progress.
 People will be able to start giving us feedback with this release.
 Please keep in mind that [semver](https://docs.npmjs.com/getting-started/semantic-versioning) won't be respected between pre-releases.
-In other worlds, the API will change if we need to.
+In other words, the API will change if we need to.
 
 ## 0.16.7
 ###### _Jan 15, 2017_
