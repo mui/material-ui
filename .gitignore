@@ -2,6 +2,7 @@ node_modules
 npm-debug.log
 build
 coverage
+.eslintcache
 
 # Exclude compiled files
 /lib
