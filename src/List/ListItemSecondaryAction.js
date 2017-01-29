@@ -7,7 +7,10 @@ import customPropTypes from '../utils/customPropTypes';
 
 export const styleSheet = createStyleSheet('ListItemSecondaryAction', () => ({
   secondaryAction: {
-    paddingRight: 8,
+    position: 'absolute',
+    right: 4,
+    top: '50%',
+    marginTop: -24,
   },
 }));
 
