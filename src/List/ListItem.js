@@ -96,10 +96,10 @@ export default class ListItem extends Component {
     }, classNameProp);
 
     const listItemProps = { className, disabled, ...other };
-    let component = componentProp;
+    let ComponentMain = componentProp;
 
     if (button) {
-      component = ButtonBase;
+      ComponentMain = ButtonBase;
       listItemProps.component = 'div';
       listItemProps.keyboardFocusedClassName = classes.keyboardFocused;
     }
@@ -114,12 +114,18 @@ export default class ListItem extends Component {
       const secondaryAction = children.pop();
       return (
         <div className={classes.listItemContainer}>
-          {React.createElement(component, listItemProps, children)}
+          <ComponentMain {...listItemProps}>
+            {children}
+          </ComponentMain>
           {secondaryAction}
         </div>
       );
     }
 
-    return React.createElement(component, listItemProps, children);
+    return (
+      <ComponentMain {...listItemProps}>
+        {children}
+      </ComponentMain>
+    );
   }
 }

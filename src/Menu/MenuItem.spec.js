@@ -20,8 +20,8 @@ describe('<MenuItem />', () => {
       <MenuItem />,
     );
     assert.strictEqual(wrapper.is('ListItem'), true, 'should be a ListItem');
-    assert.strictEqual(wrapper.prop('button'), true, 'should have the button prop');
-    assert.strictEqual(wrapper.prop('ripple'), false, 'should not have a ripple');
+    assert.strictEqual(wrapper.props().button, true, 'should have the button prop');
+    assert.strictEqual(wrapper.props().ripple, false, 'should not have a ripple');
   });
 
   it('should render with the user and root classes', () => {
@@ -37,17 +37,17 @@ describe('<MenuItem />', () => {
 
   it('should have a default role of menuitem', () => {
     const wrapper = shallow(<MenuItem />);
-    assert.strictEqual(wrapper.prop('role'), 'menuitem', 'should have the menuitem role');
+    assert.strictEqual(wrapper.props().role, 'menuitem', 'should have the menuitem role');
   });
 
   it('should have a role of option', () => {
     const wrapper = shallow(<MenuItem role="option" />);
-    assert.strictEqual(wrapper.prop('role'), 'option', 'should have the option role');
+    assert.strictEqual(wrapper.props().role, 'option', 'should have the option role');
   });
 
   it('should have a tabIndex of -1 by default', () => {
     const wrapper = shallow(<MenuItem />);
-    assert.strictEqual(wrapper.prop('tabIndex'), '-1', 'should have a -1 tabIndex');
+    assert.strictEqual(wrapper.props().tabIndex, '-1', 'should have a -1 tabIndex');
   });
 
   describe('event callbacks', () => {
@@ -77,6 +77,15 @@ describe('<MenuItem />', () => {
         wrapper.simulate(event, { persist: () => {} });
         assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
       });
+    });
+  });
+
+  describe('props: component', () => {
+    it('should be able to override the rendered component', () => {
+      const wrapper = shallow(<MenuItem component="a" />);
+
+      assert.strictEqual(wrapper.props().component, 'a');
+      assert.strictEqual(wrapper.props().ripple, undefined);
     });
   });
 });

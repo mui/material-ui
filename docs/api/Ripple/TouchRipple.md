@@ -1,5 +1,5 @@
-MenuItem
-========
+TouchRipple
+===========
 
 
 
@@ -8,9 +8,7 @@ Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | node |  | Menu item contents. |
+| center | bool | false |  |
 | className | string |  | The CSS class name of the root element. |
-| component | union |  |  |
-| selected | bool | false | Use to apply selected styling. |
 
 Any other properties supplied will be spread to the root element.
