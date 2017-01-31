@@ -296,4 +296,40 @@ Layout.contextTypes = {
   styleManager: customPropTypes.muiRequired,
 };
 
-export default Layout;
+/**
+ * Add a wrapper component to generate some helper messages in the development
+ * environment.
+ */
+let LayoutWrapper = Layout; // eslint-disable-line import/no-mutable-exports
+
+if (process.env.NODE_ENV !== 'production') {
+  const requireProp = (requiredProp) =>
+    (props, propName, componentName, location, propFullName) => {
+      const propFullNameSafe = propFullName || propName;
+
+      if (typeof props[propName] !== 'undefined' && !props[requiredProp]) {
+        return new Error(
+          `The property \`${propFullNameSafe}\` of ` +
+          `\`Layout\` must be used on \`${requiredProp}\`.`,
+        );
+      }
+
+      return null;
+    };
+
+  LayoutWrapper = (props) => <Layout {...props} />;
+
+  LayoutWrapper.propTypes = {
+    align: requireProp('container'),
+    direction: requireProp('container'),
+    gutter: requireProp('container'),
+    justify: requireProp('container'),
+    lg: requireProp('item'),
+    md: requireProp('item'),
+    sm: requireProp('item'),
+    wrap: requireProp('container'),
+    xs: requireProp('item'),
+  };
+}
+
+export default LayoutWrapper;

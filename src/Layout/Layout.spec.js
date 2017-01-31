@@ -11,8 +11,14 @@ describe('<Layout />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet);
+    const shallowInner = createShallowWithContext();
+    // Render deeper to bypass the LayoutWrapper.
+    shallow = (node) => {
+      return shallowInner(node).find('Layout').shallow({
+        context: shallowInner.context,
+      });
+    };
+    classes = shallowInner.context.styleManager.render(styleSheet);
   });
 
   it('should render', () => {
@@ -44,12 +50,12 @@ describe('<Layout />', () => {
 
   describe('prop: xs', () => {
     it('should apply the flex-grow class', () => {
-      const wrapper = shallow(<Layout xs />);
+      const wrapper = shallow(<Layout item xs />);
       assert.strictEqual(wrapper.hasClass(classes['grid-xs']), true);
     });
 
     it('should apply the flex size class', () => {
-      const wrapper = shallow(<Layout xs={3} />);
+      const wrapper = shallow(<Layout item xs={3} />);
       assert.strictEqual(wrapper.hasClass(classes['grid-xs-3']), true);
     });
   });
