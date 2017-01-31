@@ -18,14 +18,14 @@ export default function SimpleBadge(props, context) {
   const classes = context.styleManager.render(styleSheet);
   return (
     <div className={classes.row}>
-      <Badge badgeContent={4} primary={true}>
+      <Badge badgeContent={4} primary>
         <NotificationIcon />
       </Badge>
-      <Badge 
+      <Badge
+      	accent
+      	badgeClassName={classes.badge}
         badgeContent={10}
-        badgeClassName={classes.badge}
-        accent={true}
-        >
+      >
         <IconButton>
           <NotificationIcon />
         </IconButton>

@@ -22,10 +22,10 @@ export default function FurtherBadge(props, context) {
       <Badge badgeContent={<IconButton><FaceIcon /></IconButton>}>
         <ImageIcon />
       </Badge>
-      <Badge 
+      <Badge
         badgeContent="&copy;"
         badgeClassName={classes.badge}
-        >
+      >
         Company Name
       </Badge>
     </div>
