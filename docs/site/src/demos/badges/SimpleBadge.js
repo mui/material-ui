@@ -22,8 +22,8 @@ export default function SimpleBadge(props, context) {
         <NotificationIcon />
       </Badge>
       <Badge
-      	accent
-      	badgeClassName={classes.badge}
+        accent
+        badgeClassName={classes.badge}
         badgeContent={10}
       >
         <IconButton>
