@@ -96,7 +96,7 @@ class TableBody extends Component {
      */
     showRowHover: PropTypes.bool,
     /**
-     * If true, even table rows starting
+     * If true, every other table row starting
      * with the first row will be striped. The default value is false.
      */
     stripedRows: PropTypes.bool,
