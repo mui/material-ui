@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import shallowEqual from 'recompose/shallowEqual';
+import propTypes from '../utils/customPropTypes';
 import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
 
@@ -19,7 +20,7 @@ class CircleRipple extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   shouldComponentUpdate(nextProps) {

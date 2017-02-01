@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import propTypes from '../utils/customPropTypes';
 import transitions from '../styles/transitions';
 
 class SvgIcon extends Component {
@@ -45,7 +46,7 @@ class SvgIcon extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {

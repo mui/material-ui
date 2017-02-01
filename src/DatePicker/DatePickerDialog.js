@@ -1,10 +1,11 @@
 import React, {Component, PropTypes} from 'react';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
-import Calendar from './Calendar';
 import Dialog from '../Dialog';
+import propTypes from '../utils/customPropTypes';
 import Popover from '../Popover/Popover';
 import PopoverAnimationVertical from '../Popover/PopoverAnimationVertical';
+import Calendar from './Calendar';
 import {dateTimeFormat} from './dateUtils';
 
 class DatePickerDialog extends Component {
@@ -40,7 +41,7 @@ class DatePickerDialog extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {

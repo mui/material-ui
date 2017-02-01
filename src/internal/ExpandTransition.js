@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import ReactTransitionGroup from 'react-addons-transition-group';
+import propTypes from '../utils/customPropTypes';
 import ExpandTransitionChild from './ExpandTransitionChild';
 
 class ExpandTransition extends Component {
@@ -22,7 +23,7 @@ class ExpandTransition extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   renderChildren(children) {

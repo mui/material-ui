@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
+import propTypes from '../utils/customPropTypes';
 import transitions from '../styles/transitions';
 
 const reflow = (elem) => elem.offsetHeight;
@@ -20,7 +21,7 @@ class ExpandTransitionChild extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   componentWillUnmount() {

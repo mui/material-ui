@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import propTypes from '../utils/customPropTypes';
 import transitions from '../styles/transitions';
 
 function getStyles(props, context) {
@@ -31,7 +32,7 @@ class InkBar extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   render() {

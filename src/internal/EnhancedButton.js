@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {createChildFragment} from '../utils/childUtils';
+import propTypes from '../utils/customPropTypes';
 import Events from '../utils/events';
 import keycode from 'keycode';
 import FocusRipple from './FocusRipple';
@@ -79,7 +80,7 @@ class EnhancedButton extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {

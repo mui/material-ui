@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import propTypes from '../utils/customPropTypes';
 
 function getStyles(props, context, state) {
   const {tableRow} = context.muiTheme;
@@ -124,7 +125,7 @@ class TableRow extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {

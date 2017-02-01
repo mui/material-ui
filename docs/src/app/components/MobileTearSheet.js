@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import propTypes from 'material-ui/utils/customPropTypes';
 
 class MobileTearSheet extends Component {
 
@@ -12,7 +13,7 @@ class MobileTearSheet extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   render() {

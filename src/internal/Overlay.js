@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import propTypes from '../utils/customPropTypes';
 import transitions from '../styles/transitions';
 import AutoLockScrolling from './AutoLockScrolling';
 
@@ -56,7 +57,7 @@ class Overlay extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   setOpacity(opacity) {

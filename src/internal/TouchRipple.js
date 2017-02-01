@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import ReactTransitionGroup from 'react-addons-transition-group';
+import propTypes from '../utils/customPropTypes';
 import Dom from '../utils/dom';
 import CircleRipple from './CircleRipple';
 
@@ -22,7 +23,7 @@ class TouchRipple extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   constructor(props, context) {

@@ -1,13 +1,13 @@
 import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
+import ReactTransitionGroup from 'react-addons-transition-group';
 import keycode from 'keycode';
+import propTypes from '../utils/customPropTypes';
 import transitions from '../styles/transitions';
 import Overlay from '../internal/Overlay';
 import RenderToLayer from '../internal/RenderToLayer';
 import Paper from '../Paper';
-
-import ReactTransitionGroup from 'react-addons-transition-group';
 
 class TransitionItem extends Component {
   static propTypes = {
@@ -16,7 +16,7 @@ class TransitionItem extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {
@@ -173,7 +173,7 @@ class DialogInline extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   componentDidMount() {
@@ -450,7 +450,7 @@ class Dialog extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   static defaultProps = {

@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import shallowEqual from 'recompose/shallowEqual';
 import {fade} from '../utils/colorManipulator';
+import propTypes from '../utils/customPropTypes';
 import transitions from '../styles/transitions';
 import EnhancedButton from '../internal/EnhancedButton';
 import IconButton from '../IconButton';
@@ -299,7 +300,7 @@ class ListItem extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {

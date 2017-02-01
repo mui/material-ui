@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import EventListener from 'react-event-listener';
+import propTypes from '../utils/customPropTypes';
 
 const rowsHeight = 24;
 
@@ -52,7 +53,7 @@ class EnhancedTextarea extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {

@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import propTypes from '../utils/customPropTypes';
 
 function getStyles(props, context) {
   const {cardText} = context.muiTheme;
@@ -39,7 +40,7 @@ class CardText extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   render() {

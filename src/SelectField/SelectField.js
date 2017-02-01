@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import TextField from '../TextField';
+import propTypes from '../utils/customPropTypes';
 import DropDownMenu from '../DropDownMenu';
 
 function getStyles(props) {
@@ -147,7 +148,7 @@ class SelectField extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   render() {

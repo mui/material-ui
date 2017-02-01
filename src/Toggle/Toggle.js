@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import propTypes from '../utils/customPropTypes';
 import transitions from '../styles/transitions';
 import Paper from '../Paper';
 import EnhancedSwitch from '../internal/EnhancedSwitch';
@@ -187,7 +188,7 @@ class Toggle extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {

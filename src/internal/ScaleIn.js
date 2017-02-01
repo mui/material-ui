@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import ReactTransitionGroup from 'react-addons-transition-group';
+import propTypes from '../utils/customPropTypes';
 import ScaleInChild from './ScaleInChild';
 
 class ScaleIn extends Component {
@@ -20,7 +21,7 @@ class ScaleIn extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   render() {

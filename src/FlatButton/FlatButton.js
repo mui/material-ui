@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import transitions from '../styles/transitions';
 import {createChildFragment} from '../utils/childUtils';
+import propTypes from '../utils/customPropTypes';
 import {fade} from '../utils/colorManipulator';
 import EnhancedButton from '../internal/EnhancedButton';
 import FlatButtonLabel from './FlatButtonLabel';
@@ -108,7 +109,7 @@ class FlatButton extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {

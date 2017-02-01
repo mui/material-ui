@@ -6,6 +6,7 @@ import React, {Component,
   PropTypes,
 } from 'react';
 import warning from 'warning';
+import propTypes from '../utils/customPropTypes';
 import TabTemplate from './TabTemplate';
 import InkBar from './InkBar';
 
@@ -83,7 +84,7 @@ class Tabs extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {selectedIndex: 0};

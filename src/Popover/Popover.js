@@ -1,12 +1,12 @@
 import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
-import RenderToLayer from '../internal/RenderToLayer';
-import propTypes from '../utils/propTypes';
-import Paper from '../Paper';
 import throttle from 'lodash.throttle';
-import PopoverAnimationDefault from './PopoverAnimationDefault';
+import RenderToLayer from '../internal/RenderToLayer';
+import propTypes from '../utils/customPropTypes';
+import Paper from '../Paper';
 import {isIOS, getOffsetTop} from '../utils/iOSHelpers';
+import PopoverAnimationDefault from './PopoverAnimationDefault';
 
 const styles = {
   root: {
@@ -113,7 +113,7 @@ class Popover extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   constructor(props, context) {

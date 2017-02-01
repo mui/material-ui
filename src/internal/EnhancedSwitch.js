@@ -1,11 +1,12 @@
 import React, {Component, PropTypes} from 'react';
 import EventListener from 'react-event-listener';
+import warning from 'warning';
 import keycode from 'keycode';
+import propTypes from '../utils/customPropTypes';
 import transitions from '../styles/transitions';
+import Paper from './../Paper';
 import FocusRipple from './FocusRipple';
 import TouchRipple from './TouchRipple';
-import Paper from './../Paper';
-import warning from 'warning';
 
 function getStyles(props, context) {
   const {baseTheme} = context.muiTheme;
@@ -103,7 +104,7 @@ class EnhancedSwitch extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {

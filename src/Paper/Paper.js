@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import propTypes from '../utils/propTypes';
+import propTypes from '../utils/customPropTypes';
 import transitions from '../styles/transitions';
 
 function getStyles(props, context) {
@@ -66,7 +66,7 @@ class Paper extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   render() {

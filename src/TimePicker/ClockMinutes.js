@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import propTypes from '../utils/customPropTypes';
 import ClockNumber from './ClockNumber';
 import ClockPointer from './ClockPointer';
 import {getTouchEventOffsetValues, rad2deg} from './timeUtils';
@@ -15,7 +16,7 @@ class ClockMinutes extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   componentDidMount() {

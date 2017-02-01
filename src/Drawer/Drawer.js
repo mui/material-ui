@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
 import autoPrefix from '../utils/autoPrefix';
+import propTypes from '../utils/customPropTypes';
 import transitions from '../styles/transitions';
 import Overlay from '../internal/Overlay';
 import Paper from '../Paper';
-import propTypes from '../utils/propTypes';
 
 let openNavEventHandler = null;
 
@@ -96,7 +96,7 @@ class Drawer extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   componentWillMount() {

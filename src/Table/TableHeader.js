@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import propTypes from '../utils/customPropTypes';
 import Checkbox from '../Checkbox';
 import TableHeaderColumn from './TableHeaderColumn';
 
@@ -68,7 +69,7 @@ class TableHeader extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   createSuperHeaderRows() {

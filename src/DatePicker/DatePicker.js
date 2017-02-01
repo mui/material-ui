@@ -1,7 +1,8 @@
 import React, {Component, PropTypes} from 'react';
+import propTypes from '../utils/customPropTypes';
+import TextField from '../TextField';
 import {dateTimeFormat, formatIso, isEqualDate} from './dateUtils';
 import DatePickerDialog from './DatePickerDialog';
-import TextField from '../TextField';
 
 class DatePicker extends Component {
   static propTypes = {
@@ -145,7 +146,7 @@ class DatePicker extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {

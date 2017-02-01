@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import keycode from 'keycode';
 import warning from 'warning';
+import propTypes from '../utils/customPropTypes';
 import transitions from '../styles/transitions';
 import FocusRipple from '../internal/FocusRipple';
 import deprecated from '../utils/deprecatedPropType';
@@ -362,7 +363,7 @@ class Slider extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    muiTheme: propTypes.muiTheme,
   };
 
   state = {
