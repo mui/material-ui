@@ -105,6 +105,13 @@ export default function AppRouter() {
             component={MarkdownDocs}
             nav
           />
+          <Route
+            title="Composition"
+            path="/customization/composition"
+            content={requireDocs('./customization/composition.md')}
+            component={MarkdownDocs}
+            nav
+          />
         </Route>
         <Route
           title="Style"
