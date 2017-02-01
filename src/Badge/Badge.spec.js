@@ -34,7 +34,7 @@ describe('<Badge />', () => {
 
     assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
     assert.strictEqual(wrapper.find('span').hasClass('testBadgeClassName'), true,
-    'should contain the badgeClassName');
+      'should contain the badgeClassName');
   });
 
   it('renders children by default', () => {
@@ -61,7 +61,7 @@ describe('<Badge />', () => {
 
     assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
     assert.strictEqual(wrapper.find('span').hasClass(classes.primary), true,
-    'should have primary class');
+      'should have primary class');
   });
 
   it('renders children and have accent styles', () => {
@@ -71,7 +71,7 @@ describe('<Badge />', () => {
 
     assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
     assert.strictEqual(wrapper.find('span').hasClass(classes.accent), true,
-    'should have accent class');
+      'should have accent class');
   });
 
   it('renders children and overwrite root styles', () => {
@@ -84,6 +84,6 @@ describe('<Badge />', () => {
 
     assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
     assert.strictEqual(wrapper.node.props.style.backgroundColor, style.backgroundColor,
-    'should overwrite badge backgroundColor');
+      'should overwrite badge backgroundColor');
   });
 });

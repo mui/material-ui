@@ -6,7 +6,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
 const radius = 12;
-const radius2x = Math.floor(2 * radius);
+const radius2x = 2 * radius;
 
 export const styleSheet = createStyleSheet('Badge', (theme) => {
   const { typography, palette } = theme;
@@ -52,8 +52,8 @@ export default function Badge(props, context) {
     badgeContent,
     className: classNameProp,
     children,
-    primary, // eslint-disable-line no-unused-vars
-    accent, // eslint-disable-line no-unused-vars
+    primary,
+    accent,
     ...other
   } = props;
 
@@ -66,7 +66,6 @@ export default function Badge(props, context) {
     [classes.primary]: primary,
     [classes.accent]: accent,
   }, badgeClassNameProp);
-
 
   return (
     <div className={className} {...other}>
@@ -94,7 +93,7 @@ Badge.propTypes = {
   /**
    * The badge will be added relativelty to this node.
    */
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   /**
    * The css class name of the root element.
    */
