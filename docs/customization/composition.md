@@ -40,7 +40,7 @@ export default function HelloWorld(props) {
 
 ## API consistency
 
-You may have noticed some inconsistency in our API regarding composting components.
+You may have noticed some inconsistency in our API regarding composing components.
 To provide some transparency, we have been using the following rules when designing the API:
 
 1. Using the `children` property is the idiomatic way to do composition with React.
