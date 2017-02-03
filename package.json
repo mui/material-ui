@@ -44,7 +44,7 @@
     "react-tap-event-plugin": "^2.0.1"
   },
   "dependencies": {
-    "babel-runtime": "^6.11.6",
+    "babel-runtime": "^6.18.0",
     "inline-style-prefixer": "^2.0.1",
     "keycode": "^2.1.1",
     "lodash.merge": "^4.6.0",
@@ -72,7 +72,6 @@
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-1": "^6.5.0",
-    "babel-runtime": "^6.18.0",
     "chai": "^3.5.0",
     "coveralls": "^2.11.15",
     "cross-env": "^3.1.3",
