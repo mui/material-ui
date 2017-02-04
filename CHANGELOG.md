@@ -1,5 +1,11 @@
 ## HEAD
 
+## 0.16.5
+###### _??? ??, 2017_
+
+##### Breaking Changes
+- [core] require `react-tap-event-plugin@^2.0.0` && `react@^15.4.0` (#6057)
+
 ## 0.16.4
 ###### _Nov 17, 2016_
 
