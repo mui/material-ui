@@ -293,7 +293,7 @@ export default function getMuiTheme(muiTheme, ...more) {
     },
     timePicker: {
       color: palette.alternateTextColor,
-      textColor: palette.accent3Color,
+      textColor: palette.alternateTextColor,
       accentColor: palette.primary1Color,
       clockColor: palette.textColor,
       clockCircleColor: palette.clockCircleColor,
@@ -332,8 +332,10 @@ export default function getMuiTheme(muiTheme, ...more) {
     rawTheme: baseTheme, // To provide backward compatibility.
   });
 
-  const transformers = [autoprefixer, rtl, callOnce].map((t) => t(muiTheme))
+  const transformers = [autoprefixer, rtl, callOnce]
+    .map((t) => t(muiTheme))
     .filter((t) => t);
+
   muiTheme.prepareStyles = compose(...transformers);
 
   return muiTheme;

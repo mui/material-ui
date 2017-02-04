@@ -678,7 +678,6 @@ class ListItem extends Component {
             <EnhancedButton
               containerElement="span"
               {...other}
-              disabled={disabled}
               disableKeyboardFocus={disableKeyboardFocus || this.state.rightIconButtonKeyboardFocused}
               onKeyboardFocus={this.handleKeyboardFocus}
               onMouseLeave={this.handleMouseLeave}

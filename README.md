@@ -76,7 +76,7 @@ on how to do so.
 
 ## Usage
 
-Beginning with v0.15.0, Material-UI components require a theme to be provided. The quickest way to get up and running is by using the `MuiThemeProvider` to inject the theme into your application context. Following that, you can to use any of the components as demonstrated in the documentation.
+Beginning with v0.15.0, Material-UI components require a theme to be provided. The quickest way to get up and running is by using the `MuiThemeProvider` to inject the theme into your application context. Following that, you can use any of the components as demonstrated in the documentation.
 
 Here is a quick example to get you started:
 
@@ -120,7 +120,7 @@ Styling components to your liking is simple and hassle-free. This can be
 achieved in the following two ways:
 
 * [Use a custom theme to style components](http://material-ui.com/#/customization/themes)
-* [Override individual component styles via the `style` prop](http://www.material-ui.com/#/customization/inline-styles)
+* [Override individual component styles via the `style` prop](http://www.material-ui.com/#/customization/styles)
 
 ## Examples
 
@@ -156,6 +156,7 @@ you make. :)
 ## Thanks
 
 [<img src="https://www.browserstack.com/images/mail/browserstack-logo-footer.png" width="120">](https://www.browserstack.com/)
+
 Thank you to [BrowserStack](https://www.browserstack.com/) for providing the infrastructure that allows us to test `material-ui` in real browsers.
 
 ## License

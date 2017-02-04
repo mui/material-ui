@@ -141,6 +141,9 @@ class Toggle extends Component {
     labelStyle: PropTypes.object,
     /**
      * Callback function that is fired when the toggle switch is toggled.
+     *
+     * @param {object} event Change event targeting the toggle.
+     * @param {bool} isInputChecked The new value of the toggle.
      */
     onToggle: PropTypes.func,
     /**

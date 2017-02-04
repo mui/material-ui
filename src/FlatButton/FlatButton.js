@@ -201,7 +201,6 @@ class FlatButton extends Component {
       transition: transitions.easeOut(),
       borderRadius: 2,
       userSelect: 'none',
-      position: 'relative',
       overflow: 'hidden',
       backgroundColor: hovered ? buttonHoverColor : buttonBackgroundColor,
       padding: 0,

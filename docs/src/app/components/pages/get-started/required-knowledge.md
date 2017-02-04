@@ -9,7 +9,7 @@ If you're already familiar with single page applications (SPAs) and Node,
 feel free to skip this section and
 head straight to the [installation](#/get-started/installation) part.
 
-Otherwise, what follows is a quick and brief introduction to SPAs and Node.
+Otherwise, what follows is a brief introduction to SPAs and Node.
 You'll find this helpful, especially if you have limited prior experience
 with web development,
 or if your experience only consists of "traditional" websites built using
@@ -56,7 +56,7 @@ This is where Node comes into play.
 
 ### Node
 
-At its core, [Node](https://nodejs.org) is a program written in C that allows us
+At its core, [Node](https://nodejs.org) is a program written in C++ that allows us
 to run JavaScript in the shell (yes, your terminal, not the browser).
 To do this, It uses Chrome’s V8 JavaScript engine.
 Hence, Node is essentially a runtime environment.
@@ -73,7 +73,7 @@ dependency management, and created projects like:
 
 As Node became popular, independent developers and organizations wrote scripts
 (that ran using Node) to do almost everything web apps-related.
-Of course, the whole community could benefit from these "custom Node scripts.""
+Of course, the whole community could benefit from these "custom Node scripts."
 This called for some kind of package repository where anybody could upload their Node scripts, and other developers
 could use these scripts in their own projects.
 

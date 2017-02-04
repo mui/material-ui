@@ -14,8 +14,8 @@ class IconMenu extends Component {
      * This is the point on the icon where the menu
      * `targetOrigin` will attach.
      * Options:
-     * vertical: [top, middle, bottom]
-     * horizontal: [left, center, right].
+     * vertical: [top, center, bottom]
+     * horizontal: [left, middle, right].
      */
     anchorOrigin: propTypes.origin,
     /**
@@ -43,6 +43,10 @@ class IconMenu extends Component {
      * Override the inline-styles of the underlying icon element.
      */
     iconStyle: PropTypes.object,
+    /**
+     * Override the inline-styles of the underlying `List` element.
+     */
+    listStyle: PropTypes.object,
     /**
      * Override the inline-styles of the menu element.
      */
@@ -100,8 +104,8 @@ class IconMenu extends Component {
      * This is the point on the menu which will stick to the menu
      * origin.
      * Options:
-     * vertical: [top, middle, bottom]
-     * horizontal: [left, center, right].
+     * vertical: [top, center, bottom]
+     * horizontal: [left, middle, right].
      */
     targetOrigin: propTypes.origin,
     /**
@@ -175,16 +179,16 @@ class IconMenu extends Component {
 
     if (this.props.open !== null) {
       this.props.onRequestChange(false, reason);
+    } else {
+      this.setState({open: false}, () => {
+        // Set focus on the icon button when the menu close
+        if (isKeyboard) {
+          const iconButton = this.refs.iconButton;
+          ReactDOM.findDOMNode(iconButton).focus();
+          iconButton.setKeyboardFocus();
+        }
+      });
     }
-
-    this.setState({open: false}, () => {
-      // Set focus on the icon button when the menu close
-      if (isKeyboard) {
-        const iconButton = this.refs.iconButton;
-        ReactDOM.findDOMNode(iconButton).focus();
-        iconButton.setKeyboardFocus();
-      }
-    });
   }
 
   open(reason, event) {
@@ -241,6 +245,7 @@ class IconMenu extends Component {
       onMouseUp,
       onRequestChange, // eslint-disable-line no-unused-vars
       onTouchTap,
+      listStyle,
       menuStyle,
       style,
       targetOrigin,
@@ -269,11 +274,8 @@ class IconMenu extends Component {
       `Material-UI: You shoud not provide an <SvgIcon /> to the 'iconButtonElement' property of <IconMenu />.
 You should wrapped it with an <IconButton />.`);
 
-    const iconButton = React.cloneElement(iconButtonElement, {
+    const iconButtonProps = {
       onKeyboardFocus: onKeyboardFocus,
-      iconStyle: iconStyle ?
-        Object.assign({}, iconStyle, iconButtonElement.props.iconStyle) :
-        iconButtonElement.props.iconStyle,
       onTouchTap: (event) => {
         this.open(Events.isKeyboard(event) ? 'keyboard' : 'iconTap', event);
         if (iconButtonElement.props.onTouchTap) {
@@ -281,7 +283,13 @@ You should wrapped it with an <IconButton />.`);
         }
       },
       ref: 'iconButton',
-    });
+    };
+    if (iconStyle || iconButtonElement.props.iconStyle) {
+      iconButtonProps.iconStyle = iconStyle ?
+        Object.assign({}, iconStyle, iconButtonElement.props.iconStyle) :
+        iconButtonElement.props.iconStyle;
+    }
+    const iconButton = React.cloneElement(iconButtonElement, iconButtonProps);
 
     const menu = (
       <Menu
@@ -290,6 +298,7 @@ You should wrapped it with an <IconButton />.`);
         onEscKeyDown={this.handleEscKeyDownMenu}
         onItemTouchTap={this.handleItemTouchTap}
         style={mergedMenuStyles}
+        listStyle={listStyle}
       >
         {this.props.children}
       </Menu>

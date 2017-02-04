@@ -78,11 +78,14 @@ describe('<AutoComplete />', () => {
         key: 0,
       });
       assert.strictEqual(handleNewRequest.callCount, 0);
-      assert.strictEqual(wrapper.state().searchText, 'f');
+      assert.strictEqual(wrapper.state().searchText, 'foo');
 
       setTimeout(() => {
         assert.strictEqual(handleNewRequest.callCount, 1);
-        assert.strictEqual(wrapper.state().searchText, 'foo');
+        assert.deepEqual(handleNewRequest.args[0], [
+          'foo',
+          0,
+        ]);
         done();
       }, 20);
     });
@@ -96,7 +99,6 @@ describe('<AutoComplete />', () => {
           dataSource={['foo', 'bar']}
           searchText="f"
           onUpdateInput={handleUpdateInput}
-          menuCloseDelay={10}
         />
       );
 
@@ -104,15 +106,22 @@ describe('<AutoComplete />', () => {
       wrapper.find(Menu).props().onItemTouchTap({}, {
         key: 0,
       });
-      assert.strictEqual(handleUpdateInput.callCount, 0);
-      assert.strictEqual(wrapper.state().searchText, 'f');
+      assert.strictEqual(wrapper.state().searchText, 'foo');
 
       setTimeout(() => {
         assert.strictEqual(handleUpdateInput.callCount, 1);
-        assert.strictEqual(handleUpdateInput.getCall(0).args[0], 'foo');
-        assert.strictEqual(wrapper.state().searchText, 'foo');
+        assert.deepEqual(handleUpdateInput.args[0], [
+          'foo',
+          [
+            'foo',
+            'bar',
+          ],
+          {
+            source: 'touchTap',
+          },
+        ]);
         done();
-      }, 20);
+      }, 0);
     });
   });
 
@@ -132,6 +141,17 @@ describe('<AutoComplete />', () => {
 
       assert.strictEqual(popoverProps.zDepth, 3, 'should pass popoverProps to Popover');
       assert.strictEqual(popoverProps.canAutoPosition, true, 'should overrides the default');
+    });
+  });
+
+  describe('prop: onClose', () => {
+    it('should call onClose when the menu is closed', () => {
+      const handleClose = spy();
+      const wrapper = shallowWithContext(
+        <AutoComplete dataSource={['foo', 'bar']} onClose={handleClose} />
+      );
+      wrapper.instance().close();
+      assert.strictEqual(handleClose.callCount, 1);
     });
   });
 });

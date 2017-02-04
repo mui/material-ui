@@ -1,10 +1,129 @@
 ## HEAD
 
-## 0.17.0
-###### _??? ??, 2017_
-
 ##### Breaking Changes
-- [core] require `react-tap-event-plugin@^2.0.0` && `react@^15.4.0` (#6057)
+- [core] include `react-tap-event-plugin@^2.0.0` for `react@^15.4.0` (#5572)
+
+## 0.16.7
+###### _Jan 15, 2017_
+
+A big thanks to the 20 contributors who are making this release possible.
+
+##### Component Fixes / Enhancements
+
+- [DropDownMenu] Add keyboard accessibility (#5921) @caesay
+- [EnhancedButton] Remove unnecessary hack, improving overall performance (#5868) @jampy
+- [FloatingActionButton] Fix thin white border (#5881) @ludoviccyril
+- [IconButton] Fix a onTouchStart error (#5833) @oliviertassinari
+- [IconButton] Fix hoveredStyle prop override style prop (#5874) @MattCain
+- [IconMenu] Fix React warning (#5843) @olee
+- [Menu] Add onFocusIndexChange property (#5851) @gabrielmdeal
+- [Menu] Fix support of any type of children (#5904) @oliviertassinari
+- [style] Shorthand syntax for a color object (#5835) @frooeyzanny
+- [style] Fix user-agent all with display flex (#5931) @oliviertassinari
+- [Tab] Allow overriding button style on tabs (#5844) @rhagigi
+- [Tabs] Fix a regression (#5891) @oliviertassinari
+- [Table] Add an integration tests (#5845) @oliviertassinari
+- [Table] Fix TableBody selectedRows state (#5829) @ovaldi
+- [Table] Remove useless padding (#5932) @oliviertassinari
+- [TableBody] Fix row selection re-render (#5905) @dchambers
+- [test] Fix typo in the iOSHelpers.spec.js (#5837) @frooeyzanny
+
+##### Docs
+
+- [docs] Add payment components to Related projects (#5849) @lorensr
+- [docs] Add showcase for "humorista.org" (#5859) @minas1
+- [docs] Fix broken link (b7d9a373320b49f62e47f4e2e5ca4aa882265904) @oliviertassinari
+- [docs] Fix spelling mistake in PropTypeDescription.js (#5883) @Jbarget
+- [docs] Fix typo (#5889) @lucasbento
+- [docs] It is exciting (#5831) @ratson
+- [Tabs] Fix typo in initialSelectedIndex prop description (#5923) @neonray
+- [withWidth] Fix typo in the withWidth.spec.js (#5836) @frooeyzanny
+
+##### Core
+
+- [test] Use simpler assert API (e017d365f45b07933e8b896f95d6d1455b666516) @oliviertassinari
+
+## 0.16.6
+###### _Dec 25, 2016_
+
+We are releasing sooner than we use to for this **special day** :christmas_tree::gift:.
+17 contributors are making that last release of the year possible.
+
+2016 has been an exceptional year for Material-UI.
+- We went from 40k to 180k [downloads](https://npm-stat.com/charts.html?package=material-ui&from=2014-12-24&to=2016-12-25) a month. :package:
+- We went from 12k to 22k [stars](http://www.timqian.com/star-history/#callemall/material-ui). :star:
+
+That wouldn't have been possible without this awesome community.
+**Thank you!**
+
+But this's just the beginning, some [exciting stuff](https://github.com/callemall/material-ui/blob/master/ROADMAP.md) is coming in 2017 :sparkles:.
+You can preview a **very early** version of the `next` branch following [that link](https://material-ui-1dab0.firebaseapp.com).
+
+##### Component Fixes / Enhancements
+
+- [IconButton] Add a hoveredStyle property (#5755)
+- [Menu] Add a dividerStyle property (#5734)
+- [Menu][DropDownMenu][SelectField] Add menuItemStyle and menuItemSelectedStyle properties (#5389)
+- [Popover] Fix ghost clicks in onRequestClose (#5749)
+- [Popover] Fix bad positioning on IOS devices (#4638)
+- [Popover] Revert the latest PR following a regression (#5797)
+- [Stepper] Allow custom step connector (#5741)
+- [Stepper] Fix content container's height expantion (#5733)
+- [TimeDisplay] Inherit text color from theme (#5816)
+- [TouchRipple] Fix issue #5626 (#5763)
+
+##### Docs
+
+- [AutoComplete] Add a controlled example (#5795)
+- [Slider] Add onChange callback signatures to docs (#5760)
+- [TextField] Add callback signatures to docs (#5804)
+- [docs] Add link to babel-plugin-material-ui (#5754)
+- [docs] Node is written mostly in C++, not in C (#5776)
+- [docs] Remove redundant words (#5778)
+- [docs] Add showcase item - Realty Advisors Elite (#5806)
+
+##### Core
+
+- [core] Add support for Webpack 2/Rollup tree shaking in `svg-icons` sub module (#5774)
+
+## 0.16.5
+###### _Dec 9, 2016_
+
+This is another release improving the stability of `v0.16.x`.
+
+##### Component Fixes / Enhancements
+
+- [AutoComplete] Add an onClose callback property (#5655)
+- [AutoComplete] Fix the controlled behavior (#5685)
+- [DatePicker] Auto switch the view when a year is selected (#5700)
+- [DropDownMenu] Add an onClose callback property (#5653)
+- [DropDownMenu] Do not wrap below dropdown menu (#4755)
+- [EnhancedButton] Fix an accessibility issue (#5657)
+- [EnhancedButton] Only apply type when needed (#5728)
+- [IconMenu] Add listStyle prop (#5630)
+- [IconMenu] Fix controlled IconMenus to honor onRequestChange (#5704)
+- [MenuItem] Add right padding when there is icon (#4762)
+- [Popover] Add the missing zIndex (#5730)
+- [List] Fix padding styles object (#5661)
+- [SelectField] Scroll wheel event bubbling to parent container (#4154)
+- [StepLabel] Address a box model issue (#5690)
+- [SelectField] Add listStyle prop (#5631)
+- [TextField] Fix errorStyle priority (#5654)
+- [TextField] Add a floatingLabelShrinkStyle property (#5669)
+- [autoprefixer] Fix a style issue with user agent all and display flex (#5668)
+- [makeSelectable] Fix missing check for existence of onChange (#5589)
+
+##### Docs
+
+- [docs] Add a Q&A section around the next branch (#5718)
+- [docs] Fix typo with sentence for AutoComplete (#5596)
+- [docs] Fix origin documentation (#5676)
+- [docs] Fix Linear Progress Prop Documentation (#5680)
+- [docs] Fix a scroll issue on (iOS) (a12dca847af6833dbf671e48c736047d6909ec53)
+
+##### Core
+
+- [core] Apply 3 different fixes (#5695)
 
 ## 0.16.4
 ###### _Nov 17, 2016_

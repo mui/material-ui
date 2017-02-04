@@ -57,12 +57,6 @@ class EnhancedButton extends Component {
     onKeyDown: PropTypes.func,
     onKeyUp: PropTypes.func,
     onKeyboardFocus: PropTypes.func,
-    onMouseDown: PropTypes.func,
-    onMouseEnter: PropTypes.func,
-    onMouseLeave: PropTypes.func,
-    onMouseUp: PropTypes.func,
-    onTouchEnd: PropTypes.func,
-    onTouchStart: PropTypes.func,
     onTouchTap: PropTypes.func,
     style: PropTypes.object,
     tabIndex: PropTypes.number,
@@ -79,12 +73,6 @@ class EnhancedButton extends Component {
     onKeyDown: () => {},
     onKeyUp: () => {},
     onKeyboardFocus: () => {},
-    onMouseDown: () => {},
-    onMouseEnter: () => {},
-    onMouseLeave: () => {},
-    onMouseUp: () => {},
-    onTouchEnd: () => {},
-    onTouchStart: () => {},
     onTouchTap: () => {},
     tabIndex: 0,
     type: 'button',
@@ -94,7 +82,9 @@ class EnhancedButton extends Component {
     muiTheme: PropTypes.object.isRequired,
   };
 
-  state = {isKeyboardFocused: false};
+  state = {
+    isKeyboardFocused: false,
+  };
 
   componentWillMount() {
     const {disabled, disableKeyboardFocus, keyboardFocused} = this.props;
@@ -259,7 +249,7 @@ class EnhancedButton extends Component {
       children,
       containerElement,
       disabled,
-      disableFocusRipple,
+      disableFocusRipple, // eslint-disable-line no-unused-vars
       disableKeyboardFocus, // eslint-disable-line no-unused-vars
       disableTouchRipple, // eslint-disable-line no-unused-vars
       focusRippleColor, // eslint-disable-line no-unused-vars
@@ -299,14 +289,9 @@ class EnhancedButton extends Component {
       outline: 'none',
       fontSize: 'inherit',
       fontWeight: 'inherit',
-      /**
-       * This is needed so that ripples do not bleed
-       * past border radius.
-       * See: http://stackoverflow.com/questions/17298739/
-       * css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
-       */
-      transform: disableTouchRipple && disableFocusRipple ? null : 'translate(0, 0)',
+      position: 'relative', // This is needed so that ripples do not bleed past border radius.
       verticalAlign: href ? 'middle' : null,
+      zIndex: 1, // This is also needed so that (onTouch) ripples do not bleed past border radius.
     }, style);
 
 
@@ -338,13 +323,17 @@ class EnhancedButton extends Component {
       onKeyUp: this.handleKeyUp,
       onKeyDown: this.handleKeyDown,
       onTouchTap: this.handleTouchTap,
-      tabIndex: tabIndex,
-      type: type,
+      tabIndex: disabled || disableKeyboardFocus ? -1 : tabIndex,
     };
+
     const buttonChildren = this.createButtonChildren();
 
     if (React.isValidElement(containerElement)) {
       return React.cloneElement(containerElement, buttonProps, buttonChildren);
+    }
+
+    if (!href && containerElement === 'button') {
+      buttonProps.type = type;
     }
 
     return React.createElement(href ? 'a' : containerElement, buttonProps, buttonChildren);

@@ -4,7 +4,10 @@ import FontIcon from 'material-ui/FontIcon';
 import ActionAndroid from 'material-ui/svg-icons/action/android';
 
 const styles = {
-  imageInput: {
+  uploadButton: {
+    verticalAlign: 'middle',
+  },
+  uploadInput: {
     cursor: 'pointer',
     position: 'absolute',
     top: 0,
@@ -18,14 +21,18 @@ const styles = {
 
 const FlatButtonExampleComplex = () => (
   <div>
-    <FlatButton label="Choose an Image" labelPosition="before">
-      <input type="file" style={styles.imageInput} />
+    <FlatButton
+      label="Choose an Image"
+      labelPosition="before"
+      style={styles.uploadButton}
+      containerElement="label"
+    >
+      <input type="file" style={styles.uploadInput} />
     </FlatButton>
     <FlatButton
       label="Label before"
       labelPosition="before"
       primary={true}
-      style={styles.button}
       icon={<ActionAndroid />}
     />
     <FlatButton

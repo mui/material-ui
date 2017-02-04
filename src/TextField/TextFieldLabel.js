@@ -72,6 +72,8 @@ TextFieldLabel.propTypes = {
   muiTheme: PropTypes.object.isRequired,
   /**
    * Callback function for when the label is selected via a touch tap.
+   *
+   * @param {object} event TouchTap event targeting the text field label.
    */
   onTouchTap: PropTypes.func,
   /**
@@ -79,7 +81,7 @@ TextFieldLabel.propTypes = {
    */
   shrink: PropTypes.bool,
   /**
-   * Override the inline-styles of the root element when focused.
+   * Override the inline-styles of the root element when shrunk.
    */
   shrinkStyle: PropTypes.object,
   /**
