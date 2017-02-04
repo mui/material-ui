@@ -1,5 +1,8 @@
 ## HEAD
 
+##### Breaking Changes
+- [core] include `react-tap-event-plugin@^2.0.0` for `react@^15.4.0` (#5572)
+
 ## 0.16.7
 ###### _Jan 15, 2017_
 
