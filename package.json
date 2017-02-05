@@ -67,7 +67,7 @@
     "babel-plugin-transform-dev-warning": "^0.1.0",
     "babel-plugin-transform-react-constant-elements": "^6.5.0",
     "babel-plugin-transform-react-inline-elements": "^6.6.5",
-    "babel-plugin-transform-react-remove-prop-types": "^0.2.10",
+    "babel-plugin-transform-react-remove-prop-types": "^0.3.0",
     "babel-plugin-transform-replace-object-assign": "^0.2.1",
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-polyfill": "^6.7.4",
