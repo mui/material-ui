@@ -2,9 +2,10 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const dllManifest = require('./build/dll.manifest.json');
 
 module.exports = {
-  debug: true,
+  cache: true,
   devtool: 'inline-source-map',
   context: path.resolve(__dirname),
   entry: {
@@ -22,11 +23,11 @@ module.exports = {
     publicPath: '/build/',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
           cacheDirectory: true,
         },
@@ -55,8 +56,12 @@ module.exports = {
       'material-ui': path.resolve(__dirname, '../../src'),
     },
   },
-  progress: true,
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.DllReferencePlugin({
+      context: '.',
+      manifest: dllManifest,
+    }),
+    new webpack.NamedModulesPlugin(),
   ],
 };

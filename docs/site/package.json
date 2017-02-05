@@ -8,8 +8,10 @@
     "url": "https://github.com/callemall/material-ui.git"
   },
   "scripts": {
-    "start": "node webpack.dev.server.js",
-    "build": "npm run clean && cross-env NODE_ENV=production webpack --config webpack.prod.config.js",
+    "start": "npm run clean && npm run start:dll && node webpack.dev.server.js",
+    "start:dll": "webpack --config webpack.dll.config.js",
+    "build": "npm run clean && npm run build:dll && cross-env NODE_ENV=production webpack --config webpack.prod.config.js",
+    "build:dll": "cross-env NODE_ENV=production webpack --config webpack.dll.prod.config.js",
     "clean": "rimraf build"
   },
   "devDependencies": {
@@ -31,8 +33,8 @@
     "redbox-react": "^1.3.3",
     "rimraf": "^2.5.2",
     "style-loader": "^0.13.1",
-    "webpack": "^1.14.0",
-    "webpack-dev-server": "^1.16.2"
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.3.0"
   },
   "dependencies": {
     "prismjs": "^1.6.0",
