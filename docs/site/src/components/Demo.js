@@ -10,7 +10,7 @@ import CodeIcon from 'material-ui/svg-icons/code';
 import MarkdownElement from 'docs/site/src/components/MarkdownElement';
 
 const requireDemos = require.context('docs/site/src', true, /\.js$/);
-const requireDemoSource = require.context('!raw!docs/site/src', true, /\.js$/);
+const requireDemoSource = require.context('!raw-loader!docs/site/src', true, /\.js$/);
 
 const styleSheet = createStyleSheet('Demo', (theme) => {
   const { palette, mixins } = theme;
