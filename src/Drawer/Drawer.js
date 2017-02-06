@@ -145,9 +145,9 @@ export default class Drawer extends Component {
 
     return (
       <Modal
+        backdropTransitionDuration={open ? enterTransitionDuration : leaveTransitionDuration}
         {...containerProps}
         show={open}
-        backdropTransitionDuration={open ? enterTransitionDuration : leaveTransitionDuration}
       >
         {drawer}
       </Modal>
