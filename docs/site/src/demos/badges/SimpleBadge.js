@@ -9,14 +9,14 @@ import Icon from 'material-ui/Icon';
 const styleSheet = createStyleSheet('SimpleBadge', () => ({
   badge: {
     margin: '0 20px',
-  }
+  },
 }));
 
 export default function SimpleBadge(props, context) {
   const classes = context.styleManager.render(styleSheet);
   return (
     <div className={classes.row}>
-      <Badge 
+      <Badge
         badgeContent={4}
         className={classes.badge}
         primary
