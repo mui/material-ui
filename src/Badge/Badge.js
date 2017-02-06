@@ -15,7 +15,6 @@ export const styleSheet = createStyleSheet('Badge', (theme) => {
     root: {
       position: 'relative',
       display: 'inline-block',
-      padding: `${radius2x}px ${radius2x}px ${radius}px ${radius}px`,
     },
     badge: {
       display: 'flex',
@@ -25,8 +24,8 @@ export const styleSheet = createStyleSheet('Badge', (theme) => {
       alignContent: 'center',
       alignItems: 'center',
       position: 'absolute',
-      top: 0,
-      right: 0,
+      top: `-${radius}px`,
+      right: `-${radius}px`,
       fontWeight: typography.fontWeight,
       fontSize: radius,
       width: radius2x,

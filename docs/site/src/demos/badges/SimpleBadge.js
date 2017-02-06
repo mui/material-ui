@@ -4,31 +4,31 @@ import React from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import Badge from 'material-ui/Badge';
 import customPropTypes from 'material-ui/utils/customPropTypes';
-import IconButton from 'material-ui/IconButton';
-import NotificationIcon from 'material-ui/svg-icons/notification';
+import Icon from 'material-ui/Icon';
 
 const styleSheet = createStyleSheet('SimpleBadge', () => ({
   badge: {
-    top: 12,
-    right: 12,
-  },
+    margin: '0 20px',
+  }
 }));
 
 export default function SimpleBadge(props, context) {
   const classes = context.styleManager.render(styleSheet);
   return (
     <div className={classes.row}>
-      <Badge badgeContent={4} primary>
-        <NotificationIcon />
+      <Badge 
+        badgeContent={4}
+        className={classes.badge}
+        primary
+      >
+        <Icon>mail</Icon>
       </Badge>
       <Badge
         accent
-        badgeClassName={classes.badge}
         badgeContent={10}
+        className={classes.badge}
       >
-        <IconButton>
-          <NotificationIcon />
-        </IconButton>
+        <Icon>folder</Icon>
       </Badge>
     </div>
   );
