@@ -34,11 +34,12 @@ const styles = {
 
 const IconButtonExampleSize = () => (
   <div>
-    <IconButton>
+    <IconButton tooltip="Default">
       <ActionHome />
     </IconButton>
 
     <IconButton
+      tooltip="Small Icon"
       iconStyle={styles.smallIcon}
       style={styles.small}
     >
@@ -46,6 +47,8 @@ const IconButtonExampleSize = () => (
     </IconButton>
 
     <IconButton
+      tooltip="Medium Icon"
+      tooltipPosition="top-right"
       iconStyle={styles.mediumIcon}
       style={styles.medium}
     >
@@ -53,6 +56,8 @@ const IconButtonExampleSize = () => (
     </IconButton>
 
     <IconButton
+      tooltip="Large Icon"
+      tooltipPosition="top-center"
       iconStyle={styles.largeIcon}
       style={styles.large}
     >
