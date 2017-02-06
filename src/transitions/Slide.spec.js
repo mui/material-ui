@@ -6,6 +6,7 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallowWithContext } from 'test/utils';
 import Slide from './Slide';
+import transitions, { easing, durations } from '../styles/transitions';
 
 describe('<Slide />', () => {
   let shallow;
@@ -17,6 +18,14 @@ describe('<Slide />', () => {
   it('should render a Transition', () => {
     const wrapper = shallow(<Slide />);
     assert.strictEqual(wrapper.is('Transition'), true, 'is a Transition component');
+  });
+
+  it('enterTransitionDuration prop should have default value from standard durations', () => {
+    assert.strictEqual(Slide.defaultProps.enterTransitionDuration, durations.enteringScreen);
+  });
+
+  it('leaveTransitionDuration prop should have default value from standard durations', () => {
+    assert.strictEqual(Slide.defaultProps.leaveTransitionDuration, durations.leavingScreen);
   });
 
   describe('event callbacks', () => {
@@ -42,6 +51,48 @@ describe('<Slide />', () => {
         wrapper.simulate(event, { style: {}, getBoundingClientRect: () => ({}) });
         assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
       });
+    });
+  });
+
+  describe('transition animation', () => {
+    let wrapper;
+    let instance;
+    let element;
+    const enterDuration = 556;
+    const leaveDuration = 446;
+
+    before(() => {
+      wrapper = shallow(<Slide
+        enterTransitionDuration={enterDuration}
+        leaveTransitionDuration={leaveDuration}
+      />);
+      instance = wrapper.instance();
+      element = {
+        getBoundingClientRect: () => ({}),
+        style: {},
+      };
+    });
+
+    it('should create proper easeOut animation onEntering', () => {
+      instance.handleEntering(element);
+      const animation = transitions.create(
+        'transform',
+        `${enterDuration}ms`,
+        '0ms',
+        easing.easeOut,
+      );
+      assert.strictEqual(element.style.transition, animation);
+    });
+
+    it('should create proper sharp animation onExiting', () => {
+      instance.handleExiting(element);
+      const animation = transitions.create(
+        'transform',
+        `${leaveDuration}ms`,
+        '0ms',
+        easing.sharp,
+      );
+      assert.strictEqual(element.style.transition, animation);
     });
   });
 
