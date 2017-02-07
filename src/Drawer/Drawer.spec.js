@@ -64,11 +64,13 @@ describe('<Drawer />', () => {
     });
 
     it('should be passed to to Modal\'s backdropTransitionDuration when open=true', () => {
-      const wrapper = shallow(<Drawer
-        open
-        enterTransitionDuration={enterDuration}
-        leaveTransitionDuration={leaveDuration}
-      />);
+      const wrapper = shallow(
+        <Drawer
+          open
+          enterTransitionDuration={enterDuration}
+          leaveTransitionDuration={leaveDuration}
+        />,
+      );
       assert.strictEqual(wrapper.find(Modal).prop('backdropTransitionDuration'), enterDuration);
     });
   });
@@ -83,23 +85,25 @@ describe('<Drawer />', () => {
 
     it('should be passed to Slide', () => {
       const wrapper = shallow(<Drawer leaveTransitionDuration={leaveDuration} />);
-      assert.strictEqual(wrapper.find(Slide).prop('leaveTransitionDuration'), leaveDuration);
+      assert.strictEqual(wrapper.find(Slide).props().leaveTransitionDuration, leaveDuration);
     });
 
     it('should be passed to to Modal\'s backdropTransitionDuration when open=false', () => {
-      const wrapper = shallow(<Drawer
-        open={false}
-        enterTransitionDuration={enterDuration}
-        leaveTransitionDuration={leaveDuration}
-      />);
-      assert.strictEqual(wrapper.find(Modal).prop('backdropTransitionDuration'), leaveDuration);
+      const wrapper = shallow(
+        <Drawer
+          open={false}
+          enterTransitionDuration={enterDuration}
+          leaveTransitionDuration={leaveDuration}
+        />,
+      );
+      assert.strictEqual(wrapper.find(Modal).props().backdropTransitionDuration, leaveDuration);
     });
   });
 
   it('should override Modal\'s backdropTransitionDuration from property when specified', () => {
     const duration = 335;
     const wrapper = shallow(<Drawer backdropTransitionDuration={duration} />);
-    assert.strictEqual(wrapper.find(Modal).prop('backdropTransitionDuration'), duration);
+    assert.strictEqual(wrapper.find(Modal).props().backdropTransitionDuration, duration);
   });
 
   it('should set the Paper className', () => {

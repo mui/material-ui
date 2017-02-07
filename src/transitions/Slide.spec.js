@@ -62,10 +62,12 @@ describe('<Slide />', () => {
     const leaveDuration = 446;
 
     before(() => {
-      wrapper = shallow(<Slide
-        enterTransitionDuration={enterDuration}
-        leaveTransitionDuration={leaveDuration}
-      />);
+      wrapper = shallow(
+        <Slide
+          enterTransitionDuration={enterDuration}
+          leaveTransitionDuration={leaveDuration}
+        />,
+      );
       instance = wrapper.instance();
       element = {
         getBoundingClientRect: () => ({}),
