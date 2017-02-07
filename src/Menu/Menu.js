@@ -507,7 +507,7 @@ class Menu extends Component {
       onEscKeyDown, // eslint-disable-line no-unused-vars
       onMenuItemFocusChange, // eslint-disable-line no-unused-vars
       selectedMenuItemStyle, // eslint-disable-line no-unused-vars
-      menuItemStyle, // eslint-disable-line no-unused-vars
+      menuItemStyle, // eslint-disable-line no-unused-vars FixMe: Should we remove this?
       style,
       value, // eslint-disable-line no-unused-vars
       valueLink, // eslint-disable-line no-unused-vars
