@@ -24,6 +24,28 @@ Below is a summary of major changes.
 - [Ripple/TouchRipple] Refactored and now works properly inside a button in firefox!
 - [Button] Raised/flat/fab are now combined into a single component.
 
+
+## 1.0.0-alpha.2
+###### _Feb 7, 2017_
+
+One year from now, we were struggling with removing all the mixins from the project.
+Now, it's about rewriting all our components.
+We gonna try doing frequent alpha releases to keep some intertie. At least once per week would be good.
+As always, we are keeping the [documentation](https://material-ui-1dab0.firebaseapp.com) up to date.
+
+##### Component Fixes / Enhancements
+
+- [Badge] Port the Badge Component (#6043) @stunaz
+- [Layout] Warn about wrong usage of the item & container combination (#6040) @oliviertassinari
+- [Layout] Explicit the box-sizing dependency (#6036) @oliviertassinari
+- [Drawer] Open/close animation easing and timing (#6066) @ArcanisCz
+
+##### Docs
+
+- [docs] Add a composition section (#6049) @oliviertassinari
+- [docs] Explain how to use the visual regression tests (#6050) @oliviertassinari
+- [docs] Improve the Server Rendering section (#6070) @oliviertassinari
+
 ## 1.0.0-alpha.1
 ###### _Jan 28, 2017_
 
