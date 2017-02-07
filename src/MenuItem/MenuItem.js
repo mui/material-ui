@@ -59,13 +59,13 @@ class MenuItem extends Component {
 
   static propTypes = {
     /**
-     * Override the default animation component used.
-     */
-    animation: PropTypes.func,
-    /**
      * Override the default anchorOrigin children used.
      */
     anchorOrigin: PropTypes.object,
+    /**
+     * Override the default animation component used.
+     */
+    animation: PropTypes.func,
     /**
      * If true, a left check mark will be rendered.
      */
@@ -139,12 +139,12 @@ class MenuItem extends Component {
   };
 
   static defaultProps = {
+    anchorOrigin: {horizontal: 'right', vertical: 'top'},
     checked: false,
     desktop: false,
     disabled: false,
     focusState: 'none',
     insetChildren: false,
-    anchorOrigin: {horizontal: 'right', vertical: 'top'},
   };
 
   static contextTypes = {
