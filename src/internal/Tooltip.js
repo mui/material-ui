@@ -31,7 +31,8 @@ function getStyles(props, context, state) {
       opacity: 0,
       right: horizontalPosition === 'left' ? 12 : null,
       left: horizontalPosition === 'center' ?
-        (state.offsetWidth - 48) / 2 * -1 : null,
+        (state.offsetWidth - 48) / 2 * -1 :
+        horizontalPosition === 'right' ? 12 : null,
       transition: `${transitions.easeOut('0ms', 'top', '450ms')}, ${
         transitions.easeOut('450ms', 'transform', '0ms')}, ${
         transitions.easeOut('450ms', 'opacity', '0ms')}`,
