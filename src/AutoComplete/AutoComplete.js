@@ -113,6 +113,10 @@ class AutoComplete extends Component {
      */
     menuCloseDelay: PropTypes.number,
     /**
+     * Override style for single menu item.
+     */
+    menuItemStyle: PropTypes.object,
+    /**
      * Props to be passed to menu.
      */
     menuProps: PropTypes.object,
@@ -120,10 +124,6 @@ class AutoComplete extends Component {
      * Override style for menu.
      */
     menuStyle: PropTypes.object,
-    /**
-     * Override style for single menu item.
-     */
-    menuItemStyle: PropTypes.object,
     /** @ignore */
     onBlur: PropTypes.func,
     /**
