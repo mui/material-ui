@@ -56,7 +56,7 @@
     "keycode": "^2.1.8",
     "lodash": "^4.17.4",
     "object-assign": "^4.1.1",
-    "react-addons-transition-group": "^15.4.2",
+    "react-addons-transition-group": "^15.0.0",
     "react-event-listener": "^0.4.1",
     "recompose": "^0.21.2",
     "warning": "^3.0.0"
