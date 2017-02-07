@@ -63,6 +63,10 @@ class MenuItem extends Component {
      */
     animation: PropTypes.func,
     /**
+     * Override the default anchorOrigin children used.
+     */
+    anchorOrigin: PropTypes.object,
+    /**
      * If true, a left check mark will be rendered.
      */
     checked: PropTypes.bool,
@@ -140,6 +144,7 @@ class MenuItem extends Component {
     disabled: false,
     focusState: 'none',
     insetChildren: false,
+    anchorOrigin: {horizontal: 'right', vertical: 'top'},
   };
 
   static contextTypes = {
@@ -233,6 +238,7 @@ class MenuItem extends Component {
       secondaryText,
       style,
       animation,
+      anchorOrigin,
       value, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
@@ -274,7 +280,7 @@ class MenuItem extends Component {
       childMenuPopover = (
         <Popover
           animation={animation}
-          anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+          anchorOrigin={anchorOrigin}
           anchorEl={this.state.anchorEl}
           open={this.state.open}
           useLayerForClickAway={false}
