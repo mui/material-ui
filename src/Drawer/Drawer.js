@@ -7,6 +7,7 @@ import Modal from '../internal/Modal';
 import customPropTypes from '../utils/customPropTypes';
 import Slide from '../transitions/Slide';
 import Paper from '../Paper';
+import { durations } from '../styles/transitions';
 
 function getSlideDirection(anchor) {
   if (anchor === 'left') {
@@ -69,6 +70,8 @@ export default class Drawer extends Component {
      * and will no longer slide in with an overlay.
      */
     docked: PropTypes.bool,
+    enterTransitionDuration: PropTypes.number,
+    leaveTransitionDuration: PropTypes.number,
     open: PropTypes.bool,
     /**
      * The CSS class name of the paper element.
@@ -79,6 +82,8 @@ export default class Drawer extends Component {
 
   static defaultProps = {
     docked: false,
+    enterTransitionDuration: durations.enteringScreen,
+    leaveTransitionDuration: durations.leavingScreen,
     open: false,
     zDepth: 16,
   };
@@ -93,6 +98,8 @@ export default class Drawer extends Component {
       children,
       className,
       docked,
+      enterTransitionDuration,
+      leaveTransitionDuration,
       open,
       paperClassName,
       zDepth,
@@ -106,7 +113,13 @@ export default class Drawer extends Component {
     const slideDirection = getSlideDirection(anchor);
 
     const drawer = (
-      <Slide in={open} direction={slideDirection} transitionAppear>
+      <Slide
+        in={open}
+        direction={slideDirection}
+        enterTransitionDuration={enterTransitionDuration}
+        leaveTransitionDuration={leaveTransitionDuration}
+        transitionAppear
+      >
         <Paper
           zDepth={docked ? 0 : zDepth}
           rounded={false}
@@ -131,7 +144,11 @@ export default class Drawer extends Component {
     }
 
     return (
-      <Modal {...containerProps} show={open}>
+      <Modal
+        backdropTransitionDuration={open ? enterTransitionDuration : leaveTransitionDuration}
+        {...containerProps}
+        show={open}
+      >
         {drawer}
       </Modal>
     );
