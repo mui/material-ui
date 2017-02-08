@@ -10,6 +10,7 @@
     },
     "production": {
       "plugins": [
+        "transform-react-remove-prop-types",
         ["react-remove-properties", {"properties": ["data-mui-test"]}]
       ]
     }
