@@ -11,7 +11,6 @@ export const styleSheet = createStyleSheet('FormControl', () => {
       display: 'flex',
       flexDirection: 'column',
       position: 'relative',
-      transform: 'translateZ(0)', // #6076 prevents animation glitches of children to bubble up
     },
     row: {
       flexDirection: 'row',
