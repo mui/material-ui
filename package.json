@@ -43,7 +43,7 @@
   "peerDependencies": {
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "react-tap-event-plugin": "2.0.0"
+    "react-tap-event-plugin": "^2.0.1"
   },
   "dependencies": {
     "babel-runtime": "^6.18.0",
@@ -104,7 +104,7 @@
     "react": "^15.4.2",
     "react-addons-test-utils": "^15.4.2",
     "react-dom": "^15.4.2",
-    "react-tap-event-plugin": "2.0.0",
+    "react-tap-event-plugin": "^2.0.1",
     "recursive-readdir-sync": "^1.0.6",
     "rimraf": "^2.5.3",
     "sinon": "^1.17.3",
