@@ -13,7 +13,8 @@ function isDirty(obj) {
 export const styleSheet = createStyleSheet('Input', (theme) => {
   return {
     wrapper: {
-      display: 'flex',
+      // Mimics the default input display property used by browsers for an input.
+      display: 'inline-block',
       position: 'relative',
     },
     formControl: {
@@ -29,7 +30,7 @@ export const styleSheet = createStyleSheet('Input', (theme) => {
         content: '""',
         height: 2,
         position: 'absolute',
-        width: '100%',
+        right: 0,
         transform: 'scaleX(0)',
         transition: theme.transitions.create(
           'transform',
@@ -60,6 +61,7 @@ export const styleSheet = createStyleSheet('Input', (theme) => {
       lineHeight: 1,
       appearance: 'textfield', // Improve type search style.
       color: theme.palette.text.primary,
+      width: '100%',
       '&:focus': {
         outline: 0,
       },
