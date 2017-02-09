@@ -1,6 +1,7 @@
 // @flow weak
 
 import React, { Component } from 'react';
+import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import Input from 'material-ui/Input/Input';
@@ -9,9 +10,13 @@ const styleSheet = createStyleSheet('Inputs', () => ({
   container: {
     display: 'flex',
     flexDirection: 'column',
+    width: 200,
   },
   input: {
     margin: 10,
+  },
+  large: {
+    width: 300,
   },
 }));
 
@@ -30,29 +35,35 @@ export default class Inputs extends Component {
     const classes = this.context.styleManager.render(styleSheet);
 
     return (
-      <div className={classes.container}>
+      <div>
+        <div className={classes.container}>
+          <Input
+            value="Hello world"
+            className={classes.input}
+          />
+          <Input
+            placeholder="Placeholder"
+            className={classes.input}
+          />
+          <Input
+            value="Disabled"
+            className={classes.input}
+            disabled
+          />
+          <Input
+            error
+            value="Error"
+            className={classes.input}
+          />
+          <Input
+            value="Focused"
+            ref={(c) => { this.focusInput = c; }}
+            className={classes.input}
+          />
+        </div>
         <Input
-          defaultValue="Hello world"
-          className={classes.input}
-        />
-        <Input
-          placeholder="Placeholder"
-          className={classes.input}
-        />
-        <Input
-          value="Disabled"
-          className={classes.input}
-          disabled
-        />
-        <Input
-          error
-          value="Error"
-          className={classes.input}
-        />
-        <Input
-          value="Focused"
-          ref={(c) => { this.focusInput = c; }}
-          className={classes.input}
+          value="Large input"
+          className={classNames(classes.input, classes.large)}
         />
       </div>
     );
