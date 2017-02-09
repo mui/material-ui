@@ -125,7 +125,7 @@ export default class Button extends Component {
     /**
      * The content of the button.
      */
-    children: PropTypes.node,
+    children: PropTypes.node.isRequired,
     /**
      * The CSS class name of the root element.
      */
