@@ -21,12 +21,16 @@ export const styleSheet = createStyleSheet('ListItem', (theme) => {
       background: theme.palette.text.divider,
     },
     default: {
-      paddingTop: 19,
-      paddingBottom: 19,
+      minHeight: 48
+    },
+    avatar: {
+      minHeight: 56
+    },
+    twolines: {
+      minHeight: 72
     },
     dense: {
-      paddingTop: 8,
-      paddingBottom: 8,
+      minHeight: 40
     },
     disabled: {
       opacity: 0.5,
@@ -103,6 +107,19 @@ export default class ListItem extends Component {
     }
 
     const children = React.Children.toArray(childrenProp);
+
+    if (children.length) {
+        for (const child in children){
+          if (children[child].type) {
+            if(children[child].type.muiName === 'Avatar') {
+              listItemProps.className += ' ' + classes.avatar;
+            }
+            if(children[child].type.muiName === 'ListItemText' && children[child].props.secondary) {
+              listItemProps.className += ' ' + classes.twolines;
+            }
+          }
+       }
+    }
 
     if (
       children.length &&

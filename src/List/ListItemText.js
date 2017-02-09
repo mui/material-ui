@@ -79,3 +79,5 @@ ListItemText.defaultProps = {
 ListItemText.contextTypes = {
   styleManager: customPropTypes.muiRequired,
 };
+
+ListItemText.muiName = 'ListItemText';
