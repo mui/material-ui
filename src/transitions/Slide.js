@@ -3,6 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import Transition from '../internal/Transition';
 import customPropTypes from '../utils/customPropTypes';
+import { easing, durations } from '../styles/transitions';
 
 function getTranslateValue(props, element) {
   const { direction } = props;
@@ -32,6 +33,8 @@ export default class Slide extends Component {
      */
     className: PropTypes.string,
     direction: PropTypes.oneOf(['left', 'right', 'up', 'down']),
+    enterTransitionDuration: PropTypes.number,
+    leaveTransitionDuration: PropTypes.number,
     /**
      * Set to slide in by a fixed number of pixels or %.
      */
@@ -60,12 +63,12 @@ export default class Slide extends Component {
      * Callback fired when the component has exited.
      */
     onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
-    transitionDuration: PropTypes.number,
   };
 
   static defaultProps = {
     direction: 'down',
-    transitionDuration: 300,
+    enterTransitionDuration: durations.enteringScreen,
+    leaveTransitionDuration: durations.leavingScreen,
   };
 
   static contextTypes = {
@@ -81,8 +84,12 @@ export default class Slide extends Component {
 
   handleEntering = (element) => {
     const { transitions } = this.context.theme;
-    element.style.transition = transitions.create('transform',
-      `${this.props.transitionDuration}ms`);
+    element.style.transition = transitions.create(
+      'transform',
+      `${this.props.enterTransitionDuration}ms`,
+      '0ms',
+      easing.easeOut,
+    );
     element.style.transform = 'translate3d(0, 0, 0)';
     if (this.props.onEntering) {
       this.props.onEntering(element);
@@ -90,6 +97,13 @@ export default class Slide extends Component {
   };
 
   handleExiting = (element) => {
+    const { transitions } = this.context.theme;
+    element.style.transition = transitions.create(
+      'transform',
+      `${this.props.leaveTransitionDuration}ms`,
+      '0ms',
+      easing.sharp,
+    );
     element.style.transform = getTranslateValue(this.props, element);
     if (this.props.onExiting) {
       this.props.onExiting(element);
@@ -103,7 +117,8 @@ export default class Slide extends Component {
       onEnter, // eslint-disable-line no-unused-vars
       onEntering, // eslint-disable-line no-unused-vars
       onExiting, // eslint-disable-line no-unused-vars
-      transitionDuration, // eslint-disable-line no-unused-vars
+      enterTransitionDuration, // eslint-disable-line no-unused-vars
+      leaveTransitionDuration, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
 

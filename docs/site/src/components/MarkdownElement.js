@@ -32,6 +32,7 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
       borderRadius: 3,
     },
     '& code': {
+      display: 'inline-block',
       lineHeight: 1.6,
       fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
       padding: '3px 6px',
@@ -54,7 +55,7 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
       color: theme.palette.text.secondary,
       margin: '1em 0 0.7em',
     },
-    '& p, & ul': {
+    '& p, & ul, & ol': {
       lineHeight: '1.6',
     },
     '& p code, & ul code': {

@@ -6,6 +6,8 @@ import { assert } from 'chai';
 import { createShallowWithContext } from 'test/utils';
 import Drawer, { styleSheet } from './Drawer';
 import Slide from '../transitions/Slide';
+import Modal from '../internal/Modal';
+import { durations } from '../styles/transitions';
 
 /**
  * An item that goes in lists.
@@ -46,6 +48,62 @@ describe('<Drawer />', () => {
     );
 
     assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the paper class');
+  });
+
+  describe('enterTransitionDuration property', () => {
+    const enterDuration = 854;
+    const leaveDuration = 2967;
+
+    it('default value should be from standard timings', () => {
+      assert.strictEqual(Drawer.defaultProps.enterTransitionDuration, durations.enteringScreen);
+    });
+
+    it('should be passed to Slide', () => {
+      const wrapper = shallow(<Drawer enterTransitionDuration={enterDuration} />);
+      assert.strictEqual(wrapper.find(Slide).prop('enterTransitionDuration'), enterDuration);
+    });
+
+    it('should be passed to to Modal\'s backdropTransitionDuration when open=true', () => {
+      const wrapper = shallow(
+        <Drawer
+          open
+          enterTransitionDuration={enterDuration}
+          leaveTransitionDuration={leaveDuration}
+        />,
+      );
+      assert.strictEqual(wrapper.find(Modal).prop('backdropTransitionDuration'), enterDuration);
+    });
+  });
+
+  describe('leaveTransitionDuration property', () => {
+    const enterDuration = 6577;
+    const leaveDuration = 1889;
+
+    it('default value should be from standard timings', () => {
+      assert.strictEqual(Drawer.defaultProps.leaveTransitionDuration, durations.leavingScreen);
+    });
+
+    it('should be passed to Slide', () => {
+      const wrapper = shallow(<Drawer leaveTransitionDuration={leaveDuration} />);
+      assert.strictEqual(wrapper.find(Slide).props().leaveTransitionDuration, leaveDuration);
+    });
+
+    it('should be passed to to Modal\'s backdropTransitionDuration when open=false', () => {
+      const wrapper = shallow(
+        <Drawer
+          open={false}
+          enterTransitionDuration={enterDuration}
+          leaveTransitionDuration={leaveDuration}
+        />,
+      );
+      assert.strictEqual(wrapper.find(Modal).props().backdropTransitionDuration, leaveDuration);
+    });
+  });
+
+  it('should override Modal\'s backdropTransitionDuration from property when specified', () => {
+    const duration = 335;
+    const wrapper = shallow(<Drawer backdropTransitionDuration={duration} />);
+    assert.strictEqual(wrapper.find(Modal).props().backdropTransitionDuration, duration);
   });
 
   it('should set the Paper className', () => {

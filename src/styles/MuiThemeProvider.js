@@ -88,6 +88,8 @@ export const MUI_SHEET_ORDER = [
   'TableBody',
   'TableSortLabel',
   'Toolbar',
+
+  'Badge',
 ];
 
 export default class MuiThemeProvider extends Component {

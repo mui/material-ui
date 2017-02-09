@@ -15,6 +15,19 @@ export const easing = {
   sharp: 'cubic-bezier(0.4, 0.0, 0.6, 1)',
 };
 
+// Follow https://material.io/guidelines/motion/duration-easing.html#duration-easing-common-durations
+// to learn when use what timing
+export const durations = {
+  // most basic recommended timing
+  standard: 300,
+  // this is to be used in complex animations
+  complex: 375,
+  // recommended when something is entering screen
+  enteringScreen: 225,
+  // recommended when something is leaving screen
+  leavingScreen: 195,
+};
+
 export default {
   multi(property, duration, delay, easeFunction) {
     easeFunction = easeFunction || easing.easeInOut;
