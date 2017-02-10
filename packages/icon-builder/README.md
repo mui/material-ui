@@ -13,7 +13,8 @@ npm run build
 
 ## Generated folders
 The npm build script walks through all of the svg icons in the material-design-icons package
- and generates the appropriate `.js` files in the `svg-icons` folder.
+ and generates the appropriate `.js` files in the `build` folder, and created an `index.js` &
+ `package.json`.
 
 ## Advanced usage and Custom builds
 

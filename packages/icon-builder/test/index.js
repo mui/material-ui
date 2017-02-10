@@ -96,11 +96,9 @@ describe('--output-dir', function() {
   it('script outputs to directory', function(done) {
     builder.main(options, function() {
       assert.ok(fs.lstatSync(tempPath).isDirectory());
-      assert.ok(fs.lstatSync(path.join(tempPath, "action")).isDirectory());
       done();
     });
   });
-
 });
 
 
@@ -120,14 +118,14 @@ describe('--svg-dir, --innerPath, --fileSuffix', function() {
   });
 
   after(function() {
-    temp.cleanupSync();
+    // temp.cleanupSync();
   });
 
   it('script outputs to directory', function(done) {
     builder.main(options, function() {
       assert.ok(fs.lstatSync(tempPath).isDirectory());
       assert.ok(fs.lstatSync(path.join(tempPath, "delapouite")).isDirectory());
-      jsxExampleOutputPath = path.join(tempPath, 'delapouite', 'dice', 'svg', '000000', 'transparent', 'dice-six-faces-four.jsx');
+      jsxExampleOutputPath = path.join(tempPath, 'delapouite', 'dice', 'svg', '000000', 'transparent', 'dice-six-faces-four.js');
       assert.ok(fs.existsSync(jsxExampleOutputPath));
       data = fs.readFileSync(jsxExampleOutputPath, {encoding: 'utf8'});
       assert.include(data, builder.SVG_ICON_ABSOLUTE_REQUIRE);
@@ -147,7 +145,7 @@ describe('--mui-require', function() {
 
   before(function() {
     tempPath = temp.mkdirSync();
-    jsxExampleOutputPath = path.join(tempPath, 'action', 'accessibility.jsx');
+    jsxExampleOutputPath = path.join(tempPath, 'Accessibility.js');
     options.outputDir = tempPath;
   });
 
@@ -186,7 +184,6 @@ describe('--mui-require', function() {
       var relativeOptions = _.extend({}, options, { muiRequire: 'relative' });
       builder.main(relativeOptions, function() {
         assert.ok(fs.lstatSync(tempPath).isDirectory());
-        assert.ok(fs.lstatSync(path.join(tempPath, "action")).isDirectory());
         assert.ok(fs.existsSync(jsxExampleOutputPath));
         data = fs.readFileSync(jsxExampleOutputPath, {encoding: 'utf8'});
         assert.include(data, builder.SVG_ICON_RELATIVE_REQUIRE);
@@ -194,7 +191,7 @@ describe('--mui-require', function() {
       });
     });
   });
-})
+});
 
 describe('Template rendering', function() {
   var options = {
@@ -218,11 +215,12 @@ describe('Template rendering', function() {
   it('should produce the expected output', function(done) {
     builder.main(options, function() {
       var result, expected, exampleFilePath, resultFilePath;
-      resultFilePath = path.join(tempPath, 'action', 'accessibility.jsx');
-      exampleFilePath = path.join(MUI_ICONS_ROOT, 'jsx/action/accessibility.jsx');
+      exampleFilePath = path.join(MUI_ICONS_ROOT, 'expected', 'Accessibility.js');
+      resultFilePath = path.join(tempPath, 'Accessibility.js');
 
       assert.ok(fs.lstatSync(tempPath).isDirectory());
-      assert.ok(fs.lstatSync(path.join(tempPath, "action")).isDirectory());
+      assert.ok(fs.existsSync(exampleFilePath));
+      assert.ok(fs.existsSync(resultFilePath));
 
       expected = fs.readFileSync(exampleFilePath, {encoding: 'utf8'});
       result = fs.readFileSync(resultFilePath, {encoding: 'utf8'});

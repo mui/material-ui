@@ -1,21 +1,17 @@
 'use strict';
 
-const path = require('path');
-
-function myDestRewriter(pathObj, innerPath) {
+function myDestRewriter(pathObj) {
   let fileName = pathObj.base;
 
-  const rewrittenInnerPath = innerPath.replace('/svg/production', '');
-
-  fileName = fileName.replace('_24px.svg', '.js');
-  fileName = fileName.slice(3);
-  fileName = fileName.replace(/_/g, '-');
+  fileName = fileName.replace('_24px.svg', '.js')
+    .slice(3)
+    .replace(/(^.)|(_)(.)/g, (match, p1, p2, p3) => (p1 ? p1 : p3).toUpperCase());
 
   if (fileName.indexOf('3d') === 0) {
-    fileName = 'three-d' + fileName.slice(2);
+    fileName = 'ThreeD' + fileName.slice(2);
   }
 
-  return path.join(rewrittenInnerPath, fileName);
+  return fileName;
 }
 
 module.exports = myDestRewriter;
