@@ -9,7 +9,7 @@ import { easing } from '../styles/transitions';
 const THICKNESS = 3.6;
 const PI = 3.1415; // Simple version of Math.PI for the css generated.
 
-export const styleSheet = createStyleSheet('CircularProgress', (theme) => {
+export const styleSheet = createStyleSheet('MuiCircularProgress', (theme) => {
   return {
     root: {
       display: 'inline-block',

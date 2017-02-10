@@ -6,7 +6,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import { easing } from '../styles/transitions';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('Ripple', () => ({
+export const styleSheet = createStyleSheet('MuiRipple', () => ({
   ripple: {
     width: 50,
     height: 50,

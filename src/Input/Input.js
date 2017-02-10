@@ -10,7 +10,7 @@ function isDirty(obj) {
   return obj && obj.value && obj.value.length > 0;
 }
 
-export const styleSheet = createStyleSheet('Input', (theme) => {
+export const styleSheet = createStyleSheet('MuiInput', (theme) => {
   return {
     wrapper: {
       // Mimics the default input display property used by browsers for an input.

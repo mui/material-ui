@@ -6,7 +6,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 import Text from '../Text';
 
-export const styleSheet = createStyleSheet('DialogTitle', () => {
+export const styleSheet = createStyleSheet('MuiDialogTitle', () => {
   const gutter = 24;
   return {
     root: {

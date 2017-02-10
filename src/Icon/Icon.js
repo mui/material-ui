@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('Icon', (theme) => {
+export const styleSheet = createStyleSheet('MuiIcon', (theme) => {
   const { palette } = theme;
   return {
     root: {

@@ -6,7 +6,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 import ButtonBase from '../internal/ButtonBase';
 
-export const styleSheet = createStyleSheet('ListItem', (theme) => {
+export const styleSheet = createStyleSheet('MuiListItem', (theme) => {
   return {
     listItem: {
       display: 'flex',

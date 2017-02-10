@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('List', () => {
+export const styleSheet = createStyleSheet('MuiList', () => {
   return {
     root: {
       flex: '1 1 auto',

@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('DialogContentText', (theme) => {
+export const styleSheet = createStyleSheet('MuiDialogContentText', (theme) => {
   return {
     root: {
       ...theme.typography.subheading,

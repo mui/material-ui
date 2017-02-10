@@ -23,7 +23,7 @@ function getSlideDirection(anchor) {
   return 'left';
 }
 
-export const styleSheet = createStyleSheet('Drawer', (theme) => {
+export const styleSheet = createStyleSheet('MuiDrawer', (theme) => {
   return {
     paper: {
       overflowY: 'auto',

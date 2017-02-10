@@ -7,7 +7,7 @@ import customPropTypes from '../utils/customPropTypes';
 import { easing } from '../styles/transitions';
 import { FormLabel } from '../Form';
 
-export const styleSheet = createStyleSheet('InputLabel', (theme) => {
+export const styleSheet = createStyleSheet('MuiInputLabel', (theme) => {
   return {
     root: {
       transformOrigin: 'top left',

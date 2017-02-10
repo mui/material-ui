@@ -6,7 +6,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 import { lightBlack } from '../styles/colors';
 
-export const styleSheet = createStyleSheet('Backdrop', (theme) => {
+export const styleSheet = createStyleSheet('MuiBackdrop', (theme) => {
   return {
     root: {
       zIndex: -1,

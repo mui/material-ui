@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('CardMedia', () => ({
+export const styleSheet = createStyleSheet('MuiCardMedia', () => ({
   cardMedia: {
     position: 'relative',
   },

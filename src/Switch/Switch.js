@@ -7,7 +7,7 @@ import customPropTypes from '../utils/customPropTypes';
 import { createSwitch } from '../internal/SwitchBase';
 import withSwitchLabel from '../internal/withSwitchLabel';
 
-export const styleSheet = createStyleSheet('Switch', (theme) => {
+export const styleSheet = createStyleSheet('MuiSwitch', (theme) => {
   const { palette } = theme;
   return {
     root: {

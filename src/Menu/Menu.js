@@ -8,7 +8,7 @@ import Popover from '../internal/Popover';
 import customPropTypes from '../utils/customPropTypes';
 import MenuList from './MenuList';
 
-export const styleSheet = createStyleSheet('Menu', () => {
+export const styleSheet = createStyleSheet('MuiMenu', () => {
   return {
     popover: {
       maxHeight: 250,

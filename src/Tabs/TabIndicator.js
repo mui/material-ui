@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('TabIndicator', (theme) => {
+export const styleSheet = createStyleSheet('MuiTabIndicator', (theme) => {
   return {
     root: {
       position: 'absolute',

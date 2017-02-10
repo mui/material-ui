@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('TableCell', (theme) => {
+export const styleSheet = createStyleSheet('MuiTableCell', (theme) => {
   return {
     root: {
       borderBottom: `1px solid ${theme.palette.text.lightDivider}`,

@@ -7,7 +7,7 @@ import withSwitchLabel from '../internal/withSwitchLabel';
 import RadioButtonCheckedIcon from '../svg-icons/radio-button-checked';
 import RadioButtonUncheckedIcon from '../svg-icons/radio-button-unchecked';
 
-export const styleSheet = createStyleSheet('Radio', (theme) => {
+export const styleSheet = createStyleSheet('MuiRadio', (theme) => {
   return {
     default: {
       color: theme.palette.text.secondary,

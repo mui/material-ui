@@ -9,7 +9,7 @@ import CheckBoxOutlineBlankIcon from '../svg-icons/check-box-outline-blank';
 import CheckBoxIcon from '../svg-icons/check-box';
 import Icon from '../Icon';
 
-export const styleSheet = createStyleSheet('SwitchBase', () => {
+export const styleSheet = createStyleSheet('MuiSwitchBase', () => {
   return {
     root: {
       display: 'inline-flex',

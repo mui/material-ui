@@ -7,7 +7,7 @@ import customPropTypes from '../utils/customPropTypes';
 import Text from '../Text';
 import CardContent from './CardContent';
 
-export const styleSheet = createStyleSheet('CardHeader', () => ({
+export const styleSheet = createStyleSheet('MuiCardHeader', () => ({
   cardHeader: {
     display: 'flex',
     alignItems: 'center',

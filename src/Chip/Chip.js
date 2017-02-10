@@ -8,7 +8,7 @@ import customPropTypes from '../utils/customPropTypes';
 import DeleteIcon from '../svg-icons/cancel';
 import { emphasize, fade } from '../styles/colorManipulator';
 
-export const styleSheet = createStyleSheet('Chip', (theme) => {
+export const styleSheet = createStyleSheet('MuiChip', (theme) => {
   const { palette, shadows, transitions } = theme;
   const height = 32;
   const backgroundColor = emphasize(palette.background.default, 0.12);

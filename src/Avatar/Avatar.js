@@ -6,7 +6,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 import { emphasize } from '../styles/colorManipulator';
 
-export const styleSheet = createStyleSheet('Avatar', (theme) => {
+export const styleSheet = createStyleSheet('MuiAvatar', (theme) => {
   const { palette } = theme;
   return {
     root: {

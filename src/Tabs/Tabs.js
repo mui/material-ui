@@ -8,7 +8,7 @@ import customPropTypes from '../utils/customPropTypes';
 import { throttle } from '../utils/helpers';
 import TabIndicator from './TabIndicator';
 
-export const styleSheet = createStyleSheet('Tabs', () => {
+export const styleSheet = createStyleSheet('MuiTabs', () => {
   return {
     root: {
       position: 'relative', // For the TabIndicator.

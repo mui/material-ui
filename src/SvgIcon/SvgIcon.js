@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('SvgIcon', (theme) => {
+export const styleSheet = createStyleSheet('MuiSvgIcon', (theme) => {
   return {
     svgIcon: {
       display: 'inline-block',

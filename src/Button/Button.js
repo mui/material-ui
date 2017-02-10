@@ -6,7 +6,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 import ButtonBase from '../internal/ButtonBase';
 
-export const styleSheet = createStyleSheet('Button', (theme) => {
+export const styleSheet = createStyleSheet('MuiButton', (theme) => {
   const { typography, palette, transitions, shadows } = theme;
 
   return {

@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('ListSubheader', (theme) => {
+export const styleSheet = createStyleSheet('MuiListSubheader', (theme) => {
   const { palette, typography } = theme;
 
   return {

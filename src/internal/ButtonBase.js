@@ -9,7 +9,7 @@ import customPropTypes from '../utils/customPropTypes';
 import { listenForFocusKeys, detectKeyboardFocus, focusKeyPressed } from '../utils/keyboardFocus';
 import { TouchRipple, createRippleHandler } from '../Ripple';
 
-export const styleSheet = createStyleSheet('ButtonBase', () => {
+export const styleSheet = createStyleSheet('MuiButtonBase', () => {
   return {
     buttonBase: {
       position: 'relative',
