@@ -73,6 +73,7 @@ export default class Drawer extends Component {
     elevation: PropTypes.number,
     enterTransitionDuration: PropTypes.number,
     leaveTransitionDuration: PropTypes.number,
+    onRequestClose: PropTypes.func,
     open: PropTypes.bool,
     /**
      * The CSS class name of the paper element.
@@ -100,6 +101,7 @@ export default class Drawer extends Component {
       docked,
       enterTransitionDuration,
       leaveTransitionDuration,
+      onRequestClose,
       open,
       paperClassName,
       elevation,
@@ -132,6 +134,7 @@ export default class Drawer extends Component {
 
     const containerProps = {
       className: classNames(classes.modal, className),
+      onRequestClose,
       ...other,
     };
 
