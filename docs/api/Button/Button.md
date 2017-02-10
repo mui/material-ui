@@ -14,7 +14,7 @@ Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | accent | bool | false | If `true`, the button will use the theme's accent color. |
-| children | node |  | The content of the button. |
+| <span style="color: #31a148">children *</span> | node |  | The content of the button. |
 | className | string |  | The CSS class name of the root element. |
 | compact | bool | false | Uses a smaller minWidth, ideal for things like card actions. |
 | component | union | 'button' | The element or component used for the root node. |

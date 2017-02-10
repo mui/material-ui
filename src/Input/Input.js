@@ -95,6 +95,9 @@ export default class Input extends Component {
      * The element or component used for the root node.
      */
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    /**
+     * If `true`, the input will be disabled.
+     */
     disabled: PropTypes.bool,
     error: PropTypes.bool,
     /**
@@ -122,7 +125,7 @@ export default class Input extends Component {
      */
     onFocus: PropTypes.func,
     /**
-     * Input type.
+     * Type of the input element. It should be a valid HTML5 input type.
      */
     type: PropTypes.string,
     /**

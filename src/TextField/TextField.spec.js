@@ -37,28 +37,39 @@ describe('<TextField />', () => {
       wrapper.setProps({ inputClassName: 'foo' });
       assert.strictEqual(wrapper.find('Input').hasClass('foo'), true);
     });
+  });
 
-    describe('with a label', () => {
-      beforeEach(() => {
-        wrapper.setProps({ label: 'Foo bar' });
-      });
+  describe('with a label', () => {
+    beforeEach(() => {
+      wrapper.setProps({ label: 'Foo bar' });
+    });
 
-      it('should have 2 children', () => {
-        assert.strictEqual(wrapper.children().length, 2);
-      });
+    it('should have 2 children', () => {
+      assert.strictEqual(wrapper.children().length, 2);
+    });
 
-      it('should have an InputLabel as the first child', () => {
-        assert.strictEqual(wrapper.childAt(0).is('InputLabel'), true);
-      });
+    it('should have an InputLabel as the first child', () => {
+      assert.strictEqual(wrapper.childAt(0).is('InputLabel'), true);
+    });
 
-      it('should pass labelClassName to the InputLabel as className', () => {
-        wrapper.setProps({ labelClassName: 'foo' });
-        assert.strictEqual(wrapper.find('InputLabel').hasClass('foo'), true);
-      });
+    it('should pass labelClassName to the InputLabel as className', () => {
+      wrapper.setProps({ labelClassName: 'foo' });
+      assert.strictEqual(wrapper.find('InputLabel').hasClass('foo'), true);
+    });
 
-      it('should have an Input as the second child', () => {
-        assert.strictEqual(wrapper.childAt(1).is('Input'), true);
+    it('should have an Input as the second child', () => {
+      assert.strictEqual(wrapper.childAt(1).is('Input'), true);
+    });
+  });
+
+  describe('prop: inputProps', () => {
+    it('should apply additional properties to the Input component', () => {
+      wrapper.setProps({
+        inputProps: {
+          inputClassName: 'fullWidth',
+        },
       });
+      assert.strictEqual(wrapper.find('Input').props().inputClassName, 'fullWidth');
     });
   });
 });

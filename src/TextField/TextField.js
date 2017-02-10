@@ -24,6 +24,10 @@ export default class TextField extends Component {
      */
     className: PropTypes.string,
     /**
+     * If `true`, the input will be disabled.
+     */
+    disabled: PropTypes.bool,
+    /**
      * Whether the label should be displayed in an error state.
      */
     error: PropTypes.bool,
@@ -36,6 +40,10 @@ export default class TextField extends Component {
      */
     inputClassName: PropTypes.string,
     /**
+     * Properties applied to the internal `<Input />` component.
+     */
+    inputProps: PropTypes.object,
+    /**
      * The label text.
      */
     label: PropTypes.node,
@@ -47,6 +55,14 @@ export default class TextField extends Component {
      * Whether the label should be displayed as required (asterisk).
      */
     required: PropTypes.bool,
+    /**
+     * Type of the input element. It should be a valid HTML5 input type.
+     */
+    type: PropTypes.string,
+    /**
+     * The input value, required for a controlled component.
+     */
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   };
 
   static defaultProps = {
@@ -66,12 +82,16 @@ export default class TextField extends Component {
 
   render() {
     const {
-      error,
       className,
+      disabled,
+      error,
       inputClassName,
+      inputProps,
       label,
       labelClassName,
       required,
+      type,
+      value,
       ...other
     } = this.props;
 
@@ -80,13 +100,20 @@ export default class TextField extends Component {
         className={className}
         error={error}
         required={required}
+        {...other}
       >
         {label && (
           <InputLabel className={labelClassName}>
             {label}
           </InputLabel>
         )}
-        <Input className={inputClassName} {...other} />
+        <Input
+          className={inputClassName}
+          value={value}
+          type={type}
+          disabled={disabled}
+          {...inputProps}
+        />
       </FormControl>
     );
   }
