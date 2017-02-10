@@ -31,3 +31,9 @@ Tab labels may be either all icons or all text.
 
 {{demo='demos/tabs/IconTabs.js'}}
 {{demo='demos/tabs/IconLabelTabs.js'}}
+
+## Disabled Tab
+
+Tab may be disabled by setting `disabled` property.
+
+{{demo='demos/tabs/DisabledTabs.js'}}

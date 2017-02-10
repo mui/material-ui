@@ -62,6 +62,10 @@ export default class Tab extends Component {
      */
     className: PropTypes.string,
     /**
+     * Disables the tab if set to true.
+     */
+    disabled: PropTypes.bool,
+    /**
      * @ignore
      */
     fullWidth: PropTypes.bool,
@@ -103,6 +107,10 @@ export default class Tab extends Component {
       ]),
       PropTypes.string,
     ]),
+  };
+
+  static defaultProps = {
+    disabled: false,
   };
 
   static contextTypes = {
