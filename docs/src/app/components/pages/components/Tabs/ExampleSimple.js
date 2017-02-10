@@ -49,6 +49,7 @@ const TabsExampleSimple = () => (
         </p>
       </div>
     </Tab>
+    <Tab label="disabled" disabled={true} />
   </Tabs>
 );
 

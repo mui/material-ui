@@ -36,6 +36,10 @@ class Tab extends Component {
      */
     className: PropTypes.string,
     /**
+     * Disables the tab if set to true.
+     */
+    disabled: PropTypes.bool,
+    /**
      * Sets the icon of the tab, you can pass `FontIcon` or `SvgIcon` elements.
      */
     icon: PropTypes.node,
@@ -79,6 +83,10 @@ class Tab extends Component {
      * This property is overriden by the Tabs component.
      */
     width: PropTypes.string,
+  };
+
+  static defaultProps = {
+    disabled: false,
   };
 
   static contextTypes = {
