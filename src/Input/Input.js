@@ -132,7 +132,7 @@ export default class Input extends Component {
     /**
      * The input value, required for a controlled component.
      */
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   };
 
   static defaultProps = {
