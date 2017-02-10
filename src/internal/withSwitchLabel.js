@@ -18,6 +18,9 @@ export const styleSheet = createStyleSheet('SwitchLabel', (theme) => {
       marginLeft: -12,
       marginRight: 16, // used for row presentation of radio/checkbox
     },
+    labelText: {
+      userSelect: 'none',
+    },
     disabled: {
       color: theme.palette.text.disabled,
       cursor: 'not-allowed',
@@ -68,6 +71,10 @@ function withSwitchLabel(SwitchComponent) {
         [classes.hasLabel]: label && label.length,
       }, labelClassNameProp);
 
+      const labelTextClassName = classNames(classes.labelText, {
+        [classes.disabled]: disabled,
+      });
+
       const switchElement = (
         <SwitchComponent
           ref={(c) => { this.switch = c; }}
@@ -83,7 +90,7 @@ function withSwitchLabel(SwitchComponent) {
       return (
         <label className={labelClassName}>
           {switchElement}
-          <span className={disabled ? classes.disabled : ''}>
+          <span className={labelTextClassName}>
             {label}
           </span>
         </label>
