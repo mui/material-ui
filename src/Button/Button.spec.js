@@ -38,7 +38,7 @@ describe('<Button />', () => {
 
   it('should render the custom className and the root class', () => {
     const wrapper = shallow(
-      <Button className="test-class-name" />,
+      <Button className="test-class-name">Hello World</Button>,
     );
     assert.strictEqual(wrapper.is('.test-class-name'), true, 'should pass the test className');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
@@ -107,7 +107,7 @@ describe('<Button />', () => {
 
   it('should render a floating action button', () => {
     const wrapper = shallow(
-      <Button fab />,
+      <Button fab>Hello World</Button>,
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.raised), true, 'should have the raised class');
@@ -119,7 +119,7 @@ describe('<Button />', () => {
 
   it('should render a primary floating action button', () => {
     const wrapper = shallow(
-      <Button fab primary />,
+      <Button fab primary>Hello World</Button>,
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.raised), true, 'should have the raised class');
@@ -132,7 +132,7 @@ describe('<Button />', () => {
 
   it('should render an accent floating action button', () => {
     const wrapper = shallow(
-      <Button fab accent />,
+      <Button fab accent>Hello World</Button>,
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.raised), true, 'should have the raised class');
