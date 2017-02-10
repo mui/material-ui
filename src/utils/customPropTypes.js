@@ -24,10 +24,6 @@ if (process.env.NODE_ENV !== 'production') {
       horizontal,
       vertical,
     }),
-    stringOrNumber: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
   };
 }
 
