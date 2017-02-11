@@ -19,7 +19,7 @@ export const styleSheet = createStyleSheet('MuiListItem', (theme) => {
       position: 'relative',
     },
     keyboardFocused: {
-      background: theme.palette.text.divider,
+      background: palette.text.divider,
     },
     default: {
       paddingTop: 19,
@@ -33,14 +33,14 @@ export const styleSheet = createStyleSheet('MuiListItem', (theme) => {
       opacity: 0.5,
     },
     divider: {
-      borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
+      borderBottom: `1px solid ${palette.text.lightDivider}`,
     },
     gutters: {
       paddingLeft: 16,
       paddingRight: 16,
     },
     button: {
-      transition: transitions.multi(['background-color', 'box-shadow'], '250ms'),
+      transition: transitions.create('background-color', '250ms'),
       '&:hover': {
         textDecoration: 'none',
         backgroundColor: palette.text.divider,

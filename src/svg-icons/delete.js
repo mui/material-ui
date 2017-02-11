@@ -10,7 +10,6 @@ let ActionDelete = (props) => (
   </SvgIcon>
 );
 ActionDelete = pure(ActionDelete);
-ActionDelete.displayName = 'ActionDelete';
 ActionDelete.muiName = 'SvgIcon';
 
 export default ActionDelete;

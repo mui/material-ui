@@ -23,7 +23,7 @@ import ReportIcon from 'material-ui/svg-icons/report';
 
 const styleSheet = createStyleSheet('UndockedDrawer', () => ({
   list: {
-    width: '280px',
+    width: 250,
     flex: 'initial',
   },
   remainder: {
@@ -44,27 +44,31 @@ export default class UndockedDrawer extends Component {
     return (
       <div>
         <Button onClick={this.handleOpen}>Open Drawer</Button>
-        <Drawer open={this.state.open} onRequestClose={this.handleClose}>
+        <Drawer
+          open={this.state.open}
+          onRequestClose={this.handleClose}
+          onClick={this.handleClose}
+        >
           <List className={classes.list} padding={false}>
-            <ListItem button onClick={this.handleClose}>
+            <ListItem button>
               <ListItemIcon>
                 <InboxIcon />
               </ListItemIcon>
               <ListItemText primary="Inbox" />
             </ListItem>
-            <ListItem button onClick={this.handleClose}>
+            <ListItem button>
               <ListItemIcon>
                 <StarIcon />
               </ListItemIcon>
               <ListItemText primary="Starred" />
             </ListItem>
-            <ListItem button onClick={this.handleClose}>
+            <ListItem button>
               <ListItemIcon>
                 <SendIcon />
               </ListItemIcon>
               <ListItemText primary="Send mail" />
             </ListItem>
-            <ListItem button onClick={this.handleClose}>
+            <ListItem button>
               <ListItemIcon>
                 <DraftsIcon />
               </ListItemIcon>
@@ -73,19 +77,19 @@ export default class UndockedDrawer extends Component {
           </List>
           <Divider />
           <List className={classes.list} padding={false}>
-            <ListItem button onClick={this.handleClose}>
+            <ListItem button>
               <ListItemIcon>
                 <MailIcon />
               </ListItemIcon>
               <ListItemText primary="All mail" />
             </ListItem>
-            <ListItem button onClick={this.handleClose}>
+            <ListItem button>
               <ListItemIcon>
                 <DeleteIcon />
               </ListItemIcon>
               <ListItemText primary="Trash" />
             </ListItem>
-            <ListItem button onClick={this.handleClose}>
+            <ListItem button>
               <ListItemIcon>
                 <ReportIcon />
               </ListItemIcon>

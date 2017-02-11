@@ -10,7 +10,6 @@ let ContentSend = (props) => (
   </SvgIcon>
 );
 ContentSend = pure(ContentSend);
-ContentSend.displayName = 'ContentSend';
 ContentSend.muiName = 'SvgIcon';
 
 export default ContentSend;

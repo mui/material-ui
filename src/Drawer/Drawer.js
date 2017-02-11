@@ -57,7 +57,7 @@ export const styleSheet = createStyleSheet('MuiDrawer', (theme) => {
 export default class Drawer extends Component {
   static propTypes = {
     /**
-     * Side, which will `Drawer` appears from
+     * Side, which will `Drawer` appears from.
      */
     anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
     /**
@@ -73,6 +73,9 @@ export default class Drawer extends Component {
      * and will no longer slide in with an overlay.
      */
     docked: PropTypes.bool,
+    /**
+     * The elevation of the `Drawer`.
+     */
     elevation: PropTypes.number,
     /**
      * Customizes duration of enter animation (ms)
@@ -87,7 +90,7 @@ export default class Drawer extends Component {
      */
     onRequestClose: PropTypes.func,
     /**
-     * If true, the `Drawer` is opened.
+     * If true, the `Drawer` is open.
      */
     open: PropTypes.bool,
     /**
