@@ -3,7 +3,7 @@
   "name": "material-ui-icon-builder",
   "version": "0.2.0-alpha.1",
   "description": "Material Design Svg Icons converted to Material-UI React components.",
-  "author": "Hai Nguyen",
+  "author": "Material-UI Team",
   "license": "MIT",
   "homepage": "http://material-ui.com/",
   "bugs": {

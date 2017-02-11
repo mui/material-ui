@@ -118,7 +118,7 @@ describe('--svg-dir, --innerPath, --fileSuffix', function() {
   });
 
   after(function() {
-    // temp.cleanupSync();
+    temp.cleanupSync();
   });
 
   it('script outputs to directory', function(done) {

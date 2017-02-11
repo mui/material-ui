@@ -79,7 +79,7 @@ function createPackageFile() {
 }
 
 const files = [
-  'LICENSE',
+  '../../LICENSE',
 ];
 
 Promise.all(
