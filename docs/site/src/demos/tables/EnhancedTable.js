@@ -215,7 +215,7 @@ export default class EnhancedTable extends Component {
     const { data, order, orderBy, selected } = this.state;
 
     return (
-      <Paper zDepth={2} className={classes.paper}>
+      <Paper elevation={2} className={classes.paper}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <Table>
           <EnhancedTableHead

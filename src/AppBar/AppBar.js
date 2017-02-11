@@ -71,7 +71,7 @@ export default class AppBar extends Component {
     return (
       <Paper
         rounded={false}
-        zDepth={4}
+        elevation={4}
         className={className}
         {...other}
       >

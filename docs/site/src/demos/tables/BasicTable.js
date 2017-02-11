@@ -37,7 +37,7 @@ export default function BasicTable(props, context) {
   const classes = context.styleManager.render(styleSheet);
 
   return (
-    <Paper zDepth={2} className={classes.paper}>
+    <Paper elevation={2} className={classes.paper}>
       <Table>
         <TableHead>
           <TableRow>
