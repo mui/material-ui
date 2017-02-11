@@ -1,7 +1,9 @@
 Badge
 =====
 
-
+```jsx
+<Badge badgeContent={4}><Icon>folder</Icon></Badge>
+```
 
 Props
 -----
