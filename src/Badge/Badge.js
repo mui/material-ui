@@ -45,6 +45,14 @@ export const styleSheet = createStyleSheet('Badge', (theme) => {
   };
 });
 
+/**
+ *
+ * ```jsx
+ * <Badge badgeContent={4}>
+ *   <Icon>folder</Icon>
+ * </Badge>
+ * ```
+ */
 export default function Badge(props, context) {
   const {
     badgeClassName: badgeClassNameProp,
