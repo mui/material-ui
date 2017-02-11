@@ -84,6 +84,7 @@ export default class Popover extends Component {
     /**
      * CSS class or classes applied when the component is entered
      */
+    elevation: PropTypes.number,
     enteredClassName: PropTypes.string,
     /**
      * CSS class or classes applied while the component is entering
@@ -154,7 +155,6 @@ export default class Popover extends Component {
      * Set to 'auto' to automatically calculate transition time based on height
      */
     transitionDuration: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    zDepth: PropTypes.number,
   };
 
   static defaultProps = {
@@ -169,7 +169,7 @@ export default class Popover extends Component {
       horizontal: 'left',
     },
     transitionDuration: 'auto',
-    zDepth: 8,
+    elevation: 8,
   };
 
   static contextTypes = {
@@ -371,7 +371,7 @@ export default class Popover extends Component {
       onExit, // eslint-disable-line no-unused-vars
       onExiting,
       onExited,
-      zDepth,
+      elevation,
       ...other
     } = this.props;
 
@@ -402,7 +402,7 @@ export default class Popover extends Component {
           <Paper
             data-mui-test="Popover"
             className={classNames(classes.popover, className)}
-            zDepth={zDepth}
+            elevation={elevation}
             {...other}
           >
             {children}

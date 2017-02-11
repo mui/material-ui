@@ -13,7 +13,7 @@ import Button from 'material-ui/Button';
 export default function AlertDialog() {
   return (
     <Paper
-      zDepth={8}
+      elevation={8}
       style={{
         width: 300,
       }}

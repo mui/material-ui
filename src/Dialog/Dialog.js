@@ -217,7 +217,7 @@ export default class Dialog extends Component {
         {createTransitionFn(transition, transitionProps, (
           <Paper
             data-mui-test="Dialog"
-            zDepth={24}
+            elevation={24}
             className={classNames(classes.dialog, classes[`dialogWidth-${maxWidth}`],
               paperClassName, { [classes.fullScreen]: fullScreen })}
           >

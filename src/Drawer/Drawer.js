@@ -70,6 +70,7 @@ export default class Drawer extends Component {
      * and will no longer slide in with an overlay.
      */
     docked: PropTypes.bool,
+    elevation: PropTypes.number,
     enterTransitionDuration: PropTypes.number,
     leaveTransitionDuration: PropTypes.number,
     open: PropTypes.bool,
@@ -77,7 +78,6 @@ export default class Drawer extends Component {
      * The CSS class name of the paper element.
      */
     paperClassName: PropTypes.string,
-    zDepth: PropTypes.number,
   };
 
   static defaultProps = {
@@ -85,7 +85,7 @@ export default class Drawer extends Component {
     enterTransitionDuration: durations.enteringScreen,
     leaveTransitionDuration: durations.leavingScreen,
     open: false,
-    zDepth: 16,
+    elevation: 16,
   };
 
   static contextTypes = {
@@ -102,7 +102,7 @@ export default class Drawer extends Component {
       leaveTransitionDuration,
       open,
       paperClassName,
-      zDepth,
+      elevation,
       ...other
     } = this.props;
 
@@ -121,7 +121,7 @@ export default class Drawer extends Component {
         transitionAppear
       >
         <Paper
-          zDepth={docked ? 0 : zDepth}
+          elevation={docked ? 0 : elevation}
           rounded={false}
           className={classNames(classes.paper, paperClassName)}
         >

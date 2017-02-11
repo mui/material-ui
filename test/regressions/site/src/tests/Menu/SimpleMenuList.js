@@ -6,7 +6,7 @@ import { MenuList, MenuItem } from 'material-ui/Menu';
 
 export default function SimpleMenuList() {
   return (
-    <Paper zDepth={8}>
+    <Paper elevation={8}>
       <MenuList>
         <MenuItem>Profile</MenuItem>
         <MenuItem selected>My Account</MenuItem>

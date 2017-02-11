@@ -104,12 +104,13 @@ describe('<Popover />', () => {
       assert.strictEqual(paper.hasClass(classes.popover), true, 'should have the popover class');
     });
 
-    it('should have a zDepth prop passed down', () => {
+    it('should have a elevation prop passed down', () => {
       const wrapper = shallow(<Popover />);
-      assert.strictEqual(wrapper.childAt(0).childAt(0).prop('zDepth'), 8,
-        'should be 8 zDepth by default');
-      wrapper.setProps({ zDepth: 16 });
-      assert.strictEqual(wrapper.childAt(0).childAt(0).prop('zDepth'), 16, 'should be 16 zDepth');
+      assert.strictEqual(wrapper.childAt(0).childAt(0).prop('elevation'), 8,
+        'should be 8 elevation by default');
+      wrapper.setProps({ elevation: 16 });
+      assert.strictEqual(wrapper.childAt(0).childAt(0).prop('elevation'), 16,
+        'should be 16 elevation');
     });
   });
 

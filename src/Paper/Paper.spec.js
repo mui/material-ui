@@ -33,12 +33,12 @@ describe('<Paper />', () => {
     assert.strictEqual(wrapper.hasClass(classes.rounded), false, 'should not be rounded');
   });
 
-  it('should set the zDepth shadow class', () => {
-    const wrapper = shallow(<Paper zDepth={16}>Hello World</Paper>);
+  it('should set the elevation shadow class', () => {
+    const wrapper = shallow(<Paper elevation={16}>Hello World</Paper>);
     assert.strictEqual(wrapper.hasClass(classes.dp16), true, 'should have the dp16 shadow class');
-    wrapper.setProps({ zDepth: 24 });
+    wrapper.setProps({ elevation: 24 });
     assert.strictEqual(wrapper.hasClass(classes.dp24), true, 'should have the dp24 shadow class');
-    wrapper.setProps({ zDepth: 2 });
+    wrapper.setProps({ elevation: 2 });
     assert.strictEqual(wrapper.hasClass(classes.dp2), true, 'should have the dp2 shadow class');
   });
 });

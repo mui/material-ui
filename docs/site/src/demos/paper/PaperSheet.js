@@ -17,7 +17,7 @@ export default function PaperSheet(props, context) {
   const classes = context.styleManager.render(styleSheet);
   return (
     <div>
-      <Paper className={classes.root} zDepth={4}>
+      <Paper className={classes.root} elevation={4}>
         <Text type="headline" component="h3">
           This is a sheet of paper.
         </Text>
