@@ -15,7 +15,7 @@ Props
 | index | number |  | The index of the currently selected `BottomNavigation`. |
 | indicatorClassName | string |  | The CSS class name of the indicator element. |
 | indicatorColor | union | 'accent' | Determines the color of the indicator. |
-| onChange | function |  | Function called when the index change. |
+| <span style="color: #31a148">onChange *</span> | function |  | Function called when the index change. |
 | textColor | union | 'inherit' | Determines the color of the `Tab`. |
 
 Any other properties supplied will be spread to the root element.

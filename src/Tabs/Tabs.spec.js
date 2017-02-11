@@ -8,6 +8,8 @@ import { createShallowWithContext, createMountWithContext } from 'test/utils';
 import Tabs, { styleSheet } from './Tabs';
 import Tab from './Tab';
 
+const noop = () => {};
+
 describe('<Tabs />', () => {
   let shallow;
   let mount;
@@ -21,7 +23,7 @@ describe('<Tabs />', () => {
 
   it('should render with the root class', () => {
     const wrapper = shallow(
-      <Tabs>
+      <Tabs onChange={noop}>
         <Tab />
       </Tabs>,
     );
@@ -33,7 +35,7 @@ describe('<Tabs />', () => {
   describe('prop: className', () => {
     it('should render with the user and root classes', () => {
       const wrapper = shallow(
-        <Tabs className="woof">
+        <Tabs onChange={noop} className="woof">
           <Tab />
         </Tabs>,
       );
@@ -46,7 +48,7 @@ describe('<Tabs />', () => {
   describe('prop: index', () => {
     it('should pass selected prop to children', () => {
       const wrapper = shallow(
-        <Tabs index={1}>
+        <Tabs onChange={noop} index={1}>
           <Tab />
           <Tab />
         </Tabs>,
