@@ -44,7 +44,7 @@ class Tabs extends Component {
      * Specify initial visible tab index.
      * If `initialSelectedIndex` is set but larger than the total amount of specified tabs,
      * `initialSelectedIndex` will revert back to default.
-     * If `initialSlectedIndex` is set to any negative value, no tab will be selected intially.
+     * If `initialSelectedIndex` is set to any negative value, no tab will be selected intially.
      */
     initialSelectedIndex: PropTypes.number,
     /**

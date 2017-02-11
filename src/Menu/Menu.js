@@ -525,20 +525,28 @@ class Menu extends Component {
 
     let menuItemIndex = 0;
     const newChildren = React.Children.map(filteredChildren, (child, index) => {
-      const childIsADivider = child.type && child.type.muiName === 'Divider';
       const childIsDisabled = child.props.disabled;
+      const childName = child.type ? child.type.muiName : '';
+      let newChild = child;
 
-      const clonedChild = childIsADivider ? React.cloneElement(child, {
-        style: Object.assign({}, styles.divider, child.props.style),
-      }) :
-        childIsDisabled ? React.cloneElement(child, {desktop: desktop}) :
-        this.cloneMenuItem(child, menuItemIndex, styles, index);
+      switch (childName) {
+        case 'MenuItem':
+          newChild = childIsDisabled ? React.cloneElement(child, {desktop: desktop}) :
+            this.cloneMenuItem(child, menuItemIndex, styles, index);
+          break;
 
-      if (!childIsADivider && !childIsDisabled) {
+        case 'Divider':
+          newChild = React.cloneElement(child, {
+            style: Object.assign({}, styles.divider, child.props.style),
+          });
+          break;
+      }
+
+      if (childName === 'MenuItem' && !childIsDisabled) {
         menuItemIndex++;
       }
 
-      return clonedChild;
+      return newChild;
     });
 
     return (

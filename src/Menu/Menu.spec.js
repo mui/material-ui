@@ -161,26 +161,38 @@ describe('<Menu />', () => {
     );
   });
 
-  it("should merge the Divider's styles over the Menu's default divider styles", () => {
-    const style = {
-      color: 'red',
-      marginTop: '999px',
-    };
-    const wrapper = shallowWithContext(
-      <Menu>
-        <Divider style={style} />
-      </Menu>
-    );
+  describe('prop: children', () => {
+    it("should merge the Divider's styles over the Menu's default divider styles", () => {
+      const style = {
+        color: 'red',
+        marginTop: '999px',
+      };
+      const wrapper = shallowWithContext(
+        <Menu>
+          <Divider style={style} />
+        </Menu>
+      );
 
-    const divider = wrapper.find(Divider);
-    assert.strictEqual(divider.length, 1, 'there should be one divider child');
+      const divider = wrapper.find(Divider);
+      assert.strictEqual(divider.length, 1, 'there should be one divider child');
 
-    assert.deepEqual(
-      divider.props().style,
-      Object.assign({}, style, {
-        marginBottom: 8,
-      }),
-      "existing styles should be merged over Menu's styles"
-    );
+      assert.deepEqual(
+        divider.props().style,
+        Object.assign({}, style, {
+          marginBottom: 8,
+        }),
+        "existing styles should be merged over Menu's styles"
+      );
+    });
+
+    it('should be able to accept any children', () => {
+      const child = <div foo="bar" />;
+      const wrapper = shallowWithContext(
+        <Menu>
+          {child}
+        </Menu>
+      );
+      assert.strictEqual(wrapper.contains(child), true);
+    });
   });
 });

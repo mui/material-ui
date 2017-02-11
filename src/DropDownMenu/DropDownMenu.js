@@ -1,10 +1,14 @@
 import React, {Component, PropTypes} from 'react';
+import ReactDOM from 'react-dom';
 import transitions from '../styles/transitions';
 import DropDownArrow from '../svg-icons/navigation/arrow-drop-down';
 import Menu from '../Menu/Menu';
 import ClearFix from '../internal/ClearFix';
 import Popover from '../Popover/Popover';
 import PopoverAnimationVertical from '../Popover/PopoverAnimationVertical';
+import keycode from 'keycode';
+import Events from '../utils/events';
+import IconButton from '../IconButton';
 
 const anchorOrigin = {
   vertical: 'top',
@@ -27,7 +31,10 @@ function getStyles(props, context) {
       fill: accentColor,
       position: 'absolute',
       right: spacing.desktopGutterLess,
-      top: ((spacing.desktopToolbarHeight - 24) / 2),
+      top: (spacing.iconSize - 24) / 2 + spacing.desktopGutterMini / 2,
+    },
+    iconChildren: {
+      fill: 'inherit',
     },
     label: {
       color: disabled ? palette.disabledColor : palette.textColor,
@@ -36,9 +43,7 @@ function getStyles(props, context) {
       opacity: 1,
       position: 'relative',
       paddingLeft: spacing.desktopGutter,
-      paddingRight: spacing.iconSize +
-      spacing.desktopGutterLess +
-      spacing.desktopGutterMini,
+      paddingRight: spacing.iconSize * 2 + spacing.desktopGutterMini,
       textOverflow: 'ellipsis',
       top: 0,
       whiteSpace: 'nowrap',
@@ -106,6 +111,10 @@ class DropDownMenu extends Component {
      */
     disabled: PropTypes.bool,
     /**
+     * Overrides default `SvgIcon` dropdown arrow component.
+     */
+    iconButton: PropTypes.node,
+    /**
      * Overrides the styles of icon element.
      */
     iconStyle: PropTypes.object,
@@ -167,6 +176,7 @@ class DropDownMenu extends Component {
     animated: true,
     autoWidth: true,
     disabled: false,
+    iconButton: <DropDownArrow />,
     openImmediately: false,
     maxHeight: 500,
   };
@@ -186,10 +196,9 @@ class DropDownMenu extends Component {
     if (this.props.openImmediately) {
       // TODO: Temporary fix to make openImmediately work with popover.
       /* eslint-disable react/no-did-mount-set-state */
-      setTimeout(() => this.setState({open: true, anchorEl: this.refs.root}));
       setTimeout(() => this.setState({
         open: true,
-        anchorEl: this.refs.root,
+        anchorEl: this.rootNode,
       }), 0);
       /* eslint-enable react/no-did-mount-set-state */
     }
@@ -201,27 +210,30 @@ class DropDownMenu extends Component {
     }
   }
 
+  rootNode = undefined;
+  arrowNode = undefined;
+
   /**
    * This method is deprecated but still here because the TextField
    * need it in order to work. TODO: That will be addressed later.
    */
   getInputNode() {
-    const root = this.refs.root;
+    const rootNode = this.rootNode;
 
-    root.focus = () => {
+    rootNode.focus = () => {
       if (!this.props.disabled) {
         this.setState({
           open: !this.state.open,
-          anchorEl: this.refs.root,
+          anchorEl: this.rootNode,
         });
       }
     };
 
-    return root;
+    return rootNode;
   }
 
   setWidth() {
-    const el = this.refs.root;
+    const el = this.rootNode;
     if (!this.props.style || !this.props.style.hasOwnProperty('width')) {
       el.style.width = 'auto';
     }
@@ -232,20 +244,32 @@ class DropDownMenu extends Component {
     if (!this.props.disabled) {
       this.setState({
         open: !this.state.open,
-        anchorEl: this.refs.root,
+        anchorEl: this.rootNode,
       });
     }
   };
 
   handleRequestCloseMenu = () => {
-    this.setState({
-      open: false,
-      anchorEl: null,
-    }, () => {
-      if (this.props.onClose) {
-        this.props.onClose();
-      }
-    });
+    this.close(false);
+  };
+
+  handleEscKeyDownMenu = () => {
+    this.close(true);
+  };
+
+  handleKeyDown = (event) => {
+    switch (keycode(event)) {
+      case 'up':
+      case 'down':
+      case 'space':
+      case 'enter':
+        event.preventDefault();
+        this.setState({
+          open: true,
+          anchorEl: this.rootNode,
+        });
+        break;
+    }
   };
 
   handleItemTouchTap = (event, child, index) => {
@@ -253,14 +277,30 @@ class DropDownMenu extends Component {
     this.setState({
       open: false,
     }, () => {
-      if (this.props.onClose) {
-        this.props.onClose();
-      }
       if (this.props.onChange) {
         this.props.onChange(event, index, child.props.value);
       }
+
+      this.close(Events.isKeyboard(event));
     });
   };
+
+  close = (isKeyboard) => {
+    this.setState({
+      open: false,
+    }, () => {
+      if (this.props.onClose) {
+        this.props.onClose();
+      }
+
+      if (isKeyboard) {
+        const dropArrow = this.arrowNode;
+        const dropNode = ReactDOM.findDOMNode(dropArrow);
+        dropNode.focus();
+        dropArrow.setKeyboardFocus(true);
+      }
+    });
+  }
 
   render() {
     const {
@@ -281,6 +321,7 @@ class DropDownMenu extends Component {
       style,
       underlineStyle,
       value,
+      iconButton,
       ...other
     } = this.props;
 
@@ -312,17 +353,27 @@ class DropDownMenu extends Component {
     return (
       <div
         {...other}
-        ref="root"
+        ref={(node) => {
+          this.rootNode = node;
+        }}
         className={className}
         style={prepareStyles(Object.assign({}, styles.root, open && styles.rootWhenOpen, style))}
       >
         <ClearFix style={styles.control} onTouchTap={this.handleTouchTapControl}>
-          <div
-            style={prepareStyles(Object.assign({}, styles.label, open && styles.labelWhenOpen, labelStyle))}
-          >
+          <div style={prepareStyles(Object.assign({}, styles.label, open && styles.labelWhenOpen, labelStyle))}>
             {displayValue}
           </div>
-          <DropDownArrow style={Object.assign({}, styles.icon, iconStyle)} />
+          <IconButton
+            tabIndex={this.props.disabled ? -1 : undefined}
+            onKeyDown={this.handleKeyDown}
+            ref={(node) => {
+              this.arrowNode = node;
+            }}
+            style={Object.assign({}, styles.icon, iconStyle)}
+            iconStyle={styles.iconChildren}
+          >
+            {iconButton}
+          </IconButton>
           <div style={prepareStyles(Object.assign({}, styles.underline, underlineStyle))} />
         </ClearFix>
         <Popover
@@ -337,6 +388,7 @@ class DropDownMenu extends Component {
             maxHeight={maxHeight}
             desktop={true}
             value={value}
+            onEscKeyDown={this.handleEscKeyDownMenu}
             style={menuStyle}
             listStyle={listStyle}
             onItemTouchTap={this.handleItemTouchTap}

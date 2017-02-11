@@ -13,17 +13,15 @@ describe('./utils/autoprefixer', () => {
       return;
     }
 
-    let savedWindow;
+    let savedNavigator;
 
     beforeEach(() => {
-      savedWindow = global.window;
-
-      // We can reasign window when the test is runned in a real browser.
-      global.window = undefined;
+      savedNavigator = global.navigator;
+      global.navigator = undefined;
     });
 
     afterEach(() => {
-      global.window = savedWindow;
+      global.navigator = savedNavigator;
     });
 
     it('should spread properties for display:flex when userAgent is all', () => {
@@ -48,9 +46,11 @@ describe('./utils/autoprefixer', () => {
 
     const stylePrepared = autoprefix({
       transform: 'rotate(90)',
+      display: 'flex',
     });
 
     assert.deepEqual(stylePrepared, {
+      display: 'flex',
       transform: 'rotate(90)',
       WebkitTransform: 'rotate(90)',
       msTransform: 'rotate(90)',
