@@ -27,14 +27,14 @@ export default function SimpleTabs(props, context) {
         <Tabs index={0}>
           <Tab label="Item One" />
           <Tab label="Item Two" />
-          <Tab label="Item Three" />
+          <Tab label="Item Three" disabled />
         </Tabs>
       </Paper>
       <Paper className={classes.root}>
         <Tabs index={1} textColor="accent" centered>
           <Tab label="Item One" />
           <Tab label="Item Two" />
-          <Tab label="Item Three" />
+          <Tab label="Item Three" disabled />
         </Tabs>
       </Paper>
       <Paper>
@@ -48,7 +48,7 @@ export default function SimpleTabs(props, context) {
         <Tabs index={0} textColor="accent" fullWidth >
           <Tab icon={<Icon>phone</Icon>} />
           <Tab icon={<Icon>favorite</Icon>} />
-          <Tab icon={<Icon>person_pin</Icon>} />
+          <Tab icon={<Icon>person_pin</Icon>} disabled />
         </Tabs>
       </Paper>
       <Paper>
@@ -64,6 +64,7 @@ export default function SimpleTabs(props, context) {
           <Tab
             icon={<Icon>person_pin</Icon>}
             label="NEARBY"
+            disabled
           />
         </Tabs>
       </Paper>

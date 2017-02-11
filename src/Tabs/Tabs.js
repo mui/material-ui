@@ -61,7 +61,7 @@ export default class Tabs extends Component {
     /**
      * Function called when the index change.
      */
-    onChange: PropTypes.func,
+    onChange: PropTypes.func.isRequired,
     /**
      * Determines the color of the `Tab`.
      */
