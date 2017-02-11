@@ -5,11 +5,29 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import Drawer from 'material-ui/Drawer';
 import Button from 'material-ui/Button';
-import { MenuItem } from 'material-ui/Menu';
+import {
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
+} from 'material-ui/List';
+import Divider from 'material-ui/Divider';
+import InboxIcon from 'material-ui/svg-icons/inbox';
+import DraftsIcon from 'material-ui/svg-icons/drafts';
+import StarIcon from 'material-ui/svg-icons/star';
+import SendIcon from 'material-ui/svg-icons/send';
+import MailIcon from 'material-ui/svg-icons/mail';
+import DeleteIcon from 'material-ui/svg-icons/delete';
+import ReportIcon from 'material-ui/svg-icons/report';
 
-const styleSheet = createStyleSheet('Drawers', () => ({
-  inner: {
-    width: '200px',
+
+const styleSheet = createStyleSheet('UndockedDrawer', () => ({
+  list: {
+    width: '280px',
+    flex: 'initial',
+  },
+  remainder: {
+    flex: 1,
   },
 }));
 
@@ -26,11 +44,55 @@ export default class UndockedDrawer extends Component {
     return (
       <div>
         <Button onClick={this.handleOpen}>Open Drawer</Button>
-        <Drawer open={this.state.open} anchor={this.state.anchor} onRequestClose={this.handleClose}>
-          <div className={classes.inner}>
-            <MenuItem onClick={this.handleClose}>Menu Item</MenuItem>
-            <MenuItem onClick={this.handleClose}>Menu Item 2</MenuItem>
-          </div>
+        <Drawer open={this.state.open} onRequestClose={this.handleClose}>
+          <List className={classes.list} padding={false}>
+            <ListItem button onClick={this.handleClose}>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary="Inbox" />
+            </ListItem>
+            <ListItem button onClick={this.handleClose}>
+              <ListItemIcon>
+                <StarIcon />
+              </ListItemIcon>
+              <ListItemText primary="Starred" />
+            </ListItem>
+            <ListItem button onClick={this.handleClose}>
+              <ListItemIcon>
+                <SendIcon />
+              </ListItemIcon>
+              <ListItemText primary="Send mail" />
+            </ListItem>
+            <ListItem button onClick={this.handleClose}>
+              <ListItemIcon>
+                <DraftsIcon />
+              </ListItemIcon>
+              <ListItemText primary="Drafts" />
+            </ListItem>
+          </List>
+          <Divider />
+          <List className={classes.list} padding={false}>
+            <ListItem button onClick={this.handleClose}>
+              <ListItemIcon>
+                <MailIcon />
+              </ListItemIcon>
+              <ListItemText primary="All mail" />
+            </ListItem>
+            <ListItem button onClick={this.handleClose}>
+              <ListItemIcon>
+                <DeleteIcon />
+              </ListItemIcon>
+              <ListItemText primary="Trash" />
+            </ListItem>
+            <ListItem button onClick={this.handleClose}>
+              <ListItemIcon>
+                <ReportIcon />
+              </ListItemIcon>
+              <ListItemText primary="Spam" />
+            </ListItem>
+          </List>
+          <div className={classes.remainder} />
         </Drawer>
       </div>
     );

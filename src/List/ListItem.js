@@ -7,6 +7,7 @@ import customPropTypes from '../utils/customPropTypes';
 import ButtonBase from '../internal/ButtonBase';
 
 export const styleSheet = createStyleSheet('MuiListItem', (theme) => {
+  const { palette, transitions } = theme;
   return {
     listItem: {
       display: 'flex',
@@ -37,6 +38,16 @@ export const styleSheet = createStyleSheet('MuiListItem', (theme) => {
     gutters: {
       paddingLeft: 16,
       paddingRight: 16,
+    },
+    button: {
+      transition: transitions.multi(['background-color', 'box-shadow'], '250ms'),
+      '&:hover': {
+        textDecoration: 'none',
+        backgroundColor: palette.text.divider,
+        '&$disabled': {
+          backgroundColor: 'transparent',
+        },
+      },
     },
   };
 });
@@ -90,6 +101,7 @@ export default class ListItem extends Component {
       [classes.gutters]: gutters,
       [classes.divider]: divider,
       [classes.disabled]: disabled,
+      [classes.button]: button,
       [dense ? classes.dense : classes.default]: true,
     }, classNameProp);
 
