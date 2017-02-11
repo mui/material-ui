@@ -56,6 +56,9 @@ export const styleSheet = createStyleSheet('MuiDrawer', (theme) => {
  */
 export default class Drawer extends Component {
   static propTypes = {
+    /**
+     * Side, which will `Drawer` appears from
+     */
     anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
     /**
      * The contents of the `Drawer`.
@@ -71,9 +74,21 @@ export default class Drawer extends Component {
      */
     docked: PropTypes.bool,
     elevation: PropTypes.number,
+    /**
+     * Customizes duration of enter animation (ms)
+     */
     enterTransitionDuration: PropTypes.number,
+    /**
+     * Customizes duration of leave animation (ms)
+     */
     leaveTransitionDuration: PropTypes.number,
+    /**
+     * Callback fired when the internal modal requests to be closed.
+     */
     onRequestClose: PropTypes.func,
+    /**
+     * If true, the `Drawer` is opened.
+     */
     open: PropTypes.bool,
     /**
      * The CSS class name of the paper element.
@@ -101,7 +116,6 @@ export default class Drawer extends Component {
       docked,
       enterTransitionDuration,
       leaveTransitionDuration,
-      onRequestClose,
       open,
       paperClassName,
       elevation,
@@ -134,7 +148,6 @@ export default class Drawer extends Component {
 
     const containerProps = {
       className: classNames(classes.modal, className),
-      onRequestClose,
       ...other,
     };
 
