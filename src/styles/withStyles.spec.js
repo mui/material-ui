@@ -18,7 +18,7 @@ describe('withStyles', () => {
   });
 
   it('should provide a classes property', () => {
-    const styleSheet = createStyleSheet('TextField', () => ({
+    const styleSheet = createStyleSheet('MuiTextField', () => ({
       root: {
         display: 'flex',
       },

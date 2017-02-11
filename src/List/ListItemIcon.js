@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('ListItemIcon', () => {
+export const styleSheet = createStyleSheet('MuiListItemIcon', () => {
   return {
     root: {
       width: 40,

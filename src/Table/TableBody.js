@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('TableBody', (theme) => {
+export const styleSheet = createStyleSheet('MuiTableBody', (theme) => {
   return {
     root: {
       fontSize: 13,

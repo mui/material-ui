@@ -7,7 +7,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import createHelper from 'recompose/createHelper';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('SwitchLabel', (theme) => {
+export const styleSheet = createStyleSheet('MuiSwitchLabel', (theme) => {
   return {
     root: {
       display: 'inline-flex',

@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('Text', (theme) => {
+export const styleSheet = createStyleSheet('MuiText', (theme) => {
   return {
     text: {
       display: 'block',

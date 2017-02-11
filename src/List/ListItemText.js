@@ -6,7 +6,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 import Text from '../Text';
 
-export const styleSheet = createStyleSheet('ListItemText', () => {
+export const styleSheet = createStyleSheet('MuiListItemText', () => {
   return {
     root: {
       flex: '1 1 auto',

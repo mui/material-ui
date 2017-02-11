@@ -7,7 +7,7 @@ import ButtonBase from '../internal/ButtonBase';
 import customPropTypes from '../utils/customPropTypes';
 import Icon from '../Icon';
 
-export const styleSheet = createStyleSheet('Tab', (theme) => {
+export const styleSheet = createStyleSheet('MuiTab', (theme) => {
   return {
     root: {
       ...theme.typography.button,

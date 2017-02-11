@@ -4,7 +4,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import { createSwitch } from '../internal/SwitchBase';
 import withSwitchLabel from '../internal/withSwitchLabel';
 
-export const styleSheet = createStyleSheet('Checkbox', (theme) => {
+export const styleSheet = createStyleSheet('MuiCheckbox', (theme) => {
   return {
     default: {
       color: theme.palette.text.secondary,

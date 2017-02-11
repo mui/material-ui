@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('FormGroup', () => {
+export const styleSheet = createStyleSheet('MuiFormGroup', () => {
   return {
     root: {
       display: 'flex',

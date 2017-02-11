@@ -8,7 +8,7 @@ import Modal from '../internal/Modal';
 import Fade from '../transitions/Fade';
 import Paper from '../Paper';
 
-export const styleSheet = createStyleSheet('Dialog', (theme) => {
+export const styleSheet = createStyleSheet('MuiDialog', (theme) => {
   return {
     modal: {
       justifyContent: 'center',

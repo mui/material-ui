@@ -45,7 +45,7 @@ function getTransformOriginValue(transformOrigin) {
     .join(' ');
 }
 
-export const styleSheet = createStyleSheet('Popover', () => {
+export const styleSheet = createStyleSheet('MuiPopover', () => {
   return {
     popover: {
       position: 'absolute',

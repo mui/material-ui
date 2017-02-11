@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('LinearProgress', (theme) => {
+export const styleSheet = createStyleSheet('MuiLinearProgress', (theme) => {
   const { palette } = theme;
   const transitionDuration = 4; // 400ms
 

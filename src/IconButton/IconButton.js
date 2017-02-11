@@ -7,7 +7,7 @@ import customPropTypes from '../utils/customPropTypes';
 import ButtonBase from '../internal/ButtonBase';
 import Icon from '../Icon';
 
-export const styleSheet = createStyleSheet('IconButton', (theme) => {
+export const styleSheet = createStyleSheet('MuiIconButton', (theme) => {
   const { palette, transitions } = theme;
 
   return {

@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('Divider', (theme) => {
+export const styleSheet = createStyleSheet('MuiDivider', (theme) => {
   const { palette } = theme;
 
   return {

@@ -6,7 +6,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 import { cloneChildrenWithClassName } from '../utils/reactHelpers';
 
-export const styleSheet = createStyleSheet('CardActions', () => ({
+export const styleSheet = createStyleSheet('MuiCardActions', () => ({
   cardActions: {
     height: 52,
     display: 'flex',

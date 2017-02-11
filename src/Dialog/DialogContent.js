@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('DialogContent', () => {
+export const styleSheet = createStyleSheet('MuiDialogContent', () => {
   const gutter = 24;
   return {
     root: {

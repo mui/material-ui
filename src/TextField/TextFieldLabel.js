@@ -7,7 +7,7 @@ import customPropTypes from '../utils/customPropTypes';
 import { easing } from '../styles/transitions';
 import { FormLabel } from '../Form';
 
-export const styleSheet = createStyleSheet('TextFieldLabel', (theme) => {
+export const styleSheet = createStyleSheet('MuiTextFieldLabel', (theme) => {
   return {
     root: {
       position: 'absolute',

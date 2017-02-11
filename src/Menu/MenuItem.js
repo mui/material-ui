@@ -6,7 +6,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 import ListItem from '../List/ListItem';
 
-export const styleSheet = createStyleSheet('MenuItem', (theme) => {
+export const styleSheet = createStyleSheet('MuiMenuItem', (theme) => {
   const { palette, typography, transitions } = theme;
   return {
     root: {

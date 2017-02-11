@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('Toolbar', (theme) => {
+export const styleSheet = createStyleSheet('MuiToolbar', (theme) => {
   return {
     root: {
       position: 'relative',

@@ -23,7 +23,7 @@ import Portal from './Portal';
 // ...........Could also put this on context....
 const modalManager = createModalManager();
 
-export const styleSheet = createStyleSheet('Modal', (theme) => {
+export const styleSheet = createStyleSheet('MuiModal', (theme) => {
   return {
     modal: {
       display: 'flex',

@@ -8,7 +8,7 @@ import Transition from '../internal/Transition';
 
 const reflow = (elem) => elem.offsetHeight;
 
-export const styleSheet = createStyleSheet('Collapse', (theme) => {
+export const styleSheet = createStyleSheet('MuiCollapse', (theme) => {
   return {
     container: {
       height: 0,

@@ -7,7 +7,7 @@ import customPropTypes from '../utils/customPropTypes';
 import FormGroup from '../Form/FormGroup';
 import { find } from '../utils/helpers';
 
-export const styleSheet = createStyleSheet('RadioGroup', () => {
+export const styleSheet = createStyleSheet('MuiRadioGroup', () => {
   return {
     root: {
       flex: '1 1 auto',

@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('FormControl', () => {
+export const styleSheet = createStyleSheet('MuiFormControl', () => {
   return {
     root: {
       display: 'flex',

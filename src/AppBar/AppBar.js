@@ -6,7 +6,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 import Paper from '../Paper';
 
-export const styleSheet = createStyleSheet('AppBar', (theme) => {
+export const styleSheet = createStyleSheet('MuiAppBar', (theme) => {
   return {
     appBar: {
       display: 'flex',

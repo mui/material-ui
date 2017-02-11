@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('Paper', (theme) => {
+export const styleSheet = createStyleSheet('MuiPaper', (theme) => {
   const { palette } = theme;
   const shadows = {};
 

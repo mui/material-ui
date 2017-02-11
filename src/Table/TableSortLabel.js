@@ -7,7 +7,7 @@ import customPropTypes from '../utils/customPropTypes';
 import ButtonBase from '../internal/ButtonBase';
 import Icon from '../Icon';
 
-export const styleSheet = createStyleSheet('TableSortLabel', (theme) => {
+export const styleSheet = createStyleSheet('MuiTableSortLabel', (theme) => {
   return {
     sortLabel: {
       cursor: 'pointer',

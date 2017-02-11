@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('FormLabel', (theme) => {
+export const styleSheet = createStyleSheet('MuiFormLabel', (theme) => {
   const focusColor = theme.palette.accent.A200;
   return {
     root: {

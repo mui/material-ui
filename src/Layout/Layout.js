@@ -75,7 +75,7 @@ function generateGutter(theme, breakpoint) {
   return styles;
 }
 
-export const styleSheet = createStyleSheet('Layout', (theme) => {
+export const styleSheet = createStyleSheet('MuiLayout', (theme) => {
   // Default CSS values
   // flex: '0 1 auto',
   // flexDirection: 'row',

@@ -7,7 +7,7 @@ import customPropTypes from '../utils/customPropTypes';
 import ButtonBase from '../internal/ButtonBase';
 import Icon from '../Icon';
 
-export const styleSheet = createStyleSheet('BottomNavigationButton', (theme) => {
+export const styleSheet = createStyleSheet('MuiBottomNavigationButton', (theme) => {
   return {
     root: {
       transition: `${

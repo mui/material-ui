@@ -8,7 +8,7 @@ import customPropTypes from '../utils/customPropTypes';
 const radius = 12;
 const radius2x = 2 * radius;
 
-export const styleSheet = createStyleSheet('Badge', (theme) => {
+export const styleSheet = createStyleSheet('MuiBadge', (theme) => {
   const { typography, palette } = theme;
 
   return {
