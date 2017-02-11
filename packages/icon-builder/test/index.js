@@ -1,9 +1,9 @@
-var assert = require('chai').assert;
-var fs = require('fs');
-var path = require('path');
+const assert = require('chai').assert;
+const fs = require('fs');
+const path = require('path');
 
-var temp = require('temp').track();
-var _ = require('lodash');
+const temp = require('temp').track();
+const _ = require('lodash');
 
 const DISABLE_LOG = true;
 
@@ -16,18 +16,18 @@ const GAME_ICONS_ROOT = path.join(__dirname, './fixtures/game-icons/');
 const GAME_ICONS_SVG_DIR = path.join(GAME_ICONS_ROOT, 'svg/icons/');
 
 
-var builder = require('../build');
+const builder = require('../build');
 
 describe('material-design-icons', function() {
-  it('should have package installed in node_modules (we will use them to test)', function() {
-    assert.ok(fs.lstatSync(MUI_ICONS_SVG_DIR).isDirectory());
+  it('should have icons to test with', function() {
+    assert.strictEqual(fs.lstatSync(MUI_ICONS_SVG_DIR).isDirectory(), true);
   });
 });
 
 describe('builder', function() {
   describe('#pascalCase', function() {
     it('should have pascalCase', function() {
-      assert.ok(builder.hasOwnProperty('pascalCase'));
+      assert.strictEqual(builder.hasOwnProperty('pascalCase'), true);
     });
 
     it('should be a function', function() {
@@ -35,17 +35,17 @@ describe('builder', function() {
     });
 
     it('should change capitalize dashes', function() {
-      assert.ok(builder.pascalCase("hi-world"), "HiWorld");
+      assert.strictEqual(builder.pascalCase("hi-world"), "HiWorld", true);
     });
 
     it('should capitalize based on environment path.sep', function() {
-      assert.ok(builder.pascalCase("this" + path.sep + "dir"), "ThisDir");
+      assert.strictEqual(builder.pascalCase("this" + path.sep + "dir"), "ThisDir", true);
     });
   });
 
   describe('#main', function() {
     it('should have main', function() {
-      assert.ok(builder.hasOwnProperty('main'));
+      assert.strictEqual(builder.hasOwnProperty('main'), true);
     });
 
     it('should be a function', function() {
@@ -55,17 +55,17 @@ describe('builder', function() {
 
   describe('#getJsxString', function() {
     it('should have getJsxString', function() {
-      assert.ok(builder.hasOwnProperty('getJsxString'));
+      assert.strictEqual(builder.hasOwnProperty('getJsxString'), true);
     });
 
     it('should be a function', function() {
-      assert.ok(typeof(builder.getJsxString) == "function");
+      assert.strictEqual(typeof(builder.getJsxString) == "function", true);
     });
   });
 
   describe('#processFile', function() {
     it('should have processFile', function() {
-      assert.ok(builder.hasOwnProperty('processFile'));
+      assert.strictEqual(builder.hasOwnProperty('processFile'), true);
     });
 
     it('should be a function', function() {
@@ -76,13 +76,14 @@ describe('builder', function() {
 });
 
 describe('--output-dir', function() {
-  var options = {
+  const options = {
     svgDir: MUI_ICONS_SVG_DIR,
     innerPath: "/svg/production/",
     glob: '/**/production/*_24px.svg',
     renameFilter: builder.RENAME_FILTER_MUI,
     disable_log: DISABLE_LOG
-  }, tempPath;
+  };
+  let tempPath;
 
   before(function() {
     tempPath = temp.mkdirSync();
@@ -95,7 +96,7 @@ describe('--output-dir', function() {
 
   it('script outputs to directory', function(done) {
     builder.main(options, function() {
-      assert.ok(fs.lstatSync(tempPath).isDirectory());
+      assert.strictEqual(fs.lstatSync(tempPath).isDirectory(), true);
       done();
     });
   });
@@ -103,14 +104,15 @@ describe('--output-dir', function() {
 
 
 describe('--svg-dir, --innerPath, --fileSuffix', function() {
-  var options = {
+  const options = {
     svgDir: GAME_ICONS_SVG_DIR,
     glob: "**/*.svg",
     innerPath: "/dice/svg/000000/transparent/",
     muiRequire: 'absolute',
     renameFilter: builder.RENAME_FILTER_DEFAULT,
     disable_log: DISABLE_LOG,
-  }, tempPath, jsxExampleOutputPath;
+  };
+  let tempPath;
 
   before(function() {
     tempPath = temp.mkdirSync();
@@ -123,29 +125,32 @@ describe('--svg-dir, --innerPath, --fileSuffix', function() {
 
   it('script outputs to directory', function(done) {
     builder.main(options, function() {
-      assert.ok(fs.lstatSync(tempPath).isDirectory());
-      assert.ok(fs.lstatSync(path.join(tempPath, "delapouite")).isDirectory());
-      jsxExampleOutputPath = path.join(tempPath, 'delapouite', 'dice', 'svg', '000000', 'transparent', 'dice-six-faces-four.js');
-      assert.ok(fs.existsSync(jsxExampleOutputPath));
-      data = fs.readFileSync(jsxExampleOutputPath, {encoding: 'utf8'});
-      assert.include(data, builder.SVG_ICON_ABSOLUTE_REQUIRE);
+      assert.strictEqual(fs.lstatSync(tempPath).isDirectory(), true);
+      assert.strictEqual(fs.lstatSync(path.join(tempPath, "delapouite")).isDirectory(), true);
+      
+      const outputFilePath = path.join(tempPath, 'delapouite', 'dice', 'svg', '000000', 'transparent', 'dice-six-faces-four.js');
+      assert.strictEqual(fs.existsSync(outputFilePath), true);
+      
+      const outputFileData = fs.readFileSync(outputFilePath, {encoding: 'utf8'});
+      assert.include(outputFileData, builder.SVG_ICON_ABSOLUTE_REQUIRE);
       done();
     });
   });
 });
 
 describe('--mui-require', function() {
-  var options = {
+  const options = {
     svgDir: MUI_ICONS_SVG_DIR,
     innerPath: "/svg/production/",
     glob: '/**/production/*_24px.svg',
     disable_log: DISABLE_LOG,
     renameFilter: builder.RENAME_FILTER_MUI,
-  }, tempPath, jsxExampleOutputPath;
+  };
+  let tempPath, outputFilePath;
 
   before(function() {
     tempPath = temp.mkdirSync();
-    jsxExampleOutputPath = path.join(tempPath, 'Accessibility.js');
+    outputFilePath = path.join(tempPath, 'Accessibility.js');
     options.outputDir = tempPath;
   });
 
@@ -155,24 +160,24 @@ describe('--mui-require', function() {
 
   describe('absolute', function() {
     it('default should be absolute', function(done) {
-      var data;
       builder.main(options, function() {
-        assert.ok(fs.lstatSync(tempPath).isDirectory());
-        assert.ok(fs.existsSync(jsxExampleOutputPath));
-        data = fs.readFileSync(jsxExampleOutputPath, {encoding: 'utf8'});
-        assert.include(data, builder.SVG_ICON_ABSOLUTE_REQUIRE);
+        assert.strictEqual(fs.lstatSync(tempPath).isDirectory(), true);
+        assert.strictEqual(fs.existsSync(outputFilePath), true);
+        
+        let outputFileData = fs.readFileSync(outputFilePath, {encoding: 'utf8'});
+        assert.include(outputFileData, builder.SVG_ICON_ABSOLUTE_REQUIRE);
         done();
       });
     });
 
     it('should load SvgIcon as absolute', function(done) {
-      var data;
-      var absoluteOptions = _.extend({}, options, { muiRequire: 'absolute' });
+      const absoluteOptions = _.extend({}, options, { muiRequire: 'absolute' });
       builder.main(absoluteOptions, function() {
-        assert.ok(fs.lstatSync(tempPath).isDirectory());
-        assert.ok(fs.existsSync(jsxExampleOutputPath));
-        data = fs.readFileSync(jsxExampleOutputPath, {encoding: 'utf8'});
-        assert.include(data, builder.SVG_ICON_ABSOLUTE_REQUIRE);
+        assert.strictEqual(fs.lstatSync(tempPath).isDirectory(), true);
+        assert.strictEqual(fs.existsSync(outputFilePath), true);
+        
+        let outputFileData = fs.readFileSync(outputFilePath, {encoding: 'utf8'});
+        assert.include(outputFileData, builder.SVG_ICON_ABSOLUTE_REQUIRE);
         done();
       });
     });
@@ -180,50 +185,53 @@ describe('--mui-require', function() {
 
   describe('relative', function() {
     it('should load SvgIcon as relative', function(done) {
-      var data;
-      var relativeOptions = _.extend({}, options, { muiRequire: 'relative' });
+      const relativeOptions = _.extend({}, options, { muiRequire: 'relative' });
       builder.main(relativeOptions, function() {
-        assert.ok(fs.lstatSync(tempPath).isDirectory());
-        assert.ok(fs.existsSync(jsxExampleOutputPath));
-        data = fs.readFileSync(jsxExampleOutputPath, {encoding: 'utf8'});
-        assert.include(data, builder.SVG_ICON_RELATIVE_REQUIRE);
+        assert.strictEqual(fs.lstatSync(tempPath).isDirectory(), true);
+        assert.strictEqual(fs.existsSync(outputFilePath), true);
+        
+        let outputFileData = fs.readFileSync(outputFilePath, {encoding: 'utf8'});
+        assert.include(outputFileData, builder.SVG_ICON_RELATIVE_REQUIRE);
         done();
       });
     });
   });
 });
 
+
 describe('Template rendering', function() {
-  var options = {
+  const options = {
     svgDir: MUI_ICONS_SVG_DIR,
     innerPath: "/svg/production/",
     glob: '/**/production/*_24px.svg',
     renameFilter: builder.RENAME_FILTER_MUI,
-    muiRequire: 'relative',
+    muiRequire: 'absolute',
     disable_log: DISABLE_LOG
-  }, tempPath;
+  };
+  let tempPath;
 
   before(function() {
     tempPath = temp.mkdirSync();
     options.outputDir = tempPath;
+
   });
 
   after(function() {
     temp.cleanupSync();
   });
 
+
   it('should produce the expected output', function(done) {
     builder.main(options, function() {
-      var result, expected, exampleFilePath, resultFilePath;
-      exampleFilePath = path.join(MUI_ICONS_ROOT, 'expected', 'Accessibility.js');
-      resultFilePath = path.join(tempPath, 'Accessibility.js');
+      let exampleFilePath = path.join(MUI_ICONS_ROOT, 'expected', 'Accessibility.js');
+      let outputFilePath = path.join(tempPath, 'Accessibility.js');
 
-      assert.ok(fs.lstatSync(tempPath).isDirectory());
-      assert.ok(fs.existsSync(exampleFilePath));
-      assert.ok(fs.existsSync(resultFilePath));
+      assert.strictEqual(fs.lstatSync(tempPath).isDirectory(), true);
+      assert.strictEqual(fs.existsSync(exampleFilePath), true);
+      assert.strictEqual(fs.existsSync(outputFilePath), true);
 
-      expected = fs.readFileSync(exampleFilePath, {encoding: 'utf8'});
-      result = fs.readFileSync(resultFilePath, {encoding: 'utf8'});
+      const expected = fs.readFileSync(exampleFilePath, {encoding: 'utf8'});
+      const result = fs.readFileSync(outputFilePath, {encoding: 'utf8'});
       assert.include(result, expected);
       done();
     });
