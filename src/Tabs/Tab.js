@@ -29,12 +29,18 @@ export const styleSheet = createStyleSheet('Tab', (theme) => {
     rootAccentSelected: {
       color: theme.palette.accent[500],
     },
+    rootAccentDisabled: {
+      color: theme.palette.text.disabled,
+    },
     rootInherit: {
       color: 'inherit',
       opacity: 0.7,
     },
     rootInheritSelected: {
       opacity: 1,
+    },
+    rootInheritDisabled: {
+      opacity: 0.4,
     },
     label: {
       fontSize: theme.typography.fontSize,
@@ -61,6 +67,10 @@ export default class Tab extends Component {
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
+    /**
+     * If `true`, the tab will be disabled.
+     */
+    disabled: PropTypes.bool,
     /**
      * @ignore
      */
@@ -105,6 +115,10 @@ export default class Tab extends Component {
     ]),
   };
 
+  static defaultProps = {
+    disabled: false,
+  };
+
   static contextTypes = {
     styleManager: customPropTypes.muiRequired,
   };
@@ -130,6 +144,7 @@ export default class Tab extends Component {
       selected,
       style: styleProp,
       textColor,
+      disabled,
       ...other
     } = this.props;
 
@@ -155,8 +170,10 @@ export default class Tab extends Component {
 
     const className = classNames(classes.root, {
       [classes.rootAccent]: textColor === 'accent',
+      [classes.rootAccentDisabled]: disabled && textColor === 'accent',
       [classes.rootAccentSelected]: selected && textColor === 'accent',
       [classes.rootInherit]: textColor === 'inherit',
+      [classes.rootInheritDisabled]: disabled && textColor === 'inherit',
       [classes.rootInheritSelected]: selected && textColor === 'inherit',
       [classes.rootLabelIcon]: icon && label,
     }, classNameProp);
@@ -183,6 +200,7 @@ export default class Tab extends Component {
         style={style}
         role="tab"
         aria-selected={selected}
+        disabled={disabled}
         {...other}
         onClick={this.handleChange}
       >
