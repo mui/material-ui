@@ -62,7 +62,7 @@ export default class Tab extends Component {
      */
     className: PropTypes.string,
     /**
-     * Disables the tab if set to true.
+     * If `true`, the tab will be disabled.
      */
     disabled: PropTypes.bool,
     /**
