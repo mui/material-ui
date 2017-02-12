@@ -17,16 +17,16 @@ const path = require('path');
  * @param {object} options
  * @return {string} output file dest relative to outputDir
  */
-function defaultDestRewriter(pathObj, innerPath, options) {
+function kebabDestRewriter(pathObj, innerPath, options) {
   let fileName = pathObj.base;
   if (options.fileSuffix) {
     fileName.replace(options.fileSuffix, '.svg');
   } else {
     fileName = fileName.replace('.svg', '.js');
   }
-  fileName = fileName.replace(/(^.)|(_)(.)/g, (match, p1, p2, p3) => (p1 ? p1 : p3).toUpperCase());
+  fileName = fileName.replace(/_/g, '-');
   return path.join(innerPath, fileName);
 }
 
 
-module.exports = defaultDestRewriter;
+module.exports = kebabDestRewriter;
