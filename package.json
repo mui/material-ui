@@ -2,7 +2,7 @@
   "name": "material-ui-build",
   "private": true,
   "author": "Material-UI Team",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.1",
   "description": "Material Design UI components built with React",
   "main": "./src/index.js",
   "keywords": [
@@ -41,7 +41,7 @@
     "test:e2e": "node test e2e -e chrome_51",
     "test:e2e:local": "node test e2e -l -e chrome",
     "test:e2e:all": "node test e2e -e chrome_51,safari_9,firefox_46,ie_edge,ie_10",
-    "test:regressions": "node test regressions -l",
+    "test:regressions": "webpack --config test/regressions/webpack.config.js && vrtest run --config test/vrtest.config.js",
     "flow": "flow"
   },
   "peerDependencies": {
@@ -100,7 +100,6 @@
     "flow-bin": "^0.38.0",
     "fs-extra": "^2.0.0",
     "glob": "^7.1.1",
-    "http-server": "^0.9.0",
     "istanbul": "^1.1.0-alpha.1",
     "jsdom": "^9.9.1",
     "json-loader": "^0.5.4",
@@ -112,11 +111,9 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.1",
     "mocha": "^3.2.0",
-    "ngrok": "^2.2.5",
     "nightwatch": "^0.9.12",
     "nodemon": "^1.11.0",
     "phantomjs-prebuilt": "^2.1.14",
-    "png-crop": "0.0.1",
     "random-words": "0.0.1",
     "raw-loader": "^0.5.1",
     "react": "^15.4.2",
@@ -129,6 +126,9 @@
     "recursive-readdir-sync": "^1.0.6",
     "rimraf": "^2.5.2",
     "sinon": "^1.17.7",
+    "url-loader": "^0.5.7",
+    "vrtest": "latest",
+    "webfontloader": "^1.6.27",
     "webpack": "^1.14.0"
   }
 }
