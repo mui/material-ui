@@ -2,7 +2,7 @@
 
 The roadmap is a living document, and it is likely that priorities will change, but the list below should give some indication of our plans for the next major release, and for the future.
 
-:warning: New features based on `v0.16.x` have low priority and will most likely not be reviewed nor merged. We want to focus on bug fixes.
+:warning: New features based on `v0.17.x` have low priority and will most likely not be reviewed nor merged. We want to focus on bug fixes.
 
 ## [next](https://github.com/callemall/material-ui/milestone/14) (expected in the next couple months)
 
@@ -95,9 +95,9 @@ however, it's going to follow a specific release plan:
 
 1. We focus on migrating the components to the `next` branch. They may not be fully migrated.
 2. We merge the `next` branch into master.
-At that point, we're going to stop supporting the `v0.16.x` releases.
+At that point, we're going to stop supporting the `v0.17.x` releases.
 3. We release our first alpha.
-4. We focus on finishing the migration of all the components to get a good feature parity with `v0.16.x`.
+4. We focus on finishing the migration of all the components to get a good feature parity with `v0.17.x`.
 5. We release our first pre-release.
 6. We ship :100:.
 
