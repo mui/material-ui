@@ -1,7 +1,7 @@
 // @flow weak
 /* eslint-disable no-param-reassign */
 
-import invariant from 'invariant';
+import warning from 'warning';
 
 // Follow https://material.google.com/motion/duration-easing.html#duration-easing-natural-easing-curves
 // to learn the context in which each easing should be used.
@@ -52,15 +52,15 @@ export default {
     delay = 0,
     ...other
   } = {}) {
-    invariant(typeof props === 'string' || Array.isArray(props),
+    warning(typeof props === 'string' || Array.isArray(props),
       'argument "props" must be a string or Array');
-    invariant(Number.isInteger(duration),
+    warning(Number.isInteger(duration),
       'argument "duration" must be a number');
-    invariant(typeof easing === 'string',
+    warning(typeof easing === 'string',
       'argument "easing" must be a string');
-    invariant(Number.isInteger(delay),
+    warning(Number.isInteger(delay),
       'argument "delay" must be a string');
-    invariant(Object.keys(other).length === 0,
+    warning(Object.keys(other).length === 0,
       `unrecognized argument(s) [${Object.keys(other).join(',')}]`);
 
     return (Array.isArray(props) ? props : [props])
@@ -80,5 +80,11 @@ export default {
   },
 };
 
+/**
+ * @deprecated Will be removed, please access via theme.transitions.easing
+ */
 export const easing = easingInternal;
+/**
+ * @deprecated Will be removed, please access via theme.transitions.duration
+ */
 export const duration = durationIntenal;
