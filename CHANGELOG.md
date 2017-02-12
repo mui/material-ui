@@ -6,7 +6,12 @@
 A big thanks to the 17 contributors who are making this release possible.
 
 ##### Breaking Changes
-- [core] include `react-tap-event-plugin@^2.0.0` for `react@^15.4.0` (#5572) @rosskevin
+- [core] Upgrade react-tap-event-plugin and react peer dependency (#6057) @rosskevin
+
+We have upgraded the peer dependency of Material-UI. You gonna need:
+- `react-tap-event-plugin` >= 2.0.1
+- `react` >= 15.4.0
+- `react-dom` >= 15.4.0
 
 ##### Component Fixes / Enhancements
 
