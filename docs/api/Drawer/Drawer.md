@@ -15,6 +15,7 @@ Props
 | elevation | number | 16 |  |
 | enterTransitionDuration | number | durations.enteringScreen |  |
 | leaveTransitionDuration | number | durations.leavingScreen |  |
+| onRequestClose | function |  | Called when close is requested (esc, ...) |
 | open | bool | false |  |
 | paperClassName | string |  | The CSS class name of the paper element. |
 
