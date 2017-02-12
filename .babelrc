@@ -5,6 +5,11 @@
     "transform-dev-warning"
   ],
   "env": {
+    "coverage": {
+      "plugins": [
+        ["istanbul"]
+      ]
+    },
     "test": {
       "sourceMaps": "both"
     },
