@@ -71,6 +71,24 @@ You need to **install** it, then run the following commands:
 docker-compose up -d
 ```
 
+Due to issues with networking in OS X, getting the container to see the
+test page may require additional configuration as the `docker0` interface
+does not exist. 
+
+You can create an alias for the loopback interface using the instructions
+provided at https://docs.docker.com/docker-for-mac/networking/#/there-is-no-docker0-bridge-on-macos
+
+```
+sudo ifconfig lo0 alias 10.200.10.1/24
+```
+
+In our `vrtest` config this is set as the default, although it can be overridden with an env var:
+
+```
+testUrl: process.env.DOCKER_TEST_URL || 'http://10.200.10.1:3090',
+```
+
+
 #### Update the baseline
 
 You can update the baseline images by running the following command:
