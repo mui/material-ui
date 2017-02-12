@@ -1,0 +1,6 @@
+--require babel-register
+--reporter dot
+--recursive
+test/utils/setup.js
+test/integration/{,**/}*.test.js
+src/{,**/}*.spec.js
