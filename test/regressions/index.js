@@ -20,7 +20,9 @@ const rootEl = document.createElement('div');
 rootEl.style.display = 'inline-block';
 
 vrtest.before(() => {
-  document.body.appendChild(rootEl);
+  if (document && document.body) {
+    document.body.appendChild(rootEl);
+  }
 
   return new Promise((resolve) => {
     webfontloader.load({
