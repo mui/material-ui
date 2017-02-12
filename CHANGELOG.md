@@ -24,6 +24,29 @@ Below is a summary of major changes.
 - [Ripple/TouchRipple] Refactored and now works properly inside a button in firefox!
 - [Button] Raised/flat/fab are now combined into a single component.
 
+## 1.0.0-alpha.3
+###### _Feb 12, 2017_
+
+##### Component Fixes / Enhancements
+
+- [Button] Make the node isRequired (#6095) @oliviertassinari
+- [TextField] value propType (#6091) @mntbkr
+- [TextField] Fix width issue (#6096) @oliviertassinari
+- [TextField] Add an inputProps property (#6111) @oliviertassinari
+- [Checkbox] Not selecting label text on quick clicks (#6097) @ArcanisCz
+- [Tabs] Add a disabled property (#6112) @irfanhudda
+- [Paper] Rename zDepth -> elevation everywhere (#6116) @ArcanisCz
+
+##### Docs
+
+- [docs] Add simple example in the Badge API (#6117) @stunaz
+- [docs] Add a Drawer section (#6113) @ArcanisCz
+
+##### Core
+
+- [core] Simplify test suite and use vrtest for regressions (#6122) @nathanmarks
+- [core] Prefix stylesheet names to prevent collisions (#6110) @oliviertassinari
+- [core] Remove stringOrNumber propTypes (#6109) @oliviertassinari
 
 ## 1.0.0-alpha.2
 ###### _Feb 7, 2017_
