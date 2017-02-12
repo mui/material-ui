@@ -1,6 +1,5 @@
 // @flow
 
-const fs = require('fs');
 const path = require('path');
 
 module.exports = {
@@ -26,5 +25,5 @@ module.exports = {
     alias: {
       'material-ui': path.resolve(__dirname, '../../src'),
     },
-  }
+  },
 };

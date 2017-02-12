@@ -47,7 +47,7 @@ tests.forEach(((test) => {
   if (!suite || suite.name !== test.suite) {
     suite = vrtest.createSuite(test.suite);
   }
-  
+
   suite.createTest(test.name, () => {
     ReactDOM.render(
       <MuiThemeProvider>
