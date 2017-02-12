@@ -4,10 +4,10 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
-import { easing } from '../styles/transitions';
 import { FormLabel } from '../Form';
 
 export const styleSheet = createStyleSheet('MuiTextFieldLabel', (theme) => {
+  const { transitions } = theme;
   return {
     root: {
       position: 'absolute',
@@ -20,7 +20,10 @@ export const styleSheet = createStyleSheet('MuiTextFieldLabel', (theme) => {
       transform: 'translate(0, 0px) scale(0.75)',
     },
     animated: {
-      transition: theme.transitions.create('transform', '200ms', null, easing.easeOut),
+      transition: transitions.create('transform', {
+        duration: transitions.duration.shorter,
+        easing: transitions.easing.easeOut,
+      }),
     },
   };
 });

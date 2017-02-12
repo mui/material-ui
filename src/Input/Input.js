@@ -4,13 +4,13 @@ import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
-import { easing } from '../styles/transitions';
 
 function isDirty(obj) {
   return obj && obj.value && obj.value.length > 0;
 }
 
 export const styleSheet = createStyleSheet('MuiInput', (theme) => {
+  const { palette, transitions } = theme;
   return {
     wrapper: {
       // Mimics the default input display property used by browsers for an input.
@@ -23,7 +23,7 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
     },
     inkbar: {
       '&:after': {
-        backgroundColor: theme.palette.accent.A200,
+        backgroundColor: palette.accent.A200,
         left: 0,
         bottom: -1,
         // Doing the other way around crash on IE11 "''"" https://github.com/cssinjs/jss/issues/242
@@ -32,12 +32,10 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
         position: 'absolute',
         right: 0,
         transform: 'scaleX(0)',
-        transition: theme.transitions.create(
-          'transform',
-          '200ms',
-          null,
-          easing.easeOut,
-        ),
+        transition: transitions.create('transform', {
+          duration: transitions.duration.shorter,
+          easing: transitions.easing.easeOut,
+        }),
       },
       '&$focused:after': {
         transform: 'scaleX(1)',
@@ -46,7 +44,7 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
     focused: {},
     error: {
       '&:after': {
-        backgroundColor: theme.palette.error[500],
+        backgroundColor: palette.error[500],
         transform: 'scaleX(1)', // error is always underlined in red
       },
     },

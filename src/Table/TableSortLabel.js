@@ -8,6 +8,7 @@ import ButtonBase from '../internal/ButtonBase';
 import Icon from '../Icon';
 
 export const styleSheet = createStyleSheet('MuiTableSortLabel', (theme) => {
+  const { palette, transitions } = theme;
   return {
     sortLabel: {
       cursor: 'pointer',
@@ -17,14 +18,14 @@ export const styleSheet = createStyleSheet('MuiTableSortLabel', (theme) => {
       alignItems: 'center',
       background: 'transparent',
       '&:hover': {
-        color: theme.palette.text.primary,
+        color: palette.text.primary,
       },
       '&:focus': {
-        color: theme.palette.text.primary,
+        color: palette.text.primary,
       },
     },
     active: {
-      color: theme.palette.text.primary,
+      color: palette.text.primary,
       '& $icon': {
         opacity: 1,
       },
@@ -34,7 +35,9 @@ export const styleSheet = createStyleSheet('MuiTableSortLabel', (theme) => {
       marginRight: 4,
       marginLeft: 4,
       opacity: 0,
-      transition: theme.transitions.create(['opacity', 'transform'], '200ms'),
+      transition: transitions.create(['opacity', 'transform'], {
+        duration: transitions.duration.shorter,
+      }),
       userSelect: 'none',
     },
     desc: {

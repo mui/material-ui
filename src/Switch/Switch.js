@@ -8,7 +8,7 @@ import { createSwitch } from '../internal/SwitchBase';
 import withSwitchLabel from '../internal/withSwitchLabel';
 
 export const styleSheet = createStyleSheet('MuiSwitch', (theme) => {
-  const { palette } = theme;
+  const { palette, transitions } = theme;
   return {
     root: {
       display: 'inline-flex',
@@ -17,7 +17,9 @@ export const styleSheet = createStyleSheet('MuiSwitch', (theme) => {
     },
     default: {
       color: palette.type === 'light' ? palette.grey[50] : palette.grey[400],
-      transition: theme.transitions.create('transform', '150ms'),
+      transition: transitions.create('transform', {
+        duration: transitions.duration.shortest,
+      }),
     },
     checked: {
       color: palette.accent[500],
@@ -44,7 +46,9 @@ export const styleSheet = createStyleSheet('MuiSwitch', (theme) => {
       marginTop: -7,
       left: '50%',
       marginLeft: -17,
-      transition: theme.transitions.multi(['opacity', 'background-color'], '150ms'),
+      transition: transitions.create(['opacity', 'background-color'], {
+        duration: transitions.duration.shortest,
+      }),
       backgroundColor: palette.type === 'light' ? '#000' : '#fff',
       opacity: palette.type === 'light' ? 0.38 : 0.3,
     },

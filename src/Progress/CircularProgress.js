@@ -24,7 +24,7 @@ export const styleSheet = createStyleSheet('MuiCircularProgress', (theme) => {
       strokeDashoffset: '0%',
       stroke: 'currentColor',
       strokeLinecap: 'square',
-      transition: theme.transitions.create('all', '1.30s'),
+      transition: theme.transitions.create('all', { duration: 1300 }),
       animation: `scale-progress-circle 1300ms ${easing.easeInOut} infinite`,
     },
     '@keyframes rotate-progress-circle': {
