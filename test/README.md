@@ -10,10 +10,10 @@ Please familiarise yourself with these if you plan on contributing! :+1:
 - [enzyme](https://github.com/airbnb/enzyme)
 - [jsdom](https://github.com/tmpvar/jsdom)
 - [karma](https://github.com/karma-runner/karma)
-- [docker](https://github.com/docker/docker)
-- [nightwatch](https://github.com/nightwatchjs/nightwatch)
 - [chai](https://github.com/chaijs/chai)
 - [sinon](https://github.com/sinonjs/sinon)
+- [docker](https://github.com/docker/docker)
+- [vrtest](https://github.com/nathanmarks/vrtest)
 
 ## Commands
 
@@ -54,12 +54,6 @@ In the end, components are going to be used in a real browser.
 The DOM is just one dimension of that environment,
 so we also need to take into account the rendering engine.
 
-#### Run the e2e selenium tests.
-`npm run test:e2e`
-
-First, we have an end-to-end test suite using [nightwatch](https://github.com/nightwatchjs/nightwatch). As the name suggests, it allows testing all the feature of
-a real browser.
-
 #### Run the visual regression tests
 `npm run test:regressions`
 
@@ -72,17 +66,33 @@ Next, we are using [docker](https://github.com/docker/docker) to take screenshot
 
 The visual regression tests suite has a hard dependency on [docker](https://github.com/docker/docker).
 You need to **install** it, then run the following commands:
+
 ```sh
-cd test
-docker-compose up
+docker-compose up -d
 ```
+
+Due to issues with networking in OS X, getting the container to see the
+test page may require additional configuration as the `docker0` interface
+does not exist. 
+
+You can create an alias for the loopback interface using the instructions
+provided at https://docs.docker.com/docker-for-mac/networking/#/there-is-no-docker0-bridge-on-macos
+
+```
+sudo ifconfig lo0 alias 10.200.10.1/24
+```
+
+In our `vrtest` config this is set as the default, although it can be overridden with an env var:
+
+```
+testUrl: process.env.DOCKER_TEST_URL || 'http://10.200.10.1:3090',
+```
+
 
 #### Update the baseline
 
 You can update the baseline images by running the following command:
-`npm run test:regressions -- -c`
-
-You can have a look at the `/test/cli.js` file to get more details on the available options.
+`npm run test:regressions -- --record`
 
 ## Writing Tests
 
