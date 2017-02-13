@@ -3,10 +3,12 @@ import {isIOS} from './iOSHelpers';
 import {assert} from 'chai';
 
 describe('IOS detection helper', () => {
-  // skip tests on PhantomJS because __defineGetter__ method doesn't work
-  if (/PhantomJS/.test(window.navigator.userAgent)) {
+  // skip Karma tests because __defineGetter__ method doesn't work
+  /* eslint-disable no-underscore-dangle */
+  if (window.__karma__) {
     return;
   }
+  /* eslint-enable no-underscore-dangle */
 
   /* eslint-disable max-len */
   const userAgentsWithIOS = [
