@@ -93,6 +93,10 @@ class FlatButton extends Component {
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
+    /**
+     * Make the button a fullWidth button if bool is true.
+     */
+    fullWidth: PropTypes.bool
   };
 
   static defaultProps = {
