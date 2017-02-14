@@ -11,7 +11,7 @@ export const styleSheet = createStyleSheet('MuiDivider', (theme) => {
   return {
     root: {
       height: 1,
-      margin: '0 -1px 0 0',
+      margin: 0,
       border: 'none',
     },
     default: {
