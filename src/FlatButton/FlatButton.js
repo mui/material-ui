@@ -69,7 +69,11 @@ class FlatButton extends Component {
      * @param {boolean} isKeyboardFocused Indicates whether the element is focused.
      */
     onKeyboardFocus: PropTypes.func,
-    /** @ignore */
+    /**
+     * Callback function fired when the mouse is hovered over the element.
+     *
+     * @param {object} event any event targeting the element.
+     */
     onMouseEnter: PropTypes.func,
     /** @ignore */
     onMouseLeave: PropTypes.func,
