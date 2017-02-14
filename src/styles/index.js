@@ -1,4 +1,3 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-export default from './Text';
-export Text from './Text';
+export MuiThemeProvider from './MuiThemeProvider';
