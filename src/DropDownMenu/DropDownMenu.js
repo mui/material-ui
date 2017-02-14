@@ -139,11 +139,19 @@ class DropDownMenu extends Component {
      */
     menuStyle: PropTypes.object,
     /**
+     * If true, `value` must be an array and the menu will support
+     * multiple selections.
+     */
+    multiple: PropTypes.bool,
+    /**
      * Callback function fired when a menu item is clicked, other than the one currently selected.
      *
      * @param {object} event TouchTap event targeting the menu item that was clicked.
      * @param {number} key The index of the clicked menu item in the `children` collection.
-     * @param {any} payload The `value` prop of the clicked menu item.
+     * @param {any} payload If `multiple` is true, the menu's `value`
+     * array with either the menu item's `value` added (if
+     * it wasn't already selected) or omitted (if it was already selected).
+     * Otherwise, the `value` of the menu item.
      */
     onChange: PropTypes.func,
     /**
@@ -167,7 +175,9 @@ class DropDownMenu extends Component {
      */
     underlineStyle: PropTypes.object,
     /**
-     * The value that is currently selected.
+     * If `multiple` is true, an array of the `value`s of the selected
+     * menu items. Otherwise, the `value` of the selected menu item.
+     * If provided, the menu will be a controlled component.
      */
     value: PropTypes.any,
   };
@@ -179,6 +189,7 @@ class DropDownMenu extends Component {
     iconButton: <DropDownArrow />,
     openImmediately: false,
     maxHeight: 500,
+    multiple: false,
   };
 
   static contextTypes = {
@@ -241,7 +252,7 @@ class DropDownMenu extends Component {
 
   handleTouchTapControl = (event) => {
     event.preventDefault();
-    if (!this.props.disabled) {
+    if (!this.props.disabled && !(this.props.multiple && this.state.open)) {
       this.setState({
         open: !this.state.open,
         anchorEl: this.rootNode,
@@ -274,15 +285,28 @@ class DropDownMenu extends Component {
 
   handleItemTouchTap = (event, child, index) => {
     event.persist();
-    this.setState({
-      open: false,
-    }, () => {
-      if (this.props.onChange) {
-        this.props.onChange(event, index, child.props.value);
-      }
 
-      this.close(Events.isKeyboard(event));
-    });
+    if (this.props.multiple) {
+      if (!this.state.open) {
+        this.setState({open: true});
+      }
+    } else {
+      this.setState({
+        open: false,
+      }, () => {
+        if (this.props.onChange) {
+          this.props.onChange(event, index, child.props.value);
+        }
+
+        this.close(Events.isKeyboard(event));
+      });
+    }
+  };
+
+  handleOnChange = (event, value) => {
+    if (this.props.multiple && this.props.onChange) {
+      this.props.onChange(event, undefined, value);
+    }
   };
 
   close = (isKeyboard) => {
@@ -307,6 +331,7 @@ class DropDownMenu extends Component {
       animated,
       animation,
       autoWidth,
+      multiple,
       children,
       className,
       disabled,
@@ -334,12 +359,22 @@ class DropDownMenu extends Component {
     const styles = getStyles(this.props, this.context);
 
     let displayValue = '';
-    React.Children.forEach(children, (child) => {
-      if (child && value === child.props.value) {
-        // This will need to be improved (in case primaryText is a node)
-        displayValue = child.props.label || child.props.primaryText;
-      }
-    });
+    if (!multiple) {
+      React.Children.forEach(children, (child) => {
+        if (child && value === child.props.value) {
+          // This will need to be improved (in case primaryText is a node)
+          displayValue = child.props.label || child.props.primaryText;
+        }
+      });
+    } else {
+      displayValue = [];
+      React.Children.forEach(children, (child) => {
+        if (child && value.indexOf(child.props.value) !== -1) {
+          displayValue.push(child.props.label || child.props.primaryText);
+        }
+      });
+      displayValue = displayValue.join(', ');
+    }
 
     let menuStyle;
     if (anchorEl && !autoWidth) {
@@ -385,6 +420,7 @@ class DropDownMenu extends Component {
           onRequestClose={this.handleRequestCloseMenu}
         >
           <Menu
+            multiple={multiple}
             maxHeight={maxHeight}
             desktop={true}
             value={value}
@@ -392,6 +428,7 @@ class DropDownMenu extends Component {
             style={menuStyle}
             listStyle={listStyle}
             onItemTouchTap={this.handleItemTouchTap}
+            onChange={this.handleOnChange}
             menuItemStyle={menuItemStyle}
             selectedMenuItemStyle={selectedMenuItemStyle}
           >
