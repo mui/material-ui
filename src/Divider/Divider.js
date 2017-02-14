@@ -11,7 +11,6 @@ export const styleSheet = createStyleSheet('MuiDivider', (theme) => {
   return {
     root: {
       height: 1,
-      margin: 0,
       border: 'none',
     },
     default: {
@@ -24,7 +23,6 @@ export const styleSheet = createStyleSheet('MuiDivider', (theme) => {
       backgroundColor: palette.text.lightDivider,
     },
     absolute: {
-      margin: 0,
       position: 'absolute',
       bottom: 0,
       left: 0,
