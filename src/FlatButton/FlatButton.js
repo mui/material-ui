@@ -36,8 +36,13 @@ class FlatButton extends Component {
      */
     disabled: PropTypes.bool,
     /**
+     * Make the button a fullWidth button if bool is true.
+     */
+    fullWidth: PropTypes.bool,
+    /**
      * Color of button when mouse hovers over.
      */
+
     hoverColor: PropTypes.string,
     /**
      * The URL to link to when the button is clicked.
@@ -93,10 +98,7 @@ class FlatButton extends Component {
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-    /**
-     * Make the button a fullWidth button if bool is true.
-     */
-    fullWidth: PropTypes.bool
+    
   };
 
   static defaultProps = {
@@ -152,10 +154,11 @@ class FlatButton extends Component {
 
   render() {
     const {
+      backgroundColor,
       children,
       disabled,
+      fullWidth,
       hoverColor,
-      backgroundColor,
       icon,
       label,
       labelStyle,
@@ -164,7 +167,6 @@ class FlatButton extends Component {
       rippleColor,
       secondary,
       style,
-      fullWidth,
       ...other
     } = this.props;
 
