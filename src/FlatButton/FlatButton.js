@@ -36,7 +36,7 @@ class FlatButton extends Component {
      */
     disabled: PropTypes.bool,
     /**
-     * Make the button a fullWidth button if bool is true.
+     * If true, the button will take up the full width of its container.
      */
     fullWidth: PropTypes.bool,
     /**
@@ -102,6 +102,7 @@ class FlatButton extends Component {
 
   static defaultProps = {
     disabled: false,
+    fullWidth: false,
     labelStyle: {},
     labelPosition: 'after',
     onKeyboardFocus: () => {},
