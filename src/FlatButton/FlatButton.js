@@ -160,6 +160,7 @@ class FlatButton extends Component {
       rippleColor,
       secondary,
       style,
+      fullWidth,
       ...other
     } = this.props;
 
@@ -196,7 +197,7 @@ class FlatButton extends Component {
     const mergedRootStyles = Object.assign({}, {
       height: buttonHeight,
       lineHeight: `${buttonHeight}px`,
-      minWidth: buttonMinWidth,
+      minWidth: fullWidth ? '100%' : buttonMinWidth,
       color: defaultTextColor,
       transition: transitions.easeOut(),
       borderRadius: 2,
