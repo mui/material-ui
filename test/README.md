@@ -73,7 +73,7 @@ docker-compose up -d
 
 Due to issues with networking in OS X, getting the container to see the
 test page may require additional configuration as the `docker0` interface
-does not exist. 
+does not exist.
 
 You can create an alias for the loopback interface using the instructions
 provided at https://docs.docker.com/docker-for-mac/networking/#/there-is-no-docker0-bridge-on-macos
@@ -87,7 +87,6 @@ In our `vrtest` config this is set as the default, although it can be overridden
 ```
 testUrl: process.env.DOCKER_TEST_URL || 'http://10.200.10.1:3090',
 ```
-
 
 #### Update the baseline
 
