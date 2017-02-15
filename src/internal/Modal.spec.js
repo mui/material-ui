@@ -80,7 +80,8 @@ describe('<Modal />', () => {
     it('should pass a transitionDuration prop to the transition component', () => {
       wrapper.setProps({ backdropTransitionDuration: 200 });
       const transition = wrapper.childAt(0).childAt(0);
-      assert.strictEqual(transition.prop('transitionDuration'), 200);
+      assert.strictEqual(transition.props().enterTransitionDuration, 200);
+      assert.strictEqual(transition.props().leaveTransitionDuration, 200);
     });
 
     it('should attach a handler to the backdrop that fires onRequestClose', () => {

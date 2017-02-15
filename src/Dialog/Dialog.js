@@ -6,6 +6,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 import Modal from '../internal/Modal';
 import Fade from '../transitions/Fade';
+import { duration } from '../styles/transitions';
 import Paper from '../Paper';
 
 export const styleSheet = createStyleSheet('MuiDialog', (theme) => {
@@ -78,6 +79,14 @@ export default class Dialog extends Component {
      */
     hideOnEscapeKeyUp: PropTypes.bool,
     /**
+     * Duration of the animation when the element is entering the screen.
+     */
+    enterTransitionDuration: PropTypes.number, // eslint-disable-line react/sort-prop-types
+    /**
+     * Duration of the animation when the element is leaving the screen.
+     */
+    leaveTransitionDuration: PropTypes.number,
+    /**
      * Determine the max width of the dialog.
      * The dialog width grows with the size of the screen, this property is useful
      * on the desktop where you might need some coherent different width size across your
@@ -136,20 +145,17 @@ export default class Dialog extends Component {
      * Transition component.
      */
     transition: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
-    /**
-     * Length of the transition in ms.
-     */
-    transitionDuration: PropTypes.number,
   };
 
   static defaultProps = {
     fullScreen: false,
     hideOnBackdropClick: true,
     hideOnEscapeKeyUp: true,
+    enterTransitionDuration: duration.enteringScreen,
+    leaveTransitionDuration: duration.leavingScreen,
     maxWidth: 'sm',
     open: false,
     transition: Fade,
-    transitionDuration: 300,
   };
 
   static contextTypes = {
@@ -163,6 +169,8 @@ export default class Dialog extends Component {
       fullScreen,
       hideOnBackdropClick,
       hideOnEscapeKeyUp,
+      enterTransitionDuration,
+      leaveTransitionDuration,
       maxWidth,
       open,
       onBackdropClick,
@@ -176,7 +184,6 @@ export default class Dialog extends Component {
       onRequestClose,
       paperClassName,
       transition,
-      transitionDuration,
       ...other
     } = this.props;
 
@@ -185,7 +192,8 @@ export default class Dialog extends Component {
     const transitionProps = {
       in: open,
       transitionAppear: true,
-      transitionDuration,
+      enterTransitionDuration,
+      leaveTransitionDuration,
       onEnter,
       onEntering,
       onEntered,
@@ -205,7 +213,7 @@ export default class Dialog extends Component {
     return (
       <Modal
         className={classNames(classes.modal, className)}
-        backdropTransitionDuration={transitionDuration}
+        backdropTransitionDuration={open ? enterTransitionDuration : leaveTransitionDuration}
         hideOnBackdropClick={hideOnBackdropClick}
         hideOnEscapeKeyUp={hideOnEscapeKeyUp}
         onBackdropClick={onBackdropClick}

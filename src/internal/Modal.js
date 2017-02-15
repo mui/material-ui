@@ -302,7 +302,8 @@ export default class Modal extends Component {
       <Fade
         in={show}
         transitionAppear
-        transitionDuration={backdropTransitionDuration}
+        enterTransitionDuration={backdropTransitionDuration}
+        leaveTransitionDuration={backdropTransitionDuration}
         timeout={backdropTransitionDuration + 20}
         {...other}
       >
