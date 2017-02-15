@@ -22,8 +22,17 @@ export const styleSheet = createStyleSheet('MuiText', (theme) => {
     body1: theme.typography.body1,
     caption: theme.typography.caption,
     button: theme.typography.button,
+    'align-left': {
+      textAlign: 'left',
+    },
     'align-center': {
       textAlign: 'center',
+    },
+    'align-right': {
+      textAlign: 'right',
+    },
+    'align-justify': {
+      textAlign: 'justify',
     },
     noWrap: {
       overflow: 'hidden',
@@ -34,7 +43,7 @@ export const styleSheet = createStyleSheet('MuiText', (theme) => {
       marginBottom: '0.35em',
     },
     paragraph: {
-      marginBottom: 16,
+      marginBottom: theme.spacing.unit * 2,
     },
     colorInherit: {
       color: 'inherit',
@@ -66,7 +75,7 @@ export default function Text(props, context) {
     [classes.secondary]: secondary,
     [classes.gutterBottom]: gutterBottom,
     [classes.paragraph]: paragraph,
-    [classes[`align-${align}`]]: align === 'center',
+    [classes[`align-${align}`]]: align,
   }, classNameProp);
 
   const Component = paragraph ? 'p' : componentProp;
@@ -78,6 +87,8 @@ Text.propTypes = {
   align: PropTypes.oneOf([
     'left',
     'center',
+    'right',
+    'justify',
   ]),
   children: PropTypes.node,
   /**
@@ -106,7 +117,6 @@ Text.propTypes = {
 };
 
 Text.defaultProps = {
-  align: 'left',
   colorInherit: false,
   component: 'span',
   gutterBottom: false,
