@@ -53,6 +53,7 @@ describe('<LinearProgress />', () => {
     const wrapper = shallow(<LinearProgress mode="determinate" value={77} />);
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.childAt(1).props().style.width, '77%', 'should have width set');
+    assert.strictEqual(wrapper.props()['aria-valuenow'], 77);
   });
 
   it('should render with buffer classes', () => {
