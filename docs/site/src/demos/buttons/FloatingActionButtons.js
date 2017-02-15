@@ -7,9 +7,9 @@ import Button from 'material-ui/Button';
 import AddIcon from 'material-ui/svg-icons/add';
 import ModeEditIcon from 'material-ui/svg-icons/mode-edit';
 
-const styleSheet = createStyleSheet('FloatingActionButtons', () => ({
+const styleSheet = createStyleSheet('FloatingActionButtons', (theme) => ({
   button: {
-    margin: '0 10px',
+    margin: theme.spacing.unit,
   },
 }));
 

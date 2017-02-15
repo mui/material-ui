@@ -5,13 +5,14 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import Chip from 'material-ui/Chip';
 
-const styleSheet = createStyleSheet('ChipsArray', () => ({
+const styleSheet = createStyleSheet('ChipsArray', (theme) => ({
   chip: {
-    margin: '0 4px',
+    margin: theme.spacing.unit / 2,
   },
   row: {
     display: 'flex',
     justifyContent: 'center',
+    flexWrap: 'wrap',
   },
 }));
 

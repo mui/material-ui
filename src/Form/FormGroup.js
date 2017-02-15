@@ -10,6 +10,7 @@ export const styleSheet = createStyleSheet('MuiFormGroup', () => {
     root: {
       display: 'flex',
       flexDirection: 'column',
+      flexWrap: 'wrap',
     },
     row: {
       flexDirection: 'row',

@@ -5,9 +5,9 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import Button from 'material-ui/Button';
 
-const styleSheet = createStyleSheet('FlatButtons', () => ({
+const styleSheet = createStyleSheet('FlatButtons', (theme) => ({
   button: {
-    margin: '0 10px',
+    margin: theme.spacing.unit,
   },
 }));
 
