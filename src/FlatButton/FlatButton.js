@@ -76,8 +76,9 @@ class FlatButton extends Component {
     /** @ignore */
     onTouchStart: PropTypes.func,
     /**
-      * Callback function for when the element is selected via a touch tap.
-      * @param {object} event `TouchTap` event targeting the button.
+     * Callback function fired when the button is touch-tapped.
+     *
+     * @param {object} event TouchTap event targeting the button.
      */
     onTouchTap: PropTypes.func,
     /**
