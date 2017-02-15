@@ -246,7 +246,6 @@ class FloatingActionButton extends Component {
       className,
       children: childrenProp,
       disabled,
-      disabledColor,
       mini,
       secondary, // eslint-disable-line no-unused-vars
       iconStyle,
