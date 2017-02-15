@@ -46,18 +46,14 @@ module.exports = function setKarmaConfig(config) {
     webpack: {
       devtool: 'inline-source-map',
       module: {
-        loaders: [
+        rules: [
           {
             test: /\.js$/,
-            loader: 'babel',
+            loader: 'babel-loader',
             exclude: /node_modules/,
             query: {
               cacheDirectory: true,
             },
-          },
-          {
-            test: /\.json$/,
-            loader: 'json',
           },
         ],
         noParse: [
@@ -69,10 +65,10 @@ module.exports = function setKarmaConfig(config) {
           'material-ui': path.resolve(__dirname, '../src'),
           sinon: 'sinon/pkg/sinon.js',
         },
-        extensions: ['', '.js', '.jsx', '.json'],
-        modulesDirectories: [
+        extensions: ['.js'],
+        modules: [
+          path.join(__dirname, '../'),
           'node_modules',
-          './',
         ],
       },
       externals: {

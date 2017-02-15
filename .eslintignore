@@ -1,7 +1,7 @@
 node_modules
 /build
-/dist
 /flow
+/tmp
 /docs/site/build
 /packages/**/lib
 /packages/icon-builder

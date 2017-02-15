@@ -1,20 +1,16 @@
 // @flow weak
 
 const path = require('path');
+const webpack = require('webpack');
 
 const libraryName = 'material-ui';
-const outputFile = `${libraryName}.js`;
-const INDEX = path.join(__dirname, 'src/index.js');
-const DIST = path.join(__dirname, 'dist');
-
-const config = {
+const baseConfig = {
   entry: {
-    'material-ui': INDEX,
+    'material-ui': path.join(__dirname, 'src/index.js'),
   },
-  devtool: 'source-map',
+  devtool: false,
   output: {
-    path: DIST,
-    filename: outputFile,
+    path: path.join(__dirname, 'build/dist'),
     library: libraryName,
     libraryTarget: 'umd',
     umdNamedDefine: true,
@@ -40,21 +36,55 @@ const config = {
     },
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        loader: 'babel',
-        exclude: /(node_modules)/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
         query: {
           cacheDirectory: true,
         },
       },
     ],
   },
+  performance: {
+    maxAssetSize: 4e6,
+    maxEntrypointSize: 6e6,
+  },
   resolve: {
-    root: path.resolve('./src'),
-    extensions: ['', '.js'],
+    modules: [
+      path.resolve('./src'),
+      'node_modules',
+    ],
+    extensions: ['.js'],
   },
 };
+
+let config;
+
+if (process.env.NODE_ENV === 'production') {
+  config = Object.assign({}, baseConfig, {
+    output: Object.assign({}, baseConfig.output, {
+      filename: `${libraryName}.min.js`,
+    }),
+    plugins: [
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify('production'),
+      }),
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false,
+          screw_ie8: true,
+        },
+      }),
+    ],
+  });
+} else {
+  config = Object.assign({}, baseConfig, {
+    output: Object.assign({}, baseConfig.output, {
+      filename: `${libraryName}.js`,
+    }),
+  });
+}
 
 module.exports = config;
