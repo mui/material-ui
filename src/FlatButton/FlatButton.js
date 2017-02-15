@@ -42,7 +42,6 @@ class FlatButton extends Component {
     /**
      * Color of button when mouse hovers over.
      */
-
     hoverColor: PropTypes.string,
     /**
      * The URL to link to when the button is clicked.
