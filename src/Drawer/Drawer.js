@@ -7,7 +7,7 @@ import Modal from '../internal/Modal';
 import customPropTypes from '../utils/customPropTypes';
 import Slide from '../transitions/Slide';
 import Paper from '../Paper';
-import { durations } from '../styles/transitions';
+import { duration } from '../styles/transitions';
 
 function getSlideDirection(anchor) {
   if (anchor === 'left') {
@@ -101,8 +101,8 @@ export default class Drawer extends Component {
 
   static defaultProps = {
     docked: false,
-    enterTransitionDuration: durations.enteringScreen,
-    leaveTransitionDuration: durations.leavingScreen,
+    enterTransitionDuration: duration.enteringScreen,
+    leaveTransitionDuration: duration.leavingScreen,
     open: false,
     elevation: 16,
   };

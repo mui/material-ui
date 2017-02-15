@@ -4,10 +4,10 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
-import { easing } from '../styles/transitions';
 import { FormLabel } from '../Form';
 
 export const styleSheet = createStyleSheet('MuiInputLabel', (theme) => {
+  const { transitions } = theme;
   return {
     root: {
       transformOrigin: 'top left',
@@ -23,7 +23,10 @@ export const styleSheet = createStyleSheet('MuiInputLabel', (theme) => {
       transformOrigin: 'top left',
     },
     animated: {
-      transition: theme.transitions.create('transform', '200ms', null, easing.easeOut),
+      transition: transitions.create('transform', {
+        duration: transitions.duration.shorter,
+        easing: transitions.easing.easeOut,
+      }),
     },
   };
 });

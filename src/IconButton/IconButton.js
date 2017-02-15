@@ -25,7 +25,9 @@ export const styleSheet = createStyleSheet('MuiIconButton', (theme) => {
       backgroundColor: 'transparent',
       color: palette.action.active,
       zIndex: 1,
-      transition: transitions.create('background-color', '150ms'),
+      transition: transitions.create('background-color', {
+        duration: transitions.duration.shortest,
+      }),
     },
     disabled: {
       color: palette.action.disabled,

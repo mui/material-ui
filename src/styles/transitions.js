@@ -1,9 +1,11 @@
 // @flow weak
 /* eslint-disable no-param-reassign */
 
+import warning from 'warning';
+
 // Follow https://material.google.com/motion/duration-easing.html#duration-easing-natural-easing-curves
 // to learn the context in which each easing should be used.
-export const easing = {
+const easingInternal = {
   // This is the most common easing curve.
   easeInOut: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
   // Objects enter the screen at full velocity from off-screen and
@@ -17,7 +19,10 @@ export const easing = {
 
 // Follow https://material.io/guidelines/motion/duration-easing.html#duration-easing-common-durations
 // to learn when use what timing
-export const durations = {
+const durationIntenal = {
+  shortest: 150,
+  shorter: 200,
+  short: 250,
   // most basic recommended timing
   standard: 300,
   // this is to be used in complex animations
@@ -28,30 +33,39 @@ export const durations = {
   leavingScreen: 195,
 };
 
+/**
+ * @param {string|Array} props
+ * @param {object} param
+ * @param {string} param.prop
+ * @param {number} param.duration
+ * @param {string} param.easing
+ * @param {number} param.delay
+*/
 export default {
-  multi(property, duration, delay, easeFunction) {
-    easeFunction = easeFunction || easing.easeInOut;
+  easing: easingInternal,
 
-    if (property && Array.isArray(property)) {
-      let transitions = '';
-      for (let i = 0; i < property.length; i += 1) {
-        if (transitions) transitions += ',';
-        transitions += this.create(property[i], duration, delay, easeFunction);
-      }
+  duration: durationIntenal,
 
-      return transitions;
-    }
+  create(props = ['all'], {
+    duration = durationIntenal.standard,
+    easing = easingInternal.easeInOut,
+    delay = 0,
+    ...other
+  } = {}) {
+    warning(typeof props === 'string' || Array.isArray(props),
+      'argument "props" must be a string or Array');
+    warning(Number.isInteger(duration),
+      'argument "duration" must be a number');
+    warning(typeof easing === 'string',
+      'argument "easing" must be a string');
+    warning(Number.isInteger(delay),
+      'argument "delay" must be a string');
+    warning(Object.keys(other).length === 0,
+      `unrecognized argument(s) [${Object.keys(other).join(',')}]`);
 
-    return this.create(duration, property, delay, easeFunction);
-  },
-
-  create(property, duration, delay, easeFunction) {
-    duration = duration || '300ms';
-    property = property || 'all';
-    delay = delay || '0ms';
-    easeFunction = easeFunction || easing.easeInOut;
-
-    return `${property} ${duration} ${easeFunction} ${delay}`;
+    return (Array.isArray(props) ? props : [props])
+      .map((value) => `${value} ${duration}ms ${easing} ${delay}ms`)
+      .join(',');
   },
 
   getAutoHeightDuration(height) {
@@ -65,3 +79,12 @@ export default {
     return Math.round(duration);
   },
 };
+
+/**
+ * @deprecated Will be removed, please access via theme.transitions.easing
+ */
+export const easing = easingInternal;
+/**
+ * @deprecated Will be removed, please access via theme.transitions.duration
+ */
+export const duration = durationIntenal;

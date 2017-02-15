@@ -6,7 +6,7 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallowWithContext } from 'test/utils';
 import Slide from './Slide';
-import transitions, { easing, durations } from '../styles/transitions';
+import transitions, { easing, duration } from '../styles/transitions';
 
 describe('<Slide />', () => {
   let shallow;
@@ -21,11 +21,11 @@ describe('<Slide />', () => {
   });
 
   it('enterTransitionDuration prop should have default value from standard durations', () => {
-    assert.strictEqual(Slide.defaultProps.enterTransitionDuration, durations.enteringScreen);
+    assert.strictEqual(Slide.defaultProps.enterTransitionDuration, duration.enteringScreen);
   });
 
   it('leaveTransitionDuration prop should have default value from standard durations', () => {
-    assert.strictEqual(Slide.defaultProps.leaveTransitionDuration, durations.leavingScreen);
+    assert.strictEqual(Slide.defaultProps.leaveTransitionDuration, duration.leavingScreen);
   });
 
   describe('event callbacks', () => {
@@ -77,23 +77,19 @@ describe('<Slide />', () => {
 
     it('should create proper easeOut animation onEntering', () => {
       instance.handleEntering(element);
-      const animation = transitions.create(
-        'transform',
-        `${enterDuration}ms`,
-        '0ms',
-        easing.easeOut,
-      );
+      const animation = transitions.create('transform', {
+        duration: enterDuration,
+        easing: easing.easeOut,
+      });
       assert.strictEqual(element.style.transition, animation);
     });
 
     it('should create proper sharp animation onExiting', () => {
       instance.handleExiting(element);
-      const animation = transitions.create(
-        'transform',
-        `${leaveDuration}ms`,
-        '0ms',
-        easing.sharp,
-      );
+      const animation = transitions.create('transform', {
+        duration: leaveDuration,
+        easing: easing.sharp,
+      });
       assert.strictEqual(element.style.transition, animation);
     });
   });

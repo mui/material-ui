@@ -14,7 +14,9 @@ export const styleSheet = createStyleSheet('MuiMenuItem', (theme) => {
       height: 48,
       boxSizing: 'border-box',
       background: 'none',
-      transition: transitions.create('background-color', '250ms'),
+      transition: transitions.create('background-color', {
+        duration: transitions.duration.short,
+      }),
       overflow: 'hidden',
       textOverflow: 'ellipsis',
       whiteSpace: 'nowrap',

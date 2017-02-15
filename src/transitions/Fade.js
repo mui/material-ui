@@ -49,10 +49,9 @@ export default class Fade extends Component {
 
   handleEnter = (element) => {
     element.style.opacity = 0;
-    element.style.transition = this.context.theme.transitions.create(
-      'opacity',
-      `${this.props.transitionDuration}ms`,
-    );
+    element.style.transition = this.context.theme.transitions.create('opacity', {
+      duration: this.props.transitionDuration,
+    });
     if (this.props.onEnter) {
       this.props.onEnter();
     }

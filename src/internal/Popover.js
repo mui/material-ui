@@ -205,8 +205,12 @@ export default class Popover extends Component {
     }
 
     element.style.transition = [
-      transitions.create('opacity', `${transitionDuration}ms`),
-      transitions.create('transform', `${transitionDuration * 0.666}ms`),
+      transitions.create('opacity', {
+        duration: transitionDuration,
+      }),
+      transitions.create('transform', {
+        duration: transitionDuration * 0.666,
+      }),
     ].join(',');
   };
 
@@ -229,9 +233,13 @@ export default class Popover extends Component {
     }
 
     element.style.transition = [
-      transitions.create('opacity', `${transitionDuration}ms`),
-      transitions.create('transform', `${transitionDuration * 0.666}ms`, `${
-        transitionDuration * 0.333}`),
+      transitions.create('opacity', {
+        duration: transitionDuration,
+      }),
+      transitions.create('transform', {
+        duration: transitionDuration * 0.666,
+        delay: transitionDuration * 0.333,
+      }),
     ].join(',');
 
     element.style.opacity = 0;

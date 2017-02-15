@@ -24,7 +24,9 @@ export const styleSheet = createStyleSheet('MuiButton', (theme) => {
       borderRadius: 2,
       color: palette.text.primary,
       backgroundColor: 'transparent',
-      transition: transitions.multi(['background-color', 'box-shadow'], '250ms'),
+      transition: transitions.create(['background-color', 'box-shadow'], {
+        duration: transitions.duration.short,
+      }),
       '&:hover': {
         textDecoration: 'none',
         backgroundColor: palette.text.divider,
