@@ -4,8 +4,7 @@
 import React, { Component } from 'react';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import Paper from 'material-ui/Paper';
-import Tabs from 'material-ui/Tabs';
-import Tab from 'material-ui/Tabs/Tab';
+import { Tabs, Tab } from 'material-ui/Tabs';
 
 export default class DisabledTabs extends Component {
   static contextTypes = {
@@ -13,7 +12,7 @@ export default class DisabledTabs extends Component {
   };
 
   state = {
-    index: 1,
+    index: 0,
   };
 
   handleChange = (event, index) => {
@@ -24,7 +23,6 @@ export default class DisabledTabs extends Component {
     return (
       <Paper>
         <Tabs index={this.state.index} onChange={this.handleChange}>
-          <Tab label="Disabled" disabled />
           <Tab label="Active" />
           <Tab label="Disabled" disabled />
           <Tab label="Active" />

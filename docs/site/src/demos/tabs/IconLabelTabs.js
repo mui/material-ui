@@ -2,8 +2,7 @@
 
 import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
-import Tabs from 'material-ui/Tabs';
-import Tab from 'material-ui/Tabs/Tab';
+import { Tabs, Tab } from 'material-ui/Tabs';
 import PhoneIcon from 'material-ui/svg-icons/phone';
 import FavoriteIcon from 'material-ui/svg-icons/favorite';
 import PersonPinIcon from 'material-ui/svg-icons/person-pin';

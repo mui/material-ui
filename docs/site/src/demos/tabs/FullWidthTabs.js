@@ -3,11 +3,10 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
+import SwipeableViews from 'react-swipeable-views';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import Paper from 'material-ui/Paper';
-import Tabs from 'material-ui/Tabs';
-import Tab from 'material-ui/Tabs/Tab';
-import SwipeableViews from 'react-swipeable-views';
+import { Tabs, Tab } from 'material-ui/Tabs';
 
 const TabContainer = (props) => (
   <div style={{ padding: 20 }}>

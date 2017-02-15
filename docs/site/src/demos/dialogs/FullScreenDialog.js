@@ -33,12 +33,13 @@ export default class FullScreenDialog extends Component {
   };
 
   handleRequestClose = () => this.setState({ open: false });
+  handleOpen = () => this.setState({ open: true });
 
   render() {
     const classes = this.context.styleManager.render(styleSheet);
     return (
       <div>
-        <Button onClick={() => this.setState({ open: true })}>
+        <Button onClick={this.handleOpen}>
           Open full-screen dialog
         </Button>
         <Dialog

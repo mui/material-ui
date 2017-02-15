@@ -6,9 +6,9 @@ import customPropTypes from 'material-ui/utils/customPropTypes';
 import IconButton from 'material-ui/IconButton';
 import Icon from 'material-ui/Icon';
 
-const styleSheet = createStyleSheet('IconButtons', () => ({
+const styleSheet = createStyleSheet('IconButtons', (theme) => ({
   button: {
-    margin: '0 10px',
+    margin: theme.spacing.unit,
   },
 }));
 

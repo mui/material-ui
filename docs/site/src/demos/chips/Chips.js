@@ -9,9 +9,9 @@ import Face from 'material-ui/svg-icons/face';
 import { grey } from 'material-ui/styles/colors';
 import avatarImage from 'docs/site/assets/images/uxceo-128.jpg';
 
-const styleSheet = createStyleSheet('Chips', () => ({
+const styleSheet = createStyleSheet('Chips', (theme) => ({
   chip: {
-    margin: '0 8px',
+    margin: theme.spacing.unit,
   },
   svgIcon: {
     color: grey[800],
@@ -19,6 +19,7 @@ const styleSheet = createStyleSheet('Chips', () => ({
   row: {
     display: 'flex',
     justifyContent: 'center',
+    flexWrap: 'wrap',
   },
 }));
 
