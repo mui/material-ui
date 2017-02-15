@@ -36,6 +36,10 @@ class FlatButton extends Component {
      */
     disabled: PropTypes.bool,
     /**
+     * The CSS class name of the root element.
+     */
+    className: PropTypes.string,
+    /**
      * Color of button when mouse hovers over.
      */
     hoverColor: PropTypes.string,
@@ -149,6 +153,7 @@ class FlatButton extends Component {
   render() {
     const {
       children,
+      className,
       disabled,
       hoverColor,
       backgroundColor,
@@ -258,6 +263,7 @@ class FlatButton extends Component {
     return (
       <EnhancedButton
         {...other}
+        className={className}
         disabled={disabled}
         focusRippleColor={buttonRippleColor}
         focusRippleOpacity={0.3}
