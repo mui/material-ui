@@ -36,6 +36,10 @@ class FlatButton extends Component {
      */
     disabled: PropTypes.bool,
     /**
+     * If true, the button will take up the full width of its container.
+     */
+    fullWidth: PropTypes.bool,
+    /**
      * Color of button when mouse hovers over.
      */
     hoverColor: PropTypes.string,
@@ -97,6 +101,7 @@ class FlatButton extends Component {
 
   static defaultProps = {
     disabled: false,
+    fullWidth: false,
     labelStyle: {},
     labelPosition: 'after',
     onKeyboardFocus: () => {},
@@ -148,10 +153,11 @@ class FlatButton extends Component {
 
   render() {
     const {
+      backgroundColor,
       children,
       disabled,
+      fullWidth,
       hoverColor,
-      backgroundColor,
       icon,
       label,
       labelStyle,
@@ -196,7 +202,7 @@ class FlatButton extends Component {
     const mergedRootStyles = Object.assign({}, {
       height: buttonHeight,
       lineHeight: `${buttonHeight}px`,
-      minWidth: buttonMinWidth,
+      minWidth: fullWidth ? '100%' : buttonMinWidth,
       color: defaultTextColor,
       transition: transitions.easeOut(),
       borderRadius: 2,
