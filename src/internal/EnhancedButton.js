@@ -43,6 +43,7 @@ class EnhancedButton extends Component {
       PropTypes.string,
       PropTypes.element,
     ]),
+    disabledColor: PropTypes.string,
     disableFocusRipple: PropTypes.bool,
     disableKeyboardFocus: PropTypes.bool,
     disableTouchRipple: PropTypes.bool,
