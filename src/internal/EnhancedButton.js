@@ -279,6 +279,7 @@ class EnhancedButton extends Component {
     } = this.context.muiTheme;
 
     const mergedStyles = Object.assign({
+      backgroundColor: disabledColor,
       border: 10,
       boxSizing: 'border-box',
       display: 'inline-block',
