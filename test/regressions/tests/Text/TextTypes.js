@@ -34,7 +34,7 @@ export default function TextStypes() {
       <Text type="body2" gutterBottom>
         Body 2
       </Text>
-      <Text type="body1" gutterBottom>
+      <Text type="body1" gutterBottom align="right">
         Body 1
       </Text>
       <Text type="caption" gutterBottom align="center">
