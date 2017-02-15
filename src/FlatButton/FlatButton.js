@@ -32,13 +32,13 @@ class FlatButton extends Component {
      */
     children: PropTypes.node,
     /**
-     * Disables the button if set to true.
-     */
-    disabled: PropTypes.bool,
-    /**
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
+    /**
+     * Disables the button if set to true.
+     */
+    disabled: PropTypes.bool,
     /**
      * Color of button when mouse hovers over.
      */
