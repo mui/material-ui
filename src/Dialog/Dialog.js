@@ -459,10 +459,13 @@ class Dialog extends Component {
     modal: false,
     repositionOnUpdate: true,
   };
-
+  
+  static rmOnTouchTapProps = object.assign({}, props);
+  delete rmOnTouchTapProps.onTouchTap;
+  
   renderLayer = () => {
     return (
-      <DialogInline {...this.props} />
+      <DialogInline {...rmOnTouchTapProps} />
     );
   };
 
