@@ -5,6 +5,7 @@ import Popover from '../Popover/Popover';
 import CheckIcon from '../svg-icons/navigation/check';
 import ListItem from '../List/ListItem';
 import Menu from '../Menu/Menu';
+import propTypes from '../utils/propTypes';
 
 const nestedMenuStyle = {
   position: 'relative',
@@ -59,9 +60,10 @@ class MenuItem extends Component {
 
   static propTypes = {
     /**
-     * Override the default anchorOrigin children used.
+     * Location of the anchor for the popover of nested `MenuItem`
+     * elements.
      */
-    anchorOrigin: PropTypes.object,
+    anchorOrigin: propTypes.origin,
     /**
      * Override the default animation component used.
      */
