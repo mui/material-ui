@@ -28,6 +28,7 @@ class DatePickerDialog extends Component {
     onShow: PropTypes.func,
     open: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
+    showDateDisplay: PropTypes.bool,
     style: PropTypes.object,
   };
 
@@ -118,6 +119,7 @@ class DatePickerDialog extends Component {
       onDismiss, // eslint-disable-line no-unused-vars
       onShow, // eslint-disable-line no-unused-vars
       shouldDisableDate,
+      showDateDisplay,
       style, // eslint-disable-line no-unused-vars
       animation,
       ...other
@@ -131,8 +133,8 @@ class DatePickerDialog extends Component {
       },
       dialogBodyContent: {
         padding: 0,
-        minHeight: mode === 'landscape' ? 330 : 434,
-        minWidth: mode === 'landscape' ? 479 : 310,
+        minHeight: (!showDateDisplay || mode === 'landscape') ? 330 : 434,
+        minWidth: (!showDateDisplay || mode !== 'landscape') ? 310 : 479,
       },
     };
 
@@ -173,6 +175,7 @@ class DatePickerDialog extends Component {
             onTouchTapOk={this.handleTouchTapOk}
             okLabel={okLabel}
             shouldDisableDate={shouldDisableDate}
+            showDateDisplay={showDateDisplay}
           />
         </Container>
       </div>

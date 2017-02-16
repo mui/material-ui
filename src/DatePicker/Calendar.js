@@ -42,6 +42,7 @@ class Calendar extends Component {
     onTouchTapOk: PropTypes.func,
     open: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
+    showDateDisplay: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -239,6 +240,7 @@ class Calendar extends Component {
 
   render() {
     const {prepareStyles} = this.context.muiTheme;
+    const {showDateDisplay} = this.props;
     const toolbarInteractions = this.getToolbarInteractions();
     const isLandscape = this.props.mode === 'landscape';
     const {calendarTextColor} = this.context.muiTheme.datePicker;
@@ -247,7 +249,7 @@ class Calendar extends Component {
       root: {
         color: calendarTextColor,
         userSelect: 'none',
-        width: isLandscape ? 479 : 310,
+        width: (showDateDisplay && isLandscape) ? 479 : 310,
       },
       calendar: {
         display: 'flex',
@@ -310,16 +312,18 @@ class Calendar extends Component {
           target="window"
           onKeyDown={this.handleWindowKeyDown}
         />
-        <DateDisplay
-          DateTimeFormat={DateTimeFormat}
-          disableYearSelection={this.props.disableYearSelection}
-          onTouchTapMonthDay={this.handleTouchTapDateDisplayMonthDay}
-          onTouchTapYear={this.handleTouchTapDateDisplayYear}
-          locale={locale}
-          monthDaySelected={this.state.displayMonthDay}
-          mode={this.props.mode}
-          selectedDate={this.state.selectedDate}
-        />
+        {showDateDisplay &&
+          <DateDisplay
+            DateTimeFormat={DateTimeFormat}
+            disableYearSelection={this.props.disableYearSelection}
+            onTouchTapMonthDay={this.handleTouchTapDateDisplayMonthDay}
+            onTouchTapYear={this.handleTouchTapDateDisplayYear}
+            locale={locale}
+            monthDaySelected={this.state.displayMonthDay}
+            mode={this.props.mode}
+            selectedDate={this.state.selectedDate}
+          />
+        }
         <div style={prepareStyles(styles.calendar)}>
           {this.state.displayMonthDay &&
             <div style={prepareStyles(styles.calendarContainer)}>
