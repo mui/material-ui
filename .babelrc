@@ -1,8 +1,7 @@
 {
-  "presets": ["es2015", "stage-1", "react"],
+  "presets": ["./tools/material-ui-babel-preset-es2015", "stage-1", "react"],
   "plugins": [
-    "./scripts/babel-transform-object-assign-require",
-    "transform-dev-warning"
+    "./scripts/babel-transform-object-assign-require"
   ],
   "env": {
     "coverage": {
@@ -15,7 +14,12 @@
     },
     "production": {
       "plugins": [
-        ["react-remove-properties", {"properties": ["data-mui-test"]}]
+        "transform-react-constant-elements",
+        "transform-react-inline-elements",
+        "transform-dev-warning",
+        "transform-runtime",
+        ["react-remove-properties", {"properties": ["data-mui-test"]}],
+        ["transform-react-remove-prop-types", {"mode": "wrap"}]
       ]
     }
   }

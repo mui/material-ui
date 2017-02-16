@@ -2,7 +2,6 @@
 build
 coverage
 /lib
-/dist
 /test/regressions/screenshots/output
 /test/selenium-output
 .eslintcache

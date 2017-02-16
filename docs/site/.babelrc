@@ -11,10 +11,12 @@
     },
     "production": {
       "plugins": [
-        "../../scripts/babel-transform-object-assign-require",
-        "transform-react-remove-prop-types",
         "transform-react-constant-elements",
-        "transform-react-inline-elements"
+        "transform-react-inline-elements",
+        "transform-dev-warning",
+        "transform-runtime",
+        ["react-remove-properties", {"properties": ["data-mui-test"]}],
+        ["transform-react-remove-prop-types", {"mode": "remove"}]
       ]
     }
   }
