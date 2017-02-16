@@ -129,10 +129,12 @@ export default class LinearProgress extends Component {
     mode: PropTypes.oneOf(['determinate', 'indeterminate', 'buffer', 'query']),
     /**
      * The value of progress, only works in determinate and buffer mode.
+     * Value between 0 and 100.
      */
     value: PropTypes.number,
     /**
      * The value of buffer, only works in buffer mode.
+     * Value between 0 and 100.
      */
     valueBuffer: PropTypes.number,
   };
@@ -173,16 +175,18 @@ export default class LinearProgress extends Component {
       [classes.bufferBar2]: mode === 'buffer',
     });
     const styles = { bar1: {}, bar2: {} };
+    const rootProps = {};
 
     if (mode === 'determinate') {
       styles.bar1.width = `${value}%`;
+      rootProps['aria-valuenow'] = Math.round(value);
     } else if (mode === 'buffer') {
       styles.bar1.width = `${valueBuffer}%`;
       styles.bar2.width = `${value}%`;
     }
 
     return (
-      <div className={rootClasses} {...other}>
+      <div className={rootClasses} {...rootProps} {...other}>
         <div className={dashedClasses} />
         <div className={bar1Classes} style={styles.bar1} />
         <div className={bar2Classes} style={styles.bar2} />
