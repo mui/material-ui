@@ -120,7 +120,7 @@
     "rimraf": "^2.5.2",
     "sinon": "^1.17.7",
     "url-loader": "^0.5.7",
-    "vrtest": "0.1.1-beta.2",
+    "vrtest": "0.1.1-beta.3",
     "webfontloader": "^1.6.27",
     "webpack": "^1.14.0"
   },
