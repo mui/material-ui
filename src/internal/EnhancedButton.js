@@ -47,6 +47,7 @@ class EnhancedButton extends Component {
     disableKeyboardFocus: PropTypes.bool,
     disableTouchRipple: PropTypes.bool,
     disabled: PropTypes.bool,
+    disabledColor: PropTypes.string,
     focusRippleColor: PropTypes.string,
     focusRippleOpacity: PropTypes.number,
     href: PropTypes.string,
@@ -250,6 +251,7 @@ class EnhancedButton extends Component {
       centerRipple, // eslint-disable-line no-unused-vars
       children,
       containerElement,
+      disabledColor,
       disabled,
       disableFocusRipple, // eslint-disable-line no-unused-vars
       disableKeyboardFocus, // eslint-disable-line no-unused-vars
@@ -279,6 +281,7 @@ class EnhancedButton extends Component {
     } = this.context.muiTheme;
 
     const mergedStyles = Object.assign({
+      backgroundColor: disabledColor,
       border: 10,
       boxSizing: 'border-box',
       display: 'inline-block',
