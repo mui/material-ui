@@ -27,7 +27,8 @@ describe('<Dialog />', () => {
     const wrapper = shallow(
       <Dialog
         open
-        transitionDuration={100}
+        enterTransitionDuration={100}
+        leaveTransitionDuration={100}
         onBackdropClick={onBackdropClick}
         onEscapeKeyUp={onEscapeKeyUp}
         onRequestClose={onRequestClose}

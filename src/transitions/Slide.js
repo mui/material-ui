@@ -24,16 +24,22 @@ function getTranslateValue(props, element) {
 
 export default class Slide extends Component {
   static propTypes = {
-    /**
-     * Can be used, for instance, to render a letter inside the avatar.
-     */
     children: PropTypes.node,
     /**
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
+    /**
+     * Entering direction of the children element.
+     */
     direction: PropTypes.oneOf(['left', 'right', 'up', 'down']),
+    /**
+     * Duration of the animation when the element is entering the screen.
+     */
     enterTransitionDuration: PropTypes.number,
+    /**
+     * Duration of the animation when the element is leaving the screen.
+     */
     leaveTransitionDuration: PropTypes.number,
     /**
      * Set to slide in by a fixed number of pixels or %.
