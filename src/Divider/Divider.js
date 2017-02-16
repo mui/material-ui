@@ -11,7 +11,7 @@ export const styleSheet = createStyleSheet('MuiDivider', (theme) => {
   return {
     root: {
       height: 1,
-      margin: 0, // Reset browser default style.
+      // margin: 0, // Reset browser default style.
       border: 'none',
     },
     default: {
