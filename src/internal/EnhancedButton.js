@@ -114,7 +114,7 @@ class EnhancedButton extends Component {
 
   componentWillUnmount() {
     if (this.focusTimeout) {
-        clearTimeout(this.focusTimeout);
+      clearTimeout(this.focusTimeout);
     }
   }
 
