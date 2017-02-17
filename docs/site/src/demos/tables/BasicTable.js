@@ -16,6 +16,7 @@ const styleSheet = createStyleSheet('BasicTable', () => ({
   paper: {
     width: '100%',
     marginTop: 30,
+    overflowX: 'auto',
   },
 }));
 
@@ -37,7 +38,7 @@ export default function BasicTable(props, context) {
   const classes = context.styleManager.render(styleSheet);
 
   return (
-    <Paper elevation={2} className={classes.paper}>
+    <Paper className={classes.paper}>
       <Table>
         <TableHead>
           <TableRow>

@@ -23,6 +23,7 @@ const styleSheet = createStyleSheet('EnhancedTable', () => ({
   paper: {
     width: '100%',
     marginTop: 30,
+    overflowX: 'auto',
   },
 }));
 
@@ -215,7 +216,7 @@ export default class EnhancedTable extends Component {
     const { data, order, orderBy, selected } = this.state;
 
     return (
-      <Paper elevation={2} className={classes.paper}>
+      <Paper className={classes.paper}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <Table>
           <EnhancedTableHead
