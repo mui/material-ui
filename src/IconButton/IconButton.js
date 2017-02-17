@@ -87,6 +87,12 @@ class IconButton extends Component {
     /** @ignore */
     onTouchStart: PropTypes.func,
     /**
+     * Callback function fired when the button is touch-tapped.
+     *
+     * @param {object} event TouchTap event targeting the button.
+     */
+    onTouchTap: PropTypes.func,
+    /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
