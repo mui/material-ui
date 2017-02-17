@@ -79,12 +79,12 @@ class FlatButton extends Component {
      * Callback function fired when the button is touch-tapped.
      *
      * @param {object} event TouchTap event targeting the button.
-    */
+     */
     onTouchTap: PropTypes.func,
     /**
      * If true, colors button according to
      * primaryTextColor from the Theme.
-    */
+     */
     primary: PropTypes.bool,
     /**
      * Color for the ripple after button is clicked.
