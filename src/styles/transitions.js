@@ -19,7 +19,7 @@ const easingInternal = {
 
 // Follow https://material.io/guidelines/motion/duration-easing.html#duration-easing-common-durations
 // to learn when use what timing
-const durationIntenal = {
+const durationInternal = {
   shortest: 150,
   shorter: 200,
   short: 250,
@@ -44,10 +44,10 @@ const durationIntenal = {
 export default {
   easing: easingInternal,
 
-  duration: durationIntenal,
+  duration: durationInternal,
 
   create(props = ['all'], {
-    duration = durationIntenal.standard,
+    duration = durationInternal.standard,
     easing = easingInternal.easeInOut,
     delay = 0,
     ...other
@@ -87,4 +87,4 @@ export const easing = easingInternal;
 /**
  * @deprecated Will be removed, please access via theme.transitions.duration
  */
-export const duration = durationIntenal;
+export const duration = durationInternal;
