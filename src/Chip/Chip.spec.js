@@ -118,13 +118,28 @@ describe('<Chip />', () => {
   });
 
   describe('callbacks', () => {
-    it('triggers onRequestDelete when the delete icon is clicked', () => {
-      const handleRequestDelete = spy();
-      const wrapper = themedShallow(
-        <Chip onRequestDelete={handleRequestDelete}>Label</Chip>
-      );
-      wrapper.childAt(1).simulate('touchTap', {stopPropagation() {}});
-      assert.ok(handleRequestDelete.calledOnce);
+    describe('delete', () => {
+      let handleRequestDelete;
+      let wrapper;
+
+      beforeEach(() => {
+        handleRequestDelete = spy();
+        wrapper = themedShallow(
+          <Chip onRequestDelete={handleRequestDelete}>Label</Chip>
+        );
+      });
+
+      it('resets the state after delete', () => {
+        wrapper.setState({focused: true, hovered: true, deleteHovered: true});
+        wrapper.childAt(1).simulate('touchTap', {stopPropagation() {}});
+        assert.strictEqual(wrapper.state('deleteHovered'), false);
+        assert.strictEqual(wrapper.state('focused'), false);
+        assert.strictEqual(wrapper.state('hovered'), false);
+      });
+      it('triggers onRequestDelete when the delete icon is clicked', () => {
+        wrapper.childAt(1).simulate('touchTap', {stopPropagation() {}});
+        assert.ok(handleRequestDelete.calledOnce);
+      });
     });
 
     it('bubbles callbacks used internally', () => {

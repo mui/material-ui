@@ -129,6 +129,10 @@ class Chip extends Component {
     this.props.onBlur(event);
   };
 
+  handleDelete = (event) => {
+    this.setState({clicked: false, deleteHovered: false, focused: false, hovered: false});
+    this.props.onRequestDelete(event);
+  }
   handleFocus = (event) => {
     if (this.props.onTouchTap || this.props.onRequestDelete) {
       this.setState({focused: true});
@@ -151,7 +155,7 @@ class Chip extends Component {
     if (keycode(event) === 'backspace') {
       event.preventDefault();
       if (this.props.onRequestDelete) {
-        this.props.onRequestDelete(event);
+        this.handleDelete(event);
       }
     }
     this.props.onKeyDown(event);
@@ -199,7 +203,7 @@ class Chip extends Component {
   handleTouchTapDeleteIcon = (event) => {
     // Stop the event from bubbling up to the `Chip`
     event.stopPropagation();
-    this.props.onRequestDelete(event);
+    this.handleDelete(event);
   };
 
   handleTouchEnd = (event) => {
