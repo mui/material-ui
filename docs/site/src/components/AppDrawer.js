@@ -101,6 +101,7 @@ export default class AppDrawer extends Component {
         open={this.props.open}
         onRequestClose={this.props.onRequestClose}
         docked={this.props.docked}
+        transitionAppear={!this.props.docked}
       >
         <div className={classes.nav}>
           <Toolbar>

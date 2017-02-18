@@ -21,7 +21,7 @@ import DeleteIcon from 'material-ui/svg-icons/delete';
 import ReportIcon from 'material-ui/svg-icons/report';
 
 
-const styleSheet = createStyleSheet('UndockedDrawer', () => ({
+const styleSheet = createStyleSheet('DockedDrawer', () => ({
   list: {
     width: 250,
     flex: 'initial',
@@ -31,7 +31,7 @@ const styleSheet = createStyleSheet('UndockedDrawer', () => ({
   },
 }));
 
-export default class UndockedDrawer extends Component {
+export default class DockedDrawer extends Component {
   state = {
     open: false,
   };
@@ -47,6 +47,7 @@ export default class UndockedDrawer extends Component {
         <Drawer
           open={this.state.open}
           onRequestClose={this.handleClose}
+          docked
         >
           <List className={classes.list} padding={false} onClick={this.handleClose}>
             <ListItem button>
@@ -102,6 +103,6 @@ export default class UndockedDrawer extends Component {
   }
 }
 
-UndockedDrawer.contextTypes = {
+DockedDrawer.contextTypes = {
   styleManager: customPropTypes.muiRequired,
 };
