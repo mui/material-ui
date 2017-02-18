@@ -153,7 +153,6 @@ class FlatButton extends Component {
   render() {
     const {
       children,
-      className,
       disabled,
       hoverColor,
       backgroundColor,
@@ -263,7 +262,6 @@ class FlatButton extends Component {
     return (
       <EnhancedButton
         {...other}
-        className={className}
         disabled={disabled}
         focusRippleColor={buttonRippleColor}
         focusRippleOpacity={0.3}
