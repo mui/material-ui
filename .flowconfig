@@ -5,6 +5,7 @@
 .*/node_modules/react-swipeable-views/src/.*
 ./scripts/*
 ./test/e2e/*
+./docs/site/build/*
 
 [libs]
 flow/interfaces
