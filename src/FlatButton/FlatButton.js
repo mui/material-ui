@@ -32,6 +32,10 @@ class FlatButton extends Component {
      */
     children: PropTypes.node,
     /**
+     * The CSS class name of the root element.
+     */
+    className: PropTypes.string,
+    /**
      * Disables the button if set to true.
      */
     disabled: PropTypes.bool,
