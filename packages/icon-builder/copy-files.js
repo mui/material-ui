@@ -47,7 +47,7 @@ function createPackageFile() {
     } = packageData;
 
     const minimalPackage = {
-      name: 'mui-icons',
+      name: 'material-ui-icons',
       author,
       version,
       description,
