@@ -169,17 +169,17 @@ class RadioButton extends Component {
       disabled && styles.fillWhenDisabled
     );
 
-    const uncheckedElement = React.isValidElement(uncheckedIcon) ?
-      React.cloneElement(uncheckedIcon, {
-        style: Object.assign(uncheckedStyles, uncheckedIcon.props.style),
-      }) :
-        <RadioButtonOff style={uncheckedStyles} />;
+    const uncheckedElement = React.isValidElement(uncheckedIcon)
+      ? React.cloneElement(uncheckedIcon, {
+          style: Object.assign(uncheckedStyles, uncheckedIcon.props.style),
+        })
+      : <RadioButtonOff style={uncheckedStyles} />;
 
-    const checkedElement = React.isValidElement(checkedIcon) ?
-      React.cloneElement(checkedIcon, {
-        style: Object.assign(checkedStyles, checkedIcon.props.style),
-      }) :
-        <RadioButtonOn style={checkedStyles} />;
+    const checkedElement = React.isValidElement(checkedIcon)
+      ? React.cloneElement(checkedIcon, {
+          style: Object.assign(checkedStyles, checkedIcon.props.style),
+        })
+      : <RadioButtonOn style={checkedStyles} />;
 
     const mergedIconStyle = Object.assign(styles.icon, iconStyle);
     const mergedLabelStyle = Object.assign(styles.label, labelStyle);
