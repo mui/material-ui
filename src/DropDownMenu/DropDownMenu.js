@@ -148,12 +148,21 @@ class DropDownMenu extends Component {
      *
      * @param {object} event TouchTap event targeting the menu item that was clicked.
      * @param {number} key The index of the clicked menu item in the `children` collection.
-     * @param {any} payload If `multiple` is true, the menu's `value`
+     * @param {any} value If `multiple` is true, the menu's `value`
      * array with either the menu item's `value` added (if
      * it wasn't already selected) or omitted (if it was already selected).
      * Otherwise, the `value` of the menu item.
      */
     onChange: PropTypes.func,
+    /**
+     * Callback function fired when a menu item is clicked, other than the one currently selected.
+     *
+     * @param {any} value If `multiple` is true, the menu's `value`
+     * array with either the menu item's `value` added (if
+     * it wasn't already selected) or omitted (if it was already selected).
+     * Otherwise, the `value` of the menu item.
+     */
+    onChangeRenderer: PropTypes.func,
     /**
      * Callback function fired when the menu is closed.
      */
@@ -340,6 +349,7 @@ class DropDownMenu extends Component {
       listStyle,
       maxHeight,
       menuStyle: menuStyleProp,
+      onChangeRenderer,
       onClose, // eslint-disable-line no-unused-vars
       openImmediately, // eslint-disable-line no-unused-vars
       menuItemStyle,
@@ -362,18 +372,26 @@ class DropDownMenu extends Component {
     if (!multiple) {
       React.Children.forEach(children, (child) => {
         if (child && value === child.props.value) {
-          // This will need to be improved (in case primaryText is a node)
-          displayValue = child.props.label || child.props.primaryText;
+          if (onChangeRenderer) {
+            displayValue = onChangeRenderer(value);
+          } else {
+            // This will need to be improved (in case primaryText is a node)
+            displayValue = child.props.label || child.props.primaryText;
+          }
         }
       });
     } else {
       displayValue = [];
       React.Children.forEach(children, (child) => {
-        if (child && value.indexOf(child.props.value) !== -1) {
+        if (child && value.includes(child.props.value)) {
           displayValue.push(child.props.label || child.props.primaryText);
         }
       });
-      displayValue = displayValue.join(', ');
+      if (onChangeRenderer) {
+        displayValue = onChangeRenderer(displayValue);
+      } else {
+        displayValue = displayValue.join(', ');
+      }
     }
 
     let menuStyle;

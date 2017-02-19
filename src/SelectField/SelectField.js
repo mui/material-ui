@@ -119,6 +119,15 @@ class SelectField extends Component {
      * Otherwise, the `value` of the menu item.
      */
     onChange: PropTypes.func,
+    /**
+     * Callback function fired when a menu item is clicked, other than the one currently selected.
+     *
+     * @param {any} value If `multiple` is true, the menu's `value`
+     * array with either the menu item's `value` added (if
+     * it wasn't already selected) or omitted (if it was already selected).
+     * Otherwise, the `value` of the menu item.
+     */
+    onChangeRenderer: PropTypes.func,
     /** @ignore */
     onFocus: PropTypes.func,
     /**
@@ -191,6 +200,7 @@ class SelectField extends Component {
       onFocus,
       onBlur,
       onChange,
+      onChangeRenderer,
       value,
       ...other
     } = this.props;
@@ -229,6 +239,7 @@ class SelectField extends Component {
           autoWidth={autoWidth}
           value={value}
           onChange={onChange}
+          onChangeRenderer={onChangeRenderer}
           maxHeight={maxHeight}
           multiple={multiple}
         >
