@@ -1,5 +1,5 @@
 // @flow weak
-/* eslint-ignore comma-dangle */
+/* eslint-disable comma-dangle */
 
 const path = require('path');
 const webpack = require('webpack');

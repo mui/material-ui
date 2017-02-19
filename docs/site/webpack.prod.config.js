@@ -55,7 +55,6 @@ module.exports = {
       context: '.',
       manifest: dllManifest,
     }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
