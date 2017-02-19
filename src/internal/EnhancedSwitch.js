@@ -98,6 +98,7 @@ class EnhancedSwitch extends Component {
     switchElement: PropTypes.element.isRequired,
     switched: PropTypes.bool.isRequired,
     thumbStyle: PropTypes.object,
+    toggled: PropTypes.bool.isRequired,
     trackStyle: PropTypes.object,
     value: PropTypes.any,
   };
