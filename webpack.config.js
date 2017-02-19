@@ -1,16 +1,32 @@
 // @flow weak
+/* eslint-disable comma-dangle */
 
 const path = require('path');
 const webpack = require('webpack');
 
 const libraryName = 'material-ui';
-const baseConfig = {
+
+const paths = {
+  src: path.resolve(__dirname, 'src'),
+  index: path.join(__dirname, 'src/index.js'),
+  dist: path.join(__dirname, 'build/dist'),
+};
+
+const env = {
+  env: process.env.NODE_ENV || 'development', // eslint-disable-line no-process-env
+  isProd() { return this.env === 'production'; },
+  isDev() { return this.env === 'development'; },
+  isTest() { return this.env === 'test'; },
+};
+
+const config = {
   entry: {
-    'material-ui': path.join(__dirname, 'src/index.js'),
+    'material-ui': paths.index,
   },
-  devtool: false,
+  devtool: 'source-map',
   output: {
-    path: path.join(__dirname, 'build/dist'),
+    path: paths.dist,
+    filename: `${env.isProd() ? `${libraryName}.min` : libraryName}js`,
     library: libraryName,
     libraryTarget: 'umd',
     umdNamedDefine: true,
@@ -36,38 +52,25 @@ const baseConfig = {
     },
   ],
   module: {
-    rules: [
+    loaders: [
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/,
+        exclude: /(node_modules)/,
         query: {
           cacheDirectory: true,
         },
       },
     ],
   },
-  performance: {
-    maxAssetSize: 4e6,
-    maxEntrypointSize: 6e6,
-  },
   resolve: {
     modules: [
-      path.resolve('./src'),
+      paths.src,
       'node_modules',
     ],
-    extensions: ['.js'],
   },
-};
-
-let config;
-
-if (process.env.NODE_ENV === 'production') {
-  config = Object.assign({}, baseConfig, {
-    output: Object.assign({}, baseConfig.output, {
-      filename: `${libraryName}.min.js`,
-    }),
-    plugins: [
+  plugins: [].concat(
+    env.isProd() ? [
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('production'),
       }),
@@ -77,14 +80,8 @@ if (process.env.NODE_ENV === 'production') {
           screw_ie8: true,
         },
       }),
-    ],
-  });
-} else {
-  config = Object.assign({}, baseConfig, {
-    output: Object.assign({}, baseConfig.output, {
-      filename: `${libraryName}.js`,
-    }),
-  });
-}
+    ] : []
+  ),
+};
 
 module.exports = config;

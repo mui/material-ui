@@ -2,6 +2,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const dllManifest = require('./build/dll.manifest.json');
 
 module.exports = {
   context: path.resolve(__dirname),
@@ -16,30 +17,30 @@ module.exports = {
     publicPath: 'build/',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
           cacheDirectory: true,
         },
       },
       {
         test: /\.svg$/,
-        loader: 'file',
+        loader: 'file-loader',
       },
       {
         test: /\.(jpg|gif|png)$/,
-        loader: 'file!img',
+        loader: 'file-loader!img-loader',
       },
       {
         test: /\.md$/,
-        loader: 'raw',
+        loader: 'raw-loader',
       },
       {
         test: /\.css$/,
-        loader: 'style!css',
+        loader: 'style-loader!css-loader',
       },
     ],
   },
@@ -50,8 +51,10 @@ module.exports = {
     },
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin(),
+    new webpack.DllReferencePlugin({
+      context: '.',
+      manifest: dllManifest,
+    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
