@@ -191,9 +191,11 @@ class TextField extends Component {
      * @param {string} newValue The new value of the text field.
      */
     onChange: PropTypes.func,
+    /** @ignore */
     onEnterKeyDown: PropTypes.func,
     /** @ignore */
     onFocus: PropTypes.func,
+    /** @ignore */
     onKeyDown: PropTypes.func,
     /**
      * Number of rows to display when multiLine option is set to true.
