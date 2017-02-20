@@ -31,6 +31,7 @@ class Calendar extends Component {
     cancelLabel: PropTypes.node,
     disableYearSelection: PropTypes.bool,
     firstDayOfWeek: PropTypes.number,
+    hideCalendarDate: PropTypes.bool,
     initialDate: PropTypes.object,
     locale: PropTypes.string.isRequired,
     maxDate: PropTypes.object,
@@ -42,7 +43,6 @@ class Calendar extends Component {
     onTouchTapOk: PropTypes.func,
     open: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
-    showDateDisplay: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -240,7 +240,7 @@ class Calendar extends Component {
 
   render() {
     const {prepareStyles} = this.context.muiTheme;
-    const {showDateDisplay} = this.props;
+    const {hideCalendarDate} = this.props;
     const toolbarInteractions = this.getToolbarInteractions();
     const isLandscape = this.props.mode === 'landscape';
     const {calendarTextColor} = this.context.muiTheme.datePicker;
@@ -249,7 +249,7 @@ class Calendar extends Component {
       root: {
         color: calendarTextColor,
         userSelect: 'none',
-        width: (showDateDisplay && isLandscape) ? 479 : 310,
+        width: (!hideCalendarDate && isLandscape) ? 479 : 310,
       },
       calendar: {
         display: 'flex',
@@ -312,7 +312,7 @@ class Calendar extends Component {
           target="window"
           onKeyDown={this.handleWindowKeyDown}
         />
-        {showDateDisplay &&
+        {!hideCalendarDate &&
           <DateDisplay
             DateTimeFormat={DateTimeFormat}
             disableYearSelection={this.props.disableYearSelection}

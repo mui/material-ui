@@ -66,6 +66,10 @@ class DatePicker extends Component {
      */
     formatDate: PropTypes.func,
     /**
+     * Hide date display
+     */
+    hideCalendarDate: PropTypes.bool,
+    /**
      * Locale used for formatting the `DatePicker` date strings. Other than for 'en-US', you
      * must provide a `DateTimeFormat` that supports the chosen `locale`.
      */
@@ -122,10 +126,6 @@ class DatePicker extends Component {
      */
     shouldDisableDate: PropTypes.func,
     /**
-     * Show date display
-     */
-    showDateDisplay: PropTypes.bool,
-    /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
@@ -145,7 +145,7 @@ class DatePicker extends Component {
     disabled: false,
     disableYearSelection: false,
     firstDayOfWeek: 1,
-    showDateDisplay: true,
+    hideCalendarDate: false,
     style: {},
   };
 
@@ -280,7 +280,7 @@ class DatePicker extends Component {
       onShow,
       onTouchTap, // eslint-disable-line no-unused-vars
       shouldDisableDate,
-      showDateDisplay,
+      hideCalendarDate,
       style,
       textFieldStyle,
       ...other
@@ -318,7 +318,7 @@ class DatePicker extends Component {
           onDismiss={onDismiss}
           ref="dialogWindow"
           shouldDisableDate={shouldDisableDate}
-          showDateDisplay={showDateDisplay}
+          hideCalendarDate={hideCalendarDate}
         />
       </div>
     );
