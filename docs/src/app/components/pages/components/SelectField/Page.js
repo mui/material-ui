@@ -18,6 +18,8 @@ import SelectFieldExampleError from './ExampleError';
 import selectFieldExampleErrorCode from '!raw!./ExampleError';
 import SelectFieldExampleNullable from './ExampleNullable';
 import SelectFieldExampleNullableCode from '!raw!./ExampleNullable';
+import SelectFieldExampleMultiSelect from './ExampleMultiSelect';
+import selectFieldExampleMultiSelectCode from '!raw!./ExampleMultiSelect';
 import selectFieldCode from '!raw!material-ui/SelectField/SelectField';
 
 const SelectFieldPage = () => (
@@ -60,6 +62,14 @@ const SelectFieldPage = () => (
     >
       <SelectFieldExampleError />
     </CodeExample>
+
+    <CodeExample
+      title="MultiSelect example"
+      code={selectFieldExampleMultiSelectCode}
+    >
+      <SelectFieldExampleMultiSelect />
+    </CodeExample>
+
     <PropTypeDescription code={selectFieldCode} />
   </div>
 );
