@@ -119,6 +119,12 @@ class SelectField extends Component {
      * Otherwise, the `value` of the menu item.
      */
     onChange: PropTypes.func,
+    /** @ignore */
+    onFocus: PropTypes.func,
+    /**
+     * Override the inline-styles of selected menu items.
+     */
+    selectedMenuItemStyle: PropTypes.object,
     /**
      * Callback function fired when a menu item is clicked, other than the one currently selected.
      *
@@ -127,13 +133,7 @@ class SelectField extends Component {
      * it wasn't already selected) or omitted (if it was already selected).
      * Otherwise, the `value` of the menu item.
      */
-    onChangeRenderer: PropTypes.func,
-    /** @ignore */
-    onFocus: PropTypes.func,
-    /**
-     * Override the inline-styles of selected menu items.
-     */
-    selectedMenuItemStyle: PropTypes.object,
+    selectionRenderer: PropTypes.func,
     /**
      * Override the inline-styles of the root element.
      */
@@ -200,7 +200,7 @@ class SelectField extends Component {
       onFocus,
       onBlur,
       onChange,
-      onChangeRenderer,
+      selectionRenderer,
       value,
       ...other
     } = this.props;
@@ -239,9 +239,9 @@ class SelectField extends Component {
           autoWidth={autoWidth}
           value={value}
           onChange={onChange}
-          onChangeRenderer={onChangeRenderer}
           maxHeight={maxHeight}
           multiple={multiple}
+          selectionRenderer={selectionRenderer}
         >
           {children}
         </DropDownMenu>

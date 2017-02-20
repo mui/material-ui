@@ -155,15 +155,6 @@ class DropDownMenu extends Component {
      */
     onChange: PropTypes.func,
     /**
-     * Callback function fired when a menu item is clicked, other than the one currently selected.
-     *
-     * @param {any} value If `multiple` is true, the menu's `value`
-     * array with either the menu item's `value` added (if
-     * it wasn't already selected) or omitted (if it was already selected).
-     * Otherwise, the `value` of the menu item.
-     */
-    onChangeRenderer: PropTypes.func,
-    /**
      * Callback function fired when the menu is closed.
      */
     onClose: PropTypes.func,
@@ -175,6 +166,15 @@ class DropDownMenu extends Component {
      * Override the inline-styles of selected menu items.
      */
     selectedMenuItemStyle: PropTypes.object,
+    /**
+     * Callback function fired when a menu item is clicked, other than the one currently selected.
+     *
+     * @param {any} value If `multiple` is true, the menu's `value`
+     * array with either the menu item's `value` added (if
+     * it wasn't already selected) or omitted (if it was already selected).
+     * Otherwise, the `value` of the menu item.
+     */
+    selectionRenderer: PropTypes.func,
     /**
      * Override the inline-styles of the root element.
      */
@@ -349,7 +349,7 @@ class DropDownMenu extends Component {
       listStyle,
       maxHeight,
       menuStyle: menuStyleProp,
-      onChangeRenderer,
+      selectionRenderer,
       onClose, // eslint-disable-line no-unused-vars
       openImmediately, // eslint-disable-line no-unused-vars
       menuItemStyle,
@@ -372,8 +372,8 @@ class DropDownMenu extends Component {
     if (!multiple) {
       React.Children.forEach(children, (child) => {
         if (child && value === child.props.value) {
-          if (onChangeRenderer) {
-            displayValue = onChangeRenderer(value);
+          if (selectionRenderer) {
+            displayValue = selectionRenderer(value);
           } else {
             // This will need to be improved (in case primaryText is a node)
             displayValue = child.props.label || child.props.primaryText;
@@ -387,8 +387,8 @@ class DropDownMenu extends Component {
           displayValue.push(child.props.label || child.props.primaryText);
         }
       });
-      if (onChangeRenderer) {
-        displayValue = onChangeRenderer(displayValue);
+      if (selectionRenderer) {
+        displayValue = selectionRenderer(displayValue);
       } else {
         displayValue = displayValue.join(', ');
       }
