@@ -40,6 +40,11 @@ class Tabs extends Component {
      * Override the inline-styles of the content's container.
      */
     contentContainerStyle: PropTypes.object,
+
+    /**
+     * The css class name of the navigation's container.
+     */
+    navigationContainerClassName: PropTypes.string,
     /**
      * Specify initial visible tab index.
      * If `initialSelectedIndex` is set but larger than the total amount of specified tabs,
@@ -177,6 +182,7 @@ class Tabs extends Component {
     const {
       contentContainerClassName,
       contentContainerStyle,
+      navigationContainerClassName,
       initialSelectedIndex, // eslint-disable-line no-unused-vars
       inkBarStyle,
       onChange, // eslint-disable-line no-unused-vars
@@ -233,7 +239,7 @@ class Tabs extends Component {
 
     return (
       <div style={prepareStyles(Object.assign({}, style))} {...other}>
-        <div style={prepareStyles(Object.assign(styles.tabItemContainer, tabItemContainerStyle))}>
+        <div style={prepareStyles(Object.assign(styles.tabItemContainer, tabItemContainerStyle))} className={"navigation-tabs"+navigationContainerClassName}>
           {tabs}
         </div>
         <div style={{width: inkBarContainerWidth}}>
