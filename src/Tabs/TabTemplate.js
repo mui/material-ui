@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react';
 const styles = {
   width: '100%',
   position: 'relative',
-  textAlign: 'initial',
+  textAlign: 'initial'
 };
 
 const TabTemplate = ({children, selected, style}) => {
@@ -11,7 +11,7 @@ const TabTemplate = ({children, selected, style}) => {
   if (!selected) {
     templateStyle.height = 0;
     templateStyle.overflow = 'hidden';
-    templateStyle.display='none';
+    templateStyle.display = 'none';
   }
 
   return (
