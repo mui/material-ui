@@ -312,7 +312,7 @@ class DropDownMenu extends Component {
     }
   };
 
-  handleOnChange = (event, value) => {
+  handleChange = (event, value) => {
     if (this.props.multiple && this.props.onChange) {
       this.props.onChange(event, undefined, value);
     }
@@ -446,7 +446,7 @@ class DropDownMenu extends Component {
             style={menuStyle}
             listStyle={listStyle}
             onItemTouchTap={this.handleItemTouchTap}
-            onChange={this.handleOnChange}
+            onChange={this.handleChange}
             menuItemStyle={menuItemStyle}
             selectedMenuItemStyle={selectedMenuItemStyle}
           >
