@@ -11,6 +11,7 @@ const TabTemplate = ({children, selected, style}) => {
   if (!selected) {
     templateStyle.height = 0;
     templateStyle.overflow = 'hidden';
+    templateStyle.display='none';
   }
 
   return (
