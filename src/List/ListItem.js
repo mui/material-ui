@@ -154,6 +154,17 @@ class ListItem extends Component {
      */
     children: PropTypes.node,
     /**
+     * The element to use as the container for the ListItem inside of. Either a
+     * string to use a DOM element or a ReactElement. This is useful for wrapping
+     * the ListItem in a custom Link component. If a ReactElement is given,
+     * ensure that it passes all of its given props through to the underlying
+     * DOM element and renders its children prop for proper integration.
+     */
+    containerElement: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.element,
+    ]),
+    /**
      * If true, the element will not be able to be focused by the keyboard.
      */
     disableKeyboardFocus: PropTypes.bool,
@@ -335,10 +346,8 @@ class ListItem extends Component {
 
   // This method is needed by the `MenuItem` component.
   applyFocusState(focusState) {
-    const button = this.refs.enhancedButton;
-
-    if (button) {
-      const buttonEl = ReactDOM.findDOMNode(button);
+    if (this.button) {
+      const buttonEl = ReactDOM.findDOMNode(this.button);
 
       switch (focusState) {
         case 'none':
@@ -348,7 +357,7 @@ class ListItem extends Component {
           buttonEl.focus();
           break;
         case 'keyboard-focused':
-          button.setKeyboardFocus();
+          this.button.setKeyboardFocus();
           buttonEl.focus();
           break;
       }
@@ -522,6 +531,7 @@ class ListItem extends Component {
     const {
       autoGenerateNestedIndicator,
       children,
+      containerElement = 'span',
       disabled,
       disableKeyboardFocus,
       hoverColor, // eslint-disable-line no-unused-vars
@@ -676,8 +686,8 @@ class ListItem extends Component {
           simpleLabel ? this.createLabelElement(styles, contentChildren, other) :
           disabled ? this.createDisabledElement(styles, contentChildren, other) : (
             <EnhancedButton
-              containerElement="span"
               {...other}
+              containerElement={containerElement}
               disableKeyboardFocus={disableKeyboardFocus || this.state.rightIconButtonKeyboardFocused}
               onKeyboardFocus={this.handleKeyboardFocus}
               onMouseLeave={this.handleMouseLeave}
@@ -685,7 +695,7 @@ class ListItem extends Component {
               onTouchStart={this.handleTouchStart}
               onTouchEnd={this.handleTouchEnd}
               onTouchTap={primaryTogglesNestedList ? this.handleNestedListToggle : onTouchTap}
-              ref="enhancedButton"
+              ref={(node) => this.button = node}
               style={Object.assign({}, styles.root, style)}
             >
               <div style={prepareStyles(Object.assign(styles.innerDiv, innerDivStyle))}>
