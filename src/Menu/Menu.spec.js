@@ -162,6 +162,24 @@ describe('<Menu />', () => {
   });
 
   describe('prop: children', () => {
+    it("should render disabled MenuItem with the Menu's menuItemStyle", () => {
+      const wrapper = shallowWithContext(
+        <Menu menuItemStyle={{fontSize: 60}}>
+          <MenuItem style={{fontSize: 10}} primaryText="item 1" />
+          <MenuItem disabled={true} style={{fontSize: 10}} primaryText="item 2" />
+        </Menu>
+      );
+
+      const menuItemsAndDividers = wrapper.children().children().children();
+      assert.strictEqual(menuItemsAndDividers.length, 2, 'there should be two children');
+      assert.strictEqual(menuItemsAndDividers.get(0).type, MenuItem, 'first child should be a MenuItem');
+      assert.strictEqual(menuItemsAndDividers.get(1).type, MenuItem, 'second child should be a MenuItem');
+      assert.strictEqual(menuItemsAndDividers.get(0).props.style.fontSize, 60,
+        'the normal MenuItem should merge styles with menuItemStyle');
+      assert.strictEqual(menuItemsAndDividers.get(1).props.style.fontSize, 60,
+        'the disabled MenuItem should merge styles with menuItemStyle');
+    });
+
     it("should merge the Divider's styles over the Menu's default divider styles", () => {
       const style = {
         color: 'red',
