@@ -40,11 +40,6 @@ class Tabs extends Component {
      * Override the inline-styles of the content's container.
      */
     contentContainerStyle: PropTypes.object,
-
-    /**
-     * The css class name of the label's container.
-     */
-    labelsContainerClassName: PropTypes.string,
     /**
      * Specify initial visible tab index.
      * If `initialSelectedIndex` is set but larger than the total amount of specified tabs,
@@ -56,6 +51,10 @@ class Tabs extends Component {
      * Override the inline-styles of the InkBar.
      */
     inkBarStyle: PropTypes.object,
+    /**
+     * The css class name of the label's container.
+     */
+    labelsContainerClassName: PropTypes.string,
     /**
      * Called when the selected value change.
      */
