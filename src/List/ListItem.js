@@ -154,11 +154,11 @@ class ListItem extends Component {
      */
     children: PropTypes.node,
     /**
-     * The element to use as the container for the ListItem inside of. Either a
-     * string to use a DOM element or a ReactElement. This is useful for wrapping
-     * the ListItem in a custom Link component. If a ReactElement is given,
-     * ensure that it passes all of its given props through to the underlying
-     * DOM element and renders its children prop for proper integration.
+     * The element to use as the container for the ListItem. Either a string to
+     * use a DOM element or a ReactElement. This is useful for wrapping the
+     * ListItem in a custom Link component. If a ReactElement is given, ensure
+     * that it passes all of its given props through to the underlying DOM
+     * element and renders its children prop for proper integration.
      */
     containerElement: PropTypes.oneOfType([
       PropTypes.string,
@@ -292,6 +292,7 @@ class ListItem extends Component {
 
   static defaultProps = {
     autoGenerateNestedIndicator: true,
+    containerElement: 'span',
     disableKeyboardFocus: false,
     disabled: false,
     initiallyOpen: false,
@@ -531,7 +532,7 @@ class ListItem extends Component {
     const {
       autoGenerateNestedIndicator,
       children,
-      containerElement = 'span',
+      containerElement,
       disabled,
       disableKeyboardFocus,
       hoverColor, // eslint-disable-line no-unused-vars
@@ -686,8 +687,8 @@ class ListItem extends Component {
           simpleLabel ? this.createLabelElement(styles, contentChildren, other) :
           disabled ? this.createDisabledElement(styles, contentChildren, other) : (
             <EnhancedButton
-              {...other}
               containerElement={containerElement}
+              {...other}
               disableKeyboardFocus={disableKeyboardFocus || this.state.rightIconButtonKeyboardFocused}
               onKeyboardFocus={this.handleKeyboardFocus}
               onMouseLeave={this.handleMouseLeave}
