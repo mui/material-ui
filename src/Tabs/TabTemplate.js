@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react';
 const styles = {
   width: '100%',
   position: 'relative',
-  textAlign: 'initial'
+  textAlign: 'initial',
 };
 
 const TabTemplate = ({children, selected, style}) => {
