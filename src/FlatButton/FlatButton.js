@@ -32,6 +32,10 @@ class FlatButton extends Component {
      */
     children: PropTypes.node,
     /**
+     * The CSS class name of the root element.
+     */
+    className: PropTypes.string,
+    /**
      * Disables the button if set to true.
      */
     disabled: PropTypes.bool,
@@ -79,6 +83,12 @@ class FlatButton extends Component {
     onMouseLeave: PropTypes.func,
     /** @ignore */
     onTouchStart: PropTypes.func,
+    /**
+     * Callback function fired when the button is touch-tapped.
+     *
+     * @param {object} event TouchTap event targeting the button.
+     */
+    onTouchTap: PropTypes.func,
     /**
      * If true, colors button according to
      * primaryTextColor from the Theme.

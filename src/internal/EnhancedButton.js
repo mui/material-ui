@@ -113,7 +113,9 @@ class EnhancedButton extends Component {
   }
 
   componentWillUnmount() {
-    clearTimeout(this.focusTimeout);
+    if (this.focusTimeout) {
+      clearTimeout(this.focusTimeout);
+    }
   }
 
   isKeyboardFocused() {
