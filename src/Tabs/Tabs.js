@@ -44,7 +44,7 @@ class Tabs extends Component {
     /**
      * The css class name of the navigation's container.
      */
-    navigationContainerClassName: PropTypes.string,
+    labelsContainerClassName: PropTypes.string,
     /**
      * Specify initial visible tab index.
      * If `initialSelectedIndex` is set but larger than the total amount of specified tabs,
@@ -182,7 +182,6 @@ class Tabs extends Component {
     const {
       contentContainerClassName,
       contentContainerStyle,
-      navigationContainerClassName,
       initialSelectedIndex, // eslint-disable-line no-unused-vars
       inkBarStyle,
       onChange, // eslint-disable-line no-unused-vars
@@ -192,6 +191,8 @@ class Tabs extends Component {
       tabTemplateStyle,
       ...other
     } = this.props;
+
+    const labelsContainerClassName = this.props.labelsContainerClassName || '';
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
@@ -239,11 +240,13 @@ class Tabs extends Component {
 
     return (
       <div style={prepareStyles(Object.assign({}, style))} {...other}>
-        <div style={prepareStyles(Object.assign(styles.tabItemContainer, tabItemContainerStyle))} className={"navigation-tabs"+navigationContainerClassName}>
-          {tabs}
-        </div>
-        <div style={{width: inkBarContainerWidth}}>
-          {inkBar}
+        <div className={labelsContainerClassName}>
+          <div style={prepareStyles(Object.assign(styles.tabItemContainer, tabItemContainerStyle))}>
+            {tabs}
+          </div>
+          <div style={{width: inkBarContainerWidth}}>
+            {inkBar}
+          </div>
         </div>
         <div
           style={prepareStyles(Object.assign({}, contentContainerStyle))}
