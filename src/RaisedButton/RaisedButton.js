@@ -134,7 +134,11 @@ class RaisedButton extends Component {
      */
     className: PropTypes.string,
     /**
-     * An element like Link tag or a string can be used inside RaisedButton.
+     * Either a string used as tag name for the tile root element, or a ReactElement.
+     * This is useful when you have, for example, a custom implementation of
+     * a navigation link (that knows about your routes) and you want to use it as the primary tile action.
+     * In case you pass a ReactElement, please ensure that it passes all props,
+     * accepts styles overrides and render it's children.
      */
     containerElement: PropTypes.oneOfType([
       PropTypes.string,
