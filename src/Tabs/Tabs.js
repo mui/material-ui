@@ -42,7 +42,7 @@ class Tabs extends Component {
     contentContainerStyle: PropTypes.object,
 
     /**
-     * The css class name of the navigation's container.
+     * The css class name of the label's container.
      */
     labelsContainerClassName: PropTypes.string,
     /**
