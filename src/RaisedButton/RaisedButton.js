@@ -134,7 +134,7 @@ class RaisedButton extends Component {
      */
     className: PropTypes.string,
     /**
-     * This is the Link tag that can be used inside RaisedButton.
+     * An element like Link tag or a string can be used inside RaisedButton.
      */
     containerElement: PropTypes.oneOfType([
       PropTypes.string,
