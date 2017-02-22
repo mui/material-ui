@@ -2,6 +2,18 @@ import React, {Component, PropTypes} from 'react';
 import {dateTimeFormat, formatIso, isEqualDate} from './dateUtils';
 import DatePickerDialog from './DatePickerDialog';
 import TextField from '../TextField';
+import IconButton from '../IconButton';
+import DateRangeIcon from '../svg-icons/action/date-range';
+
+export function getStyles() {
+  const styles = {
+    iconButtonStyle: {
+      verticalAlign: 'top',
+    },
+  };
+
+  return styles;
+}
 
 class DatePicker extends Component {
   static propTypes = {
@@ -51,6 +63,10 @@ class DatePicker extends Component {
      */
     disabled: PropTypes.bool,
     /**
+     * Text for validation error.
+     */
+    errorText: PropTypes.string,
+    /**
      * Used to change the first day of week. It varies from
      * Saturday to Monday between different locales.
      * The allowed range is 0 (Sunday) to 6 (Saturday).
@@ -65,6 +81,15 @@ class DatePicker extends Component {
      * @returns {any} The formatted date.
      */
     formatDate: PropTypes.func,
+    /**
+     * Override the inline-styles of calendar IconButton (it is showing when `keyboardEnabled` is `true`).
+     */
+    iconButtonStyle: PropTypes.object,
+    /**
+     * Tells the datepicker to handle keyboard input.
+     * Will not work if `locale` or `shouldDisableDate` props are specified or if it is controlled component.
+     */
+    keyboardEnabled: PropTypes.bool,
     /**
      * Locale used for formatting the `DatePicker` date strings. Other than for 'en-US', you
      * must provide a `DateTimeFormat` that supports the chosen `locale`.
@@ -140,7 +165,9 @@ class DatePicker extends Component {
     container: 'dialog',
     disabled: false,
     disableYearSelection: false,
+    errorText: 'Enter a valid date in "YYYY-MM-DD" format',
     firstDayOfWeek: 1,
+    keyboardEnabled: false,
     style: {},
   };
 
@@ -150,11 +177,15 @@ class DatePicker extends Component {
 
   state = {
     date: undefined,
+    hasError: false,
+    textDate: '',
   };
 
   componentWillMount() {
+    const defaultDate = this.isControlled() ? this.getControlledDate() : this.props.defaultDate;
     this.setState({
-      date: this.isControlled() ? this.getControlledDate() : this.props.defaultDate,
+      date: defaultDate,
+      textDate: defaultDate ? this.formatDate(defaultDate) : '',
     });
   }
 
@@ -164,6 +195,7 @@ class DatePicker extends Component {
       if (!isEqualDate(this.state.date, newDate)) {
         this.setState({
           date: newDate,
+          textDate: this.formatDate(newDate),
         });
       }
     }
@@ -200,10 +232,18 @@ class DatePicker extends Component {
     this.openDialog();
   }
 
+  shouldHandleKeyboard() {
+    return this.props.keyboardEnabled && !this.props.disabled &&
+      !this.props.locale && !this.props.shouldDisableDate &&
+      !this.isControlled();
+  }
+
+
   handleAccept = (date) => {
     if (!this.isControlled()) {
       this.setState({
         date: date,
+        textDate: this.formatDate(date),
       });
     }
     if (this.props.onChange) {
@@ -212,10 +252,35 @@ class DatePicker extends Component {
   };
 
   handleFocus = (event) => {
-    event.target.blur();
+    if (!this.shouldHandleKeyboard()) {
+      event.target.blur();
+    }
+
     if (this.props.onFocus) {
       this.props.onFocus(event);
     }
+  };
+
+  handleBlur = () => {
+    if (this.shouldHandleKeyboard()) {
+      if (this.getDate()) {
+        this.setState({
+          textDate: this.formatDate(this.getDate()),
+        });
+      }
+
+      this.setState({
+        hasError: !this.getDate() && !!this.state.textDate.trim(),
+      });
+    }
+  }
+
+  handleTextChange = (event, value) => {
+    const parsedDate = this.parseDate(value);
+    this.setState({
+      date: parsedDate,
+      textDate: value,
+    });
   };
 
   handleTouchTap = (event) => {
@@ -241,7 +306,9 @@ class DatePicker extends Component {
   }
 
   formatDate = (date) => {
-    if (this.props.locale) {
+    if (this.props.formatDate) {
+      return this.props.formatDate(date);
+    } else if (this.props.locale) {
       const DateTimeFormat = this.props.DateTimeFormat || dateTimeFormat;
       return new DateTimeFormat(this.props.locale, {
         day: 'numeric',
@@ -251,6 +318,21 @@ class DatePicker extends Component {
     } else {
       return formatIso(date);
     }
+  };
+
+  parseDate = (textDate) => {
+    // regex to parse date is based on ISO 8601 (YYYY-MM-DD)
+    const reg = /^(\d{4})-(\d{2})-(\d{2})$/;
+    const match = reg.exec(textDate);
+    if (!match) {
+      return;
+    }
+
+    const year = match[1];
+    const month = match[2] === 0 ? 11 : (match[2] - 1);
+    const day = match[3];
+
+    return new Date(year, month, day);
   };
 
   render() {
@@ -264,7 +346,8 @@ class DatePicker extends Component {
       dialogContainerStyle,
       disableYearSelection,
       firstDayOfWeek,
-      formatDate: formatDateProp,
+      formatDate, // eslint-disable-line no-unused-vars
+      iconButtonStyle,
       locale,
       maxDate,
       minDate,
@@ -277,22 +360,36 @@ class DatePicker extends Component {
       shouldDisableDate,
       style,
       textFieldStyle,
+      keyboardEnabled, // eslint-disable-line no-unused-vars
+      errorText,
       ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
-    const formatDate = formatDateProp || this.formatDate;
+    const styles = getStyles(this.props, this.context);
 
     return (
       <div className={className} style={prepareStyles(Object.assign({}, style))}>
         <TextField
           {...other}
+          onBlur={this.handleBlur}
+          onChange={this.handleTextChange}
           onFocus={this.handleFocus}
-          onTouchTap={this.handleTouchTap}
+          onTouchTap={!this.shouldHandleKeyboard() && this.handleTouchTap}
           ref="input"
           style={textFieldStyle}
-          value={this.state.date ? formatDate(this.state.date) : ''}
+          errorText={this.state.hasError && errorText}
+          value={this.state.textDate}
         />
+        {this.shouldHandleKeyboard() &&
+          <IconButton
+            onTouchTap={this.handleTouchTap}
+            style={Object.assign({}, styles.iconButtonStyle, iconButtonStyle)}
+            touch={true}
+          >
+            <DateRangeIcon />
+          </IconButton>
+        }
         <DatePickerDialog
           DateTimeFormat={DateTimeFormat}
           autoOk={autoOk}
