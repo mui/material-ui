@@ -1,6 +1,7 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import Transition from '../internal/Transition';
 import customPropTypes from '../utils/customPropTypes';
 import { duration } from '../styles/transitions';
@@ -37,6 +38,10 @@ export default class Slide extends Component {
      * Duration of the animation when the element is entering the screen.
      */
     enterTransitionDuration: PropTypes.number,
+    /**
+     * Show the component; triggers the enter or exit animation.
+     */
+    in: PropTypes.bool,
     /**
      * Duration of the animation when the element is leaving the screen.
      */
@@ -80,6 +85,20 @@ export default class Slide extends Component {
   static contextTypes = {
     theme: customPropTypes.muiRequired,
   };
+
+  componentDidMount() {
+    if (!this.props.in) {
+      /* eslint-disable react/no-find-dom-node */
+      /* We need to set initial translate values of transition element
+       * otherwise component will be shown when in=false.
+       * transitions are handled by direct access to element,
+       * so we need to access that same element too here.
+       */
+      const element = ReactDOM.findDOMNode(this.transition);
+      /* eslint-enable react/no-find-dom-node */
+      element.style.transform = getTranslateValue(this.props, element);
+    }
+  }
 
   handleEnter = (element) => {
     element.style.transform = getTranslateValue(this.props, element);
@@ -132,6 +151,7 @@ export default class Slide extends Component {
         timeout={500}
         transitionAppear
         {...other}
+        ref={(ref) => { this.transition = ref; }}
       >
         {children}
       </Transition>
