@@ -33,6 +33,10 @@ const durationInternal = {
   leavingScreen: 195,
 };
 
+const formatMs = (miliseconds) => `${Math.round(miliseconds)}ms`;
+const isString = (value) => typeof value === 'string';
+const isNumber = (value) => !isNaN(parseFloat(value));
+
 /**
  * @param {string|Array} props
  * @param {object} param
@@ -52,19 +56,19 @@ export default {
     delay = 0,
     ...other
   } = {}) {
-    warning(typeof props === 'string' || Array.isArray(props),
+    warning(isString(props) || Array.isArray(props),
       'argument "props" must be a string or Array');
-    warning(Number.isInteger(duration),
+    warning(isNumber(duration),
       'argument "duration" must be a number');
-    warning(typeof easing === 'string',
+    warning(isString(easing),
       'argument "easing" must be a string');
-    warning(Number.isInteger(delay),
+    warning(isNumber(delay),
       'argument "delay" must be a string');
     warning(Object.keys(other).length === 0,
       `unrecognized argument(s) [${Object.keys(other).join(',')}]`);
 
     return (Array.isArray(props) ? props : [props])
-      .map((value) => `${value} ${duration}ms ${easing} ${delay}ms`)
+      .map((animatedProp) => `${animatedProp} ${formatMs(duration)} ${easing} ${formatMs(delay)}`)
       .join(',');
   },
 
