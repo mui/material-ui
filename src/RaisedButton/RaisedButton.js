@@ -134,6 +134,17 @@ class RaisedButton extends Component {
      */
     className: PropTypes.string,
     /**
+      * The element to use as the container for the RaisedButton. Either a string to
+      * use a DOM element or a ReactElement. This is useful for wrapping the
+      * RaisedButton in a custom Link component. If a ReactElement is given, ensure
+      * that it passes all of its given props through to the underlying DOM
+      * element and renders its children prop for proper integration.
+      */
+    containerElement: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.element,
+    ]),
+    /**
      * If true, the button will be disabled.
      */
     disabled: PropTypes.bool,
