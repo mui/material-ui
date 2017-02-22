@@ -36,6 +36,17 @@ class FlatButton extends Component {
      */
     className: PropTypes.string,
     /**
+     * Either a string used as tag name for the tile root element, or a ReactElement.
+     * This is useful when you have, for example, a custom implementation of
+     * a navigation link (that knows about your routes) and you want to use it as the primary tile action.
+     * In case you pass a ReactElement, please ensure that it passes all props,
+     * accepts styles overrides and render it's children.
+     */
+    containerElement: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.element,
+    ]),
+    /**
      * Disables the button if set to true.
      */
     disabled: PropTypes.bool,
