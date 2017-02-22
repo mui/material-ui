@@ -201,4 +201,29 @@ describe('<ListItem />', () => {
       assert.strictEqual(wrapper.state().hovered, false, 'should reset the state');
     });
   });
+
+  describe('prop: containerElement', () => {
+    it('should use the given string containerElement prop', () => {
+      const wrapper = shallowWithContext(
+        <ListItem
+          containerElement="a"
+          primaryText="Links are great"
+        />
+      );
+      const button = wrapper.find(EnhancedButton).dive({context: {muiTheme}});
+      assert.strictEqual(button.is('a'), true, 'should match an a element');
+    });
+
+    it('should use the given ReactElement containerElement', () => {
+      const CustomElement = (props) => <a {...props} />;
+      const wrapper = shallowWithContext(
+        <ListItem
+          containerElement={<CustomElement someProp="yuuuuuge" />}
+          primaryText="Custom links are even greater"
+        />
+      );
+      const button = wrapper.find(EnhancedButton).dive({context: {muiTheme}});
+      assert.strictEqual(button.is(CustomElement), true, 'should match the custom element');
+    });
+  });
 });
