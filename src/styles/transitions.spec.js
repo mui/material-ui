@@ -51,6 +51,12 @@ describe('transitions', () => {
       assert.strictEqual(consoleErrorStub.callCount, 0, 'Wrong number of calls of warning()');
     });
 
+    it('should round decimal digits of "duration" prop to whole numbers', () => {
+      const transition = transitions.create('font', { duration: 12.125 });
+      assert.strictEqual(transition, `font 12ms ${easing.easeInOut} 0ms`);
+      assert.strictEqual(consoleErrorStub.callCount, 0, 'Wrong number of calls of warning()');
+    });
+
     it('should warn when bad "duration" option type', () => {
       transitions.create('font', { duration: '' });
       transitions.create('font', { duration: {} });
@@ -72,6 +78,12 @@ describe('transitions', () => {
     it('should optionally accept number "delay" option in second argument', () => {
       const transition = transitions.create('size', { delay: 150 });
       assert.strictEqual(transition, `size ${duration.standard}ms ${easing.easeInOut} 150ms`);
+      assert.strictEqual(consoleErrorStub.callCount, 0, 'Wrong number of calls of warning()');
+    });
+
+    it('should round decimal digits of "delay" prop to whole numbers', () => {
+      const transition = transitions.create('size', { delay: 1.547 });
+      assert.strictEqual(transition, `size ${duration.standard}ms ${easing.easeInOut} 2ms`);
       assert.strictEqual(consoleErrorStub.callCount, 0, 'Wrong number of calls of warning()');
     });
 
