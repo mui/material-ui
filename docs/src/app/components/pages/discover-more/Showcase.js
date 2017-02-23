@@ -28,6 +28,12 @@ const appList = [
   //   link: '',
   // },
   {
+    title: 'SlimChess - Play Instant Chess Online Games on the Go',
+    author: 'Larry Xu',
+    img: 'images/showcase/slimchess.png',
+    link: 'https://slimchess.com/now',
+  },
+  {
     title: 'SplitMe - Split expenses with friends',
     author: 'Olivier Tassinari',
     img: 'images/showcase/splitme.png',
