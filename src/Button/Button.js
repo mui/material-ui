@@ -18,6 +18,7 @@ export const styleSheet = createStyleSheet('MuiButton', (theme) => {
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
+      boxSizing: 'border-box',
       minWidth: 88,
       height: 36,
       padding: '0px 16px',
