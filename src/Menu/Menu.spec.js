@@ -1,5 +1,5 @@
 /* eslint-env mocha */
-import React from 'react';
+import React, {PropTypes, Component} from 'react';
 import {mount, shallow} from 'enzyme';
 import {spy} from 'sinon';
 import {assert} from 'chai';
@@ -12,7 +12,10 @@ import keycode from 'keycode';
 describe('<Menu />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
-  const mountWithContext = (node) => mount(node, {context: {muiTheme}});
+  const mountWithContext = (node) => mount(node, {
+    context: {muiTheme},
+    childContextTypes: {muiTheme: PropTypes.object},
+  });
   const keycodeEvent = (key) => ({keyCode: keycode(key)});
 
   describe('onMenuItemFocusChange', () => {
@@ -211,6 +214,43 @@ describe('<Menu />', () => {
         </Menu>
       );
       assert.strictEqual(wrapper.contains(child), true);
+    });
+  });
+
+  describe('MultiSelect', () => {
+    it('should multi select 2 items after selecting 3 and deselecting 1', () => {
+      class MyComponent1 extends Component {
+        state = {
+          value: null,
+        }
+
+        handleChange = (event, value) => {
+          this.setState({value: value});
+        }
+
+        render() {
+          return (
+            <Menu
+              multiple={true}
+              value={this.state.value}
+              onChange={this.handleChange}
+            >
+              <MenuItem className="item1" value="item1" primaryText="item 1" />
+              <MenuItem className="item2" value="item2" primaryText="item 2" />
+              <MenuItem className="item3" value="item3" primaryText="item 3" />
+            </Menu>
+          );
+        }
+      }
+
+      const wrapper = mountWithContext(<MyComponent1 />);
+
+      wrapper.find('.item1').simulate('touchTap');
+      wrapper.find('.item2').simulate('touchTap');
+      wrapper.find('.item3').simulate('touchTap');
+      wrapper.find('.item1').simulate('touchTap');   // deselect
+
+      assert.deepEqual(wrapper.state().value, ['item2', 'item3']);
     });
   });
 });
