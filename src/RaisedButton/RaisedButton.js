@@ -57,7 +57,7 @@ function getStyles(props, context, state) {
   }
 
   const buttonHeight = style && style.height || button.height;
-  const borderRadius = 2;
+  const borderRadius = style && parseInt(style.borderRadius, 10) || 2;
 
   return {
     root: {
@@ -70,7 +70,7 @@ function getStyles(props, context, state) {
       lineHeight: `${buttonHeight}px`,
       width: '100%',
       padding: 0,
-      borderRadius: borderRadius,
+      borderRadius: `${borderRadius}px`,
       transition: transitions.easeOut(),
       backgroundColor: backgroundColor,
       // That's the default value for a button but not a link
