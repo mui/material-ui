@@ -109,13 +109,13 @@ class LinearProgress extends Component {
     this.timers.bar1 = this.barUpdate('bar1', 0, this.refs.bar1, [
       [-35, 100],
       [100, -90],
-    ]);
+    ], 0);
 
     this.timers.bar2 = setTimeout(() => {
       this.barUpdate('bar2', 0, this.refs.bar2, [
         [-200, 100],
         [107, -8],
-      ]);
+      ], 0);
     }, 850);
   }
 
@@ -124,9 +124,10 @@ class LinearProgress extends Component {
     clearTimeout(this.timers.bar2);
   }
 
-  barUpdate(id, step, barElement, stepValues) {
+  barUpdate(id, step, barElement, stepValues, timeToNextStep) {
     if (this.props.mode !== 'indeterminate') return;
 
+    timeToNextStep = timeToNextStep || 420;
     step = step || 0;
     step %= 4;
 
@@ -144,7 +145,7 @@ class LinearProgress extends Component {
     } else if (step === 3) {
       barElement.style.transitionDuration = '0ms';
     }
-    this.timers[id] = setTimeout(() => this.barUpdate(id, step + 1, barElement, stepValues), 420);
+    this.timers[id] = setTimeout(() => this.barUpdate(id, step + 1, barElement, stepValues), timeToNextStep);
   }
 
   render() {
