@@ -1,15 +1,18 @@
 // @flow weak
 const path = require('path');
 
+const timestamp = new Date();
+
 // Karma configuration
 module.exports = function setKarmaConfig(config) {
   config.set({
     basePath: '../',
-    browsers: ['PhantomJS_Sized'],
+    browsers: ['PhantomJS_Sized', 'BrowserStack_Chrome', 'BrowserStack_Firefox',
+      'BrowserStack_Safari', 'BrowserStack_IE'],
     // to avoid DISCONNECTED messages on travis
-    browserDisconnectTimeout: 10000, // default 2000
+    browserDisconnectTimeout: 60000, // default 2000
     browserDisconnectTolerance: 1, // default 0
-    browserNoActivityTimeout: 60000, // default 10000
+    browserNoActivityTimeout: 300000, // default 10000
     colors: true,
     frameworks: ['mocha'],
     files: [
@@ -24,6 +27,7 @@ module.exports = function setKarmaConfig(config) {
     plugins: [
       'karma-phantomjs-launcher',
       'karma-firefox-launcher',
+      'karma-browserstack-launcher',
       'karma-mocha',
       'karma-sourcemap-loader',
       'karma-webpack',
@@ -43,6 +47,11 @@ module.exports = function setKarmaConfig(config) {
       'test/karma.tests.js': ['webpack', 'sourcemap'],
     },
     reporters: ['dots'],
+    browserStack: {
+      username: process.env.BROWSERSTACK_USERNAME,
+      accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
+      build: `material-ui-build-${timestamp.toString()}`,
+    },
     webpack: {
       devtool: 'inline-source-map',
       module: {
@@ -91,6 +100,34 @@ module.exports = function setKarmaConfig(config) {
             height: 768,
           },
         },
+      },
+      BrowserStack_Chrome: {
+        base: 'BrowserStack',
+        os: 'OS X',
+        os_version: 'Sierra',
+        browser: 'chrome',
+        browser_version: 'latest',
+      },
+      BrowserStack_Firefox: {
+        base: 'BrowserStack',
+        os: 'Windows',
+        os_version: '10',
+        browser: 'firefox',
+        browser_version: 'latest',
+      },
+      BrowserStack_Safari: {
+        base: 'BrowserStack',
+        os: 'OS X',
+        os_version: 'Yosemite',
+        browser: 'safari',
+        browser_version: 'latest',
+      },
+      BrowserStack_IE: {
+        base: 'BrowserStack',
+        os: 'Windows',
+        os_version: '7',
+        browser: 'ie',
+        browser_version: 'latest',
       },
     },
   });
