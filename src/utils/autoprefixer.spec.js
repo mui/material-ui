@@ -8,10 +8,12 @@ describe('./utils/autoprefixer', () => {
   const MSIE10_USER_AGENT = 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)';
 
   describe('server side', () => {
-    // skip tests on PhantomJS because __defineGetter__ method doesn't work
-    if (/PhantomJS/.test(window.navigator.userAgent)) {
+    // skip Karma tests because __defineGetter__ method doesn't work
+    /* eslint-disable no-underscore-dangle */
+    if (window.__karma__) {
       return;
     }
+    /* eslint-enable no-underscore-dangle */
 
     let savedNavigator;
 

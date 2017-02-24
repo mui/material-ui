@@ -61,10 +61,12 @@ describe('<Popover />', () => {
   });
 
   describe('IOS detection', () => {
-    // skip tests on PhantomJS because __defineGetter__ method seems not working
-    if (/PhantomJS/.test(window.navigator.userAgent)) {
+    // skip Karma tests because __defineGetter__ method seems not working
+    /* eslint-disable no-underscore-dangle */
+    if (window.__karma__) {
       return;
     }
+    /* eslint-enable no-underscore-dangle */
 
     let input;
 
