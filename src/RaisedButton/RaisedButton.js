@@ -145,6 +145,10 @@ class RaisedButton extends Component {
       PropTypes.element,
     ]),
     /**
+     * If true, the element's ripple effect will be disabled.
+     */
+    disableTouchRipple: React.PropTypes.bool,
+    /**
      * If true, the button will be disabled.
      */
     disabled: PropTypes.bool,
