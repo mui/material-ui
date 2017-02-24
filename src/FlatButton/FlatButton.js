@@ -47,6 +47,10 @@ class FlatButton extends Component {
       PropTypes.element,
     ]),
     /**
+     * If true, the element's ripple effect will be disabled.
+     */
+    disableTouchRipple: React.PropTypes.bool,
+    /**
      * Disables the button if set to true.
      */
     disabled: PropTypes.bool,
