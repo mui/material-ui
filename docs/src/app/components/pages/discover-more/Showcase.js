@@ -108,6 +108,12 @@ const appList = [
     img: 'images/showcase/apirequest-capture-by-moesif.png',
     link: 'https://chrome.google.com/webstore/detail/apirequestio-capture/aeojbjinmmhjenohjehcidmappiodhjm',
   },
+  {
+    title: 'SlimChess - Play Instant Chess Online Games on the Go',
+    author: 'Larry Xu',
+    img: 'images/showcase/slimchess.png',
+    link: 'https://slimchess.com/now',
+  },
 ];
 
 const Showcase = () => (
