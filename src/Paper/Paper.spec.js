@@ -24,7 +24,7 @@ describe('<Paper />', () => {
     );
 
     assert.ok(wrapper.contains(testChildren), 'should contain the children');
-    assert.strictEqual(wrapper.prop('style').borderRadius, '2px', 'should have round corner');
+    assert.strictEqual(wrapper.prop('style').borderRadius, 2, 'should have round corner');
   });
 
   it('renders children and should be a circle', () => {
