@@ -3,7 +3,7 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
 const items = [];
-for (let i = 0; i < 100; i++ ) {
+for (let i = 0; i < 100; i++) {
   items.push(<MenuItem value={i} key={i} primaryText={`Item ${i}`} />);
 }
 
@@ -12,13 +12,17 @@ for (let i = 0; i < 100; i++ ) {
  * if the number of items causes the height to exceed this limit.
  */
 export default class DropDownMenuLongMenuExample extends Component {
-  state = {
-    value: 10,
-  };
+  constructor(props) {
+    super(props);
 
-  handleChange = (event, index, value) => {
-    this.setState({value});
-  };
+    this.state = {
+      value: 10,
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange = (event, index, value) => this.setState({value});
 
   render() {
     return (

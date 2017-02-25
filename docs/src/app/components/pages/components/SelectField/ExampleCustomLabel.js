@@ -7,9 +7,15 @@ import MenuItem from 'material-ui/MenuItem';
  * a complementary description of the selected item.
  */
 export default class SelectFieldExampleCustomLabel extends Component {
-  state = {
-    value: 1,
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      value: 1,
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
 
   handleChange = (event, index, value) => this.setState({value});
 
