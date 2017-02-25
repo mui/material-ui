@@ -56,7 +56,7 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
       margin: '1em 0 0.7em',
     },
     '& p, & ul, & ol': {
-      lineHeight: '1.6',
+      lineHeight: 1.6,
     },
     '& p code, & ul code': {
       fontSize: 14,
@@ -79,14 +79,15 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
     },
     '& td': {
       borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
-      padding: '8px 56px 8px 24px',
+      padding: `${theme.spacing.unit}px ${theme.spacing.unit * 8}px ${
+        theme.spacing.unit}px ${theme.spacing.unit * 3}px`,
       textAlign: 'left',
     },
     '& td:last-child': {
-      paddingRight: 24,
+      paddingRight: theme.spacing.unit * 3,
     },
     '& td compact': {
-      paddingRight: 24,
+      paddingRight: theme.spacing.unit * 3,
     },
     '& td code': {
       fontSize: 13,
@@ -98,7 +99,7 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
       textAlign: 'left',
     },
     '& th:last-child': {
-      paddingRight: 24,
+      paddingRight: theme.spacing.unit * 3,
     },
     '& tr': {
       height: 48,
@@ -108,6 +109,12 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
     },
     '& strong': {
       fontWeight: theme.typography.fontWeightMedium,
+    },
+    '& blockquote': {
+      borderLeft: `5px solid ${theme.palette.text.hint}`,
+      background: theme.palette.background.paper,
+      padding: `${theme.spacing.unit / 2}px ${theme.spacing.unit * 3}px`,
+      margin: `${theme.spacing.unit * 3}px 0`,
     },
   },
 }));
