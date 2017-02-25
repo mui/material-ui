@@ -20,6 +20,8 @@ Props
 | fullScreen | bool | false | If `true`, The dialog will be full-screen. |
 | hideOnBackdropClick | bool | true | If `true`, clicking the backdrop will fire the `onRequestClose` callback. |
 | hideOnEscapeKeyUp | bool | true | If `true`, hitting escape will fire the `onRequestClose` callback. |
+| enterTransitionDuration | number | duration.enteringScreen | Duration of the animation when the element is entering the screen. |
+| leaveTransitionDuration | number | duration.leavingScreen | Duration of the animation when the element is leaving the screen. |
 | maxWidth | enum:&nbsp;'xs'<br>&nbsp;'sm'<br>&nbsp;'md'<br> | 'sm' | Determine the max width of the dialog. The dialog width grows with the size of the screen, this property is useful on the desktop where you might need some coherent different width size across your application. |
 | onBackdropClick | function |  | Callback fires when the backdrop is clicked on. |
 | onEnter | function |  | Callback fired before the dialog is entering. |
@@ -32,7 +34,6 @@ Props
 | onRequestClose | function |  | Callback fired when the dialog requests to be closed. |
 | open | bool | false | Set to true to open the Dialog. |
 | paperClassName | string |  | The CSS class name of the paper inner element. |
-| transition | union | Fade | Transition component. |
-| transitionDuration | number | 300 | Length of the transition in ms. |
+| transition | union:&nbsp;func<br>&nbsp;element<br> | Fade | Transition component. |
 
 Any other properties supplied will be spread to the root element.

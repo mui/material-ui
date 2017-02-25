@@ -10,7 +10,7 @@ Props
 |:-----|:-----|:--------|:------------|
 | children | node |  | The content of the component. |
 | className | string |  | The CSS class name of the root element. |
-| component | union | 'div' | The element or component used for the root node. |
+| component | union:&nbsp;string<br>&nbsp;element<br> | 'div' | The component used for the root node. Either a string to use a DOM element or a ReactElement. |
 | container | bool | false | It true, the component will have the flex *container* behavior. You should be wrapping *items* with a *container*. |
 | item | bool | false | It true, the component will have the flex *item* behavior. You should be wrapping *items* with a *container*. |
 | xs | enum:&nbsp;true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br> |  | Defines the number of grids the component is going to use. It's applied for all the screen sizes with the lowest priority. |

@@ -14,8 +14,8 @@ Props
 | fullWidth | bool | false | If `true`, the tabs will grow to use all the available space. This property is intended for small views. |
 | index | number |  | The index of the currently selected `BottomNavigation`. |
 | indicatorClassName | string |  | The CSS class name of the indicator element. |
-| indicatorColor | union | 'accent' | Determines the color of the indicator. |
+| indicatorColor | union:&nbsp;[object Object]<br>&nbsp;string<br> | 'accent' | Determines the color of the indicator. |
 | <span style="color: #31a148">onChange *</span> | function |  | Function called when the index change. |
-| textColor | union | 'inherit' | Determines the color of the `Tab`. |
+| textColor | union:&nbsp;[object Object],[object Object]<br>&nbsp;string<br> | 'inherit' | Determines the color of the `Tab`. |
 
 Any other properties supplied will be spread to the root element.

@@ -107,9 +107,13 @@ Avatar.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The component type of the root element.
+   * The component used for the root node.
+   * Either a string to use a DOM element or a ReactElement.
    */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  component: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
+  ]),
   /**
    * sizes desc
    */

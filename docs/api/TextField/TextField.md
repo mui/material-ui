@@ -26,6 +26,6 @@ Props
 | labelClassName | string |  | The CSS class name of the label element. |
 | required | bool | false | Whether the label should be displayed as required (asterisk). |
 | type | string |  | Type of the input element. It should be a valid HTML5 input type. |
-| value | union |  | The input value, required for a controlled component. |
+| value | union:&nbsp;string<br>&nbsp;number<br> |  | The input value, required for a controlled component. |
 
 Any other properties supplied will be spread to the root element.

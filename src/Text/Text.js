@@ -96,7 +96,14 @@ Text.propTypes = {
    */
   className: PropTypes.string,
   colorInherit: PropTypes.bool,
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a ReactElement.
+   */
+  component: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
+  ]),
   gutterBottom: PropTypes.bool,
   noWrap: PropTypes.bool,
   paragraph: PropTypes.bool,

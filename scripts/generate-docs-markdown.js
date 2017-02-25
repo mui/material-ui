@@ -106,15 +106,16 @@ function generatePropType(type) {
       return type.raw;
     }
 
+    case 'union':
     case 'enum': {
-      let values = type.value.map((v) => v.value);
+      let values = type.value.map((v) => v.value || v.name);
       // Display one value per line as it's better for lisibility.
       if (values.length < 5) {
         values = values.join('<br>&nbsp;');
       } else {
         values = values.join(', ');
       }
-      return `enum:&nbsp;${values}<br>`;
+      return `${type.name}:&nbsp;${values}<br>`;
     }
 
     default:
