@@ -15,7 +15,7 @@ function getStyles(props, context) {
     value,
   } = props;
 
-  const {baseTheme: {palette}} = context.muiTheme;
+  const {baseTheme: {palette}, borderRadius} = context.muiTheme;
 
   const styles = {
     root: {
@@ -24,7 +24,7 @@ function getStyles(props, context) {
       display: 'block',
       width: '100%',
       backgroundColor: palette.primary3Color,
-      borderRadius: 2,
+      borderRadius,
       margin: 0,
       overflow: 'hidden',
     },
