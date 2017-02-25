@@ -17,7 +17,7 @@ Props
 | <span style="color: #31a148">children *</span> | node |  | The content of the button. |
 | className | string |  | The CSS class name of the root element. |
 | compact | bool | false | Uses a smaller minWidth, ideal for things like card actions. |
-| component | union | 'button' | The element or component used for the root node. |
+| component | union:&nbsp;string<br>&nbsp;element<br> | 'button' | The component used for the root node. Either a string to use a DOM element or a ReactElement. |
 | contrast | bool | false | If true, will use the theme's contrast color. |
 | disabled | bool | false | If `true`, the button will be disabled. |
 | fab | bool | false | If `true`, well use floating action button styling. |

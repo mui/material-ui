@@ -138,9 +138,13 @@ export default class Button extends Component {
      */
     compact: PropTypes.bool,
     /**
-     * The element or component used for the root node.
+     * The component used for the root node.
+     * Either a string to use a DOM element or a ReactElement.
      */
-    component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    component: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.element,
+    ]),
     /**
      * If true, will use the theme's contrast color.
      */

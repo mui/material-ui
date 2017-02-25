@@ -19,6 +19,6 @@ Props
 | onExited | function |  | Callback fired when the Menu has exited. |
 | onRequestClose | function |  | Callback function fired when the menu is requested to be closed.<br><br>**Signature:**<br>`function(event: event) => void`<br>*event:* The event that triggered the close request |
 | open | bool | false | If `true`, the menu is visible. |
-| transitionDuration | union | 'auto' | The length of the transition in `ms`, or 'auto' |
+| transitionDuration | union:&nbsp;number<br>&nbsp;string<br> | 'auto' | The length of the transition in `ms`, or 'auto' |
 
 Any other properties supplied will be spread to the root element.

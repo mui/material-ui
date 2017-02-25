@@ -17,6 +17,6 @@ Props
 | onExit | function |  | Callback fired before the component is exiting. |
 | onExiting | function |  | Callback fired when the component is exiting. |
 | onExited | function |  | Callback fired when the component has exited. |
-| transitionDuration | union | 300 | Set to 'auto' to automatically calculate transition time based on height. |
+| transitionDuration | union:&nbsp;number<br>&nbsp;string<br> | 300 | Set to 'auto' to automatically calculate transition time based on height. |
 
 Any other properties supplied will be spread to the root element.
