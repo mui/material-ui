@@ -98,7 +98,7 @@
     "jsdom": "^9.11.0",
     "json-loader": "^0.5.4",
     "karma": "^1.5.0",
-    "karma-firefox-launcher": "^1.0.0",
+    "karma-browserstack-launcher": "^1.2.0",
     "karma-mocha": "^1.3.0",
     "karma-mocha-reporter": "^2.2.2",
     "karma-phantomjs-launcher": "^1.0.0",
