@@ -24,6 +24,37 @@ Below is a summary of major changes.
 - [Ripple/TouchRipple] Refactored and now works properly inside a button in firefox!
 - [Button] Raised/flat/fab are now combined into a single component.
 
+## 1.0.0-alpha.4
+###### _Feb 26, 2017_
+
+##### Component Fixes / Enhancements
+
+- [Button] Fix boxSizing when not rending a native button (#6224) @oliviertassinari
+- [Divider] Fix negative margin causes overflow/scrollbars (#6139) @giuseppeg
+- [LinearProgress] Add an accessibility property (#6155) @oliviertassinari
+- [Text] Add more option to the align property (#6153) @oliviertassinari
+- [icon-builder] Update to generate standalone package (#6104) @mbrookes
+- [style] transitions theme API reworked (#6121) @ArcanisCz
+- [svg-icons] Change target package name (#6184) @mbrookes
+- [transitions] Fix an unknown property warning (#6157) @oliviertassinari
+- [transitions] Fix allowing fraction numbers as delay/duration (#6221) @ArcanisCz
+
+##### Docs
+
+- [docs] Use webpack 2 & dll bundle (#6160) @nathanmarks
+- [docs] Improve the user experience on mobile (#6154) @oliviertassinari
+- [docs] Fix the Table examples on mobile (425d8ed47e0282b8c0409517c53e00ef61374b02) @oliviertassinari
+- [docs] Add an API section (#6239) @oliviertassinari
+- [docs] Normalize the container property (#6238) @oliviertassinari
+
+##### Core
+
+- [core] Fix typos in styles/transitions pointed out in issue (#6175) @Shahrukh-Zindani
+- [core] Lightweight the build (#6152) @oliviertassinari
+- [core] Add exports to index.js for inclusion in webpack bundle (#6144) @fkretzer
+- [test] Integration of test suite to run on BrowserStack (#6236) @oliviertassinari
+- [test] Bump vrtest version for exit code fix (1831aa76fe72e9b22a0b82f2a360f860ca89fdce) @nathanmarks
+
 ## 1.0.0-alpha.3
 ###### _Feb 12, 2017_
 
