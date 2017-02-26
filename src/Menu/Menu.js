@@ -256,38 +256,40 @@ class Menu extends Component {
   }
 
   cloneMenuItem(child, childIndex, styles, index) {
-    const {
-      desktop,
-      menuItemStyle,
-      selectedMenuItemStyle,
-    } = this.props;
+    const childIsDisabled = child.props.disabled;
 
-    const selected = this.isChildSelected(child, this.props);
-    let selectedChildrenStyles = {};
+    const selectedChildStyles = {};
+    if (!childIsDisabled) {
+      const selected = this.isChildSelected(child, this.props);
 
-    if (selected) {
-      selectedChildrenStyles = Object.assign(styles.selectedMenuItem, selectedMenuItemStyle);
+      if (selected) {
+        Object.assign(selectedChildStyles, styles.selectedMenuItem, this.props.selectedMenuItemStyle);
+      }
     }
+    const mergedChildStyles = Object.assign({}, child.props.style, this.props.menuItemStyle, selectedChildStyles);
 
-    const mergedChildrenStyles = Object.assign({}, child.props.style, menuItemStyle, selectedChildrenStyles);
+    const extraProps = {
+      desktop: this.props.desktop,
+      style: mergedChildStyles,
+    };
+    if (!childIsDisabled) {
+      const isFocused = childIndex === this.state.focusIndex;
+      let focusState = 'none';
+      if (isFocused) {
+        focusState = this.state.isKeyboardFocused ?
+          'keyboard-focused' : 'focused';
+      }
 
-    const isFocused = childIndex === this.state.focusIndex;
-    let focusState = 'none';
-    if (isFocused) {
-      focusState = this.state.isKeyboardFocused ?
-        'keyboard-focused' : 'focused';
+      Object.assign(extraProps, {
+        focusState: focusState,
+        onTouchTap: (event) => {
+          this.handleMenuItemTouchTap(event, child, index);
+          if (child.props.onTouchTap) child.props.onTouchTap(event);
+        },
+        ref: isFocused ? 'focusedMenuItem' : null,
+      });
     }
-
-    return React.cloneElement(child, {
-      desktop: desktop,
-      focusState: focusState,
-      onTouchTap: (event) => {
-        this.handleMenuItemTouchTap(event, child, index);
-        if (child.props.onTouchTap) child.props.onTouchTap(event);
-      },
-      ref: isFocused ? 'focusedMenuItem' : null,
-      style: mergedChildrenStyles,
-    });
+    return React.cloneElement(child, extraProps);
   }
 
   decrementKeyboardFocusIndex(event) {
@@ -497,7 +499,7 @@ class Menu extends Component {
     const {
       autoWidth, // eslint-disable-line no-unused-vars
       children,
-      desktop,
+      desktop, // eslint-disable-line no-unused-vars
       disableAutoFocus, // eslint-disable-line no-unused-vars
       initiallyKeyboardFocused, // eslint-disable-line no-unused-vars
       listStyle,
@@ -531,8 +533,7 @@ class Menu extends Component {
 
       switch (childName) {
         case 'MenuItem':
-          newChild = childIsDisabled ? React.cloneElement(child, {desktop: desktop}) :
-            this.cloneMenuItem(child, menuItemIndex, styles, index);
+          newChild = this.cloneMenuItem(child, menuItemIndex, styles, index);
           break;
 
         case 'Divider':

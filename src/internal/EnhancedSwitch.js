@@ -120,13 +120,12 @@ class EnhancedSwitch extends Component {
 
   componentWillReceiveProps(nextProps) {
     const hasCheckedProp = nextProps.hasOwnProperty('checked');
-    const hasToggledProp = nextProps.hasOwnProperty('toggled');
     const hasNewDefaultProp =
       (nextProps.hasOwnProperty('defaultChecked') &&
       (nextProps.defaultChecked !== this.props.defaultChecked));
 
-    if (hasCheckedProp || hasToggledProp || hasNewDefaultProp) {
-      const switched = nextProps.checked || nextProps.toggled || nextProps.defaultChecked || false;
+    if (hasCheckedProp || hasNewDefaultProp) {
+      const switched = nextProps.checked || nextProps.defaultChecked || false;
 
       this.setState({
         switched: switched,

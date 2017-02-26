@@ -120,6 +120,12 @@ class FloatingActionButton extends Component {
     /** @ignore */
     onTouchStart: PropTypes.func,
     /**
+     * Callback function fired when the button is touch-tapped.
+     *
+     * @param {object} event TouchTap event targeting the button.
+     */
+    onTouchTap: PropTypes.func,
+    /**
      * If true, the button will use the secondary button colors.
      */
     secondary: PropTypes.bool,
@@ -246,6 +252,7 @@ class FloatingActionButton extends Component {
       className,
       children: childrenProp,
       disabled,
+      disabledColor, // eslint-disable-line no-unused-vars
       mini,
       secondary, // eslint-disable-line no-unused-vars
       iconStyle,

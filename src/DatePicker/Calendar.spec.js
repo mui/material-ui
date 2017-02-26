@@ -3,6 +3,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
 import Calendar from './Calendar';
+import DateDisplay from './DateDisplay';
 import {addMonths, dateTimeFormat} from './dateUtils';
 import getMuiTheme from '../styles/getMuiTheme';
 
@@ -191,6 +192,35 @@ describe('<Calendar />', () => {
       wrapper.update();
 
       assert.notOk(wrapper.find('CalendarToolbar').prop('prevMonth'));
+    });
+  });
+
+  describe('Date Display', () => {
+    it('should be visible by default', () => {
+      const wrapper = shallowWithContext(
+        <Calendar
+          DateTimeFormat={dateTimeFormat}
+          locale="en-US"
+          mode="landscape"
+        />
+      );
+
+      assert.strictEqual(wrapper.find(DateDisplay).length, 1, 'should show date display');
+      assert.strictEqual(wrapper.props().style.width, 479, 'should allow space for date display');
+    });
+
+    it('should be hidden when hideCalendarDate is set', () => {
+      const wrapper = shallowWithContext(
+        <Calendar
+          DateTimeFormat={dateTimeFormat}
+          locale="en-US"
+          mode="landscape"
+          hideCalendarDate={true}
+        />
+      );
+
+      assert.strictEqual(wrapper.find(DateDisplay).length, 0, 'should hide date display');
+      assert.strictEqual(wrapper.props().style.width, 310, 'should not allow space for date display');
     });
   });
 });

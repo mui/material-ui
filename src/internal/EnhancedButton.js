@@ -97,7 +97,7 @@ class EnhancedButton extends Component {
     injectStyle();
     listenForTabPresses();
     if (this.state.isKeyboardFocused) {
-      this.refs.enhancedButton.focus();
+      this.button.focus();
       this.props.onKeyboardFocus(null, true);
     }
   }
@@ -113,7 +113,9 @@ class EnhancedButton extends Component {
   }
 
   componentWillUnmount() {
-    clearTimeout(this.focusTimeout);
+    if (this.focusTimeout) {
+      clearTimeout(this.focusTimeout);
+    }
   }
 
   isKeyboardFocused() {
@@ -314,7 +316,7 @@ class EnhancedButton extends Component {
     const buttonProps = {
       ...other,
       style: prepareStyles(mergedStyles),
-      ref: 'enhancedButton',
+      ref: (node) => this.button = node,
       disabled: disabled,
       href: href,
       onBlur: this.handleBlur,

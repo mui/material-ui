@@ -13,6 +13,7 @@ function getStyles(props, context, state) {
     baseTheme,
     zIndex,
     tooltip,
+    borderRadius,
   } = context.muiTheme;
 
   const styles = {
@@ -26,7 +27,7 @@ function getStyles(props, context, state) {
       color: tooltip.color,
       overflow: 'hidden',
       top: -10000,
-      borderRadius: 2,
+      borderRadius,
       userSelect: 'none',
       opacity: 0,
       right: horizontalPosition === 'left' ? 12 : null,
