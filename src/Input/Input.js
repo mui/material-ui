@@ -95,7 +95,7 @@ export default class Input extends Component {
      */
     component: PropTypes.oneOfType([
       PropTypes.string,
-      PropTypes.element,
+      PropTypes.func,
     ]),
     /**
      * If `true`, the input will be disabled.

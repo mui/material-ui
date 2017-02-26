@@ -102,7 +102,7 @@ Text.propTypes = {
    */
   component: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.element,
+    PropTypes.func,
   ]),
   gutterBottom: PropTypes.bool,
   noWrap: PropTypes.bool,

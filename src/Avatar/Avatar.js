@@ -112,7 +112,7 @@ Avatar.propTypes = {
    */
   component: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.element,
+    PropTypes.func,
   ]),
   /**
    * sizes desc

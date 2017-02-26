@@ -319,4 +319,12 @@ describe('<ButtonBase />', () => {
       assert.strictEqual(wrapper.props().tabIndex, '-1', 'should not receive the focus');
     });
   });
+
+  describe('prop: component', () => {
+    it('should allow to use a link component', () => {
+      const Link = (props) => <div {...props} />;
+      const wrapper = shallow(<ButtonBase component={Link}>Hello</ButtonBase>);
+      assert.strictEqual(wrapper.is(Link), true);
+    });
+  });
 });

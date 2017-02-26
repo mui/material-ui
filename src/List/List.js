@@ -63,7 +63,7 @@ List.propTypes = {
    */
   component: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.element,
+    PropTypes.func,
   ]),
   padding: PropTypes.bool,
   /**

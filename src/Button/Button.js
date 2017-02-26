@@ -143,7 +143,7 @@ export default class Button extends Component {
      */
     component: PropTypes.oneOfType([
       PropTypes.string,
-      PropTypes.element,
+      PropTypes.func,
     ]),
     /**
      * If true, will use the theme's contrast color.

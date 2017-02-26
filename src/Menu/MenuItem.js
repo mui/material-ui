@@ -49,7 +49,7 @@ export default class MenuItem extends Component {
      */
     component: PropTypes.oneOfType([
       PropTypes.string,
-      PropTypes.element,
+      PropTypes.func,
     ]),
     /**
      * @ignore

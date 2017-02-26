@@ -44,7 +44,7 @@ export default class ButtonBase extends Component {
      */
     component: PropTypes.oneOfType([
       PropTypes.string,
-      PropTypes.element,
+      PropTypes.func,
     ]),
     /**
      * If `true`, the base button will be disabled.

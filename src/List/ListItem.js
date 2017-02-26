@@ -68,7 +68,7 @@ export default class ListItem extends Component {
      */
     component: PropTypes.oneOfType([
       PropTypes.string,
-      PropTypes.element,
+      PropTypes.func,
     ]),
     dense: PropTypes.bool,
     /**

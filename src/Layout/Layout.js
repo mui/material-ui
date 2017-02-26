@@ -201,7 +201,7 @@ Layout.propTypes = {
    */
   component: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.element,
+    PropTypes.func,
   ]),
   /**
    * It true, the component will have the flex *container* behavior.
