@@ -26,7 +26,7 @@ const config = {
   devtool: 'source-map',
   output: {
     path: paths.dist,
-    filename: `${env.isProd() ? `${libraryName}.min` : libraryName}js`,
+    filename: `${env.isProd() ? `${libraryName}.min` : libraryName}.js`,
     library: libraryName,
     libraryTarget: 'umd',
     umdNamedDefine: true,
