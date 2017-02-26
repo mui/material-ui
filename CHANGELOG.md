@@ -24,6 +24,13 @@ Below is a summary of major changes.
 - [Ripple/TouchRipple] Refactored and now works properly inside a button in firefox!
 - [Button] Raised/flat/fab are now combined into a single component.
 
+## 1.0.0-alpha.6
+###### _Feb 26, 2017_
+
+##### Core
+
+- [core] Fix component wrong propType (03f0fdc627951b5ddd3b28bd1a4cbdcee96f2a1c) @oliviertassinari
+
 ## 1.0.0-alpha.5
 ###### _Feb 26, 2017_
 
