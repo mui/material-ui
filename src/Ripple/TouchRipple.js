@@ -60,7 +60,7 @@ export default class TouchRipple extends Component {
     );
   }
 
-  lastRipple = null;
+  // Used to filter out mouse emulated events on mobile.
   ignoringMouseDown = false;
 
   pulsate = () => {
@@ -84,8 +84,8 @@ export default class TouchRipple extends Component {
 
     let ripples = this.state.ripples;
 
-    const elem = ReactDOM.findDOMNode(this);
-    const rect = elem ? elem.getBoundingClientRect() : {
+    const element = ReactDOM.findDOMNode(this);
+    const rect = element ? element.getBoundingClientRect() : {
       width: 0,
       height: 0,
       left: 0,
@@ -113,16 +113,26 @@ export default class TouchRipple extends Component {
 
     if (center) {
       rippleSize = Math.sqrt(((2 * Math.pow(rect.width, 2)) + Math.pow(rect.height, 2)) / 3);
+
+      // For some reason the animation is broken on Mobile Chrome if the size if even.
+      if (rippleSize % 2 === 0) {
+        rippleSize += 1;
+      }
     } else {
-      const sizeX = (Math.max(Math.abs((elem ? elem.clientWidth : 0) - rippleX), rippleX) * 2) + 2;
-      const sizeY = (Math.max(Math.abs((elem ? elem.clientHeight : 0) - rippleY), rippleY) * 2) + 2;
+      const sizeX = (Math.max(
+        Math.abs((element ? element.clientWidth : 0) - rippleX),
+        rippleX,
+      ) * 2) + 2;
+      const sizeY = (Math.max(
+        Math.abs((element ? element.clientHeight : 0) - rippleY),
+        rippleY,
+      ) * 2) + 2;
       rippleSize = Math.sqrt(Math.pow(sizeX, 2) + Math.pow(sizeY, 2));
     }
 
     // Add a ripple to the ripples array
     ripples = [...ripples, (
       <Ripple
-        ref={(c) => { this.lastRipple = c; }}
         key={this.state.nextKey}
         center={center}
         event={event}

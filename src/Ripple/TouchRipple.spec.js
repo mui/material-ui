@@ -33,6 +33,15 @@ describe('<TouchRipple />', () => {
     assert.strictEqual(wrapper.is('.test-class-name'), true, 'should contain the test className');
   });
 
+  describe('prop: center', () => {
+    it('should should compute the right ripple dimensions', () => {
+      const wrapper = shallow(<TouchRipple center />);
+      const instance = wrapper.instance();
+      instance.start();
+      assert.strictEqual(wrapper.childAt(0).props().rippleSize, 1, 'should be odd');
+    });
+  });
+
   describe('creating individual ripples', () => {
     let wrapper;
     let instance;
