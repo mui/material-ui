@@ -27,7 +27,7 @@ dependencies:
 
 test:
   override:
-    - ./scripts/run-travis-tests.sh
+    - ./scripts/run-circle-tests.sh
   post:
     - bash <(curl -s https://codecov.io/bash)
 
