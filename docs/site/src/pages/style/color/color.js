@@ -12,7 +12,6 @@ const mainColors = [
 const neutralColors = ['Brown', 'Grey'];
 
 export const styleSheet = createStyleSheet('colors', (theme) => ({
-
   name: {
     display: 'block',
     marginBottom: 60,
@@ -55,16 +54,15 @@ export const styleSheet = createStyleSheet('colors', (theme) => ({
   },
 }));
 
-export default function color(props, context) {
+export default function Color(props, context) {
   const classes = context.styleManager.render(styleSheet);
-  const colorGroups = [];
-  const neutralGroups = [];
+  let colorGroups = [];
+  let neutralGroups = [];
 
-  function getColorGroup(styles, colorName, showAltPalette) {
+  function getColorGroup(styles, color, showAltPalette) {
     const mainPalette = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
     const altPalette = ['A100', 'A200', 'A400', 'A700'];
-    const cssColor = colorName.replace(' ', '').replace(colorName.charAt(0),
-     colorName.charAt(0).toLowerCase());
+    const cssColor = color.replace(' ', '').replace(color.charAt(0), color.charAt(0).toLowerCase());
     const colorGroupStyle = classes.colorGroup;
     const colorsList = [];
     mainPalette.forEach((mainValue) => {
@@ -99,7 +97,7 @@ export default function color(props, context) {
       spaceRequired = true;
     }
 
-    if (contrastRatio < 7) fgColor = color.fullWhite;
+    if (contrastRatio < 7) fgColor = colors.fullWhite;
     if (colorTitle) {
       blockTitle = (
         <span className={styles.name}>
@@ -114,15 +112,12 @@ export default function color(props, context) {
       listStyle: 'none',
       padding: 15,
     };
-    const rowStyleSpace = {
-      backgroundColor: bgColor,
-      color: fgColor,
-      listStyle: 'none',
-      padding: 15,
-      borderTop: '4px #eeeeee solid',
-    };
 
-    if (spaceRequired === true) {
+    if (spaceRequired) {
+      const rowStyleSpace = {
+        ...rowStyle,
+        borderTop: '4px #eeeeee solid',
+      };
       return (
         <li style={rowStyleSpace}>
           {blockTitle}
@@ -147,15 +142,8 @@ export default function color(props, context) {
     );
   }
 
-
-  mainColors.forEach((maincolor) => {
-    colorGroups.push(getColorGroup(classes, maincolor, true));
-  }, this);
-
-
-  neutralColors.forEach((neutralcolor) => {
-    neutralGroups.push(getColorGroup(classes, neutralcolor, false));
-  }, this);
+  colorGroups = mainColors.map((maincolor) => getColorGroup(classes, maincolor, true));
+  neutralGroups = neutralColors.map((neutralcolor) => getColorGroup(classes, neutralcolor, false));
 
   return (
     <div className={classes.divSection} >
@@ -169,6 +157,6 @@ export default function color(props, context) {
   );
 }
 
-color.contextTypes = {
+Color.contextTypes = {
   styleManager: customPropTypes.muiRequired,
 };

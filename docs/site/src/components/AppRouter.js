@@ -127,6 +127,13 @@ export default function AppRouter() {
           component={AppContent}
         >
           <Route
+            title="Colors"
+            path="/style/color"
+            content={requireDocs('./site/src/pages/style/color/color.md')}
+            component={MarkdownDocs}
+            nav
+          />
+          <Route
             title="Icons"
             path="/style/icons"
             content={requireDocs('./site/src/pages/style/icons/icons.md')}
@@ -137,13 +144,6 @@ export default function AppRouter() {
             title="Typography"
             path="/style/typography"
             content={requireDocs('./site/src/pages/style/typography/typography.md')}
-            component={MarkdownDocs}
-            nav
-          />
-          <Route
-            title="Colors"
-            path="/style/colors"
-            content={requireDocs('./site/src/pages/style/color/color.md')}
             component={MarkdownDocs}
             nav
           />
