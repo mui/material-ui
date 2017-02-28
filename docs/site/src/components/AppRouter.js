@@ -140,6 +140,13 @@ export default function AppRouter() {
             component={MarkdownDocs}
             nav
           />
+          <Route
+            title="Colors"
+            path="/style/colors"
+            content={requireDocs('./site/src/pages/style/color/color.md')}
+            component={MarkdownDocs}
+            nav
+          />
         </Route>
         <Route
           title="Layout"
