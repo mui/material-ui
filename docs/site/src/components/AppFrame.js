@@ -147,6 +147,8 @@ class AppFrame extends Component {
       navIconClassName += ` ${classes.navIconHide}`;
       appBarClassName += ` ${classes.appBarShift}`;
     }
+    // when docked, always open
+    const drawerOpen = drawerDocked || this.state.drawerOpen;
 
     return (
       <div className={classes.appFrame}>
@@ -171,7 +173,7 @@ class AppFrame extends Component {
           docked={drawerDocked}
           routes={routes}
           onRequestClose={this.handleDrawerClose}
-          open={this.state.drawerOpen}
+          open={drawerOpen}
         />
         {children}
       </div>

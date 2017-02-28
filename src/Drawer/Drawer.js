@@ -41,7 +41,8 @@ export const styleSheet = createStyleSheet('MuiDrawer', (theme) => {
       WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
     },
     docked: {
-      flex: '0 0 auto',
+      position: 'fixed',
+      left: 0,
       '& $paper': {
         borderRight: `1px solid ${theme.palette.text.divider}`,
       },
@@ -97,6 +98,11 @@ export default class Drawer extends Component {
      * The CSS class name of the paper element.
      */
     paperClassName: PropTypes.string,
+    /**
+     * Run the enter animation when the component mounts, if it is initially
+     * open.
+     */
+    transitionAppear: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -105,6 +111,7 @@ export default class Drawer extends Component {
     leaveTransitionDuration: duration.leavingScreen,
     open: false,
     elevation: 16,
+    transitionAppear: true,
   };
 
   static contextTypes = {
@@ -122,6 +129,7 @@ export default class Drawer extends Component {
       open,
       paperClassName,
       elevation,
+      transitionAppear,
       ...other
     } = this.props;
 
@@ -137,7 +145,7 @@ export default class Drawer extends Component {
         direction={slideDirection}
         enterTransitionDuration={enterTransitionDuration}
         leaveTransitionDuration={leaveTransitionDuration}
-        transitionAppear
+        transitionAppear={transitionAppear}
       >
         <Paper
           elevation={docked ? 0 : elevation}
