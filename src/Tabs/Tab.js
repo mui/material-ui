@@ -48,6 +48,10 @@ class Tab extends Component {
      */
     label: PropTypes.node,
     /**
+     * Lazy loading children components
+     */
+    lazy: PropTypes.bool,
+    /**
      * Fired when the active tab changes by touch or tap.
      * Use this event to specify any functionality when an active tab changes.
      * For example - we are using this to route to home when the third tab becomes active.
@@ -79,10 +83,6 @@ class Tab extends Component {
      * This property is overriden by the Tabs component.
      */
     width: PropTypes.string,
-    /**
-     * Lazy loading children components
-     */
-    lazy: PropTypes.bool,
   };
 
   static contextTypes = {
