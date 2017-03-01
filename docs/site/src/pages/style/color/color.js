@@ -27,7 +27,7 @@ export const styleSheet = createStyleSheet('colors', (theme) => ({
   colorValue: {
     fontSize: 12,
   },
-  divSection: {
+  root: {
     marginLeft: '50px',
     boxSizing: 'initial',
   },
@@ -63,23 +63,20 @@ export default function Color(props, context) {
     const mainPalette = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
     const altPalette = ['A100', 'A200', 'A400', 'A700'];
     const cssColor = color.replace(' ', '').replace(color.charAt(0), color.charAt(0).toLowerCase());
-    const colorGroupStyle = classes.colorGroup;
-    const colorsList = [];
-    mainPalette.forEach((mainValue) => {
-      colorsList.push(getColorBlock(styles, cssColor, mainValue));
-    }, this);
+    let colorsList = [];
+    colorsList = mainPalette.map((mainValue) => getColorBlock(styles, cssColor, mainValue));
 
     if (showAltPalette) {
       altPalette.forEach((altValue) => {
         colorsList.push(getColorBlock(styles, cssColor, altValue));
-      }, this);
+      });
     }
 
     return (
-      <ul className={colorGroupStyle}>
-        {React.Children.toArray(getColorBlock(styles, cssColor, 500, color))}
+      <ul className={classes.colorGroup} key={cssColor}>
+        {getColorBlock(styles, cssColor, 500, color)}
         <div className={classes.blockSpace} />
-        {React.Children.toArray(colorsList)}
+        {colorsList}
       </ul>
     );
   }
@@ -119,14 +116,14 @@ export default function Color(props, context) {
         borderTop: '4px #eeeeee solid',
       };
       return (
-        <li style={rowStyleSpace}>
+        <li style={rowStyleSpace} key={bgColorText}>
           {blockTitle}
           {getColorName(styles, bgColorText, bgColor)}
         </li>
       );
     }
     return (
-      <li style={rowStyle}>
+      <li style={rowStyle} key={bgColorText}>
         {blockTitle}
         {getColorName(styles, bgColorText, bgColor)}
       </li>
@@ -146,12 +143,12 @@ export default function Color(props, context) {
   neutralGroups = neutralColors.map((neutralcolor) => getColorGroup(classes, neutralcolor, false));
 
   return (
-    <div className={classes.divSection} >
+    <div className={classes.root}>
       <div>
-        {React.Children.toArray(colorGroups)}
+        {colorGroups.map((maincolor) => maincolor)}
       </div>
       <div>
-        {React.Children.toArray(neutralGroups)}
+        {neutralGroups.map((neutralcolor) => neutralcolor)}
       </div>
     </div>
   );
