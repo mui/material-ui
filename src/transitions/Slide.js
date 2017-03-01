@@ -100,6 +100,8 @@ export default class Slide extends Component {
     }
   }
 
+  transition = null;
+
   handleEnter = (element) => {
     element.style.transform = getTranslateValue(this.props, element);
     if (this.props.onEnter) {
