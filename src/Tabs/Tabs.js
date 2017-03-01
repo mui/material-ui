@@ -204,7 +204,7 @@ class Tabs extends Component {
         does not have a value prop. Needs value if Tabs is going
         to be a controlled component.`);
 
-      tabContent.push(tab.props.children ?
+      tabContent.push((tab.props.children && (!tab.props.lazy || this.getSelected(tab, index))) ?
         createElement(tabTemplate || TabTemplate, {
           key: index,
           selected: this.getSelected(tab, index),

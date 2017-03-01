@@ -79,6 +79,10 @@ class Tab extends Component {
      * This property is overriden by the Tabs component.
      */
     width: PropTypes.string,
+    /**
+     * Lazy loading children components
+     */
+    lazy: PropTypes.bool,
   };
 
   static contextTypes = {
@@ -103,6 +107,7 @@ class Tab extends Component {
       style,
       value, // eslint-disable-line no-unused-vars
       width, // eslint-disable-line no-unused-vars
+      lazy, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
 
