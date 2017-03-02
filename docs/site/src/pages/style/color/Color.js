@@ -12,119 +12,124 @@ const mainColors = [
   'Deep Orange',
 ];
 const neutralColors = ['Brown', 'Grey', 'Blue Grey'];
+const mainPalette = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
+const altPalette = ['A100', 'A200', 'A400', 'A700'];
 
-export const styleSheet = createStyleSheet('colors', () => ({
-  name: {
-    marginBottom: 60,
-  },
-  colorContainer: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-  blockSpace: {
-    height: 4,
-  },
+export const styleSheet = createStyleSheet('colors', (theme) => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
   },
+  name: {
+    marginBottom: 60,
+  },
+  blockSpace: {
+    height: 4,
+  },
+  colorContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   colorGroup: {
     padding: '16px 0',
-    display: 'block',
-    width: '30% ',
     margin: '0 15px 0 0',
+    flexGrow: 1,
+    [theme.breakpoints.up('sm')]: {
+      flexGrow: 0,
+      width: '30%',
+    },
+  },
+  colorValue: {
+    ...theme.typography.caption,
+    color: 'inherit',
   },
 }));
 
-function getColorName(styles, text, colorValue) {
+function getColorGroup(options) {
+  const {
+    classes,
+    color,
+    showAltPalette,
+  } = options;
+  const cssColor = color.replace(' ', '').replace(color.charAt(0), color.charAt(0).toLowerCase());
+  let colorsList = [];
+  colorsList = mainPalette.map((mainValue) => getColorBlock(classes, cssColor, mainValue));
+
+  if (showAltPalette) {
+    altPalette.forEach((altValue) => {
+      colorsList.push(getColorBlock(classes, cssColor, altValue));
+    });
+  }
+
   return (
-    <div className={styles.colorContainer}>
-      <span>{text}</span>
-      <span className={styles.colorValue}>{colorValue.toUpperCase()}</span>
-    </div>
+    <ul className={classes.colorGroup} key={cssColor}>
+      {getColorBlock(classes, cssColor, 500, true)}
+      <div className={classes.blockSpace} />
+      {colorsList}
+    </ul>
+  );
+}
+
+function getColorBlock(classes, colorName, colorValue, colorTitle) {
+  const bgColor = colors[colorName][colorValue];
+
+  let fgColor = colors.fullBlack;
+  if (getContrastRatio(bgColor, fgColor) < 7) {
+    fgColor = colors.fullWhite;
+  }
+
+  let blockTitle;
+  if (colorTitle) {
+    blockTitle = (
+      <div className={classes.name}>
+        {colorName}
+      </div>
+    );
+  }
+
+  let rowStyle = {
+    backgroundColor: bgColor,
+    color: fgColor,
+    listStyle: 'none',
+    padding: 15,
+  };
+
+  if (colorValue.toString().indexOf('A1') === 0) {
+    rowStyle = {
+      ...rowStyle,
+      marginTop: 4,
+    };
+  }
+
+  return (
+    <li style={rowStyle} key={colorValue}>
+      {blockTitle}
+      <div className={classes.colorContainer}>
+        <span>{colorValue}</span>
+        <span className={classes.colorValue}>
+          {bgColor.toUpperCase()}
+        </span>
+      </div>
+    </li>
   );
 }
 
 export default function Color(props, context) {
   const classes = context.styleManager.render(styleSheet);
-  let colorGroups = [];
-  let neutralGroups = [];
 
-  function getColorGroup(styles, color, showAltPalette) {
-    const mainPalette = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
-    const altPalette = ['A100', 'A200', 'A400', 'A700'];
-    const cssColor = color.replace(' ', '').replace(color.charAt(0), color.charAt(0).toLowerCase());
-    let colorsList = [];
-    colorsList = mainPalette.map((mainValue) => getColorBlock(styles, cssColor, mainValue));
-
-    if (showAltPalette) {
-      altPalette.forEach((altValue) => {
-        colorsList.push(getColorBlock(styles, cssColor, altValue));
-      });
-    }
-
-    return (
-      <ul className={classes.colorGroup} key={cssColor}>
-        {getColorBlock(styles, cssColor, 500, color)}
-        <div className={classes.blockSpace} />
-        {colorsList}
-      </ul>
-    );
-  }
-
-  function getColorBlock(styles, colorName, colorValue, colorTitle) {
-    const bgColorText = colorName + colorValue;
-    const bgColor = colors[colorName][colorValue];
-    let fgColor = colors.fullBlack;
-    let blockTitle;
-    let spaceRequired = false;
-
-    if ((colorValue.toString().indexOf('A1')) === 0) {
-      spaceRequired = true;
-    }
-
-    if (getContrastRatio(bgColor, fgColor) < 7) fgColor = colors.fullWhite;
-    if (colorTitle) {
-      blockTitle = (
-        <div className={styles.name}>
-          {colorTitle}
-        </div>
-      );
-    }
-
-    const rowStyle = {
-      backgroundColor: bgColor,
-      color: fgColor,
-      listStyle: 'none',
-      padding: 15,
-    };
-
-    if (spaceRequired) {
-      const rowStyleSpace = {
-        ...rowStyle,
-        marginTop: 4,
-      };
-      return (
-        <li style={rowStyleSpace} key={bgColorText}>
-          {blockTitle}
-          {getColorName(styles, bgColorText, bgColor)}
-        </li>
-      );
-    }
-    return (
-      <li style={rowStyle} key={bgColorText}>
-        {blockTitle}
-        {getColorName(styles, bgColorText, bgColor)}
-      </li>
-    );
-  }
-
-  colorGroups = mainColors.map((maincolor) => getColorGroup(classes, maincolor, true));
-  neutralGroups = neutralColors.map((neutralcolor) => getColorGroup(classes, neutralcolor, false));
   return (
-    <div className={classes.root} >
-      {colorGroups}
-      {neutralGroups}
+    <div className={classes.root}>
+      {mainColors.map((mainColor) => getColorGroup({
+        classes,
+        color: mainColor,
+        showAltPalette: true,
+      }))}
+      {neutralColors.map((neutralColor) => getColorGroup({
+        classes,
+        color: neutralColor,
+        showAltPalette: false,
+      }))}
     </div>
   );
 }
