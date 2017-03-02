@@ -127,6 +127,13 @@ export default function AppRouter() {
           component={AppContent}
         >
           <Route
+            title="Color"
+            path="/style/color"
+            content={requireDocs('./site/src/pages/style/color/color.md')}
+            component={MarkdownDocs}
+            nav
+          />
+          <Route
             title="Icons"
             path="/style/icons"
             content={requireDocs('./site/src/pages/style/icons/icons.md')}
