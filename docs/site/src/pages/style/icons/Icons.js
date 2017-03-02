@@ -32,4 +32,3 @@ export default function Icons(props, context) {
 Icons.contextTypes = {
   styleManager: customPropTypes.muiRequired,
 };
-

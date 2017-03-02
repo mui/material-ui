@@ -9,17 +9,17 @@ They’ve been designed to work harmoniously with each other.
 
 For instance, you can use the red color like so:
 ```js
-import { red } from 'material-ui/styles/colors';
+import { red, purple } from 'material-ui/styles/colors';
 
 const primary = red[500]; // #F44336
+const accent = purple['A200']; // #E040FB
 ```
+
 {{demo='pages/style/color/Color.js'}}
 
 ## Color schemes
 
-These are links to some of the awesome tools that can be used to generate palettes.
+These are links to some of the awesome tools that can be used to generate palettes:
 
 - [www.materialpalette.com](https://www.materialpalette.com)
-
 - [mcg.mbitson.com/](http://mcg.mbitson.com/)
-
