@@ -381,16 +381,22 @@ class DropDownMenu extends Component {
         }
       });
     } else {
-      displayValue = [];
+      const values = [];
       React.Children.forEach(children, (child) => {
         if (child && value && value.includes(child.props.value)) {
-          displayValue.push(child.props.label || child.props.primaryText);
+          if (selectionRenderer) {
+            values.push(child.props.value);
+          } else {
+            values.push(child.props.label || child.props.primaryText);
+          }
         }
       });
+
+      displayValue = [];
       if (selectionRenderer) {
-        displayValue = selectionRenderer(displayValue);
+        displayValue = selectionRenderer(values);
       } else {
-        displayValue = displayValue.join(', ');
+        displayValue = values.join(', ');
       }
     }
 
