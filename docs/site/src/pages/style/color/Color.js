@@ -1,3 +1,5 @@
+// @flow weak
+
 import React from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import * as colors from 'material-ui/styles/colors';
