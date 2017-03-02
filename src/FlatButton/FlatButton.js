@@ -290,6 +290,7 @@ class FlatButton extends Component {
     return (
       <EnhancedButton
         {...other}
+        ref={ eBtn => this.enhancedButton = eBtn }
         disabled={disabled}
         focusRippleColor={buttonRippleColor}
         focusRippleOpacity={0.3}
