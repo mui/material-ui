@@ -9,11 +9,10 @@ const mainColors = [
   'Cyan', 'Teal', 'Green', 'Light Green', 'Lime', 'Yellow', 'Amber', 'Orange',
   'Deep Orange',
 ];
-const neutralColors = ['Brown', 'Grey'];
+const neutralColors = ['Brown', 'Grey', 'Blue Grey'];
 
-export const styleSheet = createStyleSheet('colors', (theme) => ({
+export const styleSheet = createStyleSheet('colors', () => ({
   name: {
-    display: 'block',
     marginBottom: 60,
   },
   colorContainer: {
@@ -21,38 +20,28 @@ export const styleSheet = createStyleSheet('colors', (theme) => ({
     justifyContent: 'space-between',
   },
   blockSpace: {
-    height: '4px',
-    color: '#eeeeee',
-  },
-  colorValue: {
-    fontSize: 12,
+    height: 4,
   },
   root: {
-    marginLeft: '50px',
-    boxSizing: 'initial',
-  },
-  hex: {
-    float: 'right',
+    display: 'flex',
+    flexWrap: 'wrap',
   },
   colorGroup: {
-    float: 'left',
     padding: '16px 0',
     display: 'block',
-    margin: 0,
     width: '30% ',
-    borderRight: 'solid 15px',
-    borderColor: '#eeeeee',
-  },
-  headline: {
-    fontSize: 24,
-    lineHeight: '32px',
-    paddingTop: 16,
-    marginBottom: 12,
-    letterSpacing: 0,
-    fontWeight: theme.typography.headline.fontWeight,
-    color: theme.typography.headline.color,
+    margin: '0 15px 0 0',
   },
 }));
+
+function getColorName(styles, text, colorValue) {
+  return (
+    <div className={styles.colorContainer}>
+      <span>{text}</span>
+      <span className={styles.colorValue}>{colorValue.toUpperCase()}</span>
+    </div>
+  );
+}
 
 export default function Color(props, context) {
   const classes = context.styleManager.render(styleSheet);
@@ -85,21 +74,19 @@ export default function Color(props, context) {
     const bgColorText = colorName + colorValue;
     const bgColor = colors[colorName][colorValue];
     let fgColor = colors.fullBlack;
-    const contrastRatio = getContrastRatio(bgColor, fgColor);
     let blockTitle;
     let spaceRequired = false;
-    const colorValueString = colorValue.toString();
 
-    if ((colorValueString.indexOf('A1')) === 0) {
+    if ((colorValue.toString().indexOf('A1')) === 0) {
       spaceRequired = true;
     }
 
-    if (contrastRatio < 7) fgColor = colors.fullWhite;
+    if (getContrastRatio(bgColor, fgColor) < 7) fgColor = colors.fullWhite;
     if (colorTitle) {
       blockTitle = (
-        <span className={styles.name}>
+        <div className={styles.name}>
           {colorTitle}
-        </span>
+        </div>
       );
     }
 
@@ -113,7 +100,7 @@ export default function Color(props, context) {
     if (spaceRequired) {
       const rowStyleSpace = {
         ...rowStyle,
-        borderTop: '4px #eeeeee solid',
+        marginTop: 4,
       };
       return (
         <li style={rowStyleSpace} key={bgColorText}>
@@ -130,26 +117,12 @@ export default function Color(props, context) {
     );
   }
 
-  function getColorName(styles, text, colorValue) {
-    return (
-      <div className={styles.colorContainer}>
-        <span>{text}</span>
-        <span className={styles.colorValue}>{colorValue.toUpperCase()}</span>
-      </div>
-    );
-  }
-
   colorGroups = mainColors.map((maincolor) => getColorGroup(classes, maincolor, true));
   neutralGroups = neutralColors.map((neutralcolor) => getColorGroup(classes, neutralcolor, false));
-
   return (
-    <div className={classes.root}>
-      <div>
-        {colorGroups.map((maincolor) => maincolor)}
-      </div>
-      <div>
-        {neutralGroups.map((neutralcolor) => neutralcolor)}
-      </div>
+    <div className={classes.root} >
+      {colorGroups}
+      {neutralGroups}
     </div>
   );
 }
