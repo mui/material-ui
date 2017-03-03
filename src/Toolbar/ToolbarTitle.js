@@ -25,6 +25,10 @@ class ToolbarTitle extends Component {
 
   static propTypes = {
     /**
+     * The component(s) to be displayed.
+     */
+    children: PropTypes.node,
+    /**
      * The css class name of the root element.
      */
     className: PropTypes.string,
@@ -35,12 +39,7 @@ class ToolbarTitle extends Component {
     /**
      * The text to be displayed.
      */
-    text: PropTypes.string,
-    /**
-     * Alternatively, the object(s)/component(s) to be displayed.
-     */
-    node: PropTypes.object,
-    children: PropTypes.object,
+    text: PropTypes.node,
   };
 
   static contextTypes = {
@@ -49,11 +48,10 @@ class ToolbarTitle extends Component {
 
   render() {
     const {
+      children,
       className,
       style,
       text,
-      node,
-      children,
       ...other
     } = this.props;
 
@@ -62,7 +60,7 @@ class ToolbarTitle extends Component {
 
     return (
       <span {...other} className={className} style={prepareStyles(Object.assign({}, styles.root, style))}>
-        {children || node || text || null}
+        {children || text || null}
       </span>
     );
   }
