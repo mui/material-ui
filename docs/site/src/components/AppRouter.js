@@ -90,13 +90,6 @@ export default function AppRouter() {
             component={MarkdownDocs}
             nav
           />
-          <Route
-            title="Typography"
-            path="/getting-started/typography"
-            content={requireDocs('./getting-started/typography.md')}
-            component={MarkdownDocs}
-            nav
-          />
         </Route>
         <Route
           title="Customization"
@@ -137,6 +130,13 @@ export default function AppRouter() {
             title="Icons"
             path="/style/icons"
             content={requireDocs('./site/src/pages/style/icons/icons.md')}
+            component={MarkdownDocs}
+            nav
+          />
+          <Route
+            title="Typography"
+            path="/style/typography"
+            content={requireDocs('./site/src/pages/style/typography/typography.md')}
             component={MarkdownDocs}
             nav
           />

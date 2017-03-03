@@ -7,18 +7,21 @@ A [typographic scale](https://material.google.com/style/typography.html#typograp
 
 The *Roboto* font will not be automatically loaded by Material-UI.
 The developer is responsible for loading all fonts used in their application.
-Shown below is a sample link markup used to load the Roboto font from a CDN.
+Roboto Font has a few easy ways to get started.
 
+## Roboto Font CDN
+
+Shown below is a sample link markup used to load the Roboto font from a CDN.
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 ```
-An altrnative way is to install it using [npm](https://www.npmjs.com/).
+## Install with [npm](https://www.npmjs.com/)
 
 You can install it by typing the below command in your terminal:
 
 `npm install typeface-roboto --save`
 
-Then, in your index.js:
+Then, you can import it in your entrypoint.
 
 ```js
 import 'typeface-roboto'
