@@ -20,7 +20,7 @@ export const styleSheet = createStyleSheet('MuiPaper', (theme) => {
       backgroundColor: palette.background.paper,
     },
     rounded: {
-      borderRadius: '2px',
+      borderRadius: 2,
     },
     ...shadows,
   };
