@@ -35,7 +35,10 @@ class ToolbarTitle extends Component {
     /**
      * The text to be displayed.
      */
-    text: PropTypes.string,
+    text: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object,
+    ]),
   };
 
   static contextTypes = {
