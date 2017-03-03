@@ -35,10 +35,12 @@ class ToolbarTitle extends Component {
     /**
      * The text to be displayed.
      */
-    text: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object,
-    ]),
+    text: PropTypes.string,
+    /**
+     * Alternatively, the object(s)/component(s) to be displayed.
+     */
+    node: PropTypes.object,
+    children: PropTypes.object,
   };
 
   static contextTypes = {
@@ -50,6 +52,8 @@ class ToolbarTitle extends Component {
       className,
       style,
       text,
+      node,
+      children,
       ...other
     } = this.props;
 
@@ -58,7 +62,7 @@ class ToolbarTitle extends Component {
 
     return (
       <span {...other} className={className} style={prepareStyles(Object.assign({}, styles.root, style))}>
-        {text}
+        {children || node || text || null}
       </span>
     );
   }
