@@ -28,8 +28,6 @@ import 'typeface-roboto'
 ```
 For more info checkout the [typeface](https://www.npmjs.com/package/typeface-roboto) project.
 
-
-
 ## Styles
 
 {{demo='pages/style/typography/TextTypes.js'}}
