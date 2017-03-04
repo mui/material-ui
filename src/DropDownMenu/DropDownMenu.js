@@ -180,6 +180,7 @@ class DropDownMenu extends Component {
     animated: true,
     autoWidth: true,
     disabled: false,
+    disableKeyboardFocus: false,
     iconButton: <DropDownArrow />,
     openImmediately: false,
     maxHeight: 500,
