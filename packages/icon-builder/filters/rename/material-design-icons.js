@@ -1,5 +1,3 @@
-'use strict';
-
 function myDestRewriter(pathObj) {
   let fileName = pathObj.base;
 

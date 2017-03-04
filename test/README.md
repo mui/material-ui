@@ -23,7 +23,7 @@ trade-off, mainly completeness vs. speed.
 ### React API level
 
 #### Run the core mocha unit/integration test suite.
-`npm run test`
+`npm run test:unit`
 
 #### Watch the core mocha unit/integration test suite.
 `npm run test:watch`

@@ -127,10 +127,10 @@ describe('--svg-dir, --innerPath, --fileSuffix', function() {
     builder.main(options, function() {
       assert.strictEqual(fs.lstatSync(tempPath).isDirectory(), true);
       assert.strictEqual(fs.lstatSync(path.join(tempPath, "delapouite")).isDirectory(), true);
-      
+
       const outputFilePath = path.join(tempPath, 'delapouite', 'dice', 'svg', '000000', 'transparent', 'dice-six-faces-four.js');
       assert.strictEqual(fs.existsSync(outputFilePath), true);
-      
+
       const outputFileData = fs.readFileSync(outputFilePath, {encoding: 'utf8'});
       assert.include(outputFileData, builder.SVG_ICON_ABSOLUTE_REQUIRE);
       done();
@@ -163,7 +163,7 @@ describe('--mui-require', function() {
       builder.main(options, function() {
         assert.strictEqual(fs.lstatSync(tempPath).isDirectory(), true);
         assert.strictEqual(fs.existsSync(outputFilePath), true);
-        
+
         let outputFileData = fs.readFileSync(outputFilePath, {encoding: 'utf8'});
         assert.include(outputFileData, builder.SVG_ICON_ABSOLUTE_REQUIRE);
         done();
@@ -175,7 +175,7 @@ describe('--mui-require', function() {
       builder.main(absoluteOptions, function() {
         assert.strictEqual(fs.lstatSync(tempPath).isDirectory(), true);
         assert.strictEqual(fs.existsSync(outputFilePath), true);
-        
+
         let outputFileData = fs.readFileSync(outputFilePath, {encoding: 'utf8'});
         assert.include(outputFileData, builder.SVG_ICON_ABSOLUTE_REQUIRE);
         done();
@@ -189,7 +189,7 @@ describe('--mui-require', function() {
       builder.main(relativeOptions, function() {
         assert.strictEqual(fs.lstatSync(tempPath).isDirectory(), true);
         assert.strictEqual(fs.existsSync(outputFilePath), true);
-        
+
         let outputFileData = fs.readFileSync(outputFilePath, {encoding: 'utf8'});
         assert.include(outputFileData, builder.SVG_ICON_RELATIVE_REQUIRE);
         done();
@@ -206,7 +206,7 @@ describe('Template rendering', function() {
     glob: '/**/production/*_24px.svg',
     renameFilter: builder.RENAME_FILTER_MUI,
     muiRequire: 'absolute',
-    disable_log: DISABLE_LOG
+    disable_log: DISABLE_LOG,
   };
   let tempPath;
 
@@ -220,7 +220,6 @@ describe('Template rendering', function() {
     temp.cleanupSync();
   });
 
-
   it('should produce the expected output', function(done) {
     builder.main(options, function() {
       let exampleFilePath = path.join(MUI_ICONS_ROOT, 'expected', 'Accessibility.js');
@@ -230,8 +229,12 @@ describe('Template rendering', function() {
       assert.strictEqual(fs.existsSync(exampleFilePath), true);
       assert.strictEqual(fs.existsSync(outputFilePath), true);
 
-      const expected = fs.readFileSync(exampleFilePath, {encoding: 'utf8'});
-      const result = fs.readFileSync(outputFilePath, {encoding: 'utf8'});
+      const expected = fs.readFileSync(exampleFilePath, {
+        encoding: 'utf8',
+      });
+      const result = fs.readFileSync(outputFilePath, {
+        encoding: 'utf8',
+      });
       assert.include(result, expected);
       done();
     });

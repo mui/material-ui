@@ -112,9 +112,6 @@ export const styleSheet = createStyleSheet('MuiButton', (theme) => {
 });
 
 /**
- * Buttons communicate the action that will occur when the user
- * touches them.
- *
  * ```jsx
  * <Button>Hello World</Button>
  * ```

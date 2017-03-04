@@ -12,6 +12,7 @@ Props
 | className | string |  | The CSS class name of the root element. |
 | direction | enum:&nbsp;'left'<br>&nbsp;'right'<br>&nbsp;'up'<br>&nbsp;'down'<br> | 'down' | Entering direction of the children element. |
 | enterTransitionDuration | number | duration.enteringScreen | Duration of the animation when the element is entering the screen. |
+| in | bool |  | Show the component; triggers the enter or exit animation. |
 | leaveTransitionDuration | number | duration.leavingScreen | Duration of the animation when the element is leaving the screen. |
 | offset | string |  | Set to slide in by a fixed number of pixels or %. |
 | onEnter | function |  | Callback fired before the component is entering. |
