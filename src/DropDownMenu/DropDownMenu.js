@@ -308,6 +308,7 @@ class DropDownMenu extends Component {
       animation,
       autoWidth,
       children,
+      disableTouchRipple,
       className,
       iconStyle,
       labelStyle,
@@ -371,6 +372,7 @@ class DropDownMenu extends Component {
             }}
             style={Object.assign({}, styles.icon, iconStyle)}
             iconStyle={styles.iconChildren}
+            disableTouchRipple={disableTouchRipple}
           >
             {iconButton}
           </IconButton>

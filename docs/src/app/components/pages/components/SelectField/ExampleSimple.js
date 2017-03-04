@@ -35,7 +35,7 @@ export default class SelectFieldExampleSimple extends Component {
           <MenuItem value={5} primaryText="Weekly" />
         </SelectField>
         <br />
-        <SelectField floatingLabelText="Frequency" value={1} disabled={true}>
+        <SelectField floatingLabelText="Frequency" value={1} disabled={true} disableTouchRipple={true}>
           <MenuItem value={1} primaryText="Disabled" />
           <MenuItem value={2} primaryText="Every Night" />
         </SelectField>
