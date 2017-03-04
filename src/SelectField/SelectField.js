@@ -147,6 +147,7 @@ class SelectField extends Component {
   static defaultProps = {
     autoWidth: false,
     disabled: false,
+    disableTouchRipple: false,
     fullWidth: false,
   };
 
