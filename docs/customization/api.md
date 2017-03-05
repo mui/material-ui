@@ -1,7 +1,7 @@
 # API
 
 We have learned a lot regarding how people use Material-UI.
-The 1.x.x rewrote allowed us to completely rethink our components API.
+The 1.x.x rewrite allowed us to completely rethink our component API.
 
 > API design is hard because you can make it seem simple but it's actually deceptively complex, or make it actually simple but seem complex.
 
@@ -16,10 +16,8 @@ You may have noticed some inconsistency in our API regarding composing component
 To provide some transparency, we have been using the following rules when designing the API:
 
 1. Using the `children` property is the idiomatic way to do composition with React.
-2. Something, we only need a limited children composition.
-For instance, when we don't need to allow children order permutation.
-Under this condition, providing explicit properties is making the implementation simpler and more performant.
-For example, the `<Tab />` takes an `icon` and a `label` property.
+2. Sometimes we only need a limited child composition, for instance when we don't need to allow child order permutations.
+Under this condition, providing explicit properties makes the implementation simpler and more performant; for example, the `<Tab />` takes an `icon` and a `label` property.
 3. API consistency matters.
 
 ## Rules
