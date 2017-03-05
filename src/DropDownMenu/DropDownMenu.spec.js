@@ -9,6 +9,7 @@ import getMuiTheme from '../styles/getMuiTheme';
 import MenuItem from '../MenuItem';
 import Menu from '../Menu/Menu';
 import IconButton from '../IconButton';
+import TouchRipple from '../internal/TouchRipple';
 
 describe('<DropDownMenu />', () => {
   const muiTheme = getMuiTheme();
@@ -28,6 +29,44 @@ describe('<DropDownMenu />', () => {
       );
 
       assert.strictEqual(wrapper.childAt(0).childAt(0).childAt(0).node, 'Never');
+    });
+  });
+
+  describe('prop: disabled', () => {
+    it('disables the touchRipple effect if disableTouchRipple is undefined and disabled={true}', () => {
+      const wrapper = mountWithContext(
+        <DropDownMenu disabled  />
+      );
+      console.log(wrapper.prop('disableTouchRipple'));
+      assert.strictEqual(wrapper.find(TouchRipple).length, 0, 'should not contain a TouchRipple')
+    });
+    it('has a touchRipple effect if disableTouchRipple is undefined and disabled={false}', () => {
+      const wrapper = mountWithContext(
+        <DropDownMenu />
+      );
+      assert.strictEqual(wrapper.find(TouchRipple).length, 1, 'should contain a TouchRipple')
+    });
+  });
+
+  describe('prop: disableTouchRipple', () => {
+    it('has a touchRipple effect by default', () => {
+      const wrapper = mountWithContext(
+        <DropDownMenu />
+      );
+      assert.strictEqual(wrapper.find(TouchRipple).length, 1, 'should contain a TouchRipple')
+    });
+    it('disables the touchRipple effect when disableTouchRipple={true}', () => {
+      const wrapper = mountWithContext(
+        <DropDownMenu disableTouchRipple />
+      );
+      assert.strictEqual(wrapper.find(TouchRipple).length, 0, 'should not contain a TouchRipple')
+    });
+
+    it('has a touchRipple effect if disabled={true} and disableTouchRipple={false}', () => {
+      const wrapper = mountWithContext(
+        <DropDownMenu disabled disableTouchRipple={false} />
+      );
+      assert.strictEqual(wrapper.find(TouchRipple).length, 1, 'should contain a TouchRipple')
     });
   });
 
