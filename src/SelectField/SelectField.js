@@ -42,7 +42,7 @@ class SelectField extends Component {
     /**
      * If true, the icon element's ripple effect will be disabled
      */
-    disableIconTouchRipple: PropTypes.bool,
+    disableTouchRipple: PropTypes.bool,
     /**
      * Override the inline-styles of the error element.
      */
@@ -170,7 +170,7 @@ class SelectField extends Component {
       underlineStyle,
       errorStyle,
       disabled,
-      disableIconTouchRipple,
+      disableTouchRipple,
       floatingLabelFixed,
       floatingLabelText,
       floatingLabelStyle,
@@ -212,7 +212,7 @@ class SelectField extends Component {
       >
         <DropDownMenu
           disabled={disabled}
-          disableIconTouchRipple={disableIconTouchRipple}
+          disableTouchRipple={disableTouchRipple}
           style={Object.assign(styles.dropDownMenu, menuStyle)}
           labelStyle={Object.assign(styles.label, labelStyle)}
           iconStyle={Object.assign(styles.icon, iconStyle)}
