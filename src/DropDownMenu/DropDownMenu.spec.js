@@ -41,7 +41,7 @@ describe('<DropDownMenu />', () => {
     });
     it('has a touchRipple effect if disableTouchRipple is undefined and disabled={false}', () => {
       const wrapper = mountWithContext(
-        <DropDownMenu />
+        <DropDownMenu disabled={false} />
       );
       assert.strictEqual(wrapper.find(TouchRipple).length, 1, 'should contain a TouchRipple');
     });
