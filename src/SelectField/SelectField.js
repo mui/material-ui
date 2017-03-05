@@ -36,13 +36,13 @@ class SelectField extends Component {
      */
     children: PropTypes.node,
     /**
-     * If true, the select field will be disabled.
-     */
-    disabled: PropTypes.bool,
-    /**
      * If true, the icon element's ripple effect will be disabled
      */
     disableTouchRipple: PropTypes.bool,
+    /**
+     * If true, the select field will be disabled.
+     */
+    disabled: PropTypes.bool,
     /**
      * Override the inline-styles of the error element.
      */

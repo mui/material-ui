@@ -5,7 +5,6 @@ import {assert} from 'chai';
 import IconButton from './IconButton';
 import FontIcon from '../FontIcon';
 import getMuiTheme from '../styles/getMuiTheme';
-import EnhancedButton from '../internal/EnhancedButton';
 import TouchRipple from '../internal/TouchRipple';
 
 const dummy = <div />;
@@ -87,7 +86,7 @@ describe('<IconButton />', () => {
     });
     it('disables the ripple effect when disableTouchRipple={true}', () => {
       const wrapper = mountWithContext(
-        <IconButton disableTouchRipple />
+        <IconButton disableTouchRipple={true} />
       );
       assert.strictEqual(wrapper.find(TouchRipple).length, 0, 'should not contain a TouchRipple descendent');
     });

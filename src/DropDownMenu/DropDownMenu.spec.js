@@ -35,16 +35,15 @@ describe('<DropDownMenu />', () => {
   describe('prop: disabled', () => {
     it('disables the touchRipple effect if disableTouchRipple is undefined and disabled={true}', () => {
       const wrapper = mountWithContext(
-        <DropDownMenu disabled  />
+        <DropDownMenu disabled={true} />
       );
-      console.log(wrapper.prop('disableTouchRipple'));
-      assert.strictEqual(wrapper.find(TouchRipple).length, 0, 'should not contain a TouchRipple')
+      assert.strictEqual(wrapper.find(TouchRipple).length, 0, 'should not contain a TouchRipple');
     });
     it('has a touchRipple effect if disableTouchRipple is undefined and disabled={false}', () => {
       const wrapper = mountWithContext(
         <DropDownMenu />
       );
-      assert.strictEqual(wrapper.find(TouchRipple).length, 1, 'should contain a TouchRipple')
+      assert.strictEqual(wrapper.find(TouchRipple).length, 1, 'should contain a TouchRipple');
     });
   });
 
@@ -53,20 +52,20 @@ describe('<DropDownMenu />', () => {
       const wrapper = mountWithContext(
         <DropDownMenu />
       );
-      assert.strictEqual(wrapper.find(TouchRipple).length, 1, 'should contain a TouchRipple')
+      assert.strictEqual(wrapper.find(TouchRipple).length, 1, 'should contain a TouchRipple');
     });
     it('disables the touchRipple effect when disableTouchRipple={true}', () => {
       const wrapper = mountWithContext(
-        <DropDownMenu disableTouchRipple />
+        <DropDownMenu disableTouchRipple={true} />
       );
-      assert.strictEqual(wrapper.find(TouchRipple).length, 0, 'should not contain a TouchRipple')
+      assert.strictEqual(wrapper.find(TouchRipple).length, 0, 'should not contain a TouchRipple');
     });
 
     it('has a touchRipple effect if disabled={true} and disableTouchRipple={false}', () => {
       const wrapper = mountWithContext(
-        <DropDownMenu disabled disableTouchRipple={false} />
+        <DropDownMenu disabled={true} disableTouchRipple={false} />
       );
-      assert.strictEqual(wrapper.find(TouchRipple).length, 1, 'should contain a TouchRipple')
+      assert.strictEqual(wrapper.find(TouchRipple).length, 1, 'should contain a TouchRipple');
     });
   });
 
