@@ -113,7 +113,7 @@ class DropDownMenu extends Component {
     /**
      * If true, the icon element's ripple effect will be disabled
      */
-    disableIconTouchRipple: PropTypes.bool,
+    disableTouchRipple: PropTypes.bool,
     /**
      * Overrides default `SvgIcon` dropdown arrow component.
      */
@@ -314,7 +314,8 @@ class DropDownMenu extends Component {
       autoWidth,
       children,
       className,
-      disableIconTouchRipple,
+      disabled,
+      disableTouchRipple,
       iconStyle,
       labelStyle,
       listStyle,
@@ -330,7 +331,6 @@ class DropDownMenu extends Component {
       iconButton,
       ...other
     } = this.props;
-
     const {
       anchorEl,
       open,
@@ -370,7 +370,7 @@ class DropDownMenu extends Component {
             {displayValue}
           </div>
           <IconButton
-            disableTouchRipple={disableIconTouchRipple}
+            disableTouchRipple={ disableTouchRipple === undefined ? disabled : disableTouchRipple }
             tabIndex={this.props.disabled ? -1 : undefined}
             onKeyDown={this.handleKeyDown}
             ref={(node) => {
