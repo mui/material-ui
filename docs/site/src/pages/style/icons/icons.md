@@ -6,7 +6,7 @@ Icons are commonly found in app bars, toolbars, buttons, and lists.
 
 ## Font Icons
 
-An `Icon` will display one of the many [material design icons freely available](https://material.io/icons/). As a prerequisite, you must include [the material icon font](http://google.github.io/material-design-icons/#icon-font-for-the-web).
+An `Icon` will display one of the many [material design icons freely available](https://material.io/icons/). As a prerequisite, you must include an icon font such as [the material icon font](http://google.github.io/material-design-icons/#icon-font-for-the-web).
 
 {{demo='pages/style/icons/Icons.js'}}
 
