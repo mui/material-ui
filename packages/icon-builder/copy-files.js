@@ -4,12 +4,8 @@
 import path from 'path';
 import fse from 'fs-extra';
 
-function resolveBuildPath(file) {
-  return path.resolve(__dirname, './build/', path.basename(file));
-}
-
 function copyFile(file) {
-  const buildPath = resolveBuildPath(file);
+  const buildPath = path.resolve(__dirname, './build/', path.basename(file));
   return new Promise((resolve) => {
     fse.copy(
       file,
@@ -56,13 +52,13 @@ function createPackageFile() {
       license,
       bugs,
       homepage,
-      "dependencies": {
-        "recompose": "^0.22.0"
+      dependencies: {
+        recompose: '^0.22.0',
       },
-      "peerDependencies": {
-        "material-ui": "^1.0.0",
-        "react": "^15.0.0",
-        "react-dom": "^15.0.0"
+      peerDependencies: {
+        react: '^15.0.0',
+        'react-dom': '^15.0.0',
+        'material-ui': '^1.0.0-alpha',
       },
     };
 
@@ -82,7 +78,6 @@ const files = [
   '../../LICENSE',
 ];
 
-Promise.all(
-  files.map((file) => copyFile(file)),
-)
-.then(() => createPackageFile());
+Promise
+  .all(files.map((file) => copyFile(file)))
+  .then(() => createPackageFile());

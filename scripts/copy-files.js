@@ -4,12 +4,8 @@
 import path from 'path';
 import fse from 'fs-extra';
 
-function resolveBuildPath(file) {
-  return path.resolve(__dirname, '../build/', path.basename(file));
-}
-
 function copyFile(file) {
-  const buildPath = resolveBuildPath(file);
+  const buildPath = path.resolve(__dirname, '../build/', path.basename(file));
   return new Promise((resolve) => {
     fse.copy(
       file,
@@ -83,7 +79,6 @@ const files = [
   'LICENSE',
 ];
 
-Promise.all(
-  files.map((file) => copyFile(file)),
-)
-.then(() => createPackageFile());
+Promise
+  .all(files.map((file) => copyFile(file)))
+  .then(() => createPackageFile());

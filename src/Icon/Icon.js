@@ -32,7 +32,6 @@ export const styleSheet = createStyleSheet('MuiIcon', (theme) => {
 });
 
 /**
- *
  * ```jsx
  * <Icon>account_circle</Icon>
  * ```

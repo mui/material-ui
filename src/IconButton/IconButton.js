@@ -55,13 +55,12 @@ export const styleSheet = createStyleSheet('MuiIconButton', (theme) => {
 });
 
 /**
- * @see https://material.google.com/components/buttons.html
- *
- * ```js
- * import IconButton from 'material-ui/IconButton';
- *
- * const Component = () => <IconButton>delete</IconButton>;
+ * ```jsx
+ * <IconButton>account_circle</IconButton>
  * ```
+ *
+ * You can refer to the [Icons](#/style/icons) section of the documentation
+ * regarding the available icons.
  */
 export default function IconButton(props, context) {
   const {
@@ -117,8 +116,9 @@ IconButton.propTypes = {
    */
   buttonRef: PropTypes.func,
   /**
-   * The icon element. If a string is passed,
-   * it will be used as a material icon font ligature.
+   * The icon element.
+   * If a string is passed, it will be used as a material icon font ligature.
+   * As a prerequisite, you must include the material icon font.
    */
   children: PropTypes.node,
   /**
