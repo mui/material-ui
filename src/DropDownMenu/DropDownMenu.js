@@ -107,10 +107,6 @@ class DropDownMenu extends Component {
      */
     className: PropTypes.string,
     /**
-     * If true, the icon element's ripple effect will be disabled
-     */
-    disableTouchRipple: PropTypes.bool,
-    /**
      * Disables the menu.
      */
     disabled: PropTypes.bool,
@@ -315,7 +311,6 @@ class DropDownMenu extends Component {
       children,
       className,
       disabled,
-      disableTouchRipple,
       iconStyle,
       labelStyle,
       listStyle,
@@ -370,8 +365,8 @@ class DropDownMenu extends Component {
             {displayValue}
           </div>
           <IconButton
-            disableTouchRipple={disableTouchRipple === undefined ? disabled : disableTouchRipple}
-            tabIndex={this.props.disabled ? -1 : undefined}
+            disabled={disabled}
+            tabIndex={disabled ? -1 : undefined}
             onKeyDown={this.handleKeyDown}
             ref={(node) => {
               this.arrowNode = node;
