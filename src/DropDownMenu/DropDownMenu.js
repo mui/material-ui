@@ -309,6 +309,7 @@ class DropDownMenu extends Component {
       autoWidth,
       children,
       className,
+      disabled,
       iconStyle,
       labelStyle,
       listStyle,
@@ -324,7 +325,6 @@ class DropDownMenu extends Component {
       iconButton,
       ...other
     } = this.props;
-
     const {
       anchorEl,
       open,
@@ -364,7 +364,7 @@ class DropDownMenu extends Component {
             {displayValue}
           </div>
           <IconButton
-            tabIndex={this.props.disabled ? -1 : undefined}
+            disabled={disabled}
             onKeyDown={this.handleKeyDown}
             ref={(node) => {
               this.arrowNode = node;

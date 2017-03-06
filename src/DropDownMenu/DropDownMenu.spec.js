@@ -31,6 +31,15 @@ describe('<DropDownMenu />', () => {
     });
   });
 
+  describe('prop: disabled', () => {
+    it('should forward the property', () => {
+      const wrapper = shallowWithContext(
+        <DropDownMenu disabled={true} />
+      );
+      assert.strictEqual(wrapper.find('IconButton').prop('disabled'), true, 'should be disabled');
+    });
+  });
+
   describe('prop: children', () => {
     it('should work with null child', () => {
       const wrapper = shallowWithContext(
