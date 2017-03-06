@@ -176,7 +176,6 @@ class DropDownMenu extends Component {
     animated: true,
     autoWidth: true,
     disabled: false,
-    disableKeyboardFocus: false,
     iconButton: <DropDownArrow />,
     openImmediately: false,
     maxHeight: 500,
@@ -366,7 +365,6 @@ class DropDownMenu extends Component {
           </div>
           <IconButton
             disabled={disabled}
-            tabIndex={disabled ? -1 : undefined}
             onKeyDown={this.handleKeyDown}
             ref={(node) => {
               this.arrowNode = node;

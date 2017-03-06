@@ -32,7 +32,7 @@ describe('<DropDownMenu />', () => {
   });
 
   describe('prop: disabled', () => {
-    it('disables the ripple effect', () => {
+    it('should forward the property', () => {
       const wrapper = shallowWithContext(
         <DropDownMenu disabled={true} />
       );

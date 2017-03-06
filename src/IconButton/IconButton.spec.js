@@ -78,11 +78,17 @@ describe('<IconButton />', () => {
     });
   });
   describe('prop: disabled', () => {
-    it('disables the ripple effect', () => {
+    it('should disable the ripple effect', () => {
       const wrapper = mountWithContext(
         <IconButton disabled={true} />
       );
       assert.strictEqual(wrapper.find(TouchRipple).length, 0, 'should not contain a TouchRipple descendent');
+    });
+    it('should not disable the ripple effect if false', () => {
+      const wrapper = mountWithContext(
+        <IconButton disabled={false} />
+      );
+      assert.strictEqual(wrapper.find(TouchRipple).length, 1, 'should contain a TouchRipple descendent');
     });
   });
 });
