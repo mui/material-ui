@@ -20,8 +20,6 @@ export default class SelectFieldExampleMultiSelect extends Component {
     values: [],
   };
 
-  handleChange = (event, index, values) => this.setState({values});
-
   menuItems(values) {
     return names.map((name) => (
       <MenuItem
@@ -41,8 +39,8 @@ export default class SelectFieldExampleMultiSelect extends Component {
       <SelectField
         multiple={true}
         hintText="Select a name"
-        value={values}
-        onChange={this.handleChange}
+        value={this.state.values}
+        onChange={(event, index, values) => this.setState({values})}
       >
         {this.menuItems(values)}
       </SelectField>
