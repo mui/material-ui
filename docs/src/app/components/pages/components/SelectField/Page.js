@@ -62,14 +62,12 @@ const SelectFieldPage = () => (
     >
       <SelectFieldExampleError />
     </CodeExample>
-
     <CodeExample
       title="MultiSelect example"
       code={selectFieldExampleMultiSelectCode}
     >
       <SelectFieldExampleMultiSelect />
     </CodeExample>
-
     <PropTypeDescription code={selectFieldCode} />
   </div>
 );
