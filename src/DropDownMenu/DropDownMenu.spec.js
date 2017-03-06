@@ -225,8 +225,9 @@ describe('<DropDownMenu />', () => {
       TestUtils.Simulate.touchTap(item1);
       TestUtils.Simulate.touchTap(item2);
       TestUtils.Simulate.touchTap(item3);
-      TestUtils.Simulate.touchTap(item1);  // deselect
+      assert.deepEqual(wrapper.state().value, ['item1', 'item2', 'item3']);
 
+      TestUtils.Simulate.touchTap(item1);  // deselect
       assert.deepEqual(wrapper.state().value, ['item2', 'item3']);
     });
   });
