@@ -77,16 +77,10 @@ describe('<IconButton />', () => {
       assert.include(wrapper.props().style, hoveredStyle);
     });
   });
-  describe('prop: disableTouchRipple', () => {
-    it('does not disable the ripple effect by default', () => {
+  describe('prop: disabled', () => {
+    it('disables the ripple effect', () => {
       const wrapper = mountWithContext(
-        <IconButton />
-      );
-      assert.strictEqual(wrapper.find(TouchRipple).length, 1, 'should contain a TouchRipple descendent');
-    });
-    it('disables the ripple effect when disableTouchRipple={true}', () => {
-      const wrapper = mountWithContext(
-        <IconButton disableTouchRipple={true} />
+        <IconButton disabled={true} />
       );
       assert.strictEqual(wrapper.find(TouchRipple).length, 0, 'should not contain a TouchRipple descendent');
     });
