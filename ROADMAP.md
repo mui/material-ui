@@ -12,7 +12,7 @@ Material-UI was started [2 years ago](https://github.com/callemall/material-ui/c
 The ecosystem has evolved a lot since then, we have also learned a lot.
 [@nathanmarks](https://github.com/nathanmarks/) started an ambitious task, rebuilding Material-UI from the **ground-up**
 taking advantage of this knowledge to address long-standing issues.
-Expect various breaking changes.
+Expect various **breaking changes**.
 
 The core team is now helping him in the [`next`](https://github.com/callemall/material-ui/tree/next) branch.
 Here are some issues that we plan to fix along the way.
