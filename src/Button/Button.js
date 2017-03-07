@@ -42,8 +42,9 @@ export const styleSheet = createStyleSheet('MuiButton', (theme) => {
         width: '100%',
       },
       '&:hover': {
+        textDecoration: 'none',
+        backgroundColor: 'transparent',
         '&:before': {
-          textDecoration: 'none',
           backgroundColor: 'currentColor',
         },
         '&$disabled': {
