@@ -126,7 +126,7 @@ class SelectField extends Component {
      */
     selectedMenuItemStyle: PropTypes.object,
     /**
-     * Callback function fired when a menu item is clicked, other than the one currently selected.
+     * Customize the rendering of the selected item.
      *
      * @param {any} value If `multiple` is true, the menu's `value`
      * array with either the menu item's `value` added (if

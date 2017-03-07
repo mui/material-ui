@@ -15,6 +15,9 @@ const names = [
   'Kelly Snyder',
 ];
 
+/**
+ * `SelectField` can handle multiple selections. It is enabled with the `multiple` property.
+ */
 export default class SelectFieldExampleMultiSelect extends Component {
   state = {
     values: [],
