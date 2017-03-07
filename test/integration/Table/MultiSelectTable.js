@@ -19,7 +19,6 @@ const tableData = [
   },
   {
     name: 'Olivier',
-    selected: true,
   },
 ];
 
