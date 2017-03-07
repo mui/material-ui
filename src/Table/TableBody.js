@@ -130,11 +130,11 @@ class TableBody extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.allRowsSelected && !nextProps.allRowsSelected) {
-      this.setState({
-        selectedRows: this.state.selectedRows.length > 0 ?
-          [this.state.selectedRows[this.state.selectedRows.length - 1]] : [],
-      });
-      // TODO: should else be conditional, not run any time props other than allRowsSelected change?
+      if (!nextProps.allRowsSelected) {
+        this.setState({
+          selectedRows: [],
+        });
+      } 
     } else {
       this.setState({
         selectedRows: this.calculatePreselectedRows(nextProps),
