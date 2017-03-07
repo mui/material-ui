@@ -188,6 +188,8 @@ describe('<DropDownMenu />', () => {
   });
 
   describe('MultiSelect', () => {
+    let wrapper;
+
     it('should multi select 2 items after selecting 3 and deselecting 1', () => {
       class MyComponent1 extends Component {
         state = {
@@ -212,7 +214,7 @@ describe('<DropDownMenu />', () => {
           );
         }
       }
-      const wrapper = mountWithContext(<MyComponent1 />);
+      wrapper = mountWithContext(<MyComponent1 />);
       wrapper.find('IconButton').simulate('touchTap');   // open
 
       const item1 = document.getElementsByClassName('item1')[0];
@@ -229,6 +231,10 @@ describe('<DropDownMenu />', () => {
 
       TestUtils.Simulate.touchTap(item1);  // deselect
       assert.deepEqual(wrapper.state().value, ['item2', 'item3']);
+    });
+
+    afterEach(function() {
+      if (wrapper) wrapper.unmount();
     });
   });
 });

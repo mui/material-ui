@@ -25,6 +25,8 @@ describe('<SelectField />', () => {
   });
 
   describe('MultiSelect', () => {
+    let wrapper;
+
     it('should multi select 2 items after selecting 3 and deselecting 1', () => {
       class MyComponent2 extends Component {
         state = {
@@ -49,7 +51,7 @@ describe('<SelectField />', () => {
           );
         }
       }
-      const wrapper = mountWithContext(<MyComponent2 />);
+      wrapper = mountWithContext(<MyComponent2 />);
       wrapper.find('IconButton').simulate('touchTap');   // open
 
       const item1 = document.getElementsByClassName('item1')[0];
@@ -66,6 +68,10 @@ describe('<SelectField />', () => {
 
       TestUtils.Simulate.touchTap(item1);  // deselect
       assert.deepEqual(wrapper.state().value, ['item2', 'item3']);
+    });
+
+    afterEach(function() {
+      if (wrapper) wrapper.unmount();
     });
   });
 });
