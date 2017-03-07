@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Element } from 'react';
+import React, { Element, createElement, cloneElement } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
@@ -10,7 +10,7 @@ import { duration } from '../styles/transitions';
 import Paper from '../Paper';
 
 export const styleSheet = createStyleSheet('MuiDialog', theme => ({
-  modal: {
+  root: {
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -164,31 +164,11 @@ function Dialog(props: Props) {
 
   // workaround: see #2 test case from https://github.com/facebook/flow/issues/1660#issuecomment-302468866
   const maxWidth = maxWidthProp || Dialog.defaultProps.maxWidth;
-
-  const transitionProps = {
-    in: open,
-    transitionAppear: true,
-    enterTransitionDuration,
-    leaveTransitionDuration,
-    onEnter,
-    onEntering,
-    onEntered,
-    onExit,
-    onExiting,
-    onExited,
-  };
-
-  let createTransitionFn;
-
-  if (typeof transition === 'function') {
-    createTransitionFn = React.createElement;
-  } else {
-    createTransitionFn = React.cloneElement;
-  }
+  const createTransitionFn = typeof transition === 'function' ? createElement : cloneElement;
 
   return (
     <Modal
-      className={classNames(classes.modal, className)}
+      className={classNames(classes.root, className)}
       backdropTransitionDuration={open ? enterTransitionDuration : leaveTransitionDuration}
       ignoreBackdropClick={ignoreBackdropClick}
       ignoreEscapeKeyUp={ignoreEscapeKeyUp}
@@ -201,7 +181,18 @@ function Dialog(props: Props) {
       {createTransitionFn(
         /* $FlowFixMe */
         transition,
-        transitionProps,
+        {
+          in: open,
+          transitionAppear: true,
+          enterTransitionDuration,
+          leaveTransitionDuration,
+          onEnter,
+          onEntering,
+          onEntered,
+          onExit,
+          onExiting,
+          onExited,
+        },
         <Paper
           data-mui-test="Dialog"
           elevation={24}

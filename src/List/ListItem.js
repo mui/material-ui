@@ -8,13 +8,13 @@ import withStyles from '../styles/withStyles';
 import ButtonBase from '../internal/ButtonBase';
 
 export const styleSheet = createStyleSheet('MuiListItem', theme => ({
-  listItem: {
+  root: {
     display: 'flex',
     alignItems: 'center',
     position: 'relative',
     textDecoration: 'none',
   },
-  listItemContainer: {
+  container: {
     position: 'relative',
   },
   keyboardFocused: {
@@ -89,7 +89,7 @@ class ListItem extends Component {
     });
 
     const className = classNames(
-      classes.listItem,
+      classes.root,
       {
         [classes.gutters]: !disableGutters,
         [classes.divider]: divider,
@@ -116,7 +116,7 @@ class ListItem extends Component {
     ) {
       const secondaryAction = children.pop();
       return (
-        <div className={classes.listItemContainer}>
+        <div className={classes.container}>
           <ComponentMain {...listItemProps}>
             {children}
           </ComponentMain>

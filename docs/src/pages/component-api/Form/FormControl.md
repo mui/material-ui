@@ -12,6 +12,7 @@ Provides context such as dirty/focused/error/required for form inputs.
 | required | bool | false | If `true`, the label will indicate that the input is required. |
 
 Any other properties supplied will be spread to the root element.
+
 ## Classes
 
 You can overrides all the class names injected by Material-UI thanks to the `classes` property.

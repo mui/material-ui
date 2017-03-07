@@ -107,6 +107,7 @@ export default function createPalette(options = {}) {
 
   return {
     type,
+    shades,
     text: shades[type].text,
     input: shades[type].input,
     action: shades[type].action,

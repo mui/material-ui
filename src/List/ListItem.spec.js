@@ -27,16 +27,16 @@ describe('<ListItem />', () => {
     assert.strictEqual(wrapper.name(), 'li');
   });
 
-  it('should render with the user, listItem and gutters classes', () => {
+  it('should render with the user, root and gutters classes', () => {
     const wrapper = shallow(<ListItem className="woof" />);
     assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
-    assert.strictEqual(wrapper.hasClass(classes.listItem), true, 'should have the listItem class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.gutters), true, 'should have the gutters class');
   });
 
   it('should disable the gutters', () => {
     const wrapper = shallow(<ListItem disableGutters />);
-    assert.strictEqual(wrapper.hasClass(classes.listItem), true, 'should have the listItem class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(
       wrapper.hasClass(classes.gutters),
       false,

@@ -27,11 +27,12 @@ Dialogs are overlaid modal paper based components with a backdrop.
 | transition | union:&nbsp;Function<br>&nbsp;Element<*><br> | Fade | Transition component. |
 
 Any other properties supplied will be spread to the root element.
+
 ## Classes
 
 You can overrides all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `modal`
+- `root`
 - `dialog`
 - `dialogWidth-xs`
 - `dialogWidth-sm`

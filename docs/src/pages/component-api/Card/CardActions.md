@@ -10,11 +10,12 @@
 | disableActionSpacing | bool | false | If `true`, the card actions do not have additional margin. |
 
 Any other properties supplied will be spread to the root element.
+
 ## Classes
 
 You can overrides all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `cardActions`
+- `root`
 - `actionSpacing`
 
 Have a look at [overriding with class names](/customization/overrides#overriding-with-class-names)

@@ -8,13 +8,13 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 
 export const styleSheet = createStyleSheet('MuiListItemAvatar', {
-  denseAvatar: {
+  root: {
     width: 36,
     height: 36,
     fontSize: 18,
     marginRight: 4,
   },
-  denseAvatarIcon: {
+  icon: {
     width: 20,
     height: 20,
   },
@@ -37,12 +37,12 @@ function ListItemAvatar(props, context) {
 
   return React.cloneElement(children, {
     className: classNames(
-      { [classes.denseAvatar]: context.dense },
+      { [classes.root]: context.dense },
       classNameProp,
       children.props.className,
     ),
     childrenClassName: classNames(
-      { [classes.denseAvatarIcon]: context.dense },
+      { [classes.icon]: context.dense },
       children.props.childrenClassName,
     ),
     ...other,

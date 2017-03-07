@@ -17,20 +17,12 @@ describe('<ListItemSecondaryAction />', () => {
   it('should render a div', () => {
     const wrapper = shallow(<ListItemSecondaryAction />);
     assert.strictEqual(wrapper.name(), 'div');
-    assert.strictEqual(
-      wrapper.hasClass(classes.secondaryAction),
-      true,
-      'should have the secondaryAction class',
-    );
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
   });
 
-  it('should render with the user and secondaryAction classes', () => {
+  it('should render with the user and root classes', () => {
     const wrapper = shallow(<ListItemSecondaryAction className="woof" />);
     assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
-    assert.strictEqual(
-      wrapper.hasClass(classes.secondaryAction),
-      true,
-      'should have the secondaryAction class',
-    );
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
   });
 });

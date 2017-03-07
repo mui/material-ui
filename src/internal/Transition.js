@@ -35,6 +35,18 @@ type DefaultProps = {
   onExited: TransitionCallback,
 };
 
+// A helper function that calls back when any pending animations have started
+// This is needed as the callback hooks might be setting some style properties
+// that needs a frame to take effect.
+function requestAnimationStart(callback) {
+  // Feature detect rAF, fallback to setTimeout
+  if (window.requestAnimationFrame) {
+    window.requestAnimationFrame(callback);
+  } else {
+    setTimeout(callback, 0);
+  }
+}
+
 type Props = DefaultProps & {
   /**
    * The content of the component.
@@ -283,12 +295,14 @@ class Transition extends Component<DefaultProps, Props, State> {
     // FIXME: These next two blocks are a real enigma for flow typing outside of weak mode.
     // FIXME: I suggest we refactor - rosskevin
     this.nextCallback = (event?: Event) => {
-      if (active) {
-        active = false;
-        this.nextCallback = null;
+      requestAnimationStart(() => {
+        if (active) {
+          active = false;
+          this.nextCallback = null;
 
-        callback(event);
-      }
+          callback(event);
+        }
+      });
     };
 
     this.nextCallback.cancel = () => {

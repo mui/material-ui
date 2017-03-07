@@ -21,7 +21,7 @@ describe('<Collapse />', () => {
   });
 
   it('should render a container around the wrapper', () => {
-    const wrapper = shallow(<Collapse containerClassName="woof" />);
+    const wrapper = shallow(<Collapse classes={{ container: 'woof' }} />);
     assert.strictEqual(wrapper.childAt(0).is('div'), true, 'should be a div');
     assert.strictEqual(
       wrapper.childAt(0).hasClass(classes.container),

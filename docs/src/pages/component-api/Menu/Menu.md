@@ -20,11 +20,12 @@
 | transitionDuration | union:&nbsp;number<br>&nbsp;string<br> | 'auto' | The length of the transition in `ms`, or 'auto' |
 
 Any other properties supplied will be spread to the root element.
+
 ## Classes
 
 You can overrides all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `popover`
+- `root`
 
 Have a look at [overriding with class names](/customization/overrides#overriding-with-class-names)
 section for more detail.

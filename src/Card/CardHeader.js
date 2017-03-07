@@ -9,7 +9,7 @@ import Typography from '../Typography';
 import CardContent from './CardContent';
 
 export const styleSheet = createStyleSheet('MuiCardHeader', theme => ({
-  cardHeader: {
+  root: {
     display: 'flex',
     alignItems: 'center',
   },
@@ -25,7 +25,7 @@ export const styleSheet = createStyleSheet('MuiCardHeader', theme => ({
 function CardHeader(props) {
   const { avatar, classes, className: classNameProp, subheader, title, ...other } = props;
 
-  const className = classNames(classes.cardHeader, classNameProp);
+  const className = classNames(classes.root, classNameProp);
 
   // Adjustments that depend on the presence of an avatar
   const titleType = avatar ? 'body2' : 'headline';

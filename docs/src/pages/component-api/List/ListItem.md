@@ -14,12 +14,13 @@
 | divider | bool | false | If `true`, a 1px light border is added to the bottom of the list item. |
 
 Any other properties supplied will be spread to the root element.
+
 ## Classes
 
 You can overrides all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `listItem`
-- `listItemContainer`
+- `root`
+- `container`
 - `keyboardFocused`
 - `default`
 - `dense`

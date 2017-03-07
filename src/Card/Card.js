@@ -8,16 +8,17 @@ import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
 
 export const styleSheet = createStyleSheet('MuiCard', {
-  card: {
+  root: {
     overflow: 'hidden',
   },
 });
 
 function Card(props) {
-  const { classes, className: classNameProp, raised, ...other } = props;
-  const className = classNames(classes.card, classNameProp);
+  const { classes, className, raised, ...other } = props;
 
-  return <Paper className={className} elevation={raised ? 8 : 2} {...other} />;
+  return (
+    <Paper className={classNames(classes.root, className)} elevation={raised ? 8 : 2} {...other} />
+  );
 }
 
 Card.propTypes = {

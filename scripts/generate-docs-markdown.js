@@ -183,7 +183,8 @@ function generateProps(props) {
 
 function generateClasses(styles) {
   return styles.classes.length
-    ? `## Classes
+    ? `
+## Classes
 
 You can overrides all the class names injected by Material-UI thanks to the \`classes\` property.
 This property accepts the following keys:

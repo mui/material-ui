@@ -39,15 +39,15 @@ export const styleSheet = createStyleSheet('MuiDrawer', theme => ({
     },
     WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
   },
-  left: {
+  'anchor-left': {
     left: 0,
     right: 'auto',
   },
-  right: {
+  'anchor-right': {
     left: 'auto',
     right: 0,
   },
-  top: {
+  'anchor-top': {
     top: 0,
     left: 0,
     bottom: 'auto',
@@ -55,7 +55,7 @@ export const styleSheet = createStyleSheet('MuiDrawer', theme => ({
     height: 'auto',
     maxHeight: '100vh',
   },
-  bottom: {
+  'anchor-bottom': {
     top: 'auto',
     left: 0,
     bottom: 0,
@@ -82,7 +82,6 @@ function Drawer(props, context) {
     enterTransitionDuration,
     leaveTransitionDuration,
     open,
-    paperClassName,
     elevation,
     ...other
   } = props;
@@ -93,12 +92,10 @@ function Drawer(props, context) {
     anchor = anchor === 'left' ? 'right' : 'left';
   }
 
-  const slideDirection = getSlideDirection(anchor);
-
   const drawer = (
     <Slide
       in={open}
-      direction={slideDirection}
+      direction={getSlideDirection(anchor)}
       enterTransitionDuration={enterTransitionDuration}
       leaveTransitionDuration={leaveTransitionDuration}
       transitionAppear
@@ -106,7 +103,7 @@ function Drawer(props, context) {
       <Paper
         elevation={docked ? 0 : elevation}
         square
-        className={classNames(classes.paper, classes[anchor], paperClassName)}
+        className={classNames(classes.paper, classes[`anchor-${anchor}`])}
       >
         {children}
       </Paper>
@@ -175,10 +172,6 @@ Drawer.propTypes = {
    * If `true`, the drawer is open.
    */
   open: PropTypes.bool,
-  /**
-   * The CSS class name of the paper element.
-   */
-  paperClassName: PropTypes.string,
 };
 
 Drawer.defaultProps = {

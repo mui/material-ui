@@ -12,6 +12,7 @@ based on the material table element parent (head, body, etc).
 | selected | bool | false | If `true`, the table row will have the selected shading. |
 
 Any other properties supplied will be spread to the root element.
+
 ## Classes
 
 You can overrides all the class names injected by Material-UI thanks to the `classes` property.

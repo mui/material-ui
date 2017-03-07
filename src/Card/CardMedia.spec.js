@@ -14,8 +14,8 @@ describe('<CardMedia />', () => {
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
-  it('should have the cardMedia class', () => {
+  it('should have the root class', () => {
     const wrapper = shallow(<CardMedia />);
-    assert.strictEqual(wrapper.hasClass(classes.cardMedia), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 });

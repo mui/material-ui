@@ -77,7 +77,9 @@ function AppDrawer(props) {
   return (
     <Drawer
       className={props.className}
-      paperClassName={classes.paper}
+      classes={{
+        paper: classes.paper,
+      }}
       open={props.open}
       onRequestClose={props.onRequestClose}
       docked={props.docked}

@@ -14,18 +14,18 @@
 | leaveTransitionDuration | number | duration.leavingScreen | Customizes duration of leave animation (ms) |
 | onRequestClose | function |  | Callback fired when the internal modal requests to be closed. |
 | open | bool | false | If `true`, the drawer is open. |
-| paperClassName | string |  | The CSS class name of the paper element. |
 
 Any other properties supplied will be spread to the root element.
+
 ## Classes
 
 You can overrides all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `paper`
-- `left`
-- `right`
-- `top`
-- `bottom`
+- `anchor-left`
+- `anchor-right`
+- `anchor-top`
+- `anchor-bottom`
 - `docked`
 - `modal`
 

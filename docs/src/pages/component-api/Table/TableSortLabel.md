@@ -11,11 +11,12 @@ A button based label for placing inside `TableCell` for column sorting.
 | direction | enum:&nbsp;'asc'<br>&nbsp;'desc'<br> | 'desc' | The current sort direction. |
 
 Any other properties supplied will be spread to the root element.
+
 ## Classes
 
 You can overrides all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `sortLabel`
+- `root`
 - `active`
 - `icon`
 - `desc`

@@ -49,18 +49,14 @@ describe('<ButtonBase />', () => {
       assert.strictEqual(wrapper.prop('data-test'), 'hello', 'should be spread on the button');
     });
 
-    it('should render the custom className and the buttonBase class', () => {
+    it('should render the custom className and the root class', () => {
       const wrapper = shallow(<ButtonBase className="test-class-name" />);
       assert.strictEqual(
         wrapper.hasClass('test-class-name'),
         true,
         'should pass the test className',
       );
-      assert.strictEqual(
-        wrapper.hasClass(classes.buttonBase),
-        true,
-        'should have the buttonBase class',
-      );
+      assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     });
 
     it('should change the button type to span and set role="button"', () => {

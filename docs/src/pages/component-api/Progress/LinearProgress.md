@@ -11,6 +11,7 @@
 | valueBuffer | number |  | The value of buffer, only works in buffer mode. Value between 0 and 100. |
 
 Any other properties supplied will be spread to the root element.
+
 ## Classes
 
 You can overrides all the class names injected by Material-UI thanks to the `classes` property.

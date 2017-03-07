@@ -11,7 +11,7 @@ import TouchRipple from './TouchRipple';
 import createRippleHandler from './createRippleHandler';
 
 export const styleSheet = createStyleSheet('MuiButtonBase', {
-  buttonBase: {
+  root: {
     position: 'relative',
     WebkitTapHighlightColor: 'rgba(0,0,0,0)',
     outline: 'none',
@@ -196,7 +196,7 @@ class ButtonBase extends Component {
 
     const classes = this.context.styleManager.render(styleSheet);
     const className = classNames(
-      classes.buttonBase,
+      classes.root,
       {
         [classes.disabled]: disabled,
         [keyboardFocusedClassName]: keyboardFocusedClassName && this.state.keyboardFocused,

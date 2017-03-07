@@ -25,8 +25,8 @@ describe('<Card />', () => {
     assert.strictEqual(wrapper.props().elevation, 8);
   });
 
-  it('should have the card className', () => {
+  it('should have the root className', () => {
     const wrapper = shallow(<Card />);
-    assert.strictEqual(wrapper.hasClass(classes.card), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 });

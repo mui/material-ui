@@ -8,7 +8,7 @@ import withStyles from '../styles/withStyles';
 import { cloneChildrenWithClassName } from '../utils/reactHelpers';
 
 export const styleSheet = createStyleSheet('MuiCardActions', {
-  cardActions: {
+  root: {
     height: 52,
     display: 'flex',
     alignItems: 'center',
@@ -20,12 +20,10 @@ export const styleSheet = createStyleSheet('MuiCardActions', {
 });
 
 function CardActions(props) {
-  const { disableActionSpacing, children, classes, className: classNameProp, ...other } = props;
-
-  const className = classNames(classes.cardActions, classNameProp);
+  const { disableActionSpacing, children, classes, className, ...other } = props;
 
   return (
-    <div className={className} {...other}>
+    <div className={classNames(classes.root, className)} {...other}>
       {disableActionSpacing
         ? children
         : cloneChildrenWithClassName(children, classes.actionSpacing)}

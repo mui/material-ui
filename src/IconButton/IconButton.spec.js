@@ -46,7 +46,9 @@ describe('<IconButton />', () => {
     const childClassName = 'child-woof';
     const iconChild = <Icon className={childClassName} />;
     const buttonClassName = 'button-woof';
-    const wrapper = shallow(<IconButton iconClassName={buttonClassName}>{iconChild}</IconButton>);
+    const wrapper = shallow(
+      <IconButton classes={{ icon: buttonClassName }}>{iconChild}</IconButton>,
+    );
     const label = wrapper.childAt(0);
     const renderedIconChild = label.childAt(0);
     assert.strictEqual(renderedIconChild.is(Icon), true, 'child should be icon');
@@ -71,14 +73,10 @@ describe('<IconButton />', () => {
     assert.strictEqual(wrapper.props().ripple, false, 'should disable the ButtonBase ripple');
   });
 
-  it('should render with the user and iconButton classes', () => {
+  it('should render with the user and root classes', () => {
     const wrapper = shallow(<IconButton className="woof">book</IconButton>);
     assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
-    assert.strictEqual(
-      wrapper.hasClass(classes.iconButton),
-      true,
-      'should have the iconButton class',
-    );
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
   });
 
   it('should pass centerRipple={true} to ButtonBase', () => {

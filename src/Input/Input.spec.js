@@ -25,7 +25,7 @@ describe('<Input />', () => {
   it('should render a <div />', () => {
     const wrapper = shallow(<Input />);
     assert.strictEqual(wrapper.name(), 'div');
-    assert.strictEqual(wrapper.hasClass(classes.wrapper), true, 'should have the wrapper class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.inkbar), true, 'should have the inkbar class');
     assert.strictEqual(
       wrapper.hasClass(classes.underline),

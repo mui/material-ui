@@ -34,11 +34,11 @@ describe('<Paper />', () => {
 
   it('should set the elevation shadow class', () => {
     const wrapper = shallow(<Paper elevation={16}>Hello World</Paper>);
-    assert.strictEqual(wrapper.hasClass(classes.dp16), true, 'should have the dp16 shadow class');
+    assert.strictEqual(wrapper.hasClass(classes['dp-16']), true, 'should have the 16 shadow class');
     wrapper.setProps({ elevation: 24 });
-    assert.strictEqual(wrapper.hasClass(classes.dp24), true, 'should have the dp24 shadow class');
+    assert.strictEqual(wrapper.hasClass(classes['dp-24']), true, 'should have the 24 shadow class');
     wrapper.setProps({ elevation: 2 });
-    assert.strictEqual(wrapper.hasClass(classes.dp2), true, 'should have the dp2 shadow class');
+    assert.strictEqual(wrapper.hasClass(classes['dp-2']), true, 'should have the 2 shadow class');
   });
 
   describe('prop: component', () => {

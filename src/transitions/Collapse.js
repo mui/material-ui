@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 import customPropTypes from '../utils/customPropTypes';
@@ -99,7 +98,6 @@ class Collapse extends Component {
     const {
       children,
       classes,
-      containerClassName,
       onEnter,
       onEntering,
       onExit,
@@ -107,8 +105,6 @@ class Collapse extends Component {
       transitionDuration,
       ...other
     } = this.props;
-
-    const containerClasses = classNames(classes.container, containerClassName);
 
     return (
       <Transition
@@ -120,7 +116,7 @@ class Collapse extends Component {
         onExit={this.handleExit}
         {...other}
       >
-        <div className={containerClasses}>
+        <div className={classes.container}>
           <div
             ref={node => {
               this.wrapper = node;
@@ -143,11 +139,6 @@ Collapse.propTypes = {
    * Useful to extend the style applied to components.
    */
   classes: PropTypes.object.isRequired,
-  /**
-   * The CSS class name passed to the wrapping container
-   * required for holding & measuring the expanding content.
-   */
-  containerClassName: PropTypes.string,
   /**
    * If `true`, the component will transition in.
    */
