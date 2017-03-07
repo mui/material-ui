@@ -75,6 +75,12 @@ class EnhancedTextarea extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.rowsMax !== this.props.rowsMax) {
+      this.syncHeightWithShadow(this.props.value);
+    }
+  }
+
   handleResize = (event) => {
     this.syncHeightWithShadow(undefined, event);
   };
