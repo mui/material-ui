@@ -293,13 +293,12 @@ class DropDownMenu extends Component {
   };
 
   handleItemTouchTap = (event, child, index) => {
-    event.persist();
-
     if (this.props.multiple) {
       if (!this.state.open) {
         this.setState({open: true});
       }
     } else {
+      event.persist();
       this.setState({
         open: false,
       }, () => {
