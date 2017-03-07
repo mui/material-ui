@@ -28,11 +28,29 @@ export const styleSheet = createStyleSheet('MuiButton', (theme) => {
       transition: transitions.create(['background-color', 'box-shadow'], {
         duration: transitions.duration.short,
       }),
+      '&:before': {
+        backgroundColor: 'transparent',
+        borderRadius: 2,
+        content: '""',
+        display: 'block',
+        height: '100%',
+        opacity: 0.12,
+        position: 'absolute',
+        transition: transitions.create(['background-color'], {
+          duration: transitions.duration.short,
+        }),
+        width: '100%',
+      },
       '&:hover': {
-        textDecoration: 'none',
-        backgroundColor: palette.text.divider,
+        '&:before': {
+          textDecoration: 'none',
+          backgroundColor: 'currentColor',
+        },
         '&$disabled': {
           backgroundColor: 'transparent',
+          '&:before': {
+            backgroundColor: 'transparent',
+          },
         },
       },
     },
@@ -75,6 +93,9 @@ export const styleSheet = createStyleSheet('MuiButton', (theme) => {
           backgroundColor: palette.text.divider,
         },
       },
+      '&:before': {
+        display: 'none',
+      }
     },
     keyboardFocused: {},
     raisedPrimary: {
