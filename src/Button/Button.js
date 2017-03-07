@@ -96,7 +96,7 @@ export const styleSheet = createStyleSheet('MuiButton', (theme) => {
       },
       '&:before': {
         display: 'none',
-      }
+      },
     },
     keyboardFocused: {},
     raisedPrimary: {
