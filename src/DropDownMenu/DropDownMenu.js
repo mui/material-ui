@@ -38,6 +38,7 @@ function getStyles(props, context) {
     },
     label: {
       color: disabled ? palette.disabledColor : palette.textColor,
+      height: `${spacing.desktopToolbarHeight}px`,
       lineHeight: `${spacing.desktopToolbarHeight}px`,
       overflow: 'hidden',
       opacity: 1,
