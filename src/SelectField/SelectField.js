@@ -108,6 +108,7 @@ class SelectField extends Component {
       className,
       disabled,
       error,
+      hideLabel,
       inputClassName,
       inputProps,
       label,
@@ -128,8 +129,8 @@ class SelectField extends Component {
         required={required}
         {...other}
       >
-        {label && (
-          <InputLabel className={labelClassName} shrink={value && true}>
+        {label && !(hideLabel && value) && (
+          <InputLabel className={labelClassName} shrink={value ? true : false}>
             {label}
           </InputLabel>
         )}

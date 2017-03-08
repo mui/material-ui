@@ -7,14 +7,17 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/Menu/MenuItem';
 import Icon from 'material-ui/Icon';
 
-// const styleSheet = createStyleSheet('SimpleBadge', (theme) => ({
-//   badge: {
-//     margin: `0 ${theme.spacing.unit * 2}px`,
-//   },
-// }));
+const styleSheet = createStyleSheet('SimpleSelectField', (theme) => ({
+  select: {
+    margin: 8,
+  }
+}));
 
 export default class SimpleSelectField extends Component {
-  // const classes = context.styleManager.render(styleSheet);
+  static contextTypes = {
+    styleManager: customPropTypes.muiRequired,
+  };
+
   state = {
     value: '',
   };
@@ -22,18 +25,35 @@ export default class SimpleSelectField extends Component {
   handleChange = (event, index, value) => this.setState({value});
 
   render() {
+    const classes = this.context.styleManager.render(styleSheet);
+
     return (
       <div>
         <SelectField
           label="Sample"
           value={this.state.value}
           onChange={this.handleChange}
+          className={classes.select}
         >
           <MenuItem value=''>None</MenuItem>
           <MenuItem value={1}>One</MenuItem>
           <MenuItem value={2}>Two</MenuItem>
           <MenuItem value={3}>Three</MenuItem>
         </SelectField>
+
+         <SelectField
+            label="Sample"
+            hideLabel={true}
+            value={this.state.value}
+            onChange={this.handleChange}
+            className={classes.select}
+          >
+            <MenuItem value=''>None</MenuItem>
+            <MenuItem value={1}>One</MenuItem>
+            <MenuItem value={2}>Two</MenuItem>
+            <MenuItem value={3}>Three</MenuItem>
+          </SelectField>
+
       </div>
     );
   }

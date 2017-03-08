@@ -10,10 +10,13 @@ import ArrowDropDownIcon from '../svg-icons/arrow-drop-down';
 const styleSheet = createStyleSheet('MuiSelectFieldInput', (theme) => {
   return {
     root: {
-      minWidth: 182
+
+      // minWidth: 182
     },
     select: {
       cursor: 'pointer',
+      height: 32,
+      paddingRight: 32,
       position: 'relative',
       zIndex: 2,
     },
@@ -34,11 +37,11 @@ export default class SelectFieldInput extends Component {
 
   render() {
     const classes = this.context.styleManager.render(styleSheet)
-    console.log(this.props)
+    const { options, ...inputprops } = this.props
     return (
       <div className={classes.root}>
-        <select {...this.props} className={classNames(this.props.className, classes.select)}>
-          {React.Children.map(this.props.options, (option, index) =>
+        <select {...inputprops} className={classNames(this.props.className, classes.select)}>
+          {React.Children.map(options, (option, index) =>
             React.createElement('option', {
               key: index,
               value: option.props.value,
