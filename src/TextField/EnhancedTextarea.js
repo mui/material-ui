@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import EventListener from 'react-event-listener';
 
 const rowsHeight = 24;
@@ -33,6 +33,7 @@ class EnhancedTextarea extends Component {
   static propTypes = {
     defaultValue: PropTypes.any,
     disabled: PropTypes.bool,
+    hintText: PropTypes.string,
     onChange: PropTypes.func,
     onHeightChange: PropTypes.func,
     rows: PropTypes.number,
@@ -93,6 +94,8 @@ class EnhancedTextarea extends Component {
 
     if (newValue !== undefined) {
       shadow.value = newValue;
+    } else if (this.props.hintText !== undefined) {
+      shadow.value = this.props.hintText;
     }
 
     let newHeight = shadow.scrollHeight;
