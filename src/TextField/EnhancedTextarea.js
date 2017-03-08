@@ -91,11 +91,10 @@ class EnhancedTextarea extends Component {
 
   syncHeightWithShadow(newValue, event) {
     const shadow = this.refs.shadow;
+    const displayText = this.props.hintText && (newValue === '' || newValue === undefined || newValue === null) ? this.props.hintText : newValue;
 
-    if (newValue !== undefined) {
-      shadow.value = newValue;
-    } else if (this.props.hintText !== undefined) {
-      shadow.value = this.props.hintText;
+    if (displayText !== undefined) {
+      shadow.value = displayText;
     }
 
     let newHeight = shadow.scrollHeight;
