@@ -261,7 +261,7 @@ class DropDownMenu extends Component {
 
   handleTouchTapControl = (event) => {
     event.preventDefault();
-    if (!this.props.disabled && !(this.props.multiple && this.state.open)) {
+    if (!this.props.disabled) {
       this.setState({
         open: !this.state.open,
         anchorEl: this.rootNode,
