@@ -47,6 +47,10 @@ class SelectField extends Component {
     /**
      * If `true`, the select field will be disabled.
      */
+    compareFunction: PropTypes.func,
+    /**
+     * If `true`, the select field will be disabled.
+     */
     disabled: PropTypes.bool,
     /**
      * Whether the label should be displayed in an error state.
@@ -112,6 +116,7 @@ class SelectField extends Component {
   };
 
   static defaultProps = {
+    compareFunction: (currentValue, itemValue) => currentValue === itemValue,
     disabled: false,
   };
 
@@ -148,6 +153,7 @@ class SelectField extends Component {
     const {
       children,
       className,
+      compareFunction,
       disabled,
       error,
       hideLabel,
@@ -199,7 +205,7 @@ class SelectField extends Component {
         >
           {React.Children.map(children, (child, index) =>
             React.cloneElement(child, {
-              selected: value === child.props.value,
+              selected: compareFunction(value, child.props.value),
               onClick: (event) => this.handleItemClick(event, index, child.props.value),
             }),
           )}
