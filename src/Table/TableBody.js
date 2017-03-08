@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import Checkbox from '../Checkbox';
 import TableRowColumn from './TableRowColumn';
 import ClickAwayListener from '../internal/ClickAwayListener';
+import shallowEqual from 'recompose/shallowEqual';
 
 class TableBody extends Component {
   static muiName = 'TableBody';
@@ -134,9 +135,13 @@ class TableBody extends Component {
         selectedRows: [],
       });
     } else {
-      this.setState({
-        selectedRows: this.calculatePreselectedRows(nextProps),
-      });
+      const oldRows = this.calculatePreselectedRows(this.props)
+      const nextRows = this.calculatePreselectedRows(nextProps)
+      if (!shallowEqual(oldRows, nextRows)) {
+        this.setState({
+          selectedRows: nextRows,
+        });
+      }
     }
   }
 
