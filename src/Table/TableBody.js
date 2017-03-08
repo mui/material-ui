@@ -135,8 +135,8 @@ class TableBody extends Component {
         selectedRows: [],
       });
     } else {
-      const oldRows = this.calculatePreselectedRows(this.props)
-      const nextRows = this.calculatePreselectedRows(nextProps)
+      const oldRows = this.calculatePreselectedRows(this.props);
+      const nextRows = this.calculatePreselectedRows(nextProps);
       if (!shallowEqual(oldRows, nextRows)) {
         this.setState({
           selectedRows: nextRows,
