@@ -70,14 +70,9 @@ class EnhancedTextarea extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.props.value) {
-      this.syncHeightWithShadow(nextProps.value);
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.rowsMax !== this.props.rowsMax) {
-      this.syncHeightWithShadow(this.props.value);
+    if (nextProps.value !== this.props.value ||
+        nextProps.rowsMax !== this.props.rowsMax) {
+      this.syncHeightWithShadow(nextProps.value, null, nextProps);
     }
   }
 
@@ -94,7 +89,7 @@ class EnhancedTextarea extends Component {
     this.syncHeightWithShadow(value);
   }
 
-  syncHeightWithShadow(newValue, event) {
+  syncHeightWithShadow(newValue, event, props) {
     const shadow = this.refs.shadow;
 
     if (newValue !== undefined) {
@@ -107,8 +102,10 @@ class EnhancedTextarea extends Component {
     // See https://github.com/tmpvar/jsdom/issues/1013
     if (newHeight === undefined) return;
 
-    if (this.props.rowsMax >= this.props.rows) {
-      newHeight = Math.min(this.props.rowsMax * rowsHeight, newHeight);
+    props = props || this.props;
+
+    if (props.rowsMax >= props.rows) {
+      newHeight = Math.min(props.rowsMax * rowsHeight, newHeight);
     }
 
     newHeight = Math.max(newHeight, rowsHeight);
@@ -118,8 +115,8 @@ class EnhancedTextarea extends Component {
         height: newHeight,
       });
 
-      if (this.props.onHeightChange) {
-        this.props.onHeightChange(event, newHeight);
+      if (props.onHeightChange) {
+        props.onHeightChange(event, newHeight);
       }
     }
   }
