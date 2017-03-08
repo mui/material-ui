@@ -8,7 +8,8 @@ import MenuItem from 'material-ui/Menu/MenuItem';
 import Icon from 'material-ui/Icon';
 
 const styleSheet = createStyleSheet('SimpleSelectField', (theme) => ({
-  select: {
+  selectBox: {
+    display: 'inline-flex',
     margin: 8,
   }
 }));
@@ -29,19 +30,20 @@ export default class SimpleSelectField extends Component {
 
     return (
       <div>
-        <SelectField
-          label="Sample"
-          value={this.state.value}
-          onChange={this.handleChange}
-          className={classes.select}
-        >
-          <MenuItem value=''>None</MenuItem>
-          <MenuItem value={1}>One</MenuItem>
-          <MenuItem value={2}>Two</MenuItem>
-          <MenuItem value={3}>Three</MenuItem>
-        </SelectField>
-
-         <SelectField
+        <div className={classes.selectBox}>
+          <SelectField
+            label="Sample"
+            value={this.state.value}
+            onChange={this.handleChange}
+          >
+            <MenuItem value=''>None</MenuItem>
+            <MenuItem value={1}>One</MenuItem>
+            <MenuItem value={2}>Two</MenuItem>
+            <MenuItem value={3}>Three</MenuItem>
+          </SelectField>
+        </div>
+        <div className={classes.selectBox}>
+          <SelectField
             label="Sample"
             hideLabel={true}
             value={this.state.value}
@@ -53,7 +55,7 @@ export default class SimpleSelectField extends Component {
             <MenuItem value={2}>Two</MenuItem>
             <MenuItem value={3}>Three</MenuItem>
           </SelectField>
-
+        </div>
       </div>
     );
   }

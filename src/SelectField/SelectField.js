@@ -14,10 +14,12 @@ import Menu from 'material-ui/Menu/Menu';
 
 // import DropDownMenu from '../DropDownMenu';
 
-export const styleSheet = createStyleSheet('MuiButton', (theme) => {
+export const styleSheet = createStyleSheet('MuiSelectField', (theme) => {
   return {
     label: {
       paddingLeft: 0,
+    },
+    menu: {
     },
     icon: {
       right: 0,
@@ -142,11 +144,13 @@ class SelectField extends Component {
           onMouseDown={this.handleMouseDown}
           onClick={this.handleClick}
           component={SelectFieldInput}
+          label={label}
           options={children}
           {...inputProps}
         />
         <Menu
           anchorEl={this.state.anchorEl}
+          className={classes.menu}
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
           {...menuProps}

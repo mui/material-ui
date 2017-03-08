@@ -20,6 +20,9 @@ const styleSheet = createStyleSheet('MuiSelectFieldInput', (theme) => {
       position: 'relative',
       zIndex: 2,
     },
+    labelHolder: {
+      display: 'none',
+    },
     icon: {
       color: theme.palette.text.secondary,
       position: 'absolute',
@@ -37,10 +40,12 @@ export default class SelectFieldInput extends Component {
 
   render() {
     const classes = this.context.styleManager.render(styleSheet)
-    const { options, ...inputprops } = this.props
+    const { label, options, ...inputprops } = this.props
     return (
       <div className={classes.root}>
         <select {...inputprops} className={classNames(this.props.className, classes.select)}>
+          {/* Need this option for proper select sizing */}
+          <option className={classes.labelHolder}>{label}</option>
           {React.Children.map(options, (option, index) =>
             React.createElement('option', {
               key: index,
