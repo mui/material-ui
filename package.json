@@ -31,7 +31,7 @@
     "clean": "npm run clean:build",
     "clean:docs": "rimraf docs/api/*",
     "clean:build": "rimraf build",
-    "docs:start": "(cd docs/site; npm start)",
+    "docs:start": "(cd docs/site && npm start)",
     "lint": "eslint . --cache && echo \"eslint: no lint errors\"",
     "prebuild": "npm run clean:build",
     "test": "npm run lint && npm run test:unit && npm run flow",
