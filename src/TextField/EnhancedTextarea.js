@@ -141,6 +141,7 @@ class EnhancedTextarea extends Component {
       rowsMax, // eslint-disable-line no-unused-vars
       shadowStyle,
       style,
+      hintText, // eslint-disable-line no-unused-vars
       textareaStyle,
       valueLink, // eslint-disable-line no-unused-vars
       ...other
