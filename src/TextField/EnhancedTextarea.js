@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, {Component, PropTypes} from 'react';
 import EventListener from 'react-event-listener';
 
 const rowsHeight = 24;
