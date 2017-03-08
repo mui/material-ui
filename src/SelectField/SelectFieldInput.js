@@ -1,10 +1,9 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
-import classNames from 'classnames'
+import classNames from 'classnames';
 import customPropTypes from '../utils/customPropTypes';
-import Input from 'material-ui/Input';
 import ArrowDropDownIcon from '../svg-icons/arrow-drop-down';
 
 const styleSheet = createStyleSheet('MuiSelectFieldInput', (theme) => {
@@ -30,32 +29,46 @@ const styleSheet = createStyleSheet('MuiSelectFieldInput', (theme) => {
       top: 4,
       zIndex: 1,
     },
-  }
-})
-
-export default class SelectFieldInput extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
   };
+});
 
-  render() {
-    const classes = this.context.styleManager.render(styleSheet)
-    const { label, options, ...inputprops } = this.props
-    return (
-      <div className={classes.root}>
-        <select {...inputprops} className={classNames(this.props.className, classes.select)}>
-          {/* Need this option for proper select sizing */}
-          <option className={classes.labelHolder}>{label}</option>
-          {React.Children.map(options, (option, index) =>
-            React.createElement('option', {
-              key: index,
-              value: option.props.value,
-              children: option.props.value && option.props.children,
-            })
-          )}
-        </select>
-        <ArrowDropDownIcon className={classes.icon} />
-      </div>
-    );
-  }
-}
+const SelectFieldInput = (props, context) => {
+  const classes = context.styleManager.render(styleSheet);
+  const { label, options, ...inputprops } = props;
+  return (
+    <div className={classes.root}>
+      <select {...inputprops} className={classNames(props.className, classes.select)}>
+        {/* Need this option for proper select sizing */}
+        <option className={classes.labelHolder}>{label}</option>
+        {React.Children.map(options, (option, index) =>
+          React.createElement('option', {
+            key: index,
+            value: option.props.value,
+          }, option.props.value && option.props.children),
+        )}
+      </select>
+      <ArrowDropDownIcon className={classes.icon} />
+    </div>
+  );
+};
+
+SelectFieldInput.propTypes = {
+  /**
+   * The CSS class name of the select element.
+   */
+  className: PropTypes.string,
+  /**
+   * The label text.
+   */
+  label: PropTypes.node,
+  /**
+   * Select options.
+   */
+  options: PropTypes.arrayOf(PropTypes.node),
+};
+
+SelectFieldInput.contextTypes = {
+  styleManager: customPropTypes.muiRequired,
+};
+
+export default SelectFieldInput;

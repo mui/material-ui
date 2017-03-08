@@ -5,13 +5,12 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/Menu/MenuItem';
-import Icon from 'material-ui/Icon';
 
-const styleSheet = createStyleSheet('SimpleSelectField', (theme) => ({
+const styleSheet = createStyleSheet('SimpleSelectField', () => ({
   selectBox: {
     display: 'inline-flex',
     margin: 8,
-  }
+  },
 }));
 
 export default class SimpleSelectField extends Component {
@@ -23,7 +22,7 @@ export default class SimpleSelectField extends Component {
     value: '',
   };
 
-  handleChange = (event, index, value) => this.setState({value});
+  handleChange = (event, index, value) => this.setState({ value });
 
   render() {
     const classes = this.context.styleManager.render(styleSheet);
@@ -36,7 +35,7 @@ export default class SimpleSelectField extends Component {
             value={this.state.value}
             onChange={this.handleChange}
           >
-            <MenuItem value=''>None</MenuItem>
+            <MenuItem value="">None</MenuItem>
             <MenuItem value={1}>One</MenuItem>
             <MenuItem value={2}>Two</MenuItem>
             <MenuItem value={3}>Three</MenuItem>
@@ -45,12 +44,12 @@ export default class SimpleSelectField extends Component {
         <div className={classes.selectBox}>
           <SelectField
             label="Sample"
-            hideLabel={true}
+            hideLabel
             value={this.state.value}
             onChange={this.handleChange}
             className={classes.select}
           >
-            <MenuItem value=''>None</MenuItem>
+            <MenuItem value="">None</MenuItem>
             <MenuItem value={1}>One</MenuItem>
             <MenuItem value={2}>Two</MenuItem>
             <MenuItem value={3}>Three</MenuItem>

@@ -2,19 +2,15 @@
 
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
+import classNames from 'classnames';
 import customPropTypes from '../utils/customPropTypes';
-import TextField from '../TextField';
 import SelectFieldInput from './SelectFieldInput';
+import FormControl from '../Form/FormControl';
+import InputLabel from '../Input/InputLabel';
+import Input from '../Input/Input';
+import Menu from '../Menu/Menu';
 
-import ArrowDropDownIcon from '../svg-icons/arrow-drop-down';
-import FormControl from 'material-ui/Form/FormControl';
-import InputLabel from 'material-ui/Input/InputLabel';
-import Input from 'material-ui/Input/Input';
-import Menu from 'material-ui/Menu/Menu';
-
-// import DropDownMenu from '../DropDownMenu';
-
-export const styleSheet = createStyleSheet('MuiSelectField', (theme) => {
+export const styleSheet = createStyleSheet('MuiSelectField', () => {
   return {
     label: {
       paddingLeft: 0,
@@ -45,13 +41,49 @@ class SelectField extends Component {
      */
     children: PropTypes.node,
     /**
+     * The CSS class name of the root element.
+     */
+    className: PropTypes.string,
+    /**
      * If `true`, the select field will be disabled.
      */
     disabled: PropTypes.bool,
     /**
-     * The content of the label.
+     * Whether the label should be displayed in an error state.
+     */
+    error: PropTypes.bool,
+    /**
+     * Whether the label should be hidden when option is selected.
+     */
+    hideLabel: PropTypes.bool,
+    /*
+     * @ignore
+     */
+    id: PropTypes.string,
+    /**
+     * The CSS class name of the input element.
+     */
+    inputClassName: PropTypes.string,
+    /**
+     * Properties applied to the internal `<Input />` component.
+     */
+    inputProps: PropTypes.object,
+    /**
+     * The label text.
      */
     label: PropTypes.node,
+    /**
+     * The CSS class name of the label element.
+     */
+    labelClassName: PropTypes.string,
+    /**
+     * The CSS class name of the `Menu` element.
+     */
+    menuClassName: PropTypes.string,
+    /**
+     * Properties applied to the internal `<Menu />` component.
+     */
+    menuProps: PropTypes.object,
     /** @ignore */
     onBlur: PropTypes.func,
     /**
@@ -66,9 +98,17 @@ class SelectField extends Component {
     /** @ignore */
     onFocus: PropTypes.func,
     /**
-     * The value that is currently selected.
+     * Whether the label should be displayed as required (asterisk).
      */
-    value: PropTypes.any,
+    required: PropTypes.bool,
+    /**
+     * Type of the input element. It should be a valid HTML5 input type.
+     */
+    type: PropTypes.string,
+    /**
+     * The input value, required for a controlled component.
+     */
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   };
 
   static defaultProps = {
@@ -115,6 +155,7 @@ class SelectField extends Component {
       inputProps,
       label,
       labelClassName,
+      menuClassName,
       menuProps,
       required,
       type,
@@ -123,16 +164,17 @@ class SelectField extends Component {
     } = this.props;
 
     const classes = this.context.styleManager.render(styleSheet);
+    const initialShrink = value !== '' && typeof value !== 'undefined';
 
     return (
-       <FormControl
+      <FormControl
         className={className}
         error={error}
         required={required}
         {...other}
       >
         {label && !(hideLabel && value) && (
-          <InputLabel className={labelClassName} shrink={value ? true : false}>
+          <InputLabel className={labelClassName} shrink={initialShrink}>
             {label}
           </InputLabel>
         )}
@@ -150,7 +192,7 @@ class SelectField extends Component {
         />
         <Menu
           anchorEl={this.state.anchorEl}
-          className={classes.menu}
+          className={classNames(classes.menu, menuClassName)}
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
           {...menuProps}
@@ -158,8 +200,8 @@ class SelectField extends Component {
           {React.Children.map(children, (child, index) =>
             React.cloneElement(child, {
               selected: value === child.props.value,
-              onClick : (event) => this.handleItemClick(event, index, child.props.value)
-            })
+              onClick: (event) => this.handleItemClick(event, index, child.props.value),
+            }),
           )}
         </Menu>
       </FormControl>
