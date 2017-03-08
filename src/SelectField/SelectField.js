@@ -108,7 +108,7 @@ class SelectField extends Component {
     /**
      * The input value, required for a controlled component.
      */
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    value: PropTypes.any,
   };
 
   static defaultProps = {
