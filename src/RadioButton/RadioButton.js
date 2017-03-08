@@ -8,9 +8,11 @@ function getStyles(props, context) {
   const {radioButton} = context.muiTheme;
   let fillColor = null;
 
-  props.checked
-    ? fillColor = props.style.fill ? props.style.fill : radioButton.checkedColor
-    : fillColor = radioButton.borderColor
+  if (props.checked) {
+    fillColor = props.style.fill || radioButton.checkColor;
+  } else {
+    fillColor = radioButton.borderColor;
+  }
 
   return {
     icon: {
