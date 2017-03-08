@@ -45,7 +45,7 @@ class SelectField extends Component {
      */
     className: PropTypes.string,
     /**
-     * If `true`, the select field will be disabled.
+     * Custom compare function.
      */
     compareFunction: PropTypes.func,
     /**
