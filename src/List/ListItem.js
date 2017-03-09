@@ -105,7 +105,7 @@ export default class ListItem extends Component {
       gutters,
       ...other
     } = this.props;
-    const isDense = dense || this.context.dense;
+    const isDense = dense || this.context.dense || false;
     const classes = this.context.styleManager.render(styleSheet);
     const children = React.Children.toArray(childrenProp);
 

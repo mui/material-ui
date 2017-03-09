@@ -19,7 +19,7 @@ import Layout from 'material-ui/Layout';
 import SvgIcon from 'material-ui/SvgIcon';
 import Text from 'material-ui/Text';
 
-const SqureIcon = (props) => (
+const SquareIcon = (props) => (
   <SvgIcon {...props} viewBox="3 3 18 18">
     <path d="M3,3V21H21V3" />
   </SvgIcon>
@@ -115,19 +115,19 @@ class SingleLineList extends Component {
               <div className={classes.demo}>
                 <List dense={dense}>
                   <ListItem button>
-                    <ListItemIcon><SqureIcon /></ListItemIcon>
+                    <ListItemIcon><SquareIcon/></ListItemIcon>
                     <ListItemText primary="Single-line item" />
                   </ListItem>
                   <ListItem button>
-                    <ListItemIcon><SqureIcon /></ListItemIcon>
+                    <ListItemIcon><SquareIcon/></ListItemIcon>
                     <ListItemText primary="Single-line item" />
                   </ListItem>
                   <ListItem button>
-                    <ListItemIcon><SqureIcon /></ListItemIcon>
+                    <ListItemIcon><SquareIcon/></ListItemIcon>
                     <ListItemText primary="Single-line item" />
                   </ListItem>
                   <ListItem button>
-                    <ListItemIcon><SqureIcon /></ListItemIcon>
+                    <ListItemIcon><SquareIcon/></ListItemIcon>
                     <ListItemText primary="Single-line item" />
                   </ListItem>
                 </List>

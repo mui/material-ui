@@ -22,10 +22,9 @@ export default class ListItemAvatar extends Component {
       className: classNameProp,
       ...other
     } = this.props;
-    const { dense } = this.context;
     const classes = this.context.styleManager.render(styleSheet);
     const className = classNames(classes.root, {
-      [classes.dense]: dense,
+      [classes.dense]: this.context.dense || false,
     }, classNameProp);
 
     return cloneElement(children, {
