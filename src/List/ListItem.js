@@ -109,9 +109,8 @@ export default class ListItem extends Component {
     const classes = this.context.styleManager.render(styleSheet);
     const children = React.Children.toArray(childrenProp);
 
-    let hasAvatar;
-    Object.entries(children).some((value) => {
-      return value.type && value.type.name === 'ListItemAvatar';
+    const hasAvatar = children.some((value) => {
+      return value.type.name === 'ListItemAvatar';
     });
 
     const className = classNames(classes.listItem, {
