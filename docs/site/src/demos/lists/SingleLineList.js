@@ -11,7 +11,6 @@ import {
   ListItemSecondaryAction,
 } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
-import Divider from 'material-ui/Divider';
 import FolderIcon from 'material-ui/svg-icons/folder';
 import IconButton from 'material-ui/IconButton';
 import Layout from 'material-ui/Layout';
@@ -160,7 +159,7 @@ function SingleLineList(props, context) {
       <Text type="title" className={classes.title}>Avatar with text</Text>
       <Layout container className={classes.container}>
         <Layout item sm={6}>
-          <div className={classes.demo} style={{maxHeight: 184}}>
+          <div className={classes.demo} style={{ maxHeight: 184 }}>
             <List>
               <ListItem button>
                 <Avatar><FolderIcon /></Avatar>
@@ -179,7 +178,7 @@ function SingleLineList(props, context) {
           <Text type="body1" secondary>Single-line item with avatar</Text>
         </Layout>
         <Layout item sm={6}>
-          <div className={classes.demo} style={{maxHeight: 184}}>
+          <div className={classes.demo} style={{ maxHeight: 184 }}>
             <List dense>
               <ListItem button>
                 <Avatar><FolderIcon /></Avatar>
@@ -206,7 +205,7 @@ function SingleLineList(props, context) {
       <Text type="title" className={classes.title}>Avatar with text and icon</Text>
       <Layout container className={classes.container}>
         <Layout item sm={6}>
-          <div className={classes.demo} style={{maxHeight: 184}}>
+          <div className={classes.demo} style={{ maxHeight: 184 }}>
             <List>
               <ListItem button>
                 <Avatar><FolderIcon /></Avatar>
@@ -234,7 +233,7 @@ function SingleLineList(props, context) {
           <Text type="body1" secondary>Single-line item with avatar and icon</Text>
         </Layout>
         <Layout item sm={6}>
-          <div className={classes.demo} style={{maxHeight: 184}}>
+          <div className={classes.demo} style={{ maxHeight: 184 }}>
             <List dense>
               <ListItem button>
                 <Avatar><FolderIcon /></Avatar>
