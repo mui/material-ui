@@ -46,9 +46,14 @@ const styleSheet = createStyleSheet('SingleLineList', (theme) => ({
     overflow: 'hidden',
     position: 'relative',
     width: '100%',
+    zIndex: 1,
     '&:before': {
-      backgroundImage: `linear-gradient(45deg, ${theme.palette.background.contentFrame} 25%, transparent 25%),
-                        linear-gradient(-45deg, ${theme.palette.background.contentFrame} 25%, transparent 25%)`,
+      backgroundImage: `linear-gradient(
+          45deg,${theme.palette.background.contentFrame} 25%, transparent 25%
+        ),
+        linear-gradient(
+          -45deg,${theme.palette.background.contentFrame} 25%, transparent 25%
+        )`,
       backgroundSize: '20px 20px',
       backgroundPosition: '10px -10px',
       bottom: 0,
@@ -57,7 +62,7 @@ const styleSheet = createStyleSheet('SingleLineList', (theme) => ({
       height: 10,
       position: 'absolute',
       width: '100%',
-      zIndex: 99,
+      zIndex: theme.zIndex.tooltip,
     },
   },
   title: {
@@ -76,7 +81,7 @@ class SingleLineList extends Component {
 
   render() {
     const classes = this.context.styleManager.render(styleSheet);
-    const { dense } = this.state
+    const { dense } = this.state;
 
     return (
       <div className={classes.root}>
@@ -115,19 +120,19 @@ class SingleLineList extends Component {
               <div className={classes.demo}>
                 <List dense={dense}>
                   <ListItem button>
-                    <ListItemIcon><SquareIcon/></ListItemIcon>
+                    <ListItemIcon><SquareIcon /></ListItemIcon>
                     <ListItemText primary="Single-line item" />
                   </ListItem>
                   <ListItem button>
-                    <ListItemIcon><SquareIcon/></ListItemIcon>
+                    <ListItemIcon><SquareIcon /></ListItemIcon>
                     <ListItemText primary="Single-line item" />
                   </ListItem>
                   <ListItem button>
-                    <ListItemIcon><SquareIcon/></ListItemIcon>
+                    <ListItemIcon><SquareIcon /></ListItemIcon>
                     <ListItemText primary="Single-line item" />
                   </ListItem>
                   <ListItem button>
-                    <ListItemIcon><SquareIcon/></ListItemIcon>
+                    <ListItemIcon><SquareIcon /></ListItemIcon>
                     <ListItemText primary="Single-line item" />
                   </ListItem>
                 </List>
