@@ -45,7 +45,7 @@ const styleSheet = createStyleSheet('SingleLineList', (theme) => ({
       height: 10,
       position: 'absolute',
       width: '100%',
-      background: `linear-gradient(45deg,
+      backgroundImage: `linear-gradient(45deg,
                     transparent 33.333%,
                     ${theme.palette.background.contentFrame} 33.333%,
                     ${theme.palette.background.contentFrame} 66.667%,
@@ -58,6 +58,7 @@ const styleSheet = createStyleSheet('SingleLineList', (theme) => ({
                     transparent 66.667%
                   )`,
       backgroundSize: '20px 40px',
+      backgroundPosition: '-10px 0',
       zIndex: 999,
     },
   },
