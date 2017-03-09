@@ -75,9 +75,14 @@ class Drawer extends Component {
      */
     swipeAreaWidth: PropTypes.number,
     /**
-     * The width of the `Drawer` in pixels. Defaults to using the values from theme.
+     * The width of the `Drawer` in pixels or percentage in string format ex. "100%" (to
+     * fill the entire width of the container) or "50%". Defaults to using the values from
+     * theme.
      */
-    width: PropTypes.number,
+    width: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
     /**
      * The zDepth of the `Drawer`.
      */
