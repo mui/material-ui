@@ -4,6 +4,7 @@ import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
+import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../internal/ButtonBase';
 
 export const styleSheet = createStyleSheet('MuiButton', (theme) => {
@@ -30,7 +31,7 @@ export const styleSheet = createStyleSheet('MuiButton', (theme) => {
       }),
       '&:hover': {
         textDecoration: 'none',
-        backgroundColor: palette.text.divider,
+        backgroundColor: fade(palette.text.primary, 0.12),
         '&$disabled': {
           backgroundColor: 'transparent',
         },
@@ -48,12 +49,21 @@ export const styleSheet = createStyleSheet('MuiButton', (theme) => {
     },
     primary: {
       color: palette.primary[500],
+      '&:hover': {
+        backgroundColor: fade(palette.primary[500], 0.12),
+      },
     },
     accent: {
       color: palette.accent.A200,
+      '&:hover': {
+        backgroundColor: fade(palette.accent.A200, 0.12),
+      },
     },
     contrast: {
       color: palette.getContrastText(palette.primary[500]),
+      '&:hover': {
+        backgroundColor: fade(palette.getContrastText(palette.primary[500]), 0.12),
+      },
     },
     raised: {
       color: palette.getContrastText(palette.grey[300]),
