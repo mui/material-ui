@@ -21,7 +21,9 @@ export const styleSheet = createStyleSheet('MuiListItemText', () => {
       },
     },
     dense: {
-      fontSize: 13,
+      '& > *': {
+        fontSize: 13,
+      },
     },
   };
 });
@@ -37,25 +39,22 @@ export default function ListItemText(props, context) {
   const { dense } = context;
   const classes = context.styleManager.render(styleSheet);
   const className = classNames(classes.root, {
+    [classes.dense]: dense,
     [classes.inset]: inset,
   }, classNameProp);
-
-  const classNameText = classNames({
-    [classes.dense]: dense,
-  });
 
   return (
     <div className={className} {...other}>
       {primary && (
         typeof primary === 'string' ? (
-          <Text type="subheading" className={classNameText}>
+          <Text type="subheading">
             {primary}
           </Text>
         ) : primary
       )}
       {secondary && (
         typeof secondary === 'string' ? (
-          <Text secondary type="body1" className={classNameText}>
+          <Text secondary type="body1">
             {secondary}
           </Text>
         ) : secondary
