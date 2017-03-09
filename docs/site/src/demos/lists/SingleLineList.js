@@ -1,6 +1,6 @@
 // @flow weak
 
-import React from 'react';
+import React, { Component } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import {
@@ -13,6 +13,7 @@ import {
 import Avatar from 'material-ui/Avatar';
 import FolderIcon from 'material-ui/svg-icons/folder';
 import IconButton from 'material-ui/IconButton';
+import { LabelCheckbox } from 'material-ui/Checkbox';
 import Layout from 'material-ui/Layout';
 import SvgIcon from 'material-ui/SvgIcon';
 import Text from 'material-ui/Text';
@@ -63,231 +64,146 @@ const styleSheet = createStyleSheet('SingleLineList', (theme) => ({
   },
 }));
 
-function SingleLineList(props, context) {
-  const classes = context.styleManager.render(styleSheet);
-  return (
-    <div className={classes.root}>
+class SingleLineList extends Component {
+  static contextTypes = {
+    styleManager: customPropTypes.muiRequired,
+  };
 
-      <Text type="title" className={classes.title}>Text only</Text>
-      <Layout container className={classes.container}>
-        <Layout item xs={12} md={6}>
-          <div className={classes.demoContainer}>
-            <div className={classes.demo}>
-              <List>
-                <ListItem button>
-                  <ListItemText primary="Single-line item" />
-                </ListItem>
-                <ListItem button>
-                  <ListItemText primary="Single-line item" />
-                </ListItem>
-                <ListItem button>
-                  <ListItemText primary="Single-line item" />
-                </ListItem>
-              </List>
-            </div>
-            <Text type="body1" secondary>Single-line list</Text>
-          </div>
-        </Layout>
-        <Layout item xs={12} md={6}>
-          <div className={classes.demoContainer}>
-            <div className={classes.demo}>
-              <List dense>
-                <ListItem button>
-                  <ListItemText primary="Single-line item" />
-                </ListItem>
-                <ListItem button>
-                  <ListItemText primary="Single-line item" />
-                </ListItem>
-                <ListItem button>
-                  <ListItemText primary="Single-line item" />
-                </ListItem>
-                <ListItem button>
-                  <ListItemText primary="Single-line item" />
-                </ListItem>
-              </List>
-            </div>
-            <Text type="body1" secondary>Dense single-line list</Text>
-          </div>
-        </Layout>
-      </Layout>
+  state = {
+    dense: false,
+  };
 
-      <Text type="title" className={classes.title}>Icon with text</Text>
-      <Layout container className={classes.container}>
-        <Layout item xs={12} md={6}>
-          <div className={classes.demoContainer}>
-            <div className={classes.demo}>
-              <List>
-                <ListItem button>
-                  <ListItemIcon><SqureIcon /></ListItemIcon>
-                  <ListItemText primary="Single-line item" />
-                </ListItem>
-                <ListItem button>
-                  <ListItemIcon><SqureIcon /></ListItemIcon>
-                  <ListItemText primary="Single-line item" />
-                </ListItem>
-                <ListItem button>
-                  <ListItemIcon><SqureIcon /></ListItemIcon>
-                  <ListItemText primary="Single-line item" />
-                </ListItem>
-              </List>
-            </div>
-            <Text type="body1" secondary>Single-line list with icon</Text>
-          </div>
-        </Layout>
-        <Layout item xs={12} md={6}>
-          <div className={classes.demoContainer}>
-            <div className={classes.demo}>
-              <List dense>
-                <ListItem button>
-                  <ListItemIcon><SqureIcon /></ListItemIcon>
-                  <ListItemText primary="Single-line item" />
-                </ListItem>
-                <ListItem button>
-                  <ListItemIcon><SqureIcon /></ListItemIcon>
-                  <ListItemText primary="Single-line item" />
-                </ListItem>
-                <ListItem button>
-                  <ListItemIcon><SqureIcon /></ListItemIcon>
-                  <ListItemText primary="Single-line item" />
-                </ListItem>
-                <ListItem button>
-                  <ListItemIcon><SqureIcon /></ListItemIcon>
-                  <ListItemText primary="Single-line item" />
-                </ListItem>
-              </List>
-            </div>
-            <Text type="body1" secondary>Dense single-line list with icon</Text>
-          </div>
-        </Layout>
-      </Layout>
+  render() {
+    const classes = this.context.styleManager.render(styleSheet);
+    const { dense } = this.state
 
-      <Text type="title" className={classes.title}>Avatar with text</Text>
-      <Layout container className={classes.container}>
-        <Layout item xs={12} md={6}>
-          <div className={classes.demoContainer}>
-            <div className={classes.demo} style={{ maxHeight: 184 }}>
-              <List>
-                <ListItem button>
-                  <Avatar><FolderIcon /></Avatar>
-                  <ListItemText primary="Single-line item" />
-                </ListItem>
-                <ListItem button>
-                  <Avatar><FolderIcon /></Avatar>
-                  <ListItemText primary="Single-line item" />
-                </ListItem>
-                <ListItem button>
-                  <Avatar><FolderIcon /></Avatar>
-                  <ListItemText primary="Single-line item" />
-                </ListItem>
-              </List>
+    return (
+      <div className={classes.root}>
+        <LabelCheckbox
+          checked={dense}
+          onChange={(event, checked) => this.setState({ dense: checked })}
+          label="Enable dense preview"
+          value="dense"
+        />
+        <Layout container className={classes.container}>
+          <Layout item xs={12} md={6}>
+            <div className={classes.demoContainer}>
+              <Text type="title" className={classes.title}>Text only</Text>
+              <div className={classes.demo}>
+                <List dense={dense}>
+                  <ListItem button>
+                    <ListItemText primary="Single-line item" />
+                  </ListItem>
+                  <ListItem button>
+                    <ListItemText primary="Single-line item" />
+                  </ListItem>
+                  <ListItem button>
+                    <ListItemText primary="Single-line item" />
+                  </ListItem>
+                  <ListItem button>
+                    <ListItemText primary="Single-line item" />
+                  </ListItem>
+                </List>
+              </div>
+              <Text type="body1" secondary>Single-line list</Text>
             </div>
-            <Text type="body1" secondary>Single-line item with avatar</Text>
-          </div>
-        </Layout>
-        <Layout item xs={12} md={6}>
-          <div className={classes.demoContainer}>
-            <div className={classes.demo} style={{ maxHeight: 184 }}>
-              <List dense>
-                <ListItem button>
-                  <Avatar><FolderIcon /></Avatar>
-                  <ListItemText primary="Single-line item" />
-                </ListItem>
-                <ListItem button>
-                  <Avatar><FolderIcon /></Avatar>
-                  <ListItemText primary="Single-line item" />
-                </ListItem>
-                <ListItem button>
-                  <Avatar><FolderIcon /></Avatar>
-                  <ListItemText primary="Single-line item" />
-                </ListItem>
-                <ListItem button>
-                  <Avatar><FolderIcon /></Avatar>
-                  <ListItemText primary="Single-line item" />
-                </ListItem>
-              </List>
+          </Layout>
+          <Layout item xs={12} md={6}>
+            <div className={classes.demoContainer}>
+              <Text type="title" className={classes.title}>Icon with text</Text>
+              <div className={classes.demo}>
+                <List dense={dense}>
+                  <ListItem button>
+                    <ListItemIcon><SqureIcon /></ListItemIcon>
+                    <ListItemText primary="Single-line item" />
+                  </ListItem>
+                  <ListItem button>
+                    <ListItemIcon><SqureIcon /></ListItemIcon>
+                    <ListItemText primary="Single-line item" />
+                  </ListItem>
+                  <ListItem button>
+                    <ListItemIcon><SqureIcon /></ListItemIcon>
+                    <ListItemText primary="Single-line item" />
+                  </ListItem>
+                  <ListItem button>
+                    <ListItemIcon><SqureIcon /></ListItemIcon>
+                    <ListItemText primary="Single-line item" />
+                  </ListItem>
+                </List>
+              </div>
+              <Text type="body1" secondary>Single-line list with icon</Text>
             </div>
-            <Text type="body1" secondary>Dense single-line list with avatar</Text>
-          </div>
+          </Layout>
         </Layout>
-      </Layout>
-
-      <Text type="title" className={classes.title}>Avatar with text and icon</Text>
-      <Layout container className={classes.container}>
-        <Layout item xs={12} md={6}>
-          <div className={classes.demoContainer}>
-            <div className={classes.demo} style={{ maxHeight: 184 }}>
-              <List>
-                <ListItem button>
-                  <Avatar><FolderIcon /></Avatar>
-                  <ListItemText primary="Single-line item" />
-                  <ListItemSecondaryAction>
-                    <IconButton>comment</IconButton>
-                  </ListItemSecondaryAction>
-                </ListItem>
-                <ListItem button>
-                  <Avatar><FolderIcon /></Avatar>
-                  <ListItemText primary="Single-line item" />
-                  <ListItemSecondaryAction>
-                    <IconButton>comment</IconButton>
-                  </ListItemSecondaryAction>
-                </ListItem>
-                <ListItem button>
-                  <Avatar><FolderIcon /></Avatar>
-                  <ListItemText primary="Single-line item" />
-                  <ListItemSecondaryAction>
-                    <IconButton>comment</IconButton>
-                  </ListItemSecondaryAction>
-                </ListItem>
-              </List>
+        <Layout container className={classes.container}>
+          <Layout item xs={12} md={6}>
+            <div className={classes.demoContainer}>
+              <Text type="title" className={classes.title}>Avatar with text</Text>
+              <div className={classes.demo} style={{ maxHeight: 184 }}>
+                <List dense={dense}>
+                  <ListItem button>
+                    <Avatar><FolderIcon /></Avatar>
+                    <ListItemText primary="Single-line item" />
+                  </ListItem>
+                  <ListItem button>
+                    <Avatar><FolderIcon /></Avatar>
+                    <ListItemText primary="Single-line item" />
+                  </ListItem>
+                  <ListItem button>
+                    <Avatar><FolderIcon /></Avatar>
+                    <ListItemText primary="Single-line item" />
+                  </ListItem>
+                  <ListItem button>
+                    <Avatar><FolderIcon /></Avatar>
+                    <ListItemText primary="Single-line item" />
+                  </ListItem>
+                </List>
+              </div>
+              <Text type="body1" secondary>Single-line item with avatar</Text>
             </div>
-            <Text type="body1" secondary>Single-line item with avatar and icon</Text>
-          </div>
-        </Layout>
-        <Layout item xs={12} md={6}>
-          <div className={classes.demoContainer}>
-            <div className={classes.demo} style={{ maxHeight: 184 }}>
-              <List dense>
-                <ListItem button>
-                  <Avatar><FolderIcon /></Avatar>
-                  <ListItemText primary="Single-line item" />
-                  <ListItemSecondaryAction>
-                    <IconButton>comment</IconButton>
-                  </ListItemSecondaryAction>
-                </ListItem>
-                <ListItem button>
-                  <Avatar><FolderIcon /></Avatar>
-                  <ListItemText primary="Single-line item" />
-                  <ListItemSecondaryAction>
-                    <IconButton>comment</IconButton>
-                  </ListItemSecondaryAction>
-                </ListItem>
-                <ListItem button>
-                  <Avatar><FolderIcon /></Avatar>
-                  <ListItemText primary="Single-line item" />
-                  <ListItemSecondaryAction>
-                    <IconButton>comment</IconButton>
-                  </ListItemSecondaryAction>
-                </ListItem>
-                <ListItem button>
-                  <Avatar><FolderIcon /></Avatar>
-                  <ListItemText primary="Single-line item" />
-                  <ListItemSecondaryAction>
-                    <IconButton>comment</IconButton>
-                  </ListItemSecondaryAction>
-                </ListItem>
-              </List>
+          </Layout>
+          <Layout item xs={12} md={6}>
+            <div className={classes.demoContainer}>
+              <Text type="title" className={classes.title}>Avatar with text and icon</Text>
+              <div className={classes.demo} style={{ maxHeight: 184 }}>
+                <List dense={dense}>
+                  <ListItem button>
+                    <Avatar><FolderIcon /></Avatar>
+                    <ListItemText primary="Single-line item" />
+                    <ListItemSecondaryAction>
+                      <IconButton>comment</IconButton>
+                    </ListItemSecondaryAction>
+                  </ListItem>
+                  <ListItem button>
+                    <Avatar><FolderIcon /></Avatar>
+                    <ListItemText primary="Single-line item" />
+                    <ListItemSecondaryAction>
+                      <IconButton>comment</IconButton>
+                    </ListItemSecondaryAction>
+                  </ListItem>
+                  <ListItem button>
+                    <Avatar><FolderIcon /></Avatar>
+                    <ListItemText primary="Single-line item" />
+                    <ListItemSecondaryAction>
+                      <IconButton>comment</IconButton>
+                    </ListItemSecondaryAction>
+                  </ListItem>
+                  <ListItem button>
+                    <Avatar><FolderIcon /></Avatar>
+                    <ListItemText primary="Single-line item" />
+                    <ListItemSecondaryAction>
+                      <IconButton>comment</IconButton>
+                    </ListItemSecondaryAction>
+                  </ListItem>
+                </List>
+              </div>
+              <Text type="body1" secondary>Single-line item with avatar and icon</Text>
             </div>
-            <Text type="body1" secondary>Dense single-line item with avatar and icon</Text>
-          </div>
+          </Layout>
         </Layout>
-      </Layout>
-
-    </div>
-  );
+      </div>
+    );
+  }
 }
-
-SingleLineList.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
 
 export default SingleLineList;
