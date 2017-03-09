@@ -110,7 +110,7 @@ We think that it should be done the other way around, i.e. providing a low-level
  - [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views)
  - [react-dnd](https://github.com/gaearon/react-dnd)
 
-On the other hand, using a smart data library for the DatePicker / TimePicker would probably be much better as data management is tricky and not a core business.
+On the other hand, using a smart date library for the DatePicker / TimePicker would probably be much better as date management is tricky and not a core business.
 
 ## Future
 
