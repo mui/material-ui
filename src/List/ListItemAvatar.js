@@ -5,18 +5,20 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('MuiListItemIcon', () => {
+export const styleSheet = createStyleSheet('MuiListItemAvatar', () => {
   return {
-    root: {
-      height: 24,
-      marginRight: 16,
-      width: 24,
+    dense: {
+      height: 32,
+      marginRight: 8,
+      width: 32,
     },
   };
 });
 
-export default class ListItemIcon extends Component {
+export default class ListItemAvatar extends Component {
   render() {
+    if (!this.context.dense) return this.props.children;
+
     const {
       children,
       className: classNameProp,
@@ -25,13 +27,13 @@ export default class ListItemIcon extends Component {
     const classes = this.context.styleManager.render(styleSheet);
 
     return cloneElement(children, {
-      className: classNames(classes.root, classNameProp, children.props.className),
+      className: classNames(classes.dense, classNameProp),
       ...other,
     });
   }
 }
 
-ListItemIcon.propTypes = {
+ListItemAvatar.propTypes = {
   children: PropTypes.element.isRequired,
   /**
    * The CSS class name of the root element.
@@ -39,6 +41,7 @@ ListItemIcon.propTypes = {
   className: PropTypes.string,
 };
 
-ListItemIcon.contextTypes = {
+ListItemAvatar.contextTypes = {
+  dense: PropTypes.bool,
   styleManager: customPropTypes.muiRequired,
 };

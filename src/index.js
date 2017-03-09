@@ -78,6 +78,7 @@ export {
 export {
   List,
   ListItem,
+  ListItemAvatar,
   ListItemIcon,
   ListItemSecondaryAction,
   ListItemText,
