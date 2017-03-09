@@ -109,11 +109,9 @@ export default class ListItem extends Component {
     const classes = this.context.styleManager.render(styleSheet);
     const children = React.Children.toArray(childrenProp);
 
-    // let hasIcon;
     let hasAvatar;
-    React.Children.map(children, (child) => {
-      // if (child.type.name === 'ListItemIcon') hasIcon = true;
-      if (child.type.name === 'ListItemAvatar') hasAvatar = true;
+    Object.entries(children).some((value) => {
+      return value.type && value.type.name === 'ListItemAvatar';
     });
 
     const className = classNames(classes.listItem, {
