@@ -61,7 +61,7 @@ export const styleSheet = createStyleSheet('MuiListItem', (theme) => {
 
 const mapListIemChildren = (children, classes, dense) => React.Children.map(children, (child) => {
   const props = {};
-  if (child.type.name === 'ListItemIcon') props.dense = dense;
+  if (child.type.name === 'ListItemIcon' || child.type.name === 'ListItemText') props.dense = dense;
   if (child.type.name === 'Avatar' && dense) props.className = classes.avatarDense;
 
   return React.cloneElement(child, props);

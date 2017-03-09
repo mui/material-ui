@@ -20,12 +20,16 @@ export const styleSheet = createStyleSheet('MuiListItemText', () => {
         paddingLeft: 56,
       },
     },
+    dense: {
+      fontSize: '13px',
+    },
   };
 });
 
 export default function ListItemText(props, context) {
   const {
     className: classNameProp,
+    dense,
     primary,
     secondary,
     inset,
@@ -36,18 +40,22 @@ export default function ListItemText(props, context) {
     [classes.inset]: inset,
   }, classNameProp);
 
+  const classNameText = classNames({
+    [classes.dense]: dense,
+  });
+
   return (
     <div className={className} {...other}>
       {primary && (
         typeof primary === 'string' ? (
-          <Text type="subheading">
+          <Text type="subheading" className={classNameText}>
             {primary}
           </Text>
         ) : primary
       )}
       {secondary && (
         typeof secondary === 'string' ? (
-          <Text secondary type="body1">
+          <Text secondary type="body1" className={classNameText}>
             {secondary}
           </Text>
         ) : secondary
@@ -65,12 +73,14 @@ ListItemText.propTypes = {
    * If true, the children will be indented by 72px.
    * This is useful if there is no left avatar or left icon.
    */
+  dense: PropTypes.bool,
   inset: PropTypes.bool,
   primary: PropTypes.node,
   secondary: PropTypes.node,
 };
 
 ListItemText.defaultProps = {
+  dense: false,
   primary: false,
   secondary: false,
   inset: false,
