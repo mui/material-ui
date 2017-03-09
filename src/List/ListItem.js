@@ -22,12 +22,17 @@ export const styleSheet = createStyleSheet('MuiListItem', (theme) => {
       background: palette.text.divider,
     },
     default: {
-      paddingTop: 19,
-      paddingBottom: 19,
+      paddingTop: 12,
+      paddingBottom: 12,
     },
     dense: {
       paddingTop: 8,
       paddingBottom: 8,
+    },
+    avatarDense: {
+      height: '32px !important',
+      marginRight: 8,
+      width: '32px !important',
     },
     disabled: {
       opacity: 0.5,
@@ -52,6 +57,14 @@ export const styleSheet = createStyleSheet('MuiListItem', (theme) => {
       },
     },
   };
+});
+
+const mapListIemChildren = (children, classes, dense) => React.Children.map(children, (child) => {
+  const props = {};
+  if (child.type.name === 'ListItemIcon') props.dense = dense;
+  if (child.type.name === 'Avatar' && dense) props.className = classes.avatarDense;
+
+  return React.cloneElement(child, props);
 });
 
 export default class ListItem extends Component {
@@ -106,12 +119,21 @@ export default class ListItem extends Component {
     } = this.props;
 
     const classes = this.context.styleManager.render(styleSheet);
+    const children = React.Children.toArray(childrenProp);
+
+    // let hasIcon;
+    let hasAvatar;
+    React.Children.map(children, (child) => {
+      // if (child.type.name === 'ListItemIcon') hasIcon = true;
+      if (child.type.name === 'Avatar') hasAvatar = true;
+    });
+
     const className = classNames(classes.listItem, {
       [classes.gutters]: gutters,
       [classes.divider]: divider,
       [classes.disabled]: disabled,
       [classes.button]: button,
-      [dense ? classes.dense : classes.default]: true,
+      [dense || hasAvatar ? classes.dense : classes.default]: true,
     }, classNameProp);
 
     const listItemProps = { className, disabled, ...other };
@@ -123,8 +145,6 @@ export default class ListItem extends Component {
       listItemProps.keyboardFocusedClassName = classes.keyboardFocused;
     }
 
-    const children = React.Children.toArray(childrenProp);
-
     if (
       children.length &&
       children[children.length - 1].type &&
@@ -134,7 +154,7 @@ export default class ListItem extends Component {
       return (
         <div className={classes.listItemContainer}>
           <ComponentMain {...listItemProps}>
-            {children}
+            {mapListIemChildren(children, classes, dense)}
           </ComponentMain>
           {secondaryAction}
         </div>
@@ -143,7 +163,7 @@ export default class ListItem extends Component {
 
     return (
       <ComponentMain {...listItemProps}>
-        {children}
+        {mapListIemChildren(children, classes, dense)}
       </ComponentMain>
     );
   }

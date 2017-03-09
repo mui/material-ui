@@ -6,6 +6,10 @@ Lists are made up of a continuous column of rows. Each row contains a tile. Prim
 
 Lists are best suited for similar data types.
 
+### Single-line list
+
+{{demo='demos/lists/SingleLineList.js'}}
+
 ### Simple List
 
 {{demo='demos/lists/SimpleList.js'}}

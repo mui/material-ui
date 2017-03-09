@@ -18,6 +18,10 @@ export const styleSheet = createStyleSheet('MuiList', () => {
       paddingTop: 8,
       paddingBottom: 8,
     },
+    dense: {
+      paddingTop: 4,
+      paddingBottom: 4,
+    },
     subheader: {
       paddingTop: 0,
     },
@@ -33,12 +37,14 @@ export default function List(props, context) {
     component: ComponentProp,
     padding,
     children,
+    dense,
     subheader,
     rootRef,
     ...other
   } = props;
   const classes = context.styleManager.render(styleSheet);
   const className = classNames(classes.root, {
+    [classes.dense]: dense,
     [classes.padding]: padding,
     [classes.subheader]: subheader,
   }, classNameProp);
@@ -46,7 +52,9 @@ export default function List(props, context) {
   return (
     <ComponentProp ref={rootRef} className={className} {...other}>
       {subheader}
-      {children}
+      {React.Children.map(children, (child) =>
+        React.cloneElement(child, { dense }),
+      )}
     </ComponentProp>
   );
 }
@@ -65,6 +73,7 @@ List.propTypes = {
     PropTypes.string,
     PropTypes.func,
   ]),
+  dense: PropTypes.bool,
   padding: PropTypes.bool,
   /**
    * @ignore
@@ -75,6 +84,7 @@ List.propTypes = {
 
 List.defaultProps = {
   component: 'div',
+  dense: false,
   padding: true,
 };
 
