@@ -29,11 +29,6 @@ export const styleSheet = createStyleSheet('MuiListItem', (theme) => {
       paddingTop: 8,
       paddingBottom: 8,
     },
-    avatarDense: {
-      height: '32px !important',
-      marginRight: 8,
-      width: '32px !important',
-    },
     disabled: {
       opacity: 0.5,
     },
@@ -57,14 +52,6 @@ export const styleSheet = createStyleSheet('MuiListItem', (theme) => {
       },
     },
   };
-});
-
-const mapListIemChildren = (children, classes, dense) => React.Children.map(children, (child) => {
-  const props = {};
-  if (child.type.name === 'ListItemIcon' || child.type.name === 'ListItemText') props.dense = dense;
-  if (child.type.name === 'Avatar' && dense) props.className = classes.avatarDense;
-
-  return React.cloneElement(child, props);
 });
 
 export default class ListItem extends Component {
@@ -102,6 +89,7 @@ export default class ListItem extends Component {
   };
 
   static contextTypes = {
+    dense: PropTypes.bool,
     styleManager: customPropTypes.muiRequired,
   };
 
@@ -117,7 +105,7 @@ export default class ListItem extends Component {
       gutters,
       ...other
     } = this.props;
-
+    const isDense = dense || this.context.dense;
     const classes = this.context.styleManager.render(styleSheet);
     const children = React.Children.toArray(childrenProp);
 
@@ -125,7 +113,7 @@ export default class ListItem extends Component {
     let hasAvatar;
     React.Children.map(children, (child) => {
       // if (child.type.name === 'ListItemIcon') hasIcon = true;
-      if (child.type.name === 'Avatar') hasAvatar = true;
+      if (child.type.name === 'ListItemAvatar') hasAvatar = true;
     });
 
     const className = classNames(classes.listItem, {
@@ -133,7 +121,7 @@ export default class ListItem extends Component {
       [classes.divider]: divider,
       [classes.disabled]: disabled,
       [classes.button]: button,
-      [dense || hasAvatar ? classes.dense : classes.default]: true,
+      [isDense || hasAvatar ? classes.dense : classes.default]: true,
     }, classNameProp);
 
     const listItemProps = { className, disabled, ...other };
@@ -154,7 +142,7 @@ export default class ListItem extends Component {
       return (
         <div className={classes.listItemContainer}>
           <ComponentMain {...listItemProps}>
-            {mapListIemChildren(children, classes, dense)}
+            {children}
           </ComponentMain>
           {secondaryAction}
         </div>
@@ -163,7 +151,7 @@ export default class ListItem extends Component {
 
     return (
       <ComponentMain {...listItemProps}>
-        {mapListIemChildren(children, classes, dense)}
+        {children}
       </ComponentMain>
     );
   }

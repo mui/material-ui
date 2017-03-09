@@ -6,9 +6,10 @@ import customPropTypes from 'material-ui/utils/customPropTypes';
 import {
   List,
   ListItem,
-  ListItemText,
+  ListItemAvatar,
   ListItemIcon,
   ListItemSecondaryAction,
+  ListItemText,
 } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import FolderIcon from 'material-ui/svg-icons/folder';
@@ -142,19 +143,27 @@ class SingleLineList extends Component {
               <div className={classes.demo} style={{ maxHeight: 184 }}>
                 <List dense={dense}>
                   <ListItem button>
-                    <Avatar><FolderIcon /></Avatar>
+                    <ListItemAvatar>
+                      <Avatar><FolderIcon /></Avatar>
+                    </ListItemAvatar>
                     <ListItemText primary="Single-line item" />
                   </ListItem>
                   <ListItem button>
-                    <Avatar><FolderIcon /></Avatar>
+                    <ListItemAvatar>
+                      <Avatar><FolderIcon /></Avatar>
+                    </ListItemAvatar>
                     <ListItemText primary="Single-line item" />
                   </ListItem>
                   <ListItem button>
-                    <Avatar><FolderIcon /></Avatar>
+                    <ListItemAvatar>
+                      <Avatar><FolderIcon /></Avatar>
+                    </ListItemAvatar>
                     <ListItemText primary="Single-line item" />
                   </ListItem>
                   <ListItem button>
-                    <Avatar><FolderIcon /></Avatar>
+                    <ListItemAvatar>
+                      <Avatar><FolderIcon /></Avatar>
+                    </ListItemAvatar>
                     <ListItemText primary="Single-line item" />
                   </ListItem>
                 </List>
@@ -168,28 +177,36 @@ class SingleLineList extends Component {
               <div className={classes.demo} style={{ maxHeight: 184 }}>
                 <List dense={dense}>
                   <ListItem button>
-                    <Avatar><FolderIcon /></Avatar>
+                    <ListItemAvatar>
+                      <Avatar><FolderIcon /></Avatar>
+                    </ListItemAvatar>
                     <ListItemText primary="Single-line item" />
                     <ListItemSecondaryAction>
                       <IconButton>comment</IconButton>
                     </ListItemSecondaryAction>
                   </ListItem>
                   <ListItem button>
-                    <Avatar><FolderIcon /></Avatar>
+                    <ListItemAvatar>
+                      <Avatar><FolderIcon /></Avatar>
+                    </ListItemAvatar>
                     <ListItemText primary="Single-line item" />
                     <ListItemSecondaryAction>
                       <IconButton>comment</IconButton>
                     </ListItemSecondaryAction>
                   </ListItem>
                   <ListItem button>
-                    <Avatar><FolderIcon /></Avatar>
+                    <ListItemAvatar>
+                      <Avatar><FolderIcon /></Avatar>
+                    </ListItemAvatar>
                     <ListItemText primary="Single-line item" />
                     <ListItemSecondaryAction>
                       <IconButton>comment</IconButton>
                     </ListItemSecondaryAction>
                   </ListItem>
                   <ListItem button>
-                    <Avatar><FolderIcon /></Avatar>
+                    <ListItemAvatar>
+                      <Avatar><FolderIcon /></Avatar>
+                    </ListItemAvatar>
                     <ListItemText primary="Single-line item" />
                     <ListItemSecondaryAction>
                       <IconButton>comment</IconButton>

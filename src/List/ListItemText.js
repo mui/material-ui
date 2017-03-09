@@ -21,7 +21,7 @@ export const styleSheet = createStyleSheet('MuiListItemText', () => {
       },
     },
     dense: {
-      fontSize: '13px',
+      fontSize: 13,
     },
   };
 });
@@ -29,12 +29,12 @@ export const styleSheet = createStyleSheet('MuiListItemText', () => {
 export default function ListItemText(props, context) {
   const {
     className: classNameProp,
-    dense,
     primary,
     secondary,
     inset,
     ...other
   } = props;
+  const { dense } = context;
   const classes = context.styleManager.render(styleSheet);
   const className = classNames(classes.root, {
     [classes.inset]: inset,
@@ -73,19 +73,18 @@ ListItemText.propTypes = {
    * If true, the children will be indented by 72px.
    * This is useful if there is no left avatar or left icon.
    */
-  dense: PropTypes.bool,
   inset: PropTypes.bool,
   primary: PropTypes.node,
   secondary: PropTypes.node,
 };
 
 ListItemText.defaultProps = {
-  dense: false,
   primary: false,
   secondary: false,
   inset: false,
 };
 
 ListItemText.contextTypes = {
+  dense: PropTypes.bool,
   styleManager: customPropTypes.muiRequired,
 };

@@ -5,33 +5,37 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('MuiListItemIcon', () => {
+export const styleSheet = createStyleSheet('MuiListItemAvatar', () => {
   return {
-    root: {
-      height: 24,
-      marginRight: 16,
-      width: 24,
+    dense: {
+      height: 32,
+      marginRight: 8,
+      width: 32,
     },
   };
 });
 
-export default class ListItemIcon extends Component {
+export default class ListItemAvatar extends Component {
   render() {
     const {
       children,
       className: classNameProp,
       ...other
     } = this.props;
+    const { dense } = this.context;
     const classes = this.context.styleManager.render(styleSheet);
+    const className = classNames(classes.root, {
+      [classes.dense]: dense,
+    }, classNameProp);
 
     return cloneElement(children, {
-      className: classNames(classes.root, classNameProp, children.props.className),
+      className: classNames(className, children.props.className),
       ...other,
     });
   }
 }
 
-ListItemIcon.propTypes = {
+ListItemAvatar.propTypes = {
   children: PropTypes.element.isRequired,
   /**
    * The CSS class name of the root element.
@@ -39,6 +43,7 @@ ListItemIcon.propTypes = {
   className: PropTypes.string,
 };
 
-ListItemIcon.contextTypes = {
+ListItemAvatar.contextTypes = {
+  dense: PropTypes.bool,
   styleManager: customPropTypes.muiRequired,
 };
