@@ -48,6 +48,9 @@ export const styleSheet = createStyleSheet('MuiText', (theme) => {
     colorInherit: {
       color: 'inherit',
     },
+    fontSizeInherit: {
+      fontSize: 'inherit',
+    },
     secondary: {
       color: theme.palette.text.secondary,
     },
@@ -60,6 +63,7 @@ export default function Text(props, context) {
     className: classNameProp,
     colorInherit,
     component: componentProp,
+    fontSizeInherit,
     gutterBottom,
     noWrap,
     paragraph,
@@ -71,6 +75,7 @@ export default function Text(props, context) {
 
   const className = classNames(classes.text, classes[type], {
     [classes.colorInherit]: colorInherit,
+    [classes.fontSizeInherit]: fontSizeInherit,
     [classes.noWrap]: noWrap,
     [classes.secondary]: secondary,
     [classes.gutterBottom]: gutterBottom,
@@ -104,6 +109,7 @@ Text.propTypes = {
     PropTypes.string,
     PropTypes.func,
   ]),
+  fontSizeInherit: PropTypes.bool,
   gutterBottom: PropTypes.bool,
   noWrap: PropTypes.bool,
   paragraph: PropTypes.bool,
@@ -126,6 +132,7 @@ Text.propTypes = {
 Text.defaultProps = {
   colorInherit: false,
   component: 'span',
+  fontSizeInherit: false,
   gutterBottom: false,
   noWrap: false,
   paragraph: false,
