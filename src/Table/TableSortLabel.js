@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 import ButtonBase from '../internal/ButtonBase';
-import Icon from '../Icon';
+import ArrowDownwardIcon from '../svg-icons/arrow-downward';
 
 export const styleSheet = createStyleSheet('MuiTableSortLabel', (theme) => {
   const { palette, transitions } = theme;
@@ -31,7 +31,7 @@ export const styleSheet = createStyleSheet('MuiTableSortLabel', (theme) => {
       },
     },
     icon: {
-      fontSize: 16,
+      height: 16,
       marginRight: 4,
       marginLeft: 4,
       opacity: 0,
@@ -39,6 +39,7 @@ export const styleSheet = createStyleSheet('MuiTableSortLabel', (theme) => {
         duration: transitions.duration.shorter,
       }),
       userSelect: 'none',
+      width: 16,
     },
     desc: {
       transform: 'rotate(0deg)',
@@ -71,7 +72,7 @@ export default function TableSortLabel(props, context) {
       {...other}
     >
       {children}
-      <Icon className={iconClasses}>arrow_downward</Icon>
+      <ArrowDownwardIcon className={iconClasses} />
     </ButtonBase>
   );
 }
