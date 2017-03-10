@@ -157,6 +157,7 @@ class SelectField extends Component {
       style,
       labelStyle,
       iconStyle,
+      disableTouchRipple,
       id,
       underlineDisabledStyle,
       underlineFocusStyle,
@@ -217,6 +218,7 @@ class SelectField extends Component {
           value={value}
           onChange={onChange}
           maxHeight={maxHeight}
+          disableTouchRipple={disableTouchRipple}
         >
           {children}
         </DropDownMenu>
