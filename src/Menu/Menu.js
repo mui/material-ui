@@ -381,13 +381,15 @@ class Menu extends Component {
     const children = this.props.children;
     const multiple = this.props.multiple;
     const valueLink = this.getValueLink(this.props);
-    const menuValue = valueLink.value;
+    let menuValue = valueLink.value;
     const itemValue = item.props.value;
     const focusIndex = React.isValidElement(children) ? 0 : children.indexOf(item);
 
     this.setFocusIndex(event, focusIndex, false);
 
     if (multiple) {
+      menuValue = menuValue || [];
+
       const itemIndex = menuValue.indexOf(itemValue);
       const [...newMenuValue] = menuValue;
       if (itemIndex === -1) {
@@ -419,7 +421,7 @@ class Menu extends Component {
     const childValue = child.props.value;
 
     if (props.multiple) {
-      return menuValue.length && menuValue.indexOf(childValue) !== -1;
+      return menuValue && menuValue.length && menuValue.indexOf(childValue) !== -1;
     } else {
       return child.props.hasOwnProperty('value') && menuValue === childValue;
     }
