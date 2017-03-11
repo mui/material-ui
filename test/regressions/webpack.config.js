@@ -24,6 +24,7 @@ module.exports = {
   resolve: {
     alias: {
       'material-ui': path.resolve(__dirname, '../../src'),
+      'material-ui-docs': path.resolve(__dirname, '../../docs'),
     },
   },
 };
