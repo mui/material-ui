@@ -90,6 +90,13 @@ export default function AppRouter() {
             component={MarkdownDocs}
             nav
           />
+          <Route
+            title="Supported Components"
+            path="/getting-started/supported-components"
+            content={requireDocs('./getting-started/supported-components.md')}
+            component={MarkdownDocs}
+            nav
+          />
         </Route>
         <Route
           title="Customization"
