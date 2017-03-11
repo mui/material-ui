@@ -1,11 +1,10 @@
 // @flow weak
-/* eslint-env mocha */
 
 import React from 'react';
 import keycode from 'keycode';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallowWithContext, createMountWithContext } from 'test/utils';
+import { createShallow, createMount } from 'test/utils';
 import ButtonBase, { styleSheet } from './ButtonBase';
 
 describe('<ButtonBase />', () => {
@@ -14,10 +13,11 @@ describe('<ButtonBase />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallowWithContext();
-    mount = createMountWithContext();
+    shallow = createShallow();
+    mount = createMount();
     classes = shallow.context.styleManager.render(styleSheet);
   });
+
   after(() => {
     mount.cleanUp();
   });

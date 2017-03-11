@@ -1,13 +1,12 @@
 // @flow weak
-/* eslint-env mocha */
 
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import contains from 'dom-helpers/query/contains';
 import {
-  createShallowWithContext,
-  createMountWithContext,
+  createShallow,
+  createMount,
 } from 'test/utils';
 import Modal, { styleSheet } from './Modal';
 
@@ -17,10 +16,11 @@ describe('<Modal />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallowWithContext();
+    shallow = createShallow();
     classes = shallow.context.styleManager.render(styleSheet);
-    mount = createMountWithContext();
+    mount = createMount();
   });
+
   after(() => {
     mount.cleanUp();
   });

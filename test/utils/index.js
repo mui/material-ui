@@ -1,4 +1,5 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-export createShallowWithContext from './createShallowWithContext';
-export createMountWithContext from './createMountWithContext';
+export createShallow from './createShallow';
+export createMount from './createMount';
+export createRenderToString from './createRenderToString';

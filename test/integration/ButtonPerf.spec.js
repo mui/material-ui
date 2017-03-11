@@ -8,13 +8,13 @@
 // import React from 'react';
 // import TimeWaster from './fixtures/perf/TimeWaster';
 // import {assert} from 'chai';
-// import {createMountWithContext} from 'test/utils';
+// import {createMount} from 'test/utils';
 // import Button from 'src/Button';
 
 // describe('Button Perf', () => {
 //   let mount;
 
-//   before(() => mount = createMountWithContext());
+//   before(() => mount = createMount());
 //   after(() => mount.cleanUp());
 
 //   it('TouchRipple should not waste rendering time', function() {

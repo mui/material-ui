@@ -1,10 +1,9 @@
 // @flow weak
-/* eslint-env mocha */
 
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallowWithContext } from 'test/utils';
+import { createShallow } from 'test/utils';
 import withSwitchLabel, { styleSheet } from './withSwitchLabel';
 
 describe('<SwitchLabel />', () => {
@@ -12,7 +11,7 @@ describe('<SwitchLabel />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallowWithContext();
+    shallow = createShallow();
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
