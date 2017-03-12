@@ -38,4 +38,8 @@ function TableMutliSelect(props) {
   );
 }
 
+TableMutliSelect.propTypes = {
+  data: React.PropTypes.array,
+};
+
 export default TableMutliSelect;

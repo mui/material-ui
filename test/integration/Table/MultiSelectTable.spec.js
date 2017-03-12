@@ -42,7 +42,7 @@ describe('<MultiSelectTable />', () => {
     ];
 
     const wrapper = mountWithContext(
-      <MultiSelectTable data={tableData}/>
+      <MultiSelectTable data={tableData} />
     );
 
     assert.deepEqual(
@@ -99,7 +99,7 @@ describe('<MultiSelectTable />', () => {
       'should be invariant to update'
     );
 
-    wrapper.setProps({data: tableData2})
+    wrapper.setProps({data: tableData2});
     assert.deepEqual(
       wrapper.find('Checkbox').map((checkbox) => checkbox.props().checked),
       [
@@ -110,6 +110,5 @@ describe('<MultiSelectTable />', () => {
       ],
       'should be update if selected props change'
     );
-
   });
 });
