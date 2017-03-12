@@ -5,6 +5,7 @@ coverage
 .DS_Store
 docs
 .idea
+.eslintcache
 
 # Exclude compiled files
 lib
