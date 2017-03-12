@@ -1,9 +1,8 @@
 // @flow weak
-/* eslint-env mocha */
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallowWithContext, createMountWithContext } from 'test/utils';
+import { createShallow, createMount } from 'test/utils';
 import { createSwitch, styleSheet } from './SwitchBase';
 
 describe('<SwitchBase />', () => {
@@ -14,11 +13,14 @@ describe('<SwitchBase />', () => {
 
   before(() => {
     SwitchBase = createSwitch();
-    shallow = createShallowWithContext();
-    mount = createMountWithContext();
+    shallow = createShallow();
+    mount = createMount();
     classes = shallow.context.styleManager.render(styleSheet);
   });
-  after(() => mount.cleanUp());
+
+  after(() => {
+    mount.cleanUp();
+  });
 
   it('should render an IconButton', () => {
     const wrapper = shallow(

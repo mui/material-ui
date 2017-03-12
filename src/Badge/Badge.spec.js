@@ -1,7 +1,6 @@
 // @flow weak
-/* eslint-env mocha */
 import React from 'react';
-import { createShallowWithContext } from 'test/utils';
+import { createShallow } from 'test/utils';
 import { assert } from 'chai';
 import Badge, { styleSheet } from './Badge';
 
@@ -10,7 +9,7 @@ describe('<Badge />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallowWithContext();
+    shallow = createShallow();
     classes = shallow.context.styleManager.render(styleSheet);
   });
 

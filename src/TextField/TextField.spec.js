@@ -1,9 +1,8 @@
 // @flow weak
-/* eslint-env mocha */
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallowWithContext } from 'test/utils';
+import { createShallow } from 'test/utils';
 import TextField from './TextField';
 
 describe('<TextField />', () => {
@@ -11,7 +10,7 @@ describe('<TextField />', () => {
   let wrapper;
 
   before(() => {
-    shallow = createShallowWithContext();
+    shallow = createShallow();
   });
 
   beforeEach(() => {

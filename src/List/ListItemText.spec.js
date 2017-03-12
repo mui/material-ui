@@ -1,9 +1,8 @@
 // @flow weak
-/* eslint-env mocha */
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallowWithContext } from 'test/utils';
+import { createShallow } from 'test/utils';
 import ListItemText, { styleSheet } from './ListItemText';
 
 describe('<ListItemText />', () => {
@@ -11,7 +10,7 @@ describe('<ListItemText />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallowWithContext();
+    shallow = createShallow();
     classes = shallow.context.styleManager.render(styleSheet);
   });
 

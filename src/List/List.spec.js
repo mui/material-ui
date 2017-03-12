@@ -1,9 +1,8 @@
 // @flow weak
-/* eslint-env mocha */
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallowWithContext } from 'test/utils';
+import { createShallow } from 'test/utils';
 import List, { styleSheet } from './List';
 import ListSubheader from './ListSubheader';
 
@@ -12,7 +11,7 @@ describe('<List />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallowWithContext();
+    shallow = createShallow();
     classes = shallow.context.styleManager.render(styleSheet);
   });
 

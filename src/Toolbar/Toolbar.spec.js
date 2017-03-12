@@ -1,9 +1,8 @@
 // @flow weak
-/* eslint-env mocha */
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallowWithContext } from 'test/utils';
+import { createShallow } from 'test/utils';
 import Toolbar, { styleSheet } from './Toolbar';
 
 /**
@@ -14,7 +13,7 @@ describe('<Toolbar />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallowWithContext();
+    shallow = createShallow();
     classes = shallow.context.styleManager.render(styleSheet);
   });
 

@@ -1,10 +1,9 @@
 // @flow weak
-/* eslint-env mocha */
 
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallowWithContext } from 'test/utils';
+import { createShallow } from 'test/utils';
 import Slide from './Slide';
 import transitions, { easing, duration } from '../styles/transitions';
 
@@ -12,7 +11,7 @@ describe('<Slide />', () => {
   let shallow;
 
   before(() => {
-    shallow = createShallowWithContext();
+    shallow = createShallow();
   });
 
   it('should render a Transition', () => {

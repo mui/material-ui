@@ -1,9 +1,8 @@
 // @flow weak
-/* eslint-env mocha */
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallowWithContext, createMountWithContext } from 'test/utils';
+import { createShallow, createMount } from 'test/utils';
 import withWidth, { isWidthUp, isWidthDown } from './withWidth';
 
 const Empty = () => <div />;
@@ -15,8 +14,12 @@ describe('withWidth', () => {
   let mount;
 
   before(() => {
-    shallow = createShallowWithContext();
-    mount = createMountWithContext();
+    shallow = createShallow();
+    mount = createMount();
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   describe('server side rendering', () => {

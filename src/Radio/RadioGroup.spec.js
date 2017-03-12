@@ -1,17 +1,16 @@
 // @flow weak
-/* eslint-env mocha */
 
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallowWithContext } from 'test/utils';
+import { createShallow } from 'test/utils';
 import RadioGroup from './RadioGroup';
 
 describe('<RadioGroup />', () => {
   let shallow;
 
   before(() => {
-    shallow = createShallowWithContext();
+    shallow = createShallow();
   });
 
   it('should render a FormGroup with the radiogroup role', () => {

@@ -1,9 +1,8 @@
 // @flow weak
-/* eslint-env mocha */
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallowWithContext } from 'test/utils';
+import { createShallow } from 'test/utils';
 import Chip, { styleSheet } from './Chip.js';
 import Avatar from '../Avatar/Avatar.js';
 
@@ -12,7 +11,7 @@ describe('<Chip />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallowWithContext();
+    shallow = createShallow();
     classes = shallow.context.styleManager.render(styleSheet);
   });
 

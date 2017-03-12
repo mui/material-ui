@@ -1,10 +1,9 @@
 // @flow weak
-/* eslint-env mocha */
 
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallowWithContext, createMountWithContext } from 'test/utils';
+import { createShallow, createMount } from 'test/utils';
 import BottomNavigation, { styleSheet } from './BottomNavigation';
 import BottomNavigationButton from './BottomNavigationButton';
 import Icon from '../Icon';
@@ -16,9 +15,13 @@ describe('<BottomNavigation />', () => {
   const icon = <Icon>restore</Icon>;
 
   before(() => {
-    shallow = createShallowWithContext();
+    shallow = createShallow();
     classes = shallow.context.styleManager.render(styleSheet);
-    mount = createMountWithContext();
+    mount = createMount();
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   it('should render with the root class', () => {

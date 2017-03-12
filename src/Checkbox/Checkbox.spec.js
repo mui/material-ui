@@ -1,8 +1,7 @@
 // @flow weak
-/* eslint-env mocha */
 
 import { assert } from 'chai';
-import { createShallowWithContext } from 'test/utils';
+import { createShallow } from 'test/utils';
 import Checkbox, { LabelCheckbox, styleSheet } from './Checkbox';
 
 describe('<Checkbox />', () => {
@@ -10,7 +9,7 @@ describe('<Checkbox />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallowWithContext();
+    shallow = createShallow();
     classes = shallow.context.styleManager.render(styleSheet);
   });
 

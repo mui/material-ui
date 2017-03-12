@@ -1,17 +1,17 @@
 // @flow weak
-/* eslint-env mocha */
 
 import React from 'react';
 import { assert } from 'chai';
-import { createMountWithContext } from 'test/utils';
+import { createMount } from 'test/utils';
 import Portal from './Portal';
 
 describe('<Portal />', () => {
   let mount;
 
   before(() => {
-    mount = createMountWithContext();
+    mount = createMount();
   });
+
   after(() => {
     mount.cleanUp();
   });

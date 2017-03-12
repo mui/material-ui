@@ -1,12 +1,12 @@
 // @flow weak
 
-import { createMuiTheme } from 'src/styles/theme';
 import { create } from 'jss';
 import jssPreset from 'jss-preset-default';
 import { createStyleManager } from 'jss-theme-reactor';
 import { shallow as enzymeShallow } from 'enzyme';
+import { createMuiTheme } from 'src/styles/theme';
 
-export default function createShallowWithContext(
+export default function createShallow(
   shallow = enzymeShallow,
   otherContext = {},
 ) {
@@ -17,6 +17,12 @@ export default function createShallowWithContext(
   const shallowWithContext = function shallowWithContext(node) {
     return shallow(node, { context });
   };
+
   shallowWithContext.context = context;
+
+  shallowWithContext.cleanUp = () => {
+    styleManager.reset();
+  };
+
   return shallowWithContext;
 }

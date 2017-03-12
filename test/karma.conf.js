@@ -87,6 +87,9 @@ module.exports = function setKarmaConfig(config) {
         'text-encoding': 'window',
         'react/addons': true, // For enzyme
       },
+      node: {
+        fs: 'empty',
+      },
     },
     webpackServer: {
       noInfo: true,

@@ -5,6 +5,7 @@ module.exports = {
     es6: true,
     browser: true,
     node: true,
+    mocha: true,
   },
   extends: 'airbnb',
   parser: 'babel-eslint',

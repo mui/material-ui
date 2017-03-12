@@ -1,9 +1,8 @@
 // @flow weak
-/* eslint-env mocha */
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallowWithContext } from 'test/utils';
+import { createShallow } from 'test/utils';
 import SvgIcon, { styleSheet } from './SvgIcon';
 
 describe('<SvgIcon />', () => {
@@ -12,7 +11,7 @@ describe('<SvgIcon />', () => {
   let path;
 
   before(() => {
-    shallow = createShallowWithContext();
+    shallow = createShallow();
     classes = shallow.context.styleManager.render(styleSheet);
     path = <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />;
   });

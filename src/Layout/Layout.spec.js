@@ -1,9 +1,8 @@
 // @flow weak
-/* eslint-env mocha */
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallowWithContext } from 'test/utils';
+import { createShallow } from 'test/utils';
 import Layout, { styleSheet } from './Layout';
 
 describe('<Layout />', () => {
@@ -11,7 +10,7 @@ describe('<Layout />', () => {
   let classes;
 
   before(() => {
-    const shallowInner = createShallowWithContext();
+    const shallowInner = createShallow();
     // Render deeper to bypass the LayoutWrapper.
     shallow = (node) => {
       return shallowInner(node).find('Layout').shallow({
