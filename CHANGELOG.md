@@ -24,6 +24,32 @@ Below is a summary of major changes.
 - [Ripple/TouchRipple] Refactored and now works properly inside a button in firefox!
 - [Button] Raised/flat/fab are now combined into a single component.
 
+## 1.0.0-alpha.7
+###### _Mar 12, 2017_
+
+##### Component Fixes / Enhancements
+
+- [Slide] Fix displaying when in=false at first (#6223) @ArcanisCz
+- [Ripple] Improve the animation (#6248) @oliviertassinari
+- [color] Add missing blueGrey color (#6255) @Shahrukh-Zindani
+- [Table] Fix paddings according to guidelines (#6306) @kybarg
+- [Table] Replace font icon to svg icon in sort label (#6321) @kybarg
+- [Table] Add visual regression tests (#6325) @oliviertassinari
+- [Button] Use faded text color for hover state (#6320) @mbrookes
+
+##### Docs
+
+- [docs] Add a Color section (#6254) @Shahrukh-Zindani
+- [docs] Add information to typography (#6266) @Shahrukh-Zindani
+
+##### Core
+
+- [test] Server side render some element to be sure (#6328) @oliviertassinari
+- [npm] Add correct extension (#6241) @okvic77
+- [core] Rename travis to circle as we migrated (e7fba22bd19f82f5489cb52eaaaaff23f2f57939) @oliviertassinari
+- [core] Fix docs:start command on Windows (#6307) @kybarg
+- [core] Upgrade the npm dependencies (#6327) @oliviertassinari
+
 ## 1.0.0-alpha.6
 ###### _Feb 26, 2017_
 

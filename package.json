@@ -40,7 +40,8 @@
     "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha && nyc report -r lcovonly",
     "test:karma": "cross-env NODE_ENV=test karma start test/karma.conf.js --single-run",
     "test:regressions": "webpack --config test/regressions/webpack.config.js && vrtest run --config test/vrtest.config.js",
-    "flow": "flow"
+    "flow": "flow",
+    "publish": "npm run build && cd build && npm publish"
   },
   "peerDependencies": {
     "react": "^15.0.0",
