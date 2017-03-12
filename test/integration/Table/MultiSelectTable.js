@@ -8,21 +8,7 @@ import {
   TableRowColumn,
 } from 'src/Table';
 
-const tableData = [
-  {
-    name: 'John Smith',
-    selected: true,
-  },
-  {
-    name: 'Randal White',
-    selected: true,
-  },
-  {
-    name: 'Olivier',
-  },
-];
-
-function TableMutliSelect() {
+function TableMutliSelect(props) {
   return (
     <Table
       selectable={true}
@@ -40,7 +26,7 @@ function TableMutliSelect() {
         </TableRow>
       </TableHeader>
       <TableBody displayRowCheckbox={true}>
-        {tableData.map( (row, index) => (
+        {props.data.map( (row, index) => (
           <TableRow key={index} selected={row.selected}>
             <TableRowColumn>
               {row.name}

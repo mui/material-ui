@@ -13,8 +13,36 @@ describe('<MultiSelectTable />', () => {
       childContextTypes: {muiTheme: React.PropTypes.object},
     });
 
+    const tableData = [
+      {
+        name: 'John Smith',
+        selected: true,
+      },
+      {
+        name: 'Randal White',
+        selected: true,
+      },
+      {
+        name: 'Olivier',
+      },
+    ];
+
+    const tableData2 = [
+      {
+        name: 'John Smith',
+        selected: false,
+      },
+      {
+        name: 'Randal White',
+        selected: true,
+      },
+      {
+        name: 'Olivier',
+      },
+    ];
+
     const wrapper = mountWithContext(
-      <MultiSelectTable />
+      <MultiSelectTable data={tableData}/>
     );
 
     assert.deepEqual(
@@ -70,5 +98,18 @@ describe('<MultiSelectTable />', () => {
       ],
       'should be invariant to update'
     );
+
+    wrapper.setProps({data: tableData2})
+    assert.deepEqual(
+      wrapper.find('Checkbox').map((checkbox) => checkbox.props().checked),
+      [
+        false,
+        false,
+        true,
+        false,
+      ],
+      'should be update if selected props change'
+    );
+
   });
 });
