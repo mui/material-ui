@@ -41,7 +41,7 @@
     "test:karma": "cross-env NODE_ENV=test karma start test/karma.conf.js --single-run",
     "test:regressions": "webpack --config test/regressions/webpack.config.js && vrtest run --config test/vrtest.config.js",
     "flow": "flow",
-    "publish": "npm run build && cd build && npm publish"
+    "publish": "npm run build && cd build && npm publish --tag next"
   },
   "peerDependencies": {
     "react": "^15.0.0",
