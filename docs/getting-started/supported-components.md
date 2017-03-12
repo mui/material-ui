@@ -1,13 +1,13 @@
 # Supported Components
 
-The following list of Material Design components and features highlights 
-those currently supported by Material-UI with **bold text ✓**.
+The following is a list of Material Design components & features. 
+Those currently supported by Material-UI are **highlighted ✓**. 
 
 While we strive to follow the guidelines where practical (applying 
 common sense where guidelines contadict - a more common occurence than 
 one might expect), we do not expect to support every component, or every 
 feature of every component, but rather to provide the building blocks to 
-allow users to create compelling user interfaces and experiences.
+allow developers to create compelling user interfaces and experiences.
 
 If you wish to add support for a component or feature not highlighted 
 here, please search for the relevant [GitHub Issue](https://github.com/callemall/material-ui/issues), or create a new one 
