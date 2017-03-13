@@ -59,6 +59,8 @@ export const styleSheet = createStyleSheet('MuiChip', (theme) => {
       height: 19,
     },
     label: {
+      display: 'flex',
+      alignItems: 'center',
       paddingLeft: 12,
       paddingRight: 12,
       userSelect: 'none',
@@ -71,6 +73,7 @@ export const styleSheet = createStyleSheet('MuiChip', (theme) => {
         color: fade(deleteIconColor, 0.4),
       },
       cursor: 'pointer',
+      height: 'auto',
       margin: '0 4px 0 -8px',
     },
   };
