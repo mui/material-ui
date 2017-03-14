@@ -462,6 +462,7 @@ class TextField extends Component {
           textareaStyle={Object.assign(styles.textarea, styles.inputNative, textareaStyle)}
           rows={rows}
           rowsMax={rowsMax}
+          hintText={hintText}
           {...other}
           {...inputProps}
           onHeightChange={this.handleHeightChange}
