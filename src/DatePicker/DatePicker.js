@@ -1,4 +1,6 @@
 import React, {Component, PropTypes} from 'react';
+import EventListener from 'react-event-listener';
+import keycode from 'keycode';
 import {dateTimeFormat, formatIso, isEqualDate} from './dateUtils';
 import DatePickerDialog from './DatePickerDialog';
 import TextField from '../TextField';
@@ -93,6 +95,10 @@ class DatePicker extends Component {
      */
     okLabel: PropTypes.node,
     /**
+     * Callback function that is fired when the Date Picker's `TextField` blurs.
+     */
+    onBlur: PropTypes.func,
+    /**
      * Callback function that is fired when the date value changes.
      *
      * @param {null} null Since there is no particular event associated with the change,
@@ -174,35 +180,33 @@ class DatePicker extends Component {
     }
   }
 
+  isFocused = false;
+
+  element = null;
+
   getDate() {
-    return this.state.date;
+    /**
+     * if the date is not selected then set it to new date
+     * (get the current system date while doing so)
+     * else set it to the currently selected date
+     */
+    return this.state.date ? this.state.date : new Date();
   }
 
   /**
    * Open the date-picker dialog programmatically from a parent.
    */
   openDialog() {
-    /**
-     * if the date is not selected then set it to new date
-     * (get the current system date while doing so)
-     * else set it to the currently selected date
-     */
-    if (this.state.date !== undefined) {
-      this.setState({
-        dialogDate: this.getDate(),
-      }, this.refs.dialogWindow.show);
-    } else {
-      this.setState({
-        dialogDate: new Date(),
-      }, this.refs.dialogWindow.show);
-    }
+    this.setState({
+      dialogDate: this.getDate(),
+    }, this.refs.dialogWindow.show);
   }
 
   /**
    * Alias for `openDialog()` for an api consistent with TextField.
    */
   focus() {
-    this.openDialog();
+    this.handleFocus();
   }
 
   handleAccept = (date) => {
@@ -211,13 +215,47 @@ class DatePicker extends Component {
         date: date,
       });
     }
+
+    this.isFocused = false;
+    this.refs.input.focus();
+
     if (this.props.onChange) {
       this.props.onChange(null, date);
     }
   };
 
+  handleBlur = (event, shouldSetFocus) => {
+    if (shouldSetFocus) {
+      this.refs.input.focus();
+    }
+
+    if (this.isFocused) {
+      this.isFocused = false;
+      this.refs.dialogWindow.dismiss();
+    }
+
+    if (this.props.onBlur) {
+      this.props.onBlur(event);
+    }
+  };
+
+  handleDismiss = () => {
+    if (this.isFocused) {
+      this.refs.input.focus();
+      this.isFocused = false;
+    }
+
+    if (this.props.onDismiss) {
+      this.props.onDismiss();
+    }
+  };
+
   handleFocus = (event) => {
-    event.target.blur();
+    if (!this.isFocused) {
+      this.isFocused = true;
+      this.openDialog();
+    }
+
     if (this.props.onFocus) {
       this.props.onFocus(event);
     }
@@ -228,10 +266,18 @@ class DatePicker extends Component {
       this.props.onTouchTap(event);
     }
 
-    if (!this.props.disabled) {
-      setTimeout(() => {
-        this.openDialog();
-      }, 0);
+    this.handleFocus(event);
+  };
+
+  handleWindowKeyDown = (event) => {
+    if (!this.refs.dialogWindow.state.open) {
+      return;
+    }
+
+    switch (keycode(event)) {
+      case 'tab':
+        this.handleBlur(event, !this.element.contains(event.target));
+        break;
     }
   };
 
@@ -275,7 +321,7 @@ class DatePicker extends Component {
       minDate,
       mode,
       okLabel,
-      onDismiss,
+      onDismiss, // eslint-disable-line no-unused-vars
       onFocus, // eslint-disable-line no-unused-vars
       onShow,
       onTouchTap, // eslint-disable-line no-unused-vars
@@ -290,14 +336,18 @@ class DatePicker extends Component {
     const formatDate = formatDateProp || this.formatDate;
 
     return (
-      <div className={className} style={prepareStyles(Object.assign({}, style))}>
+      <div ref={(node) => this.element = node} className={className} style={prepareStyles(Object.assign({}, style))}>
         <TextField
+          readOnly={true}
           {...other}
           onFocus={this.handleFocus}
-          onTouchTap={this.handleTouchTap}
           ref="input"
           style={textFieldStyle}
           value={this.state.date ? formatDate(this.state.date) : ''}
+        />
+        <EventListener
+          target="window"
+          onKeyDown={this.handleWindowKeyDown}
         />
         <DatePickerDialog
           DateTimeFormat={DateTimeFormat}
@@ -315,7 +365,7 @@ class DatePicker extends Component {
           okLabel={okLabel}
           onAccept={this.handleAccept}
           onShow={onShow}
-          onDismiss={onDismiss}
+          onDismiss={this.handleDismiss}
           ref="dialogWindow"
           shouldDisableDate={shouldDisableDate}
           hideCalendarDate={hideCalendarDate}
