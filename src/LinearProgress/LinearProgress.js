@@ -55,8 +55,10 @@ function getStyles(props, context) {
     };
   } else {
     styles.bar.backgroundColor = props.color || palette.primary1Color;
-    styles.bar.transition = transitions.create('width', '.3s', null, 'linear');
     styles.bar.width = `${getRelativeValue(value, min, max)}%`;
+    if (props.transition) {
+      styles.bar.transition = transitions.create('width', '.3s', null, 'linear');
+    }
   }
 
   return styles;
@@ -87,6 +89,10 @@ class LinearProgress extends Component {
      */
     style: PropTypes.object,
     /**
+     * Determines if transitions will be showed, only works in determinate mode.
+     */
+    transition: PropTypes.bool,
+    /**
      * The value of progress, only works in determinate mode.
      */
     value: PropTypes.number,
@@ -97,6 +103,7 @@ class LinearProgress extends Component {
     value: 0,
     min: 0,
     max: 100,
+    transition: true,
   };
 
   static contextTypes = {
