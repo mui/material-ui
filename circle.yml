@@ -1,3 +1,7 @@
 machine:
   node:
     version: 6.1.0
+
+dependencies:
+  post:
+    - npm ls react-tap-event-plugin react
