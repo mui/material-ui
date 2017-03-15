@@ -75,14 +75,11 @@ class Drawer extends Component {
      */
     swipeAreaWidth: PropTypes.number,
     /**
-     * The width of the `Drawer` in pixels or percentage in string format ex. "100%" (to
-     * fill the entire width of the container) or "50%". Defaults to using the values from
+     * The width of the `Drawer` in pixels or percentage in decimal format `0-1` ex. "0.5" (to
+     * fill the half (50%) of the width of the window) or "0.75" and so on. Defaults to using the values from
      * theme.
      */
-    width: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    width: PropTypes.number,
     /**
      * The zDepth of the `Drawer`.
      */
@@ -151,7 +148,7 @@ class Drawer extends Component {
     const styles = {
       root: {
         height: '100%',
-        width: this.props.width || theme.width,
+        width: this.getTranslatedWidth() || theme.width,
         position: 'fixed',
         zIndex: muiTheme.zIndex.drawer,
         left: 0,
@@ -202,8 +199,16 @@ class Drawer extends Component {
     }
   };
 
+  getTranslatedWidth() {
+    if (this.props.width <= 1) {
+      return this.props.width * window.innerWidth;
+    } else {
+      return this.props.width;
+    }
+  }
+
   getMaxTranslateX() {
-    const width = this.props.width || this.context.muiTheme.drawer.width;
+    const width = this.getTranslatedWidth() || this.context.muiTheme.drawer.width;
     return width + 10;
   }
 
