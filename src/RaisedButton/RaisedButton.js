@@ -18,6 +18,7 @@ function getStyles(props, context, state) {
     baseTheme,
     button,
     raisedButton,
+    borderRadius,
   } = context.muiTheme;
 
   const {
@@ -57,7 +58,6 @@ function getStyles(props, context, state) {
   }
 
   const buttonHeight = style && style.height || button.height;
-  const borderRadius = 2;
 
   return {
     root: {
@@ -70,7 +70,7 @@ function getStyles(props, context, state) {
       lineHeight: `${buttonHeight}px`,
       width: '100%',
       padding: 0,
-      borderRadius: borderRadius,
+      borderRadius,
       transition: transitions.easeOut(),
       backgroundColor: backgroundColor,
       // That's the default value for a button but not a link
@@ -96,7 +96,7 @@ function getStyles(props, context, state) {
     },
     overlay: {
       height: buttonHeight,
-      borderRadius: borderRadius,
+      borderRadius,
       backgroundColor: (state.keyboardFocused || state.hovered) && !disabled &&
         fade(labelColor, amount),
       transition: transitions.easeOut(),
@@ -144,6 +144,10 @@ class RaisedButton extends Component {
       PropTypes.string,
       PropTypes.element,
     ]),
+    /**
+     * If true, the element's ripple effect will be disabled.
+     */
+    disableTouchRipple: React.PropTypes.bool,
     /**
      * If true, the button will be disabled.
      */

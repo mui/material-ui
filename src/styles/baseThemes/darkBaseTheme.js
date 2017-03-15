@@ -10,6 +10,7 @@ import spacing from '../spacing';
 export default {
   spacing: spacing,
   fontFamily: 'Roboto, sans-serif',
+  borderRadius: 2,
   palette: {
     primary1Color: cyan700,
     primary2Color: cyan700,

@@ -47,6 +47,10 @@ class FlatButton extends Component {
       PropTypes.element,
     ]),
     /**
+     * If true, the element's ripple effect will be disabled.
+     */
+    disableTouchRipple: React.PropTypes.bool,
+    /**
      * Disables the button if set to true.
      */
     disabled: PropTypes.bool,
@@ -191,6 +195,7 @@ class FlatButton extends Component {
     } = this.props;
 
     const {
+      borderRadius,
       button: {
         height: buttonHeight,
         minWidth: buttonMinWidth,
@@ -226,7 +231,7 @@ class FlatButton extends Component {
       minWidth: fullWidth ? '100%' : buttonMinWidth,
       color: defaultTextColor,
       transition: transitions.easeOut(),
-      borderRadius: 2,
+      borderRadius,
       userSelect: 'none',
       overflow: 'hidden',
       backgroundColor: hovered ? buttonHoverColor : buttonBackgroundColor,

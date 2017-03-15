@@ -38,6 +38,7 @@ function getStyles(props, context) {
     },
     label: {
       color: disabled ? palette.disabledColor : palette.textColor,
+      height: `${spacing.desktopToolbarHeight}px`,
       lineHeight: `${spacing.desktopToolbarHeight}px`,
       overflow: 'hidden',
       opacity: 1,
@@ -139,11 +140,19 @@ class DropDownMenu extends Component {
      */
     menuStyle: PropTypes.object,
     /**
+     * If true, `value` must be an array and the menu will support
+     * multiple selections.
+     */
+    multiple: PropTypes.bool,
+    /**
      * Callback function fired when a menu item is clicked, other than the one currently selected.
      *
      * @param {object} event TouchTap event targeting the menu item that was clicked.
      * @param {number} key The index of the clicked menu item in the `children` collection.
-     * @param {any} payload The `value` prop of the clicked menu item.
+     * @param {any} value If `multiple` is true, the menu's `value`
+     * array with either the menu item's `value` added (if
+     * it wasn't already selected) or omitted (if it was already selected).
+     * Otherwise, the `value` of the menu item.
      */
     onChange: PropTypes.func,
     /**
@@ -159,6 +168,15 @@ class DropDownMenu extends Component {
      */
     selectedMenuItemStyle: PropTypes.object,
     /**
+     * Callback function fired when a menu item is clicked, other than the one currently selected.
+     *
+     * @param {any} value If `multiple` is true, the menu's `value`
+     * array with either the menu item's `value` added (if
+     * it wasn't already selected) or omitted (if it was already selected).
+     * Otherwise, the `value` of the menu item.
+     */
+    selectionRenderer: PropTypes.func,
+    /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
@@ -167,7 +185,9 @@ class DropDownMenu extends Component {
      */
     underlineStyle: PropTypes.object,
     /**
-     * The value that is currently selected.
+     * If `multiple` is true, an array of the `value`s of the selected
+     * menu items. Otherwise, the `value` of the selected menu item.
+     * If provided, the menu will be a controlled component.
      */
     value: PropTypes.any,
   };
@@ -179,6 +199,7 @@ class DropDownMenu extends Component {
     iconButton: <DropDownArrow />,
     openImmediately: false,
     maxHeight: 500,
+    multiple: false,
   };
 
   static contextTypes = {
@@ -273,16 +294,28 @@ class DropDownMenu extends Component {
   };
 
   handleItemTouchTap = (event, child, index) => {
-    event.persist();
-    this.setState({
-      open: false,
-    }, () => {
-      if (this.props.onChange) {
-        this.props.onChange(event, index, child.props.value);
+    if (this.props.multiple) {
+      if (!this.state.open) {
+        this.setState({open: true});
       }
+    } else {
+      event.persist();
+      this.setState({
+        open: false,
+      }, () => {
+        if (this.props.onChange) {
+          this.props.onChange(event, index, child.props.value);
+        }
 
-      this.close(Events.isKeyboard(event));
-    });
+        this.close(Events.isKeyboard(event));
+      });
+    }
+  };
+
+  handleChange = (event, value) => {
+    if (this.props.multiple && this.props.onChange) {
+      this.props.onChange(event, undefined, value);
+    }
   };
 
   close = (isKeyboard) => {
@@ -307,13 +340,16 @@ class DropDownMenu extends Component {
       animated,
       animation,
       autoWidth,
+      multiple,
       children,
       className,
+      disabled,
       iconStyle,
       labelStyle,
       listStyle,
       maxHeight,
       menuStyle: menuStyleProp,
+      selectionRenderer,
       onClose, // eslint-disable-line no-unused-vars
       openImmediately, // eslint-disable-line no-unused-vars
       menuItemStyle,
@@ -324,7 +360,6 @@ class DropDownMenu extends Component {
       iconButton,
       ...other
     } = this.props;
-
     const {
       anchorEl,
       open,
@@ -334,12 +369,36 @@ class DropDownMenu extends Component {
     const styles = getStyles(this.props, this.context);
 
     let displayValue = '';
-    React.Children.forEach(children, (child) => {
-      if (child && value === child.props.value) {
-        // This will need to be improved (in case primaryText is a node)
-        displayValue = child.props.label || child.props.primaryText;
+    if (!multiple) {
+      React.Children.forEach(children, (child) => {
+        if (child && value === child.props.value) {
+          if (selectionRenderer) {
+            displayValue = selectionRenderer(value);
+          } else {
+            // This will need to be improved (in case primaryText is a node)
+            displayValue = child.props.label || child.props.primaryText;
+          }
+        }
+      });
+    } else {
+      const values = [];
+      React.Children.forEach(children, (child) => {
+        if (child && value && value.includes(child.props.value)) {
+          if (selectionRenderer) {
+            values.push(child.props.value);
+          } else {
+            values.push(child.props.label || child.props.primaryText);
+          }
+        }
+      });
+
+      displayValue = [];
+      if (selectionRenderer) {
+        displayValue = selectionRenderer(values);
+      } else {
+        displayValue = values.join(', ');
       }
-    });
+    }
 
     let menuStyle;
     if (anchorEl && !autoWidth) {
@@ -364,7 +423,7 @@ class DropDownMenu extends Component {
             {displayValue}
           </div>
           <IconButton
-            tabIndex={this.props.disabled ? -1 : undefined}
+            disabled={disabled}
             onKeyDown={this.handleKeyDown}
             ref={(node) => {
               this.arrowNode = node;
@@ -385,6 +444,7 @@ class DropDownMenu extends Component {
           onRequestClose={this.handleRequestCloseMenu}
         >
           <Menu
+            multiple={multiple}
             maxHeight={maxHeight}
             desktop={true}
             value={value}
@@ -392,6 +452,7 @@ class DropDownMenu extends Component {
             style={menuStyle}
             listStyle={listStyle}
             onItemTouchTap={this.handleItemTouchTap}
+            onChange={this.handleChange}
             menuItemStyle={menuItemStyle}
             selectedMenuItemStyle={selectedMenuItemStyle}
           >

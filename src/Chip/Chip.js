@@ -58,6 +58,14 @@ class Chip extends Component {
      */
     className: PropTypes.node,
     /**
+     * The element to use as the container for the Chip. Either a string to
+     * use a DOM element or a ReactElement.
+     */
+    containerElement: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.element,
+    ]),
+    /**
      * Override the label color.
      */
     labelColor: PropTypes.string,
@@ -103,6 +111,7 @@ class Chip extends Component {
   };
 
   static defaultProps = {
+    containerElement: 'div', // Firefox doesn't support nested buttons
     onBlur: () => {},
     onFocus: () => {},
     onKeyDown: () => {},
@@ -234,6 +243,7 @@ class Chip extends Component {
 
     const {
       children: childrenProp,
+      containerElement,
       style,
       className,
       labelStyle,
@@ -278,7 +288,7 @@ class Chip extends Component {
         {...other}
         {...buttonEventHandlers}
         className={className}
-        containerElement="div" // Firefox doesn't support nested buttons
+        containerElement={containerElement}
         disableTouchRipple={true}
         disableFocusRipple={true}
         style={Object.assign(styles.root, style)}
