@@ -16,14 +16,7 @@ import FolderIcon from 'material-ui/svg-icons/folder';
 import IconButton from 'material-ui/IconButton';
 import { LabelCheckbox } from 'material-ui/Checkbox';
 import Layout from 'material-ui/Layout';
-import SvgIcon from 'material-ui/SvgIcon';
 import Text from 'material-ui/Text';
-
-const SquareIcon = (props) => (
-  <SvgIcon {...props} viewBox="3 3 18 18">
-    <path d="M3,3V21H21V3" />
-  </SvgIcon>
-);
 
 const styleSheet = createStyleSheet('SingleLineList', (theme) => ({
   root: {
@@ -66,7 +59,7 @@ const styleSheet = createStyleSheet('SingleLineList', (theme) => ({
     },
   },
   title: {
-    margin: '32px 0 16px',
+    margin: `${theme.spacing.unit * 4}px 0 ${theme.spacing.unit * 2}px`,
   },
 }));
 
@@ -120,19 +113,19 @@ class SingleLineList extends Component {
               <div className={classes.demo}>
                 <List dense={dense}>
                   <ListItem button>
-                    <ListItemIcon><SquareIcon /></ListItemIcon>
+                    <ListItemIcon><FolderIcon /></ListItemIcon>
                     <ListItemText primary="Single-line item" />
                   </ListItem>
                   <ListItem button>
-                    <ListItemIcon><SquareIcon /></ListItemIcon>
+                    <ListItemIcon><FolderIcon /></ListItemIcon>
                     <ListItemText primary="Single-line item" />
                   </ListItem>
                   <ListItem button>
-                    <ListItemIcon><SquareIcon /></ListItemIcon>
+                    <ListItemIcon><FolderIcon /></ListItemIcon>
                     <ListItemText primary="Single-line item" />
                   </ListItem>
                   <ListItem button>
-                    <ListItemIcon><SquareIcon /></ListItemIcon>
+                    <ListItemIcon><FolderIcon /></ListItemIcon>
                     <ListItemText primary="Single-line item" />
                   </ListItem>
                 </List>

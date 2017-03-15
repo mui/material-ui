@@ -17,18 +17,17 @@ export const styleSheet = createStyleSheet('MuiListItemAvatar', () => {
 
 export default class ListItemAvatar extends Component {
   render() {
+    if (!this.context.dense) return this.props.children;
+
     const {
       children,
       className: classNameProp,
       ...other
     } = this.props;
     const classes = this.context.styleManager.render(styleSheet);
-    const className = classNames(classes.root, {
-      [classes.dense]: this.context.dense || false,
-    }, classNameProp);
 
     return cloneElement(children, {
-      className: classNames(className, children.props.className),
+      className: classNames(classes.dense, classNameProp),
       ...other,
     });
   }
