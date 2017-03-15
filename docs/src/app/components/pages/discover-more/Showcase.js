@@ -109,10 +109,10 @@ const appList = [
     link: 'https://chrome.google.com/webstore/detail/apirequestio-capture/aeojbjinmmhjenohjehcidmappiodhjm',
   },
   {
-    title: 'SlimChess - Play Instant Chess Online Games on the Go',
+    title: 'SlimChess - Instant Chess Games on the Go',
     author: 'Larry Xu',
     img: 'images/showcase/slimchess.png',
-    link: 'https://slimchess.com/now',
+    link: 'https://slimchess.com',
   },
 ];
 
