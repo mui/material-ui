@@ -107,7 +107,7 @@
     "react-tap-event-plugin": "^2.0.0",
     "recursive-readdir-sync": "^1.0.6",
     "rimraf": "^2.6.1",
-    "sinon": "^1.17.7",
+    "sinon": "^2.0.0",
     "webpack": "^1.13.3"
   }
 }
