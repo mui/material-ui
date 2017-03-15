@@ -1,9 +1,8 @@
 // @flow weak
-/* eslint-env mocha */
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallowWithContext } from 'test/utils';
+import { createShallow } from 'test/utils';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from './withStyles';
 
@@ -14,7 +13,7 @@ describe('withStyles', () => {
   let shallow;
 
   before(() => {
-    shallow = createShallowWithContext();
+    shallow = createShallow();
   });
 
   it('should provide a classes property', () => {

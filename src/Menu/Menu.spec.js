@@ -1,10 +1,9 @@
 // @flow weak
-/* eslint-env mocha */
 
 import React from 'react';
 import { spy } from 'sinon';
 import { assert } from 'chai';
-import { createShallowWithContext } from 'test/utils';
+import { createShallow } from 'test/utils';
 import Menu, { styleSheet } from './Menu';
 
 describe('<Menu />', () => {
@@ -12,7 +11,7 @@ describe('<Menu />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallowWithContext();
+    shallow = createShallow();
     classes = shallow.context.styleManager.render(styleSheet);
   });
 

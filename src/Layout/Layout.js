@@ -108,11 +108,11 @@ export const styleSheet = createStyleSheet('MuiLayout', (theme) => {
     'align-xs-center': {
       alignItems: 'center',
     },
+    'align-xs-flex-start': {
+      alignItems: 'flex-start',
+    },
     'align-xs-flex-end': {
       alignItems: 'flex-end',
-    },
-    'align-xs-stretch': {
-      alignItems: 'stretch',
     },
     'justify-xs-center': {
       justifyContent: 'center',
@@ -289,7 +289,7 @@ Layout.defaultProps = {
   component: 'div',
   container: false,
   item: false,
-  align: 'flex-start',
+  align: 'stretch',
   direction: 'row',
   gutter: 16,
   justify: 'flex-start',

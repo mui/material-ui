@@ -1,5 +1,4 @@
 // @flow weak
-/* eslint-env mocha */
 
 import { assert } from 'chai';
 import {

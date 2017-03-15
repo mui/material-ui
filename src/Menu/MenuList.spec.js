@@ -1,16 +1,15 @@
 // @flow weak
-/* eslint-env mocha */
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallowWithContext } from 'test/utils';
+import { createShallow } from 'test/utils';
 import MenuList from './MenuList';
 
 describe('<MenuList />', () => {
   let shallow;
 
   before(() => {
-    shallow = createShallowWithContext();
+    shallow = createShallow();
   });
 
   describe('list node', () => {

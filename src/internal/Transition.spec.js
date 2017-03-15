@@ -1,19 +1,19 @@
 // @flow weak
-/* eslint-env mocha */
 
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createMountWithContext } from 'test/utils';
+import { createMount } from 'test/utils';
 import Transition, { UNMOUNTED, EXITED, ENTERING, ENTERED, EXITING } from './Transition';
 
 describe('<Transition />', () => {
   let mount;
 
   before(() => {
-    mount = createMountWithContext();
+    mount = createMount();
   });
+
   after(() => {
     mount.cleanUp();
   });

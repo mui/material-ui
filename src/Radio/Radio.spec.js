@@ -1,8 +1,7 @@
 // @flow weak
-/* eslint-env mocha */
 
 import { assert } from 'chai';
-import { createShallowWithContext } from 'test/utils';
+import { createShallow } from 'test/utils';
 import Radio, { LabelRadio, styleSheet } from './Radio';
 
 describe('<Radio />', () => {
@@ -10,7 +9,7 @@ describe('<Radio />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallowWithContext();
+    shallow = createShallow();
     classes = shallow.context.styleManager.render(styleSheet);
   });
 

@@ -1,11 +1,10 @@
 // @flow weak
-/* eslint-env mocha */
 
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import css from 'dom-helpers/style';
-import { createShallowWithContext, createMountWithContext } from 'test/utils';
+import { createShallow, createMount } from 'test/utils';
 import Popover, { styleSheet } from './Popover';
 
 describe('<Popover />', () => {
@@ -14,10 +13,11 @@ describe('<Popover />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallowWithContext();
-    mount = createMountWithContext();
+    shallow = createShallow();
+    mount = createMount();
     classes = shallow.context.styleManager.render(styleSheet);
   });
+
   after(() => {
     mount.cleanUp();
   });
