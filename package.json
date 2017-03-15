@@ -41,6 +41,7 @@
     "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha && nyc report --reporter=html",
     "test:karma": "cross-env NODE_ENV=test karma start test/karma.conf.js --single-run",
     "test:regressions": "webpack --config test/regressions/webpack.config.js && vrtest run --config test/vrtest.config.js",
+    "argos": "ARGOS_COMMIT=$CIRCLE_SHA1 ARGOS_BRANCH=$CIRCLE_BRANCH argos upload --ignore **/*.diff.png tmp/output/chrome --token $ARGOS_TOKEN || true",
     "flow": "flow",
     "publish": "npm run build && cd build && npm publish --tag next"
   },
@@ -63,6 +64,7 @@
   },
   "devDependencies": {
     "app-module-path": "^2.2.0",
+    "argos-cli": "^0.0.5",
     "babel-cli": "^6.24.0",
     "babel-core": "^6.24.0",
     "babel-eslint": "^7.2.1",
