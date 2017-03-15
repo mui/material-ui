@@ -17,6 +17,8 @@ import IconButton from 'material-ui/IconButton';
 import { LabelCheckbox } from 'material-ui/Checkbox';
 import Layout from 'material-ui/Layout';
 import Text from 'material-ui/Text';
+import TriangleImageLight from 'docs/site/assets/images/bg-triangle-light.svg';
+import TriangleImageDark from 'docs/site/assets/images/bg-triangle-dark.svg';
 
 const styleSheet = createStyleSheet('SingleLineList', (theme) => ({
   root: {
@@ -41,14 +43,10 @@ const styleSheet = createStyleSheet('SingleLineList', (theme) => ({
     width: '100%',
     zIndex: 1,
     '&:before': {
-      backgroundImage: `linear-gradient(
-          45deg,${theme.palette.background.contentFrame} 25%, transparent 25%
-        ),
-        linear-gradient(
-          -45deg,${theme.palette.background.contentFrame} 25%, transparent 25%
-        )`,
-      backgroundSize: '20px 20px',
-      backgroundPosition: '10px -10px',
+      backgroundImage: `url(${theme.palette.type === 'light' ?
+        TriangleImageLight : TriangleImageDark})`,
+      backgroundSize: '18px 10px',
+      backgroundPosition: '-1px 0',
       bottom: 0,
       content: '""',
       display: 'block',
