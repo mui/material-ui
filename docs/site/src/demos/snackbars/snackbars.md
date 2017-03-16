@@ -8,6 +8,6 @@ Snackbars contain a single line of text directly related to the operation perfor
 
 {{demo='demos/snackbars/SimpleSnackbar.js'}}
 
-## Example Action
+## Action Example
 
 {{demo='demos/snackbars/SimpleActionSnackbar.js'}}
