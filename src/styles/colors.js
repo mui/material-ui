@@ -13,6 +13,7 @@ export const faintBlack = 'rgba(0, 0, 0, 0.12)';
 export const fullWhite = 'rgba(255, 255, 255, 1)';
 export const darkWhite = 'rgba(255, 255, 255, 0.87)';
 export const lightWhite = 'rgba(255, 255, 255, 0.54)';
+export const fullGrey = 'rgb(50, 50, 50)';
 
 export const red = {
   50: '#ffebee',
