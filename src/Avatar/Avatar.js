@@ -136,3 +136,5 @@ Avatar.defaultProps = {
 Avatar.contextTypes = {
   styleManager: customPropTypes.muiRequired,
 };
+
+Avatar.muiName = 'Avatar';
