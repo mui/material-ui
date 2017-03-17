@@ -1,6 +1,7 @@
 /* eslint-env mocha */
 import React from 'react';
 import {shallow} from 'enzyme';
+import {expect} from 'chai';
 import Drawer from './Drawer';
 import getMuiTheme from '../styles/getMuiTheme';
 
@@ -15,10 +16,16 @@ describe('<Drawer />', () => {
       );
     });
 
-    it('accepts width in decimal format', () => {
+    it('accepts a percentage format in string', () => {
       shallowWithContext(
-        <Drawer width={0.5} />
+        <Drawer width="70%" />
       );
+    });
+
+    it('throws an error on wrong percentage format', () => {
+      expect(() => shallowWithContext(
+        <Drawer width="80" />
+      )).to.throw(Error, 'Not a valid percentage format.');
     });
   });
 });

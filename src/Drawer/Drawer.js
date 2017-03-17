@@ -75,11 +75,13 @@ class Drawer extends Component {
      */
     swipeAreaWidth: PropTypes.number,
     /**
-     * The width of the `Drawer` in pixels or percentage in decimal format `0-1` ex. "0.5" (to
-     * fill the half (50%) of the width of the window) or "0.75" and so on. Defaults to using the values from
-     * theme.
+     * The width of the `Drawer` in pixels or percentage in string format ex. `50%` to fill
+     * half of the window or `100%` and so on. Defaults to using the values from theme.
      */
-    width: PropTypes.number,
+    width: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
     /**
      * The zDepth of the `Drawer`.
      */
@@ -200,8 +202,14 @@ class Drawer extends Component {
   };
 
   getTranslatedWidth() {
-    if (this.props.width <= 1) {
-      return this.props.width * window.innerWidth;
+    if (typeof this.props.width === 'string') {
+      if (!/^\d+(\.\d+)?%$/.test(this.props.width)) {
+        throw new Error('Not a valid percentage format.');
+      }
+      const width = parseFloat(this.props.width) / 100.0;
+      // We are doing our best on the Server to render a consistent UI, hence the
+      // default value of 10000
+      return window ? width * window.innerWidth : 10000;
     } else {
       return this.props.width;
     }
