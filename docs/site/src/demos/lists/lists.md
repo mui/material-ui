@@ -6,14 +6,6 @@ Lists are made up of a continuous column of rows. Each row contains a tile. Prim
 
 Lists are best suited for similar data types.
 
-### Single-line list
-
-{{demo='demos/lists/SingleLineList.js'}}
-
-### Two-lines list
-
-{{demo='demos/lists/TwoLinesList.js'}}
-
 ### Simple List
 
 {{demo='demos/lists/SimpleList.js'}}
@@ -45,3 +37,9 @@ The checkbox is the secondary action for the list item and a separate target.
 The switch is the secondary action and a separate target.
 
 {{demo='demos/lists/SwitchListSecondary.js'}}
+
+## Interactive
+
+Below is an interactive demo that lets you explore the visual results of the different settings:
+
+{{demo='demos/lists/InteractiveList.js'}}

@@ -93,6 +93,16 @@ export default class ListItem extends Component {
     styleManager: customPropTypes.muiRequired,
   };
 
+  static childContextTypes = {
+    dense: PropTypes.bool,
+  };
+
+  getChildContext() {
+    return {
+      dense: this.props.dense || this.context.dense || false,
+    };
+  }
+
   render() {
     const {
       button,

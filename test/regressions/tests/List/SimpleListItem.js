@@ -12,10 +12,13 @@ export default function SimpleListItem() {
       <ListItem>
         <ListItemText primary="Primary" />
       </ListItem>
-      <ListItem dense>
-        <ListItemText primary="Dense" />
-      </ListItem>
       <ListItem>
+        <ListItemText primary="Primary" secondary="Secondary" />
+      </ListItem>
+      <ListItem dense>
+        <ListItemText primary="Primary" />
+      </ListItem>
+      <ListItem dense>
         <ListItemText primary="Primary" secondary="Secondary" />
       </ListItem>
     </div>

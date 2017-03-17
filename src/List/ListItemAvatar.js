@@ -1,7 +1,8 @@
 // @flow weak
 
-import { PropTypes, cloneElement, Component } from 'react';
+import { PropTypes, cloneElement } from 'react';
 import classNames from 'classnames';
+import warning from 'warning';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
@@ -15,22 +16,24 @@ export const styleSheet = createStyleSheet('MuiListItemAvatar', () => {
   };
 });
 
-export default class ListItemAvatar extends Component {
-  render() {
-    if (!this.context.dense) return this.props.children;
-
-    const {
-      children,
-      className: classNameProp,
-      ...other
-    } = this.props;
-    const classes = this.context.styleManager.render(styleSheet);
-
-    return cloneElement(children, {
-      className: classNames(classes.dense, classNameProp),
-      ...other,
-    });
+export default function ListItemAvatar(props, context) {
+  if (!context.dense) {
+    warning(false, `Material-UI: <ListItemAvatar/> is a simple wrapper for the dense mode.
+      You do not need it.`);
+    return props.children;
   }
+
+  const {
+    children,
+    className: classNameProp,
+    ...other
+  } = props;
+  const classes = context.styleManager.render(styleSheet);
+
+  return cloneElement(children, {
+    className: classNames(classes.dense, classNameProp, children.props.className),
+    ...other,
+  });
 }
 
 ListItemAvatar.propTypes = {

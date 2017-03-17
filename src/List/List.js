@@ -76,10 +76,8 @@ export default class List extends Component {
   };
 
   getChildContext() {
-    const { dense } = this.props;
-
     return {
-      dense,
+      dense: this.props.dense,
     };
   }
 

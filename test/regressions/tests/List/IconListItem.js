@@ -11,20 +11,23 @@ import {
 export default function IconListItem() {
   return (
     <div style={{ background: '#fff', width: 300 }}>
-      <ListItem dense button>
-        <ListItemIcon>
-          <Icon>phone</Icon>
-        </ListItemIcon>
-        <ListItemText primary="Icon dense with button" secondary="Work phone" />
-      </ListItem>
       <ListItem>
         <ListItemIcon>
-          <Icon>inbox</Icon>
+          <Icon>phone</Icon>
         </ListItemIcon>
         <ListItemText primary="Icon" />
       </ListItem>
       <ListItem>
-        <ListItemText inset primary="Inset" />
+        <ListItemText inset primary="Inset" secondary="Secondary" />
+      </ListItem>
+      <ListItem dense>
+        <ListItemIcon>
+          <Icon>phone</Icon>
+        </ListItemIcon>
+        <ListItemText primary="Icon" />
+      </ListItem>
+      <ListItem dense>
+        <ListItemText inset primary="Inset" secondary="Secondary" />
       </ListItem>
     </div>
   );

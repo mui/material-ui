@@ -13,6 +13,7 @@ describe('<Menu> integration', () => {
   before(() => {
     mount = createMount();
   });
+
   after(() => {
     mount.cleanUp();
   });
