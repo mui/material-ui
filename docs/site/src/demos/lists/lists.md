@@ -10,6 +10,10 @@ Lists are best suited for similar data types.
 
 {{demo='demos/lists/SingleLineList.js'}}
 
+### Two-lines list
+
+{{demo='demos/lists/TwoLinesList.js'}}
+
 ### Simple List
 
 {{demo='demos/lists/SimpleList.js'}}
