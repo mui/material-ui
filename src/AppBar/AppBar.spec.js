@@ -104,7 +104,7 @@ describe('<AppBar />', () => {
 
     it('renders the FlatButton with a correct style', () => {
       const wrapper = shallowWithContext(
-        <AppBar iconElementRight={<FlatButton><div /></FlatButton>}/>
+        <AppBar iconElementRight={<FlatButton><div /></FlatButton>} />
       );
 
       assert.strictEqual(
@@ -114,7 +114,6 @@ describe('<AppBar />', () => {
         'should add some properties to the style'
       );
     });
-
   });
 
   describe('onLeftIconButtonTouchTap', () => {
