@@ -20,6 +20,12 @@ export const styleSheet = createStyleSheet('MuiListItemText', () => {
         paddingLeft: 56,
       },
     },
+    dense: {
+      fontSize: 13,
+    },
+    text: {
+      fontSize: 'inherit',
+    },
   };
 });
 
@@ -31,8 +37,10 @@ export default function ListItemText(props, context) {
     inset,
     ...other
   } = props;
+  const { dense } = context;
   const classes = context.styleManager.render(styleSheet);
   const className = classNames(classes.root, {
+    [classes.dense]: dense,
     [classes.inset]: inset,
   }, classNameProp);
 
@@ -40,14 +48,14 @@ export default function ListItemText(props, context) {
     <div className={className} {...other}>
       {primary && (
         typeof primary === 'string' ? (
-          <Text type="subheading">
+          <Text type="subheading" className={classNames({ [classes.text]: dense })}>
             {primary}
           </Text>
         ) : primary
       )}
       {secondary && (
         typeof secondary === 'string' ? (
-          <Text secondary type="body1">
+          <Text secondary type="body1" className={classNames({ [classes.text]: dense })}>
             {secondary}
           </Text>
         ) : secondary
@@ -77,5 +85,6 @@ ListItemText.defaultProps = {
 };
 
 ListItemText.contextTypes = {
+  dense: PropTypes.bool,
   styleManager: customPropTypes.muiRequired,
 };
