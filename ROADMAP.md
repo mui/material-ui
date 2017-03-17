@@ -4,7 +4,7 @@ The roadmap is a living document, and it is likely that priorities will change, 
 
 :warning: New features based on `v0.17.x` have low priority and will most likely not be reviewed nor merged. We want to focus on bug fixes.
 
-## [next](https://github.com/callemall/material-ui/milestone/14) (expected in the next couple months)
+## [next](https://github.com/callemall/material-ui/milestone/14)
 
 The `next` release is going to be huge :sparkles:
 
