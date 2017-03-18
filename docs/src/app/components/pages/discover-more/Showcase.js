@@ -119,6 +119,7 @@ const appList = [
     author: 'Jeremy Gordon',
     img: 'images/showcase/flow.png',
     link: 'http://flowdash.co',
+    source: 'https://github.com/onejgordon/flow-dashboard',
   },
 ];
 
