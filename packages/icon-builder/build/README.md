@@ -29,8 +29,6 @@ For example to use the 'access alarm' icon component, import `material-ui-icons/
 
 Note: One exception is '3d rotation', which is named 'ThreeDRotation'.
 
-If you wish to use the un-compiled ES2015 version of the icons, they can be imported from `material-ui/src`.
-
 ## Upgrading
 
 If you are upgrading an existing project from Material-UI 0.x.x, you will need to revise the import paths 

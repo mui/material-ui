@@ -1,5 +1,2 @@
 src
-!build
-build/*.js
-build/*.json
-build/LICENSE
+!build/README.md
