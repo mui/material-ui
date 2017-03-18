@@ -10,10 +10,6 @@ import keycode from 'keycode';
 import Events from '../utils/events';
 import IconButton from '../IconButton';
 
-const anchorOrigin = {
-  vertical: 'top',
-  horizontal: 'left',
-};
 
 function getStyles(props, context) {
   const {disabled} = props;
@@ -190,6 +186,22 @@ class DropDownMenu extends Component {
      * If provided, the menu will be a controlled component.
      */
     value: PropTypes.any,
+    /**
+     * This is the point on the anchor where the popover's
+     * `targetOrigin` will attach to.
+     * Options:
+     * vertical: [top, center, bottom]
+     * horizontal: [left, middle, right].
+     */
+    anchorOrigin: propTypes.origin,
+    /**
+     * This is the point on the popover which will attach to
+     * the anchor's origin.
+     * Options:
+     * vertical: [top, center, bottom]
+     * horizontal: [left, middle, right].
+     */
+    targetOrigin: propTypes.origin,
   };
 
   static defaultProps = {
@@ -358,6 +370,8 @@ class DropDownMenu extends Component {
       underlineStyle,
       value,
       iconButton,
+      anchorOrigin,
+      targetOrigin,
       ...other
     } = this.props;
     const {
@@ -437,6 +451,7 @@ class DropDownMenu extends Component {
         </ClearFix>
         <Popover
           anchorOrigin={anchorOrigin}
+          targetOrigin={targetOrigin}
           anchorEl={anchorEl}
           animation={animation || PopoverAnimationVertical}
           open={open}
