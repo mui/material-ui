@@ -9,6 +9,7 @@ import PopoverAnimationVertical from '../Popover/PopoverAnimationVertical';
 import keycode from 'keycode';
 import Events from '../utils/events';
 import IconButton from '../IconButton';
+import propTypes from '../utils/propTypes';
 
 
 function getStyles(props, context) {
@@ -79,6 +80,14 @@ class DropDownMenu extends Component {
   // other user components, so it will give full access to its js styles rather
   // than just the parent.
   static propTypes = {
+    /**
+     * This is the point on the anchor where the popover's
+     * `targetOrigin` will attach to.
+     * Options:
+     * vertical: [top, center, bottom]
+     * horizontal: [left, middle, right].
+     */
+    anchorOrigin: propTypes.origin,
     /**
      * If true, the popover will apply transitions when
      * it gets added to the DOM.
@@ -177,6 +186,14 @@ class DropDownMenu extends Component {
      */
     style: PropTypes.object,
     /**
+     * This is the point on the popover which will attach to
+     * the anchor's origin.
+     * Options:
+     * vertical: [top, center, bottom]
+     * horizontal: [left, middle, right].
+     */
+    targetOrigin: propTypes.origin,
+    /**
      * Overrides the inline-styles of the underline.
      */
     underlineStyle: PropTypes.object,
@@ -186,22 +203,6 @@ class DropDownMenu extends Component {
      * If provided, the menu will be a controlled component.
      */
     value: PropTypes.any,
-    /**
-     * This is the point on the anchor where the popover's
-     * `targetOrigin` will attach to.
-     * Options:
-     * vertical: [top, center, bottom]
-     * horizontal: [left, middle, right].
-     */
-    anchorOrigin: propTypes.origin,
-    /**
-     * This is the point on the popover which will attach to
-     * the anchor's origin.
-     * Options:
-     * vertical: [top, center, bottom]
-     * horizontal: [left, middle, right].
-     */
-    targetOrigin: propTypes.origin,
   };
 
   static defaultProps = {
@@ -212,6 +213,10 @@ class DropDownMenu extends Component {
     openImmediately: false,
     maxHeight: 500,
     multiple: false,
+    anchorOrigin: {
+      vertical: 'bottom',
+      horizontal: 'left',
+    },
   };
 
   static contextTypes = {
