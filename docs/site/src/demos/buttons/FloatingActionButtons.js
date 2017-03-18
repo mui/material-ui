@@ -4,8 +4,8 @@ import React from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import Button from 'material-ui/Button';
-import AddIcon from 'material-ui/svg-icons/add';
-import ModeEditIcon from 'material-ui/svg-icons/mode-edit';
+import AddIcon from 'material-ui-icons/Add';
+import ModeEditIcon from 'material-ui-icons/ModeEdit';
 
 const styleSheet = createStyleSheet('FloatingActionButtons', (theme) => ({
   button: {

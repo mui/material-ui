@@ -9,7 +9,7 @@ import {
   ListItemText,
 } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
-import FolderIcon from 'material-ui/svg-icons/folder';
+import FolderIcon from 'material-ui-icons/Folder';
 
 const styleSheet = createStyleSheet('FolderList', (theme) => ({
   root: {

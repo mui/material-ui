@@ -12,12 +12,13 @@ import {
   ListItemText,
 } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
-import FolderIcon from 'material-ui/svg-icons/folder';
+import FolderIcon from 'material-ui-icons/Folder';
 import IconButton from 'material-ui/IconButton';
 import { FormGroup } from 'material-ui/Form';
 import { LabelCheckbox } from 'material-ui/Checkbox';
 import Layout from 'material-ui/Layout';
 import Text from 'material-ui/Text';
+import DeleteIcon from 'material-ui-icons/Delete'
 
 const styleSheet = createStyleSheet('InteractiveList', (theme) => ({
   root: {
@@ -150,7 +151,7 @@ class InteractiveList extends Component {
                       secondary={secondary ? 'Secondary text' : null}
                     />
                     <ListItemSecondaryAction>
-                      <IconButton>comment</IconButton>
+                      <IconButton><DeleteIcon /></IconButton>
                     </ListItemSecondaryAction>
                   </ListItem>
                 ))}

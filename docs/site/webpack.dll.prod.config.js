@@ -6,7 +6,7 @@ const packageJson = require('./package.json');
 const packageJsonSrc = require('../../package.json');
 
 const excludedDeps = [
-  'lodash', 'recompose', 'object-assign',
+  'lodash', 'recompose', 'object-assign', 'material-ui-icons',
 ];
 
 const deps = []

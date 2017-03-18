@@ -4,7 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow } from 'test/utils';
 import Avatar, { styleSheet } from './Avatar';
-import FaceIcon from '../svg-icons/face';
+import DeleteIcon from '../svg-icons/cancel';
 
 describe('<Avatar />', () => {
   let shallow;
@@ -104,7 +104,7 @@ describe('<Avatar />', () => {
           data-my-prop="woof"
           childrenClassName="my-children"
         >
-          <FaceIcon />
+          <DeleteIcon />
         </Avatar>,
       );
     });
