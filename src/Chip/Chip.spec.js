@@ -140,7 +140,8 @@ describe('<Chip />', () => {
       wrapper.setProps({ onRequestDelete: onRequestDeleteSpy });
 
       wrapper.find('pure(Cancel)').simulate('click', { stopPropagation: () => {} });
-      assert.strictEqual(onRequestDeleteSpy.callCount, 1, 'should have called the onRequestDelete hanlder')
+      assert.strictEqual(onRequestDeleteSpy.callCount, 1,
+        'should have called the onRequestDelete hanlder');
     });
 
     it('should stop propagation in onDeleteRequest', () => {
@@ -149,7 +150,8 @@ describe('<Chip />', () => {
       wrapper.setProps({ onRequestDelete: onRequestDeleteSpy });
 
       wrapper.find('pure(Cancel)').simulate('click', { stopPropagation: stopPropagationSpy });
-      assert.strictEqual(stopPropagationSpy.callCount, 1, 'should have called the stopPropagation hanlder')
+      assert.strictEqual(stopPropagationSpy.callCount, 1,
+        'should have called the stopPropagation hanlder');
     });
   });
 });
