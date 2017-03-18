@@ -114,6 +114,12 @@ const appList = [
     img: 'images/showcase/slimchess.png',
     link: 'https://slimchess.com',
   },
+  {
+    title: 'Flow Dashboard - Personal data for quantified self & habit tracking',
+    author: 'Jeremy Gordon',
+    img: 'images/showcase/flow.png',
+    link: 'http://flowdash.co',
+  },
 ];
 
 const Showcase = () => (
