@@ -14,8 +14,13 @@ export default function createShallow(
   const jss = create(jssPreset());
   const styleManager = createStyleManager({ jss, theme });
   const context = { theme, styleManager, ...otherContext };
-  const shallowWithContext = function shallowWithContext(node) {
-    return shallow(node, { context });
+  const shallowWithContext = function shallowWithContext(node, options = {}) {
+    return shallow(node, {
+      context: {
+        ...context,
+        ...options.context,
+      },
+    });
   };
 
   shallowWithContext.context = context;

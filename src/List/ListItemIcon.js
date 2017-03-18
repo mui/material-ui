@@ -8,7 +8,9 @@ import customPropTypes from '../utils/customPropTypes';
 export const styleSheet = createStyleSheet('MuiListItemIcon', () => {
   return {
     root: {
-      width: 40,
+      height: 24,
+      marginRight: 16,
+      width: 24,
     },
   };
 });

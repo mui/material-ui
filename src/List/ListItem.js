@@ -22,8 +22,8 @@ export const styleSheet = createStyleSheet('MuiListItem', (theme) => {
       background: palette.text.divider,
     },
     default: {
-      paddingTop: 19,
-      paddingBottom: 19,
+      paddingTop: 12,
+      paddingBottom: 12,
     },
     dense: {
       paddingTop: 8,
@@ -89,8 +89,19 @@ export default class ListItem extends Component {
   };
 
   static contextTypes = {
+    dense: PropTypes.bool,
     styleManager: customPropTypes.muiRequired,
   };
+
+  static childContextTypes = {
+    dense: PropTypes.bool,
+  };
+
+  getChildContext() {
+    return {
+      dense: this.props.dense || this.context.dense || false,
+    };
+  }
 
   render() {
     const {
@@ -104,14 +115,20 @@ export default class ListItem extends Component {
       gutters,
       ...other
     } = this.props;
-
+    const isDense = dense || this.context.dense || false;
     const classes = this.context.styleManager.render(styleSheet);
+    const children = React.Children.toArray(childrenProp);
+
+    const hasAvatar = children.some((value) => {
+      return value.type && value.type.name === 'ListItemAvatar';
+    });
+
     const className = classNames(classes.listItem, {
       [classes.gutters]: gutters,
       [classes.divider]: divider,
       [classes.disabled]: disabled,
       [classes.button]: button,
-      [dense ? classes.dense : classes.default]: true,
+      [isDense || hasAvatar ? classes.dense : classes.default]: true,
     }, classNameProp);
 
     const listItemProps = { className, disabled, ...other };
@@ -122,8 +139,6 @@ export default class ListItem extends Component {
       listItemProps.component = componentProp || 'div';
       listItemProps.keyboardFocusedClassName = classes.keyboardFocused;
     }
-
-    const children = React.Children.toArray(childrenProp);
 
     if (
       children.length &&
