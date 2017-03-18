@@ -76,6 +76,7 @@ function createPackageFile() {
 
 const files = [
   '../../LICENSE',
+  './src'
 ];
 
 Promise
