@@ -6,7 +6,8 @@ The roadmap is a living document, and it is likely that priorities will change, 
 
 ## [next](https://github.com/callemall/material-ui/milestone/14)
 
-The `next` release is going to be huge :sparkles:
+The `next` release is going to be huge :sparkles:.
+We host a temporary [documentation](https://material-ui-1dab0.firebaseapp.com) for the pre-releases.
 
 Material-UI was started [3 years ago](https://github.com/callemall/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46).
 The ecosystem has evolved a lot since then, we have also learned a lot.
@@ -17,7 +18,7 @@ Expect various **breaking changes**.
 The core team is now helping him in the [`next`](https://github.com/callemall/material-ui/tree/next) branch.
 Here are some issues that we plan to fix along the way.
 
-For more details, you can have a look a the [next milestone](https://github.com/callemall/material-ui/milestone/14) as well as the [next project](https://github.com/callemall/material-ui/projects/1)
+For more details, you can have a look a the [next milestone](https://github.com/callemall/material-ui/milestone/14) as well as the [next project](https://github.com/callemall/material-ui/projects/1).
 
 ## Q&A with the next branch
 
