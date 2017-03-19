@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createMount } from 'test/utils';
+import { createMount } from 'src/test-utils';
 import List from 'src/List';
 
 describe('<List> integration', () => {

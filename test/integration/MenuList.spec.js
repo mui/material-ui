@@ -6,7 +6,7 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import MenuList from 'src/Menu/MenuList';
 import MenuItem from 'src/Menu/MenuItem';
-import { createMount } from 'test/utils';
+import { createMount } from 'src/test-utils';
 
 function assertMenuItemTabIndexed(wrapper, tabIndexed) {
   const items = wrapper.find('MenuItem');

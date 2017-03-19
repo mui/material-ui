@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import htmlLooksLike from 'html-looks-like';
-import { createShallow, createRenderToString } from 'test/utils';
+import { createShallow, createRenderToString } from 'src/test-utils';
 import Button, { styleSheet } from './Button';
 
 describe('<Button />', () => {

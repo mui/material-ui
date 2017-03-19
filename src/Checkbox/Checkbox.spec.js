@@ -1,7 +1,7 @@
 // @flow weak
 
 import { assert } from 'chai';
-import { createShallow } from 'test/utils';
+import { createShallow } from 'src/test-utils';
 import Checkbox, { LabelCheckbox, styleSheet } from './Checkbox';
 
 describe('<Checkbox />', () => {

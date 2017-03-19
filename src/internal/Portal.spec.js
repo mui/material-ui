@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createMount } from 'test/utils';
+import { createMount } from 'src/test-utils';
 import Portal from './Portal';
 
 describe('<Portal />', () => {
