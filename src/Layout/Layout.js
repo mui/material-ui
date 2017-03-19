@@ -66,6 +66,7 @@ function generateGutter(theme, breakpoint) {
 
     styles[`gutter-${breakpoint}-${gutter}`] = {
       margin: -gutter / 2,
+      width: `calc(100% + ${gutter}px)`,
       '& > $typeItem': {
         padding: gutter / 2,
       },
@@ -88,6 +89,7 @@ export const styleSheet = createStyleSheet('MuiLayout', (theme) => {
       boxSizing: 'border-box',
       display: 'flex',
       flexWrap: 'wrap',
+      width: '100%',
     },
     typeItem: {
       boxSizing: 'border-box',
