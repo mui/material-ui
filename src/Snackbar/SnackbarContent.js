@@ -37,7 +37,6 @@ export default function SnackbarContent(props, context) {
       action,
       message,
       open,
-      className,
       ...other // eslint-disable-line no-unused-vars
   } = props;
 
@@ -70,7 +69,6 @@ export default function SnackbarContent(props, context) {
   );
 }
 SnackbarContent.propTypes = {
-  className: PropTypes.string,
 
   action: PropTypes.node,
   /**
