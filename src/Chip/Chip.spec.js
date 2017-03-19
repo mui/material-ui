@@ -1,6 +1,7 @@
 // @flow weak
 
 import React from 'react';
+import keycode from 'keycode';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow } from 'src/test-utils';
@@ -176,7 +177,7 @@ describe('<Chip />', () => {
     it('should call onKeyDown when a key is pressed', () => {
       const anyKeydownEvent = {
         preventDefault: () => {},
-        keyCode: 80, // keycode for `p`, which is not `space`, `enter` or `esc`
+        keyCode: keycode('p'),
       };
       wrapper.find('button').simulate('keydown', anyKeydownEvent);
       assert.strictEqual(onKeyDownSpy.callCount, 1, 'should have called onKeyDown');
@@ -198,7 +199,7 @@ describe('<Chip />', () => {
         const preventDefaultSpy = spy();
         const spaceKeydownEvent = {
           preventDefault: preventDefaultSpy,
-          keyCode: 32, // keycode `space`
+          keyCode: keycode('space'),
         };
         wrapper.find('button').simulate('keydown', spaceKeydownEvent);
         assert.strictEqual(preventDefaultSpy.callCount, 1, 'should have stopped event propagation');
@@ -210,7 +211,7 @@ describe('<Chip />', () => {
         const preventDefaultSpy = spy();
         const enterKeydownEvent = {
           preventDefault: preventDefaultSpy,
-          keyCode: 13, // keycode `enter`
+          keyCode: keycode('enter'),
         };
         wrapper.find('button').simulate('keydown', enterKeydownEvent);
         assert.strictEqual(preventDefaultSpy.callCount, 1, 'should have stopped event propagation');
