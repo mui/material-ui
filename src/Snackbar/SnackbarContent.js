@@ -22,18 +22,12 @@ export const styleSheet = createStyleSheet('SnackbarContent', (theme) => {
       fontFamily: typography.fontSize,
       color: darkWhite,
       opacity: 1,
+      display: 'flex',
     },
     action: {
-      float: 'right',
+      marginLeft: 'auto',
       lineHeight: '48px',
       color: pink.A200,
-    },
-    '@media (min-width: 760px) and (max-width:2000px )': {
-      root: {
-        minWidth: 288,
-        maxWidth: 568,
-        width: 50,
-      },
     },
   };
 });
@@ -43,6 +37,7 @@ export default function SnackbarContent(props, context) {
       action,
       message,
       open,
+      className,
       ...other // eslint-disable-line no-unused-vars
   } = props;
 
@@ -63,6 +58,7 @@ export default function SnackbarContent(props, context) {
   return (
     <div
       className={classes.root}
+      {... other}
     >
       <div className={classes.content} style={transitionStyle}>
         <span>{message}</span>
@@ -74,6 +70,7 @@ export default function SnackbarContent(props, context) {
   );
 }
 SnackbarContent.propTypes = {
+  className: PropTypes.string,
 
   action: PropTypes.node,
   /**

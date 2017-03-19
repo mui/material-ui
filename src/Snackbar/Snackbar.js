@@ -6,8 +6,19 @@ import customPropTypes from 'material-ui/utils/customPropTypes';
 import SnackbarContent from './SnackbarContent';
 import ClickAwayListener from '../internal/ClickAwayListener';
 
-export const styleSheet = createStyleSheet('Snackbar', (theme) => {
-  const { zIndex } = theme;
+
+export const styleSheet = createStyleSheet('MuiSnackbar', (theme) => {
+  const { zIndex, transitions, breakpoints } = theme;
+
+  const transitionString = `${transitions.create('transform', {
+    duration: 400,
+    easing: transitions.easing.easeInOut,
+    delay: 0,
+  })}, ${transitions.create('visibility', {
+    duration: 400,
+    easing: transitions.easing.easeInOut,
+    delay: 0,
+  })}`;
   return {
     root: {
       position: 'fixed',
@@ -15,15 +26,21 @@ export const styleSheet = createStyleSheet('Snackbar', (theme) => {
       display: 'flex',
       bottom: 0,
       zIndex: zIndex.snackbar,
-      transition: `transform 400ms 0ms cubic-bezier(0.23, 1, 0.32, 1),
-       visibility 400ms 0ms cubic-bezier(0.23, 1, 0.32, 1)`,
+      transition: transitionString,
     },
-    '@media(max-width:759px )': {
+    [breakpoints.down('sm')]: {
       root: {
         minWidth: 'inherit',
         maxWidth: 'inherit',
         width: '100%',
         display: 'block',
+      },
+    },
+    [breakpoints.up('sm')]: {
+      root: {
+        minWidth: 288,
+        maxWidth: 568,
+        width: 50,
       },
     },
   };
@@ -203,6 +220,8 @@ export default class Snackbar extends Component {
 
     const dynamicStyle = {
       visibility: open ? 'visible' : 'hidden',
+      WebkitTransform: open ? 'translate(-50%, 0)' : 'translate(-50%, 48px)',
+      msTransform: open ? 'translate(-50%, 0)' : 'translate(-50%, 48px)',
       transform: open ? 'translate(-50%, 0)' : 'translate(-50%, 48px)',
     };
 
@@ -226,4 +245,3 @@ export default class Snackbar extends Component {
 Snackbar.contextTypes = {
   styleManager: customPropTypes.muiRequired,
 };
-

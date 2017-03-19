@@ -2,7 +2,8 @@
 
 import { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import events from '../utils/events';
+import addEventListener from 'dom-helpers/events/on';
+import removeEventListener from 'dom-helpers/events/off';
 
 const isDescendant = (el, target) => {
   if (target !== null) {
@@ -12,9 +13,10 @@ const isDescendant = (el, target) => {
 };
 
 const clickAwayEvents = ['mouseup', 'touchend'];
-const bind = (callback) => clickAwayEvents.forEach((event) => events.on(document, event, callback));
+const bind = (callback) => clickAwayEvents.forEach((event) =>
+ addEventListener(document, event, callback));
 const unbind = (callback) => clickAwayEvents
-.forEach((event) => events.off(document, event, callback));
+.forEach((event) => removeEventListener(document, event, callback));
 
 
 class ClickAwayListener extends Component {
