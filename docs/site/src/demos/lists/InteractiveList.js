@@ -97,7 +97,9 @@ class InteractiveList extends Component {
               <List dense={dense}>
                 {generate((
                   <ListItem button>
-                    <ListItemIcon><FolderIcon /></ListItemIcon>
+                    <ListItemIcon>
+                      <FolderIcon />
+                    </ListItemIcon>
                     <ListItemText
                       primary="Single-line item"
                       secondary={secondary ? 'Secondary text' : null}
