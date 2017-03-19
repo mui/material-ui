@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createMount } from 'test/utils';
+import { createShallow, createMount } from 'src/test-utils';
 import { createSwitch, styleSheet } from './SwitchBase';
 
 describe('<SwitchBase />', () => {

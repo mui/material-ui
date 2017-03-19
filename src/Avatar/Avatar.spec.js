@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'test/utils';
+import { createShallow } from 'src/test-utils';
 import Avatar, { styleSheet } from './Avatar';
 import FaceIcon from '../svg-icons/face';
 

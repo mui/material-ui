@@ -3,7 +3,7 @@
 import React from 'react';
 import { spy } from 'sinon';
 import { assert } from 'chai';
-import { createShallow } from 'test/utils';
+import { createShallow } from 'src/test-utils';
 import Menu, { styleSheet } from './Menu';
 
 describe('<Menu />', () => {

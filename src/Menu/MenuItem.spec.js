@@ -2,7 +2,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow } from 'test/utils';
+import { createShallow } from 'src/test-utils';
 import MenuItem, { styleSheet } from './MenuItem';
 
 describe('<MenuItem />', () => {

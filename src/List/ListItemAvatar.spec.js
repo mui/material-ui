@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'test/utils';
+import { createShallow } from 'src/test-utils';
 import ListItemAvatar, { styleSheet } from './ListItemAvatar';
 
 describe('<ListItemAvatar />', () => {

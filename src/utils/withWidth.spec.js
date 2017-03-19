@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createMount } from 'test/utils';
+import { createShallow, createMount } from 'src/test-utils';
 import withWidth, { isWidthUp, isWidthDown } from './withWidth';
 
 const Empty = () => <div />;

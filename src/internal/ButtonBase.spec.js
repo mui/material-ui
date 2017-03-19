@@ -4,7 +4,7 @@ import React from 'react';
 import keycode from 'keycode';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount } from 'test/utils';
+import { createShallow, createMount } from 'src/test-utils';
 import ButtonBase, { styleSheet } from './ButtonBase';
 
 describe('<ButtonBase />', () => {

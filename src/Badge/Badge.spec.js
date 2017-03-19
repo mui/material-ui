@@ -1,6 +1,6 @@
 // @flow weak
 import React from 'react';
-import { createShallow } from 'test/utils';
+import { createShallow } from 'src/test-utils';
 import { assert } from 'chai';
 import Badge, { styleSheet } from './Badge';
 
