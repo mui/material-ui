@@ -49,6 +49,13 @@ const appList = [
     source: 'https://github.com/marmelab/admin-on-rest',
   },
   {
+    title: 'Flow Dashboard - Personal data for quantified self & habit tracking',
+    author: 'Jeremy Gordon',
+    img: 'images/showcase/flow.png',
+    link: 'http://flowdash.co',
+    source: 'https://github.com/onejgordon/flow-dashboard',
+  },
+  {
     title: 'Cloudcraft',
     author: 'Cloudcraft',
     img: 'images/showcase/cloudcraft.png',
@@ -113,13 +120,6 @@ const appList = [
     author: 'Larry Xu',
     img: 'images/showcase/slimchess.png',
     link: 'https://slimchess.com',
-  },
-  {
-    title: 'Flow Dashboard - Personal data for quantified self & habit tracking',
-    author: 'Jeremy Gordon',
-    img: 'images/showcase/flow.png',
-    link: 'http://flowdash.co',
-    source: 'https://github.com/onejgordon/flow-dashboard',
   },
 ];
 
