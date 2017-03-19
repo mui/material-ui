@@ -19,8 +19,6 @@ function getSlideDirection(anchor) {
   } else if (anchor === 'bottom') {
     return 'up';
   }
-
-  return 'left';
 }
 
 export const styleSheet = createStyleSheet('MuiDrawer', (theme) => {
