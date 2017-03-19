@@ -22,14 +22,18 @@
     "react-component"
   ],
   "scripts": {
-    "prebuild": "rimraf build",
-    "build": "npm run build:icons && npm run build:copy-files",
-    "build:icons": "node ./build.js --output-dir ./build --svg-dir ./node_modules/material-design-icons --glob '/**/production/*_24px.svg' --renameFilter ./filters/rename/material-design-icons.js",
+    "prebuild": "npm run clean",
+    "build": "npm run build:icons && npm run build:babel && npm run build:copy-files",
+    "build:babel": "babel --presets es2015,react -d ./build ./src",
+    "build:icons": "node ./build.js --output-dir ./src --svg-dir ./node_modules/material-design-icons --glob '/**/production/*_24px.svg' --renameFilter ./filters/rename/material-design-icons.js",
     "build:copy-files": "babel-node ./copy-files.js",
+    "clean": "rimraf build/*.js",
     "test": "grunt"
   },
   "devDependencies": {
     "babel-cli": "^6.0.0",
+    "babel-preset-es2015": "^6.0.0",
+    "babel-preset-react": "^6.0.0",
     "chai": "^3.0.0",
     "fs-extra": "^2.0.0",
     "glob": "^7.0.0",
@@ -39,8 +43,8 @@
     "grunt-mocha-test": "^0.13.0",
     "lodash": "^4.0.0",
     "material-design-icons": "^3.0.0",
-    "mocha": "^3.0.0",
     "mkdirp": "^0.5.0",
+    "mocha": "^3.0.0",
     "mustache": "^2.0.0",
     "recursive-readdir-sync": "^1.0.6",
     "rimraf": "^2.0.0",
