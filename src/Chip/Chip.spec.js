@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
+import { spy } from 'sinon';
 import { createShallow } from 'test/utils';
 import Chip, { styleSheet } from './Chip.js';
 import Avatar from '../Avatar/Avatar.js';
@@ -132,6 +133,25 @@ describe('<Chip />', () => {
 
     it('should not have a tabIndex prop', () => {
       assert.strictEqual(wrapper.prop('tabIndex'), undefined);
+    });
+
+    it('should fire the function given in onDeleteRequest', () => {
+      const onRequestDeleteSpy = spy();
+      wrapper.setProps({ onRequestDelete: onRequestDeleteSpy });
+
+      wrapper.find('pure(Cancel)').simulate('click', { stopPropagation: () => {} });
+      assert.strictEqual(onRequestDeleteSpy.callCount, 1,
+        'should have called the onRequestDelete hanlder');
+    });
+
+    it('should stop propagation in onDeleteRequest', () => {
+      const onRequestDeleteSpy = spy();
+      const stopPropagationSpy = spy();
+      wrapper.setProps({ onRequestDelete: onRequestDeleteSpy });
+
+      wrapper.find('pure(Cancel)').simulate('click', { stopPropagation: stopPropagationSpy });
+      assert.strictEqual(stopPropagationSpy.callCount, 1,
+        'should have called the stopPropagation hanlder');
     });
   });
 });
