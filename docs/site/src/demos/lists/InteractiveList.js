@@ -12,13 +12,13 @@ import {
   ListItemText,
 } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
-import FolderIcon from 'material-ui-icons/Folder';
 import IconButton from 'material-ui/IconButton';
 import { FormGroup } from 'material-ui/Form';
 import { LabelCheckbox } from 'material-ui/Checkbox';
 import Layout from 'material-ui/Layout';
 import Text from 'material-ui/Text';
-import DeleteIcon from 'material-ui-icons/Delete'
+import FolderIcon from 'material-ui-icons/Folder';
+import DeleteIcon from 'material-ui-icons/Delete';
 
 const styleSheet = createStyleSheet('InteractiveList', (theme) => ({
   root: {
@@ -117,10 +117,14 @@ class InteractiveList extends Component {
                   <ListItem button>
                     {dense ? (
                       <ListItemAvatar>
-                        <Avatar><FolderIcon /></Avatar>
+                        <Avatar>
+                          <FolderIcon />
+                        </Avatar>
                       </ListItemAvatar>
                     ) : (
-                      <Avatar><FolderIcon /></Avatar>
+                      <Avatar>
+                        <FolderIcon />
+                      </Avatar>
                     )}
                     <ListItemText
                       primary="Single-line item"
@@ -141,17 +145,23 @@ class InteractiveList extends Component {
                   <ListItem button>
                     {dense ? (
                       <ListItemAvatar>
-                        <Avatar><FolderIcon /></Avatar>
+                        <Avatar>
+                          <FolderIcon />
+                        </Avatar>
                       </ListItemAvatar>
                     ) : (
-                      <Avatar><FolderIcon /></Avatar>
+                      <Avatar>
+                        <FolderIcon />
+                      </Avatar>
                     )}
                     <ListItemText
                       primary="Single-line item"
                       secondary={secondary ? 'Secondary text' : null}
                     />
                     <ListItemSecondaryAction>
-                      <IconButton><DeleteIcon /></IconButton>
+                      <IconButton>
+                        <DeleteIcon />
+                      </IconButton>
                     </ListItemSecondaryAction>
                   </ListItem>
                 ))}

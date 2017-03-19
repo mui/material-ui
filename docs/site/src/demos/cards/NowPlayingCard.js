@@ -9,6 +9,9 @@ import {
 } from 'material-ui/Card';
 import IconButton from 'material-ui/IconButton';
 import Text from 'material-ui/Text';
+import SkipPreviousIcon from 'material-ui-icons/SkipPrevious';
+import PlayArrowIcon from 'material-ui-icons/PlayArrow';
+import SkipNextIcon from 'material-ui-icons/SkipNext';
 import albumCover from 'docs/site/assets/images/live-from-space.jpg';
 
 const styleSheet = createStyleSheet('NowPlayingCard', () => ({
@@ -33,7 +36,8 @@ const styleSheet = createStyleSheet('NowPlayingCard', () => ({
     paddingBottom: 8,
   },
   playIcon: {
-    fontSize: 38,
+    height: 38,
+    width: 38,
   },
 }));
 
@@ -51,9 +55,15 @@ export default function NowPlayingCard(props, context) {
             </Text>
           </CardContent>
           <div className={classes.controls}>
-            <IconButton>skip_previous</IconButton>
-            <IconButton iconClassName={classes.playIcon}>play_arrow</IconButton>
-            <IconButton>skip_next</IconButton>
+            <IconButton>
+              <SkipPreviousIcon />
+            </IconButton>
+            <IconButton>
+              <PlayArrowIcon className={classes.playIcon} />
+            </IconButton>
+            <IconButton>
+              <SkipNextIcon />
+            </IconButton>
           </div>
         </div>
         <div className={classes.cover}>

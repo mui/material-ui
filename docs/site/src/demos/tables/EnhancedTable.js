@@ -18,6 +18,8 @@ import Text from 'material-ui/Text';
 import Paper from 'material-ui/Paper';
 import Checkbox from 'material-ui/Checkbox';
 import IconButton from 'material-ui/IconButton';
+import DeleteIcon from 'material-ui-icons/Delete';
+import FilterListIcon from 'material-ui-icons/FilterList';
 
 const styleSheet = createStyleSheet('EnhancedTable', () => ({
   paper: {
@@ -121,9 +123,13 @@ function EnhancedTableToolbar(props, context) {
       <div className={classes.spacer} />
       <div className={classes.actions}>
         {numSelected > 0 ? (
-          <IconButton>delete</IconButton>
+          <IconButton>
+            <DeleteIcon />
+          </IconButton>
         ) : (
-          <IconButton>filter_list</IconButton>
+          <IconButton>
+            <FilterListIcon />
+          </IconButton>
         )}
       </div>
     </Toolbar>
