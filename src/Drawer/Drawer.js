@@ -17,7 +17,7 @@ function getSlideDirection(anchor) {
   } else if (anchor === 'top') {
     return 'down';
   }
-  //(anchor === 'bottom')
+  // (anchor === 'bottom')
   return 'up';
 }
 
