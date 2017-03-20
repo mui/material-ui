@@ -4,9 +4,9 @@ import React, { Component } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import { BottomNavigation, BottomNavigationButton } from 'material-ui/BottomNavigation';
-import RestoreIcon from 'material-ui/svg-icons/restore';
-import FavoriteIcon from 'material-ui/svg-icons/favorite';
-import LocationOnIcon from 'material-ui/svg-icons/location-on';
+import RestoreIcon from 'material-ui-icons/Restore';
+import FavoriteIcon from 'material-ui-icons/Favorite';
+import LocationOnIcon from 'material-ui-icons/LocationOn';
 
 const styleSheet = createStyleSheet('SimpleBottomNavigation', () => ({
   root: {

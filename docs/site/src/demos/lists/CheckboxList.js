@@ -11,6 +11,7 @@ import {
 } from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
 import IconButton from 'material-ui/IconButton';
+import CommentIcon from 'material-ui-icons/Comment';
 
 const styleSheet = createStyleSheet('CheckboxList', (theme) => ({
   root: {
@@ -65,7 +66,9 @@ export default class CheckboxList extends Component {
               />
               <ListItemText primary={`Line item ${index + 1}`} />
               <ListItemSecondaryAction>
-                <IconButton>comment</IconButton>
+                <IconButton>
+                  <CommentIcon />
+                </IconButton>
               </ListItemSecondaryAction>
             </ListItem>
           ))}

@@ -4,7 +4,9 @@ import React from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import IconButton from 'material-ui/IconButton';
-import Icon from 'material-ui/Icon';
+import DeleteIcon from 'material-ui-icons/Delete';
+import AlarmIcon from 'material-ui-icons/Alarm';
+import AddShoppingCartIcon from 'material-ui-icons/AddShoppingCart';
 
 const styleSheet = createStyleSheet('IconButtons', (theme) => ({
   button: {
@@ -17,16 +19,16 @@ export default function IconButtons(props, context) {
   return (
     <div>
       <IconButton className={classes.button}>
-        delete
+        <DeleteIcon />
       </IconButton>
       <IconButton className={classes.button} disabled>
-        delete
+        <DeleteIcon />
       </IconButton>
       <IconButton accent className={classes.button}>
-        <Icon>alarm</Icon>
+        <AlarmIcon />
       </IconButton>
       <IconButton contrast className={classes.button}>
-        add_shopping_cart
+        <AddShoppingCartIcon />
       </IconButton>
     </div>
   );

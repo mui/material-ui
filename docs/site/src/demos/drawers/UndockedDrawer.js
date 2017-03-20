@@ -12,13 +12,13 @@ import {
   ListItemIcon,
 } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
-import InboxIcon from 'material-ui/svg-icons/inbox';
-import DraftsIcon from 'material-ui/svg-icons/drafts';
-import StarIcon from 'material-ui/svg-icons/star';
-import SendIcon from 'material-ui/svg-icons/send';
-import MailIcon from 'material-ui/svg-icons/mail';
-import DeleteIcon from 'material-ui/svg-icons/delete';
-import ReportIcon from 'material-ui/svg-icons/report';
+import InboxIcon from 'material-ui-icons/Inbox';
+import DraftsIcon from 'material-ui-icons/Drafts';
+import StarIcon from 'material-ui-icons/Star';
+import SendIcon from 'material-ui-icons/Send';
+import MailIcon from 'material-ui-icons/Mail';
+import DeleteIcon from 'material-ui-icons/Delete';
+import ReportIcon from 'material-ui-icons/Report';
 
 
 const styleSheet = createStyleSheet('UndockedDrawer', () => ({

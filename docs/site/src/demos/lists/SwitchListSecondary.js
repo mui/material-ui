@@ -12,8 +12,8 @@ import {
   ListSubheader,
 } from 'material-ui/List';
 import Switch from 'material-ui/Switch';
-import WifiIcon from 'material-ui/svg-icons/wifi';
-import BluetoothIcon from 'material-ui/svg-icons/bluetooth';
+import WifiIcon from 'material-ui-icons/Wifi';
+import BluetoothIcon from 'material-ui-icons/Bluetooth';
 
 const styleSheet = createStyleSheet('SwitchListSecondary', (theme) => ({
   root: {
@@ -67,7 +67,9 @@ export default class SwitchListSecondary extends Component {
             </ListItemSecondaryAction>
           </ListItem>
           <ListItem>
-            <BluetoothIcon />
+            <ListItemIcon>
+              <BluetoothIcon />
+            </ListItemIcon>
             <ListItemText primary="Bluetooth" />
             <ListItemSecondaryAction>
               <Switch

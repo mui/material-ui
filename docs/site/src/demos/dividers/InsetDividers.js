@@ -10,8 +10,8 @@ import {
 } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import Divider from 'material-ui/Divider';
-import FolderIcon from 'material-ui/svg-icons/folder';
-import ImageIcon from 'material-ui/svg-icons/image';
+import FolderIcon from 'material-ui-icons/Folder';
+import ImageIcon from 'material-ui-icons/Image';
 
 const styleSheet = createStyleSheet('InsetDividers', (theme) => ({
   root: {

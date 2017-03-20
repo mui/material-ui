@@ -16,6 +16,9 @@ import Avatar from 'material-ui/Avatar';
 import IconButton from 'material-ui/IconButton';
 import Text from 'material-ui/Text';
 import { red } from 'material-ui/styles/colors';
+import FavoriteIcon from 'material-ui-icons/Favorite';
+import ShareIcon from 'material-ui-icons/Share';
+import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 import paellaImage from 'docs/site/assets/images/paella@2x.jpg';
 
 const styleSheet = createStyleSheet('RecipeReviewCard', (theme) => ({
@@ -64,8 +67,12 @@ export default class RecipeReviewCard extends Component {
             </Text>
           </CardContent>
           <CardActions actionSpacing={false}>
-            <IconButton>favorite</IconButton>
-            <IconButton>share</IconButton>
+            <IconButton>
+              <FavoriteIcon />
+            </IconButton>
+            <IconButton>
+              <ShareIcon />
+            </IconButton>
             <div className={classes.flexGrow} />
             <IconButton
               className={classnames(classes.expand, {
@@ -73,7 +80,7 @@ export default class RecipeReviewCard extends Component {
               })}
               onClick={this.handleExpandClick}
             >
-              expand_more
+              <ExpandMoreIcon />
             </IconButton>
           </CardActions>
           <Collapse in={this.state.expanded} transitionDuration="auto" unmountOnExit>

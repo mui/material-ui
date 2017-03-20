@@ -9,7 +9,7 @@ import {
   ListItemText,
   ListItemIcon,
 } from 'material-ui/List';
-import StarIcon from 'material-ui/svg-icons/star';
+import StarIcon from 'material-ui-icons/Star';
 
 const styleSheet = createStyleSheet('InsetList', (theme) => ({
   root: {

@@ -5,7 +5,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
-import Face from 'material-ui/svg-icons/face';
+import FaceIcon from 'material-ui-icons/Face';
 import { grey } from 'material-ui/styles/colors';
 import avatarImage from 'docs/site/assets/images/uxceo-128.jpg';
 
@@ -52,7 +52,7 @@ export default function Chips(props, context) {
         className={classes.chip}
       />
       <Chip
-        avatar={<Avatar><Face className={classes.svgIcon} /></Avatar>}
+        avatar={<Avatar><FaceIcon className={classes.svgIcon} /></Avatar>}
         label="Clickable Deletable Chip"
         onClick={handleClick}
         onRequestDelete={handleRequestDelete}

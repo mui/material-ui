@@ -6,8 +6,8 @@ import customPropTypes from 'material-ui/utils/customPropTypes';
 import { CircularProgress } from 'material-ui/Progress';
 import { green } from 'material-ui/styles/colors';
 import Button from 'material-ui/Button';
-import CheckIcon from 'material-ui/svg-icons/check';
-import SaveIcon from 'material-ui/svg-icons/save';
+import CheckIcon from 'material-ui-icons/Check';
+import SaveIcon from 'material-ui-icons/Save';
 
 const styleSheet = createStyleSheet('CircularFab', () => ({
   wrapper: {
