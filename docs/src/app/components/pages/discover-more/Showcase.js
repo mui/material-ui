@@ -121,6 +121,12 @@ const appList = [
     img: 'images/showcase/slimchess.png',
     link: 'https://slimchess.com',
   },
+  {
+    title: 'Serif.nu - Course planning for Northwestern University',
+    author: 'Joon Park',
+    img: 'images/showcase/serif-nu.png',
+    link: 'https://serif.nu',
+  },
 ];
 
 const Showcase = () => (
