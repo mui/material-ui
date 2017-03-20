@@ -81,7 +81,7 @@ class DropDownMenu extends Component {
   // than just the parent.
   static propTypes = {
     /**
-     * This is the point on the anchor where the popover's
+     * This is the point on the anchor that the popover's
      * `targetOrigin` will attach to.
      * Options:
      * vertical: [top, center, bottom]
