@@ -19,6 +19,12 @@ describe('<Dialog />', () => {
     assert.strictEqual(wrapper.is('Modal'), true, 'should be a Modal');
   });
 
+  it('should render a Modal', () => {
+    const wrapper = shallow(<Dialog transition={<div className="cloned-element-class" />} />);
+    assert.strictEqual(wrapper.find('.cloned-element-class').length, 1,
+      'should include element given in transition');
+  });
+
   it('should put Modal specific props on the root Modal node', () => {
     const onBackdropClick = () => {};
     const onEscapeKeyUp = () => {};
