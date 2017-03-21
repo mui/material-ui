@@ -43,9 +43,9 @@ describe('<IconButton />', () => {
   });
 
   it('should render Icon children with right classes', () => {
-    const childClassName = "child-woof"
+    const childClassName = 'child-woof';
     const iconChild = <Icon className={childClassName} />;
-    const buttonClassName = "button-woof"
+    const buttonClassName = 'button-woof';
     const wrapper = shallow(<IconButton iconClassName={buttonClassName}>{iconChild}</IconButton>);
     const label = wrapper.childAt(0);
     const renderedIconChild = label.childAt(0);
