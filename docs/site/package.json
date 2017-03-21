@@ -35,7 +35,6 @@
   },
   "dependencies": {
     "marked": "^0.3.6",
-    "material-ui-icons": "^1.0.0-alpha.2",
     "prismjs": "^1.6.0",
     "react-redux": "^5.0.3",
     "react-router": "^3.0.2",
