@@ -95,12 +95,6 @@ export default class Ripple extends Component {
     styleManager: customPropTypes.muiRequired,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.leaveTimerDuration = props.leaveTimerDuration;
-  }
-
   state = {
     rippleVisible: false,
   };
@@ -150,7 +144,7 @@ export default class Ripple extends Component {
   }
 
   render() {
-    const { className, pulsate } = this.props;
+    const { className, pulsate, leaveTimerDuration} = this.props;
     const { rippleVisible, rippleLeaving } = this.state;
     const classes = this.context.styleManager.render(styleSheet);
 
@@ -165,6 +159,8 @@ export default class Ripple extends Component {
     });
 
     const rippleStyles = this.getRippleStyles();
+
+    this.leaveTimerDuration = leaveTimerDuration;
 
     return (
       <span className={containerClasses}>
