@@ -95,15 +95,15 @@ export default class Ripple extends Component {
     styleManager: customPropTypes.muiRequired,
   };
 
-  state = {
-    rippleVisible: false,
-  };
-
   constructor(props) {
     super(props);
 
     this.leaveTimerDuration = props.leaveTimerDuration;
   }
+
+  state = {
+    rippleVisible: false,
+  };
 
   componentWillUnmount() {
     clearTimeout(this.leaveTimer);
