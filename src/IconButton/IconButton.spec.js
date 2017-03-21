@@ -4,6 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow } from 'src/test-utils';
 import IconButton, { styleSheet } from './IconButton';
+import Icon from '../Icon';
 
 describe('<IconButton />', () => {
   let shallow;
@@ -39,6 +40,19 @@ describe('<IconButton />', () => {
     const label = wrapper.childAt(0);
     const icon = label.childAt(0);
     assert.strictEqual(icon.equals(child), true, 'should be the child');
+  });
+
+  it('should render Icon children with right classes', () => {
+    const childClassName = 'child-woof';
+    const iconChild = <Icon className={childClassName} />;
+    const buttonClassName = 'button-woof';
+    const wrapper = shallow(<IconButton iconClassName={buttonClassName}>{iconChild}</IconButton>);
+    const label = wrapper.childAt(0);
+    const renderedIconChild = label.childAt(0);
+    assert.strictEqual(renderedIconChild.is('Icon'), true, 'child should be icon');
+    assert.strictEqual(renderedIconChild.hasClass(childClassName), true, 'child should be icon');
+    assert.strictEqual(renderedIconChild.hasClass(buttonClassName), true, 'child should be icon');
+    assert.strictEqual(renderedIconChild.hasClass(classes.icon), true, 'child should be icon');
   });
 
   it('should have a ripple by default', () => {
