@@ -19,13 +19,13 @@ describe('<TableSortLabel />', () => {
     assert.strictEqual(wrapper.hasClass(classes.sortLabel), true, 'should have sort label class');
   });
 
-  it('should give the active class when active', () => {
+  it('should set the active class when active', () => {
     const activeFlag = true;
     const wrapper = shallow(<TableSortLabel active={activeFlag} />);
     assert.strictEqual(wrapper.hasClass(classes.active), true);
   });
 
-  it('should not give the active class when not active', () => {
+  it('should not set the active class when not active', () => {
     const activeFlag = false;
     const wrapper = shallow(<TableSortLabel active={activeFlag} />);
     assert.strictEqual(wrapper.hasClass(classes.active), false);
