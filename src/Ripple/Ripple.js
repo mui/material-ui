@@ -144,7 +144,7 @@ export default class Ripple extends Component {
   }
 
   render() {
-    const { className, pulsate, leaveTimerDuration} = this.props;
+    const { className, pulsate, leaveTimerDuration } = this.props;
     const { rippleVisible, rippleLeaving } = this.state;
     const classes = this.context.styleManager.render(styleSheet);
 
