@@ -69,7 +69,7 @@ export default class FormControl extends Component {
         onDirty: this.handleDirty,
         onClean: this.handleClean,
         onFocus: this.handleFocus,
-        onBlur: this.handleBlur
+        onBlur: this.handleBlur,
       },
     };
   }
