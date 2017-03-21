@@ -79,6 +79,7 @@ export default class Ripple extends Component {
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
+    leaveTimerDuration: PropTypes.number,
     pulsate: PropTypes.bool,
     rippleSize: PropTypes.number.isRequired,
     rippleX: PropTypes.number.isRequired,
@@ -87,6 +88,7 @@ export default class Ripple extends Component {
 
   static defaultProps = {
     pulsate: false,
+    leaveTimerDuration: 550,
   };
 
   static contextTypes = {
@@ -96,6 +98,10 @@ export default class Ripple extends Component {
   state = {
     rippleVisible: false,
   };
+
+  componentWillReceiveProps(props) {
+    this.leaveTimerDuration = props.leaveTimerDuration;
+  }
 
   componentWillUnmount() {
     clearTimeout(this.leaveTimer);
@@ -109,7 +115,7 @@ export default class Ripple extends Component {
     this.stop(() => {
       this.leaveTimer = setTimeout(() => {
         callback();
-      }, 550);
+      }, this.leaveTimerDuration);
     });
   }
 

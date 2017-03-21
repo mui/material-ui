@@ -2,7 +2,8 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
+import { spy } from 'sinon';
+import { createShallow, createMount } from 'src/test-utils';
 import Ripple, { styleSheet } from './Ripple';
 
 describe('<Ripple />', () => {
@@ -25,6 +26,14 @@ describe('<Ripple />', () => {
       'should have the ripple class');
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.fast), false,
       'should not have the fast (pulse) class');
+  });
+
+  it('should set this.leaveTimerDuration on setProps', () => {
+    const wrapper = shallow(<Ripple rippleX={0} rippleY={0} rippleSize={10} />);
+    const leaveTimerDuration = 555;
+    wrapper.setProps({ leaveTimerDuration });
+    assert.strictEqual(wrapper.instance().leaveTimerDuration, leaveTimerDuration,
+      'this.leaveTimerDuration should be set');
   });
 
   describe('starting and stopping', () => {
@@ -98,6 +107,45 @@ describe('<Ripple />', () => {
       assert.strictEqual(wrapper.state('rippleLeaving'), true, 'should be leaving');
       assert.strictEqual(wrapper.hasClass(classes.containerLeaving), true,
         'should have the leaving class');
+    });
+  });
+
+  describe('pulsating and stopping', () => {
+    let mount;
+    let wrapper;
+    let leaveTimerDuration;
+
+    before(() => {
+      leaveTimerDuration = 0;
+      mount = createMount();
+      wrapper = mount(
+        <Ripple
+          rippleX={0}
+          rippleY={0}
+          rippleSize={11}
+          pulsate
+          leaveTimerDuration={leaveTimerDuration}
+        />,
+      );
+    });
+
+    it('componentWillLeave should trigger a timer', () => {
+      const callbackSpy = spy();
+      wrapper.instance().componentWillLeave(callbackSpy);
+      setTimeout(() => {
+        assert.strictEqual(callbackSpy.callCount, 1,
+          'componentWillLeave callback should have been called');
+      }, leaveTimerDuration);
+    });
+
+    it('unmount should defuse the componentWillLeave timer', () => {
+      const callbackSpy = spy();
+      wrapper.instance().componentWillLeave(callbackSpy);
+      wrapper.unmount();
+      setTimeout(() => {
+        assert.strictEqual(callbackSpy.callCount, 0,
+          'componentWillLeave callback should not be called');
+      }, leaveTimerDuration);
     });
   });
 });
