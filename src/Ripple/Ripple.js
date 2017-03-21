@@ -99,7 +99,9 @@ export default class Ripple extends Component {
     rippleVisible: false,
   };
 
-  componentWillReceiveProps(props) {
+  constructor(props) {
+    super(props);
+
     this.leaveTimerDuration = props.leaveTimerDuration;
   }
 

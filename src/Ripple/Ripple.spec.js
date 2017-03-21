@@ -29,9 +29,13 @@ describe('<Ripple />', () => {
   });
 
   it('should set this.leaveTimerDuration on setProps', () => {
-    const wrapper = shallow(<Ripple rippleX={0} rippleY={0} rippleSize={10} />);
     const leaveTimerDuration = 555;
-    wrapper.setProps({ leaveTimerDuration });
+    const wrapper = shallow(<Ripple
+      rippleX={0}
+      rippleY={0}
+      rippleSize={10}
+      leaveTimerDuration={leaveTimerDuration}
+    />);
     assert.strictEqual(wrapper.instance().leaveTimerDuration, leaveTimerDuration,
       'this.leaveTimerDuration should be set');
   });
