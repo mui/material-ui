@@ -115,8 +115,7 @@ describe('<RadioGroup />', () => {
     });
 
     it('should be able to focus with no radios', () => {
-      const radios = [];
-      wrapper.instance().radios = radios;
+      wrapper.instance().radios = [];
       wrapper.instance().focus();
     });
   });
@@ -134,9 +133,9 @@ describe('<RadioGroup />', () => {
 
     it('should fire onChange', () => {
       const internalRadio = wrapper.children().first();
-      const event = {target: {value: "woof"}};
+      const event = { target: { value: 'woof' } };
       const onChangeSpy = spy();
-      wrapper.setProps({onChange: onChangeSpy});
+      wrapper.setProps({ onChange: onChangeSpy });
 
       internalRadio.simulate('change', event, true);
       assert.strictEqual(onChangeSpy.callCount, 1);
@@ -146,11 +145,11 @@ describe('<RadioGroup />', () => {
     it('should not fire onChange if not checked', () => {
       const internalRadio = wrapper.children().first();
       const onChangeSpy = spy();
-      wrapper.setProps({onChange: onChangeSpy});
-      internalRadio.simulate('change', {target: {value: "woof"}}, false);
+      wrapper.setProps({ onChange: onChangeSpy });
+      internalRadio.simulate('change', { target: { value: 'woof' } }, false);
       assert.strictEqual(onChangeSpy.callCount, 0);
     });
-  })
+  });
 
   describe('register internal radios to this.radio', () => {
     let mount;
@@ -170,8 +169,7 @@ describe('<RadioGroup />', () => {
 
     it('should keep radios empty', () => {
       const wrapper = mount(
-        <RadioGroup>
-        </RadioGroup>,
+        <RadioGroup />,
       );
       assert.strictEqual(wrapper.instance().radios.length, 0);
     });
