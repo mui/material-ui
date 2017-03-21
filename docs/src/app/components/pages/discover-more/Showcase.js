@@ -56,6 +56,13 @@ const appList = [
     source: 'https://github.com/onejgordon/flow-dashboard',
   },
   {
+    title: 'Serif.nu - Course planning for Northwestern University',
+    author: 'Joon Park',
+    img: 'images/showcase/serif-nu.png',
+    link: 'https://serif.nu',
+    source: 'https://github.com/Joonpark13/serif.nu',
+  },
+  {
     title: 'Cloudcraft',
     author: 'Cloudcraft',
     img: 'images/showcase/cloudcraft.png',
