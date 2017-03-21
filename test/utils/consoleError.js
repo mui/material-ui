@@ -6,7 +6,7 @@
 function consoleError() {
   console.error = (...args) => {
     console.log(...args);
-    throw new Error(...args);
+    // throw new Error(...args);
   };
 }
 
