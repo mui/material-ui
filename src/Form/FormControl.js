@@ -68,6 +68,8 @@ export default class FormControl extends Component {
         required,
         onDirty: this.handleDirty,
         onClean: this.handleClean,
+        onFocus: this.handleFocus,
+        onBlur: this.handleBlur,
       },
     };
   }
