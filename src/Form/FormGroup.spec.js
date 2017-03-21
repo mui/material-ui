@@ -26,7 +26,7 @@ describe('<FormGroup />', () => {
 
   it('should render a div with a div child', () => {
     const wrapper = shallow(
-      <FormGroup><div className="woof"/></FormGroup>,
+      <FormGroup><div className="woof" /></FormGroup>,
     );
 
     assert.strictEqual(wrapper.children('span').length, 0);
