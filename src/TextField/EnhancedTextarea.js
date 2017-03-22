@@ -24,7 +24,7 @@ function getStyles(props, context, state) {
       // Visibility needed to hide the extra text area on ipads
       visibility: 'hidden',
       position: 'absolute',
-      height: 'initial',
+      height: 'auto',
     },
   };
 }
