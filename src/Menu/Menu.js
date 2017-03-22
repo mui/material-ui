@@ -148,9 +148,10 @@ class Menu extends Component {
      */
     valueLink: PropTypes.object,
     /**
-     * The width of the menu. If not specified, the menu's width
-     * will be set according to the widths of its children, using
-     * proper keyline increments (64px for desktop, 56px otherwise).
+     * The width of the menu in string ("200px", "50vw") or number (200, 300)
+     * format. If not specified, the menu's width will be set according to the
+     * widths of its children, using proper keyline increments (64px for
+     * desktop, 56px otherwise).
      */
     width: propTypes.stringOrNumber,
   };
