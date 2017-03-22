@@ -47,7 +47,7 @@ const demos = requireDemos
     return res;
   }, []);
 
-export default class AppRouterextends Component {
+export default class AppRouter extends Component {
   static childContextTypes = {
     apiDocs: PropTypes.array.isRequired,
     demos: PropTypes.array.isRequired,

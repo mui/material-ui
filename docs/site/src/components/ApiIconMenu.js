@@ -3,7 +3,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import IconButton from 'material-ui/IconButton';
 import { Menu, MenuItem } from 'material-ui/Menu';
-import MoreVertIcon from 'material-ui/svg-icons/more-vert';
+import MoreVertIcon from 'material-ui-icons/MoreVert';
 import { camelCase } from 'docs/site/src/utils/helpers';
 
 export default class ApiIconMenu extends PureComponent {

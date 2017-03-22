@@ -2,7 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import IconButton from 'material-ui/IconButton';
-import PlayCircleOutlineIcon from 'material-ui/svg-icons/play-circle-outline';
+import PlayCircleOutlineIcon from 'material-ui-icons/PlayCircleOutline';
 import { componentMap, demoPaths } from './apiMenuData.js';
 
 const DemoButton = (props, context) => {
