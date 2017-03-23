@@ -70,6 +70,10 @@ class DatePicker extends Component {
      */
     hideCalendarDate: PropTypes.bool,
     /**
+     * Sets which view you would like to display initially
+     */
+    initialView: PropTypes.oneOf(['monthDay', 'year']),
+    /**
      * Locale used for formatting the `DatePicker` date strings. Other than for 'en-US', you
      * must provide a `DateTimeFormat` that supports the chosen `locale`.
      */
@@ -137,10 +141,6 @@ class DatePicker extends Component {
      * Sets the date for the Date Picker programmatically.
      */
     value: PropTypes.object,
-    /**
-     * Sets which view you would like to display initially
-     */
-    initialView: PropTypes.oneOf(['monthDay', 'year']),
   };
 
   static defaultProps = {

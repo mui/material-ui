@@ -19,6 +19,7 @@ class DatePickerDialog extends Component {
     firstDayOfWeek: PropTypes.number,
     hideCalendarDate: PropTypes.bool,
     initialDate: PropTypes.object,
+    initialView: PropTypes.oneOf(['monthDay', 'year']),
     locale: PropTypes.string,
     maxDate: PropTypes.object,
     minDate: PropTypes.object,
@@ -30,7 +31,6 @@ class DatePickerDialog extends Component {
     open: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
     style: PropTypes.object,
-    initialView: PropTypes.oneOf(['monthDay', 'year']),
   };
 
   static defaultProps = {

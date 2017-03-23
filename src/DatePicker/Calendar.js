@@ -33,6 +33,7 @@ class Calendar extends Component {
     firstDayOfWeek: PropTypes.number,
     hideCalendarDate: PropTypes.bool,
     initialDate: PropTypes.object,
+    initialView: PropTypes.oneOf(['monthDay', 'year']),
     locale: PropTypes.string.isRequired,
     maxDate: PropTypes.object,
     minDate: PropTypes.object,
@@ -43,7 +44,6 @@ class Calendar extends Component {
     onTouchTapOk: PropTypes.func,
     open: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
-    initialView: PropTypes.oneOf(['monthDay', 'year']),
   };
 
   static defaultProps = {
