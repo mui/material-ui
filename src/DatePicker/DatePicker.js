@@ -137,6 +137,10 @@ class DatePicker extends Component {
      * Sets the date for the Date Picker programmatically.
      */
     value: PropTypes.object,
+    /**
+     * Sets which view you would like to display initially
+     */
+    initialView: PropTypes.oneOf(['monthDay', 'year']),
   };
 
   static defaultProps = {
@@ -147,6 +151,7 @@ class DatePicker extends Component {
     firstDayOfWeek: 1,
     hideCalendarDate: false,
     style: {},
+    initialView: 'monthDay',
   };
 
   static contextTypes = {
@@ -283,6 +288,7 @@ class DatePicker extends Component {
       hideCalendarDate,
       style,
       textFieldStyle,
+      initialView,
       ...other
     } = this.props;
 
@@ -319,6 +325,7 @@ class DatePicker extends Component {
           ref="dialogWindow"
           shouldDisableDate={shouldDisableDate}
           hideCalendarDate={hideCalendarDate}
+          initialView={initialView}
         />
       </div>
     );

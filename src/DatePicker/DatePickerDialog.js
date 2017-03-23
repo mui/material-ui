@@ -30,6 +30,7 @@ class DatePickerDialog extends Component {
     open: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
     style: PropTypes.object,
+    initialView: PropTypes.oneOf(['monthDay', 'year']),
   };
 
   static defaultProps = {
@@ -38,6 +39,7 @@ class DatePickerDialog extends Component {
     container: 'dialog',
     locale: 'en-US',
     okLabel: 'OK',
+    initialView: 'monthDay',
   };
 
   static contextTypes = {
@@ -122,6 +124,7 @@ class DatePickerDialog extends Component {
       hideCalendarDate,
       style, // eslint-disable-line no-unused-vars
       animation,
+      initialView,
       ...other
     } = this.props;
 
@@ -176,6 +179,7 @@ class DatePickerDialog extends Component {
             okLabel={okLabel}
             shouldDisableDate={shouldDisableDate}
             hideCalendarDate={hideCalendarDate}
+            initialView={initialView}
           />
         </Container>
       </div>
