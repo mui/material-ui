@@ -28,7 +28,7 @@ describe('<Toolbar />', () => {
 
   it('should render DropDownMenu with underlineStyle props', () => {
     const customStyles = {
-      borderColor: 'orange'
+      borderColor: 'orange',
     };
     const wrapper = shallowWithContext(
       <Toolbar>
@@ -38,7 +38,8 @@ describe('<Toolbar />', () => {
       </Toolbar>
     );
 
-    assert.strictEqual(wrapper.find(DropDownMenu).node.props.underlineStyle, customStyles, 'DropDownMenu should have border color set to orange');
+    assert.strictEqual(wrapper.find(DropDownMenu).node.props.underlineStyle, customStyles,
+      'DropDownMenu should have border color set to orange');
   });
 
   it('should render FontIcon with custom color', () => {
@@ -56,26 +57,27 @@ describe('<Toolbar />', () => {
   it('should render ToolbarTitle with its text', () => {
     const wrapper = shallowWithContext(
       <Toolbar>
-        <ToolbarGroup firstChild={true}>
-          <ToolbarTitle text="Toolbar Title text"/>
+        <ToolbarGroup firstChild={true} >
+          <ToolbarTitle text="Toolbar Title text" />
         </ToolbarGroup>
       </Toolbar>
     );
 
-    assert.strictEqual(wrapper.find(ToolbarTitle).node.props.text, 'Toolbar Title text', 'ToolbarTitle should have text set to "Toolbar Title text"');
+    assert.strictEqual(wrapper.find(ToolbarTitle).node.props.text, 'Toolbar Title text',
+      'ToolbarTitle should have text set to "Toolbar Title text"');
   });
 
   it('should render RaisedButton, FlatButton and ToolbarSeparator with labels', () => {
     const wrapper = shallowWithContext(
       <Toolbar>
         <ToolbarGroup >
-          <RaisedButton label='RaisedButton'/>
-          <FlatButton label='FlatButton'/>
-          <ToolbarSeparator label='ToolbarSeparator'/>
+          <RaisedButton label="RaisedButton" />
+          <FlatButton label="FlatButton" />
+          <ToolbarSeparator label="ToolbarSeparator" />
         </ToolbarGroup>
       </Toolbar>
     );
-    const [ raised, flat, separator ] = wrapper.find(ToolbarGroup).node.props.children;
+    const [raised, flat, separator] = wrapper.find(ToolbarGroup).node.props.children;
 
     assert.strictEqual(raised.label), 'RaisedButton', 'RaisedButton should have proper label';
     assert.strictEqual(flat.label), 'FlatButton', 'FlatButton should have proper label';
