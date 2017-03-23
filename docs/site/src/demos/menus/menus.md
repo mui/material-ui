@@ -1,3 +1,7 @@
+---
+menu, menu-item, menu-list
+---
+
 # Menus
 
 [Menus](https://material.google.com/components/menus.html) display a list of choices on a transient sheet of material.

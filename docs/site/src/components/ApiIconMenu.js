@@ -31,11 +31,7 @@ export default class ApiIconMenu extends PureComponent {
 
   handleMenuItemClick = (event) => {
     this.setState({ open: false });
-
-    const path = window.location.hash.split('/');
-    if (event.currentTarget.id !== path[path.length - 1]) {
-      this.context.router.push(`/component-api/${event.currentTarget.id}`);
-    }
+    this.context.router.push(`/component-api/${event.currentTarget.id}`);
   };
 
   handleMenuRequestClose = () => {

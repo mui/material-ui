@@ -1,53 +1,7 @@
 // @flow weak
 
-// API menus for components whose entries don't follow
-// `component`, `componentSub1`, `componentSub2` pattern.
-export const apiMenus = {
-  buttons: [
-    'button',
-    'icon-button',
-  ],
-  icons: [
-    'svg-icon',
-  ],
-  'responsive-ui': [
-    'layout',
-  ],
-  progress: [
-    'circular-progress',
-    'linear-progress',
-  ],
-  'selection-controls': [
-    'form-control',
-    'form-group',
-    'form-label',
-    'radio-group',
-  ],
-  tabs: [
-    'tabs',
-    'tab',
-    'tab-indicator',
-  ],
-  text: [
-    'text',
-  ],
-  'text-fields': [
-    'text-field',
-    'text-field-label',
-  ],
-  themes: [
-    'mui-theme-provider',
-  ],
-  typography: [
-    'text',
-  ],
-  usage: [
-    'mui-theme-provider',
-  ],
-};
-
 // Components whose name does not map as `name` -> `names` or `name-subname` -> `names`
-// The resulting name is used both to select the menu content, and in the demo path
+// The resulting name is used in the demo path.
 // 'component-name': 'demo-directory'
 export const componentMap = {
   'bottom-navigation': 'bottom-navigation',

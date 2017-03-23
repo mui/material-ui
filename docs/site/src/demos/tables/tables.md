@@ -1,3 +1,7 @@
+---
+table, table-body, table-cell, table-head, table-row, table-sort-label
+---
+
 # Tables
 
 [Data tables](https://material.google.com/components/data-tables.html) display sets of raw data.

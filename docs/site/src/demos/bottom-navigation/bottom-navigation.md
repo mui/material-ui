@@ -1,3 +1,7 @@
+---
+bottom-navigation, bottom-navigation-button
+---
+
 # Bottom Navigation
 
 [Bottom navigation](https://material.google.com/components/bottom-navigation.html) bars make it easy to explore and switch between top-level views in a single tap.

@@ -1,3 +1,7 @@
+---
+tabs, tab, tab-indicator
+---
+
 # Tabs
 
 [Tabs](https://material.google.com/components/tabs.html) make it easy to explore and switch between different views.

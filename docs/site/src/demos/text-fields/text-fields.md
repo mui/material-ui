@@ -1,3 +1,7 @@
+---
+input, text-field, text-field-label
+---
+
 # Text Fields
 
 [Text fields](https://material.google.com/components/text-fields.html) allow users to input text and usually appear in forms.

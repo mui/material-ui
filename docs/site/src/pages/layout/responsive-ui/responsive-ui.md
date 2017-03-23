@@ -1,3 +1,7 @@
+---
+layout
+---
+
 # Responsive UI
 
 [Responsive layouts](https://material.io/guidelines/layout/responsive-ui.html) in material design adapt to any possible screen size.

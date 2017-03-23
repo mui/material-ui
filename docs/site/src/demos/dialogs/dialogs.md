@@ -1,3 +1,7 @@
+---
+dialog, dialog-title, dialog-content, dialog-actions
+---
+
 # Dialogs
 
 [Dialogs](https://material.google.com/components/dialogs.html) inform users about a specific task and may contain critical information, require decisions, or involve multiple tasks.

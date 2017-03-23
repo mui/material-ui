@@ -1,3 +1,7 @@
+---
+button, icon-button
+---
+
 # Buttons
 
 [Buttons](https://material.google.com/components/buttons.html) communicate the action that will occur when the user touches them.

@@ -1,3 +1,7 @@
+---
+paper
+---
+
 # Paper
 
 In material design, the physical properties of [paper](https://material.google.com/layout/principles.html#principles-how-paper-works) are translated to the screen.

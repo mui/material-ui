@@ -3,10 +3,15 @@
 import React, { PropTypes } from 'react';
 import { camelCase, kebabCase } from 'docs/site/src/utils/helpers';
 import ApiIconMenu from './ApiIconMenu';
-import { apiMenus, componentMap } from './apiMenuData.js';
 
-const ApiMenu = (props, context) => {
-  const path = window.location.hash.split('/');
+const ApiMenu = (props) => {
+
+  const componentRegexp = /---\n(.*)\n---/;
+
+  const currentRoute = props.routes[props.routes.length -1];
+  const path = currentRoute.path.split('/');
+
+  const components = currentRoute.content.match(componentRegexp);
 
   // Return if we're on the home page.
   if (path.length < 3) {
@@ -15,34 +20,9 @@ const ApiMenu = (props, context) => {
 
   // component is the last part of the path
   const component = path[path.length - 1];
-  let baseComponent;
 
-  // If we're on an api page
-  if (path[1] === 'component-api') {
-    // Check if the component is in the exceptions map
-    if (componentMap[component]) {
-      baseComponent = componentMap[component];
-    } else {
-      // Otherwise extract and pluralise the base component
-      baseComponent = `${(component.split('-'))[0]}s`;
-    }
-  } else {
-    baseComponent = component;
-  }
-
-  let menuItems;
-
-  // If there's a specific menu defined, use it
-  if (apiMenus[baseComponent]) {
-    menuItems = apiMenus[baseComponent];
-  } else {
-    // Otherwise build the menu dynamically
-    const baseComponentName = camelCase(baseComponent.slice(0, -1));
-    menuItems = context.apiDocs
-      .filter((entry) => (entry.name.substr(0, baseComponentName.length) === baseComponentName))
-      .map((item) => (kebabCase(item.name)));
-  }
-
+  const menuItems = components ? components[1].split(', ') : [];
+  console.log('menuItems: ', menuItems);
 
   return (
     menuItems.length >= 1 &&
@@ -50,12 +30,6 @@ const ApiMenu = (props, context) => {
     (path[1] !== 'component-api' || menuItems.length > 1) &&
     <ApiIconMenu menuItems={menuItems} selectedItem={component} {...props} />
   );
-};
-
-ApiMenu.contextTypes = {
-  apiDocs: PropTypes.array.isRequired,
-  demos: PropTypes.array.isRequired,
-  router: PropTypes.object.isRequired,
 };
 
 export default ApiMenu;

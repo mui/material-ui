@@ -1,3 +1,7 @@
+---
+chip
+---
+
 # Chips
 
 [Chips](https://www.google.com/design/spec/components/chips.html)

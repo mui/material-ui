@@ -1,3 +1,7 @@
+---
+circular-progress, linear-progress
+---
+
 # Progress
 
 [Progress and activity indicators](https://material.google.com/components/progress-activity.html)

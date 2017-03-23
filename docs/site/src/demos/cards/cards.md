@@ -1,3 +1,7 @@
+---
+card, card-actions, card-content, card-header, card-media
+---
+
 # Cards
 
 A [card](https://material.google.com/components/cards.html) is a sheet of material that serves as an entry point to more detailed information.

@@ -1,3 +1,7 @@
+---
+typography
+---
+
 # Typography
 
 Too many type sizes and styles at once can wreck any layout.

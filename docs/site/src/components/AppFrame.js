@@ -163,7 +163,7 @@ class AppFrame extends Component {
             )}
             <div className={classes.grow} />
             <DemoButton />
-            <ApiMenu className={classes.icon} />
+            <ApiMenu routes={routes} className={classes.icon} />
             <IconButton contrast onClick={this.handleToggleShade} className={classes.icon}>
               <LightbulbOutlineIcon />
             </IconButton>

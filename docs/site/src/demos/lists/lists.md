@@ -1,3 +1,7 @@
+---
+list, list-item, list-item-avatar, list-item-icon, list-item-secondary-action, list-item-text, list-subheader, divider
+---
+
 # Lists
 
 [Lists](https://material.google.com/components/lists.html) present multiple line items vertically as a single continuous element.

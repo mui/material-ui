@@ -16,12 +16,14 @@ const styleSheet = createStyleSheet('MarkdownDocs', () => {
 
 const demoRegexp = /^demo='(.*)'$/;
 const emptyRegexp = /^\s*$/;
+const componentRegexp = /---\n(.*)\n---/;
 
 export default function MarkdownDocs(props, context) {
   const classes = context.styleManager.render(styleSheet);
   const contents = props.route.content
-    .split(/^{{|}}$/gm)
-    .filter((content) => !emptyRegexp.test(content));
+    .replace(componentRegexp, '') // Remove component list
+    .split(/^{{|}}$/gm) // Split markdown into an array, separating demos
+    .filter((content) => !emptyRegexp.test(content)); // Remove empty lines
 
   return (
     <div className={classes.root}>
