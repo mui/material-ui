@@ -201,8 +201,8 @@ class SelectField extends Component {
       menuStyle,
       onFocus,
       onBlur,
-      onClose,
       onChange,
+      onClose,
       selectionRenderer,
       value,
       ...other
