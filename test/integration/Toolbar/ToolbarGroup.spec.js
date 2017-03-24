@@ -79,8 +79,8 @@ describe('<Toolbar />', () => {
     );
     const [raised, flat, separator] = wrapper.find(ToolbarGroup).node.props.children;
 
-    assert.strictEqual(raised.label), 'RaisedButton', 'RaisedButton should have proper label';
-    assert.strictEqual(flat.label), 'FlatButton', 'FlatButton should have proper label';
-    assert.strictEqual(separator.label), 'ToolbarSeparator', 'ToolbarSeparator should have proper label';
+    assert.strictEqual(raised.props.label, 'RaisedButton', 'RaisedButton should have proper label');
+    assert.strictEqual(flat.props.label, 'FlatButton', 'FlatButton should have proper label');
+    assert.strictEqual(separator.props.label, 'ToolbarSeparator', 'ToolbarSeparator should have proper label');
   });
 });
