@@ -226,7 +226,7 @@ describe('<Calendar />', () => {
     });
   });
 
-  describe('Initial State', () => {
+  describe('initial state', () => {
     it('should display the month day pick view by default', () => {
       const wrapper = shallowWithContext(
         <Calendar
@@ -237,6 +237,7 @@ describe('<Calendar />', () => {
 
       assert.strictEqual(wrapper.find(CalendarMonth).length, 1, 'should have the calendar month select');
     });
+
     it('should display the year pick view when initialView is set to year', () => {
       const wrapper = shallowWithContext(
         <Calendar
