@@ -106,8 +106,6 @@ class SelectField extends Component {
     multiple: PropTypes.bool,
     /** @ignore */
     onBlur: PropTypes.func,
-    /** @ignore */
-    onClose: PropTypes.func,
     /**
      * Callback function fired when a menu item is selected.
      *
@@ -121,6 +119,8 @@ class SelectField extends Component {
      * Otherwise, the `value` of the menu item.
      */
     onChange: PropTypes.func,
+    /** @ignore */
+    onClose: PropTypes.func,
     /** @ignore */
     onFocus: PropTypes.func,
     /**
