@@ -24,6 +24,40 @@ Below is a summary of major changes.
 - [Ripple/TouchRipple] Refactored and now works properly inside a button in firefox!
 - [Button] Raised/flat/fab are now combined into a single component.
 
+## 1.0.0-alpha.8
+###### _Mar 25, 2017_
+
+A big thanks to @agamrafaeli for increasing the test coverage by 4%.
+We are now at 93.53%. That's pretty great.
+
+##### Component Fixes / Enhancements
+
+- [Chip] Add tests for handleKeyDown for Chip module (#6379) @agamrafaeli
+- [Chip] Add tests for onRequestDelete (#6377) @agamrafaeli
+- [Chip] Alignements issue on children, affecting safari only (#6336) @stunaz
+- [Dialog] Test transition prop not a function (#6387) @agamrafaeli
+- [DialogTitle] Test scenario where children are a string (#6386) @agamrafaeli
+- [Drawer] Remove unreachable code in `getSlideDirection` (#6388) @agamrafaeli
+- [FormControl] Add tests for internal functions (#6407) @agamrafaeli
+- [FormGroup] Add spec (#6404) @agamrafaeli
+- [IconButton] Add test for rendering Icon children (#6405) @agamrafaeli
+- [Layout] Backport a fix at Doctolib for Chrome (#6376) @oliviertassinari
+- [Layout] Revise default value for aligns-items (#6334) @stunaz
+- [List] Making list meet Material Guidelines (#6367) @kybarg
+- [style] Expose createStyleSheet to reduce boilerplate (#6378) @oliviertassinari
+- [style] Expose the between breakpoints helper (#6382) @oliviertassinari
+- [TableSortLabel] Add spec (#6408) @agamrafaeli
+- [test] Expose the test helpers (#6383) @oliviertassinari
+- [TouchRipple] Add tests for edge cases (#6411) @agamrafaeli
+
+##### Docs
+
+- [docs] Use material-ui-icons package (#6390) @mbrookes
+
+##### Core
+
+- [SvgIcons] Update build (#6375) @mbrookes
+
 ## 1.0.0-alpha.7
 ###### _Mar 12, 2017_
 
