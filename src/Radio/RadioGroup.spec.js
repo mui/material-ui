@@ -158,6 +158,10 @@ describe('<RadioGroup />', () => {
       mount = createMount();
     });
 
+    after(() => {
+      mount.cleanUp();
+    });
+
     it('should add a child', () => {
       const wrapper = mount(
         <RadioGroup>
