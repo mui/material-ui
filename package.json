@@ -121,7 +121,7 @@
     "recast": "^0.11.22",
     "recursive-readdir-sync": "^1.0.6",
     "rimraf": "^2.6.1",
-    "sinon": "^1.17.7",
+    "sinon": "^2.1.0",
     "url-loader": "^0.5.8",
     "vrtest": "0.1.1-beta.3",
     "webfontloader": "^1.6.27",
