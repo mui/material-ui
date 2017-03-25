@@ -3,8 +3,9 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow } from 'src/test-utils';
+import { createShallow, createMount } from 'src/test-utils';
 import RadioGroup from './RadioGroup';
+import Radio from './Radio';
 
 describe('<RadioGroup />', () => {
   let shallow;
@@ -111,6 +112,66 @@ describe('<RadioGroup />', () => {
       assert.strictEqual(radios[1].focus.callCount, 0);
       assert.strictEqual(radios[2].focus.callCount, 0);
       assert.strictEqual(radios[3].focus.callCount, 1);
+    });
+
+    it('should be able to focus with no radios', () => {
+      wrapper.instance().radios = [];
+      wrapper.instance().focus();
+    });
+  });
+
+  describe('children radios fire change event', () => {
+    let wrapper;
+
+    beforeEach(() => {
+      wrapper = shallow(
+        <RadioGroup>
+          <Radio />
+        </RadioGroup>,
+      );
+    });
+
+    it('should fire onChange', () => {
+      const internalRadio = wrapper.children().first();
+      const event = { target: { value: 'woof' } };
+      const onChangeSpy = spy();
+      wrapper.setProps({ onChange: onChangeSpy });
+
+      internalRadio.simulate('change', event, true);
+      assert.strictEqual(onChangeSpy.callCount, 1);
+      assert.strictEqual(onChangeSpy.calledWith(event), true);
+    });
+
+    it('should not fire onChange if not checked', () => {
+      const internalRadio = wrapper.children().first();
+      const onChangeSpy = spy();
+      wrapper.setProps({ onChange: onChangeSpy });
+      internalRadio.simulate('change', { target: { value: 'woof' } }, false);
+      assert.strictEqual(onChangeSpy.callCount, 0);
+    });
+  });
+
+  describe('register internal radios to this.radio', () => {
+    let mount;
+
+    before(() => {
+      mount = createMount();
+    });
+
+    it('should add a child', () => {
+      const wrapper = mount(
+        <RadioGroup>
+          <Radio />
+        </RadioGroup>,
+      );
+      assert.strictEqual(wrapper.instance().radios.length, 1);
+    });
+
+    it('should keep radios empty', () => {
+      const wrapper = mount(
+        <RadioGroup />,
+      );
+      assert.strictEqual(wrapper.instance().radios.length, 0);
     });
   });
 });
