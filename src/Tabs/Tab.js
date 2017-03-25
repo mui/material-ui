@@ -88,6 +88,10 @@ export default class Tab extends Component {
      */
     label: PropTypes.node,
     /**
+     * The CSS class name of the label element.
+     */
+    labelClassName: PropTypes.string,
+    /**
      * @ignore
      */
     onChange: PropTypes.func,
@@ -140,6 +144,7 @@ export default class Tab extends Component {
       icon: iconProp,
       index, // eslint-disable-line no-unused-vars
       label: labelProp,
+      labelClassName,
       onChange, // eslint-disable-line no-unused-vars
       selected,
       style: styleProp,
@@ -162,7 +167,7 @@ export default class Tab extends Component {
 
     if (labelProp !== undefined) {
       label = (
-        <span className={classes.label}>
+        <span className={classNames(classes.label, labelClassName)}>
           {labelProp}
         </span>
       );
