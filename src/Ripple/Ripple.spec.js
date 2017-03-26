@@ -2,7 +2,8 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
+import { spy, useFakeTimers } from 'sinon';
+import { createShallow, createMount } from 'src/test-utils';
 import Ripple, { styleSheet } from './Ripple';
 
 describe('<Ripple />', () => {
@@ -98,6 +99,50 @@ describe('<Ripple />', () => {
       assert.strictEqual(wrapper.state('rippleLeaving'), true, 'should be leaving');
       assert.strictEqual(wrapper.hasClass(classes.containerLeaving), true,
         'should have the leaving class');
+    });
+  });
+
+  describe('pulsating and stopping', () => {
+    let mount;
+    let wrapper;
+    let clock;
+
+    before(() => {
+      mount = createMount();
+      wrapper = mount(
+        <Ripple
+          rippleX={0}
+          rippleY={0}
+          rippleSize={11}
+          pulsate
+        />,
+      );
+      clock = useFakeTimers();
+    });
+
+    after(() => {
+      mount.cleanUp();
+      clock.restore();
+    });
+
+    it('componentWillLeave should trigger a timer', () => {
+      const callbackSpy = spy();
+      wrapper.instance().componentWillLeave(callbackSpy);
+      clock.tick(549);
+      assert.strictEqual(callbackSpy.callCount, 0,
+        'The timer is not finished yet');
+      clock.tick(1);
+      assert.strictEqual(callbackSpy.callCount, 1,
+        'componentWillLeave callback should have been called');
+    });
+
+    it('unmount should defuse the componentWillLeave timer', () => {
+      const callbackSpy = spy();
+      wrapper.instance().componentWillLeave(callbackSpy);
+      wrapper.unmount();
+      clock.tick(550);
+      assert.strictEqual(callbackSpy.callCount, 0,
+        'componentWillLeave callback should not be called');
     });
   });
 });
