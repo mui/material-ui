@@ -102,6 +102,10 @@ class GridTile extends Component {
      */
     subtitle: PropTypes.node,
     /**
+     * Override the inline-styles of the subtitle element.
+     */
+    subtitleStyle: PropTypes.object,
+    /**
      * Title to be displayed on tile.
      */
     title: PropTypes.node,
@@ -176,6 +180,7 @@ class GridTile extends Component {
       titlePosition, // eslint-disable-line no-unused-vars
       titleBackground, // eslint-disable-line no-unused-vars
       titleStyle,
+      subtitleStyle,
       actionIcon, // eslint-disable-line no-unused-vars
       actionPosition, // eslint-disable-line no-unused-vars
       style,
@@ -198,7 +203,7 @@ class GridTile extends Component {
               {title}
             </div>
             {subtitle ? (
-              <div style={prepareStyles(styles.subtitle)}>
+              <div style={prepareStyles(Object.assign(styles.subtitle, subtitleStyle))}>
                 {subtitle}
               </div>
             ) : null}
