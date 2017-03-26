@@ -102,6 +102,10 @@ class GridTile extends Component {
      */
     subtitle: PropTypes.node,
     /**
+     * Override the inline-styles of the subtitle element.
+     */
+    subtitleStyle: PropTypes.object,
+    /**
      * Title to be displayed on tile.
      */
     title: PropTypes.node,
@@ -118,10 +122,6 @@ class GridTile extends Component {
      * Override the inline-styles of the title element.
      */
     titleStyle: PropTypes.object,
-    /**
-     * Override the inline-styles of the subtitle element.
-     */
-    subtitleStyle: PropTypes.object,
   };
 
   static defaultProps = {
