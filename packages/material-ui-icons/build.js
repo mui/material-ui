@@ -51,7 +51,7 @@ function main(options, cb) {
     process.stdout.write = function() {};
   }
 
-  rimraf.sync(options.outputDir); // Clean old files
+  rimraf.sync(`${options.outputDir}/*.js`); // Clean old files
   console.log('** Starting Build');
 
   let renameFilter = options.renameFilter;
@@ -61,8 +61,9 @@ function main(options, cb) {
   if (!_.isFunction(renameFilter)) {
     throw Error('renameFilter must be a function');
   }
-
-  fs.mkdirSync(options.outputDir);
+  if (!fs.existsSync(options.outputDir)){
+    fs.mkdirSync(options.outputDir);
+  }
   const files = glob.sync(path.join(options.svgDir, options.glob));
 
   files.forEach(function(svgPath) {

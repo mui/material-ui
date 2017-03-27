@@ -22,12 +22,12 @@
     "react-component"
   ],
   "scripts": {
-    "prebuild": "npm run clean",
     "build": "npm run build:icons && npm run build:babel && npm run build:copy-files",
     "build:babel": "babel --presets es2015,react -d ./build ./src",
-    "build:icons": "node ./build.js --output-dir ./src --svg-dir ./node_modules/material-design-icons --glob '/**/production/*_24px.svg' --renameFilter ./filters/rename/material-design-icons.js",
     "build:copy-files": "babel-node ./copy-files.js",
-    "clean": "rimraf build/*.js",
+    "build:icons": "node ./build.js --output-dir ./src --svg-dir ./node_modules/material-design-icons --glob '/**/production/*_24px.svg' --renameFilter ./filters/rename/material-design-icons.js",
+    "clean:": "rimraf build",
+    "prebuild": "npm run clean",
     "test": "grunt"
   },
   "devDependencies": {
