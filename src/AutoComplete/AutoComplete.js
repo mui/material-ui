@@ -113,6 +113,10 @@ class AutoComplete extends Component {
      */
     menuCloseDelay: PropTypes.number,
     /**
+    * Props to be passed to menu item.
+    */
+    menuItemProps: PropTypes.object,
+    /**
      * Props to be passed to menu.
      */
     menuProps: PropTypes.object,
@@ -398,6 +402,7 @@ class AutoComplete extends Component {
       menuCloseDelay, // eslint-disable-line no-unused-vars
       textFieldStyle,
       menuStyle,
+      menuItemProps,
       menuProps,
       listStyle,
       targetOrigin,
@@ -435,6 +440,7 @@ class AutoComplete extends Component {
               text: item,
               value: (
                 <MenuItem
+                  {...menuItemProps}
                   innerDivStyle={styles.innerDiv}
                   value={item}
                   primaryText={item}
@@ -465,6 +471,7 @@ class AutoComplete extends Component {
                 text: itemText,
                 value: (
                   <MenuItem
+                    {...menuItemProps}
                     innerDivStyle={styles.innerDiv}
                     primaryText={itemText}
                     disableFocusRipple={disableFocusRipple}
