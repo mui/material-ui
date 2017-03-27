@@ -120,6 +120,10 @@ class AutoComplete extends Component {
      * Override style for menu.
      */
     menuStyle: PropTypes.object,
+    /**
+     * Override style for menuItem
+     */
+    menuItemStyle: PropTypes.object,
     /** @ignore */
     onBlur: PropTypes.func,
     /**
@@ -398,6 +402,7 @@ class AutoComplete extends Component {
       menuCloseDelay, // eslint-disable-line no-unused-vars
       textFieldStyle,
       menuStyle,
+      menuItemStyle,
       menuProps,
       listStyle,
       targetOrigin,
@@ -496,6 +501,7 @@ class AutoComplete extends Component {
         onMouseDown={this.handleMouseDown}
         style={Object.assign(styles.menu, menuStyle)}
         listStyle={Object.assign(styles.list, listStyle)}
+        menuItemStyle={Object.assign({}, menuItemStyle)}
       >
         {requestsList.map((i) => i.value)}
       </Menu>
