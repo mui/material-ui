@@ -119,7 +119,9 @@ class SelectField extends Component {
      * Otherwise, the `value` of the menu item.
      */
     onChange: PropTypes.func,
-    /** @ignore */
+    /**
+     * Callback function fired when a menu is closed.
+     */
     onClose: PropTypes.func,
     /** @ignore */
     onFocus: PropTypes.func,
