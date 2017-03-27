@@ -23,7 +23,7 @@ import Home from '../pages/Home';
 const requireDocs = require.context(
   '../pages',
   true,
-  /^((?![\\/]demos[\\/]).)*\.md$/,
+  /^((?![\\/]component-demos[\\/]).)*\.md$/,
 );
 
 const docFiles = requireDocs.keys();
@@ -39,7 +39,7 @@ const apiDocs = docFiles.reduce((res, n) => {
   return res;
 }, []);
 
-const requireDemos = require.context('../pages/demos', true, /\.md$/);
+const requireDemos = require.context('../pages/component-demos', true, /\.md$/);
 
 const demos = requireDemos
   .keys()
