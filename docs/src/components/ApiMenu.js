@@ -4,15 +4,15 @@ import React from 'react';
 import ApiIconMenu from './ApiIconMenu';
 
 const ApiMenu = (props) => {
+  // Return if we're on the home page.
+  if (props.routes.length < 3) {
+    return null;
+  }
+
   const componentRegexp = /---\n(.*)\n---/;
   const currentRoute = props.routes[props.routes.length - 1];
   const path = currentRoute.path.split('/');
   const components = currentRoute.content.match(componentRegexp);
-
-  // Return if we're on the home page.
-  if (path.length < 3) {
-    return null;
-  }
 
   // component is the last part of the path
   const component = path[path.length - 1];
