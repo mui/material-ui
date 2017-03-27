@@ -113,7 +113,7 @@ class AutoComplete extends Component {
      */
     menuCloseDelay: PropTypes.number,
     /**
-    * Override style for menuItem
+    * Override the inline-styles of the menuItem element
     */
     menuItemStyle: PropTypes.object,
     /**
