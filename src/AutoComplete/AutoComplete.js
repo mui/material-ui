@@ -289,6 +289,12 @@ class AutoComplete extends Component {
     }
   };
 
+  setSearchText = (value) => {
+    this.setState({
+      searchText: value,
+    });
+  };
+
   handleEscKeyDown = () => {
     this.close();
   };
