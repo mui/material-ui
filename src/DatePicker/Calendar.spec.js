@@ -238,12 +238,12 @@ describe('<Calendar />', () => {
       assert.strictEqual(wrapper.find(CalendarMonth).length, 1, 'should have the calendar month select');
     });
 
-    it('should display the year pick view when initialView is set to year', () => {
+    it('should display the year selection view when openToYearSelection is true', () => {
       const wrapper = shallowWithContext(
         <Calendar
           DateTimeFormat={dateTimeFormat}
           locale="en-US"
-          initialView="year"
+          openToYearSelection={true}
         />
       );
 

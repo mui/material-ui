@@ -70,10 +70,6 @@ class DatePicker extends Component {
      */
     hideCalendarDate: PropTypes.bool,
     /**
-     * Sets which view you would like to display initially
-     */
-    initialView: PropTypes.oneOf(['monthDay', 'year']),
-    /**
      * Locale used for formatting the `DatePicker` date strings. Other than for 'en-US', you
      * must provide a `DateTimeFormat` that supports the chosen `locale`.
      */
@@ -123,6 +119,10 @@ class DatePicker extends Component {
      */
     onTouchTap: PropTypes.func,
     /**
+     * If true sets the datepicker to open to year selection first
+     */
+    openToYearSelection: PropTypes.bool,
+    /**
      * Callback function used to determine if a day's entry should be disabled on the calendar.
      *
      * @param {object} day Date object of a day.
@@ -151,7 +151,7 @@ class DatePicker extends Component {
     firstDayOfWeek: 1,
     hideCalendarDate: false,
     style: {},
-    initialView: 'monthDay',
+    openToYearSelection: false,
   };
 
   static contextTypes = {
@@ -284,11 +284,11 @@ class DatePicker extends Component {
       onFocus, // eslint-disable-line no-unused-vars
       onShow,
       onTouchTap, // eslint-disable-line no-unused-vars
+      openToYearSelection,
       shouldDisableDate,
       hideCalendarDate,
       style,
       textFieldStyle,
-      initialView,
       ...other
     } = this.props;
 
@@ -325,7 +325,7 @@ class DatePicker extends Component {
           ref="dialogWindow"
           shouldDisableDate={shouldDisableDate}
           hideCalendarDate={hideCalendarDate}
-          initialView={initialView}
+          openToYearSelection={openToYearSelection}
         />
       </div>
     );
