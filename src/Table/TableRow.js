@@ -206,6 +206,7 @@ class TableRow extends Component {
 
     return (
       <tr
+        role="row"
         className={className}
         style={prepareStyles(Object.assign(styles.root, style))}
         {...other}

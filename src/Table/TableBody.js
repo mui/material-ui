@@ -414,7 +414,7 @@ class TableBody extends Component {
 
     return (
       <ClickAwayListener onClickAway={this.handleClickAway}>
-        <tbody className={className} style={prepareStyles(Object.assign({}, style))}>
+        <tbody role="presentation" className={className} style={prepareStyles(Object.assign({}, style))}>
           {this.createRows()}
         </tbody>
       </ClickAwayListener>

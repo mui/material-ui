@@ -186,7 +186,7 @@ class TableHeader extends Component {
     const baseHeaderRow = this.createBaseHeaderRow();
 
     return (
-      <thead className={className} style={prepareStyles(Object.assign(styles.root, style))}>
+      <thead role="presentation" className={className} style={prepareStyles(Object.assign(styles.root, style))}>
         {superHeaderRows}
         {baseHeaderRow}
       </thead>

@@ -132,6 +132,7 @@ class TableHeaderColumn extends Component {
 
     return (
       <th
+        role="columnheader"
         className={className}
         style={prepareStyles(Object.assign(styles.root, style))}
         {...handlers}
