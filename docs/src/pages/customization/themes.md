@@ -1,7 +1,3 @@
----
-mui-theme-provider
----
-
 # Themes
 
 ## Predefined themes

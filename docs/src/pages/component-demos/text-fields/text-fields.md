@@ -1,5 +1,5 @@
 ---
-input, text-field, text-field-label
+components: Input, TextField, TextFieldLabel
 ---
 
 # Text Fields

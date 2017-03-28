@@ -1,29 +1,27 @@
 // @flow weak
 
-import React from 'react';
-import ApiIconMenu from './ApiIconMenu';
+import React, { PropTypes } from 'react';
+import ApiMenuComponents from 'docs/src/components/ApiMenuComponents';
+import { demoComponentsTree } from 'docs/src/components/files';
 
-const ApiMenu = (props) => {
-  // Return if we're on the home page.
-  if (props.routes.length < 3) {
+function ApiMenu(props) {
+  const currentRoute = props.routes[props.routes.length - 1];
+
+  if (!currentRoute.demo) {
     return null;
   }
 
-  const componentRegexp = /---\n(.*)\n---/;
-  const currentRoute = props.routes[props.routes.length - 1];
-  const path = currentRoute.path.split('/');
-  const components = currentRoute.content.match(componentRegexp);
+  const item = demoComponentsTree.find((item2) => item2.demo.name === currentRoute.demo.name);
 
-  // component is the last part of the path
-  const component = path[path.length - 1];
-  const menuItems = components ? components[1].split(', ') : [];
+  if (!item) {
+    return null;
+  }
 
-  return (
-    menuItems.length >= 1 &&
-    // Only show the menu on an api page if there's more than one entry
-    (path[1] !== 'component-api' || menuItems.length > 1) &&
-    <ApiIconMenu menuItems={menuItems} selectedItem={component} {...props} />
-  );
+  return <ApiMenuComponents components={item.components} />;
+}
+
+ApiMenu.propTypes = {
+  routes: PropTypes.array.isRequired,
 };
 
 export default ApiMenu;

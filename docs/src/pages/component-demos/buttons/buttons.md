@@ -1,5 +1,5 @@
 ---
-button, icon-button
+components: Button, IconButton
 ---
 
 # Buttons

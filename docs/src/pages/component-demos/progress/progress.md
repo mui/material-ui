@@ -1,5 +1,5 @@
 ---
-circular-progress, linear-progress
+components: CircularProgress, LinearProgress
 ---
 
 # Progress

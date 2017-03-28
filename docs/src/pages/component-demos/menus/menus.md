@@ -1,5 +1,5 @@
 ---
-menu, menu-item, menu-list
+components: Menu, MenuItem, MenuList
 ---
 
 # Menus

@@ -1,5 +1,5 @@
 ---
-dialog, dialog-title, dialog-content, dialog-actions
+components: Dialog, DialogTitle, DialogContent, DialogActions
 ---
 
 # Dialogs

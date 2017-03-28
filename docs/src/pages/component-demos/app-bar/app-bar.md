@@ -1,5 +1,5 @@
 ---
-app-bar, toolbar
+components: AppBar, Toolbar
 ---
 
 # App Bar

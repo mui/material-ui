@@ -1,5 +1,5 @@
 ---
-badge
+components: Badge
 ---
 
 # Badge

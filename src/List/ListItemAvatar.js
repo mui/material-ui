@@ -1,6 +1,6 @@
 // @flow weak
 
-import { PropTypes, cloneElement } from 'react';
+import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import warning from 'warning';
 import { createStyleSheet } from 'jss-theme-reactor';
@@ -30,7 +30,7 @@ export default function ListItemAvatar(props, context) {
   } = props;
   const classes = context.styleManager.render(styleSheet);
 
-  return cloneElement(children, {
+  return React.cloneElement(children, {
     className: classNames(classes.dense, classNameProp, children.props.className),
     ...other,
   });

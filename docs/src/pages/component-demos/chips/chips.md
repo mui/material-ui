@@ -1,5 +1,5 @@
 ---
-chip
+components: Chip
 ---
 
 # Chips

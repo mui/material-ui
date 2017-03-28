@@ -1,5 +1,5 @@
 ---
-divider
+components: Divider
 ---
 
 # Dividers

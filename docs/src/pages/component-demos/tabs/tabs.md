@@ -1,5 +1,5 @@
 ---
-tabs, tab, tab-indicator
+components: Tabs, Tab
 ---
 
 # Tabs

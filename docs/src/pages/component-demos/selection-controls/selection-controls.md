@@ -1,5 +1,5 @@
 ---
-form-control, form-group, form-label, radio-group,
+components: FormControl, FormGroup, FormLabel, RadioGroup,
 ---
 
 # Selection Controls

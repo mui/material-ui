@@ -1,5 +1,5 @@
 ---
-paper
+components: Paper
 ---
 
 # Paper

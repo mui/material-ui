@@ -1,5 +1,5 @@
 ---
-avatar
+components: Avatar
 ---
 
 # Avatars

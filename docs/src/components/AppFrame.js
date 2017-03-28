@@ -12,9 +12,9 @@ import withWidth, { isWidthUp } from 'material-ui/utils/withWidth';
 import MenuIcon from 'material-ui-icons/Menu';
 import LightbulbOutlineIcon from 'material-ui-icons/LightbulbOutline';
 import customPropTypes from 'material-ui/utils/customPropTypes';
-import AppDrawer from './AppDrawer';
-import DemoButton from './DemoButton';
-import ApiMenu from './ApiMenu';
+import AppDrawer from 'docs/src/components/AppDrawer';
+import DemoButton from 'docs/src/components/DemoButton';
+import ApiMenu from 'docs/src/components/ApiMenu';
 
 function getTitle(routes) {
   for (let i = routes.length - 1; i >= 0; i -= 1) {
@@ -64,9 +64,6 @@ const styleSheet = createStyleSheet('AppFrame', (theme) => {
       minHeight: '100vh',
       width: '100%',
     },
-    icon: {
-      marginLeft: -12,
-    },
     grow: {
       flex: '1 1 100%',
     },
@@ -99,9 +96,7 @@ const styleSheet = createStyleSheet('AppFrame', (theme) => {
 
 class AppFrame extends Component {
   static propTypes = {
-    apiDocs: PropTypes.array,
     children: PropTypes.node.isRequired,
-    demos: PropTypes.array,
     dispatch: PropTypes.func.isRequired,
     routes: PropTypes.array.isRequired,
     width: PropTypes.string.isRequired,
@@ -162,9 +157,9 @@ class AppFrame extends Component {
               </Text>
             )}
             <div className={classes.grow} />
-            <DemoButton />
-            <ApiMenu routes={routes} className={classes.icon} />
-            <IconButton contrast onClick={this.handleToggleShade} className={classes.icon}>
+            <DemoButton routes={routes} />
+            <ApiMenu routes={routes} />
+            <IconButton contrast onClick={this.handleToggleShade}>
               <LightbulbOutlineIcon />
             </IconButton>
           </Toolbar>

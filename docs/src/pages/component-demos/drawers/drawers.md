@@ -1,5 +1,5 @@
 ---
-drawer
+components: Drawer
 ---
 
 # Drawer

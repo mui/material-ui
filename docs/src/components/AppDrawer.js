@@ -10,7 +10,7 @@ import Drawer from 'material-ui/Drawer';
 import Text from 'material-ui/Text';
 import Divider from 'material-ui/Divider';
 import customPropTypes from 'material-ui/utils/customPropTypes';
-import AppDrawerNavItem from './AppDrawerNavItem';
+import AppDrawerNavItem from 'docs/src/components/AppDrawerNavItem';
 
 export const styleSheet = createStyleSheet('AppDrawer', (theme) => {
   return {

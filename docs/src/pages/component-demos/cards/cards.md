@@ -1,5 +1,5 @@
 ---
-card, card-actions, card-content, card-header, card-media
+components: Card, CardActions, CardContent, CardHeader, CardMedia
 ---
 
 # Cards

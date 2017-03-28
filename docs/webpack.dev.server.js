@@ -3,7 +3,7 @@
 
 const WebpackDevServer = require('webpack-dev-server');
 const webpack = require('webpack');
-const webpackConfig = require('./webpack.dev.config.js');
+const webpackConfig = require('./webpack.dev.config');
 
 const serverOptions = {
   publicPath: webpackConfig.output.publicPath,
