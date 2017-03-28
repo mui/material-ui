@@ -111,9 +111,9 @@ describe('<Slide />', () => {
             width: 500,
             height: 300,
             left: 300,
-            right: 500,
+            right: 800,
             top: 200,
-            bottom: 100,
+            bottom: 500,
           }),
           style: {},
         };
