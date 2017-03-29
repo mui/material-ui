@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow } from 'src/test-utils';
+import { createShallow, createMount } from 'src/test-utils';
 import Input, { styleSheet } from './Input';
 
 describe('<Input />', () => {
@@ -216,6 +216,57 @@ describe('<Input />', () => {
         const input = wrapper.find('input');
         assert.strictEqual(input.prop('aria-required'), true);
       });
+    });
+  });
+
+  describe('componentDidMount', () => {
+    let mount;
+    let wrapper;
+    let instance;
+
+    before(() => {
+      mount = createMount();
+      wrapper = mount(<Input />);
+      instance = wrapper.instance();
+    });
+
+    after(() => {
+      mount.cleanUp();
+    });
+
+    beforeEach(() => {
+      instance.checkDirty = spy();
+    });
+
+    it('should not call checkDirty if controlled', () => {
+      instance.isControlled = () => true;
+      instance.componentDidMount();
+      assert.strictEqual(instance.checkDirty.callCount, 0);
+    });
+
+    it('should call checkDirty if controlled', () => {
+      instance.isControlled = () => false;
+      instance.componentDidMount();
+      assert.strictEqual(instance.checkDirty.callCount, 1);
+    });
+
+    it('should call checkDirty with input value', () => {
+      instance.isControlled = () => false;
+      instance.input = 'woof';
+      instance.componentDidMount();
+      assert.strictEqual(instance.checkDirty.calledWith(instance.input), true);
+    });
+
+    it('should call or not call checkDirty consistently', () => {
+      instance.isControlled = () => true;
+      instance.componentDidMount();
+      assert.strictEqual(instance.checkDirty.callCount, 0);
+      instance.isControlled = () => false;
+      instance.componentDidMount();
+      assert.strictEqual(instance.checkDirty.callCount, 1);
+      instance.isControlled = () => true;
+      instance.componentDidMount();
+      assert.strictEqual(instance.checkDirty.callCount, 1);
     });
   });
 });
