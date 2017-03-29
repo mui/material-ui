@@ -323,10 +323,6 @@ class Menu extends Component {
     let selectedIndex = -1;
     let menuItemIndex = 0;
 
-    //selected index would be index of last item in values
-    if (this.props.multiple) {
-    }
-
     filteredChildren.forEach((child) => {
       const childIsADivider = child.type && child.type.muiName === 'Divider';
 
@@ -423,6 +419,7 @@ class Menu extends Component {
 
     index++;
     if (index > maxIndex) index = maxIndex;
+
     this.setFocusIndex(event, index, true);
   }
 
