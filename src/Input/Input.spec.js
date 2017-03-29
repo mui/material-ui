@@ -55,6 +55,15 @@ describe('<Input />', () => {
     });
   });
 
+  it('should call focus function on input property when focus is invoked', () => {
+    const wrapper = shallow(<Input />);
+    const instance = wrapper.instance();
+    instance.input = spy();
+    instance.input.focus = spy();
+    instance.focus();
+    assert.strictEqual(instance.input.focus.callCount, 1);
+  });
+
   describe('controlled', () => {
     let wrapper;
     let handleDirty;
