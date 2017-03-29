@@ -75,4 +75,11 @@ describe('<Text />', () => {
       assert.strictEqual(wrapper.hasClass(classes.colorInherit), true);
     });
   });
+
+  describe('prop: fontSizeInherit', () => {
+    it('should inherit the font size', () => {
+      const wrapper = shallow(<Text fontSizeInherit>Hello</Text>);
+      assert.strictEqual(wrapper.hasClass(classes.fontSizeInherit), true);
+    });
+  });
 });
