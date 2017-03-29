@@ -198,9 +198,17 @@ class Menu extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const filteredChildren = this.getFilteredChildren(nextProps.children);
-    const selectedIndex = this.getSelectedIndex(nextProps, filteredChildren);
-
+    let selectedIndex;
+    if (this.props.multiple) {
+      if(nextProps.value.length < this.props.value.length) {
+        selectedIndex = this.props.value.find((item) => nextProps.value.indexOf(item) === -1);
+      } else if (nextProps.value.length > this.props.value.length) {
+        selectedIndex = nextProps.value.find((item) => this.props.value.indexOf(item) === -1);
+      }
+    } else {
+      const filteredChildren = this.getFilteredChildren(nextProps.children);
+      selectedIndex = this.getSelectedIndex(nextProps, filteredChildren);
+    }
     const newFocusIndex = nextProps.disableAutoFocus ? -1 : selectedIndex >= 0 ? selectedIndex : 0;
     if (newFocusIndex !== this.state.focusIndex && this.props.onMenuItemFocusChange) {
       this.props.onMenuItemFocusChange(null, newFocusIndex);
@@ -315,13 +323,16 @@ class Menu extends Component {
     let selectedIndex = -1;
     let menuItemIndex = 0;
 
+    //selected index would be index of last item in values
+    if (this.props.multiple) {
+    }
+
     filteredChildren.forEach((child) => {
       const childIsADivider = child.type && child.type.muiName === 'Divider';
 
       if (this.isChildSelected(child, props)) selectedIndex = menuItemIndex;
       if (!childIsADivider) menuItemIndex++;
     });
-
     return selectedIndex;
   }
 
@@ -412,7 +423,6 @@ class Menu extends Component {
 
     index++;
     if (index > maxIndex) index = maxIndex;
-
     this.setFocusIndex(event, index, true);
   }
 
