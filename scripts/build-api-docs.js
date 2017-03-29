@@ -7,7 +7,7 @@ import * as reactDocgen from 'react-docgen';
 import generateMarkdown from './generate-docs-markdown';
 
 const componentRegex = /^([A-Z][a-z]+)+\.js/;
-const docsDir = path.resolve(__dirname, '../docs/api');
+const docsDir = path.resolve(__dirname, '../docs/src/pages/component-api');
 const srcDir = path.resolve(__dirname, '../src');
 
 function ensureExists(pat, mask, cb) {
