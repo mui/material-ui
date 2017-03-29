@@ -1,10 +1,42 @@
 ## HEAD
 
+## 0.17.2
+
+###### _Mar 27, 2017_
+
+A big thanks to the 16 contributors who made this release possible.
+
+##### Component Fixes / Enhancements
+
+- [AppBar] Add test for iconElementRight gets FlatButton (#6362) @agamrafaeli
+- [Drawer] Allowing percentages width (#6315) @janzenz
+- [DropDownMenu] Expose targetOrigin and anchorOrigin properties (#6370) @qin9smile
+- [EnhancedTextArea] Fixes height bug for IE11 (#6418) @mmrtnz
+- [GridTile] Add a subtitleStyle property (#6421) @ichi0g0y
+- [ListItem] Add isKeyboardFocused prop (#6369) @samdroid-apps
+- [TextField] Fix wrapped hintText rendering outside of container (#6305) @pancho111203
+- [ToolbarGroup] Add more tests for other child components (#6423) @ibekavac
+
+##### Docs
+
+- [ROADMAP] Add a link to the next documentation (b0461d944ccaee877358cad7173d2a9fbba19edf) @oliviertassinari
+- [docs] Add Electrode to related projects (#6441) @mbrookes
+- [docs] Add related project material-ui-scrollable-tabs (#6429) @shawnmcknight
+- [docs] Show how to change the RadioButton color (133da2f10592cf5d26c76248840b790783623886) @oliviertassinari
+- [Showcase] Add Flow Dashboard to showcase (#6380) @onejgordon
+- [Showcase] Update Slimchess Url (#6348) @larrxu
+- [Showcase] Add Serif.nu to showcase (#6399) @Joonpark13
+- [TableRow] Fix typo in comment (#6428) @beaudry
+
+##### Core
+
+- [npm] Upgrade dependencies (#6343) @oliviertassinari
+
 ## 0.17.1
 
 ###### _Mar 12, 2017_
 
-A big thanks to the 20 contributors who are making this release possible.
+A big thanks to the 20 contributors who made this release possible.
 
 ##### Component Fixes / Enhancements
 
@@ -49,7 +81,7 @@ A big thanks to the 20 contributors who are making this release possible.
 ## 0.17.0
 ###### _Feb 12, 2017_
 
-A big thanks to the 17 contributors who are making this release possible.
+A big thanks to the 17 contributors who made this release possible.
 
 ##### Breaking Changes
 - [core] Upgrade react-tap-event-plugin and react peer dependency (#6057) @rosskevin
@@ -87,7 +119,7 @@ We have upgraded the peer dependency of Material-UI. You gonna need:
 ## 0.16.7
 ###### _Jan 15, 2017_
 
-A big thanks to the 20 contributors who are making this release possible.
+A big thanks to the 20 contributors who made this release possible.
 
 ##### Component Fixes / Enhancements
 
