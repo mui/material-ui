@@ -1,11 +1,5 @@
 ## HEAD
 
-## 0.17.2
-
-###### _Mar 27, 2017_
-
-A big thanks to the 16 contributors who made this release possible.
-
 ##### Component Fixes / Enhancements
 
 - [AppBar] Add test for iconElementRight gets FlatButton (#6362) @agamrafaeli
