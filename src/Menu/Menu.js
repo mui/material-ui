@@ -199,16 +199,18 @@ class Menu extends Component {
 
   componentWillReceiveProps(nextProps) {
     let selectedIndex;
-    if (this.props.multiple) {
-      if(nextProps.value.length < this.props.value.length) {
+
+    if (this.props.multiple && nextProps.value.length !== this.props.value.length) {
+      if (nextProps.value.length < this.props.value.length) {
         selectedIndex = this.props.value.find((item) => nextProps.value.indexOf(item) === -1);
-      } else if (nextProps.value.length > this.props.value.length) {
+      } else {
         selectedIndex = nextProps.value.find((item) => this.props.value.indexOf(item) === -1);
       }
     } else {
       const filteredChildren = this.getFilteredChildren(nextProps.children);
       selectedIndex = this.getSelectedIndex(nextProps, filteredChildren);
     }
+
     const newFocusIndex = nextProps.disableAutoFocus ? -1 : selectedIndex >= 0 ? selectedIndex : 0;
     if (newFocusIndex !== this.state.focusIndex && this.props.onMenuItemFocusChange) {
       this.props.onMenuItemFocusChange(null, newFocusIndex);

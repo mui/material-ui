@@ -221,7 +221,7 @@ describe('<Menu />', () => {
     it('should multi select 2 items after selecting 3 and deselecting 1', () => {
       class MyComponent1 extends Component {
         state = {
-          value: null,
+          value: [],
         }
 
         handleChange = (event, value) => {

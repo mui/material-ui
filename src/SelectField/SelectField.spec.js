@@ -30,7 +30,7 @@ describe('<SelectField />', () => {
     it('should multi select 2 items after selecting 3 and deselecting 1', () => {
       class MyComponent2 extends Component {
         state = {
-          value: null,
+          value: [],
         }
 
         handleChange = (event, key, value) => {
@@ -73,7 +73,7 @@ describe('<SelectField />', () => {
     it('should multi select 3 items and render their values colon separated', () => {
       class MyComponent2 extends Component {
         state = {
-          value: null,
+          value: [],
         }
 
         selectionRenderer(value) {
