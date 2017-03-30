@@ -26,7 +26,7 @@ Aside from the above composition trade-off, we use the following rules:
 
 - Undocumented properties supplied are spread to the root element.
 - Internal components have:
- - their own `xxxClassName` property when style customization makes sense. For instance, we expose an `inputClassName` property.
- - their own `xxxProps` property when users might need to tweak internal render method's components. For instance, we expose an `inputProps` property.
- - their own flattened properties when they are key to the abstraction. For instance, we expose a `value` property.
+  - their own `xxxClassName` property when style customization makes sense. For instance, we expose an `inputClassName` property.
+  - their own `xxxProps` property when users might need to tweak internal render method's components. For instance, we expose an `inputProps` property.
+  - their own flattened properties when they are key to the abstraction. For instance, we expose a `value` property.
 - The name of the boolean properties should be chosen based on the default value. We are following the HTML specification. For instance, the `disabled` attribute on an input element. This choice allows the shorthand notation.
