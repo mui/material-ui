@@ -52,6 +52,10 @@ export default class TextField extends Component {
      */
     labelClassName: PropTypes.string,
     /**
+     * The input name attribute.
+     */
+    name: PropTypes.string,
+    /**
      * Whether the label should be displayed as required (asterisk).
      */
     required: PropTypes.bool,
@@ -89,6 +93,7 @@ export default class TextField extends Component {
       inputProps,
       label,
       labelClassName,
+      name,
       required,
       type,
       value,
@@ -110,6 +115,7 @@ export default class TextField extends Component {
         <Input
           className={inputClassName}
           value={value}
+          name={name}
           type={type}
           disabled={disabled}
           {...inputProps}
