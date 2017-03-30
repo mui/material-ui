@@ -1,5 +1,5 @@
 ---
-components: Card, CardActions, CardContent, CardHeader, CardMedia
+components: Card, CardActions, CardContent, CardHeader, CardMedia, Collapse
 ---
 
 # Cards
