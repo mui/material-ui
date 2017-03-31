@@ -16,6 +16,7 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
+import requirePropFactory from '../utils/requirePropFactory';
 
 const GUTTERS = [0, 8, 16, 24, 40];
 const GRID_SIZES = [true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -309,19 +310,7 @@ Layout.contextTypes = {
 let LayoutWrapper = Layout; // eslint-disable-line import/no-mutable-exports
 
 if (process.env.NODE_ENV !== 'production') {
-  const requireProp = (requiredProp) =>
-    (props, propName, componentName, location, propFullName) => {
-      const propFullNameSafe = propFullName || propName;
-
-      if (typeof props[propName] !== 'undefined' && !props[requiredProp]) {
-        return new Error(
-          `The property \`${propFullNameSafe}\` of ` +
-          `\`Layout\` must be used on \`${requiredProp}\`.`,
-        );
-      }
-
-      return null;
-    };
+  const requireProp = requirePropFactory('Layout');
 
   LayoutWrapper = (props) => <Layout {...props} />;
 
