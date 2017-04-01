@@ -97,6 +97,10 @@ describe('<MuiThemeProvider />', () => {
       });
     });
 
+    after(() => {
+      mount.cleanUp();
+    });
+
     describe('setProps() with different styleManager', () => {
       before(() => {
         MuiThemeProvider.createDefaultContext.reset();
