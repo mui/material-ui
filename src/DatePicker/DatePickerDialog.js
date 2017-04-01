@@ -84,7 +84,10 @@ class DatePickerDialog extends Component {
 
   handleTouchTapOk = () => {
     if (this.props.onAccept && !this.refs.calendar.isSelectedDateDisabled()) {
-      this.props.onAccept(this.refs.calendar.getSelectedDate());
+      var unit = 24 * 60 * 60 * 1000;
+      var date = this.refs.calendar.getSelectedDate().getTime();
+      var time = (((this.props.initialDate.getTime() - date) % unit) + unit) % unit;
+      this.props.onAccept(new Date(date + time));
     }
 
     this.setState({
