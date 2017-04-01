@@ -7,6 +7,22 @@ import marked from 'marked';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import prism from 'docs/src/utils/prism';
 
+const renderer = new marked.Renderer();
+
+renderer.heading = (text, level) => {
+  const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
+
+  return `
+    <h${level}>
+      <a class="anchor-link" id="${escapedText}"></a>${
+      text
+      }<a class="anchor-link-style" href="#${escapedText}">${
+        '#'
+      }</a>
+    </h${level}>
+  `;
+};
+
 marked.setOptions({
   gfm: true,
   tables: true,
@@ -18,6 +34,20 @@ marked.setOptions({
   highlight(code) {
     return prism.highlight(code, prism.languages.jsx);
   },
+  renderer,
+});
+
+const anchorLinkStyle = (theme) => ({
+  '& .anchor-link-style': {
+    display: 'none',
+  },
+  '&:hover .anchor-link-style': {
+    display: 'inline',
+    fontSize: '0.8em',
+    lineHeight: '1',
+    paddingLeft: theme.spacing.unit,
+    color: theme.palette.text.hint,
+  },
 });
 
 const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
@@ -25,6 +55,10 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
     marginTop: theme.spacing.unit * 2,
     marginBottom: theme.spacing.unit * 2,
     padding: '0 10px',
+    '& .anchor-link': {
+      marginTop: -theme.spacing.unit * 12, // Offset for the anchor.
+      position: 'absolute',
+    },
     '& pre': {
       margin: '25px 0',
       padding: '12px 18px',
@@ -44,16 +78,19 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
       ...theme.typography.display2,
       color: theme.palette.text.secondary,
       margin: '0.7em 0',
+      ...anchorLinkStyle(theme),
     },
     '& h2': {
       ...theme.typography.display1,
       color: theme.palette.text.secondary,
       margin: '1em 0 0.7em',
+      ...anchorLinkStyle(theme),
     },
     '& h3': {
       ...theme.typography.headline,
       color: theme.palette.text.secondary,
       margin: '1em 0 0.7em',
+      ...anchorLinkStyle(theme),
     },
     '& p, & ul, & ol': {
       lineHeight: 1.6,

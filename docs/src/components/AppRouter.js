@@ -3,7 +3,7 @@
 import React from 'react';
 import {
   applyRouterMiddleware,
-  hashHistory,
+  browserHistory,
   Router,
   Route,
   IndexRoute,
@@ -20,7 +20,7 @@ import { componentAPIs, requireMarkdown, demos, requireDemo } from 'docs/src/com
 export default function AppRouter() {
   return (
     <Router
-      history={hashHistory}
+      history={browserHistory}
       render={applyRouterMiddleware(useScroll())}
     >
       <Route title="Material UI" path="/" component={AppFrame}>

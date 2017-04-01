@@ -59,7 +59,7 @@ export const styleSheet = createStyleSheet('MuiIconButton', (theme) => {
  * <IconButton>account_circle</IconButton>
  * ```
  *
- * You can refer to the [Icons](#/style/icons) section of the documentation
+ * You can refer to the [Icons](/style/icons) section of the documentation
  * regarding the available icons.
  */
 export default function IconButton(props, context) {

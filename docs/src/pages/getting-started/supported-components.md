@@ -1,16 +1,16 @@
 # Supported Components
 
-The following is a list of Material Design components & features. 
-Those currently supported by Material-UI are **highlighted ✓**. 
+The following is a list of Material Design components & features.
+Those currently supported by Material-UI are **highlighted ✓**.
 
-While we strive to follow the guidelines where practical (applying 
-common sense where guidelines contadict - a more common occurence than 
-one might expect), we do not expect to support every component, or every 
-feature of every component, but rather to provide the building blocks to 
+While we strive to follow the guidelines where practical (applying
+common sense where guidelines contadict - a more common occurence than
+one might expect), we do not expect to support every component, or every
+feature of every component, but rather to provide the building blocks to
 allow developers to create compelling user interfaces and experiences.
 
-If you wish to add support for a component or feature not highlighted 
-here, please search for the relevant [GitHub Issue](https://github.com/callemall/material-ui/issues), or create a new one 
+If you wish to add support for a component or feature not highlighted
+here, please search for the relevant [GitHub Issue](https://github.com/callemall/material-ui/issues), or create a new one
 to discuss the approach before submitting a PR.
 
 - **[App Bar](https://material.io/guidelines/layout/structure.html#structure-app-bar) ✓**
@@ -20,7 +20,7 @@ to discuss the approach before submitting a PR.
   - Group avatar
 - **[Bottom navigation](https://www.google.com/design/spec/components/bottom-navigation.html) ✓**
 - [Bottom sheets](https://www.google.com/design/spec/components/bottom-sheets.html)
-- **[Buttons](http://www.material-ui.com/#/components/buttons) ✓**
+- **[Buttons](https://material.io/guidelines/components/buttons.html) ✓**
   - **[Flat & raised buttons](https://www.google.com/design/spec/components/buttons.html#buttons-flat-raised-buttons) ✓**
   - [Toggle buttons](https://www.google.com/design/spec/components/buttons.html#buttons-toggle-buttons)
   - **[Icon toggles](https://www.google.com/design/spec/components/buttons.html#buttons-toggle-buttons) (Custom Checkbox) ✓**
