@@ -22,8 +22,8 @@ marked.setOptions({
 
 const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
   root: {
-    marginTop: 20,
-    marginBottom: 20,
+    marginTop: theme.spacing.unit * 2,
+    marginBottom: theme.spacing.unit * 2,
     padding: '0 10px',
     '& pre': {
       margin: '25px 0',
@@ -43,7 +43,7 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
     '& h1': {
       ...theme.typography.display2,
       color: theme.palette.text.secondary,
-      margin: '1em 0 0.7em',
+      margin: '0.7em 0',
     },
     '& h2': {
       ...theme.typography.display1,
