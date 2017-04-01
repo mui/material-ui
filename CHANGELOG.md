@@ -24,6 +24,33 @@ Below is a summary of major changes.
 - [Ripple/TouchRipple] Refactored and now works properly inside a button in firefox!
 - [Button] Raised/flat/fab are now combined into a single component.
 
+## 1.0.0-alpha.9
+###### _Apr 1, 2017_
+
+##### Component Fixes / Enhancements
+
+- [Tab] Add labelClassName property (#6436) @rogeliog
+- [test] Fix absolute path in createShallow (444c60392550fe73bb3492ba0ebb63473c73162a) @oliviertassinari
+- [material-ui-icons] Reinstate README and update scripts, update installation.md (#6448) @mbrookes
+- [Input] Add test for focus() (#6461) @agamrafaeli
+- [Input] Add test for componentDidMount() (#6462) @agamrafaeli
+- [RadioGroup] Add tests for edge cases (#6409) @agamrafaeli
+- [RadioGroup] Add missing teardown in test (8005d9d9b98ed58a041a9e49931fd88cb48687e2) @oliviertassinari
+- [Ripple] Add a new test for the unmount logic (#6434) @oliviertassinari
+
+##### Docs
+
+- [docs] Add API menu and demo button (#6455) @mbrookes
+- [docs] Link to the Collapse documentation (#6464) @JeremyIglehart
+- [docs] Fix api.md indentation (#6468) @solkaz
+
+##### Core
+
+- [core] Upgrade the dev dependencies (#6435) @oliviertassinari
+- [test] Takes the Menu as an example in the test documentation (d13607581dc2bf6c86e88721c2d177b8b8b2d004) @oliviertassinari
+- [Layout] Extract requireProp to utils (#6473) @agamrafaeli
+
+
 ## 1.0.0-alpha.8
 ###### _Mar 25, 2017_
 
@@ -1931,7 +1958,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
 - TimePicker - NEW (#589)
 
 ## 0.7.5
-###### _Apr. 27, 2015_
+###### _Apr 27, 2015_
 
 ###### General
 - Removed deprecation warnings by replacing `this.getDOMNode()` with `React.findDOMNode()` (#558)
@@ -1944,7 +1971,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - Fixed alignment bug on Chrome when using FAB as a link (#574)
 
 ## 0.7.4
-###### _Apr. 21, 2015_
+###### _Apr 21, 2015_
 
 ##### General
 - Updated to react v0.13
@@ -1971,7 +1998,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - Fixed errors on disabled switches on mobile (#476)
 
 ## 0.7.3
-###### _Apr. 1, 2015_
+###### _Apr 1, 2015_
 
 ##### General
 - Updated mui to use peer dependency changes (#471)
@@ -1986,7 +2013,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - Nested menus expand when hovered (#475)
 
 ## 0.7.2
-###### _Mar. 25, 2015_
+###### _Mar 25, 2015_
 
 ##### General
 - Updated react-draggable2 dependency (#391)
@@ -2020,7 +2047,7 @@ We've cleaned up some of our click/tap events. (#771) Upgrade should be straight
   - Added `initialSelectedIndex` prop (#389)
 
 ## 0.7.1
-###### _Mar. 4, 2015_
+###### _Mar 4, 2015_
 
 ##### General
 - Allow removal of debug code in production builds (#349)
