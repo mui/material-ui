@@ -1,32 +1,16 @@
 // @flow weak
-/* eslint-disable comma-dangle */
 
 const path = require('path');
 const webpack = require('webpack');
 
 const libraryName = 'material-ui';
 
-const paths = {
-  src: path.resolve(__dirname, 'src'),
-  index: path.join(__dirname, 'src/index.js'),
-  dist: path.join(__dirname, 'build/dist'),
-};
-
-const env = {
-  env: process.env.NODE_ENV || 'development', // eslint-disable-line no-process-env
-  isProd() { return this.env === 'production'; },
-  isDev() { return this.env === 'development'; },
-  isTest() { return this.env === 'test'; },
-};
-
-const config = {
+const baseConfig = {
   entry: {
-    'material-ui': paths.index,
+    'material-ui': path.join(__dirname, 'src/index.js'),
   },
-  devtool: 'source-map',
   output: {
-    path: paths.dist,
-    filename: `${env.isProd() ? `${libraryName}.min` : libraryName}.js`,
+    path: path.join(__dirname, 'build/dist'),
     library: libraryName,
     libraryTarget: 'umd',
     umdNamedDefine: true,
@@ -65,12 +49,21 @@ const config = {
   },
   resolve: {
     modules: [
-      paths.src,
+      path.resolve(__dirname, 'src'),
       'node_modules',
     ],
   },
-  plugins: [].concat(
-    env.isProd() ? [
+  plugins: [],
+};
+
+let config;
+
+if (process.env.NODE_ENV === 'production') {
+  config = Object.assign({}, baseConfig, {
+    output: Object.assign({}, baseConfig.output, {
+      filename: `${libraryName}.min.js`,
+    }),
+    plugins: baseConfig.plugins.concat([
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('production'),
       }),
@@ -80,8 +73,14 @@ const config = {
           screw_ie8: true,
         },
       }),
-    ] : []
-  ),
-};
+    ]),
+  });
+} else {
+  config = Object.assign({}, baseConfig, {
+    output: Object.assign({}, baseConfig.output, {
+      filename: `${libraryName}.js`,
+    }),
+  });
+}
 
 module.exports = config;
