@@ -99,6 +99,11 @@ class SelectField extends Component {
      * Override the inline-styles of the underlying `DropDownMenu` element.
      */
     menuStyle: PropTypes.object,
+    /**
+     * If true, `value` must be an array and the menu will support
+     * multiple selections.
+     */
+    multiple: PropTypes.bool,
     /** @ignore */
     onBlur: PropTypes.func,
     /**
@@ -106,8 +111,12 @@ class SelectField extends Component {
      *
      * @param {object} event TouchTap event targeting the menu item
      * that was selected.
-     * @param {number} key The index of the selected menu item.
-     * @param {any} payload The `value` prop of the selected menu item.
+     * @param {number} key The index of the selected menu item, or undefined
+     * if `multiple` is true.
+     * @param {any} payload If `multiple` is true, the menu's `value`
+     * array with either the menu item's `value` added (if
+     * it wasn't already selected) or omitted (if it was already selected).
+     * Otherwise, the `value` of the menu item.
      */
     onChange: PropTypes.func,
     /** @ignore */
@@ -116,6 +125,15 @@ class SelectField extends Component {
      * Override the inline-styles of selected menu items.
      */
     selectedMenuItemStyle: PropTypes.object,
+    /**
+     * Customize the rendering of the selected item.
+     *
+     * @param {any} value If `multiple` is true, the menu's `value`
+     * array with either the menu item's `value` added (if
+     * it wasn't already selected) or omitted (if it was already selected).
+     * Otherwise, the `value` of the menu item.
+     */
+    selectionRenderer: PropTypes.func,
     /**
      * Override the inline-styles of the root element.
      */
@@ -135,7 +153,9 @@ class SelectField extends Component {
      */
     underlineStyle: PropTypes.object,
     /**
-     * The value that is currently selected.
+     * If `multiple` is true, an array of the `value`s of the selected
+     * menu items. Otherwise, the `value` of the selected menu item.
+     * If provided, the menu will be a controlled component.
      */
     value: PropTypes.any,
   };
@@ -144,6 +164,7 @@ class SelectField extends Component {
     autoWidth: false,
     disabled: false,
     fullWidth: false,
+    multiple: false,
   };
 
   static contextTypes = {
@@ -153,6 +174,7 @@ class SelectField extends Component {
   render() {
     const {
       autoWidth,
+      multiple,
       children,
       style,
       labelStyle,
@@ -178,6 +200,7 @@ class SelectField extends Component {
       onFocus,
       onBlur,
       onChange,
+      selectionRenderer,
       value,
       ...other
     } = this.props;
@@ -217,6 +240,8 @@ class SelectField extends Component {
           value={value}
           onChange={onChange}
           maxHeight={maxHeight}
+          multiple={multiple}
+          selectionRenderer={selectionRenderer}
         >
           {children}
         </DropDownMenu>

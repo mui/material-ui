@@ -49,6 +49,20 @@ const appList = [
     source: 'https://github.com/marmelab/admin-on-rest',
   },
   {
+    title: 'Flow Dashboard - Personal data for quantified self & habit tracking',
+    author: 'Jeremy Gordon',
+    img: 'images/showcase/flow.png',
+    link: 'http://flowdash.co',
+    source: 'https://github.com/onejgordon/flow-dashboard',
+  },
+  {
+    title: 'Serif.nu - Course planning for Northwestern University',
+    author: 'Joon Park',
+    img: 'images/showcase/serif-nu.png',
+    link: 'https://serif.nu',
+    source: 'https://github.com/Joonpark13/serif.nu',
+  },
+  {
     title: 'Cloudcraft',
     author: 'Cloudcraft',
     img: 'images/showcase/cloudcraft.png',
@@ -109,10 +123,10 @@ const appList = [
     link: 'https://chrome.google.com/webstore/detail/apirequestio-capture/aeojbjinmmhjenohjehcidmappiodhjm',
   },
   {
-    title: 'SlimChess - Play Instant Chess Online Games on the Go',
+    title: 'SlimChess - Instant Chess Games on the Go',
     author: 'Larry Xu',
     img: 'images/showcase/slimchess.png',
-    link: 'https://slimchess.com/now',
+    link: 'https://slimchess.com',
   },
 ];
 

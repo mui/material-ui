@@ -6,6 +6,7 @@ import {assert} from 'chai';
 import AppBar, {getStyles} from './AppBar';
 import getMuiTheme from '../styles/getMuiTheme';
 import IconButton from '../IconButton';
+import FlatButton from '../FlatButton';
 
 describe('<AppBar />', () => {
   const muiTheme = getMuiTheme();
@@ -92,12 +93,27 @@ describe('<AppBar />', () => {
     });
   });
 
-  it('renders iconElementRight', () => {
-    const wrapper = shallowWithContext(
-      <AppBar iconElementRight={<span className="icon" />} />
-    );
+  describe('iconElementRight', () => {
+    it('renders the node', () => {
+      const wrapper = shallowWithContext(
+        <AppBar iconElementRight={<span className="icon" />} />
+      );
 
-    assert.strictEqual(wrapper.find('.icon').length, 1, 'should contain iconElementRight');
+      assert.strictEqual(wrapper.find('.icon').length, 1, 'should contain iconElementRight');
+    });
+
+    it('renders the FlatButton with a correct style', () => {
+      const wrapper = shallowWithContext(
+        <AppBar iconElementRight={<FlatButton><div /></FlatButton>} />
+      );
+
+      assert.strictEqual(
+
+        Object.keys(wrapper.find(FlatButton).get(0).props.style).length > 1,
+        true,
+        'should add some properties to the style'
+      );
+    });
   });
 
   describe('onLeftIconButtonTouchTap', () => {

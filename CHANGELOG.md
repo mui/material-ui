@@ -1,9 +1,81 @@
 ## HEAD
 
+##### Component Fixes / Enhancements
+
+- [AppBar] Add test for iconElementRight gets FlatButton (#6362) @agamrafaeli
+- [Drawer] Allowing percentages width (#6315) @janzenz
+- [DropDownMenu] Expose targetOrigin and anchorOrigin properties (#6370) @qin9smile
+- [EnhancedTextArea] Fixes height bug for IE11 (#6418) @mmrtnz
+- [GridTile] Add a subtitleStyle property (#6421) @ichi0g0y
+- [ListItem] Add isKeyboardFocused prop (#6369) @samdroid-apps
+- [TextField] Fix wrapped hintText rendering outside of container (#6305) @pancho111203
+- [ToolbarGroup] Add more tests for other child components (#6423) @ibekavac
+
+##### Docs
+
+- [ROADMAP] Add a link to the next documentation (b0461d944ccaee877358cad7173d2a9fbba19edf) @oliviertassinari
+- [docs] Add Electrode to related projects (#6441) @mbrookes
+- [docs] Add related project material-ui-scrollable-tabs (#6429) @shawnmcknight
+- [docs] Show how to change the RadioButton color (133da2f10592cf5d26c76248840b790783623886) @oliviertassinari
+- [Showcase] Add Flow Dashboard to showcase (#6380) @onejgordon
+- [Showcase] Update Slimchess Url (#6348) @larrxu
+- [Showcase] Add Serif.nu to showcase (#6399) @Joonpark13
+- [TableRow] Fix typo in comment (#6428) @beaudry
+
+##### Core
+
+- [npm] Upgrade dependencies (#6343) @oliviertassinari
+
+## 0.17.1
+
+###### _Mar 12, 2017_
+
+A big thanks to the 20 contributors who made this release possible.
+
+##### Component Fixes / Enhancements
+
+- [Chip] Add containerElement property (#6237) @blmarket
+- [DatePicker] Add option to hide date display (#6161) @dhoward
+- [EnhancedButton] Speed up unmount (#6164) @fzaninotto
+- [EnhancedSwitch] Remove dead "toggled" property (#6182) @Shahrukh-Zindani
+- [FlatButton] Add fullWidth property (#6135) @Shahrukh-Zindani
+- [FloatingActionButton] Fix disabledColor warning in console (#6178) @Shahrukh-Zindani
+- [MenuItem] Add an anchorOrigin property for the nested items (#6079) @skylerfenn
+- [Menu] Fix disabled MenuItem with props.menuItemStyle (#6203) @tomchentw
+- [LinearProgress] Reduce delay before indeterminate animation begins (#6230) @lawrence-yu
+- [SelectField] Fix TouchRipple effect when SelectField is disabled (#6286) @solkaz
+- [SelectField][DropDownMenu] Prevent label from resizing parents (#6200) @JessThrysoee
+- [SelectField][DropDownMenu] Support multi select (#6165) @JessThrysoee
+- [TextField] sync height with shadow when `rowsMax` changed (#6297) @seasick
+- [Theme] Move borderRadius into a theme constant (#6233) @samdroid-apps
+- [Toolbar] Allow node to be used in text property (#6282) @oliviertassinari
+
+##### Docs
+
+- [Button] Expose disableTouchRipple (#6234) @oshalygin
+- [FlatButton] Add className property (#6148) @Shahrukh-Zindani
+- [ListItem] Documents containerElement, changes ref to use callback (#6204) @lourd
+- [Showcase] Add SlimChess to showcase (#6225) @larrxu
+- [docs] Add onTouchTap documentation for FlatButton (#6147) @Shahrukh-Zindani
+- [docs] Add onTouchTap documentation for FloatingActionButton (#6172) @Shahrukh-Zindani
+- [docs] Add onTouchTap documentation for IconButton (#6174) @Shahrukh-Zindani
+- [docs] Add onTouchTap documentation for RaisedButton (#6171) @Shahrukh-Zindani
+- [docs] Add explanation for using font icon in a local project (#6198) @Shahrukh-Zindani
+- [docs] Add documentation for containerElement in FlatButon (#6210) @Shahrukh-Zindani
+- [docs] Add documentation for containerElement in RaisedButon (#6199) @Shahrukh-Zindani
+- [docs] Update usage.md (#6207) @dhruvdutt
+- [docs] Add a link to clarify the use of font icons in IconButton (#6197) @Shahrukh-Zindani
+- [docs] Update ROADMAP.md (#6319) @antmdvs
+
+##### Core
+
+- [issue] Update the webpackbin link (18e9c494e0c5c331b1e949856f2dbe8c77b62c77) @oliviertassinari
+
+
 ## 0.17.0
 ###### _Feb 12, 2017_
 
-A big thanks to the 17 contributors who are making this release possible.
+A big thanks to the 17 contributors who made this release possible.
 
 ##### Breaking Changes
 - [core] Upgrade react-tap-event-plugin and react peer dependency (#6057) @rosskevin
@@ -41,7 +113,7 @@ We have upgraded the peer dependency of Material-UI. You gonna need:
 ## 0.16.7
 ###### _Jan 15, 2017_
 
-A big thanks to the 20 contributors who are making this release possible.
+A big thanks to the 20 contributors who made this release possible.
 
 ##### Component Fixes / Enhancements
 

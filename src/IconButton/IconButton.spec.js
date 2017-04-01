@@ -1,16 +1,21 @@
 /* eslint-env mocha */
-import React from 'react';
-import {shallow} from 'enzyme';
+import React, {PropTypes} from 'react';
+import {mount, shallow} from 'enzyme';
 import {assert} from 'chai';
 import IconButton from './IconButton';
 import FontIcon from '../FontIcon';
 import getMuiTheme from '../styles/getMuiTheme';
+import TouchRipple from '../internal/TouchRipple';
 
 const dummy = <div />;
 
 describe('<IconButton />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
+  const mountWithContext = (node) => mount(node, {
+    context: {muiTheme},
+    childContextTypes: {muiTheme: PropTypes.object},
+  });
 
   it('renders an enhanced button', () => {
     const wrapper = shallowWithContext(
@@ -70,6 +75,20 @@ describe('<IconButton />', () => {
       wrapper.simulate('mouseEnter');
 
       assert.include(wrapper.props().style, hoveredStyle);
+    });
+  });
+  describe('prop: disabled', () => {
+    it('should disable the ripple effect', () => {
+      const wrapper = mountWithContext(
+        <IconButton disabled={true} />
+      );
+      assert.strictEqual(wrapper.find(TouchRipple).length, 0, 'should not contain a TouchRipple descendent');
+    });
+    it('should not disable the ripple effect if false', () => {
+      const wrapper = mountWithContext(
+        <IconButton disabled={false} />
+      );
+      assert.strictEqual(wrapper.find(TouchRipple).length, 1, 'should contain a TouchRipple descendent');
     });
   });
 });

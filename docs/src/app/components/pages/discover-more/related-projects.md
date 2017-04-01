@@ -15,6 +15,9 @@ A Formsy compatibility wrapper for Material-UI form components.
 Addon for storybook.
 - [crema](https://bitbucket.org/pinturic/crema/) CReMa: Cordova React Material-UI.
 - [babel-plugin-material-ui](https://github.com/umidbekkarimov/babel-plugin-material-ui) Babel plugin to cherry-pick used material-ui modules.
+- [material-ui-scrollable-tabs](https://github.com/STORIS/material-ui-scrollable-tabs) Extension of Material-UI `Tabs` component implementing [scrollable](https://material.io/guidelines/components/tabs.html#tabs-types-of-tabs) behavior.
+- [Electrode](http://www.electrode.io/docs/build_with_material_ui.html) A platform for building universal 
+React/Node.js applications.
 
 ### Complementary Projects
 
