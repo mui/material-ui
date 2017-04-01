@@ -24,7 +24,7 @@ export default class TextField extends Component {
      */
     className: PropTypes.string,
     /**
-     * If `true`, the input will be disabled.
+     * Disabled attribute of the `<Input />` element. If `true`, the input will be disabled.
      */
     disabled: PropTypes.bool,
     /**
@@ -36,7 +36,7 @@ export default class TextField extends Component {
      */
     id: PropTypes.string,
     /**
-     * The CSS class name of the input element.
+     * The CSS class name of the `<Input />` element.
      */
     inputClassName: PropTypes.string,
     /**
@@ -52,15 +52,19 @@ export default class TextField extends Component {
      */
     labelClassName: PropTypes.string,
     /**
+     * Name attribute of the `<Input />` element.
+     */
+    name: PropTypes.string,
+    /**
      * Whether the label should be displayed as required (asterisk).
      */
     required: PropTypes.bool,
     /**
-     * Type of the input element. It should be a valid HTML5 input type.
+     * Type attribute of the `<Input />` element. It should be a valid HTML5 input type.
      */
     type: PropTypes.string,
     /**
-     * The input value, required for a controlled component.
+     * Value attribute of the `<Input />` element, required for a controlled component.
      */
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   };
@@ -89,6 +93,7 @@ export default class TextField extends Component {
       inputProps,
       label,
       labelClassName,
+      name,
       required,
       type,
       value,
@@ -110,6 +115,7 @@ export default class TextField extends Component {
         <Input
           className={inputClassName}
           value={value}
+          name={name}
           type={type}
           disabled={disabled}
           {...inputProps}
