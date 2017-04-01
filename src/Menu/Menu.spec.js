@@ -203,22 +203,24 @@ describe('<Menu />', () => {
       it('should not set style on list when element.clientHeight > list.clientHeight', () => {
         elementForHandleEnter.clientHeight = MENU_LIST_HEIGHT + 1;
         instance.handleEnter(elementForHandleEnter);
-        expect(menuListSpy.style).not.to.have.property('paddingRight');
-        expect(menuListSpy.style).not.to.have.property('width');
+        assert.strictEqual(menuListSpy.style.paddingRight, undefined);
+        assert.strictEqual(menuListSpy.style.width, undefined);
       });
 
       it('should not set style on list when element.clientHeight == list.clientHeight', () => {
         elementForHandleEnter.clientHeight = MENU_LIST_HEIGHT;
         instance.handleEnter(elementForHandleEnter);
-        expect(menuListSpy.style).not.to.have.property('paddingRight');
-        expect(menuListSpy.style).not.to.have.property('width');
+        assert.strictEqual(menuListSpy.style.paddingRight, undefined);
+        assert.strictEqual(menuListSpy.style.width, undefined);
       });
 
       it('should not set style on list when element.clientHeight < list.clientHeight', () => {
+        assert.strictEqual(menuListSpy.style.paddingRight, undefined);
+        assert.strictEqual(menuListSpy.style.width, undefined);
         elementForHandleEnter.clientHeight = MENU_LIST_HEIGHT - 1;
         instance.handleEnter(elementForHandleEnter);
-        expect(menuListSpy.style).to.have.property('paddingRight');
-        expect(menuListSpy.style).to.have.property('width');
+        assert.notStrictEqual(menuListSpy.style.paddingRight, undefined);
+        assert.notStrictEqual(menuListSpy.style.width, undefined);
       });
     });
   });
