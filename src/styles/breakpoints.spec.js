@@ -34,5 +34,9 @@ describe('createBreakpoints', () => {
       assert.strictEqual(breakpoints.only('md'),
         '@media (min-width:960px) and (max-width:1279px)');
     });
+
+    it('on xl should call up', () => {
+      assert.strictEqual(breakpoints.only('xl'), '@media (min-width:1920px)');
+    });
   });
 });
