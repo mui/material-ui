@@ -17,3 +17,5 @@ node_modules
 # Editor files
 .idea
 .vscode
+
+.nyc_output
