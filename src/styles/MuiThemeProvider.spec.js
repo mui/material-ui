@@ -89,9 +89,11 @@ describe('<MuiThemeProvider />', () => {
 
       themeObj = { themeObjProperty: 'woof' };
       styleManagerObj = { styleManagerObjProperty: 'woof' };
-      stub(MuiThemeProvider, 'createDefaultContext').returns({
-        theme: themeObj,
-        styleManager: styleManagerObj,
+      stub(MuiThemeProvider, 'createDefaultContext', () => {
+        return {
+          theme: themeObj,
+          styleManager: styleManagerObj,
+        };
       });
     });
 
