@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { spy, stub } from 'sinon';
-import { assert, expect } from 'chai';
+import { assert } from 'chai';
 import reactDomUtil from 'react-dom';
 import { createShallow, createMount } from 'src/test-utils';
 import Menu, { styleSheet } from './Menu';
