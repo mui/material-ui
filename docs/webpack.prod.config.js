@@ -2,9 +2,10 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const webpackBaseConfig = require('./webpackBaseConfig');
 const dllManifest = require('./build/dll.manifest.json');
 
-module.exports = {
+module.exports = Object.assign({}, webpackBaseConfig, {
   context: path.resolve(__dirname),
   entry: {
     main: [
@@ -51,7 +52,7 @@ module.exports = {
       'material-ui-icons': path.resolve(__dirname, '../packages/material-ui-icons/src'),
     },
   },
-  plugins: [
+  plugins: webpackBaseConfig.plugins.concat([
     new webpack.DllReferencePlugin({
       context: '.',
       manifest: dllManifest,
@@ -69,5 +70,5 @@ module.exports = {
         NODE_ENV: JSON.stringify('production'),
       },
     }),
-  ],
-};
+  ]),
+});

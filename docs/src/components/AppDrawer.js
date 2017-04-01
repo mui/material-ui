@@ -15,7 +15,7 @@ import AppDrawerNavItem from 'docs/src/components/AppDrawerNavItem';
 export const styleSheet = createStyleSheet('AppDrawer', (theme) => {
   return {
     paper: {
-      width: '250px',
+      width: 250,
       backgroundColor: theme.palette.background.paper,
     },
     title: {
@@ -105,7 +105,14 @@ export default class AppDrawer extends Component {
         <div className={classes.nav}>
           <Toolbar>
             <Link className={classes.title} to="/" onClick={this.props.onRequestClose}>
-              <Text type="title">Material UI</Text>
+              <Text type="title" gutterBottom>
+                Material UI
+              </Text>
+              {process.env.MATERIAL_UI_VERSION ? (
+                <Text type="caption">
+                  {`(v${process.env.MATERIAL_UI_VERSION})`}
+                </Text>
+              ) : null}
             </Link>
             <Divider absolute />
           </Toolbar>
