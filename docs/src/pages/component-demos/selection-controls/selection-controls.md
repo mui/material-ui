@@ -1,5 +1,5 @@
 ---
-components: FormControl, FormGroup, FormLabel, RadioGroup,
+components: FormControl, FormGroup, FormLabel, RadioGroup, Checkbox
 ---
 
 # Selection Controls
@@ -42,6 +42,6 @@ On/off switches toggle the state of a single settings option. The option that th
 
 {{demo='pages/component-demos/selection-controls/Switches.js'}}
 
-`Switch` can also be with a `label`.
+`Switch` can also be used with a `label`.
 {{demo='pages/component-demos/selection-controls/SwitchLabels.js'}}
 

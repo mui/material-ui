@@ -8,7 +8,7 @@ Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| accent | bool | false |  |
+| accent | bool | false | If `true`, the AppBar will use the theme's accent color. |
 | children | node |  | The content of the component. |
 | className | string |  | The CSS class name of the root element. |
 

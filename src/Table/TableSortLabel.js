@@ -79,7 +79,7 @@ export default function TableSortLabel(props, context) {
 
 TableSortLabel.propTypes = {
   /**
-   * If set to true, will have the active styling (should be true for the sorted column).
+   * If `true`, will have the active styling (should be true for the sorted column).
    */
   active: PropTypes.bool,
   /**

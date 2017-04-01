@@ -32,9 +32,12 @@ export default class FormControl extends Component {
      */
     className: PropTypes.string,
     /**
-     * Whether the label should be displayed in an error state.
+     * If `true`, the label should be displayed in an error state.
      */
     error: PropTypes.bool,
+    /**
+     * If `true`, the label will indicate that the input is required.
+     */
     required: PropTypes.bool,
   };
 

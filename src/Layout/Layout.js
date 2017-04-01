@@ -200,14 +200,14 @@ Layout.propTypes = {
   className: PropTypes.string,
   /**
    * The component used for the root node.
-   * Either a string to use a DOM element or a ReactElement.
+   * Either a string to use a DOM element or a component.
    */
   component: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.func,
   ]),
   /**
-   * It true, the component will have the flex *container* behavior.
+   * If `true`, the component will have the flex *container* behavior.
    * You should be wrapping *items* with a *container*.
    */
   container: PropTypes.bool,
@@ -243,7 +243,7 @@ Layout.propTypes = {
   xl: PropTypes.oneOf(GRID_SIZES), // eslint-disable-line react/sort-prop-types
   /**
    * Defines the `align-items` style property.
-   * It's applied for all the screen sizes.
+   * It's applied for all screen sizes.
    */
   align: PropTypes.oneOf([ // eslint-disable-line react/sort-prop-types
     'flex-start',
@@ -253,7 +253,7 @@ Layout.propTypes = {
   ]),
   /**
    * Defines the `flex-direction` style property.
-   * It's applied for all the screen sizes.
+   * It is applied for all screen sizes.
    */
   direction: PropTypes.oneOf([ // eslint-disable-line react/sort-prop-types
     'row',
@@ -268,7 +268,7 @@ Layout.propTypes = {
   gutter: PropTypes.oneOf(GUTTERS), // eslint-disable-line react/sort-prop-types
   /**
    * Defines the `justify-content` style property.
-   * It's applied for all the screen sizes.
+   * It is applied for all screen sizes.
    */
   justify: PropTypes.oneOf([ // eslint-disable-line react/sort-prop-types
     'flex-start',
@@ -279,7 +279,7 @@ Layout.propTypes = {
   ]),
   /**
    * Defines the `flex-wrap` style property.
-   * It's applied for all the screen sizes.
+   * It's applied for all screen sizes.
    */
   wrap: PropTypes.oneOf([ // eslint-disable-line react/sort-prop-types
     'nowrap',

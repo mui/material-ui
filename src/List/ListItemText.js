@@ -70,7 +70,7 @@ ListItemText.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If true, the children will be indented by 72px.
+   * If `true`, the children will be indented by 72px.
    * This is useful if there is no left avatar or left icon.
    */
   inset: PropTypes.bool,

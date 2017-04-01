@@ -146,14 +146,14 @@ export default class Button extends Component {
     compact: PropTypes.bool,
     /**
      * The component used for the root node.
-     * Either a string to use a DOM element or a ReactElement.
+     * Either a string to use a DOM element or a component.
      */
     component: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
     ]),
     /**
-     * If true, will use the theme's contrast color.
+     * If `true`, the button will use the theme's contrast color.
      */
     contrast: PropTypes.bool,
     /**

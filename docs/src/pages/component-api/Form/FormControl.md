@@ -10,7 +10,7 @@ Props
 |:-----|:-----|:--------|:------------|
 | children | node |  | The contents of the `FormControl`. |
 | className | string |  | The CSS class name of the root element. |
-| error | bool | false | Whether the label should be displayed in an error state. |
-| required | bool | false |  |
+| error | bool | false | If `true`, the label should be displayed in an error state. |
+| required | bool | false | If `true`, the label will indicate that the input is required. |
 
 Any other properties supplied will be spread to the root element.

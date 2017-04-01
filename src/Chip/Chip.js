@@ -174,11 +174,11 @@ Chip.propTypes = {
    */
   avatar: PropTypes.node,
   /**
-   * CSS `className` of the root element.
+   * The CSS `className` of the root element.
    */
   className: PropTypes.string,
   /**
-   * CSS `className` of the delete icon element.
+   * The CSS `className` of the delete icon element.
    */
   deleteIconClassName: PropTypes.string,
   /**
@@ -186,7 +186,7 @@ Chip.propTypes = {
    */
   label: PropTypes.node,
   /**
-   * CSS `className` of the label.
+   * The CSS `className` of the label.
    */
   labelClassName: PropTypes.string,
   /**

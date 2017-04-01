@@ -91,7 +91,7 @@ export default class Input extends Component {
     className: PropTypes.string,
     /**
      * The component used for the root node.
-     * Either a string to use a DOM element or a ReactElement.
+     * Either a string to use a DOM element or a component.
      */
     component: PropTypes.oneOfType([
       PropTypes.string,
@@ -105,6 +105,9 @@ export default class Input extends Component {
      * If `true`, the input will not have an underline.
      */
     disableUnderline: PropTypes.bool,
+    /**
+     * If `true`, the input will indicate an error.
+     */
     error: PropTypes.bool,
     /**
      * The CSS class name of the input element.
@@ -134,6 +137,10 @@ export default class Input extends Component {
      * Type of the input element. It should be a valid HTML5 input type.
      */
     type: PropTypes.string,
+    /**
+     * If `true`, the input will have an underline.
+     */
+    underline: PropTypes.bool,
     /**
      * The input value, required for a controlled component.
      */

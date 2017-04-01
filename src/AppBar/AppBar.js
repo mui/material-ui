@@ -30,6 +30,9 @@ export const styleSheet = createStyleSheet('MuiAppBar', (theme) => {
 
 export default class AppBar extends Component {
   static propTypes = {
+    /**
+     * If `true`, the AppBar will use the theme's accent color.
+     */
     accent: PropTypes.bool,
     /**
      * The content of the component.

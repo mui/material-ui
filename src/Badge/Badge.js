@@ -86,7 +86,7 @@ export default function Badge(props, context) {
 
 Badge.propTypes = {
   /**
-   * If true, the badge will use the accent badge colors.
+   * If `true`, the badge will use the accent badge colors.
    */
   accent: PropTypes.bool,
   /**
@@ -106,7 +106,7 @@ Badge.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If true, the badge will use the primary badge colors.
+   * If `true`, the badge will use the primary badge colors.
    */
   primary: PropTypes.bool,
 };

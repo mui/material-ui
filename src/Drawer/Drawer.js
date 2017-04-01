@@ -67,7 +67,7 @@ export default class Drawer extends Component {
      */
     className: PropTypes.string,
     /**
-     * If set to true, the drawer will dock itself
+     * If `true`, the drawer will dock itself
      * and will no longer slide in with an overlay.
      */
     docked: PropTypes.bool,
@@ -88,7 +88,7 @@ export default class Drawer extends Component {
      */
     onRequestClose: PropTypes.func,
     /**
-     * If true, the `Drawer` is open.
+     * If `true`, the `Drawer` is open.
      */
     open: PropTypes.bool,
     /**

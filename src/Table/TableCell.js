@@ -92,7 +92,7 @@ TableCell.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If set to true, will use more compact cell padding to accommodate more content.
+   * If `true`, will use more compact cell padding to accomodate more content.
    */
   compact: PropTypes.bool,
   /**
@@ -100,7 +100,7 @@ TableCell.propTypes = {
    */
   disablePadding: PropTypes.bool,
   /**
-   * If set to true, will align content to the right hand side.
+   * If `true`, will align content to the right hand side.
    */
   numeric: PropTypes.bool,
 };

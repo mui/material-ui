@@ -16,10 +16,19 @@ export const styleSheet = createStyleSheet('MuiListItemAvatar', () => {
   };
 });
 
+/**
+ * `<ListItemAvatar>` is a simple wrapper to apply the `dense` mode styles to `Avatar`.
+ *
+ * ```
+ * <ListItemAvatar>
+ *   <Avatar>
+ * </ListItemAvatar>
+ * ```
+ */
 export default function ListItemAvatar(props, context) {
   if (!context.dense) {
-    warning(false, `Material-UI: <ListItemAvatar/> is a simple wrapper for the dense mode.
-      You do not need it.`);
+    warning(false, `Material-UI: <ListItemAvatar> is a simple wrapper to apply the dense styles 
+      to Avatar. You do not need it.`);
     return props.children;
   }
 
@@ -37,6 +46,9 @@ export default function ListItemAvatar(props, context) {
 }
 
 ListItemAvatar.propTypes = {
+  /**
+   * The content of the component, normally `Avatar`.
+   */
   children: PropTypes.element.isRequired,
   /**
    * The CSS class name of the root element.

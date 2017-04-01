@@ -46,7 +46,7 @@ export const styleSheet = createStyleSheet('MuiDialog', (theme) => {
 });
 
 /**
- * Dialogs are overlayed modal paper based components with a backdrop.
+ * Dialogs are overlaid modal paper based components with a backdrop.
  *
  * ```jsx
  * <Dialog>
@@ -102,7 +102,7 @@ export default class Dialog extends Component {
      */
     onBackdropClick: PropTypes.func,
     /**
-     * Callback fired before the dialog is entering.
+     * Callback fired before the dialog enters.
      */
     onEnter: PropTypes.func,
     /**
@@ -118,7 +118,7 @@ export default class Dialog extends Component {
      */
     onEscapeKeyUp: PropTypes.func, // eslint-disable-line react/sort-prop-types
     /**
-     * Callback fired before the dialog is exiting.
+     * Callback fired before the dialog exits.
      */
     onExit: PropTypes.func,
     /**
@@ -134,7 +134,7 @@ export default class Dialog extends Component {
      */
     onRequestClose: PropTypes.func,
     /**
-     * Set to true to open the Dialog.
+     * If `true`, the Dialog is open.
      */
     open: PropTypes.bool,
     /**

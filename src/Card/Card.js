@@ -31,6 +31,9 @@ Card.propTypes = {
    * The CSS class name of the root element.
    */
   className: PropTypes.string,
+  /**
+   * If `true`, the card is given a raised elevation.
+   */
   raised: PropTypes.bool,
 };
 

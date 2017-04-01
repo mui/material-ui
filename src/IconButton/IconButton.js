@@ -110,7 +110,7 @@ export default function IconButton(props, context) {
 
 IconButton.propTypes = {
   /**
-   * If true, will use the theme's accent color.
+   * If `true`, will use the theme's accent color.
    */
   accent: PropTypes.bool,
   /**
@@ -128,7 +128,7 @@ IconButton.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If true, will use the theme's contrast color.
+   * If `true`, will use the theme's contrast color.
    */
   contrast: PropTypes.bool,
   /**

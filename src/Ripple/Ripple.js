@@ -79,9 +79,22 @@ export default class Ripple extends Component {
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
+    /**
+     * If `true`, the ripple has a pulsates,
+     * typically indicating the keyboard focus state of an element.
+     */
     pulsate: PropTypes.bool,
+    /**
+     * Diameter of the ripple.
+     */
     rippleSize: PropTypes.number.isRequired,
+    /**
+     * Horizontal position of the ripple center.
+     */
     rippleX: PropTypes.number.isRequired,
+    /**
+     * Vertical position of the ripple center.
+     */
     rippleY: PropTypes.number.isRequired,
   };
 
