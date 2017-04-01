@@ -40,6 +40,11 @@ This virtual DOM is provided by [jsdom](https://github.com/tmpvar/jsdom).
 It's here to make sure components work together.
 Here is an [example](https://github.com/callemall/material-ui/blob/a3719a203515b1ad683e62085cb5065318c0c87f/test/integration/Menu.spec.js#L29) with the `<Menu />` component.
 
+#### Create HTML coverage reports
+`npm run test:coverage:html`
+
+When running this command you should get under `coverage/index.html` a full coverage report in HTML format. This is created using [Istanbul](http://istanbul-js.org)'s HTML reporter and gives good data such as line, branch and function coverage. 
+
 ### DOM API level
 
 #### Run the mocha test suite using the karma runner.
