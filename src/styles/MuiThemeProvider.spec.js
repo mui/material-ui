@@ -1,5 +1,6 @@
 // @flow weak
 
+import { stub } from 'sinon';
 import { assert } from 'chai';
 import { create } from 'jss';
 import path from 'path';
@@ -9,6 +10,7 @@ import { createStyleManager } from 'jss-theme-reactor';
 import React from 'react';
 import htmlLooksLike from 'html-looks-like';
 import { renderToString } from 'react-dom/server';
+import { createMount } from 'src/test-utils';
 import { createMuiTheme } from 'src/styles/theme';
 import Button from 'src/Button';
 import MuiThemeProvider from './MuiThemeProvider';
@@ -67,6 +69,94 @@ describe('<MuiThemeProvider />', () => {
         'utf-8',
       );
       assert.strictEqual(styleManager.sheetsToString(), trim(expected));
+    });
+  });
+
+  describe('react component', () => {
+    let mount;
+    let child;
+    let wrapper;
+    let instance;
+
+    let themeObj;
+    let styleManagerObj;
+
+    before(() => {
+      mount = createMount();
+      child = <div />;
+      wrapper = mount(<MuiThemeProvider>{child}</MuiThemeProvider>);
+      instance = wrapper.instance();
+
+      themeObj = { themeObjProperty: 'woof' };
+      styleManagerObj = { styleManagerObjProperty: 'woof' };
+      stub(MuiThemeProvider, 'createDefaultContext', () => {
+        return {
+          theme: themeObj,
+          styleManager: styleManagerObj,
+        };
+      });
+    });
+
+    after(() => {
+      mount.cleanUp();
+    });
+
+    describe('setProps() with different styleManager', () => {
+      before(() => {
+        MuiThemeProvider.createDefaultContext.reset();
+        wrapper.setProps({});
+      });
+
+      it('should call createDefaultContext() exactly once', () => {
+        assert.strictEqual(MuiThemeProvider.createDefaultContext.callCount, 1);
+      });
+
+      it('should set instance.theme to createDefaultContext().theme', () => {
+        assert.property(instance, 'theme');
+        assert.property(instance.theme, 'themeObjProperty');
+        assert.strictEqual(instance.theme.themeObjProperty, themeObj.themeObjProperty);
+      });
+
+      it('should set instance.styleManager to createDefaultContext().theme', () => {
+        assert.property(instance, 'styleManager');
+        assert.property(instance.styleManager, 'styleManagerObjProperty');
+        assert.strictEqual(instance.styleManager.styleManagerObjProperty,
+                                                styleManagerObj.styleManagerObjProperty);
+      });
+    });
+
+    describe('setProps() with same styleManager', () => {
+      let updateThemeStub;
+      let nextProps;
+
+      before(() => {
+        MuiThemeProvider.createDefaultContext.reset();
+        updateThemeStub = stub();
+        instance.styleManager.updateTheme = updateThemeStub;
+        nextProps = {
+          styleManager: instance.styleManager,
+          theme: {
+            themeProperty: 'woof',
+          },
+        };
+        wrapper.setProps(nextProps);
+      });
+
+      it('should not call createDefaultContext() at all', () => {
+        assert.strictEqual(MuiThemeProvider.createDefaultContext.callCount, 0);
+      });
+
+      it('should set instance.theme to nextProps.theme', () => {
+        assert.strictEqual(instance.theme, nextProps.theme);
+      });
+
+      it('should call instance.styleManager.updateTheme() exactly once', () => {
+        assert.strictEqual(instance.styleManager.updateTheme.callCount, 1);
+      });
+
+      it('should call instance.styleManager.updateTheme() with instance.theme', () => {
+        assert.strictEqual(instance.styleManager.updateTheme.calledWith(instance.theme), true);
+      });
     });
   });
 });
