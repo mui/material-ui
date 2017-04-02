@@ -31,6 +31,9 @@ export const styleSheet = createStyleSheet('AppDrawer', (theme) => {
       alignItems: 'flex-start',
       justifyContent: 'center',
     },
+    anchor: {
+      color: theme.palette.text.secondary,
+    },
   };
 });
 
@@ -99,6 +102,7 @@ export default class AppDrawer extends Component {
 
   render() {
     const classes = this.context.styleManager.render(styleSheet);
+    const GITHUB_RELEASE_BASE_URL = 'https://github.com/callemall/material-ui/releases/tag/';
 
     return (
       <Drawer
@@ -116,11 +120,13 @@ export default class AppDrawer extends Component {
               </Text>
             </Link>
             {process.env.MATERIAL_UI_VERSION ? (
-              <a href={`https://github.com/callemall/material-ui/releases/tag/v${process.env.MATERIAL_UI_VERSION}`}>
-                <Text type="caption">
-                  {`(v${process.env.MATERIAL_UI_VERSION})`}
-                </Text>
-              </a>
+              <Text type="caption">
+                (<a
+                className={classes.anchor}
+                href={`${GITHUB_RELEASE_BASE_URL}v${process.env.MATERIAL_UI_VERSION}`}>
+                  {`v${process.env.MATERIAL_UI_VERSION}`}
+                </a>)
+              </Text>
             ) : null}
             <Divider absolute />
           </Toolbar>
