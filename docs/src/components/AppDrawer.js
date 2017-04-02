@@ -19,11 +19,20 @@ export const styleSheet = createStyleSheet('AppDrawer', (theme) => {
       backgroundColor: theme.palette.background.paper,
     },
     title: {
+      display: 'block',
       color: theme.palette.text.secondary,
       '&:hover': {
         textDecoration: 'none',
         color: theme.palette.primary[500],
       },
+    },
+    toolbar: {
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      justifyContent: 'center',
+    },
+    anchor: {
+      color: theme.palette.text.secondary,
     },
   };
 });
@@ -93,6 +102,7 @@ export default class AppDrawer extends Component {
 
   render() {
     const classes = this.context.styleManager.render(styleSheet);
+    const GITHUB_RELEASE_BASE_URL = 'https://github.com/callemall/material-ui/releases/tag/';
 
     return (
       <Drawer
@@ -103,17 +113,20 @@ export default class AppDrawer extends Component {
         docked={this.props.docked}
       >
         <div className={classes.nav}>
-          <Toolbar>
+          <Toolbar className={classes.toolbar}>
             <Link className={classes.title} to="/" onClick={this.props.onRequestClose}>
               <Text type="title" gutterBottom>
                 Material UI
               </Text>
-              {process.env.MATERIAL_UI_VERSION ? (
-                <Text type="caption">
-                  {`(v${process.env.MATERIAL_UI_VERSION})`}
-                </Text>
-              ) : null}
             </Link>
+            {process.env.MATERIAL_UI_VERSION ? (
+              <a
+                className={classes.anchor}
+                href={`${GITHUB_RELEASE_BASE_URL}v${process.env.MATERIAL_UI_VERSION}`}
+              >
+                <Text type="caption">{`v${process.env.MATERIAL_UI_VERSION}`}</Text>
+              </a>
+            ) : null}
             <Divider absolute />
           </Toolbar>
           {renderNavItems(this.props, this.props.routes[0])}
