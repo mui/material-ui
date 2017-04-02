@@ -15,7 +15,7 @@ module.exports = Object.assign({}, webpackBaseConfig, {
   output: {
     path: path.join(__dirname, 'build'),
     filename: 'bundle.js',
-    publicPath: 'build/',
+    publicPath: '/build/',
   },
   module: {
     rules: [
