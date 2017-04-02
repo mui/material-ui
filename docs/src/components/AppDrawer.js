@@ -122,8 +122,9 @@ export default class AppDrawer extends Component {
             {process.env.MATERIAL_UI_VERSION ? (
               <Text type="caption">
                 (<a
-                className={classes.anchor}
-                href={`${GITHUB_RELEASE_BASE_URL}v${process.env.MATERIAL_UI_VERSION}`}>
+                  className={classes.anchor}
+                  href={`${GITHUB_RELEASE_BASE_URL}v${process.env.MATERIAL_UI_VERSION}`}
+                >
                   {`v${process.env.MATERIAL_UI_VERSION}`}
                 </a>)
               </Text>
