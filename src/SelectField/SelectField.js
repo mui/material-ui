@@ -205,7 +205,6 @@ class SelectField extends Component {
       onFocus,
       onBlur,
       onChange,
-      onClose,
       selectionRenderer,
       value,
       ...other
@@ -245,7 +244,6 @@ class SelectField extends Component {
           autoWidth={autoWidth}
           value={value}
           onChange={onChange}
-          onClose={onClose}
           maxHeight={maxHeight}
           menuProps={menuProps}
           multiple={multiple}
