@@ -22,7 +22,7 @@ describe('<Button />', () => {
       <Button>Hello World</Button>,
     );
     assert.strictEqual(wrapper.is('ButtonBase'), true, 'should be a <button>');
-    assert.strictEqual(wrapper.prop('type'), 'button',
+    assert.strictEqual(wrapper.props().type, 'button',
       'should render with the button type attribute');
   });
 
@@ -149,28 +149,28 @@ describe('<Button />', () => {
     const wrapper = shallow(
       <Button>Hello World</Button>,
     );
-    assert.strictEqual(wrapper.prop('ripple'), true, 'should set ripple to true');
+    assert.strictEqual(wrapper.props().ripple, true, 'should set ripple to true');
   });
 
   it('should pass ripple={false} to ButtonBase', () => {
     const wrapper = shallow(
       <Button disableRipple>Hello World</Button>,
     );
-    assert.strictEqual(wrapper.prop('ripple'), false, 'should set ripple to false');
+    assert.strictEqual(wrapper.props().ripple, false, 'should set ripple to false');
   });
 
   it('should have a focusRipple by default', () => {
     const wrapper = shallow(
       <Button>Hello World</Button>,
     );
-    assert.strictEqual(wrapper.prop('focusRipple'), true, 'should set focusRipple to true');
+    assert.strictEqual(wrapper.props().focusRipple, true, 'should set focusRipple to true');
   });
 
   it('should pass ripple={false} to ButtonBase', () => {
     const wrapper = shallow(
       <Button disableFocusRipple>Hello World</Button>,
     );
-    assert.strictEqual(wrapper.prop('focusRipple'), false, 'should set focusRipple to false');
+    assert.strictEqual(wrapper.props().focusRipple, false, 'should set focusRipple to false');
   });
 
   describe('server side', () => {

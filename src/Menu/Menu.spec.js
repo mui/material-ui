@@ -51,14 +51,14 @@ describe('<Menu />', () => {
 
   it('should pass `classes.entered` to the Popover for the enteredClassName', () => {
     const wrapper = shallow(<Menu />);
-    assert.strictEqual(wrapper.prop('enteredClassName'), classes.entered,
+    assert.strictEqual(wrapper.props().enteredClassName, classes.entered,
       'should be classes.entered');
   });
 
   it('should pass the instance function `getContentAnchorEl` to Popover', () => {
     const wrapper = shallow(<Menu />);
     assert.strictEqual(
-      wrapper.prop('getContentAnchorEl'),
+      wrapper.props().getContentAnchorEl,
       wrapper.instance().getContentAnchorEl,
       'should be the same function',
     );
@@ -68,7 +68,7 @@ describe('<Menu />', () => {
     const fn = () => {};
     const wrapper = shallow(<Menu onRequestClose={fn} />);
     assert.strictEqual(
-      wrapper.prop('onRequestClose'), fn, 'should be the same function',
+      wrapper.props().onRequestClose, fn, 'should be the same function',
     );
   });
 
@@ -76,15 +76,15 @@ describe('<Menu />', () => {
     const el = {};
     const wrapper = shallow(<Menu anchorEl={el} />);
     assert.strictEqual(
-      wrapper.prop('anchorEl'), el, 'should be the same object',
+      wrapper.props().anchorEl, el, 'should be the same object',
     );
   });
 
   it('should pass through the `open` prop to Popover', () => {
     const wrapper = shallow(<Menu />);
-    assert.strictEqual(wrapper.prop('open'), false, 'should have an open prop of false');
+    assert.strictEqual(wrapper.props().open, false, 'should have an open prop of false');
     wrapper.setProps({ open: true });
-    assert.strictEqual(wrapper.prop('open'), true, 'should have an open prop of true');
+    assert.strictEqual(wrapper.props().open, true, 'should have an open prop of true');
   });
 
   describe('list node', () => {

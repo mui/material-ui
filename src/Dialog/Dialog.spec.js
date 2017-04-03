@@ -41,13 +41,13 @@ describe('<Dialog />', () => {
         hideOnEscapeKeyUp={false}
       />,
     );
-    assert.strictEqual(wrapper.prop('show'), true);
-    assert.strictEqual(wrapper.prop('backdropTransitionDuration'), 100);
-    assert.strictEqual(wrapper.prop('onBackdropClick'), onBackdropClick);
-    assert.strictEqual(wrapper.prop('onEscapeKeyUp'), onEscapeKeyUp);
-    assert.strictEqual(wrapper.prop('onRequestClose'), onRequestClose);
-    assert.strictEqual(wrapper.prop('hideOnBackdropClick'), false);
-    assert.strictEqual(wrapper.prop('hideOnEscapeKeyUp'), false);
+    assert.strictEqual(wrapper.props().show, true);
+    assert.strictEqual(wrapper.props().backdropTransitionDuration, 100);
+    assert.strictEqual(wrapper.props().onBackdropClick, onBackdropClick);
+    assert.strictEqual(wrapper.props().onEscapeKeyUp, onEscapeKeyUp);
+    assert.strictEqual(wrapper.props().onRequestClose, onRequestClose);
+    assert.strictEqual(wrapper.props().hideOnBackdropClick, false);
+    assert.strictEqual(wrapper.props().hideOnEscapeKeyUp, false);
   });
 
   it('should spread custom props on the paper (dialog "root") node', () => {
@@ -89,13 +89,13 @@ describe('<Dialog />', () => {
 
   it('should not be open by default', () => {
     const wrapper = shallow(<Dialog />);
-    assert.strictEqual(wrapper.prop('show'), false, 'should pass show=false to the Modal');
+    assert.strictEqual(wrapper.props().show, false, 'should pass show=false to the Modal');
     assert.strictEqual(wrapper.find('Fade').prop('in'), false, 'should pass in=false to the Fade');
   });
 
   it('should be open by default', () => {
     const wrapper = shallow(<Dialog open />);
-    assert.strictEqual(wrapper.prop('show'), true, 'should pass show=true to the Modal');
+    assert.strictEqual(wrapper.props().show, true, 'should pass show=true to the Modal');
     assert.strictEqual(wrapper.find('Fade').prop('in'), true, 'should pass in=true to the Fade');
   });
 

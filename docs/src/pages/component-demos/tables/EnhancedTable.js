@@ -67,7 +67,11 @@ class EnhancedTableHead extends Component {
 
           {columnData.map((column) => {
             return (
-              <TableCell key={column.id} numeric={column.numeric} disablePadding={column.disablePadding}>
+              <TableCell
+                key={column.id}
+                numeric={column.numeric}
+                disablePadding={column.disablePadding}
+              >
                 <TableSortLabel
                   active={orderBy === column.id}
                   direction={order}

@@ -19,7 +19,7 @@ describe('<AppBar />', () => {
       <AppBar>Hello World</AppBar>,
     );
     assert.strictEqual(wrapper.is('Paper'), true, 'should be <Paper>');
-    assert.strictEqual(wrapper.prop('elevation'), 4, 'should render with a 4dp shadow');
+    assert.strictEqual(wrapper.props().elevation, 4, 'should render with a 4dp shadow');
   });
 
   it('should render with the appBar class and primary', () => {

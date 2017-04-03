@@ -33,7 +33,7 @@ describe('<SvgIcon />', () => {
       <SvgIcon data-test="hello" viewBox="0 0 32 32">{path}</SvgIcon>,
     );
     assert.strictEqual(wrapper.prop('data-test'), 'hello', 'should be spread on the svg');
-    assert.strictEqual(wrapper.prop('viewBox'), '0 0 32 32', 'should override the viewBox');
+    assert.strictEqual(wrapper.props().viewBox, '0 0 32 32', 'should override the viewBox');
   });
 
   it('should render with the user and SvgIcon classes', () => {
