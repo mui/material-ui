@@ -175,6 +175,42 @@ class AutoComplete extends Component {
      * Override the inline-styles of AutoComplete's TextField element.
      */
     textFieldStyle: PropTypes.object,
+    /**
+     * Override AutoComplete TextField's floatingLabelFocusStyle prop.
+     */
+    floatingLabelFocusStyle: PropTypes.object,
+    /**
+     * Override AutoComplete TextField's floatingLabelStyle prop.
+     */
+    floatingLabelShrinkStyle: PropTypes.object,
+    /**
+     * Override AutoComplete TextField's floatingLabelStyle prop.
+     */
+    floatingLabelStyle: PropTypes.object,
+    /**
+     * Override AutoComplete TextField's hintStyle prop.
+     */
+    hintStyle: PropTypes.object,
+    /**
+     * Override AutoComplete TextField's inputStyle prop.
+     */
+    inputStyle: PropTypes.object,
+    /**
+     * Override AutoComplete TextField's textareaStyle prop.
+     */
+    textareaStyle: PropTypes.object,
+    /**
+     * Override AutoComplete TextField's underlineDisabledStyle prop.
+     */
+    underlineDisabledStyle: PropTypes.object,
+    /**
+     * Override AutoComplete TextField's underlineFocusStyle prop.
+     */
+    underlineFocusStyle: PropTypes.object,
+    /**
+     * Override AutoComplete TextField's underlineStyle prop.
+     */
+    underlineStyle: PropTypes.object,
   };
 
   static defaultProps = {
@@ -397,6 +433,15 @@ class AutoComplete extends Component {
       maxSearchResults,
       menuCloseDelay, // eslint-disable-line no-unused-vars
       textFieldStyle,
+      floatingLabelFocusStyle,
+      floatingLabelShrinkStyle,
+      floatingLabelStyle,
+      hintStyle,
+      inputStyle,
+      textareaStyle,
+      underlineDisabledStyle,
+      underlineFocusStyle,
+      underlineStyle,
       menuStyle,
       menuProps,
       listStyle,
@@ -518,6 +563,15 @@ class AutoComplete extends Component {
           multiLine={false}
           errorStyle={errorStyle}
           style={textFieldStyle}
+          floatingLabelFocusStyle={floatingLabelFocusStyle}
+          floatingLabelShrinkStyle={floatingLabelShrinkStyle}
+          floatingLabelStyle={floatingLabelStyle}
+          hintStyle={hintStyle}
+          inputStyle={inputStyle}
+          textareaStyle={textareaStyle}
+          underlineDisabledStyle={underlineDisabledStyle}
+          underlineFocusStyle={underlineFocusStyle}
+          underlineStyle={underlineStyle}
         />
         <Popover
           style={Object.assign({}, styles.popover, popoverStyle)}
