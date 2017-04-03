@@ -83,7 +83,7 @@ export default class BottomNavigationButton extends Component {
      */
     selected: PropTypes.bool,
     /**
-     * If `true`, the BottomNavigationButton will show his label.
+     * If `true`, the BottomNavigationButton will show its label.
      */
     showLabel: PropTypes.bool,
   };

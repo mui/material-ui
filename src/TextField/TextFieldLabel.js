@@ -30,7 +30,7 @@ export const styleSheet = createStyleSheet('MuiTextFieldLabel', (theme) => {
 
 export default function TextFieldLabel(props, context) {
   const {
-    animated,
+    disableAnimation,
     children,
     className: classNameProp,
     shrink,
@@ -39,7 +39,7 @@ export default function TextFieldLabel(props, context) {
   const classes = context.styleManager.render(styleSheet);
 
   const className = classNames(classes.root, {
-    [classes.animated]: animated,
+    [classes.animated]: !disableAnimation,
     [classes.shrink]: shrink,
   }, classNameProp);
 
@@ -51,7 +51,6 @@ export default function TextFieldLabel(props, context) {
 }
 
 TextFieldLabel.propTypes = {
-  animated: PropTypes.bool,
   /**
    * The contents of the `TextFieldLabel`.
    */
@@ -60,6 +59,10 @@ TextFieldLabel.propTypes = {
    * The CSS class name of the root element.
    */
   className: PropTypes.string,
+  /**
+   * If `true` the transition animation is disabled.
+   */
+  disableAnimation: PropTypes.bool,
   /**
    * Whether the label should be displayed in an error state.
    */
@@ -76,7 +79,7 @@ TextFieldLabel.propTypes = {
 };
 
 TextFieldLabel.defaultProps = {
-  animated: true,
+  disableAnimation: false,
   shrink: false,
 };
 

@@ -26,7 +26,7 @@ describe('<Popover />', () => {
     it('should render a Modal with an invisible backdrop as the root node', () => {
       const wrapper = shallow(<Popover />);
       assert.strictEqual(wrapper.is('Modal'), true, 'should be a Modal');
-      assert.strictEqual(wrapper.prop('backdropVisible'), false,
+      assert.strictEqual(wrapper.prop('backdropInvisible'), true,
         'should have an invisible backdrop');
     });
 

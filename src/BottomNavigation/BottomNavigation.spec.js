@@ -26,7 +26,7 @@ describe('<BottomNavigation />', () => {
 
   it('should render with the root class', () => {
     const wrapper = shallow(
-      <BottomNavigation showLabel>
+      <BottomNavigation showLabels>
         <BottomNavigationButton icon={icon} />
       </BottomNavigation>,
     );
@@ -36,7 +36,7 @@ describe('<BottomNavigation />', () => {
 
   it('should render with the user and root classes', () => {
     const wrapper = shallow(
-      <BottomNavigation showLabel className="woof">
+      <BottomNavigation showLabels className="woof">
         <BottomNavigationButton icon={icon} />
       </BottomNavigation>,
     );
@@ -47,7 +47,7 @@ describe('<BottomNavigation />', () => {
   it('should pass selected prop to children', () => {
     const wrapper = shallow(
       <BottomNavigation
-        showLabel
+        showLabels
         index={1}
       >
         <BottomNavigationButton icon={icon} />
@@ -61,7 +61,7 @@ describe('<BottomNavigation />', () => {
   it('should overwrite parent showLabel prop', () => {
     const wrapper = shallow(
       <BottomNavigation
-        showLabel
+        showLabels
         index={1}
       >
         <BottomNavigationButton icon={icon} />
@@ -76,7 +76,7 @@ describe('<BottomNavigation />', () => {
     const handleChange = spy();
     const wrapper = mount(
       <BottomNavigation
-        showLabel
+        showLabels
         index={0}
         onChange={handleChange}
       >

@@ -8,7 +8,7 @@ import RestoreIcon from 'material-ui-icons/Restore';
 import FavoriteIcon from 'material-ui-icons/Favorite';
 import LocationOnIcon from 'material-ui-icons/LocationOn';
 
-const styleSheet = createStyleSheet('SimpleBottomNavigation', () => ({
+const styleSheet = createStyleSheet('BottomNavigation', () => ({
   root: {
     width: 500,
   },
@@ -32,7 +32,7 @@ export default class SimpleBottomNavigation extends Component {
         <BottomNavigation
           index={index}
           onChange={this.handleChange}
-          showLabel
+          showLabels
         >
           <BottomNavigationButton
             label="Recents"

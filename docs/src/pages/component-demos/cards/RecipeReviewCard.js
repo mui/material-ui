@@ -66,7 +66,7 @@ export default class RecipeReviewCard extends Component {
               of frozen peas along with the mussels, if you like.
             </Text>
           </CardContent>
-          <CardActions actionSpacing={false}>
+          <CardActions disableActionSpacing>
             <IconButton>
               <FavoriteIcon />
             </IconButton>

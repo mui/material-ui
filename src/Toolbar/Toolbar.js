@@ -26,13 +26,13 @@ export default function Toolbar(props, context) {
   const {
     children,
     className: classNameProp,
-    gutters,
+    disableGutters,
     ...other
   } = props;
 
   const classes = context.styleManager.render(styleSheet);
   const className = classNames(classes.root, {
-    [classes.gutters]: gutters,
+    [classes.gutters]: !disableGutters,
   }, classNameProp);
 
   return (
@@ -52,13 +52,13 @@ Toolbar.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If set to true, enables gutter padding.
+   * If `true`, disables gutter padding.
    */
-  gutters: PropTypes.bool,
+  disableGutters: PropTypes.bool,
 };
 
 Toolbar.defaultProps = {
-  gutters: true,
+  disableGutters: false,
 };
 
 Toolbar.contextTypes = {

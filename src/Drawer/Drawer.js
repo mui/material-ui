@@ -139,7 +139,7 @@ export default class Drawer extends Component {
       >
         <Paper
           elevation={docked ? 0 : elevation}
-          rounded={false}
+          square
           className={classNames(classes.paper, paperClassName)}
         >
           {children}

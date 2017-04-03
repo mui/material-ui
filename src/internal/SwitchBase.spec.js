@@ -39,6 +39,20 @@ describe('<SwitchBase />', () => {
       'should be a checkbox input');
   });
 
+  it('should have a ripple by default', () => {
+    const wrapper = shallow(
+      <SwitchBase />,
+    );
+    assert.strictEqual(wrapper.prop('disableRipple'), false, 'should set disableRipple to false');
+  });
+
+  it('should pass disableRipple={true} to IconButton', () => {
+    const wrapper = shallow(
+      <SwitchBase disableRipple />,
+    );
+    assert.strictEqual(wrapper.prop('disableRipple'), true, 'should set disableRipple to true');
+  });
+
   // IT SHOULD RENDER
   // WITH A CUSTOM ICON!!!
 

@@ -39,12 +39,10 @@ export default class AppBar extends Component {
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
-    primary: PropTypes.bool,
   };
 
   static defaultProps = {
     accent: false,
-    primary: true,
   };
 
   static contextTypes = {
@@ -56,7 +54,6 @@ export default class AppBar extends Component {
       accent,
       children,
       className: classNameProp,
-      primary,
       ...other
     } = this.props;
 
@@ -64,13 +61,13 @@ export default class AppBar extends Component {
 
     const className = classNames({
       [classes.appBar]: true,
-      [classes.primary]: primary && !accent,
+      [classes.primary]: !accent,
       [classes.accent]: accent,
     }, classNameProp);
 
     return (
       <Paper
-        rounded={false}
+        square
         elevation={4}
         className={className}
         {...other}

@@ -54,7 +54,7 @@ export default function TableCell(props, context) {
     compact,
     checkbox,
     numeric,
-    padding,
+    disablePadding,
     ...other
   } = props;
   const { table, styleManager } = context;
@@ -66,7 +66,7 @@ export default function TableCell(props, context) {
     [classes.numeric]: numeric,
     [classes.compact]: compact,
     [classes.checkbox]: checkbox,
-    [classes.padding]: padding,
+    [classes.padding]: !disablePadding,
     [classes.head]: table && table.head,
     [classes.footer]: table && table.footer,
   }, classNameProp);
@@ -92,24 +92,24 @@ TableCell.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If set to true, will use more compact cell padding to accomodate more content.
+   * If set to true, will use more compact cell padding to accommodate more content.
    */
   compact: PropTypes.bool,
+  /**
+   * If `true`, left/right cell padding will be disabled.
+   */
+  disablePadding: PropTypes.bool,
   /**
    * If set to true, will align content to the right hand side.
    */
   numeric: PropTypes.bool,
-  /**
-   * If set to false, will disable left/right cell padding.
-   */
-  padding: PropTypes.bool,
 };
 
 TableCell.defaultProps = {
   checkbox: false,
   compact: false,
   numeric: false,
-  padding: true,
+  disablePadding: false,
 };
 
 TableCell.contextTypes = {

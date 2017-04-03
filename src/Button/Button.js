@@ -161,14 +161,18 @@ export default class Button extends Component {
      */
     disabled: PropTypes.bool,
     /**
+     * If `true`, the  keyboard focus ripple will be disabled.
+     * `ripple` must also be true.
+     */
+    disableFocusRipple: PropTypes.bool,
+    /**
+     * If `true`, the ripple effect will be disabled.
+     */
+    disableRipple: PropTypes.bool,
+    /**
      * If `true`, well use floating action button styling.
      */
     fab: PropTypes.bool,
-    /**
-     * If `true`, the button will have a keyboard focus ripple.
-     * Ripple must also be true.
-     */
-    focusRipple: PropTypes.bool,
     /**
      * The URL to link to when the button is clicked.
      * If set, an `a` element will be used as the root node.
@@ -183,10 +187,6 @@ export default class Button extends Component {
      */
     raised: PropTypes.bool,
     /**
-     * If `true`, the button will have a ripple.
-     */
-    ripple: PropTypes.bool,
-    /**
      * @ignore
      */
     type: PropTypes.string,
@@ -199,10 +199,10 @@ export default class Button extends Component {
     contrast: false,
     disabled: false,
     fab: false,
-    focusRipple: true,
+    disableFocusRipple: false,
     primary: false,
     raised: false,
-    ripple: true,
+    disableRipple: false,
     type: 'button',
   };
 
@@ -218,6 +218,8 @@ export default class Button extends Component {
       compact,
       contrast,
       disabled,
+      disableFocusRipple,
+      disableRipple,
       fab,
       primary,
       raised,
@@ -244,6 +246,8 @@ export default class Button extends Component {
       <ButtonBase
         className={className}
         disabled={disabled}
+        focusRipple={!disableFocusRipple}
+        ripple={!disableRipple}
         keyboardFocusedClassName={classes.keyboardFocused}
         {...other}
       >

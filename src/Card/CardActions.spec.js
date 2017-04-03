@@ -39,7 +39,7 @@ describe('<CardActions />', () => {
 
   it('should not pass the actionSpacing class to children', () => {
     const wrapper = shallow(
-      <CardActions actionSpacing={false}>
+      <CardActions disableActionSpacing>
         <div id="child1" />
         <div id="child2" />
       </CardActions>,

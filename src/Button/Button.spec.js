@@ -145,6 +145,34 @@ describe('<Button />', () => {
       'should have the accent class');
   });
 
+  it('should have a ripple by default', () => {
+    const wrapper = shallow(
+      <Button>Hello World</Button>,
+    );
+    assert.strictEqual(wrapper.prop('ripple'), true, 'should set ripple to true');
+  });
+
+  it('should pass ripple={false} to ButtonBase', () => {
+    const wrapper = shallow(
+      <Button disableRipple>Hello World</Button>,
+    );
+    assert.strictEqual(wrapper.prop('ripple'), false, 'should set ripple to false');
+  });
+
+  it('should have a focusRipple by default', () => {
+    const wrapper = shallow(
+      <Button>Hello World</Button>,
+    );
+    assert.strictEqual(wrapper.prop('focusRipple'), true, 'should set focusRipple to true');
+  });
+
+  it('should pass ripple={false} to ButtonBase', () => {
+    const wrapper = shallow(
+      <Button disableFocusRipple>Hello World</Button>,
+    );
+    assert.strictEqual(wrapper.prop('focusRipple'), false, 'should set focusRipple to false');
+  });
+
   describe('server side', () => {
     after(() => {
       renderToString.cleanUp();
