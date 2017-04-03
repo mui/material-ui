@@ -141,6 +141,10 @@ class DropDownMenu extends Component {
      */
     menuItemStyle: PropTypes.object,
     /**
+     * Define all event callback implemented by user to component DropDownMenu
+     */
+    menuProps: PropTypes.object,
+    /**
      * Overrides the styles of `Menu` when the `DropDownMenu` is displayed.
      */
     menuStyle: PropTypes.object,
@@ -365,13 +369,14 @@ class DropDownMenu extends Component {
       labelStyle,
       listStyle,
       maxHeight,
+      menuItemStyle,
+      menuProps,
       menuStyle: menuStyleProp,
+      selectedMenuItemStyle,
       selectionRenderer,
+      style,
       onClose, // eslint-disable-line no-unused-vars
       openImmediately, // eslint-disable-line no-unused-vars
-      menuItemStyle,
-      selectedMenuItemStyle,
-      style,
       underlineStyle,
       value,
       iconButton,
@@ -475,6 +480,7 @@ class DropDownMenu extends Component {
             onChange={this.handleChange}
             menuItemStyle={menuItemStyle}
             selectedMenuItemStyle={selectedMenuItemStyle}
+            {...menuProps}
           >
             {children}
           </Menu>
