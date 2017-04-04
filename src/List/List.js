@@ -53,7 +53,7 @@ export default class List extends Component {
       PropTypes.func,
     ]),
     dense: PropTypes.bool,
-    padding: PropTypes.bool,
+    disablePadding: PropTypes.bool,
     /**
      * @ignore
      */
@@ -64,7 +64,7 @@ export default class List extends Component {
   static defaultProps = {
     component: 'div',
     dense: false,
-    padding: true,
+    disablePadding: false,
   };
 
   static contextTypes = {
@@ -85,7 +85,7 @@ export default class List extends Component {
     const {
       className: classNameProp,
       component: ComponentProp,
-      padding,
+      disablePadding,
       children,
       dense,
       subheader,
@@ -95,7 +95,7 @@ export default class List extends Component {
     const classes = this.context.styleManager.render(styleSheet);
     const className = classNames(classes.root, {
       [classes.dense]: dense,
-      [classes.padding]: padding,
+      [classes.padding]: !disablePadding,
       [classes.subheader]: subheader,
     }, classNameProp);
 

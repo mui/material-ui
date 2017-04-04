@@ -130,19 +130,19 @@ describe('<Drawer />', () => {
     });
 
     it('should start closed', () => {
-      assert.strictEqual(wrapper.prop('show'), false, 'should not show the modal');
+      assert.strictEqual(wrapper.props().show, false, 'should not show the modal');
       assert.strictEqual(wrapper.find(Slide).prop('in'), false, 'should not transition in');
     });
 
     it('should open', () => {
       wrapper.setProps({ open: true });
-      assert.strictEqual(wrapper.prop('show'), true, 'should show the modal');
+      assert.strictEqual(wrapper.props().show, true, 'should show the modal');
       assert.strictEqual(wrapper.find(Slide).prop('in'), true, 'should transition in');
     });
 
     it('should close', () => {
       wrapper.setProps({ open: false });
-      assert.strictEqual(wrapper.prop('show'), false, 'should not show the modal');
+      assert.strictEqual(wrapper.props().show, false, 'should not show the modal');
       assert.strictEqual(wrapper.find(Slide).prop('in'), false, 'should not transition in');
     });
   });

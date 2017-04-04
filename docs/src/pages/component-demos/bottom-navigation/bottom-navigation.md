@@ -6,7 +6,7 @@ components: BottomNavigation, BottomNavigationButton
 
 [Bottom navigation](https://material.google.com/components/bottom-navigation.html) bars make it easy to explore and switch between top-level views in a single tap.
 
-## Simple Bottom Navigation
+## Bottom Navigation
 When there are only **three** actions, display both icons and text labels at all times.
 
 {{demo='pages/component-demos/bottom-navigation/SimpleBottomNavigation.js'}}

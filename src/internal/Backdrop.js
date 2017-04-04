@@ -37,11 +37,14 @@ export default class Backdrop extends Component {
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
-    visible: PropTypes.bool,
+    /**
+     * If `true`, the backdrop is invisible.
+     */
+    invisible: PropTypes.bool,
   };
 
   static defaultProps = {
-    visible: true,
+    invisible: false,
   };
 
   static contextTypes = {
@@ -52,13 +55,13 @@ export default class Backdrop extends Component {
     const {
       children,
       className,
-      visible,
+      invisible,
       ...other
     } = this.props;
 
     const classes = this.context.styleManager.render(styleSheet);
     const backdropClass = classNames(classes.root, {
-      [classes.invisible]: !visible,
+      [classes.invisible]: invisible,
     }, className);
     return (
       <div

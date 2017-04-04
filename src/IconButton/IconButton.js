@@ -70,6 +70,7 @@ export default function IconButton(props, context) {
     className,
     contrast,
     disabled,
+    disableRipple,
     iconClassName: iconClassNameProp,
     ...other
   } = props;
@@ -85,6 +86,7 @@ export default function IconButton(props, context) {
       centerRipple
       keyboardFocusedClassName={classes.keyboardFocused}
       disabled={disabled}
+      ripple={!disableRipple}
       ref={buttonRef}
       {...other}
     >
@@ -134,20 +136,20 @@ IconButton.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
+   * If `true`, the ripple will be disabled.
+   */
+  disableRipple: PropTypes.bool,
+  /**
    * The CSS class name of the icon element if child is a string.
    */
   iconClassName: PropTypes.string,
-  /**
-   * If false, the ripple effect will be disabled.
-   */
-  ripple: PropTypes.bool,
 };
 
 IconButton.defaultProps = {
   accent: false,
   contrast: false,
   disabled: false,
-  ripple: true,
+  disableRipple: false,
 };
 
 IconButton.contextTypes = {

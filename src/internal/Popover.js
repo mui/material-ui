@@ -388,7 +388,7 @@ export default class Popover extends Component {
     return (
       <Modal
         show={open}
-        backdropVisible={false}
+        backdropInvisible
         onRequestClose={onRequestClose}
       >
         <Transition

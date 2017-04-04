@@ -17,7 +17,7 @@ describe('<TouchRipple />', () => {
   it('should render a <ReactTransitionGroup> component', () => {
     const wrapper = shallow(<TouchRipple />);
     assert.strictEqual(wrapper.is('ReactTransitionGroup'), true, 'should be a transition group');
-    assert.strictEqual(wrapper.prop('component'), 'span', 'should be pass a span as the component');
+    assert.strictEqual(wrapper.props().component, 'span', 'should be pass a span as the component');
   });
 
   it('should have the root class', () => {

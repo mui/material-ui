@@ -96,7 +96,7 @@ describe('<Modal />', () => {
 
     it('should let the user disable backdrop click triggering onRequestClose', () => {
       const onRequestClose = spy();
-      wrapper.setProps({ onRequestClose, hideOnBackdropClick: false });
+      wrapper.setProps({ onRequestClose, ignoreBackdropClick: true });
 
       const handler = wrapper.instance().handleBackdropClick;
 
@@ -194,7 +194,7 @@ describe('<Modal />', () => {
 
       before(() => {
         wrapper = mount(
-          <Modal show backdrop={false} id="modal">
+          <Modal show disableBackdrop id="modal">
             <div id="container">
               <h1 id="heading">Hello</h1>
             </div>

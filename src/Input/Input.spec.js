@@ -19,6 +19,7 @@ describe('<Input />', () => {
     const wrapper = shallow(<Input />);
     assert.strictEqual(wrapper.is('div'), true, 'should be a <input>');
     assert.strictEqual(wrapper.hasClass(classes.wrapper), true, 'should have the wrapper class');
+    assert.strictEqual(wrapper.hasClass(classes.inkbar), true, 'should have the inkbar class');
   });
 
   it('should render an <input /> inside the div', () => {
@@ -27,6 +28,7 @@ describe('<Input />', () => {
     assert.strictEqual(input.is('input'), true, 'should be a <input>');
     assert.strictEqual(input.prop('type'), 'text', 'should pass the text type prop');
     assert.strictEqual(input.hasClass(classes.input), true, 'should have the input class');
+    assert.strictEqual(input.hasClass(classes.underline), true, 'should have the underline class');
     assert.strictEqual(input.prop('aria-required'), undefined,
       'should not have the area-required prop');
   });
@@ -37,6 +39,16 @@ describe('<Input />', () => {
     assert.strictEqual(input.is('input'), true, 'should be a <input>');
     assert.strictEqual(input.hasClass(classes.input), true, 'should have the input class');
     assert.strictEqual(input.hasClass(classes.disabled), true, 'should have the disabled class');
+  });
+
+  it('should  disabled the underline', () => {
+    const wrapper = shallow(<Input disableUnderline />);
+    const input = wrapper.find('input');
+    assert.strictEqual(wrapper.hasClass(classes.inkbar), false, 'should not have the inkbar class');
+    assert.strictEqual(input.is('input'), true, 'should be a <input>');
+    assert.strictEqual(input.hasClass(classes.input), true, 'should have the input class');
+    assert.strictEqual(input.hasClass(classes.underline),
+      false, 'should not have the underline class');
   });
 
   it('should fire event callbacks', () => {

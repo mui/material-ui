@@ -71,13 +71,13 @@ export default class Dialog extends Component {
      */
     fullScreen: PropTypes.bool,
     /**
-     * If `true`, clicking the backdrop will fire the `onRequestClose` callback.
+     * If `true`, clicking the backdrop will not fire the `onRequestClose` callback.
      */
-    hideOnBackdropClick: PropTypes.bool,
+    ignoreBackdropClick: PropTypes.bool,
     /**
-     * If `true`, hitting escape will fire the `onRequestClose` callback.
+     * If `true`, hitting escape will not fire the `onRequestClose` callback.
      */
-    hideOnEscapeKeyUp: PropTypes.bool,
+    ignoreEscapeKeyUp: PropTypes.bool,
     /**
      * Duration of the animation when the element is entering the screen.
      */
@@ -98,7 +98,7 @@ export default class Dialog extends Component {
       'md',
     ]),
     /**
-     * Callback fires when the backdrop is clicked on.
+     * Callback fired when the backdrop is clicked on.
      */
     onBackdropClick: PropTypes.func,
     /**
@@ -149,8 +149,8 @@ export default class Dialog extends Component {
 
   static defaultProps = {
     fullScreen: false,
-    hideOnBackdropClick: true,
-    hideOnEscapeKeyUp: true,
+    ignoreBackdropClick: false,
+    ignoreEscapeKeyUp: false,
     enterTransitionDuration: duration.enteringScreen,
     leaveTransitionDuration: duration.leavingScreen,
     maxWidth: 'sm',
@@ -167,8 +167,8 @@ export default class Dialog extends Component {
       children,
       className,
       fullScreen,
-      hideOnBackdropClick,
-      hideOnEscapeKeyUp,
+      ignoreBackdropClick,
+      ignoreEscapeKeyUp,
       enterTransitionDuration,
       leaveTransitionDuration,
       maxWidth,
@@ -214,8 +214,8 @@ export default class Dialog extends Component {
       <Modal
         className={classNames(classes.modal, className)}
         backdropTransitionDuration={open ? enterTransitionDuration : leaveTransitionDuration}
-        hideOnBackdropClick={hideOnBackdropClick}
-        hideOnEscapeKeyUp={hideOnEscapeKeyUp}
+        ignoreBackdropClick={ignoreBackdropClick}
+        ignoreEscapeKeyUp={ignoreEscapeKeyUp}
         onBackdropClick={onBackdropClick}
         onEscapeKeyUp={onEscapeKeyUp}
         onRequestClose={onRequestClose}

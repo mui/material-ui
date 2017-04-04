@@ -24,7 +24,7 @@ describe('<Portal />', () => {
   it('should not open by default', () => {
     const wrapper = mount(<Portal><h1 className="woof">Hello</h1></Portal>);
     const instance = wrapper.instance();
-    assert.strictEqual(wrapper.prop('open'), false, 'should be false by default');
+    assert.strictEqual(wrapper.props().open, false, 'should be false by default');
     assert.strictEqual(instance.layer, null, 'should not have a layer');
   });
 

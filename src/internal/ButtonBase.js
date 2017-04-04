@@ -68,9 +68,9 @@ export default class ButtonBase extends Component {
     onTouchEnd: PropTypes.func,
     onTouchStart: PropTypes.func,
     /**
-     * If `true`, the base button will have a ripple.
+     * If `false`, the base button will not have a ripple when clicked.
      */
-    ripple: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
+    ripple: PropTypes.bool,
     role: PropTypes.string,
     tabIndex: PropTypes.string,
     type: PropTypes.string,

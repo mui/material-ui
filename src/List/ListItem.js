@@ -75,8 +75,8 @@ export default class ListItem extends Component {
      * @ignore
      */
     disabled: PropTypes.bool,
+    disableGutters: PropTypes.bool,
     divider: PropTypes.bool,
-    gutters: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -84,8 +84,8 @@ export default class ListItem extends Component {
     component: 'div',
     dense: false,
     disabled: false,
+    disableGutters: false,
     divider: false,
-    gutters: true,
   };
 
   static contextTypes = {
@@ -112,7 +112,7 @@ export default class ListItem extends Component {
       dense,
       disabled,
       divider,
-      gutters,
+      disableGutters,
       ...other
     } = this.props;
     const isDense = dense || this.context.dense || false;
@@ -124,7 +124,7 @@ export default class ListItem extends Component {
     });
 
     const className = classNames(classes.listItem, {
-      [classes.gutters]: gutters,
+      [classes.gutters]: !disableGutters,
       [classes.divider]: divider,
       [classes.disabled]: disabled,
       [classes.button]: button,

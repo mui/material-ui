@@ -33,7 +33,6 @@ export default class LabelBottomNavigation extends Component {
         <BottomNavigation
           index={index}
           onChange={this.handleChange}
-          showLabel={false}
         >
           <BottomNavigationButton
             label="Recents"

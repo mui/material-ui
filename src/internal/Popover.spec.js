@@ -26,24 +26,24 @@ describe('<Popover />', () => {
     it('should render a Modal with an invisible backdrop as the root node', () => {
       const wrapper = shallow(<Popover />);
       assert.strictEqual(wrapper.is('Modal'), true, 'should be a Modal');
-      assert.strictEqual(wrapper.prop('backdropVisible'), false,
+      assert.strictEqual(wrapper.props().backdropInvisible, true,
         'should have an invisible backdrop');
     });
 
     it('should pass onRequestClose prop to Modal', () => {
       const fn = () => {};
       const wrapper = shallow(<Popover onRequestClose={fn} />);
-      assert.strictEqual(wrapper.prop('onRequestClose'), fn,
+      assert.strictEqual(wrapper.props().onRequestClose, fn,
         'should be the onRequestClose function');
     });
 
     it('should pass open prop to Modal as `show`', () => {
       const wrapper = shallow(<Popover />);
-      assert.strictEqual(wrapper.prop('show'), false, 'should not be open');
+      assert.strictEqual(wrapper.props().show, false, 'should not be open');
       wrapper.setProps({ open: true });
-      assert.strictEqual(wrapper.prop('show'), true, 'should be open');
+      assert.strictEqual(wrapper.props().show, true, 'should be open');
       wrapper.setProps({ open: false });
-      assert.strictEqual(wrapper.prop('show'), false, 'should not be open');
+      assert.strictEqual(wrapper.props().show, false, 'should not be open');
     });
   });
 

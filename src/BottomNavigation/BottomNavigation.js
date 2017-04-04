@@ -22,7 +22,7 @@ export default function BottomNavigation(props, context) {
     className: classNameProp,
     index,
     onChange,
-    showLabel,
+    showLabels,
     ...other
   } = props;
   const classes = context.styleManager.render(styleSheet);
@@ -31,7 +31,7 @@ export default function BottomNavigation(props, context) {
   const children = Children.map(childrenProp, (child, childIndex) => {
     return cloneElement(child, {
       selected: childIndex === index,
-      showLabel: child.props.showLabel !== undefined ? child.props.showLabel : showLabel,
+      showLabel: child.props.showLabel !== undefined ? child.props.showLabel : showLabels,
       index: childIndex,
       onChange,
     });
@@ -62,10 +62,14 @@ BottomNavigation.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * If `true`, all the selected `BottomNavigationButton` will show his label.
-   * If false, only the selected `BottomNavigationButton` will show his label.
+   * If `true`, all `BottomNavigationButton`s will show their labels.
+   * By default only the selected `BottomNavigationButton` will show its labels.
    */
-  showLabel: PropTypes.bool.isRequired,
+  showLabels: PropTypes.bool,
+};
+
+BottomNavigation.defaultProps = {
+  showLabels: false,
 };
 
 BottomNavigation.contextTypes = {

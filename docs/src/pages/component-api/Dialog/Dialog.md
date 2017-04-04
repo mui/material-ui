@@ -18,12 +18,12 @@ Props
 | children | node |  | Dialog children, usually the included sub-components. |
 | className | string |  | The CSS class name of the root element. |
 | fullScreen | bool | false | If `true`, The dialog will be full-screen. |
-| hideOnBackdropClick | bool | true | If `true`, clicking the backdrop will fire the `onRequestClose` callback. |
-| hideOnEscapeKeyUp | bool | true | If `true`, hitting escape will fire the `onRequestClose` callback. |
+| ignoreBackdropClick | bool | false | If `true`, clicking the backdrop will not fire the `onRequestClose` callback. |
+| ignoreEscapeKeyUp | bool | false | If `true`, hitting escape will not fire the `onRequestClose` callback. |
 | enterTransitionDuration | number | duration.enteringScreen | Duration of the animation when the element is entering the screen. |
 | leaveTransitionDuration | number | duration.leavingScreen | Duration of the animation when the element is leaving the screen. |
 | maxWidth | enum:&nbsp;'xs'<br>&nbsp;'sm'<br>&nbsp;'md'<br> | 'sm' | Determine the max width of the dialog. The dialog width grows with the size of the screen, this property is useful on the desktop where you might need some coherent different width size across your application. |
-| onBackdropClick | function |  | Callback fires when the backdrop is clicked on. |
+| onBackdropClick | function |  | Callback fired when the backdrop is clicked on. |
 | onEnter | function |  | Callback fired before the dialog is entering. |
 | onEntering | function |  | Callback fired when the dialog is entering. |
 | onEntered | function |  | Callback fired when the dialog has entered. |

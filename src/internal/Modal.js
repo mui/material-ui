@@ -41,19 +41,17 @@ export const styleSheet = createStyleSheet('MuiModal', (theme) => {
  * Still a WIP
  */
 export default class Modal extends Component {
-
   static propTypes = {
-    /**
-     * Set to false to disable the backdrop, or true to enable it.
-     */
-    backdrop: PropTypes.bool,
     backdropClassName: PropTypes.string,
     /**
      * Pass a component class to use as the backdrop.
      */
     backdropComponent: PropTypes.func,
+    /**
+     * If `true`, the backdrop is invisible.
+     */
+    backdropInvisible: PropTypes.bool,
     backdropTransitionDuration: PropTypes.number,
-    backdropVisible: PropTypes.bool,
     /**
      * Can be used, for instance, to render a letter inside the avatar.
      */
@@ -63,13 +61,17 @@ export default class Modal extends Component {
      */
     className: PropTypes.string,
     /**
-     * If `true`, clicking the backdrop will fire the `onRequestClose` callback.
+     * If `true`, the backdrop is disabled.
      */
-    hideOnBackdropClick: PropTypes.bool,
+    disableBackdrop: PropTypes.bool,
     /**
-     * If `true`, hitting escape will fire the `onRequestClose` callback.
+     * If `true`, clicking the backdrop will not fire the `onRequestClose` callback.
      */
-    hideOnEscapeKeyUp: PropTypes.bool,
+    ignoreBackdropClick: PropTypes.bool,
+    /**
+     * If `true`, hitting escape will not fire the `onRequestClose` callback.
+     */
+    ignoreEscapeKeyUp: PropTypes.bool,
     /**
      * @ignore
      */
@@ -114,12 +116,12 @@ export default class Modal extends Component {
   };
 
   static defaultProps = {
-    backdrop: true,
     backdropComponent: Backdrop,
     backdropTransitionDuration: 300,
-    backdropVisible: true,
-    hideOnBackdropClick: true,
-    hideOnEscapeKeyUp: true,
+    backdropInvisible: false,
+    disableBackdrop: false,
+    ignoreBackdropClick: false,
+    ignoreEscapeKeyUp: false,
     modalManager,
     show: false,
   };
@@ -248,14 +250,14 @@ export default class Modal extends Component {
       const {
         onEscapeKeyUp,
         onRequestClose,
-        hideOnEscapeKeyUp,
+        ignoreEscapeKeyUp,
       } = this.props;
 
       if (onEscapeKeyUp) {
         onEscapeKeyUp(event);
       }
 
-      if (onRequestClose && hideOnEscapeKeyUp) {
+      if (onRequestClose && !ignoreEscapeKeyUp) {
         onRequestClose(event);
       }
     }
@@ -269,14 +271,14 @@ export default class Modal extends Component {
     const {
       onBackdropClick,
       onRequestClose,
-      hideOnBackdropClick,
+      ignoreBackdropClick,
     } = this.props;
 
     if (onBackdropClick) {
       onBackdropClick(event);
     }
 
-    if (onRequestClose && hideOnBackdropClick) {
+    if (onRequestClose && !ignoreBackdropClick) {
       onRequestClose(event);
     }
   };
@@ -294,7 +296,7 @@ export default class Modal extends Component {
       backdropComponent,
       backdropClassName,
       backdropTransitionDuration,
-      backdropVisible,
+      backdropInvisible,
       show,
     } = this.props;
 
@@ -308,7 +310,7 @@ export default class Modal extends Component {
         {...other}
       >
         {React.createElement(backdropComponent, {
-          visible: backdropVisible,
+          invisible: backdropInvisible,
           className: backdropClassName,
           onClick: this.handleBackdropClick,
         })}
@@ -318,13 +320,13 @@ export default class Modal extends Component {
 
   render() {
     const {
-      backdrop,
+      disableBackdrop,
       backdropComponent, // eslint-disable-line no-unused-vars
       backdropClassName, // eslint-disable-line no-unused-vars
       backdropTransitionDuration, // eslint-disable-line no-unused-vars
-      backdropVisible,
-      hideOnBackdropClick, // eslint-disable-line no-unused-vars
-      hideOnEscapeKeyUp, // eslint-disable-line no-unused-vars
+      backdropInvisible,
+      ignoreBackdropClick, // eslint-disable-line no-unused-vars
+      ignoreEscapeKeyUp, // eslint-disable-line no-unused-vars
       children,
       className,
       modalManager: modalManagerProp, // eslint-disable-line no-unused-vars
@@ -372,7 +374,7 @@ export default class Modal extends Component {
       childProps.tabIndex = tabIndex == null ? '-1' : tabIndex;
     }
 
-    if (!backdropVisible && modalChild.props.hasOwnProperty('in')) {
+    if (backdropInvisible && modalChild.props.hasOwnProperty('in')) {
       Object.keys(transitionCallbacks).forEach((key) => {
         childProps[key] = createChainedFunction(transitionCallbacks[key], modalChild.props[key]);
       });
@@ -392,7 +394,7 @@ export default class Modal extends Component {
           ref={(c) => { this.modal = c; }}
           {...other}
         >
-          {backdrop && this.renderBackdrop(backdropProps)}
+          {!disableBackdrop && this.renderBackdrop(backdropProps)}
           {modalChild}
         </div>
       </Portal>

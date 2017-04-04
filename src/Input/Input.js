@@ -101,6 +101,10 @@ export default class Input extends Component {
      * If `true`, the input will be disabled.
      */
     disabled: PropTypes.bool,
+    /**
+     * If `true`, the input will not have an underline.
+     */
+    disableUnderline: PropTypes.bool,
     error: PropTypes.bool,
     /**
      * The CSS class name of the input element.
@@ -131,10 +135,6 @@ export default class Input extends Component {
      */
     type: PropTypes.string,
     /**
-     * If set to true, the input will have an underline.
-     */
-    underline: PropTypes.bool,
-    /**
      * The input value, required for a controlled component.
      */
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -144,7 +144,7 @@ export default class Input extends Component {
     component: 'input',
     disabled: false,
     type: 'text',
-    underline: true,
+    disableUnderline: false,
   };
 
   static contextTypes = {
@@ -233,11 +233,11 @@ export default class Input extends Component {
       component: ComponentProp,
       inputClassName: inputClassNameProp,
       disabled,
+      disableUnderline,
       error: errorProp,
       onBlur, // eslint-disable-line no-unused-vars
       onFocus, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
-      underline,
       ...other
     } = this.props;
 
@@ -252,13 +252,13 @@ export default class Input extends Component {
 
     const wrapperClassName = classNames(classes.wrapper, {
       [classes.formControl]: muiFormControl,
-      [classes.inkbar]: underline,
+      [classes.inkbar]: !disableUnderline,
       [classes.focused]: this.state.focused,
       [classes.error]: error,
     }, classNameProp);
 
     const inputClassName = classNames(classes.input, {
-      [classes.underline]: underline,
+      [classes.underline]: !disableUnderline,
       [classes.disabled]: disabled,
     }, inputClassNameProp);
 

@@ -82,7 +82,7 @@ export default class AppDrawerNavItem extends Component {
       return (
         <ListItem
           className={classes.navLink}
-          gutters={false}
+          disableGutters
         >
           <Button
             component={Link}
@@ -99,7 +99,7 @@ export default class AppDrawerNavItem extends Component {
     }
 
     return (
-      <ListItem className={classes.navItem} gutters={false}>
+      <ListItem className={classes.navItem} disableGutters>
         <Button className={classes.button} onClick={this.handleClick}>
           {title}
         </Button>

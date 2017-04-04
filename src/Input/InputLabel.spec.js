@@ -30,9 +30,9 @@ describe('<InputLabel />', () => {
     assert.strictEqual(wrapper.hasClass(classes.animated), true);
   });
 
-  it('should not have the animated class with animated: false', () => {
+  it('should not have the animated class when disabled', () => {
     const wrapper = shallow(
-      <InputLabel animated={false}>Foo</InputLabel>,
+      <InputLabel disableAnimation>Foo</InputLabel>,
     );
     assert.strictEqual(wrapper.hasClass(classes.animated), false);
   });

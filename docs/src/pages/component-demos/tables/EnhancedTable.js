@@ -36,11 +36,11 @@ function createData(name, calories, fat, carbs, protein) {
 }
 
 const columnData = [
-  { id: 'name', numeric: false, padding: false, label: 'Dessert (100g serving)' },
-  { id: 'calories', numeric: true, padding: true, label: 'Calories' },
-  { id: 'fat', numeric: true, padding: true, label: 'Fat (g)' },
-  { id: 'carbs', numeric: true, padding: true, label: 'Carbs (g)' },
-  { id: 'protein', numeric: true, padding: true, label: 'Protein (g)' },
+  { id: 'name', numeric: false, disablePadding: true, label: 'Dessert (100g serving)' },
+  { id: 'calories', numeric: true, disablePadding: false, label: 'Calories' },
+  { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
+  { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
+  { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
 ];
 
 class EnhancedTableHead extends Component {
@@ -67,7 +67,11 @@ class EnhancedTableHead extends Component {
 
           {columnData.map((column) => {
             return (
-              <TableCell key={column.id} numeric={column.numeric} padding={column.padding}>
+              <TableCell
+                key={column.id}
+                numeric={column.numeric}
+                disablePadding={column.disablePadding}
+              >
                 <TableSortLabel
                   active={orderBy === column.id}
                   direction={order}
@@ -248,7 +252,7 @@ export default class EnhancedTable extends Component {
                   <TableCell checkbox>
                     <Checkbox checked={isSelected} />
                   </TableCell>
-                  <TableCell padding={false}>{n.name}</TableCell>
+                  <TableCell disablePadding>{n.name}</TableCell>
                   <TableCell numeric>{n.calories}</TableCell>
                   <TableCell numeric>{n.fat}</TableCell>
                   <TableCell numeric>{n.carbs}</TableCell>

@@ -28,7 +28,7 @@ describe('<Paper />', () => {
   });
 
   it('should disable the rounded class', () => {
-    const wrapper = shallow(<Paper rounded={false}>Hello World</Paper>);
+    const wrapper = shallow(<Paper square>Hello World</Paper>);
     assert.strictEqual(wrapper.hasClass(classes.rounded), false, 'should not be rounded');
   });
 

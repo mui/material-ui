@@ -12,7 +12,7 @@ export default function SimplePaper() {
   return (
     <div>
       <Paper style={style} />
-      <Paper style={style} rounded={false} />
+      <Paper style={style} square />
     </div>
   );
 }

@@ -18,7 +18,7 @@ Props
 | className | string |  | The CSS class name of the root element. |
 | contrast | bool | false | If true, will use the theme's contrast color. |
 | disabled | bool | false | If `true`, the button will be disabled. |
+| disableRipple | bool | false | If `true`, the ripple will be disabled. |
 | iconClassName | string |  | The CSS class name of the icon element if child is a string. |
-| ripple | bool | true | If false, the ripple effect will be disabled. |
 
 Any other properties supplied will be spread to the root element.

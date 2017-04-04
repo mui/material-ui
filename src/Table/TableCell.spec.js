@@ -24,10 +24,19 @@ describe('<TableCell />', () => {
     assert.strictEqual(wrapper.prop('data-my-prop'), 'woof', 'custom prop should be woof');
   });
 
-  it('should render with the user and root classes', () => {
+  it('should render with the user, root and padding classes', () => {
     const wrapper = shallow(<TableCell className="woof" />);
     assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.padding), true, 'should have the padding class');
+  });
+
+  it('should render with the user, root and padding classes', () => {
+    const wrapper = shallow(<TableCell className="woof" disablePadding />);
+    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.padding),
+      false, 'should not have the padding class');
   });
 
   it('should render children', () => {

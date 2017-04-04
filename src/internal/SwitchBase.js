@@ -63,6 +63,10 @@ export function createSwitch({
        * The CSS class name of the root element when disabled.
        */
       disabledClassName: PropTypes.string,
+      /**
+       * If `true`, the ripple will be disabled.
+       */
+      disableRipple: PropTypes.bool,
       icon: PropTypes.node,
       /*
        * @ignore
@@ -75,10 +79,6 @@ export function createSwitch({
        * @param {boolean} checked The `checked` value of the switch
        */
       onChange: PropTypes.func,
-      /**
-       * If false, the ripple effect will be disabled.
-       */
-      ripple: PropTypes.bool,
       /**
        * @ignore
        */
@@ -144,7 +144,6 @@ export function createSwitch({
         icon: iconProp,
         name,
         onChange, // eslint-disable-line no-unused-vars
-        ripple,
         tabIndex,
         value,
         ...other
@@ -173,7 +172,6 @@ export function createSwitch({
           buttonRef={(c) => { this.button = c; }}
           className={className}
           disabled={disabled}
-          ripple={ripple}
           tabIndex={null}
           role={undefined}
           {...other}
