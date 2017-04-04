@@ -141,10 +141,6 @@ class DropDownMenu extends Component {
      */
     menuItemStyle: PropTypes.object,
     /**
-     * Define all event callback implemented by user to component DropDownMenu
-     */
-    menuProps: PropTypes.object,
-    /**
      * Overrides the styles of `Menu` when the `DropDownMenu` is displayed.
      */
     menuStyle: PropTypes.object,
@@ -370,7 +366,6 @@ class DropDownMenu extends Component {
       listStyle,
       maxHeight,
       menuItemStyle,
-      menuProps,
       menuStyle: menuStyleProp,
       selectedMenuItemStyle,
       selectionRenderer,
@@ -480,7 +475,6 @@ class DropDownMenu extends Component {
             onChange={this.handleChange}
             menuItemStyle={menuItemStyle}
             selectedMenuItemStyle={selectedMenuItemStyle}
-            {...menuProps}
           >
             {children}
           </Menu>
