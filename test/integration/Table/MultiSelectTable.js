@@ -8,7 +8,7 @@ import {
   TableRowColumn,
 } from 'src/Table';
 
-function TableMutliSelect(props) {
+function TableMultiSelect(props) {
   return (
     <Table
       selectable={true}
@@ -38,8 +38,8 @@ function TableMutliSelect(props) {
   );
 }
 
-TableMutliSelect.propTypes = {
+TableMultiSelect.propTypes = {
   data: React.PropTypes.array,
 };
 
-export default TableMutliSelect;
+export default TableMultiSelect;
