@@ -16,12 +16,15 @@ const styles = {
 export default class SelectFieldExampleMenuClose extends Component {
   state = {
     value: 1,
-    closed: 0
+    closed: 0,
+    selected: 0
   };
 
   handleChange = (event, index, value) => this.setState({value: value});
 
   handleClose = () => this.setState({closed: this.state.closed++});
+
+  handleSelectionRenderer = (value) => this.setState({selected: value});
 
   render() {
     return (
@@ -29,8 +32,7 @@ export default class SelectFieldExampleMenuClose extends Component {
         <SelectField
           floatingLabelText="Frequency"
           value={this.state.value}
-          onChange={this.handleChange}
-          onClose={this.handleClose}
+          menuEvents={{onchange: this.handleChange, onClose: this.handleClose}}
         >
           <MenuItem value={1} primaryText="Never" />
           <MenuItem value={2} primaryText="Every Night" />
@@ -41,6 +43,9 @@ export default class SelectFieldExampleMenuClose extends Component {
         <br/>
         <span id="spanClose">
           {'This SelectField was closed ' + this.state.closed + ' times.'}
+        </span>
+        <span id="spanSelect">
+          {'The value selected is ' + this.state.selected + '.'}
         </span>
       </div>
     );

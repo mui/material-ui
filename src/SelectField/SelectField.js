@@ -92,13 +92,14 @@ class SelectField extends Component {
      */
     maxHeight: PropTypes.number,
     /**
+     * Define all events callback implemented by user to component DropDownMenu
+     * Events: onClose, onChange e selectionRenderer
+     */
+    menuEvents: PropTypes.object,
+    /**
      * Override the inline-styles of menu items.
      */
     menuItemStyle: PropTypes.object,
-    /**
-     * Define all events callback implemented by user to component DropDownMenu
-     */
-    menuProps: PropTypes.object,
     /**
      * Override the inline-styles of the underlying `DropDownMenu` element.
      */
@@ -200,7 +201,7 @@ class SelectField extends Component {
       errorText,
       listStyle,
       maxHeight,
-      menuProps,
+      menuEvents,
       menuStyle,
       onFocus,
       onBlur,
@@ -243,11 +244,11 @@ class SelectField extends Component {
           listStyle={listStyle}
           autoWidth={autoWidth}
           value={value}
-          onChange={onChange}
+          onChange={onChange || (menuEvents ? menuEvents.onChange : menuEvents)}
+          onClose={menuEvents ? menuEvents.onClose : menuEvents}
           maxHeight={maxHeight}
-          menuProps={menuProps}
           multiple={multiple}
-          selectionRenderer={selectionRenderer}
+          selectionRenderer={selectionRenderer || (menuEvents ? menuEvents.selectionRenderer : menuEvents)}
         >
           {children}
         </DropDownMenu>

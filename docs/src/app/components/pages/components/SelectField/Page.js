@@ -7,7 +7,7 @@ import MarkdownElement from '../../../MarkdownElement';
 
 import selectFieldReadmeText from './README';
 import SelectFieldExampleSimple from './ExampleSimple';
-import SelectFieldExampleMenuClose from './ExampleMenuClose';
+import SelectFieldExampleMenuEvents from './ExampleMenuEvents';
 import selectFieldExampleSimpleCode from '!raw!./ExampleSimple';
 import SelectFieldLongMenuExample from './ExampleLongMenu';
 import selectFieldLongMenuExampleCode from '!raw!./ExampleLongMenu';
@@ -37,9 +37,9 @@ const SelectFieldPage = () => (
     </CodeExample>
     <CodeExample
       title="Nullable select"
-      code={SelectFieldExampleMenuClose}
+      code={SelectFieldExampleMenuEvents}
     >
-      <SelectFieldExampleMenuClose/>
+      <SelectFieldExampleMenuEvents/>
     </CodeExample>
     <CodeExample
       title="Nullable select"
