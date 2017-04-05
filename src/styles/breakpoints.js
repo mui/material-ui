@@ -29,7 +29,7 @@ export default function createBreakpoints(
 
   function down(name) {
     const value = breakpoints[name] || name;
-    return `@media (max-width:${value}${unit})`;
+    return `@media (max-width:${value - 1}${unit})`;
   }
 
   function between(start, end) {

@@ -18,7 +18,7 @@ describe('createBreakpoints', () => {
 
   describe('down', () => {
     it('should work', () => {
-      assert.strictEqual(breakpoints.down('md'), '@media (max-width:960px)');
+      assert.strictEqual(breakpoints.down('md'), '@media (max-width:959px)');
     });
   });
 
