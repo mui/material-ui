@@ -3,7 +3,7 @@
 import React from 'react';
 import { spy, stub } from 'sinon';
 import { assert } from 'chai';
-import reactDomUtil from 'react-dom';
+import ReactDOM from 'react-dom';
 import { createShallow, createMount } from 'src/test-utils';
 import Menu, { styleSheet } from './Menu';
 
@@ -141,7 +141,7 @@ describe('<Menu />', () => {
         focus: menuListFocusSpy,
       };
 
-      findDOMNodeStub = stub(reactDomUtil, 'findDOMNode', (arg) => {
+      findDOMNodeStub = stub(ReactDOM, 'findDOMNode', (arg) => {
         if (arg === SELECTED_ITEM_KEY) {
           return {
             focus: selectedItemFocusSpy,
