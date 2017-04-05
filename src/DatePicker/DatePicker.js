@@ -119,7 +119,7 @@ class DatePicker extends Component {
      */
     onTouchTap: PropTypes.func,
     /**
-     * If true sets the datepicker to open to year selection first
+     * If true sets the datepicker to open to year selection first.
      */
     openToYearSelection: PropTypes.bool,
     /**
