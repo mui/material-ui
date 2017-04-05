@@ -315,19 +315,19 @@ class Tabs extends Component {
 
   render() {
     const {
-      buttonClassName,
-      centered,
+      buttonClassName, // eslint-disable-line no-unused-vars
+      centered, // eslint-disable-line no-unused-vars
       children: childrenProp,
-      className: classNameProp,
+      className: classNameProp, // eslint-disable-line no-unused-vars
       fullWidth,
       index,
       indicatorClassName,
       indicatorColor,
       onChange,
-      scrollable,
-      scrollButtons: scrollButtonsProp,
+      scrollable, // eslint-disable-line no-unused-vars
+      scrollButtons: scrollButtonsProp, // eslint-disable-line no-unused-vars
       textColor,
-      width,
+      width, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
 
