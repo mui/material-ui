@@ -96,5 +96,40 @@ describe('transitions', () => {
       transitions.create('size', { fffds: 'value' });
       assert.strictEqual(consoleErrorStub.callCount, 1, 'Wrong number of calls of warning()');
     });
+
+    it('should return zero when not passed arguments', () => {
+      const zeroHeightDuration = transitions.getAutoHeightDuration();
+      assert.strictEqual(zeroHeightDuration, 0);
+    });
+
+    it('should return zero when passed undefined', () => {
+      const zeroHeightDuration = transitions.getAutoHeightDuration(undefined);
+      assert.strictEqual(zeroHeightDuration, 0);
+    });
+
+    it('should return zero when passed null', () => {
+      const zeroHeightDuration = transitions.getAutoHeightDuration(null);
+      assert.strictEqual(zeroHeightDuration, 0);
+    });
+
+    it('should return NaN when passed a negative number', () => {
+      const zeroHeightDurationNegativeOne = transitions.getAutoHeightDuration(-1);
+      assert.strictEqual(isNaN(zeroHeightDurationNegativeOne), true);
+      const zeroHeightDurationSmallNegative = transitions.getAutoHeightDuration(-0.000001);
+      assert.strictEqual(isNaN(zeroHeightDurationSmallNegative), true);
+      const zeroHeightDurationBigNegative = transitions.getAutoHeightDuration(-100000);
+      assert.strictEqual(isNaN(zeroHeightDurationBigNegative), true);
+    });
+
+    it('should return values for pre-calculated positive examples', () => {
+      let zeroHeightDuration = transitions.getAutoHeightDuration(14);
+      assert.strictEqual(zeroHeightDuration, 159);
+      zeroHeightDuration = transitions.getAutoHeightDuration(100);
+      assert.strictEqual(zeroHeightDuration, 239);
+      zeroHeightDuration = transitions.getAutoHeightDuration(0.0001);
+      assert.strictEqual(zeroHeightDuration, 46);
+      zeroHeightDuration = transitions.getAutoHeightDuration(100000);
+      assert.strictEqual(zeroHeightDuration, 6685);
+    });
   });
 });
