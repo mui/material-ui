@@ -9,6 +9,7 @@ export const keys = [
   'xl',
 ];
 
+// Keep in mind that @media is inclusive
 export default function createBreakpoints(
   breakpoints = {
     xs: 360,

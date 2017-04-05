@@ -89,21 +89,20 @@ describe('<MuiThemeProvider />', () => {
 
       themeObj = { themeObjProperty: 'woof' };
       styleManagerObj = { styleManagerObjProperty: 'woof' };
-      stub(MuiThemeProvider, 'createDefaultContext', () => {
-        return {
-          theme: themeObj,
-          styleManager: styleManagerObj,
-        };
+      stub(MuiThemeProvider, 'createDefaultContext').returns({
+        theme: themeObj,
+        styleManager: styleManagerObj,
       });
     });
 
     after(() => {
       mount.cleanUp();
+      MuiThemeProvider.createDefaultContext.restore();
     });
 
     describe('setProps() with different styleManager', () => {
       before(() => {
-        MuiThemeProvider.createDefaultContext.reset();
+        MuiThemeProvider.createDefaultContext.resetHistory();
         wrapper.setProps({});
       });
 
@@ -120,8 +119,10 @@ describe('<MuiThemeProvider />', () => {
       it('should set instance.styleManager to createDefaultContext().theme', () => {
         assert.property(instance, 'styleManager');
         assert.property(instance.styleManager, 'styleManagerObjProperty');
-        assert.strictEqual(instance.styleManager.styleManagerObjProperty,
-                                                styleManagerObj.styleManagerObjProperty);
+        assert.strictEqual(
+          instance.styleManager.styleManagerObjProperty,
+          styleManagerObj.styleManagerObjProperty,
+        );
       });
     });
 
@@ -130,7 +131,7 @@ describe('<MuiThemeProvider />', () => {
       let nextProps;
 
       before(() => {
-        MuiThemeProvider.createDefaultContext.reset();
+        MuiThemeProvider.createDefaultContext.resetHistory();
         updateThemeStub = stub();
         instance.styleManager.updateTheme = updateThemeStub;
         nextProps = {
