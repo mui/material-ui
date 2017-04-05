@@ -1,9 +1,10 @@
 // @flow weak
 
 import React from 'react';
-import { spy } from 'sinon';
+import { spy, stub } from 'sinon';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
+import ReactDOM from 'react-dom';
+import { createShallow, createMount } from 'src/test-utils';
 import Menu, { styleSheet } from './Menu';
 
 describe('<Menu />', () => {
@@ -107,6 +108,120 @@ describe('<Menu />', () => {
 
     it('should have the user classes', () => {
       assert.strictEqual(list.hasClass('test-class'), true, 'should have the user class');
+    });
+  });
+
+  describe('mount', () => {
+    let mount;
+    let wrapper;
+    let instance;
+
+    let selectedItemFocusSpy;
+    let menuListSpy;
+    let menuListFocusSpy;
+
+    let elementForHandleEnter;
+
+    const SELECTED_ITEM_KEY = 111111;
+    const MENU_LIST_HEIGHT = 100;
+
+    let findDOMNodeStub;
+
+    before(() => {
+      mount = createMount();
+      wrapper = mount(<Menu />);
+      instance = wrapper.instance();
+
+      selectedItemFocusSpy = spy();
+      menuListFocusSpy = spy();
+      menuListSpy = {};
+      menuListSpy.clientHeight = MENU_LIST_HEIGHT;
+      menuListSpy.style = {};
+      menuListSpy.firstChild = {
+        focus: menuListFocusSpy,
+      };
+
+      findDOMNodeStub = stub(ReactDOM, 'findDOMNode', (arg) => {
+        if (arg === SELECTED_ITEM_KEY) {
+          return {
+            focus: selectedItemFocusSpy,
+          };
+        }
+        return menuListSpy;
+      });
+
+      elementForHandleEnter = {
+        clientHeight: MENU_LIST_HEIGHT,
+      };
+    });
+
+    after(() => {
+      mount.cleanUp();
+      findDOMNodeStub.restore();
+    });
+
+    beforeEach(() => {
+      menuListFocusSpy.reset();
+      selectedItemFocusSpy.reset();
+    });
+
+    it('should call props.onEnter with element if exists', () => {
+      const onEnterSpy = spy();
+      wrapper.setProps({ onEnter: onEnterSpy });
+      instance.handleEnter(elementForHandleEnter);
+      assert.strictEqual(onEnterSpy.callCount, 1);
+      assert.strictEqual(onEnterSpy.calledWith(elementForHandleEnter), true);
+    });
+
+    it('should call menuList focus when no menuList', () => {
+      delete instance.menuList;
+      instance.handleEnter(elementForHandleEnter);
+      assert.strictEqual(selectedItemFocusSpy.callCount, 0);
+      assert.strictEqual(menuListFocusSpy.callCount, 1);
+    });
+
+    it('should call menuList focus when menuList but no menuList.selectedItem ', () => {
+      instance.menuList = {};
+      delete instance.menuList.selectedItem;
+      instance.handleEnter(elementForHandleEnter);
+      assert.strictEqual(selectedItemFocusSpy.callCount, 0);
+      assert.strictEqual(menuListFocusSpy.callCount, 1);
+    });
+
+    describe('menuList.selectedItem exists', () => {
+      before(() => {
+        instance.menuList = {};
+        instance.menuList.selectedItem = SELECTED_ITEM_KEY;
+      });
+
+      it('should call selectedItem focus when there is a menuList.selectedItem', () => {
+        instance.handleEnter(elementForHandleEnter);
+        assert.strictEqual(selectedItemFocusSpy.callCount, 1);
+        assert.strictEqual(menuListFocusSpy.callCount, 0);
+      });
+
+      it('should not set style on list when element.clientHeight > list.clientHeight', () => {
+        elementForHandleEnter.clientHeight = MENU_LIST_HEIGHT + 1;
+        instance.handleEnter(elementForHandleEnter);
+        assert.strictEqual(menuListSpy.style.paddingRight, undefined);
+        assert.strictEqual(menuListSpy.style.width, undefined);
+      });
+
+      it('should not set style on list when element.clientHeight == list.clientHeight', () => {
+        elementForHandleEnter.clientHeight = MENU_LIST_HEIGHT;
+        instance.handleEnter(elementForHandleEnter);
+        assert.strictEqual(menuListSpy.style.paddingRight, undefined);
+        assert.strictEqual(menuListSpy.style.width, undefined);
+      });
+
+      it('should not set style on list when element.clientHeight < list.clientHeight', () => {
+        assert.strictEqual(menuListSpy.style.paddingRight, undefined);
+        assert.strictEqual(menuListSpy.style.width, undefined);
+        elementForHandleEnter.clientHeight = MENU_LIST_HEIGHT - 1;
+        instance.handleEnter(elementForHandleEnter);
+        assert.notStrictEqual(menuListSpy.style.paddingRight, undefined);
+        assert.notStrictEqual(menuListSpy.style.width, undefined);
+      });
     });
   });
 });
