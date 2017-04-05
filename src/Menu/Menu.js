@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component, PropTypes } from 'react';
-import reactDomUtil from 'react-dom';
+import ReactDOM from 'react-dom';
 import { createStyleSheet } from 'jss-theme-reactor';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import Popover from '../internal/Popover';
@@ -83,10 +83,10 @@ export default class Menu extends Component {
   menuList = undefined;
 
   handleEnter = (element) => {
-    const list = reactDomUtil.findDOMNode(this.menuList);
+    const list = ReactDOM.findDOMNode(this.menuList);
 
     if (this.menuList && this.menuList.selectedItem) {
-      reactDomUtil.findDOMNode(this.menuList.selectedItem)
+      ReactDOM.findDOMNode(this.menuList.selectedItem)
                                             .focus(); // eslint-disable-line react/no-find-dom-node
     } else if (list) {
       list.firstChild.focus();
@@ -114,10 +114,10 @@ export default class Menu extends Component {
 
   getContentAnchorEl = () => {
     if (!this.menuList || !this.menuList.selectedItem) {
-      return reactDomUtil.findDOMNode(this.menuList).firstChild;
+      return ReactDOM.findDOMNode(this.menuList).firstChild;
     }
 
-    return reactDomUtil.findDOMNode(this.menuList.selectedItem);
+    return ReactDOM.findDOMNode(this.menuList.selectedItem);
   };
 
   render() {
