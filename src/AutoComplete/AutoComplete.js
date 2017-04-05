@@ -486,7 +486,6 @@ class AutoComplete extends Component {
 
     const menu = open && requestsList.length > 0 && (
       <Menu
-        {...menuProps}
         ref="menu"
         autoWidth={false}
         disableAutoFocus={focusTextField}
@@ -496,6 +495,7 @@ class AutoComplete extends Component {
         onMouseDown={this.handleMouseDown}
         style={Object.assign(styles.menu, menuStyle)}
         listStyle={Object.assign(styles.list, listStyle)}
+        {...menuProps}
       >
         {requestsList.map((i) => i.value)}
       </Menu>
@@ -504,7 +504,6 @@ class AutoComplete extends Component {
     return (
       <div style={prepareStyles(Object.assign(styles.root, style))} >
         <TextField
-          {...other}
           ref="searchTextField"
           autoComplete="off"
           value={searchText}
@@ -518,6 +517,7 @@ class AutoComplete extends Component {
           multiLine={false}
           errorStyle={errorStyle}
           style={textFieldStyle}
+          {...other}
         />
         <Popover
           style={Object.assign({}, styles.popover, popoverStyle)}
