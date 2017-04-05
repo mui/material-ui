@@ -2,12 +2,6 @@ import React, {Component} from 'react';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
-const styles = {
-  customWidth: {
-    width: 150,
-  },
-};
-
 /**
  * `SelectField` is implemented as a controlled component,
  * with the current selection set through the `value` property.
@@ -17,7 +11,7 @@ export default class SelectFieldExampleMenuClose extends Component {
   state = {
     value: 1,
     closed: 0,
-    selected: 0
+    selected: 0,
   };
 
   handleChange = (event, index, value) => this.setState({value: value});
@@ -40,12 +34,12 @@ export default class SelectFieldExampleMenuClose extends Component {
           <MenuItem value={4} primaryText="Weekends" />
           <MenuItem value={5} primaryText="Weekly" />
         </SelectField>
-        <br/>
+        <br />
         <span id="spanClose">
-          {'This SelectField was closed ' + this.state.closed + ' times.'}
+          This SelectField was closed {this.state.closed}.}
         </span>
         <span id="spanSelect">
-          {'The value selected is ' + this.state.selected + '.'}
+          The value selected is {this.state.selected}.
         </span>
       </div>
     );

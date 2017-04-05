@@ -39,7 +39,7 @@ const SelectFieldPage = () => (
       title="Nullable select"
       code={SelectFieldExampleMenuEvents}
     >
-      <SelectFieldExampleMenuEvents/>
+      <SelectFieldExampleMenuEvents />
     </CodeExample>
     <CodeExample
       title="Nullable select"
