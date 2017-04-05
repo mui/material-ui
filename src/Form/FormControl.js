@@ -24,7 +24,7 @@ export const styleSheet = createStyleSheet('MuiFormControl', () => {
 export default class FormControl extends Component {
   static propTypes = {
     /**
-     * The contents of the `FormControl`.
+     * The contents of the form control.
      */
     children: PropTypes.node,
     /**

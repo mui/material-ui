@@ -86,7 +86,7 @@ FormLabel.propTypes = {
    */
   error: PropTypes.bool,
   /**
-   * If `true`, the input of this label is focused (used by `Group` components).
+   * If `true`, the input of this label is focused (used by `FormGroup` components).
    */
   focused: PropTypes.bool,
   /**

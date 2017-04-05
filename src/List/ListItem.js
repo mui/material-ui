@@ -56,6 +56,9 @@ export const styleSheet = createStyleSheet('MuiListItem', (theme) => {
 
 export default class ListItem extends Component {
   static propTypes = {
+    /**
+     * If `true`, the ListItem will be a button.
+     */
     button: PropTypes.bool,
     /**
      * The content of the component.

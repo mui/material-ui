@@ -7,14 +7,8 @@ import customPropTypes from '../utils/customPropTypes';
 import FormControl from '../Form/FormControl';
 
 /**
- * TextField
- *
- * @see https://material.google.com/components/text-fields.html
- *
- * ```js
- * import TextField from 'material-ui/TextField';
- *
- * const Component = () => <TextField value="Hello World">;
+ * ```
+ * <TextField value="Hello World">
  * ```
  */
 export default class TextField extends Component {
@@ -24,11 +18,11 @@ export default class TextField extends Component {
      */
     className: PropTypes.string,
     /**
-     * Disabled attribute of the `<Input />` element. If `true`, the input will be disabled.
+     * If `true`, the input will be disabled.
      */
     disabled: PropTypes.bool,
     /**
-     * Whether the label should be displayed in an error state.
+     * IF `true` the label will be displayed in an error state.
      */
     error: PropTypes.bool,
     /*
@@ -36,15 +30,15 @@ export default class TextField extends Component {
      */
     id: PropTypes.string,
     /**
-     * The CSS class name of the `<Input />` element.
+     * The CSS class name of the `Input` element.
      */
     inputClassName: PropTypes.string,
     /**
-     * Properties applied to the internal `<Input />` component.
+     * Properties applied to the `Input` element.
      */
     inputProps: PropTypes.object,
     /**
-     * The label text.
+     * The label content.
      */
     label: PropTypes.node,
     /**
@@ -52,19 +46,19 @@ export default class TextField extends Component {
      */
     labelClassName: PropTypes.string,
     /**
-     * Name attribute of the `<Input />` element.
+     * Name attribute of the `Input` element.
      */
     name: PropTypes.string,
     /**
-     * Whether the label should be displayed as required (asterisk).
+     * If `true` the label is displayed as required.
      */
     required: PropTypes.bool,
     /**
-     * Type attribute of the `<Input />` element. It should be a valid HTML5 input type.
+     * Type attribute of the `Input` element. It should be a valid HTML5 input type.
      */
     type: PropTypes.string,
     /**
-     * Value attribute of the `<Input />` element, required for a controlled component.
+     * The value of the `Input` element, required for a controlled component.
      */
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   };

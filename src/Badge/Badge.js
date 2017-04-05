@@ -90,19 +90,19 @@ Badge.propTypes = {
    */
   accent: PropTypes.bool,
   /**
-   * The css class name of the badge element.
+   * The CSS class name of the badge element.
    */
   badgeClassName: PropTypes.string,
   /**
-   * This is the content rendered within the badge.
+   * The content rendered within the badge.
    */
   badgeContent: PropTypes.node.isRequired,
   /**
-   * The badge will be added relativelty to this node.
+   * The badge will be added relative to this node.
    */
   children: PropTypes.node.isRequired,
   /**
-   * The css class name of the root element.
+   * The CSS class name of the root element.
    */
   className: PropTypes.string,
   /**

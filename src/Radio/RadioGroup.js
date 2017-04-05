@@ -36,7 +36,7 @@ class RadioGroup extends Component {
      */
     onBlur: PropTypes.func,
     /**
-     * Callback function that is fired when a radio button is selected.
+     * Callback fired when a radio button is selected.
      *
      * @param {object} event `change` event
      * @param {boolean} checked The `checked` value of the switch

@@ -7,7 +7,7 @@ import customPropTypes from '../utils/customPropTypes';
 import { easing } from '../styles/transitions';
 
 const THICKNESS = 3.6;
-const PI = 3.1415; // Simple version of Math.PI for the css generated.
+const PI = 3.1416; // Simple version of Math.PI for the CSS generated.
 
 export const styleSheet = createStyleSheet('MuiCircularProgress', (theme) => {
   return {
@@ -61,22 +61,18 @@ export default class CircularProgress extends Component {
      */
     className: PropTypes.string,
     /**
-     * The mode of show your progress, indeterminate
-     * for when there is no value for progress.
-     */
-    mode: PropTypes.oneOf(['determinate', 'indeterminate']),
-    /**
      * The size of the circle.
      */
     size: PropTypes.number,
     /**
-     * The value of progress, only works in determinate mode.
+     * The value of progress in determinate mode.
+     * @ignore - not yet implemented.
+     * TODO: Implement determinate mode.
      */
     value: PropTypes.number,
   };
 
   static defaultProps = {
-    mode: 'indeterminate',
     size: 40,
   };
 
@@ -87,7 +83,6 @@ export default class CircularProgress extends Component {
   render() {
     const {
       className,
-      mode, // eslint-disable-line no-unused-vars
       size,
       ...other
     } = this.props;

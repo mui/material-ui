@@ -80,7 +80,7 @@ Icon.propTypes = {
    */
   action: PropTypes.bool,
   /**
-   * The name of the icon
+   * The name of the icon font ligature.
    */
   children: PropTypes.node,
   /**
@@ -96,7 +96,7 @@ Icon.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the text will use the theme's error color
+   * If `true`, the text will use the theme's error color.
    */
   error: PropTypes.bool,
   /**

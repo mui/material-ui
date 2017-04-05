@@ -29,12 +29,12 @@ export default class Collapse extends Component {
      */
     children: PropTypes.node,
     /**
-     * Class name passed to the wrapping container
-     * required for holding+measuring the expanding content.
+     * The CSS class name passed to the wrapping container
+     * required for holding & measuring the expanding content.
      */
     containerClassName: PropTypes.string,
     /**
-     * Set to true to transition in.
+     * If `true` the component will transition in.
      */
     in: PropTypes.bool,
     /**

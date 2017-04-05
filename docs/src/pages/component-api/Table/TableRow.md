@@ -8,7 +8,7 @@ based on the material table element parent (head, body, etc)
 
 ```jsx
 <TableRow>
-  <TableCell>....</TableCell>
+  <TableCell>...</TableCell>
 </TableRow>
 ```
 

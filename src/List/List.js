@@ -70,7 +70,7 @@ export default class List extends Component {
      */
     rootRef: PropTypes.func,
     /**
-     * The content of the subheader, normally `ListSubHeader`.
+     * The content of the component, normally `ListItem`.
      */
     subheader: PropTypes.node,
   };

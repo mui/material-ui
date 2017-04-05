@@ -16,7 +16,7 @@ Props
 | disabledClassName | string |  | The CSS class name of the root element when disabled. |
 | icon | node |  | The icon to display when the component is unchecked. |
 | name | string |  |  |
-| onChange | function |  | Callback function that is fired when the  is changed.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* `change` event<br>*checked:* The `checked` value of the switch |
+| onChange | function |  | Callback fired when the  is changed.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* `change` event<br>*checked:* The `checked` value of the switch |
 | ripple | bool |  | If `false`, the ripple effect will be disabled. |
 | value | string |  | The value of the component. |
 

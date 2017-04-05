@@ -175,7 +175,7 @@ export default class Button extends Component {
     fab: PropTypes.bool,
     /**
      * The URL to link to when the button is clicked.
-     * If set, an `a` element will be used as the root node.
+     * If defined, an `a` element will be used as the root node.
      */
     href: PropTypes.string,
     /**

@@ -118,7 +118,7 @@ Switch.propTypes = {
    */
   name: PropTypes.string,
   /**
-   * Callback function that is fired when the  is changed.
+   * Callback fired when the  is changed.
    *
    * @param {object} event `change` event
    * @param {boolean} checked The `checked` value of the switch

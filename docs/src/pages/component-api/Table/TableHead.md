@@ -5,7 +5,7 @@ A material table head.
 
 ```jsx
 <TableHead>
-  <TableRow>....</TableRow>
+  <TableRow>...</TableRow>
 </TableHead>
 ```
 

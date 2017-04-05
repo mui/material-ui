@@ -32,7 +32,7 @@ Card.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, the card is given a raised elevation.
+   * If `true`, the card will use raised styling.
    */
   raised: PropTypes.bool,
 };

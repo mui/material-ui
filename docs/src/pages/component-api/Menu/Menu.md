@@ -8,13 +8,13 @@ Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| anchorEl | object |  | This is the DOM element that will be used to set the position of the menu. |
-| children | node |  | Menu contents, should be menu items. |
+| anchorEl | object |  | The DOM element used to set the position of the menu. |
+| children | node |  | Menu contents, normally `MenuItem`s. |
 | className | string |  | The CSS class name of the root element. |
-| onEnter | function |  | Callback fired before the Menu is entering. |
+| onEnter | function |  | Callback fired before the Menu enters. |
 | onEntering | function |  | Callback fired when the Menu is entering. |
 | onEntered | function |  | Callback fired when the Menu has entered. |
-| onExit | function |  | Callback fired before the Menu is exiting. |
+| onExit | function |  | Callback fired before the Menu exits. |
 | onExiting | function |  | Callback fired when the Menu is exiting. |
 | onExited | function |  | Callback fired when the Menu has exited. |
 | onRequestClose | function |  | Callback function fired when the menu is requested to be closed.<br><br>**Signature:**<br>`function(event: event) => void`<br>*event:* The event that triggered the close request |

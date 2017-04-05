@@ -50,7 +50,7 @@ export default function ListSubheader(props, context) {
 
 ListSubheader.propTypes = {
   /**
-   * The content of the List Subheader.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**

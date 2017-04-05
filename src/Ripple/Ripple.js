@@ -80,8 +80,7 @@ export default class Ripple extends Component {
      */
     className: PropTypes.string,
     /**
-     * If `true`, the ripple has a pulsates,
-     * typically indicating the keyboard focus state of an element.
+     * If `true`, the ripple pulsates, typically indicating the keyboard focus state of an element.
      */
     pulsate: PropTypes.bool,
     /**

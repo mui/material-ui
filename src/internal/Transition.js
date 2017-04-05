@@ -94,11 +94,11 @@ const propTypes = {
 /**
  * Drawn from https://raw.githubusercontent.com/react-bootstrap/react-overlays/master/src/Transition.js
  *
- * The Transition component lets you define and run css transitions with a simple declarative api.
+ * The Transition component lets you define and run CSS transitions with a simple declarative api.
  * It works similarly to React's own CSSTransitionGroup
  * but is specifically optimized for transitioning a single child "in" or "out".
  *
- * You don't even need to use class based css transitions if you don't want to (but it is easiest).
+ * You don't even need to use class based CSS transitions if you don't want to (but it is easiest).
  * The extensive set of lifecyle callbacks means you have control over
  * the transitioning now at each step of the way.
  */

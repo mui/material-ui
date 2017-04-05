@@ -48,11 +48,11 @@ export class RadioDocs {
      */
     checked: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     /**
-     * The CSS class name of the root element when checked.
+     * The CSS class name of the root element when selected.
      */
     checkedClassName: PropTypes.string,
     /**
-     * The icon to display when the component is checked.
+     * The icon to display when selected.
      */
     checkedIcon: PropTypes.node,
     /**
@@ -64,7 +64,7 @@ export class RadioDocs {
      */
     defaultChecked: PropTypes.bool,
     /**
-     * If `true`, the switch will be disabled.
+     * If `true`, the component disabled.
      */
     disabled: PropTypes.bool,
     /**
@@ -72,7 +72,7 @@ export class RadioDocs {
      */
     disabledClassName: PropTypes.string,
     /**
-     * The icon to display when the component is unchecked.
+     * The icon to display when the component is unselected.
      */
     icon: PropTypes.node,
     /*
@@ -80,7 +80,7 @@ export class RadioDocs {
      */
     name: PropTypes.string,
     /**
-     * Callback function that is fired when the switch is changed.
+     * Callback fired when the state is changed.
      *
      * @param {object} event `change` event
      * @param {boolean} checked The `checked` value of the switch

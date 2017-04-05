@@ -55,11 +55,11 @@ export const styleSheet = createStyleSheet('MuiDrawer', (theme) => {
 export default class Drawer extends Component {
   static propTypes = {
     /**
-     * Side, which will `Drawer` appears from.
+     * Side which will the drawer will appear from.
      */
     anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
     /**
-     * The contents of the `Drawer`.
+     * The contents of the drawer.
      */
     children: PropTypes.node,
     /**
@@ -72,7 +72,7 @@ export default class Drawer extends Component {
      */
     docked: PropTypes.bool,
     /**
-     * The elevation of the `Drawer`.
+     * The elevation of the drawer.
      */
     elevation: PropTypes.number,
     /**
@@ -88,7 +88,7 @@ export default class Drawer extends Component {
      */
     onRequestClose: PropTypes.func,
     /**
-     * If `true`, the `Drawer` is open.
+     * If `true`, the drawer is open.
      */
     open: PropTypes.bool,
     /**

@@ -66,6 +66,7 @@ export class CheckboxDocs {
     disabledClassName: PropTypes.string,
     /**
      * The icon to display when the component is unchecked.
+     * If a string is provided, it will be used as a font ligature.
      */
     icon: PropTypes.node,
     /*
@@ -73,7 +74,7 @@ export class CheckboxDocs {
      */
     name: PropTypes.string,
     /**
-     * Callback function that is fired when the switch is changed.
+     * Callback fired when the state is changed.
      *
      * @param {object} event `change` event
      * @param {boolean} checked The `checked` value of the switch

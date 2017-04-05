@@ -65,7 +65,7 @@ describe('<ButtonBase />', () => {
       assert.strictEqual(wrapper.props().role, 'button', 'should role to button');
     });
 
-    it('should automatically change the button to an a element when href is passed', () => {
+    it('should automatically change the button to an a element when href is provided', () => {
       const wrapper = shallow(<ButtonBase href="http://google.com">Hello</ButtonBase>);
       assert.strictEqual(wrapper.is('a'), true, 'should be an a element');
       assert.strictEqual(wrapper.props().href, 'http://google.com', 'should have the href property');

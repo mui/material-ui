@@ -9,8 +9,8 @@ Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  | The content node to be collapsed. |
-| containerClassName | string |  | Class name passed to the wrapping container required for holding+measuring the expanding content. |
-| in | bool | false | Set to true to transition in. |
+| containerClassName | string |  | The CSS class name passed to the wrapping container required for holding & measuring the expanding content. |
+| in | bool | false | If `true` the component will transition in. |
 | onEnter | function |  | Callback fired before the component is entering. |
 | onEntering | function |  | Callback fired when the component is entering. |
 | onEntered | function |  | Callback fired when the component has entered. |

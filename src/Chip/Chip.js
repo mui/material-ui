@@ -178,11 +178,11 @@ Chip.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The CSS `className` of the delete icon element.
+   * The CSS class name of the delete icon element.
    */
   deleteIconClassName: PropTypes.string,
   /**
-   * The label text.
+   * The content of the label.
    */
   label: PropTypes.node,
   /**

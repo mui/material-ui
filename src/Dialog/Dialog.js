@@ -79,11 +79,11 @@ export default class Dialog extends Component {
      */
     ignoreEscapeKeyUp: PropTypes.bool,
     /**
-     * Duration of the animation when the element is entering the screen.
+     * Duration of the animation when the element is entering.
      */
     enterTransitionDuration: PropTypes.number, // eslint-disable-line react/sort-prop-types
     /**
-     * Duration of the animation when the element is leaving the screen.
+     * Duration of the animation when the element is leaving.
      */
     leaveTransitionDuration: PropTypes.number,
     /**
@@ -98,7 +98,7 @@ export default class Dialog extends Component {
       'md',
     ]),
     /**
-     * Callback fired when the backdrop is clicked on.
+     * Callback fired when the backdrop is clicked.
      */
     onBackdropClick: PropTypes.func,
     /**
@@ -114,7 +114,7 @@ export default class Dialog extends Component {
      */
     onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
     /**
-     * Callback fires when the escape key is pressed and the modal is in focus.
+     * Callback fires when the escape key is released and the modal is in focus.
      */
     onEscapeKeyUp: PropTypes.func, // eslint-disable-line react/sort-prop-types
     /**

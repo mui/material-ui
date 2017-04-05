@@ -76,7 +76,7 @@ export default class Tab extends Component {
      */
     fullWidth: PropTypes.bool,
     /**
-     * The icon element. If a string is passed, it will be used as a material icon font ligature.
+     * The icon element. If a string is provided, it will be used as a font ligature.
      */
     icon: PropTypes.node,
     /**

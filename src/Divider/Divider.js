@@ -59,7 +59,7 @@ Divider.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, the `Divider` will be indented.
+   * If `true`, the divider will be indented.
    */
   inset: PropTypes.bool,
   /**

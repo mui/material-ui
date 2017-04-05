@@ -20,7 +20,7 @@ export const styleSheet = createStyleSheet('MuiTableHead', (theme) => {
  *
  * ```jsx
  * <TableHead>
- *   <TableRow>....</TableRow>
+ *   <TableRow>...</TableRow>
  * </TableHead>
  * ```
  */

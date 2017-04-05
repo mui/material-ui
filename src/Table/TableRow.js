@@ -39,7 +39,7 @@ export const styleSheet = createStyleSheet('MuiTableRow', (theme) => {
  *
  * ```jsx
  * <TableRow>
- *   <TableCell>....</TableCell>
+ *   <TableCell>...</TableCell>
  * </TableRow>
  * ```
  */

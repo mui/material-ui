@@ -17,7 +17,7 @@ export const styleSheet = createStyleSheet('MuiListItemIcon', (theme) => {
 });
 
 /**
- * A simple wrapper to apply List styles to an Icon or SvgIcon.
+ * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
  * ```
  * <ListIcon>
  *   <Icon>
