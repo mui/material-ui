@@ -45,6 +45,78 @@ describe('<Popover />', () => {
       wrapper.setProps({ open: false });
       assert.strictEqual(wrapper.props().show, false, 'should not be open');
     });
+
+    describe('getOffsetTop', () => {
+      let instance;
+      let rect;
+
+      before(() => {
+        instance = shallow(<Popover />).instance();
+        rect = {
+          height: 1,
+        };
+      });
+
+      it('should return vertical when vertical is a number', () => {
+        const vertical = 1;
+        const offsetTop = instance.handleGetOffsetTop('', vertical);
+        assert.strictEqual(offsetTop, vertical);
+      });
+
+      it('should return half of rect.height if vertical is \'center\'', () => {
+        const vertical = 'center';
+        const offsetTop = instance.handleGetOffsetTop(rect, vertical);
+        assert.strictEqual(offsetTop, rect.height / 2);
+      });
+
+      it('should return rect.height if vertical is \'bottom\'', () => {
+        const vertical = 'bottom';
+        const offsetTop = instance.handleGetOffsetTop(rect, vertical);
+        assert.strictEqual(offsetTop, rect.height);
+      });
+
+      it('should return zero if vertical is something else', () => {
+        const vertical = undefined;
+        const offsetTop = instance.handleGetOffsetTop(rect, vertical);
+        assert.strictEqual(offsetTop, 0);
+      });
+    });
+
+    describe('getOffsetLeft', () => {
+      let instance;
+      let rect;
+
+      before(() => {
+        instance = shallow(<Popover />).instance();
+        rect = {
+          width: 1,
+        };
+      });
+
+      it('should return horizontal when horizontal is a number', () => {
+        const horizontal = 1;
+        const offsetLeft = instance.handleGetOffsetLeft('', horizontal);
+        assert.strictEqual(offsetLeft, horizontal);
+      });
+
+      it('should return half of rect.width if horizontal is \'center\'', () => {
+        const horizontal = 'center';
+        const offsetLeft = instance.handleGetOffsetLeft(rect, horizontal);
+        assert.strictEqual(offsetLeft, rect.width / 2);
+      });
+
+      it('should return rect.width if horizontal is \'right\'', () => {
+        const horizontal = 'right';
+        const offsetLeft = instance.handleGetOffsetLeft(rect, horizontal);
+        assert.strictEqual(offsetLeft, rect.width);
+      });
+
+      it('should return zero if horizontal is something else', () => {
+        const horizontal = undefined;
+        const offsetLeft = instance.handleGetOffsetLeft(rect, horizontal);
+        assert.strictEqual(offsetLeft, 0);
+      });
+    });
   });
 
   describe('transition', () => {
