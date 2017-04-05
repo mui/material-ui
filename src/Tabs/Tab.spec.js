@@ -45,6 +45,17 @@ describe('<Tab />', () => {
     });
   });
 
+  describe('prop: disabled', () => {
+    it('should render with the disabled and root classes', () => {
+      const wrapper = shallow(
+        <Tab disabled textColor="accent" />,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.rootAccentDisabled), true);
+      assert.strictEqual(wrapper.hasClass(classes.rootAccent), true);
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+    });
+  });
+
   describe('prop: onClick', () => {
     it('should be called when a click is triggered', () => {
       const handleClick = spy();
@@ -107,9 +118,9 @@ describe('<Tab />', () => {
   });
 
   describe('prop: fullWidth', () => {
-    it('should apply a specific width', () => {
+    it('should have the fullWidth class', () => {
       const wrapper = shallow(<Tab fullWidth />);
-      assert.strictEqual(wrapper.props().style.width, '100%');
+      assert.strictEqual(wrapper.hasClass(classes.fullWidth), true);
     });
   });
 
