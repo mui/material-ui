@@ -65,18 +65,25 @@ describe('<Modal />', () => {
           instance.modal.lastChild = spy();
           instance.modal.lastChild.setAttribute = spy();
           instance.modal.lastChild.focus = spy();
-          instance.warningHandler = spy();
         });
 
         describe('modalContent has tabIndex attribute', () => {
+          let consoleError;
+          let consoleErrorSpy;
+
           before(() => {
             instance.modal.lastChild.hasAttribute = stub().returns(true);
+            consoleError = console.error; // eslint-disable-line no-console
+            consoleErrorSpy = spy();
+            console.error = consoleErrorSpy; // eslint-disable-line no-console
             instance.focus();
           });
 
           after(() => {
             instance.modal.lastChild.hasAttribute.reset();
             instance.modal.lastChild.focus.reset();
+            consoleErrorSpy.reset();
+            console.error = consoleError; // eslint-disable-line no-console
           });
 
           it('should call hasAttribute with tabIndex', () => {
@@ -88,8 +95,8 @@ describe('<Modal />', () => {
             assert.strictEqual(instance.modal.lastChild.setAttribute.callCount, 0);
           });
 
-          it('should not call warningHandler', () => {
-            assert.strictEqual(instance.warningHandler.callCount, 0);
+          it('should not call console.error', () => {
+            assert.strictEqual(consoleErrorSpy.callCount, 0);
           });
 
           it('should call focus', () => {
@@ -99,13 +106,21 @@ describe('<Modal />', () => {
 
 
         describe('modalContent does not have tabIndex attribute', () => {
+          let consoleError;
+          let consoleErrorSpy;
+
           before(() => {
             instance.modal.lastChild.hasAttribute = stub().returns(false);
+            consoleError = console.error; // eslint-disable-line no-console
+            consoleErrorSpy = spy();
+            console.error = consoleErrorSpy; // eslint-disable-line no-console
             instance.focus();
           });
 
           after(() => {
             instance.modal.lastChild.hasAttribute.reset();
+            consoleErrorSpy.reset();
+            console.error = consoleError; // eslint-disable-line no-console
           });
 
           it('should call hasAttribute with tabIndex', () => {
@@ -119,8 +134,8 @@ describe('<Modal />', () => {
               instance.modal.lastChild.setAttribute.calledWith('tabIndex', -1), true);
           });
 
-          it('should call warningHandler', () => {
-            assert.strictEqual(instance.warningHandler.callCount, 1);
+          it('should call console.error', () => {
+            assert.strictEqual(consoleErrorSpy.callCount, 1);
           });
 
           it('should call focus', () => {
