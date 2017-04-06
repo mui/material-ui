@@ -55,12 +55,16 @@ export const styleSheet = createStyleSheet('MuiIconButton', (theme) => {
 });
 
 /**
- * ```jsx
+ * ```
  * <IconButton>account_circle</IconButton>
  * ```
  *
- * You can refer to the [Icons](/style/icons) section of the documentation
- * regarding the available icons.
+ * ```
+ * <IconButton><AccountCircle></IconButton>
+ * ```
+ *
+ * Refer to the [Icons](/style/icons) section of the documentation
+ * regarding the available icon options.
  */
 export default function IconButton(props, context) {
   const {
@@ -110,7 +114,7 @@ export default function IconButton(props, context) {
 
 IconButton.propTypes = {
   /**
-   * If true, will use the theme's accent color.
+   * If `true`, will use the theme's accent color.
    */
   accent: PropTypes.bool,
   /**
@@ -119,8 +123,7 @@ IconButton.propTypes = {
   buttonRef: PropTypes.func,
   /**
    * The icon element.
-   * If a string is passed, it will be used as a material icon font ligature.
-   * As a prerequisite, you must include the material icon font.
+   * If a string is provided, it will be used as an icon font ligature.
    */
   children: PropTypes.node,
   /**
@@ -128,7 +131,7 @@ IconButton.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If true, will use the theme's contrast color.
+   * If `true`, the icon button will use the theme's contrast color.
    */
   contrast: PropTypes.bool,
   /**

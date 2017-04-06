@@ -1,5 +1,6 @@
 // @flow weak
 
+import { PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import { createSwitch } from '../internal/SwitchBase';
 import withSwitchLabel from '../internal/withSwitchLabel';
@@ -27,3 +28,69 @@ export default Checkbox;
 const LabelCheckbox = withSwitchLabel(Checkbox);
 
 export { LabelCheckbox };
+
+/**
+ * [Checkboxes](https://material.io/guidelines/components/selection-controls.html#selection-controls-checkbox)
+ * allow the user to select multiple options from a set.
+ */
+export class CheckboxDocs {
+  render() {}
+  static propTypes = {
+    /**
+     * If `true`, the component is checked.
+     */
+    checked: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+    /**
+     * The CSS class name of the root element when checked.
+     */
+    checkedClassName: PropTypes.string,
+    /**
+     * The icon to display when the component is checked.
+     */
+    checkedIcon: PropTypes.node,
+    /**
+     * The CSS class name of the root element.
+     */
+    className: PropTypes.string,
+    /**
+     * @ignore
+     */
+    defaultChecked: PropTypes.bool,
+    /**
+     * If `true`, the switch will be disabled.
+     */
+    disabled: PropTypes.bool,
+    /**
+     * The CSS class name of the root element when disabled.
+     */
+    disabledClassName: PropTypes.string,
+    /**
+     * The icon to display when the component is unchecked.
+     * If a string is provided, it will be used as a font ligature.
+     */
+    icon: PropTypes.node,
+    /*
+     * @ignore
+     */
+    name: PropTypes.string,
+    /**
+     * Callback fired when the state is changed.
+     *
+     * @param {object} event `change` event
+     * @param {boolean} checked The `checked` value of the switch
+     */
+    onChange: PropTypes.func,
+    /**
+     * If `false`, the ripple effect will be disabled.
+     */
+    ripple: PropTypes.bool,
+    /**
+     * @ignore
+     */
+    tabIndex: PropTypes.string,
+    /**
+     * The value of the component.
+     */
+    value: PropTypes.string,
+  };
+}

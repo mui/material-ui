@@ -9,19 +9,19 @@ export default class Fade extends Component {
   static propTypes = {
     children: PropTypes.node,
     /**
-     * Set to true to transition in.
+     * If `true` the component will transition in.
      */
     in: PropTypes.bool,
     /**
-     * Duration of the animation when the element is entering the screen.
+     * Duration of the animation when the element is entering.
      */
     enterTransitionDuration: PropTypes.number, // eslint-disable-line react/sort-prop-types
     /**
-     * Duration of the animation when the element is leaving the screen.
+     * Duration of the animation when the element is exiting.
      */
     leaveTransitionDuration: PropTypes.number,
     /**
-     * Callback fired before the component is entering.
+     * Callback fired before the component enters.
      */
     onEnter: PropTypes.func,
     /**
@@ -33,7 +33,7 @@ export default class Fade extends Component {
      */
     onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
     /**
-     * Callback fired before the component is exiting.
+     * Callback fired before the component exits.
      */
     onExit: PropTypes.func,
     /**

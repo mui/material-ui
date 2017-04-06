@@ -59,9 +59,12 @@ Divider.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If true, the `Divider` will be indented.
+   * If `true`, the divider will be indented.
    */
   inset: PropTypes.bool,
+  /**
+   * If `true`, the divider will have a lighter color.
+   */
   light: PropTypes.bool,
 };
 

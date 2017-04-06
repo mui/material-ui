@@ -146,14 +146,14 @@ export default class Button extends Component {
     compact: PropTypes.bool,
     /**
      * The component used for the root node.
-     * Either a string to use a DOM element or a ReactElement.
+     * Either a string to use a DOM element or a component.
      */
     component: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
     ]),
     /**
-     * If true, will use the theme's contrast color.
+     * If `true`, the button will use the theme's contrast color.
      */
     contrast: PropTypes.bool,
     /**
@@ -175,7 +175,7 @@ export default class Button extends Component {
     fab: PropTypes.bool,
     /**
      * The URL to link to when the button is clicked.
-     * If set, an `a` element will be used as the root node.
+     * If defined, an `a` element will be used as the root node.
      */
     href: PropTypes.string,
     /**

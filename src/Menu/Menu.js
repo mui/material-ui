@@ -19,12 +19,11 @@ export const styleSheet = createStyleSheet('MuiMenu', () => {
 export default class Menu extends Component {
   static propTypes = {
     /**
-     * This is the DOM element that will be
-     * used to set the position of the menu.
+     * The DOM element used to set the position of the menu.
      */
     anchorEl: PropTypes.object,
     /**
-     * Menu contents, should be menu items.
+     * Menu contents, normally `MenuItem`s.
      */
     children: PropTypes.node,
     /**
@@ -32,7 +31,7 @@ export default class Menu extends Component {
      */
     className: PropTypes.string,
     /**
-     * Callback fired before the Menu is entering.
+     * Callback fired before the Menu enters.
      */
     onEnter: PropTypes.func,
     /**
@@ -44,7 +43,7 @@ export default class Menu extends Component {
      */
     onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
     /**
-     * Callback fired before the Menu is exiting.
+     * Callback fired before the Menu exits.
      */
     onExit: PropTypes.func,
     /**

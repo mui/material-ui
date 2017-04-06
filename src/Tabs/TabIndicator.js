@@ -40,16 +40,25 @@ export default function TabIndicator(props, context) {
   return <div className={className} style={style} />;
 }
 
+/**
+ * @ignore - internal component.
+ */
 TabIndicator.propTypes = {
   /**
+   * @ignore
    * The CSS class name of the root element.
    */
   className: PropTypes.string,
+  /**
+   * @ignore
+   * The color of the tab indicator.
+   */
   indicatorColor: PropTypes.oneOfType([
     PropTypes.oneOf(['accent']),
     PropTypes.string,
   ]).isRequired,
   /**
+   * @ignore
    * The style of the root element.
    */
   style: PropTypes.shape({

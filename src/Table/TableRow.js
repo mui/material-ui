@@ -39,7 +39,7 @@ export const styleSheet = createStyleSheet('MuiTableRow', (theme) => {
  *
  * ```jsx
  * <TableRow>
- *   <TableCell>....</TableCell>
+ *   <TableCell>...</TableCell>
  * </TableRow>
  * ```
  */
@@ -78,11 +78,11 @@ TableRow.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If set to true, the table row will shade on hover.
+   * If `true`, the table row will shade on hover.
    */
   hover: PropTypes.bool,
   /**
-   * If set to true, the table row will have the selected shading.
+   * If `true`, the table row will have the selected shading.
    */
   selected: PropTypes.bool,
 };

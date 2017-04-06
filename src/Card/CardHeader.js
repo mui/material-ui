@@ -28,7 +28,7 @@ export default function CardHeader(props, context) {
   const {
     avatar,
     className: classNameProp,
-    subhead,
+    subheader,
     title,
     ...other
   } = props;
@@ -47,7 +47,7 @@ export default function CardHeader(props, context) {
             {title}
           </Text>
           <Text type="body2" secondary className={classes.contentSecondary}>
-            {subhead}
+            {subheader}
           </Text>
         </div>
       </CardContent>
@@ -60,19 +60,28 @@ export default function CardHeader(props, context) {
         {title}
       </Text>
       <Text type="body1" secondary>
-        {subhead}
+        {subheader}
       </Text>
     </CardContent>
   );
 }
 
 CardHeader.propTypes = {
+  /**
+   * The Avatar  for the Card Header.
+   */
   avatar: PropTypes.node,
   /**
    * The CSS class name of the root element.
    */
   className: PropTypes.string,
-  subhead: PropTypes.node,
+  /**
+   * The content of the component.
+   */
+  subheader: PropTypes.node,
+  /**
+   * The content of the Card Title.
+   */
   title: PropTypes.node,
 };
 

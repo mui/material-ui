@@ -24,7 +24,7 @@ export const styleSheet = createStyleSheet('MuiFormControl', () => {
 export default class FormControl extends Component {
   static propTypes = {
     /**
-     * The contents of the `FormControl`.
+     * The contents of the form control.
      */
     children: PropTypes.node,
     /**
@@ -32,9 +32,12 @@ export default class FormControl extends Component {
      */
     className: PropTypes.string,
     /**
-     * Whether the label should be displayed in an error state.
+     * If `true`, the label should be displayed in an error state.
      */
     error: PropTypes.bool,
+    /**
+     * If `true`, the label will indicate that the input is required.
+     */
     required: PropTypes.bool,
   };
 

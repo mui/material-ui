@@ -8,7 +8,7 @@ based on the material table element parent (head, body, etc)
 
 ```jsx
 <TableRow>
-  <TableCell>....</TableCell>
+  <TableCell>...</TableCell>
 </TableRow>
 ```
 
@@ -19,7 +19,7 @@ Props
 |:-----|:-----|:--------|:------------|
 | children | node |  | Should be valid `<tr>` children such as `TableCell`. |
 | className | string |  | The CSS class name of the root element. |
-| hover | bool | false | If set to true, the table row will shade on hover. |
-| selected | bool | false | If set to true, the table row will have the selected shading. |
+| hover | bool | false | If `true`, the table row will shade on hover. |
+| selected | bool | false | If `true`, the table row will have the selected shading. |
 
 Any other properties supplied will be spread to the root element.

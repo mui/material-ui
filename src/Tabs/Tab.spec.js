@@ -80,7 +80,7 @@ describe('<Tab />', () => {
       assert.strictEqual(iconWrapper.is('Icon'), true);
     });
 
-    it('should render a font icon if a icon string is passed', () => {
+    it('should render a font icon if a icon string is provided', () => {
       const wrapper = shallow(<Tab icon="book" />);
       assert.strictEqual(wrapper.find('Icon').length, 1,
         'should have an Icon');

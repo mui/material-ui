@@ -24,47 +24,47 @@ const propTypes = {
    */
   className: PropTypes.string,
   /**
-   * CSS class or classes applied when the component is entered
+   * The CSS class applied when the component is entered.
    */
   enteredClassName: PropTypes.string,
   /**
-   * CSS class or classes applied while the component is entering
+   * The CSS class applied while the component is entering.
    */
   enteringClassName: PropTypes.string,
   /**
-   * CSS class or classes applied when the component is exited
+   * The CSS class applied when the component has exited.
    */
   exitedClassName: PropTypes.string,
   /**
-   * CSS class or classes applied while the component is exiting
+   * The CSS class applied while the component is exiting.
    */
   exitingClassName: PropTypes.string,
   /**
-   * Show the component; triggers the enter or exit animation
+   * Show the component; triggers the enter or exit animation.
    */
   in: PropTypes.bool,
   /**
-   * Callback fired before the "entering" classes are applied
+   * Callback fired before the "entering" classes are applied.
    */
   onEnter: PropTypes.func,
   /**
-   * Callback fired after the "entering" classes are applied
+   * Callback fired after the "entering" classes are applied.
    */
   onEntering: PropTypes.func,
   /**
-   * Callback fired after the "enter" classes are applied
+   * Callback fired after the "enter" classes are applied.
    */
   onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
   /**
-   * Callback fired before the "exiting" classes are applied
+   * Callback fired before the "exiting" classes are applied.
    */
   onExit: PropTypes.func,
   /**
-   * Callback fired after the "exiting" classes are applied
+   * Callback fired after the "exiting" classes are applied.
    */
   onExiting: PropTypes.func,
   /**
-   * Callback fired after the "exited" classes are applied
+   * Callback fired after the "exited" classes are applied.
    */
   onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
   /**
@@ -73,7 +73,7 @@ const propTypes = {
   onRequestTimeout: PropTypes.func,
   /**
    * A Timeout for the animation, in milliseconds, to ensure that a node doesn't
-   * transition indefinately if the browser transitionEnd events are
+   * transition indefinitely if the browser transitionEnd events are
    * canceled or interrupted.
    *
    * By default this is set to a high number (5 seconds) as a failsafe. You should consider
@@ -82,11 +82,11 @@ const propTypes = {
   timeout: PropTypes.number,
   /**
    * Run the enter animation when the component mounts, if it is initially
-   * shown
+   * shown.
    */
   transitionAppear: PropTypes.bool,
   /**
-   * Unmount the component (remove it from the DOM) when it is not shown
+   * Unmount the component (remove it from the DOM) when it is not shown.
    */
   unmountOnExit: PropTypes.bool,
 };
@@ -94,11 +94,11 @@ const propTypes = {
 /**
  * Drawn from https://raw.githubusercontent.com/react-bootstrap/react-overlays/master/src/Transition.js
  *
- * The Transition component lets you define and run css transitions with a simple declarative api.
- * It works similar to React's own CSSTransitionGroup
+ * The Transition component lets you define and run CSS transitions with a simple declarative api.
+ * It works similarly to React's own CSSTransitionGroup
  * but is specifically optimized for transitioning a single child "in" or "out".
  *
- * You don't even need to use class based css transitions if you don't want to (but it is easiest).
+ * You don't even need to use class based CSS transitions if you don't want to (but it is easiest).
  * The extensive set of lifecyle callbacks means you have control over
  * the transitioning now at each step of the way.
  */

@@ -18,9 +18,10 @@ import { createModalManager } from './modalManager';
 import Backdrop from './Backdrop';
 import Portal from './Portal';
 
-// Modals don't open on the server
-// so this won't break concurrency
-// ...........Could also put this on context....
+/**
+ * Modals don't open on the server so this won't break concurrency.
+ * Could also put this on context.
+ */
 const modalManager = createModalManager();
 
 export const styleSheet = createStyleSheet('MuiModal', (theme) => {
@@ -38,10 +39,13 @@ export const styleSheet = createStyleSheet('MuiModal', (theme) => {
 });
 
 /**
- * Still a WIP
+ * TODO: Still a WIP
  */
 export default class Modal extends Component {
   static propTypes = {
+    /**
+     * The CSS class name of the backdrop element.
+     */
     backdropClassName: PropTypes.string,
     /**
      * Pass a component class to use as the backdrop.
@@ -51,9 +55,12 @@ export default class Modal extends Component {
      * If `true`, the backdrop is invisible.
      */
     backdropInvisible: PropTypes.bool,
+    /**
+     * Duration in ms for the backgrop transition.
+     */
     backdropTransitionDuration: PropTypes.number,
     /**
-     * Can be used, for instance, to render a letter inside the avatar.
+     * Content of the modal.
      */
     children: PropTypes.element,
     /**
@@ -112,6 +119,9 @@ export default class Modal extends Component {
      * Callback fired when the modal requests to be closed.
      */
     onRequestClose: PropTypes.func,
+    /**
+     * If `true` the Modal is visible.
+     */
     show: PropTypes.bool,
   };
 

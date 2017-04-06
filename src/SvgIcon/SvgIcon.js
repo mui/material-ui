@@ -54,7 +54,7 @@ SvgIcon.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * The css class name of the root element.
+   * The CSS class name of the root element.
    */
   className: PropTypes.string,
   /**

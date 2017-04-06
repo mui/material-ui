@@ -86,12 +86,11 @@ FormLabel.propTypes = {
    */
   error: PropTypes.bool,
   /**
-   * Whether the input of this label is focused (used by `Group` components).
+   * If `true`, the input of this label is focused (used by `FormGroup` components).
    */
   focused: PropTypes.bool,
   /**
-   * Whether this label should indicate that the input.
-   * is required.
+   * If `true`, the label will indicate that the input is required.
    */
   required: PropTypes.bool,
 };

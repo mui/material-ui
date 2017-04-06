@@ -26,6 +26,10 @@ export const styleSheet = createStyleSheet('MuiTouchRipple', () => ({
 
 export default class TouchRipple extends Component {
   static propTypes = {
+    /**
+     * If `true`, the ripple starts at the center of the component
+     * rather than at the point of interaction.
+     */
     center: PropTypes.bool,
     /**
      * The CSS class name of the root element.
@@ -134,7 +138,6 @@ export default class TouchRipple extends Component {
     ripples = [...ripples, (
       <Ripple
         key={this.state.nextKey}
-        center={center}
         event={event}
         pulsate={pulsate}
         rippleX={rippleX}

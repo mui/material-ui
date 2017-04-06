@@ -56,7 +56,13 @@ export const styleSheet = createStyleSheet('MuiListItem', (theme) => {
 
 export default class ListItem extends Component {
   static propTypes = {
+    /**
+     * If `true`, the ListItem will be a button.
+     */
     button: PropTypes.bool,
+    /**
+     * The content of the component.
+     */
     children: PropTypes.node,
     /**
      * The CSS class name of the root element.
@@ -64,18 +70,27 @@ export default class ListItem extends Component {
     className: PropTypes.string,
     /**
      * The component used for the root node.
-     * Either a string to use a DOM element or a ReactElement.
+     * Either a string to use a DOM element or a component.
      */
     component: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
     ]),
+    /**
+     * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
+     */
     dense: PropTypes.bool,
     /**
      * @ignore
      */
     disabled: PropTypes.bool,
+    /**
+     * If `true`, the left and right padding is removed.
+     */
     disableGutters: PropTypes.bool,
+    /**
+     * If `true`, a 1px light border is added to the bottom of the list item.
+     */
     divider: PropTypes.bool,
   };
 

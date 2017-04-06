@@ -19,14 +19,14 @@ export const styleSheet = createStyleSheet('MuiTableBody', (theme) => {
  *
  * ```jsx
  * <TableBody>
- *   <TableRow>....</TableRow>
+ *   <TableRow>...</TableRow>
  * </TableBody>
  * ```
  */
 export default class TableBody extends Component {
   static propTypes = {
     /**
-     * Should be valid `<tbody>` children such as `TableRow`.
+     * The content of the component, normally `TableRow`.
      */
     children: PropTypes.node,
     /**

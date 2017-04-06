@@ -52,7 +52,7 @@ export default function TextFieldLabel(props, context) {
 
 TextFieldLabel.propTypes = {
   /**
-   * The contents of the `TextFieldLabel`.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**
@@ -64,17 +64,20 @@ TextFieldLabel.propTypes = {
    */
   disableAnimation: PropTypes.bool,
   /**
-   * Whether the label should be displayed in an error state.
+   * If `true` the label is displayed in an error state.
    */
   error: PropTypes.bool,
   /**
-   * Whether the input of this label is focused.
+   * If `true` the input of this label is focused.
    */
   focused: PropTypes.bool,
   /**
-   * Whether this label should indicate that the input is required.
+   * If `true` the label will indicate that the input is required.
    */
   required: PropTypes.bool,
+  /**
+   * If `true`, the label is shrunk.
+   */
   shrink: PropTypes.bool,
 };
 

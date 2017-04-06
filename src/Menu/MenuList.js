@@ -11,7 +11,7 @@ import { List } from '../List';
 export default class MenuList extends Component {
   static propTypes = {
     /**
-     * MenuList contents, should be menu items.
+     * MenuList contents, normally `MenuItem`s.
      */
     children: PropTypes.node,
     /**

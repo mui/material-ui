@@ -46,7 +46,7 @@ export const styleSheet = createStyleSheet('MuiDialog', (theme) => {
 });
 
 /**
- * Dialogs are overlayed modal paper based components with a backdrop.
+ * Dialogs are overlaid modal paper based components with a backdrop.
  *
  * ```jsx
  * <Dialog>
@@ -79,11 +79,11 @@ export default class Dialog extends Component {
      */
     ignoreEscapeKeyUp: PropTypes.bool,
     /**
-     * Duration of the animation when the element is entering the screen.
+     * Duration of the animation when the element is entering.
      */
     enterTransitionDuration: PropTypes.number, // eslint-disable-line react/sort-prop-types
     /**
-     * Duration of the animation when the element is leaving the screen.
+     * Duration of the animation when the element is leaving.
      */
     leaveTransitionDuration: PropTypes.number,
     /**
@@ -98,11 +98,11 @@ export default class Dialog extends Component {
       'md',
     ]),
     /**
-     * Callback fired when the backdrop is clicked on.
+     * Callback fired when the backdrop is clicked.
      */
     onBackdropClick: PropTypes.func,
     /**
-     * Callback fired before the dialog is entering.
+     * Callback fired before the dialog enters.
      */
     onEnter: PropTypes.func,
     /**
@@ -114,11 +114,11 @@ export default class Dialog extends Component {
      */
     onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
     /**
-     * Callback fires when the escape key is pressed and the modal is in focus.
+     * Callback fires when the escape key is released and the modal is in focus.
      */
     onEscapeKeyUp: PropTypes.func, // eslint-disable-line react/sort-prop-types
     /**
-     * Callback fired before the dialog is exiting.
+     * Callback fired before the dialog exits.
      */
     onExit: PropTypes.func,
     /**
@@ -134,7 +134,7 @@ export default class Dialog extends Component {
      */
     onRequestClose: PropTypes.func,
     /**
-     * Set to true to open the Dialog.
+     * If `true`, the Dialog is open.
      */
     open: PropTypes.bool,
     /**

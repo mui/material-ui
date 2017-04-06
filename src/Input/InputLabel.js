@@ -76,7 +76,7 @@ InputLabel.propTypes = {
    */
   disableAnimation: PropTypes.bool,
   /**
-   * If `true`, the label should be displayed in an error state.
+   * If `true`, the label will be displayed in an error state.
    */
   error: PropTypes.bool,
   /**
@@ -84,9 +84,12 @@ InputLabel.propTypes = {
    */
   focused: PropTypes.bool,
   /**
-   * if `true`, the label should indicate that the input is required.
+   * if `true`, the label will indicate that the input is required.
    */
   required: PropTypes.bool,
+  /**
+   * If `true`, the label is shrunk.
+   */
   shrink: PropTypes.bool,
 };
 

@@ -46,7 +46,7 @@ export default function BottomNavigation(props, context) {
 
 BottomNavigation.propTypes = {
   /**
-   * The content of the `BottomNavigation`.
+   * The content of the component.
    */
   children: PropTypes.node.isRequired,
   /**
@@ -54,16 +54,16 @@ BottomNavigation.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The index of the currently selected `BottomNavigation`.
+   * The index of the currently selected `BottomNavigationButton`.
    */
   index: PropTypes.number,
   /**
-   * Function called when the index change.
+   * Function called when the index changes.
    */
   onChange: PropTypes.func,
   /**
    * If `true`, all `BottomNavigationButton`s will show their labels.
-   * By default only the selected `BottomNavigationButton` will show its labels.
+   * By default only the selected `BottomNavigationButton` will show its label.
    */
   showLabels: PropTypes.bool,
 };

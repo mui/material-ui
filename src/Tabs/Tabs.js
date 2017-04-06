@@ -29,7 +29,7 @@ export default class Tabs extends Component {
      */
     centered: PropTypes.bool,
     /**
-     * The content of the `Tabs`.
+     * The content of the component.
      */
     children: PropTypes.node,
     /**

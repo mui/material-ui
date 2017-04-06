@@ -9,7 +9,7 @@ Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | centered | bool | false | If `true`, the tabs will be centered. This property is intended for large views. |
-| children | node |  | The content of the `Tabs`. |
+| children | node |  | The content of the component. |
 | className | string |  | The CSS class name of the root element. |
 | fullWidth | bool | false | If `true`, the tabs will grow to use all the available space. This property is intended for small views. |
 | index | number |  | The index of the currently selected `BottomNavigation`. |

@@ -25,7 +25,7 @@ export default function ListDividers(props, context) {
       <ListItem button>
         <ListItemText primary="Inbox" />
       </ListItem>
-      <Divider />
+      <Divider light />
       <ListItem button>
         <ListItemText primary="Drafts" />
       </ListItem>

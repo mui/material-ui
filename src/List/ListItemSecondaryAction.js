@@ -30,6 +30,9 @@ export default function ListItemSecondaryAction(props, context) {
 }
 
 ListItemSecondaryAction.propTypes = {
+  /**
+   * The content of the component, normally an `IconButton` or selection control.
+   */
   children: PropTypes.node,
   /**
    * The CSS class name of the root element.

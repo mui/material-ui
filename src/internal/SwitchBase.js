@@ -37,15 +37,22 @@ export function createSwitch({
   styleSheet: switchStyleSheet,
 } = {}) {
   return class SwitchBase extends Component {
+    /**
+     ** NB: If changed, please update Checkbox, Switch and Radio
+     ** so that the API documentation is updated.
+     **/
     static propTypes = {
       /**
-       * SwitchBase is checked if true.
+       * If `true`, the component appears selected.
        */
       checked: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
       /**
        * The CSS class name of the root element when checked.
        */
       checkedClassName: PropTypes.string,
+      /**
+       * The icon to display when the component is checked.
+       */
       checkedIcon: PropTypes.node,
       /**
        * The CSS class name of the root element.
@@ -67,13 +74,16 @@ export function createSwitch({
        * If `true`, the ripple will be disabled.
        */
       disableRipple: PropTypes.bool,
+      /**
+       * The icon to display when the component is unchecked.
+       */
       icon: PropTypes.node,
       /*
        * @ignore
        */
       name: PropTypes.string,
       /**
-       * Callback function that is fired when the switch is changed.
+       * Callback fired when the  is changed.
        *
        * @param {object} event `change` event
        * @param {boolean} checked The `checked` value of the switch
@@ -83,6 +93,9 @@ export function createSwitch({
        * @ignore
        */
       tabIndex: PropTypes.string,
+      /**
+       * The value of the component.
+       */
       value: PropTypes.string,
     };
 

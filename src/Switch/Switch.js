@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 import { createSwitch } from '../internal/SwitchBase';
-import withSwitchLabel from '../internal/withSwitchLabel';
 
 export const styleSheet = createStyleSheet('MuiSwitch', (theme) => {
   const { palette, transitions } = theme;
@@ -82,7 +81,61 @@ function Switch(props, context) {
 }
 
 Switch.propTypes = {
+  /**
+   * If `true`, the component appears selected.
+   */
+  checked: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  /**
+   * The CSS class name of the root element when checked.
+   */
+  checkedClassName: PropTypes.string,
+  /**
+   * The icon to display when the component is checked.
+   */
+  checkedIcon: PropTypes.node,
+  /**
+   * The CSS class name of the root element.
+   */
   className: PropTypes.string,
+  /**
+   * @ignore
+   */
+  defaultChecked: PropTypes.bool,
+  /**
+   * If `true`, the switch will be disabled.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * The CSS class name of the root element when disabled.
+   */
+  disabledClassName: PropTypes.string,
+  /**
+   * The icon to display when the component is unchecked.
+   */
+  icon: PropTypes.node,
+  /*
+   * @ignore
+   */
+  name: PropTypes.string,
+  /**
+   * Callback fired when the  is changed.
+   *
+   * @param {object} event `change` event
+   * @param {boolean} checked The `checked` value of the switch
+   */
+  onChange: PropTypes.func,
+  /**
+   * If `false`, the ripple effect will be disabled.
+   */
+  ripple: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  tabIndex: PropTypes.string,
+  /**
+   * The value of the component.
+   */
+  value: PropTypes.string,
 };
 
 Switch.contextTypes = {
@@ -91,7 +144,3 @@ Switch.contextTypes = {
 
 
 export default Switch;
-
-const LabelSwitch = withSwitchLabel(Switch);
-
-export { LabelSwitch };

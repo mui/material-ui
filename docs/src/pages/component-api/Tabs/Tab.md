@@ -10,7 +10,7 @@ Props
 |:-----|:-----|:--------|:------------|
 | className | string |  | The CSS class name of the root element. |
 | disabled | bool | false | If `true`, the tab will be disabled. |
-| icon | node |  | The icon element. If a string is passed, it will be used as a material icon font ligature. |
+| icon | node |  | The icon element. If a string is provided, it will be used as a font ligature. |
 | label | node |  | The label element. |
 | labelClassName | string |  | The CSS class name of the label element. |
 

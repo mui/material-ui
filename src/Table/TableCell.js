@@ -44,7 +44,7 @@ export const styleSheet = createStyleSheet('MuiTableCell', (theme) => {
  * When placed in a `TableHead`, this will automatically render a `th` element.
  *
  * ```jsx
- * <TableCell>Hello</TableCell>
+ * <TableCell>...</TableCell>
  * ```
  */
 export default function TableCell(props, context) {
@@ -80,7 +80,7 @@ export default function TableCell(props, context) {
 
 TableCell.propTypes = {
   /**
-   * If `true`, the cell padding will be adjusted to better accomodate a checkbox.
+   * If `true`, the cell padding will be adjusted to accommodate a checkbox.
    */
   checkbox: PropTypes.bool,
   /**
@@ -92,7 +92,7 @@ TableCell.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If set to true, will use more compact cell padding to accommodate more content.
+   * If `true`, compact cell padding will be used to accommodate more content.
    */
   compact: PropTypes.bool,
   /**
@@ -100,7 +100,7 @@ TableCell.propTypes = {
    */
   disablePadding: PropTypes.bool,
   /**
-   * If set to true, will align content to the right hand side.
+   * If `true`, content will align to the right.
    */
   numeric: PropTypes.bool,
 };
