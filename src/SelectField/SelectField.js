@@ -40,6 +40,10 @@ class SelectField extends Component {
      */
     disabled: PropTypes.bool,
     /**
+     * Object that can handle all properties of component DropDownMenu
+     */
+    dropDownMenuProps: PropTypes.object,
+    /**
      * Override the inline-styles of the error element.
      */
     errorStyle: PropTypes.object,
@@ -91,11 +95,6 @@ class SelectField extends Component {
      * Override the default max-height of the underlying `DropDownMenu` element.
      */
     maxHeight: PropTypes.number,
-    /**
-     * Define all events callback implemented by user to component DropDownMenu
-     * Events: onClose, onChange e selectionRenderer
-     */
-    menuEvents: PropTypes.object,
     /**
      * Override the inline-styles of menu items.
      */
@@ -201,7 +200,7 @@ class SelectField extends Component {
       errorText,
       listStyle,
       maxHeight,
-      menuEvents,
+      dropDownMenuProps,
       menuStyle,
       onFocus,
       onBlur,
@@ -234,23 +233,24 @@ class SelectField extends Component {
         underlineFocusStyle={underlineFocusStyle}
       >
         <DropDownMenu
-          disabled={disabled}
-          style={Object.assign(styles.dropDownMenu, menuStyle)}
-          labelStyle={Object.assign(styles.label, labelStyle)}
-          iconStyle={Object.assign(styles.icon, iconStyle)}
-          menuItemStyle={menuItemStyle}
-          selectedMenuItemStyle={selectedMenuItemStyle}
-          underlineStyle={styles.hideDropDownUnderline}
-          listStyle={listStyle}
-          autoWidth={autoWidth}
-          value={value}
-          onChange={onChange || (menuEvents ? menuEvents.onChange : menuEvents)}
-          onClose={menuEvents ? menuEvents.onClose : menuEvents}
-          maxHeight={maxHeight}
-          multiple={multiple}
-          selectionRenderer={selectionRenderer || (menuEvents ? menuEvents.selectionRenderer : menuEvents)}
+          disabled={disabled || (dropDownMenuProps ? dropDownMenuProps.disabled : dropDownMenuProps)}
+          style={Object.assign(styles.dropDownMenu, menuStyle, (dropDownMenuProps ? dropDownMenuProps.style : dropDownMenuProps))}
+          labelStyle={Object.assign(styles.label, labelStyle, (dropDownMenuProps ? dropDownMenuProps.labelStyle : dropDownMenuProps))}
+          iconStyle={Object.assign(styles.icon, iconStyle, (dropDownMenuProps ? dropDownMenuProps.iconStyle : dropDownMenuProps))}
+          menuItemStyle={Object.assign(menuItemStyle, (dropDownMenuProps ? dropDownMenuProps.menuItemStyle : dropDownMenuProps))}
+          selectedMenuItemStyle={Object.assign(selectedMenuItemStyle, (dropDownMenuProps ? dropDownMenuProps.selectedMenuItemStyle : dropDownMenuProps))}
+          underlineStyle={Object.assign(styles.hideDropDownUnderline, (dropDownMenuProps ? dropDownMenuProps.underlineStyle : dropDownMenuProps))}
+          listStyle={Object.assign(listStyle, (dropDownMenuProps ? dropDownMenuProps.listStyle : dropDownMenuProps))}
+          autoWidth={autoWidth || (dropDownMenuProps ? dropDownMenuProps.autoWidth : dropDownMenuProps)}
+          value={value || (dropDownMenuProps ? dropDownMenuProps.value : dropDownMenuProps)}
+          onChange={onChange || (dropDownMenuProps ? dropDownMenuProps.onChange : dropDownMenuProps)}
+          onClose={dropDownMenuProps ? dropDownMenuProps.onClose : dropDownMenuProps}
+          maxHeight={maxHeight || (dropDownMenuProps ? dropDownMenuProps.maxHeight : dropDownMenuProps)}
+          multiple={multiple || (dropDownMenuProps ? dropDownMenuProps.multiple : dropDownMenuProps)}
+          selectionRenderer={selectionRenderer || (dropDownMenuProps ? dropDownMenuProps.selectionRenderer : dropDownMenuProps)}
         >
           {children}
+          {(dropDownMenuProps ? dropDownMenuProps.children : dropDownMenuProps)}
         </DropDownMenu>
       </TextField>
     );
