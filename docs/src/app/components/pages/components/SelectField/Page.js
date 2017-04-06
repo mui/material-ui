@@ -7,7 +7,7 @@ import MarkdownElement from '../../../MarkdownElement';
 
 import selectFieldReadmeText from './README';
 import SelectFieldExampleSimple from './ExampleSimple';
-import SelectFieldExampleMenuEvents from './ExampleMenuEvents';
+import SelectFieldExampleMenuEvents from './ExampleDropDownMenuProps';
 import selectFieldExampleSimpleCode from '!raw!./ExampleSimple';
 import SelectFieldLongMenuExample from './ExampleLongMenu';
 import selectFieldLongMenuExampleCode from '!raw!./ExampleLongMenu';
