@@ -231,33 +231,26 @@ class SelectField extends Component {
         id={id}
         underlineDisabledStyle={underlineDisabledStyle}
         underlineFocusStyle={underlineFocusStyle}
-      >
+      >z
         <DropDownMenu
-          disabled={disabled || (dropDownMenuProps ? dropDownMenuProps.disabled : dropDownMenuProps)}
+          disabled={disabled}
           style={Object.assign(
-            styles.dropDownMenu, menuStyle, (dropDownMenuProps ? dropDownMenuProps.style : dropDownMenuProps))}
-          labelStyle={Object.assign(
-            styles.label, labelStyle, (dropDownMenuProps ? dropDownMenuProps.labelStyle : dropDownMenuProps))}
-          iconStyle={Object.assign(
-            styles.icon, iconStyle, (dropDownMenuProps ? dropDownMenuProps.iconStyle : dropDownMenuProps))}
-          menuItemStyle={Object.assign(
-            menuItemStyle, (dropDownMenuProps ? dropDownMenuProps.menuItemStyle : dropDownMenuProps))}
-          selectedMenuItemStyle={Object.assign(
-            selectedMenuItemStyle, (dropDownMenuProps ? dropDownMenuProps.selectedMenuItemStyle : dropDownMenuProps))}
-          underlineStyle={Object.assign(
-            styles.hideDropDownUnderline, (dropDownMenuProps ? dropDownMenuProps.underlineStyle : dropDownMenuProps))}
-          listStyle={Object.assign(listStyle, (dropDownMenuProps ? dropDownMenuProps.listStyle : dropDownMenuProps))}
-          autoWidth={autoWidth || (dropDownMenuProps ? dropDownMenuProps.autoWidth : dropDownMenuProps)}
-          value={value || (dropDownMenuProps ? dropDownMenuProps.value : dropDownMenuProps)}
-          onChange={onChange || (dropDownMenuProps ? dropDownMenuProps.onChange : dropDownMenuProps)}
-          onClose={dropDownMenuProps ? dropDownMenuProps.onClose : dropDownMenuProps}
-          maxHeight={maxHeight || (dropDownMenuProps ? dropDownMenuProps.maxHeight : dropDownMenuProps)}
-          multiple={multiple || (dropDownMenuProps ? dropDownMenuProps.multiple : dropDownMenuProps)}
-          selectionRenderer={(selectionRenderer ||
-          (dropDownMenuProps ? dropDownMenuProps.selectionRenderer : dropDownMenuProps))}
+            styles.dropDownMenu, menuStyle)}
+          labelStyle={Object.assign(styles.label, labelStyle)}
+          iconStyle={Object.assign(styles.icon, iconStyle)}
+          menuItemStyle={menuItemStyle}
+          selectedMenuItemStyle={selectedMenuItemStyle}
+          underlineStyle={styles.hideDropDownUnderline}
+          listStyle={listStyle}
+          autoWidth={autoWidth}
+          value={value}
+          onChange={onChange}
+          maxHeight={maxHeight}
+          multiple={multiple}
+          selectionRenderer={selectionRenderer}
+          {...dropDownMenuProps}
         >
           {children}
-          {(dropDownMenuProps ? dropDownMenuProps.children : dropDownMenuProps)}
         </DropDownMenu>
       </TextField>
     );
