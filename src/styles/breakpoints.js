@@ -30,14 +30,14 @@ export default function createBreakpoints(
 
   function down(name) {
     const value = breakpoints[name] || name;
-    return `@media (max-width:${value}${unit})`;
+    return `@media (max-width:${value - (step / 100)}${unit})`;
   }
 
   function between(start, end) {
     const startIndex = keys.indexOf(start);
     const endIndex = keys.indexOf(end);
     return `@media (min-width:${values[startIndex]}${unit}) and (max-width:${
-      values[endIndex + 1] - step}${unit})`;
+      values[endIndex + 1] - (step / 100)}${unit})`;
   }
 
   function only(name) {
