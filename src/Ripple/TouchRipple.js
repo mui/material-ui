@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import ReactTransitionGroup from 'react-addons-transition-group';
+import ReactTransitionGroup from 'react-transition-group/TransitionGroup';
 import shallowEqual from 'recompose/shallowEqual';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';

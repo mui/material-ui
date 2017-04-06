@@ -16,8 +16,7 @@ const baseConfig = {
     umdNamedDefine: true,
   },
   externals: [
-    'react-addons-create-fragment',
-    'react-addons-transition-group',
+    'react-transition-group/TransitionGroup',
     {
       react: {
         root: 'React',
