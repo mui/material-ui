@@ -4,7 +4,6 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow } from 'src/test-utils';
 import Drawer, { styleSheet } from './Drawer';
-import Paper from '../Paper';
 import Slide from '../transitions/Slide';
 import Modal from '../internal/Modal';
 import { duration } from '../styles/transitions';
