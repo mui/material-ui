@@ -234,12 +234,18 @@ class SelectField extends Component {
       >
         <DropDownMenu
           disabled={disabled || (dropDownMenuProps ? dropDownMenuProps.disabled : dropDownMenuProps)}
-          style={Object.assign(styles.dropDownMenu, menuStyle, (dropDownMenuProps ? dropDownMenuProps.style : dropDownMenuProps))}
-          labelStyle={Object.assign(styles.label, labelStyle, (dropDownMenuProps ? dropDownMenuProps.labelStyle : dropDownMenuProps))}
-          iconStyle={Object.assign(styles.icon, iconStyle, (dropDownMenuProps ? dropDownMenuProps.iconStyle : dropDownMenuProps))}
-          menuItemStyle={Object.assign(menuItemStyle, (dropDownMenuProps ? dropDownMenuProps.menuItemStyle : dropDownMenuProps))}
-          selectedMenuItemStyle={Object.assign(selectedMenuItemStyle, (dropDownMenuProps ? dropDownMenuProps.selectedMenuItemStyle : dropDownMenuProps))}
-          underlineStyle={Object.assign(styles.hideDropDownUnderline, (dropDownMenuProps ? dropDownMenuProps.underlineStyle : dropDownMenuProps))}
+          style={Object.assign(
+            styles.dropDownMenu, menuStyle, (dropDownMenuProps ? dropDownMenuProps.style : dropDownMenuProps))}
+          labelStyle={Object.assign(
+            styles.label, labelStyle, (dropDownMenuProps ? dropDownMenuProps.labelStyle : dropDownMenuProps))}
+          iconStyle={Object.assign(
+            styles.icon, iconStyle, (dropDownMenuProps ? dropDownMenuProps.iconStyle : dropDownMenuProps))}
+          menuItemStyle={Object.assign(
+            menuItemStyle, (dropDownMenuProps ? dropDownMenuProps.menuItemStyle : dropDownMenuProps))}
+          selectedMenuItemStyle={Object.assign(
+            selectedMenuItemStyle, (dropDownMenuProps ? dropDownMenuProps.selectedMenuItemStyle : dropDownMenuProps))}
+          underlineStyle={Object.assign(
+            styles.hideDropDownUnderline, (dropDownMenuProps ? dropDownMenuProps.underlineStyle : dropDownMenuProps))}
           listStyle={Object.assign(listStyle, (dropDownMenuProps ? dropDownMenuProps.listStyle : dropDownMenuProps))}
           autoWidth={autoWidth || (dropDownMenuProps ? dropDownMenuProps.autoWidth : dropDownMenuProps)}
           value={value || (dropDownMenuProps ? dropDownMenuProps.value : dropDownMenuProps)}
@@ -247,7 +253,8 @@ class SelectField extends Component {
           onClose={dropDownMenuProps ? dropDownMenuProps.onClose : dropDownMenuProps}
           maxHeight={maxHeight || (dropDownMenuProps ? dropDownMenuProps.maxHeight : dropDownMenuProps)}
           multiple={multiple || (dropDownMenuProps ? dropDownMenuProps.multiple : dropDownMenuProps)}
-          selectionRenderer={selectionRenderer || (dropDownMenuProps ? dropDownMenuProps.selectionRenderer : dropDownMenuProps)}
+          selectionRenderer={(selectionRenderer ||
+          (dropDownMenuProps ? dropDownMenuProps.selectionRenderer : dropDownMenuProps))}
         >
           {children}
           {(dropDownMenuProps ? dropDownMenuProps.children : dropDownMenuProps)}
