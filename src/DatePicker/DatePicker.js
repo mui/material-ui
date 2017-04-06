@@ -134,6 +134,10 @@ class DatePicker extends Component {
      */
     textFieldStyle: PropTypes.object,
     /**
+     * Override the inline-styles of DatePicker's TextField input element.
+     */
+    textFieldInputStyle: PropTypes.object,
+    /**
      * Sets the date for the Date Picker programmatically.
      */
     value: PropTypes.object,
@@ -283,6 +287,7 @@ class DatePicker extends Component {
       hideCalendarDate,
       style,
       textFieldStyle,
+      textFieldInputStyle,
       ...other
     } = this.props;
 
@@ -297,6 +302,7 @@ class DatePicker extends Component {
           onTouchTap={this.handleTouchTap}
           ref="input"
           style={textFieldStyle}
+          inputStyle={textFieldInputStyle}
           value={this.state.date ? formatDate(this.state.date) : ''}
         />
         <DatePickerDialog
