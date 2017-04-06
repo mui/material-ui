@@ -142,5 +142,4 @@ Switch.contextTypes = {
   styleManager: customPropTypes.muiRequired,
 };
 
-
 export default Switch;

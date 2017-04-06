@@ -106,21 +106,21 @@ export default function AppRouter() {
           <Route
             title="Color"
             path="/style/color"
-            content={requireMarkdown('./style/color/color.md')}
+            content={requireMarkdown('./style/color.md')}
             component={MarkdownDocs}
             nav
           />
           <Route
             title="Icons"
             path="/style/icons"
-            content={requireMarkdown('./style/icons/icons.md')}
+            content={requireMarkdown('./style/icons.md')}
             component={MarkdownDocs}
             nav
           />
           <Route
             title="Typography"
             path="/style/typography"
-            content={requireMarkdown('./style/typography/typography.md')}
+            content={requireMarkdown('./style/typography.md')}
             component={MarkdownDocs}
             nav
           />

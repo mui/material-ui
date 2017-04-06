@@ -30,4 +30,4 @@ For more info checkout the [typeface](https://www.npmjs.com/package/typeface-rob
 
 ## Styles
 
-{{demo='pages/style/typography/TextTypes.js'}}
+{{demo='pages/style/TextTypes.js'}}
