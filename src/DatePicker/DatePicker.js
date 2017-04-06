@@ -130,13 +130,13 @@ class DatePicker extends Component {
      */
     style: PropTypes.object,
     /**
-     * Override the inline-styles of DatePicker's TextField element.
-     */
-    textFieldStyle: PropTypes.object,
-    /**
      * Override the inline-styles of DatePicker's TextField input element.
      */
     textFieldInputStyle: PropTypes.object,
+    /**
+     * Override the inline-styles of DatePicker's TextField element.
+     */
+    textFieldStyle: PropTypes.object,
     /**
      * Sets the date for the Date Picker programmatically.
      */
@@ -286,8 +286,8 @@ class DatePicker extends Component {
       shouldDisableDate,
       hideCalendarDate,
       style,
-      textFieldStyle,
       textFieldInputStyle,
+      textFieldStyle,
       ...other
     } = this.props;
 
