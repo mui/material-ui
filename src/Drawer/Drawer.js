@@ -38,6 +38,30 @@ export const styleSheet = createStyleSheet('MuiDrawer', (theme) => {
       },
       WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
     },
+    paperLeft: {
+      left: 0,
+      right: 'auto',
+    },
+    paperRight: {
+      left: 'auto',
+      right: 0,
+    },
+    paperTop: {
+      top: 0,
+      left: 0,
+      bottom: 'auto',
+      right: 0,
+      height: 'auto',
+      maxHeight: '100vh',
+    },
+    paperBottom: {
+      top: 'auto',
+      left: 0,
+      bottom: 0,
+      right: 0,
+      height: 'auto',
+      maxHeight: '100vh',
+    },
     docked: {
       flex: '0 0 auto',
       '& $paper': {
@@ -98,6 +122,7 @@ export default class Drawer extends Component {
   };
 
   static defaultProps = {
+    anchor: 'left',
     docked: false,
     enterTransitionDuration: duration.enteringScreen,
     leaveTransitionDuration: duration.leavingScreen,
@@ -126,7 +151,18 @@ export default class Drawer extends Component {
     const { theme: { dir }, render } = this.context.styleManager;
     const classes = render(styleSheet);
     const rtl = dir === 'rtl';
-    const anchor = anchorProp || (rtl ? 'right' : 'left');
+    const anchorClasses = {
+      top: classes.paperTop,
+      left: classes.paperLeft,
+      bottom: classes.paperBottom,
+      right: classes.paperRight,
+    };
+
+    let anchor = anchorProp;
+    if (rtl && ['left', 'right'].includes(anchor)) {
+      anchor = (anchor === 'left') ? 'right' : 'left';
+    }
+
     const slideDirection = getSlideDirection(anchor);
 
     const drawer = (
@@ -140,7 +176,7 @@ export default class Drawer extends Component {
         <Paper
           elevation={docked ? 0 : elevation}
           square
-          className={classNames(classes.paper, paperClassName)}
+          className={classNames(classes.paper, anchorClasses[anchor], paperClassName)}
         >
           {children}
         </Paper>

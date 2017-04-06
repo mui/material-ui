@@ -26,6 +26,10 @@ const styleSheet = createStyleSheet('UndockedDrawer', () => ({
     width: 250,
     flex: 'initial',
   },
+  listFull: {
+    width: 'auto',
+    flex: 'initial',
+  },
   remainder: {
     flex: 1,
   },
@@ -33,21 +37,206 @@ const styleSheet = createStyleSheet('UndockedDrawer', () => ({
 
 export default class UndockedDrawer extends Component {
   state = {
-    open: false,
+    open: {
+      top: false,
+      left: false,
+      bottom: false,
+      right: false,
+    },
   };
 
-  handleOpen = () => this.setState({ open: true });
-  handleClose = () => this.setState({ open: false });
+  toggleDrawer = (side, open) => {
+    const drawerState = {};
+    drawerState[side] = open;
+    this.setState({ open: drawerState });
+  };
+
+  handleTopOpen = () => this.toggleDrawer('top', true);
+  handleTopClose = () => this.toggleDrawer('top', false);
+  handleLeftOpen = () => this.toggleDrawer('left', true);
+  handleLeftClose = () => this.toggleDrawer('left', false);
+  handleBottomOpen = () => this.toggleDrawer('bottom', true);
+  handleBottomClose = () => this.toggleDrawer('bottom', false);
+  handleRightOpen = () => this.toggleDrawer('right', true);
+  handleRightClose = () => this.toggleDrawer('right', false);
 
   render() {
     const classes = this.context.styleManager.render(styleSheet);
     return (
       <div>
-        <Button onClick={this.handleOpen}>Open Drawer</Button>
+        <Button onClick={this.handleTopOpen}>Open Top Drawer</Button>
+        <Button onClick={this.handleLeftOpen}>Open Left Drawer</Button>
+        <Button onClick={this.handleBottomOpen}>Open Bottom Drawer</Button>
+        <Button onClick={this.handleRightOpen}>Open Right Drawer</Button>
         <Drawer
-          open={this.state.open}
-          onRequestClose={this.handleClose}
-          onClick={this.handleClose}
+          open={this.state.open.left}
+          onRequestClose={this.handleLeftClose}
+          onClick={this.handleLeftClose}
+        >
+          <List className={classes.list} padding={false}>
+            <ListItem button>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary="Inbox" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <StarIcon />
+              </ListItemIcon>
+              <ListItemText primary="Starred" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <SendIcon />
+              </ListItemIcon>
+              <ListItemText primary="Send mail" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <DraftsIcon />
+              </ListItemIcon>
+              <ListItemText primary="Drafts" />
+            </ListItem>
+          </List>
+          <Divider />
+          <List className={classes.list} padding={false}>
+            <ListItem button>
+              <ListItemIcon>
+                <MailIcon />
+              </ListItemIcon>
+              <ListItemText primary="All mail" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <DeleteIcon />
+              </ListItemIcon>
+              <ListItemText primary="Trash" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <ReportIcon />
+              </ListItemIcon>
+              <ListItemText primary="Spam" />
+            </ListItem>
+          </List>
+          <div className={classes.remainder} />
+        </Drawer>
+        <Drawer
+          anchor="top"
+          open={this.state.open.top}
+          onRequestClose={this.handleTopClose}
+          onClick={this.handleTopClose}
+        >
+          <List className={classes.listFull} padding={false}>
+            <ListItem button>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary="Inbox" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <StarIcon />
+              </ListItemIcon>
+              <ListItemText primary="Starred" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <SendIcon />
+              </ListItemIcon>
+              <ListItemText primary="Send mail" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <DraftsIcon />
+              </ListItemIcon>
+              <ListItemText primary="Drafts" />
+            </ListItem>
+          </List>
+          <Divider />
+          <List className={classes.listFull} padding={false}>
+            <ListItem button>
+              <ListItemIcon>
+                <MailIcon />
+              </ListItemIcon>
+              <ListItemText primary="All mail" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <DeleteIcon />
+              </ListItemIcon>
+              <ListItemText primary="Trash" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <ReportIcon />
+              </ListItemIcon>
+              <ListItemText primary="Spam" />
+            </ListItem>
+          </List>
+          <div className={classes.remainder} />
+        </Drawer>
+        <Drawer
+          anchor="bottom"
+          open={this.state.open.bottom}
+          onRequestClose={this.handleBottomClose}
+          onClick={this.handleBottomClose}
+        >
+          <List className={classes.listFull} padding={false}>
+            <ListItem button>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary="Inbox" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <StarIcon />
+              </ListItemIcon>
+              <ListItemText primary="Starred" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <SendIcon />
+              </ListItemIcon>
+              <ListItemText primary="Send mail" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <DraftsIcon />
+              </ListItemIcon>
+              <ListItemText primary="Drafts" />
+            </ListItem>
+          </List>
+          <Divider />
+          <List className={classes.listFull} padding={false}>
+            <ListItem button>
+              <ListItemIcon>
+                <MailIcon />
+              </ListItemIcon>
+              <ListItemText primary="All mail" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <DeleteIcon />
+              </ListItemIcon>
+              <ListItemText primary="Trash" />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <ReportIcon />
+              </ListItemIcon>
+              <ListItemText primary="Spam" />
+            </ListItem>
+          </List>
+          <div className={classes.remainder} />
+        </Drawer>
+        <Drawer
+          anchor="right"
+          open={this.state.open.right}
+          onRequestClose={this.handleRightClose}
+          onClick={this.handleRightClose}
         >
           <List className={classes.list} padding={false}>
             <ListItem button>
