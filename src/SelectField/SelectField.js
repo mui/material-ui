@@ -231,7 +231,7 @@ class SelectField extends Component {
         id={id}
         underlineDisabledStyle={underlineDisabledStyle}
         underlineFocusStyle={underlineFocusStyle}
-      >z
+      >
         <DropDownMenu
           {...dropDownMenuProps}
           disabled={disabled}
