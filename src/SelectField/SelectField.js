@@ -233,9 +233,9 @@ class SelectField extends Component {
         underlineFocusStyle={underlineFocusStyle}
       >z
         <DropDownMenu
+          {...dropDownMenuProps}
           disabled={disabled}
-          style={Object.assign(
-            styles.dropDownMenu, menuStyle)}
+          style={Object.assign(styles.dropDownMenu, menuStyle)}
           labelStyle={Object.assign(styles.label, labelStyle)}
           iconStyle={Object.assign(styles.icon, iconStyle)}
           menuItemStyle={menuItemStyle}
@@ -248,7 +248,6 @@ class SelectField extends Component {
           maxHeight={maxHeight}
           multiple={multiple}
           selectionRenderer={selectionRenderer}
-          {...dropDownMenuProps}
         >
           {children}
         </DropDownMenu>
