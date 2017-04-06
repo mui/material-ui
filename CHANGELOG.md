@@ -24,6 +24,101 @@ Below is a summary of major changes.
 - [Ripple/TouchRipple] Refactored and now works properly inside a button in firefox!
 - [Button] Raised/flat/fab are now combined into a single component.
 
+## 1.0.0-alpha.10
+###### _Apr 6, 2017_
+
+We are continuing investing in the documentation and the test suite.
+
+Visual regression tests are now sent to [argos-ci](https://www.argos-ci.com/callemall/material-ui).
+Thanks @agamrafaeli for increasing the test coverage of 1% since the last release (95.23%).
+Thanks @mbrookes for fixing the inconsistency of the API and improving the API.
+
+##### Breaking changes
+
+- [core][docs] Invert negative bool props (#6487) @mbrookes
+
+```diff
+// Paper
+-rounded
++square
+
+// BottomNavigation
+-showLabel
++showLabels
+
+// Button, IconButton, Switch
+-ripple
++disableRipple
+
+// Modal, Dialog
+-backdropVisible
++backdropInvisible
+
+-backdrop
++disableBackdrop
+
+-hideOnBackdropClick
++ignoreBackdropClick
+
+-hideOnEscapeKeyUp
++ignoreEscapeKeyUp
+
+// Backdrop
+-visible
++invisible
+
+// ListItem
+-gutters
++disableGutters
+
+// InputLabel, TextFieldLabel
+-animated
++disableAnimation
+
+// TableCell, List
+-padding
++disablePadding
+
+// Inputn
+-underline
++disableUnderline
+
+// CardAction
+-actionSpacing
++disableActionSpacing
+
+// CardHeader
+-subhead
++subheader
+```
+
+##### Component Fixes / Enhancements
+
+- [TextField] Forward name props to the input (#6469) @nvma
+- [MuiThemeProvider] Add test for for componentWillUpdate (#6474) @agamrafaeli
+- [styles.breakpoints] Add test for `only()` calling 'xl' (#6475) @agamrafaeli
+- [Menu] Add tests for handleEnter() (#6477) @agamrafaeli
+- [transitions] Add test coverage for getAutoHeightDuration (#6507) @agamrafaeli
+- [Popover] Add test for getoffset (#6510) @agamrafaeli
+- [breakpoints] Fix down function, eliminate overlap (#6504) @kgregory
+
+##### Docs
+
+- [docs] Add missing prop descriptions to all components (#6483) @mbrookes
+- [docs] Link version number to release notes (#6486) @mbrookes
+- [docs] Link between sections (#6480) @oliviertassinari
+- [docs] Add a 'edit this page' button (#6482) @oliviertassinari
+- [docs] Display the current version (#6481) @oliviertassinari
+- [docs] Upgrade the dependencies (567a35ea3d2aa634a3072fb8b0151c9890551447) @oliviertassinari
+
+##### Core
+
+- [test] Fix import paths for theme and MuiThemeProvider (#6493) @joefitzgerald
+- [test] Add argos-ci (#6391) @oliviertassinari
+- [test] Add HTML reporting of coverage from npm (#6479) @agamrafaeli
+- [TouchRipple] Remove react-addons-transition-group (#6514) @ykzts
+- [core] Do not output any .map file (#6478) @oliviertassinari
+
 ## 1.0.0-alpha.9
 ###### _Apr 1, 2017_
 
