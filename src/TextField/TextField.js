@@ -22,7 +22,7 @@ export default class TextField extends Component {
      */
     disabled: PropTypes.bool,
     /**
-     * IF `true` the label will be displayed in an error state.
+     * If `true`, the label will be displayed in an error state.
      */
     error: PropTypes.bool,
     /*
@@ -50,7 +50,7 @@ export default class TextField extends Component {
      */
     name: PropTypes.string,
     /**
-     * If `true` the label is displayed as required.
+     * If `true`, the label is displayed as required.
      */
     required: PropTypes.bool,
     /**

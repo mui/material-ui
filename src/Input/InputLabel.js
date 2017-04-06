@@ -72,7 +72,7 @@ InputLabel.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true` the transition animation is disabled.
+   * If `true`, the transition animation is disabled.
    */
   disableAnimation: PropTypes.bool,
   /**
@@ -80,7 +80,7 @@ InputLabel.propTypes = {
    */
   error: PropTypes.bool,
   /**
-   * If `true` ,the input of this label is focused.
+   * If `true`, the input of this label is focused.
    */
   focused: PropTypes.bool,
   /**

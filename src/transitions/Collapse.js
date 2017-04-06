@@ -34,7 +34,7 @@ export default class Collapse extends Component {
      */
     containerClassName: PropTypes.string,
     /**
-     * If `true` the component will transition in.
+     * If `true`, the component will transition in.
      */
     in: PropTypes.bool,
     /**

@@ -120,7 +120,7 @@ export default class Modal extends Component {
      */
     onRequestClose: PropTypes.func,
     /**
-     * If `true` the Modal is visible.
+     * If `true`, the Modal is visible.
      */
     show: PropTypes.bool,
   };

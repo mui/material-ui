@@ -60,19 +60,19 @@ TextFieldLabel.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true` the transition animation is disabled.
+   * If `true`, the transition animation is disabled.
    */
   disableAnimation: PropTypes.bool,
   /**
-   * If `true` the label is displayed in an error state.
+   * If `true`, the label is displayed in an error state.
    */
   error: PropTypes.bool,
   /**
-   * If `true` the input of this label is focused.
+   * If `true`, the input of this label is focused.
    */
   focused: PropTypes.bool,
   /**
-   * If `true` the label will indicate that the input is required.
+   * If `true`, the label will indicate that the input is required.
    */
   required: PropTypes.bool,
   /**

@@ -9,7 +9,7 @@ export default class Fade extends Component {
   static propTypes = {
     children: PropTypes.node,
     /**
-     * If `true` the component will transition in.
+     * If `true`, the component will transition in.
      */
     in: PropTypes.bool,
     /**

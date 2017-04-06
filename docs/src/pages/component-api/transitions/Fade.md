@@ -9,7 +9,7 @@ Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  |  |
-| in | bool | false | If `true` the component will transition in. |
+| in | bool | false | If `true`, the component will transition in. |
 | enterTransitionDuration | number | duration.enteringScreen | Duration of the animation when the element is entering. |
 | leaveTransitionDuration | number | duration.leavingScreen | Duration of the animation when the element is exiting. |
 | onEnter | function |  | Callback fired before the component enters. |
