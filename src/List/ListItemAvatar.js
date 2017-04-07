@@ -8,10 +8,15 @@ import customPropTypes from '../utils/customPropTypes';
 
 export const styleSheet = createStyleSheet('MuiListItemAvatar', () => {
   return {
-    dense: {
-      height: 32,
-      marginRight: 8,
-      width: 32,
+    denseAvatar: {
+      width: 36,
+      height: 36,
+      fontSize: 18,
+      marginRight: 4,
+    },
+    denseAvatarIcon: {
+      width: 20,
+      height: 20,
     },
   };
 });
@@ -26,9 +31,9 @@ export const styleSheet = createStyleSheet('MuiListItemAvatar', () => {
  * ```
  */
 export default function ListItemAvatar(props, context) {
-  if (!context.dense) {
+  if (context.dense === undefined) {
     warning(false, `Material-UI: <ListItemAvatar> is a simple wrapper to apply the dense styles 
-      to Avatar. You do not need it.`);
+      to <Avatar>. You do not need it unless you are controlling the <List> dense property.`);
     return props.children;
   }
 
@@ -40,7 +45,15 @@ export default function ListItemAvatar(props, context) {
   const classes = context.styleManager.render(styleSheet);
 
   return React.cloneElement(children, {
-    className: classNames(classes.dense, classNameProp, children.props.className),
+    className: classNames(
+      { [classes.denseAvatar]: context.dense },
+      classNameProp,
+      children.props.className,
+    ),
+    childrenClassName: classNames(
+      { [classes.denseAvatarIcon]: context.dense },
+      children.props.childrenClassName,
+    ),
     ...other,
   });
 }

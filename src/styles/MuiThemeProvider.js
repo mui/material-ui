@@ -60,6 +60,8 @@ export const MUI_SHEET_ORDER = [
   'MuiAppBar',
   'MuiDrawer',
 
+  'MuiAvatar',
+
   'MuiListItem',
   'MuiListItemText',
   'MuiListItemSecondaryAction',
@@ -70,8 +72,6 @@ export const MUI_SHEET_ORDER = [
 
   'MuiMenu',
   'MuiMenuItem',
-
-  'MuiAvatar',
 
   'MuiCardContent',
   'MuiCardMedia',

@@ -5,6 +5,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow } from 'src/test-utils';
 import ListItemAvatar, { styleSheet } from './ListItemAvatar';
+import Avatar from '../Avatar';
 
 describe('<ListItemAvatar />', () => {
   let shallow;
@@ -15,23 +16,23 @@ describe('<ListItemAvatar />', () => {
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
-  it('should render a span', () => {
+  it('should render an Avatar', () => {
     const wrapper = shallow((
       <ListItemAvatar>
-        <span />
+        <Avatar />
       </ListItemAvatar>
     ), {
       context: {
         dense: true,
       },
     });
-    assert.strictEqual(wrapper.is('span'), true, 'should be a span');
+    assert.strictEqual(wrapper.is('Avatar'), true, 'should be an Avatar');
   });
 
   it('should render with the user and root classes', () => {
     const wrapper = shallow((
       <ListItemAvatar className="foo">
-        <span className="bar" />
+        <Avatar className="bar" />
       </ListItemAvatar>
     ), {
       context: {
@@ -40,6 +41,7 @@ describe('<ListItemAvatar />', () => {
     });
     assert.strictEqual(wrapper.hasClass('foo'), true, 'should have the "foo" class');
     assert.strictEqual(wrapper.hasClass('bar'), true, 'should have the "bar" class');
-    assert.strictEqual(wrapper.hasClass(classes.dense), true, 'should have the dense class');
+    assert.strictEqual(wrapper.hasClass(classes.denseAvatar), true,
+      'should have the denseAvatar class');
   });
 });
