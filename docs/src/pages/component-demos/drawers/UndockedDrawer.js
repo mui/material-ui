@@ -60,54 +60,78 @@ export default class UndockedDrawer extends Component {
   render() {
     const classes = this.context.styleManager.render(styleSheet);
 
-    const mailFolderList = (
+    const mailFolderListItems = (
+      <div>
+        <ListItem button>
+          <ListItemIcon>
+            <InboxIcon />
+          </ListItemIcon>
+          <ListItemText primary="Inbox" />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <StarIcon />
+          </ListItemIcon>
+          <ListItemText primary="Starred" />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <SendIcon />
+          </ListItemIcon>
+          <ListItemText primary="Send mail" />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <DraftsIcon />
+          </ListItemIcon>
+          <ListItemText primary="Drafts" />
+        </ListItem>
+      </div>
+    );
+
+    const otherMailFolderListItems = (
+      <div>
+        <ListItem button>
+          <ListItemIcon>
+            <MailIcon />
+          </ListItemIcon>
+          <ListItemText primary="All mail" />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <DeleteIcon />
+          </ListItemIcon>
+          <ListItemText primary="Trash" />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <ReportIcon />
+          </ListItemIcon>
+          <ListItemText primary="Spam" />
+        </ListItem>
+      </div>
+    );
+
+    const sideList = (
       <div>
         <List className={classes.list} disablePadding>
-          <ListItem button>
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Inbox" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <StarIcon />
-            </ListItemIcon>
-            <ListItemText primary="Starred" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <SendIcon />
-            </ListItemIcon>
-            <ListItemText primary="Send mail" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <DraftsIcon />
-            </ListItemIcon>
-            <ListItemText primary="Drafts" />
-          </ListItem>
+          {mailFolderListItems}
         </List>
         <Divider />
         <List className={classes.list} disablePadding>
-          <ListItem button>
-            <ListItemIcon>
-              <MailIcon />
-            </ListItemIcon>
-            <ListItemText primary="All mail" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <DeleteIcon />
-            </ListItemIcon>
-            <ListItemText primary="Trash" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <ReportIcon />
-            </ListItemIcon>
-            <ListItemText primary="Spam" />
-          </ListItem>
+          {otherMailFolderListItems}
+        </List>
+      </div>
+    );
+
+    const fullList = (
+      <div>
+        <List className={classes.listFull} disablePadding>
+          {mailFolderListItems}
+        </List>
+        <Divider />
+        <List className={classes.listFull} disablePadding>
+          {otherMailFolderListItems}
         </List>
       </div>
     );
@@ -123,7 +147,7 @@ export default class UndockedDrawer extends Component {
           onRequestClose={this.handleLeftClose}
           onClick={this.handleLeftClose}
         >
-          {mailFolderList}
+          {sideList}
         </Drawer>
         <Drawer
           anchor="top"
@@ -131,7 +155,7 @@ export default class UndockedDrawer extends Component {
           onRequestClose={this.handleTopClose}
           onClick={this.handleTopClose}
         >
-          {mailFolderList}
+          {fullList}
         </Drawer>
         <Drawer
           anchor="bottom"
@@ -139,7 +163,7 @@ export default class UndockedDrawer extends Component {
           onRequestClose={this.handleBottomClose}
           onClick={this.handleBottomClose}
         >
-          {mailFolderList}
+          {fullList}
         </Drawer>
         <Drawer
           anchor="right"
@@ -147,7 +171,7 @@ export default class UndockedDrawer extends Component {
           onRequestClose={this.handleRightClose}
           onClick={this.handleRightClose}
         >
-          {mailFolderList}
+          {sideList}
         </Drawer>
       </div>
     );
