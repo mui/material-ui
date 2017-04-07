@@ -5,7 +5,8 @@ please use [StackOverflow](http://stackoverflow.com/questions/tagged/material-ui
 instead of Github issues. There is a StackOverflow tag called "material-ui"
 that you can use to tag your questions.
 
-#[Material-UI](http://www.material-ui.com/)
+# [Material-UI](http://www.material-ui.com/)
+
 [![npm package](https://img.shields.io/npm/v/material-ui.svg?style=flat-square)](https://www.npmjs.org/package/material-ui)
 [![Build Status](https://travis-ci.org/callemall/material-ui.svg?branch=master)](https://travis-ci.org/callemall/material-ui)
 [![Gitter](https://img.shields.io/badge/gitter-join%20chat-f81a65.svg?style=flat-square)](https://gitter.im/callemall/material-ui?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
