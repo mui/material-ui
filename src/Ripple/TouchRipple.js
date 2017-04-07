@@ -89,6 +89,7 @@ export default class TouchRipple extends Component {
     let ripples = this.state.ripples;
 
     const element = ReactDOM.findDOMNode(this);
+    // $FlowFixMe
     const rect = element ? element.getBoundingClientRect() : {
       width: 0,
       height: 0,
@@ -124,10 +125,12 @@ export default class TouchRipple extends Component {
       }
     } else {
       const sizeX = (Math.max(
+        // $FlowFixMe
         Math.abs((element ? element.clientWidth : 0) - rippleX),
         rippleX,
       ) * 2) + 2;
       const sizeY = (Math.max(
+        // $FlowFixMe
         Math.abs((element ? element.clientHeight : 0) - rippleY),
         rippleY,
       ) * 2) + 2;
