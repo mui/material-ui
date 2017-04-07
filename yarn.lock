@@ -4653,13 +4653,6 @@ react-addons-perf@^15.4.2:
     fbjs "^0.8.4"
     object-assign "^4.1.0"
 
-react-addons-shallow-compare@^15.4.2:
-  version "15.4.2"
-  resolved "https://registry.yarnpkg.com/react-addons-shallow-compare/-/react-addons-shallow-compare-15.4.2.tgz#027ffd9720e3a1e0b328dcd8fc62e214a0d174a5"
-  dependencies:
-    fbjs "^0.8.4"
-    object-assign "^4.1.0"
-
 react-addons-test-utils@^15.4.2:
   version "15.4.2"
   resolved "https://registry.yarnpkg.com/react-addons-test-utils/-/react-addons-test-utils-15.4.2.tgz#93bcaa718fcae7360d42e8fb1c09756cc36302a2"
@@ -4687,12 +4680,12 @@ react-dom@^15.4.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
 
-react-event-listener@^0.4.3:
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/react-event-listener/-/react-event-listener-0.4.3.tgz#a0aaa447555fbaa5c398a06b6ad47935bba961a8"
+react-event-listener@^0.4.4:
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/react-event-listener/-/react-event-listener-0.4.4.tgz#af6552f06b5a4fa3f6df900bef0a7bba47cab39d"
   dependencies:
     babel-runtime "^6.20.0"
-    react-addons-shallow-compare "^15.4.2"
+    fbjs "^0.8.4"
     warning "^3.0.0"
 
 react-transition-group@^1.1.1:

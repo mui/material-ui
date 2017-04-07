@@ -15,7 +15,7 @@ const primary = red[500]; // #F44336
 const accent = purple['A200']; // #E040FB
 ```
 
-{{demo='pages/style/color/Color.js'}}
+{{demo='pages/style/Color.js'}}
 
 ## Color schemes
 
