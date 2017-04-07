@@ -23,7 +23,7 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
     },
     inkbar: {
       '&:after': {
-        backgroundColor: palette.accent.A200,
+        backgroundColor: palette.primary.A200,
         left: 0,
         bottom: -1,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
