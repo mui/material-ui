@@ -30,9 +30,6 @@ const styleSheet = createStyleSheet('UndockedDrawer', () => ({
     width: 'auto',
     flex: 'initial',
   },
-  remainder: {
-    flex: 1,
-  },
 }));
 
 export default class UndockedDrawer extends Component {
@@ -62,65 +59,71 @@ export default class UndockedDrawer extends Component {
 
   render() {
     const classes = this.context.styleManager.render(styleSheet);
+
+    const mailFolderList = (
+      <div>
+        <List className={classes.list} disablePadding>
+          <ListItem button>
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Inbox" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <StarIcon />
+            </ListItemIcon>
+            <ListItemText primary="Starred" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <SendIcon />
+            </ListItemIcon>
+            <ListItemText primary="Send mail" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <DraftsIcon />
+            </ListItemIcon>
+            <ListItemText primary="Drafts" />
+          </ListItem>
+        </List>
+        <Divider />
+        <List className={classes.list} disablePadding>
+          <ListItem button>
+            <ListItemIcon>
+              <MailIcon />
+            </ListItemIcon>
+            <ListItemText primary="All mail" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <DeleteIcon />
+            </ListItemIcon>
+            <ListItemText primary="Trash" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <ReportIcon />
+            </ListItemIcon>
+            <ListItemText primary="Spam" />
+          </ListItem>
+        </List>
+      </div>
+    );
+
     return (
       <div>
-        <Button onClick={this.handleTopOpen}>Open Top Drawer</Button>
-        <Button onClick={this.handleLeftOpen}>Open Left Drawer</Button>
-        <Button onClick={this.handleBottomOpen}>Open Bottom Drawer</Button>
-        <Button onClick={this.handleRightOpen}>Open Right Drawer</Button>
+        <Button onClick={this.handleLeftOpen}>Open Left</Button>
+        <Button onClick={this.handleRightOpen}>Open Right</Button>
+        <Button onClick={this.handleTopOpen}>Open Top</Button>
+        <Button onClick={this.handleBottomOpen}>Open Bottom</Button>
         <Drawer
           open={this.state.open.left}
           onRequestClose={this.handleLeftClose}
           onClick={this.handleLeftClose}
         >
-          <List className={classes.list} padding={false}>
-            <ListItem button>
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary="Inbox" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <StarIcon />
-              </ListItemIcon>
-              <ListItemText primary="Starred" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <SendIcon />
-              </ListItemIcon>
-              <ListItemText primary="Send mail" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <DraftsIcon />
-              </ListItemIcon>
-              <ListItemText primary="Drafts" />
-            </ListItem>
-          </List>
-          <Divider />
-          <List className={classes.list} padding={false}>
-            <ListItem button>
-              <ListItemIcon>
-                <MailIcon />
-              </ListItemIcon>
-              <ListItemText primary="All mail" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <DeleteIcon />
-              </ListItemIcon>
-              <ListItemText primary="Trash" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <ReportIcon />
-              </ListItemIcon>
-              <ListItemText primary="Spam" />
-            </ListItem>
-          </List>
-          <div className={classes.remainder} />
+          {mailFolderList}
         </Drawer>
         <Drawer
           anchor="top"
@@ -128,54 +131,7 @@ export default class UndockedDrawer extends Component {
           onRequestClose={this.handleTopClose}
           onClick={this.handleTopClose}
         >
-          <List className={classes.listFull} padding={false}>
-            <ListItem button>
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary="Inbox" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <StarIcon />
-              </ListItemIcon>
-              <ListItemText primary="Starred" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <SendIcon />
-              </ListItemIcon>
-              <ListItemText primary="Send mail" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <DraftsIcon />
-              </ListItemIcon>
-              <ListItemText primary="Drafts" />
-            </ListItem>
-          </List>
-          <Divider />
-          <List className={classes.listFull} padding={false}>
-            <ListItem button>
-              <ListItemIcon>
-                <MailIcon />
-              </ListItemIcon>
-              <ListItemText primary="All mail" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <DeleteIcon />
-              </ListItemIcon>
-              <ListItemText primary="Trash" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <ReportIcon />
-              </ListItemIcon>
-              <ListItemText primary="Spam" />
-            </ListItem>
-          </List>
-          <div className={classes.remainder} />
+          {mailFolderList}
         </Drawer>
         <Drawer
           anchor="bottom"
@@ -183,54 +139,7 @@ export default class UndockedDrawer extends Component {
           onRequestClose={this.handleBottomClose}
           onClick={this.handleBottomClose}
         >
-          <List className={classes.listFull} padding={false}>
-            <ListItem button>
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary="Inbox" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <StarIcon />
-              </ListItemIcon>
-              <ListItemText primary="Starred" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <SendIcon />
-              </ListItemIcon>
-              <ListItemText primary="Send mail" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <DraftsIcon />
-              </ListItemIcon>
-              <ListItemText primary="Drafts" />
-            </ListItem>
-          </List>
-          <Divider />
-          <List className={classes.listFull} padding={false}>
-            <ListItem button>
-              <ListItemIcon>
-                <MailIcon />
-              </ListItemIcon>
-              <ListItemText primary="All mail" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <DeleteIcon />
-              </ListItemIcon>
-              <ListItemText primary="Trash" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <ReportIcon />
-              </ListItemIcon>
-              <ListItemText primary="Spam" />
-            </ListItem>
-          </List>
-          <div className={classes.remainder} />
+          {mailFolderList}
         </Drawer>
         <Drawer
           anchor="right"
@@ -238,54 +147,7 @@ export default class UndockedDrawer extends Component {
           onRequestClose={this.handleRightClose}
           onClick={this.handleRightClose}
         >
-          <List className={classes.list} padding={false}>
-            <ListItem button>
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary="Inbox" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <StarIcon />
-              </ListItemIcon>
-              <ListItemText primary="Starred" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <SendIcon />
-              </ListItemIcon>
-              <ListItemText primary="Send mail" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <DraftsIcon />
-              </ListItemIcon>
-              <ListItemText primary="Drafts" />
-            </ListItem>
-          </List>
-          <Divider />
-          <List className={classes.list} padding={false}>
-            <ListItem button>
-              <ListItemIcon>
-                <MailIcon />
-              </ListItemIcon>
-              <ListItemText primary="All mail" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <DeleteIcon />
-              </ListItemIcon>
-              <ListItemText primary="Trash" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <ReportIcon />
-              </ListItemIcon>
-              <ListItemText primary="Spam" />
-            </ListItem>
-          </List>
-          <div className={classes.remainder} />
+          {mailFolderList}
         </Drawer>
       </div>
     );
