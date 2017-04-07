@@ -5,7 +5,11 @@
 
 ### Link to minimal working code that reproduces the issue
 
-<!-- You may provide a repository or use our template-ready webpackbin https://www.webpackbin.com/bins/-Kh7G86UTg0ckGC2hL94 -->
+<!-- You may provide a repository or use our template-ready webpackbin
+master: https://www.webpackbin.com/bins/-Kh7G86UTg0ckGC2hL94
+next: ...
+
+-->
 
 ### Versions
 
