@@ -40,7 +40,7 @@ class SelectField extends Component {
      */
     disabled: PropTypes.bool,
     /**
-     * Object that can handle all properties of component DropDownMenu
+     * Object that can handle and override any properties of component DropDownMenu.
      */
     dropDownMenuProps: PropTypes.object,
     /**
@@ -233,7 +233,6 @@ class SelectField extends Component {
         underlineFocusStyle={underlineFocusStyle}
       >
         <DropDownMenu
-          {...dropDownMenuProps}
           disabled={disabled}
           style={Object.assign(styles.dropDownMenu, menuStyle)}
           labelStyle={Object.assign(styles.label, labelStyle)}
@@ -248,6 +247,7 @@ class SelectField extends Component {
           maxHeight={maxHeight}
           multiple={multiple}
           selectionRenderer={selectionRenderer}
+          {...dropDownMenuProps}
         >
           {children}
         </DropDownMenu>

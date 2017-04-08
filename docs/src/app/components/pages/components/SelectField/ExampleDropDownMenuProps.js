@@ -26,7 +26,11 @@ export default class SelectFieldExampleMenuClose extends Component {
         <SelectField
           floatingLabelText="Frequency"
           value={this.state.value}
-          propDownMenuProps={{onchange: this.handleChange, onClose: this.handleClose}}
+          dropDownMenuProps={{
+            onchange: this.handleChange,
+            onClose: this.handleClose,
+            selectionRenderer: this.handleSelectionRenderer
+          }}
         >
           <MenuItem value={1} primaryText="Never" />
           <MenuItem value={2} primaryText="Every Night" />
