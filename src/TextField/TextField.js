@@ -46,6 +46,10 @@ export default class TextField extends Component {
      */
     labelClassName: PropTypes.string,
     /**
+     * If true, a textarea element will be rendered.
+     */
+    multiLine: PropTypes.bool,
+    /**
      * Name attribute of the `Input` element.
      */
     name: PropTypes.string,
@@ -54,17 +58,13 @@ export default class TextField extends Component {
      */
     required: PropTypes.bool,
     /**
-     * Type attribute of the `Input` element. It should be a valid HTML5 input type.
-     */
-    type: PropTypes.string,
-    /**
-     * If true, a textarea element will be rendered.
-     */
-    multiLine: PropTypes.bool,
-    /**
      * Number of rows to display when multiLine option is set to true.
      */
     rows: PropTypes.number,
+    /**
+     * Type attribute of the `Input` element. It should be a valid HTML5 input type.
+     */
+    type: PropTypes.string,
     /**
      * The value of the `Input` element, required for a controlled component.
      */

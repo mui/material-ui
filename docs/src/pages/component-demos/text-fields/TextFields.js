@@ -59,7 +59,7 @@ export default class TextFields extends Component {
         <TextField
           id="multiLine"
           label="MultiLine"
-          multiLine={true}
+          multiLine
           rows={3}
           value="Default text"
           defaultValue="Hello World"
