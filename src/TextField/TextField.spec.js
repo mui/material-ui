@@ -33,7 +33,7 @@ describe('<TextField />', () => {
     });
 
     it('should render an Input with component="textarea" when passed the multiLine prop', () => {
-      wrapper = shallow(<TextField multiLine/>)
+      wrapper = shallow(<TextField multiLine />);
       assert.strictEqual(wrapper.childAt(0).prop('component'), 'textarea');
     });
 
