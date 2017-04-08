@@ -1,10 +1,12 @@
 // @flow weak
 
 import { assert } from 'chai';
+import { spy, useFakeTimers } from 'sinon';
 import {
   transform,
   contains,
   find,
+  throttle,
 } from './helpers';
 
 describe('utils//helpers.js', () => {
@@ -51,6 +53,62 @@ describe('utils//helpers.js', () => {
       const failPred = { cat: 'meow' };
       assert.strictEqual(contains(obj, pred), true);
       assert.strictEqual(contains(obj, failPred), false);
+    });
+  });
+
+  describe('throttle(fn, limit)', () => {
+    let functionSpy;
+    let limit;
+    let throttledFunc;
+
+    before(() => {
+      functionSpy = spy();
+      limit = 2;
+      throttledFunc = throttle(functionSpy, limit);
+    });
+
+    it('should return a function', () => {
+      assert.strictEqual(typeof throttledFunc, 'function');
+    });
+
+    it('should not call the given function', () => {
+      assert.strictEqual(functionSpy.callCount, 0);
+    });
+
+    describe('returned function', () => {
+      let clock;
+
+      before(() => {
+        functionSpy.reset();
+        throttledFunc = throttle(functionSpy, limit);
+        clock = useFakeTimers();
+        throttledFunc();
+      });
+
+      after(() => {
+        clock.restore();
+      });
+
+      it('should call given function', () => {
+        assert.strictEqual(functionSpy.callCount, 1);
+      });
+
+      it('should not call given function if called again', () => {
+        throttledFunc();
+        assert.strictEqual(functionSpy.callCount, 1);
+      });
+
+      it('should not call given function even if clock ticks', () => {
+        clock.tick(1);
+        throttledFunc();
+        assert.strictEqual(functionSpy.callCount, 1);
+      });
+
+      it('should call given function when clock ticks past limit', () => {
+        clock.tick(1);
+        throttledFunc();
+        assert.strictEqual(functionSpy.callCount, 2);
+      });
     });
   });
 });
