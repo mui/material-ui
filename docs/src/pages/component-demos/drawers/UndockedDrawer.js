@@ -26,77 +26,152 @@ const styleSheet = createStyleSheet('UndockedDrawer', () => ({
     width: 250,
     flex: 'initial',
   },
-  remainder: {
-    flex: 1,
+  listFull: {
+    width: 'auto',
+    flex: 'initial',
   },
 }));
 
 export default class UndockedDrawer extends Component {
   state = {
-    open: false,
+    open: {
+      top: false,
+      left: false,
+      bottom: false,
+      right: false,
+    },
   };
 
-  handleOpen = () => this.setState({ open: true });
-  handleClose = () => this.setState({ open: false });
+  toggleDrawer = (side, open) => {
+    const drawerState = {};
+    drawerState[side] = open;
+    this.setState({ open: drawerState });
+  };
+
+  handleTopOpen = () => this.toggleDrawer('top', true);
+  handleTopClose = () => this.toggleDrawer('top', false);
+  handleLeftOpen = () => this.toggleDrawer('left', true);
+  handleLeftClose = () => this.toggleDrawer('left', false);
+  handleBottomOpen = () => this.toggleDrawer('bottom', true);
+  handleBottomClose = () => this.toggleDrawer('bottom', false);
+  handleRightOpen = () => this.toggleDrawer('right', true);
+  handleRightClose = () => this.toggleDrawer('right', false);
 
   render() {
     const classes = this.context.styleManager.render(styleSheet);
+
+    const mailFolderListItems = (
+      <div>
+        <ListItem button>
+          <ListItemIcon>
+            <InboxIcon />
+          </ListItemIcon>
+          <ListItemText primary="Inbox" />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <StarIcon />
+          </ListItemIcon>
+          <ListItemText primary="Starred" />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <SendIcon />
+          </ListItemIcon>
+          <ListItemText primary="Send mail" />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <DraftsIcon />
+          </ListItemIcon>
+          <ListItemText primary="Drafts" />
+        </ListItem>
+      </div>
+    );
+
+    const otherMailFolderListItems = (
+      <div>
+        <ListItem button>
+          <ListItemIcon>
+            <MailIcon />
+          </ListItemIcon>
+          <ListItemText primary="All mail" />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <DeleteIcon />
+          </ListItemIcon>
+          <ListItemText primary="Trash" />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <ReportIcon />
+          </ListItemIcon>
+          <ListItemText primary="Spam" />
+        </ListItem>
+      </div>
+    );
+
+    const sideList = (
+      <div>
+        <List className={classes.list} disablePadding>
+          {mailFolderListItems}
+        </List>
+        <Divider />
+        <List className={classes.list} disablePadding>
+          {otherMailFolderListItems}
+        </List>
+      </div>
+    );
+
+    const fullList = (
+      <div>
+        <List className={classes.listFull} disablePadding>
+          {mailFolderListItems}
+        </List>
+        <Divider />
+        <List className={classes.listFull} disablePadding>
+          {otherMailFolderListItems}
+        </List>
+      </div>
+    );
+
     return (
       <div>
-        <Button onClick={this.handleOpen}>Open Drawer</Button>
+        <Button onClick={this.handleLeftOpen}>Open Left</Button>
+        <Button onClick={this.handleRightOpen}>Open Right</Button>
+        <Button onClick={this.handleTopOpen}>Open Top</Button>
+        <Button onClick={this.handleBottomOpen}>Open Bottom</Button>
         <Drawer
-          open={this.state.open}
-          onRequestClose={this.handleClose}
-          onClick={this.handleClose}
+          open={this.state.open.left}
+          onRequestClose={this.handleLeftClose}
+          onClick={this.handleLeftClose}
         >
-          <List className={classes.list} padding={false}>
-            <ListItem button>
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary="Inbox" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <StarIcon />
-              </ListItemIcon>
-              <ListItemText primary="Starred" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <SendIcon />
-              </ListItemIcon>
-              <ListItemText primary="Send mail" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <DraftsIcon />
-              </ListItemIcon>
-              <ListItemText primary="Drafts" />
-            </ListItem>
-          </List>
-          <Divider />
-          <List className={classes.list} padding={false}>
-            <ListItem button>
-              <ListItemIcon>
-                <MailIcon />
-              </ListItemIcon>
-              <ListItemText primary="All mail" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <DeleteIcon />
-              </ListItemIcon>
-              <ListItemText primary="Trash" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <ReportIcon />
-              </ListItemIcon>
-              <ListItemText primary="Spam" />
-            </ListItem>
-          </List>
-          <div className={classes.remainder} />
+          {sideList}
+        </Drawer>
+        <Drawer
+          anchor="top"
+          open={this.state.open.top}
+          onRequestClose={this.handleTopClose}
+          onClick={this.handleTopClose}
+        >
+          {fullList}
+        </Drawer>
+        <Drawer
+          anchor="bottom"
+          open={this.state.open.bottom}
+          onRequestClose={this.handleBottomClose}
+          onClick={this.handleBottomClose}
+        >
+          {fullList}
+        </Drawer>
+        <Drawer
+          anchor="right"
+          open={this.state.open.right}
+          onRequestClose={this.handleRightClose}
+          onClick={this.handleRightClose}
+        >
+          {sideList}
         </Drawer>
       </div>
     );
