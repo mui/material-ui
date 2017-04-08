@@ -54,7 +54,7 @@
     "react-addons-create-fragment": "^15.4.0",
     "react-addons-transition-group": "^15.4.0",
     "react-event-listener": "^0.4.2",
-    "recompose": "^0.22.0",
+    "recompose": "^0.23.0",
     "simple-assign": "^0.1.0",
     "warning": "^3.0.0"
   },
