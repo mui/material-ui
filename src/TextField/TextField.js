@@ -58,6 +58,14 @@ export default class TextField extends Component {
      */
     type: PropTypes.string,
     /**
+     * If true, a textarea element will be rendered.
+     */
+    multiLine: PropTypes.bool,
+    /**
+     * Number of rows to display when multiLine option is set to true.
+     */
+    rows: PropTypes.number,
+    /**
      * The value of the `Input` element, required for a controlled component.
      */
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -90,6 +98,8 @@ export default class TextField extends Component {
       name,
       required,
       type,
+      multiLine,
+      rows,
       value,
       ...other
     } = this.props;
@@ -107,6 +117,9 @@ export default class TextField extends Component {
           </InputLabel>
         )}
         <Input
+          component={multiLine ? 'textarea' : 'input'}
+          multiLine={multiLine}
+          rows={rows}
           className={inputClassName}
           value={value}
           name={name}
