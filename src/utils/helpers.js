@@ -34,20 +34,6 @@ export function find(arr, pred) {
   return index > -1 ? arr[index] : undefined;
 }
 
-export function throttle(fn, limit) {
-  let wait = false;
-  return function throttledFn() {
-    if (!wait) {
-      fn.call();
-      wait = true;
-      return setTimeout(() => {
-        wait = false;
-      }, limit);
-    }
-    return null;
-  };
-}
-
 /**
  * Safe chained function
  *
