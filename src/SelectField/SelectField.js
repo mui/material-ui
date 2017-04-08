@@ -40,7 +40,7 @@ class SelectField extends Component {
      */
     disabled: PropTypes.bool,
     /**
-     * Object that can handle and override any properties of component DropDownMenu.
+     * Object that can handle and override any property of component DropDownMenu.
      */
     dropDownMenuProps: PropTypes.object,
     /**
