@@ -67,6 +67,12 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
         appearance: 'none',
       },
     },
+    multiLine: {
+      resize: 'none',
+      'line-height': 'inherit',
+      padding: '0px',
+      'margin-top': '12px'
+    },
     disabled: {
       color: theme.palette.text.disabled,
       cursor: 'not-allowed',
@@ -142,6 +148,14 @@ export default class Input extends Component {
      */
     underline: PropTypes.bool,
     /**
+     * If true, a textarea element will be rendered.
+     */
+    multiLine: PropTypes.bool,
+    /**
+     * Number of rows to display when multiLine option is set to true.
+     */
+    rows: PropTypes.number,
+    /**
      * The input value, required for a controlled component.
      */
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -152,6 +166,7 @@ export default class Input extends Component {
     disabled: false,
     type: 'text',
     disableUnderline: false,
+    multiLine: false
   };
 
   static contextTypes = {
@@ -239,6 +254,7 @@ export default class Input extends Component {
       className: classNameProp,
       component: ComponentProp,
       inputClassName: inputClassNameProp,
+      multiLine,
       disabled,
       disableUnderline,
       error: errorProp,
@@ -265,6 +281,7 @@ export default class Input extends Component {
     }, classNameProp);
 
     const inputClassName = classNames(classes.input, {
+      [classes.multiLine]: multiLine,
       [classes.underline]: !disableUnderline,
       [classes.disabled]: disabled,
     }, inputClassNameProp);
