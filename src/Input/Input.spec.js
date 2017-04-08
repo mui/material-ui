@@ -33,6 +33,12 @@ describe('<Input />', () => {
       'should not have the area-required prop');
   });
 
+  it('should render an <textarea /> inside the div when passed component="textarea"', () => {
+    const wrapper = shallow(<Input component="textarea" />);
+    const input = wrapper.find('textarea');
+    assert.strictEqual(input.is('textarea'), true, 'should be a <input>');
+  });
+
   it('should render a disabled <input />', () => {
     const wrapper = shallow(<Input disabled />);
     const input = wrapper.find('input');
