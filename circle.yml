@@ -29,5 +29,6 @@ test:
   override:
     - ./scripts/run-circle-tests.sh
   post:
+    - npm run argos
     - bash <(curl -s https://codecov.io/bash)
 

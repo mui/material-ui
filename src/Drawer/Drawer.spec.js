@@ -205,4 +205,29 @@ describe('<Drawer />', () => {
       assert.strictEqual(wrapper.find(Slide).props().direction, 'up');
     });
   });
+
+  describe('right-to-left', () => {
+    let wrapper;
+
+    before(() => {
+      wrapper = shallow(<Drawer />);
+      const styleManager = wrapper.context('styleManager');
+      styleManager.theme.dir = 'rtl';
+      wrapper.setContext({ styleManager });
+    });
+
+    it('should switch left and right anchor when theme is right-to-left', () => {
+      wrapper.setProps({
+        anchor: 'left',
+      });
+      // slide direction for left is right, if left is switched to right, we should get left
+      assert.strictEqual(wrapper.find(Slide).props().direction, 'left');
+
+      wrapper.setProps({
+        anchor: 'right',
+      });
+      // slide direction for right is left, if right is switched to left, we should get right
+      assert.strictEqual(wrapper.find(Slide).props().direction, 'right');
+    });
+  });
 });

@@ -4,8 +4,8 @@ import React, { Component, PropTypes, Children, cloneElement } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import EventListener from 'react-event-listener';
+import throttle from 'lodash/throttle';
 import customPropTypes from '../utils/customPropTypes';
-import { throttle } from '../utils/helpers';
 import TabIndicator from './TabIndicator';
 
 export const styleSheet = createStyleSheet('MuiTabs', () => {
