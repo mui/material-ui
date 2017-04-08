@@ -21,10 +21,10 @@ export const styleSheet = createStyleSheet('MuiSwitch', (theme) => {
       }),
     },
     checked: {
-      color: palette.accent[500],
+      color: palette.primary[500],
       transform: 'translateX(14px)',
       '& + $bar': {
-        backgroundColor: palette.accent[500],
+        backgroundColor: palette.primary[500],
         opacity: 0.5,
       },
     },
