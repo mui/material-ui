@@ -29,7 +29,7 @@ export default class SelectFieldExampleMenuClose extends Component {
           dropDownMenuProps={{
             onchange: this.handleChange,
             onClose: this.handleClose,
-            selectionRenderer: this.handleSelectionRenderer
+            selectionRenderer: this.handleSelectionRenderer,
           }}
         >
           <MenuItem value={1} primaryText="Never" />
