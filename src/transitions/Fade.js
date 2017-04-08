@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Transition from '../internal/Transition';
 import { duration } from '../styles/transitions';
 import customPropTypes from '../utils/customPropTypes';

@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import IconButton from 'material-ui/IconButton';
 import PlayCircleOutlineIcon from 'material-ui-icons/PlayCircleOutline';

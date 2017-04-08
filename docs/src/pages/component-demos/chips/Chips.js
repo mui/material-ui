@@ -24,11 +24,11 @@ const styleSheet = createStyleSheet('Chips', (theme) => ({
 }));
 
 function handleRequestDelete() {
-  alert('You clicked the delete icon.'); // eslint-ignore-line no-alert
+  alert('You clicked the delete icon.'); // eslint-disable-line no-alert
 }
 
 function handleClick() {
-  alert('You clicked the Chip.'); // eslint-ignore-line no-alert
+  alert('You clicked the Chip.'); // eslint-disable-line no-alert
 }
 
 export default function Chips(props, context) {
