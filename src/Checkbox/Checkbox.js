@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { createStyleSheet } from 'jss-theme-reactor';
 import { createSwitch } from '../internal/SwitchBase';
 import withSwitchLabel from '../internal/withSwitchLabel';

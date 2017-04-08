@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import IconButton from 'material-ui/IconButton';
 import { Menu, MenuItem } from 'material-ui/Menu';

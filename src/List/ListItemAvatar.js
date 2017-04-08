@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import warning from 'warning';
 import { createStyleSheet } from 'jss-theme-reactor';
@@ -32,7 +33,7 @@ export const styleSheet = createStyleSheet('MuiListItemAvatar', () => {
  */
 export default function ListItemAvatar(props, context) {
   if (context.dense === undefined) {
-    warning(false, `Material-UI: <ListItemAvatar> is a simple wrapper to apply the dense styles 
+    warning(false, `Material-UI: <ListItemAvatar> is a simple wrapper to apply the dense styles
       to <Avatar>. You do not need it unless you are controlling the <List> dense property.`);
     return props.children;
   }

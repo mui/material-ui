@@ -3,6 +3,7 @@
 This tool generates Material-UI SvgIcon components for a set of svg icons.
 
 ## Running the build
+
 The npm script builds the [material-design-icons](https://github.com/google/material-design-icons)
 that are distributed as a standalone package.
 
@@ -14,6 +15,7 @@ npm publish
 ```
 
 ## Generated folders
+
 The npm build script walks through all of the svg icons in the material-design-icons package
  and generates the appropriate `.js` files in the `build` folder, and creates an a `package.json`.
 
