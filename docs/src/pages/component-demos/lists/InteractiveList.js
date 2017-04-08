@@ -117,17 +117,11 @@ class InteractiveList extends Component {
               <List dense={dense}>
                 {generate((
                   <ListItem button>
-                    {dense ? (
-                      <ListItemAvatar>
-                        <Avatar>
-                          <FolderIcon />
-                        </Avatar>
-                      </ListItemAvatar>
-                    ) : (
+                    <ListItemAvatar>
                       <Avatar>
                         <FolderIcon />
                       </Avatar>
-                    )}
+                    </ListItemAvatar>
                     <ListItemText
                       primary="Single-line item"
                       secondary={secondary ? 'Secondary text' : null}
@@ -145,17 +139,11 @@ class InteractiveList extends Component {
               <List dense={dense}>
                 {generate((
                   <ListItem button>
-                    {dense ? (
-                      <ListItemAvatar>
-                        <Avatar>
-                          <FolderIcon />
-                        </Avatar>
-                      </ListItemAvatar>
-                    ) : (
+                    <ListItemAvatar>
                       <Avatar>
                         <FolderIcon />
                       </Avatar>
-                    )}
+                    </ListItemAvatar>
                     <ListItemText
                       primary="Single-line item"
                       secondary={secondary ? 'Secondary text' : null}

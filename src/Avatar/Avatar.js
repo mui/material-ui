@@ -99,7 +99,7 @@ Avatar.propTypes = {
   /**
    * @ignore
    * The className of the child element.
-   * Used by Chip to style the Avatar icon.
+   * Used by Chip and ListItemIcon to style the Avatar icon.
    */
   childrenClassName: PropTypes.string,
   /**
