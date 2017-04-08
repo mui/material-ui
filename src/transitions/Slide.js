@@ -88,14 +88,13 @@ export default class Slide extends Component {
 
   componentDidMount() {
     if (!this.props.in) {
-      /* eslint-disable react/no-find-dom-node */
       /* We need to set initial translate values of transition element
        * otherwise component will be shown when in=false.
        * transitions are handled by direct access to element,
        * so we need to access that same element too here.
        */
       const element = ReactDOM.findDOMNode(this.transition);
-      /* eslint-enable react/no-find-dom-node */
+      // $FlowFixMe
       element.style.transform = getTranslateValue(this.props, element);
     }
   }

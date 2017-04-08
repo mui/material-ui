@@ -2,6 +2,7 @@ node_modules
 /build
 /flow
 /tmp
+/coverage
 /docs/build
 /packages/**/lib
 /packages/material-ui-icons

@@ -141,7 +141,7 @@ describe('<Menu />', () => {
         focus: menuListFocusSpy,
       };
 
-      findDOMNodeStub = stub(ReactDOM, 'findDOMNode', (arg) => {
+      findDOMNodeStub = stub(ReactDOM, 'findDOMNode').callsFake((arg) => {
         if (arg === SELECTED_ITEM_KEY) {
           return {
             focus: selectedItemFocusSpy,

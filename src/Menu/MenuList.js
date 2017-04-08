@@ -70,8 +70,10 @@ export default class MenuList extends Component {
       (!currentFocus || (currentFocus && !contains(list, currentFocus)))
     ) {
       if (this.selectedItem) {
-        findDOMNode(this.selectedItem).focus(); // eslint-disable-line react/no-find-dom-node
+        // $FlowFixMe
+        findDOMNode(this.selectedItem).focus();
       } else {
+        // $FlowFixMe
         list.firstChild.focus();
       }
     } else if (key === 'down') {
@@ -94,7 +96,9 @@ export default class MenuList extends Component {
   handleItemFocus = (event) => {
     const list = findDOMNode(this.list);
     if (list) {
+      // $FlowFixMe
       for (let i = 0; i < list.children.length; i += 1) {
+        // $FlowFixMe
         if (list.children[i] === event.currentTarget) {
           this.setTabIndex(i);
           break;
@@ -111,8 +115,10 @@ export default class MenuList extends Component {
     }
 
     if (currentTabIndex && currentTabIndex >= 0) {
+      // $FlowFixMe
       list.children[currentTabIndex].focus();
     } else {
+      // $FlowFixMe
       list.firstChild.focus();
     }
   }
@@ -120,6 +126,7 @@ export default class MenuList extends Component {
   resetTabIndex() {
     const list = findDOMNode(this.list);
     const currentFocus = activeElement(ownerDocument(list));
+    // $FlowFixMe
     const items = [...list.children];
     const currentFocusIndex = items.indexOf(currentFocus);
 

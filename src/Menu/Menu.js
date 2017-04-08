@@ -85,15 +85,20 @@ export default class Menu extends Component {
     const list = ReactDOM.findDOMNode(this.menuList);
 
     if (this.menuList && this.menuList.selectedItem) {
+       // $FlowFixMe
       ReactDOM.findDOMNode(this.menuList.selectedItem)
-                                            .focus(); // eslint-disable-line react/no-find-dom-node
+        .focus();
     } else if (list) {
+       // $FlowFixMe
       list.firstChild.focus();
     }
 
+    // $FlowFixMe
     if (list && element.clientHeight < list.clientHeight) {
       const size = `${getScrollbarSize()}px`;
+      // $FlowFixMe
       list.style.paddingRight = size;
+      // $FlowFixMe
       list.style.width = `calc(100% + ${size})`;
     }
 
@@ -113,6 +118,7 @@ export default class Menu extends Component {
 
   getContentAnchorEl = () => {
     if (!this.menuList || !this.menuList.selectedItem) {
+      // $FlowFixMe
       return ReactDOM.findDOMNode(this.menuList).firstChild;
     }
 
