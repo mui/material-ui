@@ -32,6 +32,11 @@ describe('<TextField />', () => {
       assert.strictEqual(wrapper.childAt(0).is('Input'), true);
     });
 
+    it('should render an Input with component="textarea" when passed the multiLine prop', () => {
+      wrapper = shallow(<TextField multiLine/>)
+      assert.strictEqual(wrapper.childAt(0).prop('component'), 'textarea');
+    });
+
     it('should pass inputClassName to the Input as className', () => {
       wrapper.setProps({ inputClassName: 'foo' });
       assert.strictEqual(wrapper.find('Input').hasClass('foo'), true);
