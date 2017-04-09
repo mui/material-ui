@@ -104,7 +104,7 @@ export default class Input extends Component {
       PropTypes.func,
     ]),
     /**
-     * The default value for the string
+     * The default value for the Input
      */
     defaultValue: PropTypes.string,
     /**
@@ -256,7 +256,6 @@ export default class Input extends Component {
   render() {
     const {
       className: classNameProp,
-      component: ComponentProp,
       defaultValue,
       disabled,
       disableUnderline,
@@ -293,9 +292,11 @@ export default class Input extends Component {
 
     const required = muiFormControl && muiFormControl.required === true;
 
+    const InputComponent = multiLine ? 'textarea' : 'input';
+
     return (
       <div className={wrapperClassName}>
-        <ComponentProp
+        <InputComponent
           ref={(c) => { this.input = c; }}
           className={inputClassName}
           onBlur={this.handleBlur}
