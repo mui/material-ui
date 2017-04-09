@@ -123,7 +123,6 @@ export default class TextField extends Component {
         )}
         <Input
           className={inputClassName}
-          component={multiLine ? 'textarea' : 'input'}
           defaultValue={defaultValue}
           disabled={disabled}
           multiLine={multiLine}
