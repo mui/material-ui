@@ -401,7 +401,10 @@ class AutoComplete extends Component {
       menuProps,
       listStyle,
       targetOrigin,
+      onBlur, // eslint-disable-line no-unused-vars
       onClose, // eslint-disable-line no-unused-vars
+      onFocus, // eslint-disable-line no-unused-vars
+      onKeyDown, // eslint-disable-line no-unused-vars
       onNewRequest, // eslint-disable-line no-unused-vars
       onUpdateInput, // eslint-disable-line no-unused-vars
       openOnFocus, // eslint-disable-line no-unused-vars
