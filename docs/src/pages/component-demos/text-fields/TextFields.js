@@ -61,8 +61,7 @@ export default class TextFields extends Component {
           label="MultiLine"
           multiLine
           rows={3}
-          value="Default text"
-          defaultValue="Hello World"
+          defaultValue="Default Value"
           className={classes.input}
         />
       </div>
