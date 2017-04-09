@@ -75,6 +75,7 @@ describe('<Modal />', () => {
             instance.modal.lastChild.hasAttribute = stub().returns(true);
             consoleError = console.error; // eslint-disable-line no-console
             consoleErrorSpy = spy();
+            // $FlowFixMe
             console.error = consoleErrorSpy; // eslint-disable-line no-console
             instance.focus();
           });
@@ -83,6 +84,7 @@ describe('<Modal />', () => {
             instance.modal.lastChild.hasAttribute.reset();
             instance.modal.lastChild.focus.reset();
             consoleErrorSpy.reset();
+            // $FlowFixMe
             console.error = consoleError; // eslint-disable-line no-console
           });
 
@@ -113,6 +115,7 @@ describe('<Modal />', () => {
             instance.modal.lastChild.hasAttribute = stub().returns(false);
             consoleError = console.error; // eslint-disable-line no-console
             consoleErrorSpy = spy();
+            // $FlowFixMe
             console.error = consoleErrorSpy; // eslint-disable-line no-console
             instance.focus();
           });
@@ -120,6 +123,7 @@ describe('<Modal />', () => {
           after(() => {
             instance.modal.lastChild.hasAttribute.reset();
             consoleErrorSpy.reset();
+            // $FlowFixMe
             console.error = consoleError; // eslint-disable-line no-console
           });
 
