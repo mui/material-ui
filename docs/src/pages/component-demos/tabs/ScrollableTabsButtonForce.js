@@ -26,7 +26,8 @@ TabContainer.propTypes = {
 
 const styleSheet = createStyleSheet('ScrollableTabsButtonForce', (theme) => ({
   root: {
-    width: 500,
+    marginTop: 30,
+    width: '100%',
   },
   appBar: {
     backgroundColor: theme.palette.background.appBar,
@@ -56,37 +57,16 @@ export default class ScrollableTabsButtonForce extends Component {
             index={this.state.index}
             onChange={this.handleChange}
             scrollable
-            scrollButtons={'on'}
+            scrollButtons="on"
             textColor="accent"
           >
-            <Tab
-              label="Item One"
-              icon={<PhoneIcon />}
-            />
-            <Tab
-              label="Item Two"
-              icon={<FavoriteIcon />}
-            />
-            <Tab
-              label="Item Three"
-              icon={<PersonPinIcon />}
-            />
-            <Tab
-              label="Item Four"
-              icon={<HelpIcon />}
-            />
-            <Tab
-              label="Item Five"
-              icon={<ShoppingBasket />}
-            />
-            <Tab
-              label="Item Six"
-              icon={<ThumbDown />}
-            />
-            <Tab
-              label="Item Seven"
-              icon={<ThumbUp />}
-            />
+            <Tab label="Item One" icon={<PhoneIcon />} />
+            <Tab label="Item Two" icon={<FavoriteIcon />} />
+            <Tab label="Item Three" icon={<PersonPinIcon />} />
+            <Tab label="Item Four" icon={<HelpIcon />} />
+            <Tab label="Item Five" icon={<ShoppingBasket />} />
+            <Tab label="Item Six" icon={<ThumbDown />} />
+            <Tab label="Item Seven" icon={<ThumbUp />} />
           </Tabs>
         </div>
         {this.state.index === 0 && <TabContainer>{'Item One'}</TabContainer>}

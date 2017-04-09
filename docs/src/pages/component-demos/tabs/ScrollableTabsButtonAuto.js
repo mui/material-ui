@@ -19,7 +19,8 @@ TabContainer.propTypes = {
 
 const styleSheet = createStyleSheet('ScrollableTabsButtonAuto', (theme) => ({
   root: {
-    width: 500,
+    marginTop: 30,
+    width: '100%',
   },
   appBar: {
     backgroundColor: theme.palette.primary[500],
@@ -50,7 +51,7 @@ export default class ScrollableTabsButtonAuto extends Component {
             index={this.state.index}
             onChange={this.handleChange}
             scrollable
-            scrollButtons={'auto'}
+            scrollButtons="auto"
           >
             <Tab label="Item One" />
             <Tab label="Item Two" />

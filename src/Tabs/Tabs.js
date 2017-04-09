@@ -193,8 +193,10 @@ class Tabs extends Component {
 
     classGroups.scroller = classNames(
       classes.scrollingContainer,
-      { [classes.fixed]: !scrollable },
-      { [classes.scrollable]: scrollable },
+      {
+        [classes.fixed]: !scrollable,
+        [classes.scrollable]: scrollable,
+      },
     );
 
     classGroups.tabItemContainer = classNames(
@@ -209,7 +211,7 @@ class Tabs extends Component {
     const {
       buttonClassName,
       scrollable,
-      scrollButtons: scrollButtonsProp,
+      scrollButtons,
       width,
     } = this.props;
     const conditionalElements = {};
@@ -223,8 +225,8 @@ class Tabs extends Component {
     );
 
     const showScrollButtons = scrollable && (
-      (isWidthUp('md', width) && scrollButtonsProp === 'auto') ||
-      (scrollButtonsProp === 'on')
+      (isWidthUp('md', width) && scrollButtons === 'auto') ||
+      (scrollButtons === 'on')
     );
 
     conditionalElements.windowResizeListener = (
@@ -239,7 +241,7 @@ class Tabs extends Component {
     conditionalElements.scrollButtonLeft = (
       showScrollButtons ? (
         <TabScrollButton
-          direction={'left'}
+          direction="left"
           onClick={this.handleLeftScrollClick}
           visible={this.state.showLeftScroll}
           className={buttonClassName}
@@ -251,7 +253,7 @@ class Tabs extends Component {
       showScrollButtons ? (
         <TabScrollButton
           className={buttonClassName}
-          direction={'right'}
+          direction="right"
           onClick={this.handleRightScrollClick}
           visible={this.state.showRightScroll}
         />
@@ -325,7 +327,7 @@ class Tabs extends Component {
       indicatorColor,
       onChange,
       scrollable, // eslint-disable-line no-unused-vars
-      scrollButtons: scrollButtonsProp, // eslint-disable-line no-unused-vars
+      scrollButtons, // eslint-disable-line no-unused-vars
       textColor,
       width, // eslint-disable-line no-unused-vars
       ...other
@@ -346,7 +348,7 @@ class Tabs extends Component {
     const conditionalElements = this.getConditionalElements();
 
     return (
-      <div className={classGroups.root}>
+      <div className={classGroups.root} {...other}>
         {conditionalElements.windowResizeListener}
         {conditionalElements.scrollbarSizeListener}
         <div className={classGroups.flexContainer}>
@@ -357,7 +359,6 @@ class Tabs extends Component {
             ref={(c) => { this.tabs = c; }}
             role="tablist"
             onScroll={this.handleTabsScroll}
-            {...other}
           >
             <div className={classGroups.tabItemContainer}>
               {children}

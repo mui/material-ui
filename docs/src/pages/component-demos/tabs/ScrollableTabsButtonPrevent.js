@@ -26,7 +26,8 @@ TabContainer.propTypes = {
 
 const styleSheet = createStyleSheet('ScrollableTabsButtonPrevent', (theme) => ({
   root: {
-    width: 500,
+    marginTop: 30,
+    width: '100%',
   },
   appBar: {
     backgroundColor: theme.palette.primary[500],
@@ -57,29 +58,15 @@ export default class ScrollableTabsButtonPrevent extends Component {
             index={this.state.index}
             onChange={this.handleChange}
             scrollable
-            scrollButtons={'off'}
+            scrollButtons="off"
           >
-            <Tab
-              icon={<PhoneIcon />}
-            />
-            <Tab
-              icon={<FavoriteIcon />}
-            />
-            <Tab
-              icon={<PersonPinIcon />}
-            />
-            <Tab
-              icon={<HelpIcon />}
-            />
-            <Tab
-              icon={<ShoppingBasket />}
-            />
-            <Tab
-              icon={<ThumbDown />}
-            />
-            <Tab
-              icon={<ThumbUp />}
-            />
+            <Tab icon={<PhoneIcon />} />
+            <Tab icon={<FavoriteIcon />} />
+            <Tab icon={<PersonPinIcon />} />
+            <Tab icon={<HelpIcon />} />
+            <Tab icon={<ShoppingBasket />} />
+            <Tab icon={<ThumbDown />} />
+            <Tab icon={<ThumbUp />} />
           </Tabs>
         </div>
         {this.state.index === 0 && <TabContainer>{'Item One'}</TabContainer>}

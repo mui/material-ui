@@ -36,19 +36,22 @@ const TabScrollButton = (props, context) => {
 
   return visible ? (
     <ButtonBase
-      focusRipple
       className={className}
       role="button"
       onClick={onClick}
+      tabIndex="-1"
       {...other}
     >
-      {(direction === 'left') ? <KeyboardArrowLeft /> : <KeyboardArrowRight /> }
+      {direction === 'left' ? <KeyboardArrowLeft /> : <KeyboardArrowRight /> }
     </ButtonBase>
   ) : (
     <div className={className} />
   );
 };
 
+/**
+ * @ignore - internal component.
+ */
 TabScrollButton.propTypes = {
   /**
    * @ignore
