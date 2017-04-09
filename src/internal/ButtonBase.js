@@ -114,6 +114,8 @@ export default class ButtonBase extends Component {
   keyDown = false; // Used to help track keyboard activation keyDown
   button = null;
   keyboardFocusTimeout = undefined;
+  keyboardFocusCheckTime = 40;
+  keyboardFocusMaxCheckTimes = 5;
 
   focus = () => this.button.focus();
 
