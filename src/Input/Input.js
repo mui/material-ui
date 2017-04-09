@@ -104,6 +104,10 @@ export default class Input extends Component {
       PropTypes.func,
     ]),
     /**
+     * The default value for the string
+     */
+    defaultValue: PropTypes.string,
+    /**
      * If `true`, the input will be disabled.
      */
     disabled: PropTypes.bool,
@@ -253,11 +257,12 @@ export default class Input extends Component {
     const {
       className: classNameProp,
       component: ComponentProp,
-      inputClassName: inputClassNameProp,
-      multiLine,
+      defaultValue,
       disabled,
       disableUnderline,
       error: errorProp,
+      inputClassName: inputClassNameProp,
+      multiLine,
       onBlur, // eslint-disable-line no-unused-vars
       onFocus, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
@@ -297,6 +302,7 @@ export default class Input extends Component {
           onFocus={this.handleFocus}
           onChange={this.handleChange}
           disabled={disabled}
+          defaultValue={defaultValue}
           aria-required={required ? true : undefined}
           {...other}
         />
