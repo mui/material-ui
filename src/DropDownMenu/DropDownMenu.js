@@ -214,7 +214,7 @@ class DropDownMenu extends Component {
     maxHeight: 500,
     multiple: false,
     anchorOrigin: {
-      vertical: 'bottom',
+      vertical: 'top',
       horizontal: 'left',
     },
   };
