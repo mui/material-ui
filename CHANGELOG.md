@@ -1,13 +1,28 @@
 ## HEAD
 
+## 0.17.2
+
+###### _Apr 9, 2017_
+
+Big thanks to the 21 contributors who made this release possible.
+
+This release includes the update of the dependencies.
+The latest release of `inline-style-prefixer` is introducing **significant** [performance improvements](https://github.com/rofrischmann/inline-style-prefixer/blob/master/Changelog.md#30) to our styling solution.
+
+[Latest React's announcement](https://facebook.github.io/react/blog/2017/04/07/react-v15.5.0.html) includes a deprecation of `React.PropTypes` and an introduction of a new package `prop-types`. We don't support that change yet, any help is welcome.
+
 ##### Component Fixes / Enhancements
 
+- [AutoComplete] Fix menuProps and text props override defaults (#6497) @susielu
+- [AutoComplete] Document menuProps property (#6443) @tanhauhau
 - [AppBar] Add test for iconElementRight gets FlatButton (#6362) @agamrafaeli
 - [Drawer] Allowing percentages width (#6315) @janzenz
 - [DropDownMenu] Expose targetOrigin and anchorOrigin properties (#6370) @qin9smile
 - [EnhancedTextArea] Fixes height bug for IE11 (#6418) @mmrtnz
 - [GridTile] Add a subtitleStyle property (#6421) @ichi0g0y
 - [ListItem] Add isKeyboardFocused prop (#6369) @samdroid-apps
+- [Menu] Add attributes to support assistive technologies (#6539) @170102
+- [TextField] Fix first character composition issue (#6456) @keifuji
 - [TextField] Fix wrapped hintText rendering outside of container (#6305) @pancho111203
 - [ToolbarGroup] Add more tests for other child components (#6423) @ibekavac
 
@@ -30,7 +45,7 @@
 
 ###### _Mar 12, 2017_
 
-A big thanks to the 20 contributors who made this release possible.
+Big thanks to the 20 contributors who made this release possible.
 
 ##### Component Fixes / Enhancements
 
@@ -75,7 +90,7 @@ A big thanks to the 20 contributors who made this release possible.
 ## 0.17.0
 ###### _Feb 12, 2017_
 
-A big thanks to the 17 contributors who made this release possible.
+Big thanks to the 17 contributors who made this release possible.
 
 ##### Breaking Changes
 - [core] Upgrade react-tap-event-plugin and react peer dependency (#6057) @rosskevin
@@ -113,7 +128,7 @@ We have upgraded the peer dependency of Material-UI. You gonna need:
 ## 0.16.7
 ###### _Jan 15, 2017_
 
-A big thanks to the 20 contributors who made this release possible.
+Big thanks to the 20 contributors who made this release possible.
 
 ##### Component Fixes / Enhancements
 
