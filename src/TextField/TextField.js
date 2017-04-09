@@ -18,6 +18,10 @@ export default class TextField extends Component {
      */
     className: PropTypes.string,
     /**
+     * The default value for the TextField
+     */
+    defaultValue: PropTypes.string,
+    /**
      * If `true`, the input will be disabled.
      */
     disabled: PropTypes.bool,
@@ -89,6 +93,7 @@ export default class TextField extends Component {
   render() {
     const {
       className,
+      defaultValue,
       disabled,
       error,
       inputClassName,
@@ -117,14 +122,15 @@ export default class TextField extends Component {
           </InputLabel>
         )}
         <Input
-          component={multiLine ? 'textarea' : 'input'}
-          multiLine={multiLine}
-          rows={rows}
           className={inputClassName}
-          value={value}
-          name={name}
-          type={type}
+          component={multiLine ? 'textarea' : 'input'}
+          defaultValue={defaultValue}
           disabled={disabled}
+          multiLine={multiLine}
+          name={name}
+          rows={rows}
+          type={type}
+          value={value}
           {...inputProps}
         />
       </FormControl>
