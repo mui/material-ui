@@ -3,7 +3,7 @@
 import React from 'react';
 import keycode from 'keycode';
 import { assert } from 'chai';
-import { spy } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import { createShallow, createMount } from 'src/test-utils';
 import ButtonBase, { styleSheet } from './ButtonBase';
 
@@ -287,12 +287,20 @@ describe('<ButtonBase />', () => {
   });
 
   describe('mounted tab press listener', () => {
-    it('should listen for tab presses and set keyboard focus', (done) => {
-      const wrapper = mount(
+    let wrapper;
+    let instance;
+    let button;
+    let clock;
+
+    before(() => {
+      clock = useFakeTimers();
+      wrapper = mount(
         <ButtonBase id="test-button">Hello</ButtonBase>,
       );
+      instance = wrapper.instance();
 
-      const button = document.getElementById('test-button');
+      button = document.getElementById('test-button');
+
       if (!button) {
         throw new Error('missing button');
       }
@@ -301,15 +309,19 @@ describe('<ButtonBase />', () => {
       const event = new window.Event('keyup');
       event.which = keycode('tab');
       window.dispatchEvent(event);
+    });
 
-      setTimeout(() => {
-        assert.strictEqual(
-          wrapper.state('keyboardFocused'),
-          true,
-          'should be keyboardFocused',
-        );
-        done();
-      }, 200);
+    after(() => {
+      clock.restore();
+    });
+
+    it('should not set keyboard focus before time has passed', () => {
+      assert.strictEqual(wrapper.state('keyboardFocused'), false, 'should not be keyboardFocused');
+    });
+
+    it('should listen for tab presses and set keyboard focus', () => {
+      clock.tick(instance.keyboardFocusCheckTime * instance.keyboardFocusMaxCheckTimes);
+      assert.strictEqual(wrapper.state('keyboardFocused'), true, 'should be keyboardFocused');
     });
   });
 
