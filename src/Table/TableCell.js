@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -44,7 +45,7 @@ export const styleSheet = createStyleSheet('MuiTableCell', (theme) => {
  * When placed in a `TableHead`, this will automatically render a `th` element.
  *
  * ```jsx
- * <TableCell>Hello</TableCell>
+ * <TableCell>...</TableCell>
  * ```
  */
 export default function TableCell(props, context) {
@@ -54,7 +55,7 @@ export default function TableCell(props, context) {
     compact,
     checkbox,
     numeric,
-    padding,
+    disablePadding,
     ...other
   } = props;
   const { table, styleManager } = context;
@@ -66,7 +67,7 @@ export default function TableCell(props, context) {
     [classes.numeric]: numeric,
     [classes.compact]: compact,
     [classes.checkbox]: checkbox,
-    [classes.padding]: padding,
+    [classes.padding]: !disablePadding,
     [classes.head]: table && table.head,
     [classes.footer]: table && table.footer,
   }, classNameProp);
@@ -80,7 +81,7 @@ export default function TableCell(props, context) {
 
 TableCell.propTypes = {
   /**
-   * If `true`, the cell padding will be adjusted to better accomodate a checkbox.
+   * If `true`, the cell padding will be adjusted to accommodate a checkbox.
    */
   checkbox: PropTypes.bool,
   /**
@@ -92,24 +93,24 @@ TableCell.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If set to true, will use more compact cell padding to accomodate more content.
+   * If `true`, compact cell padding will be used to accommodate more content.
    */
   compact: PropTypes.bool,
   /**
-   * If set to true, will align content to the right hand side.
+   * If `true`, left/right cell padding will be disabled.
+   */
+  disablePadding: PropTypes.bool,
+  /**
+   * If `true`, content will align to the right.
    */
   numeric: PropTypes.bool,
-  /**
-   * If set to false, will disable left/right cell padding.
-   */
-  padding: PropTypes.bool,
 };
 
 TableCell.defaultProps = {
   checkbox: false,
   compact: false,
   numeric: false,
-  padding: true,
+  disablePadding: false,
 };
 
 TableCell.contextTypes = {

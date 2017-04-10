@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -40,16 +41,25 @@ export default function TabIndicator(props, context) {
   return <div className={className} style={style} />;
 }
 
+/**
+ * @ignore - internal component.
+ */
 TabIndicator.propTypes = {
   /**
+   * @ignore
    * The CSS class name of the root element.
    */
   className: PropTypes.string,
+  /**
+   * @ignore
+   * The color of the tab indicator.
+   */
   indicatorColor: PropTypes.oneOfType([
     PropTypes.oneOf(['accent']),
     PropTypes.string,
   ]).isRequired,
   /**
+   * @ignore
    * The style of the root element.
    */
   style: PropTypes.shape({

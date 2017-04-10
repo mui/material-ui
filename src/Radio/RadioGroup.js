@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { Component, Children, cloneElement, PropTypes } from 'react';
+import React, { Component, Children, cloneElement } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -19,15 +20,36 @@ export const styleSheet = createStyleSheet('MuiRadioGroup', () => {
 
 class RadioGroup extends Component {
   static propTypes = {
+    /**
+     * The content of the component.
+     */
     children: PropTypes.node,
     /**
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
+    /**
+     * The name used to reference the value of the control.
+     */
     name: PropTypes.string,
+    /**
+     * @ignore
+     */
     onBlur: PropTypes.func,
+    /**
+     * Callback fired when a radio button is selected.
+     *
+     * @param {object} event `change` event
+     * @param {boolean} checked The `checked` value of the switch
+     */
     onChange: PropTypes.func,
+    /**
+     * @ignore
+     */
     onKeyDown: PropTypes.func,
+    /**
+     * Value of the selected radio button
+     */
     selectedValue: PropTypes.string,
   };
 

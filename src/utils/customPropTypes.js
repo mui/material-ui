@@ -2,7 +2,7 @@
 /* eslint-disable import/no-mutable-exports*/
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import { PropTypes } from 'react';
+import PropTypes from 'prop-types';
 
 let customPropTypes = {};
 

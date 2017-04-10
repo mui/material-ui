@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -54,7 +55,7 @@ SvgIcon.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * The css class name of the root element.
+   * The CSS class name of the root element.
    */
   className: PropTypes.string,
   /**

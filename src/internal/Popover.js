@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import contains from 'dom-helpers/query/contains';
@@ -310,6 +311,8 @@ export default class Popover extends Component {
     };
   }
 
+  handleGetOffsetTop = getOffsetTop;
+  handleGetOffsetLeft = getOffsetLeft;
   /**
    * Returns the top/left offset of the position
    * to attach to on the anchor element (or body if none is provided)
@@ -322,8 +325,8 @@ export default class Popover extends Component {
     const anchorVertical = contentAnchorOffset === 0 ? anchorOrigin.vertical : 'center';
 
     return {
-      top: anchorRect.top + getOffsetTop(anchorRect, anchorVertical),
-      left: anchorRect.left + getOffsetLeft(anchorRect, anchorOrigin.horizontal),
+      top: anchorRect.top + this.handleGetOffsetTop(anchorRect, anchorVertical),
+      left: anchorRect.left + this.handleGetOffsetLeft(anchorRect, anchorOrigin.horizontal),
     };
   }
 
@@ -351,8 +354,8 @@ export default class Popover extends Component {
   getTransformOrigin(elemRect, contentAnchorOffset = 0) {
     const { transformOrigin } = this.props;
     return {
-      vertical: getOffsetTop(elemRect, transformOrigin.vertical) + contentAnchorOffset,
-      horizontal: getOffsetLeft(elemRect, transformOrigin.horizontal),
+      vertical: this.handleGetOffsetTop(elemRect, transformOrigin.vertical) + contentAnchorOffset,
+      horizontal: this.handleGetOffsetLeft(elemRect, transformOrigin.horizontal),
     };
   }
 
@@ -388,7 +391,7 @@ export default class Popover extends Component {
     return (
       <Modal
         show={open}
-        backdropVisible={false}
+        backdropInvisible
         onRequestClose={onRequestClose}
       >
         <Transition

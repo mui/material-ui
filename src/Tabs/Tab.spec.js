@@ -64,6 +64,15 @@ describe('<Tab />', () => {
     });
   });
 
+  describe('prop: labelClassName', () => {
+    it('should render label with a custom label class', () => {
+      const wrapper = shallow(<Tab label="foo" labelClassName="MyLabel" />);
+      const label = wrapper.childAt(0);
+      assert.strictEqual(label.hasClass(classes.label), true);
+      assert.strictEqual(label.hasClass('MyLabel'), true);
+    });
+  });
+
   describe('prop: icon', () => {
     it('should render icon element', () => {
       const wrapper = shallow(<Tab icon={icon} />);
@@ -71,7 +80,7 @@ describe('<Tab />', () => {
       assert.strictEqual(iconWrapper.is('Icon'), true);
     });
 
-    it('should render a font icon if a icon string is passed', () => {
+    it('should render a font icon if a icon string is provided', () => {
       const wrapper = shallow(<Tab icon="book" />);
       assert.strictEqual(wrapper.find('Icon').length, 1,
         'should have an Icon');

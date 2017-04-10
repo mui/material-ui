@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import Transition from '../internal/Transition';
 import customPropTypes from '../utils/customPropTypes';
@@ -31,27 +32,27 @@ export default class Slide extends Component {
      */
     className: PropTypes.string,
     /**
-     * Entering direction of the children element.
+     * Direction the child element will enter from.
      */
     direction: PropTypes.oneOf(['left', 'right', 'up', 'down']),
     /**
-     * Duration of the animation when the element is entering the screen.
+     * Duration of the animation when the element is entering.
      */
     enterTransitionDuration: PropTypes.number,
     /**
-     * Show the component; triggers the enter or exit animation.
+     * If `true`, show the component; triggers the enter or exit animation.
      */
     in: PropTypes.bool,
     /**
-     * Duration of the animation when the element is leaving the screen.
+     * Duration of the animation when the element is exiting.
      */
     leaveTransitionDuration: PropTypes.number,
     /**
-     * Set to slide in by a fixed number of pixels or %.
+     * Slide in by a fixed number of pixels or %.
      */
     offset: PropTypes.string,
     /**
-     * Callback fired before the component is entering.
+     * Callback fired before the component enters.
      */
     onEnter: PropTypes.func,
     /**
@@ -63,7 +64,7 @@ export default class Slide extends Component {
      */
     onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
     /**
-     * Callback fired before the component is exiting.
+     * Callback fired before the component exits.
      */
     onExit: PropTypes.func,
     /**
@@ -88,14 +89,13 @@ export default class Slide extends Component {
 
   componentDidMount() {
     if (!this.props.in) {
-      /* eslint-disable react/no-find-dom-node */
       /* We need to set initial translate values of transition element
        * otherwise component will be shown when in=false.
        * transitions are handled by direct access to element,
        * so we need to access that same element too here.
        */
       const element = ReactDOM.findDOMNode(this.transition);
-      /* eslint-enable react/no-find-dom-node */
+      // $FlowFixMe
       element.style.transform = getTranslateValue(this.props, element);
     }
   }

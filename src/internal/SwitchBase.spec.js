@@ -39,6 +39,20 @@ describe('<SwitchBase />', () => {
       'should be a checkbox input');
   });
 
+  it('should have a ripple by default', () => {
+    const wrapper = shallow(
+      <SwitchBase />,
+    );
+    assert.strictEqual(wrapper.props().disableRipple, false, 'should set disableRipple to false');
+  });
+
+  it('should pass disableRipple={true} to IconButton', () => {
+    const wrapper = shallow(
+      <SwitchBase disableRipple />,
+    );
+    assert.strictEqual(wrapper.props().disableRipple, true, 'should set disableRipple to true');
+  });
+
   // IT SHOULD RENDER
   // WITH A CUSTOM ICON!!!
 
@@ -57,7 +71,7 @@ describe('<SwitchBase />', () => {
   it('should pass tabIndex to the input so it can be taken out of focus rotation', () => {
     const wrapper = shallow(<SwitchBase tabIndex="-1" />);
     const input = wrapper.find('input');
-    assert.strictEqual(input.prop('tabIndex'), '-1');
+    assert.strictEqual(input.props().tabIndex, '-1');
   });
 
   it('should pass value, disabled, checked, and name to the input', () => {
@@ -82,7 +96,7 @@ describe('<SwitchBase />', () => {
 
   it('should disable the components, and render the IconButton with the disabled className', () => {
     const wrapper = shallow(<SwitchBase disabled />);
-    assert.strictEqual(wrapper.prop('disabled'), true, 'should disable the root node');
+    assert.strictEqual(wrapper.props().disabled, true, 'should disable the root node');
     assert.strictEqual(wrapper.childAt(1).prop('disabled'), true, 'should disable the input node');
   });
 

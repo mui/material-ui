@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { cloneElement, isValidElement, PropTypes } from 'react';
+import React, { cloneElement, isValidElement } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import keycode from 'keycode';
@@ -174,19 +175,19 @@ Chip.propTypes = {
    */
   avatar: PropTypes.node,
   /**
-   * CSS `className` of the root element.
+   * The CSS `className` of the root element.
    */
   className: PropTypes.string,
   /**
-   * CSS `className` of the delete icon element.
+   * The CSS class name of the delete icon element.
    */
   deleteIconClassName: PropTypes.string,
   /**
-   * The label text.
+   * The content of the label.
    */
   label: PropTypes.node,
   /**
-   * CSS `className` of the label.
+   * The CSS `className` of the label.
    */
   labelClassName: PropTypes.string,
   /**

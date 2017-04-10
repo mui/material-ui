@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -146,14 +147,14 @@ export default class Button extends Component {
     compact: PropTypes.bool,
     /**
      * The component used for the root node.
-     * Either a string to use a DOM element or a ReactElement.
+     * Either a string to use a DOM element or a component.
      */
     component: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
     ]),
     /**
-     * If true, will use the theme's contrast color.
+     * If `true`, the button will use the theme's contrast color.
      */
     contrast: PropTypes.bool,
     /**
@@ -161,17 +162,21 @@ export default class Button extends Component {
      */
     disabled: PropTypes.bool,
     /**
+     * If `true`, the  keyboard focus ripple will be disabled.
+     * `ripple` must also be true.
+     */
+    disableFocusRipple: PropTypes.bool,
+    /**
+     * If `true`, the ripple effect will be disabled.
+     */
+    disableRipple: PropTypes.bool,
+    /**
      * If `true`, well use floating action button styling.
      */
     fab: PropTypes.bool,
     /**
-     * If `true`, the button will have a keyboard focus ripple.
-     * Ripple must also be true.
-     */
-    focusRipple: PropTypes.bool,
-    /**
      * The URL to link to when the button is clicked.
-     * If set, an `a` element will be used as the root node.
+     * If defined, an `a` element will be used as the root node.
      */
     href: PropTypes.string,
     /**
@@ -182,10 +187,6 @@ export default class Button extends Component {
      * If `true`, the button will use raised styling.
      */
     raised: PropTypes.bool,
-    /**
-     * If `true`, the button will have a ripple.
-     */
-    ripple: PropTypes.bool,
     /**
      * @ignore
      */
@@ -199,10 +200,10 @@ export default class Button extends Component {
     contrast: false,
     disabled: false,
     fab: false,
-    focusRipple: true,
+    disableFocusRipple: false,
     primary: false,
     raised: false,
-    ripple: true,
+    disableRipple: false,
     type: 'button',
   };
 
@@ -218,6 +219,8 @@ export default class Button extends Component {
       compact,
       contrast,
       disabled,
+      disableFocusRipple,
+      disableRipple,
       fab,
       primary,
       raised,
@@ -244,6 +247,8 @@ export default class Button extends Component {
       <ButtonBase
         className={className}
         disabled={disabled}
+        focusRipple={!disableFocusRipple}
+        ripple={!disableRipple}
         keyboardFocusedClassName={classes.keyboardFocused}
         {...other}
       >

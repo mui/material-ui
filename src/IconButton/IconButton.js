@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { PropTypes, Children, cloneElement } from 'react';
+import React, { Children, cloneElement } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -55,12 +56,16 @@ export const styleSheet = createStyleSheet('MuiIconButton', (theme) => {
 });
 
 /**
- * ```jsx
+ * ```
  * <IconButton>account_circle</IconButton>
  * ```
  *
- * You can refer to the [Icons](#/style/icons) section of the documentation
- * regarding the available icons.
+ * ```
+ * <IconButton><AccountCircle></IconButton>
+ * ```
+ *
+ * Refer to the [Icons](/style/icons) section of the documentation
+ * regarding the available icon options.
  */
 export default function IconButton(props, context) {
   const {
@@ -70,6 +75,7 @@ export default function IconButton(props, context) {
     className,
     contrast,
     disabled,
+    disableRipple,
     iconClassName: iconClassNameProp,
     ...other
   } = props;
@@ -85,6 +91,7 @@ export default function IconButton(props, context) {
       centerRipple
       keyboardFocusedClassName={classes.keyboardFocused}
       disabled={disabled}
+      ripple={!disableRipple}
       ref={buttonRef}
       {...other}
     >
@@ -108,7 +115,7 @@ export default function IconButton(props, context) {
 
 IconButton.propTypes = {
   /**
-   * If true, will use the theme's accent color.
+   * If `true`, will use the theme's accent color.
    */
   accent: PropTypes.bool,
   /**
@@ -117,8 +124,7 @@ IconButton.propTypes = {
   buttonRef: PropTypes.func,
   /**
    * The icon element.
-   * If a string is passed, it will be used as a material icon font ligature.
-   * As a prerequisite, you must include the material icon font.
+   * If a string is provided, it will be used as an icon font ligature.
    */
   children: PropTypes.node,
   /**
@@ -126,7 +132,7 @@ IconButton.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If true, will use the theme's contrast color.
+   * If `true`, the icon button will use the theme's contrast color.
    */
   contrast: PropTypes.bool,
   /**
@@ -134,20 +140,20 @@ IconButton.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
+   * If `true`, the ripple will be disabled.
+   */
+  disableRipple: PropTypes.bool,
+  /**
    * The CSS class name of the icon element if child is a string.
    */
   iconClassName: PropTypes.string,
-  /**
-   * If false, the ripple effect will be disabled.
-   */
-  ripple: PropTypes.bool,
 };
 
 IconButton.defaultProps = {
   accent: false,
   contrast: false,
   disabled: false,
-  ripple: true,
+  disableRipple: false,
 };
 
 IconButton.contextTypes = {

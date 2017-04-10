@@ -21,7 +21,7 @@ function bodyIsOverflowing(node) {
 const defaultContainer = canUseDom ? window.document.body : {};
 
 /**
- * State managment helper for modals/layers.
+ * State management helper for modals/layers.
  * Simplified, but inspired by react-overlay's ModalManager class
  *
  * @internal Used by the Modal to ensure proper focus management.

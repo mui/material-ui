@@ -1,11 +1,12 @@
 // @flow weak
 
-import React, { Component, PropTypes, Children, cloneElement } from 'react';
+import React, { Component, Children, cloneElement } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import EventListener from 'react-event-listener';
+import throttle from 'lodash/throttle';
 import customPropTypes from '../utils/customPropTypes';
-import { throttle } from '../utils/helpers';
 import TabIndicator from './TabIndicator';
 
 export const styleSheet = createStyleSheet('MuiTabs', () => {
@@ -29,7 +30,7 @@ export default class Tabs extends Component {
      */
     centered: PropTypes.bool,
     /**
-     * The content of the `Tabs`.
+     * The content of the component.
      */
     children: PropTypes.node,
     /**

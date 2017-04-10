@@ -19,7 +19,7 @@ describe('<Card />', () => {
       <Card />,
     );
     assert.strictEqual(wrapper.is('Paper'), true, 'should be Paper');
-    assert.strictEqual(wrapper.prop('elevation'), 2);
+    assert.strictEqual(wrapper.props().elevation, 2);
   });
 
   it('should render Paper with 8dp', () => {
@@ -27,7 +27,7 @@ describe('<Card />', () => {
       <Card raised />,
     );
     assert.strictEqual(wrapper.is('Paper'), true, 'should be Paper');
-    assert.strictEqual(wrapper.prop('elevation'), 8);
+    assert.strictEqual(wrapper.props().elevation, 8);
   });
 
   it('should have the card className', () => {

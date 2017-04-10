@@ -12,10 +12,12 @@
  * Follow this flexbox Guide to better understand the underlying model:
  * - https://css-tricks.com/snippets/css/a-guide-to-flexbox/
  */
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
+import requirePropFactory from '../utils/requirePropFactory';
 
 const GUTTERS = [0, 8, 16, 24, 40];
 const GRID_SIZES = [true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -199,14 +201,14 @@ Layout.propTypes = {
   className: PropTypes.string,
   /**
    * The component used for the root node.
-   * Either a string to use a DOM element or a ReactElement.
+   * Either a string to use a DOM element or a component.
    */
   component: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.func,
   ]),
   /**
-   * It true, the component will have the flex *container* behavior.
+   * If `true`, the component will have the flex *container* behavior.
    * You should be wrapping *items* with a *container*.
    */
   container: PropTypes.bool,
@@ -242,7 +244,7 @@ Layout.propTypes = {
   xl: PropTypes.oneOf(GRID_SIZES), // eslint-disable-line react/sort-prop-types
   /**
    * Defines the `align-items` style property.
-   * It's applied for all the screen sizes.
+   * It's applied for all screen sizes.
    */
   align: PropTypes.oneOf([ // eslint-disable-line react/sort-prop-types
     'flex-start',
@@ -252,7 +254,7 @@ Layout.propTypes = {
   ]),
   /**
    * Defines the `flex-direction` style property.
-   * It's applied for all the screen sizes.
+   * It is applied for all screen sizes.
    */
   direction: PropTypes.oneOf([ // eslint-disable-line react/sort-prop-types
     'row',
@@ -267,7 +269,7 @@ Layout.propTypes = {
   gutter: PropTypes.oneOf(GUTTERS), // eslint-disable-line react/sort-prop-types
   /**
    * Defines the `justify-content` style property.
-   * It's applied for all the screen sizes.
+   * It is applied for all screen sizes.
    */
   justify: PropTypes.oneOf([ // eslint-disable-line react/sort-prop-types
     'flex-start',
@@ -278,7 +280,7 @@ Layout.propTypes = {
   ]),
   /**
    * Defines the `flex-wrap` style property.
-   * It's applied for all the screen sizes.
+   * It's applied for all screen sizes.
    */
   wrap: PropTypes.oneOf([ // eslint-disable-line react/sort-prop-types
     'nowrap',
@@ -309,19 +311,7 @@ Layout.contextTypes = {
 let LayoutWrapper = Layout; // eslint-disable-line import/no-mutable-exports
 
 if (process.env.NODE_ENV !== 'production') {
-  const requireProp = (requiredProp) =>
-    (props, propName, componentName, location, propFullName) => {
-      const propFullNameSafe = propFullName || propName;
-
-      if (typeof props[propName] !== 'undefined' && !props[requiredProp]) {
-        return new Error(
-          `The property \`${propFullNameSafe}\` of ` +
-          `\`Layout\` must be used on \`${requiredProp}\`.`,
-        );
-      }
-
-      return null;
-    };
+  const requireProp = requirePropFactory('Layout');
 
   LayoutWrapper = (props) => <Layout {...props} />;
 

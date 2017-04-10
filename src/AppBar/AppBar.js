@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -30,6 +31,9 @@ export const styleSheet = createStyleSheet('MuiAppBar', (theme) => {
 
 export default class AppBar extends Component {
   static propTypes = {
+    /**
+     * If `true`, the AppBar will use the theme's accent color.
+     */
     accent: PropTypes.bool,
     /**
      * The content of the component.
@@ -39,12 +43,10 @@ export default class AppBar extends Component {
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
-    primary: PropTypes.bool,
   };
 
   static defaultProps = {
     accent: false,
-    primary: true,
   };
 
   static contextTypes = {
@@ -56,7 +58,6 @@ export default class AppBar extends Component {
       accent,
       children,
       className: classNameProp,
-      primary,
       ...other
     } = this.props;
 
@@ -64,13 +65,13 @@ export default class AppBar extends Component {
 
     const className = classNames({
       [classes.appBar]: true,
-      [classes.primary]: primary && !accent,
+      [classes.primary]: !accent,
       [classes.accent]: accent,
     }, classNameProp);
 
     return (
       <Paper
-        rounded={false}
+        square
         elevation={4}
         className={className}
         {...other}

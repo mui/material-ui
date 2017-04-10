@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -45,7 +46,7 @@ export default class MenuItem extends Component {
     className: PropTypes.string,
     /**
      * The component used for the root node.
-     * Either a string to use a DOM element or a ReactElement.
+     * Either a string to use a DOM element or a component.
      */
     component: PropTypes.oneOfType([
       PropTypes.string,

@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -46,7 +47,7 @@ export const styleSheet = createStyleSheet('MuiDialog', (theme) => {
 });
 
 /**
- * Dialogs are overlayed modal paper based components with a backdrop.
+ * Dialogs are overlaid modal paper based components with a backdrop.
  *
  * ```jsx
  * <Dialog>
@@ -71,19 +72,19 @@ export default class Dialog extends Component {
      */
     fullScreen: PropTypes.bool,
     /**
-     * If `true`, clicking the backdrop will fire the `onRequestClose` callback.
+     * If `true`, clicking the backdrop will not fire the `onRequestClose` callback.
      */
-    hideOnBackdropClick: PropTypes.bool,
+    ignoreBackdropClick: PropTypes.bool,
     /**
-     * If `true`, hitting escape will fire the `onRequestClose` callback.
+     * If `true`, hitting escape will not fire the `onRequestClose` callback.
      */
-    hideOnEscapeKeyUp: PropTypes.bool,
+    ignoreEscapeKeyUp: PropTypes.bool,
     /**
-     * Duration of the animation when the element is entering the screen.
+     * Duration of the animation when the element is entering.
      */
     enterTransitionDuration: PropTypes.number, // eslint-disable-line react/sort-prop-types
     /**
-     * Duration of the animation when the element is leaving the screen.
+     * Duration of the animation when the element is leaving.
      */
     leaveTransitionDuration: PropTypes.number,
     /**
@@ -98,11 +99,11 @@ export default class Dialog extends Component {
       'md',
     ]),
     /**
-     * Callback fires when the backdrop is clicked on.
+     * Callback fired when the backdrop is clicked.
      */
     onBackdropClick: PropTypes.func,
     /**
-     * Callback fired before the dialog is entering.
+     * Callback fired before the dialog enters.
      */
     onEnter: PropTypes.func,
     /**
@@ -114,11 +115,11 @@ export default class Dialog extends Component {
      */
     onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
     /**
-     * Callback fires when the escape key is pressed and the modal is in focus.
+     * Callback fires when the escape key is released and the modal is in focus.
      */
     onEscapeKeyUp: PropTypes.func, // eslint-disable-line react/sort-prop-types
     /**
-     * Callback fired before the dialog is exiting.
+     * Callback fired before the dialog exits.
      */
     onExit: PropTypes.func,
     /**
@@ -134,7 +135,7 @@ export default class Dialog extends Component {
      */
     onRequestClose: PropTypes.func,
     /**
-     * Set to true to open the Dialog.
+     * If `true`, the Dialog is open.
      */
     open: PropTypes.bool,
     /**
@@ -149,8 +150,8 @@ export default class Dialog extends Component {
 
   static defaultProps = {
     fullScreen: false,
-    hideOnBackdropClick: true,
-    hideOnEscapeKeyUp: true,
+    ignoreBackdropClick: false,
+    ignoreEscapeKeyUp: false,
     enterTransitionDuration: duration.enteringScreen,
     leaveTransitionDuration: duration.leavingScreen,
     maxWidth: 'sm',
@@ -167,8 +168,8 @@ export default class Dialog extends Component {
       children,
       className,
       fullScreen,
-      hideOnBackdropClick,
-      hideOnEscapeKeyUp,
+      ignoreBackdropClick,
+      ignoreEscapeKeyUp,
       enterTransitionDuration,
       leaveTransitionDuration,
       maxWidth,
@@ -214,8 +215,8 @@ export default class Dialog extends Component {
       <Modal
         className={classNames(classes.modal, className)}
         backdropTransitionDuration={open ? enterTransitionDuration : leaveTransitionDuration}
-        hideOnBackdropClick={hideOnBackdropClick}
-        hideOnEscapeKeyUp={hideOnEscapeKeyUp}
+        ignoreBackdropClick={ignoreBackdropClick}
+        ignoreEscapeKeyUp={ignoreEscapeKeyUp}
         onBackdropClick={onBackdropClick}
         onEscapeKeyUp={onEscapeKeyUp}
         onRequestClose={onRequestClose}

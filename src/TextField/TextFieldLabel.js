@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -30,7 +31,7 @@ export const styleSheet = createStyleSheet('MuiTextFieldLabel', (theme) => {
 
 export default function TextFieldLabel(props, context) {
   const {
-    animated,
+    disableAnimation,
     children,
     className: classNameProp,
     shrink,
@@ -39,7 +40,7 @@ export default function TextFieldLabel(props, context) {
   const classes = context.styleManager.render(styleSheet);
 
   const className = classNames(classes.root, {
-    [classes.animated]: animated,
+    [classes.animated]: !disableAnimation,
     [classes.shrink]: shrink,
   }, classNameProp);
 
@@ -51,9 +52,8 @@ export default function TextFieldLabel(props, context) {
 }
 
 TextFieldLabel.propTypes = {
-  animated: PropTypes.bool,
   /**
-   * The contents of the `TextFieldLabel`.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**
@@ -61,22 +61,29 @@ TextFieldLabel.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Whether the label should be displayed in an error state.
+   * If `true`, the transition animation is disabled.
+   */
+  disableAnimation: PropTypes.bool,
+  /**
+   * If `true`, the label is displayed in an error state.
    */
   error: PropTypes.bool,
   /**
-   * Whether the input of this label is focused.
+   * If `true`, the input of this label is focused.
    */
   focused: PropTypes.bool,
   /**
-   * Whether this label should indicate that the input is required.
+   * If `true`, the label will indicate that the input is required.
    */
   required: PropTypes.bool,
+  /**
+   * If `true`, the label is shrunk.
+   */
   shrink: PropTypes.bool,
 };
 
 TextFieldLabel.defaultProps = {
-  animated: true,
+  disableAnimation: false,
   shrink: false,
 };
 

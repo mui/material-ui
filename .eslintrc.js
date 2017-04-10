@@ -28,6 +28,7 @@ module.exports = {
       ignoreUrls: true,
     }], // airbnb is allowing some edge cases
     'no-console': 'error', // airbnb is using warn
+    'no-alert': 'error', // airbnb is using warn
     'no-param-reassign': 'off', // Not our taste?
     'no-prototype-builtins': 'off', // airbnb use error
     'no-use-before-define': ['error', { 'functions': false }], // airbnb have functions: true, annoying
@@ -50,7 +51,7 @@ module.exports = {
     'react/jsx-max-props-per-line': ['error', {maximum: 3}], // airbnb is disabling this rule
     'react/no-danger': 'error', // airbnb is using warn
     'react/no-direct-mutation-state': 'error', // airbnb is disabling this rule
-    'react/no-find-dom-node': 'warn', // wishlist, one day
+    'react/no-find-dom-node': 'off', // I don't know
     'react/no-unused-prop-types': 'off', // Is still buggy
     'react/sort-prop-types': 'error', // airbnb do nothing here.
     'react/sort-comp': [2, {

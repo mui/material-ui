@@ -1,13 +1,14 @@
 // @flow weak
 /* eslint-disable jsx-a11y/label-has-for */
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
 export const styleSheet = createStyleSheet('MuiFormLabel', (theme) => {
-  const focusColor = theme.palette.accent.A200;
+  const focusColor = theme.palette.primary.A200;
   return {
     root: {
       color: theme.palette.text.secondary,
@@ -86,12 +87,11 @@ FormLabel.propTypes = {
    */
   error: PropTypes.bool,
   /**
-   * Whether the input of this label is focused (used by `Group` components).
+   * If `true`, the input of this label is focused (used by `FormGroup` components).
    */
   focused: PropTypes.bool,
   /**
-   * Whether this label should indicate that the input.
-   * is required.
+   * If `true`, the label will indicate that the input is required.
    */
   required: PropTypes.bool,
 };

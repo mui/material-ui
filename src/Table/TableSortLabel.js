@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -79,11 +80,11 @@ export default function TableSortLabel(props, context) {
 
 TableSortLabel.propTypes = {
   /**
-   * If set to true, will have the active styling (should be true for the sorted column).
+   * If `true`, the label will have the active styling (should be true for the sorted column).
    */
   active: PropTypes.bool,
   /**
-   * Label contents, the arrow will be appended automatically and aligned using flexbox.
+   * Label contents, the arrow will be appended automatically.
    */
   children: PropTypes.node,
   /**

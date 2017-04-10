@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { PropTypes, Children, cloneElement } from 'react';
+import React, { Children, cloneElement } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -22,7 +23,7 @@ export default function BottomNavigation(props, context) {
     className: classNameProp,
     index,
     onChange,
-    showLabel,
+    showLabels,
     ...other
   } = props;
   const classes = context.styleManager.render(styleSheet);
@@ -31,7 +32,7 @@ export default function BottomNavigation(props, context) {
   const children = Children.map(childrenProp, (child, childIndex) => {
     return cloneElement(child, {
       selected: childIndex === index,
-      showLabel: child.props.showLabel !== undefined ? child.props.showLabel : showLabel,
+      showLabel: child.props.showLabel !== undefined ? child.props.showLabel : showLabels,
       index: childIndex,
       onChange,
     });
@@ -46,7 +47,7 @@ export default function BottomNavigation(props, context) {
 
 BottomNavigation.propTypes = {
   /**
-   * The content of the `BottomNavigation`.
+   * The content of the component.
    */
   children: PropTypes.node.isRequired,
   /**
@@ -54,18 +55,22 @@ BottomNavigation.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The index of the currently selected `BottomNavigation`.
+   * The index of the currently selected `BottomNavigationButton`.
    */
   index: PropTypes.number,
   /**
-   * Function called when the index change.
+   * Function called when the index changes.
    */
   onChange: PropTypes.func,
   /**
-   * If `true`, all the selected `BottomNavigationButton` will show his label.
-   * If false, only the selected `BottomNavigationButton` will show his label.
+   * If `true`, all `BottomNavigationButton`s will show their labels.
+   * By default only the selected `BottomNavigationButton` will show its label.
    */
-  showLabel: PropTypes.bool.isRequired,
+  showLabels: PropTypes.bool,
+};
+
+BottomNavigation.defaultProps = {
+  showLabels: false,
 };
 
 BottomNavigation.contextTypes = {

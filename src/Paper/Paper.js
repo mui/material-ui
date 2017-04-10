@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -38,7 +39,7 @@ export const styleSheet = createStyleSheet('MuiPaper', (theme) => {
 export default function Paper(props, context) {
   const {
     className: classNameProp,
-    rounded,
+    square,
     elevation,
     ...other
   } = props;
@@ -46,7 +47,7 @@ export default function Paper(props, context) {
 
   const classNameElevation = `dp${elevation >= 0 ? elevation : 0}`;
   const className = classNames(classes.paper, classes[classNameElevation], {
-    [classes.rounded]: rounded,
+    [classes.rounded]: !square,
   }, classNameProp);
 
   return (
@@ -64,14 +65,14 @@ Paper.propTypes = {
    */
   elevation: PropTypes.number,
   /**
-   * Set to false to disable rounded corners.
+   * If `true`, rounded corners are disabled.
    */
-  rounded: PropTypes.bool,
+  square: PropTypes.bool,
 };
 
 Paper.defaultProps = {
-  rounded: true,
   elevation: 2,
+  square: false,
 };
 
 Paper.contextTypes = {

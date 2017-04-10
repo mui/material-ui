@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -59,9 +60,12 @@ Divider.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If true, the `Divider` will be indented.
+   * If `true`, the divider will be indented.
    */
   inset: PropTypes.bool,
+  /**
+   * If `true`, the divider will have a lighter color.
+   */
   light: PropTypes.bool,
 };
 

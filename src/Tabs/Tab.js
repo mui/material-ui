@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { Component, PropTypes, isValidElement } from 'react';
+import React, { Component, isValidElement } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import ButtonBase from '../internal/ButtonBase';
@@ -76,7 +77,7 @@ export default class Tab extends Component {
      */
     fullWidth: PropTypes.bool,
     /**
-     * The icon element. If a string is passed, it will be used as a material icon font ligature.
+     * The icon element. If a string is provided, it will be used as a font ligature.
      */
     icon: PropTypes.node,
     /**
@@ -87,6 +88,10 @@ export default class Tab extends Component {
      * The label element.
      */
     label: PropTypes.node,
+    /**
+     * The CSS class name of the label element.
+     */
+    labelClassName: PropTypes.string,
     /**
      * @ignore
      */
@@ -140,6 +145,7 @@ export default class Tab extends Component {
       icon: iconProp,
       index, // eslint-disable-line no-unused-vars
       label: labelProp,
+      labelClassName,
       onChange, // eslint-disable-line no-unused-vars
       selected,
       style: styleProp,
@@ -162,7 +168,7 @@ export default class Tab extends Component {
 
     if (labelProp !== undefined) {
       label = (
-        <span className={classes.label}>
+        <span className={classNames(classes.label, labelClassName)}>
           {labelProp}
         </span>
       );

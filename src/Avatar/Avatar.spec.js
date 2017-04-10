@@ -4,7 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow } from 'src/test-utils';
 import Avatar, { styleSheet } from './Avatar';
-import FaceIcon from '../svg-icons/face';
+import CancelIcon from '../svg-icons/cancel';
 
 describe('<Avatar />', () => {
   let shallow;
@@ -104,14 +104,14 @@ describe('<Avatar />', () => {
           data-my-prop="woof"
           childrenClassName="my-children"
         >
-          <FaceIcon />
+          <CancelIcon />
         </Avatar>,
       );
     });
 
     it('should render a div containing an svg icon', () => {
       assert.strictEqual(wrapper.is('div'), true, 'should be a div');
-      assert.strictEqual(wrapper.childAt(0).is('pure(Face)'), true, 'should be an svg icon');
+      assert.strictEqual(wrapper.childAt(0).is('pure(Cancel)'), true, 'should be an svg icon');
     });
 
     it('should merge user classes & spread custom props to the root node', () => {

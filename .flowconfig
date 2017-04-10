@@ -1,10 +1,11 @@
 [ignore]
 
-.*/node_modules/fbjs/*
+.*/node_modules/react-event-listener/src/.*
+.*/node_modules/fbjs/lib/partitionObjectByKey.js
 .*/node_modules/jss/lib/.*\.js\.flow
 .*/node_modules/react-swipeable-views/src/.*
 .*/scripts/*
-.*/docs/site/webpack.*
+.*/docs/webpack.*
 
 [libs]
 flow/interfaces
@@ -17,6 +18,7 @@ esproposal.class_instance_fields=enable
 module.name_mapper='.*\.\(html\|css\|svg\|png\|jpg\|gif\)$' -> '<PROJECT_ROOT>/flow/stubs/url-loader.js'
 module.name_mapper='^material-ui\/\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
 module.name_mapper='^material-ui-docs\/\(.*\)$' -> '<PROJECT_ROOT>/docs/\1'
+module.name_mapper='^material-ui-icons\/\(.*\)$' -> '<PROJECT_ROOT>/packages/material-ui-icons/src/\1'
 
 module.system.node.resolve_dirname=node_modules
 module.system.node.resolve_dirname=.

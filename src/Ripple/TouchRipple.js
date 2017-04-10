@@ -1,8 +1,9 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import ReactTransitionGroup from 'react-addons-transition-group';
+import ReactTransitionGroup from 'react-transition-group/TransitionGroup';
 import shallowEqual from 'recompose/shallowEqual';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
@@ -26,6 +27,10 @@ export const styleSheet = createStyleSheet('MuiTouchRipple', () => ({
 
 export default class TouchRipple extends Component {
   static propTypes = {
+    /**
+     * If `true`, the ripple starts at the center of the component
+     * rather than at the point of interaction.
+     */
     center: PropTypes.bool,
     /**
      * The CSS class name of the root element.
@@ -85,6 +90,7 @@ export default class TouchRipple extends Component {
     let ripples = this.state.ripples;
 
     const element = ReactDOM.findDOMNode(this);
+    // $FlowFixMe
     const rect = element ? element.getBoundingClientRect() : {
       width: 0,
       height: 0,
@@ -120,10 +126,12 @@ export default class TouchRipple extends Component {
       }
     } else {
       const sizeX = (Math.max(
+        // $FlowFixMe
         Math.abs((element ? element.clientWidth : 0) - rippleX),
         rippleX,
       ) * 2) + 2;
       const sizeY = (Math.max(
+        // $FlowFixMe
         Math.abs((element ? element.clientHeight : 0) - rippleY),
         rippleY,
       ) * 2) + 2;
@@ -134,7 +142,6 @@ export default class TouchRipple extends Component {
     ripples = [...ripples, (
       <Ripple
         key={this.state.nextKey}
-        center={center}
         event={event}
         pulsate={pulsate}
         rippleX={rippleX}

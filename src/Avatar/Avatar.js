@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -99,7 +100,7 @@ Avatar.propTypes = {
   /**
    * @ignore
    * The className of the child element.
-   * Used by Chip to style the Avatar icon.
+   * Used by Chip and ListItemIcon to style the Avatar icon.
    */
   childrenClassName: PropTypes.string,
   /**
@@ -108,22 +109,22 @@ Avatar.propTypes = {
   className: PropTypes.string,
   /**
    * The component used for the root node.
-   * Either a string to use a DOM element or a ReactElement.
+   * Either a string to use a DOM element or a component.
    */
   component: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.func,
   ]),
   /**
-   * sizes desc
+   * The `sizes` attribute for the `img` element.
    */
   sizes: PropTypes.string,
   /**
-   * src desc
+   * The `src` attribute for the `img` element.
    */
   src: PropTypes.string,
   /**
-   * srcSet desc
+   * The `srcSet` attribute for the `img` element.
    */
   srcSet: PropTypes.string,
 };

@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -42,6 +43,9 @@ export default function DialogTitle(props, context) {
 }
 
 DialogTitle.propTypes = {
+  /**
+   * The content of the component.
+   */
   children: PropTypes.node,
   /**
    * The CSS class name of the root element.

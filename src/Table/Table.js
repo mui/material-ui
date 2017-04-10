@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -21,16 +22,15 @@ export const styleSheet = createStyleSheet('MuiTable', () => {
  *
  * ```jsx
  * <Table>
- *   <TableHeader>....</TableHeader>
- *   <TableBody>....</TableBody>
+ *   <TableHeader>...</TableHeader>
+ *   <TableBody>...</TableBody>
  * </Table>
  * ```
  */
 export default class Table extends Component {
   static propTypes = {
     /**
-     * Should be valid `<table>` children such as
-     * `TableHeader` and `TableBody`.
+     * The content of the table, normally `TableHeader` and `TableBody`.
      */
     children: PropTypes.node,
     /**

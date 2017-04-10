@@ -39,7 +39,7 @@ describe('<ListItem />', () => {
   });
 
   it('should disable the gutters', () => {
-    const wrapper = shallow(<ListItem gutters={false} />);
+    const wrapper = shallow(<ListItem disableGutters />);
     assert.strictEqual(wrapper.hasClass(classes.listItem), true, 'should have the listItem class');
     assert.strictEqual(wrapper.hasClass(classes.gutters), false,
       'should not have the gutters class');

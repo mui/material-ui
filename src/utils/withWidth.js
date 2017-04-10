@@ -64,6 +64,7 @@ function withWidth(options = {}) {
         while (width === null && index < breakpoints.keys.length) {
           const currentWidth = breakpoints.keys[index];
 
+          // @media are inclusive, so reproduce the behavior here.
           if (innerWidth < breakpoints.getWidth(currentWidth)) {
             width = breakpoints.keys[index - 1];
             break;

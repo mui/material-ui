@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -29,12 +30,12 @@ export default class Collapse extends Component {
      */
     children: PropTypes.node,
     /**
-     * Class name passed to the wrapping container
-     * required for holding+measuring the expanding content.
+     * The CSS class name passed to the wrapping container
+     * required for holding & measuring the expanding content.
      */
     containerClassName: PropTypes.string,
     /**
-     * Set to true to transition in.
+     * If `true`, the component will transition in.
      */
     in: PropTypes.bool,
     /**

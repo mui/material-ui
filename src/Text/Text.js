@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -95,19 +96,37 @@ Text.propTypes = {
    * The CSS class name of the root element.
    */
   className: PropTypes.string,
+  /**
+   * If `true`, the text will inherit its color.
+   */
   colorInherit: PropTypes.bool,
   /**
    * The component used for the root node.
-   * Either a string to use a DOM element or a ReactElement.
+   * Either a string to use a DOM element or a component.
    */
   component: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.func,
   ]),
+  /**
+   * If `true`, the text will have a bottom margin.
+   */
   gutterBottom: PropTypes.bool,
+  /**
+   * If `true`, the text will not wrap, but instead will truncate with an ellipsis.
+   */
   noWrap: PropTypes.bool,
+  /**
+   * If `true`, the text will have a bottom margin.
+   */
   paragraph: PropTypes.bool,
+  /**
+   * If `true`, the secondary color will be applied.
+   */
   secondary: PropTypes.bool,
+  /**
+   * Applies the theme typography styles.
+   */
   type: PropTypes.oneOf([
     'display4',
     'display3',

@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -56,7 +57,13 @@ export const styleSheet = createStyleSheet('MuiListItem', (theme) => {
 
 export default class ListItem extends Component {
   static propTypes = {
+    /**
+     * If `true`, the ListItem will be a button.
+     */
     button: PropTypes.bool,
+    /**
+     * The content of the component.
+     */
     children: PropTypes.node,
     /**
      * The CSS class name of the root element.
@@ -64,19 +71,28 @@ export default class ListItem extends Component {
     className: PropTypes.string,
     /**
      * The component used for the root node.
-     * Either a string to use a DOM element or a ReactElement.
+     * Either a string to use a DOM element or a component.
      */
     component: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
     ]),
+    /**
+     * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
+     */
     dense: PropTypes.bool,
     /**
      * @ignore
      */
     disabled: PropTypes.bool,
+    /**
+     * If `true`, the left and right padding is removed.
+     */
+    disableGutters: PropTypes.bool,
+    /**
+     * If `true`, a 1px light border is added to the bottom of the list item.
+     */
     divider: PropTypes.bool,
-    gutters: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -84,8 +100,8 @@ export default class ListItem extends Component {
     component: 'div',
     dense: false,
     disabled: false,
+    disableGutters: false,
     divider: false,
-    gutters: true,
   };
 
   static contextTypes = {
@@ -112,7 +128,7 @@ export default class ListItem extends Component {
       dense,
       disabled,
       divider,
-      gutters,
+      disableGutters,
       ...other
     } = this.props;
     const isDense = dense || this.context.dense || false;
@@ -124,7 +140,7 @@ export default class ListItem extends Component {
     });
 
     const className = classNames(classes.listItem, {
-      [classes.gutters]: gutters,
+      [classes.gutters]: !disableGutters,
       [classes.divider]: divider,
       [classes.disabled]: disabled,
       [classes.button]: button,

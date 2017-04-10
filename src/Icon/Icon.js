@@ -1,5 +1,6 @@
 // @flow weak
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -72,15 +73,15 @@ function Icon(props, context) {
 
 Icon.propTypes = {
   /**
-   * If true, the button will use the theme's accent color.
+   * If `true`, the button will use the theme's accent color.
    */
   accent: PropTypes.bool,
   /**
-   * If true, the button will use the theme's action.active color.
+   * If `true`, the button will use the theme's action.active color.
    */
   action: PropTypes.bool,
   /**
-   * The name of the icon
+   * The name of the icon font ligature.
    */
   children: PropTypes.node,
   /**
@@ -88,19 +89,19 @@ Icon.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If true, the button will contrast the theme's primary color.
+   * If `true`, the button will contrast the theme's primary color.
    */
   contrast: PropTypes.bool,
   /**
-   * If true, the button will use the theme's action.disabled color.
+   * If `true`, the button will use the theme's action.disabled color.
    */
   disabled: PropTypes.bool,
   /**
-   * If true, the text will use the theme's error color
+   * If `true`, the text will use the theme's error color.
    */
   error: PropTypes.bool,
   /**
-   * If true, the button will use the theme's primary color.
+   * If `true`, the button will use the theme's primary color.
    */
   primary: PropTypes.bool,
 };

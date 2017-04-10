@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -50,7 +51,7 @@ export default function ListSubheader(props, context) {
 
 ListSubheader.propTypes = {
   /**
-   * The content of the ListSubheader.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**
@@ -58,11 +59,11 @@ ListSubheader.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, the ListSubheader will be indented.
+   * If `true`, the List Subheader will be indented.
    */
   inset: PropTypes.bool,
   /**
-   * If `true`, the ListSubheader will have the theme primary color.
+   * If `true`, the List Subheader will have the theme primary color.
    */
   primary: PropTypes.bool,
 };

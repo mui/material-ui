@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
@@ -18,9 +19,10 @@ import { createModalManager } from './modalManager';
 import Backdrop from './Backdrop';
 import Portal from './Portal';
 
-// Modals don't open on the server
-// so this won't break concurrency
-// ...........Could also put this on context....
+/**
+ * Modals don't open on the server so this won't break concurrency.
+ * Could also put this on context.
+ */
 const modalManager = createModalManager();
 
 export const styleSheet = createStyleSheet('MuiModal', (theme) => {
@@ -38,24 +40,28 @@ export const styleSheet = createStyleSheet('MuiModal', (theme) => {
 });
 
 /**
- * Still a WIP
+ * TODO: Still a WIP
  */
 export default class Modal extends Component {
-
   static propTypes = {
     /**
-     * Set to false to disable the backdrop, or true to enable it.
+     * The CSS class name of the backdrop element.
      */
-    backdrop: PropTypes.bool,
     backdropClassName: PropTypes.string,
     /**
      * Pass a component class to use as the backdrop.
      */
     backdropComponent: PropTypes.func,
-    backdropTransitionDuration: PropTypes.number,
-    backdropVisible: PropTypes.bool,
     /**
-     * Can be used, for instance, to render a letter inside the avatar.
+     * If `true`, the backdrop is invisible.
+     */
+    backdropInvisible: PropTypes.bool,
+    /**
+     * Duration in ms for the backgrop transition.
+     */
+    backdropTransitionDuration: PropTypes.number,
+    /**
+     * Content of the modal.
      */
     children: PropTypes.element,
     /**
@@ -63,13 +69,17 @@ export default class Modal extends Component {
      */
     className: PropTypes.string,
     /**
-     * If `true`, clicking the backdrop will fire the `onRequestClose` callback.
+     * If `true`, the backdrop is disabled.
      */
-    hideOnBackdropClick: PropTypes.bool,
+    disableBackdrop: PropTypes.bool,
     /**
-     * If `true`, hitting escape will fire the `onRequestClose` callback.
+     * If `true`, clicking the backdrop will not fire the `onRequestClose` callback.
      */
-    hideOnEscapeKeyUp: PropTypes.bool,
+    ignoreBackdropClick: PropTypes.bool,
+    /**
+     * If `true`, hitting escape will not fire the `onRequestClose` callback.
+     */
+    ignoreEscapeKeyUp: PropTypes.bool,
     /**
      * @ignore
      */
@@ -110,16 +120,19 @@ export default class Modal extends Component {
      * Callback fired when the modal requests to be closed.
      */
     onRequestClose: PropTypes.func,
+    /**
+     * If `true`, the Modal is visible.
+     */
     show: PropTypes.bool,
   };
 
   static defaultProps = {
-    backdrop: true,
     backdropComponent: Backdrop,
     backdropTransitionDuration: 300,
-    backdropVisible: true,
-    hideOnBackdropClick: true,
-    hideOnEscapeKeyUp: true,
+    backdropInvisible: false,
+    disableBackdrop: false,
+    ignoreBackdropClick: false,
+    ignoreEscapeKeyUp: false,
     modalManager,
     show: false,
   };
@@ -248,14 +261,14 @@ export default class Modal extends Component {
       const {
         onEscapeKeyUp,
         onRequestClose,
-        hideOnEscapeKeyUp,
+        ignoreEscapeKeyUp,
       } = this.props;
 
       if (onEscapeKeyUp) {
         onEscapeKeyUp(event);
       }
 
-      if (onRequestClose && hideOnEscapeKeyUp) {
+      if (onRequestClose && !ignoreEscapeKeyUp) {
         onRequestClose(event);
       }
     }
@@ -269,14 +282,14 @@ export default class Modal extends Component {
     const {
       onBackdropClick,
       onRequestClose,
-      hideOnBackdropClick,
+      ignoreBackdropClick,
     } = this.props;
 
     if (onBackdropClick) {
       onBackdropClick(event);
     }
 
-    if (onRequestClose && hideOnBackdropClick) {
+    if (onRequestClose && !ignoreBackdropClick) {
       onRequestClose(event);
     }
   };
@@ -294,7 +307,7 @@ export default class Modal extends Component {
       backdropComponent,
       backdropClassName,
       backdropTransitionDuration,
-      backdropVisible,
+      backdropInvisible,
       show,
     } = this.props;
 
@@ -308,7 +321,7 @@ export default class Modal extends Component {
         {...other}
       >
         {React.createElement(backdropComponent, {
-          visible: backdropVisible,
+          invisible: backdropInvisible,
           className: backdropClassName,
           onClick: this.handleBackdropClick,
         })}
@@ -318,13 +331,13 @@ export default class Modal extends Component {
 
   render() {
     const {
-      backdrop,
+      disableBackdrop,
       backdropComponent, // eslint-disable-line no-unused-vars
       backdropClassName, // eslint-disable-line no-unused-vars
       backdropTransitionDuration, // eslint-disable-line no-unused-vars
-      backdropVisible,
-      hideOnBackdropClick, // eslint-disable-line no-unused-vars
-      hideOnEscapeKeyUp, // eslint-disable-line no-unused-vars
+      backdropInvisible,
+      ignoreBackdropClick, // eslint-disable-line no-unused-vars
+      ignoreEscapeKeyUp, // eslint-disable-line no-unused-vars
       children,
       className,
       modalManager: modalManagerProp, // eslint-disable-line no-unused-vars
@@ -372,7 +385,7 @@ export default class Modal extends Component {
       childProps.tabIndex = tabIndex == null ? '-1' : tabIndex;
     }
 
-    if (!backdropVisible && modalChild.props.hasOwnProperty('in')) {
+    if (backdropInvisible && modalChild.props.hasOwnProperty('in')) {
       Object.keys(transitionCallbacks).forEach((key) => {
         childProps[key] = createChainedFunction(transitionCallbacks[key], modalChild.props[key]);
       });
@@ -392,7 +405,7 @@ export default class Modal extends Component {
           ref={(c) => { this.modal = c; }}
           {...other}
         >
-          {backdrop && this.renderBackdrop(backdropProps)}
+          {!disableBackdrop && this.renderBackdrop(backdropProps)}
           {modalChild}
         </div>
       </Portal>

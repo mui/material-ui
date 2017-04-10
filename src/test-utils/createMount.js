@@ -3,9 +3,9 @@
 import { create } from 'jss';
 import jssPreset from 'jss-preset-default';
 import { createStyleManager } from 'jss-theme-reactor';
-import { PropTypes } from 'react';
+import PropTypes from 'prop-types';
 import { mount as enzymeMount } from 'enzyme';
-import { createMuiTheme } from 'src/styles/theme';
+import { createMuiTheme } from '../styles/theme';
 
 function cleanStyles() {
   const head = window.document.head;

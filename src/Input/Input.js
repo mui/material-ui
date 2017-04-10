@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -23,7 +24,7 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
     },
     inkbar: {
       '&:after': {
-        backgroundColor: palette.accent.A200,
+        backgroundColor: palette.primary.A200,
         left: 0,
         bottom: -1,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
@@ -91,7 +92,7 @@ export default class Input extends Component {
     className: PropTypes.string,
     /**
      * The component used for the root node.
-     * Either a string to use a DOM element or a ReactElement.
+     * Either a string to use a DOM element or a component.
      */
     component: PropTypes.oneOfType([
       PropTypes.string,
@@ -101,6 +102,13 @@ export default class Input extends Component {
      * If `true`, the input will be disabled.
      */
     disabled: PropTypes.bool,
+    /**
+     * If `true`, the input will not have an underline.
+     */
+    disableUnderline: PropTypes.bool,
+    /**
+     * If `true`, the input will indicate an error.
+     */
     error: PropTypes.bool,
     /**
      * The CSS class name of the input element.
@@ -131,7 +139,7 @@ export default class Input extends Component {
      */
     type: PropTypes.string,
     /**
-     * If set to true, the input will have an underline.
+     * If `true`, the input will have an underline.
      */
     underline: PropTypes.bool,
     /**
@@ -144,7 +152,7 @@ export default class Input extends Component {
     component: 'input',
     disabled: false,
     type: 'text',
-    underline: true,
+    disableUnderline: false,
   };
 
   static contextTypes = {
@@ -233,11 +241,11 @@ export default class Input extends Component {
       component: ComponentProp,
       inputClassName: inputClassNameProp,
       disabled,
+      disableUnderline,
       error: errorProp,
       onBlur, // eslint-disable-line no-unused-vars
       onFocus, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
-      underline,
       ...other
     } = this.props;
 
@@ -252,13 +260,13 @@ export default class Input extends Component {
 
     const wrapperClassName = classNames(classes.wrapper, {
       [classes.formControl]: muiFormControl,
-      [classes.inkbar]: underline,
+      [classes.inkbar]: !disableUnderline,
       [classes.focused]: this.state.focused,
       [classes.error]: error,
     }, classNameProp);
 
     const inputClassName = classNames(classes.input, {
-      [classes.underline]: underline,
+      [classes.underline]: !disableUnderline,
       [classes.disabled]: disabled,
     }, inputClassNameProp);
 

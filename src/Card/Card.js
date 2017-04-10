@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -31,6 +32,9 @@ Card.propTypes = {
    * The CSS class name of the root element.
    */
   className: PropTypes.string,
+  /**
+   * If `true`, the card will use raised styling.
+   */
   raised: PropTypes.bool,
 };
 

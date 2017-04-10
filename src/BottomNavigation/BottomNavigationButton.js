@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { Component, PropTypes, cloneElement, isValidElement } from 'react';
+import React, { Component, cloneElement, isValidElement } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -59,7 +60,7 @@ export default class BottomNavigationButton extends Component {
      */
     className: PropTypes.string,
     /**
-     * The icon element. If a string is passed, it will be used as a material icon font ligature.
+     * The icon element. If a string is provided, it will be used as a font ligature.
      */
     icon: PropTypes.node,
     /**
@@ -83,7 +84,7 @@ export default class BottomNavigationButton extends Component {
      */
     selected: PropTypes.bool,
     /**
-     * If `true`, the BottomNavigationButton will show his label.
+     * If `true`, the BottomNavigationButton will show its label.
      */
     showLabel: PropTypes.bool,
   };

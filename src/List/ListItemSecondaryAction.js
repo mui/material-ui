@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -30,6 +31,9 @@ export default function ListItemSecondaryAction(props, context) {
 }
 
 ListItemSecondaryAction.propTypes = {
+  /**
+   * The content of the component, normally an `IconButton` or selection control.
+   */
   children: PropTypes.node,
   /**
    * The CSS class name of the root element.

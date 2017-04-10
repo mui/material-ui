@@ -1,6 +1,7 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
@@ -40,7 +41,7 @@ export default class ButtonBase extends Component {
     className: PropTypes.string,
     /**
      * The component used for the root node.
-     * Either a string to use a DOM element or a ReactElement.
+     * Either a string to use a DOM element or a component.
      */
     component: PropTypes.oneOfType([
       PropTypes.string,
@@ -68,9 +69,9 @@ export default class ButtonBase extends Component {
     onTouchEnd: PropTypes.func,
     onTouchStart: PropTypes.func,
     /**
-     * If `true`, the base button will have a ripple.
+     * If `false`, the base button will not have a ripple when clicked.
      */
-    ripple: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
+    ripple: PropTypes.bool,
     role: PropTypes.string,
     tabIndex: PropTypes.string,
     type: PropTypes.string,

@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import Modal from '../internal/Modal';
@@ -16,11 +17,9 @@ function getSlideDirection(anchor) {
     return 'left';
   } else if (anchor === 'top') {
     return 'down';
-  } else if (anchor === 'bottom') {
-    return 'up';
   }
-
-  return 'left';
+  // (anchor === 'bottom')
+  return 'up';
 }
 
 export const styleSheet = createStyleSheet('MuiDrawer', (theme) => {
@@ -40,6 +39,30 @@ export const styleSheet = createStyleSheet('MuiDrawer', (theme) => {
       },
       WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
     },
+    left: {
+      left: 0,
+      right: 'auto',
+    },
+    right: {
+      left: 'auto',
+      right: 0,
+    },
+    top: {
+      top: 0,
+      left: 0,
+      bottom: 'auto',
+      right: 0,
+      height: 'auto',
+      maxHeight: '100vh',
+    },
+    bottom: {
+      top: 'auto',
+      left: 0,
+      bottom: 0,
+      right: 0,
+      height: 'auto',
+      maxHeight: '100vh',
+    },
     docked: {
       flex: '0 0 auto',
       '& $paper': {
@@ -57,11 +80,11 @@ export const styleSheet = createStyleSheet('MuiDrawer', (theme) => {
 export default class Drawer extends Component {
   static propTypes = {
     /**
-     * Side, which will `Drawer` appears from.
+     * Side which will the drawer will appear from.
      */
     anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
     /**
-     * The contents of the `Drawer`.
+     * The contents of the drawer.
      */
     children: PropTypes.node,
     /**
@@ -69,12 +92,12 @@ export default class Drawer extends Component {
      */
     className: PropTypes.string,
     /**
-     * If set to true, the drawer will dock itself
+     * If `true`, the drawer will dock itself
      * and will no longer slide in with an overlay.
      */
     docked: PropTypes.bool,
     /**
-     * The elevation of the `Drawer`.
+     * The elevation of the drawer.
      */
     elevation: PropTypes.number,
     /**
@@ -90,7 +113,7 @@ export default class Drawer extends Component {
      */
     onRequestClose: PropTypes.func,
     /**
-     * If true, the `Drawer` is open.
+     * If `true`, the drawer is open.
      */
     open: PropTypes.bool,
     /**
@@ -100,6 +123,7 @@ export default class Drawer extends Component {
   };
 
   static defaultProps = {
+    anchor: 'left',
     docked: false,
     enterTransitionDuration: duration.enteringScreen,
     leaveTransitionDuration: duration.leavingScreen,
@@ -128,7 +152,11 @@ export default class Drawer extends Component {
     const { theme: { dir }, render } = this.context.styleManager;
     const classes = render(styleSheet);
     const rtl = dir === 'rtl';
-    const anchor = anchorProp || (rtl ? 'right' : 'left');
+    let anchor = anchorProp;
+    if (rtl && ['left', 'right'].includes(anchor)) {
+      anchor = (anchor === 'left') ? 'right' : 'left';
+    }
+
     const slideDirection = getSlideDirection(anchor);
 
     const drawer = (
@@ -141,8 +169,8 @@ export default class Drawer extends Component {
       >
         <Paper
           elevation={docked ? 0 : elevation}
-          rounded={false}
-          className={classNames(classes.paper, paperClassName)}
+          square
+          className={classNames(classes.paper, classes[anchor], paperClassName)}
         >
           {children}
         </Paper>

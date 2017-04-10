@@ -37,7 +37,7 @@ describe('<List />', () => {
   });
 
   it('should disable the padding', () => {
-    const wrapper = shallow(<List padding={false} />);
+    const wrapper = shallow(<List disablePadding />);
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.padding), false,
       'should not have the padding class');

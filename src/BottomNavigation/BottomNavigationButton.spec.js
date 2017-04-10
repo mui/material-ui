@@ -80,7 +80,7 @@ describe('<BottomNavigationButton / />', () => {
     assert.strictEqual(labelWrapper.hasClass(classes.label), true, 'should have the label class');
   });
 
-  it('should render a font icon if a icon string is passed', () => {
+  it('should render a font icon if a icon string is provided', () => {
     const wrapper = shallow(<BottomNavigationButton icon="book" />);
     const iconWrapper = wrapper.childAt(0);
     assert.strictEqual(iconWrapper.is('Icon'), true, 'should be an Icon');

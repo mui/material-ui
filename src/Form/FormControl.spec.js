@@ -112,6 +112,8 @@ describe('<FormControl />', () => {
           muiFormControlContext.onDirty();
           loadChildContext();
           assert.strictEqual(muiFormControlContext.dirty, true);
+          muiFormControlContext.onDirty();
+          assert.strictEqual(muiFormControlContext.dirty, true);
         });
       });
 
@@ -123,6 +125,30 @@ describe('<FormControl />', () => {
           muiFormControlContext.onClean();
           loadChildContext();
           assert.strictEqual(muiFormControlContext.dirty, false);
+          muiFormControlContext.onClean();
+          assert.strictEqual(muiFormControlContext.dirty, false);
+        });
+      });
+
+      describe('handleFocus', () => {
+        it('should set the focused state', () => {
+          assert.strictEqual(wrapper.state('focused'), false);
+          muiFormControlContext.onFocus();
+          assert.strictEqual(wrapper.state('focused'), true);
+          muiFormControlContext.onFocus();
+          assert.strictEqual(wrapper.state('focused'), true);
+        });
+      });
+
+      describe('handleBlur', () => {
+        it('should clear the focused state', () => {
+          assert.strictEqual(wrapper.state('focused'), false);
+          muiFormControlContext.onFocus();
+          assert.strictEqual(wrapper.state('focused'), true);
+          muiFormControlContext.onBlur();
+          assert.strictEqual(wrapper.state('focused'), false);
+          muiFormControlContext.onBlur();
+          assert.strictEqual(wrapper.state('focused'), false);
         });
       });
     });

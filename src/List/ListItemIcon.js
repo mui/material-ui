@@ -1,6 +1,7 @@
 // @flow weak
 
-import { PropTypes, cloneElement, Component } from 'react';
+import { cloneElement, Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -16,6 +17,14 @@ export const styleSheet = createStyleSheet('MuiListItemIcon', (theme) => {
   };
 });
 
+/**
+ * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
+ * ```
+ * <ListIcon>
+ *   <Icon>
+ * </ListIcon>
+ * ```
+ */
 export default class ListItemIcon extends Component {
   render() {
     const {
@@ -33,6 +42,10 @@ export default class ListItemIcon extends Component {
 }
 
 ListItemIcon.propTypes = {
+  /**
+   * The content of the component, normally `Icon`, `SvgIcon`,
+   * or a `material-ui-icons` SVG icon component.
+   */
   children: PropTypes.element.isRequired,
   /**
    * The CSS class name of the root element.

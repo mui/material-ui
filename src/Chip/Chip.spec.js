@@ -43,7 +43,7 @@ describe('<Chip />', () => {
     });
 
     it('should have a tabIndex prop with value -1', () => {
-      assert.strictEqual(wrapper.prop('tabIndex'), -1);
+      assert.strictEqual(wrapper.props().tabIndex, -1);
     });
   });
 
@@ -73,11 +73,11 @@ describe('<Chip />', () => {
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.hasClass('my-Chip'), true);
       assert.strictEqual(wrapper.prop('data-my-prop'), 'woof');
-      assert.strictEqual(wrapper.prop('onClick'), handleClick);
+      assert.strictEqual(wrapper.props().onClick, handleClick);
     });
 
     it('should not have a tabIndex prop', () => {
-      assert.strictEqual(wrapper.prop('tabIndex'), undefined);
+      assert.strictEqual(wrapper.props().tabIndex, undefined);
     });
 
     it('should apply user value of tabIndex', () => {
@@ -89,7 +89,7 @@ describe('<Chip />', () => {
           Text Chip
         </Chip>,
       );
-      assert.strictEqual(wrapper.prop('tabIndex'), 5);
+      assert.strictEqual(wrapper.props().tabIndex, 5);
     });
   });
 
@@ -133,7 +133,7 @@ describe('<Chip />', () => {
     });
 
     it('should not have a tabIndex prop', () => {
-      assert.strictEqual(wrapper.prop('tabIndex'), undefined);
+      assert.strictEqual(wrapper.props().tabIndex, undefined);
     });
 
     it('should fire the function given in onDeleteRequest', () => {

@@ -1,7 +1,8 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
-import { findDOMNode } from 'react-dom';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
 import { createStyleSheet } from 'jss-theme-reactor';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import Popover from '../internal/Popover';
@@ -19,12 +20,11 @@ export const styleSheet = createStyleSheet('MuiMenu', () => {
 export default class Menu extends Component {
   static propTypes = {
     /**
-     * This is the DOM element that will be
-     * used to set the position of the menu.
+     * The DOM element used to set the position of the menu.
      */
     anchorEl: PropTypes.object,
     /**
-     * Menu contents, should be menu items.
+     * Menu contents, normally `MenuItem`s.
      */
     children: PropTypes.node,
     /**
@@ -32,7 +32,7 @@ export default class Menu extends Component {
      */
     className: PropTypes.string,
     /**
-     * Callback fired before the Menu is entering.
+     * Callback fired before the Menu enters.
      */
     onEnter: PropTypes.func,
     /**
@@ -44,7 +44,7 @@ export default class Menu extends Component {
      */
     onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
     /**
-     * Callback fired before the Menu is exiting.
+     * Callback fired before the Menu exits.
      */
     onExit: PropTypes.func,
     /**
@@ -83,17 +83,23 @@ export default class Menu extends Component {
   menuList = undefined;
 
   handleEnter = (element) => {
-    const list = findDOMNode(this.menuList);
+    const list = ReactDOM.findDOMNode(this.menuList);
 
     if (this.menuList && this.menuList.selectedItem) {
-      findDOMNode(this.menuList.selectedItem).focus(); // eslint-disable-line react/no-find-dom-node
+       // $FlowFixMe
+      ReactDOM.findDOMNode(this.menuList.selectedItem)
+        .focus();
     } else if (list) {
+       // $FlowFixMe
       list.firstChild.focus();
     }
 
+    // $FlowFixMe
     if (list && element.clientHeight < list.clientHeight) {
       const size = `${getScrollbarSize()}px`;
+      // $FlowFixMe
       list.style.paddingRight = size;
+      // $FlowFixMe
       list.style.width = `calc(100% + ${size})`;
     }
 
@@ -113,10 +119,11 @@ export default class Menu extends Component {
 
   getContentAnchorEl = () => {
     if (!this.menuList || !this.menuList.selectedItem) {
-      return findDOMNode(this.menuList).firstChild;
+      // $FlowFixMe
+      return ReactDOM.findDOMNode(this.menuList).firstChild;
     }
 
-    return findDOMNode(this.menuList.selectedItem);
+    return ReactDOM.findDOMNode(this.menuList.selectedItem);
   };
 
   render() {

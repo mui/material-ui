@@ -1,5 +1,6 @@
 // @flow weak
-import { Component, PropTypes } from 'react';
+import { Component } from 'react';
+import PropTypes from 'prop-types';
 import { create } from 'jss';
 import { createStyleManager } from 'jss-theme-reactor/styleManager';
 import jssPreset from 'jss-preset-default';
@@ -60,6 +61,8 @@ export const MUI_SHEET_ORDER = [
   'MuiAppBar',
   'MuiDrawer',
 
+  'MuiAvatar',
+
   'MuiListItem',
   'MuiListItemText',
   'MuiListItemSecondaryAction',
@@ -70,8 +73,6 @@ export const MUI_SHEET_ORDER = [
 
   'MuiMenu',
   'MuiMenuItem',
-
-  'MuiAvatar',
 
   'MuiCardContent',
   'MuiCardMedia',

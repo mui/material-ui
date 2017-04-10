@@ -25,6 +25,7 @@ module.exports = {
     alias: {
       'material-ui': path.resolve(__dirname, '../../src'),
       'material-ui-docs': path.resolve(__dirname, '../../docs'),
+      'material-ui-icons': path.resolve(__dirname, '../../packages/material-ui-icons/src'),
     },
   },
 };

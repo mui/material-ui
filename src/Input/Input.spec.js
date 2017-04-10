@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow } from 'src/test-utils';
+import { createShallow, createMount } from 'src/test-utils';
 import Input, { styleSheet } from './Input';
 
 describe('<Input />', () => {
@@ -19,6 +19,7 @@ describe('<Input />', () => {
     const wrapper = shallow(<Input />);
     assert.strictEqual(wrapper.is('div'), true, 'should be a <input>');
     assert.strictEqual(wrapper.hasClass(classes.wrapper), true, 'should have the wrapper class');
+    assert.strictEqual(wrapper.hasClass(classes.inkbar), true, 'should have the inkbar class');
   });
 
   it('should render an <input /> inside the div', () => {
@@ -27,6 +28,7 @@ describe('<Input />', () => {
     assert.strictEqual(input.is('input'), true, 'should be a <input>');
     assert.strictEqual(input.prop('type'), 'text', 'should pass the text type prop');
     assert.strictEqual(input.hasClass(classes.input), true, 'should have the input class');
+    assert.strictEqual(input.hasClass(classes.underline), true, 'should have the underline class');
     assert.strictEqual(input.prop('aria-required'), undefined,
       'should not have the area-required prop');
   });
@@ -37,6 +39,16 @@ describe('<Input />', () => {
     assert.strictEqual(input.is('input'), true, 'should be a <input>');
     assert.strictEqual(input.hasClass(classes.input), true, 'should have the input class');
     assert.strictEqual(input.hasClass(classes.disabled), true, 'should have the disabled class');
+  });
+
+  it('should  disabled the underline', () => {
+    const wrapper = shallow(<Input disableUnderline />);
+    const input = wrapper.find('input');
+    assert.strictEqual(wrapper.hasClass(classes.inkbar), false, 'should not have the inkbar class');
+    assert.strictEqual(input.is('input'), true, 'should be a <input>');
+    assert.strictEqual(input.hasClass(classes.input), true, 'should have the input class');
+    assert.strictEqual(input.hasClass(classes.underline),
+      false, 'should not have the underline class');
   });
 
   it('should fire event callbacks', () => {
@@ -53,6 +65,15 @@ describe('<Input />', () => {
       wrapper.find('input').simulate(event);
       assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
     });
+  });
+
+  it('should call focus function on input property when focus is invoked', () => {
+    const wrapper = shallow(<Input />);
+    const instance = wrapper.instance();
+    instance.input = spy();
+    instance.input.focus = spy();
+    instance.focus();
+    assert.strictEqual(instance.input.focus.callCount, 1);
   });
 
   describe('controlled', () => {
@@ -216,6 +237,57 @@ describe('<Input />', () => {
         const input = wrapper.find('input');
         assert.strictEqual(input.prop('aria-required'), true);
       });
+    });
+  });
+
+  describe('componentDidMount', () => {
+    let mount;
+    let wrapper;
+    let instance;
+
+    before(() => {
+      mount = createMount();
+      wrapper = mount(<Input />);
+      instance = wrapper.instance();
+    });
+
+    after(() => {
+      mount.cleanUp();
+    });
+
+    beforeEach(() => {
+      instance.checkDirty = spy();
+    });
+
+    it('should not call checkDirty if controlled', () => {
+      instance.isControlled = () => true;
+      instance.componentDidMount();
+      assert.strictEqual(instance.checkDirty.callCount, 0);
+    });
+
+    it('should call checkDirty if controlled', () => {
+      instance.isControlled = () => false;
+      instance.componentDidMount();
+      assert.strictEqual(instance.checkDirty.callCount, 1);
+    });
+
+    it('should call checkDirty with input value', () => {
+      instance.isControlled = () => false;
+      instance.input = 'woof';
+      instance.componentDidMount();
+      assert.strictEqual(instance.checkDirty.calledWith(instance.input), true);
+    });
+
+    it('should call or not call checkDirty consistently', () => {
+      instance.isControlled = () => true;
+      instance.componentDidMount();
+      assert.strictEqual(instance.checkDirty.callCount, 0);
+      instance.isControlled = () => false;
+      instance.componentDidMount();
+      assert.strictEqual(instance.checkDirty.callCount, 1);
+      instance.isControlled = () => true;
+      instance.componentDidMount();
+      assert.strictEqual(instance.checkDirty.callCount, 1);
     });
   });
 });
