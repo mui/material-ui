@@ -39,7 +39,7 @@ const SelectFieldPage = () => (
       title="Handle DropDownMenu properties"
       code={SelectFieldExampleDropDownMenuProps}
     >
-      <SelectFieldExampleMenuEvents />
+      <SelectFieldExampleDropDownMenuProps />
     </CodeExample>
     <CodeExample
       title="Nullable select"
