@@ -134,6 +134,14 @@ class DatePicker extends Component {
      */
     textFieldStyle: PropTypes.object,
     /**
+     * This object should contain methods needed to build the calendar system.
+     *
+     * Useful for building a custom calendar system. Refer to the
+     * [source code](https://github.com/callemall/material-ui/blob/master/src/DatePicker/dateUtils.js)
+     * for more information.
+     */
+    utils: PropTypes.object,
+    /**
      * Sets the date for the Date Picker programmatically.
      */
     value: PropTypes.object,
@@ -283,6 +291,7 @@ class DatePicker extends Component {
       hideCalendarDate,
       style,
       textFieldStyle,
+      utils,
       ...other
     } = this.props;
 
@@ -319,6 +328,7 @@ class DatePicker extends Component {
           ref="dialogWindow"
           shouldDisableDate={shouldDisableDate}
           hideCalendarDate={hideCalendarDate}
+          utils={utils}
         />
       </div>
     );
