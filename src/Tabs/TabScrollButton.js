@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
@@ -73,6 +74,10 @@ TabScrollButton.propTypes = {
    * Should the button be present or just consume space
    */
   visible: PropTypes.bool,
+};
+
+TabScrollButton.defaultProps = {
+  visible: true,
 };
 
 TabScrollButton.contextTypes = {
