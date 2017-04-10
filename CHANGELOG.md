@@ -1,5 +1,12 @@
 ## HEAD
 
+## 0.17.3
+
+###### _Apr 10, 2017_
+
+- [AutoComplete] Fix overriding TextField event props (#6561) @leMaik
+- [DropDownMenu] Fix the position regression (8829a9d78abedca5de80617448cb99968650c30e) @oliviertassinari
+
 ## 0.17.2
 
 ###### _Apr 9, 2017_
