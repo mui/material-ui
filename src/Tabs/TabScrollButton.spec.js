@@ -37,7 +37,7 @@ describe('<TabScrollButton />', () => {
   describe('prop: !visible', () => {
     it('should render as a div with root class', () => {
       const wrapper = shallow(
-        <TabScrollButton />,
+        <TabScrollButton visible={false} />,
       );
 
       assert.strictEqual(wrapper.is('div'), true, 'should be a div');
