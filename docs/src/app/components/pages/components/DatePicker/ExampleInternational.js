@@ -1,6 +1,7 @@
 import React from 'react';
 import DatePicker from 'material-ui/DatePicker';
 import areIntlLocalesSupported from 'intl-locales-supported';
+import persianUtils from 'material-ui-persian-date-picker-utils';
 
 let DateTimeFormat;
 
@@ -41,6 +42,8 @@ const DatePickerExampleInternational = () => (
       okLabel="تایید"
       cancelLabel="لغو"
       locale="fa-IR"
+      firstDayOfWeek={6}
+      utils={persianUtils}
     />
     <DatePicker
       hintText="en-US locale"
