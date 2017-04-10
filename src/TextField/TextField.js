@@ -191,6 +191,9 @@ class TextField extends Component {
      * @param {string} newValue The new value of the text field.
      */
     onChange: PropTypes.func,
+    onCompositionEnd: PropTypes.func,
+    onCompositionStart: PropTypes.func,
+    onCompositionUpdate: PropTypes.func,
     /** @ignore */
     onFocus: PropTypes.func,
     /**
@@ -259,6 +262,7 @@ class TextField extends Component {
     isFocused: false,
     errorText: undefined,
     hasValue: false,
+    isTyping: false,
   };
 
   componentWillMount() {
@@ -348,11 +352,20 @@ class TextField extends Component {
   };
 
   handleInputChange = (event) => {
+    if (this.state.isTyping) return;
     if (!this.props.hasOwnProperty('value')) {
       this.setState({hasValue: isValid(event.target.value)});
     }
     if (this.props.onChange) {
       this.props.onChange(event, event.target.value);
+    }
+  };
+
+  handleComposition = (event) => {
+    switch (event.type) {
+      case 'compositionupdate':
+      case 'compositionstart': this.setState({isTyping: true}); break;
+      case 'compositionend': this.setState({isTyping: false}); break;
     }
   };
 
@@ -399,6 +412,9 @@ class TextField extends Component {
       onBlur, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
       onFocus, // eslint-disable-line no-unused-vars
+      onCompositionStart, // eslint-disable-line no-unused-vars
+      onCompositionUpdate, // eslint-disable-line no-unused-vars
+      onCompositionEnd, // eslint-disable-line no-unused-vars
       style,
       type,
       underlineDisabledStyle,
@@ -444,6 +460,9 @@ class TextField extends Component {
       disabled: this.props.disabled,
       onBlur: this.handleInputBlur,
       onChange: this.handleInputChange,
+      onCompositionStart: this.handleComposition,
+      onCompositionUpdate: this.handleComposition,
+      onCompositionEnd: this.handleComposition,
       onFocus: this.handleInputFocus,
     };
 
