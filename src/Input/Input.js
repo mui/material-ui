@@ -16,11 +16,13 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
     wrapper: {
       // Mimics the default input display property used by browsers for an input.
       display: 'inline-block',
+      marginBottom: 8,
+      marginTop: 8,
       position: 'relative',
     },
     formControl: {
-      marginTop: 10,
-      marginBottom: 10,
+      marginBottom: 0,
+      marginTop: 16,
     },
     inkbar: {
       '&:after': {

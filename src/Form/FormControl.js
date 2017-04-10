@@ -11,6 +11,8 @@ export const styleSheet = createStyleSheet('MuiFormControl', () => {
     root: {
       display: 'flex',
       flexDirection: 'column',
+      marginBottom: 8,
+      marginTop: 16,
       position: 'relative',
     },
     row: {
@@ -55,10 +57,19 @@ export default class FormControl extends Component {
     muiFormControl: PropTypes.object.isRequired,
   };
 
-  state = {
-    dirty: false,
-    focused: false,
-  };
+  constructor(props, context) {
+    super(props, context);
+
+    const dirty = props.children.some((child) => {
+      return child.type && child.type.name === 'Input' &&
+        child.props.value && child.props.value.length > 0;
+    });
+
+    this.state = {
+      dirty,
+      focused: false,
+    };
+  }
 
   getChildContext() {
     const { error, required } = this.props;

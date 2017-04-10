@@ -13,7 +13,8 @@ const styleSheet = createStyleSheet('ComposedTextField', () => ({
     flexWrap: 'wrap',
   },
   input: {
-    margin: 10,
+    marginLeft: 10,
+    marginRight: 10,
   },
 }));
 
