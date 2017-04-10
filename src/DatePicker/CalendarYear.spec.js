@@ -4,7 +4,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
 import getMuiTheme from '../styles/getMuiTheme';
-import {dateTimeFormat, addYears} from './dateUtils';
+import {dateTimeFormat, addYears, defaultUtils} from './dateUtils';
 import CalendarYear from './CalendarYear';
 import YearButton from './YearButton';
 
@@ -25,6 +25,7 @@ describe('<CalendarYear />', () => {
           minDate={minDate}
           maxDate={maxDate}
           locale="en-US"
+          utils={defaultUtils}
         />
       );
 
