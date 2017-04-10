@@ -3,9 +3,8 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
 /**
- * `SelectField` is implemented as a controlled component,
- * with the current selection set through the `value` property.
- * The `SelectField` can be disabled with the `disabled` property.
+ * `SelectField` is implemented receiving the dropDownMenuProps object.
+ * This will allow to set any property of DropDownMenu that compose SelectField component.
  */
 export default class SelectFieldExampleMenuClose extends Component {
   state = {
