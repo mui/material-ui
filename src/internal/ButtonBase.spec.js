@@ -311,6 +311,10 @@ describe('<ButtonBase />', () => {
       window.dispatchEvent(event);
     });
 
+    after(() => {
+      clock.restore();
+    });
+
     it('should not set keyboard focus before time has passed', () => {
       assert.strictEqual(wrapper.state('keyboardFocused'), false, 'should not be keyboardFocused');
     });
@@ -318,10 +322,6 @@ describe('<ButtonBase />', () => {
     it('should listen for tab presses and set keyboard focus', () => {
       clock.tick(instance.keyboardFocusCheckTime * instance.keyboardFocusMaxCheckTimes);
       assert.strictEqual(wrapper.state('keyboardFocused'), true, 'should be keyboardFocused');
-    });
-
-    after(() => {
-      clock.restore();
     });
   });
 
