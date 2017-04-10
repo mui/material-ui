@@ -66,6 +66,7 @@ function generateGutter(theme, breakpoint) {
 
     styles[`gutter-${breakpoint}-${gutter}`] = {
       margin: -gutter / 2,
+      width: `calc(100% + ${gutter}px)`,
       '& > $typeItem': {
         padding: gutter / 2,
       },
@@ -88,6 +89,7 @@ export const styleSheet = createStyleSheet('MuiLayout', (theme) => {
       boxSizing: 'border-box',
       display: 'flex',
       flexWrap: 'wrap',
+      width: '100%',
     },
     typeItem: {
       boxSizing: 'border-box',
@@ -108,11 +110,11 @@ export const styleSheet = createStyleSheet('MuiLayout', (theme) => {
     'align-xs-center': {
       alignItems: 'center',
     },
+    'align-xs-flex-start': {
+      alignItems: 'flex-start',
+    },
     'align-xs-flex-end': {
       alignItems: 'flex-end',
-    },
-    'align-xs-stretch': {
-      alignItems: 'stretch',
     },
     'justify-xs-center': {
       justifyContent: 'center',
@@ -289,7 +291,7 @@ Layout.defaultProps = {
   component: 'div',
   container: false,
   item: false,
-  align: 'flex-start',
+  align: 'stretch',
   direction: 'row',
   gutter: 16,
   justify: 'flex-start',

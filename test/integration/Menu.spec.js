@@ -1,19 +1,19 @@
 // @flow weak
-/* eslint-env mocha */
 
 import React from 'react';
 import keycode from 'keycode';
 import { assert } from 'chai';
 import { ReactWrapper } from 'enzyme';
-import { createMountWithContext } from 'test/utils';
+import { createMount } from 'src/test-utils';
 import SimpleMenu from './fixtures/menus/SimpleMenu';
 
 describe('<Menu> integration', () => {
   let mount;
 
   before(() => {
-    mount = createMountWithContext();
+    mount = createMount();
   });
+
   after(() => {
     mount.cleanUp();
   });

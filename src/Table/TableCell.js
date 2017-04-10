@@ -32,7 +32,7 @@ export const styleSheet = createStyleSheet('MuiTableCell', (theme) => {
     },
     checkbox: {
       paddingLeft: 12,
-      paddingRight: 0,
+      paddingRight: 12,
     },
     footer: {},
   };

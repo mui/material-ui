@@ -5,10 +5,13 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('MuiListItemIcon', () => {
+export const styleSheet = createStyleSheet('MuiListItemIcon', (theme) => {
   return {
     root: {
-      width: 40,
+      height: 24,
+      marginRight: 16,
+      width: 24,
+      color: theme.palette.action.active,
     },
   };
 });

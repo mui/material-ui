@@ -6,6 +6,7 @@ import customPropTypes from 'material-ui/utils/customPropTypes';
 import {
   List,
   ListItem,
+  ListItemIcon,
   ListItemText,
   ListItemSecondaryAction,
   ListSubheader,
@@ -54,7 +55,9 @@ export default class SwitchListSecondary extends Component {
       <div className={classes.root}>
         <List subheader={<ListSubheader>Settings</ListSubheader>}>
           <ListItem>
-            <WifiIcon />
+            <ListItemIcon>
+              <WifiIcon />
+            </ListItemIcon>
             <ListItemText primary="Wi-Fi" />
             <ListItemSecondaryAction>
               <Switch

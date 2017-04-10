@@ -37,3 +37,9 @@ The checkbox is the secondary action for the list item and a separate target.
 The switch is the secondary action and a separate target.
 
 {{demo='demos/lists/SwitchListSecondary.js'}}
+
+## Interactive
+
+Below is an interactive demo that lets you explore the visual results of the different settings:
+
+{{demo='demos/lists/InteractiveList.js'}}

@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -18,6 +18,10 @@ export const styleSheet = createStyleSheet('MuiList', () => {
       paddingTop: 8,
       paddingBottom: 8,
     },
+    dense: {
+      paddingTop: 4,
+      paddingBottom: 4,
+    },
     subheader: {
       paddingTop: 0,
     },
@@ -25,59 +29,81 @@ export const styleSheet = createStyleSheet('MuiList', () => {
 });
 
 /**
- * A simple list component.
+ * A material list root element.
+ *
+ * ```jsx
+ * <List>
+ *   <ListItem>....</ListItem>
+ * </List>
+ * ```
  */
-export default function List(props, context) {
-  const {
-    className: classNameProp,
-    component: ComponentProp,
-    padding,
-    children,
-    subheader,
-    rootRef,
-    ...other
-  } = props;
-  const classes = context.styleManager.render(styleSheet);
-  const className = classNames(classes.root, {
-    [classes.padding]: padding,
-    [classes.subheader]: subheader,
-  }, classNameProp);
+export default class List extends Component {
+  static propTypes = {
+    children: PropTypes.node,
+    /**
+     * The CSS class name of the root element.
+     */
+    className: PropTypes.string,
+    /**
+     * The component used for the root node.
+     * Either a string to use a DOM element or a ReactElement.
+     */
+    component: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]),
+    dense: PropTypes.bool,
+    padding: PropTypes.bool,
+    /**
+     * @ignore
+     */
+    rootRef: PropTypes.func,
+    subheader: PropTypes.node,
+  };
 
-  return (
-    <ComponentProp ref={rootRef} className={className} {...other}>
-      {subheader}
-      {children}
-    </ComponentProp>
-  );
+  static defaultProps = {
+    component: 'div',
+    dense: false,
+    padding: true,
+  };
+
+  static contextTypes = {
+    styleManager: customPropTypes.muiRequired,
+  };
+
+  static childContextTypes = {
+    dense: PropTypes.bool,
+  };
+
+  getChildContext() {
+    return {
+      dense: this.props.dense,
+    };
+  }
+
+  render() {
+    const {
+      className: classNameProp,
+      component: ComponentProp,
+      padding,
+      children,
+      dense,
+      subheader,
+      rootRef,
+      ...other
+    } = this.props;
+    const classes = this.context.styleManager.render(styleSheet);
+    const className = classNames(classes.root, {
+      [classes.dense]: dense,
+      [classes.padding]: padding,
+      [classes.subheader]: subheader,
+    }, classNameProp);
+
+    return (
+      <ComponentProp ref={rootRef} className={className} {...other}>
+        {subheader}
+        {children}
+      </ComponentProp>
+    );
+  }
 }
-
-List.propTypes = {
-  children: PropTypes.node,
-  /**
-   * The CSS class name of the root element.
-   */
-  className: PropTypes.string,
-  /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a ReactElement.
-   */
-  component: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
-  padding: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  rootRef: PropTypes.func,
-  subheader: PropTypes.node,
-};
-
-List.defaultProps = {
-  component: 'div',
-  padding: true,
-};
-
-List.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};

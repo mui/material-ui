@@ -1,9 +1,8 @@
 // @flow weak
-/* eslint-env mocha */
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallowWithContext } from 'test/utils';
+import { createShallow } from 'src/test-utils';
 import List, { styleSheet } from './List';
 import ListSubheader from './ListSubheader';
 
@@ -12,7 +11,7 @@ describe('<List />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallowWithContext();
+    shallow = createShallow();
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
@@ -55,6 +54,18 @@ describe('<List />', () => {
     it('should render ListSubheader', () => {
       const wrapper = shallow(<List subheader={<ListSubheader>Title</ListSubheader>} />);
       assert.strictEqual(wrapper.find(ListSubheader).length, 1, 'should render ListSubheader');
+    });
+  });
+
+  describe('context: dense', () => {
+    it('should forward the context', () => {
+      const wrapper1 = shallow(<List />);
+      assert.strictEqual(wrapper1.instance().getChildContext().dense, false,
+        'dense should be false by default');
+
+      const wrapper2 = shallow(<List dense />);
+      assert.strictEqual(wrapper2.instance().getChildContext().dense, true,
+        'dense should be true when set');
     });
   });
 });

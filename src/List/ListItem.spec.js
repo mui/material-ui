@@ -1,9 +1,8 @@
 // @flow weak
-/* eslint-env mocha */
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallowWithContext } from 'test/utils';
+import { createShallow } from 'src/test-utils';
 import ListItem, { styleSheet } from './ListItem';
 
 /**
@@ -14,7 +13,7 @@ describe('<ListItem />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallowWithContext();
+    shallow = createShallow();
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
@@ -57,6 +56,18 @@ describe('<ListItem />', () => {
     it('should change the component', () => {
       const wrapper = shallow(<ListItem button component="a" />);
       assert.strictEqual(wrapper.props().component, 'a');
+    });
+  });
+
+  describe('context: dense', () => {
+    it('should forward the context', () => {
+      const wrapper1 = shallow(<ListItem />);
+      assert.strictEqual(wrapper1.instance().getChildContext().dense, false,
+        'dense should be false by default');
+
+      const wrapper2 = shallow(<ListItem dense />);
+      assert.strictEqual(wrapper2.instance().getChildContext().dense, true,
+        'dense should be true when set');
     });
   });
 });

@@ -1,9 +1,10 @@
 // @flow weak
-/* eslint-env mocha */
 
 import React from 'react';
+import keycode from 'keycode';
 import { assert } from 'chai';
-import { createShallowWithContext } from 'test/utils';
+import { spy } from 'sinon';
+import { createShallow } from 'src/test-utils';
 import Chip, { styleSheet } from './Chip.js';
 import Avatar from '../Avatar/Avatar.js';
 
@@ -12,7 +13,7 @@ describe('<Chip />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallowWithContext();
+    shallow = createShallow();
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
@@ -133,6 +134,108 @@ describe('<Chip />', () => {
 
     it('should not have a tabIndex prop', () => {
       assert.strictEqual(wrapper.prop('tabIndex'), undefined);
+    });
+
+    it('should fire the function given in onDeleteRequest', () => {
+      const onRequestDeleteSpy = spy();
+      wrapper.setProps({ onRequestDelete: onRequestDeleteSpy });
+
+      wrapper.find('pure(Cancel)').simulate('click', { stopPropagation: () => {} });
+      assert.strictEqual(onRequestDeleteSpy.callCount, 1,
+        'should have called the onRequestDelete hanlder');
+    });
+
+    it('should stop propagation in onDeleteRequest', () => {
+      const onRequestDeleteSpy = spy();
+      const stopPropagationSpy = spy();
+      wrapper.setProps({ onRequestDelete: onRequestDeleteSpy });
+
+      wrapper.find('pure(Cancel)').simulate('click', { stopPropagation: stopPropagationSpy });
+      assert.strictEqual(stopPropagationSpy.callCount, 1,
+        'should have called the stopPropagation hanlder');
+    });
+  });
+
+  describe('reacts to keyboard chip', () => {
+    let wrapper;
+    let onKeyDownSpy;
+
+    before(() => {
+      wrapper = shallow(
+        <Chip
+          className="my-Chip"
+          data-my-prop="woof"
+        >
+          Text Chip
+        </Chip>,
+      );
+
+      onKeyDownSpy = spy();
+      wrapper.setProps({ onKeyDown: onKeyDownSpy });
+    });
+
+    it('should call onKeyDown when a key is pressed', () => {
+      const anyKeydownEvent = {
+        preventDefault: () => {},
+        keyCode: keycode('p'),
+      };
+      wrapper.find('button').simulate('keydown', anyKeydownEvent);
+      assert.strictEqual(onKeyDownSpy.callCount, 1, 'should have called onKeyDown');
+      assert(onKeyDownSpy.calledWith(anyKeydownEvent));
+    });
+
+    describe('onClick is defined', () => {
+      let onClickSpy;
+      before(() => {
+        onClickSpy = spy();
+        wrapper.setProps({ onClick: onClickSpy });
+      });
+
+      afterEach(() => {
+        onClickSpy.reset();
+      });
+
+      it('should call onClick when `space` is pressed ', () => {
+        const preventDefaultSpy = spy();
+        const spaceKeydownEvent = {
+          preventDefault: preventDefaultSpy,
+          keyCode: keycode('space'),
+        };
+        wrapper.find('button').simulate('keydown', spaceKeydownEvent);
+        assert.strictEqual(preventDefaultSpy.callCount, 1, 'should have stopped event propagation');
+        assert.strictEqual(onClickSpy.callCount, 1, 'should have called onClick');
+        assert(onClickSpy.calledWith(spaceKeydownEvent));
+      });
+
+      it('should call onClick when `enter` is pressed ', () => {
+        const preventDefaultSpy = spy();
+        const enterKeydownEvent = {
+          preventDefault: preventDefaultSpy,
+          keyCode: keycode('enter'),
+        };
+        wrapper.find('button').simulate('keydown', enterKeydownEvent);
+        assert.strictEqual(preventDefaultSpy.callCount, 1, 'should have stopped event propagation');
+        assert.strictEqual(onClickSpy.callCount, 1, 'should have called onClick');
+        assert(onClickSpy.calledWith(enterKeydownEvent));
+      });
+    });
+
+    describe('onRequestDelete is defined  and `backspace is pressed', () => {
+      it('should call onRequestDelete', () => {
+        const onRequestDeleteSpy = spy();
+        wrapper.setProps({ onRequestDelete: onRequestDeleteSpy });
+
+        const preventDefaultSpy = spy();
+        const backspaceKeydownEvent = {
+          preventDefault: preventDefaultSpy,
+          keyCode: 8, // keycode `backspace`
+        };
+        wrapper.find('button').simulate('keydown', backspaceKeydownEvent);
+
+        assert.strictEqual(preventDefaultSpy.callCount, 1, 'should have stopped event propagation');
+        assert.strictEqual(onRequestDeleteSpy.callCount, 1, 'should have called onClick');
+        assert(onRequestDeleteSpy.calledWith(backspaceKeydownEvent));
+      });
     });
   });
 });

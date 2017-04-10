@@ -1,11 +1,11 @@
 // @flow weak
 
-import { createMuiTheme } from 'src/styles/theme';
 import { create } from 'jss';
 import jssPreset from 'jss-preset-default';
 import { createStyleManager } from 'jss-theme-reactor';
 import { PropTypes } from 'react';
 import { mount as enzymeMount } from 'enzyme';
+import { createMuiTheme } from 'src/styles/theme';
 
 function cleanStyles() {
   const head = window.document.head;
@@ -17,7 +17,7 @@ function cleanStyles() {
   }
 }
 
-export default function createMountWithContext(mount = enzymeMount) {
+export default function createMount(mount = enzymeMount) {
   cleanStyles();
 
   const attachTo = window.document.createElement('div');
@@ -41,12 +41,9 @@ export default function createMountWithContext(mount = enzymeMount) {
   mountWithContext.attachTo = attachTo;
 
   mountWithContext.cleanUp = () => {
+    styleManager.reset();
     cleanStyles();
     attachTo.parentNode.removeChild(attachTo);
-  };
-
-  mountWithContext.reset = () => {
-    attachTo.innerHTML = '';
   };
 
   return mountWithContext;

@@ -1,18 +1,18 @@
 // @flow weak
-/* eslint-env mocha */
 
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createMountWithContext } from 'test/utils';
+import { createMount } from 'src/test-utils';
 import List from 'src/List';
 
 describe('<List> integration', () => {
   let mount;
 
   before(() => {
-    mount = createMountWithContext();
+    mount = createMount();
   });
+
   after(() => {
     mount.cleanUp();
   });
