@@ -143,7 +143,6 @@ export {
 
 export {
   TextField,
-  TextFieldLabel,
 } from './TextField';
 
 export {

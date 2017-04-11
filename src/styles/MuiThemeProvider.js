@@ -80,8 +80,6 @@ export const MUI_SHEET_ORDER = [
   'MuiCardHeader',
   'MuiCard',
 
-  'MuiTextFieldLabel',
-  'MuiTextFieldInput',
   'MuiTextField',
 
   'MuiTable',

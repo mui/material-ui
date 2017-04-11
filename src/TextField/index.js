@@ -2,4 +2,3 @@
 
 export default from './TextField';
 export TextField from './TextField';
-export TextFieldLabel from './TextFieldLabel';
