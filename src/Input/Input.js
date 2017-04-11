@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-function isDirty(obj) {
+export function isDirty(obj) {
   return obj && obj.value && obj.value.length > 0;
 }
 
@@ -21,8 +21,7 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
       position: 'relative',
     },
     formControl: {
-      marginBottom: 0,
-      marginTop: 16,
+      marginTop: 32,
     },
     inkbar: {
       '&:after': {

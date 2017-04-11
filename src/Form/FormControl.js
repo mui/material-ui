@@ -1,18 +1,17 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import React, { Children, Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
+import { isDirty } from '../Input/Input'
 
 export const styleSheet = createStyleSheet('MuiFormControl', () => {
   return {
     root: {
       display: 'flex',
       flexDirection: 'column',
-      marginBottom: 8,
-      marginTop: 16,
       position: 'relative',
     },
     row: {
@@ -60,10 +59,11 @@ export default class FormControl extends Component {
   constructor(props, context) {
     super(props, context);
 
-    const dirty = props.children.some((child) => {
-      return child.type && child.type.name === 'Input' &&
-        child.props.value && child.props.value.length > 0;
-    });
+    const dirty = Children.map(props.children, (child) => {
+      if(child.type && child.type.name === 'Input' && isDirty(child.props)) {
+        return child;
+      }
+    }).length;
 
     this.state = {
       dirty,
