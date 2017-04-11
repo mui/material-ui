@@ -1,7 +1,7 @@
 /* eslint-disable flowtype/require-valid-file-annotation, no-console */
 import { spy } from 'sinon';
 
-class consoleErrorMock {
+class ConsoleErrorMock {
   consoleErrorContainer;
 
   spy = () => {
@@ -35,4 +35,4 @@ class consoleErrorMock {
   };
 }
 
-export default new consoleErrorMock();
+export default new ConsoleErrorMock();
