@@ -10,7 +10,7 @@ import getMuiTheme from '../styles/getMuiTheme';
 import MenuItem from '../MenuItem';
 import Menu from '../Menu/Menu';
 import IconButton from '../IconButton';
-import TestUtils from 'react-addons-test-utils';
+import TestUtils from 'react-dom/test-utils';
 
 describe('<DropDownMenu />', () => {
   const muiTheme = getMuiTheme();

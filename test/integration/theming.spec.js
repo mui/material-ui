@@ -5,7 +5,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import TestUtils from 'react-addons-test-utils';
+import TestUtils from 'react-dom/test-utils';
 import {expect} from 'chai';
 import AppBar from 'src/AppBar';
 import RaisedButton from 'src/RaisedButton';

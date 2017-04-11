@@ -7,7 +7,7 @@ import getMuiTheme from '../styles/getMuiTheme';
 import SelectField from './SelectField';
 import TouchRipple from '../internal/TouchRipple';
 import MenuItem from '../MenuItem';
-import TestUtils from 'react-addons-test-utils';
+import TestUtils from 'react-dom/test-utils';
 
 describe('<SelectField />', () => {
   const muiTheme = getMuiTheme();
