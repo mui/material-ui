@@ -1,5 +1,6 @@
 /* eslint-env mocha */
 import React from 'react';
+import PropTypes from 'prop-types';
 import {mount} from 'enzyme';
 import {assert} from 'chai';
 import getMuiTheme from 'src/styles/getMuiTheme';
@@ -12,7 +13,7 @@ describe('<Card />', () => {
   const muiTheme = getMuiTheme();
   const mountWithContext = (node) => mount(node, {
     context: {muiTheme},
-    childContextTypes: {muiTheme: React.PropTypes.object},
+    childContextTypes: {muiTheme: PropTypes.object},
   });
 
   it('renders a openIcon inside the CardHeader with custom color', () => {

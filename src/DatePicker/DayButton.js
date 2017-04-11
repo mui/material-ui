@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Transition from '../styles/transitions';
 import {isEqualDate} from './dateUtils';
 import EnhancedButton from '../internal/EnhancedButton';

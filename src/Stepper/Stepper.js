@@ -1,4 +1,5 @@
-import React, {Component, Children, PropTypes} from 'react';
+import React, {Component, Children} from 'react';
+import PropTypes from 'prop-types';
 import StepConnector from './StepConnector';
 
 const getStyles = (props) => {

@@ -1,5 +1,6 @@
 /* eslint-env mocha */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {shallow, mount} from 'enzyme';
 import {assert} from 'chai';
 import Checkbox from './Checkbox';

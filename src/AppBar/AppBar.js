@@ -1,4 +1,5 @@
-import React, {Component, PropTypes, cloneElement} from 'react';
+import React, {Component, cloneElement} from 'react';
+import PropTypes from 'prop-types';
 import IconButton from '../IconButton';
 import NavigationMenu from '../svg-icons/navigation/menu';
 import Paper from '../Paper';

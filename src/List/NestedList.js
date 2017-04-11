@@ -1,9 +1,5 @@
-import React, {
-  Children,
-  PropTypes,
-  isValidElement,
-  cloneElement,
-} from 'react';
+import React, {Children, isValidElement, cloneElement} from 'react';
+import PropTypes from 'prop-types';
 import List from './List';
 
 const NestedList = (props) => {

@@ -4,6 +4,7 @@
 // Modifying any of the above files will break these tests!
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import TestUtils from 'react-addons-test-utils';
 import {expect} from 'chai';
 import AppBar from 'src/AppBar';
@@ -87,7 +88,7 @@ describe('Theming', () => {
 const AppBarDarkUsingContext = React.createClass({
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getChildContext() {
@@ -104,7 +105,7 @@ const AppBarDarkUsingContext = React.createClass({
 const AppBarDarkUsingContextWithOverride = React.createClass({
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getInitialState() {
@@ -157,7 +158,7 @@ const AppBarDarkThemeOverride = React.createClass({
 const ButtonToUpdateThemeWithAppBar = React.createClass({
 
   childContextTypes: {
-    muiTheme: React.PropTypes.object,
+    muiTheme: PropTypes.object,
   },
 
   getInitialState() {

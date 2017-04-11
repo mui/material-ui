@@ -2,6 +2,7 @@
 // "react-stub-context": "^0.3.0",
 
 const React = require('react');
+const {PropTypes} = require('prop-types');
 
 function stubContext(BaseComponent, context) {
   if (typeof context === 'undefined' || context === null) context = {};
@@ -10,7 +11,7 @@ function stubContext(BaseComponent, context) {
 
   try {
     Object.keys(context).forEach(function(key) {
-      contextTypes[key] = React.PropTypes.any;
+      contextTypes[key] = PropTypes.any;
     });
   } catch (err) {
     throw new TypeError('createdStubbedContextComponent requires an object');
@@ -19,7 +20,7 @@ function stubContext(BaseComponent, context) {
   const StubbedContextParent = React.createClass({
     displayName: 'StubbedContextParent',
     propTypes: {
-      children: React.PropTypes.node,
+      children: PropTypes.node,
     },
     contextTypes: contextTypes,
     childContextTypes: contextTypes,

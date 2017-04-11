@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import keycode from 'keycode';
 import {fade, emphasize} from '../utils/colorManipulator';
 import EnhancedButton from '../internal/EnhancedButton';

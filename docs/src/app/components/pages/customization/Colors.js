@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Title from 'react-title-component';
 import withWidth, {MEDIUM, LARGE} from 'material-ui/utils/withWidth';
 import ClearFix from 'material-ui/internal/ClearFix';

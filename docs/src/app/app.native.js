@@ -1,4 +1,6 @@
-import React, {Component, PropTypes} from 'react-native';
+import React, {Component} from 'react-native';
+
+import PropTypes from 'prop-types';
 
 const {
   Platform,
