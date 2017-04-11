@@ -365,13 +365,13 @@ class DropDownMenu extends Component {
       labelStyle,
       listStyle,
       maxHeight,
+      menuItemStyle,
       menuStyle: menuStyleProp,
+      selectedMenuItemStyle,
       selectionRenderer,
+      style,
       onClose, // eslint-disable-line no-unused-vars
       openImmediately, // eslint-disable-line no-unused-vars
-      menuItemStyle,
-      selectedMenuItemStyle,
-      style,
       underlineStyle,
       value,
       iconButton,
