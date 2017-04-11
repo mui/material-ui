@@ -2,9 +2,9 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { spy } from 'sinon';
+import { spy, stub } from 'sinon';
 import contains from 'dom-helpers/query/contains';
-import { createShallow, createMount } from 'src/test-utils';
+import { createShallow, createMount, consoleErrorMock } from 'src/test-utils';
 import Modal, { styleSheet } from './Modal';
 
 describe('<Modal />', () => {
@@ -50,6 +50,87 @@ describe('<Modal />', () => {
       const modal = wrapper.childAt(0);
       assert.strictEqual(modal.is('div'), true, 'should be a div');
       assert.strictEqual(modal.hasClass(classes.modal), true, 'should have the modal class');
+    });
+
+    describe('handlers', () => {
+      let instance;
+
+      before(() => {
+        instance = wrapper.instance();
+      });
+
+      describe('focus', () => {
+        before(() => {
+          instance.modal = spy();
+          instance.modal.lastChild = spy();
+          instance.modal.lastChild.setAttribute = spy();
+          instance.modal.lastChild.focus = spy();
+        });
+
+        describe('modalContent has tabIndex attribute', () => {
+          before(() => {
+            instance.modal.lastChild.hasAttribute = stub().returns(true);
+            consoleErrorMock.spy();
+            instance.focus();
+          });
+
+          after(() => {
+            instance.modal.lastChild.hasAttribute.reset();
+            instance.modal.lastChild.focus.reset();
+            consoleErrorMock.reset();
+          });
+
+          it('should call hasAttribute with tabIndex', () => {
+            assert.strictEqual(instance.modal.lastChild.hasAttribute.callCount, 1);
+            assert.strictEqual(instance.modal.lastChild.hasAttribute.calledWith('tabIndex'), true);
+          });
+
+          it('should not call setAttribute', () => {
+            assert.strictEqual(instance.modal.lastChild.setAttribute.callCount, 0);
+          });
+
+          it('should not call console.error', () => {
+            assert.strictEqual(consoleErrorMock.callCount(), 0);
+          });
+
+          it('should call focus', () => {
+            assert.strictEqual(instance.modal.lastChild.focus.callCount, 1);
+          });
+        });
+
+
+        describe('modalContent does not have tabIndex attribute', () => {
+          before(() => {
+            instance.modal.lastChild.hasAttribute = stub().returns(false);
+            consoleErrorMock.spy();
+            instance.focus();
+          });
+
+          after(() => {
+            instance.modal.lastChild.hasAttribute.reset();
+            consoleErrorMock.reset();
+          });
+
+          it('should call hasAttribute with tabIndex', () => {
+            assert.strictEqual(instance.modal.lastChild.hasAttribute.callCount, 1);
+            assert.strictEqual(instance.modal.lastChild.hasAttribute.calledWith('tabIndex'), true);
+          });
+
+          it('should call setAttribute', () => {
+            assert.strictEqual(instance.modal.lastChild.setAttribute.callCount, 1);
+            assert.strictEqual(
+              instance.modal.lastChild.setAttribute.calledWith('tabIndex', -1), true);
+          });
+
+          it('should call console.error', () => {
+            assert.strictEqual(consoleErrorMock.callCount(), 1);
+          });
+
+          it('should call focus', () => {
+            assert.strictEqual(instance.modal.lastChild.focus.callCount, 1);
+          });
+        });
+      });
     });
   });
 
