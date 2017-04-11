@@ -39,6 +39,8 @@ const config = {
   plugins: [
     // Allows for sync with browser while developing (like BrowserSync)
     new webpack.HotModuleReplacementPlugin(),
+    // Prevent moment from loading all the locales
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     // Allows error warninggs but does not stop compiling. Will remove when eslint is added
     new webpack.NoErrorsPlugin(),
     new CopyWebpackPlugin([
