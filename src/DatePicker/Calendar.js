@@ -52,6 +52,7 @@ class Calendar extends Component {
     locale: 'en-US',
     minDate: addYears(new Date(), -100),
     maxDate: addYears(new Date(), 100),
+    firstDayOfWeek: 1,
   };
 
   static contextTypes = {
