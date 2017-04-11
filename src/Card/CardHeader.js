@@ -37,32 +37,25 @@ export default function CardHeader(props, context) {
   const classes = context.styleManager.render(styleSheet);
   const className = classNames(classes.cardHeader, classNameProp);
 
-  if (avatar) {
-    return (
-      <CardContent className={className} {...other}>
-        <div className={classes.avatar}>
-          {avatar}
-        </div>
-        <div className={classes.content}>
-          <Text type="body2" gutterBottom>
-            {title}
-          </Text>
-          <Text type="body2" secondary className={classes.contentSecondary}>
-            {subheader}
-          </Text>
-        </div>
-      </CardContent>
-    );
-  }
+  // adjustments that depend on the presence of an avatar
+  const titleType = avatar ? 'body2' : 'headline';
+  const subheaderType = avatar ? 'body2' : 'body1';
 
   return (
     <CardContent className={className} {...other}>
-      <Text type="headline">
-        {title}
-      </Text>
-      <Text type="body1" secondary>
-        {subheader}
-      </Text>
+      {avatar &&
+        <div className={classes.avatar}>
+          {avatar}
+        </div>
+      }
+      <div className={classes.content}>
+        <Text type={titleType}>
+          {title}
+        </Text>
+        <Text type={subheaderType} secondary className={classes.contentSecondary}>
+          {subheader}
+        </Text>
+      </div>
     </CardContent>
   );
 }

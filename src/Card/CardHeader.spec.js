@@ -41,13 +41,15 @@ describe('<CardHeader />', () => {
     });
 
     it('should render the title as headline text', () => {
-      const title = wrapper.childAt(0);
+      const container = wrapper.childAt(0);
+      const title = container.childAt(0);
       assert.strictEqual(title.is('Text'), true);
       assert.strictEqual(title.prop('type'), 'headline');
     });
 
     it('should render the subead as body1 secondary text', () => {
-      const subhead = wrapper.childAt(1);
+      const container = wrapper.childAt(0);
+      const subhead = container.childAt(1);
       assert.strictEqual(subhead.is('Text'), true);
       assert.strictEqual(subhead.prop('type'), 'body1');
       assert.strictEqual(subhead.prop('secondary'), true);
