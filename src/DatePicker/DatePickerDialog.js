@@ -28,6 +28,7 @@ class DatePickerDialog extends Component {
     onDismiss: PropTypes.func,
     onShow: PropTypes.func,
     open: PropTypes.bool,
+    openToYearSelection: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
     style: PropTypes.object,
   };
@@ -38,6 +39,7 @@ class DatePickerDialog extends Component {
     container: 'dialog',
     locale: 'en-US',
     okLabel: 'OK',
+    openToYearSelection: false,
   };
 
   static contextTypes = {
@@ -118,6 +120,7 @@ class DatePickerDialog extends Component {
       onAccept, // eslint-disable-line no-unused-vars
       onDismiss, // eslint-disable-line no-unused-vars
       onShow, // eslint-disable-line no-unused-vars
+      openToYearSelection,
       shouldDisableDate,
       hideCalendarDate,
       style, // eslint-disable-line no-unused-vars
@@ -174,6 +177,7 @@ class DatePickerDialog extends Component {
             onTouchTapCancel={this.handleTouchTapCancel}
             onTouchTapOk={this.handleTouchTapOk}
             okLabel={okLabel}
+            openToYearSelection={openToYearSelection}
             shouldDisableDate={shouldDisableDate}
             hideCalendarDate={hideCalendarDate}
           />

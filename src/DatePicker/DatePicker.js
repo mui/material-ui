@@ -119,6 +119,10 @@ class DatePicker extends Component {
      */
     onTouchTap: PropTypes.func,
     /**
+     * If true sets the datepicker to open to year selection first.
+     */
+    openToYearSelection: PropTypes.bool,
+    /**
      * Callback function used to determine if a day's entry should be disabled on the calendar.
      *
      * @param {object} day Date object of a day.
@@ -147,6 +151,7 @@ class DatePicker extends Component {
     firstDayOfWeek: 1,
     hideCalendarDate: false,
     style: {},
+    openToYearSelection: false,
   };
 
   static contextTypes = {
@@ -279,6 +284,7 @@ class DatePicker extends Component {
       onFocus, // eslint-disable-line no-unused-vars
       onShow,
       onTouchTap, // eslint-disable-line no-unused-vars
+      openToYearSelection,
       shouldDisableDate,
       hideCalendarDate,
       style,
@@ -319,6 +325,7 @@ class DatePicker extends Component {
           ref="dialogWindow"
           shouldDisableDate={shouldDisableDate}
           hideCalendarDate={hideCalendarDate}
+          openToYearSelection={openToYearSelection}
         />
       </div>
     );

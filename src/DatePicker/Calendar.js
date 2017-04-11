@@ -42,6 +42,7 @@ class Calendar extends Component {
     onTouchTapDay: PropTypes.func,
     onTouchTapOk: PropTypes.func,
     open: PropTypes.bool,
+    openToYearSelection: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
   };
 
@@ -52,6 +53,7 @@ class Calendar extends Component {
     locale: 'en-US',
     minDate: addYears(new Date(), -100),
     maxDate: addYears(new Date(), 100),
+    openToYearSelection: false,
   };
 
   static contextTypes = {
@@ -60,7 +62,7 @@ class Calendar extends Component {
 
   state = {
     displayDate: undefined,
-    displayMonthDay: true,
+    displayMonthDay: undefined,
     selectedDate: undefined,
     transitionDirection: 'left',
     transitionEnter: true,
@@ -70,6 +72,7 @@ class Calendar extends Component {
     this.setState({
       displayDate: getFirstDayOfMonth(this.props.initialDate),
       selectedDate: this.props.initialDate,
+      displayMonthDay: !this.props.openToYearSelection,
     });
   }
 
