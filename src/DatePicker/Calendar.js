@@ -28,7 +28,9 @@ class Calendar extends Component {
   static propTypes = {
     DateTimeFormat: PropTypes.func.isRequired,
     autoOk: PropTypes.bool,
+    cancelClassName: PropTypes.string,
     cancelLabel: PropTypes.node,
+    cancelStyle: PropTypes.object,
     disableYearSelection: PropTypes.bool,
     firstDayOfWeek: PropTypes.number,
     hideCalendarDate: PropTypes.bool,
@@ -37,7 +39,9 @@ class Calendar extends Component {
     maxDate: PropTypes.object,
     minDate: PropTypes.object,
     mode: PropTypes.oneOf(['portrait', 'landscape']),
+    okClassName: PropTypes.string,
     okLabel: PropTypes.node,
+    okStyle: PropTypes.object,
     onTouchTapCancel: PropTypes.func,
     onTouchTapDay: PropTypes.func,
     onTouchTapOk: PropTypes.func,
@@ -297,11 +301,15 @@ class Calendar extends Component {
     const {
       minDate,
       maxDate,
+      cancelClassName,
       cancelLabel,
+      cancelStyle,
       DateTimeFormat,
       firstDayOfWeek,
       locale,
+      okClassName,
       okLabel,
+      okStyle,
       onTouchTapCancel, // eslint-disable-line no-unused-vars
       onTouchTapOk, // eslint-disable-line no-unused-vars
     } = this.props;
@@ -367,8 +375,12 @@ class Calendar extends Component {
           {okLabel &&
             <CalendarActionButtons
               autoOk={this.props.autoOk}
+              cancelClassName={cancelClassName}
               cancelLabel={cancelLabel}
+              cancelStyle={cancelStyle}
+              okClassName={okClassName}
               okLabel={okLabel}
+              okStyle={okStyle}
               onTouchTapCancel={onTouchTapCancel}
               onTouchTapOk={onTouchTapOk}
             />

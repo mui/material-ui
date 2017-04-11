@@ -4,14 +4,30 @@ import FlatButton from '../FlatButton';
 class CalendarActionButton extends Component {
   static propTypes = {
     autoOk: PropTypes.bool,
+    cancelClassName: PropTypes.string,
     cancelLabel: PropTypes.node,
+    cancelStyle: PropTypes.object,
+    okClassName: PropTypes.string,
     okLabel: PropTypes.node,
+    okStyle: PropTypes.object,
     onTouchTapCancel: PropTypes.func,
     onTouchTapOk: PropTypes.func,
   };
 
+  static defaultProps = {
+    okStyle: {},
+    cancelStyle: {},
+  };
+
   render() {
-    const {cancelLabel, okLabel} = this.props;
+    const {
+      cancelClassName,
+      cancelLabel,
+      cancelStyle,
+      okClassName,
+      okLabel,
+      okStyle,
+    } = this.props;
 
     const styles = {
       root: {
@@ -32,20 +48,22 @@ class CalendarActionButton extends Component {
     };
 
     return (
-      <div style={styles.root} >
+      <div style={styles.root}>
         <FlatButton
+          className={cancelClassName}
           label={cancelLabel}
           onTouchTap={this.props.onTouchTapCancel}
           primary={true}
-          style={styles.flatButtons}
+          style={Object.assign({}, styles.flatButtons, cancelStyle)}
         />
         {!this.props.autoOk &&
           <FlatButton
+            className={okClassName}
             disabled={this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled()}
             label={okLabel}
             onTouchTap={this.props.onTouchTapOk}
             primary={true}
-            style={styles.flatButtons}
+            style={Object.assign({}, styles.flatButtons, okStyle)}
           />
         }
       </div>
