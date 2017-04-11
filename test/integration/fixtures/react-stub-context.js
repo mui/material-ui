@@ -2,7 +2,7 @@
 // "react-stub-context": "^0.3.0",
 
 const React = require('react');
-const {PropTypes} = require('prop-types');
+const PropTypes = require('prop-types');
 
 function stubContext(BaseComponent, context) {
   if (typeof context === 'undefined' || context === null) context = {};
