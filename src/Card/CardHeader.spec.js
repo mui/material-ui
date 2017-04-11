@@ -34,7 +34,7 @@ describe('<CardHeader />', () => {
     beforeEach(() => {
       wrapper = shallow(
         <CardHeader title="Title" subheader="Subheader" />,
-      );
+      ).childAt(0);
     });
 
     it('should render the title as headline text', () => {
@@ -43,7 +43,7 @@ describe('<CardHeader />', () => {
       assert.strictEqual(title.props().type, 'headline');
     });
 
-    it('should render the subead as body1 secondary text', () => {
+    it('should render the subeader as body1 secondary text', () => {
       const subheader = wrapper.childAt(1);
       assert.strictEqual(subheader.name(), 'Typography');
       assert.strictEqual(subheader.props().type, 'body1');
@@ -83,7 +83,7 @@ describe('<CardHeader />', () => {
       assert.strictEqual(title.props().type, 'body2');
     });
 
-    it('should render the subead as body2 secondary text inside the second child', () => {
+    it('should render the subeader as body2 secondary text inside the second child', () => {
       const container = wrapper.childAt(1);
       assert.strictEqual(container.hasClass(classes.content), true,
         'should have the content class');
