@@ -31,6 +31,7 @@ class DatePickerDialog extends Component {
     open: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
     style: PropTypes.object,
+    utils: PropTypes.object,
   };
 
   static defaultProps = {
@@ -123,6 +124,7 @@ class DatePickerDialog extends Component {
       hideCalendarDate,
       style, // eslint-disable-line no-unused-vars
       animation,
+      utils,
       ...other
     } = this.props;
 
@@ -177,6 +179,7 @@ class DatePickerDialog extends Component {
             okLabel={okLabel}
             shouldDisableDate={shouldDisableDate}
             hideCalendarDate={hideCalendarDate}
+            utils={utils}
           />
         </Container>
       </div>
