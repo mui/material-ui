@@ -6,7 +6,10 @@
 function consoleError() {
   console.error = (...args) => {
     console.log(...args);
-    throw new Error(...args);
+
+    // @TODO: Uncomment this when this PR is released to Enzyme (> v2.8.0)
+    // https://github.com/airbnb/enzyme/issues/875
+    // throw new Error(...args);
   };
 }
 
