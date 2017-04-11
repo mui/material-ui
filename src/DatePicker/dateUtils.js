@@ -30,6 +30,16 @@ export function dateTimeFormat(locale, options) {
   };
 }
 
+export function getYear(d) {
+  return d.getFullYear();
+}
+
+export function setYear(d, year) {
+  const newDate = cloneDate(d);
+  newDate.setFullYear(year);
+  return newDate;
+}
+
 export function addDays(d, days) {
   const newDate = cloneDate(d);
   newDate.setDate(d.getDate() + days);
@@ -157,3 +167,14 @@ export function monthDiff(d1, d2) {
 export function yearDiff(d1, d2) {
   return ~~(monthDiff(d1, d2) / 12);
 }
+
+export const defaultUtils = {
+  getYear,
+  setYear,
+  addDays,
+  addMonths,
+  addYears,
+  getFirstDayOfMonth,
+  getWeekArray,
+  monthDiff,
+};

@@ -45,7 +45,8 @@ const config = {
         NODE_ENV: JSON.stringify('production'),
       },
     }),
-
+    // Prevent moment from loading all the locales
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     // Allows error warnings but does not stop compiling. Will remove when eslint is added
     new webpack.NoErrorsPlugin(),
     // Transfer Files
