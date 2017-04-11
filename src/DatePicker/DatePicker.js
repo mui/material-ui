@@ -138,6 +138,7 @@ class DatePicker extends Component {
      *
      * Useful for building a custom calendar system. Refer to the
      * [source code](https://github.com/callemall/material-ui/blob/master/src/DatePicker/dateUtils.js)
+     * and an [example implementation](https://github.com/alitaheri/material-ui-persian-date-picker-utils)
      * for more information.
      */
     utils: PropTypes.object,
