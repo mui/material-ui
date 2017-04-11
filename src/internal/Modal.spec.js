@@ -4,7 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';
 import contains from 'dom-helpers/query/contains';
-import { createShallow, createMount } from 'src/test-utils';
+import { createShallow, createMount, consoleErrorMock } from 'src/test-utils';
 import Modal, { styleSheet } from './Modal';
 
 describe('<Modal />', () => {
@@ -68,24 +68,16 @@ describe('<Modal />', () => {
         });
 
         describe('modalContent has tabIndex attribute', () => {
-          let consoleError;
-          let consoleErrorSpy;
-
           before(() => {
             instance.modal.lastChild.hasAttribute = stub().returns(true);
-            consoleError = console.error; // eslint-disable-line no-console
-            consoleErrorSpy = spy();
-            // $FlowFixMe
-            console.error = consoleErrorSpy; // eslint-disable-line no-console
+            consoleErrorMock.spy();
             instance.focus();
           });
 
           after(() => {
             instance.modal.lastChild.hasAttribute.reset();
             instance.modal.lastChild.focus.reset();
-            consoleErrorSpy.reset();
-            // $FlowFixMe
-            console.error = consoleError; // eslint-disable-line no-console
+            consoleErrorMock.reset();
           });
 
           it('should call hasAttribute with tabIndex', () => {
@@ -98,7 +90,7 @@ describe('<Modal />', () => {
           });
 
           it('should not call console.error', () => {
-            assert.strictEqual(consoleErrorSpy.callCount, 0);
+            assert.strictEqual(consoleErrorMock.callCount(), 0);
           });
 
           it('should call focus', () => {
@@ -108,23 +100,15 @@ describe('<Modal />', () => {
 
 
         describe('modalContent does not have tabIndex attribute', () => {
-          let consoleError;
-          let consoleErrorSpy;
-
           before(() => {
             instance.modal.lastChild.hasAttribute = stub().returns(false);
-            consoleError = console.error; // eslint-disable-line no-console
-            consoleErrorSpy = spy();
-            // $FlowFixMe
-            console.error = consoleErrorSpy; // eslint-disable-line no-console
+            consoleErrorMock.spy();
             instance.focus();
           });
 
           after(() => {
             instance.modal.lastChild.hasAttribute.reset();
-            consoleErrorSpy.reset();
-            // $FlowFixMe
-            console.error = consoleError; // eslint-disable-line no-console
+            consoleErrorMock.reset();
           });
 
           it('should call hasAttribute with tabIndex', () => {
@@ -139,7 +123,7 @@ describe('<Modal />', () => {
           });
 
           it('should call console.error', () => {
-            assert.strictEqual(consoleErrorSpy.callCount, 1);
+            assert.strictEqual(consoleErrorMock.callCount(), 1);
           });
 
           it('should call focus', () => {
