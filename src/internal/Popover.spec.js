@@ -441,9 +441,15 @@ describe('<Popover />', () => {
     let transformOrigin;
     let positioningStyle;
 
+    let innerHeightContainer;
+    let innerWidthContainer;
+
     before(() => {
       instance = shallow(<Popover />).instance();
       instance.getContentAnchorOffset = spy();
+
+      innerHeightContainer = global.window.innerHeight;
+      innerWidthContainer = global.window.innerWidth;
 
       global.window.innerHeight = instance.marginThreshold * 2;
       global.window.innerWidth = instance.marginThreshold * 2;
@@ -457,6 +463,11 @@ describe('<Popover />', () => {
       instance.getTransformOriginValue = stub().returns(true);
 
       element = { clientHeight: 0, clientWidth: 0 };
+    });
+
+    after(() => {
+      global.window.innerHeight = innerHeightContainer;
+      global.window.innerWidth = innerWidthContainer;
     });
 
     describe('no offsets', () => {
