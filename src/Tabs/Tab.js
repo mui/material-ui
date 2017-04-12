@@ -9,9 +9,9 @@ function getStyles(props, context) {
       color: props.selected ? tabs.selectedTextColor : tabs.textColor,
       fontWeight: 500,
       fontSize: 14,
-      width: props.width,
+      padding: props.padding,
       textTransform: 'uppercase',
-      padding: 0,
+      width: props.width,
     },
     button: {
       display: 'flex',
@@ -61,6 +61,14 @@ class Tab extends Component {
     onTouchTap: PropTypes.func,
     /**
      * @ignore
+     * This property is overriden by the Tabs component.
+     */
+    padding: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
+    /**
+     * @ignore
      * Defines if the current tab is selected or not.
      * The Tabs component is responsible for setting this property.
      */
@@ -103,6 +111,7 @@ class Tab extends Component {
       style,
       value, // eslint-disable-line no-unused-vars
       width, // eslint-disable-line no-unused-vars
+      padding,
       ...other
     } = this.props;
 
@@ -130,7 +139,7 @@ class Tab extends Component {
     return (
       <EnhancedButton
         {...other}
-        style={Object.assign(styles.root, style)}
+        style={Object.assign(styles.root, {padding}, style)}
         focusRippleColor={rippleColor}
         touchRippleColor={rippleColor}
         focusRippleOpacity={rippleOpacity}

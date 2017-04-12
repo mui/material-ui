@@ -5,6 +5,7 @@ import React, {Component,
   isValidElement,
   PropTypes,
 } from 'react';
+import ReactDOM from 'react-dom';
 import warning from 'warning';
 import TabTemplate from './TabTemplate';
 import InkBar from './InkBar';
@@ -14,10 +15,11 @@ function getStyles(props, context) {
 
   return {
     tabItemContainer: {
-      width: '100%',
       backgroundColor: tabs.backgroundColor,
-      whiteSpace: 'nowrap',
       display: 'flex',
+      position: 'relative',
+      whiteSpace: 'nowrap',
+      width: '100%',
     },
   };
 }
@@ -40,6 +42,10 @@ class Tabs extends Component {
      * Override the inline-styles of the content's container.
      */
     contentContainerStyle: PropTypes.object,
+    /**
+     * Forces tabs to fill the width of the Tabs component.
+     */
+    fillWidth: PropTypes.bool,
     /**
      * Specify initial visible tab index.
      * If `initialSelectedIndex` is set but larger than the total amount of specified tabs,
@@ -86,7 +92,11 @@ class Tabs extends Component {
     muiTheme: PropTypes.object.isRequired,
   };
 
-  state = {selectedIndex: 0};
+  state = {
+    inkBarLeft: 0,
+    inkBarWidth: 0,
+    selectedIndex: 0,
+  };
 
   componentWillMount() {
     const valueLink = this.getValueLink(this.props);
@@ -101,6 +111,10 @@ class Tabs extends Component {
     });
   }
 
+  componentDidMount() {
+    this.updateInkBarPosition();
+  }
+
   componentWillReceiveProps(newProps, nextContext) {
     const valueLink = this.getValueLink(newProps);
     const newState = {
@@ -113,6 +127,14 @@ class Tabs extends Component {
 
     this.setState(newState);
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.selectedIndex !== prevState.selectedIndex) {
+      this.updateInkBarPosition();
+    }
+  }
+
+  tabs = {};
 
   getTabs(props = this.props) {
     const tabs = [];
@@ -173,10 +195,22 @@ class Tabs extends Component {
       this.state.selectedIndex === index;
   }
 
+  updateInkBarPosition() {
+    const activeTab = this.tabs[this.state.selectedIndex];
+    const inkBarLeft = activeTab.offsetLeft;
+    const inkBarWidth = activeTab.offsetWidth;
+
+    this.setState({
+      inkBarLeft,
+      inkBarWidth,
+    });
+  }
+
   render() {
     const {
       contentContainerClassName,
       contentContainerStyle,
+      fillWidth,
       initialSelectedIndex, // eslint-disable-line no-unused-vars
       inkBarStyle,
       onChange, // eslint-disable-line no-unused-vars
@@ -188,11 +222,12 @@ class Tabs extends Component {
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
+    const padding = fillWidth ? 0 : '0 20px';
     const styles = getStyles(this.props, this.context);
     const valueLink = this.getValueLink(this.props);
     const tabValue = valueLink.value;
     const tabContent = [];
-    const width = 100 / this.getTabCount();
+    const width = fillWidth ? 100 / this.getTabCount() : 'auto';
 
     const tabs = this.getTabs().map((tab, index) => {
       warning(tab.type && tab.type.muiName === 'Tab',
@@ -213,17 +248,21 @@ class Tabs extends Component {
 
       return cloneElement(tab, {
         key: index,
+        ref: (ref) => {
+          this.tabs[index] = ReactDOM.findDOMNode(ref);
+        },
         index: index,
+        padding: padding,
         selected: this.getSelected(tab, index),
-        width: `${width}%`,
+        width: typeof width === 'number' ? `${width}%` : width,
         onTouchTap: this.handleTabTouchTap,
       });
     });
 
     const inkBar = this.state.selectedIndex !== -1 ? (
       <InkBar
-        left={`${width * this.state.selectedIndex}%`}
-        width={`${width}%`}
+        left={this.state.inkBarLeft}
+        width={this.state.inkBarWidth}
         style={inkBarStyle}
       />
     ) : null;
