@@ -397,7 +397,7 @@ describe('<Modal />', () => {
         instance.handleDocumentKeyUp(event);
         assert.strictEqual(topModalStub.callCount, 1);
         assert.strictEqual(onEscapeKeyUpStub.callCount, 1);
-        assert.strictEqual(onEscapeKeyUpStub.calledWith(event), true)
+        assert.strictEqual(onEscapeKeyUpStub.calledWith(event), true);
         assert.strictEqual(onRequestCloseStub.callCount, 0);
       });
     });
