@@ -6,6 +6,7 @@ import shallowEqual from 'recompose/shallowEqual';
 import { Input, InputLabel } from '../Input';
 import customPropTypes from '../utils/customPropTypes';
 import FormControl from '../Form/FormControl';
+import FormHelperText from '../Form/FormHelperText';
 
 /**
  * ```
@@ -46,6 +47,14 @@ export default class TextField extends Component {
      * The CSS class name of the label element.
      */
     labelClassName: PropTypes.string,
+    /**
+     * The helper text content.
+     */
+    helperText: PropTypes.node,
+    /**
+     * The CSS class name of the helper text element.
+     */
+    helperTextClassName: PropTypes.string,
     /**
      * Name attribute of the `Input` element.
      */
@@ -88,6 +97,8 @@ export default class TextField extends Component {
       inputProps,
       label,
       labelClassName,
+      helperText,
+      helperTextClassName,
       name,
       required,
       type,
@@ -115,6 +126,9 @@ export default class TextField extends Component {
           disabled={disabled}
           {...inputProps}
         />
+        <FormHelperText className={helperTextClassName}>
+          {helperText}
+        </FormHelperText>
       </FormControl>
     );
   }

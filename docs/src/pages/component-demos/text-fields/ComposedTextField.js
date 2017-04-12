@@ -6,6 +6,7 @@ import customPropTypes from 'material-ui/utils/customPropTypes';
 import Input from 'material-ui/Input';
 import InputLabel from 'material-ui/Input/InputLabel';
 import FormControl from 'material-ui/Form/FormControl';
+import FormHelperText from 'material-ui/Form/FormHelperText';
 
 const styleSheet = createStyleSheet('ComposedTextField', () => ({
   container: {
@@ -41,6 +42,26 @@ export default class ComposedTextField extends Component {
             value={this.state.name}
             onChange={(event) => this.setState({ name: event.target.value })}
           />
+        </FormControl>
+        <FormControl className={classes.input}>
+          <InputLabel htmlFor="name">
+            Name
+          </InputLabel>
+          <Input
+            id="name"
+            value="Composed TextField"
+          />
+          <FormHelperText>Some important helper text</FormHelperText>
+        </FormControl>
+        <FormControl className={classes.input} error>
+          <InputLabel htmlFor="name">
+            Name
+          </InputLabel>
+          <Input
+            id="name"
+            value="Composed TextField"
+          />
+          <FormHelperText>Some important helper text</FormHelperText>
         </FormControl>
       </div>
     );

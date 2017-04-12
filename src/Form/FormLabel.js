@@ -18,7 +18,7 @@ export const styleSheet = createStyleSheet('MuiFormLabel', (theme) => {
       color: focusColor,
     },
     error: {
-      color: theme.palette.error[500],
+      color: theme.palette.error.A400,
     },
   };
 });

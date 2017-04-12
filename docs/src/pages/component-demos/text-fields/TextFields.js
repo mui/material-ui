@@ -64,6 +64,13 @@ export default class TextFields extends Component {
           onChange={(event) => this.setState({ name: event.target.value })}
           disabled
         />
+        <TextField
+          id="name"
+          label="Name"
+          className={classes.input}
+          value="Example value"
+          helperText="Some important text"
+        />
       </div>
     );
   }

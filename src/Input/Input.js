@@ -46,7 +46,7 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
     focused: {},
     error: {
       '&:after': {
-        backgroundColor: palette.error[500],
+        backgroundColor: palette.error.A400,
         transform: 'scaleX(1)', // error is always underlined in red
       },
     },
