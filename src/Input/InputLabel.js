@@ -12,6 +12,7 @@ export const styleSheet = createStyleSheet('MuiInputLabel', (theme) => {
   return {
     root: {
       transformOrigin: 'top left',
+      fontSmoothing: 'antialiased',
     },
     formControl: {
       position: 'absolute',
