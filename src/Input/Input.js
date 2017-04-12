@@ -25,7 +25,7 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
     },
     inkbar: {
       '&:after': {
-        backgroundColor: palette.primary.A200,
+        backgroundColor: palette.type === 'light' ? palette.primary.A700 : palette.primary.A200,
         left: 0,
         bottom: -1,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
@@ -60,7 +60,7 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
       background: 'none',
       lineHeight: 1,
       appearance: 'textfield', // Improve type search style.
-      color: theme.palette.text.primary,
+      color: theme.palette.input.inputText,
       width: '100%',
       '&:focus': {
         outline: 0,
@@ -70,11 +70,19 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
       },
     },
     disabled: {
-      color: theme.palette.text.disabled,
+      color: theme.palette.input.disabled,
       cursor: 'not-allowed',
     },
     underline: {
-      borderBottom: `1px solid ${theme.palette.text.divider}`,
+      borderBottom: `1px solid ${theme.palette.input.bottomLine}`,
+      '&:hover:not($disabled)': {
+        borderBottom: `2px solid ${theme.palette.text.primary}`,
+        marginBottom: -1,
+        transition: transitions.create('border-color', {
+          duration: transitions.duration.shorter,
+          easing: transitions.easing.ease,
+        }),
+      },
       '&$disabled': {
         borderBottomStyle: 'dotted',
       },

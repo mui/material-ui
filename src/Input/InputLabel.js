@@ -20,7 +20,7 @@ export const styleSheet = createStyleSheet('MuiInputLabel', (theme) => {
       transform: 'translate(0, 40px) scale(1)',
     },
     shrink: {
-      transform: 'translate(0, 16px) scale(0.75)',
+      transform: 'translate(0, 18px) scale(0.75)',
       transformOrigin: 'top left',
     },
     animated: {
@@ -29,11 +29,15 @@ export const styleSheet = createStyleSheet('MuiInputLabel', (theme) => {
         easing: transitions.easing.easeOut,
       }),
     },
+    disabled: {
+      color: theme.palette.input.disabled,
+    },
   };
 });
 
 export default function InputLabel(props, context) {
   const {
+    disabled,
     disableAnimation,
     children,
     className: classNameProp,
@@ -54,6 +58,7 @@ export default function InputLabel(props, context) {
     [classes.formControl]: muiFormControl,
     [classes.animated]: !disableAnimation,
     [classes.shrink]: shrink,
+    [classes.disabled]: disabled,
   }, classNameProp);
 
   return (
@@ -72,6 +77,10 @@ InputLabel.propTypes = {
    * The CSS class name of the root element.
    */
   className: PropTypes.string,
+  /**
+   * If `true`, apply disabled class.
+   */
+  disabled: PropTypes.bool,
   /**
    * If `true`, the transition animation is disabled.
    */
@@ -95,6 +104,7 @@ InputLabel.propTypes = {
 };
 
 InputLabel.defaultProps = {
+  disabled: false,
   disableAnimation: false,
 };
 

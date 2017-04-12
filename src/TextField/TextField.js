@@ -103,7 +103,7 @@ export default class TextField extends Component {
         {...other}
       >
         {label && (
-          <InputLabel className={labelClassName}>
+          <InputLabel className={labelClassName} disabled={disabled}>
             {label}
           </InputLabel>
         )}
