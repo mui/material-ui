@@ -16,15 +16,15 @@ export const styleSheet = createStyleSheet('MuiInputLabel', (theme) => {
     formControl: {
       position: 'absolute',
       left: 0,
-      top: 0,
-      transform: 'translate(0, 40px) scale(1)',
+      top: 40,
     },
     shrink: {
-      transform: 'translate(0, 18px) scale(0.75)',
+      fontSize: 12,
+      top: 18,
       transformOrigin: 'top left',
     },
     animated: {
-      transition: transitions.create('transform', {
+      transition: transitions.create(['top', 'font-size'], {
         duration: transitions.duration.shorter,
         easing: transitions.easing.easeOut,
       }),
