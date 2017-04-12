@@ -1,5 +1,4 @@
 import React, {Children, cloneElement} from 'react';
-
 import PropTypes from 'prop-types';
 
 function getStyles(props, context) {
