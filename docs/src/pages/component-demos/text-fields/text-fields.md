@@ -1,5 +1,5 @@
 ---
-components: Input, TextField
+components: Input, TextField, FormHelperText
 ---
 
 # Text Fields
