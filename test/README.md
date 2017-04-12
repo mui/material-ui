@@ -25,6 +25,10 @@ trade-off, mainly completeness vs. speed.
 #### Run the core mocha unit/integration test suite.
 `npm run test:unit`
 
+#### Run the core mocha unit/integration test suite only for a particular set of tests
+Edit the line for `test:unit:grep` on `package.json` for the pattern you want to run tests on
+Then you can run: `npm run test:unit:grep` and it will only run those tests
+
 #### Watch the core mocha unit/integration test suite.
 `npm run test:watch`
 
