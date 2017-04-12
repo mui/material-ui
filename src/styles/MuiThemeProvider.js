@@ -35,6 +35,8 @@ export const MUI_SHEET_ORDER = [
   'MuiSvgIcon',
   'MuiIcon',
 
+  'MuiChip',
+
   'MuiSwitchBase',
   'MuiSwitch',
   'MuiCheckbox',
