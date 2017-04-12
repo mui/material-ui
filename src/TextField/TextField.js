@@ -27,6 +27,14 @@ export default class TextField extends Component {
      * If `true`, the label will be displayed in an error state.
      */
     error: PropTypes.bool,
+    /**
+     * The helper text content.
+     */
+    helperText: PropTypes.node,
+    /**
+     * The CSS class name of the helper text element.
+     */
+    helperTextClassName: PropTypes.string,
     /*
      * @ignore
      */
@@ -47,14 +55,6 @@ export default class TextField extends Component {
      * The CSS class name of the label element.
      */
     labelClassName: PropTypes.string,
-    /**
-     * The helper text content.
-     */
-    helperText: PropTypes.node,
-    /**
-     * The CSS class name of the helper text element.
-     */
-    helperTextClassName: PropTypes.string,
     /**
      * Name attribute of the `Input` element.
      */
@@ -126,9 +126,11 @@ export default class TextField extends Component {
           disabled={disabled}
           {...inputProps}
         />
-        <FormHelperText className={helperTextClassName}>
-          {helperText}
-        </FormHelperText>
+        {helperText && (
+          <FormHelperText className={helperTextClassName}>
+            {helperText}
+          </FormHelperText>
+        )}
       </FormControl>
     );
   }

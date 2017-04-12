@@ -8,17 +8,18 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
 export const styleSheet = createStyleSheet('MuiFormLabel', (theme) => {
-  const focusColor = theme.palette.type === 'light' ? theme.palette.primary.A700 : theme.palette.primary.A200;
+  const { palette } = theme;
+  const focusColor = palette.type === 'light' ? palette.primary.A700 : palette.primary.A200;
   return {
     root: {
-      color: theme.palette.input.labelText,
+      color: palette.input.labelText,
       lineHeight: 1,
     },
     focused: {
       color: focusColor,
     },
     error: {
-      color: theme.palette.error.A400,
+      color: palette.error.A400,
     },
   };
 });

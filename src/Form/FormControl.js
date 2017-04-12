@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
-import { isDirty } from '../Input/Input'
+import { isDirty } from '../Input/Input';
 
 export const styleSheet = createStyleSheet('MuiFormControl', () => {
   return {
@@ -56,20 +56,10 @@ export default class FormControl extends Component {
     muiFormControl: PropTypes.object.isRequired,
   };
 
-  constructor(props, context) {
-    super(props, context);
-
-    const dirty = Children.map(props.children, (child) => {
-      if(child.type && child.type.name === 'Input' && isDirty(child.props)) {
-        return child;
-      }
-    }).length;
-
-    this.state = {
-      dirty,
-      focused: false,
-    };
-  }
+  state = {
+    dirty: false,
+    focused: false,
+  };
 
   getChildContext() {
     const { error, required } = this.props;
@@ -87,6 +77,18 @@ export default class FormControl extends Component {
         onBlur: this.handleBlur,
       },
     };
+  }
+
+  componentWillMount() {
+    let dirty = false;
+    Children.map(this.props.children, (child) => {
+      if (child && child.type && child.type.name === 'Input' && isDirty(child.props)) {
+        dirty = true;
+      }
+      return child;
+    });
+
+    this.setState({ dirty });
   }
 
   handleFocus = () => {

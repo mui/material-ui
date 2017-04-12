@@ -80,13 +80,13 @@ InputLabel.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, apply disabled class.
-   */
-  disabled: PropTypes.bool,
-  /**
    * If `true`, the transition animation is disabled.
    */
   disableAnimation: PropTypes.bool,
+  /**
+   * If `true`, apply disabled class.
+   */
+  disabled: PropTypes.bool,
   /**
    * If `true`, the label will be displayed in an error state.
    */
