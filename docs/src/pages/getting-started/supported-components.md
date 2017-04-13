@@ -98,11 +98,12 @@ to discuss the approach before submitting a PR.
   - [Vertical](https://www.google.com/design/spec/components/steppers.html#steppers-types-of-steppers)
 - **[Tabs](https://www.google.com/design/spec/components/tabs.html) ✓**
   - Usage
-    - **Mobile (Full width) ✓**
-    - **Desktop (Left aligned AKA Basic) ✓**
-    - **Centered ✓**
+    - **[Mobile (Full width)](https://www.google.com/design/spec/components/tabs.html#tabs-usage) ✓**
+    - **[Desktop (Left aligned AKA Basic)](https://www.google.com/design/spec/components/tabs.html#tabs-usage) ✓**
+    - **[Centered](https://www.google.com/design/spec/components/tabs.html#tabs-usage) ✓**
+    - **[Scrollable tab bar](https://www.google.com/design/spec/components/tabs.html#tabs-usage) ✓**
+    - **[Overflow pagination](https://www.google.com/design/spec/components/tabs.html#tabs-usage) ✓**
     - [Dropdown](https://www.google.com/design/spec/components/tabs.html#tabs-usage)
-    - [Overflow pagination](https://www.google.com/design/spec/components/tabs.html#tabs-usage)
   - Label
     - **[Text](https://www.google.com/design/spec/components/tabs.html#tabs-usage) ✓**
     - **[Icon](https://www.google.com/design/spec/components/tabs.html#tabs-usage) ✓**

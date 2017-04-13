@@ -23,7 +23,9 @@ trade-off, mainly completeness vs. speed.
 ### React API level
 
 #### Run the core mocha unit/integration test suite.
-`npm run test:unit`
+To run all of the unit tests just run  `npm run test:unit`
+
+If you want to `grep` for certain tests just add `-- -g STRING_TO_GREP` and change STRING_TO_GREP.  
 
 #### Watch the core mocha unit/integration test suite.
 `npm run test:watch`

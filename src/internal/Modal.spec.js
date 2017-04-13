@@ -2,9 +2,10 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { spy } from 'sinon';
+import { spy, stub } from 'sinon';
+import keycode from 'keycode';
 import contains from 'dom-helpers/query/contains';
-import { createShallow, createMount } from 'src/test-utils';
+import { createShallow, createMount, consoleErrorMock } from 'src/test-utils';
 import Modal, { styleSheet } from './Modal';
 
 describe('<Modal />', () => {
@@ -50,6 +51,87 @@ describe('<Modal />', () => {
       const modal = wrapper.childAt(0);
       assert.strictEqual(modal.is('div'), true, 'should be a div');
       assert.strictEqual(modal.hasClass(classes.modal), true, 'should have the modal class');
+    });
+
+    describe('handlers', () => {
+      let instance;
+
+      before(() => {
+        instance = wrapper.instance();
+      });
+
+      describe('focus', () => {
+        before(() => {
+          instance.modal = spy();
+          instance.modal.lastChild = spy();
+          instance.modal.lastChild.setAttribute = spy();
+          instance.modal.lastChild.focus = spy();
+        });
+
+        describe('modalContent has tabIndex attribute', () => {
+          before(() => {
+            instance.modal.lastChild.hasAttribute = stub().returns(true);
+            consoleErrorMock.spy();
+            instance.focus();
+          });
+
+          after(() => {
+            instance.modal.lastChild.hasAttribute.reset();
+            instance.modal.lastChild.focus.reset();
+            consoleErrorMock.reset();
+          });
+
+          it('should call hasAttribute with tabIndex', () => {
+            assert.strictEqual(instance.modal.lastChild.hasAttribute.callCount, 1);
+            assert.strictEqual(instance.modal.lastChild.hasAttribute.calledWith('tabIndex'), true);
+          });
+
+          it('should not call setAttribute', () => {
+            assert.strictEqual(instance.modal.lastChild.setAttribute.callCount, 0);
+          });
+
+          it('should not call console.error', () => {
+            assert.strictEqual(consoleErrorMock.callCount(), 0);
+          });
+
+          it('should call focus', () => {
+            assert.strictEqual(instance.modal.lastChild.focus.callCount, 1);
+          });
+        });
+
+
+        describe('modalContent does not have tabIndex attribute', () => {
+          before(() => {
+            instance.modal.lastChild.hasAttribute = stub().returns(false);
+            consoleErrorMock.spy();
+            instance.focus();
+          });
+
+          after(() => {
+            instance.modal.lastChild.hasAttribute.reset();
+            consoleErrorMock.reset();
+          });
+
+          it('should call hasAttribute with tabIndex', () => {
+            assert.strictEqual(instance.modal.lastChild.hasAttribute.callCount, 1);
+            assert.strictEqual(instance.modal.lastChild.hasAttribute.calledWith('tabIndex'), true);
+          });
+
+          it('should call setAttribute', () => {
+            assert.strictEqual(instance.modal.lastChild.setAttribute.callCount, 1);
+            assert.strictEqual(
+              instance.modal.lastChild.setAttribute.calledWith('tabIndex', -1), true);
+          });
+
+          it('should call console.error', () => {
+            assert.strictEqual(consoleErrorMock.callCount(), 1);
+          });
+
+          it('should call focus', () => {
+            assert.strictEqual(instance.modal.lastChild.focus.callCount, 1);
+          });
+        });
+      });
     });
   });
 
@@ -213,6 +295,110 @@ describe('<Modal />', () => {
 
         assert.strictEqual(modal.children.length, 1, 'should have 1 child, the test container');
         assert.strictEqual(modal.children[0], container, 'should be the container');
+      });
+    });
+  });
+
+  describe('handleDocumentKeyUp()', () => {
+    let wrapper;
+    let instance;
+
+    before(() => {
+      wrapper = shallow(<Modal />);
+      instance = wrapper.instance();
+    });
+
+    it('should have handleDocumentKeyUp', () => {
+      assert.notStrictEqual(instance.handleDocumentKeyUp, undefined);
+    });
+
+    it('handleDocumentKeyUp should be a function', () => {
+      assert.strictEqual(typeof instance.handleDocumentKeyUp, 'function');
+    });
+
+    describe('called', () => {
+      let onEscapeKeyUpStub;
+      let onRequestCloseStub;
+      let topModalStub;
+      let event;
+
+      before(() => {
+        onEscapeKeyUpStub = stub().returns(true);
+        onRequestCloseStub = stub().returns(true);
+        topModalStub = stub();
+        wrapper.setProps({
+          onEscapeKeyUp: onEscapeKeyUpStub,
+          onRequestClose: onRequestCloseStub,
+        });
+      });
+
+      afterEach(() => {
+        onEscapeKeyUpStub.reset();
+        onRequestCloseStub.reset();
+        topModalStub.reset();
+      });
+
+      it('when not mounted should not call onEscaeKeyUp and onRequestClose', () => {
+        instance = wrapper.instance();
+        instance.mounted = false;
+        instance.handleDocumentKeyUp(undefined);
+        assert.strictEqual(onEscapeKeyUpStub.callCount, 0);
+        assert.strictEqual(onRequestCloseStub.callCount, 0);
+      });
+
+      it('when mounted and not TopModal should not call onEscaeKeyUp and onRequestClose', () => {
+        topModalStub.returns('false');
+        wrapper.setProps({ modalManager: { isTopModal: topModalStub } });
+        instance = wrapper.instance();
+        instance.mounted = true;
+
+        instance.handleDocumentKeyUp(undefined);
+        assert.strictEqual(topModalStub.callCount, 1);
+        assert.strictEqual(onEscapeKeyUpStub.callCount, 0);
+        assert.strictEqual(onRequestCloseStub.callCount, 0);
+      });
+
+      it('when mounted, TopModal and event not esc should not call given funcs', () => {
+        topModalStub.returns(true);
+        wrapper.setProps({ modalManager: { isTopModal: topModalStub } });
+        instance = wrapper.instance();
+        instance.mounted = true;
+        event = { keyCode: keycode('j') }; // Not 'esc'
+
+        instance.handleDocumentKeyUp(event);
+        assert.strictEqual(topModalStub.callCount, 1);
+        assert.strictEqual(onEscapeKeyUpStub.callCount, 0);
+        assert.strictEqual(onRequestCloseStub.callCount, 0);
+      });
+
+      it('should call onEscaeKeyUp and onRequestClose', () => {
+        topModalStub.returns(true);
+        wrapper.setProps({ modalManager: { isTopModal: topModalStub } });
+        event = { keyCode: keycode('esc') };
+        instance = wrapper.instance();
+        instance.mounted = true;
+
+        instance.handleDocumentKeyUp(event);
+        assert.strictEqual(topModalStub.callCount, 1);
+        assert.strictEqual(onEscapeKeyUpStub.callCount, 1);
+        assert.strictEqual(onEscapeKeyUpStub.calledWith(event), true);
+        assert.strictEqual(onRequestCloseStub.callCount, 1);
+        assert.strictEqual(onRequestCloseStub.calledWith(event), true);
+      });
+
+      it('when ignoreEscapeKeyUp should call only onRequestClose', () => {
+        topModalStub.returns(true);
+        wrapper.setProps({ modalManager: { isTopModal: topModalStub } });
+        wrapper.setProps({ ignoreEscapeKeyUp: true });
+        event = { keyCode: keycode('esc') };
+        instance = wrapper.instance();
+        instance.mounted = true;
+
+        instance.handleDocumentKeyUp(event);
+        assert.strictEqual(topModalStub.callCount, 1);
+        assert.strictEqual(onEscapeKeyUpStub.callCount, 1);
+        assert.strictEqual(onEscapeKeyUpStub.calledWith(event), true);
+        assert.strictEqual(onRequestCloseStub.callCount, 0);
       });
     });
   });
