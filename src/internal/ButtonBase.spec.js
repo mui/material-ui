@@ -463,7 +463,7 @@ describe('<ButtonBase />', () => {
         assert.strictEqual(onClickSpy.callCount, 1);
       });
 
-      it('should call onClick', () => {
+      it('should call onClick with event', () => {
         assert.strictEqual(onClickSpy.calledWith(event), true);
       });
     });
