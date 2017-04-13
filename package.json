@@ -41,8 +41,8 @@
     "test:unit:watch": "cross-env NODE_ENV=test babel-node test/watch.js unit"
   },
   "peerDependencies": {
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
+    "react": "^15.4.0",
+    "react-dom": "^15.4.0",
     "react-tap-event-plugin": "^2.0.1"
   },
   "dependencies": {
@@ -52,8 +52,8 @@
     "lodash.merge": "^4.6.0",
     "lodash.throttle": "^4.1.1",
     "prop-types": "^15.5.7",
-    "react-addons-create-fragment": "^15.4.2",
-    "react-addons-transition-group": "^15.4.2",
+    "react-addons-create-fragment": "^15.4.0",
+    "react-addons-transition-group": "^15.4.0",
     "react-event-listener": "^0.4.5",
     "recompose": "^0.23.0",
     "simple-assign": "^0.1.0",
