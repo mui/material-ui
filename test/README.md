@@ -23,11 +23,9 @@ trade-off, mainly completeness vs. speed.
 ### React API level
 
 #### Run the core mocha unit/integration test suite.
-`npm run test:unit`
+To run all of the unit tests just run  `npm run test:unit`
 
-#### Run the core mocha unit/integration test suite only for a particular set of tests
-Edit the line for `test:unit:grep` on `package.json` for the pattern you want to run tests on
-Then you can run: `npm run test:unit:grep` and it will only run those tests
+If you want to `grep` for certain tests just add `-- -g STRING_TO_GREP` and change STRING_TO_GREP.  
 
 #### Watch the core mocha unit/integration test suite.
 `npm run test:watch`
