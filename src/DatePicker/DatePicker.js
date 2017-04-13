@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {dateTimeFormat, formatIso, isEqualDate} from './dateUtils';
 import DatePickerDialog from './DatePickerDialog';
 import TextField from '../TextField';

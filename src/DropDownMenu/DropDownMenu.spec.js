@@ -1,5 +1,6 @@
 /* eslint-env mocha */
-import React, {PropTypes, Component} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {shallow, mount} from 'enzyme';
 import {assert} from 'chai';
 import keycode from 'keycode';
@@ -9,7 +10,7 @@ import getMuiTheme from '../styles/getMuiTheme';
 import MenuItem from '../MenuItem';
 import Menu from '../Menu/Menu';
 import IconButton from '../IconButton';
-import TestUtils from 'react-addons-test-utils';
+import TestUtils from 'react-dom/test-utils';
 
 describe('<DropDownMenu />', () => {
   const muiTheme = getMuiTheme();

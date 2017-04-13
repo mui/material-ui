@@ -1,4 +1,5 @@
-import React, {Component, PropTypes, isValidElement} from 'react';
+import React, {Component, isValidElement} from 'react';
+import PropTypes from 'prop-types';
 import Avatar from '../Avatar';
 
 function getStyles(props, context) {

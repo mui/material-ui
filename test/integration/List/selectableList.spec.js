@@ -6,7 +6,7 @@ import ListItem from 'src/List/ListItem';
 import makeSelectable from 'src/List/makeSelectable';
 import injectTheme from '../fixtures/inject-theme';
 import getMuiTheme from 'src/styles/getMuiTheme';
-import TestUtils from 'react-addons-test-utils';
+import TestUtils from 'react-dom/test-utils';
 
 describe('makeSelectable', () => {
   const muiTheme = getMuiTheme();

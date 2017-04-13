@@ -1,4 +1,5 @@
-import React, {PropTypes, cloneElement} from 'react';
+import React, {cloneElement} from 'react';
+import PropTypes from 'prop-types';
 import EnhancedButton from '../internal/EnhancedButton';
 
 function getStyles(props, context) {

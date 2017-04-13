@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import OpenIcon from '../svg-icons/hardware/keyboard-arrow-up';
 import CloseIcon from '../svg-icons/hardware/keyboard-arrow-down';
 import IconButton from '../IconButton';
