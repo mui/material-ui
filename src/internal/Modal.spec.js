@@ -363,7 +363,7 @@ describe('<Modal />', () => {
         wrapper.setProps({ modalManager: { isTopModal: topModalStub } });
         instance = wrapper.instance();
         instance.mounted = true;
-        event = { keyCode: 13 };
+        event = { keyCode: keycode('j') }; // Not 'esc'
 
         instance.handleDocumentKeyUp(event);
         assert.strictEqual(topModalStub.callCount, 1);
