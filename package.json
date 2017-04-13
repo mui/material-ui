@@ -41,8 +41,8 @@
     "test:unit:watch": "cross-env NODE_ENV=test babel-node test/watch.js unit"
   },
   "peerDependencies": {
-    "react": "^15.5.0",
-    "react-dom": "^15.5.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
     "react-tap-event-plugin": "^2.0.1"
   },
   "dependencies": {
@@ -52,8 +52,8 @@
     "lodash.merge": "^4.6.0",
     "lodash.throttle": "^4.1.1",
     "prop-types": "^15.5.7",
-    "react-addons-create-fragment": "^15.5.0",
-    "react-addons-transition-group": "^15.5.0",
+    "react-addons-create-fragment": "^15.4.2",
+    "react-addons-transition-group": "^15.4.2",
     "react-event-listener": "^0.4.5",
     "recompose": "^0.23.0",
     "simple-assign": "^0.1.0",
@@ -77,6 +77,7 @@
     "babel-preset-stage-1": "^6.24.1",
     "chai": "^3.5.0",
     "coveralls": "^2.13.0",
+    "create-react-class": "^15.5.0",
     "cross-env": "^4.0.0",
     "enzyme": "^2.8.0",
     "eslint": "^3.19.0",
@@ -104,6 +105,7 @@
     "phantomjs-prebuilt": "^2.1.14",
     "react": "^15.5.0",
     "react-dom": "^15.5.0",
+    "react-test-renderer": "^15.5.0",
     "react-tap-event-plugin": "^2.0.0",
     "recursive-readdir-sync": "^1.0.6",
     "rimraf": "^2.6.1",

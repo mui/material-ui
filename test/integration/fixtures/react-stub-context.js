@@ -3,6 +3,7 @@
 
 const React = require('react');
 const PropTypes = require('prop-types');
+const createReactClass = require('create-react-class');
 
 function stubContext(BaseComponent, context) {
   if (typeof context === 'undefined' || context === null) context = {};
@@ -17,7 +18,7 @@ function stubContext(BaseComponent, context) {
     throw new TypeError('createdStubbedContextComponent requires an object');
   }
 
-  const StubbedContextParent = React.createClass({
+  const StubbedContextParent = createReactClass({
     displayName: 'StubbedContextParent',
     propTypes: {
       children: PropTypes.node,
@@ -32,7 +33,7 @@ function stubContext(BaseComponent, context) {
     },
   });
 
-  const StubbedContextHandler = React.createClass({
+  const StubbedContextHandler = createReactClass({
     displayName: 'StubbedContextHandler',
     childContextTypes: contextTypes,
     getChildContext() {

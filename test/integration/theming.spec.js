@@ -6,6 +6,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TestUtils from 'react-dom/test-utils';
+import createReactClass from 'create-react-class';
 import {expect} from 'chai';
 import AppBar from 'src/AppBar';
 import RaisedButton from 'src/RaisedButton';
@@ -85,7 +86,7 @@ describe('Theming', () => {
 });
 
 // react components used for context-theme-passing testing
-const AppBarDarkUsingContext = React.createClass({
+const AppBarDarkUsingContext = createReactClass({
 
   childContextTypes: {
     muiTheme: PropTypes.object,
@@ -102,7 +103,7 @@ const AppBarDarkUsingContext = React.createClass({
   },
 });
 
-const AppBarDarkUsingContextWithOverride = React.createClass({
+const AppBarDarkUsingContextWithOverride = createReactClass({
 
   childContextTypes: {
     muiTheme: PropTypes.object,
@@ -129,7 +130,7 @@ const AppBarDarkUsingContextWithOverride = React.createClass({
 });
 
 const darkMuiTheme = getMuiTheme(darkBaseTheme);
-const AppBarDarkTheme = React.createClass({
+const AppBarDarkTheme = createReactClass({
   render() {
     return (
       <MuiThemeProvider muiTheme={darkMuiTheme}>
@@ -144,7 +145,7 @@ const darkMuiThemeWithOverride = getMuiTheme(darkBaseTheme, {
     textColor: deepPurpleA700,
   },
 });
-const AppBarDarkThemeOverride = React.createClass({
+const AppBarDarkThemeOverride = createReactClass({
   render() {
     return (
       <MuiThemeProvider muiTheme={darkMuiThemeWithOverride}>
@@ -155,7 +156,7 @@ const AppBarDarkThemeOverride = React.createClass({
 });
 
 // react component used to test whether or not theme updates down the hierarchy
-const ButtonToUpdateThemeWithAppBar = React.createClass({
+const ButtonToUpdateThemeWithAppBar = createReactClass({
 
   childContextTypes: {
     muiTheme: PropTypes.object,
