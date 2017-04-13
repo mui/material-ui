@@ -77,7 +77,6 @@
     "babel-plugin-react-remove-properties": "^0.2.3",
     "babel-plugin-transform-dev-warning": "^0.1.0",
     "babel-plugin-transform-react-constant-elements": "^6.23.0",
-    "babel-plugin-transform-react-inline-elements": "^6.22.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.0",
     "babel-plugin-transform-replace-object-assign": "^0.2.1",
     "babel-plugin-transform-runtime": "^6.23.0",
