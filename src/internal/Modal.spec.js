@@ -3,6 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';
+import keycode from 'keycode';
 import contains from 'dom-helpers/query/contains';
 import { createShallow, createMount, consoleErrorMock } from 'src/test-utils';
 import Modal, { styleSheet } from './Modal';
@@ -294,6 +295,110 @@ describe('<Modal />', () => {
 
         assert.strictEqual(modal.children.length, 1, 'should have 1 child, the test container');
         assert.strictEqual(modal.children[0], container, 'should be the container');
+      });
+    });
+  });
+
+  describe('handleDocumentKeyUp()', () => {
+    let wrapper;
+    let instance;
+
+    before(() => {
+      wrapper = shallow(<Modal />);
+      instance = wrapper.instance();
+    });
+
+    it('should have handleDocumentKeyUp', () => {
+      assert.notStrictEqual(instance.handleDocumentKeyUp, undefined);
+    });
+
+    it('handleDocumentKeyUp should be a function', () => {
+      assert.strictEqual(typeof instance.handleDocumentKeyUp, 'function');
+    });
+
+    describe('called', () => {
+      let onEscapeKeyUpStub;
+      let onRequestCloseStub;
+      let topModalStub;
+      let event;
+
+      before(() => {
+        onEscapeKeyUpStub = stub().returns(true);
+        onRequestCloseStub = stub().returns(true);
+        topModalStub = stub();
+        wrapper.setProps({
+          onEscapeKeyUp: onEscapeKeyUpStub,
+          onRequestClose: onRequestCloseStub,
+        });
+      });
+
+      afterEach(() => {
+        onEscapeKeyUpStub.reset();
+        onRequestCloseStub.reset();
+        topModalStub.reset();
+      });
+
+      it('when not mounted should not call onEscaeKeyUp and onRequestClose', () => {
+        instance = wrapper.instance();
+        instance.mounted = false;
+        instance.handleDocumentKeyUp(undefined);
+        assert.strictEqual(onEscapeKeyUpStub.callCount, 0);
+        assert.strictEqual(onRequestCloseStub.callCount, 0);
+      });
+
+      it('when mounted and not TopModal should not call onEscaeKeyUp and onRequestClose', () => {
+        topModalStub.returns('false');
+        wrapper.setProps({ modalManager: { isTopModal: topModalStub } });
+        instance = wrapper.instance();
+        instance.mounted = true;
+
+        instance.handleDocumentKeyUp(undefined);
+        assert.strictEqual(topModalStub.callCount, 1);
+        assert.strictEqual(onEscapeKeyUpStub.callCount, 0);
+        assert.strictEqual(onRequestCloseStub.callCount, 0);
+      });
+
+      it('when mounted, TopModal and event not esc should not call given funcs', () => {
+        topModalStub.returns(true);
+        wrapper.setProps({ modalManager: { isTopModal: topModalStub } });
+        instance = wrapper.instance();
+        instance.mounted = true;
+        event = { keyCode: keycode('j') }; // Not 'esc'
+
+        instance.handleDocumentKeyUp(event);
+        assert.strictEqual(topModalStub.callCount, 1);
+        assert.strictEqual(onEscapeKeyUpStub.callCount, 0);
+        assert.strictEqual(onRequestCloseStub.callCount, 0);
+      });
+
+      it('should call onEscaeKeyUp and onRequestClose', () => {
+        topModalStub.returns(true);
+        wrapper.setProps({ modalManager: { isTopModal: topModalStub } });
+        event = { keyCode: keycode('esc') };
+        instance = wrapper.instance();
+        instance.mounted = true;
+
+        instance.handleDocumentKeyUp(event);
+        assert.strictEqual(topModalStub.callCount, 1);
+        assert.strictEqual(onEscapeKeyUpStub.callCount, 1);
+        assert.strictEqual(onEscapeKeyUpStub.calledWith(event), true);
+        assert.strictEqual(onRequestCloseStub.callCount, 1);
+        assert.strictEqual(onRequestCloseStub.calledWith(event), true);
+      });
+
+      it('when ignoreEscapeKeyUp should call only onRequestClose', () => {
+        topModalStub.returns(true);
+        wrapper.setProps({ modalManager: { isTopModal: topModalStub } });
+        wrapper.setProps({ ignoreEscapeKeyUp: true });
+        event = { keyCode: keycode('esc') };
+        instance = wrapper.instance();
+        instance.mounted = true;
+
+        instance.handleDocumentKeyUp(event);
+        assert.strictEqual(topModalStub.callCount, 1);
+        assert.strictEqual(onEscapeKeyUpStub.callCount, 1);
+        assert.strictEqual(onEscapeKeyUpStub.calledWith(event), true);
+        assert.strictEqual(onRequestCloseStub.callCount, 0);
       });
     });
   });
