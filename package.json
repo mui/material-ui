@@ -79,7 +79,7 @@
     "coveralls": "^2.13.0",
     "create-react-class": "^15.5.0",
     "cross-env": "^4.0.0",
-    "enzyme": "^2.8.0",
+    "enzyme": "^2.8.1",
     "eslint": "^3.19.0",
     "eslint-find-rules": "^1.14.3",
     "eslint-plugin-babel": "^4.1.1",
