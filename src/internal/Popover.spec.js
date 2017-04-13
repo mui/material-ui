@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { spy } from 'sinon';
+import { spy, stub } from 'sinon';
 import css from 'dom-helpers/style';
 import { createShallow, createMount } from 'src/test-utils';
 import Popover, { styleSheet } from './Popover';
@@ -431,6 +431,166 @@ describe('<Popover />', () => {
     //     'should position at the correct left offset'
     //   );
     // });
+  });
+
+  describe('getPositioningStyle(element)', () => {
+    let instance;
+    let element;
+    let anchorOffset;
+    let tempAnchorOffset;
+    let transformOrigin;
+    let positioningStyle;
+
+    let innerHeightContainer;
+    let innerWidthContainer;
+
+    before(() => {
+      instance = shallow(<Popover />).instance();
+      instance.getContentAnchorOffset = spy();
+
+      innerHeightContainer = global.window.innerHeight;
+      innerWidthContainer = global.window.innerWidth;
+
+      global.window.innerHeight = instance.marginThreshold * 2;
+      global.window.innerWidth = instance.marginThreshold * 2;
+
+      anchorOffset = { top: instance.marginThreshold, left: instance.marginThreshold };
+      instance.getAnchorOffset = stub().returns(anchorOffset);
+
+      transformOrigin = { vertical: 0, horizontal: 0 };
+      instance.getTransformOrigin = stub().returns(transformOrigin);
+
+      instance.getTransformOriginValue = stub().returns(true);
+
+      element = { clientHeight: 0, clientWidth: 0 };
+    });
+
+    after(() => {
+      global.window.innerHeight = innerHeightContainer;
+      global.window.innerWidth = innerWidthContainer;
+    });
+
+    describe('no offsets', () => {
+      before(() => {
+        positioningStyle = instance.getPositioningStyle(element);
+      });
+
+      after(() => {
+        instance.getAnchorOffset = stub().returns(anchorOffset);
+      });
+
+      it('should set top to marginThreshold', () => {
+        assert.strictEqual(positioningStyle.top, `${instance.marginThreshold}px`);
+      });
+
+      it('should set left to marginThreshold', () => {
+        assert.strictEqual(positioningStyle.left, `${instance.marginThreshold}px`);
+      });
+
+      it('should transformOrigin according to marginThreshold', () => {
+        assert.strictEqual(positioningStyle.transformOrigin, '0px 0px');
+      });
+    });
+
+    describe('top < marginThreshold', () => {
+      before(() => {
+        tempAnchorOffset = { top: instance.marginThreshold - 1, left: instance.marginThreshold };
+        instance.getAnchorOffset = stub().returns(tempAnchorOffset);
+
+        positioningStyle = instance.getPositioningStyle(element);
+      });
+
+      after(() => {
+        instance.getAnchorOffset = stub().returns(anchorOffset);
+      });
+
+      it('should set top to marginThreshold', () => {
+        assert.strictEqual(positioningStyle.top, `${instance.marginThreshold}px`);
+      });
+
+      it('should set left to marginThreshold', () => {
+        assert.strictEqual(positioningStyle.left, `${instance.marginThreshold}px`);
+      });
+
+      it('should transformOrigin according to marginThreshold', () => {
+        assert.strictEqual(positioningStyle.transformOrigin, '0px -1px');
+      });
+    });
+
+    describe('bottom > heightThreshold', () => {
+      before(() => {
+        tempAnchorOffset = { top: instance.marginThreshold + 1, left: instance.marginThreshold };
+        instance.getAnchorOffset = stub().returns(tempAnchorOffset);
+
+        positioningStyle = instance.getPositioningStyle(element);
+      });
+
+      after(() => {
+        instance.getAnchorOffset = stub().returns(anchorOffset);
+      });
+
+      it('should set top to marginThreshold', () => {
+        assert.strictEqual(positioningStyle.top, `${instance.marginThreshold}px`);
+      });
+
+      it('should set left to marginThreshold', () => {
+        assert.strictEqual(positioningStyle.left, `${instance.marginThreshold}px`);
+      });
+
+      it('should transformOrigin according to marginThreshold', () => {
+        assert.strictEqual(positioningStyle.transformOrigin, '0px 1px');
+      });
+    });
+
+    describe('left < marginThreshold', () => {
+      before(() => {
+        tempAnchorOffset = { top: instance.marginThreshold, left: instance.marginThreshold - 1 };
+        instance.getAnchorOffset = stub().returns(tempAnchorOffset);
+
+        positioningStyle = instance.getPositioningStyle(element);
+      });
+
+      after(() => {
+        instance.getAnchorOffset = stub().returns(anchorOffset);
+      });
+
+      it('should set top to marginThreshold', () => {
+        assert.strictEqual(positioningStyle.top, `${instance.marginThreshold}px`);
+      });
+
+      it('should set left to marginThreshold', () => {
+        assert.strictEqual(positioningStyle.left, `${instance.marginThreshold}px`);
+      });
+
+      it('should transformOrigin according to marginThreshold', () => {
+        assert.strictEqual(positioningStyle.transformOrigin, '-1px 0px');
+      });
+    });
+
+    describe('right > widthThreshold', () => {
+      before(() => {
+        tempAnchorOffset = { top: instance.marginThreshold, left: instance.marginThreshold + 1 };
+        instance.getAnchorOffset = stub().returns(tempAnchorOffset);
+
+        positioningStyle = instance.getPositioningStyle(element);
+      });
+
+      after(() => {
+        instance.getAnchorOffset = stub().returns(anchorOffset);
+      });
+
+      it('should set top to marginThreshold', () => {
+        assert.strictEqual(positioningStyle.top, `${instance.marginThreshold}px`);
+      });
+
+      it('should set left to marginThreshold', () => {
+        assert.strictEqual(positioningStyle.left, `${instance.marginThreshold}px`);
+      });
+
+      it('should transformOrigin according to marginThreshold', () => {
+        assert.strictEqual(positioningStyle.transformOrigin, '1px 0px');
+      });
+    });
   });
 
   describe('handleRequestTimeout()', () => {
