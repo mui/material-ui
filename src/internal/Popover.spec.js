@@ -432,4 +432,45 @@ describe('<Popover />', () => {
     //   );
     // });
   });
+
+  describe('handleRequestTimeout()', () => {
+    let wrapper;
+    let instance;
+
+    before(() => {
+      wrapper = shallow(<Popover />);
+    });
+
+    describe('transitionDuration is auto', () => {
+      before(() => {
+        wrapper.setProps({ transitionDuration: 'auto' });
+        instance = wrapper.instance();
+      });
+
+      it('should return autoTransitionDuration + 20', () => {
+        const autoTransitionDuration = 10;
+        instance.autoTransitionDuration = autoTransitionDuration;
+        assert.strictEqual(instance.handleRequestTimeout(), autoTransitionDuration + 20);
+      });
+
+      it('should return 20', () => {
+        instance.autoTransitionDuration = undefined;
+        assert.strictEqual(instance.handleRequestTimeout(), 20);
+      });
+    });
+
+    describe('transitionDuration is number', () => {
+      let transitionDuration;
+
+      before(() => {
+        transitionDuration = 10;
+        wrapper.setProps({ transitionDuration });
+        instance = wrapper.instance();
+      });
+
+      it('should return props.transitionDuration + 20', () => {
+        assert.strictEqual(instance.handleRequestTimeout(), transitionDuration + 20);
+      });
+    });
+  });
 });
