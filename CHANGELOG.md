@@ -1,8 +1,28 @@
 ## HEAD
 
+## 0.17.4
+
+###### _Apr 14, 2017_
+
+Big thanks to the 5 contributors who made this release possible.
+Following [React's announcement](https://facebook.github.io/react/blog/2017/04/07/react-v15.5.0.html) that includes the deprecation of some pattern.
+We have updated the codebase in order to support the latest v15.5.4 release of React.
+
+##### Component Fixes / Enhancements
+
+- [SelectField] Add dropDownMenuProps property (c3ee8e88d1a8abb399d44b73bd3214883ccccd7a) @viniciusdcc
+- [CardActions] Fix showExpandableButton bug (#6578) @akshaynanavati
+- [DatePicker] Customizable calendar system (#6565) @alitaheri
+
+#### Core
+
+- [react] Use React 15.5 and prop-types lib #6577
+
 ## 0.17.3
 
 ###### _Apr 10, 2017_
+
+##### Component Fixes / Enhancements
 
 - [AutoComplete] Fix overriding TextField event props (#6561) @leMaik
 - [DropDownMenu] Fix the position regression (8829a9d78abedca5de80617448cb99968650c30e) @oliviertassinari
