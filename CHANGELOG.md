@@ -24,6 +24,37 @@ Below is a summary of major changes.
 - [Ripple/TouchRipple] Refactored and now works properly inside a button in firefox!
 - [Button] Raised/flat/fab are now combined into a single component.
 
+## 1.0.0-alpha.11
+###### _Apr 14, 2017_
+
+##### Component Fixes / Enhancements
+
+- [Drawer] Proper placement for anchor other than left (#6516) @kgregory
+- [ListItemAvatar] Fix & refactor (#6540) @mbrookes
+- [style] Add missing blueGrey colors (#6548) @peteratticusberg
+- [ButtonBase] Change tests to use faketimers (#6559) @agamrafaeli
+- [ButtonBase] Add test coverage for handleKeyDown (#6591)
+- [Tabs] Add scrollable behavior (#6502) @shawnmcknight
+- [Modal] Test focus (#6573) @agamrafaeli
+- [Chip] Add MuiChip to MUI_SHEET_ORDER (#6595) @nareshbhatia
+- [Collapse] Add test coverage for `handleExiting()` (#6589) @agamrafaeli
+- [Modal] Add test coverage for `handleDocumentKeyUp()` (#6588) @agamrafaeli
+- [Popover] Add test coverage for `handleRequestTimeout()` (#6599) @agamrafaeli
+
+##### Docs
+
+- [package.json] Add test:unit:grep (#6586) @agamrafaeli
+- [docs] Fix build:docs command (#6606) @oliviertassinari
+
+##### Core
+
+- [utils] Remove throttle (#6545) @agamrafaeli
+- [react] Upgrade to React@15.5.3 (#6543) @oliviertassinari
+- [core] Remove one babel transform as require the Symbol polyfill (#6602) @oliviertassinari
+- [core] Add missing babel-runtime dependency (#6535) @oliviertassinari
+- [core] Random small fixes (#6522) @oliviertassinari
+- [test] Makes sure argos run even if diff fails (#6512) @oliviertassinari
+
 ## 1.0.0-alpha.10
 ###### _Apr 6, 2017_
 
