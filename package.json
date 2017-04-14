@@ -110,6 +110,6 @@
     "recursive-readdir-sync": "^1.0.6",
     "rimraf": "^2.6.1",
     "sinon": "^2.1.0",
-    "webpack": "^1.13.3"
+    "webpack": "^2.4.0"
   }
 }
