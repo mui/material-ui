@@ -19,7 +19,7 @@ export const styleSheet = createStyleSheet('MuiTabScrollButton', () => {
   };
 });
 
-const TabScrollButton = (props, context) => {
+function TabScrollButton(props, context) {
   const {
     className: classNameProp,
     direction,
@@ -29,13 +29,16 @@ const TabScrollButton = (props, context) => {
   } = props;
 
   const classes = context.styleManager.render(styleSheet);
-
   const className = classNames(
     classes.root,
     classNameProp,
   );
 
-  return visible ? (
+  if (!visible) {
+    return <div className={className} />;
+  }
+
+  return (
     <ButtonBase
       className={className}
       role="button"
@@ -45,10 +48,8 @@ const TabScrollButton = (props, context) => {
     >
       {direction === 'left' ? <KeyboardArrowLeft /> : <KeyboardArrowRight /> }
     </ButtonBase>
-  ) : (
-    <div className={className} />
   );
-};
+}
 
 /**
  * @ignore - internal component.
