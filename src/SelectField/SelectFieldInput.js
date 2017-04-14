@@ -34,10 +34,25 @@ const styleSheet = createStyleSheet('MuiSelectFieldInput', (theme) => {
 
 const SelectFieldInput = (props, context) => {
   const classes = context.styleManager.render(styleSheet);
-  const { label, options, ...inputprops } = props;
+  const {
+    label,
+    options,
+    onFocus,
+    onBlur,
+    onSelectFocus,
+    onSelectBlur,
+    className: classNameProp,
+    ...inputprops
+  } = props;
+
   return (
     <div className={classes.root}>
-      <select {...inputprops} className={classNames(props.className, classes.select)}>
+      <select
+        className={classNames(classNameProp, classes.select)}
+        onFocus={e => onSelectFocus(e, onFocus)}
+        onBlur={e => onSelectBlur(e, onBlur)}
+        {...inputprops}
+      >
         {/* Need this option for proper select sizing */}
         <option className={classes.labelHolder}>{label}</option>
         {React.Children.map(options, (option, index) =>

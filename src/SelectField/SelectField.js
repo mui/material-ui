@@ -3,6 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import keycode from 'keycode';
 import customPropTypes from '../utils/customPropTypes';
 import SelectFieldInput from './SelectFieldInput';
 import FormControl from '../Form/FormControl';
@@ -132,9 +133,27 @@ class SelectField extends Component {
 
   handleMouseDown = (event) => event.preventDefault();
 
+  handleKeyDown = (event) => {
+    if (keycode(event) == 'space' || keycode(event) == 'enter') {
+      event.preventDefault();
+      this.setState({ open: true, anchorEl: event.currentTarget });
+    }
+  };
+
   handleClick = (event) => this.setState({ open: true, anchorEl: event.currentTarget });
 
-  handleRequestClose = () => this.setState({ open: false })
+  handleRequestClose = () => this.setState({ open: false });
+
+  handleSelectFocus = (event, onFocus) => {
+    event.preventDefault();
+    onFocus(event);
+  };
+
+  handleSelectBlur = (event, onBlur) => {
+    if (!this.state.open) {
+      onBlur(event);
+    }
+  };
 
   handleItemClick = (event, index, value) => {
     event.persist();
@@ -144,8 +163,6 @@ class SelectField extends Component {
       if (this.props.onChange) {
         this.props.onChange(event, index, value);
       }
-
-      // this.close(Events.isKeyboard(event));
     });
   };
 
@@ -190,7 +207,10 @@ class SelectField extends Component {
           type={type}
           disabled={disabled}
           onMouseDown={this.handleMouseDown}
+          onKeyDown={this.handleKeyDown}
           onClick={this.handleClick}
+          onSelectFocus={this.handleSelectFocus}
+          onSelectBlur={this.handleSelectBlur}
           component={SelectFieldInput}
           label={label}
           options={children}

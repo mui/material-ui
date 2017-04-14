@@ -42,7 +42,11 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
         transform: 'scaleX(1)',
       },
     },
-    focused: {},
+    focused: {
+      '&:after': {
+        transform: 'scaleX(1)',
+      }
+    },
     error: {
       '&:after': {
         backgroundColor: palette.error[500],
