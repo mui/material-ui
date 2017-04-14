@@ -396,6 +396,7 @@ class TextField extends Component {
       hintStyle,
       id,
       inputStyle,
+      maxLength,
       multiLine,
       onBlur, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
@@ -446,6 +447,7 @@ class TextField extends Component {
       onBlur: this.handleInputBlur,
       onChange: this.handleInputChange,
       onFocus: this.handleInputFocus,
+      maxlength: this.props.maxLength,
     };
 
     const childStyleMerged = Object.assign(styles.input, inputStyle);
