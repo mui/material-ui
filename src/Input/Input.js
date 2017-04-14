@@ -57,6 +57,7 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
       font: 'inherit',
       padding: '6px 0',
       border: 0,
+      borderRadius: 0,
       display: 'block',
       verticalAlign: 'middle',
       whiteSpace: 'normal',
