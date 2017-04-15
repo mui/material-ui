@@ -105,10 +105,17 @@ describe('<Collapse />', () => {
 
     describe('handleEntered()', () => {
       let element;
+      let handleEnteredWrapper;
+      let handleEnteredInstance;
+      let onEnteredSpy;
 
       before(() => {
+        handleEnteredWrapper = shallow(<Collapse />);
+        onEnteredSpy = spy();
+        handleEnteredWrapper.setProps({ onEntered: onEnteredSpy });
+        handleEnteredInstance = handleEnteredWrapper.instance();
         element = { style: { height: 666, transitionDuration: '500ms' } };
-        instance.handleEntered(element);
+        handleEnteredInstance.handleEntered(element);
       });
 
       it('should set element transition duration to 0 to fix a safari bug', () => {
@@ -117,6 +124,10 @@ describe('<Collapse />', () => {
 
       it('should set height to auto', () => {
         assert.strictEqual(element.style.height, 'auto', 'should have auto height');
+      });
+
+      it('should have called onEntered', () => {
+        assert.strictEqual(onEnteredSpy.callCount, 1, 'should have called props.onEntered');
       });
     });
 
