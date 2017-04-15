@@ -64,6 +64,8 @@ export const MUI_SHEET_ORDER = [
 
   'MuiAvatar',
 
+  'MuiChip',
+
   'MuiListItem',
   'MuiListItemText',
   'MuiListItemSecondaryAction',

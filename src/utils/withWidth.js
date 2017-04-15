@@ -83,7 +83,10 @@ function withWidth(options = {}) {
       }
 
       render() {
-        const width = this.state.width;
+        const props = {
+          width: this.state.width,
+          ...this.props,
+        };
 
         /**
          * When rendering the component on the server,
@@ -95,16 +98,13 @@ function withWidth(options = {}) {
          * But the browser support of this API is low:
          * http://caniuse.com/#search=client%20hint
          */
-        if (width === null) {
+        if (props.width === null) {
           return null;
         }
 
         return (
           <EventListener target="window" onResize={this.handleResize}>
-            {factory({
-              width,
-              ...this.props,
-            })}
+            {factory(props)}
           </EventListener>
         );
       }

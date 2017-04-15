@@ -4,7 +4,6 @@ node_modules
 /tmp
 /coverage
 /docs/build
-/docs/site/build
 /packages/**/lib
 /packages/material-ui-icons
 /packages/material-ui-codemod/modules/v0.15.0

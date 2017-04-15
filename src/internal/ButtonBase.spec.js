@@ -339,4 +339,133 @@ describe('<ButtonBase />', () => {
       assert.strictEqual(wrapper.is(Link), true);
     });
   });
+
+  describe('handleKeyDown()', () => {
+    let wrapper;
+    let instance;
+    let event;
+
+    describe('avoids multiple keydown presses', () => {
+      let eventPersistSpy;
+
+      before(() => {
+        wrapper = mount(<ButtonBase>Hello</ButtonBase>);
+        wrapper.setProps({
+          focusRipple: true,
+        });
+        wrapper.setState({
+          keyboardFocused: true,
+        });
+
+        eventPersistSpy = spy();
+        event = { persist: eventPersistSpy, keyCode: keycode('space') };
+
+        instance = wrapper.instance();
+        instance.keyDown = false;
+        instance.ripple = {
+          stop: spy(),
+        };
+        instance.handleKeyDown(event);
+      });
+
+      it('should mark keydown as true', () => {
+        assert.strictEqual(instance.keyDown, true);
+      });
+
+      it('should call event.persist exactly once', () => {
+        assert.strictEqual(event.persist.callCount, 1);
+      });
+
+      it('should call stop exactly once', () => {
+        assert.strictEqual(instance.ripple.stop.callCount, 1);
+      });
+
+      it('should call stop with event', () => {
+        assert.strictEqual(instance.ripple.stop.calledWith(event), true);
+      });
+    });
+
+    describe('prop: onKeyDown', () => {
+      let eventPersistSpy;
+      let onKeyDownSpy;
+
+      before(() => {
+        wrapper = mount(<ButtonBase>Hello</ButtonBase>);
+        onKeyDownSpy = spy();
+        wrapper.setProps({
+          onKeyDown: onKeyDownSpy,
+        });
+
+        eventPersistSpy = spy();
+        event = { persist: eventPersistSpy, keyCode: undefined };
+
+        instance = wrapper.instance();
+        instance.keyDown = false;
+        instance.handleKeyDown(event);
+      });
+
+      it('should not change keydown', () => {
+        assert.strictEqual(instance.keyDown, false);
+      });
+
+      it('should not call event.persist', () => {
+        assert.strictEqual(event.persist.callCount, 0);
+      });
+
+      it('should call onKeyDown', () => {
+        assert.strictEqual(onKeyDownSpy.callCount, 1);
+      });
+
+      it('should call onKeyDown with event', () => {
+        assert.strictEqual(onKeyDownSpy.calledWith(event), true);
+      });
+    });
+
+    describe('Keyboard accessibility for non interactive elements', () => {
+      let eventTargetMock;
+      let onClickSpy;
+
+      before(() => {
+        wrapper = mount(<ButtonBase>Hello</ButtonBase>);
+        onClickSpy = spy();
+        wrapper.setProps({
+          onClick: onClickSpy,
+          component: 'woof',
+        });
+
+        eventTargetMock = 'woof';
+        event = {
+          persist: spy(),
+          preventDefault: spy(),
+          keyCode: keycode('space'),
+          target: eventTargetMock,
+        };
+
+        instance = wrapper.instance();
+        instance.keyDown = false;
+        instance.button = eventTargetMock;
+        instance.handleKeyDown(event);
+      });
+
+      it('should not change keydown', () => {
+        assert.strictEqual(instance.keyDown, false);
+      });
+
+      it('should not call event.persist', () => {
+        assert.strictEqual(event.persist.callCount, 0);
+      });
+
+      it('should call event.preventDefault', () => {
+        assert.strictEqual(event.preventDefault.callCount, 1);
+      });
+
+      it('should call onClick', () => {
+        assert.strictEqual(onClickSpy.callCount, 1);
+      });
+
+      it('should call onClick with event', () => {
+        assert.strictEqual(onClickSpy.calledWith(event), true);
+      });
+    });
+  });
 });

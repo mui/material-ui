@@ -34,27 +34,27 @@ The responsive grid focuses on consistent gutter widths, rather than column widt
 Material design margins and columns follow a **8dp** square baseline grid.
 Gutters can be 8, 16, 24, or 40dp wide.
 
-{{demo='pages/layout/responsive-ui/GuttersLayout.js'}}
+{{demo='pages/layout/GuttersLayout.js'}}
 
 ### Full-width vs Centered
 
 **Full-width grids**: use fluid columns and breakpoints to determine when a layout needs to change.
 
-{{demo='pages/layout/responsive-ui/FullWidthLayout.js'}}
+{{demo='pages/layout/FullWidthLayout.js'}}
 
 **Centered grids**: use fixed columns and reflow the layout when all columns (plus a defined margin) no longer fit on the screen.
 
-{{demo='pages/layout/responsive-ui/CenteredLayout.js'}}
+{{demo='pages/layout/CenteredLayout.js'}}
 
 ### Interactive
 
 Below is an interactive demo that lets you explore the visual results of the different settings:
 
-{{demo='pages/layout/responsive-ui/InteractiveLayout.js'}}
+{{demo='pages/layout/InteractiveLayout.js'}}
 
 ### Auto-layout
 
 The Auto-layout makes the *items* equitably share the available space.
 That also means you can set the width of one *item* and the others will automatically resize around it.
 
-{{demo='pages/layout/responsive-ui/AutoLayout.js'}}
+{{demo='pages/layout/AutoLayout.js'}}

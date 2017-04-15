@@ -64,7 +64,7 @@ class Tabs extends Component {
      */
     fullWidth: PropTypes.bool,
     /**
-     * The index of the currently selected `BottomNavigation`.
+     * The index of the currently selected `Tab`.
      */
     index: PropTypes.number,
     /**
@@ -377,4 +377,3 @@ class Tabs extends Component {
 }
 
 export default withWidth()(Tabs);
-export { Tabs as PureTabs }; // for testing purposes
