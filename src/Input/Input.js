@@ -85,6 +85,7 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
       },
       '&$disabled': {
         borderBottomStyle: 'dotted',
+        borderImage: `linear-gradient(to right, ${theme.palette.input.bottomLine} 33%, transparent 0%) 100 0 / 0 0 1px / 0 0 0 3px repeat`,
       },
     },
   };
