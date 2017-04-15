@@ -1,5 +1,5 @@
 {
-  "name": "material-ui-build",
+  "name": "material-ui-build-next",
   "private": true,
   "author": "Material-UI Team",
   "version": "1.0.0-alpha.11",
@@ -21,6 +21,7 @@
   },
   "homepage": "http://material-ui.com/",
   "scripts": {
+    "deploy": "cd docs && yarn build && firebase deploy",
     "build": "npm run build:es2015 && npm run build:es2015modules && npm run build:copy-files && npm run build:umd:dev && npm run build:umd:min",
     "build:es2015": "cross-env NODE_ENV=production babel ./src --ignore *.spec.js --out-dir ./build",
     "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel ./src/index.js --out-file ./build/index.es.js",

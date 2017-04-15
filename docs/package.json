@@ -17,13 +17,11 @@
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-loader": "^6.4.1",
-    "babel-plugin-transform-react-inline-elements": "^6.22.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
     "cross-env": "^4.0.0",
     "css-loader": "^0.28.0",
-    "es6-symbol": "^3.1.1",
     "file-loader": "^0.11.1",
     "img-loader": "^2.0.0",
     "object-assign": "^4.1.1",

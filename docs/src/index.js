@@ -8,10 +8,6 @@ import ReactPerf from 'react-addons-perf';
 import { render } from 'react-dom';
 import App from 'docs/src/components/App';
 
-// Global polyfill for Symbol
-// https://github.com/callemall/material-ui/issues/6422
-import 'es6-symbol/implement';
-
 // Warns about potential accessibility issues with your React elements.
 //
 // import a11y from 'react-a11y';
