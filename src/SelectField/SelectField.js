@@ -127,6 +127,7 @@ class SelectField extends Component {
 
   state = {
     anchorEl: undefined,
+    ignoreFocusOnce: false,
     open: false,
     selectedIndex: undefined,
   };
@@ -140,18 +141,28 @@ class SelectField extends Component {
     }
   };
 
-  handleClick = (event) => this.setState({ open: true, anchorEl: event.currentTarget });
+  handleClick = (event) => {
+    event.currentTarget.focus();
+    this.setState({ open: true, anchorEl: event.currentTarget });
+  };
 
   handleRequestClose = () => this.setState({ open: false });
 
-  handleSelectFocus = (event, onFocus) => {
-    event.preventDefault();
-    onFocus(event);
+  /**
+   *
+   *
+   * @param event
+   */
+  handleSelectFocus = (event) => {
+    if (this.state.ignoreFocusOnce) {
+      event.stopPropagation();
+      this.setState({ ignoreFocusOnce: false });
+    }
   };
 
-  handleSelectBlur = (event, onBlur) => {
-    if (!this.state.open) {
-      onBlur(event);
+  handleSelectBlur = (event) => {
+    if (this.state.open) {
+      event.stopPropagation();
     }
   };
 
@@ -159,6 +170,7 @@ class SelectField extends Component {
     event.persist();
     this.setState({
       open: false,
+      ignoreFocusOnce: true,
     }, () => {
       if (this.props.onChange) {
         this.props.onChange(event, index, value);
@@ -178,6 +190,7 @@ class SelectField extends Component {
       inputProps,
       label,
       labelClassName,
+      onChange, // es-lint-disable-line no-unused-vars
       menuClassName,
       menuProps,
       required,

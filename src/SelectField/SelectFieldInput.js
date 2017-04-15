@@ -46,11 +46,15 @@ const SelectFieldInput = (props, context) => {
   } = props;
 
   return (
-    <div className={classes.root}>
+    <div
+      className={classes.root}
+      onFocus={onFocus}
+      onBlur={onBlur}
+    >
       <select
         className={classNames(classNameProp, classes.select)}
-        onFocus={e => onSelectFocus(e, onFocus)}
-        onBlur={e => onSelectBlur(e, onBlur)}
+        onFocus={onSelectFocus}
+        onBlur={onSelectBlur}
         {...inputprops}
       >
         {/* Need this option for proper select sizing */}
