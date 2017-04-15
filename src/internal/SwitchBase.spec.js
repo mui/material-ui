@@ -208,8 +208,7 @@ describe('<SwitchBase />', () => {
     });
 
     describe('controlled', () => {
-      let checked;""
-      \
+      let checked;
 
       before(() => {
         checked = true;
