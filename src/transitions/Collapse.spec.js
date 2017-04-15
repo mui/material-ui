@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';
-import { createShallow } from 'src/test-utils';
+import { createShallow, createMount } from 'src/test-utils';
 import Collapse, { styleSheet } from './Collapse';
 
 describe('<Collapse />', () => {
@@ -215,6 +215,24 @@ describe('<Collapse />', () => {
             element.style.transitionDuration, elementBackup.style.transitionDuration);
         });
       });
+    });
+  });
+
+  describe('mount', () => {
+    let mount;
+    let mountInstance;
+
+    before(() => {
+      mount = createMount();
+      mountInstance = mount(<Collapse />).instance();
+    });
+
+    after(() => {
+      mount.cleanUp();
+    });
+
+    it('instance should have a wrapper property', () => {
+      assert.notStrictEqual(mountInstance.wrapper, undefined);
     });
   });
 });
