@@ -1,6 +1,8 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import shallowEqual from 'recompose/shallowEqual';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import keycode from 'keycode';
@@ -132,6 +134,14 @@ class SelectField extends Component {
     selectedIndex: undefined,
   };
 
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    return (
+      !shallowEqual(this.state, nextState) ||
+      !shallowEqual(this.props, nextProps) ||
+      !shallowEqual(this.context.styleManager.theme, nextContext.styleManager.theme)
+    );
+  }
+
   handleMouseDown = (event) => event.preventDefault();
 
   handleKeyDown = (event) => {
@@ -148,11 +158,6 @@ class SelectField extends Component {
 
   handleRequestClose = () => this.setState({ open: false });
 
-  /**
-   *
-   *
-   * @param event
-   */
   handleSelectFocus = (event) => {
     if (this.state.ignoreFocusOnce) {
       event.stopPropagation();
@@ -237,7 +242,7 @@ class SelectField extends Component {
           {...menuProps}
         >
           {React.Children.map(children, (child, index) =>
-            React.cloneElement(child, {
+            typeof child.props.value === 'undefined' ? child : React.cloneElement(child, {
               selected: compareFunction(value, child.props.value),
               onClick: (event) => this.handleItemClick(event, index, child.props.value),
             }),
