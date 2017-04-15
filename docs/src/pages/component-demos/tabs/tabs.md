@@ -29,6 +29,26 @@ The `centered` property should be used for larger views.
 
 {{demo='pages/component-demos/tabs/CenteredTabs.js'}}
 
+## Scrollable Tabs
+
+### Automatic Scroll Buttons
+
+Left and right scroll buttons will be presented or hidden automatically based on viewport width.
+
+{{demo='pages/component-demos/tabs/ScrollableTabsButtonAuto.js'}}
+
+### Forced Scroll Buttons
+
+Left and right scroll buttons will be presented regardless of the viewport width.
+
+{{demo='pages/component-demos/tabs/ScrollableTabsButtonForce.js'}}
+
+### Prevent Scroll Buttons
+
+Left and right scroll buttons will never be presented.  All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift-mousewheel, etc.)
+
+{{demo='pages/component-demos/tabs/ScrollableTabsButtonPrevent.js'}}
+
 ## Icon Tabs
 
 Tab labels may be either all icons or all text.

@@ -9,8 +9,7 @@ import customPropTypes from '../utils/customPropTypes';
 export const styleSheet = createStyleSheet('MuiTabIndicator', (theme) => {
   return {
     root: {
-      position: 'absolute',
-      bottom: 0,
+      position: 'relative',
       height: 2,
       marginTop: -2,
       transition: theme.transitions.create(),
