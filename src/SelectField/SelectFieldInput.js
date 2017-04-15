@@ -81,6 +81,14 @@ SelectFieldInput.propTypes = {
    * The label text.
    */
   label: PropTypes.node,
+  /** @ignore */
+  onBlur: PropTypes.func,
+  /** @ignore */
+  onFocus: PropTypes.func,
+  /** @ignore */
+  onSelectBlur: PropTypes.func,
+  /** @ignore */
+  onSelectFocus: PropTypes.func,
   /**
    * Select options.
    */

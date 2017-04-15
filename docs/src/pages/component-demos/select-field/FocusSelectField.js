@@ -13,11 +13,12 @@ import { Card, CardHeader, CardContent } from 'material-ui/Card';
 const styleSheet = createStyleSheet('FocusSelectField', () => ({
   row: {
     display: 'flex',
-    minWidth: 300,
   },
-  col: {
+  column: {
+    flex: 1,
+    flexDirection: 'row',
     margin: 8,
-  }
+  },
 }));
 
 export default class FocusSelectField extends Component {
@@ -28,6 +29,7 @@ export default class FocusSelectField extends Component {
   state = {
     value: '',
     selectFocused: false,
+    selectClean: true,
   };
 
   handleChange = (event, index, value) => this.setState({ value });
@@ -35,6 +37,10 @@ export default class FocusSelectField extends Component {
   handleFocus = () => this.setState({ selectFocused: true });
 
   handleBlur = () => this.setState({ selectFocused: false });
+
+  handleClean = () => this.setState({ selectClean: true });
+
+  handleDirty = () => this.setState({ selectClean: false });
 
   render() {
     const classes = this.context.styleManager.render(styleSheet);
@@ -47,26 +53,38 @@ export default class FocusSelectField extends Component {
         <CardContent>
           <div className={classes.row}>
             <TextField
-              className={classes.col}
+              className={classes.column}
               label="Focus Here"
-             />
+            />
             <SelectField
-              className={classes.col}
+              className={classes.column}
               label="Tab Here"
               value={this.state.value}
               onChange={this.handleChange}
-              onFocus={this.handleFocus}
-              onBlur={this.handleBlur}
+              inputProps={{
+                onFocus: this.handleFocus,
+                onBlur: this.handleBlur,
+                onClean: this.handleClean,
+                onDirty: this.handleDirty,
+              }}
             >
               <MenuItem value="">None</MenuItem>
-              <MenuItem value={1}>One</MenuItem>
-              <MenuItem value={2}>Two</MenuItem>
-              <MenuItem value={3}>Three</MenuItem>
+              <MenuItem value={10}>Ten</MenuItem>
+              <MenuItem value={20}>Twenty</MenuItem>
+              <MenuItem value={30}>Thirty</MenuItem>
             </SelectField>
+          </div>
+          <div className={classes.row}>
             <LabelCheckbox
-              className={classes.col}
+              className={classes.column}
               checked={this.state.selectFocused}
-              label="is focused"
+              label="Is Focused"
+              disabled
+            />
+            <LabelCheckbox
+              className={classes.column}
+              checked={this.state.selectClean}
+              label="Is Clean"
               disabled
             />
           </div>

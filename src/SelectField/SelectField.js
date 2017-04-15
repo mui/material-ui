@@ -145,7 +145,7 @@ class SelectField extends Component {
   handleMouseDown = (event) => event.preventDefault();
 
   handleKeyDown = (event) => {
-    if (keycode(event) == 'space' || keycode(event) == 'enter') {
+    if (keycode(event) === 'space' || keycode(event) === 'enter') {
       event.preventDefault();
       this.setState({ open: true, anchorEl: event.currentTarget });
     }
@@ -195,7 +195,7 @@ class SelectField extends Component {
       inputProps,
       label,
       labelClassName,
-      onChange, // es-lint-disable-line no-unused-vars
+      onChange, // eslint-disable-line no-unused-vars
       menuClassName,
       menuProps,
       required,
@@ -242,10 +242,10 @@ class SelectField extends Component {
           {...menuProps}
         >
           {React.Children.map(children, (child, index) =>
-            typeof child.props.value === 'undefined' ? child : React.cloneElement(child, {
+            (typeof child.props.value === 'undefined' ? child : React.cloneElement(child, {
               selected: compareFunction(value, child.props.value),
               onClick: (event) => this.handleItemClick(event, index, child.props.value),
-            }),
+            })),
           )}
         </Menu>
       </FormControl>

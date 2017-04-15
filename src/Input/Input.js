@@ -3,11 +3,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { shallowEqual } from 'recompose';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
 function isDirty(obj) {
-  return obj && obj.value && obj.value.length > 0;
+  return !!(obj && typeof obj.value !== 'undefined' && obj.value !== '');
 }
 
 export const styleSheet = createStyleSheet('MuiInput', (theme) => {
@@ -45,7 +46,7 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
     focused: {
       '&:after': {
         transform: 'scaleX(1)',
-      }
+      },
     },
     error: {
       '&:after': {
@@ -181,6 +182,15 @@ export default class Input extends Component {
     }
   }
 
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    return (
+      !shallowEqual(this.state, nextState) ||
+      !shallowEqual(this.props, nextProps) ||
+      !shallowEqual(this.context.muiFormControl, nextContext.muiFormControl) ||
+      !shallowEqual(this.context.styleManager.theme, nextContext.styleManager.theme)
+    );
+  }
+
   componentWillUpdate(nextProps) {
     if (this.isControlled()) {
       this.checkDirty(nextProps);
@@ -216,13 +226,18 @@ export default class Input extends Component {
   };
 
   isControlled() {
-    return typeof this.props.value === 'string';
+    return typeof this.props.value !== 'undefined';
   }
 
   checkDirty(obj) {
     const { muiFormControl } = this.context;
+    const nextDirty = isDirty(obj);
 
-    if (isDirty(obj)) {
+    if (muiFormControl && muiFormControl.dirty === nextDirty) {
+      return;
+    }
+
+    if (nextDirty) {
       if (muiFormControl && muiFormControl.onDirty) {
         muiFormControl.onDirty();
       }
@@ -250,6 +265,8 @@ export default class Input extends Component {
       error: errorProp,
       onBlur, // eslint-disable-line no-unused-vars
       onFocus, // eslint-disable-line no-unused-vars
+      onClean, // eslint-disable-line no-unused-vars
+      onDirty, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;

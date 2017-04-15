@@ -11,8 +11,8 @@ import { Card, CardHeader, CardContent } from 'material-ui/Card';
 const styleSheet = createStyleSheet('SimpleSelectField', () => ({
   selectBox: {
     display: 'inline-flex',
-    margin: 8
-  }
+    margin: 8,
+  },
 }));
 
 export default class SimpleSelectField extends Component {
