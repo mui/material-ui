@@ -12,7 +12,7 @@ export const styleSheet = createStyleSheet('MuiFormHelperText', (theme) => {
     root: {
       color: theme.palette.input.helperText,
       fontSize: 12,
-      lineHeight: 1.33333333,
+      lineHeight: 1.4,
       margin: 0,
     },
     error: {

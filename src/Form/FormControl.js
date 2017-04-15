@@ -81,11 +81,10 @@ export default class FormControl extends Component {
 
   componentWillMount() {
     let dirty = false;
-    Children.map(this.props.children, (child) => {
+    Children.forEach(this.props.children, (child) => {
       if (child && child.type && child.type.name === 'Input' && isDirty(child.props)) {
         dirty = true;
       }
-      return child;
     });
 
     this.setState({ dirty });
