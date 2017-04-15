@@ -109,8 +109,14 @@ const reverseMainAxisOffsetProperty = {
 
 const isMouseControlInverted = (axis) => axis === 'x-reverse' || axis === 'y';
 
-function getPercent(value, min, max) {
+const curveFactor = 12;
+
+function getPercent(value, min, max, logScale) {
   let percent = (value - min) / (max - min);
+  if (logScale) {
+    percent = ( 1 / curveFactor ) * Math.log( (Math.expm1(curveFactor) * percent) + 1 );
+  }
+
   if (isNaN(percent)) {
     percent = 0;
   }
@@ -122,6 +128,7 @@ const getStyles = (props, context, state) => {
   const {
     axis,
     disabled,
+    logScale,
     max,
     min,
   } = props;
@@ -144,7 +151,7 @@ const getStyles = (props, context, state) => {
   const fillGutter = handleSize / 2;
   const disabledGutter = trackSize + handleSizeDisabled / 2;
   const calcDisabledSpacing = disabled ? ` - ${disabledGutter}px` : '';
-  const percent = getPercent(state.value, min, max);
+  const percent = getPercent(state.value, min, max, logScale);
 
   const styles = {
     slider: {
@@ -292,6 +299,10 @@ class Slider extends Component {
      */
     error: deprecated(PropTypes.node, 'Use a sibling node element instead. It will be removed with v0.17.0.'),
     /**
+     * If true, the value of the slider will increase by order of magnitude along the slider's axis.
+     */
+    logScale: PropTypes.bool,
+    /**
      * The maximum value the slider can slide to on
      * a scale from 0 to 1 inclusive. Cannot be equal to min.
      */
@@ -355,6 +366,7 @@ class Slider extends Component {
     axis: 'x',
     disabled: false,
     disableFocusRipple: false,
+    logScale: false,
     max: 1,
     min: 0,
     required: true,
@@ -693,12 +705,17 @@ class Slider extends Component {
 
     const {
       step,
+      logScale,
       min,
       max,
     } = this.props;
 
     let value;
-    value = position / positionMax * (max - min);
+    if (logScale) {
+      value = Math.expm1(curveFactor * position / positionMax) / Math.expm1(curveFactor) * max;
+    } else {
+      value = position / positionMax * (max - min);
+    }
     value = Math.round(value / step) * step + min;
     value = parseFloat(value.toFixed(5));
 
@@ -726,6 +743,7 @@ class Slider extends Component {
       disabled,
       disableFocusRipple,
       error,
+      logScale,
       max,
       min,
       name,
@@ -750,7 +768,7 @@ class Slider extends Component {
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
-    const percent = getPercent(value, min, max);
+    const percent = getPercent(value, min, max, logScale);
 
     let handleStyles = {};
     if (percent === 0) {
