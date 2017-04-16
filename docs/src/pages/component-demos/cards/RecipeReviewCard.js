@@ -54,7 +54,7 @@ export default class RecipeReviewCard extends Component {
           <CardHeader
             avatar={<Avatar aria-label="Recipe" className={classes.avatar}>R</Avatar>}
             title="Shrimp and Chorizo Paella"
-            subhead="September 14, 2016"
+            subheader="September 14, 2016"
           />
           <CardMedia>
             <img src={paellaImage} alt="Contemplative Reptile" />
