@@ -195,7 +195,6 @@ class AutoComplete extends Component {
     openOnFocus: false,
     onUpdateInput: () => {},
     onNewRequest: () => {},
-    searchText: '',
     menuCloseDelay: 300,
     targetOrigin: {
       vertical: 'top',
@@ -218,7 +217,7 @@ class AutoComplete extends Component {
     this.requestsList = [];
     this.setState({
       open: this.props.open,
-      searchText: this.props.searchText,
+      searchText: this.props.searchText || '',
     });
     this.timerTouchTapCloseId = null;
   }
@@ -262,24 +261,30 @@ class AutoComplete extends Component {
 
   handleItemTouchTap = (event, child) => {
     const dataSource = this.props.dataSource;
-
     const index = parseInt(child.key, 10);
     const chosenRequest = dataSource[index];
     const searchText = this.chosenRequestText(chosenRequest);
 
-    this.setState({
-      searchText: searchText,
-    }, () => {
-      this.props.onUpdateInput(searchText, this.props.dataSource, {
-        source: 'touchTap',
-      });
-
-      this.timerTouchTapCloseId = setTimeout(() => {
-        this.timerTouchTapCloseId = null;
-        this.close();
-        this.props.onNewRequest(chosenRequest, index);
-      }, this.props.menuCloseDelay);
+    const updateInput = () => this.props.onUpdateInput(searchText, this.props.dataSource, {
+      source: 'touchTap',
     });
+    this.timerTouchTapCloseId = () => setTimeout(() => {
+      this.timerTouchTapCloseId = null;
+      this.close();
+      this.props.onNewRequest(chosenRequest, index);
+    }, this.props.menuCloseDelay);
+
+    if (typeof this.props.searchText !== 'undefined') {
+      updateInput();
+      this.timerTouchTapCloseId();
+    } else {
+      this.setState({
+        searchText: searchText,
+      }, () => {
+        updateInput();
+        this.timerTouchTapCloseId();
+      });
+    }
   };
 
   chosenRequestText = (chosenRequest) => {
