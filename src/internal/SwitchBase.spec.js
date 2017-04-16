@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
+import { spy } from 'sinon';
 import { createShallow, createMount } from 'src/test-utils';
 import { createSwitch, styleSheet } from './SwitchBase';
 
@@ -180,6 +181,82 @@ describe('<SwitchBase />', () => {
       wrapper.find('input').node.click();
       wrapper.find('input').node.click();
       assertIsNotChecked(classes, wrapper);
+    });
+  });
+
+  describe('handleInputChange()', () => {
+    let wrapper;
+    let instance;
+    let event;
+    let onChangeSpy;
+
+    before(() => {
+      event = 'woof';
+      onChangeSpy = spy();
+      wrapper = mount(<SwitchBase />);
+      wrapper.setProps({ onChange: onChangeSpy });
+      instance = wrapper.instance();
+    });
+
+    it('should call onChange exactly once with event', () => {
+      instance.handleInputChange(event);
+
+      assert.strictEqual(onChangeSpy.callCount, 1);
+      assert.strictEqual(onChangeSpy.calledWith(event), true);
+
+      onChangeSpy.reset();
+    });
+
+    describe('controlled', () => {
+      let checked;
+
+      before(() => {
+        checked = true;
+        wrapper.setProps({ checked });
+        instance = wrapper.instance();
+        instance.isControlled = true;
+        instance.handleInputChange(event);
+      });
+
+      after(() => {
+        onChangeSpy.reset();
+      });
+
+      it('should call onChange once', () => {
+        assert.strictEqual(onChangeSpy.callCount, 1);
+      });
+
+      it('should call onChange with event and !props.checked', () => {
+        assert.strictEqual(onChangeSpy.calledWith(event, !checked), true);
+      });
+    });
+
+    describe('not controlled no input', () => {
+      let checkedMock;
+
+      before(() => {
+        checkedMock = true;
+        instance = wrapper.instance();
+        instance.isControlled = false;
+        wrapper.setState({ checked: checkedMock });
+        instance.handleInputChange(event);
+      });
+
+      after(() => {
+        onChangeSpy.reset();
+      });
+
+      it('should call onChange exactly once', () => {
+        assert.strictEqual(onChangeSpy.callCount, 1);
+      });
+
+      it('should call onChange with right params', () => {
+        assert.strictEqual(onChangeSpy.calledWith(event, !checkedMock), true);
+      });
+
+      it('should change state.checked !checkedMock', () => {
+        assert.strictEqual(wrapper.state('checked'), !checkedMock);
+      });
     });
   });
 });
