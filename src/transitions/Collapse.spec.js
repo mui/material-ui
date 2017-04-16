@@ -85,21 +85,87 @@ describe('<Collapse />', () => {
     });
 
     describe('handleEntering()', () => {
+      let heightMock;
       let element;
 
       before(() => {
-        element = { style: { height: 0 } };
-        instance.wrapper = { clientHeight: 666 };
+        heightMock = 666;
+        element = { style: { height: heightMock } };
         instance.handleEntering(element);
       });
 
-      it('should set element transition duration', () => {
-        assert.strictEqual(element.style.transitionDuration, '300ms',
-          'should have the default 300ms duration');
+      it('should set height to the 0', () => {
+        assert.strictEqual(element.style.height, '0px', 'should have 0px height');
       });
 
-      it('should set height to the wrapper height', () => {
-        assert.strictEqual(element.style.height, '666px', 'should have 666px height');
+      it('should call handleEntering', () => {
+        const onEnteringStub = spy();
+        wrapper.setProps({ onEntering: onEnteringStub });
+        instance = wrapper.instance();
+        instance.handleEntering(element);
+
+        assert.strictEqual(onEnteringStub.callCount, 1);
+        assert.strictEqual(onEnteringStub.calledWith(element), true);
+      });
+
+      describe('transitionDuration', () => {
+        let styleManagerMock;
+        let transitionDurationMock;
+
+        before(() => {
+          styleManagerMock = wrapper.context('styleManager');
+          styleManagerMock.theme.transitions.getAutoHeightDuration = stub().returns('woof');
+          wrapper.setContext({ styleManager: styleManagerMock });
+          wrapper.setProps({ transitionDuration: 'auto' });
+          instance = wrapper.instance();
+        });
+
+        it('no wrapper', () => {
+          instance.wrapper = false;
+          instance.handleEntering(element);
+          assert.strictEqual(
+            element.style.transitionDuration,
+            `${styleManagerMock.theme.transitions.getAutoHeightDuration(0)}ms`,
+          );
+        });
+
+        it('has wrapper', () => {
+          const clientHeightMock = 10;
+          instance.wrapper = { clientHeight: clientHeightMock };
+          instance.handleEntering(element);
+          assert.strictEqual(
+            element.style.transitionDuration,
+            `${styleManagerMock.theme.transitions.getAutoHeightDuration(clientHeightMock)}ms`,
+          );
+        });
+
+        it('number should set transitionDuration to ms', () => {
+          transitionDurationMock = 3;
+          wrapper.setProps({ transitionDuration: transitionDurationMock });
+          instance = wrapper.instance();
+          instance.handleEntering(element);
+
+          assert.strictEqual(element.style.transitionDuration, `${transitionDurationMock}ms`);
+        });
+
+        it('string should set transitionDuration to string', () => {
+          transitionDurationMock = 'woof';
+          wrapper.setProps({ transitionDuration: transitionDurationMock });
+          instance = wrapper.instance();
+          instance.handleEntering(element);
+
+          assert.strictEqual(element.style.transitionDuration, transitionDurationMock);
+        });
+
+        it('nothing should not set transitionDuration', () => {
+          const elementBackup = element;
+          wrapper.setProps({ transitionDuration: undefined });
+          instance = wrapper.instance();
+          instance.handleEntering(element);
+
+          assert.strictEqual(
+            element.style.transitionDuration, elementBackup.style.transitionDuration);
+        });
       });
     });
 
