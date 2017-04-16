@@ -68,7 +68,7 @@ export default class Dialog extends Component {
      */
     className: PropTypes.string,
     /**
-     * If `true`, The dialog will be full-screen.
+     * If `true`, the dialog will be full-screen.
      */
     fullScreen: PropTypes.bool,
     /**
