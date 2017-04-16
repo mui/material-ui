@@ -89,7 +89,7 @@ Test coverage is limited at present, but where possible, please add tests for an
 
 Please follow the coding style of the current code base. Material-UI uses eslint, so if possible, enable linting in your editor to get realtime feedback. Linting can be run manually with `npm run lint`.
 
-Finally, when you submit a pull request, they are run again by Continuous Integration testing, but hopefully by then your code is already clean!
+Finally, when you submit a pull request, linting is run again by Continuous Integration testing, but hopefully by then your code is already clean!
 
 ## Roadmap
 
