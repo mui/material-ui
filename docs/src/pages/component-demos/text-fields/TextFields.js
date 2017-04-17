@@ -57,9 +57,9 @@ export default class TextFields extends Component {
           className={classes.input}
         />
         <TextField
-          id="multiLine"
+          id="multiline"
           label="MultiLine"
-          multiLine
+          multiline
           rows={3}
           defaultValue="Default Value"
           className={classes.input}

@@ -67,7 +67,7 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
         appearance: 'none',
       },
     },
-    multiLine: {
+    multiline: {
       resize: 'none',
       'line-height': 'inherit',
       padding: '0px',
@@ -126,7 +126,7 @@ export default class Input extends Component {
     /**
      * If `true`, a textarea element will be rendered.
      */
-    multiLine: PropTypes.bool,
+    multiline: PropTypes.bool,
     /**
      * @ignore
      */
@@ -165,7 +165,7 @@ export default class Input extends Component {
     disabled: false,
     type: 'text',
     disableUnderline: false,
-    multiLine: false,
+    multiline: false,
   };
 
   static contextTypes = {
@@ -256,7 +256,7 @@ export default class Input extends Component {
       disableUnderline,
       error: errorProp,
       inputClassName: inputClassNameProp,
-      multiLine,
+      multiline,
       onBlur, // eslint-disable-line no-unused-vars
       onFocus, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
@@ -280,14 +280,14 @@ export default class Input extends Component {
     }, classNameProp);
 
     const inputClassName = classNames(classes.input, {
-      [classes.multiLine]: multiLine,
+      [classes.multiline]: multiline,
       [classes.underline]: !disableUnderline,
       [classes.disabled]: disabled,
     }, inputClassNameProp);
 
     const required = muiFormControl && muiFormControl.required === true;
 
-    const InputComponent = this.props.component || (this.props.multiLine && 'textarea');
+    const InputComponent = this.props.component || (this.props.multiline && 'textarea');
 
     return (
       <div className={wrapperClassName}>
