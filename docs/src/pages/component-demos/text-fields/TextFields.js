@@ -56,8 +56,13 @@ export default class TextFields extends Component {
           defaultValue="Hello World"
           className={classes.input}
         />
+        <TextField
+          id="password"
+          label="Password"
+          className={classes.input}
+          type="password"
+        />
       </div>
     );
   }
 }
-
