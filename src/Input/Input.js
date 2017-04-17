@@ -76,7 +76,7 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
     },
     disabled: {
       color: theme.palette.text.disabled,
-      cursor: 'not-allowed !important',
+      cursor: 'not-allowed',
     },
     underline: {
       borderBottom: `1px solid ${theme.palette.text.divider}`,
@@ -180,15 +180,6 @@ export default class Input extends Component {
     if (!this.isControlled()) {
       this.checkDirty(this.input);
     }
-  }
-
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    return (
-      !shallowEqual(this.state, nextState) ||
-      !shallowEqual(this.props, nextProps) ||
-      !shallowEqual(this.context.muiFormControl, nextContext.muiFormControl) ||
-      !shallowEqual(this.context.styleManager.theme, nextContext.styleManager.theme)
-    );
   }
 
   componentWillUpdate(nextProps) {
