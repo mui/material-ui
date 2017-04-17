@@ -37,7 +37,7 @@
     "marked": "^0.3.5",
     "raw-loader": "^0.5.1",
     "react-addons-perf": "^15.4.0",
-    "react-docgen": "^2.12.1",
+    "react-docgen": "^2.14.0",
     "react-motion": "^0.4.5",
     "react-native": "^0.17.0",
     "react-router": "^3.0.0",
