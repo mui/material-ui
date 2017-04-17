@@ -124,7 +124,7 @@ export default class Input extends Component {
      */
     inputClassName: PropTypes.string,
     /**
-     * If true, a textarea element will be rendered.
+     * If `true`, a textarea element will be rendered.
      */
     multiLine: PropTypes.bool,
     /**
@@ -148,10 +148,6 @@ export default class Input extends Component {
      */
     onFocus: PropTypes.func,
     /**
-     * Number of rows to display when multiLine option is set to true.
-     */
-    rows: PropTypes.number,
-    /**
      * Type of the input element. It should be a valid HTML5 input type.
      */
     type: PropTypes.string,
@@ -166,7 +162,6 @@ export default class Input extends Component {
   };
 
   static defaultProps = {
-    component: 'input',
     disabled: false,
     type: 'text',
     disableUnderline: false,
@@ -292,7 +287,7 @@ export default class Input extends Component {
 
     const required = muiFormControl && muiFormControl.required === true;
 
-    const InputComponent = multiLine ? 'textarea' : 'input';
+    const InputComponent = this.props.component || (this.props.multiLine && 'textarea');
 
     return (
       <div className={wrapperClassName}>
