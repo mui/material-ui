@@ -3,8 +3,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import shallowEqual from 'recompose/shallowEqual';
-import { createStyleSheet } from 'jss-theme-reactor';
-import classNames from 'classnames';
 import keycode from 'keycode';
 import customPropTypes from '../utils/customPropTypes';
 import SelectFieldInput from './SelectFieldInput';
@@ -13,24 +11,7 @@ import InputLabel from '../Input/InputLabel';
 import Input from '../Input/Input';
 import Menu from '../Menu/Menu';
 
-export const styleSheet = createStyleSheet('MuiSelectField', () => {
-  return {
-    label: {
-      paddingLeft: 0,
-    },
-    menu: {
-    },
-    icon: {
-      right: 0,
-    },
-    hideDropDownUnderline: {
-      borderTop: 'none',
-    },
-    dropDownMenu: {
-      display: 'block',
-    },
-  };
-});
+const OPEN_MENU_KEYS = ['enter', 'space', 'up', 'down'];
 
 /**
  * ```jsx
@@ -134,18 +115,10 @@ class SelectField extends Component {
     selectedIndex: undefined,
   };
 
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    return (
-      !shallowEqual(this.state, nextState) ||
-      !shallowEqual(this.props, nextProps) ||
-      !shallowEqual(this.context.styleManager.theme, nextContext.styleManager.theme)
-    );
-  }
-
   handleMouseDown = (event) => event.preventDefault();
 
   handleKeyDown = (event) => {
-    if (keycode(event) === 'space' || keycode(event) === 'enter') {
+    if (OPEN_MENU_KEYS.includes(keycode(event))) {
       event.preventDefault();
       this.setState({ open: true, anchorEl: event.currentTarget });
     }
@@ -203,8 +176,6 @@ class SelectField extends Component {
       value,
       ...other
     } = this.props;
-
-    const classes = this.context.styleManager.render(styleSheet);
     const initialShrink = value !== '' && typeof value !== 'undefined';
 
     return (
@@ -236,7 +207,7 @@ class SelectField extends Component {
         />
         <Menu
           anchorEl={this.state.anchorEl}
-          className={classNames(classes.menu, menuClassName)}
+          className={menuClassName}
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
           {...menuProps}

@@ -9,16 +9,14 @@ import ArrowDropDownIcon from '../svg-icons/arrow-drop-down';
 
 const styleSheet = createStyleSheet('MuiSelectFieldInput', (theme) => {
   return {
-    root: {
-
-      // minWidth: 182
-    },
     select: {
-      cursor: 'pointer',
       height: 32,
       paddingRight: 32,
       position: 'relative',
       zIndex: 2,
+    },
+    selectEnabled: {
+      cursor: 'pointer',
     },
     labelHolder: {
       display: 'none',
@@ -45,27 +43,30 @@ const SelectFieldInput = (props, context) => {
     className: classNameProp,
     ...inputprops
   } = props;
+  const selectClassName = classNames(
+    !inputprops.disabled && classes.selectEnabled,
+    classes.select,
+    classNameProp,
+  );
 
   return (
     <div
-      className={classes.root}
       onFocus={onFocus}
       onBlur={onBlur}
     >
       <select
-        className={classNames(classNameProp, classes.select)}
+        className={selectClassName}
         onFocus={onSelectFocus}
         onBlur={onSelectBlur}
         {...inputprops}
       >
         {/* Need this option for proper select sizing */}
         <option className={classes.labelHolder}>{label}</option>
-        {React.Children.map(options, (option, index) =>
-          React.createElement('option', {
-            key: index,
-            value: option.props.value,
-          }, option.props.value && option.props.children),
-        )}
+        {React.Children.map(options, (option, index) => (
+          <option key={index} value={option.props.value}>
+            {option.props.value && option.props.children}
+          </option>
+        ))}
       </select>
       <ArrowDropDownIcon className={classes.icon} />
     </div>
