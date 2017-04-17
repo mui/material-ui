@@ -70,9 +70,8 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
     },
     multiline: {
       resize: 'none',
-      'line-height': 'inherit',
-      padding: '0px',
-      'margin-top': '12px',
+      padding: '0',
+      'margin-top': '12',
     },
     disabled: {
       color: theme.palette.text.disabled,
@@ -252,6 +251,7 @@ export default class Input extends Component {
   render() {
     const {
       className: classNameProp,
+      component,
       disabled,
       disableUnderline,
       error: errorProp,
@@ -288,9 +288,9 @@ export default class Input extends Component {
     const required = muiFormControl && muiFormControl.required === true;
 
     let InputComponent = 'input';
-    if (this.props.component) {
-      InputComponent = this.props.component;
-    } else if (this.props.multiline) {
+    if (component) {
+      InputComponent = component;
+    } else if (multiline) {
       InputComponent = 'textarea';
     }
 
