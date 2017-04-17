@@ -73,6 +73,9 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
       padding: '0',
       'margin-top': '12',
     },
+    'multiline-wrapper': {
+      padding: '6px 0',
+    },
     disabled: {
       color: theme.palette.text.disabled,
       cursor: 'not-allowed',
@@ -273,16 +276,18 @@ export default class Input extends Component {
     }
 
     const wrapperClassName = classNames(classes.wrapper, {
+      [classes.disabled]: disabled,
+      [classes.error]: error,
+      [classes.focused]: this.state.focused,
       [classes.formControl]: muiFormControl,
       [classes.inkbar]: !disableUnderline,
-      [classes.focused]: this.state.focused,
-      [classes.error]: error,
+      [classes['multiline-wrapper']]: multiline,
+      [classes.underline]: !disableUnderline,
     }, classNameProp);
 
     const inputClassName = classNames(classes.input, {
-      [classes.multiline]: multiline,
-      [classes.underline]: !disableUnderline,
       [classes.disabled]: disabled,
+      [classes.multiline]: multiline,
     }, inputClassNameProp);
 
     const required = muiFormControl && muiFormControl.required === true;
