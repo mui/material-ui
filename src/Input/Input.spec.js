@@ -33,8 +33,8 @@ describe('<Input />', () => {
       'should not have the area-required prop');
   });
 
-  it('should render an <textarea /> inside the div when passed component="textarea"', () => {
-    const wrapper = shallow(<Input component="textarea" />);
+  it('should render an <textarea /> inside the div when passed the multiline prop', () => {
+    const wrapper = shallow(<Input multiline />);
     const input = wrapper.find('textarea');
     assert.strictEqual(input.is('textarea'), true, 'should be a <input>');
   });

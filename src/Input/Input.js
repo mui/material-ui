@@ -287,7 +287,12 @@ export default class Input extends Component {
 
     const required = muiFormControl && muiFormControl.required === true;
 
-    const InputComponent = this.props.component || (this.props.multiline && 'textarea');
+    let InputComponent = 'input';
+    if (this.props.component) {
+      InputComponent = this.props.component;
+    } else if (this.props.multiline) {
+      InputComponent = 'textarea';
+    }
 
     return (
       <div className={wrapperClassName}>
