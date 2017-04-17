@@ -19,7 +19,7 @@ export default class TextField extends Component {
      */
     className: PropTypes.string,
     /**
-     * The default value for the TextField
+     * The default value of the `Input` element
      */
     defaultValue: PropTypes.string,
     /**
@@ -51,7 +51,7 @@ export default class TextField extends Component {
      */
     labelClassName: PropTypes.string,
     /**
-     * If true, a textarea element will be rendered.
+     * If `true`, a textarea element will be rendered.
      */
     multiline: PropTypes.bool,
     /**

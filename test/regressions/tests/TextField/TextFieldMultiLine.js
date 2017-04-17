@@ -3,12 +3,12 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
 
-export default function TextFieldError() {
+export default function TextFieldMultiLine() {
   return (
     <div>
       <TextField
         label="Foo"
-        multiLine
+        multiline
         rows={4}
         value="Default text"
       />
