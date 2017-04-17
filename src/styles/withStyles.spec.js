@@ -7,7 +7,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from './withStyles';
 
 const Empty = () => <div />;
-Empty.propTypes = {}; // Breaks the referencial transparency for testing purposes.
+Empty.propTypes = {}; // Breaks the referential transparency for testing purposes.
 
 describe('withStyles', () => {
   let shallow;

@@ -1,28 +1,18 @@
 // @flow weak
 
-import React from 'react';
-import PropTypes from 'prop-types';
+import createEagerFactory from 'recompose/createEagerFactory';
 import wrapDisplayName from 'recompose/wrapDisplayName';
-import { createMuiTheme } from './theme';
-
-let DEFAULT_THEME;
-
-function getDefaultTheme() {
-  if (!DEFAULT_THEME) {
-    DEFAULT_THEME = createMuiTheme();
-  }
-  return DEFAULT_THEME;
-}
+import customPropTypes from '../utils/customPropTypes';
 
 const withTheme = (BaseComponent) => {
-  const WithTheme = (ownerProps, context) => {
-    const { theme = getDefaultTheme() } = context;
+  const factory = createEagerFactory(BaseComponent);
 
-    return <BaseComponent theme={theme} {...ownerProps} />;
-  };
+  const WithTheme = (ownerProps, context) => (
+    factory({ theme: context.theme, ...ownerProps })
+  );
 
   WithTheme.contextTypes = {
-    theme: PropTypes.object.isRequired,
+    theme: customPropTypes.muiRequired,
   };
 
   WithTheme.displayName = wrapDisplayName(BaseComponent, 'withTheme');
