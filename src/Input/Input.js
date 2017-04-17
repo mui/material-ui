@@ -251,7 +251,6 @@ export default class Input extends Component {
   render() {
     const {
       className: classNameProp,
-      defaultValue,
       disabled,
       disableUnderline,
       error: errorProp,
@@ -303,7 +302,6 @@ export default class Input extends Component {
           onFocus={this.handleFocus}
           onChange={this.handleChange}
           disabled={disabled}
-          defaultValue={defaultValue}
           aria-required={required ? true : undefined}
           {...other}
         />
