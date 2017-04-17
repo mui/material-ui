@@ -26,6 +26,7 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
       '&:after': {
         backgroundColor: palette.primary.A200,
         left: 0,
+        bottom: 0,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
         content: '""',
         height: 2,
