@@ -1,6 +1,7 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
@@ -113,6 +114,8 @@ export default class ButtonBase extends Component {
   keyDown = false; // Used to help track keyboard activation keyDown
   button = null;
   keyboardFocusTimeout = undefined;
+  keyboardFocusCheckTime = 40;
+  keyboardFocusMaxCheckTimes = 5;
 
   focus = () => this.button.focus();
 

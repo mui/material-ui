@@ -28,6 +28,7 @@ module.exports = {
       ignoreUrls: true,
     }], // airbnb is allowing some edge cases
     'no-console': 'error', // airbnb is using warn
+    'no-alert': 'error', // airbnb is using warn
     'no-param-reassign': 'off', // Not our taste?
     'no-prototype-builtins': 'off', // airbnb use error
     'no-use-before-define': ['error', { 'functions': false }], // airbnb have functions: true, annoying

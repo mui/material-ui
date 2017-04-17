@@ -1,7 +1,8 @@
 // @flow weak
 /* eslint-disable jsx-a11y/label-has-for */
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';

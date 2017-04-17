@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -56,7 +57,7 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
       verticalAlign: 'middle',
       whiteSpace: 'normal',
       background: 'none',
-      lineHeight: 1,
+      margin: 0, // Reset for Safari
       appearance: 'textfield', // Improve type search style.
       color: theme.palette.text.primary,
       width: '100%',

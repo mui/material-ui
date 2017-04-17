@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -8,8 +9,7 @@ import customPropTypes from '../utils/customPropTypes';
 export const styleSheet = createStyleSheet('MuiTabIndicator', (theme) => {
   return {
     root: {
-      position: 'absolute',
-      bottom: 0,
+      position: 'relative',
       height: 2,
       marginTop: -2,
       transition: theme.transitions.create(),

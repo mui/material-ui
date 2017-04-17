@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -67,7 +68,7 @@ export default class Dialog extends Component {
      */
     className: PropTypes.string,
     /**
-     * If `true`, The dialog will be full-screen.
+     * If `true`, the dialog will be full-screen.
      */
     fullScreen: PropTypes.bool,
     /**

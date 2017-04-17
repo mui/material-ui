@@ -1,8 +1,8 @@
 {
-  "name": "material-ui-build",
+  "name": "material-ui-build-next",
   "private": true,
   "author": "Material-UI Team",
-  "version": "1.0.0-alpha.10",
+  "version": "1.0.0-alpha.11",
   "description": "Material Design UI components built with React",
   "main": "./src/index.js",
   "keywords": [
@@ -21,6 +21,7 @@
   },
   "homepage": "http://material-ui.com/",
   "scripts": {
+    "deploy": "cd docs && yarn build && firebase deploy",
     "build": "npm run build:es2015 && npm run build:es2015modules && npm run build:copy-files && npm run build:umd:dev && npm run build:umd:min",
     "build:es2015": "cross-env NODE_ENV=production babel ./src --ignore *.spec.js --out-dir ./build",
     "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel ./src/index.js --out-file ./build/index.es.js",
@@ -46,8 +47,8 @@
     "publish": "npm run build && cd build && npm publish --tag next"
   },
   "peerDependencies": {
-    "react": "^15.0.0",
-    "react-dom": "^15.0.0"
+    "react": "^15.3.0",
+    "react-dom": "^15.3.0"
   },
   "dependencies": {
     "babel-runtime": "^6.23.0",
@@ -58,9 +59,12 @@
     "keycode": "^2.1.8",
     "lodash": "^4.17.4",
     "object-assign": "^4.1.1",
-    "react-event-listener": "^0.4.4",
+    "prop-types": "^15.0.0",
+    "react-event-listener": "^0.4.5",
+    "react-scrollbar-size": "^0.1.0",
     "react-transition-group": "^1.1.1",
-    "recompose": "^0.22.0",
+    "recompose": "^0.23.0",
+    "scroll": "^2.0.0",
     "warning": "^3.0.0"
   },
   "devDependencies": {
@@ -74,8 +78,7 @@
     "babel-plugin-react-remove-properties": "^0.2.3",
     "babel-plugin-transform-dev-warning": "^0.1.0",
     "babel-plugin-transform-react-constant-elements": "^6.23.0",
-    "babel-plugin-transform-react-inline-elements": "^6.22.0",
-    "babel-plugin-transform-react-remove-prop-types": "^0.3.3",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.0",
     "babel-plugin-transform-replace-object-assign": "^0.2.1",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-polyfill": "^6.23.0",
@@ -86,7 +89,7 @@
     "chai": "^3.5.0",
     "cross-env": "^4.0.0",
     "doctrine": "^2.0.0",
-    "enzyme": "^2.8.0",
+    "enzyme": "^2.8.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-babel": "^4.1.1",
@@ -97,7 +100,7 @@
     "eslint-plugin-mocha": "^4.9.0",
     "eslint-plugin-react": "^6.10.3",
     "eventsource-polyfill": "^0.9.6",
-    "flow-bin": "^0.43.1",
+    "flow-bin": "^0.44.0",
     "fs-extra": "^2.1.2",
     "glob": "^7.1.1",
     "html-looks-like": "^1.0.2",
@@ -115,12 +118,13 @@
     "phantomjs-prebuilt": "^2.1.14",
     "random-words": "0.0.1",
     "raw-loader": "^0.5.1",
-    "react": "^15.4.2",
+    "react": "^15.5.3",
     "react-a11y": "^0.3.3",
     "react-addons-perf": "^15.4.2",
-    "react-addons-test-utils": "^15.4.2",
+    "react-addons-test-utils": "^15.5.0",
     "react-docgen": "^2.13.0",
-    "react-dom": "^15.4.2",
+    "react-dom": "^15.5.3",
+    "react-test-renderer": "^15.5.4",
     "recast": "^0.12.3",
     "recursive-readdir-sync": "^1.0.6",
     "rimraf": "^2.6.1",

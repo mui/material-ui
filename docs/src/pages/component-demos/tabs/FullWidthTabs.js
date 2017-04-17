@@ -1,7 +1,8 @@
 // @flow weak
 /* eslint-disable react/no-multi-comp */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { createStyleSheet } from 'jss-theme-reactor';
 import SwipeableViews from 'react-swipeable-views';
 import customPropTypes from 'material-ui/utils/customPropTypes';

@@ -22,10 +22,10 @@ export function detectKeyboardFocus(instance, element, cb, attempt = 1) {
       (document.activeElement === element || contains(element, document.activeElement))
     ) {
       cb();
-    } else if (attempt < 5) {
+    } else if (attempt < instance.keyboardFocusMaxCheckTimes) {
       detectKeyboardFocus(instance, element, cb, attempt + 1);
     }
-  }, 40);
+  }, instance.keyboardFocusCheckTime);
 }
 
 export function listenForFocusKeys() {

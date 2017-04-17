@@ -7,6 +7,5 @@ node_modules
 /packages/**/lib
 /packages/material-ui-icons
 /packages/material-ui-codemod/modules/v0.15.0
-/src/svg-icons
 /test/coverage
 /test/regressions/site/build

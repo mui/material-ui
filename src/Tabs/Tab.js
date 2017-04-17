@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { Component, PropTypes, isValidElement } from 'react';
+import React, { Component, isValidElement } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import ButtonBase from '../internal/ButtonBase';
@@ -19,6 +20,7 @@ export const styleSheet = createStyleSheet('MuiTab', (theme) => {
       background: 'none',
       padding: 0,
       minHeight: 48,
+      flex: 'none',
     },
     rootLabelIcon: {
       minHeight: 72,
@@ -41,6 +43,9 @@ export const styleSheet = createStyleSheet('MuiTab', (theme) => {
     },
     rootInheritDisabled: {
       opacity: 0.4,
+    },
+    fullWidth: {
+      flex: '1 0 0',
     },
     label: {
       fontSize: theme.typography.fontSize,
@@ -181,13 +186,10 @@ export default class Tab extends Component {
       [classes.rootInheritDisabled]: disabled && textColor === 'inherit',
       [classes.rootInheritSelected]: selected && textColor === 'inherit',
       [classes.rootLabelIcon]: icon && label,
+      [classes.fullWidth]: fullWidth,
     }, classNameProp);
 
     let style = {};
-
-    if (fullWidth) {
-      style.width = '100%';
-    }
 
     if (textColor !== 'accent' && textColor !== 'inherit') {
       style.color = textColor;

@@ -41,7 +41,7 @@ export default class ChipsArray extends Component {
 
   handleRequestDelete = (key) => {
     if (key === 3) {
-      alert('Why would you want to delete React?! :)'); // eslint-ignore-line no-alert
+      alert('Why would you want to delete React?! :)'); // eslint-disable-line no-alert
       return;
     }
 

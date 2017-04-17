@@ -12,7 +12,6 @@
     "production": {
       "plugins": [
         "transform-react-constant-elements",
-        "transform-react-inline-elements",
         "transform-dev-warning",
         "transform-runtime",
         ["react-remove-properties", {"properties": ["data-mui-test"]}],

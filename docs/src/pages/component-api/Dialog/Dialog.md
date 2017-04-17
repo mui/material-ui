@@ -17,7 +17,7 @@ Props
 |:-----|:-----|:--------|:------------|
 | children | node |  | Dialog children, usually the included sub-components. |
 | className | string |  | The CSS class name of the root element. |
-| fullScreen | bool | false | If `true`, The dialog will be full-screen. |
+| fullScreen | bool | false | If `true`, the dialog will be full-screen. |
 | ignoreBackdropClick | bool | false | If `true`, clicking the backdrop will not fire the `onRequestClose` callback. |
 | ignoreEscapeKeyUp | bool | false | If `true`, hitting escape will not fire the `onRequestClose` callback. |
 | enterTransitionDuration | number | duration.enteringScreen | Duration of the animation when the element is entering. |

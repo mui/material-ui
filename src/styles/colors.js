@@ -349,4 +349,9 @@ export const blueGrey = {
   700: '#455a64',
   800: '#37474f',
   900: '#263238',
+  A100: '#cfd8dc',
+  A200: '#b0bec5',
+  A400: '#78909c',
+  A700: '#455a64',
+  contrastDefaultColor: 'light',
 };

@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { Component, PropTypes, cloneElement, isValidElement } from 'react';
+import React, { Component, cloneElement, isValidElement } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
