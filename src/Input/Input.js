@@ -57,7 +57,7 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
       verticalAlign: 'middle',
       whiteSpace: 'normal',
       background: 'none',
-      lineHeight: 1,
+      margin: 0, // Reset for Safari
       appearance: 'textfield', // Improve type search style.
       color: theme.palette.text.primary,
       width: '100%',
