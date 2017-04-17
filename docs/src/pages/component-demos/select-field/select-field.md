@@ -9,3 +9,5 @@ To learn more about SelectField please visit the specifications [here](https://m
 {{demo='pages/component-demos/select-field/SimpleSelectField.js'}}
 
 {{demo='pages/component-demos/select-field/FocusSelectField.js'}}
+
+{{demo='pages/component-demos/select-field/FilteredSelectField.js'}}
