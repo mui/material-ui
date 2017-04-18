@@ -477,6 +477,7 @@ class DropDownMenu extends Component {
             menuItemStyle={menuItemStyle}
             selectedMenuItemStyle={selectedMenuItemStyle}
             autoWidth={autoWidth}
+            width={!autoWidth && menuStyle ? menuStyle.width : null}
           >
             {children}
           </Menu>
