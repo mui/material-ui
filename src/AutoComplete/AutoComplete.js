@@ -522,6 +522,7 @@ class AutoComplete extends Component {
 
           {...other}
 
+          // Do not let to override these values to not break internal functionality.
           value={searchText}
           onChange={this.handleChange}
         />
