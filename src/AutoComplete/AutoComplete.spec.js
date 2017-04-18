@@ -7,6 +7,7 @@ import {spy} from 'sinon';
 import AutoComplete from './AutoComplete';
 import Menu from '../Menu/Menu';
 import Popover from '../Popover/Popover';
+import TextField from '../TextField/TextField';
 import getMuiTheme from '../styles/getMuiTheme';
 
 describe('<AutoComplete />', () => {
@@ -58,6 +59,23 @@ describe('<AutoComplete />', () => {
         wrapper.find('TextField').prop('filter'),
         undefined,
         'should not pass filter property to children');
+    });
+  });
+
+  describe('prop: value', () => {
+    it('should not override value prop of TextField', () => {
+      const handleNewRequest = spy();
+      const wrapper = shallowWithContext(
+        <AutoComplete
+          value={{name: 'foo'}}
+          dataSource={['foo', 'bar']}
+          searchText="f"
+          onNewRequest={handleNewRequest}
+          menuCloseDelay={10}
+        />
+      );
+
+      assert.strictEqual(wrapper.find(TextField).props().value, 'f');
     });
   });
 
