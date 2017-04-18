@@ -57,6 +57,12 @@ export default class TextFields extends Component {
           className={classes.input}
         />
         <TextField
+          id="password"
+          label="Password"
+          className={classes.input}
+          type="password"
+        />
+        <TextField
           id="multiline"
           label="MultiLine"
           multiline
