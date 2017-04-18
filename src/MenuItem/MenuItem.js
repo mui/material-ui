@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import shallowEqual from 'recompose/shallowEqual';
 import Popover from '../Popover/Popover';
@@ -306,6 +307,7 @@ class MenuItem extends Component {
         leftIcon={leftIconElement}
         ref="listItem"
         rightIcon={rightIconElement}
+        role="menuitem"
         style={mergedRootStyles}
       >
         {children}

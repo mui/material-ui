@@ -1,5 +1,6 @@
 /* eslint-env mocha */
-import React, {PropTypes, Component} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {shallow, mount} from 'enzyme';
 import {assert} from 'chai';
 import TextField from './TextField';
@@ -170,6 +171,41 @@ describe('<TextField />', () => {
 
       const errorWrapper = wrapper.children().last();
       assert.strictEqual(errorWrapper.props().style.bottom, 10, 'Users should have the higher priority');
+    });
+  });
+
+  describe('state: hasValue', () => {
+    describe('of uncontrolled component', () => {
+      it('should change depending on the input', () => {
+        const wrapper = shallowWithContext(
+          <TextField id="unique" />
+        );
+        const input = wrapper.find('input');
+        assert.strictEqual(wrapper.state().hasValue, false);
+        input.simulate('change', {target: {value: 'a'}});
+        assert.strictEqual(wrapper.state().hasValue, true);
+        input.simulate('change', {target: {value: ''}});
+        assert.strictEqual(wrapper.state().hasValue, false);
+      });
+    });
+
+    describe('of controlled component', () => {
+      it('should be false if onChange does nothing despite the input', () => {
+        const wrapper = shallowWithContext(
+          <TextField value="" id="unique" />
+        );
+        wrapper.find('input').simulate('change', {target: {value: 'a'}});
+        assert.strictEqual(wrapper.state().hasValue, false, 'because props.value is still invalid.');
+      });
+
+      it('should be true if and only if props.value is set', () => {
+        const wrapper = shallowWithContext(
+          <TextField value="" id="unique" />
+        );
+        assert.strictEqual(wrapper.state().hasValue, false);
+        wrapper.setProps({value: 'a'});
+        assert.strictEqual(wrapper.state().hasValue, true, 'it is consistent with props.value');
+      });
     });
   });
 });

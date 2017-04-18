@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 function getStyles(props, context, state) {
   const {tableRow} = context.muiTheme;
@@ -40,7 +41,7 @@ class TableRow extends Component {
      */
     displayBorder: PropTypes.bool,
     /**
-     * Controls whether or not the row reponseds to hover events.
+     * Controls whether or not the row responds to hover events.
      */
     hoverable: PropTypes.bool,
     /**

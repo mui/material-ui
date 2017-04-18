@@ -177,12 +177,20 @@ describe('<ListItem />', () => {
   });
 
   describe('prop: hoverColor', () => {
+    const testColor = '#ededed';
+
     it('should use a background color on hover if hoverColor is specified', () => {
-      const testColor = '#ededed';
       const wrapper = shallowWithContext(
         <ListItem hoverColor={testColor} />
       );
       wrapper.find(EnhancedButton).simulate('mouseEnter');
+      assert.strictEqual(wrapper.find(EnhancedButton).props().style.backgroundColor, testColor);
+    });
+
+    it('should use a background color if isKeyboardFocused is true', () => {
+      const wrapper = shallowWithContext(
+        <ListItem hoverColor={testColor} isKeyboardFocused={true} />
+      );
       assert.strictEqual(wrapper.find(EnhancedButton).props().style.backgroundColor, testColor);
     });
   });

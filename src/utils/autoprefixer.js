@@ -1,4 +1,7 @@
-import InlineStylePrefixer from 'inline-style-prefixer';
+import createPrefixerStatic from 'inline-style-prefixer/static/createPrefixer';
+import createPrefixerDynamic from 'inline-style-prefixer/dynamic/createPrefixer';
+import autoprefixerDynamic from './autoprefixerDynamic';
+import autoprefixerStatic from './autoprefixerStatic';
 import warning from 'warning';
 
 let hasWarnedAboutUserAgent = false;
@@ -18,12 +21,14 @@ export default function(muiTheme) {
     hasWarnedAboutUserAgent = true;
   }
 
+  const prefixAll = createPrefixerStatic(autoprefixerStatic);
+
   if (userAgent === false) { // Disabled autoprefixer
     return null;
   } else if (userAgent === 'all' || userAgent === undefined) { // Prefix for all user agent
     return (style) => {
       const isFlex = ['flex', 'inline-flex'].indexOf(style.display) !== -1;
-      const stylePrefixed = InlineStylePrefixer.prefixAll(style);
+      const stylePrefixed = prefixAll(style);
 
       if (isFlex) {
         const display = stylePrefixed.display;
@@ -39,7 +44,8 @@ export default function(muiTheme) {
       return stylePrefixed;
     };
   } else {
-    const prefixer = new InlineStylePrefixer({
+    const Prefixer = createPrefixerDynamic(autoprefixerDynamic, prefixAll);
+    const prefixer = new Prefixer({
       userAgent: userAgent,
     });
 

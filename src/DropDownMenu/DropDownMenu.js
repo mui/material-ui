@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import transitions from '../styles/transitions';
 import DropDownArrow from '../svg-icons/navigation/arrow-drop-down';
@@ -9,11 +10,8 @@ import PopoverAnimationVertical from '../Popover/PopoverAnimationVertical';
 import keycode from 'keycode';
 import Events from '../utils/events';
 import IconButton from '../IconButton';
+import propTypes from '../utils/propTypes';
 
-const anchorOrigin = {
-  vertical: 'top',
-  horizontal: 'left',
-};
 
 function getStyles(props, context) {
   const {disabled} = props;
@@ -83,6 +81,14 @@ class DropDownMenu extends Component {
   // other user components, so it will give full access to its js styles rather
   // than just the parent.
   static propTypes = {
+    /**
+     * This is the point on the anchor that the popover's
+     * `targetOrigin` will attach to.
+     * Options:
+     * vertical: [top, center, bottom]
+     * horizontal: [left, middle, right].
+     */
+    anchorOrigin: propTypes.origin,
     /**
      * If true, the popover will apply transitions when
      * it gets added to the DOM.
@@ -181,6 +187,14 @@ class DropDownMenu extends Component {
      */
     style: PropTypes.object,
     /**
+     * This is the point on the popover which will attach to
+     * the anchor's origin.
+     * Options:
+     * vertical: [top, center, bottom]
+     * horizontal: [left, middle, right].
+     */
+    targetOrigin: propTypes.origin,
+    /**
      * Overrides the inline-styles of the underline.
      */
     underlineStyle: PropTypes.object,
@@ -200,6 +214,10 @@ class DropDownMenu extends Component {
     openImmediately: false,
     maxHeight: 500,
     multiple: false,
+    anchorOrigin: {
+      vertical: 'top',
+      horizontal: 'left',
+    },
   };
 
   static contextTypes = {
@@ -358,6 +376,8 @@ class DropDownMenu extends Component {
       underlineStyle,
       value,
       iconButton,
+      anchorOrigin,
+      targetOrigin,
       ...other
     } = this.props;
     const {
@@ -437,6 +457,7 @@ class DropDownMenu extends Component {
         </ClearFix>
         <Popover
           anchorOrigin={anchorOrigin}
+          targetOrigin={targetOrigin}
           anchorEl={anchorEl}
           animation={animation || PopoverAnimationVertical}
           open={open}

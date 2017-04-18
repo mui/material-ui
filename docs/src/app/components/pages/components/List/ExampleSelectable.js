@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import MobileTearSheet from '../../../MobileTearSheet';
 import {List, ListItem, makeSelectable} from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';

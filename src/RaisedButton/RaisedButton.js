@@ -1,4 +1,5 @@
-import React, {Component, cloneElement, PropTypes} from 'react';
+import React, {Component, cloneElement} from 'react';
+import PropTypes from 'prop-types';
 import transitions from '../styles/transitions';
 import {fade} from '../utils/colorManipulator';
 import {createChildFragment} from '../utils/childUtils';
@@ -147,7 +148,7 @@ class RaisedButton extends Component {
     /**
      * If true, the element's ripple effect will be disabled.
      */
-    disableTouchRipple: React.PropTypes.bool,
+    disableTouchRipple: PropTypes.bool,
     /**
      * If true, the button will be disabled.
      */

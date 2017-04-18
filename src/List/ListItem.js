@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import shallowEqual from 'recompose/shallowEqual';
 import {fade} from '../utils/colorManipulator';
@@ -34,9 +35,12 @@ function getStyles(props, context, state) {
   const twoLine = secondaryText && secondaryTextLines === 1;
   const threeLine = secondaryText && secondaryTextLines > 1;
 
+  const isKeyboardFocused =
+    (props.isKeyboardFocused !== undefined ? props : state).isKeyboardFocused;
+
   const styles = {
     root: {
-      backgroundColor: (state.isKeyboardFocused || state.hovered) &&
+      backgroundColor: (isKeyboardFocused || state.hovered) &&
       !state.rightIconButtonHovered &&
       !state.rightIconButtonKeyboardFocused ? hoverColor : null,
       color: textColor,
@@ -192,6 +196,14 @@ class ListItem extends Component {
      * This is useful if there is no left avatar or left icon.
      */
     insetChildren: PropTypes.bool,
+    /**
+     * Use to control if the list item should render as keyboard focused.  If
+     * undefined (default), this will be automatically managed.  If provided,
+     * it will change the components style.  Note that this will not change the
+     * actual focus - and should only be used when you want to simulate
+     * keyboard focus (eg. in a rich text input autocomplete).
+     */
+    isKeyboardFocused: PropTypes.bool,
     /**
      * This is the `Avatar` element to be displayed on the left side.
      */
@@ -546,6 +558,7 @@ class ListItem extends Component {
       nestedLevel,
       nestedListStyle,
       onKeyboardFocus, // eslint-disable-line no-unused-vars
+      isKeyboardFocused, // eslint-disable-line no-unused-vars
       onMouseEnter, // eslint-disable-line no-unused-vars
       onMouseLeave, // eslint-disable-line no-unused-vars
       onNestedListToggle, // eslint-disable-line no-unused-vars

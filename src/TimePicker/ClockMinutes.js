@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ClockNumber from './ClockNumber';
 import ClockPointer from './ClockPointer';
 import {getTouchEventOffsetValues, rad2deg} from './timeUtils';

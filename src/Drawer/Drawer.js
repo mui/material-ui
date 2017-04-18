@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
@@ -75,9 +76,13 @@ class Drawer extends Component {
      */
     swipeAreaWidth: PropTypes.number,
     /**
-     * The width of the `Drawer` in pixels. Defaults to using the values from theme.
+     * The width of the `Drawer` in pixels or percentage in string format ex. `50%` to fill
+     * half of the window or `100%` and so on. Defaults to using the values from theme.
      */
-    width: PropTypes.number,
+    width: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
     /**
      * The zDepth of the `Drawer`.
      */
@@ -146,7 +151,7 @@ class Drawer extends Component {
     const styles = {
       root: {
         height: '100%',
-        width: this.props.width || theme.width,
+        width: this.getTranslatedWidth() || theme.width,
         position: 'fixed',
         zIndex: muiTheme.zIndex.drawer,
         left: 0,
@@ -197,8 +202,22 @@ class Drawer extends Component {
     }
   };
 
+  getTranslatedWidth() {
+    if (typeof this.props.width === 'string') {
+      if (!/^\d+(\.\d+)?%$/.test(this.props.width)) {
+        throw new Error('Not a valid percentage format.');
+      }
+      const width = parseFloat(this.props.width) / 100.0;
+      // We are doing our best on the Server to render a consistent UI, hence the
+      // default value of 10000
+      return window ? width * window.innerWidth : 10000;
+    } else {
+      return this.props.width;
+    }
+  }
+
   getMaxTranslateX() {
-    const width = this.props.width || this.context.muiTheme.drawer.width;
+    const width = this.getTranslatedWidth() || this.context.muiTheme.drawer.width;
     return width + 10;
   }
 

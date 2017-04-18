@@ -15,6 +15,8 @@ import AutoCompleteExampleFilters from './ExampleFilters';
 import autoCompleteExampleFiltersCode from '!raw!./ExampleFilters';
 import AutoCompleteExampleControlled from './ExampleControlled';
 import autoCompleteExampleControlledCode from '!raw!./ExampleControlled';
+import AutoCompleteExampleMenuProps from './ExampleMenuProps';
+import autoCompleteExampleMenuPropsCode from '!raw!./ExampleMenuProps';
 
 const AutoCompletesPage = () => (
   <div>
@@ -43,6 +45,12 @@ const AutoCompletesPage = () => (
       title="Controlled example"
     >
       <AutoCompleteExampleControlled />
+    </CodeExample>
+    <CodeExample
+      code={autoCompleteExampleMenuPropsCode}
+      title="MenuProps example"
+    >
+      <AutoCompleteExampleMenuProps />
     </CodeExample>
     <PropTypeDescription code={autoCompleteCode} />
   </div>

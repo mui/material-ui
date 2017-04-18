@@ -1,4 +1,5 @@
-import React, {PropTypes, Component} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import UniqueId from 'lodash.uniqueid';
 import transitions from '../styles/transitions';
 import ClickAwayListener from '../internal/ClickAwayListener';

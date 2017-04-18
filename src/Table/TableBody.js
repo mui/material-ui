@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Checkbox from '../Checkbox';
 import TableRowColumn from './TableRowColumn';
 import ClickAwayListener from '../internal/ClickAwayListener';

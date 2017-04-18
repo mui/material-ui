@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import propTypes from '../utils/propTypes';
 import transitions from '../styles/transitions';
 

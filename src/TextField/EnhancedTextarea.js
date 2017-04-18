@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
 
 const rowsHeight = 24;
@@ -24,7 +25,7 @@ function getStyles(props, context, state) {
       // Visibility needed to hide the extra text area on ipads
       visibility: 'hidden',
       position: 'absolute',
-      height: 'initial',
+      height: 'auto',
     },
   };
 }
@@ -33,6 +34,7 @@ class EnhancedTextarea extends Component {
   static propTypes = {
     defaultValue: PropTypes.any,
     disabled: PropTypes.bool,
+    hintText: PropTypes.string,
     onChange: PropTypes.func,
     onHeightChange: PropTypes.func,
     rows: PropTypes.number,
@@ -91,9 +93,11 @@ class EnhancedTextarea extends Component {
 
   syncHeightWithShadow(newValue, event, props) {
     const shadow = this.refs.shadow;
+    const displayText = this.props.hintText && (newValue === '' || newValue === undefined || newValue === null) ?
+      this.props.hintText : newValue;
 
-    if (newValue !== undefined) {
-      shadow.value = newValue;
+    if (displayText !== undefined) {
+      shadow.value = displayText;
     }
 
     let newHeight = shadow.scrollHeight;
@@ -141,6 +145,7 @@ class EnhancedTextarea extends Component {
       rowsMax, // eslint-disable-line no-unused-vars
       shadowStyle,
       style,
+      hintText, // eslint-disable-line no-unused-vars
       textareaStyle,
       valueLink, // eslint-disable-line no-unused-vars
       ...other

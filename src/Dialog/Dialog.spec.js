@@ -4,7 +4,7 @@ import Dialog from './Dialog';
 import {spy} from 'sinon';
 import {mount} from 'enzyme';
 import {assert} from 'chai';
-import TestUtils from 'react-addons-test-utils';
+import TestUtils from 'react-dom/test-utils';
 import getMuiTheme from '../styles/getMuiTheme';
 
 describe('<Dialog />', () => {

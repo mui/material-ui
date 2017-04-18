@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import transitions from '../styles/transitions';
 import {createChildFragment} from '../utils/childUtils';
 import {fade} from '../utils/colorManipulator';
@@ -49,7 +50,7 @@ class FlatButton extends Component {
     /**
      * If true, the element's ripple effect will be disabled.
      */
-    disableTouchRipple: React.PropTypes.bool,
+    disableTouchRipple: PropTypes.bool,
     /**
      * Disables the button if set to true.
      */

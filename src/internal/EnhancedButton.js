@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {createChildFragment} from '../utils/childUtils';
 import Events from '../utils/events';
 import keycode from 'keycode';
