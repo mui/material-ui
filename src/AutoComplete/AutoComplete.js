@@ -510,7 +510,6 @@ class AutoComplete extends Component {
         <TextField
           ref="searchTextField"
           autoComplete="off"
-          value={searchText}
           onChange={this.handleChange}
           onBlur={this.handleBlur}
           onFocus={this.handleFocus}
@@ -522,6 +521,7 @@ class AutoComplete extends Component {
           errorStyle={errorStyle}
           style={textFieldStyle}
           {...other}
+          value={searchText}
         />
         <Popover
           style={Object.assign({}, styles.popover, popoverStyle)}
