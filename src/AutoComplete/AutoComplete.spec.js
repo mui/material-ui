@@ -64,18 +64,43 @@ describe('<AutoComplete />', () => {
 
   describe('prop: value', () => {
     it('should not override value prop of TextField', () => {
-      const handleNewRequest = spy();
       const wrapper = shallowWithContext(
         <AutoComplete
           value={{name: 'foo'}}
           dataSource={['foo', 'bar']}
           searchText="f"
-          onNewRequest={handleNewRequest}
           menuCloseDelay={10}
         />
       );
 
       assert.strictEqual(wrapper.find(TextField).props().value, 'f');
+    });
+  });
+
+  describe('prop: onChange', () => {
+    it('should not override onChange prop of TextField', (done) => {
+      const onChange = spy();
+
+      const wrapper = shallowWithContext(
+        <AutoComplete
+          onChange={onChange}
+          dataSource={['foo', 'bar']}
+          searchText="f"
+          menuCloseDelay={10}
+        />
+      );
+
+      wrapper.find(TextField).props().onChange({target: {value: 'fo'}});
+
+      setTimeout(() => {
+        try {
+          assert.strictEqual(onChange.callCount, 0);
+
+          done();
+        } catch (error) {
+          done(error);
+        }
+      }, 20);
     });
   });
 
