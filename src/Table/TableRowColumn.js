@@ -118,6 +118,7 @@ class TableRowColumn extends Component {
 
     return (
       <td
+        role="gridcell"
         className={className}
         style={prepareStyles(Object.assign(styles.root, style))}
         {...handlers}
