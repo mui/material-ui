@@ -54,6 +54,7 @@ export default class TableExampleComplex extends React.Component {
     super(props);
 
     this.state = {
+      clickAsSelect: false,
       fixedHeader: true,
       fixedFooter: true,
       stripedRows: false,
@@ -104,6 +105,7 @@ export default class TableExampleComplex extends React.Component {
             </TableRow>
           </TableHeader>
           <TableBody
+            clickAsSelect={this.state.clickAsSelect}
             displayRowCheckbox={this.state.showCheckboxes}
             deselectOnClickaway={this.state.deselectOnClickaway}
             showRowHover={this.state.showRowHover}
@@ -112,7 +114,9 @@ export default class TableExampleComplex extends React.Component {
             {tableData.map( (row, index) => (
               <TableRow key={index} selected={row.selected}>
                 <TableRowColumn>{index}</TableRowColumn>
-                <TableRowColumn>{row.name}</TableRowColumn>
+                <TableRowColumn>
+                  <a target="_blank" href="#">{row.name}</a>
+                </TableRowColumn>
                 <TableRowColumn>{row.status}</TableRowColumn>
               </TableRow>
               ))}
@@ -176,6 +180,12 @@ export default class TableExampleComplex extends React.Component {
             label="Deselect On Clickaway"
             onToggle={this.handleToggle}
             defaultToggled={this.state.deselectOnClickaway}
+          />
+          <Toggle
+            name="clickAsSelect"
+            label="Click as Select"
+            onToggle={this.handleToggle}
+            defaultToggled={this.state.clickAsSelect}
           />
           <Toggle
             name="stripedRows"
