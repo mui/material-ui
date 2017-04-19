@@ -10,6 +10,8 @@ import { blue, pink } from 'material-ui/styles/colors';
 import { lightTheme, darkTheme, setPrismTheme } from 'docs/src/utils/prism';
 import AppRouter from 'docs/src/components/AppRouter';
 
+let styleManager;
+
 function App(props) {
   const { dark } = props;
 
@@ -19,9 +21,14 @@ function App(props) {
     type: dark ? 'dark' : 'light',
   });
 
-  const { styleManager, theme } = MuiThemeProvider.createDefaultContext({
-    theme: createMuiTheme({ palette }),
-  });
+  const theme = createMuiTheme({ palette });
+
+  if (!styleManager) {
+    const themeContext = MuiThemeProvider.createDefaultContext({ theme });
+    styleManager = themeContext.styleManager;
+  } else {
+    styleManager.updateTheme(theme);
+  }
 
   styleManager.setSheetOrder(MUI_SHEET_ORDER.concat([
     'AppContent',
