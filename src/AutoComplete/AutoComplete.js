@@ -524,10 +524,9 @@ class AutoComplete extends Component {
           multiLine={false}
           errorStyle={errorStyle}
           style={textFieldStyle}
-
           {...other}
-
-          // Do not let to override these values to not break internal functionality.
+          // value and onChange are idiomatic properties often leaked.
+          // We prevent their overrides in order to reduce potential bugs.
           value={searchText}
           onChange={this.handleChange}
         />
