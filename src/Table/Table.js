@@ -210,8 +210,13 @@ class Table extends Component {
   };
 
   onRowSelection = (selectedRows) => {
-    if (this.state.allRowsSelected) this.setState({allRowsSelected: false});
-    if (this.props.onRowSelection) this.props.onRowSelection(selectedRows);
+    if (this.state.allRowsSelected) {
+      this.setState({allRowsSelected: false});
+    }
+
+    if (this.props.onRowSelection) {
+      this.props.onRowSelection(selectedRows);
+    }
   };
 
   onSelectAll = () => {
