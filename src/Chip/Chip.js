@@ -16,7 +16,7 @@ export const styleSheet = createStyleSheet('MuiChip', (theme) => {
   const deleteIconColor = fade(palette.text.primary, 0.26);
   return {
     root: {
-      fontFamily: 'inherit', // Override `button` default system font
+      fontFamily: theme.typography.fontFamily,
       fontSize: 13,
       display: 'flex',
       alignItems: 'center',

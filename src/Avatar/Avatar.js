@@ -17,6 +17,7 @@ export const styleSheet = createStyleSheet('MuiAvatar', (theme) => {
       justifyContent: 'center',
       width: 40,
       height: 40,
+      fontFamily: theme.typography.fontFamily,
       fontSize: 20,
       borderRadius: '50%',
       overflow: 'hidden',

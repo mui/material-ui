@@ -6,9 +6,10 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('MuiTable', () => {
+export const styleSheet = createStyleSheet('MuiTable', (theme) => {
   return {
     root: {
+      fontFamily: theme.typography.fontFamily,
       width: '100%',
       borderCollapse: 'collapse',
       borderSpacing: 0,

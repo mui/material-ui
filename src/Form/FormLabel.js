@@ -11,6 +11,7 @@ export const styleSheet = createStyleSheet('MuiFormLabel', (theme) => {
   const focusColor = theme.palette.primary.A200;
   return {
     root: {
+      fontFamily: theme.typography.fontFamily,
       color: theme.palette.text.secondary,
       lineHeight: 1,
     },
