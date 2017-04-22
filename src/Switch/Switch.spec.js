@@ -31,7 +31,7 @@ describe('<Switch />', () => {
     });
 
     it('should render a div with the root and user classes', () => {
-      assert.strictEqual(wrapper.is('div'), true);
+      assert.strictEqual(wrapper.name(), 'div');
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.hasClass('foo'), true);
     });

@@ -18,7 +18,7 @@ describe('<DialogActions />', () => {
     const wrapper = shallow(
       <DialogActions />,
     );
-    assert.strictEqual(wrapper.is('div'), true, 'should be a div');
+    assert.strictEqual(wrapper.name(), 'div');
   });
 
   it('should spread custom props on the root node', () => {

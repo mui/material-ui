@@ -18,7 +18,7 @@ describe('<InputLabel />', () => {
     const wrapper = shallow(
       <InputLabel>Foo</InputLabel>,
     );
-    assert.strictEqual(wrapper.is('FormLabel'), true);
+    assert.strictEqual(wrapper.name(), 'FormLabel');
     assert.strictEqual(wrapper.childAt(0).node, 'Foo');
   });
 

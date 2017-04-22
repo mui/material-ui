@@ -138,8 +138,8 @@ export {
 } from './Tabs';
 
 export {
-  Text,
-} from './Text';
+  Typography,
+} from './Typography';
 
 export {
   TextField,

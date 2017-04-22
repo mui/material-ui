@@ -24,7 +24,7 @@ describe('<Drawer />', () => {
     const wrapper = shallow(
       <Drawer />,
     );
-    assert.strictEqual(wrapper.is('Modal'), true, 'should be a Modal');
+    assert.strictEqual(wrapper.name(), 'Modal');
   });
 
   it('should render Slide > Paper inside the Modal', () => {
@@ -155,7 +155,7 @@ describe('<Drawer />', () => {
     });
 
     it('should render a div instead of a Modal when docked', () => {
-      assert.strictEqual(wrapper.is('div'), true, 'should be a div element');
+      assert.strictEqual(wrapper.name(), 'div');
       assert.strictEqual(wrapper.hasClass(classes.docked), true, 'should have the docked class');
     });
 

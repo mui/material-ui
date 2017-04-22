@@ -6,7 +6,19 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('MuiText', (theme) => {
+const headlineMapping = {
+  display4: 'h1',
+  display3: 'h1',
+  display2: 'h1',
+  display1: 'h1',
+  headline: 'h1',
+  title: 'h2',
+  subheading: 'h3',
+  body2: 'aside',
+  body1: 'p',
+};
+
+export const styleSheet = createStyleSheet('MuiTypography', (theme) => {
   return {
     text: {
       display: 'block',
@@ -55,7 +67,7 @@ export const styleSheet = createStyleSheet('MuiText', (theme) => {
   };
 });
 
-export default function Text(props, context) {
+export default function Typography(props, context) {
   const {
     align,
     className: classNameProp,
@@ -79,12 +91,12 @@ export default function Text(props, context) {
     [classes[`align-${align}`]]: align,
   }, classNameProp);
 
-  const Component = paragraph ? 'p' : componentProp;
+  const Component = componentProp || (paragraph ? 'p' : headlineMapping[type]) || 'span';
 
   return <Component className={className} {...other} />;
 }
 
-Text.propTypes = {
+Typography.propTypes = {
   align: PropTypes.oneOf([
     'left',
     'center',
@@ -103,6 +115,7 @@ Text.propTypes = {
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
+   * By default we map the type to a good default headline component.
    */
   component: PropTypes.oneOfType([
     PropTypes.string,
@@ -142,9 +155,8 @@ Text.propTypes = {
   ]),
 };
 
-Text.defaultProps = {
+Typography.defaultProps = {
   colorInherit: false,
-  component: 'span',
   gutterBottom: false,
   noWrap: false,
   paragraph: false,
@@ -152,6 +164,6 @@ Text.defaultProps = {
   type: 'body1',
 };
 
-Text.contextTypes = {
+Typography.contextTypes = {
   styleManager: customPropTypes.muiRequired,
 };

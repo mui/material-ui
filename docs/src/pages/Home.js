@@ -4,7 +4,7 @@ import React from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import Link from 'react-router/lib/Link';
 import customPropTypes from 'material-ui/utils/customPropTypes';
-import Text from 'material-ui/Text';
+import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import muiLogo from 'docs/src/assets/images/material-ui-logo.svg';
 
@@ -51,12 +51,12 @@ function Home(props, context) {
       <div className={classes.hero}>
         <div className={classes.content}>
           <img src={muiLogo} alt="Material UI Logo" className={classes.logo} />
-          <Text type="display2" component="h1" colorInherit>
+          <Typography type="display2" component="h1" colorInherit>
             {'Material-UI'}
-          </Text>
-          <Text type="subheading" component="h2" colorInherit>
+          </Typography>
+          <Typography type="subheading" component="h2" colorInherit>
             {"A React component library implementing Google's Material Design"}
-          </Text>
+          </Typography>
           <Button
             component={Link}
             className={classes.button}

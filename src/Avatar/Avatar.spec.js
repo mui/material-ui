@@ -30,7 +30,7 @@ describe('<Avatar />', () => {
     });
 
     it('should render a div containing an img', () => {
-      assert.strictEqual(wrapper.is('div'), true, 'should be a div');
+      assert.strictEqual(wrapper.name(), 'div');
       assert.strictEqual(wrapper.childAt(0).is('img'), true, 'should be an img');
     });
 
@@ -73,7 +73,7 @@ describe('<Avatar />', () => {
 
     it('should render a div containing an font icon', () => {
       const icon = wrapper.childAt(0);
-      assert.strictEqual(wrapper.is('div'), true, 'should be a div');
+      assert.strictEqual(wrapper.name(), 'div');
       assert.strictEqual(icon.is('span'), true, 'should be a span');
       assert.strictEqual(icon.hasClass('my-icon-font'), true);
       assert.strictEqual(icon.text(), 'icon');
@@ -110,7 +110,7 @@ describe('<Avatar />', () => {
     });
 
     it('should render a div containing an svg icon', () => {
-      assert.strictEqual(wrapper.is('div'), true, 'should be a div');
+      assert.strictEqual(wrapper.name(), 'div');
       assert.strictEqual(wrapper.childAt(0).is('pure(Cancel)'), true, 'should be an svg icon');
     });
 
@@ -144,7 +144,7 @@ describe('<Avatar />', () => {
     });
 
     it('should render a div containing a string', () => {
-      assert.strictEqual(wrapper.is('div'), true, 'should be a div');
+      assert.strictEqual(wrapper.name(), 'div');
       assert.strictEqual(wrapper.childAt(0).text(), 'OT');
     });
 
