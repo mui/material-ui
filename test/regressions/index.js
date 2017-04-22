@@ -7,16 +7,44 @@ import vrtest from 'vrtest/client';
 import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
 
-const requireTest = require.context('./tests', true, /js$/);
-const testFiles = requireTest.keys();
-const tests = testFiles.reduce((res, path) => {
+// Get all the tests specifically written for preventing regressions.
+const requireRegression = require.context('./tests', true, /js$/);
+const regressions = requireRegression.keys().reduce((res, path) => {
   const [suite, name] = path.replace('./', '').replace('.js', '').split('/');
-  res.push({ path, suite, name });
+  res.push({
+    path,
+    suite: `regression-${suite}`,
+    name,
+    case: requireRegression(path).default,
+  });
+  return res;
+}, []);
+
+const blacklist = [
+  'progress', // Flaky
+  'dialogs', // Needs interaction
+  'drawers', // Needs interaction
+  'menus', // Needs interaction
+];
+
+// Also use some of the demos to avoid code duplication.
+const requireDemos = require.context('docs/src/pages/component-demos', true, /js$/);
+const demos = requireDemos.keys().reduce((res, path) => {
+  const [suite, name] = path.replace('./', '').replace('.js', '').split('/');
+
+  if (!blacklist.includes(suite)) {
+    res.push({
+      path,
+      suite: `demo-${suite}`,
+      name,
+      case: requireDemos(path).default,
+    });
+  }
+
   return res;
 }, []);
 
 const rootEl = document.createElement('div');
-
 rootEl.style.display = 'inline-block';
 
 vrtest.before(() => {
@@ -45,16 +73,18 @@ vrtest.before(() => {
 
 let suite;
 
+const tests = regressions.concat(demos);
 tests.forEach(((test) => {
   if (!suite || suite.name !== test.suite) {
     suite = vrtest.createSuite(test.suite);
   }
 
   suite.createTest(test.name, () => {
+    const TestCase = test.case;
     ReactDOM.render(
       <MuiThemeProvider>
         <TestViewer>
-          {React.createElement(requireTest(test.path).default)}
+          <TestCase />
         </TestViewer>
       </MuiThemeProvider>,
       rootEl,

@@ -11,7 +11,7 @@ import {
 } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
-import reptileImage from 'docs/src/assets/images/contemplative-reptile@2x.jpg';
+import reptileImage from 'docs/src/assets/images/contemplative-reptile.jpg';
 
 const styleSheet = createStyleSheet('SimpleMediaCard', () => ({
   card: { maxWidth: 345 },
