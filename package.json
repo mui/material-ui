@@ -105,6 +105,7 @@
     "react-addons-test-utils": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-tap-event-plugin": "^2.0.0",
+    "react-test-renderer": "^15.5.4",
     "recursive-readdir-sync": "^1.0.6",
     "rimraf": "^2.6.1",
     "sinon": "^2.0.0",
