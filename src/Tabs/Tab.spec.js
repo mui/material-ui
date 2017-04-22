@@ -21,7 +21,7 @@ describe('<Tab />', () => {
     const wrapper = shallow(
       <Tab />,
     );
-    assert.strictEqual(wrapper.is('ButtonBase'), true, 'should be a ButtonBase');
+    assert.strictEqual(wrapper.name(), 'ButtonBase');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
   });
 

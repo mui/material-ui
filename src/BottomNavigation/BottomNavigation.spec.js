@@ -30,7 +30,7 @@ describe('<BottomNavigation />', () => {
         <BottomNavigationButton icon={icon} />
       </BottomNavigation>,
     );
-    assert.strictEqual(wrapper.is('div'), true, 'should be a div');
+    assert.strictEqual(wrapper.name(), 'div');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
   });
 

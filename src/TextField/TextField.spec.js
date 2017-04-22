@@ -19,7 +19,7 @@ describe('<TextField />', () => {
 
   describe('structure', () => {
     it('should be a FormControl', () => {
-      assert.strictEqual(wrapper.is('FormControl'), true);
+      assert.strictEqual(wrapper.name(), 'FormControl');
     });
 
     it('should pass className to the FormControl', () => {

@@ -15,7 +15,7 @@ import {
   TableSortLabel,
 } from 'material-ui/Table';
 import Toolbar from 'material-ui/Toolbar';
-import Text from 'material-ui/Text';
+import Typography from 'material-ui/Typography';
 import Paper from 'material-ui/Paper';
 import Checkbox from 'material-ui/Checkbox';
 import IconButton from 'material-ui/IconButton';
@@ -120,9 +120,9 @@ function EnhancedTableToolbar(props, context) {
     <Toolbar className={classNames}>
       <div className={classes.title}>
         {numSelected > 0 ? (
-          <Text type="subheading">{numSelected} selected</Text>
+          <Typography type="subheading">{numSelected} selected</Typography>
         ) : (
-          <Text type="title">Nutrition</Text>
+          <Typography type="title">Nutrition</Typography>
         )}
       </div>
       <div className={classes.spacer} />

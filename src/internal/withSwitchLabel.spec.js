@@ -48,7 +48,7 @@ describe('<SwitchLabel />', () => {
     });
 
     it('should render a label', () => {
-      assert.strictEqual(wrapper.is('label'), true, 'should be a label');
+      assert.strictEqual(wrapper.name(), 'label');
     });
 
     it('should render the label text inside an additional span', () => {
@@ -64,7 +64,7 @@ describe('<SwitchLabel />', () => {
 
     it('should render the switch element and no label if no label is provided', () => {
       wrapper.setProps({ label: null });
-      assert.strictEqual(wrapper.is('Foo'), true);
+      assert.strictEqual(wrapper.name(), 'Foo');
     });
 
     describe('imperative methods', () => {

@@ -18,7 +18,7 @@ describe('<ListItemSecondaryAction />', () => {
     const wrapper = shallow(
       <ListItemSecondaryAction />,
     );
-    assert.strictEqual(wrapper.is('div'), true, 'should be a div');
+    assert.strictEqual(wrapper.name(), 'div');
     assert.strictEqual(wrapper.hasClass(classes.secondaryAction), true,
       'should have the secondaryAction class');
   });

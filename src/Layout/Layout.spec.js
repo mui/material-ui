@@ -22,7 +22,7 @@ describe('<Layout />', () => {
 
   it('should render', () => {
     const wrapper = shallow(<Layout className="woof" />);
-    assert.strictEqual(wrapper.is('div'), true, 'should be a <div />');
+    assert.strictEqual(wrapper.name(), 'div');
     assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the user class');
   });
 
@@ -43,7 +43,7 @@ describe('<Layout />', () => {
   describe('prop: component', () => {
     it('should change the component', () => {
       const wrapper = shallow(<Layout component="span" />);
-      assert.strictEqual(wrapper.is('span'), true, 'should be a <span>');
+      assert.strictEqual(wrapper.name(), 'span');
     });
   });
 

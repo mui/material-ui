@@ -21,14 +21,14 @@ describe('<ListItem />', () => {
     const wrapper = shallow(
       <ListItem />,
     );
-    assert.strictEqual(wrapper.is('div'), true, 'should be a div');
+    assert.strictEqual(wrapper.name(), 'div');
   });
 
   it('should render a li', () => {
     const wrapper = shallow(
       <ListItem component="li" />,
     );
-    assert.strictEqual(wrapper.is('li'), true, 'should be a li');
+    assert.strictEqual(wrapper.name(), 'li');
   });
 
   it('should render with the user, listItem and gutters classes', () => {

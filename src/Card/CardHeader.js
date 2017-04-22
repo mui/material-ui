@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
-import Text from '../Text';
+import Typography from '../Typography';
 import CardContent from './CardContent';
 
 export const styleSheet = createStyleSheet('MuiCardHeader', () => ({
@@ -44,12 +44,12 @@ export default function CardHeader(props, context) {
           {avatar}
         </div>
         <div className={classes.content}>
-          <Text type="body2" gutterBottom>
+          <Typography type="body2" gutterBottom>
             {title}
-          </Text>
-          <Text type="body2" secondary className={classes.contentSecondary}>
+          </Typography>
+          <Typography type="body2" secondary className={classes.contentSecondary}>
             {subheader}
-          </Text>
+          </Typography>
         </div>
       </CardContent>
     );
@@ -57,12 +57,12 @@ export default function CardHeader(props, context) {
 
   return (
     <CardContent className={className} {...other}>
-      <Text type="headline">
+      <Typography type="headline">
         {title}
-      </Text>
-      <Text type="body1" secondary>
+      </Typography>
+      <Typography type="body1" secondary>
         {subheader}
-      </Text>
+      </Typography>
     </CardContent>
   );
 }

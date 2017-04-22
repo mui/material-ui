@@ -4,7 +4,7 @@ import React from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import Paper from 'material-ui/Paper';
-import Text from 'material-ui/Text';
+import Typography from 'material-ui/Typography';
 
 const styleSheet = createStyleSheet('PaperSheet', (theme) => ({
   root: theme.mixins.gutters({
@@ -18,12 +18,12 @@ export default function PaperSheet(props, context) {
   return (
     <div>
       <Paper className={classes.root} elevation={4}>
-        <Text type="headline" component="h3">
+        <Typography type="headline" component="h3">
           This is a sheet of paper.
-        </Text>
-        <Text type="body1" component="p">
+        </Typography>
+        <Typography type="body1" component="p">
           Paper can be used to build surface or other elements for your application.
-        </Text>
+        </Typography>
       </Paper>
     </div>
   );

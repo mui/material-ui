@@ -18,7 +18,7 @@ describe('<DialogTitle />', () => {
     const wrapper = shallow(
       <DialogTitle />,
     );
-    assert.strictEqual(wrapper.is('div'), true, 'should be a div');
+    assert.strictEqual(wrapper.name(), 'div');
   });
 
   it('should spread custom props on the root node', () => {
@@ -34,7 +34,7 @@ describe('<DialogTitle />', () => {
 
   it('should render JSX children', () => {
     const children = <p className="test">Hello</p>;
-    const wrapper = shallow(<DialogTitle>{children}</DialogTitle>);
+    const wrapper = shallow(<DialogTitle disableTypography>{children}</DialogTitle>);
     assert.strictEqual(wrapper.childAt(0).equals(children), true);
   });
 

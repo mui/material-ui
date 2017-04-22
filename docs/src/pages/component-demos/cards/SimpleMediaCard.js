@@ -10,7 +10,7 @@ import {
   CardActions,
 } from 'material-ui/Card';
 import Button from 'material-ui/Button';
-import Text from 'material-ui/Text';
+import Typography from 'material-ui/Typography';
 import reptileImage from 'docs/src/assets/images/contemplative-reptile@2x.jpg';
 
 const styleSheet = createStyleSheet('SimpleMediaCard', () => ({
@@ -26,11 +26,13 @@ export default function SimpleMediaCard(props, context) {
           <img src={reptileImage} alt="Contemplative Reptile" />
         </CardMedia>
         <CardContent>
-          <Text type="headline" component="h2">Lizard</Text>
-          <Text component="p">
+          <Typography type="headline" component="h2">
+            Lizard
+          </Typography>
+          <Typography component="p">
             Lizards are a widespread group of squamate reptiles, with over
             6,000 species, ranging across all continents except Antarctica
-          </Text>
+          </Typography>
         </CardContent>
         <CardActions>
           <Button compact primary>Share</Button>

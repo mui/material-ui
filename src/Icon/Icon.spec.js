@@ -21,7 +21,7 @@ describe('<Icon />', () => {
 
   it('should render an span with root class', () => {
     const wrapper = shallow(<Icon>account_circle</Icon>);
-    assert.strictEqual(wrapper.is('span'), true, 'should be an span');
+    assert.strictEqual(wrapper.name(), 'span');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the "root" class');
   });
 

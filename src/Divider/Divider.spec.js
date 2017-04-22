@@ -18,7 +18,7 @@ describe('<Divider />', () => {
     const wrapper = shallow(
       <Divider />,
     );
-    assert.strictEqual(wrapper.is('hr'), true, 'should be a hr');
+    assert.strictEqual(wrapper.name(), 'hr');
   });
 
   it('should render with the root and default class', () => {
