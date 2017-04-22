@@ -19,7 +19,7 @@ import { red } from 'material-ui/styles/colors';
 import FavoriteIcon from 'material-ui-icons/Favorite';
 import ShareIcon from 'material-ui-icons/Share';
 import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
-import paellaImage from 'docs/src/assets/images/paella@2x.jpg';
+import paellaImage from 'docs/src/assets/images/paella.jpg';
 
 const styleSheet = createStyleSheet('RecipeReviewCard', (theme) => ({
   card: { maxWidth: 400 },
