@@ -27,6 +27,7 @@ export const styleSheet = createStyleSheet('MuiBadge', (theme) => {
       position: 'absolute',
       top: -radius,
       right: -radius,
+      fontFamily: theme.typography.fontFamily,
       fontWeight: typography.fontWeight,
       fontSize: radius,
       width: radius2x,
