@@ -22,11 +22,7 @@ export default class SliderExampleControlled extends Component {
   render() {
     return (
       <div>
-        <Slider
-          defaultValue={0.5}
-          value={this.state.firstSlider}
-          onChange={this.handleFirstSlider}
-        />
+        <Slider value={this.state.firstSlider} onChange={this.handleFirstSlider} />
         <p>
           <span>{'The value of this slider is: '}</span>
           <span>{this.state.firstSlider}</span>
@@ -36,7 +32,6 @@ export default class SliderExampleControlled extends Component {
           min={0}
           max={100}
           step={1}
-          defaultValue={50}
           value={this.state.secondSlider}
           onChange={this.handleSecondSlider}
         />
