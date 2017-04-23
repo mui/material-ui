@@ -24,15 +24,6 @@ class ConsoleErrorMock {
 
     throw new Error('Requested call count before spy() was called');
   };
-
-  calledWith = (...args) => {
-    if (this.consoleErrorContainer) {
-      // $FlowFixMe
-      return console.error.calledWith(...args);
-    }
-
-    throw new Error('Requested calledWith before spy() was called');
-  };
 }
 
 export default new ConsoleErrorMock();
