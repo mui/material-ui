@@ -201,18 +201,16 @@ describe('<Slide />', () => {
       mountWrapper.setProps({ in: false });
       instance = mountWrapper.instance();
       instance.componentDidMount();
-      assert.strictEqual(
-        ReactDOM.findDOMNode(mountWrapper.instance().transition).style.transform,
-        'translate3d(0, 0px, 0)');
+      const transitionElement = ReactDOM.findDOMNode(mountWrapper.instance().transition);
+      assert.strictEqual(transitionElement.style.transform, 'translate3d(0, 0px, 0)');
     });
 
     it('non-default value', () => {
       mountWrapper.setProps({ in: false, direction: 'right' });
       instance = mountWrapper.instance();
       instance.componentDidMount();
-      assert.strictEqual(
-        ReactDOM.findDOMNode(mountWrapper.instance().transition).style.transform,
-        'translate3d(0px, 0, 0)');
+      const transitionElement = ReactDOM.findDOMNode(mountWrapper.instance().transition);
+      assert.strictEqual(transitionElement.style.transform, 'translate3d(0px, 0, 0)');
     });
   });
 });
