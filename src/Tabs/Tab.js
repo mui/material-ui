@@ -49,13 +49,13 @@ export const styleSheet = createStyleSheet('MuiTab', (theme) => {
       flex: '1 0 0',
     },
     labelContainer: {
-      paddingTop: 6,
-      paddingBottom: 6,
-      paddingLeft: 12,
-      paddingRight: 12,
+      paddingTop: theme.spacing.unit * 0.75,
+      paddingBottom: theme.spacing.unit * 0.75,
+      paddingLeft: theme.spacing.unit * 1.5,
+      paddingRight: theme.spacing.unit * 1.5,
       [theme.breakpoints.up('md')]: {
-        paddingLeft: 24,
-        paddingRight: 24,
+        paddingLeft: theme.spacing.unit * 3,
+        paddingRight: theme.spacing.unit * 3,
       },
     },
     label: {
@@ -168,7 +168,7 @@ export default class Tab extends Component {
 
   checkTextWrap = () => {
     if (this.label) {
-      const wrappedText = (this.label.getClientRects().length > 1);
+      const wrappedText = this.label.getClientRects().length > 1;
       if (this.state.wrappedText !== wrappedText) {
         this.setState({ wrappedText });
       }
@@ -212,7 +212,7 @@ export default class Tab extends Component {
               { [classes.labelWrapped]: this.state.wrappedText },
               labelClassName,
             )}
-            ref={(c) => { this.label = c; }}
+            ref={(node) => { this.label = node; }}
           >
             {labelProp}
           </span>
