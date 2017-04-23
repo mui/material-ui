@@ -76,6 +76,8 @@ function main(options, cb) {
     processFile(svgPath, destPath, options);
   });
 
+  processIndex(options);
+
   if (cb) {
     cb();
   }
@@ -159,6 +161,22 @@ function getJsxString(svgPath, destPath, options) {
   );
 }
 
+/**
+ * make index.js, it exports all of SVGIcon classes.
+ * @param {object} options
+ */
+function processIndex(options) {
+  const files = glob.sync(path.join(options.outputDir, "*.js"));
+  let results = [];
+  files.forEach(jsPath => {
+    const typename = path.basename(jsPath).replace('.js', '');
+    results.push(`export {\n  ${typename}\n} from './${typename}';\n`);
+  });
+  const index = results.join('\n');
+  const absDestPath = path.join(options.outputDir, 'index.js');
+  fs.writeFileSync(absDestPath, index);
+}
+
 if (require.main === module) {
   const argv = parseArgs();
   main(argv);
@@ -168,6 +186,7 @@ module.exports = {
   pascalCase: pascalCase,
   getJsxString: getJsxString,
   processFile: processFile,
+  processIndex: processIndex,
   main: main,
   SVG_ICON_RELATIVE_REQUIRE: SVG_ICON_RELATIVE_REQUIRE,
   SVG_ICON_ABSOLUTE_REQUIRE: SVG_ICON_ABSOLUTE_REQUIRE,
