@@ -323,7 +323,7 @@ describe('<Transition />', () => {
     });
   });
 
-  describe('TransitionshouldComponentUpdate', () => {
+  describe('shouldComponentUpdate', () => {
     let wrapper;
     let instance;
     let currentState;
