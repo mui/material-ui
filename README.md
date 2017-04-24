@@ -70,9 +70,7 @@ injectTapEventPlugin();
 ### Roboto Font
 
 Material-UI was designed with the [Roboto](http://www.google.com/fonts/specimen/Roboto)
-font in mind. So be sure to include it in your project. Here are
-[some instructions](http://www.google.com/fonts#UsePlace:use/Collection:Roboto:400,300,500)
-on how to do so.
+font in mind. So be sure to follow [those instructions](https://github.com/callemall/material-ui/blob/next/docs/src/pages/style/typography.md#general).
 
 ### Packaging for use with separate React
 
