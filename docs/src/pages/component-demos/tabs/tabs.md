@@ -12,6 +12,12 @@ A simple example with no frills.
 
 {{demo='pages/component-demos/tabs/BasicTabs.js'}}
 
+### Wrapped Labels
+
+Long labels will automatically wrap on tabs. If the label is too long for the tab, it will overflow and the text will not be visible.
+
+{{demo='pages/component-demos/tabs/BasicTabsWrappedLabel.js'}}
+
 ## Fixed Tabs
 
 Fixed tabs should be used with a limited number of tabs and when consistent placement will aid muscle memory.
