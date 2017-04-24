@@ -114,10 +114,10 @@ ReactDOM.render(
 **./MyAwesomeReactComponent.js**
 ```jsx
 import React from 'react';
-import RaisedButton from 'material-ui/Button';
+import Button from 'material-ui/Button';
 
 const MyAwesomeReactComponent = () => (
-  <Button raised={true} primary={true}>Default</Button>
+  <Button>Default</Button>
 );
 
 export default MyAwesomeReactComponent;
