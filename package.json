@@ -69,7 +69,7 @@
   },
   "devDependencies": {
     "app-module-path": "^2.2.0",
-    "argos-cli": "^0.0.5",
+    "argos-cli": "^0.0.6",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
