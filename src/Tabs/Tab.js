@@ -49,10 +49,10 @@ export const styleSheet = createStyleSheet('MuiTab', (theme) => {
       flex: '1 0 0',
     },
     labelContainer: {
-      paddingTop: theme.spacing.unit * 0.75,
-      paddingBottom: theme.spacing.unit * 0.75,
-      paddingLeft: theme.spacing.unit * 1.5,
-      paddingRight: theme.spacing.unit * 1.5,
+      paddingTop: 6,
+      paddingBottom: 6,
+      paddingLeft: 12,
+      paddingRight: 12,
       [theme.breakpoints.up('md')]: {
         paddingLeft: theme.spacing.unit * 3,
         paddingRight: theme.spacing.unit * 3,
