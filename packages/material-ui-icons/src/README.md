@@ -29,6 +29,21 @@ For example to use the 'access alarm' icon component, import `material-ui-icons/
 
 Note: One exception is '3d rotation', which is named `ThreeDRotation`.
 
+### Examples
+
+* The simplest version of import icon
+```
+import AccessAlarmIcon from 'material-ui-icons/AccessAlarm';
+```
+
+* Import multiple Icons
+```
+import { 
+  AccessAlarm, 
+  ThreeDRotation
+} from 'material-ui-icons';
+```
+
 ## Upgrading
 
 If you are upgrading an existing project from Material-UI 0.x.x, you will need to revise the import paths 
