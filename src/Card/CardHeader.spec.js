@@ -18,7 +18,7 @@ describe('<CardHeader />', () => {
     const wrapper = shallow(
       <CardHeader />,
     );
-    assert.strictEqual(wrapper.is('CardContent'), true, 'should be CardContent');
+    assert.strictEqual(wrapper.name(), 'CardContent');
   });
 
   it('should have the cardHeader class', () => {
@@ -33,24 +33,21 @@ describe('<CardHeader />', () => {
 
     beforeEach(() => {
       wrapper = shallow(
-        <CardHeader
-          title="Title"
-          subhead="Subhead"
-        />,
-      );
+        <CardHeader title="Title" subheader="Subheader" />,
+      ).childAt(0);
     });
 
     it('should render the title as headline text', () => {
       const title = wrapper.childAt(0);
-      assert.strictEqual(title.is('Text'), true);
-      assert.strictEqual(title.prop('type'), 'headline');
+      assert.strictEqual(title.name(), 'Typography');
+      assert.strictEqual(title.props().type, 'headline');
     });
 
-    it('should render the subead as body1 secondary text', () => {
-      const subhead = wrapper.childAt(1);
-      assert.strictEqual(subhead.is('Text'), true);
-      assert.strictEqual(subhead.prop('type'), 'body1');
-      assert.strictEqual(subhead.prop('secondary'), true);
+    it('should render the subeader as body1 secondary text', () => {
+      const subheader = wrapper.childAt(1);
+      assert.strictEqual(subheader.name(), 'Typography');
+      assert.strictEqual(subheader.props().type, 'body1');
+      assert.strictEqual(subheader.props().secondary, true);
     });
   });
 
@@ -64,7 +61,7 @@ describe('<CardHeader />', () => {
         <CardHeader
           avatar={avatar}
           title="Title"
-          subhead="Subhead"
+          subheader="Subhead"
         />,
       );
     });
@@ -82,18 +79,18 @@ describe('<CardHeader />', () => {
       assert.strictEqual(container.hasClass(classes.content), true,
         'should have the content class');
       const title = container.childAt(0);
-      assert.strictEqual(title.is('Text'), true);
-      assert.strictEqual(title.prop('type'), 'body2');
+      assert.strictEqual(title.name(), 'Typography');
+      assert.strictEqual(title.props().type, 'body2');
     });
 
-    it('should render the subead as body2 secondary text inside the second child', () => {
+    it('should render the subeader as body2 secondary text inside the second child', () => {
       const container = wrapper.childAt(1);
       assert.strictEqual(container.hasClass(classes.content), true,
         'should have the content class');
-      const subhead = container.childAt(1);
-      assert.strictEqual(subhead.is('Text'), true);
-      assert.strictEqual(subhead.prop('type'), 'body2');
-      assert.strictEqual(subhead.prop('secondary'), true);
+      const subheader = container.childAt(1);
+      assert.strictEqual(subheader.name(), 'Typography');
+      assert.strictEqual(subheader.props().type, 'body2');
+      assert.strictEqual(subheader.props().secondary, true);
     });
   });
 });

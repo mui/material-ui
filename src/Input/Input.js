@@ -17,6 +17,7 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
       // Mimics the default input display property used by browsers for an input.
       display: 'inline-block',
       position: 'relative',
+      fontFamily: theme.typography.fontFamily,
     },
     formControl: {
       marginTop: 10,

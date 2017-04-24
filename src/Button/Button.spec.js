@@ -21,7 +21,7 @@ describe('<Button />', () => {
     const wrapper = shallow(
       <Button>Hello World</Button>,
     );
-    assert.strictEqual(wrapper.is('ButtonBase'), true, 'should be a <button>');
+    assert.strictEqual(wrapper.name(), 'ButtonBase');
     assert.strictEqual(wrapper.props().type, 'button',
       'should render with the button type attribute');
   });

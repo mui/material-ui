@@ -11,6 +11,7 @@ import {
 } from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
 import Avatar from 'material-ui/Avatar';
+import remyImage from 'docs/src/assets/images/remy.jpg';
 
 const styleSheet = createStyleSheet('CheckboxListSecondary', (theme) => ({
   root: {
@@ -53,10 +54,7 @@ export default class CheckboxListSecondary extends Component {
         <List>
           {Array.from({ length: 4 }, (v, k) => k).map((index) => (
             <ListItem dense button key={index}>
-              <Avatar
-                alt="Remy Sharp"
-                src="https://s3.amazonaws.com/uifaces/faces/twitter/rem/73.jpg"
-              />
+              <Avatar alt="Remy Sharp" src={remyImage} />
               <ListItemText primary={`Line item ${index + 1}`} />
               <ListItemSecondaryAction>
                 <Checkbox

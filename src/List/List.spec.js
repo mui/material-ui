@@ -19,14 +19,14 @@ describe('<List />', () => {
     const wrapper = shallow(
       <List />,
     );
-    assert.strictEqual(wrapper.is('div'), true, 'should be a div');
+    assert.strictEqual(wrapper.name(), 'div');
   });
 
   it('should render a ul', () => {
     const wrapper = shallow(
       <List component="ul" />,
     );
-    assert.strictEqual(wrapper.is('ul'), true, 'should be a ul');
+    assert.strictEqual(wrapper.name(), 'ul');
   });
 
   it('should render with the user, root and padding classes', () => {

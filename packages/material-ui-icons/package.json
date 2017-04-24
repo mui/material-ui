@@ -26,7 +26,7 @@
     "build:babel": "babel --presets es2015,react -d ./build ./src",
     "build:copy-files": "babel-node ./copy-files.js",
     "build:icons": "node ./build.js --output-dir ./src --svg-dir ./node_modules/material-design-icons --glob '/**/production/*_24px.svg' --renameFilter ./filters/rename/material-design-icons.js",
-    "clean:": "rimraf build",
+    "clean": "rimraf build",
     "prebuild": "npm run clean",
     "test": "grunt"
   },

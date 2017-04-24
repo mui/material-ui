@@ -16,7 +16,7 @@ import IconButton from 'material-ui/IconButton';
 import { FormGroup } from 'material-ui/Form';
 import { LabelCheckbox } from 'material-ui/Checkbox';
 import Layout from 'material-ui/Layout';
-import Text from 'material-ui/Text';
+import Typography from 'material-ui/Typography';
 import FolderIcon from 'material-ui-icons/Folder';
 import DeleteIcon from 'material-ui-icons/Delete';
 
@@ -73,9 +73,9 @@ class InteractiveList extends Component {
         </FormGroup>
         <Layout container>
           <Layout item xs={12} md={6}>
-            <Text type="title" className={classes.title}>
+            <Typography type="title" className={classes.title}>
               Text only
-            </Text>
+            </Typography>
             <div className={classes.demo}>
               <List dense={dense}>
                 {generate((
@@ -90,9 +90,9 @@ class InteractiveList extends Component {
             </div>
           </Layout>
           <Layout item xs={12} md={6}>
-            <Text type="title" className={classes.title}>
+            <Typography type="title" className={classes.title}>
               Icon with text
-            </Text>
+            </Typography>
             <div className={classes.demo}>
               <List dense={dense}>
                 {generate((
@@ -112,7 +112,9 @@ class InteractiveList extends Component {
         </Layout>
         <Layout container>
           <Layout item xs={12} md={6}>
-            <Text type="title" className={classes.title}>Avatar with text</Text>
+            <Typography type="title" className={classes.title}>
+              Avatar with text
+            </Typography>
             <div className={classes.demo}>
               <List dense={dense}>
                 {generate((
@@ -132,9 +134,9 @@ class InteractiveList extends Component {
             </div>
           </Layout>
           <Layout item xs={12} md={6}>
-            <Text type="title" className={classes.title}>
+            <Typography type="title" className={classes.title}>
               Avatar with text and icon
-            </Text>
+            </Typography>
             <div className={classes.demo}>
               <List dense={dense}>
                 {generate((

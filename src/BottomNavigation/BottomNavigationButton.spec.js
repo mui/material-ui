@@ -21,7 +21,7 @@ describe('<BottomNavigationButton / />', () => {
     const wrapper = shallow(
       <BottomNavigationButton icon={icon} />,
     );
-    assert.strictEqual(wrapper.is('ButtonBase'), true, 'should be a ButtonBase');
+    assert.strictEqual(wrapper.name(), 'ButtonBase');
   });
 
   it('should render with the root class', () => {

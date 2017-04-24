@@ -16,7 +16,7 @@ describe('<LinearProgress />', () => {
 
   it('should render a div with the root class', () => {
     const wrapper = shallow(<LinearProgress />);
-    assert.strictEqual(wrapper.is('div'), true, 'should be a div');
+    assert.strictEqual(wrapper.name(), 'div');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
   });
 

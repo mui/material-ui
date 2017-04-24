@@ -8,7 +8,7 @@ import {
   CardContent,
 } from 'material-ui/Card';
 import IconButton from 'material-ui/IconButton';
-import Text from 'material-ui/Text';
+import Typography from 'material-ui/Typography';
 import SkipPreviousIcon from 'material-ui-icons/SkipPrevious';
 import PlayArrowIcon from 'material-ui-icons/PlayArrow';
 import SkipNextIcon from 'material-ui-icons/SkipNext';
@@ -49,10 +49,10 @@ export default function NowPlayingCard(props, context) {
       <Card className={classes.card}>
         <div className={classes.details}>
           <CardContent className={classes.content}>
-            <Text type="headline">Live From Space</Text>
-            <Text type="subheading" secondary>
+            <Typography type="headline">Live From Space</Typography>
+            <Typography type="subheading" secondary>
               Mac Miller
-            </Text>
+            </Typography>
           </CardContent>
           <div className={classes.controls}>
             <IconButton>

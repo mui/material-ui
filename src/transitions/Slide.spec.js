@@ -17,7 +17,7 @@ describe('<Slide />', () => {
 
   it('should render a Transition', () => {
     const wrapper = shallow(<Slide />);
-    assert.strictEqual(wrapper.is('Transition'), true, 'is a Transition component');
+    assert.strictEqual(wrapper.name(), 'Transition');
   });
 
   it('enterTransitionDuration prop should have default value from standard durations', () => {

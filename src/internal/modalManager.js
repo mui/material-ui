@@ -49,21 +49,23 @@ export function createModalManager({
       hideSiblings(container, modal.mountNode);
     }
 
-    const containerStyle = {
-      overflow: 'hidden',
-      paddingRight: undefined,
-    };
+    if (modals.length === 1) {
+      const containerStyle = {
+        overflow: 'hidden',
+        paddingRight: undefined,
+      };
 
-    // Save our current overflow so we can revert
-    // back to it when all modals are closed!
-    prevOverflow = container.style.overflow;
+      // Save our current overflow so we can revert
+      // back to it when all modals are closed!
+      prevOverflow = container.style.overflow;
 
-    if (bodyIsOverflowing((container))) {
-      prevPadding = container.style.paddingRight;
-      containerStyle.paddingRight = `${parseInt(prevPadding || 0, 10) + getScrollbarSize()}px`;
+      if (bodyIsOverflowing((container))) {
+        prevPadding = container.style.paddingRight;
+        containerStyle.paddingRight = `${parseInt(prevPadding || 0, 10) + getScrollbarSize()}px`;
+      }
+
+      css(container, containerStyle);
     }
-
-    css(container, containerStyle);
 
     return modalIdx;
   }

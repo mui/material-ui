@@ -14,7 +14,7 @@ import Divider from 'material-ui/Divider';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
-import Text from 'material-ui/Text';
+import Typography from 'material-ui/Typography';
 import CloseIcon from 'material-ui-icons/Close';
 import Slide from 'material-ui/transitions/Slide';
 
@@ -53,7 +53,9 @@ export default class FullScreenDialog extends Component {
               <IconButton contrast onClick={this.handleRequestClose}>
                 <CloseIcon />
               </IconButton>
-              <Text type="title" colorInherit className={classes.flex}>Sound</Text>
+              <Typography type="title" colorInherit className={classes.flex}>
+                Sound
+              </Typography>
               <Button contrast onClick={this.handleRequestClose}>save</Button>
             </Toolbar>
           </AppBar>

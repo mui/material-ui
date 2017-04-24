@@ -8,7 +8,7 @@ import shallowEqual from 'recompose/shallowEqual';
 import { List } from 'material-ui/List';
 import Toolbar from 'material-ui/Toolbar';
 import Drawer from 'material-ui/Drawer';
-import Text from 'material-ui/Text';
+import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import AppDrawerNavItem from 'docs/src/components/AppDrawerNavItem';
@@ -116,16 +116,16 @@ export default class AppDrawer extends Component {
         <div className={classes.nav}>
           <Toolbar className={classes.toolbar}>
             <Link className={classes.title} to="/" onClick={this.props.onRequestClose}>
-              <Text type="title" gutterBottom>
+              <Typography type="title" gutterBottom>
                 Material UI
-              </Text>
+              </Typography>
             </Link>
             {process.env.MATERIAL_UI_VERSION ? (
               <a
                 className={classes.anchor}
                 href={`${GITHUB_RELEASE_BASE_URL}v${process.env.MATERIAL_UI_VERSION}`}
               >
-                <Text type="caption">{`v${process.env.MATERIAL_UI_VERSION}`}</Text>
+                <Typography type="caption">{`v${process.env.MATERIAL_UI_VERSION}`}</Typography>
               </a>
             ) : null}
             <Divider absolute />

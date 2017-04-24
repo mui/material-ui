@@ -19,7 +19,7 @@ describe('<FormControl />', () => {
       <FormControl className="woof" />,
     );
 
-    assert.strictEqual(wrapper.is('div'), true);
+    assert.strictEqual(wrapper.name(), 'div');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass('woof'), true);
   });
@@ -29,7 +29,7 @@ describe('<FormControl />', () => {
       <FormControl className="woof" />,
     );
 
-    assert.strictEqual(wrapper.is('div'), true);
+    assert.strictEqual(wrapper.name(), 'div');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass('woof'), true);
   });

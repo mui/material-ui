@@ -20,7 +20,7 @@ describe('<ListItemIcon />', () => {
         <span />
       </ListItemIcon>,
     );
-    assert.strictEqual(wrapper.is('span'), true, 'should be a span');
+    assert.strictEqual(wrapper.name(), 'span');
   });
 
   it('should render with the user and root classes', () => {

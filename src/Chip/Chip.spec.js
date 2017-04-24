@@ -32,7 +32,7 @@ describe('<Chip />', () => {
     });
 
     it('should render a button containing a span', () => {
-      assert.strictEqual(wrapper.is('button'), true, 'should be a button');
+      assert.strictEqual(wrapper.name(), 'button');
       assert.strictEqual(wrapper.childAt(0).is('span'), true, 'should be a span');
     });
 
@@ -65,7 +65,7 @@ describe('<Chip />', () => {
     });
 
     it('should render a button containing a span', () => {
-      assert.strictEqual(wrapper.is('button'), true, 'should be a button');
+      assert.strictEqual(wrapper.name(), 'button');
       assert.strictEqual(wrapper.childAt(0).is('span'), true, 'should be a span');
     });
 
@@ -113,7 +113,7 @@ describe('<Chip />', () => {
     });
 
     it('should render a button containing an Avatar, span and svg', () => {
-      assert.strictEqual(wrapper.is('button'), true, 'should be a button');
+      assert.strictEqual(wrapper.name(), 'button');
       assert.strictEqual(wrapper.childAt(0).is('Avatar'), true, 'should have an Avatar');
       assert.strictEqual(wrapper.childAt(1).is('span'), true, 'should have a span');
       assert.strictEqual(wrapper.childAt(2).is('pure(Cancel)'), true,

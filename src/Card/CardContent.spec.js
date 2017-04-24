@@ -18,7 +18,7 @@ describe('<CardContent />', () => {
     const wrapper = shallow(
       <CardContent />,
     );
-    assert.strictEqual(wrapper.is('div'), true, 'should be a div');
+    assert.strictEqual(wrapper.name(), 'div');
     assert.strictEqual(wrapper.hasClass(classes.cardContent), true,
       'should have the cardContent class');
   });

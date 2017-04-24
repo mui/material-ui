@@ -21,7 +21,7 @@ describe('<Toolbar />', () => {
     const wrapper = shallow(
       <Toolbar />,
     );
-    assert.strictEqual(wrapper.is('div'), true, 'should be a div');
+    assert.strictEqual(wrapper.name(), 'div');
   });
 
   it('should render with the user, root and gutters classes', () => {

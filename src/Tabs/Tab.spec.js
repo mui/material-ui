@@ -2,27 +2,38 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { spy } from 'sinon';
-import { createShallow } from 'src/test-utils';
+import { spy, stub } from 'sinon';
+import { createShallow, createMount } from 'src/test-utils';
 import Tab, { styleSheet } from './Tab';
 import Icon from '../Icon';
 
 describe('<Tab />', () => {
   let shallow;
+  let mount;
   let classes;
   const icon = <Icon>restore</Icon>;
 
   before(() => {
     shallow = createShallow();
+    mount = createMount();
     classes = shallow.context.styleManager.render(styleSheet);
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   it('should render with the root class', () => {
     const wrapper = shallow(
       <Tab />,
     );
-    assert.strictEqual(wrapper.is('ButtonBase'), true, 'should be a ButtonBase');
+    assert.strictEqual(wrapper.name(), 'ButtonBase');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+  });
+
+  it('should have a ref on label property', () => {
+    const instance = mount(<Tab label="foo" />).instance();
+    assert.isDefined(instance.label, 'should be defined');
   });
 
   describe('prop: className', () => {
@@ -70,15 +81,28 @@ describe('<Tab />', () => {
   describe('prop: label', () => {
     it('should render label with the label class', () => {
       const wrapper = shallow(<Tab label="foo" />);
-      const label = wrapper.childAt(0);
+      const label = wrapper.childAt(0).childAt(0);
       assert.strictEqual(label.hasClass(classes.label), true);
+    });
+
+    it('should render with text wrapping', () => {
+      const wrapper = shallow(<Tab label="foo" />);
+      const instance = wrapper.instance();
+      instance.label = {
+        getClientRects: stub().returns({ length: 2 }),
+      };
+      instance.checkTextWrap();
+      const label = wrapper.childAt(0).childAt(0);
+      assert.strictEqual(label.hasClass(classes.labelWrapped), true,
+        'should have labelWrapped class');
+      assert.strictEqual(wrapper.state('wrappedText'), true, 'wrappedText state should be true');
     });
   });
 
   describe('prop: labelClassName', () => {
     it('should render label with a custom label class', () => {
       const wrapper = shallow(<Tab label="foo" labelClassName="MyLabel" />);
-      const label = wrapper.childAt(0);
+      const label = wrapper.childAt(0).childAt(0);
       assert.strictEqual(label.hasClass(classes.label), true);
       assert.strictEqual(label.hasClass('MyLabel'), true);
     });

@@ -25,7 +25,7 @@ describe('<SvgIcon />', () => {
 
   it('should render an svg', () => {
     const wrapper = shallow(<SvgIcon>book</SvgIcon>);
-    assert.strictEqual(wrapper.is('svg'), true, 'should be an svg');
+    assert.strictEqual(wrapper.name(), 'svg');
   });
 
   it('should spread props on svg', () => {

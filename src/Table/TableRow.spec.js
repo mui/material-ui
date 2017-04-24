@@ -16,7 +16,7 @@ describe('<TableRow />', () => {
 
   it('should render a tr', () => {
     const wrapper = shallow(<TableRow />);
-    assert.strictEqual(wrapper.is('tr'), true, 'should be a tr');
+    assert.strictEqual(wrapper.name(), 'tr');
   });
 
   it('should spread custom props on the root node', () => {

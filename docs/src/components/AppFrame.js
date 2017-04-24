@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
 import { createStyleSheet } from 'jss-theme-reactor';
-import Text from 'material-ui/Text';
+import Typography from 'material-ui/Typography';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
@@ -153,9 +153,9 @@ class AppFrame extends Component {
               <MenuIcon />
             </IconButton>
             {title !== null && (
-              <Text className={classes.title} type="title" colorInherit>
+              <Typography className={classes.title} type="title" colorInherit>
                 {title}
-              </Text>
+              </Typography>
             )}
             <div className={classes.grow} />
             <DemoButton routes={routes} />

@@ -73,6 +73,16 @@ describe('builder', function() {
     });
   });
 
+  describe('#processIndex', function() {
+    it('should have processIndex', function() {
+      assert.strictEqual(builder.hasOwnProperty('processIndex'), true);
+    });
+
+    it('should be a function', function() {
+      assert.isFunction(builder.processIndex);
+    });
+  });
+
 });
 
 describe('--output-dir', function() {
@@ -97,6 +107,7 @@ describe('--output-dir', function() {
   it('script outputs to directory', function(done) {
     builder.main(options, function() {
       assert.strictEqual(fs.lstatSync(tempPath).isDirectory(), true);
+      assert.strictEqual(fs.lstatSync(path.join(tempPath, 'index.js')).isFile(), true)
       done();
     });
   });

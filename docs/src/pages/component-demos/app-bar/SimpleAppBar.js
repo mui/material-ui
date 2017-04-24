@@ -5,7 +5,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import Text from 'material-ui/Text';
+import Typography from 'material-ui/Typography';
 
 const styleSheet = createStyleSheet('SimpleAppBar', () => ({
   root: {
@@ -24,7 +24,7 @@ export default function SimpleAppBar(props, context) {
     <div className={classes.root}>
       <AppBar className={classes.appBar}>
         <Toolbar>
-          <Text type="title" colorInherit>Title</Text>
+          <Typography type="title" colorInherit>Title</Typography>
         </Toolbar>
       </AppBar>
     </div>

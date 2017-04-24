@@ -18,7 +18,7 @@ describe('<Menu />', () => {
 
   it('should render a Popover', () => {
     const wrapper = shallow(<Menu />);
-    assert.strictEqual(wrapper.is('Popover'), true, 'should have a Popover root');
+    assert.strictEqual(wrapper.name(), 'Popover');
   });
 
   it('should fire Popover transition event callbacks', () => {

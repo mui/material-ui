@@ -16,7 +16,7 @@ describe('<TableCell />', () => {
 
   it('should render a td', () => {
     const wrapper = shallow(<TableCell />);
-    assert.strictEqual(wrapper.is('td'), true, 'should be a td');
+    assert.strictEqual(wrapper.name(), 'td');
   });
 
   it('should spread custom props on the root node', () => {
@@ -50,7 +50,7 @@ describe('<TableCell />', () => {
       <TableCell />,
     );
     wrapper.setContext({ ...wrapper.options.context, table: { head: true } });
-    assert.strictEqual(wrapper.is('th'), true, 'should be a th');
+    assert.strictEqual(wrapper.name(), 'th');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.head), true, 'should have the head class');
   });

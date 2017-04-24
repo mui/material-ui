@@ -9,10 +9,12 @@ import {
   CardActions,
 } from 'material-ui/Card';
 import Button from 'material-ui/Button';
-import Text from 'material-ui/Text';
+import Typography from 'material-ui/Typography';
 
 const styleSheet = createStyleSheet('SimpleCard', (theme) => ({
-  card: { minWidth: 275 },
+  card: {
+    minWidth: 275,
+  },
   bullet: {
     display: 'inline-block',
     margin: '0 2px',
@@ -31,22 +33,21 @@ const styleSheet = createStyleSheet('SimpleCard', (theme) => ({
 
 export default function SimpleCard(props, context) {
   const classes = context.styleManager.render(styleSheet);
-
   const bull = <span className={classes.bullet}>&bull;</span>;
 
   return (
     <div>
       <Card className={classes.card}>
         <CardContent>
-          <Text type="body1" className={classes.title}>Word of the Day</Text>
-          <Text type="headline" component="h2">
+          <Typography type="body1" className={classes.title}>Word of the Day</Typography>
+          <Typography type="headline" component="h2">
             be{bull}nev{bull}o{bull}lent
-          </Text>
-          <Text type="body1" className={classes.pos}>adjective</Text>
-          <Text component="p">
+          </Typography>
+          <Typography type="body1" className={classes.pos}>adjective</Typography>
+          <Typography component="p">
             well meaning and kindly.<br />
             {'"a benevolent smile"'}
-          </Text>
+          </Typography>
         </CardContent>
         <CardActions>
           <Button compact>Learn More</Button>

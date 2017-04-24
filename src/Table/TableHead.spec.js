@@ -18,7 +18,7 @@ describe('<TableHead />', () => {
     const wrapper = shallow(
       <TableHead />,
     );
-    assert.strictEqual(wrapper.is('thead'), true, 'should be a thead');
+    assert.strictEqual(wrapper.name(), 'thead');
   });
 
   it('should render with the user and root classes', () => {

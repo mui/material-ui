@@ -25,20 +25,20 @@ describe('<ButtonBase />', () => {
   describe('root node', () => {
     it('should render a button with type="button" by default', () => {
       const wrapper = shallow(<ButtonBase>Hello</ButtonBase>);
-      assert.strictEqual(wrapper.is('button'), true, 'should be a button');
+      assert.strictEqual(wrapper.name(), 'button');
       assert.strictEqual(wrapper.childAt(0).equals('Hello'), true, 'should say Hello');
       assert.strictEqual(wrapper.props().type, 'button', 'should be type button');
     });
 
     it('should change the button type', () => {
       const wrapper = shallow(<ButtonBase type="submit">Hello</ButtonBase>);
-      assert.strictEqual(wrapper.is('button'), true, 'should be a button');
+      assert.strictEqual(wrapper.name(), 'button');
       assert.strictEqual(wrapper.props().type, 'submit', 'should be type submit');
     });
 
     it('should change the button component and add accessibility requirements', () => {
       const wrapper = shallow(<ButtonBase component="span" role="checkbox" aria-checked={false} />);
-      assert.strictEqual(wrapper.is('span'), true, 'should be a span');
+      assert.strictEqual(wrapper.name(), 'span');
       assert.strictEqual(wrapper.props().role, 'checkbox', 'should be role checkbox');
       assert.strictEqual(wrapper.props().tabIndex, '0', 'should be 0');
     });
@@ -60,14 +60,14 @@ describe('<ButtonBase />', () => {
 
     it('should change the button type to span and set role="button"', () => {
       const wrapper = shallow(<ButtonBase component="span">Hello</ButtonBase>);
-      assert.strictEqual(wrapper.is('span'), true, 'should be a span');
+      assert.strictEqual(wrapper.name(), 'span');
       assert.strictEqual(wrapper.props().type, undefined, 'should not set a type');
       assert.strictEqual(wrapper.props().role, 'button', 'should role to button');
     });
 
     it('should automatically change the button to an a element when href is provided', () => {
       const wrapper = shallow(<ButtonBase href="http://google.com">Hello</ButtonBase>);
-      assert.strictEqual(wrapper.is('a'), true, 'should be an a element');
+      assert.strictEqual(wrapper.name(), 'a');
       assert.strictEqual(wrapper.props().href, 'http://google.com', 'should have the href property');
     });
   });
