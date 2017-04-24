@@ -202,7 +202,11 @@ describe('<Slide />', () => {
       instance = mountWrapper.instance();
       instance.componentDidMount();
       const transitionElement = ReactDOM.findDOMNode(mountWrapper.instance().transition);
-      assert.strictEqual(transitionElement.style.transform, 'translate3d(0, 0px, 0)');
+      if (transitionElement instanceof window.HTMLElement) {
+        assert.strictEqual(transitionElement.style.transform, 'translate3d(0, 0px, 0)');
+      } else {
+        assert.fail('transition property of instance should be an HTMLElement');
+      }
     });
 
     it('non-default value', () => {
@@ -210,7 +214,11 @@ describe('<Slide />', () => {
       instance = mountWrapper.instance();
       instance.componentDidMount();
       const transitionElement = ReactDOM.findDOMNode(mountWrapper.instance().transition);
-      assert.strictEqual(transitionElement.style.transform, 'translate3d(0px, 0, 0)');
+      if (transitionElement instanceof window.HTMLElement) {
+        assert.strictEqual(transitionElement.style.transform, 'translate3d(0px, 0, 0)');
+      } else {
+        assert.fail('transition property of instance should be an HTMLElement');
+      }
     });
   });
 });
