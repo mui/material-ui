@@ -1,13 +1,15 @@
-// @flow weak
-const { jsdom } = require('jsdom');
+// @flow
+
+const { JSDOM } = require('jsdom');
 
 function createDOM() {
-  global.document = jsdom('');
-  global.window = document.defaultView;
+  const dom = new JSDOM('');
+  global.document = dom.document;
+  global.window = dom.window;
 
-  Object.keys(document.defaultView).forEach((property) => {
+  Object.keys(dom.window).forEach((property) => {
     if (typeof global[property] === 'undefined') {
-      global[property] = document.defaultView[property];
+      global[property] = dom.window[property];
     }
   });
 
