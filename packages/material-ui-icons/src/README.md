@@ -44,9 +44,11 @@ import {
 } from 'material-ui-icons';
 ```
 
+Note: Importing named exports in this way will result in the code for *every icon* being included in your project, so is not recommended unless you configure [tree-shaking](https://webpack.js.org/guides/tree-shaking/). 
+
 ## Upgrading
 
 If you are upgrading an existing project from Material-UI 0.x.x, you will need to revise the import paths 
-from `material-ui/svg-icons/icon-name` to `material-ui-icons/IconName`.
+from `material-ui/svg-icons/<category>/<icon-name>` to `material-ui-icons/<IconName>`.
 
 We may provide a [codemod](https://github.com/facebook/codemod) in a future release.
