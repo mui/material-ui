@@ -392,11 +392,11 @@ class Menu extends Component {
       menuValue = menuValue || [];
 
       const itemIndex = menuValue.indexOf(itemValue);
-      const [...newMenuValue] = menuValue;
+      let [...newMenuValue] = menuValue;
       if (itemIndex === -1) {
-        newMenuValue.push(itemValue);
+        newMenuValue = menuValue.concat(itemValue);
       } else {
-        newMenuValue.splice(itemIndex, 1);
+        newMenuValue = menuValue.slice(0, itemIndex).concat(menuValue.slice(itemIndex + 1));
       }
 
       valueLink.requestChange(event, newMenuValue);
