@@ -21,7 +21,7 @@ function getStyles(props, context) {
   const styles = {
     root: {
       color: props.disabled ? disabledColor : textColor,
-      cursor: props.disabled ? 'not-allowed' : 'pointer',
+      cursor: props.disabled ? 'default' : 'pointer',
       minHeight: props.desktop ? '32px' : '48px',
       lineHeight: props.desktop ? '32px' : '48px',
       fontSize: props.desktop ? 15 : 16,
