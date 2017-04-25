@@ -1,4 +1,6 @@
-const path = require('path');
+// @flow weak
+
+import path from 'path';
 
 /*
  * Return path to write file to inside outputDir.

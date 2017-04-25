@@ -4,6 +4,7 @@ Material [icons](https://material.io/guidelines/style/icons.html) use geometric 
 represent core ideas, capabilities, or topics.
 
 ## System icons
+
 A [system icon](https://material.io/guidelines/style/icons.html#icons-system-icons) or UI icon,
 symbolizes a command, file, device, or directory.
 System icons are also used to represent common actions like trash, print, and save,
@@ -36,8 +37,12 @@ and allows the icon to be styled and respond to mouse events.
 The resulting icon can be used as is,
 or included as a child for other Material-UI components that use icons.
 
-{{demo='pages/style/SvgPaths.js'}}
+{{demo='pages/style/SvgIcons.js'}}
 
-We also provide a separate package,
+### SVG Material icons
+
+We provide a separate package,
 [material-ui-icons](https://www.npmjs.com/package/material-ui-icons),
-that includes the Material icons converted to SvgIcon components.
+that includes the [Material icons](https://material.io/icons/) converted to SvgIcon components.
+
+{{demo='pages/style/SvgMaterialIcons.js'}}
