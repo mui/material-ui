@@ -23,9 +23,9 @@ class Stepper extends Component {
      */
     activeStep: PropTypes.number,
     /**
-     * Should be two or more `<Step />` components
+     * Should be two or more `<Step />` components.
      */
-    children: PropTypes.arrayOf(PropTypes.node),
+    children: PropTypes.node,
     /**
      * A component to be placed between each step.
      */
