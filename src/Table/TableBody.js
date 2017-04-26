@@ -141,9 +141,11 @@ class TableBody extends Component {
       }
     }
 
-    this.setState({
-      selectedRows: this.getSelectedRows(nextProps),
-    });
+    if (nextProps.preScanRows) {
+      this.setState({
+        selectedRows: this.getSelectedRows(nextProps),
+      });
+    }
   }
 
   isControlled = false
