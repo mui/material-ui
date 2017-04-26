@@ -147,6 +147,11 @@ class Tabs extends Component {
     this.updatePositionStates(nextProps);
   }
 
+  componentWillUnmount() {
+    this.handleResize.cancel();
+    this.handleTabsScroll.cancel();
+  }
+
   tabs = undefined;
 
   handleResize = throttle(() => {
