@@ -85,4 +85,4 @@ Promise
   .then(() => createPackageFile());
 
 // Copy original implementation files for flow.
-flowCopySource(['src'], 'build', {verbose: true, ignore: '**/*.spec.js'});
+flowCopySource(['src'], 'build', { verbose: true, ignore: '**/*.spec.js' });
