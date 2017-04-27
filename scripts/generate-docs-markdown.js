@@ -109,9 +109,9 @@ function generatePropType(type) {
     case 'union':
     case 'enum': {
       let values;
-      if(type.raw){
+      if (type.raw) {
         // flow union
-        values = type.raw.split('|').map((v) => v.trim())
+        values = type.raw.split('|').map((v) => v.trim());
       } else {
         values = type.value.map((v) => v.value || v.name);
       }
@@ -141,7 +141,8 @@ function generateProps(props) {
     .keys(props)
     .reduce((textProps, key) => {
       const prop = props[key];
-      const description = generatePropDescription(prop.required, prop.description, prop.flowType || prop.type);
+      const description =
+        generatePropDescription(prop.required, prop.description, prop.flowType || prop.type);
 
       if (description === null) {
         return textProps;
