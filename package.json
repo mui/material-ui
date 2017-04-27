@@ -105,6 +105,7 @@
     "eventsource-polyfill": "^0.9.6",
     "flow-bin": "^0.45.0",
     "flow-copy-source": "^1.1.0",
+    "flow-typed": "^2.1.2",
     "fs-extra": "^3.0.0",
     "flow-copy-source": "^1.1.0",
     "flow-typed": "^2.1.2",
