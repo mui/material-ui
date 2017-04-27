@@ -198,20 +198,6 @@ class Menu extends Component {
     this.setScollPosition();
   }
 
-  componentWillReceiveProps(nextProps) {
-    const filteredChildren = this.getFilteredChildren(nextProps.children);
-    const selectedIndex = this.getSelectedIndex(nextProps, filteredChildren);
-
-    const newFocusIndex = nextProps.disableAutoFocus ? -1 : selectedIndex >= 0 ? selectedIndex : 0;
-    if (newFocusIndex !== this.state.focusIndex && this.props.onMenuItemFocusChange) {
-      this.props.onMenuItemFocusChange(null, newFocusIndex);
-    }
-    this.setState({
-      focusIndex: newFocusIndex,
-      keyWidth: nextProps.desktop ? 64 : 56,
-    });
-  }
-
   shouldComponentUpdate(nextProps, nextState, nextContext) {
     return (
       !shallowEqual(this.props, nextProps) ||
@@ -322,7 +308,6 @@ class Menu extends Component {
       if (this.isChildSelected(child, props)) selectedIndex = menuItemIndex;
       if (!childIsADivider) menuItemIndex++;
     });
-
     return selectedIndex;
   }
 
