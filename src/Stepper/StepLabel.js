@@ -47,7 +47,7 @@ const getStyles = ({active, completed, disabled}, {muiTheme, stepper}) => {
   if (disabled) {
     styles.icon.color = inactiveIconColor;
     styles.root.color = disabledTextColor;
-    styles.root.cursor = 'not-allowed';
+    styles.root.cursor = 'default';
   }
 
   return styles;

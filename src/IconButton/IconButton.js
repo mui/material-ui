@@ -26,7 +26,7 @@ function getStyles(props, context) {
     disabled: {
       color: baseTheme.palette.disabledColor,
       fill: baseTheme.palette.disabledColor,
-      cursor: 'not-allowed',
+      cursor: 'default',
     },
   };
 }

@@ -134,7 +134,7 @@ class TableHeader extends Component {
         key={key}
         style={{
           width: 24,
-          cursor: disabled ? 'not-allowed' : 'inherit',
+          cursor: disabled ? 'default' : 'inherit',
         }}
       />
     );
