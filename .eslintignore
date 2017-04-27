@@ -1,9 +1,10 @@
 node_modules
 /build
-/flow
 /tmp
 /coverage
 /docs/build
+/flow
+/flow-typed
 /packages/**/lib
 /packages/material-ui-icons/build
 /packages/material-ui-icons/src
