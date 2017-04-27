@@ -3,6 +3,7 @@
 
 import path from 'path';
 import fse from 'fs-extra';
+import flowCopySource from 'flow-copy-source';
 
 function copyFile(file) {
   const buildPath = path.resolve(__dirname, '../build/', path.basename(file));
@@ -82,3 +83,6 @@ const files = [
 Promise
   .all(files.map((file) => copyFile(file)))
   .then(() => createPackageFile());
+
+// Copy original implementation files for flow.
+flowCopySource(['src'], 'build', {verbose: true, ignore: '**/*.spec.js'});

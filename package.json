@@ -103,6 +103,7 @@
     "eslint-plugin-react": "^6.10.3",
     "eventsource-polyfill": "^0.9.6",
     "flow-bin": "^0.44.2",
+    "flow-copy-source": "^1.1.0",
     "fs-extra": "^2.1.2",
     "glob": "^7.1.1",
     "html-looks-like": "^1.0.2",
