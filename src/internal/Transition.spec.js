@@ -299,7 +299,7 @@ describe('<Transition />', () => {
       );
 
       assert.strictEqual(wrapper.instance().getStatus(), UNMOUNTED);
-      assert.notOk(findDOMNode(wrapper.instance()));
+      assert.isNotOk(findDOMNode(wrapper.instance()));
 
       wrapper.setState({ in: true });
     });
@@ -310,7 +310,7 @@ describe('<Transition />', () => {
           initialIn
           onExited={() => {
             assert.strictEqual(wrapper.instance().getStatus(), UNMOUNTED);
-            assert.notOk(findDOMNode(wrapper.instance()));
+            assert.isNotOk(findDOMNode(wrapper.instance()));
             done();
           }}
         />,
