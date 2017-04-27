@@ -1,7 +1,9 @@
 {
   "presets": ["./scripts/material-ui-babel-preset-es2015", "stage-1", "react"],
   "plugins": [
-    "./scripts/babel-transform-object-assign-require"
+    "./scripts/babel-transform-object-assign-require",
+    "flow-react-proptypes",
+    "transform-flow-strip-types"
   ],
   "env": {
     "coverage": {
