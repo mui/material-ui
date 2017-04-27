@@ -77,7 +77,9 @@ const files = [
   'LICENSE',
 ];
 
-Promise.all(files.map((file) => copyFile(file))).then(() => createPackageFile());
+Promise
+  .all(files.map((file) => copyFile(file)))
+  .then(() => createPackageFile());
 
 // Copy original implementation files for flow.
-flowCopySource(['src'], 'build', { verbose: true, ignore: '**/*.spec.js' });
+flowCopySource(['src'], 'build', {verbose: true, ignore: '**/*.spec.js'});
