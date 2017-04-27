@@ -16,8 +16,7 @@ function copyFile(file) {
         resolve();
       },
     );
-  })
-  .then(() => console.log(`Copied ${file} to ${buildPath}`));
+  }).then(() => console.log(`Copied ${file} to ${buildPath}`));
 }
 
 function createPackageFile() {
@@ -29,9 +28,7 @@ function createPackageFile() {
 
       resolve(data);
     });
-  })
-  .then((data) => JSON.parse(data))
-  .then((packageData) => {
+  }).then((data) => JSON.parse(data)).then((packageData) => {
     const {
       author,
       version,
@@ -80,9 +77,7 @@ const files = [
   'LICENSE',
 ];
 
-Promise
-  .all(files.map((file) => copyFile(file)))
-  .then(() => createPackageFile());
+Promise.all(files.map((file) => copyFile(file))).then(() => createPackageFile());
 
 // Copy original implementation files for flow.
 flowCopySource(['src'], 'build', { verbose: true, ignore: '**/*.spec.js' });
