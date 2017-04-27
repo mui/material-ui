@@ -104,6 +104,7 @@
     "eventsource-polyfill": "^0.9.6",
     "flow-bin": "^0.45.0",
     "fs-extra": "^3.0.0",
+    "flow-copy-source": "^1.1.0",
     "glob": "^7.1.1",
     "html-looks-like": "^1.0.2",
     "jsdom": "^10.0.0",
