@@ -154,7 +154,7 @@ class Tabs extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (
       this.props.width !== prevProps.width ||
-      !isEqual(this.state.indicatorStyle, prevState.indicatorStyle)
+      this.state.indicatorStyle !== prevState.indicatorStyle
     ) {
       this.scrollSelectedIntoView();
     }
