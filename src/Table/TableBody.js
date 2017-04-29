@@ -220,7 +220,7 @@ class TableBody extends Component {
         columnNumber={0}
         style={{
           width: 24,
-          cursor: disabled ? 'not-allowed' : 'inherit',
+          cursor: disabled ? 'default' : 'inherit',
         }}
       >
         <Checkbox
