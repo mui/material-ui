@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import transitions from '../styles/transitions';
 
 function getStyles(props, context) {
-  const {inkBar} = context.muiTheme;
-  const {isRtl} = context.muiTheme;
+  const {inkBar, isRtl} = context.muiTheme;
 
   return {
     root: {
