@@ -150,8 +150,15 @@ export default class Tab extends Component {
     this.checkTextWrap();
   }
 
-  componentDidUpdate() {
-    this.checkTextWrap();
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.wrappedText === prevState.wrappedText) {
+      /**
+       * At certain text and tab lengths, a larger font size may wrap to two lines while the smaller
+       * font size still only requires one line.  This check will prevent an infinite render loop
+       * fron occurring in that scenario.
+       */
+      this.checkTextWrap();
+    }
   }
 
   handleChange = (event) => {
