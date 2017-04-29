@@ -24,7 +24,13 @@ export default function createBreakpoints(
   const values = keys.map((n) => breakpoints[n]);
 
   function up(name) {
-    const value = breakpoints[name] || name;
+    let value;
+    // min-width of xs starts at 0
+    if (name === 'xs') {
+      value = 0;
+    } else {
+      value = breakpoints[name] || name;
+    }
     return `@media (min-width:${value}${unit})`;
   }
 
@@ -37,7 +43,7 @@ export default function createBreakpoints(
     const startIndex = keys.indexOf(start);
     const endIndex = keys.indexOf(end);
     return `@media (min-width:${values[startIndex]}${unit}) and (max-width:${
-      values[endIndex + 1] - (step / 100)}${unit})`;
+    values[endIndex + 1] - (step / 100)}${unit})`;
   }
 
   function only(name) {
