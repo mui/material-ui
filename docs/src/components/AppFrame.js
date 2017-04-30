@@ -39,7 +39,6 @@ const styleSheet = createStyleSheet('AppFrame', (theme) => {
       body: {
         margin: 0,
         background: theme.palette.background.default,
-        fontFamily: theme.typography.fontFamily,
         color: theme.palette.text.primary,
         lineHeight: '1.2',
         overflowX: 'hidden',
