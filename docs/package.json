@@ -1,8 +1,8 @@
 {
   "name": "material-ui-docs",
   "private": true,
-  "version": "0.16.0",
-  "description": "Documentation site for material-ui",
+  "version": "1.0.0",
+  "description": "Documentation site for Material-UI",
   "repository": {
     "type": "git",
     "url": "https://github.com/callemall/material-ui.git"
@@ -31,7 +31,7 @@
     "rimraf": "^2.6.1",
     "style-loader": "^0.16.1",
     "webpack": "^2.4.1",
-    "webpack-dev-server": "^2.4.4"
+    "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
     "babel-runtime": "^6.23.0",

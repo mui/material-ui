@@ -135,7 +135,7 @@ describe('<Tabs />', () => {
         assert.strictEqual(instance.updateScrollButtonState.called, true,
           'should have called updateScrollButtonState');
         done();
-      }, 100);
+      }, 150);
     });
 
     it('should get a scrollbar size listener', () => {
@@ -235,7 +235,7 @@ describe('<Tabs />', () => {
         assert.strictEqual(instance.updateIndicatorState.called, true,
           'should have called updateIndicatorState');
         done();
-      }, 100);
+      }, 150);
     });
 
     describe('scroll button visibility states', () => {
@@ -339,6 +339,7 @@ describe('<Tabs />', () => {
     let scrollStub;
     let instance;
     let metaStub;
+
     before(() => {
       scrollStub = stub(scroll, 'left');
       const wrapper = shallowWithWidth(
@@ -353,6 +354,10 @@ describe('<Tabs />', () => {
       );
       instance = wrapper.instance();
       metaStub = stub(instance, 'getTabsMeta');
+    });
+
+    after(() => {
+      scroll.left.restore();
     });
 
     it('should scroll left tab into view', () => {
