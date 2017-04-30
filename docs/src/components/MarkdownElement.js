@@ -53,6 +53,7 @@ const anchorLinkStyle = (theme) => ({
 
 const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
   root: {
+    fontFamily: theme.typography.fontFamily,
     marginTop: theme.spacing.unit * 2,
     marginBottom: theme.spacing.unit * 2,
     padding: '0 10px',
@@ -65,6 +66,7 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
       padding: '12px 18px',
       backgroundColor: theme.palette.background.paper,
       borderRadius: 3,
+      overflow: 'auto',
     },
     '& code': {
       display: 'inline-block',
