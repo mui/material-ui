@@ -2,7 +2,7 @@
   "name": "material-ui-build-next",
   "private": true,
   "author": "Material-UI Team",
-  "version": "1.0.0-alpha.11",
+  "version": "1.0.0-alpha.12",
   "description": "Material Design UI components built with React",
   "main": "./src/index.js",
   "keywords": [
