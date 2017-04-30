@@ -172,7 +172,7 @@ const { styleManager, theme } = createStyleManager();
 render(
   <MuiThemeProvider styleManager={styleManager} theme={theme}>
     <Main />
-  </Provider>,
+  </MuiThemeProvider>,
   document.querySelector('#root'),
 );
 ```
