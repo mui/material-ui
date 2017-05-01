@@ -149,76 +149,76 @@ type Props = {
   /**
    * The content of the component.
    */
-    children?: Element<any>,
+  children?: Element<any>,
   /**
    * The CSS class name of the root element.
    */
-    className?: string,
+  className?: string,
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-    component?: string | Function,
+  component?: string | Function,
   /**
    * If `true`, the component will have the flex *container* behavior.
    * You should be wrapping *items* with a *container*.
    */
-    container?: boolean,
+  container?: boolean,
   /**
    * It true, the component will have the flex *item* behavior.
    * You should be wrapping *items* with a *container*.
    */
-    item?: boolean,
+  item?: boolean,
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for all the screen sizes with the lowest priority.
    */
-    xs?: GridSizes,
+  xs?: GridSizes,
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `sm` breakpoint and wider screens if not overridden.
    */
-    sm?: GridSizes, // eslint-disable-line react/sort-prop-types
+  sm?: GridSizes, // eslint-disable-line react/sort-prop-types
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `md` breakpoint and wider screens if not overridden.
    */
-    md?: GridSizes, // eslint-disable-line react/sort-prop-types
+  md?: GridSizes, // eslint-disable-line react/sort-prop-types
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `lg` breakpoint and wider screens if not overridden.
    */
-    lg?: GridSizes, // eslint-disable-line react/sort-prop-types
+  lg?: GridSizes, // eslint-disable-line react/sort-prop-types
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `xl` breakpoint and wider screens.
    */
-    xl?: GridSizes, // eslint-disable-line react/sort-prop-types
+  xl?: GridSizes, // eslint-disable-line react/sort-prop-types
   /**
    * Defines the `align-items` style property.
    * It's applied for all screen sizes.
    */
-    align?: Align, // eslint-disable-line react/sort-prop-types
+  align?: Align, // eslint-disable-line react/sort-prop-types
   /**
    * Defines the `flex-direction` style property.
    * It is applied for all screen sizes.
    */
-    direction?: Direction, // eslint-disable-line react/sort-prop-types
+  direction?: Direction, // eslint-disable-line react/sort-prop-types
   /**
    * Defines the space between the type `item` component.
    * It can only be used on a type `container` component.
    */
-    gutter?: Gutters, // eslint-disable-line react/sort-prop-types
+  gutter?: Gutters, // eslint-disable-line react/sort-prop-types
   /**
    * Defines the `justify-content` style property.
    * It is applied for all screen sizes.
    */
-    justify?: Justify, // eslint-disable-line react/sort-prop-types
+  justify?: Justify, // eslint-disable-line react/sort-prop-types
   /**
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.
    */
-    wrap?: Wrap, // eslint-disable-line react/sort-prop-types
+  wrap?: Wrap, // eslint-disable-line react/sort-prop-types
 };
 
 function Layout(props: Props, context: any) {
