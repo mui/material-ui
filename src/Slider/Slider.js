@@ -578,6 +578,11 @@ class Slider extends Component {
     } else {
       position = event.touches[0][mainAxisClientOffsetProperty[axis]] - this.getTrackOffset();
     }
+
+    if (isRtl) {
+      position += this.track[mainAxisClientProperty.x];
+    }
+
     this.setValueFromPosition(event, position);
 
     document.addEventListener('touchmove', this.handleTouchMove);
@@ -629,6 +634,11 @@ class Slider extends Component {
     } else {
       position = event[mainAxisClientOffsetProperty[axis]] - this.getTrackOffset();
     }
+
+    if (isRtl) {
+      position += this.track[mainAxisClientProperty.x];
+    }
+
     this.setValueFromPosition(event, position);
 
     document.addEventListener('mousemove', this.handleDragMouseMove);
