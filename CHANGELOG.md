@@ -10,7 +10,7 @@ This release almost exclusively contains bug fixes.
 
 - [Table] Fix controlled behavior (#6638) @oliviertassinari
 
-this PR is introducing a breaking change by removing the ambiguity between default state and controlled state. Now, as soon as the selected property his used, the rows selection of the component are controlled. Hence fully implementing what's documented:
+This PR is introducing a breaking change by removing the ambiguity between default state and controlled state. Now, as soon as the selected property is used, the row selection of the component is controlled, hence fully implementing what's documented:
 
 > `selected`: This property can be used to programmatically select rows.
 
