@@ -1,5 +1,5 @@
-Text
-====
+Typography
+==========
 
 
 
@@ -12,7 +12,7 @@ Props
 | children | node |  |  |
 | className | string |  | The CSS class name of the root element. |
 | colorInherit | bool | false | If `true`, the text will inherit its color. |
-| component | union:&nbsp;string<br>&nbsp;func<br> | 'span' | The component used for the root node. Either a string to use a DOM element or a component. |
+| component | union:&nbsp;string<br>&nbsp;func<br> |  | The component used for the root node. Either a string to use a DOM element or a component. By default we map the type to a good default headline component. |
 | gutterBottom | bool | false | If `true`, the text will have a bottom margin. |
 | noWrap | bool | false | If `true`, the text will not wrap, but instead will truncate with an ellipsis. |
 | paragraph | bool | false | If `true`, the text will have a bottom margin. |

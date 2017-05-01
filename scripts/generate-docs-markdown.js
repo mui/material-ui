@@ -108,7 +108,13 @@ function generatePropType(type) {
 
     case 'union':
     case 'enum': {
-      let values = type.value.map((v) => v.value || v.name);
+      let values;
+      if (type.raw) {
+        // flow union
+        values = type.raw.split('|').map((v) => v.trim());
+      } else {
+        values = type.value.map((v) => v.value || v.name);
+      }
       // Display one value per line as it's better for lisibility.
       if (values.length < 5) {
         values = values.join('<br>&nbsp;');
@@ -135,7 +141,8 @@ function generateProps(props) {
     .keys(props)
     .reduce((textProps, key) => {
       const prop = props[key];
-      const description = generatePropDescription(prop.required, prop.description, prop.type);
+      const description =
+        generatePropDescription(prop.required, prop.description, prop.flowType || prop.type);
 
       if (description === null) {
         return textProps;
@@ -151,13 +158,14 @@ function generateProps(props) {
         key = `<span style="color: #31a148">${key}\u2009*</span>`;
       }
 
-      if (prop.type.name === 'custom') {
+      const type = prop.flowType || prop.type;
+      if (type.name === 'custom') {
         if (getDeprecatedInfo(prop.type)) {
           key = `~~${key}~~`;
         }
       }
 
-      textProps += `| ${key} | ${generatePropType(prop.type)} | ${defaultValue} | ${
+      textProps += `| ${key} | ${generatePropType(type)} | ${defaultValue} | ${
         description} |\n`;
 
       return textProps;

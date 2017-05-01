@@ -6,14 +6,30 @@
   "env": {
     "coverage": {
       "plugins": [
-        ["istanbul"]
+        [
+          "flow-react-proptypes",
+          "transform-flow-strip-types",
+          "istanbul"
+        ]
+      ]
+    },
+    "development": {
+      "sourceMaps": "both",
+      "plugins": [
+        "flow-react-proptypes",
+        "transform-flow-strip-types"
       ]
     },
     "test": {
-      "sourceMaps": "both"
+      "sourceMaps": "both",
+      "plugins": [
+        "flow-react-proptypes",
+        "transform-flow-strip-types"
+      ]
     },
     "production": {
       "plugins": [
+        "transform-flow-strip-types",
         "transform-react-constant-elements",
         "transform-dev-warning",
         "transform-runtime",
