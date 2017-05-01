@@ -65,5 +65,4 @@ function HiddenJs(props: Props): ?Element<any> {
 
 HiddenJs.defaultProps = defaultProps;
 
-export { HiddenJs }; // for testing
-export default withWidth(HiddenJs);
+export default withWidth()(HiddenJs);

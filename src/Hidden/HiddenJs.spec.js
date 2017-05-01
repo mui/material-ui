@@ -2,15 +2,16 @@
 /* eslint-disable no-loop-func */
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils/index';
-import { HiddenJs } from './HiddenJs';
+import { createShallow } from 'src/test-utils';
+import HiddenJs from './HiddenJs';
 import type { Breakpoints } from '../styles/breakpoints';
 
 describe('<HiddenJs />', () => {
-  let shallow;
+  let shallowWithWidth;
 
   before(() => {
-    shallow = createShallow();
+    const shallow = createShallow();
+    shallowWithWidth = (node, options = {}) => shallow(node, options).dive().dive();
   });
 
   function shouldNotRender(
@@ -19,7 +20,7 @@ describe('<HiddenJs />', () => {
       const up = upOrDown === 'Up';
       it(`should not render ${breakpoint} ${up ? '(smaller)' : '(same or smaller)'}`, () => {
         const props = { width, [`${breakpoint}${upOrDown}`]: true };
-        const wrapper = shallow(<HiddenJs {...props}>foo</HiddenJs>);
+        const wrapper = shallowWithWidth(<HiddenJs {...props}>foo</HiddenJs>);
         assert.strictEqual(wrapper.type(), null, 'should render nothing');
       });
     });
@@ -31,7 +32,7 @@ describe('<HiddenJs />', () => {
       const up = upOrDown === 'Up';
       it(`should render ${breakpoint} ${up ? '(same or larger)' : '(larger)'}`, () => {
         const props = { width, [`${breakpoint}${upOrDown}`]: true };
-        const wrapper = shallow(<HiddenJs {...props}>foo</HiddenJs>);
+        const wrapper = shallowWithWidth(<HiddenJs {...props}>foo</HiddenJs>);
         assert.isNotNull(wrapper.type(), 'should render children');
         assert.strictEqual(wrapper.name(), 'div');
         assert.strictEqual(wrapper.first().text(), 'foo', 'should render children');
