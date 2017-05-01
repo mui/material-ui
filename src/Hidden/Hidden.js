@@ -1,7 +1,4 @@
 // @flow
-/**
- * Responsively hides children based on the selected implementation.
- */
 import React, { Element } from 'react';
 import HiddenJs from './Hidden';
 
@@ -9,7 +6,7 @@ export type DefaultProps = {
   component: string | Function,
 }
 
-export type Props = {
+export type HiddenProps = {
   /**
    * The content of the component.
    */
@@ -89,7 +86,18 @@ export const defaultProps: DefaultProps = {
   xlDown: false,
 };
 
-function Hidden(props: Props & { implementation?: 'js' | 'css' }) {
+type Props = HiddenProps & {
+  /**
+   * Specify which implementation to use.  'js' is the default, 'css' works better for server
+   * side rendering.
+   */
+  implementation?: 'js' | 'css'
+}
+
+/**
+ * Responsively hides children based on the selected implementation.
+ */
+function Hidden(props: Props) {
   const {
     implementation,
     ...other
@@ -99,7 +107,7 @@ function Hidden(props: Props & { implementation?: 'js' | 'css' }) {
     return <HiddenJs {...other} />;
   }
 
-  throw new Error('<HiddenJs implementation="css" /> is not yet implemented');
+  throw new Error('<Hidden implementation="css" /> is not yet implemented');
 }
 
 Hidden.defaultProps = {

@@ -5,10 +5,10 @@
 import React, { Element } from 'react';
 import { keys as breakpoints } from '../styles/breakpoints';
 import withWidth, { isWidthDown, isWidthUp } from '../utils/withWidth';
-import type { Props } from './Hidden';
+import type { HiddenProps } from './Hidden';
 import { defaultProps } from './Hidden';
 
-type JsProps = Props & {
+type Props = HiddenProps & {
   /**
    * @ignore
    * width prop provided by withWidth decorator
@@ -16,7 +16,7 @@ type JsProps = Props & {
     width: string,
 };
 
-function HiddenJs(props: JsProps): ?Element<any> {
+function HiddenJs(props: Props): ?Element<any> {
   const {
     children,
     component,

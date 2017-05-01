@@ -15,21 +15,19 @@ describe('<HiddenJs />', () => {
 
   function shouldNotRender(
     width: Breakpoints, upOrDown: 'Up' | 'Down', smallerBreakpoints: Array<Breakpoints>) {
-    for (let i = 0; i < smallerBreakpoints.length; i += 1) {
-      const breakpoint = smallerBreakpoints[i];
+    smallerBreakpoints.forEach((breakpoint) => {
       const up = upOrDown === 'Up';
       it(`should not render ${breakpoint} ${up ? '(smaller)' : '(same or smaller)'}`, () => {
         const props = { width, [`${breakpoint}${upOrDown}`]: true };
         const wrapper = shallow(<HiddenJs {...props}>foo</HiddenJs>);
         assert.strictEqual(wrapper.type(), null, 'should render nothing');
       });
-    }
+    });
   }
 
   function shouldRender(
     width: Breakpoints, upOrDown: 'Up' | 'Down', sameOrLargerBreakpoints: Array<Breakpoints>) {
-    for (let i = 0; i < sameOrLargerBreakpoints.length; i += 1) {
-      const breakpoint = sameOrLargerBreakpoints[i];
+    sameOrLargerBreakpoints.forEach((breakpoint) => {
       const up = upOrDown === 'Up';
       it(`should render ${breakpoint} ${up ? '(same or larger)' : '(larger)'}`, () => {
         const props = { width, [`${breakpoint}${upOrDown}`]: true };
@@ -38,7 +36,7 @@ describe('<HiddenJs />', () => {
         assert.strictEqual(wrapper.name(), 'div');
         assert.strictEqual(wrapper.first().text(), 'foo', 'should render children');
       });
-    }
+    });
   }
 
   describe('screen width: xs', () => {
