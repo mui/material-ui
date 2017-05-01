@@ -31,6 +31,7 @@ function App(props) {
   }
 
   styleManager.setSheetOrder(MUI_SHEET_ORDER.concat([
+    'Link',
     'AppContent',
     'AppDrawer',
     'AppDrawerNavItem',
