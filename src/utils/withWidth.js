@@ -29,7 +29,6 @@ export const isWidthUp = (screenWidth, breakpoint, inclusive = true) => {
 export const isWidthDown = (screenWidth, breakpoint, inclusive = false) => {
   if (inclusive) {
     return keys.indexOf(screenWidth) >= keys.indexOf(breakpoint);
-
   }
   return keys.indexOf(screenWidth) > keys.indexOf(breakpoint);
 };

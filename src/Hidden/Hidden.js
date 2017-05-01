@@ -9,7 +9,7 @@ export type DefaultProps = {
   component: string | Function,
 }
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * The content of the component.
    */

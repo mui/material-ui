@@ -2,10 +2,10 @@
 /**
  * Responsively hides children by omission.
  */
-import React, { Element, PureComponent } from 'react';
+import React, { Element } from 'react';
 import { keys as breakpoints } from '../styles/breakpoints';
 import withWidth, { isWidthDown, isWidthUp } from '../utils/withWidth';
-import type { DefaultProps, Props } from './Hidden';
+import type { Props } from './Hidden';
 import { defaultProps } from './Hidden';
 
 type JsProps = Props & {
@@ -16,56 +16,54 @@ type JsProps = Props & {
     width: string,
 };
 
-class HiddenJs extends PureComponent<DefaultProps, JsProps, void> {
-  static defaultProps: DefaultProps = defaultProps;
-  props: JsProps;
+function HiddenJs(props: JsProps): ?Element<any> {
+  const {
+    children,
+    component,
+    xsUp, // eslint-disable-line no-unused-vars
+    smUp, // eslint-disable-line no-unused-vars
+    mdUp, // eslint-disable-line no-unused-vars
+    lgUp, // eslint-disable-line no-unused-vars
+    xlUp, // eslint-disable-line no-unused-vars
+    xsDown, // eslint-disable-line no-unused-vars
+    smDown, // eslint-disable-line no-unused-vars
+    mdDown, // eslint-disable-line no-unused-vars
+    lgDown, // eslint-disable-line no-unused-vars
+    xlDown, // eslint-disable-line no-unused-vars
+    width,
+    ...other
+  } = props;
 
-  render(): ?Element<any> {
-    const {
-      children,
-      component: ComponentProp,
-      xsUp, // eslint-disable-line no-unused-vars
-      smUp, // eslint-disable-line no-unused-vars
-      mdUp, // eslint-disable-line no-unused-vars
-      lgUp, // eslint-disable-line no-unused-vars
-      xlUp, // eslint-disable-line no-unused-vars
-      xsDown, // eslint-disable-line no-unused-vars
-      smDown, // eslint-disable-line no-unused-vars
-      mdDown, // eslint-disable-line no-unused-vars
-      lgDown, // eslint-disable-line no-unused-vars
-      xlDown, // eslint-disable-line no-unused-vars
-      width,
-      ...other
-    } = this.props;
+  // workaround: see https://github.com/facebook/flow/issues/1660#issuecomment-297775427
+  const ComponentProp = component || defaultProps.component;
+  let visible = true;
 
-    let visible = true;
-
-    // determine visibility based on the smallest size up
-    for (let i = 0; i < breakpoints.length; i += 1) {
-      const breakpoint = breakpoints[i];
-      const breakpointUp = this.props[`${breakpoint}Up`];
-      const breakpointDown = this.props[`${breakpoint}Down`];
-      if (
-        (breakpointUp && isWidthUp(width, breakpoint)) ||
-        (breakpointDown && (isWidthDown(width, breakpoint, true)))
-      ) {
-        visible = false;
-        break;
-      }
+  // determine visibility based on the smallest size up
+  for (let i = 0; i < breakpoints.length; i += 1) {
+    const breakpoint = breakpoints[i];
+    const breakpointUp = props[`${breakpoint}Up`];
+    const breakpointDown = props[`${breakpoint}Down`];
+    if (
+      (breakpointUp && isWidthUp(width, breakpoint)) ||
+      (breakpointDown && (isWidthDown(width, breakpoint, true)))
+    ) {
+      visible = false;
+      break;
     }
-
-    if (!visible) {
-      return null;
-    }
-
-    return (
-      <ComponentProp {...other}>
-        {children}
-      </ComponentProp>
-    );
   }
-}
-// for testing purposes
-export { HiddenJs };
 
+  if (!visible) {
+    return null;
+  }
+
+  return (
+    <ComponentProp {...other}>
+      {children}
+    </ComponentProp>
+  );
+}
+
+HiddenJs.defaultProps = defaultProps;
+
+export { HiddenJs }; // for testing
 export default withWidth(HiddenJs);
