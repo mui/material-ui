@@ -107,7 +107,7 @@ const reverseMainAxisOffsetProperty = {
   'y-reverse': 'bottom',
 };
 
-const isMouseControlInverted = (axis) => axis === 'x-reverse' || axis === 'y';
+const isMouseControlInverted = (axis, isRtl) => axis === 'x' && isRtl || axis === 'x-reverse' && !isRtl || axis === 'y';
 
 function getPercent(value, min, max) {
   let percent = (value - min) / (max - min);
@@ -562,15 +562,21 @@ class Slider extends Component {
   }
 
   handleTouchStart = (event) => {
-    if (this.props.disabled) {
+    const {
+      axis,
+      disabled,
+    } = this.props;
+    const {isRtl} = this.context.muiTheme;
+
+    if (disabled) {
       return;
     }
 
     let position;
-    if (isMouseControlInverted(this.props.axis)) {
-      position = this.getTrackOffset() - event.touches[0][mainAxisClientOffsetProperty[this.props.axis]];
+    if (isMouseControlInverted(axis, isRtl)) {
+      position = this.getTrackOffset() - event.touches[0][mainAxisClientOffsetProperty[axis]];
     } else {
-      position = event.touches[0][mainAxisClientOffsetProperty[this.props.axis]] - this.getTrackOffset();
+      position = event.touches[0][mainAxisClientOffsetProperty[axis]] - this.getTrackOffset();
     }
     this.setValueFromPosition(event, position);
 
@@ -607,15 +613,21 @@ class Slider extends Component {
   };
 
   handleMouseDown = (event) => {
-    if (this.props.disabled) {
+    const {
+      axis,
+      disabled,
+    } = this.props;
+    const {isRtl} = this.context.muiTheme;
+
+    if (disabled) {
       return;
     }
 
     let position;
-    if (isMouseControlInverted(this.props.axis)) {
-      position = this.getTrackOffset() - event[mainAxisClientOffsetProperty[this.props.axis]];
+    if (isMouseControlInverted(axis, isRtl)) {
+      position = this.getTrackOffset() - event[mainAxisClientOffsetProperty[axis]];
     } else {
-      position = event[mainAxisClientOffsetProperty[this.props.axis]] - this.getTrackOffset();
+      position = event[mainAxisClientOffsetProperty[axis]] - this.getTrackOffset();
     }
     this.setValueFromPosition(event, position);
 
@@ -667,6 +679,12 @@ class Slider extends Component {
   }
 
   onDragUpdate(event, type) {
+    const {
+      axis,
+      disabled,
+    } = this.props;
+    const {isRtl} = this.context.muiTheme;
+
     if (this.dragRunning) {
       return;
     }
@@ -678,13 +696,17 @@ class Slider extends Component {
       const source = type === 'touch' ? event.touches[0] : event;
 
       let position;
-      if (isMouseControlInverted(this.props.axis)) {
-        position = this.getTrackOffset() - source[mainAxisClientOffsetProperty[this.props.axis]];
+      if (isMouseControlInverted(axis, isRtl)) {
+        position = this.getTrackOffset() - source[mainAxisClientOffsetProperty[axis]];
       } else {
-        position = source[mainAxisClientOffsetProperty[this.props.axis]] - this.getTrackOffset();
+        position = source[mainAxisClientOffsetProperty[axis]] - this.getTrackOffset();
       }
 
-      if (!this.props.disabled) {
+      if (isRtl) {
+        position += this.track[mainAxisClientProperty.x];
+      }
+
+      if (!disabled) {
         this.setValueFromPosition(event, position);
       }
     });

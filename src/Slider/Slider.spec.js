@@ -336,7 +336,6 @@ describe('<Slider />', () => {
       const wrapper = shallowWithRTLContext(
         <Slider name="slider" onChange={handleChange} />
       );
-      const previousValue = wrapper.state().value;
 
       getTrackContainer(wrapper).simulate('keydown', {
         keyCode: keycode('right'),
@@ -581,7 +580,6 @@ describe('<Slider />', () => {
       const wrapper = shallowWithRTLContext(
         <Slider name="slider" axis="x-reverse" onChange={handleChange} />
       );
-      const previousValue = wrapper.state().value;
 
       getTrackContainer(wrapper).simulate('keydown', {
         keyCode: keycode('left'),
