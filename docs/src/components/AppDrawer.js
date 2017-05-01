@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router';
 import { createStyleSheet } from 'jss-theme-reactor';
 import shallowEqual from 'recompose/shallowEqual';
 import { List } from 'material-ui/List';
@@ -12,6 +11,7 @@ import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import AppDrawerNavItem from 'docs/src/components/AppDrawerNavItem';
+import Link from 'docs/src/components/Link';
 
 export const styleSheet = createStyleSheet('AppDrawer', (theme) => {
   return {
@@ -20,10 +20,8 @@ export const styleSheet = createStyleSheet('AppDrawer', (theme) => {
       backgroundColor: theme.palette.background.paper,
     },
     title: {
-      display: 'block',
       color: theme.palette.text.secondary,
       '&:hover': {
-        textDecoration: 'none',
         color: theme.palette.primary[500],
       },
     },
@@ -116,17 +114,17 @@ export default class AppDrawer extends Component {
         <div className={classes.nav}>
           <Toolbar className={classes.toolbar}>
             <Link className={classes.title} to="/" onClick={this.props.onRequestClose}>
-              <Typography type="title" gutterBottom>
+              <Typography type="title" gutterBottom colorInherit>
                 Material UI
               </Typography>
             </Link>
             {process.env.MATERIAL_UI_VERSION ? (
-              <a
+              <Link
                 className={classes.anchor}
                 href={`${GITHUB_RELEASE_BASE_URL}v${process.env.MATERIAL_UI_VERSION}`}
               >
                 <Typography type="caption">{`v${process.env.MATERIAL_UI_VERSION}`}</Typography>
-              </a>
+              </Link>
             ) : null}
             <Divider absolute />
           </Toolbar>

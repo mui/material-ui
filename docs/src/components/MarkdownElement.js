@@ -156,6 +156,13 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
       padding: `${theme.spacing.unit / 2}px ${theme.spacing.unit * 3}px`,
       margin: `${theme.spacing.unit * 3}px 0`,
     },
+    '& a': {
+      color: theme.palette.accent.A400,
+      textDecoration: 'none',
+      '&:hover': {
+        textDecoration: 'underline',
+      },
+    },
   },
 }));
 
