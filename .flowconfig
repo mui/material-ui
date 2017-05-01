@@ -1,5 +1,5 @@
 [ignore]
-
+<PROJECT_ROOT>/build
 .*/node_modules/react-event-listener/src/.*
 .*/node_modules/fbjs/lib/partitionObjectByKey.js
 .*/node_modules/jss/lib/.*\.js\.flow
