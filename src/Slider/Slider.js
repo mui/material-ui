@@ -417,6 +417,8 @@ class Slider extends Component {
       step,
     } = this.props;
 
+    const {isRtl} = this.context.muiTheme;
+
     let action;
 
     switch (keycode(event)) {
@@ -430,9 +432,17 @@ class Slider extends Component {
         break;
       case 'left':
         if (axis === 'x-reverse') {
-          action = 'increase';
+          if (isRtl) {
+            action = 'decrease';
+          } else {
+            action = 'increase';
+          }
         } else {
-          action = 'decrease';
+          if (isRtl) {
+            action = 'increase';
+          } else {
+            action = 'decrease';
+          }
         }
         break;
       case 'page up':
@@ -445,9 +455,17 @@ class Slider extends Component {
         break;
       case 'right':
         if (axis === 'x-reverse') {
-          action = 'decrease';
+          if (isRtl) {
+            action = 'increase';
+          } else {
+            action = 'decrease';
+          }
         } else {
-          action = 'increase';
+          if (isRtl) {
+            action = 'decrease';
+          } else {
+            action = 'increase';
+          }
         }
         break;
       case 'home':
