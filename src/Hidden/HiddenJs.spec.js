@@ -111,7 +111,7 @@ describe('<HiddenJs />', () => {
 
     describe('only', () => {
       shouldNotRender('md', 'only', ['md']);
-      shouldRender('wd', 'only', ['xs', 'sm', 'lg', 'xl']);
+      shouldRender('md', 'only', ['xs', 'sm', 'lg', 'xl']);
     });
   });
 
