@@ -29,12 +29,17 @@
     },
     "production": {
       "plugins": [
-        "transform-flow-strip-types",
         "transform-react-constant-elements",
         "transform-dev-warning",
         "transform-runtime",
         ["react-remove-properties", {"properties": ["data-mui-test"]}],
-        ["transform-react-remove-prop-types", {"mode": "wrap"}]
+        ["transform-react-remove-prop-types", {
+          "mode": "wrap",
+          "plugins": [
+            "babel-plugin-flow-react-proptypes",
+            "babel-plugin-transform-flow-strip-types",
+          ]
+        }]
       ]
     }
   }
