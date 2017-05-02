@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
-const items = [];
+let items = [];
 for (let i = 0; i < 100; i++ ) {
   items.push(<MenuItem value={i} key={i} primaryText={`Item ${i}`} />);
 }
