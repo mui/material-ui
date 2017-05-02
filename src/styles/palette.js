@@ -1,5 +1,6 @@
 // @flow weak
-
+import difference from 'lodash/difference';
+import keys from 'lodash/keys';
 import { indigo, pink, grey, red, black, white } from './colors';
 import { getContrastRatio } from './colorManipulator';
 
@@ -64,6 +65,18 @@ export default function createPalette({
   error = red,
   type = 'light',
 } = {}) {
+  if (difference(keys(indigo), keys(primary)).length) {
+    throw new Error('Invalid primary color');
+  }
+
+  if (difference(keys(pink), keys(accent)).length) {
+    throw new Error('Invalid accent color');
+  }
+
+  if (difference(keys(red), keys(error)).length) {
+    throw new Error('Invalid error color');
+  }
+
   return {
     type,
     text: shades[type].text,
