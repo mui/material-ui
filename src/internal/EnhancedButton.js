@@ -75,7 +75,6 @@ class EnhancedButton extends Component {
     onKeyUp: () => {},
     onKeyboardFocus: () => {},
     onTouchTap: () => {},
-    tabIndex: 0,
     type: 'button',
   };
 
