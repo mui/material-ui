@@ -684,28 +684,23 @@ class Slider extends Component {
   }
 
   setValueFromPosition(event, position) {
-    const positionMax = this.track[mainAxisClientProperty[this.props.axis]];
-    if (position < 0) {
-      position = 0;
-    } else if (position > positionMax) {
-      position = positionMax;
-    }
-
     const {
       step,
       min,
       max,
     } = this.props;
+    const positionMax = this.track[mainAxisClientProperty[this.props.axis]];
 
     let value;
-    value = position / positionMax * (max - min);
-    value = Math.round(value / step) * step + min;
-    value = parseFloat(value.toFixed(5));
 
-    if (value > max) {
-      value = max;
-    } else if (value < min) {
+    if (position <= 0) {
       value = min;
+    } else if (position >= positionMax) {
+      value = max;
+    } else {
+      value = position / positionMax * (max - min);
+      value = Math.round(value / step) * step + min;
+      value = parseFloat(value.toFixed(5));
     }
 
     if (this.state.value !== value) {
