@@ -228,52 +228,42 @@ type Props = {
   onlyHidden?: Breakpoints,
   /**
    * If true, screens this size and up will be hidden.
-   * If false, screens this size and up will not be hidden.
    */
   xsUpHidden?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and up will be hidden.
-   * If false, screens this size and up will not be hidden.
    */
   smUpHidden?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and up will be hidden.
-   * If false, screens this size and up will not be hidden.
    */
   mdUpHidden?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and up will be hidden.
-   * If false, screens this size and up will not be hidden.
    */
   lgUpHidden?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and up will be hidden.
-   * If false, screens this size and up will not be hidden.
    */
   xlUpHidden?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and down will be hidden.
-   * If false, screens this size and down will not be hidden.
    */
   xsDownHidden?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and down will be hidden.
-   * If false, screens this size and down will not be hidden.
    */
   smDownHidden?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and down will be hidden.
-   * If false, screens this size and down will not be hidden.
    */
   mdDownHidden?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and down will be hidden.
-   * If false, screens this size and down will not be hidden.
    */
   lgDownHidden?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and down will be hidden.
-   * If false, screens this size and down will not be hidden.
    */
   xlDownHidden?: boolean, // eslint-disable-line react/sort-prop-types
 };
@@ -378,6 +368,17 @@ Layout.defaultProps = {
   gutter: 16,
   justify: 'flex-start',
   wrap: 'wrap',
+  onlyHidden: undefined,
+  xsUpHidden: undefined,
+  smUpHidden: undefined,
+  mdUpHidden: undefined,
+  lgUpHidden: undefined,
+  xlUpHidden: undefined,
+  xsDownHidden: undefined,
+  smDownHidden: undefined,
+  mdDownHidden: undefined,
+  lgDownHidden: undefined,
+  xlDownHidden: undefined,
 };
 
 Layout.contextTypes = {
