@@ -8,7 +8,7 @@ import Overlay from '../internal/Overlay';
 import RenderToLayer from '../internal/RenderToLayer';
 import Paper from '../Paper';
 
-import ReactTransitionGroup from 'react-addons-transition-group';
+import ReactTransitionGroup from 'react-transition-group/TransitionGroup';
 
 class TransitionItem extends Component {
   static propTypes = {
