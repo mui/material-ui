@@ -2,8 +2,7 @@
 import Switch from './Switch';
 import withSwitchLabel from '../internal/withSwitchLabel';
 
-export default from './Switch';
-export Switch from './Switch';
-
 const LabelSwitch = withSwitchLabel(Switch);
+
+export default Switch;
 export { LabelSwitch };

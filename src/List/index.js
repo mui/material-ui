@@ -1,7 +1,6 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-export default from './List';
-export List from './List';
+export { default } from './List';
 export ListItem from './ListItem';
 export ListItemAvatar from './ListItemAvatar';
 export ListItemText from './ListItemText';
