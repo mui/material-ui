@@ -1,5 +1,5 @@
 // @flow weak
-
+/* eslint-disable import/unambiguous */
 function myDestRewriter(pathObj) {
   let fileName = pathObj.base;
 

@@ -1,6 +1,6 @@
 // @flow weak
 import React, { Component } from 'react';
-import { Menu, MenuItem } from 'src/Menu';
+import Menu, { MenuItem } from 'src/Menu';
 
 const options = [
   'Menu Item 1',

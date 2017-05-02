@@ -3,7 +3,7 @@
 import { parse as parseDoctrine } from 'doctrine';
 import recast from 'recast';
 
-function stringOfLength(string, stringLength) {
+export function stringOfLength(string, stringLength) {
   let newString = '';
   for (let i = 0; i < stringLength.length; i += 1) {
     newString += string;
@@ -11,16 +11,16 @@ function stringOfLength(string, stringLength) {
   return newString;
 }
 
-function generateTitle(name) {
+export function generateTitle(name) {
   const title = `${name}`;
   return `${title}\n${stringOfLength('=', title)}\n`;
 }
 
-function generateDesciption(description) {
+export function generateDesciption(description) {
   return `${description}\n`;
 }
 
-function getDeprecatedInfo(type) {
+export function getDeprecatedInfo(type) {
   const deprecatedPropType = 'deprecated(PropTypes.';
 
   const indexStart = type.raw.indexOf(deprecatedPropType);
@@ -35,7 +35,7 @@ function getDeprecatedInfo(type) {
   return false;
 }
 
-function generatePropDescription(required, description, type) {
+export function generatePropDescription(required, description, type) {
   let deprecated = '';
 
   if (type.name === 'custom') {
@@ -77,7 +77,7 @@ function generatePropDescription(required, description, type) {
       parsedReturns = { type: { name: 'void' } };
     }
 
-    signature += '<br><br>**Signature:**<br>`function(';
+    signature += '<br><br>**Signature:**<br>`export function(';
     signature += parsedArgs.map((tag) => `${tag.name}: ${tag.type.name}`).join(', ');
     signature += `) => ${parsedReturns.type.name}\`<br>`;
     signature += parsedArgs.map((tag) => `*${tag.name}:* ${tag.description}`).join('<br>');
@@ -129,7 +129,7 @@ function generatePropType(type) {
   }
 }
 
-function generateProps(props) {
+export function generateProps(props) {
   const title = 'Props';
   const header = `${title}\n${stringOfLength('-', title)}\n`;
 
@@ -174,7 +174,7 @@ function generateProps(props) {
   return text;
 }
 
-function generateMarkdown(name, reactAPI) {
+export function generateMarkdown(name, reactAPI) {
   return `${
     generateTitle(name)}\n${
     generateDesciption(reactAPI.description)}\n${

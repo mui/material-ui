@@ -1,5 +1,5 @@
 // @flow weak
-
+/* eslint-disable import/unambiguous */
 const webpack = require('webpack');
 const pkg = require('../package.json');
 
