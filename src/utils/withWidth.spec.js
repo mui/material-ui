@@ -46,18 +46,28 @@ describe('withWidth', () => {
   });
 
   describe('isWidthUp', () => {
-    it('should work as expected', () => {
+    it('should work as default inclusive', () => {
       assert.strictEqual(isWidthUp('md', 'lg'), true, 'should accept larger size');
       assert.strictEqual(isWidthUp('md', 'md'), true, 'should be inclusive');
       assert.strictEqual(isWidthUp('md', 'sm'), false, 'should reject smaller size');
     });
+    it('should work as exclusive', () => {
+      assert.strictEqual(isWidthUp('md', 'lg', false), true, 'should accept larger size');
+      assert.strictEqual(isWidthUp('md', 'md', false), false, 'should be exclusive');
+      assert.strictEqual(isWidthUp('md', 'sm', false), false, 'should reject smaller size');
+    });
   });
 
   describe('isWidthDown', () => {
-    it('should work as expected', () => {
+    it('should work as default exclusive', () => {
       assert.strictEqual(isWidthDown('md', 'lg'), false, 'should reject larger size');
       assert.strictEqual(isWidthDown('md', 'md'), false, 'should be exclusive');
       assert.strictEqual(isWidthDown('md', 'sm'), true, 'should accept smaller size');
+    });
+    it('should work as inclusive', () => {
+      assert.strictEqual(isWidthDown('md', 'lg', true), false, 'should reject larger size');
+      assert.strictEqual(isWidthDown('md', 'md', true), true, 'should be inclusive');
+      assert.strictEqual(isWidthDown('md', 'sm', true), true, 'should accept smaller size');
     });
   });
 

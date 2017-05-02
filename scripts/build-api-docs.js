@@ -6,6 +6,10 @@ import path from 'path';
 import * as reactDocgen from 'react-docgen';
 import generateMarkdown from './generate-docs-markdown';
 
+const ignoredItems = [
+  'internal',
+  'HiddenJs.js',
+];
 const componentRegex = /^([A-Z][a-z]+)+\.js/;
 const docsDir = path.resolve(__dirname, '../docs/src/pages/component-api');
 const srcDir = path.resolve(__dirname, '../src');
@@ -60,7 +64,7 @@ function buildDocs(componentPath) {
 function findComponents(dir) {
   fs.readdir(dir, (err, items) => {
     items.forEach((item) => {
-      if (item === 'internal') {
+      if (ignoredItems.includes(item)) {
         return;
       }
 
