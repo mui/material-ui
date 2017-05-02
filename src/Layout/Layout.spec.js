@@ -3,7 +3,9 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow } from 'src/test-utils';
+import forOwn from 'lodash/forOwn';
 import Layout, { styleSheet } from './Layout';
+import Hidden from '../Hidden';
 
 describe('<Layout />', () => {
   let shallow;
@@ -71,6 +73,29 @@ describe('<Layout />', () => {
       const handleClick = () => {};
       const wrapper = shallow(<Layout component="span" onClick={handleClick} />);
       assert.strictEqual(wrapper.props().onClick, handleClick);
+    });
+  });
+
+  describe('hidden', () => {
+    const hiddenProps = {
+      onlyHidden: 'xs',
+      xsUpHidden: true,
+      smUpHidden: true,
+      mdUpHidden: true,
+      lgUpHidden: true,
+      xlUpHidden: true,
+      xsDownHidden: true,
+      smDownHidden: true,
+      mdDownHidden: true,
+      lgDownHidden: true,
+      xlDownHidden: true,
+    };
+
+    forOwn(hiddenProps, (value, key) => {
+      it(`should render ${key} with Hidden`, () => {
+        const wrapper = shallow(<Layout hidden={{ [key]: value }} />);
+        assert.strictEqual(wrapper.type(), Hidden);
+      });
     });
   });
 });

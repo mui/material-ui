@@ -16,6 +16,8 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 import requirePropFactory from '../utils/requirePropFactory';
+import Hidden from '../Hidden';
+import type { HiddenProps } from '../Hidden/Hidden';
 
 const GUTTERS = [0, 8, 16, 24, 40];
 const GRID_SIZES = [true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -170,6 +172,35 @@ type Props = {
    */
   item?: boolean,
   /**
+   * Defines the `align-items` style property.
+   * It's applied for all screen sizes.
+   */
+  align?: Align, // eslint-disable-line react/sort-prop-types
+  /**
+   * Defines the `flex-direction` style property.
+   * It is applied for all screen sizes.
+   */
+  direction?: Direction, // eslint-disable-line react/sort-prop-types
+  /**
+   * Defines the space between the type `item` component.
+   * It can only be used on a type `container` component.
+   */
+  gutter?: Gutters, // eslint-disable-line react/sort-prop-types
+  /**
+   * If provided, will wrap with Hidden component and given properties.
+   */
+  hidden?: HiddenProps, // eslint-disable-line react/sort-prop-types
+  /**
+   * Defines the `justify-content` style property.
+   * It is applied for all screen sizes.
+   */
+  justify?: Justify, // eslint-disable-line react/sort-prop-types
+  /**
+   * Defines the `flex-wrap` style property.
+   * It's applied for all screen sizes.
+   */
+  wrap?: Wrap, // eslint-disable-line react/sort-prop-types
+  /**
    * Defines the number of grids the component is going to use.
    * It's applied for all the screen sizes with the lowest priority.
    */
@@ -194,83 +225,62 @@ type Props = {
    * It's applied for the `xl` breakpoint and wider screens.
    */
   xl?: GridSizes, // eslint-disable-line react/sort-prop-types
-  /**
-   * Defines the `align-items` style property.
-   * It's applied for all screen sizes.
-   */
-  align?: Align, // eslint-disable-line react/sort-prop-types
-  /**
-   * Defines the `flex-direction` style property.
-   * It is applied for all screen sizes.
-   */
-  direction?: Direction, // eslint-disable-line react/sort-prop-types
-  /**
-   * Defines the space between the type `item` component.
-   * It can only be used on a type `container` component.
-   */
-  gutter?: Gutters, // eslint-disable-line react/sort-prop-types
-  /**
-   * Defines the `justify-content` style property.
-   * It is applied for all screen sizes.
-   */
-  justify?: Justify, // eslint-disable-line react/sort-prop-types
-  /**
-   * Defines the `flex-wrap` style property.
-   * It's applied for all screen sizes.
-   */
-  wrap?: Wrap, // eslint-disable-line react/sort-prop-types
 };
 
 function Layout(props: Props, context: any) {
   const {
-    children,
-    className,
+    className: classNameProp,
     component,
     container,
     item,
     align,
     direction,
+    gutter,
+    hidden,
+    justify,
+    wrap,
     xs,
     sm,
     md,
     lg,
     xl,
-    gutter,
-    justify,
-    wrap,
     ...other
   } = props;
 
   const classes = context.styleManager.render(styleSheet);
+  const className = classNames({
+    [classes.typeContainer]: container,
+    [classes.typeItem]: item,
+    [classes[`gutter-xs-${String(gutter)}`]]: container && gutter !== 0,
+    [classes[`direction-xs-${String(direction)}`]]: direction !== Layout.defaultProps.direction,
+    [classes[`wrap-xs-${String(wrap)}`]]: wrap !== Layout.defaultProps.wrap,
+    [classes[`align-xs-${String(align)}`]]: align !== Layout.defaultProps.align,
+    [classes[`justify-xs-${String(justify)}`]]: justify !== Layout.defaultProps.justify,
+    [classes['grid-xs']]: xs === true,
+    [classes[`grid-xs-${String(xs)}`]]: xs && xs !== true,
+    [classes['grid-sm']]: sm === true,
+    [classes[`grid-sm-${String(sm)}`]]: sm && sm !== true,
+    [classes['grid-md']]: md === true,
+    [classes[`grid-md-${String(md)}`]]: md && md !== true,
+    [classes['grid-lg']]: lg === true,
+    [classes[`grid-lg-${String(lg)}`]]: lg && lg !== true,
+    [classes['grid-xl']]: xl === true,
+    [classes[`grid-xl-${String(xl)}`]]: xl && xl !== true,
+  }, classNameProp);
+  const layoutProps = { className, ...other };
+
   // workaround: see https://github.com/facebook/flow/issues/1660#issuecomment-297775427
   const ComponentProp = component || Layout.defaultProps.component;
 
-  return (
-    <ComponentProp
-      className={classNames({
-        [classes.typeContainer]: container,
-        [classes.typeItem]: item,
-        [classes[`gutter-xs-${String(gutter)}`]]: container && gutter !== 0,
-        [classes[`direction-xs-${String(direction)}`]]: direction !== Layout.defaultProps.direction,
-        [classes[`wrap-xs-${String(wrap)}`]]: wrap !== Layout.defaultProps.wrap,
-        [classes[`align-xs-${String(align)}`]]: align !== Layout.defaultProps.align,
-        [classes[`justify-xs-${String(justify)}`]]: justify !== Layout.defaultProps.justify,
-        [classes['grid-xs']]: xs === true,
-        [classes[`grid-xs-${String(xs)}`]]: xs && xs !== true,
-        [classes['grid-sm']]: sm === true,
-        [classes[`grid-sm-${String(sm)}`]]: sm && sm !== true,
-        [classes['grid-md']]: md === true,
-        [classes[`grid-md-${String(md)}`]]: md && md !== true,
-        [classes['grid-lg']]: lg === true,
-        [classes[`grid-lg-${String(lg)}`]]: lg && lg !== true,
-        [classes['grid-xl']]: xl === true,
-        [classes[`grid-xl-${String(xl)}`]]: xl && xl !== true,
-      }, className)}
-      {...other}
-    >
-      {children}
-    </ComponentProp>
-  );
+  if (hidden) {
+    return (
+      <Hidden {...hidden}>
+        <ComponentProp {...layoutProps} />
+      </Hidden>
+    );
+  }
+
+  return <ComponentProp {...layoutProps} />;
 }
 
 Layout.defaultProps = {
@@ -282,6 +292,7 @@ Layout.defaultProps = {
   gutter: 16,
   justify: 'flex-start',
   wrap: 'wrap',
+  hidden: undefined,
 };
 
 Layout.contextTypes = {
