@@ -14,6 +14,8 @@ import SliderExampleStep from './ExampleStep';
 import sliderExampleStepCode from '!raw!./ExampleStep';
 import SliderExampleControlled from './ExampleControlled';
 import sliderExampleControlledCode from '!raw!./ExampleControlled';
+import SliderExampleLogScale from './ExampleLogScale';
+import sliderExampleLogScaleCode from '!raw!./ExampleLogScale';
 import SliderExampleAxis from './ExampleAxis';
 import sliderExampleAxisCode from '!raw!./ExampleAxis';
 import SliderExampleCustomScale from './ExampleCustomScale';
@@ -47,6 +49,12 @@ const SliderPage = () => (
       code={sliderExampleControlledCode}
     >
       <SliderExampleControlled />
+    </CodeExample>
+    <CodeExample
+      title="Logarithmic Scale Example"
+      code={sliderExampleLogScaleCode}
+    >
+      <SliderExampleLogScale />
     </CodeExample>
     <CodeExample
       title="Alternative Axis Examples"
