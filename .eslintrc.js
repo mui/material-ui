@@ -7,7 +7,10 @@ module.exports = {
     node: true,
     mocha: true,
   },
-  extends: 'airbnb',
+  extends: [
+    'airbnb',
+    'plugin:import/recommended',
+  ],
   parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 7,
@@ -15,11 +18,19 @@ module.exports = {
   },
   plugins: [
     'babel',
+    'import',
     'jsx-a11y',
     'mocha',
     'flowtype',
     'material-ui',
   ],
+  settings: {
+    'import/resolver': {
+      webpack: {
+        config: 'webpack.config.js',
+      },
+    },
+  },
   rules: {
     'arrow-body-style': 'off', // Not our taste?
     'arrow-parens': ['error', 'always'], // airbnb use as-needed
@@ -31,7 +42,7 @@ module.exports = {
     'no-alert': 'error', // airbnb is using warn
     'no-param-reassign': 'off', // Not our taste?
     'no-prototype-builtins': 'off', // airbnb use error
-    'no-use-before-define': ['error', { 'functions': false }], // airbnb have functions: true, annoying
+    'no-use-before-define': ['error', { functions: false }], // airbnb have functions: true, annoying
     'object-curly-spacing': 'off', // use babel plugin rule
     'operator-linebreak': ['error', 'after'], // aibnb is disabling this rule
     'babel/object-curly-spacing': ['error', 'always'],
