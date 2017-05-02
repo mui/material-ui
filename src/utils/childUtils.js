@@ -1,5 +1,5 @@
 import React from 'react';
-import createFragment from 'react-addons-create-fragment';
+import createFragment from '../ReactFragment/ReactFragment';
 
 export function createChildFragment(fragments) {
   const newFragments = {};
