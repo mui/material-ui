@@ -1,3 +1,3 @@
 // @flow
 export { default } from './TextField';
-export TextFieldLabel from './TextFieldLabel';
+export { default as TextFieldLabel } from './TextFieldLabel';

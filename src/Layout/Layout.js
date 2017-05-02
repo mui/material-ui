@@ -138,12 +138,12 @@ export const styleSheet = createStyleSheet('MuiLayout', (theme) => {
   };
 });
 
-type Align = 'flex-start' | 'center' | 'flex-end' | 'stretch'
-type Direction = 'row' | 'row-reverse' | 'column' | 'column-reverse'
-type Gutters = 0 | 8 | 16 | 24 | 40
-type GridSizes = boolean | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
-type Justify = 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around'
-type Wrap = 'nowrap' | 'wrap' | 'wrap-reverse'
+export type Align = 'flex-start' | 'center' | 'flex-end' | 'stretch'
+export type Direction = 'row' | 'row-reverse' | 'column' | 'column-reverse'
+export type Gutters = 0 | 8 | 16 | 24 | 40
+export type GridSizes = boolean | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+export type Justify = 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around'
+export type Wrap = 'nowrap' | 'wrap' | 'wrap-reverse'
 
 type Props = {
   /**

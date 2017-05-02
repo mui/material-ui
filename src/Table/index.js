@@ -1,7 +1,7 @@
 // @flow
 export { default } from './Table';
-export TableHead from './TableHead';
-export TableBody from './TableBody';
-export TableRow from './TableRow';
-export TableCell from './TableCell';
-export TableSortLabel from './TableSortLabel';
+export { default as TableHead } from './TableHead';
+export { default as TableBody } from './TableBody';
+export { default as TableRow } from './TableRow';
+export { default as TableCell } from './TableCell';
+export { default as TableSortLabel } from './TableSortLabel';

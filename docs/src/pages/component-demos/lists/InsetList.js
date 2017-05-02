@@ -3,12 +3,7 @@
 import React from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
-import {
-  List,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-} from 'material-ui/List';
+import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import StarIcon from 'material-ui-icons/Star';
 
 const styleSheet = createStyleSheet('InsetList', (theme) => ({

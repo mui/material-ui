@@ -1,5 +1,5 @@
 // @flow
-export createShallow from './createShallow';
-export createMount from './createMount';
-export createRenderToString from './createRenderToString';
-export consoleErrorMock from './consoleErrorMock';
+export { default as createShallow } from './createShallow';
+export { default as createMount } from './createMount';
+export { default as createRenderToString } from './createRenderToString';
+export { default as consoleErrorMock } from './consoleErrorMock';

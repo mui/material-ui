@@ -2,8 +2,7 @@
 
 import React, { Component } from 'react';
 import Button from 'material-ui/Button';
-import {
-  Dialog,
+import Dialog, {
   DialogActions,
   DialogContent,
   DialogContentText,
@@ -27,7 +26,7 @@ export default class AlertDialog extends Component {
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
         >
-          <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+          <DialogTitle>{'Use Google\'s location service?'}</DialogTitle>
           <DialogContent>
             <DialogContentText>
               Let Google help apps determine location.

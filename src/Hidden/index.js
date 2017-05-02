@@ -1,8 +1,3 @@
 // @flow
-import Hidden from './Hidden';
-import HiddenJs from './HiddenJs';
-
-export default Hidden;
-export {
-  HiddenJs,
-};
+export { default } from './Hidden';
+export { default as HiddenJs } from './HiddenJs';

@@ -3,8 +3,8 @@
 import React, { Component } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
-import { List, ListItem, ListItemText } from 'material-ui/List';
-import { Menu, MenuItem } from 'material-ui/Menu';
+import List, { ListItem, ListItemText } from 'material-ui/List';
+import Menu, { MenuItem } from 'material-ui/Menu';
 
 const styleSheet = createStyleSheet('SimpleListMenu', (theme) => ({
   root: {

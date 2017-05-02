@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { createStyleSheet } from 'jss-theme-reactor';
 import shallowEqual from 'recompose/shallowEqual';
-import { List } from 'material-ui/List';
+import List from 'material-ui/List';
 import Toolbar from 'material-ui/Toolbar';
 import Drawer from 'material-ui/Drawer';
 import Typography from 'material-ui/Typography';

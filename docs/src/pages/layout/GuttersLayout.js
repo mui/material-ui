@@ -1,8 +1,8 @@
 // @flow weak
-
 import React, { Component } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
+import type { Gutters } from 'material-ui/Layout/Layout';
 import Layout from 'material-ui/Layout';
 import { LabelRadio, RadioGroup } from 'material-ui/Radio';
 import Paper from 'material-ui/Paper';
@@ -23,20 +23,24 @@ const styleSheet = createStyleSheet('GuttersLayout', () => {
   };
 });
 
-export default class GuttersLayout extends Component {
+type State = {
+  gutter: Gutters,
+}
+
+export default class GuttersLayout extends Component<void, void, State> {
   static contextTypes = {
     styleManager: customPropTypes.muiRequired,
-  }
+  };
 
-  state = {
-    gutter: '16',
-  }
+  state: State = {
+    gutter: 16,
+  };
 
   handleChange = (key) => (event, value) => {
     this.setState({
-      [key]: value,
+      [key]: Number(value),
     });
-  }
+  };
 
   render() {
     const classes = this.context.styleManager.render(styleSheet);
@@ -51,7 +55,7 @@ export default class GuttersLayout extends Component {
             container
             className={classes.demo}
             justify="center"
-            gutter={Number(gutter)}
+            gutter={gutter}
           >
             {Array.from({ length: 3 }, (v, k) => k).map((index) => (
               <Layout key={index} item>

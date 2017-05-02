@@ -1,6 +1,6 @@
 // @flow
 export { default } from './Dialog';
-export DialogActions from './DialogActions';
-export DialogTitle from './DialogTitle';
-export DialogContent from './DialogContent';
-export DialogContentText from './DialogContentText';
+export { default as DialogActions } from './DialogActions';
+export { default as DialogTitle } from './DialogTitle';
+export { default as DialogContent } from './DialogContent';
+export { default as DialogContentText } from './DialogContentText';

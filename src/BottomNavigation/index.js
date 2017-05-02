@@ -1,3 +1,3 @@
 // @flow
 export { default } from './BottomNavigation';
-export BottomNavigationButton from './BottomNavigationButton';
+export { default as BottomNavigationButton } from './BottomNavigationButton';

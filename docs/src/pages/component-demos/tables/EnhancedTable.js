@@ -6,12 +6,11 @@ import PropTypes from 'prop-types';
 import { createStyleSheet } from 'jss-theme-reactor';
 import keycode from 'keycode';
 import customPropTypes from 'material-ui/utils/customPropTypes';
-import {
-  Table,
-  TableHead,
+import Table, {
   TableBody,
-  TableRow,
   TableCell,
+  TableHead,
+  TableRow,
   TableSortLabel,
 } from 'material-ui/Table';
 import Toolbar from 'material-ui/Toolbar';
@@ -195,7 +194,7 @@ export default class EnhancedTable extends Component {
     if (keycode(event) === 'space') {
       this.handleClick(event, id);
     }
-  }
+  };
 
   handleClick = (event, id) => {
     const { selected } = this.state;
@@ -220,7 +219,7 @@ export default class EnhancedTable extends Component {
 
   isSelected = (id) => {
     return this.state.selected.indexOf(id) !== -1;
-  }
+  };
 
   render() {
     const classes = this.context.styleManager.render(styleSheet);

@@ -1,4 +1,4 @@
-// @flow
+// @flow weak
 const shadowKeyUmbraOpacity = 0.2;
 const shadowKeyPenumbraOpacity = 0.14;
 const shadowAmbientShadowOpacity = 0.12;

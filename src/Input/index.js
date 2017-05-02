@@ -1,3 +1,3 @@
 // @flow
 export { default } from './Input';
-export InputLabel from './InputLabel';
+export { default as InputLabel } from './InputLabel';

@@ -3,11 +3,7 @@
 import React from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
-import {
-  List,
-  ListItem,
-  ListItemText,
-} from 'material-ui/List';
+import List, { ListItem, ListItemText } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import Divider from 'material-ui/Divider';
 import FolderIcon from 'material-ui-icons/Folder';

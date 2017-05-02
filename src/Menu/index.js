@@ -1,4 +1,4 @@
 // @flow
 export { default } from './Menu';
-export MenuList from './MenuList';
-export MenuItem from './MenuItem';
+export { default as MenuList } from './MenuList';
+export { default as MenuItem } from './MenuItem';

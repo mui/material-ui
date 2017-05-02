@@ -1,3 +1,3 @@
 // @flow
 export { default, LabelRadio } from './Radio';
-export RadioGroup from './RadioGroup';
+export { default as RadioGroup } from './RadioGroup';

@@ -6,13 +6,8 @@ import PropTypes from 'prop-types';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import Button from 'material-ui/Button';
-import { List, ListItem, ListItemText } from 'material-ui/List';
-import {
-  Dialog,
-  DialogContent,
-  DialogActions,
-  DialogTitle,
-} from 'material-ui/Dialog';
+import List, { ListItem, ListItemText } from 'material-ui/List';
+import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog';
 import { LabelRadio as Radio, RadioGroup } from 'material-ui/Radio';
 
 const options = [
