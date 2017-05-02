@@ -93,8 +93,7 @@ describe('<Layout />', () => {
 
     forOwn(hiddenProps, (value, key) => {
       it(`should render ${key} with Hidden`, () => {
-        const props = { [key]: value };
-        const wrapper = shallow(<Layout {...props} />);
+        const wrapper = shallow(<Layout hidden={{ [key]: value }} />);
         assert.strictEqual(wrapper.type(), Hidden);
       });
     });

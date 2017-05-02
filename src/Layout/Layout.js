@@ -14,11 +14,10 @@
 import React, { Element } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import forOwn from 'lodash/forOwn';
 import customPropTypes from '../utils/customPropTypes';
 import requirePropFactory from '../utils/requirePropFactory';
 import Hidden from '../Hidden';
-import type { Breakpoints } from '../styles/breakpoints';
+import type { HiddenProps } from '../Hidden/Hidden';
 
 const GUTTERS = [0, 8, 16, 24, 40];
 const GRID_SIZES = [true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -188,6 +187,10 @@ type Props = {
    */
   gutter?: Gutters, // eslint-disable-line react/sort-prop-types
   /**
+   * If provided, will wrap with Hidden component and given properties.
+   */
+  hidden?: HiddenProps, // eslint-disable-line react/sort-prop-types
+  /**
    * Defines the `justify-content` style property.
    * It is applied for all screen sizes.
    */
@@ -222,50 +225,6 @@ type Props = {
    * It's applied for the `xl` breakpoint and wider screens.
    */
   xl?: GridSizes, // eslint-disable-line react/sort-prop-types
-  /**
-   * Hide the given breakpoint.
-   */
-  onlyHidden?: Breakpoints,
-  /**
-   * If true, screens this size and up will be hidden.
-   */
-  xsUpHidden?: boolean, // eslint-disable-line react/sort-prop-types
-  /**
-   * If true, screens this size and up will be hidden.
-   */
-  smUpHidden?: boolean, // eslint-disable-line react/sort-prop-types
-  /**
-   * If true, screens this size and up will be hidden.
-   */
-  mdUpHidden?: boolean, // eslint-disable-line react/sort-prop-types
-  /**
-   * If true, screens this size and up will be hidden.
-   */
-  lgUpHidden?: boolean, // eslint-disable-line react/sort-prop-types
-  /**
-   * If true, screens this size and up will be hidden.
-   */
-  xlUpHidden?: boolean, // eslint-disable-line react/sort-prop-types
-  /**
-   * If true, screens this size and down will be hidden.
-   */
-  xsDownHidden?: boolean, // eslint-disable-line react/sort-prop-types
-  /**
-   * If true, screens this size and down will be hidden.
-   */
-  smDownHidden?: boolean, // eslint-disable-line react/sort-prop-types
-  /**
-   * If true, screens this size and down will be hidden.
-   */
-  mdDownHidden?: boolean, // eslint-disable-line react/sort-prop-types
-  /**
-   * If true, screens this size and down will be hidden.
-   */
-  lgDownHidden?: boolean, // eslint-disable-line react/sort-prop-types
-  /**
-   * If true, screens this size and down will be hidden.
-   */
-  xlDownHidden?: boolean, // eslint-disable-line react/sort-prop-types
 };
 
 function Layout(props: Props, context: any) {
@@ -277,6 +236,7 @@ function Layout(props: Props, context: any) {
     align,
     direction,
     gutter,
+    hidden,
     justify,
     wrap,
     xs,
@@ -284,44 +244,8 @@ function Layout(props: Props, context: any) {
     md,
     lg,
     xl,
-    onlyHidden,
-    xsUpHidden,
-    smUpHidden,
-    mdUpHidden,
-    lgUpHidden,
-    xlUpHidden,
-    xsDownHidden,
-    smDownHidden,
-    mdDownHidden,
-    lgDownHidden,
-    xlDownHidden,
     ...other
   } = props;
-
-  const hiddenProps = {
-    onlyHidden,
-    xsUpHidden,
-    smUpHidden,
-    mdUpHidden,
-    lgUpHidden,
-    xlUpHidden,
-    xsDownHidden,
-    smDownHidden,
-    mdDownHidden,
-    lgDownHidden,
-    xlDownHidden,
-  };
-
-  // determine if we need to wrap with <Hidden/>
-  let isHidden = false;
-  forOwn(hiddenProps, (value) => {
-    if (typeof value !== 'undefined') {
-      isHidden = true;
-      return false; // break
-    }
-
-    return true;
-  });
 
   const classes = context.styleManager.render(styleSheet);
   const className = classNames({
@@ -348,9 +272,9 @@ function Layout(props: Props, context: any) {
   // workaround: see https://github.com/facebook/flow/issues/1660#issuecomment-297775427
   const ComponentProp = component || Layout.defaultProps.component;
 
-  if (isHidden) {
+  if (hidden) {
     return (
-      <Hidden {...hiddenProps}>
+      <Hidden {...hidden}>
         <ComponentProp {...layoutProps} />
       </Hidden>
     );
@@ -368,17 +292,7 @@ Layout.defaultProps = {
   gutter: 16,
   justify: 'flex-start',
   wrap: 'wrap',
-  onlyHidden: undefined,
-  xsUpHidden: undefined,
-  smUpHidden: undefined,
-  mdUpHidden: undefined,
-  lgUpHidden: undefined,
-  xlUpHidden: undefined,
-  xsDownHidden: undefined,
-  smDownHidden: undefined,
-  mdDownHidden: undefined,
-  lgDownHidden: undefined,
-  xlDownHidden: undefined,
+  hidden: undefined,
 };
 
 Layout.contextTypes = {
