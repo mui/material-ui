@@ -8,8 +8,8 @@ import generateMarkdown from './generate-docs-markdown';
 
 const ignoredItems = [
   'internal',
-  'HiddenJs.js'
-]
+  'HiddenJs.js',
+];
 const componentRegex = /^([A-Z][a-z]+)+\.js/;
 const docsDir = path.resolve(__dirname, '../docs/src/pages/component-api');
 const srcDir = path.resolve(__dirname, '../src');

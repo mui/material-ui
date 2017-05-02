@@ -11,6 +11,7 @@ Props
 | children | Element |  | The content of the component. |
 | className | string |  | The CSS class name of the root element. |
 | component | union:&nbsp;string<br>&nbsp;Function<br> |  | The component used for the root node. Either a string to use a DOM element or a component. |
+| only | Breakpoints |  | Hide the given breakpoint. |
 | xsUp | boolean |  | If true, screens this size and up will be hidden. If false, screens this size and up will not be hidden. |
 | smUp | boolean |  | If true, screens this size and up will be hidden. If false, screens this size and up will not be hidden. |
 | mdUp | boolean |  | If true, screens this size and up will be hidden. If false, screens this size and up will not be hidden. |

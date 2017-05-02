@@ -1,6 +1,7 @@
 // @flow
 import React, { Element } from 'react';
 import HiddenJs from './Hidden';
+import type { Breakpoints } from '../styles/breakpoints';
 
 export type DefaultProps = {
   component: string | Function,
@@ -20,6 +21,10 @@ export type HiddenProps = {
    * Either a string to use a DOM element or a component.
    */
   component?: string | Function,
+  /**
+   * Hide the given breakpoint.
+   */
+  only?: Breakpoints,
   /**
    * If true, screens this size and up will be hidden.
    * If false, screens this size and up will not be hidden.

@@ -20,6 +20,7 @@ function HiddenJs(props: Props): ?Element<any> {
   const {
     children,
     component,
+    only,
     xsUp, // eslint-disable-line no-unused-vars
     smUp, // eslint-disable-line no-unused-vars
     mdUp, // eslint-disable-line no-unused-vars
@@ -38,17 +39,22 @@ function HiddenJs(props: Props): ?Element<any> {
   const ComponentProp = component || defaultProps.component;
   let visible = true;
 
-  // determine visibility based on the smallest size up
-  for (let i = 0; i < breakpoints.length; i += 1) {
-    const breakpoint = breakpoints[i];
-    const breakpointUp = props[`${breakpoint}Up`];
-    const breakpointDown = props[`${breakpoint}Down`];
-    if (
-      (breakpointUp && isWidthUp(width, breakpoint)) ||
-      (breakpointDown && (isWidthDown(width, breakpoint, true)))
-    ) {
-      visible = false;
-      break;
+  // `only` takes priority.
+  if (only && width === only) {
+    visible = false;
+  } else {
+    // determine visibility based on the smallest size up
+    for (let i = 0; i < breakpoints.length; i += 1) {
+      const breakpoint = breakpoints[i];
+      const breakpointUp = props[`${breakpoint}Up`];
+      const breakpointDown = props[`${breakpoint}Down`];
+      if (
+        (breakpointUp && isWidthUp(width, breakpoint)) ||
+        (breakpointDown && (isWidthDown(width, breakpoint, true)))
+      ) {
+        visible = false;
+        break;
+      }
     }
   }
 
