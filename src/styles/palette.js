@@ -76,7 +76,6 @@ export default function createPalette({
   error = red,
   type = 'light',
 } = {}) {
-
   if (difference(keys(indigo), keys(primary)).length) {
     throw new PaletteColorError('primary');
   }
