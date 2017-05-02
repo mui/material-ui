@@ -99,30 +99,15 @@ describe('styles/theme', () => {
     });
 
     it('should throw an exception when a non-palette primary color is specified', () => {
-      try {
-        createPalette({ primary: fullBlack });
-        assert.fail(0, 1, 'primary color exception should have been thrown');
-      } catch (error) {
-        assert.strictEqual(error.message, 'Invalid primary color');
-      }
+      assert.throws(() => createPalette({ primary: fullBlack }));
     });
 
     it('should throw an exception when a non-palette accent color is specified', () => {
-      try {
-        createPalette({ accent: fullBlack });
-        assert.fail(0, 1, 'accent color exception should have been thrown');
-      } catch (error) {
-        assert.strictEqual(error.message, 'Invalid accent color');
-      }
+      assert.throws(() => createPalette({ accent: fullBlack }));
     });
 
     it('should throw an exception when a non-palette error color is specified', () => {
-      try {
-        createPalette({ error: fullBlack });
-        assert.fail(0, 1, 'error color exception should have been thrown');
-      } catch (error) {
-        assert.strictEqual(error.message, 'Invalid error color');
-      }
+      assert.throws(() => createPalette({ error: fullBlack }));
     });
   });
 });

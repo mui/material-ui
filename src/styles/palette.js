@@ -59,22 +59,34 @@ export function getContrastText(color) {
   return light.text.primary;
 }
 
+class PaletteColorError extends Error {
+  constructor(themeColor) {
+    const palette = createPalette();
+    const message = [
+      `${themeColor} must have the following attributes: ${keys(palette[themeColor])}`,
+      'See the default colors, indigo, pink, or red, as exported from material-ui/style/colors.',
+    ];
+    super(message.join('\n'));
+  }
+}
+
 export default function createPalette({
   primary = indigo,
   accent = pink,
   error = red,
   type = 'light',
 } = {}) {
+
   if (difference(keys(indigo), keys(primary)).length) {
-    throw new Error('Invalid primary color');
+    throw new PaletteColorError('primary');
   }
 
   if (difference(keys(pink), keys(accent)).length) {
-    throw new Error('Invalid accent color');
+    throw new PaletteColorError('accent');
   }
 
   if (difference(keys(red), keys(error)).length) {
-    throw new Error('Invalid error color');
+    throw new PaletteColorError('error');
   }
 
   return {
