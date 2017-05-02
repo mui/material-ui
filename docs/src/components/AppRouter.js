@@ -45,13 +45,6 @@ export default function AppRouter() {
             nav
           />
           <Route
-            title="Server Rendering"
-            path="/getting-started/server-rendering"
-            content={requireMarkdown('./getting-started/server-rendering.md')}
-            component={MarkdownDocs}
-            nav
-          />
-          <Route
             title="Examples"
             path="/getting-started/examples"
             content={requireMarkdown('./getting-started/examples.md')}
@@ -73,6 +66,13 @@ export default function AppRouter() {
           component={AppContent}
         >
           <Route
+            title="Overrides"
+            path="/customization/overrides"
+            content={requireMarkdown('./customization/overrides.md')}
+            component={MarkdownDocs}
+            nav
+          />
+          <Route
             title="Themes"
             path="/customization/themes"
             content={requireMarkdown('./customization/themes.md')}
@@ -80,9 +80,9 @@ export default function AppRouter() {
             nav
           />
           <Route
-            title="Composition"
-            path="/customization/composition"
-            content={requireMarkdown('./customization/composition.md')}
+            title="CSS in JS"
+            path="/customization/css-in-js"
+            content={requireMarkdown('./customization/css-in-js.md')}
             component={MarkdownDocs}
             nav
           />
@@ -90,6 +90,34 @@ export default function AppRouter() {
             title="API"
             path="/customization/api"
             content={requireMarkdown('./customization/api.md')}
+            component={MarkdownDocs}
+            nav
+          />
+        </Route>
+        <Route
+          title="Guides"
+          path="/guides"
+          nav
+          component={AppContent}
+        >
+          <Route
+            title="Composition"
+            path="/guides/composition"
+            content={requireMarkdown('./guides/composition.md')}
+            component={MarkdownDocs}
+            nav
+          />
+          <Route
+            title="Minimizing Bundle Size"
+            path="/guides/minimizing-bundle-size"
+            content={requireMarkdown('./guides/minimizing-bundle-size.md')}
+            component={MarkdownDocs}
+            nav
+          />
+          <Route
+            title="Server Rendering"
+            path="/guides/server-rendering"
+            content={requireMarkdown('./guides/server-rendering.md')}
             component={MarkdownDocs}
             nav
           />

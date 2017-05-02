@@ -17,6 +17,7 @@ const styleSheet = createStyleSheet('Demo', (theme) => {
   const { palette, mixins } = theme;
   return {
     root: {
+      fontFamily: theme.typography.fontFamily,
       position: 'relative',
       backgroundColor: palette.background.contentFrame,
       marginBottom: 40,

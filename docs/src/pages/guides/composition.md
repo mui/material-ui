@@ -16,24 +16,5 @@ If you encounter this issue, you need to:
 2. Use the same tag for your wrapping component that is used with the wrapped component.
 
 Let's see an example:
-```jsx
-import React from 'react';
-import IconButton from 'material-ui/IconButton';
-import Icon from 'material-ui/Icon';
 
-const WrappedIcon = (props) => <Icon {...props} />;
-WrappedIcon.muiName = 'Icon';
-
-export default function HelloWorld(props) {
-  return (
-    <div>
-      <IconButton>
-        <Icon>alarm</Icon>
-      </IconButton>
-      <IconButton>
-        <WrappedIcon>alarm</WrappedIcon>
-      </IconButton>
-    </div>
-  );
-}
-```
+{{demo='pages/guides/Composition.js'}}

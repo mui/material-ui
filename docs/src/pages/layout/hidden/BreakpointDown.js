@@ -11,11 +11,10 @@ import Typography from 'material-ui/Typography';
 const styleSheet = createStyleSheet('BreakpointDown', (theme) => ({
   container: {
     flexGrow: 1,
-    marginTop: 30,
-    width: 'calc(100% + 24px)',
-    margin: -12,
+    paddingTop: 30,
     display: 'flex',
     flexWrap: 'wrap',
+    position: 'relative',
   },
   paper: {
     padding: 16,
