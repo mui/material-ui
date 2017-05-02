@@ -1,5 +1,4 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
+// @flow
 export { default } from './Menu';
 export MenuList from './MenuList';
 export MenuItem from './MenuItem';

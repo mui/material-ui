@@ -1,4 +1,4 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow
 import Switch from './Switch';
 import withSwitchLabel from '../internal/withSwitchLabel';
 

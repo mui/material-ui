@@ -1,5 +1,4 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
+// @flow
 export { default } from './Table';
 export TableHead from './TableHead';
 export TableBody from './TableBody';

@@ -1,4 +1,3 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
+// @flow
 export CircularProgress from './CircularProgress';
 export LinearProgress from './LinearProgress';

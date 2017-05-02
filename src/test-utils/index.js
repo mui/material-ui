@@ -1,5 +1,4 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
+// @flow
 export createShallow from './createShallow';
 export createMount from './createMount';
 export createRenderToString from './createRenderToString';

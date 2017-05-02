@@ -1,4 +1,4 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow
 export { default as AppBar } from './AppBar';
 export { default as Avatar } from './Avatar';
 export { default as Badge } from './Badge';

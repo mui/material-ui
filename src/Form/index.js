@@ -1,5 +1,4 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
+// @flow
 export FormGroup from './FormGroup';
 export FormLabel from './FormLabel';
 export FormControl from './FormControl';

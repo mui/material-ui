@@ -1,4 +1,3 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
+// @flow
 export { default } from './BottomNavigation';
 export BottomNavigationButton from './BottomNavigationButton';
