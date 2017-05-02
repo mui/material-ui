@@ -3,7 +3,9 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow } from 'src/test-utils';
+import forOwn from 'lodash/forOwn';
 import Layout, { styleSheet } from './Layout';
+import Hidden from '../Hidden';
 
 describe('<Layout />', () => {
   let shallow;
@@ -68,9 +70,34 @@ describe('<Layout />', () => {
 
   describe('prop: other', () => {
     it('should spread the other properties to the root element', () => {
-      const handleClick = () => {};
+      const handleClick = () => {
+      };
       const wrapper = shallow(<Layout component="span" onClick={handleClick} />);
       assert.strictEqual(wrapper.props().onClick, handleClick);
+    });
+  });
+
+  describe('hidden', () => {
+    const hiddenProps = {
+      onlyHidden: 'xs',
+      xsUpHidden: true,
+      smUpHidden: true,
+      mdUpHidden: true,
+      lgUpHidden: true,
+      xlUpHidden: true,
+      xsDownHidden: true,
+      smDownHidden: true,
+      mdDownHidden: true,
+      lgDownHidden: true,
+      xlDownHidden: true,
+    };
+
+    forOwn(hiddenProps, (value, key) => {
+      it(`should render ${key} with Hidden`, () => {
+        const props = { [key]: value };
+        const wrapper = shallow(<Layout {...props} />);
+        assert.strictEqual(wrapper.type(), Hidden);
+      });
     });
   });
 });
