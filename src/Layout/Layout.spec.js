@@ -70,8 +70,7 @@ describe('<Layout />', () => {
 
   describe('prop: other', () => {
     it('should spread the other properties to the root element', () => {
-      const handleClick = () => {
-      };
+      const handleClick = () => {};
       const wrapper = shallow(<Layout component="span" onClick={handleClick} />);
       assert.strictEqual(wrapper.props().onClick, handleClick);
     });
