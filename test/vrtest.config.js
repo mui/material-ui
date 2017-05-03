@@ -1,5 +1,4 @@
 // @flow
-/* eslint-disable import/unambiguous */
 const path = require('path');
 
 module.exports = {

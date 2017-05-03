@@ -1,5 +1,4 @@
 // @flow
-/* eslint-disable import/unambiguous */
 const { JSDOM } = require('jsdom');
 
 function createDOM() {

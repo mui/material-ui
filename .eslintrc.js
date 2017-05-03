@@ -35,6 +35,7 @@ module.exports = {
     'arrow-body-style': 'off', // Not our taste?
     'arrow-parens': ['error', 'always'], // airbnb use as-needed
     'consistent-this': ['error', 'self'],
+    'import/unambiguous': 'off',
     'max-len': ['error', 100, 2, {
       ignoreUrls: true,
     }], // airbnb is allowing some edge cases

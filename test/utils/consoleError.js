@@ -1,4 +1,4 @@
-/* eslint-disable flowtype/require-valid-file-annotation, no-console, import/unambiguous */
+/* eslint-disable flowtype/require-valid-file-annotation, no-console */
 
 /**
  * Makes sure the tests fails when a PropType validation fails.

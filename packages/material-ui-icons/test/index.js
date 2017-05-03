@@ -1,4 +1,4 @@
-/* eslint-disable flowtype/require-valid-file-annotation, import/unambiguous */
+/* eslint-disable flowtype/require-valid-file-annotation */
 const assert = require('chai').assert;
 const fs = require('fs');
 const path = require('path');
