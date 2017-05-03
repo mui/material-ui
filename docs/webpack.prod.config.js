@@ -1,5 +1,4 @@
 // @flow weak
-
 const path = require('path');
 const webpack = require('webpack');
 const webpackBaseConfig = require('./webpackBaseConfig');

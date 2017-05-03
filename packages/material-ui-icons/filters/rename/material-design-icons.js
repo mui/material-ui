@@ -1,5 +1,4 @@
 // @flow weak
-
 function myDestRewriter(pathObj) {
   let fileName = pathObj.base;
 

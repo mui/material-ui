@@ -1,6 +1,4 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
-export default from './Ripple';
-export Ripple from './Ripple';
-export TouchRipple from './TouchRipple';
-export { createRippleHandler } from './rippleHandler';
+// @flow
+export { default } from './Ripple';
+export { default as TouchRipple } from './TouchRipple';
+export { default as createRippleHandler } from './createRippleHandler';

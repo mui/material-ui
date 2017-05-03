@@ -3,12 +3,11 @@
 import React, { Component } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
-import {
-  List,
+import List, {
   ListItem,
   ListItemIcon,
-  ListItemText,
   ListItemSecondaryAction,
+  ListItemText,
   ListSubheader,
 } from 'material-ui/List';
 import Switch from 'material-ui/Switch';

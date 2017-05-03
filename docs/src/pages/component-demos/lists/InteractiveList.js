@@ -3,8 +3,7 @@
 import React, { cloneElement, Component } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
-import {
-  List,
+import List, {
   ListItem,
   ListItemAvatar,
   ListItemIcon,

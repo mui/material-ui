@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import Paper from 'material-ui/Paper';
-import { Tabs, Tab } from 'material-ui/Tabs';
+import Tabs, { Tab } from 'material-ui/Tabs';
 
 export default class DisabledTabs extends Component {
   static contextTypes = {
