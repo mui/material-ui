@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
+import MarkdownElement from 'docs/src/components/MarkdownElement';
 
 export const styleSheet = createStyleSheet('AppContent', (theme) => {
   return {
@@ -23,8 +24,24 @@ export const styleSheet = createStyleSheet('AppContent', (theme) => {
 });
 
 export default function AppContent(props, context) {
-  const { className, children } = props;
+  const {
+    className,
+    children: childrenProp,
+    route,
+  } = props;
+
   const classes = context.styleManager.render(styleSheet);
+  let children = childrenProp;
+
+  if (!children) {
+    const text = `
+# Summary
+
+${route.childRoutes.map((childRoute) => (`- [${childRoute.title}](${childRoute.path})`)).join('\n')}
+`;
+    children = <MarkdownElement text={text} />;
+  }
+
   return (
     <div className={classNames(classes.content, className)}>
       {children}
@@ -35,6 +52,7 @@ export default function AppContent(props, context) {
 AppContent.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  route: PropTypes.object.isRequired,
 };
 
 AppContent.contextTypes = {

@@ -62,7 +62,7 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
       position: 'absolute',
     },
     '& pre': {
-      margin: '25px 0',
+      margin: `${theme.spacing.unit * 3}px 0`,
       padding: '12px 18px',
       backgroundColor: theme.palette.background.paper,
       borderRadius: 3,
@@ -157,6 +157,7 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
       margin: `${theme.spacing.unit * 3}px 0`,
     },
     '& a': {
+      // Style taken from the Link component
       color: theme.palette.accent.A400,
       textDecoration: 'none',
       '&:hover': {
