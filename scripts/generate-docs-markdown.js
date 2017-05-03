@@ -16,7 +16,7 @@ function generateTitle(name) {
   return `${title}\n${stringOfLength('=', title)}\n`;
 }
 
-function generateDesciption(description) {
+function generateDescription(description) {
   return `${description}\n`;
 }
 
@@ -77,7 +77,7 @@ function generatePropDescription(required, description, type) {
       parsedReturns = { type: { name: 'void' } };
     }
 
-    signature += '<br><br>**Signature:**<br>`export function(';
+    signature += '<br><br>**Signature:**<br>`function(';
     signature += parsedArgs.map((tag) => `${tag.name}: ${tag.type.name}`).join(', ');
     signature += `) => ${parsedReturns.type.name}\`<br>`;
     signature += parsedArgs.map((tag) => `*${tag.name}:* ${tag.description}`).join('<br>');
@@ -177,7 +177,7 @@ function generateProps(props) {
 export function generateMarkdown(name, reactAPI) {
   return `${
     generateTitle(name)}\n${
-    generateDesciption(reactAPI.description)}\n${
+    generateDescription(reactAPI.description)}\n${
     generateProps(reactAPI.props)}\n${
     'Any other properties supplied will be spread to the root element.'
   }\n`;
