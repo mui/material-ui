@@ -40,9 +40,22 @@ function HiddenJs(props: Props): ?Element<any> {
   let visible = true;
 
   // `only` takes priority.
-  if (only && width === only) {
-    visible = false;
-  } else {
+  if (only) {
+    if (Array.isArray(only)) {
+      for (let i = 0; i < only.length; i += 1) {
+        const breakpoint = only[i];
+        if (width === breakpoint) {
+          visible = false;
+          break;
+        }
+      }
+    } else if (only && width === only) {
+      visible = false;
+    }
+  }
+
+  // Allow `only` to be combined with other props. If already hidden, no need to check others.
+  if (visible) {
     // determine visibility based on the smallest size up
     for (let i = 0; i < breakpoints.length; i += 1) {
       const breakpoint = breakpoints[i];

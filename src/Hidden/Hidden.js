@@ -22,9 +22,9 @@ export type HiddenProps = {
    */
   component?: string | Function,
   /**
-   * Hide the given breakpoint.
+   * Hide the given breakpoint(s).
    */
-  only?: Breakpoints,
+  only?: Breakpoints | Array<Breakpoints>,
   /**
    * If true, screens this size and up will be hidden.
    * If false, screens this size and up will not be hidden.
