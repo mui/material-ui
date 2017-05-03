@@ -111,6 +111,10 @@ export {
 } from './Ripple';
 
 export {
+  SelectField,
+} from './SelectField';
+
+export {
  MuiThemeProvider,
 } from './styles';
 
