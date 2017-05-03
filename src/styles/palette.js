@@ -1,5 +1,6 @@
 // @flow weak
-
+import difference from 'lodash/difference';
+import keys from 'lodash/keys';
 import { indigo, pink, grey, red, black, white } from './colors';
 import { getContrastRatio } from './colorManipulator';
 
@@ -58,12 +59,35 @@ export function getContrastText(color) {
   return light.text.primary;
 }
 
+class PaletteColorError extends Error {
+  constructor(themeColor) {
+    const palette = createPalette();
+    const message = [
+      `${themeColor} must have the following attributes: ${keys(palette[themeColor])}`,
+      'See the default colors, indigo, pink, or red, as exported from material-ui/style/colors.',
+    ];
+    super(message.join('\n'));
+  }
+}
+
 export default function createPalette({
   primary = indigo,
   accent = pink,
   error = red,
   type = 'light',
 } = {}) {
+  if (difference(keys(indigo), keys(primary)).length) {
+    throw new PaletteColorError('primary');
+  }
+
+  if (difference(keys(pink), keys(accent)).length) {
+    throw new PaletteColorError('accent');
+  }
+
+  if (difference(keys(red), keys(error)).length) {
+    throw new PaletteColorError('error');
+  }
+
   return {
     type,
     text: shades[type].text,

@@ -8,6 +8,7 @@ import {
   pink,
   deepOrange,
   green,
+  fullBlack,
 } from './colors';
 
 describe('styles/theme', () => {
@@ -95,6 +96,18 @@ describe('styles/theme', () => {
         dark.text,
         'should use dark theme text',
       );
+    });
+
+    it('should throw an exception when a non-palette primary color is specified', () => {
+      assert.throws(() => createPalette({ primary: fullBlack }));
+    });
+
+    it('should throw an exception when a non-palette accent color is specified', () => {
+      assert.throws(() => createPalette({ accent: fullBlack }));
+    });
+
+    it('should throw an exception when a non-palette error color is specified', () => {
+      assert.throws(() => createPalette({ error: fullBlack }));
     });
   });
 });
