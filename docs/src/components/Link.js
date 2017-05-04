@@ -9,13 +9,16 @@ import { withStyles, createStyleSheet } from 'material-ui/styles';
 const styleSheet = createStyleSheet('Link', (theme) => ({
   root: {
     color: 'inherit',
-    textDecoration: 'inherit',
+    textDecoration: 'none',
     '&:hover': {
       textDecoration: 'underline',
     },
   },
   primary: {
     color: theme.palette.primary[500],
+  },
+  accent: {
+    color: theme.palette.accent.A400,
   },
 }));
 
@@ -44,6 +47,7 @@ function Link(props) {
       to={to}
       className={classNames(classes.root, {
         [classes.primary]: variant === 'primary',
+        [classes.accent]: variant === 'accent',
       }, className)}
       {...other}
     />
@@ -55,7 +59,7 @@ Link.propTypes = {
   className: PropTypes.string,
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   to: PropTypes.string,
-  variant: PropTypes.oneOf(['primary']),
+  variant: PropTypes.oneOf(['primary', 'accent']),
 };
 
 export default withStyles(styleSheet)(Link);
