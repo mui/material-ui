@@ -145,6 +145,13 @@ export default function AppRouter() {
             component={MarkdownDocs}
             nav
           />
+          <Route
+            title="Hidden"
+            path="/responsive/hidden"
+            content={requireMarkdown('./responsive/hidden.md')}
+            component={MarkdownDocs}
+            nav
+          />
         </Route>
         <Route
           title="Component Demos"
