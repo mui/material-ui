@@ -2,7 +2,7 @@
 /**
  * Responsively hides children by omission.
  */
-import React, { Element } from 'react';
+import React, { Element, isValidElement } from 'react';
 import { keys as breakpoints } from '../styles/breakpoints';
 import withWidth, { isWidthDown, isWidthUp } from '../utils/withWidth';
 import type { HiddenProps } from './Hidden';
@@ -75,6 +75,12 @@ function HiddenJs(props: Props): ?Element<any> {
     return null;
   }
 
+  // render any Element exactly as given
+  if (isValidElement(ComponentProp)) {
+    return React.Children.only(ComponentProp);
+  }
+
+  // render `string | Function` with any optional props
   return (
     <ComponentProp {...other}>
       {children}

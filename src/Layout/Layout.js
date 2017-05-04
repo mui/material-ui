@@ -274,9 +274,7 @@ function Layout(props: Props, context: any) {
 
   if (hidden) {
     return (
-      <Hidden {...hidden}>
-        <ComponentProp {...layoutProps} />
-      </Hidden>
+      <Hidden {...hidden} component={<ComponentProp {...layoutProps} />} />
     );
   }
 

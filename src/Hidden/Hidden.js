@@ -18,9 +18,11 @@ export type HiddenProps = {
   className?: string,
   /**
    * The component used for the root node.
-   * Either a string to use a DOM element or a component.
+   *   string - DOM element
+   *   Function - component descriptor
+   *   Element - component rendered as-is
    */
-  component?: string | Function,
+  component?: string | Function | Element<*>,
   /**
    * Hide the given breakpoint(s).
    */
