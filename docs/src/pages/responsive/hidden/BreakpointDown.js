@@ -8,7 +8,7 @@ import Hidden from 'material-ui/Hidden';
 import withWidth from 'material-ui/utils/withWidth';
 import Typography from 'material-ui/Typography';
 
-const styleSheet = createStyleSheet('BreakpointUp', (theme) => ({
+const styleSheet = createStyleSheet('BreakpointDown', (theme) => ({
   container: {
     flexGrow: 1,
     marginTop: 30,
@@ -35,7 +35,7 @@ const styleSheet = createStyleSheet('BreakpointUp', (theme) => ({
   },
 }));
 
-function BreakpointUp(props, context) {
+function BreakpointDown(props, context) {
   const classes = context.styleManager.render(styleSheet);
 
   return (
@@ -43,27 +43,27 @@ function BreakpointUp(props, context) {
       <Typography type="subheading" className={classes.typography}>
         Current width: {props.width}
       </Typography>
-      <Hidden xsUp component={
-        <Paper className={classes.paper}>xsUp</Paper>
+      <Hidden xsDown component={
+        <Paper className={classes.paper}>xsDown</Paper>
       } />
-      <Hidden smUp component={
-        <Paper className={classes.paper}>smUp</Paper>
+      <Hidden smDown component={
+        <Paper className={classes.paper}>smDown</Paper>
       } />
-      <Hidden mdUp component={
-        <Paper className={classes.paper}>mdUp</Paper>
+      <Hidden mdDown component={
+        <Paper className={classes.paper}>mdDown</Paper>
       } />
-      <Hidden lgUp component={
-        <Paper className={classes.paper}>lgUp</Paper>
+      <Hidden lgDown component={
+        <Paper className={classes.paper}>lgDown</Paper>
       } />
-      <Hidden xlUp component={
-        <Paper className={classes.paper}>xlUp</Paper>
+      <Hidden xlDown component={
+        <Paper className={classes.paper}>xlDown</Paper>
       } />
     </div>
   );
 }
 
-BreakpointUp.contextTypes = {
+BreakpointDown.contextTypes = {
   styleManager: customPropTypes.muiRequired,
 };
 
-export default withWidth()(BreakpointUp);
+export default withWidth()(BreakpointDown);

@@ -20,16 +20,21 @@ Hidden works with a range of breakpoints e.g. `xsUp` or `mdDown` or one or more 
 
 Using any breakpoint _up_ property, any children of `Hidden` will be hidden _at or above_ the breakpoint (inclusive).
 
+{{demo='pages/responsive/hidden/BreakpointUp.js'}}
+
 ## Breakpoint down
 
 Using any breakpoint _down_ property, any children of `Hidden` will be hidden _below_ the breakpoint (exclusive).
 
+{{demo='pages/responsive/hidden/BreakpointDown.js'}}
 
 ## Breakpoint only
 
 The `only` property can be used in two ways:
  - list a single breakpoint
  - list an array of breakpoints
+
+{{demo='pages/responsive/hidden/BreakpointOnly.js'}}
 
 ## Integration with Layout
 
