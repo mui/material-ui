@@ -2,6 +2,10 @@
 
 All elements are visible unless they are explicitly hidden.  To ease integration with our [responsive breakpoints](/responsive/basics), this component can be used to hide any content, or you can use it in conjunction with our [`Layout`](/responsive/layout) component.
 
+## How it works
+
+Hidden works with a range of breakpoints e.g. `xsUp` or `mdDown`, or one or more breakpoints e.g. `only='sm'` or `only={['md', 'xl']}`.  Ranges and individual breakpoints can be used simultaneously to achieve very customized behavior.
+
 ## Implementations
 
 ### js
@@ -11,10 +15,6 @@ By default, the `js` implementation is used, responsively hiding content based o
 ### css
 
 For those using server side rendering, you can set `implementation='css'` if you don't want the browser to re-flow your content on the screen.
-
-## How it works
-
-Hidden works with a range of breakpoints e.g. `xsUp` or `mdDown` or one or more breakpoints e.g. `only='sm'` or `only={['md', 'xl']}`.  Ranges and individual breakpoints can be used simultaneously to achieve very customized behavior.
 
 ## Breakpoint up
 
