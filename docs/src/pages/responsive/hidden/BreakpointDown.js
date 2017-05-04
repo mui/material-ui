@@ -1,6 +1,6 @@
 // @flow weak
-
 import React from 'react';
+import PropTypes from 'prop-types';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import Paper from 'material-ui/Paper';
@@ -43,24 +43,33 @@ function BreakpointDown(props, context) {
       <Typography type="subheading" className={classes.typography}>
         Current width: {props.width}
       </Typography>
-      <Hidden xsDown component={
-        <Paper className={classes.paper}>xsDown</Paper>
-      } />
-      <Hidden smDown component={
-        <Paper className={classes.paper}>smDown</Paper>
-      } />
-      <Hidden mdDown component={
-        <Paper className={classes.paper}>mdDown</Paper>
-      } />
-      <Hidden lgDown component={
-        <Paper className={classes.paper}>lgDown</Paper>
-      } />
-      <Hidden xlDown component={
-        <Paper className={classes.paper}>xlDown</Paper>
-      } />
+      <Hidden
+        xsDown
+        component={<Paper className={classes.paper}>xsDown</Paper>}
+      />
+      <Hidden
+        smDown
+        component={<Paper className={classes.paper}>smDown</Paper>}
+      />
+      <Hidden
+        mdDown
+        component={<Paper className={classes.paper}>mdDown</Paper>}
+      />
+      <Hidden
+        lgDown
+        component={<Paper className={classes.paper}>lgDown</Paper>}
+      />
+      <Hidden
+        xlDown
+        component={<Paper className={classes.paper}>xlDown</Paper>}
+      />
     </div>
   );
 }
+
+BreakpointDown.propTypes = {
+  width: PropTypes.string,
+};
 
 BreakpointDown.contextTypes = {
   styleManager: customPropTypes.muiRequired,

@@ -1,6 +1,6 @@
 // @flow weak
-
 import React from 'react';
+import PropTypes from 'prop-types';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import Paper from 'material-ui/Paper';
@@ -55,6 +55,10 @@ function LayoutIntegration(props, context) {
     </div>
   );
 }
+
+LayoutIntegration.propTypes = {
+  width: PropTypes.string,
+};
 
 LayoutIntegration.contextTypes = {
   styleManager: customPropTypes.muiRequired,

@@ -25,7 +25,7 @@ describe('<HiddenJs />', () => {
   function shouldNotRender(
     width: Breakpoints,
     upDownOnly: 'Up' | 'Down' | 'only',
-    hiddenBreakpoints: Array<Breakpoints> | Array<Array<Breakpoints>>,
+    hiddenBreakpoints: Array<*>,
   ) {
     const descriptions = {
       Up: '(smaller)',
@@ -46,7 +46,7 @@ describe('<HiddenJs />', () => {
   function shouldRender(
     width: Breakpoints,
     upDownOnly: 'Up' | 'Down' | 'only',
-    visibleBreakpoints: Array<Breakpoints> | Array<Array<Breakpoints>>,
+    visibleBreakpoints: Array<*>,
   ) {
     const descriptions = {
       Up: '(same or larger)',
