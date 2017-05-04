@@ -16,7 +16,7 @@ type Props = HiddenProps & {
     width: string,
 };
 
-function HiddenJs(props: Props): ?Element<any> {
+function HiddenJs(props: Props): ?Element<*> {
   const {
     children,
     component,

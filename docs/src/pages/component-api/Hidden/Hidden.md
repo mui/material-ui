@@ -10,7 +10,7 @@ Props
 |:-----|:-----|:--------|:------------|
 | children | Element |  | The content of the component. |
 | className | string |  | The CSS class name of the root element. |
-| component | union:&nbsp;string<br>&nbsp;Function<br> |  | The component used for the root node. Either a string to use a DOM element or a component. |
+| component | PolymorphicComponent |  | If string or Function, component is used as the root node and all other props are passed including children. If an Element, it will be rendered as-is and no other props are propagated. |
 | only | union:&nbsp;Breakpoints<br>&nbsp;Array<Breakpoints><br> |  | Hide the given breakpoint(s). |
 | xsUp | boolean |  | If true, screens this size and up will be hidden. |
 | smUp | boolean |  | If true, screens this size and up will be hidden. |

@@ -2,6 +2,7 @@
 import React, { Element } from 'react';
 import HiddenJs from './HiddenJs';
 import type { Breakpoints } from '../styles/breakpoints';
+import type { PolymorphicComponent } from '../internal/types';
 
 export type DefaultProps = {
   component: string | Function,
@@ -11,18 +12,17 @@ export type HiddenProps = {
   /**
    * The content of the component.
    */
-  children?: Element<any>,
+  children?: Element<*>,
   /**
    * The CSS class name of the root element.
    */
   className?: string,
   /**
-   * The component used for the root node.
-   *   string - DOM element
-   *   Function - component descriptor
-   *   Element - component rendered as-is
+   * If string or Function, component is used as the root node and all other props are passed
+   * including children.
+   * If an Element, it will be rendered as-is and no other props are propagated.
    */
-  component?: string | Function | Element<*>,
+  component?: PolymorphicComponent,
   /**
    * Hide the given breakpoint(s).
    */

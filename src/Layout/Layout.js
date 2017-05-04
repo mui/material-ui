@@ -151,7 +151,7 @@ type Props = {
   /**
    * The content of the component.
    */
-  children?: Element<any>,
+  children?: Element<*>,
   /**
    * The CSS class name of the root element.
    */
