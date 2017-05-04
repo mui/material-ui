@@ -18,13 +18,13 @@ For those using server side rendering, you can set `implementation='css'` if you
 
 ## Breakpoint up
 
-Using any breakpoint _up_ property, any children of `Hidden` will be hidden _at or above_ the breakpoint (inclusive).
+Using any breakpoint _up_ property, the given _element_ or _children_ will be hidden _at or above_ the breakpoint (inclusive).
 
 {{demo='pages/responsive/hidden/BreakpointUp.js'}}
 
 ## Breakpoint down
 
-Using any breakpoint _down_ property, any children of `Hidden` will be hidden _below_ the breakpoint (exclusive).
+Using any breakpoint _down_ property, the given _element_ or _children_ will be hidden _below_ the breakpoint (exclusive).
 
 {{demo='pages/responsive/hidden/BreakpointDown.js'}}
 
