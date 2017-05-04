@@ -71,8 +71,7 @@ describe('<HiddenJs />', () => {
     });
 
     describe('down', () => {
-      shouldNotRender('xs', 'Down', ['xs']);
-      shouldRender('xs', 'Down', ['sm', 'md', 'lg']);
+      shouldRender('xs', 'Down', ['xs', 'sm', 'md', 'lg']);
     });
 
     describe('only', () => {
@@ -88,8 +87,8 @@ describe('<HiddenJs />', () => {
     });
 
     describe('down', () => {
-      shouldNotRender('sm', 'Down', ['xs', 'sm']);
-      shouldRender('sm', 'Down', ['md', 'lg', 'xl']);
+      shouldNotRender('sm', 'Down', ['xs']);
+      shouldRender('sm', 'Down', ['sm', 'md', 'lg', 'xl']);
     });
 
     describe('only', () => {
@@ -105,8 +104,8 @@ describe('<HiddenJs />', () => {
     });
 
     describe('down', () => {
-      shouldNotRender('md', 'Down', ['xs', 'sm', 'md']);
-      shouldRender('md', 'Down', ['lg', 'xl']);
+      shouldNotRender('md', 'Down', ['xs', 'sm']);
+      shouldRender('md', 'Down', ['md', 'lg', 'xl']);
     });
 
     describe('only', () => {
@@ -122,8 +121,8 @@ describe('<HiddenJs />', () => {
     });
 
     describe('down', () => {
-      shouldNotRender('lg', 'Down', ['xs', 'sm', 'md', 'lg']);
-      shouldRender('lg', 'Down', ['xl']);
+      shouldNotRender('lg', 'Down', ['xs', 'sm', 'md']);
+      shouldRender('lg', 'Down', ['lg', 'xl']);
     });
 
     describe('only', () => {
@@ -139,7 +138,8 @@ describe('<HiddenJs />', () => {
     });
 
     describe('down', () => {
-      shouldNotRender('xl', 'Down', ['xs', 'sm', 'md', 'lg', 'xl']);
+      shouldRender('xl', 'Down', ['xl']);
+      shouldNotRender('xl', 'Down', ['xs', 'sm', 'md', 'lg']);
     });
 
     describe('only', () => {

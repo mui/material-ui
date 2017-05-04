@@ -27,52 +27,34 @@ export type HiddenProps = {
   only?: Breakpoints,
   /**
    * If true, screens this size and up will be hidden.
-   * If false, screens this size and up will not be hidden.
    */
   xsUp?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and up will be hidden.
-   * If false, screens this size and up will not be hidden.
    */
   smUp?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and up will be hidden.
-   * If false, screens this size and up will not be hidden.
    */
   mdUp?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and up will be hidden.
-   * If false, screens this size and up will not be hidden.
    */
   lgUp?: boolean, // eslint-disable-line react/sort-prop-types
   /**
-   * If true, screens this size and up will be hidden.
-   * If false, screens this size and up will not be hidden.
-   */
-  xlUp?: boolean, // eslint-disable-line react/sort-prop-types
-  /**
-   * If true, screens this size and down will be hidden.
-   * If false, screens this size and down will not be hidden.
-   */
-  xsDown?: boolean, // eslint-disable-line react/sort-prop-types
-  /**
-   * If true, screens this size and down will be hidden.
-   * If false, screens this size and down will not be hidden.
+   * If true, screens under this size will be hidden.
    */
   smDown?: boolean, // eslint-disable-line react/sort-prop-types
   /**
-   * If true, screens this size and down will be hidden.
-   * If false, screens this size and down will not be hidden.
+   * If true, screens under this size will be hidden.
    */
   mdDown?: boolean, // eslint-disable-line react/sort-prop-types
   /**
-   * If true, screens this size and down will be hidden.
-   * If false, screens this size and down will not be hidden.
+   * If true, screens under this size will be hidden.
    */
   lgDown?: boolean, // eslint-disable-line react/sort-prop-types
   /**
-   * If true, screens this size and down will be hidden.
-   * If false, screens this size and down will not be hidden.
+   * If true, screens under this size will be hidden.
    */
   xlDown?: boolean, // eslint-disable-line react/sort-prop-types
 };

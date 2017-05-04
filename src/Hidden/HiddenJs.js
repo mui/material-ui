@@ -25,8 +25,6 @@ function HiddenJs(props: Props): ?Element<any> {
     smUp, // eslint-disable-line no-unused-vars
     mdUp, // eslint-disable-line no-unused-vars
     lgUp, // eslint-disable-line no-unused-vars
-    xlUp, // eslint-disable-line no-unused-vars
-    xsDown, // eslint-disable-line no-unused-vars
     smDown, // eslint-disable-line no-unused-vars
     mdDown, // eslint-disable-line no-unused-vars
     lgDown, // eslint-disable-line no-unused-vars
@@ -50,7 +48,7 @@ function HiddenJs(props: Props): ?Element<any> {
       const breakpointDown = props[`${breakpoint}Down`];
       if (
         (breakpointUp && isWidthUp(width, breakpoint)) ||
-        (breakpointDown && (isWidthDown(width, breakpoint, true)))
+        (breakpointDown && isWidthDown(width, breakpoint))
       ) {
         visible = false;
         break;
