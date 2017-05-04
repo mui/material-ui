@@ -1,6 +1,6 @@
 // @flow
 import React, { Element } from 'react';
-import HiddenJs from './Hidden';
+import HiddenJs from './HiddenJs';
 import type { Breakpoints } from '../styles/breakpoints';
 
 export type DefaultProps = {
