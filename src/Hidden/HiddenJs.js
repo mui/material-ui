@@ -1,5 +1,5 @@
 // @flow
-import React, { Element } from 'react';
+import React, { Element, isValidElement } from 'react';
 import { keys as breakpoints } from '../styles/breakpoints';
 import withWidth, { isWidthDown, isWidthUp } from '../utils/withWidth';
 import type { HiddenProps } from './types';
@@ -10,18 +10,18 @@ type Props = HiddenProps & {
    * including children.
    * If an Element, it will be rendered as-is and no other props are propagated.
    */
-    component: string | Function | Element<*>,
+  component: string | Function | Element<*>,
   /**
    * @ignore
    * width prop provided by withWidth decorator
    */
-    width: string,
+  width: string,
 };
 
 /**
  * Responsively hides by omission.
  */
-function HiddenJs(props: Props): ?Element<*> {
+function HiddenJs(props: Props) {
   const {
     children,
     component: ComponentProp,
@@ -88,7 +88,11 @@ function HiddenJs(props: Props): ?Element<*> {
   }
 
   // render any Element exactly as given
-  return React.Children.only(ComponentProp);
+  if (isValidElement(ComponentProp)) {
+    return React.Children.only(ComponentProp);
+  }
+
+  throw new Error(`Invalid component: ${typeof ComponentProp}`);
 }
 
 export default withWidth()(HiddenJs);

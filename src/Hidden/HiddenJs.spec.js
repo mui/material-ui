@@ -11,7 +11,7 @@ describe('<HiddenJs />', () => {
 
   before(() => {
     const shallow = createShallow();
-    shallowWithWidth = (node, options = {}) => shallow(node, options).dive().dive();
+    shallowWithWidth = (node, options = {}) => shallow(node, options).dive();
   });
 
   function resolveProp(upDownOnly, breakpoint) {
