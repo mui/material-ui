@@ -126,7 +126,7 @@
     "react-a11y": "^0.3.3",
     "react-addons-perf": "^15.4.2",
     "react-addons-test-utils": "^15.5.0",
-    "react-docgen": "^2.14.1",
+    "react-docgen": "^3.0.0-beta4",
     "react-dom": "^15.5.3",
     "react-test-renderer": "^15.5.4",
     "recast": "^0.12.3",

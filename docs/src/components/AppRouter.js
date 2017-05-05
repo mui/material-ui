@@ -129,9 +129,23 @@ export default function AppRouter() {
           component={AppContent}
         >
           <Route
-            title="Responsive UI"
-            path="/layout/responsive-ui"
-            content={requireMarkdown('./layout/responsive-ui.md')}
+            title="Basics"
+            path="/layout/basics"
+            content={requireMarkdown('./layout/basics.md')}
+            component={MarkdownDocs}
+            nav
+          />
+          <Route
+            title="Layout"
+            path="/layout/layout"
+            content={requireMarkdown('./layout/layout.md')}
+            component={MarkdownDocs}
+            nav
+          />
+          <Route
+            title="Hidden"
+            path="/layout/hidden"
+            content={requireMarkdown('./layout/hidden.md')}
             component={MarkdownDocs}
             nav
           />

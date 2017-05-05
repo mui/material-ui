@@ -1,6 +1,6 @@
 // @flow
 import React, { Element } from 'react';
-import HiddenJs from './Hidden';
+import HiddenJs from './HiddenJs';
 import type { Breakpoints } from '../styles/breakpoints';
 
 export type DefaultProps = {
@@ -11,68 +11,59 @@ export type HiddenProps = {
   /**
    * The content of the component.
    */
-  children?: Element<any>,
+  children?: Element<*>,
   /**
    * The CSS class name of the root element.
    */
   className?: string,
   /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a component.
+   * If string or Function, component is used as the root node and all other props are passed
+   * including children.
+   * If an Element, it will be rendered as-is and no other props are propagated.
    */
-  component?: string | Function,
+  component?: string | Function | Element<*>,
   /**
-   * Hide the given breakpoint.
+   * Hide the given breakpoint(s).
    */
-  only?: Breakpoints,
+  only?: Breakpoints | Array<Breakpoints>,
   /**
    * If true, screens this size and up will be hidden.
-   * If false, screens this size and up will not be hidden.
    */
   xsUp?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and up will be hidden.
-   * If false, screens this size and up will not be hidden.
    */
   smUp?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and up will be hidden.
-   * If false, screens this size and up will not be hidden.
    */
   mdUp?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and up will be hidden.
-   * If false, screens this size and up will not be hidden.
    */
   lgUp?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and up will be hidden.
-   * If false, screens this size and up will not be hidden.
    */
   xlUp?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and down will be hidden.
-   * If false, screens this size and down will not be hidden.
    */
   xsDown?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and down will be hidden.
-   * If false, screens this size and down will not be hidden.
    */
   smDown?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and down will be hidden.
-   * If false, screens this size and down will not be hidden.
    */
   mdDown?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and down will be hidden.
-   * If false, screens this size and down will not be hidden.
    */
   lgDown?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and down will be hidden.
-   * If false, screens this size and down will not be hidden.
    */
   xlDown?: boolean, // eslint-disable-line react/sort-prop-types
 };

@@ -25,14 +25,14 @@ describe('<HiddenJs />', () => {
   function shouldNotRender(
     width: Breakpoints,
     upDownOnly: 'Up' | 'Down' | 'only',
-    smallerBreakpoints: Array<Breakpoints>,
+    hiddenBreakpoints: Array<*>,
   ) {
     const descriptions = {
       Up: '(smaller)',
       Down: '(same or smaller)',
       only: '(exact match)',
     };
-    smallerBreakpoints.forEach((breakpoint) => {
+    hiddenBreakpoints.forEach((breakpoint) => {
       const prop = resolveProp(upDownOnly, breakpoint);
 
       it(`should not render ${breakpoint} ${descriptions[upDownOnly]}`, () => {
@@ -46,14 +46,14 @@ describe('<HiddenJs />', () => {
   function shouldRender(
     width: Breakpoints,
     upDownOnly: 'Up' | 'Down' | 'only',
-    sameOrLargerBreakpoints: Array<Breakpoints>,
+    visibleBreakpoints: Array<*>,
   ) {
     const descriptions = {
       Up: '(same or larger)',
       Down: '(larger)',
       only: '(not exact match)',
     };
-    sameOrLargerBreakpoints.forEach((breakpoint) => {
+    visibleBreakpoints.forEach((breakpoint) => {
       const prop = resolveProp(upDownOnly, breakpoint);
       it(`should render ${breakpoint} ${descriptions[upDownOnly]}`, () => {
         const props = { width, ...prop };
@@ -66,85 +66,90 @@ describe('<HiddenJs />', () => {
   }
 
   describe('screen width: xs', () => {
+    const screenWidth = 'xs';
     describe('up', () => {
-      shouldNotRender('xs', 'Up', ['xs', 'sm', 'md', 'lg', 'xl']);
+      shouldNotRender(screenWidth, 'Up', ['xs', 'sm', 'md', 'lg', 'xl']);
     });
 
     describe('down', () => {
-      shouldNotRender('xs', 'Down', ['xs']);
-      shouldRender('xs', 'Down', ['sm', 'md', 'lg']);
+      shouldNotRender(screenWidth, 'Down', ['xs']);
+      shouldRender(screenWidth, 'Down', ['sm', 'md', 'lg']);
     });
 
     describe('only', () => {
-      shouldNotRender('xs', 'only', ['xs']);
-      shouldRender('xs', 'only', ['sm', 'md', 'lg', 'xl']);
+      shouldNotRender(screenWidth, 'only', ['xs', ['xs', 'xl']]);
+      shouldRender(screenWidth, 'only', ['sm', 'md', 'lg', 'xl', ['sm', 'md', 'lg', 'xl']]);
     });
   });
 
   describe('screen width: sm', () => {
+    const screenWidth = 'sm';
     describe('up', () => {
-      shouldRender('sm', 'Up', ['xs']);
-      shouldNotRender('sm', 'Up', ['sm', 'md', 'lg', 'xl']);
+      shouldRender(screenWidth, 'Up', ['xs']);
+      shouldNotRender(screenWidth, 'Up', ['sm', 'md', 'lg', 'xl']);
     });
 
     describe('down', () => {
-      shouldNotRender('sm', 'Down', ['xs', 'sm']);
-      shouldRender('sm', 'Down', ['md', 'lg', 'xl']);
+      shouldNotRender(screenWidth, 'Down', ['xs', 'sm']);
+      shouldRender(screenWidth, 'Down', ['md', 'lg', 'xl']);
     });
 
     describe('only', () => {
-      shouldNotRender('sm', 'only', ['sm']);
-      shouldRender('sm', 'only', ['xs', 'md', 'lg', 'xl']);
+      shouldNotRender(screenWidth, 'only', ['sm', ['sm', 'md']]);
+      shouldRender(screenWidth, 'only', ['xs', 'md', 'lg', 'xl', ['xs', 'md', 'lg', 'xl']]);
     });
   });
 
   describe('screen width: md', () => {
+    const screenWidth = 'md';
     describe('up', () => {
-      shouldRender('md', 'Up', ['xs', 'sm']);
-      shouldNotRender('md', 'Up', ['md', 'lg', 'xl']);
+      shouldRender(screenWidth, 'Up', ['xs', 'sm']);
+      shouldNotRender(screenWidth, 'Up', ['md', 'lg', 'xl']);
     });
 
     describe('down', () => {
-      shouldNotRender('md', 'Down', ['xs', 'sm', 'md']);
-      shouldRender('md', 'Down', ['lg', 'xl']);
+      shouldNotRender(screenWidth, 'Down', ['xs', 'sm', 'md']);
+      shouldRender(screenWidth, 'Down', ['lg', 'xl']);
     });
 
     describe('only', () => {
-      shouldNotRender('md', 'only', ['md']);
-      shouldRender('md', 'only', ['xs', 'sm', 'lg', 'xl']);
+      shouldNotRender(screenWidth, 'only', ['md', ['md', 'lg']]);
+      shouldRender(screenWidth, 'only', ['xs', 'sm', 'lg', 'xl', ['xs', 'sm', 'lg', 'xl']]);
     });
   });
 
   describe('screen width: lg', () => {
+    const screenWidth = 'lg';
     describe('up', () => {
-      shouldRender('lg', 'Up', ['xs', 'sm', 'md']);
-      shouldNotRender('lg', 'Up', ['lg', 'xl']);
+      shouldRender(screenWidth, 'Up', ['xs', 'sm', 'md']);
+      shouldNotRender(screenWidth, 'Up', ['lg', 'xl']);
     });
 
     describe('down', () => {
-      shouldNotRender('lg', 'Down', ['xs', 'sm', 'md', 'lg']);
-      shouldRender('lg', 'Down', ['xl']);
+      shouldNotRender(screenWidth, 'Down', ['xs', 'sm', 'md', 'lg']);
+      shouldRender(screenWidth, 'Down', ['xl']);
     });
 
     describe('only', () => {
-      shouldNotRender('lg', 'only', ['lg']);
-      shouldRender('lg', 'only', ['xs', 'sm', 'md', 'xl']);
+      shouldNotRender(screenWidth, 'only', ['lg', ['lg', 'xl']]);
+      shouldRender(screenWidth, 'only', ['xs', 'sm', 'md', 'xl', ['xs', 'sm', 'md', 'xl']]);
     });
   });
 
   describe('screen width: xl', () => {
+    const screenWidth = 'xl';
     describe('up', () => {
-      shouldRender('xl', 'Up', ['xs', 'sm', 'md', 'lg']);
-      shouldNotRender('xl', 'Up', ['xl']);
+      shouldRender(screenWidth, 'Up', ['xs', 'sm', 'md', 'lg']);
+      shouldNotRender(screenWidth, 'Up', ['xl']);
     });
 
     describe('down', () => {
-      shouldNotRender('xl', 'Down', ['xs', 'sm', 'md', 'lg', 'xl']);
+      shouldNotRender(screenWidth, 'Down', ['xs', 'sm', 'md', 'lg', 'xl']);
     });
 
     describe('only', () => {
-      shouldNotRender('xl', 'only', ['xl']);
-      shouldRender('xl', 'only', ['xs', 'sm', 'md', 'lg']);
+      shouldNotRender(screenWidth, 'only', ['xl', ['xl', 'xs']]);
+      shouldRender(screenWidth, 'only', ['xs', 'sm', 'md', 'lg', ['xs', 'sm', 'md', 'lg']]);
     });
   });
 });

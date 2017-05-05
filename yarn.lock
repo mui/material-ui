@@ -1047,9 +1047,9 @@ babylon@^6.11.0, babylon@^6.13.0, babylon@^6.15.0, babylon@^6.17.0:
   version "6.17.0"
   resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.17.0.tgz#37da948878488b9c4e3c4038893fa3314b3fc932"
 
-babylon@~5.8.3:
-  version "5.8.38"
-  resolved "https://registry.yarnpkg.com/babylon/-/babylon-5.8.38.tgz#ec9b120b11bf6ccd4173a18bf217e60b79859ffd"
+babylon@v7.0.0-beta.8:
+  version "7.0.0-beta.8"
+  resolved "https://registry.yarnpkg.com/babylon/-/babylon-7.0.0-beta.8.tgz#2bdc5ae366041442c27e068cce6f0d7c06ea9949"
 
 backo2@1.0.2:
   version "1.0.2"
@@ -4846,13 +4846,13 @@ react-addons-test-utils@^15.5.0:
     fbjs "^0.8.4"
     object-assign "^4.1.0"
 
-react-docgen@^2.14.1:
-  version "2.14.1"
-  resolved "https://registry.yarnpkg.com/react-docgen/-/react-docgen-2.14.1.tgz#29810af1b181957c989390f18048a12c11812169"
+react-docgen@^3.0.0-beta4:
+  version "3.0.0-beta4"
+  resolved "https://registry.yarnpkg.com/react-docgen/-/react-docgen-3.0.0-beta4.tgz#4f6d6d4ec540a104891698dc6eb12a69afd4804b"
   dependencies:
     async "^2.1.4"
     babel-runtime "^6.9.2"
-    babylon "~5.8.3"
+    babylon v7.0.0-beta.8
     commander "^2.9.0"
     doctrine "^2.0.0"
     node-dir "^0.1.10"

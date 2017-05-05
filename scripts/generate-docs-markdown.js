@@ -3,7 +3,7 @@
 import { parse as parseDoctrine } from 'doctrine';
 import recast from 'recast';
 
-export function stringOfLength(string, stringLength) {
+function stringOfLength(string, stringLength) {
   let newString = '';
   for (let i = 0; i < stringLength.length; i += 1) {
     newString += string;
@@ -11,16 +11,16 @@ export function stringOfLength(string, stringLength) {
   return newString;
 }
 
-export function generateTitle(name) {
+function generateTitle(name) {
   const title = `${name}`;
   return `${title}\n${stringOfLength('=', title)}\n`;
 }
 
-export function generateDesciption(description) {
+function generateDescription(description) {
   return `${description}\n`;
 }
 
-export function getDeprecatedInfo(type) {
+function getDeprecatedInfo(type) {
   const deprecatedPropType = 'deprecated(PropTypes.';
 
   const indexStart = type.raw.indexOf(deprecatedPropType);
@@ -35,7 +35,7 @@ export function getDeprecatedInfo(type) {
   return false;
 }
 
-export function generatePropDescription(required, description, type) {
+function generatePropDescription(required, description, type) {
   let deprecated = '';
 
   if (type.name === 'custom') {
@@ -77,7 +77,7 @@ export function generatePropDescription(required, description, type) {
       parsedReturns = { type: { name: 'void' } };
     }
 
-    signature += '<br><br>**Signature:**<br>`export function(';
+    signature += '<br><br>**Signature:**<br>`function(';
     signature += parsedArgs.map((tag) => `${tag.name}: ${tag.type.name}`).join(', ');
     signature += `) => ${parsedReturns.type.name}\`<br>`;
     signature += parsedArgs.map((tag) => `*${tag.name}:* ${tag.description}`).join('<br>');
@@ -129,7 +129,7 @@ function generatePropType(type) {
   }
 }
 
-export function generateProps(props) {
+function generateProps(props) {
   const title = 'Props';
   const header = `${title}\n${stringOfLength('-', title)}\n`;
 
@@ -177,10 +177,8 @@ export function generateProps(props) {
 export function generateMarkdown(name, reactAPI) {
   return `${
     generateTitle(name)}\n${
-    generateDesciption(reactAPI.description)}\n${
+    generateDescription(reactAPI.description)}\n${
     generateProps(reactAPI.props)}\n${
     'Any other properties supplied will be spread to the root element.'
   }\n`;
 }
-
-module.exports = generateMarkdown;

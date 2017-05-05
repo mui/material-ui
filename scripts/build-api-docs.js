@@ -1,10 +1,10 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-disable no-console */
-
+// Track bug on imported flow type: https://github.com/reactjs/react-docgen/issues/180
 import fs from 'fs';
 import path from 'path';
 import * as reactDocgen from 'react-docgen';
-import * as generateMarkdown from './generate-docs-markdown';
+import { generateMarkdown } from './generate-docs-markdown';
 
 const ignoredItems = [
   'internal',

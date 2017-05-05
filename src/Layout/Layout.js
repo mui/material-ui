@@ -151,7 +151,7 @@ type Props = {
   /**
    * The content of the component.
    */
-  children?: Element<any>,
+  children?: Element<*>,
   /**
    * The CSS class name of the root element.
    */
@@ -274,9 +274,7 @@ function Layout(props: Props, context: any) {
 
   if (hidden) {
     return (
-      <Hidden {...hidden}>
-        <ComponentProp {...layoutProps} />
-      </Hidden>
+      <Hidden {...hidden} component={<ComponentProp {...layoutProps} />} />
     );
   }
 
