@@ -4,7 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow } from 'src/test-utils';
 import HiddenJs from './HiddenJs';
-import type { Breakpoints } from '../styles/breakpoints';
+import type { Breakpoint } from '../styles/breakpoints';
 
 describe('<HiddenJs />', () => {
   let shallowWithWidth;
@@ -23,7 +23,7 @@ describe('<HiddenJs />', () => {
   }
 
   function shouldNotRender(
-    width: Breakpoints,
+    width: Breakpoint,
     upDownOnly: 'Up' | 'Down' | 'only',
     hiddenBreakpoints: Array<*>,
   ) {
@@ -44,7 +44,7 @@ describe('<HiddenJs />', () => {
   }
 
   function shouldRender(
-    width: Breakpoints,
+    width: Breakpoint,
     upDownOnly: 'Up' | 'Down' | 'only',
     visibleBreakpoints: Array<*>,
   ) {
