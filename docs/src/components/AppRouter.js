@@ -123,7 +123,7 @@ export default function AppRouter() {
           />
         </Route>
         <Route
-          title="Grid"
+          title="Layout"
           path="/layout"
           nav
           component={AppContent}
