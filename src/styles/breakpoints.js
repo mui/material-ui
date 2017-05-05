@@ -1,5 +1,5 @@
 // @flow weak
-export type Breakpoints = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 // Sorted ASC by size. That's important.
 export const keys = [

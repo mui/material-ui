@@ -1,88 +1,15 @@
 // @flow
 import React, { Element } from 'react';
 import HiddenJs from './HiddenJs';
-import type { Breakpoints } from '../styles/breakpoints';
+import type { HiddenProps } from './types';
 
-export type DefaultProps = {
-  component: string | Function,
-}
-
-export type HiddenProps = {
-  /**
-   * The content of the component.
-   */
-  children?: Element<*>,
-  /**
-   * The CSS class name of the root element.
-   */
-  className?: string,
+type Props = HiddenProps & {
   /**
    * If string or Function, component is used as the root node and all other props are passed
    * including children.
    * If an Element, it will be rendered as-is and no other props are propagated.
    */
   component?: string | Function | Element<*>,
-  /**
-   * Hide the given breakpoint(s).
-   */
-  only?: Breakpoints | Array<Breakpoints>,
-  /**
-   * If true, screens this size and up will be hidden.
-   */
-  xsUp?: boolean, // eslint-disable-line react/sort-prop-types
-  /**
-   * If true, screens this size and up will be hidden.
-   */
-  smUp?: boolean, // eslint-disable-line react/sort-prop-types
-  /**
-   * If true, screens this size and up will be hidden.
-   */
-  mdUp?: boolean, // eslint-disable-line react/sort-prop-types
-  /**
-   * If true, screens this size and up will be hidden.
-   */
-  lgUp?: boolean, // eslint-disable-line react/sort-prop-types
-  /**
-   * If true, screens this size and up will be hidden.
-   */
-  xlUp?: boolean, // eslint-disable-line react/sort-prop-types
-  /**
-   * If true, screens this size and down will be hidden.
-   */
-  xsDown?: boolean, // eslint-disable-line react/sort-prop-types
-  /**
-   * If true, screens this size and down will be hidden.
-   */
-  smDown?: boolean, // eslint-disable-line react/sort-prop-types
-  /**
-   * If true, screens this size and down will be hidden.
-   */
-  mdDown?: boolean, // eslint-disable-line react/sort-prop-types
-  /**
-   * If true, screens this size and down will be hidden.
-   */
-  lgDown?: boolean, // eslint-disable-line react/sort-prop-types
-  /**
-   * If true, screens this size and down will be hidden.
-   */
-  xlDown?: boolean, // eslint-disable-line react/sort-prop-types
-};
-
-export const defaultProps: DefaultProps = {
-  component: 'div',
-  xsUp: false,
-  smUp: false,
-  mdUp: false,
-  lgUp: false,
-  xlUp: false,
-  xsDown: false,
-  smDown: false,
-  mdDown: false,
-  lgDown: false,
-  xlDown: false,
-};
-
-type Props = HiddenProps & {
   /**
    * Specify which implementation to use.  'js' is the default, 'css' works better for server
    * side rendering.
@@ -95,19 +22,34 @@ type Props = HiddenProps & {
  */
 function Hidden(props: Props) {
   const {
+    component: componentProp,
     implementation,
     ...other
   } = props;
 
+  // workaround: see https://github.com/facebook/flow/issues/1660#issuecomment-297775427
+  const component = componentProp || Hidden.defaultProps.component;
+
   if (implementation === 'js') {
-    return <HiddenJs {...other} />;
+    return <HiddenJs {...other} component={component} />;
   }
 
   throw new Error('<Hidden implementation="css" /> is not yet implemented');
 }
 
 Hidden.defaultProps = {
+  component: 'div',
   implementation: 'js',
+  xsUp: false,
+  smUp: false,
+  mdUp: false,
+  lgUp: false,
+  xlUp: false,
+  xsDown: false,
+  smDown: false,
+  mdDown: false,
+  lgDown: false,
+  xlDown: false,
 };
 
 export default Hidden;

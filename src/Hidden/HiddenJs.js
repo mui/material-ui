@@ -1,25 +1,30 @@
 // @flow
-/**
- * Responsively hides children by omission.
- */
 import React, { Element, isValidElement } from 'react';
 import { keys as breakpoints } from '../styles/breakpoints';
 import withWidth, { isWidthDown, isWidthUp } from '../utils/withWidth';
-import type { HiddenProps } from './Hidden';
-import { defaultProps } from './Hidden';
+import type { HiddenProps } from './types';
 
 type Props = HiddenProps & {
+  /**
+   * If string or Function, component is used as the root node and all other props are passed
+   * including children.
+   * If an Element, it will be rendered as-is and no other props are propagated.
+   */
+  component: string | Function | Element<*>,
   /**
    * @ignore
    * width prop provided by withWidth decorator
    */
-    width: string,
+  width: string,
 };
 
-function HiddenJs(props: Props): ?Element<*> {
+/**
+ * Responsively hides by omission.
+ */
+function HiddenJs(props: Props) {
   const {
     children,
-    component,
+    component: ComponentProp,
     only,
     xsUp, // eslint-disable-line no-unused-vars
     smUp, // eslint-disable-line no-unused-vars
@@ -35,11 +40,9 @@ function HiddenJs(props: Props): ?Element<*> {
     ...other
   } = props;
 
-  // workaround: see https://github.com/facebook/flow/issues/1660#issuecomment-297775427
-  const ComponentProp = component || defaultProps.component;
   let visible = true;
 
-  // `only` takes priority.
+  // `only` check is faster to get out sooner if used.
   if (only) {
     if (Array.isArray(only)) {
       for (let i = 0; i < only.length; i += 1) {
@@ -75,19 +78,21 @@ function HiddenJs(props: Props): ?Element<*> {
     return null;
   }
 
+  // render `string | Function` with any optional props
+  if (typeof ComponentProp === 'string' || typeof ComponentProp === 'function') {
+    return (
+      <ComponentProp {...other}>
+        {children}
+      </ComponentProp>
+    );
+  }
+
   // render any Element exactly as given
   if (isValidElement(ComponentProp)) {
     return React.Children.only(ComponentProp);
   }
 
-  // render `string | Function` with any optional props
-  return (
-    <ComponentProp {...other}>
-      {children}
-    </ComponentProp>
-  );
+  throw new Error(`Invalid component: ${typeof ComponentProp}`);
 }
-
-HiddenJs.defaultProps = defaultProps;
 
 export default withWidth()(HiddenJs);

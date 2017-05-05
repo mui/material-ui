@@ -3,12 +3,12 @@
 import React, { Component } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
-import Layout from 'material-ui/Layout';
+import Grid from 'material-ui/Grid';
 import { LabelRadio, RadioGroup } from 'material-ui/Radio';
 import Paper from 'material-ui/Paper';
 import { FormLabel } from 'material-ui/Form';
 
-const styleSheet = createStyleSheet('GuttersLayout', () => {
+const styleSheet = createStyleSheet('GuttersGrid', () => {
   return {
     root: {
       flexGrow: 1,
@@ -23,7 +23,7 @@ const styleSheet = createStyleSheet('GuttersLayout', () => {
   };
 });
 
-export default class GuttersLayout extends Component {
+export default class GuttersGrid extends Component {
   static contextTypes = {
     styleManager: customPropTypes.muiRequired,
   }
@@ -45,25 +45,25 @@ export default class GuttersLayout extends Component {
     } = this.state;
 
     return (
-      <Layout container className={classes.root}>
-        <Layout item xs={12}>
-          <Layout
+      <Grid container className={classes.root}>
+        <Grid item xs={12}>
+          <Grid
             container
             className={classes.demo}
             justify="center"
             gutter={Number(gutter)}
           >
             {Array.from({ length: 3 }, (v, k) => k).map((index) => (
-              <Layout key={index} item>
+              <Grid key={index} item>
                 <Paper className={classes.paper} />
-              </Layout>
+              </Grid>
             ))}
-          </Layout>
-        </Layout>
-        <Layout item xs={12}>
+          </Grid>
+        </Grid>
+        <Grid item xs={12}>
           <Paper className={classes.control}>
-            <Layout container>
-              <Layout item>
+            <Grid container>
+              <Grid item>
                 <FormLabel>gutter</FormLabel>
                 <RadioGroup
                   aria-label="gutter"
@@ -77,11 +77,11 @@ export default class GuttersLayout extends Component {
                   <LabelRadio label="24" value="24" />
                   <LabelRadio label="40" value="40" />
                 </RadioGroup>
-              </Layout>
-            </Layout>
+              </Grid>
+            </Grid>
           </Paper>
-        </Layout>
-      </Layout>
+        </Grid>
+      </Grid>
     );
   }
 }

@@ -1,6 +1,6 @@
 // @flow
 /**
- * A layout component using the following libs as inspiration.
+ * A grid component using the following libs as inspiration.
  *
  * For the implementation:
  * - http://v4-alpha.getbootstrap.com/layout/flexbox-grid/
@@ -17,7 +17,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 import requirePropFactory from '../utils/requirePropFactory';
 import Hidden from '../Hidden';
-import type { HiddenProps } from '../Hidden/Hidden';
+import type { HiddenProps } from '../Hidden/types';
 
 const GUTTERS = [0, 8, 16, 24, 40];
 const GRID_SIZES = [true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -78,7 +78,7 @@ function generateGutter(theme, breakpoint) {
   return styles;
 }
 
-export const styleSheet = createStyleSheet('MuiLayout', (theme) => {
+export const styleSheet = createStyleSheet('MuiGrid', (theme) => {
   // Default CSS values
   // flex: '0 1 auto',
   // flexDirection: 'row',
@@ -227,7 +227,7 @@ type Props = {
   xl?: GridSizes, // eslint-disable-line react/sort-prop-types
 };
 
-function Layout(props: Props, context: any) {
+function Grid(props: Props, context: any) {
   const {
     className: classNameProp,
     component,
@@ -252,10 +252,10 @@ function Layout(props: Props, context: any) {
     [classes.typeContainer]: container,
     [classes.typeItem]: item,
     [classes[`gutter-xs-${String(gutter)}`]]: container && gutter !== 0,
-    [classes[`direction-xs-${String(direction)}`]]: direction !== Layout.defaultProps.direction,
-    [classes[`wrap-xs-${String(wrap)}`]]: wrap !== Layout.defaultProps.wrap,
-    [classes[`align-xs-${String(align)}`]]: align !== Layout.defaultProps.align,
-    [classes[`justify-xs-${String(justify)}`]]: justify !== Layout.defaultProps.justify,
+    [classes[`direction-xs-${String(direction)}`]]: direction !== Grid.defaultProps.direction,
+    [classes[`wrap-xs-${String(wrap)}`]]: wrap !== Grid.defaultProps.wrap,
+    [classes[`align-xs-${String(align)}`]]: align !== Grid.defaultProps.align,
+    [classes[`justify-xs-${String(justify)}`]]: justify !== Grid.defaultProps.justify,
     [classes['grid-xs']]: xs === true,
     [classes[`grid-xs-${String(xs)}`]]: xs && xs !== true,
     [classes['grid-sm']]: sm === true,
@@ -267,21 +267,21 @@ function Layout(props: Props, context: any) {
     [classes['grid-xl']]: xl === true,
     [classes[`grid-xl-${String(xl)}`]]: xl && xl !== true,
   }, classNameProp);
-  const layoutProps = { className, ...other };
+  const gridProps = { className, ...other };
 
   // workaround: see https://github.com/facebook/flow/issues/1660#issuecomment-297775427
-  const ComponentProp = component || Layout.defaultProps.component;
+  const ComponentProp = component || Grid.defaultProps.component;
 
   if (hidden) {
     return (
-      <Hidden {...hidden} component={<ComponentProp {...layoutProps} />} />
+      <Hidden {...hidden} component={<ComponentProp {...gridProps} />} />
     );
   }
 
-  return <ComponentProp {...layoutProps} />;
+  return <ComponentProp {...gridProps} />;
 }
 
-Layout.defaultProps = {
+Grid.defaultProps = {
   component: 'div',
   container: false,
   item: false,
@@ -293,7 +293,7 @@ Layout.defaultProps = {
   hidden: undefined,
 };
 
-Layout.contextTypes = {
+Grid.contextTypes = {
   styleManager: customPropTypes.muiRequired,
 };
 
@@ -301,14 +301,14 @@ Layout.contextTypes = {
  * Add a wrapper component to generate some helper messages in the development
  * environment.
  */
-let LayoutWrapper = Layout; // eslint-disable-line import/no-mutable-exports
+let GridWrapper = Grid; // eslint-disable-line import/no-mutable-exports
 
 if (process.env.NODE_ENV !== 'production') {
-  const requireProp = requirePropFactory('Layout');
+  const requireProp = requirePropFactory('Grid');
 
-  LayoutWrapper = (props: any) => <Layout {...props} />;
+  GridWrapper = (props: any) => <Grid {...props} />;
 
-  LayoutWrapper.propTypes = {
+  GridWrapper.propTypes = {
     align: requireProp('container'),
     direction: requireProp('container'),
     gutter: requireProp('container'),
@@ -321,4 +321,4 @@ if (process.env.NODE_ENV !== 'production') {
   };
 }
 
-export default LayoutWrapper;
+export default GridWrapper;

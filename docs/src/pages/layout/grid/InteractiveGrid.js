@@ -3,12 +3,12 @@
 import React, { Component } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
-import Layout from 'material-ui/Layout';
+import Grid from 'material-ui/Grid';
 import { LabelRadio, RadioGroup } from 'material-ui/Radio';
 import Paper from 'material-ui/Paper';
 import { FormLabel } from 'material-ui/Form';
 
-const styleSheet = createStyleSheet('InteractiveLayout', () => {
+const styleSheet = createStyleSheet('InteractiveGrid', () => {
   return {
     root: {
       flexGrow: 1,
@@ -26,7 +26,7 @@ const styleSheet = createStyleSheet('InteractiveLayout', () => {
   };
 });
 
-export default class InteractiveLayout extends Component {
+export default class InteractiveGrid extends Component {
   static contextTypes = {
     styleManager: customPropTypes.muiRequired,
   }
@@ -53,9 +53,9 @@ export default class InteractiveLayout extends Component {
     } = this.state;
 
     return (
-      <Layout container className={classes.root}>
-        <Layout item xs={12}>
-          <Layout
+      <Grid container className={classes.root}>
+        <Grid item xs={12}>
+          <Grid
             container
             className={classes.demo}
             align={align}
@@ -63,18 +63,18 @@ export default class InteractiveLayout extends Component {
             justify={justify}
           >
             {Array.from({ length: 3 }, (v, k) => k).map((index) => (
-              <Layout key={index} item>
+              <Grid key={index} item>
                 <Paper className={classes.paper}>
                   {`Cell ${index + 1}`}
                 </Paper>
-              </Layout>
+              </Grid>
             ))}
-          </Layout>
-        </Layout>
-        <Layout item xs={12}>
+          </Grid>
+        </Grid>
+        <Grid item xs={12}>
           <Paper className={classes.control}>
-            <Layout container>
-              <Layout item xs={6} sm={4}>
+            <Grid container>
+              <Grid item xs={6} sm={4}>
                 <FormLabel>direction</FormLabel>
                 <RadioGroup
                   aria-label="direction"
@@ -86,8 +86,8 @@ export default class InteractiveLayout extends Component {
                   <LabelRadio label="column" value="column" />
                   <LabelRadio label="column-reverse" value="column-reverse" />
                 </RadioGroup>
-              </Layout>
-              <Layout item xs={6} sm={4}>
+              </Grid>
+              <Grid item xs={6} sm={4}>
                 <FormLabel>justify</FormLabel>
                 <RadioGroup
                   aria-label="justify"
@@ -100,8 +100,8 @@ export default class InteractiveLayout extends Component {
                   <LabelRadio label="space-between" value="space-between" />
                   <LabelRadio label="space-around" value="space-around" />
                 </RadioGroup>
-              </Layout>
-              <Layout item xs={6} sm={4}>
+              </Grid>
+              <Grid item xs={6} sm={4}>
                 <FormLabel>align</FormLabel>
                 <RadioGroup
                   aria-label="align"
@@ -113,11 +113,11 @@ export default class InteractiveLayout extends Component {
                   <LabelRadio label="flex-end" value="flex-end" />
                   <LabelRadio label="stretch" value="stretch" />
                 </RadioGroup>
-              </Layout>
-            </Layout>
+              </Grid>
+            </Grid>
           </Paper>
-        </Layout>
-      </Layout>
+        </Grid>
+      </Grid>
     );
   }
 }

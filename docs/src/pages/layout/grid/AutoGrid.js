@@ -4,9 +4,9 @@ import React from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import Paper from 'material-ui/Paper';
-import Layout from 'material-ui/Layout';
+import Grid from 'material-ui/Grid';
 
-const styleSheet = createStyleSheet('FullWidthLayout', (theme) => ({
+const styleSheet = createStyleSheet('AutoGrid', (theme) => ({
   root: {
     flexGrow: 1,
     marginTop: 30,
@@ -18,52 +18,49 @@ const styleSheet = createStyleSheet('FullWidthLayout', (theme) => ({
   },
 }));
 
-export default function FullWidthLayout(props, context) {
+export default function AutoGrid(props, context) {
   const classes = context.styleManager.render(styleSheet);
 
   return (
     <div className={classes.root}>
-      <Layout container gutter={24}>
-        <Layout item xs={12}>
+      <Grid container gutter={24}>
+        <Grid item xs>
           <Paper className={classes.paper}>
-            xs=12
+            xs
           </Paper>
-        </Layout>
-        <Layout item xs={12} sm={6}>
+        </Grid>
+        <Grid item xs>
           <Paper className={classes.paper}>
-            xs=12 sm=6
+            xs
           </Paper>
-        </Layout>
-        <Layout item xs={12} sm={6}>
+        </Grid>
+        <Grid item xs>
           <Paper className={classes.paper}>
-            xs=12 sm=6
+            xs
           </Paper>
-        </Layout>
-        <Layout item xs={6} sm={3}>
+        </Grid>
+      </Grid>
+      <Grid container gutter={24}>
+        <Grid item xs>
           <Paper className={classes.paper}>
-            xs=6 sm=3
+            xs
           </Paper>
-        </Layout>
-        <Layout item xs={6} sm={3}>
+        </Grid>
+        <Grid item xs={6}>
           <Paper className={classes.paper}>
-            xs=6 sm=3
+            xs=6
           </Paper>
-        </Layout>
-        <Layout item xs={6} sm={3}>
+        </Grid>
+        <Grid item xs>
           <Paper className={classes.paper}>
-            xs=6 sm=3
+            xs
           </Paper>
-        </Layout>
-        <Layout item xs={6} sm={3}>
-          <Paper className={classes.paper}>
-            xs=6 sm=3
-          </Paper>
-        </Layout>
-      </Layout>
+        </Grid>
+      </Grid>
     </div>
   );
 }
 
-FullWidthLayout.contextTypes = {
+AutoGrid.contextTypes = {
   styleManager: customPropTypes.muiRequired,
 };

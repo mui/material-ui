@@ -1,66 +1,64 @@
 // @flow weak
 
 import React from 'react';
+import Paper from 'material-ui/Paper';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
-import Paper from 'material-ui/Paper';
-import Layout from 'material-ui/Layout';
+import Grid from 'material-ui/Grid';
 
-const styleSheet = createStyleSheet('AutoLayout', (theme) => ({
+const styleSheet = createStyleSheet('AutoGrid', () => ({
   root: {
-    flexGrow: 1,
-    marginTop: 30,
+    width: 400,
   },
   paper: {
     padding: 16,
     textAlign: 'center',
-    color: theme.palette.text.secondary,
   },
 }));
 
-export default function AutoLayout(props, context) {
+export default function AutoGrid(props, context) {
   const classes = context.styleManager.render(styleSheet);
 
   return (
     <div className={classes.root}>
-      <Layout container gutter={24}>
-        <Layout item xs>
+      <Grid container gutter={24}>
+        <Grid item xs>
           <Paper className={classes.paper}>
             xs
           </Paper>
-        </Layout>
-        <Layout item xs>
+        </Grid>
+        <Grid item xs>
           <Paper className={classes.paper}>
             xs
           </Paper>
-        </Layout>
-        <Layout item xs>
+        </Grid>
+        <Grid item xs>
           <Paper className={classes.paper}>
             xs
           </Paper>
-        </Layout>
-      </Layout>
-      <Layout container gutter={24}>
-        <Layout item xs>
+        </Grid>
+      </Grid>
+      <Grid container gutter={24}>
+        <Grid item xs>
           <Paper className={classes.paper}>
             xs
           </Paper>
-        </Layout>
-        <Layout item xs={6}>
+        </Grid>
+        <Grid item xs={6}>
           <Paper className={classes.paper}>
             xs=6
           </Paper>
-        </Layout>
-        <Layout item xs>
+        </Grid>
+        <Grid item xs>
           <Paper className={classes.paper}>
             xs
           </Paper>
-        </Layout>
-      </Layout>
+        </Grid>
+      </Grid>
     </div>
   );
 }
 
-AutoLayout.contextTypes = {
+AutoGrid.contextTypes = {
   styleManager: customPropTypes.muiRequired,
 };
