@@ -1,6 +1,6 @@
 // @flow
 /**
- * A layout component using the following libs as inspiration.
+ * A grid component using the following libs as inspiration.
  *
  * For the implementation:
  * - http://v4-alpha.getbootstrap.com/layout/flexbox-grid/
@@ -78,7 +78,7 @@ function generateGutter(theme, breakpoint) {
   return styles;
 }
 
-export const styleSheet = createStyleSheet('MuiLayout', (theme) => {
+export const styleSheet = createStyleSheet('MuiGrid', (theme) => {
   // Default CSS values
   // flex: '0 1 auto',
   // flexDirection: 'row',
@@ -227,7 +227,7 @@ type Props = {
   xl?: GridSizes, // eslint-disable-line react/sort-prop-types
 };
 
-function Layout(props: Props, context: any) {
+function Grid(props: Props, context: any) {
   const {
     className: classNameProp,
     component,
@@ -252,10 +252,10 @@ function Layout(props: Props, context: any) {
     [classes.typeContainer]: container,
     [classes.typeItem]: item,
     [classes[`gutter-xs-${String(gutter)}`]]: container && gutter !== 0,
-    [classes[`direction-xs-${String(direction)}`]]: direction !== Layout.defaultProps.direction,
-    [classes[`wrap-xs-${String(wrap)}`]]: wrap !== Layout.defaultProps.wrap,
-    [classes[`align-xs-${String(align)}`]]: align !== Layout.defaultProps.align,
-    [classes[`justify-xs-${String(justify)}`]]: justify !== Layout.defaultProps.justify,
+    [classes[`direction-xs-${String(direction)}`]]: direction !== Grid.defaultProps.direction,
+    [classes[`wrap-xs-${String(wrap)}`]]: wrap !== Grid.defaultProps.wrap,
+    [classes[`align-xs-${String(align)}`]]: align !== Grid.defaultProps.align,
+    [classes[`justify-xs-${String(justify)}`]]: justify !== Grid.defaultProps.justify,
     [classes['grid-xs']]: xs === true,
     [classes[`grid-xs-${String(xs)}`]]: xs && xs !== true,
     [classes['grid-sm']]: sm === true,
@@ -270,7 +270,7 @@ function Layout(props: Props, context: any) {
   const layoutProps = { className, ...other };
 
   // workaround: see https://github.com/facebook/flow/issues/1660#issuecomment-297775427
-  const ComponentProp = component || Layout.defaultProps.component;
+  const ComponentProp = component || Grid.defaultProps.component;
 
   if (hidden) {
     return (
@@ -281,7 +281,7 @@ function Layout(props: Props, context: any) {
   return <ComponentProp {...layoutProps} />;
 }
 
-Layout.defaultProps = {
+Grid.defaultProps = {
   component: 'div',
   container: false,
   item: false,
@@ -293,7 +293,7 @@ Layout.defaultProps = {
   hidden: undefined,
 };
 
-Layout.contextTypes = {
+Grid.contextTypes = {
   styleManager: customPropTypes.muiRequired,
 };
 
@@ -301,14 +301,14 @@ Layout.contextTypes = {
  * Add a wrapper component to generate some helper messages in the development
  * environment.
  */
-let LayoutWrapper = Layout; // eslint-disable-line import/no-mutable-exports
+let GridWrapper = Grid; // eslint-disable-line import/no-mutable-exports
 
 if (process.env.NODE_ENV !== 'production') {
-  const requireProp = requirePropFactory('Layout');
+  const requireProp = requirePropFactory('Grid');
 
-  LayoutWrapper = (props: any) => <Layout {...props} />;
+  GridWrapper = (props: any) => <Grid {...props} />;
 
-  LayoutWrapper.propTypes = {
+  GridWrapper.propTypes = {
     align: requireProp('container'),
     direction: requireProp('container'),
     gutter: requireProp('container'),
@@ -321,4 +321,4 @@ if (process.env.NODE_ENV !== 'production') {
   };
 }
 
-export default LayoutWrapper;
+export default GridWrapper;
