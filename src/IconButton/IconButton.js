@@ -110,7 +110,7 @@ class IconButton extends Component {
     /**
      * Override the inline-styles of the tooltip element.
      */
-    tooltipStyles: PropTypes.object,
+    tooltipStyle: PropTypes.object,
     /**
      * If true, increase the tooltip element's size. Useful for increasing tooltip
      * readability on mobile devices.
@@ -238,7 +238,7 @@ class IconButton extends Component {
       style,
       tooltip,
       tooltipPosition: tooltipPositionProp,
-      tooltipStyles,
+      tooltipStyle,
       touch,
       iconStyle,
       ...other
@@ -261,7 +261,7 @@ class IconButton extends Component {
         label={tooltip}
         show={this.state.tooltipShown}
         touch={touch}
-        style={Object.assign(styles.tooltip, tooltipStyles)}
+        style={Object.assign(styles.tooltip, tooltipStyle)}
         verticalPosition={tooltipPosition[0]}
         horizontalPosition={tooltipPosition[1]}
       />
