@@ -4,9 +4,9 @@ import React from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import Paper from 'material-ui/Paper';
-import Layout from 'material-ui/Layout';
+import Grid from 'material-ui/Grid';
 
-const styleSheet = createStyleSheet('CenteredLayout', (theme) => ({
+const styleSheet = createStyleSheet('CenteredGrid', (theme) => ({
   root: {
     flexGrow: 1,
     marginTop: 30,
@@ -18,52 +18,52 @@ const styleSheet = createStyleSheet('CenteredLayout', (theme) => ({
   },
 }));
 
-export default function CenteredLayout(props, context) {
+export default function CenteredGrid(props, context) {
   const classes = context.styleManager.render(styleSheet);
 
   return (
     <div className={classes.root}>
-      <Layout container gutter={24}>
-        <Layout item xs={12}>
+      <Grid container gutter={24}>
+        <Grid item xs={12}>
           <Paper className={classes.paper}>
             xs=12
           </Paper>
-        </Layout>
-        <Layout item xs={6}>
+        </Grid>
+        <Grid item xs={6}>
           <Paper className={classes.paper}>
             xs=6
           </Paper>
-        </Layout>
-        <Layout item xs={6}>
+        </Grid>
+        <Grid item xs={6}>
           <Paper className={classes.paper}>
             xs=6
           </Paper>
-        </Layout>
-        <Layout item xs={3}>
+        </Grid>
+        <Grid item xs={3}>
           <Paper className={classes.paper}>
             xs=3
           </Paper>
-        </Layout>
-        <Layout item xs={3}>
+        </Grid>
+        <Grid item xs={3}>
           <Paper className={classes.paper}>
             xs=3
           </Paper>
-        </Layout>
-        <Layout item xs={3}>
+        </Grid>
+        <Grid item xs={3}>
           <Paper className={classes.paper}>
             xs=3
           </Paper>
-        </Layout>
-        <Layout item xs={3}>
+        </Grid>
+        <Grid item xs={3}>
           <Paper className={classes.paper}>
             xs=3
           </Paper>
-        </Layout>
-      </Layout>
+        </Grid>
+      </Grid>
     </div>
   );
 }
 
-CenteredLayout.contextTypes = {
+CenteredGrid.contextTypes = {
   styleManager: customPropTypes.muiRequired,
 };

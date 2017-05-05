@@ -4,9 +4,9 @@ import React from 'react';
 import Paper from 'material-ui/Paper';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
-import Layout from 'material-ui/Layout';
+import Grid from 'material-ui/Grid';
 
-const styleSheet = createStyleSheet('AutoLayout', () => ({
+const styleSheet = createStyleSheet('SimpleGrid', () => ({
   root: {
     width: 400,
   },
@@ -16,49 +16,52 @@ const styleSheet = createStyleSheet('AutoLayout', () => ({
   },
 }));
 
-export default function AutoLayout(props, context) {
+export default function SimpleGrid(props, context) {
   const classes = context.styleManager.render(styleSheet);
 
   return (
     <div className={classes.root}>
-      <Layout container gutter={24}>
-        <Layout item xs>
+      <Grid container gutter={24}>
+        <Grid item xs={12}>
           <Paper className={classes.paper}>
-            xs
+            xs=12
           </Paper>
-        </Layout>
-        <Layout item xs>
-          <Paper className={classes.paper}>
-            xs
-          </Paper>
-        </Layout>
-        <Layout item xs>
-          <Paper className={classes.paper}>
-            xs
-          </Paper>
-        </Layout>
-      </Layout>
-      <Layout container gutter={24}>
-        <Layout item xs>
-          <Paper className={classes.paper}>
-            xs
-          </Paper>
-        </Layout>
-        <Layout item xs={6}>
+        </Grid>
+        <Grid item xs={6}>
           <Paper className={classes.paper}>
             xs=6
           </Paper>
-        </Layout>
-        <Layout item xs>
+        </Grid>
+        <Grid item xs={6}>
           <Paper className={classes.paper}>
-            xs
+            xs=6
           </Paper>
-        </Layout>
-      </Layout>
+        </Grid>
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>
+            xs=3
+          </Paper>
+        </Grid>
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>
+            xs=3
+          </Paper>
+        </Grid>
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>
+            xs=3
+          </Paper>
+        </Grid>
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>
+            xs=3
+          </Paper>
+        </Grid>
+      </Grid>
     </div>
   );
 }
 
-AutoLayout.contextTypes = {
+SimpleGrid.contextTypes = {
   styleManager: customPropTypes.muiRequired,
 };

@@ -1,67 +1,69 @@
 // @flow weak
 
 import React from 'react';
-import Paper from 'material-ui/Paper';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
-import Layout from 'material-ui/Layout';
+import Paper from 'material-ui/Paper';
+import Grid from 'material-ui/Grid';
 
-const styleSheet = createStyleSheet('SimpleLayout', () => ({
+const styleSheet = createStyleSheet('FullWidthGrid', (theme) => ({
   root: {
-    width: 400,
+    flexGrow: 1,
+    marginTop: 30,
   },
   paper: {
     padding: 16,
     textAlign: 'center',
+    color: theme.palette.text.secondary,
   },
 }));
 
-export default function SimpleLayout(props, context) {
+export default function FullWidthGrid(props, context) {
   const classes = context.styleManager.render(styleSheet);
 
   return (
     <div className={classes.root}>
-      <Layout container gutter={24}>
-        <Layout item xs={12}>
+      <Grid container gutter={24}>
+        <Grid item xs={12}>
           <Paper className={classes.paper}>
             xs=12
           </Paper>
-        </Layout>
-        <Layout item xs={6}>
+        </Grid>
+        <Grid item xs={12} sm={6}>
           <Paper className={classes.paper}>
-            xs=6
+            xs=12 sm=6
           </Paper>
-        </Layout>
-        <Layout item xs={6}>
+        </Grid>
+        <Grid item xs={12} sm={6}>
           <Paper className={classes.paper}>
-            xs=6
+            xs=12 sm=6
           </Paper>
-        </Layout>
-        <Layout item xs={3}>
+        </Grid>
+        <Grid item xs={6} sm={3}>
           <Paper className={classes.paper}>
-            xs=3
+            xs=6 sm=3
           </Paper>
-        </Layout>
-        <Layout item xs={3}>
+        </Grid>
+        <Grid item xs={6} sm={3}>
           <Paper className={classes.paper}>
-            xs=3
+            xs=6 sm=3
           </Paper>
-        </Layout>
-        <Layout item xs={3}>
+        </Grid>
+        <Grid item xs={6} sm={3}>
           <Paper className={classes.paper}>
-            xs=3
+            xs=6 sm=3
           </Paper>
-        </Layout>
-        <Layout item xs={3}>
+        </Grid>
+        <Grid item xs={6} sm={3}>
           <Paper className={classes.paper}>
-            xs=3
+            xs=6 sm=3
           </Paper>
-        </Layout>
-      </Layout>
+        </Grid>
+      </Grid>
     </div>
   );
 }
 
-SimpleLayout.contextTypes = {
+FullWidthGrid.contextTypes = {
   styleManager: customPropTypes.muiRequired,
 };

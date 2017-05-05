@@ -123,7 +123,7 @@ export default function AppRouter() {
           />
         </Route>
         <Route
-          title="Layout"
+          title="Grid"
           path="/layout"
           nav
           component={AppContent}
@@ -136,9 +136,9 @@ export default function AppRouter() {
             nav
           />
           <Route
-            title="Layout"
-            path="/layout/layout"
-            content={requireMarkdown('./layout/layout.md')}
+            title="Grid"
+            path="/layout/grid"
+            content={requireMarkdown('./layout/grid.md')}
             component={MarkdownDocs}
             nav
           />

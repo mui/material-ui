@@ -1,6 +1,6 @@
 # Hidden
 
-All elements are visible unless they are explicitly hidden.  To ease integration with our [responsive breakpoints](/layout/basics), this component can be used to hide any content, or you can use it in conjunction with our [`Layout`](/layout/layout) component.
+All elements are visible unless they are explicitly hidden.  To ease integration with our [responsive breakpoints](/layout/basics), this component can be used to hide any content, or you can use it in conjunction with our [`Grid`](/layout/grid) component.
 
 ## How it works
 
@@ -36,8 +36,8 @@ The `only` property can be used in two ways:
 
 {{demo='pages/layout/hidden/BreakpointOnly.js'}}
 
-## Integration with Layout
+## Integration with Grid
 
-It is quite common to alter `Layout` at different responsive breakpoints, and in many cases, you want to hide some of those elements.  For brevity, where you are already using `Layout`, you may specify `Hidden` behaviors as the `hidden` prop.
+It is quite common to alter `Grid` at different responsive breakpoints, and in many cases, you want to hide some of those elements.  For brevity, where you are already using `Grid`, you may specify `Hidden` behaviors as the `hidden` prop.
 
-{{demo='pages/layout/hidden/LayoutIntegration.js'}}
+{{demo='pages/layout/hidden/GridIntegration.js'}}

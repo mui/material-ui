@@ -4,9 +4,9 @@ import React from 'react';
 import Paper from 'material-ui/Paper';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
-import Layout from 'material-ui/Layout';
+import Grid from 'material-ui/Grid';
 
-const styleSheet = createStyleSheet('StressLayout', (theme) => ({
+const styleSheet = createStyleSheet('StressGrid', (theme) => ({
   root: {
     width: 400,
     backgroundColor: theme.palette.primary.A400,
@@ -17,81 +17,81 @@ const styleSheet = createStyleSheet('StressLayout', (theme) => ({
   },
 }));
 
-export default function StressLayout(props, context) {
+export default function StressGrid(props, context) {
   const classes = context.styleManager.render(styleSheet);
 
   return (
     <div className={classes.root}>
-      <Layout container gutter={24} direction="column">
-        <Layout container item gutter={8}>
-          <Layout item xs={3}>
+      <Grid container gutter={24} direction="column">
+        <Grid container item gutter={8}>
+          <Grid item xs={3}>
             <Paper className={classes.paper}>
               xs=3
             </Paper>
-          </Layout>
-          <Layout item xs={9}>
+          </Grid>
+          <Grid item xs={9}>
             <Paper className={classes.paper}>
               xs=9
             </Paper>
-          </Layout>
-        </Layout>
-        <Layout
+          </Grid>
+        </Grid>
+        <Grid
           container
           item
           gutter={8}
           direction="row-reverse"
         >
-          <Layout item xs={3}>
+          <Grid item xs={3}>
             <Paper className={classes.paper}>
               first
             </Paper>
-          </Layout>
-          <Layout item xs={3}>
+          </Grid>
+          <Grid item xs={3}>
             <Paper className={classes.paper}>
               last
             </Paper>
-          </Layout>
-        </Layout>
-        <Layout
+          </Grid>
+        </Grid>
+        <Grid
           container
           item
           gutter={8}
           justify="space-between"
         >
-          <Layout item xs={3}>
+          <Grid item xs={3}>
             <Paper className={classes.paper}>
               space
             </Paper>
-          </Layout>
-          <Layout item xs={3}>
+          </Grid>
+          <Grid item xs={3}>
             <Paper className={classes.paper}>
               between
             </Paper>
-          </Layout>
-        </Layout>
-        <Layout
+          </Grid>
+        </Grid>
+        <Grid
           container
           item
           gutter={8}
           align="stretch"
           direction="column-reverse"
         >
-          <Layout item>
+          <Grid item>
             <Paper className={classes.paper}>
               reverse
             </Paper>
-          </Layout>
-          <Layout item>
+          </Grid>
+          <Grid item>
             <Paper className={classes.paper}>
               column
             </Paper>
-          </Layout>
-        </Layout>
-      </Layout>
+          </Grid>
+        </Grid>
+      </Grid>
     </div>
   );
 }
 
-StressLayout.contextTypes = {
+StressGrid.contextTypes = {
   styleManager: customPropTypes.muiRequired,
 };
