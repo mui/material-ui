@@ -267,18 +267,18 @@ function Grid(props: Props, context: any) {
     [classes['grid-xl']]: xl === true,
     [classes[`grid-xl-${String(xl)}`]]: xl && xl !== true,
   }, classNameProp);
-  const layoutProps = { className, ...other };
+  const gridProps = { className, ...other };
 
   // workaround: see https://github.com/facebook/flow/issues/1660#issuecomment-297775427
   const ComponentProp = component || Grid.defaultProps.component;
 
   if (hidden) {
     return (
-      <Hidden {...hidden} component={<ComponentProp {...layoutProps} />} />
+      <Hidden {...hidden} component={<ComponentProp {...gridProps} />} />
     );
   }
 
-  return <ComponentProp {...layoutProps} />;
+  return <ComponentProp {...gridProps} />;
 }
 
 Grid.defaultProps = {

@@ -120,5 +120,5 @@ Stick to test assertions such as `assert.strictEqual` and `assert.ok`. This help
 We should try to use as many demos from the documentation as possible;
 however, we can't replace one with the other as they address different needs.
 With the regression tests:
-- You might need to test a more complex situation, e.g. a stress test of the layout
+- You might need to test a more complex situation, e.g. a stress test of the grid
 - You might need to test a simpler situation, e.g. a static progress bar
