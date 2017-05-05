@@ -37,7 +37,7 @@ describe('<HiddenJs />', () => {
 
       it(`should not render ${breakpoint} ${descriptions[upDownOnly]}`, () => {
         const props = { width, ...prop };
-        const wrapper = shallowWithWidth(<HiddenJs {...props}>foo</HiddenJs>);
+        const wrapper = shallowWithWidth(<HiddenJs component="div" {...props}>foo</HiddenJs>);
         assert.strictEqual(wrapper.type(), null, 'should render nothing');
       });
     });
@@ -57,7 +57,7 @@ describe('<HiddenJs />', () => {
       const prop = resolveProp(upDownOnly, breakpoint);
       it(`should render ${breakpoint} ${descriptions[upDownOnly]}`, () => {
         const props = { width, ...prop };
-        const wrapper = shallowWithWidth(<HiddenJs {...props}>foo</HiddenJs>);
+        const wrapper = shallowWithWidth(<HiddenJs component="div" {...props}>foo</HiddenJs>);
         assert.isNotNull(wrapper.type(), 'should render children');
         assert.strictEqual(wrapper.name(), 'div');
         assert.strictEqual(wrapper.first().text(), 'foo', 'should render children');

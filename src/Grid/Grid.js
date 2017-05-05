@@ -17,7 +17,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 import requirePropFactory from '../utils/requirePropFactory';
 import Hidden from '../Hidden';
-import type { HiddenProps } from '../Hidden/Hidden';
+import type { HiddenProps } from '../Hidden/types';
 
 const GUTTERS = [0, 8, 16, 24, 40];
 const GRID_SIZES = [true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
