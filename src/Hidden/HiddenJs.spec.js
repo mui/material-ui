@@ -5,6 +5,7 @@ import { assert } from 'chai';
 import { createShallow } from 'src/test-utils';
 import HiddenJs from './HiddenJs';
 import type { Breakpoint } from '../styles/breakpoints';
+import Typography from '../Typography';
 
 describe('<HiddenJs />', () => {
   let shallowWithWidth;
@@ -35,10 +36,18 @@ describe('<HiddenJs />', () => {
     hiddenBreakpoints.forEach((breakpoint) => {
       const prop = resolveProp(upDownOnly, breakpoint);
 
-      it(`should not render ${breakpoint} ${descriptions[upDownOnly]}`, () => {
+      it(`should not render children ${breakpoint} ${descriptions[upDownOnly]}`, () => {
         const props = { width, ...prop };
         const wrapper = shallowWithWidth(<HiddenJs component="div" {...props}>foo</HiddenJs>);
-        assert.strictEqual(wrapper.type(), null, 'should render nothing');
+        assert.isNull(wrapper.type(), 'should render null');
+      });
+
+      it(`should not render Element ${breakpoint} ${descriptions[upDownOnly]}`, () => {
+        const props = { width, ...prop };
+        const wrapper = shallowWithWidth(
+          <HiddenJs component={<Typography>foo</Typography>} {...props}>foo</HiddenJs>,
+        );
+        assert.isNull(wrapper.type(), 'should render null');
       });
     });
   }
@@ -55,12 +64,21 @@ describe('<HiddenJs />', () => {
     };
     visibleBreakpoints.forEach((breakpoint) => {
       const prop = resolveProp(upDownOnly, breakpoint);
-      it(`should render ${breakpoint} ${descriptions[upDownOnly]}`, () => {
+      it(`should render children ${breakpoint} ${descriptions[upDownOnly]}`, () => {
         const props = { width, ...prop };
         const wrapper = shallowWithWidth(<HiddenJs component="div" {...props}>foo</HiddenJs>);
-        assert.isNotNull(wrapper.type(), 'should render children');
+        assert.isNotNull(wrapper.type(), 'should render');
         assert.strictEqual(wrapper.name(), 'div');
         assert.strictEqual(wrapper.first().text(), 'foo', 'should render children');
+      });
+
+      it(`should render Element ${breakpoint} ${descriptions[upDownOnly]}`, () => {
+        const props = { width, ...prop };
+        const wrapper = shallowWithWidth(
+          <HiddenJs component={<Typography>foo</Typography>} {...props}>foo</HiddenJs>,
+        );
+        assert.isNotNull(wrapper.type(), 'should render');
+        assert.strictEqual(wrapper.name(), 'Typography');
       });
     });
   }
