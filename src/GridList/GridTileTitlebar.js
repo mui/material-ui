@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
@@ -44,13 +44,13 @@ export const styleSheet = createStyleSheet('MuiGridTileTitlebar', (theme) => {
       marginRight: 0,
     },
     title: {
-      fontSize: '16px',
+      fontSize: 16,
       textOverflow: 'ellipsis',
       overflow: 'hidden',
       whiteSpace: 'nowrap',
     },
     subtitle: {
-      fontSize: '12px',
+      fontSize: 12,
       textOverflow: 'ellipsis',
       overflow: 'hidden',
       whiteSpace: 'nowrap',
@@ -72,121 +72,103 @@ export const styleSheet = createStyleSheet('MuiGridTileTitlebar', (theme) => {
  *  <GridTileTitlebar title="GridTile" />
  *  ```
  */
-export default class GridTileTitlebar extends Component {
-  static propTypes = {
-    /**
-     * An IconButton element to be used as secondary action target
-     * (primary action target is the tile itself).
-     */
-    actionIcon: PropTypes.element,
-    /**
-     * Position of secondary action IconButton.
-     */
-    actionPosition: PropTypes.oneOf(['left', 'right']),
-    /**
-     * The CSS `className` of the root element.
-     */
-    className: PropTypes.string,
-    /**
-     * String or element serving as subtitle (support text).
-     */
-    subtitle: PropTypes.node,
-    /**
-     * The CSS `className` of the subtitle.
-     */
-    subtitleClassName: PropTypes.string,
-    /**
-     * Title to be displayed on tile.
-     */
-    title: PropTypes.node.isRequired,
-    /**
-     * The CSS `className` of the title.
-     */
-    titleClassName: PropTypes.string,
-    /**
-     * Position of the title bar.
-     */
-    titlePosition: PropTypes.oneOf(['top', 'bottom']),
-  };
+export default function GridTileTitlebar(props, context) {
+  const {
+    actionIcon,
+    actionPosition,
+    className: classNameProp,
+    subtitle,
+    subtitleClassName: subtitleClassNameProp,
+    title,
+    titleClassName: titleClassNameProp,
+    titlePosition, // eslint-disable-line no-unused-vars
+    ...other
+  } = props;
 
-  static defaultProps = {
-    titlePosition: 'bottom',
-    actionPosition: 'right',
-  };
+  const classes = context.styleManager.render(styleSheet);
+  const actionPos = actionIcon && actionPosition;
 
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
+  const className = classNames(
+    classes.titleBar,
+    {
+      [classes.titleBarBottom]: titlePosition === 'bottom',
+      [classes.titleBarTop]: titlePosition === 'top',
+      [classes.titleBarWithSubtitle]: subtitle,
+    },
+    classNameProp,
+  );
 
-  render() {
-    const {
-      actionIcon,
-      actionPosition,
-      className: classNameProp,
-      subtitle,
-      subtitleClassName: subtitleClassNameProp,
-      title,
-      titleClassName: titleClassNameProp,
-      titlePosition, // eslint-disable-line no-unused-vars
-      ...other
-    } = this.props;
+  // Remove the margin between the title / subtitle wrapper, and the Action Icon
+  const titleWrapClassName = classNames(
+    classes.titleWrap,
+    {
+      [classes.titleWrapActionLeft]: actionPos === 'left',
+      [classes.titleWrapActionRight]: actionPos === 'right',
+    },
+  );
 
-    const classes = this.context.styleManager.render(styleSheet);
-    const actionPos = actionIcon && actionPosition;
-
-    const className = classNames(
-      classes.titleBar,
-      {
-        [classes.titleBarBottom]: titlePosition === 'bottom',
-        [classes.titleBarTop]: titlePosition === 'top',
-        [classes.titleBarWithSubtitle]: subtitle,
-      },
-      classNameProp,
-    );
-
-    // Remove the margin between the title / subtitle wrapper, and the Action Icon
-    const titleWrapClassName = classNames(
-      classes.titleWrap,
-      {
-        [classes.titleWrapActionLeft]: actionPos === 'left',
-        [classes.titleWrapActionRight]: actionPos === 'right',
-      },
-    );
-
-    const titleClassName = classNames(
-      classes.title,
-      titleClassNameProp,
-    );
-
-    const subtitleClassName = classNames(
-      classes.subtitle,
-      subtitleClassNameProp,
-    );
-
-    const actionIconClassName = classNames(
-      {
-        [classes.actionIconPositionLeft]: actionPos === 'left',
-      },
-    );
-
-    return (
-      <div key="titlebar" className={className} {...other}>
-        <div className={titleWrapClassName}>
-          <div className={titleClassName}>
-            {title}
-          </div>
-          {subtitle ? (
-            <div className={subtitleClassName}>
-              {subtitle}
-            </div>
-          ) : null}
+  return (
+    <div className={className} {...other}>
+      <div className={titleWrapClassName}>
+        <div className={classNames(classes.title, titleClassNameProp)}>
+          {title}
         </div>
-        {actionIcon ? (
-          <div className={actionIconClassName}>
-            {actionIcon}
+        {subtitle ? (
+          <div className={classNames(classes.subtitle, subtitleClassNameProp)}>
+            {subtitle}
           </div>
         ) : null}
       </div>
-    );
-  }
+      {actionIcon ? (
+        <div className={classNames({ [classes.actionIconPositionLeft]: actionPos === 'left' })}>
+          {actionIcon}
+        </div>
+      ) : null}
+    </div>
+  );
 }
+
+GridTileTitlebar.propTypes = {
+  /**
+   * An IconButton element to be used as secondary action target
+   * (primary action target is the tile itself).
+   */
+  actionIcon: PropTypes.element,
+  /**
+   * Position of secondary action IconButton.
+   */
+  actionPosition: PropTypes.oneOf(['left', 'right']),
+  /**
+   * The CSS `className` of the root element.
+   */
+  className: PropTypes.string,
+  /**
+   * String or element serving as subtitle (support text).
+   */
+  subtitle: PropTypes.node,
+  /**
+   * The CSS `className` of the subtitle.
+   */
+  subtitleClassName: PropTypes.string,
+  /**
+   * Title to be displayed on tile.
+   */
+  title: PropTypes.node.isRequired,
+  /**
+   * The CSS `className` of the title.
+   */
+  titleClassName: PropTypes.string,
+  /**
+   * Position of the title bar.
+   */
+  titlePosition: PropTypes.oneOf(['top', 'bottom']),
+};
+
+GridTileTitlebar.defaultProps = {
+  titlePosition: 'bottom',
+  actionPosition: 'right',
+};
+
+GridTileTitlebar.contextTypes = {
+  styleManager: customPropTypes.muiRequired,
+};

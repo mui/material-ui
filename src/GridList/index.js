@@ -1,6 +1,7 @@
 // @flow
-export GridList from './GridList';
-export GridTile from './GridTile';
-export GridTileTitlebar from './GridTileTitlebar';
 
-export default from './GridList';
+export { default } from './GridList';
+
+export { default as GridList } from './GridList';
+export { default as GridTile } from './GridTile';
+export { default as GridTileTitlebar } from './GridTileTitlebar';

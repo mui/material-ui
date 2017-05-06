@@ -20,7 +20,6 @@ export const styleSheet = createStyleSheet('MuiGridTile', (theme) => {
       transform: 'translateX(-50%)',
       position: 'relative',
       left: '50%',
-      maxWidth: 'none', // Reset to initial value to override docs-site App-frame.
     },
   };
 });
@@ -50,15 +49,12 @@ export default class GridTile extends Component {
      */
     cols: PropTypes.number,
     /**
-     * Either a string used as tag name for the tile root element, or a ReactElement.
-     * This is useful when you have, for example, a custom implementation of a navigation
-     * link (that knows about your routes) and you want to use it as the primary tile action.
-     * In case you pass a ReactElement, please ensure that it passes all props,
-     * accepts styles overrides and render it's children.
+     * The component used for the root node.
+     * Either a string to use a DOM element or a component.
      */
-    containerElement: PropTypes.oneOfType([
+    component: PropTypes.oneOfType([
       PropTypes.string,
-      PropTypes.element,
+      PropTypes.func,
     ]),
     /**
      * Height of the tile in number of grid cells.
@@ -69,7 +65,7 @@ export default class GridTile extends Component {
   static defaultProps = {
     cols: 1,
     rows: 1,
-    containerElement: 'div',
+    component: 'div',
   };
 
   static contextTypes = {
@@ -119,7 +115,7 @@ export default class GridTile extends Component {
       children,
       className: classNameProp,
       cols, // eslint-disable-line no-unused-vars
-      containerElement,
+      component: ComponentProp,
       rows, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
@@ -131,24 +127,16 @@ export default class GridTile extends Component {
         return React.cloneElement(child, {
           key: 'img',
           ref: (img) => { this.imgElement = img; },
-          className: classes.childImg,
+          className: classNames(classes.childImg, child.props.className),
         });
       }
       return child;
     });
 
-    const className = classNames(
-      classes.root,
-      classNameProp,
+    return (
+      <ComponentProp className={classNames(classes.root, classNameProp)} {...other}>
+        {newChildren}
+      </ComponentProp>
     );
-
-    const containerProps = {
-      className,
-      ...other,
-    };
-
-    return React.isValidElement(containerElement) ?
-      React.cloneElement(containerElement, containerProps, [newChildren]) :
-      React.createElement(containerElement, containerProps, [newChildren]);
   }
 }

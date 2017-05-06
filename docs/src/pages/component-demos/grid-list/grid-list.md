@@ -33,7 +33,7 @@ tile, and the `padding` prop to adjust the spacing. The tiles have a customised 
 top and with a custom gradient `titleBackground`. The 
 secondary action `IconButton` is positioned on the left.
 
-{{demo='pages/component-demos/grid-list/ComplexGridList.js'}}
+{{demo='pages/component-demos/grid-list/AdvancedGridList.js'}}
 
 ## Single line Grid list
 
