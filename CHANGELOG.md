@@ -1,5 +1,34 @@
 ## HEAD
 
+## 0.18.0
+###### _Apr 30, 2017_
+
+Big thanks to the 8 contributors who made this release possible.
+This release almost exclusively contains bug fixes.
+
+##### Breaking Changes
+
+- [Table] Fix controlled behavior (#6638) @oliviertassinari
+
+This PR is introducing a breaking change by removing the ambiguity between default state and controlled state. Now, as soon as the selected property is used, the row selection of the component is controlled, hence fully implementing what's documented:
+
+> `selected`: This property can be used to programmatically select rows.
+
+##### Component Fixes / Enhancements
+
+- [AutoComplete] Fix overriding TextField value and onChange prop (#6642) @umidbekkarimov
+- [AutoComplete] Fix undesired behaviour with controlled searchText (#6621) @NickMalt
+- [Stepper] Allow single Step child (#6707) @StephanBijzitter
+- [style] Use 'default' cursor for disabled component states (#6700) @demigor
+- [DropDownMenu] Pass autoWidth property to Menu component (#6632) @BamaBoy
+- [Menu] Fix focus index when multiselect is used (#6717) @jony89
+- [Tabs] Fix transition when isRtl is used (#6737) @jony89
+
+##### Docs
+
+- [docs] Upgrade react-docgen (#6635) @mbrookes
+- [Slider] Add a logarithmic scale example (#6672) @idoco
+
 ## 0.17.4
 ###### _Apr 14, 2017_
 
@@ -116,6 +145,7 @@ Big thanks to the 20 contributors who made this release possible.
 Big thanks to the 17 contributors who made this release possible.
 
 ##### Breaking Changes
+
 - [core] Upgrade react-tap-event-plugin and react peer dependency (#6057) @rosskevin
 
 We have upgraded the peer dependency of Material-UI. You gonna need:

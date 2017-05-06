@@ -109,6 +109,18 @@ const reverseMainAxisOffsetProperty = {
 
 const isMouseControlInverted = (axis) => axis === 'x-reverse' || axis === 'y';
 
+const calculateAxis = (axis, isRtl) => {
+  if (isRtl) {
+    switch (axis) {
+      case 'x':
+        return 'x-reverse';
+      case 'x-reverse':
+        return 'x';
+    }
+  }
+  return axis;
+};
+
 function getPercent(value, min, max) {
   let percent = (value - min) / (max - min);
   if (isNaN(percent)) {
@@ -127,6 +139,7 @@ const getStyles = (props, context, state) => {
   } = props;
 
   const {
+    isRtl,
     slider: {
       handleColorZero,
       handleFillColor,
@@ -145,45 +158,48 @@ const getStyles = (props, context, state) => {
   const disabledGutter = trackSize + handleSizeDisabled / 2;
   const calcDisabledSpacing = disabled ? ` - ${disabledGutter}px` : '';
   const percent = getPercent(state.value, min, max);
+  const calculatedAxis = calculateAxis(axis, isRtl);
 
   const styles = {
     slider: {
       touchCallout: 'none',
       userSelect: 'none',
       cursor: 'default',
-      [crossAxisProperty[axis]]: handleSizeActive,
-      [mainAxisProperty[axis]]: '100%',
+      [crossAxisProperty[calculatedAxis]]: handleSizeActive,
+      [mainAxisProperty[calculatedAxis]]: '100%',
       position: 'relative',
       marginTop: 24,
       marginBottom: 48,
     },
     track: {
       position: 'absolute',
-      [crossAxisOffsetProperty[axis]]: (handleSizeActive - trackSize) / 2,
-      [mainAxisOffsetProperty[axis]]: 0,
-      [mainAxisProperty[axis]]: '100%',
-      [crossAxisProperty[axis]]: trackSize,
+      [crossAxisOffsetProperty[calculatedAxis]]: (handleSizeActive - trackSize) / 2,
+      [mainAxisOffsetProperty[calculatedAxis]]: 0,
+      [mainAxisProperty[calculatedAxis]]: '100%',
+      [crossAxisProperty[calculatedAxis]]: trackSize,
     },
     filledAndRemaining: {
+      directionInvariant: true,
       position: 'absolute',
       [crossAxisOffsetProperty]: 0,
-      [crossAxisProperty[axis]]: '100%',
+      [crossAxisProperty[calculatedAxis]]: '100%',
       transition: transitions.easeOut(null, 'margin'),
     },
     handle: {
+      directionInvariant: true,
       boxSizing: 'border-box',
       position: 'absolute',
       cursor: 'pointer',
       pointerEvents: 'inherit',
-      [crossAxisOffsetProperty[axis]]: 0,
-      [mainAxisOffsetProperty[axis]]: percent === 0 ? '0%' : `${(percent * 100)}%`,
+      [crossAxisOffsetProperty[calculatedAxis]]: 0,
+      [mainAxisOffsetProperty[calculatedAxis]]: percent === 0 ? '0%' : `${(percent * 100)}%`,
       zIndex: 1,
       margin: ({
         x: `${(trackSize / 2)}px 0 0 0`,
         'x-reverse': `${(trackSize / 2)}px 0 0 0`,
         y: `0 0 0 ${(trackSize / 2)}px`,
         'y-reverse': `0 0 0 ${(trackSize / 2)}px`,
-      })[axis],
+      })[calculatedAxis],
       width: handleSize,
       height: handleSize,
       backgroundColor: selectionColor,
@@ -195,7 +211,7 @@ const getStyles = (props, context, state) => {
         'x-reverse': 'translate(50%, -50%)',
         y: 'translate(-50%, 50%)',
         'y-reverse': 'translate(-50%, -50%)',
-      })[axis],
+      })[calculatedAxis],
       transition:
         `${transitions.easeOut('450ms', 'background')}, ${
         transitions.easeOut('450ms', 'border-color')}, ${
@@ -249,17 +265,17 @@ const getStyles = (props, context, state) => {
     },
   };
   styles.filled = Object.assign({}, styles.filledAndRemaining, {
-    [mainAxisOffsetProperty[axis]]: 0,
+    [mainAxisOffsetProperty[calculatedAxis]]: 0,
     backgroundColor: disabled ? trackColor : selectionColor,
-    [mainAxisMarginFromEnd[axis]]: fillGutter,
-    [mainAxisProperty[axis]]: `calc(${(percent * 100)}%${calcDisabledSpacing})`,
+    [mainAxisMarginFromEnd[calculatedAxis]]: fillGutter,
+    [mainAxisProperty[calculatedAxis]]: `calc(${(percent * 100)}%${calcDisabledSpacing})`,
   });
   styles.remaining = Object.assign({}, styles.filledAndRemaining, {
-    [reverseMainAxisOffsetProperty[axis]]: 0,
+    [reverseMainAxisOffsetProperty[calculatedAxis]]: 0,
     backgroundColor: (state.hovered || state.focused) &&
       !disabled ? trackColorSelected : trackColor,
-    [mainAxisMarginFromStart[axis]]: fillGutter,
-    [mainAxisProperty[axis]]: `calc(${((1 - percent) * 100)}%${calcDisabledSpacing})`,
+    [mainAxisMarginFromStart[calculatedAxis]]: fillGutter,
+    [mainAxisProperty[calculatedAxis]]: `calc(${((1 - percent) * 100)}%${calcDisabledSpacing})`,
   });
 
   return styles;
@@ -416,20 +432,23 @@ class Slider extends Component {
       max,
       step,
     } = this.props;
+    const {isRtl} = this.context.muiTheme;
+
+    const calculatedAxis = calculateAxis(axis, isRtl);
 
     let action;
 
     switch (keycode(event)) {
       case 'page down':
       case 'down':
-        if (axis === 'y-reverse') {
+        if (calculatedAxis === 'y-reverse') {
           action = 'increase';
         } else {
           action = 'decrease';
         }
         break;
       case 'left':
-        if (axis === 'x-reverse') {
+        if (calculatedAxis === 'x-reverse') {
           action = 'increase';
         } else {
           action = 'decrease';
@@ -437,14 +456,14 @@ class Slider extends Component {
         break;
       case 'page up':
       case 'up':
-        if (axis === 'y-reverse') {
+        if (calculatedAxis === 'y-reverse') {
           action = 'decrease';
         } else {
           action = 'increase';
         }
         break;
       case 'right':
-        if (axis === 'x-reverse') {
+        if (calculatedAxis === 'x-reverse') {
           action = 'decrease';
         } else {
           action = 'increase';
@@ -544,15 +563,23 @@ class Slider extends Component {
   }
 
   handleTouchStart = (event) => {
-    if (this.props.disabled) {
+    const {
+      axis,
+      disabled,
+    } = this.props;
+    const {isRtl} = this.context.muiTheme;
+
+    if (disabled) {
       return;
     }
 
+    const calculatedAxis = calculateAxis(axis, isRtl);
+
     let position;
-    if (isMouseControlInverted(this.props.axis)) {
-      position = this.getTrackOffset() - event.touches[0][mainAxisClientOffsetProperty[this.props.axis]];
+    if (isMouseControlInverted(calculatedAxis)) {
+      position = this.getTrackOffset() - event.touches[0][mainAxisClientOffsetProperty[calculatedAxis]];
     } else {
-      position = event.touches[0][mainAxisClientOffsetProperty[this.props.axis]] - this.getTrackOffset();
+      position = event.touches[0][mainAxisClientOffsetProperty[calculatedAxis]] - this.getTrackOffset();
     }
     this.setValueFromPosition(event, position);
 
@@ -589,15 +616,23 @@ class Slider extends Component {
   };
 
   handleMouseDown = (event) => {
-    if (this.props.disabled) {
+    const {
+      axis,
+      disabled,
+    } = this.props;
+    const {isRtl} = this.context.muiTheme;
+
+    if (disabled) {
       return;
     }
 
+    const calculatedAxis = calculateAxis(axis, isRtl);
+
     let position;
-    if (isMouseControlInverted(this.props.axis)) {
-      position = this.getTrackOffset() - event[mainAxisClientOffsetProperty[this.props.axis]];
+    if (isMouseControlInverted(calculatedAxis)) {
+      position = this.getTrackOffset() - event[mainAxisClientOffsetProperty[calculatedAxis]];
     } else {
-      position = event[mainAxisClientOffsetProperty[this.props.axis]] - this.getTrackOffset();
+      position = event[mainAxisClientOffsetProperty[calculatedAxis]] - this.getTrackOffset();
     }
     this.setValueFromPosition(event, position);
 
@@ -634,7 +669,12 @@ class Slider extends Component {
   };
 
   getTrackOffset() {
-    return this.track.getBoundingClientRect()[mainAxisOffsetProperty[this.props.axis]];
+    const {axis} = this.props;
+    const {isRtl} = this.context.muiTheme;
+
+    const calculatedAxis = calculateAxis(axis, isRtl);
+
+    return this.track.getBoundingClientRect()[mainAxisOffsetProperty[calculatedAxis]];
   }
 
   onDragStart(event) {
@@ -649,6 +689,12 @@ class Slider extends Component {
   }
 
   onDragUpdate(event, type) {
+    const {
+      axis,
+      disabled,
+    } = this.props;
+    const {isRtl} = this.context.muiTheme;
+
     if (this.dragRunning) {
       return;
     }
@@ -657,16 +703,17 @@ class Slider extends Component {
     requestAnimationFrame(() => {
       this.dragRunning = false;
 
+      const calculatedAxis = calculateAxis(axis, isRtl);
       const source = type === 'touch' ? event.touches[0] : event;
 
       let position;
-      if (isMouseControlInverted(this.props.axis)) {
-        position = this.getTrackOffset() - source[mainAxisClientOffsetProperty[this.props.axis]];
+      if (isMouseControlInverted(calculatedAxis)) {
+        position = this.getTrackOffset() - source[mainAxisClientOffsetProperty[calculatedAxis]];
       } else {
-        position = source[mainAxisClientOffsetProperty[this.props.axis]] - this.getTrackOffset();
+        position = source[mainAxisClientOffsetProperty[calculatedAxis]] - this.getTrackOffset();
       }
 
-      if (!this.props.disabled) {
+      if (!disabled) {
         this.setValueFromPosition(event, position);
       }
     });
@@ -684,28 +731,27 @@ class Slider extends Component {
   }
 
   setValueFromPosition(event, position) {
-    const positionMax = this.track[mainAxisClientProperty[this.props.axis]];
-    if (position < 0) {
-      position = 0;
-    } else if (position > positionMax) {
-      position = positionMax;
-    }
-
     const {
+      axis,
       step,
       min,
       max,
     } = this.props;
+    const {isRtl} = this.context.muiTheme;
+
+    const calculatedAxis = calculateAxis(axis, isRtl);
+    const positionMax = this.track[mainAxisClientProperty[calculatedAxis]];
 
     let value;
-    value = position / positionMax * (max - min);
-    value = Math.round(value / step) * step + min;
-    value = parseFloat(value.toFixed(5));
 
-    if (value > max) {
-      value = max;
-    } else if (value < min) {
+    if (position <= 0) {
       value = min;
+    } else if (position >= positionMax) {
+      value = max;
+    } else {
+      value = position / positionMax * (max - min);
+      value = Math.round(value / step) * step + min;
+      value = parseFloat(value.toFixed(5));
     }
 
     if (this.state.value !== value) {
