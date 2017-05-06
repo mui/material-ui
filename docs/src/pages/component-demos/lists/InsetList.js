@@ -1,8 +1,8 @@
 // @flow weak
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import StarIcon from 'material-ui-icons/Star';
 
@@ -14,8 +14,8 @@ const styleSheet = createStyleSheet('InsetList', (theme) => ({
   },
 }));
 
-function InsetList(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function InsetList(props) {
+  const classes = props.classes;
   return (
     <List className={classes.root}>
       <ListItem button>
@@ -31,8 +31,8 @@ function InsetList(props, context) {
   );
 }
 
-InsetList.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+InsetList.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
 
-export default InsetList;
+export default withStyles(styleSheet)(InsetList);

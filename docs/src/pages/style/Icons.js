@@ -1,8 +1,8 @@
 // @flow weak
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Icon from 'material-ui/Icon';
 
 const styleSheet = createStyleSheet('Icons', () => ({
@@ -14,8 +14,8 @@ const styleSheet = createStyleSheet('Icons', () => ({
   },
 }));
 
-export default function Icons(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function Icons(props) {
+  const classes = props.classes;
   return (
     <div className={classes.icons}>
       <Icon>add_circle</Icon>
@@ -29,6 +29,8 @@ export default function Icons(props, context) {
   );
 }
 
-Icons.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+Icons.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(Icons);

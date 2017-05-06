@@ -1,8 +1,8 @@
 // @flow weak
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import compose from 'recompose/compose';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Hidden from 'material-ui/Hidden';
 import withWidth from 'material-ui/utils/withWidth';
@@ -34,8 +34,8 @@ const styleSheet = createStyleSheet('BreakpointOnly', (theme) => ({
   },
 }));
 
-function BreakpointOnly(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function BreakpointOnly(props) {
+  const classes = props.classes;
 
   return (
     <div className={classes.container}>
@@ -59,11 +59,11 @@ function BreakpointOnly(props, context) {
 }
 
 BreakpointOnly.propTypes = {
+  classes: PropTypes.object.isRequired,
   width: PropTypes.string,
 };
 
-BreakpointOnly.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
-
-export default withWidth()(BreakpointOnly);
+export default compose(
+  withStyles(styleSheet),
+  withWidth(),
+)(BreakpointOnly);

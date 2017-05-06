@@ -2,15 +2,10 @@
 /* eslint-disable react/no-multi-comp */
 
 import React, { Component } from 'react';
-import customPropTypes from 'material-ui/utils/customPropTypes';
 import Paper from 'material-ui/Paper';
 import Tabs, { Tab } from 'material-ui/Tabs';
 
-export default class DisabledTabs extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
+class DisabledTabs extends Component {
   state = {
     index: 0,
   };
@@ -31,3 +26,5 @@ export default class DisabledTabs extends Component {
     );
   }
 }
+
+export default DisabledTabs;

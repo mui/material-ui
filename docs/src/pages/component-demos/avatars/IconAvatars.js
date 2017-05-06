@@ -1,10 +1,10 @@
 // @flow weak
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import Avatar from 'material-ui/Avatar';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import { pink, green } from 'material-ui/styles/colors';
+import Avatar from 'material-ui/Avatar';
 import FolderIcon from 'material-ui-icons/Folder';
 import PageviewIcon from 'material-ui-icons/Pageview';
 import AssignmentIcon from 'material-ui-icons/Assignment';
@@ -29,8 +29,8 @@ const styleSheet = createStyleSheet('IconAvatars', () => ({
   },
 }));
 
-export default function IconAvatars(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function IconAvatars(props) {
+  const classes = props.classes;
   return (
     <div className={classes.row}>
       <Avatar className={classes.avatar}>
@@ -46,6 +46,8 @@ export default function IconAvatars(props, context) {
   );
 }
 
-IconAvatars.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+IconAvatars.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(IconAvatars);

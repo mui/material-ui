@@ -3,11 +3,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import MarkdownElement from 'docs/src/components/MarkdownElement';
 
-export const styleSheet = createStyleSheet('AppContent', (theme) => {
+const styleSheet = createStyleSheet('AppContent', (theme) => {
   return {
     content: theme.mixins.gutters({
       paddingTop: 80,
@@ -23,14 +22,14 @@ export const styleSheet = createStyleSheet('AppContent', (theme) => {
   };
 });
 
-export default function AppContent(props, context) {
+function AppContent(props) {
   const {
     className,
+    classes,
     children: childrenProp,
     route,
   } = props;
 
-  const classes = context.styleManager.render(styleSheet);
   let children = childrenProp;
 
   if (!children) {
@@ -51,10 +50,9 @@ ${route.childRoutes.map((childRoute) => (`- [${childRoute.title}](${childRoute.p
 
 AppContent.propTypes = {
   children: PropTypes.node,
+  classes: PropTypes.object.isRequired,
   className: PropTypes.string,
   route: PropTypes.object.isRequired,
 };
 
-AppContent.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+export default withStyles(styleSheet)(AppContent);

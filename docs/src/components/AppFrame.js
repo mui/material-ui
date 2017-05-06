@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
-import { createStyleSheet } from 'jss-theme-reactor';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
@@ -12,7 +12,6 @@ import IconButton from 'material-ui/IconButton';
 import withWidth, { isWidthUp } from 'material-ui/utils/withWidth';
 import MenuIcon from 'material-ui-icons/Menu';
 import LightbulbOutlineIcon from 'material-ui-icons/LightbulbOutline';
-import customPropTypes from 'material-ui/utils/customPropTypes';
 import AppDrawer from 'docs/src/components/AppDrawer';
 import DemoButton from 'docs/src/components/DemoButton';
 import AppSearch from 'docs/src/components/AppSearch';
@@ -112,7 +111,7 @@ class AppFrame extends Component {
       width,
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
     const title = getTitle(routes);
 
     let drawerDocked = isWidthUp('lg', width);
@@ -168,16 +167,14 @@ class AppFrame extends Component {
 
 AppFrame.propTypes = {
   children: PropTypes.node.isRequired,
+  classes: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
   routes: PropTypes.array.isRequired,
   width: PropTypes.string.isRequired,
 };
 
-AppFrame.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
-
 export default compose(
+  withStyles(styleSheet),
   withWidth(),
   connect(),
 )(AppFrame);

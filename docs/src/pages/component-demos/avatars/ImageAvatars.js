@@ -1,9 +1,9 @@
 // @flow weak
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Avatar from 'material-ui/Avatar';
 import remyImage from 'docs/src/assets/images/remy.jpg';
 import uxecoImage from 'docs/src/assets/images/uxceo-128.jpg';
@@ -22,8 +22,8 @@ const styleSheet = createStyleSheet('ImageAvatars', () => ({
   },
 }));
 
-export default function ImageAvatars(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function ImageAvatars(props) {
+  const classes = props.classes;
   return (
     <div className={classes.row}>
       <Avatar
@@ -40,6 +40,8 @@ export default function ImageAvatars(props, context) {
   );
 }
 
-ImageAvatars.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+ImageAvatars.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(ImageAvatars);

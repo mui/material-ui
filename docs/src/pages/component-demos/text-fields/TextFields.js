@@ -1,8 +1,8 @@
 // @flow weak
 
 import React, { Component } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 
 const styleSheet = createStyleSheet('TextFields', () => ({
@@ -15,17 +15,13 @@ const styleSheet = createStyleSheet('TextFields', () => ({
   },
 }));
 
-export default class TextFields extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
+class TextFields extends Component {
   state = {
     name: 'Cat in the Hat',
   };
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
 
     return (
       <div className={classes.container}>
@@ -66,3 +62,9 @@ export default class TextFields extends Component {
     );
   }
 }
+
+TextFields.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(TextFields);

@@ -1,8 +1,8 @@
 // @flow weak
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
 
@@ -28,8 +28,8 @@ const data = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export default function BasicTable(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function BasicTable(props) {
+  const classes = props.classes;
 
   return (
     <Paper className={classes.paper}>
@@ -61,6 +61,8 @@ export default function BasicTable(props, context) {
   );
 }
 
-BasicTable.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+BasicTable.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(BasicTable);

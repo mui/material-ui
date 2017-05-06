@@ -1,8 +1,8 @@
 // @flow weak
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import compose from 'recompose/compose';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Hidden from 'material-ui/Hidden';
 import withWidth from 'material-ui/utils/withWidth';
@@ -34,8 +34,8 @@ const styleSheet = createStyleSheet('BreakpointUp', (theme) => ({
   },
 }));
 
-function BreakpointUp(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function BreakpointUp(props) {
+  const classes = props.classes;
 
   return (
     <div className={classes.container}>
@@ -67,11 +67,11 @@ function BreakpointUp(props, context) {
 }
 
 BreakpointUp.propTypes = {
+  classes: PropTypes.object.isRequired,
   width: PropTypes.string,
 };
 
-BreakpointUp.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
-
-export default withWidth()(BreakpointUp);
+export default compose(
+  withStyles(styleSheet),
+  withWidth(),
+)(BreakpointUp);

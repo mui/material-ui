@@ -1,8 +1,8 @@
 // @flow weak
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid';
 
@@ -18,8 +18,8 @@ const styleSheet = createStyleSheet('FullWidthGrid', (theme) => ({
   },
 }));
 
-export default function FullWidthGrid(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function FullWidthGrid(props) {
+  const classes = props.classes;
 
   return (
     <div className={classes.root}>
@@ -64,6 +64,8 @@ export default function FullWidthGrid(props, context) {
   );
 }
 
-FullWidthGrid.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+FullWidthGrid.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(FullWidthGrid);

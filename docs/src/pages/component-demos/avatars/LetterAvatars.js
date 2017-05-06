@@ -1,8 +1,8 @@
 // @flow weak
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Avatar from 'material-ui/Avatar';
 import { deepOrange, deepPurple } from 'material-ui/styles/colors';
 
@@ -26,8 +26,8 @@ const styleSheet = createStyleSheet('LetterAvatars', () => ({
   },
 }));
 
-export default function LetterAvatars(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function LetterAvatars(props) {
+  const classes = props.classes;
   return (
     <div className={classes.row}>
       <Avatar className={classes.avatar}>H</Avatar>
@@ -37,6 +37,8 @@ export default function LetterAvatars(props, context) {
   );
 }
 
-LetterAvatars.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+LetterAvatars.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(LetterAvatars);

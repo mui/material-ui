@@ -1,8 +1,8 @@
 // @flow weak
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Card, { CardActions, CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
@@ -27,8 +27,8 @@ const styleSheet = createStyleSheet('SimpleCard', (theme) => ({
   },
 }));
 
-export default function SimpleCard(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function SimpleCard(props) {
+  const classes = props.classes;
   const bull = <span className={classes.bullet}>&bull;</span>;
 
   return (
@@ -53,6 +53,9 @@ export default function SimpleCard(props, context) {
   );
 }
 
-SimpleCard.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+SimpleCard.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(SimpleCard);
+

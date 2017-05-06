@@ -1,8 +1,8 @@
 // @flow weak
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid';
 
@@ -18,8 +18,8 @@ const styleSheet = createStyleSheet('CenteredGrid', (theme) => ({
   },
 }));
 
-export default function CenteredGrid(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function CenteredGrid(props) {
+  const classes = props.classes;
 
   return (
     <div className={classes.root}>
@@ -64,6 +64,8 @@ export default function CenteredGrid(props, context) {
   );
 }
 
-CenteredGrid.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+CenteredGrid.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(CenteredGrid);

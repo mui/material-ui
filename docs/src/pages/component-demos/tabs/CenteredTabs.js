@@ -1,8 +1,8 @@
 // @flow weak
 
 import React, { Component } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Tabs, { Tab } from 'material-ui/Tabs';
 
@@ -13,11 +13,7 @@ const styleSheet = createStyleSheet('CenteredTabs', () => ({
   },
 }));
 
-export default class CenteredTabs extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
+class CenteredTabs extends Component {
   state = {
     index: 0,
   };
@@ -27,7 +23,7 @@ export default class CenteredTabs extends Component {
   };
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
 
     return (
       <Paper className={classes.root}>
@@ -45,3 +41,9 @@ export default class CenteredTabs extends Component {
     );
   }
 }
+
+CenteredTabs.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(CenteredTabs);

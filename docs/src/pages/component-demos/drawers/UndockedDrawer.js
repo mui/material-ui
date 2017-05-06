@@ -1,8 +1,8 @@
 // @flow weak
 
 import React, { Component } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
 import Button from 'material-ui/Button';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
@@ -26,7 +26,7 @@ const styleSheet = createStyleSheet('UndockedDrawer', () => ({
   },
 }));
 
-export default class UndockedDrawer extends Component {
+class UndockedDrawer extends Component {
   state = {
     open: {
       top: false,
@@ -52,7 +52,7 @@ export default class UndockedDrawer extends Component {
   handleRightClose = () => this.toggleDrawer('right', false);
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
 
     const mailFolderListItems = (
       <div>
@@ -172,6 +172,8 @@ export default class UndockedDrawer extends Component {
   }
 }
 
-UndockedDrawer.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+UndockedDrawer.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(UndockedDrawer);

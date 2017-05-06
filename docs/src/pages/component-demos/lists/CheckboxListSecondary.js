@@ -1,8 +1,8 @@
 // @flow weak
 
 import React, { Component } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
 import Avatar from 'material-ui/Avatar';
@@ -16,11 +16,7 @@ const styleSheet = createStyleSheet('CheckboxListSecondary', (theme) => ({
   },
 }));
 
-export default class CheckboxListSecondary extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
+class CheckboxListSecondary extends Component {
   state = {
     checked: [1],
   };
@@ -42,7 +38,7 @@ export default class CheckboxListSecondary extends Component {
   };
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
 
     return (
       <div className={classes.root}>
@@ -65,3 +61,8 @@ export default class CheckboxListSecondary extends Component {
   }
 }
 
+CheckboxListSecondary.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(CheckboxListSecondary);
