@@ -25,9 +25,5 @@ export default function createShallow(
 
   shallowWithContext.context = context;
 
-  shallowWithContext.cleanUp = () => {
-    styleManager.reset();
-  };
-
   return shallowWithContext;
 }
