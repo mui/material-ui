@@ -21,21 +21,30 @@ const regressions = requireRegression.keys().reduce((res, path) => {
 }, []);
 
 const blacklist = [
-  'progress', // Flaky
-  'dialogs', // Needs interaction
-  'drawers', // Needs interaction
-  'menus', // Needs interaction
+  // Flaky
+  'docs-component-demos-progress',
+
+  // Needs interaction
+  'docs-component-demos-dialogs',
+  'docs-component-demos-drawers',
+  'docs-component-demos-menus',
+
+  // Useless
+  'docs-',
+  'docs-style',
+  'docs-guides',
 ];
 
 // Also use some of the demos to avoid code duplication.
-const requireDemos = require.context('docs/src/pages/component-demos', true, /js$/);
+const requireDemos = require.context('docs/src/pages', true, /js$/);
 const demos = requireDemos.keys().reduce((res, path) => {
-  const [suite, name] = path.replace('./', '').replace('.js', '').split('/');
+  const [name, ...suiteArray] = path.replace('./', '').replace('.js', '').split('/').reverse();
+  const suite = `docs-${suiteArray.reverse().join('-')}`;
 
   if (!blacklist.includes(suite)) {
     res.push({
       path,
-      suite: `demo-${suite}`,
+      suite,
       name,
       case: requireDemos(path).default,
     });

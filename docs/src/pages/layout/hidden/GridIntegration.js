@@ -11,7 +11,8 @@ import Typography from 'material-ui/Typography';
 const styleSheet = createStyleSheet('GridIntegration', (theme) => ({
   root: {
     flexGrow: 1,
-    marginTop: 30,
+    paddingTop: 42,
+    position: 'relative',
   },
   paper: {
     padding: 16,
