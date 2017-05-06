@@ -20,7 +20,7 @@ const regressions = requireRegression.keys().reduce((res, path) => {
   return res;
 }, []);
 
-const blacklist = [
+const blacklistSuite = [
   // Flaky
   'docs-component-demos-progress',
 
@@ -35,13 +35,15 @@ const blacklist = [
   'docs-guides',
 ];
 
+const blacklistName = ['tileData'];
+
 // Also use some of the demos to avoid code duplication.
 const requireDemos = require.context('docs/src/pages', true, /js$/);
 const demos = requireDemos.keys().reduce((res, path) => {
   const [name, ...suiteArray] = path.replace('./', '').replace('.js', '').split('/').reverse();
   const suite = `docs-${suiteArray.reverse().join('-')}`;
 
-  if (!blacklist.includes(suite)) {
+  if (!blacklistSuite.includes(suite) && !blacklistName.includes(name)) {
     res.push({
       path,
       suite,
