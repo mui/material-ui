@@ -8,13 +8,9 @@ import tileData from './tileData';
 
 const styleSheet = createStyleSheet('ImageGridList', () => ({
   gridList: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
     backgroundColor: 'white',
     width: 500,
     height: 450,
-    overflowY: 'auto',
   },
   subheader: {
     width: '100%',

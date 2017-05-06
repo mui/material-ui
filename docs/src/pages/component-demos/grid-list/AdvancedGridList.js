@@ -10,13 +10,9 @@ import tileData from './tileData';
 
 const styleSheet = createStyleSheet('AdvancedGridList', () => ({
   gridList: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
     backgroundColor: 'white',
     width: 500,
     height: 450,
-    overflowY: 'auto',
   },
   titleBar: {
     background: 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +

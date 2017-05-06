@@ -10,17 +10,12 @@ import tileData from './tileData';
 
 const styleSheet = createStyleSheet('SingleLineGridList', (theme) => ({
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
     width: '100%',
     backgroundColor: 'white',
     marginTop: 30,
   },
   gridList: {
-    display: 'flex',
     flexWrap: 'nowrap',
-    overflowX: 'auto',
   },
   title: {
     color: theme.palette.primary[200],

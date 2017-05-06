@@ -11,13 +11,9 @@ import tileData from './tileData';
 
 const styleSheet = createStyleSheet('TitlebarGridList', () => ({
   gridList: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
     backgroundColor: 'white',
     width: 500,
     height: 450,
-    overflowY: 'auto',
   },
   subheader: {
     width: '100%',
@@ -44,28 +40,26 @@ const styleSheet = createStyleSheet('TitlebarGridList', () => ({
 export default function TitlebarGridList(props, context) {
   const classes = context.styleManager.render(styleSheet);
   return (
-    <div className={classes.root}>
-      <GridList
-        cellHeight={180}
-        className={classes.gridList}
-      >
-        <Subheader className={classes.subheader}>December</Subheader>
-        {tileData.map((tile) => (
-          <GridTile
-            key={tile.img}
-          >
-            <img src={tile.img} alt={tile.title} />
-            <GridTileTitlebar
-              title={tile.title}
-              subtitle={<span>by: {tile.author}</span>}
-              actionIcon={
-                <IconButton><InfoIcon color="rgba(255, 255, 255, 0.54)" /></IconButton>
-              }
-            />
-          </GridTile>
-        ))}
-      </GridList>
-    </div>
+    <GridList
+      cellHeight={180}
+      className={classes.gridList}
+    >
+      <Subheader className={classes.subheader}>December</Subheader>
+      {tileData.map((tile) => (
+        <GridTile
+          key={tile.img}
+        >
+          <img src={tile.img} alt={tile.title} />
+          <GridTileTitlebar
+            title={tile.title}
+            subtitle={<span>by: {tile.author}</span>}
+            actionIcon={
+              <IconButton><InfoIcon color="rgba(255, 255, 255, 0.54)" /></IconButton>
+            }
+          />
+        </GridTile>
+      ))}
+    </GridList>
   );
 }
 

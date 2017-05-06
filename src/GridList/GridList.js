@@ -11,6 +11,7 @@ export const styleSheet = createStyleSheet('MuiGridList', () => {
     root: {
       display: 'flex',
       flexWrap: 'wrap',
+      overflowY: 'auto',
     },
     item: {
       boxSizing: 'border-box',
