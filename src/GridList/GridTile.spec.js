@@ -18,6 +18,22 @@ describe('<GridTile />', () => {
     author: 'jill111',
   };
 
+  it('should render a div', () => {
+    const testChildren = <img src={tileData.img} alt="foo" />;
+    const wrapper = shallow(
+      <GridTile>{testChildren}</GridTile>,
+    );
+    assert.strictEqual(wrapper.name(), 'div');
+  });
+
+  it('should render a ul', () => {
+    const testChildren = <img src={tileData.img} alt="foo" />;
+    const wrapper = shallow(
+      <GridTile component="li">{testChildren}</GridTile>,
+    );
+    assert.strictEqual(wrapper.name(), 'li');
+  });
+
   describe('prop: children', () => {
     it('should render children by default', () => {
       const testChildren = <img src={tileData.img} alt="foo" />;

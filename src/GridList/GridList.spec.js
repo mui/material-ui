@@ -27,9 +27,16 @@ describe('<GridList />', () => {
 
   it('should render a div', () => {
     const wrapper = shallow(
-      <GridList />,
+      <GridList ><br /></GridList>,
     );
     assert.strictEqual(wrapper.name(), 'div');
+  });
+
+  it('should render a ul', () => {
+    const wrapper = shallow(
+      <GridList component="ul" ><br /></GridList>,
+    );
+    assert.strictEqual(wrapper.name(), 'ul');
   });
 
   it('should render children and change cellHeight', () => {
@@ -41,7 +48,7 @@ describe('<GridList />', () => {
             key={tile.img}
             className="grid-tile"
             title={tile.title}
-            subtitle={<span>by {tile.author}</span>}
+            subtitle={<span>by: {tile.author}</span>}
           >
             <img src={tile.img} alt="foo" />
           </span>
@@ -62,7 +69,7 @@ describe('<GridList />', () => {
             key={tile.img}
             className="grid-tile"
             title={tile.title}
-            subtitle={<span>by <b>{tile.author}</b></span>}
+            subtitle={<span>by: {tile.author}</span>}
           >
             <img src={tile.img} alt="foo" />
           </span>
@@ -81,7 +88,7 @@ describe('<GridList />', () => {
             key={tile.img}
             className="grid-tile"
             title={tile.title}
-            subtitle={<span>by <b>{tile.author}</b></span>}
+            subtitle={<span>by: {tile.author}</span>}
           >
             <img src={tile.img} alt="foo" />
           </span>
@@ -103,7 +110,7 @@ describe('<GridList />', () => {
             key={tile.img}
             className="grid-tile"
             title={tile.title}
-            subtitle={<span>by <b>{tile.author}</b></span>}
+            subtitle={<span>by: {tile.author}</span>}
           >
             <img src={tile.img} alt="foo" />
           </span>
@@ -127,7 +134,7 @@ describe('<GridList />', () => {
             key={tile.img}
             className="grid-tile"
             title={tile.title}
-            subtitle={<span>by <b>{tile.author}</b></span>}
+            subtitle={<span>by: {tile.author}</span>}
           >
             <img src={tile.img} alt="foo" />
           </span>
@@ -144,7 +151,7 @@ describe('<GridList />', () => {
     it('should accept auto as a property', () => {
       const wrapper = shallow(
         <GridList cellHeight="auto">
-          <div />
+          <br />
         </GridList>,
       );
 

@@ -35,6 +35,7 @@ export default function GridList(props, context) {
     cellHeight,
     children,
     className: classNameProp,
+    component: ComponentProp,
     ...other
   } = props;
 
@@ -56,13 +57,13 @@ export default function GridList(props, context) {
   });
 
   return (
-    <div
+    <ComponentProp
       className={classNames(classes.root, classNameProp)}
       style={{ margin: -padding / 2 }}
       {...other}
     >
       {wrappedChildren}
-    </div>
+    </ComponentProp>
   );
 }
 
@@ -88,6 +89,14 @@ GridList.propTypes = {
    */
   cols: PropTypes.number,
   /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+  /**
    * Number of px for the padding/spacing between items.
    */
   padding: PropTypes.number,
@@ -101,6 +110,7 @@ GridList.defaultProps = {
   cols: 2,
   padding: 4,
   cellHeight: 180,
+  component: 'div',
 };
 
 GridList.contextTypes = {
