@@ -77,8 +77,10 @@ export const MUI_SHEET_ORDER = [
   'MuiTableSortLabel',
   'MuiToolbar',
   'MuiBadge',
-
   'MuiMobileStepper',
+  'MuiGridTile',
+  'MuiGridList',
+  'MuiGridTileTitlebar',
 ];
 
 export default function muiThemeProviderFactory(defaultTheme) {
