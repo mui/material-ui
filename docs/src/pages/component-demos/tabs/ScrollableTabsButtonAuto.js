@@ -3,8 +3,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Tabs, { Tab } from 'material-ui/Tabs';
 
@@ -29,11 +28,7 @@ const styleSheet = createStyleSheet('ScrollableTabsButtonAuto', (theme) => ({
   },
 }));
 
-export default class ScrollableTabsButtonAuto extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
+class ScrollableTabsButtonAuto extends Component {
   state = {
     index: 0,
   };
@@ -43,7 +38,7 @@ export default class ScrollableTabsButtonAuto extends Component {
   }
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
 
     return (
       <Paper className={classes.root}>
@@ -74,3 +69,9 @@ export default class ScrollableTabsButtonAuto extends Component {
     );
   }
 }
+
+ScrollableTabsButtonAuto.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(ScrollableTabsButtonAuto);

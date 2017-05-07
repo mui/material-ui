@@ -1,8 +1,8 @@
 // @flow weak
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import FolderIcon from 'material-ui-icons/Folder';
@@ -15,8 +15,8 @@ const styleSheet = createStyleSheet('FolderList', (theme) => ({
   },
 }));
 
-function FolderList(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function FolderList(props) {
+  const classes = props.classes;
   return (
     <div className={classes.root}>
       <List>
@@ -33,8 +33,8 @@ function FolderList(props, context) {
   );
 }
 
-FolderList.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+FolderList.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
 
-export default FolderList;
+export default withStyles(styleSheet)(FolderList);

@@ -1,8 +1,8 @@
 // @flow weak
 
 import React, { cloneElement, Component } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import List, {
   ListItem,
   ListItemAvatar,
@@ -41,17 +41,13 @@ function generate(element) {
 }
 
 class InteractiveList extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
   state = {
     dense: false,
     secondary: false,
   };
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
     const { dense, secondary } = this.state;
 
     return (
@@ -165,4 +161,8 @@ class InteractiveList extends Component {
   }
 }
 
-export default InteractiveList;
+InteractiveList.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(InteractiveList);

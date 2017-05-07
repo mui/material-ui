@@ -1,9 +1,9 @@
 // @flow weak
 
 import React, { Component } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import classnames from 'classnames';
-import customPropTypes from 'material-ui/utils/customPropTypes';
 import Card, {
   CardHeader,
   CardMedia,
@@ -35,17 +35,15 @@ const styleSheet = createStyleSheet('RecipeReviewCard', (theme) => ({
   flexGrow: { flex: '1 1 auto' },
 }));
 
-export default class RecipeReviewCard extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
+class RecipeReviewCard extends Component {
   state = { expanded: false };
 
-  handleExpandClick = () => this.setState({ expanded: !this.state.expanded });
+  handleExpandClick = () => {
+    this.setState({ expanded: !this.state.expanded });
+  };
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
 
     return (
       <div>
@@ -119,3 +117,9 @@ export default class RecipeReviewCard extends Component {
     );
   }
 }
+
+RecipeReviewCard.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(RecipeReviewCard);

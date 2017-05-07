@@ -1,8 +1,8 @@
 // @flow weak
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
@@ -18,8 +18,8 @@ const styleSheet = createStyleSheet('SimpleAppBar', () => ({
   },
 }));
 
-export default function SimpleAppBar(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function SimpleAppBar(props) {
+  const classes = props.classes;
   return (
     <div className={classes.root}>
       <AppBar className={classes.appBar}>
@@ -31,6 +31,8 @@ export default function SimpleAppBar(props, context) {
   );
 }
 
-SimpleAppBar.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+SimpleAppBar.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(SimpleAppBar);

@@ -2,14 +2,13 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { createStyleSheet } from 'jss-theme-reactor';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import shallowEqual from 'recompose/shallowEqual';
 import List from 'material-ui/List';
 import Toolbar from 'material-ui/Toolbar';
 import Drawer from 'material-ui/Drawer';
 import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
-import customPropTypes from 'material-ui/utils/customPropTypes';
 import AppDrawerNavItem from 'docs/src/components/AppDrawerNavItem';
 import Link from 'docs/src/components/Link';
 
@@ -77,20 +76,7 @@ function reduceChildRoutes(props, items, childRoute, index) {
   return items;
 }
 
-export default class AppDrawer extends Component {
-  static propTypes = {
-    className: PropTypes.string,
-    docked: PropTypes.bool.isRequired,
-    onRequestClose: PropTypes.func.isRequired,
-    open: PropTypes.bool.isRequired,
-    routes: PropTypes.array.isRequired,
-  };
-
-  static contextTypes = {
-    theme: customPropTypes.muiRequired,
-    styleManager: customPropTypes.muiRequired,
-  };
-
+class AppDrawer extends Component {
   shouldComponentUpdate(nextProps, nextState, nextContext) {
     return (
       !shallowEqual(this.props, nextProps) ||
@@ -100,7 +86,7 @@ export default class AppDrawer extends Component {
   }
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
     const GITHUB_RELEASE_BASE_URL = 'https://github.com/callemall/material-ui/releases/tag/';
 
     return (
@@ -134,3 +120,19 @@ export default class AppDrawer extends Component {
     );
   }
 }
+
+AppDrawer.propTypes = {
+  classes: PropTypes.object.isRequired,
+  className: PropTypes.string,
+  docked: PropTypes.bool.isRequired,
+  onRequestClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  routes: PropTypes.array.isRequired,
+};
+
+AppDrawer.contextTypes = {
+  theme: PropTypes.object.isRequired,
+  styleManager: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(AppDrawer);

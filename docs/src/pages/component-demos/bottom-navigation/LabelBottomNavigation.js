@@ -1,8 +1,8 @@
 // @flow weak
 
 import React, { Component } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import BottomNavigation, { BottomNavigationButton } from 'material-ui/BottomNavigation';
 import RestoreIcon from 'material-ui-icons/Restore';
 import FavoriteIcon from 'material-ui-icons/Favorite';
@@ -15,7 +15,7 @@ const styleSheet = createStyleSheet('LabelBottomNavigation', () => ({
   },
 }));
 
-export default class LabelBottomNavigation extends Component {
+class LabelBottomNavigation extends Component {
   state = {
     index: 0,
   };
@@ -25,7 +25,7 @@ export default class LabelBottomNavigation extends Component {
   };
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
     const { index } = this.state;
 
     return (
@@ -56,6 +56,8 @@ export default class LabelBottomNavigation extends Component {
   }
 }
 
-LabelBottomNavigation.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+LabelBottomNavigation.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(LabelBottomNavigation);

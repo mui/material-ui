@@ -1,8 +1,8 @@
 // @flow weak
 
 import React, { Component } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Chip from 'material-ui/Chip';
 
 const styleSheet = createStyleSheet('ChipsArray', (theme) => ({
@@ -16,11 +16,7 @@ const styleSheet = createStyleSheet('ChipsArray', (theme) => ({
   },
 }));
 
-export default class ChipsArray extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
+class ChipsArray extends Component {
   state = { chipData: [
     { key: 0, label: 'Angular' },
     { key: 1, label: 'JQuery' },
@@ -39,7 +35,7 @@ export default class ChipsArray extends Component {
     },
   };
 
-  handleRequestDelete = (key) => {
+  handleRequestDelete = (key) => () => {
     if (key === 3) {
       alert('Why would you want to delete React?! :)'); // eslint-disable-line no-alert
       return;
@@ -52,14 +48,14 @@ export default class ChipsArray extends Component {
   };
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
 
     const renderChip = (data) => {
       return (
         <Chip
           label={data.label}
           key={data.key}
-          onRequestDelete={() => this.handleRequestDelete(data.key)}
+          onRequestDelete={this.handleRequestDelete(data.key)}
           className={classes.chip}
         />
       );
@@ -72,3 +68,9 @@ export default class ChipsArray extends Component {
     );
   }
 }
+
+ChipsArray.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(ChipsArray);

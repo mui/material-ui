@@ -2,9 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { createStyleSheet } from 'jss-theme-reactor';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import shallowEqual from 'recompose/shallowEqual';
-import customPropTypes from 'material-ui/utils/customPropTypes';
 import IconButton from 'material-ui/IconButton';
 import Collapse from 'material-ui/transitions/Collapse';
 import CodeIcon from 'material-ui-icons/Code';
@@ -62,14 +61,10 @@ const styleSheet = createStyleSheet('Demo', (theme) => {
   };
 });
 
-export default class Demo extends Component {
-  static propTypes = {
-    demo: PropTypes.string.isRequired,
-  };
-
+class Demo extends Component {
   static contextTypes = {
-    theme: customPropTypes.muiRequired,
-    styleManager: customPropTypes.muiRequired,
+    theme: PropTypes.object.isRequired,
+    styleManager: PropTypes.object.isRequired,
   };
 
   state = {
@@ -78,8 +73,8 @@ export default class Demo extends Component {
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
     return (
-      nextProps.demo !== this.props.demo ||
-      nextState.codeOpen !== this.state.codeOpen ||
+      !shallowEqual(this.props, nextProps) ||
+      !shallowEqual(this.state, nextState) ||
       !shallowEqual(this.context, nextContext)
     );
   }
@@ -93,7 +88,7 @@ export default class Demo extends Component {
   render() {
     const DemoComponent = requireDemos(`./${this.props.demo}`).default;
     const demoSource = requireDemoSource(`./${this.props.demo}`);
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
     const code = `\`\`\`js\n${demoSource}\n\`\`\``;
 
     return (
@@ -114,3 +109,10 @@ export default class Demo extends Component {
     );
   }
 }
+
+Demo.propTypes = {
+  classes: PropTypes.object.isRequired,
+  demo: PropTypes.string.isRequired,
+};
+
+export default withStyles(styleSheet)(Demo);

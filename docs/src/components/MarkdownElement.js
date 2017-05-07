@@ -3,9 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import marked from 'marked';
-import customPropTypes from 'material-ui/utils/customPropTypes';
 import prism from 'docs/src/utils/prism';
 
 const renderer = new marked.Renderer();
@@ -167,13 +166,12 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
   },
 }));
 
-function MarkdownElement(props, context) {
+function MarkdownElement(props) {
   const {
+    classes,
     className,
     text,
   } = props;
-
-  const classes = context.styleManager.render(styleSheet);
 
   /* eslint-disable react/no-danger */
   return (
@@ -186,12 +184,9 @@ function MarkdownElement(props, context) {
 }
 
 MarkdownElement.propTypes = {
+  classes: PropTypes.object.isRequired,
   className: PropTypes.string,
   text: PropTypes.string.isRequired,
 };
 
-MarkdownElement.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
-
-export default MarkdownElement;
+export default withStyles(styleSheet)(MarkdownElement);

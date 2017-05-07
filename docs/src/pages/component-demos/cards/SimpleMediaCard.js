@@ -1,19 +1,21 @@
 // @flow weak
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import reptileImage from 'docs/src/assets/images/contemplative-reptile.jpg';
 
 const styleSheet = createStyleSheet('SimpleMediaCard', () => ({
-  card: { maxWidth: 345 },
+  card: {
+    maxWidth: 345,
+  },
 }));
 
-export default function SimpleMediaCard(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function SimpleMediaCard(props) {
+  const classes = props.classes;
   return (
     <div>
       <Card className={classes.card}>
@@ -38,6 +40,8 @@ export default function SimpleMediaCard(props, context) {
   );
 }
 
-SimpleMediaCard.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+SimpleMediaCard.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(SimpleMediaCard);

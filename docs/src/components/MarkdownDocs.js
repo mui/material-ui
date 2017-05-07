@@ -2,8 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import MarkdownElement from 'docs/src/components/MarkdownElement';
 import Demo from 'docs/src/components/Demo';
@@ -27,9 +26,9 @@ const emptyRegexp = /^\s*$/;
 
 const SOURCE_CODE_ROOT_URL = 'https://github.com/callemall/material-ui/tree/next';
 
-export default function MarkdownDocs(props, context) {
-  const classes = context.styleManager.render(styleSheet);
-  const contents = props.route.content
+function MarkdownDocs(props) {
+  const { classes, route } = props;
+  const contents = route.content
     .replace(headerRegexp, '') // Remove header informations
     .split(/^{{|}}$/gm) // Split markdown into an array, separating demos
     .filter((content) => !emptyRegexp.test(content)); // Remove empty lines
@@ -37,14 +36,14 @@ export default function MarkdownDocs(props, context) {
   let markdownUrl = SOURCE_CODE_ROOT_URL;
 
   // Map back to the source code
-  if (props.route.componentAPI) {
+  if (route.componentAPI) {
     markdownUrl += `/src${
-      props.route.componentAPI.path.replace('./component-api/', '/').replace('.md', '.js')
+      route.componentAPI.path.replace('./component-api/', '/').replace('.md', '.js')
     }`;
-  } else if (props.route.demo) {
-    markdownUrl += `/docs/src/pages/component-demos${props.route.demo.path.replace('./', '/')}`;
+  } else if (route.demo) {
+    markdownUrl += `/docs/src/pages/component-demos${route.demo.path.replace('./', '/')}`;
   } else {
-    markdownUrl += `/docs/src/pages${props.route.path}.md`;
+    markdownUrl += `/docs/src/pages${route.path}.md`;
   }
 
   return (
@@ -66,6 +65,7 @@ export default function MarkdownDocs(props, context) {
 }
 
 MarkdownDocs.propTypes = {
+  classes: PropTypes.object.isRequired,
   route: PropTypes.shape({
     content: PropTypes.string.isRequired,
     path: PropTypes.string.isRequired,
@@ -74,6 +74,4 @@ MarkdownDocs.propTypes = {
   }).isRequired,
 };
 
-MarkdownDocs.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+export default withStyles(styleSheet)(MarkdownDocs);

@@ -1,23 +1,10 @@
 // @flow weak
 
 import React, { Component } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
 import Button from 'material-ui/Button';
 import Menu, { MenuItem } from 'material-ui/Menu';
 
-const styleSheet = createStyleSheet('SimpleMenu', () => ({
-  menu: {},
-  content: {
-    margin: 0,
-  },
-}));
-
-export default class SimpleMenu extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
+class SimpleMenu extends Component {
   state = {
     anchorEl: undefined,
     open: false,
@@ -25,12 +12,15 @@ export default class SimpleMenu extends Component {
 
   button = undefined;
 
-  handleClick = (event) => this.setState({ open: true, anchorEl: event.currentTarget });
+  handleClick = (event) => {
+    this.setState({ open: true, anchorEl: event.currentTarget });
+  };
 
-  handleRequestClose = () => this.setState({ open: false });
+  handleRequestClose = () => {
+    this.setState({ open: false });
+  };
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
     return (
       <div>
         <Button
@@ -43,7 +33,6 @@ export default class SimpleMenu extends Component {
         <Menu
           id="simple-menu"
           anchorEl={this.state.anchorEl}
-          className={classes.menu}
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
         >
@@ -56,3 +45,4 @@ export default class SimpleMenu extends Component {
   }
 }
 
+export default SimpleMenu;

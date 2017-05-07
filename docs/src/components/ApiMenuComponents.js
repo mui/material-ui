@@ -8,11 +8,7 @@ import Menu, { MenuItem } from 'material-ui/Menu';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
 import { kebabCase } from 'docs/src/utils/helpers';
 
-export default class ApiMenuComponents extends Component {
-  static propTypes = {
-    components: PropTypes.array.isRequired,
-  };
-
+class ApiMenuComponents extends Component {
   state = {
     anchorEl: undefined,
     open: false,
@@ -64,3 +60,9 @@ export default class ApiMenuComponents extends Component {
     );
   }
 }
+
+ApiMenuComponents.propTypes = {
+  components: PropTypes.array.isRequired,
+};
+
+export default ApiMenuComponents;

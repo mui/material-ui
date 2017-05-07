@@ -1,8 +1,8 @@
 // @flow weak
 
 import React, { Component } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import { LinearProgress } from 'material-ui/Progress';
 
 const styleSheet = createStyleSheet('LinearBuffer', () => ({
@@ -12,7 +12,7 @@ const styleSheet = createStyleSheet('LinearBuffer', () => ({
   },
 }));
 
-export default class LinearBuffer extends Component {
+class LinearBuffer extends Component {
   state = {
     completed: 0,
     buffer: 10,
@@ -40,7 +40,7 @@ export default class LinearBuffer extends Component {
   }
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
     const { completed, buffer } = this.state;
     return (
       <div className={classes.root}>
@@ -50,6 +50,8 @@ export default class LinearBuffer extends Component {
   }
 }
 
-LinearBuffer.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+LinearBuffer.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(LinearBuffer);
