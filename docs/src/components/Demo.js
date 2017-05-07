@@ -13,17 +13,16 @@ const requireDemos = require.context('docs/src', true, /\.js$/);
 const requireDemoSource = require.context('!raw-loader!docs/src', true, /\.js$/);
 
 const styleSheet = createStyleSheet('Demo', (theme) => {
-  const { palette, mixins } = theme;
   return {
     root: {
       fontFamily: theme.typography.fontFamily,
       position: 'relative',
-      backgroundColor: palette.background.contentFrame,
+      backgroundColor: theme.palette.background.contentFrame,
       marginBottom: 40,
       marginLeft: -16,
       marginRight: -16,
     },
-    demo: mixins.gutters({
+    demo: theme.mixins.gutters({
       display: 'flex',
       justifyContent: 'center',
       paddingTop: 20,

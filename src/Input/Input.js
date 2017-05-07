@@ -11,7 +11,6 @@ function isDirty(obj) {
 }
 
 export const styleSheet = createStyleSheet('MuiInput', (theme) => {
-  const { palette, transitions } = theme;
   return {
     wrapper: {
       // Mimics the default input display property used by browsers for an input.
@@ -25,7 +24,7 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
     },
     inkbar: {
       '&:after': {
-        backgroundColor: palette.primary.A200,
+        backgroundColor: theme.palette.primary.A200,
         left: 0,
         bottom: -1,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
@@ -34,9 +33,9 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
         position: 'absolute',
         right: 0,
         transform: 'scaleX(0)',
-        transition: transitions.create('transform', {
-          duration: transitions.duration.shorter,
-          easing: transitions.easing.easeOut,
+        transition: theme.transitions.create('transform', {
+          duration: theme.transitions.duration.shorter,
+          easing: theme.transitions.easing.easeOut,
         }),
       },
       '&$focused:after': {
@@ -46,7 +45,7 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
     focused: {},
     error: {
       '&:after': {
-        backgroundColor: palette.error[500],
+        backgroundColor: theme.palette.error[500],
         transform: 'scaleX(1)', // error is always underlined in red
       },
     },

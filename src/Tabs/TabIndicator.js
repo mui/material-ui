@@ -16,7 +16,7 @@ export const styleSheet = createStyleSheet('MuiTabIndicator', (theme) => {
       willChange: 'left, width',
     },
     rootAccent: {
-      backgroundColor: theme.palette.accent[500],
+      backgroundColor: theme.palette.accent.A200,
     },
   };
 });

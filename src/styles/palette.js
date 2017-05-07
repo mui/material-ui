@@ -1,4 +1,6 @@
 // @flow weak
+
+import warning from 'warning';
 import difference from 'lodash/difference';
 import keys from 'lodash/keys';
 import { indigo, pink, grey, red, black, white } from './colors';
@@ -50,57 +52,59 @@ export const dark = {
   },
 };
 
-export const shades = { dark, light };
-
-export function getContrastText(color) {
+function getContrastText(color) {
   if (getContrastRatio(color, black) < 7) {
     return dark.text.primary;
   }
   return light.text.primary;
 }
 
-class PaletteColorError extends Error {
-  constructor(themeColor) {
-    const palette = createPalette();
-    const message = [
-      `${themeColor} must have the following attributes: ${keys(palette[themeColor])}`,
-      'See the default colors, indigo, pink, or red, as exported from material-ui/style/colors.',
-    ];
-    super(message.join('\n'));
-  }
-}
+export default function createPalette(options = {}) {
+  const {
+    primary = indigo,
+    accent = pink,
+    error = red,
+    type = 'light',
+  } = options;
 
-export default function createPalette({
-  primary = indigo,
-  accent = pink,
-  error = red,
-  type = 'light',
-} = {}) {
-  if (difference(keys(indigo), keys(primary)).length) {
-    throw new PaletteColorError('primary');
+  if (process.env.NODE_ENV !== 'production') {
+    class PaletteColorError extends Error {
+      constructor(themeColor) {
+        const palette = createPalette();
+        const message = [
+          `${themeColor} must have the following attributes: ${keys(palette[themeColor])}`,
+          'See the default colors, indigo, or pink, as exported from material-ui/style/colors.',
+        ];
+        super(message.join('\n'));
+      }
+    }
+
+    if (difference(keys(indigo), keys(primary)).length) {
+      throw new PaletteColorError('primary');
+    }
+
+    if (difference(keys(pink), keys(accent)).length) {
+      throw new PaletteColorError('accent');
+    }
+
+    if (difference(keys(red), keys(error)).length) {
+      throw new PaletteColorError('error');
+    }
   }
 
-  if (difference(keys(pink), keys(accent)).length) {
-    throw new PaletteColorError('accent');
-  }
+  const shades = { dark, light };
 
-  if (difference(keys(red), keys(error)).length) {
-    throw new PaletteColorError('error');
-  }
+  warning(shades[type], `Material-UI: the palette type \`${type}\` is not supported.`);
 
   return {
     type,
     text: shades[type].text,
     action: shades[type].action,
     background: shades[type].background,
-    shades,
     primary,
     accent,
     error,
     grey,
-    // functions
     getContrastText,
   };
 }
-
-export { createPalette };

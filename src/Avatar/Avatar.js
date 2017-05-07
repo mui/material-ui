@@ -8,7 +8,6 @@ import customPropTypes from '../utils/customPropTypes';
 import { emphasize } from '../styles/colorManipulator';
 
 export const styleSheet = createStyleSheet('MuiAvatar', (theme) => {
-  const { palette } = theme;
   return {
     root: {
       position: 'relative',
@@ -24,8 +23,8 @@ export const styleSheet = createStyleSheet('MuiAvatar', (theme) => {
       userSelect: 'none',
     },
     defaultColor: {
-      color: palette.background.default,
-      backgroundColor: emphasize(palette.background.default, 0.26),
+      color: theme.palette.background.default,
+      backgroundColor: emphasize(theme.palette.background.default, 0.26),
     },
     img: {
       maxWidth: '100%',

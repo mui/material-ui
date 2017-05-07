@@ -4,7 +4,7 @@ import { create } from 'jss';
 import jssPreset from 'jss-preset-default';
 import { createStyleManager } from 'jss-theme-reactor';
 import { shallow as enzymeShallow } from 'enzyme';
-import { createMuiTheme } from '../styles/theme';
+import createMuiTheme from '../styles/theme';
 
 export default function createShallow(
   shallow = enzymeShallow,
