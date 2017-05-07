@@ -233,7 +233,7 @@ class AutoComplete extends Component {
         open: nextProps.open,
         anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField),
       });
-    }    
+    }
   }
 
   componentWillUnmount() {
