@@ -10,8 +10,8 @@ import tileData from './tileData';
 
 const styleSheet = createStyleSheet('SingleLineGridList', (theme) => ({
   root: {
-    width: '100%',
     backgroundColor: 'white',
+    width: '100%',
     marginTop: 30,
   },
   gridList: {
