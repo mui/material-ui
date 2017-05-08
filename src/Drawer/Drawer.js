@@ -17,11 +17,9 @@ function getSlideDirection(anchor) {
     return 'left';
   } else if (anchor === 'top') {
     return 'down';
-  } else if (anchor === 'bottom') {
-    return 'up';
   }
-
-  return 'left';
+  // (anchor === 'bottom')
+  return 'up';
 }
 
 export const styleSheet = createStyleSheet('MuiDrawer', (theme) => {
