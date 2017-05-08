@@ -82,7 +82,7 @@ export const styleSheet = createStyleSheet('MuiDrawer', (theme) => {
 export default class Drawer extends Component {
   static propTypes = {
     /**
-     * Side which will the drawer will appear from.
+     * Side from which the drawer will appear.
      */
     anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
     /**
