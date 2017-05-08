@@ -24,6 +24,47 @@ Below is a summary of major changes.
 - [Ripple/TouchRipple] Refactored and now works properly inside a button in firefox!
 - [Button] Raised/flat/fab are now combined into a single component.
 
+## 1.0.0-alpha.13
+###### _May 8, 2017_
+
+##### Breaking changes
+
+- [lint/flow] validate imports/exports with eslint and flow (#6757) @rosskevin
+Change some import:
+```diff
+-import { List, ListItem, ListItemText } from 'material-ui/List';
++import List, { ListItem, ListItemText } from 'material-ui/List';
+```
+
+- [Grid] Rename Layout to Grid (#6789) @rosskevin
+```diff
+-import Layout from 'material-ui/Layout';
++import Grid from 'material-ui/Grid';
+```
+
+##### Component Fixes / Enhancements
+
+- [Slide] Fix getTranslateValue for left & up cases (#6454) @josulliv101
+- [Hidden] Responsively hide content (js implementation) (#6748) @rosskevin
+- [Hidden] Fixes, demos, regression tests, and `only` functionality (#6782) @rosskevin
+- [Layout] Add a hidden property (#6754) @rosskevin
+- [Typography] Flow type (#6787) @rosskevin
+
+##### Docs
+
+- [palette] Require color shape that matches defaults (#6756) @kgregory
+- [docs] Document the Theme section (#6810) @oliviertassinari
+- [docs] Add a search bar (#6745) @oliviertassinari
+- [docs] Generate a summary of each section (#6772) @oliviertassinari
+- [docs] Start addressing documentation issues (#6758) @oliviertassinari
+- [docs] Hide the context implementation details (#6798) @oliviertassinari
+
+##### Core
+
+- Expanding use of flow for propType, include flow types in package, add flow-typed (#6724) @rosskevin
+- [core] Fix flow propTypes generation issue (#6749) @oliviertassinari
+- [createShallow] Remove cleanup (#6797) @agamrafaeli
+
 ## 1.0.0-alpha.12
 ###### _Apr 30, 2017_
 
