@@ -42,26 +42,21 @@ function BreakpointDown(props) {
       <Typography type="subheading" className={classes.typography}>
         Current width: {props.width}
       </Typography>
-      <Hidden
-        xsDown
-        component={<Paper className={classes.paper}>xsDown</Paper>}
-      />
-      <Hidden
-        smDown
-        component={<Paper className={classes.paper}>smDown</Paper>}
-      />
-      <Hidden
-        mdDown
-        component={<Paper className={classes.paper}>mdDown</Paper>}
-      />
-      <Hidden
-        lgDown
-        component={<Paper className={classes.paper}>lgDown</Paper>}
-      />
-      <Hidden
-        xlDown
-        component={<Paper className={classes.paper}>xlDown</Paper>}
-      />
+      <Hidden xsDown>
+        <Paper className={classes.paper}>xsDown</Paper>
+      </Hidden>
+      <Hidden smDown>
+        <Paper className={classes.paper}>smDown</Paper>
+      </Hidden>
+      <Hidden mdDown>
+        <Paper className={classes.paper}>mdDown</Paper>
+      </Hidden>
+      <Hidden lgDown>
+        <Paper className={classes.paper}>lgDown</Paper>
+      </Hidden>
+      <Hidden xlDown>
+        <Paper className={classes.paper}>xlDown</Paper>
+      </Hidden>
     </div>
   );
 }

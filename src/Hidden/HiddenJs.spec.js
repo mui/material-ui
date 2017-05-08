@@ -1,5 +1,6 @@
 // @flow weak
 /* eslint-disable no-loop-func */
+
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow } from 'src/test-utils';
@@ -66,7 +67,7 @@ describe('<HiddenJs />', () => {
       const prop = resolveProp(upDownOnly, breakpoint);
       it(`should render children ${breakpoint} ${descriptions[upDownOnly]}`, () => {
         const props = { width, ...prop };
-        const wrapper = shallowWithWidth(<HiddenJs component="div" {...props}>foo</HiddenJs>);
+        const wrapper = shallowWithWidth(<HiddenJs {...props}><div>foo</div></HiddenJs>);
         assert.isNotNull(wrapper.type(), 'should render');
         assert.strictEqual(wrapper.name(), 'div');
         assert.strictEqual(wrapper.first().text(), 'foo', 'should render children');
@@ -75,7 +76,9 @@ describe('<HiddenJs />', () => {
       it(`should render Element ${breakpoint} ${descriptions[upDownOnly]}`, () => {
         const props = { width, ...prop };
         const wrapper = shallowWithWidth(
-          <HiddenJs component={<Typography>foo</Typography>} {...props}>foo</HiddenJs>,
+          <HiddenJs {...props}>
+            <Typography>foo</Typography>
+          </HiddenJs>,
         );
         assert.isNotNull(wrapper.type(), 'should render');
         assert.strictEqual(wrapper.name(), 'Typography');

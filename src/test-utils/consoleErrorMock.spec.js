@@ -1,4 +1,5 @@
-/* eslint-disable flowtype/require-valid-file-annotation, no-console */
+// @flow
+/* eslint-disable no-console */
 
 import { assert } from 'chai';
 import consoleErrorMock from './consoleErrorMock';
@@ -19,9 +20,9 @@ describe('consoleErrorMock()', () => {
   describe('spy()', () => {
     it('should place a spy in console.error', () => {
       consoleErrorMock.spy();
-      assert.ok(console.error.hasOwnProperty('isSinonProxy'));
+      assert.strictEqual(console.error.hasOwnProperty('isSinonProxy'), true);
       consoleErrorMock.reset();
-      assert.notOk(console.error.hasOwnProperty('isSinonProxy'));
+      assert.strictEqual(console.error.hasOwnProperty('isSinonProxy'), false);
     });
 
     it('should keep the call count', () => {

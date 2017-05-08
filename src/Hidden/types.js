@@ -1,4 +1,5 @@
 // @flow
+
 import { Element } from 'react';
 import type { Breakpoint } from '../styles/breakpoints';
 
