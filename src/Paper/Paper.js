@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import warning from 'warning';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
@@ -44,6 +45,9 @@ export default function Paper(props, context) {
   } = props;
   const classes = context.styleManager.render(styleSheet);
 
+  warning(elevation >= 0 && elevation < 25,
+    `Material-UI: this elevation \`${elevation}\` is not implemented.`);
+
   const classNameElevation = `dp${elevation >= 0 ? elevation : 0}`;
   const className = classNames(classes.paper, classes[classNameElevation], {
     [classes.rounded]: !square,
@@ -61,6 +65,7 @@ Paper.propTypes = {
   className: PropTypes.string,
   /**
    * Shadow depth, corresponds to `dp` in the spec.
+   * It's accepting values between 0 and 24 inclusive.
    */
   elevation: PropTypes.number,
   /**
