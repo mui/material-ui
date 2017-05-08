@@ -19,6 +19,7 @@ type Props = HiddenProps & {
 };
 
 /**
+ * @ignore
  * Responsively hides by omission.
  */
 function HiddenJs(props: Props) {

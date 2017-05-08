@@ -103,7 +103,7 @@ type Props = {
    * Applies the theme typography styles.
    */
   type?: Type
-}
+};
 
 const headlineMapping: { [key: Type]: string } = {
   display4: 'h1',
