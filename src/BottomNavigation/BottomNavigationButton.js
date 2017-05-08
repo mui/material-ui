@@ -9,12 +9,11 @@ import ButtonBase from '../internal/ButtonBase';
 import Icon from '../Icon';
 
 export const styleSheet = createStyleSheet('MuiBottomNavigationButton', (theme) => {
-  const { palette, typography, transitions } = theme;
   return {
     root: {
-      transition: `${transitions.create(['color', 'padding-top'], {
-        duration: transitions.duration.short,
-      })}`,
+      transition: theme.transitions.create(['color', 'padding-top'], {
+        duration: theme.transitions.duration.short,
+      }),
       paddingTop: 8,
       paddingBottom: 10,
       paddingLeft: 12,
@@ -22,25 +21,25 @@ export const styleSheet = createStyleSheet('MuiBottomNavigationButton', (theme) 
       minWidth: 80,
       maxWidth: 168,
       background: 'none',
-      color: palette.text.secondary,
+      color: theme.palette.text.secondary,
       flex: '1',
     },
     selected: {
       paddingTop: 6,
-      color: palette.primary[500],
+      color: theme.palette.primary[500],
     },
     selectedIconOnly: {
       paddingTop: 16,
     },
     label: {
-      fontFamily: typography.fontFamily,
-      fontSize: typography.fontSize - 2,
+      fontFamily: theme.typography.fontFamily,
+      fontSize: theme.typography.fontSize - 2,
       opacity: 1,
       transition: 'font-size 0.2s, opacity 0.2s',
       transitionDelay: '0.1s',
     },
     selectedLabel: {
-      fontSize: typography.fontSize,
+      fontSize: theme.typography.fontSize,
     },
     hiddenLabel: {
       opacity: 0,

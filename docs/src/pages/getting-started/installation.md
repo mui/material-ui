@@ -24,7 +24,7 @@ on how to do so.
 
 ## SVG Icons
 
-In order to use prebuilt SVG Material icons, such as those found in the [component demos](/#/component-demos)
+In order to use prebuilt SVG Material icons, such as those found in the [component demos](/component-demos)
 you must first install the [material-ui-icons](https://www.npmjs.org/package/material-ui) package:
 
 ```

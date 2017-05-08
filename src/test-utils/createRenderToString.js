@@ -5,7 +5,7 @@ import jssPreset from 'jss-preset-default';
 import { createStyleManager } from 'jss-theme-reactor';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { createMuiTheme } from '../styles/theme';
+import createMuiTheme from '../styles/theme';
 import MuiThemeProvider from '../styles/MuiThemeProvider';
 
 export default function createRenderToString() {

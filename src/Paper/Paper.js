@@ -7,7 +7,6 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
 export const styleSheet = createStyleSheet('MuiPaper', (theme) => {
-  const { palette } = theme;
   const shadows = {};
 
   theme.shadows.forEach((shadow, index) => {
@@ -18,7 +17,7 @@ export const styleSheet = createStyleSheet('MuiPaper', (theme) => {
 
   return {
     paper: {
-      backgroundColor: palette.background.paper,
+      backgroundColor: theme.palette.background.paper,
     },
     rounded: {
       borderRadius: 2,

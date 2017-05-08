@@ -9,7 +9,6 @@ import ButtonBase from '../internal/ButtonBase';
 import ArrowDownwardIcon from '../svg-icons/arrow-downward';
 
 export const styleSheet = createStyleSheet('MuiTableSortLabel', (theme) => {
-  const { palette, transitions } = theme;
   return {
     sortLabel: {
       cursor: 'pointer',
@@ -19,14 +18,14 @@ export const styleSheet = createStyleSheet('MuiTableSortLabel', (theme) => {
       alignItems: 'center',
       background: 'transparent',
       '&:hover': {
-        color: palette.text.primary,
+        color: theme.palette.text.primary,
       },
       '&:focus': {
-        color: palette.text.primary,
+        color: theme.palette.text.primary,
       },
     },
     active: {
-      color: palette.text.primary,
+      color: theme.palette.text.primary,
       '& $icon': {
         opacity: 1,
       },
@@ -36,8 +35,8 @@ export const styleSheet = createStyleSheet('MuiTableSortLabel', (theme) => {
       marginRight: 4,
       marginLeft: 4,
       opacity: 0,
-      transition: transitions.create(['opacity', 'transform'], {
-        duration: transitions.duration.shorter,
+      transition: theme.transitions.create(['opacity', 'transform'], {
+        duration: theme.transitions.duration.shorter,
       }),
       userSelect: 'none',
       width: 16,

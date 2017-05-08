@@ -10,7 +10,9 @@ import prism from 'docs/src/utils/prism';
 const renderer = new marked.Renderer();
 
 renderer.heading = (text, level) => {
-  const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
+  const escapedText = text.toLowerCase()
+    .replace(/=&gt;|&lt;| \/&gt;|<code>|<\/code>/g, '')
+    .replace(/[^\w]+/g, '-');
 
   return `
     <h${level}>
@@ -39,10 +41,11 @@ marked.setOptions({
 
 const anchorLinkStyle = (theme) => ({
   '& .anchor-link-style': {
-    display: 'none',
+    opacity: 0,
+    display: 'inline',
   },
   '&:hover .anchor-link-style': {
-    display: 'inline',
+    opacity: 1,
     fontSize: '0.8em',
     lineHeight: '1',
     paddingLeft: theme.spacing.unit,
@@ -69,12 +72,14 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
     },
     '& code': {
       display: 'inline-block',
-      lineHeight: 1.6,
       fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
       padding: '3px 6px',
       color: theme.palette.text.primary,
       backgroundColor: theme.palette.background.paper,
+    },
+    '& p code, & ul code, & pre code': {
       fontSize: 14,
+      lineHeight: 1.6,
     },
     '& h1': {
       ...theme.typography.display2,
@@ -94,11 +99,14 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
       margin: '1em 0 0.7em',
       ...anchorLinkStyle(theme),
     },
+    '& h4': {
+      ...theme.typography.title,
+      color: theme.palette.text.secondary,
+      margin: '1em 0 0.7em',
+      ...anchorLinkStyle(theme),
+    },
     '& p, & ul, & ol': {
       lineHeight: 1.6,
-    },
-    '& p code, & ul code': {
-      fontSize: 14,
     },
     '& table': {
       width: '100%',
@@ -130,6 +138,7 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
     },
     '& td code': {
       fontSize: 13,
+      lineHeight: 1.6,
     },
     '& th': {
       whiteSpace: 'pre',
@@ -155,7 +164,7 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
       padding: `${theme.spacing.unit / 2}px ${theme.spacing.unit * 3}px`,
       margin: `${theme.spacing.unit * 3}px 0`,
     },
-    '& a': {
+    '& a, & a code': {
       // Style taken from the Link component
       color: theme.palette.accent.A400,
       textDecoration: 'none',
@@ -171,6 +180,7 @@ function MarkdownElement(props) {
     classes,
     className,
     text,
+    ...other
   } = props;
 
   /* eslint-disable react/no-danger */
@@ -178,6 +188,7 @@ function MarkdownElement(props) {
     <div
       className={classNames(classes.root, 'markdown-body', className)}
       dangerouslySetInnerHTML={{ __html: marked(text) }}
+      {...other}
     />
   );
   /* eslint-enable */

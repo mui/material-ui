@@ -10,13 +10,13 @@ Here is a quick example to get you started:
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import MyComponent from './MyComponent';
+import { MuiThemeProvider } from 'material-ui/styles';
+import Root from './Root';
 
 function App() {
   return (
     <MuiThemeProvider>
-      <MyComponent />
+      <Root />
     </MuiThemeProvider>
   );
 }
@@ -38,4 +38,4 @@ export default function MyComponent() {
 }
 ```
 
-Please refer to each component's demo page to see how they should be imported.
+Please refer to each component's [demo page](/component-demos) to see how they should be imported.

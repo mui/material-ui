@@ -10,10 +10,9 @@ import DeleteIcon from '../svg-icons/cancel';
 import { emphasize, fade } from '../styles/colorManipulator';
 
 export const styleSheet = createStyleSheet('MuiChip', (theme) => {
-  const { palette, shadows, transitions } = theme;
   const height = 32;
-  const backgroundColor = emphasize(palette.background.default, 0.12);
-  const deleteIconColor = fade(palette.text.primary, 0.26);
+  const backgroundColor = emphasize(theme.palette.background.default, 0.12);
+  const deleteIconColor = fade(theme.palette.text.primary, 0.26);
   return {
     root: {
       fontFamily: theme.typography.fontFamily,
@@ -22,12 +21,12 @@ export const styleSheet = createStyleSheet('MuiChip', (theme) => {
       alignItems: 'center',
       justifyContent: 'center',
       height,
-      color: palette.getContrastText(backgroundColor),
+      color: theme.palette.getContrastText(backgroundColor),
       backgroundColor,
       borderRadius: height / 2,
       whiteSpace: 'nowrap',
       width: 'fit-content',
-      transition: transitions.create(),
+      transition: theme.transitions.create(),
       // label will inherit this from root, then `clickable` class overrides this for both
       cursor: 'default',
       outline: 'none', // No outline on focused element in Chrome (as triggered by tabIndex prop)
@@ -39,7 +38,7 @@ export const styleSheet = createStyleSheet('MuiChip', (theme) => {
         backgroundColor: emphasize(backgroundColor, 0.08),
       },
       '&:active': {
-        boxShadow: shadows[1],
+        boxShadow: theme.shadows[1],
         backgroundColor: emphasize(backgroundColor, 0.12),
       },
       cursor: 'pointer',

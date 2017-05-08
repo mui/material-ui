@@ -67,9 +67,8 @@ We then get the CSS from our `styleManager` using `styleManager.sheetsToString()
 
 ```js
 import { renderToString } from 'react-dom/server'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import createPalette from 'material-ui/styles/palette';
-import createMuiTheme from 'material-ui/styles/theme';
 import { green, red } from 'material-ui/styles/colors';
 
 function createStyleManager() {
@@ -134,9 +133,8 @@ Let's take a look at our client file:
 ```jsx
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { MuiThemeProvider,  createMuiTheme } from 'material-ui/styles';
 import createPalette from 'material-ui/styles/palette';
-import createMuiTheme from 'material-ui/styles/theme';
 import { green, red } from 'material-ui/styles/colors';
 import App from './App';
 

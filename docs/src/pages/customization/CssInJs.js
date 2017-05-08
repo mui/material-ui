@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 
+// 1. We define the styles.
 const styleSheet = createStyleSheet('MyLink', (theme) => ({
   root: {
     color: 'inherit',
@@ -46,16 +47,17 @@ MyLink.propTypes = {
   variant: PropTypes.oneOf(['primary']),
 };
 
+// 2. We inject the styles.
 const MyLinkStyled = withStyles(styleSheet)(MyLink);
 
 export default function CssInJs() {
   return (
     <div>
-      <MyLinkStyled>
+      <MyLinkStyled href="#">
         {'MyLink'}
       </MyLinkStyled>
       {' - '}
-      <MyLinkStyled variant="primary">
+      <MyLinkStyled href="#" variant="primary">
         {'primary'}
       </MyLinkStyled>
     </div>
