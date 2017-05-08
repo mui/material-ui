@@ -16,7 +16,7 @@ function getStyles(props, context) {
       marginTop: -2,
       position: 'relative',
       transition: transitions.easeOut('1s', isRtl ? 'right' : 'left'),
-      zIndex: 1000
+      zIndex: 1000,
     },
   };
 }
