@@ -105,8 +105,14 @@ class TableHeader extends Component {
   }
 
   createBaseHeaderRow() {
-    const numChildren = React.Children.count(this.props.children);
-    const child = (numChildren === 1) ? this.props.children : this.props.children[numChildren - 1];
+    const childrenArray = React.Children.toArray(this.props.children);
+    const numChildren = childrenArray.length;
+    if (numChildren < 1) {
+      return null;
+    }
+
+    const child = childrenArray[numChildren - 1];
+
     const props = {
       key: `h${numChildren}`,
       rowNumber: numChildren,
