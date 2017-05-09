@@ -26,7 +26,6 @@ export const styleSheet = createStyleSheet('MuiDrawer', (theme) => {
   return {
     paper: {
       overflowY: 'auto',
-      overflowX: 'hidden',
       display: 'flex',
       flexDirection: 'column',
       height: '100vh',
@@ -66,16 +65,33 @@ export const styleSheet = createStyleSheet('MuiDrawer', (theme) => {
     },
     docked: {
       flex: '0 0 auto',
+      overflowX: 'hidden',
       '& $paper': {
         borderRight: `1px solid ${theme.palette.text.divider}`,
+        position: 'relative',
       },
     },
     mini: {
       '& $paper': {
         width: 72,
+        // Perfectly center icons by not including border in width.
+        boxSizing: 'content-box',
       },
     },
-    modal: {
+    closed: {
+      '& $paper': {
+        width: 0,
+        borderRight: 'none',
+      },
+    },
+    widthTransition: {
+      '& $paper': {
+        // Hardcoding the width transition for Persistent and Mini variant types for now.
+        // TODO: Add support for width transitions to Collapse component?
+        // Or make this configurable in some other way?
+        transition: theme.transitions.create('width',
+          { duration: theme.transitions.duration.shorter }),
+      },
     },
   };
 });
@@ -90,11 +106,6 @@ export default class Drawer extends Component {
      */
     anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
     /**
-     * The type of drawer.
-     * See https://material.io/guidelines/patterns/navigation-drawer.html
-     */
-    type: PropTypes.oneOf(['permanent', 'persistent', 'mini', 'temporary']),
-    /**
      * The contents of the drawer.
      */
     children: PropTypes.node,
@@ -102,11 +113,6 @@ export default class Drawer extends Component {
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
-    /**
-     * If `true`, the drawer will dock itself
-     * and will no longer slide in with an overlay.
-     */
-    // docked: PropTypes.bool,
     /**
      * The elevation of the drawer.
      */
@@ -131,12 +137,16 @@ export default class Drawer extends Component {
      * The CSS class name of the paper element.
      */
     paperClassName: PropTypes.string,
+    /**
+     * The type of drawer.
+     * See https://material.io/guidelines/patterns/navigation-drawer.html
+     */
+    type: PropTypes.oneOf(['permanent', 'persistent', 'mini', 'temporary']),
   };
 
   static defaultProps = {
     anchor: 'left',
     type: 'temporary', // Mobile first.
-    // docked: false,
     enterTransitionDuration: duration.enteringScreen,
     leaveTransitionDuration: duration.leavingScreen,
     open: false,
@@ -153,7 +163,6 @@ export default class Drawer extends Component {
       type,
       children,
       className,
-      // docked,
       enterTransitionDuration,
       leaveTransitionDuration,
       open,
@@ -173,24 +182,30 @@ export default class Drawer extends Component {
     const slideDirection = getSlideDirection(anchor);
 
     const drawer = (
-      <Slide
-        in={open}
-        direction={slideDirection}
-        enterTransitionDuration={enterTransitionDuration}
-        leaveTransitionDuration={leaveTransitionDuration}
-        transitionAppear
+      <Paper
+        elevation={type === 'temporary' ? elevation : 0}
+        square
+        className={classNames(classes.paper, classes[anchor], paperClassName)}
       >
-        <Paper
-          elevation={docked ? 0 : elevation}
-          square
-          className={classNames(classes.paper, classes[anchor], paperClassName)}
-        >
-          {children}
-        </Paper>
-      </Slide>
+        {children}
+      </Paper>
     );
 
-    if (docked) {
+    if (type !== 'temporary') {
+      // Persistent drawer (with mini variant):
+      if (type !== 'permanent') {
+        const closedClassName = type === 'mini' ? classes.mini : classes.closed;
+        return (
+          <div
+            className={classNames(classes.docked, classes.widthTransition,
+             !open && closedClassName, className)}
+          >
+            {drawer}
+          </div>
+        );
+      }
+
+      // Permanent drawer:
       return (
         <div className={classNames(classes.docked, className)}>
           {drawer}
@@ -198,14 +213,23 @@ export default class Drawer extends Component {
       );
     }
 
+    // Temporary drawer:
     return (
       <Modal
         backdropTransitionDuration={open ? enterTransitionDuration : leaveTransitionDuration}
-        className={classNames(classes.modal, className)}
+        className={className}
         {...other}
         show={open}
       >
-        {drawer}
+        <Slide
+          in={open}
+          direction={slideDirection}
+          enterTransitionDuration={enterTransitionDuration}
+          leaveTransitionDuration={leaveTransitionDuration}
+          transitionAppear
+        >
+          {drawer}
+        </Slide>
       </Modal>
     );
   }
