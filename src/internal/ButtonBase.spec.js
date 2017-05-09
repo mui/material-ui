@@ -468,4 +468,20 @@ describe('<ButtonBase />', () => {
       });
     });
   });
+
+  describe('focus()', () => {
+    let instance;
+
+    before(() => {
+      instance = mount(<ButtonBase component="span">Hello</ButtonBase>).instance();
+      instance.button = {
+        focus: spy(),
+      };
+    });
+
+    it('should call the focus on the instance.button', () => {
+      instance.focus();
+      assert.strictEqual(instance.button.focus.callCount, 1);
+    });
+  });
 });
