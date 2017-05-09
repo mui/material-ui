@@ -7,8 +7,6 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
 export const styleSheet = createStyleSheet('MuiGridTileTitlebar', (theme) => {
-  const { mixins } = theme;
-
   return {
     titleBar: {
       position: 'absolute',
@@ -31,9 +29,8 @@ export const styleSheet = createStyleSheet('MuiGridTileTitlebar', (theme) => {
     },
     titleWrap: {
       flexGrow: 1,
-      marginLeft: mixins.gutters({}).paddingLeft,
-      // TODO: Do we need left *and* right if they're always the same value?
-      marginRight: mixins.gutters({}).paddingRight,
+      marginLeft: theme.mixins.gutters({}).paddingLeft,
+      marginRight: theme.mixins.gutters({}).paddingRight,
       color: 'white',
       overflow: 'hidden',
     },
@@ -81,7 +78,7 @@ export default function GridTileTitlebar(props, context) {
     subtitleClassName: subtitleClassNameProp,
     title,
     titleClassName: titleClassNameProp,
-    titlePosition, // eslint-disable-line no-unused-vars
+    titlePosition,
     ...other
   } = props;
 

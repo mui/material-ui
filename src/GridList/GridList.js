@@ -37,6 +37,7 @@ export default function GridList(props, context) {
     children,
     className: classNameProp,
     component: ComponentProp,
+    style,
     ...other
   } = props;
 
@@ -60,7 +61,7 @@ export default function GridList(props, context) {
   return (
     <ComponentProp
       className={classNames(classes.root, classNameProp)}
-      style={{ margin: -padding / 2 }}
+      style={{ margin: -padding / 2, ...style }}
       {...other}
     >
       {wrappedChildren}

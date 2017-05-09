@@ -80,14 +80,16 @@ export default class GridTile extends Component {
     this.ensureImageCover();
   }
 
+  imgElement = undefined;
+
   ensureImageCover() {
     let imgEl = this.imgElement;
 
     if (imgEl) {
       const fit = () => {
         if (imgEl.offsetWidth < imgEl.parentNode.offsetWidth) {
-          const { theme: { dir } } = this.context.styleManager;
-          const isRtl = dir === 'rtl';
+          const { theme: { direction } } = this.context.styleManager;
+          const isRtl = direction === 'rtl';
           imgEl.style.height = 'auto';
           if (isRtl) {
             imgEl.style.right = '0';

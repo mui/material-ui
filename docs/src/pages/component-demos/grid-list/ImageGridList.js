@@ -1,7 +1,7 @@
 // @flow weak
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
+import { createStyleSheet } from 'material-ui/styles';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import { GridList, GridTile } from 'material-ui/GridList';
 import tileData from './tileData';
