@@ -274,7 +274,9 @@ function Grid(props: Props, context: any) {
 
   if (hidden) {
     return (
-      <Hidden {...hidden} component={<ComponentProp {...gridProps} />} />
+      <Hidden {...hidden}>
+        <ComponentProp {...gridProps} />
+      </Hidden>
     );
   }
 
