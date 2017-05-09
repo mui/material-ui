@@ -26,6 +26,7 @@ export const styleSheet = createStyleSheet('MuiDrawer', (theme) => {
   return {
     paper: {
       overflowY: 'auto',
+      overflowX: 'hidden',
       display: 'flex',
       flexDirection: 'column',
       height: '100vh',
@@ -69,6 +70,11 @@ export const styleSheet = createStyleSheet('MuiDrawer', (theme) => {
         borderRight: `1px solid ${theme.palette.text.divider}`,
       },
     },
+    mini: {
+      '& $paper': {
+        width: 72,
+      },
+    },
     modal: {
     },
   };
@@ -84,6 +90,11 @@ export default class Drawer extends Component {
      */
     anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
     /**
+     * The type of drawer.
+     * See https://material.io/guidelines/patterns/navigation-drawer.html
+     */
+    type: PropTypes.oneOf(['permanent', 'persistent', 'mini', 'temporary']),
+    /**
      * The contents of the drawer.
      */
     children: PropTypes.node,
@@ -95,7 +106,7 @@ export default class Drawer extends Component {
      * If `true`, the drawer will dock itself
      * and will no longer slide in with an overlay.
      */
-    docked: PropTypes.bool,
+    // docked: PropTypes.bool,
     /**
      * The elevation of the drawer.
      */
@@ -124,7 +135,8 @@ export default class Drawer extends Component {
 
   static defaultProps = {
     anchor: 'left',
-    docked: false,
+    type: 'temporary', // Mobile first.
+    // docked: false,
     enterTransitionDuration: duration.enteringScreen,
     leaveTransitionDuration: duration.leavingScreen,
     open: false,
@@ -138,9 +150,10 @@ export default class Drawer extends Component {
   render() {
     const {
       anchor: anchorProp,
+      type,
       children,
       className,
-      docked,
+      // docked,
       enterTransitionDuration,
       leaveTransitionDuration,
       open,
