@@ -341,8 +341,8 @@ describe('<ButtonBase />', () => {
   });
 
   describe('handleFocus()', () => {
-    it('when disabled shoult not persist event', () => {
-      const wrapper = mount(<ButtonBase disabled >Hello</ButtonBase>);
+    it('when disabled should not persist event', () => {
+      const wrapper = mount(<ButtonBase disabled>Hello</ButtonBase>);
       const instance = wrapper.instance();
       const eventMock = {
         persist: spy(),
@@ -351,7 +351,7 @@ describe('<ButtonBase />', () => {
       assert.strictEqual(eventMock.persist.callCount, 0);
     });
 
-    it('when disabled shoult not persist event', () => {
+    it('onKeyboardFocusHandler() should propogate call to onKeyboardFocus prop', () => {
       const eventMock = 'woof';
       const onKeyboardFocusSpy = spy();
       const wrapper = mount(
