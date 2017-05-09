@@ -91,11 +91,11 @@ class AppDrawer extends Component {
 
     return (
       <Drawer
+        type={this.props.type}
         className={this.props.className}
         paperClassName={classes.paper}
         open={this.props.open}
         onRequestClose={this.props.onRequestClose}
-        docked={this.props.docked}
       >
         <div className={classes.nav}>
           <Toolbar className={classes.toolbar}>
@@ -124,10 +124,10 @@ class AppDrawer extends Component {
 AppDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
-  docked: PropTypes.bool.isRequired,
   onRequestClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   routes: PropTypes.array.isRequired,
+  type: PropTypes.string,
 };
 
 AppDrawer.contextTypes = {

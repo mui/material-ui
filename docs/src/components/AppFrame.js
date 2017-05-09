@@ -114,12 +114,12 @@ class AppFrame extends Component {
     const classes = this.props.classes;
     const title = getTitle(routes);
 
-    let drawerDocked = isWidthUp('lg', width);
+    let drawerType = isWidthUp('lg', width) ? 'permanent' : 'temporary';
     let navIconClassName = classes.icon;
     let appBarClassName = classes.appBar;
 
     if (title === null) { // home route, don't shift app bar or dock drawer
-      drawerDocked = false;
+      drawerType = 'temporary';
       appBarClassName += ` ${classes.appBarHome}`;
     } else {
       navIconClassName += ` ${classes.navIconHide}`;
@@ -153,11 +153,11 @@ class AppFrame extends Component {
           </Toolbar>
         </AppBar>
         <AppDrawer
+          type={drawerType}
           className={classes.drawer}
-          docked={drawerDocked}
           routes={routes}
           onRequestClose={this.handleDrawerClose}
-          open={drawerDocked || this.state.drawerOpen}
+          open={drawerType === 'permanent' || this.state.drawerOpen}
         />
         {children}
       </div>
