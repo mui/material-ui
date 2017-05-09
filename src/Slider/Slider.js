@@ -161,6 +161,10 @@ const getStyles = (props, context, state) => {
   const calculatedAxis = calculateAxis(axis, isRtl);
 
   const styles = {
+    root: {
+      marginTop: 24,
+      marginBottom: 48,
+    },
     slider: {
       touchCallout: 'none',
       userSelect: 'none',
@@ -168,8 +172,6 @@ const getStyles = (props, context, state) => {
       [crossAxisProperty[calculatedAxis]]: handleSizeActive,
       [mainAxisProperty[calculatedAxis]]: '100%',
       position: 'relative',
-      marginTop: 24,
-      marginBottom: 48,
     },
     track: {
       position: 'absolute',
@@ -825,7 +827,7 @@ class Slider extends Component {
     );
 
     return (
-      <div {...other} style={prepareStyles(Object.assign({}, style))}>
+      <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
         <span>{description}</span>
         <span>{error}</span>
         <div
