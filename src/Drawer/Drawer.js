@@ -68,7 +68,6 @@ export const styleSheet = createStyleSheet('MuiDrawer', (theme) => {
       overflowX: 'hidden',
       '& $paper': {
         borderRight: `1px solid ${theme.palette.text.divider}`,
-        position: 'relative',
       },
     },
     // Using these classes on the container element instead of directly on
