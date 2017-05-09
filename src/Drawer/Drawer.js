@@ -71,6 +71,10 @@ export const styleSheet = createStyleSheet('MuiDrawer', (theme) => {
         position: 'relative',
       },
     },
+    // Using these classes on the container element instead of directly on
+    // the Paper element to ensure higher specificity (so setting a custom width via
+    // paperClassName doesn't override the widths for closed and mini states).
+    // This also keeps the current className/paperClassName props intact.
     mini: {
       '& $paper': {
         width: 72,
