@@ -340,6 +340,30 @@ describe('<ButtonBase />', () => {
     });
   });
 
+  describe('handleFocus()', () => {
+    it('when disabled should not persist event', () => {
+      const wrapper = mount(<ButtonBase disabled>Hello</ButtonBase>);
+      const instance = wrapper.instance();
+      const eventMock = {
+        persist: spy(),
+      };
+      instance.handleFocus(eventMock);
+      assert.strictEqual(eventMock.persist.callCount, 0);
+    });
+
+    it('onKeyboardFocusHandler() should propogate call to onKeyboardFocus prop', () => {
+      const eventMock = 'woof';
+      const onKeyboardFocusSpy = spy();
+      const wrapper = mount(
+        <ButtonBase component={'span'} onKeyboardFocus={onKeyboardFocusSpy}>Hello</ButtonBase>,
+      );
+      const instance = wrapper.instance();
+      instance.onKeyboardFocusHandler(eventMock);
+      assert.strictEqual(onKeyboardFocusSpy.callCount, 1);
+      assert.strictEqual(onKeyboardFocusSpy.calledWith(eventMock), true);
+    });
+  });
+
   describe('handleKeyDown()', () => {
     let wrapper;
     let instance;
