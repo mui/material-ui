@@ -41,7 +41,7 @@ export default class SelectFieldExampleSelectionRenderer extends Component {
       <MenuItem
         key={person.value}
         insetChildren={true}
-        checked={this.state.values.includes(person.value)}
+        checked={this.state.values.indexOf(person.value) > -1}
         value={person.value}
         primaryText={person.name}
       />
