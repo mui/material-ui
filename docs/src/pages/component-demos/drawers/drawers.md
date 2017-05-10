@@ -8,12 +8,6 @@ The [Drawer](https://material.io/guidelines/patterns/navigation-drawer.html) sli
 
 There are no examples for uncontrolled mode because an uncontrolled `Drawer` can only be opened with a swipe. The doc site has an uncontrolled `Drawer`. Swipe from the left on a touch device to see it.
 
-## Undocked example
-
-An undocked controlled `Drawer` with custom width. The Drawer can be cancelled by clicking the overlay or pressing the Esc key. It closes when an item is selected, handled by controlling the `open` prop.
-
-{{demo='pages/component-demos/drawers/UndockedDrawer.js'}}
-
 ## Permanent navigation drawer
 
 Permanent navigation drawers are always visible and pinned to the left edge, at the same elevation as the content or background. They cannot be closed.
@@ -31,3 +25,17 @@ When the drawer is outside of the page grid and opens, the drawer forces other c
 Persistent navigation drawers are acceptable for all sizes larger than mobile.
 
 {{demo='pages/component-demos/drawers/PersistentDrawer.js'}}
+
+## Mini variant navigation drawer
+
+In this variation, the persistent navigation drawer changes its width. Its resting state is as a mini-drawer at the same elevation as the content, clipped by the app bar. When expanded, it appears as the standard persistent navigation drawer.
+
+The mini variant is recommended for apps sections that need quick selection access alongside content.
+
+{{demo='pages/component-demos/drawers/MiniDrawer.js'}}
+
+## Undocked example
+
+An undocked controlled `Drawer` with custom width. The Drawer can be cancelled by clicking the overlay or pressing the Esc key. It closes when an item is selected, handled by controlling the `open` prop.
+
+{{demo='pages/component-demos/drawers/UndockedDrawer.js'}}
