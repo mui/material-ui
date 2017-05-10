@@ -120,6 +120,10 @@ class MenuItem extends Component {
      */
     onTouchTap: PropTypes.func,
     /**
+     * If true, the children popover will open on hover as well.
+     */
+    openOnHover: PropTypes.bool,
+    /**
      * Can be used to render primary text within the menu item.
      */
     primaryText: PropTypes.node,
@@ -148,6 +152,7 @@ class MenuItem extends Component {
     disabled: false,
     focusState: 'none',
     insetChildren: false,
+    openOnHover: false
   };
 
   static contextTypes = {
@@ -237,6 +242,7 @@ class MenuItem extends Component {
       insetChildren,
       leftIcon,
       menuItems,
+      openOnHover,
       rightIcon,
       secondaryText,
       style,
@@ -295,6 +301,9 @@ class MenuItem extends Component {
         </Popover>
       );
       other.onTouchTap = this.handleTouchTap;
+      if(openOnHover && menuItems) {
+        other.onMouseOver = this.handleTouchTap;
+      }
     }
 
     return (
