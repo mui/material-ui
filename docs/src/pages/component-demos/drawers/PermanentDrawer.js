@@ -30,6 +30,7 @@ const styleSheet = createStyleSheet('PermanentDrawer', () => ({
   appBar: {
     position: 'relative',
     maxWidth: `calc(100% - ${drawerWidth}px)`,
+    order: 1,
   },
   drawerPaper: {
     position: 'relative',
@@ -111,6 +112,13 @@ const PermanentDrawer = ({ classes }) => {
 
   return (
     <div className={classes.demoFrame}>
+      <AppBar className={classes.appBar}>
+        <Toolbar>
+          <Typography type="title" colorInherit noWrap>
+            Permanent navigation drawer
+          </Typography>
+        </Toolbar>
+      </AppBar>
       <Drawer
         type="permanent"
         paperClassName={classes.drawerPaper}
@@ -124,13 +132,6 @@ const PermanentDrawer = ({ classes }) => {
           {otherMailFolderListItems}
         </List>
       </Drawer>
-      <AppBar className={classes.appBar}>
-        <Toolbar>
-          <Typography type="title" colorInherit noWrap>
-            Permanent navigation drawer
-          </Typography>
-        </Toolbar>
-      </AppBar>
     </div>
   );
 };

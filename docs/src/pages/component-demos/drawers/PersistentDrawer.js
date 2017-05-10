@@ -33,6 +33,7 @@ const styleSheet = createStyleSheet('PersistentDrawer', () => ({
   },
   appBar: {
     position: 'relative',
+    order: 1,
   },
   menuButton: {
     marginLeft: 12,
@@ -147,6 +148,20 @@ class PersistentDrawer extends Component {
 
     return (
       <div className={classes.demoFrame}>
+        <AppBar className={classes.appBar}>
+          <Toolbar disableGutters={!this.state.open}>
+            <IconButton
+              onClick={this.handleDrawerOpen}
+              className={classNames(classes.menuButton, this.state.open && classes.hide)}
+              contrast
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography type="title" colorInherit noWrap>
+              Persistent navigation drawer
+            </Typography>
+          </Toolbar>
+        </AppBar>
         <Drawer
           type="persistent"
           paperClassName={classes.drawerPaper}
@@ -168,20 +183,6 @@ class PersistentDrawer extends Component {
             </List>
           </div>
         </Drawer>
-        <AppBar className={classes.appBar}>
-          <Toolbar disableGutters={!this.state.open}>
-            <IconButton
-              onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, this.state.open && classes.hide)}
-              contrast
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography type="title" colorInherit noWrap>
-              Persistent navigation drawer
-            </Typography>
-          </Toolbar>
-        </AppBar>
       </div>
     );
   }

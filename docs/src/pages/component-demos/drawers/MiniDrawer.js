@@ -34,7 +34,7 @@ const styleSheet = createStyleSheet('MiniDrawer', (theme) => ({
   },
   appBar: {
     position: 'absolute',
-    zIndex: theme.zIndex.navDrawer,
+    zIndex: theme.zIndex.navDrawer + 1,
     transition: theme.transitions.create(['width', 'margin'],
                 { duration: theme.transitions.duration.shorter }),
   },
@@ -155,6 +155,20 @@ class MiniDrawer extends Component {
 
     return (
       <div className={classes.demoFrame}>
+        <AppBar className={classNames(classes.appBar, this.state.open && classes.appBarShift)}>
+          <Toolbar disableGutters={!this.state.open}>
+            <IconButton
+              onClick={this.handleDrawerOpen}
+              className={classNames(classes.menuButton, this.state.open && classes.hide)}
+              contrast
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography type="title" colorInherit noWrap>
+              Mini variant navigation drawer
+            </Typography>
+          </Toolbar>
+        </AppBar>
         <Drawer
           type="mini"
           paperClassName={classes.drawerPaper}
@@ -176,20 +190,6 @@ class MiniDrawer extends Component {
             </List>
           </div>
         </Drawer>
-        <AppBar className={classNames(classes.appBar, this.state.open && classes.appBarShift)}>
-          <Toolbar disableGutters={!this.state.open}>
-            <IconButton
-              onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, this.state.open && classes.hide)}
-              contrast
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography type="title" colorInherit noWrap>
-              Mini variant navigation drawer
-            </Typography>
-          </Toolbar>
-        </AppBar>
       </div>
     );
   }
