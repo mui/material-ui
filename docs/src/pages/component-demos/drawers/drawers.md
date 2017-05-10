@@ -21,3 +21,13 @@ Permanent navigation drawers are always visible and pinned to the left edge, at 
 Permanent navigation drawers are the recommended default for desktop.
 
 {{demo='pages/component-demos/drawers/PermanentDrawer.js'}}
+
+## Persistent navigation drawer
+
+Persistent navigation drawers can toggle open or closed. The drawer sits on the same surface elevation as the content. It is closed by default and opens by selecting the menu icon, and stays open until closed by the user. The state of the drawer is remembered from action to action and session to session.
+
+When the drawer is outside of the page grid and opens, the drawer forces other content to change size and adapt to the smaller viewport.
+
+Persistent navigation drawers are acceptable for all sizes larger than mobile.
+
+{{demo='pages/component-demos/drawers/PersistentDrawer.js'}}
