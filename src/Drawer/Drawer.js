@@ -65,15 +65,18 @@ export const styleSheet = createStyleSheet('MuiDrawer', (theme) => {
     },
     docked: {
       flex: '0 0 auto',
-      overflowX: 'hidden',
       '& $paper': {
+        overflowX: 'hidden',
         borderRight: `1px solid ${theme.palette.text.divider}`,
       },
     },
+    // NOTE:
     // Using these classes on the container element instead of directly on
     // the Paper element to ensure higher specificity (so setting a custom width via
     // paperClassName doesn't override the widths for closed and mini states).
     // This also keeps the current className/paperClassName props intact.
+    // Setting a width via paperClassName is also required to make the transition work
+    // Should we make this an optional prop with a sensible default?
     mini: {
       '& $paper': {
         width: 72,
