@@ -14,3 +14,10 @@ An undocked controlled `Drawer` with custom width. The Drawer can be cancelled b
 
 {{demo='pages/component-demos/drawers/UndockedDrawer.js'}}
 
+## Permanent navigation drawer
+
+Permanent navigation drawers are always visible and pinned to the left edge, at the same elevation as the content or background. They cannot be closed.
+
+Permanent navigation drawers are the recommended default for desktop.
+
+{{demo='pages/component-demos/drawers/PermanentDrawer.js'}}
