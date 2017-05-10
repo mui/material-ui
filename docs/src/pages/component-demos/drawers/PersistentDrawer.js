@@ -13,7 +13,7 @@ import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
-import InboxIcon from 'material-ui-icons/Inbox';
+import InboxIcon from 'material-ui-icons/MoveToInbox';
 import DraftsIcon from 'material-ui-icons/Drafts';
 import StarIcon from 'material-ui-icons/Star';
 import SendIcon from 'material-ui-icons/Send';
@@ -33,8 +33,6 @@ const styleSheet = createStyleSheet('PersistentDrawer', () => ({
   },
   appBar: {
     position: 'relative',
-    width: 'auto',
-    flex: '1 0 auto',
   },
   menuButton: {
     marginLeft: 12,
@@ -58,7 +56,10 @@ const styleSheet = createStyleSheet('PersistentDrawer', () => ({
     height: 64,
     padding: '0 8px',
   },
-  listItemText: {
+  navItem: {
+    paddingLeft: 24,
+  },
+  navItemText: {
     padding: '0 16px',
   },
 }));
@@ -69,8 +70,7 @@ class PersistentDrawer extends Component {
   };
 
   toggleDrawer = (open) => {
-    const drawerState = open;
-    this.setState({ open: drawerState });
+    this.setState({ open });
   };
 
   handleDrawerOpen = () => this.toggleDrawer(true);
@@ -81,35 +81,35 @@ class PersistentDrawer extends Component {
 
     const mailFolderListItems = (
       <div>
-        <ListItem button>
+        <ListItem button className={classes.navItem}>
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
-          <Typography type="body2" className={classes.listItemText}>
+          <Typography type="body2" className={classes.navItemText}>
             Inbox
           </Typography>
         </ListItem>
-        <ListItem button>
+        <ListItem button className={classes.navItem}>
           <ListItemIcon>
             <StarIcon />
           </ListItemIcon>
-          <Typography type="body2" className={classes.listItemText}>
+          <Typography type="body2" className={classes.navItemText}>
             Starred
           </Typography>
         </ListItem>
-        <ListItem button>
+        <ListItem button className={classes.navItem}>
           <ListItemIcon>
             <SendIcon />
           </ListItemIcon>
-          <Typography type="body2" className={classes.listItemText}>
+          <Typography type="body2" className={classes.navItemText}>
             Send mail
           </Typography>
         </ListItem>
-        <ListItem button>
+        <ListItem button className={classes.navItem}>
           <ListItemIcon>
             <DraftsIcon />
           </ListItemIcon>
-          <Typography type="body2" className={classes.listItemText}>
+          <Typography type="body2" className={classes.navItemText}>
             Drafts
           </Typography>
         </ListItem>
@@ -118,27 +118,27 @@ class PersistentDrawer extends Component {
 
     const otherMailFolderListItems = (
       <div>
-        <ListItem button>
+        <ListItem button className={classes.navItem}>
           <ListItemIcon>
             <MailIcon />
           </ListItemIcon>
-          <Typography type="body2" className={classes.listItemText}>
+          <Typography type="body2" className={classes.navItemText}>
             All mail
           </Typography>
         </ListItem>
-        <ListItem button>
+        <ListItem button className={classes.navItem}>
           <ListItemIcon>
             <DeleteIcon />
           </ListItemIcon>
-          <Typography type="body2" className={classes.listItemText}>
+          <Typography type="body2" className={classes.navItemText}>
             Trash
           </Typography>
         </ListItem>
-        <ListItem button>
+        <ListItem button className={classes.navItem}>
           <ListItemIcon>
             <ReportIcon />
           </ListItemIcon>
-          <Typography type="body2" className={classes.listItemText}>
+          <Typography type="body2" className={classes.navItemText}>
             Spam
           </Typography>
         </ListItem>

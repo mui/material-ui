@@ -9,7 +9,7 @@ import Toolbar from 'material-ui/Toolbar';
 import List, { ListItem, ListItemIcon } from 'material-ui/List';
 import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
-import InboxIcon from 'material-ui-icons/Inbox';
+import InboxIcon from 'material-ui-icons/MoveToInbox';
 import DraftsIcon from 'material-ui-icons/Drafts';
 import StarIcon from 'material-ui-icons/Star';
 import SendIcon from 'material-ui-icons/Send';
