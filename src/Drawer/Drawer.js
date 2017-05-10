@@ -84,6 +84,9 @@ export const styleSheet = createStyleSheet('MuiDrawer', (theme) => {
         boxSizing: 'content-box',
       },
     },
+    persistent: {
+      marginRight: '-100%',
+    },
     closed: {
       '& $paper': {
         width: 0,
@@ -199,15 +202,31 @@ export default class Drawer extends Component {
 
     if (type !== 'temporary') {
       // Persistent drawer (with mini variant):
-      if (type !== 'permanent') {
-        const closedClassName = type === 'mini' ? classes.mini : classes.closed;
+      // if (type !== 'permanent') {
+      //   const closedClassName = type === 'mini' ? classes.mini : classes.closed;
+      //   return (
+      //     <div
+      //       className={classNames(classes.docked, classes.widthTransition,
+      //        !open && closedClassName, className)}
+      //     >
+      //       {drawer}
+      //     </div>
+      //   );
+      // }
+
+      if (type === 'persistent') {
         return (
-          <div
-            className={classNames(classes.docked, classes.widthTransition,
-             !open && closedClassName, className)}
+          <Slide
+            in={open}
+            direction={slideDirection}
+            enterTransitionDuration={enterTransitionDuration}
+            leaveTransitionDuration={leaveTransitionDuration}
+            transitionAppear
           >
-            {drawer}
-          </div>
+            <div className={classNames(classes.docked, className)}>
+              {drawer}
+            </div>
+          </Slide>
         );
       }
 

@@ -23,16 +23,17 @@ import ReportIcon from 'material-ui-icons/Report';
 
 const drawerWidth = 250;
 
-const styleSheet = createStyleSheet('PersistentDrawer', () => ({
+const styleSheet = createStyleSheet('PersistentDrawer', (theme) => ({
   demoFrame: {
+    position: 'relative',
     display: 'flex',
-    alignItems: 'flex-start',
     width: '100%',
     marginTop: 32,
     zIndex: 1,
   },
   appBar: {
-    position: 'relative',
+    // position: 'relative',
+    position: 'absolute',
     order: 1,
   },
   menuButton: {
@@ -54,7 +55,7 @@ const styleSheet = createStyleSheet('PersistentDrawer', () => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    height: 64,
+    height: 56,
     padding: '0 8px',
   },
   navItem: {
@@ -62,6 +63,21 @@ const styleSheet = createStyleSheet('PersistentDrawer', () => ({
   },
   navItemText: {
     padding: '0 16px',
+  },
+  content: {
+    height: 'calc(100% - 56px)',
+    width: '100%',
+    marginTop: 56,
+    flexGrow: 1,
+  },
+  [theme.breakpoints.up('sm')]: {
+    content: {
+      height: 'calc(100% - 64px)',
+      marginTop: 64,
+    },
+    drawerHeader: {
+      height: 64,
+    },
   },
 }));
 
@@ -183,6 +199,11 @@ class PersistentDrawer extends Component {
             </List>
           </div>
         </Drawer>
+        <div className={classes.content}>
+          <p>
+            You think water moves fast? You should see ice. It moves like it has a mind. Like it knows it killed the world once and got a taste for murder. After the avalanche, it took us a week to climb out. Now, I don't know exactly when we turned on each other, but I know that seven of us survived the slide... and only five made it out. Now we took an oath, that I'm breaking now. We said we'd say it was the snow that killed the other two, but it wasn't. Nature is lethal but it doesn't hold a candle to man.
+          </p>
+        </div>
       </div>
     );
   }
