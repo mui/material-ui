@@ -23,6 +23,11 @@ import ReportIcon from 'material-ui-icons/Report';
 
 const drawerWidth = 250;
 
+// NOTE:
+// this approach has a discrepancy between the Drawer's Slide transition
+// and the margin transition on AppBar and content
+// Because only CSS transforms tween 'between pixels', margin does not
+
 const styleSheet = createStyleSheet('PersistentDrawer', (theme) => ({
   demoFrame: {
     position: 'relative',
@@ -30,11 +35,22 @@ const styleSheet = createStyleSheet('PersistentDrawer', (theme) => ({
     width: '100%',
     marginTop: 32,
     zIndex: 1,
+    overflow: 'hidden',
   },
   appBar: {
-    // position: 'relative',
     position: 'absolute',
     order: 1,
+    transition: theme.transitions.create('margin',
+      { easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+  },
+  appBarShift: {
+    marginLeft: drawerWidth, // What about LTR?
+    transition: theme.transitions.create('margin',
+      { easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
   },
   menuButton: {
     marginLeft: 12,
@@ -47,9 +63,6 @@ const styleSheet = createStyleSheet('PersistentDrawer', (theme) => ({
     position: 'relative',
     height: 'auto',
     width: drawerWidth, // Required to make the transition work.
-  },
-  drawerInner: {
-    width: drawerWidth, // Makes the items inside not wrap.
   },
   drawerHeader: {
     display: 'flex',
@@ -67,8 +80,22 @@ const styleSheet = createStyleSheet('PersistentDrawer', (theme) => ({
   content: {
     height: 'calc(100% - 56px)',
     width: '100%',
-    marginTop: 56,
+    marginTop: 56, // What about LTR?
+    marginLeft: -drawerWidth,
     flexGrow: 1,
+    backgroundColor: '#fafafa',
+    padding: 32,
+    transition: theme.transitions.create('margin',
+      { easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+  },
+  contentShift: {
+    marginLeft: 0, // What about LTR?
+    transition: theme.transitions.create('margin',
+      { easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
   },
   [theme.breakpoints.up('sm')]: {
     content: {
@@ -83,7 +110,7 @@ const styleSheet = createStyleSheet('PersistentDrawer', (theme) => ({
 
 class PersistentDrawer extends Component {
   state = {
-    open: true,
+    open: false,
   };
 
   toggleDrawer = (open) => {
@@ -164,7 +191,9 @@ class PersistentDrawer extends Component {
 
     return (
       <div className={classes.demoFrame}>
-        <AppBar className={classes.appBar}>
+        <AppBar
+          className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
+        >
           <Toolbar disableGutters={!this.state.open}>
             <IconButton
               onClick={this.handleDrawerOpen}
@@ -199,10 +228,14 @@ class PersistentDrawer extends Component {
             </List>
           </div>
         </Drawer>
-        <div className={classes.content}>
-          <p>
-            You think water moves fast? You should see ice. It moves like it has a mind. Like it knows it killed the world once and got a taste for murder. After the avalanche, it took us a week to climb out. Now, I don't know exactly when we turned on each other, but I know that seven of us survived the slide... and only five made it out. Now we took an oath, that I'm breaking now. We said we'd say it was the snow that killed the other two, but it wasn't. Nature is lethal but it doesn't hold a candle to man.
-          </p>
+        <div
+          className={classNames(classes.content, this.state.open && classes.contentShift)}
+        >
+          {/* eslint-disable max-len */}
+          <Typography type="body1">
+            {"You think water moves fast? You should see ice. It moves like it has a mind. Like it knows it killed the world once and got a taste for murder. After the avalanche, it took us a week to climb out. Now, I don't know exactly when we turned on each other, but I know that seven of us survived the slide... and only five made it out. Now we took an oath, that I'm breaking now. We said we'd say it was the snow that killed the other two, but it wasn't. Nature is lethal but it doesn't hold a candle to man."}
+          </Typography>
+          {/* eslint-enable */}
         </div>
       </div>
     );

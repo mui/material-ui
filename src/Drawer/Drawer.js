@@ -77,15 +77,13 @@ export const styleSheet = createStyleSheet('MuiDrawer', (theme) => {
     // This also keeps the current className/paperClassName props intact.
     // Setting a width via paperClassName is also required to make the transition work
     // Should we make this an optional prop with a sensible default?
+    // But then how de we use this prop in the stylesheet? :/
     mini: {
       '& $paper': {
         width: 72,
         // Perfectly center icons by not including border in width.
         boxSizing: 'content-box',
       },
-    },
-    persistent: {
-      marginRight: '-100%',
     },
     closed: {
       '& $paper': {
