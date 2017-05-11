@@ -62,7 +62,6 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
       whiteSpace: 'normal',
       background: 'none',
       margin: 0, // Reset for Safari
-      appearance: 'textfield', // Improve type search style.
       color: theme.palette.text.primary,
       width: '100%',
       '&:focus': {
@@ -71,6 +70,9 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
       '&::-webkit-search-decoration': { // Remove the padding when type=search.
         appearance: 'none',
       },
+    },
+    'input-single-line': {
+      appearance: 'textfield', // Improve type search style.
     },
     multiline: {
       resize: 'none',
@@ -290,6 +292,7 @@ export default class Input extends Component {
     }, classNameProp);
 
     const inputClassName = classNames(classes.input, {
+      [classes['input-single-line']]: !multiline,
       [classes.disabled]: disabled,
       [classes.multiline]: multiline,
     }, inputClassNameProp);
