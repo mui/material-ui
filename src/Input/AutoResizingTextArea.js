@@ -22,6 +22,9 @@ export const styleSheet = createStyleSheet('MuiTextarea', () => {
       cursor: 'inherit',
       boxSizing: 'border-box',
       lineHeight: 'inherit',
+      border: 'none',
+      outline: 'none',
+      'background-color': 'TRANSPARENT',
     },
     shadow: {
       resize: 'none',
@@ -40,7 +43,7 @@ export const styleSheet = createStyleSheet('MuiTextarea', () => {
 /**
  * Input
  */
-export default class Textarea extends Component {
+export default class AutoResizingTextArea extends Component {
   shadow: HTMLInputElement;
   singleLineShadow: HTMLInputElement;
   input: HTMLInputElement;
@@ -72,6 +75,7 @@ export default class Textarea extends Component {
 
   state = {
     height: null,
+    dirty: !!this.props.defaultValue,
   };
 
   componentWillMount() {
@@ -142,11 +146,16 @@ export default class Textarea extends Component {
   }
 
   handleChange = (event) => {
-    this.syncHeightWithShadow(event.target.value);
-
-    if (this.props.onChange) {
-      this.props.onChange(event);
-    }
+    const value = event.target.value;
+    this.syncHeightWithShadow();
+    this.setState({
+      dirty: value.length > 0,
+    });
+    setTimeout(() => { // this needs to run after the above state is set.
+      if (this.props.onChange) {
+        this.props.onChange(event);
+      }
+    }, 0);
   };
 
   render() {
