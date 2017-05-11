@@ -23,19 +23,18 @@ import ReportIcon from 'material-ui-icons/Report';
 
 const drawerWidth = 250;
 
-// NOTE:
-// this approach has a discrepancy between the Drawer's Slide transition
-// and the margin transition on AppBar and content
-// Because only CSS transforms tween 'between pixels', margin does not
-
 const styleSheet = createStyleSheet('PersistentDrawer', (theme) => ({
-  demoFrame: {
-    position: 'relative',
-    display: 'flex',
+  demoContainer: {
     width: '100%',
     marginTop: 32,
     zIndex: 1,
     overflow: 'hidden',
+  },
+  appFrame: {
+    position: 'relative',
+    display: 'flex',
+    width: '100%',
+    height: '100%',
   },
   appBar: {
     position: 'absolute',
@@ -80,11 +79,11 @@ const styleSheet = createStyleSheet('PersistentDrawer', (theme) => ({
   content: {
     height: 'calc(100% - 56px)',
     width: '100%',
-    marginTop: 56, // What about LTR?
-    marginLeft: -drawerWidth,
+    marginTop: 56,
+    marginLeft: -drawerWidth, // What about LTR?
     flexGrow: 1,
     backgroundColor: '#fafafa',
-    padding: 32,
+    padding: 24,
     transition: theme.transitions.create('margin',
       { easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -190,52 +189,52 @@ class PersistentDrawer extends Component {
     );
 
     return (
-      <div className={classes.demoFrame}>
-        <AppBar
-          className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
-        >
-          <Toolbar disableGutters={!this.state.open}>
-            <IconButton
-              onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, this.state.open && classes.hide)}
-              contrast
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography type="title" colorInherit noWrap>
-              Persistent navigation drawer
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Drawer
-          type="persistent"
-          paperClassName={classes.drawerPaper}
-          open={this.state.open}
-        >
-          <div className={classes.drawerInner}>
-            <div className={classes.drawerHeader}>
-              <IconButton onClick={this.handleDrawerClose}>
-                <ChevronLeftIcon />
+      <div className={classes.demoContainer}>
+        <div className={classes.appFrame}>
+          <AppBar
+            className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
+          >
+            <Toolbar disableGutters={!this.state.open}>
+              <IconButton
+                onClick={this.handleDrawerOpen}
+                className={classNames(classes.menuButton, this.state.open && classes.hide)}
+                contrast
+              >
+                <MenuIcon />
               </IconButton>
+              <Typography type="title" colorInherit noWrap>
+                Persistent navigation drawer
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <Drawer
+            type="persistent"
+            paperClassName={classes.drawerPaper}
+            open={this.state.open}
+          >
+            <div className={classes.drawerInner}>
+              <div className={classes.drawerHeader}>
+                <IconButton onClick={this.handleDrawerClose}>
+                  <ChevronLeftIcon />
+                </IconButton>
+              </div>
+              <Divider />
+              <List className={classes.list}>
+                {mailFolderListItems}
+              </List>
+              <Divider />
+              <List className={classes.list}>
+                {otherMailFolderListItems}
+              </List>
             </div>
-            <Divider />
-            <List className={classes.list}>
-              {mailFolderListItems}
-            </List>
-            <Divider />
-            <List className={classes.list}>
-              {otherMailFolderListItems}
-            </List>
-          </div>
-        </Drawer>
-        <div
-          className={classNames(classes.content, this.state.open && classes.contentShift)}
-        >
-          {/* eslint-disable max-len */}
-          <Typography type="body1">
-            {"You think water moves fast? You should see ice. It moves like it has a mind. Like it knows it killed the world once and got a taste for murder. After the avalanche, it took us a week to climb out. Now, I don't know exactly when we turned on each other, but I know that seven of us survived the slide... and only five made it out. Now we took an oath, that I'm breaking now. We said we'd say it was the snow that killed the other two, but it wasn't. Nature is lethal but it doesn't hold a candle to man."}
-          </Typography>
-          {/* eslint-enable */}
+          </Drawer>
+          <main className={classNames(classes.content, this.state.open && classes.contentShift)}>
+            {/* eslint-disable max-len */}
+            <Typography type="body1">
+              {"You think water moves fast? You should see ice. It moves like it has a mind. Like it knows it killed the world once and got a taste for murder. After the avalanche, it took us a week to climb out. Now, I don't know exactly when we turned on each other, but I know that seven of us survived the slide... and only five made it out. Now we took an oath, that I'm breaking now. We said we'd say it was the snow that killed the other two, but it wasn't. Nature is lethal but it doesn't hold a candle to man."}
+            </Typography>
+            {/* eslint-enable */}
+          </main>
         </div>
       </div>
     );

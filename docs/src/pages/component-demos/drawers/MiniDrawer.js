@@ -24,19 +24,28 @@ import ReportIcon from 'material-ui-icons/Report';
 const drawerWidth = 250;
 
 const styleSheet = createStyleSheet('MiniDrawer', (theme) => ({
-  demoFrame: {
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'flex-start',
+  demoContainer: {
     width: '100%',
     marginTop: 32,
     zIndex: 1,
+    overflow: 'hidden',
+  },
+  appFrame: {
+    position: 'relative',
+    display: 'flex',
+    width: '100%',
+    height: '100%',
   },
   appBar: {
     position: 'absolute',
     zIndex: theme.zIndex.navDrawer + 1,
+    // TODO: find the perfect easing curve to go with the
+    // Drawer transition for maximum eye candy.
+    // For now we'll use these settings:
     transition: theme.transitions.create(['width', 'margin'],
-                { duration: theme.transitions.duration.shorter }),
+      { easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.short,
+      }),
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -69,6 +78,23 @@ const styleSheet = createStyleSheet('MiniDrawer', (theme) => ({
   },
   navItemText: {
     padding: '0 16px',
+  },
+  content: {
+    height: 'calc(100% - 56px)',
+    width: '100%',
+    marginTop: 56,
+    flexGrow: 1,
+    backgroundColor: '#fafafa',
+    padding: 24,
+  },
+  [theme.breakpoints.up('sm')]: {
+    content: {
+      height: 'calc(100% - 64px)',
+      marginTop: 64,
+    },
+    drawerHeader: {
+      height: 64,
+    },
   },
 }));
 
@@ -154,42 +180,51 @@ class MiniDrawer extends Component {
     );
 
     return (
-      <div className={classes.demoFrame}>
-        <AppBar className={classNames(classes.appBar, this.state.open && classes.appBarShift)}>
-          <Toolbar disableGutters={!this.state.open}>
-            <IconButton
-              onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, this.state.open && classes.hide)}
-              contrast
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography type="title" colorInherit noWrap>
-              Mini variant navigation drawer
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Drawer
-          type="mini"
-          paperClassName={classes.drawerPaper}
-          open={this.state.open}
-        >
-          <div className={classes.drawerInner}>
-            <div className={classes.drawerHeader}>
-              <IconButton onClick={this.handleDrawerClose}>
-                <ChevronLeftIcon />
+      <div className={classes.demoContainer}>
+        <div className={classes.appFrame}>
+          <AppBar className={classNames(classes.appBar, this.state.open && classes.appBarShift)}>
+            <Toolbar disableGutters={!this.state.open}>
+              <IconButton
+                onClick={this.handleDrawerOpen}
+                className={classNames(classes.menuButton, this.state.open && classes.hide)}
+                contrast
+              >
+                <MenuIcon />
               </IconButton>
+              <Typography type="title" colorInherit noWrap>
+                Mini variant navigation drawer
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <Drawer
+            type="mini"
+            paperClassName={classes.drawerPaper}
+            open={this.state.open}
+          >
+            <div className={classes.drawerInner}>
+              <div className={classes.drawerHeader}>
+                <IconButton onClick={this.handleDrawerClose}>
+                  <ChevronLeftIcon />
+                </IconButton>
+              </div>
+              <Divider />
+              <List className={classes.list}>
+                {mailFolderListItems}
+              </List>
+              <Divider />
+              <List className={classes.list}>
+                {otherMailFolderListItems}
+              </List>
             </div>
-            <Divider />
-            <List className={classes.list}>
-              {mailFolderListItems}
-            </List>
-            <Divider />
-            <List className={classes.list}>
-              {otherMailFolderListItems}
-            </List>
-          </div>
-        </Drawer>
+          </Drawer>
+          <main className={classes.content}>
+            {/* eslint-disable max-len */}
+            <Typography type="body1">
+              {"You think water moves fast? You should see ice. It moves like it has a mind. Like it knows it killed the world once and got a taste for murder. After the avalanche, it took us a week to climb out. Now, I don't know exactly when we turned on each other, but I know that seven of us survived the slide... and only five made it out. Now we took an oath, that I'm breaking now. We said we'd say it was the snow that killed the other two, but it wasn't. Nature is lethal but it doesn't hold a candle to man."}
+            </Typography>
+            {/* eslint-enable */}
+          </main>
+        </div>
       </div>
     );
   }

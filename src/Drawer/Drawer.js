@@ -70,34 +70,41 @@ export const styleSheet = createStyleSheet('MuiDrawer', (theme) => {
         borderRight: `1px solid ${theme.palette.text.divider}`,
       },
     },
+    // Hardcoding the width transition for the mini variant for now.
+    // TODO:
+    // Add support for `width` to Collapse component?
+    miniOpenTransition: {
+      '& $paper': {
+        transition: theme.transitions.create('width',
+          { easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+          }),
+      },
+    },
+    miniCloseTransition: {
+      '& $paper': {
+        transition: theme.transitions.create('width',
+          { easing: theme.transitions.easing.easeIn,
+            duration: theme.transitions.duration.leavingScreen,
+          }),
+      },
+    },
     // NOTE:
     // Using these classes on the container element instead of directly on
     // the Paper element to ensure higher specificity (so setting a custom width via
     // paperClassName doesn't override the widths for closed and mini states).
     // This also keeps the current className/paperClassName props intact.
+
     // Setting a width via paperClassName is also required to make the transition work
     // Should we make this an optional prop with a sensible default?
     // But then how de we use this prop in the stylesheet? :/
+
+    // Possible solution: add sidePane width to theme
     mini: {
       '& $paper': {
         width: 72,
         // Perfectly center icons by not including border in width.
         boxSizing: 'content-box',
-      },
-    },
-    closed: {
-      '& $paper': {
-        width: 0,
-        borderRight: 'none',
-      },
-    },
-    widthTransition: {
-      '& $paper': {
-        // Hardcoding the width transition for Persistent and Mini variant types for now.
-        // TODO: Add support for width transitions to Collapse component?
-        // Or make this configurable in some other way?
-        transition: theme.transitions.create('width',
-          { duration: theme.transitions.duration.shorter }),
       },
     },
   };
@@ -147,6 +154,11 @@ export default class Drawer extends Component {
     /**
      * The type of drawer.
      * See https://material.io/guidelines/patterns/navigation-drawer.html
+     *
+     * Note: for the `persistent` and `mini` variant to work,
+     * you must set a width via paperClassName.
+     * For the `mini` variant, you also have to wrap Paper's children in
+     * a container with the same width set to paperClassName.
      */
     type: PropTypes.oneOf(['permanent', 'persistent', 'mini', 'temporary']),
   };
@@ -198,42 +210,41 @@ export default class Drawer extends Component {
       </Paper>
     );
 
-    if (type !== 'temporary') {
-      // Persistent drawer (with mini variant):
-      // if (type !== 'permanent') {
-      //   const closedClassName = type === 'mini' ? classes.mini : classes.closed;
-      //   return (
-      //     <div
-      //       className={classNames(classes.docked, classes.widthTransition,
-      //        !open && closedClassName, className)}
-      //     >
-      //       {drawer}
-      //     </div>
-      //   );
-      // }
+    const dockedDrawer = (
+      <div className={classNames(classes.docked, className)}>
+        {drawer}
+      </div>
+    );
 
-      if (type === 'persistent') {
-        return (
-          <Slide
-            in={open}
-            direction={slideDirection}
-            enterTransitionDuration={enterTransitionDuration}
-            leaveTransitionDuration={leaveTransitionDuration}
-            transitionAppear
-          >
-            <div className={classNames(classes.docked, className)}>
-              {drawer}
-            </div>
-          </Slide>
-        );
-      }
+    const slidingDrawer = (
+      <Slide
+        in={open}
+        direction={slideDirection}
+        enterTransitionDuration={enterTransitionDuration}
+        leaveTransitionDuration={leaveTransitionDuration}
+        transitionAppear
+        useViewport={false}
+      >
+        {type === 'persistent' ? dockedDrawer : drawer}
+      </Slide>
+    );
 
-      // Permanent drawer:
-      return (
-        <div className={classNames(classes.docked, className)}>
-          {drawer}
-        </div>
-      );
+    const miniDrawer = (
+      <div
+        className={classNames(classes.docked, !open && classes.mini,
+          classes.miniOpenTransition, open && classes.miniCloseTransition,
+          className)}
+      >
+        {drawer}
+      </div>
+    );
+
+    if (type === 'permanent') {
+      return dockedDrawer;
+    } else if (type === 'persistent') {
+      return slidingDrawer;
+    } else if (type === 'mini') {
+      return miniDrawer;
     }
 
     // Temporary drawer:
@@ -244,15 +255,7 @@ export default class Drawer extends Component {
         {...other}
         show={open}
       >
-        <Slide
-          in={open}
-          direction={slideDirection}
-          enterTransitionDuration={enterTransitionDuration}
-          leaveTransitionDuration={leaveTransitionDuration}
-          transitionAppear
-        >
-          {drawer}
-        </Slide>
+        {slidingDrawer}
       </Modal>
     );
   }
