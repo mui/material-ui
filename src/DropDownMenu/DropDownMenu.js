@@ -403,7 +403,7 @@ class DropDownMenu extends Component {
     } else {
       const values = [];
       React.Children.forEach(children, (child) => {
-        if (child && value && value.includes(child.props.value)) {
+        if (child && value && value.indexOf(child.props.value) > -1) {
           if (selectionRenderer) {
             values.push(child.props.value);
           } else {

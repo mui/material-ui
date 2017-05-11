@@ -30,7 +30,7 @@ export default class SelectFieldExampleMultiSelect extends Component {
       <MenuItem
         key={name}
         insetChildren={true}
-        checked={values && values.includes(name)}
+        checked={values && values.indexOf(name) > -1}
         value={name}
         primaryText={name}
       />
