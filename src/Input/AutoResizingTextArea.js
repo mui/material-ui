@@ -13,6 +13,7 @@ export const styleSheet = createStyleSheet('MuiTextarea', () => {
   return {
     root: {
       position: 'relative', // because the shadow has position: 'absolute',
+      'margin-bottom': '-4px', // this is an unfortunate hack
     },
     textarea: {
       width: '100%',
