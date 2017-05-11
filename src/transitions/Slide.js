@@ -12,13 +12,21 @@ function getTranslateValue(props, element) {
   const rect = element.getBoundingClientRect();
 
   if (direction === 'left') {
-    return `translate3d(calc(100vw - ${rect.left}px), 0, 0)`;
+    return props.useViewport ?
+      `translate3d(calc(100vw - ${rect.left}px), 0, 0)` :
+      'translate3d(100%, 0, 0)';
   } else if (direction === 'right') {
-    return `translate3d(${0 - (rect.left + rect.width)}px, 0, 0)`;
+    return props.useViewport ?
+      `translate3d(${0 - (rect.left + rect.width)}px, 0, 0)` :
+      'translate3d(-100%, 0, 0)';
   } else if (direction === 'up') {
-    return `translate3d(0, calc(100vh - ${rect.top}px), 0)`;
+    return props.useViewport ?
+      `translate3d(0, calc(100vh - ${rect.top}px), 0)` :
+      'translate3d(0, 100%, 0)';
   } else if (direction === 'down') {
-    return `translate3d(0, ${0 - (rect.top + rect.height)}px, 0)`;
+    return props.useViewport ?
+      `translate3d(0, ${0 - (rect.top + rect.height)}px, 0)` :
+      'translate3d(0, -100%, 0)';
   }
 
   return 'translate3d(0, 0, 0)';
@@ -75,12 +83,19 @@ export default class Slide extends Component {
      * Callback fired when the component has exited.
      */
     onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
+    /**
+     * If `true`, let the element slide in from outside the viewport.
+     * Set to `false` to let the element slide in from outside its own
+     * bounding box and position.
+     */
+    useViewport: PropTypes.bool,
   };
 
   static defaultProps = {
     direction: 'down',
     enterTransitionDuration: duration.enteringScreen,
     leaveTransitionDuration: duration.leavingScreen,
+    useViewport: true,
   };
 
   static contextTypes = {
@@ -142,6 +157,7 @@ export default class Slide extends Component {
       onExiting, // eslint-disable-line no-unused-vars
       enterTransitionDuration, // eslint-disable-line no-unused-vars
       leaveTransitionDuration, // eslint-disable-line no-unused-vars
+      useViewport,
       ...other
     } = this.props;
 
