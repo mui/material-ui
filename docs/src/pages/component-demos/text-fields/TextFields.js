@@ -59,10 +59,17 @@ class TextFields extends Component {
           type="password"
         />
         <TextField
-          id="multiline"
+          id="multiline static"
           label="MultiLine"
           multiline
           rows={3}
+          defaultValue="Default Value"
+          className={classes.input}
+        />
+        <TextField
+          id="multiline flexible"
+          label="MultiLine"
+          multiline
           defaultValue="Default Value"
           className={classes.input}
         />
