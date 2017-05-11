@@ -40,4 +40,11 @@ describe('<Paper />', () => {
     wrapper.setProps({ elevation: 2 });
     assert.strictEqual(wrapper.hasClass(classes.dp2), true, 'should have the dp2 shadow class');
   });
+
+  describe('prop: component', () => {
+    it('should render a header', () => {
+      const wrapper = shallow(<Paper component="header">Hello World</Paper>);
+      assert.strictEqual(wrapper.name(), 'header');
+    });
+  });
 });
