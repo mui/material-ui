@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
+import AutoResizingTextArea from './AutoResizingTextArea';
 
 function isDirty(obj) {
   return obj && obj.value && obj.value.length > 0;
@@ -296,7 +297,11 @@ export default class Input extends Component {
     if (component) {
       InputComponent = component;
     } else if (multiline) {
-      InputComponent = 'textarea';
+      if (other.rows) {
+        InputComponent = 'textarea';
+      } else {
+        InputComponent = AutoResizingTextArea;
+      }
     }
 
     return (
