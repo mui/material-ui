@@ -25,7 +25,7 @@ trade-off, mainly completeness vs. speed.
 #### Run the core mocha unit/integration test suite.
 To run all of the unit tests just run  `npm run test:unit`
 
-If you want to `grep` for certain tests just add `-- -g STRING_TO_GREP` and change STRING_TO_GREP.  
+If you want to `grep` for certain tests just add `-- -g STRING_TO_GREP` and change STRING_TO_GREP.
 
 #### Watch the core mocha unit/integration test suite.
 `npm run test:watch`
@@ -45,7 +45,7 @@ Here is an [example](https://github.com/callemall/material-ui/blob/a3719a203515b
 #### Create HTML coverage reports
 `npm run test:coverage:html`
 
-When running this command you should get under `coverage/index.html` a full coverage report in HTML format. This is created using [Istanbul](http://istanbul-js.org)'s HTML reporter and gives good data such as line, branch and function coverage. 
+When running this command you should get under `coverage/index.html` a full coverage report in HTML format. This is created using [Istanbul](http://istanbul-js.org)'s HTML reporter and gives good data such as line, branch and function coverage.
 
 ### DOM API level
 
@@ -120,5 +120,5 @@ Stick to test assertions such as `assert.strictEqual` and `assert.ok`. This help
 We should try to use as many demos from the documentation as possible;
 however, we can't replace one with the other as they address different needs.
 With the regression tests:
-- You might need to test a more complex situation, e.g. a stress test of the layout
+- You might need to test a more complex situation, e.g. a stress test of the grid
 - You might need to test a simpler situation, e.g. a static progress bar

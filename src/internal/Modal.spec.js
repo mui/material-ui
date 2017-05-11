@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
@@ -44,7 +44,7 @@ describe('<Modal />', () => {
     });
 
     it('should render a portal when shown', () => {
-      assert.strictEqual(wrapper.is('Portal'), true, 'should be a Portal');
+      assert.strictEqual(wrapper.name(), 'Portal');
     });
 
     it('should render the modal div inside the portal', () => {

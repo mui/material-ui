@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
-import Text from '../Text';
+import Typography from '../Typography';
 import CardContent from './CardContent';
 
 export const styleSheet = createStyleSheet('MuiCardHeader', () => ({
@@ -19,9 +19,6 @@ export const styleSheet = createStyleSheet('MuiCardHeader', () => ({
   },
   content: {
     flex: '1 1 auto',
-  },
-  contentSecondary: {
-    lineHeight: 1,
   },
 }));
 
@@ -37,32 +34,25 @@ export default function CardHeader(props, context) {
   const classes = context.styleManager.render(styleSheet);
   const className = classNames(classes.cardHeader, classNameProp);
 
-  if (avatar) {
-    return (
-      <CardContent className={className} {...other}>
-        <div className={classes.avatar}>
-          {avatar}
-        </div>
-        <div className={classes.content}>
-          <Text type="body2" gutterBottom>
-            {title}
-          </Text>
-          <Text type="body2" secondary className={classes.contentSecondary}>
-            {subheader}
-          </Text>
-        </div>
-      </CardContent>
-    );
-  }
+  // Adjustments that depend on the presence of an avatar
+  const titleType = avatar ? 'body2' : 'headline';
+  const subheaderType = avatar ? 'body2' : 'body1';
 
   return (
     <CardContent className={className} {...other}>
-      <Text type="headline">
-        {title}
-      </Text>
-      <Text type="body1" secondary>
-        {subheader}
-      </Text>
+      {avatar &&
+        <div className={classes.avatar}>
+          {avatar}
+        </div>
+      }
+      <div className={classes.content}>
+        <Typography type={titleType} component="span">
+          {title}
+        </Typography>
+        <Typography type={subheaderType} component="span" secondary>
+          {subheader}
+        </Typography>
+      </div>
     </CardContent>
   );
 }

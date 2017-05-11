@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import { assert } from 'chai';
 import { createShallow } from 'src/test-utils';

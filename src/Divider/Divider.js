@@ -7,8 +7,6 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
 export const styleSheet = createStyleSheet('MuiDivider', (theme) => {
-  const { palette } = theme;
-
   return {
     root: {
       height: 1,
@@ -16,13 +14,13 @@ export const styleSheet = createStyleSheet('MuiDivider', (theme) => {
       border: 'none',
     },
     default: {
-      backgroundColor: palette.text.divider,
+      backgroundColor: theme.palette.text.divider,
     },
     inset: {
       marginLeft: 72,
     },
     light: {
-      backgroundColor: palette.text.lightDivider,
+      backgroundColor: theme.palette.text.lightDivider,
     },
     absolute: {
       position: 'absolute',

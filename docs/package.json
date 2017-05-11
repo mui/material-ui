@@ -1,8 +1,8 @@
 {
   "name": "material-ui-docs",
   "private": true,
-  "version": "0.16.0",
-  "description": "Documentation site for material-ui",
+  "version": "1.0.0",
+  "description": "Documentation site for Material-UI",
   "repository": {
     "type": "git",
     "url": "https://github.com/callemall/material-ui.git"
@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
-    "babel-loader": "^6.4.1",
+    "babel-loader": "^7.0.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
@@ -30,8 +30,8 @@
     "redbox-react": "^1.3.6",
     "rimraf": "^2.6.1",
     "style-loader": "^0.16.1",
-    "webpack": "^2.3.3",
-    "webpack-dev-server": "^2.4.2"
+    "webpack": "^2.4.1",
+    "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
     "babel-runtime": "^6.23.0",
@@ -40,7 +40,8 @@
     "react-redux": "^5.0.4",
     "react-router": "^3.0.5",
     "react-router-scroll": "^0.4.2",
-    "react-swipeable-views": "^0.12.0",
+    "react-swipeable-views": "^0.12.1",
+    "recompose": "^0.23.1",
     "redux": "^3.5.2"
   }
 }

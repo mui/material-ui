@@ -14,7 +14,7 @@ export const styleSheet = createStyleSheet('MuiRadio', (theme) => {
       color: theme.palette.text.secondary,
     },
     checked: {
-      color: theme.palette.accent[500],
+      color: theme.palette.primary[500],
     },
     disabled: {
       color: theme.palette.action.disabled,

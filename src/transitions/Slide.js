@@ -12,11 +12,11 @@ function getTranslateValue(props, element) {
   const rect = element.getBoundingClientRect();
 
   if (direction === 'left') {
-    return `translate3d(${rect.right + rect.width}px, 0, 0)`;
+    return `translate3d(calc(100vw - ${rect.left}px), 0, 0)`;
   } else if (direction === 'right') {
     return `translate3d(${0 - (rect.left + rect.width)}px, 0, 0)`;
   } else if (direction === 'up') {
-    return `translate3d(0, ${rect.bottom + rect.height}px, 0)`;
+    return `translate3d(0, calc(100vh - ${rect.top}px), 0)`;
   } else if (direction === 'down') {
     return `translate3d(0, ${0 - (rect.top + rect.height)}px, 0)`;
   }

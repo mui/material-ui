@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
@@ -20,7 +20,7 @@ describe('<MenuList />', () => {
     });
 
     it('should render a List', () => {
-      assert.strictEqual(wrapper.is('List'), true, 'should have a list as the immediate child');
+      assert.strictEqual(wrapper.name(), 'List');
     });
 
     it('should spread other props on the list', () => {

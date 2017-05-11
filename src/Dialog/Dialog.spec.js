@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
@@ -16,7 +16,7 @@ describe('<Dialog />', () => {
 
   it('should render a Modal', () => {
     const wrapper = shallow(<Dialog />);
-    assert.strictEqual(wrapper.is('Modal'), true, 'should be a Modal');
+    assert.strictEqual(wrapper.name(), 'Modal');
   });
 
   it('should render a Modal', () => {

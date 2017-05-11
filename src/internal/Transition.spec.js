@@ -299,7 +299,7 @@ describe('<Transition />', () => {
       );
 
       assert.strictEqual(wrapper.instance().getStatus(), UNMOUNTED);
-      assert.notOk(findDOMNode(wrapper.instance()));
+      assert.isNotOk(findDOMNode(wrapper.instance()));
 
       wrapper.setState({ in: true });
     });
@@ -310,7 +310,7 @@ describe('<Transition />', () => {
           initialIn
           onExited={() => {
             assert.strictEqual(wrapper.instance().getStatus(), UNMOUNTED);
-            assert.notOk(findDOMNode(wrapper.instance()));
+            assert.isNotOk(findDOMNode(wrapper.instance()));
             done();
           }}
         />,
@@ -320,6 +320,61 @@ describe('<Transition />', () => {
       assert.ok(findDOMNode(wrapper.instance()));
 
       wrapper.setState({ in: false });
+    });
+  });
+
+  describe('shouldComponentUpdate', () => {
+    let wrapper;
+    let instance;
+    let currentState;
+    let nextState;
+    let result;
+
+    const nextProps = {};
+
+    before(() => {
+      wrapper = mount(<Transition><div /></Transition>);
+    });
+
+    it('should update', () => {
+      currentState = { status: EXITED };
+      wrapper.setProps({ in: true });
+      nextState = currentState;
+      wrapper.setState(currentState);
+      instance = wrapper.instance();
+      result = instance.shouldComponentUpdate(nextProps, nextState);
+      assert.strictEqual(result, false);
+    });
+
+    it('shouldn\'t update due to prop:in being false', () => {
+      currentState = { status: EXITED };
+      nextState = currentState;
+      wrapper.setState({ status: EXITED });
+      wrapper.setProps({ in: false });
+      instance = wrapper.instance();
+      result = instance.shouldComponentUpdate(nextProps, nextState);
+      assert.strictEqual(result, true);
+    });
+
+    it('shouldn\'t update due to currentState.status != EXITED', () => {
+      currentState = { status: UNMOUNTED };
+      wrapper.setState(currentState);
+      nextState = currentState;
+      wrapper.setProps({ in: true });
+      instance = wrapper.instance();
+      result = instance.shouldComponentUpdate(nextProps, nextState);
+      assert.strictEqual(result, true);
+    });
+
+    it('shouldn\'t update due to currentState.status != nextState.status', () => {
+      currentState = { status: EXITED };
+      wrapper.setState(currentState);
+      nextState = currentState;
+      nextState.status = UNMOUNTED;
+      wrapper.setProps({ in: true });
+      instance = wrapper.instance();
+      result = instance.shouldComponentUpdate(nextProps, nextState);
+      assert.strictEqual(result, true);
     });
   });
 });

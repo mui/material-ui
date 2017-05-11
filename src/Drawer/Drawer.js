@@ -177,11 +177,6 @@ export default class Drawer extends Component {
       </Slide>
     );
 
-    const containerProps = {
-      className: classNames(classes.modal, className),
-      ...other,
-    };
-
     if (docked) {
       return (
         <div className={classNames(classes.docked, className)}>
@@ -193,7 +188,8 @@ export default class Drawer extends Component {
     return (
       <Modal
         backdropTransitionDuration={open ? enterTransitionDuration : leaveTransitionDuration}
-        {...containerProps}
+        className={classNames(classes.modal, className)}
+        {...other}
         show={open}
       >
         {drawer}

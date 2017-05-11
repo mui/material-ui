@@ -1,4 +1,5 @@
-// @flow weak
+// @flow
+
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
@@ -18,7 +19,7 @@ describe('<MenuItem />', () => {
     const wrapper = shallow(
       <MenuItem />,
     );
-    assert.strictEqual(wrapper.is('ListItem'), true, 'should be a ListItem');
+    assert.strictEqual(wrapper.name(), 'ListItem');
     assert.strictEqual(wrapper.props().button, true, 'should have the button prop');
     assert.strictEqual(wrapper.props().ripple, false, 'should not have a ripple');
   });

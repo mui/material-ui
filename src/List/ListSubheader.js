@@ -7,20 +7,18 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
 export const styleSheet = createStyleSheet('MuiListSubheader', (theme) => {
-  const { palette, typography } = theme;
-
   return {
     root: {
       boxSizing: 'border-box',
       lineHeight: '48px',
       paddingLeft: 16,
-      color: palette.text.secondary,
-      fontFamily: typography.fontFamily,
-      fontWeight: typography.fontWeightMedium,
-      fontSize: typography.fontSize,
+      color: theme.palette.text.secondary,
+      fontFamily: theme.typography.fontFamily,
+      fontWeight: theme.typography.fontWeightMedium,
+      fontSize: theme.typography.fontSize,
     },
     primary: {
-      color: palette.primary[500],
+      color: theme.palette.primary[500],
     },
     inset: {
       paddingLeft: 72,

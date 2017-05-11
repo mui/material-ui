@@ -17,7 +17,7 @@ describe('<Collapse />', () => {
 
   it('should render a Transition', () => {
     const wrapper = shallow(<Collapse />);
-    assert.strictEqual(wrapper.is('Transition'), true, 'is a Transition component');
+    assert.strictEqual(wrapper.name(), 'Transition');
   });
 
   it('should render a container around the wrapper', () => {

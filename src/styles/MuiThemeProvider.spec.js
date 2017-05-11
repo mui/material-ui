@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import { stub } from 'sinon';
 import { assert } from 'chai';
@@ -11,7 +11,7 @@ import React from 'react';
 import htmlLooksLike from 'html-looks-like';
 import { renderToString } from 'react-dom/server';
 import { createMount } from 'src/test-utils';
-import { createMuiTheme } from 'src/styles/theme';
+import { createMuiTheme } from 'src/styles';
 import Button from 'src/Button';
 import MuiThemeProvider from './MuiThemeProvider';
 

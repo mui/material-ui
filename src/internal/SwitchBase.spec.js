@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
@@ -27,7 +27,7 @@ describe('<SwitchBase />', () => {
     const wrapper = shallow(
       <SwitchBase />,
     );
-    assert.strictEqual(wrapper.is('IconButton'), true, 'should be an IconButton');
+    assert.strictEqual(wrapper.name(), 'IconButton');
   });
 
   it('should render an icon and input inside the button by default', () => {

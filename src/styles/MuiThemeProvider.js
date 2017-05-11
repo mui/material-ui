@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import { create } from 'jss';
 import { createStyleManager } from 'jss-theme-reactor/styleManager';
 import jssPreset from 'jss-preset-default';
-import { createMuiTheme } from './theme';
+import createMuiTheme from './theme';
 
 export const MUI_SHEET_ORDER = [
-  'MuiLayout',
+  'MuiGrid',
   'MuiCollapse',
   'MuiFade',
   'MuiSlide',
@@ -23,7 +23,7 @@ export const MUI_SHEET_ORDER = [
   'MuiFormLabel',
   'MuiFormGroup',
 
-  'MuiText',
+  'MuiTypography',
   'MuiPaper',
   'MuiDivider',
 
@@ -99,7 +99,7 @@ export const MUI_SHEET_ORDER = [
 
 export default class MuiThemeProvider extends Component {
   static propTypes = {
-    children: PropTypes.node.isRequired,
+    children: PropTypes.element.isRequired,
     styleManager: PropTypes.object,
     theme: PropTypes.object,
   };

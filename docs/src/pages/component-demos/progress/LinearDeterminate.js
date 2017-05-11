@@ -1,8 +1,8 @@
 // @flow weak
 
 import React, { Component } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import { LinearProgress } from 'material-ui/Progress';
 
 const styleSheet = createStyleSheet('LinearDeterminate', () => ({
@@ -12,7 +12,7 @@ const styleSheet = createStyleSheet('LinearDeterminate', () => ({
   },
 }));
 
-export default class LinearDeterminate extends Component {
+class LinearDeterminate extends Component {
   state = {
     completed: 0,
   }
@@ -38,7 +38,7 @@ export default class LinearDeterminate extends Component {
   }
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
     return (
       <div className={classes.root}>
         <LinearProgress mode="determinate" value={this.state.completed} />
@@ -47,6 +47,8 @@ export default class LinearDeterminate extends Component {
   }
 }
 
-LinearDeterminate.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+LinearDeterminate.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(LinearDeterminate);

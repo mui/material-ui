@@ -19,17 +19,18 @@ export const styleSheet = createStyleSheet('MuiTab', (theme) => {
       },
       background: 'none',
       padding: 0,
-      minHeight: 48,
+      height: 48,
       flex: 'none',
+      overflow: 'hidden',
     },
     rootLabelIcon: {
-      minHeight: 72,
+      height: 72,
     },
     rootAccent: {
       color: theme.palette.text.secondary,
     },
     rootAccentSelected: {
-      color: theme.palette.accent[500],
+      color: theme.palette.accent.A200,
     },
     rootAccentDisabled: {
       color: theme.palette.text.disabled,
@@ -47,20 +48,29 @@ export const styleSheet = createStyleSheet('MuiTab', (theme) => {
     fullWidth: {
       flex: '1 0 0',
     },
+    labelContainer: {
+      paddingTop: 6,
+      paddingBottom: 6,
+      paddingLeft: 12,
+      paddingRight: 12,
+      [theme.breakpoints.up('md')]: {
+        paddingLeft: theme.spacing.unit * 3,
+        paddingRight: theme.spacing.unit * 3,
+      },
+    },
     label: {
       fontSize: theme.typography.fontSize,
       fontWeight: theme.typography.fontWeightMedium,
       fontFamily: theme.typography.fontFamily,
       textTransform: 'uppercase',
-      paddingLeft: 12,
-      paddingRight: 12,
-      paddingTop: 6,
-      paddingBottom: 6,
-      display: 'block',
-      [theme.breakpoints.up('sm')]: {
-        paddingLeft: 24,
-        paddingRight: 24,
+      whiteSpace: 'normal',
+      [theme.breakpoints.up('md')]: {
         fontSize: theme.typography.fontSize - 1,
+      },
+    },
+    labelWrapped: {
+      [theme.breakpoints.down('md')]: {
+        fontSize: theme.typography.fontSize - 2,
       },
     },
   };
@@ -132,6 +142,25 @@ export default class Tab extends Component {
     styleManager: customPropTypes.muiRequired,
   };
 
+  state = {
+    wrappedText: false,
+  }
+
+  componentDidMount() {
+    this.checkTextWrap();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.wrappedText === prevState.wrappedText) {
+      /**
+       * At certain text and tab lengths, a larger font size may wrap to two lines while the smaller
+       * font size still only requires one line.  This check will prevent an infinite render loop
+       * fron occurring in that scenario.
+       */
+      this.checkTextWrap();
+    }
+  }
+
   handleChange = (event) => {
     const { onChange, index, onClick } = this.props;
 
@@ -141,6 +170,17 @@ export default class Tab extends Component {
       onClick(event);
     }
   };
+
+  label = undefined;
+
+  checkTextWrap = () => {
+    if (this.label) {
+      const wrappedText = this.label.getClientRects().length > 1;
+      if (this.state.wrappedText !== wrappedText) {
+        this.setState({ wrappedText });
+      }
+    }
+  }
 
   render() {
     const {
@@ -172,9 +212,18 @@ export default class Tab extends Component {
 
     if (labelProp !== undefined) {
       label = (
-        <span className={classNames(classes.label, labelClassName)}>
-          {labelProp}
-        </span>
+        <div className={classes.labelContainer}>
+          <span
+            className={classNames(
+              classes.label,
+              { [classes.labelWrapped]: this.state.wrappedText },
+              labelClassName,
+            )}
+            ref={(node) => { this.label = node; }}
+          >
+            {labelProp}
+          </span>
+        </div>
       );
     }
 

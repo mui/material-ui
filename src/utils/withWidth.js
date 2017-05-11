@@ -7,13 +7,31 @@ import createEagerFactory from 'recompose/createEagerFactory';
 import customPropTypes from '../utils/customPropTypes';
 import { keys } from '../styles/breakpoints';
 
-export const isWidthUp = (baseWidth, width) => (
-  keys.indexOf(baseWidth) <= keys.indexOf(width)
-);
+/**
+ * By default, returns true if screen width is the same or greater than the given breakpoint.
+ * @param screenWidth
+ * @param breakpoint
+ * @param inclusive - defaults to true
+ */
+export const isWidthUp = (breakpoint, screenWidth, inclusive = true) => {
+  if (inclusive) {
+    return keys.indexOf(breakpoint) <= keys.indexOf(screenWidth);
+  }
+  return keys.indexOf(breakpoint) < keys.indexOf(screenWidth);
+};
 
-export const isWidthDown = (baseWidth, width) => (
-  keys.indexOf(baseWidth) > keys.indexOf(width)
-);
+/**
+ * By default, returns true if screen width is the same or less than the given breakpoint.
+ * @param screenWidth
+ * @param breakpoint
+ * @param inclusive - defaults to true
+ */
+export const isWidthDown = (breakpoint, screenWidth, inclusive = true) => {
+  if (inclusive) {
+    return keys.indexOf(screenWidth) <= keys.indexOf(breakpoint);
+  }
+  return keys.indexOf(screenWidth) < keys.indexOf(breakpoint);
+};
 
 function withWidth(options = {}) {
   const {

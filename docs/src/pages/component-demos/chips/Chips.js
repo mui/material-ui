@@ -1,13 +1,13 @@
 // @flow weak
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
 import FaceIcon from 'material-ui-icons/Face';
 import { grey } from 'material-ui/styles/colors';
-import avatarImage from 'docs/src/assets/images/uxceo-128.jpg';
+import uxecoImage from 'docs/src/assets/images/uxceo-128.jpg';
 
 const styleSheet = createStyleSheet('Chips', (theme) => ({
   chip: {
@@ -31,8 +31,8 @@ function handleClick() {
   alert('You clicked the Chip.'); // eslint-disable-line no-alert
 }
 
-export default function Chips(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function Chips(props) {
+  const classes = props.classes;
   return (
     <div className={classes.row}>
       <Chip
@@ -46,7 +46,7 @@ export default function Chips(props, context) {
         className={classes.chip}
       />
       <Chip
-        avatar={<Avatar src={avatarImage} />}
+        avatar={<Avatar src={uxecoImage} />}
         label="Deletable Chip"
         onRequestDelete={handleRequestDelete}
         className={classes.chip}
@@ -62,6 +62,8 @@ export default function Chips(props, context) {
   );
 }
 
-Chips.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+Chips.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(Chips);

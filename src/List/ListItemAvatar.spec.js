@@ -1,5 +1,4 @@
-// @flow weak
-/* eslint-env mocha */
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
@@ -26,7 +25,7 @@ describe('<ListItemAvatar />', () => {
         dense: true,
       },
     });
-    assert.strictEqual(wrapper.is('Avatar'), true, 'should be an Avatar');
+    assert.strictEqual(wrapper.name(), 'Avatar');
   });
 
   it('should render with the user and root classes', () => {

@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
@@ -18,7 +18,7 @@ describe('<TabIndicator />', () => {
     const wrapper = shallow(
       <TabIndicator indicatorColor="accent" style={{}} />,
     );
-    assert.strictEqual(wrapper.is('div'), true, 'should be a div');
+    assert.strictEqual(wrapper.name(), 'div');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
   });
 
@@ -37,7 +37,7 @@ describe('<TabIndicator />', () => {
       const wrapper = shallow(
         <TabIndicator indicatorColor="accent" style={{}} className="foo" />,
       );
-      assert.strictEqual(wrapper.is('div'), true, 'should be a div');
+      assert.strictEqual(wrapper.name(), 'div');
       assert.strictEqual(wrapper.hasClass('foo'), true, 'should have the property class');
     });
   });

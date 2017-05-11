@@ -8,7 +8,6 @@ import customPropTypes from '../utils/customPropTypes';
 import { createSwitch } from '../internal/SwitchBase';
 
 export const styleSheet = createStyleSheet('MuiSwitch', (theme) => {
-  const { palette, transitions } = theme;
   return {
     root: {
       display: 'inline-flex',
@@ -16,24 +15,24 @@ export const styleSheet = createStyleSheet('MuiSwitch', (theme) => {
       position: 'relative',
     },
     default: {
-      color: palette.type === 'light' ? palette.grey[50] : palette.grey[400],
-      transition: transitions.create('transform', {
-        duration: transitions.duration.shortest,
+      color: theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[400],
+      transition: theme.transitions.create('transform', {
+        duration: theme.transitions.duration.shortest,
       }),
     },
     checked: {
-      color: palette.primary[500],
+      color: theme.palette.primary[500],
       transform: 'translateX(14px)',
       '& + $bar': {
-        backgroundColor: palette.primary[500],
+        backgroundColor: theme.palette.primary[500],
         opacity: 0.5,
       },
     },
     disabled: {
-      color: palette.type === 'light' ? palette.grey[400] : palette.grey[800],
+      color: theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
       '& + $bar': {
-        backgroundColor: palette.type === 'light' ? '#000' : '#fff',
-        opacity: palette.type === 'light' ? 0.12 : 0.1,
+        backgroundColor: theme.palette.type === 'light' ? '#000' : '#fff',
+        opacity: theme.palette.type === 'light' ? 0.12 : 0.1,
       },
     },
     bar: {
@@ -46,11 +45,11 @@ export const styleSheet = createStyleSheet('MuiSwitch', (theme) => {
       marginTop: -7,
       left: '50%',
       marginLeft: -17,
-      transition: transitions.create(['opacity', 'background-color'], {
-        duration: transitions.duration.shortest,
+      transition: theme.transitions.create(['opacity', 'background-color'], {
+        duration: theme.transitions.duration.shortest,
       }),
-      backgroundColor: palette.type === 'light' ? '#000' : '#fff',
-      opacity: palette.type === 'light' ? 0.38 : 0.3,
+      backgroundColor: theme.palette.type === 'light' ? '#000' : '#fff',
+      opacity: theme.palette.type === 'light' ? 0.38 : 0.3,
     },
     icon: {
       boxShadow: theme.shadows[1],

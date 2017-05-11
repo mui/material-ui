@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
@@ -18,7 +18,7 @@ describe('<Card />', () => {
     const wrapper = shallow(
       <Card />,
     );
-    assert.strictEqual(wrapper.is('Paper'), true, 'should be Paper');
+    assert.strictEqual(wrapper.name(), 'Paper');
     assert.strictEqual(wrapper.props().elevation, 2);
   });
 
@@ -26,7 +26,7 @@ describe('<Card />', () => {
     const wrapper = shallow(
       <Card raised />,
     );
-    assert.strictEqual(wrapper.is('Paper'), true, 'should be Paper');
+    assert.strictEqual(wrapper.name(), 'Paper');
     assert.strictEqual(wrapper.props().elevation, 8);
   });
 

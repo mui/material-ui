@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import { assert } from 'chai';
 import { createModalManager } from './modalManager';
@@ -70,6 +70,11 @@ describe('internal/modalManager', () => {
     it('should remove modal1', () => {
       const idx = modalManager.remove(modal1);
       assert.strictEqual(idx, 0, 'should be the "first" modal');
+    });
+
+    it('should not do anything', () => {
+      const idx = modalManager.remove({ nonExisting: true });
+      assert.strictEqual(idx, -1, 'should not find the non existing modal');
     });
   });
 });

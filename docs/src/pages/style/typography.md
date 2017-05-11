@@ -5,7 +5,7 @@ A [typographic scale](https://material.google.com/style/typography.html#typograp
 
 ## General
 
-The *Roboto* font will not be automatically loaded by Material-UI.
+The *Roboto* font will **not** be automatically loaded by Material-UI.
 The developer is responsible for loading all fonts used in their application.
 Roboto Font has a few easy ways to get started.
 
@@ -30,4 +30,4 @@ For more info checkout the [typeface](https://www.npmjs.com/package/typeface-rob
 
 ## Styles
 
-{{demo='pages/style/TextTypes.js'}}
+{{demo='pages/style/Types.js'}}

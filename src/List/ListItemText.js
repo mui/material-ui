@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
-import Text from '../Text';
+import Typography from '../Typography';
 
 export const styleSheet = createStyleSheet('MuiListItemText', () => {
   return {
@@ -49,16 +49,16 @@ export default function ListItemText(props, context) {
     <div className={className} {...other}>
       {primary && (
         typeof primary === 'string' ? (
-          <Text type="subheading" className={classNames({ [classes.text]: dense })}>
+          <Typography type="subheading" className={classNames({ [classes.text]: dense })}>
             {primary}
-          </Text>
+          </Typography>
         ) : primary
       )}
       {secondary && (
         typeof secondary === 'string' ? (
-          <Text secondary type="body1" className={classNames({ [classes.text]: dense })}>
+          <Typography secondary type="body1" className={classNames({ [classes.text]: dense })}>
             {secondary}
-          </Text>
+          </Typography>
         ) : secondary
       )}
     </div>

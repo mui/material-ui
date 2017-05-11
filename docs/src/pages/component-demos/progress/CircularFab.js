@@ -1,8 +1,8 @@
 // @flow weak
 
 import React, { Component } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import { CircularProgress } from 'material-ui/Progress';
 import { green } from 'material-ui/styles/colors';
 import Button from 'material-ui/Button';
@@ -27,15 +27,15 @@ const styleSheet = createStyleSheet('CircularFab', () => ({
   },
 }));
 
-export default class CircularFab extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
+class CircularFab extends Component {
   state = {
     loading: false,
     success: false,
   };
+
+  componentWillUnmount() {
+    clearTimeout(this.timer);
+  }
 
   handleButtonClick = () => {
     if (!this.state.loading) {
@@ -43,19 +43,21 @@ export default class CircularFab extends Component {
         success: false,
         loading: true,
       }, () => {
-        setTimeout(() => {
+        this.timer = setTimeout(() => {
           this.setState({
             loading: false,
             success: true,
           });
-        }, 2000);
+        }, 2e3);
       });
     }
   };
 
+  timer = undefined;
+
   render() {
     const { loading, success } = this.state;
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
     let buttonClass = '';
 
     if (success) {
@@ -77,3 +79,9 @@ export default class CircularFab extends Component {
     );
   }
 }
+
+CircularFab.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(CircularFab);

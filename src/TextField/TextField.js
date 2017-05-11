@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import shallowEqual from 'recompose/shallowEqual';
-import { Input, InputLabel } from '../Input';
+import Input, { InputLabel } from '../Input';
 import customPropTypes from '../utils/customPropTypes';
 import FormControl from '../Form/FormControl';
 

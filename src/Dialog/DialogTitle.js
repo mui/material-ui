@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
-import Text from '../Text';
+import Typography from '../Typography';
 
 export const styleSheet = createStyleSheet('MuiDialogTitle', () => {
   const gutter = 24;
@@ -22,6 +22,7 @@ export default function DialogTitle(props, context) {
   const {
     children,
     className,
+    disableTypography,
     ...other
   } = props;
 
@@ -33,11 +34,13 @@ export default function DialogTitle(props, context) {
       className={classNames(classes.root, className)}
       {...other}
     >
-      {typeof children === 'string' ? (
-        <Text type="title">
+      {disableTypography ? (
+        children
+      ) : (
+        <Typography type="title">
           {children}
-        </Text>
-      ) : children}
+        </Typography>
+      )}
     </div>
   );
 }
@@ -51,6 +54,15 @@ DialogTitle.propTypes = {
    * The CSS class name of the root element.
    */
   className: PropTypes.string,
+  /**
+   * If `true`, the children won't be wrapped by a typography component.
+   * For instance, that can be usefull to can render an h4 instead of a
+   */
+  disableTypography: PropTypes.bool,
+};
+
+DialogTitle.defaultProps = {
+  disableTypography: false,
 };
 
 DialogTitle.contextTypes = {

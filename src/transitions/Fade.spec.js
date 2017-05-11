@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
@@ -15,7 +15,7 @@ describe('<Fade />', () => {
 
   it('should render a Transition', () => {
     const wrapper = shallow(<Fade />);
-    assert.strictEqual(wrapper.is('Transition'), true, 'is a Transition component');
+    assert.strictEqual(wrapper.name(), 'Transition');
   });
 
   describe('event callbacks', () => {

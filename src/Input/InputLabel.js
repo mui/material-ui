@@ -8,7 +8,6 @@ import customPropTypes from '../utils/customPropTypes';
 import { FormLabel } from '../Form';
 
 export const styleSheet = createStyleSheet('MuiInputLabel', (theme) => {
-  const { transitions } = theme;
   return {
     root: {
       transformOrigin: 'top left',
@@ -24,9 +23,9 @@ export const styleSheet = createStyleSheet('MuiInputLabel', (theme) => {
       transformOrigin: 'top left',
     },
     animated: {
-      transition: transitions.create('transform', {
-        duration: transitions.duration.shorter,
-        easing: transitions.easing.easeOut,
+      transition: theme.transitions.create('transform', {
+        duration: theme.transitions.duration.shorter,
+        easing: theme.transitions.easing.easeOut,
       }),
     },
   };

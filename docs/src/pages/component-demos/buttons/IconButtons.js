@@ -1,8 +1,8 @@
 // @flow weak
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import IconButton from 'material-ui/IconButton';
 import DeleteIcon from 'material-ui-icons/Delete';
 import AlarmIcon from 'material-ui-icons/Alarm';
@@ -14,8 +14,8 @@ const styleSheet = createStyleSheet('IconButtons', (theme) => ({
   },
 }));
 
-export default function IconButtons(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function IconButtons(props) {
+  const classes = props.classes;
   return (
     <div>
       <IconButton className={classes.button}>
@@ -34,6 +34,8 @@ export default function IconButtons(props, context) {
   );
 }
 
-IconButtons.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+IconButtons.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(IconButtons);

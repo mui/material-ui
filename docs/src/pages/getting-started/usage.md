@@ -1,6 +1,8 @@
 # Usage
 
-Beginning with v0.15.0, Material-UI components require a theme to be provided. The quickest way to get up and running is by using the `MuiThemeProvider` to inject the theme into your application context. Following that, you can use any of the components as demonstrated in our documentation.
+Material-UI components require a theme and a style manager to be provided.
+You need to use the `<MuiThemeProvider />` component in order to inject them into your application context.
+Following that, you can use any of the components as demonstrated in our documentation.
 
 Here is a quick example to get you started:
 
@@ -8,54 +10,32 @@ Here is a quick example to get you started:
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import MyAwesomeReactComponent from './MyAwesomeReactComponent';
+import { MuiThemeProvider } from 'material-ui/styles';
+import Root from './Root';
 
-const App = () => (
-  <MuiThemeProvider>
-    <MyAwesomeReactComponent />
-  </MuiThemeProvider>
-);
+function App() {
+  return (
+    <MuiThemeProvider>
+      <Root />
+    </MuiThemeProvider>
+  );
+}
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('app')
-);
+ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
-**./MyAwesomeReactComponent.js**
+**./MyComponent.js**
 ```jsx
 import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from 'material-ui/Button';
 
-const MyAwesomeReactComponent = () => (
-  <RaisedButton label="Default" />
-);
-
-export default MyAwesomeReactComponent;
+export default function MyComponent() {
+  return (
+    <Button>
+      Hello Wolrd
+    </Button>
+  )
+}
 ```
 
-Please refer to each component's documentation page to see how they should be imported.
-
-Notice that in the above example, we used:
-```js
-import RaisedButton from 'material-ui/RaisedButton';
-```
-
-instead of
-```js
-import {RaisedButton} from 'material-ui';
-```
-
-This will make your build process faster and your build output smaller.
-For a complete mapping of Material-UI components to `import`,
-see `/index.js` inside the Material-UI npm package root directory.
-
-## Customization
-
-We have implemented a default theme to render all Material-UI components.
-Styling components to your liking is simple and hassle-free.
-This can be achieved in the following two ways:
-- [With the theme](#/customization/themes), you can use a custom theme to style components.
-- [With the inline style](#/customization/inline-styles), you can override individual
-component styles via the style property.
+Please refer to each component's [demo page](/component-demos) to see how they should be imported.

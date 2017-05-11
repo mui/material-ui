@@ -3,16 +3,10 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Button from 'material-ui/Button';
-import { List, ListItem, ListItemText } from 'material-ui/List';
-import {
-  Dialog,
-  DialogContent,
-  DialogActions,
-  DialogTitle,
-} from 'material-ui/Dialog';
+import List, { ListItem, ListItemText } from 'material-ui/List';
+import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog';
 import { LabelRadio as Radio, RadioGroup } from 'material-ui/Radio';
 
 const options = [
@@ -118,11 +112,7 @@ const styleSheet = createStyleSheet('ConfirmationDialogDemo', (theme) => ({
   },
 }));
 
-export default class ConfirmationDialogDemo extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
+class ConfirmationDialogDemo extends Component {
   state = {
     anchorEl: undefined,
     open: false,
@@ -131,12 +121,16 @@ export default class ConfirmationDialogDemo extends Component {
 
   button = undefined;
 
-  handleClickListItem = (event) => this.setState({ open: true, anchorEl: event.currentTarget });
+  handleClickListItem = (event) => {
+    this.setState({ open: true, anchorEl: event.currentTarget });
+  };
 
-  handleRequestClose = (value) => this.setState({ selectedValue: value, open: false });
+  handleRequestClose = (value) => {
+    this.setState({ selectedValue: value, open: false });
+  };
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
     return (
       <div className={classes.root}>
         <List>
@@ -175,3 +169,8 @@ export default class ConfirmationDialogDemo extends Component {
   }
 }
 
+ConfirmationDialogDemo.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(ConfirmationDialogDemo);
