@@ -8,7 +8,7 @@ Props
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span style="color: #31a148">children *</span> | node |  |  |
+| <span style="color: #31a148">children *</span> | element |  |  |
 | styleManager | object |  |  |
 | theme | object |  |  |
 

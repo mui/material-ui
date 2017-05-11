@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import EventListener from 'react-event-listener';
-import throttle from 'lodash/throttle';
+import debounce from 'lodash/debounce';
+import isEqual from 'lodash/isEqual';
 import ScrollbarSize from 'react-scrollbar-size';
 import scroll from 'scroll';
 import customPropTypes from '../utils/customPropTypes';
@@ -140,16 +141,34 @@ class Tabs extends Component {
   };
 
   componentDidMount() {
-    this.updatePositionStates(this.props);
+    this.updateIndicatorState(this.props);
+    this.updateScrollButtonState();
   }
 
   componentWillReceiveProps(nextProps) {
-    this.updatePositionStates(nextProps);
+    if (this.props.index !== nextProps.index) {
+      this.updateIndicatorState(nextProps);
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      this.props.width !== prevProps.width ||
+      this.state.indicatorStyle !== prevState.indicatorStyle
+    ) {
+      this.scrollSelectedIntoView();
+    }
+  }
+
+  componentWillUnmount() {
+    this.handleResize.cancel();
+    this.handleTabsScroll.cancel();
   }
 
   tabs = undefined;
 
-  handleResize = throttle(() => {
+  handleResize = debounce(() => {
+    this.updateIndicatorState(this.props);
     this.updateScrollButtonState();
   }, 100);
 
@@ -169,7 +188,7 @@ class Tabs extends Component {
     });
   }
 
-  handleTabsScroll = throttle(() => {
+  handleTabsScroll = debounce(() => {
     this.updateScrollButtonState();
   }, 100);
 
@@ -229,15 +248,6 @@ class Tabs extends Component {
       (scrollButtons === 'on')
     );
 
-    conditionalElements.windowResizeListener = (
-      showScrollButtons ? (
-        <EventListener
-          target="window"
-          onResize={this.handleResize}
-        />
-      ) : null
-    );
-
     conditionalElements.scrollButtonLeft = (
       showScrollButtons ? (
         <TabScrollButton
@@ -263,32 +273,35 @@ class Tabs extends Component {
     return conditionalElements;
   }
 
+  getTabsMeta = (index) => {
+    const tabsMeta = this.tabs.getBoundingClientRect();
+    tabsMeta.scrollLeft = this.tabs.scrollLeft;
+    const tabMeta = this.tabs.children[0].children[index].getBoundingClientRect();
+    return { tabsMeta, tabMeta };
+  }
+
   moveTabsScroll = (delta) => {
     const nextScrollLeft = this.tabs.scrollLeft + delta;
     scroll.left(this.tabs, nextScrollLeft);
   }
 
-  updatePositionStates(props) {
+  updateIndicatorState(props) {
     if (this.tabs) {
-      const tabsMeta = this.tabs.getBoundingClientRect();
-      tabsMeta.scrollLeft = this.tabs.scrollLeft;
+      const { tabsMeta, tabMeta } = this.getTabsMeta(props.index);
 
-      const tabMeta = this.tabs.children[0].children[props.index].getBoundingClientRect();
+      const indicatorStyle = {
+        left: tabMeta.left + (tabsMeta.scrollLeft - tabsMeta.left),
+        width: tabMeta.width, // May be wrong until the font is loaded.
+      };
 
-      this.setState({
-        indicatorStyle: {
-          left: tabMeta.left + (tabsMeta.scrollLeft - tabsMeta.left),
-          width: tabMeta.width, // May be wrong until the font is loaded.
-        },
-      });
-
-      this.scrollSelectedIntoView(tabsMeta, tabMeta);
-
-      this.updateScrollButtonState(); // determine if scroll buttons should be shown
+      if (!isEqual(indicatorStyle, this.state.indicatorStyle)) {
+        this.setState({ indicatorStyle });
+      }
     }
   }
 
-  scrollSelectedIntoView = (tabsMeta, tabMeta) => {
+  scrollSelectedIntoView = () => {
+    const { tabsMeta, tabMeta } = this.getTabsMeta(this.props.index);
     if (tabMeta.left < tabsMeta.left) {
       // left side of button is out of view
       const nextScrollLeft = tabsMeta.scrollLeft + (tabMeta.left - tabsMeta.left);
@@ -301,17 +314,19 @@ class Tabs extends Component {
   }
 
   updateScrollButtonState = () => {
-    const showLeftScroll = this.tabs.scrollLeft > 0;
-    const showRightScroll = this.tabs.scrollWidth > (this.tabs.clientWidth + this.tabs.scrollLeft);
+    const { scrollable, scrollButtons } = this.props;
 
-    if (
-      showLeftScroll !== this.state.showLeftScroll ||
-      showRightScroll !== this.state.showRightScroll
-    ) {
-      this.setState({
-        showLeftScroll,
-        showRightScroll,
-      });
+    if (scrollable && scrollButtons !== 'off') {
+      const { scrollLeft, scrollWidth, clientWidth } = this.tabs;
+      const showLeftScroll = scrollLeft > 0;
+      const showRightScroll = scrollWidth > (clientWidth + scrollLeft);
+
+      if (
+        showLeftScroll !== this.state.showLeftScroll ||
+        showRightScroll !== this.state.showRightScroll
+      ) {
+        this.setState({ showLeftScroll, showRightScroll });
+      }
     }
   };
 
@@ -349,7 +364,7 @@ class Tabs extends Component {
 
     return (
       <div className={classGroups.root} {...other}>
-        {conditionalElements.windowResizeListener}
+        <EventListener target="window" onResize={this.handleResize} />
         {conditionalElements.scrollbarSizeListener}
         <div className={classGroups.flexContainer}>
           {conditionalElements.scrollButtonLeft}

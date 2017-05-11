@@ -1,9 +1,9 @@
 // @flow weak
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import * as colors from 'material-ui/styles/colors';
-import customPropTypes from 'material-ui/utils/customPropTypes';
 import { getContrastRatio } from 'material-ui/styles/colorManipulator';
 
 const mainColors = [
@@ -115,8 +115,8 @@ function getColorBlock(classes, colorName, colorValue, colorTitle) {
   );
 }
 
-export default function Color(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function Color(props) {
+  const classes = props.classes;
 
   return (
     <div className={classes.root}>
@@ -134,6 +134,8 @@ export default function Color(props, context) {
   );
 }
 
-Color.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+Color.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(Color);

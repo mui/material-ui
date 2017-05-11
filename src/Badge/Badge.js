@@ -7,11 +7,8 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
 const radius = 12;
-const radius2x = 2 * radius;
 
 export const styleSheet = createStyleSheet('MuiBadge', (theme) => {
-  const { typography, palette } = theme;
-
   return {
     root: {
       position: 'relative',
@@ -28,21 +25,21 @@ export const styleSheet = createStyleSheet('MuiBadge', (theme) => {
       top: -radius,
       right: -radius,
       fontFamily: theme.typography.fontFamily,
-      fontWeight: typography.fontWeight,
+      fontWeight: theme.typography.fontWeight,
       fontSize: radius,
-      width: radius2x,
-      height: radius2x,
+      width: radius * 2,
+      height: radius * 2,
       borderRadius: '50%',
-      backgroundColor: palette.color,
-      color: palette.textColor,
+      backgroundColor: theme.palette.color,
+      color: theme.palette.textColor,
     },
     primary: {
-      backgroundColor: palette.primary[500],
-      color: palette.getContrastText(palette.primary[500]),
+      backgroundColor: theme.palette.primary[500],
+      color: theme.palette.getContrastText(theme.palette.primary[500]),
     },
     accent: {
-      backgroundColor: palette.accent.A200,
-      color: palette.getContrastText(palette.accent.A200),
+      backgroundColor: theme.palette.accent.A200,
+      color: theme.palette.getContrastText(theme.palette.accent.A200),
     },
   };
 });

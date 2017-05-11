@@ -1,31 +1,20 @@
-// @flow
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 const path = require('path');
+const webpackBaseConfig = require('../../docs/webpackBaseConfig');
 
-module.exports = {
+module.exports = Object.assign({}, webpackBaseConfig, {
   entry: path.resolve(__dirname, 'index.js'),
   output: {
     path: path.resolve(__dirname, '../../tmp'),
     filename: 'tests.js',
   },
-  module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-      },
+  module: Object.assign({}, webpackBaseConfig.module, {
+    rules: webpackBaseConfig.module.rules.concat([
       {
         test: /\.(jpg|gif|png)$/,
         loader: 'url-loader',
       },
-    ],
-  },
-  resolve: {
-    alias: {
-      docs: path.resolve(__dirname, '../../docs'),
-      'material-ui': path.resolve(__dirname, '../../src'),
-      'material-ui-icons': path.resolve(__dirname, '../../packages/material-ui-icons/src'),
-    },
-  },
-};
+    ]),
+  }),
+});

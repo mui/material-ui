@@ -1,4 +1,3 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
-export CircularProgress from './CircularProgress';
-export LinearProgress from './LinearProgress';
+// @flow
+export { default as CircularProgress } from './CircularProgress';
+export { default as LinearProgress } from './LinearProgress';

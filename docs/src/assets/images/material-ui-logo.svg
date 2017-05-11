@@ -1,42 +1,27 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Generator: Adobe Illustrator 18.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Layer_4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-   viewBox="0 0 377.25 288.75" width="990" height="228" xml:space="preserve">
-<g id="ground_shadow" style="opacity:0.3;">
-  <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="28.75" y1="207.5" x2="665" y2="207.5">
-    <stop  offset="0" style="stop-color:#000000"/>
-    <stop  offset="0.6" style="stop-color:#000000;stop-opacity:0.2"/>
-  </linearGradient>
-  <path style="fill:url(#SVGID_1_);" d="M578.75,195L665,145l-17.5-11.25L456.25,140l-10-6.25L48.75,145l-20,23.75l126.25-5
-    l-46.25,50l118.75,67.5l71.25-1.25l97.5-56.25l210-6.25l20-12.5l-20-10H578.75z M347.5,202.5l-103.75,23.75l-26.25-15l81.25-45
-    l88.75-2.5l60,35L347.5,202.5z M512.5,171.25l-17.5-10l40-2.5L512.5,171.25z"/>
-  <linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="657.5" y1="201.875" x2="765" y2="201.875">
-    <stop  offset="0" style="stop-color:#000000;stop-opacity:0.2"/>
-    <stop  offset="1" style="stop-color:#000000;stop-opacity:0"/>
-  </linearGradient>
-  <polygon style="fill:url(#SVGID_2_);" points="746.25,190 676.25,191.25 657.5,202.5 675,213.75 745,212.5 765,201.25  "/>
-</g>
-<g id="logo">
-  <polygon style="fill:#949494;" points="28.75,52.5 28.75,168.75 48.75,157.5 48.75,63.75  "/>
-  <polygon style="fill:#FFFFFF;" points="8.75,157.5 8.75,17.5 127.5,85 127.5,108.75 28.75,52.5 28.75,168.75   "/>
-  <polygon style="fill:#949494;" points="248.75,17.5 248.75,157.5 168.75,202.5 148.75,190 228.75,145 228.75,51.25 127.5,108.75 
-    127.5,85  "/>
-  <polygon style="fill:#D6D6D6;" points="228.75,6.25 128.75,62.5 28.75,6.25 8.75,17.5 127.5,85 248.75,17.5  "/>
-  <polygon style="fill:#FFFFFF;" points="208.75,62.5 208.75,133.75 228.75,145 228.75,51.25  "/>
-  <polygon style="fill:#D6D6D6;" points="108.75,190 208.75,133.75 228.75,145 148.75,190 227.5,235 307.5,190 327.5,201.25 
-    227.5,257.5   "/>
-  <polygon style="fill:#FFFFFF;" points="108.75,190 108.75,213.75 227.5,281.25 227.5,257.5  "/>
-  <polygon style="fill:#FFFFFF;" points="327.5,201.25 327.5,131.25 307.5,120 307.5,190  "/>
-  <polygon style="fill:#949494;" points="227.5,257.5 327.5,201.25 327.5,131.25 347.5,120 347.5,213.75 227.5,281.25  "/>
-  <polygon style="fill:#D6D6D6;" points="347.5,120 327.5,131.25 307.5,120 327.5,108.75  "/>
-  <polygon style="fill:#949494;" points="327.5,108.75 327.5,85 347.5,73.75 347.5,97.5   "/>
-  <polygon style="fill:#FFFFFF;" points="327.5,85 327.5,108.75 307.5,97.5 307.5,73.75   "/>
-  <polygon style="fill:#D6D6D6;" points="347.5,73.75 327.5,85 307.5,73.75 327.5,62.5  "/>
-</g>
-<g id="face_shadow" style="opacity:0.3;">
-  <polygon points="228.75,51.25 228.75,66.25 220,56.25  "/>
-  <polygon points="208.75,133.75 208.75,68.75 228.75,80 228.75,116.25 217.5,110 217.5,138.75 197.5,140  "/>
-  <polygon points="317.5,165 317.5,142.5 307.5,130 307.5,160  "/>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" width="990" height="228" viewBox="0 0 377.25 288.75">
+  <g opacity=".3">
+    <linearGradient id="a" x1="28.75" x2="665" y1="207.5" y2="207.5" gradientUnits="userSpaceOnUse">
+      <stop offset="0"/>
+      <stop offset=".6" stop-opacity=".2"/>
+    </linearGradient>
+    <path fill="url(#a)" d="M578.75 195L665 145l-17.5-11.25L456.25 140l-10-6.25L48.75 145l-20 23.75 126.25-5-46.25 50 118.75 67.5 71.25-1.25 97.5-56.25 210-6.25 20-12.5-20-10h-27.5zm-231.25 7.5l-103.75 23.75-26.25-15 81.25-45 88.75-2.5 60 35-100 3.75zm165-31.25l-17.5-10 40-2.5-22.5 12.5z"/>
+    <linearGradient id="b" x1="657.5" x2="765" y1="201.875" y2="201.875" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-opacity=".2"/>
+      <stop offset="1" stop-opacity="0"/>
+    </linearGradient>
+    <path fill="url(#b)" d="M746.25 190l-70 1.25-18.75 11.25 17.5 11.25 70-1.25 20-11.25"/>
+  </g>
+  <path fill="#949494" d="M28.75 52.5v116.25l20-11.25V63.75"/>
+  <path fill="#FFF" d="M8.75 157.5v-140L127.5 85v23.75L28.75 52.5v116.25"/>
+  <path fill="#949494" d="M248.75 17.5v140l-80 45-20-12.5 80-45V51.25l-101.25 57.5V85"/>
+  <path fill="#D6D6D6" d="M228.75 6.25l-100 56.25-100-56.25-20 11.25L127.5 85l121.25-67.5"/>
+  <path fill="#FFF" d="M208.75 62.5v71.25l20 11.25V51.25"/>
+  <path fill="#D6D6D6" d="M108.75 190l100-56.25 20 11.25-80 45 78.75 45 80-45 20 11.25-100 56.25"/>
+  <path fill="#FFF" d="M108.75 190v23.75l118.75 67.5V257.5m100-56.25v-70l-20-11.25v70"/>
+  <path fill="#949494" d="M227.5 257.5l100-56.25v-70l20-11.25v93.75l-120 67.5"/>
+  <path fill="#D6D6D6" d="M347.5 120l-20 11.25-20-11.25 20-11.25"/>
+  <path fill="#949494" d="M327.5 108.75V85l20-11.25V97.5"/>
+  <path fill="#FFF" d="M327.5 85v23.75l-20-11.25V73.75"/>
+  <path fill="#D6D6D6" d="M347.5 73.75L327.5 85l-20-11.25 20-11.25"/>
+  <path d="M228.75 51.25v15l-8.75-10m-11.25 77.5v-65l20 11.25v36.25L217.5 110v28.75l-20 1.25m120 25v-22.5l-10-12.5v30" opacity=".3"/>
 </svg>

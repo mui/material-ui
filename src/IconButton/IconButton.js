@@ -9,8 +9,6 @@ import ButtonBase from '../internal/ButtonBase';
 import Icon from '../Icon';
 
 export const styleSheet = createStyleSheet('MuiIconButton', (theme) => {
-  const { palette, transitions } = theme;
-
   return {
     iconButton: {
       display: 'inline-flex',
@@ -24,20 +22,20 @@ export const styleSheet = createStyleSheet('MuiIconButton', (theme) => {
       padding: 0,
       borderRadius: '50%',
       backgroundColor: 'transparent',
-      color: palette.action.active,
+      color: theme.palette.action.active,
       zIndex: 1,
-      transition: transitions.create('background-color', {
-        duration: transitions.duration.shortest,
+      transition: theme.transitions.create('background-color', {
+        duration: theme.transitions.duration.shortest,
       }),
     },
     disabled: {
-      color: palette.action.disabled,
+      color: theme.palette.action.disabled,
     },
     accent: {
-      color: palette.accent.A200,
+      color: theme.palette.accent.A200,
     },
     contrast: {
-      color: palette.getContrastText(palette.primary[500]),
+      color: theme.palette.getContrastText(theme.palette.primary[500]),
     },
     label: {
       width: '100%',
@@ -50,7 +48,7 @@ export const styleSheet = createStyleSheet('MuiIconButton', (theme) => {
       height: '1em',
     },
     keyboardFocused: {
-      backgroundColor: palette.text.divider,
+      backgroundColor: theme.palette.text.divider,
     },
   };
 });

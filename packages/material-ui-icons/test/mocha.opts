@@ -1,0 +1,4 @@
+--require babel-register
+--reporter dot
+--recursive
+test/index.js

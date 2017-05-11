@@ -1,4 +1,3 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow
 
-export default from './Typography';
-export Typography from './Typography';
+export { default } from './Typography';

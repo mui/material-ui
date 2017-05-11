@@ -24,6 +24,90 @@ Below is a summary of major changes.
 - [Ripple/TouchRipple] Refactored and now works properly inside a button in firefox!
 - [Button] Raised/flat/fab are now combined into a single component.
 
+## 1.0.0-alpha.13
+###### _May 8, 2017_
+
+##### Breaking changes
+
+- [lint/flow] validate imports/exports with eslint and flow (#6757) @rosskevin
+Change some import:
+```diff
+-import { List, ListItem, ListItemText } from 'material-ui/List';
++import List, { ListItem, ListItemText } from 'material-ui/List';
+```
+
+- [Grid] Rename Layout to Grid (#6789) @rosskevin
+```diff
+-import Layout from 'material-ui/Layout';
++import Grid from 'material-ui/Grid';
+```
+
+##### Component Fixes / Enhancements
+
+- [Slide] Fix getTranslateValue for left & up cases (#6454) @josulliv101
+- [Hidden] Responsively hide content (js implementation) (#6748) @rosskevin
+- [Hidden] Fixes, demos, regression tests, and `only` functionality (#6782) @rosskevin
+- [Layout] Add a hidden property (#6754) @rosskevin
+- [Typography] Flow type (#6787) @rosskevin
+
+##### Docs
+
+- [palette] Require color shape that matches defaults (#6756) @kgregory
+- [docs] Document the Theme section (#6810) @oliviertassinari
+- [docs] Add a search bar (#6745) @oliviertassinari
+- [docs] Generate a summary of each section (#6772) @oliviertassinari
+- [docs] Start addressing documentation issues (#6758) @oliviertassinari
+- [docs] Hide the context implementation details (#6798) @oliviertassinari
+
+##### Core
+
+- Expanding use of flow for propType, include flow types in package, add flow-typed (#6724) @rosskevin
+- [core] Fix flow propTypes generation issue (#6749) @oliviertassinari
+- [createShallow] Remove cleanup (#6797) @agamrafaeli
+
+## 1.0.0-alpha.12
+###### _Apr 30, 2017_
+
+Big thanks to the 11 contributors who are pushing the `next` branch forward.
+
+##### Breaking changes
+
+- [Typography] Rename Text to Typography (#6667) @oliviertassinari
+- [Radio] Change checked color to primary (#6683) @khayong
+
+##### Component Fixes / Enhancements
+
+- [Collapse] Add test coverage for wrapper ref (#6617) @agamrafaeli
+- [Collapse] Add test coverage for `handleEntered()` (#6616) @agamrafaeli
+- [Collapse] Add test coverage for `handleEntering()` (#6615) @agamrafaeli
+- [CardHeader] Subheader doesn't go to a new line if there's no avatar (#6668) @kgregory
+- [SwitchBase] Add test coverage for `handleInputChange()` (#6613) @agamrafaeli
+- [Input] Reset for Safari (21751b293578f25675d415de766f77bd0178fc9c) @oliviertassinari
+- [Theme] Reintroduce `muiThemeable` as `withTheme` (#6610) @sxn
+- [Modal] Fixes cannot revert back to original overflow when have multiple modals (#6661) @khayong
+- [style] Reset the font family where needed (#6673) @oliviertassinari
+- [consoleErrorMock] Add test coverage (#6681) @agamrafaeli
+- [Transition] Add test coverage for `shouldComponentUpdate()` (#6680) @agamrafaeli
+- [ModalManager] Add test coverage for removal of non-exiting modal (#6678) @agamrafaeli
+- [Tabs] Label text wrapping / font scaling (#6677) @shawnmcknight
+- [Tabs] Cancel throttled event callbacks (#6715) @shawnmcknight
+- [Tabs] Improve component lifecycle (#6730) @shawnmcknight
+- [material-ui-icons] add making index.js (#6676) @taichi
+- [breakpoints] up(‘xs’) should have a min-width of 0px (#6735) @rosskevin
+
+##### Docs
+
+- [docs] Fix the example "Usage" to match new Button component (#6692) @artarmstrong
+- [docs] Fix theme toggling (#6652) @nathanmarks
+- [TextField] Add password example to docs (#6637) @peteratticusberg
+- [docs] Fix layout edit button (4b5fedf902704b5e3dd2dba63fc2263f11e975d0) @oliviertassinari
+- [docs] Fix IE11 issue (6ad3354ec1a844d0f03bf890a5e73a7987179be7) @oliviertassinari
+
+##### Core
+
+- [material-ui-icons] Modernize the package (#6688) @oliviertassinari
+- [core] Also take the demo into account for the regressions tests (#6669) @oliviertassinari
+
 ## 1.0.0-alpha.11
 ###### _Apr 14, 2017_
 

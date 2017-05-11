@@ -1,7 +1,7 @@
 // @flow weak
 
 import React from 'react';
-import { BottomNavigation, BottomNavigationButton } from 'material-ui/BottomNavigation';
+import BottomNavigation, { BottomNavigationButton } from 'material-ui/BottomNavigation';
 import Icon from 'material-ui/Icon';
 
 export default function LabelBottomNavigation() {

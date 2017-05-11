@@ -1,8 +1,8 @@
 // @flow weak
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 
@@ -13,8 +13,8 @@ const styleSheet = createStyleSheet('PaperSheet', (theme) => ({
   }),
 }));
 
-export default function PaperSheet(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function PaperSheet(props) {
+  const classes = props.classes;
   return (
     <div>
       <Paper className={classes.root} elevation={4}>
@@ -29,6 +29,8 @@ export default function PaperSheet(props, context) {
   );
 }
 
-PaperSheet.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+PaperSheet.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(PaperSheet);

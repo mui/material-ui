@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
@@ -112,9 +112,9 @@ describe('<Slide />', () => {
             width: 500,
             height: 300,
             left: 300,
-            right: 500,
+            right: 800,
             top: 200,
-            bottom: 100,
+            bottom: 500,
           }),
           style: {},
         };
@@ -123,13 +123,13 @@ describe('<Slide />', () => {
       it('should set element transform and transition according to the direction', () => {
         wrapper.setProps({ direction: 'left' });
         instance.handleEnter(element);
-        assert.strictEqual(element.style.transform, 'translate3d(1000px, 0, 0)');
+        assert.strictEqual(element.style.transform, 'translate3d(calc(100vw - 300px), 0, 0)');
         wrapper.setProps({ direction: 'right' });
         instance.handleEnter(element);
         assert.strictEqual(element.style.transform, 'translate3d(-800px, 0, 0)');
         wrapper.setProps({ direction: 'up' });
         instance.handleEnter(element);
-        assert.strictEqual(element.style.transform, 'translate3d(0, 400px, 0)');
+        assert.strictEqual(element.style.transform, 'translate3d(0, calc(100vh - 200px), 0)');
         wrapper.setProps({ direction: 'down' });
         instance.handleEnter(element);
         assert.strictEqual(element.style.transform, 'translate3d(0, -500px, 0)');
@@ -158,9 +158,9 @@ describe('<Slide />', () => {
             width: 500,
             height: 300,
             left: 300,
-            right: 500,
+            right: 800,
             top: 200,
-            bottom: 100,
+            bottom: 500,
           }),
           style: {},
         };
@@ -169,13 +169,13 @@ describe('<Slide />', () => {
       it('should set element transform and transition according to the direction', () => {
         wrapper.setProps({ direction: 'left' });
         instance.handleEnter(element);
-        assert.strictEqual(element.style.transform, 'translate3d(1000px, 0, 0)');
+        assert.strictEqual(element.style.transform, 'translate3d(calc(100vw - 300px), 0, 0)');
         wrapper.setProps({ direction: 'right' });
         instance.handleEnter(element);
         assert.strictEqual(element.style.transform, 'translate3d(-800px, 0, 0)');
         wrapper.setProps({ direction: 'up' });
         instance.handleEnter(element);
-        assert.strictEqual(element.style.transform, 'translate3d(0, 400px, 0)');
+        assert.strictEqual(element.style.transform, 'translate3d(0, calc(100vh - 200px), 0)');
         wrapper.setProps({ direction: 'down' });
         instance.handleEnter(element);
         assert.strictEqual(element.style.transform, 'translate3d(0, -500px, 0)');

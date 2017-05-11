@@ -9,13 +9,11 @@ import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../internal/ButtonBase';
 
 export const styleSheet = createStyleSheet('MuiButton', (theme) => {
-  const { typography, palette, transitions, shadows } = theme;
-
   return {
     root: {
-      fontSize: typography.fontSize,
-      fontWeight: typography.fontWeightMedium,
-      fontFamily: typography.fontFamily,
+      fontSize: theme.typography.fontSize,
+      fontWeight: theme.typography.fontWeightMedium,
+      fontFamily: theme.typography.fontFamily,
       textTransform: 'uppercase',
       display: 'inline-flex',
       alignItems: 'center',
@@ -25,14 +23,14 @@ export const styleSheet = createStyleSheet('MuiButton', (theme) => {
       height: 36,
       padding: '0px 16px',
       borderRadius: 2,
-      color: palette.text.primary,
+      color: theme.palette.text.primary,
       backgroundColor: 'transparent',
-      transition: transitions.create(['background-color', 'box-shadow'], {
-        duration: transitions.duration.short,
+      transition: theme.transitions.create(['background-color', 'box-shadow'], {
+        duration: theme.transitions.duration.short,
       }),
       '&:hover': {
         textDecoration: 'none',
-        backgroundColor: fade(palette.text.primary, 0.12),
+        backgroundColor: fade(theme.palette.text.primary, 0.12),
         '&$disabled': {
           backgroundColor: 'transparent',
         },
@@ -49,64 +47,64 @@ export const styleSheet = createStyleSheet('MuiButton', (theme) => {
       justifyContent: 'inherit',
     },
     primary: {
-      color: palette.primary[500],
+      color: theme.palette.primary[500],
       '&:hover': {
-        backgroundColor: fade(palette.primary[500], 0.12),
+        backgroundColor: fade(theme.palette.primary[500], 0.12),
       },
     },
     accent: {
-      color: palette.accent.A200,
+      color: theme.palette.accent.A200,
       '&:hover': {
-        backgroundColor: fade(palette.accent.A200, 0.12),
+        backgroundColor: fade(theme.palette.accent.A200, 0.12),
       },
     },
     contrast: {
-      color: palette.getContrastText(palette.primary[500]),
+      color: theme.palette.getContrastText(theme.palette.primary[500]),
       '&:hover': {
-        backgroundColor: fade(palette.getContrastText(palette.primary[500]), 0.12),
+        backgroundColor: fade(theme.palette.getContrastText(theme.palette.primary[500]), 0.12),
       },
     },
     raised: {
-      color: palette.getContrastText(palette.grey[300]),
-      backgroundColor: palette.grey[300],
-      boxShadow: shadows[2],
+      color: theme.palette.getContrastText(theme.palette.grey[300]),
+      backgroundColor: theme.palette.grey[300],
+      boxShadow: theme.shadows[2],
       '&$keyboardFocused': {
-        boxShadow: shadows[6],
+        boxShadow: theme.shadows[6],
       },
       '&:active': {
-        boxShadow: shadows[8],
+        boxShadow: theme.shadows[8],
       },
       '&$disabled': {
-        boxShadow: shadows[0],
-        backgroundColor: palette.text.divider,
+        boxShadow: theme.shadows[0],
+        backgroundColor: theme.palette.text.divider,
       },
       '&:hover': {
-        backgroundColor: palette.grey.A100,
+        backgroundColor: theme.palette.grey.A100,
         '&$disabled': {
-          backgroundColor: palette.text.divider,
+          backgroundColor: theme.palette.text.divider,
         },
       },
     },
     keyboardFocused: {},
     raisedPrimary: {
-      color: palette.getContrastText(palette.primary[500]),
-      backgroundColor: palette.primary[500],
+      color: theme.palette.getContrastText(theme.palette.primary[500]),
+      backgroundColor: theme.palette.primary[500],
       '&:hover': {
-        backgroundColor: palette.primary[700],
+        backgroundColor: theme.palette.primary[700],
       },
     },
     raisedAccent: {
-      color: palette.getContrastText(palette.accent.A200),
-      backgroundColor: palette.accent.A200,
+      color: theme.palette.getContrastText(theme.palette.accent.A200),
+      backgroundColor: theme.palette.accent.A200,
       '&:hover': {
-        backgroundColor: palette.accent.A400,
+        backgroundColor: theme.palette.accent.A400,
       },
     },
     raisedContrast: {
-      color: palette.getContrastText(palette.primary[500]),
+      color: theme.palette.getContrastText(theme.palette.primary[500]),
     },
     disabled: {
-      color: palette.action.disabled,
+      color: theme.palette.action.disabled,
     },
     fab: {
       borderRadius: '50%',
@@ -114,9 +112,9 @@ export const styleSheet = createStyleSheet('MuiButton', (theme) => {
       minWidth: 0,
       width: 56,
       height: 56,
-      boxShadow: shadows[6],
+      boxShadow: theme.shadows[6],
       '&:active': {
-        boxShadow: shadows[12],
+        boxShadow: theme.shadows[12],
       },
     },
   };

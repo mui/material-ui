@@ -1,16 +1,14 @@
 // @flow weak
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Link from 'react-router/lib/Link';
-import customPropTypes from 'material-ui/utils/customPropTypes';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import muiLogo from 'docs/src/assets/images/material-ui-logo.svg';
 
-export const styleSheet = createStyleSheet('Home', (theme) => {
-  const { palette, breakpoints } = theme;
-
+const styleSheet = createStyleSheet('Home', (theme) => {
   return {
     root: {
       flex: '1 0 100%',
@@ -21,13 +19,13 @@ export const styleSheet = createStyleSheet('Home', (theme) => {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: palette.primary[500],
-      color: palette.getContrastText(palette.primary[500]),
+      backgroundColor: theme.palette.primary[500],
+      color: theme.palette.getContrastText(theme.palette.primary[500]),
     },
     content: {
       padding: '60px 30px',
       textAlign: 'center',
-      [breakpoints.up('sm')]: {
+      [theme.breakpoints.up('sm')]: {
         padding: '120px 30px',
       },
     },
@@ -43,8 +41,8 @@ export const styleSheet = createStyleSheet('Home', (theme) => {
   };
 });
 
-function Home(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function Home(props) {
+  const classes = props.classes;
 
   return (
     <div className={classes.root}>
@@ -71,8 +69,8 @@ function Home(props, context) {
   );
 }
 
-Home.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+Home.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
 
-export default Home;
+export default withStyles(styleSheet)(Home);

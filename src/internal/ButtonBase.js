@@ -1,5 +1,4 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
+// @flow weak
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
@@ -190,17 +189,20 @@ export default class ButtonBase extends Component {
 
     event.persist();
 
-    detectKeyboardFocus(this, findDOMNode(this.button), () => {
-      this.keyDown = false;
-      this.setState({ keyboardFocused: true });
-
-      if (this.props.onKeyboardFocus) {
-        this.props.onKeyboardFocus(event);
-      }
-    });
+    const keyboardFocusCallback = this.onKeyboardFocusHandler.bind(this, event);
+    detectKeyboardFocus(this, findDOMNode(this.button), keyboardFocusCallback);
 
     if (this.props.onFocus) {
       this.props.onFocus(event);
+    }
+  };
+
+  onKeyboardFocusHandler = (event) => {
+    this.keyDown = false;
+    this.setState({ keyboardFocused: true });
+
+    if (this.props.onKeyboardFocus) {
+      this.props.onKeyboardFocus(event);
     }
   };
 
@@ -223,6 +225,7 @@ export default class ButtonBase extends Component {
       keyboardFocusedClassName,
       onBlur, // eslint-disable-line no-unused-vars
       onFocus, // eslint-disable-line no-unused-vars
+      onKeyboardFocus, // eslint-disable-line no-unused-vars
       onKeyDown, // eslint-disable-line no-unused-vars
       onKeyUp, // eslint-disable-line no-unused-vars
       onMouseDown, // eslint-disable-line no-unused-vars

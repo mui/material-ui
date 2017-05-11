@@ -2,16 +2,15 @@
 /* eslint-disable react/no-multi-comp */
 
 import React, { Component } from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { createStyleSheet } from 'jss-theme-reactor';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import keycode from 'keycode';
-import customPropTypes from 'material-ui/utils/customPropTypes';
-import {
-  Table,
-  TableHead,
+import Table, {
   TableBody,
-  TableRow,
   TableCell,
+  TableHead,
+  TableRow,
   TableSortLabel,
 } from 'material-ui/Table';
 import Toolbar from 'material-ui/Toolbar';
@@ -21,14 +20,6 @@ import Checkbox from 'material-ui/Checkbox';
 import IconButton from 'material-ui/IconButton';
 import DeleteIcon from 'material-ui-icons/Delete';
 import FilterListIcon from 'material-ui-icons/FilterList';
-
-const styleSheet = createStyleSheet('EnhancedTable', () => ({
-  paper: {
-    width: '100%',
-    marginTop: 30,
-    overflowX: 'auto',
-  },
-}));
 
 let counter = 0;
 function createData(name, calories, fat, carbs, protein) {
@@ -52,9 +43,9 @@ class EnhancedTableHead extends Component {
     orderBy: PropTypes.string.isRequired,
   };
 
-  createSortHandler = (property) => {
-    return (event) => this.props.onRequestSort(event, property);
-  };
+  createSortHandler = (property) => (event) => {
+    this.props.onRequestSort(event, property);
+  }
 
   render() {
     const { order, orderBy } = this.props;
@@ -91,7 +82,9 @@ class EnhancedTableHead extends Component {
 
 const toolbarStyleSheet = createStyleSheet('EnhancedTableToolbar', (theme) => {
   return {
-    root: { paddingRight: 2 },
+    root: {
+      paddingRight: 2,
+    },
     highlight: (
       theme.palette.type === 'light' ? {
         color: theme.palette.accent[800],
@@ -101,23 +94,27 @@ const toolbarStyleSheet = createStyleSheet('EnhancedTableToolbar', (theme) => {
         backgroundColor: theme.palette.accent[800],
       }
     ),
-    spacer: { flex: '1 1 100%' },
-    actions: { color: theme.palette.text.secondary },
-    title: { flex: '0 0 auto' },
+    spacer: {
+      flex: '1 1 100%',
+    },
+    actions: {
+      color: theme.palette.text.secondary,
+    },
+    title: {
+      flex: '0 0 auto',
+    },
   };
 });
 
-function EnhancedTableToolbar(props, context) {
-  const { numSelected } = props;
-  const classes = context.styleManager.render(toolbarStyleSheet);
-  let classNames = classes.root;
-
-  if (numSelected > 0) {
-    classNames += ` ${classes.highlight}`;
-  }
+let EnhancedTableToolbar = (props) => {
+  const { numSelected, classes } = props;
 
   return (
-    <Toolbar className={classNames}>
+    <Toolbar
+      className={classNames(classes.root, {
+        [classes.highlight]: numSelected > 0,
+      })}
+    >
       <div className={classes.title}>
         {numSelected > 0 ? (
           <Typography type="subheading">{numSelected} selected</Typography>
@@ -139,21 +136,24 @@ function EnhancedTableToolbar(props, context) {
       </div>
     </Toolbar>
   );
-}
+};
 
 EnhancedTableToolbar.propTypes = {
+  classes: PropTypes.object.isRequired,
   numSelected: PropTypes.number.isRequired,
 };
 
-EnhancedTableToolbar.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+EnhancedTableToolbar = withStyles(toolbarStyleSheet)(EnhancedTableToolbar);
 
-export default class EnhancedTable extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
+const styleSheet = createStyleSheet('EnhancedTable', () => ({
+  paper: {
+    width: '100%',
+    marginTop: 30,
+    overflowX: 'auto',
+  },
+}));
 
+class EnhancedTable extends Component {
   state = {
     order: 'asc',
     orderBy: 'calories',
@@ -186,16 +186,16 @@ export default class EnhancedTable extends Component {
 
   handleSelectAllClick = (event, checked) => {
     if (checked) {
-      return this.setState({ selected: this.state.data.map((n) => n.id) });
+      this.setState({ selected: this.state.data.map((n) => n.id) });
     }
-    return this.setState({ selected: [] });
+    this.setState({ selected: [] });
   };
 
   handleKeyDown = (event, id) => {
     if (keycode(event) === 'space') {
       this.handleClick(event, id);
     }
-  }
+  };
 
   handleClick = (event, id) => {
     const { selected } = this.state;
@@ -218,12 +218,10 @@ export default class EnhancedTable extends Component {
     this.setState({ selected: newSelected });
   };
 
-  isSelected = (id) => {
-    return this.state.selected.indexOf(id) !== -1;
-  }
+  isSelected = (id) => this.state.selected.indexOf(id) !== -1;
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
     const { data, order, orderBy, selected } = this.state;
 
     return (
@@ -267,3 +265,9 @@ export default class EnhancedTable extends Component {
     );
   }
 }
+
+EnhancedTable.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(EnhancedTable);

@@ -1,14 +1,13 @@
 // @flow weak
 
 import React, { Component } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
-import {
-  List,
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
+import List, {
   ListItem,
   ListItemIcon,
-  ListItemText,
   ListItemSecondaryAction,
+  ListItemText,
   ListSubheader,
 } from 'material-ui/List';
 import Switch from 'material-ui/Switch';
@@ -23,11 +22,7 @@ const styleSheet = createStyleSheet('SwitchListSecondary', (theme) => ({
   },
 }));
 
-export default class SwitchListSecondary extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
+class SwitchListSecondary extends Component {
   state = {
     checked: ['wifi'],
   };
@@ -49,7 +44,7 @@ export default class SwitchListSecondary extends Component {
   };
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
 
     return (
       <div className={classes.root}>
@@ -83,3 +78,9 @@ export default class SwitchListSecondary extends Component {
     );
   }
 }
+
+SwitchListSecondary.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(SwitchListSecondary);

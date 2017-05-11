@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Perf from 'react-addons-perf';
 import { find } from 'src/utils/helpers';
 import randomWords from 'random-words';
@@ -10,7 +11,6 @@ import randomWords from 'random-words';
  * WIP Component
  */
 export default class TimeWaster extends Component {
-
   static propTypes = {
     children: PropTypes.any,
     loops: PropTypes.number,

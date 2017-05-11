@@ -7,7 +7,6 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
 export const styleSheet = createStyleSheet('MuiSvgIcon', (theme) => {
-  const { transitions } = theme;
   return {
     svgIcon: {
       display: 'inline-block',
@@ -15,8 +14,8 @@ export const styleSheet = createStyleSheet('MuiSvgIcon', (theme) => {
       height: 24,
       width: 24,
       userSelect: 'none',
-      transition: transitions.create('fill', {
-        duration: transitions.duration.shorter,
+      transition: theme.transitions.create('fill', {
+        duration: theme.transitions.duration.shorter,
       }),
     },
   };

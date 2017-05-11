@@ -1,202 +1,141 @@
 # Themes
 
-## Predefined themes
+Themes let you apply a consistent tone to an app.
+It allows to **customize all the design aspects** in order to meet the needs of UI diversity from business and brand.
 
-We ship two base themes with Material-UI: light and dark. They are located
-under [`material-ui/styles/baseThemes/`](https://github.com/callemall/material-ui/blob/master/src/styles/baseThemes/).
-Custom themes may be defined similarly.
-The [`lightBaseTheme`](https://github.com/callemall/material-ui/blob/master/src/styles/baseThemes/lightBaseTheme.js)
-is the default so you will not need to do anything to use it other than using `MuiThemeProvider` as described in [Usage](/#/get-started/usage).
-For the [`darkBaseTheme`](https://github.com/callemall/material-ui/blob/master/src/styles/baseThemes/darkBaseTheme.js) you can use this snippet:
+The theme specifies the darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc.
+To promote greater consistency between apps, light and dark themes are available to choose from.
+We are using [jss-theme-reactor](https://github.com/nathanmarks/jss-theme-reactor) under the hood.
 
-```js
-import React from 'react';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import AppBar from 'material-ui/AppBar';
+## Configuration variables
 
-class Main extends React.Component {
-  render() {
-    return (
-      <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-        <AppBar title="My AppBar" />
-      </MuiThemeProvider>
-    );
-  }
-}
+Changing the configurations variables is the most effective way to get Material-UI matching your needs. By default, your Material-UI application will use the default theme.
 
-export default Main;
-```
+### Palette
 
-## How it works
+#### Intentions
 
-To achieve the level of customizability that you can see in the example above,
-Material-UI is using a single JS object called `muiTheme`.
-By default, this `muiTheme` object is based on the
-[`lightBaseTheme`](https://github.com/callemall/material-ui/blob/master/src/styles/baseThemes/lightBaseTheme.js).
+A color intention is a mapping of a palette for a given intention within your application.
 
-The `muiTheme` object contains the following keys:
- - `spacing`: can be used to change the spacing of components.
- - `fontFamily` can be used to change the default font family.
- - `palette` can be used to change the color of components.
- - `zIndex` can be used to change the level of each component.
- - `isRtl` can be used to enable the right to left mode.
- - There is also one key for each component so you can use to customize them individually:
-  - `appBar`
-  - `avatar`
-  - ...
+We expose the following color intentions:
 
-## Customizing the theme
+- primary - used to represent primary interface elements for a user
+- accent - used to represent secondary interface elements for a user
+- error - used to represent interface elements that the user should be careful of
 
-To customize the `muiTheme` you must use `getMuiTheme()` to compute a valid `muiTheme` object,
-and providing an object containing the keys you wish to customize.
-Then, you can use `<MuiThemeProvider />` to provide it down the tree to components.
+#### Example
 
-```js
-import React from 'react';
-import {cyan500} from 'material-ui/styles/colors';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import AppBar from 'material-ui/AppBar';
+{{demo='pages/customization/Palette.js'}}
 
-// This replaces the textColor value on the palette
-// and then update the keys for each component that depends on it.
-// More on Colors: http://www.material-ui.com/#/customization/colors
-const muiTheme = getMuiTheme({
-  palette: {
-    textColor: cyan500,
-  },
-  appBar: {
-    height: 50,
-  },
-});
+The palette is using the hues prefixed with `A` (`A200`, etc.) for the accent color and the hues unprefixed for the other intentions.
+If you want to learn more about color, you can check out [this section](/style/color).
 
-class Main extends React.Component {
-  render() {
-    // MuiThemeProvider takes the theme as a property and passed it down the hierarchy
-    // using React's context feature.
-    return (
-      <MuiThemeProvider muiTheme={muiTheme}>
-        <AppBar title="My AppBar" />
-      </MuiThemeProvider>
-    );
-  }
-}
+### Dark/light theme
 
-export default Main;
-```
+You can make a theme as dark by setting `type` to `dark`.
 
-Internally, Material-UI components use React's context feature to implement theming.
-Context is a way to pass down values through the component hierarchy without having
-to use props at every level.
-In fact, context is very convenient for concepts like theming, which are usually
-implemented in a hierarchical manner.
+{{demo='pages/customization/DarkTheme.js'}}
 
-## Using context
+### The other variables
 
-The `MuiThemeProvider` component simply adds the `muTheme` object to context.
-If you prefer using context directly instead, you can follow this pattern:
+We have tried to normalized the implementation by adding much more variables: the typography, the breakpoints, the transitions, etc. You can see below what the theme object looks like with the default values.
+If you want to learn more about it, we suggesting having a look at [`material-ui/style/theme.js`](https://github.com/callemall/material-ui/blob/next/src/styles/theme.js).
 
-Pass theme down the context:
+{{demo='pages/customization/ThemeDefault.js'}}
 
-```js
-import React from 'react';
-import baseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import AppBar from 'material-ui/AppBar';
+### Business variables
 
-class Main extends React.Component {
-  getChildContext() {
-    return {muiTheme: getMuiTheme(baseTheme)};
-  }
+When using our [styling solution](/customization/css-in-js) with your own components,
+you can also take advantage of the theme.
+It can be convinient to add additional variables to the theme so you can use them everywhere.
+For instance:
 
-  render () {
-    return <AppBar title="My AppBar" />;
-  }
-}
+{{demo='pages/customization/BusinessVariables.js'}}
 
-Main.childContextTypes = {
-  muiTheme: PropTypes.object.isRequired,
-};
+## Customizing all instances of a component type
 
-export default Main;
-```
+When the configuration variables aren't powerful enough, you can take advantage of the
+`overrides` key to potentially change every single style injected by Material-UI in the DOM.
+That's a really powerful feature.
 
-Get theme whenever you need to use it in your own components:
+{{demo='pages/customization/OverridesTheme.js'}}
 
-```js
-import React from 'react';
+Until we find a way to automatically document the list of those customization points, you need to have a look at the [implementation](https://github.com/callemall/material-ui/tree/next/src).
 
-class DeepDownTheTree extends React.Component {
-  render () {
-    return (
-      <span style={{color: this.context.muiTheme.palette.textColor}}>
-        Hello World!
-      </span>
-    );
-  }
-}
+## Accessing the theme in a component
 
-DeepDownTheTree.contextTypes = {
-  muiTheme: PropTypes.object.isRequired,
-};
+You might need to access the theme variables inside your React components.
+Let's say you want to display the value of the primary color, you can use the `withTheme()` Higher-order Component to do so. Here is an example:
 
-export default DeepDownTheTree;
-```
+{{demo='pages/customization/WithTheme.js'}}
 
 ## API
 
-The items listed below are everything related to how Material-UI's theme work.
-
-### `getMuiTheme(muiTheme) => muiTheme`
-
-This function takes in a `muiTheme`, it will use this parameter to computes the right keys.
-
-Keep in mind, any changes to the theme object must appear as another call
-to this function.
-**Never** directly mutate the theme as the effects will not be reflected in any component
-until another render is triggered for that component leaving your application
-in a moody state.
-
-To see what are the values you can override, use the
-[source](https://github.com/callemall/material-ui/blob/master/src/styles/getMuiTheme.js).
-The `lightBaseTheme` object looks like this (these are the defaults):
-
-```js
-import {
-  cyan500, cyan700,
-  pinkA200,
-  grey100, grey300, grey400, grey500,
-  white, darkBlack, fullBlack,
-} from '../colors';
-import {fade} from '../../utils/colorManipulator';
-import spacing from '../spacing';
-
-export default {
-  spacing: spacing,
-  fontFamily: 'Roboto, sans-serif',
-  palette: {
-    primary1Color: cyan500,
-    primary2Color: cyan700,
-    primary3Color: grey400,
-    accent1Color: pinkA200,
-    accent2Color: grey100,
-    accent3Color: grey500,
-    textColor: darkBlack,
-    alternateTextColor: white,
-    canvasColor: white,
-    borderColor: grey300,
-    disabledColor: fade(darkBlack, 0.3),
-    pickerHeaderColor: cyan500,
-    clockCircleColor: fade(darkBlack, 0.07),
-    shadowColor: fullBlack,
-  },
-};
-```
-
 ### `<MuiThemeProvider />`
 
-This component takes a theme as a property and passes it down with context.
-This should preferably be at the root of your component tree. The first
-example demonstrates it's usage.
+This component takes a `theme` and a `styleManager` as properties.
+He is making them available down the React tree thanks to the context.
+This component should preferably be used at **the root of your component tree**.
+
+#### Examples
+
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { MuiThemeProvider } from 'material-ui/styles';
+import Root from './Root';
+
+function App() {
+  return (
+    <MuiThemeProvider>
+      <Root />
+    </MuiThemeProvider>
+  );
+}
+
+ReactDOM.render(<App />, document.querySelector('#app'));
+```
+
+### `createMuiTheme(options) => theme`
+
+Generate a theme base on the options received.
+
+#### Arguments
+
+1. `options` (*Object*): Takes an incomplete theme object and add the missing parts.
+
+#### Returns
+
+`theme` (*Object*): A complete, ready to use theme object.
+
+#### Examples
+
+```js
+import { createMuiTheme } from 'material-ui/styles';
+
+const theme = createMuiTheme({
+  status: {
+    danger: 'orange',
+  },
+});
+```
+
+### `withTheme(Component) => Component`
+
+Provide the `theme` object as a property of the input component.
+
+#### Arguments
+
+1. `Component`: The component that will be wrapped.
+
+#### Returns
+
+`Component`: The new component created.
+
+#### Examples
+
+```js
+import { withTheme } from 'material-ui/styles'
+
+export default withTheme(MyComponent);
+```

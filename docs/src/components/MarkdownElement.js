@@ -3,15 +3,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import marked from 'marked';
-import customPropTypes from 'material-ui/utils/customPropTypes';
 import prism from 'docs/src/utils/prism';
 
 const renderer = new marked.Renderer();
 
 renderer.heading = (text, level) => {
-  const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
+  const escapedText = text.toLowerCase()
+    .replace(/=&gt;|&lt;| \/&gt;|<code>|<\/code>/g, '')
+    .replace(/[^\w]+/g, '-');
 
   return `
     <h${level}>
@@ -40,10 +41,11 @@ marked.setOptions({
 
 const anchorLinkStyle = (theme) => ({
   '& .anchor-link-style': {
-    display: 'none',
+    opacity: 0,
+    display: 'inline',
   },
   '&:hover .anchor-link-style': {
-    display: 'inline',
+    opacity: 1,
     fontSize: '0.8em',
     lineHeight: '1',
     paddingLeft: theme.spacing.unit,
@@ -53,6 +55,7 @@ const anchorLinkStyle = (theme) => ({
 
 const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
   root: {
+    fontFamily: theme.typography.fontFamily,
     marginTop: theme.spacing.unit * 2,
     marginBottom: theme.spacing.unit * 2,
     padding: '0 10px',
@@ -61,19 +64,22 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
       position: 'absolute',
     },
     '& pre': {
-      margin: '25px 0',
+      margin: `${theme.spacing.unit * 3}px 0`,
       padding: '12px 18px',
       backgroundColor: theme.palette.background.paper,
       borderRadius: 3,
+      overflow: 'auto',
     },
     '& code': {
       display: 'inline-block',
-      lineHeight: 1.6,
       fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
       padding: '3px 6px',
       color: theme.palette.text.primary,
       backgroundColor: theme.palette.background.paper,
+    },
+    '& p code, & ul code, & pre code': {
       fontSize: 14,
+      lineHeight: 1.6,
     },
     '& h1': {
       ...theme.typography.display2,
@@ -93,11 +99,14 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
       margin: '1em 0 0.7em',
       ...anchorLinkStyle(theme),
     },
+    '& h4': {
+      ...theme.typography.title,
+      color: theme.palette.text.secondary,
+      margin: '1em 0 0.7em',
+      ...anchorLinkStyle(theme),
+    },
     '& p, & ul, & ol': {
       lineHeight: 1.6,
-    },
-    '& p code, & ul code': {
-      fontSize: 14,
     },
     '& table': {
       width: '100%',
@@ -129,6 +138,7 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
     },
     '& td code': {
       fontSize: 13,
+      lineHeight: 1.6,
     },
     '& th': {
       whiteSpace: 'pre',
@@ -154,34 +164,40 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
       padding: `${theme.spacing.unit / 2}px ${theme.spacing.unit * 3}px`,
       margin: `${theme.spacing.unit * 3}px 0`,
     },
+    '& a, & a code': {
+      // Style taken from the Link component
+      color: theme.palette.accent.A400,
+      textDecoration: 'none',
+      '&:hover': {
+        textDecoration: 'underline',
+      },
+    },
   },
 }));
 
-function MarkdownElement(props, context) {
+function MarkdownElement(props) {
   const {
+    classes,
     className,
     text,
+    ...other
   } = props;
-
-  const classes = context.styleManager.render(styleSheet);
 
   /* eslint-disable react/no-danger */
   return (
     <div
       className={classNames(classes.root, 'markdown-body', className)}
       dangerouslySetInnerHTML={{ __html: marked(text) }}
+      {...other}
     />
   );
   /* eslint-enable */
 }
 
 MarkdownElement.propTypes = {
+  classes: PropTypes.object.isRequired,
   className: PropTypes.string,
   text: PropTypes.string.isRequired,
 };
 
-MarkdownElement.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
-
-export default MarkdownElement;
+export default withStyles(styleSheet)(MarkdownElement);

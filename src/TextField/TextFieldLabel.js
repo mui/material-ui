@@ -8,7 +8,6 @@ import customPropTypes from '../utils/customPropTypes';
 import { FormLabel } from '../Form';
 
 export const styleSheet = createStyleSheet('MuiTextFieldLabel', (theme) => {
-  const { transitions } = theme;
   return {
     root: {
       position: 'absolute',
@@ -21,9 +20,9 @@ export const styleSheet = createStyleSheet('MuiTextFieldLabel', (theme) => {
       transform: 'translate(0, 0px) scale(0.75)',
     },
     animated: {
-      transition: transitions.create('transform', {
-        duration: transitions.duration.shorter,
-        easing: transitions.easing.easeOut,
+      transition: theme.transitions.create('transform', {
+        duration: theme.transitions.duration.shorter,
+        easing: theme.transitions.easing.easeOut,
       }),
     },
   };

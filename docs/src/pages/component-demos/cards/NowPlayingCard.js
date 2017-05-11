@@ -1,12 +1,9 @@
 // @flow weak
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
-import {
-  Card,
-  CardContent,
-} from 'material-ui/Card';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
+import Card, { CardContent } from 'material-ui/Card';
 import IconButton from 'material-ui/IconButton';
 import Typography from 'material-ui/Typography';
 import SkipPreviousIcon from 'material-ui-icons/SkipPrevious';
@@ -41,8 +38,8 @@ const styleSheet = createStyleSheet('NowPlayingCard', () => ({
   },
 }));
 
-export default function NowPlayingCard(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function NowPlayingCard(props) {
+  const classes = props.classes;
 
   return (
     <div>
@@ -74,6 +71,8 @@ export default function NowPlayingCard(props, context) {
   );
 }
 
-NowPlayingCard.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+NowPlayingCard.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(NowPlayingCard);

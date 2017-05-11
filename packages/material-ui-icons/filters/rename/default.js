@@ -1,4 +1,6 @@
-const path = require('path');
+// @flow weak
+
+import path from 'path';
 
 /*
  * Return path to write file to inside outputDir.
@@ -22,7 +24,7 @@ function defaultDestRewriter(pathObj, innerPath, options) {
   } else {
     fileName = fileName.replace('.svg', '.js');
   }
-  fileName = fileName.replace(/(^.)|(_)(.)/g, (match, p1, p2, p3) => (p1 ? p1 : p3).toUpperCase());
+  fileName = fileName.replace(/(^.)|(_)(.)/g, (match, p1, p2, p3) => (p1 || p3).toUpperCase());
   return path.join(innerPath, fileName);
 }
 

@@ -1,56 +1,36 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-export {
-  AppBar,
-} from './AppBar';
+// @flow
+export { default as AppBar } from './AppBar';
+export { default as Avatar } from './Avatar';
+export { default as Badge } from './Badge';
 
 export {
-  Avatar,
-} from './Avatar';
-
-export {
-  Badge,
-} from './Badge';
-
-export {
-  BottomNavigation,
+  default as BottomNavigation,
   BottomNavigationButton,
 } from './BottomNavigation';
 
-export {
-  Button,
-} from './Button';
+export { default as Button } from './Button';
 
 export {
-  Card,
+  default as Card,
   CardActions,
   CardContent,
   CardHeader,
   CardMedia,
 } from './Card';
 
-export {
-  Checkbox,
-} from './Checkbox';
+export { default as Checkbox } from './Checkbox';
+export { default as Chip } from './Chip';
 
 export {
-  Chip,
-} from './Chip';
-
-export {
-  Dialog,
+  default as Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
 } from './Dialog';
 
-export {
-  Divider,
-} from './Divider';
-
-export {
-  Drawer,
-} from './Drawer';
+export { default as Divider } from './Divider';
+export { default as Drawer } from './Drawer';
 
 export {
   FormControl,
@@ -58,25 +38,19 @@ export {
   FormLabel,
 } from './Form';
 
-export {
-  Icon,
-} from './Icon';
+export { default as Hidden } from './Hidden';
+export { default as Icon } from './Icon';
+export { default as IconButton } from './IconButton';
 
 export {
-  IconButton,
-} from './IconButton';
-
-export {
-  Input,
+  default as Input,
   InputLabel,
 } from './Input';
 
-export {
-   Layout,
-} from './Layout';
+export { default as Grid } from './Grid';
 
 export {
-  List,
+  default as List,
   ListItem,
   ListItemAvatar,
   ListItemIcon,
@@ -86,14 +60,12 @@ export {
 } from './List';
 
 export {
-  Menu,
+  default as Menu,
   MenuItem,
   MenuList,
 } from './Menu';
 
-export {
-  Paper,
-} from './Paper';
+export { default as Paper } from './Paper';
 
 export {
   CircularProgress,
@@ -101,30 +73,28 @@ export {
 } from './Progress';
 
 export {
-  Radio,
+  default as Radio,
   RadioGroup,
 } from './Radio';
 
 export {
-  Ripple,
+  default as Ripple,
   TouchRipple,
 } from './Ripple';
 
 export {
- MuiThemeProvider,
+  MuiThemeProvider,
 } from './styles';
 
-export {
-  SvgIcon,
-} from './SvgIcon';
+export { default as SvgIcon } from './SvgIcon';
 
 export {
-  Switch,
+  default as Switch,
   LabelSwitch,
 } from './Switch';
 
 export {
-  Table,
+  default as Table,
   TableBody,
   TableCell,
   TableHead,
@@ -133,19 +103,15 @@ export {
 } from './Table';
 
 export {
+  default as Tabs,
   Tab,
-  Tabs,
 } from './Tabs';
 
-export {
-  Typography,
-} from './Typography';
+export { default as Typography } from './Typography';
 
 export {
-  TextField,
+  default as TextField,
   TextFieldLabel,
 } from './TextField';
 
-export {
-  Toolbar,
-} from './Toolbar';
+export { default as Toolbar } from './Toolbar';

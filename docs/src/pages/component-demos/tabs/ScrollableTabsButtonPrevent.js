@@ -3,10 +3,9 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
-import { Tabs, Tab } from 'material-ui/Tabs';
+import Tabs, { Tab } from 'material-ui/Tabs';
 import PhoneIcon from 'material-ui-icons/Phone';
 import FavoriteIcon from 'material-ui-icons/Favorite';
 import PersonPinIcon from 'material-ui-icons/PersonPin';
@@ -36,11 +35,7 @@ const styleSheet = createStyleSheet('ScrollableTabsButtonPrevent', (theme) => ({
   },
 }));
 
-export default class ScrollableTabsButtonPrevent extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
+class ScrollableTabsButtonPrevent extends Component {
   state = {
     index: 0,
   };
@@ -50,7 +45,7 @@ export default class ScrollableTabsButtonPrevent extends Component {
   }
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
 
     return (
       <Paper className={classes.root}>
@@ -81,3 +76,9 @@ export default class ScrollableTabsButtonPrevent extends Component {
     );
   }
 }
+
+ScrollableTabsButtonPrevent.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(ScrollableTabsButtonPrevent);
