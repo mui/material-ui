@@ -25,7 +25,7 @@ export const styleSheet = createStyleSheet('MuiTextarea', () => {
       lineHeight: 'inherit',
       border: 'none',
       outline: 'none',
-      'background-color': 'TRANSPARENT',
+      'background-color': 'rgba(0,0,0,0)',
     },
     shadow: {
       resize: 'none',
