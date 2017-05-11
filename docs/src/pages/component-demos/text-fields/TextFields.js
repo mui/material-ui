@@ -69,7 +69,7 @@ class TextFields extends Component {
           id="multiline static"
           label="MultiLine"
           multiline
-          rows={1}
+          rows={4}
           defaultValue="Default Value"
           className={classes.input}
         />
