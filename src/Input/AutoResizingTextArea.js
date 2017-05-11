@@ -147,7 +147,7 @@ export default class AutoResizingTextArea extends Component {
 
   handleChange = (event) => {
     const value = event.target.value;
-    this.syncHeightWithShadow();
+    this.syncHeightWithShadow(value);
     this.setState({
       dirty: value.length > 0,
     });
