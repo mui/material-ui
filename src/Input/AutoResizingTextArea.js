@@ -166,7 +166,6 @@ export default class AutoResizingTextArea extends Component {
       rowsMax,
       hintText,
       className,
-      textareaClassName,
       ...other
     } = this.props;
 
