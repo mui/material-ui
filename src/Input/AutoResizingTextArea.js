@@ -62,7 +62,6 @@ export default class AutoResizingTextArea extends Component {
     rows: PropTypes.number,
     rowsMax: PropTypes.number,
     shadowClassName: PropTypes.object,
-    textareaClassName: PropTypes.string,
     value: PropTypes.string,
   };
 
@@ -198,7 +197,7 @@ export default class AutoResizingTextArea extends Component {
           {...other}
           ref={(c) => { this.input = c; }}
           rows={this.props.rows}
-          className={classnames(classes.textarea, textareaClassName)}
+          className={classes.textarea}
           style={{ height: this.state.height }}
           onChange={this.handleChange}
         />
