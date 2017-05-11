@@ -69,8 +69,8 @@ module.exports = {
     'react/sort-comp': [2, {
       order: [
         'static-methods',
+        'props',
         'lifecycle',
-        // 'properties', // not real -- NEEDS A PR!!!
         // '/^handle.+$/', // wishlist -- needs above first
         // '/^(get|set)(?!(InitialState$|DefaultProps$|ChildContext$)).+$/', // wishlist -- needs above first
         'everything-else',
