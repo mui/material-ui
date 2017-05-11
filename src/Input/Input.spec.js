@@ -34,10 +34,17 @@ describe('<Input />', () => {
       'should not have the area-required prop');
   });
 
-  it('should render an <textarea /> inside the div when passed the multiline prop', () => {
+  it('should render an <AutoResizingTextArea /> when passed the multiline prop', () => {
     const wrapper = shallow(<Input multiline />);
+    const input = wrapper.find('AutoResizingTextArea');
+    assert.strictEqual(input.is('AutoResizingTextArea'), true,
+      'should be a <AutoResizingTextArea>');
+  });
+
+  it('should render an <textarea /> when passed the multiline and rows props', () => {
+    const wrapper = shallow(<Input multiline rows={4} />);
     const input = wrapper.find('textarea');
-    assert.strictEqual(input.is('textarea'), true, 'should be a <input>');
+    assert.strictEqual(input.is('textarea'), true, 'should be a <textarea>');
   });
 
   it('should render a disabled <input />', () => {
