@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
@@ -16,7 +16,7 @@ describe('<FormLabel />', () => {
 
   it('should render a <label />', () => {
     const wrapper = shallow(<FormLabel className="woof" />);
-    assert.strictEqual(wrapper.is('label'), true, 'should be a <label>');
+    assert.strictEqual(wrapper.name(), 'label');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the user class');
   });

@@ -1,8 +1,8 @@
 // @flow weak
 
 import React, { Component } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Input from 'material-ui/Input';
 import InputLabel from 'material-ui/Input/InputLabel';
 import FormControl from 'material-ui/Form/FormControl';
@@ -17,17 +17,17 @@ const styleSheet = createStyleSheet('ComposedTextField', () => ({
   },
 }));
 
-export default class ComposedTextField extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
+class ComposedTextField extends Component {
   state = {
     name: 'Composed TextField',
   };
 
+  handleChange = (event) => {
+    this.setState({ name: event.target.value });
+  };
+
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
 
     return (
       <div className={classes.container}>
@@ -38,7 +38,7 @@ export default class ComposedTextField extends Component {
           <Input
             id="name"
             value={this.state.name}
-            onChange={(event) => this.setState({ name: event.target.value })}
+            onChange={this.handleChange}
           />
         </FormControl>
       </div>
@@ -46,3 +46,8 @@ export default class ComposedTextField extends Component {
   }
 }
 
+ComposedTextField.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(ComposedTextField);

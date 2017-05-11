@@ -1,5 +1,4 @@
-/* eslint-disable prefer-template */
-/* eslint-disable import/no-mutable-exports*/
+/* eslint-disable prefer-template, import/no-mutable-exports */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import PropTypes from 'prop-types';

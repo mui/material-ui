@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
@@ -16,7 +16,7 @@ describe('<TextFieldLabel />', () => {
 
   it('should render a FormLabel', () => {
     const wrapper = shallow(<TextFieldLabel />);
-    assert.strictEqual(wrapper.is('FormLabel'), true, 'should be a FormLabel');
+    assert.strictEqual(wrapper.name(), 'FormLabel');
   });
 
   it('should animate by default', () => {

@@ -1,22 +1,18 @@
 // @flow weak
 
 import React, { Component } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import { LabelRadio, RadioGroup } from 'material-ui/Radio';
 import { FormLabel, FormControl } from 'material-ui/Form';
 
-const styleSheet = createStyleSheet('RadioButtonsGroup', () => ({
+const styleSheet = createStyleSheet('RadioButtonsGroup', (theme) => ({
   group: {
-    margin: '8px 0',
+    margin: `${theme.spacing.unit}px 0`,
   },
 }));
 
-export default class RadioButtonsGroup extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
+class RadioButtonsGroup extends Component {
   state = {
     selectedValue: undefined,
   };
@@ -26,7 +22,7 @@ export default class RadioButtonsGroup extends Component {
   };
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
 
     return (
       <FormControl required>
@@ -48,3 +44,8 @@ export default class RadioButtonsGroup extends Component {
   }
 }
 
+RadioButtonsGroup.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(RadioButtonsGroup);

@@ -1,13 +1,9 @@
 // @flow weak
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
-import {
-  List,
-  ListItem,
-  ListItemText,
-} from 'material-ui/List';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
+import List, { ListItem, ListItemText } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 
 const styleSheet = createStyleSheet('ListDividers', (theme) => ({
@@ -18,8 +14,8 @@ const styleSheet = createStyleSheet('ListDividers', (theme) => ({
   },
 }));
 
-export default function ListDividers(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function ListDividers(props) {
+  const classes = props.classes;
   return (
     <List className={classes.root}>
       <ListItem button>
@@ -37,6 +33,8 @@ export default function ListDividers(props, context) {
   );
 }
 
-ListDividers.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+ListDividers.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(ListDividers);

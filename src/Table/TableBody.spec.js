@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
@@ -18,7 +18,7 @@ describe('<TableBody />', () => {
     const wrapper = shallow(
       <TableBody />,
     );
-    assert.strictEqual(wrapper.is('tbody'), true, 'should be a tbody');
+    assert.strictEqual(wrapper.name(), 'tbody');
   });
 
   it('should render with the user and root classes', () => {

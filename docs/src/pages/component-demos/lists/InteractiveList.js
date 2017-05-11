@@ -1,10 +1,9 @@
 // @flow weak
 
 import React, { cloneElement, Component } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
-import {
-  List,
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
+import List, {
   ListItem,
   ListItemAvatar,
   ListItemIcon,
@@ -15,8 +14,8 @@ import Avatar from 'material-ui/Avatar';
 import IconButton from 'material-ui/IconButton';
 import { FormGroup } from 'material-ui/Form';
 import { LabelCheckbox } from 'material-ui/Checkbox';
-import Layout from 'material-ui/Layout';
-import Text from 'material-ui/Text';
+import Grid from 'material-ui/Grid';
+import Typography from 'material-ui/Typography';
 import FolderIcon from 'material-ui-icons/Folder';
 import DeleteIcon from 'material-ui-icons/Delete';
 
@@ -42,17 +41,13 @@ function generate(element) {
 }
 
 class InteractiveList extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
   state = {
     dense: false,
     secondary: false,
   };
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
     const { dense, secondary } = this.state;
 
     return (
@@ -71,11 +66,11 @@ class InteractiveList extends Component {
             value="secondary"
           />
         </FormGroup>
-        <Layout container>
-          <Layout item xs={12} md={6}>
-            <Text type="title" className={classes.title}>
+        <Grid container>
+          <Grid item xs={12} md={6}>
+            <Typography type="title" className={classes.title}>
               Text only
-            </Text>
+            </Typography>
             <div className={classes.demo}>
               <List dense={dense}>
                 {generate((
@@ -88,11 +83,11 @@ class InteractiveList extends Component {
                 ))}
               </List>
             </div>
-          </Layout>
-          <Layout item xs={12} md={6}>
-            <Text type="title" className={classes.title}>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Typography type="title" className={classes.title}>
               Icon with text
-            </Text>
+            </Typography>
             <div className={classes.demo}>
               <List dense={dense}>
                 {generate((
@@ -108,11 +103,13 @@ class InteractiveList extends Component {
                 ))}
               </List>
             </div>
-          </Layout>
-        </Layout>
-        <Layout container>
-          <Layout item xs={12} md={6}>
-            <Text type="title" className={classes.title}>Avatar with text</Text>
+          </Grid>
+        </Grid>
+        <Grid container>
+          <Grid item xs={12} md={6}>
+            <Typography type="title" className={classes.title}>
+              Avatar with text
+            </Typography>
             <div className={classes.demo}>
               <List dense={dense}>
                 {generate((
@@ -130,11 +127,11 @@ class InteractiveList extends Component {
                 ))}
               </List>
             </div>
-          </Layout>
-          <Layout item xs={12} md={6}>
-            <Text type="title" className={classes.title}>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Typography type="title" className={classes.title}>
               Avatar with text and icon
-            </Text>
+            </Typography>
             <div className={classes.demo}>
               <List dense={dense}>
                 {generate((
@@ -157,11 +154,15 @@ class InteractiveList extends Component {
                 ))}
               </List>
             </div>
-          </Layout>
-        </Layout>
+          </Grid>
+        </Grid>
       </div>
     );
   }
 }
 
-export default InteractiveList;
+InteractiveList.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(InteractiveList);

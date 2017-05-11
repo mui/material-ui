@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -6,16 +6,15 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('MuiLinearProgress', (theme) => {
-  const { palette } = theme;
-  const transitionDuration = 4; // 400ms
+const transitionDuration = 4; // 400ms
 
+export const styleSheet = createStyleSheet('MuiLinearProgress', (theme) => {
   return {
     root: {
       position: 'relative',
       overflow: 'hidden',
       height: 5,
-      backgroundColor: palette.primary[100],
+      backgroundColor: theme.palette.primary[100],
     },
     rootBuffer: {
       backgroundColor: 'transparent',
@@ -29,15 +28,15 @@ export const styleSheet = createStyleSheet('MuiLinearProgress', (theme) => {
       bottom: 0,
       top: 0,
       transition: 'transform 0.2s linear',
-      backgroundColor: palette.primary[500],
+      backgroundColor: theme.palette.primary[500],
     },
     dashed: {
       position: 'absolute',
       marginTop: 0,
       height: '100%',
       width: '100%',
-      background:
-        `radial-gradient(${palette.primary[100]} 0%, ${palette.primary[100]} 16%, transparent 42%)`,
+      background: `radial-gradient(${theme.palette.primary[100]} 0%, ${
+        theme.palette.primary[100]} 16%, transparent 42%)`,
       backgroundSize: '10px 10px',
       backgroundPosition: '0px -23px',
       animation: 'buffer 3s infinite linear',
@@ -60,7 +59,7 @@ export const styleSheet = createStyleSheet('MuiLinearProgress', (theme) => {
     },
     bufferBar1: {
       transition: `width .${transitionDuration}s linear`,
-      backgroundColor: palette.primary[100],
+      backgroundColor: theme.palette.primary[100],
     },
     bufferBar2: {
       transition: `width .${transitionDuration}s linear`,

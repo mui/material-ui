@@ -258,6 +258,8 @@ export default class Popover extends Component {
     return this.props.transitionDuration + 20;
   };
 
+  marginThreshold = 16;
+
   getPositioningStyle(element) {
     // Check if the parent has requested anchoring on an inner content node
     const contentAnchorOffset = this.getContentAnchorOffset(element);
@@ -278,13 +280,12 @@ export default class Popover extends Component {
     const right = left + elemRect.width;
 
     // Window thresholds taking required margin into account
-    const marginThreshold = 16;
-    const heightThreshold = window.innerHeight - marginThreshold;
-    const widthThreshold = window.innerWidth - marginThreshold;
+    const heightThreshold = window.innerHeight - this.marginThreshold;
+    const widthThreshold = window.innerWidth - this.marginThreshold;
 
     // Check if the vertical axis needs shifting
-    if (top < marginThreshold) {
-      const diff = top - marginThreshold;
+    if (top < this.marginThreshold) {
+      const diff = top - this.marginThreshold;
       top -= diff;
       transformOrigin.vertical += diff;
     } else if (bottom > heightThreshold) {
@@ -294,8 +295,8 @@ export default class Popover extends Component {
     }
 
     // Check if the horizontal axis needs shifting
-    if (left < marginThreshold) {
-      const diff = left - marginThreshold;
+    if (left < this.marginThreshold) {
+      const diff = left - this.marginThreshold;
       left -= diff;
       transformOrigin.horizontal += diff;
     } else if (right > widthThreshold) {

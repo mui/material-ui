@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
@@ -19,7 +19,7 @@ describe('<IconButton />', () => {
     const wrapper = shallow(
       <IconButton>book</IconButton>,
     );
-    assert.strictEqual(wrapper.is('ButtonBase'), true, 'should be a ButtonBase');
+    assert.strictEqual(wrapper.name(), 'ButtonBase');
   });
 
   it('should render an inner label span (bloody safari)', () => {

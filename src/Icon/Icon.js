@@ -6,28 +6,27 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
 export const styleSheet = createStyleSheet('MuiIcon', (theme) => {
-  const { palette } = theme;
   return {
     root: {
       userSelect: 'none',
     },
     accent: {
-      color: palette.accent.A200,
+      color: theme.palette.accent.A200,
     },
     action: {
-      color: palette.action.active,
+      color: theme.palette.action.active,
     },
     contrast: {
-      color: palette.getContrastText(palette.primary[500]),
+      color: theme.palette.getContrastText(theme.palette.primary[500]),
     },
     disabled: {
-      color: palette.action.disabled,
+      color: theme.palette.action.disabled,
     },
     error: {
-      color: palette.error[500],
+      color: theme.palette.error[500],
     },
     primary: {
-      color: palette.primary[500],
+      color: theme.palette.primary[500],
     },
   };
 });

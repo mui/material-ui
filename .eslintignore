@@ -1,11 +1,14 @@
 node_modules
 /build
-/flow
 /tmp
 /coverage
 /docs/build
+/flow
+/flow-typed
 /packages/**/lib
-/packages/material-ui-icons
+/packages/material-ui-icons/build
+/packages/material-ui-icons/src
+/packages/material-ui-icons/tpl
 /packages/material-ui-codemod/modules/v0.15.0
 /test/coverage
 /test/regressions/site/build

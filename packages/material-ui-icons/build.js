@@ -1,10 +1,13 @@
-const fs = require('fs');
-const path = require('path');
-const rimraf = require('rimraf');
-const Mustache = require('mustache');
-const _ = require('lodash');
-const glob = require('glob');
-const mkdirp = require('mkdirp');
+/* eslint-disable no-console, flowtype/require-valid-file-annotation */
+
+import fs from 'fs';
+import yargs from 'yargs';
+import path from 'path';
+import rimraf from 'rimraf';
+import Mustache from 'mustache';
+import _ from 'lodash';
+import glob from 'glob';
+import mkdirp from 'mkdirp';
 
 const SVG_ICON_RELATIVE_REQUIRE = '../../SvgIcon';
 const SVG_ICON_ABSOLUTE_REQUIRE = 'material-ui/SvgIcon';
@@ -19,36 +22,36 @@ const DEFAULT_OPTIONS = {
 };
 
 function parseArgs() {
-  return require('yargs')
-  .usage('Build JSX components from SVG\'s.\nUsage: $0')
-  .demand('output-dir')
-  .describe('output-dir', 'Directory to output jsx components')
-  .demand('svg-dir')
-  .describe('svg-dir', 'SVG directory')
-  .describe('glob', 'Glob to match inside of --svg-dir. Default **/*.svg')
-  .describe('inner-path', '"Reach into" subdirs, since libraries like material-design-icons' +
-            ' use arbitrary build directories to organize icons' +
-            ' e.g. "action/svg/production/icon_3d_rotation_24px.svg"')
-  .describe('file-suffix', 'Filter only files ending with a suffix (pretty much only' +
-            ' for material-ui-icons)')
-  .describe('rename-filter', `Path to JS module used to rename destination filename and path.
-      Default: ${RENAME_FILTER_DEFAULT}`)
-  .options('mui-require', {
-    demand: false,
-    type: 'string',
-    describe: `Load material-ui dependencies (SvgIcon) relatively or absolutely.
-      (absolute|relative).
-      For material-ui distributions, relative, for anything else, you probably want absolute.`,
-  }).argv;
+  return yargs
+    .usage('Build JSX components from SVG\'s.\nUsage: $0')
+    .demand('output-dir')
+    .describe('output-dir', 'Directory to output jsx components')
+    .demand('svg-dir')
+    .describe('svg-dir', 'SVG directory')
+    .describe('glob', 'Glob to match inside of --svg-dir. Default **/*.svg')
+    .describe('inner-path', '"Reach into" subdirs, since libraries like material-design-icons' +
+              ' use arbitrary build directories to organize icons' +
+              ' e.g. "action/svg/production/icon_3d_rotation_24px.svg"')
+    .describe('file-suffix', 'Filter only files ending with a suffix (pretty much only' +
+              ' for material-ui-icons)')
+    .describe('rename-filter', `Path to JS module used to rename destination filename and path.
+        Default: ${RENAME_FILTER_DEFAULT}`)
+    .options('mui-require', {
+      demand: false,
+      type: 'string',
+      describe: `Load material-ui dependencies (SvgIcon) relatively or absolutely.
+        (absolute|relative).
+        For material-ui distributions, relative, for anything else, you probably want absolute.`,
+    }).argv;
 }
 
-function main(options, cb) {
+function main(options, callback) {
   let originalWrite; // todo, add wiston / other logging tool
 
   options = _.defaults(options, DEFAULT_OPTIONS);
   if (options.disable_log) { // disable console.log opt, used for tests.
     originalWrite = process.stdout.write;
-    process.stdout.write = function() {};
+    process.stdout.write = () => {};
   }
 
   rimraf.sync(`${options.outputDir}/*.js`); // Clean old files
@@ -56,17 +59,19 @@ function main(options, cb) {
 
   let renameFilter = options.renameFilter;
   if (_.isString(renameFilter)) {
+    /* eslint-disable global-require, import/no-dynamic-require */
     renameFilter = require(renameFilter);
+    /* eslint-enable */
   }
   if (!_.isFunction(renameFilter)) {
     throw Error('renameFilter must be a function');
   }
-  if (!fs.existsSync(options.outputDir)){
+  if (!fs.existsSync(options.outputDir)) {
     fs.mkdirSync(options.outputDir);
   }
   const files = glob.sync(path.join(options.svgDir, options.glob));
 
-  files.forEach(function(svgPath) {
+  files.forEach((svgPath) => {
     const svgPathObj = path.parse(svgPath);
     const innerPath = path.dirname(svgPath)
       .replace(options.svgDir, '')
@@ -76,12 +81,14 @@ function main(options, cb) {
     processFile(svgPath, destPath, options);
   });
 
-  if (cb) {
-    cb();
-  }
+  processIndex(options);
 
   if (options.disable_log) { // bring back stdout
     process.stdout.write = originalWrite;
+  }
+
+  if (callback) {
+    callback();
   }
 }
 
@@ -98,7 +105,7 @@ function processFile(svgPath, destPath, options) {
   const outputFileDir = path.dirname(path.join(options.outputDir, destPath));
 
   if (!fs.existsSync(outputFileDir)) {
-    console.log('Making dir: ' + outputFileDir);
+    console.log(`Making dir: ${outputFileDir}`);
     mkdirp.sync(outputFileDir);
   }
   const fileString = getJsxString(svgPath, destPath, options);
@@ -113,10 +120,10 @@ function processFile(svgPath, destPath, options) {
  * @returns {string} class name
  */
 function pascalCase(destPath) {
-  const splitregex = new RegExp('[' + path.sep + '-]+');
+  const splitregex = new RegExp(`[${path.sep}-]+`);
 
   let parts = destPath.replace('.js', '').split(splitregex);
-  parts = _.map(parts, function(part) {
+  parts = _.map(parts, (part) => {
     return part.charAt(0).toUpperCase() + part.substring(1);
   });
 
@@ -128,7 +135,7 @@ function pascalCase(destPath) {
 function getJsxString(svgPath, destPath, options) {
   const className = pascalCase(destPath);
 
-  console.log('  ' + className);
+  console.log(`  ${className}`);
 
   const data = fs.readFileSync(svgPath, {
     encoding: 'utf8',
@@ -152,11 +159,27 @@ function getJsxString(svgPath, destPath, options) {
 
   return Mustache.render(
     template, {
-      muiRequireStmt: muiRequireStmt,
-      paths: paths,
-      className: className,
-    }
+      muiRequireStmt,
+      paths,
+      className,
+    },
   );
+}
+
+/**
+ * make index.js, it exports all of SVGIcon classes.
+ * @param {object} options
+ */
+function processIndex(options) {
+  const files = glob.sync(path.join(options.outputDir, '*.js'));
+  const results = [];
+  files.forEach((jsPath) => {
+    const typename = path.basename(jsPath).replace('.js', '');
+    results.push(`export { ${typename} } from './${typename}';\n`);
+  });
+  const index = results.join('');
+  const absDestPath = path.join(options.outputDir, 'index.js');
+  fs.writeFileSync(absDestPath, index);
 }
 
 if (require.main === module) {
@@ -165,12 +188,13 @@ if (require.main === module) {
 }
 
 module.exports = {
-  pascalCase: pascalCase,
-  getJsxString: getJsxString,
-  processFile: processFile,
-  main: main,
-  SVG_ICON_RELATIVE_REQUIRE: SVG_ICON_RELATIVE_REQUIRE,
-  SVG_ICON_ABSOLUTE_REQUIRE: SVG_ICON_ABSOLUTE_REQUIRE,
-  RENAME_FILTER_DEFAULT: RENAME_FILTER_DEFAULT,
-  RENAME_FILTER_MUI: RENAME_FILTER_MUI,
+  pascalCase,
+  getJsxString,
+  processFile,
+  processIndex,
+  main,
+  SVG_ICON_RELATIVE_REQUIRE,
+  SVG_ICON_ABSOLUTE_REQUIRE,
+  RENAME_FILTER_DEFAULT,
+  RENAME_FILTER_MUI,
 };

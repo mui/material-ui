@@ -7,13 +7,31 @@ import createEagerFactory from 'recompose/createEagerFactory';
 import customPropTypes from '../utils/customPropTypes';
 import { keys } from '../styles/breakpoints';
 
-export const isWidthUp = (baseWidth, width) => (
-  keys.indexOf(baseWidth) <= keys.indexOf(width)
-);
+/**
+ * By default, returns true if screen width is the same or greater than the given breakpoint.
+ * @param screenWidth
+ * @param breakpoint
+ * @param inclusive - defaults to true
+ */
+export const isWidthUp = (breakpoint, screenWidth, inclusive = true) => {
+  if (inclusive) {
+    return keys.indexOf(breakpoint) <= keys.indexOf(screenWidth);
+  }
+  return keys.indexOf(breakpoint) < keys.indexOf(screenWidth);
+};
 
-export const isWidthDown = (baseWidth, width) => (
-  keys.indexOf(baseWidth) > keys.indexOf(width)
-);
+/**
+ * By default, returns true if screen width is the same or less than the given breakpoint.
+ * @param screenWidth
+ * @param breakpoint
+ * @param inclusive - defaults to true
+ */
+export const isWidthDown = (breakpoint, screenWidth, inclusive = true) => {
+  if (inclusive) {
+    return keys.indexOf(screenWidth) <= keys.indexOf(breakpoint);
+  }
+  return keys.indexOf(screenWidth) < keys.indexOf(breakpoint);
+};
 
 function withWidth(options = {}) {
   const {
@@ -83,7 +101,10 @@ function withWidth(options = {}) {
       }
 
       render() {
-        const width = this.state.width;
+        const props = {
+          width: this.state.width,
+          ...this.props,
+        };
 
         /**
          * When rendering the component on the server,
@@ -95,16 +116,13 @@ function withWidth(options = {}) {
          * But the browser support of this API is low:
          * http://caniuse.com/#search=client%20hint
          */
-        if (width === null) {
+        if (props.width === null) {
           return null;
         }
 
         return (
           <EventListener target="window" onResize={this.handleResize}>
-            {factory({
-              width,
-              ...this.props,
-            })}
+            {factory(props)}
           </EventListener>
         );
       }

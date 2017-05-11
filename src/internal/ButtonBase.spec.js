@@ -3,7 +3,7 @@
 import React from 'react';
 import keycode from 'keycode';
 import { assert } from 'chai';
-import { spy } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import { createShallow, createMount } from 'src/test-utils';
 import ButtonBase, { styleSheet } from './ButtonBase';
 
@@ -25,20 +25,20 @@ describe('<ButtonBase />', () => {
   describe('root node', () => {
     it('should render a button with type="button" by default', () => {
       const wrapper = shallow(<ButtonBase>Hello</ButtonBase>);
-      assert.strictEqual(wrapper.is('button'), true, 'should be a button');
+      assert.strictEqual(wrapper.name(), 'button');
       assert.strictEqual(wrapper.childAt(0).equals('Hello'), true, 'should say Hello');
       assert.strictEqual(wrapper.props().type, 'button', 'should be type button');
     });
 
     it('should change the button type', () => {
       const wrapper = shallow(<ButtonBase type="submit">Hello</ButtonBase>);
-      assert.strictEqual(wrapper.is('button'), true, 'should be a button');
+      assert.strictEqual(wrapper.name(), 'button');
       assert.strictEqual(wrapper.props().type, 'submit', 'should be type submit');
     });
 
     it('should change the button component and add accessibility requirements', () => {
       const wrapper = shallow(<ButtonBase component="span" role="checkbox" aria-checked={false} />);
-      assert.strictEqual(wrapper.is('span'), true, 'should be a span');
+      assert.strictEqual(wrapper.name(), 'span');
       assert.strictEqual(wrapper.props().role, 'checkbox', 'should be role checkbox');
       assert.strictEqual(wrapper.props().tabIndex, '0', 'should be 0');
     });
@@ -60,14 +60,14 @@ describe('<ButtonBase />', () => {
 
     it('should change the button type to span and set role="button"', () => {
       const wrapper = shallow(<ButtonBase component="span">Hello</ButtonBase>);
-      assert.strictEqual(wrapper.is('span'), true, 'should be a span');
+      assert.strictEqual(wrapper.name(), 'span');
       assert.strictEqual(wrapper.props().type, undefined, 'should not set a type');
       assert.strictEqual(wrapper.props().role, 'button', 'should role to button');
     });
 
     it('should automatically change the button to an a element when href is provided', () => {
       const wrapper = shallow(<ButtonBase href="http://google.com">Hello</ButtonBase>);
-      assert.strictEqual(wrapper.is('a'), true, 'should be an a element');
+      assert.strictEqual(wrapper.name(), 'a');
       assert.strictEqual(wrapper.props().href, 'http://google.com', 'should have the href property');
     });
   });
@@ -287,12 +287,20 @@ describe('<ButtonBase />', () => {
   });
 
   describe('mounted tab press listener', () => {
-    it('should listen for tab presses and set keyboard focus', (done) => {
-      const wrapper = mount(
+    let wrapper;
+    let instance;
+    let button;
+    let clock;
+
+    before(() => {
+      clock = useFakeTimers();
+      wrapper = mount(
         <ButtonBase id="test-button">Hello</ButtonBase>,
       );
+      instance = wrapper.instance();
 
-      const button = document.getElementById('test-button');
+      button = document.getElementById('test-button');
+
       if (!button) {
         throw new Error('missing button');
       }
@@ -301,15 +309,19 @@ describe('<ButtonBase />', () => {
       const event = new window.Event('keyup');
       event.which = keycode('tab');
       window.dispatchEvent(event);
+    });
 
-      setTimeout(() => {
-        assert.strictEqual(
-          wrapper.state('keyboardFocused'),
-          true,
-          'should be keyboardFocused',
-        );
-        done();
-      }, 200);
+    after(() => {
+      clock.restore();
+    });
+
+    it('should not set keyboard focus before time has passed', () => {
+      assert.strictEqual(wrapper.state('keyboardFocused'), false, 'should not be keyboardFocused');
+    });
+
+    it('should listen for tab presses and set keyboard focus', () => {
+      clock.tick(instance.keyboardFocusCheckTime * instance.keyboardFocusMaxCheckTimes);
+      assert.strictEqual(wrapper.state('keyboardFocused'), true, 'should be keyboardFocused');
     });
   });
 
@@ -325,6 +337,175 @@ describe('<ButtonBase />', () => {
       const Link = (props) => <div {...props} />;
       const wrapper = shallow(<ButtonBase component={Link}>Hello</ButtonBase>);
       assert.strictEqual(wrapper.is(Link), true);
+    });
+  });
+
+  describe('handleFocus()', () => {
+    it('when disabled should not persist event', () => {
+      const wrapper = mount(<ButtonBase disabled>Hello</ButtonBase>);
+      const instance = wrapper.instance();
+      const eventMock = {
+        persist: spy(),
+      };
+      instance.handleFocus(eventMock);
+      assert.strictEqual(eventMock.persist.callCount, 0);
+    });
+
+    it('onKeyboardFocusHandler() should propogate call to onKeyboardFocus prop', () => {
+      const eventMock = 'woof';
+      const onKeyboardFocusSpy = spy();
+      const wrapper = mount(
+        <ButtonBase component={'span'} onKeyboardFocus={onKeyboardFocusSpy}>Hello</ButtonBase>,
+      );
+      const instance = wrapper.instance();
+      instance.onKeyboardFocusHandler(eventMock);
+      assert.strictEqual(onKeyboardFocusSpy.callCount, 1);
+      assert.strictEqual(onKeyboardFocusSpy.calledWith(eventMock), true);
+    });
+  });
+
+  describe('handleKeyDown()', () => {
+    let wrapper;
+    let instance;
+    let event;
+
+    describe('avoids multiple keydown presses', () => {
+      let eventPersistSpy;
+
+      before(() => {
+        wrapper = mount(<ButtonBase>Hello</ButtonBase>);
+        wrapper.setProps({
+          focusRipple: true,
+        });
+        wrapper.setState({
+          keyboardFocused: true,
+        });
+
+        eventPersistSpy = spy();
+        event = { persist: eventPersistSpy, keyCode: keycode('space') };
+
+        instance = wrapper.instance();
+        instance.keyDown = false;
+        instance.ripple = {
+          stop: spy(),
+        };
+        instance.handleKeyDown(event);
+      });
+
+      it('should mark keydown as true', () => {
+        assert.strictEqual(instance.keyDown, true);
+      });
+
+      it('should call event.persist exactly once', () => {
+        assert.strictEqual(event.persist.callCount, 1);
+      });
+
+      it('should call stop exactly once', () => {
+        assert.strictEqual(instance.ripple.stop.callCount, 1);
+      });
+
+      it('should call stop with event', () => {
+        assert.strictEqual(instance.ripple.stop.calledWith(event), true);
+      });
+    });
+
+    describe('prop: onKeyDown', () => {
+      let eventPersistSpy;
+      let onKeyDownSpy;
+
+      before(() => {
+        wrapper = mount(<ButtonBase>Hello</ButtonBase>);
+        onKeyDownSpy = spy();
+        wrapper.setProps({
+          onKeyDown: onKeyDownSpy,
+        });
+
+        eventPersistSpy = spy();
+        event = { persist: eventPersistSpy, keyCode: undefined };
+
+        instance = wrapper.instance();
+        instance.keyDown = false;
+        instance.handleKeyDown(event);
+      });
+
+      it('should not change keydown', () => {
+        assert.strictEqual(instance.keyDown, false);
+      });
+
+      it('should not call event.persist', () => {
+        assert.strictEqual(event.persist.callCount, 0);
+      });
+
+      it('should call onKeyDown', () => {
+        assert.strictEqual(onKeyDownSpy.callCount, 1);
+      });
+
+      it('should call onKeyDown with event', () => {
+        assert.strictEqual(onKeyDownSpy.calledWith(event), true);
+      });
+    });
+
+    describe('Keyboard accessibility for non interactive elements', () => {
+      let eventTargetMock;
+      let onClickSpy;
+
+      before(() => {
+        wrapper = mount(<ButtonBase>Hello</ButtonBase>);
+        onClickSpy = spy();
+        wrapper.setProps({
+          onClick: onClickSpy,
+          component: 'woof',
+        });
+
+        eventTargetMock = 'woof';
+        event = {
+          persist: spy(),
+          preventDefault: spy(),
+          keyCode: keycode('space'),
+          target: eventTargetMock,
+        };
+
+        instance = wrapper.instance();
+        instance.keyDown = false;
+        instance.button = eventTargetMock;
+        instance.handleKeyDown(event);
+      });
+
+      it('should not change keydown', () => {
+        assert.strictEqual(instance.keyDown, false);
+      });
+
+      it('should not call event.persist', () => {
+        assert.strictEqual(event.persist.callCount, 0);
+      });
+
+      it('should call event.preventDefault', () => {
+        assert.strictEqual(event.preventDefault.callCount, 1);
+      });
+
+      it('should call onClick', () => {
+        assert.strictEqual(onClickSpy.callCount, 1);
+      });
+
+      it('should call onClick with event', () => {
+        assert.strictEqual(onClickSpy.calledWith(event), true);
+      });
+    });
+  });
+
+  describe('focus()', () => {
+    let instance;
+
+    before(() => {
+      instance = mount(<ButtonBase component="span">Hello</ButtonBase>).instance();
+      instance.button = {
+        focus: spy(),
+      };
+    });
+
+    it('should call the focus on the instance.button', () => {
+      instance.focus();
+      assert.strictEqual(instance.button.focus.callCount, 1);
     });
   });
 });

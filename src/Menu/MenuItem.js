@@ -8,28 +8,27 @@ import customPropTypes from '../utils/customPropTypes';
 import ListItem from '../List/ListItem';
 
 export const styleSheet = createStyleSheet('MuiMenuItem', (theme) => {
-  const { palette, typography, transitions } = theme;
   return {
     root: {
-      ...typography.subheading,
+      ...theme.typography.subheading,
       height: 48,
       boxSizing: 'border-box',
       background: 'none',
-      transition: transitions.create('background-color', {
-        duration: transitions.duration.short,
+      transition: theme.transitions.create('background-color', {
+        duration: theme.transitions.duration.short,
       }),
       overflow: 'hidden',
       textOverflow: 'ellipsis',
       whiteSpace: 'nowrap',
       '&:focus': {
-        background: palette.text.divider,
+        background: theme.palette.text.divider,
       },
       '&:hover': {
-        backgroundColor: palette.text.divider,
+        backgroundColor: theme.palette.text.divider,
       },
     },
     selected: {
-      backgroundColor: palette.text.divider,
+      backgroundColor: theme.palette.text.divider,
     },
   };
 });

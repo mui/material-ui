@@ -1,10 +1,8 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
-export default from './List';
-export List from './List';
-export ListItem from './ListItem';
-export ListItemAvatar from './ListItemAvatar';
-export ListItemText from './ListItemText';
-export ListItemIcon from './ListItemIcon';
-export ListItemSecondaryAction from './ListItemSecondaryAction';
-export ListSubheader from './ListSubheader';
+// @flow
+export { default } from './List';
+export { default as ListItem } from './ListItem';
+export { default as ListItemAvatar } from './ListItemAvatar';
+export { default as ListItemText } from './ListItemText';
+export { default as ListItemIcon } from './ListItemIcon';
+export { default as ListItemSecondaryAction } from './ListItemSecondaryAction';
+export { default as ListSubheader } from './ListSubheader';

@@ -20,6 +20,7 @@ export const styleSheet = createStyleSheet('MuiSwitchLabel', (theme) => {
       marginRight: 16, // used for row presentation of radio/checkbox
     },
     labelText: {
+      fontFamily: theme.typography.fontFamily,
       userSelect: 'none',
     },
     disabled: {

@@ -5,7 +5,7 @@ please use [StackOverflow](http://stackoverflow.com/questions/tagged/material-ui
 instead of Github issues. There is a StackOverflow tag called "material-ui"
 that you can use to tag your questions.
 
-#[Material-UI](http://www.material-ui.com/)
+# [Material-UI](http://www.material-ui.com/)
 [![npm package](https://img.shields.io/npm/v/material-ui.svg?style=flat-square)](https://www.npmjs.org/package/material-ui)
 [![CircleCI](https://circleci.com/gh/callemall/material-ui/tree/next.svg?style=svg)](https://circleci.com/gh/callemall/material-ui/tree/next)
 [![Gitter](https://img.shields.io/badge/gitter-join%20chat-f81a65.svg?style=flat-square)](https://gitter.im/callemall/material-ui?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -50,29 +50,10 @@ npm install material-ui@next
 
 Please note that `@next` will only point to pre-releases; to get the latest stable release use `@latest` instead.
 
-
-### React-Tap-Event-Plugin
-
-Some components use
-[react-tap-event-plugin](https://github.com/zilverline/react-tap-event-plugin) to
-listen for touch events because onClick is not fast enough
-_This dependency is temporary and will eventually go away._ Until then,
-be sure to inject this plugin at the start of your app.
-
-```js
-import injectTapEventPlugin from 'react-tap-event-plugin';
-
-// Needed for onTouchTap
-// http://stackoverflow.com/a/34015469/988941
-injectTapEventPlugin();
-```
-
 ### Roboto Font
 
 Material-UI was designed with the [Roboto](http://www.google.com/fonts/specimen/Roboto)
-font in mind. So be sure to include it in your project. Here are
-[some instructions](http://www.google.com/fonts#UsePlace:use/Collection:Roboto:400,300,500)
-on how to do so.
+font in mind. So be sure to follow [those instructions](https://github.com/callemall/material-ui/blob/next/docs/src/pages/style/typography.md#general).
 
 ### Packaging for use with separate React
 
@@ -114,10 +95,10 @@ ReactDOM.render(
 **./MyAwesomeReactComponent.js**
 ```jsx
 import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from 'material-ui/Button';
 
 const MyAwesomeReactComponent = () => (
-  <RaisedButton label="Default" />
+  <Button>Default</Button>
 );
 
 export default MyAwesomeReactComponent;

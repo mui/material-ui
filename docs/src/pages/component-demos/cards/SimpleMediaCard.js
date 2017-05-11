@@ -1,24 +1,21 @@
 // @flow weak
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
-import {
-  Card,
-  CardMedia,
-  CardContent,
-  CardActions,
-} from 'material-ui/Card';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
+import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
 import Button from 'material-ui/Button';
-import Text from 'material-ui/Text';
-import reptileImage from 'docs/src/assets/images/contemplative-reptile@2x.jpg';
+import Typography from 'material-ui/Typography';
+import reptileImage from 'docs/src/assets/images/contemplative-reptile.jpg';
 
 const styleSheet = createStyleSheet('SimpleMediaCard', () => ({
-  card: { maxWidth: 345 },
+  card: {
+    maxWidth: 345,
+  },
 }));
 
-export default function SimpleMediaCard(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function SimpleMediaCard(props) {
+  const classes = props.classes;
   return (
     <div>
       <Card className={classes.card}>
@@ -26,11 +23,13 @@ export default function SimpleMediaCard(props, context) {
           <img src={reptileImage} alt="Contemplative Reptile" />
         </CardMedia>
         <CardContent>
-          <Text type="headline" component="h2">Lizard</Text>
-          <Text component="p">
+          <Typography type="headline" component="h2">
+            Lizard
+          </Typography>
+          <Typography component="p">
             Lizards are a widespread group of squamate reptiles, with over
             6,000 species, ranging across all continents except Antarctica
-          </Text>
+          </Typography>
         </CardContent>
         <CardActions>
           <Button compact primary>Share</Button>
@@ -41,6 +40,8 @@ export default function SimpleMediaCard(props, context) {
   );
 }
 
-SimpleMediaCard.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+SimpleMediaCard.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(SimpleMediaCard);

@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
@@ -18,7 +18,7 @@ describe('<AppBar />', () => {
     const wrapper = shallow(
       <AppBar>Hello World</AppBar>,
     );
-    assert.strictEqual(wrapper.is('Paper'), true, 'should be <Paper>');
+    assert.strictEqual(wrapper.name(), 'Paper');
     assert.strictEqual(wrapper.props().elevation, 4, 'should render with a 4dp shadow');
   });
 

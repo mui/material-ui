@@ -1,7 +1,7 @@
 {
   "private": "true",
-  "name": "material-ui-icon-builder",
-  "version": "1.0.0-alpha.2",
+  "name": "material-ui-icons-builder",
+  "version": "1.0.0-alpha.3",
   "description": "Material Design Svg Icons converted to Material-UI React components.",
   "author": "Material-UI Team",
   "license": "MIT",
@@ -25,30 +25,27 @@
     "build": "npm run build:icons && npm run build:babel && npm run build:copy-files",
     "build:babel": "babel --presets es2015,react -d ./build ./src",
     "build:copy-files": "babel-node ./copy-files.js",
-    "build:icons": "node ./build.js --output-dir ./src --svg-dir ./node_modules/material-design-icons --glob '/**/production/*_24px.svg' --renameFilter ./filters/rename/material-design-icons.js",
-    "clean:": "rimraf build",
+    "build:icons": "babel-node ./build.js --output-dir ./src --svg-dir ./node_modules/material-design-icons --glob '/**/production/*_24px.svg' --renameFilter ./filters/rename/material-design-icons.js",
+    "clean": "rimraf build",
     "prebuild": "npm run clean",
-    "test": "grunt"
+    "test": "mocha",
+    "test:watch": "mocha -w"
   },
   "devDependencies": {
-    "babel-cli": "^6.0.0",
-    "babel-preset-es2015": "^6.0.0",
-    "babel-preset-react": "^6.0.0",
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "chai": "^3.0.0",
     "fs-extra": "^2.0.0",
     "glob": "^7.0.0",
-    "grunt": "^1.0.0",
-    "grunt-contrib-clean": "^1.0.0",
-    "grunt-contrib-watch": "^1.0.0",
-    "grunt-mocha-test": "^0.13.0",
     "lodash": "^4.0.0",
     "material-design-icons": "^3.0.0",
     "mkdirp": "^0.5.0",
-    "mocha": "^3.0.0",
+    "mocha": "^3.3.0",
     "mustache": "^2.0.0",
     "recursive-readdir-sync": "^1.0.6",
     "rimraf": "^2.0.0",
-    "temp": "^0.8.0",
-    "yargs": "^6.0.0"
+    "temp": "^0.8.3",
+    "yargs": "^7.1.0"
   }
 }
