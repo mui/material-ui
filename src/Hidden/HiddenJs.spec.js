@@ -16,36 +16,36 @@ describe('<HiddenJs />', () => {
     shallowWithWidth = (node, options = {}) => shallow(node, options).dive();
   });
 
-  function resolveProp(upDownOnly, breakpoint) {
+  function resolvePropName(upDownOnly, breakpoint) {
     if (upDownOnly === 'only') {
-      return { only: breakpoint };
+      return 'only';
     }
 
-    return { [`${breakpoint}${upDownOnly}`]: true };
+    return `${breakpoint}${upDownOnly}`;
   }
 
-  function shouldNotRender(
-    width: Breakpoint,
-    upDownOnly: 'Up' | 'Down' | 'only',
+  function isHidden(
     hiddenBreakpoints: Array<*>,
+    upDownOnly: 'Up' | 'Down' | 'only',
+    width: Breakpoint,
   ) {
-    const descriptions = {
-      Up: '(smaller)',
-      Down: '(same or smaller)',
-      only: '(exact match)',
-    };
     hiddenBreakpoints.forEach((breakpoint) => {
-      const prop = resolveProp(upDownOnly, breakpoint);
+      const prop = resolvePropName(upDownOnly, breakpoint);
+      const descriptions = {
+        Up: `${prop} is hidden for width: ${width} >= ${breakpoint}`,
+        Down: `${prop} is hidden for width: ${width} <= ${breakpoint}`,
+        only: `${prop} is hidden for width: ${width} === ${breakpoint}`,
+      };
 
-      it(`should not render children ${breakpoint} ${descriptions[upDownOnly]}`, () => {
-        const props = { width, ...prop };
-        const wrapper = shallowWithWidth(<HiddenJs component="div" {...props}>foo</HiddenJs>);
+      it(descriptions[upDownOnly], () => {
+        const props = { width, [prop]: breakpoint };
+
+        // children
+        let wrapper = shallowWithWidth(<HiddenJs component="div" {...props}>foo</HiddenJs>);
         assert.isNull(wrapper.type(), 'should render null');
-      });
 
-      it(`should not render Element ${breakpoint} ${descriptions[upDownOnly]}`, () => {
-        const props = { width, ...prop };
-        const wrapper = shallowWithWidth(
+        // element
+        wrapper = shallowWithWidth(
           <HiddenJs component={<Typography>foo</Typography>} {...props}>foo</HiddenJs>,
         );
         assert.isNull(wrapper.type(), 'should render null');
@@ -53,29 +53,32 @@ describe('<HiddenJs />', () => {
     });
   }
 
-  function shouldRender(
-    width: Breakpoint,
-    upDownOnly: 'Up' | 'Down' | 'only',
+  function isVisible(
     visibleBreakpoints: Array<*>,
+    upDownOnly: 'Up' | 'Down' | 'only',
+    width: Breakpoint,
   ) {
-    const descriptions = {
-      Up: '(same or larger)',
-      Down: '(larger)',
-      only: '(not exact match)',
-    };
     visibleBreakpoints.forEach((breakpoint) => {
-      const prop = resolveProp(upDownOnly, breakpoint);
-      it(`should render children ${breakpoint} ${descriptions[upDownOnly]}`, () => {
-        const props = { width, ...prop };
-        const wrapper = shallowWithWidth(<HiddenJs {...props}><div>foo</div></HiddenJs>);
+      const prop = resolvePropName(upDownOnly, breakpoint);
+      const descriptions = {
+        Up: `${prop} is visible for width: ${width} < ${breakpoint}`,
+        Down: `${prop} is visible for width: ${width} > ${breakpoint}`,
+        only: `${prop} is visible for width: ${width} !== ${breakpoint}`,
+      };
+
+      it(descriptions[upDownOnly], () => {
+        const props = { width, [prop]: breakpoint };
+
+        // children
+        let wrapper = shallowWithWidth(<HiddenJs {...props}>
+          <div>foo</div>
+        </HiddenJs>);
         assert.isNotNull(wrapper.type(), 'should render');
         assert.strictEqual(wrapper.name(), 'div');
         assert.strictEqual(wrapper.first().text(), 'foo', 'should render children');
-      });
 
-      it(`should render Element ${breakpoint} ${descriptions[upDownOnly]}`, () => {
-        const props = { width, ...prop };
-        const wrapper = shallowWithWidth(
+        // element
+        wrapper = shallowWithWidth(
           <HiddenJs {...props}>
             <Typography>foo</Typography>
           </HiddenJs>,
@@ -87,90 +90,85 @@ describe('<HiddenJs />', () => {
   }
 
   describe('screen width: xs', () => {
-    const screenWidth = 'xs';
     describe('up', () => {
-      shouldNotRender(screenWidth, 'Up', ['xs', 'sm', 'md', 'lg', 'xl']);
+      isHidden(['xs'], 'Up', 'xs');
+      isVisible(['sm', 'md', 'lg', 'xl'], 'Up', 'xs');
     });
 
     describe('down', () => {
-      shouldNotRender(screenWidth, 'Down', ['xs']);
-      shouldRender(screenWidth, 'Down', ['sm', 'md', 'lg']);
+      isHidden(['xs', 'sm', 'md', 'lg', 'xl'], 'Down', 'xs');
     });
 
     describe('only', () => {
-      shouldNotRender(screenWidth, 'only', ['xs', ['xs', 'xl']]);
-      shouldRender(screenWidth, 'only', ['sm', 'md', 'lg', 'xl', ['sm', 'md', 'lg', 'xl']]);
+      isHidden(['xs', ['xs', 'xl']], 'only', 'xs');
+      isVisible(['sm', 'md', 'lg', 'xl', ['sm', 'md', 'lg', 'xl']], 'only', 'xs');
     });
   });
 
   describe('screen width: sm', () => {
-    const screenWidth = 'sm';
     describe('up', () => {
-      shouldRender(screenWidth, 'Up', ['xs']);
-      shouldNotRender(screenWidth, 'Up', ['sm', 'md', 'lg', 'xl']);
+      isHidden(['xs', 'sm'], 'Up', 'sm');
+      isVisible(['md', 'lg', 'xl'], 'Up', 'sm');
     });
 
     describe('down', () => {
-      shouldNotRender(screenWidth, 'Down', ['xs', 'sm']);
-      shouldRender(screenWidth, 'Down', ['md', 'lg', 'xl']);
+      isHidden(['sm', 'md', 'lg', 'xl'], 'Down', 'sm');
+      isVisible(['xs'], 'Down', 'sm');
     });
 
     describe('only', () => {
-      shouldNotRender(screenWidth, 'only', ['sm', ['sm', 'md']]);
-      shouldRender(screenWidth, 'only', ['xs', 'md', 'lg', 'xl', ['xs', 'md', 'lg', 'xl']]);
+      isHidden(['sm', ['sm', 'md']], 'only', 'sm');
+      isVisible(['xs', 'md', 'lg', 'xl', ['xs', 'md', 'lg', 'xl']], 'only', 'sm');
     });
   });
 
   describe('screen width: md', () => {
-    const screenWidth = 'md';
     describe('up', () => {
-      shouldRender(screenWidth, 'Up', ['xs', 'sm']);
-      shouldNotRender(screenWidth, 'Up', ['md', 'lg', 'xl']);
+      isHidden(['xs', 'sm', 'md'], 'Up', 'md');
+      isVisible(['lg', 'xl'], 'Up', 'md');
     });
 
     describe('down', () => {
-      shouldNotRender(screenWidth, 'Down', ['xs', 'sm', 'md']);
-      shouldRender(screenWidth, 'Down', ['lg', 'xl']);
+      isHidden(['md', 'lg', 'xl'], 'Down', 'md');
+      isVisible(['xs', 'sm'], 'Down', 'md');
     });
 
     describe('only', () => {
-      shouldNotRender(screenWidth, 'only', ['md', ['md', 'lg']]);
-      shouldRender(screenWidth, 'only', ['xs', 'sm', 'lg', 'xl', ['xs', 'sm', 'lg', 'xl']]);
+      isHidden(['md', ['md', 'lg']], 'only', 'md');
+      isVisible(['xs', 'sm', 'lg', 'xl', ['xs', 'sm', 'lg', 'xl']], 'only', 'md');
     });
   });
 
   describe('screen width: lg', () => {
-    const screenWidth = 'lg';
     describe('up', () => {
-      shouldRender(screenWidth, 'Up', ['xs', 'sm', 'md']);
-      shouldNotRender(screenWidth, 'Up', ['lg', 'xl']);
+      isHidden(['xs', 'sm', 'md', 'lg'], 'Up', 'lg');
+      isVisible(['xl'], 'Up', 'lg');
     });
 
     describe('down', () => {
-      shouldNotRender(screenWidth, 'Down', ['xs', 'sm', 'md', 'lg']);
-      shouldRender(screenWidth, 'Down', ['xl']);
+      isHidden(['lg', 'xl'], 'Down', 'lg');
+      isVisible(['xs', 'sm', 'md'], 'Down', 'lg');
     });
 
     describe('only', () => {
-      shouldNotRender(screenWidth, 'only', ['lg', ['lg', 'xl']]);
-      shouldRender(screenWidth, 'only', ['xs', 'sm', 'md', 'xl', ['xs', 'sm', 'md', 'xl']]);
+      isHidden(['lg', ['lg', 'xl']], 'only', 'lg');
+      isVisible(['xs', 'sm', 'md', 'xl', ['xs', 'sm', 'md', 'xl']], 'only', 'lg');
     });
   });
 
   describe('screen width: xl', () => {
-    const screenWidth = 'xl';
     describe('up', () => {
-      shouldRender(screenWidth, 'Up', ['xs', 'sm', 'md', 'lg']);
-      shouldNotRender(screenWidth, 'Up', ['xl']);
+      isHidden(['xs', 'sm', 'md', 'lg', 'xl'], 'Up', 'xl');
     });
 
     describe('down', () => {
-      shouldNotRender(screenWidth, 'Down', ['xs', 'sm', 'md', 'lg', 'xl']);
+      isHidden(['xl'], 'Down', 'xl');
+      isVisible(['xs', 'sm', 'md', 'lg'], 'Down', 'xl');
     });
 
     describe('only', () => {
-      shouldNotRender(screenWidth, 'only', ['xl', ['xl', 'xs']]);
-      shouldRender(screenWidth, 'only', ['xs', 'sm', 'md', 'lg', ['xs', 'sm', 'md', 'lg']]);
+      isHidden(['xl', ['xl', 'xs']], 'only', 'xl');
+      isVisible(['xs', 'sm', 'md', 'lg', ['xs', 'sm', 'md', 'lg']], 'only', 'xl');
     });
   });
 });

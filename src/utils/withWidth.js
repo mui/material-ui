@@ -13,24 +13,24 @@ import { keys } from '../styles/breakpoints';
  * @param breakpoint
  * @param inclusive - defaults to true
  */
-export const isWidthUp = (screenWidth, breakpoint, inclusive = true) => {
+export const isWidthUp = (breakpoint, screenWidth, inclusive = true) => {
+  if (inclusive) {
+    return keys.indexOf(breakpoint) <= keys.indexOf(screenWidth);
+  }
+  return keys.indexOf(breakpoint) < keys.indexOf(screenWidth);
+};
+
+/**
+ * By default, returns true if screen width is the same or less than the given breakpoint.
+ * @param screenWidth
+ * @param breakpoint
+ * @param inclusive - defaults to true
+ */
+export const isWidthDown = (breakpoint, screenWidth, inclusive = true) => {
   if (inclusive) {
     return keys.indexOf(screenWidth) <= keys.indexOf(breakpoint);
   }
   return keys.indexOf(screenWidth) < keys.indexOf(breakpoint);
-};
-
-/**
- * By default, returns true if screen less than the given breakpoint.
- * @param screenWidth
- * @param breakpoint
- * @param inclusive - defaults to false
- */
-export const isWidthDown = (screenWidth, breakpoint, inclusive = false) => {
-  if (inclusive) {
-    return keys.indexOf(screenWidth) >= keys.indexOf(breakpoint);
-  }
-  return keys.indexOf(screenWidth) > keys.indexOf(breakpoint);
 };
 
 function withWidth(options = {}) {

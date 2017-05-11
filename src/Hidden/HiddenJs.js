@@ -59,8 +59,8 @@ function HiddenJs(props: Props) {
       const breakpointUp = props[`${breakpoint}Up`];
       const breakpointDown = props[`${breakpoint}Down`];
       if (
-        (breakpointUp && isWidthUp(width, breakpoint)) ||
-        (breakpointDown && (isWidthDown(width, breakpoint, true)))
+        (breakpointUp && isWidthUp(breakpoint, width)) ||
+        (breakpointDown && isWidthDown(breakpoint, width))
       ) {
         visible = false;
         break;
