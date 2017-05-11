@@ -47,7 +47,22 @@ const propTypes = {
   /**
    * Callback fired before the "entering" classes are applied.
    */
-  onEnter: PropTypes.func,
+  onEnter: function onEnterValidator(props, propName, componentName) {
+    const propError = new Error(`Invalid prop ${propName} supplied to ${componentName}. 
+    Must be function must not acccept more than one argument.`,
+    );
+    const propDoesNotExists = !props[propName];
+    if (propDoesNotExists) return null;
+
+    const propItself = props[propName];
+    const propIsNotFunction = !(propItself instanceof Function);
+    if (propIsNotFunction) return propError;
+
+    const propDoesAcceptOneArg = propItself.length > 1;
+    if (propDoesAcceptOneArg) return propError;
+
+    return null;
+  },
   /**
    * Callback fired after the "entering" classes are applied.
    */
@@ -209,11 +224,6 @@ class Transition extends Component {
   performEnter(props) {
     this.cancelNextCallback();
     const node = ReactDOM.findDOMNode(this);
-
-    // Not this.props, because we might be about to receive new props.
-    if (props.onEnter.length === 2) {
-      return props.onEnter(node, () => this.performEntering(node));
-    }
 
     props.onEnter(node);
     return this.performEntering(node);
