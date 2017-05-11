@@ -1,5 +1,6 @@
 // @flow weak
-import React, { Component, Element as ReactElement } from 'react';
+
+import React, { Component, Element as ReactElement } from 'react'; // DOM type `Element` used below
 import ReactDOM from 'react-dom';
 import transitionInfo from 'dom-helpers/transition/properties';
 import addEventListener from 'dom-helpers/events/on';
@@ -38,59 +39,59 @@ type Props = DefaultProps & {
   /**
    * The content of the component.
    */
-    children?: ReactElement<*>,
+  children?: ReactElement<*>,
   /**
    * The CSS class name of the root element.
    */
-    className?: string,
+  className?: string,
   /**
    * The CSS class applied when the component is entered.
    */
-    enteredClassName?: string,
+  enteredClassName?: string,
   /**
    * The CSS class applied while the component is entering.
    */
-    enteringClassName?: string,
+  enteringClassName?: string,
   /**
    * The CSS class applied when the component has exited.
    */
-    exitedClassName?: string,
+  exitedClassName?: string,
   /**
    * The CSS class applied while the component is exiting.
    */
-    exitingClassName?: string,
+  exitingClassName?: string,
   /**
    * Show the component; triggers the enter or exit animation.
    */
-    in?: boolean,
+  in?: boolean,
   /**
    * Callback fired before the "entering" classes are applied.
    */
-    onEnter?: TransitionCallback,
+  onEnter?: TransitionCallback,
   /**
    * Callback fired after the "entering" classes are applied.
    */
-    onEntering?: TransitionCallback,
+  onEntering?: TransitionCallback,
   /**
    * Callback fired after the "enter" classes are applied.
    */
-    onEntered?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  onEntered?: TransitionCallback, // eslint-disable-line react/sort-prop-types
   /**
    * Callback fired before the "exiting" classes are applied.
    */
-    onExit?: TransitionCallback,
+  onExit?: TransitionCallback,
   /**
    * Callback fired after the "exiting" classes are applied.
    */
-    onExiting?: TransitionCallback,
+  onExiting?: TransitionCallback,
   /**
    * Callback fired after the "exited" classes are applied.
    */
-    onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
   /**
    * @ignore
    */
-    onRequestTimeout?: TransitionCallback,
+  onRequestTimeout?: TransitionCallback,
   /**
    * A Timeout for the animation, in milliseconds, to ensure that a node doesn't
    * transition indefinitely if the browser transitionEnd events are
@@ -99,16 +100,16 @@ type Props = DefaultProps & {
    * By default this is set to a high number (5 seconds) as a failsafe. You should consider
    * setting this to the duration of your animation (or a bit above it).
    */
-    timeout?: number,
+  timeout?: number,
   /**
    * Run the enter animation when the component mounts, if it is initially
    * shown.
    */
-    transitionAppear?: boolean,
+  transitionAppear?: boolean,
   /**
    * Unmount the component (remove it from the DOM) when it is not shown.
    */
-    unmountOnExit?: boolean,
+  unmountOnExit?: boolean,
 };
 
 /**
