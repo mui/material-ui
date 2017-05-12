@@ -304,10 +304,6 @@ class Slider extends Component {
      */
     disabled: PropTypes.bool,
     /**
-     * An error message for the slider.
-     */
-    error: deprecated(PropTypes.node, 'Use a sibling node element instead. It will be removed with v0.17.0.'),
-    /**
      * The maximum value the slider can slide to on
      * a scale from 0 to 1 inclusive. Cannot be equal to min.
      */
@@ -771,7 +767,6 @@ class Slider extends Component {
       description,
       disabled,
       disableFocusRipple,
-      error,
       max,
       min,
       name,
@@ -827,7 +822,6 @@ class Slider extends Component {
     return (
       <div {...other} style={prepareStyles(Object.assign({}, style))}>
         <span>{description}</span>
-        <span>{error}</span>
         <div
           style={prepareStyles(Object.assign({}, styles.slider, sliderStyle))}
           onFocus={this.handleFocus}
