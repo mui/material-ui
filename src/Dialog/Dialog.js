@@ -92,6 +92,8 @@ function getStyles(props, context) {
   const gutter = spacing.desktopGutter;
   const borderScroll = `1px solid ${palette.borderColor}`;
 
+  const isRtl = context.muiTheme.isRtl;
+
   return {
     root: {
       position: 'fixed',
@@ -105,6 +107,8 @@ function getStyles(props, context) {
       transition: open ?
         transitions.easeOut('0ms', 'left', '0ms') :
         transitions.easeOut('0ms', 'left', '450ms'),
+      direction: isRtl ? 'rtl' : 'ltr',
+      textAlign: isRtl ? 'right' : '',
     },
     content: {
       boxSizing: 'border-box',
@@ -121,7 +125,7 @@ function getStyles(props, context) {
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
       padding: 8,
       width: '100%',
-      textAlign: 'right',
+      textAlign: isRtl ? '' : 'right',
       marginTop: autoScrollBodyContent ? -1 : 0,
     },
     overlay: {

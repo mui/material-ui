@@ -18,6 +18,10 @@ function getStyles(props, context) {
   const spacing = context.muiTheme.baseTheme.spacing;
   const palette = context.muiTheme.baseTheme.palette;
   const accentColor = context.muiTheme.dropDownMenu.accentColor;
+  const isRtl = context.muiTheme.isRtl;
+  const iconPadding = spacing.desktopGutterLess;
+  const labelPaddingStart = spacing.desktopGutter;
+  const labelPaddingEnd = spacing.iconSize * 2 + spacing.desktopGutterMini;
   return {
     control: {
       cursor: disabled ? 'not-allowed' : 'pointer',
@@ -28,7 +32,8 @@ function getStyles(props, context) {
     icon: {
       fill: accentColor,
       position: 'absolute',
-      right: spacing.desktopGutterLess,
+      right: isRtl ? '' : iconPadding,
+      left: isRtl ? iconPadding : '',
       top: (spacing.iconSize - 24) / 2 + spacing.desktopGutterMini / 2,
     },
     iconChildren: {
@@ -41,8 +46,8 @@ function getStyles(props, context) {
       overflow: 'hidden',
       opacity: 1,
       position: 'relative',
-      paddingLeft: spacing.desktopGutter,
-      paddingRight: spacing.iconSize * 2 + spacing.desktopGutterMini,
+      paddingLeft: isRtl ? labelPaddingEnd : labelPaddingStart,
+      paddingRight: isRtl ? labelPaddingStart : LabelPaddingEnd,
       textOverflow: 'ellipsis',
       top: 0,
       whiteSpace: 'nowrap',
