@@ -1,5 +1,25 @@
 ## HEAD
 
+## 0.18.1
+###### _May 12, 2017_
+
+##### Component Fixes / Enhancements
+
+- [Dialog] Improves borders behavior when scrollable (#6576) @bognix
+- [Slider] Fix step & max issue (#6752) @omarchehab98
+- [Slider] Fix `isRtl` behaviour `directionInvariant` approach (#6760) @omarchehab98
+- [TextField] Fix a warning of 'Failed prop type' (#6773) @szchenghuang
+- [TextField] Accessibility fix for horizontal rules (#6796) @charliegroll
+- [DatePicker] Call dismiss when handleTouchTapOk triggers (#6764) @NewOldMax
+- [Table] Handle 0 or 1 rows within the header (#6813) @DaIgeb
+- [Autocomplete] Fix handle open prop change (#6809) @jony89
+- [SelectField] Remove use of `.includes()` to support IE11 (#6838) @codylawson
+
+##### Core
+
+- [core] Fix breaking change "recompose" version dependency (#6847) @eduardomb
+- React 16 compatibility (#6753) @made-aryadinata
+
 ## 0.18.0
 ###### _Apr 30, 2017_
 
