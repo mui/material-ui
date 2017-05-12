@@ -54,7 +54,7 @@
     "prop-types": "^15.5.7",
     "react-transition-group": "^1.1.2",
     "react-event-listener": "^0.4.5",
-    "recompose": "0.23.0",
+    "recompose": "0.23.4",
     "simple-assign": "^0.1.0",
     "warning": "^3.0.0"
   },
