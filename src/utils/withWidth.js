@@ -2,8 +2,8 @@
 
 import React, { Component } from 'react';
 import EventListener from 'react-event-listener';
-import createHelper from 'recompose/createHelper';
 import createEagerFactory from 'recompose/createEagerFactory';
+import wrapDisplayName from 'recompose/wrapDisplayName';
 import customPropTypes from '../utils/customPropTypes';
 import { keys } from '../styles/breakpoints';
 
@@ -41,7 +41,7 @@ function withWidth(options = {}) {
   return (BaseComponent) => {
     const factory = createEagerFactory(BaseComponent);
 
-    return class WithWidth extends Component {
+    class Width extends Component {
       static contextTypes = {
         theme: customPropTypes.muiRequired,
       };
@@ -126,8 +126,14 @@ function withWidth(options = {}) {
           </EventListener>
         );
       }
-    };
+    }
+
+    if (process.env.NODE_ENV !== 'production') {
+      Width.displayName = wrapDisplayName(BaseComponent, 'withWidth');
+    }
+
+    return Width;
   };
 }
 
-export default createHelper(withWidth, 'withWidth');
+export default withWidth;
