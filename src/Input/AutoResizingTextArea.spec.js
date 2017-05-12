@@ -55,10 +55,9 @@ describe('<AutoResizingTextArea />', () => {
     const singleLineShandow = wrapper.find('textarea').first();
     wrapper.instance().singleLineShadow = singleLineShandow;
 
-    assert.strictEqual(wrapper.state().dirty, false);
     textArea.simulate('change', { target: { value: 'x' } }); // this is needed to trigger the resize
-    assert.strictEqual(wrapper.state().dirty, true);
+    assert.strictEqual(wrapper.instance().value, 'x');
     textArea.simulate('change', { target: { value: '' } }); // this is needed to trigger the resize
-    assert.strictEqual(wrapper.state().dirty, false);
+    assert.strictEqual(wrapper.instance().value, '');
   });
 });

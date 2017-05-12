@@ -48,6 +48,7 @@ export default class AutoResizingTextArea extends Component {
   shadow: HTMLInputElement;
   singleLineShadow: HTMLInputElement;
   input: HTMLInputElement;
+  value: string;
 
   static propTypes = {
     /**
@@ -75,10 +76,11 @@ export default class AutoResizingTextArea extends Component {
 
   state = {
     height: null,
-    dirty: !!this.props.defaultValue,
   };
 
   componentWillMount() {
+    // <Input> expects the components it renders to respond to 'value'
+    this.value = this.props.defaultValue;
     this.setState({
       height: this.props.rows * rowsHeight,
     });
@@ -148,14 +150,10 @@ export default class AutoResizingTextArea extends Component {
   handleChange = (event) => {
     const value = event.target.value;
     this.syncHeightWithShadow(value);
-    this.setState({
-      dirty: value.length > 0,
-    });
-    setTimeout(() => { // this needs to run after the above state is set.
-      if (this.props.onChange) {
-        this.props.onChange(event);
-      }
-    }, 0);
+    this.value = value;
+    if (this.props.onChange) {
+      this.props.onChange(event);
+    }
   };
 
   render() {

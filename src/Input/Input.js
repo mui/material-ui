@@ -8,9 +8,6 @@ import customPropTypes from '../utils/customPropTypes';
 import AutoResizingTextArea from './AutoResizingTextArea';
 
 function isDirty(obj) {
-  if (obj && obj.constructor === AutoResizingTextArea) {
-    return obj.state.dirty;
-  }
   return obj && obj.value && obj.value.length > 0;
 }
 
