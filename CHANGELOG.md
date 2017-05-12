@@ -1,7 +1,7 @@
 ## HEAD
 
 ## 0.18.1
-###### _May 12, 2017_
+###### _May 13, 2017_
 
 ##### Component Fixes / Enhancements
 
@@ -14,6 +14,7 @@
 - [Table] Handle 0 or 1 rows within the header (#6813) @DaIgeb
 - [Autocomplete] Fix handle open prop change (#6809) @jony89
 - [SelectField] Remove use of `.includes()` to support IE11 (#6838) @codylawson
+- [Slider] Remove deprecated error and description props (#6851) @solkaz
 
 ##### Core
 
