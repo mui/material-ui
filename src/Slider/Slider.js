@@ -4,7 +4,6 @@ import keycode from 'keycode';
 import warning from 'warning';
 import transitions from '../styles/transitions';
 import FocusRipple from '../internal/FocusRipple';
-import deprecated from '../utils/deprecatedPropType';
 
 /**
  * Verifies min/max range.
@@ -291,10 +290,6 @@ class Slider extends Component {
      * The default value of the slider.
      */
     defaultValue: valueInRangePropType,
-    /**
-     * Describe the slider.
-     */
-    description: deprecated(PropTypes.node, 'Use a sibling node element instead. It will be removed with v0.17.0.'),
     /**
      * Disables focus ripple if set to true.
      */
@@ -764,7 +759,6 @@ class Slider extends Component {
   render() {
     const {
       axis, // eslint-disable-line no-unused-vars
-      description,
       disabled,
       disableFocusRipple,
       max,
@@ -821,7 +815,6 @@ class Slider extends Component {
 
     return (
       <div {...other} style={prepareStyles(Object.assign({}, style))}>
-        <span>{description}</span>
         <div
           style={prepareStyles(Object.assign({}, styles.slider, sliderStyle))}
           onFocus={this.handleFocus}
