@@ -18,7 +18,6 @@ describe('<Slider />', () => {
   };
 
   const getTrackContainer = function(shallowWrapper) {
-    // console.log('shallowWrapper.children().at(2)', shallowWrapper.children().at(2));
     return shallowWrapper.childAt(0);
   };
 
