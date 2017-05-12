@@ -110,7 +110,7 @@ export default class Input extends Component {
       PropTypes.func,
     ]),
     /**
-     * The default value for the Input
+     * The default value of the `Input` element.
      */
     defaultValue: PropTypes.string,
     /**

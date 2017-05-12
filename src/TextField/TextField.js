@@ -19,7 +19,7 @@ export default class TextField extends Component {
      */
     className: PropTypes.string,
     /**
-     * The default value of the `Input` element
+     * The default value of the `Input` element.
      */
     defaultValue: PropTypes.string,
     /**
