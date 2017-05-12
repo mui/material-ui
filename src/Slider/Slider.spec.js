@@ -14,11 +14,12 @@ describe('<Slider />', () => {
   const shallowWithRTLContext = (node) => shallow(node, {context: {muiTheme: muiThemeRtl}});
 
   const getThumbElement = function(shallowWrapper) {
-    return shallowWrapper.children().at(2).children().at(0).children().at(2);
+    return shallowWrapper.childAt(0).childAt(0).childAt(2);
   };
 
   const getTrackContainer = function(shallowWrapper) {
-    return shallowWrapper.children().at(2);
+    // console.log('shallowWrapper.children().at(2)', shallowWrapper.children().at(2));
+    return shallowWrapper.childAt(0);
   };
 
   it('renders slider and the hidden input', () => {
