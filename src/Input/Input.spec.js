@@ -20,6 +20,8 @@ describe('<Input />', () => {
     assert.strictEqual(wrapper.name(), 'div');
     assert.strictEqual(wrapper.hasClass(classes.wrapper), true, 'should have the wrapper class');
     assert.strictEqual(wrapper.hasClass(classes.inkbar), true, 'should have the inkbar class');
+    assert.strictEqual(wrapper.hasClass(classes.underline), true,
+      'should have the underline class');
   });
 
   it('should render an <input /> inside the div', () => {
@@ -28,9 +30,21 @@ describe('<Input />', () => {
     assert.strictEqual(input.is('input'), true, 'should be a <input>');
     assert.strictEqual(input.prop('type'), 'text', 'should pass the text type prop');
     assert.strictEqual(input.hasClass(classes.input), true, 'should have the input class');
-    assert.strictEqual(input.hasClass(classes.underline), true, 'should have the underline class');
     assert.strictEqual(input.prop('aria-required'), undefined,
       'should not have the area-required prop');
+  });
+
+  it('should render an <AutoResizingTextarea /> when passed the multiline prop', () => {
+    const wrapper = shallow(<Input multiline />);
+    const input = wrapper.find('AutoResizingTextarea');
+    assert.strictEqual(input.is('AutoResizingTextarea'), true,
+      'should be a <AutoResizingTextarea>');
+  });
+
+  it('should render an <textarea /> when passed the multiline and rows props', () => {
+    const wrapper = shallow(<Input multiline rows={4} />);
+    const input = wrapper.find('textarea');
+    assert.strictEqual(input.is('textarea'), true, 'should be a <textarea>');
   });
 
   it('should render a disabled <input />', () => {

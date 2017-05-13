@@ -32,6 +32,11 @@ describe('<TextField />', () => {
       assert.strictEqual(wrapper.childAt(0).is('Input'), true);
     });
 
+    it('should forward the multiline prop to Input', () => {
+      wrapper = shallow(<TextField multiline />);
+      assert.strictEqual(wrapper.childAt(0).prop('multiline'), true);
+    });
+
     it('should pass inputClassName to the Input as className', () => {
       wrapper.setProps({ inputClassName: 'foo' });
       assert.strictEqual(wrapper.find('Input').hasClass('foo'), true);

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
+import AutoResizingTextarea from './AutoResizingTextarea';
 
 function isDirty(obj) {
   return obj && obj.value && obj.value.length > 0;
@@ -26,7 +27,7 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
       '&:after': {
         backgroundColor: theme.palette.primary.A200,
         left: 0,
-        bottom: -1,
+        bottom: -2,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
         content: '""',
         height: 2,
@@ -58,7 +59,6 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
       whiteSpace: 'normal',
       background: 'none',
       margin: 0, // Reset for Safari
-      appearance: 'textfield', // Improve type search style.
       color: theme.palette.text.primary,
       width: '100%',
       '&:focus': {
@@ -67,6 +67,16 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
       '&::-webkit-search-decoration': { // Remove the padding when type=search.
         appearance: 'none',
       },
+    },
+    inputSingleLine: {
+      appearance: 'textfield', // Improve type search style.
+    },
+    multiline: {
+      resize: 'none',
+      padding: 0,
+    },
+    multilineWrapper: {
+      padding: '6px 0',
     },
     disabled: {
       color: theme.palette.text.disabled,
@@ -99,6 +109,10 @@ export default class Input extends Component {
       PropTypes.func,
     ]),
     /**
+     * The default value of the `Input` element.
+     */
+    defaultValue: PropTypes.string,
+    /**
      * If `true`, the input will be disabled.
      */
     disabled: PropTypes.bool,
@@ -114,6 +128,10 @@ export default class Input extends Component {
      * The CSS class name of the input element.
      */
     inputClassName: PropTypes.string,
+    /**
+     * If `true`, a textarea element will be rendered.
+     */
+    multiline: PropTypes.bool,
     /**
      * @ignore
      */
@@ -149,10 +167,10 @@ export default class Input extends Component {
   };
 
   static defaultProps = {
-    component: 'input',
     disabled: false,
     type: 'text',
     disableUnderline: false,
+    multiline: false,
   };
 
   static contextTypes = {
@@ -238,11 +256,12 @@ export default class Input extends Component {
   render() {
     const {
       className: classNameProp,
-      component: ComponentProp,
-      inputClassName: inputClassNameProp,
+      component,
       disabled,
       disableUnderline,
       error: errorProp,
+      inputClassName: inputClassNameProp,
+      multiline,
       onBlur, // eslint-disable-line no-unused-vars
       onFocus, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
@@ -259,22 +278,37 @@ export default class Input extends Component {
     }
 
     const wrapperClassName = classNames(classes.wrapper, {
+      [classes.disabled]: disabled,
+      [classes.error]: error,
+      [classes.focused]: this.state.focused,
       [classes.formControl]: muiFormControl,
       [classes.inkbar]: !disableUnderline,
-      [classes.focused]: this.state.focused,
-      [classes.error]: error,
+      [classes.multilineWrapper]: multiline,
+      [classes.underline]: !disableUnderline,
     }, classNameProp);
 
     const inputClassName = classNames(classes.input, {
-      [classes.underline]: !disableUnderline,
+      [classes.inputSingleLine]: !multiline,
       [classes.disabled]: disabled,
+      [classes.multiline]: multiline,
     }, inputClassNameProp);
 
     const required = muiFormControl && muiFormControl.required === true;
 
+    let InputComponent = 'input';
+    if (component) {
+      InputComponent = component;
+    } else if (multiline) {
+      if (other.rows) {
+        InputComponent = 'textarea';
+      } else {
+        InputComponent = AutoResizingTextarea;
+      }
+    }
+
     return (
       <div className={wrapperClassName}>
-        <ComponentProp
+        <InputComponent
           ref={(c) => { this.input = c; }}
           className={inputClassName}
           onBlur={this.handleBlur}

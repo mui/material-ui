@@ -68,6 +68,7 @@ module.exports = {
     'react/sort-prop-types': 'error', // airbnb do nothing here.
     'react/sort-comp': [2, {
       order: [
+        'type-annotations',
         'static-methods',
         'props',
         'lifecycle',
