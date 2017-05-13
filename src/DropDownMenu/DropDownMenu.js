@@ -47,7 +47,7 @@ function getStyles(props, context) {
       opacity: 1,
       position: 'relative',
       paddingLeft: isRtl ? labelPaddingEnd : labelPaddingStart,
-      paddingRight: isRtl ? labelPaddingStart : LabelPaddingEnd,
+      paddingRight: isRtl ? labelPaddingStart : labelPaddingEnd,
       textOverflow: 'ellipsis',
       top: 0,
       whiteSpace: 'nowrap',
