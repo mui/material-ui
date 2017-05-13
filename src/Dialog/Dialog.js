@@ -108,7 +108,7 @@ function getStyles(props, context) {
         transitions.easeOut('0ms', 'left', '0ms') :
         transitions.easeOut('0ms', 'left', '450ms'),
       direction: isRtl ? 'rtl' : 'ltr',
-      textAlign: isRtl ? 'right' : '',
+      textAlign: isRtl ? 'right' : 'left',
     },
     content: {
       boxSizing: 'border-box',
@@ -125,7 +125,7 @@ function getStyles(props, context) {
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
       padding: 8,
       width: '100%',
-      textAlign: isRtl ? '' : 'right',
+      textAlign: isRtl ? 'left' : 'right',
       marginTop: autoScrollBodyContent ? -1 : 0,
     },
     overlay: {
