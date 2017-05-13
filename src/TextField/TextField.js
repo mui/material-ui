@@ -51,7 +51,7 @@ export default class TextField extends Component {
      */
     labelClassName: PropTypes.string,
     /**
-     * If `true`, a textarea element will be rendered.
+     * If `true`, a textarea element will be rendered instead of an input.
      */
     multiline: PropTypes.bool,
     /**

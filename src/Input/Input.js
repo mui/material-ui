@@ -68,15 +68,15 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
         appearance: 'none',
       },
     },
-    'input-single-line': {
+    inputSingleLine: {
       appearance: 'textfield', // Improve type search style.
     },
     multiline: {
       resize: 'none',
-      padding: '0',
-      'margin-top': '12',
+      padding: 0,
+      'margin-top': 12,
     },
-    'multiline-wrapper': {
+    multilineWrapper: {
       padding: '6px 0',
     },
     disabled: {
@@ -284,12 +284,12 @@ export default class Input extends Component {
       [classes.focused]: this.state.focused,
       [classes.formControl]: muiFormControl,
       [classes.inkbar]: !disableUnderline,
-      [classes['multiline-wrapper']]: multiline,
+      [classes.multilineWrapper]: multiline,
       [classes.underline]: !disableUnderline,
     }, classNameProp);
 
     const inputClassName = classNames(classes.input, {
-      [classes['input-single-line']]: !multiline,
+      [classes.inputSingleLine]: !multiline,
       [classes.disabled]: disabled,
       [classes.multiline]: multiline,
     }, inputClassNameProp);

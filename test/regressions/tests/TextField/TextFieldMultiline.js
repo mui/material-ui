@@ -5,13 +5,11 @@ import TextField from 'material-ui/TextField';
 
 export default function TextFieldMultiline() {
   return (
-    <div>
-      <TextField
-        label="Foo"
-        multiline
-        rows={4}
-        value="Default text"
-      />
-    </div>
+    <TextField
+      label="Foo"
+      multiline
+      rows={4}
+      value="Default text"
+    />
   );
 }

@@ -25,7 +25,7 @@ export const styleSheet = createStyleSheet('MuiTextarea', () => {
       lineHeight: 'inherit',
       border: 'none',
       outline: 'none',
-      'background-color': 'rgba(0,0,0,0)',
+      'background-color': 'transparent',
     },
     shadow: {
       resize: 'none',
@@ -51,9 +51,6 @@ export default class AutoResizingTextArea extends Component {
   value: string;
 
   static propTypes = {
-    /**
-     * Override the inline-styles of the root element.
-     */
     className: PropTypes.string,
     defaultValue: PropTypes.any,
     disabled: PropTypes.bool,
@@ -80,6 +77,7 @@ export default class AutoResizingTextArea extends Component {
 
   componentWillMount() {
     // <Input> expects the components it renders to respond to 'value'
+    // so that it can check whether they are dirty
     this.value = this.props.defaultValue;
     this.setState({
       height: this.props.rows * rowsHeight,
@@ -114,7 +112,7 @@ export default class AutoResizingTextArea extends Component {
     const shadow = this.shadow;
     const singleLineShadow = this.singleLineShadow;
 
-    const hasNewValue = (newValue && newValue !== '');
+    const hasNewValue = newValue && newValue !== '';
     const displayText = this.props.hintText && !hasNewValue ? this.props.hintText : newValue;
 
     if (displayText !== undefined) {
@@ -179,21 +177,23 @@ export default class AutoResizingTextArea extends Component {
           tabIndex="-1"
           rows={1}
           readOnly
+          aria-hidden="true"
           value={''}
         />
         <textarea
           ref={(c) => { this.shadow = c; }}
           className={classnames(classes.shadow, classes.textarea)}
           tabIndex="-1"
-          rows={this.props.rows}
+          rows={rows}
           defaultValue={this.props.defaultValue}
+          aria-hidden="true"
           readOnly
           value={this.props.value}
         />
         <textarea
           {...other}
           ref={(c) => { this.input = c; }}
-          rows={this.props.rows}
+          rows={rows}
           className={classes.textarea}
           style={{ height: this.state.height }}
           onChange={this.handleChange}
