@@ -19,41 +19,41 @@ export type HiddenProps = {
   /**
    * If true, screens this size and up will be hidden.
    */
-  xsUp?: boolean, // eslint-disable-line react/sort-prop-types
+  xsUp?: boolean,
   /**
    * If true, screens this size and up will be hidden.
    */
-  smUp?: boolean, // eslint-disable-line react/sort-prop-types
+  smUp?: boolean,
   /**
    * If true, screens this size and up will be hidden.
    */
-  mdUp?: boolean, // eslint-disable-line react/sort-prop-types
+  mdUp?: boolean,
   /**
    * If true, screens this size and up will be hidden.
    */
-  lgUp?: boolean, // eslint-disable-line react/sort-prop-types
+  lgUp?: boolean,
   /**
    * If true, screens this size and up will be hidden.
    */
-  xlUp?: boolean, // eslint-disable-line react/sort-prop-types
+  xlUp?: boolean,
   /**
    * If true, screens this size and down will be hidden.
    */
-  xsDown?: boolean, // eslint-disable-line react/sort-prop-types
+  xsDown?: boolean,
   /**
    * If true, screens this size and down will be hidden.
    */
-  smDown?: boolean, // eslint-disable-line react/sort-prop-types
+  smDown?: boolean,
   /**
    * If true, screens this size and down will be hidden.
    */
-  mdDown?: boolean, // eslint-disable-line react/sort-prop-types
+  mdDown?: boolean,
   /**
    * If true, screens this size and down will be hidden.
    */
-  lgDown?: boolean, // eslint-disable-line react/sort-prop-types
+  lgDown?: boolean,
   /**
    * If true, screens this size and down will be hidden.
    */
-  xlDown?: boolean, // eslint-disable-line react/sort-prop-types
+  xlDown?: boolean,
 };
