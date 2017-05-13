@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import debounce from 'lodash/debounce';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classnames from 'classnames';
 import EventListener from 'react-event-listener';
@@ -96,17 +97,10 @@ export default class AutoResizingTextArea extends Component {
   }
 
   handleResize = (event) => {
-    this.syncHeightWithShadow(undefined, event);
+    debounce(() => {
+      this.syncHeightWithShadow(undefined, event);
+    }, 100);
   };
-
-  getInputNode() {
-    return this.input;
-  }
-
-  setValue(value) {
-    this.getInputNode().value = value;
-    this.syncHeightWithShadow(value);
-  }
 
   syncHeightWithShadow(newValue, event, props) {
     const shadow = this.shadow;
