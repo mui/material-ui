@@ -26,7 +26,7 @@ export const styleSheet = createStyleSheet('MuiTextarea', () => {
       lineHeight: 'inherit',
       border: 'none',
       outline: 'none',
-      'background-color': 'transparent',
+      background: 'transparent',
     },
     shadow: {
       resize: 'none',
@@ -42,10 +42,7 @@ export const styleSheet = createStyleSheet('MuiTextarea', () => {
   };
 });
 
-/**
- * Input
- */
-export default class AutoResizingTextarea extends Component {
+export default class Textarea extends Component {
   shadow: HTMLInputElement;
   singleLineShadow: HTMLInputElement;
   input: HTMLInputElement;
@@ -58,9 +55,14 @@ export default class AutoResizingTextarea extends Component {
     hintText: PropTypes.string,
     onChange: PropTypes.func,
     onHeightChange: PropTypes.func,
-    rows: PropTypes.number,
-    rowsMax: PropTypes.number,
-    shadowClassName: PropTypes.object,
+    /**
+     * Number of rows to display when multiline option is set to true.
+     */
+    rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    /**
+     * Maxium number of rows to display when multiline option is set to true.
+     */
+    rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     value: PropTypes.string,
   };
 
@@ -81,7 +83,7 @@ export default class AutoResizingTextarea extends Component {
     // so that it can check whether they are dirty
     this.value = this.props.defaultValue;
     this.setState({
-      height: this.props.rows * rowsHeight,
+      height: Number(this.props.rows) * rowsHeight,
     });
   }
 
@@ -91,16 +93,18 @@ export default class AutoResizingTextarea extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value ||
-        nextProps.rowsMax !== this.props.rowsMax) {
+      Number(nextProps.rowsMax) !== Number(this.props.rowsMax)) {
       this.syncHeightWithShadow(nextProps.value, null, nextProps);
     }
   }
 
-  handleResize = (event) => {
-    debounce(() => {
-      this.syncHeightWithShadow(undefined, event);
-    }, 100);
-  };
+  componentWillUnmount() {
+    this.handleResize.cancel();
+  }
+
+  handleResize = debounce((event) => {
+    this.syncHeightWithShadow(undefined, event);
+  }, 100);
 
   syncHeightWithShadow(newValue, event, props) {
     const shadow = this.shadow;
@@ -122,8 +126,8 @@ export default class AutoResizingTextarea extends Component {
 
     props = props || this.props;
 
-    if (props.rowsMax >= props.rows) {
-      newHeight = Math.min(props.rowsMax * lineHeight, newHeight);
+    if (Number(props.rowsMax) >= Number(props.rows)) {
+      newHeight = Math.min(Number(props.rowsMax) * lineHeight, newHeight);
     }
 
     newHeight = Math.max(newHeight, lineHeight);
@@ -150,12 +154,15 @@ export default class AutoResizingTextarea extends Component {
 
   render() {
     const {
+      className,
+      defaultValue,
+      disabled,
+      hintText,
       onChange,
       onHeightChange,
       rows,
       rowsMax,
-      hintText,
-      className,
+      value,
       ...other
     } = this.props;
 
@@ -163,33 +170,38 @@ export default class AutoResizingTextarea extends Component {
     const classes = styleManager.render(styleSheet);
 
     return (
-      <div className={classnames(classes.root, className)} style={{ height: this.state.height }}>
+      <div
+        className={classes.root}
+        style={{ height: this.state.height }}
+      >
         <EventListener target="window" onResize={this.handleResize} />
         <textarea
-          ref={(c) => { this.singleLineShadow = c; }}
+          ref={(node) => { this.singleLineShadow = node; }}
           className={classnames(classes.shadow, classes.textarea)}
           tabIndex="-1"
-          rows={1}
+          rows="1"
           readOnly
           aria-hidden="true"
-          value={''}
+          value=""
         />
         <textarea
-          ref={(c) => { this.shadow = c; }}
+          ref={(node) => { this.shadow = node; }}
           className={classnames(classes.shadow, classes.textarea)}
           tabIndex="-1"
           rows={rows}
-          defaultValue={this.props.defaultValue}
+          defaultValue={defaultValue}
           aria-hidden="true"
           readOnly
-          value={this.props.value}
+          value={value}
         />
         <textarea
-          {...other}
-          ref={(c) => { this.input = c; }}
+          ref={(node) => { this.input = node; }}
           rows={rows}
-          className={classes.textarea}
+          className={classnames(classes.textarea, className)}
           onChange={this.handleChange}
+          defaultValue={defaultValue}
+          value={value}
+          {...other}
         />
       </div>
     );

@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import ReactTransitionGroup from 'react-transition-group/TransitionGroup';
-import shallowEqual from 'recompose/shallowEqual';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -55,14 +54,6 @@ export default class TouchRipple extends Component {
   componentWillMount() {
     // Pre-render the ripple styles
     this.context.styleManager.render(rippleStyleSheet);
-  }
-
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    return (
-      !shallowEqual(this.props, nextProps) ||
-      !shallowEqual(this.state, nextState) ||
-      !shallowEqual(this.context.theme, nextContext.theme)
-    );
   }
 
   // Used to filter out mouse emulated events on mobile.
