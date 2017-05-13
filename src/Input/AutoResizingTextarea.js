@@ -45,7 +45,7 @@ export const styleSheet = createStyleSheet('MuiTextarea', () => {
 /**
  * Input
  */
-export default class AutoResizingTextArea extends Component {
+export default class AutoResizingTextarea extends Component {
   shadow: HTMLInputElement;
   singleLineShadow: HTMLInputElement;
   input: HTMLInputElement;

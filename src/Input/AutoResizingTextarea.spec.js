@@ -3,9 +3,9 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow } from 'src/test-utils';
-import AutoResizingTextArea from './AutoResizingTextArea';
+import AutoResizingTextarea from './AutoResizingTextarea';
 
-describe('<AutoResizingTextArea />', () => {
+describe('<AutoResizingTextarea />', () => {
   let shallow;
 
   before(() => {
@@ -13,15 +13,15 @@ describe('<AutoResizingTextArea />', () => {
   });
 
   it('should render 3 textareas', () => {
-    const wrapper = shallow(<AutoResizingTextArea multiline />);
+    const wrapper = shallow(<AutoResizingTextarea multiline />);
     assert.strictEqual(wrapper.find('textarea').length, 3);
   });
   it('should change its height when the height of its shadows changes', () => {
-    const wrapper = shallow(<AutoResizingTextArea multiline onChange={(() => {})} />);
+    const wrapper = shallow(<AutoResizingTextarea multiline onChange={(() => {})} />);
     assert.strictEqual(wrapper.state().height, 24);
 
     // refs don't work with shallow renders in enzyme so here we directly define
-    // 'this.input', 'this.shadow', etc. for this AutoResizingTextArea via wrapper.instance()
+    // 'this.input', 'this.shadow', etc. for this AutoResizingTextarea via wrapper.instance()
     const textArea = wrapper.find('textarea').last();
     wrapper.instance().input = textArea;
     const shadow = wrapper.find('textarea').at(2);
@@ -43,11 +43,11 @@ describe('<AutoResizingTextArea />', () => {
   });
 
   it('should set dirty', () => {
-    const wrapper = shallow(<AutoResizingTextArea multiline />);
+    const wrapper = shallow(<AutoResizingTextarea multiline />);
     assert.strictEqual(wrapper.find('textarea').length, 3);
 
     // refs don't work with shallow renders in enzyme so here we directly define
-    // 'this.input', 'this.shadow', etc. for this AutoResizingTextArea via wrapper.instance()
+    // 'this.input', 'this.shadow', etc. for this AutoResizingTextarea via wrapper.instance()
     const textArea = wrapper.find('textarea').last();
     wrapper.instance().input = textArea;
     const shadow = wrapper.find('textarea').at(2);
