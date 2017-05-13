@@ -124,6 +124,8 @@ type Props = DefaultProps & {
  * the transitioning now at each step of the way.
  */
 class Transition extends Component<DefaultProps, Props, State> {
+  props: Props;
+
   static defaultProps: DefaultProps = {
     in: false,
     unmountOnExit: false,
@@ -137,7 +139,6 @@ class Transition extends Component<DefaultProps, Props, State> {
     onExited: noop,
   };
 
-  props: Props;
   state: State = {
     status: UNMOUNTED,
   };

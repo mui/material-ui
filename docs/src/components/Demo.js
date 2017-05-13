@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
-import shallowEqual from 'recompose/shallowEqual';
 import IconButton from 'material-ui/IconButton';
 import Collapse from 'material-ui/transitions/Collapse';
 import CodeIcon from 'material-ui-icons/Code';
@@ -69,14 +68,6 @@ class Demo extends Component {
   state = {
     codeOpen: false,
   };
-
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    return (
-      !shallowEqual(this.props, nextProps) ||
-      !shallowEqual(this.state, nextState) ||
-      !shallowEqual(this.context, nextContext)
-    );
-  }
 
   handleCodeButtonClick = () => {
     this.setState({
