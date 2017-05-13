@@ -74,7 +74,6 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
     multiline: {
       resize: 'none',
       padding: 0,
-      'margin-top': 12,
     },
     multilineWrapper: {
       padding: '6px 0',

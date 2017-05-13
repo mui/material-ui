@@ -13,10 +13,10 @@ export const styleSheet = createStyleSheet('MuiTextarea', () => {
   return {
     root: {
       position: 'relative', // because the shadow has position: 'absolute',
-      'margin-bottom': '-4px', // this is an unfortunate hack
     },
     textarea: {
       width: '100%',
+      height: '100%',
       resize: 'none',
       font: 'inherit',
       padding: 0,
@@ -169,7 +169,7 @@ export default class AutoResizingTextArea extends Component {
     const classes = styleManager.render(styleSheet);
 
     return (
-      <div className={classnames(classes.root, className)}>
+      <div className={classnames(classes.root, className)} style={{ height: this.state.height }}>
         <EventListener target="window" onResize={this.handleResize} />
         <textarea
           ref={(c) => { this.singleLineShadow = c; }}
@@ -195,7 +195,6 @@ export default class AutoResizingTextArea extends Component {
           ref={(c) => { this.input = c; }}
           rows={rows}
           className={classes.textarea}
-          style={{ height: this.state.height }}
           onChange={this.handleChange}
         />
       </div>
