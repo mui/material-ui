@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import transitions from '../styles/transitions';
 import SlideInTransitionGroup from '../internal/SlideIn';
 
@@ -48,7 +49,7 @@ function getStyles(props, context, state) {
       marginBottom: 10,
     },
     yearTitle: {
-      cursor: props.disableYearSelection ? 'not-allowed' : (!selectedYear ? 'pointer' : 'default'),
+      cursor: props.disableYearSelection || selectedYear ? 'default' : 'pointer',
     },
   };
 

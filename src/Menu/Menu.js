@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import shallowEqual from 'recompose/shallowEqual';
 import ClickAwayListener from '../internal/ClickAwayListener';
@@ -175,7 +176,7 @@ class Menu extends Component {
   constructor(props, context) {
     super(props, context);
     const filteredChildren = this.getFilteredChildren(props.children);
-    const selectedIndex = this.getSelectedIndex(props, filteredChildren);
+    const selectedIndex = this.getLastSelectedIndex(props, filteredChildren);
 
     const newFocusIndex = props.disableAutoFocus ? -1 : selectedIndex >= 0 ? selectedIndex : 0;
     if (newFocusIndex !== -1 && props.onMenuItemFocusChange) {
@@ -198,8 +199,14 @@ class Menu extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    let selectedIndex;
     const filteredChildren = this.getFilteredChildren(nextProps.children);
-    const selectedIndex = this.getSelectedIndex(nextProps, filteredChildren);
+
+    if (this.props.multiple !== true) {
+      selectedIndex = this.getLastSelectedIndex(nextProps, filteredChildren);
+    } else {
+      selectedIndex = this.state.focusIndex;
+    }
 
     const newFocusIndex = nextProps.disableAutoFocus ? -1 : selectedIndex >= 0 ? selectedIndex : 0;
     if (newFocusIndex !== this.state.focusIndex && this.props.onMenuItemFocusChange) {
@@ -311,7 +318,7 @@ class Menu extends Component {
     return menuItemCount;
   }
 
-  getSelectedIndex(props, filteredChildren) {
+  getLastSelectedIndex(props, filteredChildren) {
     let selectedIndex = -1;
     let menuItemIndex = 0;
 
@@ -559,11 +566,13 @@ class Menu extends Component {
           onWheel={this.handleOnWheel}
           style={prepareStyles(mergedRootStyles)}
           ref="scrollContainer"
+          role="presentation"
         >
           <List
             {...other}
             ref="list"
             style={mergedListStyles}
+            role="menu"
           >
             {newChildren}
           </List>

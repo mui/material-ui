@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 function getStyles() {
   return {
@@ -45,6 +46,7 @@ class CardActions extends Component {
       actAsExpander, // eslint-disable-line no-unused-vars
       children,
       expandable, // eslint-disable-line no-unused-vars
+      showExpandableButton, // eslint-disable-line no-unused-vars
       style,
       ...other
     } = this.props;

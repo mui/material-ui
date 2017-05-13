@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
@@ -7,7 +8,7 @@ import Overlay from '../internal/Overlay';
 import RenderToLayer from '../internal/RenderToLayer';
 import Paper from '../Paper';
 
-import ReactTransitionGroup from 'react-addons-transition-group';
+import ReactTransitionGroup from 'react-transition-group/TransitionGroup';
 
 class TransitionItem extends Component {
   static propTypes = {
@@ -122,7 +123,6 @@ function getStyles(props, context) {
       width: '100%',
       textAlign: 'right',
       marginTop: autoScrollBodyContent ? -1 : 0,
-      borderTop: autoScrollBodyContent ? borderScroll : 'none',
     },
     overlay: {
       zIndex: zIndex.dialogOverlay,
@@ -135,7 +135,6 @@ function getStyles(props, context) {
       lineHeight: '32px',
       fontWeight: 400,
       marginBottom: autoScrollBodyContent ? -1 : 0,
-      borderBottom: autoScrollBodyContent ? borderScroll : 'none',
     },
     body: {
       fontSize: dialog.bodyFontSize,
@@ -143,6 +142,8 @@ function getStyles(props, context) {
       padding: `${props.title ? 0 : gutter}px ${gutter}px ${gutter}px`,
       boxSizing: 'border-box',
       overflowY: autoScrollBodyContent ? 'auto' : 'hidden',
+      borderTop: autoScrollBodyContent ? borderScroll : 'none',
+      borderBottom: autoScrollBodyContent ? borderScroll : 'none',
     },
   };
 }
@@ -232,6 +233,10 @@ class DialogInline extends Component {
       }
 
       dialogContent.style.maxHeight = `${maxDialogContentHeight}px`;
+      if (maxDialogContentHeight > dialogWindowHeight) {
+        dialogContent.style.borderBottom = 'none';
+        dialogContent.style.borderTop = 'none';
+      }
     }
   }
 

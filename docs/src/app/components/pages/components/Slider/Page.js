@@ -16,6 +16,8 @@ import SliderExampleControlled from './ExampleControlled';
 import sliderExampleControlledCode from '!raw!./ExampleControlled';
 import SliderExampleAxis from './ExampleAxis';
 import sliderExampleAxisCode from '!raw!./ExampleAxis';
+import SliderExampleCustomScale from './ExampleCustomScale';
+import sliderExampleCustomScaleCode from '!raw!./ExampleCustomScale';
 import sliderCode from '!raw!material-ui/Slider/Slider';
 
 const SliderPage = () => (
@@ -51,6 +53,12 @@ const SliderPage = () => (
       code={sliderExampleAxisCode}
     >
       <SliderExampleAxis />
+    </CodeExample>
+    <CodeExample
+      title="Custom scale"
+      code={sliderExampleCustomScaleCode}
+    >
+      <SliderExampleCustomScale />
     </CodeExample>
     <PropTypeDescription code={sliderCode} />
   </div>

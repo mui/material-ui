@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
 
 const rowsHeight = 24;
@@ -33,7 +34,7 @@ class EnhancedTextarea extends Component {
   static propTypes = {
     defaultValue: PropTypes.any,
     disabled: PropTypes.bool,
-    hintText: PropTypes.string,
+    hintText: PropTypes.node,
     onChange: PropTypes.func,
     onHeightChange: PropTypes.func,
     rows: PropTypes.number,

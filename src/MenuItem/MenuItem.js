@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import shallowEqual from 'recompose/shallowEqual';
 import Popover from '../Popover/Popover';
@@ -20,7 +21,7 @@ function getStyles(props, context) {
   const styles = {
     root: {
       color: props.disabled ? disabledColor : textColor,
-      cursor: props.disabled ? 'not-allowed' : 'pointer',
+      cursor: props.disabled ? 'default' : 'pointer',
       minHeight: props.desktop ? '32px' : '48px',
       lineHeight: props.desktop ? '32px' : '48px',
       fontSize: props.desktop ? 15 : 16,
@@ -62,6 +63,9 @@ class MenuItem extends Component {
     /**
      * Location of the anchor for the popover of nested `MenuItem`
      * elements.
+     * Options:
+     * horizontal: [left, middle, right]
+     * vertical: [top, center, bottom].
      */
     anchorOrigin: propTypes.origin,
     /**
@@ -135,6 +139,14 @@ class MenuItem extends Component {
      */
     style: PropTypes.object,
     /**
+     * Location on the popover of nested `MenuItem` elements that will attach
+     * to the anchor's origin.
+     * Options:
+     * horizontal: [left, middle, right]
+     * vertical: [top, center, bottom].
+     */
+    targetOrigin: propTypes.origin,
+    /**
      * The value of the menu item.
      */
     value: PropTypes.any,
@@ -147,6 +159,7 @@ class MenuItem extends Component {
     disabled: false,
     focusState: 'none',
     insetChildren: false,
+    targetOrigin: {horizontal: 'left', vertical: 'top'},
   };
 
   static contextTypes = {
@@ -241,6 +254,7 @@ class MenuItem extends Component {
       style,
       animation,
       anchorOrigin,
+      targetOrigin,
       value, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
@@ -285,6 +299,7 @@ class MenuItem extends Component {
           anchorOrigin={anchorOrigin}
           anchorEl={this.state.anchorEl}
           open={this.state.open}
+          targetOrigin={targetOrigin}
           useLayerForClickAway={false}
           onRequestClose={this.handleRequestClose}
         >
@@ -306,6 +321,7 @@ class MenuItem extends Component {
         leftIcon={leftIconElement}
         ref="listItem"
         rightIcon={rightIconElement}
+        role="menuitem"
         style={mergedRootStyles}
       >
         {children}

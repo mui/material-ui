@@ -1,5 +1,6 @@
 /* eslint-env mocha */
-import React, {PropTypes, Component} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {shallow, mount} from 'enzyme';
 import {assert} from 'chai';
 import TextField from './TextField';

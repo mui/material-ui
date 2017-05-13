@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import TextField from '../TextField';
 import DropDownMenu from '../DropDownMenu';
 
@@ -39,6 +40,10 @@ class SelectField extends Component {
      * If true, the select field will be disabled.
      */
     disabled: PropTypes.bool,
+    /**
+     * Object that can handle and override any property of component DropDownMenu.
+     */
+    dropDownMenuProps: PropTypes.object,
     /**
      * Override the inline-styles of the error element.
      */
@@ -185,6 +190,7 @@ class SelectField extends Component {
       menuItemStyle,
       selectedMenuItemStyle,
       underlineStyle,
+      dropDownMenuProps,
       errorStyle,
       disabled,
       floatingLabelFixed,
@@ -242,6 +248,7 @@ class SelectField extends Component {
           maxHeight={maxHeight}
           multiple={multiple}
           selectionRenderer={selectionRenderer}
+          {...dropDownMenuProps}
         >
           {children}
         </DropDownMenu>

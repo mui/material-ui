@@ -1,8 +1,9 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import transitions from '../styles/transitions';
 
 function getStyles(props, context) {
-  const {inkBar} = context.muiTheme;
+  const {inkBar, isRtl} = context.muiTheme;
 
   return {
     root: {
@@ -14,7 +15,7 @@ function getStyles(props, context) {
       height: 2,
       marginTop: -2,
       position: 'relative',
-      transition: transitions.easeOut('1s', 'left'),
+      transition: transitions.easeOut('1s', isRtl ? 'right' : 'left'),
     },
   };
 }

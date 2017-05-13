@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import transitions from '../styles/transitions';
 import DropDownArrow from '../svg-icons/navigation/arrow-drop-down';
@@ -214,7 +215,7 @@ class DropDownMenu extends Component {
     maxHeight: 500,
     multiple: false,
     anchorOrigin: {
-      vertical: 'bottom',
+      vertical: 'top',
       horizontal: 'left',
     },
   };
@@ -402,7 +403,7 @@ class DropDownMenu extends Component {
     } else {
       const values = [];
       React.Children.forEach(children, (child) => {
-        if (child && value && value.includes(child.props.value)) {
+        if (child && value && value.indexOf(child.props.value) > -1) {
           if (selectionRenderer) {
             values.push(child.props.value);
           } else {
@@ -475,6 +476,8 @@ class DropDownMenu extends Component {
             onChange={this.handleChange}
             menuItemStyle={menuItemStyle}
             selectedMenuItemStyle={selectedMenuItemStyle}
+            autoWidth={autoWidth}
+            width={!autoWidth && menuStyle ? menuStyle.width : null}
           >
             {children}
           </Menu>
