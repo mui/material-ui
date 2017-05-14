@@ -11,6 +11,7 @@ import keycode from 'keycode';
 import Events from '../utils/events';
 import IconButton from '../IconButton';
 import propTypes from '../utils/propTypes';
+import rtl from '../utils/rtl';
 
 
 function getStyles(props, context) {
@@ -18,10 +19,8 @@ function getStyles(props, context) {
   const spacing = context.muiTheme.baseTheme.spacing;
   const palette = context.muiTheme.baseTheme.palette;
   const accentColor = context.muiTheme.dropDownMenu.accentColor;
-  const isRtl = context.muiTheme.isRtl;
-  const iconPadding = spacing.desktopGutterLess;
-  const labelPaddingStart = spacing.desktopGutter;
-  const labelPaddingEnd = spacing.iconSize * 2 + spacing.desktopGutterMini;
+  const normalizeDirection = rtl(context.muiTheme) || (style => style);
+
   return {
     control: {
       cursor: disabled ? 'not-allowed' : 'pointer',
@@ -29,29 +28,28 @@ function getStyles(props, context) {
       position: 'relative',
       width: '100%',
     },
-    icon: {
+    icon: normalizeDirection({
       fill: accentColor,
       position: 'absolute',
-      right: isRtl ? '' : iconPadding,
-      left: isRtl ? iconPadding : '',
+      right: spacing.desktopGutterLess,
       top: (spacing.iconSize - 24) / 2 + spacing.desktopGutterMini / 2,
-    },
+    }),
     iconChildren: {
       fill: 'inherit',
     },
-    label: {
+    label: normalizeDirection({
       color: disabled ? palette.disabledColor : palette.textColor,
       height: `${spacing.desktopToolbarHeight}px`,
       lineHeight: `${spacing.desktopToolbarHeight}px`,
       overflow: 'hidden',
       opacity: 1,
       position: 'relative',
-      paddingLeft: isRtl ? labelPaddingEnd : labelPaddingStart,
-      paddingRight: isRtl ? labelPaddingStart : labelPaddingEnd,
+      paddingLeft: spacing.desktopGutter,
+      paddingRight: spacing.iconSize * 2 + spacing.desktopGutterMini,
       textOverflow: 'ellipsis',
       top: 0,
       whiteSpace: 'nowrap',
-    },
+    }),
     labelWhenOpen: {
       opacity: 0,
       top: (spacing.desktopToolbarHeight / 8),
