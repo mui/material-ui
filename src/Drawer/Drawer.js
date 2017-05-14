@@ -246,9 +246,9 @@ class Drawer extends Component {
   onBodyTouchStart = (event) => {
     const swipeAreaWidth = this.props.swipeAreaWidth;
 
-    const touchStartX = !this.context.muiTheme.isRtl ?
-      event.touches[0].pageX :
-      (document.body.offsetWidth - event.touches[0].pageX);
+    const touchStartX = this.context.muiTheme.isRtl ?
+      (document.body.offsetWidth - event.touches[0].pageX) :
+      event.touches[0].pageX;
     const touchStartY = event.touches[0].pageY;
 
     // Open only if swiping from far left (or right) while closed
@@ -279,7 +279,7 @@ class Drawer extends Component {
   };
 
   setPosition(translateX) {
-    const rtlTranslateMultiplier = !this.context.muiTheme.isRtl ? 1 : -1;
+    const rtlTranslateMultiplier = this.context.muiTheme.isRtl ? -1 : 1;
     const drawer = ReactDOM.findDOMNode(this.refs.clickAwayableElement);
     const transformCSS = `translate(${(this.getTranslateMultiplier() * rtlTranslateMultiplier * translateX)}px, 0)`;
     this.refs.overlay.setOpacity(1 - translateX / this.getMaxTranslateX());
@@ -299,9 +299,9 @@ class Drawer extends Component {
   }
 
   onBodyTouchMove = (event) => {
-    const currentX = !this.context.muiTheme.isRtl ?
-      event.touches[0].pageX :
-      (document.body.offsetWidth - event.touches[0].pageX);
+    const currentX = this.context.muiTheme.isRtl ?
+      (document.body.offsetWidth - event.touches[0].pageX) :
+      event.touches[0].pageX;
     const currentY = event.touches[0].pageY;
 
     if (this.state.swiping) {
@@ -329,9 +329,9 @@ class Drawer extends Component {
 
   onBodyTouchEnd = (event) => {
     if (this.state.swiping) {
-      const currentX = !this.context.muiTheme.isRtl ?
-        event.changedTouches[0].pageX :
-        (document.body.offsetWidth - event.changedTouches[0].pageX);
+      const currentX = this.context.muiTheme.isRtl ?
+        (document.body.offsetWidth - event.changedTouches[0].pageX) :
+        event.changedTouches[0].pageX;
       const translateRatio = this.getTranslateX(currentX) / this.getMaxTranslateX();
 
       this.maybeSwiping = false;
