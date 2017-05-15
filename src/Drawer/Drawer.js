@@ -163,7 +163,7 @@ export default class Drawer extends Component {
      *
      * Note: for the `persistent` and `mini` variant to work,
      * you must set a width via paperClassName.
-     * For the `mini` variant, you also have to wrap Paper's children in
+     * For the `mini` variant, you also have to wrap the Drawer's children in
      * a container with the same fixed width set to paperClassName.
      */
     type: PropTypes.oneOf(['permanent', 'persistent', 'mini', 'temporary']),
