@@ -92,7 +92,7 @@ function getStyles(props, context) {
 
   const gutter = spacing.desktopGutter;
   const borderScroll = `1px solid ${palette.borderColor}`;
-  const normalizeDirection = rtl(context.muiTheme) || (style => style);
+  const normalizeDirection = rtl(context.muiTheme) || ((style) => { return style; });
 
   return {
     root: normalizeDirection({
