@@ -77,7 +77,7 @@ export type Props = {
   className?: string,
   /**
    * Always keep the children in the DOM.
-   * That property can be useful in SEO situation or
+   * This property can be useful in SEO situation or
    * when you want to maximize the responsiveness of the Modal.
    */
   keepMounted?: boolean,

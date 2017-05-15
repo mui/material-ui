@@ -1,12 +1,13 @@
 // @flow
 
+import type { Element } from 'react';
 import type { Breakpoint } from '../styles/breakpoints';
 
 export type HiddenProps = {
   /**
    * The content of the component.
    */
-  children?: React$Element<any>,
+  children?: Element<*>,
   /**
    * @ignore
    */

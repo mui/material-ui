@@ -8,6 +8,7 @@ import Toolbar from 'material-ui/Toolbar';
 import Drawer from 'material-ui/Drawer';
 import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
+import Hidden from 'material-ui/Hidden';
 import AppDrawerNavItem from 'docs/src/modules/components/AppDrawerNavItem';
 import Link from 'docs/src/modules/components/Link';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
@@ -78,57 +79,73 @@ function reduceChildRoutes(props, activePage, items, childPage, index) {
   return items;
 }
 
-function AppDrawer(props, context) {
-  const { classes, className, docked, onRequestClose } = props;
-  const GITHUB_RELEASE_BASE_URL = 'https://github.com/callemall/material-ui/releases/tag/';
-  let other = {};
+const GITHUB_RELEASE_BASE_URL = 'https://github.com/callemall/material-ui/releases/tag/';
 
-  if (!docked) {
-    other = {
-      keepMounted: true,
-    };
-  }
+function AppDrawer(props, context) {
+  const { classes, className, disablePermanent, mobileOpen, onRequestClose } = props;
+
+  const drawer = (
+    <div className={classes.nav}>
+      <Toolbar className={classes.toolbar}>
+        <Link className={classes.title} href="/" onClick={onRequestClose}>
+          <Typography type="title" gutterBottom color="inherit">
+            Material-UI
+          </Typography>
+        </Link>
+        {process.env.MATERIAL_UI_VERSION
+          ? <Link
+              className={classes.anchor}
+              href={`${GITHUB_RELEASE_BASE_URL}v${process.env.MATERIAL_UI_VERSION}`}
+            >
+              <Typography type="caption">{`v${process.env.MATERIAL_UI_VERSION}`}</Typography>
+            </Link>
+          : null}
+        <Divider absolute />
+      </Toolbar>
+      {renderNavItems(props, context.pages, context.activePage)}
+    </div>
+  );
 
   return (
-    <Drawer
-      className={className}
-      classes={{
-        paper: classes.paper,
-      }}
-      open={props.open}
-      onRequestClose={onRequestClose}
-      docked={docked}
-      {...other}
-    >
-      <div className={classes.nav}>
-        <Toolbar className={classes.toolbar}>
-          <Link className={classes.title} href="/" onClick={onRequestClose}>
-            <Typography type="title" gutterBottom color="inherit">
-              Material-UI
-            </Typography>
-          </Link>
-          {process.env.MATERIAL_UI_VERSION
-            ? <Link
-                className={classes.anchor}
-                href={`${GITHUB_RELEASE_BASE_URL}v${process.env.MATERIAL_UI_VERSION}`}
-              >
-                <Typography type="caption">{`v${process.env.MATERIAL_UI_VERSION}`}</Typography>
-              </Link>
-            : null}
-          <Divider absolute />
-        </Toolbar>
-        {renderNavItems(props, context.pages, context.activePage)}
-      </div>
-    </Drawer>
+    <div className={className}>
+      <Hidden lgUp={!disablePermanent}>
+        <Drawer
+          classes={{
+            paper: classes.paper,
+          }}
+          type="temporary"
+          open={mobileOpen}
+          onRequestClose={onRequestClose}
+          ModalProps={{
+            keepMounted: true,
+          }}
+        >
+          {drawer}
+        </Drawer>
+      </Hidden>
+      {disablePermanent
+        ? null
+        : <Hidden lgDown implementation="css">
+            <Drawer
+              classes={{
+                paper: classes.paper,
+              }}
+              type="permanent"
+              open
+            >
+              {drawer}
+            </Drawer>
+          </Hidden>}
+    </div>
   );
 }
 
 AppDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
-  docked: PropTypes.bool.isRequired,
+  disablePermanent: PropTypes.bool.isRequired,
+  mobileOpen: PropTypes.bool.isRequired,
   onRequestClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
 };
 
 AppDrawer.contextTypes = {

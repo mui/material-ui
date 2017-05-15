@@ -1,16 +1,14 @@
 // @flow
-/**
- * A grid component using the following libs as inspiration.
- *
- * For the implementation:
- * - http://v4-alpha.getbootstrap.com/layout/flexbox-grid/
- * - https://github.com/kristoferjoseph/flexboxgrid/blob/master/src/css/flexboxgrid.css
- * - https://github.com/roylee0704/react-flexbox-grid
- * - https://material.angularjs.org/latest/layout/introduction
- *
- * Follow this flexbox Guide to better understand the underlying model:
- * - https://css-tricks.com/snippets/css/a-guide-to-flexbox/
- */
+// A grid component using the following libs as inspiration.
+//
+// For the implementation:
+// - http://v4-alpha.getbootstrap.com/layout/flexbox-grid/
+// - https://github.com/kristoferjoseph/flexboxgrid/blob/master/src/css/flexboxgrid.css
+// - https://github.com/roylee0704/react-flexbox-grid
+// - https://material.angularjs.org/latest/layout/introduction
+//
+// Follow this flexbox Guide to better understand the underlying model:
+// - https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
 import React from 'react';
 import type { ComponentType, Node } from 'react';
