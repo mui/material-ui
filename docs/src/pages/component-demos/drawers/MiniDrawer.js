@@ -26,6 +26,7 @@ const drawerWidth = 240;
 const styleSheet = createStyleSheet('MiniDrawer', (theme) => ({
   demoContainer: {
     width: '100%',
+    height: 434,
     marginTop: 32,
     zIndex: 1,
     overflow: 'hidden',
