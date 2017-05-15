@@ -84,26 +84,25 @@ export const styleSheet = createStyleSheet('MuiDrawer', (theme) => {
     miniCloseTransition: {
       '& $paper': {
         transition: theme.transitions.create('width',
-          { easing: theme.transitions.easing.easeIn,
+          { easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
           }),
       },
     },
     // NOTE:
-    // Using these classes on the container element instead of directly on
+    // Using the mini classes on the container element instead of directly on
     // the Paper element to ensure higher specificity (so setting a custom width via
-    // paperClassName doesn't override the widths for closed and mini states).
+    // paperClassName doesn't override the width of the mini variant's resting state).
     // This also keeps the current className/paperClassName props intact.
 
-    // Setting a width via paperClassName is also required to make the transition work
+    // Setting a width via paperClassName is also required to make the transition work.
     // Should we make this an optional prop with a sensible default?
-    // But then how de we use this prop in the stylesheet? :/
-
-    // Possible solution: add sidePane width to theme
+    // But then how de we use this prop in the stylesheet?
+    // Possible solution: add Drawer width to theme instead.
     mini: {
       '& $paper': {
         width: 72,
-        // Perfectly center icons by not including border in width.
+        // Perfectly center icons by not including border in width:
         boxSizing: 'content-box',
       },
     },
@@ -152,13 +151,20 @@ export default class Drawer extends Component {
      */
     paperClassName: PropTypes.string,
     /**
+     * If `false`, let the drawer slide in from outside the viewport.
+     * Set to `true` to let the drawer slide in from outside its own
+     * bounding box and position.
+     * Only works on `temporary` and `persistent` drawers.
+     */
+    slideFromOutsideSelf: PropTypes.bool,
+    /**
      * The type of drawer.
      * See https://material.io/guidelines/patterns/navigation-drawer.html
      *
      * Note: for the `persistent` and `mini` variant to work,
      * you must set a width via paperClassName.
      * For the `mini` variant, you also have to wrap Paper's children in
-     * a container with the same width set to paperClassName.
+     * a container with the same fixed width set to paperClassName.
      */
     type: PropTypes.oneOf(['permanent', 'persistent', 'mini', 'temporary']),
   };
@@ -170,6 +176,7 @@ export default class Drawer extends Component {
     leaveTransitionDuration: duration.leavingScreen,
     open: false,
     elevation: 16,
+    slideFromOutsideSelf: false,
   };
 
   static contextTypes = {
@@ -187,6 +194,7 @@ export default class Drawer extends Component {
       open,
       paperClassName,
       elevation,
+      slideFromOutsideSelf,
       ...other
     } = this.props;
 
@@ -223,7 +231,7 @@ export default class Drawer extends Component {
         enterTransitionDuration={enterTransitionDuration}
         leaveTransitionDuration={leaveTransitionDuration}
         transitionAppear
-        useViewport={false}
+        useChildBounds={slideFromOutsideSelf}
       >
         {type === 'persistent' ? dockedDrawer : drawer}
       </Slide>

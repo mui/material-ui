@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
 import Button from 'material-ui/Button';
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+import List, { ListItem, ListItemIcon } from 'material-ui/List';
+import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
 import InboxIcon from 'material-ui-icons/Inbox';
 import DraftsIcon from 'material-ui-icons/Drafts';
@@ -15,18 +16,16 @@ import MailIcon from 'material-ui-icons/Mail';
 import DeleteIcon from 'material-ui-icons/Delete';
 import ReportIcon from 'material-ui-icons/Report';
 
-const styleSheet = createStyleSheet('UndockedDrawer', () => ({
-  list: {
-    width: 250,
-    flex: 'initial',
+const styleSheet = createStyleSheet('TemporaryDrawer', () => ({
+  drawerPaper: {
+    minWidth: 250,
   },
-  listFull: {
-    width: 'auto',
-    flex: 'initial',
+  navItemText: {
+    padding: '0 16px',
   },
 }));
 
-class UndockedDrawer extends Component {
+class TemporaryDrawer extends Component {
   state = {
     open: {
       top: false,
@@ -60,25 +59,33 @@ class UndockedDrawer extends Component {
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
-          <ListItemText primary="Inbox" />
+          <Typography type="body2" className={classes.navItemText}>
+            Inbox
+          </Typography>
         </ListItem>
         <ListItem button>
           <ListItemIcon>
             <StarIcon />
           </ListItemIcon>
-          <ListItemText primary="Starred" />
+          <Typography type="body2" className={classes.navItemText}>
+            Starred
+          </Typography>
         </ListItem>
         <ListItem button>
           <ListItemIcon>
             <SendIcon />
           </ListItemIcon>
-          <ListItemText primary="Send mail" />
+          <Typography type="body2" className={classes.navItemText}>
+            Send mail
+          </Typography>
         </ListItem>
         <ListItem button>
           <ListItemIcon>
             <DraftsIcon />
           </ListItemIcon>
-          <ListItemText primary="Drafts" />
+          <Typography type="body2" className={classes.navItemText}>
+            Drafts
+          </Typography>
         </ListItem>
       </div>
     );
@@ -89,42 +96,36 @@ class UndockedDrawer extends Component {
           <ListItemIcon>
             <MailIcon />
           </ListItemIcon>
-          <ListItemText primary="All mail" />
+          <Typography type="body2" className={classes.navItemText}>
+            All mail
+          </Typography>
         </ListItem>
         <ListItem button>
           <ListItemIcon>
             <DeleteIcon />
           </ListItemIcon>
-          <ListItemText primary="Trash" />
+          <Typography type="body2" className={classes.navItemText}>
+            Trash
+          </Typography>
         </ListItem>
         <ListItem button>
           <ListItemIcon>
             <ReportIcon />
           </ListItemIcon>
-          <ListItemText primary="Spam" />
+          <Typography type="body2" className={classes.navItemText}>
+            Spam
+          </Typography>
         </ListItem>
       </div>
     );
 
-    const sideList = (
+    const list = (
       <div>
-        <List className={classes.list} disablePadding>
+        <List>
           {mailFolderListItems}
         </List>
         <Divider />
-        <List className={classes.list} disablePadding>
-          {otherMailFolderListItems}
-        </List>
-      </div>
-    );
-
-    const fullList = (
-      <div>
-        <List className={classes.listFull} disablePadding>
-          {mailFolderListItems}
-        </List>
-        <Divider />
-        <List className={classes.listFull} disablePadding>
+        <List>
           {otherMailFolderListItems}
         </List>
       </div>
@@ -140,40 +141,44 @@ class UndockedDrawer extends Component {
           open={this.state.open.left}
           onRequestClose={this.handleLeftClose}
           onClick={this.handleLeftClose}
+          paperClassName={classes.drawerPaper}
         >
-          {sideList}
+          {list}
         </Drawer>
         <Drawer
           anchor="top"
           open={this.state.open.top}
           onRequestClose={this.handleTopClose}
           onClick={this.handleTopClose}
+          paperClassName={classes.drawerPaper}
         >
-          {fullList}
+          {list}
         </Drawer>
         <Drawer
           anchor="bottom"
           open={this.state.open.bottom}
           onRequestClose={this.handleBottomClose}
           onClick={this.handleBottomClose}
+          paperClassName={classes.drawerPaper}
         >
-          {fullList}
+          {list}
         </Drawer>
         <Drawer
           anchor="right"
           open={this.state.open.right}
           onRequestClose={this.handleRightClose}
           onClick={this.handleRightClose}
+          paperClassName={classes.drawerPaper}
         >
-          {sideList}
+          {list}
         </Drawer>
       </div>
     );
   }
 }
 
-UndockedDrawer.propTypes = {
+TemporaryDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(UndockedDrawer);
+export default withStyles(styleSheet)(TemporaryDrawer);

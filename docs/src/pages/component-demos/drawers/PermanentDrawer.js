@@ -17,19 +17,25 @@ import MailIcon from 'material-ui-icons/Mail';
 import DeleteIcon from 'material-ui-icons/Delete';
 import ReportIcon from 'material-ui-icons/Report';
 
-const drawerWidth = 250;
+const drawerWidth = 240;
 
-const styleSheet = createStyleSheet('PermanentDrawer', () => ({
-  demoFrame: {
-    display: 'flex',
-    alignItems: 'flex-start',
+const styleSheet = createStyleSheet('PermanentDrawer', (theme) => ({
+  demoContainer: {
     width: '100%',
     marginTop: 32,
     zIndex: 1,
+    overflow: 'hidden',
+  },
+  appFrame: {
+    position: 'relative',
+    display: 'flex',
+    width: '100%',
+    height: '100%',
   },
   appBar: {
-    position: 'relative',
-    maxWidth: `calc(100% - ${drawerWidth}px)`,
+    position: 'absolute',
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
     order: 1,
   },
   drawerPaper: {
@@ -40,6 +46,18 @@ const styleSheet = createStyleSheet('PermanentDrawer', () => ({
   },
   listItemText: {
     padding: '0 16px',
+  },
+  content: {
+    height: 'calc(100% - 56px)',
+    marginTop: 56,
+    backgroundColor: '#fafafa',
+    width: '100%',
+  },
+  [theme.breakpoints.up('sm')]: {
+    content: {
+      height: 'calc(100% - 64px)',
+      marginTop: 64,
+    },
   },
 }));
 
@@ -111,27 +129,30 @@ const PermanentDrawer = ({ classes }) => {
   );
 
   return (
-    <div className={classes.demoFrame}>
-      <AppBar className={classes.appBar}>
-        <Toolbar>
-          <Typography type="title" colorInherit noWrap>
-            Permanent navigation drawer
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        type="permanent"
-        paperClassName={classes.drawerPaper}
-      >
-        <Divider />
-        <List>
-          {mailFolderListItems}
-        </List>
-        <Divider />
-        <List>
-          {otherMailFolderListItems}
-        </List>
-      </Drawer>
+    <div className={classes.demoContainer}>
+      <div className={classes.appFrame}>
+        <AppBar className={classes.appBar}>
+          <Toolbar>
+            <Typography type="title" colorInherit noWrap>
+              Permanent navigation drawer
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          type="permanent"
+          paperClassName={classes.drawerPaper}
+        >
+          <Divider />
+          <List>
+            {mailFolderListItems}
+          </List>
+          <Divider />
+          <List>
+            {otherMailFolderListItems}
+          </List>
+        </Drawer>
+        <main className={classes.content} />
+      </div>
     </div>
   );
 };

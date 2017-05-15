@@ -21,7 +21,7 @@ import MailIcon from 'material-ui-icons/Mail';
 import DeleteIcon from 'material-ui-icons/Delete';
 import ReportIcon from 'material-ui-icons/Report';
 
-const drawerWidth = 250;
+const drawerWidth = 240;
 
 const styleSheet = createStyleSheet('PersistentDrawer', (theme) => ({
   demoContainer: {
@@ -39,14 +39,15 @@ const styleSheet = createStyleSheet('PersistentDrawer', (theme) => ({
   appBar: {
     position: 'absolute',
     order: 1,
-    transition: theme.transitions.create('margin',
+    transition: theme.transitions.create(['margin', 'width'],
       { easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
   },
   appBarShift: {
-    marginLeft: drawerWidth, // What about LTR?
-    transition: theme.transitions.create('margin',
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['margin', 'width'],
       { easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
       }),
@@ -61,7 +62,7 @@ const styleSheet = createStyleSheet('PersistentDrawer', (theme) => ({
   drawerPaper: {
     position: 'relative',
     height: 'auto',
-    width: drawerWidth, // Required to make the transition work.
+    width: drawerWidth,
   },
   drawerHeader: {
     display: 'flex',
@@ -72,6 +73,7 @@ const styleSheet = createStyleSheet('PersistentDrawer', (theme) => ({
   },
   navItem: {
     paddingLeft: 24,
+    paddingRight: 24,
   },
   navItemText: {
     padding: '0 16px',
@@ -80,7 +82,7 @@ const styleSheet = createStyleSheet('PersistentDrawer', (theme) => ({
     height: 'calc(100% - 56px)',
     width: '100%',
     marginTop: 56,
-    marginLeft: -drawerWidth, // What about LTR?
+    marginLeft: -drawerWidth,
     flexGrow: 1,
     backgroundColor: '#fafafa',
     padding: 24,
@@ -90,7 +92,7 @@ const styleSheet = createStyleSheet('PersistentDrawer', (theme) => ({
       }),
   },
   contentShift: {
-    marginLeft: 0, // What about LTR?
+    marginLeft: 0,
     transition: theme.transitions.create('margin',
       { easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
@@ -211,6 +213,10 @@ class PersistentDrawer extends Component {
             type="persistent"
             paperClassName={classes.drawerPaper}
             open={this.state.open}
+            /* Required for this demo to work
+             * because the demo container is not the viewport:
+             */
+            slideFromOutsideSelf
           >
             <div className={classes.drawerInner}>
               <div className={classes.drawerHeader}>

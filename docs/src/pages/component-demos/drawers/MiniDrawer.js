@@ -21,7 +21,7 @@ import MailIcon from 'material-ui-icons/Mail';
 import DeleteIcon from 'material-ui-icons/Delete';
 import ReportIcon from 'material-ui-icons/Report';
 
-const drawerWidth = 250;
+const drawerWidth = 240;
 
 const styleSheet = createStyleSheet('MiniDrawer', (theme) => ({
   demoContainer: {
@@ -39,17 +39,18 @@ const styleSheet = createStyleSheet('MiniDrawer', (theme) => ({
   appBar: {
     position: 'absolute',
     zIndex: theme.zIndex.navDrawer + 1,
-    // TODO: find the perfect easing curve to go with the
-    // Drawer transition for maximum eye candy.
-    // For now we'll use these settings:
     transition: theme.transitions.create(['width', 'margin'],
       { easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.short,
+        duration: theme.transitions.duration.enteringScreen,
       }),
   },
   appBarShift: {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'],
+      { easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
   },
   menuButton: {
     marginLeft: 12,
@@ -75,6 +76,7 @@ const styleSheet = createStyleSheet('MiniDrawer', (theme) => ({
   },
   navItem: {
     paddingLeft: 24,
+    paddingRight: 24,
   },
   navItemText: {
     padding: '0 16px',
