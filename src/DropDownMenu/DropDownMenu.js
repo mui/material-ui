@@ -19,7 +19,9 @@ function getStyles(props, context) {
   const spacing = context.muiTheme.baseTheme.spacing;
   const palette = context.muiTheme.baseTheme.palette;
   const accentColor = context.muiTheme.dropDownMenu.accentColor;
-  const normalizeDirection = rtl(context.muiTheme) || ((style) => { return style; });
+  const normalizeDirection = rtl(context.muiTheme) || ((style) => {
+    return style;
+  });
 
   return {
     control: {
