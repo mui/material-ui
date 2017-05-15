@@ -62,10 +62,12 @@ const styleSheet = createStyleSheet('MiniDrawer', (theme) => ({
   drawerPaper: {
     position: 'relative',
     height: 'auto',
-    width: drawerWidth, // Required to make the transition work.
+    // Required to make the transition work:
+    width: drawerWidth,
   },
   drawerInner: {
-    width: drawerWidth, // Makes the items inside not wrap.
+    // Make the items inside not wrap when transitioning:
+    width: drawerWidth,
   },
   drawerHeader: {
     display: 'flex',
