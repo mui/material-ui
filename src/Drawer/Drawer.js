@@ -221,6 +221,8 @@ export default class Drawer extends Component {
       </div>
     );
 
+    if (type === 'permanent') return dockedDrawer;
+
     const slidingDrawer = (
       <Slide
         in={open}
@@ -234,6 +236,8 @@ export default class Drawer extends Component {
       </Slide>
     );
 
+    if (type === 'persistent') return slidingDrawer;
+
     const miniDrawer = (
       <div
         className={classNames(classes.docked, !open && classes.miniClosed,
@@ -244,13 +248,7 @@ export default class Drawer extends Component {
       </div>
     );
 
-    if (type === 'permanent') {
-      return dockedDrawer;
-    } else if (type === 'persistent') {
-      return slidingDrawer;
-    } else if (type === 'mini') {
-      return miniDrawer;
-    }
+    if (type === 'mini') return miniDrawer;
 
     // Temporary drawer:
     return (
