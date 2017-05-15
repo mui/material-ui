@@ -70,25 +70,6 @@ export const styleSheet = createStyleSheet('MuiDrawer', (theme) => {
         borderRight: `1px solid ${theme.palette.text.divider}`,
       },
     },
-    // Hardcoding the width transition for the mini variant for now.
-    // TODO:
-    // Add support for `width` to Collapse component?
-    miniOpenTransition: {
-      '& $paper': {
-        transition: theme.transitions.create('width',
-          { easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
-          }),
-      },
-    },
-    miniCloseTransition: {
-      '& $paper': {
-        transition: theme.transitions.create('width',
-          { easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-          }),
-      },
-    },
     // NOTE:
     // Using the mini classes on the container element instead of directly on
     // the Paper element to ensure higher specificity (so setting a custom width via
@@ -99,11 +80,27 @@ export const styleSheet = createStyleSheet('MuiDrawer', (theme) => {
     // Should we make this an optional prop with a sensible default?
     // But then how de we use this prop in the stylesheet?
     // Possible solution: add Drawer width to theme instead.
+
+    // Hardcoding the width transition for the mini variant for now.
+    // TODO:
+    // Add support for `width` to Collapse component?
     mini: {
+      '& $paper': {
+        transition: theme.transitions.create('width',
+          { easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+          }),
+      },
+    },
+    miniClosed: {
       '& $paper': {
         width: 72,
         // Perfectly center icons by not including border in width:
         boxSizing: 'content-box',
+        transition: theme.transitions.create('width',
+          { easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+          }),
       },
     },
   };
@@ -239,8 +236,8 @@ export default class Drawer extends Component {
 
     const miniDrawer = (
       <div
-        className={classNames(classes.docked, !open && classes.mini,
-          classes.miniOpenTransition, open && classes.miniCloseTransition,
+        className={classNames(classes.docked, !open && classes.miniClosed,
+          open && classes.mini,
           className)}
       >
         {drawer}

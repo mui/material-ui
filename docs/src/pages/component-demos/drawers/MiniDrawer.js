@@ -42,7 +42,7 @@ const styleSheet = createStyleSheet('MiniDrawer', (theme) => ({
     zIndex: theme.zIndex.navDrawer + 1,
     transition: theme.transitions.create(['width', 'margin'],
       { easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen,
+        duration: theme.transitions.duration.leavingScreen,
       }),
   },
   appBarShift: {
@@ -50,7 +50,7 @@ const styleSheet = createStyleSheet('MiniDrawer', (theme) => ({
     width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(['width', 'margin'],
       { easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
+        duration: theme.transitions.duration.enteringScreen,
       }),
   },
   menuButton: {
