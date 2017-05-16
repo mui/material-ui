@@ -96,9 +96,9 @@ however, it's going to follow a specific release plan:
 
 1. We focus on migrating the components to the `next` branch. They may not be fully migrated.
 2. We merge the `next` branch into master.
-At that point, we're going to stop supporting the `v0.17.x` releases.
+At that point, we're going to stop supporting the `v0.18.x` releases.
 3. We release our first alpha.
-4. We focus on finishing the migration of all the components to get a good feature parity with `v0.17.x`.
+4. We focus on finishing the migration of all the components to get a good feature parity with `v0.18.x`.
 5. We release our first pre-release.
 6. We ship :100:.
 
