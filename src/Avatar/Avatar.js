@@ -66,14 +66,13 @@ export default function Avatar(props, context) {
       children = childrenProp;
     }
   } else if (src || srcSet) {
-    const imgProps = {
+    children = React.createElement('img', {
       alt,
       src,
       srcSet,
       sizes,
       className: classes.img,
-    };
-    children = React.createElement('img', imgProps);
+    });
   }
 
   return (

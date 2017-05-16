@@ -1,7 +1,6 @@
 // @flow weak
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, Element as ReactElement } from 'react'; // DOM type `Element` used below
 import ReactDOM from 'react-dom';
 import transitionInfo from 'dom-helpers/transition/properties';
 import addEventListener from 'dom-helpers/events/on';
@@ -15,63 +14,84 @@ export const ENTERING = 2;
 export const ENTERED = 3;
 export const EXITING = 4;
 
-const propTypes = {
+type State = {
+  status: 0 | 1 | 2 | 3 | 4,
+}
+
+type DOMNode = Element | Text | null; // return type of ReactDOM.findDOMNode()
+
+type TransitionCallback = (node: DOMNode) => void;
+
+type DefaultProps = {
+  in: boolean,
+  unmountOnExit: boolean,
+  transitionAppear: boolean,
+  timeout: number,
+  onEnter: TransitionCallback,
+  onEntering: TransitionCallback,
+  onEntered: TransitionCallback,
+  onExit: TransitionCallback,
+  onExiting: TransitionCallback,
+  onExited: TransitionCallback,
+};
+
+type Props = DefaultProps & {
   /**
    * The content of the component.
    */
-  children: PropTypes.node,
+  children?: ReactElement<*>,
   /**
    * The CSS class name of the root element.
    */
-  className: PropTypes.string,
+  className?: string,
   /**
    * The CSS class applied when the component is entered.
    */
-  enteredClassName: PropTypes.string,
+  enteredClassName?: string,
   /**
    * The CSS class applied while the component is entering.
    */
-  enteringClassName: PropTypes.string,
+  enteringClassName?: string,
   /**
    * The CSS class applied when the component has exited.
    */
-  exitedClassName: PropTypes.string,
+  exitedClassName?: string,
   /**
    * The CSS class applied while the component is exiting.
    */
-  exitingClassName: PropTypes.string,
+  exitingClassName?: string,
   /**
    * Show the component; triggers the enter or exit animation.
    */
-  in: PropTypes.bool,
+  in?: boolean,
   /**
    * Callback fired before the "entering" classes are applied.
    */
-  onEnter: PropTypes.func,
+  onEnter?: TransitionCallback,
   /**
    * Callback fired after the "entering" classes are applied.
    */
-  onEntering: PropTypes.func,
+  onEntering?: TransitionCallback,
   /**
    * Callback fired after the "enter" classes are applied.
    */
-  onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
+  onEntered?: TransitionCallback, // eslint-disable-line react/sort-prop-types
   /**
    * Callback fired before the "exiting" classes are applied.
    */
-  onExit: PropTypes.func,
+  onExit?: TransitionCallback,
   /**
    * Callback fired after the "exiting" classes are applied.
    */
-  onExiting: PropTypes.func,
+  onExiting?: TransitionCallback,
   /**
    * Callback fired after the "exited" classes are applied.
    */
-  onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
+  onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
   /**
    * @ignore
    */
-  onRequestTimeout: PropTypes.func,
+  onRequestTimeout?: TransitionCallback,
   /**
    * A Timeout for the animation, in milliseconds, to ensure that a node doesn't
    * transition indefinitely if the browser transitionEnd events are
@@ -80,16 +100,16 @@ const propTypes = {
    * By default this is set to a high number (5 seconds) as a failsafe. You should consider
    * setting this to the duration of your animation (or a bit above it).
    */
-  timeout: PropTypes.number,
+  timeout?: number,
   /**
    * Run the enter animation when the component mounts, if it is initially
    * shown.
    */
-  transitionAppear: PropTypes.bool,
+  transitionAppear?: boolean,
   /**
    * Unmount the component (remove it from the DOM) when it is not shown.
    */
-  unmountOnExit: PropTypes.bool,
+  unmountOnExit?: boolean,
 };
 
 /**
@@ -103,10 +123,10 @@ const propTypes = {
  * The extensive set of lifecyle callbacks means you have control over
  * the transitioning now at each step of the way.
  */
-class Transition extends Component {
-  static propTypes = propTypes;
+class Transition extends Component<DefaultProps, Props, State> {
+  props: Props;
 
-  static defaultProps = {
+  static defaultProps: DefaultProps = {
     in: false,
     unmountOnExit: false,
     transitionAppear: false,
@@ -119,7 +139,7 @@ class Transition extends Component {
     onExited: noop,
   };
 
-  state = {
+  state: State = {
     status: UNMOUNTED,
   };
 
@@ -143,7 +163,7 @@ class Transition extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: Props) {
     if (nextProps.in && this.props.unmountOnExit) {
       if (this.state.status === UNMOUNTED) {
         // Start enter transition in componentDidUpdate.
@@ -154,7 +174,7 @@ class Transition extends Component {
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps: Props, nextState: State) {
     if (
       this.props.in &&
       this.state.status === EXITED &&
@@ -206,20 +226,15 @@ class Transition extends Component {
   nextCallback = null;
   needsUpdate = false;
 
-  performEnter(props) {
+  performEnter(props: Props) {
     this.cancelNextCallback();
     const node = ReactDOM.findDOMNode(this);
-
-    // Not this.props, because we might be about to receive new props.
-    if (props.onEnter.length === 2) {
-      return props.onEnter(node, () => this.performEntering(node));
-    }
 
     props.onEnter(node);
     return this.performEntering(node);
   }
 
-  performEntering(node) {
+  performEntering(node: DOMNode) {
     this.safeSetState({ status: ENTERING }, () => {
       this.props.onEntering(node);
 
@@ -231,7 +246,7 @@ class Transition extends Component {
     });
   }
 
-  performExit(props) {
+  performExit(props: Props) {
     this.cancelNextCallback();
     const node = ReactDOM.findDOMNode(this);
 
@@ -256,7 +271,7 @@ class Transition extends Component {
     }
   }
 
-  safeSetState(nextState, callback) {
+  safeSetState(nextState: State, callback: Function) {
     // This shouldn't be necessary, but there are weird race conditions with
     // setState callbacks and unmounting in testing, so always make sure that
     // we can cancel any pending setState callbacks after we unmount.
@@ -266,7 +281,9 @@ class Transition extends Component {
   setNextCallback(callback) {
     let active = true;
 
-    this.nextCallback = (event) => {
+    // FIXME: These next two blocks are a real enigma for flow typing outside of weak mode.
+    // FIXME: I suggest we refactor - rosskevin
+    this.nextCallback = (event?: Event) => {
       if (active) {
         active = false;
         this.nextCallback = null;
@@ -282,7 +299,7 @@ class Transition extends Component {
     return this.nextCallback;
   }
 
-  onTransitionEnd(node, handler) {
+  onTransitionEnd(node: DOMNode, handler) {
     this.setNextCallback(handler);
 
     if (node) {
@@ -297,7 +314,7 @@ class Transition extends Component {
     }
   }
 
-  getTimeout(node) {
+  getTimeout(node: DOMNode) {
     let timeout;
 
     if (this.props.onRequestTimeout) {
@@ -312,7 +329,7 @@ class Transition extends Component {
   }
 
   render() {
-    const status = this.state.status;
+    const { status } = this.state;
     if (status === UNMOUNTED) {
       return null;
     }
@@ -320,9 +337,23 @@ class Transition extends Component {
     const {
       children,
       className,
+      in: inProp,         // eslint-disable-line no-unused-vars
+      enteredClassName,   // eslint-disable-line no-unused-vars
+      enteringClassName,  // eslint-disable-line no-unused-vars
+      exitedClassName,    // eslint-disable-line no-unused-vars
+      exitingClassName,   // eslint-disable-line no-unused-vars
+      onEnter,            // eslint-disable-line no-unused-vars
+      onEntering,         // eslint-disable-line no-unused-vars
+      onEntered,          // eslint-disable-line no-unused-vars
+      onExit,             // eslint-disable-line no-unused-vars
+      onExiting,          // eslint-disable-line no-unused-vars
+      onExited,           // eslint-disable-line no-unused-vars
+      onRequestTimeout,   // eslint-disable-line no-unused-vars
+      timeout,            // eslint-disable-line no-unused-vars
+      transitionAppear,   // eslint-disable-line no-unused-vars
+      unmountOnExit,      // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
-    Object.keys(propTypes).forEach((key) => delete other[key]);
 
     let transitionClassName;
     if (status === EXITED) {

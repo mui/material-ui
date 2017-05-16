@@ -20,23 +20,33 @@ describe('<Input />', () => {
     assert.strictEqual(wrapper.name(), 'div');
     assert.strictEqual(wrapper.hasClass(classes.wrapper), true, 'should have the wrapper class');
     assert.strictEqual(wrapper.hasClass(classes.inkbar), true, 'should have the inkbar class');
+    assert.strictEqual(wrapper.hasClass(classes.underline), true,
+      'should have the underline class');
   });
 
   it('should render an <input /> inside the div', () => {
     const wrapper = shallow(<Input />);
     const input = wrapper.find('input');
-    assert.strictEqual(input.is('input'), true, 'should be a <input>');
-    assert.strictEqual(input.prop('type'), 'text', 'should pass the text type prop');
+    assert.strictEqual(input.name(), 'input');
+    assert.strictEqual(input.props().type, 'text', 'should pass the text type prop');
     assert.strictEqual(input.hasClass(classes.input), true, 'should have the input class');
-    assert.strictEqual(input.hasClass(classes.underline), true, 'should have the underline class');
-    assert.strictEqual(input.prop('aria-required'), undefined,
-      'should not have the area-required prop');
+    assert.strictEqual(input.prop('aria-required'), undefined);
+  });
+
+  it('should render an <Textarea /> when passed the multiline prop', () => {
+    const wrapper = shallow(<Input multiline />);
+    assert.strictEqual(wrapper.find('Textarea').length, 1);
+  });
+
+  it('should render an <textarea /> when passed the multiline and rows props', () => {
+    const wrapper = shallow(<Input multiline rows="4" />);
+    assert.strictEqual(wrapper.find('textarea').length, 1);
   });
 
   it('should render a disabled <input />', () => {
     const wrapper = shallow(<Input disabled />);
     const input = wrapper.find('input');
-    assert.strictEqual(input.is('input'), true, 'should be a <input>');
+    assert.strictEqual(input.name(), 'input');
     assert.strictEqual(input.hasClass(classes.input), true, 'should have the input class');
     assert.strictEqual(input.hasClass(classes.disabled), true, 'should have the disabled class');
   });
@@ -45,7 +55,7 @@ describe('<Input />', () => {
     const wrapper = shallow(<Input disableUnderline />);
     const input = wrapper.find('input');
     assert.strictEqual(wrapper.hasClass(classes.inkbar), false, 'should not have the inkbar class');
-    assert.strictEqual(input.is('input'), true, 'should be a <input>');
+    assert.strictEqual(input.name(), 'input');
     assert.strictEqual(input.hasClass(classes.input), true, 'should have the input class');
     assert.strictEqual(input.hasClass(classes.underline),
       false, 'should not have the underline class');
@@ -109,6 +119,13 @@ describe('<Input />', () => {
         'should have called the onClean cb once already');
       wrapper.setProps({ value: '' });
       assert.strictEqual(handleClean.callCount, 2, 'should have called the onClean cb again');
+    });
+  });
+
+  describe('prop: component', () => {
+    it('should accept any component', () => {
+      const wrapper = shallow(<Input component="span" />);
+      assert.strictEqual(wrapper.find('span').length, 1);
     });
   });
 
