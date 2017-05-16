@@ -6,13 +6,13 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('MuiDialogActions', () => {
+export const styleSheet = createStyleSheet('MuiDialogActions', (theme) => {
   return {
     root: {
       display: 'flex',
       justifyContent: 'flex-end',
       alignItems: 'center',
-      margin: '8px 4px',
+      margin: `${theme.spacing.unit}px 4px`,
       flex: '0 0 auto',
     },
     action: {

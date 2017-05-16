@@ -7,7 +7,7 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 
-const styleSheet = createStyleSheet('SimpleAppBar', () => ({
+const styleSheet = createStyleSheet('SimpleAppBar', {
   root: {
     position: 'relative',
     marginTop: 30,
@@ -16,7 +16,7 @@ const styleSheet = createStyleSheet('SimpleAppBar', () => ({
   appBar: {
     position: 'relative',
   },
-}));
+});
 
 function SimpleAppBar(props) {
   const classes = props.classes;

@@ -7,11 +7,11 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 import Paper from '../Paper';
 
-export const styleSheet = createStyleSheet('MuiCard', () => ({
+export const styleSheet = createStyleSheet('MuiCard', {
   card: {
     overflow: 'hidden',
   },
-}));
+});
 
 export default function Card(props, context) {
   const {

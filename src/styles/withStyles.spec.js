@@ -17,11 +17,11 @@ describe('withStyles', () => {
   });
 
   it('should provide a classes property', () => {
-    const styleSheet = createStyleSheet('MuiTextField', () => ({
+    const styleSheet = createStyleSheet('MuiTextField', {
       root: {
         display: 'flex',
       },
-    }));
+    });
     const classes = shallow.context.styleManager.render(styleSheet);
 
     const StyledComponent = withStyles(styleSheet)(Empty);

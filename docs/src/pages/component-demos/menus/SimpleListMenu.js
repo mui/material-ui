@@ -62,21 +62,18 @@ class SimpleListMenu extends Component {
         <Menu
           id="lock-menu"
           anchorEl={this.state.anchorEl}
-          className={classes.menu}
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
         >
-          {options.map((option, index) => {
-            return (
-              <MenuItem
-                key={option}
-                selected={index === this.state.selectedIndex}
-                onClick={(event) => this.handleMenuItemClick(event, index)}
-              >
-                {option}
-              </MenuItem>
-            );
-          })}
+          {options.map((option, index) => (
+            <MenuItem
+              key={option}
+              selected={index === this.state.selectedIndex}
+              onClick={(event) => this.handleMenuItemClick(event, index)}
+            >
+              {option}
+            </MenuItem>
+          ))}
         </Menu>
       </div>
     );

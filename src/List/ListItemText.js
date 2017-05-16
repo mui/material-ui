@@ -7,28 +7,26 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 import Typography from '../Typography';
 
-export const styleSheet = createStyleSheet('MuiListItemText', () => {
-  return {
-    root: {
-      flex: '1 1 auto',
-      padding: '0 16px',
-      '&:first-child': {
-        paddingLeft: 0,
-      },
+export const styleSheet = createStyleSheet('MuiListItemText', (theme) => ({
+  root: {
+    flex: '1 1 auto',
+    padding: '0 16px',
+    '&:first-child': {
+      paddingLeft: 0,
     },
-    inset: {
-      '&:first-child': {
-        paddingLeft: 56,
-      },
+  },
+  inset: {
+    '&:first-child': {
+      paddingLeft: theme.spacing.unit * 7,
     },
-    dense: {
-      fontSize: 13,
-    },
-    text: {
-      fontSize: 'inherit',
-    },
-  };
-});
+  },
+  dense: {
+    fontSize: 13,
+  },
+  text: {
+    fontSize: 'inherit',
+  },
+}));
 
 export default function ListItemText(props, context) {
   const {

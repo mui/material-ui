@@ -10,7 +10,7 @@ import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 
-const styleSheet = createStyleSheet('ButtonAppBar', () => ({
+const styleSheet = createStyleSheet('ButtonAppBar', {
   root: {
     position: 'relative',
     marginTop: 30,
@@ -22,7 +22,7 @@ const styleSheet = createStyleSheet('ButtonAppBar', () => ({
   flex: {
     flex: 1,
   },
-}));
+});
 
 function ButtonAppBar(props) {
   const classes = props.classes;

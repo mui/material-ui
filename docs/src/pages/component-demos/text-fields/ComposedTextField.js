@@ -7,13 +7,13 @@ import Input from 'material-ui/Input';
 import InputLabel from 'material-ui/Input/InputLabel';
 import FormControl from 'material-ui/Form/FormControl';
 
-const styleSheet = createStyleSheet('ComposedTextField', () => ({
+const styleSheet = createStyleSheet('ComposedTextField', (theme) => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
   },
   input: {
-    margin: 10,
+    margin: theme.spacing.unit,
   },
 }));
 

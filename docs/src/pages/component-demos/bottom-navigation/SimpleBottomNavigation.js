@@ -8,11 +8,11 @@ import RestoreIcon from 'material-ui-icons/Restore';
 import FavoriteIcon from 'material-ui-icons/Favorite';
 import LocationOnIcon from 'material-ui-icons/LocationOn';
 
-const styleSheet = createStyleSheet('SimpleBottomNavigation', () => ({
+const styleSheet = createStyleSheet('SimpleBottomNavigation', {
   root: {
     width: 500,
   },
-}));
+});
 
 class SimpleBottomNavigation extends Component {
   state = {

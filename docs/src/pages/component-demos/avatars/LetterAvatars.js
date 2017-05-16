@@ -6,7 +6,7 @@ import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Avatar from 'material-ui/Avatar';
 import { deepOrange, deepPurple } from 'material-ui/styles/colors';
 
-const styleSheet = createStyleSheet('LetterAvatars', () => ({
+const styleSheet = createStyleSheet('LetterAvatars', {
   avatar: {
     margin: 10,
   },
@@ -24,7 +24,7 @@ const styleSheet = createStyleSheet('LetterAvatars', () => ({
     display: 'flex',
     justifyContent: 'center',
   },
-}));
+});
 
 function LetterAvatars(props) {
   const classes = props.classes;

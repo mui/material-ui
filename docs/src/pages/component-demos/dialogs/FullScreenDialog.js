@@ -14,14 +14,14 @@ import Typography from 'material-ui/Typography';
 import CloseIcon from 'material-ui-icons/Close';
 import Slide from 'material-ui/transitions/Slide';
 
-const styleSheet = createStyleSheet('FullScreenDialog', () => ({
+const styleSheet = createStyleSheet('FullScreenDialog', {
   appBar: {
     position: 'relative',
   },
   flex: {
     flex: 1,
   },
-}));
+});
 
 class FullScreenDialog extends Component {
   state = {

@@ -6,10 +6,10 @@ import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Tabs, { Tab } from 'material-ui/Tabs';
 
-const styleSheet = createStyleSheet('CenteredTabs', () => ({
+const styleSheet = createStyleSheet('CenteredTabs', (theme) => ({
   root: {
     flexGrow: 1,
-    marginTop: 30,
+    marginTop: theme.spacing.unit * 3,
   },
 }));
 

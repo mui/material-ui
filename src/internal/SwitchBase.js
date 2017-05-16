@@ -10,25 +10,23 @@ import CheckBoxOutlineBlankIcon from '../svg-icons/check-box-outline-blank';
 import CheckBoxIcon from '../svg-icons/check-box';
 import Icon from '../Icon';
 
-export const styleSheet = createStyleSheet('MuiSwitchBase', () => {
-  return {
-    root: {
-      display: 'inline-flex',
-      alignItems: 'center',
-      transition: 'none',
-    },
-    input: {
-      cursor: 'inherit',
-      position: 'absolute',
-      opacity: 0,
-      width: '100%',
-      height: '100%',
-      top: 0,
-      left: 0,
-      margin: 0,
-      padding: 0,
-    },
-  };
+export const styleSheet = createStyleSheet('MuiSwitchBase', {
+  root: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    transition: 'none',
+  },
+  input: {
+    cursor: 'inherit',
+    position: 'absolute',
+    opacity: 0,
+    width: '100%',
+    height: '100%',
+    top: 0,
+    left: 0,
+    margin: 0,
+    padding: 0,
+  },
 });
 
 export function createSwitch({

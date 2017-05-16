@@ -6,12 +6,12 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('MuiListItemSecondaryAction', () => ({
+export const styleSheet = createStyleSheet('MuiListItemSecondaryAction', (theme) => ({
   secondaryAction: {
     position: 'absolute',
     right: 4,
     top: '50%',
-    marginTop: -24,
+    marginTop: -theme.spacing.unit * 3,
   },
 }));
 

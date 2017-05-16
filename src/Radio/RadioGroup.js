@@ -8,14 +8,12 @@ import customPropTypes from '../utils/customPropTypes';
 import FormGroup from '../Form/FormGroup';
 import { find } from '../utils/helpers';
 
-export const styleSheet = createStyleSheet('MuiRadioGroup', () => {
-  return {
-    root: {
-      flex: '1 1 auto',
-      margin: 0,
-      padding: 0,
-    },
-  };
+export const styleSheet = createStyleSheet('MuiRadioGroup', {
+  root: {
+    flex: '1 1 auto',
+    margin: 0,
+    padding: 0,
+  },
 });
 
 class RadioGroup extends Component {

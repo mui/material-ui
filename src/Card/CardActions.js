@@ -7,7 +7,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 import { cloneChildrenWithClassName } from '../utils/reactHelpers';
 
-export const styleSheet = createStyleSheet('MuiCardActions', () => ({
+export const styleSheet = createStyleSheet('MuiCardActions', {
   cardActions: {
     height: 52,
     display: 'flex',
@@ -17,7 +17,7 @@ export const styleSheet = createStyleSheet('MuiCardActions', () => ({
   actionSpacing: {
     margin: '0 4px',
   },
-}));
+});
 
 export default function CardActions(props, context) {
   const {

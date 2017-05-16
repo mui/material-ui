@@ -9,7 +9,7 @@ import Button from 'material-ui/Button';
 import CheckIcon from 'material-ui-icons/Check';
 import SaveIcon from 'material-ui-icons/Save';
 
-const styleSheet = createStyleSheet('CircularFab', () => ({
+const styleSheet = createStyleSheet('CircularFab', {
   wrapper: {
     position: 'relative',
   },
@@ -25,7 +25,7 @@ const styleSheet = createStyleSheet('CircularFab', () => ({
     top: -2,
     left: -2,
   },
-}));
+});
 
 class CircularFab extends Component {
   state = {

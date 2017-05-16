@@ -4,10 +4,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import { easing } from '../styles/transitions';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('MuiRipple', () => ({
+export const styleSheet = createStyleSheet('MuiRipple', (theme) => ({
   ripple: {
     width: 50,
     height: 50,
@@ -21,7 +20,7 @@ export const styleSheet = createStyleSheet('MuiRipple', () => ({
   rippleVisible: {
     opacity: 0.3,
     transform: 'scale(1)',
-    animation: `mui-ripple-enter 550ms ${easing.easeInOut}`,
+    animation: `mui-ripple-enter 550ms ${theme.transitions.easing.easeInOut}`,
   },
   rippleFast: {
     animationDuration: '200ms',
@@ -31,7 +30,7 @@ export const styleSheet = createStyleSheet('MuiRipple', () => ({
   },
   containerLeaving: {
     opacity: 0,
-    animation: `mui-ripple-exit 550ms ${easing.easeInOut}`,
+    animation: `mui-ripple-exit 550ms ${theme.transitions.easing.easeInOut}`,
   },
   containerPulsating: {
     position: 'absolute',
@@ -40,7 +39,7 @@ export const styleSheet = createStyleSheet('MuiRipple', () => ({
     display: 'block',
     width: '100%',
     height: '100%',
-    animation: `mui-ripple-pulsate 1500ms ${easing.easeInOut} 200ms infinite`,
+    animation: `mui-ripple-pulsate 1500ms ${theme.transitions.easing.easeInOut} 200ms infinite`,
     rippleVisible: {
       opacity: 0.2,
     },

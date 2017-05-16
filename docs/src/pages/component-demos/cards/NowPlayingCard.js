@@ -11,7 +11,7 @@ import PlayArrowIcon from 'material-ui-icons/PlayArrow';
 import SkipNextIcon from 'material-ui-icons/SkipNext';
 import albumCover from 'docs/src/assets/images/live-from-space.jpg';
 
-const styleSheet = createStyleSheet('NowPlayingCard', () => ({
+const styleSheet = createStyleSheet('NowPlayingCard', {
   card: {
     display: 'flex',
   },
@@ -36,7 +36,7 @@ const styleSheet = createStyleSheet('NowPlayingCard', () => ({
     height: 38,
     width: 38,
   },
-}));
+});
 
 function NowPlayingCard(props) {
   const classes = props.classes;

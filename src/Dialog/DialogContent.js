@@ -6,8 +6,8 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('MuiDialogContent', () => {
-  const gutter = 24;
+export const styleSheet = createStyleSheet('MuiDialogContent', (theme) => {
+  const gutter = theme.spacing.unit * 3;
   return {
     root: {
       flex: '1 1 auto',

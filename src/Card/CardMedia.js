@@ -6,11 +6,11 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('MuiCardMedia', () => ({
+export const styleSheet = createStyleSheet('MuiCardMedia', {
   cardMedia: {
     position: 'relative',
   },
-}));
+});
 
 export default function CardMedia(props, context) {
   const {

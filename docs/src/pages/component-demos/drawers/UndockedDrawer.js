@@ -15,7 +15,7 @@ import MailIcon from 'material-ui-icons/Mail';
 import DeleteIcon from 'material-ui-icons/Delete';
 import ReportIcon from 'material-ui-icons/Report';
 
-const styleSheet = createStyleSheet('UndockedDrawer', () => ({
+const styleSheet = createStyleSheet('UndockedDrawer', {
   list: {
     width: 250,
     flex: 'initial',
@@ -24,7 +24,7 @@ const styleSheet = createStyleSheet('UndockedDrawer', () => ({
     width: 'auto',
     flex: 'initial',
   },
-}));
+});
 
 class UndockedDrawer extends Component {
   state = {

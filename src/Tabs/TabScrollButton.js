@@ -9,12 +9,12 @@ import KeyboardArrowLeft from '../svg-icons/keyboard-arrow-left';
 import KeyboardArrowRight from '../svg-icons/keyboard-arrow-right';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('MuiTabScrollButton', () => {
+export const styleSheet = createStyleSheet('MuiTabScrollButton', (theme) => {
   return {
     root: {
       background: 'none',
       color: 'inherit',
-      flex: '0 0 56px',
+      flex: `0 0 ${theme.spacing.unit * 7}px`,
     },
   };
 });

@@ -68,7 +68,13 @@ describe('<ButtonBase />', () => {
     it('should automatically change the button to an a element when href is provided', () => {
       const wrapper = shallow(<ButtonBase href="http://google.com">Hello</ButtonBase>);
       assert.strictEqual(wrapper.name(), 'a');
-      assert.strictEqual(wrapper.props().href, 'http://google.com', 'should have the href property');
+      assert.strictEqual(wrapper.props().href, 'http://google.com');
+    });
+
+    it('should not change the button to an a element', () => {
+      const wrapper = shallow(<ButtonBase component="span" href="http://google.com">Hello</ButtonBase>);
+      assert.strictEqual(wrapper.name(), 'span');
+      assert.strictEqual(wrapper.props().href, 'http://google.com');
     });
   });
 

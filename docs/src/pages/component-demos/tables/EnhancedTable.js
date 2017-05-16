@@ -145,10 +145,10 @@ EnhancedTableToolbar.propTypes = {
 
 EnhancedTableToolbar = withStyles(toolbarStyleSheet)(EnhancedTableToolbar);
 
-const styleSheet = createStyleSheet('EnhancedTable', () => ({
+const styleSheet = createStyleSheet('EnhancedTable', (theme) => ({
   paper: {
     width: '100%',
-    marginTop: 30,
+    marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
   },
 }));

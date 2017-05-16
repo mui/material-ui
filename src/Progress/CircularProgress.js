@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
-import { easing } from '../styles/transitions';
 
 const THICKNESS = 3.6;
 const PI = 3.1416; // Simple version of Math.PI for the CSS generated.
@@ -26,7 +25,7 @@ export const styleSheet = createStyleSheet('MuiCircularProgress', (theme) => {
       stroke: 'currentColor',
       strokeLinecap: 'square',
       transition: theme.transitions.create('all', { duration: 1300 }),
-      animation: `scale-progress-circle 1300ms ${easing.easeInOut} infinite`,
+      animation: `scale-progress-circle 1300ms ${theme.transitions.easing.easeInOut} infinite`,
     },
     '@keyframes rotate-progress-circle': {
       '0%': {

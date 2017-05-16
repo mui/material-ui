@@ -142,8 +142,8 @@ export default class MenuList extends Component {
     return this.setTabIndex(0);
   }
 
-  setTabIndex(n) {
-    this.setState({ currentTabIndex: n });
+  setTabIndex(index) {
+    this.setState({ currentTabIndex: index });
   }
 
   render() {

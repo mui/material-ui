@@ -9,7 +9,7 @@ import FolderIcon from 'material-ui-icons/Folder';
 import PageviewIcon from 'material-ui-icons/Pageview';
 import AssignmentIcon from 'material-ui-icons/Assignment';
 
-const styleSheet = createStyleSheet('IconAvatars', () => ({
+const styleSheet = createStyleSheet('IconAvatars', {
   avatar: {
     margin: 10,
   },
@@ -27,7 +27,7 @@ const styleSheet = createStyleSheet('IconAvatars', () => ({
     display: 'flex',
     justifyContent: 'center',
   },
-}));
+});
 
 function IconAvatars(props) {
   const classes = props.classes;

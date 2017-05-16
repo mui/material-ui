@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import { LinearProgress } from 'material-ui/Progress';
 
-const styleSheet = createStyleSheet('LinearDeterminate', () => ({
+const styleSheet = createStyleSheet('LinearDeterminate', {
   root: {
     width: '100%',
     marginTop: 30,
   },
-}));
+});
 
 class LinearDeterminate extends Component {
   timer: number
