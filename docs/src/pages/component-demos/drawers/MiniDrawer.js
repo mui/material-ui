@@ -63,7 +63,6 @@ const styleSheet = createStyleSheet('MiniDrawer', (theme) => ({
   drawerPaper: {
     position: 'relative',
     height: 'auto',
-    // Required to make the transition work:
     width: drawerWidth,
   },
   drawerInner: {
@@ -74,7 +73,7 @@ const styleSheet = createStyleSheet('MiniDrawer', (theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    height: 64,
+    height: 56,
     padding: '0 8px',
   },
   navItem: {

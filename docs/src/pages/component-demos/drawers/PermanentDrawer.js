@@ -43,7 +43,9 @@ const styleSheet = createStyleSheet('PermanentDrawer', (theme) => ({
     position: 'relative',
     height: 'auto',
     width: drawerWidth,
-    paddingTop: 64,
+  },
+  drawerHeader: {
+    height: 56,
   },
   listItemText: {
     padding: '0 16px',
@@ -58,6 +60,9 @@ const styleSheet = createStyleSheet('PermanentDrawer', (theme) => ({
     content: {
       height: 'calc(100% - 64px)',
       marginTop: 64,
+    },
+    drawerHeader: {
+      height: 64,
     },
   },
 }));
@@ -143,6 +148,7 @@ const PermanentDrawer = ({ classes }) => {
           type="permanent"
           paperClassName={classes.drawerPaper}
         >
+          <div className={classes.drawerHeader} />
           <Divider />
           <List>
             {mailFolderListItems}

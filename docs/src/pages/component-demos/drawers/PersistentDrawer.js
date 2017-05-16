@@ -72,10 +72,6 @@ const styleSheet = createStyleSheet('PersistentDrawer', (theme) => ({
     height: 56,
     padding: '0 8px',
   },
-  navItem: {
-    paddingLeft: 24,
-    paddingRight: 24,
-  },
   navItemText: {
     padding: '0 16px',
   },
@@ -106,6 +102,11 @@ const styleSheet = createStyleSheet('PersistentDrawer', (theme) => ({
     },
     drawerHeader: {
       height: 64,
+    },
+    navItem: {
+      // Use 16dp horizontal margins on mobile and 24dp on tablet.
+      paddingLeft: 24,
+      paddingRight: 24,
     },
   },
 }));

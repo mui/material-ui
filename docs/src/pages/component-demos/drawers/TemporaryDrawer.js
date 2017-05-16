@@ -18,7 +18,11 @@ import ReportIcon from 'material-ui-icons/Report';
 
 const styleSheet = createStyleSheet('TemporaryDrawer', () => ({
   drawerPaper: {
-    minWidth: 250,
+    width: 250,
+  },
+  fullWidth: {
+    width: '100%',
+    maxWidth: 'initial',
   },
   navItemText: {
     padding: '0 16px',
@@ -150,7 +154,7 @@ class TemporaryDrawer extends Component {
           open={this.state.open.top}
           onRequestClose={this.handleTopClose}
           onClick={this.handleTopClose}
-          paperClassName={classes.drawerPaper}
+          paperClassName={classes.fullWidth}
         >
           {list}
         </Drawer>
@@ -159,7 +163,7 @@ class TemporaryDrawer extends Component {
           open={this.state.open.bottom}
           onRequestClose={this.handleBottomClose}
           onClick={this.handleBottomClose}
-          paperClassName={classes.drawerPaper}
+          paperClassName={classes.fullWidth}
         >
           {list}
         </Drawer>
