@@ -41,7 +41,7 @@ describe('<MenuItem />', () => {
   });
 
   it('should have a role of option', () => {
-    const wrapper = shallow(<MenuItem role="option" />);
+    const wrapper = shallow(<MenuItem role="option" aria-selected={false} />);
     assert.strictEqual(wrapper.props().role, 'option', 'should have the option role');
   });
 
