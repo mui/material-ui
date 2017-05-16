@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import find from 'lodash/find';
 import { Link } from 'react-router';
 import IconButton from 'material-ui/IconButton';
 import PlayCircleOutlineIcon from 'material-ui-icons/PlayCircleOutline';
@@ -15,8 +16,8 @@ function DemoButton(props) {
     return null;
   }
 
-  const item = demoComponentsTree.find((item2) => {
-    return item2.components.find((component) => component === currentRoute.componentAPI.name);
+  const item = find(demoComponentsTree, (item2) => {
+    return find(item2.components, (component) => component === currentRoute.componentAPI.name);
   });
 
   if (!item) {

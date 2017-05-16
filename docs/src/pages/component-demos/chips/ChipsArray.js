@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -17,13 +17,15 @@ const styleSheet = createStyleSheet('ChipsArray', (theme) => ({
 }));
 
 class ChipsArray extends Component {
-  state = { chipData: [
-    { key: 0, label: 'Angular' },
-    { key: 1, label: 'JQuery' },
-    { key: 2, label: 'Polymer' },
-    { key: 3, label: 'ReactJS' },
-    { key: 4, label: 'Vue.js' },
-  ] };
+  state = {
+    chipData: [
+      { key: 0, label: 'Angular' },
+      { key: 1, label: 'JQuery' },
+      { key: 2, label: 'Polymer' },
+      { key: 3, label: 'ReactJS' },
+      { key: 4, label: 'Vue.js' },
+    ],
+  };
 
   styles = {
     chip: {
@@ -35,14 +37,14 @@ class ChipsArray extends Component {
     },
   };
 
-  handleRequestDelete = (key) => () => {
-    if (key === 3) {
+  handleRequestDelete = (data) => () => {
+    if (data.label === 'ReactJS') {
       alert('Why would you want to delete React?! :)'); // eslint-disable-line no-alert
       return;
     }
 
     const chipData = [...this.state.chipData];
-    const chipToDelete = chipData.indexOf(chipData.find((chip) => chip.key === key));
+    const chipToDelete = chipData.indexOf(data);
     chipData.splice(chipToDelete, 1);
     this.setState({ chipData });
   };
@@ -50,20 +52,18 @@ class ChipsArray extends Component {
   render() {
     const classes = this.props.classes;
 
-    const renderChip = (data) => {
-      return (
-        <Chip
-          label={data.label}
-          key={data.key}
-          onRequestDelete={this.handleRequestDelete(data.key)}
-          className={classes.chip}
-        />
-      );
-    };
-
     return (
       <div className={classes.row}>
-        {this.state.chipData.map(renderChip, this)}
+        {this.state.chipData.map((data) => {
+          return (
+            <Chip
+              label={data.label}
+              key={data.key}
+              onRequestDelete={this.handleRequestDelete(data)}
+              className={classes.chip}
+            />
+          );
+        })}
       </div>
     );
   }
