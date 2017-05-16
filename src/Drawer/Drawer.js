@@ -157,10 +157,8 @@ export default class Drawer extends Component {
     /**
      * The type of drawer.
      * See https://material.io/guidelines/patterns/navigation-drawer.html
-     *
-     * Note: for the `persistent` and `mini` variant to work,
-     * you must set a width via paperClassName.
-     * For the `mini` variant, you also have to wrap the Drawer's children in
+     * NOTE:
+     * For the `mini` variant, you must wrap the Drawer's children in
      * a container with the same fixed width set to paperClassName.
      */
     type: PropTypes.oneOf(['permanent', 'persistent', 'mini', 'temporary']),
