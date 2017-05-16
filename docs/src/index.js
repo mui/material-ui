@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import { AppContainer } from 'react-hot-loader';
 import { createStore } from 'redux';

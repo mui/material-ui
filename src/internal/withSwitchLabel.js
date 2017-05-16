@@ -79,7 +79,7 @@ function withSwitchLabel(SwitchComponent) {
 
       const switchElement = (
         <SwitchComponent
-          ref={(c) => { this.switch = c; }}
+          ref={(node) => { this.switch = node; }}
           disabled={disabled}
           {...other}
         />

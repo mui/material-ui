@@ -270,9 +270,9 @@ describe('<Transition />', () => {
 
         return (
           <Transition
-            ref={(c) => {
-              if (c !== null) {
-                this.transition = c;
+            ref={(node) => {
+              if (node !== null) {
+                this.transition = node;
               }
             }}
             unmountOnExit

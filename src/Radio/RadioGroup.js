@@ -112,7 +112,7 @@ class RadioGroup extends Component {
           return cloneElement(child, {
             key: index,
             name,
-            ref: (c) => { this.radios.push(c); },
+            ref: (node) => { this.radios.push(node); },
             checked: selected,
             onChange: this.handleRadioChange,
           });
