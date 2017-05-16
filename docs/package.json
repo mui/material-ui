@@ -20,8 +20,8 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
-    "cross-env": "^4.0.0",
-    "css-loader": "^0.28.0",
+    "cross-env": "^5.0.0",
+    "css-loader": "^0.28.1",
     "file-loader": "^0.11.1",
     "img-loader": "^2.0.0",
     "object-assign": "^4.1.1",
@@ -29,8 +29,8 @@
     "react-hot-loader": "3.0.0-beta.6",
     "redbox-react": "^1.3.6",
     "rimraf": "^2.6.1",
-    "style-loader": "^0.16.1",
-    "webpack": "^2.4.1",
+    "style-loader": "^0.17.0",
+    "webpack": "^2.5.1",
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
@@ -40,8 +40,7 @@
     "react-redux": "^5.0.4",
     "react-router": "^3.0.5",
     "react-router-scroll": "^0.4.2",
-    "react-swipeable-views": "^0.12.1",
-    "recompose": "^0.23.1",
+    "react-swipeable-views": "^0.12.2",
     "redux": "^3.5.2"
   }
 }

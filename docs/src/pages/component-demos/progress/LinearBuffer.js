@@ -13,6 +13,7 @@ const styleSheet = createStyleSheet('LinearBuffer', () => ({
 }));
 
 class LinearBuffer extends Component {
+  timer: number
   state = {
     completed: 0,
     buffer: 10,
@@ -25,8 +26,6 @@ class LinearBuffer extends Component {
   componentWillUnmount() {
     clearInterval(this.timer);
   }
-
-  timer: number
 
   progress = () => {
     const { completed } = this.state;

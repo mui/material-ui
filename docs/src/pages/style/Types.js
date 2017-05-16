@@ -47,6 +47,9 @@ export default function Types() {
           sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         `}
       </Typography>
+      <Typography type="button" gutterBottom>
+        Button
+      </Typography>
     </div>
   );
 }

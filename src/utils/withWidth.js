@@ -2,8 +2,8 @@
 
 import React, { Component } from 'react';
 import EventListener from 'react-event-listener';
-import createHelper from 'recompose/createHelper';
 import createEagerFactory from 'recompose/createEagerFactory';
+import wrapDisplayName from 'recompose/wrapDisplayName';
 import customPropTypes from '../utils/customPropTypes';
 import { keys } from '../styles/breakpoints';
 
@@ -13,24 +13,24 @@ import { keys } from '../styles/breakpoints';
  * @param breakpoint
  * @param inclusive - defaults to true
  */
-export const isWidthUp = (screenWidth, breakpoint, inclusive = true) => {
+export const isWidthUp = (breakpoint, screenWidth, inclusive = true) => {
+  if (inclusive) {
+    return keys.indexOf(breakpoint) <= keys.indexOf(screenWidth);
+  }
+  return keys.indexOf(breakpoint) < keys.indexOf(screenWidth);
+};
+
+/**
+ * By default, returns true if screen width is the same or less than the given breakpoint.
+ * @param screenWidth
+ * @param breakpoint
+ * @param inclusive - defaults to true
+ */
+export const isWidthDown = (breakpoint, screenWidth, inclusive = true) => {
   if (inclusive) {
     return keys.indexOf(screenWidth) <= keys.indexOf(breakpoint);
   }
   return keys.indexOf(screenWidth) < keys.indexOf(breakpoint);
-};
-
-/**
- * By default, returns true if screen less than the given breakpoint.
- * @param screenWidth
- * @param breakpoint
- * @param inclusive - defaults to false
- */
-export const isWidthDown = (screenWidth, breakpoint, inclusive = false) => {
-  if (inclusive) {
-    return keys.indexOf(screenWidth) >= keys.indexOf(breakpoint);
-  }
-  return keys.indexOf(screenWidth) > keys.indexOf(breakpoint);
 };
 
 function withWidth(options = {}) {
@@ -41,7 +41,7 @@ function withWidth(options = {}) {
   return (BaseComponent) => {
     const factory = createEagerFactory(BaseComponent);
 
-    return class WithWidth extends Component {
+    class Width extends Component {
       static contextTypes = {
         theme: customPropTypes.muiRequired,
       };
@@ -126,8 +126,14 @@ function withWidth(options = {}) {
           </EventListener>
         );
       }
-    };
+    }
+
+    if (process.env.NODE_ENV !== 'production') {
+      Width.displayName = wrapDisplayName(BaseComponent, 'withWidth');
+    }
+
+    return Width;
   };
 }
 
-export default createHelper(withWidth, 'withWidth');
+export default withWidth;

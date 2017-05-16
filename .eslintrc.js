@@ -68,9 +68,10 @@ module.exports = {
     'react/sort-prop-types': 'error', // airbnb do nothing here.
     'react/sort-comp': [2, {
       order: [
+        'type-annotations',
         'static-methods',
+        'props',
         'lifecycle',
-        // 'properties', // not real -- NEEDS A PR!!!
         // '/^handle.+$/', // wishlist -- needs above first
         // '/^(get|set)(?!(InitialState$|DefaultProps$|ChildContext$)).+$/', // wishlist -- needs above first
         'everything-else',

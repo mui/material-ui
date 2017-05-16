@@ -1,6 +1,6 @@
 // @flow weak
 
-import createHelper from 'recompose/createHelper';
+import wrapDisplayName from 'recompose/wrapDisplayName';
 import createEagerFactory from 'recompose/createEagerFactory';
 import customPropTypes from '../utils/customPropTypes';
 
@@ -11,18 +11,22 @@ import customPropTypes from '../utils/customPropTypes';
 const withStyles = (styleSheet) => (BaseComponent) => {
   const factory = createEagerFactory(BaseComponent);
 
-  const WithStyle = (ownerProps, context) => (
+  const Style = (ownerProps, context) => (
     factory({
       classes: context.styleManager.render(styleSheet),
       ...ownerProps,
     })
   );
 
-  WithStyle.contextTypes = {
+  Style.contextTypes = {
     styleManager: customPropTypes.muiRequired,
   };
 
-  return WithStyle;
+  if (process.env.NODE_ENV !== 'production') {
+    Style.displayName = wrapDisplayName(BaseComponent, 'withStyles');
+  }
+
+  return Style;
 };
 
-export default createHelper(withStyles, 'withStyles');
+export default withStyles;

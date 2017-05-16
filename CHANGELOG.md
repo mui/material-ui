@@ -24,6 +24,36 @@ Below is a summary of major changes.
 - [Ripple/TouchRipple] Refactored and now works properly inside a button in firefox!
 - [Button] Raised/flat/fab are now combined into a single component.
 
+## 1.0.0-alpha.14
+###### _May 14, 2017_
+
+##### Breaking changes
+
+- [Hidden] Remove one degree of freedom (#6820) @oliviertassnari
+- [Hidden] Logical fixes for up/down (#6839) @rosskevin
+
+##### Component Fixes / Enhancements
+
+- [Icon] Add aria-hidden (#6829) @oliviertassinari
+- [Paper] Add elevation boundaries (#6817) @oliviertassinari
+- [Paper] Add a component property (#6830) @oliviertassinari
+- [Transition] Add flow proptypes (#6846) @rosskevin
+- [npm] Upgrade the recompose dependency (#6855) @oliviertassinari
+- [TextField] Add in support for multiline text fields (#6553) @peteratticusberg
+- [TextField] Second iteration on multilines (#6859) @oliviertassinari
+
+##### Docs
+
+- [docs] Fix link to material-ui-icons (#6825) @NiloCK
+- [docs] Add a direct link to GitHub (#6861) @oliviertassinari
+
+##### Core
+
+- [coverage] Remove the flow plugins as they were not needed (#6816) @rosskevin
+- [ButtonBase] Add test coverage for instance.focus (#6827) @agamrafaeli
+- [ButtonBase] Add test coverage for handleFocus (#6828) @agamrafaeli
+- [flow] Fix small issues (#6860) @oliviertassinari
+
 ## 1.0.0-alpha.13
 ###### _May 8, 2017_
 

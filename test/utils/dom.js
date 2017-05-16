@@ -1,4 +1,5 @@
 // @flow
+
 const { JSDOM } = require('jsdom');
 
 function createDOM() {
