@@ -208,7 +208,7 @@ export default class ButtonBase extends Component {
 
   renderRipple(ripple, center) {
     if (ripple === true && !this.props.disabled) {
-      return <TouchRipple ref={(c) => { this.ripple = c; }} center={center} />;
+      return <TouchRipple ref={(node) => { this.ripple = node; }} center={center} />;
     }
 
     return null;
@@ -247,7 +247,7 @@ export default class ButtonBase extends Component {
     }, classNameProp);
 
     const buttonProps = {
-      ref: (c) => { this.button = c; },
+      ref: (node) => { this.button = node; },
       onBlur: this.handleBlur,
       onFocus: this.handleFocus,
       onKeyDown: this.handleKeyDown,

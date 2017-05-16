@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React, { Component } from 'react';
 import { LabelSwitch } from 'material-ui/Switch';

@@ -183,7 +183,7 @@ export function createSwitch({
         <IconButton
           data-mui-test="SwitchBase"
           component="span"
-          buttonRef={(c) => { this.button = c; }}
+          buttonRef={(node) => { this.button = node; }}
           className={className}
           disabled={disabled}
           tabIndex={null}
@@ -192,7 +192,7 @@ export function createSwitch({
         >
           {icon}
           <input
-            ref={(c) => { this.input = c; }}
+            ref={(node) => { this.input = node; }}
             type={inputType}
             name={name}
             checked={this.isControlled ? checkedProp : undefined}

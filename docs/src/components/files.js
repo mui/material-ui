@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 /**
  * This lets us eager load the files ahead of time

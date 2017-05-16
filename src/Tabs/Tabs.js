@@ -371,7 +371,7 @@ class Tabs extends Component {
           <div
             className={classGroups.scroller}
             style={this.state.scrollerStyle}
-            ref={(c) => { this.tabs = c; }}
+            ref={(node) => { this.tabs = node; }}
             role="tablist"
             onScroll={this.handleTabsScroll}
           >

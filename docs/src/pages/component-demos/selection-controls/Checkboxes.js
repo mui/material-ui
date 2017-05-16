@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React, { Component } from 'react';
 import { LabelCheckbox } from 'material-ui/Checkbox';
