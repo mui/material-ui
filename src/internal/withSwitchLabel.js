@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import createHelper from 'recompose/createHelper';
+import wrapDisplayName from 'recompose/wrapDisplayName';
 import customPropTypes from '../utils/customPropTypes';
 
 export const styleSheet = createStyleSheet('MuiSwitchLabel', (theme) => {
@@ -31,7 +31,7 @@ export const styleSheet = createStyleSheet('MuiSwitchLabel', (theme) => {
 });
 
 function withSwitchLabel(SwitchComponent) {
-  return class SwitchLabel extends Component {
+  class SwitchLabel extends Component {
     static propTypes = {
       /**
        * If `true`, the control will be disabled.
@@ -98,7 +98,13 @@ function withSwitchLabel(SwitchComponent) {
         </label>
       );
     }
-  };
+  }
+
+  if (process.env.NODE_ENV !== 'production') {
+    SwitchLabel.displayName = wrapDisplayName(SwitchComponent, 'withSwitchLabel');
+  }
+
+  return SwitchLabel;
 }
 
-export default createHelper(withSwitchLabel, 'withSwitchLabel', true, true);
+export default withSwitchLabel;

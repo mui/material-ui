@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
+import Textarea from './Textarea';
 
 function isDirty(obj) {
   return obj && obj.value && obj.value.length > 0;
@@ -26,7 +27,7 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
       '&:after': {
         backgroundColor: theme.palette.primary.A200,
         left: 0,
-        bottom: -1,
+        bottom: -2,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
         content: '""',
         height: 2,
@@ -58,7 +59,6 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
       whiteSpace: 'normal',
       background: 'none',
       margin: 0, // Reset for Safari
-      appearance: 'textfield', // Improve type search style.
       color: theme.palette.text.primary,
       width: '100%',
       '&:focus': {
@@ -67,6 +67,16 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => {
       '&::-webkit-search-decoration': { // Remove the padding when type=search.
         appearance: 'none',
       },
+    },
+    singleline: {
+      appearance: 'textfield', // Improve type search style.
+    },
+    multiline: {
+      resize: 'none',
+      padding: 0,
+    },
+    multilineWrapper: {
+      padding: '6px 0',
     },
     disabled: {
       color: theme.palette.text.disabled,
@@ -93,11 +103,16 @@ export default class Input extends Component {
     /**
      * The component used for the root node.
      * Either a string to use a DOM element or a component.
+     * It's an `input` by default.
      */
     component: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
     ]),
+    /**
+     * The default value of the `Input` element.
+     */
+    defaultValue: PropTypes.string,
     /**
      * If `true`, the input will be disabled.
      */
@@ -110,10 +125,26 @@ export default class Input extends Component {
      * If `true`, the input will indicate an error.
      */
     error: PropTypes.bool,
+    /*
+     * @ignore
+     */
+    id: PropTypes.string,
     /**
      * The CSS class name of the input element.
      */
     inputClassName: PropTypes.string,
+    /**
+     * Properties applied to the `input` element.
+     */
+    inputProps: PropTypes.object,
+    /**
+     * If `true`, a textarea element will be rendered.
+     */
+    multiline: PropTypes.bool,
+    /**
+     * @ignore
+     */
+    name: PropTypes.string,
     /**
      * @ignore
      */
@@ -135,13 +166,29 @@ export default class Input extends Component {
      */
     onFocus: PropTypes.func,
     /**
+     * @ignore
+     */
+    onKeyDown: PropTypes.func,
+    /**
+     * @ignore
+     */
+    onKeyUp: PropTypes.func,
+    /**
+     * @ignore
+     */
+    placeholder: PropTypes.string,
+    /**
+     * Number of rows to display when multiline option is set to true.
+     */
+    rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    /**
+     * Maxium number of rows to display when multiline option is set to true.
+     */
+    rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    /**
      * Type of the input element. It should be a valid HTML5 input type.
      */
     type: PropTypes.string,
-    /**
-     * If `true`, the input will have an underline.
-     */
-    underline: PropTypes.bool,
     /**
      * The input value, required for a controlled component.
      */
@@ -149,10 +196,10 @@ export default class Input extends Component {
   };
 
   static defaultProps = {
-    component: 'input',
     disabled: false,
     type: 'text',
     disableUnderline: false,
+    multiline: false,
   };
 
   static contextTypes = {
@@ -183,7 +230,7 @@ export default class Input extends Component {
   }
 
   // Holds the input reference
-  input = null;
+  input = undefined;
 
   focus = () => this.input.focus();
 
@@ -238,14 +285,26 @@ export default class Input extends Component {
   render() {
     const {
       className: classNameProp,
-      component: ComponentProp,
-      inputClassName: inputClassNameProp,
+      component,
+      defaultValue,
       disabled,
       disableUnderline,
       error: errorProp,
+      id,
+      inputClassName: inputClassNameProp,
+      inputProps: inputPropsProp,
+      multiline,
       onBlur, // eslint-disable-line no-unused-vars
       onFocus, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
+      onKeyDown,
+      onKeyUp,
+      placeholder,
+      name,
+      rows,
+      rowsMax,
+      type,
+      value,
       ...other
     } = this.props;
 
@@ -259,30 +318,58 @@ export default class Input extends Component {
     }
 
     const wrapperClassName = classNames(classes.wrapper, {
+      [classes.disabled]: disabled,
+      [classes.error]: error,
+      [classes.focused]: this.state.focused,
       [classes.formControl]: muiFormControl,
       [classes.inkbar]: !disableUnderline,
-      [classes.focused]: this.state.focused,
-      [classes.error]: error,
+      [classes.multilineWrapper]: multiline,
+      [classes.underline]: !disableUnderline,
     }, classNameProp);
 
     const inputClassName = classNames(classes.input, {
-      [classes.underline]: !disableUnderline,
       [classes.disabled]: disabled,
+      [classes.singleline]: !multiline,
+      [classes.multiline]: multiline,
     }, inputClassNameProp);
 
     const required = muiFormControl && muiFormControl.required === true;
 
+    let InputComponent = 'input';
+    let inputProps = inputPropsProp;
+
+    if (component) {
+      inputProps = { rows, rowsMax, ...inputProps };
+      InputComponent = component;
+    } else if (multiline) {
+      if (rows && !rowsMax) {
+        inputProps = { rows, ...inputProps };
+        InputComponent = 'textarea';
+      } else {
+        inputProps = { rows, rowsMax, ...inputProps };
+        InputComponent = Textarea;
+      }
+    }
+
     return (
-      <div className={wrapperClassName}>
-        <ComponentProp
-          ref={(c) => { this.input = c; }}
+      <div className={wrapperClassName} {...other}>
+        <InputComponent
+          ref={(node) => { this.input = node; }}
           className={inputClassName}
           onBlur={this.handleBlur}
           onFocus={this.handleFocus}
           onChange={this.handleChange}
+          onKeyUp={onKeyUp}
+          onKeyDown={onKeyDown}
           disabled={disabled}
           aria-required={required ? true : undefined}
-          {...other}
+          value={value}
+          id={id}
+          name={name}
+          defaultValue={defaultValue}
+          placeholder={placeholder}
+          type={type}
+          {...inputProps}
         />
       </div>
     );

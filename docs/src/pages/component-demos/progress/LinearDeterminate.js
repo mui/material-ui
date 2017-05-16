@@ -13,6 +13,7 @@ const styleSheet = createStyleSheet('LinearDeterminate', () => ({
 }));
 
 class LinearDeterminate extends Component {
+  timer: number
   state = {
     completed: 0,
   }
@@ -24,8 +25,6 @@ class LinearDeterminate extends Component {
   componentWillUnmount() {
     clearInterval(this.timer);
   }
-
-  timer: number
 
   progress = () => {
     const { completed } = this.state;

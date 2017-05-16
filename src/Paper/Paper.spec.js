@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
@@ -39,5 +39,12 @@ describe('<Paper />', () => {
     assert.strictEqual(wrapper.hasClass(classes.dp24), true, 'should have the dp24 shadow class');
     wrapper.setProps({ elevation: 2 });
     assert.strictEqual(wrapper.hasClass(classes.dp2), true, 'should have the dp2 shadow class');
+  });
+
+  describe('prop: component', () => {
+    it('should render a header', () => {
+      const wrapper = shallow(<Paper component="header">Hello World</Paper>);
+      assert.strictEqual(wrapper.name(), 'header');
+    });
   });
 });

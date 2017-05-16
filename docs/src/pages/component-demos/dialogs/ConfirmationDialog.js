@@ -42,6 +42,7 @@ class ConfirmationDialog extends Component {
 
   componentWillUpdate(nextProps) {
     if (nextProps.selectedValue !== this.props.selectedValue) {
+      // eslint-disable-next-line react/no-will-update-set-state
       this.setState({ selectedValue: nextProps.selectedValue });
     }
   }

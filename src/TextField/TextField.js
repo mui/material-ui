@@ -1,8 +1,7 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import shallowEqual from 'recompose/shallowEqual';
 import Input, { InputLabel } from '../Input';
 import customPropTypes from '../utils/customPropTypes';
 import FormControl from '../Form/FormControl';
@@ -12,110 +11,135 @@ import FormControl from '../Form/FormControl';
  * <TextField value="Hello World">
  * ```
  */
-export default class TextField extends Component {
-  static propTypes = {
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-    /**
-     * If `true`, the input will be disabled.
-     */
-    disabled: PropTypes.bool,
-    /**
-     * If `true`, the label will be displayed in an error state.
-     */
-    error: PropTypes.bool,
-    /*
-     * @ignore
-     */
-    id: PropTypes.string,
-    /**
-     * The CSS class name of the `Input` element.
-     */
-    inputClassName: PropTypes.string,
-    /**
-     * Properties applied to the `Input` element.
-     */
-    inputProps: PropTypes.object,
-    /**
-     * The label content.
-     */
-    label: PropTypes.node,
-    /**
-     * The CSS class name of the label element.
-     */
-    labelClassName: PropTypes.string,
-    /**
-     * Name attribute of the `Input` element.
-     */
-    name: PropTypes.string,
-    /**
-     * If `true`, the label is displayed as required.
-     */
-    required: PropTypes.bool,
-    /**
-     * Type attribute of the `Input` element. It should be a valid HTML5 input type.
-     */
-    type: PropTypes.string,
-    /**
-     * The value of the `Input` element, required for a controlled component.
-     */
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  };
+function TextField(props) {
+  const {
+    className,
+    defaultValue,
+    disabled,
+    error,
+    id,
+    inputClassName,
+    inputProps,
+    InputProps,
+    label,
+    labelClassName,
+    name,
+    required,
+    type,
+    multiline,
+    rows,
+    rowsMax,
+    value,
+    ...other
+  } = props;
 
-  static defaultProps = {
-    required: false,
-  };
-
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    return (
-      !shallowEqual(this.props, nextProps) ||
-      !shallowEqual(this.context.styleManager.theme, nextContext.styleManager.theme)
-    );
-  }
-
-  render() {
-    const {
-      className,
-      disabled,
-      error,
-      inputClassName,
-      inputProps,
-      label,
-      labelClassName,
-      name,
-      required,
-      type,
-      value,
-      ...other
-    } = this.props;
-
-    return (
-      <FormControl
-        className={className}
-        error={error}
-        required={required}
-        {...other}
-      >
-        {label && (
-          <InputLabel className={labelClassName}>
-            {label}
-          </InputLabel>
-        )}
-        <Input
-          className={inputClassName}
-          value={value}
-          name={name}
-          type={type}
-          disabled={disabled}
-          {...inputProps}
-        />
-      </FormControl>
-    );
-  }
+  return (
+    <FormControl
+      className={className}
+      error={error}
+      required={required}
+      {...other}
+    >
+      {label && (
+        <InputLabel className={labelClassName}>
+          {label}
+        </InputLabel>
+      )}
+      <Input
+        className={inputClassName}
+        defaultValue={defaultValue}
+        disabled={disabled}
+        multiline={multiline}
+        name={name}
+        rows={rows}
+        rowsMax={rowsMax}
+        type={type}
+        value={value}
+        id={id}
+        inputProps={inputProps}
+        {...InputProps}
+      />
+    </FormControl>
+  );
 }
+
+TextField.propTypes = {
+  /**
+   * The CSS class name of the root element.
+   */
+  className: PropTypes.string,
+  /**
+   * The default value of the `Input` element.
+   */
+  defaultValue: PropTypes.string,
+  /**
+   * If `true`, the input will be disabled.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * If `true`, the label will be displayed in an error state.
+   */
+  error: PropTypes.bool,
+  /*
+   * @ignore
+   */
+  id: PropTypes.string,
+  /**
+   * The CSS class name of the `Input` element.
+   */
+  inputClassName: PropTypes.string,
+  /**
+   * Properties applied to the `input` element.
+   */
+  inputProps: PropTypes.object,
+  /**
+   * Properties applied to the `Input` element.
+   */
+  InputProps: PropTypes.object,
+  /**
+   * The label content.
+   */
+  label: PropTypes.node,
+  /**
+   * The CSS class name of the label element.
+   */
+  labelClassName: PropTypes.string,
+  /**
+   * If `true`, a textarea element will be rendered instead of an input.
+   */
+  multiline: PropTypes.bool,
+  /**
+   * Name attribute of the `Input` element.
+   */
+  name: PropTypes.string,
+  /**
+   * If `true`, the label is displayed as required.
+   */
+  required: PropTypes.bool,
+  /**
+   * Number of rows to display when multiline option is set to true.
+   */
+  rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * Maxium number of rows to display when multiline option is set to true.
+   */
+  rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * Type attribute of the `Input` element. It should be a valid HTML5 input type.
+   */
+  type: PropTypes.string,
+  /**
+   * The value of the `Input` element, required for a controlled component.
+   */
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+};
+
+TextField.defaultProps = {
+  required: false,
+};
+
+TextField.contextTypes = {
+  styleManager: customPropTypes.muiRequired,
+};
+
+export default TextField;
