@@ -42,21 +42,26 @@ function BreakpointUp(props) {
       <Typography type="subheading" className={classes.typography}>
         Current width: {props.width}
       </Typography>
-      <Hidden xsUp>
-        <Paper className={classes.paper}>xsUp</Paper>
-      </Hidden>
-      <Hidden smUp>
-        <Paper className={classes.paper}>smUp</Paper>
-      </Hidden>
-      <Hidden mdUp>
-        <Paper className={classes.paper}>mdUp</Paper>
-      </Hidden>
-      <Hidden lgUp>
-        <Paper className={classes.paper}>lgUp</Paper>
-      </Hidden>
-      <Hidden xlUp>
-        <Paper className={classes.paper}>xlUp</Paper>
-      </Hidden>
+      <Hidden
+        xsUp
+        component={<Paper className={classes.paper}>xsUp</Paper>}
+      />
+      <Hidden
+        smUp
+        component={<Paper className={classes.paper}>smUp</Paper>}
+      />
+      <Hidden
+        mdUp
+        component={<Paper className={classes.paper}>mdUp</Paper>}
+      />
+      <Hidden
+        lgUp
+        component={<Paper className={classes.paper}>lgUp</Paper>}
+      />
+      <Hidden
+        xlUp
+        component={<Paper className={classes.paper}>xlUp</Paper>}
+      />
     </div>
   );
 }

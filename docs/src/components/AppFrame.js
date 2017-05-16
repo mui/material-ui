@@ -11,8 +11,7 @@ import Toolbar from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
 import withWidth, { isWidthUp } from 'material-ui/utils/withWidth';
 import MenuIcon from 'material-ui-icons/Menu';
-import LightbulbOutline from 'material-ui-icons/LightbulbOutline';
-import Github from 'docs/src/components/Github';
+import LightbulbOutlineIcon from 'material-ui-icons/LightbulbOutline';
 import AppDrawer from 'docs/src/components/AppDrawer';
 import DemoButton from 'docs/src/components/DemoButton';
 import AppSearch from 'docs/src/components/AppSearch';
@@ -148,20 +147,8 @@ class AppFrame extends Component {
             <AppSearch />
             <DemoButton routes={routes} />
             <ApiMenu routes={routes} />
-            <IconButton
-              title="Toggle light/dark theme"
-              contrast
-              onClick={this.handleToggleShade}
-            >
-              <LightbulbOutline />
-            </IconButton>
-            <IconButton
-              component="a"
-              title="GitHub"
-              contrast
-              href="https://github.com/callemall/material-ui/tree/next"
-            >
-              <Github />
+            <IconButton contrast onClick={this.handleToggleShade}>
+              <LightbulbOutlineIcon />
             </IconButton>
           </Toolbar>
         </AppBar>

@@ -1,10 +1,16 @@
 // @flow
-import warning from 'warning';
+import React, { Element, isValidElement } from 'react';
 import { keys as breakpoints } from '../styles/breakpoints';
 import withWidth, { isWidthDown, isWidthUp } from '../utils/withWidth';
 import type { HiddenProps } from './types';
 
 type Props = HiddenProps & {
+  /**
+   * If string or Function, component is used as the root node and all other props are passed
+   * including children.
+   * If an Element, it will be rendered as-is and no other props are propagated.
+   */
+  component: string | Function | Element<*>,
   /**
    * @ignore
    * width prop provided by withWidth decorator
@@ -13,12 +19,12 @@ type Props = HiddenProps & {
 };
 
 /**
- * @ignore
  * Responsively hides by omission.
  */
 function HiddenJs(props: Props) {
   const {
     children,
+    component: ComponentProp,
     only,
     xsUp, // eslint-disable-line no-unused-vars
     smUp, // eslint-disable-line no-unused-vars
@@ -59,8 +65,8 @@ function HiddenJs(props: Props) {
       const breakpointUp = props[`${breakpoint}Up`];
       const breakpointDown = props[`${breakpoint}Down`];
       if (
-        (breakpointUp && isWidthUp(breakpoint, width)) ||
-        (breakpointDown && isWidthDown(breakpoint, width))
+        (breakpointUp && isWidthUp(width, breakpoint)) ||
+        (breakpointDown && (isWidthDown(width, breakpoint, true)))
       ) {
         visible = false;
         break;
@@ -72,11 +78,21 @@ function HiddenJs(props: Props) {
     return null;
   }
 
-  warning(Object.keys(other).length === 0,
-    `Material-UI: Unsupported properties received ${JSON.stringify(other)}`,
-  );
+  // render `string | Function` with any optional props
+  if (typeof ComponentProp === 'string' || typeof ComponentProp === 'function') {
+    return (
+      <ComponentProp {...other}>
+        {children}
+      </ComponentProp>
+    );
+  }
 
-  return children;
+  // render any Element exactly as given
+  if (isValidElement(ComponentProp)) {
+    return React.Children.only(ComponentProp);
+  }
+
+  throw new Error(`Invalid component: ${typeof ComponentProp}`);
 }
 
 export default withWidth()(HiddenJs);

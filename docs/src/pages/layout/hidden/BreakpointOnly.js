@@ -42,15 +42,18 @@ function BreakpointOnly(props) {
       <Typography type="subheading" className={classes.typography}>
         Current width: {props.width}
       </Typography>
-      <Hidden only="lg">
-        <Paper className={classes.paper}>Hidden on lg</Paper>
-      </Hidden>
-      <Hidden only="sm">
-        <Paper className={classes.paper}>Hidden on sm</Paper>
-      </Hidden>
-      <Hidden only={['sm', 'lg']}>
-        <Paper className={classes.paper}>Hidden on sm and lg</Paper>
-      </Hidden>
+      <Hidden
+        only="lg"
+        component={<Paper className={classes.paper}>Hidden on lg</Paper>}
+      />
+      <Hidden
+        only="sm"
+        component={<Paper className={classes.paper}>Hidden on sm</Paper>}
+      />
+      <Hidden
+        only={['sm', 'lg']}
+        component={<Paper className={classes.paper}>Hidden on sm and lg</Paper>}
+      />
     </div>
   );
 }

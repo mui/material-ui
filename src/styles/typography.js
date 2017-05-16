@@ -93,9 +93,5 @@ export default function createTypography(palette, constants = {}) {
       lineHeight: 1,
       color: palette.text.secondary,
     },
-    button: {
-      textTransform: 'uppercase',
-      fontWeight: fontWeightMedium,
-    },
   };
 }

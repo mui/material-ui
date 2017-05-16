@@ -5,7 +5,6 @@
 .*/node_modules/fbjs/lib/partitionObjectByKey.js
 .*/node_modules/jss/lib/.*\.js\.flow
 .*/node_modules/react-swipeable-views/src/.*
-.*/node_modules/eslint-plugin-jsx-a11y/src/.*
 .*/scripts/*
 .*/docs/webpack.*
 

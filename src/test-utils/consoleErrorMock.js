@@ -1,25 +1,24 @@
-// @flow weak
-/* eslint-disable no-console */
-
+/* eslint-disable flowtype/require-valid-file-annotation, no-console */
 import { spy } from 'sinon';
 
 class ConsoleErrorMock {
   consoleErrorContainer;
 
   spy = () => {
+    // $FlowFixMe
     this.consoleErrorContainer = console.error;
     // $FlowFixMe
     console.error = spy();
   };
 
   reset = () => {
-    // $FlowFixMe
     console.error = this.consoleErrorContainer;
     delete this.consoleErrorContainer;
   };
 
   callCount = () => {
     if (this.consoleErrorContainer) {
+      // $FlowFixMe
       return console.error.callCount;
     }
 

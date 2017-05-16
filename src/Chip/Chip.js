@@ -158,7 +158,7 @@ export default function Chip(props, context) {
       onClick={onClick}
       tabIndex={tabIndex}
       onKeyDown={handleKeyDown}
-      ref={(node) => { chipRef = node; }}
+      ref={(c) => { chipRef = c; }}
       {...other}
     >
       {avatar}

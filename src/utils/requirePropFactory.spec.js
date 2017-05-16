@@ -1,4 +1,4 @@
-// @flow
+// @flow weak
 
 import { assert } from 'chai';
 import requirePropFactory from './requirePropFactory';

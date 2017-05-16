@@ -1,4 +1,4 @@
-// @flow
+// @flow weak
 
 import { stub } from 'sinon';
 import { assert } from 'chai';

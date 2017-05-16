@@ -1,5 +1,4 @@
-// @flow
-
+// @flow weak
 import React from 'react';
 import { createShallow } from 'src/test-utils';
 import { assert } from 'chai';

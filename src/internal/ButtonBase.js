@@ -189,20 +189,17 @@ export default class ButtonBase extends Component {
 
     event.persist();
 
-    const keyboardFocusCallback = this.onKeyboardFocusHandler.bind(this, event);
-    detectKeyboardFocus(this, findDOMNode(this.button), keyboardFocusCallback);
+    detectKeyboardFocus(this, findDOMNode(this.button), () => {
+      this.keyDown = false;
+      this.setState({ keyboardFocused: true });
+
+      if (this.props.onKeyboardFocus) {
+        this.props.onKeyboardFocus(event);
+      }
+    });
 
     if (this.props.onFocus) {
       this.props.onFocus(event);
-    }
-  };
-
-  onKeyboardFocusHandler = (event) => {
-    this.keyDown = false;
-    this.setState({ keyboardFocused: true });
-
-    if (this.props.onKeyboardFocus) {
-      this.props.onKeyboardFocus(event);
     }
   };
 
@@ -225,7 +222,6 @@ export default class ButtonBase extends Component {
       keyboardFocusedClassName,
       onBlur, // eslint-disable-line no-unused-vars
       onFocus, // eslint-disable-line no-unused-vars
-      onKeyboardFocus, // eslint-disable-line no-unused-vars
       onKeyDown, // eslint-disable-line no-unused-vars
       onKeyUp, // eslint-disable-line no-unused-vars
       onMouseDown, // eslint-disable-line no-unused-vars

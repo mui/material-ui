@@ -140,7 +140,12 @@ export const styleSheet = createStyleSheet('MuiGrid', (theme) => {
   };
 });
 
-type GridSizes = boolean | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+export type Align = 'flex-start' | 'center' | 'flex-end' | 'stretch'
+export type Direction = 'row' | 'row-reverse' | 'column' | 'column-reverse'
+export type Gutters = 0 | 8 | 16 | 24 | 40
+export type GridSizes = boolean | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+export type Justify = 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around'
+export type Wrap = 'nowrap' | 'wrap' | 'wrap-reverse'
 
 type Props = {
   /**
@@ -170,31 +175,31 @@ type Props = {
    * Defines the `align-items` style property.
    * It's applied for all screen sizes.
    */
-  align?: 'flex-start' | 'center' | 'flex-end' | 'stretch',
+  align?: Align, // eslint-disable-line react/sort-prop-types
   /**
    * Defines the `flex-direction` style property.
    * It is applied for all screen sizes.
    */
-  direction?: 'row' | 'row-reverse' | 'column' | 'column-reverse',
+  direction?: Direction, // eslint-disable-line react/sort-prop-types
   /**
    * Defines the space between the type `item` component.
    * It can only be used on a type `container` component.
    */
-  gutter?: 0 | 8 | 16 | 24 | 40,
+  gutter?: Gutters, // eslint-disable-line react/sort-prop-types
   /**
    * If provided, will wrap with Hidden component and given properties.
    */
-  hidden?: HiddenProps,
+  hidden?: HiddenProps, // eslint-disable-line react/sort-prop-types
   /**
    * Defines the `justify-content` style property.
    * It is applied for all screen sizes.
    */
-  justify?: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around',
+  justify?: Justify, // eslint-disable-line react/sort-prop-types
   /**
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.
    */
-  wrap?: 'nowrap' | 'wrap' | 'wrap-reverse',
+  wrap?: Wrap, // eslint-disable-line react/sort-prop-types
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for all the screen sizes with the lowest priority.
@@ -204,22 +209,22 @@ type Props = {
    * Defines the number of grids the component is going to use.
    * It's applied for the `sm` breakpoint and wider screens if not overridden.
    */
-  sm?: GridSizes,
+  sm?: GridSizes, // eslint-disable-line react/sort-prop-types
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `md` breakpoint and wider screens if not overridden.
    */
-  md?: GridSizes,
+  md?: GridSizes, // eslint-disable-line react/sort-prop-types
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `lg` breakpoint and wider screens if not overridden.
    */
-  lg?: GridSizes,
+  lg?: GridSizes, // eslint-disable-line react/sort-prop-types
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `xl` breakpoint and wider screens.
    */
-  xl?: GridSizes,
+  xl?: GridSizes, // eslint-disable-line react/sort-prop-types
 };
 
 function Grid(props: Props, context: any) {
@@ -269,9 +274,7 @@ function Grid(props: Props, context: any) {
 
   if (hidden) {
     return (
-      <Hidden {...hidden}>
-        <ComponentProp {...gridProps} />
-      </Hidden>
+      <Hidden {...hidden} component={<ComponentProp {...gridProps} />} />
     );
   }
 

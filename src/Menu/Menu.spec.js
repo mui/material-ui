@@ -1,4 +1,4 @@
-// @flow
+// @flow weak
 
 import React from 'react';
 import { spy, stub } from 'sinon';

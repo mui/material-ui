@@ -1,8 +1,9 @@
 // @flow weak
 
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
+import shallowEqual from 'recompose/shallowEqual';
 import List from 'material-ui/List';
 import Toolbar from 'material-ui/Toolbar';
 import Drawer from 'material-ui/Drawer';
@@ -11,7 +12,7 @@ import Divider from 'material-ui/Divider';
 import AppDrawerNavItem from 'docs/src/components/AppDrawerNavItem';
 import Link from 'docs/src/components/Link';
 
-const styleSheet = createStyleSheet('AppDrawer', (theme) => {
+export const styleSheet = createStyleSheet('AppDrawer', (theme) => {
   return {
     paper: {
       width: 250,
@@ -75,39 +76,49 @@ function reduceChildRoutes(props, items, childRoute, index) {
   return items;
 }
 
-function AppDrawer(props) {
-  const classes = props.classes;
-  const GITHUB_RELEASE_BASE_URL = 'https://github.com/callemall/material-ui/releases/tag/';
+class AppDrawer extends Component {
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    return (
+      !shallowEqual(this.props, nextProps) ||
+      !shallowEqual(this.state, nextState) ||
+      !shallowEqual(this.context, nextContext)
+    );
+  }
 
-  return (
-    <Drawer
-      className={props.className}
-      paperClassName={classes.paper}
-      open={props.open}
-      onRequestClose={props.onRequestClose}
-      docked={props.docked}
-    >
-      <div className={classes.nav}>
-        <Toolbar className={classes.toolbar}>
-          <Link className={classes.title} to="/" onClick={props.onRequestClose}>
-            <Typography type="title" gutterBottom colorInherit>
-              Material UI
-            </Typography>
-          </Link>
-          {process.env.MATERIAL_UI_VERSION ? (
-            <Link
-              className={classes.anchor}
-              href={`${GITHUB_RELEASE_BASE_URL}v${process.env.MATERIAL_UI_VERSION}`}
-            >
-              <Typography type="caption">{`v${process.env.MATERIAL_UI_VERSION}`}</Typography>
+  render() {
+    const classes = this.props.classes;
+    const GITHUB_RELEASE_BASE_URL = 'https://github.com/callemall/material-ui/releases/tag/';
+
+    return (
+      <Drawer
+        className={this.props.className}
+        paperClassName={classes.paper}
+        open={this.props.open}
+        onRequestClose={this.props.onRequestClose}
+        docked={this.props.docked}
+      >
+        <div className={classes.nav}>
+          <Toolbar className={classes.toolbar}>
+            <Link className={classes.title} to="/" onClick={this.props.onRequestClose}>
+              <Typography type="title" gutterBottom colorInherit>
+                Material UI
+              </Typography>
             </Link>
-          ) : null}
-          <Divider absolute />
-        </Toolbar>
-        {renderNavItems(props, props.routes[0])}
-      </div>
-    </Drawer>
-  );
+            {process.env.MATERIAL_UI_VERSION ? (
+              <Link
+                className={classes.anchor}
+                href={`${GITHUB_RELEASE_BASE_URL}v${process.env.MATERIAL_UI_VERSION}`}
+              >
+                <Typography type="caption">{`v${process.env.MATERIAL_UI_VERSION}`}</Typography>
+              </Link>
+            ) : null}
+            <Divider absolute />
+          </Toolbar>
+          {renderNavItems(this.props, this.props.routes[0])}
+        </div>
+      </Drawer>
+    );
+  }
 }
 
 AppDrawer.propTypes = {

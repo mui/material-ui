@@ -7,8 +7,6 @@ import jssPreset from 'jss-preset-default';
 import createMuiTheme from './theme';
 
 export const MUI_SHEET_ORDER = [
-  'MuiTextarea',
-  'MuiInput',
   'MuiGrid',
   'MuiCollapse',
   'MuiFade',

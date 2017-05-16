@@ -3,7 +3,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import warning from 'warning';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
@@ -39,22 +38,20 @@ export const styleSheet = createStyleSheet('MuiPaper', (theme) => {
 export default function Paper(props, context) {
   const {
     className: classNameProp,
-    component: ComponentProp,
     square,
     elevation,
     ...other
   } = props;
   const classes = context.styleManager.render(styleSheet);
 
-  warning(elevation >= 0 && elevation < 25,
-    `Material-UI: this elevation \`${elevation}\` is not implemented.`);
-
   const classNameElevation = `dp${elevation >= 0 ? elevation : 0}`;
   const className = classNames(classes.paper, classes[classNameElevation], {
     [classes.rounded]: !square,
   }, classNameProp);
 
-  return <ComponentProp className={className} {...other} />;
+  return (
+    <div className={className} {...other} />
+  );
 }
 
 Paper.propTypes = {
@@ -63,16 +60,7 @@ Paper.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a component.
-   */
-  component: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
-  /**
    * Shadow depth, corresponds to `dp` in the spec.
-   * It's accepting values between 0 and 24 inclusive.
    */
   elevation: PropTypes.number,
   /**
@@ -82,7 +70,6 @@ Paper.propTypes = {
 };
 
 Paper.defaultProps = {
-  component: 'div',
   elevation: 2,
   square: false,
 };

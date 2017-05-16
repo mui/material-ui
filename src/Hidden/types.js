@@ -1,5 +1,4 @@
 // @flow
-
 import { Element } from 'react';
 import type { Breakpoint } from '../styles/breakpoints';
 
@@ -19,41 +18,41 @@ export type HiddenProps = {
   /**
    * If true, screens this size and up will be hidden.
    */
-  xsUp?: boolean,
+  xsUp?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and up will be hidden.
    */
-  smUp?: boolean,
+  smUp?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and up will be hidden.
    */
-  mdUp?: boolean,
+  mdUp?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and up will be hidden.
    */
-  lgUp?: boolean,
+  lgUp?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and up will be hidden.
    */
-  xlUp?: boolean,
+  xlUp?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and down will be hidden.
    */
-  xsDown?: boolean,
+  xsDown?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and down will be hidden.
    */
-  smDown?: boolean,
+  smDown?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and down will be hidden.
    */
-  mdDown?: boolean,
+  mdDown?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and down will be hidden.
    */
-  lgDown?: boolean,
+  lgDown?: boolean, // eslint-disable-line react/sort-prop-types
   /**
    * If true, screens this size and down will be hidden.
    */
-  xlDown?: boolean,
+  xlDown?: boolean, // eslint-disable-line react/sort-prop-types
 };

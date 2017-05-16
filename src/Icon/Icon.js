@@ -64,7 +64,7 @@ function Icon(props, context) {
     classNameProp);
 
   return (
-    <span className={className} aria-hidden="true" {...other}>
+    <span className={className} {...other}>
       {children}
     </span>
   );

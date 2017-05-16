@@ -1,5 +1,4 @@
-// @flow
-
+// @flow weak
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
@@ -41,7 +40,7 @@ describe('<MenuItem />', () => {
   });
 
   it('should have a role of option', () => {
-    const wrapper = shallow(<MenuItem role="option" aria-selected={false} />);
+    const wrapper = shallow(<MenuItem role="option" />);
     assert.strictEqual(wrapper.props().role, 'option', 'should have the option role');
   });
 

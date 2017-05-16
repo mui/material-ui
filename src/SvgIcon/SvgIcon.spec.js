@@ -1,4 +1,4 @@
-// @flow
+// @flow weak
 
 import React from 'react';
 import { assert } from 'chai';
@@ -21,7 +21,6 @@ describe('<SvgIcon />', () => {
       <SvgIcon>{path}</SvgIcon>,
     );
     assert.strictEqual(wrapper.contains(path), true, 'should contain the children');
-    assert.strictEqual(wrapper.props()['aria-hidden'], 'true');
   });
 
   it('should render an svg', () => {
@@ -41,13 +40,5 @@ describe('<SvgIcon />', () => {
     const wrapper = shallow(<SvgIcon className="meow">{path}</SvgIcon>);
     assert.strictEqual(wrapper.hasClass('meow'), true, 'should have the "meow" class');
     assert.strictEqual(wrapper.hasClass(classes.svgIcon), true, 'should have the SvgIcon class');
-  });
-
-  describe('prop: titleAccess', () => {
-    it('should be able to make an icon accessible', () => {
-      const wrapper = shallow(<SvgIcon title="Go to link" titleAccess="Network">{path}</SvgIcon>);
-      assert.strictEqual(wrapper.find('title').text(), 'Network');
-      assert.strictEqual(wrapper.props()['aria-hidden'], 'false');
-    });
   });
 });

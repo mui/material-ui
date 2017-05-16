@@ -25,7 +25,6 @@ export default function SvgIcon(props, context) {
   const {
     children,
     className: classNameProp,
-    titleAccess,
     viewBox,
     ...other
   } = props;
@@ -40,12 +39,8 @@ export default function SvgIcon(props, context) {
     <svg
       className={className}
       viewBox={viewBox}
-      aria-hidden={titleAccess ? 'false' : 'true'}
       {...other}
     >
-      {titleAccess ? (
-        <title>{titleAccess}</title>
-      ) : null}
       {children}
     </svg>
   );
@@ -62,11 +57,6 @@ SvgIcon.propTypes = {
    * The CSS class name of the root element.
    */
   className: PropTypes.string,
-  /**
-   * Provides a human-readable title for the element that contains it.
-   * https://www.w3.org/TR/SVG-access/#Equivalent
-   */
-  titleAccess: PropTypes.string,
   /**
    * Allows you to redefine what the coordinates without units mean inside an svg element.
    * For example, if the SVG element is 500 (width) by 200 (height),
