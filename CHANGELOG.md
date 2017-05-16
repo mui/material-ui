@@ -473,6 +473,7 @@ For more details, you can have a look a the [next milestone](https://github.com/
 - [DatePicker] Improve the i18n support (#5187)
 - [IconButton] Remove dead code (#5226)
 - [Popover] Fix a callback leak (#5158)
+- [TextField] Removed deprecated onEnterKeyDown prop
 - [RaisedButton] Add a buttonStyle property (#5196)
 - [Switch] Add thumbSwitchedStyle and trackSwitchedStyle (#5106)
 - [Snackbar] Fix the element covering up 100% width of the screen (#5113)
