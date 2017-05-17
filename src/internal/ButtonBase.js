@@ -9,22 +9,20 @@ import customPropTypes from '../utils/customPropTypes';
 import { listenForFocusKeys, detectKeyboardFocus, focusKeyPressed } from '../utils/keyboardFocus';
 import { TouchRipple, createRippleHandler } from '../Ripple';
 
-export const styleSheet = createStyleSheet('MuiButtonBase', () => {
-  return {
-    buttonBase: {
-      position: 'relative',
-      WebkitTapHighlightColor: 'rgba(0,0,0,0.0)',
-      outline: 'none',
-      border: 0,
-      cursor: 'pointer',
-      userSelect: 'none',
-      appearance: 'none',
-      textDecoration: 'none',
-    },
-    disabled: {
-      cursor: 'not-allowed',
-    },
-  };
+export const styleSheet = createStyleSheet('MuiButtonBase', {
+  buttonBase: {
+    position: 'relative',
+    WebkitTapHighlightColor: 'rgba(0,0,0,0.0)',
+    outline: 'none',
+    border: 0,
+    cursor: 'pointer',
+    userSelect: 'none',
+    appearance: 'none',
+    textDecoration: 'none',
+  },
+  disabled: {
+    cursor: 'not-allowed',
+  },
 });
 
 export default class ButtonBase extends Component {
@@ -78,7 +76,6 @@ export default class ButtonBase extends Component {
 
   static defaultProps = {
     centerRipple: false,
-    component: 'button',
     focusRipple: false,
     ripple: true,
     tabIndex: '0',
@@ -139,6 +136,7 @@ export default class ButtonBase extends Component {
     if (
       event.target === this.button &&
       onClick &&
+      component &&
       component !== 'a' &&
       component !== 'button' &&
       (key === 'space' || key === 'enter')
@@ -262,24 +260,25 @@ export default class ButtonBase extends Component {
       ...other,
     };
 
-    let Element = component;
+    let Componnet = component;
 
-    if (other.href) {
-      Element = 'a';
+    if (!Componnet && other.href) {
+      Componnet = 'a';
     }
 
-    if (Element === 'button') {
+    if (!Componnet) {
+      Componnet = 'button';
       buttonProps.type = type;
       buttonProps.disabled = disabled;
-    } else if (Element !== 'a') {
+    } else if (Componnet !== 'a') {
       buttonProps.role = this.props.hasOwnProperty('role') ? this.props.role : 'button';
     }
 
     return (
-      <Element {...buttonProps}>
+      <Componnet {...buttonProps}>
         {children}
         {this.renderRipple(ripple, centerRipple)}
-      </Element>
+      </Componnet>
     );
   }
 }

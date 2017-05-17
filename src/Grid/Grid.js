@@ -96,6 +96,7 @@ export const styleSheet = createStyleSheet('MuiGrid', (theme) => {
     typeItem: {
       boxSizing: 'border-box',
       flex: '0 0 auto',
+      margin: '0', // For instance, it's useful when used with a `figure` element.
     },
     'direction-xs-column': {
       flexDirection: 'column',

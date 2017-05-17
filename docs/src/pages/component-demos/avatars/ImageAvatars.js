@@ -8,7 +8,7 @@ import Avatar from 'material-ui/Avatar';
 import remyImage from 'docs/src/assets/images/remy.jpg';
 import uxecoImage from 'docs/src/assets/images/uxceo-128.jpg';
 
-const styleSheet = createStyleSheet('ImageAvatars', () => ({
+const styleSheet = createStyleSheet('ImageAvatars', {
   row: {
     display: 'flex',
     justifyContent: 'center',
@@ -20,7 +20,7 @@ const styleSheet = createStyleSheet('ImageAvatars', () => ({
     width: 60,
     height: 60,
   },
-}));
+});
 
 function ImageAvatars(props) {
   const classes = props.classes;

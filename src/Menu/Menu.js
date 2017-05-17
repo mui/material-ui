@@ -1,6 +1,7 @@
 // @flow weak
 
 import React, { Component } from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { createStyleSheet } from 'jss-theme-reactor';
@@ -9,12 +10,10 @@ import Popover from '../internal/Popover';
 import customPropTypes from '../utils/customPropTypes';
 import MenuList from './MenuList';
 
-export const styleSheet = createStyleSheet('MuiMenu', () => {
-  return {
-    popover: {
-      maxHeight: 250,
-    },
-  };
+export const styleSheet = createStyleSheet('MuiMenu', {
+  popover: {
+    maxHeight: 250,
+  },
 });
 
 export default class Menu extends Component {
@@ -31,6 +30,10 @@ export default class Menu extends Component {
      * The CSS class name of the root element.
      */
     className: PropTypes.string,
+    /**
+     * Properties applied to the `MenuList` element.
+     */
+    MenuListProps: PropTypes.object,
     /**
      * Callback fired before the Menu enters.
      */
@@ -132,6 +135,7 @@ export default class Menu extends Component {
       children,
       className,
       open,
+      MenuListProps,
       onEnter, // eslint-disable-line no-unused-vars
       onEntering,
       onEntered,
@@ -149,7 +153,7 @@ export default class Menu extends Component {
       <Popover
         anchorEl={anchorEl}
         getContentAnchorEl={this.getContentAnchorEl}
-        className={classes.popover}
+        className={classNames(classes.popover, className)}
         open={open}
         enteredClassName={classes.entered}
         onEnter={this.handleEnter}
@@ -160,14 +164,14 @@ export default class Menu extends Component {
         onExited={onExited}
         onRequestClose={onRequestClose}
         transitionDuration={transitionDuration}
+        {...other}
       >
         <MenuList
           data-mui-test="Menu"
           role="menu"
           ref={(node) => { this.menuList = node; }}
-          className={className}
           onKeyDown={this.handleListKeyDown}
-          {...other}
+          {...MenuListProps}
         >
           {children}
         </MenuList>

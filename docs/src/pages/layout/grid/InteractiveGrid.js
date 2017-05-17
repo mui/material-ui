@@ -8,23 +8,21 @@ import { LabelRadio, RadioGroup } from 'material-ui/Radio';
 import Paper from 'material-ui/Paper';
 import { FormLabel } from 'material-ui/Form';
 
-const styleSheet = createStyleSheet('InteractiveGrid', () => {
-  return {
-    root: {
-      flexGrow: 1,
-    },
-    demo: {
-      height: 240,
-    },
-    paper: {
-      padding: 12,
-      height: '100%',
-    },
-    control: {
-      padding: 12,
-    },
-  };
-});
+const styleSheet = createStyleSheet('InteractiveGrid', (theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  demo: {
+    height: 240,
+  },
+  paper: {
+    padding: theme.spacing.unit * 2,
+    height: '100%',
+  },
+  control: {
+    padding: theme.spacing.unit * 2,
+  },
+}));
 
 class InteractiveGrid extends Component {
   state = {

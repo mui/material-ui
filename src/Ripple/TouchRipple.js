@@ -9,7 +9,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 import Ripple, { styleSheet as rippleStyleSheet } from './Ripple';
 
-export const styleSheet = createStyleSheet('MuiTouchRipple', () => ({
+export const styleSheet = createStyleSheet('MuiTouchRipple', {
   root: {
     display: 'block',
     position: 'absolute',
@@ -22,7 +22,7 @@ export const styleSheet = createStyleSheet('MuiTouchRipple', () => ({
     pointerEvents: 'none',
     zIndex: 0,
   },
-}));
+});
 
 export default class TouchRipple extends Component {
   static propTypes = {

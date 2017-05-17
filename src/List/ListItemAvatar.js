@@ -7,19 +7,17 @@ import warning from 'warning';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('MuiListItemAvatar', () => {
-  return {
-    denseAvatar: {
-      width: 36,
-      height: 36,
-      fontSize: 18,
-      marginRight: 4,
-    },
-    denseAvatarIcon: {
-      width: 20,
-      height: 20,
-    },
-  };
+export const styleSheet = createStyleSheet('MuiListItemAvatar', {
+  denseAvatar: {
+    width: 36,
+    height: 36,
+    fontSize: 18,
+    marginRight: 4,
+  },
+  denseAvatarIcon: {
+    width: 20,
+    height: 20,
+  },
 });
 
 /**

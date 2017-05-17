@@ -7,8 +7,8 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 import Typography from '../Typography';
 
-export const styleSheet = createStyleSheet('MuiDialogTitle', () => {
-  const gutter = 24;
+export const styleSheet = createStyleSheet('MuiDialogTitle', (theme) => {
+  const gutter = theme.spacing.unit * 3;
   return {
     root: {
       margin: 0,

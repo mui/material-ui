@@ -7,17 +7,15 @@ import Button from 'material-ui/Button';
 import MarkdownElement from 'docs/src/components/MarkdownElement';
 import Demo from 'docs/src/components/Demo';
 
-const styleSheet = createStyleSheet('MarkdownDocs', () => {
-  return {
-    root: {
-      marginBottom: 100,
-    },
-    header: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'flex-end',
-    },
-  };
+const styleSheet = createStyleSheet('MarkdownDocs', {
+  root: {
+    marginBottom: 100,
+  },
+  header: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-end',
+  },
 });
 
 const headerRegexp = /---\n(.*)\n---/;

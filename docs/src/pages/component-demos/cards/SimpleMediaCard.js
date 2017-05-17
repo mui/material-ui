@@ -8,11 +8,11 @@ import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import reptileImage from 'docs/src/assets/images/contemplative-reptile.jpg';
 
-const styleSheet = createStyleSheet('SimpleMediaCard', () => ({
+const styleSheet = createStyleSheet('SimpleMediaCard', {
   card: {
     maxWidth: 345,
   },
-}));
+});
 
 function SimpleMediaCard(props) {
   const classes = props.classes;

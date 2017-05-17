@@ -6,17 +6,15 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('MuiFormGroup', () => {
-  return {
-    root: {
-      display: 'flex',
-      flexDirection: 'column',
-      flexWrap: 'wrap',
-    },
-    row: {
-      flexDirection: 'row',
-    },
-  };
+export const styleSheet = createStyleSheet('MuiFormGroup', {
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+  },
+  row: {
+    flexDirection: 'row',
+  },
 });
 
 /**

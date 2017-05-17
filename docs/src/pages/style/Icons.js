@@ -5,14 +5,14 @@ import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Icon from 'material-ui/Icon';
 
-const styleSheet = createStyleSheet('Icons', () => ({
+const styleSheet = createStyleSheet('Icons', {
   icons: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-around',
     width: '70%',
   },
-}));
+});
 
 function Icons(props) {
   const classes = props.classes;

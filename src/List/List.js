@@ -6,28 +6,26 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('MuiList', () => {
-  return {
-    root: {
-      flex: '1 1 auto',
-      overflow: 'auto',
-      listStyle: 'none',
-      margin: 0,
-      padding: 0,
-    },
-    padding: {
-      paddingTop: 8,
-      paddingBottom: 8,
-    },
-    dense: {
-      paddingTop: 4,
-      paddingBottom: 4,
-    },
-    subheader: {
-      paddingTop: 0,
-    },
-  };
-});
+export const styleSheet = createStyleSheet('MuiList', (theme) => ({
+  root: {
+    flex: '1 1 auto',
+    overflow: 'auto',
+    listStyle: 'none',
+    margin: 0,
+    padding: 0,
+  },
+  padding: {
+    paddingTop: theme.spacing.unit,
+    paddingBottom: theme.spacing.unit,
+  },
+  dense: {
+    paddingTop: theme.spacing.unit / 2,
+    paddingBottom: theme.spacing.unit / 2,
+  },
+  subheader: {
+    paddingTop: 0,
+  },
+}));
 
 /**
  * A material list root element.

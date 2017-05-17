@@ -10,36 +10,34 @@ import customPropTypes from '../utils/customPropTypes';
 
 const rowsHeight = 24;
 
-export const styleSheet = createStyleSheet('MuiTextarea', () => {
-  return {
-    root: {
-      position: 'relative', // because the shadow has position: 'absolute',
-    },
-    textarea: {
-      width: '100%',
-      height: '100%',
-      resize: 'none',
-      font: 'inherit',
-      padding: 0,
-      cursor: 'inherit',
-      boxSizing: 'border-box',
-      lineHeight: 'inherit',
-      border: 'none',
-      outline: 'none',
-      background: 'transparent',
-    },
-    shadow: {
-      resize: 'none',
-      // Overflow also needed to here to remove the extra row
-      // added to textareas in Firefox.
-      overflow: 'hidden',
-      // Visibility needed to hide the extra text area on ipads
-      visibility: 'hidden',
-      position: 'absolute',
-      height: 'auto',
-      whiteSpace: 'pre-wrap',
-    },
-  };
+export const styleSheet = createStyleSheet('MuiTextarea', {
+  root: {
+    position: 'relative', // because the shadow has position: 'absolute',
+  },
+  textarea: {
+    width: '100%',
+    height: '100%',
+    resize: 'none',
+    font: 'inherit',
+    padding: 0,
+    cursor: 'inherit',
+    boxSizing: 'border-box',
+    lineHeight: 'inherit',
+    border: 'none',
+    outline: 'none',
+    background: 'transparent',
+  },
+  shadow: {
+    resize: 'none',
+    // Overflow also needed to here to remove the extra row
+    // added to textareas in Firefox.
+    overflow: 'hidden',
+    // Visibility needed to hide the extra text area on ipads
+    visibility: 'hidden',
+    position: 'absolute',
+    height: 'auto',
+    whiteSpace: 'pre-wrap',
+  },
 });
 
 export default class Textarea extends Component {

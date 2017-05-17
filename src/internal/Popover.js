@@ -46,17 +46,15 @@ function getTransformOriginValue(transformOrigin) {
     .join(' ');
 }
 
-export const styleSheet = createStyleSheet('MuiPopover', () => {
-  return {
-    popover: {
-      position: 'absolute',
-      overflowY: 'auto',
-      overflowX: 'hidden',
-      '&:focus': {
-        outline: 'none',
-      },
+export const styleSheet = createStyleSheet('MuiPopover', {
+  popover: {
+    position: 'absolute',
+    overflowY: 'auto',
+    overflowX: 'hidden',
+    '&:focus': {
+      outline: 'none',
     },
-  };
+  },
 });
 
 export default class Popover extends Component {

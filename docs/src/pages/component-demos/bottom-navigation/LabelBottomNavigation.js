@@ -9,11 +9,11 @@ import FavoriteIcon from 'material-ui-icons/Favorite';
 import LocationOnIcon from 'material-ui-icons/LocationOn';
 import FolderIcon from 'material-ui-icons/Folder';
 
-const styleSheet = createStyleSheet('LabelBottomNavigation', () => ({
+const styleSheet = createStyleSheet('LabelBottomNavigation', {
   root: {
     width: 500,
   },
-}));
+});
 
 class LabelBottomNavigation extends Component {
   state = {

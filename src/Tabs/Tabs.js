@@ -14,30 +14,28 @@ import withWidth, { isWidthUp } from '../utils/withWidth';
 import TabIndicator from './TabIndicator';
 import TabScrollButton from './TabScrollButton';
 
-export const styleSheet = createStyleSheet('MuiTabs', () => {
-  return {
-    root: {
-      overflow: 'hidden',
-    },
-    flexContainer: {
-      display: 'flex',
-    },
-    scrollingContainer: {
-      display: 'inline-block',
-      flex: '1 1 auto',
-      whiteSpace: 'nowrap',
-    },
-    fixed: {
-      overflowX: 'hidden',
-      width: '100%',
-    },
-    scrollable: {
-      overflowX: 'scroll',
-    },
-    centered: {
-      justifyContent: 'center',
-    },
-  };
+export const styleSheet = createStyleSheet('MuiTabs', {
+  root: {
+    overflow: 'hidden',
+  },
+  flexContainer: {
+    display: 'flex',
+  },
+  scrollingContainer: {
+    display: 'inline-block',
+    flex: '1 1 auto',
+    whiteSpace: 'nowrap',
+  },
+  fixed: {
+    overflowX: 'hidden',
+    width: '100%',
+  },
+  scrollable: {
+    overflowX: 'scroll',
+  },
+  centered: {
+    justifyContent: 'center',
+  },
 });
 
 class Tabs extends Component {

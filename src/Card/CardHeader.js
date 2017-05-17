@@ -8,14 +8,14 @@ import customPropTypes from '../utils/customPropTypes';
 import Typography from '../Typography';
 import CardContent from './CardContent';
 
-export const styleSheet = createStyleSheet('MuiCardHeader', () => ({
+export const styleSheet = createStyleSheet('MuiCardHeader', (theme) => ({
   cardHeader: {
     display: 'flex',
     alignItems: 'center',
   },
   avatar: {
     flex: '0 0 auto',
-    marginRight: 16,
+    marginRight: theme.spacing.unit * 2,
   },
   content: {
     flex: '1 1 auto',
