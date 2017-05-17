@@ -393,7 +393,7 @@ class DropDownMenu extends Component {
       React.Children.forEach(children, (child) => {
         if (child && value === child.props.value) {
           if (selectionRenderer) {
-            displayValue = selectionRenderer(value);
+            displayValue = selectionRenderer(value, child);
           } else {
             // This will need to be improved (in case primaryText is a node)
             displayValue = child.props.label || child.props.primaryText;
@@ -402,10 +402,12 @@ class DropDownMenu extends Component {
       });
     } else {
       const values = [];
+      const selectionRendererChildren = [];
       React.Children.forEach(children, (child) => {
         if (child && value && value.indexOf(child.props.value) > -1) {
           if (selectionRenderer) {
             values.push(child.props.value);
+            selectionRendererChildren.push(child);
           } else {
             values.push(child.props.label || child.props.primaryText);
           }
@@ -414,7 +416,7 @@ class DropDownMenu extends Component {
 
       displayValue = [];
       if (selectionRenderer) {
-        displayValue = selectionRenderer(values);
+        displayValue = selectionRenderer(values, selectionRendererChildren);
       } else {
         displayValue = values.join(', ');
       }
