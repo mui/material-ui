@@ -236,8 +236,10 @@ class Popover extends Component {
   }
 
   componentClickAway = (event) => {
-    event.preventDefault();
-    this.requestClose('clickAway');
+    if (this.props.useLayerForClickAway !== false) {
+      event.preventDefault();
+      this.requestClose('clickAway');
+    }
   };
 
   getAnchorPosition(el) {
