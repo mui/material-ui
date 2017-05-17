@@ -54,12 +54,12 @@ export default class Fade extends Component {
   };
 
   static contextTypes = {
-    theme: customPropTypes.muiRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   handleEnter = (element) => {
     element.style.opacity = 0;
-    const { transitions } = this.context.theme;
+    const { transitions } = this.context.styleManager.theme;
     element.style.transition = transitions.create('opacity', {
       duration: this.props.enterTransitionDuration,
     });
@@ -76,7 +76,7 @@ export default class Fade extends Component {
   };
 
   handleExit = (element) => {
-    const { transitions } = this.context.theme;
+    const { transitions } = this.context.styleManager.theme;
     element.style.transition = transitions.create('opacity', {
       duration: this.props.leaveTransitionDuration,
     });

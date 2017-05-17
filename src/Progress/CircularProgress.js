@@ -57,7 +57,7 @@ export const styleSheet = createStyleSheet('MuiCircularProgress', (theme) => {
 export default class CircularProgress extends Component {
   static propTypes = {
     /**
-     * The CSS class name of the root element.
+     * @ignore
      */
     className: PropTypes.string,
     /**

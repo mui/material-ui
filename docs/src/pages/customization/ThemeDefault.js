@@ -14,7 +14,7 @@ const style = {
 function ThemeDefault(props) {
   const {
     theme: {
-      id,
+      id, // eslint-disable-line no-unused-vars
       ...theme
     },
   } = props;

@@ -51,7 +51,7 @@ BottomNavigation.propTypes = {
    */
   children: PropTypes.node.isRequired,
   /**
-   * The CSS class name of the root element.
+   * @ignore
    */
   className: PropTypes.string,
   /**

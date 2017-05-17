@@ -9,11 +9,11 @@ export default function withTheme(BaseComponent) {
   const factory = createEagerFactory(BaseComponent);
 
   const WithTheme = (ownerProps, context) => (
-    factory({ theme: context.theme, ...ownerProps })
+    factory({ theme: context.styleManager.theme, ...ownerProps })
   );
 
   WithTheme.contextTypes = {
-    theme: customPropTypes.muiRequired,
+    styleManager: customPropTypes.muiRequired,
   };
   WithTheme.displayName = wrapDisplayName(BaseComponent, 'withTheme');
 

@@ -1,16 +1,12 @@
-Menu
-====
+# Menu
 
 
 
-Props
------
-
+## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | anchorEl | object |  | The DOM element used to set the position of the menu. |
 | children | node |  | Menu contents, normally `MenuItem`s. |
-| className | string |  | The CSS class name of the root element. |
 | MenuListProps | object |  | Properties applied to the `MenuList` element. |
 | onEnter | function |  | Callback fired before the Menu enters. |
 | onEntering | function |  | Callback fired when the Menu is entering. |
@@ -23,3 +19,15 @@ Props
 | transitionDuration | union:&nbsp;number<br>&nbsp;string<br> | 'auto' | The length of the transition in `ms`, or 'auto' |
 
 Any other properties supplied will be spread to the root element.
+## Classes
+
+You can overrides all the class names injected by Material-UI thanks to the `classes` property.
+This property accepts the following keys:
+- `popover`
+
+Have a look at [overriding with class names](/customization/overrides#overriding-with-class-names)
+section for more detail.
+
+If using the `overrides` key of the theme as documented
+[here](/customization/themes#customizing-all-instances-of-a-component-type),
+you need to use the following style sheet name: `MuiMenu`.

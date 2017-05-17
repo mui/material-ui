@@ -18,7 +18,7 @@ describe('<Card />', () => {
     const wrapper = shallow(
       <Card />,
     );
-    assert.strictEqual(wrapper.name(), 'Paper');
+    assert.strictEqual(wrapper.name(), 'withStyles(Paper)');
     assert.strictEqual(wrapper.props().elevation, 2);
   });
 
@@ -26,7 +26,6 @@ describe('<Card />', () => {
     const wrapper = shallow(
       <Card raised />,
     );
-    assert.strictEqual(wrapper.name(), 'Paper');
     assert.strictEqual(wrapper.props().elevation, 8);
   });
 

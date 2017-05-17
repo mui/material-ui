@@ -28,7 +28,7 @@ export default class Slide extends Component {
   static propTypes = {
     children: PropTypes.node,
     /**
-     * The CSS class name of the root element.
+     * @ignore
      */
     className: PropTypes.string,
     /**
@@ -84,7 +84,7 @@ export default class Slide extends Component {
   };
 
   static contextTypes = {
-    theme: customPropTypes.muiRequired,
+    styleManager: customPropTypes.muiRequired,
   };
 
   componentDidMount() {
@@ -110,7 +110,7 @@ export default class Slide extends Component {
   };
 
   handleEntering = (element) => {
-    const { transitions } = this.context.theme;
+    const { transitions } = this.context.styleManager.theme;
     element.style.transition = transitions.create('transform', {
       duration: this.props.enterTransitionDuration,
       easing: transitions.easing.easeOut,
@@ -122,7 +122,7 @@ export default class Slide extends Component {
   };
 
   handleExiting = (element) => {
-    const { transitions } = this.context.theme;
+    const { transitions } = this.context.styleManager.theme;
     element.style.transition = transitions.create('transform', {
       duration: this.props.leaveTransitionDuration,
       easing: transitions.easing.sharp,

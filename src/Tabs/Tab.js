@@ -79,7 +79,7 @@ export const styleSheet = createStyleSheet('MuiTab', (theme) => {
 export default class Tab extends Component {
   static propTypes = {
     /**
-     * The CSS class name of the root element.
+     * @ignore
      */
     className: PropTypes.string,
     /**

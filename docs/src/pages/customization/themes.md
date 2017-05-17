@@ -60,7 +60,9 @@ That's a really powerful feature.
 
 {{demo='pages/customization/OverridesTheme.js'}}
 
-Until we find a way to automatically document the list of those customization points, you need to have a look at the [implementation](https://github.com/callemall/material-ui/tree/next/src).
+The list of those customization points are documented under the *Component API* section.
+For instance, you can have a look at the [Button](/component-api/button#classes).
+Alternatively you can have a look at the [implementation](https://github.com/callemall/material-ui/tree/next/src).
 
 ## Accessing the theme in a component
 

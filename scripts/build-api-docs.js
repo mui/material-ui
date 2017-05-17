@@ -6,7 +6,9 @@ import fs from 'fs';
 import path from 'path';
 import * as reactDocgen from 'react-docgen';
 import { generateMarkdown } from './generate-docs-markdown';
+import createMuiTheme from '../src/styles/theme';
 
+const theme = createMuiTheme();
 const ignoredItems = [
   'internal',
   'HiddenJs.js',
@@ -25,6 +27,20 @@ function ensureExists(pat, mask, cb) {
 }
 
 function buildDocs(componentPath) {
+  // eslint-disable-next-line global-require, import/no-dynamic-require
+  const component = require(componentPath);
+
+  const styles = {
+    classes: [],
+    name: null,
+  };
+
+  if (component.styleSheet) {
+    // Collect the customization points of the `classes` property.
+    styles.classes = Object.keys(component.styleSheet.createRules(theme));
+    styles.name = component.styleSheet.name;
+  }
+
   fs.readFile(componentPath, 'utf8', (err, src) => {
     const relativePath = path.parse(path.relative(srcDir, componentPath));
     const outputDir = path.resolve(docsDir, relativePath.dir);
@@ -38,6 +54,7 @@ function buildDocs(componentPath) {
       return;
     }
 
+    componentInfo.styles = styles;
     let markdown;
     try {
       markdown = generateMarkdown(relativePath.name, componentInfo);

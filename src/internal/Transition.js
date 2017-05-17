@@ -41,7 +41,7 @@ type Props = DefaultProps & {
    */
   children?: ReactElement<*>,
   /**
-   * The CSS class name of the root element.
+   * @ignore
    */
   className?: string,
   /**

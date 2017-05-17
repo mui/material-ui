@@ -65,7 +65,7 @@ export default function ListItemText(props, context) {
 
 ListItemText.propTypes = {
   /**
-   * The CSS class name of the root element.
+   * @ignore
    */
   className: PropTypes.string,
   /**

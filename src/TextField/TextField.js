@@ -65,7 +65,7 @@ function TextField(props) {
 
 TextField.propTypes = {
   /**
-   * The CSS class name of the root element.
+   * @ignore
    */
   className: PropTypes.string,
   /**

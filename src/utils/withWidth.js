@@ -43,7 +43,7 @@ function withWidth(options = {}) {
 
     class Width extends Component {
       static contextTypes = {
-        theme: customPropTypes.muiRequired,
+        styleManager: customPropTypes.muiRequired,
       };
 
       state = {
@@ -68,7 +68,7 @@ function withWidth(options = {}) {
       };
 
       updateWidth(innerWidth) {
-        const breakpoints = this.context.theme.breakpoints;
+        const breakpoints = this.context.styleManager.theme.breakpoints;
         let width = null;
 
         /**

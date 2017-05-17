@@ -61,7 +61,6 @@ const styleSheet = createStyleSheet('Demo', (theme) => {
 
 class Demo extends Component {
   static contextTypes = {
-    theme: PropTypes.object.isRequired,
     styleManager: PropTypes.object.isRequired,
   };
 

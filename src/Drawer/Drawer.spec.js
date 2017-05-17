@@ -7,6 +7,7 @@ import Drawer, { styleSheet } from './Drawer';
 import Slide from '../transitions/Slide';
 import Modal from '../internal/Modal';
 import { duration } from '../styles/transitions';
+import Paper from '../Paper';
 
 /**
  * An item that goes in lists.
@@ -40,11 +41,7 @@ describe('<Drawer />', () => {
     );
 
     const paper = slide.childAt(0);
-    assert.strictEqual(
-      paper.length === 1 && paper.is('Paper'),
-      true,
-      'Slide child should be Paper',
-    );
+    assert.strictEqual(paper.length === 1 && paper.name(), 'withStyles(Paper)');
 
     assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the paper class');
   });
@@ -107,7 +104,7 @@ describe('<Drawer />', () => {
 
   it('should set the Paper className', () => {
     const wrapper = shallow(<Drawer paperClassName="woof"><h1>Hello</h1></Drawer>);
-    const paper = wrapper.find('Paper');
+    const paper = wrapper.find(Paper);
     assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the paper class');
     assert.strictEqual(paper.hasClass('woof'), true, 'should have the woof class');
   });
@@ -168,11 +165,7 @@ describe('<Drawer />', () => {
       );
 
       const paper = slide.childAt(0);
-      assert.strictEqual(
-        paper.length === 1 && paper.is('Paper'),
-        true,
-        'Slide child should be Paper',
-      );
+      assert.strictEqual(paper.length === 1 && paper.name(), 'withStyles(Paper)');
     });
   });
 

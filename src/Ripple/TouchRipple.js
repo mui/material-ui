@@ -32,7 +32,7 @@ export default class TouchRipple extends Component {
      */
     center: PropTypes.bool,
     /**
-     * The CSS class name of the root element.
+     * @ignore
      */
     className: PropTypes.string,
   };
@@ -42,7 +42,6 @@ export default class TouchRipple extends Component {
   };
 
   static contextTypes = {
-    theme: customPropTypes.muiRequired,
     styleManager: customPropTypes.muiRequired,
   };
 

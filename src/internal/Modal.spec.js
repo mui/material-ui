@@ -84,18 +84,10 @@ describe('<Modal />', () => {
           it('should call hasAttribute with tabIndex', () => {
             assert.strictEqual(instance.modal.lastChild.hasAttribute.callCount, 1);
             assert.strictEqual(instance.modal.lastChild.hasAttribute.calledWith('tabIndex'), true);
-          });
-
-          it('should not call setAttribute', () => {
-            assert.strictEqual(instance.modal.lastChild.setAttribute.callCount, 0);
-          });
-
-          it('should not call console.error', () => {
-            assert.strictEqual(consoleErrorMock.callCount(), 0);
-          });
-
-          it('should call focus', () => {
-            assert.strictEqual(instance.modal.lastChild.focus.callCount, 1);
+            assert.strictEqual(instance.modal.lastChild.setAttribute.callCount, 0,
+              'should not call setAttribute');
+            assert.strictEqual(consoleErrorMock.callCount(), 0, 'should not call console.error');
+            assert.strictEqual(instance.modal.lastChild.focus.callCount, 1, 'should call focus');
           });
         });
 
@@ -121,14 +113,8 @@ describe('<Modal />', () => {
             assert.strictEqual(instance.modal.lastChild.setAttribute.callCount, 1);
             assert.strictEqual(
               instance.modal.lastChild.setAttribute.calledWith('tabIndex', -1), true);
-          });
-
-          it('should call console.error', () => {
-            assert.strictEqual(consoleErrorMock.callCount(), 1);
-          });
-
-          it('should call focus', () => {
-            assert.strictEqual(instance.modal.lastChild.focus.callCount, 1);
+            assert.strictEqual(consoleErrorMock.callCount(), 1, 'should call console.error');
+            assert.strictEqual(instance.modal.lastChild.focus.callCount, 1, 'should call focus');
           });
         });
       });

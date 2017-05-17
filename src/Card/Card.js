@@ -29,7 +29,7 @@ export default function Card(props, context) {
 
 Card.propTypes = {
   /**
-   * The CSS class name of the root element.
+   * @ignore
    */
   className: PropTypes.string,
   /**

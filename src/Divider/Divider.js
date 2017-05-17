@@ -54,7 +54,7 @@ export default function Divider(props, context) {
 Divider.propTypes = {
   absolute: PropTypes.bool,
   /**
-   * The CSS class name of the root element.
+   * @ignore
    */
   className: PropTypes.string,
   /**
