@@ -137,6 +137,8 @@ class SelectField extends Component {
      * array with either the menu item's `value` added (if
      * it wasn't already selected) or omitted (if it was already selected).
      * Otherwise, the `value` of the menu item.
+     * @param {any} menuItem The selected `MenuItem`.
+     * If `multiple` is true, this will be an array with the `MenuItem`s matching the `value`s parameter.
      */
     selectionRenderer: PropTypes.func,
     /**
