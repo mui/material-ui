@@ -117,6 +117,7 @@ class Card extends Component {
             expanded={expanded}
             onExpanding={this.handleExpanding}
             openIcon={currentChild.props.openIcon}
+            iconStyle={currentChild.props.iconStyle}
           />
         );
       }
