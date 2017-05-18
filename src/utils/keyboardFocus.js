@@ -15,6 +15,14 @@ function isFocusKey(event) {
   return FOCUS_KEYS.indexOf(keycode(event)) !== -1;
 }
 
+export function focusKeyPressed(pressed) {
+  if (typeof pressed !== 'undefined') {
+    internal.focusKeyPressed = Boolean(pressed);
+  }
+
+  return internal.focusKeyPressed;
+}
+
 export function detectKeyboardFocus(instance, element, cb, attempt = 1) {
   instance.keyboardFocusTimeout = setTimeout(() => {
     if (
@@ -37,12 +45,4 @@ export function listenForFocusKeys() {
     });
     internal.listening = true;
   }
-}
-
-export function focusKeyPressed(pressed) {
-  if (typeof pressed !== 'undefined') {
-    internal.focusKeyPressed = Boolean(pressed);
-  }
-
-  return internal.focusKeyPressed;
 }
