@@ -293,7 +293,7 @@ describe('<DropDownMenu />', () => {
       
         // Arguments are correct
         assert.deepEqual(result.values, currentValues);
-        assert.deepEqual(result.menuItems, items.splice(0, 2));
+        assert.deepEqual(result.menuItems, items.slice(0, 2));
 
         // First item exists
         assert.strictEqual(wrapper.find(MenuItem).nodes[0].props.value, items[0].props.value);
