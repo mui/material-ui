@@ -242,8 +242,18 @@ describe('<DropDownMenu />', () => {
   describe('prop: selectionRenderer', () => {
     it('should return the active value and MenuItem', () => {
       const items = [
-        <MenuItem value={0} key={0} primaryText="Never" />,
-        <MenuItem value={1} key={1} primaryText="Always" />,
+        <MenuItem
+          value={0}
+          key={0}
+          primaryText="Never"
+          className="item1"
+        />,
+        <MenuItem
+          value={1}
+          key={1}
+          primaryText="Always"
+          className="item2"
+        />,
       ];
       const currentValue = 1;
       let result = {};
@@ -271,9 +281,24 @@ describe('<DropDownMenu />', () => {
     describe('when multiple is true', () => {
       it('should return arrays with matching values and MenuItems', () => {
         const items = [
-          <MenuItem value={0} key={0} primaryText="Never" className="item1" />,
-          <MenuItem value={1} key={1} primaryText="Always" className="item2" />,
-          <MenuItem value={2} key={2} primaryText="Sometimes" className="item3" />,
+          <MenuItem
+            value={0}
+            key={0}
+            primaryText="Never"
+            className="item1"
+          />,
+          <MenuItem
+            value={1}
+            key={1}
+            primaryText="Always"
+            className="item2"
+          />,
+          <MenuItem
+            value={2}
+            key={2}
+            primaryText="Sometimes"
+            className="item3"
+          />,
         ];
         const currentValues = [0, 1];
         let result = {};
@@ -290,7 +315,7 @@ describe('<DropDownMenu />', () => {
             {items}
           </DropDownMenu>
         );
-      
+
         // Arguments are correct
         assert.deepEqual(result.values, currentValues);
         assert.deepEqual(result.menuItems, items.slice(0, 2));
