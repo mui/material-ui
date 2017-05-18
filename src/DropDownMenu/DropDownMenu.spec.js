@@ -238,4 +238,96 @@ describe('<DropDownMenu />', () => {
       if (wrapper) wrapper.unmount();
     });
   });
+
+  describe('prop: selectionRenderer', () => {
+    it('should return the active value and MenuItem', () => {
+      const items = [
+        <MenuItem
+          value={0}
+          key={0}
+          primaryText="Never"
+          className="item1"
+        />,
+        <MenuItem
+          value={1}
+          key={1}
+          primaryText="Always"
+          className="item2"
+        />,
+      ];
+      const currentValue = 1;
+      let result = {};
+
+      const wrapper = mountWithContext(
+        <DropDownMenu
+          value={currentValue}
+          selectionRenderer={(value, menuItem) => {
+            result = {value, menuItem};
+            return menuItem;
+          }}
+        >
+          {items}
+        </DropDownMenu>
+      );
+
+      // Arguments are correct
+      assert.strictEqual(result.value, currentValue);
+      assert.deepEqual(result.menuItem, items[currentValue]);
+
+      // returned element is displayed
+      assert.strictEqual(wrapper.containsMatchingElement(items[currentValue]), true);
+    });
+
+    describe('when multiple is true', () => {
+      it('should return arrays with matching values and MenuItems', () => {
+        const items = [
+          <MenuItem
+            value={0}
+            key={0}
+            primaryText="Never"
+            className="item1"
+          />,
+          <MenuItem
+            value={1}
+            key={1}
+            primaryText="Always"
+            className="item2"
+          />,
+          <MenuItem
+            value={2}
+            key={2}
+            primaryText="Sometimes"
+            className="item3"
+          />,
+        ];
+        const currentValues = [0, 1];
+        let result = {};
+
+        const wrapper = mountWithContext(
+          <DropDownMenu
+            value={currentValues}
+            selectionRenderer={(values, menuItems) => {
+              result = {values, menuItems};
+              return menuItems;
+            }}
+            multiple={true}
+          >
+            {items}
+          </DropDownMenu>
+        );
+
+        // Arguments are correct
+        assert.deepEqual(result.values, currentValues);
+        assert.deepEqual(result.menuItems, items.slice(0, 2));
+
+        // First item exists
+        assert.strictEqual(wrapper.find(MenuItem).nodes[0].props.value, items[0].props.value);
+        assert.strictEqual(wrapper.containsMatchingElement(items[0]), true);
+
+        // Second item exists
+        assert.strictEqual(wrapper.find(MenuItem).nodes[1].props.value, items[1].props.value);
+        assert.strictEqual(wrapper.containsMatchingElement(items[1]), true);
+      });
+    });
+  });
 });
