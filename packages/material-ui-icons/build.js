@@ -21,6 +21,96 @@ const DEFAULT_OPTIONS = {
   renameFilter: RENAME_FILTER_DEFAULT,
 };
 
+/**
+ * Return Pascal-Cased classname.
+ *
+ * @param {string} svgPath
+ * @returns {string} class name
+ */
+function pascalCase(destPath) {
+  const splitregex = new RegExp(`[${path.sep}-]+`);
+
+  let parts = destPath.replace('.js', '').split(splitregex);
+  parts = _.map(parts, (part) => {
+    return part.charAt(0).toUpperCase() + part.substring(1);
+  });
+
+  const className = parts.join('');
+
+  return className;
+}
+
+function getJsxString(svgPath, destPath, options) {
+  const className = pascalCase(destPath);
+
+  console.log(`  ${className}`);
+
+  const data = fs.readFileSync(svgPath, {
+    encoding: 'utf8',
+  });
+  const template = fs.readFileSync(path.join(__dirname, 'tpl/SvgIcon.js'), {
+    encoding: 'utf8',
+  });
+
+  // Extract the paths from the svg string
+  let paths = data.slice(data.indexOf('>') + 1);
+  paths = paths.slice(0, -6);
+  // Clean xml paths
+  paths = paths.replace(/xlink:href="#a"/g, '');
+  paths = paths.replace(/xlink:href="#c"/g, '');
+  paths = paths.replace(/fill-opacity=/g, 'fillOpacity=');
+  paths = paths.replace(/\s?fill=".*?"/g, '');
+
+  // Node acts weird if we put this directly into string concatenation
+  const muiRequireStmt = options.muiRequire === 'relative' ?
+    SVG_ICON_RELATIVE_REQUIRE : SVG_ICON_ABSOLUTE_REQUIRE;
+
+  return Mustache.render(
+    template, {
+      muiRequireStmt,
+      paths,
+      className,
+    },
+  );
+}
+
+/**
+ * @param {string} svgPath
+ * Absolute path to svg file to process.
+ *
+ * @param {string} destPath
+ * Path to jsx file relative to {options.outputDir}
+ *
+ * @param {object} options
+ */
+function processFile(svgPath, destPath, options) {
+  const outputFileDir = path.dirname(path.join(options.outputDir, destPath));
+
+  if (!fs.existsSync(outputFileDir)) {
+    console.log(`Making dir: ${outputFileDir}`);
+    mkdirp.sync(outputFileDir);
+  }
+  const fileString = getJsxString(svgPath, destPath, options);
+  const absDestPath = path.join(options.outputDir, destPath);
+  fs.writeFileSync(absDestPath, fileString);
+}
+
+/**
+ * make index.js, it exports all of SVGIcon classes.
+ * @param {object} options
+ */
+function processIndex(options) {
+  const files = glob.sync(path.join(options.outputDir, '*.js'));
+  const results = [];
+  files.forEach((jsPath) => {
+    const typename = path.basename(jsPath).replace('.js', '');
+    results.push(`export { ${typename} } from './${typename}';\n`);
+  });
+  const index = results.join('');
+  const absDestPath = path.join(options.outputDir, 'index.js');
+  fs.writeFileSync(absDestPath, index);
+}
+
 function parseArgs() {
   return yargs
     .usage('Build JSX components from SVG\'s.\nUsage: $0')
@@ -90,96 +180,6 @@ function main(options, callback) {
   if (callback) {
     callback();
   }
-}
-
-/**
- * @param {string} svgPath
- * Absolute path to svg file to process.
- *
- * @param {string} destPath
- * Path to jsx file relative to {options.outputDir}
- *
- * @param {object} options
- */
-function processFile(svgPath, destPath, options) {
-  const outputFileDir = path.dirname(path.join(options.outputDir, destPath));
-
-  if (!fs.existsSync(outputFileDir)) {
-    console.log(`Making dir: ${outputFileDir}`);
-    mkdirp.sync(outputFileDir);
-  }
-  const fileString = getJsxString(svgPath, destPath, options);
-  const absDestPath = path.join(options.outputDir, destPath);
-  fs.writeFileSync(absDestPath, fileString);
-}
-
-/**
- * Return Pascal-Cased classname.
- *
- * @param {string} svgPath
- * @returns {string} class name
- */
-function pascalCase(destPath) {
-  const splitregex = new RegExp(`[${path.sep}-]+`);
-
-  let parts = destPath.replace('.js', '').split(splitregex);
-  parts = _.map(parts, (part) => {
-    return part.charAt(0).toUpperCase() + part.substring(1);
-  });
-
-  const className = parts.join('');
-
-  return className;
-}
-
-function getJsxString(svgPath, destPath, options) {
-  const className = pascalCase(destPath);
-
-  console.log(`  ${className}`);
-
-  const data = fs.readFileSync(svgPath, {
-    encoding: 'utf8',
-  });
-  const template = fs.readFileSync(path.join(__dirname, 'tpl/SvgIcon.js'), {
-    encoding: 'utf8',
-  });
-
-  // Extract the paths from the svg string
-  let paths = data.slice(data.indexOf('>') + 1);
-  paths = paths.slice(0, -6);
-  // Clean xml paths
-  paths = paths.replace(/xlink:href="#a"/g, '');
-  paths = paths.replace(/xlink:href="#c"/g, '');
-  paths = paths.replace(/fill-opacity=/g, 'fillOpacity=');
-  paths = paths.replace(/\s?fill=".*?"/g, '');
-
-  // Node acts weird if we put this directly into string concatenation
-  const muiRequireStmt = options.muiRequire === 'relative' ?
-    SVG_ICON_RELATIVE_REQUIRE : SVG_ICON_ABSOLUTE_REQUIRE;
-
-  return Mustache.render(
-    template, {
-      muiRequireStmt,
-      paths,
-      className,
-    },
-  );
-}
-
-/**
- * make index.js, it exports all of SVGIcon classes.
- * @param {object} options
- */
-function processIndex(options) {
-  const files = glob.sync(path.join(options.outputDir, '*.js'));
-  const results = [];
-  files.forEach((jsPath) => {
-    const typename = path.basename(jsPath).replace('.js', '');
-    results.push(`export { ${typename} } from './${typename}';\n`);
-  });
-  const index = results.join('');
-  const absDestPath = path.join(options.outputDir, 'index.js');
-  fs.writeFileSync(absDestPath, index);
 }
 
 if (require.main === module) {

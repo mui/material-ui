@@ -35,7 +35,6 @@ module.exports = {
     'arrow-body-style': 'off', // Not our taste?
     'arrow-parens': ['error', 'always'], // airbnb use as-needed
     'consistent-this': ['error', 'self'],
-    'import/unambiguous': 'off',
     'max-len': ['error', 100, 2, {
       ignoreUrls: true,
     }], // airbnb is allowing some edge cases
@@ -43,16 +42,18 @@ module.exports = {
     'no-alert': 'error', // airbnb is using warn
     'no-param-reassign': 'off', // Not our taste?
     'no-prototype-builtins': 'off', // airbnb use error
-    'no-use-before-define': ['error', { functions: false }], // airbnb have functions: true, annoying
     'object-curly-spacing': 'off', // use babel plugin rule
     'operator-linebreak': ['error', 'after'], // aibnb is disabling this rule
     'babel/object-curly-spacing': ['error', 'always'],
     'no-restricted-properties': 'off', // To remove once react-docgen support ** operator.
+
+    'import/unambiguous': 'off',
     'import/no-unresolved': 'off',
     'import/no-named-as-default': 'off',
     'import/extensions': 'off',
     'import/no-extraneous-dependencies': 'off',
     'import/prefer-default-export': 'off',
+
     'react/jsx-handler-names': ['error', { // airbnb is disabling this rule
       eventHandlerPrefix: 'handle',
       eventHandlerPropPrefix: 'on',
@@ -79,12 +80,15 @@ module.exports = {
         'render'
       ],
     }],
+
     'material-ui/docgen-ignore-before-comment': 'error',
+
     'mocha/handle-done-callback': 'error',
     'mocha/no-exclusive-tests': 'error',
     'mocha/no-global-tests': 'error',
     'mocha/no-pending-tests': 'error',
     'mocha/no-skipped-tests': 'error',
+
     'flowtype/require-valid-file-annotation': ['error', 'always'],
     'flowtype/require-parameter-type': 'off',
     'flowtype/require-return-type': 'off',

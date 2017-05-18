@@ -6,6 +6,41 @@ import { spy } from 'sinon';
 import { createShallow, createMount } from 'src/test-utils';
 import { createSwitch, styleSheet } from './SwitchBase';
 
+function assertIsChecked(classes, wrapper) {
+  const iconButton = wrapper.find('span').at(0);
+
+  assert.strictEqual(
+    iconButton.hasClass('test-class-checked'),
+    true,
+    'should have the checked class on the root node',
+  );
+
+  const input = wrapper.find('input');
+  assert.strictEqual(input.node.checked, true, 'the DOM node should be checked');
+
+  const label = iconButton.childAt(0);
+  const icon = label.childAt(0);
+  assert.strictEqual(icon.is('pure(CheckBox)'), true, 'should be the CheckBox icon');
+}
+
+function assertIsNotChecked(classes, wrapper) {
+  const iconButton = wrapper.find('span').at(0);
+
+  assert.strictEqual(
+    iconButton.hasClass('test-class-checked'),
+    false,
+    'should not have the checked class on the root node',
+  );
+
+  const input = wrapper.find('input');
+  assert.strictEqual(input.node.checked, false, 'the DOM node should not be checked');
+
+  const label = iconButton.childAt(0);
+  const icon = label.childAt(0);
+  assert.strictEqual(icon.is('pure(CheckBoxOutlineBlank)'), true,
+    'should be the CheckBoxOutlineBlank icon');
+}
+
 describe('<SwitchBase />', () => {
   let shallow;
   let classes;
@@ -260,38 +295,3 @@ describe('<SwitchBase />', () => {
     });
   });
 });
-
-function assertIsChecked(classes, wrapper) {
-  const iconButton = wrapper.find('span').at(0);
-
-  assert.strictEqual(
-    iconButton.hasClass('test-class-checked'),
-    true,
-    'should have the checked class on the root node',
-  );
-
-  const input = wrapper.find('input');
-  assert.strictEqual(input.node.checked, true, 'the DOM node should be checked');
-
-  const label = iconButton.childAt(0);
-  const icon = label.childAt(0);
-  assert.strictEqual(icon.is('pure(CheckBox)'), true, 'should be the CheckBox icon');
-}
-
-function assertIsNotChecked(classes, wrapper) {
-  const iconButton = wrapper.find('span').at(0);
-
-  assert.strictEqual(
-    iconButton.hasClass('test-class-checked'),
-    false,
-    'should not have the checked class on the root node',
-  );
-
-  const input = wrapper.find('input');
-  assert.strictEqual(input.node.checked, false, 'the DOM node should not be checked');
-
-  const label = iconButton.childAt(0);
-  const icon = label.childAt(0);
-  assert.strictEqual(icon.is('pure(CheckBoxOutlineBlank)'), true,
-    'should be the CheckBoxOutlineBlank icon');
-}

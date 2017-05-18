@@ -46,31 +46,6 @@ export const styleSheet = createStyleSheet('colors', (theme) => ({
   },
 }));
 
-function getColorGroup(options) {
-  const {
-    classes,
-    color,
-    showAltPalette,
-  } = options;
-  const cssColor = color.replace(' ', '').replace(color.charAt(0), color.charAt(0).toLowerCase());
-  let colorsList = [];
-  colorsList = mainPalette.map((mainValue) => getColorBlock(classes, cssColor, mainValue));
-
-  if (showAltPalette) {
-    altPalette.forEach((altValue) => {
-      colorsList.push(getColorBlock(classes, cssColor, altValue));
-    });
-  }
-
-  return (
-    <ul className={classes.colorGroup} key={cssColor}>
-      {getColorBlock(classes, cssColor, 500, true)}
-      <div className={classes.blockSpace} />
-      {colorsList}
-    </ul>
-  );
-}
-
 function getColorBlock(classes, colorName, colorValue, colorTitle) {
   const bgColor = colors[colorName][colorValue];
 
@@ -112,6 +87,31 @@ function getColorBlock(classes, colorName, colorValue, colorTitle) {
         </span>
       </div>
     </li>
+  );
+}
+
+function getColorGroup(options) {
+  const {
+    classes,
+    color,
+    showAltPalette,
+  } = options;
+  const cssColor = color.replace(' ', '').replace(color.charAt(0), color.charAt(0).toLowerCase());
+  let colorsList = [];
+  colorsList = mainPalette.map((mainValue) => getColorBlock(classes, cssColor, mainValue));
+
+  if (showAltPalette) {
+    altPalette.forEach((altValue) => {
+      colorsList.push(getColorBlock(classes, cssColor, altValue));
+    });
+  }
+
+  return (
+    <ul className={classes.colorGroup} key={cssColor}>
+      {getColorBlock(classes, cssColor, 500, true)}
+      <div className={classes.blockSpace} />
+      {colorsList}
+    </ul>
   );
 }
 
