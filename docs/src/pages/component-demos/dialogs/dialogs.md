@@ -44,3 +44,7 @@ Touching “Cancel” in a confirmation dialog, or pressing Back, cancels the ac
 ## Full-screen dialogs
 
 {{demo='pages/component-demos/dialogs/FullScreenDialog.js'}}
+
+## Responsive full-screen
+
+You may make a `Dialog` responsively full screen the dialog using `withResponsiveFullScreen`. By default, `withResponsiveFullScreen()(Dialog)` responsively full screens *at or below* the `sm` [screen size](/layout/basics).
