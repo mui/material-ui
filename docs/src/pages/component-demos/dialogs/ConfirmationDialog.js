@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import List, { ListItem, ListItemText } from 'material-ui/List';
-import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog';
+import { Confirmation, DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog';
 import { LabelRadio as Radio, RadioGroup } from 'material-ui/Radio';
 
 const options = [
@@ -73,7 +73,7 @@ class ConfirmationDialog extends Component {
     } = this.props;
 
     return (
-      <Dialog onEntering={this.handleEntering} {...other}>
+      <Confirmation onEntering={this.handleEntering} {...other}>
         <DialogTitle>Phone Ringtone</DialogTitle>
         <DialogContent>
           <RadioGroup
@@ -96,7 +96,7 @@ class ConfirmationDialog extends Component {
           <Button onClick={this.handleCancel} primary>Cancel</Button>
           <Button onClick={this.handleOk} primary>Ok</Button>
         </DialogActions>
-      </Dialog>
+      </Confirmation>
     );
   }
 }

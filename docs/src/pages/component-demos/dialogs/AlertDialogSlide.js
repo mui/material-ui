@@ -2,7 +2,8 @@
 
 import React, { Component } from 'react';
 import Button from 'material-ui/Button';
-import Dialog, {
+import {
+  Alert,
   DialogActions,
   DialogContent,
   DialogContentText,
@@ -23,7 +24,7 @@ export default class AlertDialogSlide extends Component {
         <Button onClick={() => this.setState({ open: true })}>
           Slide in alert dialog
         </Button>
-        <Dialog
+        <Alert
           open={this.state.open}
           transition={Slide}
           onRequestClose={this.handleRequestClose}
@@ -40,7 +41,7 @@ export default class AlertDialogSlide extends Component {
             <Button onClick={this.handleRequestClose} primary>Disagree</Button>
             <Button onClick={this.handleRequestClose} primary>Agree</Button>
           </DialogActions>
-        </Dialog>
+        </Alert>
       </div>
     );
   }

@@ -10,6 +10,16 @@ Dialogs contain text and UI controls.
 They retain focus until dismissed or a required action has been taken.
 Use dialogs sparingly because they are interruptive.
 
+## Simple Dialogs
+
+Simple dialogs can provide additional details or actions about a list item. For example, they can display avatars, icons, clarifying subtext, or orthogonal actions (such as adding an account).
+
+Touch mechanics:
+- Choosing an option immediately commits the option and closes the menu
+- Touching outside of the dialog, or pressing Back, cancels the action and closes the dialog
+
+{{demo='pages/component-demos/dialogs/SimpleDialog.js'}}
+
 ## Alerts
 
 Alerts are urgent interruptions, requiring acknowledgement, that inform the user about a situation.
