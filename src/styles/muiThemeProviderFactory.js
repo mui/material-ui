@@ -6,155 +6,167 @@ import { createStyleManager } from 'jss-theme-reactor/styleManager';
 import jssPreset from 'jss-preset-default';
 
 export const MUI_SHEET_ORDER = [
-    'MuiTextarea',
-    'MuiInput',
-    'MuiGrid',
-    'MuiCollapse',
-    'MuiFade',
-    'MuiSlide',
+  'MuiTextarea',
+  'MuiInput',
+  'MuiGrid',
+  'MuiCollapse',
+  'MuiFade',
+  'MuiSlide',
 
-    'MuiBackdrop',
-    'MuiModal',
+  'MuiBackdrop',
+  'MuiModal',
 
-    'MuiRipple',
-    'MuiTouchRipple',
+  'MuiRipple',
+  'MuiTouchRipple',
 
-    'MuiButtonBase',
+  'MuiButtonBase',
 
-    'MuiFormLabel',
-    'MuiFormGroup',
+  'MuiFormLabel',
+  'MuiFormGroup',
 
-    'MuiTypography',
-    'MuiPaper',
-    'MuiDivider',
+  'MuiTypography',
+  'MuiPaper',
+  'MuiDivider',
 
-    'MuiPopover',
+  'MuiPopover',
 
-    'MuiButton',
-    'MuiIconButton',
+  'MuiButton',
+  'MuiIconButton',
 
-    'MuiSvgIcon',
-    'MuiIcon',
+  'MuiSvgIcon',
+  'MuiIcon',
 
-    'MuiSwitchBase',
-    'MuiSwitch',
-    'MuiCheckbox',
-    'MuiRadio',
-    'MuiRadioGroup',
-    'MuiSwitchLabel',
+  'MuiSwitchBase',
+  'MuiSwitch',
+  'MuiCheckbox',
+  'MuiRadio',
+  'MuiRadioGroup',
+  'MuiSwitchLabel',
 
-    'MuiDialog',
-    'MuiDialogActions',
-    'MuiDialogContent',
-    'MuiDialogContentText',
-    'MuiDialogTitle',
+  'MuiDialog',
+  'MuiDialogActions',
+  'MuiDialogContent',
+  'MuiDialogContentText',
+  'MuiDialogTitle',
 
-    'MuiTabIndicator',
-    'MuiTab',
-    'MuiTabs',
+  'MuiTabIndicator',
+  'MuiTab',
+  'MuiTabs',
 
-    'MuiBottomNavigationButton',
-    'MuiBottomNavigation',
+  'MuiBottomNavigationButton',
+  'MuiBottomNavigation',
 
-    'MuiCircularProgress',
-    'MuiLinearProgress',
+  'MuiCircularProgress',
+  'MuiLinearProgress',
 
-    'MuiAppBar',
-    'MuiDrawer',
+  'MuiAppBar',
+  'MuiDrawer',
 
-    'MuiAvatar',
+  'MuiAvatar',
 
-    'MuiChip',
+  'MuiChip',
 
-    'MuiListItem',
-    'MuiListItemText',
-    'MuiListItemSecondaryAction',
-    'MuiListItemAvatar',
-    'MuiListItemIcon',
-    'MuiListSubheader',
-    'MuiList',
+  'MuiListItem',
+  'MuiListItemText',
+  'MuiListItemSecondaryAction',
+  'MuiListItemAvatar',
+  'MuiListItemIcon',
+  'MuiListSubheader',
+  'MuiList',
 
-    'MuiMenu',
-    'MuiMenuItem',
+  'MuiMenu',
+  'MuiMenuItem',
 
-    'MuiCardContent',
-    'MuiCardMedia',
-    'MuiCardActions',
-    'MuiCardHeader',
-    'MuiCard',
+  'MuiCardContent',
+  'MuiCardMedia',
+  'MuiCardActions',
+  'MuiCardHeader',
+  'MuiCard',
 
-    'MuiTextFieldLabel',
-    'MuiTextFieldInput',
-    'MuiTextField',
+  'MuiTextFieldLabel',
+  'MuiTextFieldInput',
+  'MuiTextField',
 
-    'MuiTable',
-    'MuiTableHead',
-    'MuiTableRow',
-    'MuiTableCell',
-    'MuiTableBody',
-    'MuiTableSortLabel',
-    'MuiToolbar',
+  'MuiTable',
+  'MuiTableHead',
+  'MuiTableRow',
+  'MuiTableCell',
+  'MuiTableBody',
+  'MuiTableSortLabel',
+  'MuiToolbar',
 
-    'MuiBadge',
+  'MuiBadge',
 ];
 
 export default function muiThemeProviderFactory(defaultTheme) {
-    return class MuiThemeProvider extends Component {
-        static propTypes = {
-            children: PropTypes.element.isRequired,
-            styleManager: PropTypes.object,
-            theme: PropTypes.object,
-        };
+  return class MuiThemeProvider extends Component {
+    static propTypes = {
+      children: PropTypes.element.isRequired,
+      styleManager: PropTypes.object,
+      theme: PropTypes.object,
+    };
 
-        static childContextTypes = {
-            styleManager: PropTypes.object.isRequired,
-            theme: PropTypes.object.isRequired,
-        };
+    static childContextTypes = {
+      styleManager: PropTypes.object.isRequired,
+      theme: PropTypes.object.isRequired,
+    };
 
-        static createDefaultContext(props = {}) {
-            const theme = props.theme || defaultTheme;
-            const styleManager = props.styleManager || createStyleManager({
-                theme,
-                jss: create(jssPreset()),
-            });
+    static createDefaultContext(props = {}) {
+      const theme = props.theme || defaultTheme;
+      const styleManager = props.styleManager || createStyleManager({
+        theme,
+        jss: create(jssPreset()),
+      });
 
-            if (!styleManager.sheetOrder) {
-                styleManager.setSheetOrder(MUI_SHEET_ORDER);
-            }
+      if (!styleManager.sheetOrder) {
+        styleManager.setSheetOrder(MUI_SHEET_ORDER);
+      }
 
-            return { theme, styleManager };
-        }
-
-        getChildContext() {
-            const { theme, styleManager } = this;
-            return {
-                theme,
-                styleManager,
-            };
-        }
-
-        componentWillMount() {
-            const { theme, styleManager } = MuiThemeProvider.createDefaultContext(this.props);
-            this.theme = theme;
-            this.styleManager = styleManager;
-        }
-
-        componentWillUpdate(nextProps) {
-            if (this.styleManager !== nextProps.styleManager) {
-                const { theme, styleManager } = MuiThemeProvider.createDefaultContext(nextProps);
-                this.theme = theme;
-                this.styleManager = styleManager;
-            } else if (this.theme && nextProps.theme && nextProps.theme !== this.theme) {
-                this.theme = nextProps.theme;
-                this.styleManager.updateTheme(this.theme);
-            }
-        }
-
-        theme = undefined;
-        styleManager = undefined;
-
-        render() {
-            return this.props.children;
-        }
+      return {
+        theme,
+        styleManager,
+      };
     }
-};
+
+    getChildContext() {
+      const {
+        theme,
+        styleManager,
+      } = this;
+      return {
+        theme,
+        styleManager,
+      };
+    }
+
+    componentWillMount() {
+      const {
+        theme,
+        styleManager,
+      } = MuiThemeProvider.createDefaultContext(this.props);
+      this.theme = theme;
+      this.styleManager = styleManager;
+    }
+
+    componentWillUpdate(nextProps) {
+      if (this.styleManager !== nextProps.styleManager) {
+        const {
+          theme,
+          styleManager,
+        } = MuiThemeProvider.createDefaultContext(nextProps);
+        this.theme = theme;
+        this.styleManager = styleManager;
+      } else if (this.theme && nextProps.theme && nextProps.theme !== this.theme) {
+        this.theme = nextProps.theme;
+        this.styleManager.updateTheme(this.theme);
+      }
+    }
+
+    theme = undefined;
+    styleManager = undefined;
+
+    render() {
+      return this.props.children;
+    }
+  };
+}
