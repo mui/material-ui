@@ -9,6 +9,7 @@ const globalStyleSheet = createStyleSheet('global', (theme) => {
   return {
     '@global': {
       html: {
+        // Do the opposite of the docs in order to help catching issues.
         boxSizing: 'border-box',
       },
       '*, *:before, *:after': {

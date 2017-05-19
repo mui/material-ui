@@ -6,6 +6,7 @@
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  | The contents of the `InputLabel`. |
+| classes | object |  | Useful to extend the style applied to components. |
 | disableAnimation | bool | false | If `true`, the transition animation is disabled. |
 | error | bool |  | If `true`, the label will be displayed in an error state. |
 | focused | bool |  | If `true`, the input of this label is focused. |

@@ -1,17 +1,12 @@
 # TableBody
 
-A material table body.
 
-```jsx
-<TableBody>
-  <TableRow>...</TableRow>
-</TableBody>
-```
 
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  | The content of the component, normally `TableRow`. |
+| classes | object |  | Useful to extend the style applied to components. |
 
 Any other properties supplied will be spread to the root element.
 ## Classes

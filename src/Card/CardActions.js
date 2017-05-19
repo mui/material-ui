@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 import { cloneChildrenWithClassName } from '../utils/reactHelpers';
 
 export const styleSheet = createStyleSheet('MuiCardActions', {
@@ -19,15 +19,15 @@ export const styleSheet = createStyleSheet('MuiCardActions', {
   },
 });
 
-export default function CardActions(props, context) {
+function CardActions(props) {
   const {
     disableActionSpacing,
     children,
+    classes,
     className: classNameProp,
     ...other
   } = props;
 
-  const classes = context.styleManager.render(styleSheet);
   const className = classNames(classes.cardActions, classNameProp);
 
   return (
@@ -44,6 +44,10 @@ CardActions.propTypes = {
    */
   children: PropTypes.node,
   /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
    * @ignore
    */
   className: PropTypes.string,
@@ -57,6 +61,4 @@ CardActions.defaultProps = {
   disableActionSpacing: false,
 };
 
-CardActions.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+export default withStyles(styleSheet)(CardActions);

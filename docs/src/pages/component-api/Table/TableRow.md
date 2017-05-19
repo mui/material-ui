@@ -1,20 +1,13 @@
 # TableRow
 
-A material table row.
-
 Will automatically set dynamic row height
-based on the material table element parent (head, body, etc)
-
-```jsx
-<TableRow>
-  <TableCell>...</TableCell>
-</TableRow>
-```
+based on the material table element parent (head, body, etc).
 
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  | Should be valid `<tr>` children such as `TableCell`. |
+| classes | object |  | Useful to extend the style applied to components. |
 | hover | bool | false | If `true`, the table row will shade on hover. |
 | selected | bool | false | If `true`, the table row will have the selected shading. |
 

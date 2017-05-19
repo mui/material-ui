@@ -120,6 +120,18 @@ function generatePropType(type) {
   }
 }
 
+function getProp(props, key) {
+  switch (key) {
+    case 'classes':
+      return {
+        ...props[key],
+        required: false,
+      };
+    default:
+      return props[key];
+  }
+}
+
 function generateProps(props) {
   const header = '## Props';
 
@@ -130,7 +142,7 @@ function generateProps(props) {
   text = Object
     .keys(props)
     .reduce((textProps, key) => {
-      const prop = props[key];
+      const prop = getProp(props, key);
       const description =
         generatePropDescription(prop.required, prop.description, prop.flowType || prop.type);
 
@@ -179,7 +191,7 @@ If using the \`overrides\` key of the theme as documented
 you need to use the following style sheet name: \`${styles.name}\`.`;
 }
 
-export function generateMarkdown(name, reactAPI) {
+export default function generateMarkdown(name, reactAPI) {
   return `${
     generateTitle(name)}\n${
     generateDescription(reactAPI.description)}\n${

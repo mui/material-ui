@@ -48,15 +48,14 @@ class EnhancedTableHead extends Component {
   }
 
   render() {
-    const { order, orderBy } = this.props;
+    const { onSelectAllClick, order, orderBy } = this.props;
 
     return (
       <TableHead>
         <TableRow>
           <TableCell checkbox>
-            <Checkbox onChange={this.props.onSelectAllClick} />
+            <Checkbox onChange={onSelectAllClick} />
           </TableCell>
-
           {columnData.map((column) => {
             return (
               <TableCell
@@ -80,31 +79,29 @@ class EnhancedTableHead extends Component {
   }
 }
 
-const toolbarStyleSheet = createStyleSheet('EnhancedTableToolbar', (theme) => {
-  return {
-    root: {
-      paddingRight: 2,
-    },
-    highlight: (
-      theme.palette.type === 'light' ? {
-        color: theme.palette.accent[800],
-        backgroundColor: theme.palette.accent[50],
-      } : {
-        color: theme.palette.accent[50],
-        backgroundColor: theme.palette.accent[800],
-      }
-    ),
-    spacer: {
-      flex: '1 1 100%',
-    },
-    actions: {
-      color: theme.palette.text.secondary,
-    },
-    title: {
-      flex: '0 0 auto',
-    },
-  };
-});
+const toolbarStyleSheet = createStyleSheet('EnhancedTableToolbar', (theme) => ({
+  root: {
+    paddingRight: 2,
+  },
+  highlight: (
+    theme.palette.type === 'light' ? {
+      color: theme.palette.accent[800],
+      backgroundColor: theme.palette.accent[50],
+    } : {
+      color: theme.palette.accent[50],
+      backgroundColor: theme.palette.accent[800],
+    }
+  ),
+  spacer: {
+    flex: '1 1 100%',
+  },
+  actions: {
+    color: theme.palette.text.secondary,
+  },
+  title: {
+    flex: '0 0 auto',
+  },
+}));
 
 let EnhancedTableToolbar = (props) => {
   const { numSelected, classes } = props;
@@ -187,6 +184,7 @@ class EnhancedTable extends Component {
   handleSelectAllClick = (event, checked) => {
     if (checked) {
       this.setState({ selected: this.state.data.map((n) => n.id) });
+      return;
     }
     this.setState({ selected: [] });
   };

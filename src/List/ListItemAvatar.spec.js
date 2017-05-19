@@ -11,7 +11,7 @@ describe('<ListItemAvatar />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
@@ -25,7 +25,7 @@ describe('<ListItemAvatar />', () => {
         dense: true,
       },
     });
-    assert.strictEqual(wrapper.name(), 'Avatar');
+    assert.strictEqual(wrapper.name(), 'withStyles(Avatar)');
   });
 
   it('should render with the user and root classes', () => {

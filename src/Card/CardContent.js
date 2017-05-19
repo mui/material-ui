@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
 export const styleSheet = createStyleSheet('MuiCardContent', (theme) => ({
   cardContent: {
@@ -15,27 +15,27 @@ export const styleSheet = createStyleSheet('MuiCardContent', (theme) => ({
   },
 }));
 
-export default function CardContent(props, context) {
+function CardContent(props) {
   const {
+    classes,
     className: classNameProp,
     ...other
   } = props;
 
-  const classes = context.styleManager.render(styleSheet);
   const className = classNames(classes.cardContent, classNameProp);
 
-  return (
-    <div className={className} {...other} />
-  );
+  return <div className={className} {...other} />;
 }
 
 CardContent.propTypes = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
   className: PropTypes.string,
 };
 
-CardContent.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+export default withStyles(styleSheet)(CardContent);

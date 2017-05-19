@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import keycode from 'keycode';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 import DeleteIcon from '../svg-icons/cancel';
 import { emphasize, fade } from '../styles/colorManipulator';
 
@@ -81,14 +81,11 @@ export const styleSheet = createStyleSheet('MuiChip', (theme) => {
 
 /**
  * Chips represent complex entities in small blocks, such as a contact.
- *
- * ```jsx
- * <Chip avatar={<Avatar />} label="Label text" />
- * ```
  */
-export default function Chip(props, context) {
+function Chip(props) {
   const {
     avatar: avatarProp,
+    classes,
     className: classNameProp,
     deleteIconClassName: deleteIconClassNameProp,
     label,
@@ -127,7 +124,6 @@ export default function Chip(props, context) {
     }
   };
 
-  const classes = context.styleManager.render(styleSheet);
   const className = classNames(
     classes.root,
     { [classes.clickable]: onClick },
@@ -174,7 +170,11 @@ Chip.propTypes = {
    */
   avatar: PropTypes.node,
   /**
-   * The CSS `className` of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
   /**
@@ -209,6 +209,4 @@ Chip.propTypes = {
   tabIndex: PropTypes.number,
 };
 
-Chip.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+export default withStyles(styleSheet)(Chip);

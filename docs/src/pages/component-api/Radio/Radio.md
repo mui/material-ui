@@ -1,7 +1,6 @@
 # Radio
 
-[Radio buttons](https://www.google.com/design/spec/components/selection-controls.html#selection-controls-radio-button)
-are switches used for selection from multiple options.
+
 
 ## Props
 | Name | Type | Default | Description |
@@ -9,6 +8,7 @@ are switches used for selection from multiple options.
 | checked | union:&nbsp;bool<br>&nbsp;string<br> |  | If `true`, the component appears selected. |
 | checkedClassName | string |  | The CSS class name of the root element when selected. |
 | checkedIcon | node |  | The icon to display when selected. |
+| classes | object |  | Useful to extend the style applied to components. |
 | disabled | bool |  | If `true`, the component disabled. |
 | disabledClassName | string |  | The CSS class name of the root element when disabled. |
 | icon | node |  | The icon to display when the component is unselected. |

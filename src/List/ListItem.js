@@ -4,96 +4,55 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 import ButtonBase from '../internal/ButtonBase';
 
-export const styleSheet = createStyleSheet('MuiListItem', (theme) => {
-  return {
-    listItem: {
-      display: 'flex',
-      alignItems: 'center',
-      position: 'relative',
+export const styleSheet = createStyleSheet('MuiListItem', (theme) => ({
+  listItem: {
+    display: 'flex',
+    alignItems: 'center',
+    position: 'relative',
+    textDecoration: 'none',
+  },
+  listItemContainer: {
+    position: 'relative',
+  },
+  keyboardFocused: {
+    background: theme.palette.text.divider,
+  },
+  default: {
+    paddingTop: 12,
+    paddingBottom: 12,
+  },
+  dense: {
+    paddingTop: theme.spacing.unit,
+    paddingBottom: theme.spacing.unit,
+  },
+  disabled: {
+    opacity: 0.5,
+  },
+  divider: {
+    borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
+  },
+  gutters: {
+    paddingLeft: theme.spacing.unit * 2,
+    paddingRight: theme.spacing.unit * 2,
+  },
+  button: {
+    transition: theme.transitions.create('background-color', {
+      duration: theme.transitions.duration.short,
+    }),
+    '&:hover': {
       textDecoration: 'none',
-    },
-    listItemContainer: {
-      position: 'relative',
-    },
-    keyboardFocused: {
-      background: theme.palette.text.divider,
-    },
-    default: {
-      paddingTop: 12,
-      paddingBottom: 12,
-    },
-    dense: {
-      paddingTop: 8,
-      paddingBottom: 8,
-    },
-    disabled: {
-      opacity: 0.5,
-    },
-    divider: {
-      borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
-    },
-    gutters: {
-      paddingLeft: 16,
-      paddingRight: 16,
-    },
-    button: {
-      transition: theme.transitions.create('background-color', {
-        duration: theme.transitions.duration.short,
-      }),
-      '&:hover': {
-        textDecoration: 'none',
-        backgroundColor: theme.palette.text.divider,
-        '&$disabled': {
-          backgroundColor: 'transparent',
-        },
+      backgroundColor: theme.palette.text.divider,
+      '&$disabled': {
+        backgroundColor: 'transparent',
       },
     },
-  };
-});
+  },
+}));
 
-export default class ListItem extends Component {
-  static propTypes = {
-    /**
-     * If `true`, the ListItem will be a button.
-     */
-    button: PropTypes.bool,
-    /**
-     * The content of the component.
-     */
-    children: PropTypes.node,
-    /**
-     * @ignore
-     */
-    className: PropTypes.string,
-    /**
-     * The component used for the root node.
-     * Either a string to use a DOM element or a component.
-     */
-    component: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.func,
-    ]),
-    /**
-     * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
-     */
-    dense: PropTypes.bool,
-    /**
-     * @ignore
-     */
-    disabled: PropTypes.bool,
-    /**
-     * If `true`, the left and right padding is removed.
-     */
-    disableGutters: PropTypes.bool,
-    /**
-     * If `true`, a 1px light border is added to the bottom of the list item.
-     */
-    divider: PropTypes.bool,
-  };
-
+class ListItem extends Component {
   static defaultProps = {
     button: false,
     component: 'div',
@@ -101,15 +60,6 @@ export default class ListItem extends Component {
     disabled: false,
     disableGutters: false,
     divider: false,
-  };
-
-  static contextTypes = {
-    dense: PropTypes.bool,
-    styleManager: customPropTypes.muiRequired,
-  };
-
-  static childContextTypes = {
-    dense: PropTypes.bool,
   };
 
   getChildContext() {
@@ -122,6 +72,7 @@ export default class ListItem extends Component {
     const {
       button,
       children: childrenProp,
+      classes,
       className: classNameProp,
       component: componentProp,
       dense,
@@ -131,11 +82,10 @@ export default class ListItem extends Component {
       ...other
     } = this.props;
     const isDense = dense || this.context.dense || false;
-    const classes = this.context.styleManager.render(styleSheet);
     const children = React.Children.toArray(childrenProp);
 
     const hasAvatar = children.some((value) => {
-      return value.type && value.type.name === 'ListItemAvatar';
+      return value.type && value.type.muiName === 'ListItemAvatar';
     });
 
     const className = classNames(classes.listItem, {
@@ -178,3 +128,56 @@ export default class ListItem extends Component {
     );
   }
 }
+
+ListItem.propTypes = {
+  /**
+   * If `true`, the ListItem will be a button.
+   */
+  button: PropTypes.bool,
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+  /**
+   * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
+   */
+  dense: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  disabled: PropTypes.bool,
+  /**
+   * If `true`, the left and right padding is removed.
+   */
+  disableGutters: PropTypes.bool,
+  /**
+   * If `true`, a 1px light border is added to the bottom of the list item.
+   */
+  divider: PropTypes.bool,
+};
+
+ListItem.contextTypes = {
+  dense: PropTypes.bool,
+};
+
+ListItem.childContextTypes = {
+  dense: PropTypes.bool,
+};
+
+export default withStyles(styleSheet)(ListItem);

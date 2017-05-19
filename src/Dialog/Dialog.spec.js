@@ -11,13 +11,13 @@ describe('<Dialog />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
   it('should render a Modal', () => {
     const wrapper = shallow(<Dialog />);
-    assert.strictEqual(wrapper.name(), 'Modal');
+    assert.strictEqual(wrapper.name(), 'withStyles(Modal)');
   });
 
   it('should render a Modal with transition', () => {

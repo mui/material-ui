@@ -11,16 +11,15 @@ describe('<RadioGroup />', () => {
   let shallow;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
   });
 
   it('should render a FormGroup with the radiogroup role', () => {
     const wrapper = shallow(
       <RadioGroup />,
     );
-    assert.strictEqual(
-      wrapper.is('FormGroup[role="radiogroup"]'),
-      true,
+    assert.strictEqual(wrapper.name(), 'withStyles(FormGroup)');
+    assert.strictEqual(wrapper.props().role, 'radiogroup',
       'should be a FormGroup with the correct role',
     );
   });
@@ -164,16 +163,16 @@ describe('<RadioGroup />', () => {
 
     it('should add a child', () => {
       const wrapper = mount(
-        <RadioGroup>
+        <RadioGroup.Naked classes={{}}>
           <Radio />
-        </RadioGroup>,
+        </RadioGroup.Naked>,
       );
       assert.strictEqual(wrapper.instance().radios.length, 1);
     });
 
     it('should keep radios empty', () => {
       const wrapper = mount(
-        <RadioGroup />,
+        <RadioGroup.Naked classes={{}} />,
       );
       assert.strictEqual(wrapper.instance().radios.length, 0);
     });

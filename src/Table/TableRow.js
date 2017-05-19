@@ -4,56 +4,46 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiTableRow', (theme) => {
-  return {
-    root: {
-      height: 48,
-      '&:focus': {
-        outline: 'none',
-        background: theme.palette.background.contentFrame,
-      },
+export const styleSheet = createStyleSheet('MuiTableRow', (theme) => ({
+  root: {
+    height: 48,
+    '&:focus': {
+      outline: 'none',
+      background: theme.palette.background.contentFrame,
     },
-    head: {
-      height: 64,
+  },
+  head: {
+    height: 64,
+  },
+  footer: {
+    height: 56,
+  },
+  hover: {
+    '&:hover': {
+      background: theme.palette.background.contentFrame,
     },
-    footer: {
-      height: 56,
-    },
-    hover: {
-      '&:hover': {
-        background: theme.palette.background.contentFrame,
-      },
-    },
-    selected: {
-      background: theme.palette.background.appBar,
-    },
-  };
-});
+  },
+  selected: {
+    background: theme.palette.background.appBar,
+  },
+}));
 
 /**
- * A material table row.
- *
  * Will automatically set dynamic row height
- * based on the material table element parent (head, body, etc)
- *
- * ```jsx
- * <TableRow>
- *   <TableCell>...</TableCell>
- * </TableRow>
- * ```
+ * based on the material table element parent (head, body, etc).
  */
-export default function TableRow(props, context) {
+function TableRow(props, context) {
   const {
+    classes,
     className: classNameProp,
     children,
     hover,
     selected,
     ...other
   } = props;
-  const { table, styleManager } = context;
-  const classes = styleManager.render(styleSheet);
+  const { table } = context;
 
   const className = classNames(classes.root, {
     [classes.head]: table && table.head,
@@ -75,6 +65,10 @@ TableRow.propTypes = {
    */
   children: PropTypes.node,
   /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
    * @ignore
    */
   className: PropTypes.string,
@@ -95,5 +89,6 @@ TableRow.defaultProps = {
 
 TableRow.contextTypes = {
   table: PropTypes.object,
-  styleManager: customPropTypes.muiRequired,
 };
+
+export default withStyles(styleSheet)(TableRow);

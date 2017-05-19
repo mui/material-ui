@@ -5,6 +5,7 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| classes | object |  | Useful to extend the style applied to components. |
 | inset | bool | false | If `true`, the children will be indented. This should be used if there is no left avatar or left icon. |
 | primary | node | false |  |
 | secondary | node | false |  |

@@ -5,7 +5,7 @@
 import fs from 'fs';
 import path from 'path';
 import * as reactDocgen from 'react-docgen';
-import { generateMarkdown } from './generate-docs-markdown';
+import generateMarkdown from './generate-docs-markdown';
 import createMuiTheme from '../src/styles/theme';
 
 const theme = createMuiTheme();

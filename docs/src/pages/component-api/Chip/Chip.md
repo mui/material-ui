@@ -2,15 +2,11 @@
 
 Chips represent complex entities in small blocks, such as a contact.
 
-```jsx
-<Chip avatar={<Avatar />} label="Label text" />
-```
-
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | avatar | node |  | Avatar element. |
-| className | string |  | The CSS `className` of the root element. |
+| classes | object |  | Useful to extend the style applied to components. |
 | deleteIconClassName | string |  | The CSS class name of the delete icon element. |
 | label | node |  | The content of the label. |
 | labelClassName | string |  | The CSS `className` of the label. |

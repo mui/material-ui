@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
 export const styleSheet = createStyleSheet('MuiListItemSecondaryAction', (theme) => ({
   secondaryAction: {
@@ -15,12 +15,12 @@ export const styleSheet = createStyleSheet('MuiListItemSecondaryAction', (theme)
   },
 }));
 
-export default function ListItemSecondaryAction(props, context) {
+function ListItemSecondaryAction(props) {
   const {
     children,
+    classes,
     className: classNameProp,
   } = props;
-  const classes = context.styleManager.render(styleSheet);
   const className = classNames(classes.secondaryAction, classNameProp);
 
   return (
@@ -36,13 +36,15 @@ ListItemSecondaryAction.propTypes = {
    */
   children: PropTypes.node,
   /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
    * @ignore
    */
   className: PropTypes.string,
 };
 
-ListItemSecondaryAction.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
-
 ListItemSecondaryAction.muiName = 'ListItemSecondaryAction';
+
+export default withStyles(styleSheet)(ListItemSecondaryAction);

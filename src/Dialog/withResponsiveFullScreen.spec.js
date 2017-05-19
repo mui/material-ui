@@ -15,7 +15,7 @@ describe('withResponsiveFullScreen', () => {
   before(() => {
     const shallow = createShallow();
     shallowWithWidth = (node, options = {}) => {
-      return shallow(node, options).dive().dive();
+      return shallow(node, options).dive().dive().dive();
     };
     classes = shallow.context.styleManager.render(styleSheet);
   });

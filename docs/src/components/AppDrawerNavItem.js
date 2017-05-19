@@ -9,39 +9,37 @@ import { ListItem } from 'material-ui/List';
 import Button from 'material-ui/Button';
 import Collapse from 'material-ui/transitions/Collapse';
 
-const styleSheet = createStyleSheet('AppDrawerNavItem', (theme) => {
-  return {
-    button: theme.mixins.gutters({
-      borderRadius: 0,
-      justifyContent: 'flex-start',
-      textTransform: 'none',
-      width: '100%',
-      '&:hover': {
-        textDecoration: 'none',
-      },
-    }),
-    navItem: {
-      ...theme.typography.body2,
-      display: 'block',
-      paddingTop: 0,
-      paddingBottom: 0,
+const styleSheet = createStyleSheet('AppDrawerNavItem', (theme) => ({
+  button: theme.mixins.gutters({
+    borderRadius: 0,
+    justifyContent: 'flex-start',
+    textTransform: 'none',
+    width: '100%',
+    '&:hover': {
+      textDecoration: 'none',
     },
-    navLink: {
-      fontWeight: theme.typography.fontWeightRegular,
-      display: 'flex',
-      paddingTop: 0,
-      paddingBottom: 0,
-    },
-    navLinkButton: {
-      color: theme.palette.text.secondary,
-      textIndent: 24,
-      fontSize: 13,
-    },
-    activeButton: {
-      color: theme.palette.text.primary,
-    },
-  };
-});
+  }),
+  navItem: {
+    ...theme.typography.body2,
+    display: 'block',
+    paddingTop: 0,
+    paddingBottom: 0,
+  },
+  navLink: {
+    fontWeight: theme.typography.fontWeightRegular,
+    display: 'flex',
+    paddingTop: 0,
+    paddingBottom: 0,
+  },
+  navLinkButton: {
+    color: theme.palette.text.secondary,
+    textIndent: 24,
+    fontSize: 13,
+  },
+  activeButton: {
+    color: theme.palette.text.primary,
+  },
+}));
 
 class AppDrawerNavItem extends Component {
   static defaultProps = {

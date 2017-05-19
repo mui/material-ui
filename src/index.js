@@ -1,4 +1,5 @@
 // @flow
+
 export { default as AppBar } from './AppBar';
 export { default as Avatar } from './Avatar';
 export { default as Badge } from './Badge';
@@ -76,11 +77,6 @@ export {
   default as Radio,
   RadioGroup,
 } from './Radio';
-
-export {
-  default as Ripple,
-  TouchRipple,
-} from './Ripple';
 
 export {
   MuiThemeProvider,

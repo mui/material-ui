@@ -27,15 +27,6 @@ export const styleSheet = createStyleSheet('MuiPaper', (theme) => {
   };
 });
 
-/**
- * A piece of material paper.
- *
- * ```js
- * import Paper from 'material-ui/Paper';
- *
- * const Component = () => <Paper elevation={8}>Hello World</Paper>;
- * ```
- */
 function Paper(props) {
   const {
     classes,

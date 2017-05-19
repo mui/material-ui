@@ -6,6 +6,7 @@
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  | The content of the component. |
+| classes | object |  | Useful to extend the style applied to components. |
 | error | bool |  | Whether the label should be displayed in an error state. |
 | focused | bool |  | If `true`, the input of this label is focused (used by `FormGroup` components). |
 | required | bool |  | If `true`, the label will indicate that the input is required. |

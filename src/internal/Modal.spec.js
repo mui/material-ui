@@ -6,6 +6,7 @@ import { spy, stub } from 'sinon';
 import keycode from 'keycode';
 import contains from 'dom-helpers/query/contains';
 import { createShallow, createMount, consoleErrorMock } from 'src/test-utils';
+import Backdrop from './Backdrop';
 import Modal, { styleSheet } from './Modal';
 
 describe('<Modal />', () => {
@@ -14,17 +15,13 @@ describe('<Modal />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
     mount = createMount();
   });
 
   after(() => {
     mount.cleanUp();
-  });
-
-  it('should not show by default', () => {
-    assert.strictEqual(Modal.defaultProps.show, false, 'should be false by default');
   });
 
   it('should render null by default', () => {
@@ -139,7 +136,7 @@ describe('<Modal />', () => {
       assert.strictEqual(transition.is('Fade'), true, 'should be the fade transition');
       assert.strictEqual(transition.prop('in'), true, 'should set the transition to in');
       const backdrop = transition.childAt(0);
-      assert.strictEqual(backdrop.is('Backdrop'), true, 'should be the backdrop component');
+      assert.strictEqual(backdrop.is(Backdrop), true, 'should be the backdrop component');
     });
 
     it('should pass a transitionDuration prop to the transition component', () => {
@@ -154,7 +151,7 @@ describe('<Modal />', () => {
       wrapper.setProps({ onRequestClose });
 
       const handler = wrapper.instance().handleBackdropClick;
-      const backdrop = wrapper.find('Backdrop');
+      const backdrop = wrapper.find(Backdrop);
       assert.strictEqual(backdrop.prop('onClick'), handler,
         'should attach the handleBackdropClick handler');
 

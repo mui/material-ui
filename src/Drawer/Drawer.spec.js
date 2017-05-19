@@ -6,18 +6,14 @@ import { createShallow } from 'src/test-utils';
 import Drawer, { styleSheet } from './Drawer';
 import Slide from '../transitions/Slide';
 import Modal from '../internal/Modal';
-import { duration } from '../styles/transitions';
 import Paper from '../Paper';
 
-/**
- * An item that goes in lists.
- */
 describe('<Drawer />', () => {
   let shallow;
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
@@ -25,7 +21,7 @@ describe('<Drawer />', () => {
     const wrapper = shallow(
       <Drawer />,
     );
-    assert.strictEqual(wrapper.name(), 'Modal');
+    assert.strictEqual(wrapper.name(), 'withStyles(Modal)');
   });
 
   it('should render Slide > Paper inside the Modal', () => {
@@ -50,10 +46,6 @@ describe('<Drawer />', () => {
     const enterDuration = 854;
     const leaveDuration = 2967;
 
-    it('default value should be from standard timings', () => {
-      assert.strictEqual(Drawer.defaultProps.enterTransitionDuration, duration.enteringScreen);
-    });
-
     it('should be passed to Slide', () => {
       const wrapper = shallow(<Drawer enterTransitionDuration={enterDuration} />);
       assert.strictEqual(wrapper.find(Slide).prop('enterTransitionDuration'), enterDuration);
@@ -74,10 +66,6 @@ describe('<Drawer />', () => {
   describe('leaveTransitionDuration property', () => {
     const enterDuration = 6577;
     const leaveDuration = 1889;
-
-    it('default value should be from standard timings', () => {
-      assert.strictEqual(Drawer.defaultProps.leaveTransitionDuration, duration.leavingScreen);
-    });
 
     it('should be passed to Slide', () => {
       const wrapper = shallow(<Drawer leaveTransitionDuration={leaveDuration} />);

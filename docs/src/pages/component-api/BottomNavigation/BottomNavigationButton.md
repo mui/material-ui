@@ -5,6 +5,7 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| classes | object |  | Useful to extend the style applied to components. |
 | icon | node |  | The icon element. If a string is provided, it will be used as a font ligature. |
 | label | node |  | The label element. |
 | showLabel | bool |  | If `true`, the BottomNavigationButton will show its label. |

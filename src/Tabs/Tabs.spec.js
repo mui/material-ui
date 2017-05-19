@@ -6,6 +6,7 @@ import { spy, stub } from 'sinon';
 import scroll from 'scroll';
 import { createShallow, createMount } from 'src/test-utils';
 import Tabs, { styleSheet } from './Tabs';
+import TabScrollButton from './TabScrollButton';
 import Tab from './Tab';
 
 const noop = () => {};
@@ -16,7 +17,7 @@ describe('<Tabs />', () => {
   let classes;
 
   before(() => {
-    const shallow = createShallow();
+    const shallow = createShallow({ dive: true });
     shallowWithWidth = (node, options = {}) => shallow(node, options).dive().dive();
     classes = shallow.context.styleManager.render(styleSheet);
     mount = createMount();
@@ -182,7 +183,7 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      assert.lengthOf(wrapper.find('TabScrollButton'), 2, 'should be two');
+      assert.lengthOf(wrapper.find(TabScrollButton), 2, 'should be two');
     });
 
     it('should render scroll buttons automatically', () => {
@@ -196,7 +197,7 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      assert.lengthOf(wrapper.find('TabScrollButton'), 2, 'should be two');
+      assert.lengthOf(wrapper.find(TabScrollButton), 2, 'should be two');
     });
 
     it('should should not render scroll buttons automatically', () => {
@@ -210,7 +211,7 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      assert.lengthOf(wrapper.find('TabScrollButton'), 0, 'should be zero');
+      assert.lengthOf(wrapper.find(TabScrollButton), 0, 'should be zero');
     });
 
     it('should handle window resize event', (done) => {
@@ -326,10 +327,10 @@ describe('<Tabs />', () => {
     });
 
     it('should call moveTabsScroll', () => {
-      wrapper.find('TabScrollButton').at(0).simulate('click');
+      wrapper.find(TabScrollButton).at(0).simulate('click');
       assert.strictEqual(scrollSpy.args[0][0], -dimensions.clientWidth,
         `should be called with -${dimensions.clientWidth}`);
-      wrapper.find('TabScrollButton').at(1).simulate('click');
+      wrapper.find(TabScrollButton).at(1).simulate('click');
       assert.strictEqual(scrollSpy.args[1][0], dimensions.clientWidth,
         `should be called with ${dimensions.clientWidth}`);
     });

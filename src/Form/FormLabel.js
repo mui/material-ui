@@ -5,7 +5,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
 export const styleSheet = createStyleSheet('MuiFormLabel', (theme) => {
   const focusColor = theme.palette.primary.A200;
@@ -24,9 +24,10 @@ export const styleSheet = createStyleSheet('MuiFormLabel', (theme) => {
   };
 });
 
-export default function FormLabel(props, context) {
+function FormLabel(props, context) {
   const {
     children,
+    classes,
     className: classNameProp,
     error: errorProp,
     focused: focusedProp,
@@ -34,8 +35,7 @@ export default function FormLabel(props, context) {
     ...other
   } = props;
 
-  const { muiFormControl, styleManager } = context;
-  const classes = styleManager.render(styleSheet);
+  const { muiFormControl } = context;
 
   let required = requiredProp;
   let focused = focusedProp;
@@ -80,6 +80,10 @@ FormLabel.propTypes = {
    */
   children: PropTypes.node,
   /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
    * @ignore
    */
   className: PropTypes.string,
@@ -99,5 +103,6 @@ FormLabel.propTypes = {
 
 FormLabel.contextTypes = {
   muiFormControl: PropTypes.object,
-  styleManager: customPropTypes.muiRequired,
 };
+
+export default withStyles(styleSheet)(FormLabel);

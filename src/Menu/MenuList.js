@@ -9,26 +9,7 @@ import activeElement from 'dom-helpers/activeElement';
 import ownerDocument from 'dom-helpers/ownerDocument';
 import List from '../List';
 
-export default class MenuList extends Component {
-  static propTypes = {
-    /**
-     * MenuList contents, normally `MenuItem`s.
-     */
-    children: PropTypes.node,
-    /**
-     * @ignore
-     */
-    className: PropTypes.string,
-    /**
-     * @ignore
-     */
-    onBlur: PropTypes.func,
-    /**
-     * @ignore
-     */
-    onKeyDown: PropTypes.func,
-  };
-
+class MenuList extends Component {
   state = {
     currentTabIndex: undefined,
   };
@@ -177,3 +158,23 @@ export default class MenuList extends Component {
   }
 }
 
+MenuList.propTypes = {
+  /**
+   * MenuList contents, normally `MenuItem`s.
+   */
+  children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
+};
+
+export default MenuList;

@@ -1,14 +1,13 @@
 # Button
 
-```jsx
-<Button>Hello World</Button>
-```
+
 
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | accent | bool | false | If `true`, the button will use the theme's accent color. |
 | <span style="color: #31a148">children *</span> | node |  | The content of the button. |
+| classes | object |  | Useful to extend the style applied to components. |
 | compact | bool | false | Uses a smaller minWidth, ideal for things like card actions. |
 | component | union:&nbsp;string<br>&nbsp;func<br> | 'button' | The component used for the root node. Either a string to use a DOM element or a component. |
 | contrast | bool | false | If `true`, the button will use the theme's contrast color. |

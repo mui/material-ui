@@ -13,7 +13,7 @@ describe('<BottomNavigationButton / />', () => {
   const icon = <Icon>restore</Icon>;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
@@ -58,7 +58,7 @@ describe('<BottomNavigationButton / />', () => {
     const wrapper = shallow(<BottomNavigationButton icon={icon} />);
 
     const iconWrapper = wrapper.childAt(0);
-    assert.strictEqual(iconWrapper.is('Icon'), true, 'should be an Icon');
+    assert.strictEqual(iconWrapper.is(Icon), true, 'should be an Icon');
     assert.strictEqual(iconWrapper.hasClass(classes.icon), true, 'should have the icon class');
 
     const labelWrapper = wrapper.childAt(1);
@@ -83,7 +83,7 @@ describe('<BottomNavigationButton / />', () => {
   it('should render a font icon if a icon string is provided', () => {
     const wrapper = shallow(<BottomNavigationButton icon="book" />);
     const iconWrapper = wrapper.childAt(0);
-    assert.strictEqual(iconWrapper.is('Icon'), true, 'should be an Icon');
+    assert.strictEqual(iconWrapper.is(Icon), true, 'should be an Icon');
   });
 
   describe('prop: onClick', () => {

@@ -4,45 +4,42 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 import { FormLabel } from '../Form';
 
-export const styleSheet = createStyleSheet('MuiInputLabel', (theme) => {
-  return {
-    root: {
-      transformOrigin: 'top left',
-    },
-    formControl: {
-      position: 'absolute',
-      left: 0,
-      top: 0,
-      transform: 'translate(0, 18px) scale(1)',
-    },
-    shrink: {
-      transform: 'translate(0, 0px) scale(0.75)',
-      transformOrigin: 'top left',
-    },
-    animated: {
-      transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shorter,
-        easing: theme.transitions.easing.easeOut,
-      }),
-    },
-  };
-});
+export const styleSheet = createStyleSheet('MuiInputLabel', (theme) => ({
+  root: {
+    transformOrigin: 'top left',
+  },
+  formControl: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    transform: 'translate(0, 18px) scale(1)',
+  },
+  shrink: {
+    transform: 'translate(0, 0px) scale(0.75)',
+    transformOrigin: 'top left',
+  },
+  animated: {
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shorter,
+      easing: theme.transitions.easing.easeOut,
+    }),
+  },
+}));
 
-export default function InputLabel(props, context) {
+function InputLabel(props, context) {
   const {
     disableAnimation,
     children,
+    classes,
     className: classNameProp,
     shrink: shrinkProp,
     ...other
   } = props;
 
-  const { muiFormControl, styleManager } = context;
-  const classes = styleManager.render(styleSheet);
-
+  const { muiFormControl } = context;
   let shrink = shrinkProp;
 
   if (typeof shrink === 'undefined' && muiFormControl) {
@@ -67,6 +64,10 @@ InputLabel.propTypes = {
    * The contents of the `InputLabel`.
    */
   children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
@@ -99,5 +100,7 @@ InputLabel.defaultProps = {
 
 InputLabel.contextTypes = {
   muiFormControl: PropTypes.object,
-  styleManager: customPropTypes.muiRequired,
 };
+
+export default withStyles(styleSheet)(InputLabel);
+

@@ -1,11 +1,12 @@
 # FormControl
 
-FormControl - provides context such as dirty/focused/error/required for form inputs
+Provides context such as dirty/focused/error/required for form inputs.
 
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  | The contents of the form control. |
+| classes | object |  | Useful to extend the style applied to components. |
 | error | bool | false | If `true`, the label should be displayed in an error state. |
 | required | bool | false | If `true`, the label will indicate that the input is required. |
 

@@ -6,7 +6,7 @@ import debounce from 'lodash/debounce';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classnames from 'classnames';
 import EventListener from 'react-event-listener';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
 const rowsHeight = 24;
 
@@ -40,36 +40,14 @@ export const styleSheet = createStyleSheet('MuiTextarea', {
   },
 });
 
-export default class Textarea extends Component {
+class Textarea extends Component {
   shadow: HTMLInputElement;
-  singleLineShadow: HTMLInputElement;
+  singlelineShadow: HTMLInputElement;
   input: HTMLInputElement;
   value: string;
 
-  static propTypes = {
-    className: PropTypes.string,
-    defaultValue: PropTypes.any,
-    disabled: PropTypes.bool,
-    hintText: PropTypes.string,
-    onChange: PropTypes.func,
-    onHeightChange: PropTypes.func,
-    /**
-     * Number of rows to display when multiline option is set to true.
-     */
-    rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    /**
-     * Maxium number of rows to display when multiline option is set to true.
-     */
-    rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    value: PropTypes.string,
-  };
-
   static defaultProps = {
     rows: 1,
-  };
-
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
   };
 
   state = {
@@ -106,7 +84,7 @@ export default class Textarea extends Component {
 
   syncHeightWithShadow(newValue, event, props) {
     const shadow = this.shadow;
-    const singleLineShadow = this.singleLineShadow;
+    const singlelineShadow = this.singlelineShadow;
 
     const hasNewValue = newValue && newValue !== '';
     const displayText = this.props.hintText && !hasNewValue ? this.props.hintText : newValue;
@@ -115,7 +93,7 @@ export default class Textarea extends Component {
       shadow.value = displayText;
     }
 
-    const lineHeight = singleLineShadow.scrollHeight;
+    const lineHeight = singlelineShadow.scrollHeight;
     let newHeight = shadow.scrollHeight;
 
     // Guarding for jsdom, where scrollHeight isn't present.
@@ -150,8 +128,24 @@ export default class Textarea extends Component {
     }
   };
 
+  handleRefInput = (node) => {
+    this.input = node;
+    if (this.props.textareaRef) {
+      this.props.textareaRef(node);
+    }
+  };
+
+  handleRefSinglelineShadow = (node) => {
+    this.singlelineShadow = node;
+  };
+
+  handleRefShadow = (node) => {
+    this.shadow = node;
+  };
+
   render() {
     const {
+      classes,
       className,
       defaultValue,
       disabled, // eslint-disable-line no-unused-vars
@@ -160,12 +154,10 @@ export default class Textarea extends Component {
       onHeightChange, // eslint-disable-line no-unused-vars
       rows,
       rowsMax, // eslint-disable-line no-unused-vars
+      textareaRef, // eslint-disable-line no-unused-vars
       value,
       ...other
     } = this.props;
-
-    const { styleManager } = this.context;
-    const classes = styleManager.render(styleSheet);
 
     return (
       <div
@@ -174,7 +166,7 @@ export default class Textarea extends Component {
       >
         <EventListener target="window" onResize={this.handleResize} />
         <textarea
-          ref={(node) => { this.singleLineShadow = node; }}
+          ref={this.handleRefSinglelineShadow}
           className={classnames(classes.shadow, classes.textarea)}
           tabIndex="-1"
           rows="1"
@@ -183,7 +175,7 @@ export default class Textarea extends Component {
           value=""
         />
         <textarea
-          ref={(node) => { this.shadow = node; }}
+          ref={this.handleRefShadow}
           className={classnames(classes.shadow, classes.textarea)}
           tabIndex="-1"
           rows={rows}
@@ -193,7 +185,7 @@ export default class Textarea extends Component {
           value={value}
         />
         <textarea
-          ref={(node) => { this.input = node; }}
+          ref={this.handleRefInput}
           rows={rows}
           className={classnames(classes.textarea, className)}
           onChange={this.handleChange}
@@ -205,3 +197,31 @@ export default class Textarea extends Component {
     );
   }
 }
+
+Textarea.propTypes = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  className: PropTypes.string,
+  defaultValue: PropTypes.any,
+  disabled: PropTypes.bool,
+  hintText: PropTypes.string,
+  onChange: PropTypes.func,
+  onHeightChange: PropTypes.func,
+  /**
+   * Number of rows to display when multiline option is set to true.
+   */
+  rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * Maxium number of rows to display when multiline option is set to true.
+   */
+  rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * Use that property to pass a ref callback to the native textarea component.
+   */
+  textareaRef: PropTypes.func,
+  value: PropTypes.string,
+};
+
+export default withStyles(styleSheet)(Textarea);

@@ -11,7 +11,7 @@ describe('<IconButton />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
@@ -37,7 +37,7 @@ describe('<IconButton />', () => {
     );
     const label = wrapper.childAt(0);
     const icon = label.childAt(0);
-    assert.strictEqual(icon.is('Icon'), true, 'should be an Icon');
+    assert.strictEqual(icon.is(Icon), true, 'should be an Icon');
   });
 
   it('should render the child normally inside the label span', () => {
@@ -59,7 +59,7 @@ describe('<IconButton />', () => {
     );
     const label = wrapper.childAt(0);
     const renderedIconChild = label.childAt(0);
-    assert.strictEqual(renderedIconChild.is('Icon'), true, 'child should be icon');
+    assert.strictEqual(renderedIconChild.is(Icon), true, 'child should be icon');
     assert.strictEqual(renderedIconChild.hasClass(childClassName), true, 'child should be icon');
     assert.strictEqual(renderedIconChild.hasClass(buttonClassName), true, 'child should be icon');
     assert.strictEqual(renderedIconChild.hasClass(classes.icon), true, 'child should be icon');

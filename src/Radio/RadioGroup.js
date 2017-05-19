@@ -4,7 +4,7 @@ import React, { Component, Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 import FormGroup from '../Form/FormGroup';
 import { find } from '../utils/helpers';
 
@@ -17,44 +17,6 @@ export const styleSheet = createStyleSheet('MuiRadioGroup', {
 });
 
 class RadioGroup extends Component {
-  static propTypes = {
-    /**
-     * The content of the component.
-     */
-    children: PropTypes.node,
-    /**
-     * @ignore
-     */
-    className: PropTypes.string,
-    /**
-     * The name used to reference the value of the control.
-     */
-    name: PropTypes.string,
-    /**
-     * @ignore
-     */
-    onBlur: PropTypes.func,
-    /**
-     * Callback fired when a radio button is selected.
-     *
-     * @param {object} event `change` event
-     * @param {boolean} checked The `checked` value of the switch
-     */
-    onChange: PropTypes.func,
-    /**
-     * @ignore
-     */
-    onKeyDown: PropTypes.func,
-    /**
-     * Value of the selected radio button
-     */
-    selectedValue: PropTypes.string,
-  };
-
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
   radios = undefined;
 
   focus = () => {
@@ -87,14 +49,13 @@ class RadioGroup extends Component {
   render() {
     const {
       children,
+      classes,
       className: classNameProp,
       name,
       selectedValue,
       onChange, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
-
-    const classes = this.context.styleManager.render(styleSheet);
 
     this.radios = [];
 
@@ -110,7 +71,7 @@ class RadioGroup extends Component {
           return cloneElement(child, {
             key: index,
             name,
-            ref: (node) => { this.radios.push(node); },
+            innerRef: (node) => { this.radios.push(node); },
             checked: selected,
             onChange: this.handleRadioChange,
           });
@@ -120,4 +81,42 @@ class RadioGroup extends Component {
   }
 }
 
-export default RadioGroup;
+RadioGroup.propTypes = {
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The name used to reference the value of the control.
+   */
+  name: PropTypes.string,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
+   * Callback fired when a radio button is selected.
+   *
+   * @param {object} event `change` event
+   * @param {boolean} checked The `checked` value of the switch
+   */
+  onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
+  /**
+   * Value of the selected radio button
+   */
+  selectedValue: PropTypes.string,
+};
+
+export default withStyles(styleSheet)(RadioGroup);

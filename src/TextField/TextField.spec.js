@@ -3,6 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, createMount } from 'src/test-utils';
+import Input, { InputLabel } from '../Input';
 import TextField from './TextField';
 
 describe('<TextField />', () => {
@@ -27,7 +28,7 @@ describe('<TextField />', () => {
 
     describe('structure', () => {
       it('should be a FormControl', () => {
-        assert.strictEqual(wrapper.name(), 'FormControl');
+        assert.strictEqual(wrapper.name(), 'withStyles(FormControl)');
       });
 
       it('should pass className to the FormControl', () => {
@@ -37,7 +38,7 @@ describe('<TextField />', () => {
 
       it('should have an Input as the only child', () => {
         assert.strictEqual(wrapper.children().length, 1);
-        assert.strictEqual(wrapper.childAt(0).is('Input'), true);
+        assert.strictEqual(wrapper.childAt(0).is(Input), true);
       });
 
       it('should forward the multiline prop to Input', () => {
@@ -47,7 +48,7 @@ describe('<TextField />', () => {
 
       it('should pass inputClassName to the Input as className', () => {
         wrapper.setProps({ inputClassName: 'foo' });
-        assert.strictEqual(wrapper.find('Input').hasClass('foo'), true);
+        assert.strictEqual(wrapper.find(Input).hasClass('foo'), true);
       });
     });
 
@@ -61,16 +62,16 @@ describe('<TextField />', () => {
       });
 
       it('should have an InputLabel as the first child', () => {
-        assert.strictEqual(wrapper.childAt(0).is('InputLabel'), true);
+        assert.strictEqual(wrapper.childAt(0).is(InputLabel), true);
       });
 
       it('should pass labelClassName to the InputLabel as className', () => {
         wrapper.setProps({ labelClassName: 'foo' });
-        assert.strictEqual(wrapper.find('InputLabel').hasClass('foo'), true);
+        assert.strictEqual(wrapper.find(InputLabel).hasClass('foo'), true);
       });
 
       it('should have an Input as the second child', () => {
-        assert.strictEqual(wrapper.childAt(1).is('Input'), true);
+        assert.strictEqual(wrapper.childAt(1).is(Input), true);
       });
     });
 
@@ -81,7 +82,7 @@ describe('<TextField />', () => {
             inputClassName: 'fullWidth',
           },
         });
-        assert.strictEqual(wrapper.find('Input').props().inputClassName, 'fullWidth');
+        assert.strictEqual(wrapper.find(Input).props().inputClassName, 'fullWidth');
       });
     });
   });

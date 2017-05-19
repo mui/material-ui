@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Element, PureComponent } from 'react';
+import React, { Element, Component } from 'react';
 import Transition from '../internal/Transition';
 import { duration } from '../styles/transitions';
 import customPropTypes from '../utils/customPropTypes';
@@ -9,7 +9,7 @@ type DefaultProps = {
   in: boolean,
   enterTransitionDuration: number,
   leaveTransitionDuration: number,
-}
+};
 
 type Props = DefaultProps & {
   children?: Element<*>,
@@ -51,17 +51,13 @@ type Props = DefaultProps & {
   onExited?: Function, // eslint-disable-line react/sort-prop-types
 };
 
-export default class Fade extends PureComponent<DefaultProps, Props, void> {
+class Fade extends Component<DefaultProps, Props, void> {
   props: Props;
 
   static defaultProps: DefaultProps = {
     in: false,
     enterTransitionDuration: duration.enteringScreen,
     leaveTransitionDuration: duration.leavingScreen,
-  };
-
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
   };
 
   handleEnter = (element) => {
@@ -116,3 +112,9 @@ export default class Fade extends PureComponent<DefaultProps, Props, void> {
     );
   }
 }
+
+Fade.contextTypes = {
+  styleManager: customPropTypes.muiRequired,
+};
+
+export default Fade;

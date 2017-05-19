@@ -1,10 +1,11 @@
 # TabScrollButton
 
-
+@ignore - internal component.
 
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| classes | object |  | Useful to extend the style applied to components. |
 
 Any other properties supplied will be spread to the root element.
 ## Classes

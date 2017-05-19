@@ -2,6 +2,7 @@
 
 import React, { Component, Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
+import compose from 'recompose/compose';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import EventListener from 'react-event-listener';
@@ -9,7 +10,7 @@ import debounce from 'lodash/debounce';
 import isEqual from 'lodash/isEqual';
 import ScrollbarSize from 'react-scrollbar-size';
 import scroll from 'scroll';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 import withWidth, { isWidthUp } from '../utils/withWidth';
 import TabIndicator from './TabIndicator';
 import TabScrollButton from './TabScrollButton';
@@ -39,83 +40,6 @@ export const styleSheet = createStyleSheet('MuiTabs', {
 });
 
 class Tabs extends Component {
-  static propTypes = {
-    /**
-     * The CSS class name of the scroll button elements.
-     */
-    buttonClassName: PropTypes.string,
-    /**
-     * If `true`, the tabs will be centered.
-     * This property is intended for large views.
-     */
-    centered: PropTypes.bool,
-    /**
-     * The content of the component.
-     */
-    children: PropTypes.node,
-    /**
-     * @ignore
-     */
-    className: PropTypes.string,
-    /**
-     * If `true`, the tabs will grow to use all the available space.
-     * This property is intended for small views.
-     */
-    fullWidth: PropTypes.bool,
-    /**
-     * The index of the currently selected `Tab`.
-     */
-    index: PropTypes.number,
-    /**
-     * The CSS class name of the indicator element.
-     */
-    indicatorClassName: PropTypes.string,
-    /**
-     * Determines the color of the indicator.
-     */
-    indicatorColor: PropTypes.oneOfType([
-      PropTypes.oneOf([
-        'accent',
-      ]),
-      PropTypes.string,
-    ]),
-    /**
-     * Function called when the index change.
-     */
-    onChange: PropTypes.func.isRequired,
-    /**
-     * True invokes scrolling properties and allow for horizontally scrolling
-     * (or swiping) the tab bar.
-     */
-    scrollable: PropTypes.bool,
-    /**
-     * Determine behavior of scroll buttons when tabs are set to scroll
-     * `auto` will only present them on medium and larger viewports
-     * `on` will always present them
-     * `off` will never present them
-     */
-    scrollButtons: PropTypes.oneOf([
-      'auto',
-      'on',
-      'off',
-    ]),
-    /**
-     * Determines the color of the `Tab`.
-     */
-    textColor: PropTypes.oneOfType([
-      PropTypes.oneOf([
-        'accent',
-        'inherit',
-      ]),
-      PropTypes.string,
-    ]),
-    /**
-     * @ignore
-     * width prop provided by withWidth decorator
-     */
-    width: PropTypes.string,
-  };
-
   static defaultProps = {
     centered: false,
     fullWidth: false,
@@ -123,10 +47,6 @@ class Tabs extends Component {
     scrollable: false,
     scrollButtons: 'auto',
     textColor: 'inherit',
-  };
-
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
   };
 
   state = {
@@ -193,11 +113,11 @@ class Tabs extends Component {
   getClassGroups = () => {
     const {
       centered,
+      classes,
       className: classNameProp,
       scrollable,
     } = this.props;
     const classGroups = {};
-    const classes = this.context.styleManager.render(styleSheet);
 
     classGroups.flexContainer = classNames(
       classes.flexContainer,
@@ -332,6 +252,7 @@ class Tabs extends Component {
     const {
       buttonClassName, // eslint-disable-line no-unused-vars
       centered, // eslint-disable-line no-unused-vars
+      classes, // eslint-disable-line no-unused-vars
       children: childrenProp,
       className: classNameProp, // eslint-disable-line no-unused-vars
       fullWidth,
@@ -389,4 +310,88 @@ class Tabs extends Component {
   }
 }
 
-export default withWidth()(Tabs);
+Tabs.propTypes = {
+  /**
+   * The CSS class name of the scroll button elements.
+   */
+  buttonClassName: PropTypes.string,
+  /**
+   * If `true`, the tabs will be centered.
+   * This property is intended for large views.
+   */
+  centered: PropTypes.bool,
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * If `true`, the tabs will grow to use all the available space.
+   * This property is intended for small views.
+   */
+  fullWidth: PropTypes.bool,
+  /**
+   * The index of the currently selected `Tab`.
+   */
+  index: PropTypes.number,
+  /**
+   * The CSS class name of the indicator element.
+   */
+  indicatorClassName: PropTypes.string,
+  /**
+   * Determines the color of the indicator.
+   */
+  indicatorColor: PropTypes.oneOfType([
+    PropTypes.oneOf([
+      'accent',
+    ]),
+    PropTypes.string,
+  ]),
+  /**
+   * Function called when the index change.
+   */
+  onChange: PropTypes.func.isRequired,
+  /**
+   * True invokes scrolling properties and allow for horizontally scrolling
+   * (or swiping) the tab bar.
+   */
+  scrollable: PropTypes.bool,
+  /**
+   * Determine behavior of scroll buttons when tabs are set to scroll
+   * `auto` will only present them on medium and larger viewports
+   * `on` will always present them
+   * `off` will never present them
+   */
+  scrollButtons: PropTypes.oneOf([
+    'auto',
+    'on',
+    'off',
+  ]),
+  /**
+   * Determines the color of the `Tab`.
+   */
+  textColor: PropTypes.oneOfType([
+    PropTypes.oneOf([
+      'accent',
+      'inherit',
+    ]),
+    PropTypes.string,
+  ]),
+  /**
+   * @ignore
+   * width prop provided by withWidth decorator
+   */
+  width: PropTypes.string,
+};
+
+export default compose(
+  withStyles(styleSheet),
+  withWidth(),
+)(Tabs);

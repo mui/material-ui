@@ -3,9 +3,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
+import Icon from 'material-ui/Icon';
 import IconButton from 'material-ui/IconButton';
 import DeleteIcon from 'material-ui-icons/Delete';
-import AlarmIcon from 'material-ui-icons/Alarm';
 import AddShoppingCartIcon from 'material-ui-icons/AddShoppingCart';
 
 const styleSheet = createStyleSheet('IconButtons', (theme) => ({
@@ -25,7 +25,7 @@ function IconButtons(props) {
         <DeleteIcon />
       </IconButton>
       <IconButton accent className={classes.button}>
-        <AlarmIcon />
+        <Icon>alarm</Icon>
       </IconButton>
       <IconButton contrast className={classes.button}>
         <AddShoppingCartIcon />

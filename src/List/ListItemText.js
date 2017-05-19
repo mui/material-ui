@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 
 export const styleSheet = createStyleSheet('MuiListItemText', (theme) => ({
@@ -28,8 +28,9 @@ export const styleSheet = createStyleSheet('MuiListItemText', (theme) => ({
   },
 }));
 
-export default function ListItemText(props, context) {
+function ListItemText(props, context) {
   const {
+    classes,
     className: classNameProp,
     primary,
     secondary,
@@ -37,7 +38,6 @@ export default function ListItemText(props, context) {
     ...other
   } = props;
   const { dense } = context;
-  const classes = context.styleManager.render(styleSheet);
   const className = classNames(classes.root, {
     [classes.dense]: dense,
     [classes.inset]: inset,
@@ -65,6 +65,10 @@ export default function ListItemText(props, context) {
 
 ListItemText.propTypes = {
   /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
    * @ignore
    */
   className: PropTypes.string,
@@ -85,5 +89,6 @@ ListItemText.defaultProps = {
 
 ListItemText.contextTypes = {
   dense: PropTypes.bool,
-  styleManager: customPropTypes.muiRequired,
 };
+
+export default withStyles(styleSheet)(ListItemText);

@@ -4,7 +4,8 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, createMount } from 'src/test-utils';
-import { createSwitch, styleSheet } from './SwitchBase';
+import createSwitch, { styleSheet } from './SwitchBase';
+import Icon from '../Icon';
 
 function assertIsChecked(classes, wrapper) {
   const iconButton = wrapper.find('span').at(0);
@@ -62,7 +63,7 @@ describe('<SwitchBase />', () => {
     const wrapper = shallow(
       <SwitchBase />,
     );
-    assert.strictEqual(wrapper.name(), 'IconButton');
+    assert.strictEqual(wrapper.name(), 'withStyles(IconButton)');
   });
 
   it('should render an icon and input inside the button by default', () => {
@@ -140,10 +141,12 @@ describe('<SwitchBase />', () => {
     const disabledClassName = 'foo';
     const wrapperA = shallow(<SwitchBase disabled disabledClassName={disabledClassName} />);
 
+
     assert.strictEqual(wrapperA.hasClass(disabledClassName), true,
       'should have the custom disabled class');
 
     wrapperA.setProps({ disabled: false });
+    wrapperA.setProps({ checked: true });
 
     assert.strictEqual(
       wrapperA.hasClass(disabledClassName),
@@ -216,6 +219,13 @@ describe('<SwitchBase />', () => {
       wrapper.find('input').node.click();
       wrapper.find('input').node.click();
       assertIsNotChecked(classes, wrapper);
+    });
+  });
+
+  describe('prop: icon', () => {
+    it('should accept a string and use Icon', () => {
+      const wrapper = shallow(<SwitchBase icon="heart" />);
+      assert.strictEqual(wrapper.childAt(0).is(Icon), true);
     });
   });
 

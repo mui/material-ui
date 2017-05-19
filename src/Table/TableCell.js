@@ -4,52 +4,42 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiTableCell', (theme) => {
-  return {
-    root: {
-      borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
-      whiteSpace: 'nowrap',
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
-      textAlign: 'left',
+export const styleSheet = createStyleSheet('MuiTableCell', (theme) => ({
+  root: {
+    borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    textAlign: 'left',
+  },
+  numeric: {
+    textAlign: 'right',
+    flexDirection: 'row-reverse', // can be dynamically inherited at runtime by contents
+  },
+  head: {
+    whiteSpace: 'pre',
+  },
+  padding: {
+    padding: `0 ${theme.spacing.unit * 7}px 0 ${theme.spacing.unit * 3}px`,
+    '&:last-child': {
+      paddingRight: theme.spacing.unit * 3,
     },
-    numeric: {
-      textAlign: 'right',
-      flexDirection: 'row-reverse', // can be dynamically inherited at runtime by contents
-    },
-    head: {
-      whiteSpace: 'pre',
-    },
-    padding: {
-      padding: '0 56px 0 24px',
-      '&:last-child': {
-        paddingRight: 24,
-      },
-    },
-    compact: {
-      paddingRight: 24,
-    },
-    checkbox: {
-      paddingLeft: 12,
-      paddingRight: 12,
-    },
-    footer: {},
-  };
-});
+  },
+  compact: {
+    paddingRight: theme.spacing.unit * 3,
+  },
+  checkbox: {
+    paddingLeft: 12,
+    paddingRight: 12,
+  },
+  footer: {},
+}));
 
-/**
- * A material table cell.
- *
- * When placed in a `TableHead`, this will automatically render a `th` element.
- *
- * ```jsx
- * <TableCell>...</TableCell>
- * ```
- */
-export default function TableCell(props, context) {
+function TableCell(props, context) {
   const {
+    classes,
     className: classNameProp,
     children,
     compact,
@@ -58,8 +48,7 @@ export default function TableCell(props, context) {
     disablePadding,
     ...other
   } = props;
-  const { table, styleManager } = context;
-  const classes = styleManager.render(styleSheet);
+  const { table } = context;
 
   const Component = table && table.head ? 'th' : 'td';
 
@@ -89,6 +78,10 @@ TableCell.propTypes = {
    */
   children: PropTypes.node,
   /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
    * @ignore
    */
   className: PropTypes.string,
@@ -115,5 +108,6 @@ TableCell.defaultProps = {
 
 TableCell.contextTypes = {
   table: PropTypes.object,
-  styleManager: customPropTypes.muiRequired,
 };
+
+export default withStyles(styleSheet)(TableCell);

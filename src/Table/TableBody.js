@@ -4,45 +4,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiTableBody', (theme) => {
-  return {
-    root: {
-      fontSize: 13,
-      color: theme.palette.text.primary,
-    },
-  };
-});
+export const styleSheet = createStyleSheet('MuiTableBody', (theme) => ({
+  root: {
+    fontSize: 13,
+    color: theme.palette.text.primary,
+  },
+}));
 
-/**
- * A material table body.
- *
- * ```jsx
- * <TableBody>
- *   <TableRow>...</TableRow>
- * </TableBody>
- * ```
- */
-export default class TableBody extends Component {
-  static propTypes = {
-    /**
-     * The content of the component, normally `TableRow`.
-     */
-    children: PropTypes.node,
-    /**
-     * @ignore
-     */
-    className: PropTypes.string,
-  };
-
-  static contextTypes = {
-    table: PropTypes.object,
-    styleManager: customPropTypes.muiRequired,
-  };
-
-  static childContextTypes = { table: PropTypes.object };
-
+class TableBody extends Component {
   getChildContext() { // eslint-disable-line class-methods-use-this
     return {
       table: {
@@ -53,11 +24,11 @@ export default class TableBody extends Component {
 
   render() {
     const {
+      classes,
       className: classNameProp,
       children,
       ...other
     } = this.props;
-    const classes = this.context.styleManager.render(styleSheet);
     const className = classNames(classes.root, classNameProp);
 
     return (
@@ -67,3 +38,28 @@ export default class TableBody extends Component {
     );
   }
 }
+
+TableBody.propTypes = {
+  /**
+   * The content of the component, normally `TableRow`.
+   */
+  children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+};
+
+TableBody.contextTypes = {
+  table: PropTypes.object,
+};
+
+TableBody.childContextTypes = {
+  table: PropTypes.object,
+};
+
+export default withStyles(styleSheet)(TableBody);

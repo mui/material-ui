@@ -1,8 +1,6 @@
 # TextField
 
-```
-<TextField value="Hello World">
-```
+
 
 ## Props
 | Name | Type | Default | Description |
@@ -14,6 +12,7 @@
 | inputClassName | string |  | The CSS class name of the `Input` element. |
 | inputProps | object |  | Properties applied to the `input` element. |
 | InputProps | object |  | Properties applied to the `Input` element. |
+| inputRef | function |  | Use that property to pass a ref callback to the native input component. |
 | label | node |  | The label content. |
 | labelClassName | string |  | The CSS class name of the label element. |
 | multiline | bool |  | If `true`, a textarea element will be rendered instead of an input. |

@@ -9,7 +9,7 @@ describe('<Radio />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
@@ -30,8 +30,8 @@ describe('<Radio />', () => {
 
   describe('named LabelRadio export', () => {
     it('should be Radio wrapped with SwitchLabel', () => {
-      assert.strictEqual(LabelRadio.name, 'SwitchLabel');
-      assert.strictEqual(LabelRadio.displayName, 'withSwitchLabel(Radio)');
+      assert.strictEqual(LabelRadio.name, 'Style');
+      assert.strictEqual(LabelRadio.displayName, 'withStyles(withSwitchLabel(Radio))');
     });
   });
 });

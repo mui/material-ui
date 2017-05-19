@@ -10,7 +10,7 @@ describe('<ListItemText />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
@@ -45,7 +45,7 @@ describe('<ListItemText />', () => {
         <ListItemText primary="This is the primary text" />,
       );
       assert.strictEqual(wrapper.children().length, 1, 'should have 1 child');
-      assert.strictEqual(wrapper.childAt(0).name(), 'Typography');
+      assert.strictEqual(wrapper.childAt(0).name(), 'withStyles(Typography)');
       assert.strictEqual(wrapper.childAt(0).props().type, 'subheading');
       assert.strictEqual(
         wrapper.childAt(0).children().equals('This is the primary text'),
@@ -71,7 +71,7 @@ describe('<ListItemText />', () => {
         />,
       );
       assert.strictEqual(wrapper.children().length, 1, 'should have 1 child');
-      assert.strictEqual(wrapper.childAt(0).name(), 'Typography');
+      assert.strictEqual(wrapper.childAt(0).name(), 'withStyles(Typography)');
       assert.strictEqual(wrapper.childAt(0).props().type, 'body1');
       assert.strictEqual(wrapper.childAt(0).props().secondary, true,
         'should have the secondary property');
@@ -100,7 +100,7 @@ describe('<ListItemText />', () => {
     );
 
     assert.strictEqual(wrapper.children().length, 2, 'should have 2 children');
-    assert.strictEqual(wrapper.childAt(0).name(), 'Typography');
+    assert.strictEqual(wrapper.childAt(0).name(), 'withStyles(Typography)');
     assert.strictEqual(wrapper.childAt(0).props().type, 'subheading');
     assert.strictEqual(
       wrapper.childAt(0).children().equals('This is the primary text'),
@@ -108,7 +108,7 @@ describe('<ListItemText />', () => {
       'should have the primary text',
     );
 
-    assert.strictEqual(wrapper.childAt(1).name(), 'Typography');
+    assert.strictEqual(wrapper.childAt(1).name(), 'withStyles(Typography)');
     assert.strictEqual(wrapper.childAt(1).props().type, 'body1');
     assert.strictEqual(wrapper.childAt(1).props().secondary, true);
     assert.strictEqual(

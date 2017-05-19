@@ -6,12 +6,12 @@ import { spy } from 'sinon';
 import { createShallow } from 'src/test-utils';
 import withSwitchLabel, { styleSheet } from './withSwitchLabel';
 
-describe('<SwitchLabel />', () => {
+describe('withSwitchLabel', () => {
   let shallow;
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
@@ -22,12 +22,12 @@ describe('<SwitchLabel />', () => {
 
     it('should return a SwitchLabel component with a wrapped displayName', () => {
       const SwitchLabel = withSwitchLabel({ displayName: 'Foo' });
-      assert.strictEqual(SwitchLabel.displayName, 'withSwitchLabel(Foo)');
+      assert.strictEqual(SwitchLabel.displayName, 'withStyles(withSwitchLabel(Foo))');
 
       /* eslint-disable prefer-arrow-callback */
       const SwitchLabelFn = withSwitchLabel(function Foo() {});
       /* eslint-enable prefer-arrow-callback */
-      assert.strictEqual(SwitchLabelFn.displayName, 'withSwitchLabel(Foo)');
+      assert.strictEqual(SwitchLabelFn.displayName, 'withStyles(withSwitchLabel(Foo))');
     });
   });
 
@@ -44,7 +44,7 @@ describe('<SwitchLabel />', () => {
     });
 
     it('should have the correct displayName', () => {
-      assert.strictEqual(SwitchLabelFoo.displayName, 'withSwitchLabel(Foo)');
+      assert.strictEqual(SwitchLabelFoo.displayName, 'withStyles(withSwitchLabel(Foo))');
     });
 
     it('should render a label', () => {

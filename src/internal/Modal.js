@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component, Element } from 'react';
+import React, { Element, Component } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
@@ -13,7 +13,7 @@ import ownerDocument from 'dom-helpers/ownerDocument';
 import addEventListener from '../utils/addEventListener';
 import { createChainedFunction } from '../utils/helpers';
 import Fade from '../transitions/Fade';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 import { createModalManager } from './modalManager';
 import Backdrop from './Backdrop';
 import Portal from './Portal';
@@ -24,19 +24,17 @@ import Portal from './Portal';
  */
 const modalManager = createModalManager();
 
-export const styleSheet = createStyleSheet('MuiModal', (theme) => {
-  return {
-    modal: {
-      display: 'flex',
-      width: '100%',
-      height: '100%',
-      position: 'fixed',
-      zIndex: theme.zIndex.dialog,
-      top: 0,
-      left: 0,
-    },
-  };
-});
+export const styleSheet = createStyleSheet('MuiModal', (theme) => ({
+  modal: {
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+    position: 'fixed',
+    zIndex: theme.zIndex.dialog,
+    top: 0,
+    left: 0,
+  },
+}));
 
 type DefaultProps = {
   backdropComponent: Function,
@@ -70,6 +68,10 @@ type Props = DefaultProps & {
    * Content of the modal.
    */
   children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: Object,
   /**
    * @ignore
    */
@@ -136,10 +138,7 @@ type State = {
   exited: boolean,
 };
 
-/**
- * TODO: Still a WIP
- */
-export default class Modal extends Component<DefaultProps, Props, State> {
+class Modal extends Component<DefaultProps, Props, State> {
   props: Props;
 
   static defaultProps: DefaultProps = {
@@ -151,10 +150,6 @@ export default class Modal extends Component<DefaultProps, Props, State> {
     ignoreEscapeKeyUp: false,
     modalManager,
     show: false,
-  };
-
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
   };
 
   state: State = {
@@ -203,8 +198,8 @@ export default class Modal extends Component<DefaultProps, Props, State> {
   lastFocus = undefined;
   modal = null;
   mountNode = null;
-  onDocumentKeyUpListener = undefined;
-  onFocusListener = undefined;
+  onDocumentKeyUpListener = null;
+  onFocusListener = null;
 
   checkForFocus() {
     if (canUseDom) {
@@ -355,6 +350,7 @@ export default class Modal extends Component<DefaultProps, Props, State> {
       ignoreBackdropClick, // eslint-disable-line no-unused-vars
       ignoreEscapeKeyUp, // eslint-disable-line no-unused-vars
       children,
+      classes,
       className,
       modalManager: modalManagerProp, // eslint-disable-line no-unused-vars
       onBackdropClick, // eslint-disable-line no-unused-vars
@@ -370,7 +366,6 @@ export default class Modal extends Component<DefaultProps, Props, State> {
       ...other
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet);
     const mount = show || !this.state.exited;
 
     if (!mount) {
@@ -428,3 +423,5 @@ export default class Modal extends Component<DefaultProps, Props, State> {
     );
   }
 }
+
+export default withStyles(styleSheet)(Modal);

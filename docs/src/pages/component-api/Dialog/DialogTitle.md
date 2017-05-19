@@ -6,6 +6,7 @@
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  | The content of the component. |
+| classes | object |  | Useful to extend the style applied to components. |
 | disableTypography | bool | false | If `true`, the children won't be wrapped by a typography component. For instance, that can be usefull to can render an h4 instead of a |
 
 Any other properties supplied will be spread to the root element.

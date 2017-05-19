@@ -1,4 +1,5 @@
 // @flow
+
 import Switch from './Switch';
 import withSwitchLabel from '../internal/withSwitchLabel';
 

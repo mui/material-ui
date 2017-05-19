@@ -29,7 +29,7 @@ export default class Inputs extends Component {
     this.focusInput.focus();
   }
 
-  focusInput = undefined;
+  focusInput = null;
 
   render() {
     const classes = this.context.styleManager.render(styleSheet);
@@ -57,7 +57,7 @@ export default class Inputs extends Component {
           />
           <Input
             value="Focused"
-            ref={(c) => { this.focusInput = c; }}
+            inputRef={(node) => { this.focusInput = node; }}
             className={classes.input}
           />
         </div>

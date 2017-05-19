@@ -4,6 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, createMount } from 'src/test-utils';
+import Textarea from './Textarea';
 import Input, { styleSheet } from './Input';
 
 describe('<Input />', () => {
@@ -11,7 +12,7 @@ describe('<Input />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
@@ -35,7 +36,7 @@ describe('<Input />', () => {
 
   it('should render an <Textarea /> when passed the multiline prop', () => {
     const wrapper = shallow(<Input multiline />);
-    assert.strictEqual(wrapper.find('Textarea').length, 1);
+    assert.strictEqual(wrapper.find(Textarea).length, 1);
   });
 
   it('should render an <textarea /> when passed the multiline and rows props', () => {
@@ -75,15 +76,6 @@ describe('<Input />', () => {
       wrapper.find('input').simulate(event);
       assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
     });
-  });
-
-  it('should call focus function on input property when focus is invoked', () => {
-    const wrapper = shallow(<Input />);
-    const instance = wrapper.instance();
-    instance.input = spy();
-    instance.input.focus = spy();
-    instance.focus();
-    assert.strictEqual(instance.input.focus.callCount, 1);
   });
 
   describe('controlled', () => {
@@ -264,7 +256,7 @@ describe('<Input />', () => {
 
     before(() => {
       mount = createMount();
-      wrapper = mount(<Input />);
+      wrapper = mount(<Input.Naked classes={classes} />);
       instance = wrapper.instance();
     });
 
@@ -305,6 +297,30 @@ describe('<Input />', () => {
       instance.isControlled = () => true;
       instance.componentDidMount();
       assert.strictEqual(instance.checkDirty.callCount, 1);
+    });
+  });
+
+  describe('mount', () => {
+    let mount;
+
+    before(() => {
+      mount = createMount();
+    });
+
+    after(() => {
+      mount.cleanUp();
+    });
+
+    it('should be able to access the native input', () => {
+      const handleRef = spy();
+      mount(<Input inputRef={handleRef} />);
+      assert.strictEqual(handleRef.callCount, 1);
+    });
+
+    it('should be able to access the native textarea', () => {
+      const handleRef = spy();
+      mount(<Input multiline inputRef={handleRef} />);
+      assert.strictEqual(handleRef.callCount, 1);
     });
   });
 });

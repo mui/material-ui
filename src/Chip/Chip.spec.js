@@ -5,15 +5,15 @@ import keycode from 'keycode';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow } from 'src/test-utils';
-import Chip, { styleSheet } from './Chip.js';
-import Avatar from '../Avatar/Avatar.js';
+import Chip, { styleSheet } from './Chip';
+import Avatar from '../Avatar';
 
 describe('<Chip />', () => {
   let shallow;
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
@@ -114,7 +114,7 @@ describe('<Chip />', () => {
 
     it('should render a button containing an Avatar, span and svg', () => {
       assert.strictEqual(wrapper.name(), 'button');
-      assert.strictEqual(wrapper.childAt(0).is('Avatar'), true, 'should have an Avatar');
+      assert.strictEqual(wrapper.childAt(0).is(Avatar), true, 'should have an Avatar');
       assert.strictEqual(wrapper.childAt(1).is('span'), true, 'should have a span');
       assert.strictEqual(wrapper.childAt(2).is('pure(Cancel)'), true,
         'should be an svg icon');

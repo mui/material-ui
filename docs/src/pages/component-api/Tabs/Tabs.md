@@ -8,6 +8,7 @@
 | buttonClassName | string |  | The CSS class name of the scroll button elements. |
 | centered | bool | false | If `true`, the tabs will be centered. This property is intended for large views. |
 | children | node |  | The content of the component. |
+| classes | object |  | Useful to extend the style applied to components. |
 | fullWidth | bool | false | If `true`, the tabs will grow to use all the available space. This property is intended for small views. |
 | index | number |  | The index of the currently selected `Tab`. |
 | indicatorClassName | string |  | The CSS class name of the indicator element. |

@@ -5,6 +5,7 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| classes | object |  | Useful to extend the style applied to components. |
 | size | number | 40 | The size of the circle. |
 
 Any other properties supplied will be spread to the root element.

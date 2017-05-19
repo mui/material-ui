@@ -8,6 +8,7 @@
 | checked | union:&nbsp;bool<br>&nbsp;string<br> |  | If `true`, the component appears selected. |
 | checkedClassName | string |  | The CSS class name of the root element when checked. |
 | checkedIcon | node |  | The icon to display when the component is checked. |
+| classes | object |  | Useful to extend the style applied to components. |
 | disabled | bool |  | If `true`, the switch will be disabled. |
 | disabledClassName | string |  | The CSS class name of the root element when disabled. |
 | icon | node |  | The icon to display when the component is unchecked. |

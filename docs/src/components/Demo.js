@@ -11,59 +11,53 @@ import MarkdownElement from 'docs/src/components/MarkdownElement';
 const requireDemos = require.context('docs/src', true, /\.js$/);
 const requireDemoSource = require.context('!raw-loader!docs/src', true, /\.js$/);
 
-const styleSheet = createStyleSheet('Demo', (theme) => {
-  return {
-    root: {
-      fontFamily: theme.typography.fontFamily,
-      position: 'relative',
-      backgroundColor: theme.palette.background.contentFrame,
-      marginBottom: 40,
-      marginLeft: -16,
-      marginRight: -16,
+const styleSheet = createStyleSheet('Demo', (theme) => ({
+  root: {
+    fontFamily: theme.typography.fontFamily,
+    position: 'relative',
+    backgroundColor: theme.palette.background.contentFrame,
+    marginBottom: 40,
+    marginLeft: -16,
+    marginRight: -16,
+  },
+  demo: theme.mixins.gutters({
+    display: 'flex',
+    justifyContent: 'center',
+    paddingTop: 20,
+    paddingBottom: 20,
+  }),
+  codeButton: {
+    display: 'none',
+    zIndex: 10,
+    position: 'absolute',
+    top: 2,
+    right: 7,
+  },
+  code: {
+    display: 'none',
+    padding: 0,
+    margin: 0,
+    '& pre': {
+      overflow: 'auto',
+      margin: '0px !important',
+      borderRadius: '0px !important',
     },
-    demo: theme.mixins.gutters({
-      display: 'flex',
-      justifyContent: 'center',
-      paddingTop: 20,
-      paddingBottom: 20,
-    }),
+  },
+  [theme.breakpoints.up(600)]: {
     codeButton: {
-      display: 'none',
-      zIndex: 10,
-      position: 'absolute',
-      top: 2,
-      right: 7,
+      display: 'block',
     },
     code: {
-      display: 'none',
-      padding: 0,
-      margin: 0,
-      '& pre': {
-        overflow: 'auto',
-        margin: '0px !important',
-        borderRadius: '0px !important',
-      },
+      display: 'block',
     },
-    [theme.breakpoints.up(600)]: {
-      codeButton: {
-        display: 'block',
-      },
-      code: {
-        display: 'block',
-      },
-      root: {
-        marginLeft: 0,
-        marginRight: 0,
-      },
+    root: {
+      marginLeft: 0,
+      marginRight: 0,
     },
-  };
-});
+  },
+}));
 
 class Demo extends Component {
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
-  };
-
   state = {
     codeOpen: false,
   };

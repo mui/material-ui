@@ -5,6 +5,7 @@ import keycode from 'keycode';
 import { assert } from 'chai';
 import { ReactWrapper } from 'enzyme';
 import { createMount } from 'src/test-utils';
+import Popover from 'src/internal/Popover';
 import SimpleMenu from './fixtures/menus/SimpleMenu';
 
 describe('<Menu> integration', () => {
@@ -27,7 +28,7 @@ describe('<Menu> integration', () => {
     });
 
     it('should not be open', () => {
-      const popover = wrapper.find('Popover');
+      const popover = wrapper.find(Popover);
       assert.strictEqual(popover.prop('open'), false, 'should have passed open=false to Popover');
       const menuEl = document.getElementById('simple-menu');
       assert.strictEqual(menuEl, null, 'should not render the menu to the DOM');
@@ -123,8 +124,8 @@ describe('<Menu> integration', () => {
     it('should select the 2nd item and close the menu', () => {
       const item = list.childAt(1);
       item.simulate('click');
-      assert.strictEqual(wrapper.state('selectedIndex'), 1, 'should be index 1');
-      assert.strictEqual(wrapper.state('open'), false, 'should have closed');
+      assert.strictEqual(wrapper.state().selectedIndex, 1, 'should be index 1');
+      assert.strictEqual(wrapper.state().open, false, 'should have closed');
     });
   });
 
@@ -138,7 +139,7 @@ describe('<Menu> integration', () => {
     });
 
     it('should not be open', () => {
-      const popover = wrapper.find('Popover');
+      const popover = wrapper.find(Popover);
       assert.strictEqual(popover.prop('open'), false, 'should have passed open=false to Popover');
       const menuEl = document.getElementById('simple-menu');
       assert.strictEqual(menuEl, null, 'should not render the menu to the DOM');
@@ -169,8 +170,8 @@ describe('<Menu> integration', () => {
     it('should select the 2nd item and close the menu', () => {
       const item = list.childAt(1);
       item.simulate('click');
-      assert.strictEqual(wrapper.state('selectedIndex'), 1, 'should be index 1');
-      assert.strictEqual(wrapper.state('open'), false, 'should have closed');
+      assert.strictEqual(wrapper.state().selectedIndex, 1, 'should be index 1');
+      assert.strictEqual(wrapper.state().open, false, 'should have closed');
     });
 
     it('should open', (done) => {
@@ -217,11 +218,11 @@ describe('<Menu> integration', () => {
           done();
         },
       });
-      assert.strictEqual(wrapper.state('open'), true, 'should start open');
+      assert.strictEqual(wrapper.state().open, true, 'should start open');
       list.simulate('keyDown', {
         which: keycode('tab'),
       });
-      assert.strictEqual(wrapper.state('open'), false, 'should be closed');
+      assert.strictEqual(wrapper.state().open, false, 'should be closed');
     });
 
     it('should close the menu using the backdrop', (done) => {
@@ -231,9 +232,9 @@ describe('<Menu> integration', () => {
           done();
         },
       });
-      assert.strictEqual(wrapper.state('open'), true, 'should start open');
+      assert.strictEqual(wrapper.state().open, true, 'should start open');
       backdrop.simulate('click');
-      assert.strictEqual(wrapper.state('open'), false, 'should be closed');
+      assert.strictEqual(wrapper.state().open, false, 'should be closed');
     });
   });
 });

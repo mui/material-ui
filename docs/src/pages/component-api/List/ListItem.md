@@ -7,6 +7,7 @@
 |:-----|:-----|:--------|:------------|
 | button | bool | false | If `true`, the ListItem will be a button. |
 | children | node |  | The content of the component. |
+| classes | object |  | Useful to extend the style applied to components. |
 | component | union:&nbsp;string<br>&nbsp;func<br> | 'div' | The component used for the root node. Either a string to use a DOM element or a component. |
 | dense | bool | false | If `true`, compact vertical padding designed for keyboard and mouse input will be used. |
 | disableGutters | bool | false | If `true`, the left and right padding is removed. |
