@@ -1,7 +1,6 @@
 // @flow weak
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, Element } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
@@ -39,94 +38,111 @@ export const styleSheet = createStyleSheet('MuiModal', (theme) => {
   };
 });
 
+type DefaultProps = {
+  backdropComponent: Function,
+  backdropTransitionDuration: number,
+  backdropInvisible: boolean,
+  disableBackdrop: boolean,
+  ignoreBackdropClick: boolean,
+  ignoreEscapeKeyUp: boolean,
+  modalManager: Object,
+  show: boolean,
+};
+
+type Props = DefaultProps & {
+  /**
+   * The CSS class name of the backdrop element.
+   */
+  backdropClassName?: string,
+  /**
+   * Pass a component class to use as the backdrop.
+   */
+  backdropComponent?: Function,
+  /**
+   * If `true`, the backdrop is invisible.
+   */
+  backdropInvisible?: boolean,
+  /**
+   * Duration in ms for the backgrop transition.
+   */
+  backdropTransitionDuration?: number,
+  /**
+   * Content of the modal.
+   */
+  children?: Element<*>,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * If `true`, the backdrop is disabled.
+   */
+  disableBackdrop?: boolean,
+  /**
+   * If `true`, clicking the backdrop will not fire the `onRequestClose` callback.
+   */
+  ignoreBackdropClick?: boolean,
+  /**
+   * If `true`, hitting escape will not fire the `onRequestClose` callback.
+   */
+  ignoreEscapeKeyUp?: boolean,
+  /**
+   * @ignore
+   */
+  modalManager?: Object,
+  /**
+   * Callback fires when the backdrop is clicked on.
+   */
+  onBackdropClick?: Function,
+  /**
+   * Callback fired before the modal is entering.
+   */
+  onEnter?: Function,
+  /**
+   * Callback fired when the modal is entering.
+   */
+  onEntering?: Function,
+  /**
+   * Callback fired when the modal has entered.
+   */
+  onEntered?: Function, // eslint-disable-line react/sort-prop-types
+  /**
+   * Callback fires when the escape key is pressed and the modal is in focus.
+   */
+  onEscapeKeyUp?: Function, // eslint-disable-line react/sort-prop-types
+  /**
+   * Callback fired before the modal is exiting.
+   */
+  onExit?: Function,
+  /**
+   * Callback fired when the modal is exiting.
+   */
+  onExiting?: Function,
+  /**
+   * Callback fired when the modal has exited.
+   */
+  onExited?: Function, // eslint-disable-line react/sort-prop-types
+  /**
+   * Callback fired when the modal requests to be closed.
+   */
+  onRequestClose?: Function,
+  /**
+   * If `true`, the Modal is visible.
+   */
+  show?: boolean,
+};
+
+type State = {
+  exited: boolean,
+};
+
 /**
  * TODO: Still a WIP
  */
-export default class Modal extends Component {
-  static propTypes = {
-    /**
-     * The CSS class name of the backdrop element.
-     */
-    backdropClassName: PropTypes.string,
-    /**
-     * Pass a component class to use as the backdrop.
-     */
-    backdropComponent: PropTypes.func,
-    /**
-     * If `true`, the backdrop is invisible.
-     */
-    backdropInvisible: PropTypes.bool,
-    /**
-     * Duration in ms for the backgrop transition.
-     */
-    backdropTransitionDuration: PropTypes.number,
-    /**
-     * Content of the modal.
-     */
-    children: PropTypes.element,
-    /**
-     * @ignore
-     */
-    className: PropTypes.string,
-    /**
-     * If `true`, the backdrop is disabled.
-     */
-    disableBackdrop: PropTypes.bool,
-    /**
-     * If `true`, clicking the backdrop will not fire the `onRequestClose` callback.
-     */
-    ignoreBackdropClick: PropTypes.bool,
-    /**
-     * If `true`, hitting escape will not fire the `onRequestClose` callback.
-     */
-    ignoreEscapeKeyUp: PropTypes.bool,
-    /**
-     * @ignore
-     */
-    modalManager: PropTypes.object,
-    /**
-     * Callback fires when the backdrop is clicked on.
-     */
-    onBackdropClick: PropTypes.func,
-    /**
-     * Callback fired before the modal is entering.
-     */
-    onEnter: PropTypes.func,
-    /**
-     * Callback fired when the modal is entering.
-     */
-    onEntering: PropTypes.func,
-    /**
-     * Callback fired when the modal has entered.
-     */
-    onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
-    /**
-     * Callback fires when the escape key is pressed and the modal is in focus.
-     */
-    onEscapeKeyUp: PropTypes.func, // eslint-disable-line react/sort-prop-types
-    /**
-     * Callback fired before the modal is exiting.
-     */
-    onExit: PropTypes.func,
-    /**
-     * Callback fired when the modal is exiting.
-     */
-    onExiting: PropTypes.func,
-    /**
-     * Callback fired when the modal has exited.
-     */
-    onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
-    /**
-     * Callback fired when the modal requests to be closed.
-     */
-    onRequestClose: PropTypes.func,
-    /**
-     * If `true`, the Modal is visible.
-     */
-    show: PropTypes.bool,
-  };
+export default class Modal extends Component<DefaultProps, Props, State> {
+  props: Props;
 
-  static defaultProps = {
+  static defaultProps: DefaultProps = {
     backdropComponent: Backdrop,
     backdropTransitionDuration: 300,
     backdropInvisible: false,
@@ -141,7 +157,7 @@ export default class Modal extends Component {
     styleManager: customPropTypes.muiRequired,
   };
 
-  state = {
+  state: State = {
     exited: false,
   };
 
@@ -302,7 +318,7 @@ export default class Modal extends Component {
     }
   };
 
-  renderBackdrop(other = {}) {
+  renderBackdrop(other: { [key: string]: any } = {}) {
     const {
       backdropComponent,
       backdropClassName,

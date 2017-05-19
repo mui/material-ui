@@ -1,7 +1,6 @@
-// @flow weak
+// @flow
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
@@ -27,52 +26,51 @@ export const styleSheet = createStyleSheet('MuiBackdrop', (theme) => {
   };
 });
 
-export default class Backdrop extends Component {
+type Props = {
+  /**
+   * Can be used, for instance, to render a letter inside the avatar.
+   */
+  children?: Element<*>,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * If `true`, the backdrop is invisible.
+   */
+  invisible?: boolean,
+};
 
-  static propTypes = {
-    /**
-     * Can be used, for instance, to render a letter inside the avatar.
-     */
-    children: PropTypes.node,
-    /**
-     * @ignore
-     */
-    className: PropTypes.string,
-    /**
-     * If `true`, the backdrop is invisible.
-     */
-    invisible: PropTypes.bool,
-  };
+function Backdrop(props: Props, context: { styleManager: Object }) {
+  const {
+    children,
+    className,
+    invisible,
+    ...other
+  } = props;
 
-  static defaultProps = {
-    invisible: false,
-  };
-
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
-  render() {
-    const {
-      children,
-      className,
-      invisible,
-      ...other
-    } = this.props;
-
-    const classes = this.context.styleManager.render(styleSheet);
-    const backdropClass = classNames(classes.root, {
-      [classes.invisible]: invisible,
-    }, className);
-    return (
-      <div
-        data-mui-test="Backdrop"
-        className={backdropClass}
-        aria-hidden="true"
-        {...other}
-      >
-        {children}
-      </div>
-    );
-  }
+  const classes = context.styleManager.render(styleSheet);
+  const backdropClass = classNames(classes.root, {
+    [classes.invisible]: invisible,
+  }, className);
+  return (
+    <div
+      data-mui-test="Backdrop"
+      className={backdropClass}
+      aria-hidden="true"
+      {...other}
+    >
+      {children}
+    </div>
+  );
 }
+
+Backdrop.defaultProps = {
+  invisible: false,
+};
+
+Backdrop.contextTypes = {
+  styleManager: customPropTypes.muiRequired,
+};
+
+export default Backdrop;
