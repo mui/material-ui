@@ -2,5 +2,3 @@
 --reporter dot
 --recursive
 test/utils/setup.js
-test/integration/{,**/}*.spec.js
-src/{,**/}*.spec.js
