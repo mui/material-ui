@@ -54,7 +54,7 @@ export function createSwitch({
        */
       checkedIcon: PropTypes.node,
       /**
-       * The CSS class name of the root element.
+       * @ignore
        */
       className: PropTypes.string,
       /**

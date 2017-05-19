@@ -23,6 +23,12 @@ The CSS inject by Material-UI to style the components has the lowest specificity
 
 {{demo='pages/customization/OverridesClassNames.js'}}
 
+When the `className` property isn't enough, you can take advantage of the `classes` property
+to customize all the CSS inject by Material-UI for the given component. For instance:
+
+{{demo='pages/customization/OverridesClasses.js'}}
+`
+
 ### Overriding with inline-style
 
 The second way to override the style of the components is to use the **inline-style** approach.

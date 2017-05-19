@@ -65,7 +65,7 @@ export default class Modal extends Component {
      */
     children: PropTypes.element,
     /**
-     * The CSS class name of the root element.
+     * @ignore
      */
     className: PropTypes.string,
     /**

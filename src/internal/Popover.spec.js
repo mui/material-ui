@@ -166,7 +166,7 @@ describe('<Popover />', () => {
     it('should have Paper as the only child of Transition', () => {
       const wrapper = shallow(<Popover />);
       assert.strictEqual(wrapper.childAt(0).children().length, 1, 'should have one child');
-      assert.strictEqual(wrapper.childAt(0).childAt(0).is('Paper'), true, 'should be Paper');
+      assert.strictEqual(wrapper.childAt(0).childAt(0).name(), 'withStyles(Paper)');
     });
 
     it('should have the popover class and user classes', () => {

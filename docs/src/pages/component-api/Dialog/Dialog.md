@@ -1,5 +1,4 @@
-Dialog
-======
+# Dialog
 
 Dialogs are overlaid modal paper based components with a backdrop.
 
@@ -10,13 +9,10 @@ Dialogs are overlaid modal paper based components with a backdrop.
 </Dialog>
 ```
 
-Props
------
-
+## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  | Dialog children, usually the included sub-components. |
-| className | string |  | The CSS class name of the root element. |
 | fullScreen | bool | false | If `true`, the dialog will be full-screen. |
 | ignoreBackdropClick | bool | false | If `true`, clicking the backdrop will not fire the `onRequestClose` callback. |
 | ignoreEscapeKeyUp | bool | false | If `true`, hitting escape will not fire the `onRequestClose` callback. |
@@ -37,3 +33,20 @@ Props
 | transition | union:&nbsp;func<br>&nbsp;element<br> | Fade | Transition component. |
 
 Any other properties supplied will be spread to the root element.
+## Classes
+
+You can overrides all the class names injected by Material-UI thanks to the `classes` property.
+This property accepts the following keys:
+- `modal`
+- `dialog`
+- `dialogWidth-xs`
+- `dialogWidth-sm`
+- `dialogWidth-md`
+- `fullScreen`
+
+Have a look at [overriding with class names](/customization/overrides#overriding-with-class-names)
+section for more detail.
+
+If using the `overrides` key of the theme as documented
+[here](/customization/themes#customizing-all-instances-of-a-component-type),
+you need to use the following style sheet name: `MuiDialog`.

@@ -108,7 +108,6 @@ export default class MuiThemeProvider extends Component {
 
   static childContextTypes = {
     styleManager: PropTypes.object.isRequired,
-    theme: PropTypes.object.isRequired,
   };
 
   static createDefaultContext(props = {}) {
@@ -126,10 +125,8 @@ export default class MuiThemeProvider extends Component {
   }
 
   getChildContext() {
-    const { theme, styleManager } = this;
     return {
-      theme,
-      styleManager,
+      styleManager: this.styleManager,
     };
   }
 

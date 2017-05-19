@@ -232,7 +232,9 @@ export default class Input extends Component {
   // Holds the input reference
   input = undefined;
 
-  focus = () => this.input.focus();
+  focus = () => {
+    this.input.focus();
+  }
 
   handleFocus = (event) => {
     this.setState({ focused: true });

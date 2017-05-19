@@ -57,7 +57,6 @@ function TabScrollButton(props, context) {
 TabScrollButton.propTypes = {
   /**
    * @ignore
-   * The CSS class name of the root element.
    */
   className: PropTypes.string,
   /**

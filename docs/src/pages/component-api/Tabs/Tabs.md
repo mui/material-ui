@@ -1,17 +1,13 @@
-Tabs
-====
+# Tabs
 
 
 
-Props
------
-
+## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | buttonClassName | string |  | The CSS class name of the scroll button elements. |
 | centered | bool | false | If `true`, the tabs will be centered. This property is intended for large views. |
 | children | node |  | The content of the component. |
-| className | string |  | The CSS class name of the root element. |
 | fullWidth | bool | false | If `true`, the tabs will grow to use all the available space. This property is intended for small views. |
 | index | number |  | The index of the currently selected `Tab`. |
 | indicatorClassName | string |  | The CSS class name of the indicator element. |
@@ -22,3 +18,20 @@ Props
 | textColor | union:&nbsp;[object Object],[object Object]<br>&nbsp;string<br> | 'inherit' | Determines the color of the `Tab`. |
 
 Any other properties supplied will be spread to the root element.
+## Classes
+
+You can overrides all the class names injected by Material-UI thanks to the `classes` property.
+This property accepts the following keys:
+- `root`
+- `flexContainer`
+- `scrollingContainer`
+- `fixed`
+- `scrollable`
+- `centered`
+
+Have a look at [overriding with class names](/customization/overrides#overriding-with-class-names)
+section for more detail.
+
+If using the `overrides` key of the theme as documented
+[here](/customization/themes#customizing-all-instances-of-a-component-type),
+you need to use the following style sheet name: `MuiTabs`.

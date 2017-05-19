@@ -44,8 +44,10 @@ module.exports = {
     'no-prototype-builtins': 'off', // airbnb use error
     'object-curly-spacing': 'off', // use babel plugin rule
     'operator-linebreak': ['error', 'after'], // aibnb is disabling this rule
-    'babel/object-curly-spacing': ['error', 'always'],
     'no-restricted-properties': 'off', // To remove once react-docgen support ** operator.
+    'no-unused-vars': ['error', { vars: 'all', args: 'after-used', ignoreRestSiblings: false }], // airbnb use ignoreRestSiblings
+
+    'babel/object-curly-spacing': ['error', 'always'],
 
     'import/unambiguous': 'off',
     'import/no-unresolved': 'off',

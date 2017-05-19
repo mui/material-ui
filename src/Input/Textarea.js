@@ -154,12 +154,12 @@ export default class Textarea extends Component {
     const {
       className,
       defaultValue,
-      disabled,
-      hintText,
-      onChange,
-      onHeightChange,
+      disabled, // eslint-disable-line no-unused-vars
+      hintText, // eslint-disable-line no-unused-vars
+      onChange, // eslint-disable-line no-unused-vars
+      onHeightChange, // eslint-disable-line no-unused-vars
       rows,
-      rowsMax,
+      rowsMax, // eslint-disable-line no-unused-vars
       value,
       ...other
     } = this.props;

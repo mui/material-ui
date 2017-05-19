@@ -149,7 +149,7 @@ type Props = {
    */
   children?: Element<*>,
   /**
-   * The CSS class name of the root element.
+   * @ignore
    */
   className?: string,
   /**

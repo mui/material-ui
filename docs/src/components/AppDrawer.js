@@ -121,7 +121,6 @@ AppDrawer.propTypes = {
 };
 
 AppDrawer.contextTypes = {
-  theme: PropTypes.object.isRequired,
   styleManager: PropTypes.object.isRequired,
 };
 

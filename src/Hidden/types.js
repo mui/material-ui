@@ -9,7 +9,7 @@ export type HiddenProps = {
    */
   children?: Element<*>,
   /**
-   * The CSS class name of the root element.
+   * @ignore
    */
   className?: string,
   /**

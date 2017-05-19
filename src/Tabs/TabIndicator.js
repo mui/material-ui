@@ -46,7 +46,6 @@ export default function TabIndicator(props, context) {
 TabIndicator.propTypes = {
   /**
    * @ignore
-   * The CSS class name of the root element.
    */
   className: PropTypes.string,
   /**

@@ -76,7 +76,7 @@ export const styleSheet = createStyleSheet('MuiRipple', (theme) => ({
 export default class Ripple extends Component {
   static propTypes = {
     /**
-     * The CSS class name of the root element.
+     * @ignore
      */
     className: PropTypes.string,
     /**

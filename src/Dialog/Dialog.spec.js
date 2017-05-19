@@ -4,6 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow } from 'src/test-utils';
 import Dialog, { styleSheet } from './Dialog';
+import Paper from '../Paper';
 
 describe('<Dialog />', () => {
   let shallow;
@@ -62,7 +63,7 @@ describe('<Dialog />', () => {
 
   it('should render with the fullscreen class on the Paper element', () => {
     const wrapper = shallow(<Dialog fullScreen />);
-    assert.strictEqual(wrapper.find('Paper').hasClass(classes.fullScreen), true,
+    assert.strictEqual(wrapper.find(Paper).hasClass(classes.fullScreen), true,
       'should have the "fullScreen" class');
   });
 
@@ -78,11 +79,7 @@ describe('<Dialog />', () => {
     );
 
     const paper = fade.childAt(0);
-    assert.strictEqual(
-      paper.length === 1 && paper.is('Paper'),
-      true,
-      'fade child should be Paper',
-    );
+    assert.strictEqual(paper.length === 1 && paper.name(), 'withStyles(Paper)');
 
     assert.strictEqual(paper.hasClass(classes.dialog), true, 'should have the dialog class');
   });
@@ -112,7 +109,7 @@ describe('<Dialog />', () => {
     it('should add the class on the Paper element', () => {
       const className = 'foo';
       const wrapper = shallow(<Dialog paperClassName={className} />);
-      assert.strictEqual(wrapper.find('Paper').hasClass(className), true,
+      assert.strictEqual(wrapper.find(Paper).hasClass(className), true,
         'should have the class provided',
       );
     });
@@ -121,7 +118,7 @@ describe('<Dialog />', () => {
   describe('prop: maxWidth', () => {
     it('should use the right className', () => {
       const wrapper = shallow(<Dialog maxWidth="xs" />);
-      assert.strictEqual(wrapper.find('Paper').hasClass(classes['dialogWidth-xs']), true,
+      assert.strictEqual(wrapper.find(Paper).hasClass(classes['dialogWidth-xs']), true,
         'should have the class provided',
       );
     });

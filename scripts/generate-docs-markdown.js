@@ -3,17 +3,8 @@
 import { parse as parseDoctrine } from 'doctrine';
 import recast from 'recast';
 
-function stringOfLength(string, stringLength) {
-  let newString = '';
-  for (let i = 0; i < stringLength.length; i += 1) {
-    newString += string;
-  }
-  return newString;
-}
-
 function generateTitle(name) {
-  const title = `${name}`;
-  return `${title}\n${stringOfLength('=', title)}\n`;
+  return `# ${name}\n`;
 }
 
 function generateDescription(description) {
@@ -130,8 +121,7 @@ function generatePropType(type) {
 }
 
 function generateProps(props) {
-  const title = 'Props';
-  const header = `${title}\n${stringOfLength('-', title)}\n`;
+  const header = '## Props';
 
   let text = `${header}
 | Name | Type | Default | Description |
@@ -174,11 +164,27 @@ function generateProps(props) {
   return text;
 }
 
+function generateClasses(styles) {
+  return `## Classes
+
+You can overrides all the class names injected by Material-UI thanks to the \`classes\` property.
+This property accepts the following keys:
+${styles.classes.map((className) => `- \`${className}\``).join('\n')}
+
+Have a look at [overriding with class names](/customization/overrides#overriding-with-class-names)
+section for more detail.
+
+If using the \`overrides\` key of the theme as documented
+[here](/customization/themes#customizing-all-instances-of-a-component-type),
+you need to use the following style sheet name: \`${styles.name}\`.`;
+}
+
 export function generateMarkdown(name, reactAPI) {
   return `${
     generateTitle(name)}\n${
     generateDescription(reactAPI.description)}\n${
     generateProps(reactAPI.props)}\n${
-    'Any other properties supplied will be spread to the root element.'
+    'Any other properties supplied will be spread to the root element.'}\n${
+    generateClasses(reactAPI.styles)
   }\n`;
 }

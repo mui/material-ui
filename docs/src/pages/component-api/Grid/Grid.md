@@ -1,15 +1,11 @@
-Grid
-====
+# Grid
 
 
 
-Props
------
-
+## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | Element |  | The content of the component. |
-| className | string |  | The CSS class name of the root element. |
 | component | union:&nbsp;string<br>&nbsp;Function<br> | 'div' | The component used for the root node. Either a string to use a DOM element or a component. |
 | container | boolean | false | If `true`, the component will have the flex *container* behavior. You should be wrapping *items* with a *container*. |
 | item | boolean | false | It true, the component will have the flex *item* behavior. You should be wrapping *items* with a *container*. |
@@ -26,3 +22,48 @@ Props
 | xl | union:&nbsp;boolean, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br> |  | Defines the number of grids the component is going to use. It's applied for the `xl` breakpoint and wider screens. |
 
 Any other properties supplied will be spread to the root element.
+## Classes
+
+You can overrides all the class names injected by Material-UI thanks to the `classes` property.
+This property accepts the following keys:
+- `typeContainer`
+- `typeItem`
+- `direction-xs-column`
+- `direction-xs-column-reverse`
+- `direction-xs-row-reverse`
+- `wrap-xs-nowrap`
+- `align-xs-center`
+- `align-xs-flex-start`
+- `align-xs-flex-end`
+- `justify-xs-center`
+- `justify-xs-flex-end`
+- `justify-xs-space-between`
+- `justify-xs-space-around`
+- `gutter-xs-8`
+- `gutter-xs-16`
+- `gutter-xs-24`
+- `gutter-xs-40`
+- `grid-xs`
+- `grid-xs-1`
+- `grid-xs-2`
+- `grid-xs-3`
+- `grid-xs-4`
+- `grid-xs-5`
+- `grid-xs-6`
+- `grid-xs-7`
+- `grid-xs-8`
+- `grid-xs-9`
+- `grid-xs-10`
+- `grid-xs-11`
+- `grid-xs-12`
+- `@media (min-width:600px)`
+- `@media (min-width:960px)`
+- `@media (min-width:1280px)`
+- `@media (min-width:1920px)`
+
+Have a look at [overriding with class names](/customization/overrides#overriding-with-class-names)
+section for more detail.
+
+If using the `overrides` key of the theme as documented
+[here](/customization/themes#customizing-all-instances-of-a-component-type),
+you need to use the following style sheet name: `MuiGrid`.
