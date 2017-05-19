@@ -14,7 +14,9 @@ export default class AlertDialog extends Component {
     open: false,
   };
 
-  handleRequestClose = () => this.setState({ open: false });
+  handleRequestClose = () => {
+    this.setState({ open: false });
+  };
 
   render() {
     return (
