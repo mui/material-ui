@@ -20,7 +20,6 @@ export const styleSheet = createStyleSheet('MuiDialog', (theme) => {
       flexDirection: 'column',
       flex: '0 1 auto',
       position: 'relative',
-      width: '75%',
       maxHeight: '90vh',
       '&:focus': {
         outline: 'none',
