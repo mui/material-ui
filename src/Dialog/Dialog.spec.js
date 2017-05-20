@@ -20,8 +20,10 @@ describe('<Dialog />', () => {
     assert.strictEqual(wrapper.name(), 'Modal');
   });
 
-  it('should render a Modal', () => {
-    const wrapper = shallow(<Dialog transition={<div className="cloned-element-class" />} />);
+  it('should render a Modal with transition', () => {
+    const wrapper = shallow(
+      <Dialog transition={<div className="cloned-element-class" />} />,
+    );
     assert.strictEqual(wrapper.find('.cloned-element-class').length, 1,
       'should include element given in transition');
   });
@@ -59,12 +61,6 @@ describe('<Dialog />', () => {
   it('should render with the user classes on the root node', () => {
     const wrapper = shallow(<Dialog className="woof" />);
     assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
-  });
-
-  it('should render with the fullscreen class on the Paper element', () => {
-    const wrapper = shallow(<Dialog fullScreen />);
-    assert.strictEqual(wrapper.find(Paper).hasClass(classes.fullScreen), true,
-      'should have the "fullScreen" class');
   });
 
   it('should render Fade > Paper > children inside the Modal', () => {
@@ -109,18 +105,26 @@ describe('<Dialog />', () => {
     it('should add the class on the Paper element', () => {
       const className = 'foo';
       const wrapper = shallow(<Dialog paperClassName={className} />);
-      assert.strictEqual(wrapper.find(Paper).hasClass(className), true,
-        'should have the class provided',
-      );
+      assert.strictEqual(wrapper.find(Paper).hasClass(className), true);
     });
   });
 
   describe('prop: maxWidth', () => {
     it('should use the right className', () => {
       const wrapper = shallow(<Dialog maxWidth="xs" />);
-      assert.strictEqual(wrapper.find(Paper).hasClass(classes['dialogWidth-xs']), true,
-        'should have the class provided',
-      );
+      assert.strictEqual(wrapper.find(Paper).hasClass(classes['dialogWidth-xs']), true);
+    });
+  });
+
+  describe('prop: fullScreen', () => {
+    it('true should render fullScreen', () => {
+      const wrapper = shallow(<Dialog fullScreen />);
+      assert.strictEqual(wrapper.find(Paper).hasClass(classes.fullScreen), true);
+    });
+
+    it('false should not render fullScreen', () => {
+      const wrapper = shallow(<Dialog fullScreen={false} />);
+      assert.strictEqual(wrapper.find(Paper).hasClass(classes.fullScreen), false);
     });
   });
 });
