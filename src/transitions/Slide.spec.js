@@ -3,7 +3,8 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow } from 'src/test-utils';
+import ReactDOM from 'react-dom';
+import { createShallow, createMount } from 'src/test-utils';
 import Slide from './Slide';
 import transitions, { easing, duration } from '../styles/transitions';
 
@@ -179,6 +180,45 @@ describe('<Slide />', () => {
         instance.handleEnter(element);
         assert.strictEqual(element.style.transform, 'translate3d(0, -500px, 0)');
       });
+    });
+  });
+
+  describe('slidemount', () => {
+    let mount;
+    let mountWrapper;
+    let instance;
+
+    before(() => {
+      mount = createMount();
+      mountWrapper = mount(<Slide><div /></Slide>);
+    });
+
+    after(() => {
+      mount.cleanUp();
+    });
+
+    it('default value', () => {
+      mountWrapper.setProps({ in: false });
+      instance = mountWrapper.instance();
+      instance.componentDidMount();
+      const transitionElement = ReactDOM.findDOMNode(mountWrapper.instance().transition);
+      if (transitionElement instanceof window.HTMLElement) {
+        assert.strictEqual(transitionElement.style.transform, 'translate3d(0, 0px, 0)');
+      } else {
+        assert.fail('transition property of instance should be an HTMLElement');
+      }
+    });
+
+    it('non-default value', () => {
+      mountWrapper.setProps({ in: false, direction: 'right' });
+      instance = mountWrapper.instance();
+      instance.componentDidMount();
+      const transitionElement = ReactDOM.findDOMNode(mountWrapper.instance().transition);
+      if (transitionElement instanceof window.HTMLElement) {
+        assert.strictEqual(transitionElement.style.transform, 'translate3d(0px, 0, 0)');
+      } else {
+        assert.fail('transition property of instance should be an HTMLElement');
+      }
     });
   });
 });
