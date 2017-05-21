@@ -128,6 +128,12 @@ const appList = [
     img: 'images/showcase/slimchess.png',
     link: 'https://slimchess.com',
   },
+  {
+    title: 'DevSketch',
+    author: 'Hai Le',
+    img: 'images/showcase/devsketch.png',
+    link: 'https://devsketch.io/',
+  },
 ];
 
 const Showcase = () => (
