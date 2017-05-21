@@ -198,7 +198,7 @@ class TableRow extends Component {
 
     const rowColumns = React.Children.map(this.props.children, (child, columnNumber) => {
       if (React.isValidElement(child)) {
-        return React.cloneElement(child, {
+        return React.cloneElement(child, {...{
           columnNumber: columnNumber,
           hoverable: this.props.hoverable,
           key: `${this.props.rowNumber}-${columnNumber}`,
@@ -206,14 +206,14 @@ class TableRow extends Component {
           onHover: this.onCellHover,
           onHoverExit: this.onCellHoverExit,
           style: Object.assign({}, styles.cell, child.props.style),
-        });
+        }, ...child.props});
       }
     });
 
     return (
       <tr
         className={className}
-        style={prepareStyles(Object.assign(styles.root, style))}
+        style={prepareStyles(Object.assign(styles.cell, style))}
         {...other}
       >
         {rowColumns}

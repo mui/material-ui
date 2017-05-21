@@ -201,7 +201,7 @@ class TableBody extends Component {
           children.push(child);
         });
 
-        return React.cloneElement(child, {...props, ...handlers}, children);
+        return React.cloneElement(child, {...props, ...handlers, ...child.props}, children);
       }
     });
   }
