@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import transitions from '../styles/transitions';
-import {createChildFragment} from '../utils/childUtils';
 import {fade} from '../utils/colorManipulator';
 import EnhancedButton from '../internal/EnhancedButton';
 import FlatButtonLabel from './FlatButtonLabel';
@@ -253,6 +252,7 @@ class FlatButton extends Component {
       iconCloned = React.cloneElement(icon, {
         color: icon.props.color || mergedRootStyles.color,
         style: iconStyles,
+        key: 'iconCloned',
       });
 
       if (labelPosition === 'before') {
@@ -270,23 +270,21 @@ class FlatButton extends Component {
     }, labelStyleIcon, labelStyle);
 
     const labelElement = label ? (
-      <FlatButtonLabel label={label} style={mergedLabelStyles} />
+      <FlatButtonLabel key="labelElement" label={label} style={mergedLabelStyles} />
     ) : undefined;
 
     // Place label before or after children.
-    const childrenFragment = labelPosition === 'before' ?
-    {
+    const enhancedButtonChildren = labelPosition === 'before' ?
+    [
       labelElement,
       iconCloned,
       children,
-    } :
-    {
+    ] :
+    [
       children,
       iconCloned,
       labelElement,
-    };
-
-    const enhancedButtonChildren = createChildFragment(childrenFragment);
+    ];
 
     return (
       <EnhancedButton
