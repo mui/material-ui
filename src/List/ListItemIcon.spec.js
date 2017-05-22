@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
+import { createShallow } from '../test-utils';
 import ListItemIcon, { styleSheet } from './ListItemIcon';
 
 describe('<ListItemIcon />', () => {

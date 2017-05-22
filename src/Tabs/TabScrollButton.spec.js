@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createMount } from 'src/test-utils';
+import { createShallow, createMount } from '../test-utils';
 import TabScrollButton, { styleSheet } from './TabScrollButton';
 import ButtonBase from '../internal/ButtonBase';
 import KeyboardArrowLeft from '../svg-icons/keyboard-arrow-left';

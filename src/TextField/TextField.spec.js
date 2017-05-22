@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createMount } from 'src/test-utils';
+import { createShallow, createMount } from '../test-utils';
 import Input, { InputLabel } from '../Input';
 import TextField from './TextField';
 

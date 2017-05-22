@@ -1,4 +1,5 @@
 // @flow weak
+/* eslint-disable import/prefer-default-export */
 
 import { cloneElement, Children, isValidElement } from 'react';
 

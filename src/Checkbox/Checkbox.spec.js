@@ -1,7 +1,7 @@
 // @flow
 
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
+import { createShallow } from '../test-utils';
 import Checkbox, { LabelCheckbox, styleSheet } from './Checkbox';
 
 describe('<Checkbox />', () => {

@@ -2,7 +2,7 @@
 
 import { assert } from 'chai';
 import createMuiTheme from './theme';
-import createPalette, { dark, light } from './palette.js';
+import createPalette, { dark, light } from './palette';
 import {
   indigo,
   pink,

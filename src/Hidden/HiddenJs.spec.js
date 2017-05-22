@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
+import { createShallow } from '../test-utils';
 import HiddenJs from './HiddenJs';
 import type { Breakpoint } from '../styles/breakpoints';
 import Typography from '../Typography';

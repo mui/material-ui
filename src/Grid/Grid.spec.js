@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
 import forOwn from 'lodash/forOwn';
+import { createShallow } from '../test-utils';
 import Grid, { styleSheet } from './Grid';
 import Hidden from '../Hidden';
 

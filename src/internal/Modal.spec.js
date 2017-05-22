@@ -5,7 +5,7 @@ import { assert } from 'chai';
 import { spy, stub } from 'sinon';
 import keycode from 'keycode';
 import contains from 'dom-helpers/query/contains';
-import { createShallow, createMount, consoleErrorMock } from 'src/test-utils';
+import { createShallow, createMount, consoleErrorMock } from '../test-utils';
 import Backdrop from './Backdrop';
 import Modal, { styleSheet } from './Modal';
 

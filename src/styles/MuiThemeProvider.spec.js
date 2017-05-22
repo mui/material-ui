@@ -10,9 +10,9 @@ import { createStyleManager } from 'jss-theme-reactor';
 import React from 'react';
 import htmlLooksLike from 'html-looks-like';
 import { renderToString } from 'react-dom/server';
-import { createMount } from 'src/test-utils';
-import { createMuiTheme } from 'src/styles';
-import Button from 'src/Button';
+import { createMount } from '../test-utils';
+import { createMuiTheme } from '../styles';
+import Button from '../Button';
 import MuiThemeProvider from './MuiThemeProvider';
 
 function trim(str) {

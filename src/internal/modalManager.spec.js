@@ -1,7 +1,7 @@
 // @flow
 
 import { assert } from 'chai';
-import { createModalManager } from './modalManager';
+import createModalManager from './modalManager';
 
 describe('internal/modalManager', () => {
   let modalManager;

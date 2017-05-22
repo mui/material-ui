@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createShallow, createMount } from 'src/test-utils';
+import { createShallow, createMount } from '../test-utils';
 import Ripple, { styleSheet } from './Ripple';
 
 describe('<Ripple />', () => {

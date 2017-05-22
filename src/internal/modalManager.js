@@ -26,7 +26,7 @@ const defaultContainer = canUseDom ? window.document.body : {};
  *
  * @internal Used by the Modal to ensure proper focus management.
  */
-export function createModalManager({
+function createModalManager({
   container = defaultContainer,
   hideSiblingNodes = true,
 } = {}) {
@@ -103,3 +103,5 @@ export function createModalManager({
 
   return modalManager;
 }
+
+export default createModalManager;

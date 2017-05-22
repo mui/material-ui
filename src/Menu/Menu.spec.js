@@ -4,7 +4,7 @@ import React from 'react';
 import { spy, stub } from 'sinon';
 import { assert } from 'chai';
 import ReactDOM from 'react-dom';
-import { createShallow, createMount } from 'src/test-utils';
+import { createShallow, createMount } from '../test-utils';
 import Menu, { styleSheet } from './Menu';
 
 describe('<Menu />', () => {

@@ -4,7 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';
 import scroll from 'scroll';
-import { createShallow, createMount } from 'src/test-utils';
+import { createShallow, createMount } from '../test-utils';
 import Tabs, { styleSheet } from './Tabs';
 import TabScrollButton from './TabScrollButton';
 import Tab from './Tab';
