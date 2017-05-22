@@ -18,7 +18,7 @@ export default class DialogExampleDialogDatePicker extends React.Component {
 
   handleClose = () => {
     this.setState({open: false});
-    let ActiveElement = window.prevActiveElement;
+    const ActiveElement = window.prevActiveElement;
     ActiveElement.focus();
   };
 
