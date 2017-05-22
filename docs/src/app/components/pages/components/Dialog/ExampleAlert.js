@@ -17,8 +17,8 @@ export default class DialogExampleAlert extends React.Component {
 
   handleClose = () => {
     this.setState({open: false});
-    var ActiveElement = window.prevActiveElement;
-      ActiveElement.focus();
+    let ActiveElement = window.prevActiveElement;
+    ActiveElement.focus();
   };
 
   render() {

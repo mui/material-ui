@@ -10,8 +10,6 @@ import Paper from '../Paper';
 
 import ReactTransitionGroup from 'react-transition-group/TransitionGroup';
 
-
-
 class TransitionItem extends Component {
 
   static propTypes = {
@@ -152,8 +150,6 @@ function getStyles(props, context) {
 }
 
 class DialogInline extends Component {
-
-  
   static propTypes = {
     actions: PropTypes.node,
     actionsContainerClassName: PropTypes.string,
@@ -245,18 +241,15 @@ class DialogInline extends Component {
     }
   }
 
-
-  requestClose(buttonClicked) {
-    
+  requestClose(buttonClicked) {    
     if (!buttonClicked && this.props.modal) {
       return;
     }
 
     if (this.props.onRequestClose) {
       this.props.onRequestClose(!!buttonClicked);
-      var ActiveElement = window.prevActiveElement;
+      let ActiveElement = window.prevActiveElement;
       ActiveElement.focus();
-
     }
   }
 

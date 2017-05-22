@@ -17,7 +17,7 @@ export default class DialogExampleModal extends React.Component {
 
   handleClose = () => {
     this.setState({open: false});
-    var ActiveElement = window.prevActiveElement;
+    let ActiveElement = window.prevActiveElement;
     ActiveElement.focus();
   };
 

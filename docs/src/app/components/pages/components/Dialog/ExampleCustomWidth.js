@@ -22,8 +22,8 @@ export default class DialogExampleCustomWidth extends React.Component {
 
   handleClose = () => {
     this.setState({open: false});
-    var ActiveElement = window.prevActiveElement;
-      ActiveElement.focus();
+    let ActiveElement = window.prevActiveElement;
+    ActiveElement.focus();
   };
 
   render() {
