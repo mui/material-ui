@@ -17,12 +17,15 @@ export default class DialogExampleModal extends React.Component {
 
   handleClose = () => {
     this.setState({open: false});
+    var ActiveElement = window.prevActiveElement;
+    ActiveElement.focus();
   };
 
   render() {
     const actions = [
       <FlatButton
         label="Cancel"
+        keyboardFocused={true}
         primary={true}
         onTouchTap={this.handleClose}
       />,

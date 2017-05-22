@@ -10,7 +10,10 @@ import Paper from '../Paper';
 
 import ReactTransitionGroup from 'react-transition-group/TransitionGroup';
 
+
+
 class TransitionItem extends Component {
+
   static propTypes = {
     children: PropTypes.node,
     style: PropTypes.object,
@@ -149,6 +152,8 @@ function getStyles(props, context) {
 }
 
 class DialogInline extends Component {
+
+  
   static propTypes = {
     actions: PropTypes.node,
     actionsContainerClassName: PropTypes.string,
@@ -240,13 +245,18 @@ class DialogInline extends Component {
     }
   }
 
+
   requestClose(buttonClicked) {
+    
     if (!buttonClicked && this.props.modal) {
       return;
     }
 
     if (this.props.onRequestClose) {
       this.props.onRequestClose(!!buttonClicked);
+      var ActiveElement = window.prevActiveElement;
+      ActiveElement.focus();
+
     }
   }
 
@@ -265,6 +275,8 @@ class DialogInline extends Component {
   };
 
   render() {
+    window.prevActiveElement = document.activeElement;
+
     const {
       actions,
       actionsContainerClassName,

@@ -20,6 +20,8 @@ export default class DialogExampleSimple extends React.Component {
 
   handleClose = () => {
     this.setState({open: false});
+    var ActiveElement = window.prevActiveElement;
+      ActiveElement.focus();
   };
 
   render() {
