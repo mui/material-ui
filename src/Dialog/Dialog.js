@@ -241,14 +241,14 @@ class DialogInline extends Component {
     }
   }
 
-  requestClose(buttonClicked) {    
+  requestClose(buttonClicked) {
     if (!buttonClicked && this.props.modal) {
       return;
     }
 
     if (this.props.onRequestClose) {
       this.props.onRequestClose(!!buttonClicked);
-      let ActiveElement = window.prevActiveElement;
+      const ActiveElement = window.prevActiveElement;
       ActiveElement.focus();
     }
   }

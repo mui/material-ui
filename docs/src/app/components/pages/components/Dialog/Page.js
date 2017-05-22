@@ -28,7 +28,6 @@ const DialogPage = () => (
       title="Simple dialog"
       code={dialogExampleSimpleCode}
     >
-    
       <DialogExampleSimple />
     </CodeExample>
     <CodeExample
