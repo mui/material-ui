@@ -193,7 +193,11 @@ class TextField extends Component {
      */
     onChange: PropTypes.func,
     /** @ignore */
+    onEnterKeyDown: PropTypes.func,
+    /** @ignore */
     onFocus: PropTypes.func,
+    /** @ignore */
+    onKeyDown: PropTypes.func,
     /**
      * Number of rows to display when multiLine option is set to true.
      */
@@ -375,6 +379,11 @@ class TextField extends Component {
     ReactDOM.findDOMNode(this).style.height = `${newHeight}px`;
   };
 
+  handleInputKeyDown = (event) => {
+    if (event.keyCode === 13 && this.props.onEnterKeyDown) this.props.onEnterKeyDown(event);
+    if (this.props.onKeyDown) this.props.onKeyDown(event);
+  };
+
   _isControlled() {
     return this.props.hasOwnProperty('value');
   }
@@ -446,6 +455,7 @@ class TextField extends Component {
       onBlur: this.handleInputBlur,
       onChange: this.handleInputChange,
       onFocus: this.handleInputFocus,
+      onKeyDown: this.handleInputKeyDown,
     };
 
     const childStyleMerged = Object.assign(styles.input, inputStyle);
