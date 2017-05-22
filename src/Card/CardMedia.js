@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
 export const styleSheet = createStyleSheet('MuiCardMedia', {
   cardMedia: {
@@ -12,13 +12,13 @@ export const styleSheet = createStyleSheet('MuiCardMedia', {
   },
 });
 
-export default function CardMedia(props, context) {
+function CardMedia(props) {
   const {
+    classes,
     className: classNameProp,
     ...other
   } = props;
 
-  const classes = context.styleManager.render(styleSheet);
   const className = classNames(classes.cardMedia, classNameProp);
 
   return (
@@ -28,11 +28,13 @@ export default function CardMedia(props, context) {
 
 CardMedia.propTypes = {
   /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
    * @ignore
    */
   className: PropTypes.string,
 };
 
-CardMedia.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+export default withStyles(styleSheet)(CardMedia);

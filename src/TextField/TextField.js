@@ -3,14 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Input, { InputLabel } from '../Input';
-import customPropTypes from '../utils/customPropTypes';
 import FormControl from '../Form/FormControl';
 
-/**
- * ```
- * <TextField value="Hello World">
- * ```
- */
 function TextField(props) {
   const {
     className,
@@ -21,6 +15,7 @@ function TextField(props) {
     inputClassName,
     inputProps,
     InputProps,
+    inputRef,
     label,
     labelClassName,
     name,
@@ -57,6 +52,7 @@ function TextField(props) {
         value={value}
         id={id}
         inputProps={inputProps}
+        inputRef={inputRef}
         {...InputProps}
       />
     </FormControl>
@@ -97,6 +93,10 @@ TextField.propTypes = {
    */
   InputProps: PropTypes.object,
   /**
+   * Use that property to pass a ref callback to the native input component.
+   */
+  inputRef: PropTypes.func,
+  /**
    * The label content.
    */
   label: PropTypes.node,
@@ -136,10 +136,6 @@ TextField.propTypes = {
 
 TextField.defaultProps = {
   required: false,
-};
-
-TextField.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
 };
 
 export default TextField;

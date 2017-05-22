@@ -10,7 +10,7 @@ describe('<InputLabel />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
@@ -18,7 +18,7 @@ describe('<InputLabel />', () => {
     const wrapper = shallow(
       <InputLabel>Foo</InputLabel>,
     );
-    assert.strictEqual(wrapper.name(), 'FormLabel');
+    assert.strictEqual(wrapper.name(), 'withStyles(FormLabel)');
     assert.strictEqual(wrapper.childAt(0).node, 'Foo');
   });
 

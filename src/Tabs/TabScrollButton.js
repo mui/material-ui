@@ -7,20 +7,22 @@ import classNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
 import KeyboardArrowLeft from '../svg-icons/keyboard-arrow-left';
 import KeyboardArrowRight from '../svg-icons/keyboard-arrow-right';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiTabScrollButton', (theme) => {
-  return {
-    root: {
-      background: 'none',
-      color: 'inherit',
-      flex: `0 0 ${theme.spacing.unit * 7}px`,
-    },
-  };
-});
+export const styleSheet = createStyleSheet('MuiTabScrollButton', (theme) => ({
+  root: {
+    background: 'none',
+    color: 'inherit',
+    flex: `0 0 ${theme.spacing.unit * 7}px`,
+  },
+}));
 
-function TabScrollButton(props, context) {
+/**
+ * @ignore - internal component.
+ */
+function TabScrollButton(props) {
   const {
+    classes,
     className: classNameProp,
     direction,
     onClick,
@@ -28,7 +30,6 @@ function TabScrollButton(props, context) {
     ...other
   } = props;
 
-  const classes = context.styleManager.render(styleSheet);
   const className = classNames(
     classes.root,
     classNameProp,
@@ -51,10 +52,11 @@ function TabScrollButton(props, context) {
   );
 }
 
-/**
- * @ignore - internal component.
- */
 TabScrollButton.propTypes = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
@@ -80,8 +82,4 @@ TabScrollButton.defaultProps = {
   visible: true,
 };
 
-TabScrollButton.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
-
-export default TabScrollButton;
+export default withStyles(styleSheet)(TabScrollButton);

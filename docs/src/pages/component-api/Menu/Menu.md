@@ -7,6 +7,7 @@
 |:-----|:-----|:--------|:------------|
 | anchorEl | object |  | The DOM element used to set the position of the menu. |
 | children | node |  | Menu contents, normally `MenuItem`s. |
+| classes | object |  | Useful to extend the style applied to components. |
 | MenuListProps | object |  | Properties applied to the `MenuList` element. |
 | onEnter | function |  | Callback fired before the Menu enters. |
 | onEntering | function |  | Callback fired when the Menu is entering. |

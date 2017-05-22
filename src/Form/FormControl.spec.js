@@ -10,7 +10,7 @@ describe('<FormControl />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
@@ -47,16 +47,6 @@ describe('<FormControl />', () => {
 
     it('should not be focused initially', () => {
       assert.strictEqual(wrapper.state().focused, false);
-    });
-  });
-
-  describe('default props', () => {
-    it('should not have an error by default', () => {
-      assert.strictEqual(FormControl.defaultProps.error, false);
-    });
-
-    it('should not be required by default', () => {
-      assert.strictEqual(FormControl.defaultProps.required, false);
     });
   });
 

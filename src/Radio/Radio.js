@@ -3,24 +3,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createStyleSheet } from 'jss-theme-reactor';
-import { createSwitch } from '../internal/SwitchBase';
+import createSwitch from '../internal/SwitchBase';
 import withSwitchLabel from '../internal/withSwitchLabel';
 import RadioButtonCheckedIcon from '../svg-icons/radio-button-checked';
 import RadioButtonUncheckedIcon from '../svg-icons/radio-button-unchecked';
 
-export const styleSheet = createStyleSheet('MuiRadio', (theme) => {
-  return {
-    default: {
-      color: theme.palette.text.secondary,
-    },
-    checked: {
-      color: theme.palette.primary[500],
-    },
-    disabled: {
-      color: theme.palette.action.disabled,
-    },
-  };
-});
+export const styleSheet = createStyleSheet('MuiRadio', (theme) => ({
+  default: {
+    color: theme.palette.text.secondary,
+  },
+  checked: {
+    color: theme.palette.primary[500],
+  },
+  disabled: {
+    color: theme.palette.action.disabled,
+  },
+}));
 
 const Radio = createSwitch({
   styleSheet,
@@ -37,10 +35,6 @@ const LabelRadio = withSwitchLabel(Radio);
 
 export { LabelRadio };
 
-/**
- * [Radio buttons](https://www.google.com/design/spec/components/selection-controls.html#selection-controls-radio-button)
- * are switches used for selection from multiple options.
- */
 export const RadioDocs = () => <span />;
 
 RadioDocs.propTypes = {
@@ -56,6 +50,10 @@ RadioDocs.propTypes = {
    * The icon to display when selected.
    */
   checkedIcon: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */

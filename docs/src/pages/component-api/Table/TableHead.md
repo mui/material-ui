@@ -1,17 +1,12 @@
 # TableHead
 
-A material table head.
 
-```jsx
-<TableHead>
-  <TableRow>...</TableRow>
-</TableHead>
-```
 
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  | Should be valid `<thead>` children such as `TableRow`. |
+| classes | object |  | Useful to extend the style applied to components. |
 
 Any other properties supplied will be spread to the root element.
 ## Classes

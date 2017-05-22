@@ -6,6 +6,7 @@
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | Element |  | The content of the component. |
+| classes | any |  | Useful to extend the style applied to components. |
 | component | union:&nbsp;string<br>&nbsp;Function<br> | 'div' | The component used for the root node. Either a string to use a DOM element or a component. |
 | container | boolean | false | If `true`, the component will have the flex *container* behavior. You should be wrapping *items* with a *container*. |
 | item | boolean | false | It true, the component will have the flex *item* behavior. You should be wrapping *items* with a *container*. |

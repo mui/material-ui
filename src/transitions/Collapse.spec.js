@@ -11,7 +11,7 @@ describe('<Collapse />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
@@ -301,7 +301,7 @@ describe('<Collapse />', () => {
 
     before(() => {
       mount = createMount();
-      mountInstance = mount(<Collapse />).instance();
+      mountInstance = mount(<Collapse.Naked classes={classes} />).instance();
     });
 
     after(() => {

@@ -6,6 +6,7 @@
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  | The content of the component. |
+| classes | object |  | Useful to extend the style applied to components. |
 | disableActionSpacing | bool | false | If `true`, the card actions do not have additional margin. |
 
 Any other properties supplied will be spread to the root element.

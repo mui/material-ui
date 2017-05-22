@@ -1,7 +1,6 @@
 # Checkbox
 
-[Checkboxes](https://material.io/guidelines/components/selection-controls.html#selection-controls-checkbox)
-allow the user to select multiple options from a set.
+
 
 ## Props
 | Name | Type | Default | Description |
@@ -9,6 +8,7 @@ allow the user to select multiple options from a set.
 | checked | union:&nbsp;bool<br>&nbsp;string<br> |  | If `true`, the component is checked. |
 | checkedClassName | string |  | The CSS class name of the root element when checked. |
 | checkedIcon | node |  | The icon to display when the component is checked. |
+| classes | object |  | Useful to extend the style applied to components. |
 | disabled | bool |  | If `true`, the switch will be disabled. |
 | disabledClassName | string |  | The CSS class name of the root element when disabled. |
 | icon | node |  | The icon to display when the component is unchecked. If a string is provided, it will be used as a font ligature. |

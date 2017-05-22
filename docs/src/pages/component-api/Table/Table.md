@@ -1,18 +1,12 @@
 # Table
 
-A material table root element.
 
-```jsx
-<Table>
-  <TableHeader>...</TableHeader>
-  <TableBody>...</TableBody>
-</Table>
-```
 
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  | The content of the table, normally `TableHeader` and `TableBody`. |
+| classes | object |  | Useful to extend the style applied to components. |
 
 Any other properties supplied will be spread to the root element.
 ## Classes

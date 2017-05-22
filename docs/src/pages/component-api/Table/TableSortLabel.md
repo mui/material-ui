@@ -7,6 +7,7 @@ A button based label for placing inside `TableCell` for column sorting.
 |:-----|:-----|:--------|:------------|
 | active | bool | false | If `true`, the label will have the active styling (should be true for the sorted column). |
 | children | node |  | Label contents, the arrow will be appended automatically. |
+| classes | object |  | Useful to extend the style applied to components. |
 | direction | enum:&nbsp;'asc'<br>&nbsp;'desc'<br> | 'desc' | The current sort direction. |
 
 Any other properties supplied will be spread to the root element.

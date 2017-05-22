@@ -4,39 +4,38 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 import { emphasize } from '../styles/colorManipulator';
 
-export const styleSheet = createStyleSheet('MuiAvatar', (theme) => {
-  return {
-    root: {
-      position: 'relative',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: 40,
-      height: 40,
-      fontFamily: theme.typography.fontFamily,
-      fontSize: 20,
-      borderRadius: '50%',
-      overflow: 'hidden',
-      userSelect: 'none',
-    },
-    defaultColor: {
-      color: theme.palette.background.default,
-      backgroundColor: emphasize(theme.palette.background.default, 0.26),
-    },
-    img: {
-      maxWidth: '100%',
-      width: '100%',
-      height: 'auto',
-    },
-  };
-});
+export const styleSheet = createStyleSheet('MuiAvatar', (theme) => ({
+  root: {
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 40,
+    height: 40,
+    fontFamily: theme.typography.fontFamily,
+    fontSize: 20,
+    borderRadius: '50%',
+    overflow: 'hidden',
+    userSelect: 'none',
+  },
+  defaultColor: {
+    color: theme.palette.background.default,
+    backgroundColor: emphasize(theme.palette.background.default, 0.26),
+  },
+  img: {
+    maxWidth: '100%',
+    width: '100%',
+    height: 'auto',
+  },
+}));
 
-export default function Avatar(props, context) {
+function Avatar(props) {
   const {
     alt,
+    classes,
     className: classNameProp,
     children: childrenProp,
     childrenClassName: childrenClassNameProp,
@@ -47,7 +46,6 @@ export default function Avatar(props, context) {
     ...other
   } = props;
 
-  const classes = context.styleManager.render(styleSheet);
   const className = classNames(classes.root, {
     [classes.defaultColor]: childrenProp && !src && !srcSet,
   }, classNameProp);
@@ -103,6 +101,10 @@ Avatar.propTypes = {
    */
   childrenClassName: PropTypes.string,
   /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
    * @ignore
    */
   className: PropTypes.string,
@@ -133,6 +135,4 @@ Avatar.defaultProps = {
   component: 'div',
 };
 
-Avatar.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+export default withStyles(styleSheet)(Avatar);

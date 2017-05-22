@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
 export const styleSheet = createStyleSheet('MuiDialogContent', (theme) => {
   const gutter = theme.spacing.unit * 3;
@@ -20,14 +20,13 @@ export const styleSheet = createStyleSheet('MuiDialogContent', (theme) => {
   };
 });
 
-export default function DialogContent(props, context) {
+function DialogContent(props) {
   const {
+    classes,
     children,
     className,
     ...other
   } = props;
-
-  const classes = context.styleManager.render(styleSheet);
 
   return (
     <div className={classNames(classes.root, className)} {...other}>
@@ -42,11 +41,13 @@ DialogContent.propTypes = {
    */
   children: PropTypes.node,
   /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
    * @ignore
    */
   className: PropTypes.string,
 };
 
-DialogContent.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+export default withStyles(styleSheet)(DialogContent);

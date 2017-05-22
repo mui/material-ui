@@ -17,74 +17,17 @@ function getTranslateValue(props, element) {
     return `translate3d(${0 - (rect.left + rect.width)}px, 0, 0)`;
   } else if (direction === 'up') {
     return `translate3d(0, calc(100vh - ${rect.top}px), 0)`;
-  } else if (direction === 'down') {
-    return `translate3d(0, ${0 - (rect.top + rect.height)}px, 0)`;
   }
 
-  return 'translate3d(0, 0, 0)';
+  // direction === 'down
+  return `translate3d(0, ${0 - (rect.top + rect.height)}px, 0)`;
 }
 
-export default class Slide extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    /**
-     * @ignore
-     */
-    className: PropTypes.string,
-    /**
-     * Direction the child element will enter from.
-     */
-    direction: PropTypes.oneOf(['left', 'right', 'up', 'down']),
-    /**
-     * Duration of the animation when the element is entering.
-     */
-    enterTransitionDuration: PropTypes.number,
-    /**
-     * If `true`, show the component; triggers the enter or exit animation.
-     */
-    in: PropTypes.bool,
-    /**
-     * Duration of the animation when the element is exiting.
-     */
-    leaveTransitionDuration: PropTypes.number,
-    /**
-     * Slide in by a fixed number of pixels or %.
-     */
-    offset: PropTypes.string,
-    /**
-     * Callback fired before the component enters.
-     */
-    onEnter: PropTypes.func,
-    /**
-     * Callback fired when the component is entering.
-     */
-    onEntering: PropTypes.func,
-    /**
-     * Callback fired when the component has entered.
-     */
-    onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
-    /**
-     * Callback fired before the component exits.
-     */
-    onExit: PropTypes.func,
-    /**
-     * Callback fired when the component is exiting.
-     */
-    onExiting: PropTypes.func,
-    /**
-     * Callback fired when the component has exited.
-     */
-    onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
-  };
-
+class Slide extends Component {
   static defaultProps = {
     direction: 'down',
     enterTransitionDuration: duration.enteringScreen,
     leaveTransitionDuration: duration.leavingScreen,
-  };
-
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
   };
 
   componentDidMount() {
@@ -160,3 +103,61 @@ export default class Slide extends Component {
     );
   }
 }
+
+Slide.propTypes = {
+  children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * Direction the child element will enter from.
+   */
+  direction: PropTypes.oneOf(['left', 'right', 'up', 'down']),
+  /**
+   * Duration of the animation when the element is entering.
+   */
+  enterTransitionDuration: PropTypes.number,
+  /**
+   * If `true`, show the component; triggers the enter or exit animation.
+   */
+  in: PropTypes.bool,
+  /**
+   * Duration of the animation when the element is exiting.
+   */
+  leaveTransitionDuration: PropTypes.number,
+  /**
+   * Slide in by a fixed number of pixels or %.
+   */
+  offset: PropTypes.string,
+  /**
+   * Callback fired before the component enters.
+   */
+  onEnter: PropTypes.func,
+  /**
+   * Callback fired when the component is entering.
+   */
+  onEntering: PropTypes.func,
+  /**
+   * Callback fired when the component has entered.
+   */
+  onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
+  /**
+   * Callback fired before the component exits.
+   */
+  onExit: PropTypes.func,
+  /**
+   * Callback fired when the component is exiting.
+   */
+  onExiting: PropTypes.func,
+  /**
+   * Callback fired when the component has exited.
+   */
+  onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
+};
+
+Slide.contextTypes = {
+  styleManager: customPropTypes.muiRequired,
+};
+
+export default Slide;

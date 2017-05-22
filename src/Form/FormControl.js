@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
 export const styleSheet = createStyleSheet('MuiFormControl', {
   root: {
@@ -18,39 +18,12 @@ export const styleSheet = createStyleSheet('MuiFormControl', {
 });
 
 /**
- * FormControl - provides context such as dirty/focused/error/required for form inputs
+ * Provides context such as dirty/focused/error/required for form inputs.
  */
-export default class FormControl extends Component {
-  static propTypes = {
-    /**
-     * The contents of the form control.
-     */
-    children: PropTypes.node,
-    /**
-     * @ignore
-     */
-    className: PropTypes.string,
-    /**
-     * If `true`, the label should be displayed in an error state.
-     */
-    error: PropTypes.bool,
-    /**
-     * If `true`, the label will indicate that the input is required.
-     */
-    required: PropTypes.bool,
-  };
-
+class FormControl extends Component {
   static defaultProps = {
     error: false,
     required: false,
-  };
-
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
-  static childContextTypes = {
-    muiFormControl: PropTypes.object.isRequired,
   };
 
   state = {
@@ -103,12 +76,11 @@ export default class FormControl extends Component {
   render() {
     const {
       children,
+      classes,
       className,
       error, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
-
-    const classes = this.context.styleManager.render(styleSheet);
 
     return (
       <div
@@ -122,3 +94,32 @@ export default class FormControl extends Component {
     );
   }
 }
+
+FormControl.propTypes = {
+  /**
+   * The contents of the form control.
+   */
+  children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * If `true`, the label should be displayed in an error state.
+   */
+  error: PropTypes.bool,
+  /**
+   * If `true`, the label will indicate that the input is required.
+   */
+  required: PropTypes.bool,
+};
+
+FormControl.childContextTypes = {
+  muiFormControl: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(FormControl);

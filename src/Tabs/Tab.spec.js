@@ -14,7 +14,7 @@ describe('<Tab />', () => {
   const icon = <Icon>restore</Icon>;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     mount = createMount();
     classes = shallow.context.styleManager.render(styleSheet);
   });
@@ -29,11 +29,6 @@ describe('<Tab />', () => {
     );
     assert.strictEqual(wrapper.name(), 'ButtonBase');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
-  });
-
-  it('should have a ref on label property', () => {
-    const instance = mount(<Tab label="foo" />).instance();
-    assert.isDefined(instance.label, 'should be defined');
   });
 
   describe('prop: className', () => {
@@ -112,13 +107,12 @@ describe('<Tab />', () => {
     it('should render icon element', () => {
       const wrapper = shallow(<Tab icon={icon} />);
       const iconWrapper = wrapper.childAt(0);
-      assert.strictEqual(iconWrapper.is('Icon'), true);
+      assert.strictEqual(iconWrapper.is(Icon), true);
     });
 
     it('should render a font icon if a icon string is provided', () => {
       const wrapper = shallow(<Tab icon="book" />);
-      assert.strictEqual(wrapper.find('Icon').length, 1,
-        'should have an Icon');
+      assert.strictEqual(wrapper.find(Icon).length, 1, 'should have an Icon');
     });
   });
 
@@ -158,5 +152,10 @@ describe('<Tab />', () => {
       const wrapper = shallow(<Tab fullWidth textColor="#eee" style={style} />);
       assert.deepEqual(wrapper.props().style, style);
     });
+  });
+
+  it('should have a ref on label property', () => {
+    const instance = mount(<Tab.Naked label="foo" classes={classes} />).instance();
+    assert.isDefined(instance.label, 'should be defined');
   });
 });

@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
 export const styleSheet = createStyleSheet('MuiFormGroup', {
   root: {
@@ -22,9 +22,14 @@ export const styleSheet = createStyleSheet('MuiFormGroup', {
  * It provides compact row layout and FormLabel awareness.
  * Upon focusing on one of the child controls, it will propagate `focused` to the label.
  */
-export default function FormGroup(props, context) {
-  const { className, children, row, ...other } = props;
-  const classes = context.styleManager.render(styleSheet);
+function FormGroup(props) {
+  const {
+    classes,
+    className,
+    children,
+    row,
+    ...other
+  } = props;
   const rootClassName = classNames(classes.root, {
     [classes.row]: row,
   }, className);
@@ -42,6 +47,10 @@ FormGroup.propTypes = {
    */
   children: PropTypes.node,
   /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
    * @ignore
    */
   className: PropTypes.string,
@@ -55,6 +64,4 @@ FormGroup.defaultProps = {
   row: false,
 };
 
-FormGroup.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+export default withStyles(styleSheet)(FormGroup);

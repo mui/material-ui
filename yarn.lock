@@ -3029,7 +3029,7 @@ hoek@2.x.x:
   version "2.16.3"
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-2.16.3.tgz#20bb7403d3cea398e91dc4710a8ff1b8274a25ed"
 
-hoist-non-react-statics@^1.0.0:
+hoist-non-react-statics@^1.0.0, hoist-non-react-statics@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-1.2.0.tgz#aa448cf0986d55cc40773b17174b7dd066cb7cfb"
 
@@ -4145,23 +4145,7 @@ mkdirp@~0.3.5:
   version "0.3.5"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.3.5.tgz#de3e5f8961c88c787ee1368df849ac4413eca8d7"
 
-mocha@^3.2.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/mocha/-/mocha-3.3.0.tgz#d29b7428d3f52c82e2e65df1ecb7064e1aabbfb5"
-  dependencies:
-    browser-stdout "1.3.0"
-    commander "2.9.0"
-    debug "2.6.0"
-    diff "3.2.0"
-    escape-string-regexp "1.0.5"
-    glob "7.1.1"
-    growl "1.9.2"
-    json3 "3.3.2"
-    lodash.create "3.1.1"
-    mkdirp "0.5.1"
-    supports-color "3.1.2"
-
-mocha@^3.4.1:
+mocha@^3.2.0, mocha@^3.4.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/mocha/-/mocha-3.4.1.tgz#a3802b4aa381934cacb38de70cf771621da8f9af"
   dependencies:

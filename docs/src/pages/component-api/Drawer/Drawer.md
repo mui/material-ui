@@ -1,12 +1,13 @@
 # Drawer
 
-This is a drawer.
+
 
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | anchor | enum:&nbsp;'left'<br>&nbsp;'top'<br>&nbsp;'right'<br>&nbsp;'bottom'<br> | 'left' | Side which will the drawer will appear from. |
 | children | node |  | The contents of the drawer. |
+| classes | object |  | Useful to extend the style applied to components. |
 | docked | bool | false | If `true`, the drawer will dock itself and will no longer slide in with an overlay. |
 | elevation | number | 16 | The elevation of the drawer. |
 | enterTransitionDuration | number | duration.enteringScreen | Customizes duration of enter animation (ms) |

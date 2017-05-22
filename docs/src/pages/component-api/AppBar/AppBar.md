@@ -7,6 +7,7 @@
 |:-----|:-----|:--------|:------------|
 | accent | bool | false | If `true`, the AppBar will use the theme's accent color. |
 | children | node |  | The content of the component. |
+| classes | object |  | Useful to extend the style applied to components. |
 
 Any other properties supplied will be spread to the root element.
 ## Classes

@@ -47,7 +47,7 @@ class ConfirmationDialog extends Component {
     }
   }
 
-  radioGroup = undefined;
+  radioGroup = null;
 
   handleEntering = () => {
     this.radioGroup.focus();
@@ -77,7 +77,7 @@ class ConfirmationDialog extends Component {
         <DialogTitle>Phone Ringtone</DialogTitle>
         <DialogContent>
           <RadioGroup
-            ref={(node) => { this.radioGroup = node; }}
+            innerRef={(node) => { this.radioGroup = node; }}
             aria-label="Gender"
             name="gender"
             selectedValue={this.state.selectedValue}

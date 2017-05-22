@@ -10,7 +10,7 @@ describe('<CardHeader />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
@@ -18,7 +18,7 @@ describe('<CardHeader />', () => {
     const wrapper = shallow(
       <CardHeader />,
     );
-    assert.strictEqual(wrapper.name(), 'CardContent');
+    assert.strictEqual(wrapper.name(), 'withStyles(CardContent)');
   });
 
   it('should have the cardHeader class', () => {
@@ -39,13 +39,13 @@ describe('<CardHeader />', () => {
 
     it('should render the title as headline text', () => {
       const title = wrapper.childAt(0);
-      assert.strictEqual(title.name(), 'Typography');
+      assert.strictEqual(title.name(), 'withStyles(Typography)');
       assert.strictEqual(title.props().type, 'headline');
     });
 
     it('should render the subeader as body1 secondary text', () => {
       const subheader = wrapper.childAt(1);
-      assert.strictEqual(subheader.name(), 'Typography');
+      assert.strictEqual(subheader.name(), 'withStyles(Typography)');
       assert.strictEqual(subheader.props().type, 'body1');
       assert.strictEqual(subheader.props().secondary, true);
     });
@@ -79,7 +79,7 @@ describe('<CardHeader />', () => {
       assert.strictEqual(container.hasClass(classes.content), true,
         'should have the content class');
       const title = container.childAt(0);
-      assert.strictEqual(title.name(), 'Typography');
+      assert.strictEqual(title.name(), 'withStyles(Typography)');
       assert.strictEqual(title.props().type, 'body2');
     });
 
@@ -88,7 +88,7 @@ describe('<CardHeader />', () => {
       assert.strictEqual(container.hasClass(classes.content), true,
         'should have the content class');
       const subheader = container.childAt(1);
-      assert.strictEqual(subheader.name(), 'Typography');
+      assert.strictEqual(subheader.name(), 'withStyles(Typography)');
       assert.strictEqual(subheader.props().type, 'body2');
       assert.strictEqual(subheader.props().secondary, true);
     });

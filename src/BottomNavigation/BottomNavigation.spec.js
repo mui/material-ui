@@ -15,7 +15,7 @@ describe('<BottomNavigation />', () => {
   const icon = <Icon>restore</Icon>;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
     mount = createMount();
   });

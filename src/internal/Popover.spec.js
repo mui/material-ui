@@ -13,9 +13,9 @@ describe('<Popover />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
-    mount = createMount();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
+    mount = createMount();
   });
 
   after(() => {
@@ -25,7 +25,7 @@ describe('<Popover />', () => {
   describe('root node', () => {
     it('should render a Modal with an invisible backdrop as the root node', () => {
       const wrapper = shallow(<Popover />);
-      assert.strictEqual(wrapper.name(), 'Modal');
+      assert.strictEqual(wrapper.name(), 'withStyles(Modal)');
       assert.strictEqual(wrapper.props().backdropInvisible, true,
         'should have an invisible backdrop');
     });
@@ -169,11 +169,11 @@ describe('<Popover />', () => {
       assert.strictEqual(wrapper.childAt(0).childAt(0).name(), 'withStyles(Paper)');
     });
 
-    it('should have the popover class and user classes', () => {
+    it('should have the paper class and user classes', () => {
       const wrapper = shallow(<Popover className="test-class" />);
       const paper = wrapper.childAt(0).childAt(0);
       assert.strictEqual(paper.hasClass('test-class'), true, 'should have the user class');
-      assert.strictEqual(paper.hasClass(classes.popover), true, 'should have the popover class');
+      assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the popover class');
     });
 
     it('should have a elevation prop passed down', () => {

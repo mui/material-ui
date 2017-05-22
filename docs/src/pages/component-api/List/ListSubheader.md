@@ -6,6 +6,7 @@
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  | The content of the component. |
+| classes | object |  | Useful to extend the style applied to components. |
 | inset | bool | false | If `true`, the List Subheader will be indented. |
 | primary | bool | false | If `true`, the List Subheader will have the theme primary color. |
 

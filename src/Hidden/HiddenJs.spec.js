@@ -84,7 +84,7 @@ describe('<HiddenJs />', () => {
           </HiddenJs>,
         );
         assert.isNotNull(wrapper.type(), 'should render');
-        assert.strictEqual(wrapper.name(), 'Typography');
+        assert.strictEqual(wrapper.name(), 'withStyles(Typography)');
       });
     });
   }

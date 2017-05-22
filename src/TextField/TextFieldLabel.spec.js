@@ -10,13 +10,13 @@ describe('<TextFieldLabel />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
   it('should render a FormLabel', () => {
     const wrapper = shallow(<TextFieldLabel />);
-    assert.strictEqual(wrapper.name(), 'FormLabel');
+    assert.strictEqual(wrapper.name(), 'withStyles(FormLabel)');
   });
 
   it('should animate by default', () => {

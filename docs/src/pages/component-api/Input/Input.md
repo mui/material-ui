@@ -1,10 +1,11 @@
 # Input
 
-Input
+
 
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| classes | object |  | Useful to extend the style applied to components. |
 | className | string |  | The CSS class name of the wrapper element. |
 | component | union:&nbsp;string<br>&nbsp;func<br> |  | The component used for the root node. Either a string to use a DOM element or a component. It's an `input` by default. |
 | defaultValue | string |  | The default value of the `Input` element. |
@@ -14,6 +15,7 @@ Input
 | id | string |  |  |
 | inputClassName | string |  | The CSS class name of the input element. |
 | inputProps | object |  | Properties applied to the `input` element. |
+| inputRef | function |  | Use that property to pass a ref callback to the native input component. |
 | multiline | bool | false | If `true`, a textarea element will be rendered. |
 | rows | union:&nbsp;string<br>&nbsp;number<br> |  | Number of rows to display when multiline option is set to true. |
 | rowsMax | union:&nbsp;string<br>&nbsp;number<br> |  | Maxium number of rows to display when multiline option is set to true. |

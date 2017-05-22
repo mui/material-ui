@@ -24,25 +24,12 @@ export const styleSheet = createStyleSheet('MuiTouchRipple', {
   },
 });
 
-export default class TouchRipple extends Component {
-  static propTypes = {
-    /**
-     * If `true`, the ripple starts at the center of the component
-     * rather than at the point of interaction.
-     */
-    center: PropTypes.bool,
-    /**
-     * @ignore
-     */
-    className: PropTypes.string,
-  };
-
+/**
+ * @ignore - internal component.
+ */
+class TouchRipple extends Component {
   static defaultProps = {
     center: false,
-  };
-
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
   };
 
   state = {
@@ -161,7 +148,6 @@ export default class TouchRipple extends Component {
       className,
       ...other
     } = this.props;
-
     const classes = this.context.styleManager.render(styleSheet);
 
     return (
@@ -177,3 +163,21 @@ export default class TouchRipple extends Component {
     );
   }
 }
+
+TouchRipple.propTypes = {
+  /**
+   * If `true`, the ripple starts at the center of the component
+   * rather than at the point of interaction.
+   */
+  center: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+};
+
+TouchRipple.contextTypes = {
+  styleManager: customPropTypes.muiRequired,
+};
+
+export default TouchRipple;

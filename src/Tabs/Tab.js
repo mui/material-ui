@@ -5,141 +5,78 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import ButtonBase from '../internal/ButtonBase';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 import Icon from '../Icon';
 
-export const styleSheet = createStyleSheet('MuiTab', (theme) => {
-  return {
-    root: {
-      ...theme.typography.button,
-      maxWidth: 264,
-      minWidth: 72,
-      [theme.breakpoints.up('md')]: {
-        minWidth: 160,
-      },
-      background: 'none',
-      padding: 0,
-      height: 48,
-      flex: 'none',
-      overflow: 'hidden',
+export const styleSheet = createStyleSheet('MuiTab', (theme) => ({
+  root: {
+    ...theme.typography.button,
+    maxWidth: 264,
+    minWidth: 72,
+    [theme.breakpoints.up('md')]: {
+      minWidth: 160,
     },
-    rootLabelIcon: {
-      height: 72,
+    background: 'none',
+    padding: 0,
+    height: 48,
+    flex: 'none',
+    overflow: 'hidden',
+  },
+  rootLabelIcon: {
+    height: 72,
+  },
+  rootAccent: {
+    color: theme.palette.text.secondary,
+  },
+  rootAccentSelected: {
+    color: theme.palette.accent.A200,
+  },
+  rootAccentDisabled: {
+    color: theme.palette.text.disabled,
+  },
+  rootInherit: {
+    color: 'inherit',
+    opacity: 0.7,
+  },
+  rootInheritSelected: {
+    opacity: 1,
+  },
+  rootInheritDisabled: {
+    opacity: 0.4,
+  },
+  fullWidth: {
+    flex: '1 0 0',
+  },
+  labelContainer: {
+    paddingTop: 6,
+    paddingBottom: 6,
+    paddingLeft: 12,
+    paddingRight: 12,
+    [theme.breakpoints.up('md')]: {
+      paddingLeft: theme.spacing.unit * 3,
+      paddingRight: theme.spacing.unit * 3,
     },
-    rootAccent: {
-      color: theme.palette.text.secondary,
+  },
+  label: {
+    fontSize: theme.typography.fontSize,
+    fontWeight: theme.typography.fontWeightMedium,
+    fontFamily: theme.typography.fontFamily,
+    textTransform: 'uppercase',
+    whiteSpace: 'normal',
+    [theme.breakpoints.up('md')]: {
+      fontSize: theme.typography.fontSize - 1,
     },
-    rootAccentSelected: {
-      color: theme.palette.accent.A200,
+  },
+  labelWrapped: {
+    [theme.breakpoints.down('md')]: {
+      fontSize: theme.typography.fontSize - 2,
     },
-    rootAccentDisabled: {
-      color: theme.palette.text.disabled,
-    },
-    rootInherit: {
-      color: 'inherit',
-      opacity: 0.7,
-    },
-    rootInheritSelected: {
-      opacity: 1,
-    },
-    rootInheritDisabled: {
-      opacity: 0.4,
-    },
-    fullWidth: {
-      flex: '1 0 0',
-    },
-    labelContainer: {
-      paddingTop: 6,
-      paddingBottom: 6,
-      paddingLeft: 12,
-      paddingRight: 12,
-      [theme.breakpoints.up('md')]: {
-        paddingLeft: theme.spacing.unit * 3,
-        paddingRight: theme.spacing.unit * 3,
-      },
-    },
-    label: {
-      fontSize: theme.typography.fontSize,
-      fontWeight: theme.typography.fontWeightMedium,
-      fontFamily: theme.typography.fontFamily,
-      textTransform: 'uppercase',
-      whiteSpace: 'normal',
-      [theme.breakpoints.up('md')]: {
-        fontSize: theme.typography.fontSize - 1,
-      },
-    },
-    labelWrapped: {
-      [theme.breakpoints.down('md')]: {
-        fontSize: theme.typography.fontSize - 2,
-      },
-    },
-  };
-});
+  },
+}));
 
-export default class Tab extends Component {
-  static propTypes = {
-    /**
-     * @ignore
-     */
-    className: PropTypes.string,
-    /**
-     * If `true`, the tab will be disabled.
-     */
-    disabled: PropTypes.bool,
-    /**
-     * @ignore
-     */
-    fullWidth: PropTypes.bool,
-    /**
-     * The icon element. If a string is provided, it will be used as a font ligature.
-     */
-    icon: PropTypes.node,
-    /**
-     * @ignore
-     */
-    index: PropTypes.number,
-    /**
-     * The label element.
-     */
-    label: PropTypes.node,
-    /**
-     * The CSS class name of the label element.
-     */
-    labelClassName: PropTypes.string,
-    /**
-     * @ignore
-     */
-    onChange: PropTypes.func,
-    /**
-     * @ignore
-     */
-    onClick: PropTypes.func,
-    /**
-     * @ignore
-     */
-    selected: PropTypes.bool,
-    /**
-     * @ignore
-     */
-    style: PropTypes.object,
-    /**
-     * @ignore
-     */
-    textColor: PropTypes.oneOfType([
-      PropTypes.oneOf([
-        'accent',
-        'inherit',
-      ]),
-      PropTypes.string,
-    ]),
-  };
-
+class Tab extends Component {
   static defaultProps = {
     disabled: false,
-  };
-
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
   };
 
   state = {
@@ -184,6 +121,7 @@ export default class Tab extends Component {
 
   render() {
     const {
+      classes,
       className: classNameProp,
       fullWidth,
       icon: iconProp,
@@ -197,8 +135,6 @@ export default class Tab extends Component {
       disabled,
       ...other
     } = this.props;
-
-    const classes = this.context.styleManager.render(styleSheet);
 
     let icon;
 
@@ -266,3 +202,66 @@ export default class Tab extends Component {
     );
   }
 }
+
+Tab.propTypes = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * If `true`, the tab will be disabled.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  fullWidth: PropTypes.bool,
+  /**
+   * The icon element. If a string is provided, it will be used as a font ligature.
+   */
+  icon: PropTypes.node,
+  /**
+   * @ignore
+   */
+  index: PropTypes.number,
+  /**
+   * The label element.
+   */
+  label: PropTypes.node,
+  /**
+   * The CSS class name of the label element.
+   */
+  labelClassName: PropTypes.string,
+  /**
+   * @ignore
+   */
+  onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
+  /**
+   * @ignore
+   */
+  selected: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
+  /**
+   * @ignore
+   */
+  textColor: PropTypes.oneOfType([
+    PropTypes.oneOf([
+      'accent',
+      'inherit',
+    ]),
+    PropTypes.string,
+  ]),
+};
+
+export default withStyles(styleSheet)(Tab);

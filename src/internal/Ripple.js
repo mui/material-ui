@@ -73,36 +73,12 @@ export const styleSheet = createStyleSheet('MuiRipple', (theme) => ({
   },
 }));
 
-export default class Ripple extends Component {
-  static propTypes = {
-    /**
-     * @ignore
-     */
-    className: PropTypes.string,
-    /**
-     * If `true`, the ripple pulsates, typically indicating the keyboard focus state of an element.
-     */
-    pulsate: PropTypes.bool,
-    /**
-     * Diameter of the ripple.
-     */
-    rippleSize: PropTypes.number.isRequired,
-    /**
-     * Horizontal position of the ripple center.
-     */
-    rippleX: PropTypes.number.isRequired,
-    /**
-     * Vertical position of the ripple center.
-     */
-    rippleY: PropTypes.number.isRequired,
-  };
-
+/**
+ * @ignore - internal component.
+ */
+class Ripple extends Component {
   static defaultProps = {
     pulsate: false,
-  };
-
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
   };
 
   state = {
@@ -126,7 +102,7 @@ export default class Ripple extends Component {
   }
 
   ripple = null;
-  leaveTimer = undefined;
+  leaveTimer = null;
 
   start = (callback) => {
     this.setState({
@@ -143,14 +119,12 @@ export default class Ripple extends Component {
   getRippleStyles() {
     const { rippleSize, rippleX, rippleY } = this.props;
 
-    const rippleStyles = {
+    return {
       width: rippleSize,
       height: rippleSize,
       top: -(rippleSize / 2) + rippleY,
       left: -(rippleSize / 2) + rippleX,
     };
-
-    return rippleStyles;
   }
 
   render() {
@@ -177,3 +151,32 @@ export default class Ripple extends Component {
     );
   }
 }
+
+Ripple.propTypes = {
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * If `true`, the ripple pulsates, typically indicating the keyboard focus state of an element.
+   */
+  pulsate: PropTypes.bool,
+  /**
+   * Diameter of the ripple.
+   */
+  rippleSize: PropTypes.number.isRequired,
+  /**
+   * Horizontal position of the ripple center.
+   */
+  rippleX: PropTypes.number.isRequired,
+  /**
+   * Vertical position of the ripple center.
+   */
+  rippleY: PropTypes.number.isRequired,
+};
+
+Ripple.contextTypes = {
+  styleManager: customPropTypes.muiRequired,
+};
+
+export default Ripple;

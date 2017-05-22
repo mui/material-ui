@@ -12,13 +12,13 @@ describe('<Menu />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
   it('should render a Popover', () => {
     const wrapper = shallow(<Menu />);
-    assert.strictEqual(wrapper.name(), 'Popover');
+    assert.strictEqual(wrapper.name(), 'withStyles(Popover)');
   });
 
   it('should fire Popover transition event callbacks', () => {
@@ -129,7 +129,7 @@ describe('<Menu />', () => {
 
     before(() => {
       mount = createMount();
-      wrapper = mount(<Menu />);
+      wrapper = mount(<Menu.Naked classes={classes} />);
       instance = wrapper.instance();
 
       selectedItemFocusSpy = spy();

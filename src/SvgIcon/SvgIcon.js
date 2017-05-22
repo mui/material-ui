@@ -4,33 +4,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiSvgIcon', (theme) => {
-  return {
-    svgIcon: {
-      display: 'inline-block',
-      fill: 'currentColor',
-      height: 24,
-      width: 24,
-      userSelect: 'none',
-      transition: theme.transitions.create('fill', {
-        duration: theme.transitions.duration.shorter,
-      }),
-    },
-  };
-});
+export const styleSheet = createStyleSheet('MuiSvgIcon', (theme) => ({
+  svgIcon: {
+    display: 'inline-block',
+    fill: 'currentColor',
+    height: 24,
+    width: 24,
+    userSelect: 'none',
+    transition: theme.transitions.create('fill', {
+      duration: theme.transitions.duration.shorter,
+    }),
+  },
+}));
 
-export default function SvgIcon(props, context) {
+function SvgIcon(props) {
   const {
     children,
+    classes,
     className: classNameProp,
     titleAccess,
     viewBox,
     ...other
   } = props;
-
-  const classes = context.styleManager.render(styleSheet);
 
   const className = classNames({
     [classes.svgIcon]: true,
@@ -51,13 +48,15 @@ export default function SvgIcon(props, context) {
   );
 }
 
-SvgIcon.muiName = 'SvgIcon';
-
 SvgIcon.propTypes = {
   /**
    * Elements passed into the SVG Icon.
    */
   children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
@@ -81,6 +80,6 @@ SvgIcon.defaultProps = {
   viewBox: '0 0 24 24',
 };
 
-SvgIcon.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+SvgIcon.muiName = 'SvgIcon';
+
+export default withStyles(styleSheet)(SvgIcon);

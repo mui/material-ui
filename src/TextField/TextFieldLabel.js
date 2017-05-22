@@ -4,39 +4,37 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 import { FormLabel } from '../Form';
 
-export const styleSheet = createStyleSheet('MuiTextFieldLabel', (theme) => {
-  return {
-    root: {
-      position: 'absolute',
-      left: 0,
-      top: 0,
-      transform: 'translate(0, 18px) scale(1)',
-      transformOrigin: 'top left',
-    },
-    shrink: {
-      transform: 'translate(0, 0px) scale(0.75)',
-    },
-    animated: {
-      transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shorter,
-        easing: theme.transitions.easing.easeOut,
-      }),
-    },
-  };
-});
+export const styleSheet = createStyleSheet('MuiTextFieldLabel', (theme) => ({
+  root: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    transform: 'translate(0, 18px) scale(1)',
+    transformOrigin: 'top left',
+  },
+  shrink: {
+    transform: 'translate(0, 0px) scale(0.75)',
+  },
+  animated: {
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shorter,
+      easing: theme.transitions.easing.easeOut,
+    }),
+  },
+}));
 
-export default function TextFieldLabel(props, context) {
+function TextFieldLabel(props) {
   const {
     disableAnimation,
     children,
+    classes,
     className: classNameProp,
     shrink,
     ...other
   } = props;
-  const classes = context.styleManager.render(styleSheet);
 
   const className = classNames(classes.root, {
     [classes.animated]: !disableAnimation,
@@ -55,6 +53,10 @@ TextFieldLabel.propTypes = {
    * The content of the component.
    */
   children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
@@ -86,8 +88,6 @@ TextFieldLabel.defaultProps = {
   shrink: false,
 };
 
-TextFieldLabel.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
-
 TextFieldLabel.muiName = 'TextFieldLabel';
+
+export default withStyles(styleSheet)(TextFieldLabel);

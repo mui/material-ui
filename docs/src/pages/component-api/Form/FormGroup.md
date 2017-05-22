@@ -8,6 +8,7 @@ Upon focusing on one of the child controls, it will propagate `focused` to the l
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  | The content of the component. |
+| classes | object |  | Useful to extend the style applied to components. |
 | row | bool | false | Display group of elements in a compact row. |
 
 Any other properties supplied will be spread to the root element.

@@ -6,6 +6,7 @@
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | absolute | bool | false |  |
+| classes | object |  | Useful to extend the style applied to components. |
 | inset | bool | false | If `true`, the divider will be indented. |
 | light | bool | false | If `true`, the divider will have a lighter color. |
 

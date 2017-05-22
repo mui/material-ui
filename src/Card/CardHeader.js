@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 import CardContent from './CardContent';
 
@@ -22,16 +22,16 @@ export const styleSheet = createStyleSheet('MuiCardHeader', (theme) => ({
   },
 }));
 
-export default function CardHeader(props, context) {
+function CardHeader(props) {
   const {
     avatar,
+    classes,
     className: classNameProp,
     subheader,
     title,
     ...other
   } = props;
 
-  const classes = context.styleManager.render(styleSheet);
   const className = classNames(classes.cardHeader, classNameProp);
 
   // Adjustments that depend on the presence of an avatar
@@ -63,6 +63,10 @@ CardHeader.propTypes = {
    */
   avatar: PropTypes.node,
   /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
    * @ignore
    */
   className: PropTypes.string,
@@ -76,6 +80,4 @@ CardHeader.propTypes = {
   title: PropTypes.node,
 };
 
-CardHeader.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+export default withStyles(styleSheet)(CardHeader);

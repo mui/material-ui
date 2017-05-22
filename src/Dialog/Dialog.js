@@ -1,55 +1,57 @@
-// @flow weak
+// @flow
 
 import React, { Element } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 import Modal from '../internal/Modal';
 import Fade from '../transitions/Fade';
 import { duration } from '../styles/transitions';
 import Paper from '../Paper';
 
-export const styleSheet = createStyleSheet('MuiDialog', (theme) => {
-  return {
-    modal: {
-      justifyContent: 'center',
-      alignItems: 'center',
+export const styleSheet = createStyleSheet('MuiDialog', (theme) => ({
+  modal: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  dialog: {
+    display: 'flex',
+    flexDirection: 'column',
+    flex: '0 1 auto',
+    position: 'relative',
+    width: '75%',
+    maxHeight: '90vh',
+    '&:focus': {
+      outline: 'none',
     },
-    dialog: {
-      display: 'flex',
-      flexDirection: 'column',
-      flex: '0 1 auto',
-      position: 'relative',
-      width: '75%',
-      maxHeight: '90vh',
-      '&:focus': {
-        outline: 'none',
-      },
-    },
-    'dialogWidth-xs': {
-      maxWidth: theme.breakpoints.getWidth('xs'),
-    },
-    'dialogWidth-sm': {
-      maxWidth: theme.breakpoints.getWidth('sm'),
-    },
-    'dialogWidth-md': {
-      maxWidth: theme.breakpoints.getWidth('md'),
-    },
-    fullScreen: {
-      width: '100%',
-      maxWidth: '100%',
-      height: '100%',
-      maxHeight: '100%',
-      borderRadius: 0,
-    },
-  };
-});
+  },
+  'dialogWidth-xs': {
+    maxWidth: theme.breakpoints.getWidth('xs'),
+  },
+  'dialogWidth-sm': {
+    maxWidth: theme.breakpoints.getWidth('sm'),
+  },
+  'dialogWidth-md': {
+    maxWidth: theme.breakpoints.getWidth('md'),
+  },
+  fullScreen: {
+    width: '100%',
+    maxWidth: '100%',
+    height: '100%',
+    maxHeight: '100%',
+    borderRadius: 0,
+  },
+}));
 
 type Props = {
   /**
    * Dialog children, usually the included sub-components.
    */
   children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: Object,
   /**
    * @ignore
    */
@@ -133,17 +135,11 @@ type Props = {
 
 /**
  * Dialogs are overlaid modal paper based components with a backdrop.
- *
- * ```jsx
- * <Dialog>
- *   <DialogContent>...</DialogContent>
- *   <DialogActions>...</DialogActions>
- * </Dialog>
- * ```
  */
-function Dialog(props: Props, context: { styleManager: Object }) {
+function Dialog(props: Props) {
   const {
     children,
+    classes,
     className,
     fullScreen,
     ignoreBackdropClick,
@@ -165,8 +161,6 @@ function Dialog(props: Props, context: { styleManager: Object }) {
     transition,
     ...other
   } = props;
-
-  const classes = context.styleManager.render(styleSheet);
 
   // workaround: see #2 test case from https://github.com/facebook/flow/issues/1660#issuecomment-302468866
   const maxWidth = maxWidthProp || Dialog.defaultProps.maxWidth;
@@ -230,8 +224,4 @@ Dialog.defaultProps = {
   transition: Fade,
 };
 
-Dialog.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
-
-export default Dialog;
+export default withStyles(styleSheet)(Dialog);

@@ -9,7 +9,7 @@ describe('<Checkbox />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
@@ -30,8 +30,8 @@ describe('<Checkbox />', () => {
 
   describe('named LabelCheckbox export', () => {
     it('should be Checkbox wrapped with SwitchLabel', () => {
-      assert.strictEqual(LabelCheckbox.name, 'SwitchLabel');
-      assert.strictEqual(LabelCheckbox.displayName, 'withSwitchLabel(Checkbox)');
+      assert.strictEqual(LabelCheckbox.name, 'Style');
+      assert.strictEqual(LabelCheckbox.displayName, 'withStyles(withSwitchLabel(Checkbox))');
     });
   });
 });

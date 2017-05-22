@@ -7,6 +7,7 @@
 |:-----|:-----|:--------|:------------|
 | align | union:&nbsp;'left'<br>&nbsp;'center'<br>&nbsp;'right'<br>&nbsp;'justify'<br> |  |  |
 | children | Element |  |  |
+| classes | any |  | Useful to extend the style applied to components. |
 | colorInherit | boolean | false | If `true`, the text will inherit its color. |
 | component | union:&nbsp;string<br>&nbsp;Function<br> |  | The component used for the root node. Either a string to use a DOM element or a component. By default we map the type to a good default headline component. |
 | gutterBottom | boolean | false | If `true`, the text will have a bottom margin. |

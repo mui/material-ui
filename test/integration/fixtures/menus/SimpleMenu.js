@@ -15,8 +15,13 @@ export default class SimpleMenu extends Component {
     selectedIndex: undefined,
   };
 
-  handleMenuItemClick = (event, index) => this.setState({ selectedIndex: index, open: false });
-  handleRequestClose = () => this.setState({ open: false });
+  handleMenuItemClick = (event, index) => {
+    this.setState({ selectedIndex: index, open: false });
+  };
+
+  handleRequestClose = () => {
+    this.setState({ open: false });
+  };
 
   render() {
     return (
@@ -43,4 +48,3 @@ export default class SimpleMenu extends Component {
     );
   }
 }
-

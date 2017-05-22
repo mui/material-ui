@@ -12,7 +12,7 @@ describe('<Button />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     renderToString = createRenderToString();
     classes = shallow.context.styleManager.render(styleSheet);
   });

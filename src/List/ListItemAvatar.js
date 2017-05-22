@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import warning from 'warning';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
 export const styleSheet = createStyleSheet('MuiListItemAvatar', {
   denseAvatar: {
@@ -21,15 +21,9 @@ export const styleSheet = createStyleSheet('MuiListItemAvatar', {
 });
 
 /**
- * `<ListItemAvatar>` is a simple wrapper to apply the `dense` mode styles to `Avatar`.
- *
- * ```
- * <ListItemAvatar>
- *   <Avatar>
- * </ListItemAvatar>
- * ```
+ * It's a simple wrapper to apply the `dense` mode styles to `Avatar`.
  */
-export default function ListItemAvatar(props, context) {
+function ListItemAvatar(props, context) {
   if (context.dense === undefined) {
     warning(false, `Material-UI: <ListItemAvatar> is a simple wrapper to apply the dense styles
       to <Avatar>. You do not need it unless you are controlling the <List> dense property.`);
@@ -38,10 +32,10 @@ export default function ListItemAvatar(props, context) {
 
   const {
     children,
+    classes,
     className: classNameProp,
     ...other
   } = props;
-  const classes = context.styleManager.render(styleSheet);
 
   return React.cloneElement(children, {
     className: classNames(
@@ -63,6 +57,10 @@ ListItemAvatar.propTypes = {
    */
   children: PropTypes.element.isRequired,
   /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
    * @ignore
    */
   className: PropTypes.string,
@@ -70,5 +68,8 @@ ListItemAvatar.propTypes = {
 
 ListItemAvatar.contextTypes = {
   dense: PropTypes.bool,
-  styleManager: customPropTypes.muiRequired,
 };
+
+ListItemAvatar.muiName = 'ListItemAvatar';
+
+export default withStyles(styleSheet)(ListItemAvatar);
