@@ -8,7 +8,9 @@ You can use it, but you don't have to. This styling solution is interoperable wi
 
 In the previous versions, Material-UI was using LESS, then a custom inline-style solution to write the style of the components.
 These approaches have proven to be limited.
-Finally, we have [moved toward](https://github.com/oliviertassinari/a-journey-toward-better-style) a *CSS-in-JS* solution. We think that it's [the future](https://medium.freecodecamp.com/css-in-javascript-the-future-of-component-based-styling-70b161a79a32).
+Finally, we have [moved toward](https://github.com/oliviertassinari/a-journey-toward-better-style) a *CSS-in-JS* solution. We think that it's the future:
+- [A Unified Styling Language](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
+- [The future of component-based styling](https://medium.freecodecamp.com/css-in-javascript-the-future-of-component-based-styling-70b161a79a32)
 
 So, you may have noticed in the demos how that CSS in Javascript looks like.
 We use the `createStyleSheet` function and `withStyles` Higher-order Component.
