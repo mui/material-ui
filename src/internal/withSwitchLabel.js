@@ -24,7 +24,7 @@ export const styleSheet = createStyleSheet('MuiSwitchLabel', theme => ({
   },
   disabled: {
     color: theme.palette.text.disabled,
-    cursor: 'not-allowed',
+    cursor: 'default',
   },
 }));
 
