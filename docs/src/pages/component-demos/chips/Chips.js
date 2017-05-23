@@ -9,7 +9,7 @@ import FaceIcon from 'material-ui-icons/Face';
 import { grey } from 'material-ui/styles/colors';
 import uxecoImage from 'docs/src/assets/images/uxceo-128.jpg';
 
-const styleSheet = createStyleSheet('Chips', (theme) => ({
+const styleSheet = createStyleSheet('Chips', theme => ({
   chip: {
     margin: theme.spacing.unit,
   },
@@ -35,10 +35,7 @@ function Chips(props) {
   const classes = props.classes;
   return (
     <div className={classes.row}>
-      <Chip
-        label="Basic Chip"
-        className={classes.chip}
-      />
+      <Chip label="Basic Chip" className={classes.chip} />
       <Chip
         avatar={<Avatar>MB</Avatar>}
         label="Clickable Chip"

@@ -20,9 +20,7 @@ describe('<Typography />', () => {
   });
 
   it('should spread props', () => {
-    const wrapper = shallow(
-      <Typography data-test="hello">Hello</Typography>,
-    );
+    const wrapper = shallow(<Typography data-test="hello">Hello</Typography>);
     assert.strictEqual(wrapper.prop('data-test'), 'hello', 'should be spread on the ButtonBase');
   });
 
@@ -42,7 +40,6 @@ describe('<Typography />', () => {
     const wrapper = shallow(<Typography align="center" className="woof">Hello</Typography>);
     assert.strictEqual(wrapper.hasClass(classes['align-center']), true, 'should be center text');
   });
-
   [
     'display4',
     'display3',
@@ -55,7 +52,7 @@ describe('<Typography />', () => {
     'body1',
     'caption',
     'button',
-  ].forEach((type) => {
+  ].forEach(type => {
     it(`should render ${type} text`, () => {
       const wrapper = shallow(<Typography type={type}>Hello</Typography>);
       assert.ok(classes[type] !== undefined);

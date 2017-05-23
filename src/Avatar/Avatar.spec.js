@@ -20,12 +20,7 @@ describe('<Avatar />', () => {
 
     before(() => {
       wrapper = shallow(
-        <Avatar
-          className="my-avatar"
-          src="something.jpg"
-          alt="Hello World!"
-          data-my-prop="woof"
-        />,
+        <Avatar className="my-avatar" src="something.jpg" alt="Hello World!" data-my-prop="woof" />,
       );
     });
 
@@ -61,11 +56,7 @@ describe('<Avatar />', () => {
 
     before(() => {
       wrapper = shallow(
-        <Avatar
-          className="my-avatar"
-          data-my-prop="woof"
-          childrenClassName="my-children"
-        >
+        <Avatar className="my-avatar" data-my-prop="woof" childrenClassName="my-children">
           <span className="my-icon-font">icon</span>
         </Avatar>,
       );
@@ -99,11 +90,7 @@ describe('<Avatar />', () => {
 
     before(() => {
       wrapper = shallow(
-        <Avatar
-          className="my-avatar"
-          data-my-prop="woof"
-          childrenClassName="my-children"
-        >
+        <Avatar className="my-avatar" data-my-prop="woof" childrenClassName="my-children">
           <CancelIcon />
         </Avatar>,
       );
@@ -134,10 +121,7 @@ describe('<Avatar />', () => {
 
     before(() => {
       wrapper = shallow(
-        <Avatar
-          className="my-avatar"
-          data-my-prop="woof"
-        >
+        <Avatar className="my-avatar" data-my-prop="woof">
           OT
         </Avatar>,
       );

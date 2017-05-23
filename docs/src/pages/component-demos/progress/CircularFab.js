@@ -39,17 +39,20 @@ class CircularFab extends Component {
 
   handleButtonClick = () => {
     if (!this.state.loading) {
-      this.setState({
-        success: false,
-        loading: true,
-      }, () => {
-        this.timer = setTimeout(() => {
-          this.setState({
-            loading: false,
-            success: true,
-          });
-        }, 2e3);
-      });
+      this.setState(
+        {
+          success: false,
+          loading: true,
+        },
+        () => {
+          this.timer = setTimeout(() => {
+            this.setState({
+              loading: false,
+              success: true,
+            });
+          }, 2e3);
+        },
+      );
     }
   };
 
@@ -66,12 +69,7 @@ class CircularFab extends Component {
 
     return (
       <div className={classes.wrapper}>
-        <Button
-          fab
-          primary
-          className={buttonClass}
-          onClick={this.handleButtonClick}
-        >
+        <Button fab primary className={buttonClass} onClick={this.handleButtonClick}>
           {success ? <CheckIcon /> : <SaveIcon />}
         </Button>
         {loading && <CircularProgress size={60} className={classes.progress} />}

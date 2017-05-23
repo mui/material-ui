@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 
-const styleSheet = createStyleSheet('TextFields', (theme) => ({
+const styleSheet = createStyleSheet('TextFields', theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -30,7 +30,7 @@ class TextFields extends Component {
           label="Name"
           className={classes.input}
           value={this.state.name}
-          onChange={(event) => this.setState({ name: event.target.value })}
+          onChange={event => this.setState({ name: event.target.value })}
         />
         <TextField
           id="uncontrolled"
@@ -52,12 +52,7 @@ class TextFields extends Component {
           defaultValue="Hello World"
           className={classes.input}
         />
-        <TextField
-          id="password"
-          label="Password"
-          className={classes.input}
-          type="password"
-        />
+        <TextField id="password" label="Password" className={classes.input} type="password" />
         <TextField
           id="multiline-flexible"
           label="Multiline"

@@ -24,13 +24,13 @@ class RadioGroup extends Component {
       return;
     }
 
-    const focusRadios = this.radios.filter((n) => !n.props.disabled);
+    const focusRadios = this.radios.filter(n => !n.props.disabled);
 
     if (!focusRadios.length) {
       return;
     }
 
-    const selectedRadio = find(focusRadios, (n) => n.props.checked);
+    const selectedRadio = find(focusRadios, n => n.props.checked);
 
     if (selectedRadio) {
       selectedRadio.focus();
@@ -71,7 +71,9 @@ class RadioGroup extends Component {
           return cloneElement(child, {
             key: index,
             name,
-            innerRef: (node) => { this.radios.push(node); },
+            innerRef: node => {
+              this.radios.push(node);
+            },
             checked: selected,
             onChange: this.handleRadioChange,
           });

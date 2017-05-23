@@ -34,7 +34,7 @@ describe('<Menu> integration', () => {
       assert.strictEqual(menuEl, null, 'should not render the menu to the DOM');
     });
 
-    it('should open', (done) => {
+    it('should open', done => {
       wrapper.setProps({
         onEntered() {
           assert.ok(true, 'should have fired the onEntered callback');
@@ -145,7 +145,7 @@ describe('<Menu> integration', () => {
       assert.strictEqual(menuEl, null, 'should not render the menu to the DOM');
     });
 
-    it('should open', (done) => {
+    it('should open', done => {
       wrapper.setProps({
         onEntering() {
           assert.ok(true, 'should have fired the onEntering callback');
@@ -174,7 +174,7 @@ describe('<Menu> integration', () => {
       assert.strictEqual(wrapper.state().open, false, 'should have closed');
     });
 
-    it('should open', (done) => {
+    it('should open', done => {
       wrapper.setProps({
         onEntering() {
           assert.ok(true, 'should have fired the onEntering callback');
@@ -211,7 +211,7 @@ describe('<Menu> integration', () => {
       backdrop = portalWrapper.find('Backdrop');
     });
 
-    it('should close the menu with tab', (done) => {
+    it('should close the menu with tab', done => {
       wrapper.setProps({
         onExited() {
           assert.strictEqual(document.getElementById('[data-mui-test="Menu"]'), null);
@@ -225,7 +225,7 @@ describe('<Menu> integration', () => {
       assert.strictEqual(wrapper.state().open, false, 'should be closed');
     });
 
-    it('should close the menu using the backdrop', (done) => {
+    it('should close the menu using the backdrop', done => {
       wrapper.setProps({
         onExited() {
           assert.strictEqual(document.getElementById('[data-mui-test="Menu"]'), null);

@@ -13,10 +13,10 @@ const styleSheet = createStyleSheet('LinearDeterminate', {
 });
 
 class LinearDeterminate extends Component {
-  timer: number
+  timer: number;
   state = {
     completed: 0,
-  }
+  };
 
   componentDidMount() {
     this.timer = setInterval(this.progress, 500);
@@ -34,7 +34,7 @@ class LinearDeterminate extends Component {
       const diff = Math.random() * 10;
       this.setState({ completed: completed + diff });
     }
-  }
+  };
 
   render() {
     const classes = this.props.classes;

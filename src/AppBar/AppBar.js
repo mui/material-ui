@@ -7,7 +7,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
 
-export const styleSheet = createStyleSheet('MuiAppBar', (theme) => ({
+export const styleSheet = createStyleSheet('MuiAppBar', theme => ({
   appBar: {
     display: 'flex',
     flexDirection: 'column',
@@ -28,27 +28,19 @@ export const styleSheet = createStyleSheet('MuiAppBar', (theme) => ({
 }));
 
 function AppBar(props) {
-  const {
-    accent,
-    children,
-    classes,
-    className: classNameProp,
-    ...other
-  } = props;
+  const { accent, children, classes, className: classNameProp, ...other } = props;
 
-  const className = classNames({
-    [classes.appBar]: true,
-    [classes.primary]: !accent,
-    [classes.accent]: accent,
-  }, classNameProp);
+  const className = classNames(
+    {
+      [classes.appBar]: true,
+      [classes.primary]: !accent,
+      [classes.accent]: accent,
+    },
+    classNameProp,
+  );
 
   return (
-    <Paper
-      square
-      elevation={4}
-      className={className}
-      {...other}
-    >
+    <Paper square elevation={4} className={className} {...other}>
       {children}
     </Paper>
   );

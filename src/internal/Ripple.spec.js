@@ -22,10 +22,16 @@ describe('<Ripple />', () => {
 
   it('should have the ripple className', () => {
     const wrapper = shallow(<Ripple rippleX={0} rippleY={0} rippleSize={11} />);
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.ripple), true,
-      'should have the ripple class');
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.fast), false,
-      'should not have the fast (pulse) class');
+    assert.strictEqual(
+      wrapper.childAt(0).hasClass(classes.ripple),
+      true,
+      'should have the ripple class',
+    );
+    assert.strictEqual(
+      wrapper.childAt(0).hasClass(classes.fast),
+      false,
+      'should not have the fast (pulse) class',
+    );
   });
 
   describe('starting and stopping', () => {
@@ -42,17 +48,23 @@ describe('<Ripple />', () => {
       wrapper.update(); // needed for class assertion since we used instance method to change state
 
       assert.strictEqual(wrapper.state('rippleVisible'), true, 'should be visible');
-      assert.strictEqual(wrapper.childAt(0).hasClass(classes.rippleVisible), true,
-        'should have the visible class');
+      assert.strictEqual(
+        wrapper.childAt(0).hasClass(classes.rippleVisible),
+        true,
+        'should have the visible class',
+      );
     });
 
-    it('should stop the ripple', (done) => {
+    it('should stop the ripple', done => {
       wrapper.instance().componentWillLeave(done);
       wrapper.update(); // needed for class assertion since we used instance method to change state
 
       assert.strictEqual(wrapper.state('rippleLeaving'), true, 'should be leaving');
-      assert.strictEqual(wrapper.hasClass(classes.containerLeaving), true,
-        'should have the leaving class');
+      assert.strictEqual(
+        wrapper.hasClass(classes.containerLeaving),
+        true,
+        'should have the leaving class',
+      );
     });
   });
 
@@ -60,20 +72,16 @@ describe('<Ripple />', () => {
     let wrapper;
 
     before(() => {
-      wrapper = shallow(
-        <Ripple
-          rippleX={0}
-          rippleY={0}
-          rippleSize={11}
-          pulsate
-        />,
-      );
+      wrapper = shallow(<Ripple rippleX={0} rippleY={0} rippleSize={11} pulsate />);
     });
 
     it('should render the ripple inside a pulsating span', () => {
       assert.strictEqual(wrapper.name(), 'span');
-      assert.strictEqual(wrapper.hasClass(classes.containerPulsating), true,
-        'should have the pulsating class');
+      assert.strictEqual(
+        wrapper.hasClass(classes.containerPulsating),
+        true,
+        'should have the pulsating class',
+      );
       const ripple = wrapper.childAt(0);
       assert.strictEqual(ripple.hasClass(classes.ripple), true, 'should have the ripple class');
       assert.strictEqual(ripple.hasClass(classes.rippleFast), true, 'should have the fast class');
@@ -86,19 +94,28 @@ describe('<Ripple />', () => {
       wrapper.update(); // needed for class assertion since we used instance method to change state
 
       assert.strictEqual(wrapper.state('rippleVisible'), true, 'should be visible');
-      assert.strictEqual(wrapper.hasClass(classes.containerPulsating), true,
-        'should have the pulsating class');
-      assert.strictEqual(wrapper.childAt(0).hasClass(classes.rippleVisible), true,
-        'should have the visible class');
+      assert.strictEqual(
+        wrapper.hasClass(classes.containerPulsating),
+        true,
+        'should have the pulsating class',
+      );
+      assert.strictEqual(
+        wrapper.childAt(0).hasClass(classes.rippleVisible),
+        true,
+        'should have the visible class',
+      );
     });
 
-    it('should stop the ripple', (done) => {
+    it('should stop the ripple', done => {
       wrapper.instance().componentWillLeave(done);
       wrapper.update(); // needed for class assertion since we used instance method to change state
 
       assert.strictEqual(wrapper.state('rippleLeaving'), true, 'should be leaving');
-      assert.strictEqual(wrapper.hasClass(classes.containerLeaving), true,
-        'should have the leaving class');
+      assert.strictEqual(
+        wrapper.hasClass(classes.containerLeaving),
+        true,
+        'should have the leaving class',
+      );
     });
   });
 
@@ -109,14 +126,7 @@ describe('<Ripple />', () => {
 
     before(() => {
       mount = createMount();
-      wrapper = mount(
-        <Ripple
-          rippleX={0}
-          rippleY={0}
-          rippleSize={11}
-          pulsate
-        />,
-      );
+      wrapper = mount(<Ripple rippleX={0} rippleY={0} rippleSize={11} pulsate />);
       clock = useFakeTimers();
     });
 
@@ -129,11 +139,13 @@ describe('<Ripple />', () => {
       const callbackSpy = spy();
       wrapper.instance().componentWillLeave(callbackSpy);
       clock.tick(549);
-      assert.strictEqual(callbackSpy.callCount, 0,
-        'The timer is not finished yet');
+      assert.strictEqual(callbackSpy.callCount, 0, 'The timer is not finished yet');
       clock.tick(1);
-      assert.strictEqual(callbackSpy.callCount, 1,
-        'componentWillLeave callback should have been called');
+      assert.strictEqual(
+        callbackSpy.callCount,
+        1,
+        'componentWillLeave callback should have been called',
+      );
     });
 
     it('unmount should defuse the componentWillLeave timer', () => {
@@ -141,8 +153,11 @@ describe('<Ripple />', () => {
       wrapper.instance().componentWillLeave(callbackSpy);
       wrapper.unmount();
       clock.tick(550);
-      assert.strictEqual(callbackSpy.callCount, 0,
-        'componentWillLeave callback should not be called');
+      assert.strictEqual(
+        callbackSpy.callCount,
+        0,
+        'componentWillLeave callback should not be called',
+      );
     });
   });
 });

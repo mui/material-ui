@@ -9,7 +9,7 @@ import { ListItem } from 'material-ui/List';
 import Button from 'material-ui/Button';
 import Collapse from 'material-ui/transitions/Collapse';
 
-const styleSheet = createStyleSheet('AppDrawerNavItem', (theme) => ({
+const styleSheet = createStyleSheet('AppDrawerNavItem', theme => ({
   button: theme.mixins.gutters({
     borderRadius: 0,
     justifyContent: 'flex-start',
@@ -65,10 +65,7 @@ class AppDrawerNavItem extends Component {
 
     if (to) {
       return (
-        <ListItem
-          className={classes.navLink}
-          disableGutters
-        >
+        <ListItem className={classes.navLink} disableGutters>
           <Button
             component={Link}
             to={to}

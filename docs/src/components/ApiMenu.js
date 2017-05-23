@@ -13,7 +13,7 @@ function ApiMenu(props) {
     return null;
   }
 
-  const item = find(demoComponentsTree, (item2) => item2.demo.name === currentRoute.demo.name);
+  const item = find(demoComponentsTree, item2 => item2.demo.name === currentRoute.demo.name);
 
   if (!item) {
     return null;

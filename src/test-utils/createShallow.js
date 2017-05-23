@@ -7,11 +7,7 @@ import { shallow as enzymeShallow } from 'enzyme';
 import createMuiTheme from '../styles/theme';
 
 export default function createShallow(options = {}) {
-  const {
-    shallow = enzymeShallow,
-    otherContext = {},
-    dive = false,
-  } = options;
+  const { shallow = enzymeShallow, otherContext = {}, dive = false } = options;
   const theme = createMuiTheme();
   const jss = create(jssPreset());
   const styleManager = createStyleManager({ jss, theme });

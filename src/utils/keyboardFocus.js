@@ -38,7 +38,7 @@ export function detectKeyboardFocus(instance, element, cb, attempt = 1) {
 
 export function listenForFocusKeys() {
   if (!internal.listening) {
-    addEventListener(window, 'keyup', (event) => {
+    addEventListener(window, 'keyup', event => {
       if (isFocusKey(event)) {
         internal.focusKeyPressed = true;
       }

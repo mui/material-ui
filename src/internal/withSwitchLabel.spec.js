@@ -38,9 +38,7 @@ describe('withSwitchLabel', () => {
     beforeEach(() => {
       class Foo {}
       SwitchLabelFoo = withSwitchLabel(Foo);
-      wrapper = shallow(
-        <SwitchLabelFoo label="Pizza" labelClassName="foo" />,
-      );
+      wrapper = shallow(<SwitchLabelFoo label="Pizza" labelClassName="foo" />);
     });
 
     it('should have the correct displayName', () => {

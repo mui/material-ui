@@ -8,7 +8,7 @@ import { LabelRadio, RadioGroup } from 'material-ui/Radio';
 import Paper from 'material-ui/Paper';
 import { FormLabel } from 'material-ui/Form';
 
-const styleSheet = createStyleSheet('GuttersGrid', (theme) => ({
+const styleSheet = createStyleSheet('GuttersGrid', theme => ({
   root: {
     flexGrow: 1,
   },
@@ -24,30 +24,23 @@ const styleSheet = createStyleSheet('GuttersGrid', (theme) => ({
 class GuttersGrid extends Component {
   state = {
     gutter: '16',
-  }
+  };
 
-  handleChange = (key) => (event, value) => {
+  handleChange = key => (event, value) => {
     this.setState({
       [key]: value,
     });
-  }
+  };
 
   render() {
     const classes = this.props.classes;
-    const {
-      gutter,
-    } = this.state;
+    const { gutter } = this.state;
 
     return (
       <Grid container className={classes.root}>
         <Grid item xs={12}>
-          <Grid
-            container
-            className={classes.demo}
-            justify="center"
-            gutter={Number(gutter)}
-          >
-            {Array.from({ length: 3 }, (v, k) => k).map((index) => (
+          <Grid container className={classes.demo} justify="center" gutter={Number(gutter)}>
+            {Array.from({ length: 3 }, (v, k) => k).map(index => (
               <Grid key={index} item>
                 <Paper className={classes.paper} />
               </Grid>

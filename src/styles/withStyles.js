@@ -12,7 +12,7 @@ import customPropTypes from '../utils/customPropTypes';
 // It does not modify the component passed to it;
 // instead, it returns a new, with a `classes` property.
 // This classes object contains the name of the class names injected in the DOM.
-const withStyles = (styleSheet) => (BaseComponent) => {
+const withStyles = styleSheet => BaseComponent => {
   const factory = createEagerFactory(BaseComponent);
 
   class Style extends Component {
@@ -20,11 +20,7 @@ const withStyles = (styleSheet) => (BaseComponent) => {
     static Naked = BaseComponent;
 
     render() {
-      const {
-        classes: classesProp,
-        innerRef,
-        ...other
-      } = this.props;
+      const { classes: classesProp, innerRef, ...other } = this.props;
 
       let classes;
       const renderedClasses = this.context.styleManager.render(styleSheet);
@@ -33,9 +29,11 @@ const withStyles = (styleSheet) => (BaseComponent) => {
         classes = {
           ...renderedClasses,
           ...Object.keys(classesProp).reduce((acc, key) => {
-            warning(renderedClasses[key],
-              `Material-UI: the key \`${key
-              }\` provided to the classes property object is not implemented.`);
+            warning(
+              renderedClasses[key],
+              `Material-UI: the key \`${key}\` ` +
+                'provided to the classes property object is not implemented.',
+            );
 
             acc[key] = `${renderedClasses[key]} ${classesProp[key]}`;
             return acc;

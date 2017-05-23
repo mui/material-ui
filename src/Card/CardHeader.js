@@ -8,7 +8,7 @@ import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 import CardContent from './CardContent';
 
-export const styleSheet = createStyleSheet('MuiCardHeader', (theme) => ({
+export const styleSheet = createStyleSheet('MuiCardHeader', theme => ({
   cardHeader: {
     display: 'flex',
     alignItems: 'center',
@@ -23,14 +23,7 @@ export const styleSheet = createStyleSheet('MuiCardHeader', (theme) => ({
 }));
 
 function CardHeader(props) {
-  const {
-    avatar,
-    classes,
-    className: classNameProp,
-    subheader,
-    title,
-    ...other
-  } = props;
+  const { avatar, classes, className: classNameProp, subheader, title, ...other } = props;
 
   const className = classNames(classes.cardHeader, classNameProp);
 
@@ -43,8 +36,7 @@ function CardHeader(props) {
       {avatar &&
         <div className={classes.avatar}>
           {avatar}
-        </div>
-      }
+        </div>}
       <div className={classes.content}>
         <Typography type={titleType} component="span">
           {title}

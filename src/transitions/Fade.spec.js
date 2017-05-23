@@ -20,14 +20,7 @@ describe('<Fade />', () => {
 
   describe('event callbacks', () => {
     it('should fire event callbacks', () => {
-      const events = [
-        'onEnter',
-        'onEntering',
-        'onEntered',
-        'onExit',
-        'onExiting',
-        'onExited',
-      ];
+      const events = ['onEnter', 'onEntering', 'onEntered', 'onExit', 'onExiting', 'onExited'];
 
       const handlers = events.reduce((result, n) => {
         result[n] = spy();
@@ -36,7 +29,7 @@ describe('<Fade />', () => {
 
       const wrapper = shallow(<Fade {...handlers} />);
 
-      events.forEach((n) => {
+      events.forEach(n => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
         wrapper.simulate(event, { style: {} });
         assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);

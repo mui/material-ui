@@ -12,7 +12,7 @@ class SimpleMenu extends Component {
 
   button = undefined;
 
-  handleClick = (event) => {
+  handleClick = event => {
     this.setState({ open: true, anchorEl: event.currentTarget });
   };
 
@@ -23,11 +23,7 @@ class SimpleMenu extends Component {
   render() {
     return (
       <div>
-        <Button
-          aria-owns="simple-menu"
-          aria-haspopup="true"
-          onClick={this.handleClick}
-        >
+        <Button aria-owns="simple-menu" aria-haspopup="true" onClick={this.handleClick}>
           Open Menu
         </Button>
         <Menu

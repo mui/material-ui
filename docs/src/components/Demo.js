@@ -11,7 +11,7 @@ import MarkdownElement from 'docs/src/components/MarkdownElement';
 const requireDemos = require.context('docs/src', true, /\.js$/);
 const requireDemoSource = require.context('!raw-loader!docs/src', true, /\.js$/);
 
-const styleSheet = createStyleSheet('Demo', (theme) => ({
+const styleSheet = createStyleSheet('Demo', theme => ({
   root: {
     fontFamily: theme.typography.fontFamily,
     position: 'relative',
@@ -66,7 +66,7 @@ class Demo extends Component {
     this.setState({
       codeOpen: !this.state.codeOpen,
     });
-  }
+  };
 
   render() {
     const DemoComponent = requireDemos(`./${this.props.demo}`).default;
@@ -76,10 +76,7 @@ class Demo extends Component {
 
     return (
       <div className={classes.root}>
-        <IconButton
-          onClick={this.handleCodeButtonClick}
-          className={classes.codeButton}
-        >
+        <IconButton onClick={this.handleCodeButtonClick} className={classes.codeButton}>
           <CodeIcon />
         </IconButton>
         <Collapse in={this.state.codeOpen}>

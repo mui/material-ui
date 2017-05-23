@@ -2,7 +2,7 @@
 
 export default function createMixins(breakpoints, spacing) {
   return {
-    gutters: (styles) => {
+    gutters: styles => {
       styles.paddingLeft = spacing.unit * 2;
       styles.paddingRight = spacing.unit * 2;
       styles[breakpoints.up('sm')] = {

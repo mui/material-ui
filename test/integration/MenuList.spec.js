@@ -15,8 +15,11 @@ function assertMenuItemTabIndexed(wrapper, tabIndexed) {
     if (index === tabIndexed) {
       assert.strictEqual(item.prop('tabIndex'), '0', 'should have the tab index');
     } else {
-      assert.strictEqual(item.prop('tabIndex'), '-1',
-        `item at index ${index} should not be tab focusable`);
+      assert.strictEqual(
+        item.prop('tabIndex'),
+        '-1',
+        `item at index ${index} should not be tab focusable`,
+      );
     }
   });
 }
@@ -72,7 +75,7 @@ describe('<MenuList> integration', () => {
       assertMenuItemFocused(wrapper, 1);
     });
 
-    it('should reset the tabIndex to the first item after blur', (done) => {
+    it('should reset the tabIndex to the first item after blur', done => {
       const handleBlur = spy();
       wrapper.setProps({
         onBlur: handleBlur,

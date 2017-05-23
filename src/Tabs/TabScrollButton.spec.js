@@ -25,9 +25,7 @@ describe('<TabScrollButton />', () => {
 
   describe('prop: visible', () => {
     it('should render as a button with the root class', () => {
-      const wrapper = shallow(
-        <TabScrollButton visible />,
-      );
+      const wrapper = shallow(<TabScrollButton visible />);
 
       assert.strictEqual(wrapper.is(ButtonBase), true, 'should be a button');
       assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
@@ -36,9 +34,7 @@ describe('<TabScrollButton />', () => {
 
   describe('prop: !visible', () => {
     it('should render as a div with root class', () => {
-      const wrapper = shallow(
-        <TabScrollButton visible={false} />,
-      );
+      const wrapper = shallow(<TabScrollButton visible={false} />);
 
       assert.strictEqual(wrapper.name(), 'div');
       assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
@@ -47,9 +43,7 @@ describe('<TabScrollButton />', () => {
 
   describe('prop: className', () => {
     it('should render with the user and root classes', () => {
-      const wrapper = shallow(
-        <TabScrollButton className="woof" />,
-      );
+      const wrapper = shallow(<TabScrollButton className="woof" />);
       assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
       assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     });
@@ -57,18 +51,17 @@ describe('<TabScrollButton />', () => {
 
   describe('prop: direction', () => {
     it('should render with the left icon', () => {
-      const wrapper = mount(
-        <TabScrollButton direction={'left'} visible />,
-      );
+      const wrapper = mount(<TabScrollButton direction={'left'} visible />);
       assert.strictEqual(wrapper.childAt(0).is(KeyboardArrowLeft), true, 'should be the left icon');
     });
 
     it('should render with the right icon', () => {
-      const wrapper = mount(
-        <TabScrollButton direction={'right'} visible />,
+      const wrapper = mount(<TabScrollButton direction={'right'} visible />);
+      assert.strictEqual(
+        wrapper.childAt(0).is(KeyboardArrowRight),
+        true,
+        'should be the right icon',
       );
-      assert.strictEqual(wrapper.childAt(0).is(KeyboardArrowRight), true,
-        'should be the right icon');
     });
   });
 });

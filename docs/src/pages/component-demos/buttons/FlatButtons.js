@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 
-const styleSheet = createStyleSheet('FlatButtons', (theme) => ({
+const styleSheet = createStyleSheet('FlatButtons', theme => ({
   button: {
     margin: theme.spacing.unit,
   },

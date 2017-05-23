@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiTypography', (theme) => ({
+export const styleSheet = createStyleSheet('MuiTypography', theme => ({
   text: {
     display: 'block',
     margin: 0,
@@ -52,17 +52,18 @@ export const styleSheet = createStyleSheet('MuiTypography', (theme) => ({
   },
 }));
 
-type Type = 'display4' |
-  'display3' |
-  'display2' |
-  'display1' |
-  'headline' |
-  'title' |
-  'subheading' |
-  'body2' |
-  'body1' |
-  'caption' |
-  'button';
+type Type =
+  | 'display4'
+  | 'display3'
+  | 'display2'
+  | 'display1'
+  | 'headline'
+  | 'title'
+  | 'subheading'
+  | 'body2'
+  | 'body1'
+  | 'caption'
+  | 'button';
 
 type Props = {
   align?: 'left' | 'center' | 'right' | 'justify',
@@ -104,7 +105,7 @@ type Props = {
   /**
    * Applies the theme typography styles.
    */
-  type?: Type
+  type?: Type,
 };
 
 const headlineMapping: { [key: Type]: string } = {
@@ -137,14 +138,19 @@ function Typography(props: Props) {
   // workaround: see https://github.com/facebook/flow/issues/1660#issuecomment-297775427
   const type = typeProp || Typography.defaultProps.type;
 
-  const className = classNames(classes.text, classes[type], {
-    [classes.colorInherit]: colorInherit,
-    [classes.noWrap]: noWrap,
-    [classes.secondary]: secondary,
-    [classes.gutterBottom]: gutterBottom,
-    [classes.paragraph]: paragraph,
-    [classes[`align-${String(align)}`]]: align,
-  }, classNameProp);
+  const className = classNames(
+    classes.text,
+    classes[type],
+    {
+      [classes.colorInherit]: colorInherit,
+      [classes.noWrap]: noWrap,
+      [classes.secondary]: secondary,
+      [classes.gutterBottom]: gutterBottom,
+      [classes.paragraph]: paragraph,
+      [classes[`align-${String(align)}`]]: align,
+    },
+    classNameProp,
+  );
 
   const Component = componentProp || (paragraph ? 'p' : headlineMapping[type]) || 'span';
 

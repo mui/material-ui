@@ -2,11 +2,7 @@
 import React, { Component } from 'react';
 import Menu, { MenuItem } from 'src/Menu';
 
-const options = [
-  'Menu Item 1',
-  'Menu Item 2',
-  'Menu Item 3',
-];
+const options = ['Menu Item 1', 'Menu Item 2', 'Menu Item 3'];
 
 export default class SimpleMenu extends Component {
   state = {
@@ -37,7 +33,7 @@ export default class SimpleMenu extends Component {
               <MenuItem
                 key={label}
                 selected={index === this.state.selectedIndex}
-                onClick={(event) => this.handleMenuItemClick(event, index)}
+                onClick={event => this.handleMenuItemClick(event, index)}
               >
                 {label}
               </MenuItem>

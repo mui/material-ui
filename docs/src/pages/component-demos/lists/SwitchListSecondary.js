@@ -14,7 +14,7 @@ import Switch from 'material-ui/Switch';
 import WifiIcon from 'material-ui-icons/Wifi';
 import BluetoothIcon from 'material-ui-icons/Bluetooth';
 
-const styleSheet = createStyleSheet('SwitchListSecondary', (theme) => ({
+const styleSheet = createStyleSheet('SwitchListSecondary', theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
@@ -56,7 +56,7 @@ class SwitchListSecondary extends Component {
             <ListItemText primary="Wi-Fi" />
             <ListItemSecondaryAction>
               <Switch
-                onClick={(event) => this.handleToggle(event, 'wifi')}
+                onClick={event => this.handleToggle(event, 'wifi')}
                 checked={this.state.checked.indexOf('wifi') !== -1}
               />
             </ListItemSecondaryAction>
@@ -68,7 +68,7 @@ class SwitchListSecondary extends Component {
             <ListItemText primary="Bluetooth" />
             <ListItemSecondaryAction>
               <Switch
-                onClick={(event) => this.handleToggle(event, 'bluetooth')}
+                onClick={event => this.handleToggle(event, 'bluetooth')}
                 checked={this.state.checked.indexOf('bluetooth') !== -1}
               />
             </ListItemSecondaryAction>

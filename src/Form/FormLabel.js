@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiFormLabel', (theme) => {
+export const styleSheet = createStyleSheet('MuiFormLabel', theme => {
   const focusColor = theme.palette.primary[500];
   return {
     root: {
@@ -53,10 +53,14 @@ function FormLabel(props, context) {
     }
   }
 
-  const className = classNames(classes.root, {
-    [classes.focused]: focused,
-    [classes.error]: error,
-  }, classNameProp);
+  const className = classNames(
+    classes.root,
+    {
+      [classes.focused]: focused,
+      [classes.error]: error,
+    },
+    classNameProp,
+  );
 
   const asteriskClassName = classNames({
     [classes.error]: error,
@@ -65,11 +69,10 @@ function FormLabel(props, context) {
   return (
     <label className={className} {...other}>
       {children}
-      {required && (
+      {required &&
         <span className={asteriskClassName} data-mui-test="FormLabelAsterisk">
           {'\u2009*'}
-        </span>
-      )}
+        </span>}
     </label>
   );
 }

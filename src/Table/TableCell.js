@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiTableCell', (theme) => ({
+export const styleSheet = createStyleSheet('MuiTableCell', theme => ({
   root: {
     borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
     whiteSpace: 'nowrap',
@@ -52,14 +52,18 @@ function TableCell(props, context) {
 
   const Component = table && table.head ? 'th' : 'td';
 
-  const className = classNames(classes.root, {
-    [classes.numeric]: numeric,
-    [classes.compact]: compact,
-    [classes.checkbox]: checkbox,
-    [classes.padding]: !disablePadding,
-    [classes.head]: table && table.head,
-    [classes.footer]: table && table.footer,
-  }, classNameProp);
+  const className = classNames(
+    classes.root,
+    {
+      [classes.numeric]: numeric,
+      [classes.compact]: compact,
+      [classes.checkbox]: checkbox,
+      [classes.padding]: !disablePadding,
+      [classes.head]: table && table.head,
+      [classes.footer]: table && table.footer,
+    },
+    classNameProp,
+  );
 
   return (
     <Component className={className} {...other}>

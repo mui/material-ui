@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('MuiRipple', (theme) => ({
+export const styleSheet = createStyleSheet('MuiRipple', theme => ({
   ripple: {
     width: 50,
     height: 50,
@@ -104,16 +104,22 @@ class Ripple extends Component {
   ripple = null;
   leaveTimer = null;
 
-  start = (callback) => {
-    this.setState({
-      rippleVisible: true,
-    }, callback);
+  start = callback => {
+    this.setState(
+      {
+        rippleVisible: true,
+      },
+      callback,
+    );
   };
 
-  stop = (callback) => {
-    this.setState({
-      rippleLeaving: true,
-    }, callback);
+  stop = callback => {
+    this.setState(
+      {
+        rippleLeaving: true,
+      },
+      callback,
+    );
   };
 
   getRippleStyles() {
@@ -132,10 +138,14 @@ class Ripple extends Component {
     const { rippleVisible, rippleLeaving } = this.state;
     const classes = this.context.styleManager.render(styleSheet);
 
-    const rippleClassName = classNames(classes.ripple, {
-      [classes.rippleVisible]: rippleVisible,
-      [classes.rippleFast]: pulsate,
-    }, className);
+    const rippleClassName = classNames(
+      classes.ripple,
+      {
+        [classes.rippleVisible]: rippleVisible,
+        [classes.rippleFast]: pulsate,
+      },
+      className,
+    );
 
     const containerClasses = classNames(classes.container, {
       [classes.containerLeaving]: rippleLeaving,

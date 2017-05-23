@@ -38,7 +38,7 @@ function removeDocsearch() {
   clearInterval(searchTimer);
 }
 
-const styleSheet = createStyleSheet('AppSearch', (theme) => ({
+const styleSheet = createStyleSheet('AppSearch', theme => ({
   '@global': {
     '.algolia-autocomplete': {
       fontFamily: theme.typography.fontFamily,
@@ -88,8 +88,8 @@ const styleSheet = createStyleSheet('AppSearch', (theme) => ({
   },
   input: {
     font: 'inherit',
-    padding: `${theme.spacing.unit}px ${theme.spacing.unit}px ${
-      theme.spacing.unit}px ${theme.spacing.unit * 9}px`,
+    padding: `${theme.spacing.unit}px ${theme.spacing.unit}px ` +
+      `${theme.spacing.unit}px ${theme.spacing.unit * 9}px`,
     border: 0,
     display: 'block',
     verticalAlign: 'middle',
@@ -105,10 +105,7 @@ const styleSheet = createStyleSheet('AppSearch', (theme) => ({
 }));
 
 function AppSearch(props) {
-  const {
-    classes,
-    width,
-  } = props;
+  const { classes, width } = props;
 
   if (!isWidthUp('sm', width)) {
     removeDocsearch();
@@ -132,8 +129,4 @@ AppSearch.propTypes = {
   width: PropTypes.string.isRequired,
 };
 
-export default compose(
-  pure,
-  withStyles(styleSheet),
-  withWidth(),
-)(AppSearch);
+export default compose(pure, withStyles(styleSheet), withWidth())(AppSearch);

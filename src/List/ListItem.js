@@ -7,7 +7,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../internal/ButtonBase';
 
-export const styleSheet = createStyleSheet('MuiListItem', (theme) => ({
+export const styleSheet = createStyleSheet('MuiListItem', theme => ({
   listItem: {
     display: 'flex',
     alignItems: 'center',
@@ -84,17 +84,21 @@ class ListItem extends Component {
     const isDense = dense || this.context.dense || false;
     const children = React.Children.toArray(childrenProp);
 
-    const hasAvatar = children.some((value) => {
+    const hasAvatar = children.some(value => {
       return value.type && value.type.muiName === 'ListItemAvatar';
     });
 
-    const className = classNames(classes.listItem, {
-      [classes.gutters]: !disableGutters,
-      [classes.divider]: divider,
-      [classes.disabled]: disabled,
-      [classes.button]: button,
-      [isDense || hasAvatar ? classes.dense : classes.default]: true,
-    }, classNameProp);
+    const className = classNames(
+      classes.listItem,
+      {
+        [classes.gutters]: !disableGutters,
+        [classes.divider]: divider,
+        [classes.disabled]: disabled,
+        [classes.button]: button,
+        [isDense || hasAvatar ? classes.dense : classes.default]: true,
+      },
+      classNameProp,
+    );
 
     const listItemProps = { className, disabled, ...other };
     let ComponentMain = componentProp;
@@ -150,10 +154,7 @@ ListItem.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
    */

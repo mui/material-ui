@@ -4,12 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import classnames from 'classnames';
-import Card, {
-  CardHeader,
-  CardMedia,
-  CardContent,
-  CardActions,
-} from 'material-ui/Card';
+import Card, { CardHeader, CardMedia, CardContent, CardActions } from 'material-ui/Card';
 import Collapse from 'material-ui/transitions/Collapse';
 import Avatar from 'material-ui/Avatar';
 import IconButton from 'material-ui/IconButton';
@@ -20,7 +15,7 @@ import ShareIcon from 'material-ui-icons/Share';
 import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 import paellaImage from 'docs/src/assets/images/paella.jpg';
 
-const styleSheet = createStyleSheet('RecipeReviewCard', (theme) => ({
+const styleSheet = createStyleSheet('RecipeReviewCard', theme => ({
   card: { maxWidth: 400 },
   expand: {
     transform: 'rotate(0deg)',

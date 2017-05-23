@@ -112,10 +112,12 @@ export default class MuiThemeProvider extends Component {
 
   static createDefaultContext(props = {}) {
     const theme = props.theme || createMuiTheme();
-    const styleManager = props.styleManager || createStyleManager({
-      theme,
-      jss: create(jssPreset()),
-    });
+    const styleManager =
+      props.styleManager ||
+      createStyleManager({
+        theme,
+        jss: create(jssPreset()),
+      });
 
     if (!styleManager.sheetOrder) {
       styleManager.setSheetOrder(MUI_SHEET_ORDER);

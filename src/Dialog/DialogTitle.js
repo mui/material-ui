@@ -7,7 +7,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 
-export const styleSheet = createStyleSheet('MuiDialogTitle', (theme) => {
+export const styleSheet = createStyleSheet('MuiDialogTitle', theme => {
   const gutter = theme.spacing.unit * 3;
   return {
     root: {
@@ -19,25 +19,15 @@ export const styleSheet = createStyleSheet('MuiDialogTitle', (theme) => {
 });
 
 function DialogTitle(props) {
-  const {
-    children,
-    classes,
-    className,
-    disableTypography,
-    ...other
-  } = props;
+  const { children, classes, className, disableTypography, ...other } = props;
 
   return (
-    <div
-      data-mui-test="DialogTitle"
-      className={classNames(classes.root, className)}
-      {...other}
-    >
-      {disableTypography ? children : (
-        <Typography type="title">
-          {children}
-        </Typography>
-      )}
+    <div data-mui-test="DialogTitle" className={classNames(classes.root, className)} {...other}>
+      {disableTypography
+        ? children
+        : <Typography type="title">
+            {children}
+          </Typography>}
     </div>
   );
 }

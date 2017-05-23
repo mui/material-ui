@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiCardContent', (theme) => ({
+export const styleSheet = createStyleSheet('MuiCardContent', theme => ({
   cardContent: {
     padding: theme.spacing.unit * 2,
     '&:last-child': {
@@ -16,11 +16,7 @@ export const styleSheet = createStyleSheet('MuiCardContent', (theme) => ({
 }));
 
 function CardContent(props) {
-  const {
-    classes,
-    className: classNameProp,
-    ...other
-  } = props;
+  const { classes, className: classNameProp, ...other } = props;
 
   const className = classNames(classes.cardContent, classNameProp);
 

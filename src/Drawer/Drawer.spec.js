@@ -18,16 +18,12 @@ describe('<Drawer />', () => {
   });
 
   it('should render a Modal', () => {
-    const wrapper = shallow(
-      <Drawer />,
-    );
+    const wrapper = shallow(<Drawer />);
     assert.strictEqual(wrapper.name(), 'withStyles(Modal)');
   });
 
   it('should render Slide > Paper inside the Modal', () => {
-    const wrapper = shallow(
-      <Drawer />,
-    );
+    const wrapper = shallow(<Drawer />);
 
     const slide = wrapper.childAt(0);
     assert.strictEqual(
@@ -51,7 +47,7 @@ describe('<Drawer />', () => {
       assert.strictEqual(wrapper.find(Slide).prop('enterTransitionDuration'), enterDuration);
     });
 
-    it('should be passed to to Modal\'s backdropTransitionDuration when open=true', () => {
+    it("should be passed to to Modal's backdropTransitionDuration when open=true", () => {
       const wrapper = shallow(
         <Drawer
           open
@@ -72,7 +68,7 @@ describe('<Drawer />', () => {
       assert.strictEqual(wrapper.find(Slide).props().leaveTransitionDuration, leaveDuration);
     });
 
-    it('should be passed to to Modal\'s backdropTransitionDuration when open=false', () => {
+    it("should be passed to to Modal's backdropTransitionDuration when open=false", () => {
       const wrapper = shallow(
         <Drawer
           open={false}
@@ -84,7 +80,7 @@ describe('<Drawer />', () => {
     });
   });
 
-  it('should override Modal\'s backdropTransitionDuration from property when specified', () => {
+  it("should override Modal's backdropTransitionDuration from property when specified", () => {
     const testDuration = 335;
     const wrapper = shallow(<Drawer backdropTransitionDuration={testDuration} />);
     assert.strictEqual(wrapper.find(Modal).props().backdropTransitionDuration, testDuration);

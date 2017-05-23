@@ -11,7 +11,7 @@ function isDirty(obj) {
   return obj && obj.value && obj.value.length > 0;
 }
 
-export const styleSheet = createStyleSheet('MuiInput', (theme) => ({
+export const styleSheet = createStyleSheet('MuiInput', theme => ({
   wrapper: {
     // Mimics the default input display property used by browsers for an input.
     display: 'inline-block',
@@ -63,7 +63,8 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => ({
     '&:focus': {
       outline: 0,
     },
-    '&::-webkit-search-decoration': { // Remove the padding when type=search.
+    '&::-webkit-search-decoration': {
+      // Remove the padding when type=search.
       appearance: 'none',
     },
   },
@@ -122,21 +123,21 @@ class Input extends Component {
   // Holds the input reference
   input = null;
 
-  handleFocus = (event) => {
+  handleFocus = event => {
     this.setState({ focused: true });
     if (this.props.onFocus) {
       this.props.onFocus(event);
     }
   };
 
-  handleBlur = (event) => {
+  handleBlur = event => {
     this.setState({ focused: false });
     if (this.props.onBlur) {
       this.props.onBlur(event);
     }
   };
 
-  handleChange = (event) => {
+  handleChange = event => {
     if (!this.isControlled()) {
       this.checkDirty(this.input);
     }
@@ -145,14 +146,14 @@ class Input extends Component {
     }
   };
 
-  handleRefInput = (node) => {
+  handleRefInput = node => {
     this.input = node;
     if (this.props.inputRef) {
       this.props.inputRef(node);
     }
   };
 
-  handleRefTextarea = (node) => {
+  handleRefTextarea = node => {
     this.input = node;
     if (this.props.inputRef) {
       this.props.inputRef(node);
@@ -220,21 +221,29 @@ class Input extends Component {
       error = muiFormControl.error;
     }
 
-    const wrapperClassName = classNames(classes.wrapper, {
-      [classes.disabled]: disabled,
-      [classes.error]: error,
-      [classes.focused]: this.state.focused,
-      [classes.formControl]: muiFormControl,
-      [classes.inkbar]: !disableUnderline,
-      [classes.multilineWrapper]: multiline,
-      [classes.underline]: !disableUnderline,
-    }, classNameProp);
+    const wrapperClassName = classNames(
+      classes.wrapper,
+      {
+        [classes.disabled]: disabled,
+        [classes.error]: error,
+        [classes.focused]: this.state.focused,
+        [classes.formControl]: muiFormControl,
+        [classes.inkbar]: !disableUnderline,
+        [classes.multilineWrapper]: multiline,
+        [classes.underline]: !disableUnderline,
+      },
+      classNameProp,
+    );
 
-    const inputClassName = classNames(classes.input, {
-      [classes.disabled]: disabled,
-      [classes.singleline]: !multiline,
-      [classes.multiline]: multiline,
-    }, inputClassNameProp);
+    const inputClassName = classNames(
+      classes.input,
+      {
+        [classes.disabled]: disabled,
+        [classes.singleline]: !multiline,
+        [classes.multiline]: multiline,
+      },
+      inputClassNameProp,
+    );
 
     const required = muiFormControl && muiFormControl.required === true;
 
@@ -306,10 +315,7 @@ Input.propTypes = {
    * Either a string to use a DOM element or a component.
    * It's an `input` by default.
    */
-  component: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * The default value of the `Input` element.
    */

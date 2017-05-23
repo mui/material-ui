@@ -89,13 +89,13 @@ describe('<TextField />', () => {
 
   describe('prop: inputProps', () => {
     it('should apply additional properties to the Input component', () => {
-      const wrapper = mount((
+      const wrapper = mount(
         <TextField
           inputProps={{
             readOnly: true,
           }}
-        />
-      ));
+        />,
+      );
       assert.strictEqual(wrapper.find('input').props().readOnly, true);
     });
   });

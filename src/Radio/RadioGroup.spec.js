@@ -15,20 +15,18 @@ describe('<RadioGroup />', () => {
   });
 
   it('should render a FormGroup with the radiogroup role', () => {
-    const wrapper = shallow(
-      <RadioGroup />,
-    );
+    const wrapper = shallow(<RadioGroup />);
     assert.strictEqual(wrapper.name(), 'withStyles(FormGroup)');
-    assert.strictEqual(wrapper.props().role, 'radiogroup',
+    assert.strictEqual(
+      wrapper.props().role,
+      'radiogroup',
       'should be a FormGroup with the correct role',
     );
   });
 
   it('should fire the onBlur callback', () => {
     const handleBlur = spy();
-    const wrapper = shallow(
-      <RadioGroup onBlur={handleBlur} />,
-    );
+    const wrapper = shallow(<RadioGroup onBlur={handleBlur} />);
     const event = {};
     wrapper.simulate('blur', event);
     assert.strictEqual(handleBlur.callCount, 1);
@@ -37,9 +35,7 @@ describe('<RadioGroup />', () => {
 
   it('should fire the onKeyDown callback', () => {
     const handleKeyDown = spy();
-    const wrapper = shallow(
-      <RadioGroup onKeyDown={handleKeyDown} />,
-    );
+    const wrapper = shallow(<RadioGroup onKeyDown={handleKeyDown} />);
     const event = {};
     wrapper.simulate('keyDown', event);
     assert.strictEqual(handleKeyDown.callCount, 1);
@@ -50,9 +46,7 @@ describe('<RadioGroup />', () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = shallow(
-        <RadioGroup />,
-      );
+      wrapper = shallow(<RadioGroup />);
     });
 
     it('should focus the first non-disabled radio', () => {
@@ -171,9 +165,7 @@ describe('<RadioGroup />', () => {
     });
 
     it('should keep radios empty', () => {
-      const wrapper = mount(
-        <RadioGroup.Naked classes={{}} />,
-      );
+      const wrapper = mount(<RadioGroup.Naked classes={{}} />);
       assert.strictEqual(wrapper.instance().radios.length, 0);
     });
   });

@@ -23,7 +23,7 @@ function getSlideDirection(anchor) {
   return 'up';
 }
 
-export const styleSheet = createStyleSheet('MuiDrawer', (theme) => ({
+export const styleSheet = createStyleSheet('MuiDrawer', theme => ({
   paper: {
     overflowY: 'auto',
     display: 'flex',
@@ -69,8 +69,7 @@ export const styleSheet = createStyleSheet('MuiDrawer', (theme) => ({
       borderRight: `1px solid ${theme.palette.text.divider}`,
     },
   },
-  modal: {
-  },
+  modal: {},
 }));
 
 function Drawer(props, context) {
@@ -91,7 +90,7 @@ function Drawer(props, context) {
   const rtl = context.styleManager.theme.dir === 'rtl';
   let anchor = anchorProp;
   if (rtl && ['left', 'right'].includes(anchor)) {
-    anchor = (anchor === 'left') ? 'right' : 'left';
+    anchor = anchor === 'left' ? 'right' : 'left';
   }
 
   const slideDirection = getSlideDirection(anchor);

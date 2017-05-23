@@ -43,12 +43,12 @@ function generatePropDescription(required, description, type) {
   // must be eliminated to prevent markdown mayhem.
   const jsDocText = parsed.description.replace(/\n\n/g, '<br>').replace(/\n/g, ' ');
 
-  if (parsed.tags.some((tag) => tag.title === 'ignore')) return null;
+  if (parsed.tags.some(tag => tag.title === 'ignore')) return null;
   let signature = '';
 
   if (type.name === 'func' && parsed.tags.length > 0) {
     // Remove new lines from tag descriptions to avoid markdown errors.
-    parsed.tags.forEach((tag) => {
+    parsed.tags.forEach(tag => {
       if (tag.description) {
         tag.description = tag.description.replace(/\n/g, ' ');
       }
@@ -69,9 +69,9 @@ function generatePropDescription(required, description, type) {
     }
 
     signature += '<br><br>**Signature:**<br>`function(';
-    signature += parsedArgs.map((tag) => `${tag.name}: ${tag.type.name}`).join(', ');
+    signature += parsedArgs.map(tag => `${tag.name}: ${tag.type.name}`).join(', ');
     signature += `) => ${parsedReturns.type.name}\`<br>`;
-    signature += parsedArgs.map((tag) => `*${tag.name}:* ${tag.description}`).join('<br>');
+    signature += parsedArgs.map(tag => `*${tag.name}:* ${tag.description}`).join('<br>');
     if (parsedReturns.description) {
       signature += `<br> *returns* (${parsedReturns.type.name}): ${parsedReturns.description}`;
     }
@@ -102,9 +102,9 @@ function generatePropType(type) {
       let values;
       if (type.raw) {
         // flow union
-        values = type.raw.split('|').map((v) => v.trim());
+        values = type.raw.split('|').map(v => v.trim());
       } else {
-        values = type.value.map((v) => v.value || v.name);
+        values = type.value.map(v => v.value || v.name);
       }
       // Display one value per line as it's better for lisibility.
       if (values.length < 5) {
@@ -139,39 +139,39 @@ function generateProps(props) {
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|\n`;
 
-  text = Object
-    .keys(props)
-    .reduce((textProps, key) => {
-      const prop = getProp(props, key);
-      const description =
-        generatePropDescription(prop.required, prop.description, prop.flowType || prop.type);
+  text = Object.keys(props).reduce((textProps, key) => {
+    const prop = getProp(props, key);
+    const description = generatePropDescription(
+      prop.required,
+      prop.description,
+      prop.flowType || prop.type,
+    );
 
-      if (description === null) {
-        return textProps;
-      }
-
-      let defaultValue = '';
-
-      if (prop.defaultValue) {
-        defaultValue = prop.defaultValue.value.replace(/\n/g, '');
-      }
-
-      if (prop.required) {
-        key = `<span style="color: #31a148">${key}\u2009*</span>`;
-      }
-
-      const type = prop.flowType || prop.type;
-      if (type.name === 'custom') {
-        if (getDeprecatedInfo(prop.type)) {
-          key = `~~${key}~~`;
-        }
-      }
-
-      textProps += `| ${key} | ${generatePropType(type)} | ${defaultValue} | ${
-        description} |\n`;
-
+    if (description === null) {
       return textProps;
-    }, text);
+    }
+
+    let defaultValue = '';
+
+    if (prop.defaultValue) {
+      defaultValue = prop.defaultValue.value.replace(/\n/g, '');
+    }
+
+    if (prop.required) {
+      key = `<span style="color: #31a148">${key}\u2009*</span>`;
+    }
+
+    const type = prop.flowType || prop.type;
+    if (type.name === 'custom') {
+      if (getDeprecatedInfo(prop.type)) {
+        key = `~~${key}~~`;
+      }
+    }
+
+    textProps += `| ${key} | ${generatePropType(type)} | ${defaultValue} | ${description} |\n`;
+
+    return textProps;
+  }, text);
 
   return text;
 }
@@ -181,7 +181,7 @@ function generateClasses(styles) {
 
 You can overrides all the class names injected by Material-UI thanks to the \`classes\` property.
 This property accepts the following keys:
-${styles.classes.map((className) => `- \`${className}\``).join('\n')}
+${styles.classes.map(className => `- \`${className}\``).join('\n')}
 
 Have a look at [overriding with class names](/customization/overrides#overriding-with-class-names)
 section for more detail.
@@ -192,11 +192,11 @@ you need to use the following style sheet name: \`${styles.name}\`.`;
 }
 
 export default function generateMarkdown(name, reactAPI) {
-  return `${
-    generateTitle(name)}\n${
-    generateDescription(reactAPI.description)}\n${
-    generateProps(reactAPI.props)}\n${
-    'Any other properties supplied will be spread to the root element.'}\n${
-    generateClasses(reactAPI.styles)
-  }\n`;
+  return (
+    `${generateTitle(name)}\n` +
+    `${generateDescription(reactAPI.description)}\n` +
+    `${generateProps(reactAPI.props)}\n` +
+    'Any other properties supplied will be spread to the root element.\n' +
+    `${generateClasses(reactAPI.styles)}\n`
+  );
 }

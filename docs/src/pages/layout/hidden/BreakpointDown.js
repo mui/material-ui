@@ -8,7 +8,7 @@ import Hidden from 'material-ui/Hidden';
 import withWidth from 'material-ui/utils/withWidth';
 import Typography from 'material-ui/Typography';
 
-const styleSheet = createStyleSheet('BreakpointDown', (theme) => ({
+const styleSheet = createStyleSheet('BreakpointDown', theme => ({
   container: {
     flexGrow: 1,
     paddingTop: 30,
@@ -66,7 +66,4 @@ BreakpointDown.propTypes = {
   width: PropTypes.string,
 };
 
-export default compose(
-  withStyles(styleSheet),
-  withWidth(),
-)(BreakpointDown);
+export default compose(withStyles(styleSheet), withWidth())(BreakpointDown);

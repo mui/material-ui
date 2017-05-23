@@ -14,7 +14,7 @@ import ShoppingBasket from 'material-ui-icons/ShoppingBasket';
 import ThumbDown from 'material-ui-icons/ThumbDown';
 import ThumbUp from 'material-ui-icons/ThumbUp';
 
-const TabContainer = (props) => (
+const TabContainer = props => (
   <div style={{ padding: 20 }}>
     {props.children}
   </div>
@@ -24,7 +24,7 @@ TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const styleSheet = createStyleSheet('ScrollableTabsButtonForce', (theme) => ({
+const styleSheet = createStyleSheet('ScrollableTabsButtonForce', theme => ({
   root: {
     marginTop: 30,
     width: '100%',
@@ -41,7 +41,7 @@ class ScrollableTabsButtonForce extends Component {
 
   handleChange = (event, index) => {
     this.setState({ index });
-  }
+  };
 
   render() {
     const classes = this.props.classes;

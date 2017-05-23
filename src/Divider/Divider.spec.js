@@ -15,9 +15,7 @@ describe('<Divider />', () => {
   });
 
   it('should render a hr', () => {
-    const wrapper = shallow(
-      <Divider />,
-    );
+    const wrapper = shallow(<Divider />);
     assert.strictEqual(wrapper.name(), 'hr');
   });
 

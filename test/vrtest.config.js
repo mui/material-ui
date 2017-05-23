@@ -11,10 +11,12 @@ module.exports = {
   selenium: {
     server: 'http://127.0.0.1:4444/wd/hub',
   },
-  profiles: [{
-    name: 'chrome',
-    desiredCapabilities: {
-      browserName: 'chrome',
+  profiles: [
+    {
+      name: 'chrome',
+      desiredCapabilities: {
+        browserName: 'chrome',
+      },
     },
-  }],
+  ],
 };

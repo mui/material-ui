@@ -29,23 +29,10 @@ class SimpleBottomNavigation extends Component {
 
     return (
       <div className={classes.root}>
-        <BottomNavigation
-          index={index}
-          onChange={this.handleChange}
-          showLabels
-        >
-          <BottomNavigationButton
-            label="Recents"
-            icon={<RestoreIcon />}
-          />
-          <BottomNavigationButton
-            label="Favorites"
-            icon={<FavoriteIcon />}
-          />
-          <BottomNavigationButton
-            label="Nearby"
-            icon={<LocationOnIcon />}
-          />
+        <BottomNavigation index={index} onChange={this.handleChange} showLabels>
+          <BottomNavigationButton label="Recents" icon={<RestoreIcon />} />
+          <BottomNavigationButton label="Favorites" icon={<FavoriteIcon />} />
+          <BottomNavigationButton label="Nearby" icon={<LocationOnIcon />} />
         </BottomNavigation>
       </div>
     );

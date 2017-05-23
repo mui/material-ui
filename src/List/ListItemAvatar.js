@@ -25,17 +25,15 @@ export const styleSheet = createStyleSheet('MuiListItemAvatar', {
  */
 function ListItemAvatar(props, context) {
   if (context.dense === undefined) {
-    warning(false, `Material-UI: <ListItemAvatar> is a simple wrapper to apply the dense styles
-      to <Avatar>. You do not need it unless you are controlling the <List> dense property.`);
+    warning(
+      false,
+      `Material-UI: <ListItemAvatar> is a simple wrapper to apply the dense styles
+      to <Avatar>. You do not need it unless you are controlling the <List> dense property.`,
+    );
     return props.children;
   }
 
-  const {
-    children,
-    classes,
-    className: classNameProp,
-    ...other
-  } = props;
+  const { children, classes, className: classNameProp, ...other } = props;
 
   return React.cloneElement(children, {
     className: classNames(

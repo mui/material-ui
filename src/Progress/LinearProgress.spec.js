@@ -30,22 +30,34 @@ describe('<LinearProgress />', () => {
     const wrapper = shallow(<LinearProgress />);
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.childAt(1).hasClass(classes.bar), true, 'should have the bar class');
-    assert.strictEqual(wrapper.childAt(1).hasClass(classes.indeterminateBar1), true,
-      'should have the indeterminateBar1 class');
+    assert.strictEqual(
+      wrapper.childAt(1).hasClass(classes.indeterminateBar1),
+      true,
+      'should have the indeterminateBar1 class',
+    );
     assert.strictEqual(wrapper.childAt(2).hasClass(classes.bar), true, 'should have the bar class');
-    assert.strictEqual(wrapper.childAt(1).hasClass(classes.indeterminateBar1), true,
-      'should have the indeterminateBar2 class');
+    assert.strictEqual(
+      wrapper.childAt(1).hasClass(classes.indeterminateBar1),
+      true,
+      'should have the indeterminateBar2 class',
+    );
   });
 
   it('should render with determinate classes', () => {
     const wrapper = shallow(<LinearProgress mode="determinate" />);
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.childAt(1).hasClass(classes.bar), true, 'should have the bar class');
-    assert.strictEqual(wrapper.childAt(1).hasClass(classes.determinateBar1), true,
-      'should have the determinateBar1 class');
+    assert.strictEqual(
+      wrapper.childAt(1).hasClass(classes.determinateBar1),
+      true,
+      'should have the determinateBar1 class',
+    );
     assert.strictEqual(wrapper.childAt(2).hasClass(classes.bar), true, 'should have the bar class');
-    assert.strictEqual(wrapper.childAt(2).hasClass(classes.determinateBar2), true,
-      'should have the determinateBar2 class');
+    assert.strictEqual(
+      wrapper.childAt(2).hasClass(classes.determinateBar2),
+      true,
+      'should have the determinateBar2 class',
+    );
   });
 
   it('should set width of bar1 on determinate mode', () => {
@@ -58,14 +70,23 @@ describe('<LinearProgress />', () => {
   it('should render with buffer classes', () => {
     const wrapper = shallow(<LinearProgress mode="buffer" />);
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
-    assert.strictEqual(wrapper.childAt(0).hasClass(classes.dashed), true,
-      'should have the dashed class');
+    assert.strictEqual(
+      wrapper.childAt(0).hasClass(classes.dashed),
+      true,
+      'should have the dashed class',
+    );
     assert.strictEqual(wrapper.childAt(1).hasClass(classes.bar), true, 'should have the bar class');
-    assert.strictEqual(wrapper.childAt(1).hasClass(classes.bufferBar1), true,
-      'should have the bufferBar1 class');
+    assert.strictEqual(
+      wrapper.childAt(1).hasClass(classes.bufferBar1),
+      true,
+      'should have the bufferBar1 class',
+    );
     assert.strictEqual(wrapper.childAt(2).hasClass(classes.bar), true, 'should have the bar class');
-    assert.strictEqual(wrapper.childAt(2).hasClass(classes.bufferBar2), true,
-      'should have the bufferBar2 class');
+    assert.strictEqual(
+      wrapper.childAt(2).hasClass(classes.bufferBar2),
+      true,
+      'should have the bufferBar2 class',
+    );
   });
 
   it('should set width of bar1 and bar2 on buffer mode', () => {
@@ -78,13 +99,22 @@ describe('<LinearProgress />', () => {
   it('should render with query classes', () => {
     const wrapper = shallow(<LinearProgress mode="query" />);
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
-    assert.strictEqual(wrapper.hasClass(classes.rootQuery), true,
-      'should have the rootQuery class');
+    assert.strictEqual(
+      wrapper.hasClass(classes.rootQuery),
+      true,
+      'should have the rootQuery class',
+    );
     assert.strictEqual(wrapper.childAt(1).hasClass(classes.bar), true, 'should have the bar class');
-    assert.strictEqual(wrapper.childAt(1).hasClass(classes.indeterminateBar1), true,
-      'should have the indeterminateBar1 class');
+    assert.strictEqual(
+      wrapper.childAt(1).hasClass(classes.indeterminateBar1),
+      true,
+      'should have the indeterminateBar1 class',
+    );
     assert.strictEqual(wrapper.childAt(2).hasClass(classes.bar), true, 'should have the bar class');
-    assert.strictEqual(wrapper.childAt(2).hasClass(classes.indeterminateBar2), true,
-      'should have the indeterminateBar2 class');
+    assert.strictEqual(
+      wrapper.childAt(2).hasClass(classes.indeterminateBar2),
+      true,
+      'should have the indeterminateBar2 class',
+    );
   });
 });

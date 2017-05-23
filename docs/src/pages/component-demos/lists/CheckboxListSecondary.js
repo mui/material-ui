@@ -8,7 +8,7 @@ import Checkbox from 'material-ui/Checkbox';
 import Avatar from 'material-ui/Avatar';
 import remyImage from 'docs/src/assets/images/remy.jpg';
 
-const styleSheet = createStyleSheet('CheckboxListSecondary', (theme) => ({
+const styleSheet = createStyleSheet('CheckboxListSecondary', theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
@@ -43,13 +43,13 @@ class CheckboxListSecondary extends Component {
     return (
       <div className={classes.root}>
         <List>
-          {Array.from({ length: 4 }, (v, k) => k).map((index) => (
+          {Array.from({ length: 4 }, (v, k) => k).map(index => (
             <ListItem dense button key={index}>
               <Avatar alt="Remy Sharp" src={remyImage} />
               <ListItemText primary={`Line item ${index + 1}`} />
               <ListItemSecondaryAction>
                 <Checkbox
-                  onClick={(event) => this.handleToggle(event, index)}
+                  onClick={event => this.handleToggle(event, index)}
                   checked={this.state.checked.indexOf(index) !== -1}
                 />
               </ListItemSecondaryAction>

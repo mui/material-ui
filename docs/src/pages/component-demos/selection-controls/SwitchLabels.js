@@ -27,4 +27,3 @@ export default class SwitchLabels extends Component {
     );
   }
 }
-

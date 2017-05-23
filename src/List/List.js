@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiList', (theme) => ({
+export const styleSheet = createStyleSheet('MuiList', theme => ({
   root: {
     flex: '1 1 auto',
     overflow: 'auto',
@@ -52,11 +52,15 @@ class List extends Component {
       rootRef,
       ...other
     } = this.props;
-    const className = classNames(classes.root, {
-      [classes.dense]: dense,
-      [classes.padding]: !disablePadding,
-      [classes.subheader]: subheader,
-    }, classNameProp);
+    const className = classNames(
+      classes.root,
+      {
+        [classes.dense]: dense,
+        [classes.padding]: !disablePadding,
+        [classes.subheader]: subheader,
+      },
+      classNameProp,
+    );
 
     return (
       <ComponentProp ref={rootRef} className={className} {...other}>
@@ -84,10 +88,7 @@ List.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * If `true`, compact vertical padding designed for keyboard and mouse input will be used for
    * the list and list items. The property is available to descendant components as the

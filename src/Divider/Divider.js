@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiDivider', (theme) => ({
+export const styleSheet = createStyleSheet('MuiDivider', theme => ({
   root: {
     height: 1,
     margin: 0, // Reset browser default style.
@@ -30,20 +30,17 @@ export const styleSheet = createStyleSheet('MuiDivider', (theme) => ({
 }));
 
 function Divider(props) {
-  const {
-    absolute,
-    classes,
-    className: classNameProp,
-    inset,
-    light,
-    ...other
-  } = props;
+  const { absolute, classes, className: classNameProp, inset, light, ...other } = props;
 
-  const className = classNames(classes.root, {
-    [classes.absolute]: absolute,
-    [classes.inset]: inset,
-    [light ? classes.light : classes.default]: true,
-  }, classNameProp);
+  const className = classNames(
+    classes.root,
+    {
+      [classes.absolute]: absolute,
+      [classes.inset]: inset,
+      [light ? classes.light : classes.default]: true,
+    },
+    classNameProp,
+  );
 
   return <hr className={className} {...other} />;
 }

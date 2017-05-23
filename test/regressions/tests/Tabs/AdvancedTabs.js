@@ -8,7 +8,7 @@ import Paper from 'material-ui/Paper';
 import Tabs from 'material-ui/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
 
-const styleSheet = createStyleSheet('AdvancedTabs', (theme) => ({
+const styleSheet = createStyleSheet('AdvancedTabs', theme => ({
   root: {
     width: 600,
   },
@@ -42,12 +42,7 @@ export default function AdvancedTabs(props, context) {
         </Tabs>
       </Paper>
       <Paper className={classes.root}>
-        <Tabs
-          index={0}
-          scrollable
-          scrollButtons="on"
-          textColor="accent"
-        >
+        <Tabs index={0} scrollable scrollButtons="on" textColor="accent">
           <Tab label="Item One" icon={<Icon>phone</Icon>} />
           <Tab label="Item Two" icon={<Icon>favorite</Icon>} />
           <Tab label="Item Three" icon={<Icon>person_pin</Icon>} />

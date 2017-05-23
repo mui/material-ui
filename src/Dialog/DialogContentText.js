@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiDialogContentText', (theme) => ({
+export const styleSheet = createStyleSheet('MuiDialogContentText', theme => ({
   root: {
     ...theme.typography.subheading,
     color: theme.palette.text.secondary,
@@ -15,12 +15,7 @@ export const styleSheet = createStyleSheet('MuiDialogContentText', (theme) => ({
 }));
 
 function DialogContentText(props) {
-  const {
-    children,
-    classes,
-    className,
-    ...other
-  } = props;
+  const { children, classes, className, ...other } = props;
 
   return (
     <p className={classNames(classes.root, className)} {...other}>

@@ -25,6 +25,7 @@ describe('withTheme', () => {
     assert.strictEqual(
       wrapper.props().theme,
       context.styleManager.theme,
-      'Should use the theme provided by the context');
+      'Should use the theme provided by the context',
+    );
   });
 });

@@ -19,24 +19,10 @@ export default class IconLabelTabs extends Component {
   render() {
     return (
       <Paper style={{ width: 500 }}>
-        <Tabs
-          index={this.state.index}
-          onChange={this.handleChange}
-          fullWidth
-          textColor="accent"
-        >
-          <Tab
-            icon={<PhoneIcon />}
-            label="RECENTS"
-          />
-          <Tab
-            icon={<FavoriteIcon />}
-            label="FAVORITES"
-          />
-          <Tab
-            icon={<PersonPinIcon />}
-            label="NEARBY"
-          />
+        <Tabs index={this.state.index} onChange={this.handleChange} fullWidth textColor="accent">
+          <Tab icon={<PhoneIcon />} label="RECENTS" />
+          <Tab icon={<FavoriteIcon />} label="FAVORITES" />
+          <Tab icon={<PersonPinIcon />} label="NEARBY" />
         </Tabs>
       </Paper>
     );
