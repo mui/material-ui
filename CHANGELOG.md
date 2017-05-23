@@ -24,6 +24,50 @@ Below is a summary of major changes.
 - [Ripple/TouchRipple] Refactored and now works properly inside a button in firefox!
 - [Button] Raised/flat/fab are now combined into a single component.
 
+## 1.0.0-alpha.15
+###### _May 23, 2017_
+
+This release introduces an important change in the API and the implementation.
+Each exposed component is wrapped with a `withStyles` Higher-order component.
+This HOC has different responsibilities, the one you gonna be interested in is
+regarding the `classes` property. We know consider the CSS as a public API.
+You now have two way to customize absolutely all the CSS injected by Material-UI.
+Either the instance level with the `classes` property or the class level with the
+`overrides` theme property.
+To [learn more about it](https://material-ui-1dab0.firebaseapp.com/customization/overrides),
+have a look at the documentation.
+Also, this options are automaticaly [documented](http://0.0.0.0:3000/component-api/button#classes).
+
+##### Breaking changes
+
+- [core] Various fixes after using it on a real project (#6882) @oliviertassinari
+Apply the other properties (undocumented) on the root of the Menu.
+- [core] Add a new classes property to all the components #6911 @oliviertassinari
+If you where using the ref to access the internal of the component or native elements,
+you gonna have to change your strategy, either use `innerRef` or `inputRef`.
+
+##### Component Fixes / Enhancements
+
+- [Typography] Add missing style (#6873) @oliviertassinari
+- [Dialog] create responsive HOC `withResponsiveFullScreen` (#6898) @rosskevin
+- [core] Remove usage of 'not-allowed' (#6932) @oliviertassinari
+- [Switch] Remove the blue flash of death (#6933) @oliviertassinari
+- [TextField] Fix the inputClassName property (#6934) @oliviertassinari
+
+##### Docs
+
+- [docs] Enable flow on much more demos (#6881) @oliviertassinari
+- [docs] Better support IE11 (#6880) @oliviertassinari
+- [Tabs] Document that the index is required (#6935) @oliviertassinari
+
+##### Core
+
+- [eslint] enforce import plugin rules (#6923) @rosskevin
+- [core] Change style API (#6892) @oliviertassinari
+- [eslint] Fit closer to airbnb (#6894) @oliviertassinari
+- [core] Upgrade the dependencies (#6872) @oliviertassinari
+- [core] Add prettier (#6931) @oliviertassinari
+
 ## 1.0.0-alpha.14
 ###### _May 14, 2017_
 
