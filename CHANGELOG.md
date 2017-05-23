@@ -30,13 +30,12 @@ Below is a summary of major changes.
 This release introduces an important change in the API and the implementation.
 Each exposed component is wrapped with a `withStyles` Higher-order component.
 This HOC has different responsibilities, the one you gonna be interested in is
-regarding the `classes` property. We know consider the CSS as a public API.
+regarding the `classes` property. Now, we consider the CSS as a public API.
 You now have two way to customize absolutely all the CSS injected by Material-UI.
 Either the instance level with the `classes` property or the class level with the
 `overrides` theme property.
-To [learn more about it](https://material-ui-1dab0.firebaseapp.com/customization/overrides),
-have a look at the documentation.
-Also, this options are automaticaly [documented](http://0.0.0.0:3000/component-api/button#classes).
+
+To [learn more about it](https://material-ui-1dab0.firebaseapp.com/customization/overrides), have a look at the documentation. Also, these options are automatically [documented](http://0.0.0.0:3000/component-api/button#classes).
 
 ##### Breaking changes
 
