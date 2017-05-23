@@ -10,7 +10,7 @@
 | children | node |  | The content of the component. |
 | classes | object |  | Useful to extend the style applied to components. |
 | fullWidth | bool | false | If `true`, the tabs will grow to use all the available space. This property is intended for small views. |
-| index | number |  | The index of the currently selected `Tab`. |
+| <span style="color: #31a148">index *</span> | number |  | The index of the currently selected `Tab`. |
 | indicatorClassName | string |  | The CSS class name of the indicator element. |
 | indicatorColor | union:&nbsp;[object Object]<br>&nbsp;string<br> | 'accent' | Determines the color of the indicator. |
 | <span style="color: #31a148">onChange *</span> | function |  | Function called when the index change. |

@@ -303,7 +303,7 @@ Tabs.propTypes = {
   /**
    * The index of the currently selected `Tab`.
    */
-  index: PropTypes.number,
+  index: PropTypes.number.isRequired,
   /**
    * The CSS class name of the indicator element.
    */

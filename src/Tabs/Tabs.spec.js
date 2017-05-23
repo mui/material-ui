@@ -29,7 +29,7 @@ describe('<Tabs />', () => {
 
   it('should render with the root class', () => {
     const wrapper = shallowWithWidth(
-      <Tabs width="md" onChange={noop}>
+      <Tabs width="md" onChange={noop} index={0}>
         <Tab />
       </Tabs>,
     );
@@ -40,7 +40,7 @@ describe('<Tabs />', () => {
   describe('prop: className', () => {
     it('should render with the user and root classes', () => {
       const wrapper = shallowWithWidth(
-        <Tabs width="md" onChange={noop} className="woof">
+        <Tabs width="md" onChange={noop} index={0} className="woof">
           <Tab />
         </Tabs>,
       );
@@ -52,7 +52,7 @@ describe('<Tabs />', () => {
   describe('prop: centered', () => {
     it('should render with the centered class', () => {
       const wrapper = shallowWithWidth(
-        <Tabs width="md" onChange={noop} centered>
+        <Tabs width="md" onChange={noop} index={0} centered>
           <Tab />
         </Tabs>,
       );
@@ -184,7 +184,7 @@ describe('<Tabs />', () => {
 
     it('should render scroll buttons automatically', () => {
       const wrapper = shallowWithWidth(
-        <Tabs width="md" onChange={noop} scrollable scrollButtons="auto">
+        <Tabs width="md" onChange={noop} index={0} scrollable scrollButtons="auto">
           <Tab />
         </Tabs>,
       );
@@ -193,7 +193,7 @@ describe('<Tabs />', () => {
 
     it('should should not render scroll buttons automatically', () => {
       const wrapper = shallowWithWidth(
-        <Tabs width="sm" onChange={noop} scrollable scrollButtons="auto">
+        <Tabs width="sm" onChange={noop} index={0} scrollable scrollButtons="auto">
           <Tab />
         </Tabs>,
       );
