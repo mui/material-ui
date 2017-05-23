@@ -6,7 +6,7 @@ import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
 
-const styleSheet = createStyleSheet('BasicTable', (theme) => ({
+const styleSheet = createStyleSheet('BasicTable', theme => ({
   paper: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
@@ -44,7 +44,7 @@ function BasicTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((n) => {
+          {data.map(n => {
             return (
               <TableRow key={n.id}>
                 <TableCell>{n.name}</TableCell>

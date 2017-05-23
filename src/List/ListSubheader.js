@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiListSubheader', (theme) => ({
+export const styleSheet = createStyleSheet('MuiListSubheader', theme => ({
   root: {
     boxSizing: 'border-box',
     lineHeight: '48px',
@@ -25,18 +25,15 @@ export const styleSheet = createStyleSheet('MuiListSubheader', (theme) => ({
 }));
 
 function ListSubheader(props) {
-  const {
-    classes,
-    className: classNameProp,
-    primary,
-    inset,
-    children,
-    ...other
-  } = props;
-  const className = classNames(classes.root, {
-    [classes.primary]: primary,
-    [classes.inset]: inset,
-  }, classNameProp);
+  const { classes, className: classNameProp, primary, inset, children, ...other } = props;
+  const className = classNames(
+    classes.root,
+    {
+      [classes.primary]: primary,
+      [classes.inset]: inset,
+    },
+    classNameProp,
+  );
 
   return (
     <div className={className} {...other}>

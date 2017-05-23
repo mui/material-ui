@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiDialogContent', (theme) => {
+export const styleSheet = createStyleSheet('MuiDialogContent', theme => {
   const gutter = theme.spacing.unit * 3;
   return {
     root: {
@@ -21,12 +21,7 @@ export const styleSheet = createStyleSheet('MuiDialogContent', (theme) => {
 });
 
 function DialogContent(props) {
-  const {
-    classes,
-    children,
-    className,
-    ...other
-  } = props;
+  const { classes, children, className, ...other } = props;
 
   return (
     <div className={classNames(classes.root, className)} {...other}>

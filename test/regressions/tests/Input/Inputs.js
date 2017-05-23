@@ -37,34 +37,19 @@ export default class Inputs extends Component {
     return (
       <div>
         <div className={classes.container}>
-          <Input
-            value="Hello world"
-            className={classes.input}
-          />
-          <Input
-            placeholder="Placeholder"
-            className={classes.input}
-          />
-          <Input
-            value="Disabled"
-            className={classes.input}
-            disabled
-          />
-          <Input
-            error
-            value="Error"
-            className={classes.input}
-          />
+          <Input value="Hello world" className={classes.input} />
+          <Input placeholder="Placeholder" className={classes.input} />
+          <Input value="Disabled" className={classes.input} disabled />
+          <Input error value="Error" className={classes.input} />
           <Input
             value="Focused"
-            inputRef={(node) => { this.focusInput = node; }}
+            inputRef={node => {
+              this.focusInput = node;
+            }}
             className={classes.input}
           />
         </div>
-        <Input
-          value="Large input"
-          className={classNames(classes.input, classes.large)}
-        />
+        <Input value="Large input" className={classNames(classes.input, classes.large)} />
       </div>
     );
   }

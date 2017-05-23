@@ -45,14 +45,14 @@ class Slide extends Component {
 
   transition = null;
 
-  handleEnter = (element) => {
+  handleEnter = element => {
     element.style.transform = getTranslateValue(this.props, element);
     if (this.props.onEnter) {
       this.props.onEnter(element);
     }
   };
 
-  handleEntering = (element) => {
+  handleEntering = element => {
     const { transitions } = this.context.styleManager.theme;
     element.style.transition = transitions.create('transform', {
       duration: this.props.enterTransitionDuration,
@@ -64,7 +64,7 @@ class Slide extends Component {
     }
   };
 
-  handleExiting = (element) => {
+  handleExiting = element => {
     const { transitions } = this.context.styleManager.theme;
     element.style.transition = transitions.create('transform', {
       duration: this.props.leaveTransitionDuration,
@@ -96,7 +96,9 @@ class Slide extends Component {
         timeout={500}
         transitionAppear
         {...other}
-        ref={(ref) => { this.transition = ref; }}
+        ref={ref => {
+          this.transition = ref;
+        }}
       >
         {children}
       </Transition>

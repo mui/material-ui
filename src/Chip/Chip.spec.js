@@ -22,10 +22,7 @@ describe('<Chip />', () => {
 
     before(() => {
       wrapper = shallow(
-        <Chip
-          className="my-Chip"
-          data-my-prop="woof"
-        >
+        <Chip className="my-Chip" data-my-prop="woof">
           Text Chip
         </Chip>,
       );
@@ -54,11 +51,7 @@ describe('<Chip />', () => {
     before(() => {
       handleClick = () => {};
       wrapper = shallow(
-        <Chip
-          className="my-Chip"
-          data-my-prop="woof"
-          onClick={handleClick}
-        >
+        <Chip className="my-Chip" data-my-prop="woof" onClick={handleClick}>
           Text Chip
         </Chip>,
       );
@@ -116,8 +109,7 @@ describe('<Chip />', () => {
       assert.strictEqual(wrapper.name(), 'button');
       assert.strictEqual(wrapper.childAt(0).is(Avatar), true, 'should have an Avatar');
       assert.strictEqual(wrapper.childAt(1).is('span'), true, 'should have a span');
-      assert.strictEqual(wrapper.childAt(2).is('pure(Cancel)'), true,
-        'should be an svg icon');
+      assert.strictEqual(wrapper.childAt(2).is('pure(Cancel)'), true, 'should be an svg icon');
     });
 
     it('should merge user classes & spread custom props to the root node', () => {
@@ -141,8 +133,11 @@ describe('<Chip />', () => {
       wrapper.setProps({ onRequestDelete: onRequestDeleteSpy });
 
       wrapper.find('pure(Cancel)').simulate('click', { stopPropagation: () => {} });
-      assert.strictEqual(onRequestDeleteSpy.callCount, 1,
-        'should have called the onRequestDelete hanlder');
+      assert.strictEqual(
+        onRequestDeleteSpy.callCount,
+        1,
+        'should have called the onRequestDelete hanlder',
+      );
     });
 
     it('should stop propagation in onDeleteRequest', () => {
@@ -151,8 +146,11 @@ describe('<Chip />', () => {
       wrapper.setProps({ onRequestDelete: onRequestDeleteSpy });
 
       wrapper.find('pure(Cancel)').simulate('click', { stopPropagation: stopPropagationSpy });
-      assert.strictEqual(stopPropagationSpy.callCount, 1,
-        'should have called the stopPropagation hanlder');
+      assert.strictEqual(
+        stopPropagationSpy.callCount,
+        1,
+        'should have called the stopPropagation hanlder',
+      );
     });
   });
 
@@ -162,10 +160,7 @@ describe('<Chip />', () => {
 
     before(() => {
       wrapper = shallow(
-        <Chip
-          className="my-Chip"
-          data-my-prop="woof"
-        >
+        <Chip className="my-Chip" data-my-prop="woof">
           Text Chip
         </Chip>,
       );

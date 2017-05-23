@@ -35,8 +35,11 @@ describe('<TableCell />', () => {
     const wrapper = shallow(<TableCell className="woof" disablePadding />);
     assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
-    assert.strictEqual(wrapper.hasClass(classes.padding),
-      false, 'should not have the padding class');
+    assert.strictEqual(
+      wrapper.hasClass(classes.padding),
+      false,
+      'should not have the padding class',
+    );
   });
 
   it('should render children', () => {
@@ -46,9 +49,7 @@ describe('<TableCell />', () => {
   });
 
   it('should render a th with the head class when in the context of a table head', () => {
-    const wrapper = shallow(
-      <TableCell />,
-    );
+    const wrapper = shallow(<TableCell />);
     wrapper.setContext({ ...wrapper.options.context, table: { head: true } });
     assert.strictEqual(wrapper.name(), 'th');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
@@ -56,18 +57,14 @@ describe('<TableCell />', () => {
   });
 
   it('should render with the footer class when in the context of a table footer', () => {
-    const wrapper = shallow(
-      <TableCell />,
-    );
+    const wrapper = shallow(<TableCell />);
     wrapper.setContext({ ...wrapper.options.context, table: { footer: true } });
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.footer), true, 'should have the footer class');
   });
 
   it('should render with the numeric class', () => {
-    const wrapper = shallow(
-      <TableCell numeric />,
-    );
+    const wrapper = shallow(<TableCell numeric />);
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.numeric), true, 'should have the numeric class');
   });

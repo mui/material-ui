@@ -7,7 +7,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 import createSwitch from '../internal/SwitchBase';
 
-export const styleSheet = createStyleSheet('MuiSwitch', (theme) => ({
+export const styleSheet = createStyleSheet('MuiSwitch', theme => ({
   root: {
     display: 'inline-flex',
     width: 62,
@@ -62,11 +62,7 @@ export const styleSheet = createStyleSheet('MuiSwitch', (theme) => ({
 const SwitchBase = createSwitch({ styleSheet });
 
 function Switch(props) {
-  const {
-    classes,
-    className,
-    ...other
-  } = props;
+  const { classes, className, ...other } = props;
 
   const icon = <div className={classes.icon} />;
 

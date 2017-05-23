@@ -9,7 +9,7 @@ import KeyboardArrowLeft from '../svg-icons/keyboard-arrow-left';
 import KeyboardArrowRight from '../svg-icons/keyboard-arrow-right';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiTabScrollButton', (theme) => ({
+export const styleSheet = createStyleSheet('MuiTabScrollButton', theme => ({
   root: {
     background: 'none',
     color: 'inherit',
@@ -21,33 +21,17 @@ export const styleSheet = createStyleSheet('MuiTabScrollButton', (theme) => ({
  * @ignore - internal component.
  */
 function TabScrollButton(props) {
-  const {
-    classes,
-    className: classNameProp,
-    direction,
-    onClick,
-    visible,
-    ...other
-  } = props;
+  const { classes, className: classNameProp, direction, onClick, visible, ...other } = props;
 
-  const className = classNames(
-    classes.root,
-    classNameProp,
-  );
+  const className = classNames(classes.root, classNameProp);
 
   if (!visible) {
     return <div className={className} />;
   }
 
   return (
-    <ButtonBase
-      className={className}
-      role="button"
-      onClick={onClick}
-      tabIndex="-1"
-      {...other}
-    >
-      {direction === 'left' ? <KeyboardArrowLeft /> : <KeyboardArrowRight /> }
+    <ButtonBase className={className} role="button" onClick={onClick} tabIndex="-1" {...other}>
+      {direction === 'left' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
     </ButtonBase>
   );
 }

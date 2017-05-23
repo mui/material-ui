@@ -8,7 +8,7 @@ import withStyles from '../styles/withStyles';
 import ButtonBase from '../internal/ButtonBase';
 import ArrowDownwardIcon from '../svg-icons/arrow-downward';
 
-export const styleSheet = createStyleSheet('MuiTableSortLabel', (theme) => ({
+export const styleSheet = createStyleSheet('MuiTableSortLabel', theme => ({
   sortLabel: {
     cursor: 'pointer',
     display: 'inline-flex',
@@ -52,29 +52,21 @@ export const styleSheet = createStyleSheet('MuiTableSortLabel', (theme) => ({
  * A button based label for placing inside `TableCell` for column sorting.
  */
 function TableSortLabel(props) {
-  const {
-    active,
-    classes,
-    className: classNameProp,
-    children,
-    direction,
-    ...other
-  } = props;
-  const className = classNames(classes.sortLabel, {
-    [classes.active]: active,
-  }, classNameProp);
+  const { active, classes, className: classNameProp, children, direction, ...other } = props;
+  const className = classNames(
+    classes.sortLabel,
+    {
+      [classes.active]: active,
+    },
+    classNameProp,
+  );
 
   const iconClasses = classNames(classes.icon, {
     [classes[direction]]: !!direction,
   });
 
   return (
-    <ButtonBase
-      className={className}
-      component="span"
-      ripple={false}
-      {...other}
-    >
+    <ButtonBase className={className} component="span" ripple={false} {...other}>
       {children}
       <ArrowDownwardIcon className={iconClasses} />
     </ButtonBase>

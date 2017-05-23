@@ -7,7 +7,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 import { FormLabel } from '../Form';
 
-export const styleSheet = createStyleSheet('MuiInputLabel', (theme) => ({
+export const styleSheet = createStyleSheet('MuiInputLabel', theme => ({
   root: {
     transformOrigin: 'top left',
   },
@@ -46,11 +46,15 @@ function InputLabel(props, context) {
     shrink = muiFormControl.dirty || muiFormControl.focused;
   }
 
-  const className = classNames(classes.root, {
-    [classes.formControl]: muiFormControl,
-    [classes.animated]: !disableAnimation,
-    [classes.shrink]: shrink,
-  }, classNameProp);
+  const className = classNames(
+    classes.root,
+    {
+      [classes.formControl]: muiFormControl,
+      [classes.animated]: !disableAnimation,
+      [classes.shrink]: shrink,
+    },
+    classNameProp,
+  );
 
   return (
     <FormLabel className={className} {...other}>
@@ -103,4 +107,3 @@ InputLabel.contextTypes = {
 };
 
 export default withStyles(styleSheet)(InputLabel);
-

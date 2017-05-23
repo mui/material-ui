@@ -8,9 +8,9 @@ import withStyles from '../styles/withStyles';
 import customPropTypes from '../utils/customPropTypes';
 import Transition from '../internal/Transition';
 
-const reflow = (elem) => elem.offsetHeight;
+const reflow = elem => elem.offsetHeight;
 
-export const styleSheet = createStyleSheet('MuiCollapse', (theme) => ({
+export const styleSheet = createStyleSheet('MuiCollapse', theme => ({
   container: {
     height: 0,
     overflow: 'hidden',
@@ -30,14 +30,14 @@ class Collapse extends Component {
 
   wrapper = null;
 
-  handleEnter = (element) => {
+  handleEnter = element => {
     element.style.height = '0px';
     if (this.props.onEnter) {
       this.props.onEnter(element);
     }
   };
 
-  handleEntering = (element) => {
+  handleEntering = element => {
     const { transitionDuration } = this.props;
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
 
@@ -57,7 +57,7 @@ class Collapse extends Component {
     }
   };
 
-  handleEntered = (element) => {
+  handleEntered = element => {
     element.style.transitionDuration = '0ms'; // safari fix
     element.style.height = 'auto';
     reflow(element);
@@ -66,7 +66,7 @@ class Collapse extends Component {
     }
   };
 
-  handleExit = (element) => {
+  handleExit = element => {
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
     element.style.height = `${wrapperHeight}px`;
     if (this.props.onExit) {
@@ -74,7 +74,7 @@ class Collapse extends Component {
     }
   };
 
-  handleExiting = (element) => {
+  handleExiting = element => {
     const { transitionDuration } = this.props;
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
 
@@ -121,7 +121,11 @@ class Collapse extends Component {
         {...other}
       >
         <div className={containerClasses}>
-          <div ref={(node) => { this.wrapper = node; }}>
+          <div
+            ref={node => {
+              this.wrapper = node;
+            }}
+          >
             {children}
           </div>
         </div>

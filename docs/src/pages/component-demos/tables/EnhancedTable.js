@@ -43,9 +43,9 @@ class EnhancedTableHead extends Component {
     orderBy: PropTypes.string.isRequired,
   };
 
-  createSortHandler = (property) => (event) => {
+  createSortHandler = property => event => {
     this.props.onRequestSort(event, property);
-  }
+  };
 
   render() {
     const { onSelectAllClick, order, orderBy } = this.props;
@@ -56,7 +56,7 @@ class EnhancedTableHead extends Component {
           <TableCell checkbox>
             <Checkbox onChange={onSelectAllClick} />
           </TableCell>
-          {columnData.map((column) => {
+          {columnData.map(column => {
             return (
               <TableCell
                 key={column.id}
@@ -79,19 +79,19 @@ class EnhancedTableHead extends Component {
   }
 }
 
-const toolbarStyleSheet = createStyleSheet('EnhancedTableToolbar', (theme) => ({
+const toolbarStyleSheet = createStyleSheet('EnhancedTableToolbar', theme => ({
   root: {
     paddingRight: 2,
   },
-  highlight: (
-    theme.palette.type === 'light' ? {
-      color: theme.palette.accent.A700,
-      backgroundColor: theme.palette.accent.A100,
-    } : {
-      color: theme.palette.accent.A100,
-      backgroundColor: theme.palette.accent.A700,
-    }
-  ),
+  highlight: theme.palette.type === 'light'
+    ? {
+        color: theme.palette.accent.A700,
+        backgroundColor: theme.palette.accent.A100,
+      }
+    : {
+        color: theme.palette.accent.A100,
+        backgroundColor: theme.palette.accent.A700,
+      },
   spacer: {
     flex: '1 1 100%',
   },
@@ -103,7 +103,7 @@ const toolbarStyleSheet = createStyleSheet('EnhancedTableToolbar', (theme) => ({
   },
 }));
 
-let EnhancedTableToolbar = (props) => {
+let EnhancedTableToolbar = props => {
   const { numSelected, classes } = props;
 
   return (
@@ -113,23 +113,19 @@ let EnhancedTableToolbar = (props) => {
       })}
     >
       <div className={classes.title}>
-        {numSelected > 0 ? (
-          <Typography type="subheading">{numSelected} selected</Typography>
-        ) : (
-          <Typography type="title">Nutrition</Typography>
-        )}
+        {numSelected > 0
+          ? <Typography type="subheading">{numSelected} selected</Typography>
+          : <Typography type="title">Nutrition</Typography>}
       </div>
       <div className={classes.spacer} />
       <div className={classes.actions}>
-        {numSelected > 0 ? (
-          <IconButton>
-            <DeleteIcon />
-          </IconButton>
-        ) : (
-          <IconButton>
-            <FilterListIcon />
-          </IconButton>
-        )}
+        {numSelected > 0
+          ? <IconButton>
+              <DeleteIcon />
+            </IconButton>
+          : <IconButton>
+              <FilterListIcon />
+            </IconButton>}
       </div>
     </Toolbar>
   );
@@ -142,7 +138,7 @@ EnhancedTableToolbar.propTypes = {
 
 EnhancedTableToolbar = withStyles(toolbarStyleSheet)(EnhancedTableToolbar);
 
-const styleSheet = createStyleSheet('EnhancedTable', (theme) => ({
+const styleSheet = createStyleSheet('EnhancedTable', theme => ({
   paper: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
@@ -173,9 +169,7 @@ class EnhancedTable extends Component {
     }
 
     const data = this.state.data.sort(
-      (a, b) => (
-        order === 'desc' ? b[orderBy] > a[orderBy] : a[orderBy] > b[orderBy]
-      ),
+      (a, b) => (order === 'desc' ? b[orderBy] > a[orderBy] : a[orderBy] > b[orderBy]),
     );
 
     this.setState({ data, order, orderBy });
@@ -183,7 +177,7 @@ class EnhancedTable extends Component {
 
   handleSelectAllClick = (event, checked) => {
     if (checked) {
-      this.setState({ selected: this.state.data.map((n) => n.id) });
+      this.setState({ selected: this.state.data.map(n => n.id) });
       return;
     }
     this.setState({ selected: [] });
@@ -216,7 +210,7 @@ class EnhancedTable extends Component {
     this.setState({ selected: newSelected });
   };
 
-  isSelected = (id) => this.state.selected.indexOf(id) !== -1;
+  isSelected = id => this.state.selected.indexOf(id) !== -1;
 
   render() {
     const classes = this.props.classes;
@@ -233,13 +227,13 @@ class EnhancedTable extends Component {
             onRequestSort={this.handleRequestSort}
           />
           <TableBody>
-            {data.map((n) => {
+            {data.map(n => {
               const isSelected = this.isSelected(n.id);
               return (
                 <TableRow
                   hover
-                  onClick={(event) => this.handleClick(event, n.id)}
-                  onKeyDown={(event) => this.handleKeyDown(event, n.id)}
+                  onClick={event => this.handleClick(event, n.id)}
+                  onKeyDown={event => this.handleKeyDown(event, n.id)}
                   role="checkbox"
                   aria-checked={isSelected}
                   tabIndex="-1"

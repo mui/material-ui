@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiTable', (theme) => ({
+export const styleSheet = createStyleSheet('MuiTable', theme => ({
   root: {
     fontFamily: theme.typography.fontFamily,
     width: '100%',
@@ -17,19 +17,15 @@ export const styleSheet = createStyleSheet('MuiTable', (theme) => ({
 }));
 
 class Table extends Component {
-  getChildContext() { // eslint-disable-line class-methods-use-this
+  getChildContext() {
+    // eslint-disable-line class-methods-use-this
     return {
       table: {},
     };
   }
 
   render() {
-    const {
-      classes,
-      className: classNameProp,
-      children,
-      ...other
-    } = this.props;
+    const { classes, className: classNameProp, children, ...other } = this.props;
     const className = classNames(classes.root, classNameProp);
 
     return (

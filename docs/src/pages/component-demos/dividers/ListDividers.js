@@ -6,7 +6,7 @@ import { withStyles, createStyleSheet } from 'material-ui/styles';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 
-const styleSheet = createStyleSheet('ListDividers', (theme) => ({
+const styleSheet = createStyleSheet('ListDividers', theme => ({
   root: {
     width: '100%',
     maxWidth: '360px',

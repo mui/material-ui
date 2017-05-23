@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiSvgIcon', (theme) => ({
+export const styleSheet = createStyleSheet('MuiSvgIcon', theme => ({
   svgIcon: {
     display: 'inline-block',
     fill: 'currentColor',
@@ -20,18 +20,14 @@ export const styleSheet = createStyleSheet('MuiSvgIcon', (theme) => ({
 }));
 
 function SvgIcon(props) {
-  const {
-    children,
-    classes,
-    className: classNameProp,
-    titleAccess,
-    viewBox,
-    ...other
-  } = props;
+  const { children, classes, className: classNameProp, titleAccess, viewBox, ...other } = props;
 
-  const className = classNames({
-    [classes.svgIcon]: true,
-  }, classNameProp);
+  const className = classNames(
+    {
+      [classes.svgIcon]: true,
+    },
+    classNameProp,
+  );
 
   return (
     <svg
@@ -40,9 +36,7 @@ function SvgIcon(props) {
       aria-hidden={titleAccess ? 'false' : 'true'}
       {...other}
     >
-      {titleAccess ? (
-        <title>{titleAccess}</title>
-      ) : null}
+      {titleAccess ? <title>{titleAccess}</title> : null}
       {children}
     </svg>
   );

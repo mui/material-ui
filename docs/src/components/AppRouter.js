@@ -1,13 +1,7 @@
 // @flow
 
 import React from 'react';
-import {
-  applyRouterMiddleware,
-  browserHistory,
-  Router,
-  Route,
-  IndexRoute,
-} from 'react-router';
+import { applyRouterMiddleware, browserHistory, Router, Route, IndexRoute } from 'react-router';
 import { useScroll } from 'react-router-scroll';
 import { kebabCase, titleize } from 'docs/src/utils/helpers';
 import AppFrame from 'docs/src/components/AppFrame';
@@ -18,18 +12,10 @@ import { componentAPIs, requireMarkdown, demos, requireDemo } from 'docs/src/com
 
 export default function AppRouter() {
   return (
-    <Router
-      history={browserHistory}
-      render={applyRouterMiddleware(useScroll())}
-    >
+    <Router history={browserHistory} render={applyRouterMiddleware(useScroll())}>
       <Route title="Material UI" path="/" component={AppFrame}>
         <IndexRoute dockDrawer component={Home} title={null} />
-        <Route
-          title="Getting Started"
-          path="/getting-started"
-          nav
-          component={AppContent}
-        >
+        <Route title="Getting Started" path="/getting-started" nav component={AppContent}>
           <Route
             title="Installation"
             path="/getting-started/installation"
@@ -59,12 +45,7 @@ export default function AppRouter() {
             nav
           />
         </Route>
-        <Route
-          title="Customization"
-          path="/customization"
-          nav
-          component={AppContent}
-        >
+        <Route title="Customization" path="/customization" nav component={AppContent}>
           <Route
             title="Overrides"
             path="/customization/overrides"
@@ -94,12 +75,7 @@ export default function AppRouter() {
             nav
           />
         </Route>
-        <Route
-          title="Guides"
-          path="/guides"
-          nav
-          component={AppContent}
-        >
+        <Route title="Guides" path="/guides" nav component={AppContent}>
           <Route
             title="Composition"
             path="/guides/composition"
@@ -122,12 +98,7 @@ export default function AppRouter() {
             nav
           />
         </Route>
-        <Route
-          title="Style"
-          path="/style"
-          nav
-          component={AppContent}
-        >
+        <Route title="Style" path="/style" nav component={AppContent}>
           <Route
             title="Color"
             path="/style/color"
@@ -150,12 +121,7 @@ export default function AppRouter() {
             nav
           />
         </Route>
-        <Route
-          title="Layout"
-          path="/layout"
-          nav
-          component={AppContent}
-        >
+        <Route title="Layout" path="/layout" nav component={AppContent}>
           <Route
             title="Basics"
             path="/layout/basics"
@@ -178,13 +144,8 @@ export default function AppRouter() {
             nav
           />
         </Route>
-        <Route
-          title="Component Demos"
-          path="/component-demos"
-          nav
-          component={AppContent}
-        >
-          {demos.map(((demo) => {
+        <Route title="Component Demos" path="/component-demos" nav component={AppContent}>
+          {demos.map(demo => {
             return (
               <Route
                 key={demo.name}
@@ -196,15 +157,10 @@ export default function AppRouter() {
                 nav
               />
             );
-          }))}
+          })}
         </Route>
-        <Route
-          title="Component API"
-          path="/component-api"
-          nav
-          component={AppContent}
-        >
-          {componentAPIs.map(((componentAPI) => {
+        <Route title="Component API" path="/component-api" nav component={AppContent}>
+          {componentAPIs.map(componentAPI => {
             return (
               <Route
                 key={componentAPI.name}
@@ -216,14 +172,9 @@ export default function AppRouter() {
                 nav
               />
             );
-          }))}
+          })}
         </Route>
-        <Route
-          title="Discover More"
-          path="/discover-more"
-          nav
-          component={AppContent}
-        >
+        <Route title="Discover More" path="/discover-more" nav component={AppContent}>
           <Route
             title="Community"
             path="/discover-more/community"

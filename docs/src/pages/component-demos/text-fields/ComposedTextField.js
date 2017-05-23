@@ -7,7 +7,7 @@ import Input from 'material-ui/Input';
 import InputLabel from 'material-ui/Input/InputLabel';
 import FormControl from 'material-ui/Form/FormControl';
 
-const styleSheet = createStyleSheet('ComposedTextField', (theme) => ({
+const styleSheet = createStyleSheet('ComposedTextField', theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -22,7 +22,7 @@ class ComposedTextField extends Component {
     name: 'Composed TextField',
   };
 
-  handleChange = (event) => {
+  handleChange = event => {
     this.setState({ name: event.target.value });
   };
 
@@ -35,11 +35,7 @@ class ComposedTextField extends Component {
           <InputLabel htmlFor="name">
             Name
           </InputLabel>
-          <Input
-            id="name"
-            value={this.state.name}
-            onChange={this.handleChange}
-          />
+          <Input id="name" value={this.state.name} onChange={this.handleChange} />
         </FormControl>
       </div>
     );

@@ -14,12 +14,7 @@ export const styleSheet = createStyleSheet('MuiCard', {
 });
 
 function Card(props) {
-  const {
-    classes,
-    className: classNameProp,
-    raised,
-    ...other
-  } = props;
+  const { classes, className: classNameProp, raised, ...other } = props;
   const className = classNames(classes.card, classNameProp);
 
   return <Paper className={className} elevation={raised ? 8 : 2} {...other} />;

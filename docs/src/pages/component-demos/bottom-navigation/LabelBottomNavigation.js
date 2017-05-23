@@ -30,26 +30,11 @@ class LabelBottomNavigation extends Component {
 
     return (
       <div className={classes.root}>
-        <BottomNavigation
-          index={index}
-          onChange={this.handleChange}
-        >
-          <BottomNavigationButton
-            label="Recents"
-            icon={<RestoreIcon />}
-          />
-          <BottomNavigationButton
-            label="Favorites"
-            icon={<FavoriteIcon />}
-          />
-          <BottomNavigationButton
-            label="Nearby"
-            icon={<LocationOnIcon />}
-          />
-          <BottomNavigationButton
-            label="Folder"
-            icon={<FolderIcon />}
-          />
+        <BottomNavigation index={index} onChange={this.handleChange}>
+          <BottomNavigationButton label="Recents" icon={<RestoreIcon />} />
+          <BottomNavigationButton label="Favorites" icon={<FavoriteIcon />} />
+          <BottomNavigationButton label="Nearby" icon={<LocationOnIcon />} />
+          <BottomNavigationButton label="Folder" icon={<FolderIcon />} />
         </BottomNavigation>
       </div>
     );

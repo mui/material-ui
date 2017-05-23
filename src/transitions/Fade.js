@@ -60,7 +60,7 @@ class Fade extends Component<DefaultProps, Props, void> {
     leaveTransitionDuration: duration.leavingScreen,
   };
 
-  handleEnter = (element) => {
+  handleEnter = element => {
     element.style.opacity = 0;
     const { transitions } = this.context.styleManager.theme;
     element.style.transition = transitions.create('opacity', {
@@ -71,14 +71,14 @@ class Fade extends Component<DefaultProps, Props, void> {
     }
   };
 
-  handleEntering = (element) => {
+  handleEntering = element => {
     element.style.opacity = 1;
     if (this.props.onEntering) {
       this.props.onEntering(element);
     }
   };
 
-  handleExit = (element) => {
+  handleExit = element => {
     const { transitions } = this.context.styleManager.theme;
     element.style.transition = transitions.create('opacity', {
       duration: this.props.leaveTransitionDuration,

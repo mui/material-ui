@@ -9,7 +9,7 @@ import Fade from '../transitions/Fade';
 import { duration } from '../styles/transitions';
 import Paper from '../Paper';
 
-export const styleSheet = createStyleSheet('MuiDialog', (theme) => ({
+export const styleSheet = createStyleSheet('MuiDialog', theme => ({
   modal: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -198,17 +198,23 @@ function Dialog(props: Props) {
       show={open}
       {...other}
     >
-      {/* $FlowFixMe */}
-      {createTransitionFn(transition, transitionProps, (
+      {createTransitionFn(
+        /* $FlowFixMe */
+        transition,
+        transitionProps,
         <Paper
           data-mui-test="Dialog"
           elevation={24}
-          className={classNames(classes.dialog, classes[`dialogWidth-${maxWidth}`],
-            paperClassName, { [classes.fullScreen]: fullScreen })}
+          className={classNames(
+            classes.dialog,
+            classes[`dialogWidth-${maxWidth}`],
+            paperClassName,
+            { [classes.fullScreen]: fullScreen },
+          )}
         >
           {children}
-        </Paper>
-      ))}
+        </Paper>,
+      )}
     </Modal>
   );
 }

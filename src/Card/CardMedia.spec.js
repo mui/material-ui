@@ -15,9 +15,7 @@ describe('<CardMedia />', () => {
   });
 
   it('should have the cardMedia class', () => {
-    const wrapper = shallow(
-      <CardMedia />,
-    );
+    const wrapper = shallow(<CardMedia />);
     assert.strictEqual(wrapper.hasClass(classes.cardMedia), true);
   });
 });

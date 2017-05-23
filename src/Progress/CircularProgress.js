@@ -9,7 +9,7 @@ import withStyles from '../styles/withStyles';
 const THICKNESS = 3.6;
 const PI = 3.1416; // Simple version of Math.PI for the CSS generated.
 
-export const styleSheet = createStyleSheet('MuiCircularProgress', (theme) => ({
+export const styleSheet = createStyleSheet('MuiCircularProgress', theme => ({
   root: {
     display: 'inline-block',
     color: theme.palette.primary[500],
@@ -40,25 +40,20 @@ export const styleSheet = createStyleSheet('MuiCircularProgress', (theme) => ({
       strokeDashoffset: 0,
     },
     '50%, 58%': {
-      strokeDasharray: `calc((65% - ${THICKNESS}px) * ${PI}), calc((100% - ${
-        THICKNESS}px) * ${PI})`,
+      strokeDasharray: `calc((65% - ${THICKNESS}px) * ${PI}), ` +
+        `calc((100% - ${THICKNESS}px) * ${PI})`,
       strokeDashoffset: `calc((25% - ${THICKNESS}px) * -${PI})`,
     },
     '100%': {
-      strokeDasharray: `calc((65% - ${THICKNESS}px) * ${PI}), calc((100% - ${
-        THICKNESS}px) * ${PI})`,
+      strokeDasharray: `calc((65% - ${THICKNESS}px) * ${PI}), ` +
+        `calc((100% - ${THICKNESS}px) * ${PI})`,
       strokeDashoffset: `calc((99% - ${THICKNESS}px) * -${PI})`,
     },
   },
 }));
 
 function CircularProgress(props) {
-  const {
-    classes,
-    className,
-    size,
-    ...other
-  } = props;
+  const { classes, className, size, ...other } = props;
   const radius = size / 2;
 
   return (
@@ -72,7 +67,7 @@ function CircularProgress(props) {
           className={classes.circle}
           cx={radius}
           cy={radius}
-          r={radius - (THICKNESS / 2)}
+          r={radius - THICKNESS / 2}
           fill="none"
           strokeWidth={THICKNESS}
           strokeMiterlimit="20"

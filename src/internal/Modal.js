@@ -24,7 +24,7 @@ import Portal from './Portal';
  */
 const modalManager = createModalManager();
 
-export const styleSheet = createStyleSheet('MuiModal', (theme) => ({
+export const styleSheet = createStyleSheet('MuiModal', theme => ({
   modal: {
     display: 'flex',
     width: '100%',
@@ -217,11 +217,12 @@ class Modal extends Component<DefaultProps, Props, State> {
 
       if (!modalContent.hasAttribute('tabIndex')) {
         modalContent.setAttribute('tabIndex', -1);
-        warning(false, (
+        warning(
+          false,
           'Material-UI: The modal content node does not accept focus. ' +
-          'For the benefit of assistive technologies, ' +
-          'the tabIndex of the node is being set to "-1".'
-        ));
+            'For the benefit of assistive technologies, ' +
+            'the tabIndex of the node is being set to "-1".',
+        );
       }
 
       modalContent.focus();
@@ -263,17 +264,13 @@ class Modal extends Component<DefaultProps, Props, State> {
     }
   };
 
-  handleDocumentKeyUp = (event) => {
+  handleDocumentKeyUp = event => {
     if (!this.mounted || !this.props.modalManager.isTopModal(this)) {
       return;
     }
 
     if (keycode(event) === 'esc') {
-      const {
-        onEscapeKeyUp,
-        onRequestClose,
-        ignoreEscapeKeyUp,
-      } = this.props;
+      const { onEscapeKeyUp, onRequestClose, ignoreEscapeKeyUp } = this.props;
 
       if (onEscapeKeyUp) {
         onEscapeKeyUp(event);
@@ -285,16 +282,12 @@ class Modal extends Component<DefaultProps, Props, State> {
     }
   };
 
-  handleBackdropClick = (event) => {
+  handleBackdropClick = event => {
     if (event.target !== event.currentTarget) {
       return;
     }
 
-    const {
-      onBackdropClick,
-      onRequestClose,
-      ignoreBackdropClick,
-    } = this.props;
+    const { onBackdropClick, onRequestClose, ignoreBackdropClick } = this.props;
 
     if (onBackdropClick) {
       onBackdropClick(event);
@@ -397,7 +390,7 @@ class Modal extends Component<DefaultProps, Props, State> {
     }
 
     if (backdropInvisible && modalChild.props.hasOwnProperty('in')) {
-      Object.keys(transitionCallbacks).forEach((key) => {
+      Object.keys(transitionCallbacks).forEach(key => {
         childProps[key] = createChainedFunction(transitionCallbacks[key], modalChild.props[key]);
       });
     } else {
@@ -409,11 +402,18 @@ class Modal extends Component<DefaultProps, Props, State> {
     }
 
     return (
-      <Portal open ref={(node) => { this.mountNode = node ? node.getLayer() : node; }}>
+      <Portal
+        open
+        ref={node => {
+          this.mountNode = node ? node.getLayer() : node;
+        }}
+      >
         <div
           data-mui-test="Modal"
           className={classNames(classes.modal, className)}
-          ref={(node) => { this.modal = node; }}
+          ref={node => {
+            this.modal = node;
+          }}
           {...other}
         >
           {!disableBackdrop && this.renderBackdrop(backdropProps)}

@@ -26,7 +26,7 @@ class MenuList extends Component {
   selectedItem = undefined;
   blurTimer = undefined;
 
-  handleBlur = (event) => {
+  handleBlur = event => {
     this.blurTimer = setTimeout(() => {
       if (this.list) {
         const list = findDOMNode(this.list);
@@ -42,7 +42,7 @@ class MenuList extends Component {
     }
   };
 
-  handleKeyDown = (event) => {
+  handleKeyDown = event => {
     const list = findDOMNode(this.list);
     const key = keycode(event);
     const currentFocus = activeElement(ownerDocument(list));
@@ -75,7 +75,7 @@ class MenuList extends Component {
     }
   };
 
-  handleItemFocus = (event) => {
+  handleItemFocus = event => {
     const list = findDOMNode(this.list);
     if (list) {
       // $FlowFixMe
@@ -140,7 +140,9 @@ class MenuList extends Component {
       <List
         data-mui-test="MenuList"
         role="menu"
-        rootRef={(node) => { this.list = node; }}
+        rootRef={node => {
+          this.list = node;
+        }}
         className={className}
         onKeyDown={this.handleKeyDown}
         onBlur={this.handleBlur}
@@ -149,7 +151,11 @@ class MenuList extends Component {
         {React.Children.map(children, (child, index) =>
           React.cloneElement(child, {
             tabIndex: index === this.state.currentTabIndex ? '0' : '-1',
-            ref: child.props.selected ? ((node) => { this.selectedItem = node; }) : undefined,
+            ref: child.props.selected
+              ? node => {
+                  this.selectedItem = node;
+                }
+              : undefined,
             onFocus: this.handleItemFocus,
           }),
         )}

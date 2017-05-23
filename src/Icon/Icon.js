@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiIcon', (theme) => ({
+export const styleSheet = createStyleSheet('MuiIcon', theme => ({
   root: {
     userSelect: 'none',
   },
@@ -55,7 +55,8 @@ function Icon(props) {
       [classes.error]: error,
       [classes.primary]: primary,
     },
-    classNameProp);
+    classNameProp,
+  );
 
   return (
     <span className={className} aria-hidden="true" {...other}>

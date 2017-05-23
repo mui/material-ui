@@ -8,7 +8,7 @@ import { LabelRadio, RadioGroup } from 'material-ui/Radio';
 import Paper from 'material-ui/Paper';
 import { FormLabel } from 'material-ui/Form';
 
-const styleSheet = createStyleSheet('InteractiveGrid', (theme) => ({
+const styleSheet = createStyleSheet('InteractiveGrid', theme => ({
   root: {
     flexGrow: 1,
   },
@@ -30,21 +30,17 @@ class InteractiveGrid extends Component {
     justify: 'center',
     align: 'center',
     gutter: '16',
-  }
+  };
 
-  handleChange = (key) => (event, value) => {
+  handleChange = key => (event, value) => {
     this.setState({
       [key]: value,
     });
-  }
+  };
 
   render() {
     const classes = this.props.classes;
-    const {
-      align,
-      direction,
-      justify,
-    } = this.state;
+    const { align, direction, justify } = this.state;
 
     return (
       <Grid container className={classes.root}>
@@ -56,7 +52,7 @@ class InteractiveGrid extends Component {
             direction={direction}
             justify={justify}
           >
-            {Array.from({ length: 3 }, (v, k) => k).map((index) => (
+            {Array.from({ length: 3 }, (v, k) => k).map(index => (
               <Grid key={index} item>
                 <Paper className={classes.paper}>
                   {`Cell ${index + 1}`}

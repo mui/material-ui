@@ -28,5 +28,4 @@ function defaultDestRewriter(pathObj, innerPath, options) {
   return path.join(innerPath, fileName);
 }
 
-
 module.exports = defaultDestRewriter;

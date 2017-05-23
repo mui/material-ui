@@ -15,9 +15,7 @@ describe('<TabIndicator />', () => {
   });
 
   it('should render with the root class', () => {
-    const wrapper = shallow(
-      <TabIndicator indicatorColor="accent" style={{}} />,
-    );
+    const wrapper = shallow(<TabIndicator indicatorColor="accent" style={{}} />);
     assert.strictEqual(wrapper.name(), 'div');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
   });
@@ -25,18 +23,14 @@ describe('<TabIndicator />', () => {
   describe('prop: style', () => {
     it('should be applied on the root element', () => {
       const style = {};
-      const wrapper = shallow(
-        <TabIndicator indicatorColor="accent" style={style} />,
-      );
+      const wrapper = shallow(<TabIndicator indicatorColor="accent" style={style} />);
       assert.strictEqual(wrapper.props().style, style, 'should apply directly the property');
     });
   });
 
   describe('prop: className', () => {
     it('should append the className on the root element', () => {
-      const wrapper = shallow(
-        <TabIndicator indicatorColor="accent" style={{}} className="foo" />,
-      );
+      const wrapper = shallow(<TabIndicator indicatorColor="accent" style={{}} className="foo" />);
       assert.strictEqual(wrapper.name(), 'div');
       assert.strictEqual(wrapper.hasClass('foo'), true, 'should have the property class');
     });

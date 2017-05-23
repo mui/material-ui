@@ -1,10 +1,7 @@
 // @flow weak
 
 import React from 'react';
-import {
-  ListItem,
-  ListItemText,
-} from 'material-ui/List';
+import { ListItem, ListItemText } from 'material-ui/List';
 
 export default function SimpleListItem() {
   return (

@@ -8,7 +8,7 @@ import withStyles from '../styles/withStyles';
 
 const RADIUS = 12;
 
-export const styleSheet = createStyleSheet('MuiBadge', (theme) => ({
+export const styleSheet = createStyleSheet('MuiBadge', theme => ({
   root: {
     position: 'relative',
     display: 'inline-block',
@@ -54,14 +54,20 @@ function Badge(props) {
     ...other
   } = props;
 
-  const className = classNames({
-    [classes.root]: true,
-  }, classNameProp);
-  const badgeClassName = classNames({
-    [classes.badge]: true,
-    [classes.primary]: primary,
-    [classes.accent]: accent,
-  }, badgeClassNameProp);
+  const className = classNames(
+    {
+      [classes.root]: true,
+    },
+    classNameProp,
+  );
+  const badgeClassName = classNames(
+    {
+      [classes.badge]: true,
+      [classes.primary]: primary,
+      [classes.accent]: accent,
+    },
+    badgeClassNameProp,
+  );
 
   return (
     <div className={className} {...other}>

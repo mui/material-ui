@@ -15,9 +15,7 @@ describe('<TableBody />', () => {
   });
 
   it('should render a tbody', () => {
-    const wrapper = shallow(
-      <TableBody />,
-    );
+    const wrapper = shallow(<TableBody />);
     assert.strictEqual(wrapper.name(), 'tbody');
   });
 

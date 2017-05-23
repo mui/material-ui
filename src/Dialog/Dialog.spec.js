@@ -21,11 +21,12 @@ describe('<Dialog />', () => {
   });
 
   it('should render a Modal with transition', () => {
-    const wrapper = shallow(
-      <Dialog transition={<div className="cloned-element-class" />} />,
+    const wrapper = shallow(<Dialog transition={<div className="cloned-element-class" />} />);
+    assert.strictEqual(
+      wrapper.find('.cloned-element-class').length,
+      1,
+      'should include element given in transition',
     );
-    assert.strictEqual(wrapper.find('.cloned-element-class').length, 1,
-      'should include element given in transition');
   });
 
   it('should put Modal specific props on the root Modal node', () => {

@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { Link as LinkRouter } from 'react-router';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 
-const styleSheet = createStyleSheet('Link', (theme) => ({
+const styleSheet = createStyleSheet('Link', theme => ({
   root: {
     color: 'inherit',
     textDecoration: 'none',
@@ -23,14 +23,7 @@ const styleSheet = createStyleSheet('Link', (theme) => ({
 }));
 
 function Link(props) {
-  const {
-    component: ComponentProp,
-    classes,
-    className,
-    variant,
-    to,
-    ...other
-  } = props;
+  const { component: ComponentProp, classes, className, variant, to, ...other } = props;
 
   let Component;
 
@@ -45,10 +38,14 @@ function Link(props) {
   return (
     <Component
       to={to}
-      className={classNames(classes.root, {
-        [classes.primary]: variant === 'primary',
-        [classes.accent]: variant === 'accent',
-      }, className)}
+      className={classNames(
+        classes.root,
+        {
+          [classes.primary]: variant === 'primary',
+          [classes.accent]: variant === 'accent',
+        },
+        className,
+      )}
       {...other}
     />
   );

@@ -20,17 +20,15 @@ export const componentAPIs = requireMarkdown.keys().reduce((res, n) => {
 }, []);
 
 export const requireDemo = require.context('../pages/component-demos', true, /\.md$/);
-export const demos = requireDemo
-  .keys()
-  .map((n) => ({
-    path: n,
-    name: n.replace(/.*\//, '').replace('.md', ''),
-  }));
+export const demos = requireDemo.keys().map(n => ({
+  path: n,
+  name: n.replace(/.*\//, '').replace('.md', ''),
+}));
 
 const headerRegexp = /---\n(.*)\n---/;
 const componentsRegexp = /^components: (.*)$/;
 
-export const demoComponentsTree = demos.map((demo) => {
+export const demoComponentsTree = demos.map(demo => {
   const content = requireDemo(demo.path);
   const header = content.match(headerRegexp);
   const node = {

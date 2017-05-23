@@ -13,7 +13,8 @@ function TextField(props) {
     error,
     id,
     inputClassName,
-    inputProps,
+    InputClassName,
+    inputProps: inputPropsProp,
     InputProps,
     inputRef,
     label,
@@ -28,20 +29,23 @@ function TextField(props) {
     ...other
   } = props;
 
+  let inputProps = inputPropsProp;
+
+  if (inputClassName) {
+    inputProps = {
+      className: inputClassName,
+      ...inputProps,
+    };
+  }
+
   return (
-    <FormControl
-      className={className}
-      error={error}
-      required={required}
-      {...other}
-    >
-      {label && (
+    <FormControl className={className} error={error} required={required} {...other}>
+      {label &&
         <InputLabel className={labelClassName}>
           {label}
-        </InputLabel>
-      )}
+        </InputLabel>}
       <Input
-        className={inputClassName}
+        className={InputClassName}
         defaultValue={defaultValue}
         disabled={disabled}
         multiline={multiline}
@@ -81,9 +85,13 @@ TextField.propTypes = {
    */
   id: PropTypes.string,
   /**
-   * The CSS class name of the `Input` element.
+   * The CSS class name of the `input` element.
    */
   inputClassName: PropTypes.string,
+  /**
+   * The CSS class name of the `Input` element.
+   */
+  InputClassName: PropTypes.string,
   /**
    * Properties applied to the `input` element.
    */

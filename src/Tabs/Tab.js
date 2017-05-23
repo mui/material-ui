@@ -8,7 +8,7 @@ import ButtonBase from '../internal/ButtonBase';
 import withStyles from '../styles/withStyles';
 import Icon from '../Icon';
 
-export const styleSheet = createStyleSheet('MuiTab', (theme) => ({
+export const styleSheet = createStyleSheet('MuiTab', theme => ({
   root: {
     ...theme.typography.button,
     maxWidth: 264,
@@ -81,7 +81,7 @@ class Tab extends Component {
 
   state = {
     wrappedText: false,
-  }
+  };
 
   componentDidMount() {
     this.checkTextWrap();
@@ -98,7 +98,7 @@ class Tab extends Component {
     }
   }
 
-  handleChange = (event) => {
+  handleChange = event => {
     const { onChange, index, onClick } = this.props;
 
     onChange(event, index);
@@ -117,7 +117,7 @@ class Tab extends Component {
         this.setState({ wrappedText });
       }
     }
-  }
+  };
 
   render() {
     const {
@@ -139,9 +139,7 @@ class Tab extends Component {
     let icon;
 
     if (iconProp !== undefined) {
-      icon = isValidElement(iconProp) ?
-        iconProp :
-        <Icon>{iconProp}</Icon>;
+      icon = isValidElement(iconProp) ? iconProp : <Icon>{iconProp}</Icon>;
     }
 
     let label;
@@ -155,7 +153,9 @@ class Tab extends Component {
               { [classes.labelWrapped]: this.state.wrappedText },
               labelClassName,
             )}
-            ref={(node) => { this.label = node; }}
+            ref={node => {
+              this.label = node;
+            }}
           >
             {labelProp}
           </span>
@@ -163,16 +163,20 @@ class Tab extends Component {
       );
     }
 
-    const className = classNames(classes.root, {
-      [classes.rootAccent]: textColor === 'accent',
-      [classes.rootAccentDisabled]: disabled && textColor === 'accent',
-      [classes.rootAccentSelected]: selected && textColor === 'accent',
-      [classes.rootInherit]: textColor === 'inherit',
-      [classes.rootInheritDisabled]: disabled && textColor === 'inherit',
-      [classes.rootInheritSelected]: selected && textColor === 'inherit',
-      [classes.rootLabelIcon]: icon && label,
-      [classes.fullWidth]: fullWidth,
-    }, classNameProp);
+    const className = classNames(
+      classes.root,
+      {
+        [classes.rootAccent]: textColor === 'accent',
+        [classes.rootAccentDisabled]: disabled && textColor === 'accent',
+        [classes.rootAccentSelected]: selected && textColor === 'accent',
+        [classes.rootInherit]: textColor === 'inherit',
+        [classes.rootInheritDisabled]: disabled && textColor === 'inherit',
+        [classes.rootInheritSelected]: selected && textColor === 'inherit',
+        [classes.rootLabelIcon]: icon && label,
+        [classes.fullWidth]: fullWidth,
+      },
+      classNameProp,
+    );
 
     let style = {};
 
@@ -180,10 +184,12 @@ class Tab extends Component {
       style.color = textColor;
     }
 
-    style = Object.keys(style).length > 0 ? {
-      ...style,
-      ...styleProp,
-    } : styleProp;
+    style = Object.keys(style).length > 0
+      ? {
+          ...style,
+          ...styleProp,
+        }
+      : styleProp;
 
     return (
       <ButtonBase
@@ -255,13 +261,7 @@ Tab.propTypes = {
   /**
    * @ignore
    */
-  textColor: PropTypes.oneOfType([
-    PropTypes.oneOf([
-      'accent',
-      'inherit',
-    ]),
-    PropTypes.string,
-  ]),
+  textColor: PropTypes.oneOfType([PropTypes.oneOf(['accent', 'inherit']), PropTypes.string]),
 };
 
 export default withStyles(styleSheet)(Tab);

@@ -9,17 +9,14 @@ type Props = HiddenProps & {
    * Specify which implementation to use.  'js' is the default, 'css' works better for server
    * side rendering.
    */
-  implementation?: 'js' | 'css'
+  implementation?: 'js' | 'css',
 };
 
 /**
  * Responsively hides children based on the selected implementation.
  */
 function Hidden(props: Props) {
-  const {
-    implementation,
-    ...other
-  } = props;
+  const { implementation, ...other } = props;
 
   if (implementation === 'js') {
     return <HiddenJs {...other} />;

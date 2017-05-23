@@ -20,20 +20,15 @@ export const styleSheet = createStyleSheet('MuiCardActions', {
 });
 
 function CardActions(props) {
-  const {
-    disableActionSpacing,
-    children,
-    classes,
-    className: classNameProp,
-    ...other
-  } = props;
+  const { disableActionSpacing, children, classes, className: classNameProp, ...other } = props;
 
   const className = classNames(classes.cardActions, classNameProp);
 
   return (
     <div className={className} {...other}>
-      {disableActionSpacing ?
-        children : cloneChildrenWithClassName(children, classes.actionSpacing)}
+      {disableActionSpacing
+        ? children
+        : cloneChildrenWithClassName(children, classes.actionSpacing)}
     </div>
   );
 }

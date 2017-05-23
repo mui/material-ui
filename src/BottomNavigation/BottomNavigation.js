@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiBottomNavigation', (theme) => ({
+export const styleSheet = createStyleSheet('MuiBottomNavigation', theme => ({
   root: {
     display: 'flex',
     justifyContent: 'center',

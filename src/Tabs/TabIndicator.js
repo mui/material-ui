@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiTabIndicator', (theme) => ({
+export const styleSheet = createStyleSheet('MuiTabIndicator', theme => ({
   root: {
     position: 'relative',
     height: 2,
@@ -23,21 +23,22 @@ export const styleSheet = createStyleSheet('MuiTabIndicator', (theme) => ({
  * @ignore - internal component.
  */
 function TabIndicator(props) {
-  const {
-    classes,
-    className: classNameProp,
-    indicatorColor,
-    style: styleProp,
-  } = props;
+  const { classes, className: classNameProp, indicatorColor, style: styleProp } = props;
 
-  const className = classNames(classes.root, {
-    [classes.rootAccent]: indicatorColor === 'accent',
-  }, classNameProp);
+  const className = classNames(
+    classes.root,
+    {
+      [classes.rootAccent]: indicatorColor === 'accent',
+    },
+    classNameProp,
+  );
 
-  const style = indicatorColor !== 'accent' ? {
-    ...styleProp,
-    backgroundColor: indicatorColor,
-  } : styleProp;
+  const style = indicatorColor !== 'accent'
+    ? {
+        ...styleProp,
+        backgroundColor: indicatorColor,
+      }
+    : styleProp;
 
   return <div className={className} style={style} />;
 }
@@ -55,10 +56,7 @@ TabIndicator.propTypes = {
    * @ignore
    * The color of the tab indicator.
    */
-  indicatorColor: PropTypes.oneOfType([
-    PropTypes.oneOf(['accent']),
-    PropTypes.string,
-  ]).isRequired,
+  indicatorColor: PropTypes.oneOfType([PropTypes.oneOf(['accent']), PropTypes.string]).isRequired,
   /**
    * @ignore
    * The style of the root element.

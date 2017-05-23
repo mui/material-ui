@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Chip from 'material-ui/Chip';
 
-const styleSheet = createStyleSheet('ChipsArray', (theme) => ({
+const styleSheet = createStyleSheet('ChipsArray', theme => ({
   chip: {
     margin: theme.spacing.unit / 2,
   },
@@ -37,7 +37,7 @@ class ChipsArray extends Component {
     },
   };
 
-  handleRequestDelete = (data) => () => {
+  handleRequestDelete = data => () => {
     if (data.label === 'ReactJS') {
       alert('Why would you want to delete React?! :)'); // eslint-disable-line no-alert
       return;
@@ -54,7 +54,7 @@ class ChipsArray extends Component {
 
     return (
       <div className={classes.row}>
-        {this.state.chipData.map((data) => {
+        {this.state.chipData.map(data => {
           return (
             <Chip
               label={data.label}

@@ -8,7 +8,7 @@ import withStyles from '../styles/withStyles';
 
 const transitionDuration = 4; // 400ms
 
-export const styleSheet = createStyleSheet('MuiLinearProgress', (theme) => ({
+export const styleSheet = createStyleSheet('MuiLinearProgress', theme => ({
   root: {
     position: 'relative',
     overflow: 'hidden',
@@ -34,8 +34,8 @@ export const styleSheet = createStyleSheet('MuiLinearProgress', (theme) => ({
     marginTop: 0,
     height: '100%',
     width: '100%',
-    background: `radial-gradient(${theme.palette.primary[100]} 0%, ${
-      theme.palette.primary[100]} 16%, transparent 42%)`,
+    background: `radial-gradient(${theme.palette.primary[100]} 0%, ` +
+      `${theme.palette.primary[100]} 16%, transparent 42%)`,
     backgroundSize: '10px 10px',
     backgroundPosition: '0px -23px',
     animation: 'buffer 3s infinite linear',
@@ -118,18 +118,15 @@ export const styleSheet = createStyleSheet('MuiLinearProgress', (theme) => ({
 }));
 
 function LinearProgress(props) {
-  const {
-    classes,
+  const { classes, className, mode, value, valueBuffer, ...other } = props;
+  const rootClasses = classNames(
+    classes.root,
+    {
+      [classes.rootBuffer]: mode === 'buffer',
+      [classes.rootQuery]: mode === 'query',
+    },
     className,
-    mode,
-    value,
-    valueBuffer,
-    ...other
-  } = props;
-  const rootClasses = classNames(classes.root, {
-    [classes.rootBuffer]: mode === 'buffer',
-    [classes.rootQuery]: mode === 'query',
-  }, className);
+  );
   const dashedClasses = classNames({
     [classes.dashed]: mode === 'buffer',
   });

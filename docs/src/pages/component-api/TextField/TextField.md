@@ -9,7 +9,8 @@
 | disabled | bool |  | If `true`, the input will be disabled. |
 | error | bool |  | If `true`, the label will be displayed in an error state. |
 | id | string |  |  |
-| inputClassName | string |  | The CSS class name of the `Input` element. |
+| inputClassName | string |  | The CSS class name of the `input` element. |
+| InputClassName | string |  | The CSS class name of the `Input` element. |
 | inputProps | object |  | Properties applied to the `input` element. |
 | InputProps | object |  | Properties applied to the `Input` element. |
 | inputRef | function |  | Use that property to pass a ref callback to the native input component. |

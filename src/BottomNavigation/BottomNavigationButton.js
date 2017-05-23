@@ -8,7 +8,7 @@ import withStyles from '../styles/withStyles';
 import ButtonBase from '../internal/ButtonBase';
 import Icon from '../Icon';
 
-export const styleSheet = createStyleSheet('MuiBottomNavigationButton', (theme) => ({
+export const styleSheet = createStyleSheet('MuiBottomNavigationButton', theme => ({
   root: {
     transition: theme.transitions.create(['color', 'padding-top'], {
       duration: theme.transitions.duration.short,
@@ -51,7 +51,7 @@ export const styleSheet = createStyleSheet('MuiBottomNavigationButton', (theme) 
 }));
 
 class BottomNavigationButton extends Component {
-  handleChange = (event) => {
+  handleChange = event => {
     const { onChange, index, onClick } = this.props;
 
     onChange(event, index);
@@ -74,17 +74,23 @@ class BottomNavigationButton extends Component {
       ...other
     } = this.props;
 
-    const className = classNames(classes.root, {
-      [classes.selected]: selected,
-      [classes.selectedIconOnly]: !showLabelProp && !selected,
-    }, classNameProp);
+    const className = classNames(
+      classes.root,
+      {
+        [classes.selected]: selected,
+        [classes.selectedIconOnly]: !showLabelProp && !selected,
+      },
+      classNameProp,
+    );
 
-    const iconClassName = classNames(classes.icon,
-      isValidElement(iconProp) ? iconProp.props.className : null);
+    const iconClassName = classNames(
+      classes.icon,
+      isValidElement(iconProp) ? iconProp.props.className : null,
+    );
 
-    const icon = isValidElement(iconProp) ?
-      cloneElement(iconProp, { className: iconClassName }) :
-      <Icon>{iconProp}</Icon>;
+    const icon = isValidElement(iconProp)
+      ? cloneElement(iconProp, { className: iconClassName })
+      : <Icon>{iconProp}</Icon>;
 
     const labelClassName = classNames(classes.label, {
       [classes.selectedLabel]: selected,
@@ -92,12 +98,7 @@ class BottomNavigationButton extends Component {
     });
 
     return (
-      <ButtonBase
-        className={className}
-        focusRipple
-        {...other}
-        onClick={this.handleChange}
-      >
+      <ButtonBase className={className} focusRipple {...other} onClick={this.handleChange}>
         {icon}
         <span className={labelClassName}>
           {label}

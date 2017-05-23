@@ -29,15 +29,15 @@ function MarkdownDocs(props) {
   const contents = route.content
     .replace(headerRegexp, '') // Remove header informations
     .split(/^{{|}}$/gm) // Split markdown into an array, separating demos
-    .filter((content) => !emptyRegexp.test(content)); // Remove empty lines
+    .filter(content => !emptyRegexp.test(content)); // Remove empty lines
 
   let markdownUrl = SOURCE_CODE_ROOT_URL;
 
   // Map back to the source code
   if (route.componentAPI) {
-    markdownUrl += `/src${
-      route.componentAPI.path.replace('./component-api/', '/').replace('.md', '.js')
-    }`;
+    markdownUrl += `/src${route.componentAPI.path
+      .replace('./component-api/', '/')
+      .replace('.md', '.js')}`;
   } else if (route.demo) {
     markdownUrl += `/docs/src/pages/component-demos${route.demo.path.replace('./', '/')}`;
   } else {
@@ -51,7 +51,7 @@ function MarkdownDocs(props) {
           {'Edit this page'}
         </Button>
       </div>
-      {contents.map((content) => {
+      {contents.map(content => {
         if (demoRegexp.test(content)) {
           return <Demo key={content} demo={content.match(demoRegexp)[1]} />;
         }

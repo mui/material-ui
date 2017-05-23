@@ -28,7 +28,7 @@ function clamp(value, min, max) {
  * @returns {string} A CSS color string
  */
 export function convertColorToString(color) {
-  const {type, values} = color;
+  const { type, values } = color;
 
   if (type.indexOf('rgb') > -1) {
     // Only convert the first 3 values to int (i.e. not alpha)
@@ -70,9 +70,9 @@ export function convertHexToRGB(color) {
   }
 
   const values = {
-    r:  parseInt(color.substr(1, 2), 16),
-    g:  parseInt(color.substr(3, 2), 16),
-    b:  parseInt(color.substr(5, 2), 16),
+    r: parseInt(color.substr(1, 2), 16),
+    g: parseInt(color.substr(3, 2), 16),
+    b: parseInt(color.substr(5, 2), 16),
   };
 
   return `rgb(${values.r}, ${values.g}, ${values.b})`;
@@ -94,9 +94,9 @@ export function decomposeColor(color) {
   const marker = color.indexOf('(');
   const type = color.substring(0, marker);
   let values = color.substring(marker + 1, color.length - 1).split(',');
-  values = values.map((value) => parseFloat(value));
+  values = values.map(value => parseFloat(value));
 
-  return {type: type, values: values};
+  return { type: type, values: values };
 }
 
 /**
@@ -129,7 +129,7 @@ export function getLuminance(color) {
   color = decomposeColor(color);
 
   if (color.type.indexOf('rgb') > -1) {
-    const rgb = color.values.map((val) => {
+    const rgb = color.values.map(val => {
       val /= 255; // normalized
       return val <= 0.03928 ? val / 12.92 : Math.pow((val + 0.055) / 1.055, 2.4);
     });
@@ -148,9 +148,7 @@ export function getLuminance(color) {
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
 export function emphasize(color, coefficient = 0.15) {
-  return getLuminance(color) > 0.5 ?
-    darken(color, coefficient) :
-    lighten(color, coefficient);
+  return getLuminance(color) > 0.5 ? darken(color, coefficient) : lighten(color, coefficient);
 }
 
 /**

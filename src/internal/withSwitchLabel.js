@@ -8,11 +8,12 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiSwitchLabel', (theme) => ({
+export const styleSheet = createStyleSheet('MuiSwitchLabel', theme => ({
   root: {
     display: 'inline-flex',
     alignItems: 'center',
     cursor: 'pointer',
+    WebkitTapHighlightColor: 'rgba(0,0,0,0)',
   },
   hasLabel: {
     marginLeft: -12,
@@ -24,7 +25,7 @@ export const styleSheet = createStyleSheet('MuiSwitchLabel', (theme) => ({
   },
   disabled: {
     color: theme.palette.text.disabled,
-    cursor: 'not-allowed',
+    cursor: 'default',
   },
 }));
 
@@ -39,17 +40,15 @@ function withSwitchLabel(SwitchComponent) {
     }
 
     render() {
-      const {
-        classes,
-        disabled,
-        label,
-        labelClassName: labelClassNameProp,
-        ...other
-      } = this.props;
+      const { classes, disabled, label, labelClassName: labelClassNameProp, ...other } = this.props;
 
-      const labelClassName = classNames(classes.root, {
-        [classes.hasLabel]: label && label.length,
-      }, labelClassNameProp);
+      const labelClassName = classNames(
+        classes.root,
+        {
+          [classes.hasLabel]: label && label.length,
+        },
+        labelClassNameProp,
+      );
 
       const labelTextClassName = classNames(classes.labelText, {
         [classes.disabled]: disabled,
@@ -57,7 +56,9 @@ function withSwitchLabel(SwitchComponent) {
 
       const switchElement = (
         <SwitchComponent
-          ref={(node) => { this.switch = node; }}
+          ref={node => {
+            this.switch = node;
+          }}
           disabled={disabled}
           {...other}
         />

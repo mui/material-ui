@@ -7,7 +7,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 import ListItem from '../List/ListItem';
 
-export const styleSheet = createStyleSheet('MuiMenuItem', (theme) => ({
+export const styleSheet = createStyleSheet('MuiMenuItem', theme => ({
   root: {
     ...theme.typography.subheading,
     height: 48,
@@ -32,18 +32,15 @@ export const styleSheet = createStyleSheet('MuiMenuItem', (theme) => ({
 }));
 
 function MenuItem(props) {
-  const {
-    classes,
-    className: classNameProp,
-    component,
-    selected,
-    role,
-    ...other
-  } = props;
+  const { classes, className: classNameProp, component, selected, role, ...other } = props;
 
-  const className = classNames(classes.root, {
-    [classes.selected]: selected,
-  }, classNameProp);
+  const className = classNames(
+    classes.root,
+    {
+      [classes.selected]: selected,
+    },
+    classNameProp,
+  );
 
   const listItemProps = {};
 
@@ -81,10 +78,7 @@ MenuItem.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * @ignore
    */

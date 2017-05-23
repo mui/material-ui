@@ -7,7 +7,7 @@ import warning from 'warning';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiPaper', (theme) => {
+export const styleSheet = createStyleSheet('MuiPaper', theme => {
   const shadows = {};
 
   theme.shadows.forEach((shadow, index) => {
@@ -37,13 +37,20 @@ function Paper(props) {
     ...other
   } = props;
 
-  warning(elevation >= 0 && elevation < 25,
-    `Material-UI: this elevation \`${elevation}\` is not implemented.`);
+  warning(
+    elevation >= 0 && elevation < 25,
+    `Material-UI: this elevation \`${elevation}\` is not implemented.`,
+  );
 
   const classNameElevation = `dp${elevation >= 0 ? elevation : 0}`;
-  const className = classNames(classes.paper, classes[classNameElevation], {
-    [classes.rounded]: !square,
-  }, classNameProp);
+  const className = classNames(
+    classes.paper,
+    classes[classNameElevation],
+    {
+      [classes.rounded]: !square,
+    },
+    classNameProp,
+  );
 
   return <ComponentProp className={className} {...other} />;
 }
@@ -61,10 +68,7 @@ Paper.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * Shadow depth, corresponds to `dp` in the spec.
    * It's accepting values between 0 and 24 inclusive.

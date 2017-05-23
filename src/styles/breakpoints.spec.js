@@ -28,15 +28,19 @@ describe('createBreakpoints', () => {
 
   describe('between', () => {
     it('should work', () => {
-      assert.strictEqual(breakpoints.between('sm', 'md'),
-        '@media (min-width:600px) and (max-width:1279.99px)');
+      assert.strictEqual(
+        breakpoints.between('sm', 'md'),
+        '@media (min-width:600px) and (max-width:1279.99px)',
+      );
     });
   });
 
   describe('only', () => {
     it('should work', () => {
-      assert.strictEqual(breakpoints.only('md'),
-        '@media (min-width:960px) and (max-width:1279.99px)');
+      assert.strictEqual(
+        breakpoints.only('md'),
+        '@media (min-width:960px) and (max-width:1279.99px)',
+      );
     });
 
     it('on xl should call up', () => {

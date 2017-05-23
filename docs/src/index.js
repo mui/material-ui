@@ -33,7 +33,11 @@ export const store = createStore(docs);
 const rootEl = document.querySelector('#app');
 
 render(
-  <AppContainer errorReporter={({ error }) => { throw error; }}>
+  <AppContainer
+    errorReporter={({ error }) => {
+      throw error;
+    }}
+  >
     <Provider store={store}>
       <App />
     </Provider>
@@ -46,7 +50,11 @@ if (process.env.NODE_ENV !== 'production' && module.hot) {
     const NextApp = require('./components/App').default; // eslint-disable-line global-require
 
     render(
-      <AppContainer errorReporter={({ error }) => { throw error; }}>
+      <AppContainer
+        errorReporter={({ error }) => {
+          throw error;
+        }}
+      >
         <Provider store={store}>
           <NextApp />
         </Provider>

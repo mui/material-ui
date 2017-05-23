@@ -8,7 +8,7 @@ import withStyles from '../styles/withStyles';
 import ButtonBase from '../internal/ButtonBase';
 import Icon from '../Icon';
 
-export const styleSheet = createStyleSheet('MuiIconButton', (theme) => ({
+export const styleSheet = createStyleSheet('MuiIconButton', theme => ({
   iconButton: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -72,11 +72,15 @@ function IconButton(props) {
 
   return (
     <ButtonBase
-      className={classNames(classes.iconButton, {
-        [classes.accent]: accent,
-        [classes.contrast]: contrast,
-        [classes.disabled]: disabled,
-      }, className)}
+      className={classNames(
+        classes.iconButton,
+        {
+          [classes.accent]: accent,
+          [classes.contrast]: contrast,
+          [classes.disabled]: disabled,
+        },
+        className,
+      )}
       centerRipple
       keyboardFocusedClassName={classes.keyboardFocused}
       disabled={disabled}
@@ -85,18 +89,17 @@ function IconButton(props) {
       {...other}
     >
       <span className={classes.label}>
-        {typeof children === 'string' ?
-          <Icon className={iconClassName}>{children}</Icon> :
-          Children.map(children, (child) => {
-            if (child.type && child.type.muiName === 'Icon') {
-              return cloneElement(child, {
-                className: classNames(iconClassName, child.props.className),
-              });
-            }
+        {typeof children === 'string'
+          ? <Icon className={iconClassName}>{children}</Icon>
+          : Children.map(children, child => {
+              if (child.type && child.type.muiName === 'Icon') {
+                return cloneElement(child, {
+                  className: classNames(iconClassName, child.props.className),
+                });
+              }
 
-            return child;
-          })
-        }
+              return child;
+            })}
       </span>
     </ButtonBase>
   );

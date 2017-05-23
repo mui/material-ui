@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiToolbar', (theme) => ({
+export const styleSheet = createStyleSheet('MuiToolbar', theme => ({
   root: {
     position: 'relative',
     display: 'flex',
@@ -22,20 +22,18 @@ export const styleSheet = createStyleSheet('MuiToolbar', (theme) => ({
 }));
 
 function Toolbar(props) {
-  const {
-    children,
-    classes,
-    className: classNameProp,
-    disableGutters,
-    ...other
-  } = props;
+  const { children, classes, className: classNameProp, disableGutters, ...other } = props;
 
-  const className = classNames(classes.root, {
-    [classes.gutters]: !disableGutters,
-  }, classNameProp);
+  const className = classNames(
+    classes.root,
+    {
+      [classes.gutters]: !disableGutters,
+    },
+    classNameProp,
+  );
 
   return (
-    <div className={className} {...other} >
+    <div className={className} {...other}>
       {children}
     </div>
   );

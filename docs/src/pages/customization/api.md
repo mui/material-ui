@@ -31,4 +31,6 @@ Aside from the above composition trade-off, we enforce the following rules:
   - their own `xxxClassName` property when `classes` isn't enough.
   - their own `xxxProps` property when users might need to tweak internal render method's components. For instance, we expose a `inputProps` and a `InputProps` properties.
   - their own flattened properties when they are key to the abstraction. For instance, we expose a `value` property.
+  - their own `xxxRef` property when user might need to perform so imperative action.
+  For instance, we expose a `inputRef` property.
 - The name of the boolean properties should be chosen based on the default value. We are following the HTML specification. For instance, the `disabled` attribute on an input element. This choice allows the shorthand notation.

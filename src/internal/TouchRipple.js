@@ -50,10 +50,7 @@ class TouchRipple extends Component {
   };
 
   start = (event = {}, options = {}, cb) => {
-    const {
-      pulsate = false,
-      center = this.props.center || options.pulsate,
-    } = options;
+    const { pulsate = false, center = this.props.center || options.pulsate } = options;
 
     if (event.type === 'mousedown' && this.ignoringMouseDown) {
       this.ignoringMouseDown = false;
@@ -67,13 +64,15 @@ class TouchRipple extends Component {
     let ripples = this.state.ripples;
 
     const element = ReactDOM.findDOMNode(this);
-    // $FlowFixMe
-    const rect = element ? element.getBoundingClientRect() : {
-      width: 0,
-      height: 0,
-      left: 0,
-      top: 0,
-    };
+    const rect = element
+      ? // $FlowFixMe
+        element.getBoundingClientRect()
+      : {
+          width: 0,
+          height: 0,
+          left: 0,
+          top: 0,
+        };
 
     // Get the size of the ripple
     let rippleX;
@@ -95,28 +94,35 @@ class TouchRipple extends Component {
     }
 
     if (center) {
-      rippleSize = Math.sqrt(((2 * Math.pow(rect.width, 2)) + Math.pow(rect.height, 2)) / 3);
+      rippleSize = Math.sqrt((2 * Math.pow(rect.width, 2) + Math.pow(rect.height, 2)) / 3);
 
       // For some reason the animation is broken on Mobile Chrome if the size if even.
       if (rippleSize % 2 === 0) {
         rippleSize += 1;
       }
     } else {
-      const sizeX = (Math.max(
-        // $FlowFixMe
-        Math.abs((element ? element.clientWidth : 0) - rippleX),
-        rippleX,
-      ) * 2) + 2;
-      const sizeY = (Math.max(
-        // $FlowFixMe
-        Math.abs((element ? element.clientHeight : 0) - rippleY),
-        rippleY,
-      ) * 2) + 2;
+      const sizeX =
+        Math.max(
+          // $FlowFixMe
+          Math.abs((element ? element.clientWidth : 0) - rippleX),
+          rippleX,
+        ) *
+          2 +
+        2;
+      const sizeY =
+        Math.max(
+          // $FlowFixMe
+          Math.abs((element ? element.clientHeight : 0) - rippleY),
+          rippleY,
+        ) *
+          2 +
+        2;
       rippleSize = Math.sqrt(Math.pow(sizeX, 2) + Math.pow(sizeY, 2));
     }
 
     // Add a ripple to the ripples array
-    ripples = [...ripples, (
+    ripples = [
+      ...ripples,
       <Ripple
         key={this.state.nextKey}
         event={event}
@@ -124,21 +130,27 @@ class TouchRipple extends Component {
         rippleX={rippleX}
         rippleY={rippleY}
         rippleSize={rippleSize}
-      />
-    )];
+      />,
+    ];
 
-    this.setState({
-      nextKey: this.state.nextKey + 1,
-      ripples,
-    }, cb);
+    this.setState(
+      {
+        nextKey: this.state.nextKey + 1,
+        ripples,
+      },
+      cb,
+    );
   };
 
   stop = (event, cb) => {
     const { ripples } = this.state;
     if (ripples && ripples.length) {
-      this.setState({
-        ripples: ripples.slice(1),
-      }, cb);
+      this.setState(
+        {
+          ripples: ripples.slice(1),
+        },
+        cb,
+      );
     }
   };
 

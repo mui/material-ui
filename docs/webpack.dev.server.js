@@ -20,11 +20,10 @@ const serverOptions = {
 
 const PORT = process.env.MATERIAL_UI_PORT || 3000;
 
-new WebpackDevServer(webpack(webpackConfig), serverOptions)
-  .listen(PORT, '0.0.0.0', (err) => {
-    if (err) {
-      return console.log(err);
-    }
+new WebpackDevServer(webpack(webpackConfig), serverOptions).listen(PORT, '0.0.0.0', err => {
+  if (err) {
+    return console.log(err);
+  }
 
-    return console.info(`Webpack dev server listening at http://0.0.0.0:${PORT}/`);
-  });
+  return console.info(`Webpack dev server listening at http://0.0.0.0:${PORT}/`);
+});

@@ -13,11 +13,11 @@ const styleSheet = createStyleSheet('LinearBuffer', {
 });
 
 class LinearBuffer extends Component {
-  timer: number
+  timer: number;
   state = {
     completed: 0,
     buffer: 10,
-  }
+  };
 
   componentDidMount() {
     this.timer = setInterval(this.progress, 500);
@@ -36,7 +36,7 @@ class LinearBuffer extends Component {
       const diff2 = Math.random() * 10;
       this.setState({ completed: completed + diff, buffer: completed + diff + diff2 });
     }
-  }
+  };
 
   render() {
     const classes = this.props.classes;
