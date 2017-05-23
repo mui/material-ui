@@ -110,40 +110,6 @@ class Tabs extends Component {
     this.updateScrollButtonState();
   }, 100);
 
-  getClassGroups = () => {
-    const {
-      centered,
-      classes,
-      className: classNameProp,
-      scrollable,
-    } = this.props;
-    const classGroups = {};
-
-    classGroups.flexContainer = classNames(
-      classes.flexContainer,
-    );
-
-    classGroups.root = classNames(
-      classes.root,
-      classNameProp,
-    );
-
-    classGroups.scroller = classNames(
-      classes.scrollingContainer,
-      {
-        [classes.fixed]: !scrollable,
-        [classes.scrollable]: scrollable,
-      },
-    );
-
-    classGroups.tabItemContainer = classNames(
-      classes.flexContainer,
-      { [classes.centered]: centered && !scrollable },
-    );
-
-    return classGroups;
-  }
-
   getConditionalElements = () => {
     const {
       buttonClassName,
@@ -251,23 +217,34 @@ class Tabs extends Component {
   render() {
     const {
       buttonClassName, // eslint-disable-line no-unused-vars
-      centered, // eslint-disable-line no-unused-vars
-      classes, // eslint-disable-line no-unused-vars
+      centered,
+      classes,
       children: childrenProp,
-      className: classNameProp, // eslint-disable-line no-unused-vars
+      className: classNameProp,
       fullWidth,
       index,
       indicatorClassName,
       indicatorColor,
       onChange,
-      scrollable, // eslint-disable-line no-unused-vars
+      scrollable,
       scrollButtons, // eslint-disable-line no-unused-vars
       textColor,
       width, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
 
-    const classGroups = this.getClassGroups();
+    const className = classNames(classes.root, classNameProp);
+    const scrollerClassName = classNames(
+      classes.scrollingContainer,
+      {
+        [classes.fixed]: !scrollable,
+        [classes.scrollable]: scrollable,
+      },
+    );
+    const tabItemContainerClassName = classNames(
+      classes.flexContainer,
+      { [classes.centered]: centered && !scrollable },
+    );
 
     const children = Children.map(childrenProp, (tab, childIndex) => {
       return cloneElement(tab, {
@@ -282,19 +259,19 @@ class Tabs extends Component {
     const conditionalElements = this.getConditionalElements();
 
     return (
-      <div className={classGroups.root} {...other}>
+      <div className={className} {...other}>
         <EventListener target="window" onResize={this.handleResize} />
         {conditionalElements.scrollbarSizeListener}
-        <div className={classGroups.flexContainer}>
+        <div className={classes.flexContainer}>
           {conditionalElements.scrollButtonLeft}
           <div
-            className={classGroups.scroller}
+            className={scrollerClassName}
             style={this.state.scrollerStyle}
             ref={(node) => { this.tabs = node; }}
             role="tablist"
             onScroll={this.handleTabsScroll}
           >
-            <div className={classGroups.tabItemContainer}>
+            <div className={tabItemContainerClassName}>
               {children}
             </div>
             <TabIndicator

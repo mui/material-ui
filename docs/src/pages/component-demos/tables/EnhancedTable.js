@@ -85,11 +85,11 @@ const toolbarStyleSheet = createStyleSheet('EnhancedTableToolbar', (theme) => ({
   },
   highlight: (
     theme.palette.type === 'light' ? {
-      color: theme.palette.accent[800],
-      backgroundColor: theme.palette.accent[50],
+      color: theme.palette.accent.A700,
+      backgroundColor: theme.palette.accent.A100,
     } : {
-      color: theme.palette.accent[50],
-      backgroundColor: theme.palette.accent[800],
+      color: theme.palette.accent.A100,
+      backgroundColor: theme.palette.accent.A700,
     }
   ),
   spacer: {

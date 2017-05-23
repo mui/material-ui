@@ -8,7 +8,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 
 export const styleSheet = createStyleSheet('MuiFormLabel', (theme) => {
-  const focusColor = theme.palette.primary.A200;
+  const focusColor = theme.palette.primary[500];
   return {
     root: {
       fontFamily: theme.typography.fontFamily,
