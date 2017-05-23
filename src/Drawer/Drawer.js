@@ -210,7 +210,7 @@ class Drawer extends Component {
       const width = parseFloat(this.props.width) / 100.0;
       // We are doing our best on the Server to render a consistent UI, hence the
       // default value of 10000
-      return window ? width * window.innerWidth : 10000;
+      return typeof window !== 'undefined' ? width * window.innerWidth : 10000;
     } else {
       return this.props.width;
     }
