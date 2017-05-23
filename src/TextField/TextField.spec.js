@@ -46,8 +46,13 @@ describe('<TextField />', () => {
         assert.strictEqual(wrapper.childAt(0).props().multiline, true);
       });
 
-      it('should pass inputClassName to the Input as className', () => {
+      it('should pass inputClassName to the input as className', () => {
         wrapper.setProps({ inputClassName: 'foo' });
+        assert.strictEqual(wrapper.find(Input).props().inputProps.className, 'foo');
+      });
+
+      it('should pass InputClassName to the Input as className', () => {
+        wrapper.setProps({ InputClassName: 'foo' });
         assert.strictEqual(wrapper.find(Input).hasClass('foo'), true);
       });
     });
