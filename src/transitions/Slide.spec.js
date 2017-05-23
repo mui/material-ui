@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow } from 'src/test-utils';
+import { createShallow } from '../test-utils';
 import Slide from './Slide';
 import transitions, { easing, duration } from '../styles/transitions';
 

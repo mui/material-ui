@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';
-import { createShallow, createMount } from 'src/test-utils';
+import { createShallow, createMount } from '../test-utils';
 import Tab, { styleSheet } from './Tab';
 import Icon from '../Icon';
 

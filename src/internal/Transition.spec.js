@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createMount } from 'src/test-utils';
+import { createMount } from '../test-utils';
 import Transition, { UNMOUNTED, EXITED, ENTERING, ENTERED, EXITING } from './Transition';
 
 describe('<Transition />', () => {

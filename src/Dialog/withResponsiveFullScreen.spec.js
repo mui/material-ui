@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
+import { createShallow } from '../test-utils';
 import Paper from '../Paper';
 import Dialog, { styleSheet } from './Dialog';
 import withResponsiveFullScreen from './withResponsiveFullScreen';

@@ -27,7 +27,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       webpack: {
-        config: 'webpack.config.js',
+        config: './docs/webpackBaseConfig.js',
       },
     },
   },
@@ -49,12 +49,9 @@ module.exports = {
 
     'babel/object-curly-spacing': ['error', 'always'],
 
-    'import/unambiguous': 'off',
-    'import/no-unresolved': 'off',
-    'import/no-named-as-default': 'off',
-    'import/extensions': 'off',
+    'import/unambiguous': 'off',  // scripts
+    'import/namespace': ['error', { allowComputed: true }],
     'import/no-extraneous-dependencies': 'off',
-    'import/prefer-default-export': 'off',
 
     'react/jsx-handler-names': ['error', { // airbnb is disabling this rule
       eventHandlerPrefix: 'handle',

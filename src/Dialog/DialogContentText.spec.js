@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
+import { createShallow } from '../test-utils';
 import DialogContentText, { styleSheet } from './DialogContentText';
 
 describe('<DialogContentText />', () => {

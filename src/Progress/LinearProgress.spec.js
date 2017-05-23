@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
+import { createShallow } from '../test-utils';
 import LinearProgress, { styleSheet } from './LinearProgress';
 
 describe('<LinearProgress />', () => {

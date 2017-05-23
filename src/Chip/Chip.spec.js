@@ -4,7 +4,7 @@ import React from 'react';
 import keycode from 'keycode';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow } from 'src/test-utils';
+import { createShallow } from '../test-utils';
 import Chip, { styleSheet } from './Chip';
 import Avatar from '../Avatar';
 

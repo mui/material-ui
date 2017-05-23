@@ -1,4 +1,6 @@
 // @flow weak
+/* eslint-disable import/no-unresolved */
+
 const webpack = require('webpack');
 const webpackBaseConfig = require('./webpackBaseConfig');
 const dllManifest = require('./build/dll.manifest.json');

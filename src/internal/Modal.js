@@ -14,7 +14,7 @@ import addEventListener from '../utils/addEventListener';
 import { createChainedFunction } from '../utils/helpers';
 import Fade from '../transitions/Fade';
 import withStyles from '../styles/withStyles';
-import { createModalManager } from './modalManager';
+import createModalManager from './modalManager';
 import Backdrop from './Backdrop';
 import Portal from './Portal';
 

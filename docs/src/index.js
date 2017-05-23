@@ -1,4 +1,5 @@
 // @flow
+/* eslint-disable import/prefer-default-export */
 
 import { AppContainer } from 'react-hot-loader';
 import { createStore } from 'redux';

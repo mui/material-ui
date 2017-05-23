@@ -4,7 +4,7 @@ import React from 'react';
 import keycode from 'keycode';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createShallow, createMount } from 'src/test-utils';
+import { createShallow, createMount } from '../test-utils';
 import TouchRipple from './TouchRipple';
 import ButtonBase, { styleSheet } from './ButtonBase';
 
