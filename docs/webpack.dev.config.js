@@ -1,4 +1,5 @@
 // @flow weak
+/* eslint-disable import/no-unresolved */
 
 const webpack = require('webpack');
 const webpackBaseConfig = require('./webpackBaseConfig');
