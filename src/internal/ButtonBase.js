@@ -13,7 +13,7 @@ import createRippleHandler from './createRippleHandler';
 export const styleSheet = createStyleSheet('MuiButtonBase', {
   buttonBase: {
     position: 'relative',
-    WebkitTapHighlightColor: 'rgba(0,0,0,0.0)',
+    WebkitTapHighlightColor: 'rgba(0,0,0,0)',
     outline: 'none',
     border: 0,
     cursor: 'pointer',

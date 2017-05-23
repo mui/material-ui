@@ -13,6 +13,7 @@ export const styleSheet = createStyleSheet('MuiSwitchLabel', theme => ({
     display: 'inline-flex',
     alignItems: 'center',
     cursor: 'pointer',
+    WebkitTapHighlightColor: 'rgba(0,0,0,0)',
   },
   hasLabel: {
     marginLeft: -12,
