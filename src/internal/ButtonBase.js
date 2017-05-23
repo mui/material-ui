@@ -22,7 +22,7 @@ export const styleSheet = createStyleSheet('MuiButtonBase', {
     textDecoration: 'none',
   },
   disabled: {
-    cursor: 'not-allowed',
+    cursor: 'default',
   },
 });
 

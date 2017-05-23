@@ -79,7 +79,6 @@ export const styleSheet = createStyleSheet('MuiInput', (theme) => ({
   },
   disabled: {
     color: theme.palette.text.disabled,
-    cursor: 'not-allowed',
   },
   underline: {
     borderBottom: `1px solid ${theme.palette.text.divider}`,
