@@ -8,7 +8,7 @@ import Checkbox from 'material-ui/Checkbox';
 import IconButton from 'material-ui/IconButton';
 import CommentIcon from 'material-ui-icons/Comment';
 
-const styleSheet = createStyleSheet('CheckboxList', (theme) => ({
+const styleSheet = createStyleSheet('CheckboxList', theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
@@ -43,13 +43,8 @@ class CheckboxList extends Component {
     return (
       <div className={classes.root}>
         <List>
-          {Array.from({ length: 4 }, (v, k) => k).map((index) => (
-            <ListItem
-              dense
-              button
-              key={index}
-              onClick={(event) => this.handleToggle(event, index)}
-            >
+          {Array.from({ length: 4 }, (v, k) => k).map(index => (
+            <ListItem dense button key={index} onClick={event => this.handleToggle(event, index)}>
               <Checkbox
                 checked={this.state.checked.indexOf(index) !== -1}
                 tabIndex="-1"

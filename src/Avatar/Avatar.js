@@ -7,7 +7,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 import { emphasize } from '../styles/colorManipulator';
 
-export const styleSheet = createStyleSheet('MuiAvatar', (theme) => ({
+export const styleSheet = createStyleSheet('MuiAvatar', theme => ({
   root: {
     position: 'relative',
     display: 'flex',
@@ -46,9 +46,13 @@ function Avatar(props) {
     ...other
   } = props;
 
-  const className = classNames(classes.root, {
-    [classes.defaultColor]: childrenProp && !src && !srcSet,
-  }, classNameProp);
+  const className = classNames(
+    classes.root,
+    {
+      [classes.defaultColor]: childrenProp && !src && !srcSet,
+    },
+    classNameProp,
+  );
   const containerProps = {
     className,
     ...other,
@@ -112,10 +116,7 @@ Avatar.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * The `sizes` attribute for the `img` element.
    */

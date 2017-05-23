@@ -65,7 +65,7 @@ class ButtonBase extends Component {
 
   focus = () => this.button.focus();
 
-  handleKeyDown = (event) => {
+  handleKeyDown = event => {
     const { component, focusRipple, onKeyDown, onClick } = this.props;
     const key = keycode(event);
 
@@ -96,7 +96,7 @@ class ButtonBase extends Component {
     }
   };
 
-  handleKeyUp = (event) => {
+  handleKeyUp = event => {
     if (this.props.focusRipple && keycode(event) === 'space' && this.state.keyboardFocused) {
       this.keyDown = false;
       event.persist();
@@ -117,7 +117,7 @@ class ButtonBase extends Component {
 
   handleMouseUp = createRippleHandler(this, 'MouseUp', 'stop');
 
-  handleMouseLeave = createRippleHandler(this, 'MouseLeave', 'stop', (event) => {
+  handleMouseLeave = createRippleHandler(this, 'MouseLeave', 'stop', event => {
     if (this.state.keyboardFocused) {
       event.preventDefault();
     }
@@ -130,7 +130,7 @@ class ButtonBase extends Component {
     this.setState({ keyboardFocused: false });
   });
 
-  handleFocus = (event) => {
+  handleFocus = event => {
     if (this.props.disabled) {
       return;
     }
@@ -145,7 +145,7 @@ class ButtonBase extends Component {
     }
   };
 
-  onKeyboardFocusHandler = (event) => {
+  onKeyboardFocusHandler = event => {
     this.keyDown = false;
     this.setState({ keyboardFocused: true });
 
@@ -156,7 +156,14 @@ class ButtonBase extends Component {
 
   renderRipple(ripple, center) {
     if (ripple === true && !this.props.disabled) {
-      return <TouchRipple ref={(node) => { this.ripple = node; }} center={center} />;
+      return (
+        <TouchRipple
+          ref={node => {
+            this.ripple = node;
+          }}
+          center={center}
+        />
+      );
     }
 
     return null;
@@ -188,13 +195,19 @@ class ButtonBase extends Component {
     } = this.props;
 
     const classes = this.context.styleManager.render(styleSheet);
-    const className = classNames(classes.buttonBase, {
-      [classes.disabled]: disabled,
-      [keyboardFocusedClassName]: keyboardFocusedClassName && this.state.keyboardFocused,
-    }, classNameProp);
+    const className = classNames(
+      classes.buttonBase,
+      {
+        [classes.disabled]: disabled,
+        [keyboardFocusedClassName]: keyboardFocusedClassName && this.state.keyboardFocused,
+      },
+      classNameProp,
+    );
 
     const buttonProps = {
-      ref: (node) => { this.button = node; },
+      ref: node => {
+        this.button = node;
+      },
       onBlur: this.handleBlur,
       onFocus: this.handleFocus,
       onKeyDown: this.handleKeyDown,
@@ -246,10 +259,7 @@ ButtonBase.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * If `true`, the base button will be disabled.
    */

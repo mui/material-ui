@@ -29,17 +29,11 @@ function TextField(props) {
   } = props;
 
   return (
-    <FormControl
-      className={className}
-      error={error}
-      required={required}
-      {...other}
-    >
-      {label && (
+    <FormControl className={className} error={error} required={required} {...other}>
+      {label &&
         <InputLabel className={labelClassName}>
           {label}
-        </InputLabel>
-      )}
+        </InputLabel>}
       <Input
         className={inputClassName}
         defaultValue={defaultValue}

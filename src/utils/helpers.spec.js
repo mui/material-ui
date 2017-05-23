@@ -1,11 +1,7 @@
 // @flow
 
 import { assert } from 'chai';
-import {
-  transform,
-  contains,
-  find,
-} from './helpers';
+import { transform, contains, find } from './helpers';
 
 describe('utils//helpers.js', () => {
   describe('transform(obj, cb, accumulator)', () => {
@@ -15,10 +11,14 @@ describe('utils//helpers.js', () => {
         roar: 'foo',
       };
 
-      const result = transform(obj, (res, value, key) => {
-        res.push(key);
-        res.push(value);
-      }, []);
+      const result = transform(
+        obj,
+        (res, value, key) => {
+          res.push(key);
+          res.push(value);
+        },
+        [],
+      );
 
       assert.strictEqual(result[0], 'woof');
       assert.strictEqual(result[1], 'meow');
@@ -34,7 +34,7 @@ describe('utils//helpers.js', () => {
       assert.strictEqual(find(array, 'woof'), array[0], 'should work for primitives');
       assert.strictEqual(find(array, { foo: 'bar' }), array[2], 'should work for objects');
       assert.strictEqual(
-        find(array, (n) => n && n.woof === 'meow'),
+        find(array, n => n && n.woof === 'meow'),
         array[3],
         'should work for functions',
       );

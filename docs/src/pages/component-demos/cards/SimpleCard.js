@@ -7,7 +7,7 @@ import Card, { CardActions, CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 
-const styleSheet = createStyleSheet('SimpleCard', (theme) => ({
+const styleSheet = createStyleSheet('SimpleCard', theme => ({
   card: {
     minWidth: 275,
   },
@@ -29,7 +29,7 @@ const styleSheet = createStyleSheet('SimpleCard', (theme) => ({
 
 function SimpleCard(props) {
   const classes = props.classes;
-  const bull = <span className={classes.bullet}>&bull;</span>;
+  const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <div>
@@ -58,4 +58,3 @@ SimpleCard.propTypes = {
 };
 
 export default withStyles(styleSheet)(SimpleCard);
-

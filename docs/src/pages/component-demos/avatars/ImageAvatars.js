@@ -26,11 +26,7 @@ function ImageAvatars(props) {
   const classes = props.classes;
   return (
     <div className={classes.row}>
-      <Avatar
-        alt="Remy Sharp"
-        src={remyImage}
-        className={classes.avatar}
-      />
+      <Avatar alt="Remy Sharp" src={remyImage} className={classes.avatar} />
       <Avatar
         alt="Adelle Charles"
         src={uxecoImage}

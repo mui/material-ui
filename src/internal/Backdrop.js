@@ -6,7 +6,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 import { lightBlack } from '../styles/colors';
 
-export const styleSheet = createStyleSheet('MuiBackdrop', (theme) => ({
+export const styleSheet = createStyleSheet('MuiBackdrop', theme => ({
   root: {
     zIndex: -1,
     width: '100%',
@@ -44,25 +44,18 @@ type Props = {
 };
 
 function Backdrop(props: Props) {
-  const {
-    children,
-    classes,
-    className,
-    invisible,
-    ...other
-  } = props;
+  const { children, classes, className, invisible, ...other } = props;
 
-  const backdropClass = classNames(classes.root, {
-    [classes.invisible]: invisible,
-  }, className);
+  const backdropClass = classNames(
+    classes.root,
+    {
+      [classes.invisible]: invisible,
+    },
+    className,
+  );
 
   return (
-    <div
-      data-mui-test="Backdrop"
-      className={backdropClass}
-      aria-hidden="true"
-      {...other}
-    >
+    <div data-mui-test="Backdrop" className={backdropClass} aria-hidden="true" {...other}>
       {children}
     </div>
   );

@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 
 // 1. We define the styles.
-const styleSheet = createStyleSheet('MyLink', (theme) => ({
+const styleSheet = createStyleSheet('MyLink', theme => ({
   root: {
     color: 'inherit',
     textDecoration: 'inherit',
@@ -20,19 +20,17 @@ const styleSheet = createStyleSheet('MyLink', (theme) => ({
 }));
 
 function MyLink(props) {
-  const {
-    children,
-    classes,
-    className,
-    variant,
-    ...other
-  } = props;
+  const { children, classes, className, variant, ...other } = props;
 
   return (
     <a
-      className={classNames(classes.root, {
-        [classes.primary]: variant === 'primary',
-      }, className)}
+      className={classNames(
+        classes.root,
+        {
+          [classes.primary]: variant === 'primary',
+        },
+        className,
+      )}
       {...other}
     >
       {children}

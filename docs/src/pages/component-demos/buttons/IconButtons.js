@@ -8,7 +8,7 @@ import IconButton from 'material-ui/IconButton';
 import DeleteIcon from 'material-ui-icons/Delete';
 import AddShoppingCartIcon from 'material-ui-icons/AddShoppingCart';
 
-const styleSheet = createStyleSheet('IconButtons', (theme) => ({
+const styleSheet = createStyleSheet('IconButtons', theme => ({
   button: {
     margin: theme.spacing.unit,
   },

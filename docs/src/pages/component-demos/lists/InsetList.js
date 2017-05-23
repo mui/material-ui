@@ -6,7 +6,7 @@ import { withStyles, createStyleSheet } from 'material-ui/styles';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import StarIcon from 'material-ui-icons/Star';
 
-const styleSheet = createStyleSheet('InsetList', (theme) => ({
+const styleSheet = createStyleSheet('InsetList', theme => ({
   root: {
     width: '100%',
     maxWidth: 360,

@@ -7,15 +7,28 @@ import * as colors from 'material-ui/styles/colors';
 import { getContrastRatio } from 'material-ui/styles/colorManipulator';
 
 const mainColors = [
-  'Red', 'Pink', 'Purple', 'Deep Purple', 'Indigo', 'Blue', 'Light Blue',
-  'Cyan', 'Teal', 'Green', 'Light Green', 'Lime', 'Yellow', 'Amber', 'Orange',
+  'Red',
+  'Pink',
+  'Purple',
+  'Deep Purple',
+  'Indigo',
+  'Blue',
+  'Light Blue',
+  'Cyan',
+  'Teal',
+  'Green',
+  'Light Green',
+  'Lime',
+  'Yellow',
+  'Amber',
+  'Orange',
   'Deep Orange',
 ];
 const neutralColors = ['Brown', 'Grey', 'Blue Grey'];
 const mainPalette = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 const altPalette = ['A100', 'A200', 'A400', 'A700'];
 
-export const styleSheet = createStyleSheet('colors', (theme) => ({
+export const styleSheet = createStyleSheet('colors', theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -91,17 +104,13 @@ function getColorBlock(classes, colorName, colorValue, colorTitle) {
 }
 
 function getColorGroup(options) {
-  const {
-    classes,
-    color,
-    showAltPalette,
-  } = options;
+  const { classes, color, showAltPalette } = options;
   const cssColor = color.replace(' ', '').replace(color.charAt(0), color.charAt(0).toLowerCase());
   let colorsList = [];
-  colorsList = mainPalette.map((mainValue) => getColorBlock(classes, cssColor, mainValue));
+  colorsList = mainPalette.map(mainValue => getColorBlock(classes, cssColor, mainValue));
 
   if (showAltPalette) {
-    altPalette.forEach((altValue) => {
+    altPalette.forEach(altValue => {
       colorsList.push(getColorBlock(classes, cssColor, altValue));
     });
   }
@@ -120,16 +129,20 @@ function Color(props) {
 
   return (
     <div className={classes.root}>
-      {mainColors.map((mainColor) => getColorGroup({
-        classes,
-        color: mainColor,
-        showAltPalette: true,
-      }))}
-      {neutralColors.map((neutralColor) => getColorGroup({
-        classes,
-        color: neutralColor,
-        showAltPalette: false,
-      }))}
+      {mainColors.map(mainColor =>
+        getColorGroup({
+          classes,
+          color: mainColor,
+          showAltPalette: true,
+        }),
+      )}
+      {neutralColors.map(neutralColor =>
+        getColorGroup({
+          classes,
+          color: neutralColor,
+          showAltPalette: false,
+        }),
+      )}
     </div>
   );
 }

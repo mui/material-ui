@@ -38,7 +38,7 @@ function withWidth(options = {}) {
     resizeInterval = 166, // Corresponds to 10 frames at 60 Hz.
   } = options;
 
-  return (BaseComponent) => {
+  return BaseComponent => {
     const factory = createEagerFactory(BaseComponent);
 
     class Width extends Component {

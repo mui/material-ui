@@ -13,17 +13,11 @@ export const styleSheet = createStyleSheet('MuiCardMedia', {
 });
 
 function CardMedia(props) {
-  const {
-    classes,
-    className: classNameProp,
-    ...other
-  } = props;
+  const { classes, className: classNameProp, ...other } = props;
 
   const className = classNames(classes.cardMedia, classNameProp);
 
-  return (
-    <div className={className} {...other} />
-  );
+  return <div className={className} {...other} />;
 }
 
 CardMedia.propTypes = {

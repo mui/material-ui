@@ -9,7 +9,7 @@ import withStyles from '../styles/withStyles';
 import DeleteIcon from '../svg-icons/cancel';
 import { emphasize, fade } from '../styles/colorManipulator';
 
-export const styleSheet = createStyleSheet('MuiChip', (theme) => {
+export const styleSheet = createStyleSheet('MuiChip', theme => {
   const height = 32;
   const backgroundColor = emphasize(theme.palette.background.default, 0.12);
   const deleteIconColor = fade(theme.palette.text.primary, 0.26);
@@ -99,13 +99,13 @@ function Chip(props) {
 
   let chipRef;
 
-  const handleDeleteIconClick = (event) => {
+  const handleDeleteIconClick = event => {
     // Stop the event from bubbling up to the `Chip`
     event.stopPropagation();
     onRequestDelete(event);
   };
 
-  const handleKeyDown = (event) => {
+  const handleKeyDown = event => {
     const key = keycode(event);
 
     if (onClick && (key === 'space' || key === 'enter')) {
@@ -146,7 +146,7 @@ function Chip(props) {
     });
   }
 
-  const tabIndex = (onClick || onRequestDelete) ? tabIndexProp : -1;
+  const tabIndex = onClick || onRequestDelete ? tabIndexProp : -1;
 
   return (
     <button
@@ -154,7 +154,9 @@ function Chip(props) {
       onClick={onClick}
       tabIndex={tabIndex}
       onKeyDown={handleKeyDown}
-      ref={(node) => { chipRef = node; }}
+      ref={node => {
+        chipRef = node;
+      }}
       {...other}
     >
       {avatar}

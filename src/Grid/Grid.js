@@ -33,13 +33,14 @@ function generateGrid(globalStyles, theme, breakpoint) {
     },
   };
 
-  GRID_SIZES.forEach((size) => {
-    if (typeof size === 'boolean') { // Skip the first one as handle above.
+  GRID_SIZES.forEach(size => {
+    if (typeof size === 'boolean') {
+      // Skip the first one as handle above.
       return;
     }
 
     // Only keep 6 significant numbers.
-    const width = `${Math.round((size / 12) * Math.pow(10, 6)) / Math.pow(10, 4)}%`;
+    const width = `${Math.round(size / 12 * Math.pow(10, 6)) / Math.pow(10, 4)}%`;
 
     /* eslint-disable max-len */
     // Close to the bootstrap implementation:
@@ -63,7 +64,8 @@ function generateGutter(theme, breakpoint) {
   const styles = {};
 
   GUTTERS.forEach((gutter, index) => {
-    if (index === 0) { // Skip the default style.
+    if (index === 0) {
+      // Skip the default style.
       return;
     }
 
@@ -79,7 +81,7 @@ function generateGutter(theme, breakpoint) {
   return styles;
 }
 
-export const styleSheet = createStyleSheet('MuiGrid', (theme) => {
+export const styleSheet = createStyleSheet('MuiGrid', theme => {
   // Default CSS values
   // flex: '0 1 auto',
   // flexDirection: 'row',
@@ -249,25 +251,28 @@ function Grid(props: Props) {
     ...other
   } = props;
 
-  const className = classNames({
-    [classes.typeContainer]: container,
-    [classes.typeItem]: item,
-    [classes[`gutter-xs-${String(gutter)}`]]: container && gutter !== 0,
-    [classes[`direction-xs-${String(direction)}`]]: direction !== Grid.defaultProps.direction,
-    [classes[`wrap-xs-${String(wrap)}`]]: wrap !== Grid.defaultProps.wrap,
-    [classes[`align-xs-${String(align)}`]]: align !== Grid.defaultProps.align,
-    [classes[`justify-xs-${String(justify)}`]]: justify !== Grid.defaultProps.justify,
-    [classes['grid-xs']]: xs === true,
-    [classes[`grid-xs-${String(xs)}`]]: xs && xs !== true,
-    [classes['grid-sm']]: sm === true,
-    [classes[`grid-sm-${String(sm)}`]]: sm && sm !== true,
-    [classes['grid-md']]: md === true,
-    [classes[`grid-md-${String(md)}`]]: md && md !== true,
-    [classes['grid-lg']]: lg === true,
-    [classes[`grid-lg-${String(lg)}`]]: lg && lg !== true,
-    [classes['grid-xl']]: xl === true,
-    [classes[`grid-xl-${String(xl)}`]]: xl && xl !== true,
-  }, classNameProp);
+  const className = classNames(
+    {
+      [classes.typeContainer]: container,
+      [classes.typeItem]: item,
+      [classes[`gutter-xs-${String(gutter)}`]]: container && gutter !== 0,
+      [classes[`direction-xs-${String(direction)}`]]: direction !== Grid.defaultProps.direction,
+      [classes[`wrap-xs-${String(wrap)}`]]: wrap !== Grid.defaultProps.wrap,
+      [classes[`align-xs-${String(align)}`]]: align !== Grid.defaultProps.align,
+      [classes[`justify-xs-${String(justify)}`]]: justify !== Grid.defaultProps.justify,
+      [classes['grid-xs']]: xs === true,
+      [classes[`grid-xs-${String(xs)}`]]: xs && xs !== true,
+      [classes['grid-sm']]: sm === true,
+      [classes[`grid-sm-${String(sm)}`]]: sm && sm !== true,
+      [classes['grid-md']]: md === true,
+      [classes[`grid-md-${String(md)}`]]: md && md !== true,
+      [classes['grid-lg']]: lg === true,
+      [classes[`grid-lg-${String(lg)}`]]: lg && lg !== true,
+      [classes['grid-xl']]: xl === true,
+      [classes[`grid-xl-${String(xl)}`]]: xl && xl !== true,
+    },
+    classNameProp,
+  );
   const gridProps = { className, ...other };
 
   // workaround: see https://github.com/facebook/flow/issues/1660#issuecomment-297775427

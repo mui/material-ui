@@ -7,7 +7,7 @@ import List, { ListItem, ListItemText } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import FolderIcon from 'material-ui-icons/Folder';
 
-const styleSheet = createStyleSheet('FolderList', (theme) => ({
+const styleSheet = createStyleSheet('FolderList', theme => ({
   root: {
     width: '100%',
     maxWidth: 360,

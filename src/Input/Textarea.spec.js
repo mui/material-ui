@@ -25,7 +25,7 @@ describe('<Textarea />', () => {
   });
 
   it('should change its height when the height of its shadows changes', () => {
-    const wrapper = shallow(<Textarea onChange={(() => {})} />);
+    const wrapper = shallow(<Textarea onChange={() => {}} />);
     assert.strictEqual(wrapper.state().height, 24);
 
     // refs don't work with shallow renders in enzyme so here we directly define

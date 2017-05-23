@@ -8,7 +8,7 @@ import Paper from 'material-ui/Paper';
 import Tabs from 'material-ui/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
 
-const styleSheet = createStyleSheet('SimpleTabs', (theme) => ({
+const styleSheet = createStyleSheet('SimpleTabs', theme => ({
   root: {
     width: 600,
   },
@@ -45,7 +45,7 @@ export default function SimpleTabs(props, context) {
         </Tabs>
       </Paper>
       <Paper>
-        <Tabs index={0} textColor="accent" fullWidth >
+        <Tabs index={0} textColor="accent" fullWidth>
           <Tab icon={<Icon>phone</Icon>} />
           <Tab icon={<Icon>favorite</Icon>} />
           <Tab icon={<Icon>person_pin</Icon>} disabled />
@@ -53,19 +53,9 @@ export default function SimpleTabs(props, context) {
       </Paper>
       <Paper>
         <Tabs index={1} fullWidth textColor="accent">
-          <Tab
-            icon={<Icon>phone</Icon>}
-            label="RECENTS"
-          />
-          <Tab
-            icon={<Icon>favorite</Icon>}
-            label="FAVORITES"
-          />
-          <Tab
-            icon={<Icon>person_pin</Icon>}
-            label="NEARBY"
-            disabled
-          />
+          <Tab icon={<Icon>phone</Icon>} label="RECENTS" />
+          <Tab icon={<Icon>favorite</Icon>} label="FAVORITES" />
+          <Tab icon={<Icon>person_pin</Icon>} label="NEARBY" disabled />
         </Tabs>
       </Paper>
     </div>

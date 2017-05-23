@@ -4,15 +4,13 @@ const webpack = require('webpack');
 const packageJson = require('./package.json');
 const packageJsonSrc = require('../package.json');
 
-const excludedDeps = [
-  'lodash', 'recompose', 'object-assign', 'material-ui-icons', 'babel-runtime',
-];
+const excludedDeps = ['lodash', 'recompose', 'object-assign', 'material-ui-icons', 'babel-runtime'];
 
 const deps = []
   .concat(Object.keys(packageJson.dependencies))
   .concat(Object.keys(packageJsonSrc.dependencies))
   .concat(Object.keys(packageJsonSrc.peerDependencies))
-  .filter((dep) => {
+  .filter(dep => {
     return excludedDeps.indexOf(dep) === -1;
   });
 

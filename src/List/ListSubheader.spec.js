@@ -15,9 +15,7 @@ describe('<ListSubheader />', () => {
   });
 
   it('should render a div', () => {
-    const wrapper = shallow(
-      <ListSubheader />,
-    );
+    const wrapper = shallow(<ListSubheader />);
     assert.strictEqual(wrapper.name(), 'div');
   });
 

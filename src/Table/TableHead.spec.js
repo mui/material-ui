@@ -15,9 +15,7 @@ describe('<TableHead />', () => {
   });
 
   it('should render a thead', () => {
-    const wrapper = shallow(
-      <TableHead />,
-    );
+    const wrapper = shallow(<TableHead />);
     assert.strictEqual(wrapper.name(), 'thead');
   });
 

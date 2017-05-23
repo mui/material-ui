@@ -48,8 +48,11 @@ describe('<Icon />', () => {
 
     it('should render with the contrast class', () => {
       const wrapper = shallow(<Icon contrast>account_circle</Icon>);
-      assert.strictEqual(wrapper.hasClass(classes.contrast), true,
-        'should have the "contrast" class');
+      assert.strictEqual(
+        wrapper.hasClass(classes.contrast),
+        true,
+        'should have the "contrast" class',
+      );
     });
 
     it('should render with the error class', () => {
@@ -59,8 +62,11 @@ describe('<Icon />', () => {
 
     it('should render with the primary class', () => {
       const wrapper = shallow(<Icon primary>account_circle</Icon>);
-      assert.strictEqual(wrapper.hasClass(classes.primary), true,
-        'should have the "primary" class');
+      assert.strictEqual(
+        wrapper.hasClass(classes.primary),
+        true,
+        'should have the "primary" class',
+      );
     });
   });
 });

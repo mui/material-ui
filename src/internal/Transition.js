@@ -178,11 +178,7 @@ class Transition extends Component<DefaultProps, Props, State> {
   }
 
   shouldComponentUpdate(nextProps: Props, nextState: State) {
-    if (
-      this.props.in &&
-      this.state.status === EXITED &&
-      this.state.status === nextState.status
-    ) {
+    if (this.props.in && this.state.status === EXITED && this.state.status === nextState.status) {
       return false;
     }
 
@@ -306,7 +302,7 @@ class Transition extends Component<DefaultProps, Props, State> {
     this.setNextCallback(handler);
 
     if (node) {
-      addEventListener(node, transitionEndEvent, (event) => {
+      addEventListener(node, transitionEndEvent, event => {
         if (event.target === node && this.nextCallback) {
           this.nextCallback();
         }
@@ -340,21 +336,21 @@ class Transition extends Component<DefaultProps, Props, State> {
     const {
       children,
       className,
-      in: inProp,         // eslint-disable-line no-unused-vars
-      enteredClassName,   // eslint-disable-line no-unused-vars
-      enteringClassName,  // eslint-disable-line no-unused-vars
-      exitedClassName,    // eslint-disable-line no-unused-vars
-      exitingClassName,   // eslint-disable-line no-unused-vars
-      onEnter,            // eslint-disable-line no-unused-vars
-      onEntering,         // eslint-disable-line no-unused-vars
-      onEntered,          // eslint-disable-line no-unused-vars
-      onExit,             // eslint-disable-line no-unused-vars
-      onExiting,          // eslint-disable-line no-unused-vars
-      onExited,           // eslint-disable-line no-unused-vars
-      onRequestTimeout,   // eslint-disable-line no-unused-vars
-      timeout,            // eslint-disable-line no-unused-vars
-      transitionAppear,   // eslint-disable-line no-unused-vars
-      unmountOnExit,      // eslint-disable-line no-unused-vars
+      in: inProp, // eslint-disable-line no-unused-vars
+      enteredClassName, // eslint-disable-line no-unused-vars
+      enteringClassName, // eslint-disable-line no-unused-vars
+      exitedClassName, // eslint-disable-line no-unused-vars
+      exitingClassName, // eslint-disable-line no-unused-vars
+      onEnter, // eslint-disable-line no-unused-vars
+      onEntering, // eslint-disable-line no-unused-vars
+      onEntered, // eslint-disable-line no-unused-vars
+      onExit, // eslint-disable-line no-unused-vars
+      onExiting, // eslint-disable-line no-unused-vars
+      onExited, // eslint-disable-line no-unused-vars
+      onRequestTimeout, // eslint-disable-line no-unused-vars
+      timeout, // eslint-disable-line no-unused-vars
+      transitionAppear, // eslint-disable-line no-unused-vars
+      unmountOnExit, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
 
@@ -370,13 +366,10 @@ class Transition extends Component<DefaultProps, Props, State> {
     }
 
     const child = React.Children.only(children);
-    return React.cloneElement(
-      child,
-      {
-        className: classNames(child.props.className, className, transitionClassName),
-        ...other,
-      },
-    );
+    return React.cloneElement(child, {
+      className: classNames(child.props.className, className, transitionClassName),
+      ...other,
+    });
   }
 }
 

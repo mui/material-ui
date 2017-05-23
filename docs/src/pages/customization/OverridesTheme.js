@@ -6,8 +6,10 @@ import Button from 'material-ui/Button';
 
 const theme = createMuiTheme({
   overrides: {
-    MuiButton: { // Name of the styleSheet
-      root: { // Name of the rule
+    MuiButton: {
+      // Name of the styleSheet
+      root: {
+        // Name of the rule
         background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
         borderRadius: 3,
         border: 0,

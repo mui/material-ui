@@ -68,8 +68,10 @@ class Textarea extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.props.value ||
-      Number(nextProps.rowsMax) !== Number(this.props.rowsMax)) {
+    if (
+      nextProps.value !== this.props.value ||
+      Number(nextProps.rowsMax) !== Number(this.props.rowsMax)
+    ) {
       this.syncHeightWithShadow(nextProps.value, null, nextProps);
     }
   }
@@ -78,7 +80,7 @@ class Textarea extends Component {
     this.handleResize.cancel();
   }
 
-  handleResize = debounce((event) => {
+  handleResize = debounce(event => {
     this.syncHeightWithShadow(undefined, event);
   }, 100);
 
@@ -119,7 +121,7 @@ class Textarea extends Component {
     }
   }
 
-  handleChange = (event) => {
+  handleChange = event => {
     const value = event.target.value;
     this.syncHeightWithShadow(value);
     this.value = value;
@@ -128,18 +130,18 @@ class Textarea extends Component {
     }
   };
 
-  handleRefInput = (node) => {
+  handleRefInput = node => {
     this.input = node;
     if (this.props.textareaRef) {
       this.props.textareaRef(node);
     }
   };
 
-  handleRefSinglelineShadow = (node) => {
+  handleRefSinglelineShadow = node => {
     this.singlelineShadow = node;
   };
 
-  handleRefShadow = (node) => {
+  handleRefShadow = node => {
     this.shadow = node;
   };
 
@@ -160,10 +162,7 @@ class Textarea extends Component {
     } = this.props;
 
     return (
-      <div
-        className={classes.root}
-        style={{ height: this.state.height }}
-      >
+      <div className={classes.root} style={{ height: this.state.height }}>
         <EventListener target="window" onResize={this.handleResize} />
         <textarea
           ref={this.handleRefSinglelineShadow}

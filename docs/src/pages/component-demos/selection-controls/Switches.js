@@ -24,18 +24,9 @@ export default class Switches extends Component {
           onChange={(event, checked) => this.setState({ checkedB: checked })}
           aria-label="checkedB"
         />
-        <Switch
-          checked={this.state.checkedC}
-          aria-label="checkedC"
-          disabled
-        />
-        <Switch
-          checked={this.state.checkedD}
-          aria-label="checkedD"
-          disabled
-        />
+        <Switch checked={this.state.checkedC} aria-label="checkedC" disabled />
+        <Switch checked={this.state.checkedD} aria-label="checkedD" disabled />
       </div>
     );
   }
 }
-

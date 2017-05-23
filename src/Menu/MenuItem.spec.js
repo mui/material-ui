@@ -16,9 +16,7 @@ describe('<MenuItem />', () => {
   });
 
   it('should render a button ListItem with no ripple', () => {
-    const wrapper = shallow(
-      <MenuItem />,
-    );
+    const wrapper = shallow(<MenuItem />);
     assert.strictEqual(wrapper.name(), 'withStyles(ListItem)');
     assert.strictEqual(wrapper.props().button, true, 'should have the button prop');
     assert.strictEqual(wrapper.props().ripple, false, 'should not have a ripple');
@@ -72,7 +70,7 @@ describe('<MenuItem />', () => {
 
       const wrapper = shallow(<MenuItem {...handlers} />);
 
-      events.forEach((n) => {
+      events.forEach(n => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
         wrapper.simulate(event, { persist: () => {} });
         assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);

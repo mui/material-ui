@@ -77,19 +77,15 @@ class ConfirmationDialog extends Component {
         <DialogTitle>Phone Ringtone</DialogTitle>
         <DialogContent>
           <RadioGroup
-            innerRef={(node) => { this.radioGroup = node; }}
+            innerRef={node => {
+              this.radioGroup = node;
+            }}
             aria-label="Gender"
             name="gender"
             selectedValue={this.state.selectedValue}
             onChange={this.handleChange}
           >
-            {options.map((option) => (
-              <Radio
-                label={option}
-                value={option}
-                key={option}
-              />
-            ))}
+            {options.map(option => <Radio label={option} value={option} key={option} />)}
           </RadioGroup>
         </DialogContent>
         <DialogActions>
@@ -101,7 +97,7 @@ class ConfirmationDialog extends Component {
   }
 }
 
-const styleSheet = createStyleSheet('ConfirmationDialogDemo', (theme) => ({
+const styleSheet = createStyleSheet('ConfirmationDialogDemo', theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
@@ -122,11 +118,11 @@ class ConfirmationDialogDemo extends Component {
 
   button = undefined;
 
-  handleClickListItem = (event) => {
+  handleClickListItem = event => {
     this.setState({ open: true, anchorEl: event.currentTarget });
   };
 
-  handleRequestClose = (value) => {
+  handleRequestClose = value => {
     this.setState({ selectedValue: value, open: false });
   };
 
@@ -146,16 +142,10 @@ class ConfirmationDialogDemo extends Component {
             aria-label="Phone ringtone"
             onClick={this.handleClickListItem}
           >
-            <ListItemText
-              primary="Phone ringtone"
-              secondary={this.state.selectedValue}
-            />
+            <ListItemText primary="Phone ringtone" secondary={this.state.selectedValue} />
           </ListItem>
           <ListItem button divider disabled>
-            <ListItemText
-              primary="Default notification ringtone"
-              secondary="Tethys"
-            />
+            <ListItemText primary="Default notification ringtone" secondary="Tethys" />
           </ListItem>
           <ConfirmationDialog
             maxWidth="xs"

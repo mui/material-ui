@@ -33,9 +33,9 @@ export const duration = {
   leavingScreen: 195,
 };
 
-const formatMs = (miliseconds) => `${Math.round(miliseconds)}ms`;
-const isString = (value) => typeof value === 'string';
-const isNumber = (value) => !isNaN(parseFloat(value));
+const formatMs = miliseconds => `${Math.round(miliseconds)}ms`;
+const isString = value => typeof value === 'string';
+const isNumber = value => !isNaN(parseFloat(value));
 
 /**
  * @param {string|Array} props
@@ -56,21 +56,23 @@ export default {
       ...other
     } = options;
 
-    warning(isString(props) || Array.isArray(props),
-      'Material-UI: argument "props" must be a string or Array');
-    warning(isNumber(durationOption),
-      'Material-UI: argument "duration" must be a number');
-    warning(isString(easingOption),
-      'Material-UI: argument "easing" must be a string');
-    warning(isNumber(delay),
-      'Material-UI: argument "delay" must be a string');
-    warning(Object.keys(other).length === 0,
-      `Material-UI: unrecognized argument(s) [${Object.keys(other).join(',')}]`);
+    warning(
+      isString(props) || Array.isArray(props),
+      'Material-UI: argument "props" must be a string or Array',
+    );
+    warning(isNumber(durationOption), 'Material-UI: argument "duration" must be a number');
+    warning(isString(easingOption), 'Material-UI: argument "easing" must be a string');
+    warning(isNumber(delay), 'Material-UI: argument "delay" must be a string');
+    warning(
+      Object.keys(other).length === 0,
+      `Material-UI: unrecognized argument(s) [${Object.keys(other).join(',')}]`,
+    );
 
     return (Array.isArray(props) ? props : [props])
-      .map((animatedProp) => (
-        `${animatedProp} ${formatMs(durationOption)} ${easingOption} ${formatMs(delay)}`
-      ))
+      .map(
+        animatedProp =>
+          `${animatedProp} ${formatMs(durationOption)} ${easingOption} ${formatMs(delay)}`,
+      )
       .join(',');
   },
   getAutoHeightDuration(height) {
@@ -80,6 +82,6 @@ export default {
 
     const constant = height / 36;
 
-    return Math.round((4 + (15 * (constant ** 0.25)) + (constant / 5)) * 10);
+    return Math.round((4 + 15 * constant ** 0.25 + constant / 5) * 10);
   },
 };

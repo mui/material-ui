@@ -12,8 +12,10 @@ export default function createTypography(palette, constants = {}) {
     ...other
   } = constants;
 
-  warning(Object.keys(other).length === 0,
-    `Material-UI: unrecognized argument(s) [${Object.keys(other).join(',')}]`);
+  warning(
+    Object.keys(other).length === 0,
+    `Material-UI: unrecognized argument(s) [${Object.keys(other).join(',')}]`,
+  );
 
   return {
     fontFamily,

@@ -1,14 +1,14 @@
 // @flow weak
 
 export function transform(obj, cb, accumulator) {
-  Object.keys(obj).forEach((key) => {
+  Object.keys(obj).forEach(key => {
     cb(accumulator, obj[key], key);
   });
   return accumulator;
 }
 
 export function contains(obj, pred) {
-  return Object.keys(pred).every((key) => {
+  return Object.keys(pred).every(key => {
     return obj.hasOwnProperty(key) && obj[key] === pred[key];
   });
 }
@@ -44,20 +44,18 @@ export function find(arr, pred) {
  * @returns {function|null}
  */
 export function createChainedFunction(...funcs) {
-  return funcs
-    .filter((f) => f != null)
-    .reduce((acc, f) => {
-      if (typeof f !== 'function') {
-        throw new Error('Invalid Argument Type, must only provide functions, undefined, or null.');
-      }
+  return funcs.filter(f => f != null).reduce((acc, f) => {
+    if (typeof f !== 'function') {
+      throw new Error('Invalid Argument Type, must only provide functions, undefined, or null.');
+    }
 
-      if (acc === null) {
-        return f;
-      }
+    if (acc === null) {
+      return f;
+    }
 
-      return function chainedFunction(...args) {
-        acc.apply(this, args);
-        f.apply(this, args);
-      };
-    }, null);
+    return function chainedFunction(...args) {
+      acc.apply(this, args);
+      f.apply(this, args);
+    };
+  }, null);
 }

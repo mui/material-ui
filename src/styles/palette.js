@@ -60,12 +60,7 @@ function getContrastText(color) {
 }
 
 export default function createPalette(options = {}) {
-  const {
-    primary = indigo,
-    accent = pink,
-    error = red,
-    type = 'light',
-  } = options;
+  const { primary = indigo, accent = pink, error = red, type = 'light' } = options;
 
   if (process.env.NODE_ENV !== 'production') {
     class PaletteColorError extends Error {

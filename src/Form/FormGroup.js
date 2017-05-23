@@ -23,16 +23,14 @@ export const styleSheet = createStyleSheet('MuiFormGroup', {
  * Upon focusing on one of the child controls, it will propagate `focused` to the label.
  */
 function FormGroup(props) {
-  const {
-    classes,
+  const { classes, className, children, row, ...other } = props;
+  const rootClassName = classNames(
+    classes.root,
+    {
+      [classes.row]: row,
+    },
     className,
-    children,
-    row,
-    ...other
-  } = props;
-  const rootClassName = classNames(classes.root, {
-    [classes.row]: row,
-  }, className);
+  );
 
   return (
     <div className={rootClassName} {...other}>

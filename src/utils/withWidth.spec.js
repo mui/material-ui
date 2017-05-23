@@ -78,7 +78,7 @@ describe('withWidth', () => {
       const updateWidth = instance.updateWidth.bind(instance);
       const breakpoints = wrapper.context().theme.breakpoints;
 
-      breakpoints.keys.forEach((key) => {
+      breakpoints.keys.forEach(key => {
         updateWidth(breakpoints.getWidth(key));
         assert.strictEqual(wrapper.state().width, key, 'should return the matching width');
       });

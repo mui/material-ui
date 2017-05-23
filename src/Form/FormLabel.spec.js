@@ -46,11 +46,7 @@ describe('<FormLabel />', () => {
         true,
         'asterisk should have the error class',
       );
-      assert.strictEqual(
-        wrapper.hasClass(classes.error),
-        true,
-        'should have the error class',
-      );
+      assert.strictEqual(wrapper.hasClass(classes.error), true, 'should have the error class');
     });
   });
 
@@ -66,8 +62,7 @@ describe('<FormLabel />', () => {
     beforeEach(() => {
       wrapper = shallow(<FormLabel>Foo</FormLabel>);
     });
-
-    ['error', 'focused'].forEach((visualState) => {
+    ['error', 'focused'].forEach(visualState => {
       describe(visualState, () => {
         beforeEach(() => {
           setFormControlContext({ [visualState]: true });

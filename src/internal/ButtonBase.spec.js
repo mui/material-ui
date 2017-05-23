@@ -50,13 +50,17 @@ describe('<ButtonBase />', () => {
     });
 
     it('should render the custom className and the buttonBase class', () => {
-      const wrapper = shallow(
-        <ButtonBase className="test-class-name" />,
+      const wrapper = shallow(<ButtonBase className="test-class-name" />);
+      assert.strictEqual(
+        wrapper.hasClass('test-class-name'),
+        true,
+        'should pass the test className',
       );
-      assert.strictEqual(wrapper.hasClass('test-class-name'), true,
-        'should pass the test className');
-      assert.strictEqual(wrapper.hasClass(classes.buttonBase), true,
-        'should have the buttonBase class');
+      assert.strictEqual(
+        wrapper.hasClass(classes.buttonBase),
+        true,
+        'should have the buttonBase class',
+      );
     });
 
     it('should change the button type to span and set role="button"', () => {
@@ -73,7 +77,9 @@ describe('<ButtonBase />', () => {
     });
 
     it('should not change the button to an a element', () => {
-      const wrapper = shallow(<ButtonBase component="span" href="http://google.com">Hello</ButtonBase>);
+      const wrapper = shallow(
+        <ButtonBase component="span" href="http://google.com">Hello</ButtonBase>,
+      );
       assert.strictEqual(wrapper.name(), 'span');
       assert.strictEqual(wrapper.props().href, 'http://google.com');
     });
@@ -101,7 +107,7 @@ describe('<ButtonBase />', () => {
 
       const wrapper = shallow(<ButtonBase {...handlers} />);
 
-      events.forEach((n) => {
+      events.forEach(n => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
         wrapper.simulate(event, { persist: () => {} });
         assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
@@ -199,11 +205,13 @@ describe('<ButtonBase />', () => {
     });
 
     it('should center the ripple', () => {
-      assert.strictEqual(wrapper.find(TouchRipple).prop('center'), false,
-        'should not be centered by default');
+      assert.strictEqual(
+        wrapper.find(TouchRipple).prop('center'),
+        false,
+        'should not be centered by default',
+      );
       wrapper.setProps({ centerRipple: true });
-      assert.strictEqual(wrapper.find(TouchRipple).prop('center'), true,
-        'should be centered');
+      assert.strictEqual(wrapper.find(TouchRipple).prop('center'), true, 'should be centered');
     });
   });
 
@@ -301,9 +309,7 @@ describe('<ButtonBase />', () => {
 
     before(() => {
       clock = useFakeTimers();
-      wrapper = mount((
-        <ButtonBase id="test-button">Hello</ButtonBase>
-      ));
+      wrapper = mount(<ButtonBase id="test-button">Hello</ButtonBase>);
       instance = wrapper.instance();
 
       button = document.getElementById('test-button');
@@ -341,7 +347,7 @@ describe('<ButtonBase />', () => {
 
   describe('prop: component', () => {
     it('should allow to use a link component', () => {
-      const Link = (props) => <div {...props} />;
+      const Link = props => <div {...props} />;
       const wrapper = shallow(<ButtonBase component={Link}>Hello</ButtonBase>);
       assert.strictEqual(wrapper.is(Link), true);
     });
@@ -349,9 +355,7 @@ describe('<ButtonBase />', () => {
 
   describe('handleFocus()', () => {
     it('when disabled should not persist event', () => {
-      const wrapper = mount(
-        <ButtonBase disabled>Hello</ButtonBase>,
-      );
+      const wrapper = mount(<ButtonBase disabled>Hello</ButtonBase>);
       const instance = wrapper.instance();
       const eventMock = {
         persist: spy(),
@@ -364,11 +368,7 @@ describe('<ButtonBase />', () => {
       const eventMock = 'woof';
       const onKeyboardFocusSpy = spy();
       const wrapper = mount(
-        <ButtonBase
-
-          component="span"
-          onKeyboardFocus={onKeyboardFocusSpy}
-        >
+        <ButtonBase component="span" onKeyboardFocus={onKeyboardFocusSpy}>
           Hello
         </ButtonBase>,
       );
@@ -406,16 +406,17 @@ describe('<ButtonBase />', () => {
         assert.strictEqual(instance.keyDown, true, 'should mark keydown as true');
         assert.strictEqual(event.persist.callCount, 1, 'should call event.persist exactly once');
         assert.strictEqual(instance.ripple.stop.callCount, 1, 'should call stop exactly once');
-        assert.strictEqual(instance.ripple.stop.calledWith(event), true,
-          'should call stop with event');
+        assert.strictEqual(
+          instance.ripple.stop.calledWith(event),
+          true,
+          'should call stop with event',
+        );
       });
     });
 
     describe('prop: onKeyDown', () => {
       it('should work', () => {
-        wrapper = mount(
-          <ButtonBase>Hello</ButtonBase>,
-        );
+        wrapper = mount(<ButtonBase>Hello</ButtonBase>);
         const onKeyDownSpy = spy();
         wrapper.setProps({
           onKeyDown: onKeyDownSpy,
@@ -431,16 +432,17 @@ describe('<ButtonBase />', () => {
         assert.strictEqual(instance.keyDown, false, 'should not change keydown');
         assert.strictEqual(event.persist.callCount, 0, 'should not call event.persist');
         assert.strictEqual(onKeyDownSpy.callCount, 1, 'should call onKeyDown');
-        assert.strictEqual(onKeyDownSpy.calledWith(event), true,
-          'should call onKeyDown with event');
+        assert.strictEqual(
+          onKeyDownSpy.calledWith(event),
+          true,
+          'should call onKeyDown with event',
+        );
       });
     });
 
     describe('Keyboard accessibility for non interactive elements', () => {
       it('should work', () => {
-        wrapper = mount(
-          <ButtonBase>Hello</ButtonBase>,
-        );
+        wrapper = mount(<ButtonBase>Hello</ButtonBase>);
         const onClickSpy = spy();
         wrapper.setProps({
           onClick: onClickSpy,
@@ -464,17 +466,14 @@ describe('<ButtonBase />', () => {
         assert.strictEqual(event.persist.callCount, 0, 'should not call event.persist');
         assert.strictEqual(event.preventDefault.callCount, 1, 'should call event.preventDefault');
         assert.strictEqual(onClickSpy.callCount, 1, 'should call onClick');
-        assert.strictEqual(onClickSpy.calledWith(event), true,
-          'should call onClick with event');
+        assert.strictEqual(onClickSpy.calledWith(event), true, 'should call onClick with event');
       });
     });
   });
 
   describe('focus()', () => {
     it('should call the focus on the instance.button', () => {
-      const instance = mount(
-        <ButtonBase component="span">Hello</ButtonBase>,
-      ).instance();
+      const instance = mount(<ButtonBase component="span">Hello</ButtonBase>).instance();
       instance.button = {
         focus: spy(),
       };

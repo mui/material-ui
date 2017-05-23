@@ -6,7 +6,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import Grid from 'material-ui/Grid';
 
-const styleSheet = createStyleSheet('StressGrid', (theme) => ({
+const styleSheet = createStyleSheet('StressGrid', theme => ({
   root: {
     width: 400,
     backgroundColor: theme.palette.primary.A400,
@@ -35,12 +35,7 @@ export default function StressGrid(props, context) {
             </Paper>
           </Grid>
         </Grid>
-        <Grid
-          container
-          item
-          gutter={8}
-          direction="row-reverse"
-        >
+        <Grid container item gutter={8} direction="row-reverse">
           <Grid item xs={3}>
             <Paper className={classes.paper}>
               first
@@ -52,12 +47,7 @@ export default function StressGrid(props, context) {
             </Paper>
           </Grid>
         </Grid>
-        <Grid
-          container
-          item
-          gutter={8}
-          justify="space-between"
-        >
+        <Grid container item gutter={8} justify="space-between">
           <Grid item xs={3}>
             <Paper className={classes.paper}>
               space
@@ -69,13 +59,7 @@ export default function StressGrid(props, context) {
             </Paper>
           </Grid>
         </Grid>
-        <Grid
-          container
-          item
-          gutter={8}
-          align="stretch"
-          direction="column-reverse"
-        >
+        <Grid container item gutter={8} align="stretch" direction="column-reverse">
           <Grid item>
             <Paper className={classes.paper}>
               reverse

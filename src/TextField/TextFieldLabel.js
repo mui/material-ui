@@ -7,7 +7,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 import { FormLabel } from '../Form';
 
-export const styleSheet = createStyleSheet('MuiTextFieldLabel', (theme) => ({
+export const styleSheet = createStyleSheet('MuiTextFieldLabel', theme => ({
   root: {
     position: 'absolute',
     left: 0,
@@ -27,19 +27,16 @@ export const styleSheet = createStyleSheet('MuiTextFieldLabel', (theme) => ({
 }));
 
 function TextFieldLabel(props) {
-  const {
-    disableAnimation,
-    children,
-    classes,
-    className: classNameProp,
-    shrink,
-    ...other
-  } = props;
+  const { disableAnimation, children, classes, className: classNameProp, shrink, ...other } = props;
 
-  const className = classNames(classes.root, {
-    [classes.animated]: !disableAnimation,
-    [classes.shrink]: shrink,
-  }, classNameProp);
+  const className = classNames(
+    classes.root,
+    {
+      [classes.animated]: !disableAnimation,
+      [classes.shrink]: shrink,
+    },
+    classNameProp,
+  );
 
   return (
     <FormLabel className={className} {...other}>

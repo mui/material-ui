@@ -8,7 +8,7 @@ import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../internal/ButtonBase';
 
-export const styleSheet = createStyleSheet('MuiButton', (theme) => ({
+export const styleSheet = createStyleSheet('MuiButton', theme => ({
   root: {
     fontSize: theme.typography.fontSize,
     fontWeight: theme.typography.fontWeightMedium,
@@ -136,19 +136,22 @@ function Button(props) {
   } = props;
 
   const flat = !raised && !fab;
-  const className = classNames({
-    [classes.root]: true,
-    [classes.raised]: raised || fab,
-    [classes.fab]: fab,
-    [classes.primary]: flat && primary,
-    [classes.accent]: flat && accent,
-    [classes.contrast]: flat && contrast,
-    [classes.raisedPrimary]: !flat && primary,
-    [classes.raisedAccent]: !flat && accent,
-    [classes.raisedContrast]: !flat && contrast,
-    [classes.compact]: compact,
-    [classes.disabled]: disabled,
-  }, classNameProp);
+  const className = classNames(
+    {
+      [classes.root]: true,
+      [classes.raised]: raised || fab,
+      [classes.fab]: fab,
+      [classes.primary]: flat && primary,
+      [classes.accent]: flat && accent,
+      [classes.contrast]: flat && contrast,
+      [classes.raisedPrimary]: !flat && primary,
+      [classes.raisedAccent]: !flat && accent,
+      [classes.raisedContrast]: !flat && contrast,
+      [classes.compact]: compact,
+      [classes.disabled]: disabled,
+    },
+    classNameProp,
+  );
 
   return (
     <ButtonBase
@@ -191,10 +194,7 @@ Button.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * If `true`, the button will use the theme's contrast color.
    */

@@ -24,15 +24,14 @@ class Menu extends Component {
 
   menuList = undefined;
 
-  handleEnter = (element) => {
+  handleEnter = element => {
     const list = ReactDOM.findDOMNode(this.menuList);
 
     if (this.menuList && this.menuList.selectedItem) {
-       // $FlowFixMe
-      ReactDOM.findDOMNode(this.menuList.selectedItem)
-        .focus();
+      // $FlowFixMe
+      ReactDOM.findDOMNode(this.menuList.selectedItem).focus();
     } else if (list) {
-       // $FlowFixMe
+      // $FlowFixMe
       list.firstChild.focus();
     }
 
@@ -107,7 +106,9 @@ class Menu extends Component {
         <MenuList
           data-mui-test="Menu"
           role="menu"
-          ref={(node) => { this.menuList = node; }}
+          ref={node => {
+            this.menuList = node;
+          }}
           onKeyDown={this.handleListKeyDown}
           {...MenuListProps}
         >

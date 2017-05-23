@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiListItemIcon', (theme) => ({
+export const styleSheet = createStyleSheet('MuiListItemIcon', theme => ({
   root: {
     height: 24,
     marginRight: theme.spacing.unit * 2,
@@ -19,12 +19,7 @@ export const styleSheet = createStyleSheet('MuiListItemIcon', (theme) => ({
  * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
  */
 function ListItemIcon(props) {
-  const {
-    children,
-    classes,
-    className: classNameProp,
-    ...other
-  } = props;
+  const { children, classes, className: classNameProp, ...other } = props;
 
   return React.cloneElement(children, {
     className: classNames(classes.root, classNameProp, children.props.className),

@@ -5,7 +5,7 @@ node_modules
 /docs/build
 /flow
 /flow-typed
-/packages/**/lib
+/packages/*/lib
 /packages/material-ui-icons/build
 /packages/material-ui-icons/src
 /packages/material-ui-icons/tpl

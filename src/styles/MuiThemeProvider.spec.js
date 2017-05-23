@@ -48,7 +48,9 @@ describe('<MuiThemeProvider />', () => {
         </MuiThemeProvider>,
       );
 
-      htmlLooksLike(markup, `
+      htmlLooksLike(
+        markup,
+        `
         <button
           tabindex="0"
           class="MuiButtonBase-buttonBase-3170508663 MuiButton-root-3593367901"
@@ -62,7 +64,8 @@ describe('<MuiThemeProvider />', () => {
           </span>
           <span class="MuiTouchRipple-root-3868442396" data-reactid="3"></span>
         </button>
-      `);
+      `,
+      );
 
       const expected = fs.readFileSync(
         path.join(__dirname, 'MuiThemeProvider.spec.output.css'),

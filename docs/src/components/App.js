@@ -30,16 +30,18 @@ function App(props) {
     styleManager.updateTheme(theme);
   }
 
-  styleManager.setSheetOrder(MUI_SHEET_ORDER.concat([
-    'Link',
-    'AppContent',
-    'AppDrawer',
-    'AppDrawerNavItem',
-    'AppFrame',
-    'MarkdownDocs',
-    'MarkdownElement',
-    'Demo',
-  ]));
+  styleManager.setSheetOrder(
+    MUI_SHEET_ORDER.concat([
+      'Link',
+      'AppContent',
+      'AppDrawer',
+      'AppDrawerNavItem',
+      'AppFrame',
+      'MarkdownDocs',
+      'MarkdownElement',
+      'Demo',
+    ]),
+  );
 
   if (dark) {
     setPrismTheme(darkTheme);
@@ -58,4 +60,4 @@ App.propTypes = {
   dark: PropTypes.bool.isRequired,
 };
 
-export default connect((state) => ({ dark: state.dark }))(App);
+export default connect(state => ({ dark: state.dark }))(App);

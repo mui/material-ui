@@ -19,7 +19,7 @@ import Typography from 'material-ui/Typography';
 import FolderIcon from 'material-ui-icons/Folder';
 import DeleteIcon from 'material-ui-icons/Delete';
 
-const styleSheet = createStyleSheet('InteractiveList', (theme) => ({
+const styleSheet = createStyleSheet('InteractiveList', theme => ({
   root: {
     flexGrow: 1,
     maxWidth: 752,
@@ -33,11 +33,11 @@ const styleSheet = createStyleSheet('InteractiveList', (theme) => ({
 }));
 
 function generate(element) {
-  return Array.from(Array(3)).map((value, index) => (
+  return Array.from(Array(3)).map((value, index) =>
     cloneElement(element, {
       key: index,
-    })
-  ));
+    }),
+  );
 }
 
 class InteractiveList extends Component {
@@ -73,14 +73,14 @@ class InteractiveList extends Component {
             </Typography>
             <div className={classes.demo}>
               <List dense={dense}>
-                {generate((
+                {generate(
                   <ListItem button>
                     <ListItemText
                       primary="Single-line item"
                       secondary={secondary ? 'Secondary text' : null}
                     />
-                  </ListItem>
-                ))}
+                  </ListItem>,
+                )}
               </List>
             </div>
           </Grid>
@@ -90,7 +90,7 @@ class InteractiveList extends Component {
             </Typography>
             <div className={classes.demo}>
               <List dense={dense}>
-                {generate((
+                {generate(
                   <ListItem button>
                     <ListItemIcon>
                       <FolderIcon />
@@ -99,8 +99,8 @@ class InteractiveList extends Component {
                       primary="Single-line item"
                       secondary={secondary ? 'Secondary text' : null}
                     />
-                  </ListItem>
-                ))}
+                  </ListItem>,
+                )}
               </List>
             </div>
           </Grid>
@@ -112,7 +112,7 @@ class InteractiveList extends Component {
             </Typography>
             <div className={classes.demo}>
               <List dense={dense}>
-                {generate((
+                {generate(
                   <ListItem button>
                     <ListItemAvatar>
                       <Avatar>
@@ -123,8 +123,8 @@ class InteractiveList extends Component {
                       primary="Single-line item"
                       secondary={secondary ? 'Secondary text' : null}
                     />
-                  </ListItem>
-                ))}
+                  </ListItem>,
+                )}
               </List>
             </div>
           </Grid>
@@ -134,7 +134,7 @@ class InteractiveList extends Component {
             </Typography>
             <div className={classes.demo}>
               <List dense={dense}>
-                {generate((
+                {generate(
                   <ListItem button>
                     <ListItemAvatar>
                       <Avatar>
@@ -150,8 +150,8 @@ class InteractiveList extends Component {
                         <DeleteIcon />
                       </IconButton>
                     </ListItemSecondaryAction>
-                  </ListItem>
-                ))}
+                  </ListItem>,
+                )}
               </List>
             </div>
           </Grid>

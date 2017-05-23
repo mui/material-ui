@@ -26,8 +26,11 @@ describe('<TextFieldLabel />', () => {
 
   it('should not animate', () => {
     const wrapper = shallow(<TextFieldLabel disableAnimation />);
-    assert.strictEqual(wrapper.hasClass(classes.animated), false,
-      'should not have the animated class');
+    assert.strictEqual(
+      wrapper.hasClass(classes.animated),
+      false,
+      'should not have the animated class',
+    );
   });
 
   it('should not shrink by default', () => {

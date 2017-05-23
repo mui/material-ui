@@ -8,7 +8,7 @@ import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import muiLogo from 'docs/src/assets/images/material-ui-logo.svg';
 
-const styleSheet = createStyleSheet('Home', (theme) => {
+const styleSheet = createStyleSheet('Home', theme => {
   return {
     root: {
       flex: '1 0 100%',

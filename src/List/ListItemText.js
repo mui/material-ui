@@ -7,7 +7,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 
-export const styleSheet = createStyleSheet('MuiListItemText', (theme) => ({
+export const styleSheet = createStyleSheet('MuiListItemText', theme => ({
   root: {
     flex: '1 1 auto',
     padding: '0 16px',
@@ -29,36 +29,31 @@ export const styleSheet = createStyleSheet('MuiListItemText', (theme) => ({
 }));
 
 function ListItemText(props, context) {
-  const {
-    classes,
-    className: classNameProp,
-    primary,
-    secondary,
-    inset,
-    ...other
-  } = props;
+  const { classes, className: classNameProp, primary, secondary, inset, ...other } = props;
   const { dense } = context;
-  const className = classNames(classes.root, {
-    [classes.dense]: dense,
-    [classes.inset]: inset,
-  }, classNameProp);
+  const className = classNames(
+    classes.root,
+    {
+      [classes.dense]: dense,
+      [classes.inset]: inset,
+    },
+    classNameProp,
+  );
 
   return (
     <div className={className} {...other}>
-      {primary && (
-        typeof primary === 'string' ? (
-          <Typography type="subheading" className={classNames({ [classes.text]: dense })}>
-            {primary}
-          </Typography>
-        ) : primary
-      )}
-      {secondary && (
-        typeof secondary === 'string' ? (
-          <Typography secondary type="body1" className={classNames({ [classes.text]: dense })}>
-            {secondary}
-          </Typography>
-        ) : secondary
-      )}
+      {primary &&
+        (typeof primary === 'string'
+          ? <Typography type="subheading" className={classNames({ [classes.text]: dense })}>
+              {primary}
+            </Typography>
+          : primary)}
+      {secondary &&
+        (typeof secondary === 'string'
+          ? <Typography secondary type="body1" className={classNames({ [classes.text]: dense })}>
+              {secondary}
+            </Typography>
+          : secondary)}
     </div>
   );
 }

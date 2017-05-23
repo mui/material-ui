@@ -26,10 +26,7 @@ const defaultContainer = canUseDom ? window.document.body : {};
  *
  * @internal Used by the Modal to ensure proper focus management.
  */
-function createModalManager({
-  container = defaultContainer,
-  hideSiblingNodes = true,
-} = {}) {
+function createModalManager({ container = defaultContainer, hideSiblingNodes = true } = {}) {
   const modals = [];
 
   let prevOverflow;
@@ -59,7 +56,7 @@ function createModalManager({
       // back to it when all modals are closed!
       prevOverflow = container.style.overflow;
 
-      if (bodyIsOverflowing((container))) {
+      if (bodyIsOverflowing(container)) {
         prevPadding = container.style.paddingRight;
         containerStyle.paddingRight = `${parseInt(prevPadding || 0, 10) + getScrollbarSize()}px`;
       }

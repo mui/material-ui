@@ -15,11 +15,12 @@ describe('<CardContent />', () => {
   });
 
   it('should render a div with the cardContent class', () => {
-    const wrapper = shallow(
-      <CardContent />,
-    );
+    const wrapper = shallow(<CardContent />);
     assert.strictEqual(wrapper.name(), 'div');
-    assert.strictEqual(wrapper.hasClass(classes.cardContent), true,
-      'should have the cardContent class');
+    assert.strictEqual(
+      wrapper.hasClass(classes.cardContent),
+      true,
+      'should have the cardContent class',
+    );
   });
 });

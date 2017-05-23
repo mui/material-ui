@@ -55,8 +55,10 @@ describe('<Switch />', () => {
   describe('named LabelSwitch export', () => {
     it('should be Switch wrapped with SwitchLabel', () => {
       assert.strictEqual(LabelSwitch.name, 'Style');
-      assert.strictEqual(LabelSwitch.displayName,
-        'withStyles(withSwitchLabel(withStyles(Switch)))');
+      assert.strictEqual(
+        LabelSwitch.displayName,
+        'withStyles(withSwitchLabel(withStyles(Switch)))',
+      );
     });
   });
 });

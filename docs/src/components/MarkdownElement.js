@@ -10,19 +10,19 @@ import prism from 'docs/src/utils/prism';
 const renderer = new marked.Renderer();
 
 renderer.heading = (text, level) => {
-  const escapedText = text.toLowerCase()
+  const escapedText = text
+    .toLowerCase()
     .replace(/=&gt;|&lt;| \/&gt;|<code>|<\/code>/g, '')
     .replace(/[^\w]+/g, '-');
 
-  return `
+  return (
+    `
     <h${level}>
-      <a class="anchor-link" id="${escapedText}"></a>${
-      text
-      }<a class="anchor-link-style" href="#${escapedText}">${
-        '#'
-      }</a>
+      <a class="anchor-link" id="${escapedText}"></a>${text}` +
+    `<a class="anchor-link-style" href="#${escapedText}">${'#'}</a>
     </h${level}>
-  `;
+  `
+  );
 };
 
 marked.setOptions({
@@ -39,7 +39,7 @@ marked.setOptions({
   renderer,
 });
 
-const anchorLinkStyle = (theme) => ({
+const anchorLinkStyle = theme => ({
   '& .anchor-link-style': {
     opacity: 0,
     display: 'inline',
@@ -53,7 +53,7 @@ const anchorLinkStyle = (theme) => ({
   },
 });
 
-const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
+const styleSheet = createStyleSheet('MarkdownElement', theme => ({
   root: {
     fontFamily: theme.typography.fontFamily,
     marginTop: theme.spacing.unit * 2,
@@ -126,8 +126,8 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
     },
     '& td': {
       borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
-      padding: `${theme.spacing.unit}px ${theme.spacing.unit * 8}px ${
-        theme.spacing.unit}px ${theme.spacing.unit * 3}px`,
+      padding: `${theme.spacing.unit}px ${theme.spacing.unit * 8}px` +
+        ` ${theme.spacing.unit}px ${theme.spacing.unit * 3}px`,
       textAlign: 'left',
     },
     '& td:last-child': {
@@ -176,12 +176,7 @@ const styleSheet = createStyleSheet('MarkdownElement', (theme) => ({
 }));
 
 function MarkdownElement(props) {
-  const {
-    classes,
-    className,
-    text,
-    ...other
-  } = props;
+  const { classes, className, text, ...other } = props;
 
   /* eslint-disable react/no-danger */
   return (

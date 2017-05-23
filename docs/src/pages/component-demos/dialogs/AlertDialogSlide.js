@@ -23,12 +23,8 @@ export default class AlertDialogSlide extends Component {
         <Button onClick={() => this.setState({ open: true })}>
           Slide in alert dialog
         </Button>
-        <Dialog
-          open={this.state.open}
-          transition={Slide}
-          onRequestClose={this.handleRequestClose}
-        >
-          <DialogTitle>{'Use Google\'s location service?'}</DialogTitle>
+        <Dialog open={this.state.open} transition={Slide} onRequestClose={this.handleRequestClose}>
+          <DialogTitle>{"Use Google's location service?"}</DialogTitle>
           <DialogContent>
             <DialogContentText>
               Let Google help apps determine location.
@@ -45,4 +41,3 @@ export default class AlertDialogSlide extends Component {
     );
   }
 }
-

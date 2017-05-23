@@ -21,8 +21,11 @@ describe('<Input />', () => {
     assert.strictEqual(wrapper.name(), 'div');
     assert.strictEqual(wrapper.hasClass(classes.wrapper), true, 'should have the wrapper class');
     assert.strictEqual(wrapper.hasClass(classes.inkbar), true, 'should have the inkbar class');
-    assert.strictEqual(wrapper.hasClass(classes.underline), true,
-      'should have the underline class');
+    assert.strictEqual(
+      wrapper.hasClass(classes.underline),
+      true,
+      'should have the underline class',
+    );
   });
 
   it('should render an <input /> inside the div', () => {
@@ -58,8 +61,11 @@ describe('<Input />', () => {
     assert.strictEqual(wrapper.hasClass(classes.inkbar), false, 'should not have the inkbar class');
     assert.strictEqual(input.name(), 'input');
     assert.strictEqual(input.hasClass(classes.input), true, 'should have the input class');
-    assert.strictEqual(input.hasClass(classes.underline),
-      false, 'should not have the underline class');
+    assert.strictEqual(
+      input.hasClass(classes.underline),
+      false,
+      'should not have the underline class',
+    );
   });
 
   it('should fire event callbacks', () => {
@@ -71,7 +77,7 @@ describe('<Input />', () => {
 
     const wrapper = shallow(<Input {...handlers} />);
 
-    events.forEach((n) => {
+    events.forEach(n => {
       const event = n.charAt(2).toLowerCase() + n.slice(3);
       wrapper.find('input').simulate(event);
       assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
@@ -86,9 +92,7 @@ describe('<Input />', () => {
     before(() => {
       handleClean = spy();
       handleDirty = spy();
-      wrapper = shallow(
-        <Input value="" onDirty={handleDirty} onClean={handleClean} />,
-      );
+      wrapper = shallow(<Input value="" onDirty={handleDirty} onClean={handleClean} />);
     });
 
     it('should check that the component is controlled', () => {
@@ -107,8 +111,11 @@ describe('<Input />', () => {
     });
 
     it('should fire the onClean callback when dirtied', () => {
-      assert.strictEqual(handleClean.callCount, 1,
-        'should have called the onClean cb once already');
+      assert.strictEqual(
+        handleClean.callCount,
+        1,
+        'should have called the onClean cb once already',
+      );
       wrapper.setProps({ value: '' });
       assert.strictEqual(handleClean.callCount, 2, 'should have called the onClean cb again');
     });
@@ -133,9 +140,7 @@ describe('<Input />', () => {
     before(() => {
       handleClean = spy();
       handleDirty = spy();
-      wrapper = shallow(
-        <Input onDirty={handleDirty} onClean={handleClean} />,
-      );
+      wrapper = shallow(<Input onDirty={handleDirty} onClean={handleClean} />);
 
       // Mock the input ref
       wrapper.instance().input = { value: '' };
