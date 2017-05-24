@@ -1,7 +1,7 @@
 # Themes
 
 Themes let you apply a consistent tone to an app.
-It allows to **customize all the design aspects** in order to meet the needs of UI diversity from business and brand.
+It allows you to **customize all the design aspects** in order to meet the needs of UI diversity from business and brand.
 
 The theme specifies the darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc.
 To promote greater consistency between apps, light and dark themes are available to choose from.
@@ -9,7 +9,7 @@ We are using [jss-theme-reactor](https://github.com/nathanmarks/jss-theme-reacto
 
 ## Configuration variables
 
-Changing the configurations variables is the most effective way to get Material-UI matching your needs. By default, your Material-UI application will use the default theme.
+Changing the configurations variables is the most effective way to match Material-UI to your needs. By default, your Material-UI application will use the default theme.
 
 ### Palette
 
@@ -32,13 +32,13 @@ If you want to learn more about color, you can check out [this section](/style/c
 
 ### Dark/light theme
 
-You can make a theme as dark by setting `type` to `dark`.
+You can make a theme dark by setting `type` to `dark`.
 
 {{demo='pages/customization/DarkTheme.js'}}
 
 ### The other variables
 
-We have tried to normalized the implementation by adding much more variables: the typography, the breakpoints, the transitions, etc. You can see below what the theme object looks like with the default values.
+We have tried to normalize the implementation by adding many more variables: the typography, the breakpoints, the transitions, etc. You can see below what the theme object looks like with the default values.
 If you want to learn more about it, we suggesting having a look at [`material-ui/style/theme.js`](https://github.com/callemall/material-ui/blob/next/src/styles/theme.js).
 
 {{demo='pages/customization/ThemeDefault.js'}}
@@ -47,7 +47,7 @@ If you want to learn more about it, we suggesting having a look at [`material-ui
 
 When using our [styling solution](/customization/css-in-js) with your own components,
 you can also take advantage of the theme.
-It can be convinient to add additional variables to the theme so you can use them everywhere.
+It can be convenient to add additional variables to the theme so you can use them everywhere.
 For instance:
 
 {{demo='pages/customization/BusinessVariables.js'}}
@@ -55,7 +55,7 @@ For instance:
 ## Customizing all instances of a component type
 
 When the configuration variables aren't powerful enough, you can take advantage of the
-`overrides` key to potentially change every single style injected by Material-UI in the DOM.
+`overrides` key to potentially change every single style injected by Material-UI into the DOM.
 That's a really powerful feature.
 
 {{demo='pages/customization/OverridesTheme.js'}}
