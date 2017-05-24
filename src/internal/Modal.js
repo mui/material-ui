@@ -246,8 +246,8 @@ class Modal extends Component<DefaultProps, Props, State> {
 
   handleHide() {
     this.props.modalManager.remove(this);
-    this.onDocumentKeyUpListener && this.onDocumentKeyUpListener.remove();
-    this.onFocusListener && this.onFocusListener.remove();
+    if (this.onDocumentKeyUpListener) this.onDocumentKeyUpListener.remove();
+    if (this.onFocusListener) this.onFocusListener.remove();
     this.restoreLastFocus();
   }
 
