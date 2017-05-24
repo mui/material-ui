@@ -25,6 +25,14 @@ class ConsoleErrorMock {
 
     throw new Error('Requested call count before spy() was called');
   };
+
+  args = () => {
+    if (this.consoleErrorContainer) {
+      return console.error.args;
+    }
+
+    throw new Error('Requested call count before spy() was called');
+  };
 }
 
 export default new ConsoleErrorMock();

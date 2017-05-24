@@ -1,6 +1,7 @@
 // @flow weak
 
 import React, { Component, Children, cloneElement } from 'react';
+import warning from 'warning';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import classNames from 'classnames';
@@ -146,9 +147,18 @@ class Tabs extends Component {
   };
 
   getTabsMeta = index => {
-    const tabsMeta = this.tabs.getBoundingClientRect();
-    tabsMeta.scrollLeft = this.tabs.scrollLeft;
-    const tabMeta = this.tabs.children[0].children[index].getBoundingClientRect();
+    let tabsMeta;
+    if (this.tabs) {
+      tabsMeta = this.tabs.getBoundingClientRect();
+      tabsMeta.scrollLeft = this.tabs.scrollLeft;
+    }
+
+    let tabMeta;
+    if (this.tabs && index !== false) {
+      const tab = this.tabs.children[0].children[index];
+      warning(tab, `Material-UI: the index provided \`${index}\` is invalid`);
+      tabMeta = tab ? this.tabs.children[0].children[index].getBoundingClientRect() : null;
+    }
     return { tabsMeta, tabMeta };
   };
 
@@ -158,22 +168,26 @@ class Tabs extends Component {
   };
 
   updateIndicatorState(props) {
-    if (this.tabs) {
-      const { tabsMeta, tabMeta } = this.getTabsMeta(props.index);
+    const { tabsMeta, tabMeta } = this.getTabsMeta(props.index);
 
-      const indicatorStyle = {
-        left: tabMeta.left + (tabsMeta.scrollLeft - tabsMeta.left),
-        width: tabMeta.width, // May be wrong until the font is loaded.
-      };
+    const indicatorStyle = {
+      left: tabMeta && tabsMeta ? tabMeta.left + (tabsMeta.scrollLeft - tabsMeta.left) : 0,
+      // May be wrong until the font is loaded.
+      width: tabMeta ? tabMeta.width : 0,
+    };
 
-      if (!isEqual(indicatorStyle, this.state.indicatorStyle)) {
-        this.setState({ indicatorStyle });
-      }
+    if (!isEqual(indicatorStyle, this.state.indicatorStyle)) {
+      this.setState({ indicatorStyle });
     }
   }
 
   scrollSelectedIntoView = () => {
     const { tabsMeta, tabMeta } = this.getTabsMeta(this.props.index);
+
+    if (!tabMeta || !tabsMeta) {
+      return;
+    }
+
     if (tabMeta.left < tabsMeta.left) {
       // left side of button is out of view
       const nextScrollLeft = tabsMeta.scrollLeft + (tabMeta.left - tabsMeta.left);
@@ -302,8 +316,9 @@ Tabs.propTypes = {
   fullWidth: PropTypes.bool,
   /**
    * The index of the currently selected `Tab`.
+   * If you don't want any selected `Tab`, you can set this property to `false`.
    */
-  index: PropTypes.number.isRequired,
+  index: PropTypes.oneOfType([PropTypes.oneOf([false]), PropTypes.number]).isRequired,
   /**
    * The CSS class name of the indicator element.
    */
