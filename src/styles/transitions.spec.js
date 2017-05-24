@@ -2,7 +2,13 @@
 
 import { assert } from 'chai';
 import { stub } from 'sinon';
-import transitions, { easing, duration } from './transitions';
+import transitions, {
+  easing,
+  duration,
+  formatMs,
+  isString,
+  isNumber,
+} from './transitions';
 
 describe('transitions', () => {
   let consoleErrorStub;
@@ -13,6 +19,61 @@ describe('transitions', () => {
 
   afterEach(() => {
     consoleErrorStub.restore();
+  });
+
+  describe('formatMs() function', () => {
+    it('should round decimal digits and return formated value', () => {
+      const formatedValue = formatMs(12.125);
+      assert.strictEqual(formatedValue, '12ms');
+    });
+  });
+
+  describe('isString() function', () => {
+    it('should return false when passed undefined', () => {
+      const value = isString();
+      assert.strictEqual(value, false);
+    });
+
+    it('should return false when not passed a string', () => {
+      let value = isString(1);
+      assert.strictEqual(value, false);
+      value = isString({});
+      assert.strictEqual(value, false);
+      value = isString([]);
+      assert.strictEqual(value, false);
+    });
+
+    it('should return true when passed a string', () => {
+      let value = isString('');
+      assert.strictEqual(value, true);
+      value = isString('test');
+      assert.strictEqual(value, true);
+    });
+  });
+
+  describe('isNumber() function', () => {
+    it('should return false when passed undefined', () => {
+      const value = isNumber();
+      assert.strictEqual(value, false);
+    });
+
+    it('should return false when not passed a number', () => {
+      let value = isNumber('');
+      assert.strictEqual(value, false);
+      value = isNumber('test');
+      assert.strictEqual(value, false);
+      value = isNumber({});
+      assert.strictEqual(value, false);
+      value = isNumber([]);
+      assert.strictEqual(value, false);
+    });
+
+    it('should return true when passed a number', () => {
+      let value = isNumber(1);
+      assert.strictEqual(value, true);
+      value = isNumber(1.5);
+      assert.strictEqual(value, true);
+    });
   });
 
   describe('create() function', () => {
