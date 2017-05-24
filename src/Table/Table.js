@@ -149,6 +149,16 @@ class Table extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    const {allRowsSelected} = nextProps;
+
+    if (typeof allRowsSelected !== 'undefined') {
+      if (this.state.allRowsSelected !== allRowsSelected || this.props.allRowsSelected !== allRowsSelected) {
+        this.setState({allRowsSelected});
+      }
+    }
+  }
+
   isScrollbarVisible() {
     const tableDivHeight = this.refs.tableDiv.clientHeight;
     const tableBodyHeight = this.refs.tableBody.clientHeight;
