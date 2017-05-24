@@ -54,6 +54,7 @@ export const styleSheet = createStyleSheet('MuiInput', theme => ({
     padding: '6px 0',
     border: 0,
     display: 'block',
+    boxSizing: 'content-box',
     verticalAlign: 'middle',
     whiteSpace: 'normal',
     background: 'none',
@@ -69,6 +70,7 @@ export const styleSheet = createStyleSheet('MuiInput', theme => ({
     },
   },
   singleline: {
+    height: '1em',
     appearance: 'textfield', // Improve type search style.
   },
   multiline: {
