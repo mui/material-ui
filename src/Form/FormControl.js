@@ -53,11 +53,17 @@ class FormControl extends Component {
     if (!this.state.focused) {
       this.setState({ focused: true });
     }
+    if (this.props.onFocus) {
+      this.props.onFocus();
+    }
   };
 
   handleBlur = () => {
     if (this.state.focused) {
       this.setState({ focused: false });
+    }
+    if (this.props.onBlur) {
+      this.props.onBlur();
     }
   };
 
@@ -84,10 +90,10 @@ class FormControl extends Component {
 
     return (
       <div
-        onFocus={this.handleFocus}
-        onBlur={this.handleBlur}
         className={classNames(classes.root, className)}
         {...other}
+        onFocus={this.handleFocus}
+        onBlur={this.handleBlur}
       >
         {children}
       </div>
@@ -112,6 +118,14 @@ FormControl.propTypes = {
    * If `true`, the label should be displayed in an error state.
    */
   error: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
   /**
    * If `true`, the label will indicate that the input is required.
    */
