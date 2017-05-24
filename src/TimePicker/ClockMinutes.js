@@ -8,11 +8,13 @@ class ClockMinutes extends Component {
   static propTypes = {
     initialMinutes: PropTypes.number,
     onChange: PropTypes.func,
+    step: PropTypes.number,
   };
 
   static defaultProps = {
     initialMinutes: new Date().getMinutes(),
     onChange: () => {},
+    step: 1,
   };
 
   static contextTypes = {
@@ -72,7 +74,7 @@ class ClockMinutes extends Component {
   }
 
   getMinutes(offsetX, offsetY) {
-    const step = 6;
+    const step = 6 * this.props.step;
     const x = offsetX - this.center.x;
     const y = offsetY - this.center.y;
     const cx = this.basePoint.x - this.center.x;
@@ -86,7 +88,7 @@ class ClockMinutes extends Component {
 
     const value = Math.floor(deg / step) || 0;
 
-    return value;
+    return value * this.props.step;
   }
 
   getMinuteNumbers() {
