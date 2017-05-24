@@ -12,3 +12,4 @@ EditorShortText.displayName = 'EditorShortText';
 EditorShortText.muiName = 'SvgIcon';
 
 export default EditorShortText;
+export {EditorShortText};

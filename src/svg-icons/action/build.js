@@ -12,3 +12,4 @@ ActionBuild.displayName = 'ActionBuild';
 ActionBuild.muiName = 'SvgIcon';
 
 export default ActionBuild;
+export {ActionBuild};

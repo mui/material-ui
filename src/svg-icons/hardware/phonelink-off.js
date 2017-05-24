@@ -12,3 +12,4 @@ HardwarePhonelinkOff.displayName = 'HardwarePhonelinkOff';
 HardwarePhonelinkOff.muiName = 'SvgIcon';
 
 export default HardwarePhonelinkOff;
+export {HardwarePhonelinkOff};

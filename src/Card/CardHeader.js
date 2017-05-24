@@ -167,3 +167,4 @@ class CardHeader extends Component {
 }
 
 export default CardHeader;
+export {CardHeader};

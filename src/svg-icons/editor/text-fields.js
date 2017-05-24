@@ -12,3 +12,4 @@ EditorTextFields.displayName = 'EditorTextFields';
 EditorTextFields.muiName = 'SvgIcon';
 
 export default EditorTextFields;
+export {EditorTextFields};

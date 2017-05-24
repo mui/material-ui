@@ -12,3 +12,4 @@ ActionStore.displayName = 'ActionStore';
 ActionStore.muiName = 'SvgIcon';
 
 export default ActionStore;
+export {ActionStore};

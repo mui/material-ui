@@ -12,3 +12,4 @@ AvHearing.displayName = 'AvHearing';
 AvHearing.muiName = 'SvgIcon';
 
 export default AvHearing;
+export {AvHearing};

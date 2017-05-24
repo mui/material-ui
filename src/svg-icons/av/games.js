@@ -12,3 +12,4 @@ AvGames.displayName = 'AvGames';
 AvGames.muiName = 'SvgIcon';
 
 export default AvGames;
+export {AvGames};

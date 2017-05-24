@@ -12,3 +12,4 @@ DeviceLocationSearching.displayName = 'DeviceLocationSearching';
 DeviceLocationSearching.muiName = 'SvgIcon';
 
 export default DeviceLocationSearching;
+export {DeviceLocationSearching};

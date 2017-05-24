@@ -12,3 +12,4 @@ AvFiberNew.displayName = 'AvFiberNew';
 AvFiberNew.muiName = 'SvgIcon';
 
 export default AvFiberNew;
+export {AvFiberNew};

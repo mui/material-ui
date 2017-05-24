@@ -12,3 +12,4 @@ CommunicationPresentToAll.displayName = 'CommunicationPresentToAll';
 CommunicationPresentToAll.muiName = 'SvgIcon';
 
 export default CommunicationPresentToAll;
+export {CommunicationPresentToAll};

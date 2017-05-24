@@ -12,3 +12,4 @@ NotificationConfirmationNumber.displayName = 'NotificationConfirmationNumber';
 NotificationConfirmationNumber.muiName = 'SvgIcon';
 
 export default NotificationConfirmationNumber;
+export {NotificationConfirmationNumber};

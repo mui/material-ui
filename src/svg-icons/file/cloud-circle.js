@@ -12,3 +12,4 @@ FileCloudCircle.displayName = 'FileCloudCircle';
 FileCloudCircle.muiName = 'SvgIcon';
 
 export default FileCloudCircle;
+export {FileCloudCircle};

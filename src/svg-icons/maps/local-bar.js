@@ -12,3 +12,4 @@ MapsLocalBar.displayName = 'MapsLocalBar';
 MapsLocalBar.muiName = 'SvgIcon';
 
 export default MapsLocalBar;
+export {MapsLocalBar};

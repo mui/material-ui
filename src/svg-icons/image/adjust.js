@@ -12,3 +12,4 @@ ImageAdjust.displayName = 'ImageAdjust';
 ImageAdjust.muiName = 'SvgIcon';
 
 export default ImageAdjust;
+export {ImageAdjust};

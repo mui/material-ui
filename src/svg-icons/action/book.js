@@ -12,3 +12,4 @@ ActionBook.displayName = 'ActionBook';
 ActionBook.muiName = 'SvgIcon';
 
 export default ActionBook;
+export {ActionBook};

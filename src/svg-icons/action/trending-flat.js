@@ -12,3 +12,4 @@ ActionTrendingFlat.displayName = 'ActionTrendingFlat';
 ActionTrendingFlat.muiName = 'SvgIcon';
 
 export default ActionTrendingFlat;
+export {ActionTrendingFlat};

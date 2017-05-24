@@ -12,3 +12,4 @@ NavigationArrowDropDownCircle.displayName = 'NavigationArrowDropDownCircle';
 NavigationArrowDropDownCircle.muiName = 'SvgIcon';
 
 export default NavigationArrowDropDownCircle;
+export {NavigationArrowDropDownCircle};

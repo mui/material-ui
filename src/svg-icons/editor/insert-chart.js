@@ -12,3 +12,4 @@ EditorInsertChart.displayName = 'EditorInsertChart';
 EditorInsertChart.muiName = 'SvgIcon';
 
 export default EditorInsertChart;
+export {EditorInsertChart};

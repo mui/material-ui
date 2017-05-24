@@ -12,3 +12,4 @@ HardwareDesktopWindows.displayName = 'HardwareDesktopWindows';
 HardwareDesktopWindows.muiName = 'SvgIcon';
 
 export default HardwareDesktopWindows;
+export {HardwareDesktopWindows};

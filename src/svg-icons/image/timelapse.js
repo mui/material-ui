@@ -12,3 +12,4 @@ ImageTimelapse.displayName = 'ImageTimelapse';
 ImageTimelapse.muiName = 'SvgIcon';
 
 export default ImageTimelapse;
+export {ImageTimelapse};

@@ -12,3 +12,4 @@ ImagePanorama.displayName = 'ImagePanorama';
 ImagePanorama.muiName = 'SvgIcon';
 
 export default ImagePanorama;
+export {ImagePanorama};

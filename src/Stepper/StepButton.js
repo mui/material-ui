@@ -147,3 +147,4 @@ class StepButton extends Component {
 }
 
 export default StepButton;
+export {StepButton};

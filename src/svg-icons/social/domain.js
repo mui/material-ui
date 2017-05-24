@@ -12,3 +12,4 @@ SocialDomain.displayName = 'SocialDomain';
 SocialDomain.muiName = 'SvgIcon';
 
 export default SocialDomain;
+export {SocialDomain};

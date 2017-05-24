@@ -12,3 +12,4 @@ SocialWhatshot.displayName = 'SocialWhatshot';
 SocialWhatshot.muiName = 'SvgIcon';
 
 export default SocialWhatshot;
+export {SocialWhatshot};

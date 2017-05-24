@@ -12,3 +12,4 @@ DeviceNetworkCell.displayName = 'DeviceNetworkCell';
 DeviceNetworkCell.muiName = 'SvgIcon';
 
 export default DeviceNetworkCell;
+export {DeviceNetworkCell};

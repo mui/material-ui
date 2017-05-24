@@ -12,3 +12,4 @@ ImageHealing.displayName = 'ImageHealing';
 ImageHealing.muiName = 'SvgIcon';
 
 export default ImageHealing;
+export {ImageHealing};

@@ -12,3 +12,4 @@ AvQueueMusic.displayName = 'AvQueueMusic';
 AvQueueMusic.muiName = 'SvgIcon';
 
 export default AvQueueMusic;
+export {AvQueueMusic};

@@ -12,3 +12,4 @@ EditorShowChart.displayName = 'EditorShowChart';
 EditorShowChart.muiName = 'SvgIcon';
 
 export default EditorShowChart;
+export {EditorShowChart};

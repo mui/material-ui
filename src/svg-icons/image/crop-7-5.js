@@ -12,3 +12,4 @@ ImageCrop75.displayName = 'ImageCrop75';
 ImageCrop75.muiName = 'SvgIcon';
 
 export default ImageCrop75;
+export {ImageCrop75};

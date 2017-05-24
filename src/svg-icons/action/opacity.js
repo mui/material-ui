@@ -12,3 +12,4 @@ ActionOpacity.displayName = 'ActionOpacity';
 ActionOpacity.muiName = 'SvgIcon';
 
 export default ActionOpacity;
+export {ActionOpacity};

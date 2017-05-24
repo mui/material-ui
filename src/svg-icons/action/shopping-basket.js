@@ -12,3 +12,4 @@ ActionShoppingBasket.displayName = 'ActionShoppingBasket';
 ActionShoppingBasket.muiName = 'SvgIcon';
 
 export default ActionShoppingBasket;
+export {ActionShoppingBasket};

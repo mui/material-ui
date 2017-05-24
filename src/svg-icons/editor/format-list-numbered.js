@@ -12,3 +12,4 @@ EditorFormatListNumbered.displayName = 'EditorFormatListNumbered';
 EditorFormatListNumbered.muiName = 'SvgIcon';
 
 export default EditorFormatListNumbered;
+export {EditorFormatListNumbered};

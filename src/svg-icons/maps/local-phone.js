@@ -12,3 +12,4 @@ MapsLocalPhone.displayName = 'MapsLocalPhone';
 MapsLocalPhone.muiName = 'SvgIcon';
 
 export default MapsLocalPhone;
+export {MapsLocalPhone};

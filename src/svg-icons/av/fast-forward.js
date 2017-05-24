@@ -12,3 +12,4 @@ AvFastForward.displayName = 'AvFastForward';
 AvFastForward.muiName = 'SvgIcon';
 
 export default AvFastForward;
+export {AvFastForward};

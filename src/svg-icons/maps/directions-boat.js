@@ -12,3 +12,4 @@ MapsDirectionsBoat.displayName = 'MapsDirectionsBoat';
 MapsDirectionsBoat.muiName = 'SvgIcon';
 
 export default MapsDirectionsBoat;
+export {MapsDirectionsBoat};

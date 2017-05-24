@@ -614,3 +614,4 @@ AutoComplete.Item = MenuItem;
 AutoComplete.Divider = Divider;
 
 export default AutoComplete;
+export {AutoComplete};

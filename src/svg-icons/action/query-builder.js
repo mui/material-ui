@@ -12,3 +12,4 @@ ActionQueryBuilder.displayName = 'ActionQueryBuilder';
 ActionQueryBuilder.muiName = 'SvgIcon';
 
 export default ActionQueryBuilder;
+export {ActionQueryBuilder};

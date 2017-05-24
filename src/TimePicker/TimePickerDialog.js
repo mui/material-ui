@@ -144,3 +144,4 @@ class TimePickerDialog extends Component {
 }
 
 export default TimePickerDialog;
+export {TimePickerDialog};

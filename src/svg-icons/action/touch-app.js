@@ -12,3 +12,4 @@ ActionTouchApp.displayName = 'ActionTouchApp';
 ActionTouchApp.muiName = 'SvgIcon';
 
 export default ActionTouchApp;
+export {ActionTouchApp};

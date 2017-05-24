@@ -12,3 +12,4 @@ MapsSubway.displayName = 'MapsSubway';
 MapsSubway.muiName = 'SvgIcon';
 
 export default MapsSubway;
+export {MapsSubway};

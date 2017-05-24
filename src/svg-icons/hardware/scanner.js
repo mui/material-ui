@@ -12,3 +12,4 @@ HardwareScanner.displayName = 'HardwareScanner';
 HardwareScanner.muiName = 'SvgIcon';
 
 export default HardwareScanner;
+export {HardwareScanner};

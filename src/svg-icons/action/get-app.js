@@ -12,3 +12,4 @@ ActionGetApp.displayName = 'ActionGetApp';
 ActionGetApp.muiName = 'SvgIcon';
 
 export default ActionGetApp;
+export {ActionGetApp};

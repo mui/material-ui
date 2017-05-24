@@ -12,3 +12,4 @@ ActionToll.displayName = 'ActionToll';
 ActionToll.muiName = 'SvgIcon';
 
 export default ActionToll;
+export {ActionToll};

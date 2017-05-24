@@ -12,3 +12,4 @@ EditorHighlight.displayName = 'EditorHighlight';
 EditorHighlight.muiName = 'SvgIcon';
 
 export default EditorHighlight;
+export {EditorHighlight};

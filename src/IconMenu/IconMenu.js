@@ -337,3 +337,4 @@ You should wrapped it with an <IconButton />.`);
 }
 
 export default IconMenu;
+export {IconMenu};

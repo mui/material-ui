@@ -12,3 +12,4 @@ ActionSettingsApplications.displayName = 'ActionSettingsApplications';
 ActionSettingsApplications.muiName = 'SvgIcon';
 
 export default ActionSettingsApplications;
+export {ActionSettingsApplications};

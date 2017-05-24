@@ -12,3 +12,4 @@ NotificationDoNotDisturbOff.displayName = 'NotificationDoNotDisturbOff';
 NotificationDoNotDisturbOff.muiName = 'SvgIcon';
 
 export default NotificationDoNotDisturbOff;
+export {NotificationDoNotDisturbOff};

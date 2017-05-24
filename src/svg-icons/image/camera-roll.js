@@ -12,3 +12,4 @@ ImageCameraRoll.displayName = 'ImageCameraRoll';
 ImageCameraRoll.muiName = 'SvgIcon';
 
 export default ImageCameraRoll;
+export {ImageCameraRoll};

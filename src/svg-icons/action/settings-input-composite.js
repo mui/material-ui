@@ -12,3 +12,4 @@ ActionSettingsInputComposite.displayName = 'ActionSettingsInputComposite';
 ActionSettingsInputComposite.muiName = 'SvgIcon';
 
 export default ActionSettingsInputComposite;
+export {ActionSettingsInputComposite};

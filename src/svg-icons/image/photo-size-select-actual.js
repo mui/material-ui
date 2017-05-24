@@ -12,3 +12,4 @@ ImagePhotoSizeSelectActual.displayName = 'ImagePhotoSizeSelectActual';
 ImagePhotoSizeSelectActual.muiName = 'SvgIcon';
 
 export default ImagePhotoSizeSelectActual;
+export {ImagePhotoSizeSelectActual};

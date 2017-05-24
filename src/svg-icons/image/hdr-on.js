@@ -12,3 +12,4 @@ ImageHdrOn.displayName = 'ImageHdrOn';
 ImageHdrOn.muiName = 'SvgIcon';
 
 export default ImageHdrOn;
+export {ImageHdrOn};

@@ -12,3 +12,4 @@ CommunicationCallSplit.displayName = 'CommunicationCallSplit';
 CommunicationCallSplit.muiName = 'SvgIcon';
 
 export default CommunicationCallSplit;
+export {CommunicationCallSplit};

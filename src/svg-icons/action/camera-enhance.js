@@ -12,3 +12,4 @@ ActionCameraEnhance.displayName = 'ActionCameraEnhance';
 ActionCameraEnhance.muiName = 'SvgIcon';
 
 export default ActionCameraEnhance;
+export {ActionCameraEnhance};

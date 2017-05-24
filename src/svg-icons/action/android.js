@@ -12,3 +12,4 @@ ActionAndroid.displayName = 'ActionAndroid';
 ActionAndroid.muiName = 'SvgIcon';
 
 export default ActionAndroid;
+export {ActionAndroid};

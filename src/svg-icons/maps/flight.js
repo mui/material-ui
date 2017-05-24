@@ -12,3 +12,4 @@ MapsFlight.displayName = 'MapsFlight';
 MapsFlight.muiName = 'SvgIcon';
 
 export default MapsFlight;
+export {MapsFlight};

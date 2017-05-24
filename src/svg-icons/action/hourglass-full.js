@@ -12,3 +12,4 @@ ActionHourglassFull.displayName = 'ActionHourglassFull';
 ActionHourglassFull.muiName = 'SvgIcon';
 
 export default ActionHourglassFull;
+export {ActionHourglassFull};

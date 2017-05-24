@@ -12,3 +12,4 @@ ActionRowing.displayName = 'ActionRowing';
 ActionRowing.muiName = 'SvgIcon';
 
 export default ActionRowing;
+export {ActionRowing};

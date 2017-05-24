@@ -12,3 +12,4 @@ ActionPermContactCalendar.displayName = 'ActionPermContactCalendar';
 ActionPermContactCalendar.muiName = 'SvgIcon';
 
 export default ActionPermContactCalendar;
+export {ActionPermContactCalendar};

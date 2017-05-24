@@ -327,3 +327,4 @@ class RefreshIndicator extends Component {
 }
 
 export default RefreshIndicator;
+export {RefreshIndicator};

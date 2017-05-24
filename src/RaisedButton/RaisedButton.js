@@ -444,3 +444,4 @@ class RaisedButton extends Component {
 }
 
 export default RaisedButton;
+export {RaisedButton};

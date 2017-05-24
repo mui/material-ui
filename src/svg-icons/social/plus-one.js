@@ -12,3 +12,4 @@ SocialPlusOne.displayName = 'SocialPlusOne';
 SocialPlusOne.muiName = 'SvgIcon';
 
 export default SocialPlusOne;
+export {SocialPlusOne};

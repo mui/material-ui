@@ -12,3 +12,4 @@ AvAlbum.displayName = 'AvAlbum';
 AvAlbum.muiName = 'SvgIcon';
 
 export default AvAlbum;
+export {AvAlbum};

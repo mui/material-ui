@@ -12,3 +12,4 @@ MapsLocalLaundryService.displayName = 'MapsLocalLaundryService';
 MapsLocalLaundryService.muiName = 'SvgIcon';
 
 export default MapsLocalLaundryService;
+export {MapsLocalLaundryService};

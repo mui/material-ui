@@ -12,3 +12,4 @@ ActionWork.displayName = 'ActionWork';
 ActionWork.muiName = 'SvgIcon';
 
 export default ActionWork;
+export {ActionWork};

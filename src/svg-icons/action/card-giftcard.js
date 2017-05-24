@@ -12,3 +12,4 @@ ActionCardGiftcard.displayName = 'ActionCardGiftcard';
 ActionCardGiftcard.muiName = 'SvgIcon';
 
 export default ActionCardGiftcard;
+export {ActionCardGiftcard};

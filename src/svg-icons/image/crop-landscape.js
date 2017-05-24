@@ -12,3 +12,4 @@ ImageCropLandscape.displayName = 'ImageCropLandscape';
 ImageCropLandscape.muiName = 'SvgIcon';
 
 export default ImageCropLandscape;
+export {ImageCropLandscape};

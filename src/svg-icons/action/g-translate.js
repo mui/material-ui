@@ -12,3 +12,4 @@ ActionGTranslate.displayName = 'ActionGTranslate';
 ActionGTranslate.muiName = 'SvgIcon';
 
 export default ActionGTranslate;
+export {ActionGTranslate};

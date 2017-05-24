@@ -12,3 +12,4 @@ ImagePalette.displayName = 'ImagePalette';
 ImagePalette.muiName = 'SvgIcon';
 
 export default ImagePalette;
+export {ImagePalette};

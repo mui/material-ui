@@ -66,3 +66,4 @@ class CardText extends Component {
 }
 
 export default CardText;
+export {CardText};

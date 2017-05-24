@@ -12,3 +12,4 @@ ActionAccessible.displayName = 'ActionAccessible';
 ActionAccessible.muiName = 'SvgIcon';
 
 export default ActionAccessible;
+export {ActionAccessible};

@@ -12,3 +12,4 @@ NavigationCheck.displayName = 'NavigationCheck';
 NavigationCheck.muiName = 'SvgIcon';
 
 export default NavigationCheck;
+export {NavigationCheck};

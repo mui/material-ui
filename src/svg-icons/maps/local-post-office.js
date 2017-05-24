@@ -12,3 +12,4 @@ MapsLocalPostOffice.displayName = 'MapsLocalPostOffice';
 MapsLocalPostOffice.muiName = 'SvgIcon';
 
 export default MapsLocalPostOffice;
+export {MapsLocalPostOffice};

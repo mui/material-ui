@@ -12,3 +12,4 @@ EditorLinearScale.displayName = 'EditorLinearScale';
 EditorLinearScale.muiName = 'SvgIcon';
 
 export default EditorLinearScale;
+export {EditorLinearScale};

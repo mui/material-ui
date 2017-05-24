@@ -12,3 +12,4 @@ ImageTexture.displayName = 'ImageTexture';
 ImageTexture.muiName = 'SvgIcon';
 
 export default ImageTexture;
+export {ImageTexture};

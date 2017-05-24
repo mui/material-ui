@@ -12,3 +12,4 @@ ActionSettingsBrightness.displayName = 'ActionSettingsBrightness';
 ActionSettingsBrightness.muiName = 'SvgIcon';
 
 export default ActionSettingsBrightness;
+export {ActionSettingsBrightness};

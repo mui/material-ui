@@ -50,3 +50,4 @@ class List extends Component {
 }
 
 export default List;
+export {List};

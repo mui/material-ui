@@ -12,3 +12,4 @@ EditorInsertDriveFile.displayName = 'EditorInsertDriveFile';
 EditorInsertDriveFile.muiName = 'SvgIcon';
 
 export default EditorInsertDriveFile;
+export {EditorInsertDriveFile};

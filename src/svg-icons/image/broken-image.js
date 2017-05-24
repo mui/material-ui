@@ -12,3 +12,4 @@ ImageBrokenImage.displayName = 'ImageBrokenImage';
 ImageBrokenImage.muiName = 'SvgIcon';
 
 export default ImageBrokenImage;
+export {ImageBrokenImage};

@@ -12,3 +12,4 @@ NavigationFullscreenExit.displayName = 'NavigationFullscreenExit';
 NavigationFullscreenExit.muiName = 'SvgIcon';
 
 export default NavigationFullscreenExit;
+export {NavigationFullscreenExit};

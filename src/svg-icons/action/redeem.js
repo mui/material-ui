@@ -12,3 +12,4 @@ ActionRedeem.displayName = 'ActionRedeem';
 ActionRedeem.muiName = 'SvgIcon';
 
 export default ActionRedeem;
+export {ActionRedeem};

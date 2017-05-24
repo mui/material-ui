@@ -12,3 +12,4 @@ ImageFilterVintage.displayName = 'ImageFilterVintage';
 ImageFilterVintage.muiName = 'SvgIcon';
 
 export default ImageFilterVintage;
+export {ImageFilterVintage};

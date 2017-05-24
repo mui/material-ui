@@ -113,3 +113,4 @@ class ClockNumber extends Component {
 }
 
 export default ClockNumber;
+export {ClockNumber};

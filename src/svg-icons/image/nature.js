@@ -12,3 +12,4 @@ ImageNature.displayName = 'ImageNature';
 ImageNature.muiName = 'SvgIcon';
 
 export default ImageNature;
+export {ImageNature};

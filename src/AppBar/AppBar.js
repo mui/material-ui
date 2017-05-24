@@ -328,3 +328,4 @@ class AppBar extends Component {
 }
 
 export default AppBar;
+export {AppBar};

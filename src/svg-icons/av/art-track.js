@@ -12,3 +12,4 @@ AvArtTrack.displayName = 'AvArtTrack';
 AvArtTrack.muiName = 'SvgIcon';
 
 export default AvArtTrack;
+export {AvArtTrack};

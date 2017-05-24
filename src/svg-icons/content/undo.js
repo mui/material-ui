@@ -12,3 +12,4 @@ ContentUndo.displayName = 'ContentUndo';
 ContentUndo.muiName = 'SvgIcon';
 
 export default ContentUndo;
+export {ContentUndo};

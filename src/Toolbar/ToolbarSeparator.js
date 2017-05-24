@@ -53,3 +53,4 @@ class ToolbarSeparator extends Component {
 }
 
 export default ToolbarSeparator;
+export {ToolbarSeparator};

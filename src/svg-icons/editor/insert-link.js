@@ -12,3 +12,4 @@ EditorInsertLink.displayName = 'EditorInsertLink';
 EditorInsertLink.muiName = 'SvgIcon';
 
 export default EditorInsertLink;
+export {EditorInsertLink};

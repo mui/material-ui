@@ -12,3 +12,4 @@ ActionSpellcheck.displayName = 'ActionSpellcheck';
 ActionSpellcheck.muiName = 'SvgIcon';
 
 export default ActionSpellcheck;
+export {ActionSpellcheck};

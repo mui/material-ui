@@ -71,3 +71,4 @@ class CardActions extends Component {
 }
 
 export default CardActions;
+export {CardActions};

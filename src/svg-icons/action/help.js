@@ -12,3 +12,4 @@ ActionHelp.displayName = 'ActionHelp';
 ActionHelp.muiName = 'SvgIcon';
 
 export default ActionHelp;
+export {ActionHelp};

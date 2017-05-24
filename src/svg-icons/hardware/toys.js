@@ -12,3 +12,4 @@ HardwareToys.displayName = 'HardwareToys';
 HardwareToys.muiName = 'SvgIcon';
 
 export default HardwareToys;
+export {HardwareToys};

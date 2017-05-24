@@ -109,3 +109,4 @@ class CalendarMonth extends Component {
 }
 
 export default CalendarMonth;
+export {CalendarMonth};

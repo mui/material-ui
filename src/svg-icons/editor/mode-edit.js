@@ -12,3 +12,4 @@ EditorModeEdit.displayName = 'EditorModeEdit';
 EditorModeEdit.muiName = 'SvgIcon';
 
 export default EditorModeEdit;
+export {EditorModeEdit};

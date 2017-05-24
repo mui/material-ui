@@ -12,3 +12,4 @@ CommunicationRssFeed.displayName = 'CommunicationRssFeed';
 CommunicationRssFeed.muiName = 'SvgIcon';
 
 export default CommunicationRssFeed;
+export {CommunicationRssFeed};

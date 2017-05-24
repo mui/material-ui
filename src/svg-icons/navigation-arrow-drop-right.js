@@ -13,3 +13,4 @@ NavigationArrowDropRight.displayName = 'NavigationArrowDropRight';
 NavigationArrowDropRight.muiName = 'SvgIcon';
 
 export default NavigationArrowDropRight;
+export {NavigationArrowDropRight};

@@ -12,3 +12,4 @@ ActionLineStyle.displayName = 'ActionLineStyle';
 ActionLineStyle.muiName = 'SvgIcon';
 
 export default ActionLineStyle;
+export {ActionLineStyle};

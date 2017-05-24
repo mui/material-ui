@@ -12,3 +12,4 @@ ToggleStar.displayName = 'ToggleStar';
 ToggleStar.muiName = 'SvgIcon';
 
 export default ToggleStar;
+export {ToggleStar};

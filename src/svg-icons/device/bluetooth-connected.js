@@ -12,3 +12,4 @@ DeviceBluetoothConnected.displayName = 'DeviceBluetoothConnected';
 DeviceBluetoothConnected.muiName = 'SvgIcon';
 
 export default DeviceBluetoothConnected;
+export {DeviceBluetoothConnected};

@@ -12,3 +12,4 @@ NavigationSubdirectoryArrowLeft.displayName = 'NavigationSubdirectoryArrowLeft';
 NavigationSubdirectoryArrowLeft.muiName = 'SvgIcon';
 
 export default NavigationSubdirectoryArrowLeft;
+export {NavigationSubdirectoryArrowLeft};

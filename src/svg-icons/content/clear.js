@@ -12,3 +12,4 @@ ContentClear.displayName = 'ContentClear';
 ContentClear.muiName = 'SvgIcon';
 
 export default ContentClear;
+export {ContentClear};

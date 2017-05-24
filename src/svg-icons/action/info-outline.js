@@ -12,3 +12,4 @@ ActionInfoOutline.displayName = 'ActionInfoOutline';
 ActionInfoOutline.muiName = 'SvgIcon';
 
 export default ActionInfoOutline;
+export {ActionInfoOutline};

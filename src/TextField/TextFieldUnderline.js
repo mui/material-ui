@@ -122,3 +122,4 @@ TextFieldUnderline.propTypes = propTypes;
 TextFieldUnderline.defaultProps = defaultProps;
 
 export default TextFieldUnderline;
+export {TextFieldUnderline};

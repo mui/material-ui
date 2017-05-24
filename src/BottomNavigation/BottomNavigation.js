@@ -69,3 +69,4 @@ BottomNavigation.contextTypes = {
 };
 
 export default BottomNavigation;
+export {BottomNavigation};

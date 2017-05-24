@@ -12,3 +12,4 @@ PlacesSmokingRooms.displayName = 'PlacesSmokingRooms';
 PlacesSmokingRooms.muiName = 'SvgIcon';
 
 export default PlacesSmokingRooms;
+export {PlacesSmokingRooms};

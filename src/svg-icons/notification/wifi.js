@@ -12,3 +12,4 @@ NotificationWifi.displayName = 'NotificationWifi';
 NotificationWifi.muiName = 'SvgIcon';
 
 export default NotificationWifi;
+export {NotificationWifi};

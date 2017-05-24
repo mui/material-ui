@@ -12,3 +12,4 @@ ActionFeedback.displayName = 'ActionFeedback';
 ActionFeedback.muiName = 'SvgIcon';
 
 export default ActionFeedback;
+export {ActionFeedback};

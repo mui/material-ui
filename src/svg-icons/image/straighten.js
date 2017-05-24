@@ -12,3 +12,4 @@ ImageStraighten.displayName = 'ImageStraighten';
 ImageStraighten.muiName = 'SvgIcon';
 
 export default ImageStraighten;
+export {ImageStraighten};

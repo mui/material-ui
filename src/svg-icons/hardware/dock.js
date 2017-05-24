@@ -12,3 +12,4 @@ HardwareDock.displayName = 'HardwareDock';
 HardwareDock.muiName = 'SvgIcon';
 
 export default HardwareDock;
+export {HardwareDock};

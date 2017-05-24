@@ -12,3 +12,4 @@ MapsPersonPin.displayName = 'MapsPersonPin';
 MapsPersonPin.muiName = 'SvgIcon';
 
 export default MapsPersonPin;
+export {MapsPersonPin};

@@ -126,3 +126,4 @@ class FocusRipple extends Component {
 }
 
 export default FocusRipple;
+export {FocusRipple};

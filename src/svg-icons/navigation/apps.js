@@ -12,3 +12,4 @@ NavigationApps.displayName = 'NavigationApps';
 NavigationApps.muiName = 'SvgIcon';
 
 export default NavigationApps;
+export {NavigationApps};

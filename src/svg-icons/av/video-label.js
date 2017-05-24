@@ -12,3 +12,4 @@ AvVideoLabel.displayName = 'AvVideoLabel';
 AvVideoLabel.muiName = 'SvgIcon';
 
 export default AvVideoLabel;
+export {AvVideoLabel};

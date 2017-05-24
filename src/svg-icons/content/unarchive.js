@@ -12,3 +12,4 @@ ContentUnarchive.displayName = 'ContentUnarchive';
 ContentUnarchive.muiName = 'SvgIcon';
 
 export default ContentUnarchive;
+export {ContentUnarchive};

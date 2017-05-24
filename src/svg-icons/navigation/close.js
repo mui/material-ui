@@ -12,3 +12,4 @@ NavigationClose.displayName = 'NavigationClose';
 NavigationClose.muiName = 'SvgIcon';
 
 export default NavigationClose;
+export {NavigationClose};

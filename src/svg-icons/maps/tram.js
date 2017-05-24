@@ -12,3 +12,4 @@ MapsTram.displayName = 'MapsTram';
 MapsTram.muiName = 'SvgIcon';
 
 export default MapsTram;
+export {MapsTram};

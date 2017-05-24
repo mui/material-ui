@@ -12,3 +12,4 @@ SocialPeople.displayName = 'SocialPeople';
 SocialPeople.muiName = 'SvgIcon';
 
 export default SocialPeople;
+export {SocialPeople};

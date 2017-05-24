@@ -12,3 +12,4 @@ ImageViewComfy.displayName = 'ImageViewComfy';
 ImageViewComfy.muiName = 'SvgIcon';
 
 export default ImageViewComfy;
+export {ImageViewComfy};

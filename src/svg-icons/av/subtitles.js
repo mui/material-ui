@@ -12,3 +12,4 @@ AvSubtitles.displayName = 'AvSubtitles';
 AvSubtitles.muiName = 'SvgIcon';
 
 export default AvSubtitles;
+export {AvSubtitles};

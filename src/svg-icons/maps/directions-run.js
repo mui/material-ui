@@ -12,3 +12,4 @@ MapsDirectionsRun.displayName = 'MapsDirectionsRun';
 MapsDirectionsRun.muiName = 'SvgIcon';
 
 export default MapsDirectionsRun;
+export {MapsDirectionsRun};

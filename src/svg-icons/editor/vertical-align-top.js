@@ -12,3 +12,4 @@ EditorVerticalAlignTop.displayName = 'EditorVerticalAlignTop';
 EditorVerticalAlignTop.muiName = 'SvgIcon';
 
 export default EditorVerticalAlignTop;
+export {EditorVerticalAlignTop};

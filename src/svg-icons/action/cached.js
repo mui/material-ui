@@ -12,3 +12,4 @@ ActionCached.displayName = 'ActionCached';
 ActionCached.muiName = 'SvgIcon';
 
 export default ActionCached;
+export {ActionCached};

@@ -12,3 +12,4 @@ SocialPoll.displayName = 'SocialPoll';
 SocialPoll.muiName = 'SvgIcon';
 
 export default SocialPoll;
+export {SocialPoll};

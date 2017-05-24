@@ -12,3 +12,4 @@ ActionExplore.displayName = 'ActionExplore';
 ActionExplore.muiName = 'SvgIcon';
 
 export default ActionExplore;
+export {ActionExplore};

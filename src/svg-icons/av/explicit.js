@@ -12,3 +12,4 @@ AvExplicit.displayName = 'AvExplicit';
 AvExplicit.muiName = 'SvgIcon';
 
 export default AvExplicit;
+export {AvExplicit};

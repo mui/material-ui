@@ -12,3 +12,4 @@ MapsLocalDining.displayName = 'MapsLocalDining';
 MapsLocalDining.muiName = 'SvgIcon';
 
 export default MapsLocalDining;
+export {MapsLocalDining};

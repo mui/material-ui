@@ -248,3 +248,4 @@ class GridTile extends Component {
 }
 
 export default GridTile;
+export {GridTile};

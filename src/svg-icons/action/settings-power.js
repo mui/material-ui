@@ -12,3 +12,4 @@ ActionSettingsPower.displayName = 'ActionSettingsPower';
 ActionSettingsPower.muiName = 'SvgIcon';
 
 export default ActionSettingsPower;
+export {ActionSettingsPower};

@@ -12,3 +12,4 @@ ContentTextFormat.displayName = 'ContentTextFormat';
 ContentTextFormat.muiName = 'SvgIcon';
 
 export default ContentTextFormat;
+export {ContentTextFormat};

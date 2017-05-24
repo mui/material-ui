@@ -12,3 +12,4 @@ AvQueuePlayNext.displayName = 'AvQueuePlayNext';
 AvQueuePlayNext.muiName = 'SvgIcon';
 
 export default AvQueuePlayNext;
+export {AvQueuePlayNext};

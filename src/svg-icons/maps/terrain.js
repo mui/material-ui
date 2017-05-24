@@ -12,3 +12,4 @@ MapsTerrain.displayName = 'MapsTerrain';
 MapsTerrain.muiName = 'SvgIcon';
 
 export default MapsTerrain;
+export {MapsTerrain};

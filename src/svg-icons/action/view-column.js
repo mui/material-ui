@@ -12,3 +12,4 @@ ActionViewColumn.displayName = 'ActionViewColumn';
 ActionViewColumn.muiName = 'SvgIcon';
 
 export default ActionViewColumn;
+export {ActionViewColumn};

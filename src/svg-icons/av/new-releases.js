@@ -12,3 +12,4 @@ AvNewReleases.displayName = 'AvNewReleases';
 AvNewReleases.muiName = 'SvgIcon';
 
 export default AvNewReleases;
+export {AvNewReleases};

@@ -12,3 +12,4 @@ EditorPieChart.displayName = 'EditorPieChart';
 EditorPieChart.muiName = 'SvgIcon';
 
 export default EditorPieChart;
+export {EditorPieChart};

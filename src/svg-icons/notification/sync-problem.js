@@ -12,3 +12,4 @@ NotificationSyncProblem.displayName = 'NotificationSyncProblem';
 NotificationSyncProblem.muiName = 'SvgIcon';
 
 export default NotificationSyncProblem;
+export {NotificationSyncProblem};

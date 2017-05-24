@@ -12,3 +12,4 @@ NotificationVoiceChat.displayName = 'NotificationVoiceChat';
 NotificationVoiceChat.muiName = 'SvgIcon';
 
 export default NotificationVoiceChat;
+export {NotificationVoiceChat};

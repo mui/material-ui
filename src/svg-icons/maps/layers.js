@@ -12,3 +12,4 @@ MapsLayers.displayName = 'MapsLayers';
 MapsLayers.muiName = 'SvgIcon';
 
 export default MapsLayers;
+export {MapsLayers};

@@ -12,3 +12,4 @@ MapsDirectionsCar.displayName = 'MapsDirectionsCar';
 MapsDirectionsCar.muiName = 'SvgIcon';
 
 export default MapsDirectionsCar;
+export {MapsDirectionsCar};

@@ -12,3 +12,4 @@ FileCreateNewFolder.displayName = 'FileCreateNewFolder';
 FileCreateNewFolder.muiName = 'SvgIcon';
 
 export default FileCreateNewFolder;
+export {FileCreateNewFolder};

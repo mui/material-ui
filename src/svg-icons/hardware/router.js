@@ -12,3 +12,4 @@ HardwareRouter.displayName = 'HardwareRouter';
 HardwareRouter.muiName = 'SvgIcon';
 
 export default HardwareRouter;
+export {HardwareRouter};

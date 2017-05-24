@@ -12,3 +12,4 @@ PlacesBusinessCenter.displayName = 'PlacesBusinessCenter';
 PlacesBusinessCenter.muiName = 'SvgIcon';
 
 export default PlacesBusinessCenter;
+export {PlacesBusinessCenter};

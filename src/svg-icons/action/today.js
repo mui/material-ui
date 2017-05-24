@@ -12,3 +12,4 @@ ActionToday.displayName = 'ActionToday';
 ActionToday.muiName = 'SvgIcon';
 
 export default ActionToday;
+export {ActionToday};

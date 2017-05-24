@@ -187,3 +187,4 @@ class EnhancedTextarea extends Component {
 }
 
 export default EnhancedTextarea;
+export {EnhancedTextarea};

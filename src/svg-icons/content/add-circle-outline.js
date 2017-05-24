@@ -12,3 +12,4 @@ ContentAddCircleOutline.displayName = 'ContentAddCircleOutline';
 ContentAddCircleOutline.muiName = 'SvgIcon';
 
 export default ContentAddCircleOutline;
+export {ContentAddCircleOutline};

@@ -12,3 +12,4 @@ AvPlayArrow.displayName = 'AvPlayArrow';
 AvPlayArrow.muiName = 'SvgIcon';
 
 export default AvPlayArrow;
+export {AvPlayArrow};

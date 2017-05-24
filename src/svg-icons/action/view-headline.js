@@ -12,3 +12,4 @@ ActionViewHeadline.displayName = 'ActionViewHeadline';
 ActionViewHeadline.muiName = 'SvgIcon';
 
 export default ActionViewHeadline;
+export {ActionViewHeadline};

@@ -97,3 +97,4 @@ TextFieldLabel.defaultProps = {
 };
 
 export default TextFieldLabel;
+export {TextFieldLabel};

@@ -12,3 +12,4 @@ ActionSupervisorAccount.displayName = 'ActionSupervisorAccount';
 ActionSupervisorAccount.muiName = 'SvgIcon';
 
 export default ActionSupervisorAccount;
+export {ActionSupervisorAccount};

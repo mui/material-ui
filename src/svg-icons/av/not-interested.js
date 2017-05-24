@@ -12,3 +12,4 @@ AvNotInterested.displayName = 'AvNotInterested';
 AvNotInterested.muiName = 'SvgIcon';
 
 export default AvNotInterested;
+export {AvNotInterested};

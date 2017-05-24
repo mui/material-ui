@@ -12,3 +12,4 @@ ActionZoomOut.displayName = 'ActionZoomOut';
 ActionZoomOut.muiName = 'SvgIcon';
 
 export default ActionZoomOut;
+export {ActionZoomOut};

@@ -12,3 +12,4 @@ AvAddToQueue.displayName = 'AvAddToQueue';
 AvAddToQueue.muiName = 'SvgIcon';
 
 export default AvAddToQueue;
+export {AvAddToQueue};

@@ -12,3 +12,4 @@ HardwareKeyboardCapslock.displayName = 'HardwareKeyboardCapslock';
 HardwareKeyboardCapslock.muiName = 'SvgIcon';
 
 export default HardwareKeyboardCapslock;
+export {HardwareKeyboardCapslock};

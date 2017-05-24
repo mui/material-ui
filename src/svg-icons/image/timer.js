@@ -12,3 +12,4 @@ ImageTimer.displayName = 'ImageTimer';
 ImageTimer.muiName = 'SvgIcon';
 
 export default ImageTimer;
+export {ImageTimer};

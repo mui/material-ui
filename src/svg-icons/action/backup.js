@@ -12,3 +12,4 @@ ActionBackup.displayName = 'ActionBackup';
 ActionBackup.muiName = 'SvgIcon';
 
 export default ActionBackup;
+export {ActionBackup};

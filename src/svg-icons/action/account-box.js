@@ -12,3 +12,4 @@ ActionAccountBox.displayName = 'ActionAccountBox';
 ActionAccountBox.muiName = 'SvgIcon';
 
 export default ActionAccountBox;
+export {ActionAccountBox};

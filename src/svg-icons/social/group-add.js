@@ -12,3 +12,4 @@ SocialGroupAdd.displayName = 'SocialGroupAdd';
 SocialGroupAdd.muiName = 'SvgIcon';
 
 export default SocialGroupAdd;
+export {SocialGroupAdd};

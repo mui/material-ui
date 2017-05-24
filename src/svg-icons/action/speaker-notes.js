@@ -12,3 +12,4 @@ ActionSpeakerNotes.displayName = 'ActionSpeakerNotes';
 ActionSpeakerNotes.muiName = 'SvgIcon';
 
 export default ActionSpeakerNotes;
+export {ActionSpeakerNotes};

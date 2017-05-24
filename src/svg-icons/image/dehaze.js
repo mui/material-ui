@@ -12,3 +12,4 @@ ImageDehaze.displayName = 'ImageDehaze';
 ImageDehaze.muiName = 'SvgIcon';
 
 export default ImageDehaze;
+export {ImageDehaze};

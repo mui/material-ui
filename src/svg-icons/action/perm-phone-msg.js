@@ -12,3 +12,4 @@ ActionPermPhoneMsg.displayName = 'ActionPermPhoneMsg';
 ActionPermPhoneMsg.muiName = 'SvgIcon';
 
 export default ActionPermPhoneMsg;
+export {ActionPermPhoneMsg};

@@ -12,3 +12,4 @@ ActionNoteAdd.displayName = 'ActionNoteAdd';
 ActionNoteAdd.muiName = 'SvgIcon';
 
 export default ActionNoteAdd;
+export {ActionNoteAdd};

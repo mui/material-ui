@@ -12,3 +12,4 @@ PlacesKitchen.displayName = 'PlacesKitchen';
 PlacesKitchen.muiName = 'SvgIcon';
 
 export default PlacesKitchen;
+export {PlacesKitchen};

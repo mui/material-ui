@@ -12,3 +12,4 @@ DeviceGpsNotFixed.displayName = 'DeviceGpsNotFixed';
 DeviceGpsNotFixed.muiName = 'SvgIcon';
 
 export default DeviceGpsNotFixed;
+export {DeviceGpsNotFixed};

@@ -12,3 +12,4 @@ NotificationPhoneBluetoothSpeaker.displayName = 'NotificationPhoneBluetoothSpeak
 NotificationPhoneBluetoothSpeaker.muiName = 'SvgIcon';
 
 export default NotificationPhoneBluetoothSpeaker;
+export {NotificationPhoneBluetoothSpeaker};

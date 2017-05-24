@@ -12,3 +12,4 @@ FileAttachment.displayName = 'FileAttachment';
 FileAttachment.muiName = 'SvgIcon';
 
 export default FileAttachment;
+export {FileAttachment};

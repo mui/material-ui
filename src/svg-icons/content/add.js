@@ -12,3 +12,4 @@ ContentAdd.displayName = 'ContentAdd';
 ContentAdd.muiName = 'SvgIcon';
 
 export default ContentAdd;
+export {ContentAdd};

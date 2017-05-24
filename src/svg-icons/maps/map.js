@@ -12,3 +12,4 @@ MapsMap.displayName = 'MapsMap';
 MapsMap.muiName = 'SvgIcon';
 
 export default MapsMap;
+export {MapsMap};

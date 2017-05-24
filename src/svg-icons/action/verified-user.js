@@ -12,3 +12,4 @@ ActionVerifiedUser.displayName = 'ActionVerifiedUser';
 ActionVerifiedUser.muiName = 'SvgIcon';
 
 export default ActionVerifiedUser;
+export {ActionVerifiedUser};

@@ -12,3 +12,4 @@ FileCloudUpload.displayName = 'FileCloudUpload';
 FileCloudUpload.muiName = 'SvgIcon';
 
 export default FileCloudUpload;
+export {FileCloudUpload};

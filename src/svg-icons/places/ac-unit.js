@@ -12,3 +12,4 @@ PlacesAcUnit.displayName = 'PlacesAcUnit';
 PlacesAcUnit.muiName = 'SvgIcon';
 
 export default PlacesAcUnit;
+export {PlacesAcUnit};

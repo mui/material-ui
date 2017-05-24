@@ -12,3 +12,4 @@ ImageCompare.displayName = 'ImageCompare';
 ImageCompare.muiName = 'SvgIcon';
 
 export default ImageCompare;
+export {ImageCompare};

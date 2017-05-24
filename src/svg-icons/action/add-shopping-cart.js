@@ -12,3 +12,4 @@ ActionAddShoppingCart.displayName = 'ActionAddShoppingCart';
 ActionAddShoppingCart.muiName = 'SvgIcon';
 
 export default ActionAddShoppingCart;
+export {ActionAddShoppingCart};

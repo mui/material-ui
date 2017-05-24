@@ -12,3 +12,4 @@ ImageCollectionsBookmark.displayName = 'ImageCollectionsBookmark';
 ImageCollectionsBookmark.muiName = 'SvgIcon';
 
 export default ImageCollectionsBookmark;
+export {ImageCollectionsBookmark};

@@ -101,3 +101,4 @@ class StepContent extends Component {
 }
 
 export default StepContent;
+export {StepContent};

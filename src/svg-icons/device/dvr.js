@@ -12,3 +12,4 @@ DeviceDvr.displayName = 'DeviceDvr';
 DeviceDvr.muiName = 'SvgIcon';
 
 export default DeviceDvr;
+export {DeviceDvr};

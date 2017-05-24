@@ -12,3 +12,4 @@ ActionSystemUpdateAlt.displayName = 'ActionSystemUpdateAlt';
 ActionSystemUpdateAlt.muiName = 'SvgIcon';
 
 export default ActionSystemUpdateAlt;
+export {ActionSystemUpdateAlt};

@@ -12,3 +12,4 @@ ActionAssignmentInd.displayName = 'ActionAssignmentInd';
 ActionAssignmentInd.muiName = 'SvgIcon';
 
 export default ActionAssignmentInd;
+export {ActionAssignmentInd};

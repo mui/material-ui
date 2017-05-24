@@ -12,3 +12,4 @@ ImageSlideshow.displayName = 'ImageSlideshow';
 ImageSlideshow.muiName = 'SvgIcon';
 
 export default ImageSlideshow;
+export {ImageSlideshow};

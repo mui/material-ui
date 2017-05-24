@@ -12,3 +12,4 @@ ActionThreeDRotation.displayName = 'ActionThreeDRotation';
 ActionThreeDRotation.muiName = 'SvgIcon';
 
 export default ActionThreeDRotation;
+export {ActionThreeDRotation};

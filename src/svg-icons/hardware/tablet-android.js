@@ -12,3 +12,4 @@ HardwareTabletAndroid.displayName = 'HardwareTabletAndroid';
 HardwareTabletAndroid.muiName = 'SvgIcon';
 
 export default HardwareTabletAndroid;
+export {HardwareTabletAndroid};

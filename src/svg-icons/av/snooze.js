@@ -12,3 +12,4 @@ AvSnooze.displayName = 'AvSnooze';
 AvSnooze.muiName = 'SvgIcon';
 
 export default AvSnooze;
+export {AvSnooze};

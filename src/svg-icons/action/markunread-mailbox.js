@@ -12,3 +12,4 @@ ActionMarkunreadMailbox.displayName = 'ActionMarkunreadMailbox';
 ActionMarkunreadMailbox.muiName = 'SvgIcon';
 
 export default ActionMarkunreadMailbox;
+export {ActionMarkunreadMailbox};

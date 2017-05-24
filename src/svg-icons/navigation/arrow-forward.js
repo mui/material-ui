@@ -12,3 +12,4 @@ NavigationArrowForward.displayName = 'NavigationArrowForward';
 NavigationArrowForward.muiName = 'SvgIcon';
 
 export default NavigationArrowForward;
+export {NavigationArrowForward};

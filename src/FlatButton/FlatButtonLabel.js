@@ -40,3 +40,4 @@ class FlatButtonLabel extends Component {
 }
 
 export default FlatButtonLabel;
+export {FlatButtonLabel};

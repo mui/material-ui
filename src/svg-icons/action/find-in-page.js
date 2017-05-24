@@ -12,3 +12,4 @@ ActionFindInPage.displayName = 'ActionFindInPage';
 ActionFindInPage.muiName = 'SvgIcon';
 
 export default ActionFindInPage;
+export {ActionFindInPage};

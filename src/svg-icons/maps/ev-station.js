@@ -12,3 +12,4 @@ MapsEvStation.displayName = 'MapsEvStation';
 MapsEvStation.muiName = 'SvgIcon';
 
 export default MapsEvStation;
+export {MapsEvStation};

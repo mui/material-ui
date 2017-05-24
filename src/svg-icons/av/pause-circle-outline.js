@@ -12,3 +12,4 @@ AvPauseCircleOutline.displayName = 'AvPauseCircleOutline';
 AvPauseCircleOutline.muiName = 'SvgIcon';
 
 export default AvPauseCircleOutline;
+export {AvPauseCircleOutline};

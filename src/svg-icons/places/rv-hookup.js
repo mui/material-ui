@@ -12,3 +12,4 @@ PlacesRvHookup.displayName = 'PlacesRvHookup';
 PlacesRvHookup.muiName = 'SvgIcon';
 
 export default PlacesRvHookup;
+export {PlacesRvHookup};

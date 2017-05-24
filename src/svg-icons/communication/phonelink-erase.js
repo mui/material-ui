@@ -12,3 +12,4 @@ CommunicationPhonelinkErase.displayName = 'CommunicationPhonelinkErase';
 CommunicationPhonelinkErase.muiName = 'SvgIcon';
 
 export default CommunicationPhonelinkErase;
+export {CommunicationPhonelinkErase};

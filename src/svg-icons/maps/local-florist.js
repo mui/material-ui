@@ -12,3 +12,4 @@ MapsLocalFlorist.displayName = 'MapsLocalFlorist';
 MapsLocalFlorist.muiName = 'SvgIcon';
 
 export default MapsLocalFlorist;
+export {MapsLocalFlorist};

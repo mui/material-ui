@@ -12,3 +12,4 @@ ActionAspectRatio.displayName = 'ActionAspectRatio';
 ActionAspectRatio.muiName = 'SvgIcon';
 
 export default ActionAspectRatio;
+export {ActionAspectRatio};

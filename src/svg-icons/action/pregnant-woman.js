@@ -12,3 +12,4 @@ ActionPregnantWoman.displayName = 'ActionPregnantWoman';
 ActionPregnantWoman.muiName = 'SvgIcon';
 
 export default ActionPregnantWoman;
+export {ActionPregnantWoman};

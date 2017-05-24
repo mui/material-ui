@@ -12,3 +12,4 @@ NotificationDriveEta.displayName = 'NotificationDriveEta';
 NotificationDriveEta.muiName = 'SvgIcon';
 
 export default NotificationDriveEta;
+export {NotificationDriveEta};

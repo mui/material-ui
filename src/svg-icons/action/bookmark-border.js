@@ -12,3 +12,4 @@ ActionBookmarkBorder.displayName = 'ActionBookmarkBorder';
 ActionBookmarkBorder.muiName = 'SvgIcon';
 
 export default ActionBookmarkBorder;
+export {ActionBookmarkBorder};

@@ -12,3 +12,4 @@ ActionAssessment.displayName = 'ActionAssessment';
 ActionAssessment.muiName = 'SvgIcon';
 
 export default ActionAssessment;
+export {ActionAssessment};

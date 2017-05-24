@@ -12,3 +12,4 @@ DeviceDeveloperMode.displayName = 'DeviceDeveloperMode';
 DeviceDeveloperMode.muiName = 'SvgIcon';
 
 export default DeviceDeveloperMode;
+export {DeviceDeveloperMode};

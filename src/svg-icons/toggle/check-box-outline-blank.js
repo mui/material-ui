@@ -12,3 +12,4 @@ ToggleCheckBoxOutlineBlank.displayName = 'ToggleCheckBoxOutlineBlank';
 ToggleCheckBoxOutlineBlank.muiName = 'SvgIcon';
 
 export default ToggleCheckBoxOutlineBlank;
+export {ToggleCheckBoxOutlineBlank};

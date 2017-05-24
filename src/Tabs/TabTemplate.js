@@ -28,3 +28,4 @@ TabTemplate.propTypes = {
 };
 
 export default TabTemplate;
+export {TabTemplate};

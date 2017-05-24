@@ -12,3 +12,4 @@ DeviceBluetoothSearching.displayName = 'DeviceBluetoothSearching';
 DeviceBluetoothSearching.muiName = 'SvgIcon';
 
 export default DeviceBluetoothSearching;
+export {DeviceBluetoothSearching};

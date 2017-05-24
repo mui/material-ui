@@ -12,3 +12,4 @@ ActionSettingsInputHdmi.displayName = 'ActionSettingsInputHdmi';
 ActionSettingsInputHdmi.muiName = 'SvgIcon';
 
 export default ActionSettingsInputHdmi;
+export {ActionSettingsInputHdmi};

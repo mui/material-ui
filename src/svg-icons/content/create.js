@@ -12,3 +12,4 @@ ContentCreate.displayName = 'ContentCreate';
 ContentCreate.muiName = 'SvgIcon';
 
 export default ContentCreate;
+export {ContentCreate};

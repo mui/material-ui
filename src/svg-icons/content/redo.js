@@ -12,3 +12,4 @@ ContentRedo.displayName = 'ContentRedo';
 ContentRedo.muiName = 'SvgIcon';
 
 export default ContentRedo;
+export {ContentRedo};

@@ -12,3 +12,4 @@ ImageLeakAdd.displayName = 'ImageLeakAdd';
 ImageLeakAdd.muiName = 'SvgIcon';
 
 export default ImageLeakAdd;
+export {ImageLeakAdd};

@@ -12,3 +12,4 @@ NotificationSmsFailed.displayName = 'NotificationSmsFailed';
 NotificationSmsFailed.muiName = 'SvgIcon';
 
 export default NotificationSmsFailed;
+export {NotificationSmsFailed};

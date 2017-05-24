@@ -102,3 +102,4 @@ class YearButton extends Component {
 }
 
 export default YearButton;
+export {YearButton};

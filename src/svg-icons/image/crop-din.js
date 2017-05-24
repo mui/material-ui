@@ -12,3 +12,4 @@ ImageCropDin.displayName = 'ImageCropDin';
 ImageCropDin.muiName = 'SvgIcon';
 
 export default ImageCropDin;
+export {ImageCropDin};

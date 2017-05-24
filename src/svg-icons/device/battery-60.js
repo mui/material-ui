@@ -12,3 +12,4 @@ DeviceBattery60.displayName = 'DeviceBattery60';
 DeviceBattery60.muiName = 'SvgIcon';
 
 export default DeviceBattery60;
+export {DeviceBattery60};

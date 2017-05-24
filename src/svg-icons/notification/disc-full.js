@@ -12,3 +12,4 @@ NotificationDiscFull.displayName = 'NotificationDiscFull';
 NotificationDiscFull.muiName = 'SvgIcon';
 
 export default NotificationDiscFull;
+export {NotificationDiscFull};

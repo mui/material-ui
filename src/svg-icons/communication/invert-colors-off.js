@@ -12,3 +12,4 @@ CommunicationInvertColorsOff.displayName = 'CommunicationInvertColorsOff';
 CommunicationInvertColorsOff.muiName = 'SvgIcon';
 
 export default CommunicationInvertColorsOff;
+export {CommunicationInvertColorsOff};

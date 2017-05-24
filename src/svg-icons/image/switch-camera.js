@@ -12,3 +12,4 @@ ImageSwitchCamera.displayName = 'ImageSwitchCamera';
 ImageSwitchCamera.muiName = 'SvgIcon';
 
 export default ImageSwitchCamera;
+export {ImageSwitchCamera};

@@ -12,3 +12,4 @@ NotificationPhoneForwarded.displayName = 'NotificationPhoneForwarded';
 NotificationPhoneForwarded.muiName = 'SvgIcon';
 
 export default NotificationPhoneForwarded;
+export {NotificationPhoneForwarded};

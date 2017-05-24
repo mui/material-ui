@@ -12,3 +12,4 @@ ActionPermScanWifi.displayName = 'ActionPermScanWifi';
 ActionPermScanWifi.muiName = 'SvgIcon';
 
 export default ActionPermScanWifi;
+export {ActionPermScanWifi};

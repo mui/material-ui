@@ -12,3 +12,4 @@ HardwareSecurity.displayName = 'HardwareSecurity';
 HardwareSecurity.muiName = 'SvgIcon';
 
 export default HardwareSecurity;
+export {HardwareSecurity};

@@ -12,3 +12,4 @@ DeviceSdStorage.displayName = 'DeviceSdStorage';
 DeviceSdStorage.muiName = 'SvgIcon';
 
 export default DeviceSdStorage;
+export {DeviceSdStorage};

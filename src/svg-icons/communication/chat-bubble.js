@@ -12,3 +12,4 @@ CommunicationChatBubble.displayName = 'CommunicationChatBubble';
 CommunicationChatBubble.muiName = 'SvgIcon';
 
 export default CommunicationChatBubble;
+export {CommunicationChatBubble};

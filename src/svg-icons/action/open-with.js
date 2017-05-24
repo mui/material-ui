@@ -12,3 +12,4 @@ ActionOpenWith.displayName = 'ActionOpenWith';
 ActionOpenWith.muiName = 'SvgIcon';
 
 export default ActionOpenWith;
+export {ActionOpenWith};

@@ -12,3 +12,4 @@ DeviceSettingsSystemDaydream.displayName = 'DeviceSettingsSystemDaydream';
 DeviceSettingsSystemDaydream.muiName = 'SvgIcon';
 
 export default DeviceSettingsSystemDaydream;
+export {DeviceSettingsSystemDaydream};

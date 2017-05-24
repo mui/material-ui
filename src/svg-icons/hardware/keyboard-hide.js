@@ -12,3 +12,4 @@ HardwareKeyboardHide.displayName = 'HardwareKeyboardHide';
 HardwareKeyboardHide.muiName = 'SvgIcon';
 
 export default HardwareKeyboardHide;
+export {HardwareKeyboardHide};

@@ -119,3 +119,4 @@ class CardTitle extends Component {
 }
 
 export default CardTitle;
+export {CardTitle};

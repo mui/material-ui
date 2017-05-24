@@ -12,3 +12,4 @@ ActionSwapHoriz.displayName = 'ActionSwapHoriz';
 ActionSwapHoriz.muiName = 'SvgIcon';
 
 export default ActionSwapHoriz;
+export {ActionSwapHoriz};

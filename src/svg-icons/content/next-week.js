@@ -12,3 +12,4 @@ ContentNextWeek.displayName = 'ContentNextWeek';
 ContentNextWeek.muiName = 'SvgIcon';
 
 export default ContentNextWeek;
+export {ContentNextWeek};

@@ -12,3 +12,4 @@ ContentReplyAll.displayName = 'ContentReplyAll';
 ContentReplyAll.muiName = 'SvgIcon';
 
 export default ContentReplyAll;
+export {ContentReplyAll};

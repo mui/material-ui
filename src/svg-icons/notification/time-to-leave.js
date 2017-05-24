@@ -12,3 +12,4 @@ NotificationTimeToLeave.displayName = 'NotificationTimeToLeave';
 NotificationTimeToLeave.muiName = 'SvgIcon';
 
 export default NotificationTimeToLeave;
+export {NotificationTimeToLeave};

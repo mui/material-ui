@@ -12,3 +12,4 @@ DeviceSignalCellular3Bar.displayName = 'DeviceSignalCellular3Bar';
 DeviceSignalCellular3Bar.muiName = 'SvgIcon';
 
 export default DeviceSignalCellular3Bar;
+export {DeviceSignalCellular3Bar};

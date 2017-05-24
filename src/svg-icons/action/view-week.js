@@ -12,3 +12,4 @@ ActionViewWeek.displayName = 'ActionViewWeek';
 ActionViewWeek.muiName = 'SvgIcon';
 
 export default ActionViewWeek;
+export {ActionViewWeek};

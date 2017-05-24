@@ -12,3 +12,4 @@ NotificationPhoneLocked.displayName = 'NotificationPhoneLocked';
 NotificationPhoneLocked.muiName = 'SvgIcon';
 
 export default NotificationPhoneLocked;
+export {NotificationPhoneLocked};

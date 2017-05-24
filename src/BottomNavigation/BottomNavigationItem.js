@@ -91,3 +91,4 @@ BottomNavigationItem.contextTypes = {
 };
 
 export default BottomNavigationItem;
+export {BottomNavigationItem};

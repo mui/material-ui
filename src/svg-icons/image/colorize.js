@@ -12,3 +12,4 @@ ImageColorize.displayName = 'ImageColorize';
 ImageColorize.muiName = 'SvgIcon';
 
 export default ImageColorize;
+export {ImageColorize};

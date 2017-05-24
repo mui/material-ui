@@ -12,3 +12,4 @@ AvSkipNext.displayName = 'AvSkipNext';
 AvSkipNext.muiName = 'SvgIcon';
 
 export default AvSkipNext;
+export {AvSkipNext};

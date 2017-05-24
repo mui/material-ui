@@ -12,3 +12,4 @@ AvSubscriptions.displayName = 'AvSubscriptions';
 AvSubscriptions.muiName = 'SvgIcon';
 
 export default AvSubscriptions;
+export {AvSubscriptions};

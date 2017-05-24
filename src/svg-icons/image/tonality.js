@@ -12,3 +12,4 @@ ImageTonality.displayName = 'ImageTonality';
 ImageTonality.muiName = 'SvgIcon';
 
 export default ImageTonality;
+export {ImageTonality};

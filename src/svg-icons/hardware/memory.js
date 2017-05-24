@@ -12,3 +12,4 @@ HardwareMemory.displayName = 'HardwareMemory';
 HardwareMemory.muiName = 'SvgIcon';
 
 export default HardwareMemory;
+export {HardwareMemory};

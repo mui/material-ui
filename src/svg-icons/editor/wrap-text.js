@@ -12,3 +12,4 @@ EditorWrapText.displayName = 'EditorWrapText';
 EditorWrapText.muiName = 'SvgIcon';
 
 export default EditorWrapText;
+export {EditorWrapText};

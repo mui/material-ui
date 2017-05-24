@@ -12,3 +12,4 @@ PlacesPool.displayName = 'PlacesPool';
 PlacesPool.muiName = 'SvgIcon';
 
 export default PlacesPool;
+export {PlacesPool};

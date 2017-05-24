@@ -12,3 +12,4 @@ EditorFormatAlignRight.displayName = 'EditorFormatAlignRight';
 EditorFormatAlignRight.muiName = 'SvgIcon';
 
 export default EditorFormatAlignRight;
+export {EditorFormatAlignRight};

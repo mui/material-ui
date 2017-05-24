@@ -12,3 +12,4 @@ ActionReportProblem.displayName = 'ActionReportProblem';
 ActionReportProblem.muiName = 'SvgIcon';
 
 export default ActionReportProblem;
+export {ActionReportProblem};

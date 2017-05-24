@@ -12,3 +12,4 @@ FileFolderOpen.displayName = 'FileFolderOpen';
 FileFolderOpen.muiName = 'SvgIcon';
 
 export default FileFolderOpen;
+export {FileFolderOpen};

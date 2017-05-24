@@ -12,3 +12,4 @@ NotificationEventNote.displayName = 'NotificationEventNote';
 NotificationEventNote.muiName = 'SvgIcon';
 
 export default NotificationEventNote;
+export {NotificationEventNote};

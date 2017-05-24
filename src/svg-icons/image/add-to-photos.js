@@ -12,3 +12,4 @@ ImageAddToPhotos.displayName = 'ImageAddToPhotos';
 ImageAddToPhotos.muiName = 'SvgIcon';
 
 export default ImageAddToPhotos;
+export {ImageAddToPhotos};

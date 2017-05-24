@@ -12,3 +12,4 @@ HardwareVideogameAsset.displayName = 'HardwareVideogameAsset';
 HardwareVideogameAsset.muiName = 'SvgIcon';
 
 export default HardwareVideogameAsset;
+export {HardwareVideogameAsset};

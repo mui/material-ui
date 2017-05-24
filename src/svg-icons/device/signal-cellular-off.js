@@ -12,3 +12,4 @@ DeviceSignalCellularOff.displayName = 'DeviceSignalCellularOff';
 DeviceSignalCellularOff.muiName = 'SvgIcon';
 
 export default DeviceSignalCellularOff;
+export {DeviceSignalCellularOff};

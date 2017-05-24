@@ -12,3 +12,4 @@ SocialNotifications.displayName = 'SocialNotifications';
 SocialNotifications.muiName = 'SvgIcon';
 
 export default SocialNotifications;
+export {SocialNotifications};

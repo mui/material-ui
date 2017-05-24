@@ -12,3 +12,4 @@ ContentForward.displayName = 'ContentForward';
 ContentForward.muiName = 'SvgIcon';
 
 export default ContentForward;
+export {ContentForward};

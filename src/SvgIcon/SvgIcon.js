@@ -108,3 +108,4 @@ class SvgIcon extends Component {
 }
 
 export default SvgIcon;
+export {SvgIcon};

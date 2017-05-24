@@ -12,3 +12,4 @@ ToggleIndeterminateCheckBox.displayName = 'ToggleIndeterminateCheckBox';
 ToggleIndeterminateCheckBox.muiName = 'SvgIcon';
 
 export default ToggleIndeterminateCheckBox;
+export {ToggleIndeterminateCheckBox};

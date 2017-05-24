@@ -12,3 +12,4 @@ MapsLocalMovies.displayName = 'MapsLocalMovies';
 MapsLocalMovies.muiName = 'SvgIcon';
 
 export default MapsLocalMovies;
+export {MapsLocalMovies};

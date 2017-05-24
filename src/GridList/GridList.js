@@ -90,3 +90,4 @@ class GridList extends Component {
 }
 
 export default GridList;
+export {GridList};

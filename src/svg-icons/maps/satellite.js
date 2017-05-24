@@ -12,3 +12,4 @@ MapsSatellite.displayName = 'MapsSatellite';
 MapsSatellite.muiName = 'SvgIcon';
 
 export default MapsSatellite;
+export {MapsSatellite};

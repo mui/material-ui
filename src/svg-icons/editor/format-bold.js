@@ -12,3 +12,4 @@ EditorFormatBold.displayName = 'EditorFormatBold';
 EditorFormatBold.muiName = 'SvgIcon';
 
 export default EditorFormatBold;
+export {EditorFormatBold};

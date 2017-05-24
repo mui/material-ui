@@ -12,3 +12,4 @@ ImageGridOn.displayName = 'ImageGridOn';
 ImageGridOn.muiName = 'SvgIcon';
 
 export default ImageGridOn;
+export {ImageGridOn};

@@ -12,3 +12,4 @@ AvBrandingWatermark.displayName = 'AvBrandingWatermark';
 AvBrandingWatermark.muiName = 'SvgIcon';
 
 export default AvBrandingWatermark;
+export {AvBrandingWatermark};

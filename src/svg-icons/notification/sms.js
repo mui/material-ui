@@ -12,3 +12,4 @@ NotificationSms.displayName = 'NotificationSms';
 NotificationSms.muiName = 'SvgIcon';
 
 export default NotificationSms;
+export {NotificationSms};

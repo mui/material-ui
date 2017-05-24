@@ -12,3 +12,4 @@ EditorAttachMoney.displayName = 'EditorAttachMoney';
 EditorAttachMoney.muiName = 'SvgIcon';
 
 export default EditorAttachMoney;
+export {EditorAttachMoney};

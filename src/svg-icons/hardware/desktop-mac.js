@@ -12,3 +12,4 @@ HardwareDesktopMac.displayName = 'HardwareDesktopMac';
 HardwareDesktopMac.muiName = 'SvgIcon';
 
 export default HardwareDesktopMac;
+export {HardwareDesktopMac};

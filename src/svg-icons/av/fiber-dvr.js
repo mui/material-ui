@@ -12,3 +12,4 @@ AvFiberDvr.displayName = 'AvFiberDvr';
 AvFiberDvr.muiName = 'SvgIcon';
 
 export default AvFiberDvr;
+export {AvFiberDvr};

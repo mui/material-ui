@@ -12,3 +12,4 @@ CommunicationBusiness.displayName = 'CommunicationBusiness';
 CommunicationBusiness.muiName = 'SvgIcon';
 
 export default CommunicationBusiness;
+export {CommunicationBusiness};

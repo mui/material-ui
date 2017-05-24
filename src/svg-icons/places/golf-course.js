@@ -12,3 +12,4 @@ PlacesGolfCourse.displayName = 'PlacesGolfCourse';
 PlacesGolfCourse.muiName = 'SvgIcon';
 
 export default PlacesGolfCourse;
+export {PlacesGolfCourse};

@@ -12,3 +12,4 @@ ActionStars.displayName = 'ActionStars';
 ActionStars.muiName = 'SvgIcon';
 
 export default ActionStars;
+export {ActionStars};

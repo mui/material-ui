@@ -12,3 +12,4 @@ AvFiberManualRecord.displayName = 'AvFiberManualRecord';
 AvFiberManualRecord.muiName = 'SvgIcon';
 
 export default AvFiberManualRecord;
+export {AvFiberManualRecord};

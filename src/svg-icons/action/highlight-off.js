@@ -12,3 +12,4 @@ ActionHighlightOff.displayName = 'ActionHighlightOff';
 ActionHighlightOff.muiName = 'SvgIcon';
 
 export default ActionHighlightOff;
+export {ActionHighlightOff};

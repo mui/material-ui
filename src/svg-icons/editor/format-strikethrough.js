@@ -12,3 +12,4 @@ EditorFormatStrikethrough.displayName = 'EditorFormatStrikethrough';
 EditorFormatStrikethrough.muiName = 'SvgIcon';
 
 export default EditorFormatStrikethrough;
+export {EditorFormatStrikethrough};

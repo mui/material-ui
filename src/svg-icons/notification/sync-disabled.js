@@ -12,3 +12,4 @@ NotificationSyncDisabled.displayName = 'NotificationSyncDisabled';
 NotificationSyncDisabled.muiName = 'SvgIcon';
 
 export default NotificationSyncDisabled;
+export {NotificationSyncDisabled};

@@ -12,3 +12,4 @@ AvSortByAlpha.displayName = 'AvSortByAlpha';
 AvSortByAlpha.muiName = 'SvgIcon';
 
 export default AvSortByAlpha;
+export {AvSortByAlpha};

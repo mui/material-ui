@@ -12,3 +12,4 @@ AvFeaturedPlayList.displayName = 'AvFeaturedPlayList';
 AvFeaturedPlayList.muiName = 'SvgIcon';
 
 export default AvFeaturedPlayList;
+export {AvFeaturedPlayList};

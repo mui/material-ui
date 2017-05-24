@@ -12,3 +12,4 @@ CommunicationRingVolume.displayName = 'CommunicationRingVolume';
 CommunicationRingVolume.muiName = 'SvgIcon';
 
 export default CommunicationRingVolume;
+export {CommunicationRingVolume};

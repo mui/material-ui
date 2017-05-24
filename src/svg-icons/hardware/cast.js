@@ -12,3 +12,4 @@ HardwareCast.displayName = 'HardwareCast';
 HardwareCast.muiName = 'SvgIcon';
 
 export default HardwareCast;
+export {HardwareCast};

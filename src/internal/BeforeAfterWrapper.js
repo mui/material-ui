@@ -106,3 +106,4 @@ class BeforeAfterWrapper extends Component {
 }
 
 export default BeforeAfterWrapper;
+export {BeforeAfterWrapper};

@@ -12,3 +12,4 @@ EditorInsertPhoto.displayName = 'EditorInsertPhoto';
 EditorInsertPhoto.muiName = 'SvgIcon';
 
 export default EditorInsertPhoto;
+export {EditorInsertPhoto};

@@ -12,3 +12,4 @@ ActionHistory.displayName = 'ActionHistory';
 ActionHistory.muiName = 'SvgIcon';
 
 export default ActionHistory;
+export {ActionHistory};

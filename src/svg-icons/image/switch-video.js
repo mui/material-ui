@@ -12,3 +12,4 @@ ImageSwitchVideo.displayName = 'ImageSwitchVideo';
 ImageSwitchVideo.muiName = 'SvgIcon';
 
 export default ImageSwitchVideo;
+export {ImageSwitchVideo};

@@ -12,3 +12,4 @@ ContentContentCopy.displayName = 'ContentContentCopy';
 ContentContentCopy.muiName = 'SvgIcon';
 
 export default ContentContentCopy;
+export {ContentContentCopy};

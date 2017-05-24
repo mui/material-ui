@@ -12,3 +12,4 @@ NotificationAirlineSeatFlat.displayName = 'NotificationAirlineSeatFlat';
 NotificationAirlineSeatFlat.muiName = 'SvgIcon';
 
 export default NotificationAirlineSeatFlat;
+export {NotificationAirlineSeatFlat};

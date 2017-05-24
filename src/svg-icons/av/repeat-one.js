@@ -12,3 +12,4 @@ AvRepeatOne.displayName = 'AvRepeatOne';
 AvRepeatOne.muiName = 'SvgIcon';
 
 export default AvRepeatOne;
+export {AvRepeatOne};

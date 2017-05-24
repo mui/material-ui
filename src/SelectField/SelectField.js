@@ -260,3 +260,4 @@ class SelectField extends Component {
 }
 
 export default SelectField;
+export {SelectField};

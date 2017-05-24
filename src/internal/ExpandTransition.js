@@ -77,3 +77,4 @@ class ExpandTransition extends Component {
 }
 
 export default ExpandTransition;
+export {ExpandTransition};

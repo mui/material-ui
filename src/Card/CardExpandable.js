@@ -51,3 +51,4 @@ class CardExpandable extends Component {
 }
 
 export default CardExpandable;
+export {CardExpandable};

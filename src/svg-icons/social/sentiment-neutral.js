@@ -12,3 +12,4 @@ SocialSentimentNeutral.displayName = 'SocialSentimentNeutral';
 SocialSentimentNeutral.muiName = 'SvgIcon';
 
 export default SocialSentimentNeutral;
+export {SocialSentimentNeutral};

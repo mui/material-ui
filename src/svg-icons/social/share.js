@@ -12,3 +12,4 @@ SocialShare.displayName = 'SocialShare';
 SocialShare.muiName = 'SvgIcon';
 
 export default SocialShare;
+export {SocialShare};

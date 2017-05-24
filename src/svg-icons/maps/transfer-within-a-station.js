@@ -12,3 +12,4 @@ MapsTransferWithinAStation.displayName = 'MapsTransferWithinAStation';
 MapsTransferWithinAStation.muiName = 'SvgIcon';
 
 export default MapsTransferWithinAStation;
+export {MapsTransferWithinAStation};

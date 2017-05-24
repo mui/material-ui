@@ -12,3 +12,4 @@ ActionFlightTakeoff.displayName = 'ActionFlightTakeoff';
 ActionFlightTakeoff.muiName = 'SvgIcon';
 
 export default ActionFlightTakeoff;
+export {ActionFlightTakeoff};

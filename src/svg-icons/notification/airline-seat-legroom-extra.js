@@ -12,3 +12,4 @@ NotificationAirlineSeatLegroomExtra.displayName = 'NotificationAirlineSeatLegroo
 NotificationAirlineSeatLegroomExtra.muiName = 'SvgIcon';
 
 export default NotificationAirlineSeatLegroomExtra;
+export {NotificationAirlineSeatLegroomExtra};

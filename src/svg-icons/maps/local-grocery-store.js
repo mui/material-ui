@@ -12,3 +12,4 @@ MapsLocalGroceryStore.displayName = 'MapsLocalGroceryStore';
 MapsLocalGroceryStore.muiName = 'SvgIcon';
 
 export default MapsLocalGroceryStore;
+export {MapsLocalGroceryStore};

@@ -12,3 +12,4 @@ CommunicationForum.displayName = 'CommunicationForum';
 CommunicationForum.muiName = 'SvgIcon';
 
 export default CommunicationForum;
+export {CommunicationForum};

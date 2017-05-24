@@ -12,3 +12,4 @@ CommunicationDialerSip.displayName = 'CommunicationDialerSip';
 CommunicationDialerSip.muiName = 'SvgIcon';
 
 export default CommunicationDialerSip;
+export {CommunicationDialerSip};

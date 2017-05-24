@@ -12,3 +12,4 @@ HardwareTabletMac.displayName = 'HardwareTabletMac';
 HardwareTabletMac.muiName = 'SvgIcon';
 
 export default HardwareTabletMac;
+export {HardwareTabletMac};

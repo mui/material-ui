@@ -12,3 +12,4 @@ ActionDelete.displayName = 'ActionDelete';
 ActionDelete.muiName = 'SvgIcon';
 
 export default ActionDelete;
+export {ActionDelete};

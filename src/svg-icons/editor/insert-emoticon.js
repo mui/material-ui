@@ -12,3 +12,4 @@ EditorInsertEmoticon.displayName = 'EditorInsertEmoticon';
 EditorInsertEmoticon.muiName = 'SvgIcon';
 
 export default EditorInsertEmoticon;
+export {EditorInsertEmoticon};

@@ -318,3 +318,4 @@ class IconButton extends Component {
 }
 
 export default IconButton;
+export {IconButton};

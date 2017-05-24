@@ -12,3 +12,4 @@ ActionToc.displayName = 'ActionToc';
 ActionToc.muiName = 'SvgIcon';
 
 export default ActionToc;
+export {ActionToc};

@@ -12,3 +12,4 @@ DeviceUsb.displayName = 'DeviceUsb';
 DeviceUsb.muiName = 'SvgIcon';
 
 export default DeviceUsb;
+export {DeviceUsb};

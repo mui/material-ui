@@ -12,3 +12,4 @@ ContentDeleteSweep.displayName = 'ContentDeleteSweep';
 ContentDeleteSweep.muiName = 'SvgIcon';
 
 export default ContentDeleteSweep;
+export {ContentDeleteSweep};

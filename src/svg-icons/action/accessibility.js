@@ -12,3 +12,4 @@ ActionAccessibility.displayName = 'ActionAccessibility';
 ActionAccessibility.muiName = 'SvgIcon';
 
 export default ActionAccessibility;
+export {ActionAccessibility};

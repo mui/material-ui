@@ -12,3 +12,4 @@ AvCallToAction.displayName = 'AvCallToAction';
 AvCallToAction.muiName = 'SvgIcon';
 
 export default AvCallToAction;
+export {AvCallToAction};

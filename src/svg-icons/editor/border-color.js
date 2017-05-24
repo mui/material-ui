@@ -12,3 +12,4 @@ EditorBorderColor.displayName = 'EditorBorderColor';
 EditorBorderColor.muiName = 'SvgIcon';
 
 export default EditorBorderColor;
+export {EditorBorderColor};

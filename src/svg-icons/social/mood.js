@@ -12,3 +12,4 @@ SocialMood.displayName = 'SocialMood';
 SocialMood.muiName = 'SvgIcon';
 
 export default SocialMood;
+export {SocialMood};

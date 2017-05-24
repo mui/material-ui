@@ -12,3 +12,4 @@ NavigationUnfoldLess.displayName = 'NavigationUnfoldLess';
 NavigationUnfoldLess.muiName = 'SvgIcon';
 
 export default NavigationUnfoldLess;
+export {NavigationUnfoldLess};

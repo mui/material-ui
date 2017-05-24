@@ -12,3 +12,4 @@ CommunicationTextsms.displayName = 'CommunicationTextsms';
 CommunicationTextsms.muiName = 'SvgIcon';
 
 export default CommunicationTextsms;
+export {CommunicationTextsms};

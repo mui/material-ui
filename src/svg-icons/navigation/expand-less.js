@@ -12,3 +12,4 @@ NavigationExpandLess.displayName = 'NavigationExpandLess';
 NavigationExpandLess.muiName = 'SvgIcon';
 
 export default NavigationExpandLess;
+export {NavigationExpandLess};

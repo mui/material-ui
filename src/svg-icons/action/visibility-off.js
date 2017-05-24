@@ -12,3 +12,4 @@ ActionVisibilityOff.displayName = 'ActionVisibilityOff';
 ActionVisibilityOff.muiName = 'SvgIcon';
 
 export default ActionVisibilityOff;
+export {ActionVisibilityOff};

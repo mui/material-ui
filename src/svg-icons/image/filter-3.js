@@ -12,3 +12,4 @@ ImageFilter3.displayName = 'ImageFilter3';
 ImageFilter3.muiName = 'SvgIcon';
 
 export default ImageFilter3;
+export {ImageFilter3};

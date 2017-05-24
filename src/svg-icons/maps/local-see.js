@@ -12,3 +12,4 @@ MapsLocalSee.displayName = 'MapsLocalSee';
 MapsLocalSee.muiName = 'SvgIcon';
 
 export default MapsLocalSee;
+export {MapsLocalSee};

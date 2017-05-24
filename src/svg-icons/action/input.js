@@ -12,3 +12,4 @@ ActionInput.displayName = 'ActionInput';
 ActionInput.muiName = 'SvgIcon';
 
 export default ActionInput;
+export {ActionInput};

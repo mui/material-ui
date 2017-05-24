@@ -337,3 +337,4 @@ class FloatingActionButton extends Component {
 }
 
 export default FloatingActionButton;
+export {FloatingActionButton};

@@ -12,3 +12,4 @@ ImageLooksOne.displayName = 'ImageLooksOne';
 ImageLooksOne.muiName = 'SvgIcon';
 
 export default ImageLooksOne;
+export {ImageLooksOne};

@@ -12,3 +12,4 @@ ContentContentCut.displayName = 'ContentContentCut';
 ContentContentCut.muiName = 'SvgIcon';
 
 export default ContentContentCut;
+export {ContentContentCut};

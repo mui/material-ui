@@ -12,3 +12,4 @@ CommunicationEmail.displayName = 'CommunicationEmail';
 CommunicationEmail.muiName = 'SvgIcon';
 
 export default CommunicationEmail;
+export {CommunicationEmail};

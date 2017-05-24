@@ -12,3 +12,4 @@ ActionAllOut.displayName = 'ActionAllOut';
 ActionAllOut.muiName = 'SvgIcon';
 
 export default ActionAllOut;
+export {ActionAllOut};

@@ -12,3 +12,4 @@ ActionExtension.displayName = 'ActionExtension';
 ActionExtension.muiName = 'SvgIcon';
 
 export default ActionExtension;
+export {ActionExtension};

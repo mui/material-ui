@@ -12,3 +12,4 @@ ActionSettingsInputAntenna.displayName = 'ActionSettingsInputAntenna';
 ActionSettingsInputAntenna.muiName = 'SvgIcon';
 
 export default ActionSettingsInputAntenna;
+export {ActionSettingsInputAntenna};

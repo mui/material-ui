@@ -12,3 +12,4 @@ SocialLocationCity.displayName = 'SocialLocationCity';
 SocialLocationCity.muiName = 'SvgIcon';
 
 export default SocialLocationCity;
+export {SocialLocationCity};

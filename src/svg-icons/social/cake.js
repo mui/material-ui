@@ -12,3 +12,4 @@ SocialCake.displayName = 'SocialCake';
 SocialCake.muiName = 'SvgIcon';
 
 export default SocialCake;
+export {SocialCake};

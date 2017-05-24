@@ -12,3 +12,4 @@ PlacesHotTub.displayName = 'PlacesHotTub';
 PlacesHotTub.muiName = 'SvgIcon';
 
 export default PlacesHotTub;
+export {PlacesHotTub};

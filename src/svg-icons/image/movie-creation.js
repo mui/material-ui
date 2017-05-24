@@ -12,3 +12,4 @@ ImageMovieCreation.displayName = 'ImageMovieCreation';
 ImageMovieCreation.muiName = 'SvgIcon';
 
 export default ImageMovieCreation;
+export {ImageMovieCreation};

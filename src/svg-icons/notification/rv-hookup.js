@@ -12,3 +12,4 @@ NotificationRvHookup.displayName = 'NotificationRvHookup';
 NotificationRvHookup.muiName = 'SvgIcon';
 
 export default NotificationRvHookup;
+export {NotificationRvHookup};

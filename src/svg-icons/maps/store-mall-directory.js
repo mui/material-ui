@@ -12,3 +12,4 @@ MapsStoreMallDirectory.displayName = 'MapsStoreMallDirectory';
 MapsStoreMallDirectory.muiName = 'SvgIcon';
 
 export default MapsStoreMallDirectory;
+export {MapsStoreMallDirectory};

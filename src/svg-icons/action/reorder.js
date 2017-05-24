@@ -12,3 +12,4 @@ ActionReorder.displayName = 'ActionReorder';
 ActionReorder.muiName = 'SvgIcon';
 
 export default ActionReorder;
+export {ActionReorder};

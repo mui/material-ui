@@ -12,3 +12,4 @@ MapsNavigation.displayName = 'MapsNavigation';
 MapsNavigation.muiName = 'SvgIcon';
 
 export default MapsNavigation;
+export {MapsNavigation};

@@ -12,3 +12,4 @@ ActionViewStream.displayName = 'ActionViewStream';
 ActionViewStream.muiName = 'SvgIcon';
 
 export default ActionViewStream;
+export {ActionViewStream};

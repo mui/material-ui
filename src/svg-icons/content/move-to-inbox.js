@@ -12,3 +12,4 @@ ContentMoveToInbox.displayName = 'ContentMoveToInbox';
 ContentMoveToInbox.muiName = 'SvgIcon';
 
 export default ContentMoveToInbox;
+export {ContentMoveToInbox};

@@ -12,3 +12,4 @@ ActionWatchLater.displayName = 'ActionWatchLater';
 ActionWatchLater.muiName = 'SvgIcon';
 
 export default ActionWatchLater;
+export {ActionWatchLater};

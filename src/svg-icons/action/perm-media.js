@@ -12,3 +12,4 @@ ActionPermMedia.displayName = 'ActionPermMedia';
 ActionPermMedia.muiName = 'SvgIcon';
 
 export default ActionPermMedia;
+export {ActionPermMedia};

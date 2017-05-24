@@ -12,3 +12,4 @@ ActionThumbDown.displayName = 'ActionThumbDown';
 ActionThumbDown.muiName = 'SvgIcon';
 
 export default ActionThumbDown;
+export {ActionThumbDown};

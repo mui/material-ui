@@ -59,3 +59,4 @@ Subheader.contextTypes = {
 };
 
 export default Subheader;
+export {Subheader};

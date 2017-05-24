@@ -12,3 +12,4 @@ ContentBlock.displayName = 'ContentBlock';
 ContentBlock.muiName = 'SvgIcon';
 
 export default ContentBlock;
+export {ContentBlock};

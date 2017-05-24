@@ -12,3 +12,4 @@ ActionViewQuilt.displayName = 'ActionViewQuilt';
 ActionViewQuilt.muiName = 'SvgIcon';
 
 export default ActionViewQuilt;
+export {ActionViewQuilt};

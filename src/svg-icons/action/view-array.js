@@ -12,3 +12,4 @@ ActionViewArray.displayName = 'ActionViewArray';
 ActionViewArray.muiName = 'SvgIcon';
 
 export default ActionViewArray;
+export {ActionViewArray};

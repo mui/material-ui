@@ -12,3 +12,4 @@ ImageHdrOff.displayName = 'ImageHdrOff';
 ImageHdrOff.muiName = 'SvgIcon';
 
 export default ImageHdrOff;
+export {ImageHdrOff};

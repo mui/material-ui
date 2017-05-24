@@ -226,3 +226,4 @@ class TimePicker extends Component {
 }
 
 export default TimePicker;
+export {TimePicker};

@@ -12,3 +12,4 @@ MapsLocalAtm.displayName = 'MapsLocalAtm';
 MapsLocalAtm.muiName = 'SvgIcon';
 
 export default MapsLocalAtm;
+export {MapsLocalAtm};

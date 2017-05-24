@@ -12,3 +12,4 @@ DeviceWallpaper.displayName = 'DeviceWallpaper';
 DeviceWallpaper.muiName = 'SvgIcon';
 
 export default DeviceWallpaper;
+export {DeviceWallpaper};

@@ -12,3 +12,4 @@ AvForward10.displayName = 'AvForward10';
 AvForward10.muiName = 'SvgIcon';
 
 export default AvForward10;
+export {AvForward10};

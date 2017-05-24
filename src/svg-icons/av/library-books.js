@@ -12,3 +12,4 @@ AvLibraryBooks.displayName = 'AvLibraryBooks';
 AvLibraryBooks.muiName = 'SvgIcon';
 
 export default AvLibraryBooks;
+export {AvLibraryBooks};

@@ -12,3 +12,4 @@ MapsLocalDrink.displayName = 'MapsLocalDrink';
 MapsLocalDrink.muiName = 'SvgIcon';
 
 export default MapsLocalDrink;
+export {MapsLocalDrink};

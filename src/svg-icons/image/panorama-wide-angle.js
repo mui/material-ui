@@ -12,3 +12,4 @@ ImagePanoramaWideAngle.displayName = 'ImagePanoramaWideAngle';
 ImagePanoramaWideAngle.muiName = 'SvgIcon';
 
 export default ImagePanoramaWideAngle;
+export {ImagePanoramaWideAngle};

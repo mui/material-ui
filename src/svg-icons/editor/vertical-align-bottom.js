@@ -12,3 +12,4 @@ EditorVerticalAlignBottom.displayName = 'EditorVerticalAlignBottom';
 EditorVerticalAlignBottom.muiName = 'SvgIcon';
 
 export default EditorVerticalAlignBottom;
+export {EditorVerticalAlignBottom};

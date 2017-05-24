@@ -12,3 +12,4 @@ HardwareSimCard.displayName = 'HardwareSimCard';
 HardwareSimCard.muiName = 'SvgIcon';
 
 export default HardwareSimCard;
+export {HardwareSimCard};

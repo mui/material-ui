@@ -12,3 +12,4 @@ CommunicationStopScreenShare.displayName = 'CommunicationStopScreenShare';
 CommunicationStopScreenShare.muiName = 'SvgIcon';
 
 export default CommunicationStopScreenShare;
+export {CommunicationStopScreenShare};

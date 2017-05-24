@@ -12,3 +12,4 @@ ImageLens.displayName = 'ImageLens';
 ImageLens.muiName = 'SvgIcon';
 
 export default ImageLens;
+export {ImageLens};

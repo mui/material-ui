@@ -12,3 +12,4 @@ ActionCardMembership.displayName = 'ActionCardMembership';
 ActionCardMembership.muiName = 'SvgIcon';
 
 export default ActionCardMembership;
+export {ActionCardMembership};

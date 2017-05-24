@@ -12,3 +12,4 @@ AvClosedCaption.displayName = 'AvClosedCaption';
 AvClosedCaption.muiName = 'SvgIcon';
 
 export default AvClosedCaption;
+export {AvClosedCaption};

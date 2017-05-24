@@ -12,3 +12,4 @@ ActionTrendingUp.displayName = 'ActionTrendingUp';
 ActionTrendingUp.muiName = 'SvgIcon';
 
 export default ActionTrendingUp;
+export {ActionTrendingUp};

@@ -12,3 +12,4 @@ AvHighQuality.displayName = 'AvHighQuality';
 AvHighQuality.muiName = 'SvgIcon';
 
 export default AvHighQuality;
+export {AvHighQuality};

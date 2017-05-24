@@ -12,3 +12,4 @@ ActionFingerprint.displayName = 'ActionFingerprint';
 ActionFingerprint.muiName = 'SvgIcon';
 
 export default ActionFingerprint;
+export {ActionFingerprint};

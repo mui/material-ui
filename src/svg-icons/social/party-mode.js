@@ -12,3 +12,4 @@ SocialPartyMode.displayName = 'SocialPartyMode';
 SocialPartyMode.muiName = 'SvgIcon';
 
 export default SocialPartyMode;
+export {SocialPartyMode};

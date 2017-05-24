@@ -12,3 +12,4 @@ ImageFlare.displayName = 'ImageFlare';
 ImageFlare.muiName = 'SvgIcon';
 
 export default ImageFlare;
+export {ImageFlare};

@@ -12,3 +12,4 @@ ActionVisibility.displayName = 'ActionVisibility';
 ActionVisibility.muiName = 'SvgIcon';
 
 export default ActionVisibility;
+export {ActionVisibility};

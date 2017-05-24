@@ -12,3 +12,4 @@ ImageRemoveRedEye.displayName = 'ImageRemoveRedEye';
 ImageRemoveRedEye.muiName = 'SvgIcon';
 
 export default ImageRemoveRedEye;
+export {ImageRemoveRedEye};

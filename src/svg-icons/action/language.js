@@ -12,3 +12,4 @@ ActionLanguage.displayName = 'ActionLanguage';
 ActionLanguage.muiName = 'SvgIcon';
 
 export default ActionLanguage;
+export {ActionLanguage};

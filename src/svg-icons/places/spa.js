@@ -12,3 +12,4 @@ PlacesSpa.displayName = 'PlacesSpa';
 PlacesSpa.muiName = 'SvgIcon';
 
 export default PlacesSpa;
+export {PlacesSpa};

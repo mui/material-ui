@@ -12,3 +12,4 @@ NavigationMoreHoriz.displayName = 'NavigationMoreHoriz';
 NavigationMoreHoriz.muiName = 'SvgIcon';
 
 export default NavigationMoreHoriz;
+export {NavigationMoreHoriz};

@@ -12,3 +12,4 @@ NotificationPhoneMissed.displayName = 'NotificationPhoneMissed';
 NotificationPhoneMissed.muiName = 'SvgIcon';
 
 export default NotificationPhoneMissed;
+export {NotificationPhoneMissed};

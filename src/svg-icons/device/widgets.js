@@ -12,3 +12,4 @@ DeviceWidgets.displayName = 'DeviceWidgets';
 DeviceWidgets.muiName = 'SvgIcon';
 
 export default DeviceWidgets;
+export {DeviceWidgets};

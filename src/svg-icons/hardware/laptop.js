@@ -12,3 +12,4 @@ HardwareLaptop.displayName = 'HardwareLaptop';
 HardwareLaptop.muiName = 'SvgIcon';
 
 export default HardwareLaptop;
+export {HardwareLaptop};

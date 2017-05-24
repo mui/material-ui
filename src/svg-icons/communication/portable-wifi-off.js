@@ -12,3 +12,4 @@ CommunicationPortableWifiOff.displayName = 'CommunicationPortableWifiOff';
 CommunicationPortableWifiOff.muiName = 'SvgIcon';
 
 export default CommunicationPortableWifiOff;
+export {CommunicationPortableWifiOff};

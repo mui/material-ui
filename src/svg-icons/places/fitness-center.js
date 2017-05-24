@@ -12,3 +12,4 @@ PlacesFitnessCenter.displayName = 'PlacesFitnessCenter';
 PlacesFitnessCenter.muiName = 'SvgIcon';
 
 export default PlacesFitnessCenter;
+export {PlacesFitnessCenter};

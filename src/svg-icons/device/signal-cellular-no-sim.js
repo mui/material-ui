@@ -12,3 +12,4 @@ DeviceSignalCellularNoSim.displayName = 'DeviceSignalCellularNoSim';
 DeviceSignalCellularNoSim.muiName = 'SvgIcon';
 
 export default DeviceSignalCellularNoSim;
+export {DeviceSignalCellularNoSim};

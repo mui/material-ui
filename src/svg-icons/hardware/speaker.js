@@ -12,3 +12,4 @@ HardwareSpeaker.displayName = 'HardwareSpeaker';
 HardwareSpeaker.muiName = 'SvgIcon';
 
 export default HardwareSpeaker;
+export {HardwareSpeaker};

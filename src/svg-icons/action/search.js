@@ -12,3 +12,4 @@ ActionSearch.displayName = 'ActionSearch';
 ActionSearch.muiName = 'SvgIcon';
 
 export default ActionSearch;
+export {ActionSearch};

@@ -12,3 +12,4 @@ AvAirplay.displayName = 'AvAirplay';
 AvAirplay.muiName = 'SvgIcon';
 
 export default AvAirplay;
+export {AvAirplay};

@@ -12,3 +12,4 @@ SocialSchool.displayName = 'SocialSchool';
 SocialSchool.muiName = 'SvgIcon';
 
 export default SocialSchool;
+export {SocialSchool};

@@ -12,3 +12,4 @@ NotificationMore.displayName = 'NotificationMore';
 NotificationMore.muiName = 'SvgIcon';
 
 export default NotificationMore;
+export {NotificationMore};

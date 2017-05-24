@@ -12,3 +12,4 @@ MapsLayersClear.displayName = 'MapsLayersClear';
 MapsLayersClear.muiName = 'SvgIcon';
 
 export default MapsLayersClear;
+export {MapsLayersClear};

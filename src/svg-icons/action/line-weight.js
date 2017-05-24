@@ -12,3 +12,4 @@ ActionLineWeight.displayName = 'ActionLineWeight';
 ActionLineWeight.muiName = 'SvgIcon';
 
 export default ActionLineWeight;
+export {ActionLineWeight};

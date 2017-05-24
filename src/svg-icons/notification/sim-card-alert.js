@@ -12,3 +12,4 @@ NotificationSimCardAlert.displayName = 'NotificationSimCardAlert';
 NotificationSimCardAlert.muiName = 'SvgIcon';
 
 export default NotificationSimCardAlert;
+export {NotificationSimCardAlert};

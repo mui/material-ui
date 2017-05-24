@@ -12,3 +12,4 @@ AvMusicVideo.displayName = 'AvMusicVideo';
 AvMusicVideo.muiName = 'SvgIcon';
 
 export default AvMusicVideo;
+export {AvMusicVideo};

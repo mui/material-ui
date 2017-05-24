@@ -12,3 +12,4 @@ ImageEdit.displayName = 'ImageEdit';
 ImageEdit.muiName = 'SvgIcon';
 
 export default ImageEdit;
+export {ImageEdit};

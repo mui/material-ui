@@ -158,3 +158,4 @@ class ClockMinutes extends Component {
 }
 
 export default ClockMinutes;
+export {ClockMinutes};

@@ -12,3 +12,4 @@ ImageCollections.displayName = 'ImageCollections';
 ImageCollections.muiName = 'SvgIcon';
 
 export default ImageCollections;
+export {ImageCollections};

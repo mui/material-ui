@@ -202,3 +202,4 @@ class TableHeader extends Component {
 }
 
 export default TableHeader;
+export {TableHeader};

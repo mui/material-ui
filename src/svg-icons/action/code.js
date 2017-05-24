@@ -12,3 +12,4 @@ ActionCode.displayName = 'ActionCode';
 ActionCode.muiName = 'SvgIcon';
 
 export default ActionCode;
+export {ActionCode};

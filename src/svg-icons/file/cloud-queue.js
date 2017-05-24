@@ -12,3 +12,4 @@ FileCloudQueue.displayName = 'FileCloudQueue';
 FileCloudQueue.muiName = 'SvgIcon';
 
 export default FileCloudQueue;
+export {FileCloudQueue};

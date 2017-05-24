@@ -12,3 +12,4 @@ ImageWbCloudy.displayName = 'ImageWbCloudy';
 ImageWbCloudy.muiName = 'SvgIcon';
 
 export default ImageWbCloudy;
+export {ImageWbCloudy};

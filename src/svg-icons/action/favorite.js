@@ -12,3 +12,4 @@ ActionFavorite.displayName = 'ActionFavorite';
 ActionFavorite.muiName = 'SvgIcon';
 
 export default ActionFavorite;
+export {ActionFavorite};

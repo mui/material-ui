@@ -12,3 +12,4 @@ ActionEuroSymbol.displayName = 'ActionEuroSymbol';
 ActionEuroSymbol.muiName = 'SvgIcon';
 
 export default ActionEuroSymbol;
+export {ActionEuroSymbol};

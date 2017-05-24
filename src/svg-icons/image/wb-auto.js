@@ -12,3 +12,4 @@ ImageWbAuto.displayName = 'ImageWbAuto';
 ImageWbAuto.muiName = 'SvgIcon';
 
 export default ImageWbAuto;
+export {ImageWbAuto};

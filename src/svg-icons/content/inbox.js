@@ -12,3 +12,4 @@ ContentInbox.displayName = 'ContentInbox';
 ContentInbox.muiName = 'SvgIcon';
 
 export default ContentInbox;
+export {ContentInbox};

@@ -12,3 +12,4 @@ AvHd.displayName = 'AvHd';
 AvHd.muiName = 'SvgIcon';
 
 export default AvHd;
+export {AvHd};

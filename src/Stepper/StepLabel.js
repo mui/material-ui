@@ -160,3 +160,4 @@ StepLabel.contextTypes = {
 };
 
 export default StepLabel;
+export {StepLabel};

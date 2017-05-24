@@ -12,3 +12,4 @@ CommunicationCallMerge.displayName = 'CommunicationCallMerge';
 CommunicationCallMerge.muiName = 'SvgIcon';
 
 export default CommunicationCallMerge;
+export {CommunicationCallMerge};

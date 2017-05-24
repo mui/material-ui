@@ -12,3 +12,4 @@ DeviceBrightnessHigh.displayName = 'DeviceBrightnessHigh';
 DeviceBrightnessHigh.muiName = 'SvgIcon';
 
 export default DeviceBrightnessHigh;
+export {DeviceBrightnessHigh};

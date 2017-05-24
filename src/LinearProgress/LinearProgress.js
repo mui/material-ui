@@ -170,3 +170,4 @@ class LinearProgress extends Component {
 }
 
 export default LinearProgress;
+export {LinearProgress};

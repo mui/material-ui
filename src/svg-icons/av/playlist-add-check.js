@@ -12,3 +12,4 @@ AvPlaylistAddCheck.displayName = 'AvPlaylistAddCheck';
 AvPlaylistAddCheck.muiName = 'SvgIcon';
 
 export default AvPlaylistAddCheck;
+export {AvPlaylistAddCheck};

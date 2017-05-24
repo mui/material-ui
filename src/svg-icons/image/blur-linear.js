@@ -12,3 +12,4 @@ ImageBlurLinear.displayName = 'ImageBlurLinear';
 ImageBlurLinear.muiName = 'SvgIcon';
 
 export default ImageBlurLinear;
+export {ImageBlurLinear};

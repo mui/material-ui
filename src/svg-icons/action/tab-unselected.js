@@ -12,3 +12,4 @@ ActionTabUnselected.displayName = 'ActionTabUnselected';
 ActionTabUnselected.muiName = 'SvgIcon';
 
 export default ActionTabUnselected;
+export {ActionTabUnselected};

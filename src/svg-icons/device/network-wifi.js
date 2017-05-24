@@ -12,3 +12,4 @@ DeviceNetworkWifi.displayName = 'DeviceNetworkWifi';
 DeviceNetworkWifi.muiName = 'SvgIcon';
 
 export default DeviceNetworkWifi;
+export {DeviceNetworkWifi};

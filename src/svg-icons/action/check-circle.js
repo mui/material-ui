@@ -12,3 +12,4 @@ ActionCheckCircle.displayName = 'ActionCheckCircle';
 ActionCheckCircle.muiName = 'SvgIcon';
 
 export default ActionCheckCircle;
+export {ActionCheckCircle};

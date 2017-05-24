@@ -12,3 +12,4 @@ ContentArchive.displayName = 'ContentArchive';
 ContentArchive.muiName = 'SvgIcon';
 
 export default ContentArchive;
+export {ContentArchive};

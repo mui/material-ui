@@ -203,3 +203,4 @@ class RadioButton extends Component {
 }
 
 export default RadioButton;
+export {RadioButton};

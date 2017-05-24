@@ -12,3 +12,4 @@ ImageCamera.displayName = 'ImageCamera';
 ImageCamera.muiName = 'SvgIcon';
 
 export default ImageCamera;
+export {ImageCamera};

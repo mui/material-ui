@@ -12,3 +12,4 @@ ImageMovieFilter.displayName = 'ImageMovieFilter';
 ImageMovieFilter.muiName = 'SvgIcon';
 
 export default ImageMovieFilter;
+export {ImageMovieFilter};

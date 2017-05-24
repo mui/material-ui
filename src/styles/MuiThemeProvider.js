@@ -25,3 +25,4 @@ class MuiThemeProvider extends Component {
 }
 
 export default MuiThemeProvider;
+export {MuiThemeProvider};

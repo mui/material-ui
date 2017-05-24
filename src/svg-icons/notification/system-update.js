@@ -12,3 +12,4 @@ NotificationSystemUpdate.displayName = 'NotificationSystemUpdate';
 NotificationSystemUpdate.muiName = 'SvgIcon';
 
 export default NotificationSystemUpdate;
+export {NotificationSystemUpdate};

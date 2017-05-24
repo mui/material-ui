@@ -12,3 +12,4 @@ ToggleRadioButtonChecked.displayName = 'ToggleRadioButtonChecked';
 ToggleRadioButtonChecked.muiName = 'SvgIcon';
 
 export default ToggleRadioButtonChecked;
+export {ToggleRadioButtonChecked};

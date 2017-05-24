@@ -12,3 +12,4 @@ AvPause.displayName = 'AvPause';
 AvPause.muiName = 'SvgIcon';
 
 export default AvPause;
+export {AvPause};

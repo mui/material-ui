@@ -12,3 +12,4 @@ CommunicationNoSim.displayName = 'CommunicationNoSim';
 CommunicationNoSim.muiName = 'SvgIcon';
 
 export default CommunicationNoSim;
+export {CommunicationNoSim};

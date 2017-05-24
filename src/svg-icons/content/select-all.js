@@ -12,3 +12,4 @@ ContentSelectAll.displayName = 'ContentSelectAll';
 ContentSelectAll.muiName = 'SvgIcon';
 
 export default ContentSelectAll;
+export {ContentSelectAll};

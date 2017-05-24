@@ -12,3 +12,4 @@ ActionTimeline.displayName = 'ActionTimeline';
 ActionTimeline.muiName = 'SvgIcon';
 
 export default ActionTimeline;
+export {ActionTimeline};

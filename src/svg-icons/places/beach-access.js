@@ -12,3 +12,4 @@ PlacesBeachAccess.displayName = 'PlacesBeachAccess';
 PlacesBeachAccess.muiName = 'SvgIcon';
 
 export default PlacesBeachAccess;
+export {PlacesBeachAccess};

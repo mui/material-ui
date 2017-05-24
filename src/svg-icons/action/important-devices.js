@@ -12,3 +12,4 @@ ActionImportantDevices.displayName = 'ActionImportantDevices';
 ActionImportantDevices.muiName = 'SvgIcon';
 
 export default ActionImportantDevices;
+export {ActionImportantDevices};

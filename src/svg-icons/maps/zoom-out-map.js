@@ -12,3 +12,4 @@ MapsZoomOutMap.displayName = 'MapsZoomOutMap';
 MapsZoomOutMap.muiName = 'SvgIcon';
 
 export default MapsZoomOutMap;
+export {MapsZoomOutMap};

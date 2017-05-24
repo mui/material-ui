@@ -12,3 +12,4 @@ MapsLocalTaxi.displayName = 'MapsLocalTaxi';
 MapsLocalTaxi.muiName = 'SvgIcon';
 
 export default MapsLocalTaxi;
+export {MapsLocalTaxi};

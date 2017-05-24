@@ -12,3 +12,4 @@ ActionGrade.displayName = 'ActionGrade';
 ActionGrade.muiName = 'SvgIcon';
 
 export default ActionGrade;
+export {ActionGrade};

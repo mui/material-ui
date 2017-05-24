@@ -12,3 +12,4 @@ ActionOpenInBrowser.displayName = 'ActionOpenInBrowser';
 ActionOpenInBrowser.muiName = 'SvgIcon';
 
 export default ActionOpenInBrowser;
+export {ActionOpenInBrowser};
