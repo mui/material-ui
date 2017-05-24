@@ -95,11 +95,13 @@ module.exports = {
     'mocha/no-pending-tests': 'error',
     'mocha/no-skipped-tests': 'error',
 
+    'flowtype/define-flow-type': 'error',
     'flowtype/require-valid-file-annotation': ['error', 'always'],
     'flowtype/require-parameter-type': 'off',
     'flowtype/require-return-type': 'off',
     'flowtype/space-after-type-colon': 'off',
     'flowtype/space-before-type-colon': 'off',
     'flowtype/type-id-match': 'off',
+    'flowtype/use-flow-type': 'error',
   },
 };
