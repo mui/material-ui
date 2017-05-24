@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React, { Element, Component } from 'react';
 import ReactDOM from 'react-dom';
@@ -246,8 +246,8 @@ class Modal extends Component<DefaultProps, Props, State> {
 
   handleHide() {
     this.props.modalManager.remove(this);
-    this.onDocumentKeyUpListener.remove();
-    this.onFocusListener.remove();
+    this.onDocumentKeyUpListener && this.onDocumentKeyUpListener.remove();
+    this.onFocusListener && this.onFocusListener.remove();
     this.restoreLastFocus();
   }
 
@@ -264,7 +264,7 @@ class Modal extends Component<DefaultProps, Props, State> {
     }
   };
 
-  handleDocumentKeyUp = event => {
+  handleDocumentKeyUp = (event: Event) => {
     if (!this.mounted || !this.props.modalManager.isTopModal(this)) {
       return;
     }
@@ -282,7 +282,7 @@ class Modal extends Component<DefaultProps, Props, State> {
     }
   };
 
-  handleBackdropClick = event => {
+  handleBackdropClick = (event: Event) => {
     if (event.target !== event.currentTarget) {
       return;
     }
