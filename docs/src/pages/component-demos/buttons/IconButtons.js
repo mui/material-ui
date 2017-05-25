@@ -18,16 +18,16 @@ function IconButtons(props) {
   const classes = props.classes;
   return (
     <div>
-      <IconButton className={classes.button}>
+      <IconButton className={classes.button} aria-label="Delete">
         <DeleteIcon />
       </IconButton>
-      <IconButton className={classes.button} disabled>
+      <IconButton className={classes.button} aria-label="Delete" disabled>
         <DeleteIcon />
       </IconButton>
-      <IconButton accent className={classes.button}>
+      <IconButton accent className={classes.button} aria-label="Add an alarm">
         <Icon>alarm</Icon>
       </IconButton>
-      <IconButton contrast className={classes.button}>
+      <IconButton contrast className={classes.button} aria-label="Add to shopping cart">
         <AddShoppingCartIcon />
       </IconButton>
     </div>
