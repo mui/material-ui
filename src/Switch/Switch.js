@@ -109,8 +109,13 @@ Switch.propTypes = {
   disabledClassName: PropTypes.string,
   /**
    * The icon to display when the component is unchecked.
+   * If a string is provided, it will be used as a font ligature.
    */
   icon: PropTypes.node,
+  /**
+   * Properties applied to the `input` element.
+   */
+  inputProps: PropTypes.object,
   /*
    * @ignore
    */
