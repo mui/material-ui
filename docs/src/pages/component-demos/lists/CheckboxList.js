@@ -52,7 +52,7 @@ class CheckboxList extends Component {
               />
               <ListItemText primary={`Line item ${index + 1}`} />
               <ListItemSecondaryAction>
-                <IconButton>
+                <IconButton aria-label="Comments">
                   <CommentIcon />
                 </IconButton>
               </ListItemSecondaryAction>
