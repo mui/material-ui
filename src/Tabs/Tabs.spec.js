@@ -4,9 +4,10 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';
 import scroll from 'scroll';
-import { createShallow, createMount } from '../test-utils';
+import { createShallow, createMount, consoleErrorMock } from '../test-utils';
 import Tabs, { styleSheet } from './Tabs';
 import TabScrollButton from './TabScrollButton';
+import TabIndicator from './TabIndicator';
 import Tab from './Tab';
 
 const noop = () => {};
@@ -73,6 +74,10 @@ describe('<Tabs />', () => {
       );
     });
 
+    after(() => {
+      consoleErrorMock.reset();
+    });
+
     it('should pass selected prop to children', () => {
       assert.strictEqual(
         wrapper.find(Tab).at(0).props().selected,
@@ -94,6 +99,29 @@ describe('<Tabs />', () => {
         false,
         'should have switched to false',
       );
+    });
+
+    it('should accept a false value', () => {
+      const wrapper2 = mount(
+        <Tabs width="md" onChange={noop} index={false}>
+          <Tab />
+          <Tab />
+        </Tabs>,
+      );
+      assert.strictEqual(wrapper2.find(TabIndicator).props().style.width, 0);
+    });
+
+    it('should warn when the index is invalid', () => {
+      consoleErrorMock.spy();
+      mount(
+        <Tabs width="md" onChange={noop} index={2}>
+          <Tab />
+          <Tab />
+        </Tabs>,
+      );
+      assert.strictEqual(consoleErrorMock.callCount(), 2);
+      assert.strictEqual(consoleErrorMock.args()[0][0],
+        'Warning: Material-UI: the index provided `2` is invalid');
     });
   });
 
