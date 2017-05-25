@@ -303,5 +303,12 @@ describe('<SwitchBase />', () => {
         assert.strictEqual(wrapper.state('checked'), !checkedMock);
       });
     });
+
+    describe('prop: inputProps', () => {
+      it('should be able to add aria', () => {
+        const wrapper2 = shallow(<SwitchBase inputProps={{ 'aria-label': 'foo' }} />);
+        assert.strictEqual(wrapper2.find('input').props()['aria-label'], 'foo');
+      });
+    });
   });
 });
