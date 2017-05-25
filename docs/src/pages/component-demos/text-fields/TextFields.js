@@ -12,6 +12,7 @@ const styleSheet = createStyleSheet('TextFields', theme => ({
   },
   input: {
     margin: theme.spacing.unit,
+    width: 200,
   },
 }));
 
@@ -67,6 +68,13 @@ class TextFields extends Component {
           multiline
           rows="4"
           defaultValue="Default Value"
+          className={classes.input}
+        />
+        <TextField
+          id="date"
+          label="From date"
+          type="date"
+          defaultValue="2017-05-24"
           className={classes.input}
         />
       </div>
