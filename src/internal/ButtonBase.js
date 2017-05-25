@@ -224,16 +224,21 @@ class ButtonBase extends Component {
 
     let ComponentProp = component;
 
-    if (!ComponentProp && other.href) {
-      ComponentProp = 'a';
+    if (!ComponentProp) {
+      if (other.href) {
+        ComponentProp = 'a';
+      } else {
+        ComponentProp = 'button';
+      }
     }
 
-    if (!ComponentProp) {
-      ComponentProp = 'button';
-      buttonProps.type = type;
+    if (ComponentProp === 'button') {
+      buttonProps.type = type || 'button';
+    }
+
+    if (ComponentProp !== 'a') {
+      buttonProps.role = buttonProps.role || 'button';
       buttonProps.disabled = disabled;
-    } else if (ComponentProp !== 'a') {
-      buttonProps.role = this.props.hasOwnProperty('role') ? this.props.role : 'button';
     }
 
     return (

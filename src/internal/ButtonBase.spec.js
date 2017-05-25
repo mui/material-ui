@@ -343,6 +343,11 @@ describe('<ButtonBase />', () => {
       const wrapper = shallow(<ButtonBase disabled>Hello</ButtonBase>);
       assert.strictEqual(wrapper.props().tabIndex, '-1', 'should not receive the focus');
     });
+
+    it('should also apply it when using component', () => {
+      const wrapper = shallow(<ButtonBase disabled component="button">Hello</ButtonBase>);
+      assert.strictEqual(wrapper.find('button').props().disabled, true);
+    });
   });
 
   describe('prop: component', () => {
