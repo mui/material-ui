@@ -24,7 +24,7 @@ export {
 export { default as Divider } from './Divider';
 export { default as Drawer } from './Drawer';
 
-export { FormControl, FormGroup, FormLabel } from './Form';
+export { FormControl, FormGroup, FormLabel, FormHelperText } from './Form';
 
 export { default as Hidden } from './Hidden';
 export { default as Icon } from './Icon';
