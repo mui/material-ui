@@ -373,7 +373,7 @@ class Menu extends Component {
         return;
       }
       const {primaryText} = child.props;
-      if (typeof primaryText === 'string' && new RegExp(`^${keys}`, 'i').test(primaryText)) {
+      if (typeof primaryText === 'string' && primaryText.substr(0, keys.length).toLowerCase() === keys.toLowerCase()) {
         foundIndex = index;
       }
     });
