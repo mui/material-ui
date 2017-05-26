@@ -41,11 +41,11 @@ function generatePropDescription(required, description, type) {
 
   // two new lines result in a newline in the table. all other new lines
   // must be eliminated to prevent markdown mayhem.
-  let jsDocText = parsed.description.replace(/\n\n/g, '<br>').replace(/\n/g, ' ').replace(/\r/g, '')
+  let jsDocText = parsed.description.replace(/\n\n/g, '<br>').replace(/\n/g, ' ').replace(/\r/g, '');
 
   // convert bracketed component references into component API links
   // eg: [MenuItem component] will link to the component API for MenuItem
-  jsDocText = jsDocText.replace(/\[(\w+)\scomponent\]/g, `[$1](component-api/$1) component`);
+  jsDocText = jsDocText.replace(/\[(\w+)\scomponent\]/g, '[$1](component-api/$1) component');
 
   if (parsed.tags.some(tag => tag.title === 'ignore')) return null;
   let signature = '';
