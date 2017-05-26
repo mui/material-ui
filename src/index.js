@@ -71,6 +71,6 @@ export { default as Tabs, Tab } from './Tabs';
 
 export { default as Typography } from './Typography';
 
-export { default as TextField, TextFieldLabel } from './TextField';
+export { default as TextField } from './TextField';
 
 export { default as Toolbar } from './Toolbar';
