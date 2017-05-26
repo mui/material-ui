@@ -41,7 +41,10 @@ function generatePropDescription(required, description, type) {
 
   // two new lines result in a newline in the table. all other new lines
   // must be eliminated to prevent markdown mayhem.
-  const jsDocText = parsed.description.replace(/\n\n/g, '<br>').replace(/\n/g, ' ');
+  const jsDocText = parsed.description
+    .replace(/\n\n/g, '<br>')
+    .replace(/\n/g, ' ')
+    .replace(/\r/g, '');
 
   if (parsed.tags.some(tag => tag.title === 'ignore')) return null;
   let signature = '';
@@ -114,7 +117,9 @@ function generatePropType(type) {
       }
       return `${type.name}:&nbsp;${values}<br>`;
     }
-
+    case 'HiddenProps': {
+      return `[${type.name}](/layout/hidden)`;
+    }
     default:
       return type.name;
   }
@@ -177,7 +182,7 @@ function generateProps(props) {
 }
 
 function generateClasses(styles) {
-  return `## Classes
+  return styles.classes.length ? `## Classes
 
 You can overrides all the class names injected by Material-UI thanks to the \`classes\` property.
 This property accepts the following keys:
@@ -188,7 +193,7 @@ section for more detail.
 
 If using the \`overrides\` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
-you need to use the following style sheet name: \`${styles.name}\`.`;
+you need to use the following style sheet name: \`${styles.name}\`.` : '';
 }
 
 export default function generateMarkdown(name, reactAPI) {
