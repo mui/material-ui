@@ -1,19 +1,19 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import keycode from 'keycode';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow } from 'src/test-utils';
-import Chip, { styleSheet } from './Chip.js';
-import Avatar from '../Avatar/Avatar.js';
+import { createShallow } from '../test-utils';
+import Chip, { styleSheet } from './Chip';
+import Avatar from '../Avatar';
 
 describe('<Chip />', () => {
   let shallow;
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
@@ -22,17 +22,14 @@ describe('<Chip />', () => {
 
     before(() => {
       wrapper = shallow(
-        <Chip
-          className="my-Chip"
-          data-my-prop="woof"
-        >
+        <Chip className="my-Chip" data-my-prop="woof">
           Text Chip
         </Chip>,
       );
     });
 
     it('should render a button containing a span', () => {
-      assert.strictEqual(wrapper.is('button'), true, 'should be a button');
+      assert.strictEqual(wrapper.name(), 'button');
       assert.strictEqual(wrapper.childAt(0).is('span'), true, 'should be a span');
     });
 
@@ -54,18 +51,14 @@ describe('<Chip />', () => {
     before(() => {
       handleClick = () => {};
       wrapper = shallow(
-        <Chip
-          className="my-Chip"
-          data-my-prop="woof"
-          onClick={handleClick}
-        >
+        <Chip className="my-Chip" data-my-prop="woof" onClick={handleClick}>
           Text Chip
         </Chip>,
       );
     });
 
     it('should render a button containing a span', () => {
-      assert.strictEqual(wrapper.is('button'), true, 'should be a button');
+      assert.strictEqual(wrapper.name(), 'button');
       assert.strictEqual(wrapper.childAt(0).is('span'), true, 'should be a span');
     });
 
@@ -113,11 +106,10 @@ describe('<Chip />', () => {
     });
 
     it('should render a button containing an Avatar, span and svg', () => {
-      assert.strictEqual(wrapper.is('button'), true, 'should be a button');
-      assert.strictEqual(wrapper.childAt(0).is('Avatar'), true, 'should have an Avatar');
+      assert.strictEqual(wrapper.name(), 'button');
+      assert.strictEqual(wrapper.childAt(0).is(Avatar), true, 'should have an Avatar');
       assert.strictEqual(wrapper.childAt(1).is('span'), true, 'should have a span');
-      assert.strictEqual(wrapper.childAt(2).is('pure(Cancel)'), true,
-        'should be an svg icon');
+      assert.strictEqual(wrapper.childAt(2).is('pure(Cancel)'), true, 'should be an svg icon');
     });
 
     it('should merge user classes & spread custom props to the root node', () => {
@@ -141,8 +133,11 @@ describe('<Chip />', () => {
       wrapper.setProps({ onRequestDelete: onRequestDeleteSpy });
 
       wrapper.find('pure(Cancel)').simulate('click', { stopPropagation: () => {} });
-      assert.strictEqual(onRequestDeleteSpy.callCount, 1,
-        'should have called the onRequestDelete hanlder');
+      assert.strictEqual(
+        onRequestDeleteSpy.callCount,
+        1,
+        'should have called the onRequestDelete hanlder',
+      );
     });
 
     it('should stop propagation in onDeleteRequest', () => {
@@ -151,8 +146,11 @@ describe('<Chip />', () => {
       wrapper.setProps({ onRequestDelete: onRequestDeleteSpy });
 
       wrapper.find('pure(Cancel)').simulate('click', { stopPropagation: stopPropagationSpy });
-      assert.strictEqual(stopPropagationSpy.callCount, 1,
-        'should have called the stopPropagation hanlder');
+      assert.strictEqual(
+        stopPropagationSpy.callCount,
+        1,
+        'should have called the stopPropagation hanlder',
+      );
     });
   });
 
@@ -162,10 +160,7 @@ describe('<Chip />', () => {
 
     before(() => {
       wrapper = shallow(
-        <Chip
-          className="my-Chip"
-          data-my-prop="woof"
-        >
+        <Chip className="my-Chip" data-my-prop="woof">
           Text Chip
         </Chip>,
       );

@@ -1,8 +1,8 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
+import { createShallow } from '../test-utils';
 import Avatar, { styleSheet } from './Avatar';
 import CancelIcon from '../svg-icons/cancel';
 
@@ -11,7 +11,7 @@ describe('<Avatar />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
@@ -20,17 +20,12 @@ describe('<Avatar />', () => {
 
     before(() => {
       wrapper = shallow(
-        <Avatar
-          className="my-avatar"
-          src="something.jpg"
-          alt="Hello World!"
-          data-my-prop="woof"
-        />,
+        <Avatar className="my-avatar" src="something.jpg" alt="Hello World!" data-my-prop="woof" />,
       );
     });
 
     it('should render a div containing an img', () => {
-      assert.strictEqual(wrapper.is('div'), true, 'should be a div');
+      assert.strictEqual(wrapper.name(), 'div');
       assert.strictEqual(wrapper.childAt(0).is('img'), true, 'should be an img');
     });
 
@@ -61,11 +56,7 @@ describe('<Avatar />', () => {
 
     before(() => {
       wrapper = shallow(
-        <Avatar
-          className="my-avatar"
-          data-my-prop="woof"
-          childrenClassName="my-children"
-        >
+        <Avatar className="my-avatar" data-my-prop="woof" childrenClassName="my-children">
           <span className="my-icon-font">icon</span>
         </Avatar>,
       );
@@ -73,7 +64,7 @@ describe('<Avatar />', () => {
 
     it('should render a div containing an font icon', () => {
       const icon = wrapper.childAt(0);
-      assert.strictEqual(wrapper.is('div'), true, 'should be a div');
+      assert.strictEqual(wrapper.name(), 'div');
       assert.strictEqual(icon.is('span'), true, 'should be a span');
       assert.strictEqual(icon.hasClass('my-icon-font'), true);
       assert.strictEqual(icon.text(), 'icon');
@@ -99,18 +90,14 @@ describe('<Avatar />', () => {
 
     before(() => {
       wrapper = shallow(
-        <Avatar
-          className="my-avatar"
-          data-my-prop="woof"
-          childrenClassName="my-children"
-        >
+        <Avatar className="my-avatar" data-my-prop="woof" childrenClassName="my-children">
           <CancelIcon />
         </Avatar>,
       );
     });
 
     it('should render a div containing an svg icon', () => {
-      assert.strictEqual(wrapper.is('div'), true, 'should be a div');
+      assert.strictEqual(wrapper.name(), 'div');
       assert.strictEqual(wrapper.childAt(0).is('pure(Cancel)'), true, 'should be an svg icon');
     });
 
@@ -134,17 +121,14 @@ describe('<Avatar />', () => {
 
     before(() => {
       wrapper = shallow(
-        <Avatar
-          className="my-avatar"
-          data-my-prop="woof"
-        >
+        <Avatar className="my-avatar" data-my-prop="woof">
           OT
         </Avatar>,
       );
     });
 
     it('should render a div containing a string', () => {
-      assert.strictEqual(wrapper.is('div'), true, 'should be a div');
+      assert.strictEqual(wrapper.name(), 'div');
       assert.strictEqual(wrapper.childAt(0).text(), 'OT');
     });
 

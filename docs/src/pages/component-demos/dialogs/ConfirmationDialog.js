@@ -3,16 +3,10 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Button from 'material-ui/Button';
-import { List, ListItem, ListItemText } from 'material-ui/List';
-import {
-  Dialog,
-  DialogContent,
-  DialogActions,
-  DialogTitle,
-} from 'material-ui/Dialog';
+import List, { ListItem, ListItemText } from 'material-ui/List';
+import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog';
 import { LabelRadio as Radio, RadioGroup } from 'material-ui/Radio';
 
 const options = [
@@ -48,11 +42,12 @@ class ConfirmationDialog extends Component {
 
   componentWillUpdate(nextProps) {
     if (nextProps.selectedValue !== this.props.selectedValue) {
+      // eslint-disable-next-line react/no-will-update-set-state
       this.setState({ selectedValue: nextProps.selectedValue });
     }
   }
 
-  radioGroup = undefined;
+  radioGroup = null;
 
   handleEntering = () => {
     this.radioGroup.focus();
@@ -82,19 +77,15 @@ class ConfirmationDialog extends Component {
         <DialogTitle>Phone Ringtone</DialogTitle>
         <DialogContent>
           <RadioGroup
-            ref={(c) => { this.radioGroup = c; }}
+            innerRef={node => {
+              this.radioGroup = node;
+            }}
             aria-label="Gender"
             name="gender"
             selectedValue={this.state.selectedValue}
             onChange={this.handleChange}
           >
-            {options.map((option) => (
-              <Radio
-                label={option}
-                value={option}
-                key={option}
-              />
-            ))}
+            {options.map(option => <Radio label={option} value={option} key={option} />)}
           </RadioGroup>
         </DialogContent>
         <DialogActions>
@@ -106,7 +97,7 @@ class ConfirmationDialog extends Component {
   }
 }
 
-const styleSheet = createStyleSheet('ConfirmationDialogDemo', (theme) => ({
+const styleSheet = createStyleSheet('ConfirmationDialogDemo', theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
@@ -118,11 +109,7 @@ const styleSheet = createStyleSheet('ConfirmationDialogDemo', (theme) => ({
   },
 }));
 
-export default class ConfirmationDialogDemo extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
+class ConfirmationDialogDemo extends Component {
   state = {
     anchorEl: undefined,
     open: false,
@@ -131,12 +118,16 @@ export default class ConfirmationDialogDemo extends Component {
 
   button = undefined;
 
-  handleClickListItem = (event) => this.setState({ open: true, anchorEl: event.currentTarget });
+  handleClickListItem = event => {
+    this.setState({ open: true, anchorEl: event.currentTarget });
+  };
 
-  handleRequestClose = (value) => this.setState({ selectedValue: value, open: false });
+  handleRequestClose = value => {
+    this.setState({ selectedValue: value, open: false });
+  };
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
     return (
       <div className={classes.root}>
         <List>
@@ -151,16 +142,10 @@ export default class ConfirmationDialogDemo extends Component {
             aria-label="Phone ringtone"
             onClick={this.handleClickListItem}
           >
-            <ListItemText
-              primary="Phone ringtone"
-              secondary={this.state.selectedValue}
-            />
+            <ListItemText primary="Phone ringtone" secondary={this.state.selectedValue} />
           </ListItem>
           <ListItem button divider disabled>
-            <ListItemText
-              primary="Default notification ringtone"
-              secondary="Tethys"
-            />
+            <ListItemText primary="Default notification ringtone" secondary="Tethys" />
           </ListItem>
           <ConfirmationDialog
             maxWidth="xs"
@@ -175,3 +160,8 @@ export default class ConfirmationDialogDemo extends Component {
   }
 }
 
+ConfirmationDialogDemo.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(ConfirmationDialogDemo);

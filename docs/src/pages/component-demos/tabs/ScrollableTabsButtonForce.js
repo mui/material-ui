@@ -1,12 +1,11 @@
-// @flow weak
+// @flow
 /* eslint-disable react/no-multi-comp */
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
-import { Tabs, Tab } from 'material-ui/Tabs';
+import Tabs, { Tab } from 'material-ui/Tabs';
 import PhoneIcon from 'material-ui-icons/Phone';
 import FavoriteIcon from 'material-ui-icons/Favorite';
 import PersonPinIcon from 'material-ui-icons/PersonPin';
@@ -15,7 +14,7 @@ import ShoppingBasket from 'material-ui-icons/ShoppingBasket';
 import ThumbDown from 'material-ui-icons/ThumbDown';
 import ThumbUp from 'material-ui-icons/ThumbUp';
 
-const TabContainer = (props) => (
+const TabContainer = props => (
   <div style={{ padding: 20 }}>
     {props.children}
   </div>
@@ -25,7 +24,7 @@ TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const styleSheet = createStyleSheet('ScrollableTabsButtonForce', (theme) => ({
+const styleSheet = createStyleSheet('ScrollableTabsButtonForce', theme => ({
   root: {
     marginTop: 30,
     width: '100%',
@@ -35,21 +34,17 @@ const styleSheet = createStyleSheet('ScrollableTabsButtonForce', (theme) => ({
   },
 }));
 
-export default class ScrollableTabsButtonForce extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
+class ScrollableTabsButtonForce extends Component {
   state = {
     index: 0,
   };
 
   handleChange = (event, index) => {
     this.setState({ index });
-  }
+  };
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
 
     return (
       <Paper className={classes.root}>
@@ -81,3 +76,9 @@ export default class ScrollableTabsButtonForce extends Component {
     );
   }
 }
+
+ScrollableTabsButtonForce.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(ScrollableTabsButtonForce);

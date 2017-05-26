@@ -4,170 +4,112 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
+import Textarea from './Textarea';
 
 export function isDirty(obj) {
   return obj && obj.value && obj.value.length > 0;
 }
 
-export const styleSheet = createStyleSheet('MuiInput', (theme) => {
-  const { palette, transitions } = theme;
-  return {
-    wrapper: {
-      // Mimics the default input display property used by browsers for an input.
-      display: 'inline-block',
-      marginBottom: 8,
-      marginTop: 8,
-      position: 'relative',
-    },
-    formControl: {
+export const styleSheet = createStyleSheet('MuiInput', theme => ({
+  wrapper: {
+    // Mimics the default input display property used by browsers for an input.
+    display: 'inline-block',
+    position: 'relative',
+    fontFamily: theme.typography.fontFamily,
+  },
+  formControl: {
+    marginTop: 8,
+    marginBottom: 8,
+    'label + &': {
       marginTop: 32,
     },
-    inkbar: {
-      '&:after': {
-        backgroundColor: palette.type === 'light' ? palette.primary.A700 : palette.primary.A200,
-        left: 0,
-        bottom: -1,
-        // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
-        content: '""',
-        height: 2,
-        position: 'absolute',
-        right: 0,
-        transform: 'scaleX(0)',
-        transition: transitions.create('transform', {
-          duration: transitions.duration.shorter,
-          easing: transitions.easing.easeOut,
-        }),
-      },
-      '&$focused:after': {
-        transform: 'scaleX(1)',
-      },
+  },
+  inkbar: {
+    '&:after': {
+      backgroundColor: theme.palette.primary[theme.palette.type === 'light' ? 'A700' : 'A200'],
+      left: 0,
+      bottom: -2,
+      // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
+      content: '""',
+      height: 2,
+      position: 'absolute',
+      right: 0,
+      transform: 'scaleX(0)',
+      transition: theme.transitions.create('transform', {
+        duration: theme.transitions.duration.shorter,
+        easing: theme.transitions.easing.easeOut,
+      }),
     },
-    focused: {},
-    error: {
-      '&:after': {
-        backgroundColor: palette.error.A400,
-        transform: 'scaleX(1)', // error is always underlined in red
-      },
+    '&$focused:after': {
+      transform: 'scaleX(1)',
     },
-    input: {
-      font: 'inherit',
-      padding: '6px 0',
-      border: 0,
-      display: 'block',
-      verticalAlign: 'middle',
-      whiteSpace: 'normal',
-      background: 'none',
-      lineHeight: 1,
-      appearance: 'textfield', // Improve type search style.
-      color: theme.palette.input.inputText,
-      width: '100%',
-      '&:focus': {
-        outline: 0,
-      },
-      '&::-webkit-search-decoration': { // Remove the padding when type=search.
-        appearance: 'none',
-      },
+  },
+  focused: {},
+  error: {
+    '&:after': {
+      backgroundColor: theme.palette.error.A400,
+      transform: 'scaleX(1)', // error is always underlined in red
     },
-    disabled: {
-      color: theme.palette.input.disabled,
-      cursor: 'not-allowed',
+  },
+  input: {
+    font: 'inherit',
+    padding: '8px 0',
+    border: 0,
+    display: 'block',
+    boxSizing: 'content-box',
+    verticalAlign: 'middle',
+    whiteSpace: 'normal',
+    background: 'none',
+    margin: 0, // Reset for Safari
+    color: theme.palette.input.inputText,
+    width: '100%',
+    '&:focus': {
+      outline: 0,
     },
-    underline: {
-      borderBottom: `1px solid ${theme.palette.input.bottomLine}`,
-      '&:hover:not($disabled)': {
-        borderBottom: `2px solid ${theme.palette.text.primary}`,
-        marginBottom: -1,
-        transition: transitions.create('border-color', {
-          duration: transitions.duration.shorter,
-          easing: transitions.easing.ease,
-        }),
-      },
-      '&$disabled': {
-        borderBottomStyle: 'dotted',
-        borderImage: `linear-gradient(to right, ${theme.palette.input.bottomLine} 33%, transparent 0%) 100 0 / 0 0 1px / 0 0 0 3px repeat`,
-      },
+    '&::-webkit-search-decoration': {
+      // Remove the padding when type=search.
+      appearance: 'none',
     },
-  };
-});
+  },
+  singleline: {
+    height: '1em',
+    appearance: 'textfield', // Improve type search style.
+  },
+  multiline: {
+    resize: 'none',
+    padding: 0,
+  },
+  multilineWrapper: {
+    padding: '6px 0',
+  },
+  disabled: {
+    color: theme.palette.text.disabled,
+  },
+  underline: {
+    borderBottom: `1px solid ${theme.palette.input.bottomLine}`,
+    '&:hover:not($disabled)': {
+      borderBottom: `2px solid ${theme.palette.text.primary}`,
+      marginBottom: 7,
+      transition: theme.transitions.create('border-color', {
+        duration: theme.transitions.duration.shorter,
+        easing: theme.transitions.easing.ease,
+      }),
+    },
+    '&$disabled': {
+      borderBottomStyle: 'dotted',
+      borderImage: `linear-gradient(to right, ${theme.palette.input.bottomLine} 33%, transparent 0%)
+        100 0 / 0 0 1px / 0 0 0 3px repeat`,
+    },
+  },
+}));
 
-/**
- * Input
- */
-export default class Input extends Component {
-  static propTypes = {
-    /**
-     * The CSS class name of the wrapper element.
-     */
-    className: PropTypes.string,
-    /**
-     * The component used for the root node.
-     * Either a string to use a DOM element or a component.
-     */
-    component: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.func,
-    ]),
-    /**
-     * If `true`, the input will be disabled.
-     */
-    disabled: PropTypes.bool,
-    /**
-     * If `true`, the input will not have an underline.
-     */
-    disableUnderline: PropTypes.bool,
-    /**
-     * If `true`, the input will indicate an error.
-     */
-    error: PropTypes.bool,
-    /**
-     * The CSS class name of the input element.
-     */
-    inputClassName: PropTypes.string,
-    /**
-     * @ignore
-     */
-    onBlur: PropTypes.func,
-    /**
-     * @ignore
-     */
-    onChange: PropTypes.func,
-    /**
-     * @ignore
-     */
-    onClean: PropTypes.func,
-    /**
-     * @ignore
-     */
-    onDirty: PropTypes.func,
-    /**
-     * @ignore
-     */
-    onFocus: PropTypes.func,
-    /**
-     * Type of the input element. It should be a valid HTML5 input type.
-     */
-    type: PropTypes.string,
-    /**
-     * If `true`, the input will have an underline.
-     */
-    underline: PropTypes.bool,
-    /**
-     * The input value, required for a controlled component.
-     */
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  };
-
+class Input extends Component {
   static defaultProps = {
-    component: 'input',
     disabled: false,
     type: 'text',
     disableUnderline: false,
-  };
-
-  static contextTypes = {
-    muiFormControl: PropTypes.object,
-    styleManager: customPropTypes.muiRequired,
+    multiline: false,
   };
 
   state = {
@@ -195,28 +137,40 @@ export default class Input extends Component {
   // Holds the input reference
   input = null;
 
-  focus = () => this.input.focus();
-
-  handleFocus = (event) => {
+  handleFocus = event => {
     this.setState({ focused: true });
     if (this.props.onFocus) {
       this.props.onFocus(event);
     }
   };
 
-  handleBlur = (event) => {
+  handleBlur = event => {
     this.setState({ focused: false });
     if (this.props.onBlur) {
       this.props.onBlur(event);
     }
   };
 
-  handleChange = (event) => {
+  handleChange = event => {
     if (!this.isControlled()) {
       this.checkDirty(this.input);
     }
     if (this.props.onChange) {
       this.props.onChange(event);
+    }
+  };
+
+  handleRefInput = node => {
+    this.input = node;
+    if (this.props.inputRef) {
+      this.props.inputRef(node);
+    }
+  };
+
+  handleRefTextarea = node => {
+    this.input = node;
+    if (this.props.inputRef) {
+      this.props.inputRef(node);
     }
   };
 
@@ -247,20 +201,33 @@ export default class Input extends Component {
 
   render() {
     const {
+      classes,
       className: classNameProp,
-      component: ComponentProp,
-      inputClassName: inputClassNameProp,
+      component,
+      defaultValue,
       disabled,
       disableUnderline,
       error: errorProp,
+      id,
+      inputClassName: inputClassNameProp,
+      inputProps: inputPropsProp,
+      inputRef, // eslint-disable-line no-unused-vars
+      multiline,
       onBlur, // eslint-disable-line no-unused-vars
       onFocus, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
+      onKeyDown,
+      onKeyUp,
+      placeholder,
+      name,
+      rows,
+      rowsMax,
+      type,
+      value,
       ...other
     } = this.props;
 
-    const { muiFormControl, styleManager } = this.context;
-    const classes = styleManager.render(styleSheet);
+    const { muiFormControl } = this.context;
 
     let error = errorProp;
 
@@ -268,33 +235,193 @@ export default class Input extends Component {
       error = muiFormControl.error;
     }
 
-    const wrapperClassName = classNames(classes.wrapper, {
-      [classes.formControl]: muiFormControl,
-      [classes.inkbar]: !disableUnderline,
-      [classes.focused]: this.state.focused,
-      [classes.error]: error,
-    }, classNameProp);
+    const wrapperClassName = classNames(
+      classes.wrapper,
+      {
+        [classes.disabled]: disabled,
+        [classes.error]: error,
+        [classes.focused]: this.state.focused,
+        [classes.formControl]: muiFormControl,
+        [classes.inkbar]: !disableUnderline,
+        [classes.multilineWrapper]: multiline,
+        [classes.underline]: !disableUnderline,
+      },
+      classNameProp,
+    );
 
-    const inputClassName = classNames(classes.input, {
-      [classes.underline]: !disableUnderline,
-      [classes.disabled]: disabled,
-    }, inputClassNameProp);
+    const inputClassName = classNames(
+      classes.input,
+      {
+        [classes.disabled]: disabled,
+        [classes.singleline]: !multiline,
+        [classes.multiline]: multiline,
+      },
+      inputClassNameProp,
+    );
 
     const required = muiFormControl && muiFormControl.required === true;
 
+    let InputComponent = 'input';
+    let inputProps = {
+      ref: this.handleRefInput,
+      ...inputPropsProp,
+    };
+
+    if (component) {
+      inputProps = {
+        rowsMax,
+        ...inputProps,
+      };
+      InputComponent = component;
+    } else if (multiline) {
+      if (rows && !rowsMax) {
+        inputProps = {
+          ...inputProps,
+        };
+        InputComponent = 'textarea';
+      } else {
+        inputProps = {
+          rowsMax,
+          textareaRef: this.handleRefTextarea,
+          ...inputProps,
+          ref: null,
+        };
+        InputComponent = Textarea;
+      }
+    }
+
     return (
-      <div className={wrapperClassName}>
-        <ComponentProp
-          ref={(c) => { this.input = c; }}
+      <div className={wrapperClassName} {...other}>
+        <InputComponent
           className={inputClassName}
           onBlur={this.handleBlur}
           onFocus={this.handleFocus}
           onChange={this.handleChange}
+          onKeyUp={onKeyUp}
+          onKeyDown={onKeyDown}
           disabled={disabled}
           aria-required={required ? true : undefined}
-          {...other}
+          value={value}
+          id={id}
+          name={name}
+          defaultValue={defaultValue}
+          placeholder={placeholder}
+          type={type}
+          rows={rows}
+          {...inputProps}
         />
       </div>
     );
   }
 }
+
+Input.propTypes = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * The CSS class name of the wrapper element.
+   */
+  className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   * It's an `input` by default.
+   */
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /**
+   * The default value of the `Input` element.
+   */
+  defaultValue: PropTypes.string,
+  /**
+   * If `true`, the input will be disabled.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * If `true`, the input will not have an underline.
+   */
+  disableUnderline: PropTypes.bool,
+  /**
+   * If `true`, the input will indicate an error.
+   */
+  error: PropTypes.bool,
+  /*
+   * @ignore
+   */
+  id: PropTypes.string,
+  /**
+   * The CSS class name of the input element.
+   */
+  inputClassName: PropTypes.string,
+  /**
+   * Properties applied to the `input` element.
+   */
+  inputProps: PropTypes.object,
+  /**
+   * Use that property to pass a ref callback to the native input component.
+   */
+  inputRef: PropTypes.func,
+  /**
+   * If `true`, a textarea element will be rendered.
+   */
+  multiline: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  name: PropTypes.string,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onClean: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onDirty: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyUp: PropTypes.func,
+  /**
+   * @ignore
+   */
+  placeholder: PropTypes.string,
+  /**
+   * Number of rows to display when multiline option is set to true.
+   */
+  rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * Maxium number of rows to display when multiline option is set to true.
+   */
+  rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * Type of the input element. It should be a valid HTML5 input type.
+   */
+  type: PropTypes.string,
+  /**
+   * The input value, required for a controlled component.
+   */
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+};
+
+Input.contextTypes = {
+  muiFormControl: PropTypes.object,
+};
+
+export default withStyles(styleSheet)(Input);

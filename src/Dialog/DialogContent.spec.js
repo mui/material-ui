@@ -1,8 +1,8 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
+import { createShallow } from '../test-utils';
 import DialogContent, { styleSheet } from './DialogContent';
 
 describe('<DialogContent />', () => {
@@ -10,15 +10,13 @@ describe('<DialogContent />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
   it('should render a div', () => {
-    const wrapper = shallow(
-      <DialogContent />,
-    );
-    assert.strictEqual(wrapper.is('div'), true, 'should be a div');
+    const wrapper = shallow(<DialogContent />);
+    assert.strictEqual(wrapper.name(), 'div');
   });
 
   it('should spread custom props on the root node', () => {

@@ -1,82 +1,41 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-export {
-  AppBar,
-} from './AppBar';
+// @flow
+
+export { default as AppBar } from './AppBar';
+export { default as Avatar } from './Avatar';
+export { default as Badge } from './Badge';
+
+export { default as BottomNavigation, BottomNavigationButton } from './BottomNavigation';
+
+export { default as Button } from './Button';
+
+export { default as Card, CardActions, CardContent, CardHeader, CardMedia } from './Card';
+
+export { default as Checkbox } from './Checkbox';
+export { default as Chip } from './Chip';
 
 export {
-  Avatar,
-} from './Avatar';
-
-export {
-  Badge,
-} from './Badge';
-
-export {
-  BottomNavigation,
-  BottomNavigationButton,
-} from './BottomNavigation';
-
-export {
-  Button,
-} from './Button';
-
-export {
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  CardMedia,
-} from './Card';
-
-export {
-  Checkbox,
-} from './Checkbox';
-
-export {
-  Chip,
-} from './Chip';
-
-export {
-  Dialog,
+  default as Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
 } from './Dialog';
 
-export {
-  Divider,
-} from './Divider';
+export { default as Divider } from './Divider';
+export { default as Drawer } from './Drawer';
+
+export { FormControl, FormGroup, FormLabel } from './Form';
+
+export { default as Hidden } from './Hidden';
+export { default as Icon } from './Icon';
+export { default as IconButton } from './IconButton';
+
+export { default as Input, InputLabel } from './Input';
+
+export { default as Grid } from './Grid';
 
 export {
-  Drawer,
-} from './Drawer';
-
-export {
-  FormControl,
-  FormGroup,
-  FormLabel,
-} from './Form';
-
-export {
-  Icon,
-} from './Icon';
-
-export {
-  IconButton,
-} from './IconButton';
-
-export {
-  Input,
-  InputLabel,
-} from './Input';
-
-export {
-   Layout,
-} from './Layout';
-
-export {
-  List,
+  default as List,
   ListItem,
   ListItemAvatar,
   ListItemIcon,
@@ -85,46 +44,22 @@ export {
   ListSubheader,
 } from './List';
 
-export {
-  Menu,
-  MenuItem,
-  MenuList,
-} from './Menu';
+export { default as Menu, MenuItem, MenuList } from './Menu';
+
+export { default as Paper } from './Paper';
+
+export { CircularProgress, LinearProgress } from './Progress';
+
+export { default as Radio, RadioGroup } from './Radio';
+
+export { MuiThemeProvider } from './styles';
+
+export { default as SvgIcon } from './SvgIcon';
+
+export { default as Switch, LabelSwitch } from './Switch';
 
 export {
-  Paper,
-} from './Paper';
-
-export {
-  CircularProgress,
-  LinearProgress,
-} from './Progress';
-
-export {
-  Radio,
-  RadioGroup,
-} from './Radio';
-
-export {
-  Ripple,
-  TouchRipple,
-} from './Ripple';
-
-export {
- MuiThemeProvider,
-} from './styles';
-
-export {
-  SvgIcon,
-} from './SvgIcon';
-
-export {
-  Switch,
-  LabelSwitch,
-} from './Switch';
-
-export {
-  Table,
+  default as Table,
   TableBody,
   TableCell,
   TableHead,
@@ -132,19 +67,10 @@ export {
   TableSortLabel,
 } from './Table';
 
-export {
-  Tab,
-  Tabs,
-} from './Tabs';
+export { default as Tabs, Tab } from './Tabs';
 
-export {
-  Text,
-} from './Text';
+export { default as Typography } from './Typography';
 
-export {
-  TextField,
-} from './TextField';
+export { default as TextField, TextFieldLabel } from './TextField';
 
-export {
-  Toolbar,
-} from './Toolbar';
+export { default as Toolbar } from './Toolbar';

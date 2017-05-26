@@ -1,8 +1,8 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createMount } from 'src/test-utils';
+import { createShallow, createMount } from '../test-utils';
 import TabScrollButton, { styleSheet } from './TabScrollButton';
 import ButtonBase from '../internal/ButtonBase';
 import KeyboardArrowLeft from '../svg-icons/keyboard-arrow-left';
@@ -14,7 +14,7 @@ describe('<TabScrollButton />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
     mount = createMount();
   });
@@ -25,9 +25,7 @@ describe('<TabScrollButton />', () => {
 
   describe('prop: visible', () => {
     it('should render as a button with the root class', () => {
-      const wrapper = shallow(
-        <TabScrollButton visible />,
-      );
+      const wrapper = shallow(<TabScrollButton visible />);
 
       assert.strictEqual(wrapper.is(ButtonBase), true, 'should be a button');
       assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
@@ -36,20 +34,16 @@ describe('<TabScrollButton />', () => {
 
   describe('prop: !visible', () => {
     it('should render as a div with root class', () => {
-      const wrapper = shallow(
-        <TabScrollButton visible={false} />,
-      );
+      const wrapper = shallow(<TabScrollButton visible={false} />);
 
-      assert.strictEqual(wrapper.is('div'), true, 'should be a div');
+      assert.strictEqual(wrapper.name(), 'div');
       assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     });
   });
 
   describe('prop: className', () => {
     it('should render with the user and root classes', () => {
-      const wrapper = shallow(
-        <TabScrollButton className="woof" />,
-      );
+      const wrapper = shallow(<TabScrollButton className="woof" />);
       assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
       assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     });
@@ -57,18 +51,17 @@ describe('<TabScrollButton />', () => {
 
   describe('prop: direction', () => {
     it('should render with the left icon', () => {
-      const wrapper = mount(
-        <TabScrollButton direction={'left'} visible />,
-      );
+      const wrapper = mount(<TabScrollButton direction={'left'} visible />);
       assert.strictEqual(wrapper.childAt(0).is(KeyboardArrowLeft), true, 'should be the left icon');
     });
 
     it('should render with the right icon', () => {
-      const wrapper = mount(
-        <TabScrollButton direction={'right'} visible />,
+      const wrapper = mount(<TabScrollButton direction={'right'} visible />);
+      assert.strictEqual(
+        wrapper.childAt(0).is(KeyboardArrowRight),
+        true,
+        'should be the right icon',
       );
-      assert.strictEqual(wrapper.childAt(0).is(KeyboardArrowRight), true,
-        'should be the right icon');
     });
   });
 });

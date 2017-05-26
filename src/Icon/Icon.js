@@ -1,47 +1,41 @@
 // @flow weak
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiIcon', (theme) => {
-  const { palette } = theme;
-  return {
-    root: {
-      userSelect: 'none',
-    },
-    accent: {
-      color: palette.accent.A200,
-    },
-    action: {
-      color: palette.action.active,
-    },
-    contrast: {
-      color: palette.getContrastText(palette.primary[500]),
-    },
-    disabled: {
-      color: palette.action.disabled,
-    },
-    error: {
-      color: palette.error[500],
-    },
-    primary: {
-      color: palette.primary[500],
-    },
-  };
-});
+export const styleSheet = createStyleSheet('MuiIcon', theme => ({
+  root: {
+    userSelect: 'none',
+  },
+  accent: {
+    color: theme.palette.accent.A200,
+  },
+  action: {
+    color: theme.palette.action.active,
+  },
+  contrast: {
+    color: theme.palette.getContrastText(theme.palette.primary[500]),
+  },
+  disabled: {
+    color: theme.palette.action.disabled,
+  },
+  error: {
+    color: theme.palette.error[500],
+  },
+  primary: {
+    color: theme.palette.primary[500],
+  },
+}));
 
-/**
- * ```jsx
- * <Icon>account_circle</Icon>
- * ```
- */
-function Icon(props, context) {
+function Icon(props) {
   const {
     accent,
     action,
     children,
+    classes,
     className: classNameProp,
     contrast,
     disabled,
@@ -50,7 +44,6 @@ function Icon(props, context) {
     ...other
   } = props;
 
-  const classes = context.styleManager.render(styleSheet);
   const className = classNames(
     'material-icons',
     classes.root,
@@ -62,10 +55,11 @@ function Icon(props, context) {
       [classes.error]: error,
       [classes.primary]: primary,
     },
-    classNameProp);
+    classNameProp,
+  );
 
   return (
-    <span className={className} {...other}>
+    <span className={className} aria-hidden="true" {...other}>
       {children}
     </span>
   );
@@ -85,7 +79,11 @@ Icon.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
   /**
@@ -106,10 +104,6 @@ Icon.propTypes = {
   primary: PropTypes.bool,
 };
 
-Icon.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
-
 Icon.defaultProps = {
   accent: false,
   action: false,
@@ -121,4 +115,4 @@ Icon.defaultProps = {
 
 Icon.muiName = 'Icon';
 
-export default Icon;
+export default withStyles(styleSheet)(Icon);

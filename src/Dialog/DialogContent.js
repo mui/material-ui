@@ -4,10 +4,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiDialogContent', () => {
-  const gutter = 24;
+export const styleSheet = createStyleSheet('MuiDialogContent', theme => {
+  const gutter = theme.spacing.unit * 3;
   return {
     root: {
       flex: '1 1 auto',
@@ -20,14 +20,8 @@ export const styleSheet = createStyleSheet('MuiDialogContent', () => {
   };
 });
 
-export default function DialogContent(props, context) {
-  const {
-    children,
-    className,
-    ...other
-  } = props;
-
-  const classes = context.styleManager.render(styleSheet);
+function DialogContent(props) {
+  const { classes, children, className, ...other } = props;
 
   return (
     <div className={classNames(classes.root, className)} {...other}>
@@ -42,11 +36,13 @@ DialogContent.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
 };
 
-DialogContent.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+export default withStyles(styleSheet)(DialogContent);

@@ -1,14 +1,7 @@
-// @flow weak
+// @flow
 
 import React from 'react';
-import {
-  applyRouterMiddleware,
-  browserHistory,
-  Router,
-  Route,
-  IndexRoute,
-  IndexRedirect,
-} from 'react-router';
+import { applyRouterMiddleware, browserHistory, Router, Route, IndexRoute } from 'react-router';
 import { useScroll } from 'react-router-scroll';
 import { kebabCase, titleize } from 'docs/src/utils/helpers';
 import AppFrame from 'docs/src/components/AppFrame';
@@ -19,19 +12,10 @@ import { componentAPIs, requireMarkdown, demos, requireDemo } from 'docs/src/com
 
 export default function AppRouter() {
   return (
-    <Router
-      history={browserHistory}
-      render={applyRouterMiddleware(useScroll())}
-    >
+    <Router history={browserHistory} render={applyRouterMiddleware(useScroll())}>
       <Route title="Material UI" path="/" component={AppFrame}>
         <IndexRoute dockDrawer component={Home} title={null} />
-        <Route
-          title="Getting Started"
-          path="/getting-started"
-          nav
-          component={AppContent}
-        >
-          <IndexRedirect to="installation" />
+        <Route title="Getting Started" path="/getting-started" nav component={AppContent}>
           <Route
             title="Installation"
             path="/getting-started/installation"
@@ -43,13 +27,6 @@ export default function AppRouter() {
             title="Usage"
             path="/getting-started/usage"
             content={requireMarkdown('./getting-started/usage.md')}
-            component={MarkdownDocs}
-            nav
-          />
-          <Route
-            title="Server Rendering"
-            path="/getting-started/server-rendering"
-            content={requireMarkdown('./getting-started/server-rendering.md')}
             component={MarkdownDocs}
             nav
           />
@@ -68,13 +45,14 @@ export default function AppRouter() {
             nav
           />
         </Route>
-        <Route
-          title="Customization"
-          path="/customization"
-          nav
-          component={AppContent}
-        >
-          <IndexRedirect to="themes" />
+        <Route title="Customization" path="/customization" nav component={AppContent}>
+          <Route
+            title="Overrides"
+            path="/customization/overrides"
+            content={requireMarkdown('./customization/overrides.md')}
+            component={MarkdownDocs}
+            nav
+          />
           <Route
             title="Themes"
             path="/customization/themes"
@@ -83,9 +61,9 @@ export default function AppRouter() {
             nav
           />
           <Route
-            title="Composition"
-            path="/customization/composition"
-            content={requireMarkdown('./customization/composition.md')}
+            title="CSS in JS"
+            path="/customization/css-in-js"
+            content={requireMarkdown('./customization/css-in-js.md')}
             component={MarkdownDocs}
             nav
           />
@@ -97,12 +75,30 @@ export default function AppRouter() {
             nav
           />
         </Route>
-        <Route
-          title="Style"
-          path="/style"
-          nav
-          component={AppContent}
-        >
+        <Route title="Guides" path="/guides" nav component={AppContent}>
+          <Route
+            title="Composition"
+            path="/guides/composition"
+            content={requireMarkdown('./guides/composition.md')}
+            component={MarkdownDocs}
+            nav
+          />
+          <Route
+            title="Minimizing Bundle Size"
+            path="/guides/minimizing-bundle-size"
+            content={requireMarkdown('./guides/minimizing-bundle-size.md')}
+            component={MarkdownDocs}
+            nav
+          />
+          <Route
+            title="Server Rendering"
+            path="/guides/server-rendering"
+            content={requireMarkdown('./guides/server-rendering.md')}
+            component={MarkdownDocs}
+            nav
+          />
+        </Route>
+        <Route title="Style" path="/style" nav component={AppContent}>
           <Route
             title="Color"
             path="/style/color"
@@ -125,27 +121,31 @@ export default function AppRouter() {
             nav
           />
         </Route>
-        <Route
-          title="Layout"
-          path="/layout"
-          nav
-          component={AppContent}
-        >
+        <Route title="Layout" path="/layout" nav component={AppContent}>
           <Route
-            title="Responsive UI"
-            path="/layout/responsive-ui"
-            content={requireMarkdown('./layout/responsive-ui.md')}
+            title="Basics"
+            path="/layout/basics"
+            content={requireMarkdown('./layout/basics.md')}
+            component={MarkdownDocs}
+            nav
+          />
+          <Route
+            title="Grid"
+            path="/layout/grid"
+            content={requireMarkdown('./layout/grid.md')}
+            component={MarkdownDocs}
+            nav
+          />
+          <Route
+            title="Hidden"
+            path="/layout/hidden"
+            content={requireMarkdown('./layout/hidden.md')}
             component={MarkdownDocs}
             nav
           />
         </Route>
-        <Route
-          title="Component Demos"
-          path="/component-demos"
-          nav
-          component={AppContent}
-        >
-          {demos.map(((demo) => {
+        <Route title="Component Demos" path="/component-demos" nav component={AppContent}>
+          {demos.map(demo => {
             return (
               <Route
                 key={demo.name}
@@ -157,15 +157,10 @@ export default function AppRouter() {
                 nav
               />
             );
-          }))}
+          })}
         </Route>
-        <Route
-          title="Component API"
-          path="/component-api"
-          nav
-          component={AppContent}
-        >
-          {componentAPIs.map(((componentAPI) => {
+        <Route title="Component API" path="/component-api" nav component={AppContent}>
+          {componentAPIs.map(componentAPI => {
             return (
               <Route
                 key={componentAPI.name}
@@ -177,15 +172,9 @@ export default function AppRouter() {
                 nav
               />
             );
-          }))}
+          })}
         </Route>
-        <Route
-          title="Discover More"
-          path="/discover-more"
-          nav
-          component={AppContent}
-        >
-          <IndexRedirect to="community" />
+        <Route title="Discover More" path="/discover-more" nav component={AppContent}>
           <Route
             title="Community"
             path="/discover-more/community"

@@ -1,20 +1,21 @@
-// @flow weak
+// @flow
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
-import { createStyleSheet } from 'jss-theme-reactor';
-import Text from 'material-ui/Text';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
+import Typography from 'material-ui/Typography';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
 import withWidth, { isWidthUp } from 'material-ui/utils/withWidth';
 import MenuIcon from 'material-ui-icons/Menu';
-import LightbulbOutlineIcon from 'material-ui-icons/LightbulbOutline';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import LightbulbOutline from 'material-ui-icons/LightbulbOutline';
+import Github from 'docs/src/components/Github';
 import AppDrawer from 'docs/src/components/AppDrawer';
 import DemoButton from 'docs/src/components/DemoButton';
+import AppSearch from 'docs/src/components/AppSearch';
 import ApiMenu from 'docs/src/components/ApiMenu';
 
 function getTitle(routes) {
@@ -27,86 +28,65 @@ function getTitle(routes) {
   return null;
 }
 
-const styleSheet = createStyleSheet('AppFrame', (theme) => {
-  return {
-    '@global': {
-      html: {
-        boxSizing: 'border-box',
-      },
-      '*, *:before, *:after': {
-        boxSizing: 'inherit',
-      },
-      body: {
-        margin: 0,
-        background: theme.palette.background.default,
-        fontFamily: theme.typography.fontFamily,
-        color: theme.palette.text.primary,
-        lineHeight: '1.2',
-        overflowX: 'hidden',
-        WebkitFontSmoothing: 'antialiased', // Antialiasing.
-        MozOsxFontSmoothing: 'grayscale', // Antialiasing.
-      },
-      a: {
-        color: theme.palette.accent.A400,
-        textDecoration: 'none',
-      },
-      'a:hover': {
-        textDecoration: 'underline',
-      },
-      img: {
-        maxWidth: '100%',
-        height: 'auto',
-        width: 'auto',
-      },
+const styleSheet = createStyleSheet('AppFrame', theme => ({
+  '@global': {
+    html: {
+      boxSizing: 'border-box',
     },
-    appFrame: {
-      display: 'flex',
-      alignItems: 'stretch',
-      minHeight: '100vh',
-      width: '100%',
+    '*, *:before, *:after': {
+      boxSizing: 'inherit',
     },
-    grow: {
-      flex: '1 1 100%',
+    body: {
+      margin: 0,
+      background: theme.palette.background.default,
+      color: theme.palette.text.primary,
+      lineHeight: '1.2',
+      overflowX: 'hidden',
+      WebkitFontSmoothing: 'antialiased', // Antialiasing.
+      MozOsxFontSmoothing: 'grayscale', // Antialiasing.
     },
-    title: {
-      marginLeft: 24,
-      flex: '0 0 auto',
+    img: {
+      maxWidth: '100%',
+      height: 'auto',
+      width: 'auto',
     },
-    appBar: {
-      left: 'auto',
-      right: 0,
-      transition: theme.transitions.create('width'),
+  },
+  appFrame: {
+    display: 'flex',
+    alignItems: 'stretch',
+    minHeight: '100vh',
+    width: '100%',
+  },
+  grow: {
+    flex: '1 1 auto',
+  },
+  title: {
+    marginLeft: 24,
+    flex: '0 1 auto',
+  },
+  appBar: {
+    left: 'auto',
+    right: 0,
+    transition: theme.transitions.create('width'),
+  },
+  appBarHome: {
+    backgroundColor: 'transparent',
+    boxShadow: 'none',
+  },
+  [theme.breakpoints.up('lg')]: {
+    drawer: {
+      width: '250px',
     },
-    appBarHome: {
-      backgroundColor: 'transparent',
-      boxShadow: 'none',
+    appBarShift: {
+      width: 'calc(100% - 250px)',
     },
-    [theme.breakpoints.up('lg')]: {
-      drawer: {
-        width: '250px',
-      },
-      appBarShift: {
-        width: 'calc(100% - 250px)',
-      },
-      navIconHide: {
-        display: 'none',
-      },
+    navIconHide: {
+      display: 'none',
     },
-  };
-});
+  },
+}));
 
 class AppFrame extends Component {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    dispatch: PropTypes.func.isRequired,
-    routes: PropTypes.array.isRequired,
-    width: PropTypes.string.isRequired,
-  };
-
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
   state = {
     drawerOpen: false,
   };
@@ -124,20 +104,17 @@ class AppFrame extends Component {
   };
 
   render() {
-    const {
-      children,
-      routes,
-      width,
-    } = this.props;
+    const { children, routes, width } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
     const title = getTitle(routes);
 
     let drawerDocked = isWidthUp('lg', width);
     let navIconClassName = classes.icon;
     let appBarClassName = classes.appBar;
 
-    if (title === null) { // home route, don't shift app bar or dock drawer
+    if (title === null) {
+      // home route, don't shift app bar or dock drawer
       drawerDocked = false;
       appBarClassName += ` ${classes.appBarHome}`;
     } else {
@@ -152,16 +129,24 @@ class AppFrame extends Component {
             <IconButton contrast onClick={this.handleDrawerToggle} className={navIconClassName}>
               <MenuIcon />
             </IconButton>
-            {title !== null && (
-              <Text className={classes.title} type="title" colorInherit>
+            {title !== null &&
+              <Typography className={classes.title} type="title" colorInherit noWrap>
                 {title}
-              </Text>
-            )}
+              </Typography>}
             <div className={classes.grow} />
+            <AppSearch />
             <DemoButton routes={routes} />
             <ApiMenu routes={routes} />
-            <IconButton contrast onClick={this.handleToggleShade}>
-              <LightbulbOutlineIcon />
+            <IconButton title="Toggle light/dark theme" contrast onClick={this.handleToggleShade}>
+              <LightbulbOutline />
+            </IconButton>
+            <IconButton
+              component="a"
+              title="GitHub"
+              contrast
+              href="https://github.com/callemall/material-ui/tree/next"
+            >
+              <Github />
             </IconButton>
           </Toolbar>
         </AppBar>
@@ -178,7 +163,12 @@ class AppFrame extends Component {
   }
 }
 
-export default compose(
-  withWidth(),
-  connect(),
-)(AppFrame);
+AppFrame.propTypes = {
+  children: PropTypes.node.isRequired,
+  classes: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  routes: PropTypes.array.isRequired,
+  width: PropTypes.string.isRequired,
+};
+
+export default compose(withStyles(styleSheet), withWidth(), connect())(AppFrame);

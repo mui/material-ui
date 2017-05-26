@@ -30,9 +30,9 @@ if (paths.length > 1) {
 }
 
 glob(pattern, {}, (err, files) => {
-  files.forEach((file) => mocha.addFile(file));
+  files.forEach(file => mocha.addFile(file));
 
-  mocha.run((failures) => {
+  mocha.run(failures => {
     process.on('exit', () => {
       process.exit(failures);
     });

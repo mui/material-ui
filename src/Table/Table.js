@@ -4,60 +4,28 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiTable', () => {
-  return {
-    root: {
-      width: '100%',
-      borderCollapse: 'collapse',
-      borderSpacing: 0,
-      overflow: 'hidden',
-    },
-  };
-});
+export const styleSheet = createStyleSheet('MuiTable', theme => ({
+  root: {
+    fontFamily: theme.typography.fontFamily,
+    width: '100%',
+    borderCollapse: 'collapse',
+    borderSpacing: 0,
+    overflow: 'hidden',
+  },
+}));
 
-/**
- * A material table root element.
- *
- * ```jsx
- * <Table>
- *   <TableHeader>...</TableHeader>
- *   <TableBody>...</TableBody>
- * </Table>
- * ```
- */
-export default class Table extends Component {
-  static propTypes = {
-    /**
-     * The content of the table, normally `TableHeader` and `TableBody`.
-     */
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-  };
-
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
-  static childContextTypes = { table: PropTypes.object };
-
-  getChildContext() { // eslint-disable-line class-methods-use-this
+class Table extends Component {
+  getChildContext() {
+    // eslint-disable-line class-methods-use-this
     return {
       table: {},
     };
   }
 
   render() {
-    const {
-      className: classNameProp,
-      children,
-      ...other
-    } = this.props;
-    const classes = this.context.styleManager.render(styleSheet);
+    const { classes, className: classNameProp, children, ...other } = this.props;
     const className = classNames(classes.root, classNameProp);
 
     return (
@@ -67,3 +35,24 @@ export default class Table extends Component {
     );
   }
 }
+
+Table.propTypes = {
+  /**
+   * The content of the table, normally `TableHeader` and `TableBody`.
+   */
+  children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+};
+
+Table.childContextTypes = {
+  table: PropTypes.object,
+};
+
+export default withStyles(styleSheet)(Table);

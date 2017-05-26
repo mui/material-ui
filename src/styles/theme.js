@@ -9,17 +9,17 @@ import zIndex from './zIndex';
 import createMixins from './mixins';
 import spacing from './spacing';
 
-export function createMuiTheme(config = {}) {
+function createMuiTheme(options = {}) {
   const {
     palette = createPalette(),
     breakpoints = createBreakpoints(),
     mixins = createMixins(breakpoints, spacing),
     typography = createTypography(palette),
     ...more
-  } = config;
+  } = options;
 
-  const theme = {
-    dir: 'ltr',
+  return {
+    direction: 'ltr',
     palette,
     typography,
     shadows,
@@ -30,8 +30,6 @@ export function createMuiTheme(config = {}) {
     zIndex,
     ...more,
   };
-
-  return theme;
 }
 
 export default createMuiTheme;

@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Perf from 'react-addons-perf';
 import { find } from 'src/utils/helpers';
 import randomWords from 'random-words';
@@ -10,7 +11,6 @@ import randomWords from 'random-words';
  * WIP Component
  */
 export default class TimeWaster extends Component {
-
   static propTypes = {
     children: PropTypes.any,
     loops: PropTypes.number,
@@ -37,15 +37,18 @@ export default class TimeWaster extends Component {
 
   setTestProp(cb = () => {}) {
     const { testProp, testFn } = this.props;
-    this.setState({
-      [testProp]: testFn(),
-    }, cb);
+    this.setState(
+      {
+        [testProp]: testFn(),
+      },
+      cb,
+    );
   }
 
   runTest() {
     let i = 0;
     Perf.start();
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       const execTest = () => {
         i += 1;
         setTimeout(() => {
@@ -67,11 +70,13 @@ export default class TimeWaster extends Component {
 
     const summary = {};
 
-    summary.hasWastedTime = (component) => {
-      const result = find(wasted, (n) => n.key.indexOf(`> ${component}`));
+    summary.hasWastedTime = component => {
+      const result = find(wasted, n => n.key.indexOf(`> ${component}`));
       if (result) {
-        return `${result.key} wasted ${result.inclusiveRenderDuration}ms across ${
-          result.renderCount} renders`;
+        return (
+          `${result.key} wasted ${result.inclusiveRenderDuration}ms ` +
+          `across ${result.renderCount} renders`
+        );
       }
       return false;
     };

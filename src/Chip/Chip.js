@@ -5,29 +5,28 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import keycode from 'keycode';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 import DeleteIcon from '../svg-icons/cancel';
 import { emphasize, fade } from '../styles/colorManipulator';
 
-export const styleSheet = createStyleSheet('MuiChip', (theme) => {
-  const { palette, shadows, transitions } = theme;
+export const styleSheet = createStyleSheet('MuiChip', theme => {
   const height = 32;
-  const backgroundColor = emphasize(palette.background.default, 0.12);
-  const deleteIconColor = fade(palette.text.primary, 0.26);
+  const backgroundColor = emphasize(theme.palette.background.default, 0.12);
+  const deleteIconColor = fade(theme.palette.text.primary, 0.26);
   return {
     root: {
-      fontFamily: 'inherit', // Override `button` default system font
+      fontFamily: theme.typography.fontFamily,
       fontSize: 13,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       height,
-      color: palette.getContrastText(backgroundColor),
+      color: theme.palette.getContrastText(backgroundColor),
       backgroundColor,
       borderRadius: height / 2,
       whiteSpace: 'nowrap',
       width: 'fit-content',
-      transition: transitions.create(),
+      transition: theme.transitions.create(),
       // label will inherit this from root, then `clickable` class overrides this for both
       cursor: 'default',
       outline: 'none', // No outline on focused element in Chrome (as triggered by tabIndex prop)
@@ -39,7 +38,7 @@ export const styleSheet = createStyleSheet('MuiChip', (theme) => {
         backgroundColor: emphasize(backgroundColor, 0.08),
       },
       '&:active': {
-        boxShadow: shadows[1],
+        boxShadow: theme.shadows[1],
         backgroundColor: emphasize(backgroundColor, 0.12),
       },
       cursor: 'pointer',
@@ -82,14 +81,11 @@ export const styleSheet = createStyleSheet('MuiChip', (theme) => {
 
 /**
  * Chips represent complex entities in small blocks, such as a contact.
- *
- * ```jsx
- * <Chip avatar={<Avatar />} label="Label text" />
- * ```
  */
-export default function Chip(props, context) {
+function Chip(props) {
   const {
     avatar: avatarProp,
+    classes,
     className: classNameProp,
     deleteIconClassName: deleteIconClassNameProp,
     label,
@@ -103,13 +99,13 @@ export default function Chip(props, context) {
 
   let chipRef;
 
-  const handleDeleteIconClick = (event) => {
+  const handleDeleteIconClick = event => {
     // Stop the event from bubbling up to the `Chip`
     event.stopPropagation();
     onRequestDelete(event);
   };
 
-  const handleKeyDown = (event) => {
+  const handleKeyDown = event => {
     const key = keycode(event);
 
     if (onClick && (key === 'space' || key === 'enter')) {
@@ -128,7 +124,6 @@ export default function Chip(props, context) {
     }
   };
 
-  const classes = context.styleManager.render(styleSheet);
   const className = classNames(
     classes.root,
     { [classes.clickable]: onClick },
@@ -151,7 +146,7 @@ export default function Chip(props, context) {
     });
   }
 
-  const tabIndex = (onClick || onRequestDelete) ? tabIndexProp : -1;
+  const tabIndex = onClick || onRequestDelete ? tabIndexProp : -1;
 
   return (
     <button
@@ -159,7 +154,9 @@ export default function Chip(props, context) {
       onClick={onClick}
       tabIndex={tabIndex}
       onKeyDown={handleKeyDown}
-      ref={(c) => { chipRef = c; }}
+      ref={node => {
+        chipRef = node;
+      }}
       {...other}
     >
       {avatar}
@@ -175,7 +172,11 @@ Chip.propTypes = {
    */
   avatar: PropTypes.node,
   /**
-   * The CSS `className` of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
   /**
@@ -210,6 +211,4 @@ Chip.propTypes = {
   tabIndex: PropTypes.number,
 };
 
-Chip.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+export default withStyles(styleSheet)(Chip);

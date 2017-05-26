@@ -2,30 +2,48 @@
 
 import React, { Component } from 'react';
 import EventListener from 'react-event-listener';
-import createHelper from 'recompose/createHelper';
 import createEagerFactory from 'recompose/createEagerFactory';
+import wrapDisplayName from 'recompose/wrapDisplayName';
 import customPropTypes from '../utils/customPropTypes';
 import { keys } from '../styles/breakpoints';
 
-export const isWidthUp = (baseWidth, width) => (
-  keys.indexOf(baseWidth) <= keys.indexOf(width)
-);
+/**
+ * By default, returns true if screen width is the same or greater than the given breakpoint.
+ * @param screenWidth
+ * @param breakpoint
+ * @param inclusive - defaults to true
+ */
+export const isWidthUp = (breakpoint, screenWidth, inclusive = true) => {
+  if (inclusive) {
+    return keys.indexOf(breakpoint) <= keys.indexOf(screenWidth);
+  }
+  return keys.indexOf(breakpoint) < keys.indexOf(screenWidth);
+};
 
-export const isWidthDown = (baseWidth, width) => (
-  keys.indexOf(baseWidth) > keys.indexOf(width)
-);
+/**
+ * By default, returns true if screen width is the same or less than the given breakpoint.
+ * @param screenWidth
+ * @param breakpoint
+ * @param inclusive - defaults to true
+ */
+export const isWidthDown = (breakpoint, screenWidth, inclusive = true) => {
+  if (inclusive) {
+    return keys.indexOf(screenWidth) <= keys.indexOf(breakpoint);
+  }
+  return keys.indexOf(screenWidth) < keys.indexOf(breakpoint);
+};
 
 function withWidth(options = {}) {
   const {
     resizeInterval = 166, // Corresponds to 10 frames at 60 Hz.
   } = options;
 
-  return (BaseComponent) => {
+  return BaseComponent => {
     const factory = createEagerFactory(BaseComponent);
 
-    return class WithWidth extends Component {
+    class Width extends Component {
       static contextTypes = {
-        theme: customPropTypes.muiRequired,
+        styleManager: customPropTypes.muiRequired,
       };
 
       state = {
@@ -50,7 +68,7 @@ function withWidth(options = {}) {
       };
 
       updateWidth(innerWidth) {
-        const breakpoints = this.context.theme.breakpoints;
+        const breakpoints = this.context.styleManager.theme.breakpoints;
         let width = null;
 
         /**
@@ -108,8 +126,14 @@ function withWidth(options = {}) {
           </EventListener>
         );
       }
-    };
+    }
+
+    if (process.env.NODE_ENV !== 'production') {
+      Width.displayName = wrapDisplayName(BaseComponent, 'withWidth');
+    }
+
+    return Width;
   };
 }
 
-export default createHelper(withWidth, 'withWidth');
+export default withWidth;

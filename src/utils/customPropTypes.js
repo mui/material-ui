@@ -1,5 +1,4 @@
-/* eslint-disable prefer-template */
-/* eslint-disable import/no-mutable-exports*/
+/* eslint-disable prefer-template, import/no-mutable-exports */
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import PropTypes from 'prop-types';
@@ -37,11 +36,17 @@ if (process.env.NODE_ENV !== 'production') {
     ...args
   ) => {
     const error = PropTypes.object.isRequired(
-      props, propName, componentName, location, propFullName, ...args,
+      props,
+      propName,
+      componentName,
+      location,
+      propFullName,
+      ...args,
     );
 
     if (error) {
-      error.message = 'You need to provide a theme to Material-UI. ' +
+      error.message =
+        'You need to provide a theme to Material-UI. ' +
         'Wrap the root component in a `<MuiThemeProvider />`. ' +
         '\n' +
         'Have a look at http://www.material-ui.com/#/get-started/usage for an example.' +

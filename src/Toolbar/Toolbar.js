@@ -4,40 +4,36 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiToolbar', (theme) => {
-  return {
+export const styleSheet = createStyleSheet('MuiToolbar', theme => ({
+  root: {
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    height: 56,
+  },
+  gutters: theme.mixins.gutters({}),
+  [theme.breakpoints.up('sm')]: {
     root: {
-      position: 'relative',
-      display: 'flex',
-      alignItems: 'center',
-      height: 56,
+      height: 64,
     },
-    gutters: theme.mixins.gutters({}),
-    [theme.breakpoints.up('sm')]: {
-      root: {
-        height: 64,
-      },
+  },
+}));
+
+function Toolbar(props) {
+  const { children, classes, className: classNameProp, disableGutters, ...other } = props;
+
+  const className = classNames(
+    classes.root,
+    {
+      [classes.gutters]: !disableGutters,
     },
-  };
-});
-
-export default function Toolbar(props, context) {
-  const {
-    children,
-    className: classNameProp,
-    disableGutters,
-    ...other
-  } = props;
-
-  const classes = context.styleManager.render(styleSheet);
-  const className = classNames(classes.root, {
-    [classes.gutters]: !disableGutters,
-  }, classNameProp);
+    classNameProp,
+  );
 
   return (
-    <div className={className} {...other} >
+    <div className={className} {...other}>
       {children}
     </div>
   );
@@ -49,7 +45,11 @@ Toolbar.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
   /**
@@ -62,6 +62,4 @@ Toolbar.defaultProps = {
   disableGutters: false,
 };
 
-Toolbar.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+export default withStyles(styleSheet)(Toolbar);

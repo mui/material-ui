@@ -1,18 +1,18 @@
-// @flow weak
+// @flow
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 
-const styleSheet = createStyleSheet('FlatButtons', (theme) => ({
+const styleSheet = createStyleSheet('FlatButtons', theme => ({
   button: {
     margin: theme.spacing.unit,
   },
 }));
 
-export default function FlatButtons(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function FlatButtons(props) {
+  const classes = props.classes;
   return (
     <div>
       <Button className={classes.button}>Default</Button>
@@ -24,6 +24,8 @@ export default function FlatButtons(props, context) {
   );
 }
 
-FlatButtons.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+FlatButtons.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(FlatButtons);

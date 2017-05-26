@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React, { Component } from 'react';
 import { LabelSwitch } from 'material-ui/Switch';
@@ -27,4 +27,3 @@ export default class SwitchLabels extends Component {
     );
   }
 }
-

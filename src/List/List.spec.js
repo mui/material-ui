@@ -1,8 +1,8 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
+import { createShallow } from '../test-utils';
 import List, { styleSheet } from './List';
 import ListSubheader from './ListSubheader';
 
@@ -11,22 +11,18 @@ describe('<List />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
   it('should render a div', () => {
-    const wrapper = shallow(
-      <List />,
-    );
-    assert.strictEqual(wrapper.is('div'), true, 'should be a div');
+    const wrapper = shallow(<List />);
+    assert.strictEqual(wrapper.name(), 'div');
   });
 
   it('should render a ul', () => {
-    const wrapper = shallow(
-      <List component="ul" />,
-    );
-    assert.strictEqual(wrapper.is('ul'), true, 'should be a ul');
+    const wrapper = shallow(<List component="ul" />);
+    assert.strictEqual(wrapper.name(), 'ul');
   });
 
   it('should render with the user, root and padding classes', () => {
@@ -39,16 +35,22 @@ describe('<List />', () => {
   it('should disable the padding', () => {
     const wrapper = shallow(<List disablePadding />);
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
-    assert.strictEqual(wrapper.hasClass(classes.padding), false,
-      'should not have the padding class');
+    assert.strictEqual(
+      wrapper.hasClass(classes.padding),
+      false,
+      'should not have the padding class',
+    );
   });
 
   describe('prop: subheader', () => {
     it('should render with subheader class', () => {
       const wrapper = shallow(<List subheader={<ListSubheader>Title</ListSubheader>} />);
       assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
-      assert.strictEqual(wrapper.hasClass(classes.subheader), true,
-        'should have the subheader class');
+      assert.strictEqual(
+        wrapper.hasClass(classes.subheader),
+        true,
+        'should have the subheader class',
+      );
     });
 
     it('should render ListSubheader', () => {
@@ -60,12 +62,18 @@ describe('<List />', () => {
   describe('context: dense', () => {
     it('should forward the context', () => {
       const wrapper1 = shallow(<List />);
-      assert.strictEqual(wrapper1.instance().getChildContext().dense, false,
-        'dense should be false by default');
+      assert.strictEqual(
+        wrapper1.instance().getChildContext().dense,
+        false,
+        'dense should be false by default',
+      );
 
       const wrapper2 = shallow(<List dense />);
-      assert.strictEqual(wrapper2.instance().getChildContext().dense, true,
-        'dense should be true when set');
+      assert.strictEqual(
+        wrapper2.instance().getChildContext().dense,
+        true,
+        'dense should be true when set',
+      );
     });
   });
 });

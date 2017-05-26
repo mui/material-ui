@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 import { create } from 'jss';
 import { createStyleManager } from 'jss-theme-reactor/styleManager';
 import jssPreset from 'jss-preset-default';
-import { createMuiTheme } from './theme';
+import createMuiTheme from './theme';
 
 export const MUI_SHEET_ORDER = [
-  'MuiLayout',
+  'MuiTextarea',
+  'MuiInput',
+  'MuiGrid',
   'MuiCollapse',
   'MuiFade',
   'MuiSlide',
@@ -24,7 +26,7 @@ export const MUI_SHEET_ORDER = [
   'MuiFormGroup',
   'MuiFormHelperText',
 
-  'MuiText',
+  'MuiTypography',
   'MuiPaper',
   'MuiDivider',
 
@@ -98,22 +100,23 @@ export const MUI_SHEET_ORDER = [
 
 export default class MuiThemeProvider extends Component {
   static propTypes = {
-    children: PropTypes.node.isRequired,
+    children: PropTypes.element.isRequired,
     styleManager: PropTypes.object,
     theme: PropTypes.object,
   };
 
   static childContextTypes = {
     styleManager: PropTypes.object.isRequired,
-    theme: PropTypes.object.isRequired,
   };
 
   static createDefaultContext(props = {}) {
     const theme = props.theme || createMuiTheme();
-    const styleManager = props.styleManager || createStyleManager({
-      theme,
-      jss: create(jssPreset()),
-    });
+    const styleManager =
+      props.styleManager ||
+      createStyleManager({
+        theme,
+        jss: create(jssPreset()),
+      });
 
     if (!styleManager.sheetOrder) {
       styleManager.setSheetOrder(MUI_SHEET_ORDER);
@@ -123,10 +126,8 @@ export default class MuiThemeProvider extends Component {
   }
 
   getChildContext() {
-    const { theme, styleManager } = this;
     return {
-      theme,
-      styleManager,
+      styleManager: this.styleManager,
     };
   }
 

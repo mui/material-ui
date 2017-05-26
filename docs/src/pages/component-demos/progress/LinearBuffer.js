@@ -1,22 +1,23 @@
-// @flow weak
+// @flow
 
 import React, { Component } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import { LinearProgress } from 'material-ui/Progress';
 
-const styleSheet = createStyleSheet('LinearBuffer', () => ({
+const styleSheet = createStyleSheet('LinearBuffer', {
   root: {
     width: '100%',
     marginTop: 30,
   },
-}));
+});
 
-export default class LinearBuffer extends Component {
+class LinearBuffer extends Component {
+  timer: number;
   state = {
     completed: 0,
     buffer: 10,
-  }
+  };
 
   componentDidMount() {
     this.timer = setInterval(this.progress, 500);
@@ -25,8 +26,6 @@ export default class LinearBuffer extends Component {
   componentWillUnmount() {
     clearInterval(this.timer);
   }
-
-  timer: number
 
   progress = () => {
     const { completed } = this.state;
@@ -37,10 +36,10 @@ export default class LinearBuffer extends Component {
       const diff2 = Math.random() * 10;
       this.setState({ completed: completed + diff, buffer: completed + diff + diff2 });
     }
-  }
+  };
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
     const { completed, buffer } = this.state;
     return (
       <div className={classes.root}>
@@ -50,6 +49,8 @@ export default class LinearBuffer extends Component {
   }
 }
 
-LinearBuffer.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+LinearBuffer.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(LinearBuffer);

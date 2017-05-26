@@ -1,9 +1,9 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount } from 'src/test-utils';
+import { createShallow, createMount } from '../test-utils';
 import BottomNavigation, { styleSheet } from './BottomNavigation';
 import BottomNavigationButton from './BottomNavigationButton';
 import Icon from '../Icon';
@@ -15,7 +15,7 @@ describe('<BottomNavigation />', () => {
   const icon = <Icon>restore</Icon>;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
     mount = createMount();
   });
@@ -30,7 +30,7 @@ describe('<BottomNavigation />', () => {
         <BottomNavigationButton icon={icon} />
       </BottomNavigation>,
     );
-    assert.strictEqual(wrapper.is('div'), true, 'should be a div');
+    assert.strictEqual(wrapper.name(), 'div');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
   });
 
@@ -46,10 +46,7 @@ describe('<BottomNavigation />', () => {
 
   it('should pass selected prop to children', () => {
     const wrapper = shallow(
-      <BottomNavigation
-        showLabels
-        index={1}
-      >
+      <BottomNavigation showLabels index={1}>
         <BottomNavigationButton icon={icon} />
         <BottomNavigationButton icon={icon} />
       </BottomNavigation>,
@@ -60,10 +57,7 @@ describe('<BottomNavigation />', () => {
 
   it('should overwrite parent showLabel prop', () => {
     const wrapper = shallow(
-      <BottomNavigation
-        showLabels
-        index={1}
-      >
+      <BottomNavigation showLabels index={1}>
         <BottomNavigationButton icon={icon} />
         <BottomNavigationButton icon={icon} showLabel={false} />
       </BottomNavigation>,
@@ -75,11 +69,7 @@ describe('<BottomNavigation />', () => {
   it('should pass selected prop to children', () => {
     const handleChange = spy();
     const wrapper = mount(
-      <BottomNavigation
-        showLabels
-        index={0}
-        onChange={handleChange}
-      >
+      <BottomNavigation showLabels index={0} onChange={handleChange}>
         <BottomNavigationButton icon={icon} />
         <BottomNavigationButton icon={icon} />
       </BottomNavigation>,

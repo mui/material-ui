@@ -4,74 +4,63 @@ import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 import ButtonBase from '../internal/ButtonBase';
 import Icon from '../Icon';
 
-export const styleSheet = createStyleSheet('MuiIconButton', (theme) => {
-  const { palette, transitions } = theme;
-
-  return {
-    iconButton: {
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      textAlign: 'center',
-      flex: '0 0 auto',
-      fontSize: 24,
-      width: 48,
-      height: 48,
-      padding: 0,
-      borderRadius: '50%',
-      backgroundColor: 'transparent',
-      color: palette.action.active,
-      zIndex: 1,
-      transition: transitions.create('background-color', {
-        duration: transitions.duration.shortest,
-      }),
-    },
-    disabled: {
-      color: palette.action.disabled,
-    },
-    accent: {
-      color: palette.accent.A200,
-    },
-    contrast: {
-      color: palette.getContrastText(palette.primary[500]),
-    },
-    label: {
-      width: '100%',
-      display: 'flex',
-      alignItems: 'inherit',
-      justifyContent: 'inherit',
-    },
-    icon: {
-      width: '1em',
-      height: '1em',
-    },
-    keyboardFocused: {
-      backgroundColor: palette.text.divider,
-    },
-  };
-});
+export const styleSheet = createStyleSheet('MuiIconButton', theme => ({
+  iconButton: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    flex: '0 0 auto',
+    fontSize: 24,
+    width: 48,
+    height: 48,
+    padding: 0,
+    borderRadius: '50%',
+    backgroundColor: 'transparent',
+    color: theme.palette.action.active,
+    zIndex: 1,
+    transition: theme.transitions.create('background-color', {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  disabled: {
+    color: theme.palette.action.disabled,
+  },
+  accent: {
+    color: theme.palette.accent.A200,
+  },
+  contrast: {
+    color: theme.palette.getContrastText(theme.palette.primary[500]),
+  },
+  label: {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'inherit',
+    justifyContent: 'inherit',
+  },
+  icon: {
+    width: '1em',
+    height: '1em',
+  },
+  keyboardFocused: {
+    backgroundColor: theme.palette.text.divider,
+  },
+}));
 
 /**
- * ```
- * <IconButton>account_circle</IconButton>
- * ```
- *
- * ```
- * <IconButton><AccountCircle></IconButton>
- * ```
- *
  * Refer to the [Icons](/style/icons) section of the documentation
  * regarding the available icon options.
  */
-export default function IconButton(props, context) {
+function IconButton(props) {
   const {
     accent,
     buttonRef,
     children,
+    classes,
     className,
     contrast,
     disabled,
@@ -79,15 +68,19 @@ export default function IconButton(props, context) {
     iconClassName: iconClassNameProp,
     ...other
   } = props;
-  const classes = context.styleManager.render(styleSheet);
   const iconClassName = classNames(classes.icon, iconClassNameProp);
+
   return (
     <ButtonBase
-      className={classNames(classes.iconButton, {
-        [classes.accent]: accent,
-        [classes.contrast]: contrast,
-        [classes.disabled]: disabled,
-      }, className)}
+      className={classNames(
+        classes.iconButton,
+        {
+          [classes.accent]: accent,
+          [classes.contrast]: contrast,
+          [classes.disabled]: disabled,
+        },
+        className,
+      )}
       centerRipple
       keyboardFocusedClassName={classes.keyboardFocused}
       disabled={disabled}
@@ -96,18 +89,17 @@ export default function IconButton(props, context) {
       {...other}
     >
       <span className={classes.label}>
-        {typeof children === 'string' ?
-          <Icon className={iconClassName}>{children}</Icon> :
-          Children.map(children, (child) => {
-            if (child.type && child.type.muiName === 'Icon') {
-              return cloneElement(child, {
-                className: classNames(iconClassName, child.props.className),
-              });
-            }
+        {typeof children === 'string'
+          ? <Icon className={iconClassName}>{children}</Icon>
+          : Children.map(children, child => {
+              if (child.type && child.type.muiName === 'Icon') {
+                return cloneElement(child, {
+                  className: classNames(iconClassName, child.props.className),
+                });
+              }
 
-            return child;
-          })
-        }
+              return child;
+            })}
       </span>
     </ButtonBase>
   );
@@ -128,7 +120,11 @@ IconButton.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
   /**
@@ -156,6 +152,4 @@ IconButton.defaultProps = {
   disableRipple: false,
 };
 
-IconButton.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+export default withStyles(styleSheet)(IconButton);

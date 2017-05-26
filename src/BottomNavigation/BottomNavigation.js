@@ -4,29 +4,28 @@ import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiBottomNavigation', (theme) => {
-  return {
-    root: {
-      display: 'flex',
-      justifyContent: 'center',
-      height: 56,
-      backgroundColor: theme.palette.background.paper,
-    },
-  };
-});
+export const styleSheet = createStyleSheet('MuiBottomNavigation', theme => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    height: 56,
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
 
-export default function BottomNavigation(props, context) {
+function BottomNavigation(props) {
   const {
     children: childrenProp,
+    classes,
     className: classNameProp,
     index,
     onChange,
     showLabels,
     ...other
   } = props;
-  const classes = context.styleManager.render(styleSheet);
+
   const className = classNames(classes.root, classNameProp);
 
   const children = Children.map(childrenProp, (child, childIndex) => {
@@ -51,7 +50,11 @@ BottomNavigation.propTypes = {
    */
   children: PropTypes.node.isRequired,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
   /**
@@ -73,6 +76,4 @@ BottomNavigation.defaultProps = {
   showLabels: false,
 };
 
-BottomNavigation.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+export default withStyles(styleSheet)(BottomNavigation);

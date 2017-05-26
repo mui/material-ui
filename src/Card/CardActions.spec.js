@@ -1,8 +1,8 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
+import { createShallow } from '../test-utils';
 import CardActions, { styleSheet } from './CardActions';
 
 describe('<CardActions />', () => {
@@ -10,17 +10,18 @@ describe('<CardActions />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
   it('should render a div with the cardActions class', () => {
-    const wrapper = shallow(
-      <CardActions />,
+    const wrapper = shallow(<CardActions />);
+    assert.strictEqual(wrapper.name(), 'div');
+    assert.strictEqual(
+      wrapper.hasClass(classes.cardActions),
+      true,
+      'should have the cardActions class',
     );
-    assert.strictEqual(wrapper.is('div'), true, 'should be a div');
-    assert.strictEqual(wrapper.hasClass(classes.cardActions), true,
-      'should have the cardActions class');
   });
 
   it('should pass the actionSpacing class to children', () => {

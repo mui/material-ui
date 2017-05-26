@@ -4,11 +4,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
-import Text from '../Text';
+import withStyles from '../styles/withStyles';
+import Typography from '../Typography';
 
-export const styleSheet = createStyleSheet('MuiDialogTitle', () => {
-  const gutter = 24;
+export const styleSheet = createStyleSheet('MuiDialogTitle', theme => {
+  const gutter = theme.spacing.unit * 3;
   return {
     root: {
       margin: 0,
@@ -18,26 +18,16 @@ export const styleSheet = createStyleSheet('MuiDialogTitle', () => {
   };
 });
 
-export default function DialogTitle(props, context) {
-  const {
-    children,
-    className,
-    ...other
-  } = props;
-
-  const classes = context.styleManager.render(styleSheet);
+function DialogTitle(props) {
+  const { children, classes, className, disableTypography, ...other } = props;
 
   return (
-    <div
-      data-mui-test="DialogTitle"
-      className={classNames(classes.root, className)}
-      {...other}
-    >
-      {typeof children === 'string' ? (
-        <Text type="title">
-          {children}
-        </Text>
-      ) : children}
+    <div data-mui-test="DialogTitle" className={classNames(classes.root, className)} {...other}>
+      {disableTypography
+        ? children
+        : <Typography type="title">
+            {children}
+          </Typography>}
     </div>
   );
 }
@@ -48,11 +38,22 @@ DialogTitle.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
+  /**
+   * If `true`, the children won't be wrapped by a typography component.
+   * For instance, that can be usefull to can render an h4 instead of a
+   */
+  disableTypography: PropTypes.bool,
 };
 
-DialogTitle.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+DialogTitle.defaultProps = {
+  disableTypography: false,
 };
+
+export default withStyles(styleSheet)(DialogTitle);

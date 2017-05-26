@@ -1,5 +1,6 @@
 // @flow weak
 
+// Needed as the zIndex works with absolute values.
 export default {
   menu: 1000,
   appBar: 1100,

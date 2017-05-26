@@ -4,89 +4,40 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
+import withStyles from '../styles/withStyles';
 import customPropTypes from '../utils/customPropTypes';
 import Transition from '../internal/Transition';
 
-const reflow = (elem) => elem.offsetHeight;
+const reflow = elem => elem.offsetHeight;
 
-export const styleSheet = createStyleSheet('MuiCollapse', (theme) => {
-  return {
-    container: {
-      height: 0,
-      overflow: 'hidden',
-      transition: theme.transitions.create('height'),
-    },
-    entered: {
-      height: 'auto',
-      transitionDuration: '0ms',
-    },
-  };
-});
+export const styleSheet = createStyleSheet('MuiCollapse', theme => ({
+  container: {
+    height: 0,
+    overflow: 'hidden',
+    transition: theme.transitions.create('height'),
+  },
+  entered: {
+    height: 'auto',
+    transitionDuration: '0ms',
+  },
+}));
 
-export default class Collapse extends Component {
-  static propTypes = {
-    /**
-     * The content node to be collapsed.
-     */
-    children: PropTypes.node,
-    /**
-     * The CSS class name passed to the wrapping container
-     * required for holding & measuring the expanding content.
-     */
-    containerClassName: PropTypes.string,
-    /**
-     * If `true`, the component will transition in.
-     */
-    in: PropTypes.bool,
-    /**
-     * Callback fired before the component is entering.
-     */
-    onEnter: PropTypes.func,
-    /**
-     * Callback fired when the component is entering.
-     */
-    onEntering: PropTypes.func,
-    /**
-     * Callback fired when the component has entered.
-     */
-    onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
-    /**
-     * Callback fired before the component is exiting.
-     */
-    onExit: PropTypes.func,
-    /**
-     * Callback fired when the component is exiting.
-     */
-    onExiting: PropTypes.func,
-    /**
-     * Callback fired when the component has exited.
-     */
-    onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
-    /**
-     * Set to 'auto' to automatically calculate transition time based on height.
-     */
-    transitionDuration: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  };
-
+class Collapse extends Component {
   static defaultProps = {
     in: false,
     transitionDuration: 300,
   };
 
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
   wrapper = null;
 
-  handleEnter = (element) => {
+  handleEnter = element => {
     element.style.height = '0px';
     if (this.props.onEnter) {
       this.props.onEnter(element);
     }
   };
 
-  handleEntering = (element) => {
+  handleEntering = element => {
     const { transitionDuration } = this.props;
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
 
@@ -106,7 +57,7 @@ export default class Collapse extends Component {
     }
   };
 
-  handleEntered = (element) => {
+  handleEntered = element => {
     element.style.transitionDuration = '0ms'; // safari fix
     element.style.height = 'auto';
     reflow(element);
@@ -115,7 +66,7 @@ export default class Collapse extends Component {
     }
   };
 
-  handleExit = (element) => {
+  handleExit = element => {
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
     element.style.height = `${wrapperHeight}px`;
     if (this.props.onExit) {
@@ -123,7 +74,7 @@ export default class Collapse extends Component {
     }
   };
 
-  handleExiting = (element) => {
+  handleExiting = element => {
     const { transitionDuration } = this.props;
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
 
@@ -147,6 +98,7 @@ export default class Collapse extends Component {
   render() {
     const {
       children,
+      classes,
       containerClassName,
       onEnter, // eslint-disable-line no-unused-vars
       onEntering, // eslint-disable-line no-unused-vars
@@ -156,7 +108,6 @@ export default class Collapse extends Component {
       ...other
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet);
     const containerClasses = classNames(classes.container, containerClassName);
 
     return (
@@ -170,7 +121,11 @@ export default class Collapse extends Component {
         {...other}
       >
         <div className={containerClasses}>
-          <div ref={(c) => { this.wrapper = c; }}>
+          <div
+            ref={node => {
+              this.wrapper = node;
+            }}
+          >
             {children}
           </div>
         </div>
@@ -178,3 +133,62 @@ export default class Collapse extends Component {
     );
   }
 }
+
+Collapse.propTypes = {
+  /**
+   * The content node to be collapsed.
+   */
+  children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * The CSS class name passed to the wrapping container
+   * required for holding & measuring the expanding content.
+   */
+  containerClassName: PropTypes.string,
+  /**
+   * If `true`, the component will transition in.
+   */
+  in: PropTypes.bool,
+  /**
+   * Callback fired before the component is entering.
+   */
+  onEnter: PropTypes.func,
+  /**
+   * Callback fired when the component is entering.
+   */
+  onEntering: PropTypes.func,
+  /**
+   * Callback fired when the component has entered.
+   */
+  onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
+  /**
+   * Callback fired before the component is exiting.
+   */
+  onExit: PropTypes.func,
+  /**
+   * Callback fired when the component is exiting.
+   */
+  onExiting: PropTypes.func,
+  /**
+   * Callback fired when the component has exited.
+   */
+  onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
+  /**
+   * Set to 'auto' to automatically calculate transition time based on height.
+   */
+  transitionDuration: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+};
+
+Collapse.defaultProps = {
+  in: false,
+  transitionDuration: 300,
+};
+
+Collapse.contextTypes = {
+  styleManager: customPropTypes.muiRequired,
+};
+
+export default withStyles(styleSheet)(Collapse);

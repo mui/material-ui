@@ -1,36 +1,29 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
+import { createShallow } from '../test-utils';
 import Drawer, { styleSheet } from './Drawer';
 import Slide from '../transitions/Slide';
 import Modal from '../internal/Modal';
-import { duration } from '../styles/transitions';
+import Paper from '../Paper';
 
-/**
- * An item that goes in lists.
- */
 describe('<Drawer />', () => {
   let shallow;
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
   it('should render a Modal', () => {
-    const wrapper = shallow(
-      <Drawer />,
-    );
-    assert.strictEqual(wrapper.is('Modal'), true, 'should be a Modal');
+    const wrapper = shallow(<Drawer />);
+    assert.strictEqual(wrapper.name(), 'withStyles(Modal)');
   });
 
   it('should render Slide > Paper inside the Modal', () => {
-    const wrapper = shallow(
-      <Drawer />,
-    );
+    const wrapper = shallow(<Drawer />);
 
     const slide = wrapper.childAt(0);
     assert.strictEqual(
@@ -40,11 +33,7 @@ describe('<Drawer />', () => {
     );
 
     const paper = slide.childAt(0);
-    assert.strictEqual(
-      paper.length === 1 && paper.is('Paper'),
-      true,
-      'Slide child should be Paper',
-    );
+    assert.strictEqual(paper.length === 1 && paper.name(), 'withStyles(Paper)');
 
     assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the paper class');
   });
@@ -53,16 +42,12 @@ describe('<Drawer />', () => {
     const enterDuration = 854;
     const leaveDuration = 2967;
 
-    it('default value should be from standard timings', () => {
-      assert.strictEqual(Drawer.defaultProps.enterTransitionDuration, duration.enteringScreen);
-    });
-
     it('should be passed to Slide', () => {
       const wrapper = shallow(<Drawer enterTransitionDuration={enterDuration} />);
       assert.strictEqual(wrapper.find(Slide).prop('enterTransitionDuration'), enterDuration);
     });
 
-    it('should be passed to to Modal\'s backdropTransitionDuration when open=true', () => {
+    it("should be passed to to Modal's backdropTransitionDuration when open=true", () => {
       const wrapper = shallow(
         <Drawer
           open
@@ -78,16 +63,12 @@ describe('<Drawer />', () => {
     const enterDuration = 6577;
     const leaveDuration = 1889;
 
-    it('default value should be from standard timings', () => {
-      assert.strictEqual(Drawer.defaultProps.leaveTransitionDuration, duration.leavingScreen);
-    });
-
     it('should be passed to Slide', () => {
       const wrapper = shallow(<Drawer leaveTransitionDuration={leaveDuration} />);
       assert.strictEqual(wrapper.find(Slide).props().leaveTransitionDuration, leaveDuration);
     });
 
-    it('should be passed to to Modal\'s backdropTransitionDuration when open=false', () => {
+    it("should be passed to to Modal's backdropTransitionDuration when open=false", () => {
       const wrapper = shallow(
         <Drawer
           open={false}
@@ -99,7 +80,7 @@ describe('<Drawer />', () => {
     });
   });
 
-  it('should override Modal\'s backdropTransitionDuration from property when specified', () => {
+  it("should override Modal's backdropTransitionDuration from property when specified", () => {
     const testDuration = 335;
     const wrapper = shallow(<Drawer backdropTransitionDuration={testDuration} />);
     assert.strictEqual(wrapper.find(Modal).props().backdropTransitionDuration, testDuration);
@@ -107,7 +88,7 @@ describe('<Drawer />', () => {
 
   it('should set the Paper className', () => {
     const wrapper = shallow(<Drawer paperClassName="woof"><h1>Hello</h1></Drawer>);
-    const paper = wrapper.find('Paper');
+    const paper = wrapper.find(Paper);
     assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the paper class');
     assert.strictEqual(paper.hasClass('woof'), true, 'should have the woof class');
   });
@@ -155,7 +136,7 @@ describe('<Drawer />', () => {
     });
 
     it('should render a div instead of a Modal when docked', () => {
-      assert.strictEqual(wrapper.is('div'), true, 'should be a div element');
+      assert.strictEqual(wrapper.name(), 'div');
       assert.strictEqual(wrapper.hasClass(classes.docked), true, 'should have the docked class');
     });
 
@@ -168,11 +149,7 @@ describe('<Drawer />', () => {
       );
 
       const paper = slide.childAt(0);
-      assert.strictEqual(
-        paper.length === 1 && paper.is('Paper'),
-        true,
-        'Slide child should be Paper',
-      );
+      assert.strictEqual(paper.length === 1 && paper.name(), 'withStyles(Paper)');
     });
   });
 

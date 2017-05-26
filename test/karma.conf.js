@@ -4,24 +4,20 @@ const path = require('path');
 const browserStack = {
   username: process.env.BROWSERSTACK_USERNAME,
   accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
-  build: `material-ui-${(new Date()).toISOString()}`,
+  build: `material-ui-${new Date().toISOString()}`,
 };
 
 // Karma configuration
 module.exports = function setKarmaConfig(config) {
   const baseConfig = {
     basePath: '../',
-    browsers: [
-      'PhantomJS_Sized',
-    ],
+    browsers: ['PhantomJS_Sized'],
     // to avoid DISCONNECTED messages on travis
     browserDisconnectTimeout: 60000, // default 2000
     browserDisconnectTolerance: 1, // default 0
     browserNoActivityTimeout: 300000, // default 10000
     colors: true,
-    frameworks: [
-      'mocha',
-    ],
+    frameworks: ['mocha'],
     files: [
       'node_modules/babel-polyfill/dist/polyfill.js',
       {
@@ -65,9 +61,7 @@ module.exports = function setKarmaConfig(config) {
             },
           },
         ],
-        noParse: [
-          /node_modules\/sinon\//,
-        ],
+        noParse: [/node_modules\/sinon\//],
       },
       resolve: {
         alias: {
@@ -75,10 +69,7 @@ module.exports = function setKarmaConfig(config) {
           sinon: 'sinon/pkg/sinon.js',
         },
         extensions: ['.js'],
-        modules: [
-          path.join(__dirname, '../'),
-          'node_modules',
-        ],
+        modules: [path.join(__dirname, '../'), 'node_modules'],
       },
       externals: {
         jsdom: 'window',
@@ -98,7 +89,8 @@ module.exports = function setKarmaConfig(config) {
       PhantomJS_Sized: {
         base: 'PhantomJS',
         options: {
-          viewportSize: { // Matches JSDom size.
+          viewportSize: {
+            // Matches JSDom size.
             width: 1024,
             height: 768,
           },

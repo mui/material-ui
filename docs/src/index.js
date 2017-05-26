@@ -1,4 +1,5 @@
-// @flow weak
+// @flow
+/* eslint-disable import/prefer-default-export */
 
 import { AppContainer } from 'react-hot-loader';
 import { createStore } from 'redux';
@@ -7,10 +8,6 @@ import React from 'react';
 import ReactPerf from 'react-addons-perf';
 import { render } from 'react-dom';
 import App from 'docs/src/components/App';
-
-// Global polyfill for Symbol
-// https://github.com/callemall/material-ui/issues/6422
-import 'es6-symbol/implement';
 
 // Warns about potential accessibility issues with your React elements.
 //
@@ -36,7 +33,11 @@ export const store = createStore(docs);
 const rootEl = document.querySelector('#app');
 
 render(
-  <AppContainer errorReporter={({ error }) => { throw error; }}>
+  <AppContainer
+    errorReporter={({ error }) => {
+      throw error;
+    }}
+  >
     <Provider store={store}>
       <App />
     </Provider>
@@ -49,7 +50,11 @@ if (process.env.NODE_ENV !== 'production' && module.hot) {
     const NextApp = require('./components/App').default; // eslint-disable-line global-require
 
     render(
-      <AppContainer errorReporter={({ error }) => { throw error; }}>
+      <AppContainer
+        errorReporter={({ error }) => {
+          throw error;
+        }}
+      >
         <Provider store={store}>
           <NextApp />
         </Provider>

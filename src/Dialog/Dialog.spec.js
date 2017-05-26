@@ -1,28 +1,32 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
+import { createShallow } from '../test-utils';
 import Dialog, { styleSheet } from './Dialog';
+import Paper from '../Paper';
 
 describe('<Dialog />', () => {
   let shallow;
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
   it('should render a Modal', () => {
     const wrapper = shallow(<Dialog />);
-    assert.strictEqual(wrapper.is('Modal'), true, 'should be a Modal');
+    assert.strictEqual(wrapper.name(), 'withStyles(Modal)');
   });
 
-  it('should render a Modal', () => {
+  it('should render a Modal with transition', () => {
     const wrapper = shallow(<Dialog transition={<div className="cloned-element-class" />} />);
-    assert.strictEqual(wrapper.find('.cloned-element-class').length, 1,
-      'should include element given in transition');
+    assert.strictEqual(
+      wrapper.find('.cloned-element-class').length,
+      1,
+      'should include element given in transition',
+    );
   });
 
   it('should put Modal specific props on the root Modal node', () => {
@@ -60,12 +64,6 @@ describe('<Dialog />', () => {
     assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
   });
 
-  it('should render with the fullscreen class on the Paper element', () => {
-    const wrapper = shallow(<Dialog fullScreen />);
-    assert.strictEqual(wrapper.find('Paper').hasClass(classes.fullScreen), true,
-      'should have the "fullScreen" class');
-  });
-
   it('should render Fade > Paper > children inside the Modal', () => {
     const children = <p>Hello</p>;
     const wrapper = shallow(<Dialog>{children}</Dialog>);
@@ -78,11 +76,7 @@ describe('<Dialog />', () => {
     );
 
     const paper = fade.childAt(0);
-    assert.strictEqual(
-      paper.length === 1 && paper.is('Paper'),
-      true,
-      'fade child should be Paper',
-    );
+    assert.strictEqual(paper.length === 1 && paper.name(), 'withStyles(Paper)');
 
     assert.strictEqual(paper.hasClass(classes.dialog), true, 'should have the dialog class');
   });
@@ -112,18 +106,26 @@ describe('<Dialog />', () => {
     it('should add the class on the Paper element', () => {
       const className = 'foo';
       const wrapper = shallow(<Dialog paperClassName={className} />);
-      assert.strictEqual(wrapper.find('Paper').hasClass(className), true,
-        'should have the class provided',
-      );
+      assert.strictEqual(wrapper.find(Paper).hasClass(className), true);
     });
   });
 
   describe('prop: maxWidth', () => {
     it('should use the right className', () => {
       const wrapper = shallow(<Dialog maxWidth="xs" />);
-      assert.strictEqual(wrapper.find('Paper').hasClass(classes['dialogWidth-xs']), true,
-        'should have the class provided',
-      );
+      assert.strictEqual(wrapper.find(Paper).hasClass(classes['dialogWidth-xs']), true);
+    });
+  });
+
+  describe('prop: fullScreen', () => {
+    it('true should render fullScreen', () => {
+      const wrapper = shallow(<Dialog fullScreen />);
+      assert.strictEqual(wrapper.find(Paper).hasClass(classes.fullScreen), true);
+    });
+
+    it('false should not render fullScreen', () => {
+      const wrapper = shallow(<Dialog fullScreen={false} />);
+      assert.strictEqual(wrapper.find(Paper).hasClass(classes.fullScreen), false);
     });
   });
 });

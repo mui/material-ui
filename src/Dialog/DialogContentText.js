@@ -4,25 +4,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiDialogContentText', (theme) => {
-  return {
-    root: {
-      ...theme.typography.subheading,
-      color: theme.palette.text.secondary,
-      margin: 0,
-    },
-  };
-});
+export const styleSheet = createStyleSheet('MuiDialogContentText', theme => ({
+  root: {
+    ...theme.typography.subheading,
+    color: theme.palette.text.secondary,
+    margin: 0,
+  },
+}));
 
-export default function DialogContentText(props, context) {
-  const {
-    children,
-    className,
-    ...other
-  } = props;
-  const classes = context.styleManager.render(styleSheet);
+function DialogContentText(props) {
+  const { children, classes, className, ...other } = props;
 
   return (
     <p className={classNames(classes.root, className)} {...other}>
@@ -37,11 +30,13 @@ DialogContentText.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
 };
 
-DialogContentText.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+export default withStyles(styleSheet)(DialogContentText);

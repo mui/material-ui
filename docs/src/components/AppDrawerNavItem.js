@@ -1,64 +1,49 @@
-// @flow weak
+// @flow
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import { ListItem } from 'material-ui/List';
 import Button from 'material-ui/Button';
 import Collapse from 'material-ui/transitions/Collapse';
 
-export const styleSheet = createStyleSheet('AppDrawerNavItem', (theme) => {
-  return {
-    button: theme.mixins.gutters({
-      borderRadius: 0,
-      justifyContent: 'flex-start',
-      textTransform: 'none',
-      width: '100%',
-      '&:hover': {
-        textDecoration: 'none',
-      },
-    }),
-    navItem: {
-      ...theme.typography.body2,
-      display: 'block',
-      paddingTop: 0,
-      paddingBottom: 0,
+const styleSheet = createStyleSheet('AppDrawerNavItem', theme => ({
+  button: theme.mixins.gutters({
+    borderRadius: 0,
+    justifyContent: 'flex-start',
+    textTransform: 'none',
+    width: '100%',
+    '&:hover': {
+      textDecoration: 'none',
     },
-    navLink: {
-      fontWeight: theme.typography.fontWeightRegular,
-      display: 'flex',
-      paddingTop: 0,
-      paddingBottom: 0,
-    },
-    navLinkButton: {
-      color: theme.palette.text.secondary,
-      textIndent: 24,
-      fontSize: 13,
-    },
-    activeButton: {
-      color: theme.palette.text.primary,
-    },
-  };
-});
+  }),
+  navItem: {
+    ...theme.typography.body2,
+    display: 'block',
+    paddingTop: 0,
+    paddingBottom: 0,
+  },
+  navLink: {
+    fontWeight: theme.typography.fontWeightRegular,
+    display: 'flex',
+    paddingTop: 0,
+    paddingBottom: 0,
+  },
+  navLinkButton: {
+    color: theme.palette.text.secondary,
+    textIndent: 24,
+    fontSize: 13,
+  },
+  activeButton: {
+    color: theme.palette.text.primary,
+  },
+}));
 
-export default class AppDrawerNavItem extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    onClick: PropTypes.func,
-    openImmediately: PropTypes.bool,
-    title: PropTypes.string.isRequired,
-    to: PropTypes.string,
-  };
-
+class AppDrawerNavItem extends Component {
   static defaultProps = {
     openImmediately: false,
-  };
-
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
   };
 
   state = {
@@ -76,15 +61,11 @@ export default class AppDrawerNavItem extends Component {
   };
 
   render() {
-    const { children, title, to } = this.props;
-    const classes = this.context.styleManager.render(styleSheet);
+    const { children, classes, title, to } = this.props;
 
     if (to) {
       return (
-        <ListItem
-          className={classes.navLink}
-          disableGutters
-        >
+        <ListItem className={classes.navLink} disableGutters>
           <Button
             component={Link}
             to={to}
@@ -111,3 +92,14 @@ export default class AppDrawerNavItem extends Component {
     );
   }
 }
+
+AppDrawerNavItem.propTypes = {
+  children: PropTypes.node,
+  classes: PropTypes.object.isRequired,
+  onClick: PropTypes.func,
+  openImmediately: PropTypes.bool,
+  title: PropTypes.string.isRequired,
+  to: PropTypes.string,
+};
+
+export default withStyles(styleSheet)(AppDrawerNavItem);

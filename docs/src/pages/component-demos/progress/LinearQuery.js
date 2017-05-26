@@ -1,19 +1,19 @@
-// @flow weak
+// @flow
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import { LinearProgress } from 'material-ui/Progress';
 
-const styleSheet = createStyleSheet('LinearQuery', () => ({
+const styleSheet = createStyleSheet('LinearQuery', theme => ({
   root: {
     width: '100%',
-    marginTop: 30,
+    marginTop: theme.spacing.unit * 3,
   },
 }));
 
-export default function LinearQuery(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function LinearQuery(props) {
+  const classes = props.classes;
   return (
     <div className={classes.root}>
       <LinearProgress mode="query" />
@@ -21,6 +21,8 @@ export default function LinearQuery(props, context) {
   );
 }
 
-LinearQuery.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+LinearQuery.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(LinearQuery);

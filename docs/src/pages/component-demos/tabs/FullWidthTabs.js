@@ -1,15 +1,14 @@
-// @flow weak
+// @flow
 /* eslint-disable react/no-multi-comp */
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { createStyleSheet } from 'jss-theme-reactor';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import SwipeableViews from 'react-swipeable-views';
-import customPropTypes from 'material-ui/utils/customPropTypes';
 import Paper from 'material-ui/Paper';
-import { Tabs, Tab } from 'material-ui/Tabs';
+import Tabs, { Tab } from 'material-ui/Tabs';
 
-const TabContainer = (props) => (
+const TabContainer = props => (
   <div style={{ padding: 20 }}>
     {props.children}
   </div>
@@ -19,7 +18,7 @@ TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const styleSheet = createStyleSheet('FullWidthTabs', (theme) => ({
+const styleSheet = createStyleSheet('FullWidthTabs', theme => ({
   root: {
     flexGrow: 1,
     marginTop: 30,
@@ -29,11 +28,7 @@ const styleSheet = createStyleSheet('FullWidthTabs', (theme) => ({
   },
 }));
 
-export default class FullWidthTabs extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
+class FullWidthTabs extends Component {
   state = {
     index: 0,
   };
@@ -42,22 +37,17 @@ export default class FullWidthTabs extends Component {
     this.setState({ index });
   };
 
-  handleChangeIndex = (index) => {
+  handleChangeIndex = index => {
     this.setState({ index });
   };
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
 
     return (
       <Paper style={{ width: 500 }}>
         <div className={classes.appBar}>
-          <Tabs
-            index={this.state.index}
-            onChange={this.handleChange}
-            textColor="accent"
-            fullWidth
-          >
+          <Tabs index={this.state.index} onChange={this.handleChange} textColor="accent" fullWidth>
             <Tab label="Item One" />
             <Tab label="Item Two" />
             <Tab label="Item Three" />
@@ -72,3 +62,9 @@ export default class FullWidthTabs extends Component {
     );
   }
 }
+
+FullWidthTabs.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(FullWidthTabs);

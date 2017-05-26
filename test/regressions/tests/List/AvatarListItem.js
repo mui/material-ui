@@ -3,11 +3,7 @@
 import React from 'react';
 import Avatar from 'material-ui/Avatar';
 import Icon from 'material-ui/Icon';
-import {
-  List,
-  ListItem,
-  ListItemText,
-} from 'material-ui/List';
+import List, { ListItem, ListItemText } from 'material-ui/List';
 
 export default function AvatarListItem() {
   return (

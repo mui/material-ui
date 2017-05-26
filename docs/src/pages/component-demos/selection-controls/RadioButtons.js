@@ -8,7 +8,7 @@ export default class RadioButtons extends Component {
     selectedValue: undefined,
   };
 
-  handleChange = (event) => {
+  handleChange = event => {
     this.setState({ selectedValue: event.currentTarget.value });
   };
 
@@ -40,4 +40,3 @@ export default class RadioButtons extends Component {
     );
   }
 }
-

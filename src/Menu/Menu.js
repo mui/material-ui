@@ -1,96 +1,37 @@
 // @flow weak
 
 import React, { Component } from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { createStyleSheet } from 'jss-theme-reactor';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import Popover from '../internal/Popover';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 import MenuList from './MenuList';
 
-export const styleSheet = createStyleSheet('MuiMenu', () => {
-  return {
-    popover: {
-      maxHeight: 250,
-    },
-  };
+export const styleSheet = createStyleSheet('MuiMenu', {
+  popover: {
+    maxHeight: 250,
+  },
 });
 
-export default class Menu extends Component {
-  static propTypes = {
-    /**
-     * The DOM element used to set the position of the menu.
-     */
-    anchorEl: PropTypes.object,
-    /**
-     * Menu contents, normally `MenuItem`s.
-     */
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-    /**
-     * Callback fired before the Menu enters.
-     */
-    onEnter: PropTypes.func,
-    /**
-     * Callback fired when the Menu is entering.
-     */
-    onEntering: PropTypes.func,
-    /**
-     * Callback fired when the Menu has entered.
-     */
-    onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
-    /**
-     * Callback fired before the Menu exits.
-     */
-    onExit: PropTypes.func,
-    /**
-     * Callback fired when the Menu is exiting.
-     */
-    onExiting: PropTypes.func,
-    /**
-     * Callback fired when the Menu has exited.
-     */
-    onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
-    /**
-     * Callback function fired when the menu is requested to be closed.
-     *
-     * @param {event} event The event that triggered the close request
-     */
-    onRequestClose: PropTypes.func,
-    /**
-     * If `true`, the menu is visible.
-     */
-    open: PropTypes.bool,
-    /**
-     * The length of the transition in `ms`, or 'auto'
-     */
-    transitionDuration: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  };
-
+class Menu extends Component {
   static defaultProps = {
     open: false,
     transitionDuration: 'auto',
   };
 
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
   menuList = undefined;
 
-  handleEnter = (element) => {
+  handleEnter = element => {
     const list = ReactDOM.findDOMNode(this.menuList);
 
     if (this.menuList && this.menuList.selectedItem) {
-       // $FlowFixMe
-      ReactDOM.findDOMNode(this.menuList.selectedItem)
-        .focus();
+      // $FlowFixMe
+      ReactDOM.findDOMNode(this.menuList.selectedItem).focus();
     } else if (list) {
-       // $FlowFixMe
+      // $FlowFixMe
       list.firstChild.focus();
     }
 
@@ -130,8 +71,10 @@ export default class Menu extends Component {
     const {
       anchorEl,
       children,
+      classes,
       className,
       open,
+      MenuListProps,
       onEnter, // eslint-disable-line no-unused-vars
       onEntering,
       onEntered,
@@ -143,13 +86,11 @@ export default class Menu extends Component {
       ...other
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet);
-
     return (
       <Popover
         anchorEl={anchorEl}
         getContentAnchorEl={this.getContentAnchorEl}
-        className={classes.popover}
+        className={classNames(classes.popover, className)}
         open={open}
         enteredClassName={classes.entered}
         onEnter={this.handleEnter}
@@ -160,14 +101,16 @@ export default class Menu extends Component {
         onExited={onExited}
         onRequestClose={onRequestClose}
         transitionDuration={transitionDuration}
+        {...other}
       >
         <MenuList
           data-mui-test="Menu"
           role="menu"
-          ref={(c) => { this.menuList = c; }}
-          className={className}
+          ref={node => {
+            this.menuList = node;
+          }}
           onKeyDown={this.handleListKeyDown}
-          {...other}
+          {...MenuListProps}
         >
           {children}
         </MenuList>
@@ -176,3 +119,65 @@ export default class Menu extends Component {
   }
 }
 
+Menu.propTypes = {
+  /**
+   * The DOM element used to set the position of the menu.
+   */
+  anchorEl: PropTypes.object,
+  /**
+   * Menu contents, normally `MenuItem`s.
+   */
+  children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * Properties applied to the `MenuList` element.
+   */
+  MenuListProps: PropTypes.object,
+  /**
+   * Callback fired before the Menu enters.
+   */
+  onEnter: PropTypes.func,
+  /**
+   * Callback fired when the Menu is entering.
+   */
+  onEntering: PropTypes.func,
+  /**
+   * Callback fired when the Menu has entered.
+   */
+  onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
+  /**
+   * Callback fired before the Menu exits.
+   */
+  onExit: PropTypes.func,
+  /**
+   * Callback fired when the Menu is exiting.
+   */
+  onExiting: PropTypes.func,
+  /**
+   * Callback fired when the Menu has exited.
+   */
+  onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
+  /**
+   * Callback function fired when the menu is requested to be closed.
+   *
+   * @param {event} event The event that triggered the close request
+   */
+  onRequestClose: PropTypes.func,
+  /**
+   * If `true`, the menu is visible.
+   */
+  open: PropTypes.bool,
+  /**
+   * The length of the transition in `ms`, or 'auto'
+   */
+  transitionDuration: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+};
+
+export default withStyles(styleSheet)(Menu);

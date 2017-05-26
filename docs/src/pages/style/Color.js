@@ -1,21 +1,34 @@
-// @flow weak
+// @flow
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import * as colors from 'material-ui/styles/colors';
-import customPropTypes from 'material-ui/utils/customPropTypes';
 import { getContrastRatio } from 'material-ui/styles/colorManipulator';
 
 const mainColors = [
-  'Red', 'Pink', 'Purple', 'Deep Purple', 'Indigo', 'Blue', 'Light Blue',
-  'Cyan', 'Teal', 'Green', 'Light Green', 'Lime', 'Yellow', 'Amber', 'Orange',
+  'Red',
+  'Pink',
+  'Purple',
+  'Deep Purple',
+  'Indigo',
+  'Blue',
+  'Light Blue',
+  'Cyan',
+  'Teal',
+  'Green',
+  'Light Green',
+  'Lime',
+  'Yellow',
+  'Amber',
+  'Orange',
   'Deep Orange',
 ];
 const neutralColors = ['Brown', 'Grey', 'Blue Grey'];
 const mainPalette = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 const altPalette = ['A100', 'A200', 'A400', 'A700'];
 
-export const styleSheet = createStyleSheet('colors', (theme) => ({
+export const styleSheet = createStyleSheet('colors', theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -45,31 +58,6 @@ export const styleSheet = createStyleSheet('colors', (theme) => ({
     color: 'inherit',
   },
 }));
-
-function getColorGroup(options) {
-  const {
-    classes,
-    color,
-    showAltPalette,
-  } = options;
-  const cssColor = color.replace(' ', '').replace(color.charAt(0), color.charAt(0).toLowerCase());
-  let colorsList = [];
-  colorsList = mainPalette.map((mainValue) => getColorBlock(classes, cssColor, mainValue));
-
-  if (showAltPalette) {
-    altPalette.forEach((altValue) => {
-      colorsList.push(getColorBlock(classes, cssColor, altValue));
-    });
-  }
-
-  return (
-    <ul className={classes.colorGroup} key={cssColor}>
-      {getColorBlock(classes, cssColor, 500, true)}
-      <div className={classes.blockSpace} />
-      {colorsList}
-    </ul>
-  );
-}
 
 function getColorBlock(classes, colorName, colorValue, colorTitle) {
   const bgColor = colors[colorName][colorValue];
@@ -115,25 +103,52 @@ function getColorBlock(classes, colorName, colorValue, colorTitle) {
   );
 }
 
-export default function Color(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function getColorGroup(options) {
+  const { classes, color, showAltPalette } = options;
+  const cssColor = color.replace(' ', '').replace(color.charAt(0), color.charAt(0).toLowerCase());
+  let colorsList = [];
+  colorsList = mainPalette.map(mainValue => getColorBlock(classes, cssColor, mainValue));
+
+  if (showAltPalette) {
+    altPalette.forEach(altValue => {
+      colorsList.push(getColorBlock(classes, cssColor, altValue));
+    });
+  }
+
+  return (
+    <ul className={classes.colorGroup} key={cssColor}>
+      {getColorBlock(classes, cssColor, 500, true)}
+      <div className={classes.blockSpace} />
+      {colorsList}
+    </ul>
+  );
+}
+
+function Color(props) {
+  const classes = props.classes;
 
   return (
     <div className={classes.root}>
-      {mainColors.map((mainColor) => getColorGroup({
-        classes,
-        color: mainColor,
-        showAltPalette: true,
-      }))}
-      {neutralColors.map((neutralColor) => getColorGroup({
-        classes,
-        color: neutralColor,
-        showAltPalette: false,
-      }))}
+      {mainColors.map(mainColor =>
+        getColorGroup({
+          classes,
+          color: mainColor,
+          showAltPalette: true,
+        }),
+      )}
+      {neutralColors.map(neutralColor =>
+        getColorGroup({
+          classes,
+          color: neutralColor,
+          showAltPalette: false,
+        }),
+      )}
     </div>
   );
 }
 
-Color.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+Color.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(Color);

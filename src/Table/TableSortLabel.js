@@ -4,74 +4,69 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 import ButtonBase from '../internal/ButtonBase';
 import ArrowDownwardIcon from '../svg-icons/arrow-downward';
 
-export const styleSheet = createStyleSheet('MuiTableSortLabel', (theme) => {
-  const { palette, transitions } = theme;
-  return {
-    sortLabel: {
-      cursor: 'pointer',
-      display: 'inline-flex',
-      justifyContent: 'flex-start',
-      flexDirection: 'inherit',
-      alignItems: 'center',
-      background: 'transparent',
-      '&:hover': {
-        color: palette.text.primary,
-      },
-      '&:focus': {
-        color: palette.text.primary,
-      },
+export const styleSheet = createStyleSheet('MuiTableSortLabel', theme => ({
+  sortLabel: {
+    cursor: 'pointer',
+    display: 'inline-flex',
+    justifyContent: 'flex-start',
+    flexDirection: 'inherit',
+    alignItems: 'center',
+    background: 'transparent',
+    '&:hover': {
+      color: theme.palette.text.primary,
     },
-    active: {
-      color: palette.text.primary,
-      '& $icon': {
-        opacity: 1,
-      },
+    '&:focus': {
+      color: theme.palette.text.primary,
     },
-    icon: {
-      height: 16,
-      marginRight: 4,
-      marginLeft: 4,
-      opacity: 0,
-      transition: transitions.create(['opacity', 'transform'], {
-        duration: transitions.duration.shorter,
-      }),
-      userSelect: 'none',
-      width: 16,
+  },
+  active: {
+    color: theme.palette.text.primary,
+    '& $icon': {
+      opacity: 1,
     },
-    desc: {
-      transform: 'rotate(0deg)',
-    },
-    asc: {
-      transform: 'rotate(180deg)',
-    },
-  };
-});
+  },
+  icon: {
+    height: 16,
+    marginRight: 4,
+    marginLeft: 4,
+    opacity: 0,
+    transition: theme.transitions.create(['opacity', 'transform'], {
+      duration: theme.transitions.duration.shorter,
+    }),
+    userSelect: 'none',
+    width: 16,
+  },
+  desc: {
+    transform: 'rotate(0deg)',
+  },
+  asc: {
+    transform: 'rotate(180deg)',
+  },
+}));
 
 /**
  * A button based label for placing inside `TableCell` for column sorting.
  */
-export default function TableSortLabel(props, context) {
-  const { active, className, children, direction, ...other } = props;
-  const classes = context.styleManager.render(styleSheet);
-  const sortLabelClasses = classNames(classes.sortLabel, {
-    [classes.active]: active,
-  }, className);
+function TableSortLabel(props) {
+  const { active, classes, className: classNameProp, children, direction, ...other } = props;
+  const className = classNames(
+    classes.sortLabel,
+    {
+      [classes.active]: active,
+    },
+    classNameProp,
+  );
 
   const iconClasses = classNames(classes.icon, {
     [classes[direction]]: !!direction,
   });
 
   return (
-    <ButtonBase
-      className={sortLabelClasses}
-      component="span"
-      ripple={false}
-      {...other}
-    >
+    <ButtonBase className={className} component="span" ripple={false} {...other}>
       {children}
       <ArrowDownwardIcon className={iconClasses} />
     </ButtonBase>
@@ -88,7 +83,11 @@ TableSortLabel.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
   /**
@@ -102,6 +101,4 @@ TableSortLabel.defaultProps = {
   direction: 'desc',
 };
 
-TableSortLabel.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+export default withStyles(styleSheet)(TableSortLabel);

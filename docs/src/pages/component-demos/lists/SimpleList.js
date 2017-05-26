@@ -1,19 +1,14 @@
-// @flow weak
+// @flow
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
-import {
-  List,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-} from 'material-ui/List';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
+import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import InboxIcon from 'material-ui-icons/Inbox';
 import DraftsIcon from 'material-ui-icons/Drafts';
 
-const styleSheet = createStyleSheet('SimpleList', (theme) => ({
+const styleSheet = createStyleSheet('SimpleList', theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
@@ -21,8 +16,8 @@ const styleSheet = createStyleSheet('SimpleList', (theme) => ({
   },
 }));
 
-function SimpleList(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function SimpleList(props) {
+  const classes = props.classes;
   return (
     <div className={classes.root}>
       <List>
@@ -52,8 +47,8 @@ function SimpleList(props, context) {
   );
 }
 
-SimpleList.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+SimpleList.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
 
-export default SimpleList;
+export default withStyles(styleSheet)(SimpleList);

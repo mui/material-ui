@@ -5,28 +5,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiFormLabel', (theme) => {
-  const { palette } = theme;
-  const focusColor = palette.type === 'light' ? palette.primary.A700 : palette.primary.A200;
+export const styleSheet = createStyleSheet('MuiFormLabel', theme => {
+  const focusColor = theme.palette.primary[theme.palette.type === 'light' ? 'A700' : 'A200'];
   return {
     root: {
-      color: palette.input.labelText,
+      fontFamily: theme.typography.fontFamily,
+      color: theme.palette.input.labelText,
       lineHeight: 1,
     },
     focused: {
       color: focusColor,
     },
     error: {
-      color: palette.error.A400,
+      color: theme.palette.error.A400,
     },
   };
 });
 
-export default function FormLabel(props, context) {
+function FormLabel(props, context) {
   const {
     children,
+    classes,
     className: classNameProp,
     error: errorProp,
     focused: focusedProp,
@@ -34,8 +35,7 @@ export default function FormLabel(props, context) {
     ...other
   } = props;
 
-  const { muiFormControl, styleManager } = context;
-  const classes = styleManager.render(styleSheet);
+  const { muiFormControl } = context;
 
   let required = requiredProp;
   let focused = focusedProp;
@@ -53,10 +53,14 @@ export default function FormLabel(props, context) {
     }
   }
 
-  const className = classNames(classes.root, {
-    [classes.focused]: focused,
-    [classes.error]: error,
-  }, classNameProp);
+  const className = classNames(
+    classes.root,
+    {
+      [classes.focused]: focused,
+      [classes.error]: error,
+    },
+    classNameProp,
+  );
 
   const asteriskClassName = classNames({
     [classes.error]: error,
@@ -65,11 +69,10 @@ export default function FormLabel(props, context) {
   return (
     <label className={className} {...other}>
       {children}
-      {required && (
+      {required &&
         <span className={asteriskClassName} data-mui-test="FormLabelAsterisk">
           {'\u2009*'}
-        </span>
-      )}
+        </span>}
     </label>
   );
 }
@@ -80,7 +83,11 @@ FormLabel.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
   /**
@@ -99,5 +106,6 @@ FormLabel.propTypes = {
 
 FormLabel.contextTypes = {
   muiFormControl: PropTypes.object,
-  styleManager: customPropTypes.muiRequired,
 };
+
+export default withStyles(styleSheet)(FormLabel);

@@ -1,15 +1,15 @@
-// @flow weak
+// @flow
 
 import React, { Component } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import { CircularProgress } from 'material-ui/Progress';
 import { green } from 'material-ui/styles/colors';
 import Button from 'material-ui/Button';
 import CheckIcon from 'material-ui-icons/Check';
 import SaveIcon from 'material-ui-icons/Save';
 
-const styleSheet = createStyleSheet('CircularFab', () => ({
+const styleSheet = createStyleSheet('CircularFab', {
   wrapper: {
     position: 'relative',
   },
@@ -25,37 +25,42 @@ const styleSheet = createStyleSheet('CircularFab', () => ({
     top: -2,
     left: -2,
   },
-}));
+});
 
-export default class CircularFab extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
+class CircularFab extends Component {
   state = {
     loading: false,
     success: false,
   };
 
+  componentWillUnmount() {
+    clearTimeout(this.timer);
+  }
+
   handleButtonClick = () => {
     if (!this.state.loading) {
-      this.setState({
-        success: false,
-        loading: true,
-      }, () => {
-        setTimeout(() => {
-          this.setState({
-            loading: false,
-            success: true,
-          });
-        }, 2000);
-      });
+      this.setState(
+        {
+          success: false,
+          loading: true,
+        },
+        () => {
+          this.timer = setTimeout(() => {
+            this.setState({
+              loading: false,
+              success: true,
+            });
+          }, 2e3);
+        },
+      );
     }
   };
 
+  timer = undefined;
+
   render() {
     const { loading, success } = this.state;
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
     let buttonClass = '';
 
     if (success) {
@@ -64,12 +69,7 @@ export default class CircularFab extends Component {
 
     return (
       <div className={classes.wrapper}>
-        <Button
-          fab
-          primary
-          className={buttonClass}
-          onClick={this.handleButtonClick}
-        >
+        <Button fab primary className={buttonClass} onClick={this.handleButtonClick}>
           {success ? <CheckIcon /> : <SaveIcon />}
         </Button>
         {loading && <CircularProgress size={60} className={classes.progress} />}
@@ -77,3 +77,9 @@ export default class CircularFab extends Component {
     );
   }
 }
+
+CircularFab.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(CircularFab);

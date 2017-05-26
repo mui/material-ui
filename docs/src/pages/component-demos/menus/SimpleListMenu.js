@@ -1,12 +1,12 @@
-// @flow weak
+// @flow
 
 import React, { Component } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
-import { List, ListItem, ListItemText } from 'material-ui/List';
-import { Menu, MenuItem } from 'material-ui/Menu';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
+import List, { ListItem, ListItemText } from 'material-ui/List';
+import Menu, { MenuItem } from 'material-ui/Menu';
 
-const styleSheet = createStyleSheet('SimpleListMenu', (theme) => ({
+const styleSheet = createStyleSheet('SimpleListMenu', theme => ({
   root: {
     width: '100%',
     maxWidth: '360px',
@@ -20,11 +20,7 @@ const options = [
   'Hide all notification content',
 ];
 
-export default class SimpleListMenu extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
+class SimpleListMenu extends Component {
   state = {
     anchorEl: undefined,
     open: false,
@@ -33,14 +29,20 @@ export default class SimpleListMenu extends Component {
 
   button = undefined;
 
-  handleClickListItem = (event) => this.setState({ open: true, anchorEl: event.currentTarget });
+  handleClickListItem = event => {
+    this.setState({ open: true, anchorEl: event.currentTarget });
+  };
 
-  handleMenuItemClick = (event, index) => this.setState({ selectedIndex: index, open: false });
+  handleMenuItemClick = (event, index) => {
+    this.setState({ selectedIndex: index, open: false });
+  };
 
-  handleRequestClose = () => this.setState({ open: false });
+  handleRequestClose = () => {
+    this.setState({ open: false });
+  };
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
     return (
       <div className={classes.root}>
         <List>
@@ -60,24 +62,26 @@ export default class SimpleListMenu extends Component {
         <Menu
           id="lock-menu"
           anchorEl={this.state.anchorEl}
-          className={classes.menu}
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
         >
-          {options.map((option, index) => {
-            return (
-              <MenuItem
-                key={option}
-                selected={index === this.state.selectedIndex}
-                onClick={(event) => this.handleMenuItemClick(event, index)}
-              >
-                {option}
-              </MenuItem>
-            );
-          })}
+          {options.map((option, index) => (
+            <MenuItem
+              key={option}
+              selected={index === this.state.selectedIndex}
+              onClick={event => this.handleMenuItemClick(event, index)}
+            >
+              {option}
+            </MenuItem>
+          ))}
         </Menu>
       </div>
     );
   }
 }
 
+SimpleListMenu.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(SimpleListMenu);

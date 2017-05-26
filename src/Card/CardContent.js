@@ -4,38 +4,34 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiCardContent', () => ({
+export const styleSheet = createStyleSheet('MuiCardContent', theme => ({
   cardContent: {
-    padding: 16,
+    padding: theme.spacing.unit * 2,
     '&:last-child': {
-      paddingBottom: 24,
+      paddingBottom: theme.spacing.unit * 3,
     },
   },
 }));
 
-export default function CardContent(props, context) {
-  const {
-    className: classNameProp,
-    ...other
-  } = props;
+function CardContent(props) {
+  const { classes, className: classNameProp, ...other } = props;
 
-  const classes = context.styleManager.render(styleSheet);
   const className = classNames(classes.cardContent, classNameProp);
 
-  return (
-    <div className={className} {...other} />
-  );
+  return <div className={className} {...other} />;
 }
 
 CardContent.propTypes = {
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
 };
 
-CardContent.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+export default withStyles(styleSheet)(CardContent);

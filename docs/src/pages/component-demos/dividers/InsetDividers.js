@@ -1,19 +1,15 @@
-// @flow weak
+// @flow
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
-import {
-  List,
-  ListItem,
-  ListItemText,
-} from 'material-ui/List';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
+import List, { ListItem, ListItemText } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import Divider from 'material-ui/Divider';
 import FolderIcon from 'material-ui-icons/Folder';
 import ImageIcon from 'material-ui-icons/Image';
 
-const styleSheet = createStyleSheet('InsetDividers', (theme) => ({
+const styleSheet = createStyleSheet('InsetDividers', theme => ({
   root: {
     width: '100%',
     maxWidth: '360px',
@@ -21,8 +17,8 @@ const styleSheet = createStyleSheet('InsetDividers', (theme) => ({
   },
 }));
 
-export default function InsetDividers(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function InsetDividers(props) {
+  const classes = props.classes;
   return (
     <List className={classes.root}>
       <ListItem button>
@@ -42,6 +38,8 @@ export default function InsetDividers(props, context) {
   );
 }
 
-InsetDividers.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+InsetDividers.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(InsetDividers);

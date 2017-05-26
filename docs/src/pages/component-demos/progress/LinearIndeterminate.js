@@ -1,19 +1,19 @@
-// @flow weak
+// @flow
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import { LinearProgress } from 'material-ui/Progress';
 
-const styleSheet = createStyleSheet('LinearIndeterminate', () => ({
+const styleSheet = createStyleSheet('LinearIndeterminate', {
   root: {
     width: '100%',
     marginTop: 30,
   },
-}));
+});
 
-export default function LinearIndeterminate(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function LinearIndeterminate(props) {
+  const classes = props.classes;
   return (
     <div className={classes.root}>
       <LinearProgress />
@@ -21,6 +21,8 @@ export default function LinearIndeterminate(props, context) {
   );
 }
 
-LinearIndeterminate.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+LinearIndeterminate.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(LinearIndeterminate);

@@ -4,60 +4,49 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
-const radius = 12;
-const radius2x = 2 * radius;
+const RADIUS = 12;
 
-export const styleSheet = createStyleSheet('MuiBadge', (theme) => {
-  const { typography, palette } = theme;
+export const styleSheet = createStyleSheet('MuiBadge', theme => ({
+  root: {
+    position: 'relative',
+    display: 'inline-block',
+  },
+  badge: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    top: -RADIUS,
+    right: -RADIUS,
+    fontFamily: theme.typography.fontFamily,
+    fontWeight: theme.typography.fontWeight,
+    fontSize: RADIUS,
+    width: RADIUS * 2,
+    height: RADIUS * 2,
+    borderRadius: '50%',
+    backgroundColor: theme.palette.color,
+    color: theme.palette.textColor,
+  },
+  primary: {
+    backgroundColor: theme.palette.primary[500],
+    color: theme.palette.getContrastText(theme.palette.primary[500]),
+  },
+  accent: {
+    backgroundColor: theme.palette.accent.A200,
+    color: theme.palette.getContrastText(theme.palette.accent.A200),
+  },
+}));
 
-  return {
-    root: {
-      position: 'relative',
-      display: 'inline-block',
-    },
-    badge: {
-      display: 'flex',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      justifyContent: 'center',
-      alignContent: 'center',
-      alignItems: 'center',
-      position: 'absolute',
-      top: -radius,
-      right: -radius,
-      fontWeight: typography.fontWeight,
-      fontSize: radius,
-      width: radius2x,
-      height: radius2x,
-      borderRadius: '50%',
-      backgroundColor: palette.color,
-      color: palette.textColor,
-    },
-    primary: {
-      backgroundColor: palette.primary[500],
-      color: palette.getContrastText(palette.primary[500]),
-    },
-    accent: {
-      backgroundColor: palette.accent.A200,
-      color: palette.getContrastText(palette.accent.A200),
-    },
-  };
-});
-
-/**
- *
- * ```jsx
- * <Badge badgeContent={4}>
- *   <Icon>folder</Icon>
- * </Badge>
- * ```
- */
-export default function Badge(props, context) {
+function Badge(props) {
   const {
     badgeClassName: badgeClassNameProp,
     badgeContent,
+    classes,
     className: classNameProp,
     children,
     primary,
@@ -65,15 +54,20 @@ export default function Badge(props, context) {
     ...other
   } = props;
 
-  const classes = context.styleManager.render(styleSheet);
-  const className = classNames({
-    [classes.root]: true,
-  }, classNameProp);
-  const badgeClassName = classNames({
-    [classes.badge]: true,
-    [classes.primary]: primary,
-    [classes.accent]: accent,
-  }, badgeClassNameProp);
+  const className = classNames(
+    {
+      [classes.root]: true,
+    },
+    classNameProp,
+  );
+  const badgeClassName = classNames(
+    {
+      [classes.badge]: true,
+      [classes.primary]: primary,
+      [classes.accent]: accent,
+    },
+    badgeClassNameProp,
+  );
 
   return (
     <div className={className} {...other}>
@@ -103,7 +97,11 @@ Badge.propTypes = {
    */
   children: PropTypes.node.isRequired,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
   /**
@@ -117,6 +115,4 @@ Badge.defaultProps = {
   accent: false,
 };
 
-Badge.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+export default withStyles(styleSheet)(Badge);

@@ -4,56 +4,27 @@ import React, { Children, Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 import { isDirty } from '../Input/Input';
 
-export const styleSheet = createStyleSheet('MuiFormControl', () => {
-  return {
-    root: {
-      display: 'flex',
-      flexDirection: 'column',
-      position: 'relative',
-    },
-    row: {
-      flexDirection: 'row',
-    },
-  };
+export const styleSheet = createStyleSheet('MuiFormControl', {
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    position: 'relative',
+  },
+  row: {
+    flexDirection: 'row',
+  },
 });
 
 /**
- * FormControl - provides context such as dirty/focused/error/required for form inputs
+ * Provides context such as dirty/focused/error/required for form inputs.
  */
-export default class FormControl extends Component {
-  static propTypes = {
-    /**
-     * The contents of the form control.
-     */
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-    /**
-     * If `true`, the label should be displayed in an error state.
-     */
-    error: PropTypes.bool,
-    /**
-     * If `true`, the label will indicate that the input is required.
-     */
-    required: PropTypes.bool,
-  };
-
+class FormControl extends Component {
   static defaultProps = {
     error: false,
     required: false,
-  };
-
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
-  static childContextTypes = {
-    muiFormControl: PropTypes.object.isRequired,
   };
 
   state = {
@@ -80,23 +51,31 @@ export default class FormControl extends Component {
   }
 
   componentWillMount() {
-    let dirty = false;
-    Children.forEach(this.props.children, (child) => {
-      if (child && child.type && child.type.name === 'Input' && isDirty(child.props)) {
-        dirty = true;
+    Children.forEach(this.props.children, child => {
+      if (
+        child && child.type &&
+        (child.type.name === 'Input' ||
+        (child.type.Naked && child.type.Naked.name === 'Input')) &&
+        isDirty(child.props)
+      ) {
+        this.setState({ dirty: true });
       }
     });
-
-    this.setState({ dirty });
   }
 
   handleFocus = () => {
+    if (this.props.onFocus) {
+      this.props.onFocus();
+    }
     if (!this.state.focused) {
       this.setState({ focused: true });
     }
   };
 
   handleBlur = () => {
+    if (this.props.onBlur) {
+      this.props.onBlur();
+    }
     if (this.state.focused) {
       this.setState({ focused: false });
     }
@@ -117,22 +96,58 @@ export default class FormControl extends Component {
   render() {
     const {
       children,
+      classes,
       className,
       error, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet);
-
     return (
       <div
-        onFocus={this.handleFocus}
-        onBlur={this.handleBlur}
         className={classNames(classes.root, className)}
         {...other}
+        onFocus={this.handleFocus}
+        onBlur={this.handleBlur}
       >
         {children}
       </div>
     );
   }
 }
+
+FormControl.propTypes = {
+  /**
+   * The contents of the form control.
+   */
+  children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * If `true`, the label should be displayed in an error state.
+   */
+  error: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
+  /**
+   * If `true`, the label will indicate that the input is required.
+   */
+  required: PropTypes.bool,
+};
+
+FormControl.childContextTypes = {
+  muiFormControl: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(FormControl);

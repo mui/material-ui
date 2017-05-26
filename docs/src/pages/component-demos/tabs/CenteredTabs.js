@@ -1,23 +1,19 @@
-// @flow weak
+// @flow
 
 import React, { Component } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
-import { Tabs, Tab } from 'material-ui/Tabs';
+import Tabs, { Tab } from 'material-ui/Tabs';
 
-const styleSheet = createStyleSheet('CenteredTabs', () => ({
+const styleSheet = createStyleSheet('CenteredTabs', theme => ({
   root: {
     flexGrow: 1,
-    marginTop: 30,
+    marginTop: theme.spacing.unit * 3,
   },
 }));
 
-export default class CenteredTabs extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
+class CenteredTabs extends Component {
   state = {
     index: 0,
   };
@@ -27,16 +23,11 @@ export default class CenteredTabs extends Component {
   };
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
 
     return (
       <Paper className={classes.root}>
-        <Tabs
-          index={this.state.index}
-          onChange={this.handleChange}
-          textColor="accent"
-          centered
-        >
+        <Tabs index={this.state.index} onChange={this.handleChange} textColor="accent" centered>
           <Tab label="Item One" />
           <Tab label="Item Two" />
           <Tab label="Item Three" />
@@ -45,3 +36,9 @@ export default class CenteredTabs extends Component {
     );
   }
 }
+
+CenteredTabs.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(CenteredTabs);

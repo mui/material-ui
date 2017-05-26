@@ -1,8 +1,8 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
+import { createShallow } from '../test-utils';
 import TableHead, { styleSheet } from './TableHead';
 
 describe('<TableHead />', () => {
@@ -10,15 +10,13 @@ describe('<TableHead />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
   it('should render a thead', () => {
-    const wrapper = shallow(
-      <TableHead />,
-    );
-    assert.strictEqual(wrapper.is('thead'), true, 'should be a thead');
+    const wrapper = shallow(<TableHead />);
+    assert.strictEqual(wrapper.name(), 'thead');
   });
 
   it('should render with the user and root classes', () => {

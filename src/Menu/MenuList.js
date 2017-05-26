@@ -7,28 +7,9 @@ import keycode from 'keycode';
 import contains from 'dom-helpers/query/contains';
 import activeElement from 'dom-helpers/activeElement';
 import ownerDocument from 'dom-helpers/ownerDocument';
-import { List } from '../List';
+import List from '../List';
 
-export default class MenuList extends Component {
-  static propTypes = {
-    /**
-     * MenuList contents, normally `MenuItem`s.
-     */
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-    /**
-     * @ignore
-     */
-    onBlur: PropTypes.func,
-    /**
-     * @ignore
-     */
-    onKeyDown: PropTypes.func,
-  };
-
+class MenuList extends Component {
   state = {
     currentTabIndex: undefined,
   };
@@ -45,7 +26,7 @@ export default class MenuList extends Component {
   selectedItem = undefined;
   blurTimer = undefined;
 
-  handleBlur = (event) => {
+  handleBlur = event => {
     this.blurTimer = setTimeout(() => {
       if (this.list) {
         const list = findDOMNode(this.list);
@@ -61,7 +42,7 @@ export default class MenuList extends Component {
     }
   };
 
-  handleKeyDown = (event) => {
+  handleKeyDown = event => {
     const list = findDOMNode(this.list);
     const key = keycode(event);
     const currentFocus = activeElement(ownerDocument(list));
@@ -94,7 +75,7 @@ export default class MenuList extends Component {
     }
   };
 
-  handleItemFocus = (event) => {
+  handleItemFocus = event => {
     const list = findDOMNode(this.list);
     if (list) {
       // $FlowFixMe
@@ -142,8 +123,8 @@ export default class MenuList extends Component {
     return this.setTabIndex(0);
   }
 
-  setTabIndex(n) {
-    this.setState({ currentTabIndex: n });
+  setTabIndex(index) {
+    this.setState({ currentTabIndex: index });
   }
 
   render() {
@@ -159,7 +140,9 @@ export default class MenuList extends Component {
       <List
         data-mui-test="MenuList"
         role="menu"
-        rootRef={(c) => { this.list = c; }}
+        rootRef={node => {
+          this.list = node;
+        }}
         className={className}
         onKeyDown={this.handleKeyDown}
         onBlur={this.handleBlur}
@@ -168,7 +151,11 @@ export default class MenuList extends Component {
         {React.Children.map(children, (child, index) =>
           React.cloneElement(child, {
             tabIndex: index === this.state.currentTabIndex ? '0' : '-1',
-            ref: child.props.selected ? ((c) => { this.selectedItem = c; }) : undefined,
+            ref: child.props.selected
+              ? node => {
+                  this.selectedItem = node;
+                }
+              : undefined,
             onFocus: this.handleItemFocus,
           }),
         )}
@@ -177,3 +164,23 @@ export default class MenuList extends Component {
   }
 }
 
+MenuList.propTypes = {
+  /**
+   * MenuList contents, normally `MenuItem`s.
+   */
+  children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
+};
+
+export default MenuList;

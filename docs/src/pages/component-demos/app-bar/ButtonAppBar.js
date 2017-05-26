@@ -1,16 +1,16 @@
-// @flow weak
+// @flow
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import Text from 'material-ui/Text';
+import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 
-const styleSheet = createStyleSheet('ButtonAppBar', () => ({
+const styleSheet = createStyleSheet('ButtonAppBar', {
   root: {
     position: 'relative',
     marginTop: 30,
@@ -22,10 +22,10 @@ const styleSheet = createStyleSheet('ButtonAppBar', () => ({
   flex: {
     flex: 1,
   },
-}));
+});
 
-export default function ButtonAppBar(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function ButtonAppBar(props) {
+  const classes = props.classes;
   return (
     <div className={classes.root}>
       <AppBar className={classes.appBar}>
@@ -33,7 +33,7 @@ export default function ButtonAppBar(props, context) {
           <IconButton contrast>
             <MenuIcon />
           </IconButton>
-          <Text type="title" colorInherit className={classes.flex}>Title</Text>
+          <Typography type="title" colorInherit className={classes.flex}>Title</Typography>
           <Button contrast>Login</Button>
         </Toolbar>
       </AppBar>
@@ -41,6 +41,8 @@ export default function ButtonAppBar(props, context) {
   );
 }
 
-ButtonAppBar.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+ButtonAppBar.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(ButtonAppBar);

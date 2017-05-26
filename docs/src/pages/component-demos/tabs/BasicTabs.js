@@ -1,14 +1,13 @@
-// @flow weak
+// @flow
 /* eslint-disable react/no-multi-comp */
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
-import { Tabs, Tab } from 'material-ui/Tabs';
+import Tabs, { Tab } from 'material-ui/Tabs';
 
-const TabContainer = (props) => (
+const TabContainer = props => (
   <div style={{ padding: 20 }}>
     {props.children}
   </div>
@@ -18,7 +17,7 @@ TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const styleSheet = createStyleSheet('BasicTabs', (theme) => ({
+const styleSheet = createStyleSheet('BasicTabs', theme => ({
   root: {
     flexGrow: 1,
     marginTop: 30,
@@ -29,21 +28,17 @@ const styleSheet = createStyleSheet('BasicTabs', (theme) => ({
   },
 }));
 
-export default class BasicTabs extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
+class BasicTabs extends Component {
   state = {
     index: 0,
   };
 
   handleChange = (event, index) => {
     this.setState({ index });
-  }
+  };
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
 
     return (
       <Paper className={classes.root}>
@@ -61,3 +56,9 @@ export default class BasicTabs extends Component {
     );
   }
 }
+
+BasicTabs.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(BasicTabs);

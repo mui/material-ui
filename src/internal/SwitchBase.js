@@ -10,103 +10,41 @@ import CheckBoxOutlineBlankIcon from '../svg-icons/check-box-outline-blank';
 import CheckBoxIcon from '../svg-icons/check-box';
 import Icon from '../Icon';
 
-export const styleSheet = createStyleSheet('MuiSwitchBase', () => {
-  return {
-    root: {
-      display: 'inline-flex',
-      alignItems: 'center',
-      transition: 'none',
-    },
-    input: {
-      cursor: 'inherit',
-      position: 'absolute',
-      opacity: 0,
-      width: '100%',
-      height: '100%',
-      top: 0,
-      left: 0,
-      margin: 0,
-      padding: 0,
-    },
-  };
+export const styleSheet = createStyleSheet('MuiSwitchBase', {
+  root: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    transition: 'none',
+  },
+  input: {
+    cursor: 'inherit',
+    position: 'absolute',
+    opacity: 0,
+    width: '100%',
+    height: '100%',
+    top: 0,
+    left: 0,
+    margin: 0,
+    padding: 0,
+  },
 });
 
-export function createSwitch({
-  defaultIcon = <CheckBoxOutlineBlankIcon aria-hidden="true" />,
-  defaultCheckedIcon = <CheckBoxIcon aria-hidden="true" />,
-  inputType = 'checkbox',
-  styleSheet: switchStyleSheet,
-} = {}) {
-  return class SwitchBase extends Component {
-    /**
-     ** NB: If changed, please update Checkbox, Switch and Radio
-     ** so that the API documentation is updated.
-     **/
-    static propTypes = {
-      /**
-       * If `true`, the component appears selected.
-       */
-      checked: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-      /**
-       * The CSS class name of the root element when checked.
-       */
-      checkedClassName: PropTypes.string,
-      /**
-       * The icon to display when the component is checked.
-       */
-      checkedIcon: PropTypes.node,
-      /**
-       * The CSS class name of the root element.
-       */
-      className: PropTypes.string,
-      /**
-       * @ignore
-       */
-      defaultChecked: PropTypes.bool,
-      /**
-       * If `true`, the switch will be disabled.
-       */
-      disabled: PropTypes.bool,
-      /**
-       * The CSS class name of the root element when disabled.
-       */
-      disabledClassName: PropTypes.string,
-      /**
-       * If `true`, the ripple will be disabled.
-       */
-      disableRipple: PropTypes.bool,
-      /**
-       * The icon to display when the component is unchecked.
-       */
-      icon: PropTypes.node,
-      /*
-       * @ignore
-       */
-      name: PropTypes.string,
-      /**
-       * Callback fired when the  is changed.
-       *
-       * @param {object} event `change` event
-       * @param {boolean} checked The `checked` value of the switch
-       */
-      onChange: PropTypes.func,
-      /**
-       * @ignore
-       */
-      tabIndex: PropTypes.string,
-      /**
-       * The value of the component.
-       */
-      value: PropTypes.string,
-    };
-
+export default function createSwitch(
+  {
+    defaultIcon = <CheckBoxOutlineBlankIcon aria-hidden="true" />,
+    defaultCheckedIcon = <CheckBoxIcon aria-hidden="true" />,
+    inputType = 'checkbox',
+    styleSheet: switchStyleSheet,
+  } = {},
+) {
+  /**
+   * @ignore - internal component.
+   */
+  class SwitchBase extends Component {
     static defaultProps = {
       icon: defaultIcon,
       checkedIcon: defaultCheckedIcon,
-    };
-
-    static contextTypes = {
-      styleManager: customPropTypes.muiRequired,
+      disableRipple: false,
     };
 
     state = {};
@@ -116,20 +54,19 @@ export function createSwitch({
 
       this.isControlled = props.checked !== undefined;
 
-      if (!this.isControlled) { // not controlled, use internal state
+      if (!this.isControlled) {
+        // not controlled, use internal state
         this.setState({
           checked: props.defaultChecked !== undefined ? props.defaultChecked : false,
         });
       }
     }
 
-    input = undefined;
-    button = undefined;
-    isControlled = undefined;
+    input = null;
+    button = null;
+    isControlled = null;
 
-    focus = () => this.input.focus();
-
-    handleInputChange = (event) => {
+    handleInputChange = event => {
       let newChecked;
 
       if (this.isControlled) {
@@ -165,8 +102,9 @@ export function createSwitch({
 
       const checked = this.isControlled ? checkedProp : this.state.checked;
       const classes = this.context.styleManager.render(styleSheet);
-      const switchClasses = switchStyleSheet ?
-        this.context.styleManager.render(switchStyleSheet) : {};
+      const switchClasses = switchStyleSheet
+        ? this.context.styleManager.render(switchStyleSheet)
+        : {};
 
       const className = classNames(classes.root, switchClasses.default, classNameProp, {
         [classNames(switchClasses.checked, checkedClassName)]: checked,
@@ -176,14 +114,16 @@ export function createSwitch({
       let icon = checked ? checkedIcon : iconProp;
 
       if (typeof icon === 'string') {
-        icon = <Icon aria-hidden="true">{icon}</Icon>;
+        icon = <Icon>{icon}</Icon>;
       }
 
       return (
         <IconButton
           data-mui-test="SwitchBase"
           component="span"
-          buttonRef={(c) => { this.button = c; }}
+          buttonRef={node => {
+            this.button = node;
+          }}
           className={className}
           disabled={disabled}
           tabIndex={null}
@@ -192,7 +132,9 @@ export function createSwitch({
         >
           {icon}
           <input
-            ref={(c) => { this.input = c; }}
+            ref={node => {
+              this.input = node;
+            }}
             type={inputType}
             name={name}
             checked={this.isControlled ? checkedProp : undefined}
@@ -205,5 +147,73 @@ export function createSwitch({
         </IconButton>
       );
     }
+  }
+
+  /**
+   ** NB: If changed, please update Checkbox, Switch and Radio
+   ** so that the API documentation is updated.
+   **/
+  SwitchBase.propTypes = {
+    /**
+     * If `true`, the component appears selected.
+     */
+    checked: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+    /**
+     * The CSS class name of the root element when checked.
+     */
+    checkedClassName: PropTypes.string,
+    /**
+     * The icon to display when the component is checked.
+     */
+    checkedIcon: PropTypes.node,
+    /**
+     * @ignore
+     */
+    className: PropTypes.string,
+    /**
+     * @ignore
+     */
+    defaultChecked: PropTypes.bool,
+    /**
+     * If `true`, the switch will be disabled.
+     */
+    disabled: PropTypes.bool,
+    /**
+     * The CSS class name of the root element when disabled.
+     */
+    disabledClassName: PropTypes.string,
+    /**
+     * If `true`, the ripple will be disabled.
+     */
+    disableRipple: PropTypes.bool,
+    /**
+     * The icon to display when the component is unchecked.
+     */
+    icon: PropTypes.node,
+    /*
+     * @ignore
+     */
+    name: PropTypes.string,
+    /**
+     * Callback fired when the  is changed.
+     *
+     * @param {object} event `change` event
+     * @param {boolean} checked The `checked` value of the switch
+     */
+    onChange: PropTypes.func,
+    /**
+     * @ignore
+     */
+    tabIndex: PropTypes.string,
+    /**
+     * The value of the component.
+     */
+    value: PropTypes.string,
   };
+
+  SwitchBase.contextTypes = {
+    styleManager: customPropTypes.muiRequired,
+  };
+
+  return SwitchBase;
 }

@@ -1,8 +1,8 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
+import { createShallow } from '../test-utils';
 import Paper, { styleSheet } from './Paper';
 
 describe('<Paper />', () => {
@@ -10,15 +10,15 @@ describe('<Paper />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({
+      dive: true,
+    });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
   it('should render a div', () => {
-    const wrapper = shallow(
-      <Paper>Hello World</Paper>,
-    );
-    assert.strictEqual(wrapper.is('div'), true, 'should be a div');
+    const wrapper = shallow(<Paper>Hello World</Paper>);
+    assert.strictEqual(wrapper.name(), 'div');
   });
 
   it('should render with the paper class, default depth class, and rounded', () => {
@@ -39,5 +39,12 @@ describe('<Paper />', () => {
     assert.strictEqual(wrapper.hasClass(classes.dp24), true, 'should have the dp24 shadow class');
     wrapper.setProps({ elevation: 2 });
     assert.strictEqual(wrapper.hasClass(classes.dp2), true, 'should have the dp2 shadow class');
+  });
+
+  describe('prop: component', () => {
+    it('should render a header', () => {
+      const wrapper = shallow(<Paper component="header">Hello World</Paper>);
+      assert.strictEqual(wrapper.name(), 'header');
+    });
   });
 });

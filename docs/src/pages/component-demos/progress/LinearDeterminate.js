@@ -1,21 +1,22 @@
-// @flow weak
+// @flow
 
 import React, { Component } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import { LinearProgress } from 'material-ui/Progress';
 
-const styleSheet = createStyleSheet('LinearDeterminate', () => ({
+const styleSheet = createStyleSheet('LinearDeterminate', {
   root: {
     width: '100%',
     marginTop: 30,
   },
-}));
+});
 
-export default class LinearDeterminate extends Component {
+class LinearDeterminate extends Component {
+  timer: number;
   state = {
     completed: 0,
-  }
+  };
 
   componentDidMount() {
     this.timer = setInterval(this.progress, 500);
@@ -25,8 +26,6 @@ export default class LinearDeterminate extends Component {
     clearInterval(this.timer);
   }
 
-  timer: number
-
   progress = () => {
     const { completed } = this.state;
     if (completed > 100) {
@@ -35,10 +34,10 @@ export default class LinearDeterminate extends Component {
       const diff = Math.random() * 10;
       this.setState({ completed: completed + diff });
     }
-  }
+  };
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
     return (
       <div className={classes.root}>
         <LinearProgress mode="determinate" value={this.state.completed} />
@@ -47,6 +46,8 @@ export default class LinearDeterminate extends Component {
   }
 }
 
-LinearDeterminate.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+LinearDeterminate.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(LinearDeterminate);

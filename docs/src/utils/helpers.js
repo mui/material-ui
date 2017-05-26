@@ -1,7 +1,8 @@
 // @flow weak
 
 export function kebabCase(string) {
-  return string.split(/ |_|-/)
+  return string
+    .split(/ |_|-/)
     .join('-')
     .split('')
     .map((a, i) => {
@@ -15,9 +16,10 @@ export function kebabCase(string) {
 }
 
 export function titleize(string) {
-  return string.split('-')
-    .map((word) => word.split(''))
-    .map((letters) => {
+  return string
+    .split('-')
+    .map(word => word.split(''))
+    .map(letters => {
       const first = letters.shift();
       return [first.toUpperCase(), ...letters].join('');
     })

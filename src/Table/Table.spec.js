@@ -1,8 +1,8 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
+import { createShallow } from '../test-utils';
 import Table, { styleSheet } from './Table';
 
 describe('<Table />', () => {
@@ -10,15 +10,13 @@ describe('<Table />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
   it('should render a table', () => {
-    const wrapper = shallow(
-      <Table />,
-    );
-    assert.strictEqual(wrapper.is('table'), true, 'should be a table');
+    const wrapper = shallow(<Table />);
+    assert.strictEqual(wrapper.name(), 'table');
   });
 
   it('should spread custom props on the root node', () => {

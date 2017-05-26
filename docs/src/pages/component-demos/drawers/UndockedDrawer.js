@@ -1,16 +1,11 @@
-// @flow weak
+// @flow
 
 import React, { Component } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
 import Button from 'material-ui/Button';
-import {
-  List,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-} from 'material-ui/List';
+import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import InboxIcon from 'material-ui-icons/Inbox';
 import DraftsIcon from 'material-ui-icons/Drafts';
@@ -20,8 +15,7 @@ import MailIcon from 'material-ui-icons/Mail';
 import DeleteIcon from 'material-ui-icons/Delete';
 import ReportIcon from 'material-ui-icons/Report';
 
-
-const styleSheet = createStyleSheet('UndockedDrawer', () => ({
+const styleSheet = createStyleSheet('UndockedDrawer', {
   list: {
     width: 250,
     flex: 'initial',
@@ -30,9 +24,9 @@ const styleSheet = createStyleSheet('UndockedDrawer', () => ({
     width: 'auto',
     flex: 'initial',
   },
-}));
+});
 
-export default class UndockedDrawer extends Component {
+class UndockedDrawer extends Component {
   state = {
     open: {
       top: false,
@@ -58,7 +52,7 @@ export default class UndockedDrawer extends Component {
   handleRightClose = () => this.toggleDrawer('right', false);
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
 
     const mailFolderListItems = (
       <div>
@@ -178,6 +172,8 @@ export default class UndockedDrawer extends Component {
   }
 }
 
-UndockedDrawer.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+UndockedDrawer.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(UndockedDrawer);

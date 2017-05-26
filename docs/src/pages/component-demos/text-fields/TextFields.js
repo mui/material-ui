@@ -1,31 +1,28 @@
-// @flow weak
+// @flow
 
 import React, { Component } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 
-const styleSheet = createStyleSheet('TextFields', () => ({
+const styleSheet = createStyleSheet('TextFields', theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
   },
   input: {
-    margin: 10,
+    margin: theme.spacing.unit,
+    width: 200,
   },
 }));
 
-export default class TextFields extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
+class TextFields extends Component {
   state = {
     name: 'Cat in the Hat',
   };
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
 
     return (
       <div className={classes.container}>
@@ -34,7 +31,7 @@ export default class TextFields extends Component {
           label="Name"
           className={classes.input}
           value={this.state.name}
-          onChange={(event) => this.setState({ name: event.target.value })}
+          onChange={event => this.setState({ name: event.target.value })}
         />
         <TextField
           id="uncontrolled"
@@ -56,19 +53,36 @@ export default class TextFields extends Component {
           defaultValue="Hello World"
           className={classes.input}
         />
+        <TextField id="password" label="Password" className={classes.input} type="password" />
         <TextField
-          id="name"
-          label="Name"
+          id="multiline-flexible"
+          label="Multiline"
+          multiline
+          rowsMax="4"
+          defaultValue="Default Value"
           className={classes.input}
-          value={this.state.name}
-          onChange={(event) => this.setState({ name: event.target.value })}
-          disabled
         />
         <TextField
-          id="name"
-          label="Name"
+          id="multiline-static"
+          label="Multiline"
+          multiline
+          rows="4"
+          defaultValue="Default Value"
           className={classes.input}
-          value="Example value"
+        />
+        <TextField
+          id="date"
+          label="From date"
+          type="date"
+          defaultValue="2017-05-24"
+          className={classes.input}
+        />
+        <TextField
+          id="helperText"
+          label="Helper text"
+          type="text"
+          defaultValue="Default Value"
+          className={classes.input}
           helperText="Some important text"
         />
       </div>
@@ -76,3 +90,8 @@ export default class TextFields extends Component {
   }
 }
 
+TextFields.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(TextFields);

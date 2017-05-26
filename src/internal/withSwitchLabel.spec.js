@@ -1,17 +1,17 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow } from 'src/test-utils';
+import { createShallow } from '../test-utils';
 import withSwitchLabel, { styleSheet } from './withSwitchLabel';
 
-describe('<SwitchLabel />', () => {
+describe('withSwitchLabel', () => {
   let shallow;
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
@@ -22,12 +22,12 @@ describe('<SwitchLabel />', () => {
 
     it('should return a SwitchLabel component with a wrapped displayName', () => {
       const SwitchLabel = withSwitchLabel({ displayName: 'Foo' });
-      assert.strictEqual(SwitchLabel.displayName, 'withSwitchLabel(Foo)');
+      assert.strictEqual(SwitchLabel.displayName, 'withStyles(withSwitchLabel(Foo))');
 
       /* eslint-disable prefer-arrow-callback */
       const SwitchLabelFn = withSwitchLabel(function Foo() {});
       /* eslint-enable prefer-arrow-callback */
-      assert.strictEqual(SwitchLabelFn.displayName, 'withSwitchLabel(Foo)');
+      assert.strictEqual(SwitchLabelFn.displayName, 'withStyles(withSwitchLabel(Foo))');
     });
   });
 
@@ -38,17 +38,15 @@ describe('<SwitchLabel />', () => {
     beforeEach(() => {
       class Foo {}
       SwitchLabelFoo = withSwitchLabel(Foo);
-      wrapper = shallow(
-        <SwitchLabelFoo label="Pizza" labelClassName="foo" />,
-      );
+      wrapper = shallow(<SwitchLabelFoo label="Pizza" labelClassName="foo" />);
     });
 
     it('should have the correct displayName', () => {
-      assert.strictEqual(SwitchLabelFoo.displayName, 'withSwitchLabel(Foo)');
+      assert.strictEqual(SwitchLabelFoo.displayName, 'withStyles(withSwitchLabel(Foo))');
     });
 
     it('should render a label', () => {
-      assert.strictEqual(wrapper.is('label'), true, 'should be a label');
+      assert.strictEqual(wrapper.name(), 'label');
     });
 
     it('should render the label text inside an additional span', () => {
@@ -64,7 +62,7 @@ describe('<SwitchLabel />', () => {
 
     it('should render the switch element and no label if no label is provided', () => {
       wrapper.setProps({ label: null });
-      assert.strictEqual(wrapper.is('Foo'), true);
+      assert.strictEqual(wrapper.name(), 'Foo');
     });
 
     describe('imperative methods', () => {

@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React, { Component } from 'react';
 import { LabelCheckbox } from 'material-ui/Checkbox';
@@ -25,23 +25,10 @@ export default class Checkboxes extends Component {
           label="Option B"
           value="checkedB"
         />
-        <LabelCheckbox
-          label="Option C"
-          value="checkedC"
-        />
-        <LabelCheckbox
-          disabled
-          label="Disabled"
-          value="checkedD"
-        />
-        <LabelCheckbox
-          checked
-          disabled
-          label="Disabled"
-          value="checkedE"
-        />
+        <LabelCheckbox label="Option C" value="checkedC" />
+        <LabelCheckbox disabled label="Disabled" value="checkedD" />
+        <LabelCheckbox checked disabled label="Disabled" value="checkedE" />
       </FormGroup>
     );
   }
 }
-

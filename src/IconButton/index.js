@@ -1,4 +1,3 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow
 
-export default from './IconButton';
-export IconButton from './IconButton';
+export { default } from './IconButton';

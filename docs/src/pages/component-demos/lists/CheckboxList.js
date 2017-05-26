@@ -1,19 +1,14 @@
-// @flow weak
+// @flow
 
 import React, { Component } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
-import {
-  List,
-  ListItem,
-  ListItemText,
-  ListItemSecondaryAction,
-} from 'material-ui/List';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
+import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
 import IconButton from 'material-ui/IconButton';
 import CommentIcon from 'material-ui-icons/Comment';
 
-const styleSheet = createStyleSheet('CheckboxList', (theme) => ({
+const styleSheet = createStyleSheet('CheckboxList', theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
@@ -21,11 +16,7 @@ const styleSheet = createStyleSheet('CheckboxList', (theme) => ({
   },
 }));
 
-export default class CheckboxList extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
+class CheckboxList extends Component {
   state = {
     checked: [0],
   };
@@ -47,18 +38,13 @@ export default class CheckboxList extends Component {
   };
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
 
     return (
       <div className={classes.root}>
         <List>
-          {Array.from({ length: 4 }, (v, k) => k).map((index) => (
-            <ListItem
-              dense
-              button
-              key={index}
-              onClick={(event) => this.handleToggle(event, index)}
-            >
+          {Array.from({ length: 4 }, (v, k) => k).map(index => (
+            <ListItem dense button key={index} onClick={event => this.handleToggle(event, index)}>
               <Checkbox
                 checked={this.state.checked.indexOf(index) !== -1}
                 tabIndex="-1"
@@ -78,3 +64,8 @@ export default class CheckboxList extends Component {
   }
 }
 
+CheckboxList.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(CheckboxList);

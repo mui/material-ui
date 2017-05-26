@@ -1,8 +1,8 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
+import { createShallow } from '../test-utils';
 import Icon, { styleSheet } from './Icon';
 
 describe('<Icon />', () => {
@@ -10,7 +10,7 @@ describe('<Icon />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
@@ -21,7 +21,7 @@ describe('<Icon />', () => {
 
   it('should render an span with root class', () => {
     const wrapper = shallow(<Icon>account_circle</Icon>);
-    assert.strictEqual(wrapper.is('span'), true, 'should be an span');
+    assert.strictEqual(wrapper.name(), 'span');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the "root" class');
   });
 
@@ -48,8 +48,11 @@ describe('<Icon />', () => {
 
     it('should render with the contrast class', () => {
       const wrapper = shallow(<Icon contrast>account_circle</Icon>);
-      assert.strictEqual(wrapper.hasClass(classes.contrast), true,
-        'should have the "contrast" class');
+      assert.strictEqual(
+        wrapper.hasClass(classes.contrast),
+        true,
+        'should have the "contrast" class',
+      );
     });
 
     it('should render with the error class', () => {
@@ -59,8 +62,11 @@ describe('<Icon />', () => {
 
     it('should render with the primary class', () => {
       const wrapper = shallow(<Icon primary>account_circle</Icon>);
-      assert.strictEqual(wrapper.hasClass(classes.primary), true,
-        'should have the "primary" class');
+      assert.strictEqual(
+        wrapper.hasClass(classes.primary),
+        true,
+        'should have the "primary" class',
+      );
     });
   });
 });

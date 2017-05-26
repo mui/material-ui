@@ -1,10 +1,10 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { spy, stub } from 'sinon';
 import { assert } from 'chai';
 import ReactDOM from 'react-dom';
-import { createShallow, createMount } from 'src/test-utils';
+import { createShallow, createMount } from '../test-utils';
 import Menu, { styleSheet } from './Menu';
 
 describe('<Menu />', () => {
@@ -12,24 +12,17 @@ describe('<Menu />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
   it('should render a Popover', () => {
     const wrapper = shallow(<Menu />);
-    assert.strictEqual(wrapper.is('Popover'), true, 'should have a Popover root');
+    assert.strictEqual(wrapper.name(), 'withStyles(Popover)');
   });
 
   it('should fire Popover transition event callbacks', () => {
-    const events = [
-      'onEnter',
-      'onEntering',
-      'onEntered',
-      'onExit',
-      'onExiting',
-      'onExited',
-    ];
+    const events = ['onEnter', 'onEntering', 'onEntered', 'onExit', 'onExiting', 'onExited'];
 
     const handlers = events.reduce((result, n) => {
       result[n] = spy();
@@ -38,7 +31,7 @@ describe('<Menu />', () => {
 
     const wrapper = shallow(<Menu {...handlers} />);
 
-    events.forEach((n) => {
+    events.forEach(n => {
       const event = n.charAt(2).toLowerCase() + n.slice(3);
       wrapper.simulate(event, { style: {} });
       assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
@@ -52,8 +45,11 @@ describe('<Menu />', () => {
 
   it('should pass `classes.entered` to the Popover for the enteredClassName', () => {
     const wrapper = shallow(<Menu />);
-    assert.strictEqual(wrapper.props().enteredClassName, classes.entered,
-      'should be classes.entered');
+    assert.strictEqual(
+      wrapper.props().enteredClassName,
+      classes.entered,
+      'should be classes.entered',
+    );
   });
 
   it('should pass the instance function `getContentAnchorEl` to Popover', () => {
@@ -68,17 +64,13 @@ describe('<Menu />', () => {
   it('should pass onRequestClose prop to Popover', () => {
     const fn = () => {};
     const wrapper = shallow(<Menu onRequestClose={fn} />);
-    assert.strictEqual(
-      wrapper.props().onRequestClose, fn, 'should be the same function',
-    );
+    assert.strictEqual(wrapper.props().onRequestClose, fn, 'should be the same function');
   });
 
   it('should pass anchorEl prop to Popover', () => {
     const el = {};
     const wrapper = shallow(<Menu anchorEl={el} />);
-    assert.strictEqual(
-      wrapper.props().anchorEl, el, 'should be the same object',
-    );
+    assert.strictEqual(wrapper.props().anchorEl, el, 'should be the same object');
   });
 
   it('should pass through the `open` prop to Popover', () => {
@@ -98,16 +90,19 @@ describe('<Menu />', () => {
     });
 
     it('should render a MenuList inside the Popover', () => {
-      assert.strictEqual(list.is('MenuList'), true,
-        'should have a MenuList as the immediate child');
+      assert.strictEqual(
+        list.is('MenuList'),
+        true,
+        'should have a MenuList as the immediate child',
+      );
     });
 
     it('should spread other props on the list', () => {
-      assert.strictEqual(list.prop('data-test'), 'hi', 'should have the custom prop');
+      assert.strictEqual(wrapper.props()['data-test'], 'hi', 'should have the custom prop');
     });
 
     it('should have the user classes', () => {
-      assert.strictEqual(list.hasClass('test-class'), true, 'should have the user class');
+      assert.strictEqual(wrapper.hasClass('test-class'), true, 'should have the user class');
     });
   });
 
@@ -129,7 +124,7 @@ describe('<Menu />', () => {
 
     before(() => {
       mount = createMount();
-      wrapper = mount(<Menu />);
+      wrapper = mount(<Menu.Naked classes={classes} />);
       instance = wrapper.instance();
 
       selectedItemFocusSpy = spy();
@@ -141,7 +136,7 @@ describe('<Menu />', () => {
         focus: menuListFocusSpy,
       };
 
-      findDOMNodeStub = stub(ReactDOM, 'findDOMNode').callsFake((arg) => {
+      findDOMNodeStub = stub(ReactDOM, 'findDOMNode').callsFake(arg => {
         if (arg === SELECTED_ITEM_KEY) {
           return {
             focus: selectedItemFocusSpy,

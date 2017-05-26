@@ -1,35 +1,34 @@
-// @flow weak
+// @flow
 
 import React, { Component } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Input from 'material-ui/Input';
 import InputLabel from 'material-ui/Input/InputLabel';
 import FormControl from 'material-ui/Form/FormControl';
 import FormHelperText from 'material-ui/Form/FormHelperText';
 
-const styleSheet = createStyleSheet('ComposedTextField', () => ({
+const styleSheet = createStyleSheet('ComposedTextField', theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
   },
   input: {
-    marginLeft: 10,
-    marginRight: 10,
+    margin: theme.spacing.unit,
   },
 }));
 
-export default class ComposedTextField extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
+class ComposedTextField extends Component {
   state = {
     name: 'Composed TextField',
   };
 
+  handleChange = event => {
+    this.setState({ name: event.target.value });
+  };
+
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
 
     return (
       <div className={classes.container}>
@@ -37,30 +36,20 @@ export default class ComposedTextField extends Component {
           <InputLabel htmlFor="name">
             Name
           </InputLabel>
-          <Input
-            id="name"
-            value={this.state.name}
-            onChange={(event) => this.setState({ name: event.target.value })}
-          />
+          <Input id="name" value={this.state.name} onChange={this.handleChange} />
         </FormControl>
         <FormControl className={classes.input}>
           <InputLabel htmlFor="name">
             Name
           </InputLabel>
-          <Input
-            id="name"
-            value="Composed TextField"
-          />
+          <Input id="name" value={this.state.name} onChange={this.handleChange} />
           <FormHelperText>Some important helper text</FormHelperText>
         </FormControl>
         <FormControl className={classes.input} error>
           <InputLabel htmlFor="name">
             Name
           </InputLabel>
-          <Input
-            id="name"
-            value="Composed TextField"
-          />
+          <Input id="name" value={this.state.name} onChange={this.handleChange} />
           <FormHelperText>Some important helper text</FormHelperText>
         </FormControl>
       </div>
@@ -68,3 +57,8 @@ export default class ComposedTextField extends Component {
   }
 }
 
+ComposedTextField.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(ComposedTextField);

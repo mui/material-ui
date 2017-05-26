@@ -1,18 +1,16 @@
-// @flow weak
+// @flow
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
-import {
-  Card,
-  CardContent,
-  CardActions,
-} from 'material-ui/Card';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
+import Card, { CardActions, CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
-import Text from 'material-ui/Text';
+import Typography from 'material-ui/Typography';
 
-const styleSheet = createStyleSheet('SimpleCard', (theme) => ({
-  card: { minWidth: 275 },
+const styleSheet = createStyleSheet('SimpleCard', theme => ({
+  card: {
+    minWidth: 275,
+  },
   bullet: {
     display: 'inline-block',
     margin: '0 2px',
@@ -29,24 +27,23 @@ const styleSheet = createStyleSheet('SimpleCard', (theme) => ({
   },
 }));
 
-export default function SimpleCard(props, context) {
-  const classes = context.styleManager.render(styleSheet);
-
-  const bull = <span className={classes.bullet}>&bull;</span>;
+function SimpleCard(props) {
+  const classes = props.classes;
+  const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <div>
       <Card className={classes.card}>
         <CardContent>
-          <Text type="body1" className={classes.title}>Word of the Day</Text>
-          <Text type="headline" component="h2">
+          <Typography type="body1" className={classes.title}>Word of the Day</Typography>
+          <Typography type="headline" component="h2">
             be{bull}nev{bull}o{bull}lent
-          </Text>
-          <Text type="body1" className={classes.pos}>adjective</Text>
-          <Text component="p">
+          </Typography>
+          <Typography type="body1" className={classes.pos}>adjective</Typography>
+          <Typography component="p">
             well meaning and kindly.<br />
             {'"a benevolent smile"'}
-          </Text>
+          </Typography>
         </CardContent>
         <CardActions>
           <Button compact>Learn More</Button>
@@ -56,6 +53,8 @@ export default function SimpleCard(props, context) {
   );
 }
 
-SimpleCard.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+SimpleCard.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(SimpleCard);

@@ -1,8 +1,8 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
+import { createShallow } from '../test-utils';
 import CircularProgress, { styleSheet } from './CircularProgress';
 
 describe('<CircularProgress />', () => {
@@ -10,13 +10,13 @@ describe('<CircularProgress />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
   it('should render a div with the root class', () => {
     const wrapper = shallow(<CircularProgress />);
-    assert.strictEqual(wrapper.is('div'), true, 'should be a div');
+    assert.strictEqual(wrapper.name(), 'div');
   });
 
   it('should render with the user and root classes', () => {
@@ -31,7 +31,10 @@ describe('<CircularProgress />', () => {
     assert.strictEqual(svg.is('svg'), true, 'should be a svg');
     assert.strictEqual(svg.hasClass(classes.svg), true, 'should have the svg class');
     assert.strictEqual(svg.childAt(0).is('circle'), true, 'should be a circle');
-    assert.strictEqual(svg.childAt(0).hasClass(classes.circle), true,
-      'should have the circle class');
+    assert.strictEqual(
+      svg.childAt(0).hasClass(classes.circle),
+      true,
+      'should have the circle class',
+    );
   });
 });

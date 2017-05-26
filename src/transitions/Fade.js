@@ -1,65 +1,68 @@
 // @flow weak
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Element, Component } from 'react';
 import Transition from '../internal/Transition';
 import { duration } from '../styles/transitions';
 import customPropTypes from '../utils/customPropTypes';
 
-export default class Fade extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    /**
-     * If `true`, the component will transition in.
-     */
-    in: PropTypes.bool,
-    /**
-     * Duration of the animation when the element is entering.
-     */
-    enterTransitionDuration: PropTypes.number, // eslint-disable-line react/sort-prop-types
-    /**
-     * Duration of the animation when the element is exiting.
-     */
-    leaveTransitionDuration: PropTypes.number,
-    /**
-     * Callback fired before the component enters.
-     */
-    onEnter: PropTypes.func,
-    /**
-     * Callback fired when the component is entering.
-     */
-    onEntering: PropTypes.func,
-    /**
-     * Callback fired when the component has entered.
-     */
-    onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
-    /**
-     * Callback fired before the component exits.
-     */
-    onExit: PropTypes.func,
-    /**
-     * Callback fired when the component is exiting.
-     */
-    onExiting: PropTypes.func,
-    /**
-     * Callback fired when the component has exited.
-     */
-    onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
-  };
+type DefaultProps = {
+  in: boolean,
+  enterTransitionDuration: number,
+  leaveTransitionDuration: number,
+};
 
-  static defaultProps = {
+type Props = DefaultProps & {
+  children?: Element<*>,
+  /**
+   * If `true`, the component will transition in.
+   */
+  in?: boolean,
+  /**
+   * Duration of the animation when the element is entering.
+   */
+  enterTransitionDuration?: number, // eslint-disable-line react/sort-prop-types
+  /**
+   * Duration of the animation when the element is exiting.
+   */
+  leaveTransitionDuration?: number,
+  /**
+   * Callback fired before the component enters.
+   */
+  onEnter?: Function,
+  /**
+   * Callback fired when the component is entering.
+   */
+  onEntering?: Function,
+  /**
+   * Callback fired when the component has entered.
+   */
+  onEntered?: Function, // eslint-disable-line react/sort-prop-types
+  /**
+   * Callback fired before the component exits.
+   */
+  onExit?: Function,
+  /**
+   * Callback fired when the component is exiting.
+   */
+  onExiting?: Function,
+  /**
+   * Callback fired when the component has exited.
+   */
+  onExited?: Function, // eslint-disable-line react/sort-prop-types
+};
+
+class Fade extends Component<DefaultProps, Props, void> {
+  props: Props;
+
+  static defaultProps: DefaultProps = {
     in: false,
     enterTransitionDuration: duration.enteringScreen,
     leaveTransitionDuration: duration.leavingScreen,
   };
 
-  static contextTypes = {
-    theme: customPropTypes.muiRequired,
-  };
-
-  handleEnter = (element) => {
+  handleEnter = element => {
     element.style.opacity = 0;
-    const { transitions } = this.context.theme;
+    const { transitions } = this.context.styleManager.theme;
     element.style.transition = transitions.create('opacity', {
       duration: this.props.enterTransitionDuration,
     });
@@ -68,15 +71,15 @@ export default class Fade extends Component {
     }
   };
 
-  handleEntering = (element) => {
+  handleEntering = element => {
     element.style.opacity = 1;
     if (this.props.onEntering) {
       this.props.onEntering(element);
     }
   };
 
-  handleExit = (element) => {
-    const { transitions } = this.context.theme;
+  handleExit = element => {
+    const { transitions } = this.context.styleManager.theme;
     element.style.transition = transitions.create('opacity', {
       duration: this.props.leaveTransitionDuration,
     });
@@ -109,3 +112,9 @@ export default class Fade extends Component {
     );
   }
 }
+
+Fade.contextTypes = {
+  styleManager: customPropTypes.muiRequired,
+};
+
+export default Fade;

@@ -3,22 +3,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createStyleSheet } from 'jss-theme-reactor';
-import { createSwitch } from '../internal/SwitchBase';
+import createSwitch from '../internal/SwitchBase';
 import withSwitchLabel from '../internal/withSwitchLabel';
 
-export const styleSheet = createStyleSheet('MuiCheckbox', (theme) => {
-  return {
-    default: {
-      color: theme.palette.text.secondary,
-    },
-    checked: {
-      color: theme.palette.primary[500],
-    },
-    disabled: {
-      color: theme.palette.action.disabled,
-    },
-  };
-});
+export const styleSheet = createStyleSheet('MuiCheckbox', theme => ({
+  default: {
+    color: theme.palette.text.secondary,
+  },
+  checked: {
+    color: theme.palette.primary[500],
+  },
+  disabled: {
+    color: theme.palette.action.disabled,
+  },
+}));
 
 const Checkbox = createSwitch({ styleSheet });
 
@@ -30,10 +28,6 @@ const LabelCheckbox = withSwitchLabel(Checkbox);
 
 export { LabelCheckbox };
 
-/**
- * [Checkboxes](https://material.io/guidelines/components/selection-controls.html#selection-controls-checkbox)
- * allow the user to select multiple options from a set.
- */
 export const CheckboxDocs = () => <span />;
 
 CheckboxDocs.propTypes = {
@@ -50,7 +44,11 @@ CheckboxDocs.propTypes = {
    */
   checkedIcon: PropTypes.node,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
   /**

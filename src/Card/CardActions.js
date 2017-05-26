@@ -4,10 +4,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 import { cloneChildrenWithClassName } from '../utils/reactHelpers';
 
-export const styleSheet = createStyleSheet('MuiCardActions', () => ({
+export const styleSheet = createStyleSheet('MuiCardActions', {
   cardActions: {
     height: 52,
     display: 'flex',
@@ -17,23 +17,18 @@ export const styleSheet = createStyleSheet('MuiCardActions', () => ({
   actionSpacing: {
     margin: '0 4px',
   },
-}));
+});
 
-export default function CardActions(props, context) {
-  const {
-    disableActionSpacing,
-    children,
-    className: classNameProp,
-    ...other
-  } = props;
+function CardActions(props) {
+  const { disableActionSpacing, children, classes, className: classNameProp, ...other } = props;
 
-  const classes = context.styleManager.render(styleSheet);
   const className = classNames(classes.cardActions, classNameProp);
 
   return (
     <div className={className} {...other}>
-      {disableActionSpacing ?
-        children : cloneChildrenWithClassName(children, classes.actionSpacing)}
+      {disableActionSpacing
+        ? children
+        : cloneChildrenWithClassName(children, classes.actionSpacing)}
     </div>
   );
 }
@@ -44,7 +39,11 @@ CardActions.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
   /**
@@ -57,6 +56,4 @@ CardActions.defaultProps = {
   disableActionSpacing: false,
 };
 
-CardActions.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
+export default withStyles(styleSheet)(CardActions);

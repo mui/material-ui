@@ -1,8 +1,8 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
+import { createShallow } from '../test-utils';
 import FormLabel, { styleSheet } from './FormLabel';
 
 describe('<FormLabel />', () => {
@@ -10,13 +10,13 @@ describe('<FormLabel />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
   it('should render a <label />', () => {
     const wrapper = shallow(<FormLabel className="woof" />);
-    assert.strictEqual(wrapper.is('label'), true, 'should be a <label>');
+    assert.strictEqual(wrapper.name(), 'label');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the user class');
   });
@@ -46,11 +46,7 @@ describe('<FormLabel />', () => {
         true,
         'asterisk should have the error class',
       );
-      assert.strictEqual(
-        wrapper.hasClass(classes.error),
-        true,
-        'should have the error class',
-      );
+      assert.strictEqual(wrapper.hasClass(classes.error), true, 'should have the error class');
     });
   });
 
@@ -66,8 +62,7 @@ describe('<FormLabel />', () => {
     beforeEach(() => {
       wrapper = shallow(<FormLabel>Foo</FormLabel>);
     });
-
-    ['error', 'focused'].forEach((visualState) => {
+    ['error', 'focused'].forEach(visualState => {
       describe(visualState, () => {
         beforeEach(() => {
           setFormControlContext({ [visualState]: true });

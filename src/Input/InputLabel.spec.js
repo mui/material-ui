@@ -1,8 +1,8 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
+import { createShallow } from '../test-utils';
 import InputLabel, { styleSheet } from './InputLabel';
 
 describe('<InputLabel />', () => {
@@ -10,30 +10,24 @@ describe('<InputLabel />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({ dive: true });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
   it('should render a FormLabel', () => {
-    const wrapper = shallow(
-      <InputLabel>Foo</InputLabel>,
-    );
-    assert.strictEqual(wrapper.is('FormLabel'), true);
+    const wrapper = shallow(<InputLabel>Foo</InputLabel>);
+    assert.strictEqual(wrapper.name(), 'withStyles(FormLabel)');
     assert.strictEqual(wrapper.childAt(0).node, 'Foo');
   });
 
   it('should have the root and animated classes by default', () => {
-    const wrapper = shallow(
-      <InputLabel>Foo</InputLabel>,
-    );
+    const wrapper = shallow(<InputLabel>Foo</InputLabel>);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.animated), true);
   });
 
   it('should not have the animated class when disabled', () => {
-    const wrapper = shallow(
-      <InputLabel disableAnimation>Foo</InputLabel>,
-    );
+    const wrapper = shallow(<InputLabel disableAnimation>Foo</InputLabel>);
     assert.strictEqual(wrapper.hasClass(classes.animated), false);
   });
 
@@ -54,8 +48,7 @@ describe('<InputLabel />', () => {
       setFormControlContext({});
       assert.strictEqual(wrapper.hasClass(classes.formControl), true);
     });
-
-    ['dirty', 'focused'].forEach((state) => {
+    ['dirty', 'focused'].forEach(state => {
       describe(state, () => {
         beforeEach(() => {
           setFormControlContext({ [state]: true });

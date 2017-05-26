@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import { stub } from 'sinon';
 import { assert } from 'chai';
@@ -10,9 +10,9 @@ import { createStyleManager } from 'jss-theme-reactor';
 import React from 'react';
 import htmlLooksLike from 'html-looks-like';
 import { renderToString } from 'react-dom/server';
-import { createMount } from 'src/test-utils';
-import { createMuiTheme } from 'src/styles/theme';
-import Button from 'src/Button';
+import { createMount } from '../test-utils';
+import { createMuiTheme } from '../styles';
+import Button from '../Button';
 import MuiThemeProvider from './MuiThemeProvider';
 
 function trim(str) {
@@ -48,7 +48,9 @@ describe('<MuiThemeProvider />', () => {
         </MuiThemeProvider>,
       );
 
-      htmlLooksLike(markup, `
+      htmlLooksLike(
+        markup,
+        `
         <button
           tabindex="0"
           class="MuiButtonBase-buttonBase-3170508663 MuiButton-root-3593367901"
@@ -62,7 +64,8 @@ describe('<MuiThemeProvider />', () => {
           </span>
           <span class="MuiTouchRipple-root-3868442396" data-reactid="3"></span>
         </button>
-      `);
+      `,
+      );
 
       const expected = fs.readFileSync(
         path.join(__dirname, 'MuiThemeProvider.spec.output.css'),

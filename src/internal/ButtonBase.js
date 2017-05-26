@@ -1,5 +1,4 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
+// @flow weak
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
@@ -8,86 +7,35 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import keycode from 'keycode';
 import customPropTypes from '../utils/customPropTypes';
 import { listenForFocusKeys, detectKeyboardFocus, focusKeyPressed } from '../utils/keyboardFocus';
-import { TouchRipple, createRippleHandler } from '../Ripple';
+import TouchRipple from './TouchRipple';
+import createRippleHandler from './createRippleHandler';
 
-export const styleSheet = createStyleSheet('MuiButtonBase', () => {
-  return {
-    buttonBase: {
-      position: 'relative',
-      WebkitTapHighlightColor: 'rgba(0,0,0,0.0)',
-      outline: 'none',
-      border: 0,
-      cursor: 'pointer',
-      userSelect: 'none',
-      appearance: 'none',
-      textDecoration: 'none',
-    },
-    disabled: {
-      cursor: 'not-allowed',
-    },
-  };
+export const styleSheet = createStyleSheet('MuiButtonBase', {
+  buttonBase: {
+    position: 'relative',
+    WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+    outline: 'none',
+    border: 0,
+    cursor: 'pointer',
+    userSelect: 'none',
+    appearance: 'none',
+    textDecoration: 'none',
+  },
+  disabled: {
+    cursor: 'default',
+  },
 });
 
-export default class ButtonBase extends Component {
-  static propTypes = {
-    centerRipple: PropTypes.bool,
-    /**
-     * The content of the component.
-     */
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-    /**
-     * The component used for the root node.
-     * Either a string to use a DOM element or a component.
-     */
-    component: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.func,
-    ]),
-    /**
-     * If `true`, the base button will be disabled.
-     */
-    disabled: PropTypes.bool,
-    /**
-     * If `true`, the base button will have a keyboard focus ripple.
-     * `ripple` must also be true.
-     */
-    focusRipple: PropTypes.bool,
-    keyboardFocusedClassName: PropTypes.string,
-    onBlur: PropTypes.func,
-    onClick: PropTypes.func,
-    onFocus: PropTypes.func,
-    onKeyboardFocus: PropTypes.func,
-    onKeyDown: PropTypes.func,
-    onKeyUp: PropTypes.func,
-    onMouseDown: PropTypes.func,
-    onMouseLeave: PropTypes.func,
-    onMouseUp: PropTypes.func,
-    onTouchEnd: PropTypes.func,
-    onTouchStart: PropTypes.func,
-    /**
-     * If `false`, the base button will not have a ripple when clicked.
-     */
-    ripple: PropTypes.bool,
-    role: PropTypes.string,
-    tabIndex: PropTypes.string,
-    type: PropTypes.string,
-  };
-
+/**
+ * @ignore - internal component.
+ */
+class ButtonBase extends Component {
   static defaultProps = {
     centerRipple: false,
-    component: 'button',
     focusRipple: false,
     ripple: true,
     tabIndex: '0',
     type: 'button',
-  };
-
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
   };
 
   state = {
@@ -99,10 +47,8 @@ export default class ButtonBase extends Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    if (this.props.focusRipple) {
-      if (nextState.keyboardFocused && !this.state.keyboardFocused) {
-        this.ripple.pulsate();
-      }
+    if (this.props.focusRipple && nextState.keyboardFocused && !this.state.keyboardFocused) {
+      this.ripple.pulsate();
     }
   }
 
@@ -110,16 +56,16 @@ export default class ButtonBase extends Component {
     clearTimeout(this.keyboardFocusTimeout);
   }
 
-  ripple = undefined;
+  ripple = null;
   keyDown = false; // Used to help track keyboard activation keyDown
   button = null;
-  keyboardFocusTimeout = undefined;
+  keyboardFocusTimeout = null;
   keyboardFocusCheckTime = 40;
   keyboardFocusMaxCheckTimes = 5;
 
   focus = () => this.button.focus();
 
-  handleKeyDown = (event) => {
+  handleKeyDown = event => {
     const { component, focusRipple, onKeyDown, onClick } = this.props;
     const key = keycode(event);
 
@@ -140,6 +86,7 @@ export default class ButtonBase extends Component {
     if (
       event.target === this.button &&
       onClick &&
+      component &&
       component !== 'a' &&
       component !== 'button' &&
       (key === 'space' || key === 'enter')
@@ -149,7 +96,7 @@ export default class ButtonBase extends Component {
     }
   };
 
-  handleKeyUp = (event) => {
+  handleKeyUp = event => {
     if (this.props.focusRipple && keycode(event) === 'space' && this.state.keyboardFocused) {
       this.keyDown = false;
       event.persist();
@@ -170,7 +117,7 @@ export default class ButtonBase extends Component {
 
   handleMouseUp = createRippleHandler(this, 'MouseUp', 'stop');
 
-  handleMouseLeave = createRippleHandler(this, 'MouseLeave', 'stop', (event) => {
+  handleMouseLeave = createRippleHandler(this, 'MouseLeave', 'stop', event => {
     if (this.state.keyboardFocused) {
       event.preventDefault();
     }
@@ -183,30 +130,40 @@ export default class ButtonBase extends Component {
     this.setState({ keyboardFocused: false });
   });
 
-  handleFocus = (event) => {
+  handleFocus = event => {
     if (this.props.disabled) {
       return;
     }
 
     event.persist();
 
-    detectKeyboardFocus(this, findDOMNode(this.button), () => {
-      this.keyDown = false;
-      this.setState({ keyboardFocused: true });
-
-      if (this.props.onKeyboardFocus) {
-        this.props.onKeyboardFocus(event);
-      }
-    });
+    const keyboardFocusCallback = this.onKeyboardFocusHandler.bind(this, event);
+    detectKeyboardFocus(this, findDOMNode(this.button), keyboardFocusCallback);
 
     if (this.props.onFocus) {
       this.props.onFocus(event);
     }
   };
 
+  onKeyboardFocusHandler = event => {
+    this.keyDown = false;
+    this.setState({ keyboardFocused: true });
+
+    if (this.props.onKeyboardFocus) {
+      this.props.onKeyboardFocus(event);
+    }
+  };
+
   renderRipple(ripple, center) {
     if (ripple === true && !this.props.disabled) {
-      return <TouchRipple ref={(c) => { this.ripple = c; }} center={center} />;
+      return (
+        <TouchRipple
+          ref={node => {
+            this.ripple = node;
+          }}
+          center={center}
+        />
+      );
     }
 
     return null;
@@ -223,6 +180,7 @@ export default class ButtonBase extends Component {
       keyboardFocusedClassName,
       onBlur, // eslint-disable-line no-unused-vars
       onFocus, // eslint-disable-line no-unused-vars
+      onKeyboardFocus, // eslint-disable-line no-unused-vars
       onKeyDown, // eslint-disable-line no-unused-vars
       onKeyUp, // eslint-disable-line no-unused-vars
       onMouseDown, // eslint-disable-line no-unused-vars
@@ -237,14 +195,19 @@ export default class ButtonBase extends Component {
     } = this.props;
 
     const classes = this.context.styleManager.render(styleSheet);
-
-    const className = classNames(classes.buttonBase, {
-      [classes.disabled]: disabled,
-      [keyboardFocusedClassName]: keyboardFocusedClassName && this.state.keyboardFocused,
-    }, classNameProp);
+    const className = classNames(
+      classes.buttonBase,
+      {
+        [classes.disabled]: disabled,
+        [keyboardFocusedClassName]: keyboardFocusedClassName && this.state.keyboardFocused,
+      },
+      classNameProp,
+    );
 
     const buttonProps = {
-      ref: (c) => { this.button = c; },
+      ref: node => {
+        this.button = node;
+      },
       onBlur: this.handleBlur,
       onFocus: this.handleFocus,
       onKeyDown: this.handleKeyDown,
@@ -259,24 +222,81 @@ export default class ButtonBase extends Component {
       ...other,
     };
 
-    let Element = component;
+    let ComponentProp = component;
 
-    if (other.href) {
-      Element = 'a';
+    if (!ComponentProp) {
+      if (other.href) {
+        ComponentProp = 'a';
+      } else {
+        ComponentProp = 'button';
+      }
     }
 
-    if (Element === 'button') {
-      buttonProps.type = type;
+    if (ComponentProp === 'button') {
+      buttonProps.type = type || 'button';
+    }
+
+    if (ComponentProp !== 'a') {
+      buttonProps.role = buttonProps.role || 'button';
       buttonProps.disabled = disabled;
-    } else if (Element !== 'a') {
-      buttonProps.role = this.props.hasOwnProperty('role') ? this.props.role : 'button';
     }
 
     return (
-      <Element {...buttonProps}>
+      <ComponentProp {...buttonProps}>
         {children}
         {this.renderRipple(ripple, centerRipple)}
-      </Element>
+      </ComponentProp>
     );
   }
 }
+
+ButtonBase.propTypes = {
+  centerRipple: PropTypes.bool,
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /**
+   * If `true`, the base button will be disabled.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * If `true`, the base button will have a keyboard focus ripple.
+   * `ripple` must also be true.
+   */
+  focusRipple: PropTypes.bool,
+  keyboardFocusedClassName: PropTypes.string,
+  onBlur: PropTypes.func,
+  onClick: PropTypes.func,
+  onFocus: PropTypes.func,
+  onKeyboardFocus: PropTypes.func,
+  onKeyDown: PropTypes.func,
+  onKeyUp: PropTypes.func,
+  onMouseDown: PropTypes.func,
+  onMouseLeave: PropTypes.func,
+  onMouseUp: PropTypes.func,
+  onTouchEnd: PropTypes.func,
+  onTouchStart: PropTypes.func,
+  /**
+   * If `false`, the base button will not have a ripple when clicked.
+   */
+  ripple: PropTypes.bool,
+  role: PropTypes.string,
+  tabIndex: PropTypes.string,
+  type: PropTypes.string,
+};
+
+ButtonBase.contextTypes = {
+  styleManager: customPropTypes.muiRequired,
+};
+
+export default ButtonBase;

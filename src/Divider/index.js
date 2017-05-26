@@ -1,4 +1,3 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow
 
-export default from './Divider';
-export Divider from './Divider';
+export { default } from './Divider';

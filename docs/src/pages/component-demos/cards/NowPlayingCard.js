@@ -1,20 +1,17 @@
-// @flow weak
+// @flow
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
-import {
-  Card,
-  CardContent,
-} from 'material-ui/Card';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
+import Card, { CardContent } from 'material-ui/Card';
 import IconButton from 'material-ui/IconButton';
-import Text from 'material-ui/Text';
+import Typography from 'material-ui/Typography';
 import SkipPreviousIcon from 'material-ui-icons/SkipPrevious';
 import PlayArrowIcon from 'material-ui-icons/PlayArrow';
 import SkipNextIcon from 'material-ui-icons/SkipNext';
 import albumCover from 'docs/src/assets/images/live-from-space.jpg';
 
-const styleSheet = createStyleSheet('NowPlayingCard', () => ({
+const styleSheet = createStyleSheet('NowPlayingCard', {
   card: {
     display: 'flex',
   },
@@ -39,20 +36,20 @@ const styleSheet = createStyleSheet('NowPlayingCard', () => ({
     height: 38,
     width: 38,
   },
-}));
+});
 
-export default function NowPlayingCard(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function NowPlayingCard(props) {
+  const classes = props.classes;
 
   return (
     <div>
       <Card className={classes.card}>
         <div className={classes.details}>
           <CardContent className={classes.content}>
-            <Text type="headline">Live From Space</Text>
-            <Text type="subheading" secondary>
+            <Typography type="headline">Live From Space</Typography>
+            <Typography type="subheading" secondary>
               Mac Miller
-            </Text>
+            </Typography>
           </CardContent>
           <div className={classes.controls}>
             <IconButton>
@@ -74,6 +71,8 @@ export default function NowPlayingCard(props, context) {
   );
 }
 
-NowPlayingCard.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+NowPlayingCard.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(NowPlayingCard);

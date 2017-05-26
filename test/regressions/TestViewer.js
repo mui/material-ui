@@ -4,11 +4,12 @@ import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 
-const globalStyleSheet = createStyleSheet('global', (theme) => {
-  const { palette, typography } = theme;
+const globalStyleSheet = createStyleSheet('global', theme => {
+  const { palette } = theme;
   return {
     '@global': {
       html: {
+        // Do the opposite of the docs in order to help catching issues.
         boxSizing: 'border-box',
       },
       '*, *:before, *:after': {
@@ -19,9 +20,6 @@ const globalStyleSheet = createStyleSheet('global', (theme) => {
       body: {
         margin: 0,
         background: palette.background.default,
-        fontFamily: typography.fontFamily,
-        color: palette.text.primary,
-        lineHeight: '1.2',
         overflowX: 'hidden',
         WebkitFontSmoothing: 'antialiased',
       },
@@ -32,18 +30,14 @@ const globalStyleSheet = createStyleSheet('global', (theme) => {
       'a:hover': {
         textDecoration: 'underline',
       },
-      p: {
-        lineHeight: '1.6',
-      },
     },
   };
 });
 
-const styleSheet = createStyleSheet('TestViewer', () => {
+const styleSheet = createStyleSheet('TestViewer', theme => {
   return {
     root: {
-      display: 'inline-block',
-      padding: 10,
+      padding: theme.spacing.unit,
     },
   };
 });
