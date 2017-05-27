@@ -23,6 +23,7 @@ describe('<CircularProgress />', () => {
     const wrapper = shallow(<CircularProgress className="woof" />);
     assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.props().role, 'progressbar');
   });
 
   it('should contain an SVG with the svg class, and a circle with the circle class', () => {
@@ -95,6 +96,8 @@ describe('<CircularProgress />', () => {
       'calc(((100% - 3.6px) * 3.1416) * 0.7),calc((100% - 3.6px) * 3.1416)',
       'should have strokeDasharray set');
     assert.strictEqual(wrapper.props()['aria-valuenow'], 70);
+    assert.strictEqual(wrapper.props()['aria-valuemin'], 0);
+    assert.strictEqual(wrapper.props()['aria-valuemax'], 100);
   });
 
   it('should set strokeDasharray of circle on determinate mode based on min max', () => {

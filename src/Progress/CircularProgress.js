@@ -11,7 +11,7 @@ const PI = 3.1416; // Simple version of Math.PI for the CSS generated.
 
 function getRelativeValue(value, min, max) {
   const clampedValue = Math.min(Math.max(min, value), max);
-  return clampedValue / (max - min);
+  return (clampedValue - min) / (max - min);
 }
 
 export const styleSheet = createStyleSheet('MuiCircularProgress', theme => ({
@@ -79,25 +79,28 @@ function CircularProgress(props) {
     [classes.determinateCircle]: mode === 'determinate',
   });
 
-  const styles = { circle: {} };
+  const circleStyle = { };
   if (mode === 'determinate') {
-    const relVal = getRelativeValue(Math.round(value), min, max);
-    styles.circle.strokeDasharray = `calc(((100% - ${THICKNESS}px) * ${PI}) * ${relVal}),` +
-                                    `calc((100% - ${THICKNESS}px) * ${PI})`;
-    rootProps['aria-valuenow'] = Math.round(value);
+    const relVal = getRelativeValue(value, min, max);
+    circleStyle.strokeDasharray = `calc(((100% - ${THICKNESS}px) * ${PI}) * ${relVal}),` +
+                                  `calc((100% - ${THICKNESS}px) * ${PI})`;
+    rootProps['aria-valuenow'] = value;
+    rootProps['aria-valuemin'] = min;
+    rootProps['aria-valuemax'] = max;
   }
 
   return (
     <div
       className={classNames(classes.root, className)}
       style={{ width: size, height: size }}
+      role="progressbar"
       {...rootProps}
       {...other}
     >
       <svg className={svgClasses} viewBox={`0 0 ${size} ${size}`}>
         <circle
           className={circleClasses}
-          style={styles.circle}
+          style={circleStyle}
           cx={radius}
           cy={radius}
           r={radius - THICKNESS / 2}
