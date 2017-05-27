@@ -182,7 +182,8 @@ function generateProps(props) {
 }
 
 function generateClasses(styles) {
-  return styles.classes.length ? `## Classes
+  return styles.classes.length
+    ? `## Classes
 
 You can overrides all the class names injected by Material-UI thanks to the \`classes\` property.
 This property accepts the following keys:
@@ -193,7 +194,8 @@ section for more detail.
 
 If using the \`overrides\` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
-you need to use the following style sheet name: \`${styles.name}\`.` : '';
+you need to use the following style sheet name: \`${styles.name}\`.`
+    : '';
 }
 
 export default function generateMarkdown(name, reactAPI) {

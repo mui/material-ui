@@ -120,8 +120,10 @@ describe('<Tabs />', () => {
         </Tabs>,
       );
       assert.strictEqual(consoleErrorMock.callCount(), 2);
-      assert.strictEqual(consoleErrorMock.args()[0][0],
-        'Warning: Material-UI: the index provided `2` is invalid');
+      assert.strictEqual(
+        consoleErrorMock.args()[0][0],
+        'Warning: Material-UI: the index provided `2` is invalid',
+      );
     });
   });
 
