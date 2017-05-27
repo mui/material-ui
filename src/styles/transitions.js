@@ -33,9 +33,9 @@ export const duration = {
   leavingScreen: 195,
 };
 
-export const formatMs = (miliseconds) => `${Math.round(miliseconds)}ms`;
-export const isString = (value) => typeof value === 'string';
-export const isNumber = (value) => !isNaN(parseFloat(value));
+export const formatMs = miliseconds => `${Math.round(miliseconds)}ms`;
+export const isString = value => typeof value === 'string';
+export const isNumber = value => !isNaN(parseFloat(value));
 
 /**
  * @param {string|Array} props

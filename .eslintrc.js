@@ -103,5 +103,14 @@ module.exports = {
     'flowtype/space-before-type-colon': 'off',
     'flowtype/type-id-match': 'off',
     'flowtype/use-flow-type': 'error',
+
+    'prettier/prettier': [
+      'error',
+      {
+        singleQuote: true,
+        printWidth: 100,
+        trailingComma: 'all',
+      },
+    ],
   },
 };

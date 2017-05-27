@@ -2,13 +2,7 @@
 
 import { assert } from 'chai';
 import { stub } from 'sinon';
-import transitions, {
-  easing,
-  duration,
-  formatMs,
-  isString,
-  isNumber,
-} from './transitions';
+import transitions, { easing, duration, formatMs, isString, isNumber } from './transitions';
 
 describe('transitions', () => {
   let consoleErrorStub;
