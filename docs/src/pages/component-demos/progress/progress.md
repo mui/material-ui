@@ -18,11 +18,15 @@ For example, a refresh operation should display either a refresh bar or an activ
 
 ### Indeterminate
 
-{{demo='pages/component-demos/progress/Circular.js'}}
+{{demo='pages/component-demos/progress/CircularIndeterminate.js'}}
 
 ### Interactive Integration
 
 {{demo='pages/component-demos/progress/CircularFab.js'}}
+
+###  Determinate
+
+{{demo='pages/component-demos/progress/CircularDeterminate.js'}}
 
 ## Linear
 
