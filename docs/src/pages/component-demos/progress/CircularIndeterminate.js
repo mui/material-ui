@@ -5,13 +5,13 @@ import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import { CircularProgress } from 'material-ui/Progress';
 
-const styleSheet = createStyleSheet('Circular', theme => ({
+const styleSheet = createStyleSheet('CircularIndeterminate', theme => ({
   progress: {
     margin: `0 ${theme.spacing.unit * 2}px`,
   },
 }));
 
-function Circular(props) {
+function CircularIndeterminate(props) {
   const classes = props.classes;
   return (
     <div>
@@ -21,8 +21,8 @@ function Circular(props) {
   );
 }
 
-Circular.propTypes = {
+CircularIndeterminate.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(Circular);
+export default withStyles(styleSheet)(CircularIndeterminate);
