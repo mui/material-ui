@@ -22,7 +22,8 @@ function CircularDeterminate(props) {
         mode="determinate"
         value={25}
         min={0}
-        max={50} />
+        max={50}
+      />
     </div>
   );
 }

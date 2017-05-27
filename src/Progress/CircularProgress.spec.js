@@ -48,7 +48,8 @@ describe('<CircularProgress />', () => {
     assert.strictEqual(
       svg.hasClass(classes.indeterminateSvg),
       true,
-      'should have the indeterminateSvg class');
+      'should have the indeterminateSvg class',
+    );
     assert.strictEqual(svg.childAt(0).is('circle'), true, 'should be a circle');
     assert.strictEqual(
       svg.childAt(0).hasClass(classes.indeterminateCircle),
@@ -78,7 +79,8 @@ describe('<CircularProgress />', () => {
     assert.strictEqual(
       svg.hasClass(classes.indeterminateSvg),
       false,
-      'should not have the indeterminateSvg class');
+      'should not have the indeterminateSvg class',
+    );
     assert.strictEqual(svg.childAt(0).is('circle'), true, 'should be a circle');
     assert.strictEqual(
       svg.childAt(0).hasClass(classes.determinateCircle),
@@ -94,7 +96,8 @@ describe('<CircularProgress />', () => {
     assert.strictEqual(
       svg.childAt(0).props().style.strokeDasharray,
       'calc(((100% - 3.6px) * 3.1416) * 0.7),calc((100% - 3.6px) * 3.1416)',
-      'should have strokeDasharray set');
+      'should have strokeDasharray set',
+    );
     assert.strictEqual(wrapper.props()['aria-valuenow'], 70);
     assert.strictEqual(wrapper.props()['aria-valuemin'], 0);
     assert.strictEqual(wrapper.props()['aria-valuemax'], 100);
@@ -107,7 +110,8 @@ describe('<CircularProgress />', () => {
     assert.strictEqual(
       svg.childAt(0).props().style.strokeDasharray,
       'calc(((100% - 3.6px) * 3.1416) * 0.5),calc((100% - 3.6px) * 3.1416)',
-      'should have strokeDasharray set');
+      'should have strokeDasharray set',
+    );
     assert.strictEqual(wrapper.props()['aria-valuenow'], 5);
   });
 });

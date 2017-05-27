@@ -79,11 +79,12 @@ function CircularProgress(props) {
     [classes.determinateCircle]: mode === 'determinate',
   });
 
-  const circleStyle = { };
+  const circleStyle = {};
   if (mode === 'determinate') {
     const relVal = getRelativeValue(value, min, max);
-    circleStyle.strokeDasharray = `calc(((100% - ${THICKNESS}px) * ${PI}) * ${relVal}),` +
-                                  `calc((100% - ${THICKNESS}px) * ${PI})`;
+    circleStyle.strokeDasharray =
+      `calc(((100% - ${THICKNESS}px) * ${PI}) * ${relVal}),` +
+      `calc((100% - ${THICKNESS}px) * ${PI})`;
     rootProps['aria-valuenow'] = value;
     rootProps['aria-valuemin'] = min;
     rootProps['aria-valuemax'] = max;
