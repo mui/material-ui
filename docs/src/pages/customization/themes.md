@@ -1,7 +1,7 @@
 # Themes
 
-Themes let you apply a consistent tone to an app.
-It allows you to **customize all the design aspects** in order to meet the needs of UI diversity from business and brand.
+Themes let you apply a consistent tone to your app.
+It allows you to **customize all design aspects** of your project in order to meet the specific needs of your business or brand.
 
 The theme specifies the darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc.
 To promote greater consistency between apps, light and dark themes are available to choose from.
@@ -15,7 +15,7 @@ Changing the configurations variables is the most effective way to match Materia
 
 #### Intentions
 
-A color intention is a mapping of a palette for a given intention within your application.
+A color intention is a mapping of a palette to a given intention within your application.
 
 We expose the following color intentions:
 
@@ -39,7 +39,7 @@ You can make a theme dark by setting `type` to `dark`.
 ### The other variables
 
 We have tried to normalize the implementation by adding many more variables: the typography, the breakpoints, the transitions, etc. You can see below what the theme object looks like with the default values.
-If you want to learn more about it, we suggesting having a look at [`material-ui/style/theme.js`](https://github.com/callemall/material-ui/blob/next/src/styles/theme.js).
+If you want to learn more, we suggesting having a look at [`material-ui/style/theme.js`](https://github.com/callemall/material-ui/blob/next/src/styles/theme.js).
 
 {{demo='pages/customization/ThemeDefault.js'}}
 
