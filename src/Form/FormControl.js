@@ -53,9 +53,9 @@ class FormControl extends Component {
   componentWillMount() {
     Children.forEach(this.props.children, child => {
       if (
-        child && child.type &&
-        (child.type.name === 'Input' ||
-        (child.type.Naked && child.type.Naked.name === 'Input')) &&
+        child &&
+        child.type &&
+        (child.type.name === 'Input' || (child.type.Naked && child.type.Naked.name === 'Input')) &&
         isDirty(child.props)
       ) {
         this.setState({ dirty: true });

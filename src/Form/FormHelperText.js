@@ -1,36 +1,26 @@
 // @flow weak
-/* eslint-disable jsx-a11y/label-has-for */
 
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiFormHelperText', (theme) => {
-  return {
-    root: {
-      color: theme.palette.input.helperText,
-      fontSize: 12,
-      lineHeight: 1.4,
-      margin: 0,
-    },
-    error: {
-      color: theme.palette.error.A400,
-    },
-  };
-});
+export const styleSheet = createStyleSheet('MuiFormHelperText', theme => ({
+  root: {
+    color: theme.palette.input.helperText,
+    fontSize: 12,
+    lineHeight: 1.4,
+    margin: 0,
+  },
+  error: {
+    color: theme.palette.error.A400,
+  },
+}));
 
-export default function FormHelperText(props, context) {
-  const {
-    children,
-    className: classNameProp,
-    error: errorProp,
-    ...other
-  } = props;
-
-  const { muiFormControl, styleManager } = context;
-  const classes = styleManager.render(styleSheet);
+function FormHelperText(props, context) {
+  const { children, classes, className: classNameProp, error: errorProp, ...other } = props;
+  const { muiFormControl } = context;
 
   let error = errorProp;
 
@@ -38,9 +28,13 @@ export default function FormHelperText(props, context) {
     error = muiFormControl.error;
   }
 
-  const className = classNames(classes.root, {
-    [classes.error]: error,
-  }, classNameProp);
+  const className = classNames(
+    classes.root,
+    {
+      [classes.error]: error,
+    },
+    classNameProp,
+  );
 
   return (
     <p className={className} {...other}>
@@ -55,6 +49,10 @@ FormHelperText.propTypes = {
    */
   children: PropTypes.node,
   /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
    * The CSS class name of the root element.
    */
   className: PropTypes.string,
@@ -66,5 +64,6 @@ FormHelperText.propTypes = {
 
 FormHelperText.contextTypes = {
   muiFormControl: PropTypes.object,
-  styleManager: customPropTypes.muiRequired,
 };
+
+export default withStyles(styleSheet)(FormHelperText);

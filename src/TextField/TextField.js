@@ -62,11 +62,10 @@ function TextField(props) {
         inputRef={inputRef}
         {...InputProps}
       />
-      {helperText && (
+      {helperText &&
         <FormHelperText className={helperTextClassName}>
           {helperText}
-        </FormHelperText>
-      )}
+        </FormHelperText>}
     </FormControl>
   );
 }
