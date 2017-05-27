@@ -31,6 +31,11 @@ describe('<InputLabel />', () => {
     assert.strictEqual(wrapper.hasClass(classes.animated), false);
   });
 
+  it('should have the disabled class when disabled', () => {
+    const wrapper = shallow(<InputLabel disabled>Foo</InputLabel>);
+    assert.strictEqual(wrapper.hasClass(classes.disabled), true);
+  });
+
   describe('with muiFormControl context', () => {
     let wrapper;
     let muiFormControl;
