@@ -4,10 +4,10 @@
 
 ## Breakpoints
 
-For optimal user experience, material design user interfaces should adapt layouts.
-Compared to the [specification](https://material.io/guidelines/layout/responsive-ui.html#responsive-ui-breakpoints) we have **simplified** the implementation.
+For optimal user experience, material design interfaces need to be able to adapt their layout at various breakpoints.  
+Material UI uses a **simplified** implementation of the orignal [specification](https://material.io/guidelines/layout/responsive-ui.html#responsive-ui-breakpoints).
 
-Each break points match with a *fixed* screen width:
+Each breakpoint matches with a *fixed* screen width:
 - **xs**, extra-small: 360dp
 - **sm**, small: 600dp
 - **md**, medium: 960dp
