@@ -31,7 +31,7 @@ function pascalCase(destPath) {
   const splitregex = new RegExp(`[${path.sep}-]+`);
 
   let parts = destPath.replace('.js', '').split(splitregex);
-  parts = _.map(parts, (part) => {
+  parts = _.map(parts, part => {
     return part.charAt(0).toUpperCase() + part.substring(1);
   });
 
@@ -62,16 +62,15 @@ function getJsxString(svgPath, destPath, options) {
   paths = paths.replace(/\s?fill=".*?"/g, '');
 
   // Node acts weird if we put this directly into string concatenation
-  const muiRequireStmt = options.muiRequire === 'relative' ?
-    SVG_ICON_RELATIVE_REQUIRE : SVG_ICON_ABSOLUTE_REQUIRE;
+  const muiRequireStmt = options.muiRequire === 'relative'
+    ? SVG_ICON_RELATIVE_REQUIRE
+    : SVG_ICON_ABSOLUTE_REQUIRE;
 
-  return Mustache.render(
-    template, {
-      muiRequireStmt,
-      paths,
-      className,
-    },
-  );
+  return Mustache.render(template, {
+    muiRequireStmt,
+    paths,
+    className,
+  });
 }
 
 /**
@@ -102,7 +101,7 @@ function processFile(svgPath, destPath, options) {
 function processIndex(options) {
   const files = glob.sync(path.join(options.outputDir, '*.js'));
   const results = [];
-  files.forEach((jsPath) => {
+  files.forEach(jsPath => {
     const typename = path.basename(jsPath).replace('.js', '');
     results.push(`export { ${typename} } from './${typename}';\n`);
   });
@@ -113,19 +112,27 @@ function processIndex(options) {
 
 function parseArgs() {
   return yargs
-    .usage('Build JSX components from SVG\'s.\nUsage: $0')
+    .usage("Build JSX components from SVG's.\nUsage: $0")
     .demand('output-dir')
     .describe('output-dir', 'Directory to output jsx components')
     .demand('svg-dir')
     .describe('svg-dir', 'SVG directory')
     .describe('glob', 'Glob to match inside of --svg-dir. Default **/*.svg')
-    .describe('inner-path', '"Reach into" subdirs, since libraries like material-design-icons' +
-              ' use arbitrary build directories to organize icons' +
-              ' e.g. "action/svg/production/icon_3d_rotation_24px.svg"')
-    .describe('file-suffix', 'Filter only files ending with a suffix (pretty much only' +
-              ' for material-ui-icons)')
-    .describe('rename-filter', `Path to JS module used to rename destination filename and path.
-        Default: ${RENAME_FILTER_DEFAULT}`)
+    .describe(
+      'inner-path',
+      '"Reach into" subdirs, since libraries like material-design-icons' +
+        ' use arbitrary build directories to organize icons' +
+        ' e.g. "action/svg/production/icon_3d_rotation_24px.svg"',
+    )
+    .describe(
+      'file-suffix',
+      'Filter only files ending with a suffix (pretty much only for material-ui-icons)',
+    )
+    .describe(
+      'rename-filter',
+      `Path to JS module used to rename destination filename and path.
+        Default: ${RENAME_FILTER_DEFAULT}`,
+    )
     .options('mui-require', {
       demand: false,
       type: 'string',
@@ -139,7 +146,8 @@ function main(options, callback) {
   let originalWrite; // todo, add wiston / other logging tool
 
   options = _.defaults(options, DEFAULT_OPTIONS);
-  if (options.disable_log) { // disable console.log opt, used for tests.
+  if (options.disable_log) {
+    // disable console.log opt, used for tests.
     originalWrite = process.stdout.write;
     process.stdout.write = () => {};
   }
@@ -161,11 +169,12 @@ function main(options, callback) {
   }
   const files = glob.sync(path.join(options.svgDir, options.glob));
 
-  files.forEach((svgPath) => {
+  files.forEach(svgPath => {
     const svgPathObj = path.parse(svgPath);
-    const innerPath = path.dirname(svgPath)
+    const innerPath = path
+      .dirname(svgPath)
       .replace(options.svgDir, '')
-      .replace(path.relative(process.cwd(), options.svgDir), '');  // for relative dirs
+      .replace(path.relative(process.cwd(), options.svgDir), ''); // for relative dirs
     const destPath = renameFilter(svgPathObj, innerPath, options);
 
     processFile(svgPath, destPath, options);
@@ -173,7 +182,8 @@ function main(options, callback) {
 
   processIndex(options);
 
-  if (options.disable_log) { // bring back stdout
+  if (options.disable_log) {
+    // bring back stdout
     process.stdout.write = originalWrite;
   }
 
