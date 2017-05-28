@@ -5,6 +5,9 @@ import DropDownMenu from '../DropDownMenu';
 
 function getStyles(props) {
   return {
+    floatingLabel: {
+      pointerEvents: 'none',
+    },
     label: {
       paddingLeft: 0,
       top: props.floatingLabelText ? 6 : -4,
@@ -222,7 +225,7 @@ class SelectField extends Component {
         disabled={disabled}
         floatingLabelFixed={floatingLabelFixed}
         floatingLabelText={floatingLabelText}
-        floatingLabelStyle={floatingLabelStyle}
+        floatingLabelStyle={Object.assign(styles.floatingLabel, floatingLabelStyle)}
         hintStyle={hintStyle}
         hintText={(!hintText && !floatingLabelText) ? ' ' : hintText}
         fullWidth={fullWidth}
