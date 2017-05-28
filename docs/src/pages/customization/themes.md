@@ -76,7 +76,7 @@ Let's say you want to display the value of the primary color, you can use the `w
 ### `<MuiThemeProvider />`
 
 This component takes a `theme` and a `styleManager` as properties.
-He is making them available down the React tree thanks to the context.
+It makes the `styleManager` available down the React tree thanks to the context, with the theme object as its property: `styleManager.theme`.
 This component should preferably be used at **the root of your component tree**.
 
 #### Examples
