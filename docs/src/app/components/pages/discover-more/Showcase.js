@@ -139,7 +139,7 @@ const appList = [
     author: 'BrainBOK',
     img: 'images/showcase/brainbok-for-pmp-capm-certification.png',
     link: 'https://www.brainbok.com',
-  }
+  },
 ];
 
 const Showcase = () => (
