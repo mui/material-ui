@@ -45,6 +45,13 @@ class ComposedTextField extends Component {
           <Input id="name" value={this.state.name} onChange={this.handleChange} />
           <FormHelperText>Some important helper text</FormHelperText>
         </FormControl>
+        <FormControl className={classes.input}>
+          <InputLabel htmlFor="name">
+            Name
+          </InputLabel>
+          <Input id="name" value={this.state.name} onChange={this.handleChange} disabled />
+          <FormHelperText>Some important helper text</FormHelperText>
+        </FormControl>
         <FormControl className={classes.input} error>
           <InputLabel htmlFor="name">
             Name
