@@ -21,10 +21,10 @@ export const styleSheet = createStyleSheet('MuiInput', theme => ({
     fontFamily: theme.typography.fontFamily,
   },
   formControl: {
-    marginTop: 8,
-    marginBottom: 8,
+    marginTop: theme.spacing.unit,
+    marginBottom: theme.spacing.unit,
     'label + &': {
-      marginTop: 32,
+      marginTop: theme.spacing.unit * 4,
     },
   },
   inkbar: {
@@ -56,7 +56,7 @@ export const styleSheet = createStyleSheet('MuiInput', theme => ({
   },
   input: {
     font: 'inherit',
-    padding: '8px 0',
+    padding: `${theme.spacing.unit}px 0`,
     border: 0,
     display: 'block',
     boxSizing: 'content-box',
@@ -83,7 +83,7 @@ export const styleSheet = createStyleSheet('MuiInput', theme => ({
     padding: 0,
   },
   multilineWrapper: {
-    padding: '6px 0',
+    padding: `${theme.spacing.unit}px 0`,
   },
   disabled: {
     color: theme.palette.text.disabled,
@@ -92,7 +92,7 @@ export const styleSheet = createStyleSheet('MuiInput', theme => ({
     borderBottom: `1px solid ${theme.palette.input.bottomLine}`,
     '&:hover:not($disabled)': {
       borderBottom: `2px solid ${theme.palette.text.primary}`,
-      marginBottom: 7,
+      marginBottom: theme.spacing.unit - 1,
       transition: theme.transitions.create('border-color', {
         duration: theme.transitions.duration.shorter,
         easing: theme.transitions.easing.ease,
@@ -101,7 +101,7 @@ export const styleSheet = createStyleSheet('MuiInput', theme => ({
     '&$disabled': {
       borderBottomStyle: 'dotted',
       borderImage: `linear-gradient(to right, ${theme.palette.input.bottomLine} 33%, transparent 0%)
-        100 0 / 0 0 1px / 0 0 0 3px repeat`,
+        100 0 / 0 0 1px / 0 0 0 0 repeat`,
     },
   },
 }));
@@ -425,5 +425,7 @@ Input.propTypes = {
 Input.contextTypes = {
   muiFormControl: PropTypes.object,
 };
+
+Input.muiName = 'Input';
 
 export default withStyles(styleSheet)(Input);
