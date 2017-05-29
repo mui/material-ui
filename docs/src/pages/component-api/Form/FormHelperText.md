@@ -6,6 +6,7 @@
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  | The content of the component. |
+| classes | object |  | Useful to extend the style applied to components. |
 | className | string |  | The CSS class name of the root element. |
 | disabled | bool |  | Whether the helper text should be displayed in an disabled state. |
 | error | bool |  | Whether the helper text should be displayed in an error state. |
@@ -16,8 +17,8 @@ Any other properties supplied will be spread to the root element.
 You can overrides all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `root`
-- `disabled`
 - `error`
+- `disabled`
 
 Have a look at [overriding with class names](/customization/overrides#overriding-with-class-names)
 section for more detail.
