@@ -34,7 +34,7 @@ const accent = purple['A200']; // #E040FB
 In Material Design, a **primary color** refers to a color that appears most frequently in your app. A **secondary color** refers to a color used to accent key parts of your UI.
 
 Using colors from the Material Design palette is optional.
-You can learn more about it following [that link](https://material.io/guidelines/style/color.html#color-color-system).
+You can learn more about it [here](https://material.io/guidelines/style/color.html#color-color-system).
 
 ## Color schemes
 
