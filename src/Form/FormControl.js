@@ -53,7 +53,7 @@ class FormControl extends Component {
   componentWillMount() {
     Children.forEach(this.props.children, child => {
       if (
-        child.type && child.type.muiName === 'Input' &&
+        child && child.type && child.type.muiName === 'Input' &&
         isDirty(child.props)
       ) {
         this.setState({ dirty: true });
