@@ -9,7 +9,7 @@ We are using [jss-theme-reactor](https://github.com/nathanmarks/jss-theme-reacto
 
 ## Configuration variables
 
-Changing the configurations variables is the most effective way to match Material-UI to your needs. By default, your Material-UI application will use the default theme.
+Changing the configurations variables is the most effective way to match Material-UI to your needs. By default, your Material-UI application will use the light theme.
 
 ### Palette
 
@@ -19,9 +19,9 @@ A color intention is a mapping of a palette to a given intention within your app
 
 We expose the following color intentions:
 
-- primary - used to represent primary interface elements for a user
-- accent - used to represent secondary interface elements for a user
-- error - used to represent interface elements that the user should be careful of
+- primary - used to represent primary interface elements for a user.
+- accent - used to represent secondary interface elements for a user.
+- error - used to represent interface elements that the user should be careful of.
 
 #### Example
 
@@ -38,7 +38,7 @@ You can make a theme dark by setting `type` to `dark`.
 
 ### The other variables
 
-We have tried to normalize the implementation by adding many more variables: the typography, the breakpoints, the transitions, etc. You can see below what the theme object looks like with the default values.
+We have tried to normalize the implementation by adding many more variables: typography, breakpoints, transitions, etc. You can see below what the theme object looks like with the default values.
 If you want to learn more, we suggesting having a look at [`material-ui/style/theme.js`](https://github.com/callemall/material-ui/blob/next/src/styles/theme.js).
 
 {{demo='pages/customization/ThemeDefault.js'}}
@@ -60,7 +60,7 @@ That's a really powerful feature.
 
 {{demo='pages/customization/OverridesTheme.js'}}
 
-The list of those customization points are documented under the *Component API* section.
+The list of these customization points for each component is documented under the *Component API* section.
 For instance, you can have a look at the [Button](/component-api/button#classes).
 Alternatively you can have a look at the [implementation](https://github.com/callemall/material-ui/tree/next/src).
 
@@ -76,7 +76,7 @@ Let's say you want to display the value of the primary color, you can use the `w
 ### `<MuiThemeProvider />`
 
 This component takes a `theme` and a `styleManager` as properties.
-He is making them available down the React tree thanks to the context.
+It makes the `styleManager` available down the React tree thanks to React context, with the theme object as its property: `styleManager.theme`.
 This component should preferably be used at **the root of your component tree**.
 
 #### Examples
