@@ -63,6 +63,13 @@ const appList = [
     source: 'https://github.com/Joonpark13/serif.nu',
   },
   {
+    title: 'Order form for Wedding Videos',
+    author: 'Sergey Reznikov',
+    img: 'images/showcase/wv-order-form.png',
+    link: 'http://order-form.reznikov.online/',
+    source: 'https://bitbucket.org/wzup/order-form',
+  },
+  {
     title: 'Cloudcraft',
     author: 'Cloudcraft',
     img: 'images/showcase/cloudcraft.png',
