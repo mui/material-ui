@@ -9,6 +9,7 @@ import withStyles from '../styles/withStyles';
 export const styleSheet = createStyleSheet('MuiFormHelperText', theme => ({
   root: {
     color: theme.palette.input.helperText,
+    fontFamily: theme.typography.fontFamily,
     fontSize: 12,
     lineHeight: 1.4,
     margin: 0,
