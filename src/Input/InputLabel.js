@@ -10,8 +10,6 @@ import { FormLabel } from '../Form';
 export const styleSheet = createStyleSheet('MuiInputLabel', theme => ({
   root: {
     transformOrigin: 'top left',
-    // '-webkit-backface-visibility': 'hidden',
-    transform: 'translateZ(0)',
   },
   formControl: {
     position: 'absolute',

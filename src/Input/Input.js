@@ -103,16 +103,16 @@ export const styleSheet = createStyleSheet('MuiInput', theme => ({
         }),
       },
       '&:focus::-webkit-input-placeholder': {
-        opacity: theme.palette.type === 'light' ? .42 : .5,
+        opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
       },
       '&:focus::-moz-placeholder': {
-        opacity: theme.palette.type === 'light' ? .42 : .5,
+        opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
       },
       '&:focus:-ms-input-placeholder': {
-        opacity: theme.palette.type === 'light' ? .42 : .5,
+        opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
       },
       '&:focus:-moz-placeholder': {
-        opacity: theme.palette.type === 'light' ? .42 : .5,
+        opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
       },
     },
   },
