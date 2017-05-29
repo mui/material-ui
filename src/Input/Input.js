@@ -107,6 +107,7 @@ export const styleSheet = createStyleSheet('MuiInput', theme => ({
 }));
 
 class Input extends Component {
+  static muiName = 'Input';
   static defaultProps = {
     type: 'text',
     disableUnderline: false,
@@ -429,7 +430,5 @@ Input.propTypes = {
 Input.contextTypes = {
   muiFormControl: PropTypes.object,
 };
-
-Input.muiName = 'Input';
 
 export default withStyles(styleSheet)(Input);
