@@ -83,20 +83,20 @@ export const styleSheet = createStyleSheet('MuiInput', theme => ({
     padding: 0,
   },
   multilineWrapper: {
-    padding: `${theme.spacing.unit}px 0`,
+    padding: `${theme.spacing.unit - 2}px 0`,
   },
   disabled: {
     color: theme.palette.text.disabled,
   },
   underline: {
     borderBottom: `1px solid ${theme.palette.input.bottomLine}`,
+    transition: theme.transitions.create('border-color', {
+      duration: theme.transitions.duration.shorter,
+      easing: theme.transitions.easing.ease,
+    }),
     '&:hover:not($disabled)': {
       borderBottom: `2px solid ${theme.palette.text.primary}`,
       marginBottom: theme.spacing.unit - 1,
-      transition: theme.transitions.create('border-color', {
-        duration: theme.transitions.duration.shorter,
-        easing: theme.transitions.easing.ease,
-      }),
     },
     '&$disabled': {
       borderBottomStyle: 'dotted',
