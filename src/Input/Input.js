@@ -108,7 +108,6 @@ export const styleSheet = createStyleSheet('MuiInput', theme => ({
 
 class Input extends Component {
   static defaultProps = {
-    disabled: false,
     type: 'text',
     disableUnderline: false,
     multiline: false,
@@ -207,7 +206,7 @@ class Input extends Component {
       className: classNameProp,
       component,
       defaultValue,
-      disabled,
+      disabled: disabledProp,
       disableUnderline,
       error: errorProp,
       id,
@@ -231,7 +230,12 @@ class Input extends Component {
 
     const { muiFormControl } = this.context;
 
+    let disabled = disabledProp;
     let error = errorProp;
+
+    if (muiFormControl && typeof disabled === 'undefined') {
+      disabled = muiFormControl.disabled;
+    }
 
     if (typeof error === 'undefined' && muiFormControl) {
       error = muiFormControl.error;

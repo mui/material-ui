@@ -21,6 +21,9 @@ export const styleSheet = createStyleSheet('MuiFormLabel', theme => {
     error: {
       color: theme.palette.error.A400,
     },
+    disabled: {
+      color: theme.palette.input.disabled,
+    },
   };
 });
 
@@ -29,6 +32,7 @@ function FormLabel(props, context) {
     children,
     classes,
     className: classNameProp,
+    disabled: disabledProp,
     error: errorProp,
     focused: focusedProp,
     required: requiredProp,
@@ -39,6 +43,7 @@ function FormLabel(props, context) {
 
   let required = requiredProp;
   let focused = focusedProp;
+  let disabled = disabledProp;
   let error = errorProp;
 
   if (muiFormControl) {
@@ -47,6 +52,9 @@ function FormLabel(props, context) {
     }
     if (typeof focused === 'undefined') {
       focused = muiFormControl.focused;
+    }
+    if (typeof disabled === 'undefined') {
+      disabled = muiFormControl.disabled;
     }
     if (typeof error === 'undefined') {
       error = muiFormControl.error;
@@ -57,6 +65,7 @@ function FormLabel(props, context) {
     classes.root,
     {
       [classes.focused]: focused,
+      [classes.disabled]: disabled,
       [classes.error]: error,
     },
     classNameProp,

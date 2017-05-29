@@ -17,13 +17,21 @@ export const styleSheet = createStyleSheet('MuiFormHelperText', theme => ({
   error: {
     color: theme.palette.error.A400,
   },
+  disabled: {
+    color: theme.palette.input.disabled,
+  },
 }));
 
 function FormHelperText(props, context) {
-  const { children, classes, className: classNameProp, error: errorProp, ...other } = props;
+  const { children, classes, className: classNameProp, disabled: disabledProp, error: errorProp, ...other } = props;
   const { muiFormControl } = context;
 
+  let disabled = disabledProp;
   let error = errorProp;
+
+  if (muiFormControl && typeof disabled === 'undefined') {
+    disabled = muiFormControl.disabled;
+  }
 
   if (muiFormControl && typeof error === 'undefined') {
     error = muiFormControl.error;
@@ -32,6 +40,7 @@ function FormHelperText(props, context) {
   const className = classNames(
     classes.root,
     {
+      [classes.disabled]: disabled,
       [classes.error]: error,
     },
     classNameProp,
@@ -57,6 +66,10 @@ FormHelperText.propTypes = {
    * The CSS class name of the root element.
    */
   className: PropTypes.string,
+  /**
+   * Whether the helper text should be displayed in an disabled state.
+   */
+  disabled: PropTypes.bool,
   /**
    * Whether the helper text should be displayed in an error state.
    */
