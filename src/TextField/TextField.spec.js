@@ -6,7 +6,6 @@ import {assert} from 'chai';
 import TextField from './TextField';
 import TextFieldHint from './TextFieldHint';
 import TextFieldLabel from './TextFieldLabel';
-import EnhancedTextarea from './EnhancedTextarea';
 import getMuiTheme from '../styles/getMuiTheme';
 
 describe('<TextField />', () => {
