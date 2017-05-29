@@ -28,6 +28,13 @@ const appList = [
   //   link: '',
   // },
   {
+    title: 'Order form for Wedding Videos',
+    author: 'Sergey Reznikov',
+    img: 'images/showcase/wv-order-form.png',
+    link: 'http://order-form.reznikov.online/',
+    source: 'https://bitbucket.org/wzup/order-form',
+  },
+  {
     title: 'SplitMe - Split expenses with friends',
     author: 'Olivier Tassinari',
     img: 'images/showcase/splitme.png',
