@@ -81,8 +81,38 @@ export const styleSheet = createStyleSheet('MuiInput', theme => ({
           easing: theme.transitions.easing.ease,
         }),
       },
+      '&::-moz-placeholder': {
+        opacity: 0,
+        transition: theme.transitions.create('opacity', {
+          duration: theme.transitions.duration.shorter,
+          easing: theme.transitions.easing.ease,
+        }),
+      },
+      '&:-ms-input-placeholder': {
+        opacity: 0,
+        transition: theme.transitions.create('opacity', {
+          duration: theme.transitions.duration.shorter,
+          easing: theme.transitions.easing.ease,
+        }),
+      },
+      '&:-moz-placeholder': {
+        opacity: 0,
+        transition: theme.transitions.create('opacity', {
+          duration: theme.transitions.duration.shorter,
+          easing: theme.transitions.easing.ease,
+        }),
+      },
       '&:focus::-webkit-input-placeholder': {
-        opacity: 1,
+        opacity: theme.palette.type === 'light' ? .42 : .5,
+      },
+      '&:focus::-moz-placeholder': {
+        opacity: theme.palette.type === 'light' ? .42 : .5,
+      },
+      '&:focus:-ms-input-placeholder': {
+        opacity: theme.palette.type === 'light' ? .42 : .5,
+      },
+      '&:focus:-moz-placeholder': {
+        opacity: theme.palette.type === 'light' ? .42 : .5,
       },
     },
   },

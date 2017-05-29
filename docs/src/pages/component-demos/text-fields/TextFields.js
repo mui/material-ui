@@ -86,11 +86,11 @@ class TextFields extends Component {
           helperText="Some important text"
         />
         <TextField
-          id="plceholder"
-          label="Lbel"
+          id="placeholder"
+          label="Label"
           className={classes.input}
           type="text"
-          InputProps={{ placeholder: 'Plceholder' }}
+          InputProps={{ placeholder: 'Placeholder' }}
           helperText="Helper text"
         />
       </div>
