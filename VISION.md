@@ -1,17 +1,14 @@
-# Material UI’s Philosophy
+# Material UI’s Vision
 
-We are on a mission to provide an elegant implementation of the Material Design Specification.
-But we believe we can do more.
+Our vision is to provide an elegant implementation of the [Material Design guidelines](https://material.io/guidelines/) and more.
 
-We want Material-UI to become whatever is generally useful for application development in the spirit of the Material Design spec.
-This means Material Design with a general use UI library of components that are needed by many. This general use doesn't imply any other design methodology.
-It also means we will have components or combinations that are simply not addressed in the spec.
+The Material Design guidelines are an incredible starting point, but they do not provide guidance on all aspects or needs of an application. In addition to the guidelines-specific implementation, we want Material-UI to become whatever is generally useful for application development, all in the spirit of the Material Design guidelines.
 
-We also focus on providing all the low-level tools needed to build a rich user-interface with React.
-Once you solve the Material design specification (that put the bar very high),
-you should be able to take advantage of it for you own business custom style.
-We want to see companies succeeding making Material UI matches their brand. We don't want them to feel that their UI looks like another Google product.
+Therefore, Material-UI will be not only an implementation of the Material Design guidelines, but a general use UI library of components that are needed by many. This generalized use doesn't imply any other design methodology. It also means we will have components or combinations that are simply not addressed in the design guidelines.
 
-From a user point of view, we want Material UI to be a pleasure to work with.
-We want to deliver on fully encapsulated react components.
-We want as much developer joy as possible.
+We will focus on providing all the low-level tools needed to build a rich user-interface with React. Once we implement the Material design specification (which is a bar set quite high), you should be able to take advantage of it for you own business with  any style customization needed. We want to see companies succeeding using Material-UI in a way that matches their brand. We don't want them to feel that their UI simply looks like another Google product.
+
+From a user point of view, we want Material-UI
+- to deliver on fully encapsulated/composable react components
+- to be themable/customizable
+- to promote developer joy
