@@ -20,8 +20,10 @@ function TextField(props) {
     inputRef,
     label,
     labelClassName,
+    InputLabelProps,
     helperText,
     helperTextClassName,
+    FormHelperTextProps,
     name,
     required,
     type,
@@ -44,7 +46,7 @@ function TextField(props) {
   return (
     <FormControl className={className} error={error} required={required} {...other}>
       {label &&
-        <InputLabel className={labelClassName}>
+        <InputLabel className={labelClassName} {...InputLabelProps}>
           {label}
         </InputLabel>}
       <Input
@@ -63,7 +65,7 @@ function TextField(props) {
         {...InputProps}
       />
       {helperText &&
-        <FormHelperText className={helperTextClassName}>
+        <FormHelperText className={helperTextClassName} {...FormHelperTextProps}>
           {helperText}
         </FormHelperText>}
     </FormControl>
@@ -88,6 +90,10 @@ TextField.propTypes = {
    */
   error: PropTypes.bool,
   /**
+   * Properties applied to the `FormHelperText` element.
+   */
+  FormHelperTextProps: PropTypes.object,
+  /**
    * The helper text content.
    */
   helperText: PropTypes.node,
@@ -107,6 +113,10 @@ TextField.propTypes = {
    * The CSS class name of the `Input` element.
    */
   InputClassName: PropTypes.string,
+  /**
+   * Properties applied to the `InputLabel` element.
+   */
+  InputLabelProps: PropTypes.object,
   /**
    * Properties applied to the `input` element.
    */
