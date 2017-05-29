@@ -126,7 +126,7 @@ class EnhancedTextarea extends Component {
   }
 
   handleChange = (event) => {
-    if ( !this.props.hasOwnProperty('value') ) {
+    if (!this.props.hasOwnProperty('value')) {
       this.syncHeightWithShadow(event.target.value);
     }
 
