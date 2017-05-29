@@ -23,7 +23,14 @@ export const styleSheet = createStyleSheet('MuiFormHelperText', theme => ({
 }));
 
 function FormHelperText(props, context) {
-  const { children, classes, className: classNameProp, disabled: disabledProp, error: errorProp, ...other } = props;
+  const {
+    children,
+    classes,
+    className: classNameProp,
+    disabled: disabledProp,
+    error: errorProp,
+    ...other
+  } = props;
   const { muiFormControl } = context;
 
   let disabled = disabledProp;

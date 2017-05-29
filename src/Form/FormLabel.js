@@ -100,6 +100,10 @@ FormLabel.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * Whether the label should be displayed in an disabled state.
+   */
+  disabled: PropTypes.bool,
+  /**
    * Whether the label should be displayed in an error state.
    */
   error: PropTypes.bool,
