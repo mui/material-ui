@@ -204,23 +204,7 @@ class ButtonBase extends Component {
       classNameProp,
     );
 
-    const buttonProps = {
-      ref: node => {
-        this.button = node;
-      },
-      onBlur: this.handleBlur,
-      onFocus: this.handleFocus,
-      onKeyDown: this.handleKeyDown,
-      onKeyUp: this.handleKeyUp,
-      onMouseDown: this.handleMouseDown,
-      onMouseLeave: this.handleMouseLeave,
-      onMouseUp: this.handleMouseUp,
-      onTouchEnd: this.handleTouchEnd,
-      onTouchStart: this.handleTouchStart,
-      tabIndex: disabled ? '-1' : tabIndex,
-      className,
-      ...other,
-    };
+    const buttonProps = {};
 
     let ComponentProp = component;
 
@@ -242,7 +226,24 @@ class ButtonBase extends Component {
     }
 
     return (
-      <ComponentProp {...buttonProps}>
+      <ComponentProp
+        ref={node => {
+          this.button = node;
+        }}
+        onBlur={this.handleBlur}
+        onFocus={this.handleFocus}
+        onKeyDown={this.handleKeyDown}
+        onKeyUp={this.handleKeyUp}
+        onMouseDown={this.handleMouseDown}
+        onMouseLeave={this.handleMouseLeave}
+        onMouseUp={this.handleMouseUp}
+        onTouchEnd={this.handleTouchEnd}
+        onTouchStart={this.handleTouchStart}
+        tabIndex={disabled ? '-1' : tabIndex}
+        className={className}
+        {...buttonProps}
+        {...other}
+      >
         {children}
         {this.renderRipple(ripple, centerRipple)}
       </ComponentProp>
