@@ -44,24 +44,6 @@ describe('<TextField />', () => {
     assert.strictEqual(wrapper.find(TextFieldLabel).props().shrink, true, 'should shrink TextFieldLabel');
   });
 
-  it('does not change the height of text area', (done) => {
-    const wrapper = mountWithContext(
-      <TextField
-        onChange={() => {
-          const newHeight = textareaElement.props().style.height;
-          assert.strictEqual(newHeight, initialHeight, 'should not change the height of the text area');
-          done();
-        }}
-        value="some value"
-        id="unique"
-        multiLine={true}
-      />
-    );
-    const textareaElement = wrapper.find('textarea').at(1);
-    const initialHeight = textareaElement.props().style.height;
-    textareaElement.simulate('change', {target: {value: 'This is a really, really, really, really long string.'}});
-  });
-
   describe('prop: children', () => {
     it('should forward any property to the root', () => {
       const wrapper = shallowWithContext(
