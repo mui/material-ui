@@ -8,7 +8,9 @@ import withStyles from '../styles/withStyles';
 import Textarea from './Textarea';
 
 export function isDirty(obj) {
-  return obj && obj.value && obj.value.length > 0;
+  return (
+    obj && ((obj.value && obj.value.length) || (obj.defaultValue && obj.defaultValue.length)) > 0
+  );
 }
 
 export const styleSheet = createStyleSheet('MuiInput', theme => ({
