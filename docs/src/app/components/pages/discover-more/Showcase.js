@@ -141,6 +141,12 @@ const appList = [
     img: 'images/showcase/devsketch.png',
     link: 'https://devsketch.io/',
   },
+  {
+    title: 'BrainBOK - PMP / CAPM Exam Prep Simplified',
+    author: 'BrainBOK',
+    img: 'images/showcase/brainbok-for-pmp-capm-certification.png',
+    link: 'https://www.brainbok.com',
+  },
 ];
 
 const Showcase = () => (
