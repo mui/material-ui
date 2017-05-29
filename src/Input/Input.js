@@ -73,6 +73,18 @@ export const styleSheet = createStyleSheet('MuiInput', theme => ({
       // Remove the padding when type=search.
       appearance: 'none',
     },
+    'label + $formControl > &': {
+      '&::-webkit-input-placeholder': {
+        opacity: 0,
+        transition: theme.transitions.create('opacity', {
+          duration: theme.transitions.duration.shorter,
+          easing: theme.transitions.easing.ease,
+        }),
+      },
+      '&:focus::-webkit-input-placeholder': {
+        opacity: 1,
+      },
+    },
   },
   singleline: {
     height: '1em',
