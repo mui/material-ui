@@ -7,9 +7,10 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 import Textarea from './Textarea';
 
-export function isDirty(obj) {
+export function isDirty(obj, SSR = false) {
   return (
-    obj && ((obj.value && obj.value.length) || (obj.defaultValue && obj.defaultValue.length)) > 0
+    obj &&
+    ((obj.value && obj.value.length) || (SSR && obj.defaultValue && obj.defaultValue.length)) > 0
   );
 }
 
@@ -175,7 +176,7 @@ class Input extends Component {
   componentWillUpdate(nextProps) {
     if (this.isControlled()) {
       this.checkDirty(nextProps);
-    }
+    } // else performed in the onChange
   }
 
   // Holds the input reference
@@ -198,7 +199,7 @@ class Input extends Component {
   handleChange = event => {
     if (!this.isControlled()) {
       this.checkDirty(this.input);
-    }
+    } // else perform in the willUpdate
     if (this.props.onChange) {
       this.props.onChange(event);
     }
@@ -260,6 +261,8 @@ class Input extends Component {
       onBlur, // eslint-disable-line no-unused-vars
       onFocus, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
+      onClean, // eslint-disable-line no-unused-vars
+      onDirty, // eslint-disable-line no-unused-vars
       onKeyDown,
       onKeyUp,
       placeholder,

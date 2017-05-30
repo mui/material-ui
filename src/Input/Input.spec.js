@@ -10,10 +10,16 @@ import Input, { styleSheet } from './Input';
 describe('<Input />', () => {
   let shallow;
   let classes;
+  let mount;
 
   before(() => {
     shallow = createShallow({ dive: true });
+    mount = createMount();
     classes = shallow.context.styleManager.render(styleSheet);
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   it('should render a <div />', () => {
@@ -140,10 +146,14 @@ describe('<Input />', () => {
     before(() => {
       handleClean = spy();
       handleDirty = spy();
-      wrapper = shallow(<Input onDirty={handleDirty} onClean={handleClean} />);
-
-      // Mock the input ref
-      wrapper.instance().input = { value: '' };
+      wrapper = mount(
+        <Input.Naked
+          classes={{}}
+          onDirty={handleDirty}
+          defaultValue="hell"
+          onClean={handleClean}
+        />,
+      );
     });
 
     it('should check that the component is uncontrolled', () => {
@@ -152,10 +162,10 @@ describe('<Input />', () => {
     });
 
     it('should fire the onDirty callback when dirtied', () => {
-      assert.strictEqual(handleDirty.callCount, 0, 'should not have called the onDirty cb yet');
+      assert.strictEqual(handleDirty.callCount, 1, 'should not have called the onDirty cb yet');
       wrapper.instance().input.value = 'hello';
       wrapper.find('input').simulate('change');
-      assert.strictEqual(handleDirty.callCount, 1, 'should have called the onDirty cb');
+      assert.strictEqual(handleDirty.callCount, 2, 'should have called the onDirty cb');
     });
 
     it('should fire the onClean callback when cleaned', () => {
@@ -255,18 +265,12 @@ describe('<Input />', () => {
   });
 
   describe('componentDidMount', () => {
-    let mount;
     let wrapper;
     let instance;
 
     before(() => {
-      mount = createMount();
       wrapper = mount(<Input.Naked classes={classes} />);
       instance = wrapper.instance();
-    });
-
-    after(() => {
-      mount.cleanUp();
     });
 
     beforeEach(() => {
@@ -306,16 +310,6 @@ describe('<Input />', () => {
   });
 
   describe('mount', () => {
-    let mount;
-
-    before(() => {
-      mount = createMount();
-    });
-
-    after(() => {
-      mount.cleanUp();
-    });
-
     it('should be able to access the native input', () => {
       const handleRef = spy();
       mount(<Input inputRef={handleRef} />);
