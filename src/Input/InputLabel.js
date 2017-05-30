@@ -18,7 +18,7 @@ export const styleSheet = createStyleSheet('MuiInputLabel', theme => ({
     transform: `translate(0, ${theme.spacing.unit * 5}px) scale(1)`,
   },
   shrink: {
-    transform: `translate(0, ${theme.spacing.unit * 2 + 2}px) scale(0.75)`,
+    transform: `translate(0, ${theme.spacing.unit * 2 + 1.5}px) scale(0.75)`,
     transformOrigin: 'top left',
   },
   animated: {
