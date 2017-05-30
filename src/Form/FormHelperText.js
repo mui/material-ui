@@ -78,7 +78,7 @@ FormHelperText.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * Whether the helper text should be displayed in an error state.
+   * If `true`, helper text should be displayed in an error state.
    */
   error: PropTypes.bool,
 };
