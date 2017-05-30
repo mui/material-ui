@@ -11,7 +11,6 @@ export const styleSheet = createStyleSheet('MuiTableRow', theme => ({
     height: 48,
     '&:focus': {
       outline: 'none',
-      background: theme.palette.background.contentFrame,
     },
   },
   head: {
