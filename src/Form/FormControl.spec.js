@@ -4,6 +4,7 @@ import React from 'react';
 import { spy } from 'sinon';
 import { assert } from 'chai';
 import { createShallow } from '../test-utils';
+import Input from '../Input';
 import FormControl, { styleSheet } from './FormControl';
 
 describe('<FormControl />', () => {
@@ -44,6 +45,18 @@ describe('<FormControl />', () => {
 
     it('should not be focused initially', () => {
       assert.strictEqual(wrapper.state().focused, false);
+    });
+  });
+
+  describe('should be dirty if has input with value set', () => {
+    let wrapper;
+
+    beforeEach(() => {
+      wrapper = shallow(<FormControl><Input value="bar" /></FormControl>);
+    });
+
+    it('should be dirty initially', () => {
+      assert.strictEqual(wrapper.state().dirty, true);
     });
   });
 

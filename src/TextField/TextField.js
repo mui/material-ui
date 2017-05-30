@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Input, { InputLabel } from '../Input';
 import FormControl from '../Form/FormControl';
+import FormHelperText from '../Form/FormHelperText';
 
 function TextField(props) {
   const {
@@ -19,6 +20,10 @@ function TextField(props) {
     inputRef,
     label,
     labelClassName,
+    InputLabelProps,
+    helperText,
+    helperTextClassName,
+    FormHelperTextProps,
     name,
     required,
     type,
@@ -41,7 +46,7 @@ function TextField(props) {
   return (
     <FormControl className={className} error={error} required={required} {...other}>
       {label &&
-        <InputLabel className={labelClassName}>
+        <InputLabel className={labelClassName} {...InputLabelProps}>
           {label}
         </InputLabel>}
       <Input
@@ -59,6 +64,10 @@ function TextField(props) {
         inputRef={inputRef}
         {...InputProps}
       />
+      {helperText &&
+        <FormHelperText className={helperTextClassName} {...FormHelperTextProps}>
+          {helperText}
+        </FormHelperText>}
     </FormControl>
   );
 }
@@ -80,6 +89,18 @@ TextField.propTypes = {
    * If `true`, the label will be displayed in an error state.
    */
   error: PropTypes.bool,
+  /**
+   * Properties applied to the `FormHelperText` element.
+   */
+  FormHelperTextProps: PropTypes.object,
+  /**
+   * The helper text content.
+   */
+  helperText: PropTypes.node,
+  /**
+   * The CSS class name of the helper text element.
+   */
+  helperTextClassName: PropTypes.string,
   /*
    * @ignore
    */
@@ -92,6 +113,10 @@ TextField.propTypes = {
    * The CSS class name of the `Input` element.
    */
   InputClassName: PropTypes.string,
+  /**
+   * Properties applied to the `InputLabel` element.
+   */
+  InputLabelProps: PropTypes.object,
   /**
    * Properties applied to the `input` element.
    */

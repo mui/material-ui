@@ -7,8 +7,10 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 import Textarea from './Textarea';
 
-function isDirty(obj) {
-  return obj && obj.value && obj.value.length > 0;
+export function isDirty(obj) {
+  return (
+    obj && ((obj.value && obj.value.length) || (obj.defaultValue && obj.defaultValue.length)) > 0
+  );
 }
 
 export const styleSheet = createStyleSheet('MuiInput', theme => ({
@@ -19,12 +21,15 @@ export const styleSheet = createStyleSheet('MuiInput', theme => ({
     fontFamily: theme.typography.fontFamily,
   },
   formControl: {
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: theme.spacing.unit,
+    marginBottom: theme.spacing.unit,
+    'label + &': {
+      marginTop: theme.spacing.unit * 4,
+    },
   },
   inkbar: {
     '&:after': {
-      backgroundColor: theme.palette.primary[500],
+      backgroundColor: theme.palette.primary[theme.palette.type === 'light' ? 'A700' : 'A200'],
       left: 0,
       bottom: -2,
       // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
@@ -45,13 +50,13 @@ export const styleSheet = createStyleSheet('MuiInput', theme => ({
   focused: {},
   error: {
     '&:after': {
-      backgroundColor: theme.palette.error[500],
+      backgroundColor: theme.palette.error.A400,
       transform: 'scaleX(1)', // error is always underlined in red
     },
   },
   input: {
     font: 'inherit',
-    padding: '6px 0',
+    padding: `${theme.spacing.unit}px 0`,
     border: 0,
     display: 'block',
     boxSizing: 'content-box',
@@ -59,7 +64,7 @@ export const styleSheet = createStyleSheet('MuiInput', theme => ({
     whiteSpace: 'normal',
     background: 'none',
     margin: 0, // Reset for Safari
-    color: theme.palette.text.primary,
+    color: theme.palette.input.inputText,
     width: '100%',
     '&:focus': {
       outline: 0,
@@ -67,6 +72,48 @@ export const styleSheet = createStyleSheet('MuiInput', theme => ({
     '&::-webkit-search-decoration': {
       // Remove the padding when type=search.
       appearance: 'none',
+    },
+    'label + $formControl > &': {
+      '&::-webkit-input-placeholder': {
+        opacity: 0,
+        transition: theme.transitions.create('opacity', {
+          duration: theme.transitions.duration.shorter,
+          easing: theme.transitions.easing.ease,
+        }),
+      },
+      '&::-moz-placeholder': {
+        opacity: 0,
+        transition: theme.transitions.create('opacity', {
+          duration: theme.transitions.duration.shorter,
+          easing: theme.transitions.easing.ease,
+        }),
+      },
+      '&:-ms-input-placeholder': {
+        opacity: 0,
+        transition: theme.transitions.create('opacity', {
+          duration: theme.transitions.duration.shorter,
+          easing: theme.transitions.easing.ease,
+        }),
+      },
+      '&:-moz-placeholder': {
+        opacity: 0,
+        transition: theme.transitions.create('opacity', {
+          duration: theme.transitions.duration.shorter,
+          easing: theme.transitions.easing.ease,
+        }),
+      },
+      '&:focus::-webkit-input-placeholder': {
+        opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
+      },
+      '&:focus::-moz-placeholder': {
+        opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
+      },
+      '&:focus:-ms-input-placeholder': {
+        opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
+      },
+      '&:focus:-moz-placeholder': {
+        opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
+      },
     },
   },
   singleline: {
@@ -78,22 +125,32 @@ export const styleSheet = createStyleSheet('MuiInput', theme => ({
     padding: 0,
   },
   multilineWrapper: {
-    padding: '6px 0',
+    padding: `${theme.spacing.unit - 2}px 0`,
   },
   disabled: {
     color: theme.palette.text.disabled,
   },
   underline: {
-    borderBottom: `1px solid ${theme.palette.text.divider}`,
+    borderBottom: `1px solid ${theme.palette.input.bottomLine}`,
+    transition: theme.transitions.create('border-color', {
+      duration: theme.transitions.duration.shorter,
+      easing: theme.transitions.easing.ease,
+    }),
+    '&:hover:not($disabled)': {
+      borderBottom: `2px solid ${theme.palette.text.primary}`,
+      marginBottom: theme.spacing.unit - 1,
+    },
     '&$disabled': {
       borderBottomStyle: 'dotted',
+      borderImage: `linear-gradient(to right, ${theme.palette.input.bottomLine} 33%, transparent 0%)
+        100 0 / 0 0 1px / 0 0 0 0 repeat`,
     },
   },
 }));
 
 class Input extends Component {
+  static muiName = 'Input';
   static defaultProps = {
-    disabled: false,
     type: 'text',
     disableUnderline: false,
     multiline: false,
@@ -192,7 +249,7 @@ class Input extends Component {
       className: classNameProp,
       component,
       defaultValue,
-      disabled,
+      disabled: disabledProp,
       disableUnderline,
       error: errorProp,
       id,
@@ -216,7 +273,12 @@ class Input extends Component {
 
     const { muiFormControl } = this.context;
 
+    let disabled = disabledProp;
     let error = errorProp;
+
+    if (muiFormControl && typeof disabled === 'undefined') {
+      disabled = muiFormControl.disabled;
+    }
 
     if (typeof error === 'undefined' && muiFormControl) {
       error = muiFormControl.error;

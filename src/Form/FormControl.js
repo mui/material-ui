@@ -1,10 +1,11 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import React, { Children, Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
+import { isDirty } from '../Input/Input';
 
 export const styleSheet = createStyleSheet('MuiFormControl', {
   root: {
@@ -22,6 +23,7 @@ export const styleSheet = createStyleSheet('MuiFormControl', {
  */
 class FormControl extends Component {
   static defaultProps = {
+    disabled: false,
     error: false,
     required: false,
   };
@@ -32,12 +34,13 @@ class FormControl extends Component {
   };
 
   getChildContext() {
-    const { error, required } = this.props;
+    const { disabled, error, required } = this.props;
     const { dirty, focused } = this.state;
 
     return {
       muiFormControl: {
         dirty,
+        disabled,
         error,
         focused,
         required,
@@ -47,6 +50,14 @@ class FormControl extends Component {
         onBlur: this.handleBlur,
       },
     };
+  }
+
+  componentWillMount() {
+    Children.forEach(this.props.children, child => {
+      if (child && child.type && child.type.muiName === 'Input' && isDirty(child.props)) {
+        this.setState({ dirty: true });
+      }
+    });
   }
 
   handleFocus = () => {
@@ -84,6 +95,7 @@ class FormControl extends Component {
       children,
       classes,
       className,
+      disabled, // eslint-disable-line no-unused-vars
       error, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
@@ -114,6 +126,10 @@ FormControl.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * If `true`, the label, input and helper text should be displayed in a disabled state.
+   */
+  disabled: PropTypes.bool,
   /**
    * If `true`, the label should be displayed in an error state.
    */

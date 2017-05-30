@@ -8,18 +8,21 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 
 export const styleSheet = createStyleSheet('MuiFormLabel', theme => {
-  const focusColor = theme.palette.primary[500];
+  const focusColor = theme.palette.primary[theme.palette.type === 'light' ? 'A700' : 'A200'];
   return {
     root: {
       fontFamily: theme.typography.fontFamily,
-      color: theme.palette.text.secondary,
+      color: theme.palette.input.labelText,
       lineHeight: 1,
     },
     focused: {
       color: focusColor,
     },
     error: {
-      color: theme.palette.error[500],
+      color: theme.palette.error.A400,
+    },
+    disabled: {
+      color: theme.palette.input.disabled,
     },
   };
 });
@@ -29,6 +32,7 @@ function FormLabel(props, context) {
     children,
     classes,
     className: classNameProp,
+    disabled: disabledProp,
     error: errorProp,
     focused: focusedProp,
     required: requiredProp,
@@ -39,6 +43,7 @@ function FormLabel(props, context) {
 
   let required = requiredProp;
   let focused = focusedProp;
+  let disabled = disabledProp;
   let error = errorProp;
 
   if (muiFormControl) {
@@ -47,6 +52,9 @@ function FormLabel(props, context) {
     }
     if (typeof focused === 'undefined') {
       focused = muiFormControl.focused;
+    }
+    if (typeof disabled === 'undefined') {
+      disabled = muiFormControl.disabled;
     }
     if (typeof error === 'undefined') {
       error = muiFormControl.error;
@@ -57,6 +65,7 @@ function FormLabel(props, context) {
     classes.root,
     {
       [classes.focused]: focused,
+      [classes.disabled]: disabled,
       [classes.error]: error,
     },
     classNameProp,
@@ -91,7 +100,11 @@ FormLabel.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Whether the label should be displayed in an error state.
+   * If `true`, the label should be displayed in a disabled state.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * If `true`, the label should be displayed in an error state.
    */
   error: PropTypes.bool,
   /**

@@ -6,10 +6,10 @@
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | classes | object |  | Useful to extend the style applied to components. |
-| size | number | 40 | The size of the circle. |
-| mode | enum:<br>&nbsp;'determinate'<br>&nbsp;'indeterminate' | 'indeterminate' | The mode of show your progress. Indeterminate for when there is no value for progress. Determinate for controlled progress value. |
 | max | number | 100 | The max value of progress in determinate mode. |
-| min | number | 0 | TThe min value of progress in determinate mode. |
+| min | number | 0 | The min value of progress in determinate mode. |
+| mode | enum:&nbsp;'determinate'<br>&nbsp;'indeterminate'<br> | 'indeterminate' | The mode of show your progress. Indeterminate for when there is no value for progress. Determinate for controlled progress value. |
+| size | number | 40 | The size of the circle. |
 | value | number | 0 | The value of progress in determinate mode. |
 
 Any other properties supplied will be spread to the root element.

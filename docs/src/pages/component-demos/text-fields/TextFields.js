@@ -77,6 +77,22 @@ class TextFields extends Component {
           defaultValue="2017-05-24"
           className={classes.input}
         />
+        <TextField
+          id="helperText"
+          label="Helper text"
+          type="text"
+          defaultValue="Default Value"
+          className={classes.input}
+          helperText="Some important text"
+        />
+        <TextField
+          id="placeholder"
+          label="Label"
+          className={classes.input}
+          type="text"
+          InputProps={{ placeholder: 'Placeholder' }}
+          helperText="Helper text"
+        />
       </div>
     );
   }

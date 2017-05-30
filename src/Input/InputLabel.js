@@ -15,10 +15,10 @@ export const styleSheet = createStyleSheet('MuiInputLabel', theme => ({
     position: 'absolute',
     left: 0,
     top: 0,
-    transform: 'translate(0, 18px) scale(1)',
+    transform: `translate(0, ${theme.spacing.unit * 5}px) scale(1)`,
   },
   shrink: {
-    transform: 'translate(0, 0px) scale(0.75)',
+    transform: `translate(0, ${theme.spacing.unit * 2 + 2}px) scale(0.75)`,
     transformOrigin: 'top left',
   },
   animated: {
@@ -27,10 +27,14 @@ export const styleSheet = createStyleSheet('MuiInputLabel', theme => ({
       easing: theme.transitions.easing.easeOut,
     }),
   },
+  disabled: {
+    color: theme.palette.input.disabled,
+  },
 }));
 
 function InputLabel(props, context) {
   const {
+    disabled,
     disableAnimation,
     children,
     classes,
@@ -52,6 +56,7 @@ function InputLabel(props, context) {
       [classes.formControl]: muiFormControl,
       [classes.animated]: !disableAnimation,
       [classes.shrink]: shrink,
+      [classes.disabled]: disabled,
     },
     classNameProp,
   );
@@ -81,6 +86,10 @@ InputLabel.propTypes = {
    */
   disableAnimation: PropTypes.bool,
   /**
+   * If `true`, apply disabled class.
+   */
+  disabled: PropTypes.bool,
+  /**
    * If `true`, the label will be displayed in an error state.
    */
   error: PropTypes.bool,
@@ -99,6 +108,7 @@ InputLabel.propTypes = {
 };
 
 InputLabel.defaultProps = {
+  disabled: false,
   disableAnimation: false,
 };
 

@@ -21,7 +21,9 @@ export const MUI_SHEET_ORDER = [
 
   'MuiButtonBase',
 
+  'MuiFormControl',
   'MuiFormLabel',
+  'MuiFormHelperText',
   'MuiFormGroup',
 
   'MuiTypography',
@@ -83,8 +85,6 @@ export const MUI_SHEET_ORDER = [
   'MuiCardHeader',
   'MuiCard',
 
-  'MuiTextFieldLabel',
-  'MuiTextFieldInput',
   'MuiTextField',
 
   'MuiTable',
