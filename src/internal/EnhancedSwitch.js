@@ -93,6 +93,7 @@ class EnhancedSwitch extends Component {
     onSwitch: PropTypes.func,
     onTouchEnd: PropTypes.func,
     onTouchStart: PropTypes.func,
+    onTouchTap: PropTypes.func,
     rippleColor: PropTypes.string,
     rippleStyle: PropTypes.object,
     style: PropTypes.object,
@@ -123,7 +124,7 @@ class EnhancedSwitch extends Component {
     const hasCheckedProp = nextProps.hasOwnProperty('checked');
     const hasNewDefaultProp =
       (nextProps.hasOwnProperty('defaultChecked') &&
-      (nextProps.defaultChecked !== this.props.defaultChecked));
+        (nextProps.defaultChecked !== this.props.defaultChecked));
 
     if (hasCheckedProp || hasNewDefaultProp) {
       const switched = nextProps.checked || nextProps.defaultChecked || false;
@@ -214,6 +215,12 @@ class EnhancedSwitch extends Component {
     this.refs.touchRipple.end();
   };
 
+  handleTouchTap = (event) => {
+    if (this.props.onTouchTap) {
+      this.props.onTouchTap(event);
+    }
+  };
+
   handleTouchStart = (event) => {
     this.refs.touchRipple.start(event);
   };
@@ -265,6 +272,7 @@ class EnhancedSwitch extends Component {
       onMouseUp, // eslint-disable-line no-unused-vars
       onMouseDown, // eslint-disable-line no-unused-vars
       onMouseLeave, // eslint-disable-line no-unused-vars
+      onTouchTap, // eslint-disable-line no-unused-vars
       onTouchStart, // eslint-disable-line no-unused-vars
       onTouchEnd, // eslint-disable-line no-unused-vars
       onParentShouldUpdate, // eslint-disable-line no-unused-vars
@@ -280,7 +288,7 @@ class EnhancedSwitch extends Component {
       thumbStyle,
       trackStyle,
       ...other
-    } = this.props;
+  } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
@@ -293,10 +301,10 @@ class EnhancedSwitch extends Component {
     }
 
     const labelElement = label && (
-      <label style={prepareStyles(Object.assign(styles.label, labelStyle))}>
-        {label}
-      </label>
-    );
+    <label style={prepareStyles(Object.assign(styles.label, labelStyle))}>
+      {label}
+    </label>
+);
 
     const showTouchRipple = !disabled && !disableTouchRipple;
     const showFocusRipple = !disabled && !disableFocusRipple;
@@ -310,7 +318,7 @@ class EnhancedSwitch extends Component {
         muiTheme={this.context.muiTheme}
         centerRipple={true}
       />
-    );
+);
 
     const focusRipple = (
       <FocusRipple
@@ -320,7 +328,7 @@ class EnhancedSwitch extends Component {
         muiTheme={this.context.muiTheme}
         show={this.state.isKeyboardFocused}
       />
-    );
+);
 
     const ripples = [
       showTouchRipple ? touchRipple : null,
@@ -342,36 +350,37 @@ class EnhancedSwitch extends Component {
         onMouseUp={showTouchRipple && this.handleMouseUp}
         onMouseDown={showTouchRipple && this.handleMouseDown}
         onMouseLeave={showTouchRipple && this.handleMouseLeave}
+        onTouchTap={this.handleTouchTap}
         onTouchStart={showTouchRipple && this.handleTouchStart}
         onTouchEnd={showTouchRipple && this.handleTouchEnd}
       />
-    );
+);
 
-    // If toggle component (indicated by whether the style includes thumb) manually lay out
-    // elements in order to nest ripple elements
+// If toggle component (indicated by whether the style includes thumb) manually lay out
+// elements in order to nest ripple elements
     const switchOrThumbElement = !thumbStyle ? (
       <div style={prepareStyles(wrapStyles)}>
         {switchElement}
         {ripples}
       </div>
-    ) : (
-      <div style={prepareStyles(wrapStyles)}>
-        <div style={prepareStyles(Object.assign({}, trackStyle))} />
-        <Paper style={thumbStyle} zDepth={1} circle={true}> {ripples} </Paper>
-      </div>
-    );
+) : (
+  <div style={prepareStyles(wrapStyles)}>
+    <div style={prepareStyles(Object.assign({}, trackStyle))} />
+    <Paper style={thumbStyle} zDepth={1} circle={true}> {ripples} </Paper>
+  </div>
+  );
 
     const elementsInOrder = labelPosition === 'right' ? (
       <div style={styles.controls}>
         {switchOrThumbElement}
         {labelElement}
       </div>
-    ) : (
-      <div style={styles.controls}>
-        {labelElement}
-        {switchOrThumbElement}
-      </div>
-    );
+) : (
+  <div style={styles.controls}>
+    {labelElement}
+    {switchOrThumbElement}
+  </div>
+  );
 
     return (
       <div ref="root" className={className} style={prepareStyles(Object.assign(styles.root, style))}>
