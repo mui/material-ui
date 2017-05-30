@@ -37,7 +37,7 @@ describe('<FormLabel />', () => {
   });
 
   describe('prop: error', () => {
-    it('should show an error class', () => {
+    it('should have an error class', () => {
       const wrapper = shallow(<FormLabel required error />);
       const asteriskWrapper = wrapper.find('[data-mui-test="FormLabelAsterisk"]');
       assert.strictEqual(asteriskWrapper.length, 1);

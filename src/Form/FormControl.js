@@ -127,7 +127,7 @@ FormControl.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, the label should be displayed in an disabled state.
+   * If `true`, the label, input and helper text should be displayed in a disabled state.
    */
   disabled: PropTypes.bool,
   /**

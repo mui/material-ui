@@ -74,7 +74,7 @@ FormHelperText.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Whether the helper text should be displayed in an disabled state.
+   * If `true`, the helper text should be displayed in a disabled state.
    */
   disabled: PropTypes.bool,
   /**

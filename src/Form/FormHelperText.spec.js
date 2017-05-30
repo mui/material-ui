@@ -22,7 +22,7 @@ describe('<FormHelperText />', () => {
   });
 
   describe('prop: error', () => {
-    it('should show an error class', () => {
+    it('should have an error class', () => {
       const wrapper = shallow(<FormHelperText error />);
       assert.strictEqual(wrapper.hasClass(classes.error), true);
     });
