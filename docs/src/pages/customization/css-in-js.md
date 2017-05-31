@@ -80,3 +80,14 @@ import { withStyles } from 'material-ui/styles';
 
 export default withStyles(styleSheet)(MyComponent);
 ```
+
+You can use as [decorators](https://babeljs.io/docs/plugins/transform-decorators/) like so:
+
+```js
+import { withStyles } from 'material-ui/styles';
+
+@withStyles(styleSheet)
+export default class MyComponent extends Component {
+  render () {}
+}
+```
