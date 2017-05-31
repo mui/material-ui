@@ -49,13 +49,13 @@ describe('<FormControl />', () => {
   });
 
   describe('should be dirty if has input with value set', () => {
-    let wrapper;
-
-    beforeEach(() => {
-      wrapper = shallow(<FormControl><Input value="bar" /></FormControl>);
+    it('should be dirty with a value', () => {
+      const wrapper = shallow(<FormControl><Input value="bar" /></FormControl>);
+      assert.strictEqual(wrapper.state().dirty, true);
     });
 
-    it('should be dirty initially', () => {
+    it('should be dirty with a defaultValue', () => {
+      const wrapper = shallow(<FormControl><Input defaultValue="bar" /></FormControl>);
       assert.strictEqual(wrapper.state().dirty, true);
     });
   });

@@ -53,8 +53,10 @@ class FormControl extends Component {
   }
 
   componentWillMount() {
+    // We need to iterate through the children and find the Input in order
+    // to fully support server side rendering.
     Children.forEach(this.props.children, child => {
-      if (child && child.type && child.type.muiName === 'Input' && isDirty(child.props)) {
+      if (child && child.type && child.type.muiName === 'Input' && isDirty(child.props, true)) {
         this.setState({ dirty: true });
       }
     });
