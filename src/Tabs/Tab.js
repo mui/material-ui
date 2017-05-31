@@ -49,6 +49,10 @@ class Tab extends Component {
      */
     label: PropTypes.node,
     /**
+     * Lazy loading children components
+     */
+    lazy: PropTypes.bool,
+    /**
      * Fired when the active tab changes by touch or tap.
      * Use this event to specify any functionality when an active tab changes.
      * For example - we are using this to route to home when the third tab becomes active.
@@ -104,6 +108,7 @@ class Tab extends Component {
       style,
       value, // eslint-disable-line no-unused-vars
       width, // eslint-disable-line no-unused-vars
+      lazy, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
 
