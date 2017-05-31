@@ -11,4 +11,5 @@ We will focus on providing all the low-level tools needed to build a rich user-i
 From a user point of view, we want Material-UI
 - to deliver on fully encapsulated/composable react components
 - to be themable/customizable
-- to promote developer joy
+- to be cross browser compatible and accessible
+- to promote developer joy, a sense of community, and an environment where new and experienced developers can learn from each other
