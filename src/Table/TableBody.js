@@ -421,12 +421,7 @@ class TableBody extends Component {
   };
 
   getColumnId(columnNumber) {
-    let columnId = columnNumber;
-    if (this.props.displayRowCheckbox) {
-      columnId--;
-    }
-
-    return columnId;
+    return columnNumber - 1;
   }
 
   render() {
