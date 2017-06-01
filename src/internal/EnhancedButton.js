@@ -304,7 +304,7 @@ class EnhancedButton extends Component {
       mergedStyles.background = 'none';
     }
 
-    if (disabled && href) {
+    if (disabled && href || disabled && containerElement) {
       return (
         <span
           {...other}
