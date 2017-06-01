@@ -50,7 +50,7 @@ export default class CardExampleControlled extends React.Component {
           expandable={true}
           overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
         >
-          <img src="images/nature-600-337.jpg" />
+          <img src="images/nature-600-337.jpg" alt="" />
         </CardMedia>
         <CardTitle title="Card title" subtitle="Card subtitle" expandable={true} />
         <CardText expandable={true}>
