@@ -13,7 +13,7 @@ import { componentAPIs, requireMarkdown, demos, requireDemo } from 'docs/src/com
 export default function AppRouter() {
   return (
     <Router history={browserHistory} render={applyRouterMiddleware(useScroll())}>
-      <Route title="Material UI" path="/" component={AppFrame}>
+      <Route title="Material-UI" path="/" component={AppFrame}>
         <IndexRoute dockDrawer component={Home} title={null} />
         <Route title="Getting Started" path="/getting-started" nav component={AppContent}>
           <Route

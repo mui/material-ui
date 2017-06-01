@@ -86,7 +86,7 @@ function AppDrawer(props) {
         <Toolbar className={classes.toolbar}>
           <Link className={classes.title} to="/" onClick={props.onRequestClose}>
             <Typography type="title" gutterBottom colorInherit>
-              Material UI
+              Material-UI
             </Typography>
           </Link>
           {process.env.MATERIAL_UI_VERSION

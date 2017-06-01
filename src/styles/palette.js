@@ -21,7 +21,6 @@ export const light = {
     helperText: 'rgba(0, 0, 0, 0.54)',
     labelText: 'rgba(0, 0, 0, 0.54)',
     inputText: 'rgba(0, 0, 0, 0.87)',
-    placeholderRext: 'rgba(0, 0, 0, 0.42)',
     disabled: 'rgba(0, 0, 0, 0.42)',
   },
   action: {
@@ -52,7 +51,6 @@ export const dark = {
     helperText: 'rgba(255, 255, 255, 0.7)',
     labelText: 'rgba(255, 255, 255, 0.7)',
     inputText: 'rgba(255, 255, 255, 1)',
-    placeholderRext: 'rgba(255, 255, 255, 0.5)',
     disabled: 'rgba(255, 255, 255, 0.5)',
   },
   action: {

@@ -24,6 +24,40 @@ Below is a summary of major changes.
 - [Ripple/TouchRipple] Refactored and now works properly inside a button in firefox!
 - [Button] Raised/flat/fab are now combined into a single component.
 
+## 1.0.0-alpha.16
+###### _Jun 1, 2017_
+
+##### Component Fixes / Enhancements
+
+- [TextField] Make it meet guidelines (#6566) @kybarg
+- [TextField] Fix Labels flicker in Chrome (#7010) @kybarg
+- [TextField] Fix broken isDirty logic (#7008) @oliviertassinari
+- [CircularProgress] make it start and finish from top (#6966) @slavab89
+- [Switch] Add inputProps property link in the TextField (#6959) @oliviertassinari
+- [BaseButton] Better handle the disabled property (#6958) @oliviertassinari
+- [FormControl] Fix onFocus and onBlur events override (#6952) @oliviertassinari
+- [Tabs] Add `false` as a valid index value (#6945) @oliviertassinari
+- [Input] Improve support of the date/time fields (#6947) @oliviertassinari
+- [MuiThemeProvider] Add a muiThemeProviderFactory (#7000) @viotti
+
+##### Docs
+
+- [docs] Grid docs should refer to Hidden component/demo (#6963) @kgregory
+- [docs] Fix grammar/verbiage on customization/themes page (#6943) @drusepth
+- [docs] Change text for link (#6977) @sghall
+- [docs] Some grammar/text edits (#6976) @sghall
+- [docs] Suggested text changes (#6978) @sghall
+- [docs] Fix MuiThemeProvider documentation (#6989) @viotti
+- [docs] Fix TableRow persistent background when clicked (#7001) @sajal50
+- [docs] Add an example with a decorator (#7011) @uufish
+
+##### Core
+
+- [npm] Fix react-scrollbar-size issue (#7009) @oliviertassinari
+- [transitions] Add test coverage for the transition validation functions (#6936) @Alex4S
+- [eslint] enable flow's built-in types (#6946) @rosskevin
+- [test] Upgrade the docker versions (#6979) @oliviertassinari
+
 ## 1.0.0-alpha.15
 ###### _May 23, 2017_
 

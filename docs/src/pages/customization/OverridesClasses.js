@@ -22,8 +22,13 @@ const styleSheet = createStyleSheet('OverridesClasses', {
 
 function OverridesClasses(props) {
   return (
-    <Button classes={props.classes}>
-      {props.children ? props.children : 'class names'}
+    <Button
+      classes={{
+        root: props.classes.root, // className, e.g. `OverridesClasses-root-X`
+        label: props.classes.label, // className, e.g. `OverridesClasses-label-X`
+      }}
+    >
+      {props.children ? props.children : 'classes'}
     </Button>
   );
 }

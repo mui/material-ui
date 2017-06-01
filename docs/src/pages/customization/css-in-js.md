@@ -37,6 +37,7 @@ Generate a new style sheet that represents the style you want to inject in the D
 
 1. `name` (*String*): The name of the style sheet. That useful for debugging.
 2. `styles` (*Function | Object*): A function generating the styles or an object.
+Use the function if you need to have access to the theme. It's provided as the first argument.
 
 #### Returns
 
@@ -63,7 +64,13 @@ const styleSheet = createStyleSheet('MyLink', (theme) => ({
 
 ### `withStyles(styleSheet) => Higher-order Component`
 
-Link a style sheet with a component. It does not modify the component passed to it; instead, it returns a new, with a `classes` property. This `classes` object contains the name of the class names injected in the DOM.
+Link a style sheet with a component.
+It does not modify the component passed to it; instead, it returns a new, with a `classes` property.
+This `classes` object contains the name of the class names injected in the DOM.
+Some implementation details that might be interested in being aware of:
+ - It's forwarding not react static properties so this HOC is more "transparent".
+ - It's adding a `innerRef` property so you can get a reference to the wrapped component.
+ - It's adding a `classes` property so you can override the injected class names from the outside.
 
 #### Arguments
 
@@ -78,6 +85,10 @@ Link a style sheet with a component. It does not modify the component passed to 
 ```js
 import { withStyles } from 'material-ui/styles';
 
+class MyComponent extends Component {
+  render () {}
+}
+
 export default withStyles(styleSheet)(MyComponent);
 ```
 
@@ -87,7 +98,9 @@ You can use as [decorators](https://babeljs.io/docs/plugins/transform-decorators
 import { withStyles } from 'material-ui/styles';
 
 @withStyles(styleSheet)
-export default class MyComponent extends Component {
+class MyComponent extends Component {
   render () {}
 }
+
+export default MyComponent
 ```
