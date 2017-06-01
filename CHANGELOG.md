@@ -27,6 +27,9 @@ Below is a summary of major changes.
 ## 1.0.0-alpha.16
 ###### _Jun 1, 2017_
 
+This release is mainly about bug fixes and improving the documentation.
+Shout out to @kybarg for the update of the `TextField` in order to better follow the spec (#6566).
+
 ##### Component Fixes / Enhancements
 
 - [TextField] Make it meet guidelines (#6566) @kybarg
@@ -42,6 +45,7 @@ Below is a summary of major changes.
 
 ##### Docs
 
+- [docs] Add a VISION.md file (#6982) @oliviertassinari
 - [docs] Grid docs should refer to Hidden component/demo (#6963) @kgregory
 - [docs] Fix grammar/verbiage on customization/themes page (#6943) @drusepth
 - [docs] Change text for link (#6977) @sghall
