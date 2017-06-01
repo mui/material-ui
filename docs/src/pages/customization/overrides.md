@@ -29,7 +29,6 @@ When the `className` property isn't enough and you need to access deeper element
 to customize all the CSS inject by Material-UI for the given component. For instance:
 
 {{demo='pages/customization/OverridesClasses.js'}}
-`
 
 ### Overriding with inline-style
 
