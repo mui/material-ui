@@ -27,7 +27,7 @@ class ExpandTransition extends Component {
   };
 
   renderChildren(children) {
-    const {enterDelay, transitionDelay, transitionDuration} = this.props;
+    const {enterDelay, transitionDelay, transitionDuration, style} = this.props;
     return React.Children.map(children, (child) => {
       return (
         <ExpandTransitionChild
@@ -35,6 +35,7 @@ class ExpandTransition extends Component {
           transitionDelay={transitionDelay}
           transitionDuration={transitionDuration}
           key={child.key}
+          style={style}
         >
           {child}
         </ExpandTransitionChild>
