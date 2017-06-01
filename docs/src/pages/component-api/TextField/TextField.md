@@ -23,6 +23,7 @@
 | multiline | bool |  | If `true`, a textarea element will be rendered instead of an input. |
 | name | string |  | Name attribute of the `Input` element. |
 | required | bool | false | If `true`, the label is displayed as required. |
+| rootRef | function |  | Use that property to pass a ref callback to the root component. |
 | rows | union:&nbsp;string<br>&nbsp;number<br> |  | Number of rows to display when multiline option is set to true. |
 | rowsMax | union:&nbsp;string<br>&nbsp;number<br> |  | Maxium number of rows to display when multiline option is set to true. |
 | type | string |  | Type attribute of the `Input` element. It should be a valid HTML5 input type. |

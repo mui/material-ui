@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { RadioGroup, LabelRadio as Radio } from 'material-ui/Radio';

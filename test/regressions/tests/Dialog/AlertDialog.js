@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { DialogActions, DialogContent, DialogContentText, DialogTitle } from 'material-ui/Dialog';

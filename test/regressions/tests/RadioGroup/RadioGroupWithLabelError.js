@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { FormLabel, FormControl } from 'material-ui/Form';
