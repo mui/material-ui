@@ -7,9 +7,8 @@
 |:-----|:-----|:--------|:------------|
 | children | node |  | The content of the component. |
 | classes | object |  | Useful to extend the style applied to components. |
-| className | string |  | The CSS class name of the root element. |
-| disabled | bool |  | Whether the helper text should be displayed in an disabled state. |
-| error | bool |  | Whether the helper text should be displayed in an error state. |
+| disabled | bool |  | If `true`, the helper text should be displayed in a disabled state. |
+| error | bool |  | If `true`, helper text should be displayed in an error state. |
 
 Any other properties supplied will be spread to the root element.
 ## Classes

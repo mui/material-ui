@@ -7,7 +7,7 @@ Provides context such as dirty/focused/error/required for form inputs.
 |:-----|:-----|:--------|:------------|
 | children | node |  | The contents of the form control. |
 | classes | object |  | Useful to extend the style applied to components. |
-| disabled | bool | false | If `true`, the label should be displayed in an disabled state. |
+| disabled | bool | false | If `true`, the label, input and helper text should be displayed in a disabled state. |
 | error | bool | false | If `true`, the label should be displayed in an error state. |
 | required | bool | false | If `true`, the label will indicate that the input is required. |
 

@@ -8,9 +8,9 @@
 | defaultValue | string |  | The default value of the `Input` element. |
 | disabled | bool |  | If `true`, the input will be disabled. |
 | error | bool |  | If `true`, the label will be displayed in an error state. |
+| FormHelperTextProps | object |  | Properties applied to the `FormHelperText` element. |
 | helperText | node |  | The helper text content. |
 | helperTextClassName | string |  | The CSS class name of the helper text element. |
-| FormHelperTextProps | object |  | Properties applied to the `FormHelperText` element. |
 | id | string |  |  |
 | inputClassName | string |  | The CSS class name of the `input` element. |
 | InputClassName | string |  | The CSS class name of the `Input` element. |
