@@ -7,6 +7,13 @@ import RadioButtonOn from '../svg-icons/toggle/radio-button-checked';
 
 function getStyles(props, context) {
   const {radioButton} = context.muiTheme;
+  let fillColor = null;
+
+  if (props.checked) {
+    fillColor = props.style.fill || radioButton.checkColor;
+  } else {
+    fillColor = radioButton.borderColor;
+  }
 
   return {
     icon: {
@@ -18,7 +25,7 @@ function getStyles(props, context) {
       position: 'absolute',
       opacity: 1,
       transform: 'scale(1)',
-      fill: radioButton.borderColor,
+      fill: fillColor,
     },
     fill: {
       position: 'absolute',
@@ -26,7 +33,7 @@ function getStyles(props, context) {
       transform: 'scale(0)',
       transformOrigin: '50% 50%',
       transition: transitions.easeOut(),
-      fill: radioButton.checkedColor,
+      fill: fillColor,
     },
     targetWhenChecked: {
       opacity: 0,
