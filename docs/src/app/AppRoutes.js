@@ -55,6 +55,7 @@ import SubheaderPage from './components/pages/components/Subheader/Page';
 import TablePage from './components/pages/components/Table/Page';
 import TabsPage from './components/pages/components/Tabs/Page';
 import TextFieldPage from './components/pages/components/TextField/Page';
+import TextFieldFlatPage from './components/pages/components/TextFieldFlat/Page';
 import TimePickerPage from './components/pages/components/TimePicker/Page';
 import TogglePage from './components/pages/components/Toggle/Page';
 import ToolbarPage from './components/pages/components/Toolbar/Page';
@@ -132,6 +133,7 @@ const AppRoutes = (
       <Route path="table" component={TablePage} />
       <Route path="tabs" component={TabsPage} />
       <Route path="text-field" component={TextFieldPage} />
+      <Route path="text-field-flat" component={TextFieldFlatPage} />
       <Route path="time-picker" component={TimePickerPage} />
       <Route path="toggle" component={TogglePage} />
       <Route path="toolbar" component={ToolbarPage} />
