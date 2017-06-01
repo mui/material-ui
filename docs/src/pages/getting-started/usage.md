@@ -32,7 +32,7 @@ import Button from 'material-ui/Button';
 export default function MyComponent() {
   return (
     <Button>
-      Hello Wolrd
+      Hello World
     </Button>
   )
 }
