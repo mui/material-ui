@@ -8,6 +8,7 @@ import FormHelperText from '../Form/FormHelperText';
 
 function TextField(props) {
   const {
+    autoFocus,
     className,
     defaultValue,
     disabled,
@@ -28,6 +29,7 @@ function TextField(props) {
     required,
     type,
     multiline,
+    rootRef,
     rows,
     rowsMax,
     value,
@@ -44,12 +46,13 @@ function TextField(props) {
   }
 
   return (
-    <FormControl className={className} error={error} required={required} {...other}>
+    <FormControl ref={rootRef} className={className} error={error} required={required} {...other}>
       {label &&
         <InputLabel className={labelClassName} {...InputLabelProps}>
           {label}
         </InputLabel>}
       <Input
+        autoFocus={autoFocus}
         className={InputClassName}
         defaultValue={defaultValue}
         disabled={disabled}
@@ -73,6 +76,10 @@ function TextField(props) {
 }
 
 TextField.propTypes = {
+  /**
+   * @ignore
+   */
+  autoFocus: PropTypes.bool,
   /**
    * @ignore
    */
@@ -149,6 +156,10 @@ TextField.propTypes = {
    * If `true`, the label is displayed as required.
    */
   required: PropTypes.bool,
+  /**
+   * Use that property to pass a ref callback to the root component.
+   */
+  rootRef: PropTypes.func,
   /**
    * Number of rows to display when multiline option is set to true.
    */

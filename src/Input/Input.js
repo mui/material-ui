@@ -246,6 +246,7 @@ class Input extends Component {
 
   render() {
     const {
+      autoFocus,
       classes,
       className: classNameProp,
       component,
@@ -345,6 +346,7 @@ class Input extends Component {
     return (
       <div className={wrapperClassName} {...other}>
         <InputComponent
+          autoFocus={autoFocus}
           className={inputClassName}
           onBlur={this.handleBlur}
           onFocus={this.handleFocus}
@@ -368,6 +370,10 @@ class Input extends Component {
 }
 
 Input.propTypes = {
+  /**
+   * @ignore
+   */
+  autoFocus: PropTypes.object,
   /**
    * Useful to extend the style applied to components.
    */

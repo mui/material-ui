@@ -1,6 +1,5 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-disable no-console */
-// Track bug on imported flow type: https://github.com/reactjs/react-docgen/issues/180
 
 import fs from 'fs';
 import path from 'path';
@@ -52,8 +51,7 @@ function buildDocs(componentPath) {
       componentInfo = reactDocgen.parse(src);
     } catch (err2) {
       console.log('Error parsing src for', relativePath.name);
-      console.log(err2);
-      return;
+      throw err2;
     }
 
     componentInfo.styles = styles;
@@ -62,8 +60,7 @@ function buildDocs(componentPath) {
       markdown = generateMarkdown(relativePath.name, componentInfo);
     } catch (err2) {
       console.log('Error generating markdown for', relativePath.name);
-      console.log(err2);
-      return;
+      throw err2;
     }
 
     ensureExists(outputDir, 0o744, err2 => {
