@@ -83,7 +83,7 @@ describe('withSwitchLabel', () => {
         });
 
         assert.strictEqual(
-          wrapper.childAt(1).hasClass(classes.disabled),
+          wrapper.hasClass(classes.disabled),
           true,
           'should have the disabled class',
         );

@@ -15,6 +15,10 @@ export const styleSheet = createStyleSheet('MuiSwitchLabel', theme => ({
     cursor: 'pointer',
     WebkitTapHighlightColor: 'rgba(0,0,0,0)',
   },
+  disabled: {
+    color: theme.palette.text.disabled,
+    cursor: 'default',
+  },
   hasLabel: {
     marginLeft: -12,
     marginRight: theme.spacing.unit * 2, // used for row presentation of radio/checkbox
@@ -22,10 +26,6 @@ export const styleSheet = createStyleSheet('MuiSwitchLabel', theme => ({
   labelText: {
     fontFamily: theme.typography.fontFamily,
     userSelect: 'none',
-  },
-  disabled: {
-    color: theme.palette.text.disabled,
-    cursor: 'default',
   },
 }));
 
@@ -46,13 +46,10 @@ function withSwitchLabel(SwitchComponent) {
         classes.root,
         {
           [classes.hasLabel]: label && label.length,
+          [classes.disabled]: disabled,
         },
         labelClassNameProp,
       );
-
-      const labelTextClassName = classNames(classes.labelText, {
-        [classes.disabled]: disabled,
-      });
 
       const switchElement = (
         <SwitchComponent
@@ -71,7 +68,7 @@ function withSwitchLabel(SwitchComponent) {
       return (
         <label className={labelClassName}>
           {switchElement}
-          <span className={labelTextClassName}>
+          <span className={classes.labelText}>
             {label}
           </span>
         </label>
