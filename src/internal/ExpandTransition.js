@@ -7,10 +7,10 @@ class ExpandTransition extends Component {
   static propTypes = {
     children: PropTypes.node,
     enterDelay: PropTypes.number,
+    expandTransitionChildStyle: PropTypes.object,
     loading: PropTypes.bool,
     open: PropTypes.bool,
     style: PropTypes.object,
-    expandTransitionChildStyle: PropTypes.object,
     transitionDelay: PropTypes.number,
     transitionDuration: PropTypes.number,
   };
@@ -53,7 +53,7 @@ class ExpandTransition extends Component {
       style,
       transitionDelay, // eslint-disable-line no-unused-vars
       transitionDuration, // eslint-disable-line no-unused-vars
-      expandTransitionChildStyle,
+      expandTransitionChildStyle, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
 
