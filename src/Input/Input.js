@@ -246,6 +246,7 @@ class Input extends Component {
 
   render() {
     const {
+      autoFocus,
       classes,
       className: classNameProp,
       component,
@@ -319,6 +320,13 @@ class Input extends Component {
       ...inputPropsProp,
     };
 
+    if (autoFocus) {
+      inputProps = {
+        autoFocus,
+        ...inputProps,
+      };
+    }
+
     if (component) {
       inputProps = {
         rowsMax,
@@ -368,6 +376,10 @@ class Input extends Component {
 }
 
 Input.propTypes = {
+  /**
+   * If `true`, the input element will have the `autoFocus` CSS property.
+   */
+  autoFocus: PropTypes.bool,
   /**
    * Useful to extend the style applied to components.
    */

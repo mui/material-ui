@@ -8,6 +8,7 @@ import FormHelperText from '../Form/FormHelperText';
 
 function TextField(props) {
   const {
+    autoFocus,
     className,
     defaultValue,
     disabled,
@@ -50,6 +51,7 @@ function TextField(props) {
           {label}
         </InputLabel>}
       <Input
+        autoFocus={autoFocus}
         className={InputClassName}
         defaultValue={defaultValue}
         disabled={disabled}
@@ -73,6 +75,10 @@ function TextField(props) {
 }
 
 TextField.propTypes = {
+  /**
+   * If `true`, the `Input` element will have the `autoFocus` CSS property.
+   */
+  autoFocus: PropTypes.bool,
   /**
    * @ignore
    */
