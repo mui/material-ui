@@ -33,7 +33,7 @@ export const isWidthDown = (breakpoint, screenWidth, inclusive = true) => {
   return keys.indexOf(screenWidth) < keys.indexOf(breakpoint);
 };
 
-function withWidth(options = {}) {
+function withWidth(options = {}, allowSSR = false) {
   const {
     resizeInterval = 166, // Corresponds to 10 frames at 60 Hz.
   } = options;
@@ -117,7 +117,8 @@ function withWidth(options = {}) {
          * http://caniuse.com/#search=client%20hint
          */
         if (props.width === null) {
-          return null;
+          if (allowSSR) return factory(props);
+          else return null;
         }
 
         return (
