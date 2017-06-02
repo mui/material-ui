@@ -70,6 +70,13 @@ const appList = [
     source: 'https://bitbucket.org/wzup/order-form',
   },
   {
+    title: 'React Most Wanted',
+    author: 'Tarik Huber',
+    img: 'images/showcase/react-most-wanted.png',
+    link: 'https://www.react-most-wanted.com/',
+    source: 'https://github.com/TarikHuber/react-most-wanted',
+  },
+  {
     title: 'Cloudcraft',
     author: 'Cloudcraft',
     img: 'images/showcase/cloudcraft.png',
