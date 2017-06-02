@@ -117,9 +117,8 @@ function withWidth(options = {}, allowSSR = false) {
          * But the browser support of this API is low:
          * http://caniuse.com/#search=client%20hint
          */
-        if (props.width === null) {
-          if (allowSSR && !canUseDom) return factory(props);
-          else return null;
+        if (props.width === null && !allowSSR && !canUseDom) {
+          return null;
         }
 
         return (
