@@ -1,6 +1,7 @@
 // @flow weak
 
 import React, { Component } from 'react';
+import canUseDom from 'dom-helpers/util/inDOM';
 import EventListener from 'react-event-listener';
 import createEagerFactory from 'recompose/createEagerFactory';
 import wrapDisplayName from 'recompose/wrapDisplayName';
@@ -117,7 +118,7 @@ function withWidth(options = {}, allowSSR = false) {
          * http://caniuse.com/#search=client%20hint
          */
         if (props.width === null) {
-          if (allowSSR) return factory(props);
+          if (allowSSR && !canUseDom) return factory(props);
           else return null;
         }
 
