@@ -19,7 +19,7 @@ Material-UI is a set of [React](http://facebook.github.io/react/) components tha
 [Google's Material Design](https://www.google.com/design/spec/material-design/introduction.html)
 specification.
 
-Check out our [documentation site](http://www.material-ui.com/) for live examples.
+Check out our [documentation site](https://material-ui-1dab0.firebaseapp.com/) for live examples.
 It's still a work in progress, but hopefully you can see where we're headed.
 
 **Recently Updated?** Please read the [changelog](https://github.com/callemall/material-ui/releases), this README and the documentation before posting an issue.
