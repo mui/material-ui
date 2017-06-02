@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import transitions from '../styles/transitions';
 import {fade} from '../utils/colorManipulator';
 import EnhancedButton from '../internal/EnhancedButton';
@@ -26,11 +27,11 @@ function getStyles(props, context) {
     root: {
       transition: transitions.easeOut(),
       display: 'inline-block',
+      backgroundColor: 'transparent',
     },
     container: {
       backgroundColor,
       transition: transitions.easeOut(),
-      position: 'relative',
       height: floatingActionButton.buttonSize,
       width: floatingActionButton.buttonSize,
       padding: 0,
@@ -120,6 +121,12 @@ class FloatingActionButton extends Component {
     /** @ignore */
     onTouchStart: PropTypes.func,
     /**
+     * Callback function fired when the button is touch-tapped.
+     *
+     * @param {object} event TouchTap event targeting the button.
+     */
+    onTouchTap: PropTypes.func,
+    /**
      * If true, the button will use the secondary button colors.
      */
     secondary: PropTypes.bool,
@@ -158,7 +165,7 @@ class FloatingActionButton extends Component {
 
   componentDidMount() {
     warning(!this.props.iconClassName || !this.props.children,
-      'You have set both an iconClassName and a child icon. ' +
+      'Material-UI: You have set both an iconClassName and a child icon. ' +
       'It is recommended you use only one method when adding ' +
       'icons to FloatingActionButtons.');
   }
@@ -220,7 +227,10 @@ class FloatingActionButton extends Component {
   };
 
   handleTouchEnd = (event) => {
-    this.setState({zDepth: this.props.zDepth});
+    this.setState({
+      touch: true,
+      zDepth: this.props.zDepth,
+    });
     if (this.props.onTouchEnd) {
       this.props.onTouchEnd(event);
     }
@@ -241,13 +251,15 @@ class FloatingActionButton extends Component {
     const {
       backgroundColor, // eslint-disable-line no-unused-vars
       className,
+      children: childrenProp,
       disabled,
+      disabledColor, // eslint-disable-line no-unused-vars
       mini,
       secondary, // eslint-disable-line no-unused-vars
       iconStyle,
       iconClassName,
       zDepth, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -266,12 +278,17 @@ class FloatingActionButton extends Component {
       );
     }
 
-    const children = extendChildren(this.props.children, {
-      style: Object.assign({},
-        styles.icon,
-        mini && styles.iconWhenMini,
-        iconStyle),
-    });
+    let children;
+
+    if (childrenProp) {
+      children = extendChildren(childrenProp, (child) => ({
+        style: Object.assign({},
+          styles.icon,
+          mini && styles.iconWhenMini,
+          iconStyle,
+          child.props.style),
+      }));
+    }
 
     const buttonEventHandlers = disabled ? null : {
       onMouseDown: this.handleMouseDown,

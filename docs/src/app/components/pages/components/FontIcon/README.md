@@ -6,6 +6,8 @@ to generate custom font files, or use prebuilt fonts such as [Material icons](ht
 [Font Awesome](http://fontawesome.io/) either included in your project, or served from a public 
 [Content Delivery Network](https://en.wikipedia.org/wiki/Content_delivery_network). 
 
+Refer to this [article](http://google.github.io/material-design-icons/#icon-font-for-the-web) to learn how to use font icons from any of the above websites in your project.
+
 To use `FontIcon`, add the icon stylesheet to your project and reference the icon's class in the `className` prop. 
 If  the icon font supports ligatures, reference the font in the `className` and enclose the icon name in the `FontIcon` 
 tag.

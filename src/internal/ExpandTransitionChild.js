@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import transitions from '../styles/transitions';
 
@@ -82,7 +83,7 @@ class ExpandTransitionChild extends Component {
       style,
       transitionDelay, // eslint-disable-line no-unused-vars
       transitionDuration,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

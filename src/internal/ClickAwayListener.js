@@ -1,4 +1,5 @@
-import {Component, PropTypes} from 'react';
+import {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import events from '../utils/events';
 
@@ -15,8 +16,8 @@ const unbind = (callback) => clickAwayEvents.forEach((event) => events.off(docum
 
 class ClickAwayListener extends Component {
   static propTypes = {
-    children: PropTypes.node,
-    onClickAway: PropTypes.any,
+    children: PropTypes.element,
+    onClickAway: PropTypes.func,
   };
 
   componentDidMount() {

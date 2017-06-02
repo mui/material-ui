@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Drawer from 'material-ui/Drawer';
 import {List, ListItem, makeSelectable} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
@@ -146,7 +147,7 @@ class AppNavDrawer extends Component {
             primaryText="Get Started"
             primaryTogglesNestedList={true}
             nestedItems={[
-              <ListItem primaryText="Prerequisites" value="/get-started/prerequisites" />,
+              <ListItem primaryText="Required Knowledge" value="/get-started/required-knowledge" />,
               <ListItem primaryText="Installation" value="/get-started/installation" />,
               <ListItem primaryText="Usage" value="/get-started/usage" />,
               <ListItem primaryText="Server Rendering" value="/get-started/server-rendering" />,

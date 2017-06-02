@@ -1,4 +1,5 @@
-import React, {PropTypes, Children, cloneElement} from 'react';
+import React, {Children, cloneElement} from 'react';
+import PropTypes from 'prop-types';
 
 function getStyles(props, context) {
   const {
@@ -27,7 +28,7 @@ const BottomNavigation = (props, context) => {
     children,
     style,
     selectedIndex,
-    ...other,
+    ...other
   } = props;
 
   const {prepareStyles} = context.muiTheme;

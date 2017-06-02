@@ -9,7 +9,7 @@ import {
 import Master from './components/Master';
 import Home from './components/pages/Home';
 
-import Prerequisites from './components/pages/get-started/Prerequisites';
+import RequiredKnowledge from './components/pages/get-started/RequiredKnowledge';
 import Installation from './components/pages/get-started/Installation';
 import Usage from './components/pages/get-started/Usage';
 import Examples from './components/pages/get-started/Examples';
@@ -79,9 +79,9 @@ const AppRoutes = (
   <Route path="/" component={Master}>
     <IndexRoute component={Home} />
     <Route path="home" component={Home} />
-    <Redirect from="get-started" to="/get-started/prerequisites" />
+    <Redirect from="get-started" to="/get-started/required-knowledge" />
     <Route path="get-started">
-      <Route path="prerequisites" component={Prerequisites} />
+      <Route path="required-knowledge" component={RequiredKnowledge} />
       <Route path="installation" component={Installation} />
       <Route path="usage" component={Usage} />
       <Route path="examples" component={Examples} />

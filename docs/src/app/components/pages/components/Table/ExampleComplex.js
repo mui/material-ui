@@ -1,6 +1,13 @@
-import React from 'react';
-import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn}
-  from 'material-ui/Table';
+import React, {Component} from 'react';
+import {
+  Table,
+  TableBody,
+  TableFooter,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
 import TextField from 'material-ui/TextField';
 import Toggle from 'material-ui/Toggle';
 
@@ -19,7 +26,6 @@ const tableData = [
   {
     name: 'John Smith',
     status: 'Employed',
-    selected: true,
   },
   {
     name: 'Randal White',
@@ -28,7 +34,6 @@ const tableData = [
   {
     name: 'Stephanie Sanders',
     status: 'Employed',
-    selected: true,
   },
   {
     name: 'Steve Brown',
@@ -48,24 +53,22 @@ const tableData = [
   },
 ];
 
-export default class TableExampleComplex extends React.Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      fixedHeader: true,
-      fixedFooter: true,
-      stripedRows: false,
-      showRowHover: false,
-      selectable: true,
-      multiSelectable: false,
-      enableSelectAll: false,
-      deselectOnClickaway: true,
-      showCheckboxes: true,
-      height: '300px',
-    };
-  }
+/**
+ * A more complex example, allowing the table height to be set, and key boolean properties to be toggled.
+ */
+export default class TableExampleComplex extends Component {
+  state = {
+    fixedHeader: true,
+    fixedFooter: true,
+    stripedRows: false,
+    showRowHover: false,
+    selectable: true,
+    multiSelectable: false,
+    enableSelectAll: false,
+    deselectOnClickaway: true,
+    showCheckboxes: true,
+    height: '300px',
+  };
 
   handleToggle = (event, toggled) => {
     this.setState({
@@ -110,7 +113,7 @@ export default class TableExampleComplex extends React.Component {
             stripedRows={this.state.stripedRows}
           >
             {tableData.map( (row, index) => (
-              <TableRow key={index} selected={row.selected}>
+              <TableRow key={index}>
                 <TableRowColumn>{index}</TableRowColumn>
                 <TableRowColumn>{row.name}</TableRowColumn>
                 <TableRowColumn>{row.status}</TableRowColumn>

@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Transition from '../styles/transitions';
 import {isEqualDate} from './dateUtils';
 import EnhancedButton from '../internal/EnhancedButton';
@@ -52,8 +53,10 @@ function getStyles(props, context, state) {
 
 class DayButton extends Component {
   static propTypes = {
+    DateTimeFormat: PropTypes.func.isRequired,
     date: PropTypes.object,
     disabled: PropTypes.bool,
+    locale: PropTypes.string.isRequired,
     onKeyboardFocus: PropTypes.func,
     onTouchTap: PropTypes.func,
     selected: PropTypes.bool,
@@ -73,15 +76,21 @@ class DayButton extends Component {
   };
 
   handleMouseEnter = () => {
-    if (!this.props.disabled) this.setState({hover: true});
+    if (!this.props.disabled) {
+      this.setState({hover: true});
+    }
   };
 
   handleMouseLeave = () => {
-    if (!this.props.disabled) this.setState({hover: false});
+    if (!this.props.disabled) {
+      this.setState({hover: false});
+    }
   };
 
   handleTouchTap = (event) => {
-    if (!this.props.disabled && this.props.onTouchTap) this.props.onTouchTap(event, this.props.date);
+    if (!this.props.disabled && this.props.onTouchTap) {
+      this.props.onTouchTap(event, this.props.date);
+    }
   };
 
   handleKeyboardFocus = (event, keyboardFocused) => {
@@ -92,19 +101,22 @@ class DayButton extends Component {
 
   render() {
     const {
-      date, // eslint-disable-line no-unused-vars
+      DateTimeFormat,
+      date,
+      disabled,
+      locale,
       onTouchTap, // eslint-disable-line no-unused-vars
       selected, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
 
-    return this.props.date ? (
+    return date ? (
       <EnhancedButton
         {...other}
-        disabled={this.props.disabled}
+        disabled={disabled}
         disableFocusRipple={true}
         disableTouchRipple={true}
         onKeyboardFocus={this.handleKeyboardFocus}
@@ -114,7 +126,11 @@ class DayButton extends Component {
         style={styles.root}
       >
         <div style={prepareStyles(styles.buttonState)} />
-        <span style={prepareStyles(styles.label)}>{this.props.date.getDate()}</span>
+        <span style={prepareStyles(styles.label)}>
+          {new DateTimeFormat(locale, {
+            day: 'numeric',
+          }).format(date)}
+        </span>
       </EnhancedButton>
     ) : (
       <span style={prepareStyles(styles.root)} />

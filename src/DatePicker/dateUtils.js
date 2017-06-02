@@ -8,22 +8,36 @@ const monthLongList = ['January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December'];
 
 export function dateTimeFormat(locale, options) {
-  warning(locale === 'en-US', `The ${locale} locale is not supported by the built-in DateTimeFormat.
+  warning(locale === 'en-US', `Material-UI: The ${locale} locale is not supported by the built-in DateTimeFormat.
   Use the \`DateTimeFormat\` prop to supply an alternative implementation.`);
 
   this.format = function(date) {
     if (options.month === 'short' && options.weekday === 'short' && options.day === '2-digit') {
       return `${dayList[date.getDay()]}, ${monthList[date.getMonth()]} ${date.getDate()}`;
-    } else if (options.day === 'numeric' && options.month === 'numeric' && options.year === 'numeric') {
+    } else if (options.year === 'numeric' && options.month === 'numeric' && options.day === 'numeric') {
       return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
-    } else if (options.month === 'long' && options.year === 'numeric') {
+    } else if (options.year === 'numeric' && options.month === 'long') {
       return `${monthLongList[date.getMonth()]} ${date.getFullYear()}`;
     } else if (options.weekday === 'narrow') {
       return dayAbbreviation[date.getDay()];
+    } else if (options.year === 'numeric') {
+      return date.getFullYear().toString();
+    } else if (options.day === 'numeric') {
+      return date.getDate();
     } else {
-      warning(false, 'Wrong usage of DateTimeFormat');
+      warning(false, 'Material-UI: Wrong usage of DateTimeFormat');
     }
   };
+}
+
+export function getYear(d) {
+  return d.getFullYear();
+}
+
+export function setYear(d, year) {
+  const newDate = cloneDate(d);
+  newDate.setFullYear(year);
+  return newDate;
 }
 
 export function addDays(d, days) {
@@ -153,3 +167,14 @@ export function monthDiff(d1, d2) {
 export function yearDiff(d1, d2) {
   return ~~(monthDiff(d1, d2) / 12);
 }
+
+export const defaultUtils = {
+  getYear,
+  setYear,
+  addDays,
+  addMonths,
+  addYears,
+  getFirstDayOfMonth,
+  getWeekArray,
+  monthDiff,
+};

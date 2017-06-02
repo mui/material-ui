@@ -6,12 +6,12 @@ import List from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
 
 import {
-blue300,
-indigo900,
-orange200,
-deepOrange300,
-pink400,
-purple500,
+  blue300,
+  indigo900,
+  orange200,
+  deepOrange300,
+  pink400,
+  purple500,
 } from 'material-ui/styles/colors';
 
 const style = {margin: 5};

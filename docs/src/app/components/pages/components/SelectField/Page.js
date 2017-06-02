@@ -16,6 +16,12 @@ import SelectFieldExampleFloatingLabel from './ExampleFloatingLabel';
 import selectFieldExampleFloatingLabelCode from '!raw!./ExampleFloatingLabel';
 import SelectFieldExampleError from './ExampleError';
 import selectFieldExampleErrorCode from '!raw!./ExampleError';
+import SelectFieldExampleNullable from './ExampleNullable';
+import SelectFieldExampleNullableCode from '!raw!./ExampleNullable';
+import SelectFieldExampleMultiSelect from './ExampleMultiSelect';
+import selectFieldExampleMultiSelectCode from '!raw!./ExampleMultiSelect';
+import SelectFieldExampleSelectionRenderer from './ExampleSelectionRenderer';
+import selectFieldExampleSelectionRendererCode from '!raw!./ExampleSelectionRenderer';
 import selectFieldCode from '!raw!material-ui/SelectField/SelectField';
 
 const SelectFieldPage = () => (
@@ -27,6 +33,12 @@ const SelectFieldPage = () => (
       code={selectFieldExampleSimpleCode}
     >
       <SelectFieldExampleSimple />
+    </CodeExample>
+    <CodeExample
+      title="Nullable select"
+      code={SelectFieldExampleNullableCode}
+    >
+      <SelectFieldExampleNullable />
     </CodeExample>
     <CodeExample
       title="Long example"
@@ -51,6 +63,18 @@ const SelectFieldPage = () => (
       code={selectFieldExampleErrorCode}
     >
       <SelectFieldExampleError />
+    </CodeExample>
+    <CodeExample
+      title="Multiple selection example"
+      code={selectFieldExampleMultiSelectCode}
+    >
+      <SelectFieldExampleMultiSelect />
+    </CodeExample>
+    <CodeExample
+      title="Selection renderer example"
+      code={selectFieldExampleSelectionRendererCode}
+    >
+      <SelectFieldExampleSelectionRenderer />
     </CodeExample>
     <PropTypeDescription code={selectFieldCode} />
   </div>

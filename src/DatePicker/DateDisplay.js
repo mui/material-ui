@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import transitions from '../styles/transitions';
 import SlideInTransitionGroup from '../internal/SlideIn';
 
@@ -48,7 +49,7 @@ function getStyles(props, context, state) {
       marginBottom: 10,
     },
     yearTitle: {
-      cursor: props.disableYearSelection ? 'not-allowed' : (!selectedYear ? 'pointer' : 'default'),
+      cursor: props.disableYearSelection || selectedYear ? 'default' : 'pointer',
     },
   };
 
@@ -66,13 +67,11 @@ class DateDisplay extends Component {
     onTouchTapYear: PropTypes.func,
     selectedDate: PropTypes.object.isRequired,
     style: PropTypes.object,
-    weekCount: PropTypes.number,
   };
 
   static defaultProps = {
     disableYearSelection: false,
     monthDaySelected: true,
-    weekCount: 4,
   };
 
   static contextTypes = {
@@ -134,15 +133,17 @@ class DateDisplay extends Component {
       onTouchTapYear, // eslint-disable-line no-unused-vars
       selectedDate, // eslint-disable-line no-unused-vars
       style,
-      weekCount, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
-    const year = selectedDate.getFullYear();
 
-    const dateTimeFormatted = new DateTimeFormat(locale, {
+    const year = new DateTimeFormat(locale, {
+      year: 'numeric',
+    }).format(selectedDate);
+
+    const dateTime = new DateTimeFormat(locale, {
       month: 'short',
       weekday: 'short',
       day: '2-digit',
@@ -150,24 +151,18 @@ class DateDisplay extends Component {
 
     return (
       <div {...other} style={prepareStyles(styles.root, style)}>
-        <SlideInTransitionGroup
-          style={styles.year}
-          direction={this.state.transitionDirection}
-        >
+        <SlideInTransitionGroup style={styles.year} direction={this.state.transitionDirection}>
           <div key={year} style={styles.yearTitle} onTouchTap={this.handleTouchTapYear}>
             {year}
           </div>
         </SlideInTransitionGroup>
-        <SlideInTransitionGroup
-          style={styles.monthDay}
-          direction={this.state.transitionDirection}
-        >
+        <SlideInTransitionGroup style={styles.monthDay} direction={this.state.transitionDirection}>
           <div
-            key={dateTimeFormatted}
+            key={dateTime}
             onTouchTap={this.handleTouchTapMonthDay}
             style={styles.monthDayTitle}
           >
-            {dateTimeFormatted}
+            {dateTime}
           </div>
         </SlideInTransitionGroup>
       </div>

@@ -1,5 +1,6 @@
-import React, {Component, PropTypes} from 'react';
-import RadioButton from '../RadioButton';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import RadioButton from './RadioButton';
 import warning from 'warning';
 
 class RadioButtonGroup extends Component {
@@ -62,6 +63,13 @@ class RadioButtonGroup extends Component {
 
   componentWillMount() {
     let cnt = 0;
+    let selected = '';
+    const {valueSelected, defaultSelected} = this.props;
+    if (valueSelected !== undefined) {
+      selected = valueSelected;
+    } else if (defaultSelected !== undefined) {
+      selected = defaultSelected;
+    }
 
     React.Children.forEach(this.props.children, (option) => {
       if (this.hasCheckAttribute(option)) cnt++;
@@ -69,7 +77,7 @@ class RadioButtonGroup extends Component {
 
     this.setState({
       numberCheckedRadioButtons: cnt,
-      selected: this.props.valueSelected || this.props.defaultSelected || '',
+      selected,
     });
   }
 
@@ -90,7 +98,7 @@ class RadioButtonGroup extends Component {
     if (this.state.numberCheckedRadioButtons === 0) {
       this.setState({selected: newSelection});
     } else {
-      warning(false, `Cannot select a different radio button while another radio button
+      warning(false, `Material-UI: Cannot select a different radio button while another radio button
         has the 'checked' property set to true.`);
     }
   }
@@ -125,7 +133,7 @@ class RadioButtonGroup extends Component {
         value, // eslint-disable-line no-unused-vars
         label, // eslint-disable-line no-unused-vars
         onCheck, // eslint-disable-line no-unused-vars
-        ...other,
+        ...other
       } = option.props;
 
       return (

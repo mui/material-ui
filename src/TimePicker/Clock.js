@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import TimeDisplay from './TimeDisplay';
 import ClockHours from './ClockHours';
 import ClockMinutes from './ClockMinutes';
@@ -7,6 +8,7 @@ class Clock extends Component {
   static propTypes = {
     format: PropTypes.oneOf(['ampm', '24hr']),
     initialTime: PropTypes.object,
+    minutesStep: PropTypes.number,
     onChangeHours: PropTypes.func,
     onChangeMinutes: PropTypes.func,
   };
@@ -25,8 +27,12 @@ class Clock extends Component {
   };
 
   componentWillMount() {
+    const selectedTime = this.props.initialTime || new Date();
+    const minutes = selectedTime.getMinutes();
+    selectedTime.setMinutes(minutes - (minutes % this.props.minutesStep));
+
     this.setState({
-      selectedTime: this.props.initialTime || new Date(),
+      selectedTime,
     });
   }
 
@@ -96,7 +102,7 @@ class Clock extends Component {
     }
   };
 
-  handleChangeMinutes = (minutes) => {
+  handleChangeMinutes = (minutes, finished) => {
     const time = new Date(this.state.selectedTime);
     time.setMinutes(minutes);
     this.setState({
@@ -104,7 +110,7 @@ class Clock extends Component {
     });
 
     const {onChangeMinutes} = this.props;
-    if (onChangeMinutes) {
+    if (onChangeMinutes && finished) {
       setTimeout(() => {
         onChangeMinutes(time);
       }, 0);
@@ -158,6 +164,7 @@ class Clock extends Component {
           key="minutes"
           onChange={this.handleChangeMinutes}
           initialMinutes={this.state.selectedTime.getMinutes()}
+          step={this.props.minutesStep}
         />
       );
     }

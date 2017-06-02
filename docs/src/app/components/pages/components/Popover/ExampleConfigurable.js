@@ -15,6 +15,9 @@ const styles = {
   block2: {
     margin: 10,
   },
+  pre: {
+    overflow: 'hidden', // Fix a scrolling issue on iOS.
+  },
 };
 
 export default class PopoverExampleConfigurable extends React.Component {
@@ -76,7 +79,7 @@ export default class PopoverExampleConfigurable extends React.Component {
           label="Click me"
         />
         <h3 style={styles.h3}>Current Settings</h3>
-        <pre>
+        <pre style={styles.pre}>
           anchorOrigin: {JSON.stringify(this.state.anchorOrigin)}
           <br />
           targetOrigin: {JSON.stringify(this.state.targetOrigin)}

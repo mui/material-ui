@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import keycode from 'keycode';
 import {fade, emphasize} from '../utils/colorManipulator';
 import EnhancedButton from '../internal/EnhancedButton';
@@ -58,6 +59,14 @@ class Chip extends Component {
      */
     className: PropTypes.node,
     /**
+     * The element to use as the container for the Chip. Either a string to
+     * use a DOM element or a ReactElement.
+     */
+    containerElement: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.element,
+    ]),
+    /**
      * Override the label color.
      */
     labelColor: PropTypes.string,
@@ -103,6 +112,7 @@ class Chip extends Component {
   };
 
   static defaultProps = {
+    containerElement: 'div', // Firefox doesn't support nested buttons
     onBlur: () => {},
     onFocus: () => {},
     onKeyDown: () => {},
@@ -232,33 +242,32 @@ class Chip extends Component {
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
 
-    let {
-      children,
+    const {
+      children: childrenProp,
+      containerElement,
       style,
       className,
       labelStyle,
       labelColor, // eslint-disable-line no-unused-vars,prefer-const
       backgroundColor, // eslint-disable-line no-unused-vars,prefer-const
       onRequestDelete, // eslint-disable-line no-unused-vars,prefer-const
-      ...other,
+      ...other
     } = this.props;
 
     const deletable = this.props.onRequestDelete;
     let avatar = null;
 
-    style = Object.assign(styles.root, style);
-    labelStyle = prepareStyles(Object.assign(styles.label, labelStyle));
-
-    const deleteIcon = deletable ?
+    const deleteIcon = deletable ? (
       <DeleteIcon
         color={styles.deleteIcon.color}
         style={styles.deleteIcon}
         onTouchTap={this.handleTouchTapDeleteIcon}
         onMouseEnter={this.handleMouseEnterDeleteIcon}
         onMouseLeave={this.handleMouseLeaveDeleteIcon}
-      /> :
-      null;
+      />
+    ) : null;
 
+    let children = childrenProp;
     const childCount = React.Children.count(children);
 
     // If the first child is an avatar, extract it and style it
@@ -280,13 +289,15 @@ class Chip extends Component {
         {...other}
         {...buttonEventHandlers}
         className={className}
-        containerElement="div" // Firefox doesn't support nested buttons
+        containerElement={containerElement}
         disableTouchRipple={true}
         disableFocusRipple={true}
-        style={style}
+        style={Object.assign(styles.root, style)}
       >
         {avatar}
-        <span style={labelStyle}>{children}</span>
+        <span style={prepareStyles(Object.assign(styles.label, labelStyle))}>
+          {children}
+        </span>
         {deleteIcon}
       </EnhancedButton>
     );

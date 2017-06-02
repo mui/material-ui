@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 function getStyles(props, context) {
   const {cardText} = context.muiTheme;
@@ -49,7 +50,7 @@ class CardText extends Component {
       color, // eslint-disable-line no-unused-vars
       expandable, // eslint-disable-line no-unused-vars
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

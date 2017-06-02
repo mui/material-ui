@@ -12,9 +12,8 @@ const styles = {
   },
   gridList: {
     width: 500,
-    height: 500,
+    height: 450,
     overflowY: 'auto',
-    marginBottom: 24,
   },
 };
 
@@ -61,10 +60,13 @@ const tilesData = [
   },
 ];
 
+/**
+ * A simple example of a scrollable `GridList` containing a [Subheader](/#/components/subheader).
+ */
 const GridListExampleSimple = () => (
   <div style={styles.root}>
     <GridList
-      cellHeight={200}
+      cellHeight={180}
       style={styles.gridList}
     >
       <Subheader>December</Subheader>

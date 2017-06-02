@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 function getStyles(props, context) {
   const {
@@ -9,11 +10,9 @@ function getStyles(props, context) {
   return {
     root: {
       backgroundColor: toolbar.separatorColor,
-      display: 'inline-block',
+      display: 'block',
       height: baseTheme.spacing.desktopGutterMore,
       marginLeft: baseTheme.spacing.desktopGutter,
-      position: 'relative',
-      top: ((toolbar.height - baseTheme.spacing.desktopGutterMore) / 2),
       width: 1,
     },
   };
@@ -41,7 +40,7 @@ class ToolbarSeparator extends Component {
     const {
       className,
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

@@ -8,15 +8,13 @@ for (let i = 0; i < 100; i++ ) {
 }
 
 /**
- * With the `maxHeight` property set, the Select Field will be scrollable if the number of items causes the height to
- * exceed this limit.
+ * With the `maxHeight` property set, the Select Field will be scrollable
+ * if the number of items causes the height to exceed this limit.
  */
 export default class DropDownMenuLongMenuExample extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {value: 10};
-  }
+  state = {
+    value: 10,
+  };
 
   handleChange = (event, index, value) => {
     this.setState({value});
@@ -24,7 +22,11 @@ export default class DropDownMenuLongMenuExample extends Component {
 
   render() {
     return (
-      <SelectField value={this.state.value} onChange={this.handleChange} maxHeight={200}>
+      <SelectField
+        value={this.state.value}
+        onChange={this.handleChange}
+        maxHeight={200}
+      >
         {items}
       </SelectField>
     );

@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 class TimeDisplay extends Component {
   static propTypes = {
@@ -59,7 +60,7 @@ class TimeDisplay extends Component {
       onSelectHour,
       onSelectMin,
       selectedTime, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles, timePicker} = this.context.muiTheme;
@@ -70,7 +71,7 @@ class TimeDisplay extends Component {
         borderTopLeftRadius: 2,
         borderTopRightRadius: 2,
         backgroundColor: timePicker.headerColor,
-        color: 'white',
+        color: timePicker.textColor,
       },
       text: {
         margin: '6px 0',

@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 function getStyles(props, context) {
   const {cardMedia} = context.muiTheme;
@@ -91,7 +92,7 @@ class CardMedia extends Component {
       overlayContentStyle,
       overlayStyle,
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

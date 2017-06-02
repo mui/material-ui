@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {parse} from 'react-docgen';
 import {parse as parseDoctrine} from 'doctrine';
 import MarkdownElement from './MarkdownElement';
@@ -38,8 +39,9 @@ function generatePropType(type) {
       return type.raw;
 
     case 'enum':
-      const values = type.value.map((v) => v.value).join('<br>&nbsp;');
-      return `enum:<br>&nbsp;${values}<br>`;
+    case 'union':
+      const values = type.value.map((v) => v.value || v.name).join('<br>&nbsp;');
+      return `${type.name}:<br>&nbsp;${values}<br>`;
 
     default:
       return type.name;
@@ -100,6 +102,13 @@ function generateDescription(required, description, type) {
   return `${deprecated} ${jsDocText}${signature}`;
 }
 
+const styles = {
+  footnote: {
+    fontSize: '90%',
+    paddingLeft: '15px',
+  },
+};
+
 class PropTypeDescription extends Component {
 
   static propTypes = {
@@ -152,6 +161,8 @@ class PropTypeDescription extends Component {
       text += `| ${key} | ${generatePropType(prop.type)} | ${defaultValue} | ${description} |\n`;
     }
 
+    text += 'Other properties (not documented) are applied to the root element.';
+
     const requiredPropFootnote = (requiredProps === 1) ? '* required property' :
       (requiredProps > 1) ? '* required properties' :
         '';
@@ -159,7 +170,9 @@ class PropTypeDescription extends Component {
     return (
       <div className="propTypeDescription">
         <MarkdownElement text={text} />
-        <div style={{fontSize: '90%', paddingLeft: '15px'}}>{requiredPropFootnote}</div>
+        <div style={styles.footnote}>
+          {requiredPropFootnote}
+        </div>
       </div>
     );
   }

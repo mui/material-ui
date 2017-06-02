@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
@@ -75,9 +76,13 @@ class Drawer extends Component {
      */
     swipeAreaWidth: PropTypes.number,
     /**
-     * The width of the `Drawer` in pixels. Defaults to using the values from theme.
+     * The width of the `Drawer` in pixels or percentage in string format ex. `50%` to fill
+     * half of the window or `100%` and so on. Defaults to using the values from theme.
      */
-    width: PropTypes.number,
+    width: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
     /**
      * The zDepth of the `Drawer`.
      */
@@ -146,7 +151,7 @@ class Drawer extends Component {
     const styles = {
       root: {
         height: '100%',
-        width: this.props.width || theme.width,
+        width: this.getTranslatedWidth() || theme.width,
         position: 'fixed',
         zIndex: muiTheme.zIndex.drawer,
         left: 0,
@@ -197,8 +202,22 @@ class Drawer extends Component {
     }
   };
 
+  getTranslatedWidth() {
+    if (typeof this.props.width === 'string') {
+      if (!/^\d+(\.\d+)?%$/.test(this.props.width)) {
+        throw new Error('Not a valid percentage format.');
+      }
+      const width = parseFloat(this.props.width) / 100.0;
+      // We are doing our best on the Server to render a consistent UI, hence the
+      // default value of 10000
+      return typeof window !== 'undefined' ? width * window.innerWidth : 10000;
+    } else {
+      return this.props.width;
+    }
+  }
+
   getMaxTranslateX() {
-    const width = this.props.width || this.context.muiTheme.drawer.width;
+    const width = this.getTranslatedWidth() || this.context.muiTheme.drawer.width;
     return width + 10;
   }
 
@@ -227,7 +246,9 @@ class Drawer extends Component {
   onBodyTouchStart = (event) => {
     const swipeAreaWidth = this.props.swipeAreaWidth;
 
-    const touchStartX = event.touches[0].pageX;
+    const touchStartX = this.context.muiTheme.isRtl ?
+      (document.body.offsetWidth - event.touches[0].pageX) :
+      event.touches[0].pageX;
     const touchStartY = event.touches[0].pageY;
 
     // Open only if swiping from far left (or right) while closed
@@ -258,8 +279,9 @@ class Drawer extends Component {
   };
 
   setPosition(translateX) {
+    const rtlTranslateMultiplier = this.context.muiTheme.isRtl ? -1 : 1;
     const drawer = ReactDOM.findDOMNode(this.refs.clickAwayableElement);
-    const transformCSS = `translate(${(this.getTranslateMultiplier() * translateX)}px, 0)`;
+    const transformCSS = `translate(${(this.getTranslateMultiplier() * rtlTranslateMultiplier * translateX)}px, 0)`;
     this.refs.overlay.setOpacity(1 - translateX / this.getMaxTranslateX());
     autoPrefix.set(drawer.style, 'transform', transformCSS);
   }
@@ -277,7 +299,9 @@ class Drawer extends Component {
   }
 
   onBodyTouchMove = (event) => {
-    const currentX = event.touches[0].pageX;
+    const currentX = this.context.muiTheme.isRtl ?
+      (document.body.offsetWidth - event.touches[0].pageX) :
+      event.touches[0].pageX;
     const currentY = event.touches[0].pageY;
 
     if (this.state.swiping) {
@@ -305,7 +329,9 @@ class Drawer extends Component {
 
   onBodyTouchEnd = (event) => {
     if (this.state.swiping) {
-      const currentX = event.changedTouches[0].pageX;
+      const currentX = this.context.muiTheme.isRtl ?
+        (document.body.offsetWidth - event.changedTouches[0].pageX) :
+        event.changedTouches[0].pageX;
       const translateRatio = this.getTranslateX(currentX) / this.getMaxTranslateX();
 
       this.maybeSwiping = false;

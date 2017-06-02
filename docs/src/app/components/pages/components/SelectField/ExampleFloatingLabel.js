@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
@@ -11,15 +11,14 @@ const items = [
 ];
 
 /**
- * `SelectField` supports a floating label with the `floatingLabelText` property. This can be fixed in place with the
- * `floatingLabelFixed` property, and can be customised with the `floatingLabelText` property.
+ * `SelectField` supports a floating label with the `floatingLabelText` property.
+ * This can be fixed in place with the `floatingLabelFixed` property,
+ * and can be customised with the `floatingLabelText` property.
  */
-export default class SelectFieldExampleFloatingLabel extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {value: null};
-  }
+export default class SelectFieldExampleFloatingLabel extends Component {
+  state = {
+    value: null,
+  };
 
   handleChange = (event, index, value) => this.setState({value});
 

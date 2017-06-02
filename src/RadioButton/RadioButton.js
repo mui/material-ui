@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import transitions from '../styles/transitions';
 import EnhancedSwitch from '../internal/EnhancedSwitch';
 import RadioButtonOff from '../svg-icons/toggle/radio-button-unchecked';
@@ -37,11 +38,9 @@ function getStyles(props, context) {
     },
     targetWhenDisabled: {
       fill: radioButton.disabledColor,
-      cursor: 'not-allowed',
     },
     fillWhenDisabled: {
       fill: radioButton.disabledColor,
-      cursor: 'not-allowed',
     },
     label: {
       color: props.disabled ? radioButton.labelDisabledColor : radioButton.labelColor,
@@ -152,7 +151,7 @@ class RadioButton extends Component {
       onCheck, // eslint-disable-line no-unused-vars
       uncheckedIcon,
       disabled,
-      ...other,
+      ...other
     } = this.props;
 
     const styles = getStyles(this.props, this.context);
@@ -174,14 +173,12 @@ class RadioButton extends Component {
     const uncheckedElement = React.isValidElement(uncheckedIcon) ?
       React.cloneElement(uncheckedIcon, {
         style: Object.assign(uncheckedStyles, uncheckedIcon.props.style),
-      }) :
-      <RadioButtonOff style={uncheckedStyles} />;
+      }) : <RadioButtonOff style={uncheckedStyles} />;
 
     const checkedElement = React.isValidElement(checkedIcon) ?
       React.cloneElement(checkedIcon, {
         style: Object.assign(checkedStyles, checkedIcon.props.style),
-      }) :
-      <RadioButtonOn style={checkedStyles} />;
+      }) : <RadioButtonOn style={checkedStyles} />;
 
     const mergedIconStyle = Object.assign(styles.icon, iconStyle);
     const mergedLabelStyle = Object.assign(styles.label, labelStyle);

@@ -18,7 +18,6 @@ const config = {
       'material-ui': path.resolve(__dirname, '../src'),
     },
   },
-  devtool: 'source-map',
   // Configuration for server
   devServer: {
     contentBase: 'build',
@@ -46,7 +45,8 @@ const config = {
         NODE_ENV: JSON.stringify('production'),
       },
     }),
-
+    // Prevent moment from loading all the locales
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     // Allows error warnings but does not stop compiling. Will remove when eslint is added
     new webpack.NoErrorsPlugin(),
     // Transfer Files

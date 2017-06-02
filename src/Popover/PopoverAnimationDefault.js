@@ -1,5 +1,6 @@
 import transitions from '../styles/transitions';
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import propTypes from '../utils/propTypes';
 import Paper from '../Paper';
 
@@ -11,11 +12,11 @@ function getStyles(props, context, state) {
 
   return {
     root: {
+      position: 'fixed',
+      zIndex: muiTheme.zIndex.popover,
       opacity: open ? 1 : 0,
       transform: open ? 'scale(1, 1)' : 'scale(0, 0)',
       transformOrigin: `${horizontal} ${targetOrigin.vertical}`,
-      position: 'fixed',
-      zIndex: muiTheme.zIndex.popover,
       transition: transitions.easeOut('250ms', ['transform', 'opacity']),
       maxHeight: '100%',
     },
@@ -48,7 +49,7 @@ class PopoverAnimationDefault extends Component {
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
-    targetOrigin: propTypes.origin,
+    targetOrigin: propTypes.origin.isRequired,
     zDepth: propTypes.zDepth,
   };
 

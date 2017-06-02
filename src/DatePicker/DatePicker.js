@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {dateTimeFormat, formatIso, isEqualDate} from './dateUtils';
 import DatePickerDialog from './DatePickerDialog';
 import TextField from '../TextField';
@@ -66,6 +67,10 @@ class DatePicker extends Component {
      */
     formatDate: PropTypes.func,
     /**
+     * Hide date display
+     */
+    hideCalendarDate: PropTypes.bool,
+    /**
      * Locale used for formatting the `DatePicker` date strings. Other than for 'en-US', you
      * must provide a `DateTimeFormat` that supports the chosen `locale`.
      */
@@ -130,6 +135,15 @@ class DatePicker extends Component {
      */
     textFieldStyle: PropTypes.object,
     /**
+     * This object should contain methods needed to build the calendar system.
+     *
+     * Useful for building a custom calendar system. Refer to the
+     * [source code](https://github.com/callemall/material-ui/blob/master/src/DatePicker/dateUtils.js)
+     * and an [example implementation](https://github.com/alitaheri/material-ui-persian-date-picker-utils)
+     * for more information.
+     */
+    utils: PropTypes.object,
+    /**
      * Sets the date for the Date Picker programmatically.
      */
     value: PropTypes.object,
@@ -141,6 +155,7 @@ class DatePicker extends Component {
     disabled: false,
     disableYearSelection: false,
     firstDayOfWeek: 1,
+    hideCalendarDate: false,
     style: {},
   };
 
@@ -275,9 +290,11 @@ class DatePicker extends Component {
       onShow,
       onTouchTap, // eslint-disable-line no-unused-vars
       shouldDisableDate,
+      hideCalendarDate,
       style,
       textFieldStyle,
-      ...other,
+      utils,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -312,6 +329,8 @@ class DatePicker extends Component {
           onDismiss={onDismiss}
           ref="dialogWindow"
           shouldDisableDate={shouldDisableDate}
+          hideCalendarDate={hideCalendarDate}
+          utils={utils}
         />
       </div>
     );

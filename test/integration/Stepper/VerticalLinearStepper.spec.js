@@ -3,9 +3,9 @@ import React from 'react';
 import {mount} from 'enzyme';
 import {assert} from 'chai';
 import getMuiTheme from 'src/styles/getMuiTheme';
-import VerticalLinearStepper from '../fixtures/VerticalLinearStepper';
+import VerticalLinearStepper from './VerticalLinearStepper';
 
-describe('Vertical Stepper', () => {
+describe('<VerticalLinearStepper />', () => {
   const muiTheme = getMuiTheme();
   const mountWithContext = (node) => mount(node, {context: {muiTheme}});
 
@@ -18,7 +18,7 @@ describe('Vertical Stepper', () => {
     it('should render a vertical stepper', () => {
       const stepper = wrapper.find('Stepper');
       assert.strictEqual(stepper.length, 1, 'there should be a stepper');
-      assert.strictEqual(stepper.prop('orientation'), 'vertical', 'it should be vertical');
+      assert.strictEqual(stepper.props().orientation, 'vertical', 'it should be vertical');
     });
 
     describe('steps', () => {

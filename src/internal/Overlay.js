@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import transitions from '../styles/transitions';
 import AutoLockScrolling from './AutoLockScrolling';
 
@@ -69,7 +70,7 @@ class Overlay extends Component {
       show,
       style,
       transitionEnabled, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

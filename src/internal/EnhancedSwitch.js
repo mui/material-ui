@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
 import transitions from '../styles/transitions';
@@ -12,8 +13,8 @@ function getStyles(props, context) {
 
   return {
     root: {
+      cursor: props.disabled ? 'not-allowed' : 'pointer',
       position: 'relative',
-      cursor: props.disabled ? 'default' : 'pointer',
       overflow: 'visible',
       display: 'table',
       height: 'auto',
@@ -21,7 +22,7 @@ function getStyles(props, context) {
     },
     input: {
       position: 'absolute',
-      cursor: props.disabled ? 'default' : 'pointer',
+      cursor: 'inherit',
       pointerEvents: 'all',
       opacity: 0,
       width: '100%',
@@ -120,13 +121,12 @@ class EnhancedSwitch extends Component {
 
   componentWillReceiveProps(nextProps) {
     const hasCheckedProp = nextProps.hasOwnProperty('checked');
-    const hasToggledProp = nextProps.hasOwnProperty('toggled');
     const hasNewDefaultProp =
       (nextProps.hasOwnProperty('defaultChecked') &&
       (nextProps.defaultChecked !== this.props.defaultChecked));
 
-    if (hasCheckedProp || hasToggledProp || hasNewDefaultProp) {
-      const switched = nextProps.checked || nextProps.toggled || nextProps.defaultChecked || false;
+    if (hasCheckedProp || hasNewDefaultProp) {
+      const switched = nextProps.checked || nextProps.defaultChecked || false;
 
       this.setState({
         switched: switched,
@@ -150,7 +150,7 @@ class EnhancedSwitch extends Component {
       }
       this.refs.checkbox.checked = newSwitchedValue;
     } else {
-      warning(false, 'Cannot call set method while checked is defined as a property.');
+      warning(false, 'Material-UI: Cannot call set method while checked is defined as a property.');
     }
   }
 
@@ -279,7 +279,7 @@ class EnhancedSwitch extends Component {
       switchElement,
       thumbStyle,
       trackStyle,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

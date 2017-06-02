@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Paper from '../Paper';
 import CardExpandable from './CardExpandable';
 
@@ -88,7 +89,7 @@ class Card extends Component {
       expanded: expandedProp, // eslint-disable-line no-unused-vars
       initiallyExpanded, // eslint-disable-line no-unused-vars
       onExpandChange, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     let lastElement;
@@ -110,7 +111,15 @@ class Card extends Component {
       }
       if (currentChild.props.showExpandableButton === true) {
         doClone = true;
-        newChild = <CardExpandable expanded={expanded} onExpanding={this.handleExpanding} />;
+        newChild = (
+          <CardExpandable
+            closeIcon={currentChild.props.closeIcon}
+            expanded={expanded}
+            onExpanding={this.handleExpanding}
+            openIcon={currentChild.props.openIcon}
+            iconStyle={currentChild.props.iconStyle}
+          />
+        );
       }
       if (doClone) {
         element = React.cloneElement(currentChild, newProps, currentChild.props.children, newChild);

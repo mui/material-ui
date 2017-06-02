@@ -39,6 +39,10 @@ const fruit = [
   'Watermelon',
 ];
 
+/**
+ * Two examples of filtering. The first uses `caseInsensitiveFilter`, the second uses `fuzzyFilter`,
+ * and limits the number of results displayed using the `maxSearchResults` property.
+ */
 const AutoCompleteExampleFilters = () => (
   <div>
     <AutoComplete

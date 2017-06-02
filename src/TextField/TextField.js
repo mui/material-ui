@@ -1,7 +1,7 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import shallowEqual from 'recompose/shallowEqual';
-import {fade} from '../utils/colorManipulator';
 import transitions from '../styles/transitions';
 import EnhancedTextarea from './EnhancedTextarea';
 import TextFieldHint from './TextFieldHint';
@@ -18,7 +18,6 @@ const getStyles = (props, context, state) => {
       textColor,
       disabledTextColor,
       backgroundColor,
-      hintColor,
       errorColor,
     },
   } = context.muiTheme;
@@ -34,6 +33,7 @@ const getStyles = (props, context, state) => {
       backgroundColor: backgroundColor,
       fontFamily: baseTheme.fontFamily,
       transition: transitions.easeOut('200ms', 'height'),
+      cursor: props.disabled ? 'not-allowed' : 'auto',
     },
     error: {
       position: 'relative',
@@ -44,7 +44,7 @@ const getStyles = (props, context, state) => {
       transition: transitions.easeOut(),
     },
     floatingLabel: {
-      color: hintColor,
+      color: props.disabled ? disabledTextColor : floatingLabelColor,
       pointerEvents: 'none',
     },
     input: {
@@ -55,18 +55,16 @@ const getStyles = (props, context, state) => {
       outline: 'none',
       backgroundColor: 'rgba(0,0,0,0)',
       color: props.disabled ? disabledTextColor : textColor,
-      cursor: props.disabled ? 'not-allowed' : 'initial',
+      cursor: 'inherit',
       font: 'inherit',
-      appearance: 'textfield', // Improve type search style.
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated style).
     },
-    textarea: {
+    inputNative: {
+      appearance: 'textfield', // Improve type search style.
     },
   };
 
-  Object.assign(styles.error, props.errorStyle);
-
-  Object.assign(styles.textarea, styles.input, {
+  styles.textarea = Object.assign({}, styles.input, {
     marginTop: props.floatingLabelText ? 36 : 12,
     marginBottom: props.floatingLabelText ? -36 : -12,
     boxSizing: 'border-box',
@@ -75,10 +73,6 @@ const getStyles = (props, context, state) => {
 
   // Do not assign a height to the textarea as he handles it on his own.
   styles.input.height = '100%';
-
-  if (state.hasValue) {
-    styles.floatingLabel.color = fade(props.disabled ? disabledTextColor : floatingLabelColor, 0.5);
-  }
 
   if (state.isFocused) {
     styles.floatingLabel.color = focusColor;
@@ -112,7 +106,7 @@ const getStyles = (props, context, state) => {
  * @returns True if the string provided is valid, false otherwise.
  */
 function isValid(value) {
-  return value !== '' && value !== undefined && value !== null;
+  return value !== '' && value !== undefined && value !== null && !(Array.isArray(value) && value.length === 0);
 }
 
 class TextField extends Component {
@@ -146,6 +140,10 @@ class TextField extends Component {
      * The style object to use to override floating label styles when focused.
      */
     floatingLabelFocusStyle: PropTypes.object,
+    /**
+     * The style object to use to override floating label styles when shrunk.
+     */
+    floatingLabelShrinkStyle: PropTypes.object,
     /**
      * The style object to use to override floating label styles.
      */
@@ -189,6 +187,9 @@ class TextField extends Component {
     onBlur: PropTypes.func,
     /**
      * Callback function that is fired when the textfield's value changes.
+     *
+     * @param {object} event Change event targeting the text field.
+     * @param {string} newValue The new value of the text field.
      */
     onChange: PropTypes.func,
     /** @ignore */
@@ -259,7 +260,6 @@ class TextField extends Component {
     isFocused: false,
     errorText: undefined,
     hasValue: false,
-    isClean: true,
   };
 
   componentWillMount() {
@@ -278,7 +278,7 @@ class TextField extends Component {
       hasValue: isValid(propsLeaf.value) || isValid(propsLeaf.defaultValue),
     });
 
-    warning(name || hintText || floatingLabelText || id, `We don't have enough information
+    warning(name || hintText || floatingLabelText || id, `Material-UI: We don't have enough information
       to build a robust unique id for the TextField component. Please provide an id or a name.`);
 
     const uniqueId = `${name}-${hintText}-${floatingLabelText}-${
@@ -298,14 +298,11 @@ class TextField extends Component {
     }
 
     if (nextProps.hasOwnProperty('value')) {
-      const hasValue = isValid(nextProps.value) ||
-        (this.state.isClean && isValid(nextProps.defaultValue));
+      const hasValue = isValid(nextProps.value);
 
-      if (hasValue !== this.state.hasValue) {
-        this.setState({
-          hasValue: hasValue,
-        });
-      }
+      this.setState({
+        hasValue: hasValue,
+      });
     }
   }
 
@@ -318,15 +315,21 @@ class TextField extends Component {
   }
 
   blur() {
-    if (this.input) this.getInputNode().blur();
+    if (this.input) {
+      this.getInputNode().blur();
+    }
   }
 
   focus() {
-    if (this.input) this.getInputNode().focus();
+    if (this.input) {
+      this.getInputNode().focus();
+    }
   }
 
   select() {
-    if (this.input) this.getInputNode().select();
+    if (this.input) {
+      this.getInputNode().select();
+    }
   }
 
   getValue() {
@@ -340,12 +343,18 @@ class TextField extends Component {
 
   handleInputBlur = (event) => {
     this.setState({isFocused: false});
-    if (this.props.onBlur) this.props.onBlur(event);
+    if (this.props.onBlur) {
+      this.props.onBlur(event);
+    }
   };
 
   handleInputChange = (event) => {
-    this.setState({hasValue: isValid(event.target.value), isClean: false});
-    if (this.props.onChange) this.props.onChange(event, event.target.value);
+    if (!this.props.hasOwnProperty('value')) {
+      this.setState({hasValue: isValid(event.target.value)});
+    }
+    if (this.props.onChange) {
+      this.props.onChange(event, event.target.value);
+    }
   };
 
   handleInputFocus = (event) => {
@@ -378,8 +387,9 @@ class TextField extends Component {
       errorStyle,
       errorText, // eslint-disable-line no-unused-vars
       floatingLabelFixed,
-      floatingLabelFocusStyle, // eslint-disable-line no-unused-vars
-      floatingLabelStyle, // eslint-disable-line no-unused-vars
+      floatingLabelFocusStyle,
+      floatingLabelShrinkStyle,
+      floatingLabelStyle,
       floatingLabelText,
       fullWidth, // eslint-disable-line no-unused-vars
       hintText,
@@ -399,7 +409,7 @@ class TextField extends Component {
       rows,
       rowsMax,
       textareaStyle,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -407,14 +417,20 @@ class TextField extends Component {
     const inputId = id || this.uniqueId;
 
     const errorTextElement = this.state.errorText && (
-      <div style={prepareStyles(styles.error)}>{this.state.errorText}</div>
+      <div style={prepareStyles(Object.assign(styles.error, errorStyle))}>
+        {this.state.errorText}
+      </div>
     );
 
     const floatingLabelTextElement = floatingLabelText && (
       <TextFieldLabel
         muiTheme={this.context.muiTheme}
-        style={Object.assign(styles.floatingLabel, this.props.floatingLabelStyle)}
-        shrinkStyle={this.props.floatingLabelFocusStyle}
+        style={Object.assign(
+          styles.floatingLabel,
+          floatingLabelStyle,
+          this.state.isFocused ? floatingLabelFocusStyle : null
+        )}
+        shrinkStyle={floatingLabelShrinkStyle}
         htmlFor={inputId}
         shrink={this.state.hasValue || this.state.isFocused || floatingLabelFixed}
         disabled={disabled}
@@ -432,7 +448,7 @@ class TextField extends Component {
       onFocus: this.handleInputFocus,
     };
 
-    const inputStyleMerged = Object.assign(styles.input, inputStyle);
+    const childStyleMerged = Object.assign(styles.input, inputStyle);
 
     let inputElement;
     if (children) {
@@ -440,25 +456,26 @@ class TextField extends Component {
         {
           ...inputProps,
           ...children.props,
-          style: Object.assign(inputStyleMerged, children.props.style),
+          style: Object.assign(childStyleMerged, children.props.style),
         });
     } else {
       inputElement = multiLine ? (
         <EnhancedTextarea
-          {...other}
-          {...inputProps}
-          style={inputStyleMerged}
+          style={childStyleMerged}
+          textareaStyle={Object.assign(styles.textarea, styles.inputNative, textareaStyle)}
           rows={rows}
           rowsMax={rowsMax}
+          hintText={hintText}
+          {...other}
+          {...inputProps}
           onHeightChange={this.handleHeightChange}
-          textareaStyle={Object.assign(styles.textarea, textareaStyle)}
         />
       ) : (
         <input
+          type={type}
+          style={prepareStyles(Object.assign(styles.inputNative, childStyleMerged))}
           {...other}
           {...inputProps}
-          style={prepareStyles(inputStyleMerged)}
-          type={type}
         />
       );
     }

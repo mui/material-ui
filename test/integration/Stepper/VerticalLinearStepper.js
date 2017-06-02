@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {
   Step,
   Stepper,
@@ -9,8 +10,9 @@ import RaisedButton from 'src/RaisedButton';
 import FlatButton from 'src/FlatButton';
 
 class VerticalLinearStepper extends Component {
-
-  static contextTypes = {muiTheme: PropTypes.object.isRequired};
+  static contextTypes = {
+    muiTheme: PropTypes.object.isRequired,
+  };
 
   state = {
     finished: false,

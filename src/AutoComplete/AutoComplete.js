@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import keycode from 'keycode';
 import TextField from '../TextField';
@@ -122,6 +123,10 @@ class AutoComplete extends Component {
     menuStyle: PropTypes.object,
     /** @ignore */
     onBlur: PropTypes.func,
+    /**
+     * Callback function fired when the menu is closed.
+     */
+    onClose: PropTypes.func,
     /** @ignore */
     onFocus: PropTypes.func,
     /** @ignore */
@@ -140,6 +145,7 @@ class AutoComplete extends Component {
      *
      * @param {string} searchText The auto-complete's `searchText` value.
      * @param {array} dataSource The auto-complete's `dataSource` array.
+     * @param {object} params Additional information linked the update.
      */
     onUpdateInput: PropTypes.func,
     /**
@@ -150,6 +156,10 @@ class AutoComplete extends Component {
      * If true, the list item is showed when a focus event triggers.
      */
     openOnFocus: PropTypes.bool,
+    /**
+     * Props to be passed to popover.
+     */
+    popoverProps: PropTypes.object,
     /**
      * Text being input to auto complete.
      */
@@ -185,7 +195,6 @@ class AutoComplete extends Component {
     openOnFocus: false,
     onUpdateInput: () => {},
     onNewRequest: () => {},
-    searchText: '',
     menuCloseDelay: 300,
     targetOrigin: {
       vertical: 'top',
@@ -208,7 +217,7 @@ class AutoComplete extends Component {
     this.requestsList = [];
     this.setState({
       open: this.props.open,
-      searchText: this.props.searchText,
+      searchText: this.props.searchText || '',
     });
     this.timerTouchTapCloseId = null;
   }
@@ -219,10 +228,17 @@ class AutoComplete extends Component {
         searchText: nextProps.searchText,
       });
     }
+    if (this.props.open !== nextProps.open) {
+      this.setState({
+        open: nextProps.open,
+        anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField),
+      });
+    }
   }
 
   componentWillUnmount() {
     clearTimeout(this.timerTouchTapCloseId);
+    clearTimeout(this.timerBlurClose);
   }
 
   close() {
@@ -230,6 +246,10 @@ class AutoComplete extends Component {
       open: false,
       anchorEl: null,
     });
+
+    if (this.props.onClose) {
+      this.props.onClose();
+    }
   }
 
   handleRequestClose = () => {
@@ -247,20 +267,30 @@ class AutoComplete extends Component {
 
   handleItemTouchTap = (event, child) => {
     const dataSource = this.props.dataSource;
-
     const index = parseInt(child.key, 10);
     const chosenRequest = dataSource[index];
     const searchText = this.chosenRequestText(chosenRequest);
 
-    this.timerTouchTapCloseId = setTimeout(() => {
+    const updateInput = () => this.props.onUpdateInput(searchText, this.props.dataSource, {
+      source: 'touchTap',
+    });
+    this.timerTouchTapCloseId = () => setTimeout(() => {
       this.timerTouchTapCloseId = null;
-
-      this.setState({
-        searchText: searchText,
-      });
       this.close();
       this.props.onNewRequest(chosenRequest, index);
     }, this.props.menuCloseDelay);
+
+    if (typeof this.props.searchText !== 'undefined') {
+      updateInput();
+      this.timerTouchTapCloseId();
+    } else {
+      this.setState({
+        searchText: searchText,
+      }, () => {
+        updateInput();
+        this.timerTouchTapCloseId();
+      });
+    }
   };
 
   chosenRequestText = (chosenRequest) => {
@@ -319,13 +349,17 @@ class AutoComplete extends Component {
       open: true,
       anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField),
     }, () => {
-      this.props.onUpdateInput(searchText, this.props.dataSource);
+      this.props.onUpdateInput(searchText, this.props.dataSource, {
+        source: 'change',
+      });
     });
   };
 
   handleBlur = (event) => {
     if (this.state.focusTextField && this.timerTouchTapCloseId === null) {
-      this.close();
+      this.timerBlurClose = setTimeout(() => {
+        this.close();
+      }, 0);
     }
 
     if (this.props.onBlur) {
@@ -379,12 +413,22 @@ class AutoComplete extends Component {
       menuProps,
       listStyle,
       targetOrigin,
+      onBlur, // eslint-disable-line no-unused-vars
+      onClose, // eslint-disable-line no-unused-vars
+      onFocus, // eslint-disable-line no-unused-vars
+      onKeyDown, // eslint-disable-line no-unused-vars
       onNewRequest, // eslint-disable-line no-unused-vars
       onUpdateInput, // eslint-disable-line no-unused-vars
       openOnFocus, // eslint-disable-line no-unused-vars
+      popoverProps,
       searchText: searchTextProp, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
+
+    const {
+      style: popoverStyle,
+      ...popoverOther
+    } = popoverProps || {};
 
     const {
       open,
@@ -457,7 +501,6 @@ class AutoComplete extends Component {
 
     const menu = open && requestsList.length > 0 && (
       <Menu
-        {...menuProps}
         ref="menu"
         autoWidth={false}
         disableAutoFocus={focusTextField}
@@ -467,6 +510,7 @@ class AutoComplete extends Component {
         onMouseDown={this.handleMouseDown}
         style={Object.assign(styles.menu, menuStyle)}
         listStyle={Object.assign(styles.list, listStyle)}
+        {...menuProps}
       >
         {requestsList.map((i) => i.value)}
       </Menu>
@@ -475,11 +519,8 @@ class AutoComplete extends Component {
     return (
       <div style={prepareStyles(Object.assign(styles.root, style))} >
         <TextField
-          {...other}
           ref="searchTextField"
           autoComplete="off"
-          value={searchText}
-          onChange={this.handleChange}
           onBlur={this.handleBlur}
           onFocus={this.handleFocus}
           onKeyDown={this.handleKeyDown}
@@ -489,9 +530,14 @@ class AutoComplete extends Component {
           multiLine={false}
           errorStyle={errorStyle}
           style={textFieldStyle}
+          {...other}
+          // value and onChange are idiomatic properties often leaked.
+          // We prevent their overrides in order to reduce potential bugs.
+          value={searchText}
+          onChange={this.handleChange}
         />
         <Popover
-          style={styles.popover}
+          style={Object.assign({}, styles.popover, popoverStyle)}
           canAutoPosition={false}
           anchorOrigin={anchorOrigin}
           targetOrigin={targetOrigin}
@@ -501,6 +547,7 @@ class AutoComplete extends Component {
           onRequestClose={this.handleRequestClose}
           animated={animated}
           animation={animation}
+          {...popoverOther}
         >
           {menu}
         </Popover>

@@ -1,7 +1,8 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component, Children} from 'react';
+import PropTypes from 'prop-types';
 import {fade} from '../utils/colorManipulator';
 
-export const makeSelectable = (Component) => {
+export const makeSelectable = (MyComponent) => {
   return class extends Component {
     static propTypes = {
       children: PropTypes.node,
@@ -65,7 +66,9 @@ export const makeSelectable = (Component) => {
       const itemValue = item.props.value;
 
       if (itemValue !== this.props.value) {
-        this.props.onChange(event, itemValue);
+        if (this.props.onChange) {
+          this.props.onChange(event, itemValue);
+        }
       }
     };
 
@@ -73,7 +76,7 @@ export const makeSelectable = (Component) => {
       const {
         children,
         selectedItemStyle,
-        ...other,
+        ...other
       } = this.props;
 
       this.keyIndex = 0;
@@ -85,11 +88,11 @@ export const makeSelectable = (Component) => {
       }
 
       return (
-        <Component {...other} {...this.state}>
-          {React.Children.map(children, (child) => (
+        <MyComponent {...other} {...this.state}>
+          {Children.map(children, (child) => (
             this.extendChild(child, styles, selectedItemStyle))
           )}
-        </Component>
+        </MyComponent>
       );
     }
   };

@@ -6,6 +6,8 @@ import {shallow} from 'enzyme';
 import {spy} from 'sinon';
 import AutoComplete from './AutoComplete';
 import Menu from '../Menu/Menu';
+import Popover from '../Popover/Popover';
+import TextField from '../TextField/TextField';
 import getMuiTheme from '../styles/getMuiTheme';
 
 describe('<AutoComplete />', () => {
@@ -60,15 +62,144 @@ describe('<AutoComplete />', () => {
     });
   });
 
-  describe('props: onNewRequest', () => {
+  describe('prop: value', () => {
+    it('should not override value prop of TextField', () => {
+      const wrapper = shallowWithContext(
+        <AutoComplete
+          value={{name: 'foo'}}
+          dataSource={['foo', 'bar']}
+          searchText="f"
+          menuCloseDelay={10}
+        />
+      );
+
+      assert.strictEqual(wrapper.find(TextField).props().value, 'f');
+    });
+  });
+
+  describe('prop: onChange', () => {
+    it('should not override onChange prop of TextField', (done) => {
+      const onChange = spy();
+
+      const wrapper = shallowWithContext(
+        <AutoComplete
+          onChange={onChange}
+          dataSource={['foo', 'bar']}
+          searchText="f"
+          menuCloseDelay={10}
+        />
+      );
+
+      wrapper.find(TextField).props().onChange({target: {value: 'fo'}});
+
+      setTimeout(() => {
+        try {
+          assert.strictEqual(onChange.callCount, 0);
+
+          done();
+        } catch (error) {
+          done(error);
+        }
+      }, 20);
+    });
+  });
+
+  describe('prop: onNewRequest', () => {
     it('should call onNewRequest once the popover is closed', (done) => {
       const handleNewRequest = spy();
       const wrapper = shallowWithContext(
         <AutoComplete
           dataSource={['foo', 'bar']}
-          searchText="f"
           onNewRequest={handleNewRequest}
           menuCloseDelay={10}
+        />
+      );
+
+      wrapper.setState({open: true, searchText: 'f'});
+      wrapper.find(Menu).props().onItemTouchTap({}, {
+        key: 0,
+      });
+      assert.strictEqual(handleNewRequest.callCount, 0);
+
+      setTimeout(() => {
+        assert.strictEqual(handleNewRequest.callCount, 1);
+        assert.deepEqual(handleNewRequest.args[0], [
+          'foo',
+          0,
+        ]);
+        done();
+      }, 20);
+    });
+  });
+
+  describe('prop: onUpdateInput', () => {
+    it('should fire after selection from menu', (done) => {
+      const handleUpdateInput = spy();
+      const wrapper = shallowWithContext(
+        <AutoComplete
+          dataSource={['foo', 'bar']}
+          onUpdateInput={handleUpdateInput}
+        />
+      );
+
+      wrapper.setState({open: true, searchText: 'f'});
+      wrapper.find(Menu).props().onItemTouchTap({}, {
+        key: 0,
+      });
+
+      setTimeout(() => {
+        assert.strictEqual(handleUpdateInput.callCount, 1);
+        assert.deepEqual(handleUpdateInput.args[0], [
+          'foo',
+          [
+            'foo',
+            'bar',
+          ],
+          {
+            source: 'touchTap',
+          },
+        ]);
+        done();
+      }, 0);
+    });
+  });
+
+  describe('prop: popoverProps', () => {
+    it('should pass popoverProps to Popover', () => {
+      const wrapper = shallowWithContext(
+        <AutoComplete
+          dataSource={['foo', 'bar']}
+          popoverProps={{
+            zDepth: 3,
+            canAutoPosition: true,
+          }}
+        />
+      );
+
+      const popoverProps = wrapper.find(Popover).props();
+
+      assert.strictEqual(popoverProps.zDepth, 3, 'should pass popoverProps to Popover');
+      assert.strictEqual(popoverProps.canAutoPosition, true, 'should overrides the default');
+    });
+  });
+
+  describe('prop: onClose', () => {
+    it('should call onClose when the menu is closed', () => {
+      const handleClose = spy();
+      const wrapper = shallowWithContext(
+        <AutoComplete dataSource={['foo', 'bar']} onClose={handleClose} />
+      );
+      wrapper.instance().close();
+      assert.strictEqual(handleClose.callCount, 1);
+    });
+  });
+
+  describe('prop: searchText', () => {
+    it('onItemTouchTap should not call setState:searchText when searchText is controlled', () => {
+      const wrapper = shallowWithContext(
+        <AutoComplete
+          dataSource={['foo', 'bar']}
+          searchText="f"
         />
       );
 
@@ -76,14 +207,7 @@ describe('<AutoComplete />', () => {
       wrapper.find(Menu).props().onItemTouchTap({}, {
         key: 0,
       });
-      assert.strictEqual(handleNewRequest.callCount, 0);
       assert.strictEqual(wrapper.state().searchText, 'f');
-
-      setTimeout(() => {
-        assert.strictEqual(handleNewRequest.callCount, 1);
-        assert.strictEqual(wrapper.state().searchText, 'foo');
-        done();
-      }, 20);
     });
   });
 });

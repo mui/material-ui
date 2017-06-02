@@ -1,6 +1,7 @@
 /* eslint-env mocha */
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {assert} from 'chai';
-import React, {Component, PropTypes} from 'react';
 import {mount} from 'enzyme';
 import RenderToLayer from 'src/internal/RenderToLayer';
 

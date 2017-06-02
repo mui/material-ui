@@ -1,18 +1,20 @@
 import React from 'react';
 import DatePicker from 'material-ui/DatePicker';
 import areIntlLocalesSupported from 'intl-locales-supported';
+import persianUtils from 'material-ui-persian-date-picker-utils';
 
 let DateTimeFormat;
 
 /**
  * Use the native Intl.DateTimeFormat if available, or a polyfill if not.
  */
-if (areIntlLocalesSupported(['fr'])) {
+if (areIntlLocalesSupported(['fr', 'fa-IR'])) {
   DateTimeFormat = global.Intl.DateTimeFormat;
 } else {
   const IntlPolyfill = require('intl');
   DateTimeFormat = IntlPolyfill.DateTimeFormat;
   require('intl/locale-data/jsonp/fr');
+  require('intl/locale-data/jsonp/fa-IR');
 }
 
 /**
@@ -33,6 +35,15 @@ const DatePickerExampleInternational = () => (
       okLabel="OK"
       cancelLabel="Annuler"
       locale="fr"
+    />
+    <DatePicker
+      hintText="fa-IR locale"
+      DateTimeFormat={DateTimeFormat}
+      okLabel="تایید"
+      cancelLabel="لغو"
+      locale="fa-IR"
+      firstDayOfWeek={6}
+      utils={persianUtils}
     />
     <DatePicker
       hintText="en-US locale"

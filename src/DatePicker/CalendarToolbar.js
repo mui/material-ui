@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import IconButton from '../IconButton';
 import NavigationChevronLeft from '../svg-icons/navigation/chevron-left';
 import NavigationChevronRight from '../svg-icons/navigation/chevron-right';
@@ -38,10 +39,6 @@ class CalendarToolbar extends Component {
     prevMonth: true,
   };
 
-  static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
-  };
-
   state = {
     transitionDirection: 'up',
   };
@@ -56,11 +53,15 @@ class CalendarToolbar extends Component {
   }
 
   handleTouchTapPrevMonth = () => {
-    if (this.props.onMonthChange && this.props.prevMonth) this.props.onMonthChange(-1);
+    if (this.props.onMonthChange) {
+      this.props.onMonthChange(-1);
+    }
   };
 
   handleTouchTapNextMonth = () => {
-    if (this.props.onMonthChange && this.props.nextMonth) this.props.onMonthChange(1);
+    if (this.props.onMonthChange) {
+      this.props.onMonthChange(1);
+    }
   };
 
   render() {
@@ -71,28 +72,27 @@ class CalendarToolbar extends Component {
       year: 'numeric',
     }).format(displayDate);
 
-    const nextButtonIcon = this.context.muiTheme.isRtl ? <NavigationChevronLeft /> : <NavigationChevronRight />;
-    const prevButtonIcon = this.context.muiTheme.isRtl ? <NavigationChevronRight /> : <NavigationChevronLeft />;
-
     return (
       <div style={styles.root}>
         <IconButton
           disabled={!this.props.prevMonth}
           onTouchTap={this.handleTouchTapPrevMonth}
         >
-          {prevButtonIcon}
+          <NavigationChevronLeft />
         </IconButton>
         <SlideInTransitionGroup
           direction={this.state.transitionDirection}
           style={styles.titleDiv}
         >
-          <div key={dateTimeFormatted} style={styles.titleText}>{dateTimeFormatted}</div>
+          <div key={dateTimeFormatted} style={styles.titleText}>
+            {dateTimeFormatted}
+          </div>
         </SlideInTransitionGroup>
         <IconButton
           disabled={!this.props.nextMonth}
           onTouchTap={this.handleTouchTapNextMonth}
         >
-          {nextButtonIcon}
+          <NavigationChevronRight />
         </IconButton>
       </div>
     );

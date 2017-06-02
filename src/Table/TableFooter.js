@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import TableRowColumn from './TableRowColumn';
 
 function getStyles(props, context) {
@@ -58,7 +59,7 @@ class TableFooter extends Component {
       children,
       className,
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -73,11 +74,14 @@ class TableFooter extends Component {
       };
 
       let newDescendants;
+
       if (adjustForCheckbox) {
         newDescendants = [
           <TableRowColumn key={`fpcb${rowNumber}`} style={{width: 24}} />,
           ...React.Children.toArray(child.props.children),
         ];
+      } else {
+        newDescendants = child.props.children;
       }
 
       return React.cloneElement(child, newChildProps, newDescendants);

@@ -3,6 +3,9 @@ import Minimist from 'minimist';
 import Mocha from 'mocha';
 import Glob from 'glob';
 import './utils/dom';
+import consoleError from './utils/consoleError';
+
+consoleError();
 
 const argv = Minimist(process.argv.slice(2), {
   alias: {

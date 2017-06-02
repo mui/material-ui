@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import Events from '../utils/events';
 import propTypes from '../utils/propTypes';
@@ -14,8 +15,8 @@ class IconMenu extends Component {
      * This is the point on the icon where the menu
      * `targetOrigin` will attach.
      * Options:
-     * vertical: [top, middle, bottom]
-     * horizontal: [left, center, right].
+     * vertical: [top, center, bottom]
+     * horizontal: [left, middle, right].
      */
     anchorOrigin: propTypes.origin,
     /**
@@ -43,6 +44,10 @@ class IconMenu extends Component {
      * Override the inline-styles of the underlying icon element.
      */
     iconStyle: PropTypes.object,
+    /**
+     * Override the inline-styles of the underlying `List` element.
+     */
+    listStyle: PropTypes.object,
     /**
      * Override the inline-styles of the menu element.
      */
@@ -100,8 +105,8 @@ class IconMenu extends Component {
      * This is the point on the menu which will stick to the menu
      * origin.
      * Options:
-     * vertical: [top, middle, bottom]
-     * horizontal: [left, center, right].
+     * vertical: [top, center, bottom]
+     * horizontal: [left, middle, right].
      */
     targetOrigin: propTypes.origin,
     /**
@@ -175,16 +180,16 @@ class IconMenu extends Component {
 
     if (this.props.open !== null) {
       this.props.onRequestChange(false, reason);
+    } else {
+      this.setState({open: false}, () => {
+        // Set focus on the icon button when the menu close
+        if (isKeyboard) {
+          const iconButton = this.refs.iconButton;
+          ReactDOM.findDOMNode(iconButton).focus();
+          iconButton.setKeyboardFocus();
+        }
+      });
     }
-
-    this.setState({open: false}, () => {
-      // Set focus on the icon button when the menu close
-      if (isKeyboard) {
-        const iconButton = this.refs.iconButton;
-        ReactDOM.findDOMNode(iconButton).focus();
-        iconButton.setKeyboardFocus();
-      }
-    });
   }
 
   open(reason, event) {
@@ -241,12 +246,13 @@ class IconMenu extends Component {
       onMouseUp,
       onRequestChange, // eslint-disable-line no-unused-vars
       onTouchTap,
+      listStyle,
       menuStyle,
       style,
       targetOrigin,
       touchTapCloseDelay, // eslint-disable-line no-unused-vars
       useLayerForClickAway,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -265,12 +271,12 @@ class IconMenu extends Component {
     const mergedRootStyles = Object.assign(styles.root, style);
     const mergedMenuStyles = Object.assign(styles.menu, menuStyle);
 
-    warning(iconButtonElement.type.muiName === 'IconButton',
-      'We are expecting an <IconButton /> to be passed to the `iconButtonElement` property.');
+    warning(iconButtonElement.type.muiName !== 'SvgIcon',
+      `Material-UI: You shoud not provide an <SvgIcon /> to the 'iconButtonElement' property of <IconMenu />.
+You should wrapped it with an <IconButton />.`);
 
-    const iconButton = React.cloneElement(iconButtonElement, {
+    const iconButtonProps = {
       onKeyboardFocus: onKeyboardFocus,
-      iconStyle: Object.assign({}, iconStyle, iconButtonElement.props.iconStyle),
       onTouchTap: (event) => {
         this.open(Events.isKeyboard(event) ? 'keyboard' : 'iconTap', event);
         if (iconButtonElement.props.onTouchTap) {
@@ -278,7 +284,13 @@ class IconMenu extends Component {
         }
       },
       ref: 'iconButton',
-    });
+    };
+    if (iconStyle || iconButtonElement.props.iconStyle) {
+      iconButtonProps.iconStyle = iconStyle ?
+        Object.assign({}, iconStyle, iconButtonElement.props.iconStyle) :
+        iconButtonElement.props.iconStyle;
+    }
+    const iconButton = React.cloneElement(iconButtonElement, iconButtonProps);
 
     const menu = (
       <Menu
@@ -287,6 +299,7 @@ class IconMenu extends Component {
         onEscKeyDown={this.handleEscKeyDownMenu}
         onItemTouchTap={this.handleItemTouchTap}
         style={mergedMenuStyles}
+        listStyle={listStyle}
       >
         {this.props.children}
       </Menu>

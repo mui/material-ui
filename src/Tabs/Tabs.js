@@ -1,8 +1,8 @@
-import React, {Component, PropTypes} from 'react';
-import ReactDOM from 'react-dom';
+import React, {Component, createElement, cloneElement, Children, isValidElement} from 'react';
+import PropTypes from 'prop-types';
+import warning from 'warning';
 import TabTemplate from './TabTemplate';
 import InkBar from './InkBar';
-import warning from 'warning';
 
 function getStyles(props, context) {
   const {tabs} = context.muiTheme;
@@ -12,6 +12,7 @@ function getStyles(props, context) {
       width: '100%',
       backgroundColor: tabs.backgroundColor,
       whiteSpace: 'nowrap',
+      display: 'flex',
     },
   };
 }
@@ -38,7 +39,7 @@ class Tabs extends Component {
      * Specify initial visible tab index.
      * If `initialSelectedIndex` is set but larger than the total amount of specified tabs,
      * `initialSelectedIndex` will revert back to default.
-     * If `initialSlectedIndex` is set to any negative value, no tab will be selected intially.
+     * If `initialSelectedIndex` is set to any negative value, no tab will be selected intially.
      */
     initialSelectedIndex: PropTypes.number,
     /**
@@ -61,6 +62,10 @@ class Tabs extends Component {
      * Override the default tab template used to wrap the content of each tab element.
      */
     tabTemplate: PropTypes.func,
+    /**
+     * Override the inline-styles of the tab template.
+     */
+    tabTemplateStyle: PropTypes.object,
     /**
      * Makes Tabs controllable and selects the tab whose value prop matches this prop.
      */
@@ -104,21 +109,15 @@ class Tabs extends Component {
     this.setState(newState);
   }
 
-  getEvenWidth() {
-    return (
-      parseInt(window
-        .getComputedStyle(ReactDOM.findDOMNode(this))
-        .getPropertyValue('width'), 10)
-    );
-  }
-
-  getTabs() {
+  getTabs(props = this.props) {
     const tabs = [];
-    React.Children.forEach(this.props.children, (tab) => {
-      if (React.isValidElement(tab)) {
+
+    Children.forEach(props.children, (tab) => {
+      if (isValidElement(tab)) {
         tabs.push(tab);
       }
     });
+
     return tabs;
   }
 
@@ -138,7 +137,7 @@ class Tabs extends Component {
     const valueLink = this.getValueLink(props);
     let selectedIndex = -1;
 
-    this.getTabs().forEach((tab, index) => {
+    this.getTabs(props).forEach((tab, index) => {
       if (valueLink.value === tab.props.value) {
         selectedIndex = index;
       }
@@ -175,10 +174,12 @@ class Tabs extends Component {
       contentContainerStyle,
       initialSelectedIndex, // eslint-disable-line no-unused-vars
       inkBarStyle,
+      onChange, // eslint-disable-line no-unused-vars
       style,
       tabItemContainerStyle,
       tabTemplate,
-      ...other,
+      tabTemplateStyle,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -190,21 +191,22 @@ class Tabs extends Component {
 
     const tabs = this.getTabs().map((tab, index) => {
       warning(tab.type && tab.type.muiName === 'Tab',
-        `Tabs only accepts Tab Components as children.
+        `Material-UI: Tabs only accepts Tab Components as children.
         Found ${tab.type.muiName || tab.type} as child number ${index + 1} of Tabs`);
 
       warning(!tabValue || tab.props.value !== undefined,
-        `Tabs value prop has been passed, but Tab ${index}
+        `Material-UI: Tabs value prop has been passed, but Tab ${index}
         does not have a value prop. Needs value if Tabs is going
         to be a controlled component.`);
 
       tabContent.push(tab.props.children ?
-        React.createElement(tabTemplate || TabTemplate, {
+        createElement(tabTemplate || TabTemplate, {
           key: index,
           selected: this.getSelected(tab, index),
+          style: tabTemplateStyle,
         }, tab.props.children) : undefined);
 
-      return React.cloneElement(tab, {
+      return cloneElement(tab, {
         key: index,
         index: index,
         selected: this.getSelected(tab, index),
@@ -225,15 +227,12 @@ class Tabs extends Component {
       tabItemContainerStyle.width : '100%';
 
     return (
-      <div
-        {...other}
-        style={prepareStyles(Object.assign({}, style))}
-      >
+      <div style={prepareStyles(Object.assign({}, style))} {...other}>
         <div style={prepareStyles(Object.assign(styles.tabItemContainer, tabItemContainerStyle))}>
           {tabs}
         </div>
         <div style={{width: inkBarContainerWidth}}>
-         {inkBar}
+          {inkBar}
         </div>
         <div
           style={prepareStyles(Object.assign({}, contentContainerStyle))}

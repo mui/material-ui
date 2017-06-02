@@ -1,4 +1,5 @@
 /* eslint-env mocha */
+
 import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
@@ -39,8 +40,8 @@ describe('<GridList />', () => {
       </GridList>
     );
 
-    assert.equal(wrapper.find('.grid-tile').length, 2, 'should contain the children');
-    assert.equal(wrapper.children().at(0).prop('style').height, cellHeight + 4, 'should have height to 254');
+    assert.strictEqual(wrapper.find('.grid-tile').length, 2, 'should contain the children');
+    assert.strictEqual(wrapper.children().at(0).prop('style').height, cellHeight + 4, 'should have height to 254');
   });
 
   it('renders children by default', () => {
@@ -59,7 +60,7 @@ describe('<GridList />', () => {
       </GridList>
     );
 
-    assert.equal(wrapper.find('.grid-tile').length, 2, 'should contain the children');
+    assert.strictEqual(wrapper.find('.grid-tile').length, 2, 'should contain the children');
   });
 
   it('renders children and change cols', () => {
@@ -78,8 +79,8 @@ describe('<GridList />', () => {
       </GridList>
     );
 
-    assert.equal(wrapper.find('.grid-tile').length, 2, 'should contain the children');
-    assert.equal(wrapper.children().at(0).prop('style').width, '25%', 'should have 25% of width');
+    assert.strictEqual(wrapper.find('.grid-tile').length, 2, 'should contain the children');
+    assert.strictEqual(wrapper.children().at(0).prop('style').width, '25%', 'should have 25% of width');
   });
 
   it('renders children and change padding', () => {
@@ -99,8 +100,8 @@ describe('<GridList />', () => {
       </GridList>
     );
 
-    assert.equal(wrapper.find('.grid-tile').length, 2, 'should contain the children');
-    assert.equal(wrapper.children().at(0).prop('style').padding, padding / 2, 'should have 5 of padding');
+    assert.strictEqual(wrapper.find('.grid-tile').length, 2, 'should contain the children');
+    assert.strictEqual(wrapper.children().at(0).prop('style').padding, padding / 2, 'should have 5 of padding');
   });
 
   it('renders children and overwrite style', () => {
@@ -122,7 +123,20 @@ describe('<GridList />', () => {
       </GridList>
     );
 
-    assert.equal(wrapper.find('.grid-tile').length, 2, 'should contain the children');
-    assert.equal(wrapper.prop('style').backgroundColor, style.backgroundColor, 'should have a red backgroundColor');
+    assert.strictEqual(wrapper.find('.grid-tile').length, 2, 'should contain the children');
+    assert.strictEqual(wrapper.prop('style').backgroundColor, style.backgroundColor,
+      'should have a red backgroundColor');
+  });
+
+  describe('prop: cellHeight', () => {
+    it('should accept auto as a property', () => {
+      const wrapper = shallowWithContext(
+        <GridList cellHeight="auto">
+          <div />
+        </GridList>
+      );
+
+      assert.strictEqual(wrapper.children().at(0).props().style.height, 'auto');
+    });
   });
 });

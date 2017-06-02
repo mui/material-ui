@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import transitions from '../styles/transitions';
 
 class SvgIcon extends Component {
@@ -71,7 +72,7 @@ class SvgIcon extends Component {
       onMouseLeave, // eslint-disable-line no-unused-vars
       style,
       viewBox,
-      ...other,
+      ...other
     } = this.props;
 
     const {

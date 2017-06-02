@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import pure from 'recompose/pure';
 
 const propTypes = {
@@ -44,7 +45,7 @@ const StepConnector = (props, context) => {
 
   return (
     <div style={prepareStyles(styles.wrapper)}>
-      <span style={prepareStyles(styles.line)}></span>
+      <span style={prepareStyles(styles.line)} />
     </div>
   );
 };

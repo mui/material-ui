@@ -1,15 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
 import AutoComplete from 'material-ui/AutoComplete';
 
-export default class AutoCompleteExampleSimple extends React.Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      dataSource: [],
-    };
-  }
+/**
+ * The input is used to create the `dataSource`, so the input always matches three entries.
+ */
+export default class AutoCompleteExampleSimple extends Component {
+  state = {
+    dataSource: [],
+  };
 
   handleUpdateInput = (value) => {
     this.setState({

@@ -1,15 +1,17 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import YearButton from './YearButton';
-import {cloneDate} from './dateUtils';
 
 class CalendarYear extends Component {
   static propTypes = {
-    displayDate: PropTypes.object.isRequired,
-    maxDate: PropTypes.object,
-    minDate: PropTypes.object,
+    DateTimeFormat: PropTypes.func.isRequired,
+    locale: PropTypes.string.isRequired,
+    maxDate: PropTypes.object.isRequired,
+    minDate: PropTypes.object.isRequired,
     onTouchTapYear: PropTypes.func,
     selectedDate: PropTypes.object.isRequired,
+    utils: PropTypes.object.isRequired,
     wordings: PropTypes.object,
   };
 
@@ -26,18 +28,29 @@ class CalendarYear extends Component {
   }
 
   getYears() {
-    const minYear = this.props.minDate.getFullYear();
-    const maxYear = this.props.maxDate.getFullYear();
+    const {
+      DateTimeFormat,
+      locale,
+      minDate,
+      maxDate,
+      selectedDate,
+      utils,
+    } = this.props;
 
+    const minYear = utils.getYear(minDate);
+    const maxYear = utils.getYear(maxDate);
     const years = [];
-    const dateCheck = cloneDate(this.props.selectedDate);
+
     for (let year = minYear; year <= maxYear; year++) {
-      dateCheck.setFullYear(year);
-      const selected = this.props.selectedDate.getFullYear() === year;
-      let selectedProps = {};
+      const selected = utils.getYear(selectedDate) === year;
+      const selectedProps = {};
       if (selected) {
-        selectedProps = {ref: 'selectedYearButton'};
+        selectedProps.ref = 'selectedYearButton';
       }
+
+      const yearFormated = new DateTimeFormat(locale, {
+        year: 'numeric',
+      }).format(utils.setYear(selectedDate, year));
 
       const yearButton = (
         <YearButton
@@ -45,8 +58,11 @@ class CalendarYear extends Component {
           onTouchTap={this.handleTouchTapYear}
           selected={selected}
           year={year}
+          utils={utils}
           {...selectedProps}
-        />
+        >
+          {yearFormated}
+        </YearButton>
       );
 
       years.push(yearButton);
@@ -56,7 +72,9 @@ class CalendarYear extends Component {
   }
 
   scrollToSelectedYear() {
-    if (this.refs.selectedYearButton === undefined) return;
+    if (this.refs.selectedYearButton === undefined) {
+      return;
+    }
 
     const container = ReactDOM.findDOMNode(this);
     const yearButtonNode = ReactDOM.findDOMNode(this.refs.selectedYearButton);
@@ -69,16 +87,22 @@ class CalendarYear extends Component {
   }
 
   handleTouchTapYear = (event, year) => {
-    if (this.props.onTouchTapYear) this.props.onTouchTapYear(event, year);
+    if (this.props.onTouchTapYear) {
+      this.props.onTouchTapYear(event, year);
+    }
   };
 
   render() {
-    const years = this.getYears();
-    const backgroundColor = this.context.muiTheme.datePicker.calendarYearBackgroundColor;
-    const {prepareStyles} = this.context.muiTheme;
+    const {
+      prepareStyles,
+      datePicker: {
+        calendarYearBackgroundColor,
+      },
+    } = this.context.muiTheme;
+
     const styles = {
       root: {
-        backgroundColor: backgroundColor,
+        backgroundColor: calendarYearBackgroundColor,
         height: 'inherit',
         lineHeight: '35px',
         overflowX: 'hidden',
@@ -96,7 +120,7 @@ class CalendarYear extends Component {
     return (
       <div style={prepareStyles(styles.root)}>
         <div style={prepareStyles(styles.child)}>
-          {years}
+          {this.getYears()}
         </div>
       </div>
     );

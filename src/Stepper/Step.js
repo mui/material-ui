@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 const getStyles = ({index}, {stepper}) => {
   const {orientation} = stepper;
@@ -84,7 +85,7 @@ class Step extends Component {
       last, // eslint-disable-line no-unused-vars
       children,
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

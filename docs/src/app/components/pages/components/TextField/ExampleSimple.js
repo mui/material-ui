@@ -19,6 +19,10 @@ const TextFieldExampleSimple = () => (
       floatingLabelText="Floating Label Text"
     /><br />
     <TextField
+      defaultValue="Default Value"
+      floatingLabelText="Floating Label Text"
+    /><br />
+    <TextField
       hintText="Hint Text"
       floatingLabelText="Fixed Floating Label Text"
       floatingLabelFixed={true}

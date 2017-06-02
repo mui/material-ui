@@ -18,6 +18,8 @@ import GranularControlStepper from './GranularControlStepper';
 import GranularControlStepperCode from '!raw!./GranularControlStepper';
 import CustomIcon from './CustomIcon';
 import CustomIconCode from '!raw!./CustomIcon';
+import CustomStepConnector from './CustomStepConnector';
+import CustomStepConnectorCode from '!raw!./CustomStepConnector';
 import HorizontalTransition from './HorizontalTransition';
 import HorizontalTransitionCode from '!raw!./HorizontalTransition';
 
@@ -102,6 +104,13 @@ const StepperPage = () => (
       <div style={styles.stepperWrapper}>
         <HorizontalTransition />
       </div>
+    </CodeExample>
+
+    <CodeExample
+      title="Custom step connector"
+      code={CustomStepConnectorCode}
+    >
+      <CustomStepConnector />
     </CodeExample>
 
     <PropTypeDescription code={stepperCode} header="### Stepper properties" />

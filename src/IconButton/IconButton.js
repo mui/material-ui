@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import transitions from '../styles/transitions';
 import propTypes from '../utils/propTypes';
 import EnhancedButton from '../internal/EnhancedButton';
@@ -11,7 +12,6 @@ function getStyles(props, context) {
 
   return {
     root: {
-      position: 'relative',
       boxSizing: 'border-box',
       overflow: 'visible',
       transition: transitions.easeOut(),
@@ -23,17 +23,10 @@ function getStyles(props, context) {
     tooltip: {
       boxSizing: 'border-box',
     },
-    overlay: {
-      position: 'relative',
-      top: 0,
-      width: '100%',
-      height: '100%',
-      background: baseTheme.palette.disabledColor,
-    },
     disabled: {
       color: baseTheme.palette.disabledColor,
       fill: baseTheme.palette.disabledColor,
-      cursor: 'not-allowed',
+      cursor: 'default',
     },
   };
 }
@@ -59,6 +52,10 @@ class IconButton extends Component {
      */
     disabled: PropTypes.bool,
     /**
+     * Override the inline-styles of the root element when the component is hovered.
+     */
+    hoveredStyle: PropTypes.object,
+    /**
      * The URL to link to when the button is clicked.
      */
     href: PropTypes.string,
@@ -68,6 +65,7 @@ class IconButton extends Component {
     iconClassName: PropTypes.string,
     /**
      * Override the inline-styles of the icon element.
+     * Note: you can specify iconHoverColor as a String inside this object.
      */
     iconStyle: PropTypes.object,
     /** @ignore */
@@ -87,6 +85,14 @@ class IconButton extends Component {
     onMouseLeave: PropTypes.func,
     /** @ignore */
     onMouseOut: PropTypes.func,
+    /** @ignore */
+    onTouchStart: PropTypes.func,
+    /**
+     * Callback function fired when the button is touch-tapped.
+     *
+     * @param {object} event TouchTap event targeting the button.
+     */
+    onTouchTap: PropTypes.func,
     /**
      * Override the inline-styles of the root element.
      */
@@ -106,7 +112,7 @@ class IconButton extends Component {
      */
     tooltipStyles: PropTypes.object,
     /**
-     * If true, increase the tooltip element's size.  Useful for increasing tooltip
+     * If true, increase the tooltip element's size. Useful for increasing tooltip
      * readability on mobile devices.
      */
     touch: PropTypes.bool,
@@ -125,11 +131,22 @@ class IconButton extends Component {
   };
 
   state = {
+    hovered: false,
+    isKeyboardFocused: false,
+    // Not to be confonded with the touch property.
+    // This state is to determined if it's a mobile device.
+    touch: false,
     tooltipShown: false,
   };
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.disabled) {
+      this.setState({hovered: false});
+    }
+  }
+
   setKeyboardFocus() {
-    this.refs.button.setKeyboardFocus();
+    this.button.setKeyboardFocus();
   }
 
   showTooltip() {
@@ -144,17 +161,26 @@ class IconButton extends Component {
 
   handleBlur = (event) => {
     this.hideTooltip();
-    if (this.props.onBlur) this.props.onBlur(event);
+    if (this.props.onBlur) {
+      this.props.onBlur(event);
+    }
   };
 
   handleFocus = (event) => {
     this.showTooltip();
-    if (this.props.onFocus) this.props.onFocus(event);
+    if (this.props.onFocus) {
+      this.props.onFocus(event);
+    }
   };
 
   handleMouseLeave = (event) => {
-    if (!this.refs.button.isKeyboardFocused()) this.hideTooltip();
-    if (this.props.onMouseLeave) this.props.onMouseLeave(event);
+    if (!this.button.isKeyboardFocused()) {
+      this.hideTooltip();
+    }
+    this.setState({hovered: false});
+    if (this.props.onMouseLeave) {
+      this.props.onMouseLeave(event);
+    }
   };
 
   handleMouseOut = (event) => {
@@ -164,45 +190,74 @@ class IconButton extends Component {
 
   handleMouseEnter = (event) => {
     this.showTooltip();
-    if (this.props.onMouseEnter) this.props.onMouseEnter(event);
+
+    // Cancel hover styles for touch devices
+    if (!this.state.touch) {
+      this.setState({hovered: true});
+    }
+    if (this.props.onMouseEnter) {
+      this.props.onMouseEnter(event);
+    }
   };
 
-  handleKeyboardFocus = (event, keyboardFocused) => {
-    if (keyboardFocused && !this.props.disabled) {
+  handleTouchStart = (event) => {
+    this.setState({touch: true});
+
+    if (this.props.onTouchStart) {
+      this.props.onTouchStart(event);
+    }
+  };
+
+  handleKeyboardFocus = (event, isKeyboardFocused) => {
+    const {disabled, onFocus, onBlur, onKeyboardFocus} = this.props;
+    if (isKeyboardFocused && !disabled) {
       this.showTooltip();
-      if (this.props.onFocus) this.props.onFocus(event);
-    } else if (!this.state.hovered) {
+      if (onFocus) {
+        onFocus(event);
+      }
+    } else {
       this.hideTooltip();
-      if (this.props.onBlur) this.props.onBlur(event);
+      if (onBlur) {
+        onBlur(event);
+      }
     }
 
-    if (this.props.onKeyboardFocus) {
-      this.props.onKeyboardFocus(event, keyboardFocused);
+    this.setState({isKeyboardFocused});
+    if (onKeyboardFocus) {
+      onKeyboardFocus(event, isKeyboardFocused);
     }
   };
 
   render() {
     const {
       disabled,
+      hoveredStyle,
       disableTouchRipple,
       children,
       iconClassName,
-      onKeyboardFocus, // eslint-disable-line no-unused-vars
+      style,
       tooltip,
       tooltipPosition: tooltipPositionProp,
       tooltipStyles,
       touch,
       iconStyle,
-      ...other,
+      ...other
     } = this.props;
     let fonticon;
 
     const styles = getStyles(this.props, this.context);
     const tooltipPosition = tooltipPositionProp.split('-');
 
+    const hovered = (this.state.hovered || this.state.isKeyboardFocused) && !disabled;
+
+    const mergedRootStyles = Object.assign(
+      styles.root,
+      style,
+      hovered ? hoveredStyle : {}
+    );
+
     const tooltipElement = tooltip ? (
       <Tooltip
-        ref="tooltip"
         label={tooltip}
         show={this.state.tooltipShown}
         touch={touch}
@@ -215,7 +270,7 @@ class IconButton extends Component {
     if (iconClassName) {
       const {
         iconHoverColor,
-        ...iconStyleFontIcon,
+        ...iconStyleFontIcon
       } = iconStyle;
 
       fonticon = (
@@ -238,11 +293,12 @@ class IconButton extends Component {
 
     return (
       <EnhancedButton
+        ref={(ref) => this.button = ref}
         {...other}
-        ref="button"
         centerRipple={true}
         disabled={disabled}
-        style={Object.assign(styles.root, this.props.style)}
+        onTouchStart={this.handleTouchStart}
+        style={mergedRootStyles}
         disableTouchRipple={disableTouchRipple}
         onBlur={this.handleBlur}
         onFocus={this.handleFocus}

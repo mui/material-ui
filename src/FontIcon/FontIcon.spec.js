@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 import React from 'react';
-import sinon from 'sinon';
+import {spy} from 'sinon';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
 import FontIcon from './FontIcon';
@@ -38,7 +38,7 @@ describe('<FontIcon />', () => {
   });
 
   it('renders children and hoverColor when mouseEnter', () => {
-    const onMouseEnter = sinon.spy();
+    const onMouseEnter = spy();
     const wrapper = shallowWithContext(
       <FontIcon
         className="material-icons"
@@ -59,7 +59,7 @@ describe('<FontIcon />', () => {
   });
 
   it('renders children and call onMouseEnter callback', () => {
-    const onMouseEnter = sinon.spy();
+    const onMouseEnter = spy();
     const wrapper = shallowWithContext(
       <FontIcon className="material-icons" onMouseEnter={onMouseEnter}>home</FontIcon>
     );
@@ -71,7 +71,7 @@ describe('<FontIcon />', () => {
   });
 
   it('renders children and call onMouseLeave callback', () => {
-    const onMouseLeave = sinon.spy();
+    const onMouseLeave = spy();
     const wrapper = shallowWithContext(
       <FontIcon className="material-icons" onMouseLeave={onMouseLeave}>home</FontIcon>
     );

@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ClearFix from 'material-ui/internal/ClearFix';
 import spacing from 'material-ui/styles/spacing';
 import withWidth, {SMALL, LARGE} from 'material-ui/utils/withWidth';
@@ -49,7 +50,7 @@ class FullWidthSection extends Component {
       contentType,
       contentStyle,
       width,
-      ...other,
+      ...other
     } = this.props;
 
     const styles = this.getStyles();

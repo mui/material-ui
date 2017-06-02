@@ -8,6 +8,21 @@ const styles = {
   toggle: {
     marginBottom: 16,
   },
+  thumbOff: {
+    backgroundColor: '#ffcccc',
+  },
+  trackOff: {
+    backgroundColor: '#ff9d9d',
+  },
+  thumbSwitched: {
+    backgroundColor: 'red',
+  },
+  trackSwitched: {
+    backgroundColor: '#ff9d9d',
+  },
+  labelStyle: {
+    color: 'red',
+  },
 };
 
 const ToggleExampleSimple = () => (
@@ -30,6 +45,14 @@ const ToggleExampleSimple = () => (
       label="Label on the right"
       labelPosition="right"
       style={styles.toggle}
+    />
+    <Toggle
+      label="Styling"
+      thumbStyle={styles.thumbOff}
+      trackStyle={styles.trackOff}
+      thumbSwitchedStyle={styles.thumbSwitched}
+      trackSwitchedStyle={styles.trackSwitched}
+      labelStyle={styles.labelStyle}
     />
   </div>
 );

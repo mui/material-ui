@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 function getStyles(props, context) {
   const {
@@ -11,6 +12,7 @@ function getStyles(props, context) {
       paddingRight: baseTheme.spacing.desktopGutterLess,
       lineHeight: `${toolbar.height}px`,
       fontSize: toolbar.titleFontSize,
+      fontFamily: baseTheme.fontFamily,
       position: 'relative',
       textOverflow: 'ellipsis',
       whiteSpace: 'nowrap',
@@ -34,7 +36,7 @@ class ToolbarTitle extends Component {
     /**
      * The text to be displayed.
      */
-    text: PropTypes.string,
+    text: PropTypes.node,
   };
 
   static contextTypes = {
@@ -43,17 +45,19 @@ class ToolbarTitle extends Component {
 
   render() {
     const {
-      className,
       style,
       text,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
 
     return (
-      <span {...other} className={className} style={prepareStyles(Object.assign({}, styles.root, style))}>
+      <span
+        style={prepareStyles(Object.assign({}, styles.root, style))}
+        {...other}
+      >
         {text}
       </span>
     );

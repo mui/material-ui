@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import TransitionComponent from '../internal/ExpandTransition';
 import warning from 'warning';
 
@@ -75,12 +76,12 @@ class StepContent extends Component {
       style,
       transition,
       transitionDuration,
-      ...other,
+      ...other
     } = this.props;
     const {stepper, muiTheme: {prepareStyles}} = this.context;
 
     if (stepper.orientation !== 'vertical') {
-      warning(false, '<StepContent /> is only designed for use with the vertical stepper.');
+      warning(false, 'Material-UI: <StepContent /> is only designed for use with the vertical stepper.');
       return null;
     }
 

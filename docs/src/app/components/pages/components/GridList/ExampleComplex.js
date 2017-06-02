@@ -13,7 +13,6 @@ const styles = {
     width: 500,
     height: 450,
     overflowY: 'auto',
-    marginBottom: 24,
   },
 };
 
@@ -62,6 +61,10 @@ const tilesData = [
   },
 ];
 
+/**
+ * This example demonstrates "featured" tiles, using the `rows` and `cols` props to adjust the size of the tile.
+ * The tiles have a customised title, positioned at the top and with a custom gradient `titleBackground`.
+ */
 const GridListExampleComplex = () => (
   <div style={styles.root}>
     <GridList

@@ -31,7 +31,7 @@ export default class TabsExampleControlled extends React.Component {
         value={this.state.value}
         onChange={this.handleChange}
       >
-        <Tab label="Tab A" value="a" >
+        <Tab label="Tab A" value="a">
           <div>
             <h2 style={styles.headline}>Controllable Tab A</h2>
             <p>

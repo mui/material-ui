@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import EnhancedSwitch from '../internal/EnhancedSwitch';
 import transitions from '../styles/transitions';
 import CheckboxOutline from '../svg-icons/toggle/check-box-outline-blank';
@@ -32,7 +33,6 @@ function getStyles(props, context) {
     },
     checkWhenDisabled: {
       fill: checkbox.disabledColor,
-      cursor: 'not-allowed',
     },
     box: {
       position: 'absolute',
@@ -47,7 +47,6 @@ function getStyles(props, context) {
     },
     boxWhenDisabled: {
       fill: props.checked ? 'transparent' : checkbox.disabledColor,
-      cursor: 'not-allowed',
     },
     label: {
       color: props.disabled ? checkbox.labelDisabledColor : checkbox.labelColor,
@@ -172,7 +171,7 @@ class Checkbox extends Component {
       onCheck, // eslint-disable-line no-unused-vars
       checkedIcon,
       uncheckedIcon,
-      ...other,
+      ...other
     } = this.props;
     const styles = getStyles(this.props, this.context);
     const boxStyles =

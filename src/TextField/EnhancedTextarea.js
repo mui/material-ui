@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
 
 const rowsHeight = 24;
@@ -14,7 +15,7 @@ function getStyles(props, context, state) {
       resize: 'none',
       font: 'inherit',
       padding: 0,
-      cursor: props.disabled ? 'not-allowed' : 'initial',
+      cursor: 'inherit',
     },
     shadow: {
       resize: 'none',
@@ -24,7 +25,7 @@ function getStyles(props, context, state) {
       // Visibility needed to hide the extra text area on ipads
       visibility: 'hidden',
       position: 'absolute',
-      height: 'initial',
+      height: 'auto',
     },
   };
 }
@@ -33,6 +34,7 @@ class EnhancedTextarea extends Component {
   static propTypes = {
     defaultValue: PropTypes.any,
     disabled: PropTypes.bool,
+    hintText: PropTypes.node,
     onChange: PropTypes.func,
     onHeightChange: PropTypes.func,
     rows: PropTypes.number,
@@ -70,8 +72,9 @@ class EnhancedTextarea extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.props.value) {
-      this.syncHeightWithShadow(nextProps.value);
+    if (nextProps.value !== this.props.value ||
+        nextProps.rowsMax !== this.props.rowsMax) {
+      this.syncHeightWithShadow(nextProps.value, null, nextProps);
     }
   }
 
@@ -88,11 +91,13 @@ class EnhancedTextarea extends Component {
     this.syncHeightWithShadow(value);
   }
 
-  syncHeightWithShadow(newValue, event) {
+  syncHeightWithShadow(newValue, event, props) {
     const shadow = this.refs.shadow;
+    const displayText = this.props.hintText && (newValue === '' || newValue === undefined || newValue === null) ?
+      this.props.hintText : newValue;
 
-    if (newValue !== undefined) {
-      shadow.value = newValue;
+    if (displayText !== undefined) {
+      shadow.value = displayText;
     }
 
     let newHeight = shadow.scrollHeight;
@@ -101,8 +106,10 @@ class EnhancedTextarea extends Component {
     // See https://github.com/tmpvar/jsdom/issues/1013
     if (newHeight === undefined) return;
 
-    if (this.props.rowsMax >= this.props.rows) {
-      newHeight = Math.min(this.props.rowsMax * rowsHeight, newHeight);
+    props = props || this.props;
+
+    if (props.rowsMax >= props.rows) {
+      newHeight = Math.min(props.rowsMax * rowsHeight, newHeight);
     }
 
     newHeight = Math.max(newHeight, rowsHeight);
@@ -112,14 +119,16 @@ class EnhancedTextarea extends Component {
         height: newHeight,
       });
 
-      if (this.props.onHeightChange) {
-        this.props.onHeightChange(event, newHeight);
+      if (props.onHeightChange) {
+        props.onHeightChange(event, newHeight);
       }
     }
   }
 
   handleChange = (event) => {
-    this.syncHeightWithShadow(event.target.value);
+    if (!this.props.hasOwnProperty('value')) {
+      this.syncHeightWithShadow(event.target.value);
+    }
 
     if (this.props.hasOwnProperty('valueLink')) {
       this.props.valueLink.requestChange(event.target.value);
@@ -138,9 +147,10 @@ class EnhancedTextarea extends Component {
       rowsMax, // eslint-disable-line no-unused-vars
       shadowStyle,
       style,
+      hintText, // eslint-disable-line no-unused-vars
       textareaStyle,
       valueLink, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;

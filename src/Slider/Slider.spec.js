@@ -10,13 +10,15 @@ import getMuiTheme from '../styles/getMuiTheme';
 describe('<Slider />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
+  const muiThemeRtl = getMuiTheme({isRtl: true});
+  const shallowWithRTLContext = (node) => shallow(node, {context: {muiTheme: muiThemeRtl}});
 
   const getThumbElement = function(shallowWrapper) {
-    return shallowWrapper.children().at(2).children().at(0).children().at(2);
+    return shallowWrapper.childAt(0).childAt(0).childAt(2);
   };
 
   const getTrackContainer = function(shallowWrapper) {
-    return shallowWrapper.children().at(2);
+    return shallowWrapper.childAt(0);
   };
 
   it('renders slider and the hidden input', () => {
@@ -256,6 +258,21 @@ describe('<Slider />', () => {
       assert.strictEqual(wrapper.state().value > previousValue, true);
     });
 
+    it('simulates the up arrow key on a rtl slider', () => {
+      const handleChange = spy();
+      const wrapper = shallowWithRTLContext(
+        <Slider name="slider" onChange={handleChange} />
+      );
+      const previousValue = wrapper.state().value;
+
+      getTrackContainer(wrapper).simulate('keydown', {
+        keyCode: keycode('up'),
+        preventDefault: () => {},
+      });
+      assert.strictEqual(handleChange.callCount, 1);
+      assert.strictEqual(wrapper.state().value > previousValue, true);
+    });
+
     it('simulates the up arrow key on a y axis slider', () => {
       const handleChange = spy();
       const wrapper = shallowWithContext(
@@ -314,6 +331,35 @@ describe('<Slider />', () => {
       assert.strictEqual(wrapper.state().value, 0);
     });
 
+    it('simulates the right arrow key on a rtl slider', () => {
+      const handleChange = spy();
+      const wrapper = shallowWithRTLContext(
+        <Slider name="slider" onChange={handleChange} />
+      );
+
+      getTrackContainer(wrapper).simulate('keydown', {
+        keyCode: keycode('right'),
+        preventDefault: () => {},
+      });
+      assert.strictEqual(handleChange.callCount, 0);
+      assert.strictEqual(wrapper.state().value, 0);
+    });
+
+    it('simulates the right arrow key on an x-reverse rtl slider', () => {
+      const handleChange = spy();
+      const wrapper = shallowWithRTLContext(
+        <Slider name="slider" axis="x-reverse" onChange={handleChange} />
+      );
+      const previousValue = wrapper.state().value;
+
+      getTrackContainer(wrapper).simulate('keydown', {
+        keyCode: keycode('right'),
+        preventDefault: () => {},
+      });
+      assert.strictEqual(handleChange.callCount, 1);
+      assert.strictEqual(wrapper.state().value > previousValue, true);
+    });
+
     it('simulates the right arrow key on an y axis slider', () => {
       const handleChange = spy();
       const wrapper = shallowWithContext(
@@ -362,6 +408,20 @@ describe('<Slider />', () => {
       const handleChange = spy();
       const wrapper = shallowWithContext(
         <Slider name="slider" axis="x-reverse" onChange={handleChange} />
+      );
+
+      getTrackContainer(wrapper).simulate('keydown', {
+        keyCode: keycode('home'),
+        preventDefault: () => {},
+      });
+      assert.strictEqual(handleChange.callCount, 0);
+      assert.strictEqual(wrapper.state().value, 0);
+    });
+
+    it('simulates the home key on a rtl slider', () => {
+      const handleChange = spy();
+      const wrapper = shallowWithRTLContext(
+        <Slider name="slider" onChange={handleChange} />
       );
 
       getTrackContainer(wrapper).simulate('keydown', {
@@ -428,6 +488,20 @@ describe('<Slider />', () => {
       assert.strictEqual(wrapper.state().value, 0);
     });
 
+    it('simulates the down arrow key on a rtl slider', () => {
+      const handleChange = spy();
+      const wrapper = shallowWithRTLContext(
+        <Slider name="slider" onChange={handleChange} />
+      );
+
+      getTrackContainer(wrapper).simulate('keydown', {
+        keyCode: keycode('down'),
+        preventDefault: () => {},
+      });
+      assert.strictEqual(handleChange.callCount, 0);
+      assert.strictEqual(wrapper.state().value, 0);
+    });
+
     it('simulates the down arrow key on a y axis slider', () => {
       const handleChange = spy();
       const wrapper = shallowWithContext(
@@ -484,6 +558,35 @@ describe('<Slider />', () => {
       });
       assert.strictEqual(handleChange.callCount, 1);
       assert.strictEqual(wrapper.state().value > previousValue, true);
+    });
+
+    it('simulates the left arrow key on a rtl slider', () => {
+      const handleChange = spy();
+      const wrapper = shallowWithRTLContext(
+        <Slider name="slider" onChange={handleChange} />
+      );
+      const previousValue = wrapper.state().value;
+
+      getTrackContainer(wrapper).simulate('keydown', {
+        keyCode: keycode('left'),
+        preventDefault: () => {},
+      });
+      assert.strictEqual(handleChange.callCount, 1);
+      assert.strictEqual(wrapper.state().value > previousValue, true);
+    });
+
+    it('simulates the left arrow key on an x-reverse rtl slider', () => {
+      const handleChange = spy();
+      const wrapper = shallowWithRTLContext(
+        <Slider name="slider" axis="x-reverse" onChange={handleChange} />
+      );
+
+      getTrackContainer(wrapper).simulate('keydown', {
+        keyCode: keycode('left'),
+        preventDefault: () => {},
+      });
+      assert.strictEqual(handleChange.callCount, 0);
+      assert.strictEqual(wrapper.state().value, 0);
     });
 
     it('simulates the left arrow key for a y axis slider', () => {

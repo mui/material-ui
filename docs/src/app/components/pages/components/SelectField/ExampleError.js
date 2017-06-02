@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
@@ -11,21 +11,18 @@ const items = [
 ];
 
 /**
- * The `errorText` property displays an error message below the Select Field. This can be customised with the
- * `errorStyle` property.
+ * The `errorText` property displays an error message below the Select Field.
+ * This can be customised with the `errorStyle` property.
  */
-export default class SelectFieldExampleError extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {value: null};
-  }
+export default class SelectFieldExampleError extends Component {
+  state = {
+    value: null,
+  };
 
   handleChange = (event, index, value) => this.setState({value});
 
   render() {
     const {value} = this.state;
-
     const night = value === 2 || value === 3;
 
     return (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
@@ -7,15 +7,15 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import ContentFilter from 'material-ui/svg-icons/content/filter-list';
 import FileFileDownload from 'material-ui/svg-icons/file/file-download';
 
-export default class IconMenuExampleControlled extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      valueSingle: '3',
-      valueMultiple: ['3', '5'],
-    };
-  }
+/**
+ * Three controlled examples, the first allowing a single selection, the second multiple selections,
+ * the third using internal state.
+ */
+export default class IconMenuExampleControlled extends Component {
+  state = {
+    valueSingle: '3',
+    valueMultiple: ['3', '5'],
+  };
 
   handleChangeSingle = (event, value) => {
     this.setState({

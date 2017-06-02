@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import transitions from '../styles/transitions';
 
 function getStyles(props, context, state) {
@@ -13,6 +14,7 @@ function getStyles(props, context, state) {
     baseTheme,
     zIndex,
     tooltip,
+    borderRadius,
   } = context.muiTheme;
 
   const styles = {
@@ -26,12 +28,13 @@ function getStyles(props, context, state) {
       color: tooltip.color,
       overflow: 'hidden',
       top: -10000,
-      borderRadius: 2,
+      borderRadius,
       userSelect: 'none',
       opacity: 0,
       right: horizontalPosition === 'left' ? 12 : null,
       left: horizontalPosition === 'center' ?
-        (state.offsetWidth - 48) / 2 * -1 : null,
+        (state.offsetWidth - 48) / 2 * -1 :
+        horizontalPosition === 'right' ? 12 : null,
       transition: `${transitions.easeOut('0ms', 'top', '450ms')}, ${
         transitions.easeOut('450ms', 'transform', '0ms')}, ${
         transitions.easeOut('450ms', 'opacity', '0ms')}`,
@@ -144,7 +147,7 @@ class Tooltip extends Component {
       show, // eslint-disable-line no-unused-vars
       touch, // eslint-disable-line no-unused-vars
       verticalPosition, // eslint-disable-line no-unused-vars
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -167,8 +170,7 @@ class Tooltip extends Component {
             styles.ripple,
             this.props.show && styles.rippleWhenShown
           ))}
-        >
-        </div>
+        />
         <span style={prepareStyles(styles.label)}>
           {label}
         </span>

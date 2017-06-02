@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TestUtils from 'react-addons-test-utils';
+import TestUtils from 'react-dom/test-utils';
 import {mount, shallow} from 'enzyme';
 import {assert} from 'chai';
 
@@ -147,7 +147,7 @@ describe('<RaisedButton />', () => {
     });
   });
 
-  describe('props: icon', () => {
+  describe('prop: icon', () => {
     it('should keep the style set on the icon', () => {
       const wrapper = shallowWithContext(
         <RaisedButton icon={<ActionAndroid style={{foo: 'bar'}} />} />

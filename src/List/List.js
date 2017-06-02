@@ -1,4 +1,5 @@
-import React, {Component, PropTypes, Children, isValidElement} from 'react';
+import React, {Component, Children, isValidElement} from 'react';
+import PropTypes from 'prop-types';
 import Subheader from '../Subheader';
 
 class List extends Component {
@@ -22,7 +23,7 @@ class List extends Component {
     const {
       children,
       style,
-      ...other,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -36,9 +37,7 @@ class List extends Component {
 
     const styles = {
       root: {
-        padding: 0,
-        paddingBottom: 8,
-        paddingTop: hasSubheader ? 0 : 8,
+        padding: `${hasSubheader ? 0 : 8}px 0px 8px 0px`,
       },
     };
 

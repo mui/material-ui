@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {isInner} from './timeUtils';
 
 function calcAngle(value, base) {
@@ -26,6 +27,7 @@ function getStyles(props, context, state) {
       transform: `rotateZ(${angle}deg)`,
     },
     mark: {
+      boxSizing: 'content-box',
       background: timePicker.selectTextColor,
       border: `4px solid ${timePicker.accentColor}`,
       display: hasSelected && 'none',
