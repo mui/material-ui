@@ -24,8 +24,6 @@ It's still a work in progress, but hopefully you can see where we're headed.
 
 **Recently Updated?** Please read the [changelog](https://github.com/callemall/material-ui/releases), this README and the documentation before posting an issue.
 
-
-
 ## Prerequisites
 
 We recommend that you get to know [React](http://facebook.github.io/react/)
@@ -34,7 +32,7 @@ so understanding how React fits into web development is important.
 
 (If you're not familiar with Node, or with the concept of Single Page Applications (SPAs),
 head over to the [documentation website](http://material-ui.com/#/get-started/required-knowledge)
-for a quick introduction before you read on.) 
+for a quick introduction before you read on.)
 
 ## Installation
 
