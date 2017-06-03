@@ -40,11 +40,11 @@ class GuttersGrid extends Component {
       <Grid container className={classes.root}>
         <Grid item xs={12}>
           <Grid container className={classes.demo} justify="center" gutter={Number(gutter)}>
-            {Array.from({ length: 3 }, (v, k) => k).map(index => (
+            {Array.from({ length: 3 }, (v, k) => k).map(index =>
               <Grid key={index} item>
                 <Paper className={classes.paper} />
-              </Grid>
-            ))}
+              </Grid>,
+            )}
           </Grid>
         </Grid>
         <Grid item xs={12}>
