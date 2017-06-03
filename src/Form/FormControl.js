@@ -62,9 +62,9 @@ class FormControl extends Component {
     });
   }
 
-  handleFocus = () => {
+  handleFocus = (event) => {
     if (this.props.onFocus) {
-      this.props.onFocus();
+      this.props.onFocus(event);
     }
     if (!this.state.focused) {
       this.setState({ focused: true });
