@@ -43,7 +43,7 @@ class CheckboxListSecondary extends Component {
     return (
       <div className={classes.root}>
         <List>
-          {Array.from({ length: 4 }, (v, k) => k).map(index => (
+          {Array.from({ length: 4 }, (v, k) => k).map(index =>
             <ListItem dense button key={index}>
               <Avatar alt="Remy Sharp" src={remyImage} />
               <ListItemText primary={`Line item ${index + 1}`} />
@@ -53,8 +53,8 @@ class CheckboxListSecondary extends Component {
                   checked={this.state.checked.indexOf(index) !== -1}
                 />
               </ListItemSecondaryAction>
-            </ListItem>
-          ))}
+            </ListItem>,
+          )}
         </List>
       </div>
     );

@@ -43,7 +43,7 @@ class CheckboxList extends Component {
     return (
       <div className={classes.root}>
         <List>
-          {Array.from({ length: 4 }, (v, k) => k).map(index => (
+          {Array.from({ length: 4 }, (v, k) => k).map(index =>
             <ListItem dense button key={index} onClick={event => this.handleToggle(event, index)}>
               <Checkbox
                 checked={this.state.checked.indexOf(index) !== -1}
@@ -56,8 +56,8 @@ class CheckboxList extends Component {
                   <CommentIcon />
                 </IconButton>
               </ListItemSecondaryAction>
-            </ListItem>
-          ))}
+            </ListItem>,
+          )}
         </List>
       </div>
     );

@@ -34,8 +34,8 @@ export const styleSheet = createStyleSheet('MuiLinearProgress', theme => ({
     marginTop: 0,
     height: '100%',
     width: '100%',
-    background: `radial-gradient(${theme.palette.primary[100]} 0%, ` +
-      `${theme.palette.primary[100]} 16%, transparent 42%)`,
+    background: `radial-gradient(${theme.palette.primary[100]} 0%, ${theme.palette
+      .primary[100]} 16%, transparent 42%)`,
     backgroundSize: '10px 10px',
     backgroundPosition: '0px -23px',
     animation: 'buffer 3s infinite linear',

@@ -52,13 +52,13 @@ class InteractiveGrid extends Component {
             direction={direction}
             justify={justify}
           >
-            {Array.from({ length: 3 }, (v, k) => k).map(index => (
+            {Array.from({ length: 3 }, (v, k) => k).map(index =>
               <Grid key={index} item>
                 <Paper className={classes.paper}>
                   {`Cell ${index + 1}`}
                 </Paper>
-              </Grid>
-            ))}
+              </Grid>,
+            )}
           </Grid>
         </Grid>
         <Grid item xs={12}>
