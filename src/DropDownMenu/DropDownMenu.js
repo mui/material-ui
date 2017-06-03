@@ -54,7 +54,7 @@ function getStyles(props, context) {
     root: {
       display: 'inline-block',
       fontSize: spacing.desktopDropDownMenuFontSize,
-      height: spacing.desktopSubheaderHeight,
+      height: spacing.desktopToolbarHeight,
       fontFamily: context.muiTheme.baseTheme.fontFamily,
       outline: 'none',
       position: 'relative',
@@ -65,7 +65,7 @@ function getStyles(props, context) {
     },
     underline: {
       borderTop: `solid 1px ${accentColor}`,
-      bottom: 1,
+      bottom: 9,
       left: 0,
       margin: `-1px ${spacing.desktopGutter}px`,
       right: 0,
