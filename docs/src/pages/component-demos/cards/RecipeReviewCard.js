@@ -59,10 +59,10 @@ class RecipeReviewCard extends Component {
             </Typography>
           </CardContent>
           <CardActions disableActionSpacing>
-            <IconButton>
+            <IconButton aria-label="Add to favorites">
               <FavoriteIcon />
             </IconButton>
-            <IconButton>
+            <IconButton aria-label="Share">
               <ShareIcon />
             </IconButton>
             <div className={classes.flexGrow} />
@@ -71,6 +71,8 @@ class RecipeReviewCard extends Component {
                 [classes.expandOpen]: this.state.expanded,
               })}
               onClick={this.handleExpandClick}
+              aria-expanded={this.state.expanded}
+              aria-label="Show more"
             >
               <ExpandMoreIcon />
             </IconButton>

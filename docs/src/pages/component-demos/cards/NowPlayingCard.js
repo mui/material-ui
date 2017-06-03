@@ -52,13 +52,13 @@ function NowPlayingCard(props) {
             </Typography>
           </CardContent>
           <div className={classes.controls}>
-            <IconButton>
+            <IconButton aria-label="Previous">
               <SkipPreviousIcon />
             </IconButton>
-            <IconButton>
+            <IconButton aria-label="Play/pause">
               <PlayArrowIcon className={classes.playIcon} />
             </IconButton>
-            <IconButton>
+            <IconButton aria-label="Next">
               <SkipNextIcon />
             </IconButton>
           </div>

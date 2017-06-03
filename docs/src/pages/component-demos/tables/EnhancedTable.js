@@ -120,10 +120,10 @@ let EnhancedTableToolbar = props => {
       <div className={classes.spacer} />
       <div className={classes.actions}>
         {numSelected > 0
-          ? <IconButton>
+          ? <IconButton aria-label="Delete">
               <DeleteIcon />
             </IconButton>
-          : <IconButton>
+          : <IconButton aria-label="Filter list">
               <FilterListIcon />
             </IconButton>}
       </div>

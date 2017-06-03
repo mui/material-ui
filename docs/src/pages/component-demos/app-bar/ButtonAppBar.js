@@ -30,7 +30,7 @@ function ButtonAppBar(props) {
     <div className={classes.root}>
       <AppBar className={classes.appBar}>
         <Toolbar>
-          <IconButton contrast>
+          <IconButton contrast aria-label="Menu">
             <MenuIcon />
           </IconButton>
           <Typography type="title" colorInherit className={classes.flex}>Title</Typography>

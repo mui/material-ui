@@ -146,7 +146,7 @@ class InteractiveList extends Component {
                       secondary={secondary ? 'Secondary text' : null}
                     />
                     <ListItemSecondaryAction>
-                      <IconButton>
+                      <IconButton aria-label="Delete">
                         <DeleteIcon />
                       </IconButton>
                     </ListItemSecondaryAction>
