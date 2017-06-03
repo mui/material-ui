@@ -96,6 +96,8 @@ export const MUI_SHEET_ORDER = [
   'MuiToolbar',
 
   'MuiBadge',
+
+  'MuiMobileStepper',
 ];
 
 export default function muiThemeProviderFactory(defaultTheme) {

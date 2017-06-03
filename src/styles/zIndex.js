@@ -12,4 +12,5 @@ export default {
   popover: 2100,
   snackbar: 2900,
   tooltip: 3000,
+  mobileStepper: 1100,
 };
