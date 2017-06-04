@@ -47,11 +47,7 @@ describe('<MobileStepper />', () => {
   });
   it('should render with the fixedTop class if position prop is set to top', () => {
     const wrapper = shallow(<MobileStepper position="top" {...defaultProps} />);
-    assert.strictEqual(
-      wrapper.hasClass(classes.fixedTop),
-      true,
-      'should have the fixedTop class',
-    );
+    assert.strictEqual(wrapper.hasClass(classes.fixedTop), true, 'should have the fixedTop class');
   });
   it('should render two buttons', () => {
     const wrapper = shallow(<MobileStepper {...defaultProps} />);
@@ -87,7 +83,11 @@ describe('<MobileStepper />', () => {
   });
   it('should set the nextButtonText', () => {
     const wrapper = shallow(<MobileStepper nextButtonText={'Future'} {...defaultProps} />);
-    assert.strictEqual(wrapper.childAt(2).childAt(0).text(), 'Future', 'should set the back button text');
+    assert.strictEqual(
+      wrapper.childAt(2).childAt(0).text(),
+      'Future',
+      'should set the back button text',
+    );
   });
   it('should disable the back button if prop disableBack is passed', () => {
     const wrapper = shallow(<MobileStepper disableBack {...defaultProps} />);
