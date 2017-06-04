@@ -11,9 +11,6 @@ const styleSheet = createStyleSheet('DotsMobileStepper', {
     marginTop: 30,
     width: '100%',
   },
-  mobileStepper: {
-    position: 'relative',
-  },
 });
 
 class DotsMobileStepper extends Component {

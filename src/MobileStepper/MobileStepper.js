@@ -18,12 +18,20 @@ export const styleSheet = createStyleSheet('MuiMobileStepper', theme => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing.unit,
+  },
+  fixedBottom: {
     position: 'fixed',
     bottom: 0,
     left: 0,
     zIndex: theme.zIndex.mobileStepper,
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing.unit,
+  },
+  fixedTop: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    zIndex: theme.zIndex.mobileStepper,
   },
   button: {},
   dots: {
@@ -56,6 +64,7 @@ function MobileStepper(props) {
     disableNext,
     dotClassName: dotClassNameProp,
     dotsClassName: dotsClassNameProp,
+    position,
     kind,
     nextButtonText,
     onBack,
@@ -65,7 +74,14 @@ function MobileStepper(props) {
     ...other
   } = props;
 
-  const className = classNames(classes.root, classNameProp);
+  const className = classNames(
+    {
+      [classes.fixedBottom]: position === 'bottom',
+      [classes.fixedTop]: position === 'top',
+    },
+    classes.root,
+    classNameProp,
+  );
   const dotsClassName = classNames(classes.dots, dotsClassNameProp);
   const buttonClassName = classNames(classes.button, buttonClassNameProp);
   const progressClassName = classNames(classes.progress, progressClassNameProp);
@@ -155,6 +171,10 @@ MobileStepper.propTypes = {
    * Passed into the onTouchTap prop of the Next button.
    */
   onNext: PropTypes.func.isRequired,
+  /**
+   * Set the text that appears for the next button.
+   */
+  position: PropTypes.oneOf(['bottom', 'top']),
   /**
    * @ignore
    */

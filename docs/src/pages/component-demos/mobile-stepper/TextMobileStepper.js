@@ -12,9 +12,6 @@ const styleSheet = createStyleSheet('TextMobileStepper', {
     marginTop: 30,
     width: '100%',
   },
-  mobileStepper: {
-    position: 'relative',
-  },
   textualDescription: {
     display: 'flex',
     flexDirection: 'row',

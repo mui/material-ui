@@ -11,9 +11,6 @@ const styleSheet = createStyleSheet('ProgressMobileStepper', {
     marginTop: 30,
     width: '100%',
   },
-  mobileStepper: {
-    position: 'relative',
-  },
 });
 
 class ProgressMobileStepper extends Component {

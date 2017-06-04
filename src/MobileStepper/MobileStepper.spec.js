@@ -30,19 +30,27 @@ describe('<MobileStepper />', () => {
   });
   it('should render with the root class', () => {
     const wrapper = shallow(<MobileStepper {...defaultProps} />);
-    assert.strictEqual(
-      wrapper.hasClass(classes.root),
-      true,
-      'should have the root class',
-    );
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
   });
   it('should render the custom className and the root class', () => {
     const wrapper = shallow(<MobileStepper className="test-class-name" {...defaultProps} />);
     assert.strictEqual(wrapper.is('.test-class-name'), true, 'should pass the test className');
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the mobileStepper class');
+  });
+  it('should render with the fixedBottom class if position prop is set to bottom', () => {
+    const wrapper = shallow(<MobileStepper position="bottom" {...defaultProps} />);
     assert.strictEqual(
-      wrapper.hasClass(classes.root),
+      wrapper.hasClass(classes.fixedBottom),
       true,
-      'should have the mobileStepper class',
+      'should have the fixedBottom class',
+    );
+  });
+  it('should render with the fixedTop class if position prop is set to top', () => {
+    const wrapper = shallow(<MobileStepper position="top" {...defaultProps} />);
+    assert.strictEqual(
+      wrapper.hasClass(classes.fixedTop),
+      true,
+      'should have the fixedTop class',
     );
   });
   it('should render two buttons', () => {

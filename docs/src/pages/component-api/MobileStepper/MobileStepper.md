@@ -13,6 +13,7 @@
 | nextButtonText | string | Next | Set the text that will appear within the next button. |
 | onBack | function |  | Supplied to the onClick attribute of the back button. |
 | onNext | function |  | Supplied to the onClick attribute of the next button. |
+| position | `bottom` or `top` |  | Set to fix to either the bottom or the top of the viewport. |
 | steps | number |  | The total amount of steps. |
 | buttonClassName | string |  | Specify an extra class to be put on back/next buttons |
 | className | string |  | Specify an extra class to be put on the root element |
