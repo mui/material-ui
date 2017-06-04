@@ -23,7 +23,7 @@ export const styleSheet = createStyleSheet('MuiMobileStepper', theme => ({
     left: 0,
     zIndex: theme.zIndex.mobileStepper,
     backgroundColor: theme.palette.background.paper,
-    padding: '6px',
+    padding: theme.spacing.unit,
   },
   button: {},
   dots: {
@@ -33,8 +33,8 @@ export const styleSheet = createStyleSheet('MuiMobileStepper', theme => ({
   dot: {
     backgroundColor: theme.palette.action.disabled,
     borderRadius: '50%',
-    width: '10px',
-    height: '10px',
+    width: theme.spacing.unit,
+    height: theme.spacing.unit,
     margin: '0 2px',
   },
   dotActive: {
