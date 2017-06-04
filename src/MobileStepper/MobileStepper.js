@@ -48,6 +48,7 @@ export const styleSheet = createStyleSheet('MuiMobileStepper', theme => ({
 function MobileStepper(props) {
   const {
     activeStep,
+    backButtonText,
     buttonClassName: buttonClassNameProp,
     classes,
     className: classNameProp,
@@ -56,6 +57,7 @@ function MobileStepper(props) {
     dotClassName: dotClassNameProp,
     dotsClassName: dotsClassNameProp,
     kind,
+    nextButtonText,
     onBack,
     onNext,
     progressClassName: progressClassNameProp,
@@ -71,7 +73,7 @@ function MobileStepper(props) {
   return (
     <Paper square elevation={0} className={className} {...other}>
       <Button className={buttonClassName} onClick={onBack} disabled={disableBack}>
-        <KeyboardArrowLeft /> Back
+        <KeyboardArrowLeft />{backButtonText}
       </Button>
       {kind === 'dots' &&
         <div className={dotsClassName}>
@@ -94,7 +96,7 @@ function MobileStepper(props) {
           />
         </div>}
       <Button className={buttonClassName} onClick={onNext} disabled={disableNext}>
-        Next <KeyboardArrowRight />
+        {nextButtonText}<KeyboardArrowRight />
       </Button>
     </Paper>
   );
@@ -105,6 +107,10 @@ MobileStepper.propTypes = {
    * Set the active step (zero based index). This will enable `Step` control helpers.
    */
   activeStep: PropTypes.number,
+  /**
+   * Set the text that appears for the back button.
+   */
+  backButtonText: PropTypes.string,
   /**
    * @ignore
    */
@@ -138,6 +144,10 @@ MobileStepper.propTypes = {
    */
   kind: PropTypes.oneOf(['text', 'dots', 'progress']),
   /**
+   * Set the text that appears for the next button.
+   */
+  nextButtonText: PropTypes.string,
+  /**
    * Passed into the onTouchTap prop of the Back button.
    */
   onBack: PropTypes.func.isRequired,
@@ -160,6 +170,8 @@ MobileStepper.defaultProps = {
   kind: 'dots',
   disableBack: false,
   disableNext: false,
+  backButtonText: 'Back',
+  nextButtonText: 'Next',
 };
 
 export default withStyles(styleSheet)(MobileStepper);

@@ -6,9 +6,11 @@
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | activeStep | number | `0` | Specifies the currently active step. |
+| backButtonText | string | Back | Set the text that will appear within the back button. |
 | disableBack | bool | `false` | Set to disable the back button. |
 | disableNext | bool | `false` | Set to disable the next button. |
 | kind | `text`, `dots` or `progress` | `dots` | Defines the kind of mobile stepper to use. |
+| nextButtonText | string | Next | Set the text that will appear within the next button. |
 | onBack | function |  | Supplied to the onClick attribute of the back button. |
 | onNext | function |  | Supplied to the onClick attribute of the next button. |
 | steps | number |  | The total amount of steps. |

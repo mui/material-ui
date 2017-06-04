@@ -49,23 +49,37 @@ describe('<MobileStepper />', () => {
     const wrapper = shallow(<MobileStepper {...defaultProps} />);
     assert.lengthOf(wrapper.find(Button), 2, 'should render two buttons');
   });
-  it('should render a <Button /> as the 1st child with a <KeyboardArrowLeft /> component', () => {
+  it('should render the back button', () => {
     const wrapper = shallow(<MobileStepper {...defaultProps} />);
     const backButton = wrapper.childAt(0);
+    assert.strictEqual(backButton.childAt(1).text(), 'Back', 'should set the back button text');
     assert.lengthOf(
       backButton.find(KeyboardArrowLeft),
       1,
       'should render a single <KeyboardArrowLeft /> component',
     );
   });
-  it('should render a <Button /> as the 3rd child with a <KeyboardArrowRight /> component', () => {
+  it('should render next button', () => {
     const wrapper = shallow(<MobileStepper {...defaultProps} />);
     const nextButton = wrapper.childAt(2);
+    assert.strictEqual(nextButton.childAt(0).text(), 'Next', 'should set the next button text');
     assert.lengthOf(
       nextButton.find(KeyboardArrowRight),
       1,
       'should render a single <KeyboardArrowRight /> component',
     );
+  });
+  it('should set the backButtonText', () => {
+    const wrapper = shallow(<MobileStepper backButtonText={'Past'} {...defaultProps} />);
+    assert.strictEqual(
+      wrapper.childAt(0).childAt(1).text(),
+      'Past',
+      'should set the back button text',
+    );
+  });
+  it('should set the nextButtonText', () => {
+    const wrapper = shallow(<MobileStepper nextButtonText={'Future'} {...defaultProps} />);
+    assert.strictEqual(wrapper.childAt(2).childAt(0).text(), 'Future', 'should set the back button text');
   });
   it('should disable the back button if prop disableBack is passed', () => {
     const wrapper = shallow(<MobileStepper disableBack {...defaultProps} />);
