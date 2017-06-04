@@ -28,19 +28,19 @@ describe('<MobileStepper />', () => {
     assert.strictEqual(wrapper.name(), 'withStyles(Paper)');
     assert.strictEqual(wrapper.props().elevation, 0, 'should have no elevation');
   });
-  it('should render with the mobileStepper class', () => {
+  it('should render with the root class', () => {
     const wrapper = shallow(<MobileStepper {...defaultProps} />);
     assert.strictEqual(
-      wrapper.hasClass(classes.mobileStepper),
+      wrapper.hasClass(classes.root),
       true,
-      'should have the mobileStepper class',
+      'should have the root class',
     );
   });
-  it('should render the custom className and the mobileStepper class', () => {
+  it('should render the custom className and the root class', () => {
     const wrapper = shallow(<MobileStepper className="test-class-name" {...defaultProps} />);
     assert.strictEqual(wrapper.is('.test-class-name'), true, 'should pass the test className');
     assert.strictEqual(
-      wrapper.hasClass(classes.mobileStepper),
+      wrapper.hasClass(classes.root),
       true,
       'should have the mobileStepper class',
     );
