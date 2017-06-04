@@ -5,48 +5,37 @@ import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import MobileStepper from 'material-ui/MobileStepper';
 import Paper from 'material-ui/Paper';
+import Typography from 'material-ui/Typography';
 
-const styleSheet = createStyleSheet('TextMobileStepper', {
+const styleSheet = createStyleSheet('TextMobileStepper', theme => ({
   root: {
-    position: 'relative',
-    marginTop: 30,
-    width: '100%',
+    maxWidth: 400,
+    flexGrow: 1,
   },
-  textualDescription: {
+  header: {
     display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    width: '100%',
-    position: 'relative',
-    height: '50px',
-    left: 0,
-    fontSize: '14px',
-    paddingLeft: '28px',
-    marginBottom: '20px',
+    height: 50,
+    paddingLeft: theme.spacing.unit * 5,
+    marginBottom: 20,
+    background: theme.palette.background.default,
   },
-});
+}));
 
 class TextMobileStepper extends Component {
-  static propTypes = {
-    classes: PropTypes.object.isRequired,
-  };
-
   state = {
     activeStep: 0,
   };
 
-  handleOnNext = () => {
-    const activeStep = this.state.activeStep === 5 ? 5 : this.state.activeStep + 1;
+  handleNext = () => {
     this.setState({
-      activeStep,
+      activeStep: this.state.activeStep + 1,
     });
   };
 
-  handleOnBack = () => {
-    const activeStep = this.state.activeStep === 0 ? 0 : this.state.activeStep - 1;
+  handleBack = () => {
     this.setState({
-      activeStep,
+      activeStep: this.state.activeStep - 1,
     });
   };
 
@@ -54,16 +43,19 @@ class TextMobileStepper extends Component {
     const classes = this.props.classes;
     return (
       <div className={classes.root}>
-        <Paper square elevation={0} className={classes.textualDescription}>
-          Step {this.state.activeStep + 1} of 6
+        <Paper square elevation={0} className={classes.header}>
+          <Typography>
+            Step {this.state.activeStep + 1} of 6
+          </Typography>
         </Paper>
         <MobileStepper
-          kind="text"
+          type="text"
           steps={6}
+          position="static"
           activeStep={this.state.activeStep}
           className={classes.mobileStepper}
-          onBack={this.handleOnBack}
-          onNext={this.handleOnNext}
+          onBack={this.handleBack}
+          onNext={this.handleNext}
           disableBack={this.state.activeStep === 0}
           disableNext={this.state.activeStep === 5}
         />
@@ -71,5 +63,9 @@ class TextMobileStepper extends Component {
     );
   }
 }
+
+TextMobileStepper.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styleSheet)(TextMobileStepper);

@@ -17,22 +17,24 @@ export const styleSheet = createStyleSheet('MuiMobileStepper', theme => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '100%',
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing.unit,
+    background: theme.palette.background.default,
+    height: 50,
   },
-  fixedBottom: {
+  'position-bottom': {
     position: 'fixed',
     bottom: 0,
     left: 0,
+    right: 0,
     zIndex: theme.zIndex.mobileStepper,
   },
-  fixedTop: {
+  'position-top': {
     position: 'fixed',
     top: 0,
     left: 0,
+    right: 0,
     zIndex: theme.zIndex.mobileStepper,
   },
+  'position-static': {},
   button: {},
   dots: {
     display: 'flex',
@@ -57,61 +59,44 @@ function MobileStepper(props) {
   const {
     activeStep,
     backButtonText,
-    buttonClassName: buttonClassNameProp,
     classes,
     className: classNameProp,
     disableBack,
     disableNext,
-    dotClassName: dotClassNameProp,
-    dotsClassName: dotsClassNameProp,
     position,
-    kind,
+    type,
     nextButtonText,
     onBack,
     onNext,
-    progressClassName: progressClassNameProp,
     steps,
     ...other
   } = props;
 
-  const className = classNames(
-    {
-      [classes.fixedBottom]: position === 'bottom',
-      [classes.fixedTop]: position === 'top',
-    },
-    classes.root,
-    classNameProp,
-  );
-  const dotsClassName = classNames(classes.dots, dotsClassNameProp);
-  const buttonClassName = classNames(classes.button, buttonClassNameProp);
-  const progressClassName = classNames(classes.progress, progressClassNameProp);
+  const className = classNames(classes.root, classes[`position-${position}`], classNameProp);
 
   return (
     <Paper square elevation={0} className={className} {...other}>
-      <Button className={buttonClassName} onClick={onBack} disabled={disableBack}>
+      <Button className={classes.button} onClick={onBack} disabled={disableBack}>
         <KeyboardArrowLeft />{backButtonText}
       </Button>
-      {kind === 'dots' &&
-        <div className={dotsClassName}>
+      {type === 'dots' &&
+        <div className={classes.dots}>
           {Array.from(Array(steps)).map((_, step) => {
             const dotClassName = classNames(
               {
                 [classes.dotActive]: step === activeStep,
               },
               classes.dot,
-              dotClassNameProp,
             );
-            return <div key={step} className={dotClassName} />; // eslint-disable-line react/no-array-index-key,max-len
+            // eslint-disable-next-line react/no-array-index-key
+            return <div key={step} className={dotClassName} />;
           })}
         </div>}
-      {kind === 'progress' &&
-        <div className={progressClassName}>
-          <LinearProgress
-            mode="determinate"
-            value={activeStep === 0 ? 0 : Math.ceil(activeStep / (steps - 1) * 100)}
-          />
+      {type === 'progress' &&
+        <div className={classes.progress}>
+          <LinearProgress mode="determinate" value={Math.ceil(activeStep / (steps - 1) * 100)} />
         </div>}
-      <Button className={buttonClassName} onClick={onNext} disabled={disableNext}>
+      <Button className={classes.button} onClick={onNext} disabled={disableNext}>
         {nextButtonText}<KeyboardArrowRight />
       </Button>
     </Paper>
@@ -126,11 +111,7 @@ MobileStepper.propTypes = {
   /**
    * Set the text that appears for the back button.
    */
-  backButtonText: PropTypes.string,
-  /**
-   * @ignore
-   */
-  buttonClassName: PropTypes.string,
+  backButtonText: PropTypes.node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -148,21 +129,9 @@ MobileStepper.propTypes = {
    */
   disableNext: PropTypes.bool,
   /**
-   * @ignore
-   */
-  dotClassName: PropTypes.string,
-  /**
-   * @ignore
-   */
-  dotsClassName: PropTypes.string,
-  /**
-   * The kind of mobile stepper to use.
-   */
-  kind: PropTypes.oneOf(['text', 'dots', 'progress']),
-  /**
    * Set the text that appears for the next button.
    */
-  nextButtonText: PropTypes.string,
+  nextButtonText: PropTypes.node,
   /**
    * Passed into the onTouchTap prop of the Back button.
    */
@@ -174,24 +143,25 @@ MobileStepper.propTypes = {
   /**
    * Set the text that appears for the next button.
    */
-  position: PropTypes.oneOf(['bottom', 'top']),
-  /**
-   * @ignore
-   */
-  progressClassName: PropTypes.string,
+  position: PropTypes.oneOf(['bottom', 'top', 'static']),
   /**
    * The total steps.
    */
   steps: PropTypes.number.isRequired,
+  /**
+   * The type of mobile stepper to use.
+   */
+  type: PropTypes.oneOf(['text', 'dots', 'progress']),
 };
 
 MobileStepper.defaultProps = {
   activeStep: 0,
-  kind: 'dots',
+  backButtonText: 'Back',
   disableBack: false,
   disableNext: false,
-  backButtonText: 'Back',
   nextButtonText: 'Next',
+  position: 'bottom',
+  type: 'dots',
 };
 
 export default withStyles(styleSheet)(MobileStepper);
