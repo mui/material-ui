@@ -78,9 +78,9 @@ function MobileStepper(props) {
           {Array.from(Array(steps)).map((_, step) => {
             const dotClassName = classNames(
               {
-                [classes.dot]: true,
                 [classes.dotActive]: step === activeStep,
               },
+              classes.dot,
               dotClassNameProp,
             );
             return <div key={step} className={dotClassName} />; // eslint-disable-line react/no-array-index-key,max-len
