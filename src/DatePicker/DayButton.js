@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Transition from '../styles/transitions';
-import {isEqualDate} from './dateUtils';
+import {isEqualDate, dateUTC} from './dateUtils';
 import EnhancedButton from '../internal/EnhancedButton';
 
 function getStyles(props, context, state) {
@@ -129,7 +129,8 @@ class DayButton extends Component {
         <span style={prepareStyles(styles.label)}>
           {new DateTimeFormat(locale, {
             day: 'numeric',
-          }).format(date)}
+            timeZone: 'UTC',
+          }).format(dateUTC(date))}
         </span>
       </EnhancedButton>
     ) : (
