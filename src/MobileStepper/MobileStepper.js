@@ -12,7 +12,7 @@ import KeyboardArrowRight from '../svg-icons/keyboard-arrow-right';
 import { LinearProgress } from '../Progress';
 
 export const styleSheet = createStyleSheet('MuiMobileStepper', theme => ({
-  mobileStepper: {
+  root: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -63,7 +63,7 @@ function MobileStepper(props) {
     ...other
   } = props;
 
-  const className = classNames(classes.mobileStepper, classNameProp);
+  const className = classNames(classes.root, classNameProp);
   const dotsClassName = classNames(classes.dots, dotsClassNameProp);
   const buttonClassName = classNames(classes.button, buttonClassNameProp);
   const progressClassName = classNames(classes.progress, progressClassNameProp);
