@@ -20,7 +20,8 @@ import tabsCode from '!raw!material-ui/Tabs/Tabs';
 import tabCode from '!raw!material-ui/Tabs/Tab';
 
 const descriptions = {
-  simple: 'A simple example of Tabs. The third tab demonstrates the `onActive` property of `Tab`.',
+  simple: 'A simple example of Tabs. The third tab demonstrates the `onActive` property of `Tab`. ' +
+    'Fourth tab is disabled using `disabled` property.',
   controlled: 'An example of controlled tabs. The selected tab is handled through state and callbacks in the parent ' +
   '(example) component.',
   swipeable: 'This example integrates the [react-swipeable-views]' +
