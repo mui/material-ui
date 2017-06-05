@@ -19,14 +19,19 @@ The first way to override the style of the components is to use the **class name
 Every component provides a `className` property.
 Those properties are always applied to the root element.
 
-The CSS inject by Material-UI to style the components has the lowest specificity possible (the `link` are injected at the top).
+The CSS inject by Material-UI to style the components has the lowest specificity possible (the `<link />` are injected at the top of the `<head />`). If you are experiencing any CSS injection order issue, have a look at [the mechanism JSS provides](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-dom-insertion-point) to handle it.
 
 {{demo='pages/customization/OverridesClassNames.js'}}
 
 ### Overriding with classes
 
 When the `className` property isn't enough and you need to access deeper elements, you can take advantage of the `classes` property
-to customize all the CSS inject by Material-UI for the given component. For instance:
+to customize all the CSS inject by Material-UI for the given component.
+The list of these classes is documented under the **Component API** section.
+For instance, you can have a look at the [Button](/component-api/button#classes).
+Alternatively, you can always have a look at the [implementation](https://github.com/callemall/material-ui/blob/next/src/Button/Button.js).
+
+Let's see an example:
 
 {{demo='pages/customization/OverridesClasses.js'}}
 
