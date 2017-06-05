@@ -8,14 +8,27 @@ import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
 
 export const styleSheet = createStyleSheet('MuiAppBar', theme => ({
-  appBar: {
+  root: {
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
+    zIndex: theme.zIndex.appBar,
+  },
+  'position-fixed': {
     position: 'fixed',
     top: 0,
-    left: 0,
-    zIndex: theme.zIndex.appBar,
+    left: 'auto',
+    right: 0,
+  },
+  'position-absolute': {
+    position: 'absolute',
+    top: 0,
+    left: 'auto',
+    right: 0,
+  },
+  'position-static': {
+    position: 'static',
+    flexShrink: 0,
   },
   primary: {
     backgroundColor: theme.palette.primary[500],
@@ -28,11 +41,19 @@ export const styleSheet = createStyleSheet('MuiAppBar', theme => ({
 }));
 
 function AppBar(props) {
-  const { accent, children, classes, className: classNameProp, ...other } = props;
+  const {
+    accent,
+    children,
+    classes,
+    className: classNameProp,
+    position, // eslint-disable-line no-unsed-vars
+    ...other
+  } = props;
 
   const className = classNames(
+    classes.root,
+    classes[`position-${position}`],
     {
-      [classes.appBar]: true,
       [classes.primary]: !accent,
       [classes.accent]: accent,
     },
@@ -63,10 +84,15 @@ AppBar.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The positioning type.
+   */
+  position: PropTypes.oneOf(['static', 'fixed', 'absolute']),
 };
 
 AppBar.defaultProps = {
   accent: false,
+  position: 'fixed',
 };
 
 export default withStyles(styleSheet)(AppBar);

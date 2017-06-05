@@ -65,8 +65,6 @@ const styleSheet = createStyleSheet('AppFrame', theme => ({
     flex: '0 1 auto',
   },
   appBar: {
-    left: 'auto',
-    right: 0,
     transition: theme.transitions.create('width'),
   },
   appBarHome: {
