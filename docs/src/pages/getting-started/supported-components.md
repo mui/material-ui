@@ -96,6 +96,7 @@ to discuss the approach before submitting a PR.
 - [Steppers](https://www.google.com/design/spec/components/steppers.html)
   - [Horizontal](https://www.google.com/design/spec/components/steppers.html#steppers-types-of-steppers)
   - [Vertical](https://www.google.com/design/spec/components/steppers.html#steppers-types-of-steppers)
+  - **[Mobile steps](https://material.io/guidelines/components/steppers.html#steppers-types-of-steps) ✓**
 - **[Tabs](https://www.google.com/design/spec/components/tabs.html) ✓**
   - Usage
     - **[Mobile (Full width)](https://www.google.com/design/spec/components/tabs.html#tabs-usage) ✓**

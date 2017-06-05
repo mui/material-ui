@@ -1,0 +1,40 @@
+# MobileStepper
+
+
+
+## Props
+| Name | Type | Default | Description |
+|:-----|:-----|:--------|:------------|
+| activeStep | number | 0 | Set the active step (zero based index). This will enable `Step` control helpers. |
+| backButtonText | node | 'Back' | Set the text that appears for the back button. |
+| classes | object |  | Useful to extend the style applied to components. |
+| disableBack | bool | false | Set to true to disable the back button. |
+| disableNext | bool | false | Set to true to disable the next button. |
+| nextButtonText | node | 'Next' | Set the text that appears for the next button. |
+| <span style="color: #31a148">onBack *</span> | function |  | Passed into the onTouchTap prop of the Back button. |
+| <span style="color: #31a148">onNext *</span> | function |  | Passed into the onTouchTap prop of the Next button. |
+| position | enum:&nbsp;'bottom'<br>&nbsp;'top'<br>&nbsp;'static'<br> | 'bottom' | Set the text that appears for the next button. |
+| <span style="color: #31a148">steps *</span> | number |  | The total steps. |
+| type | enum:&nbsp;'text'<br>&nbsp;'dots'<br>&nbsp;'progress'<br> | 'dots' | The type of mobile stepper to use. |
+
+Any other properties supplied will be spread to the root element.
+## Classes
+
+You can overrides all the class names injected by Material-UI thanks to the `classes` property.
+This property accepts the following keys:
+- `root`
+- `position-bottom`
+- `positon-top`
+- `position-static`
+- `button`
+- `dots`
+- `dot`
+- `dotActive`
+- `progress`
+
+Have a look at [overriding with class names](/customization/overrides#overriding-with-class-names)
+section for more detail.
+
+If using the `overrides` key of the theme as documented
+[here](/customization/themes#customizing-all-instances-of-a-component-type),
+you need to use the following style sheet name: `MuiMobileStepper`.
