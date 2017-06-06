@@ -38,11 +38,20 @@ function getStyles(props, context) {
       width: '100%',
       height: '100%',
     },
-    label: {
+    horizontallyAllignedLabel: {
       float: 'left',
       position: 'relative',
       display: 'block',
       width: 'calc(100% - 60px)',
+      lineHeight: '24px',
+      color: baseTheme.palette.textColor,
+      fontFamily: baseTheme.fontFamily,
+    },
+    verticallyAllignedLabel: {
+      textAlign: 'center',
+      position: 'relative',
+      display: 'block',
+      width: '100%',
       lineHeight: '24px',
       color: baseTheme.palette.textColor,
       fontFamily: baseTheme.fontFamily,
@@ -81,7 +90,7 @@ class EnhancedSwitch extends Component {
     inputStyle: PropTypes.object,
     inputType: PropTypes.string.isRequired,
     label: PropTypes.node,
-    labelPosition: PropTypes.oneOf(['left', 'right']),
+    labelPosition: PropTypes.oneOf(['left', 'right', 'above', 'below']),
     labelStyle: PropTypes.object,
     name: PropTypes.string,
     onBlur: PropTypes.func,
@@ -292,8 +301,11 @@ class EnhancedSwitch extends Component {
       wrapStyles.marginRight /= 2;
     }
 
+    const baseLabelStyle =
+        labelPosition === 'above' || labelPosition === 'below' ? styles.verticallyAllignedLabel :
+        styles.horizontallyAllignedLabel;
     const labelElement = label && (
-      <label style={prepareStyles(Object.assign(styles.label, labelStyle))}>
+      <label style={prepareStyles(Object.assign(baseLabelStyle, labelStyle))}>
         {label}
       </label>
     );
@@ -361,15 +373,16 @@ class EnhancedSwitch extends Component {
       </div>
     );
 
-    const elementsInOrder = labelPosition === 'right' ? (
-      <div style={styles.controls}>
+    const controlLayoutStyle =
+        labelPosition === 'right' ? {flexDirection: 'row'} :
+        labelPosition === 'left' ? {flexDirection: 'row-reverse'} :
+        labelPosition === 'above' ? {flexDirection: 'column-reverse', justifyContent: 'center', alignItems: 'center'} :
+        labelPosition === 'below' ? {flexDirection: 'column', justifyContent: 'center', alignItems: 'center'} :
+        {flexDirection: 'row'};
+    const elementsInOrder = (
+      <div style={prepareStyles(Object.assign({}, styles.controls, controlLayoutStyle))}>
         {switchOrThumbElement}
         {labelElement}
-      </div>
-    ) : (
-      <div style={styles.controls}>
-        {labelElement}
-        {switchOrThumbElement}
       </div>
     );
 
