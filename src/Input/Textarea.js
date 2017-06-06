@@ -150,13 +150,13 @@ class Textarea extends Component {
       classes,
       className,
       defaultValue,
-      disabled, // eslint-disable-line no-unused-vars
-      hintText, // eslint-disable-line no-unused-vars
-      onChange, // eslint-disable-line no-unused-vars
-      onHeightChange, // eslint-disable-line no-unused-vars
+      disabled,
+      hintText,
+      onChange,
+      onHeightChange,
       rows,
-      rowsMax, // eslint-disable-line no-unused-vars
-      textareaRef, // eslint-disable-line no-unused-vars
+      rowsMax,
+      textareaRef,
       value,
       ...other
     } = this.props;

@@ -100,11 +100,11 @@ class Collapse extends Component {
       children,
       classes,
       containerClassName,
-      onEnter, // eslint-disable-line no-unused-vars
-      onEntering, // eslint-disable-line no-unused-vars
-      onExit, // eslint-disable-line no-unused-vars
-      onExiting, // eslint-disable-line no-unused-vars
-      transitionDuration, // eslint-disable-line no-unused-vars
+      onEnter,
+      onEntering,
+      onExit,
+      onExiting,
+      transitionDuration,
       ...other
     } = this.props;
 

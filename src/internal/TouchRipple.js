@@ -155,11 +155,7 @@ class TouchRipple extends Component {
   };
 
   render() {
-    const {
-      center, // eslint-disable-line no-unused-vars
-      className,
-      ...other
-    } = this.props;
+    const { center, className, ...other } = this.props;
     const classes = this.context.styleManager.render(styleSheet);
 
     return (

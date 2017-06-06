@@ -75,7 +75,7 @@ class Menu extends Component {
       className,
       open,
       MenuListProps,
-      onEnter, // eslint-disable-line no-unused-vars
+      onEnter,
       onEntering,
       onEntered,
       onExit,

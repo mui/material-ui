@@ -128,13 +128,7 @@ class MenuList extends Component {
   }
 
   render() {
-    const {
-      children,
-      className,
-      onBlur, // eslint-disable-line no-unused-vars
-      onKeyDown, // eslint-disable-line no-unused-vars
-      ...other
-    } = this.props;
+    const { children, className, onBlur, onKeyDown, ...other } = this.props;
 
     return (
       <List

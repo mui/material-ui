@@ -79,12 +79,12 @@ class Slide extends Component {
   render() {
     const {
       children,
-      offset, // eslint-disable-line no-unused-vars
-      onEnter, // eslint-disable-line no-unused-vars
-      onEntering, // eslint-disable-line no-unused-vars
-      onExiting, // eslint-disable-line no-unused-vars
-      enterTransitionDuration, // eslint-disable-line no-unused-vars
-      leaveTransitionDuration, // eslint-disable-line no-unused-vars
+      offset,
+      onEnter,
+      onEntering,
+      onExiting,
+      enterTransitionDuration,
+      leaveTransitionDuration,
       ...other
     } = this.props;
 

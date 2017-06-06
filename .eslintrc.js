@@ -42,7 +42,6 @@ module.exports = {
     'no-prototype-builtins': 'off', // airbnb use error
     'object-curly-spacing': 'off', // use babel plugin rule
     'no-restricted-properties': 'off', // To remove once react-docgen support ** operator.
-    'no-unused-vars': ['error', { vars: 'all', args: 'after-used', ignoreRestSiblings: false }], // airbnb use ignoreRestSiblings
 
     'babel/object-curly-spacing': ['error', 'always'],
 

@@ -20,16 +20,16 @@ function HiddenJs(props: Props) {
   const {
     children,
     only,
-    xsUp, // eslint-disable-line no-unused-vars
-    smUp, // eslint-disable-line no-unused-vars
-    mdUp, // eslint-disable-line no-unused-vars
-    lgUp, // eslint-disable-line no-unused-vars
-    xlUp, // eslint-disable-line no-unused-vars
-    xsDown, // eslint-disable-line no-unused-vars
-    smDown, // eslint-disable-line no-unused-vars
-    mdDown, // eslint-disable-line no-unused-vars
-    lgDown, // eslint-disable-line no-unused-vars
-    xlDown, // eslint-disable-line no-unused-vars
+    xsUp,
+    smUp,
+    mdUp,
+    lgUp,
+    xlUp,
+    xsDown,
+    smDown,
+    mdDown,
+    lgDown,
+    xlDown,
     width,
     ...other
   } = props;

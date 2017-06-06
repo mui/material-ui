@@ -125,10 +125,10 @@ class Tab extends Component {
       className: classNameProp,
       fullWidth,
       icon: iconProp,
-      index, // eslint-disable-line no-unused-vars
+      index,
       label: labelProp,
       labelClassName,
-      onChange, // eslint-disable-line no-unused-vars
+      onChange,
       selected,
       style: styleProp,
       textColor,

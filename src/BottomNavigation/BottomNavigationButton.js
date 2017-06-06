@@ -69,8 +69,8 @@ class BottomNavigationButton extends Component {
       classes,
       className: classNameProp,
       showLabel: showLabelProp,
-      onChange, // eslint-disable-line no-unused-vars
-      index, // eslint-disable-line no-unused-vars
+      onChange,
+      index,
       ...other
     } = this.props;
 
