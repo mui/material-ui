@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {dateTimeFormat, formatIso, isEqualDate} from './dateUtils';
+import {dateTimeFormat, formatIso, isEqualDate, dateUTC} from './dateUtils';
 import DatePickerDialog from './DatePickerDialog';
 import TextField from '../TextField';
 
@@ -262,7 +262,8 @@ class DatePicker extends Component {
         day: 'numeric',
         month: 'numeric',
         year: 'numeric',
-      }).format(date);
+        timeZone: 'UTC',
+      }).format(dateUTC(date));
     } else {
       return formatIso(date);
     }
@@ -308,7 +309,7 @@ class DatePicker extends Component {
           onTouchTap={this.handleTouchTap}
           ref="input"
           style={textFieldStyle}
-          value={this.state.date ? formatDate(this.state.date) : ''}
+          value={this.state.date ? formatDate(dateUTC(this.state.date)) : ''}
         />
         <DatePickerDialog
           DateTimeFormat={DateTimeFormat}

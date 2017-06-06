@@ -57,6 +57,7 @@ const DatePickerExampleInternational = () => (
         day: 'numeric',
         month: 'long',
         year: 'numeric',
+        timeZone: 'UTC',
       }).format}
     />
   </div>
