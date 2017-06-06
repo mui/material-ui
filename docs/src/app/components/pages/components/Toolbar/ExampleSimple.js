@@ -35,7 +35,7 @@ export default class ToolbarExamplesSimple extends React.Component {
         </ToolbarGroup>
         <ToolbarGroup>
           <ToolbarTitle text="Options" />
-          <FontIcon className="muidocs-icon-custom-sort" />
+          <FontIcon className="muidocs-icon-custom-sort" color="green" />
           <ToolbarSeparator />
           <RaisedButton label="Create Broadcast" primary={true} />
           <IconMenu
