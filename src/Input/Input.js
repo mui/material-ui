@@ -15,7 +15,7 @@ export function isDirty(obj, SSR = false) {
 }
 
 export const styleSheet = createStyleSheet('MuiInput', theme => ({
-  wrapper: {
+  root: {
     // Mimics the default input display property used by browsers for an input.
     display: 'inline-block',
     position: 'relative',
@@ -288,8 +288,8 @@ class Input extends Component {
       error = muiFormControl.error;
     }
 
-    const wrapperClassName = classNames(
-      classes.wrapper,
+    const className = classNames(
+      classes.root,
       {
         [classes.disabled]: disabled,
         [classes.error]: error,
@@ -344,7 +344,7 @@ class Input extends Component {
     }
 
     return (
-      <div className={wrapperClassName} {...other}>
+      <div className={className} {...other}>
         <InputComponent
           autoFocus={autoFocus}
           className={inputClassName}

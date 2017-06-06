@@ -40,6 +40,9 @@ export const styleSheet = createStyleSheet('MuiTabs', {
   },
 });
 
+/**
+ * Notice that this Component is incompatible with server side rendering.
+ */
 class Tabs extends Component {
   static defaultProps = {
     centered: false,

@@ -11,37 +11,38 @@
 | square | bool | false | If `true`, rounded corners are disabled. |
 
 Any other properties supplied will be spread to the root element.
+
 ## Classes
 
 You can overrides all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `paper`
 - `rounded`
-- `dp0`
-- `dp1`
-- `dp2`
-- `dp3`
-- `dp4`
-- `dp5`
-- `dp6`
-- `dp7`
-- `dp8`
-- `dp9`
-- `dp10`
-- `dp11`
-- `dp12`
-- `dp13`
-- `dp14`
-- `dp15`
-- `dp16`
-- `dp17`
-- `dp18`
-- `dp19`
-- `dp20`
-- `dp21`
-- `dp22`
-- `dp23`
-- `dp24`
+- `dp-0`
+- `dp-1`
+- `dp-2`
+- `dp-3`
+- `dp-4`
+- `dp-5`
+- `dp-6`
+- `dp-7`
+- `dp-8`
+- `dp-9`
+- `dp-10`
+- `dp-11`
+- `dp-12`
+- `dp-13`
+- `dp-14`
+- `dp-15`
+- `dp-16`
+- `dp-17`
+- `dp-18`
+- `dp-19`
+- `dp-20`
+- `dp-21`
+- `dp-22`
+- `dp-23`
+- `dp-24`
 
 Have a look at [overriding with class names](/customization/overrides#overriding-with-class-names)
 section for more detail.

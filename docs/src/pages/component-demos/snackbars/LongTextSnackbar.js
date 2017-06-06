@@ -1,0 +1,54 @@
+// @flow weak
+
+import React from 'react';
+import PropTypes from 'prop-types';
+import Button from 'material-ui/Button';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { SnackbarContent } from 'material-ui/Snackbar';
+
+const action = <Button accent compact>lorem ipsum dolorem</Button>;
+
+const styleSheet = createStyleSheet('LongTextSnackbar', theme => ({
+  root: {
+    marginTop: theme.spacing.unit * 3,
+  },
+  snackbar: {
+    margin: theme.spacing.unit,
+  },
+}));
+
+function LongTextSnackbar(props) {
+  const { classes } = props;
+
+  return (
+    <div className={classes.root}>
+      <SnackbarContent className={classes.snackbar} message="I love snacks." action={action} />
+      <SnackbarContent
+        className={classes.snackbar}
+        message={
+          'I love candy. I love cookies. I love cupcakes. \
+          I love cheesecake. I love chocolate.'
+        }
+      />
+      <SnackbarContent
+        className={classes.snackbar}
+        message="I love candy. I love cookies. I love cupcakes."
+        action={action}
+      />
+      <SnackbarContent
+        className={classes.snackbar}
+        message={
+          'I love candy. I love cookies. I love cupcakes. \
+          I love cheesecake. I love chocolate.'
+        }
+        action={action}
+      />
+    </div>
+  );
+}
+
+LongTextSnackbar.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(LongTextSnackbar);

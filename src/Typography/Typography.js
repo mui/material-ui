@@ -6,7 +6,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 
 export const styleSheet = createStyleSheet('MuiTypography', theme => ({
-  text: {
+  root: {
     display: 'block',
     margin: 0,
   },
@@ -139,7 +139,7 @@ function Typography(props: Props) {
   const type = typeProp || Typography.defaultProps.type;
 
   const className = classNames(
-    classes.text,
+    classes.root,
     classes[type],
     {
       [classes.colorInherit]: colorInherit,

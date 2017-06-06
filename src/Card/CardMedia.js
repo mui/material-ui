@@ -7,17 +7,15 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 
 export const styleSheet = createStyleSheet('MuiCardMedia', {
-  cardMedia: {
+  root: {
     position: 'relative',
   },
 });
 
 function CardMedia(props) {
-  const { classes, className: classNameProp, ...other } = props;
+  const { classes, className, ...other } = props;
 
-  const className = classNames(classes.cardMedia, classNameProp);
-
-  return <div className={className} {...other} />;
+  return <div className={classNames(classes.root, className)} {...other} />;
 }
 
 CardMedia.propTypes = {

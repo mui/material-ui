@@ -13,4 +13,3 @@ There are no examples for uncontrolled mode because an uncontrolled `Drawer` can
 An undocked controlled `Drawer` with custom width. The Drawer can be cancelled by clicking the overlay or pressing the Esc key. It closes when an item is selected, handled by controlling the `open` prop.
 
 {{demo='pages/component-demos/drawers/UndockedDrawer.js'}}
-

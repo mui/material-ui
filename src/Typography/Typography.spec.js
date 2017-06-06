@@ -24,10 +24,10 @@ describe('<Typography />', () => {
     assert.strictEqual(wrapper.prop('data-test'), 'hello', 'should be spread on the ButtonBase');
   });
 
-  it('should render body1 text by default', () => {
+  it('should render body1 root by default', () => {
     const wrapper = shallow(<Typography>Hello</Typography>);
     assert.strictEqual(wrapper.hasClass(classes.body1), true, 'should be body1 text');
-    assert.strictEqual(wrapper.hasClass(classes.text), true, 'should be text');
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should be root');
   });
 
   it('should merge user classes', () => {

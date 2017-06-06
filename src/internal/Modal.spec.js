@@ -43,7 +43,7 @@ describe('<Modal />', () => {
     it('should render the modal div inside the portal', () => {
       const modal = wrapper.childAt(0);
       assert.strictEqual(modal.is('div'), true, 'should be a div');
-      assert.strictEqual(modal.hasClass(classes.modal), true, 'should have the modal class');
+      assert.strictEqual(modal.hasClass(classes.root), true, 'should have the root class');
     });
 
     describe('handlers', () => {

@@ -14,13 +14,9 @@ describe('<CardContent />', () => {
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
-  it('should render a div with the cardContent class', () => {
+  it('should render a div with the root class', () => {
     const wrapper = shallow(<CardContent />);
     assert.strictEqual(wrapper.name(), 'div');
-    assert.strictEqual(
-      wrapper.hasClass(classes.cardContent),
-      true,
-      'should have the cardContent class',
-    );
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
   });
 });

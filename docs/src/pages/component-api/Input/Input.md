@@ -23,11 +23,12 @@
 | value | union:&nbsp;string<br>&nbsp;number<br> |  | The input value, required for a controlled component. |
 
 Any other properties supplied will be spread to the root element.
+
 ## Classes
 
 You can overrides all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `wrapper`
+- `root`
 - `formControl`
 - `inkbar`
 - `focused`

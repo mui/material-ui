@@ -13,6 +13,7 @@
 | primary | bool | false | If `true`, the badge will use the primary badge colors. |
 
 Any other properties supplied will be spread to the root element.
+
 ## Classes
 
 You can overrides all the class names injected by Material-UI thanks to the `classes` property.

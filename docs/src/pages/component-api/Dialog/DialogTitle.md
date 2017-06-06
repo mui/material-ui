@@ -10,6 +10,7 @@
 | disableTypography | bool | false | If `true`, the children won't be wrapped by a typography component. For instance, that can be usefull to can render an h4 instead of a |
 
 Any other properties supplied will be spread to the root element.
+
 ## Classes
 
 You can overrides all the class names injected by Material-UI thanks to the `classes` property.

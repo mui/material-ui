@@ -77,7 +77,6 @@ Portal.propTypes = {
    * The content of the component.
    */
   children: PropTypes.node,
-  container: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   open: PropTypes.bool,
 };
 

@@ -9,7 +9,7 @@ import ButtonBase from '../internal/ButtonBase';
 import ArrowDownwardIcon from '../svg-icons/arrow-downward';
 
 export const styleSheet = createStyleSheet('MuiTableSortLabel', theme => ({
-  sortLabel: {
+  root: {
     cursor: 'pointer',
     display: 'inline-flex',
     justifyContent: 'flex-start',
@@ -54,7 +54,7 @@ export const styleSheet = createStyleSheet('MuiTableSortLabel', theme => ({
 function TableSortLabel(props) {
   const { active, classes, className: classNameProp, children, direction, ...other } = props;
   const className = classNames(
-    classes.sortLabel,
+    classes.root,
     {
       [classes.active]: active,
     },

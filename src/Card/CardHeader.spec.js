@@ -19,9 +19,9 @@ describe('<CardHeader />', () => {
     assert.strictEqual(wrapper.name(), 'withStyles(CardContent)');
   });
 
-  it('should have the cardHeader class', () => {
+  it('should have the root class', () => {
     const wrapper = shallow(<CardHeader />);
-    assert.strictEqual(wrapper.hasClass(classes.cardHeader), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   describe('without an avatar', () => {

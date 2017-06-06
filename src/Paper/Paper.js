@@ -11,7 +11,7 @@ export const styleSheet = createStyleSheet('MuiPaper', theme => {
   const shadows = {};
 
   theme.shadows.forEach((shadow, index) => {
-    shadows[`dp${index}`] = {
+    shadows[`dp-${index}`] = {
       boxShadow: shadow,
     };
   });
@@ -42,10 +42,9 @@ function Paper(props) {
     `Material-UI: this elevation \`${elevation}\` is not implemented.`,
   );
 
-  const classNameElevation = `dp${elevation >= 0 ? elevation : 0}`;
   const className = classNames(
     classes.paper,
-    classes[classNameElevation],
+    classes[`dp-${elevation >= 0 ? elevation : 0}`],
     {
       [classes.rounded]: !square,
     },

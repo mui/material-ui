@@ -52,6 +52,8 @@ export { CircularProgress, LinearProgress } from './Progress';
 
 export { default as Radio, RadioGroup } from './Radio';
 
+export { default as Snackbar, SnackbarContent } from './Snackbar';
+
 export { MuiThemeProvider } from './styles';
 
 export { default as SvgIcon } from './SvgIcon';

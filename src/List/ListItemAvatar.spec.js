@@ -42,10 +42,6 @@ describe('<ListItemAvatar />', () => {
     );
     assert.strictEqual(wrapper.hasClass('foo'), true, 'should have the "foo" class');
     assert.strictEqual(wrapper.hasClass('bar'), true, 'should have the "bar" class');
-    assert.strictEqual(
-      wrapper.hasClass(classes.denseAvatar),
-      true,
-      'should have the denseAvatar class',
-    );
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
   });
 });

@@ -61,7 +61,7 @@ describe('<Ripple />', () => {
 
       assert.strictEqual(wrapper.state('rippleLeaving'), true, 'should be leaving');
       assert.strictEqual(
-        wrapper.hasClass(classes.containerLeaving),
+        wrapper.hasClass(classes.rootLeaving),
         true,
         'should have the leaving class',
       );
@@ -78,7 +78,7 @@ describe('<Ripple />', () => {
     it('should render the ripple inside a pulsating span', () => {
       assert.strictEqual(wrapper.name(), 'span');
       assert.strictEqual(
-        wrapper.hasClass(classes.containerPulsating),
+        wrapper.hasClass(classes.rootPulsating),
         true,
         'should have the pulsating class',
       );
@@ -95,7 +95,7 @@ describe('<Ripple />', () => {
 
       assert.strictEqual(wrapper.state('rippleVisible'), true, 'should be visible');
       assert.strictEqual(
-        wrapper.hasClass(classes.containerPulsating),
+        wrapper.hasClass(classes.rootPulsating),
         true,
         'should have the pulsating class',
       );
@@ -112,7 +112,7 @@ describe('<Ripple />', () => {
 
       assert.strictEqual(wrapper.state('rippleLeaving'), true, 'should be leaving');
       assert.strictEqual(
-        wrapper.hasClass(classes.containerLeaving),
+        wrapper.hasClass(classes.rootLeaving),
         true,
         'should have the leaving class',
       );

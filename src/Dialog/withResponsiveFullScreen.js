@@ -9,8 +9,9 @@ import type { Breakpoint } from '../styles/breakpoints';
 type Options = { breakpoint: Breakpoint };
 
 /**
- * Dialog will responsively be full screen _at or below_ the given breakpoint
+ * Dialog will responsively be full screen *at or below* the given breakpoint
  * (defaults to 'sm' for mobile devices).
+ * Notice that this Higher-order Component is incompatible with server side rendering.
  */
 function withResponsiveFullScreen(options: Options = { breakpoint: 'sm' }) {
   const { breakpoint } = options;

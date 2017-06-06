@@ -25,7 +25,7 @@ import Portal from './Portal';
 const modalManager = createModalManager();
 
 export const styleSheet = createStyleSheet('MuiModal', theme => ({
-  modal: {
+  root: {
     display: 'flex',
     width: '100%',
     height: '100%',
@@ -299,16 +299,17 @@ class Modal extends Component<DefaultProps, Props, State> {
   };
 
   handleTransitionExited = (...args) => {
-    this.setState({ exited: true });
-    this.handleHide();
     if (this.props.onExited) {
       this.props.onExited(...args);
     }
+
+    this.setState({ exited: true });
+    this.handleHide();
   };
 
   renderBackdrop(other: { [key: string]: any } = {}) {
     const {
-      backdropComponent,
+      backdropComponent: BackdropComponent,
       backdropClassName,
       backdropTransitionDuration,
       backdropInvisible,
@@ -324,11 +325,11 @@ class Modal extends Component<DefaultProps, Props, State> {
         timeout={backdropTransitionDuration + 20}
         {...other}
       >
-        {React.createElement(backdropComponent, {
-          invisible: backdropInvisible,
-          className: backdropClassName,
-          onClick: this.handleBackdropClick,
-        })}
+        <BackdropComponent
+          invisible={backdropInvisible}
+          className={backdropClassName}
+          onClick={this.handleBackdropClick}
+        />
       </Fade>
     );
   }
@@ -359,9 +360,7 @@ class Modal extends Component<DefaultProps, Props, State> {
       ...other
     } = this.props;
 
-    const mount = show || !this.state.exited;
-
-    if (!mount) {
+    if (!show && this.state.exited) {
       return null;
     }
 
@@ -410,7 +409,7 @@ class Modal extends Component<DefaultProps, Props, State> {
       >
         <div
           data-mui-test="Modal"
-          className={classNames(classes.modal, className)}
+          className={classNames(classes.root, className)}
           ref={node => {
             this.modal = node;
           }}

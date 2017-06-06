@@ -1,6 +1,6 @@
 # Tabs
 
-
+Notice that this Component is incompatible with server side rendering.
 
 ## Props
 | Name | Type | Default | Description |
@@ -19,6 +19,7 @@
 | textColor | union:&nbsp;[object Object],[object Object]<br>&nbsp;string<br> | 'inherit' | Determines the color of the `Tab`. |
 
 Any other properties supplied will be spread to the root element.
+
 ## Classes
 
 You can overrides all the class names injected by Material-UI thanks to the `classes` property.

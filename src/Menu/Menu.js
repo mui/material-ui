@@ -11,7 +11,7 @@ import withStyles from '../styles/withStyles';
 import MenuList from './MenuList';
 
 export const styleSheet = createStyleSheet('MuiMenu', {
-  popover: {
+  root: {
     maxHeight: 250,
   },
 });
@@ -52,7 +52,7 @@ class Menu extends Component {
   handleListKeyDown = (event, key) => {
     if (key === 'tab') {
       event.preventDefault();
-      return this.props.onRequestClose();
+      return this.props.onRequestClose(event);
     }
 
     return false;
@@ -90,7 +90,7 @@ class Menu extends Component {
       <Popover
         anchorEl={anchorEl}
         getContentAnchorEl={this.getContentAnchorEl}
-        className={classNames(classes.popover, className)}
+        className={classNames(classes.root, className)}
         open={open}
         enteredClassName={classes.entered}
         onEnter={this.handleEnter}

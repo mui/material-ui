@@ -93,7 +93,7 @@ class Slide extends Component {
         onEnter={this.handleEnter}
         onEntering={this.handleEntering}
         onExiting={this.handleExiting}
-        timeout={500}
+        timeout={Math.max(enterTransitionDuration, leaveTransitionDuration) + 10}
         transitionAppear
         {...other}
         ref={ref => {
@@ -107,6 +107,9 @@ class Slide extends Component {
 }
 
 Slide.propTypes = {
+  /**
+   * @ignore
+   */
   children: PropTypes.node,
   /**
    * @ignore

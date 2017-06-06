@@ -7,7 +7,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 
 export const styleSheet = createStyleSheet('MuiListItemSecondaryAction', theme => ({
-  secondaryAction: {
+  root: {
     position: 'absolute',
     right: 4,
     top: '50%',
@@ -16,11 +16,10 @@ export const styleSheet = createStyleSheet('MuiListItemSecondaryAction', theme =
 }));
 
 function ListItemSecondaryAction(props) {
-  const { children, classes, className: classNameProp } = props;
-  const className = classNames(classes.secondaryAction, classNameProp);
+  const { children, classes, className } = props;
 
   return (
-    <div className={className}>
+    <div className={classNames(classes.root, className)}>
       {children}
     </div>
   );

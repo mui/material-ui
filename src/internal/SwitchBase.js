@@ -122,13 +122,13 @@ export default function createSwitch(
         <IconButton
           data-mui-test="SwitchBase"
           component="span"
-          buttonRef={node => {
-            this.button = node;
-          }}
           className={className}
           disabled={disabled}
           tabIndex={null}
           role={undefined}
+          rootRef={node => {
+            this.button = node;
+          }}
           {...other}
         >
           {icon}

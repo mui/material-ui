@@ -18,13 +18,14 @@
 | type | enum:&nbsp;'text'<br>&nbsp;'dots'<br>&nbsp;'progress'<br> | 'dots' | The type of mobile stepper to use. |
 
 Any other properties supplied will be spread to the root element.
+
 ## Classes
 
 You can overrides all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `root`
 - `position-bottom`
-- `positon-top`
+- `position-top`
 - `position-static`
 - `button`
 - `dots`

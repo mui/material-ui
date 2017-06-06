@@ -9,15 +9,15 @@ import ButtonBase from '../internal/ButtonBase';
 import Icon from '../Icon';
 
 export const styleSheet = createStyleSheet('MuiIconButton', theme => ({
-  iconButton: {
+  root: {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
     flex: '0 0 auto',
     fontSize: 24,
-    width: 48,
-    height: 48,
+    width: theme.spacing.unit * 6,
+    height: theme.spacing.unit * 6,
     padding: 0,
     borderRadius: '50%',
     backgroundColor: 'transparent',
@@ -35,6 +35,9 @@ export const styleSheet = createStyleSheet('MuiIconButton', theme => ({
   },
   contrast: {
     color: theme.palette.getContrastText(theme.palette.primary[500]),
+  },
+  'color-inherit': {
+    color: 'inherit',
   },
   label: {
     width: '100%',
@@ -58,22 +61,22 @@ export const styleSheet = createStyleSheet('MuiIconButton', theme => ({
 function IconButton(props) {
   const {
     accent,
-    buttonRef,
     children,
     classes,
     className,
+    color,
     contrast,
     disabled,
     disableRipple,
-    iconClassName: iconClassNameProp,
+    rootRef,
     ...other
   } = props;
-  const iconClassName = classNames(classes.icon, iconClassNameProp);
 
   return (
     <ButtonBase
       className={classNames(
-        classes.iconButton,
+        classes.root,
+        classes[`color-${color}`],
         {
           [classes.accent]: accent,
           [classes.contrast]: contrast,
@@ -85,16 +88,16 @@ function IconButton(props) {
       keyboardFocusedClassName={classes.keyboardFocused}
       disabled={disabled}
       ripple={!disableRipple}
-      ref={buttonRef}
+      ref={rootRef}
       {...other}
     >
       <span className={classes.label}>
         {typeof children === 'string'
-          ? <Icon className={iconClassName}>{children}</Icon>
+          ? <Icon className={classes.icon}>{children}</Icon>
           : Children.map(children, child => {
               if (child.type && child.type.muiName === 'Icon') {
                 return cloneElement(child, {
-                  className: classNames(iconClassName, child.props.className),
+                  className: classNames(classes.icon, child.props.className),
                 });
               }
 
@@ -111,10 +114,6 @@ IconButton.propTypes = {
    */
   accent: PropTypes.bool,
   /**
-   * @ignore
-   */
-  buttonRef: PropTypes.func,
-  /**
    * The icon element.
    * If a string is provided, it will be used as an icon font ligature.
    */
@@ -128,6 +127,10 @@ IconButton.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * Determines the color of the `IconButton`.
+   */
+  color: PropTypes.oneOf(['inherit']),
+  /**
    * If `true`, the icon button will use the theme's contrast color.
    */
   contrast: PropTypes.bool,
@@ -140,9 +143,9 @@ IconButton.propTypes = {
    */
   disableRipple: PropTypes.bool,
   /**
-   * The CSS class name of the icon element if child is a string.
+   * Use that property to pass a ref callback to the root component.
    */
-  iconClassName: PropTypes.string,
+  rootRef: PropTypes.func,
 };
 
 IconButton.defaultProps = {
