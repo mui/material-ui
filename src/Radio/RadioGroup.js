@@ -53,7 +53,7 @@ class RadioGroup extends Component {
       className: classNameProp,
       name,
       selectedValue,
-      onChange, // eslint-disable-line no-unused-vars
+      onChange,
       ...other
     } = this.props;
 

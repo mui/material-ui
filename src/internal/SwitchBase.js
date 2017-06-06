@@ -95,7 +95,7 @@ export default function createSwitch(
         icon: iconProp,
         inputProps,
         name,
-        onChange, // eslint-disable-line no-unused-vars
+        onChange,
         tabIndex,
         value,
         ...other

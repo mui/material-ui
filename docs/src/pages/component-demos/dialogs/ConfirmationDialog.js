@@ -66,11 +66,7 @@ class ConfirmationDialog extends Component {
   };
 
   render() {
-    const {
-      onRequestClose, // eslint-disable-line no-unused-vars
-      selectedValue, // eslint-disable-line no-unused-vars
-      ...other
-    } = this.props;
+    const { onRequestClose, selectedValue, ...other } = this.props;
 
     return (
       <Dialog onEntering={this.handleEntering} {...other}>

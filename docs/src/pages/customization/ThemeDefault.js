@@ -12,12 +12,7 @@ const style = {
 };
 
 function ThemeDefault(props) {
-  const {
-    theme: {
-      id, // eslint-disable-line no-unused-vars
-      ...theme
-    },
-  } = props;
+  const { theme: { id, ...theme } } = props;
 
   const text = `
 \`\`\`js

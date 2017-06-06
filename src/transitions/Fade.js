@@ -92,11 +92,11 @@ class Fade extends Component<DefaultProps, Props, void> {
   render() {
     const {
       children,
-      enterTransitionDuration, // eslint-disable-line no-unused-vars
-      leaveTransitionDuration, // eslint-disable-line no-unused-vars
-      onEnter, // eslint-disable-line no-unused-vars
-      onEntering, // eslint-disable-line no-unused-vars
-      onExit, // eslint-disable-line no-unused-vars
+      enterTransitionDuration,
+      leaveTransitionDuration,
+      onEnter,
+      onEntering,
+      onExit,
       ...other
     } = this.props;
 

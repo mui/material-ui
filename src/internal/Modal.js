@@ -336,25 +336,25 @@ class Modal extends Component<DefaultProps, Props, State> {
   render() {
     const {
       disableBackdrop,
-      backdropComponent, // eslint-disable-line no-unused-vars
-      backdropClassName, // eslint-disable-line no-unused-vars
-      backdropTransitionDuration, // eslint-disable-line no-unused-vars
+      backdropComponent,
+      backdropClassName,
+      backdropTransitionDuration,
       backdropInvisible,
-      ignoreBackdropClick, // eslint-disable-line no-unused-vars
-      ignoreEscapeKeyUp, // eslint-disable-line no-unused-vars
+      ignoreBackdropClick,
+      ignoreEscapeKeyUp,
       children,
       classes,
       className,
-      modalManager: modalManagerProp, // eslint-disable-line no-unused-vars
-      onBackdropClick, // eslint-disable-line no-unused-vars
-      onEscapeKeyUp, // eslint-disable-line no-unused-vars
-      onRequestClose, // eslint-disable-line no-unused-vars
+      modalManager: modalManagerProp,
+      onBackdropClick,
+      onEscapeKeyUp,
+      onRequestClose,
       onEnter,
       onEntering,
       onEntered,
       onExit,
       onExiting,
-      onExited, // eslint-disable-line no-unused-vars
+      onExited,
       show,
       ...other
     } = this.props;

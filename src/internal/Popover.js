@@ -262,23 +262,23 @@ class Popover extends Component {
       children,
       classes,
       className,
-      modal, // eslint-disable-line no-unused-vars
+      modal,
       onRequestClose,
       open,
-      getContentAnchorEl, // eslint-disable-line no-unused-vars
-      anchorEl, // eslint-disable-line no-unused-vars
-      anchorOrigin, // eslint-disable-line no-unused-vars
-      role, // eslint-disable-line no-unused-vars
-      transformOrigin, // eslint-disable-line no-unused-vars
-      transitionDuration, // eslint-disable-line no-unused-vars
+      getContentAnchorEl,
+      anchorEl,
+      anchorOrigin,
+      role,
+      transformOrigin,
+      transitionDuration,
       enteredClassName,
       enteringClassName,
       exitedClassName,
       exitingClassName,
-      onEnter, // eslint-disable-line no-unused-vars
-      onEntering, // eslint-disable-line no-unused-vars
+      onEnter,
+      onEntering,
       onEntered,
-      onExit, // eslint-disable-line no-unused-vars
+      onExit,
       onExiting,
       onExited,
       elevation,

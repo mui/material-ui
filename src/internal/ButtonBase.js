@@ -176,18 +176,18 @@ class ButtonBase extends Component {
       className: classNameProp,
       component,
       disabled,
-      focusRipple, // eslint-disable-line no-unused-vars
+      focusRipple,
       keyboardFocusedClassName,
-      onBlur, // eslint-disable-line no-unused-vars
-      onFocus, // eslint-disable-line no-unused-vars
-      onKeyboardFocus, // eslint-disable-line no-unused-vars
-      onKeyDown, // eslint-disable-line no-unused-vars
-      onKeyUp, // eslint-disable-line no-unused-vars
-      onMouseDown, // eslint-disable-line no-unused-vars
-      onMouseLeave, // eslint-disable-line no-unused-vars
-      onMouseUp, // eslint-disable-line no-unused-vars
-      onTouchEnd, // eslint-disable-line no-unused-vars
-      onTouchStart, // eslint-disable-line no-unused-vars
+      onBlur,
+      onFocus,
+      onKeyboardFocus,
+      onKeyDown,
+      onKeyUp,
+      onMouseDown,
+      onMouseLeave,
+      onMouseUp,
+      onTouchEnd,
+      onTouchStart,
       ripple,
       tabIndex,
       type,

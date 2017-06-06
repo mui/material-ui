@@ -257,13 +257,13 @@ class Input extends Component {
       id,
       inputClassName: inputClassNameProp,
       inputProps: inputPropsProp,
-      inputRef, // eslint-disable-line no-unused-vars
+      inputRef,
       multiline,
-      onBlur, // eslint-disable-line no-unused-vars
-      onFocus, // eslint-disable-line no-unused-vars
-      onChange, // eslint-disable-line no-unused-vars
-      onClean, // eslint-disable-line no-unused-vars
-      onDirty, // eslint-disable-line no-unused-vars
+      onBlur,
+      onFocus,
+      onChange,
+      onClean,
+      onDirty,
       onKeyDown,
       onKeyUp,
       placeholder,

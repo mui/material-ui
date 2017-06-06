@@ -93,14 +93,7 @@ class FormControl extends Component {
   };
 
   render() {
-    const {
-      children,
-      classes,
-      className,
-      disabled, // eslint-disable-line no-unused-vars
-      error, // eslint-disable-line no-unused-vars
-      ...other
-    } = this.props;
+    const { children, classes, className, disabled, error, ...other } = this.props;
 
     return (
       <div
