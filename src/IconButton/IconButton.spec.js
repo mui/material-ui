@@ -7,6 +7,7 @@ import IconButton from './IconButton';
 import FontIcon from '../FontIcon';
 import getMuiTheme from '../styles/getMuiTheme';
 import TouchRipple from '../internal/TouchRipple';
+import Tooltip from '../internal/Tooltip';
 
 const dummy = <div />;
 
@@ -77,7 +78,22 @@ describe('<IconButton />', () => {
 
       assert.include(wrapper.props().style, hoveredStyle);
     });
+
+    it('should override tooltip style and set tooltipStyle prop', () => {
+      const tooltipStyle = {
+        backgroundColor: 'red',
+      };
+
+      const wrapper = shallowWithContext(
+        <IconButton tooltip={dummy} tooltipStyle={tooltipStyle} />
+      );
+
+      assert.strictEqual(wrapper.instance().props.tooltipStyle, tooltipStyle, 'tooltip should be set');
+      assert.strictEqual(wrapper.find(Tooltip).length, 1, 'should contain the Tooltip child');
+      assert.include(wrapper.find(Tooltip).props().style, tooltipStyle);
+    });
   });
+
   describe('prop: disabled', () => {
     it('should disable the ripple effect', () => {
       const wrapper = mountWithContext(
