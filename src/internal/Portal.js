@@ -74,9 +74,12 @@ class Portal extends Component {
 
 Portal.propTypes = {
   /**
-   * The content of the component.
+   * The content to portal in order to escape the parent DOM node.
    */
   children: PropTypes.node,
+  /**
+   * If `true` the children will be mounted into the DOM.
+   */
   open: PropTypes.bool,
 };
 

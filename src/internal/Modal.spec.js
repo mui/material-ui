@@ -36,11 +36,8 @@ describe('<Modal />', () => {
       wrapper = shallow(<Modal show data-my-prop="woof"><p>Hello World</p></Modal>);
     });
 
-    it('should render a portal when shown', () => {
-      assert.strictEqual(wrapper.name(), 'Portal');
-    });
-
     it('should render the modal div inside the portal', () => {
+      assert.strictEqual(wrapper.name(), 'Portal', 'should render a portal when shown');
       const modal = wrapper.childAt(0);
       assert.strictEqual(modal.is('div'), true, 'should be a div');
       assert.strictEqual(modal.hasClass(classes.root), true, 'should have the root class');
@@ -190,7 +187,10 @@ describe('<Modal />', () => {
           </Modal>,
         );
       });
-      after(() => wrapper.unmount());
+
+      after(() => {
+        wrapper.unmount();
+      });
 
       it('should not render the content', () => {
         assert.strictEqual(
@@ -257,7 +257,10 @@ describe('<Modal />', () => {
           </Modal>,
         );
       });
-      after(() => wrapper.unmount());
+
+      after(() => {
+        wrapper.unmount();
+      });
 
       it('should render a backdrop component into the portal before the modal content', () => {
         const modal = document.getElementById('modal');
@@ -292,7 +295,10 @@ describe('<Modal />', () => {
           </Modal>,
         );
       });
-      after(() => wrapper.unmount());
+
+      after(() => {
+        wrapper.unmount();
+      });
 
       it('should not render a backdrop component into the portal before the modal content', () => {
         const modal = document.getElementById('modal');
@@ -409,6 +415,20 @@ describe('<Modal />', () => {
         assert.strictEqual(onEscapeKeyUpStub.calledWith(event), true);
         assert.strictEqual(onRequestCloseStub.callCount, 0);
       });
+    });
+  });
+
+  describe('prop: keepMounted', () => {
+    it('should keep the children in the DOM', () => {
+      const children = <p>Hello World</p>;
+      const wrapper = shallow(<Modal keepMounted show={false}><div>{children}</div></Modal>);
+      assert.strictEqual(wrapper.contains(children), true);
+    });
+
+    it('should not keep the children in the DOM', () => {
+      const children = <p>Hello World</p>;
+      const wrapper = shallow(<Modal show={false}><div>{children}</div></Modal>);
+      assert.strictEqual(wrapper.contains(children), false);
     });
   });
 });

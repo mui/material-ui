@@ -34,6 +34,9 @@ export const styleSheet = createStyleSheet('MuiModal', theme => ({
     top: 0,
     left: 0,
   },
+  hidden: {
+    pointerEvents: 'none',
+  },
 }));
 
 type DefaultProps = {
@@ -76,6 +79,12 @@ type Props = DefaultProps & {
    * @ignore
    */
   className?: string,
+  /**
+   * Always keep the children in the DOM.
+   * That property can be useful in SEO situation or
+   * when you want to maximize the responsiveness of the Modal.
+   */
+  keepMounted?: boolean,
   /**
    * If `true`, the backdrop is disabled.
    */
@@ -145,6 +154,7 @@ class Modal extends Component<DefaultProps, Props, State> {
     backdropComponent: Backdrop,
     backdropTransitionDuration: 300,
     backdropInvisible: false,
+    keepMounted: false,
     disableBackdrop: false,
     ignoreBackdropClick: false,
     ignoreEscapeKeyUp: false,
@@ -346,6 +356,7 @@ class Modal extends Component<DefaultProps, Props, State> {
       children,
       classes,
       className,
+      keepMounted,
       modalManager: modalManagerProp,
       onBackdropClick,
       onEscapeKeyUp,
@@ -360,7 +371,7 @@ class Modal extends Component<DefaultProps, Props, State> {
       ...other
     } = this.props;
 
-    if (!show && this.state.exited) {
+    if (!keepMounted && !show && this.state.exited) {
       return null;
     }
 
@@ -374,11 +385,8 @@ class Modal extends Component<DefaultProps, Props, State> {
     };
 
     let modalChild = React.Children.only(children);
-
     const { role, tabIndex } = modalChild.props;
-
     const childProps = {};
-    let backdropProps;
 
     if (role === undefined) {
       childProps.role = role === undefined ? 'document' : role;
@@ -387,6 +395,8 @@ class Modal extends Component<DefaultProps, Props, State> {
     if (tabIndex === undefined) {
       childProps.tabIndex = tabIndex == null ? '-1' : tabIndex;
     }
+
+    let backdropProps;
 
     if (backdropInvisible && modalChild.props.hasOwnProperty('in')) {
       Object.keys(transitionCallbacks).forEach(key => {
@@ -409,13 +419,17 @@ class Modal extends Component<DefaultProps, Props, State> {
       >
         <div
           data-mui-test="Modal"
-          className={classNames(classes.root, className)}
+          className={classNames(classes.root, className, {
+            [classes.hidden]: !show,
+          })}
           ref={node => {
             this.modal = node;
           }}
           {...other}
         >
-          {!disableBackdrop && this.renderBackdrop(backdropProps)}
+          {!disableBackdrop &&
+            (!keepMounted || show || !this.state.exited) &&
+            this.renderBackdrop(backdropProps)}
           {modalChild}
         </div>
       </Portal>

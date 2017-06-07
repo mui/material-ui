@@ -7,6 +7,11 @@ import Transition from '../internal/Transition';
 import customPropTypes from '../utils/customPropTypes';
 import { duration } from '../styles/transitions';
 
+const GUTTER = 24;
+
+// Translate the element so he can't be seen in the screen.
+// Later, we gonna translate back the element to his original location
+// with `translate3d(0, 0, 0)`.`
 function getTranslateValue(props, element) {
   const { direction } = props;
   const rect = element.getBoundingClientRect();
@@ -14,7 +19,7 @@ function getTranslateValue(props, element) {
   if (direction === 'left') {
     return `translate3d(calc(100vw - ${rect.left}px), 0, 0)`;
   } else if (direction === 'right') {
-    return `translate3d(${0 - (rect.left + rect.width)}px, 0, 0)`;
+    return `translate3d(${0 - (rect.left + rect.width + GUTTER)}px, 0, 0)`;
   } else if (direction === 'up') {
     return `translate3d(0, calc(100vh - ${rect.top}px), 0)`;
   }
@@ -32,11 +37,8 @@ class Slide extends Component {
 
   componentDidMount() {
     if (!this.props.in) {
-      /* We need to set initial translate values of transition element
-       * otherwise component will be shown when in=false.
-       * transitions are handled by direct access to element,
-       * so we need to access that same element too here.
-       */
+      // We need to set initial translate values of transition element
+      // otherwise component will be shown when in=false.
       const element = ReactDOM.findDOMNode(this.transition);
       // $FlowFixMe
       element.style.transform = getTranslateValue(this.props, element);
@@ -46,6 +48,11 @@ class Slide extends Component {
   transition = null;
 
   handleEnter = element => {
+    // Reset the transformation when needed.
+    // That's triggering a reflow.
+    if (element.style.transform) {
+      element.style.transform = 'translate3d(0, 0, 0)';
+    }
     element.style.transform = getTranslateValue(this.props, element);
     if (this.props.onEnter) {
       this.props.onEnter(element);
