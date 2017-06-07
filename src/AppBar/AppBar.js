@@ -320,8 +320,8 @@ class AppBar extends Component {
       >
         {menuElementLeft}
         {titleElement}
-        {menuElementRight}
         {children}
+        {menuElementRight}
       </Paper>
     );
   }
