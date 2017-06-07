@@ -9,7 +9,7 @@ import StarBorderIcon from 'material-ui-icons/StarBorder';
 import tileData from './tileData';
 
 const styleSheet = createStyleSheet('SingleLineGridList', (theme) => ({
-  root: {
+  container: {
     backgroundColor: 'white',
     width: '100%',
     marginTop: 30,
@@ -46,7 +46,7 @@ const styleSheet = createStyleSheet('SingleLineGridList', (theme) => ({
 export default function SingleLineGridList(props, context) {
   const classes = context.styleManager.render(styleSheet);
   return (
-    <div className={classes.root}>
+    <div className={classes.container}>
       <GridList className={classes.gridList} cols={3.5}>
         {tileData.map((tile) => (
           <GridTile

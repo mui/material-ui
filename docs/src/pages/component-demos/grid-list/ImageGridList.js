@@ -7,8 +7,13 @@ import { GridList, GridTile } from 'material-ui/GridList';
 import tileData from './tileData';
 
 const styleSheet = createStyleSheet('ImageGridList', () => ({
-  gridList: {
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
     backgroundColor: 'white',
+  },
+  gridList: {
     width: 500,
     height: 450,
   },
@@ -39,20 +44,22 @@ const styleSheet = createStyleSheet('ImageGridList', () => ({
 export default function ImageGridList(props, context) {
   const classes = context.styleManager.render(styleSheet);
   return (
-    <GridList
-      cellHeight={160}
-      className={classes.gridList}
-      cols={3}
-    >
-      {tileData.map((tile) => (
-        <GridTile
-          key={tile.img}
-          cols={tile.cols || 1}
-        >
-          <img src={tile.img} alt={tile.title} />
-        </GridTile>
-      ))}
-    </GridList>
+    <div className={classes.container}>
+      <GridList
+        cellHeight={160}
+        className={classes.gridList}
+        cols={3}
+      >
+        {tileData.map((tile) => (
+          <GridTile
+            key={tile.img}
+            cols={tile.cols || 1}
+          >
+            <img src={tile.img} alt={tile.title} />
+          </GridTile>
+        ))}
+      </GridList>
+    </div>
   );
 }
 

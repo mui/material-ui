@@ -10,8 +10,13 @@ import InfoIcon from 'material-ui-icons/Info';
 import tileData from './tileData';
 
 const styleSheet = createStyleSheet('TitlebarGridList', () => ({
-  gridList: {
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
     backgroundColor: 'white',
+  },
+  gridList: {
     width: 500,
     height: 450,
   },
@@ -40,26 +45,28 @@ const styleSheet = createStyleSheet('TitlebarGridList', () => ({
 export default function TitlebarGridList(props, context) {
   const classes = context.styleManager.render(styleSheet);
   return (
-    <GridList
-      cellHeight={180}
-      className={classes.gridList}
-    >
-      <Subheader className={classes.subheader}>December</Subheader>
-      {tileData.map((tile) => (
-        <GridTile
-          key={tile.img}
-        >
-          <img src={tile.img} alt={tile.title} />
-          <GridTileTitlebar
-            title={tile.title}
-            subtitle={<span>by: {tile.author}</span>}
-            actionIcon={
-              <IconButton><InfoIcon color="rgba(255, 255, 255, 0.54)" /></IconButton>
-            }
-          />
-        </GridTile>
-      ))}
-    </GridList>
+    <div className={classes.container}>
+      <GridList
+        cellHeight={180}
+        className={classes.gridList}
+      >
+        <Subheader className={classes.subheader}>December</Subheader>
+        {tileData.map((tile) => (
+          <GridTile
+            key={tile.img}
+          >
+            <img src={tile.img} alt={tile.title} />
+            <GridTileTitlebar
+              title={tile.title}
+              subtitle={<span>by: {tile.author}</span>}
+              actionIcon={
+                <IconButton><InfoIcon color="rgba(255, 255, 255, 0.54)" /></IconButton>
+              }
+            />
+          </GridTile>
+        ))}
+      </GridList>
+    </div>
   );
 }
 
