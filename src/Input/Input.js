@@ -130,6 +130,7 @@ export const styleSheet = createStyleSheet('MuiInput', theme => ({
   },
   disabled: {
     color: theme.palette.text.disabled,
+    WebkitOpacity: 1, // Reset iOS opacity
   },
   underline: {
     borderBottom: `1px solid ${theme.palette.input.bottomLine}`,
