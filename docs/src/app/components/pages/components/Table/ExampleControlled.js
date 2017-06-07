@@ -33,7 +33,7 @@ export default class TableExampleControlled extends Component {
             <TableHeaderColumn>Status</TableHeaderColumn>
           </TableRow>
         </TableHeader>
-        <TableBody>
+        <TableBody preScanRows={false}>
           <TableRow selected={this.isSelected(0)}>
             <TableRowColumn>1</TableRowColumn>
             <TableRowColumn>John Smith</TableRowColumn>
