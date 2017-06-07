@@ -11,6 +11,7 @@ import Paper from '../Paper';
 import ReactTransitionGroup from 'react-transition-group/TransitionGroup';
 
 class TransitionItem extends Component {
+
   static propTypes = {
     children: PropTypes.node,
     style: PropTypes.object,
@@ -247,6 +248,8 @@ class DialogInline extends Component {
 
     if (this.props.onRequestClose) {
       this.props.onRequestClose(!!buttonClicked);
+      const ActiveElement = window.prevActiveElement;
+      ActiveElement.focus();
     }
   }
 
@@ -265,6 +268,8 @@ class DialogInline extends Component {
   };
 
   render() {
+    window.prevActiveElement = document.activeElement;
+
     const {
       actions,
       actionsContainerClassName,

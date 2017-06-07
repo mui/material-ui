@@ -22,6 +22,8 @@ export default class DialogExampleCustomWidth extends React.Component {
 
   handleClose = () => {
     this.setState({open: false});
+    const ActiveElement = window.prevActiveElement;
+    ActiveElement.focus();
   };
 
   render() {
@@ -34,6 +36,7 @@ export default class DialogExampleCustomWidth extends React.Component {
       <FlatButton
         label="Submit"
         primary={true}
+        keyboardFocused={true}
         onTouchTap={this.handleClose}
       />,
     ];

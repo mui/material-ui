@@ -17,6 +17,8 @@ export default class DialogExampleAlert extends React.Component {
 
   handleClose = () => {
     this.setState({open: false});
+    const ActiveElement = window.prevActiveElement;
+    ActiveElement.focus();
   };
 
   render() {
@@ -24,6 +26,7 @@ export default class DialogExampleAlert extends React.Component {
       <FlatButton
         label="Cancel"
         primary={true}
+        keyboardFocused={true}
         onTouchTap={this.handleClose}
       />,
       <FlatButton

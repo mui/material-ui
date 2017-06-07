@@ -24,6 +24,8 @@ export default class DialogExampleScrollable extends React.Component {
 
   handleClose = () => {
     this.setState({open: false});
+    const ActiveElement = window.prevActiveElement;
+    ActiveElement.focus();
   };
 
   render() {
