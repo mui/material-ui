@@ -168,7 +168,7 @@ export function yearDiff(d1, d2) {
   return ~~(monthDiff(d1, d2) / 12);
 }
 
-function dateUTC(date) {
+export function dateUTC(date) {
   const correction = date.getTimezoneOffset() > 0 ? 1 : 0;
   return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate() + correction));
 }

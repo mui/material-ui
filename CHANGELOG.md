@@ -1,5 +1,40 @@
 ## HEAD
 
+## 0.18.2
+###### _Jun 7, 2017_
+
+Big thanks to the 22 contributors who made this release possible.
+This release keeps focusing on bug fixes.
+
+##### Component Fixes / Enhancements
+
+- [CardTitle] Don't pass closeIcon to parent div (#6868) @ChrisJamesC
+- [DatePicker] Now the date passed to DateTimeFormat is always in UTC (#7056) @JustAndrei
+- [DatePicker] Revert #6764 (#6930) @oliviertassinari
+- [Drawer] Fix behavior on RTL layouts (#6857) @alireza-ahmadi
+- [Drawer] Fix for server side rendering (#6929) @pablo-bondacom
+- [DropDownMenu] Add child argument to selectionRenderer (#6890) @Floriferous
+- [DropDownMenu] Add tests for selectionRenderer (#6895) @Floriferous
+- [Menu] Fix RegExp error on keydown (#6965) @liamcmitchell
+- [Stepper] Add expandTransitionChildStyle property (#7030) @makslevental
+- [TableBody] Fix columnId passed to onCellClick (#7014) @lgpasquale
+- [TextField] Fix enter behavior with multiline when controlled (#6992) @sajal50
+- [TimePicker] Add minutes step prop (#6942) @alancasagrande
+
+##### Docs
+
+- [Card] Add alt property for img tag (#7022) @juzhiyuan
+- [docs] Add React Most Wanted to the showcase (#7032) @TarikHuber
+- [docs] Add a new site to the showcase (#6993) @wzup
+- [docs] Add Razzle Styled Example (#6862) @kireerik
+- [docs] Add brainbok to the showcase (#6983) @brainbok
+- [docs] Add https://devsketch.io to showcase (#6908) @hailedev
+- [AutoComplete] fixing a typo in docs - "reseted" -> "reset" (#6919) @mbifulco
+
+##### Core
+
+- [core] Remove ReactFragment dependency (#6910) @made-aryadinata
+
 ## 0.18.1
 ###### _May 13, 2017_
 
