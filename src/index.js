@@ -4,6 +4,8 @@ export Avatar from './Avatar';
 export Badge from './Badge';
 export BottomNavigation from './BottomNavigation';
 export BottomNavigationItem from './BottomNavigation/BottomNavigationItem';
+export BottomSheet from './BottomSheet';
+export BottomSheetBody from './BottomSheet/BottomSheetBody';
 export Card from './Card';
 export CardActions from './Card/CardActions';
 export CardHeader from './Card/CardHeader';

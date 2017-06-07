@@ -193,6 +193,11 @@ class AppNavDrawer extends Component {
                 href="#/components/bottom-navigation"
               />,
               <ListItem
+                primaryText="Bottom Sheet"
+                value="/components/bottom-sheet"
+                href="#/components/bottom-sheet"
+              />,
+              <ListItem
                 primaryText="Buttons"
                 primaryTogglesNestedList={true}
                 nestedItems={[

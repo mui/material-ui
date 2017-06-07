@@ -3,6 +3,7 @@ export default {
   appBar: 1100,
   drawerOverlay: 1200,
   drawer: 1300,
+  bottomSheet: 1250,
   dialogOverlay: 1400,
   dialog: 1500,
   layer: 2000,
