@@ -1,5 +1,13 @@
 ## HEAD
 
+## 0.18.3
+###### _Jun 8, 2017_
+
+##### Component Fixes / Enhancements
+
+- [DatePicker] Revert #7056 (3d841bd1443c375c32d7ff696011dc9f131d4d13) @oliviertassinari
+- [TextField] Fix disabled input color in Safari (#7065) @amannn
+
 ## 0.18.2
 ###### _Jun 7, 2017_
 
