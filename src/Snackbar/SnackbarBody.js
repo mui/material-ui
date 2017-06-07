@@ -72,6 +72,7 @@ export const SnackbarBody = (props, context) => {
     open, // eslint-disable-line no-unused-vars
     onActionTouchTap,
     style,
+    contentId,
     ...other
   } = props;
 
@@ -89,7 +90,7 @@ export const SnackbarBody = (props, context) => {
   return (
     <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
       <div style={prepareStyles(Object.assign(styles.content, contentStyle))}>
-        <span>{message}</span>
+        <span id={contentId}>{message}</span>
         {actionButton}
       </div>
     </div>
@@ -101,6 +102,10 @@ SnackbarBody.propTypes = {
    * The label for the action on the snackbar.
    */
   action: PropTypes.node,
+  /**
+   * HTML Id attribute for the snackbar content element
+   */
+  contentId: PropTypes.string,
   /**
    * Override the inline-styles of the content element.
    */

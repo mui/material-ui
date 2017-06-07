@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import UniqueId from 'lodash.uniqueid';
 import transitions from '../styles/transitions';
 import ClickAwayListener from '../internal/ClickAwayListener';
 import SnackbarBody from './SnackbarBody';
@@ -93,6 +94,10 @@ class Snackbar extends Component {
      * Controls whether the `Snackbar` is opened or not.
      */
     open: PropTypes.bool.isRequired,
+    /**
+     * Defines the HTML role property on snackbar, default: alertdialog
+     */
+    role: PropTypes.string,
     /**
      * Override the inline-styles of the root element.
      */
@@ -197,6 +202,8 @@ class Snackbar extends Component {
     }, 400);
   }
 
+  contentId = UniqueId('snackbar');
+
   render() {
     const {
       autoHideDuration, // eslint-disable-line no-unused-vars
@@ -206,6 +213,7 @@ class Snackbar extends Component {
       onRequestClose, // eslint-disable-line no-unused-vars
       onActionTouchTap,
       style,
+      role,
       ...other
     } = this.props;
 
@@ -215,14 +223,23 @@ class Snackbar extends Component {
       open,
     } = this.state;
 
+    const roleProp = role || 'alertdialog';
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context, this.state);
+    const openAttr = open ? {open} : null;
 
     return (
       <ClickAwayListener onClickAway={open ? this.componentClickAway : null}>
-        <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
+        <div
+          {...other}
+          {...openAttr}
+          role={roleProp}
+          aria-describedby={this.contentId}
+          style={prepareStyles(Object.assign(styles.root, style))}
+        >
           <SnackbarBody
             action={action}
+            contentId={this.contentId}
             contentStyle={contentStyle}
             message={message}
             open={open}
