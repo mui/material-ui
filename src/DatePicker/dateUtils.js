@@ -119,10 +119,10 @@ export function getWeekArray(d, firstDayOfWeek) {
 }
 
 export function localizedWeekday(DateTimeFormat, locale, day, firstDayOfWeek) {
-  const weekdayFormatter = new DateTimeFormat(locale, {weekday: 'narrow', timeZone: 'UTC'});
+  const weekdayFormatter = new DateTimeFormat(locale, {weekday: 'narrow'});
   const firstDayDate = getFirstDayOfWeek();
 
-  return weekdayFormatter.format(dateUTC(addDays(firstDayDate, day + firstDayOfWeek)));
+  return weekdayFormatter.format(addDays(firstDayDate, day + firstDayOfWeek));
 }
 
 // Convert date to ISO 8601 (YYYY-MM-DD) date string, accounting for current timezone
@@ -168,10 +168,6 @@ export function yearDiff(d1, d2) {
   return ~~(monthDiff(d1, d2) / 12);
 }
 
-export function dateUTC(date) {
-  return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
-}
-
 export const defaultUtils = {
   getYear,
   setYear,
@@ -181,5 +177,4 @@ export const defaultUtils = {
   getFirstDayOfMonth,
   getWeekArray,
   monthDiff,
-  dateUTC,
 };

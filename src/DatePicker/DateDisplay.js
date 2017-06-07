@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {dateUTC} from './dateUtils';
 import transitions from '../styles/transitions';
 import SlideInTransitionGroup from '../internal/SlideIn';
 
@@ -142,15 +141,13 @@ class DateDisplay extends Component {
 
     const year = new DateTimeFormat(locale, {
       year: 'numeric',
-      timeZone: 'UTC',
-    }).format(dateUTC(selectedDate));
+    }).format(selectedDate);
 
     const dateTime = new DateTimeFormat(locale, {
       month: 'short',
       weekday: 'short',
       day: '2-digit',
-      timeZone: 'UTC',
-    }).format(dateUTC(selectedDate));
+    }).format(selectedDate);
 
     return (
       <div {...other} style={prepareStyles(styles.root, style)}>

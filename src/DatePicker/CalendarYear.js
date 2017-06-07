@@ -50,8 +50,7 @@ class CalendarYear extends Component {
 
       const yearFormated = new DateTimeFormat(locale, {
         year: 'numeric',
-        timeZone: 'UTC',
-      }).format(utils.dateUTC(utils.setYear(selectedDate, year)));
+      }).format(utils.setYear(selectedDate, year));
 
       const yearButton = (
         <YearButton

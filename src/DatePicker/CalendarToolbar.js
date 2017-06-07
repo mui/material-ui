@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {dateUTC} from './dateUtils';
 import IconButton from '../IconButton';
 import NavigationChevronLeft from '../svg-icons/navigation/chevron-left';
 import NavigationChevronRight from '../svg-icons/navigation/chevron-right';
@@ -71,8 +70,7 @@ class CalendarToolbar extends Component {
     const dateTimeFormatted = new DateTimeFormat(locale, {
       month: 'long',
       year: 'numeric',
-      timeZone: 'UTC',
-    }).format(dateUTC(displayDate));
+    }).format(displayDate);
 
     return (
       <div style={styles.root}>
