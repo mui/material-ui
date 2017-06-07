@@ -29,7 +29,15 @@ export const styleSheet = createStyleSheet('MuiListItemText', theme => ({
 }));
 
 function ListItemText(props, context) {
-  const { classes, className: classNameProp, primary, secondary, inset, ...other } = props;
+  const {
+    classes,
+    className: classNameProp,
+    disableTypography,
+    primary,
+    secondary,
+    inset,
+    ...other
+  } = props;
   const { dense } = context;
   const className = classNames(
     classes.root,
@@ -43,17 +51,17 @@ function ListItemText(props, context) {
   return (
     <div className={className} {...other}>
       {primary &&
-        (typeof primary === 'string'
-          ? <Typography type="subheading" className={classNames({ [classes.text]: dense })}>
+        (disableTypography
+          ? primary
+          : <Typography type="subheading" className={classNames({ [classes.text]: dense })}>
               {primary}
-            </Typography>
-          : primary)}
+            </Typography>)}
       {secondary &&
-        (typeof secondary === 'string'
-          ? <Typography secondary type="body1" className={classNames({ [classes.text]: dense })}>
+        (disableTypography
+          ? secondary
+          : <Typography secondary type="body1" className={classNames({ [classes.text]: dense })}>
               {secondary}
-            </Typography>
-          : secondary)}
+            </Typography>)}
     </div>
   );
 }
@@ -68,6 +76,11 @@ ListItemText.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * If `true`, the children won't be wrapped by a typography component.
+   * For instance, that can be usefull to can render an h4 instead of a
+   */
+  disableTypography: PropTypes.bool,
+  /**
    * If `true`, the children will be indented.
    * This should be used if there is no left avatar or left icon.
    */
@@ -77,6 +90,7 @@ ListItemText.propTypes = {
 };
 
 ListItemText.defaultProps = {
+  disableTypography: false,
   primary: false,
   secondary: false,
   inset: false,

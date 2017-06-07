@@ -82,6 +82,42 @@ describe('<ListItemText />', () => {
     });
   });
 
+  describe('prop: disableTypography', () => {
+    it('should wrap children in `<Typography/>` by default', () => {
+      const wrapper = shallow(
+        <ListItemText primary="This is the primary text" secondary="This is the secondary text" />,
+      );
+
+      assert.strictEqual(wrapper.children().length, 2, 'should have 2 children');
+      assert.strictEqual(wrapper.childAt(0).name(), 'withStyles(Typography)');
+      assert.strictEqual(wrapper.childAt(0).props().type, 'subheading');
+      assert.strictEqual(
+        wrapper.childAt(0).children().equals('This is the primary text'),
+        true,
+        'should have the primary text',
+      );
+
+      assert.strictEqual(wrapper.childAt(1).name(), 'withStyles(Typography)');
+      assert.strictEqual(wrapper.childAt(1).props().type, 'body1');
+      assert.strictEqual(wrapper.childAt(1).props().secondary, true);
+      assert.strictEqual(
+        wrapper.childAt(1).children().equals('This is the secondary text'),
+        true,
+        'should have the secondary text',
+      );
+    });
+
+    it('should render JSX children', () => {
+      const primaryChild = <p className="test">This is the primary text</p>;
+      const secondaryChild = <p className="test">This is the secondary text</p>;
+      const wrapper = shallow(
+        <ListItemText primary={primaryChild} secondary={secondaryChild} disableTypography />,
+      );
+      assert.strictEqual(wrapper.childAt(0).equals(primaryChild), true);
+      assert.strictEqual(wrapper.childAt(1).equals(secondaryChild), true);
+    });
+  });
+
   it('should render primary and secondary text', () => {
     const wrapper = shallow(
       <ListItemText primary="This is the primary text" secondary="This is the secondary text" />,
