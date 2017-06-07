@@ -169,7 +169,8 @@ export function yearDiff(d1, d2) {
 }
 
 export function dateUTC(date) {
-  return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+  const correction = date.getTimezoneOffset() > 0 ? 1 : 0;
+  return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate() + correction));
 }
 
 export const defaultUtils = {
