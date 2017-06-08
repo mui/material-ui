@@ -16,38 +16,46 @@ describe('<Avatar />', () => {
   });
 
   describe('image avatar', () => {
-    let wrapper;
-
-    before(() => {
-      wrapper = shallow(
+    it('should render a div containing an img', () => {
+      const wrapper = shallow(
         <Avatar className="my-avatar" src="something.jpg" alt="Hello World!" data-my-prop="woof" />,
       );
-    });
 
-    it('should render a div containing an img', () => {
       assert.strictEqual(wrapper.name(), 'div');
       assert.strictEqual(wrapper.childAt(0).is('img'), true, 'should be an img');
-    });
-
-    it('should spread custom props merge user classes to the root node', () => {
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.hasClass('my-avatar'), true);
       assert.strictEqual(wrapper.prop('data-my-prop'), 'woof');
-    });
-
-    it('should not apply the defaultColor class for image avatars', () => {
-      assert.strictEqual(wrapper.hasClass(classes.defaultColor), false);
-    });
-
-    it('should add the img class to the img node', () => {
+      assert.strictEqual(
+        wrapper.hasClass(classes.defaultColor),
+        false,
+        'should not apply the defaultColor class for image avatars',
+      );
       const img = wrapper.childAt(0);
-      assert.strictEqual(img.hasClass(classes.img), true);
+      assert.strictEqual(
+        img.hasClass(classes.img),
+        true,
+        'should add the img class to the img node',
+      );
+      assert.strictEqual(img.props().alt, 'Hello World!', 'should apply img props to the img node');
+      assert.strictEqual(
+        img.props().src,
+        'something.jpg',
+        'should apply img props to the img node',
+      );
     });
 
-    it('should apply img props to the img node', () => {
-      const img = wrapper.childAt(0);
-      assert.strictEqual(img.prop('alt'), 'Hello World!');
-      assert.strictEqual(img.prop('src'), 'something.jpg');
+    it('should be able to add more properties to the image', () => {
+      const onError = () => {};
+      const wrapper = shallow(
+        <Avatar
+          src="something.jpg"
+          imgProps={{
+            onError,
+          }}
+        />,
+      );
+      assert.strictEqual(wrapper.childAt(0).props().onError, onError);
     });
   });
 

@@ -40,6 +40,7 @@ function Avatar(props) {
     children: childrenProp,
     childrenClassName: childrenClassNameProp,
     component: ComponentProp,
+    imgProps,
     sizes,
     src,
     srcSet,
@@ -53,11 +54,6 @@ function Avatar(props) {
     },
     classNameProp,
   );
-  const containerProps = {
-    className,
-    ...other,
-  };
-
   let children = null;
 
   if (childrenProp) {
@@ -68,17 +64,20 @@ function Avatar(props) {
       children = childrenProp;
     }
   } else if (src || srcSet) {
-    children = React.createElement('img', {
-      alt,
-      src,
-      srcSet,
-      sizes,
-      className: classes.img,
-    });
+    children = (
+      <img
+        alt={alt}
+        src={src}
+        srcSet={srcSet}
+        sizes={sizes}
+        className={classes.img}
+        {...imgProps}
+      />
+    );
   }
 
   return (
-    <ComponentProp {...containerProps}>
+    <ComponentProp className={className} {...other}>
       {children}
     </ComponentProp>
   );
@@ -117,6 +116,11 @@ Avatar.propTypes = {
    * Either a string to use a DOM element or a component.
    */
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /**
+   * Properties applied to the `img` element when the component
+   * is used to display an image.
+   */
+  imgProps: PropTypes.object,
   /**
    * The `sizes` attribute for the `img` element.
    */
