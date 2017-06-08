@@ -58,6 +58,14 @@ class Menu extends Component {
     return false;
   };
 
+  handleMouseEnter = (event) => {
+    if (event.target && this.menuList && this.menuList.list) {
+      if (this.menuList.list.contains(event.target)) {
+        event.target.focus();
+      }
+    }
+  };
+
   getContentAnchorEl = () => {
     if (!this.menuList || !this.menuList.selectedItem) {
       // $FlowFixMe
@@ -88,6 +96,7 @@ class Menu extends Component {
 
     return (
       <Popover
+        onMouseOver={this.handleMouseEnter}
         anchorEl={anchorEl}
         getContentAnchorEl={this.getContentAnchorEl}
         className={classNames(classes.root, className)}
