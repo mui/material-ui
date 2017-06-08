@@ -8,6 +8,8 @@ const styles = {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
+    overflowY: 'hidden', // Needed for IOS Safari
+    flexDirection: 'column', // Needed for IOS Safari
   },
   gridList: {
     display: 'flex',
@@ -67,7 +69,7 @@ const tilesData = [
  */
 const GridListExampleSingleLine = () => (
   <div style={styles.root}>
-    <GridList style={styles.gridList} cols={2.2}>
+    <GridList style={styles.gridList} cols={1}>
       {tilesData.map((tile) => (
         <GridTile
           key={tile.img}
