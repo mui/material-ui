@@ -75,7 +75,7 @@ class EnhancedButton extends Component {
     onKeyboardFocus: () => {},
     onTouchTap: () => {},
     tabIndex: 0,
-    type: 'button',
+    type: 'submit',
   };
 
   static contextTypes = {
