@@ -142,8 +142,10 @@ class TableBody extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    let selectedRows= this.getSelectedRows(nextProps);
     if (this.props.allRowsSelected !== nextProps.allRowsSelected) {
-      if (!nextProps.allRowsSelected) {
+
+      if (!nextProps.allRowsSelected && (nextProps.children.length === selectedRows.length)) {
         this.setState({
           selectedRows: [],
         });
@@ -152,7 +154,7 @@ class TableBody extends Component {
     }
 
     this.setState({
-      selectedRows: this.getSelectedRows(nextProps),
+      selectedRows
     });
   }
 
