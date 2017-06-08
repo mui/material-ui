@@ -74,7 +74,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
-    "chai": "^3.5.0",
+    "chai": "^4.0.1",
     "coveralls": "^2.13.0",
     "create-react-class": "^15.5.0",
     "cross-env": "^4.0.0",
