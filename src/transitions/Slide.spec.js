@@ -95,7 +95,7 @@ describe('<Slide />', () => {
     describe('handleEnter()', () => {
       let element;
 
-      before(() => {
+      beforeEach(() => {
         element = {
           getBoundingClientRect: () => ({
             width: 500,
@@ -115,13 +115,20 @@ describe('<Slide />', () => {
         assert.strictEqual(element.style.transform, 'translate3d(calc(100vw - 300px), 0, 0)');
         wrapper.setProps({ direction: 'right' });
         instance.handleEnter(element);
-        assert.strictEqual(element.style.transform, 'translate3d(-800px, 0, 0)');
+        assert.strictEqual(element.style.transform, 'translate3d(-824px, 0, 0)');
         wrapper.setProps({ direction: 'up' });
         instance.handleEnter(element);
         assert.strictEqual(element.style.transform, 'translate3d(0, calc(100vh - 200px), 0)');
         wrapper.setProps({ direction: 'down' });
         instance.handleEnter(element);
         assert.strictEqual(element.style.transform, 'translate3d(0, -500px, 0)');
+      });
+
+      it('should reset the previous transition if needed', () => {
+        element.style.transform = 'translate3d(-824px, 0, 0)';
+        wrapper.setProps({ direction: 'right' });
+        instance.handleEnter(element);
+        assert.strictEqual(element.style.transform, 'translate3d(-824px, 0, 0)');
       });
     });
 
@@ -161,7 +168,7 @@ describe('<Slide />', () => {
         assert.strictEqual(element.style.transform, 'translate3d(calc(100vw - 300px), 0, 0)');
         wrapper.setProps({ direction: 'right' });
         instance.handleEnter(element);
-        assert.strictEqual(element.style.transform, 'translate3d(-800px, 0, 0)');
+        assert.strictEqual(element.style.transform, 'translate3d(-824px, 0, 0)');
         wrapper.setProps({ direction: 'up' });
         instance.handleEnter(element);
         assert.strictEqual(element.style.transform, 'translate3d(0, calc(100vh - 200px), 0)');
