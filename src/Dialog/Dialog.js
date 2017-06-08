@@ -7,6 +7,7 @@ import transitions from '../styles/transitions';
 import Overlay from '../internal/Overlay';
 import RenderToLayer from '../internal/RenderToLayer';
 import Paper from '../Paper';
+import rtl from '../utils/rtl';
 
 import ReactTransitionGroup from 'react-transition-group/TransitionGroup';
 
@@ -91,9 +92,12 @@ function getStyles(props, context) {
 
   const gutter = spacing.desktopGutter;
   const borderScroll = `1px solid ${palette.borderColor}`;
+  const normalizeDirection = rtl(context.muiTheme) || ((style) => {
+    return style;
+  });
 
   return {
-    root: {
+    root: normalizeDirection({
       position: 'fixed',
       boxSizing: 'border-box',
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
@@ -105,7 +109,9 @@ function getStyles(props, context) {
       transition: open ?
         transitions.easeOut('0ms', 'left', '0ms') :
         transitions.easeOut('0ms', 'left', '450ms'),
-    },
+      direction: 'ltr',
+      textAlign: 'left',
+    }),
     content: {
       boxSizing: 'border-box',
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
@@ -116,14 +122,14 @@ function getStyles(props, context) {
       margin: '0 auto',
       zIndex: zIndex.dialog,
     },
-    actionsContainer: {
+    actionsContainer: normalizeDirection({
       boxSizing: 'border-box',
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
       padding: 8,
       width: '100%',
       textAlign: 'right',
       marginTop: autoScrollBodyContent ? -1 : 0,
-    },
+    }),
     overlay: {
       zIndex: zIndex.dialogOverlay,
     },

@@ -33,6 +33,7 @@ function getStyles(props, context) {
       paddingRight: props.rightIcon ? indent : sidePadding,
       paddingBottom: 0,
       paddingTop: 0,
+      direction: context.muiTheme.isRtl ? 'rtl' : 'ltr',
     },
 
     secondaryText: {
