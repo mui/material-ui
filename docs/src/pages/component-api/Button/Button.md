@@ -9,7 +9,7 @@
 | <span style="color: #31a148">children *</span> | node |  | The content of the button. |
 | classes | object |  | Useful to extend the style applied to components. |
 | compact | bool | false | Uses a smaller minWidth, ideal for things like card actions. |
-| component | union:&nbsp;string<br>&nbsp;func<br> | 'button' | The component used for the root node. Either a string to use a DOM element or a component. |
+| component | union:&nbsp;string<br>&nbsp;func<br> |  | The component used for the root node. Either a string to use a DOM element or a component. The default value is a `button`. |
 | contrast | bool | false | If `true`, the button will use the theme's contrast color. |
 | disabled | bool | false | If `true`, the button will be disabled. |
 | disableFocusRipple | bool | false | If `true`, the  keyboard focus ripple will be disabled. `ripple` must also be true. |

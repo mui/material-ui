@@ -20,6 +20,7 @@ function FlatButtons(props) {
       <Button accent className={classes.button}>Accent</Button>
       <Button contrast className={classes.button}>Contrast</Button>
       <Button disabled className={classes.button}>Disabled</Button>
+      <Button href="#flat-buttons">Link</Button>
     </div>
   );
 }
