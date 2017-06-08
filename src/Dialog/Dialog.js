@@ -278,6 +278,7 @@ class DialogInline extends Component {
       overlayClassName,
       overlayStyle,
       open,
+      rounded,
       titleClassName,
       titleStyle,
       title,
@@ -336,7 +337,7 @@ class DialogInline extends Component {
               className={contentClassName}
               style={styles.content}
             >
-              <Paper zDepth={4}>
+              <Paper zDepth={4} rounded={rounded}>
                 {titleElement}
                 <div
                   ref="dialogContent"
@@ -437,6 +438,10 @@ class Dialog extends Component {
      */
     repositionOnUpdate: PropTypes.bool,
     /**
+     * Make the modal corners rounded.
+     */
+    rounded: PropTypes.bool,
+    /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
@@ -462,6 +467,7 @@ class Dialog extends Component {
     autoDetectWindowHeight: true,
     autoScrollBodyContent: false,
     modal: false,
+    rounded: false,
     repositionOnUpdate: true,
   };
 
