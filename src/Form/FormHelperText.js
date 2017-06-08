@@ -12,6 +12,7 @@ export const styleSheet = createStyleSheet('MuiFormHelperText', theme => ({
     fontFamily: theme.typography.fontFamily,
     fontSize: 12,
     lineHeight: 1.4,
+    minHeight: 16,
     margin: 0,
   },
   error: {
