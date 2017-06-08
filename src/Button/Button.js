@@ -193,6 +193,7 @@ Button.propTypes = {
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
+   * The default value is a `button`.
    */
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
@@ -237,7 +238,6 @@ Button.propTypes = {
 
 Button.defaultProps = {
   accent: false,
-  component: 'button',
   compact: false,
   contrast: false,
   disabled: false,

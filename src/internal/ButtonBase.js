@@ -63,7 +63,9 @@ class ButtonBase extends Component {
   keyboardFocusCheckTime = 40;
   keyboardFocusMaxCheckTimes = 5;
 
-  focus = () => this.button.focus();
+  focus = () => {
+    this.button.focus();
+  };
 
   handleKeyDown = event => {
     const { component, focusRipple, onKeyDown, onClick } = this.props;
@@ -264,6 +266,7 @@ ButtonBase.propTypes = {
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
+   * The default value is a `button`.
    */
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
