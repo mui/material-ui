@@ -243,11 +243,13 @@ class Popover extends Component {
   }
 
   componentClickAway = (event) => {
+    if (event.type === 'click') {
+      return event.preventDefault();
+    }
     if (this.props.shouldTriggerClickAway && !this.props.shouldTriggerClickAway(event)) {
       return;
     }
 
-    event.preventDefault();
     this.requestClose('clickAway');
   };
 
