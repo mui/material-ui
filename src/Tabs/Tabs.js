@@ -47,6 +47,10 @@ class Tabs extends Component {
      */
     inkBarStyle: PropTypes.object,
     /**
+     * The css class name of the label's container.
+     */
+    labelsContainerClassName: PropTypes.string,
+    /**
      * Called when the selected value change.
      */
     onChange: PropTypes.func,
@@ -182,6 +186,8 @@ class Tabs extends Component {
       ...other
     } = this.props;
 
+    const labelsContainerClassName = this.props.labelsContainerClassName || '';
+
     const {prepareStyles} = this.context.muiTheme;
     const styles = getStyles(this.props, this.context);
     const valueLink = this.getValueLink(this.props);
@@ -228,11 +234,13 @@ class Tabs extends Component {
 
     return (
       <div style={prepareStyles(Object.assign({}, style))} {...other}>
-        <div style={prepareStyles(Object.assign(styles.tabItemContainer, tabItemContainerStyle))}>
-          {tabs}
-        </div>
-        <div style={{width: inkBarContainerWidth}}>
-          {inkBar}
+        <div className={labelsContainerClassName}>
+          <div style={prepareStyles(Object.assign(styles.tabItemContainer, tabItemContainerStyle))}>
+            {tabs}
+          </div>
+          <div style={{width: inkBarContainerWidth}}>
+            {inkBar}
+          </div>
         </div>
         <div
           style={prepareStyles(Object.assign({}, contentContainerStyle))}
