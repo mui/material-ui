@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 import IconButton from '../IconButton';
+import IndeterminateCheckBoxIcon from '../svg-icons/indeterminate-check-box';
 import CheckBoxOutlineBlankIcon from '../svg-icons/check-box-outline-blank';
 import CheckBoxIcon from '../svg-icons/check-box';
 import Icon from '../Icon';
@@ -33,6 +34,7 @@ export default function createSwitch(
   {
     defaultIcon = <CheckBoxOutlineBlankIcon aria-hidden="true" />,
     defaultCheckedIcon = <CheckBoxIcon aria-hidden="true" />,
+    defaultIndeterminateIcon = <IndeterminateCheckBoxIcon aria-hidden="true" />,
     inputType = 'checkbox',
     styleSheet: switchStyleSheet,
   } = {},
@@ -44,6 +46,7 @@ export default function createSwitch(
     static defaultProps = {
       icon: defaultIcon,
       checkedIcon: defaultCheckedIcon,
+      indeterminateIcon: defaultIndeterminateIcon,
       disableRipple: false,
     };
 
@@ -84,6 +87,19 @@ export default function createSwitch(
       }
     };
 
+    getIcon = checked => {
+      if (checked === 'indeterminate') {
+        return this.props.indeterminateIcon;
+      }
+
+      const icon = checked ? this.props.checkedIcon : this.props.icon;
+      if (typeof icon === 'string') {
+        return <Icon>{icon}</Icon>;
+      }
+
+      return icon;
+    };
+
     render() {
       const {
         checked: checkedProp,
@@ -93,6 +109,7 @@ export default function createSwitch(
         disabled,
         disabledClassName,
         icon: iconProp,
+        indeterminateIcon,
         inputProps,
         name,
         onChange,
@@ -112,11 +129,7 @@ export default function createSwitch(
         [classNames(switchClasses.disabled, disabledClassName)]: disabled,
       });
 
-      let icon = checked ? checkedIcon : iconProp;
-
-      if (typeof icon === 'string') {
-        icon = <Icon>{icon}</Icon>;
-      }
+      const icon = this.getIcon(checked);
 
       return (
         <IconButton
@@ -193,6 +206,10 @@ export default function createSwitch(
      * If a string is provided, it will be used as a font ligature.
      */
     icon: PropTypes.node,
+    /**
+     * The icon to display when the component is indeterminate.
+     */
+    indeterminateIcon: PropTypes.node,
     /**
      * Properties applied to the `input` element.
      */
