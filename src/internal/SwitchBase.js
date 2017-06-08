@@ -31,8 +31,8 @@ export const styleSheet = createStyleSheet('MuiSwitchBase', {
 
 export default function createSwitch(
   {
-    defaultIcon = <CheckBoxOutlineBlankIcon aria-hidden="true" />,
-    defaultCheckedIcon = <CheckBoxIcon aria-hidden="true" />,
+    defaultIcon = <CheckBoxOutlineBlankIcon />,
+    defaultCheckedIcon = <CheckBoxIcon />,
     inputType = 'checkbox',
     styleSheet: switchStyleSheet,
   } = {},
@@ -170,6 +170,7 @@ export default function createSwitch(
     checkedClassName: PropTypes.string,
     /**
      * The icon to display when the component is checked.
+     * If a string is provided, it will be used as a font ligature.
      */
     checkedIcon: PropTypes.node,
     /**

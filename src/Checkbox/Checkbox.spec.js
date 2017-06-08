@@ -1,16 +1,16 @@
 // @flow
 
+import React from 'react';
 import { assert } from 'chai';
 import { createShallow } from '../test-utils';
 import Checkbox, { styleSheet } from './Checkbox';
-import LabelCheckbox from './LabelCheckbox';
 
 describe('<Checkbox />', () => {
   let shallow;
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    shallow = createShallow();
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
@@ -22,17 +22,9 @@ describe('<Checkbox />', () => {
     });
   });
 
-  describe('default Checkbox export', () => {
-    it('should be a SwitchBase with the displayName set for debugging', () => {
-      assert.strictEqual(Checkbox.name, 'SwitchBase');
-      assert.strictEqual(Checkbox.displayName, 'Checkbox');
-    });
-  });
-
-  describe('named LabelCheckbox export', () => {
-    it('should be Checkbox wrapped with SwitchLabel', () => {
-      assert.strictEqual(LabelCheckbox.name, 'Style');
-      assert.strictEqual(LabelCheckbox.displayName, 'withStyles(LabelCheckbox)');
-    });
+  it('should render a div with a SwitchBase', () => {
+    assert.strictEqual(Checkbox.name, 'Checkbox', 'set for debugging');
+    const wrapper = shallow(<Checkbox />);
+    assert.strictEqual(wrapper.name(), 'SwitchBase');
   });
 });

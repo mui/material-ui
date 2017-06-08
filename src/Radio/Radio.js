@@ -43,12 +43,13 @@ RadioDocs.propTypes = {
   checkedClassName: PropTypes.string,
   /**
    * The icon to display when selected.
+   * If a string is provided, it will be used as a font ligature.
    */
   checkedIcon: PropTypes.node,
   /**
    * Useful to extend the style applied to components.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */

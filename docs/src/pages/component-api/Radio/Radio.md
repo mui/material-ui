@@ -9,7 +9,7 @@
 |:-----|:-----|:--------|:------------|
 | checked | union:&nbsp;bool<br>&nbsp;string<br> |  | If `true`, the component appears selected. |
 | checkedClassName | string |  | The CSS class name of the root element when selected. |
-| checkedIcon | node |  | The icon to display when selected. |
+| checkedIcon | node |  | The icon to display when selected. If a string is provided, it will be used as a font ligature. |
 | classes | object |  | Useful to extend the style applied to components. |
 | disableRipple | bool |  | If `true`, the ripple effect will be disabled. |
 | disabled | bool |  | If `true`, the component disabled. |
