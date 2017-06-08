@@ -9,6 +9,9 @@ const styleSheet = createStyleSheet('RaisedButtons', theme => ({
   button: {
     margin: theme.spacing.unit,
   },
+  input: {
+    display: 'none',
+  },
 }));
 
 function RaisedButtons(props) {
@@ -22,6 +25,10 @@ function RaisedButtons(props) {
       <Button raised disabled accent className={classes.button}>
         Disabled
       </Button>
+      <input accept="jpg,jpeg,JPG,JPEG" className={classes.input} id="file" multiple type="file" />
+      <label htmlFor="file">
+        <Button component="span" className={classes.button}>Upload</Button>
+      </label>
     </div>
   );
 }
