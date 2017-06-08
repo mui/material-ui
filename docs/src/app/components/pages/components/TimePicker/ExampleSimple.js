@@ -19,6 +19,11 @@ const TimePickerExampleSimple = () => (
       format="24hr"
       hintText="Disabled TimePicker"
     />
+    <TimePicker
+      disableMinutes={true}
+      format="24hr"
+      hintText="Disable minutes"
+    />
   </div>
 );
 
