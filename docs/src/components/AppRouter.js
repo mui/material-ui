@@ -176,6 +176,13 @@ export default function AppRouter() {
         </Route>
         <Route title="Discover More" path="/discover-more" nav component={AppContent}>
           <Route
+            title="Vision"
+            path="/discover-more/vision"
+            content={requireMarkdown('./discover-more/vision.md')}
+            component={MarkdownDocs}
+            nav
+          />
+          <Route
             title="Community"
             path="/discover-more/community"
             content={requireMarkdown('./discover-more/community.md')}
