@@ -1,6 +1,7 @@
 // @flow weak
 
 import React, { Component } from 'react';
+import canUseDom from 'dom-helpers/util/inDOM';
 import EventListener from 'react-event-listener';
 import createEagerFactory from 'recompose/createEagerFactory';
 import wrapDisplayName from 'recompose/wrapDisplayName';
@@ -33,7 +34,7 @@ export const isWidthDown = (breakpoint, screenWidth, inclusive = true) => {
   return keys.indexOf(screenWidth) < keys.indexOf(breakpoint);
 };
 
-function withWidth(options = {}) {
+function withWidth(options = {}, allowSSR = false) {
   const {
     resizeInterval = 166, // Corresponds to 10 frames at 60 Hz.
   } = options;
@@ -116,7 +117,7 @@ function withWidth(options = {}) {
          * But the browser support of this API is low:
          * http://caniuse.com/#search=client%20hint
          */
-        if (props.width === null) {
+        if (props.width === null && !allowSSR && !canUseDom) {
           return null;
         }
 
