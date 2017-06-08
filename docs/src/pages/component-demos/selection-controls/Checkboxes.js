@@ -8,6 +8,7 @@ export default class Checkboxes extends Component {
   state = {
     checkedA: true,
     checkedB: false,
+    checkedF: 'indeterminate',
   };
 
   render() {
@@ -28,6 +29,12 @@ export default class Checkboxes extends Component {
         <LabelCheckbox label="Option C" value="checkedC" />
         <LabelCheckbox disabled label="Disabled" value="checkedD" />
         <LabelCheckbox checked disabled label="Disabled" value="checkedE" />
+        <LabelCheckbox
+          disabled
+          checked={this.state.checkedF}
+          label="Indeterminate"
+          value="checkedF"
+        />
       </FormGroup>
     );
   }
