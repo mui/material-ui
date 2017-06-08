@@ -7,6 +7,7 @@ import MarkdownElement from '../../../MarkdownElement';
 
 import selectFieldReadmeText from './README';
 import SelectFieldExampleSimple from './ExampleSimple';
+import SelectFieldExampleDropDownMenuProps from './ExampleDropDownMenuProps';
 import selectFieldExampleSimpleCode from '!raw!./ExampleSimple';
 import SelectFieldLongMenuExample from './ExampleLongMenu';
 import selectFieldLongMenuExampleCode from '!raw!./ExampleLongMenu';
@@ -33,6 +34,12 @@ const SelectFieldPage = () => (
       code={selectFieldExampleSimpleCode}
     >
       <SelectFieldExampleSimple />
+    </CodeExample>
+    <CodeExample
+      title="Handle DropDownMenu properties"
+      code={SelectFieldExampleDropDownMenuProps}
+    >
+      <SelectFieldExampleDropDownMenuProps />
     </CodeExample>
     <CodeExample
       title="Nullable select"

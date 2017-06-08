@@ -195,6 +195,7 @@ class SelectField extends Component {
       dropDownMenuProps,
       errorStyle,
       disabled,
+      dropDownMenuProps,
       floatingLabelFixed,
       floatingLabelText,
       floatingLabelStyle,
