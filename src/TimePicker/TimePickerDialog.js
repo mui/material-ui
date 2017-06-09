@@ -5,12 +5,16 @@ import keycode from 'keycode';
 import Clock from './Clock';
 import Dialog from '../Dialog';
 import FlatButton from '../FlatButton';
+import Popover from '../Popover/Popover';
+import PopoverAnimationVertical from '../Popover/PopoverAnimationVertical';
 
 class TimePickerDialog extends Component {
   static propTypes = {
+    animation: PropTypes.func,
     autoOk: PropTypes.bool,
     bodyStyle: PropTypes.object,
     cancelLabel: PropTypes.node,
+    container: PropTypes.oneOf(['dialog', 'inline']),
     format: PropTypes.oneOf(['ampm', '24hr']),
     initialTime: PropTypes.object,
     minutesStep: PropTypes.number,
@@ -24,6 +28,7 @@ class TimePickerDialog extends Component {
   static defaultProps = {
     okLabel: 'OK',
     cancelLabel: 'Cancel',
+    container: 'dialog',
   };
 
   static contextTypes = {
@@ -78,12 +83,16 @@ class TimePickerDialog extends Component {
       bodyStyle,
       initialTime,
       onAccept, // eslint-disable-line no-unused-vars
+      onDismiss, // eslint-disable-line no-unused-vars
+      onShow, // eslint-disable-line no-unused-vars
       format,
       autoOk,
       okLabel,
       cancelLabel,
       style,
       minutesStep,
+      container,
+      animation,
       ...other
     } = this.props;
 
@@ -91,12 +100,21 @@ class TimePickerDialog extends Component {
       root: {
         fontSize: 14,
         color: this.context.muiTheme.timePicker.clockColor,
+        minWidth: 280,
       },
       dialogContent: {
         width: 280,
       },
       body: {
         padding: 0,
+      },
+      actions: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        margin: 0,
+        maxHeight: 48,
+        padding: 8,
       },
     };
 
@@ -118,30 +136,37 @@ class TimePickerDialog extends Component {
     const onClockChangeMinutes = autoOk === true ? this.handleTouchTapOK : undefined;
     const open = this.state.open;
 
+    const Container = (container === 'inline' ? Popover : Dialog);
+
     return (
-      <Dialog
-        {...other}
-        style={Object.assign(styles.root, style)}
-        bodyStyle={Object.assign(styles.body, bodyStyle)}
-        actions={actions}
-        contentStyle={styles.dialogContent}
-        repositionOnUpdate={false}
-        open={open}
-        onRequestClose={this.handleRequestClose}
-      >
-        {open &&
-          <EventListener target="window" onKeyUp={this.handleKeyUp} />
-        }
-        {open &&
-          <Clock
-            ref="clock"
-            format={format}
-            initialTime={initialTime}
-            onChangeMinutes={onClockChangeMinutes}
-            minutesStep={minutesStep}
-          />
-        }
-      </Dialog>
+      <div {...other} ref="root">
+        <Container
+          anchorEl={this.refs.root} // For Popover
+          animation={animation || PopoverAnimationVertical} // For Popover
+          style={Object.assign(styles.root, style)}
+          bodyStyle={Object.assign(styles.body, bodyStyle)}
+          contentStyle={styles.dialogContent}
+          repositionOnUpdate={false}
+          open={open}
+          onRequestClose={this.handleRequestClose}
+        >
+          {open &&
+            <EventListener target="window" onKeyUp={this.handleKeyUp} />
+          }
+          {open &&
+            <Clock
+              ref="clock"
+              format={format}
+              initialTime={initialTime}
+              onChangeMinutes={onClockChangeMinutes}
+              minutesStep={minutesStep}
+            />
+          }
+          <div style={styles.actions}>
+            {actions}
+          </div>
+        </Container>
+      </div>
     );
   }
 }

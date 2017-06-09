@@ -10,6 +10,8 @@ import TimePickerExampleSimple from './ExampleSimple';
 import timePickerExampleSimpleCode from '!raw!./ExampleSimple';
 import TimePickerExampleComplex from './ExampleComplex';
 import timePickerExampleComplexCode from '!raw!./ExampleComplex';
+import TimePickerInline from './ExampleInline';
+import timePickerInlineCode from '!raw!./ExampleInline';
 import TimePickerExampleInternational from './ExampleInternational';
 import timePickerExampleInternationalCode from '!raw!./ExampleInternational';
 import TimePickerExampleStep from './ExampleStep';
@@ -19,6 +21,7 @@ import timePickerCode from '!raw!material-ui/TimePicker/TimePicker';
 const descriptions = {
   simple: 'Time Picker supports 12 hour and 24 hour formats. In 12 hour format the AM and PM indicators toggle the ' +
   'selected time period. You can also disable the Dialog passing true to the disabled property.',
+  inline: 'Inline Time Pickers are displayed below the input, rather than as a modal dialog.',
   controlled: '`TimePicker` can be used as a controlled component.',
   localised: 'The buttons can be localised using the `cancelLabel` and `okLabel` properties.',
   step: 'The number of minutes on each step can be configured using the `minutesStep` property.',
@@ -34,6 +37,13 @@ const TimePickersPage = () => (
       code={timePickerExampleSimpleCode}
     >
       <TimePickerExampleSimple />
+    </CodeExample>
+    <CodeExample
+      title="Inline examples"
+      description={descriptions.inline}
+      code={timePickerInlineCode}
+    >
+      <TimePickerInline />
     </CodeExample>
     <CodeExample
       title="Controlled examples"
