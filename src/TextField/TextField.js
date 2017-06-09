@@ -57,7 +57,7 @@ const getStyles = (props, context, state) => {
       color: props.disabled ? disabledTextColor : textColor,
       cursor: 'inherit',
       font: 'inherit',
-      WebkitTextFillColor: props.disabled ? disabledTextColor : textColor,
+      WebkitOpacity: 1,
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated style).
     },
     inputNative: {
