@@ -111,22 +111,14 @@ class Tab extends Component {
 
     let iconElement;
     if (icon && React.isValidElement(icon)) {
-      const iconProps = {
+      iconElement = React.cloneElement(icon, {
         style: {
           fontSize: 24,
-          color: styles.root.color,
+          color: (icon.props && icon.props.style && icon.props.style.color) ?
+            icon.props.style.color : styles.root.color,
           marginBottom: label ? 5 : 0,
         },
-      };
-      // If it's svg icon set color via props
-      if (icon.type.muiName !== 'FontIcon') {
-        if (icon.props !== undefined && icon.props.style !== undefined && icon.props.style.color !== undefined) {
-          iconProps.color = icon.props.style.color;
-        } else {
-          iconProps.color = styles.root.color;
-        }
-      }
-      iconElement = React.cloneElement(icon, iconProps);
+      });
     }
 
     const rippleOpacity = 0.3;
