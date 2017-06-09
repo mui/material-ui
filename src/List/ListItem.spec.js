@@ -4,10 +4,9 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow } from '../test-utils';
 import ListItem, { styleSheet } from './ListItem';
+import ListItemText from './ListItemText';
+import ListItemSecondaryAction from './ListItemSecondaryAction';
 
-/**
- * An item that goes in lists.
- */
 describe('<ListItem />', () => {
   let shallow;
   let classes;
@@ -60,19 +59,33 @@ describe('<ListItem />', () => {
 
   describe('context: dense', () => {
     it('should forward the context', () => {
-      const wrapper1 = shallow(<ListItem />);
+      const wrapper = shallow(<ListItem />);
       assert.strictEqual(
-        wrapper1.instance().getChildContext().dense,
+        wrapper.instance().getChildContext().dense,
         false,
         'dense should be false by default',
       );
 
-      const wrapper2 = shallow(<ListItem dense />);
+      wrapper.setProps({
+        dense: true,
+      });
       assert.strictEqual(
-        wrapper2.instance().getChildContext().dense,
+        wrapper.instance().getChildContext().dense,
         true,
         'dense should be true when set',
       );
+    });
+  });
+
+  describe('secondary action', () => {
+    it('should wrap with a container', () => {
+      const wrapper = shallow(
+        <ListItem>
+          <ListItemText primary="primary" />
+          <ListItemSecondaryAction />
+        </ListItem>,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.container), true);
     });
   });
 });

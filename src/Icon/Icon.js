@@ -4,56 +4,41 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
+import { capitalizeFirstLetter } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 
 export const styleSheet = createStyleSheet('MuiIcon', theme => ({
   root: {
     userSelect: 'none',
   },
-  accent: {
+  colorAccent: {
     color: theme.palette.accent.A200,
   },
-  action: {
+  colorAction: {
     color: theme.palette.action.active,
   },
-  contrast: {
+  colorContrast: {
     color: theme.palette.getContrastText(theme.palette.primary[500]),
   },
-  disabled: {
+  colorDisabled: {
     color: theme.palette.action.disabled,
   },
-  error: {
+  colorError: {
     color: theme.palette.error[500],
   },
-  primary: {
+  colorPrimary: {
     color: theme.palette.primary[500],
   },
 }));
 
 function Icon(props) {
-  const {
-    accent,
-    action,
-    children,
-    classes,
-    className: classNameProp,
-    contrast,
-    disabled,
-    error,
-    primary,
-    ...other
-  } = props;
+  const { children, classes, className: classNameProp, color, ...other } = props;
 
   const className = classNames(
     'material-icons',
     classes.root,
     {
-      [classes.accent]: accent,
-      [classes.action]: action,
-      [classes.contrast]: contrast,
-      [classes.disabled]: disabled,
-      [classes.error]: error,
-      [classes.primary]: primary,
+      [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'inherit',
     },
     classNameProp,
   );
@@ -67,14 +52,6 @@ function Icon(props) {
 
 Icon.propTypes = {
   /**
-   * If `true`, the button will use the theme's accent color.
-   */
-  accent: PropTypes.bool,
-  /**
-   * If `true`, the button will use the theme's action.active color.
-   */
-  action: PropTypes.bool,
-  /**
    * The name of the icon font ligature.
    */
   children: PropTypes.node,
@@ -87,30 +64,21 @@ Icon.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, the button will contrast the theme's primary color.
+   * The color of the component. It's using the theme palette when that makes sense.
    */
-  contrast: PropTypes.bool,
-  /**
-   * If `true`, the button will use the theme's action.disabled color.
-   */
-  disabled: PropTypes.bool,
-  /**
-   * If `true`, the text will use the theme's error color.
-   */
-  error: PropTypes.bool,
-  /**
-   * If `true`, the button will use the theme's primary color.
-   */
-  primary: PropTypes.bool,
+  color: PropTypes.oneOf([
+    'inherit',
+    'accent',
+    'action',
+    'contrast',
+    'disabled',
+    'error',
+    'primary',
+  ]),
 };
 
 Icon.defaultProps = {
-  accent: false,
-  action: false,
-  contrast: false,
-  disabled: false,
-  error: false,
-  primary: false,
+  color: 'inherit',
 };
 
 Icon.muiName = 'Icon';

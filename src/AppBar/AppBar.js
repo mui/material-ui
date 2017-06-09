@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
+import { capitalizeFirstLetter } from '../utils/helpers';
 import Paper from '../Paper';
 
 export const styleSheet = createStyleSheet('MuiAppBar', theme => ({
@@ -14,27 +15,27 @@ export const styleSheet = createStyleSheet('MuiAppBar', theme => ({
     width: '100%',
     zIndex: theme.zIndex.appBar,
   },
-  'position-fixed': {
+  positionFixed: {
     position: 'fixed',
     top: 0,
     left: 'auto',
     right: 0,
   },
-  'position-absolute': {
+  positionAbsolute: {
     position: 'absolute',
     top: 0,
     left: 'auto',
     right: 0,
   },
-  'position-static': {
+  positionStatic: {
     position: 'static',
     flexShrink: 0,
   },
-  primary: {
+  colorPrimary: {
     backgroundColor: theme.palette.primary[500],
     color: theme.palette.getContrastText(theme.palette.primary[500]),
   },
-  accent: {
+  colorAccent: {
     backgroundColor: theme.palette.accent.A200,
     color: theme.palette.getContrastText(theme.palette.accent.A200),
   },
@@ -42,20 +43,19 @@ export const styleSheet = createStyleSheet('MuiAppBar', theme => ({
 
 function AppBar(props) {
   const {
-    accent,
     children,
     classes,
     className: classNameProp,
+    color,
     position, // eslint-disable-line no-unsed-vars
     ...other
   } = props;
 
   const className = classNames(
     classes.root,
-    classes[`position-${position}`],
+    classes[`position${capitalizeFirstLetter(position)}`],
     {
-      [classes.primary]: !accent,
-      [classes.accent]: accent,
+      [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'inherit',
     },
     classNameProp,
   );
@@ -69,10 +69,6 @@ function AppBar(props) {
 
 AppBar.propTypes = {
   /**
-   * If `true`, the AppBar will use the theme's accent color.
-   */
-  accent: PropTypes.bool,
-  /**
    * The content of the component.
    */
   children: PropTypes.node,
@@ -85,13 +81,17 @@ AppBar.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * The color of the component. It's using the theme palette when that makes sense.
+   */
+  color: PropTypes.oneOf(['inherit', 'primary', 'accent']),
+  /**
    * The positioning type.
    */
   position: PropTypes.oneOf(['static', 'fixed', 'absolute']),
 };
 
 AppBar.defaultProps = {
-  accent: false,
+  color: 'primary',
   position: 'fixed',
 };
 

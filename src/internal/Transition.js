@@ -41,7 +41,12 @@ type DefaultProps = {
 function requestAnimationStart(callback) {
   // Feature detect rAF, fallback to setTimeout
   if (window.requestAnimationFrame) {
-    window.requestAnimationFrame(callback);
+    // Chrome and Safari have a bug where calling rAF once returns the current
+    // frame instead of the next frame, so we need to call a double rAF here.
+    // See https://crbug.com/675795 for more.
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(callback);
+    });
   } else {
     setTimeout(callback, 0);
   }

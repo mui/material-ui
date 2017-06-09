@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
+import { capitalizeFirstLetter } from '../utils/helpers';
 
 export const styleSheet = createStyleSheet('MuiListSubheader', theme => ({
   root: {
@@ -16,8 +17,11 @@ export const styleSheet = createStyleSheet('MuiListSubheader', theme => ({
     fontWeight: theme.typography.fontWeightMedium,
     fontSize: theme.typography.fontSize,
   },
-  primary: {
+  colorPrimary: {
     color: theme.palette.primary[500],
+  },
+  colorInherit: {
+    color: 'inherit',
   },
   inset: {
     paddingLeft: theme.spacing.unit * 9,
@@ -25,11 +29,11 @@ export const styleSheet = createStyleSheet('MuiListSubheader', theme => ({
 }));
 
 function ListSubheader(props) {
-  const { classes, className: classNameProp, primary, inset, children, ...other } = props;
+  const { classes, className: classNameProp, color, inset, children, ...other } = props;
   const className = classNames(
     classes.root,
     {
-      [classes.primary]: primary,
+      [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
       [classes.inset]: inset,
     },
     classNameProp,
@@ -56,18 +60,18 @@ ListSubheader.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * The color of the component. It's using the theme palette when that makes sense.
+   */
+  color: PropTypes.oneOf(['default', 'primary', 'inherit']),
+  /**
    * If `true`, the List Subheader will be indented.
    */
   inset: PropTypes.bool,
-  /**
-   * If `true`, the List Subheader will have the theme primary color.
-   */
-  primary: PropTypes.bool,
 };
 
 ListSubheader.defaultProps = {
+  color: 'default',
   inset: false,
-  primary: false,
 };
 
 export default withStyles(styleSheet)(ListSubheader);

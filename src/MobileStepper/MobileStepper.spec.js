@@ -42,12 +42,12 @@ describe('<MobileStepper />', () => {
 
   it('should render with the bottom class if position prop is set to bottom', () => {
     const wrapper = shallow(<MobileStepper position="bottom" {...defaultProps} />);
-    assert.strictEqual(wrapper.hasClass(classes['position-bottom']), true);
+    assert.strictEqual(wrapper.hasClass(classes.positionBottom), true);
   });
 
   it('should render with the top class if position prop is set to top', () => {
     const wrapper = shallow(<MobileStepper position="top" {...defaultProps} />);
-    assert.strictEqual(wrapper.hasClass(classes['position-top']), true);
+    assert.strictEqual(wrapper.hasClass(classes.positionTop), true);
   });
 
   it('should render two buttons', () => {

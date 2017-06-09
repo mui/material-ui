@@ -124,24 +124,32 @@ class AppFrame extends Component {
       <div className={classes.appFrame}>
         <AppBar className={appBarClassName}>
           <Toolbar>
-            <IconButton contrast onClick={this.handleDrawerToggle} className={navIconClassName}>
+            <IconButton
+              color="contrast"
+              onClick={this.handleDrawerToggle}
+              className={navIconClassName}
+            >
               <MenuIcon />
             </IconButton>
             {title !== null &&
-              <Typography className={classes.title} type="title" colorInherit noWrap>
+              <Typography className={classes.title} type="title" color="inherit" noWrap>
                 {title}
               </Typography>}
             <div className={classes.grow} />
             <AppSearch />
             <DemoButton routes={routes} />
             <ApiMenu routes={routes} />
-            <IconButton title="Toggle light/dark theme" contrast onClick={this.handleToggleShade}>
+            <IconButton
+              title="Toggle light/dark theme"
+              color="contrast"
+              onClick={this.handleToggleShade}
+            >
               <LightbulbOutline />
             </IconButton>
             <IconButton
               component="a"
               title="GitHub"
-              contrast
+              color="contrast"
               href="https://github.com/callemall/material-ui/tree/next"
             >
               <Github />

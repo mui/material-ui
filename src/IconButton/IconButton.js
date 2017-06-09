@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../internal/ButtonBase';
+import { capitalizeFirstLetter } from '../utils/helpers';
 import Icon from '../Icon';
 
 export const styleSheet = createStyleSheet('MuiIconButton', theme => ({
@@ -30,13 +31,13 @@ export const styleSheet = createStyleSheet('MuiIconButton', theme => ({
   disabled: {
     color: theme.palette.action.disabled,
   },
-  accent: {
+  colorAccent: {
     color: theme.palette.accent.A200,
   },
-  contrast: {
+  colorContrast: {
     color: theme.palette.getContrastText(theme.palette.primary[500]),
   },
-  'color-inherit': {
+  colorInherit: {
     color: 'inherit',
   },
   label: {
@@ -59,27 +60,14 @@ export const styleSheet = createStyleSheet('MuiIconButton', theme => ({
  * regarding the available icon options.
  */
 function IconButton(props) {
-  const {
-    accent,
-    children,
-    classes,
-    className,
-    color,
-    contrast,
-    disabled,
-    disableRipple,
-    rootRef,
-    ...other
-  } = props;
+  const { children, classes, className, color, disabled, disableRipple, rootRef, ...other } = props;
 
   return (
     <ButtonBase
       className={classNames(
         classes.root,
-        classes[`color-${color}`],
         {
-          [classes.accent]: accent,
-          [classes.contrast]: contrast,
+          [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
           [classes.disabled]: disabled,
         },
         className,
@@ -110,10 +98,6 @@ function IconButton(props) {
 
 IconButton.propTypes = {
   /**
-   * If `true`, will use the theme's accent color.
-   */
-  accent: PropTypes.bool,
-  /**
    * The icon element.
    * If a string is provided, it will be used as an icon font ligature.
    */
@@ -127,13 +111,9 @@ IconButton.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Determines the color of the `IconButton`.
+   * The color of the component. It's using the theme palette when that makes sense.
    */
-  color: PropTypes.oneOf(['inherit']),
-  /**
-   * If `true`, the icon button will use the theme's contrast color.
-   */
-  contrast: PropTypes.bool,
+  color: PropTypes.oneOf(['default', 'inherit', 'contrast', 'accent']),
   /**
    * If `true`, the button will be disabled.
    */
@@ -149,8 +129,7 @@ IconButton.propTypes = {
 };
 
 IconButton.defaultProps = {
-  accent: false,
-  contrast: false,
+  color: 'default',
   disabled: false,
   disableRipple: false,
 };

@@ -11,7 +11,7 @@ export const styleSheet = createStyleSheet('MuiPaper', theme => {
   const shadows = {};
 
   theme.shadows.forEach((shadow, index) => {
-    shadows[`dp-${index}`] = {
+    shadows[`shadow${index}`] = {
       boxShadow: shadow,
     };
   });
@@ -44,7 +44,7 @@ function Paper(props) {
 
   const className = classNames(
     classes.paper,
-    classes[`dp-${elevation >= 0 ? elevation : 0}`],
+    classes[`shadow${elevation >= 0 ? elevation : 0}`],
     {
       [classes.rounded]: !square,
     },

@@ -49,10 +49,10 @@ function Home(props) {
       <div className={classes.hero}>
         <div className={classes.content}>
           <img src={muiLogo} alt="Material-UI Logo" className={classes.logo} />
-          <Typography type="display2" component="h1" colorInherit>
+          <Typography type="display2" component="h1" color="inherit">
             {'Material-UI'}
           </Typography>
-          <Typography type="subheading" component="h2" colorInherit>
+          <Typography type="subheading" component="h2" color="inherit">
             {"A React component library implementing Google's Material Design"}
           </Typography>
           <Button

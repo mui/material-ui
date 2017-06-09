@@ -20,7 +20,7 @@ function SimpleAppBar(props) {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Typography type="title" colorInherit>Title</Typography>
+          <Typography type="title" color="inherit">Title</Typography>
         </Toolbar>
       </AppBar>
     </div>

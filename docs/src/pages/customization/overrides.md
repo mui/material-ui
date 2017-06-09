@@ -28,7 +28,7 @@ The CSS inject by Material-UI to style the components has the lowest specificity
 When the `className` property isn't enough and you need to access deeper elements, you can take advantage of the `classes` property
 to customize all the CSS inject by Material-UI for the given component.
 The list of these classes is documented under the **Component API** section.
-For instance, you can have a look at the [Button](/component-api/button#classes).
+For instance, you can have a look at the [Button](/component-api/button#css-api).
 Alternatively, you can always have a look at the [implementation](https://github.com/callemall/material-ui/blob/next/src/Button/Button.js).
 
 Let's see an example:

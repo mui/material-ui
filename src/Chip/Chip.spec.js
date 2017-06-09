@@ -4,7 +4,7 @@ import React from 'react';
 import keycode from 'keycode';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow } from '../test-utils';
+import { createShallow, createMount } from '../test-utils';
 import Chip, { styleSheet } from './Chip';
 import Avatar from '../Avatar';
 
@@ -171,12 +171,38 @@ describe('<Chip />', () => {
 
     it('should call onKeyDown when a key is pressed', () => {
       const anyKeydownEvent = {
-        preventDefault: () => {},
         keyCode: keycode('p'),
       };
       wrapper.find('button').simulate('keydown', anyKeydownEvent);
       assert.strictEqual(onKeyDownSpy.callCount, 1, 'should have called onKeyDown');
       assert(onKeyDownSpy.calledWith(anyKeydownEvent));
+    });
+
+    describe('escape', () => {
+      let mount;
+
+      before(() => {
+        mount = createMount();
+      });
+
+      after(() => {
+        mount.cleanUp();
+      });
+
+      it('should unfocus when a esc key is pressed', () => {
+        const wrapper2 = mount(
+          <Chip.Naked classes={{}}>
+            Text Chip
+          </Chip.Naked>,
+        );
+        const handleBlur = spy();
+        wrapper2.instance().chipRef.blur = handleBlur;
+        wrapper2.find('button').simulate('keydown', {
+          preventDefault: () => {},
+          keyCode: keycode('esc'),
+        });
+        assert.strictEqual(handleBlur.callCount, 1);
+      });
     });
 
     describe('onClick is defined', () => {
@@ -215,7 +241,7 @@ describe('<Chip />', () => {
       });
     });
 
-    describe('onRequestDelete is defined  and `backspace is pressed', () => {
+    describe('onRequestDelete is defined and `backspace` is pressed', () => {
       it('should call onRequestDelete', () => {
         const onRequestDeleteSpy = spy();
         wrapper.setProps({ onRequestDelete: onRequestDeleteSpy });
@@ -223,7 +249,7 @@ describe('<Chip />', () => {
         const preventDefaultSpy = spy();
         const backspaceKeydownEvent = {
           preventDefault: preventDefaultSpy,
-          keyCode: 8, // keycode `backspace`
+          keyCode: keycode('backspace'),
         };
         wrapper.find('button').simulate('keydown', backspaceKeydownEvent);
 

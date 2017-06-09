@@ -16,9 +16,9 @@ function FlatButtons(props) {
   return (
     <div>
       <Button className={classes.button}>Default</Button>
-      <Button primary className={classes.button}>Primary</Button>
-      <Button accent className={classes.button}>Accent</Button>
-      <Button contrast className={classes.button}>Contrast</Button>
+      <Button color="primary" className={classes.button}>Primary</Button>
+      <Button color="accent" className={classes.button}>Accent</Button>
+      <Button color="contrast" className={classes.button}>Contrast</Button>
       <Button disabled className={classes.button}>Disabled</Button>
       <Button href="#flat-buttons">Link</Button>
     </div>

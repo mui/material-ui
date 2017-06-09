@@ -8,6 +8,7 @@ import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import customPropTypes from '../utils/customPropTypes';
 import ClickAwayListener from '../internal/ClickAwayListener';
+import { capitalizeFirstLetter } from '../utils/helpers';
 import Slide from '../transitions/Slide';
 import SnackbarContent from './SnackbarContent';
 
@@ -33,31 +34,31 @@ export const styleSheet = createStyleSheet('MuiSnackbar', theme => {
       alignItems: 'center',
       pointerEvents: 'none',
     },
-    'anchor-top-center': {
+    anchorTopCenter: {
       extend: [top],
     },
-    'anchor-bottom-center': {
+    anchorBottomCenter: {
       extend: [bottom],
     },
-    'anchor-top-right': {
+    anchorTopRight: {
       extend: [top, right],
       [theme.breakpoints.up('md')]: {
         extend: [topSpace, rightSpace],
       },
     },
-    'anchor-bottom-right': {
+    anchorBottomRight: {
       extend: [bottom, right],
       [theme.breakpoints.up('md')]: {
         extend: [bottomSpace, rightSpace],
       },
     },
-    'anchor-top-left': {
+    anchorTopLeft: {
       extend: [top, left],
       [theme.breakpoints.up('md')]: {
         extend: [topSpace, leftSpace],
       },
     },
-    'anchor-bottom-left': {
+    anchorBottomLeft: {
       extend: [bottom, left],
       [theme.breakpoints.up('md')]: {
         extend: [bottomSpace, leftSpace],
@@ -182,7 +183,7 @@ class Snackbar extends Component {
         <div
           className={classNames(
             classes.root,
-            classes[`anchor-${vertical}-${horizontal}`],
+            classes[`anchor${capitalizeFirstLetter(vertical)}${capitalizeFirstLetter(horizontal)}`],
             className,
           )}
           onMouseEnter={this.handleMouseEnter}

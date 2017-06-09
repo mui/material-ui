@@ -27,9 +27,9 @@ describe('<Avatar />', () => {
       assert.strictEqual(wrapper.hasClass('my-avatar'), true);
       assert.strictEqual(wrapper.prop('data-my-prop'), 'woof');
       assert.strictEqual(
-        wrapper.hasClass(classes.defaultColor),
+        wrapper.hasClass(classes.colorDefault),
         false,
-        'should not apply the defaultColor class for image avatars',
+        'should not apply the colorDefault class for image avatars',
       );
       const img = wrapper.childAt(0);
       assert.strictEqual(
@@ -84,8 +84,8 @@ describe('<Avatar />', () => {
       assert.strictEqual(wrapper.prop('data-my-prop'), 'woof');
     });
 
-    it('should apply the defaultColor class', () => {
-      assert.strictEqual(wrapper.hasClass(classes.defaultColor), true);
+    it('should apply the colorDefault class', () => {
+      assert.strictEqual(wrapper.hasClass(classes.colorDefault), true);
     });
 
     it('should apply the childrenClassName class', () => {
@@ -115,8 +115,8 @@ describe('<Avatar />', () => {
       assert.strictEqual(wrapper.prop('data-my-prop'), 'woof');
     });
 
-    it('should apply the defaultColor class', () => {
-      assert.strictEqual(wrapper.hasClass(classes.defaultColor), true);
+    it('should apply the colorDefault class', () => {
+      assert.strictEqual(wrapper.hasClass(classes.colorDefault), true);
     });
 
     it('should apply the childrenClassName class', () => {
@@ -146,8 +146,8 @@ describe('<Avatar />', () => {
       assert.strictEqual(wrapper.prop('data-my-prop'), 'woof');
     });
 
-    it('should apply the defaultColor class', () => {
-      assert.strictEqual(wrapper.hasClass(classes.defaultColor), true);
+    it('should apply the colorDefault class', () => {
+      assert.strictEqual(wrapper.hasClass(classes.colorDefault), true);
     });
   });
 });

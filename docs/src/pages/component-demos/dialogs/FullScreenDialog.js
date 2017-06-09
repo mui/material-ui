@@ -51,13 +51,13 @@ class FullScreenDialog extends Component {
         >
           <AppBar className={classes.appBar}>
             <Toolbar>
-              <IconButton contrast onClick={this.handleRequestClose} aria-label="Close">
+              <IconButton color="contrast" onClick={this.handleRequestClose} aria-label="Close">
                 <CloseIcon />
               </IconButton>
-              <Typography type="title" colorInherit className={classes.flex}>
+              <Typography type="title" color="inherit" className={classes.flex}>
                 Sound
               </Typography>
-              <Button contrast onClick={this.handleRequestClose}>save</Button>
+              <Button color="contrast" onClick={this.handleRequestClose}>save</Button>
             </Toolbar>
           </AppBar>
           <List>

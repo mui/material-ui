@@ -32,8 +32,8 @@ function SimpleMediaCard(props) {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button compact primary>Share</Button>
-          <Button compact primary>Learn More</Button>
+          <Button compact color="primary">Share</Button>
+          <Button compact color="primary">Learn More</Button>
         </CardActions>
       </Card>
     </div>

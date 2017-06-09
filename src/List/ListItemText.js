@@ -59,7 +59,11 @@ function ListItemText(props, context) {
       {secondary &&
         (disableTypography
           ? secondary
-          : <Typography secondary type="body1" className={classNames({ [classes.text]: dense })}>
+          : <Typography
+              color="secondary"
+              type="body1"
+              className={classNames({ [classes.text]: dense })}
+            >
               {secondary}
             </Typography>)}
     </div>

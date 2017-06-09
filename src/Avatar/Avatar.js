@@ -21,7 +21,7 @@ export const styleSheet = createStyleSheet('MuiAvatar', theme => ({
     overflow: 'hidden',
     userSelect: 'none',
   },
-  defaultColor: {
+  colorDefault: {
     color: theme.palette.background.default,
     backgroundColor: emphasize(theme.palette.background.default, 0.26),
   },
@@ -50,7 +50,7 @@ function Avatar(props) {
   const className = classNames(
     classes.root,
     {
-      [classes.defaultColor]: childrenProp && !src && !srcSet,
+      [classes.colorDefault]: childrenProp && !src && !srcSet,
     },
     classNameProp,
   );

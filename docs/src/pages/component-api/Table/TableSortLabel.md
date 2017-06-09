@@ -12,7 +12,7 @@ A button based label for placing inside `TableCell` for column sorting.
 
 Any other properties supplied will be spread to the root element.
 
-## Classes
+## CSS API
 
 You can overrides all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:

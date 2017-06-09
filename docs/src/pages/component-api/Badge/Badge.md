@@ -5,23 +5,21 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| accent | bool | false | If `true`, the badge will use the accent badge colors. |
-| badgeClassName | string |  | The CSS class name of the badge element. |
 | <span style="color: #31a148">badgeContent *</span> | node |  | The content rendered within the badge. |
 | <span style="color: #31a148">children *</span> | node |  | The badge will be added relative to this node. |
 | classes | object |  | Useful to extend the style applied to components. |
-| primary | bool | false | If `true`, the badge will use the primary badge colors. |
+| color | enum:&nbsp;'default'<br>&nbsp;'primary'<br>&nbsp;'accent'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |
 
 Any other properties supplied will be spread to the root element.
 
-## Classes
+## CSS API
 
 You can overrides all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `root`
 - `badge`
-- `primary`
-- `accent`
+- `colorPrimary`
+- `colorAccent`
 
 Have a look at [overriding with class names](/customization/overrides#overriding-with-class-names)
 section for more detail.

@@ -12,37 +12,37 @@
 
 Any other properties supplied will be spread to the root element.
 
-## Classes
+## CSS API
 
 You can overrides all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `paper`
 - `rounded`
-- `dp-0`
-- `dp-1`
-- `dp-2`
-- `dp-3`
-- `dp-4`
-- `dp-5`
-- `dp-6`
-- `dp-7`
-- `dp-8`
-- `dp-9`
-- `dp-10`
-- `dp-11`
-- `dp-12`
-- `dp-13`
-- `dp-14`
-- `dp-15`
-- `dp-16`
-- `dp-17`
-- `dp-18`
-- `dp-19`
-- `dp-20`
-- `dp-21`
-- `dp-22`
-- `dp-23`
-- `dp-24`
+- `shadow0`
+- `shadow1`
+- `shadow2`
+- `shadow3`
+- `shadow4`
+- `shadow5`
+- `shadow6`
+- `shadow7`
+- `shadow8`
+- `shadow9`
+- `shadow10`
+- `shadow11`
+- `shadow12`
+- `shadow13`
+- `shadow14`
+- `shadow15`
+- `shadow16`
+- `shadow17`
+- `shadow18`
+- `shadow19`
+- `shadow20`
+- `shadow21`
+- `shadow22`
+- `shadow23`
+- `shadow24`
 
 Have a look at [overriding with class names](/customization/overrides#overriding-with-class-names)
 section for more detail.

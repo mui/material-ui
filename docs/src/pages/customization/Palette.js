@@ -21,10 +21,10 @@ function Palette() {
   return (
     <MuiThemeProvider theme={theme}>
       <div>
-        <Button primary>
+        <Button color="primary">
           {'Primary'}
         </Button>
-        <Button accent>
+        <Button color="accent">
           {'Accent'}
         </Button>
       </div>

@@ -19,17 +19,17 @@
 
 Any other properties supplied will be spread to the root element.
 
-## Classes
+## CSS API
 
 You can overrides all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `root`
-- `anchor-top-center`
-- `anchor-bottom-center`
-- `anchor-top-right`
-- `anchor-bottom-right`
-- `anchor-top-left`
-- `anchor-bottom-left`
+- `anchorTopCenter`
+- `anchorBottomCenter`
+- `anchorTopRight`
+- `anchorBottomRight`
+- `anchorTopLeft`
+- `anchorBottomLeft`
 
 Have a look at [overriding with class names](/customization/overrides#overriding-with-class-names)
 section for more detail.
