@@ -21,6 +21,12 @@ class TimePicker extends Component {
      */
     cancelLabel: PropTypes.node,
     /**
+     * Used to control how the Time Picker will be displayed when the input field is focused.
+     * `dialog` (default) displays the TimePicker as a dialog with a modal.
+     * `inline` displays the TimePicker below the input field (similar to auto complete).
+     */
+    container: PropTypes.oneOf(['dialog', 'inline']),
+    /**
      * The initial time value of the TimePicker.
      */
     defaultTime: PropTypes.object,
@@ -95,6 +101,7 @@ class TimePicker extends Component {
   static defaultProps = {
     autoOk: false,
     cancelLabel: 'Cancel',
+    container: 'dialog',
     defaultTime: null,
     disabled: false,
     format: 'ampm',
@@ -184,6 +191,7 @@ class TimePicker extends Component {
     const {
       autoOk,
       cancelLabel,
+      container,
       defaultTime, // eslint-disable-line no-unused-vars
       dialogBodyStyle,
       dialogStyle,
@@ -216,6 +224,7 @@ class TimePicker extends Component {
         <TimePickerDialog
           ref="dialogWindow"
           bodyStyle={dialogBodyStyle}
+          container={container}
           initialTime={this.state.dialogTime}
           onAccept={this.handleAcceptDialog}
           onShow={onShow}
