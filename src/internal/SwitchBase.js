@@ -88,7 +88,7 @@ export default function createSwitch(
     };
 
     getIcon = checked => {
-      if (checked === 'indeterminate') {
+      if (this.props.indeterminate) {
         return this.props.indeterminateIcon;
       }
 
@@ -109,6 +109,8 @@ export default function createSwitch(
         disabled,
         disabledClassName,
         icon: iconProp,
+        indeterminate,
+        indeterminateClassName,
         indeterminateIcon,
         inputProps,
         name,
@@ -126,6 +128,7 @@ export default function createSwitch(
 
       const className = classNames(classes.root, switchClasses.default, classNameProp, {
         [classNames(switchClasses.checked, checkedClassName)]: checked,
+        [classNames(indeterminateClassName)]: indeterminate,
         [classNames(switchClasses.disabled, disabledClassName)]: disabled,
       });
 
@@ -206,6 +209,14 @@ export default function createSwitch(
      * If a string is provided, it will be used as a font ligature.
      */
     icon: PropTypes.node,
+    /**
+     * If `true`, the component appears indeterminate.
+     */
+    indeterminate: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+    /**
+     * The icon to display when the component is indeterminate.
+     */
+    indeterminateClassName: PropTypes.node,
     /**
      * The icon to display when the component is indeterminate.
      */

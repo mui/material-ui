@@ -45,6 +45,24 @@ function assertIsNotChecked(classes, wrapper) {
   );
 }
 
+function assertIsIndeterminate(classes, wrapper) {
+  const iconButton = wrapper.find('span').at(0);
+
+  assert.strictEqual(
+    iconButton.hasClass('test-class-indeterminate'),
+    true,
+    'should have the indeterminate class on the root node',
+  );
+
+  const label = iconButton.childAt(0);
+  const icon = label.childAt(0);
+  assert.strictEqual(
+    icon.is('pure(IndeterminateCheckBox)'),
+    true,
+    'should be the IndeterminateCheckBox icon',
+  );
+}
+
 describe('<SwitchBase />', () => {
   let shallow;
   let classes;
@@ -163,7 +181,12 @@ describe('<SwitchBase />', () => {
 
     beforeEach(() => {
       wrapper = mount(
-        <SwitchBase className="test-class" checkedClassName="test-class-checked" checked={false} />,
+        <SwitchBase
+          className="test-class"
+          checkedClassName="test-class-checked"
+          indeterminateClassName="test-class-indeterminate"
+          checked={false}
+        />,
       );
     });
 
@@ -188,6 +211,11 @@ describe('<SwitchBase />', () => {
       wrapper.setProps({ checked: true });
       wrapper.setProps({ checked: false });
       assertIsNotChecked(classes, wrapper);
+    });
+
+    it('should indeterminate the checkbox', () => {
+      wrapper.setProps({ indeterminate: true });
+      assertIsIndeterminate(classes, wrapper);
     });
   });
 
