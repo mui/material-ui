@@ -17,7 +17,9 @@ function cleanStyles() {
   }
 }
 
-export default function createMount(mount = enzymeMount) {
+// Generate an enhanced mount function with the needed context.
+export default function createMount(options = {}) {
+  const { mount = enzymeMount } = options;
   cleanStyles();
 
   const attachTo = window.document.createElement('div');
@@ -27,9 +29,8 @@ export default function createMount(mount = enzymeMount) {
   const theme = createMuiTheme();
   const jss = create(jssPreset());
   const styleManager = createStyleManager({ jss, theme });
-  const context = { theme, styleManager };
+  const context = { styleManager };
   const childContextTypes = {
-    theme: PropTypes.object,
     styleManager: PropTypes.object,
   };
 

@@ -76,7 +76,7 @@ describe('withWidth', () => {
       const wrapper = shallow(<EmptyWithWidth />);
       const instance = wrapper.instance();
       const updateWidth = instance.updateWidth.bind(instance);
-      const breakpoints = wrapper.context().theme.breakpoints;
+      const breakpoints = wrapper.context().styleManager.theme.breakpoints;
 
       breakpoints.keys.forEach(key => {
         updateWidth(breakpoints.getWidth(key));
