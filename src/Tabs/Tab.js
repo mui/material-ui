@@ -120,7 +120,11 @@ class Tab extends Component {
       };
       // If it's svg icon set color via props
       if (icon.type.muiName !== 'FontIcon') {
-        iconProps.color = styles.root.color;
+        if (icon.props !== undefined && icon.props.style !== undefined && icon.props.style.color !== undefined) {
+          iconProps.color = icon.props.style.color;
+        } else {
+          iconProps.color = styles.root.color;
+        }
       }
       iconElement = React.cloneElement(icon, iconProps);
     }
