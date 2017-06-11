@@ -40,7 +40,7 @@ class CalendarToolbar extends Component {
   };
 
   static contextTypes = {
-     muiTheme: PropTypes.object.isRequired,
+    muiTheme: PropTypes.object.isRequired,
   };
 
   state = {
