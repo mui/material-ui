@@ -49,8 +49,8 @@ class CalendarToolbar extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.displayDate !== this.props.displayDate) {
-      const nextDirection = this.context.muiTheme.isRtl ? "right" : "left";
-      const prevDirection = this.context.muiTheme.isRtl ? "left" : "right";
+      const nextDirection = this.context.muiTheme.isRtl ? 'right' : 'left';
+      const prevDirection = this.context.muiTheme.isRtl ? 'left' : 'right';
       const direction = nextProps.displayDate > this.props.displayDate ? nextDirection : prevDirection;
       this.setState({
         transitionDirection: direction,
