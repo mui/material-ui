@@ -39,6 +39,10 @@ class CalendarToolbar extends Component {
     prevMonth: true,
   };
 
+  static contextTypes = {
+     muiTheme: PropTypes.object.isRequired,
+  };
+
   state = {
     transitionDirection: 'up',
   };
@@ -72,13 +76,17 @@ class CalendarToolbar extends Component {
       year: 'numeric',
     }).format(displayDate);
 
+    const nextButtonIcon = this.context.muiTheme.isRtl ? <NavigationChevronLeft /> : <NavigationChevronRight />;
+    const prevButtonIcon = this.context.muiTheme.isRtl ? <NavigationChevronRight /> : <NavigationChevronLeft />;
+
+
     return (
       <div style={styles.root}>
         <IconButton
           disabled={!this.props.prevMonth}
           onTouchTap={this.handleTouchTapPrevMonth}
         >
-          <NavigationChevronLeft />
+          {prevButtonIcon}
         </IconButton>
         <SlideInTransitionGroup
           direction={this.state.transitionDirection}
@@ -92,7 +100,7 @@ class CalendarToolbar extends Component {
           disabled={!this.props.nextMonth}
           onTouchTap={this.handleTouchTapNextMonth}
         >
-          <NavigationChevronRight />
+          {nextButtonIcon}
         </IconButton>
       </div>
     );
