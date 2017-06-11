@@ -6,13 +6,13 @@ import { createStyleManager } from 'jss-theme-reactor';
 import { shallow as enzymeShallow } from 'enzyme';
 import createMuiTheme from '../styles/theme';
 
+// Generate an enhanced shallow function with the needed context.
 export default function createShallow(options = {}) {
   const { shallow = enzymeShallow, otherContext = {}, dive = false } = options;
   const theme = createMuiTheme();
   const jss = create(jssPreset());
   const styleManager = createStyleManager({ jss, theme });
   const context = {
-    theme,
     styleManager,
     ...otherContext,
   };

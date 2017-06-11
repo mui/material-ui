@@ -2,8 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import htmlLooksLike from 'html-looks-like';
-import { createShallow, createRenderToString } from '../test-utils';
+import { createShallow, createRender } from '../test-utils';
 import Button, { styleSheet } from './Button';
 
 describe('<Button />', () => {
@@ -13,7 +12,7 @@ describe('<Button />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    renderToString = createRenderToString();
+    renderToString = createRender();
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
@@ -189,30 +188,12 @@ describe('<Button />', () => {
 
     it('should server side render', () => {
       // Only run the test on node.
-      if (!/Node.js/.test(window.navigator.userAgent)) {
+      if (!/jsdom/.test(window.navigator.userAgent)) {
         return;
       }
 
       const markup = renderToString(<Button>Hello World</Button>);
-
-      htmlLooksLike(
-        markup,
-        `
-        <button
-          tabindex="0"
-          class="MuiButtonBase-buttonBase-3170508663 MuiButton-root-3593367901"
-          type="button"
-          data-reactroot=""
-          data-reactid="1"
-          data-react-checksum="-1899863948"
-        >
-          <span class="MuiButton-label-49836587" data-reactid="2">
-            Hello World
-          </span>
-          <span class="MuiTouchRipple-root-3868442396" data-reactid="3"></span>
-        </button>
-      `,
-      );
+      assert.strictEqual(markup.text(), 'Hello World');
     });
   });
 });

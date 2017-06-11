@@ -97,6 +97,13 @@ export default function AppRouter() {
             component={MarkdownDocs}
             nav
           />
+          <Route
+            title="Testing"
+            path="/guides/testing"
+            content={requireMarkdown('./guides/testing.md')}
+            component={MarkdownDocs}
+            nav
+          />
         </Route>
         <Route title="Style" path="/style" nav component={AppContent}>
           <Route
