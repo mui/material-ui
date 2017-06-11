@@ -182,6 +182,8 @@ class Calendar extends Component {
 
   handleWindowKeyDown = (event) => {
     if (this.props.open) {
+      const nextArrow = this.context.muiTheme.isRtl ? 'left' : 'right';
+      const prevArrow = this.context.muiTheme.isRtl ? 'right' : 'left';
       switch (keycode(event)) {
         case 'up':
           if (event.altKey && event.shiftKey) {
@@ -203,7 +205,7 @@ class Calendar extends Component {
           }
           break;
 
-        case 'right':
+        case nextArrow:
           if (event.altKey && event.shiftKey) {
             this.addSelectedYears(1);
           } else if (event.shiftKey) {
@@ -213,7 +215,7 @@ class Calendar extends Component {
           }
           break;
 
-        case 'left':
+        case prevArrow:
           if (event.altKey && event.shiftKey) {
             this.addSelectedYears(-1);
           } else if (event.shiftKey) {
