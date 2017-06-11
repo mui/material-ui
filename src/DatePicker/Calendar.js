@@ -113,7 +113,9 @@ class Calendar extends Component {
 
   setDisplayDate(date, newSelectedDate) {
     const newDisplayDate = this.props.utils.getFirstDayOfMonth(date);
-    const direction = newDisplayDate > this.state.displayDate ? 'left' : 'right';
+    const nextDirection = this.context.muiTheme.isRtl ? 'right' : 'left';
+    const prevDirection = this.context.muiTheme.isRtl ? 'left' : 'right';
+    const direction = newDisplayDate > this.state.displayDate ? nextDirection : prevDirection;
 
     if (newDisplayDate !== this.state.displayDate) {
       this.setState({
@@ -150,8 +152,11 @@ class Calendar extends Component {
   };
 
   handleMonthChange = (months) => {
+    const nextDirection = this.context.muiTheme.isRtl ? 'right' : 'left';
+    const prevDirection = this.context.muiTheme.isRtl ? 'left' : 'right';
+    const direction = months >= 0 ? nextDirection : prevDirection;
     this.setState({
-      transitionDirection: months >= 0 ? 'left' : 'right',
+      transitionDirection: direction,
       displayDate: this.props.utils.addMonths(this.state.displayDate, months),
     });
   };
