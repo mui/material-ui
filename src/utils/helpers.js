@@ -1,10 +1,7 @@
 // @flow weak
 
-export function transform(obj, cb, accumulator) {
-  Object.keys(obj).forEach(key => {
-    cb(accumulator, obj[key], key);
-  });
-  return accumulator;
+export function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 export function contains(obj, pred) {

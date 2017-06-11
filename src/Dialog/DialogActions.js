@@ -18,7 +18,7 @@ export const styleSheet = createStyleSheet('MuiDialogActions', theme => ({
     margin: '0 4px',
   },
   button: {
-    minWidth: '64px',
+    minWidth: 64,
   },
 }));
 

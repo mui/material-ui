@@ -47,7 +47,7 @@ function NowPlayingCard(props) {
         <div className={classes.details}>
           <CardContent className={classes.content}>
             <Typography type="headline">Live From Space</Typography>
-            <Typography type="subheading" secondary>
+            <Typography type="subheading" color="secondary">
               Mac Miller
             </Typography>
           </CardContent>

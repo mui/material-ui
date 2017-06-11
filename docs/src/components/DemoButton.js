@@ -25,7 +25,11 @@ function DemoButton(props) {
   }
 
   return (
-    <IconButton contrast component={Link} to={`/component-demos/${kebabCase(item.demo.name)}`}>
+    <IconButton
+      color="contrast"
+      component={Link}
+      to={`/component-demos/${kebabCase(item.demo.name)}`}
+    >
       <PlayCircleOutlineIcon />
     </IconButton>
   );

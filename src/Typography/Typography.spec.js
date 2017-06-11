@@ -38,7 +38,7 @@ describe('<Typography />', () => {
 
   it('should center text', () => {
     const wrapper = shallow(<Typography align="center" className="woof">Hello</Typography>);
-    assert.strictEqual(wrapper.hasClass(classes['align-center']), true, 'should be center text');
+    assert.strictEqual(wrapper.hasClass(classes.alignCenter), true, 'should be center text');
   });
   [
     'display4',
@@ -60,9 +60,9 @@ describe('<Typography />', () => {
     });
   });
 
-  describe('prop: colorInherit', () => {
+  describe('prop: color', () => {
     it('should inherit the color', () => {
-      const wrapper = shallow(<Typography colorInherit>Hello</Typography>);
+      const wrapper = shallow(<Typography color="inherit">Hello</Typography>);
       assert.strictEqual(wrapper.hasClass(classes.colorInherit), true);
     });
   });

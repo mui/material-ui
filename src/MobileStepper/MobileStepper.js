@@ -7,6 +7,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
 import Button from '../Button';
+import { capitalizeFirstLetter } from '../utils/helpers';
 import KeyboardArrowLeft from '../svg-icons/keyboard-arrow-left';
 import KeyboardArrowRight from '../svg-icons/keyboard-arrow-right';
 import { LinearProgress } from '../Progress';
@@ -20,21 +21,21 @@ export const styleSheet = createStyleSheet('MuiMobileStepper', theme => ({
     background: theme.palette.background.default,
     height: 50,
   },
-  'position-bottom': {
+  positionBottom: {
     position: 'fixed',
     bottom: 0,
     left: 0,
     right: 0,
     zIndex: theme.zIndex.mobileStepper,
   },
-  'position-top': {
+  positionTop: {
     position: 'fixed',
     top: 0,
     left: 0,
     right: 0,
     zIndex: theme.zIndex.mobileStepper,
   },
-  'position-static': {},
+  positionStatic: {},
   button: {},
   dots: {
     display: 'flex',
@@ -72,7 +73,11 @@ function MobileStepper(props) {
     ...other
   } = props;
 
-  const className = classNames(classes.root, classes[`position-${position}`], classNameProp);
+  const className = classNames(
+    classes.root,
+    classes[`position${capitalizeFirstLetter(position)}`],
+    classNameProp,
+  );
 
   return (
     <Paper square elevation={0} className={className} {...other}>

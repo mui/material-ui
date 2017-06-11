@@ -61,7 +61,7 @@ That's a really powerful feature.
 {{demo='pages/customization/OverridesTheme.js'}}
 
 The list of these customization points for each component is documented under the **Component API** section.
-For instance, you can have a look at the [Button](/component-api/button#classes).
+For instance, you can have a look at the [Button](/component-api/button#css-api).
 Alternatively, you can always have a look at the [implementation](https://github.com/callemall/material-ui/blob/next/src/Button/Button.js).
 
 ## Accessing the theme in a component

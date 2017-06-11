@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
+import { findDOMNode } from 'react-dom';
 import { createStyleSheet } from 'jss-theme-reactor';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import Popover from '../internal/Popover';
@@ -25,11 +25,11 @@ class Menu extends Component {
   menuList = undefined;
 
   handleEnter = element => {
-    const list = ReactDOM.findDOMNode(this.menuList);
+    const list = findDOMNode(this.menuList);
 
     if (this.menuList && this.menuList.selectedItem) {
       // $FlowFixMe
-      ReactDOM.findDOMNode(this.menuList.selectedItem).focus();
+      findDOMNode(this.menuList.selectedItem).focus();
     } else if (list) {
       // $FlowFixMe
       list.firstChild.focus();
@@ -61,10 +61,10 @@ class Menu extends Component {
   getContentAnchorEl = () => {
     if (!this.menuList || !this.menuList.selectedItem) {
       // $FlowFixMe
-      return ReactDOM.findDOMNode(this.menuList).firstChild;
+      return findDOMNode(this.menuList).firstChild;
     }
 
-    return ReactDOM.findDOMNode(this.menuList.selectedItem);
+    return findDOMNode(this.menuList.selectedItem);
   };
 
   render() {

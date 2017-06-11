@@ -41,7 +41,7 @@ function CardHeader(props) {
         <Typography type={titleType} component="span">
           {title}
         </Typography>
-        <Typography type={subheaderType} component="span" secondary>
+        <Typography type={subheaderType} component="span" color="secondary">
           {subheader}
         </Typography>
       </div>

@@ -3,6 +3,7 @@
 import React, { Element, createElement, cloneElement } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
+import { capitalizeFirstLetter } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 import Modal from '../internal/Modal';
 import Fade from '../transitions/Fade';
@@ -25,13 +26,13 @@ export const styleSheet = createStyleSheet('MuiDialog', theme => ({
       outline: 'none',
     },
   },
-  'dialogWidth-xs': {
+  dialogWidthXs: {
     maxWidth: theme.breakpoints.getWidth('xs'),
   },
-  'dialogWidth-sm': {
+  dialogWidthSm: {
     maxWidth: theme.breakpoints.getWidth('sm'),
   },
-  'dialogWidth-md': {
+  dialogWidthMd: {
     maxWidth: theme.breakpoints.getWidth('md'),
   },
   fullScreen: {
@@ -198,7 +199,7 @@ function Dialog(props: Props) {
           elevation={24}
           className={classNames(
             classes.dialog,
-            classes[`dialogWidth-${maxWidth}`],
+            classes[`dialogWidth${capitalizeFirstLetter(maxWidth)}`],
             paperClassName,
             { [classes.fullScreen]: fullScreen },
           )}

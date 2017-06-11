@@ -8,6 +8,7 @@ import Modal from '../internal/Modal';
 import withStyles from '../styles/withStyles';
 import Slide from '../transitions/Slide';
 import Paper from '../Paper';
+import { capitalizeFirstLetter } from '../utils/helpers';
 import customPropTypes from '../utils/customPropTypes';
 import { duration } from '../styles/transitions';
 
@@ -19,6 +20,7 @@ function getSlideDirection(anchor) {
   } else if (anchor === 'top') {
     return 'down';
   }
+
   // (anchor === 'bottom')
   return 'up';
 }
@@ -39,15 +41,15 @@ export const styleSheet = createStyleSheet('MuiDrawer', theme => ({
     },
     WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
   },
-  'anchor-left': {
+  anchorLeft: {
     left: 0,
     right: 'auto',
   },
-  'anchor-right': {
+  anchorRight: {
     left: 'auto',
     right: 0,
   },
-  'anchor-top': {
+  anchorTop: {
     top: 0,
     left: 0,
     bottom: 'auto',
@@ -55,7 +57,7 @@ export const styleSheet = createStyleSheet('MuiDrawer', theme => ({
     height: 'auto',
     maxHeight: '100vh',
   },
-  'anchor-bottom': {
+  anchorBottom: {
     top: 'auto',
     left: 0,
     bottom: 0,
@@ -103,7 +105,7 @@ function Drawer(props, context) {
       <Paper
         elevation={docked ? 0 : elevation}
         square
-        className={classNames(classes.paper, classes[`anchor-${anchor}`])}
+        className={classNames(classes.paper, classes[`anchor${capitalizeFirstLetter(anchor)}`])}
       >
         {children}
       </Paper>

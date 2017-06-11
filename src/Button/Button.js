@@ -45,23 +45,26 @@ export const styleSheet = createStyleSheet('MuiButton', theme => ({
     alignItems: 'inherit',
     justifyContent: 'inherit',
   },
-  primary: {
+  flatPrimary: {
     color: theme.palette.primary[500],
     '&:hover': {
       backgroundColor: fade(theme.palette.primary[500], 0.12),
     },
   },
-  accent: {
+  flatAccent: {
     color: theme.palette.accent.A200,
     '&:hover': {
       backgroundColor: fade(theme.palette.accent.A200, 0.12),
     },
   },
-  contrast: {
+  flatContrast: {
     color: theme.palette.getContrastText(theme.palette.primary[500]),
     '&:hover': {
       backgroundColor: fade(theme.palette.getContrastText(theme.palette.primary[500]), 0.12),
     },
+  },
+  colorInherit: {
+    color: 'inherit',
   },
   raised: {
     color: theme.palette.getContrastText(theme.palette.grey[300]),
@@ -120,17 +123,15 @@ export const styleSheet = createStyleSheet('MuiButton', theme => ({
 
 function Button(props) {
   const {
-    accent,
     children,
     classes,
     className: classNameProp,
+    color,
     compact,
-    contrast,
     disabled,
     disableFocusRipple,
     disableRipple,
     fab,
-    primary,
     raised,
     ...other
   } = props;
@@ -141,12 +142,13 @@ function Button(props) {
       [classes.root]: true,
       [classes.raised]: raised || fab,
       [classes.fab]: fab,
-      [classes.primary]: flat && primary,
-      [classes.accent]: flat && accent,
-      [classes.contrast]: flat && contrast,
-      [classes.raisedPrimary]: !flat && primary,
-      [classes.raisedAccent]: !flat && accent,
-      [classes.raisedContrast]: !flat && contrast,
+      [classes.colorInherit]: color === 'inherit',
+      [classes.flatPrimary]: flat && color === 'primary',
+      [classes.flatAccent]: flat && color === 'accent',
+      [classes.flatContrast]: flat && color === 'contrast',
+      [classes.raisedPrimary]: !flat && color === 'primary',
+      [classes.raisedAccent]: !flat && color === 'accent',
+      [classes.raisedContrast]: !flat && color === 'contrast',
       [classes.compact]: compact,
       [classes.disabled]: disabled,
     },
@@ -171,10 +173,6 @@ function Button(props) {
 
 Button.propTypes = {
   /**
-   * If `true`, the button will use the theme's accent color.
-   */
-  accent: PropTypes.bool,
-  /**
    * The content of the button.
    */
   children: PropTypes.node.isRequired,
@@ -187,6 +185,10 @@ Button.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * The color of the component. It's using the theme palette when that makes sense.
+   */
+  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'accent', 'contrast']),
+  /**
    * Uses a smaller minWidth, ideal for things like card actions.
    */
   compact: PropTypes.bool,
@@ -196,10 +198,6 @@ Button.propTypes = {
    * The default value is a `button`.
    */
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  /**
-   * If `true`, the button will use the theme's contrast color.
-   */
-  contrast: PropTypes.bool,
   /**
    * If `true`, the button will be disabled.
    */
@@ -223,10 +221,6 @@ Button.propTypes = {
    */
   href: PropTypes.string,
   /**
-   * If `true`, the button will use the theme's primary color.
-   */
-  primary: PropTypes.bool,
-  /**
    * If `true`, the button will use raised styling.
    */
   raised: PropTypes.bool,
@@ -237,13 +231,11 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  accent: false,
+  color: 'default',
   compact: false,
-  contrast: false,
   disabled: false,
   fab: false,
   disableFocusRipple: false,
-  primary: false,
   raised: false,
   disableRipple: false,
   type: 'button',

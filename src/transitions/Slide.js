@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
+import { findDOMNode } from 'react-dom';
 import Transition from '../internal/Transition';
 import customPropTypes from '../utils/customPropTypes';
 import { duration } from '../styles/transitions';
@@ -39,9 +39,12 @@ class Slide extends Component {
     if (!this.props.in) {
       // We need to set initial translate values of transition element
       // otherwise component will be shown when in=false.
-      const element = ReactDOM.findDOMNode(this.transition);
+      const element = findDOMNode(this.transition);
+      const transform = getTranslateValue(this.props, element);
       // $FlowFixMe
-      element.style.transform = getTranslateValue(this.props, element);
+      element.style.transform = transform;
+      // $FlowFixMe
+      element.style.WebkitTransform = transform;
     }
   }
 
@@ -52,8 +55,12 @@ class Slide extends Component {
     // That's triggering a reflow.
     if (element.style.transform) {
       element.style.transform = 'translate3d(0, 0, 0)';
+      element.style.WebkitTransform = 'translate3d(0, 0, 0)';
     }
-    element.style.transform = getTranslateValue(this.props, element);
+    const transform = getTranslateValue(this.props, element);
+    element.style.transform = transform;
+    element.style.WebkitTransform = transform;
+
     if (this.props.onEnter) {
       this.props.onEnter(element);
     }
@@ -65,21 +72,33 @@ class Slide extends Component {
       duration: this.props.enterTransitionDuration,
       easing: transitions.easing.easeOut,
     });
+    element.style.WebkitTransition = transitions.create('-webkit-transform', {
+      duration: this.props.enterTransitionDuration,
+      easing: transitions.easing.easeOut,
+    });
     element.style.transform = 'translate3d(0, 0, 0)';
+    element.style.WebkitTransform = 'translate3d(0, 0, 0)';
     if (this.props.onEntering) {
       this.props.onEntering(element);
     }
   };
 
-  handleExiting = element => {
+  handleExit = element => {
     const { transitions } = this.context.styleManager.theme;
     element.style.transition = transitions.create('transform', {
       duration: this.props.leaveTransitionDuration,
       easing: transitions.easing.sharp,
     });
-    element.style.transform = getTranslateValue(this.props, element);
-    if (this.props.onExiting) {
-      this.props.onExiting(element);
+    element.style.WebkitTransition = transitions.create('-webkit-transform', {
+      duration: this.props.leaveTransitionDuration,
+      easing: transitions.easing.sharp,
+    });
+    const transform = getTranslateValue(this.props, element);
+    element.style.transform = transform;
+    element.style.WebkitTransform = transform;
+
+    if (this.props.onExit) {
+      this.props.onExit(element);
     }
   };
 
@@ -89,7 +108,7 @@ class Slide extends Component {
       offset,
       onEnter,
       onEntering,
-      onExiting,
+      onExit,
       enterTransitionDuration,
       leaveTransitionDuration,
       ...other
@@ -99,7 +118,7 @@ class Slide extends Component {
       <Transition
         onEnter={this.handleEnter}
         onEntering={this.handleEntering}
-        onExiting={this.handleExiting}
+        onExit={this.handleExit}
         timeout={Math.max(enterTransitionDuration, leaveTransitionDuration) + 10}
         transitionAppear
         {...other}

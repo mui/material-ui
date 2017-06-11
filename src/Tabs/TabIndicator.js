@@ -14,7 +14,7 @@ export const styleSheet = createStyleSheet('MuiTabIndicator', theme => ({
     transition: theme.transitions.create(),
     willChange: 'left, width',
   },
-  rootAccent: {
+  colorAccent: {
     backgroundColor: theme.palette.accent.A200,
   },
 }));
@@ -23,20 +23,20 @@ export const styleSheet = createStyleSheet('MuiTabIndicator', theme => ({
  * @ignore - internal component.
  */
 function TabIndicator(props) {
-  const { classes, className: classNameProp, indicatorColor, style: styleProp } = props;
+  const { classes, className: classNameProp, color, style: styleProp } = props;
 
   const className = classNames(
     classes.root,
     {
-      [classes.rootAccent]: indicatorColor === 'accent',
+      [classes.colorAccent]: color === 'accent',
     },
     classNameProp,
   );
 
-  const style = indicatorColor !== 'accent'
+  const style = color !== 'accent'
     ? {
         ...styleProp,
-        backgroundColor: indicatorColor,
+        backgroundColor: color,
       }
     : styleProp;
 
@@ -56,7 +56,7 @@ TabIndicator.propTypes = {
    * @ignore
    * The color of the tab indicator.
    */
-  indicatorColor: PropTypes.oneOfType([PropTypes.oneOf(['accent']), PropTypes.string]).isRequired,
+  color: PropTypes.oneOfType([PropTypes.oneOf(['accent']), PropTypes.string]).isRequired,
   /**
    * @ignore
    * The style of the root element.

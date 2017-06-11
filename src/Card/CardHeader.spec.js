@@ -41,7 +41,7 @@ describe('<CardHeader />', () => {
       const subheader = wrapper.childAt(1);
       assert.strictEqual(subheader.name(), 'withStyles(Typography)');
       assert.strictEqual(subheader.props().type, 'body1');
-      assert.strictEqual(subheader.props().secondary, true);
+      assert.strictEqual(subheader.props().color, 'secondary');
     });
   });
 
@@ -84,7 +84,7 @@ describe('<CardHeader />', () => {
       const subheader = container.childAt(1);
       assert.strictEqual(subheader.name(), 'withStyles(Typography)');
       assert.strictEqual(subheader.props().type, 'body2');
-      assert.strictEqual(subheader.props().secondary, true);
+      assert.strictEqual(subheader.props().color, 'secondary');
     });
   });
 });

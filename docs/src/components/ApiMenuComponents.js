@@ -31,7 +31,7 @@ class ApiMenuComponents extends Component {
     return (
       <div>
         <IconButton
-          contrast
+          color="contrast"
           onClick={this.handleMenuClick}
           aria-owns="api-menu"
           aria-haspopup="true"

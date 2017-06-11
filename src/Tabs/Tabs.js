@@ -280,7 +280,7 @@ class Tabs extends Component {
             <TabIndicator
               style={this.state.indicatorStyle}
               className={indicatorClassName}
-              indicatorColor={indicatorColor}
+              color={indicatorColor}
             />
           </div>
           {conditionalElements.scrollButtonRight}

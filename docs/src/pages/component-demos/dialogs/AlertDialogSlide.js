@@ -33,8 +33,8 @@ export default class AlertDialogSlide extends Component {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleRequestClose} primary>Disagree</Button>
-            <Button onClick={this.handleRequestClose} primary>Agree</Button>
+            <Button onClick={this.handleRequestClose} color="primary">Disagree</Button>
+            <Button onClick={this.handleRequestClose} color="primary">Agree</Button>
           </DialogActions>
         </Dialog>
       </div>

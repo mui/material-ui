@@ -25,9 +25,13 @@ describe('<ListSubheader />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
   });
 
-  it('should display primary class', () => {
-    const wrapper = shallow(<ListSubheader primary />);
-    assert.strictEqual(wrapper.hasClass(classes.primary), true, 'should have the primary class');
+  it('should display primary color', () => {
+    const wrapper = shallow(<ListSubheader color="primary" />);
+    assert.strictEqual(
+      wrapper.hasClass(classes.colorPrimary),
+      true,
+      'should have the primary class',
+    );
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
   });
 

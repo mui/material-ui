@@ -53,7 +53,9 @@ class SimpleSnackbar extends Component {
           }}
           message={<span id="message-id">Note archived</span>}
           action={[
-            <Button key="undo" accent compact onClick={this.handleRequestClose}>UNDO</Button>,
+            <Button key="undo" color="accent" compact onClick={this.handleRequestClose}>
+              UNDO
+            </Button>,
             <IconButton
               key="close"
               aria-label="Close"

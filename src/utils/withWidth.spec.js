@@ -2,12 +2,15 @@
 
 import React from 'react';
 import { assert } from 'chai';
+import { useFakeTimers } from 'sinon';
 import { createMount, createShallow } from '../test-utils';
 import withWidth, { isWidthDown, isWidthUp } from './withWidth';
 
 const Empty = () => <div />;
 Empty.propTypes = {}; // Breaks the referencial transparency for testing purposes.
 const EmptyWithWidth = withWidth()(Empty);
+
+const TEST_ENV_WIDTH = 'md';
 
 describe('withWidth', () => {
   let shallow;
@@ -41,7 +44,7 @@ describe('withWidth', () => {
     it('should provide the right width to the child element', () => {
       const wrapper = mount(<EmptyWithWidth />);
 
-      assert.strictEqual(wrapper.find(Empty).props().width, 'md');
+      assert.strictEqual(wrapper.find(Empty).props().width, TEST_ENV_WIDTH);
     });
   });
 
@@ -82,6 +85,25 @@ describe('withWidth', () => {
         updateWidth(breakpoints.getWidth(key));
         assert.strictEqual(wrapper.state().width, key, 'should return the matching width');
       });
+    });
+  });
+
+  describe('handle resize', () => {
+    let clock;
+
+    before(() => {
+      clock = useFakeTimers();
+    });
+
+    after(() => {
+      clock.restore();
+    });
+
+    it('should handle resize event', () => {
+      const wrapper = shallow(<EmptyWithWidth width="sm" />);
+      wrapper.simulate('resize');
+      clock.tick(166);
+      assert.strictEqual(wrapper.state().width, TEST_ENV_WIDTH);
     });
   });
 });

@@ -27,11 +27,6 @@ const options = [
 ];
 
 class ConfirmationDialog extends Component {
-  static propTypes = {
-    onRequestClose: PropTypes.func,
-    selectedValue: PropTypes.string,
-  };
-
   state = {
     selectedValue: undefined,
   };
@@ -85,13 +80,18 @@ class ConfirmationDialog extends Component {
           </RadioGroup>
         </DialogContent>
         <DialogActions>
-          <Button onClick={this.handleCancel} primary>Cancel</Button>
-          <Button onClick={this.handleOk} primary>Ok</Button>
+          <Button onClick={this.handleCancel} color="primary">Cancel</Button>
+          <Button onClick={this.handleOk} color="primary">Ok</Button>
         </DialogActions>
       </Dialog>
     );
   }
 }
+
+ConfirmationDialog.propTypes = {
+  onRequestClose: PropTypes.func,
+  selectedValue: PropTypes.string,
+};
 
 const styleSheet = createStyleSheet('ConfirmationDialogDemo', theme => ({
   root: {

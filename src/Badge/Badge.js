@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
+import { capitalizeFirstLetter } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 
 const RADIUS = 12;
@@ -32,42 +33,22 @@ export const styleSheet = createStyleSheet('MuiBadge', theme => ({
     backgroundColor: theme.palette.color,
     color: theme.palette.textColor,
   },
-  primary: {
+  colorPrimary: {
     backgroundColor: theme.palette.primary[500],
     color: theme.palette.getContrastText(theme.palette.primary[500]),
   },
-  accent: {
+  colorAccent: {
     backgroundColor: theme.palette.accent.A200,
     color: theme.palette.getContrastText(theme.palette.accent.A200),
   },
 }));
 
 function Badge(props) {
-  const {
-    badgeClassName: badgeClassNameProp,
-    badgeContent,
-    classes,
-    className: classNameProp,
-    children,
-    primary,
-    accent,
-    ...other
-  } = props;
-
-  const className = classNames(
-    {
-      [classes.root]: true,
-    },
-    classNameProp,
-  );
-  const badgeClassName = classNames(
-    {
-      [classes.badge]: true,
-      [classes.primary]: primary,
-      [classes.accent]: accent,
-    },
-    badgeClassNameProp,
-  );
+  const { badgeContent, classes, className: classNameProp, color, children, ...other } = props;
+  const className = classNames(classes.root, classNameProp);
+  const badgeClassName = classNames(classes.badge, {
+    [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
+  });
 
   return (
     <div className={className} {...other}>
@@ -80,14 +61,6 @@ function Badge(props) {
 }
 
 Badge.propTypes = {
-  /**
-   * If `true`, the badge will use the accent badge colors.
-   */
-  accent: PropTypes.bool,
-  /**
-   * The CSS class name of the badge element.
-   */
-  badgeClassName: PropTypes.string,
   /**
    * The content rendered within the badge.
    */
@@ -105,14 +78,13 @@ Badge.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, the badge will use the primary badge colors.
+   * The color of the component. It's using the theme palette when that makes sense.
    */
-  primary: PropTypes.bool,
+  color: PropTypes.oneOf(['default', 'primary', 'accent']),
 };
 
 Badge.defaultProps = {
-  primary: false,
-  accent: false,
+  color: 'default',
 };
 
 export default withStyles(styleSheet)(Badge);

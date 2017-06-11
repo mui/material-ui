@@ -3,6 +3,7 @@
 import React, { Element } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
+import { capitalizeFirstLetter } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 
 export const styleSheet = createStyleSheet('MuiTypography', theme => ({
@@ -21,16 +22,16 @@ export const styleSheet = createStyleSheet('MuiTypography', theme => ({
   body1: theme.typography.body1,
   caption: theme.typography.caption,
   button: theme.typography.button,
-  'align-left': {
+  alignLeft: {
     textAlign: 'left',
   },
-  'align-center': {
+  alignCenter: {
     textAlign: 'center',
   },
-  'align-right': {
+  alignRight: {
     textAlign: 'right',
   },
-  'align-justify': {
+  alignJustify: {
     textAlign: 'justify',
   },
   noWrap: {
@@ -47,7 +48,7 @@ export const styleSheet = createStyleSheet('MuiTypography', theme => ({
   colorInherit: {
     color: 'inherit',
   },
-  secondary: {
+  colorSecondary: {
     color: theme.palette.text.secondary,
   },
 }));
@@ -66,7 +67,7 @@ type Type =
   | 'button';
 
 type Props = {
-  align?: 'left' | 'center' | 'right' | 'justify',
+  align?: 'inherit' | 'left' | 'center' | 'right' | 'justify',
   children?: Element<*>,
   /**
    * Useful to extend the style applied to components.
@@ -77,15 +78,15 @@ type Props = {
    */
   className?: string,
   /**
-   * If `true`, the text will inherit its color.
-   */
-  colorInherit?: boolean,
-  /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    * By default we map the type to a good default headline component.
    */
   component?: string | Function,
+  /**
+   * The color of the component. It's using the theme palette when that makes sense.
+   */
+  color?: 'inherit' | 'secondary' | 'default',
   /**
    * If `true`, the text will have a bottom margin.
    */
@@ -98,10 +99,6 @@ type Props = {
    * If `true`, the text will have a bottom margin.
    */
   paragraph?: boolean,
-  /**
-   * If `true`, the secondary color will be applied.
-   */
-  secondary?: boolean,
   /**
    * Applies the theme typography styles.
    */
@@ -125,12 +122,11 @@ function Typography(props: Props) {
     align,
     classes,
     className: classNameProp,
-    colorInherit,
     component: componentProp,
+    color,
     gutterBottom,
     noWrap,
     paragraph,
-    secondary,
     type: typeProp,
     ...other
   } = props;
@@ -142,12 +138,11 @@ function Typography(props: Props) {
     classes.root,
     classes[type],
     {
-      [classes.colorInherit]: colorInherit,
+      [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
       [classes.noWrap]: noWrap,
-      [classes.secondary]: secondary,
       [classes.gutterBottom]: gutterBottom,
       [classes.paragraph]: paragraph,
-      [classes[`align-${String(align)}`]]: align,
+      [classes[`align${capitalizeFirstLetter(align)}`]]: align !== 'inherit',
     },
     classNameProp,
   );
@@ -158,11 +153,11 @@ function Typography(props: Props) {
 }
 
 Typography.defaultProps = {
-  colorInherit: false,
+  align: 'inherit',
+  color: 'default',
   gutterBottom: false,
   noWrap: false,
   paragraph: false,
-  secondary: false,
   type: 'body1',
 };
 

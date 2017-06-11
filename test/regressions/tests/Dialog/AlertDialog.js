@@ -22,8 +22,8 @@ export default function AlertDialog() {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button primary>Disagree</Button>
-        <Button primary>Agree</Button>
+        <Button color="primary">Disagree</Button>
+        <Button color="primary">Agree</Button>
       </DialogActions>
     </Paper>
   );

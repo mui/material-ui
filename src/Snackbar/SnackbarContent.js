@@ -57,7 +57,7 @@ function SnackbarContent(props) {
     >
       {disableTypography
         ? message
-        : <Typography colorInherit className={classes.message}>
+        : <Typography color="inherit" className={classes.message}>
             {message}
           </Typography>}
       {action

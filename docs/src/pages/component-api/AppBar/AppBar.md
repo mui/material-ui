@@ -5,23 +5,23 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| accent | bool | false | If `true`, the AppBar will use the theme's accent color. |
 | children | node |  | The content of the component. |
 | classes | object |  | Useful to extend the style applied to components. |
+| color | enum:&nbsp;'inherit'<br>&nbsp;'primary'<br>&nbsp;'accent'<br> | 'primary' | The color of the component. It's using the theme palette when that makes sense. |
 | position | enum:&nbsp;'static'<br>&nbsp;'fixed'<br>&nbsp;'absolute'<br> | 'fixed' | The positioning type. |
 
 Any other properties supplied will be spread to the root element.
 
-## Classes
+## CSS API
 
 You can overrides all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `root`
-- `position-fixed`
-- `position-absolute`
-- `position-static`
-- `primary`
-- `accent`
+- `positionFixed`
+- `positionAbsolute`
+- `positionStatic`
+- `colorPrimary`
+- `colorAccent`
 
 Have a look at [overriding with class names](/customization/overrides#overriding-with-class-names)
 section for more detail.

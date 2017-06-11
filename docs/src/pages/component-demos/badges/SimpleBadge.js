@@ -17,10 +17,10 @@ function SimpleBadge(props) {
   const classes = props.classes;
   return (
     <div>
-      <Badge className={classes.badge} badgeContent={4} primary>
+      <Badge className={classes.badge} badgeContent={4} color="primary">
         <MailIcon />
       </Badge>
-      <Badge className={classes.badge} badgeContent={10} accent>
+      <Badge className={classes.badge} badgeContent={10} color="accent">
         <FolderIcon />
       </Badge>
     </div>
