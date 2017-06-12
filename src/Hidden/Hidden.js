@@ -1,6 +1,7 @@
 // @flow
 
-import React, { Element } from 'react';
+import React from 'react';
+import type { Element } from 'react';
 import HiddenJs from './HiddenJs';
 import type { Breakpoint } from '../styles/breakpoints';
 
