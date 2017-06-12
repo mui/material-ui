@@ -1,6 +1,7 @@
 // @flow weak
 /* eslint-disable react/react-in-jsx-scope */
 
+import React from 'react';
 import PropTypes from 'prop-types';
 import createMuiTheme from './theme';
 // eslint-disable-next-line max-len
