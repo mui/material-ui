@@ -80,7 +80,7 @@
     "cross-env": "^4.0.0",
     "enzyme": "^2.8.1",
     "eslint": "^3.19.0",
-    "eslint-find-rules": "^1.14.3",
+    "eslint-find-rules": "^2.0.1",
     "eslint-plugin-babel": "^4.1.1",
     "eslint-plugin-flowtype": "^2.30.4",
     "eslint-plugin-import": "^2.2.0",
