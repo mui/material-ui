@@ -6,6 +6,7 @@ const webpack = require('webpack');
 const webpackConfig = require('./webpack.dev.config');
 
 const serverOptions = {
+  disableHostCheck: true,
   publicPath: webpackConfig.output.publicPath,
   hot: true,
   historyApiFallback: true,

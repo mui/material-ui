@@ -40,10 +40,12 @@ class CheckboxList extends Component {
   render() {
     const classes = this.props.classes;
 
+    /* eslint-disable prefer-spread, react/no-array-index-key */
     return (
       <div className={classes.root}>
         <List>
-          {Array.from({ length: 4 }, (v, k) => k).map(index =>
+          {/* $FlowFixMe */}
+          {Array.apply(null, new Array(4)).map((v, index) =>
             <ListItem dense button key={index} onClick={event => this.handleToggle(event, index)}>
               <Checkbox
                 checked={this.state.checked.indexOf(index) !== -1}
@@ -61,6 +63,7 @@ class CheckboxList extends Component {
         </List>
       </div>
     );
+    /* eslint-enable */
   }
 }
 

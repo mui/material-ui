@@ -42,6 +42,7 @@ class InteractiveGrid extends Component {
     const classes = this.props.classes;
     const { align, direction, justify } = this.state;
 
+    /* eslint-disable prefer-spread, react/no-array-index-key */
     return (
       <Grid container className={classes.root}>
         <Grid item xs={12}>
@@ -52,7 +53,8 @@ class InteractiveGrid extends Component {
             direction={direction}
             justify={justify}
           >
-            {Array.from({ length: 3 }, (v, k) => k).map(index =>
+            {/* $FlowFixMe */}
+            {Array.apply(null, new Array(3)).map((v, index) =>
               <Grid key={index} item>
                 <Paper className={classes.paper}>
                   {`Cell ${index + 1}`}
@@ -109,6 +111,7 @@ class InteractiveGrid extends Component {
         </Grid>
       </Grid>
     );
+    /* eslint-enable */
   }
 }
 

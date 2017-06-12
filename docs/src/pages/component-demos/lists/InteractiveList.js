@@ -33,11 +33,14 @@ const styleSheet = createStyleSheet('InteractiveList', theme => ({
 }));
 
 function generate(element) {
-  return Array.from(Array(3)).map((value, index) =>
+  /* eslint-disable prefer-spread, react/no-array-index-key */
+  // $FlowFixMe
+  return Array.apply(null, new Array(3)).map((v, index) =>
     cloneElement(element, {
       key: index,
     }),
   );
+  /* eslint-enable */
 }
 
 class InteractiveList extends Component {
