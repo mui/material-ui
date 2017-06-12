@@ -40,19 +40,17 @@ class CheckboxListSecondary extends Component {
   render() {
     const classes = this.props.classes;
 
-    /* eslint-disable prefer-spread, react/no-array-index-key */
     return (
       <div className={classes.root}>
         <List>
-          {/* $FlowFixMe */}
-          {Array.apply(null, new Array(4)).map((v, index) =>
-            <ListItem dense button key={index}>
+          {[0, 1, 2, 3].map(value =>
+            <ListItem dense button key={value}>
               <Avatar alt="Remy Sharp" src={remyImage} />
-              <ListItemText primary={`Line item ${index + 1}`} />
+              <ListItemText primary={`Line item ${value + 1}`} />
               <ListItemSecondaryAction>
                 <Checkbox
-                  onClick={event => this.handleToggle(event, index)}
-                  checked={this.state.checked.indexOf(index) !== -1}
+                  onClick={event => this.handleToggle(event, value)}
+                  checked={this.state.checked.indexOf(value) !== -1}
                 />
               </ListItemSecondaryAction>
             </ListItem>,
@@ -60,7 +58,6 @@ class CheckboxListSecondary extends Component {
         </List>
       </div>
     );
-    /* eslint-enable */
   }
 }
 
