@@ -1,8 +1,6 @@
 // @flow
 /* eslint-disable import/prefer-default-export */
 
-require('core-js');
-
 import { AppContainer } from 'react-hot-loader';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
@@ -10,6 +8,8 @@ import React from 'react';
 import ReactPerf from 'react-addons-perf';
 import { render } from 'react-dom';
 import App from 'docs/src/components/App';
+
+require('core-js');
 
 // Warns about potential accessibility issues with your React elements.
 //
