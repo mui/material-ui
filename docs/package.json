@@ -20,6 +20,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
+    "core-js": "^2.4.1",
     "cross-env": "^5.0.0",
     "css-loader": "^0.28.4",
     "file-loader": "^0.11.1",
