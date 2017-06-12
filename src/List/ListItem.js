@@ -250,7 +250,11 @@ class ListItem extends Component {
     onTouchEnd: PropTypes.func,
     /** @ignore */
     onTouchStart: PropTypes.func,
-    /** @ignore */
+    /**
+     * Callback function fired when the list item is touch-tapped.
+     *
+     * @param {object} event TouchTap event targeting the list item.
+     */
     onTouchTap: PropTypes.func,
     /**
      * Control toggle state of nested list.
@@ -459,6 +463,16 @@ class ListItem extends Component {
     this.props.onMouseLeave(event);
   };
 
+  handleTouchTap = (event) => {
+    if (this.props.onTouchTap) {
+      this.props.onTouchTap(event);
+    }
+
+    if (this.props.primaryTogglesNestedList) {
+      this.handleNestedListToggle(event);
+    }
+  };
+
   handleNestedListToggle = (event) => {
     event.stopPropagation();
 
@@ -563,7 +577,6 @@ class ListItem extends Component {
       onMouseLeave, // eslint-disable-line no-unused-vars
       onNestedListToggle, // eslint-disable-line no-unused-vars
       onTouchStart, // eslint-disable-line no-unused-vars
-      onTouchTap,
       rightAvatar,
       rightIcon,
       rightIconButton,
@@ -708,7 +721,7 @@ class ListItem extends Component {
               onMouseEnter={this.handleMouseEnter}
               onTouchStart={this.handleTouchStart}
               onTouchEnd={this.handleTouchEnd}
-              onTouchTap={primaryTogglesNestedList ? this.handleNestedListToggle : onTouchTap}
+              onTouchTap={this.handleTouchTap}
               ref={(node) => this.button = node}
               style={Object.assign({}, styles.root, style)}
             >
