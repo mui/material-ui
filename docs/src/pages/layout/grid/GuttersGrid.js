@@ -36,11 +36,12 @@ class GuttersGrid extends Component {
     const classes = this.props.classes;
     const { gutter } = this.state;
 
+    /* eslint-disable prefer-spread, react/no-array-index-key */
     return (
       <Grid container className={classes.root}>
         <Grid item xs={12}>
           <Grid container className={classes.demo} justify="center" gutter={Number(gutter)}>
-            {Array.from({ length: 3 }, (v, k) => k).map(index =>
+            {Array.apply(null, new Array(3)).map((v, index) =>
               <Grid key={index} item>
                 <Paper className={classes.paper} />
               </Grid>,
@@ -70,6 +71,7 @@ class GuttersGrid extends Component {
         </Grid>
       </Grid>
     );
+    /* eslint-enable */
   }
 }
 
