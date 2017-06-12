@@ -24,6 +24,49 @@ Below is a summary of major changes.
 - [Ripple/TouchRipple] Refactored and now works properly inside a button in firefox!
 - [Button] Raised/flat/fab are now combined into a single component.
 
+## 1.0.0-alpha.17
+###### _Jun 12, 2017_
+
+Big thanks to the 8 contributors who made this release possible.
+
+##### Breaking changes
+
+- [core] Normalize the API (#7099) @oliviertassinari
+Reduce degree of freedom of the API with the color property. That's a tradeoff between correctness and verbosity.
+People should be able to recover from that breaking change quite easily as react is going to throw warnings. For instance:
+```diff
+-<Button contrast primary>Login</Button>
++<Button color="contrast">Login</Button>
+```
+
+##### Component Fixes / Enhancements
+
+- [Switch] Correctly change the cursor value (#7042) @oliviertassinari
+- [FormControl] Cannot read property 'target' of undefined (#7046 @Fi1osof
+- [AppBar] Add a position property (#7049) @oliviertassinari
+- [Stepper] Mobile version (#7043) @alexhayes
+- [Snackbar] Implement the component on the next branch (#7059) @oliviertassinari
+- [ListItemText] Add disableTypography property (#7073 @zachwolf
+- [Modal] Add a keepMounted property (#7072) @oliviertassinari
+- [Button] Fix the behavior when a href is provided (#7083) @oliviertassinari
+- [Avatar] Add a imgProps property (#7084) @oliviertassinari
+- [FormHelperText] Add a min-height (#7085) @oliviertassinari
+- [Button] Add an upload example (#7086) @oliviertassinari
+
+##### Docs
+
+- [docs] Add testing section (#7101) @oliviertassinari
+- [docs] Show the vision in the docs (#7078) @oliviertassinari
+- [docs] Improve the documentation on the classes property (#7062) @oliviertassinari
+- [docs] Improve accessibility in the component examples (#7047) @tuukkao
+- [docs] Update usage.md "Hello World" :| (#7027) @dphrag
+- [docs] Add link to the temporary alpha docs (#7037) @peteratticusberg
+
+##### Core
+
+- [eslint] Loosen no-unused-vars eslint rule (#7064) @yuchi
+- [core] Various fixes (#7028) @oliviertassinari
+
 ## 1.0.0-alpha.16
 ###### _Jun 1, 2017_
 
