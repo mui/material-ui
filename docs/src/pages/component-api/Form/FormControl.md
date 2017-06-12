@@ -9,6 +9,7 @@ Provides context such as dirty/focused/error/required for form inputs.
 | classes | object |  | Useful to extend the style applied to components. |
 | disabled | bool | false | If `true`, the label, input and helper text should be displayed in a disabled state. |
 | error | bool | false | If `true`, the label should be displayed in an error state. |
+| marginForm | bool |  | Add the margin top and bottom required when used in a form. |
 | required | bool | false | If `true`, the label will indicate that the input is required. |
 
 Any other properties supplied will be spread to the root element.
@@ -18,7 +19,7 @@ Any other properties supplied will be spread to the root element.
 You can overrides all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `root`
-- `row`
+- `marginForm`
 
 Have a look at [overriding with class names](/customization/overrides#overriding-with-class-names)
 section for more detail.

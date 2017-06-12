@@ -7,16 +7,17 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 import { isDirty } from '../Input/Input';
 
-export const styleSheet = createStyleSheet('MuiFormControl', {
+export const styleSheet = createStyleSheet('MuiFormControl', theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
     position: 'relative',
   },
-  row: {
-    flexDirection: 'row',
+  marginForm: {
+    marginTop: theme.spacing.unit * 2,
+    marginBottom: theme.spacing.unit,
   },
-});
+}));
 
 /**
  * Provides context such as dirty/focused/error/required for form inputs.
@@ -25,6 +26,7 @@ class FormControl extends Component {
   static defaultProps = {
     disabled: false,
     error: false,
+    marginForm: false,
     required: false,
   };
 
@@ -93,11 +95,17 @@ class FormControl extends Component {
   };
 
   render() {
-    const { children, classes, className, disabled, error, ...other } = this.props;
+    const { children, classes, className, disabled, error, marginForm, ...other } = this.props;
 
     return (
       <div
-        className={classNames(classes.root, className)}
+        className={classNames(
+          classes.root,
+          {
+            [classes.marginForm]: marginForm,
+          },
+          className,
+        )}
         {...other}
         onFocus={this.handleFocus}
         onBlur={this.handleBlur}
@@ -129,6 +137,10 @@ FormControl.propTypes = {
    * If `true`, the label should be displayed in an error state.
    */
   error: PropTypes.bool,
+  /**
+   * Add the margin top and bottom required when used in a form.
+   */
+  marginForm: PropTypes.bool,
   /**
    * @ignore
    */
