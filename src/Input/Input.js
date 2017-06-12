@@ -28,6 +28,11 @@ export const styleSheet = createStyleSheet('MuiInput', theme => ({
       marginTop: theme.spacing.unit * 4,
     },
   },
+  formControlCompact: {
+    'label + &': {
+      marginTop: theme.spacing.unit * 2,
+    },
+  },
   inkbar: {
     '&:after': {
       backgroundColor: theme.palette.primary[theme.palette.type === 'light' ? 'A700' : 'A200'],
@@ -250,6 +255,7 @@ class Input extends Component {
       autoFocus,
       classes,
       className: classNameProp,
+      compact,
       component,
       defaultValue,
       disabled: disabledProp,
@@ -296,6 +302,7 @@ class Input extends Component {
         [classes.error]: error,
         [classes.focused]: this.state.focused,
         [classes.formControl]: muiFormControl,
+        [classes.formControlCompact]: muiFormControl && compact,
         [classes.inkbar]: !disableUnderline,
         [classes.multilineWrapper]: multiline,
         [classes.underline]: !disableUnderline,
@@ -383,6 +390,10 @@ Input.propTypes = {
    * The CSS class name of the wrapper element.
    */
   className: PropTypes.string,
+  /**
+   * @ignore
+   */
+  compact: PropTypes.bool,
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.

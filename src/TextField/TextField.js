@@ -10,6 +10,7 @@ function TextField(props) {
   const {
     autoFocus,
     className,
+    compact,
     defaultValue,
     disabled,
     error,
@@ -48,12 +49,13 @@ function TextField(props) {
   return (
     <FormControl ref={rootRef} className={className} error={error} required={required} {...other}>
       {label &&
-        <InputLabel className={labelClassName} {...InputLabelProps}>
+        <InputLabel className={labelClassName} compact={compact} {...InputLabelProps}>
           {label}
         </InputLabel>}
       <Input
         autoFocus={autoFocus}
         className={InputClassName}
+        compact={compact}
         defaultValue={defaultValue}
         disabled={disabled}
         multiline={multiline}
@@ -84,6 +86,10 @@ TextField.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * If `true`, the height will be smaller.
+   */
+  compact: PropTypes.bool,
   /**
    * The default value of the `Input` element.
    */
