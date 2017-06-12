@@ -17,9 +17,15 @@ export const styleSheet = createStyleSheet('MuiInputLabel', theme => ({
     top: 0,
     transform: `translate(0, ${theme.spacing.unit * 5}px) scale(1)`,
   },
+  formControlCompact: {
+    transform: `translate(0, ${theme.spacing.unit * 3}px) scale(1)`,
+  },
   shrink: {
     transform: `translate(0, ${theme.spacing.unit * 2 + 1.5}px) scale(0.75)`,
     transformOrigin: 'top left',
+  },
+  shrinkCompact: {
+    transform: 'translate(0, 1.5px) scale(0.75)',
   },
   animated: {
     transition: theme.transitions.create('transform', {
@@ -39,6 +45,7 @@ function InputLabel(props, context) {
     children,
     classes,
     className: classNameProp,
+    compact,
     shrink: shrinkProp,
     ...other
   } = props;
@@ -54,8 +61,10 @@ function InputLabel(props, context) {
     classes.root,
     {
       [classes.formControl]: muiFormControl,
+      [classes.formControlCompact]: muiFormControl && compact,
       [classes.animated]: !disableAnimation,
       [classes.shrink]: shrink,
+      [classes.shrinkCompact]: shrink && compact,
       [classes.disabled]: disabled,
     },
     classNameProp,
@@ -81,6 +90,10 @@ InputLabel.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * @ignore
+   */
+  compact: PropTypes.bool,
   /**
    * If `true`, the transition animation is disabled.
    */
