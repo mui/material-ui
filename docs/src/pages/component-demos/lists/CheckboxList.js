@@ -44,6 +44,7 @@ class CheckboxList extends Component {
     return (
       <div className={classes.root}>
         <List>
+          {/* $FlowFixMe */}
           {Array.apply(null, new Array(4)).map((v, index) =>
             <ListItem dense button key={index} onClick={event => this.handleToggle(event, index)}>
               <Checkbox

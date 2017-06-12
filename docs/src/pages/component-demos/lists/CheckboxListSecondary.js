@@ -44,6 +44,7 @@ class CheckboxListSecondary extends Component {
     return (
       <div className={classes.root}>
         <List>
+          {/* $FlowFixMe */}
           {Array.apply(null, new Array(4)).map((v, index) =>
             <ListItem dense button key={index}>
               <Avatar alt="Remy Sharp" src={remyImage} />

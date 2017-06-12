@@ -34,6 +34,7 @@ const styleSheet = createStyleSheet('InteractiveList', theme => ({
 
 function generate(element) {
   /* eslint-disable prefer-spread, react/no-array-index-key */
+  // $FlowFixMe
   return Array.apply(null, new Array(3)).map((v, index) =>
     cloneElement(element, {
       key: index,

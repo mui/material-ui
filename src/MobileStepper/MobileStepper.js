@@ -87,6 +87,7 @@ function MobileStepper(props) {
       </Button>
       {type === 'dots' &&
         <div className={classes.dots}>
+          {/* $FlowFixMe */}
           {Array.apply(null, new Array(steps)).map((_, step) => {
             const dotClassName = classNames(
               {

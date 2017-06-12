@@ -53,6 +53,7 @@ class InteractiveGrid extends Component {
             direction={direction}
             justify={justify}
           >
+            {/* $FlowFixMe */}
             {Array.apply(null, new Array(3)).map((v, index) =>
               <Grid key={index} item>
                 <Paper className={classes.paper}>
