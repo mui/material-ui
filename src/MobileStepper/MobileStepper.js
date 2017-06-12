@@ -80,15 +80,13 @@ function MobileStepper(props) {
   );
 
   return (
-    /* eslint-disable prefer-spread */
     <Paper square elevation={0} className={className} {...other}>
       <Button className={classes.button} onClick={onBack} disabled={disableBack}>
         <KeyboardArrowLeft />{backButtonText}
       </Button>
       {type === 'dots' &&
         <div className={classes.dots}>
-          {/* $FlowFixMe */}
-          {Array.apply(null, new Array(steps)).map((_, step) => {
+          {[...new Array(steps)].map((_, step) => {
             const dotClassName = classNames(
               {
                 [classes.dotActive]: step === activeStep,
@@ -107,7 +105,6 @@ function MobileStepper(props) {
         {nextButtonText}<KeyboardArrowRight />
       </Button>
     </Paper>
-    /* eslint-enable */
   );
 }
 
