@@ -40,10 +40,12 @@ class CheckboxListSecondary extends Component {
   render() {
     const classes = this.props.classes;
 
+    /* eslint-disable prefer-spread, react/no-array-index-key */
     return (
       <div className={classes.root}>
         <List>
-          {Array.from({ length: 4 }, (v, k) => k).map(index =>
+          {/* $FlowFixMe */}
+          {Array.apply(null, new Array(4)).map((v, index) =>
             <ListItem dense button key={index}>
               <Avatar alt="Remy Sharp" src={remyImage} />
               <ListItemText primary={`Line item ${index + 1}`} />
@@ -58,6 +60,7 @@ class CheckboxListSecondary extends Component {
         </List>
       </div>
     );
+    /* eslint-enable */
   }
 }
 
