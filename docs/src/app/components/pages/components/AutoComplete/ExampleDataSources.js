@@ -4,8 +4,8 @@ import MenuItem from 'material-ui/MenuItem';
 
 const dataSource1 = [
   {
-    text: 'text-value1',
-    value: (
+    value: 'text-value1',
+    text: (
       <MenuItem
         primaryText="text-value1"
         secondaryText="&#9786;"
@@ -13,8 +13,8 @@ const dataSource1 = [
     ),
   },
   {
-    text: 'text-value2',
-    value: (
+    value: 'text-value2',
+    text: (
       <MenuItem
         primaryText="text-value2"
         secondaryText="&#9786;"
