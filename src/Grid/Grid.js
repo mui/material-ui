@@ -12,7 +12,8 @@
  * - https://css-tricks.com/snippets/css/a-guide-to-flexbox/
  */
 
-import React, { Element } from 'react';
+import React from 'react';
+import type { Element } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';

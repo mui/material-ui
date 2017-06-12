@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { Component, Element as ReactElement } from 'react'; // DOM type `Element` used below
+import React, { Component } from 'react';
+import type { Element as ReactElement } from 'react'; // DOM type `Element` used below
 import ReactDOM from 'react-dom';
 import transitionInfo from 'dom-helpers/transition/properties';
 import addEventListener from 'dom-helpers/events/on';

@@ -1,6 +1,7 @@
 // @flow
 
-import React, { Element } from 'react';
+import React from 'react';
+import type { Element } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import { capitalizeFirstLetter } from '../utils/helpers';

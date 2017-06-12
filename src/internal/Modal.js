@@ -1,6 +1,7 @@
 // @flow
 
-import React, { Element, Component } from 'react';
+import React, { Component } from 'react';
+import type { Element } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
