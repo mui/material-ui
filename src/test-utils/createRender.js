@@ -3,7 +3,8 @@
 import { create } from 'jss';
 import jssPreset from 'jss-preset-default';
 import { createStyleManager } from 'jss-theme-reactor';
-import React, { Element } from 'react';
+import React from 'react';
+import type { Element } from 'react';
 import { render as enzymeRender } from 'enzyme';
 import createMuiTheme from '../styles/theme';
 import MuiThemeProvider from '../styles/MuiThemeProvider';
