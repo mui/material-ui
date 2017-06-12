@@ -9,8 +9,6 @@ import ReactPerf from 'react-addons-perf';
 import { render } from 'react-dom';
 import App from 'docs/src/components/App';
 
-require('core-js');
-
 // Warns about potential accessibility issues with your React elements.
 //
 // import a11y from 'react-a11y';
