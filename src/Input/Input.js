@@ -22,10 +22,9 @@ export const styleSheet = createStyleSheet('MuiInput', theme => ({
     fontFamily: theme.typography.fontFamily,
   },
   formControl: {
-    marginTop: theme.spacing.unit,
-    marginBottom: theme.spacing.unit,
+    marginBottom: 1,
     'label + &': {
-      marginTop: theme.spacing.unit * 4,
+      marginTop: theme.spacing.unit * 2,
     },
   },
   inkbar: {
@@ -140,7 +139,7 @@ export const styleSheet = createStyleSheet('MuiInput', theme => ({
     }),
     '&:hover:not($disabled)': {
       borderBottom: `2px solid ${theme.palette.text.primary}`,
-      marginBottom: theme.spacing.unit - 1,
+      marginBottom: 0,
     },
     '&$disabled': {
       borderBottomStyle: 'dotted',

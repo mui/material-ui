@@ -11,7 +11,8 @@ const styleSheet = createStyleSheet('TextFields', theme => ({
     flexWrap: 'wrap',
   },
   input: {
-    margin: theme.spacing.unit,
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
     width: 200,
   },
 }));
@@ -32,12 +33,14 @@ class TextFields extends Component {
           className={classes.input}
           value={this.state.name}
           onChange={event => this.setState({ name: event.target.value })}
+          marginForm
         />
         <TextField
           id="uncontrolled"
           label="Uncontrolled"
           defaultValue="foo"
           className={classes.input}
+          marginForm
         />
         <TextField
           required
@@ -45,6 +48,7 @@ class TextFields extends Component {
           label="Required"
           defaultValue="Hello World"
           className={classes.input}
+          marginForm
         />
         <TextField
           error
@@ -52,8 +56,15 @@ class TextFields extends Component {
           label="Error"
           defaultValue="Hello World"
           className={classes.input}
+          marginForm
         />
-        <TextField id="password" label="Password" className={classes.input} type="password" />
+        <TextField
+          id="password"
+          label="Password"
+          className={classes.input}
+          type="password"
+          marginForm
+        />
         <TextField
           id="multiline-flexible"
           label="Multiline"
@@ -61,6 +72,7 @@ class TextFields extends Component {
           rowsMax="4"
           defaultValue="Default Value"
           className={classes.input}
+          marginForm
         />
         <TextField
           id="multiline-static"
@@ -69,6 +81,7 @@ class TextFields extends Component {
           rows="4"
           defaultValue="Default Value"
           className={classes.input}
+          marginForm
         />
         <TextField
           id="date"
@@ -76,6 +89,7 @@ class TextFields extends Component {
           type="date"
           defaultValue="2017-05-24"
           className={classes.input}
+          marginForm
         />
         <TextField
           id="helperText"
@@ -84,6 +98,7 @@ class TextFields extends Component {
           defaultValue="Default Value"
           className={classes.input}
           helperText="Some important text"
+          marginForm
         />
         <TextField
           id="placeholder"
@@ -92,6 +107,7 @@ class TextFields extends Component {
           type="text"
           InputProps={{ placeholder: 'Placeholder' }}
           helperText="Helper text"
+          marginForm
         />
       </div>
     );
