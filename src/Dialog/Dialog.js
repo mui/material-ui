@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
+import propTypes from '../utils/propTypes';
 import transitions from '../styles/transitions';
 import Overlay from '../internal/Overlay';
 import RenderToLayer from '../internal/RenderToLayer';
@@ -161,6 +162,9 @@ class DialogInline extends Component {
     className: PropTypes.string,
     contentClassName: PropTypes.string,
     contentStyle: PropTypes.object,
+    innerContentClassName: PropTypes.string,
+    innerContentRounded: PropTypes.bool,
+    innerContentStyle: PropTypes.object,
     modal: PropTypes.bool,
     onRequestClose: PropTypes.func,
     open: PropTypes.bool.isRequired,
@@ -171,6 +175,7 @@ class DialogInline extends Component {
     title: PropTypes.node,
     titleClassName: PropTypes.string,
     titleStyle: PropTypes.object,
+    zDepth: propTypes.zDepth,
   };
 
   static contextTypes = {
@@ -275,6 +280,9 @@ class DialogInline extends Component {
       className,
       contentClassName,
       contentStyle,
+      innerContentClassName,
+      innerContentStyle,
+      innerContentRounded,
       overlayClassName,
       overlayStyle,
       open,
@@ -282,6 +290,7 @@ class DialogInline extends Component {
       titleStyle,
       title,
       style,
+      zDepth,
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -336,7 +345,12 @@ class DialogInline extends Component {
               className={contentClassName}
               style={styles.content}
             >
-              <Paper zDepth={4}>
+              <Paper
+                className={innerContentClassName}
+                rounded={innerContentRounded}
+                style={innerContentStyle}
+                zDepth={zDepth}
+              >
                 {titleElement}
                 <div
                   ref="dialogContent"
@@ -398,7 +412,7 @@ class Dialog extends Component {
      */
     children: PropTypes.node,
     /**
-     * The css class name of the root element.
+     * The `className` to add to the root element.
      */
     className: PropTypes.string,
     /**
@@ -409,6 +423,19 @@ class Dialog extends Component {
      * Overrides the inline-styles of the content container.
      */
     contentStyle: PropTypes.object,
+    /**
+     * The `className` to add to the inner content container.
+     */
+    innerContentClassName: PropTypes.string,
+     /**
+     * By default, the inner content container will have a border radius.
+     * Set this to false to generate a container with sharp corners.
+     */
+    innerContentRounded: PropTypes.bool,
+    /**
+     * Overrides the inline-styles of the inner content container.
+     */
+    innerContentStyle: PropTypes.object,
     /**
      * Force the user to use one of the actions in the `Dialog`.
      * Clicking outside the `Dialog` will not trigger the `onRequestClose`.
@@ -452,6 +479,10 @@ class Dialog extends Component {
      * Overrides the inline-styles of the title's root container element.
      */
     titleStyle: PropTypes.object,
+     /**
+     * This number represents the zDepth of the innner content container shadow.
+     */
+    zDepth: propTypes.zDepth,
   };
 
   static contextTypes = {
@@ -461,8 +492,10 @@ class Dialog extends Component {
   static defaultProps = {
     autoDetectWindowHeight: true,
     autoScrollBodyContent: false,
+    innerContentRounded: true,
     modal: false,
     repositionOnUpdate: true,
+    zDepth: 4,
   };
 
   renderLayer = () => {
