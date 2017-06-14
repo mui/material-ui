@@ -1,0 +1,53 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/material-ui
+    docker:
+      - image: circleci/node:6.11
+      - image: selenium/standalone-chrome:3.4.0
+    steps:
+      # Fetch the code
+      - checkout
+      - run:
+          name: Check versions and env
+          command: |
+            yarn --version
+            node --version
+            docker --version
+            docker-compose --version
+            env
+            yarn cache dir
+      - restore_cache:
+          key: yarn-sha-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install js dependencies
+          command: |
+            yarn install --pure-lockfile
+            cd docs && yarn install --pure-lockfile
+      - save_cache:
+          key: yarn-sha-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn/v1
+      - run:
+          name: Lint
+          command: yarn lint
+      - run:
+          name: Flow
+          command: yarn flow
+      - run:
+          name: Tests fake browser
+          command: yarn test:coverage
+      - run:
+          name: Coverage
+          command: bash <(curl -s https://codecov.io/bash)
+      - run:
+          name: Visual regression tests
+          command: |
+            DOCKER_TEST_URL=http://$(ip addr show lo | grep "inet\b" | awk '{print $2}' | cut -d/ -f1):3090 yarn test:regressions
+            yarn argos
+      - run:
+          name: Tests real browsers
+          command: yarn test:karma
+      - run:
+          name: Can we generate the docs?
+          command: yarn build:docs
