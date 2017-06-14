@@ -15,7 +15,9 @@ export default class AlertDialogSlide extends Component {
     open: false,
   };
 
-  handleRequestClose = () => this.setState({ open: false });
+  handleRequestClose = () => {
+    this.setState({ open: false });
+  };
 
   render() {
     return (

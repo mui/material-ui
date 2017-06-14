@@ -78,7 +78,7 @@ describe('<Dialog />', () => {
     const paper = fade.childAt(0);
     assert.strictEqual(paper.length === 1 && paper.name(), 'withStyles(Paper)');
 
-    assert.strictEqual(paper.hasClass(classes.dialog), true, 'should have the dialog class');
+    assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the dialog class');
   });
 
   it('should not be open by default', () => {
@@ -102,10 +102,10 @@ describe('<Dialog />', () => {
     );
   });
 
-  describe('prop: paperClassName', () => {
+  describe('prop: classes', () => {
     it('should add the class on the Paper element', () => {
       const className = 'foo';
-      const wrapper = shallow(<Dialog paperClassName={className} />);
+      const wrapper = shallow(<Dialog classes={{ paper: className }} />);
       assert.strictEqual(wrapper.find(Paper).hasClass(className), true);
     });
   });
@@ -113,7 +113,7 @@ describe('<Dialog />', () => {
   describe('prop: maxWidth', () => {
     it('should use the right className', () => {
       const wrapper = shallow(<Dialog maxWidth="xs" />);
-      assert.strictEqual(wrapper.find(Paper).hasClass(classes.dialogWidthXs), true);
+      assert.strictEqual(wrapper.find(Paper).hasClass(classes.paperWidthXs), true);
     });
   });
 
