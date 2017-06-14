@@ -34,6 +34,7 @@ const styleSheet = createStyleSheet('InteractiveList', theme => ({
 
 function generate(element) {
   return [0, 1, 2].map(value =>
+    // $FlowFixMe https://github.com/facebook/flow/issues/4172
     cloneElement(element, {
       key: value,
     }),

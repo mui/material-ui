@@ -75,7 +75,6 @@ module.exports = {
         order: [
           'type-annotations',
           'static-methods',
-          'props',
           'lifecycle',
           // '/^handle.+$/', // wishlist -- needs above first
           // '/^(get|set)(?!(InitialState$|DefaultProps$|ChildContext$)).+$/', // wishlist -- needs above first
