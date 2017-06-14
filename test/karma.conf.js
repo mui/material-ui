@@ -133,7 +133,7 @@ module.exports = function setKarmaConfig(config) {
         BrowserStack_Safari: {
           base: 'BrowserStack',
           os: 'OS X',
-          os_version: 'Yosemite',
+          os_version: 'El Capitan',
           browser: 'safari',
           browser_version: 'latest',
         },
