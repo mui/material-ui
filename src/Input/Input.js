@@ -255,7 +255,6 @@ class Input extends Component {
       disableUnderline,
       error: errorProp,
       id,
-      inputClassName: inputClassNameProp,
       inputProps: inputPropsProp,
       inputRef,
       multiline,
@@ -302,15 +301,11 @@ class Input extends Component {
       classNameProp,
     );
 
-    const inputClassName = classNames(
-      classes.input,
-      {
-        [classes.disabled]: disabled,
-        [classes.singleline]: !multiline,
-        [classes.multiline]: multiline,
-      },
-      inputClassNameProp,
-    );
+    const inputClassName = classNames(classes.input, {
+      [classes.disabled]: disabled,
+      [classes.singleline]: !multiline,
+      [classes.multiline]: multiline,
+    });
 
     const required = muiFormControl && muiFormControl.required === true;
 
@@ -408,10 +403,6 @@ Input.propTypes = {
    * @ignore
    */
   id: PropTypes.string,
-  /**
-   * The CSS class name of the input element.
-   */
-  inputClassName: PropTypes.string,
   /**
    * Properties applied to the `input` element.
    */

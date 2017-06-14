@@ -13,7 +13,6 @@
 | disableUnderline | bool | false | If `true`, the input will not have an underline. |
 | error | bool |  | If `true`, the input will indicate an error. |
 | id | string |  |  |
-| inputClassName | string |  | The CSS class name of the input element. |
 | inputProps | object |  | Properties applied to the `input` element. |
 | inputRef | function |  | Use that property to pass a ref callback to the native input component. |
 | multiline | bool | false | If `true`, a textarea element will be rendered. |

@@ -89,9 +89,9 @@ describe('<Tab />', () => {
     });
   });
 
-  describe('prop: labelClassName', () => {
+  describe('prop: classes', () => {
     it('should render label with a custom label class', () => {
-      const wrapper = shallow(<Tab label="foo" labelClassName="MyLabel" />);
+      const wrapper = shallow(<Tab label="foo" classes={{ label: 'MyLabel' }} />);
       const label = wrapper.childAt(0).childAt(0);
       assert.strictEqual(label.hasClass(classes.label), true);
       assert.strictEqual(label.hasClass('MyLabel'), true);

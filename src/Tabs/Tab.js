@@ -127,7 +127,6 @@ class Tab extends Component {
       icon: iconProp,
       index,
       label: labelProp,
-      labelClassName,
       onChange,
       selected,
       style: styleProp,
@@ -148,11 +147,9 @@ class Tab extends Component {
       label = (
         <div className={classes.labelContainer}>
           <span
-            className={classNames(
-              classes.label,
-              { [classes.labelWrapped]: this.state.wrappedText },
-              labelClassName,
-            )}
+            className={classNames(classes.label, {
+              [classes.labelWrapped]: this.state.wrappedText,
+            })}
             ref={node => {
               this.label = node;
             }}
@@ -238,10 +235,6 @@ Tab.propTypes = {
    * The label element.
    */
   label: PropTypes.node,
-  /**
-   * The CSS class name of the label element.
-   */
-  labelClassName: PropTypes.string,
   /**
    * @ignore
    */
