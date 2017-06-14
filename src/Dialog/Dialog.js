@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
-import propTypes from '../utils/propTypes';
 import transitions from '../styles/transitions';
 import Overlay from '../internal/Overlay';
 import RenderToLayer from '../internal/RenderToLayer';
@@ -162,20 +161,19 @@ class DialogInline extends Component {
     className: PropTypes.string,
     contentClassName: PropTypes.string,
     contentStyle: PropTypes.object,
-    innerContentClassName: PropTypes.string,
-    innerContentRounded: PropTypes.bool,
     innerContentStyle: PropTypes.object,
     modal: PropTypes.bool,
     onRequestClose: PropTypes.func,
     open: PropTypes.bool.isRequired,
     overlayClassName: PropTypes.string,
     overlayStyle: PropTypes.object,
+    paperClassName: PropTypes.string,
+    paperProps: PropTypes.object,
     repositionOnUpdate: PropTypes.bool,
     style: PropTypes.object,
     title: PropTypes.node,
     titleClassName: PropTypes.string,
     titleStyle: PropTypes.object,
-    zDepth: propTypes.zDepth,
   };
 
   static contextTypes = {
@@ -280,9 +278,7 @@ class DialogInline extends Component {
       className,
       contentClassName,
       contentStyle,
-      innerContentClassName,
-      innerContentStyle,
-      innerContentRounded,
+      paperClassName,
       overlayClassName,
       overlayStyle,
       open,
@@ -290,7 +286,7 @@ class DialogInline extends Component {
       titleStyle,
       title,
       style,
-      zDepth,
+      paperProps,
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -326,11 +322,11 @@ class DialogInline extends Component {
     return (
       <div className={className} style={prepareStyles(styles.root)}>
         {open &&
-          <EventListener
-            target="window"
-            onKeyUp={this.handleKeyUp}
-            onResize={this.handleResize}
-          />
+        <EventListener
+          target="window"
+          onKeyUp={this.handleKeyUp}
+          onResize={this.handleResize}
+        />
         }
         <ReactTransitionGroup
           component="div"
@@ -341,27 +337,25 @@ class DialogInline extends Component {
           transitionEnterTimeout={450}
         >
           {open &&
-            <TransitionItem
-              className={contentClassName}
-              style={styles.content}
+          <TransitionItem
+            className={contentClassName}
+            style={styles.content}
+          >
+            <Paper
+              className={paperClassName}
+              {...paperProps}
             >
-              <Paper
-                className={innerContentClassName}
-                rounded={innerContentRounded}
-                style={innerContentStyle}
-                zDepth={zDepth}
+              {titleElement}
+              <div
+                ref="dialogContent"
+                className={bodyClassName}
+                style={prepareStyles(styles.body)}
               >
-                {titleElement}
-                <div
-                  ref="dialogContent"
-                  className={bodyClassName}
-                  style={prepareStyles(styles.body)}
-                >
-                  {children}
-                </div>
-                {actionsContainer}
-              </Paper>
-            </TransitionItem>
+                {children}
+              </div>
+              {actionsContainer}
+            </Paper>
+          </TransitionItem>
           }
         </ReactTransitionGroup>
         <Overlay
@@ -424,21 +418,7 @@ class Dialog extends Component {
      */
     contentStyle: PropTypes.object,
     /**
-     * The `className` to add to the inner content container.
-     */
-    innerContentClassName: PropTypes.string,
-     /**
-     * By default, the inner content container will have a border radius.
-     * Set this to false to generate a container with sharp corners.
-     */
-    innerContentRounded: PropTypes.bool,
-    /**
      * Overrides the inline-styles of the inner content container.
-     */
-    innerContentStyle: PropTypes.object,
-    /**
-     * Force the user to use one of the actions in the `Dialog`.
-     * Clicking outside the `Dialog` will not trigger the `onRequestClose`.
      */
     modal: PropTypes.bool,
     /**
@@ -460,6 +440,14 @@ class Dialog extends Component {
      */
     overlayStyle: PropTypes.object,
     /**
+     * The `className` to add to the inner content container.
+     */
+    paperClassName: PropTypes.string,
+    /**
+     * Sets zDepth, rounded corners, css styles of `Paper` container. See more at component `Paper`.
+     */
+    paperProps: PropTypes.object,
+    /**
      * Determines whether the `Dialog` should be repositioned when it's contents are updated.
      */
     repositionOnUpdate: PropTypes.bool,
@@ -479,10 +467,6 @@ class Dialog extends Component {
      * Overrides the inline-styles of the title's root container element.
      */
     titleStyle: PropTypes.object,
-     /**
-     * This number represents the zDepth of the innner content container shadow.
-     */
-    zDepth: propTypes.zDepth,
   };
 
   static contextTypes = {
@@ -492,10 +476,12 @@ class Dialog extends Component {
   static defaultProps = {
     autoDetectWindowHeight: true,
     autoScrollBodyContent: false,
-    innerContentRounded: true,
     modal: false,
     repositionOnUpdate: true,
-    zDepth: 4,
+    paperProps: {
+      rounded: true,
+      zDepth: 4,
+    },
   };
 
   renderLayer = () => {

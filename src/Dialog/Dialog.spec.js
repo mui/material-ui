@@ -51,13 +51,13 @@ describe('<Dialog />', () => {
   });
 
   it('should render a inner content container with sharp corners', () => {
-    const testClass = 'test-dialog-inner-content-rounded-class';
+    const testClass = 'test-dialog-paper-rounded-class';
 
     mountWithContext(
       <Dialog
         open={true}
-        innerContentClassName={testClass}
-        innerContentRounded={false}
+        paperClassName={testClass}
+        paperProps={{rounded: false}}
       />
     );
 
@@ -73,7 +73,7 @@ describe('<Dialog />', () => {
       overlay: 'test-dialog-overlay-class',
       body: 'test-dialog-body-class',
       content: 'test-dialog-content-class',
-      innerContent: 'test-dialog-inner-content-class',
+      innerContent: 'test-dialog-paper-class',
       titleContainer: 'test-dialog-title-container-class',
       actionsContainer: 'test-dialog-actions-container-class',
     };
@@ -86,7 +86,7 @@ describe('<Dialog />', () => {
         bodyClassName={testClasses.body}
         className={testClasses.root}
         contentClassName={testClasses.content}
-        innerContentClassName={testClasses.innerContent}
+        paperClassName={testClasses.innerContent}
         overlayClassName={testClasses.overlay}
         titleClassName={testClasses.titleContainer}
         actions={testAction}
