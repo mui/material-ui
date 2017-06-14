@@ -15,6 +15,7 @@ const styles = theme => ({
     marginBottom: 40,
     marginLeft: -theme.spacing.unit * 2,
     marginRight: -theme.spacing.unit * 2,
+    overflow: 'auto',
     [theme.breakpoints.up('sm')]: {
       padding: `0 ${theme.spacing.unit}px`,
       marginLeft: 0,
