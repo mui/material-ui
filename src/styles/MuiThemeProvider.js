@@ -1,5 +1,4 @@
-// @flow weak
-/* eslint-disable react/react-in-jsx-scope */
+// @flow
 
 import React from 'react';
 import PropTypes from 'prop-types';
