@@ -128,6 +128,10 @@ class TimePicker extends Component {
     }
   }
 
+  getTime() {
+    return this.state.time;
+  }
+
   /**
    * Alias for `openDialog()` for an api consistent with TextField.
    */
