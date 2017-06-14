@@ -340,11 +340,7 @@ class DialogInline extends Component {
               className={contentClassName}
               style={styles.content}
             >
-              <Paper
-                className={paperClassName}
-                zDepth={4}
-                {...paperProps}
-              >
+              <Paper className={paperClassName} zDepth={4} {...paperProps}>
                 {titleElement}
                 <div
                   ref="dialogContent"
@@ -406,7 +402,7 @@ class Dialog extends Component {
      */
     children: PropTypes.node,
     /**
-     * The `className` to add to the root element.
+     * @ignore
      */
     className: PropTypes.string,
     /**
@@ -441,11 +437,11 @@ class Dialog extends Component {
      */
     overlayStyle: PropTypes.object,
     /**
-     * Properties applied to the `Paper` element.
+     * The CSS class name of the `Paper` element.
      */
     paperClassName: PropTypes.string,
     /**
-     * Props to be passed to paper.
+     * Properties applied to the `Paper` element.
      */
     paperProps: PropTypes.object,
     /**
