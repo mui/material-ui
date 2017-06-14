@@ -161,7 +161,6 @@ class DialogInline extends Component {
     className: PropTypes.string,
     contentClassName: PropTypes.string,
     contentStyle: PropTypes.object,
-    innerContentStyle: PropTypes.object,
     modal: PropTypes.bool,
     onRequestClose: PropTypes.func,
     open: PropTypes.bool.isRequired,
@@ -343,6 +342,8 @@ class DialogInline extends Component {
           >
             <Paper
               className={paperClassName}
+              rounded={true}
+              zDepth={4}
               {...paperProps}
             >
               {titleElement}
@@ -418,7 +419,8 @@ class Dialog extends Component {
      */
     contentStyle: PropTypes.object,
     /**
-     * Overrides the inline-styles of the inner content container.
+     * Force the user to use one of the actions in the `Dialog`.Clicking outside the `Dialog`
+     * will not trigger the `onRequestClose`.
      */
     modal: PropTypes.bool,
     /**
@@ -478,10 +480,6 @@ class Dialog extends Component {
     autoScrollBodyContent: false,
     modal: false,
     repositionOnUpdate: true,
-    paperProps: {
-      rounded: true,
-      zDepth: 4,
-    },
   };
 
   renderLayer = () => {
