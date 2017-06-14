@@ -277,15 +277,15 @@ class DialogInline extends Component {
       className,
       contentClassName,
       contentStyle,
-      paperClassName,
       overlayClassName,
       overlayStyle,
       open,
+      paperClassName,
+      paperProps,
+      style,
       titleClassName,
       titleStyle,
       title,
-      style,
-      paperProps,
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -321,11 +321,11 @@ class DialogInline extends Component {
     return (
       <div className={className} style={prepareStyles(styles.root)}>
         {open &&
-        <EventListener
-          target="window"
-          onKeyUp={this.handleKeyUp}
-          onResize={this.handleResize}
-        />
+          <EventListener
+            target="window"
+            onKeyUp={this.handleKeyUp}
+            onResize={this.handleResize}
+          />
         }
         <ReactTransitionGroup
           component="div"
@@ -336,27 +336,26 @@ class DialogInline extends Component {
           transitionEnterTimeout={450}
         >
           {open &&
-          <TransitionItem
-            className={contentClassName}
-            style={styles.content}
-          >
-            <Paper
-              className={paperClassName}
-              rounded={true}
-              zDepth={4}
-              {...paperProps}
+            <TransitionItem
+              className={contentClassName}
+              style={styles.content}
             >
-              {titleElement}
-              <div
-                ref="dialogContent"
-                className={bodyClassName}
-                style={prepareStyles(styles.body)}
+              <Paper
+                className={paperClassName}
+                zDepth={4}
+                {...paperProps}
               >
-                {children}
-              </div>
-              {actionsContainer}
-            </Paper>
-          </TransitionItem>
+                {titleElement}
+                <div
+                  ref="dialogContent"
+                  className={bodyClassName}
+                  style={prepareStyles(styles.body)}
+                >
+                  {children}
+                </div>
+                {actionsContainer}
+              </Paper>
+            </TransitionItem>
           }
         </ReactTransitionGroup>
         <Overlay
@@ -419,8 +418,8 @@ class Dialog extends Component {
      */
     contentStyle: PropTypes.object,
     /**
-     * Force the user to use one of the actions in the `Dialog`.Clicking outside the `Dialog`
-     * will not trigger the `onRequestClose`.
+     * Force the user to use one of the actions in the `Dialog`.
+     * Clicking outside the `Dialog` will not trigger the `onRequestClose`.
      */
     modal: PropTypes.bool,
     /**
@@ -442,11 +441,11 @@ class Dialog extends Component {
      */
     overlayStyle: PropTypes.object,
     /**
-     * The `className` to add to the inner content container.
+     * Properties applied to the `Paper` element.
      */
     paperClassName: PropTypes.string,
     /**
-     * Sets zDepth, rounded corners, css styles of `Paper` container. See more at component `Paper`.
+     * Props to be passed to paper.
      */
     paperProps: PropTypes.object,
     /**
