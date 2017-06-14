@@ -129,7 +129,6 @@
     "react": "^15.6.0",
     "react-a11y": "^0.3.4",
     "react-addons-perf": "^15.4.2",
-    "react-addons-test-utils": "^15.6.0",
     "react-docgen": "^3.0.0-beta4",
     "react-dom": "^15.6.0",
     "react-test-renderer": "^15.5.4",
