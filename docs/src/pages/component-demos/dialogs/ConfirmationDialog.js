@@ -61,10 +61,16 @@ class ConfirmationDialog extends Component {
   };
 
   render() {
-    const { onRequestClose, selectedValue, ...other } = this.props;
+    const { selectedValue, ...other } = this.props;
 
     return (
-      <Dialog onEntering={this.handleEntering} {...other}>
+      <Dialog
+        ignoreBackdropClick
+        ignoreEscapeKeyUp
+        maxWidth="xs"
+        onEntering={this.handleEntering}
+        {...other}
+      >
         <DialogTitle>Phone Ringtone</DialogTitle>
         <DialogContent>
           <RadioGroup
@@ -144,8 +150,9 @@ class ConfirmationDialogDemo extends Component {
             <ListItemText primary="Default notification ringtone" secondary="Tethys" />
           </ListItem>
           <ConfirmationDialog
-            maxWidth="xs"
-            paperClassName={classes.dialog}
+            classes={{
+              paper: classes.dialog,
+            }}
             open={this.state.open}
             onRequestClose={this.handleRequestClose}
             selectedValue={this.state.selectedValue}
