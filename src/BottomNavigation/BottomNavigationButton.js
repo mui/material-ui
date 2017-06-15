@@ -54,7 +54,9 @@ class BottomNavigationButton extends Component {
   handleChange = event => {
     const { onChange, index, onClick } = this.props;
 
-    onChange(event, index);
+    if (onChange) {
+      onChange(event, index);
+    }
 
     if (onClick) {
       onClick(event);
