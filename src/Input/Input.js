@@ -384,9 +384,9 @@ Input.propTypes = {
    */
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
-   * The default value of the `Input` element.
+   * The default input value, useful when not controlling the component.
    */
-  defaultValue: PropTypes.string,
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
    * If `true`, the input will be disabled.
    */

@@ -6,7 +6,7 @@ import Button from 'material-ui/Button';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import { SnackbarContent } from 'material-ui/Snackbar';
 
-const action = <Button color="accent" compact>lorem ipsum dolorem</Button>;
+const action = <Button color="accent" dense>lorem ipsum dolorem</Button>;
 
 const styleSheet = createStyleSheet('LongTextSnackbar', theme => ({
   root: {
