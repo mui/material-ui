@@ -20,7 +20,8 @@ function FlatButtons(props) {
       <Button color="accent" className={classes.button}>Accent</Button>
       <Button color="contrast" className={classes.button}>Contrast</Button>
       <Button disabled className={classes.button}>Disabled</Button>
-      <Button href="#flat-buttons">Link</Button>
+      <Button href="#flat-buttons" className={classes.button}>Link</Button>
+      <Button dense className={classes.button}>Dense</Button>
     </div>
   );
 }

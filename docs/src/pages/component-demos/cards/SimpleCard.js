@@ -46,7 +46,7 @@ function SimpleCard(props) {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button compact>Learn More</Button>
+          <Button dense>Learn More</Button>
         </CardActions>
       </Card>
     </div>

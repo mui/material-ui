@@ -13,14 +13,15 @@ export const styleSheet = createStyleSheet('MuiButton', theme => ({
     fontSize: theme.typography.fontSize,
     fontWeight: theme.typography.fontWeightMedium,
     fontFamily: theme.typography.fontFamily,
+    lineHeight: '1em',
     textTransform: 'uppercase',
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
     boxSizing: 'border-box',
     minWidth: 88,
-    height: 36,
-    padding: '0px 16px',
+    minHeight: 36,
+    padding: `11px ${theme.spacing.unit * 2}px`,
     borderRadius: 2,
     color: theme.palette.text.primary,
     backgroundColor: 'transparent',
@@ -35,9 +36,11 @@ export const styleSheet = createStyleSheet('MuiButton', theme => ({
       },
     },
   },
-  compact: {
-    padding: '0 8px',
+  dense: {
+    padding: `10px ${theme.spacing.unit}px`,
     minWidth: 64,
+    minHeight: 32,
+    fontSize: theme.typography.fontSize - 1,
   },
   label: {
     width: '100%',
@@ -127,7 +130,7 @@ function Button(props) {
     classes,
     className: classNameProp,
     color,
-    compact,
+    dense,
     disabled,
     disableFocusRipple,
     disableRipple,
@@ -149,7 +152,7 @@ function Button(props) {
       [classes.raisedPrimary]: !flat && color === 'primary',
       [classes.raisedAccent]: !flat && color === 'accent',
       [classes.raisedContrast]: !flat && color === 'contrast',
-      [classes.compact]: compact,
+      [classes.dense]: dense,
       [classes.disabled]: disabled,
     },
     classNameProp,
@@ -189,15 +192,15 @@ Button.propTypes = {
    */
   color: PropTypes.oneOf(['default', 'inherit', 'primary', 'accent', 'contrast']),
   /**
-   * Uses a smaller minWidth, ideal for things like card actions.
-   */
-  compact: PropTypes.bool,
-  /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    * The default value is a `button`.
    */
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /**
+   * Uses a smaller minWidth, ideal for things like card actions.
+   */
+  dense: PropTypes.bool,
   /**
    * If `true`, the button will be disabled.
    */
@@ -232,7 +235,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   color: 'default',
-  compact: false,
+  dense: false,
   disabled: false,
   fab: false,
   disableFocusRipple: false,

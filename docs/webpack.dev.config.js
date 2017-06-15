@@ -21,7 +21,7 @@ module.exports = Object.assign({}, webpackBaseConfig, {
     rules: webpackBaseConfig.module.rules.concat([
       {
         test: /\.(jpg|gif|png)$/,
-        loader: 'file-loader!img-loader',
+        loader: 'file-loader',
       },
     ]),
   }),

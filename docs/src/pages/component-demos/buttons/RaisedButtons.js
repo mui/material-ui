@@ -29,6 +29,7 @@ function RaisedButtons(props) {
       <label htmlFor="file">
         <Button component="span" className={classes.button}>Upload</Button>
       </label>
+      <Button raised dense className={classes.button}>Dense</Button>
     </div>
   );
 }
