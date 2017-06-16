@@ -48,7 +48,7 @@ class CheckboxList extends Component {
               <Checkbox
                 checked={this.state.checked.indexOf(value) !== -1}
                 tabIndex="-1"
-                ripple={false}
+                disableRipple
               />
               <ListItemText primary={`Line item ${value + 1}`} />
               <ListItemSecondaryAction>

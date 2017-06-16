@@ -60,7 +60,7 @@ export const styleSheet = createStyleSheet('MuiIconButton', theme => ({
  * regarding the available icon options.
  */
 function IconButton(props) {
-  const { children, classes, className, color, disabled, disableRipple, rootRef, ...other } = props;
+  const { children, classes, className, color, disabled, rootRef, ...other } = props;
 
   return (
     <ButtonBase
@@ -75,7 +75,6 @@ function IconButton(props) {
       centerRipple
       keyboardFocusedClassName={classes.keyboardFocused}
       disabled={disabled}
-      ripple={!disableRipple}
       ref={rootRef}
       {...other}
     >

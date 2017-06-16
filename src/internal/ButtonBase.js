@@ -33,7 +33,7 @@ class ButtonBase extends Component {
   static defaultProps = {
     centerRipple: false,
     focusRipple: false,
-    ripple: true,
+    disableRipple: false,
     tabIndex: '0',
     type: 'button',
   };
@@ -156,14 +156,14 @@ class ButtonBase extends Component {
     }
   };
 
-  renderRipple(ripple, center) {
-    if (ripple === true && !this.props.disabled) {
+  renderRipple() {
+    if (!this.props.disableRipple && !this.props.disabled) {
       return (
         <TouchRipple
           ref={node => {
             this.ripple = node;
           }}
-          center={center}
+          center={this.props.centerRipple}
         />
       );
     }
@@ -178,6 +178,7 @@ class ButtonBase extends Component {
       className: classNameProp,
       component,
       disabled,
+      disableRipple,
       focusRipple,
       keyboardFocusedClassName,
       onBlur,
@@ -190,7 +191,6 @@ class ButtonBase extends Component {
       onMouseUp,
       onTouchEnd,
       onTouchStart,
-      ripple,
       tabIndex,
       type,
       ...other
@@ -247,7 +247,7 @@ class ButtonBase extends Component {
         {...other}
       >
         {children}
-        {this.renderRipple(ripple, centerRipple)}
+        {this.renderRipple()}
       </ComponentProp>
     );
   }
@@ -274,8 +274,12 @@ ButtonBase.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
+   * If `true`, the ripple effect will be disabled.
+   */
+  disableRipple: PropTypes.bool,
+  /**
    * If `true`, the base button will have a keyboard focus ripple.
-   * `ripple` must also be true.
+   * `disableRipple` must also be `false`.
    */
   focusRipple: PropTypes.bool,
   keyboardFocusedClassName: PropTypes.string,
@@ -290,10 +294,6 @@ ButtonBase.propTypes = {
   onMouseUp: PropTypes.func,
   onTouchEnd: PropTypes.func,
   onTouchStart: PropTypes.func,
-  /**
-   * If `false`, the base button will not have a ripple when clicked.
-   */
-  ripple: PropTypes.bool,
   role: PropTypes.string,
   tabIndex: PropTypes.string,
   type: PropTypes.string,

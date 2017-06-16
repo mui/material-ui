@@ -66,7 +66,7 @@ function TableSortLabel(props) {
   });
 
   return (
-    <ButtonBase className={className} component="span" ripple={false} {...other}>
+    <ButtonBase className={className} component="span" disableRipple {...other}>
       {children}
       <ArrowDownwardIcon className={iconClasses} />
     </ButtonBase>

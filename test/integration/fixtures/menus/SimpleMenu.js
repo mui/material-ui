@@ -1,4 +1,5 @@
-// @flow weak
+// @flow
+
 import React, { Component } from 'react';
 import Menu, { MenuItem } from 'src/Menu';
 
@@ -11,7 +12,7 @@ export default class SimpleMenu extends Component {
     selectedIndex: undefined,
   };
 
-  handleMenuItemClick = (event, index) => {
+  handleMenuItemClick = (event: Event, index: number) => {
     this.setState({ selectedIndex: index, open: false });
   };
 

@@ -59,18 +59,18 @@ describe('<IconButton />', () => {
 
   it('should have a ripple by default', () => {
     const wrapper = shallow(<IconButton>book</IconButton>);
-    assert.strictEqual(wrapper.props().ripple, true, 'should set ripple to true');
+    assert.strictEqual(wrapper.props().disableRipple, false);
   });
 
-  it('should pass ripple={false} to ButtonBase', () => {
+  it('should pass disableRipple to ButtonBase', () => {
     const wrapper = shallow(<IconButton disableRipple>book</IconButton>);
-    assert.strictEqual(wrapper.props().ripple, false, 'should set ripple to false');
+    assert.strictEqual(wrapper.props().disableRipple, true);
   });
 
   it('should spread props on ButtonBase', () => {
-    const wrapper = shallow(<IconButton data-test="hello" ripple={false}>book</IconButton>);
+    const wrapper = shallow(<IconButton data-test="hello" disableRipple>book</IconButton>);
     assert.strictEqual(wrapper.prop('data-test'), 'hello', 'should be spread on the ButtonBase');
-    assert.strictEqual(wrapper.props().ripple, false, 'should disable the ButtonBase ripple');
+    assert.strictEqual(wrapper.props().disableRipple, true);
   });
 
   it('should render with the user and root classes', () => {

@@ -133,7 +133,6 @@ function Button(props) {
     dense,
     disabled,
     disableFocusRipple,
-    disableRipple,
     fab,
     raised,
     ...other
@@ -163,7 +162,6 @@ function Button(props) {
       className={className}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
-      ripple={!disableRipple}
       keyboardFocusedClassName={classes.keyboardFocused}
       {...other}
     >

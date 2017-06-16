@@ -187,12 +187,12 @@ describe('<Button />', () => {
 
   it('should have a ripple by default', () => {
     const wrapper = shallow(<Button>Hello World</Button>);
-    assert.strictEqual(wrapper.props().ripple, true, 'should set ripple to true');
+    assert.strictEqual(wrapper.props().disableRipple, false);
   });
 
-  it('should pass ripple={false} to ButtonBase', () => {
+  it('should pass disableRipple to ButtonBase', () => {
     const wrapper = shallow(<Button disableRipple>Hello World</Button>);
-    assert.strictEqual(wrapper.props().ripple, false, 'should set ripple to false');
+    assert.strictEqual(wrapper.props().disableRipple, true);
   });
 
   it('should have a focusRipple by default', () => {
@@ -200,7 +200,7 @@ describe('<Button />', () => {
     assert.strictEqual(wrapper.props().focusRipple, true, 'should set focusRipple to true');
   });
 
-  it('should pass ripple={false} to ButtonBase', () => {
+  it('should pass disableFocusRipple to ButtonBase', () => {
     const wrapper = shallow(<Button disableFocusRipple>Hello World</Button>);
     assert.strictEqual(wrapper.props().focusRipple, false, 'should set focusRipple to false');
   });
