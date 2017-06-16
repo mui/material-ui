@@ -125,12 +125,6 @@ const appList = [
     link: 'https://www.realtyadvisorselite.com/',
   },
   {
-    title: 'Humorista Jokes',
-    author: 'Minas Mina',
-    img: 'images/showcase/humorista.png',
-    link: 'https://humorista.org/',
-  },
-  {
     title: 'ApiRequest Capture (Chrome Extension)',
     author: 'team@moesif.com',
     img: 'images/showcase/apirequest-capture-by-moesif.png',
