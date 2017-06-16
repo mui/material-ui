@@ -5,7 +5,7 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, createMount } from '../test-utils';
 import Textarea from './Textarea';
-import Input, { styleSheet } from './Input';
+import Input, { styleSheet, isDirty } from './Input';
 
 describe('<Input />', () => {
   let shallow;
@@ -61,7 +61,7 @@ describe('<Input />', () => {
     assert.strictEqual(input.hasClass(classes.disabled), true, 'should have the disabled class');
   });
 
-  it('should  disabled the underline', () => {
+  it('should disabled the underline', () => {
     const wrapper = shallow(<Input disableUnderline />);
     const input = wrapper.find('input');
     assert.strictEqual(wrapper.hasClass(classes.inkbar), false, 'should not have the inkbar class');
@@ -320,6 +320,17 @@ describe('<Input />', () => {
       const handleRef = spy();
       mount(<Input multiline inputRef={handleRef} />);
       assert.strictEqual(handleRef.callCount, 1);
+    });
+  });
+
+  describe('isDirty', () => {
+    it('should support integer', () => {
+      assert.strictEqual(
+        isDirty({
+          value: 3,
+        }),
+        true,
+      );
     });
   });
 });
