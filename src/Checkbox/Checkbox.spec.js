@@ -2,7 +2,8 @@
 
 import { assert } from 'chai';
 import { createShallow } from '../test-utils';
-import Checkbox, { LabelCheckbox, styleSheet } from './Checkbox';
+import Checkbox, { styleSheet } from './Checkbox';
+import LabelCheckbox from './LabelCheckbox';
 
 describe('<Checkbox />', () => {
   let shallow;
@@ -31,7 +32,7 @@ describe('<Checkbox />', () => {
   describe('named LabelCheckbox export', () => {
     it('should be Checkbox wrapped with SwitchLabel', () => {
       assert.strictEqual(LabelCheckbox.name, 'Style');
-      assert.strictEqual(LabelCheckbox.displayName, 'withStyles(withSwitchLabel(Checkbox))');
+      assert.strictEqual(LabelCheckbox.displayName, 'withStyles(LabelCheckbox)');
     });
   });
 });

@@ -2,7 +2,8 @@
 
 import { assert } from 'chai';
 import { createShallow } from '../test-utils';
-import Radio, { LabelRadio, styleSheet } from './Radio';
+import Radio, { styleSheet } from './Radio';
+import LabelRadio from './LabelRadio';
 
 describe('<Radio />', () => {
   let shallow;
@@ -31,7 +32,7 @@ describe('<Radio />', () => {
   describe('named LabelRadio export', () => {
     it('should be Radio wrapped with SwitchLabel', () => {
       assert.strictEqual(LabelRadio.name, 'Style');
-      assert.strictEqual(LabelRadio.displayName, 'withStyles(withSwitchLabel(Radio))');
+      assert.strictEqual(LabelRadio.displayName, 'withStyles(LabelRadio)');
     });
   });
 });

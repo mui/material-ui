@@ -1,9 +1,4 @@
 // @flow
 
-import Switch from './Switch';
-import withSwitchLabel from '../internal/withSwitchLabel';
-
-const LabelSwitch = withSwitchLabel(Switch);
-
-export default Switch;
-export { LabelSwitch };
+export { default } from './Switch';
+export { default as LabelSwitch } from './LabelSwitch';

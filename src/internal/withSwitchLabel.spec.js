@@ -22,12 +22,12 @@ describe('withSwitchLabel', () => {
 
     it('should return a SwitchLabel component with a wrapped displayName', () => {
       const SwitchLabel = withSwitchLabel({ displayName: 'Foo' });
-      assert.strictEqual(SwitchLabel.displayName, 'withStyles(withSwitchLabel(Foo))');
+      assert.strictEqual(SwitchLabel.displayName, 'withStyles(LabelFoo)');
 
       /* eslint-disable prefer-arrow-callback */
       const SwitchLabelFn = withSwitchLabel(function Foo() {});
       /* eslint-enable prefer-arrow-callback */
-      assert.strictEqual(SwitchLabelFn.displayName, 'withStyles(withSwitchLabel(Foo))');
+      assert.strictEqual(SwitchLabelFn.displayName, 'withStyles(LabelFoo)');
     });
   });
 
@@ -42,7 +42,7 @@ describe('withSwitchLabel', () => {
     });
 
     it('should have the correct displayName', () => {
-      assert.strictEqual(SwitchLabelFoo.displayName, 'withStyles(withSwitchLabel(Foo))');
+      assert.strictEqual(SwitchLabelFoo.displayName, 'withStyles(LabelFoo)');
     });
 
     it('should render a label', () => {

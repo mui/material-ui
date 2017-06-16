@@ -1,3 +1,4 @@
 // @flow
 
-export { default, LabelCheckbox } from './Checkbox';
+export { default } from './Checkbox';
+export { default as LabelCheckbox } from './LabelCheckbox';

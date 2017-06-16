@@ -4,7 +4,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createStyleSheet } from 'jss-theme-reactor';
 import createSwitch from '../internal/SwitchBase';
-import withSwitchLabel from '../internal/withSwitchLabel';
 
 export const styleSheet = createStyleSheet('MuiCheckbox', theme => ({
   default: {
@@ -23,10 +22,6 @@ const Checkbox = createSwitch({ styleSheet });
 Checkbox.displayName = 'Checkbox';
 
 export default Checkbox;
-
-const LabelCheckbox = withSwitchLabel(Checkbox);
-
-export { LabelCheckbox };
 
 export const CheckboxDocs = () => <span />;
 
