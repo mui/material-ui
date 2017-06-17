@@ -260,6 +260,14 @@ class AutoComplete extends Component {
     }
   };
 
+  handleMouseEnter = () => {
+    this.setState({isMouseOverMenu: true});
+  };
+
+  handleMouseLeave = () => {
+    this.setState({isMouseOverMenu: false});
+  };
+
   handleMouseDown = (event) => {
     // Keep the TextField focused
     event.preventDefault();
@@ -356,7 +364,7 @@ class AutoComplete extends Component {
   };
 
   handleBlur = (event) => {
-    if (this.state.focusTextField && this.timerTouchTapCloseId === null) {
+    if (this.state.focusTextField && !this.state.isMouseOverMenu && this.timerTouchTapCloseId === null) {
       this.timerBlurClose = setTimeout(() => {
         this.close();
       }, 0);
@@ -368,6 +376,8 @@ class AutoComplete extends Component {
   };
 
   handleFocus = (event) => {
+    clearTimeout(this.timerBlurClose);
+
     if (!this.state.open && this.props.openOnFocus) {
       this.setState({
         open: true,
@@ -500,20 +510,26 @@ class AutoComplete extends Component {
     this.requestsList = requestsList;
 
     const menu = open && requestsList.length > 0 && (
-      <Menu
-        ref="menu"
-        autoWidth={false}
-        disableAutoFocus={focusTextField}
-        onEscKeyDown={this.handleEscKeyDown}
-        initiallyKeyboardFocused={true}
-        onItemTouchTap={this.handleItemTouchTap}
-        onMouseDown={this.handleMouseDown}
-        style={Object.assign(styles.menu, menuStyle)}
-        listStyle={Object.assign(styles.list, listStyle)}
-        {...menuProps}
+      <div
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
+        onBlur={this.handleBlur}
       >
-        {requestsList.map((i) => i.value)}
-      </Menu>
+        <Menu
+          ref="menu"
+          autoWidth={false}
+          disableAutoFocus={focusTextField}
+          onEscKeyDown={this.handleEscKeyDown}
+          initiallyKeyboardFocused={true}
+          onItemTouchTap={this.handleItemTouchTap}
+          onMouseDown={this.handleMouseDown}
+          style={Object.assign(styles.menu, menuStyle)}
+          listStyle={Object.assign(styles.list, listStyle)}
+          {...menuProps}
+        >
+          {requestsList.map((i) => i.value)}
+        </Menu>
+      </div>
     );
 
     return (
