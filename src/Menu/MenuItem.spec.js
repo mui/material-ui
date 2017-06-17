@@ -19,7 +19,7 @@ describe('<MenuItem />', () => {
     const wrapper = shallow(<MenuItem />);
     assert.strictEqual(wrapper.name(), 'withStyles(ListItem)');
     assert.strictEqual(wrapper.props().button, true, 'should have the button prop');
-    assert.strictEqual(wrapper.props().ripple, false, 'should not have a ripple');
+    assert.strictEqual(wrapper.props().disableRipple, true, 'should not have a ripple');
   });
 
   it('should render with the user and root classes', () => {
@@ -83,7 +83,7 @@ describe('<MenuItem />', () => {
       const wrapper = shallow(<MenuItem component="a" />);
 
       assert.strictEqual(wrapper.props().component, 'a');
-      assert.strictEqual(wrapper.props().ripple, undefined);
+      assert.strictEqual(wrapper.props().disableRipple, undefined);
     });
   });
 });

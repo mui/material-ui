@@ -59,6 +59,10 @@ CheckboxDocs.propTypes = {
    */
   disabledClassName: PropTypes.string,
   /**
+   * If `true`, the ripple effect will be disabled.
+   */
+  disableRipple: PropTypes.bool,
+  /**
    * The icon to display when the component is unchecked.
    * If a string is provided, it will be used as a font ligature.
    */
@@ -78,10 +82,6 @@ CheckboxDocs.propTypes = {
    * @param {boolean} checked The `checked` value of the switch
    */
   onChange: PropTypes.func,
-  /**
-   * If `false`, the ripple effect will be disabled.
-   */
-  ripple: PropTypes.bool,
   /**
    * @ignore
    */

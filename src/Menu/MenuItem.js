@@ -45,7 +45,7 @@ function MenuItem(props) {
   const listItemProps = {};
 
   if (!component) {
-    listItemProps.ripple = false;
+    listItemProps.disableRipple = true;
   }
 
   return (
