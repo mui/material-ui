@@ -69,6 +69,13 @@ class Popover extends Component {
      */
     open: PropTypes.bool,
     /**
+     * A function that should determine whether the `clickAway` event should be
+     * triggered according to superior logic than what Popover knows.
+     * For e.g, if Popover is used adjacent to some other component, like TextBox,
+     * then clicking on the textbox should not trigger `clickAway`.
+     */
+    shouldTriggerClickAway: PropTypes.func,
+    /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
@@ -236,7 +243,13 @@ class Popover extends Component {
   }
 
   componentClickAway = (event) => {
-    event.preventDefault();
+    if (event.type === 'click') {
+      return event.preventDefault();
+    }
+    if (this.props.shouldTriggerClickAway && !this.props.shouldTriggerClickAway(event)) {
+      return;
+    }
+
     this.requestClose('clickAway');
   };
 

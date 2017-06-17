@@ -392,6 +392,10 @@ class AutoComplete extends Component {
     this.refs.searchTextField.focus();
   }
 
+  shouldTriggerClickAway = (event) => {
+    return event.target !== this.refs.searchTextField.getInputNode();
+  }
+
   render() {
     const {
       anchorOrigin,
@@ -537,6 +541,7 @@ class AutoComplete extends Component {
           onChange={this.handleChange}
         />
         <Popover
+          shouldTriggerClickAway={this.shouldTriggerClickAway}
           style={Object.assign({}, styles.popover, popoverStyle)}
           canAutoPosition={false}
           anchorOrigin={anchorOrigin}
