@@ -17,3 +17,5 @@ import TextField from 'material-ui/TextField'
 ```
 
 The public API available in this manner is defined as the set of imports available from the top-level `material-ui` module. Anything not available through the top-level `material-ui` module is a **private API**, and is subject to change without notice.
+
+Another option to keep using the shorten import and still have the size of the bundle optimized would be to use [babel-plugin-material-ui](https://github.com/umidbekkarimov/babel-plugin-material-ui).
