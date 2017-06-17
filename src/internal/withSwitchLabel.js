@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import wrapDisplayName from 'recompose/wrapDisplayName';
+import getDisplayName from 'recompose/getDisplayName';
 import withStyles from '../styles/withStyles';
 
 export const styleSheet = createStyleSheet('MuiSwitchLabel', theme => ({
@@ -96,7 +96,7 @@ function withSwitchLabel(SwitchComponent) {
   };
 
   if (process.env.NODE_ENV !== 'production') {
-    SwitchLabel.displayName = wrapDisplayName(SwitchComponent, 'withSwitchLabel');
+    SwitchLabel.displayName = `Label${getDisplayName(SwitchComponent)}`;
   }
 
   return withStyles(styleSheet)(SwitchLabel);

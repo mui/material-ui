@@ -3,8 +3,8 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow } from '../test-utils';
-import Switch, { LabelSwitch } from '../Switch';
-import { styleSheet } from './Switch';
+import Switch, { styleSheet } from './Switch';
+import LabelSwitch from './LabelSwitch';
 
 describe('<Switch />', () => {
   let shallow;
@@ -55,10 +55,7 @@ describe('<Switch />', () => {
   describe('named LabelSwitch export', () => {
     it('should be Switch wrapped with SwitchLabel', () => {
       assert.strictEqual(LabelSwitch.name, 'Style');
-      assert.strictEqual(
-        LabelSwitch.displayName,
-        'withStyles(withSwitchLabel(withStyles(Switch)))',
-      );
+      assert.strictEqual(LabelSwitch.displayName, 'withStyles(LabelwithStyles(Switch))');
     });
   });
 });

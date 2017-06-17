@@ -10,7 +10,7 @@ export { default as Button } from './Button';
 
 export { default as Card, CardActions, CardContent, CardHeader, CardMedia } from './Card';
 
-export { default as Checkbox } from './Checkbox';
+export { default as Checkbox, LabelCheckbox } from './Checkbox';
 export { default as Chip } from './Chip';
 
 export {
@@ -50,7 +50,7 @@ export { default as Paper } from './Paper';
 
 export { CircularProgress, LinearProgress } from './Progress';
 
-export { default as Radio, RadioGroup } from './Radio';
+export { default as Radio, RadioGroup, LabelRadio } from './Radio';
 
 export { default as Snackbar, SnackbarContent } from './Snackbar';
 

@@ -1,4 +1,5 @@
 // @flow
 
-export { default, LabelRadio } from './Radio';
+export { default } from './Radio';
 export { default as RadioGroup } from './RadioGroup';
+export { default as LabelRadio } from './LabelRadio';

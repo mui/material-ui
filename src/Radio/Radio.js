@@ -4,7 +4,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createStyleSheet } from 'jss-theme-reactor';
 import createSwitch from '../internal/SwitchBase';
-import withSwitchLabel from '../internal/withSwitchLabel';
 import RadioButtonCheckedIcon from '../svg-icons/radio-button-checked';
 import RadioButtonUncheckedIcon from '../svg-icons/radio-button-unchecked';
 
@@ -30,10 +29,6 @@ const Radio = createSwitch({
 Radio.displayName = 'Radio';
 
 export default Radio;
-
-const LabelRadio = withSwitchLabel(Radio);
-
-export { LabelRadio };
 
 export const RadioDocs = () => <span />;
 
