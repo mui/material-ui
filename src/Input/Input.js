@@ -10,7 +10,8 @@ import Textarea from './Textarea';
 export function isDirty(obj, SSR = false) {
   return (
     obj &&
-    ((obj.value && obj.value.length) || (SSR && obj.defaultValue && obj.defaultValue.length)) > 0
+    ((obj.value && obj.value.toString().length) ||
+      (SSR && obj.defaultValue && obj.defaultValue.toString().length)) > 0
   );
 }
 
