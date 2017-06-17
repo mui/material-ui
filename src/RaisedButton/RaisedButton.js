@@ -73,6 +73,7 @@ function getStyles(props, context, state) {
       borderRadius,
       transition: transitions.easeOut(),
       backgroundColor: backgroundColor,
+      overflow: 'hidden',
       // That's the default value for a button but not a link
       textAlign: 'center',
     },
