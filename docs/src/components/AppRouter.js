@@ -150,6 +150,13 @@ export default function AppRouter() {
             component={MarkdownDocs}
             nav
           />
+          <Route
+            title="CSS-in-JS"
+            path="/layout/css-in-js"
+            content={requireMarkdown('./layout/css-in-js.md')}
+            component={MarkdownDocs}
+            nav
+          />
         </Route>
         <Route title="Component Demos" path="/component-demos" nav component={AppContent}>
           {demos.map(demo => {
