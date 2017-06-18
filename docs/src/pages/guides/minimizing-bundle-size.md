@@ -4,6 +4,7 @@ For convenience, Material-UI exposes its full API on the top-level `material-ui`
 This will work fine if you have tree shaking working.
 
 However, **in case tree shaking is not supported**, this causes the entire library and its dependencies to be included in client bundles that include code that imports from the top-level bundle.
+
 You have couple of options to overcome this situation:
 
 ##### Option #1
@@ -26,3 +27,5 @@ The public API available in this manner is defined as the set of imports availab
 ##### Option #2
 
 Another option to keep using the shorten import and still have the size of the bundle optimized would be to use [babel-plugin-material-ui](https://github.com/umidbekkarimov/babel-plugin-material-ui).
+
+**Important note**: Both of the options **should be temporary** until you'll add tree shaking capabilities to your project.
