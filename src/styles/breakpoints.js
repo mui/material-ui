@@ -17,19 +17,19 @@ const defaultBreakpoints = {
 export default function createBreakpoints(breakpoints = defaultBreakpoints, unit = 'px', step = 1) {
   const values = keys.map(key => breakpoints[key]);
 
-  function up(name) {
+  function up(key) {
     let value;
     // min-width of xs starts at 0
-    if (name === 'xs') {
+    if (key === 'xs') {
       value = 0;
     } else {
-      value = breakpoints[name] || name;
+      value = breakpoints[key] || key;
     }
     return `@media (min-width:${value}${unit})`;
   }
 
-  function down(name) {
-    const value = breakpoints[name] || name;
+  function down(key) {
+    const value = breakpoints[key] || key;
     return `@media (max-width:${value - step / 100}${unit})`;
   }
 
@@ -42,16 +42,16 @@ export default function createBreakpoints(breakpoints = defaultBreakpoints, unit
     );
   }
 
-  function only(name) {
-    const keyIndex = keys.indexOf(name);
+  function only(key) {
+    const keyIndex = keys.indexOf(key);
     if (keyIndex === keys.length - 1) {
-      return up(name);
+      return up(key);
     }
-    return between(name, name);
+    return between(key, key);
   }
 
-  function getWidth(name) {
-    return breakpoints[name];
+  function getWidth(key) {
+    return breakpoints[key];
   }
 
   return {

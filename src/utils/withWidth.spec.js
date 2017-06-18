@@ -5,12 +5,13 @@ import { assert } from 'chai';
 import { useFakeTimers } from 'sinon';
 import { createMount, createShallow } from '../test-utils';
 import withWidth, { isWidthDown, isWidthUp } from './withWidth';
+import createBreakpoints from '../styles/breakpoints';
 
 const Empty = () => <div />;
 Empty.propTypes = {}; // Breaks the referencial transparency for testing purposes.
 const EmptyWithWidth = withWidth()(Empty);
 
-const TEST_ENV_WIDTH = 'md';
+const TEST_ENV_WIDTH = window.innerWidth > createBreakpoints().getWidth('md') ? 'md' : 'sm';
 
 describe('withWidth', () => {
   let shallow;

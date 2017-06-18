@@ -38,8 +38,7 @@ describe('<Snackbar />', () => {
       const handleRequestClose = spy();
       mount(<Snackbar open onRequestClose={handleRequestClose} message="message" />);
 
-      const event = document.createEvent('MouseEvents');
-      event.initEvent('mouseup', true, true);
+      const event = new window.Event('mouseup', { view: window, bubbles: true, cancelable: true });
       if (document.body) {
         document.body.dispatchEvent(event);
       }

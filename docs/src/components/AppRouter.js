@@ -44,6 +44,13 @@ export default function AppRouter() {
             component={MarkdownDocs}
             nav
           />
+          <Route
+            title="Supported Browsers"
+            path="/getting-started/supported-browsers"
+            content={requireMarkdown('./getting-started/supported-browsers.md')}
+            component={MarkdownDocs}
+            nav
+          />
         </Route>
         <Route title="Customization" path="/customization" nav component={AppContent}>
           <Route
