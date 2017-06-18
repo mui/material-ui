@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import prism from 'prismjs';
 import 'prismjs/components/prism-markup';
@@ -16,7 +16,7 @@ const styleNode = window.document.createElement('style');
 styleNode.setAttribute('data-prism', true);
 window.document.head.appendChild(styleNode);
 
-export function setPrismTheme(theme = lightTheme) {
+export function setPrismTheme(theme: Object = lightTheme) {
   styleNode.textContent = theme;
 }
 
