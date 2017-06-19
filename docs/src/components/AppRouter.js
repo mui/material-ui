@@ -158,7 +158,7 @@ export default function AppRouter() {
             nav
           />
           <Route
-            title="CSS-in-JS"
+            title="CSS in JS"
             path="/layout/css-in-js"
             content={requireMarkdown('./layout/css-in-js.md')}
             component={MarkdownDocs}

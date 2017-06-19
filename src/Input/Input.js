@@ -15,140 +15,127 @@ export function isDirty(obj, SSR = false) {
   );
 }
 
-export const styleSheet = createStyleSheet('MuiInput', theme => ({
-  root: {
-    // Mimics the default input display property used by browsers for an input.
-    display: 'inline-block',
-    position: 'relative',
-    fontFamily: theme.typography.fontFamily,
-  },
-  formControl: {
-    marginBottom: 1,
-    'label + &': {
-      marginTop: theme.spacing.unit * 2,
-    },
-  },
-  inkbar: {
-    '&:after': {
-      backgroundColor: theme.palette.primary[theme.palette.type === 'light' ? 'A700' : 'A200'],
-      left: 0,
-      bottom: -2,
-      // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
-      content: '""',
-      height: 2,
-      position: 'absolute',
-      right: 0,
-      transform: 'scaleX(0)',
-      transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shorter,
-        easing: theme.transitions.easing.easeOut,
-      }),
-    },
-    '&$focused:after': {
-      transform: 'scaleX(1)',
-    },
-  },
-  focused: {},
-  error: {
-    '&:after': {
-      backgroundColor: theme.palette.error.A400,
-      transform: 'scaleX(1)', // error is always underlined in red
-    },
-  },
-  input: {
-    font: 'inherit',
-    padding: `${theme.spacing.unit}px 0`,
-    border: 0,
-    display: 'block',
-    boxSizing: 'content-box',
-    verticalAlign: 'middle',
-    whiteSpace: 'normal',
-    background: 'none',
-    margin: 0, // Reset for Safari
-    color: theme.palette.input.inputText,
-    width: '100%',
-    '&:focus': {
-      outline: 0,
-    },
-    '&::-webkit-search-decoration': {
-      // Remove the padding when type=search.
-      appearance: 'none',
-    },
-    'label + $formControl > &': {
-      '&::-webkit-input-placeholder': {
-        opacity: 0,
-        transition: theme.transitions.create('opacity', {
-          duration: theme.transitions.duration.shorter,
-          easing: theme.transitions.easing.ease,
-        }),
-      },
-      '&::-moz-placeholder': {
-        opacity: 0,
-        transition: theme.transitions.create('opacity', {
-          duration: theme.transitions.duration.shorter,
-          easing: theme.transitions.easing.ease,
-        }),
-      },
-      '&:-ms-input-placeholder': {
-        opacity: 0,
-        transition: theme.transitions.create('opacity', {
-          duration: theme.transitions.duration.shorter,
-          easing: theme.transitions.easing.ease,
-        }),
-      },
-      '&:-moz-placeholder': {
-        opacity: 0,
-        transition: theme.transitions.create('opacity', {
-          duration: theme.transitions.duration.shorter,
-          easing: theme.transitions.easing.ease,
-        }),
-      },
-      '&:focus::-webkit-input-placeholder': {
-        opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
-      },
-      '&:focus::-moz-placeholder': {
-        opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
-      },
-      '&:focus:-ms-input-placeholder': {
-        opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
-      },
-      '&:focus:-moz-placeholder': {
-        opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
-      },
-    },
-  },
-  singleline: {
-    height: '1em',
-    appearance: 'textfield', // Improve type search style.
-  },
-  multiline: {
-    resize: 'none',
-    padding: 0,
-  },
-  multilineWrapper: {
-    padding: `${theme.spacing.unit - 2}px 0`,
-  },
-  disabled: {
-    color: theme.palette.text.disabled,
-    opacity: 1, // Reset iOS opacity
-  },
-  underline: {
-    borderBottom: `1px solid ${theme.palette.input.bottomLine}`,
-    transition: theme.transitions.create('border-color', {
+export const styleSheet = createStyleSheet('MuiInput', theme => {
+  const placeholder = {
+    opacity: 0,
+    transition: theme.transitions.create('opacity', {
       duration: theme.transitions.duration.shorter,
       easing: theme.transitions.easing.ease,
     }),
-    '&:hover:not($disabled)': {
-      borderBottom: `2px solid ${theme.palette.text.primary}`,
-      marginBottom: 0,
+  };
+
+  return {
+    root: {
+      // Mimics the default input display property used by browsers for an input.
+      display: 'inline-block',
+      position: 'relative',
+      fontFamily: theme.typography.fontFamily,
     },
-    '&$disabled': {
-      borderBottomStyle: 'dotted',
-      borderImage: `linear-gradient(to right, ${theme.palette.input.bottomLine} 33%, transparent 0%)
-        100 0 / 0 0 1px / 0 0 0 0 repeat`,
+    formControl: {
+      marginBottom: 1,
+      'label + &': {
+        marginTop: theme.spacing.unit * 2,
+      },
     },
-  },
-}));
+    inkbar: {
+      '&:after': {
+        backgroundColor: theme.palette.primary[theme.palette.type === 'light' ? 'A700' : 'A200'],
+        left: 0,
+        bottom: -2,
+        // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
+        content: '""',
+        height: 2,
+        position: 'absolute',
+        right: 0,
+        transform: 'scaleX(0)',
+        transition: theme.transitions.create('transform', {
+          duration: theme.transitions.duration.shorter,
+          easing: theme.transitions.easing.easeOut,
+        }),
+      },
+      '&$focused:after': {
+        transform: 'scaleX(1)',
+      },
+    },
+    focused: {},
+    error: {
+      '&:after': {
+        backgroundColor: theme.palette.error.A400,
+        transform: 'scaleX(1)', // error is always underlined in red
+      },
+    },
+    input: {
+      font: 'inherit',
+      padding: `${theme.spacing.unit}px 0`,
+      border: 0,
+      display: 'block',
+      boxSizing: 'content-box',
+      verticalAlign: 'middle',
+      whiteSpace: 'normal',
+      background: 'none',
+      margin: 0, // Reset for Safari
+      color: theme.palette.input.inputText,
+      width: '100%',
+      '&:focus': {
+        outline: 0,
+      },
+      '&::-webkit-search-decoration': {
+        // Remove the padding when type=search.
+        appearance: 'none',
+      },
+      'label + $formControl > &': {
+        '&::-webkit-input-placeholder': placeholder,
+        '&::-moz-placeholder': placeholder,
+        '&:-ms-input-placeholder': placeholder,
+        '&:-moz-placeholder': placeholder,
+        '&:focus::-webkit-input-placeholder': {
+          opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
+        },
+        '&:focus::-moz-placeholder': {
+          opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
+        },
+        '&:focus:-ms-input-placeholder': {
+          opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
+        },
+        '&:focus:-moz-placeholder': {
+          opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
+        },
+      },
+    },
+    singleline: {
+      height: '1em',
+      appearance: 'textfield', // Improve type search style.
+    },
+    multiline: {
+      resize: 'none',
+      padding: 0,
+    },
+    multilineWrapper: {
+      padding: `${theme.spacing.unit - 2}px 0`,
+    },
+    disabled: {
+      color: theme.palette.text.disabled,
+      opacity: 1, // Reset iOS opacity
+    },
+    underline: {
+      borderBottom: `1px solid ${theme.palette.input.bottomLine}`,
+      transition: theme.transitions.create('border-color', {
+        duration: theme.transitions.duration.shorter,
+        easing: theme.transitions.easing.ease,
+      }),
+      '&:hover:not($disabled)': {
+        borderBottom: `2px solid ${theme.palette.text.primary}`,
+        marginBottom: 0,
+      },
+      '&$disabled': {
+        borderBottomStyle: 'dotted',
+        borderImage: `linear-gradient(to right, ${theme.palette.input
+          .bottomLine} 33%, transparent 0%)
+          100 0 / 0 0 1px / 0 0 0 0 repeat`,
+      },
+    },
+  };
+});
 
 class Input extends Component {
   static muiName = 'Input';

@@ -27,7 +27,7 @@ function RaisedButtons(props) {
       </Button>
       <input accept="jpg,jpeg,JPG,JPEG" className={classes.input} id="file" multiple type="file" />
       <label htmlFor="file">
-        <Button component="span" className={classes.button}>Upload</Button>
+        <Button raised component="span" className={classes.button}>Upload</Button>
       </label>
       <Button raised dense className={classes.button}>Dense</Button>
     </div>
