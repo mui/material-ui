@@ -1,7 +1,13 @@
 # Minimizing Bundle Size
 
 For convenience, Material-UI exposes its full API on the top-level `material-ui` import.
-However, this causes the entire library and its dependencies to be included in client bundles that include code that imports from the top-level bundle.
+This will work fine if you have tree shaking working.
+
+However, **in case tree shaking is not supported**, this causes the entire library and its dependencies to be included in client bundles that include code that imports from the top-level bundle.
+
+You have couple of options to overcome this situation:
+
+##### Option #1
 
 You can import directly from `material-ui/` to avoid pulling in unused modules. For instance, instead of:
 
@@ -17,3 +23,9 @@ import TextField from 'material-ui/TextField'
 ```
 
 The public API available in this manner is defined as the set of imports available from the top-level `material-ui` module. Anything not available through the top-level `material-ui` module is a **private API**, and is subject to change without notice.
+
+##### Option #2
+
+Another option to keep using the shorten import and still have the size of the bundle optimized would be to use [babel-plugin-material-ui](https://github.com/umidbekkarimov/babel-plugin-material-ui).
+
+**Important note**: Both of the options **should be temporary** until you'll add tree shaking capabilities to your project.
