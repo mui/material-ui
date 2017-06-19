@@ -24,6 +24,36 @@ Below is a summary of major changes.
 - [Ripple/TouchRipple] Refactored and now works properly inside a button in firefox!
 - [Button] Raised/flat/fab are now combined into a single component.
 
+## 1.0.0-alpha.19
+###### _Jun 19, 2017_
+
+The previous v1.0.0-alpha.18 release is corrupted.
+
+##### Component Fixes / Enhancements
+
+- [Typography] Expose a headlineMapping property (#7183) @oliviertassinari
+- [Typography] Add a accent color variation (#7183) @oliviertassinari
+- [FormControl] Fix wording (#7183) @oliviertassinari
+- [Toolbar] Simplify breakpoint logic (#7183) @oliviertassinari
+- [Button] Fix upload button demo (#7183) @oliviertassinari
+- [TextField] Forward the placeholder (#7183) @oliviertassinari
+- [MobileStepper] Improvements (#7179) @alexhayes
+- [MobileStepper] Fix the wordings (#7183) @oliviertassinari
+- [AppBar] Use a header instead of a div DOM element (#7183) @oliviertassinari
+
+##### Docs
+
+- [docs] Update minimizing-bundle-size.md (#7169) @kazazor
+- [docs] Info on how to use the breakpoints attribute in the theme (#7172) @alexhayes
+- [docs] Add a supported browsers section (#7174) @oliviertassinari
+- [docs] We don't require any polyfill (#7183) @oliviertassinari
+- [docs] Exposes the 3 Babel plugins available for minimising the bundle size (#) @oliviertassinari
+- [docs] Fix MATERIAL_UI_PORT not fully supported
+
+##### Core
+
+- [core] Add missing flow import (#7180) @oliviertassinari
+
 ## 1.0.0-alpha.18
 ###### _Jun 19, 2017_
 
