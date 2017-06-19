@@ -16,7 +16,7 @@ const styleSheet = createStyleSheet('TextMobileStepper', theme => ({
     display: 'flex',
     alignItems: 'center',
     height: 50,
-    paddingLeft: theme.spacing.unit * 5,
+    paddingLeft: theme.spacing.unit * 4,
     marginBottom: 20,
     background: theme.palette.background.default,
   },

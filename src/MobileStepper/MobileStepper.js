@@ -19,7 +19,7 @@ export const styleSheet = createStyleSheet('MuiMobileStepper', theme => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     background: theme.palette.background.default,
-    height: 50,
+    padding: theme.spacing.unit,
   },
   positionBottom: {
     position: 'fixed',

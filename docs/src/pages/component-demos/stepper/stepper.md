@@ -8,7 +8,7 @@ components: MobileStepper
 
 ## Mobile Stepper
 
-The [mobile steps](https://material.io/guidelines/components/steppers.html#steppers-types-of-steps) implements a compact stepper suitable for a mobile device.
+This component implements a compact stepper suitable for a mobile device. See [mobile steps](https://material.io/guidelines/components/steppers.html#steppers-types-of-steps) for it's inspiration.
 
 ### Mobile Stepper - Text
 
