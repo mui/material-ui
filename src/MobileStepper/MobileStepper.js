@@ -110,7 +110,8 @@ function MobileStepper(props) {
 
 MobileStepper.propTypes = {
   /**
-   * Set the active step (zero based index). This will enable `Step` control helpers.
+   * Set the active step (zero based index).
+   * Defines which dot is highlighted when the type is 'dots'.
    */
   activeStep: PropTypes.number,
   /**
@@ -138,11 +139,11 @@ MobileStepper.propTypes = {
    */
   nextButtonText: PropTypes.node,
   /**
-   * Passed into the onTouchTap prop of the Back button.
+   * Passed into the onClick prop of the Back button.
    */
   onBack: PropTypes.func.isRequired,
   /**
-   * Passed into the onTouchTap prop of the Next button.
+   * Passed into the onClick prop of the Next button.
    */
   onNext: PropTypes.func.isRequired,
   /**

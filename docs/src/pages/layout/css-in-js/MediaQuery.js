@@ -1,4 +1,5 @@
 // @flow
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
@@ -9,14 +10,10 @@ import Typography from 'material-ui/Typography';
 const styleSheet = createStyleSheet('MediaQuery', theme => ({
   root: {
     padding: theme.spacing.unit,
-  },
-  [theme.breakpoints.up('md')]: {
-    root: {
+    [theme.breakpoints.up('md')]: {
       backgroundColor: theme.palette.primary[500],
     },
-  },
-  [theme.breakpoints.down('md')]: {
-    root: {
+    [theme.breakpoints.down('md')]: {
       backgroundColor: theme.palette.accent.A400,
     },
   },
@@ -28,7 +25,7 @@ function MediaQuery(props) {
   return (
     <div className={classes.root}>
       <Typography type="subheading">
-        Current width: {props.width}
+        {`Current width: ${props.width}`}
       </Typography>
     </div>
   );

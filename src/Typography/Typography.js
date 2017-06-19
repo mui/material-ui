@@ -52,6 +52,9 @@ export const styleSheet = createStyleSheet('MuiTypography', theme => ({
   colorSecondary: {
     color: theme.palette.text.secondary,
   },
+  colorAccent: {
+    color: theme.palette.accent.A400,
+  },
 }));
 
 type Type =
@@ -87,11 +90,17 @@ type Props = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color?: 'inherit' | 'secondary' | 'default',
+  color?: 'inherit' | 'secondary' | 'accent' | 'default',
   /**
    * If `true`, the text will have a bottom margin.
    */
   gutterBottom?: boolean,
+  /**
+   * We are empirically mapping the type property to a range of different DOM element type.
+   * For instance, h1 to h6. If you wish to change that mapping, you can provide your own.
+   * Alternatively, you can use the `component` property.
+   */
+  headlineMapping: { [key: Type]: string },
   /**
    * If `true`, the text will not wrap, but instead will truncate with an ellipsis.
    */
@@ -106,18 +115,6 @@ type Props = {
   type?: Type,
 };
 
-const headlineMapping: { [key: Type]: string } = {
-  display4: 'h1',
-  display3: 'h1',
-  display2: 'h1',
-  display1: 'h1',
-  headline: 'h1',
-  title: 'h2',
-  subheading: 'h3',
-  body2: 'aside',
-  body1: 'p',
-};
-
 function Typography(props: Props) {
   const {
     align,
@@ -126,6 +123,7 @@ function Typography(props: Props) {
     component: componentProp,
     color,
     gutterBottom,
+    headlineMapping,
     noWrap,
     paragraph,
     type: typeProp,
@@ -157,6 +155,17 @@ Typography.defaultProps = {
   align: 'inherit',
   color: 'default',
   gutterBottom: false,
+  headlineMapping: {
+    display4: 'h1',
+    display3: 'h1',
+    display2: 'h1',
+    display1: 'h1',
+    headline: 'h1',
+    title: 'h2',
+    subheading: 'h3',
+    body2: 'aside',
+    body1: 'p',
+  },
   noWrap: false,
   paragraph: false,
   type: 'body1',

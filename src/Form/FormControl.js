@@ -138,7 +138,7 @@ FormControl.propTypes = {
    */
   error: PropTypes.bool,
   /**
-   * Add the margin top and bottom required when used in a form.
+   * If `true`, add the margin top and bottom required when used in a form.
    */
   marginForm: PropTypes.bool,
   /**

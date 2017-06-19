@@ -61,7 +61,7 @@ function AppBar(props) {
   );
 
   return (
-    <Paper square elevation={4} className={className} {...other}>
+    <Paper square component="header" elevation={4} className={className} {...other}>
       {children}
     </Paper>
   );

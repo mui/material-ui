@@ -25,10 +25,11 @@ function TextField(props) {
     helperText,
     helperTextClassName,
     FormHelperTextProps,
-    name,
     required,
     type,
     multiline,
+    name,
+    placeholder,
     rootRef,
     rows,
     rowsMax,
@@ -65,6 +66,7 @@ function TextField(props) {
         id={id}
         inputProps={inputProps}
         inputRef={inputRef}
+        placeholder={placeholder}
         {...InputProps}
       />
       {helperText &&
@@ -152,6 +154,10 @@ TextField.propTypes = {
    * Name attribute of the `Input` element.
    */
   name: PropTypes.string,
+  /**
+   * @ignore
+   */
+  placeholder: PropTypes.string,
   /**
    * If `true`, the label is displayed as required.
    */

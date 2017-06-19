@@ -9,7 +9,7 @@ Provides context such as dirty/focused/error/required for form inputs.
 | classes | object |  | Useful to extend the style applied to components. |
 | disabled | bool | false | If `true`, the label, input and helper text should be displayed in a disabled state. |
 | error | bool | false | If `true`, the label should be displayed in an error state. |
-| marginForm | bool | false | Add the margin top and bottom required when used in a form. |
+| marginForm | bool | false | If `true`, add the margin top and bottom required when used in a form. |
 | required | bool | false | If `true`, the label will indicate that the input is required. |
 
 Any other properties supplied will be spread to the root element.

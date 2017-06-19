@@ -17,7 +17,6 @@ You can overrides all the class names injected by Material-UI thanks to the `cla
 This property accepts the following keys:
 - `root`
 - `gutters`
-- `@media (min-width:600px)`
 
 Have a look at [overriding with class names](/customization/overrides#overriding-with-class-names)
 section for more detail.

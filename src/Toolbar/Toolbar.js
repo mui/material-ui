@@ -12,13 +12,11 @@ export const styleSheet = createStyleSheet('MuiToolbar', theme => ({
     display: 'flex',
     alignItems: 'center',
     height: 56,
-  },
-  gutters: theme.mixins.gutters({}),
-  [theme.breakpoints.up('sm')]: {
-    root: {
+    [theme.breakpoints.up('sm')]: {
       height: 64,
     },
   },
+  gutters: theme.mixins.gutters({}),
 }));
 
 function Toolbar(props) {
