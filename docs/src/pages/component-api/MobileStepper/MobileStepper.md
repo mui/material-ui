@@ -5,14 +5,14 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| activeStep | number | 0 | Set the active step (zero based index). This will enable `Step` control helpers. |
+| activeStep | number | 0 | Set the active step (zero based index). Defines which dot is highlighted when the type is 'dots'. |
 | backButtonText | node | 'Back' | Set the text that appears for the back button. |
 | classes | object |  | Useful to extend the style applied to components. |
 | disableBack | bool | false | Set to true to disable the back button. |
 | disableNext | bool | false | Set to true to disable the next button. |
 | nextButtonText | node | 'Next' | Set the text that appears for the next button. |
-| <span style="color: #31a148">onBack *</span> | function |  | Passed into the onTouchTap prop of the Back button. |
-| <span style="color: #31a148">onNext *</span> | function |  | Passed into the onTouchTap prop of the Next button. |
+| <span style="color: #31a148">onBack *</span> | function |  | Passed into the onClick prop of the Back button. |
+| <span style="color: #31a148">onNext *</span> | function |  | Passed into the onClick prop of the Next button. |
 | position | enum:&nbsp;'bottom'<br>&nbsp;'top'<br>&nbsp;'static'<br> | 'bottom' | Set the text that appears for the next button. |
 | <span style="color: #31a148">steps *</span> | number |  | The total steps. |
 | type | enum:&nbsp;'text'<br>&nbsp;'dots'<br>&nbsp;'progress'<br> | 'dots' | The type of mobile stepper to use. |
