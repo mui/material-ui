@@ -24,6 +24,42 @@ Below is a summary of major changes.
 - [Ripple/TouchRipple] Refactored and now works properly inside a button in firefox!
 - [Button] Raised/flat/fab are now combined into a single component.
 
+## 1.0.0-alpha.18
+###### _Jun 19, 2017_
+
+##### Breaking changes
+
+- [TextField] Add a marginForm property (#7113) @oliviertassinari
+This change makes the extra margin of the component optional.
+It's making us following less closely the specification but provides more flexibility out of the box.
+- [core] Remove some no longer needed properties (#7132) @oliviertassinari
+Use the `classes` property over the removed `xxxClassName`.
+- [Button] Implement the dense option over the compact one (#7147) @oliviertassinari
+
+##### Component Fixes / Enhancements
+
+- [SvgIcon] set focusable=false to fix IE tab navigation (#7106) @petermikitsh
+- [Dialog] Remove css width as it is too prescriptive for simple dialogs (#7115) @oliviertassinari
+- [BottomNavigation] Fix type error when onChange is not defined (#7139) @seasick
+- [TextField] Better support number value type (#7162) @oliviertassinari
+- [ButtonBase] Normalize ripple to disableRipple (#7159) @oliviertassinari
+
+##### Docs
+
+- [docs] Document the Label wrappers (#7161) @oliviertassinari
+
+##### Core
+
+- [MuiThemeProvider] Small eslint fix (#7128) @Airblader
+- [core] Simplify the array logic (#7112) @oliviertassinari
+- [core] Fix type use of Element (#7111) @rosskevin
+- [core] Use the beta of circleci (#7133) @oliviertassinari
+- [core] Update dependencies (#7137) @oliviertassinari
+- [core] Update dependencies, able to remove react-addons-test-utils (#7146) @rosskevin
+- [core] As usual after using the lib in a real project I find issues (#7147) @oliviertassinari
+- [core] Disable linebreak-style rule (#7163) @oliviertassinari
+- [test] Four nines (#7173) @oliviertassinari
+
 ## 1.0.0-alpha.17
 ###### _Jun 12, 2017_
 
