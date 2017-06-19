@@ -356,7 +356,7 @@ Input.propTypes = {
   /**
    * @ignore
    */
-  autoFocus: PropTypes.object,
+  autoFocus: PropTypes.bool,
   /**
    * Useful to extend the style applied to components.
    */
