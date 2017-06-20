@@ -773,6 +773,7 @@ class Slider extends Component {
       sliderStyle,
       step,
       style,
+      value: propValue, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
 
