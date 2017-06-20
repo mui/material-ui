@@ -17,7 +17,7 @@ export const styleSheet = createStyleSheet('MuiPaper', theme => {
   });
 
   return {
-    paper: {
+    root: {
       backgroundColor: theme.palette.background.paper,
     },
     rounded: {
@@ -43,7 +43,7 @@ function Paper(props) {
   );
 
   const className = classNames(
-    classes.paper,
+    classes.root,
     classes[`shadow${elevation >= 0 ? elevation : 0}`],
     {
       [classes.rounded]: !square,
