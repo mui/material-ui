@@ -2,7 +2,7 @@
 
 Dialogs are overlaid modal paper based components with a backdrop.
 
-## Props
+## Properties
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | Element |  | Dialog children, usually the included sub-components. |

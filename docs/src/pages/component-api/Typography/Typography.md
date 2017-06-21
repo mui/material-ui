@@ -2,7 +2,7 @@
 
 
 
-## Props
+## Properties
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | align | union:&nbsp;'inherit', 'left', 'center', 'right', 'justify'<br> | 'inherit' |  |

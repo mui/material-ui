@@ -2,7 +2,7 @@
 
 Chips represent complex entities in small blocks, such as a contact.
 
-## Props
+## Properties
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | avatar | node |  | Avatar element. |
