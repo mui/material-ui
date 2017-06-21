@@ -28,13 +28,6 @@ const appList = [
   //   link: '',
   // },
   {
-    title: 'Crypticker.io',
-    author: 'Sébastien Castiel',
-    img: 'images/showcase/crypticker.png',
-    link: 'https://crypticker.io/',
-    source: 'https://gitlab.com/scastiel/crypticker',
-  },
-  {
     title: 'SplitMe - Split expenses with friends',
     author: 'Olivier Tassinari',
     img: 'images/showcase/splitme.png',
@@ -82,6 +75,13 @@ const appList = [
     img: 'images/showcase/react-most-wanted.png',
     link: 'https://www.react-most-wanted.com/',
     source: 'https://github.com/TarikHuber/react-most-wanted',
+  },
+  {
+    title: 'Crypticker.io',
+    author: 'Sébastien Castiel',
+    img: 'images/showcase/crypticker.png',
+    link: 'https://crypticker.io/',
+    source: 'https://gitlab.com/scastiel/crypticker',
   },
   {
     title: 'Cloudcraft',
