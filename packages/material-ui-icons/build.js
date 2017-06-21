@@ -103,7 +103,7 @@ function processIndex(options) {
   const results = [];
   files.forEach(jsPath => {
     const typename = path.basename(jsPath).replace('.js', '');
-    results.push(`export { ${typename} } from './${typename}';\n`);
+    results.push(`export { default as ${typename} } from './${typename}';\n`);
   });
   const index = results.join('');
   const absDestPath = path.join(options.outputDir, 'index.js');
