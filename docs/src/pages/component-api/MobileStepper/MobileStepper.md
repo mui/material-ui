@@ -2,7 +2,7 @@
 
 
 
-## Props
+## Properties
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | activeStep | number | 0 | Set the active step (zero based index). Defines which dot is highlighted when the type is 'dots'. |

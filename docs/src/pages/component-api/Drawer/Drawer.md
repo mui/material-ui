@@ -2,7 +2,7 @@
 
 
 
-## Props
+## Properties
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | anchor | enum:&nbsp;'left'<br>&nbsp;'top'<br>&nbsp;'right'<br>&nbsp;'bottom'<br> | 'left' | Side which will the drawer will appear from. |

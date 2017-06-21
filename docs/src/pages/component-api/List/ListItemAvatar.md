@@ -2,7 +2,7 @@
 
 It's a simple wrapper to apply the `dense` mode styles to `Avatar`.
 
-## Props
+## Properties
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span style="color: #31a148">children *</span> | element |  | The content of the component, normally `Avatar`. |

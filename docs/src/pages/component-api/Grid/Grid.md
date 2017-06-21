@@ -2,7 +2,7 @@
 
 
 
-## Props
+## Properties
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | Element |  | The content of the component. |

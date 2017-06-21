@@ -2,7 +2,7 @@
 
 
 
-## Props
+## Properties
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  | MenuList contents, normally `MenuItem`s. |

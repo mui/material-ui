@@ -2,7 +2,7 @@
 
 
 
-## Props
+## Properties
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | alt | string | '' | Used in combination with `src` or `srcSet` to provide an alt attribute for the rendered `img` element. |

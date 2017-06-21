@@ -2,7 +2,7 @@
 
 
 
-## Props
+## Properties
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | checkbox | bool | false | If `true`, the cell padding will be adjusted to accommodate a checkbox. |

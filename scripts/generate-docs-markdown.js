@@ -138,7 +138,7 @@ function getProp(props, key) {
 }
 
 function generateProps(props) {
-  const header = '## Props';
+  const header = '## Properties';
 
   let text = `${header}
 | Name | Type | Default | Description |

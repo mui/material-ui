@@ -2,7 +2,7 @@
 
 Notice that this Component is incompatible with server side rendering.
 
-## Props
+## Properties
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | buttonClassName | string |  | The CSS class name of the scroll button elements. |
