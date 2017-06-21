@@ -77,6 +77,13 @@ const appList = [
     source: 'https://github.com/TarikHuber/react-most-wanted',
   },
   {
+    title: 'Crypticker.io',
+    author: 'Sébastien Castiel',
+    img: 'images/showcase/crypticker.png',
+    link: 'https://crypticker.io/',
+    source: 'https://gitlab.com/scastiel/crypticker',
+  },
+  {
     title: 'Cloudcraft',
     author: 'Cloudcraft',
     img: 'images/showcase/cloudcraft.png',
