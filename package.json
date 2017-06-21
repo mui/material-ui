@@ -75,8 +75,8 @@
     "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
-    "babel-loader": "^7.0.0",
-    "babel-plugin-flow-react-proptypes": "^3.3.0",
+    "babel-loader": "^7.1.0",
+    "babel-plugin-flow-react-proptypes": "^3.4.0",
     "babel-plugin-istanbul": "^4.1.4",
     "babel-plugin-react-remove-properties": "^0.2.5",
     "babel-plugin-transform-dev-warning": "^0.1.0",
@@ -102,7 +102,7 @@
     "eslint-plugin-import": "^2.3.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-material-ui": "file:packages/eslint-plugin-material-ui",
-    "eslint-plugin-mocha": "^4.10.1",
+    "eslint-plugin-mocha": "^4.11.0",
     "eslint-plugin-prettier": "^2.1.2",
     "eslint-plugin-react": "^7.1.0",
     "eventsource-polyfill": "^0.9.6",
@@ -139,7 +139,7 @@
     "url-loader": "^0.5.9",
     "vrtest": "^0.2.0",
     "webfontloader": "^1.6.28",
-    "webpack": "^2.6.1"
+    "webpack": "^3.0.0"
   },
   "nyc": {
     "include": [
