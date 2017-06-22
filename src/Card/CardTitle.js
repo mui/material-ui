@@ -36,6 +36,10 @@ class CardTitle extends Component {
      */
     children: PropTypes.node,
     /**
+     * Can be used to pass a closeIcon if you don't like the default expandable close Icon.
+     */
+    closeIcon: PropTypes.node,
+    /**
      * If true, this card component is expandable.
      */
     expandable: PropTypes.bool,
@@ -81,6 +85,7 @@ class CardTitle extends Component {
     const {
       actAsExpander, // eslint-disable-line no-unused-vars
       children,
+      closeIcon, // eslint-disable-line no-unused-vars
       expandable, // eslint-disable-line no-unused-vars
       showExpandableButton, // eslint-disable-line no-unused-vars
       style,

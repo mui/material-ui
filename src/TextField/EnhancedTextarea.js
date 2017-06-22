@@ -115,8 +115,12 @@ class EnhancedTextarea extends Component {
     newHeight = Math.max(newHeight, rowsHeight);
 
     if (this.state.height !== newHeight) {
+      const input = this.refs.input;
+      const cursorPosition = input.selectionStart;
       this.setState({
         height: newHeight,
+      }, () => {
+        input.setSelectionRange(cursorPosition, cursorPosition);
       });
 
       if (props.onHeightChange) {
@@ -126,7 +130,9 @@ class EnhancedTextarea extends Component {
   }
 
   handleChange = (event) => {
-    this.syncHeightWithShadow(event.target.value);
+    if (!this.props.hasOwnProperty('value')) {
+      this.syncHeightWithShadow(event.target.value);
+    }
 
     if (this.props.hasOwnProperty('valueLink')) {
       this.props.valueLink.requestChange(event.target.value);

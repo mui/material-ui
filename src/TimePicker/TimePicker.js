@@ -41,6 +41,10 @@ class TimePicker extends Component {
      */
     format: PropTypes.oneOf(['ampm', '24hr']),
     /**
+     * How many minutes should be added/subtracted when moving the clock pointer.
+     */
+    minutesStep: PropTypes.number,
+    /**
      * Override the label of the 'OK' button.
      */
     okLabel: PropTypes.node,
@@ -98,6 +102,7 @@ class TimePicker extends Component {
     pedantic: false,
     style: {},
     value: null,
+    minutesStep: 1,
   };
 
   static contextTypes = {
@@ -191,6 +196,7 @@ class TimePicker extends Component {
       pedantic,
       style,
       textFieldStyle,
+      minutesStep,
       ...other
     } = this.props;
 
@@ -219,6 +225,7 @@ class TimePicker extends Component {
           cancelLabel={cancelLabel}
           autoOk={autoOk}
           style={dialogStyle}
+          minutesStep={minutesStep}
         />
       </div>
     );

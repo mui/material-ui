@@ -20,6 +20,7 @@ class CardExpandable extends Component {
   static propTypes = {
     closeIcon: PropTypes.node,
     expanded: PropTypes.bool,
+    iconStyle: PropTypes.object,
     onExpanding: PropTypes.func.isRequired,
     openIcon: PropTypes.node,
     style: PropTypes.object,
@@ -41,6 +42,7 @@ class CardExpandable extends Component {
       <IconButton
         style={Object.assign(styles.root, this.props.style)}
         onTouchTap={this.props.onExpanding}
+        iconStyle={this.props.iconStyle}
       >
         {this.props.expanded ? this.props.openIcon : this.props.closeIcon}
       </IconButton>

@@ -235,8 +235,7 @@ class Popover extends Component {
     }
   }
 
-  componentClickAway = (event) => {
-    event.preventDefault();
+  componentClickAway = () => {
     this.requestClose('clickAway');
   };
 

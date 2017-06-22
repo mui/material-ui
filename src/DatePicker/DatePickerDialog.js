@@ -89,7 +89,9 @@ class DatePickerDialog extends Component {
       this.props.onAccept(this.refs.calendar.getSelectedDate());
     }
 
-    this.dismiss();
+    this.setState({
+      open: false,
+    });
   };
 
   handleWindowKeyUp = (event) => {

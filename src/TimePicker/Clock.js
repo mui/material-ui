@@ -8,6 +8,7 @@ class Clock extends Component {
   static propTypes = {
     format: PropTypes.oneOf(['ampm', '24hr']),
     initialTime: PropTypes.object,
+    minutesStep: PropTypes.number,
     onChangeHours: PropTypes.func,
     onChangeMinutes: PropTypes.func,
   };
@@ -26,8 +27,12 @@ class Clock extends Component {
   };
 
   componentWillMount() {
+    const selectedTime = this.props.initialTime || new Date();
+    const minutes = selectedTime.getMinutes();
+    selectedTime.setMinutes(minutes - (minutes % this.props.minutesStep));
+
     this.setState({
-      selectedTime: this.props.initialTime || new Date(),
+      selectedTime,
     });
   }
 
@@ -159,6 +164,7 @@ class Clock extends Component {
           key="minutes"
           onChange={this.handleChangeMinutes}
           initialMinutes={this.state.selectedTime.getMinutes()}
+          step={this.props.minutesStep}
         />
       );
     }

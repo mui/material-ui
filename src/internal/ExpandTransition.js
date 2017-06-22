@@ -7,6 +7,7 @@ class ExpandTransition extends Component {
   static propTypes = {
     children: PropTypes.node,
     enterDelay: PropTypes.number,
+    expandTransitionChildStyle: PropTypes.object,
     loading: PropTypes.bool,
     open: PropTypes.bool,
     style: PropTypes.object,
@@ -27,7 +28,7 @@ class ExpandTransition extends Component {
   };
 
   renderChildren(children) {
-    const {enterDelay, transitionDelay, transitionDuration} = this.props;
+    const {enterDelay, transitionDelay, transitionDuration, expandTransitionChildStyle} = this.props;
     return React.Children.map(children, (child) => {
       return (
         <ExpandTransitionChild
@@ -35,6 +36,7 @@ class ExpandTransition extends Component {
           transitionDelay={transitionDelay}
           transitionDuration={transitionDuration}
           key={child.key}
+          style={expandTransitionChildStyle}
         >
           {child}
         </ExpandTransitionChild>
@@ -51,6 +53,7 @@ class ExpandTransition extends Component {
       style,
       transitionDelay, // eslint-disable-line no-unused-vars
       transitionDuration, // eslint-disable-line no-unused-vars
+      expandTransitionChildStyle, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
 

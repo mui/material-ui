@@ -137,6 +137,9 @@ describe('<Menu />', () => {
         '"b00!" does not change the focus index, which is probably a bug');
       onMenuItemFocusChangeSpy.reset();
 
+      // Test RegExp-breaking key. If implementation is testing with RegExp, a syntax error will throw.
+      wrapper.simulate('keydown', keycodeEvent('\\'));
+
       wrapper.unmount(); // Otherwise the timer in FocusRipple keeps Node from exiting
     });
   });

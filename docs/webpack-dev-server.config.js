@@ -29,6 +29,7 @@ const config = {
     port: 3000,
     // Required for webpack-dev-server.
     outputPath: buildPath,
+    disableHostCheck: true, // For security checks, no need here.
   },
   devtool: 'eval',
   // Output file config
