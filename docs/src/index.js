@@ -5,7 +5,6 @@ import { AppContainer } from 'react-hot-loader';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import React from 'react';
-import ReactPerf from 'react-addons-perf';
 import { render } from 'react-dom';
 import App from 'docs/src/components/App';
 
@@ -15,8 +14,6 @@ import App from 'docs/src/components/App';
 // if (process.env.NODE_ENV !== 'production') {
 //   a11y(React, { includeSrcNode: true, ReactDOM });
 // }
-
-window.Perf = ReactPerf;
 
 const docs = (state = { dark: false }, action) => {
   if (action.type === 'TOGGLE_THEME_SHADE') {
