@@ -5,11 +5,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import SwipeableViews from 'react-swipeable-views';
-import Paper from 'material-ui/Paper';
+import AppBar from 'material-ui/AppBar';
 import Tabs, { Tab } from 'material-ui/Tabs';
 
 const TabContainer = props =>
-  <div style={{ padding: 20 }}>
+  <div style={{ padding: 24 }}>
     {props.children}
   </div>;
 
@@ -19,11 +19,7 @@ TabContainer.propTypes = {
 
 const styleSheet = createStyleSheet('FullWidthTabs', theme => ({
   root: {
-    flexGrow: 1,
-    marginTop: 30,
-  },
-  appBar: {
-    backgroundColor: theme.palette.background.appBar,
+    backgroundColor: theme.palette.background.paper,
   },
 }));
 
@@ -44,20 +40,20 @@ class FullWidthTabs extends Component {
     const classes = this.props.classes;
 
     return (
-      <Paper style={{ width: 500 }}>
-        <div className={classes.appBar}>
+      <div className={classes.root} style={{ width: 500 }}>
+        <AppBar position="static" color="default">
           <Tabs index={this.state.index} onChange={this.handleChange} textColor="accent" fullWidth>
             <Tab label="Item One" />
             <Tab label="Item Two" />
             <Tab label="Item Three" />
           </Tabs>
-        </div>
+        </AppBar>
         <SwipeableViews index={this.state.index} onChangeIndex={this.handleChangeIndex}>
           <TabContainer>{'Item One'}</TabContainer>
           <TabContainer>{'Item Two'}</TabContainer>
           <TabContainer>{'Item Three'}</TabContainer>
         </SwipeableViews>
-      </Paper>
+      </div>
     );
   }
 }

@@ -4,11 +4,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
+import AppBar from 'material-ui/AppBar';
 import Tabs, { Tab } from 'material-ui/Tabs';
 
 const TabContainer = props =>
-  <div style={{ padding: 20 }}>
+  <div style={{ padding: 24 }}>
     {props.children}
   </div>;
 
@@ -18,12 +18,10 @@ TabContainer.propTypes = {
 
 const styleSheet = createStyleSheet('ScrollableTabsButtonAuto', theme => ({
   root: {
-    marginTop: 30,
+    flexGrow: 1,
     width: '100%',
-  },
-  appBar: {
-    backgroundColor: theme.palette.primary[500],
-    color: theme.palette.getContrastText(theme.palette.primary[500]),
+    marginTop: theme.spacing.unit * 3,
+    backgroundColor: theme.palette.background.paper,
   },
 }));
 
@@ -40,8 +38,8 @@ class ScrollableTabsButtonAuto extends Component {
     const classes = this.props.classes;
 
     return (
-      <Paper className={classes.root}>
-        <div className={classes.appBar}>
+      <div className={classes.root}>
+        <AppBar position="static" color="default">
           <Tabs
             index={this.state.index}
             onChange={this.handleChange}
@@ -56,7 +54,7 @@ class ScrollableTabsButtonAuto extends Component {
             <Tab label="Item Six" />
             <Tab label="Item Seven" />
           </Tabs>
-        </div>
+        </AppBar>
         {this.state.index === 0 && <TabContainer>{'Item One'}</TabContainer>}
         {this.state.index === 1 && <TabContainer>{'Item Two'}</TabContainer>}
         {this.state.index === 2 && <TabContainer>{'Item Three'}</TabContainer>}
@@ -64,7 +62,7 @@ class ScrollableTabsButtonAuto extends Component {
         {this.state.index === 4 && <TabContainer>{'Item Five'}</TabContainer>}
         {this.state.index === 5 && <TabContainer>{'Item Six'}</TabContainer>}
         {this.state.index === 6 && <TabContainer>{'Item Seven'}</TabContainer>}
-      </Paper>
+      </div>
     );
   }
 }

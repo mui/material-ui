@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
+import AppBar from 'material-ui/AppBar';
 import Tabs, { Tab } from 'material-ui/Tabs';
 import PhoneIcon from 'material-ui-icons/Phone';
 import FavoriteIcon from 'material-ui-icons/Favorite';
@@ -15,7 +15,7 @@ import ThumbDown from 'material-ui-icons/ThumbDown';
 import ThumbUp from 'material-ui-icons/ThumbUp';
 
 const TabContainer = props =>
-  <div style={{ padding: 20 }}>
+  <div style={{ padding: 24 }}>
     {props.children}
   </div>;
 
@@ -25,12 +25,10 @@ TabContainer.propTypes = {
 
 const styleSheet = createStyleSheet('ScrollableTabsButtonPrevent', theme => ({
   root: {
-    marginTop: 30,
+    flexGrow: 1,
     width: '100%',
-  },
-  appBar: {
-    backgroundColor: theme.palette.primary[500],
-    color: theme.palette.getContrastText(theme.palette.primary[500]),
+    marginTop: theme.spacing.unit * 3,
+    backgroundColor: theme.palette.background.paper,
   },
 }));
 
@@ -47,8 +45,8 @@ class ScrollableTabsButtonPrevent extends Component {
     const classes = this.props.classes;
 
     return (
-      <Paper className={classes.root}>
-        <div className={classes.appBar}>
+      <div className={classes.root}>
+        <AppBar position="static">
           <Tabs
             index={this.state.index}
             onChange={this.handleChange}
@@ -63,7 +61,7 @@ class ScrollableTabsButtonPrevent extends Component {
             <Tab icon={<ThumbDown />} />
             <Tab icon={<ThumbUp />} />
           </Tabs>
-        </div>
+        </AppBar>
         {this.state.index === 0 && <TabContainer>{'Item One'}</TabContainer>}
         {this.state.index === 1 && <TabContainer>{'Item Two'}</TabContainer>}
         {this.state.index === 2 && <TabContainer>{'Item Three'}</TabContainer>}
@@ -71,7 +69,7 @@ class ScrollableTabsButtonPrevent extends Component {
         {this.state.index === 4 && <TabContainer>{'Item Five'}</TabContainer>}
         {this.state.index === 5 && <TabContainer>{'Item Six'}</TabContainer>}
         {this.state.index === 6 && <TabContainer>{'Item Seven'}</TabContainer>}
-      </Paper>
+      </div>
     );
   }
 }
