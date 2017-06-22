@@ -1,16 +1,16 @@
-// @flow weak
+// @flow
+
 const path = require('path');
 const webpack = require('webpack');
 
-const libraryName = 'material-ui';
-
+const LIBRARY_NAME = 'material-ui';
 const baseConfig = {
   entry: {
-    'material-ui': path.join(__dirname, 'src/index.js'),
+    'material-ui': path.join(__dirname, '../src/index.js'),
   },
   output: {
-    path: path.join(__dirname, 'build/dist'),
-    library: libraryName,
+    path: path.join(__dirname, '../build/umd'),
+    library: LIBRARY_NAME,
     libraryTarget: 'umd',
     umdNamedDefine: true,
   },
@@ -45,9 +45,6 @@ const baseConfig = {
       },
     ],
   },
-  resolve: {
-    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-  },
   plugins: [],
 };
 
@@ -56,7 +53,7 @@ let config;
 if (process.env.NODE_ENV === 'production') {
   config = Object.assign({}, baseConfig, {
     output: Object.assign({}, baseConfig.output, {
-      filename: `${libraryName}.min.js`,
+      filename: `${LIBRARY_NAME}.production.min.js`,
     }),
     plugins: baseConfig.plugins.concat([
       new webpack.DefinePlugin({
@@ -73,7 +70,7 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   config = Object.assign({}, baseConfig, {
     output: Object.assign({}, baseConfig.output, {
-      filename: `${libraryName}.js`,
+      filename: `${LIBRARY_NAME}.development.js`,
     }),
   });
 }
