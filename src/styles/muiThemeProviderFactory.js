@@ -75,6 +75,8 @@ export const MUI_SHEET_ORDER = [
   'MuiTableBody',
   'MuiTableSortLabel',
   'MuiToolbar',
+  'MuiToggleButton',
+  'MuiOption',
   'MuiBadge',
 
   'MuiMobileStepper',
