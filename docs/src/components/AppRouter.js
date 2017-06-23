@@ -45,9 +45,9 @@ export default function AppRouter() {
             nav
           />
           <Route
-            title="Supported Browsers"
-            path="/getting-started/supported-browsers"
-            content={requireMarkdown('./getting-started/supported-browsers.md')}
+            title="Supported Platforms"
+            path="/getting-started/supported-platforms"
+            content={requireMarkdown('./getting-started/supported-platforms.md')}
             component={MarkdownDocs}
             nav
           />
