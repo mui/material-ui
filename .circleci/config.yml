@@ -1,11 +1,11 @@
 defaults: &defaults
   working_directory: /tmp/material-ui
+  docker:
+    - image: circleci/node:6.11
 version: 2
 jobs:
   checkout:
     <<: *defaults
-    docker:
-      - image: circleci/node:6.11
     steps:
       # Fetch the code
       - checkout
@@ -35,8 +35,6 @@ jobs:
             - material-ui
   test_unit:
     <<: *defaults
-    docker:
-      - image: circleci/node:6.11
     steps:
       - attach_workspace:
           at: /tmp/material-ui
@@ -57,6 +55,14 @@ jobs:
           command: yarn build:docs
   test_browser:
     <<: *defaults
+    steps:
+      - attach_workspace:
+          at: /tmp/material-ui
+      - run:
+          name: Tests real browsers
+          command: yarn test:karma
+  test_regressions:
+    <<: *defaults
     docker:
       - image: circleci/node:6.11
       - image: selenium/standalone-chrome:3.4.0
@@ -68,9 +74,6 @@ jobs:
           command: |
             DOCKER_TEST_URL=http://$(ip addr show lo | grep "inet\b" | awk '{print $2}' | cut -d/ -f1):3090 yarn test:regressions
             yarn argos
-      - run:
-          name: Tests real browsers
-          command: yarn test:karma
 workflows:
   version: 2
   pipeline:
@@ -80,5 +83,8 @@ workflows:
           requires:
             - checkout
       - test_browser:
+          requires:
+            - checkout
+      - test_regressions:
           requires:
             - checkout
