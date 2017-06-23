@@ -1,10 +1,11 @@
+defaults: &defaults
+  working_directory: /tmp/material-ui
 version: 2
 jobs:
-  build:
-    working_directory: ~/material-ui
+  checkout:
+    <<: *defaults
     docker:
       - image: circleci/node:6.11
-      - image: selenium/standalone-chrome:3.4.0
     steps:
       # Fetch the code
       - checkout
@@ -28,6 +29,17 @@ jobs:
           key: yarn-sha-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn/v1
+      - persist_to_workspace:
+          root: /tmp/material-ui
+          paths:
+            - material-ui
+  test_unit:
+    <<: *defaults
+    docker:
+      - image: circleci/node:6.11
+    steps:
+      - attach_workspace:
+          at: /tmp/material-ui
       - run:
           name: Lint
           command: yarn lint
@@ -41,6 +53,17 @@ jobs:
           name: Coverage
           command: bash <(curl -s https://codecov.io/bash)
       - run:
+          name: Can we generate the docs?
+          command: yarn build:docs
+  test_browser:
+    <<: *defaults
+    docker:
+      - image: circleci/node:6.11
+      - image: selenium/standalone-chrome:3.4.0
+    steps:
+      - attach_workspace:
+          at: /tmp/material-ui
+      - run:
           name: Visual regression tests
           command: |
             DOCKER_TEST_URL=http://$(ip addr show lo | grep "inet\b" | awk '{print $2}' | cut -d/ -f1):3090 yarn test:regressions
@@ -48,6 +71,14 @@ jobs:
       - run:
           name: Tests real browsers
           command: yarn test:karma
-      - run:
-          name: Can we generate the docs?
-          command: yarn build:docs
+workflows:
+  version: 2
+  pipeline:
+    jobs:
+      - checkout
+      - test_unit:
+          requires:
+            - checkout
+      - test_browser:
+          requires:
+            - checkout
