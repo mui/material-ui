@@ -1,7 +1,7 @@
 {
   "presets": ["es2015", "stage-1", "react"],
   "plugins": [
-    "../scripts/babel-transform-object-assign-require"
+    "transform-object-assign"
   ],
   "env": {
     "development": {
