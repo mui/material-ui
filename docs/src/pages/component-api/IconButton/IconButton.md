@@ -3,7 +3,7 @@
 Refer to the [Icons](/style/icons) section of the documentation
 regarding the available icon options.
 
-## Props
+## Properties
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  | The icon element. If a string is provided, it will be used as an icon font ligature. |

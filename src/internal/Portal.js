@@ -1,11 +1,8 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import { Component, Children } from 'react';
 import PropTypes from 'prop-types';
-import {
-  unstable_renderSubtreeIntoContainer, // eslint-disable-line camelcase
-  unmountComponentAtNode,
-} from 'react-dom';
+import ReactDOM from 'react-dom';
 
 class Portal extends Component {
   static defaultProps = {
@@ -27,14 +24,26 @@ class Portal extends Component {
   layer = null;
 
   getLayer() {
+    if (!this.layer) {
+      this.layer = document.createElement('div');
+      this.layer.setAttribute('data-mui-portal', 'true');
+      if (document.body) {
+        document.body.appendChild(this.layer);
+      }
+    }
+
     return this.layer;
   }
 
   unrenderLayer() {
+    // Support react@15.x
+    if (ReactDOM.unstable_createPortal) {
+      return;
+    }
     if (!this.layer) {
       return;
     }
-    unmountComponentAtNode(this.layer);
+    ReactDOM.unmountComponentAtNode(this.layer);
     if (document.body) {
       document.body.removeChild(this.layer);
     }
@@ -42,17 +51,14 @@ class Portal extends Component {
   }
 
   renderLayer() {
+    // Support react@15.x
+    if (ReactDOM.unstable_createPortal) {
+      return;
+    }
+
     const { children, open } = this.props;
 
     if (open) {
-      if (!this.layer) {
-        this.layer = document.createElement('div');
-        this.layer.setAttribute('data-mui-portal', 'true');
-        if (document.body) {
-          document.body.appendChild(this.layer);
-        }
-      }
-
       /**
        * By calling this method in componentDidMount() and
        * componentDidUpdate(), you're effectively creating a "wormhole" that
@@ -60,14 +66,21 @@ class Portal extends Component {
        * entirely different part of the page.
        */
 
-      const layerElement = React.Children.only(children);
-      unstable_renderSubtreeIntoContainer(this, layerElement, this.layer);
+      const layerElement = Children.only(children);
+      ReactDOM.unstable_renderSubtreeIntoContainer(this, layerElement, this.getLayer());
     } else {
       this.unrenderLayer();
     }
   }
 
   render() {
+    const { children, open } = this.props;
+
+    // Support react@16.x
+    if (ReactDOM.unstable_createPortal && open) {
+      return ReactDOM.unstable_createPortal(children, this.getLayer());
+    }
+
     return null;
   }
 }

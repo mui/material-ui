@@ -32,7 +32,6 @@ export const light = {
     paper: white,
     appBar: grey[100],
     contentFrame: grey[200],
-    status: grey[300],
   },
 };
 

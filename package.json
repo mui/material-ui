@@ -22,15 +22,14 @@
   "homepage": "http://material-ui.com/",
   "scripts": {
     "deploy": "cd docs && yarn build && firebase deploy",
-    "build": "npm run build:es2015 && npm run build:es2015modules && npm run build:copy-files && npm run build:umd:dev && npm run build:umd:min",
+    "build": "npm run build:es2015 && npm run build:es2015modules && npm run build:copy-files && npm run build:umd:dev && npm run build:umd:prod",
     "build:es2015": "cross-env NODE_ENV=production babel ./src --ignore *.spec.js --out-dir ./build",
     "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel ./src/index.js --out-file ./build/index.es.js",
     "build:copy-files": "babel-node ./scripts/copy-files.js",
-    "build:umd:dev": "webpack",
-    "build:umd:min": "cross-env NODE_ENV=production webpack",
+    "build:umd:dev": "webpack --config scripts/umd.webpack.config.js",
+    "build:umd:prod": "cross-env NODE_ENV=production webpack --config scripts/umd.webpack.config.js",
     "build:docs": "babel-node ./scripts/build-api-docs.js",
     "prettier": "find . -name \"*.js\" | grep -v -f .eslintignore | xargs prettier --write --single-quote --trailing-comma all --print-width 100",
-    "clean": "npm run clean:build",
     "clean:docs": "rimraf docs/api/*",
     "clean:build": "rimraf build",
     "lint": "eslint . --cache && echo \"eslint: no lint errors\"",
@@ -48,8 +47,8 @@
     "publish": "npm run build && cd build && npm publish --tag next"
   },
   "peerDependencies": {
-    "react": "^15.3.0",
-    "react-dom": "^15.3.0"
+    "react": "^15.3.0 || ^16.0.0-alpha.13",
+    "react-dom": "^15.3.0 || ^16.0.0-alpha.13"
   },
   "dependencies": {
     "babel-runtime": "^6.23.0",
@@ -60,7 +59,6 @@
     "jss-theme-reactor": "^0.10.0",
     "keycode": "^2.1.9",
     "lodash": "^4.17.4",
-    "object-assign": "^4.1.1",
     "prop-types": "^15.5.10",
     "react-event-listener": "^0.4.5",
     "react-scrollbar-size": "^2.0.0",
@@ -75,15 +73,15 @@
     "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
-    "babel-loader": "^7.0.0",
-    "babel-plugin-flow-react-proptypes": "^3.3.0",
+    "babel-loader": "^7.1.0",
+    "babel-plugin-flow-react-proptypes": "^3.4.0",
     "babel-plugin-istanbul": "^4.1.4",
     "babel-plugin-react-remove-properties": "^0.2.5",
     "babel-plugin-transform-dev-warning": "^0.1.0",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-plugin-transform-react-constant-elements": "^6.23.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.6",
-    "babel-plugin-transform-replace-object-assign": "^0.2.1",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-polyfill": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
@@ -102,7 +100,7 @@
     "eslint-plugin-import": "^2.3.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-material-ui": "file:packages/eslint-plugin-material-ui",
-    "eslint-plugin-mocha": "^4.10.1",
+    "eslint-plugin-mocha": "^4.11.0",
     "eslint-plugin-prettier": "^2.1.2",
     "eslint-plugin-react": "^7.1.0",
     "eventsource-polyfill": "^0.9.6",
@@ -128,7 +126,6 @@
     "raw-loader": "^0.5.1",
     "react": "^15.6.1",
     "react-a11y": "^0.3.4",
-    "react-addons-perf": "^15.4.2",
     "react-docgen": "^3.0.0-beta4",
     "react-dom": "^15.6.1",
     "react-test-renderer": "^15.6.1",
@@ -139,7 +136,7 @@
     "url-loader": "^0.5.9",
     "vrtest": "^0.2.0",
     "webfontloader": "^1.6.28",
-    "webpack": "^2.6.1"
+    "webpack": "^3.0.0"
   },
   "nyc": {
     "include": [

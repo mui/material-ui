@@ -1,7 +1,7 @@
 {
   "name": "eslint-plugin-material-ui",
   "version": "1.0.0",
-  "private": "true",
+  "private": true,
   "description": "Custom eslint rules for Material-UI",
   "repository": "https://github.com/callemall/material-ui/packages/eslint-plugin-material-ui",
   "main": "lib/index.js",

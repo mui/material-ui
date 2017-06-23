@@ -2,7 +2,7 @@
 
 
 
-## Props
+## Properties
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | checked | union:&nbsp;bool<br>&nbsp;string<br> |  | If `true`, the component is checked. |

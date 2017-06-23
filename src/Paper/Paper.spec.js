@@ -21,9 +21,9 @@ describe('<Paper />', () => {
     assert.strictEqual(wrapper.name(), 'div');
   });
 
-  it('should render with the paper class, default depth class, and rounded', () => {
+  it('should render with the root class, default depth class, and rounded', () => {
     const wrapper = shallow(<Paper>Hello World</Paper>);
-    assert.strictEqual(wrapper.hasClass(classes.paper), true, 'should have the paper class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.rounded), true, 'should be rounded by default');
   });
 

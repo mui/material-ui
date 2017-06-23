@@ -31,6 +31,10 @@ export const styleSheet = createStyleSheet('MuiAppBar', theme => ({
     position: 'static',
     flexShrink: 0,
   },
+  colorDefault: {
+    backgroundColor: theme.palette.background.appBar,
+    color: theme.palette.getContrastText(theme.palette.background.appBar),
+  },
   colorPrimary: {
     backgroundColor: theme.palette.primary[500],
     color: theme.palette.getContrastText(theme.palette.primary[500]),
@@ -83,7 +87,7 @@ AppBar.propTypes = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color: PropTypes.oneOf(['inherit', 'primary', 'accent']),
+  color: PropTypes.oneOf(['inherit', 'primary', 'accent', 'default']),
   /**
    * The positioning type.
    */

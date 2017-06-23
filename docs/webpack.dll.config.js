@@ -11,7 +11,6 @@ const deps = [
   'react-hot-loader/patch',
   'eventsource-polyfill',
   'webpack-dev-server/client',
-  'react-addons-perf',
   'webpack/hot/log-apply-result',
   'webpack-dev-server/client/index',
 ]

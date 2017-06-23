@@ -9,7 +9,7 @@ import { isDirty } from '../Input/Input';
 
 export const styleSheet = createStyleSheet('MuiFormControl', theme => ({
   root: {
-    display: 'flex',
+    display: 'inline-flex',
     flexDirection: 'column',
     position: 'relative',
   },

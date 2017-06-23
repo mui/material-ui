@@ -2,7 +2,7 @@
 
 
 
-## Props
+## Properties
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | classes | object |  | Useful to extend the style applied to components. |
@@ -30,14 +30,15 @@ This property accepts the following keys:
 - `root`
 - `formControl`
 - `inkbar`
-- `focused`
 - `error`
 - `input`
-- `singleline`
 - `multiline`
-- `multilineWrapper`
 - `disabled`
+- `focused`
 - `underline`
+- `inputDisabled`
+- `inputSingleline`
+- `inputMultiline`
 
 Have a look at [overriding with class names](/customization/overrides#overriding-with-class-names)
 section for more detail.

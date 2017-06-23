@@ -2,7 +2,7 @@
 
 A button based label for placing inside `TableCell` for column sorting.
 
-## Props
+## Properties
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | active | bool | false | If `true`, the label will have the active styling (should be true for the sorted column). |

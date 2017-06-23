@@ -60,6 +60,7 @@ function getJsxString(svgPath, destPath, options) {
   paths = paths.replace(/xlink:href="#c"/g, '');
   paths = paths.replace(/fill-opacity=/g, 'fillOpacity=');
   paths = paths.replace(/\s?fill=".*?"/g, '');
+  paths = paths.replace(/"\/>/g, '" />');
 
   // Node acts weird if we put this directly into string concatenation
   const muiRequireStmt = options.muiRequire === 'relative'
@@ -103,7 +104,7 @@ function processIndex(options) {
   const results = [];
   files.forEach(jsPath => {
     const typename = path.basename(jsPath).replace('.js', '');
-    results.push(`export { ${typename} } from './${typename}';\n`);
+    results.push(`export { default as ${typename} } from './${typename}';\n`);
   });
   const index = results.join('');
   const absDestPath = path.join(options.outputDir, 'index.js');
@@ -146,7 +147,7 @@ function main(options, callback) {
   let originalWrite; // todo, add wiston / other logging tool
 
   options = _.defaults(options, DEFAULT_OPTIONS);
-  if (options.disable_log) {
+  if (options.disableLog) {
     // disable console.log opt, used for tests.
     originalWrite = process.stdout.write;
     process.stdout.write = () => {};
@@ -182,7 +183,7 @@ function main(options, callback) {
 
   processIndex(options);
 
-  if (options.disable_log) {
+  if (options.disableLog) {
     // bring back stdout
     process.stdout.write = originalWrite;
   }
