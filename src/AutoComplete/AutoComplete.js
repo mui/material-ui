@@ -445,7 +445,7 @@ class AutoComplete extends Component {
     dataSource.every((item, index) => {
       switch (typeof item) {
         case 'string':
-          if (filter(searchText, item, item)) {
+          if (this.props.openOnFocus || filter(searchText, item, item)) {
             requestsList.push({
               text: item,
               value: (
