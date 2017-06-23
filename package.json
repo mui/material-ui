@@ -48,8 +48,8 @@
     "publish": "npm run build && cd build && npm publish --tag next"
   },
   "peerDependencies": {
-    "react": "^15.3.0",
-    "react-dom": "^15.3.0"
+    "react": "^15.3.0 || ^16.0.0-alpha.13",
+    "react-dom": "^15.3.0 || ^16.0.0-alpha.13"
   },
   "dependencies": {
     "babel-runtime": "^6.23.0",
@@ -127,7 +127,6 @@
     "raw-loader": "^0.5.1",
     "react": "^15.6.1",
     "react-a11y": "^0.3.4",
-    "react-addons-perf": "^15.4.2",
     "react-docgen": "^3.0.0-beta4",
     "react-dom": "^15.6.1",
     "react-test-renderer": "^15.6.1",

@@ -5054,13 +5054,6 @@ react-a11y@^0.3.4:
   dependencies:
     object.assign "^4.0.3"
 
-react-addons-perf@^15.4.2:
-  version "15.4.2"
-  resolved "https://registry.yarnpkg.com/react-addons-perf/-/react-addons-perf-15.4.2.tgz#110bdcf5c459c4f77cb85ed634bcd3397536383b"
-  dependencies:
-    fbjs "^0.8.4"
-    object-assign "^4.1.0"
-
 react-docgen@^3.0.0-beta4:
   version "3.0.0-beta5"
   resolved "https://registry.yarnpkg.com/react-docgen/-/react-docgen-3.0.0-beta5.tgz#1ae8e506f3608ef00ef1521e29ba61298605b4b1"
