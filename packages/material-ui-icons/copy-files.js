@@ -35,6 +35,8 @@ function createPackageFile() {
         license,
         bugs,
         homepage,
+        peerDependencies,
+        dependencies,
       } = packageData;
 
       const minimalPackage = {
@@ -50,14 +52,8 @@ function createPackageFile() {
         license,
         bugs,
         homepage,
-        dependencies: {
-          recompose: '^0.22.0',
-        },
-        peerDependencies: {
-          react: '^15.0.0',
-          'react-dom': '^15.0.0',
-          'material-ui': '^1.0.0-alpha',
-        },
+        peerDependencies,
+        dependencies,
       };
 
       return new Promise(resolve => {
