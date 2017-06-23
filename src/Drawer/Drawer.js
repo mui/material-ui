@@ -140,6 +140,7 @@ class Drawer extends Component {
 
   componentWillUnmount() {
     this.disableSwipeHandling();
+    this.removeBodyTouchListeners();
   }
 
   getStyles() {
@@ -278,6 +279,12 @@ class Drawer extends Component {
     document.body.addEventListener('touchcancel', this.onBodyTouchEnd);
   };
 
+  removeBodyTouchListeners() {
+    document.body.removeEventListener('touchmove', this.onBodyTouchMove);
+    document.body.removeEventListener('touchend', this.onBodyTouchEnd);
+    document.body.removeEventListener('touchcancel', this.onBodyTouchEnd);
+  }
+
   setPosition(translateX) {
     const rtlTranslateMultiplier = this.context.muiTheme.isRtl ? -1 : 1;
     const drawer = ReactDOM.findDOMNode(this.refs.clickAwayableElement);
@@ -359,9 +366,7 @@ class Drawer extends Component {
       this.maybeSwiping = false;
     }
 
-    document.body.removeEventListener('touchmove', this.onBodyTouchMove);
-    document.body.removeEventListener('touchend', this.onBodyTouchEnd);
-    document.body.removeEventListener('touchcancel', this.onBodyTouchEnd);
+    this.removeBodyTouchListeners();
   };
 
   render() {
