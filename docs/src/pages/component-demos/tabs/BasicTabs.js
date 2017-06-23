@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
+import AppBar from 'material-ui/AppBar';
 import Tabs, { Tab } from 'material-ui/Tabs';
 
 const TabContainer = props =>
@@ -19,11 +19,8 @@ TabContainer.propTypes = {
 const styleSheet = createStyleSheet('BasicTabs', theme => ({
   root: {
     flexGrow: 1,
-    marginTop: 30,
-  },
-  appBar: {
-    backgroundColor: theme.palette.primary[500],
-    color: theme.palette.getContrastText(theme.palette.primary[500]),
+    marginTop: theme.spacing.unit * 3,
+    backgroundColor: theme.palette.background.paper,
   },
 }));
 
@@ -40,18 +37,18 @@ class BasicTabs extends Component {
     const classes = this.props.classes;
 
     return (
-      <Paper className={classes.root}>
-        <div className={classes.appBar}>
+      <div className={classes.root}>
+        <AppBar position="static">
           <Tabs index={this.state.index} onChange={this.handleChange}>
             <Tab label="Item One" />
             <Tab label="Item Two" />
             <Tab label="Item Three" />
           </Tabs>
-        </div>
+        </AppBar>
         {this.state.index === 0 && <TabContainer>{'Item One'}</TabContainer>}
         {this.state.index === 1 && <TabContainer>{'Item Two'}</TabContainer>}
         {this.state.index === 2 && <TabContainer>{'Item Three'}</TabContainer>}
-      </Paper>
+      </div>
     );
   }
 }

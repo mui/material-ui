@@ -13,14 +13,14 @@ export const styleSheet = createStyleSheet('MuiTab', theme => ({
     ...theme.typography.button,
     maxWidth: 264,
     minWidth: 72,
-    [theme.breakpoints.up('md')]: {
-      minWidth: 160,
-    },
     background: 'none',
     padding: 0,
     height: 48,
     flex: 'none',
     overflow: 'hidden',
+    [theme.breakpoints.up('md')]: {
+      minWidth: 160,
+    },
   },
   rootLabelIcon: {
     height: 72,
