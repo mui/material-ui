@@ -30,7 +30,6 @@
     "build:umd:prod": "cross-env NODE_ENV=production webpack --config scripts/umd.webpack.config.js",
     "build:docs": "babel-node ./scripts/build-api-docs.js",
     "prettier": "find . -name \"*.js\" | grep -v -f .eslintignore | xargs prettier --write --single-quote --trailing-comma all --print-width 100",
-    "clean": "npm run clean:build",
     "clean:docs": "rimraf docs/api/*",
     "clean:build": "rimraf build",
     "lint": "eslint . --cache && echo \"eslint: no lint errors\"",

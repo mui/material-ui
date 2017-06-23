@@ -2,11 +2,10 @@ import React from 'react';
 import pure from 'recompose/pure';
 import SvgIcon from '{{{ muiRequireStmt }}}';
 
-let {{className}} = (props) => (
+let {{className}} = props =>
   <SvgIcon {...props}>
     {{{paths}}}
-  </SvgIcon>
-);
+  </SvgIcon>;
 
 {{className}} = pure({{className}});
 {{className}}.muiName = 'SvgIcon';

@@ -1,5 +1,5 @@
 {
-  "private": "true",
+  "private": true,
   "name": "material-ui-icons-builder",
   "version": "1.0.0-alpha.3",
   "description": "Material Design Svg Icons converted to Material-UI React components.",
@@ -31,6 +31,14 @@
     "prebuild": "npm run clean",
     "test": "mocha",
     "test:watch": "mocha -w"
+  },
+  "peerDependencies": {
+    "react": "^15.3.0 || ^16.0.0-alpha.13",
+    "react-dom": "^15.3.0 || ^16.0.0-alpha.13",
+    "material-ui": "^1.0.0-alpha"
+  },
+  "dependencies": {
+    "recompose": "^0.23.5"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

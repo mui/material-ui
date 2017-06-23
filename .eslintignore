@@ -7,6 +7,7 @@ node_modules
 /flow-typed/
 /packages/*/lib/
 /packages/material-ui-icons/build/
+/packages/material-ui-icons/test/fixtures/
 /packages/material-ui-icons/src/
 /packages/material-ui-icons/tpl/
 /packages/material-ui-codemod/modules/v0.15.0/

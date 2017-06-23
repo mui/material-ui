@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import path from 'path';
 
@@ -17,7 +17,7 @@ import path from 'path';
  * @param {object} options
  * @return {string} output file dest relative to outputDir
  */
-function kebabDestRewriter(pathObj, innerPath, options) {
+function kebabDestRewriter(pathObj: Object, innerPath: string, options: Object) {
   let fileName = pathObj.base;
   if (options.fileSuffix) {
     fileName.replace(options.fileSuffix, '.svg');
