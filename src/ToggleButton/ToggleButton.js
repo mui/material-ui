@@ -2,9 +2,7 @@
  * Created by zabieru on 6/6/2017.
  */
 import React, {Component, Children, cloneElement, isValidElement} from 'react';
-import warning from 'warning';
 import PropTypes from 'prop-types';
-import transitions from '../styles/transitions';
 import withStyles from '../styles/withStyles';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
@@ -23,7 +21,6 @@ export const styleSheet = createStyleSheet('MuiToggleButton', theme => ({
     borderRadius: 2,
     boxShadow: 'none',
     overflow: 'hidden',
-    // transition: transitions.easeOut(),
     transition: theme.transitions.create(['background-color', 'box-shadow'], {
       duration: theme.transitions.duration.short,
     }),
@@ -42,20 +39,15 @@ export const styleSheet = createStyleSheet('MuiToggleButton', theme => ({
 class ToggleButton extends Component{
 
   static defaultProps = {
-    active: false,
-    values: [],
-    selectedOptions: [],
     exclusive: false,
     toggleIcons: false,
   };
 
-  componentWillMount() {
-    this.setState({
-      active: this.props.active,
-      values: this.props.values,
-      selectedOptions: this.props.selectedOptions
-    });
-  }
+  state = {
+    active: false,
+    values: [],
+    selectedOptions: [],
+  };
 
   getOptions(props = this.props) {
     const options = [];
@@ -79,6 +71,8 @@ class ToggleButton extends Component{
     let indexes = this.state.selectedOptions;
     let ind = indexes.indexOf(option.index);
     let active = false;
+
+    console.log(ind);
 
     if(ind > -1){
       if(option.children){
@@ -125,7 +119,7 @@ class ToggleButton extends Component{
   render(){
     const {
       children,
-      active,
+      active: activeProp,
       selectedOptions,
       values,
       exclusive,
@@ -135,14 +129,14 @@ class ToggleButton extends Component{
       ...other
     } = this.props;
 
+    const active = this.state.active;
+
     const className = classNames(classes.root,
       {
         [classes.active] : active && !toggleIcons,
         [classes.toggleIcon]: toggleIcons,
       }
       ,classNameProp);
-
-    //const borderColor = this.context.muiTheme.toggleButton.borderColor;
 
     const options = this.getOptions().map((option, index) => {
       // warning(option.type && option.type.muiName === 'Option',
@@ -158,36 +152,18 @@ class ToggleButton extends Component{
 
 
       let selected = this.getSelected(index);
-      let optionStyle = {
-        borderRight: 'none',
-        borderLeft: 'none'
-      };
+      let divider = false;
 
-      //let borderStyle = '0.25px solid ' + borderColor;
-
-      // if(selected && !toggleIcons){
-      //   if(index === 0){
-      //     if (this.getSelected(index + 1)){
-      //       optionStyle.borderRight = borderStyle;
-      //     }
-      //   }else if(index + 1 === this.getOptions().length){
-      //     if (this.getSelected(index - 1)){
-      //       optionStyle.borderLeft = borderStyle;
-      //     }
-      //   }else{
-      //     if (this.getSelected(index + 1)){
-      //       optionStyle.borderRight = borderStyle;
-      //     }
-      //     if (this.getSelected(index - 1)){
-      //       optionStyle.borderLeft = borderStyle;
-      //     }
-      //   }
-      // }
+      if(selected && !toggleIcons && index > 0){
+        if (this.getSelected(index - 1)){
+          divider = true;
+        }
+      }
 
       return cloneElement(option, {
         key: index,
         index: index,
-        optionStyle: optionStyle,
+        divider: divider,
         selected: selected,
         noBackground: toggleIcons,
         onClick: this.handleOptionClick,

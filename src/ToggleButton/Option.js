@@ -5,11 +5,11 @@ import React, {Component} from 'react';
 import ButtonBase from '../internal/ButtonBase'
 import PropTypes from 'prop-types';
 import Menu from '../Menu'
-import ArrowDownward from '../svg-icons/arrow-downward';
+import ArrowDropdown from '../svg-icons/arrow-drop-down';
 import withStyles from '../styles/withStyles';
 import { createStyleSheet } from 'jss-theme-reactor';
 import { fade } from '../styles/colorManipulator';
-import { black } from '../styles/colors';
+import { black, grey} from '../styles/colors';
 import classNames from 'classnames';
 
 
@@ -54,6 +54,9 @@ export const styleSheet = createStyleSheet('MuiOption', theme => ({
   },
   iconAndText: {
     height: 58,
+  },
+  divided:{
+    borderLeft : '0.25px solid ' + grey[500],
   }
 }));
 
@@ -107,6 +110,7 @@ class Option extends Component{
       label,
       classes,
       style,
+      divider,
       noBackground,
       selected,
       children,
@@ -116,6 +120,7 @@ class Option extends Component{
       className: classNames(classes.root, {
         [classes.iconAndText] : icon && label,
         [classes.backgroundSelected] : selected && !noBackground,
+        [classes.divided] : divider,
       }),
       onTouchTap: this.handleOptionClick,
       centerRipple: true,
@@ -144,22 +149,23 @@ class Option extends Component{
           onClick: () => this.handleDropDownClick(child),
         });
       });
-      const dropbuttonProps ={
+      const dropButtonProps ={
         'aria-owns': "option-menu",
         'aria-haspopup' : true,
         className: classNames(classes.root, {
           [classes.iconAndText] : icon && label,
-          [classes.backgroundSelected] : selected && noBackground,
+          [classes.backgroundSelected] : selected && !noBackground,
+          [classes.divided] : divider,
         }),
         onClick: this.handleClick,
         //centerRipple: true,
       };
       optionButton = React.createElement("div", dropDownProps, icon, label);
-      let dropDownButton = React.createElement(ButtonBase, dropbuttonProps, optionButton,
-        React.createElement(ArrowDownward, {
+      let dropDownButton = React.createElement(ButtonBase, dropButtonProps, optionButton,
+        React.createElement(ArrowDropdown, {
           style: {
             transform: label && icon? "translate(50%, 50%)": "none",  //TODO: Move this to get style
-            //color: ,
+            color: selected? fade(black, 0.54) : fade(black, 0.3),
           }
         })
       );
@@ -169,7 +175,7 @@ class Option extends Component{
         open: this.state.open,
         onRequestClose: this.handleRequestClose,
       };
-      option = React.createElement("div", {}, dropDownButton,
+      option = React.createElement("div", {style :{ display: 'inline-block', float: 'left', overflow: 'hidden',}}, dropDownButton, //Move Style to Stylesheet
         React.createElement(Menu, menuProps, items)
       );
     }
@@ -191,6 +197,10 @@ Option.propTypes ={
    * Sets the icon of the tab, you can pass `FontIcon` or `SvgIcon` elements.
    */
   icon: PropTypes.node,
+  /**
+   * Set a divider to the right of the option.
+   */
+  divider: PropTypes.bool,
   /**
    * @ignore
    */
@@ -223,10 +233,6 @@ Option.propTypes ={
    * @param {number, boolean, string} value The current value of the selected option.
    */
   onSelect: PropTypes.func,
-  /**
-   * Additional inline-styles for the option component.
-   */
-  optionStyle: PropTypes.object,
   /**
    * Defines if the current option is selected or not.
    * The ToggleButton component is responsible for setting this property.
