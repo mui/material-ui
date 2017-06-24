@@ -1,19 +1,21 @@
-// @flow weak
+// @flow
+// Taken from https://github.com/react-bootstrap/react-overlays/blob/master/src/ModalManager.js
 
-import css from 'dom-helpers/style';
 import isWindow from 'dom-helpers/query/isWindow';
 import ownerDocument from 'dom-helpers/ownerDocument';
 import canUseDom from 'dom-helpers/util/inDOM';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import { hideSiblings, showSiblings, ariaHidden } from '../utils/manageAriaHidden';
 
-/**
- * Do we have a scroll bar?
- * @private
- */
+function getPaddingRight(node) {
+  return parseInt(node.style.paddingRight || 0, 10);
+}
+
+// Do we have a scroll bar?
 function bodyIsOverflowing(node) {
   const doc = ownerDocument(node);
   const win = isWindow(doc);
+
   return doc.body.clientWidth < win.innerWidth;
 }
 
@@ -26,13 +28,15 @@ const defaultContainer = canUseDom ? window.document.body : {};
  *
  * @internal Used by the Modal to ensure proper focus management.
  */
-function createModalManager({ container = defaultContainer, hideSiblingNodes = true } = {}) {
+function createModalManager(
+  { container = defaultContainer, hideSiblingNodes = true }: Object = {},
+) {
   const modals = [];
 
   let prevOverflow;
-  let prevPadding;
+  let prevPaddings = [];
 
-  function add(modal) {
+  function add(modal: Object) {
     let modalIdx = modals.indexOf(modal);
 
     if (modalIdx !== -1) {
@@ -47,27 +51,29 @@ function createModalManager({ container = defaultContainer, hideSiblingNodes = t
     }
 
     if (modals.length === 1) {
-      const containerStyle = {
-        overflow: 'hidden',
-        paddingRight: undefined,
-      };
-
       // Save our current overflow so we can revert
       // back to it when all modals are closed!
       prevOverflow = container.style.overflow;
 
       if (bodyIsOverflowing(container)) {
-        prevPadding = container.style.paddingRight;
-        containerStyle.paddingRight = `${parseInt(prevPadding || 0, 10) + getScrollbarSize()}px`;
+        prevPaddings = [getPaddingRight(container)];
+        container.style.paddingRight = `${prevPaddings[0] + getScrollbarSize()}px`;
+
+        const fixedNodes = document.querySelectorAll('.mui-fixed');
+        for (let i = 0; i < fixedNodes.length; i += 1) {
+          const paddingRight = getPaddingRight(fixedNodes[i]);
+          prevPaddings.push(paddingRight);
+          fixedNodes[i].style.paddingRight = `${paddingRight + getScrollbarSize()}px`;
+        }
       }
 
-      css(container, containerStyle);
+      container.style.overflow = 'hidden';
     }
 
     return modalIdx;
   }
 
-  function remove(modal) {
+  function remove(modal: Object) {
     const modalIdx = modals.indexOf(modal);
 
     if (modalIdx === -1) {
@@ -78,9 +84,15 @@ function createModalManager({ container = defaultContainer, hideSiblingNodes = t
 
     if (modals.length === 0) {
       container.style.overflow = prevOverflow;
-      container.style.paddingRight = prevPadding;
+      container.style.paddingRight = prevPaddings[0];
+
+      const fixedNodes = document.querySelectorAll('.mui-fixed');
+      for (let i = 0; i < fixedNodes.length; i += 1) {
+        fixedNodes[i].style.paddingRight = `${prevPaddings[i + 1]}px`;
+      }
+
       prevOverflow = undefined;
-      prevPadding = undefined;
+      prevPaddings = [];
       if (hideSiblingNodes) {
         showSiblings(container, modal.mountNode);
       }
@@ -92,7 +104,7 @@ function createModalManager({ container = defaultContainer, hideSiblingNodes = t
     return modalIdx;
   }
 
-  function isTopModal(modal) {
+  function isTopModal(modal: Object) {
     return !!modals.length && modals[modals.length - 1] === modal;
   }
 

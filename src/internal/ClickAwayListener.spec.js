@@ -33,9 +33,7 @@ describe('<ClickAwayListener />', () => {
 
       const event = document.createEvent('MouseEvents');
       event.initEvent('mouseup', true, true);
-      if (document.body) {
-        document.body.dispatchEvent(event);
-      }
+      window.document.body.dispatchEvent(event);
 
       assert.strictEqual(handleClickAway.callCount, 1);
       assert.deepEqual(handleClickAway.args[0], [event]);
@@ -73,9 +71,7 @@ describe('<ClickAwayListener />', () => {
         bubbles: true,
         cancelable: true,
       });
-      if (document.body) {
-        document.body.dispatchEvent(event);
-      }
+      window.document.body.dispatchEvent(event);
       assert.strictEqual(handleClickAway.callCount, 0);
       wrapper.unmount();
     });
