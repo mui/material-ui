@@ -32,10 +32,10 @@ This property accepts the following keys:
 - `inkbar`
 - `error`
 - `input`
-- `multiline`
 - `disabled`
 - `focused`
 - `underline`
+- `multiline`
 - `inputDisabled`
 - `inputSingleline`
 - `inputMultiline`

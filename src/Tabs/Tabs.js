@@ -329,7 +329,7 @@ Tabs.propTypes = {
   /**
    * Determines the color of the indicator.
    */
-  indicatorColor: PropTypes.oneOfType([PropTypes.oneOf(['accent']), PropTypes.string]),
+  indicatorColor: PropTypes.oneOfType([PropTypes.oneOf(['accent', 'primary']), PropTypes.string]),
   /**
    * Function called when the index change.
    */
@@ -349,7 +349,10 @@ Tabs.propTypes = {
   /**
    * Determines the color of the `Tab`.
    */
-  textColor: PropTypes.oneOfType([PropTypes.oneOf(['accent', 'inherit']), PropTypes.string]),
+  textColor: PropTypes.oneOfType([
+    PropTypes.oneOf(['accent', 'primary', 'inherit']),
+    PropTypes.string,
+  ]),
   /**
    * @ignore
    * width prop provided by withWidth decorator

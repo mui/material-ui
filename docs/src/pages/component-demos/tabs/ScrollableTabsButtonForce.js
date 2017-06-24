@@ -52,7 +52,8 @@ class ScrollableTabsButtonForce extends Component {
             onChange={this.handleChange}
             scrollable
             scrollButtons="on"
-            textColor="accent"
+            indicatorColor="primary"
+            textColor="primary"
           >
             <Tab label="Item One" icon={<PhoneIcon />} />
             <Tab label="Item Two" icon={<FavoriteIcon />} />

@@ -27,7 +27,13 @@ class CenteredTabs extends Component {
 
     return (
       <Paper className={classes.root}>
-        <Tabs index={this.state.index} onChange={this.handleChange} textColor="accent" centered>
+        <Tabs
+          index={this.state.index}
+          onChange={this.handleChange}
+          indicatorColor="primary"
+          textColor="primary"
+          centered
+        >
           <Tab label="Item One" />
           <Tab label="Item Two" />
           <Tab label="Item Three" />

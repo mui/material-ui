@@ -9,12 +9,12 @@
 | anchorOrigin | customPropTypes.origin | { vertical: 'bottom', horizontal: 'center' } | The anchor of the `Snackbar`. |
 | autoHideDuration | number | null | The number of milliseconds to wait before automatically dismissing. This behavior is disabled by default with the `null` value. |
 | classes | object |  | Useful to extend the style applied to components. |
-| contentProps | object |  | Properties applied to the `SnackbarContent` element. |
 | enterTransitionDuration | number | duration.enteringScreen | Customizes duration of enter animation (ms) |
 | leaveTransitionDuration | number | duration.leavingScreen | Customizes duration of leave animation (ms) |
 | <span style="color: #31a148">message *</span> | node |  | The message to display. |
 | onRequestClose | function |  | Callback fired when the component requests to be closed.<br>Typically `onRequestClose` is used to set state in the parent component, which is used to control the `Snackbar` `open` prop.<br>The `reason` parameter can optionally be used to control the response to `onRequestClose`, for example ignoring `clickaway`.<br><br>**Signature:**<br>`function(event: event, reason: string) => void`<br>*event:* The event that triggered the close request<br>*reason:* Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"` |
 | <span style="color: #31a148">open *</span> | bool |  | If true, `Snackbar` is open. |
+| SnackbarContentProps | object |  | Properties applied to the `SnackbarContent` element. |
 | transition | union:&nbsp;func<br>&nbsp;element<br> |  | Object with Transition component, props & create Fn. |
 
 Any other properties supplied will be spread to the root element.

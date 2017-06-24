@@ -24,14 +24,14 @@ describe('<Tab />', () => {
   });
 
   it('should render with the root class', () => {
-    const wrapper = shallow(<Tab />);
+    const wrapper = shallow(<Tab textColor="inherit" />);
     assert.strictEqual(wrapper.name(), 'ButtonBase');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
   });
 
   describe('prop: className', () => {
     it('should render with the user and root classes', () => {
-      const wrapper = shallow(<Tab className="woof" />);
+      const wrapper = shallow(<Tab textColor="inherit" className="woof" />);
       assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
       assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     });
@@ -59,7 +59,9 @@ describe('<Tab />', () => {
   describe('prop: onClick', () => {
     it('should be called when a click is triggered', () => {
       const handleClick = spy();
-      const wrapper = shallow(<Tab onClick={handleClick} onChange={() => {}} />);
+      const wrapper = shallow(
+        <Tab textColor="inherit" onClick={handleClick} onChange={() => {}} />,
+      );
       wrapper.simulate('click');
       assert.strictEqual(handleClick.callCount, 1, 'it should forward the onClick');
     });
@@ -67,13 +69,13 @@ describe('<Tab />', () => {
 
   describe('prop: label', () => {
     it('should render label with the label class', () => {
-      const wrapper = shallow(<Tab label="foo" />);
+      const wrapper = shallow(<Tab textColor="inherit" label="foo" />);
       const label = wrapper.childAt(0).childAt(0);
       assert.strictEqual(label.hasClass(classes.label), true);
     });
 
     it('should render with text wrapping', () => {
-      const wrapper = shallow(<Tab label="foo" />);
+      const wrapper = shallow(<Tab textColor="inherit" label="foo" />);
       const instance = wrapper.instance();
       instance.label = {
         getClientRects: stub().returns({ length: 2 }),
@@ -91,7 +93,9 @@ describe('<Tab />', () => {
 
   describe('prop: classes', () => {
     it('should render label with a custom label class', () => {
-      const wrapper = shallow(<Tab label="foo" classes={{ label: 'MyLabel' }} />);
+      const wrapper = shallow(
+        <Tab textColor="inherit" label="foo" classes={{ label: 'MyLabel' }} />,
+      );
       const label = wrapper.childAt(0).childAt(0);
       assert.strictEqual(label.hasClass(classes.label), true);
       assert.strictEqual(label.hasClass('MyLabel'), true);
@@ -100,13 +104,13 @@ describe('<Tab />', () => {
 
   describe('prop: icon', () => {
     it('should render icon element', () => {
-      const wrapper = shallow(<Tab icon={icon} />);
+      const wrapper = shallow(<Tab textColor="inherit" icon={icon} />);
       const iconWrapper = wrapper.childAt(0);
       assert.strictEqual(iconWrapper.is(Icon), true);
     });
 
     it('should render a font icon if a icon string is provided', () => {
-      const wrapper = shallow(<Tab icon="book" />);
+      const wrapper = shallow(<Tab textColor="inherit" icon="book" />);
       assert.strictEqual(wrapper.find(Icon).length, 1, 'should have an Icon');
     });
   });
@@ -128,7 +132,7 @@ describe('<Tab />', () => {
 
   describe('prop: fullWidth', () => {
     it('should have the fullWidth class', () => {
-      const wrapper = shallow(<Tab fullWidth />);
+      const wrapper = shallow(<Tab textColor="inherit" fullWidth />);
       assert.strictEqual(wrapper.hasClass(classes.fullWidth), true);
     });
   });
@@ -146,7 +150,9 @@ describe('<Tab />', () => {
   });
 
   it('should have a ref on label property', () => {
-    const instance = mount(<Tab.Naked label="foo" classes={classes} />).instance();
+    const instance = mount(
+      <Tab.Naked textColor="inherit" label="foo" classes={classes} />,
+    ).instance();
     assert.isDefined(instance.label, 'should be defined');
   });
 });

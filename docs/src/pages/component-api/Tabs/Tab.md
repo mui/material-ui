@@ -21,6 +21,9 @@ This property accepts the following keys:
 - `rootAccent`
 - `rootAccentSelected`
 - `rootAccentDisabled`
+- `rootPrimary`
+- `rootPrimarySelected`
+- `rootPrimaryDisabled`
 - `rootInherit`
 - `rootInheritSelected`
 - `rootInheritDisabled`

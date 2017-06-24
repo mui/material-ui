@@ -43,6 +43,8 @@ class ScrollableTabsButtonAuto extends Component {
           <Tabs
             index={this.state.index}
             onChange={this.handleChange}
+            indicatorColor="primary"
+            textColor="primary"
             scrollable
             scrollButtons="auto"
           >
