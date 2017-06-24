@@ -1,6 +1,6 @@
 // @flow weak
 
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
@@ -74,62 +74,88 @@ export const styleSheet = createStyleSheet('MuiDrawer', theme => ({
   modal: {},
 }));
 
-function Drawer(props, context) {
-  const {
-    anchor: anchorProp,
-    children,
-    classes,
-    className,
-    docked,
-    enterTransitionDuration,
-    leaveTransitionDuration,
-    open,
-    elevation,
-    ...other
-  } = props;
+class Drawer extends Component {
+  static defaultProps = {
+    anchor: 'left',
+    docked: false,
+    enterTransitionDuration: duration.enteringScreen,
+    leaveTransitionDuration: duration.leavingScreen,
+    open: false,
+    elevation: 16,
+  };
 
-  const rtl = context.styleManager.theme.dir === 'rtl';
-  let anchor = anchorProp;
-  if (rtl && ['left', 'right'].includes(anchor)) {
-    anchor = anchor === 'left' ? 'right' : 'left';
+  state = {
+    // Let's assume that the Drawer will always be rendered on user space.
+    // We use that state is order to skip the appear transition during the
+    // inital mount of the component.
+    firstMount: true,
+  };
+
+  componentWillReceiveProps() {
+    this.setState({
+      firstMount: false,
+    });
   }
 
-  const drawer = (
-    <Slide
-      in={open}
-      direction={getSlideDirection(anchor)}
-      enterTransitionDuration={enterTransitionDuration}
-      leaveTransitionDuration={leaveTransitionDuration}
-      transitionAppear
-    >
-      <Paper
-        elevation={docked ? 0 : elevation}
-        square
-        className={classNames(classes.paper, classes[`anchor${capitalizeFirstLetter(anchor)}`])}
-      >
-        {children}
-      </Paper>
-    </Slide>
-  );
+  render() {
+    const {
+      anchor: anchorProp,
+      children,
+      classes,
+      className,
+      docked,
+      enterTransitionDuration,
+      leaveTransitionDuration,
+      open,
+      elevation,
+      SlideProps,
+      ...other
+    } = this.props;
 
-  if (docked) {
+    const rtl = this.context.styleManager.theme.dir === 'rtl';
+    let anchor = anchorProp;
+    if (rtl && ['left', 'right'].includes(anchor)) {
+      anchor = anchor === 'left' ? 'right' : 'left';
+    }
+
+    const drawer = (
+      <Slide
+        in={open}
+        direction={getSlideDirection(anchor)}
+        enterTransitionDuration={enterTransitionDuration}
+        leaveTransitionDuration={leaveTransitionDuration}
+        transitionAppear={!this.state.firstMount}
+        {...SlideProps}
+      >
+        <Paper
+          elevation={docked ? 0 : elevation}
+          square
+          className={classNames(classes.paper, classes[`anchor${capitalizeFirstLetter(anchor)}`])}
+        >
+          {children}
+        </Paper>
+      </Slide>
+    );
+
+    if (docked) {
+      return (
+        <div className={classNames(classes.docked, className)}>
+          {drawer}
+        </div>
+      );
+    }
+
     return (
-      <div className={classNames(classes.docked, className)}>
+      <Modal
+        backdropTransitionDuration={open ? enterTransitionDuration : leaveTransitionDuration}
+        className={classNames(classes.modal, className)}
+        {...other}
+        show={open}
+      >
         {drawer}
-      </div>
+      </Modal>
     );
   }
-
-  return (
-    <Modal
-      backdropTransitionDuration={open ? enterTransitionDuration : leaveTransitionDuration}
-      className={classNames(classes.modal, className)}
-      {...other}
-      show={open}
-    >
-      {drawer}
-    </Modal>
-  );
 }
 
 Drawer.propTypes = {
@@ -174,15 +200,10 @@ Drawer.propTypes = {
    * If `true`, the drawer is open.
    */
   open: PropTypes.bool,
-};
-
-Drawer.defaultProps = {
-  anchor: 'left',
-  docked: false,
-  enterTransitionDuration: duration.enteringScreen,
-  leaveTransitionDuration: duration.leavingScreen,
-  open: false,
-  elevation: 16,
+  /**
+   * Properties applied to the `Slide` element.
+   */
+  SlideProps: PropTypes.object,
 };
 
 Drawer.contextTypes = {
