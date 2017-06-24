@@ -33,9 +33,9 @@ export const duration = {
   leavingScreen: 195,
 };
 
-export const formatMs = miliseconds => `${Math.round(miliseconds)}ms`;
-export const isString = value => typeof value === 'string';
-export const isNumber = value => !isNaN(parseFloat(value));
+export const formatMs = (miliseconds: number) => `${Math.round(miliseconds)}ms`;
+export const isString = (value: any) => typeof value === 'string';
+export const isNumber = (value: any) => !isNaN(parseFloat(value));
 
 /**
  * @param {string|Array} props
@@ -48,7 +48,7 @@ export const isNumber = value => !isNaN(parseFloat(value));
 export default {
   easing,
   duration,
-  create(props = ['all'], options = {}) {
+  create(props = ['all'], options: Object = {}) {
     const {
       duration: durationOption = duration.standard,
       easing: easingOption = easing.easeInOut,
@@ -75,7 +75,7 @@ export default {
       )
       .join(',');
   },
-  getAutoHeightDuration(height) {
+  getAutoHeightDuration(height: ?number) {
     if (!height) {
       return 0;
     }

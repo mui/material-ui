@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import shadows from './shadows';
 import transitions from './transitions';
@@ -9,7 +9,7 @@ import zIndex from './zIndex';
 import createMixins from './mixins';
 import spacing from './spacing';
 
-function createMuiTheme(options = {}) {
+function createMuiTheme(options: Object = {}) {
   const {
     palette = createPalette(),
     breakpoints = createBreakpoints(),
