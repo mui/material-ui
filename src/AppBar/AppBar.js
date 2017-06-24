@@ -60,6 +60,7 @@ function AppBar(props) {
     classes[`position${capitalizeFirstLetter(position)}`],
     {
       [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'inherit',
+      'mui-fixed': position === 'fixed', // Useful for the Dialog
     },
     classNameProp,
   );
