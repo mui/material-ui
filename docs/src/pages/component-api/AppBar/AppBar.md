@@ -7,7 +7,7 @@
 |:-----|:-----|:--------|:------------|
 | children | node |  | The content of the component. |
 | classes | object |  | Useful to extend the style applied to components. |
-| color | enum:&nbsp;'inherit'<br>&nbsp;'primary'<br>&nbsp;'accent'<br> | 'primary' | The color of the component. It's using the theme palette when that makes sense. |
+| color | enum:&nbsp;'inherit'<br>&nbsp;'primary'<br>&nbsp;'accent'<br>&nbsp;'default'<br> | 'primary' | The color of the component. It's using the theme palette when that makes sense. |
 | position | enum:&nbsp;'static'<br>&nbsp;'fixed'<br>&nbsp;'absolute'<br> | 'fixed' | The positioning type. |
 
 Any other properties supplied will be spread to the root element.
@@ -20,6 +20,7 @@ This property accepts the following keys:
 - `positionFixed`
 - `positionAbsolute`
 - `positionStatic`
+- `colorDefault`
 - `colorPrimary`
 - `colorAccent`
 

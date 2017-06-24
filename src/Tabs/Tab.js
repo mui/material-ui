@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import ButtonBase from '../internal/ButtonBase';
 import withStyles from '../styles/withStyles';
+import { capitalizeFirstLetter } from '../utils/helpers';
 import Icon from '../Icon';
 
 export const styleSheet = createStyleSheet('MuiTab', theme => ({
@@ -32,6 +33,15 @@ export const styleSheet = createStyleSheet('MuiTab', theme => ({
     color: theme.palette.accent.A200,
   },
   rootAccentDisabled: {
+    color: theme.palette.text.disabled,
+  },
+  rootPrimary: {
+    color: theme.palette.text.secondary,
+  },
+  rootPrimarySelected: {
+    color: theme.palette.primary[500],
+  },
+  rootPrimaryDisabled: {
     color: theme.palette.text.disabled,
   },
   rootInherit: {
@@ -163,12 +173,9 @@ class Tab extends Component {
     const className = classNames(
       classes.root,
       {
-        [classes.rootAccent]: textColor === 'accent',
-        [classes.rootAccentDisabled]: disabled && textColor === 'accent',
-        [classes.rootAccentSelected]: selected && textColor === 'accent',
-        [classes.rootInherit]: textColor === 'inherit',
-        [classes.rootInheritDisabled]: disabled && textColor === 'inherit',
-        [classes.rootInheritSelected]: selected && textColor === 'inherit',
+        [classes[`root${capitalizeFirstLetter(textColor)}`]]: true,
+        [classes[`root${capitalizeFirstLetter(textColor)}Disabled`]]: disabled,
+        [classes[`root${capitalizeFirstLetter(textColor)}Selected`]]: selected,
         [classes.rootLabelIcon]: icon && label,
         [classes.fullWidth]: fullWidth,
       },
@@ -254,7 +261,10 @@ Tab.propTypes = {
   /**
    * @ignore
    */
-  textColor: PropTypes.oneOfType([PropTypes.oneOf(['accent', 'inherit']), PropTypes.string]),
+  textColor: PropTypes.oneOfType([
+    PropTypes.oneOf(['accent', 'primary', 'inherit']),
+    PropTypes.string,
+  ]),
 };
 
 export default withStyles(styleSheet)(Tab);
