@@ -158,7 +158,6 @@ class Snackbar extends Component {
       anchorOrigin: { vertical, horizontal },
       autoHideDuration,
       classes,
-      contentProps,
       className,
       enterTransitionDuration,
       leaveTransitionDuration,
@@ -167,6 +166,7 @@ class Snackbar extends Component {
       onMouseLeave,
       onRequestClose,
       open,
+      SnackbarContentProps,
       transition: transitionProps,
       ...other
     } = this.props;
@@ -199,7 +199,7 @@ class Snackbar extends Component {
               leaveTransitionDuration,
               onExited: this.handleTransitionExited,
             },
-            <SnackbarContent message={message} action={action} {...contentProps} />,
+            <SnackbarContent message={message} action={action} {...SnackbarContentProps} />,
           )}
         </div>
       </ClickAwayListener>
@@ -229,10 +229,6 @@ Snackbar.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * Properties applied to the `SnackbarContent` element.
-   */
-  contentProps: PropTypes.object,
   /**
    * Customizes duration of enter animation (ms)
    */
@@ -270,6 +266,10 @@ Snackbar.propTypes = {
    * If true, `Snackbar` is open.
    */
   open: PropTypes.bool.isRequired,
+  /**
+   * Properties applied to the `SnackbarContent` element.
+   */
+  SnackbarContentProps: PropTypes.object,
   /**
    * Object with Transition component, props & create Fn.
    */
