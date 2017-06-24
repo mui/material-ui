@@ -1,8 +1,8 @@
-// @flow weak
+// @flow
 
-export default function createMixins(breakpoints, spacing) {
+export default function createMixins(breakpoints: Object, spacing: Object) {
   return {
-    gutters: styles => {
+    gutters: (styles: Object) => {
       styles.paddingLeft = spacing.unit * 2;
       styles.paddingRight = spacing.unit * 2;
       styles[breakpoints.up('sm')] = {
