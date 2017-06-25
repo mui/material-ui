@@ -8,6 +8,39 @@
 - [DatePicker] Revert #7056 (3d841bd1443c375c32d7ff696011dc9f131d4d13) @oliviertassinari
 - [TextField] Fix disabled input color in Safari (#7065) @amannn
 
+## 0.18.3
+###### _Jun 25, 2017_
+
+Big thanks to the 17 contributors who made this release possible.
+This release keeps focusing on bug fixes.
+
+##### Component Fixes / Enhancements
+
+- [TextField] Replaced WebkitTextFillColor with WebkitOpacity (#7094) @midan888
+- [TextField] Fix for bottom border color reset (#7114) @xaviergonz
+- [Tab] Support SVG Icons color (#7091) @RejinR
+- [Tab] Fix color property handling (#7131) @oliviertassinari
+- [DatePicker] Fix direction in RTL (#7102) @azizghuloum
+- [ListItem] Exposing onTouchTap API in order to address Issue #6938 (#7105) @max-b
+- [Dialog] Styling inner content container (component Paper) (#7123) @akulov
+- [Switch] Fix focus style for RadioButton Checkbox Toggle (#7158) @myrubapa
+- [Popover] Only prevent default click interactions (#7167) @oliviertassinari
+- [Drawer] Remove event listeners on unmount (#7225) @liamcmitchell
+- [Table] state.allRowsSelected was not updated if props.allRowsSelected changed (#7224) @lgpasquale
+- [Slider] Prevent unnecessary value spread (#7191) @katzoo
+
+##### Docs
+
+- [Paper] Properties circle has typo misspelling (#7245) @lisabronwyn
+- [docs] Add material-ui-slider-label in the related projects section (a0ab405cc5d4a101735defbc68ec1b80659a8230) @tariqwest
+- [docs] Add Crypticker.io in showcase (#7205) @scastiel
+- [docs] Fix item 4 not showing as checked in Table controlled example (#7244) @bjornreppen
+- [docs] Humorista Showcase App No Longer Working (#7164) @Dcorkran
+
+##### Core
+
+N.A
+
 ## 0.18.2
 ###### _Jun 7, 2017_
 
