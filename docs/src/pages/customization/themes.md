@@ -23,12 +23,23 @@ We expose the following color intentions:
 - accent - used to represent secondary interface elements for a user.
 - error - used to represent interface elements that the user should be careful of.
 
+The palette is using the hues prefixed with `A` (`A200`, etc.) for the accent color and the hues unprefixed for the other intentions.
+If you want to learn more about color, you can check out [the color section](/style/color).
+
 #### Example
 
 {{demo='pages/customization/Palette.js'}}
 
-The palette is using the hues prefixed with `A` (`A200`, etc.) for the accent color and the hues unprefixed for the other intentions.
-If you want to learn more about color, you can check out [this section](/style/color).
+### Typography
+
+Too many type sizes and styles at once can wreck any layout.
+We use a **limited set of type sizes** that work well together along with the layout grid.
+Those sizes are used accros our components.
+
+Have a look at the following example regarding changing the default values, like the font family.
+If you want to learn more about color, you can check out [the typography section](/style/typography).
+
+{{demo='pages/customization/TypographyTheme.js'}}
 
 ### Dark/light theme
 

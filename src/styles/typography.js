@@ -96,8 +96,10 @@ export default function createTypography(palette: Object, constants: Object = {}
       color: palette.text.secondary,
     },
     button: {
+      fontSize,
       textTransform: 'uppercase',
       fontWeight: fontWeightMedium,
+      fontFamily,
     },
   };
 }
