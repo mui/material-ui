@@ -10,11 +10,8 @@ import ButtonBase from '../internal/ButtonBase';
 
 export const styleSheet = createStyleSheet('MuiButton', theme => ({
   root: {
-    fontSize: theme.typography.fontSize,
-    fontWeight: theme.typography.fontWeightMedium,
-    fontFamily: theme.typography.fontFamily,
+    ...theme.typography.button,
     lineHeight: '1em',
-    textTransform: 'uppercase',
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',

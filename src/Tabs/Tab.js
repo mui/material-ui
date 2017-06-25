@@ -69,9 +69,6 @@ export const styleSheet = createStyleSheet('MuiTab', theme => ({
   },
   label: {
     fontSize: theme.typography.fontSize,
-    fontWeight: theme.typography.fontWeightMedium,
-    fontFamily: theme.typography.fontFamily,
-    textTransform: 'uppercase',
     whiteSpace: 'normal',
     [theme.breakpoints.up('md')]: {
       fontSize: theme.typography.fontSize - 1,
