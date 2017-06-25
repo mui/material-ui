@@ -38,7 +38,7 @@ class Paper extends Component {
      */
     children: PropTypes.node,
     /**
-     * Set to true to generate a circlular paper container.
+     * Set to true to generate a circular paper container.
      */
     circle: PropTypes.bool,
     /**
