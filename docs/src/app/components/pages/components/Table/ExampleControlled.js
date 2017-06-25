@@ -49,8 +49,8 @@ export default class TableExampleControlled extends Component {
             <TableRowColumn>Stephanie Sanders</TableRowColumn>
             <TableRowColumn>Employed</TableRowColumn>
           </TableRow>
-          <TableRow>
-            <TableRowColumn selected={this.isSelected(3)}>4</TableRowColumn>
+          <TableRow selected={this.isSelected(3)}>
+            <TableRowColumn>4</TableRowColumn>
             <TableRowColumn>Steve Brown</TableRowColumn>
             <TableRowColumn>Employed</TableRowColumn>
           </TableRow>
