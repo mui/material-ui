@@ -1,14 +1,6 @@
 ## HEAD
 
-## 0.18.3
-###### _Jun 8, 2017_
-
-##### Component Fixes / Enhancements
-
-- [DatePicker] Revert #7056 (3d841bd1443c375c32d7ff696011dc9f131d4d13) @oliviertassinari
-- [TextField] Fix disabled input color in Safari (#7065) @amannn
-
-## 0.18.3
+## 0.18.4
 ###### _Jun 25, 2017_
 
 Big thanks to the 17 contributors who made this release possible.
@@ -40,6 +32,14 @@ This release keeps focusing on bug fixes.
 ##### Core
 
 N.A
+
+## 0.18.3
+###### _Jun 8, 2017_
+
+##### Component Fixes / Enhancements
+
+- [DatePicker] Revert #7056 (3d841bd1443c375c32d7ff696011dc9f131d4d13) @oliviertassinari
+- [TextField] Fix disabled input color in Safari (#7065) @amannn
 
 ## 0.18.2
 ###### _Jun 7, 2017_
