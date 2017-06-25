@@ -5,7 +5,7 @@ Changes. Changes everywhere!
 ## 1.0.0-alpha.20
 ###### _Jun 25, 2017_
 
-Do you like play with beelding edge tech?
+Do you like play with bleeding edge tech?
 We do, we have extended the support of React to the 16.0.0-alpha.13 release (aka Fiber).
 
 ##### Breaking changes
