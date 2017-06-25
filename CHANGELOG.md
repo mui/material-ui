@@ -2,27 +2,44 @@
 
 Changes. Changes everywhere!
 
-##### General
-- [docs] New documentation site!
-- [docs] Markdown API doc generation from components
-- [docs] Docs literature markdown files re-organized
-- [core] Theming revamped
-- [core] Internal components refactored
-- [core] Replaced inline styling with [`jss`](https://github.com/cssinjs/jss)
-  - CSS-in-JS
-  - `className` based approach
-  - around 30% performance improvement
-- [test] Add a visual regression test suite
-- [test] Greatly increase the test coverage
+## 1.0.0-alpha.20
+###### _Jun 25, 2017_
 
-##### Components
+Do you like play with beelding edge tech?
+We do, we have extended the support of React to the 16.0.0-alpha.13 release (aka Fiber).
 
-All components have had API changes ranging from a couple of properties to complete makeovers, please review the documentation for more information.
-Below is a summary of major changes.
+##### Breaking changes
 
-- [Dialog] Rewritten from the ground up. Multiple major issues addressed such as accessibility and proper tab scoping. More composable.
-- [Ripple/TouchRipple] Refactored and now works properly inside a button in firefox!
-- [Button] Raised/flat/fab are now combined into a single component.
+- [Paper] Use normalized root over paper className (#7198) @oliviertassinari
+- [core] Follow the same convention as React for the umd build (#7217) @oliviertassinari
+
+##### Component Fixes / Enhancements
+
+- [material-ui-icons] v1.0.0-alpha.19 (21b67cec3b200517c9dfdf4d28c0bfc2d1dceeaa) @oliviertassinari
+- [Input] Fix incorrect type of autoFocus prop (#7189) @gnapse
+- [Icons] Modernize icons package (#7203) @kvet
+- [Input] Fix various styling issue #7209 @oliviertassinari
+- [Tabs] Add a primary color and update the docs (#7242) @oliviertassinari
+- [ListItem] Use the .shortest duration (#7246) @oliviertassinari
+- [Dialog] Also take fixed element into account (#7239) @oliviertassinari
+- [Drawer] Fix first mount transition issue (#7236) @oliviertassinari
+
+##### Docs
+
+- [docs] Fix typo in class name (#7192) @ossan-engineer
+- [docs] Add supported server section (#7231) @oliviertassinari
+- [docs] Detail the browser support (#7188) @oliviertassinari
+- [docs] Upgrade to webpack v3 (#7210) @oliviertassinari
+- [docs] More documentation on the typography (#7248) @oliviertassinari
+
+##### Core
+
+- [test] Even faster CI build (#7230) @oliviertassinari
+- [styles] Export more functions (#7241) @oliviertassinari
+- [react] Support 16.0.0-alpha.13 (#7218) @oliviertassinari
+- [core] x2 speed up on the build (#7220) @oliviertassinari
+- [babel] Use transform-object-assign over a custom one (#7219) @oliviertassinari
+- [core] Some fixes (#7216) @oliviertassinari
 
 ## 1.0.0-alpha.19
 ###### _Jun 19, 2017_
