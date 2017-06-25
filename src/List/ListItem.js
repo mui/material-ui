@@ -40,7 +40,7 @@ export const styleSheet = createStyleSheet('MuiListItem', theme => ({
   },
   button: {
     transition: theme.transitions.create('background-color', {
-      duration: theme.transitions.duration.short,
+      duration: theme.transitions.duration.shortest,
     }),
     '&:hover': {
       textDecoration: 'none',
