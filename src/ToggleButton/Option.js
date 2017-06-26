@@ -122,7 +122,7 @@ class Option extends Component{
         [classes.backgroundSelected] : selected && !noBackground,
         [classes.divided] : divider,
       }),
-      onTouchTap: this.handleOptionClick,
+      onClick: this.handleOptionClick,
       centerRipple: true,
     };
     const rootProps ={
