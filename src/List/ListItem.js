@@ -103,6 +103,7 @@ type Props = DefaultProps & {
 };
 
 class ListItem extends Component<DefaultProps, Props, void> {
+  props: Props;
   static defaultProps: DefaultProps = {
     button: false,
     component: 'div',
@@ -111,7 +112,6 @@ class ListItem extends Component<DefaultProps, Props, void> {
     disableGutters: false,
     divider: false,
   };
-  props: Props;
 
   getChildContext() {
     return {

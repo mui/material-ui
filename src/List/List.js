@@ -73,12 +73,12 @@ type Props = DefaultProps & {
 };
 
 class List extends Component<DefaultProps, Props, void> {
+  props: Props;
   static defaultProps: DefaultProps = {
     component: 'div',
     dense: false,
     disablePadding: false,
   };
-  props: Props;
 
   getChildContext() {
     return {
