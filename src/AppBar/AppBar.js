@@ -1,7 +1,7 @@
-// @flow weak
+// @flow
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Element } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
@@ -45,7 +45,35 @@ export const styleSheet = createStyleSheet('MuiAppBar', theme => ({
   },
 }));
 
-function AppBar(props) {
+type DefaultProps = {
+  color: 'primary',
+  position: 'fixed',
+};
+
+type Props = DefaultProps & {
+  /**
+   * The content of the component.
+   */
+  children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * The color of the component. It's using the theme palette when that makes sense.
+   */
+  color?: 'inherit' | 'primary' | 'accent' | 'default',
+  /**
+   * The positioning type.
+   */
+  position?: 'static' | 'fixed' | 'absolute',
+};
+
+function AppBar(props: Props) {
   const {
     children,
     classes,
@@ -71,29 +99,6 @@ function AppBar(props) {
     </Paper>
   );
 }
-
-AppBar.propTypes = {
-  /**
-   * The content of the component.
-   */
-  children: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * The color of the component. It's using the theme palette when that makes sense.
-   */
-  color: PropTypes.oneOf(['inherit', 'primary', 'accent', 'default']),
-  /**
-   * The positioning type.
-   */
-  position: PropTypes.oneOf(['static', 'fixed', 'absolute']),
-};
 
 AppBar.defaultProps = {
   color: 'primary',
