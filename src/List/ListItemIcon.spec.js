@@ -10,7 +10,7 @@ describe('<ListItemIcon />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    shallow = createShallow();
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
