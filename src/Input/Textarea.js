@@ -150,7 +150,6 @@ class Textarea extends Component {
       classes,
       className,
       defaultValue,
-      disabled,
       hintText,
       onChange,
       onHeightChange,
