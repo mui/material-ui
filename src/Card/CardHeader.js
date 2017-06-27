@@ -1,7 +1,7 @@
-// @flow weak
+// @flow
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Element } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
@@ -22,7 +22,30 @@ export const styleSheet = createStyleSheet('MuiCardHeader', theme => ({
   },
 }));
 
-function CardHeader(props) {
+type Props = {
+  /**
+   * The Avatar  for the Card Header.
+   */
+  avatar?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * The content of the component.
+   */
+  subheader?: Element<*>,
+  /**
+   * The content of the Card Title.
+   */
+  title?: Element<*>,
+};
+
+function CardHeader(props: Props) {
   const { avatar, classes, className: classNameProp, subheader, title, ...other } = props;
 
   const className = classNames(classes.root, classNameProp);
@@ -48,28 +71,5 @@ function CardHeader(props) {
     </CardContent>
   );
 }
-
-CardHeader.propTypes = {
-  /**
-   * The Avatar  for the Card Header.
-   */
-  avatar: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * The content of the component.
-   */
-  subheader: PropTypes.node,
-  /**
-   * The content of the Card Title.
-   */
-  title: PropTypes.node,
-};
 
 export default withStyles(styleSheet)(CardHeader);

@@ -1,7 +1,7 @@
-// @flow weak
+// @flow
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Element } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -31,7 +31,30 @@ export const styleSheet = createStyleSheet('MuiIcon', theme => ({
   },
 }));
 
-function Icon(props) {
+type DefaultProps = {
+  color: 'inherit',
+};
+
+type Props = DefaultProps & {
+  /**
+   * The name of the icon font ligature.
+   */
+  children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * The color of the component. It's using the theme palette when that makes sense.
+   */
+  color?: 'inherit' | 'accent' | 'action' | 'contrast' | 'disabled' | 'error' | 'primary',
+};
+
+function Icon(props: Props) {
   const { children, classes, className: classNameProp, color, ...other } = props;
 
   const className = classNames(
@@ -49,33 +72,6 @@ function Icon(props) {
     </span>
   );
 }
-
-Icon.propTypes = {
-  /**
-   * The name of the icon font ligature.
-   */
-  children: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * The color of the component. It's using the theme palette when that makes sense.
-   */
-  color: PropTypes.oneOf([
-    'inherit',
-    'accent',
-    'action',
-    'contrast',
-    'disabled',
-    'error',
-    'primary',
-  ]),
-};
 
 Icon.defaultProps = {
   color: 'inherit',

@@ -1,7 +1,7 @@
-// @flow weak
+// @flow
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import type { Element } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import Modal from '../internal/Modal';
@@ -74,7 +74,69 @@ export const styleSheet = createStyleSheet('MuiDrawer', theme => ({
   modal: {},
 }));
 
-class Drawer extends Component {
+type DefaultProps = {
+  anchor: 'left',
+  docked: boolean,
+  enterTransitionDuration: number,
+  leaveTransitionDuration: number,
+  open: boolean,
+  elevation: number,
+};
+
+type Props = {
+  /**
+   * Side which will the drawer will appear from.
+   */
+  anchor?: 'left' | 'top' | 'right' | 'bottom',
+  /**
+   * The contents of the drawer.
+   */
+  children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * If `true`, the drawer will dock itself
+   * and will no longer slide in with an overlay.
+   */
+  docked?: boolean,
+  /**
+   * The elevation of the drawer.
+   */
+  elevation?: number,
+  /**
+   * Customizes duration of enter animation (ms)
+   */
+  enterTransitionDuration?: number,
+  /**
+   * Customizes duration of leave animation (ms)
+   */
+  leaveTransitionDuration?: number,
+  /**
+   * Callback fired when the internal modal requests to be closed.
+   */
+  onRequestClose?: Function,
+  /**
+   * If `true`, the drawer is open.
+   */
+  open?: boolean,
+  /**
+   * Properties applied to the `Slide` element.
+   */
+  SlideProps?: Object,
+};
+
+type State = {
+  firstMount: boolean,
+};
+
+class Drawer extends Component<DefaultProps, Props, State> {
+  props: Props;
   static defaultProps = {
     anchor: 'left',
     docked: false,
@@ -84,7 +146,7 @@ class Drawer extends Component {
     elevation: 16,
   };
 
-  state = {
+  state: State = {
     // Let's assume that the Drawer will always be rendered on user space.
     // We use that state is order to skip the appear transition during the
     // inital mount of the component.
@@ -157,54 +219,6 @@ class Drawer extends Component {
     );
   }
 }
-
-Drawer.propTypes = {
-  /**
-   * Side which will the drawer will appear from.
-   */
-  anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
-  /**
-   * The contents of the drawer.
-   */
-  children: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * If `true`, the drawer will dock itself
-   * and will no longer slide in with an overlay.
-   */
-  docked: PropTypes.bool,
-  /**
-   * The elevation of the drawer.
-   */
-  elevation: PropTypes.number,
-  /**
-   * Customizes duration of enter animation (ms)
-   */
-  enterTransitionDuration: PropTypes.number,
-  /**
-   * Customizes duration of leave animation (ms)
-   */
-  leaveTransitionDuration: PropTypes.number,
-  /**
-   * Callback fired when the internal modal requests to be closed.
-   */
-  onRequestClose: PropTypes.func,
-  /**
-   * If `true`, the drawer is open.
-   */
-  open: PropTypes.bool,
-  /**
-   * Properties applied to the `Slide` element.
-   */
-  SlideProps: PropTypes.object,
-};
 
 Drawer.contextTypes = {
   styleManager: customPropTypes.muiRequired,

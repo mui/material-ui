@@ -91,7 +91,7 @@
     "chai": "^4.0.2",
     "cross-env": "^5.0.1",
     "doctrine": "^2.0.0",
-    "enzyme": "^2.8.2",
+    "enzyme": "^2.9.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-import-resolver-webpack": "^0.8.1",

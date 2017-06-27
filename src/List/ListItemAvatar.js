@@ -1,6 +1,7 @@
-// @flow weak
+// @flow
 
 import React from 'react';
+import type { Element } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import warning from 'warning';
@@ -20,10 +21,25 @@ export const styleSheet = createStyleSheet('MuiListItemAvatar', {
   },
 });
 
+type Props = {
+  /**
+   * The content of the component, normally `Avatar`.
+   */
+  children: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+};
+
 /**
  * It's a simple wrapper to apply the `dense` mode styles to `Avatar`.
  */
-function ListItemAvatar(props, context) {
+function ListItemAvatar(props: Props, context: { dense: boolean }) {
   if (context.dense === undefined) {
     warning(
       false,
@@ -48,21 +64,6 @@ function ListItemAvatar(props, context) {
     ...other,
   });
 }
-
-ListItemAvatar.propTypes = {
-  /**
-   * The content of the component, normally `Avatar`.
-   */
-  children: PropTypes.element.isRequired,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-};
 
 ListItemAvatar.contextTypes = {
   dense: PropTypes.bool,
