@@ -164,6 +164,9 @@ class EnhancedButton extends Component {
         color={focusRippleColor}
         opacity={focusRippleOpacity}
         show={isKeyboardFocused}
+        style={{
+          overflow: 'hidden',
+        }}
         key="focusRipple"
       />
     ) : undefined;
