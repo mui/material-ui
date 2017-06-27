@@ -34,7 +34,7 @@ describe('./utils/autoprefixer', () => {
       });
 
       assert.deepEqual(stylePrepared, {
-        display: '-webkit-box; display: -moz-box; display: -ms-inline-flexbox; display: -webkit-inline-flex; display: inline-flex', // eslint-disable-line max-len
+        display: '-webkit-inline-box; display: -moz-inline-box; display: -ms-inline-flexbox; display: -webkit-inline-flex; display: inline-flex', // eslint-disable-line max-len
       });
     });
   });
