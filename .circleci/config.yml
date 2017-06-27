@@ -48,13 +48,15 @@ jobs:
           name: Tests fake browser
           command: yarn test:coverage
       - run:
-          name: Coverage
+          name: Check coverage generated
           command: |
-            bash <(curl -s https://codecov.io/bash)
             if ! [[ -s coverage/lcov.info ]]
             then
               exit 1
             fi
+      - run:
+          name: Coverage
+          command: bash <(curl -s https://codecov.io/bash)
       - run:
           name: Can we generate the docs?
           command: yarn build:docs
@@ -92,4 +94,5 @@ workflows:
             - checkout
       - test_regressions:
           requires:
-            - checkout
+            - test_unit
+            - test_browser

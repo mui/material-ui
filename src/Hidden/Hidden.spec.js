@@ -15,13 +15,21 @@ describe('<Hidden />', () => {
 
   describe('props: implementation', () => {
     it('should use HiddenJs by default', () => {
-      const wrapper = shallow(<Hidden>{'Hello'}</Hidden>);
+      const wrapper = shallow(
+        <Hidden>
+          {'Hello'}
+        </Hidden>,
+      );
       assert.strictEqual(wrapper.find(HiddenJs).length, 1);
     });
 
     it('should use change the implementation', () => {
       assert.throws(() => {
-        shallow(<Hidden implementation="css">{'Hello'}</Hidden>);
+        shallow(
+          <Hidden implementation="css">
+            {'Hello'}
+          </Hidden>,
+        );
       }, 'is not yet implemented');
     });
   });

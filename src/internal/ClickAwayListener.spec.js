@@ -20,7 +20,11 @@ describe('<ClickAwayListener />', () => {
 
   it('should render the children', () => {
     const children = <span>Hello</span>;
-    const wrapper = mount(<ClickAwayListener onClickAway={() => {}}>{children}</ClickAwayListener>);
+    const wrapper = mount(
+      <ClickAwayListener onClickAway={() => {}}>
+        {children}
+      </ClickAwayListener>,
+    );
     assert.strictEqual(wrapper.contains(children), true);
   });
 
@@ -28,7 +32,9 @@ describe('<ClickAwayListener />', () => {
     it('should be call when clicking away', () => {
       const handleClickAway = spy();
       const wrapper = mount(
-        <ClickAwayListener onClickAway={handleClickAway}><span>Hello</span></ClickAwayListener>,
+        <ClickAwayListener onClickAway={handleClickAway}>
+          <span>Hello</span>
+        </ClickAwayListener>,
       );
 
       const event = document.createEvent('MouseEvents');
@@ -43,7 +49,9 @@ describe('<ClickAwayListener />', () => {
     it('should not be call when clicking inside', () => {
       const handleClickAway = spy();
       const wrapper = mount(
-        <ClickAwayListener onClickAway={handleClickAway}><span>Hello</span></ClickAwayListener>,
+        <ClickAwayListener onClickAway={handleClickAway}>
+          <span>Hello</span>
+        </ClickAwayListener>,
       );
 
       const event = new window.Event('mouseup', { view: window, bubbles: true, cancelable: true });

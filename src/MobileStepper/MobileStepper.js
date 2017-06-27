@@ -82,7 +82,8 @@ function MobileStepper(props) {
   return (
     <Paper square elevation={0} className={className} {...other}>
       <Button className={classes.button} onClick={onBack} disabled={disableBack}>
-        <KeyboardArrowLeft />{backButtonText}
+        <KeyboardArrowLeft />
+        {backButtonText}
       </Button>
       {type === 'dots' &&
         <div className={classes.dots}>
@@ -102,7 +103,8 @@ function MobileStepper(props) {
           <LinearProgress mode="determinate" value={Math.ceil(activeStep / (steps - 1) * 100)} />
         </div>}
       <Button className={classes.button} onClick={onNext} disabled={disableNext}>
-        {nextButtonText}<KeyboardArrowRight />
+        {nextButtonText}
+        <KeyboardArrowRight />
       </Button>
     </Paper>
   );

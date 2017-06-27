@@ -2,7 +2,7 @@
 
 Provides context such as dirty/focused/error/required for form inputs.
 
-## Properties
+## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  | The contents of the form control. |

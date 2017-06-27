@@ -50,12 +50,20 @@ describe('<FormControl />', () => {
 
   describe('should be dirty if has input with value set', () => {
     it('should be dirty with a value', () => {
-      const wrapper = shallow(<FormControl><Input value="bar" /></FormControl>);
+      const wrapper = shallow(
+        <FormControl>
+          <Input value="bar" />
+        </FormControl>,
+      );
       assert.strictEqual(wrapper.state().dirty, true);
     });
 
     it('should be dirty with a defaultValue', () => {
-      const wrapper = shallow(<FormControl><Input defaultValue="bar" /></FormControl>);
+      const wrapper = shallow(
+        <FormControl>
+          <Input defaultValue="bar" />
+        </FormControl>,
+      );
       assert.strictEqual(wrapper.state().dirty, true);
     });
   });

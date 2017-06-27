@@ -2,25 +2,25 @@
 
 Dialogs are overlaid modal paper based components with a backdrop.
 
-## Properties
+## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | Element |  | Dialog children, usually the included sub-components. |
 | classes | Object |  | Useful to extend the style applied to components. |
+| enterTransitionDuration | number | duration.enteringScreen | Duration of the animation when the element is entering. |
 | fullScreen | boolean | false | If `true`, it will be full-screen |
 | ignoreBackdropClick | boolean | false | If `true`, clicking the backdrop will not fire the `onRequestClose` callback. |
 | ignoreEscapeKeyUp | boolean | false | If `true`, hitting escape will not fire the `onRequestClose` callback. |
-| enterTransitionDuration | number | duration.enteringScreen | Duration of the animation when the element is entering. |
 | leaveTransitionDuration | number | duration.leavingScreen | Duration of the animation when the element is leaving. |
 | maxWidth | union:&nbsp;'xs'<br>&nbsp;'sm'<br>&nbsp;'md'<br> | 'sm' | Determine the max width of the dialog. The dialog width grows with the size of the screen, this property is useful on the desktop where you might need some coherent different width size across your application. |
 | onBackdropClick | Function |  | Callback fired when the backdrop is clicked. |
 | onEnter | Function |  | Callback fired before the dialog enters. |
-| onEntering | Function |  | Callback fired when the dialog is entering. |
 | onEntered | Function |  | Callback fired when the dialog has entered. |
+| onEntering | Function |  | Callback fired when the dialog is entering. |
 | onEscapeKeyUp | Function |  | Callback fires when the escape key is released and the modal is in focus. |
 | onExit | Function |  | Callback fired before the dialog exits. |
-| onExiting | Function |  | Callback fired when the dialog is exiting. |
 | onExited | Function |  | Callback fired when the dialog has exited. |
+| onExiting | Function |  | Callback fired when the dialog is exiting. |
 | onRequestClose | Function |  | Callback fired when the dialog requests to be closed. |
 | open | boolean | false | If `true`, the Dialog is open. |
 | transition | union:&nbsp;Function<br>&nbsp;Element<*><br> | Fade | Transition component. |

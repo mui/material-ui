@@ -3,14 +3,14 @@
 Refer to the [Icons](/style/icons) section of the documentation
 regarding the available icon options.
 
-## Properties
+## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  | The icon element. If a string is provided, it will be used as an icon font ligature. |
 | classes | object |  | Useful to extend the style applied to components. |
 | color | enum:&nbsp;'default'<br>&nbsp;'inherit'<br>&nbsp;'contrast'<br>&nbsp;'accent'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |
-| disabled | bool | false | If `true`, the button will be disabled. |
 | disableRipple | bool | false | If `true`, the ripple will be disabled. |
+| disabled | bool | false | If `true`, the button will be disabled. |
 | rootRef | function |  | Use that property to pass a ref callback to the root component. |
 
 Any other properties supplied will be spread to the root element.

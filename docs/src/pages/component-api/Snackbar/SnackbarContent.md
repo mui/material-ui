@@ -2,12 +2,11 @@
 
 
 
-## Properties
+## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | action | node |  | The action to display. |
 | classes | object |  | Useful to extend the style applied to components. |
-| disableTypography | bool | false | If `true`, the message won't be wrapped by a typography component. For instance, that can be usefull to can render an h4 instead of a |
 | <span style="color: #31a148">message *</span> | node |  | The message to display. |
 
 Any other properties supplied will be spread to the root element.

@@ -6,6 +6,8 @@ import { deepOrange } from 'material-ui/styles/colors';
 
 export default function ContrastIconButton() {
   return (
-    <IconButton color="contrast" style={{ backgroundColor: deepOrange[500] }}>home</IconButton>
+    <IconButton color="contrast" style={{ backgroundColor: deepOrange[500] }}>
+      home
+    </IconButton>
   );
 }

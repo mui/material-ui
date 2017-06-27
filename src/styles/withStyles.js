@@ -14,7 +14,6 @@ import customPropTypes from '../utils/customPropTypes';
 // instead, it returns a new, with a `classes` property.
 const withStyles = styleSheet => BaseComponent => {
   const factory = createEagerFactory(BaseComponent);
-  const componentName = getDisplayName(BaseComponent);
 
   class Style extends Component {
     // Exposed for test purposes.
@@ -32,9 +31,15 @@ const withStyles = styleSheet => BaseComponent => {
           ...Object.keys(classesProp).reduce((acc, key) => {
             warning(
               renderedClasses[key],
-              `Material-UI: the key \`${key}\` ` +
-                'provided to the classes property object is not implemented ' +
-                `in ${componentName}.`,
+              [
+                `Material-UI: the key \`${key}\` ` +
+                  `provided to the classes property object is not implemented in ${getDisplayName(
+                    BaseComponent,
+                  )}.`,
+                `You can only overrides one of the following: ${Object.keys(renderedClasses).join(
+                  ',',
+                )}`,
+              ].join('\n'),
             );
 
             acc[key] = `${renderedClasses[key]} ${classesProp[key]}`;

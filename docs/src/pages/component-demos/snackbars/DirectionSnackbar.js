@@ -22,18 +22,10 @@ class DirectionSnackbar extends Component {
   render() {
     return (
       <div>
-        <Button onClick={this.handleClick('left')}>
-          Right
-        </Button>
-        <Button onClick={this.handleClick('up')}>
-          Up
-        </Button>
-        <Button onClick={this.handleClick('right')}>
-          Left
-        </Button>
-        <Button onClick={this.handleClick('down')}>
-          Down
-        </Button>
+        <Button onClick={this.handleClick('left')}>Right</Button>
+        <Button onClick={this.handleClick('up')}>Up</Button>
+        <Button onClick={this.handleClick('right')}>Left</Button>
+        <Button onClick={this.handleClick('down')}>Down</Button>
         <Snackbar
           open={this.state.open}
           onRequestClose={this.handleRequestClose}

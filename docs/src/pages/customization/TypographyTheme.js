@@ -10,7 +10,7 @@ const typography = createTypography(theme.palette, {
   // System font
   fontFamily:
     '-apple-system,system-ui,BlinkMacSystemFont,' +
-      '"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
+    '"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
 });
 
 theme = {

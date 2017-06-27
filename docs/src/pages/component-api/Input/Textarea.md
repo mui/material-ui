@@ -2,11 +2,11 @@
 
 
 
-## Properties
+## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| classes | object |  | Useful to extend the style applied to components. |
 | className | string |  |  |
+| classes | object |  | Useful to extend the style applied to components. |
 | defaultValue | any |  |  |
 | disabled | bool |  |  |
 | hintText | string |  |  |

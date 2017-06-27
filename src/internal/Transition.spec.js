@@ -324,7 +324,11 @@ describe('<Transition />', () => {
     const nextProps = {};
 
     before(() => {
-      wrapper = mount(<Transition><div /></Transition>);
+      wrapper = mount(
+        <Transition>
+          <div />
+        </Transition>,
+      );
     });
 
     it('should update', () => {

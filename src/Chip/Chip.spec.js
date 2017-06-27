@@ -190,11 +190,7 @@ describe('<Chip />', () => {
       });
 
       it('should unfocus when a esc key is pressed', () => {
-        const wrapper2 = mount(
-          <Chip.Naked classes={{}}>
-            Text Chip
-          </Chip.Naked>,
-        );
+        const wrapper2 = mount(<Chip.Naked classes={{}}>Text Chip</Chip.Naked>);
         const handleBlur = spy();
         wrapper2.instance().chipRef.blur = handleBlur;
         wrapper2.find('button').simulate('keydown', {

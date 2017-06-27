@@ -35,11 +35,15 @@ function SimpleCard(props) {
     <div>
       <Card className={classes.card}>
         <CardContent>
-          <Typography type="body1" className={classes.title}>Word of the Day</Typography>
+          <Typography type="body1" className={classes.title}>
+            Word of the Day
+          </Typography>
           <Typography type="headline" component="h2">
             be{bull}nev{bull}o{bull}lent
           </Typography>
-          <Typography type="body1" className={classes.pos}>adjective</Typography>
+          <Typography type="body1" className={classes.pos}>
+            adjective
+          </Typography>
           <Typography component="p">
             well meaning and kindly.<br />
             {'"a benevolent smile"'}

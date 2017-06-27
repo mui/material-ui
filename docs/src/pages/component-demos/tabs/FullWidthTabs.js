@@ -55,9 +55,15 @@ class FullWidthTabs extends Component {
           </Tabs>
         </AppBar>
         <SwipeableViews index={this.state.index} onChangeIndex={this.handleChangeIndex}>
-          <TabContainer>{'Item One'}</TabContainer>
-          <TabContainer>{'Item Two'}</TabContainer>
-          <TabContainer>{'Item Three'}</TabContainer>
+          <TabContainer>
+            {'Item One'}
+          </TabContainer>
+          <TabContainer>
+            {'Item Two'}
+          </TabContainer>
+          <TabContainer>
+            {'Item Three'}
+          </TabContainer>
         </SwipeableViews>
       </div>
     );

@@ -74,7 +74,9 @@ describe('<ButtonBase />', () => {
 
     it('should not change the button to an a element', () => {
       const wrapper = shallow(
-        <ButtonBase component="span" href="http://google.com">Hello</ButtonBase>,
+        <ButtonBase component="span" href="http://google.com">
+          Hello
+        </ButtonBase>,
       );
       assert.strictEqual(wrapper.name(), 'span');
       assert.strictEqual(wrapper.props().href, 'http://google.com');
@@ -341,7 +343,11 @@ describe('<ButtonBase />', () => {
     });
 
     it('should also apply it when using component', () => {
-      const wrapper = shallow(<ButtonBase disabled component="button">Hello</ButtonBase>);
+      const wrapper = shallow(
+        <ButtonBase disabled component="button">
+          Hello
+        </ButtonBase>,
+      );
       assert.strictEqual(wrapper.find('button').props().disabled, true);
     });
   });

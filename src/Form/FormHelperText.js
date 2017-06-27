@@ -11,6 +11,7 @@ export const styleSheet = createStyleSheet('MuiFormHelperText', theme => ({
     color: theme.palette.input.helperText,
     fontFamily: theme.typography.fontFamily,
     fontSize: 12,
+    textAlign: 'left',
     marginTop: theme.spacing.unit,
     lineHeight: '1em',
     minHeight: '1em',

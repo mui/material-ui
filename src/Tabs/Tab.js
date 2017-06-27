@@ -145,7 +145,11 @@ class Tab extends Component {
     let icon;
 
     if (iconProp !== undefined) {
-      icon = isValidElement(iconProp) ? iconProp : <Icon>{iconProp}</Icon>;
+      icon = isValidElement(iconProp)
+        ? iconProp
+        : <Icon>
+            {iconProp}
+          </Icon>;
     }
 
     let label;
@@ -185,12 +189,13 @@ class Tab extends Component {
       style.color = textColor;
     }
 
-    style = Object.keys(style).length > 0
-      ? {
-          ...style,
-          ...styleProp,
-        }
-      : styleProp;
+    style =
+      Object.keys(style).length > 0
+        ? {
+            ...style,
+            ...styleProp,
+          }
+        : styleProp;
 
     return (
       <ButtonBase

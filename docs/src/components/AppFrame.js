@@ -150,7 +150,7 @@ class AppFrame extends Component {
               component="a"
               title="GitHub"
               color="contrast"
-              href="https://github.com/callemall/material-ui/tree/next"
+              href="https://github.com/callemall/material-ui/tree/v1-alpha"
             >
               <Github />
             </IconButton>
