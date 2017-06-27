@@ -1,7 +1,7 @@
-// @flow weak
+// @flow
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import type { Element } from 'react';
 import { findDOMNode } from 'react-dom';
 import keycode from 'keycode';
 import contains from 'dom-helpers/query/contains';
@@ -9,8 +9,32 @@ import activeElement from 'dom-helpers/activeElement';
 import ownerDocument from 'dom-helpers/ownerDocument';
 import List from '../List';
 
-class MenuList extends Component {
-  state = {
+type Props = {
+  /**
+   * MenuList contents, normally `MenuItem`s.
+   */
+  children?: Element<*>,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * @ignore
+   */
+  onBlur?: Function,
+  /**
+   * @ignore
+   */
+  onKeyDown?: Function,
+};
+
+type State = {
+  currentTabIndex: ?number,
+};
+
+class MenuList extends Component<void, Props, State> {
+  props: Props;
+  state: State = {
     currentTabIndex: undefined,
   };
 
@@ -26,7 +50,7 @@ class MenuList extends Component {
   selectedItem = undefined;
   blurTimer = undefined;
 
-  handleBlur = event => {
+  handleBlur = (event: SyntheticUIEvent) => {
     this.blurTimer = setTimeout(() => {
       if (this.list) {
         const list = findDOMNode(this.list);
@@ -42,7 +66,7 @@ class MenuList extends Component {
     }
   };
 
-  handleKeyDown = event => {
+  handleKeyDown = (event: SyntheticUIEvent) => {
     const list = findDOMNode(this.list);
     const key = keycode(event);
     const currentFocus = activeElement(ownerDocument(list));
@@ -75,7 +99,7 @@ class MenuList extends Component {
     }
   };
 
-  handleItemFocus = event => {
+  handleItemFocus = (event: SyntheticUIEvent) => {
     const list = findDOMNode(this.list);
     if (list) {
       // $FlowFixMe
@@ -123,7 +147,7 @@ class MenuList extends Component {
     return this.setTabIndex(0);
   }
 
-  setTabIndex(index) {
+  setTabIndex(index: number) {
     this.setState({ currentTabIndex: index });
   }
 
@@ -157,24 +181,5 @@ class MenuList extends Component {
     );
   }
 }
-
-MenuList.propTypes = {
-  /**
-   * MenuList contents, normally `MenuItem`s.
-   */
-  children: PropTypes.node,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * @ignore
-   */
-  onBlur: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyDown: PropTypes.func,
-};
 
 export default MenuList;
