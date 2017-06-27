@@ -10,7 +10,7 @@ describe('<CardContent />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    shallow = createShallow({ untilSelector: 'CardContent' });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
