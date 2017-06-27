@@ -49,7 +49,12 @@ jobs:
           command: yarn test:coverage
       - run:
           name: Coverage
-          command: bash <(curl -s https://codecov.io/bash)
+          command: |
+            bash <(curl -s https://codecov.io/bash)
+            if ! [[ -s coverage/lcov.info ]]
+            then
+              exit 1
+            fi
       - run:
           name: Can we generate the docs?
           command: yarn build:docs
