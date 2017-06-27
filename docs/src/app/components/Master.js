@@ -50,11 +50,19 @@ class Master extends Component {
 
   getStyles() {
     const styles = {
+      v1: {
+        height: 40,
+        backgroundColor: '#2196f3',
+        display: 'flex',
+        color: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
       appBar: {
         position: 'fixed',
         // Needed to overlap the examples
         zIndex: this.state.muiTheme.zIndex.appBar + 1,
-        top: 0,
+        top: 40,
       },
       root: {
         paddingTop: spacing.desktopKeylineIncrement,
@@ -171,6 +179,11 @@ class Master extends Component {
     return (
       <div>
         <Title render="Material-UI" />
+        <a style={prepareStyles(styles.v1)} href="https://material-ui-1dab0.firebaseapp.com/">
+          <span>
+            Aww yeah, Material-UI v1 is coming!
+          </span>
+        </a>
         <AppBar
           onLeftIconButtonTouchTap={this.handleTouchTapLeftIconButton}
           title={title}
