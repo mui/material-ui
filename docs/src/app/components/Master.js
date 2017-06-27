@@ -117,10 +117,12 @@ class Master extends Component {
   };
 
   handleChangeList = (event, value) => {
-    this.context.router.push(value);
-    this.setState({
-      navDrawerOpen: false,
-    });
+    if (value) {
+      this.context.router.push(value);
+      this.setState({
+        navDrawerOpen: false,
+      });
+    }
   };
 
   handleChangeMuiTheme = (muiTheme) => {
