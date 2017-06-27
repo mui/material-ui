@@ -38,7 +38,7 @@ class DirectionSnackbar extends Component {
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
           transition={<Slide direction={this.state.direction} />}
-          contentProps={{
+          SnackbarContentProps={{
             'aria-describedby': 'message-id',
           }}
           message={<span id="message-id">I love snacks</span>}

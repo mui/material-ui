@@ -28,7 +28,7 @@ class FadeSnackbar extends Component {
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
           transition={Fade}
-          contentProps={{
+          SnackbarContentProps={{
             'aria-describedby': 'message-id',
           }}
           message={<span id="message-id">I love snacks</span>}

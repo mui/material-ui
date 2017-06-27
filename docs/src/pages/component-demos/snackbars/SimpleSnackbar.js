@@ -48,7 +48,7 @@ class SimpleSnackbar extends Component {
           open={this.state.open}
           autoHideDuration={6e3}
           onRequestClose={this.handleRequestClose}
-          contentProps={{
+          SnackbarContentProps={{
             'aria-describedby': 'message-id',
           }}
           message={<span id="message-id">Note archived</span>}

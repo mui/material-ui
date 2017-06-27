@@ -45,7 +45,7 @@ class PositionedSnackbar extends Component {
           anchorOrigin={{ vertical, horizontal }}
           open={open}
           onRequestClose={this.handleRequestClose}
-          contentProps={{
+          SnackbarContentProps={{
             'aria-describedby': 'message-id',
           }}
           message={<span id="message-id">I love snacks</span>}
