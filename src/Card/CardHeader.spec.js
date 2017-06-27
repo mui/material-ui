@@ -10,13 +10,13 @@ describe('<CardHeader />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    shallow = createShallow({ untilSelector: 'div' });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
   it('should render CardContent', () => {
     const wrapper = shallow(<CardHeader />);
-    assert.strictEqual(wrapper.name(), 'withStyles(CardContent)');
+    assert.strictEqual(wrapper.name(), 'div');
   });
 
   it('should have the root class', () => {
