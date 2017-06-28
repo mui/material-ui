@@ -13,6 +13,9 @@
 | disabledClassName | string |  | The CSS class name of the root element when disabled. |
 | disableRipple | bool |  | If `true`, the ripple effect will be disabled. |
 | icon | node |  | The icon to display when the component is unchecked. If a string is provided, it will be used as a font ligature. |
+| indeterminate | union:&nbsp;bool<br>&nbsp;string<br> |  | If `true`, the component is indeterminate. |
+| indeterminateClassName | string |  | The CSS class name of the root element when indeterminate. |
+| indeterminateIcon | node |  | The icon to display when the component is indeterminate. |
 | inputProps | object |  | Properties applied to the `input` element. |
 | name | string |  |  |
 | onChange | function |  | Callback fired when the state is changed.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* `change` event<br>*checked:* The `checked` value of the switch |

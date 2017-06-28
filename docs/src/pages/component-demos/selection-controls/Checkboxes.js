@@ -28,6 +28,7 @@ export default class Checkboxes extends Component {
         <LabelCheckbox label="Option C" value="checkedC" />
         <LabelCheckbox disabled label="Disabled" value="checkedD" />
         <LabelCheckbox checked disabled label="Disabled" value="checkedE" />
+        <LabelCheckbox checked disabled indeterminate label="Indeterminate" value="checkedF" />
       </FormGroup>
     );
   }
