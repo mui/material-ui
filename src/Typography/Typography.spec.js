@@ -37,7 +37,11 @@ describe('<Typography />', () => {
   });
 
   it('should center text', () => {
-    const wrapper = shallow(<Typography align="center" className="woof">Hello</Typography>);
+    const wrapper = shallow(
+      <Typography align="center" className="woof">
+        Hello
+      </Typography>,
+    );
     assert.strictEqual(wrapper.hasClass(classes.alignCenter), true, 'should be center text');
   });
   [

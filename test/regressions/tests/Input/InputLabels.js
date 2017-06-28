@@ -22,10 +22,14 @@ export default function InputLabels(props, context) {
       <InputLabel shrink>First Name Shrunk</InputLabel>
       <InputLabel>First Name</InputLabel>
       <InputLabel focused>Required</InputLabel>
-      <InputLabel focused required>Focused Required</InputLabel>
+      <InputLabel focused required>
+        Focused Required
+      </InputLabel>
       <InputLabel required>Required</InputLabel>
       <InputLabel error>Error</InputLabel>
-      <InputLabel required error>Required Error</InputLabel>
+      <InputLabel required error>
+        Required Error
+      </InputLabel>
     </div>
   );
 }

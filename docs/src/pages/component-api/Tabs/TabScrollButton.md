@@ -2,7 +2,7 @@
 
 @ignore - internal component.
 
-## Properties
+## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | classes | object |  | Useful to extend the style applied to components. |

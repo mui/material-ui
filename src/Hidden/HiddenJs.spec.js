@@ -41,12 +41,18 @@ describe('<HiddenJs />', () => {
         const props = { width, [prop]: breakpoint };
 
         // children
-        let wrapper = shallowWithWidth(<HiddenJs component="div" {...props}>foo</HiddenJs>);
+        let wrapper = shallowWithWidth(
+          <HiddenJs component="div" {...props}>
+            foo
+          </HiddenJs>,
+        );
         assert.isNull(wrapper.type(), 'should render null');
 
         // element
         wrapper = shallowWithWidth(
-          <HiddenJs component={<Typography>foo</Typography>} {...props}>foo</HiddenJs>,
+          <HiddenJs component={<Typography>foo</Typography>} {...props}>
+            foo
+          </HiddenJs>,
         );
         assert.isNull(wrapper.type(), 'should render null');
       });

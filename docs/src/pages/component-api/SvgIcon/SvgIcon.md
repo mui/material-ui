@@ -2,7 +2,7 @@
 
 
 
-## Properties
+## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  | Elements passed into the SVG Icon. |

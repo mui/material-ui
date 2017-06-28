@@ -37,12 +37,4 @@ describe('<SnackbarContent />', () => {
       assert.strictEqual(wrapper.childAt(0).contains(message), true);
     });
   });
-
-  describe('prop: disableTypography', () => {
-    it('should not use a wrapper', () => {
-      const message = <span>message</span>;
-      const wrapper = shallow(<SnackbarContent message={message} disableTypography />);
-      assert.strictEqual(wrapper.childAt(0).equals(message), true);
-    });
-  });
 });

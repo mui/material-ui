@@ -250,6 +250,7 @@ class Input extends Component {
 
   render() {
     const {
+      autoComplete,
       autoFocus,
       classes,
       className: classNameProp,
@@ -345,6 +346,7 @@ class Input extends Component {
     return (
       <div className={className} {...other}>
         <InputComponent
+          autoComplete={autoComplete}
           autoFocus={autoFocus}
           className={inputClassName}
           onBlur={this.handleBlur}
@@ -372,6 +374,10 @@ Input.propTypes = {
   /**
    * @ignore
    */
+  autoComplete: PropTypes.bool,
+  /**
+   * @ignore
+   */
   autoFocus: PropTypes.bool,
   /**
    * Useful to extend the style applied to components.
@@ -392,7 +398,7 @@ Input.propTypes = {
    */
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
-   * If `true`, the input will be disabled.
+   * @ignore
    */
   disabled: PropTypes.bool,
   /**

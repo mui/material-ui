@@ -32,7 +32,11 @@ describe('<DialogContent />', () => {
 
   it('should render children', () => {
     const children = <p />;
-    const wrapper = shallow(<DialogContent>{children}</DialogContent>);
+    const wrapper = shallow(
+      <DialogContent>
+        {children}
+      </DialogContent>,
+    );
     assert.strictEqual(wrapper.children().equals(children), true);
   });
 });

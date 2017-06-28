@@ -42,8 +42,22 @@ describe('until', () => {
   });
 
   it('stops shallow rendering when it encounters a DOM element', () => {
-    const wrapper = until.call(shallow(<div><Div /></div>), 'Div');
-    assert.strictEqual(wrapper.contains(<div><Div /></div>), true);
+    const wrapper = until.call(
+      shallow(
+        <div>
+          <Div />
+        </div>,
+      ),
+      'Div',
+    );
+    assert.strictEqual(
+      wrapper.contains(
+        <div>
+          <Div />
+        </div>,
+      ),
+      true,
+    );
   });
 
   it('throws when iassert.strictEqual called on an empty wrapper', () => {
@@ -57,7 +71,10 @@ describe('until', () => {
   });
 
   it('shallow renders non-root wrappers', () => {
-    const Container = () => <div><Div /></div>;
+    const Container = () =>
+      <div>
+        <Div />
+      </div>;
     const wrapper = until.call(shallow(<Container />).find(Div));
     assert.strictEqual(wrapper.contains(<div />), true);
   });

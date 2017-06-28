@@ -35,9 +35,7 @@ describe('<MuiThemeProvider />', () => {
     it('should be able to extract the styles', () => {
       const markup = renderToString(
         <MuiThemeProvider theme={theme} styleManager={styleManager}>
-          <Button>
-            Hello World
-          </Button>
+          <Button>Hello World</Button>
         </MuiThemeProvider>,
       );
 
@@ -58,7 +56,11 @@ describe('<MuiThemeProvider />', () => {
     before(() => {
       mount = createMount();
       child = <div />;
-      wrapper = mount(<MuiThemeProvider>{child}</MuiThemeProvider>);
+      wrapper = mount(
+        <MuiThemeProvider>
+          {child}
+        </MuiThemeProvider>,
+      );
       instance = wrapper.instance();
 
       themeObj = { themeObjProperty: 'woof' };

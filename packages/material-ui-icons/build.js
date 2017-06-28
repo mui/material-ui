@@ -63,9 +63,8 @@ function getJsxString(svgPath, destPath, options) {
   paths = paths.replace(/"\/>/g, '" />');
 
   // Node acts weird if we put this directly into string concatenation
-  const muiRequireStmt = options.muiRequire === 'relative'
-    ? SVG_ICON_RELATIVE_REQUIRE
-    : SVG_ICON_ABSOLUTE_REQUIRE;
+  const muiRequireStmt =
+    options.muiRequire === 'relative' ? SVG_ICON_RELATIVE_REQUIRE : SVG_ICON_ABSOLUTE_REQUIRE;
 
   return Mustache.render(template, {
     muiRequireStmt,

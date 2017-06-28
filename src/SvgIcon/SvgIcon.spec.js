@@ -17,7 +17,11 @@ describe('<SvgIcon />', () => {
   });
 
   it('renders children by default', () => {
-    const wrapper = shallow(<SvgIcon>{path}</SvgIcon>);
+    const wrapper = shallow(
+      <SvgIcon>
+        {path}
+      </SvgIcon>,
+    );
     assert.strictEqual(wrapper.contains(path), true, 'should contain the children');
     assert.strictEqual(wrapper.props()['aria-hidden'], 'true');
   });
@@ -28,20 +32,32 @@ describe('<SvgIcon />', () => {
   });
 
   it('should spread props on svg', () => {
-    const wrapper = shallow(<SvgIcon data-test="hello" viewBox="0 0 32 32">{path}</SvgIcon>);
+    const wrapper = shallow(
+      <SvgIcon data-test="hello" viewBox="0 0 32 32">
+        {path}
+      </SvgIcon>,
+    );
     assert.strictEqual(wrapper.props()['data-test'], 'hello', 'should be spread on the svg');
     assert.strictEqual(wrapper.props().viewBox, '0 0 32 32', 'should override the viewBox');
   });
 
   it('should render with the user and SvgIcon classes', () => {
-    const wrapper = shallow(<SvgIcon className="meow">{path}</SvgIcon>);
+    const wrapper = shallow(
+      <SvgIcon className="meow">
+        {path}
+      </SvgIcon>,
+    );
     assert.strictEqual(wrapper.hasClass('meow'), true, 'should have the "meow" class');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the SvgIcon class');
   });
 
   describe('prop: titleAccess', () => {
     it('should be able to make an icon accessible', () => {
-      const wrapper = shallow(<SvgIcon title="Go to link" titleAccess="Network">{path}</SvgIcon>);
+      const wrapper = shallow(
+        <SvgIcon title="Go to link" titleAccess="Network">
+          {path}
+        </SvgIcon>,
+      );
       assert.strictEqual(wrapper.find('title').text(), 'Network');
       assert.strictEqual(wrapper.props()['aria-hidden'], 'false');
     });

@@ -2,11 +2,11 @@
 
 A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
 
-## Properties
+## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span style="color: #31a148">children *</span> | element |  | The content of the component, normally `Icon`, `SvgIcon`, or a `material-ui-icons` SVG icon component. |
-| classes | object |  | Useful to extend the style applied to components. |
+| <span style="color: #31a148">children *</span> | Element |  | The content of the component, normally `Icon`, `SvgIcon`, or a `material-ui-icons` SVG icon component. |
+| classes | Object |  | Useful to extend the style applied to components. |
 
 Any other properties supplied will be spread to the root element.
 

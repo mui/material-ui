@@ -32,13 +32,21 @@ describe('<DialogTitle />', () => {
 
   it('should render JSX children', () => {
     const children = <p className="test">Hello</p>;
-    const wrapper = shallow(<DialogTitle disableTypography>{children}</DialogTitle>);
+    const wrapper = shallow(
+      <DialogTitle disableTypography>
+        {children}
+      </DialogTitle>,
+    );
     assert.strictEqual(wrapper.childAt(0).equals(children), true);
   });
 
   it('should render string children as given string', () => {
     const children = 'Hello';
-    const wrapper = shallow(<DialogTitle>{children}</DialogTitle>);
+    const wrapper = shallow(
+      <DialogTitle>
+        {children}
+      </DialogTitle>,
+    );
     assert.strictEqual(wrapper.childAt(0).props().children, children);
   });
 });

@@ -40,9 +40,7 @@ class FullScreenDialog extends Component {
     const classes = this.props.classes;
     return (
       <div>
-        <Button onClick={this.handleOpen}>
-          Open full-screen dialog
-        </Button>
+        <Button onClick={this.handleOpen}>Open full-screen dialog</Button>
         <Dialog
           fullScreen
           open={this.state.open}
@@ -57,7 +55,9 @@ class FullScreenDialog extends Component {
               <Typography type="title" color="inherit" className={classes.flex}>
                 Sound
               </Typography>
-              <Button color="contrast" onClick={this.handleRequestClose}>save</Button>
+              <Button color="contrast" onClick={this.handleRequestClose}>
+                save
+              </Button>
             </Toolbar>
           </AppBar>
           <List>

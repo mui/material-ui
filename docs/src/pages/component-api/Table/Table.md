@@ -2,7 +2,7 @@
 
 
 
-## Properties
+## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  | The content of the table, normally `TableHeader` and `TableBody`. |

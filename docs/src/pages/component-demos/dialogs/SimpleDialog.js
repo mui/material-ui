@@ -89,9 +89,7 @@ class SimpleDialogDemo extends Component {
           Selected: {this.state.selectedValue}
         </Typography>
         <br />
-        <Button onClick={() => this.setState({ open: true })}>
-          Open simple dialog
-        </Button>
+        <Button onClick={() => this.setState({ open: true })}>Open simple dialog</Button>
         <SimpleDialogWrapped
           selectedValue={this.state.selectedValue}
           open={this.state.open}

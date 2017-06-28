@@ -2,13 +2,13 @@
 
 
 
-## Properties
+## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | node |  | The content of the component. |
-| classes | object |  | Useful to extend the style applied to components. |
-| color | enum:&nbsp;'inherit'<br>&nbsp;'primary'<br>&nbsp;'accent'<br>&nbsp;'default'<br> | 'primary' | The color of the component. It's using the theme palette when that makes sense. |
-| position | enum:&nbsp;'static'<br>&nbsp;'fixed'<br>&nbsp;'absolute'<br> | 'fixed' | The positioning type. |
+| children | Element |  | The content of the component. |
+| classes | Object |  | Useful to extend the style applied to components. |
+| color | union:&nbsp;'inherit'<br>&nbsp;'primary'<br>&nbsp;'accent'<br>&nbsp;'default'<br> | 'primary' | The color of the component. It's using the theme palette when that makes sense. |
+| position | union:&nbsp;'static'<br>&nbsp;'fixed'<br>&nbsp;'absolute'<br> | 'fixed' | The positioning type. |
 
 Any other properties supplied will be spread to the root element.
 

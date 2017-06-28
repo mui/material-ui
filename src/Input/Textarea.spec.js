@@ -93,22 +93,6 @@ describe('<Textarea />', () => {
       assert.strictEqual(wrapper.state().height, 48);
     });
 
-    it('should call onHeightChange when the height change', () => {
-      const instance = wrapper.instance();
-      instance.singlelineShadow = {
-        scrollHeight: 24,
-      };
-      instance.shadow = {
-        scrollHeight: 24,
-      };
-      const handleHeightChange = spy();
-      wrapper.setProps({
-        onHeightChange: handleHeightChange,
-        value: 'fo',
-      });
-      assert.strictEqual(handleHeightChange.callCount, 1);
-    });
-
     it('should respect the rowsMax property', () => {
       const instance = wrapper.instance();
       const rowsMax = 2;

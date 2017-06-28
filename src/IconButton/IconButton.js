@@ -80,7 +80,9 @@ function IconButton(props) {
     >
       <span className={classes.label}>
         {typeof children === 'string'
-          ? <Icon className={classes.icon}>{children}</Icon>
+          ? <Icon className={classes.icon}>
+              {children}
+            </Icon>
           : Children.map(children, child => {
               if (child.type && child.type.muiName === 'Icon') {
                 return cloneElement(child, {

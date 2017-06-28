@@ -2,7 +2,7 @@
 
 
 
-## Properties
+## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | node |  | Should be valid `<thead>` children such as `TableRow`. |
