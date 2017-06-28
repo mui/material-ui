@@ -6,6 +6,7 @@ import warning from 'warning';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import createEagerFactory from 'recompose/createEagerFactory';
+import getDisplayName from 'recompose/getDisplayName';
 import customPropTypes from '../utils/customPropTypes';
 
 // Link a style sheet with a component.
@@ -13,6 +14,7 @@ import customPropTypes from '../utils/customPropTypes';
 // instead, it returns a new, with a `classes` property.
 const withStyles = styleSheet => BaseComponent => {
   const factory = createEagerFactory(BaseComponent);
+  const componentName = getDisplayName(BaseComponent);
 
   class Style extends Component {
     // Exposed for test purposes.
@@ -31,7 +33,8 @@ const withStyles = styleSheet => BaseComponent => {
             warning(
               renderedClasses[key],
               `Material-UI: the key \`${key}\` ` +
-                'provided to the classes property object is not implemented.',
+                'provided to the classes property object is not implemented ' +
+                `in ${componentName}.`,
             );
 
             acc[key] = `${renderedClasses[key]} ${classesProp[key]}`;
