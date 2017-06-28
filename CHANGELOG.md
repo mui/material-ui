@@ -1,5 +1,21 @@
 ## HEAD
 
+## 0.18.5
+###### _Jun 28, 2017_
+
+##### Component Fixes / Enhancements
+
+- Fix regressions (#7262) @oliviertassinari
+- [TextField] Fix initial scroll (#7260) @brendanmh
+
+##### Docs
+
+- [docs] Promote the v1.0.0-alpha (#7273) @oliviertassinari
+
+##### Core
+
+- [tests] correct values expected by autoprefixer (#7267) @djbuckley
+
 ## 0.18.4
 ###### _Jun 25, 2017_
 
