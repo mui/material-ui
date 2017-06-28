@@ -288,7 +288,7 @@ class TextField extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.disabled) {
+    if (nextProps.disabled && !this.props.disabled) {
       this.setState({isFocused: false});
     }
     
