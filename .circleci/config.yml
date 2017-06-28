@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  checkout:
+  build:
     working_directory: /tmp/material-ui
     docker:
       - image: circleci/node:6.11
