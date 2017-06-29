@@ -7,7 +7,7 @@
 
 <!-- You may provide a repository or use our template-ready webpackbin
 master: https://www.webpackbin.com/bins/-KndEyl53H8td-WNXaut
-next: https://www.webpackbin.com/bins/-Kh8lDulAxDq8j-7yTew
+v1-alpha: https://www.webpackbin.com/bins/-Kh8lDulAxDq8j-7yTew
 
 -->
 
