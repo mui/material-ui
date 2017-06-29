@@ -62,6 +62,9 @@ class Master extends Component {
         width: '100%',
         zIndex: this.state.muiTheme.zIndex.appBar + 1,
       },
+      v1Spacer: {
+        height: 40,
+      },
       appBar: {
         position: 'fixed',
         // Needed to overlap the examples
@@ -183,11 +186,13 @@ class Master extends Component {
     return (
       <div>
         <Title render="Material-UI" />
-        <a style={prepareStyles(styles.v1)} href="https://material-ui-1dab0.firebaseapp.com/">
-          <span>
-            Aww yeah, Material-UI v1 is coming!
-          </span>
-        </a>
+        <div style={prepareStyles(styles.v1Spacer)}>
+          <a style={prepareStyles(styles.v1)} href="https://material-ui-1dab0.firebaseapp.com/">
+            <span>
+              Aww yeah, Material-UI v1 is coming!
+            </span>
+          </a>
+        </div>
         <AppBar
           onLeftIconButtonTouchTap={this.handleTouchTapLeftIconButton}
           title={title}
