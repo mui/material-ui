@@ -57,6 +57,10 @@ class Master extends Component {
         color: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+        position: 'fixed',
+        top: 0,
+        width: '100%',
+        zIndex: this.state.muiTheme.zIndex.appBar + 1,
       },
       appBar: {
         position: 'fixed',
