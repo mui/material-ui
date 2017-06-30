@@ -104,7 +104,7 @@
     "eslint-plugin-prettier": "^2.1.2",
     "eslint-plugin-react": "^7.1.0",
     "eventsource-polyfill": "^0.9.6",
-    "flow-bin": "^0.48.0",
+    "flow-bin": "^0.49.1",
     "flow-copy-source": "^1.2.0",
     "flow-typed": "^2.1.2",
     "fs-extra": "^3.0.1",
