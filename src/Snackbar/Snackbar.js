@@ -7,7 +7,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import ClickAwayListener from '../internal/ClickAwayListener';
-import { capitalizeFirstLetter } from '../utils/helpers';
+import { capitalizeFirstLetter, createChainedFunction } from '../utils/helpers';
 import Slide from '../transitions/Slide';
 import SnackbarContent from './SnackbarContent';
 
@@ -124,6 +124,10 @@ type Props = DefaultProps & {
    * The message to display.
    */
   message?: Element<*>,
+  /**
+   * Callback fired when the transition has exited.
+   */
+  onExited?: Function, // eslint-disable-line react/sort-prop-types
   /**
    * @ignore
    */
@@ -260,6 +264,7 @@ class Snackbar extends Component<DefaultProps, Props, State> {
       enterTransitionDuration,
       leaveTransitionDuration,
       message,
+      onExited,
       onMouseEnter,
       onMouseLeave,
       onRequestClose,
@@ -296,7 +301,7 @@ class Snackbar extends Component<DefaultProps, Props, State> {
               transitionAppear: true,
               enterTransitionDuration,
               leaveTransitionDuration,
-              onExited: this.handleTransitionExited,
+              onExited: createChainedFunction(this.handleTransitionExited, onExited),
             },
             children ||
               <SnackbarContent message={message} action={action} {...SnackbarContentProps} />,
