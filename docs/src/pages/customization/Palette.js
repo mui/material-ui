@@ -3,7 +3,9 @@
 import React from 'react';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import createPalette from 'material-ui/styles/palette';
-import { purple, green, red } from 'material-ui/styles/colors';
+import purple from 'material-ui/colors/purple';
+import green from 'material-ui/colors/green';
+import red from 'material-ui/colors/red';
 import Button from 'material-ui/Button';
 
 const theme = createMuiTheme({

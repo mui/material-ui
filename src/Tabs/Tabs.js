@@ -8,7 +8,6 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
-import isEqual from 'lodash/isEqual';
 import ScrollbarSize from 'react-scrollbar-size';
 import scroll from 'scroll';
 import withStyles from '../styles/withStyles';
@@ -172,14 +171,16 @@ class Tabs extends Component {
 
   updateIndicatorState(props) {
     const { tabsMeta, tabMeta } = this.getTabsMeta(props.index);
-
     const indicatorStyle = {
       left: tabMeta && tabsMeta ? tabMeta.left + (tabsMeta.scrollLeft - tabsMeta.left) : 0,
       // May be wrong until the font is loaded.
       width: tabMeta ? tabMeta.width : 0,
     };
 
-    if (!isEqual(indicatorStyle, this.state.indicatorStyle)) {
+    if (
+      indicatorStyle.left !== this.state.indicatorStyle.left ||
+      indicatorStyle.width !== this.state.indicatorStyle.width
+    ) {
       this.setState({ indicatorStyle });
     }
   }

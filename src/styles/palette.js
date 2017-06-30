@@ -1,8 +1,11 @@
 // @flow weak
 
 import warning from 'warning';
-import difference from 'lodash/difference';
-import { indigo, pink, grey, red, black, white } from './colors';
+import indigo from '../colors/indigo';
+import pink from '../colors/pink';
+import grey from '../colors/grey';
+import red from '../colors/red';
+import common from '../colors/common';
 import { getContrastRatio } from './colorManipulator';
 
 export const light = {
@@ -28,7 +31,7 @@ export const light = {
   },
   background: {
     default: grey[50],
-    paper: white,
+    paper: common.white,
     appBar: grey[100],
     contentFrame: grey[200],
   },
@@ -60,12 +63,12 @@ export const dark = {
     paper: grey[800],
     appBar: grey[900],
     contentFrame: grey[900],
-    status: black,
+    status: common.black,
   },
 };
 
 function getContrastText(color) {
-  if (getContrastRatio(color, black) < 7) {
+  if (getContrastRatio(color, common.black) < 7) {
     return dark.text.primary;
   }
   return light.text.primary;
@@ -75,7 +78,17 @@ export default function createPalette(options = {}) {
   const { primary = indigo, accent = pink, error = red, type = 'light' } = options;
 
   if (process.env.NODE_ENV !== 'production') {
-    const paletteColorError = (themeColor, missing) => {
+    const difference = (base, compare) => {
+      if (!compare) {
+        compare = {};
+      }
+
+      return Object.keys(base).filter(hue => !compare[hue]);
+    };
+
+    const paletteColorError = (name, base, compare) => {
+      const missing = difference(base, compare);
+
       if (missing.length === 0) {
         return;
       }
@@ -83,20 +96,15 @@ export default function createPalette(options = {}) {
       warning(
         false,
         [
-          `Material-UI: ${themeColor} color is missing the following hues: ${missing.join(',')}`,
-          'See the default colors, indigo, or pink, as exported from material-ui/style/colors.',
+          `Material-UI: ${name} color is missing the following hues: ${missing.join(',')}`,
+          'See the default colors, indigo, or pink, as exported from material-ui/colors.',
         ].join('\n'),
       );
     };
 
-    const missingPrimary = difference(Object.keys(indigo), Object.keys(primary));
-    paletteColorError('primary', missingPrimary);
-
-    const missingAccent = difference(Object.keys(pink), Object.keys(accent));
-    paletteColorError('accent', missingAccent);
-
-    const missingError = difference(Object.keys(red), Object.keys(error));
-    paletteColorError('error', missingError);
+    paletteColorError('primary', indigo, primary);
+    paletteColorError('accent', pink, accent);
+    paletteColorError('error', red, error);
   }
 
   const shades = { dark, light };
@@ -104,6 +112,7 @@ export default function createPalette(options = {}) {
   warning(shades[type], `Material-UI: the palette type \`${type}\` is not supported.`);
 
   return {
+    common,
     type,
     shades,
     text: shades[type].text,

@@ -5,7 +5,6 @@ import type { Element } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
-import { lightBlack } from '../styles/colors';
 
 export const styleSheet = createStyleSheet('MuiBackdrop', theme => ({
   root: {
@@ -15,7 +14,7 @@ export const styleSheet = createStyleSheet('MuiBackdrop', theme => ({
     position: 'fixed',
     top: 0,
     left: 0,
-    backgroundColor: lightBlack,
+    backgroundColor: theme.palette.common.lightBlack,
     transition: theme.transitions.create('opacity'),
     willChange: 'opacity',
     opacity: 0,
