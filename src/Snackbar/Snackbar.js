@@ -119,8 +119,15 @@ class Snackbar extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.open && nextProps.open &&
-        (nextProps.message !== this.props.message || nextProps.action !== this.props.action)) {
+    if (
+        this.props.open && nextProps.open &&
+        (
+            nextProps.message !== this.props.message ||
+            nextProps.action !== this.props.action ||
+            nextProps.onActionTouchTap !== this.props.onActionTouchTap ||
+            nextProps.onRequestClose !== this.props.onRequestClose
+        )
+    ) {
       this.setState({
         open: false,
       });
