@@ -3,28 +3,7 @@
 
 import PropTypes from 'prop-types';
 
-let customPropTypes = {};
-
-if (process.env.NODE_ENV !== 'production') {
-  const horizontal = PropTypes.oneOfType([
-    PropTypes.oneOf(['left', 'center', 'right']),
-    PropTypes.number,
-  ]);
-
-  const vertical = PropTypes.oneOfType([
-    PropTypes.oneOf(['top', 'center', 'bottom']),
-    PropTypes.number,
-  ]);
-
-  customPropTypes = {
-    horizontal,
-    vertical,
-    origin: PropTypes.shape({
-      horizontal,
-      vertical,
-    }),
-  };
-}
+const customPropTypes = {};
 
 customPropTypes.muiRequired = (props, propName, componentName, location, propFullName, ...args) => {
   if (process.env.NODE_ENV === 'production') {

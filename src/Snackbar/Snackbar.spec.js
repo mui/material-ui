@@ -57,7 +57,7 @@ describe('<Snackbar />', () => {
       clock.restore();
     });
 
-    it('should be call onRequestClose when the timer is done', () => {
+    it('should call onRequestClose when the timer is done', () => {
       const handleRequestClose = spy();
       const autoHideDuration = 2e3;
       const wrapper = mount(

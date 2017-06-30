@@ -1,12 +1,11 @@
-// @flow weak
+// @flow
 
 import React, { Component, createElement, cloneElement } from 'react';
-import PropTypes from 'prop-types';
+import type { Element } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
-import customPropTypes from '../utils/customPropTypes';
 import ClickAwayListener from '../internal/ClickAwayListener';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import Slide from '../transitions/Slide';
@@ -67,15 +66,106 @@ export const styleSheet = createStyleSheet('MuiSnackbar', theme => {
   };
 });
 
-class Snackbar extends Component {
-  static defaultProps = {
+type Origin = {
+  horizontal: 'left' | 'center' | 'right' | number,
+  vertical: 'top' | 'center' | 'bottom' | number,
+};
+
+type DefaultProps = {
+  anchorOrigin: Origin,
+  autoHideDuration: ?number,
+  enterTransitionDuration: number,
+  leaveTransitionDuration: number,
+};
+
+type Props = DefaultProps & {
+  /**
+   * The action to display.
+   */
+  action?: Element<*>,
+  /**
+   * The anchor of the `Snackbar`.
+   */
+  anchorOrigin?: Origin,
+  /**
+   * The number of milliseconds to wait before automatically dismissing.
+   * This behavior is disabled by default with the `null` value.
+   */
+  autoHideDuration?: number,
+  /**
+   * If you wish the take control over the children of the component you can use that property.
+   * When using it, no `SnackbarContent` component will be rendered.
+   */
+  children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * Customizes duration of enter animation (ms)
+   */
+  enterTransitionDuration?: number,
+  /**
+   * Customizes duration of leave animation (ms)
+   */
+  leaveTransitionDuration?: number,
+  /**
+   * The message to display.
+   */
+  message?: Element<*>,
+  /**
+   * @ignore
+   */
+  onMouseEnter?: Function,
+  /**
+   * @ignore
+   */
+  onMouseLeave?: Function,
+  /**
+   * Callback fired when the component requests to be closed.
+   *
+   * Typically `onRequestClose` is used to set state in the parent component,
+   * which is used to control the `Snackbar` `open` prop.
+   *
+   * The `reason` parameter can optionally be used to control the response to `onRequestClose`,
+   * for example ignoring `clickaway`.
+   *
+   * @param {event} event The event that triggered the close request
+   * @param {string} reason Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"`
+   */
+  onRequestClose?: (event: ?SyntheticUIEvent, reason: string) => void,
+  /**
+   * If true, `Snackbar` is open.
+   */
+  open: boolean,
+  /**
+   * Properties applied to the `SnackbarContent` element.
+   */
+  SnackbarContentProps?: Object,
+  /**
+   * Object with Transition component, props & create Fn.
+   */
+  transition?: Function | Element<*>,
+};
+
+type State = {
+  exited: boolean,
+};
+
+class Snackbar extends Component<DefaultProps, Props, State> {
+  props: Props;
+  static defaultProps: DefaultProps = {
     anchorOrigin: { vertical: 'bottom', horizontal: 'center' },
     autoHideDuration: null,
     enterTransitionDuration: duration.enteringScreen,
     leaveTransitionDuration: duration.leavingScreen,
   };
 
-  state = {
+  state: State = {
     // Used to only render active snackbars.
     exited: false,
   };
@@ -168,7 +258,8 @@ class Snackbar extends Component {
       onRequestClose,
       open,
       SnackbarContentProps,
-      transition: transitionProps,
+      // $FlowFixMe - invalid error? Property cannot be accessed on any member of intersection type
+      transition: transitionProp,
       ...other
     } = this.props;
 
@@ -176,8 +267,8 @@ class Snackbar extends Component {
       return null;
     }
 
-    const createTransitionFn = typeof transitionProps === 'function' ? createElement : cloneElement;
-    const transition = transitionProps || <Slide direction={vertical === 'top' ? 'down' : 'up'} />;
+    const createTransitionFn = typeof transitionProp === 'function' ? createElement : cloneElement;
+    const transition = transitionProp || <Slide direction={vertical === 'top' ? 'down' : 'up'} />;
 
     return (
       <ClickAwayListener onClickAway={this.handleClickAway}>
@@ -208,79 +299,5 @@ class Snackbar extends Component {
     );
   }
 }
-
-Snackbar.propTypes = {
-  /**
-   * The action to display.
-   */
-  action: PropTypes.node,
-  /**
-   * The anchor of the `Snackbar`.
-   */
-  anchorOrigin: customPropTypes.origin,
-  /**
-   * The number of milliseconds to wait before automatically dismissing.
-   * This behavior is disabled by default with the `null` value.
-   */
-  autoHideDuration: PropTypes.number,
-  /**
-   * If you wish the take control over the children of the component you can use that property.
-   * When using it, no `SnackbarContent` component will be rendered.
-   */
-  children: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * Customizes duration of enter animation (ms)
-   */
-  enterTransitionDuration: PropTypes.number,
-  /**
-   * Customizes duration of leave animation (ms)
-   */
-  leaveTransitionDuration: PropTypes.number,
-  /**
-   * The message to display.
-   */
-  message: PropTypes.node,
-  /**
-   * @ignore
-   */
-  onMouseEnter: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onMouseLeave: PropTypes.func,
-  /**
-   * Callback fired when the component requests to be closed.
-   *
-   * Typically `onRequestClose` is used to set state in the parent component,
-   * which is used to control the `Snackbar` `open` prop.
-   *
-   * The `reason` parameter can optionally be used to control the response to `onRequestClose`,
-   * for example ignoring `clickaway`.
-   *
-   * @param {event} event The event that triggered the close request
-   * @param {string} reason Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"`
-   */
-  onRequestClose: PropTypes.func,
-  /**
-   * If true, `Snackbar` is open.
-   */
-  open: PropTypes.bool.isRequired,
-  /**
-   * Properties applied to the `SnackbarContent` element.
-   */
-  SnackbarContentProps: PropTypes.object,
-  /**
-   * Object with Transition component, props & create Fn.
-   */
-  transition: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
-};
 
 export default withStyles(styleSheet)(Snackbar);
