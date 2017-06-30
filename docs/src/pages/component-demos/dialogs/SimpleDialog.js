@@ -11,7 +11,7 @@ import Dialog, { DialogTitle } from 'material-ui/Dialog';
 import PersonIcon from 'material-ui-icons/Person';
 import AddIcon from 'material-ui-icons/Add';
 import Typography from 'material-ui/Typography';
-import { blue } from 'material-ui/styles/colors';
+import blue from 'material-ui/colors/blue';
 
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 

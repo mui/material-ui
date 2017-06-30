@@ -56,6 +56,11 @@ export { default as Snackbar, SnackbarContent } from './Snackbar';
 
 export { MuiThemeProvider } from './styles';
 
+// eslint-disable-next-line import/first
+import * as colors from './colors';
+
+export { colors };
+
 export { default as SvgIcon } from './SvgIcon';
 
 export { default as Switch, LabelSwitch } from './Switch';
