@@ -115,7 +115,7 @@ type Props = DefaultProps & {
    * e.g. <Snackbar key={message} />, otherwise, the message may update-in-place and
    * features such as autoHideDuration may be canceled.
    */
-  key: any,
+  key?: any,
   /**
    * Customizes duration of leave animation (ms)
    */
