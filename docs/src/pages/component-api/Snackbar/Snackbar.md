@@ -5,18 +5,19 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| SnackbarContentProps | object |  | Properties applied to the `SnackbarContent` element. |
-| action | node |  | The action to display. |
-| anchorOrigin | customPropTypes.origin | { vertical: 'bottom', horizontal: 'center' } | The anchor of the `Snackbar`. |
+| SnackbarContentProps | Object |  | Properties applied to the `SnackbarContent` element. |
+| action | Element |  | The action to display. |
+| anchorOrigin | signature | { vertical: 'bottom', horizontal: 'center' } | The anchor of the `Snackbar`. |
 | autoHideDuration | number | null | The number of milliseconds to wait before automatically dismissing. This behavior is disabled by default with the `null` value. |
-| children | node |  | If you wish the take control over the children of the component you can use that property. When using it, no `SnackbarContent` component will be rendered. |
-| classes | object |  | Useful to extend the style applied to components. |
+| children | Element |  | If you wish the take control over the children of the component you can use that property. When using it, no `SnackbarContent` component will be rendered. |
+| classes | Object |  | Useful to extend the style applied to components. |
 | enterTransitionDuration | number | duration.enteringScreen | Customizes duration of enter animation (ms) |
+| key | any |  | When displaying multiple consecutive Snackbars from a parent renedering a single <Snackbar/>, add the key property to ensure independent treatment of each message. e.g. <Snackbar key={message} />, otherwise, the message may update-in-place and features such as autoHideDuration may be canceled. |
 | leaveTransitionDuration | number | duration.leavingScreen | Customizes duration of leave animation (ms) |
-| message | node |  | The message to display. |
-| onRequestClose | function |  | Callback fired when the component requests to be closed.<br>Typically `onRequestClose` is used to set state in the parent component, which is used to control the `Snackbar` `open` prop.<br>The `reason` parameter can optionally be used to control the response to `onRequestClose`, for example ignoring `clickaway`.<br><br>**Signature:**<br>`function(event: event, reason: string) => void`<br>*event:* The event that triggered the close request<br>*reason:* Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"` |
-| <span style="color: #31a148">open *</span> | bool |  | If true, `Snackbar` is open. |
-| transition | union:&nbsp;func<br>&nbsp;element<br> |  | Object with Transition component, props & create Fn. |
+| message | Element |  | The message to display. |
+| onRequestClose | signature |  | Callback fired when the component requests to be closed.<br>Typically `onRequestClose` is used to set state in the parent component, which is used to control the `Snackbar` `open` prop.<br>The `reason` parameter can optionally be used to control the response to `onRequestClose`, for example ignoring `clickaway`. |
+| <span style="color: #31a148">open *</span> | boolean |  | If true, `Snackbar` is open. |
+| transition | union:&nbsp;Function<br>&nbsp;Element<*><br> |  | Object with Transition component, props & create Fn. |
 
 Any other properties supplied will be spread to the root element.
 

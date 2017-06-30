@@ -10,7 +10,6 @@
 | component | union:&nbsp;string<br>&nbsp;func<br> |  | The component used for the root node. Either a string to use a DOM element or a component. It's an `input` by default. |
 | defaultValue | union:&nbsp;string<br>&nbsp;number<br> |  | The default input value, useful when not controlling the component. |
 | disableUnderline | bool | false | If `true`, the input will not have an underline. |
-| disabled | bool |  | If `true`, the input will be disabled. |
 | error | bool |  | If `true`, the input will indicate an error. |
 | id | string |  |  |
 | inputProps | object |  | Properties applied to the `input` element. |
