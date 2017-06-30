@@ -149,7 +149,7 @@ MobileStepper.propTypes = {
    */
   onNext: PropTypes.func.isRequired,
   /**
-   * Set the text that appears for the next button.
+   * Set the positioning type.
    */
   position: PropTypes.oneOf(['bottom', 'top', 'static']),
   /**

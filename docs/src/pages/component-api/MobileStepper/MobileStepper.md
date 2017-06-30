@@ -13,7 +13,7 @@
 | nextButtonText | node | 'Next' | Set the text that appears for the next button. |
 | <span style="color: #31a148">onBack *</span> | function |  | Passed into the onClick prop of the Back button. |
 | <span style="color: #31a148">onNext *</span> | function |  | Passed into the onClick prop of the Next button. |
-| position | enum:&nbsp;'bottom'<br>&nbsp;'top'<br>&nbsp;'static'<br> | 'bottom' | Set the text that appears for the next button. |
+| position | enum:&nbsp;'bottom'<br>&nbsp;'top'<br>&nbsp;'static'<br> | 'bottom' | Set the positioning type. |
 | <span style="color: #31a148">steps *</span> | number |  | The total steps. |
 | type | enum:&nbsp;'text'<br>&nbsp;'dots'<br>&nbsp;'progress'<br> | 'dots' | The type of mobile stepper to use. |
 
