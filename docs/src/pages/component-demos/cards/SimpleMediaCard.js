@@ -27,13 +27,17 @@ function SimpleMediaCard(props) {
             Lizard
           </Typography>
           <Typography component="p">
-            Lizards are a widespread group of squamate reptiles, with over
-            6,000 species, ranging across all continents except Antarctica
+            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+            across all continents except Antarctica
           </Typography>
         </CardContent>
         <CardActions>
-          <Button dense color="primary">Share</Button>
-          <Button dense color="primary">Learn More</Button>
+          <Button dense color="primary">
+            Share
+          </Button>
+          <Button dense color="primary">
+            Learn More
+          </Button>
         </CardActions>
       </Card>
     </div>

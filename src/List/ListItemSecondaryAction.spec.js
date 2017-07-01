@@ -10,7 +10,7 @@ describe('<ListItemSecondaryAction />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    shallow = createShallow({ untilSelector: 'ListItemSecondaryAction' });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 

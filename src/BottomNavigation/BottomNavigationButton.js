@@ -92,7 +92,9 @@ class BottomNavigationButton extends Component {
 
     const icon = isValidElement(iconProp)
       ? cloneElement(iconProp, { className: iconClassName })
-      : <Icon>{iconProp}</Icon>;
+      : <Icon>
+          {iconProp}
+        </Icon>;
 
     const labelClassName = classNames(classes.label, {
       [classes.selectedLabel]: selected,

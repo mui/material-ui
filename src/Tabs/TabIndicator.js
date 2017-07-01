@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
+import { capitalizeFirstLetter } from '../utils/helpers';
 
 export const styleSheet = createStyleSheet('MuiTabIndicator', theme => ({
   root: {
@@ -17,6 +18,9 @@ export const styleSheet = createStyleSheet('MuiTabIndicator', theme => ({
   colorAccent: {
     backgroundColor: theme.palette.accent.A200,
   },
+  colorPrimary: {
+    backgroundColor: theme.palette.primary[500],
+  },
 }));
 
 /**
@@ -24,21 +28,21 @@ export const styleSheet = createStyleSheet('MuiTabIndicator', theme => ({
  */
 function TabIndicator(props) {
   const { classes, className: classNameProp, color, style: styleProp } = props;
-
+  const colorPredefined = ['primary', 'accent'].indexOf(color) !== -1;
   const className = classNames(
     classes.root,
     {
-      [classes.colorAccent]: color === 'accent',
+      [classes[`color${capitalizeFirstLetter(color)}`]]: colorPredefined,
     },
     classNameProp,
   );
 
-  const style = color !== 'accent'
-    ? {
+  const style = colorPredefined
+    ? styleProp
+    : {
         ...styleProp,
         backgroundColor: color,
-      }
-    : styleProp;
+      };
 
   return <div className={className} style={style} />;
 }
@@ -56,7 +60,7 @@ TabIndicator.propTypes = {
    * @ignore
    * The color of the tab indicator.
    */
-  color: PropTypes.oneOfType([PropTypes.oneOf(['accent']), PropTypes.string]).isRequired,
+  color: PropTypes.oneOfType([PropTypes.oneOf(['accent', 'primary']), PropTypes.string]).isRequired,
   /**
    * @ignore
    * The style of the root element.

@@ -1,8 +1,8 @@
-// @flow weak
+// @flow
 
 import warning from 'warning';
 
-export default function createTypography(palette, constants = {}) {
+export default function createTypography(palette: Object, constants: Object = {}) {
   const {
     fontFamily = '"Roboto", "Helvetica", "Arial", sans-serif',
     fontSize = 14,
@@ -96,8 +96,10 @@ export default function createTypography(palette, constants = {}) {
       color: palette.text.secondary,
     },
     button: {
+      fontSize,
       textTransform: 'uppercase',
       fontWeight: fontWeightMedium,
+      fontFamily,
     },
   };
 }

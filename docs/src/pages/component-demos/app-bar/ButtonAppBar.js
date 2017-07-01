@@ -29,7 +29,9 @@ function ButtonAppBar(props) {
           <IconButton color="contrast" aria-label="Menu">
             <MenuIcon />
           </IconButton>
-          <Typography type="title" color="inherit" className={classes.flex}>Title</Typography>
+          <Typography type="title" color="inherit" className={classes.flex}>
+            Title
+          </Typography>
           <Button color="contrast">Login</Button>
         </Toolbar>
       </AppBar>

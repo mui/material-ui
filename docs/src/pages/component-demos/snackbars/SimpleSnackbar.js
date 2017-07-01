@@ -37,9 +37,7 @@ class SimpleSnackbar extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <Button onClick={this.handleClick}>
-          Open simple snackbar
-        </Button>
+        <Button onClick={this.handleClick}>Open simple snackbar</Button>
         <Snackbar
           anchorOrigin={{
             vertical: 'bottom',
@@ -48,7 +46,7 @@ class SimpleSnackbar extends Component {
           open={this.state.open}
           autoHideDuration={6e3}
           onRequestClose={this.handleRequestClose}
-          contentProps={{
+          SnackbarContentProps={{
             'aria-describedby': 'message-id',
           }}
           message={<span id="message-id">Note archived</span>}

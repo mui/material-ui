@@ -64,6 +64,10 @@ describe('withStyles', () => {
         bar: 'undefined foo',
       });
       assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.match(
+        consoleErrorMock.args()[0][0],
+        /Material-UI: the key `bar` provided to the classes property object is not implemented/,
+      );
     });
   });
 

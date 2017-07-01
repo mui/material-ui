@@ -2,7 +2,7 @@
 
 
 
-## Properties
+## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span style="color: #31a148">children *</span> | element |  | You can only provide a single element. |

@@ -17,12 +17,20 @@ describe('<Portal />', () => {
   });
 
   it('should render nothing directly', () => {
-    const wrapper = mount(<Portal><h1 className="woof">Hello</h1></Portal>);
+    const wrapper = mount(
+      <Portal>
+        <h1 className="woof">Hello</h1>
+      </Portal>,
+    );
     assert.strictEqual(wrapper.children().length, 0, 'should have no children');
   });
 
   it('should not open by default', () => {
-    const wrapper = mount(<Portal><h1 className="woof">Hello</h1></Portal>);
+    const wrapper = mount(
+      <Portal>
+        <h1 className="woof">Hello</h1>
+      </Portal>,
+    );
     const instance = wrapper.instance();
     assert.strictEqual(wrapper.props().open, false, 'should be false by default');
     assert.strictEqual(instance.layer, null, 'should not have a layer');
@@ -34,7 +42,11 @@ describe('<Portal />', () => {
     let portal;
 
     before(() => {
-      wrapper = mount(<Portal open><h1 id="woof">Hello</h1></Portal>);
+      wrapper = mount(
+        <Portal open>
+          <h1 id="woof">Hello</h1>
+        </Portal>,
+      );
       instance = wrapper.instance();
       portal = instance.layer;
     });

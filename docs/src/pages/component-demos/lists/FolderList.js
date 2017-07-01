@@ -21,11 +21,15 @@ function FolderList(props) {
     <div className={classes.root}>
       <List>
         <ListItem button>
-          <Avatar><FolderIcon /></Avatar>
+          <Avatar>
+            <FolderIcon />
+          </Avatar>
           <ListItemText primary="Photos" secondary="Jan 9, 2016" />
         </ListItem>
         <ListItem button>
-          <Avatar><FolderIcon /></Avatar>
+          <Avatar>
+            <FolderIcon />
+          </Avatar>
           <ListItemText primary="Work" secondary="Jan 7, 2016" />
         </ListItem>
       </List>

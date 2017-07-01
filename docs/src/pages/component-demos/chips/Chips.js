@@ -49,7 +49,11 @@ function Chips(props) {
         className={classes.chip}
       />
       <Chip
-        avatar={<Avatar><FaceIcon className={classes.svgIcon} /></Avatar>}
+        avatar={
+          <Avatar>
+            <FaceIcon className={classes.svgIcon} />
+          </Avatar>
+        }
         label="Clickable Deletable Chip"
         onClick={handleClick}
         onRequestDelete={handleRequestDelete}

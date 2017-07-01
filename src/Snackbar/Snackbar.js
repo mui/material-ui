@@ -157,8 +157,8 @@ class Snackbar extends Component {
       action,
       anchorOrigin: { vertical, horizontal },
       autoHideDuration,
+      children,
       classes,
-      contentProps,
       className,
       enterTransitionDuration,
       leaveTransitionDuration,
@@ -167,6 +167,7 @@ class Snackbar extends Component {
       onMouseLeave,
       onRequestClose,
       open,
+      SnackbarContentProps,
       transition: transitionProps,
       ...other
     } = this.props;
@@ -199,7 +200,8 @@ class Snackbar extends Component {
               leaveTransitionDuration,
               onExited: this.handleTransitionExited,
             },
-            <SnackbarContent message={message} action={action} {...contentProps} />,
+            children ||
+              <SnackbarContent message={message} action={action} {...SnackbarContentProps} />,
           )}
         </div>
       </ClickAwayListener>
@@ -222,6 +224,11 @@ Snackbar.propTypes = {
    */
   autoHideDuration: PropTypes.number,
   /**
+   * If you wish the take control over the children of the component you can use that property.
+   * When using it, no `SnackbarContent` component will be rendered.
+   */
+  children: PropTypes.node,
+  /**
    * Useful to extend the style applied to components.
    */
   classes: PropTypes.object.isRequired,
@@ -229,10 +236,6 @@ Snackbar.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * Properties applied to the `SnackbarContent` element.
-   */
-  contentProps: PropTypes.object,
   /**
    * Customizes duration of enter animation (ms)
    */
@@ -244,7 +247,7 @@ Snackbar.propTypes = {
   /**
    * The message to display.
    */
-  message: PropTypes.node.isRequired,
+  message: PropTypes.node,
   /**
    * @ignore
    */
@@ -270,6 +273,10 @@ Snackbar.propTypes = {
    * If true, `Snackbar` is open.
    */
   open: PropTypes.bool.isRequired,
+  /**
+   * Properties applied to the `SnackbarContent` element.
+   */
+  SnackbarContentProps: PropTypes.object,
   /**
    * Object with Transition component, props & create Fn.
    */

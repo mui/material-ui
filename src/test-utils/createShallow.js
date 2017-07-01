@@ -5,10 +5,16 @@ import jssPreset from 'jss-preset-default';
 import { createStyleManager } from 'jss-theme-reactor';
 import { shallow as enzymeShallow } from 'enzyme';
 import createMuiTheme from '../styles/theme';
+import until from './until';
 
 // Generate an enhanced shallow function with the needed context.
 export default function createShallow(options = {}) {
-  const { shallow = enzymeShallow, otherContext = {}, dive = false } = options;
+  const {
+    shallow = enzymeShallow,
+    otherContext = {},
+    dive = false,
+    untilSelector = false,
+  } = options;
   const theme = createMuiTheme();
   const jss = create(jssPreset());
   const styleManager = createStyleManager({ jss, theme });
@@ -26,6 +32,10 @@ export default function createShallow(options = {}) {
 
     if (dive) {
       return wrapper.dive();
+    }
+
+    if (untilSelector) {
+      return until.call(wrapper, untilSelector);
     }
 
     return wrapper;

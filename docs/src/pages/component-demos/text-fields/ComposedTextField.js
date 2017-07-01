@@ -33,29 +33,21 @@ class ComposedTextField extends Component {
     return (
       <div className={classes.container}>
         <FormControl className={classes.input}>
-          <InputLabel htmlFor="name">
-            Name
-          </InputLabel>
+          <InputLabel htmlFor="name">Name</InputLabel>
           <Input id="name" value={this.state.name} onChange={this.handleChange} />
         </FormControl>
         <FormControl className={classes.input}>
-          <InputLabel htmlFor="name">
-            Name
-          </InputLabel>
+          <InputLabel htmlFor="name">Name</InputLabel>
           <Input id="name" value={this.state.name} onChange={this.handleChange} />
           <FormHelperText>Some important helper text</FormHelperText>
         </FormControl>
         <FormControl className={classes.input} disabled>
-          <InputLabel htmlFor="name">
-            Name
-          </InputLabel>
+          <InputLabel htmlFor="name">Name</InputLabel>
           <Input id="name" value={this.state.name} onChange={this.handleChange} />
           <FormHelperText>Some important helper text</FormHelperText>
         </FormControl>
         <FormControl className={classes.input} error>
-          <InputLabel htmlFor="name">
-            Name
-          </InputLabel>
+          <InputLabel htmlFor="name">Name</InputLabel>
           <Input id="name" value={this.state.name} onChange={this.handleChange} />
           <FormHelperText>Some important helper text</FormHelperText>
         </FormControl>

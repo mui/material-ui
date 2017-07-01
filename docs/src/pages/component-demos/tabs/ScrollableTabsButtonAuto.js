@@ -43,6 +43,8 @@ class ScrollableTabsButtonAuto extends Component {
           <Tabs
             index={this.state.index}
             onChange={this.handleChange}
+            indicatorColor="primary"
+            textColor="primary"
             scrollable
             scrollButtons="auto"
           >
@@ -55,13 +57,34 @@ class ScrollableTabsButtonAuto extends Component {
             <Tab label="Item Seven" />
           </Tabs>
         </AppBar>
-        {this.state.index === 0 && <TabContainer>{'Item One'}</TabContainer>}
-        {this.state.index === 1 && <TabContainer>{'Item Two'}</TabContainer>}
-        {this.state.index === 2 && <TabContainer>{'Item Three'}</TabContainer>}
-        {this.state.index === 3 && <TabContainer>{'Item Four'}</TabContainer>}
-        {this.state.index === 4 && <TabContainer>{'Item Five'}</TabContainer>}
-        {this.state.index === 5 && <TabContainer>{'Item Six'}</TabContainer>}
-        {this.state.index === 6 && <TabContainer>{'Item Seven'}</TabContainer>}
+        {this.state.index === 0 &&
+          <TabContainer>
+            {'Item One'}
+          </TabContainer>}
+        {this.state.index === 1 &&
+          <TabContainer>
+            {'Item Two'}
+          </TabContainer>}
+        {this.state.index === 2 &&
+          <TabContainer>
+            {'Item Three'}
+          </TabContainer>}
+        {this.state.index === 3 &&
+          <TabContainer>
+            {'Item Four'}
+          </TabContainer>}
+        {this.state.index === 4 &&
+          <TabContainer>
+            {'Item Five'}
+          </TabContainer>}
+        {this.state.index === 5 &&
+          <TabContainer>
+            {'Item Six'}
+          </TabContainer>}
+        {this.state.index === 6 &&
+          <TabContainer>
+            {'Item Seven'}
+          </TabContainer>}
       </div>
     );
   }

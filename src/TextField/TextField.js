@@ -8,6 +8,7 @@ import FormHelperText from '../Form/FormHelperText';
 
 function TextField(props) {
   const {
+    autoComplete,
     autoFocus,
     className,
     defaultValue,
@@ -53,6 +54,7 @@ function TextField(props) {
           {label}
         </InputLabel>}
       <Input
+        autoComplete={autoComplete}
         autoFocus={autoFocus}
         className={InputClassName}
         defaultValue={defaultValue}
@@ -78,6 +80,10 @@ function TextField(props) {
 }
 
 TextField.propTypes = {
+  /**
+   * @ignore
+   */
+  autoComplete: PropTypes.bool,
   /**
    * @ignore
    */

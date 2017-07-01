@@ -6,6 +6,7 @@ import warning from 'warning';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import createEagerFactory from 'recompose/createEagerFactory';
+import getDisplayName from 'recompose/getDisplayName';
 import customPropTypes from '../utils/customPropTypes';
 
 // Link a style sheet with a component.
@@ -30,8 +31,15 @@ const withStyles = styleSheet => BaseComponent => {
           ...Object.keys(classesProp).reduce((acc, key) => {
             warning(
               renderedClasses[key],
-              `Material-UI: the key \`${key}\` ` +
-                'provided to the classes property object is not implemented.',
+              [
+                `Material-UI: the key \`${key}\` ` +
+                  `provided to the classes property object is not implemented in ${getDisplayName(
+                    BaseComponent,
+                  )}.`,
+                `You can only overrides one of the following: ${Object.keys(renderedClasses).join(
+                  ',',
+                )}`,
+              ].join('\n'),
             );
 
             acc[key] = `${renderedClasses[key]} ${classesProp[key]}`;

@@ -39,9 +39,7 @@ describe('<Snackbar />', () => {
       mount(<Snackbar open onRequestClose={handleRequestClose} message="message" />);
 
       const event = new window.Event('mouseup', { view: window, bubbles: true, cancelable: true });
-      if (document.body) {
-        document.body.dispatchEvent(event);
-      }
+      window.document.body.dispatchEvent(event);
 
       assert.strictEqual(handleRequestClose.callCount, 1);
       assert.deepEqual(handleRequestClose.args[0], [event, 'clickaway']);
@@ -161,6 +159,18 @@ describe('<Snackbar />', () => {
         open: true,
       });
       assert.strictEqual(wrapper.find(Slide).length, 1, 'should use a Slide by default');
+    });
+  });
+
+  describe('prop: children', () => {
+    it('should render the children', () => {
+      const children = <div />;
+      const wrapper = shallow(
+        <Snackbar open>
+          {children}
+        </Snackbar>,
+      );
+      assert.strictEqual(wrapper.contains(children), true);
     });
   });
 });

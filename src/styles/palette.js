@@ -2,7 +2,6 @@
 
 import warning from 'warning';
 import difference from 'lodash/difference';
-import keys from 'lodash/keys';
 import { indigo, pink, grey, red, black, white } from './colors';
 import { getContrastRatio } from './colorManipulator';
 
@@ -76,28 +75,28 @@ export default function createPalette(options = {}) {
   const { primary = indigo, accent = pink, error = red, type = 'light' } = options;
 
   if (process.env.NODE_ENV !== 'production') {
-    class PaletteColorError extends Error {
-      constructor(themeColor) {
-        const palette = createPalette();
-        const message = [
-          `${themeColor} must have the following attributes: ${keys(palette[themeColor])}`,
-          'See the default colors, indigo, or pink, as exported from material-ui/style/colors.',
-        ];
-        super(message.join('\n'));
+    const paletteColorError = (themeColor, missing) => {
+      if (missing.length === 0) {
+        return;
       }
-    }
 
-    if (difference(keys(indigo), keys(primary)).length) {
-      throw new PaletteColorError('primary');
-    }
+      warning(
+        false,
+        [
+          `Material-UI: ${themeColor} color is missing the following hues: ${missing.join(',')}`,
+          'See the default colors, indigo, or pink, as exported from material-ui/style/colors.',
+        ].join('\n'),
+      );
+    };
 
-    if (difference(keys(pink), keys(accent)).length) {
-      throw new PaletteColorError('accent');
-    }
+    const missingPrimary = difference(Object.keys(indigo), Object.keys(primary));
+    paletteColorError('primary', missingPrimary);
 
-    if (difference(keys(red), keys(error)).length) {
-      throw new PaletteColorError('error');
-    }
+    const missingAccent = difference(Object.keys(pink), Object.keys(accent));
+    paletteColorError('accent', missingAccent);
+
+    const missingError = difference(Object.keys(red), Object.keys(error));
+    paletteColorError('error', missingError);
   }
 
   const shades = { dark, light };

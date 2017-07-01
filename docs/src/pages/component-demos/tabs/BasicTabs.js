@@ -45,9 +45,18 @@ class BasicTabs extends Component {
             <Tab label="Item Three" />
           </Tabs>
         </AppBar>
-        {this.state.index === 0 && <TabContainer>{'Item One'}</TabContainer>}
-        {this.state.index === 1 && <TabContainer>{'Item Two'}</TabContainer>}
-        {this.state.index === 2 && <TabContainer>{'Item Three'}</TabContainer>}
+        {this.state.index === 0 &&
+          <TabContainer>
+            {'Item One'}
+          </TabContainer>}
+        {this.state.index === 1 &&
+          <TabContainer>
+            {'Item Two'}
+          </TabContainer>}
+        {this.state.index === 2 &&
+          <TabContainer>
+            {'Item Three'}
+          </TabContainer>}
       </div>
     );
   }

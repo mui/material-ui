@@ -75,4 +75,11 @@ describe('<AppBar />', () => {
       'should not have the accent class',
     );
   });
+
+  describe('Dialog', () => {
+    it('should add a .mui-fixed class', () => {
+      const wrapper = shallow(<AppBar position="fixed">Hello World</AppBar>);
+      assert.strictEqual(wrapper.hasClass('mui-fixed'), true);
+    });
+  });
 });

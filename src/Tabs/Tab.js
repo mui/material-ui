@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import ButtonBase from '../internal/ButtonBase';
 import withStyles from '../styles/withStyles';
+import { capitalizeFirstLetter } from '../utils/helpers';
 import Icon from '../Icon';
 
 export const styleSheet = createStyleSheet('MuiTab', theme => ({
@@ -34,6 +35,15 @@ export const styleSheet = createStyleSheet('MuiTab', theme => ({
   rootAccentDisabled: {
     color: theme.palette.text.disabled,
   },
+  rootPrimary: {
+    color: theme.palette.text.secondary,
+  },
+  rootPrimarySelected: {
+    color: theme.palette.primary[500],
+  },
+  rootPrimaryDisabled: {
+    color: theme.palette.text.disabled,
+  },
   rootInherit: {
     color: 'inherit',
     opacity: 0.7,
@@ -59,9 +69,6 @@ export const styleSheet = createStyleSheet('MuiTab', theme => ({
   },
   label: {
     fontSize: theme.typography.fontSize,
-    fontWeight: theme.typography.fontWeightMedium,
-    fontFamily: theme.typography.fontFamily,
-    textTransform: 'uppercase',
     whiteSpace: 'normal',
     [theme.breakpoints.up('md')]: {
       fontSize: theme.typography.fontSize - 1,
@@ -138,7 +145,11 @@ class Tab extends Component {
     let icon;
 
     if (iconProp !== undefined) {
-      icon = isValidElement(iconProp) ? iconProp : <Icon>{iconProp}</Icon>;
+      icon = isValidElement(iconProp)
+        ? iconProp
+        : <Icon>
+            {iconProp}
+          </Icon>;
     }
 
     let label;
@@ -163,12 +174,9 @@ class Tab extends Component {
     const className = classNames(
       classes.root,
       {
-        [classes.rootAccent]: textColor === 'accent',
-        [classes.rootAccentDisabled]: disabled && textColor === 'accent',
-        [classes.rootAccentSelected]: selected && textColor === 'accent',
-        [classes.rootInherit]: textColor === 'inherit',
-        [classes.rootInheritDisabled]: disabled && textColor === 'inherit',
-        [classes.rootInheritSelected]: selected && textColor === 'inherit',
+        [classes[`root${capitalizeFirstLetter(textColor)}`]]: true,
+        [classes[`root${capitalizeFirstLetter(textColor)}Disabled`]]: disabled,
+        [classes[`root${capitalizeFirstLetter(textColor)}Selected`]]: selected,
         [classes.rootLabelIcon]: icon && label,
         [classes.fullWidth]: fullWidth,
       },
@@ -181,12 +189,13 @@ class Tab extends Component {
       style.color = textColor;
     }
 
-    style = Object.keys(style).length > 0
-      ? {
-          ...style,
-          ...styleProp,
-        }
-      : styleProp;
+    style =
+      Object.keys(style).length > 0
+        ? {
+            ...style,
+            ...styleProp,
+          }
+        : styleProp;
 
     return (
       <ButtonBase
@@ -254,7 +263,10 @@ Tab.propTypes = {
   /**
    * @ignore
    */
-  textColor: PropTypes.oneOfType([PropTypes.oneOf(['accent', 'inherit']), PropTypes.string]),
+  textColor: PropTypes.oneOfType([
+    PropTypes.oneOf(['accent', 'primary', 'inherit']),
+    PropTypes.string,
+  ]),
 };
 
 export default withStyles(styleSheet)(Tab);

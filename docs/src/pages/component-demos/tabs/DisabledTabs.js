@@ -17,7 +17,12 @@ class DisabledTabs extends Component {
   render() {
     return (
       <Paper>
-        <Tabs index={this.state.index} onChange={this.handleChange}>
+        <Tabs
+          index={this.state.index}
+          indicatorColor="primary"
+          textColor="primary"
+          onChange={this.handleChange}
+        >
           <Tab label="Active" />
           <Tab label="Disabled" disabled />
           <Tab label="Active" />

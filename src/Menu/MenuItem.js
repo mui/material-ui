@@ -1,7 +1,7 @@
-// @flow weak
+// @flow
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Element } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
@@ -13,9 +13,6 @@ export const styleSheet = createStyleSheet('MuiMenuItem', theme => ({
     height: 48,
     boxSizing: 'border-box',
     background: 'none',
-    transition: theme.transitions.create('background-color', {
-      duration: theme.transitions.duration.short,
-    }),
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
@@ -31,7 +28,40 @@ export const styleSheet = createStyleSheet('MuiMenuItem', theme => ({
   },
 }));
 
-function MenuItem(props) {
+type DefaultProps = {
+  role: string,
+  selected: boolean,
+};
+
+type Props = DefaultProps & {
+  /**
+   * Menu item contents.
+   */
+  children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component?: string | Function,
+  /**
+   * @ignore
+   */
+  role?: string,
+  /**
+   * Use to apply selected styling.
+   */
+  selected?: boolean,
+};
+
+function MenuItem(props: Props) {
   const { classes, className: classNameProp, component, selected, role, ...other } = props;
 
   const className = classNames(
@@ -60,34 +90,6 @@ function MenuItem(props) {
     />
   );
 }
-
-MenuItem.propTypes = {
-  /**
-   * Menu item contents.
-   */
-  children: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a component.
-   */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  /**
-   * @ignore
-   */
-  role: PropTypes.string,
-  /**
-   * Use to apply selected styling.
-   */
-  selected: PropTypes.bool,
-};
 
 MenuItem.defaultProps = {
   role: 'menuitem',

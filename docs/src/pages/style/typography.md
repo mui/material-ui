@@ -28,6 +28,13 @@ import 'typeface-roboto'
 ```
 For more info checkout the [typeface](https://www.npmjs.com/package/typeface-roboto) project.
 
-## Styles
+## Component
 
-{{demo='pages/style/Types.js'}}
+{{demo='pages/style/Typography.js'}}
+
+## CSS in JS
+
+In some situation you might not be able to use the `Typography` component.
+Hopefully, you might be able to take advantage of the `typography` keys of the theme.
+
+{{demo='pages/style/TypographyTheme.js'}}

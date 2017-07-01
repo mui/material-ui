@@ -1,7 +1,7 @@
 // @flow weak
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Element } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
@@ -15,7 +15,22 @@ export const styleSheet = createStyleSheet('MuiListItemSecondaryAction', theme =
   },
 }));
 
-function ListItemSecondaryAction(props) {
+type Props = {
+  /**
+   * The content of the component, normally an `IconButton` or selection control.
+   */
+  children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+};
+
+function ListItemSecondaryAction(props: Props) {
   const { children, classes, className } = props;
 
   return (
@@ -24,21 +39,6 @@ function ListItemSecondaryAction(props) {
     </div>
   );
 }
-
-ListItemSecondaryAction.propTypes = {
-  /**
-   * The content of the component, normally an `IconButton` or selection control.
-   */
-  children: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-};
 
 ListItemSecondaryAction.muiName = 'ListItemSecondaryAction';
 

@@ -26,7 +26,11 @@ describe('<Modal />', () => {
   });
 
   it('should render null by default', () => {
-    const wrapper = shallow(<Modal><p>Hello World</p></Modal>);
+    const wrapper = shallow(
+      <Modal>
+        <p>Hello World</p>
+      </Modal>,
+    );
     assert.strictEqual(wrapper.node, null, 'should be null');
   });
 
@@ -34,7 +38,11 @@ describe('<Modal />', () => {
     let wrapper;
 
     before(() => {
-      wrapper = shallow(<Modal show data-my-prop="woof"><p>Hello World</p></Modal>);
+      wrapper = shallow(
+        <Modal show data-my-prop="woof">
+          <p>Hello World</p>
+        </Modal>,
+      );
     });
 
     it('should render the modal div inside the portal', () => {
@@ -422,13 +430,25 @@ describe('<Modal />', () => {
   describe('prop: keepMounted', () => {
     it('should keep the children in the DOM', () => {
       const children = <p>Hello World</p>;
-      const wrapper = shallow(<Modal keepMounted show={false}><div>{children}</div></Modal>);
+      const wrapper = shallow(
+        <Modal keepMounted show={false}>
+          <div>
+            {children}
+          </div>
+        </Modal>,
+      );
       assert.strictEqual(wrapper.contains(children), true);
     });
 
     it('should not keep the children in the DOM', () => {
       const children = <p>Hello World</p>;
-      const wrapper = shallow(<Modal show={false}><div>{children}</div></Modal>);
+      const wrapper = shallow(
+        <Modal show={false}>
+          <div>
+            {children}
+          </div>
+        </Modal>,
+      );
       assert.strictEqual(wrapper.contains(children), false);
     });
   });

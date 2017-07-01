@@ -22,23 +22,15 @@ class DirectionSnackbar extends Component {
   render() {
     return (
       <div>
-        <Button onClick={this.handleClick('left')}>
-          Right
-        </Button>
-        <Button onClick={this.handleClick('up')}>
-          Up
-        </Button>
-        <Button onClick={this.handleClick('right')}>
-          Left
-        </Button>
-        <Button onClick={this.handleClick('down')}>
-          Down
-        </Button>
+        <Button onClick={this.handleClick('left')}>Right</Button>
+        <Button onClick={this.handleClick('up')}>Up</Button>
+        <Button onClick={this.handleClick('right')}>Left</Button>
+        <Button onClick={this.handleClick('down')}>Down</Button>
         <Snackbar
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
           transition={<Slide direction={this.state.direction} />}
-          contentProps={{
+          SnackbarContentProps={{
             'aria-describedby': 'message-id',
           }}
           message={<span id="message-id">I love snacks</span>}

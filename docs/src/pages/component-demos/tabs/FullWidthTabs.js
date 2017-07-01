@@ -42,16 +42,28 @@ class FullWidthTabs extends Component {
     return (
       <div className={classes.root} style={{ width: 500 }}>
         <AppBar position="static" color="default">
-          <Tabs index={this.state.index} onChange={this.handleChange} textColor="accent" fullWidth>
+          <Tabs
+            index={this.state.index}
+            onChange={this.handleChange}
+            indicatorColor="primary"
+            textColor="primary"
+            fullWidth
+          >
             <Tab label="Item One" />
             <Tab label="Item Two" />
             <Tab label="Item Three" />
           </Tabs>
         </AppBar>
         <SwipeableViews index={this.state.index} onChangeIndex={this.handleChangeIndex}>
-          <TabContainer>{'Item One'}</TabContainer>
-          <TabContainer>{'Item Two'}</TabContainer>
-          <TabContainer>{'Item Three'}</TabContainer>
+          <TabContainer>
+            {'Item One'}
+          </TabContainer>
+          <TabContainer>
+            {'Item Two'}
+          </TabContainer>
+          <TabContainer>
+            {'Item Three'}
+          </TabContainer>
         </SwipeableViews>
       </div>
     );

@@ -87,14 +87,22 @@ describe('<Drawer />', () => {
   });
 
   it('should set the Paper className', () => {
-    const wrapper = shallow(<Drawer classes={{ paper: 'woof' }}><h1>Hello</h1></Drawer>);
+    const wrapper = shallow(
+      <Drawer classes={{ paper: 'woof' }}>
+        <h1>Hello</h1>
+      </Drawer>,
+    );
     const paper = wrapper.find(Paper);
     assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the paper class');
     assert.strictEqual(paper.hasClass('woof'), true, 'should have the woof class');
   });
 
   it('should be closed by default', () => {
-    const wrapper = shallow(<Drawer><h1>Hello</h1></Drawer>);
+    const wrapper = shallow(
+      <Drawer>
+        <h1>Hello</h1>
+      </Drawer>,
+    );
 
     const modal = wrapper;
     const slide = modal.find(Slide);
@@ -107,7 +115,11 @@ describe('<Drawer />', () => {
     let wrapper;
 
     before(() => {
-      wrapper = shallow(<Drawer><h1>Hello</h1></Drawer>);
+      wrapper = shallow(
+        <Drawer>
+          <h1>Hello</h1>
+        </Drawer>,
+      );
     });
 
     it('should start closed', () => {
@@ -132,7 +144,11 @@ describe('<Drawer />', () => {
     let wrapper;
 
     before(() => {
-      wrapper = shallow(<Drawer docked><h1>Hello</h1></Drawer>);
+      wrapper = shallow(
+        <Drawer docked>
+          <h1>Hello</h1>
+        </Drawer>,
+      );
     });
 
     it('should render a div instead of a Modal when docked', () => {

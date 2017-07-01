@@ -13,3 +13,4 @@ node_modules
 /packages/material-ui-codemod/modules/v0.15.0/
 /test/coverage/
 /test/regressions/site/build/
+/.git

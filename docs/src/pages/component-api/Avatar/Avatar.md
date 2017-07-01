@@ -2,14 +2,14 @@
 
 
 
-## Properties
+## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | alt | string | '' | Used in combination with `src` or `srcSet` to provide an alt attribute for the rendered `img` element. |
-| children | node |  | Used to render icon or text elements inside the Avatar. `src` and `alt` props will not be used and no `img` will be rendered by default.<br>This can be an element, or just a string. |
-| classes | object |  | Useful to extend the style applied to components. |
-| component | union:&nbsp;string<br>&nbsp;func<br> | 'div' | The component used for the root node. Either a string to use a DOM element or a component. |
-| imgProps | object |  | Properties applied to the `img` element when the component is used to display an image. |
+| children | Element |  | Used to render icon or text elements inside the Avatar. `src` and `alt` props will not be used and no `img` will be rendered by default.<br>This can be an element, or just a string. |
+| classes | Object |  | Useful to extend the style applied to components. |
+| component | union:&nbsp;string<br>&nbsp;Function<br> | 'div' | The component used for the root node. Either a string to use a DOM element or a component. |
+| imgProps | Object |  | Properties applied to the `img` element when the component is used to display an image. |
 | sizes | string |  | The `sizes` attribute for the `img` element. |
 | src | string |  | The `src` attribute for the `img` element. |
 | srcSet | string |  | The `srcSet` attribute for the `img` element. |

@@ -21,14 +21,12 @@ class FadeSnackbar extends Component {
   render() {
     return (
       <div>
-        <Button onClick={this.handleClick}>
-          Open with Fade Transition
-        </Button>
+        <Button onClick={this.handleClick}>Open with Fade Transition</Button>
         <Snackbar
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
           transition={Fade}
-          contentProps={{
+          SnackbarContentProps={{
             'aria-describedby': 'message-id',
           }}
           message={<span id="message-id">I love snacks</span>}

@@ -36,6 +36,6 @@
     "react-router": "^3.0.5",
     "react-router-scroll": "^0.4.2",
     "react-swipeable-views": "^0.12.3",
-    "redux": "^3.7.0"
+    "redux": "^3.7.1"
   }
 }

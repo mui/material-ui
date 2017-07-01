@@ -2,16 +2,16 @@
 
 
 
-## Properties
+## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | checked | union:&nbsp;bool<br>&nbsp;string<br> |  | If `true`, the component appears selected. |
 | checkedClassName | string |  | The CSS class name of the root element when checked. |
 | checkedIcon | node |  | The icon to display when the component is checked. |
 | classes | object |  | Useful to extend the style applied to components. |
+| disableRipple | bool |  | If `true`, the ripple effect will be disabled. |
 | disabled | bool |  | If `true`, the switch will be disabled. |
 | disabledClassName | string |  | The CSS class name of the root element when disabled. |
-| disableRipple | bool |  | If `true`, the ripple effect will be disabled. |
 | icon | node |  | The icon to display when the component is unchecked. If a string is provided, it will be used as a font ligature. |
 | inputProps | object |  | Properties applied to the `input` element. |
 | name | string |  |  |

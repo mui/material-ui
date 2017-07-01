@@ -15,7 +15,6 @@ export const styleSheet = createStyleSheet('MuiSnackbarContent', theme => {
   return {
     root: {
       pointerEvents: 'initial',
-      fontFamily: theme.typography.fontFamily,
       color: theme.palette.getContrastText(backgroundColor),
       backgroundColor,
       display: 'flex',
@@ -45,21 +44,23 @@ export const styleSheet = createStyleSheet('MuiSnackbarContent', theme => {
 });
 
 function SnackbarContent(props) {
-  const { action, classes, className, disableTypography, message, ...other } = props;
+  const { action, classes, className, message, ...other } = props;
 
   return (
     <Paper
+      component={Typography}
+      headlineMapping={{
+        body1: 'div',
+      }}
       role="alertdialog"
       square
       elevation={6}
       className={classNames(classes.root, className)}
       {...other}
     >
-      {disableTypography
-        ? message
-        : <Typography color="inherit" className={classes.message}>
-            {message}
-          </Typography>}
+      <div className={classes.message}>
+        {message}
+      </div>
       {action
         ? <div className={classes.action}>
             {action}
@@ -83,18 +84,9 @@ SnackbarContent.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, the message won't be wrapped by a typography component.
-   * For instance, that can be usefull to can render an h4 instead of a
-   */
-  disableTypography: PropTypes.bool,
-  /**
    * The message to display.
    */
   message: PropTypes.node.isRequired,
-};
-
-SnackbarContent.defaultProps = {
-  disableTypography: false,
 };
 
 export default withStyles(styleSheet)(SnackbarContent);

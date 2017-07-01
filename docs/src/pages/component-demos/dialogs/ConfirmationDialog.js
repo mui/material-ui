@@ -86,8 +86,12 @@ class ConfirmationDialog extends Component {
           </RadioGroup>
         </DialogContent>
         <DialogActions>
-          <Button onClick={this.handleCancel} color="primary">Cancel</Button>
-          <Button onClick={this.handleOk} color="primary">Ok</Button>
+          <Button onClick={this.handleCancel} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={this.handleOk} color="primary">
+            Ok
+          </Button>
         </DialogActions>
       </Dialog>
     );

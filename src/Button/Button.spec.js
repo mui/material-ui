@@ -101,7 +101,11 @@ describe('<Button />', () => {
   });
 
   it('should render a raised primary button', () => {
-    const wrapper = shallow(<Button raised color="primary">Hello World</Button>);
+    const wrapper = shallow(
+      <Button raised color="primary">
+        Hello World
+      </Button>,
+    );
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.raised), true, 'should have the raised class');
     assert.strictEqual(wrapper.hasClass(classes.fab), false, 'should not have the fab class');
@@ -118,7 +122,11 @@ describe('<Button />', () => {
   });
 
   it('should render a raised accent button', () => {
-    const wrapper = shallow(<Button raised color="accent">Hello World</Button>);
+    const wrapper = shallow(
+      <Button raised color="accent">
+        Hello World
+      </Button>,
+    );
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.raised), true, 'should have the raised class');
     assert.strictEqual(wrapper.hasClass(classes.fab), false, 'should not have the fab class');
@@ -152,7 +160,11 @@ describe('<Button />', () => {
   });
 
   it('should render a primary floating action button', () => {
-    const wrapper = shallow(<Button fab color="primary">Hello World</Button>);
+    const wrapper = shallow(
+      <Button fab color="primary">
+        Hello World
+      </Button>,
+    );
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.raised), true, 'should have the raised class');
     assert.strictEqual(wrapper.hasClass(classes.fab), true, 'should have the fab class');
@@ -169,7 +181,11 @@ describe('<Button />', () => {
   });
 
   it('should render an accent floating action button', () => {
-    const wrapper = shallow(<Button fab color="accent">Hello World</Button>);
+    const wrapper = shallow(
+      <Button fab color="accent">
+        Hello World
+      </Button>,
+    );
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(wrapper.hasClass(classes.raised), true, 'should have the raised class');
     assert.strictEqual(wrapper.hasClass(classes.fab), true, 'should have the fab class');

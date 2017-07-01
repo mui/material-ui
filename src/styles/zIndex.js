@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 // Needed as the zIndex works with absolute values.
 export default {

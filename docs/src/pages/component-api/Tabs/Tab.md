@@ -2,7 +2,7 @@
 
 
 
-## Properties
+## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | classes | object |  | Useful to extend the style applied to components. |
@@ -21,6 +21,9 @@ This property accepts the following keys:
 - `rootAccent`
 - `rootAccentSelected`
 - `rootAccentDisabled`
+- `rootPrimary`
+- `rootPrimarySelected`
+- `rootPrimaryDisabled`
 - `rootInherit`
 - `rootInheritSelected`
 - `rootInheritDisabled`

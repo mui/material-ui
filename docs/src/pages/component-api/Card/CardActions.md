@@ -2,12 +2,12 @@
 
 
 
-## Properties
+## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | node |  | The content of the component. |
-| classes | object |  | Useful to extend the style applied to components. |
-| disableActionSpacing | bool | false | If `true`, the card actions do not have additional margin. |
+| children | Element |  | The content of the component. |
+| classes | Object |  | Useful to extend the style applied to components. |
+| disableActionSpacing | boolean | false | If `true`, the card actions do not have additional margin. |
 
 Any other properties supplied will be spread to the root element.
 

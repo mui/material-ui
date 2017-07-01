@@ -192,7 +192,11 @@ describe('<Slide />', () => {
     });
 
     it('should work when initialy hidden', () => {
-      const wrapper = mount(<Slide in={false}><div>Foo</div></Slide>);
+      const wrapper = mount(
+        <Slide in={false}>
+          <div>Foo</div>
+        </Slide>,
+      );
       const transition = findDOMNode(wrapper.instance().transition);
       // $FlowFixMe
       assert.notStrictEqual(transition ? transition.style.transform : undefined, undefined);

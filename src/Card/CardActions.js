@@ -1,7 +1,7 @@
-// @flow weak
+// @flow
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Element } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
@@ -19,7 +19,30 @@ export const styleSheet = createStyleSheet('MuiCardActions', {
   },
 });
 
-function CardActions(props) {
+type DefaultProps = {
+  disableActionSpacing: boolean,
+};
+
+type Props = DefaultProps & {
+  /**
+   * The content of the component.
+   */
+  children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * If `true`, the card actions do not have additional margin.
+   */
+  disableActionSpacing?: boolean,
+};
+
+function CardActions(props: Props) {
   const { disableActionSpacing, children, classes, className, ...other } = props;
 
   return (
@@ -30,25 +53,6 @@ function CardActions(props) {
     </div>
   );
 }
-
-CardActions.propTypes = {
-  /**
-   * The content of the component.
-   */
-  children: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * If `true`, the card actions do not have additional margin.
-   */
-  disableActionSpacing: PropTypes.bool,
-};
 
 CardActions.defaultProps = {
   disableActionSpacing: false,

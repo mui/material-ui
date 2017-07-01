@@ -138,14 +138,14 @@ function getProp(props, key) {
 }
 
 function generateProps(props) {
-  const header = '## Properties';
+  const header = '## Props';
 
   let text = `${header}
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|\n`;
 
-  text = Object.keys(props).reduce((textProps, key) => {
-    const prop = getProp(props, key);
+  text = Object.keys(props).sort().reduce((textProps, propRaw) => {
+    const prop = getProp(props, propRaw);
     const description = generatePropDescription(
       prop.required,
       prop.description,
@@ -163,17 +163,17 @@ function generateProps(props) {
     }
 
     if (prop.required) {
-      key = `<span style="color: #31a148">${key}\u2009*</span>`;
+      propRaw = `<span style="color: #31a148">${propRaw}\u2009*</span>`;
     }
 
     const type = prop.flowType || prop.type;
     if (type.name === 'custom') {
       if (getDeprecatedInfo(prop.type)) {
-        key = `~~${key}~~`;
+        propRaw = `~~${propRaw}~~`;
       }
     }
 
-    textProps += `| ${key} | ${generatePropType(type)} | ${defaultValue} | ${description} |\n`;
+    textProps += `| ${propRaw} | ${generatePropType(type)} | ${defaultValue} | ${description} |\n`;
 
     return textProps;
   }, text);
