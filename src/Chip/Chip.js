@@ -120,7 +120,7 @@ class Chip extends Component {
       onClick,
       onKeyDown,
       onRequestDelete,
-      tabIndex,
+      tabIndex: tabIndexProp,
       ...other
     } = this.props;
 
@@ -146,10 +146,17 @@ class Chip extends Component {
       });
     }
 
+    let tabIndex = tabIndexProp;
+
+    if (!tabIndex) {
+      tabIndex = onClick || onRequestDelete ? 0 : -1;
+    }
+
     return (
-      <button
+      <div
+        role="button"
         className={className}
-        tabIndex={onClick || onRequestDelete ? tabIndex : -1}
+        tabIndex={tabIndex}
         onClick={onClick}
         onKeyDown={this.handleKeyDown}
         ref={node => {
@@ -162,7 +169,7 @@ class Chip extends Component {
           {label}
         </span>
         {deleteIcon}
-      </button>
+      </div>
     );
   }
 }
