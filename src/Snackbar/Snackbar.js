@@ -127,7 +127,7 @@ type Props = DefaultProps & {
   /**
    * Callback fired when the transition has exited.
    */
-  onExited?: Function, // eslint-disable-line react/sort-prop-types
+  onExited?: Function,
   /**
    * @ignore
    */
