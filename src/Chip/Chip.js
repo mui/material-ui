@@ -67,6 +67,10 @@ class Chip extends Component {
       PropTypes.element,
     ]),
     /**
+     * Override the inline-styles of the delete icon.
+     */
+    deleteIconStyle: PropTypes.object,
+    /**
      * Override the label color.
      */
     labelColor: PropTypes.string,
@@ -247,6 +251,7 @@ class Chip extends Component {
       containerElement,
       style,
       className,
+      deleteIconStyle,
       labelStyle,
       labelColor, // eslint-disable-line no-unused-vars,prefer-const
       backgroundColor, // eslint-disable-line no-unused-vars,prefer-const
@@ -260,7 +265,7 @@ class Chip extends Component {
     const deleteIcon = deletable ? (
       <DeleteIcon
         color={styles.deleteIcon.color}
-        style={styles.deleteIcon}
+        style={prepareStyles(Object.assign(styles.deleteIcon, deleteIconStyle))}
         onTouchTap={this.handleTouchTapDeleteIcon}
         onMouseEnter={this.handleMouseEnterDeleteIcon}
         onMouseLeave={this.handleMouseLeaveDeleteIcon}
