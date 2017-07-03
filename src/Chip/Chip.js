@@ -67,8 +67,8 @@ class Chip extends Component {
       PropTypes.element,
     ]),
     /**
-    * Override the inline-styles of the delete icon.
-    */
+     * Override the inline-styles of the delete icon.
+     */
     deleteIconStyle: PropTypes.object,
     /**
      * Override the label color.
