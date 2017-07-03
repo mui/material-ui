@@ -20,6 +20,8 @@ export const styleSheet = createStyleSheet('MuiButtonBase', {
     userSelect: 'none',
     appearance: 'none',
     textDecoration: 'none',
+    // So we take precedent over the style of a native <a /> element.
+    color: 'inherit',
   },
   disabled: {
     cursor: 'default',
