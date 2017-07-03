@@ -42,9 +42,11 @@ marked.setOptions({
 const anchorLinkStyle = theme => ({
   '& .anchor-link-style': {
     opacity: 0,
-    display: 'inline',
+    // To prevent the link to get the focus.
+    display: 'none',
   },
   '&:hover .anchor-link-style': {
+    display: 'inline',
     opacity: 1,
     fontSize: '0.8em',
     lineHeight: '1',
