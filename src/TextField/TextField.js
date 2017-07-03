@@ -26,6 +26,7 @@ function TextField(props) {
     helperText,
     helperTextClassName,
     FormHelperTextProps,
+    fullWidth,
     required,
     type,
     multiline,
@@ -48,7 +49,14 @@ function TextField(props) {
   }
 
   return (
-    <FormControl ref={rootRef} className={className} error={error} required={required} {...other}>
+    <FormControl
+      fullWidth={fullWidth}
+      ref={rootRef}
+      className={className}
+      error={error}
+      required={required}
+      {...other}
+    >
       {label &&
         <InputLabel className={labelClassName} {...InputLabelProps}>
           {label}
@@ -80,13 +88,7 @@ function TextField(props) {
 }
 
 TextField.propTypes = {
-  /**
-   * @ignore
-   */
   autoComplete: PropTypes.bool,
-  /**
-   * @ignore
-   */
   autoFocus: PropTypes.bool,
   /**
    * @ignore
@@ -109,6 +111,10 @@ TextField.propTypes = {
    */
   FormHelperTextProps: PropTypes.object,
   /**
+   * If `true`, the input will take up the full width of its container.
+   */
+  fullWidth: PropTypes.bool,
+  /**
    * The helper text content.
    */
   helperText: PropTypes.node,
@@ -116,9 +122,6 @@ TextField.propTypes = {
    * The CSS class name of the helper text element.
    */
   helperTextClassName: PropTypes.string,
-  /*
-   * @ignore
-   */
   id: PropTypes.string,
   /**
    * The CSS class name of the `input` element.
@@ -160,9 +163,6 @@ TextField.propTypes = {
    * Name attribute of the `Input` element.
    */
   name: PropTypes.string,
-  /**
-   * @ignore
-   */
   placeholder: PropTypes.string,
   /**
    * If `true`, the label is displayed as required.

@@ -201,6 +201,7 @@ you need to use the following style sheet name: \`${styles.name}\`.`
 
 export default function generateMarkdown(name, reactAPI) {
   return (
+    '<!--- This documentation is automatically generated, do not try to edit it. -->\n\n' +
     `${generateTitle(name)}\n` +
     `${generateDescription(reactAPI.description)}\n` +
     `${generateProps(reactAPI.props)}\n` +

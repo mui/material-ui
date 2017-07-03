@@ -1,3 +1,5 @@
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
 # ListItemAvatar
 
 It's a simple wrapper to apply the `dense` mode styles to `Avatar`.

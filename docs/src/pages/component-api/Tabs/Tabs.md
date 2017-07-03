@@ -1,3 +1,5 @@
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
 # Tabs
 
 Notice that this Component is incompatible with server side rendering.

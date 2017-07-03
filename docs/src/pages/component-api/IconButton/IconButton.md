@@ -1,3 +1,5 @@
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
 # IconButton
 
 Refer to the [Icons](/style/icons) section of the documentation

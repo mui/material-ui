@@ -1,3 +1,5 @@
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
 # Hidden
 
 Responsively hides children based on the selected implementation.

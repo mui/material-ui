@@ -1,3 +1,5 @@
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
 # Dialog
 
 Dialogs are overlaid modal paper based components with a backdrop.
