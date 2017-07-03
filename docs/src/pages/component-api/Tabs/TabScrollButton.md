@@ -1,3 +1,5 @@
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
 # TabScrollButton
 
 @ignore - internal component.

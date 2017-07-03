@@ -1,3 +1,5 @@
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
 # Snackbar
 
 
@@ -15,6 +17,12 @@
 | key | any |  | When displaying multiple consecutive Snackbars from a parent renedering a single <Snackbar/>, add the key property to ensure independent treatment of each message. e.g. <Snackbar key={message} />, otherwise, the message may update-in-place and features such as autoHideDuration may be canceled. |
 | leaveTransitionDuration | number | duration.leavingScreen | Customizes duration of leave animation (ms) |
 | message | Element |  | The message to display. |
+| onEnter | Function |  | Callback fired before the transition is entering. |
+| onEntered | Function |  | Callback fired when the transition has entered. |
+| onEntering | Function |  | Callback fired when the transition is entering. |
+| onExit | Function |  | Callback fired before the transition is exiting. |
+| onExited | Function |  | Callback fired when the transition has exited. |
+| onExiting | Function |  | Callback fired when the transition is exiting. |
 | onRequestClose | signature |  | Callback fired when the component requests to be closed.<br>Typically `onRequestClose` is used to set state in the parent component, which is used to control the `Snackbar` `open` prop.<br>The `reason` parameter can optionally be used to control the response to `onRequestClose`, for example ignoring `clickaway`. |
 | <span style="color: #31a148">open *</span> | boolean |  | If true, `Snackbar` is open. |
 | transition | union:&nbsp;Function<br>&nbsp;Element<*><br> |  | Object with Transition component, props & create Fn. |

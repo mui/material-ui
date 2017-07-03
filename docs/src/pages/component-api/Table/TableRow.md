@@ -1,3 +1,5 @@
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
 # TableRow
 
 Will automatically set dynamic row height

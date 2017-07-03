@@ -1,3 +1,5 @@
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
 # TableSortLabel
 
 A button based label for placing inside `TableCell` for column sorting.

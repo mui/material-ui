@@ -1,3 +1,5 @@
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
 # FormGroup
 
 FormGroup wraps controls such as Checkbox and Switch.

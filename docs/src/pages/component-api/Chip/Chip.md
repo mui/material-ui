@@ -1,3 +1,5 @@
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
 # Chip
 
 Chips represent complex entities in small blocks, such as a contact.

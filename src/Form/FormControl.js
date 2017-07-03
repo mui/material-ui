@@ -17,6 +17,9 @@ export const styleSheet = createStyleSheet('MuiFormControl', theme => ({
     marginTop: theme.spacing.unit * 2,
     marginBottom: theme.spacing.unit,
   },
+  fullWidth: {
+    width: '100%',
+  },
 }));
 
 /**
@@ -26,6 +29,7 @@ class FormControl extends Component {
   static defaultProps = {
     disabled: false,
     error: false,
+    fullWidth: false,
     marginForm: false,
     required: false,
   };
@@ -95,7 +99,16 @@ class FormControl extends Component {
   };
 
   render() {
-    const { children, classes, className, disabled, error, marginForm, ...other } = this.props;
+    const {
+      children,
+      classes,
+      className,
+      disabled,
+      error,
+      fullWidth,
+      marginForm,
+      ...other
+    } = this.props;
 
     return (
       <div
@@ -103,6 +116,7 @@ class FormControl extends Component {
           classes.root,
           {
             [classes.marginForm]: marginForm,
+            [classes.fullWidth]: fullWidth,
           },
           className,
         )}
@@ -137,6 +151,10 @@ FormControl.propTypes = {
    * If `true`, the label should be displayed in an error state.
    */
   error: PropTypes.bool,
+  /**
+   * If `true`, the label will take up the full width of its container.
+   */
+  fullWidth: PropTypes.bool,
   /**
    * If `true`, add the margin top and bottom required when used in a form.
    */

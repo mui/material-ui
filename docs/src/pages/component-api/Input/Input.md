@@ -1,3 +1,5 @@
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
 # Input
 
 
@@ -11,6 +13,7 @@
 | defaultValue | union:&nbsp;string<br>&nbsp;number<br> |  | The default input value, useful when not controlling the component. |
 | disableUnderline | bool | false | If `true`, the input will not have an underline. |
 | error | bool |  | If `true`, the input will indicate an error. |
+| fullWidth | bool | false | If `true`, the input will take up the full width of its container. |
 | id | string |  |  |
 | inputProps | object |  | Properties applied to the `input` element. |
 | inputRef | function |  | Use that property to pass a ref callback to the native input component. |
@@ -38,6 +41,7 @@ This property accepts the following keys:
 - `inputDisabled`
 - `inputSingleline`
 - `inputMultiline`
+- `fullWidth`
 
 Have a look at [overriding with class names](/customization/overrides#overriding-with-class-names)
 section for more detail.

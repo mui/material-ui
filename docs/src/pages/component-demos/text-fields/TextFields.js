@@ -103,10 +103,10 @@ class TextFields extends Component {
         <TextField
           id="placeholder"
           label="Label"
-          className={classes.input}
           type="text"
           InputProps={{ placeholder: 'Placeholder' }}
-          helperText="Helper text"
+          helperText="Full width!!!"
+          fullWidth
           marginForm
         />
       </div>

@@ -150,15 +150,19 @@ export const styleSheet = createStyleSheet('MuiInput', theme => {
       resize: 'none',
       padding: 0,
     },
+    fullWidth: {
+      width: '100%',
+    },
   };
 });
 
 class Input extends Component {
   static muiName = 'Input';
   static defaultProps = {
-    type: 'text',
     disableUnderline: false,
+    fullWidth: false,
     multiline: false,
+    type: 'text',
   };
 
   state = {
@@ -259,6 +263,7 @@ class Input extends Component {
       disabled: disabledProp,
       disableUnderline,
       error: errorProp,
+      fullWidth,
       id,
       inputProps: inputPropsProp,
       inputRef,
@@ -297,6 +302,7 @@ class Input extends Component {
       {
         [classes.disabled]: disabled,
         [classes.error]: error,
+        [classes.fullWidth]: fullWidth,
         [classes.focused]: this.state.focused,
         [classes.formControl]: muiFormControl,
         [classes.inkbar]: !disableUnderline,
@@ -409,6 +415,10 @@ Input.propTypes = {
    * If `true`, the input will indicate an error.
    */
   error: PropTypes.bool,
+  /**
+   * If `true`, the input will take up the full width of its container.
+   */
+  fullWidth: PropTypes.bool,
   /*
    * @ignore
    */
