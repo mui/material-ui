@@ -7,7 +7,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import ClickAwayListener from '../internal/ClickAwayListener';
-import { capitalizeFirstLetter } from '../utils/helpers';
+import { capitalizeFirstLetter, createChainedFunction } from '../utils/helpers';
 import Slide from '../transitions/Slide';
 import SnackbarContent from './SnackbarContent';
 
@@ -124,6 +124,30 @@ type Props = DefaultProps & {
    * The message to display.
    */
   message?: Element<*>,
+  /**
+   * Callback fired before the transition is entering.
+   */
+  onEnter?: Function,
+  /**
+   * Callback fired when the transition is entering.
+   */
+  onEntering?: Function,
+  /**
+   * Callback fired when the transition has entered.
+   */
+  onEntered?: Function,
+  /**
+   * Callback fired before the transition is exiting.
+   */
+  onExit?: Function,
+  /**
+   * Callback fired when the transition is exiting.
+   */
+  onExiting?: Function,
+  /**
+   * Callback fired when the transition has exited.
+   */
+  onExited?: Function,
   /**
    * @ignore
    */
@@ -260,6 +284,12 @@ class Snackbar extends Component<DefaultProps, Props, State> {
       enterTransitionDuration,
       leaveTransitionDuration,
       message,
+      onEnter,
+      onEntering,
+      onEntered,
+      onExit,
+      onExiting,
+      onExited,
       onMouseEnter,
       onMouseLeave,
       onRequestClose,
@@ -296,7 +326,12 @@ class Snackbar extends Component<DefaultProps, Props, State> {
               transitionAppear: true,
               enterTransitionDuration,
               leaveTransitionDuration,
-              onExited: this.handleTransitionExited,
+              onEnter,
+              onEntering,
+              onEntered,
+              onExit,
+              onExiting,
+              onExited: createChainedFunction(this.handleTransitionExited, onExited),
             },
             children ||
               <SnackbarContent message={message} action={action} {...SnackbarContentProps} />,
