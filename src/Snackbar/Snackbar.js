@@ -125,6 +125,26 @@ type Props = DefaultProps & {
    */
   message?: Element<*>,
   /**
+   * Callback fired before the transition is entering.
+   */
+  onEnter?: Function,
+  /**
+   * Callback fired when the transition is entering.
+   */
+  onEntering?: Function,
+  /**
+   * Callback fired when the transition has entered.
+   */
+  onEntered?: Function,
+  /**
+   * Callback fired before the transition is exiting.
+   */
+  onExit?: Function,
+  /**
+   * Callback fired when the transition is exiting.
+   */
+  onExiting?: Function,
+  /**
    * Callback fired when the transition has exited.
    */
   onExited?: Function,
@@ -264,6 +284,11 @@ class Snackbar extends Component<DefaultProps, Props, State> {
       enterTransitionDuration,
       leaveTransitionDuration,
       message,
+      onEnter,
+      onEntering,
+      onEntered,
+      onExit,
+      onExiting,
       onExited,
       onMouseEnter,
       onMouseLeave,
@@ -301,6 +326,11 @@ class Snackbar extends Component<DefaultProps, Props, State> {
               transitionAppear: true,
               enterTransitionDuration,
               leaveTransitionDuration,
+              onEnter,
+              onEntering,
+              onEntered,
+              onExit,
+              onExiting,
               onExited: createChainedFunction(this.handleTransitionExited, onExited),
             },
             children ||
