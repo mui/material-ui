@@ -1,5 +1,5 @@
 ---
-components: List, ListItem, ListItemAvatar, listItemIcon, listItemSecondaryAction, listItemText, ListSubheader, Divider
+components: List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader, Divider
 ---
 
 # Lists
