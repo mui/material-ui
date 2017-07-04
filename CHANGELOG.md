@@ -2,10 +2,39 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-alpha.21
+###### _Jul 4, 2017_
+
+##### Breaking changes
+
+🤔
+
+##### Component Fixes / Enhancements
+
+- [TextField] Fix textarea disabled support (#7255) @Calcyfer
+- [withStyles] Provide context for withStyles classes error (#7274) @rosskevin
+- [misc] Improve various points (#7275) @oliviertassinari
+- [Snackbar] Documentation - key property (#7307) @rosskevin
+- [Snackbar] Expose transition onExited to allow for consecutive messages with completed transitions (#7308) @rosskevin
+- [Chip] Fix Firefox issue with the svg icon (#7327) @oliviertassinari
+- [ButtonBase] Use color inherit by default (#7331 @oliviertassinari
+- [Input] Add a fullWidth property (#7329) @oliviertassinari
+
+##### Docs
+
+- [docs] Improve the documentation regarding material.io/icons (#7323) @oliviertassinari
+- [docs] Fix MobileStepper API (#7299) @ng-hai
+
+##### Core
+
+- [core] Reduce the bundle size (#7306) @oliviertassinari
+- [test] Should get coverage (#7272) @oliviertassinari
+- [core] Expand use of flow (#7268) @rosskevin
+
 ## 1.0.0-alpha.20
 ###### _Jun 25, 2017_
 
-Do you like play with bleeding edge tech?
+Do you like playing with bleeding-edge tech?
 We do, we have extended the support of React to the 16.0.0-alpha.13 release (aka Fiber).
 
 ##### Breaking changes
