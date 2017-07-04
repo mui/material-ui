@@ -3,6 +3,9 @@
 ## 0.18.6
 ###### _Jul 4, 2017_
 
+Big thanks to the 7 contributors who made this release possible.
+As always, we are focusing on bug fixes.
+
 ##### Component Fixes / Enhancements
 
 - [Chip] Support overriding Delete Icon Style (#7320) @zentron
@@ -16,6 +19,8 @@
 - [docs] Fix v1 promo styling (#7289) @KenLSM
 
 ##### Core
+
+N.A
 
 ## 0.18.5
 ###### _Jun 28, 2017_
