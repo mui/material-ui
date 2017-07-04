@@ -7,7 +7,6 @@ import propTypes from '../utils/propTypes';
 import Paper from '../Paper';
 import throttle from 'lodash.throttle';
 import PopoverAnimationDefault from './PopoverAnimationDefault';
-import {isIOS, getOffsetTop} from '../utils/iOSHelpers';
 
 const styles = {
   root: {
@@ -253,14 +252,7 @@ class Popover extends Component {
     };
 
     a.right = rect.right || a.left + a.width;
-
-    // The fixed positioning isn't respected on iOS when an input is focused.
-    // We need to compute the position from the top of the page and not the viewport.
-    if (isIOS() && document.activeElement.tagName === 'INPUT') {
-      a.bottom = getOffsetTop(el) + a.height;
-    } else {
-      a.bottom = rect.bottom || a.top + a.height;
-    }
+    a.bottom = rect.bottom || a.top + a.height;
     a.middle = a.left + ((a.right - a.left) / 2);
     a.center = a.top + ((a.bottom - a.top) / 2);
 
