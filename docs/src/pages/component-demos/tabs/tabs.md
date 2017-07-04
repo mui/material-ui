@@ -39,7 +39,7 @@ The `centered` property should be used for larger views.
 
 ### Automatic Scroll Buttons
 
-Left and right scroll buttons will be presented or hidden automatically based on viewport width.
+Left and right scroll buttons will automatically be presented on desktop and hidden on mobile. (based on viewport width)
 
 {{demo='pages/component-demos/tabs/ScrollableTabsButtonAuto.js'}}
 
