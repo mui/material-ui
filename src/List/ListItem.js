@@ -12,10 +12,12 @@ import NestedList from './NestedList';
 
 function getStyles(props, context, state) {
   const {
+    autoGenerateNestedIndicator,
     insetChildren,
     leftAvatar,
     leftCheckbox,
     leftIcon,
+    nestedItems,
     nestedLevel,
     rightAvatar,
     rightIcon,
@@ -55,7 +57,9 @@ function getStyles(props, context, state) {
     innerDiv: {
       marginLeft: nestedLevel * listItem.nestedLevelDepth,
       paddingLeft: leftIcon || leftAvatar || leftCheckbox || insetChildren ? 72 : 16,
-      paddingRight: rightIcon || rightAvatar || rightIconButton ? 56 : rightToggle ? 72 : 16,
+      paddingRight: rightIcon || rightAvatar || rightIconButton ||
+                    (nestedItems.length && autoGenerateNestedIndicator) ?
+                    56 : rightToggle ? 72 : 16,
       paddingBottom: singleAvatar ? 20 : 16,
       paddingTop: singleNoAvatar || threeLine ? 16 : 20,
       position: 'relative',
