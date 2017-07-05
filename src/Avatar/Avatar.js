@@ -13,6 +13,7 @@ export const styleSheet = createStyleSheet('MuiAvatar', theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    flexShrink: 0,
     width: 40,
     height: 40,
     fontFamily: theme.typography.fontFamily,
