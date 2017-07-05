@@ -1,16 +1,18 @@
 // @flow
 
 import React from 'react';
-import type { Element } from 'react';
+import type {Element}
+from 'react';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
+import {createStyleSheet} from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
-import { emphasize } from '../styles/colorManipulator';
+import {emphasize} from '../styles/colorManipulator';
 
 export const styleSheet = createStyleSheet('MuiAvatar', theme => ({
   root: {
     position: 'relative',
     display: 'flex',
+    flexShrink: 0,
     alignItems: 'center',
     justifyContent: 'center',
     width: 40,
@@ -19,22 +21,22 @@ export const styleSheet = createStyleSheet('MuiAvatar', theme => ({
     fontSize: 20,
     borderRadius: '50%',
     overflow: 'hidden',
-    userSelect: 'none',
+    userSelect: 'none'
   },
   colorDefault: {
     color: theme.palette.background.default,
-    backgroundColor: emphasize(theme.palette.background.default, 0.26),
+    backgroundColor: emphasize(theme.palette.background.default, 0.26)
   },
   img: {
     maxWidth: '100%',
     width: '100%',
-    height: 'auto',
-  },
+    height: 'auto'
+  }
 }));
 
 type DefaultProps = {
   alt: string,
-  component: string,
+  component: string
 };
 
 type Props = DefaultProps & {
@@ -50,7 +52,7 @@ type Props = DefaultProps & {
    *
    * This can be an element, or just a string.
    */
-  children?: Element<*>,
+  children?: Element <*>,
   /**
    * @ignore
    * The className of the child element.
@@ -86,10 +88,10 @@ type Props = DefaultProps & {
   /**
    * The `srcSet` attribute for the `img` element.
    */
-  srcSet?: string,
+  srcSet?: string
 };
 
-function Avatar(props: Props) {
+function Avatar(props : Props) {
   const {
     alt,
     classes,
@@ -104,33 +106,26 @@ function Avatar(props: Props) {
     ...other
   } = props;
 
-  const className = classNames(
-    classes.root,
-    {
-      [classes.colorDefault]: childrenProp && !src && !srcSet,
-    },
-    classNameProp,
-  );
+  const className = classNames(classes.root, {
+    [classes.colorDefault]: childrenProp && !src && !srcSet
+  }, classNameProp,);
   let children = null;
 
   if (childrenProp) {
     if (childrenClassNameProp && React.isValidElement(childrenProp)) {
       const childrenClassName = classNames(childrenClassNameProp, childrenProp.props.className);
-      children = React.cloneElement(childrenProp, { className: childrenClassName });
+      children = React.cloneElement(childrenProp, {className: childrenClassName});
     } else {
       children = childrenProp;
     }
   } else if (src || srcSet) {
-    children = (
-      <img
-        alt={alt}
-        src={src}
-        srcSet={srcSet}
-        sizes={sizes}
-        className={classes.img}
-        {...imgProps}
-      />
-    );
+    children = (<img
+      alt={alt}
+      src={src}
+      srcSet={srcSet}
+      sizes={sizes}
+      className={classes.img}
+      {...imgProps}/>);
   }
 
   return (
@@ -142,7 +137,7 @@ function Avatar(props: Props) {
 
 Avatar.defaultProps = {
   alt: '',
-  component: 'div',
+  component: 'div'
 };
 
 export default withStyles(styleSheet)(Avatar);
