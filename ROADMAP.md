@@ -4,7 +4,7 @@ The roadmap is a living document, and it is likely that priorities will change, 
 
 :warning: New features based on `v0.18.x` have low priority and will most likely not be reviewed nor merged. We want to focus on bug fixes.
 
-## Version 1 (formelly next)
+## Version 1 (formerly next)
 
 Version 1 release is going to be huge :sparkles:.
 We host a temporary [documentation](https://material-ui-1dab0.firebaseapp.com) for the pre-releases.
