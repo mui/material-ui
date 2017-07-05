@@ -16,7 +16,7 @@ taking advantage of this knowledge to address long-standing issues.
 Expect various **breaking changes**.
 
 The core team is now helping him in the [v1-alpha](https://github.com/callemall/material-ui/tree/v1-alpha) branch.
-Here are some issues that we plan to fix along the way. If you are interested in following our progress our if you want to help us reach that goal faster, you can have a look at two following milestones:
+If you are interested in following our progress or if you want to help us reach that goal faster, you can have a look at the two following milestones:
 - [v1.0.0-beta](https://github.com/callemall/material-ui/milestone/22)
 - [v1.0.0-prerelease](https://github.com/callemall/material-ui/milestone/14)
 
