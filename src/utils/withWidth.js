@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import EventListener from 'react-event-listener';
+import PropTypes from 'prop-types';
 import createEagerFactory from 'recompose/createEagerFactory';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import customPropTypes from '../utils/customPropTypes';
@@ -42,12 +43,8 @@ function withWidth(options = {}) {
     const factory = createEagerFactory(BaseComponent);
 
     class Width extends Component {
-      static contextTypes = {
-        styleManager: customPropTypes.muiRequired,
-      };
-
       state = {
-        width: null,
+        width: undefined,
       };
 
       componentDidMount() {
@@ -101,22 +98,21 @@ function withWidth(options = {}) {
       }
 
       render() {
+        const { initalWidth, width, ...other } = this.props;
         const props = {
-          width: this.state.width,
-          ...this.props,
+          width: width || this.state.width || initalWidth,
+          ...other,
         };
 
         /**
          * When rendering the component on the server,
-         * we have no idea about the screen width.
-         * In order to prevent blinks and help the reconciliation
-         * we are not rendering the component.
+         * we have no idea about the client browser screen width.
+         * In order to prevent blinks and help the reconciliation of the React tree
+         * we are not rendering the child component.
          *
-         * A better alternative would be to send client hints.
-         * But the browser support of this API is low:
-         * http://caniuse.com/#search=client%20hint
+         * An alternative is to use the `initialWidth` property.
          */
-        if (props.width === null) {
+        if (props.width === undefined) {
           return null;
         }
 
@@ -127,6 +123,27 @@ function withWidth(options = {}) {
         );
       }
     }
+
+    Width.propTypes = {
+      /**
+       * As `window.innerWidth` is unavailable on the server,
+       * we default to rendering an empty componenent during the first mount.
+       * In some situation you might want to use an heristic to approximate
+       * the screen width of the client browser screen width.
+       *
+       * For instance, you could be using the user-agent or the client-hints.
+       * http://caniuse.com/#search=client%20hint
+       */
+      initalWidth: PropTypes.oneOf(keys),
+      /**
+       * Bypass the width calculation logic.
+       */
+      width: PropTypes.oneOf(keys),
+    };
+
+    Width.contextTypes = {
+      styleManager: customPropTypes.muiRequired,
+    };
 
     if (process.env.NODE_ENV !== 'production') {
       Width.displayName = wrapDisplayName(BaseComponent, 'withWidth');

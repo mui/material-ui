@@ -35,9 +35,9 @@ describe('withWidth', () => {
 
   describe('prop: width', () => {
     it('should be able to override it', () => {
-      const wrapper = mount(<EmptyWithWidth width="foo" />);
+      const wrapper = mount(<EmptyWithWidth width="xl" />);
 
-      assert.strictEqual(wrapper.find(Empty).props().width, 'foo');
+      assert.strictEqual(wrapper.find(Empty).props().width, 'xl');
     });
   });
 
@@ -102,9 +102,25 @@ describe('withWidth', () => {
 
     it('should handle resize event', () => {
       const wrapper = shallow(<EmptyWithWidth width="sm" />);
+      assert.strictEqual(wrapper.state().width, undefined);
       wrapper.simulate('resize');
       clock.tick(166);
       assert.strictEqual(wrapper.state().width, TEST_ENV_WIDTH);
+    });
+  });
+
+  describe('props: initalWidth', () => {
+    it('should work as expected', () => {
+      const element = <EmptyWithWidth initalWidth="lg" />;
+
+      // First mount on the server
+      const wrapper1 = shallow(element);
+      assert.strictEqual(wrapper1.find(Empty).props().width, 'lg');
+      const wrapper2 = mount(element);
+
+      // Second mount on the client
+      assert.strictEqual(wrapper2.find(Empty).props().width, TEST_ENV_WIDTH);
+      assert.strictEqual(TEST_ENV_WIDTH !== 'lg', true);
     });
   });
 });
