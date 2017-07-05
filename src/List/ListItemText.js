@@ -3,13 +3,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
+import {
+  createStyleSheet
+} from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 
 export const styleSheet = createStyleSheet('MuiListItemText', theme => ({
   root: {
-    flex: '1 1 auto',
+    flex: '1',
     padding: '0 16px',
     '&:first-child': {
       paddingLeft: 0,
@@ -38,70 +40,84 @@ function ListItemText(props, context) {
     inset,
     ...other
   } = props;
-  const { dense } = context;
+  const {
+    dense
+  } = context;
   const className = classNames(
-    classes.root,
-    {
+    classes.root, {
       [classes.dense]: dense,
       [classes.inset]: inset,
     },
     classNameProp,
   );
 
-  return (
-    <div className={className} {...other}>
-      {primary &&
-        (disableTypography
-          ? primary
-          : <Typography type="subheading" className={classNames({ [classes.text]: dense })}>
-              {primary}
-            </Typography>)}
-      {secondary &&
-        (disableTypography
-          ? secondary
-          : <Typography
-              color="secondary"
-              type="body1"
-              className={classNames({ [classes.text]: dense })}
-            >
-              {secondary}
-            </Typography>)}
-    </div>
-  );
-}
+  return ( <
+      div className = {
+        className
+      } { ...other
+      } > {
+        primary &&
+        (disableTypography ?
+          primary :
+          < Typography type = "subheading"
+          className = {
+            classNames({
+              [classes.text]: dense
+            })
+          } > {
+            primary
+          } <
+          /Typography>)} {
+            secondary &&
+              (disableTypography ?
+                secondary :
+                < Typography color = "secondary"
+                type = "body1"
+                className = {
+                  classNames({
+                    [classes.text]: dense
+                  })
+                } >
+                {
+                  secondary
+                } <
+                /Typography>)} <
+                /div>
+              );
+          }
 
-ListItemText.propTypes = {
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * If `true`, the children won't be wrapped by a typography component.
-   * For instance, that can be usefull to can render an h4 instead of a
-   */
-  disableTypography: PropTypes.bool,
-  /**
-   * If `true`, the children will be indented.
-   * This should be used if there is no left avatar or left icon.
-   */
-  inset: PropTypes.bool,
-  primary: PropTypes.node,
-  secondary: PropTypes.node,
-};
+          ListItemText.propTypes = {
+            /**
+             * Useful to extend the style applied to components.
+             */
+            classes: PropTypes.object.isRequired,
+            /**
+             * @ignore
+             */
+            className: PropTypes.string,
+            /**
+             * If `true`, the children won't be wrapped by a typography component.
+             * For instance, that can be usefull to can render an h4 instead of a
+             */
+            disableTypography: PropTypes.bool,
+            /**
+             * If `true`, the children will be indented.
+             * This should be used if there is no left avatar or left icon.
+             */
+            inset: PropTypes.bool,
+            primary: PropTypes.node,
+            secondary: PropTypes.node,
+          };
 
-ListItemText.defaultProps = {
-  disableTypography: false,
-  primary: false,
-  secondary: false,
-  inset: false,
-};
+          ListItemText.defaultProps = {
+            disableTypography: false,
+            primary: false,
+            secondary: false,
+            inset: false,
+          };
 
-ListItemText.contextTypes = {
-  dense: PropTypes.bool,
-};
+          ListItemText.contextTypes = {
+            dense: PropTypes.bool,
+          };
 
-export default withStyles(styleSheet)(ListItemText);
+          export default withStyles(styleSheet)(ListItemText);
