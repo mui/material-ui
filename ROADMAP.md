@@ -4,7 +4,7 @@ The roadmap is a living document, and it is likely that priorities will change, 
 
 :warning: New features based on `v0.18.x` have low priority and will most likely not be reviewed nor merged. We want to focus on bug fixes.
 
-## Version 1 (formerly next)
+## Version 1 (published on NPM under the next tag)
 
 Version 1 release is going to be huge :sparkles:.
 We host a temporary [documentation](https://material-ui-1dab0.firebaseapp.com) for the pre-releases.
@@ -16,11 +16,9 @@ taking advantage of this knowledge to address long-standing issues.
 Expect various **breaking changes**.
 
 The core team is now helping him in the [v1-alpha](https://github.com/callemall/material-ui/tree/v1-alpha) branch.
-Here are some issues that we plan to fix along the way.
-
-We are tracking two milestones for version 1:
- * [v1.0.0-beta](https://github.com/callemall/material-ui/milestone/22)
- * [v1.0.0-prerelease](https://github.com/callemall/material-ui/milestone/14)
+Here are some issues that we plan to fix along the way. If you are interested in following our progress our if you want to help us reach that goal faster, you can have a look at two following milestones:
+- [v1.0.0-beta](https://github.com/callemall/material-ui/milestone/22)
+- [v1.0.0-prerelease](https://github.com/callemall/material-ui/milestone/14)
 
 ## Q&A with the v1-alpha branch
 
