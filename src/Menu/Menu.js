@@ -127,13 +127,51 @@ class Menu extends Component<DefaultProps, Props, void> {
     return false;
   };
 
-  getContentAnchorEl = () => {
-    if (!this.menuList || !this.menuList.selectedItem) {
-      // $FlowFixMe
-      return findDOMNode(this.menuList).firstChild;
+  getContentAnchorOffset = (element, anchor) => {
+    const list = findDOMNode(this.menuList);
+    let topOffset = 0;
+    let selectedItem;
+
+    if (list) {
+      selectedItem =
+        this.menuList && this.menuList.selectedItem
+          ? findDOMNode(this.menuList.selectedItem)
+          : list.firstChild;
     }
 
-    return findDOMNode(this.menuList.selectedItem);
+    if (list && selectedItem && anchor) {
+      // $FlowFixMe
+      const itemHeight = selectedItem.clientHeight;
+      // $FlowFixMe
+      const numItems = Math.floor(list.clientHeight / itemHeight);
+      const numVisibleItems = Math.floor(element.clientHeight / itemHeight);
+      const itemsOffLimits = Math.floor(numVisibleItems / 2);
+      // $FlowFixMe
+      const selectedIdx = Math.floor((selectedItem.offsetTop + itemHeight) / itemHeight) - 1;
+      // $FlowFixMe
+      const listPadding = (list.clientHeight - numItems * itemHeight) / 2;
+
+      // Calculate scroll to vertically center the selected list item within the
+      // popover and calculate the popover's top offset based on the position of
+      // the selected item so that it aligns with the anchor element.
+      if (selectedIdx < itemsOffLimits || numItems <= numVisibleItems) {
+        // No scroll necessary
+        topOffset = selectedIdx * itemHeight + itemHeight / 2 + listPadding;
+      } else {
+        if (selectedIdx >= numItems - itemsOffLimits) { // eslint-disable-line
+          // Items at the end of the popover
+          element.scrollTop = (numItems - numVisibleItems) * itemHeight + listPadding / 2;
+          topOffset = selectedIdx + 1 - (numItems - itemsOffLimits);
+          topOffset = element.clientHeight / 2 + topOffset * itemHeight;
+        } else {
+          // Selected item will be scrolled to the middle of the popover
+          element.scrollTop = (selectedIdx - itemsOffLimits) * itemHeight + listPadding / 2;
+          topOffset = element.clientHeight / 2;
+        }
+      }
+      topOffset = anchor - topOffset;
+    }
+    return topOffset;
   };
 
   render() {
@@ -158,7 +196,7 @@ class Menu extends Component<DefaultProps, Props, void> {
     return (
       <Popover
         anchorEl={anchorEl}
-        getContentAnchorEl={this.getContentAnchorEl}
+        getContentAnchorOffset={this.getContentAnchorOffset}
         className={classNames(classes.root, className)}
         open={open}
         enteredClassName={classes.entered}
