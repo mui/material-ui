@@ -12,7 +12,7 @@ Provides context such as dirty/focused/error/required for form inputs.
 | disabled | bool | false | If `true`, the label, input and helper text should be displayed in a disabled state. |
 | error | bool | false | If `true`, the label should be displayed in an error state. |
 | fullWidth | bool | false | If `true`, the label will take up the full width of its container. |
-| marginForm | bool | false | If `true`, add the margin top and bottom required when used in a form. |
+| marginForm | bool | false | If `true`, add the margin top and bottom |
 | required | bool | false | If `true`, the label will indicate that the input is required. |
 
 Any other properties supplied will be spread to the root element.

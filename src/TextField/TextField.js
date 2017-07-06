@@ -156,6 +156,10 @@ TextField.propTypes = {
    */
   labelClassName: PropTypes.string,
   /**
+   * If `true`, add the margin top and bottom inside the FormControl
+   */
+  marginForm: PropTypes.bool,
+  /**
    * If `true`, a textarea element will be rendered instead of an input.
    */
   multiline: PropTypes.bool,

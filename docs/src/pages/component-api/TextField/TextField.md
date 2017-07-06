@@ -25,6 +25,7 @@
 | inputRef | function |  | Use that property to pass a ref callback to the native input component. |
 | label | node |  | The label content. |
 | labelClassName | string |  | The CSS class name of the label element. |
+| marginForm | bool |  | If `true`, add the margin top and bottom inside the FormControl |
 | multiline | bool |  | If `true`, a textarea element will be rendered instead of an input. |
 | name | string |  | Name attribute of the `Input` element. |
 | placeholder | string |  |  |
