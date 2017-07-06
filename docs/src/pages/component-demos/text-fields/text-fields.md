@@ -19,7 +19,9 @@ can leverage directly to significantly customize your form inputs.
 {{demo='pages/component-demos/text-fields/ComposedTextField.js'}}
 
 ## Layout
-`TextField`, `FormControl` allow the specification of `margin` to alter the vertical spacing of inputs. 
+`TextField`, `FormControl` allow the specification of `margin` to alter the vertical spacing of inputs. Using
+`none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will as well as alter
+other styles to meet the specification.
 
 {{demo='pages/component-demos/text-fields/TextFieldMargins.js'}}
 
