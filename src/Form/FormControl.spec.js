@@ -16,20 +16,45 @@ describe('<FormControl />', () => {
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
-  it('should render a div with the root and user classes', () => {
-    const wrapper = shallow(<FormControl className="woof" />);
+  describe('initial state', () => {
+    it('should render a div with the root and user classes', () => {
+      const wrapper = shallow(<FormControl className="woof" />);
 
-    assert.strictEqual(wrapper.name(), 'div');
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
-  });
+      assert.strictEqual(wrapper.name(), 'div');
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass('woof'), true);
+    });
 
-  it('should have the focused class', () => {
-    const wrapper = shallow(<FormControl className="woof" />);
+    it('should have the focused class', () => {
+      const wrapper = shallow(<FormControl className="woof" />);
 
-    assert.strictEqual(wrapper.name(), 'div');
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+      assert.strictEqual(wrapper.name(), 'div');
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass('woof'), true);
+    });
+
+    it('should have no verticalSpacing', () => {
+      const wrapper = shallow(<FormControl />);
+
+      assert.strictEqual(wrapper.name(), 'div');
+      assert.strictEqual(wrapper.hasClass(classes.verticalSpacingNormal), false);
+      assert.strictEqual(wrapper.hasClass(classes.verticalSpacingDense), false);
+    });
+
+    it('should have the verticalSpacing normal class', () => {
+      const wrapper = shallow(<FormControl verticalSpacing="normal" />);
+
+      assert.strictEqual(wrapper.name(), 'div');
+      assert.strictEqual(wrapper.hasClass(classes.verticalSpacingNormal), true);
+    });
+
+    it('should have the verticalSpacing dense class', () => {
+      const wrapper = shallow(<FormControl verticalSpacing="dense" />);
+
+      assert.strictEqual(wrapper.name(), 'div');
+      assert.strictEqual(wrapper.hasClass(classes.verticalSpacingDense), true);
+      assert.strictEqual(wrapper.hasClass(classes.verticalSpacingNormal), false);
+    });
   });
 
   describe('initial state', () => {

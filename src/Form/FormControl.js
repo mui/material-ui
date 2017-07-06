@@ -1,6 +1,7 @@
-// @flow weak
+// @flow
 
 import React, { Children, Component } from 'react';
+import type { Element } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
@@ -13,28 +14,91 @@ export const styleSheet = createStyleSheet('MuiFormControl', theme => ({
     flexDirection: 'column',
     position: 'relative',
   },
-  marginForm: {
+  verticalSpacingNormal: {
     marginTop: theme.spacing.unit * 2,
     marginBottom: theme.spacing.unit,
+  },
+  verticalSpacingDense: {
+    marginTop: theme.spacing.unit,
+    marginBottom: theme.spacing.unit / 2,
   },
   fullWidth: {
     width: '100%',
   },
 }));
 
+type DefaultProps = {
+  disabled: boolean,
+  error: boolean,
+  fullWidth: boolean,
+  verticalSpacing: 'none',
+  required: boolean,
+};
+
+type Props = DefaultProps & {
+  /**
+   * The contents of the form control.
+   */
+  children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * If `true`, the label, input and helper text should be displayed in a disabled state.
+   */
+  disabled?: boolean,
+  /**
+   * If `true`, the label should be displayed in an error state.
+   */
+  error?: boolean,
+  /**
+   * If `true`, the label will take up the full width of its container.
+   */
+  fullWidth?: boolean,
+  /**
+   * @ignore
+   */
+  onBlur?: Function,
+  /**
+   * @ignore
+   */
+  onFocus?: Function,
+  /**
+   * If `true`, the label will indicate that the input is required.
+   */
+  required?: boolean,
+  /**
+   * If `dense` | `normal`, will adjust vertical spacing of this and contained components.
+   */
+  verticalSpacing?: 'none' | 'dense' | 'normal',
+};
+
+type State = {
+  dirty: boolean,
+  focused: boolean,
+};
+
 /**
  * Provides context such as dirty/focused/error/required for form inputs.
  */
-class FormControl extends Component {
+class FormControl extends Component<DefaultProps, Props, State> {
   static defaultProps = {
     disabled: false,
     error: false,
     fullWidth: false,
-    marginForm: false,
+    verticalSpacing: 'none',
     required: false,
   };
+  static childContextTypes = {
+    muiFormControl: PropTypes.object.isRequired,
+  };
 
-  state = {
+  state: State = {
     dirty: false,
     focused: false,
   };
@@ -106,7 +170,7 @@ class FormControl extends Component {
       disabled,
       error,
       fullWidth,
-      marginForm,
+      verticalSpacing,
       ...other
     } = this.props;
 
@@ -115,7 +179,8 @@ class FormControl extends Component {
         className={classNames(
           classes.root,
           {
-            [classes.marginForm]: marginForm,
+            [classes.verticalSpacingNormal]: verticalSpacing === 'normal',
+            [classes.verticalSpacingDense]: verticalSpacing === 'dense',
             [classes.fullWidth]: fullWidth,
           },
           className,
@@ -129,52 +194,5 @@ class FormControl extends Component {
     );
   }
 }
-
-FormControl.propTypes = {
-  /**
-   * The contents of the form control.
-   */
-  children: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * If `true`, the label, input and helper text should be displayed in a disabled state.
-   */
-  disabled: PropTypes.bool,
-  /**
-   * If `true`, the label should be displayed in an error state.
-   */
-  error: PropTypes.bool,
-  /**
-   * If `true`, the label will take up the full width of its container.
-   */
-  fullWidth: PropTypes.bool,
-  /**
-   * If `true`, add the margin top and bottom.
-   */
-  marginForm: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  onBlur: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onFocus: PropTypes.func,
-  /**
-   * If `true`, the label will indicate that the input is required.
-   */
-  required: PropTypes.bool,
-};
-
-FormControl.childContextTypes = {
-  muiFormControl: PropTypes.object.isRequired,
-};
 
 export default withStyles(styleSheet)(FormControl);
