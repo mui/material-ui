@@ -42,7 +42,9 @@ const withStyles = styleSheet => BaseComponent => {
               ].join('\n'),
             );
 
-            acc[key] = `${renderedClasses[key]} ${classesProp[key]}`;
+            if (classesProp[key] !== undefined) {
+              acc[key] = `${renderedClasses[key]} ${classesProp[key]}`;
+            }
             return acc;
           }, {}),
         };

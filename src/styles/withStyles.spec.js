@@ -56,6 +56,15 @@ describe('withStyles', () => {
       assert.strictEqual(consoleErrorMock.callCount(), 0);
     });
 
+    it('should ignore undefined property', () => {
+      const wrapper = shallow(<StyledComponent classes={{ root: undefined }} />);
+
+      assert.deepEqual(wrapper.props().classes, {
+        root: `${classes.root}`,
+      });
+      assert.strictEqual(consoleErrorMock.callCount(), 0);
+    });
+
     it('should warn if providing a unknown key', () => {
       const wrapper = shallow(<StyledComponent classes={{ bar: 'foo' }} />);
 
