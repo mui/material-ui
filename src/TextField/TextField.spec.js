@@ -5,7 +5,6 @@ import { assert } from 'chai';
 import { createShallow, createMount } from '../test-utils';
 import Input, { InputLabel } from '../Input';
 import FormHelperText from '../Form/FormHelperText';
-import FormControl from '../Form/FormControl';
 import TextField from './TextField';
 
 describe('<TextField />', () => {
