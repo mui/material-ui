@@ -42,28 +42,26 @@ export const styleSheet = createStyleSheet('MuiLinearProgress', theme => ({
   },
   indeterminateBar1: {
     willChange: 'left, right',
-    animation: 'indeterminate-1 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite',
+    animation: 'mui-indeterminate1 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite',
   },
   indeterminateBar2: {
     willChange: 'left, right',
-    animation: 'indeterminate-2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite',
+    animation: 'mui-indeterminate2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite',
     animationDelay: '1.15s',
   },
   determinateBar1: {
     willChange: 'width',
     transition: `width .${transitionDuration}s linear`,
   },
-  determinateBar2: {
-    display: 'none',
-  },
   bufferBar1: {
+    zIndex: 1,
     transition: `width .${transitionDuration}s linear`,
-    backgroundColor: theme.palette.primary[100],
   },
   bufferBar2: {
     transition: `width .${transitionDuration}s linear`,
+    backgroundColor: theme.palette.primary[100],
   },
-  '@keyframes indeterminate-1': {
+  '@keyframes mui-indeterminate1': {
     '0%': {
       left: '-35%',
       right: '100%',
@@ -77,7 +75,7 @@ export const styleSheet = createStyleSheet('MuiLinearProgress', theme => ({
       right: '-90%',
     },
   },
-  '@keyframes indeterminate-2': {
+  '@keyframes mui-indeterminate2': {
     '0%': {
       left: '-200%',
       right: '100%',
@@ -105,16 +103,6 @@ export const styleSheet = createStyleSheet('MuiLinearProgress', theme => ({
       backgroundPosition: '-200px -23px',
     },
   },
-  '@keyframes query': {
-    '0%': {
-      opacity: 1,
-      transform: 'translateX(35%) scale(.3, 1)',
-    },
-    '100%': {
-      opacity: 0,
-      transform: 'translateX(-50%) scale(0, 1)',
-    },
-  },
 }));
 
 function LinearProgress(props) {
@@ -127,35 +115,33 @@ function LinearProgress(props) {
     },
     className,
   );
-  const dashedClasses = classNames({
-    [classes.dashed]: mode === 'buffer',
-  });
-  const bar1Classes = classNames(classes.bar, {
+  const primaryClasses = classNames(classes.bar, {
     [classes.indeterminateBar1]: mode === 'indeterminate' || mode === 'query',
     [classes.determinateBar1]: mode === 'determinate',
     [classes.bufferBar1]: mode === 'buffer',
   });
-  const bar2Classes = classNames(classes.bar, {
+  const secondaryClasses = classNames(classes.bar, {
     [classes.indeterminateBar2]: mode === 'indeterminate' || mode === 'query',
-    [classes.determinateBar2]: mode === 'determinate',
     [classes.bufferBar2]: mode === 'buffer',
   });
-  const styles = { bar1: {}, bar2: {} };
+  const styles = { primary: {}, secondary: {} };
   const rootProps = {};
 
   if (mode === 'determinate') {
-    styles.bar1.width = `${value}%`;
+    styles.primary.width = `${value}%`;
     rootProps['aria-valuenow'] = Math.round(value);
   } else if (mode === 'buffer') {
-    styles.bar1.width = `${valueBuffer}%`;
-    styles.bar2.width = `${value}%`;
+    styles.primary.width = `${value}%`;
+    styles.secondary.width = `${valueBuffer}%`;
   }
 
   return (
     <div className={rootClasses} {...rootProps} {...other}>
-      <div className={dashedClasses} />
-      <div className={bar1Classes} style={styles.bar1} />
-      <div className={bar2Classes} style={styles.bar2} />
+      {mode === 'buffer' ? <div className={classes.dashed} /> : null}
+      <div className={primaryClasses} style={styles.primary} />
+      {mode === 'determinate'
+        ? null
+        : <div className={secondaryClasses} style={styles.secondary} />}
     </div>
   );
 }
