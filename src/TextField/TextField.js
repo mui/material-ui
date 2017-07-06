@@ -110,7 +110,7 @@ type Props = {
   /**
    * If `dense` | `normal`, will adjust vertical spacing of this and contained components.
    */
-  verticalSpacing?: 'none' | 'dense' | 'normal',
+  margin?: 'none' | 'dense' | 'normal',
 };
 
 function TextField(props: Props) {

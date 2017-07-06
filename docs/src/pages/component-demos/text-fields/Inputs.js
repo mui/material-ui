@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Input from 'material-ui/Input/Input';
 
-const styleSheet = createStyleSheet('TextInputs', theme => ({
+const styleSheet = createStyleSheet('Inputs', theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -15,7 +15,7 @@ const styleSheet = createStyleSheet('TextInputs', theme => ({
   },
 }));
 
-function TextInputs(props) {
+function Inputs(props) {
   const classes = props.classes;
   return (
     <div className={classes.container}>
@@ -27,8 +27,8 @@ function TextInputs(props) {
   );
 }
 
-TextInputs.propTypes = {
+Inputs.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(TextInputs);
+export default withStyles(styleSheet)(Inputs);

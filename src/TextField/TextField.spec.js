@@ -38,9 +38,9 @@ describe('<TextField />', () => {
         assert.strictEqual(wrapper.dive().hasClass('foo'), true);
       });
 
-      it('should pass verticalSpacing to the FormControl', () => {
-        wrapper.setProps({ verticalSpacing: 'normal' });
-        assert.strictEqual(wrapper.dive().props().verticalSpacing, 'normal');
+      it('should pass margin to the FormControl', () => {
+        wrapper.setProps({ margin: 'normal' });
+        assert.strictEqual(wrapper.dive().props().margin, 'normal');
       });
 
       it('should have an Input as the only child', () => {

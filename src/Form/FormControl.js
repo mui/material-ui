@@ -14,11 +14,11 @@ export const styleSheet = createStyleSheet('MuiFormControl', theme => ({
     flexDirection: 'column',
     position: 'relative',
   },
-  verticalSpacingNormal: {
+  marginNormal: {
     marginTop: theme.spacing.unit * 2,
     marginBottom: theme.spacing.unit,
   },
-  verticalSpacingDense: {
+  marginDense: {
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit / 2,
   },
@@ -31,7 +31,7 @@ type DefaultProps = {
   disabled: boolean,
   error: boolean,
   fullWidth: boolean,
-  verticalSpacing: 'none',
+  margin: 'none',
   required: boolean,
 };
 
@@ -75,7 +75,7 @@ type Props = DefaultProps & {
   /**
    * If `dense` | `normal`, will adjust vertical spacing of this and contained components.
    */
-  verticalSpacing?: 'none' | 'dense' | 'normal',
+  margin?: 'none' | 'dense' | 'normal',
 };
 
 type State = {
@@ -91,7 +91,7 @@ class FormControl extends Component<DefaultProps, Props, State> {
     disabled: false,
     error: false,
     fullWidth: false,
-    verticalSpacing: 'none',
+    margin: 'none',
     required: false,
   };
   static childContextTypes = {
@@ -104,7 +104,7 @@ class FormControl extends Component<DefaultProps, Props, State> {
   };
 
   getChildContext() {
-    const { disabled, error, required } = this.props;
+    const { disabled, error, required, margin } = this.props;
     const { dirty, focused } = this.state;
 
     return {
@@ -113,6 +113,7 @@ class FormControl extends Component<DefaultProps, Props, State> {
         disabled,
         error,
         focused,
+        margin,
         required,
         onDirty: this.handleDirty,
         onClean: this.handleClean,
@@ -170,7 +171,7 @@ class FormControl extends Component<DefaultProps, Props, State> {
       disabled,
       error,
       fullWidth,
-      verticalSpacing,
+      margin,
       ...other
     } = this.props;
 
@@ -179,8 +180,8 @@ class FormControl extends Component<DefaultProps, Props, State> {
         className={classNames(
           classes.root,
           {
-            [classes.verticalSpacingNormal]: verticalSpacing === 'normal',
-            [classes.verticalSpacingDense]: verticalSpacing === 'dense',
+            [classes.marginNormal]: margin === 'normal',
+            [classes.marginDense]: margin === 'dense',
             [classes.fullWidth]: fullWidth,
           },
           className,

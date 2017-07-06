@@ -33,27 +33,27 @@ describe('<FormControl />', () => {
       assert.strictEqual(wrapper.hasClass('woof'), true);
     });
 
-    it('should have no verticalSpacing', () => {
+    it('should have no margin', () => {
       const wrapper = shallow(<FormControl />);
 
       assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.hasClass(classes.verticalSpacingNormal), false);
-      assert.strictEqual(wrapper.hasClass(classes.verticalSpacingDense), false);
+      assert.strictEqual(wrapper.hasClass(classes.marginNormal), false);
+      assert.strictEqual(wrapper.hasClass(classes.marginDense), false);
     });
 
-    it('should have the verticalSpacing normal class', () => {
-      const wrapper = shallow(<FormControl verticalSpacing="normal" />);
+    it('should have the margin normal class', () => {
+      const wrapper = shallow(<FormControl margin="normal" />);
 
       assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.hasClass(classes.verticalSpacingNormal), true);
+      assert.strictEqual(wrapper.hasClass(classes.marginNormal), true);
     });
 
-    it('should have the verticalSpacing dense class', () => {
-      const wrapper = shallow(<FormControl verticalSpacing="dense" />);
+    it('should have the margin dense class', () => {
+      const wrapper = shallow(<FormControl margin="dense" />);
 
       assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.hasClass(classes.verticalSpacingDense), true);
-      assert.strictEqual(wrapper.hasClass(classes.verticalSpacingNormal), false);
+      assert.strictEqual(wrapper.hasClass(classes.marginDense), true);
+      assert.strictEqual(wrapper.hasClass(classes.marginNormal), false);
     });
   });
 

@@ -33,14 +33,14 @@ class TextFields extends Component {
           className={classes.input}
           value={this.state.name}
           onChange={event => this.setState({ name: event.target.value })}
-          marginForm
+          margin="normal"
         />
         <TextField
           id="uncontrolled"
           label="Uncontrolled"
           defaultValue="foo"
           className={classes.input}
-          marginForm
+          margin="normal"
         />
         <TextField
           required
@@ -48,7 +48,7 @@ class TextFields extends Component {
           label="Required"
           defaultValue="Hello World"
           className={classes.input}
-          marginForm
+          margin="normal"
         />
         <TextField
           error
@@ -56,14 +56,14 @@ class TextFields extends Component {
           label="Error"
           defaultValue="Hello World"
           className={classes.input}
-          marginForm
+          margin="normal"
         />
         <TextField
           id="password"
           label="Password"
           className={classes.input}
           type="password"
-          marginForm
+          margin="normal"
         />
         <TextField
           id="multiline-flexible"
@@ -72,7 +72,7 @@ class TextFields extends Component {
           rowsMax="4"
           defaultValue="Default Value"
           className={classes.input}
-          marginForm
+          margin="normal"
         />
         <TextField
           id="multiline-static"
@@ -81,7 +81,7 @@ class TextFields extends Component {
           rows="4"
           defaultValue="Default Value"
           className={classes.input}
-          marginForm
+          margin="normal"
         />
         <TextField
           id="date"
@@ -89,25 +89,23 @@ class TextFields extends Component {
           type="date"
           defaultValue="2017-05-24"
           className={classes.input}
-          marginForm
+          margin="normal"
         />
         <TextField
           id="helperText"
           label="Helper text"
-          type="text"
           defaultValue="Default Value"
           className={classes.input}
           helperText="Some important text"
-          marginForm
+          margin="normal"
         />
         <TextField
           id="placeholder"
           label="Label"
-          type="text"
           InputProps={{ placeholder: 'Placeholder' }}
           helperText="Full width!!!"
           fullWidth
-          marginForm
+          margin="normal"
         />
       </div>
     );
