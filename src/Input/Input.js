@@ -73,7 +73,8 @@ export const styleSheet = createStyleSheet('MuiInput', theme => {
     input: {
       font: 'inherit',
       color: 'currentColor',
-      padding: `${theme.spacing.unit}px 0`,
+      // slight alteration to spec spacing to match visual spec result
+      padding: `${theme.spacing.unit - 1}px 0`,
       border: 0,
       display: 'block',
       boxSizing: 'content-box',
