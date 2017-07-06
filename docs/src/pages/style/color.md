@@ -21,7 +21,7 @@ They’ve been designed to work harmoniously with each other.
 
 For instance, you can use the red color like so:
 ```js
-import { red, purple } from 'material-ui/styles/colors';
+import { red, purple } from 'material-ui/colors';
 
 const primary = red[500]; // #F44336
 const accent = purple['A200']; // #E040FB
