@@ -102,11 +102,6 @@ In our `vrtest` config this is set as the default, although it can be overridden
 testUrl: process.env.DOCKER_TEST_URL || 'http://10.200.10.1:3090',
 ```
 
-#### Update the baseline
-
-You can update the baseline images by running the following command:
-`npm run test:regressions -- --record`
-
 ## Writing Tests
 
 For all unit tests, please use the [shallow renderer](https://github.com/airbnb/enzyme/blob/master/docs/api/shallow.md) from `enzyme` unless the Component being tested requires a DOM. [Here's](https://github.com/callemall/material-ui/blob/master/src/Avatar/Avatar.spec.js) a small shallow rendered test to get you started.
