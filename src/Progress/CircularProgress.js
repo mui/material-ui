@@ -24,7 +24,7 @@ export const styleSheet = createStyleSheet('MuiCircularProgress', theme => ({
   },
   indeterminateSvg: {
     // The main animation is loop 4 times (4 / 3 * 1300).
-    animation: 'rotate-progress-circle 1733ms linear infinite',
+    animation: 'mui-rotate-progress-circle 1733ms linear infinite',
   },
   circle: {
     stroke: 'currentColor',
@@ -34,13 +34,13 @@ export const styleSheet = createStyleSheet('MuiCircularProgress', theme => ({
   indeterminateCircle: {
     strokeDasharray: `1, calc((100% - ${THICKNESS}px) * ${PI})`,
     strokeDashoffset: '0%',
-    animation: `scale-progress-circle 1300ms ${theme.transitions.easing.easeInOut} infinite`,
+    animation: `mui-scale-progress-circle 1300ms ${theme.transitions.easing.easeInOut} infinite`,
   },
   determinateCircle: {
     willChange: 'strokeDasharray',
     strokeDashoffset: '0%',
   },
-  '@keyframes rotate-progress-circle': {
+  '@keyframes mui-rotate-progress-circle': {
     '0%': {
       transform: 'rotate(-90deg)',
     },
@@ -48,7 +48,7 @@ export const styleSheet = createStyleSheet('MuiCircularProgress', theme => ({
       transform: 'rotate(270deg)',
     },
   },
-  '@keyframes scale-progress-circle': {
+  '@keyframes mui-scale-progress-circle': {
     '8%': {
       strokeDasharray: `1, calc((100% - ${THICKNESS}px) * ${PI})`,
       strokeDashoffset: 0,
