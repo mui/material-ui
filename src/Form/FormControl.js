@@ -156,7 +156,7 @@ FormControl.propTypes = {
    */
   fullWidth: PropTypes.bool,
   /**
-   * If `true`, add the margin top and bottom
+   * If `true`, add the margin top and bottom.
    */
   marginForm: PropTypes.bool,
   /**
