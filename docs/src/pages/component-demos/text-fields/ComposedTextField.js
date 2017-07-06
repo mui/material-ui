@@ -13,7 +13,7 @@ const styleSheet = createStyleSheet('ComposedTextField', theme => ({
     display: 'flex',
     flexWrap: 'wrap',
   },
-  input: {
+  formControl: {
     margin: theme.spacing.unit,
   },
 }));
@@ -32,21 +32,21 @@ class ComposedTextField extends Component {
 
     return (
       <div className={classes.container}>
-        <FormControl className={classes.input}>
+        <FormControl className={classes.formControl}>
           <InputLabel htmlFor="name">Name</InputLabel>
           <Input id="name" value={this.state.name} onChange={this.handleChange} />
         </FormControl>
-        <FormControl className={classes.input}>
-          <InputLabel htmlFor="name">Name</InputLabel>
-          <Input id="name" value={this.state.name} onChange={this.handleChange} />
-          <FormHelperText>Some important helper text</FormHelperText>
-        </FormControl>
-        <FormControl className={classes.input} disabled>
+        <FormControl className={classes.formControl}>
           <InputLabel htmlFor="name">Name</InputLabel>
           <Input id="name" value={this.state.name} onChange={this.handleChange} />
           <FormHelperText>Some important helper text</FormHelperText>
         </FormControl>
-        <FormControl className={classes.input} error>
+        <FormControl className={classes.formControl} disabled>
+          <InputLabel htmlFor="name">Name</InputLabel>
+          <Input id="name" value={this.state.name} onChange={this.handleChange} />
+          <FormHelperText>Some important helper text</FormHelperText>
+        </FormControl>
+        <FormControl className={classes.formControl} error>
           <InputLabel htmlFor="name">Name</InputLabel>
           <Input id="name" value={this.state.name} onChange={this.handleChange} />
           <FormHelperText>Some important helper text</FormHelperText>

@@ -10,7 +10,7 @@ const styleSheet = createStyleSheet('TextFieldMargins', theme => ({
     display: 'flex',
     flexWrap: 'wrap',
   },
-  input: {
+  textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     width: 200,
@@ -25,20 +25,20 @@ const TextFieldMargins = props => {
       <TextField
         label="None"
         defaultValue="Default Value"
-        className={classes.input}
+        className={classes.textField}
         helperText="Some important text"
       />
       <TextField
         label="Dense"
         defaultValue="Default Value"
-        className={classes.input}
+        className={classes.textField}
         helperText="Some important text"
         margin="dense"
       />
       <TextField
         label="Normal"
         defaultValue="Default Value"
-        className={classes.input}
+        className={classes.textField}
         helperText="Some important text"
         margin="normal"
       />
