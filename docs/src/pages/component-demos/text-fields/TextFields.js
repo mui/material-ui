@@ -63,6 +63,7 @@ class TextFields extends Component {
           label="Password"
           className={classes.textField}
           type="password"
+          autoComplete="current-password"
           margin="normal"
         />
         <TextField
