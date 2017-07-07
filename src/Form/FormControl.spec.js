@@ -136,6 +136,13 @@ describe('<FormControl />', () => {
         loadChildContext();
         assert.strictEqual(muiFormControlContext.error, true);
       });
+
+      it('should have the margin prop from the instance', () => {
+        assert.strictEqual(muiFormControlContext.margin, 'none');
+        wrapper.setProps({ margin: 'dense' });
+        loadChildContext();
+        assert.strictEqual(muiFormControlContext.margin, 'dense');
+      });
     });
 
     describe('callbacks', () => {
