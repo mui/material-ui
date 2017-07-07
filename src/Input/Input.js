@@ -163,7 +163,6 @@ export const styleSheet = createStyleSheet('MuiInput', theme => {
 type DefaultProps = {
   disableUnderline: boolean,
   fullWidth: boolean,
-  margin: 'normal',
   multiline: boolean,
   type: string,
 };
@@ -228,7 +227,7 @@ type Props = DefaultProps & {
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.
    */
-  margin?: 'dense' | 'normal',
+  margin?: 'dense',
   /**
    * If `true`, a textarea element will be rendered.
    */

@@ -260,17 +260,17 @@ describe('<Input />', () => {
     });
 
     describe('margin', () => {
-      beforeEach(() => {
-        setFormControlContext({ margin: 'dense' });
-      });
+      describe('context margin: dense', () => {
+        beforeEach(() => {
+          setFormControlContext({ margin: 'dense' });
+        });
 
-      it('should have the inputDense class', () => {
-        assert.strictEqual(wrapper.find('input').hasClass(classes.inputDense), true);
+        it('should have the inputDense class', () => {
+          assert.strictEqual(wrapper.find('input').hasClass(classes.inputDense), true);
+        });
       });
 
       it('should be overridden by props', () => {
-        assert.strictEqual(wrapper.find('input').hasClass(classes.inputDense), true);
-        wrapper.setProps({ margin: 'normal' });
         assert.strictEqual(wrapper.find('input').hasClass(classes.inputDense), false);
         wrapper.setProps({ margin: 'dense' });
         assert.strictEqual(wrapper.find('input').hasClass(classes.inputDense), true);
