@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
-import contains from 'dom-helpers/query/contains';
 import withStyles from '../styles/withStyles';
 import customPropTypes from '../utils/customPropTypes';
 import Modal from './Modal';
@@ -118,7 +117,7 @@ type Props = DefaultProps & {
   /**
    * @ignore
    */
-  getContentAnchorEl?: Function,
+  getContentAnchorOffset?: Function,
   /**
    * If `true`, the Popover will be rendered as a modal with
    * scroll locking, focus trapping and a clickaway layer beneath
@@ -274,50 +273,55 @@ class Popover extends Component<DefaultProps, Props, void> {
 
   marginThreshold = 16;
 
+  /**
+   * Calculate the top/left offset and transform origin styles for an
+   * anchored popover.
+   */
   getPositioningStyle(element) {
-    // Check if the parent has requested anchoring on an inner content node
-    const contentAnchorOffset = this.getContentAnchorOffset(element);
-    // Get the offset of of the anchoring element
-    const anchorOffset = this.getAnchorOffset(contentAnchorOffset);
-
+    let top;
+    let left;
+    let transformOrigin;
     const elemRect = {
       width: element.clientWidth,
       height: element.clientHeight,
     };
-    // Get the transform origin point on the element itself
-    const transformOrigin = this.getTransformOrigin(elemRect, contentAnchorOffset);
 
-    // Calculate element positioning
-    let top = anchorOffset.top - transformOrigin.vertical;
-    let left = anchorOffset.left - transformOrigin.horizontal;
-    const bottom = top + elemRect.height;
-    const right = left + elemRect.width;
+    if (this.props.anchorEl && this.props.getContentAnchorOffset) {
+      const anchorPoint = this.getAnchorPoint();
+      // Get the popover's offset from the anchor point
+      // $FlowFixMe
+      const anchorOffsetY = this.props.getContentAnchorOffset(element, anchorPoint.y);
 
-    // Window thresholds taking required margin into account
-    const heightThreshold = window.innerHeight - this.marginThreshold;
-    const widthThreshold = window.innerWidth - this.marginThreshold;
+      // Transform origin point on the element itself
+      transformOrigin = {
+        vertical: anchorPoint.y - anchorOffsetY,
+        horizontal: 0,
+      };
+      top = anchorOffsetY;
+      left = anchorPoint.x;
+    } else {
+      // Get the popover's offset from the anchor point
+      const anchorOffset = this.getAnchorOffset();
+      // Get the transform origin point on the element itself
+      transformOrigin = this.getTransformOrigin(elemRect);
 
-    // Check if the vertical axis needs shifting
-    if (top < this.marginThreshold) {
-      const diff = top - this.marginThreshold;
-      top -= diff;
-      transformOrigin.vertical += diff;
-    } else if (bottom > heightThreshold) {
-      const diff = bottom - heightThreshold;
-      top -= diff;
-      transformOrigin.vertical += diff;
+      // Calculate element positioning
+      top = anchorOffset.top - transformOrigin.vertical;
+      left = anchorOffset.left - transformOrigin.horizontal;
     }
 
-    // Check if the horizontal axis needs shifting
-    if (left < this.marginThreshold) {
-      const diff = left - this.marginThreshold;
-      left -= diff;
-      transformOrigin.horizontal += diff;
-    } else if (right > widthThreshold) {
-      const diff = right - widthThreshold;
-      left -= diff;
-      transformOrigin.horizontal += diff;
-    }
+    const bottom = top + element.clientHeight;
+    const right = left + element.clientWidth;
+
+    // Shift the vertical axis if necessary
+    const vshift = this.getVerticalShift(top, bottom);
+    top -= vshift;
+    transformOrigin.vertical += vshift;
+
+    // Shift the horizontal axis if necessary
+    const hshift = this.getHorizontalShift(left, right);
+    left -= hshift;
+    transformOrigin.horizontal += hshift;
 
     return {
       top: `${top}px`,
@@ -328,50 +332,83 @@ class Popover extends Component<DefaultProps, Props, void> {
 
   handleGetOffsetTop = getOffsetTop;
   handleGetOffsetLeft = getOffsetLeft;
-  /**
-   * Returns the top/left offset of the position
-   * to attach to on the anchor element (or body if none is provided)
-   */
-  getAnchorOffset(contentAnchorOffset) {
-    // $FlowFixMe
-    const { anchorEl, anchorOrigin } = this.props;
-    const anchorElement = anchorEl || document.body;
-    const anchorRect = anchorElement.getBoundingClientRect();
-    const anchorVertical = contentAnchorOffset === 0 ? anchorOrigin.vertical : 'center';
 
+  /**
+   * Returns the center/left offset of the popover's anchor per
+   * the anchorEl parameter.
+   */
+  getAnchorPoint() {
+    // $FlowFixMe
+    const { anchorEl } = this.props;
+    const anchorRect = anchorEl.getBoundingClientRect();
     return {
-      top: anchorRect.top + this.handleGetOffsetTop(anchorRect, anchorVertical),
-      left: anchorRect.left + this.handleGetOffsetLeft(anchorRect, anchorOrigin.horizontal),
+      y: anchorRect.top + anchorRect.height / 2,
+      x: anchorRect.left,
     };
   }
 
   /**
-   * Returns the vertical offset of inner
-   * content to anchor the transform on if provided
+   * Returns the top/left offset of the position
+   * to attach to on the anchor element (or body if none is provided)
    */
-  getContentAnchorOffset(element) {
-    let contentAnchorOffset = 0;
+  getAnchorOffset() {
+    // If there's no anchoring element, the popover will be anchored to the
+    // document body per the anchor origin parameter
+    // $FlowFixMe
+    const { anchorEl, anchorOrigin } = this.props;
+    const anchorElement = anchorEl || document.body;
+    const anchorRect = anchorElement.getBoundingClientRect();
 
-    if (this.props.getContentAnchorEl) {
-      const contentAnchorEl = this.props.getContentAnchorEl(element);
-      if (contentAnchorEl && contains(element, contentAnchorEl)) {
-        contentAnchorOffset = contentAnchorEl.offsetTop + contentAnchorEl.clientHeight / 2 || 0;
-      }
-    }
-
-    return contentAnchorOffset;
+    return {
+      top: anchorRect.top + this.handleGetOffsetTop(anchorRect, anchorOrigin.vertical),
+      left: anchorRect.left + this.handleGetOffsetLeft(anchorRect, anchorOrigin.horizontal),
+    };
   }
 
   /**
    * Return the base transform origin using the element
    * and taking the content anchor offset into account if in use
    */
-  getTransformOrigin(elemRect, contentAnchorOffset = 0) {
+  getTransformOrigin(elemRect) {
     const { transformOrigin } = this.props;
     return {
-      vertical: this.handleGetOffsetTop(elemRect, transformOrigin.vertical) + contentAnchorOffset,
+      vertical: this.handleGetOffsetTop(elemRect, transformOrigin.vertical),
       horizontal: this.handleGetOffsetLeft(elemRect, transformOrigin.horizontal),
     };
+  }
+
+  /**
+   * Return the pixel difference necessary to keep an element within the
+   * vertical margin thresholds. If the element's top and bottom edge
+   * values are within bounds, return 0.
+   */
+  getVerticalShift(top, bottom) {
+    let diff = 0;
+    const heightThreshold = window.innerHeight - this.marginThreshold;
+
+    if (top < this.marginThreshold) {
+      diff = top - this.marginThreshold;
+    } else if (bottom > heightThreshold) {
+      diff = bottom - heightThreshold;
+    }
+    return diff;
+  }
+
+  /**
+   * Return the pixel difference necessary to keep an element within the
+   * horizontal margin thresholds. If the element's left and right edge
+   * values are within bounds, return 0.
+   */
+  getHorizontalShift(left, right) {
+    let diff = 0;
+    const widthThreshold = window.innerWidth - this.marginThreshold;
+
+    if (left < this.marginThreshold) {
+      diff = left - this.marginThreshold;
+    } else if (right > widthThreshold) {
+      diff = right - widthThreshold;
+    }
+    return diff;
   }
 
   render() {
@@ -382,7 +419,7 @@ class Popover extends Component<DefaultProps, Props, void> {
       modal,
       onRequestClose,
       open,
-      getContentAnchorEl,
+      getContentAnchorOffset,
       anchorEl,
       anchorOrigin,
       role,

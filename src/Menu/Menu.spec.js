@@ -52,11 +52,11 @@ describe('<Menu />', () => {
     );
   });
 
-  it('should pass the instance function `getContentAnchorEl` to Popover', () => {
+  it('should pass the instance function `getContentAnchorOffset` to Popover', () => {
     const wrapper = shallow(<Menu />);
     assert.strictEqual(
-      wrapper.props().getContentAnchorEl,
-      wrapper.instance().getContentAnchorEl,
+      wrapper.props().getContentAnchorOffset,
+      wrapper.instance().getContentAnchorOffset,
       'should be the same function',
     );
   });
@@ -111,9 +111,10 @@ describe('<Menu />', () => {
     let wrapper;
     let instance;
 
-    let selectedItemFocusSpy;
     let menuListSpy;
     let menuListFocusSpy;
+    let selectedItemSpy;
+    let selectedItemFocusSpy;
 
     let elementForHandleEnter;
 
@@ -127,7 +128,6 @@ describe('<Menu />', () => {
       wrapper = mount(<Menu.Naked classes={classes} />);
       instance = wrapper.instance();
 
-      selectedItemFocusSpy = spy();
       menuListFocusSpy = spy();
       menuListSpy = {};
       menuListSpy.clientHeight = MENU_LIST_HEIGHT;
@@ -135,12 +135,13 @@ describe('<Menu />', () => {
       menuListSpy.firstChild = {
         focus: menuListFocusSpy,
       };
+      selectedItemSpy = {};
+      selectedItemFocusSpy = spy();
+      selectedItemSpy.focus = selectedItemFocusSpy;
 
       findDOMNodeStub = stub(ReactDOM, 'findDOMNode').callsFake(arg => {
         if (arg === SELECTED_ITEM_KEY) {
-          return {
-            focus: selectedItemFocusSpy,
-          };
+          return selectedItemSpy;
         }
         return menuListSpy;
       });
@@ -216,6 +217,58 @@ describe('<Menu />', () => {
         instance.handleEnter(elementForHandleEnter);
         assert.notStrictEqual(menuListSpy.style.paddingRight, undefined);
         assert.notStrictEqual(menuListSpy.style.width, undefined);
+      });
+    });
+
+    describe('with anchor alignment', () => {
+      const element = { clientHeight: 30, scrollTop: 0 };
+      const anchor = 100;
+
+      before(() => {
+        instance.menuList = {};
+        instance.menuList.selectedItem = SELECTED_ITEM_KEY;
+      });
+
+      it('should compute offset for Popover when selected item is at the top', () => {
+        selectedItemSpy = { clientHeight: 6, offsetTop: 0 };
+        const offset = instance.getContentAnchorOffset(element, anchor);
+        assert.strictEqual(offset, 95);
+      });
+
+      it('should compute offset for Popover when selected item is second from top', () => {
+        selectedItemSpy = { clientHeight: 6, offsetTop: 8 };
+        const offset = instance.getContentAnchorOffset(element, anchor);
+        assert.strictEqual(offset, 89);
+      });
+
+      it('should compute offset for Popover when selected item is in the middle', () => {
+        selectedItemSpy = { clientHeight: 6, offsetTop: 56 };
+        const offset = instance.getContentAnchorOffset(element, anchor);
+        assert.strictEqual(offset, 85);
+      });
+
+      it('should compute offset for Popover when selected item is second to last', () => {
+        selectedItemSpy = { clientHeight: 6, offsetTop: 86 };
+        const offset = instance.getContentAnchorOffset(element, anchor);
+        assert.strictEqual(offset, 79);
+      });
+
+      it('should compute offset for Popover when selected item is last', () => {
+        selectedItemSpy = { clientHeight: 6, offsetTop: 92 };
+        const offset = instance.getContentAnchorOffset(element, anchor);
+        assert.strictEqual(offset, 73);
+      });
+
+      it('should scroll Popover to make selected item in the middle visible', () => {
+        selectedItemSpy = { clientHeight: 6, offsetTop: 56 };
+        instance.getContentAnchorOffset(element, anchor);
+        assert.strictEqual(element.scrollTop, 43);
+      });
+
+      it('should scroll Popover to make selected item at the bottom visible', () => {
+        selectedItemSpy = { clientHeight: 6, offsetTop: 92 };
+        instance.getContentAnchorOffset(element, anchor);
+        assert.strictEqual(element.scrollTop, 67);
       });
     });
   });
