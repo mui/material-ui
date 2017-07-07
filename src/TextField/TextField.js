@@ -7,7 +7,16 @@ import FormControl from '../Form/FormControl';
 import FormHelperText from '../Form/FormHelperText';
 
 type Props = {
-  autoComplete?: boolean,
+  /**
+   * This property helps users to fill forms faster, especially on mobile devices.
+   * The name can be confusion, it's more like an autofill.
+   * You can learn about it with that article
+   * https://developers.google.com/web/updates/2015/06/checkout-faster-with-autofill
+   */
+  autoComplete?: string,
+  /**
+   * If `true`, the input will be focused during the first mount.
+   */
   autoFocus?: boolean,
   /**
    * @ignore
@@ -41,6 +50,9 @@ type Props = {
    * The CSS class name of the helper text element.
    */
   helperTextClassName?: string,
+  /**
+   * The id of the `input` element.
+   */
   id?: string,
   /**
    * The CSS class name of the `input` element.

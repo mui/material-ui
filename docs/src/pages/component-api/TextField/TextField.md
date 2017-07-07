@@ -11,15 +11,15 @@
 | InputClassName | string |  | The CSS class name of the `Input` element. |
 | InputLabelProps | Object |  | Properties applied to the `InputLabel` element. |
 | InputProps | Object |  | Properties applied to the `Input` element. |
-| autoComplete | boolean |  |  |
-| autoFocus | boolean |  |  |
+| autoComplete | string |  | This property helps users to fill forms faster, especially on mobile devices. The name can be confusion, it's more like an autofill. You can learn about it with that article https://developers.google.com/web/updates/2015/06/checkout-faster-with-autofill |
+| autoFocus | boolean |  | If `true`, the input will be focused during the first mount. |
 | defaultValue | string |  | The default value of the `Input` element. |
 | disabled | boolean |  | If `true`, the input will be disabled. |
 | error | boolean |  | If `true`, the label will be displayed in an error state. |
 | fullWidth | boolean |  | If `true`, the input will take up the full width of its container. |
 | helperText | union:&nbsp;string<br>&nbsp;Element<*><br> |  | The helper text content. |
 | helperTextClassName | string |  | The CSS class name of the helper text element. |
-| id | string |  |  |
+| id | string |  | The id of the `input` element. |
 | inputClassName | string |  | The CSS class name of the `input` element. |
 | inputProps | Object |  | Properties applied to the `input` element. |
 | inputRef | Function |  | Use that property to pass a ref callback to the native input component. |

@@ -117,7 +117,7 @@
     "karma-mocha-reporter": "^2.2.3",
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-sourcemap-loader": "^0.3.7",
-    "karma-webpack": "^2.0.3",
+    "karma-webpack": "^2.0.4",
     "mocha": "^3.4.2",
     "nyc": "^11.0.3",
     "phantomjs-prebuilt": "^2.1.14",
@@ -136,7 +136,7 @@
     "url-loader": "^0.5.9",
     "vrtest": "^0.2.0",
     "webfontloader": "^1.6.28",
-    "webpack": "^3.0.0"
+    "webpack": "^3.1.0"
   },
   "nyc": {
     "include": [

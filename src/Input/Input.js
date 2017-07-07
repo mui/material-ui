@@ -169,11 +169,14 @@ type DefaultProps = {
 
 type Props = DefaultProps & {
   /**
-   * @ignore
+   * This property helps users to fill forms faster, especially on mobile devices.
+   * The name can be confusion, it's more like an autofill.
+   * You can learn about it with that article
+   * https://developers.google.com/web/updates/2015/06/checkout-faster-with-autofill
    */
-  autoComplete?: boolean,
+  autoComplete?: string,
   /**
-   * @ignore
+   * If `true`, the input will be focused during the first mount.
    */
   autoFocus?: boolean,
   /**
@@ -195,7 +198,7 @@ type Props = DefaultProps & {
    */
   defaultValue?: string | number,
   /**
-   * @ignore
+   * TODO
    */
   disabled?: boolean,
   /**
@@ -211,8 +214,8 @@ type Props = DefaultProps & {
    * If `true`, the input will take up the full width of its container.
    */
   fullWidth?: boolean,
-  /*
-   * @ignore
+  /**
+   * The id of the `input` element.
    */
   id?: string,
   /**
@@ -233,39 +236,39 @@ type Props = DefaultProps & {
    */
   multiline?: boolean,
   /**
-   * @ignore
+   * TODO
    */
   name?: string,
   /**
-   * @ignore
+   * TODO
    */
   onBlur?: Function,
   /**
-   * @ignore
+   * TODO
    */
   onChange?: Function,
   /**
-   * @ignore
+   * TODO
    */
   onClean?: Function,
   /**
-   * @ignore
+   * TODO
    */
   onDirty?: Function,
   /**
-   * @ignore
+   * TODO
    */
   onFocus?: Function,
   /**
-   * @ignore
+   * TODO
    */
   onKeyDown?: Function,
   /**
-   * @ignore
+   * TODO
    */
   onKeyUp?: Function,
   /**
-   * @ignore
+   * TODO
    */
   placeholder?: string,
   /**
