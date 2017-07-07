@@ -1,5 +1,6 @@
 import React, {Component, Children} from 'react';
 import PropTypes from 'prop-types';
+import isEqual from 'lodash.isequal';
 import {fade} from '../utils/colorManipulator';
 
 export const makeSelectable = (MyComponent) => {
@@ -59,13 +60,13 @@ export const makeSelectable = (MyComponent) => {
     };
 
     isChildSelected(child, props) {
-      return props.value === child.props.value;
+      return isEqual(props.value, child.props.value);
     }
 
     handleItemTouchTap = (event, item) => {
       const itemValue = item.props.value;
 
-      if (itemValue !== this.props.value) {
+      if (!isEqual(itemValue, this.props.value)) {
         if (this.props.onChange) {
           this.props.onChange(event, itemValue);
         }
