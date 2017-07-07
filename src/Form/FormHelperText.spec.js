@@ -40,7 +40,7 @@ describe('<FormHelperText />', () => {
     beforeEach(() => {
       wrapper = shallow(<FormHelperText>Foo</FormHelperText>);
     });
-    ['error'].forEach(visualState => {
+    ['error', 'disabled'].forEach(visualState => {
       describe(visualState, () => {
         beforeEach(() => {
           setFormControlContext({ [visualState]: true });
@@ -57,6 +57,24 @@ describe('<FormHelperText />', () => {
           wrapper.setProps({ [visualState]: true });
           assert.strictEqual(wrapper.hasClass(classes[visualState]), true);
         });
+      });
+    });
+
+    describe('margin', () => {
+      describe('context margin: dense', () => {
+        beforeEach(() => {
+          setFormControlContext({ margin: 'dense' });
+        });
+
+        it('should have the dense class', () => {
+          assert.strictEqual(wrapper.hasClass(classes.dense), true);
+        });
+      });
+
+      it('should be overridden by props', () => {
+        assert.strictEqual(wrapper.hasClass(classes.dense), false);
+        wrapper.setProps({ margin: 'dense' });
+        assert.strictEqual(wrapper.hasClass(classes.dense), true);
       });
     });
   });

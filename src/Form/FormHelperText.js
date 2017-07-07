@@ -1,6 +1,7 @@
-// @flow weak
+// @flow
 
 import React from 'react';
+import type { Element } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
@@ -17,6 +18,9 @@ export const styleSheet = createStyleSheet('MuiFormHelperText', theme => ({
     minHeight: '1em',
     margin: 0,
   },
+  dense: {
+    marginTop: theme.spacing.unit / 2,
+  },
   error: {
     color: theme.palette.error.A400,
   },
@@ -25,26 +29,62 @@ export const styleSheet = createStyleSheet('MuiFormHelperText', theme => ({
   },
 }));
 
-function FormHelperText(props, context) {
+type Props = {
+  /**
+   * The content of the component.
+   */
+  children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * If `true`, the helper text should be displayed in a disabled state.
+   */
+  disabled?: boolean,
+  /**
+   * If `true`, helper text should be displayed in an error state.
+   */
+  error?: boolean,
+  /**
+   * If `dense`, will adjust vertical spacing. This is normally obtained via context from
+   * FormControl.
+   */
+  margin?: 'dense',
+};
+
+function FormHelperText(props: Props, context: { muiFormControl: Object }) {
   const {
     children,
     classes,
     className: classNameProp,
     disabled: disabledProp,
     error: errorProp,
+    margin: marginProp,
     ...other
   } = props;
   const { muiFormControl } = context;
 
   let disabled = disabledProp;
   let error = errorProp;
+  let margin = marginProp;
 
-  if (muiFormControl && typeof disabled === 'undefined') {
-    disabled = muiFormControl.disabled;
-  }
+  if (muiFormControl) {
+    if (typeof disabled === 'undefined') {
+      disabled = muiFormControl.disabled;
+    }
 
-  if (muiFormControl && typeof error === 'undefined') {
-    error = muiFormControl.error;
+    if (typeof error === 'undefined') {
+      error = muiFormControl.error;
+    }
+
+    if (typeof margin === 'undefined') {
+      margin = muiFormControl.margin;
+    }
   }
 
   const className = classNames(
@@ -52,6 +92,7 @@ function FormHelperText(props, context) {
     {
       [classes.disabled]: disabled,
       [classes.error]: error,
+      [classes.dense]: margin === 'dense',
     },
     classNameProp,
   );
@@ -62,29 +103,6 @@ function FormHelperText(props, context) {
     </p>
   );
 }
-
-FormHelperText.propTypes = {
-  /**
-   * The content of the component.
-   */
-  children: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * If `true`, the helper text should be displayed in a disabled state.
-   */
-  disabled: PropTypes.bool,
-  /**
-   * If `true`, helper text should be displayed in an error state.
-   */
-  error: PropTypes.bool,
-};
 
 FormHelperText.contextTypes = {
   muiFormControl: PropTypes.object,

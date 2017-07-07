@@ -12,11 +12,12 @@
 | component | union:&nbsp;string<br>&nbsp;Function<br> |  | The component used for the root node. Either a string to use a DOM element or a component. It's an `input` by default. |
 | defaultValue | union:&nbsp;string<br>&nbsp;number<br> |  | The default input value, useful when not controlling the component. |
 | disableUnderline | boolean | false | If `true`, the input will not have an underline. |
-| error | boolean |  | If `true`, the input will indicate an error. |
+| error | boolean |  | If `true`, the input will indicate an error. This is normally obtained via context from FormControl. |
 | fullWidth | boolean | false | If `true`, the input will take up the full width of its container. |
 | id | string |  |  |
 | inputProps | Object |  | Properties applied to the `input` element. |
 | inputRef | Function |  | Use that property to pass a ref callback to the native input component. |
+| margin | literal |  | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
 | multiline | boolean | false | If `true`, a textarea element will be rendered. |
 | rows | union:&nbsp;string<br>&nbsp;number<br> |  | Number of rows to display when multiline option is set to true. |
 | rowsMax | union:&nbsp;string<br>&nbsp;number<br> |  | Maxium number of rows to display when multiline option is set to true. |
