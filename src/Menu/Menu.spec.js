@@ -38,11 +38,6 @@ describe('<Menu />', () => {
     });
   });
 
-  it('should pass `classes.root` to the Popover for the className', () => {
-    const wrapper = shallow(<Menu />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should be classes.root');
-  });
-
   it('should pass `classes.entered` to the Popover for the enteredClassName', () => {
     const wrapper = shallow(<Menu />);
     assert.strictEqual(

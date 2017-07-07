@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import type { Element } from 'react';
-import classNames from 'classnames';
 import { findDOMNode } from 'react-dom';
 import { createStyleSheet } from 'jss-theme-reactor';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
@@ -76,11 +75,7 @@ type Props = DefaultProps & {
   transitionDuration?: number | 'auto',
 };
 
-export const styleSheet = createStyleSheet('MuiMenu', {
-  root: {
-    maxHeight: 250,
-  },
-});
+export const styleSheet = createStyleSheet('MuiMenu', {});
 
 class Menu extends Component<DefaultProps, Props, void> {
   static defaultProps: DefaultProps = {
@@ -159,7 +154,7 @@ class Menu extends Component<DefaultProps, Props, void> {
       <Popover
         anchorEl={anchorEl}
         getContentAnchorEl={this.getContentAnchorEl}
-        className={classNames(classes.root, className)}
+        className={className}
         open={open}
         enteredClassName={classes.entered}
         onEnter={this.handleEnter}
