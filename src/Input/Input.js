@@ -105,7 +105,7 @@ export const styleSheet = createStyleSheet('MuiInput', theme => {
       },
     },
     inputDense: {
-      paddingTop: `${theme.spacing.unit / 2}px`,
+      paddingTop: theme.spacing.unit / 2,
     },
     disabled: {
       color: theme.palette.text.disabled,
