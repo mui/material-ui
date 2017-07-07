@@ -43,9 +43,9 @@ When adding new features or modifying existing code, please attempt to include t
 
 ### Branch Structure
 
-All stable releases are tagged ([view tags](https://github.com/callemall/material-ui/tags)). At any given time, `master` represents the latest development version of the library. 
+All stable releases are tagged ([view tags](https://github.com/callemall/material-ui/tags)). At any given time, `master` represents the latest development version of the library.
 
-Work towards rebuilding Material-UI with a new styling system is underway on the `next` branch. Please refer to the [roadmap](https://github.com/callemall/material-ui/blob/master/ROADMAP.md) for more details.
+Work towards rebuilding Material-UI with a new styling system is underway on the `v1-alpha` branch. Please refer to the [roadmap](https://github.com/callemall/material-ui/blob/master/ROADMAP.md) for more details.
 
 #### `master` is unsafe
 
@@ -58,7 +58,7 @@ Please create a new branch from an up to date master on your fork. (Note, urgent
 
 1. Fork the Material-UI repository on Github
 2. Clone your fork to your local machine `git clone --depth 1 git@github.com:<yourname>/material-ui.git`
-(For the `next` branch, add the `-b next` flag to the above command.)
+(For the `v1-alpha` branch, add the `-b v1-alpha` flag to the above command.)
 3. Create a branch `git checkout -b my-topic-branch`
 4. Make your changes, lint, then push to github with `git push --set-upstream origin my-topic-branch`.
 5. Visit github and make your pull request.
