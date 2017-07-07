@@ -7,10 +7,11 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | node |  | The content of the component. |
-| classes | object |  | Useful to extend the style applied to components. |
-| disabled | bool |  | If `true`, the helper text should be displayed in a disabled state. |
-| error | bool |  | If `true`, helper text should be displayed in an error state. |
+| children | Element |  | The content of the component. |
+| classes | Object |  | Useful to extend the style applied to components. |
+| disabled | boolean |  | If `true`, the helper text should be displayed in a disabled state. |
+| error | boolean |  | If `true`, helper text should be displayed in an error state. |
+| margin | literal |  | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
 
 Any other properties supplied will be spread to the root element.
 
@@ -19,6 +20,7 @@ Any other properties supplied will be spread to the root element.
 You can overrides all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `root`
+- `dense`
 - `error`
 - `disabled`
 

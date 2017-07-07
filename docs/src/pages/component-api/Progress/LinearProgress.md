@@ -26,13 +26,11 @@ This property accepts the following keys:
 - `indeterminateBar1`
 - `indeterminateBar2`
 - `determinateBar1`
-- `determinateBar2`
 - `bufferBar1`
 - `bufferBar2`
-- `@keyframes indeterminate-1`
-- `@keyframes indeterminate-2`
+- `@keyframes mui-indeterminate1`
+- `@keyframes mui-indeterminate2`
 - `@keyframes buffer`
-- `@keyframes query`
 
 Have a look at [overriding with class names](/customization/overrides#overriding-with-class-names)
 section for more detail.
