@@ -1,12 +1,13 @@
 // @flow
 
 import React from 'react';
-import Radio, { LabelRadio } from 'material-ui/Radio';
+import Radio from 'material-ui/Radio';
+import { FormControlLabel } from 'material-ui/Form';
 
 export default function DisabledRadio() {
   return (
     <div>
-      <LabelRadio label="Foo" disabled />
+      <FormControlLabel disabled control={<Radio />} label="Foo" />
       <Radio disabled />
       <Radio checked disabled />
     </div>

@@ -1,9 +1,10 @@
 // @flow
 
 import React, { Component } from 'react';
-import { LabelSwitch } from 'material-ui/Switch';
+import { FormControlLabel } from 'material-ui/Form';
+import Switch from 'material-ui/Switch';
 
-export default class SwitchLabels extends Component {
+class SwitchLabels extends Component {
   state = {
     checkedA: true,
     checkedB: false,
@@ -12,18 +13,28 @@ export default class SwitchLabels extends Component {
   render() {
     return (
       <div>
-        <LabelSwitch
-          checked={this.state.checkedA}
-          onChange={(event, checked) => this.setState({ checkedA: checked })}
+        <FormControlLabel
+          control={
+            <Switch
+              checked={this.state.checkedA}
+              onChange={(event, checked) => this.setState({ checkedA: checked })}
+            />
+          }
           label="A"
         />
-        <LabelSwitch
-          checked={this.state.checkedB}
-          onChange={(event, checked) => this.setState({ checkedB: checked })}
+        <FormControlLabel
+          control={
+            <Switch
+              checked={this.state.checkedB}
+              onChange={(event, checked) => this.setState({ checkedB: checked })}
+            />
+          }
           label="B"
         />
-        <LabelSwitch label="C" disabled />
+        <FormControlLabel control={<Switch />} disabled label="C" />
       </div>
     );
   }
 }
+
+export default SwitchLabels;

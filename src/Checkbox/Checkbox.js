@@ -88,6 +88,10 @@ Checkbox.propTypes = {
    * Properties applied to the `input` element.
    */
   inputProps: PropTypes.object,
+  /**
+   * Use that property to pass a ref callback to the native input component.
+   */
+  inputRef: PropTypes.func,
   /*
    * @ignore
    */

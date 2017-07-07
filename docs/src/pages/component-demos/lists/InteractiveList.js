@@ -12,8 +12,8 @@ import List, {
 } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import IconButton from 'material-ui/IconButton';
-import { FormGroup } from 'material-ui/Form';
-import { LabelCheckbox } from 'material-ui/Checkbox';
+import { FormGroup, FormControlLabel } from 'material-ui/Form';
+import Checkbox from 'material-ui/Checkbox';
 import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
 import FolderIcon from 'material-ui-icons/Folder';
@@ -54,17 +54,25 @@ class InteractiveList extends Component {
     return (
       <div className={classes.root}>
         <FormGroup row>
-          <LabelCheckbox
-            checked={dense}
-            onChange={(event, checked) => this.setState({ dense: checked })}
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={dense}
+                onChange={(event, checked) => this.setState({ dense: checked })}
+                value="dense"
+              />
+            }
             label="Enable dense"
-            value="dense"
           />
-          <LabelCheckbox
-            checked={secondary}
-            onChange={(event, checked) => this.setState({ secondary: checked })}
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={secondary}
+                onChange={(event, checked) => this.setState({ secondary: checked })}
+                value="secondary"
+              />
+            }
             label="Enable secondary text"
-            value="secondary"
           />
         </FormGroup>
         <Grid container>
