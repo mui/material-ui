@@ -67,8 +67,8 @@ export const styleSheet = createStyleSheet('MuiSnackbar', theme => {
 });
 
 type Origin = {
-  horizontal: 'left' | 'center' | 'right' | number,
-  vertical: 'top' | 'center' | 'bottom' | number,
+  horizontal?: 'left' | 'center' | 'right' | number,
+  vertical?: 'top' | 'center' | 'bottom' | number,
 };
 
 type DefaultProps = {
