@@ -105,7 +105,7 @@ export const styleSheet = createStyleSheet('MuiInput', theme => {
       },
     },
     inputDense: {
-      paddingTop: `${theme.spacing.unit / 2}px 0`,
+      paddingTop: `${theme.spacing.unit / 2}px`,
     },
     disabled: {
       color: theme.palette.text.disabled,
@@ -163,6 +163,7 @@ export const styleSheet = createStyleSheet('MuiInput', theme => {
 type DefaultProps = {
   disableUnderline: boolean,
   fullWidth: boolean,
+  margin: 'normal',
   multiline: boolean,
   type: string,
 };
@@ -203,7 +204,8 @@ type Props = DefaultProps & {
    */
   disableUnderline?: boolean,
   /**
-   * If `true`, the input will indicate an error.
+   * If `true`, the input will indicate an error. This is normally obtained via context from
+   * FormControl.
    */
   error?: boolean,
   /**
@@ -222,6 +224,11 @@ type Props = DefaultProps & {
    * Use that property to pass a ref callback to the native input component.
    */
   inputRef?: Function,
+  /**
+   * If `dense`, will adjust vertical spacing. This is normally obtained via context from
+   * FormControl.
+   */
+  margin?: 'dense' | 'normal',
   /**
    * If `true`, a textarea element will be rendered.
    */
@@ -397,6 +404,7 @@ class Input extends Component<DefaultProps, Props, State> {
       id,
       inputProps: inputPropsProp,
       inputRef,
+      margin: marginProp,
       multiline,
       onBlur,
       onFocus,
@@ -418,7 +426,7 @@ class Input extends Component<DefaultProps, Props, State> {
 
     let disabled = disabledProp;
     let error = errorProp;
-    let margin;
+    let margin = marginProp;
 
     if (muiFormControl) {
       if (typeof disabled === 'undefined') {
@@ -429,7 +437,9 @@ class Input extends Component<DefaultProps, Props, State> {
         error = muiFormControl.error;
       }
 
-      margin = muiFormControl.margin;
+      if (typeof margin === 'undefined') {
+        margin = muiFormControl.margin;
+      }
     }
 
     const className = classNames(
