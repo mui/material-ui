@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import shallowEqual from 'recompose/shallowEqual';
 import transitions from '../styles/transitions';
@@ -56,6 +57,7 @@ const getStyles = (props, context, state) => {
       color: props.disabled ? disabledTextColor : textColor,
       cursor: 'inherit',
       font: 'inherit',
+      WebkitOpacity: 1,
       WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated style).
     },
     inputNative: {
@@ -286,6 +288,12 @@ class TextField extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if (nextProps.disabled && !this.props.disabled) {
+      this.setState({
+        isFocused: false,
+      });
+    }
+
     if (nextProps.errorText !== this.props.errorText) {
       this.setState({
         errorText: nextProps.errorText,
@@ -348,7 +356,9 @@ class TextField extends Component {
   };
 
   handleInputChange = (event) => {
-    this.setState({hasValue: isValid(event.target.value)});
+    if (!this.props.hasOwnProperty('value')) {
+      this.setState({hasValue: isValid(event.target.value)});
+    }
     if (this.props.onChange) {
       this.props.onChange(event, event.target.value);
     }

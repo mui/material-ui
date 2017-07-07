@@ -1,5 +1,5 @@
-import React, {Component, PropTypes} from 'react';
-import {createChildFragment} from '../utils/childUtils';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Events from '../utils/events';
 import keycode from 'keycode';
 import FocusRipple from './FocusRipple';
@@ -164,6 +164,10 @@ class EnhancedButton extends Component {
         color={focusRippleColor}
         opacity={focusRippleOpacity}
         show={isKeyboardFocused}
+        style={{
+          overflow: 'hidden',
+        }}
+        key="focusRipple"
       />
     ) : undefined;
 
@@ -173,16 +177,17 @@ class EnhancedButton extends Component {
         centerRipple={centerRipple}
         color={touchRippleColor}
         opacity={touchRippleOpacity}
+        key="touchRipple"
       >
         {children}
       </TouchRipple>
     ) : undefined;
 
-    return createChildFragment({
+    return [
       focusRipple,
       touchRipple,
-      children: touchRipple ? undefined : children,
-    });
+      touchRipple ? undefined : children,
+    ];
   }
 
   handleKeyDown = (event) => {

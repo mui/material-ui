@@ -15,7 +15,7 @@ const colors = [
 /**
  * `AutoComplete` search text can be implemented as a controlled value,
  * where `searchText` is handled by state in the parent component.
- * That value is reseted with the `onNewRequest` callback.
+ * This value is reset with the `onNewRequest` callback.
  */
 export default class AutoCompleteExampleControlled extends Component {
   state = {

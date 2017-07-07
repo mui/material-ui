@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import propTypes from '../utils/propTypes';
 import transitions from '../styles/transitions';
 
@@ -37,7 +38,7 @@ class Paper extends Component {
      */
     children: PropTypes.node,
     /**
-     * Set to true to generate a circlular paper container.
+     * Set to true to generate a circular paper container.
      */
     circle: PropTypes.bool,
     /**

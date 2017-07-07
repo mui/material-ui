@@ -1,6 +1,7 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import ReactTransitionGroup from 'react-addons-transition-group';
+import ReactTransitionGroup from 'react-transition-group/TransitionGroup';
 import Dom from '../utils/dom';
 import CircleRipple from './CircleRipple';
 

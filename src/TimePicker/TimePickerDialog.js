@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import EventListener from 'react-event-listener';
 import keycode from 'keycode';
 import Clock from './Clock';
@@ -12,6 +13,7 @@ class TimePickerDialog extends Component {
     cancelLabel: PropTypes.node,
     format: PropTypes.oneOf(['ampm', '24hr']),
     initialTime: PropTypes.object,
+    minutesStep: PropTypes.number,
     okLabel: PropTypes.node,
     onAccept: PropTypes.func,
     onDismiss: PropTypes.func,
@@ -81,6 +83,7 @@ class TimePickerDialog extends Component {
       okLabel,
       cancelLabel,
       style,
+      minutesStep,
       ...other
     } = this.props;
 
@@ -135,6 +138,7 @@ class TimePickerDialog extends Component {
             format={format}
             initialTime={initialTime}
             onChangeMinutes={onClockChangeMinutes}
+            minutesStep={minutesStep}
           />
         }
       </Dialog>

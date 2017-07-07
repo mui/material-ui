@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import IconButton from '../IconButton';
 import NavigationChevronLeft from '../svg-icons/navigation/chevron-left';
 import NavigationChevronRight from '../svg-icons/navigation/chevron-right';
@@ -38,13 +39,19 @@ class CalendarToolbar extends Component {
     prevMonth: true,
   };
 
+  static contextTypes = {
+    muiTheme: PropTypes.object.isRequired,
+  };
+
   state = {
     transitionDirection: 'up',
   };
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.displayDate !== this.props.displayDate) {
-      const direction = nextProps.displayDate > this.props.displayDate ? 'left' : 'right';
+      const nextDirection = this.context.muiTheme.isRtl ? 'right' : 'left';
+      const prevDirection = this.context.muiTheme.isRtl ? 'left' : 'right';
+      const direction = nextProps.displayDate > this.props.displayDate ? nextDirection : prevDirection;
       this.setState({
         transitionDirection: direction,
       });
@@ -71,13 +78,17 @@ class CalendarToolbar extends Component {
       year: 'numeric',
     }).format(displayDate);
 
+    const nextButtonIcon = this.context.muiTheme.isRtl ? <NavigationChevronLeft /> : <NavigationChevronRight />;
+    const prevButtonIcon = this.context.muiTheme.isRtl ? <NavigationChevronRight /> : <NavigationChevronLeft />;
+
+
     return (
       <div style={styles.root}>
         <IconButton
           disabled={!this.props.prevMonth}
           onTouchTap={this.handleTouchTapPrevMonth}
         >
-          <NavigationChevronLeft />
+          {prevButtonIcon}
         </IconButton>
         <SlideInTransitionGroup
           direction={this.state.transitionDirection}
@@ -91,7 +102,7 @@ class CalendarToolbar extends Component {
           disabled={!this.props.nextMonth}
           onTouchTap={this.handleTouchTapNextMonth}
         >
-          <NavigationChevronRight />
+          {nextButtonIcon}
         </IconButton>
       </div>
     );

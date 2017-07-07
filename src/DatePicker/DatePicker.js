@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {dateTimeFormat, formatIso, isEqualDate} from './dateUtils';
 import DatePickerDialog from './DatePickerDialog';
 import TextField from '../TextField';
@@ -137,6 +138,15 @@ class DatePicker extends Component {
      * Override the inline-styles of DatePicker's TextField element.
      */
     textFieldStyle: PropTypes.object,
+    /**
+     * This object should contain methods needed to build the calendar system.
+     *
+     * Useful for building a custom calendar system. Refer to the
+     * [source code](https://github.com/callemall/material-ui/blob/master/src/DatePicker/dateUtils.js)
+     * and an [example implementation](https://github.com/alitaheri/material-ui-persian-date-picker-utils)
+     * for more information.
+     */
+    utils: PropTypes.object,
     /**
      * Sets the date for the Date Picker programmatically.
      */
@@ -289,6 +299,7 @@ class DatePicker extends Component {
       hideCalendarDate,
       style,
       textFieldStyle,
+      utils,
       ...other
     } = this.props;
 
@@ -326,6 +337,7 @@ class DatePicker extends Component {
           shouldDisableDate={shouldDisableDate}
           hideCalendarDate={hideCalendarDate}
           openToYearSelection={openToYearSelection}
+          utils={utils}
         />
       </div>
     );

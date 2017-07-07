@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import transitions from '../styles/transitions';
 import EnhancedButton from '../internal/EnhancedButton';
 import StepLabel from './StepLabel';

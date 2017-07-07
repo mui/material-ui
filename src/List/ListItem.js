@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import shallowEqual from 'recompose/shallowEqual';
 import {fade} from '../utils/colorManipulator';
@@ -11,10 +12,12 @@ import NestedList from './NestedList';
 
 function getStyles(props, context, state) {
   const {
+    autoGenerateNestedIndicator,
     insetChildren,
     leftAvatar,
     leftCheckbox,
     leftIcon,
+    nestedItems,
     nestedLevel,
     rightAvatar,
     rightIcon,
@@ -54,7 +57,9 @@ function getStyles(props, context, state) {
     innerDiv: {
       marginLeft: nestedLevel * listItem.nestedLevelDepth,
       paddingLeft: leftIcon || leftAvatar || leftCheckbox || insetChildren ? 72 : 16,
-      paddingRight: rightIcon || rightAvatar || rightIconButton ? 56 : rightToggle ? 72 : 16,
+      paddingRight: rightIcon || rightAvatar || rightIconButton ||
+                    (nestedItems.length && autoGenerateNestedIndicator) ?
+                    56 : rightToggle ? 72 : 16,
       paddingBottom: singleAvatar ? 20 : 16,
       paddingTop: singleNoAvatar || threeLine ? 16 : 20,
       position: 'relative',
@@ -249,7 +254,11 @@ class ListItem extends Component {
     onTouchEnd: PropTypes.func,
     /** @ignore */
     onTouchStart: PropTypes.func,
-    /** @ignore */
+    /**
+     * Callback function fired when the list item is touch-tapped.
+     *
+     * @param {object} event TouchTap event targeting the list item.
+     */
     onTouchTap: PropTypes.func,
     /**
      * Control toggle state of nested list.
@@ -458,6 +467,16 @@ class ListItem extends Component {
     this.props.onMouseLeave(event);
   };
 
+  handleTouchTap = (event) => {
+    if (this.props.onTouchTap) {
+      this.props.onTouchTap(event);
+    }
+
+    if (this.props.primaryTogglesNestedList) {
+      this.handleNestedListToggle(event);
+    }
+  };
+
   handleNestedListToggle = (event) => {
     event.stopPropagation();
 
@@ -562,7 +581,6 @@ class ListItem extends Component {
       onMouseLeave, // eslint-disable-line no-unused-vars
       onNestedListToggle, // eslint-disable-line no-unused-vars
       onTouchStart, // eslint-disable-line no-unused-vars
-      onTouchTap,
       rightAvatar,
       rightIcon,
       rightIconButton,
@@ -707,7 +725,7 @@ class ListItem extends Component {
               onMouseEnter={this.handleMouseEnter}
               onTouchStart={this.handleTouchStart}
               onTouchEnd={this.handleTouchEnd}
-              onTouchTap={primaryTogglesNestedList ? this.handleNestedListToggle : onTouchTap}
+              onTouchTap={this.handleTouchTap}
               ref={(node) => this.button = node}
               style={Object.assign({}, styles.root, style)}
             >

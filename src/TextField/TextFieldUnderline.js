@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import transitions from '../styles/transitions';
 
 const propTypes = {
@@ -78,7 +79,8 @@ const TextFieldUnderline = (props) => {
       borderTop: 'none',
       borderLeft: 'none',
       borderRight: 'none',
-      borderBottom: 'solid 1px',
+      borderBottomStyle: 'solid',
+      borderBottomWidth: 1,
       borderColor: borderColor,
       bottom: 8,
       boxSizing: 'content-box',
@@ -87,11 +89,13 @@ const TextFieldUnderline = (props) => {
       width: '100%',
     },
     disabled: {
-      borderBottom: 'dotted 2px',
+      borderBottomStyle: 'dotted',
+      borderBottomWidth: 2,
       borderColor: disabledTextColor,
     },
     focus: {
-      borderBottom: 'solid 2px',
+      borderBottomStyle: 'solid',
+      borderBottomWidth: 2,
       borderColor: focusColor,
       transform: 'scaleX(0)',
       transition: transitions.easeOut(),
@@ -111,8 +115,8 @@ const TextFieldUnderline = (props) => {
 
   return (
     <div>
-      <hr style={prepareStyles(underline)} />
-      <hr style={prepareStyles(focusedUnderline)} />
+      <hr aria-hidden="true" style={prepareStyles(underline)} />
+      <hr aria-hidden="true" style={prepareStyles(focusedUnderline)} />
     </div>
   );
 };

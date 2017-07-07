@@ -1,15 +1,16 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import EnhancedButton from '../internal/EnhancedButton';
 
 function getStyles(props, context, state) {
-  const {selected, year} = props;
+  const {selected, year, utils} = props;
   const {baseTheme, datePicker} = context.muiTheme;
   const {hover} = state;
 
   return {
     root: {
       boxSizing: 'border-box',
-      color: year === new Date().getFullYear() && datePicker.color,
+      color: year === utils.getYear(new Date()) && datePicker.color,
       display: 'block',
       fontSize: 14,
       margin: '0 auto',
@@ -38,6 +39,7 @@ class YearButton extends Component {
     className: PropTypes.string,
     onTouchTap: PropTypes.func,
     selected: PropTypes.bool,
+    utils: PropTypes.object.isRequired,
     year: PropTypes.number.isRequired,
   };
 
@@ -74,6 +76,7 @@ class YearButton extends Component {
       onTouchTap, // eslint-disable-line no-unused-vars
       selected, // eslint-disable-line no-unused-vars
       year, // eslint-disable-line no-unused-vars
+      utils, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
 

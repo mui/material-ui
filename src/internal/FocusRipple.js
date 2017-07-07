@@ -1,9 +1,10 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import shallowEqual from 'recompose/shallowEqual';
 import autoPrefix from '../utils/autoPrefix';
 import transitions from '../styles/transitions';
-import ScaleInTransitionGroup from './ScaleIn';
+import ScaleIn from './ScaleIn';
 
 const pulsateDuration = 750;
 
@@ -114,12 +115,12 @@ class FocusRipple extends Component {
     const ripple = show ? this.getRippleElement(this.props) : null;
 
     return (
-      <ScaleInTransitionGroup
+      <ScaleIn
         maxScale={0.85}
         style={mergedRootStyles}
       >
         {ripple}
-      </ScaleInTransitionGroup>
+      </ScaleIn>
     );
   }
 }

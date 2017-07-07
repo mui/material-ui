@@ -1,10 +1,5 @@
-import React, {Component,
-  createElement,
-  cloneElement,
-  Children,
-  isValidElement,
-  PropTypes,
-} from 'react';
+import React, {Component, createElement, cloneElement, Children, isValidElement} from 'react';
+import PropTypes from 'prop-types';
 import warning from 'warning';
 import TabTemplate from './TabTemplate';
 import InkBar from './InkBar';

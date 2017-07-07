@@ -100,29 +100,17 @@ describe('<Popover />', () => {
       getBoundingClientRect,
     };
     /* eslint-disable max-len */
-    const userAgentsWithIOS = [
+    const userAgents = [
       'Mozilla/5.0 (iPhone; CPU iPhone OS 7_0 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A465 Safari/9537.53',
       'Mozilla/5.0 (iPad; CPU OS 7_0 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A465 Safari/9537.53',
       'Mozilla/5.0 (iPod; U; CPU like Mac OS X; en) AppleWebKit/420.1 (KHTML, like Gecko) Version/3.0 Mobile/3A101a Safari/419.3',
-    ];
-    const nonIOSuserAgents = [
       'Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0)',
       'Mozilla/5.0 (Linux; Android 4.4.4; Nexus 7 Build/KTU84Q) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Safari/537.36',
       'Mozilla/5.0 (BlackBerry; U; BlackBerry 9900; en) AppleWebKit/534.11+ (KHTML, like Gecko) Version/7.1.0.346 Mobile Safari/534.11+',
     ];
     /* eslint-enable max-len */
 
-    userAgentsWithIOS.forEach((agent) => {
-      it(`should use absolute positioning for ${agent}`, () => {
-        window.navigator.__defineGetter__('userAgent', () => agent); // eslint-disable-line no-underscore-dangle,max-len
-        const wrapper = mountWithContext(<Popover open={true} animated={true} />);
-        const result = wrapper.instance().getAnchorPosition(el);
-        const expected = {bottom: 30, top: 10, center: 20, left: 10, right: 10, middle: 10, height: 10, width: 10};
-        assert.deepEqual(result, expected);
-      });
-    });
-
-    nonIOSuserAgents.forEach((agent) => {
+    userAgents.forEach((agent) => {
       it(`should use normal positioning for ${agent}`, () => {
         window.navigator.__defineGetter__('userAgent', () => agent); // eslint-disable-line no-underscore-dangle,max-len
         const wrapper = mountWithContext(<Popover open={true} animated={true} />);

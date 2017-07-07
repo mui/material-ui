@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import transitions from '../styles/transitions';
 import DropDownArrow from '../svg-icons/navigation/arrow-drop-down';
@@ -179,6 +180,8 @@ class DropDownMenu extends Component {
      * array with either the menu item's `value` added (if
      * it wasn't already selected) or omitted (if it was already selected).
      * Otherwise, the `value` of the menu item.
+     * @param {any} menuItem The selected `MenuItem`.
+     * If `multiple` is true, this will be an array with the `MenuItem`s matching the `value`s parameter.
      */
     selectionRenderer: PropTypes.func,
     /**
@@ -214,7 +217,7 @@ class DropDownMenu extends Component {
     maxHeight: 500,
     multiple: false,
     anchorOrigin: {
-      vertical: 'bottom',
+      vertical: 'top',
       horizontal: 'left',
     },
   };
@@ -392,7 +395,7 @@ class DropDownMenu extends Component {
       React.Children.forEach(children, (child) => {
         if (child && value === child.props.value) {
           if (selectionRenderer) {
-            displayValue = selectionRenderer(value);
+            displayValue = selectionRenderer(value, child);
           } else {
             // This will need to be improved (in case primaryText is a node)
             displayValue = child.props.label || child.props.primaryText;
@@ -401,10 +404,12 @@ class DropDownMenu extends Component {
       });
     } else {
       const values = [];
+      const selectionRendererChildren = [];
       React.Children.forEach(children, (child) => {
-        if (child && value && value.includes(child.props.value)) {
+        if (child && value && value.indexOf(child.props.value) > -1) {
           if (selectionRenderer) {
             values.push(child.props.value);
+            selectionRendererChildren.push(child);
           } else {
             values.push(child.props.label || child.props.primaryText);
           }
@@ -413,7 +418,7 @@ class DropDownMenu extends Component {
 
       displayValue = [];
       if (selectionRenderer) {
-        displayValue = selectionRenderer(values);
+        displayValue = selectionRenderer(values, selectionRendererChildren);
       } else {
         displayValue = values.join(', ');
       }
@@ -475,6 +480,8 @@ class DropDownMenu extends Component {
             onChange={this.handleChange}
             menuItemStyle={menuItemStyle}
             selectedMenuItemStyle={selectedMenuItemStyle}
+            autoWidth={autoWidth}
+            width={!autoWidth && menuStyle ? menuStyle.width : null}
           >
             {children}
           </Menu>

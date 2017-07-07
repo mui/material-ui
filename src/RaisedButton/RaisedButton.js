@@ -1,7 +1,7 @@
-import React, {Component, cloneElement, PropTypes} from 'react';
+import React, {Component, cloneElement} from 'react';
+import PropTypes from 'prop-types';
 import transitions from '../styles/transitions';
 import {fade} from '../utils/colorManipulator';
-import {createChildFragment} from '../utils/childUtils';
 import EnhancedButton from '../internal/EnhancedButton';
 import Paper from '../Paper';
 
@@ -147,7 +147,7 @@ class RaisedButton extends Component {
     /**
      * If true, the element's ripple effect will be disabled.
      */
-    disableTouchRipple: React.PropTypes.bool,
+    disableTouchRipple: PropTypes.bool,
     /**
      * If true, the button will be disabled.
      */
@@ -391,7 +391,7 @@ class RaisedButton extends Component {
     };
 
     const labelElement = label && (
-      <span style={prepareStyles(Object.assign(styles.label, labelStyle))}>
+      <span style={prepareStyles(Object.assign(styles.label, labelStyle))} key="labelElement">
         {label}
       </span>
     );
@@ -399,21 +399,20 @@ class RaisedButton extends Component {
     const iconCloned = icon && cloneElement(icon, {
       color: icon.props.color || styles.label.color,
       style: Object.assign(styles.icon, icon.props.style),
+      key: 'iconCloned',
     });
 
     // Place label before or after children.
-    const childrenFragment = labelPosition === 'before' ?
-    {
+    const enhancedButtonChildren = labelPosition === 'before' ?
+    [
       labelElement,
       iconCloned,
       children,
-    } : {
+    ] : [
       children,
       iconCloned,
       labelElement,
-    };
-
-    const enhancedButtonChildren = createChildFragment(childrenFragment);
+    ];
 
     return (
       <Paper

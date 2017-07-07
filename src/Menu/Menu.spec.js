@@ -1,5 +1,6 @@
 /* eslint-env mocha */
-import React, {PropTypes, Component} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {mount, shallow} from 'enzyme';
 import {spy} from 'sinon';
 import {assert} from 'chai';
@@ -135,6 +136,9 @@ describe('<Menu />', () => {
       assert.strictEqual(onMenuItemFocusChangeSpy.callCount, 0,
         '"b00!" does not change the focus index, which is probably a bug');
       onMenuItemFocusChangeSpy.reset();
+
+      // Test RegExp-breaking key. If implementation is testing with RegExp, a syntax error will throw.
+      wrapper.simulate('keydown', keycodeEvent('\\'));
 
       wrapper.unmount(); // Otherwise the timer in FocusRipple keeps Node from exiting
     });

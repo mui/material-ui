@@ -1,5 +1,6 @@
-import React, {Component, PropTypes} from 'react';
-import {isBetweenDates, isEqualDate, getWeekArray} from './dateUtils';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {isBetweenDates, isEqualDate} from './dateUtils';
 import DayButton from './DayButton';
 
 const styles = {
@@ -35,6 +36,7 @@ class CalendarMonth extends Component {
     onTouchTapDay: PropTypes.func,
     selectedDate: PropTypes.object.isRequired,
     shouldDisableDate: PropTypes.func,
+    utils: PropTypes.object.isRequired,
   };
 
   isSelectedDateDisabled() {
@@ -56,7 +58,7 @@ class CalendarMonth extends Component {
   }
 
   getWeekElements() {
-    const weekArray = getWeekArray(this.props.displayDate, this.props.firstDayOfWeek);
+    const weekArray = this.props.utils.getWeekArray(this.props.displayDate, this.props.firstDayOfWeek);
 
     return weekArray.map((week, i) => {
       return (

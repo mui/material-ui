@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 function getStyles(props, context) {
   const {card} = context.muiTheme;
@@ -34,6 +35,10 @@ class CardTitle extends Component {
      * Can be used to render elements inside the Card Title.
      */
     children: PropTypes.node,
+    /**
+     * Can be used to pass a closeIcon if you don't like the default expandable close Icon.
+     */
+    closeIcon: PropTypes.node,
     /**
      * If true, this card component is expandable.
      */
@@ -80,6 +85,7 @@ class CardTitle extends Component {
     const {
       actAsExpander, // eslint-disable-line no-unused-vars
       children,
+      closeIcon, // eslint-disable-line no-unused-vars
       expandable, // eslint-disable-line no-unused-vars
       showExpandableButton, // eslint-disable-line no-unused-vars
       style,

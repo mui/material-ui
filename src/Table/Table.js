@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import warning from 'warning';
 
 function getStyles(props, context) {
@@ -148,6 +149,12 @@ class Table extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.allRowsSelected !== nextProps.allRowsSelected) {
+      this.setState({allRowsSelected: nextProps.allRowsSelected});
+    }
+  }
+
   isScrollbarVisible() {
     const tableDivHeight = this.refs.tableDiv.clientHeight;
     const tableBodyHeight = this.refs.tableBody.clientHeight;
@@ -209,8 +216,13 @@ class Table extends Component {
   };
 
   onRowSelection = (selectedRows) => {
-    if (this.state.allRowsSelected) this.setState({allRowsSelected: false});
-    if (this.props.onRowSelection) this.props.onRowSelection(selectedRows);
+    if (this.state.allRowsSelected) {
+      this.setState({allRowsSelected: false});
+    }
+
+    if (this.props.onRowSelection) {
+      this.props.onRowSelection(selectedRows);
+    }
   };
 
   onSelectAll = () => {

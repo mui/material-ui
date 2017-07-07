@@ -1,4 +1,5 @@
-import React, {Component, Children, PropTypes} from 'react';
+import React, {Component, Children} from 'react';
+import PropTypes from 'prop-types';
 import {fade} from '../utils/colorManipulator';
 
 export const makeSelectable = (MyComponent) => {

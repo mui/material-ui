@@ -100,6 +100,7 @@ export default function getMuiTheme(muiTheme, ...more) {
       selectColor: palette.primary2Color,
       selectTextColor: palette.alternateTextColor,
       calendarYearBackgroundColor: palette.canvasColor,
+      headerColor: palette.pickerHeaderColor || palette.primary1Color,
     },
     dialog: {
       titleFontSize: 22,

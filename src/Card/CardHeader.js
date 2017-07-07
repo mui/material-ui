@@ -1,4 +1,5 @@
-import React, {Component, PropTypes, isValidElement} from 'react';
+import React, {Component, isValidElement} from 'react';
+import PropTypes from 'prop-types';
 import Avatar from '../Avatar';
 
 function getStyles(props, context) {
@@ -60,6 +61,10 @@ class CardHeader extends Component {
      * If true, this card component is expandable.
      */
     expandable: PropTypes.bool,
+    /**
+     * Override the iconStyle of the Icon Button.
+     */
+    iconStyle: PropTypes.object,
     /**
      * Can be used to pass a openIcon if you don't like the default expandable open Icon.
      */
@@ -127,6 +132,7 @@ class CardHeader extends Component {
       title,
       titleColor, // eslint-disable-line no-unused-vars
       titleStyle,
+      iconStyle, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
 

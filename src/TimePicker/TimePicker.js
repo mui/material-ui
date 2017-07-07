@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import TimePickerDialog from './TimePickerDialog';
 import TextField from '../TextField';
 import {formatTime} from './timeUtils';
@@ -39,6 +40,10 @@ class TimePicker extends Component {
      * Tells the component to display the picker in `ampm` (12hr) format or `24hr` format.
      */
     format: PropTypes.oneOf(['ampm', '24hr']),
+    /**
+     * How many minutes should be added/subtracted when moving the clock pointer.
+     */
+    minutesStep: PropTypes.number,
     /**
      * Override the label of the 'OK' button.
      */
@@ -97,6 +102,7 @@ class TimePicker extends Component {
     pedantic: false,
     style: {},
     value: null,
+    minutesStep: 1,
   };
 
   static contextTypes = {
@@ -190,6 +196,7 @@ class TimePicker extends Component {
       pedantic,
       style,
       textFieldStyle,
+      minutesStep,
       ...other
     } = this.props;
 
@@ -218,6 +225,7 @@ class TimePicker extends Component {
           cancelLabel={cancelLabel}
           autoOk={autoOk}
           style={dialogStyle}
+          minutesStep={minutesStep}
         />
       </div>
     );

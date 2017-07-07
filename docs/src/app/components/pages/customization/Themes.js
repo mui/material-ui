@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Title from 'react-title-component';
 import MarkdownElement from '../../MarkdownElement';
 import muiThemeable from 'material-ui/styles/muiThemeable';

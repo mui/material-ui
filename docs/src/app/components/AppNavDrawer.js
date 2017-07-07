@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Drawer from 'material-ui/Drawer';
 import {List, ListItem, makeSelectable} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
@@ -11,6 +12,10 @@ import {cyan500} from 'material-ui/styles/colors';
 const SelectableList = makeSelectable(List);
 
 const styles = {
+  v1: {
+    height: 40,
+    backgroundColor: '#2196f3',
+  },
   logo: {
     cursor: 'pointer',
     fontSize: 24,
@@ -120,6 +125,7 @@ class AppNavDrawer extends Component {
         onRequestChange={onRequestChangeNavDrawer}
         containerStyle={{zIndex: zIndex.drawer - 100}}
       >
+        <div style={styles.v1} />
         <div style={styles.logo} onTouchTap={this.handleTouchTapHeader}>
           Material-UI
         </div>

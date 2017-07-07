@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 function getStyles(props, context, state) {
   const {tableRow} = context.muiTheme;
@@ -40,7 +41,7 @@ class TableRow extends Component {
      */
     displayBorder: PropTypes.bool,
     /**
-     * Controls whether or not the row reponseds to hover events.
+     * Controls whether or not the row responds to hover events.
      */
     hoverable: PropTypes.bool,
     /**
@@ -119,7 +120,6 @@ class TableRow extends Component {
     hoverable: false,
     hovered: false,
     selectable: true,
-    selected: false,
     striped: false,
   };
 
@@ -132,15 +132,21 @@ class TableRow extends Component {
   };
 
   onRowClick(event) {
-    if (this.props.selectable && this.props.onRowClick) this.props.onRowClick(event, this.props.rowNumber);
+    if (this.props.selectable && this.props.onRowClick) {
+      this.props.onRowClick(event, this.props.rowNumber);
+    }
   }
 
   onRowHover(event) {
-    if (this.props.onRowHover) this.props.onRowHover(event, this.props.rowNumber);
+    if (this.props.onRowHover) {
+      this.props.onRowHover(event, this.props.rowNumber);
+    }
   }
 
   onRowHoverExit(event) {
-    if (this.props.onRowHoverExit) this.props.onRowHoverExit(event, this.props.rowNumber);
+    if (this.props.onRowHoverExit) {
+      this.props.onRowHoverExit(event, this.props.rowNumber);
+    }
   }
 
   onCellClick = (event, columnIndex) => {

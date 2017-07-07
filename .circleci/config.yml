@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  build:
+    working_directory: /tmp/material-ui
+    docker:
+      - image: circleci/node:6.11
+    steps:
+      # Fetch the code
+      - checkout
+      - run:
+          name: Check versions and env
+          command: |
+            yarn --version
+            node --version
+            docker --version
+            docker-compose --version
+            env
+            yarn cache dir

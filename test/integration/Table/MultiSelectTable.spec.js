@@ -1,74 +1,100 @@
 /* eslint-env mocha */
 import React from 'react';
+import PropTypes from 'prop-types';
 import {mount} from 'enzyme';
 import {assert} from 'chai';
+import {spy} from 'sinon';
 import getMuiTheme from 'src/styles/getMuiTheme';
 import MultiSelectTable from './MultiSelectTable';
 
+function getCheckboxStates(wrapper) {
+  return wrapper.find('Checkbox').map((checkbox) => checkbox.props().checked);
+}
+
 describe('<MultiSelectTable />', () => {
-  it('should select and unselect every checkboxes', () => {
-    const muiTheme = getMuiTheme();
-    const mountWithContext = (node) => mount(node, {
-      context: {muiTheme},
-      childContextTypes: {muiTheme: React.PropTypes.object},
+  let muiTheme;
+  let mountWithContext;
+
+  before(() => {
+    window.getSelection = () => ({
+      removeAllRanges: () => {},
     });
+    muiTheme = getMuiTheme();
+    mountWithContext = (node) => mount(node, {
+      context: {muiTheme},
+      childContextTypes: {muiTheme: PropTypes.object},
+    });
+  });
 
-    const wrapper = mountWithContext(
-      <MultiSelectTable />
-    );
+  describe('uncontrolled', () => {
+    it('should select and unselect every checkboxes', () => {
+      const rows = [
+        'John Smith',
+        'Randal White',
+        'Christopher Nolan',
+      ];
 
-    assert.deepEqual(
-      wrapper.find('Checkbox').map((checkbox) => checkbox.props().checked),
-      [
-        false,
-        true,
-        true,
-        false,
-      ],
-      'should use the selected property for the initial value'
-    );
+      const wrapper = mountWithContext(
+        <MultiSelectTable rows={rows} />
+      );
 
-    let input;
-    input = wrapper.find('Checkbox').at(0).find('input');
-    input.node.checked = !input.node.checked;
-    input.simulate('change');
+      wrapper.find('TableRow').at(1).find('TableRowColumn').at(0).simulate('click');
 
-    assert.deepEqual(
-      wrapper.find('Checkbox').map((checkbox) => checkbox.props().checked),
-      [
-        true,
-        true,
-        true,
-        true,
-      ],
-      'should check all the checkboxes'
-    );
+      assert.deepEqual(getCheckboxStates(wrapper),
+        [false, true, false, false],
+        'should take the action into account'
+      );
 
-    input = wrapper.find('Checkbox').at(0).find('input');
-    input.node.checked = !input.node.checked;
-    input.simulate('change');
+      let input = wrapper.find('Checkbox').at(0).find('input');
+      input.node.checked = !input.node.checked;
+      input.simulate('change');
 
-    assert.deepEqual(
-      wrapper.find('Checkbox').map((checkbox) => checkbox.props().checked),
-      [
-        false,
-        false,
-        false,
-        false,
-      ],
-      'should uncheck all the checkboxes'
-    );
+      assert.deepEqual(getCheckboxStates(wrapper),
+        [true, true, true, true],
+        'should check all the checkboxes'
+      );
 
-    wrapper.update();
-    assert.deepEqual(
-      wrapper.find('Checkbox').map((checkbox) => checkbox.props().checked),
-      [
-        false,
-        false,
-        false,
-        false,
-      ],
-      'should be invariant to update'
-    );
+      input = wrapper.find('Checkbox').at(0).find('input');
+      input.node.checked = !input.node.checked;
+      input.simulate('change');
+
+      assert.deepEqual(getCheckboxStates(wrapper),
+        [false, false, false, false],
+        'should uncheck all the checkboxes'
+      );
+
+      wrapper.update();
+      assert.deepEqual(getCheckboxStates(wrapper),
+        [false, false, false, false],
+        'should be invariant to update'
+      );
+    });
+  });
+
+  describe('controlled', () => {
+    it('should allow the component to be controlled', () => {
+      const rows = [
+        'John Smith',
+        'Randal White',
+        'Christopher Nolan',
+      ];
+      const onRowSelection = spy();
+
+      const wrapper = mountWithContext(
+        <MultiSelectTable rows={rows} selected={[1]} onRowSelection={onRowSelection} />
+      );
+
+      assert.deepEqual(getCheckboxStates(wrapper), [false, false, true, false]);
+
+      wrapper.find('TableRow').at(1).find('TableRowColumn').at(0).simulate('click');
+      assert.deepEqual(getCheckboxStates(wrapper), [false, false, true, false]);
+
+      assert.deepEqual(onRowSelection.args[0][0], [0, 1]);
+
+      wrapper.setProps({
+        selected: [0, 1],
+      });
+      assert.deepEqual(getCheckboxStates(wrapper), [false, true, true, false]);
+    });
   });
 });
