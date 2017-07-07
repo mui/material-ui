@@ -16,20 +16,45 @@ describe('<FormControl />', () => {
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
-  it('should render a div with the root and user classes', () => {
-    const wrapper = shallow(<FormControl className="woof" />);
+  describe('initial state', () => {
+    it('should render a div with the root and user classes', () => {
+      const wrapper = shallow(<FormControl className="woof" />);
 
-    assert.strictEqual(wrapper.name(), 'div');
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
-  });
+      assert.strictEqual(wrapper.name(), 'div');
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass('woof'), true);
+    });
 
-  it('should have the focused class', () => {
-    const wrapper = shallow(<FormControl className="woof" />);
+    it('should have the focused class', () => {
+      const wrapper = shallow(<FormControl className="woof" />);
 
-    assert.strictEqual(wrapper.name(), 'div');
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+      assert.strictEqual(wrapper.name(), 'div');
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass('woof'), true);
+    });
+
+    it('should have no margin', () => {
+      const wrapper = shallow(<FormControl />);
+
+      assert.strictEqual(wrapper.name(), 'div');
+      assert.strictEqual(wrapper.hasClass(classes.marginNormal), false);
+      assert.strictEqual(wrapper.hasClass(classes.marginDense), false);
+    });
+
+    it('should have the margin normal class', () => {
+      const wrapper = shallow(<FormControl margin="normal" />);
+
+      assert.strictEqual(wrapper.name(), 'div');
+      assert.strictEqual(wrapper.hasClass(classes.marginNormal), true);
+    });
+
+    it('should have the margin dense class', () => {
+      const wrapper = shallow(<FormControl margin="dense" />);
+
+      assert.strictEqual(wrapper.name(), 'div');
+      assert.strictEqual(wrapper.hasClass(classes.marginDense), true);
+      assert.strictEqual(wrapper.hasClass(classes.marginNormal), false);
+    });
   });
 
   describe('initial state', () => {
@@ -110,6 +135,13 @@ describe('<FormControl />', () => {
         wrapper.setProps({ error: true });
         loadChildContext();
         assert.strictEqual(muiFormControlContext.error, true);
+      });
+
+      it('should have the margin prop from the instance', () => {
+        assert.strictEqual(muiFormControlContext.margin, 'none');
+        wrapper.setProps({ margin: 'dense' });
+        loadChildContext();
+        assert.strictEqual(muiFormControlContext.margin, 'dense');
       });
     });
 

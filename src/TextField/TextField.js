@@ -1,12 +1,119 @@
-// @flow weak
+// @flow
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Element } from 'react';
 import Input, { InputLabel } from '../Input';
 import FormControl from '../Form/FormControl';
 import FormHelperText from '../Form/FormHelperText';
 
-function TextField(props) {
+type Props = {
+  autoComplete?: boolean,
+  autoFocus?: boolean,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * The default value of the `Input` element.
+   */
+  defaultValue?: string,
+  /**
+   * If `true`, the input will be disabled.
+   */
+  disabled?: boolean,
+  /**
+   * If `true`, the label will be displayed in an error state.
+   */
+  error?: boolean,
+  /**
+   * Properties applied to the `FormHelperText` element.
+   */
+  FormHelperTextProps?: Object,
+  /**
+   * If `true`, the input will take up the full width of its container.
+   */
+  fullWidth?: boolean,
+  /**
+   * The helper text content.
+   */
+  helperText?: string | Element<*>,
+  /**
+   * The CSS class name of the helper text element.
+   */
+  helperTextClassName?: string,
+  id?: string,
+  /**
+   * The CSS class name of the `input` element.
+   */
+  inputClassName?: string,
+  /**
+   * The CSS class name of the `Input` element.
+   */
+  InputClassName?: string,
+  /**
+   * Properties applied to the `InputLabel` element.
+   */
+  InputLabelProps?: Object,
+  /**
+   * Properties applied to the `input` element.
+   */
+  inputProps?: Object,
+  /**
+   * Properties applied to the `Input` element.
+   */
+  InputProps?: Object,
+  /**
+   * Use that property to pass a ref callback to the native input component.
+   */
+  inputRef?: Function,
+  /**
+   * The label content.
+   */
+  label?: string | Element<*>,
+  /**
+   * The CSS class name of the label element.
+   */
+  labelClassName?: string,
+  /**
+   * If `true`, a textarea element will be rendered instead of an input.
+   */
+  multiline?: boolean,
+  /**
+   * Name attribute of the `Input` element.
+   */
+  name?: string,
+  placeholder?: string,
+  /**
+   * If `true`, the label is displayed as required.
+   */
+  required?: boolean,
+  /**
+   * Use that property to pass a ref callback to the root component.
+   */
+  rootRef?: Function,
+  /**
+   * Number of rows to display when multiline option is set to true.
+   */
+  rows?: string | number,
+  /**
+   * Maxium number of rows to display when multiline option is set to true.
+   */
+  rowsMax?: string | number,
+  /**
+   * Type attribute of the `Input` element. It should be a valid HTML5 input type.
+   */
+  type?: string,
+  /**
+   * The value of the `Input` element, required for a controlled component.
+   */
+  value?: string | number,
+  /**
+   * If `dense` | `normal`, will adjust vertical spacing of this and contained components.
+   */
+  margin?: 'none' | 'dense' | 'normal',
+};
+
+function TextField(props: Props) {
   const {
     autoComplete,
     autoFocus,
@@ -86,113 +193,6 @@ function TextField(props) {
     </FormControl>
   );
 }
-
-TextField.propTypes = {
-  autoComplete: PropTypes.bool,
-  autoFocus: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * The default value of the `Input` element.
-   */
-  defaultValue: PropTypes.string,
-  /**
-   * If `true`, the input will be disabled.
-   */
-  disabled: PropTypes.bool,
-  /**
-   * If `true`, the label will be displayed in an error state.
-   */
-  error: PropTypes.bool,
-  /**
-   * Properties applied to the `FormHelperText` element.
-   */
-  FormHelperTextProps: PropTypes.object,
-  /**
-   * If `true`, the input will take up the full width of its container.
-   */
-  fullWidth: PropTypes.bool,
-  /**
-   * The helper text content.
-   */
-  helperText: PropTypes.node,
-  /**
-   * The CSS class name of the helper text element.
-   */
-  helperTextClassName: PropTypes.string,
-  id: PropTypes.string,
-  /**
-   * The CSS class name of the `input` element.
-   */
-  inputClassName: PropTypes.string,
-  /**
-   * The CSS class name of the `Input` element.
-   */
-  InputClassName: PropTypes.string,
-  /**
-   * Properties applied to the `InputLabel` element.
-   */
-  InputLabelProps: PropTypes.object,
-  /**
-   * Properties applied to the `input` element.
-   */
-  inputProps: PropTypes.object,
-  /**
-   * Properties applied to the `Input` element.
-   */
-  InputProps: PropTypes.object,
-  /**
-   * Use that property to pass a ref callback to the native input component.
-   */
-  inputRef: PropTypes.func,
-  /**
-   * The label content.
-   */
-  label: PropTypes.node,
-  /**
-   * The CSS class name of the label element.
-   */
-  labelClassName: PropTypes.string,
-  /**
-   * If `true`, add the margin top and bottom inside the FormControl.
-   */
-  marginForm: PropTypes.bool,
-  /**
-   * If `true`, a textarea element will be rendered instead of an input.
-   */
-  multiline: PropTypes.bool,
-  /**
-   * Name attribute of the `Input` element.
-   */
-  name: PropTypes.string,
-  placeholder: PropTypes.string,
-  /**
-   * If `true`, the label is displayed as required.
-   */
-  required: PropTypes.bool,
-  /**
-   * Use that property to pass a ref callback to the root component.
-   */
-  rootRef: PropTypes.func,
-  /**
-   * Number of rows to display when multiline option is set to true.
-   */
-  rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /**
-   * Maxium number of rows to display when multiline option is set to true.
-   */
-  rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /**
-   * Type attribute of the `Input` element. It should be a valid HTML5 input type.
-   */
-  type: PropTypes.string,
-  /**
-   * The value of the `Input` element, required for a controlled component.
-   */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-};
 
 TextField.defaultProps = {
   required: false,

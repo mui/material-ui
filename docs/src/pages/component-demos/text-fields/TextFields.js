@@ -10,7 +10,7 @@ const styleSheet = createStyleSheet('TextFields', theme => ({
     display: 'flex',
     flexWrap: 'wrap',
   },
-  input: {
+  textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     width: 200,
@@ -30,40 +30,40 @@ class TextFields extends Component {
         <TextField
           id="name"
           label="Name"
-          className={classes.input}
+          className={classes.textField}
           value={this.state.name}
           onChange={event => this.setState({ name: event.target.value })}
-          marginForm
+          margin="normal"
         />
         <TextField
           id="uncontrolled"
           label="Uncontrolled"
           defaultValue="foo"
-          className={classes.input}
-          marginForm
+          className={classes.textField}
+          margin="normal"
         />
         <TextField
           required
           id="required"
           label="Required"
           defaultValue="Hello World"
-          className={classes.input}
-          marginForm
+          className={classes.textField}
+          margin="normal"
         />
         <TextField
           error
           id="error"
           label="Error"
           defaultValue="Hello World"
-          className={classes.input}
-          marginForm
+          className={classes.textField}
+          margin="normal"
         />
         <TextField
           id="password"
           label="Password"
-          className={classes.input}
+          className={classes.textField}
           type="password"
-          marginForm
+          margin="normal"
         />
         <TextField
           id="multiline-flexible"
@@ -71,8 +71,8 @@ class TextFields extends Component {
           multiline
           rowsMax="4"
           defaultValue="Default Value"
-          className={classes.input}
-          marginForm
+          className={classes.textField}
+          margin="normal"
         />
         <TextField
           id="multiline-static"
@@ -80,34 +80,32 @@ class TextFields extends Component {
           multiline
           rows="4"
           defaultValue="Default Value"
-          className={classes.input}
-          marginForm
+          className={classes.textField}
+          margin="normal"
         />
         <TextField
           id="date"
           label="From date"
           type="date"
           defaultValue="2017-05-24"
-          className={classes.input}
-          marginForm
+          className={classes.textField}
+          margin="normal"
         />
         <TextField
           id="helperText"
           label="Helper text"
-          type="text"
           defaultValue="Default Value"
-          className={classes.input}
+          className={classes.textField}
           helperText="Some important text"
-          marginForm
+          margin="normal"
         />
         <TextField
           id="placeholder"
           label="Label"
-          type="text"
           InputProps={{ placeholder: 'Placeholder' }}
           helperText="Full width!!!"
           fullWidth
-          marginForm
+          margin="normal"
         />
       </div>
     );

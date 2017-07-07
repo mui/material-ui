@@ -104,6 +104,9 @@ export const styleSheet = createStyleSheet('MuiInput', theme => {
         '&:focus::-ms-input-placeholder': placeholderFormFocus, // Edge
       },
     },
+    inputDense: {
+      paddingTop: `${theme.spacing.unit / 2}px 0`,
+    },
     disabled: {
       color: theme.palette.text.disabled,
     },
@@ -157,7 +160,131 @@ export const styleSheet = createStyleSheet('MuiInput', theme => {
   };
 });
 
-class Input extends Component {
+type DefaultProps = {
+  disableUnderline: boolean,
+  fullWidth: boolean,
+  multiline: boolean,
+  type: string,
+};
+
+type Props = DefaultProps & {
+  /**
+   * @ignore
+   */
+  autoComplete?: boolean,
+  /**
+   * @ignore
+   */
+  autoFocus?: boolean,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: Object,
+  /**
+   * The CSS class name of the wrapper element.
+   */
+  className?: string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   * It's an `input` by default.
+   */
+  component?: string | Function,
+  /**
+   * The default input value, useful when not controlling the component.
+   */
+  defaultValue?: string | number,
+  /**
+   * @ignore
+   */
+  disabled?: boolean,
+  /**
+   * If `true`, the input will not have an underline.
+   */
+  disableUnderline?: boolean,
+  /**
+   * If `true`, the input will indicate an error.
+   */
+  error?: boolean,
+  /**
+   * If `true`, the input will take up the full width of its container.
+   */
+  fullWidth?: boolean,
+  /*
+   * @ignore
+   */
+  id?: string,
+  /**
+   * Properties applied to the `input` element.
+   */
+  inputProps?: Object,
+  /**
+   * Use that property to pass a ref callback to the native input component.
+   */
+  inputRef?: Function,
+  /**
+   * If `true`, a textarea element will be rendered.
+   */
+  multiline?: boolean,
+  /**
+   * @ignore
+   */
+  name?: string,
+  /**
+   * @ignore
+   */
+  onBlur?: Function,
+  /**
+   * @ignore
+   */
+  onChange?: Function,
+  /**
+   * @ignore
+   */
+  onClean?: Function,
+  /**
+   * @ignore
+   */
+  onDirty?: Function,
+  /**
+   * @ignore
+   */
+  onFocus?: Function,
+  /**
+   * @ignore
+   */
+  onKeyDown?: Function,
+  /**
+   * @ignore
+   */
+  onKeyUp?: Function,
+  /**
+   * @ignore
+   */
+  placeholder?: string,
+  /**
+   * Number of rows to display when multiline option is set to true.
+   */
+  rows?: string | number,
+  /**
+   * Maxium number of rows to display when multiline option is set to true.
+   */
+  rowsMax?: string | number,
+  /**
+   * Type of the input element. It should be a valid HTML5 input type.
+   */
+  type?: string,
+  /**
+   * The input value, required for a controlled component.
+   */
+  value?: string | number,
+};
+
+type State = {
+  focused: boolean,
+};
+
+class Input extends Component<DefaultProps, Props, State> {
   static muiName = 'Input';
   static defaultProps = {
     disableUnderline: false,
@@ -165,7 +292,9 @@ class Input extends Component {
     multiline: false,
     type: 'text',
   };
-
+  static contextTypes = {
+    muiFormControl: PropTypes.object,
+  };
   state = {
     focused: false,
   };
@@ -289,13 +418,18 @@ class Input extends Component {
 
     let disabled = disabledProp;
     let error = errorProp;
+    let margin;
 
-    if (muiFormControl && typeof disabled === 'undefined') {
-      disabled = muiFormControl.disabled;
-    }
+    if (muiFormControl) {
+      if (typeof disabled === 'undefined') {
+        disabled = muiFormControl.disabled;
+      }
 
-    if (typeof error === 'undefined' && muiFormControl) {
-      error = muiFormControl.error;
+      if (typeof error === 'undefined') {
+        error = muiFormControl.error;
+      }
+
+      margin = muiFormControl.margin;
     }
 
     const className = classNames(
@@ -317,6 +451,7 @@ class Input extends Component {
       [classes.inputDisabled]: disabled,
       [classes.inputSingleline]: !multiline,
       [classes.inputMultiline]: multiline,
+      [classes.inputDense]: margin === 'dense',
     });
 
     const required = muiFormControl && muiFormControl.required === true;
@@ -376,122 +511,5 @@ class Input extends Component {
     );
   }
 }
-
-Input.propTypes = {
-  /**
-   * @ignore
-   */
-  autoComplete: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  autoFocus: PropTypes.bool,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * The CSS class name of the wrapper element.
-   */
-  className: PropTypes.string,
-  /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a component.
-   * It's an `input` by default.
-   */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  /**
-   * The default input value, useful when not controlling the component.
-   */
-  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /**
-   * @ignore
-   */
-  disabled: PropTypes.bool,
-  /**
-   * If `true`, the input will not have an underline.
-   */
-  disableUnderline: PropTypes.bool,
-  /**
-   * If `true`, the input will indicate an error.
-   */
-  error: PropTypes.bool,
-  /**
-   * If `true`, the input will take up the full width of its container.
-   */
-  fullWidth: PropTypes.bool,
-  /*
-   * @ignore
-   */
-  id: PropTypes.string,
-  /**
-   * Properties applied to the `input` element.
-   */
-  inputProps: PropTypes.object,
-  /**
-   * Use that property to pass a ref callback to the native input component.
-   */
-  inputRef: PropTypes.func,
-  /**
-   * If `true`, a textarea element will be rendered.
-   */
-  multiline: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  name: PropTypes.string,
-  /**
-   * @ignore
-   */
-  onBlur: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onChange: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onClean: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onDirty: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onFocus: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyDown: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyUp: PropTypes.func,
-  /**
-   * @ignore
-   */
-  placeholder: PropTypes.string,
-  /**
-   * Number of rows to display when multiline option is set to true.
-   */
-  rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /**
-   * Maxium number of rows to display when multiline option is set to true.
-   */
-  rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /**
-   * Type of the input element. It should be a valid HTML5 input type.
-   */
-  type: PropTypes.string,
-  /**
-   * The input value, required for a controlled component.
-   */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-};
-
-Input.contextTypes = {
-  muiFormControl: PropTypes.object,
-};
 
 export default withStyles(styleSheet)(Input);
