@@ -25,7 +25,7 @@ type Props = {
   /**
    * @ignore
    */
-  onKeyDown?: Function,
+  onKeyDown?: (event: SyntheticUIEvent, key: string) => void,
 };
 
 type State = {
