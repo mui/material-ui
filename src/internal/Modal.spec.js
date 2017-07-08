@@ -7,6 +7,7 @@ import keycode from 'keycode';
 import contains from 'dom-helpers/query/contains';
 import { createShallow, createMount } from '../test-utils';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
+import Fade from '../transitions/Fade';
 import Backdrop from './Backdrop';
 import Modal, { styleSheet } from './Modal';
 
@@ -450,6 +451,32 @@ describe('<Modal />', () => {
         </Modal>,
       );
       assert.strictEqual(wrapper.contains(children), false);
+    });
+  });
+
+  describe('props: onExited', () => {
+    it('should avoid concurrency issue by chaining internal with the public API', () => {
+      const handleExited = spy();
+      const wrapper = shallow(
+        <Modal onExited={handleExited} show>
+          <Fade in />
+        </Modal>,
+      );
+      wrapper.find(Fade).at(1).simulate('exited');
+      assert.strictEqual(handleExited.callCount, 1);
+      assert.strictEqual(wrapper.state().exited, true);
+    });
+
+    it('should rely on the internal backdrop events', () => {
+      const handleExited = spy();
+      const wrapper = shallow(
+        <Modal onExited={handleExited} show>
+          <div />
+        </Modal>,
+      );
+      wrapper.find(Fade).at(0).simulate('exited');
+      assert.strictEqual(handleExited.callCount, 1);
+      assert.strictEqual(wrapper.state().exited, true);
     });
   });
 });
