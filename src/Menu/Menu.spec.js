@@ -5,18 +5,20 @@ import { spy, stub } from 'sinon';
 import { assert } from 'chai';
 import ReactDOM from 'react-dom';
 import { createShallow, createMount } from '../test-utils';
-import Menu from './Menu';
+import Menu, { styleSheet } from './Menu';
 
 describe('<Menu />', () => {
   let shallow;
+  let classes;
 
   before(() => {
     shallow = createShallow({ dive: true });
+    classes = shallow.context.styleManager.render(styleSheet);
   });
 
   it('should render a Popover', () => {
     const wrapper = shallow(<Menu />);
-    assert.strictEqual(wrapper.name(), 'Popover');
+    assert.strictEqual(wrapper.name(), 'withStyles(Popover)');
   });
 
   it('should fire Popover transition event callbacks', () => {
@@ -36,10 +38,15 @@ describe('<Menu />', () => {
     });
   });
 
+  it('should pass `classes.root` to the Popover for the className', () => {
+    const wrapper = shallow(<Menu />);
+    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should be classes.root');
+  });
+
   it('should pass the instance function `getContentAnchorEl` to Popover', () => {
-    const wrapper = createMount()(<Menu />);
+    const wrapper = shallow(<Menu />);
     assert.strictEqual(
-      wrapper.find('Popover').props().getContentAnchorEl,
+      wrapper.props().getContentAnchorEl,
       wrapper.instance().getContentAnchorEl,
       'should be the same function',
     );
@@ -108,7 +115,7 @@ describe('<Menu />', () => {
 
     before(() => {
       mount = createMount();
-      wrapper = mount(<Menu />);
+      wrapper = mount(<Menu.Naked classes={classes} />);
       instance = wrapper.instance();
 
       selectedItemFocusSpy = spy();

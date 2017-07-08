@@ -2,9 +2,12 @@
 
 import React, { Component } from 'react';
 import type { Element } from 'react';
+import classNames from 'classnames';
 import { findDOMNode } from 'react-dom';
+import { createStyleSheet } from 'jss-theme-reactor';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import Popover from '../internal/Popover';
+import withStyles from '../styles/withStyles';
 import MenuList from './MenuList';
 import type { TransitionCallback } from '../internal/Transition';
 
@@ -22,6 +25,10 @@ type Props = DefaultProps & {
    * Menu contents, normally `MenuItem`s.
    */
   children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: Object,
   /**
    * @ignore
    */
@@ -69,6 +76,17 @@ type Props = DefaultProps & {
    */
   transitionDuration?: number | 'auto',
 };
+
+export const styleSheet = createStyleSheet('MuiMenu', {
+  root: {
+    /**
+     * specZ: The maximum height of a simple menu should be one or more rows less than the view
+     * height. This ensures a tappable area outside of the simple menu with which to dismiss
+     * the menu.
+     */
+    maxHeight: 'calc(100vh - 96px)',
+  },
+});
 
 class Menu extends Component<DefaultProps, Props, void> {
   static defaultProps: DefaultProps = {
@@ -128,6 +146,7 @@ class Menu extends Component<DefaultProps, Props, void> {
     const {
       anchorEl,
       children,
+      classes,
       className,
       open,
       MenuListProps,
@@ -146,7 +165,7 @@ class Menu extends Component<DefaultProps, Props, void> {
       <Popover
         anchorEl={anchorEl}
         getContentAnchorEl={this.getContentAnchorEl}
-        className={className}
+        className={classNames(classes.root, className)}
         open={open}
         onEnter={this.handleEnter}
         onEntering={onEntering}
@@ -174,4 +193,4 @@ class Menu extends Component<DefaultProps, Props, void> {
   }
 }
 
-export default Menu;
+export default withStyles(styleSheet)(Menu);
