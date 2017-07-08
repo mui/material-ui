@@ -400,7 +400,7 @@ class Modal extends Component<DefaultProps, Props, State> {
 
     let backdropProps;
 
-    if (backdropInvisible && modalChild.props.hasOwnProperty('in')) {
+    if (modalChild.props.hasOwnProperty('in')) {
       Object.keys(transitionCallbacks).forEach(key => {
         childProps[key] = createChainedFunction(transitionCallbacks[key], modalChild.props[key]);
       });

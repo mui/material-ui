@@ -47,12 +47,6 @@ type DefaultProps = {
   unmountOnExit: boolean,
   transitionAppear: boolean,
   timeout: number,
-  onEnter: TransitionCallback,
-  onEntering: TransitionCallback,
-  onEntered: TransitionCallback,
-  onExit: TransitionCallback,
-  onExiting: TransitionCallback,
-  onExited: TransitionCallback,
 };
 
 type Props = DefaultProps & {
@@ -132,9 +126,6 @@ type Props = DefaultProps & {
   unmountOnExit?: boolean,
 };
 
-// Name the function so it is clearer in the documentation
-function noop() {}
-
 /**
  * Drawn from https://raw.githubusercontent.com/react-bootstrap/react-overlays/master/src/Transition.js
  *
@@ -154,12 +145,6 @@ class Transition extends Component<DefaultProps, Props, State> {
     unmountOnExit: false,
     transitionAppear: false,
     timeout: 5000,
-    onEnter: noop,
-    onEntering: noop,
-    onEntered: noop,
-    onExit: noop,
-    onExiting: noop,
-    onExited: noop,
   };
 
   state: State = {
@@ -249,18 +234,24 @@ class Transition extends Component<DefaultProps, Props, State> {
     this.cancelNextCallback();
     const node = ReactDOM.findDOMNode(this);
     if (node instanceof HTMLElement) {
-      props.onEnter(node);
+      if (props.onEnter) {
+        props.onEnter(node);
+      }
       this.performEntering(node);
     }
   }
 
   performEntering(element: HTMLElement) {
     this.safeSetState({ status: ENTERING }, () => {
-      this.props.onEntering(element);
+      if (this.props.onEntering) {
+        this.props.onEntering(element);
+      }
 
       this.onTransitionEnd(element, () => {
         this.safeSetState({ status: ENTERED }, () => {
-          this.props.onEntered(element);
+          if (this.props.onEntered) {
+            this.props.onEntered(element);
+          }
         });
       });
     });
@@ -271,14 +262,20 @@ class Transition extends Component<DefaultProps, Props, State> {
     const node = ReactDOM.findDOMNode(this);
     if (node instanceof HTMLElement) {
       // Not this.props, because we might be about to receive new props.
-      props.onExit(node);
+      if (props.onExit) {
+        props.onExit(node);
+      }
 
       this.safeSetState({ status: EXITING }, () => {
-        this.props.onExiting(node);
+        if (this.props.onExiting) {
+          this.props.onExiting(node);
+        }
 
         this.onTransitionEnd(node, () => {
           this.safeSetState({ status: EXITED }, () => {
-            this.props.onExited(node);
+            if (this.props.onExited) {
+              this.props.onExited(node);
+            }
           });
         });
       });
