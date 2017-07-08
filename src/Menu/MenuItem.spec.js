@@ -15,11 +15,11 @@ describe('<MenuItem />', () => {
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
-  it('should render a button ListItem with no ripple', () => {
+  it('should render a button ListItem with with ripple', () => {
     const wrapper = shallow(<MenuItem />);
     assert.strictEqual(wrapper.name(), 'withStyles(ListItem)');
     assert.strictEqual(wrapper.props().button, true, 'should have the button prop');
-    assert.strictEqual(wrapper.props().disableRipple, true, 'should not have a ripple');
+    assert.strictEqual(wrapper.props().disableRipple, undefined, 'should have a ripple');
   });
 
   it('should render with the user and root classes', () => {

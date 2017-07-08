@@ -72,12 +72,6 @@ function MenuItem(props: Props) {
     classNameProp,
   );
 
-  const listItemProps = {};
-
-  if (!component) {
-    listItemProps.disableRipple = true;
-  }
-
   return (
     <ListItem
       button
@@ -85,7 +79,6 @@ function MenuItem(props: Props) {
       tabIndex="-1"
       className={className}
       component={component}
-      {...listItemProps}
       {...other}
     />
   );
