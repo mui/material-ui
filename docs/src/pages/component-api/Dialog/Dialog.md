@@ -16,13 +16,13 @@ Dialogs are overlaid modal paper based components with a backdrop.
 | leaveTransitionDuration | number | duration.leavingScreen | Duration of the animation when the element is leaving. |
 | maxWidth | union:&nbsp;'xs'<br>&nbsp;'sm'<br>&nbsp;'md'<br> | 'sm' | Determine the max width of the dialog. The dialog width grows with the size of the screen, this property is useful on the desktop where you might need some coherent different width size across your application. |
 | onBackdropClick | Function |  | Callback fired when the backdrop is clicked. |
-| onEnter | Function |  | Callback fired before the dialog enters. |
-| onEntered | Function |  | Callback fired when the dialog has entered. |
-| onEntering | Function |  | Callback fired when the dialog is entering. |
+| onEnter | TransitionCallback |  | Callback fired before the dialog enters. |
+| onEntered | TransitionCallback |  | Callback fired when the dialog has entered. |
+| onEntering | TransitionCallback |  | Callback fired when the dialog is entering. |
 | onEscapeKeyUp | Function |  | Callback fires when the escape key is released and the modal is in focus. |
-| onExit | Function |  | Callback fired before the dialog exits. |
-| onExited | Function |  | Callback fired when the dialog has exited. |
-| onExiting | Function |  | Callback fired when the dialog is exiting. |
+| onExit | TransitionCallback |  | Callback fired before the dialog exits. |
+| onExited | TransitionCallback |  | Callback fired when the dialog has exited. |
+| onExiting | TransitionCallback |  | Callback fired when the dialog is exiting. |
 | onRequestClose | Function |  | Callback fired when the dialog requests to be closed. |
 | open | boolean | false | If `true`, the Dialog is open. |
 | transition | union:&nbsp;Function<br>&nbsp;Element<*><br> | Fade | Transition component. |
