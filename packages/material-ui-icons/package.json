@@ -26,34 +26,34 @@
     "build:es2015": "cross-env NODE_ENV=production babel ./src --out-dir ./build",
     "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel ./src/index.js --out-file ./build/index.es.js",
     "build:copy-files": "babel-node ./copy-files.js",
-    "build:icons": "babel-node ./build.js --output-dir ./src --svg-dir ./node_modules/material-design-icons --glob '/**/production/*_24px.svg' --renameFilter ./filters/rename/material-design-icons.js",
+    "build:icons": "babel-node ./builder.js --output-dir ./src --svg-dir ./node_modules/material-design-icons --glob '/**/production/*_24px.svg' --renameFilter ./filters/rename/material-design-icons.js",
     "clean": "rimraf build",
     "prebuild": "npm run clean",
     "test": "mocha",
     "test:watch": "mocha -w"
   },
   "peerDependencies": {
+    "material-ui": "^1.0.0-alpha",
     "react": "^15.3.0 || ^16.0.0-alpha.13",
-    "react-dom": "^15.3.0 || ^16.0.0-alpha.13",
-    "material-ui": "^1.0.0-alpha"
+    "react-dom": "^15.3.0 || ^16.0.0-alpha.13"
   },
   "dependencies": {
     "recompose": "^0.23.5"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
-    "chai": "^3.0.0",
+    "chai": "^4.0.2",
     "cross-env": "^5.0.1",
-    "fs-extra": "^2.0.0",
-    "glob": "^7.0.0",
+    "fs-extra": "^3.0.1",
+    "glob": "^7.1.2",
     "lodash": "^4.0.0",
     "material-design-icons": "^3.0.0",
     "mkdirp": "^0.5.0",
-    "mocha": "^3.3.0",
+    "mocha": "^3.4.2",
     "mustache": "^2.0.0",
     "recursive-readdir-sync": "^1.0.6",
     "rimraf": "^2.0.0",
     "temp": "^0.8.3",
-    "yargs": "^7.1.0"
+    "yargs": "^8.0.2"
   }
 }

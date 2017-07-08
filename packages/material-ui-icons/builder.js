@@ -197,7 +197,7 @@ if (require.main === module) {
   main(argv);
 }
 
-module.exports = {
+export default {
   pascalCase,
   getJsxString,
   processFile,

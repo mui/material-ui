@@ -1,10 +1,14 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
-const assert = require('chai').assert;
-const fs = require('fs');
-const path = require('path');
-const temp = require('temp').track();
-const _ = require('lodash');
-const build = require('../build');
+
+import { assert } from 'chai';
+import fs from 'fs';
+import path from 'path';
+import temp from 'temp';
+import _ from 'lodash';
+import builder from '../builder';
+
+// Automatically track and cleanup files at exit
+temp.track();
 
 const DISABLE_LOG = true;
 
@@ -22,62 +26,62 @@ describe('material-design-icons', () => {
   });
 });
 
-describe('build', () => {
+describe('builder', () => {
   describe('#pascalCase', () => {
     it('should have pascalCase', () => {
-      assert.strictEqual(build.hasOwnProperty('pascalCase'), true);
+      assert.strictEqual(builder.hasOwnProperty('pascalCase'), true);
     });
 
     it('should be a function', () => {
-      assert.isFunction(build.pascalCase);
+      assert.isFunction(builder.pascalCase);
     });
 
     it('should change capitalize dashes', () => {
-      assert.strictEqual(build.pascalCase('hi-world'), 'HiWorld', true);
+      assert.strictEqual(builder.pascalCase('hi-world'), 'HiWorld', true);
     });
 
     it('should capitalize based on environment path.sep', () => {
-      assert.strictEqual(build.pascalCase(`this${path.sep}dir`), 'ThisDir', true);
+      assert.strictEqual(builder.pascalCase(`this${path.sep}dir`), 'ThisDir', true);
     });
   });
 
   describe('#main', () => {
     it('should have main', () => {
-      assert.strictEqual(build.hasOwnProperty('main'), true);
+      assert.strictEqual(builder.hasOwnProperty('main'), true);
     });
 
     it('should be a function', () => {
-      assert.isFunction(build.main);
+      assert.isFunction(builder.main);
     });
   });
 
   describe('#getJsxString', () => {
     it('should have getJsxString', () => {
-      assert.strictEqual(build.hasOwnProperty('getJsxString'), true);
+      assert.strictEqual(builder.hasOwnProperty('getJsxString'), true);
     });
 
     it('should be a function', () => {
-      assert.strictEqual(typeof build.getJsxString === 'function', true);
+      assert.strictEqual(typeof builder.getJsxString === 'function', true);
     });
   });
 
   describe('#processFile', () => {
     it('should have processFile', () => {
-      assert.strictEqual(build.hasOwnProperty('processFile'), true);
+      assert.strictEqual(builder.hasOwnProperty('processFile'), true);
     });
 
     it('should be a function', () => {
-      assert.isFunction(build.processFile);
+      assert.isFunction(builder.processFile);
     });
   });
 
   describe('#processIndex', () => {
     it('should have processIndex', () => {
-      assert.strictEqual(build.hasOwnProperty('processIndex'), true);
+      assert.strictEqual(builder.hasOwnProperty('processIndex'), true);
     });
 
     it('should be a function', () => {
-      assert.isFunction(build.processIndex);
+      assert.isFunction(builder.processIndex);
     });
   });
 });
@@ -87,7 +91,7 @@ describe('--output-dir', () => {
     svgDir: MUI_ICONS_SVG_DIR,
     innerPath: '/svg/production/',
     glob: '/**/production/*_24px.svg',
-    renameFilter: build.RENAME_FILTER_MUI,
+    renameFilter: builder.RENAME_FILTER_MUI,
     disableLog: DISABLE_LOG,
     outputDir: null,
   };
@@ -103,7 +107,7 @@ describe('--output-dir', () => {
   });
 
   it('script outputs to directory', done => {
-    build.main(options, () => {
+    builder.main(options, () => {
       assert.strictEqual(fs.lstatSync(tempPath).isDirectory(), true);
       assert.strictEqual(fs.lstatSync(path.join(tempPath, 'index.js')).isFile(), true);
       done();
@@ -117,7 +121,7 @@ describe('--svg-dir, --innerPath, --fileSuffix', () => {
     glob: '**/*.svg',
     innerPath: '/dice/svg/000000/transparent/',
     muiRequire: 'absolute',
-    renameFilter: build.RENAME_FILTER_DEFAULT,
+    renameFilter: builder.RENAME_FILTER_DEFAULT,
     disableLog: DISABLE_LOG,
     outputDir: null,
   };
@@ -133,7 +137,7 @@ describe('--svg-dir, --innerPath, --fileSuffix', () => {
   });
 
   it('script outputs to directory', done => {
-    build.main(options, () => {
+    builder.main(options, () => {
       assert.strictEqual(fs.lstatSync(tempPath).isDirectory(), true);
       assert.strictEqual(fs.lstatSync(path.join(tempPath, 'delapouite')).isDirectory(), true);
 
@@ -151,7 +155,7 @@ describe('--svg-dir, --innerPath, --fileSuffix', () => {
       const actualFileData = fs.readFileSync(actualFilePath, {
         encoding: 'utf8',
       });
-      assert.include(actualFileData, build.SVG_ICON_ABSOLUTE_REQUIRE);
+      assert.include(actualFileData, builder.SVG_ICON_ABSOLUTE_REQUIRE);
       done();
     });
   });
@@ -163,7 +167,7 @@ describe('--mui-require', () => {
     innerPath: '/svg/production/',
     glob: '/**/production/*_24px.svg',
     disableLog: DISABLE_LOG,
-    renameFilter: build.RENAME_FILTER_MUI,
+    renameFilter: builder.RENAME_FILTER_MUI,
     outputDir: null,
   };
   let tempPath;
@@ -181,28 +185,28 @@ describe('--mui-require', () => {
 
   describe('absolute', () => {
     it('default should be absolute', done => {
-      build.main(options, () => {
+      builder.main(options, () => {
         assert.strictEqual(fs.lstatSync(tempPath).isDirectory(), true);
         assert.strictEqual(fs.existsSync(actualFilePath), true);
 
         const actualFileData = fs.readFileSync(actualFilePath, {
           encoding: 'utf8',
         });
-        assert.include(actualFileData, build.SVG_ICON_ABSOLUTE_REQUIRE);
+        assert.include(actualFileData, builder.SVG_ICON_ABSOLUTE_REQUIRE);
         done();
       });
     });
 
     it('should load SvgIcon as absolute', done => {
       const absoluteOptions = _.extend({}, options, { muiRequire: 'absolute' });
-      build.main(absoluteOptions, () => {
+      builder.main(absoluteOptions, () => {
         assert.strictEqual(fs.lstatSync(tempPath).isDirectory(), true);
         assert.strictEqual(fs.existsSync(actualFilePath), true);
 
         const actualFileData = fs.readFileSync(actualFilePath, {
           encoding: 'utf8',
         });
-        assert.include(actualFileData, build.SVG_ICON_ABSOLUTE_REQUIRE);
+        assert.include(actualFileData, builder.SVG_ICON_ABSOLUTE_REQUIRE);
         done();
       });
     });
@@ -211,14 +215,14 @@ describe('--mui-require', () => {
   describe('relative', () => {
     it('should load SvgIcon as relative', done => {
       const relativeOptions = _.extend({}, options, { muiRequire: 'relative' });
-      build.main(relativeOptions, () => {
+      builder.main(relativeOptions, () => {
         assert.strictEqual(fs.lstatSync(tempPath).isDirectory(), true);
         assert.strictEqual(fs.existsSync(actualFilePath), true);
 
         const actualFileData = fs.readFileSync(actualFilePath, {
           encoding: 'utf8',
         });
-        assert.include(actualFileData, build.SVG_ICON_RELATIVE_REQUIRE);
+        assert.include(actualFileData, builder.SVG_ICON_RELATIVE_REQUIRE);
         done();
       });
     });
@@ -230,7 +234,7 @@ describe('Template rendering', () => {
     svgDir: MUI_ICONS_SVG_DIR,
     innerPath: '/svg/production/',
     glob: '/**/production/*_24px.svg',
-    renameFilter: build.RENAME_FILTER_MUI,
+    renameFilter: builder.RENAME_FILTER_MUI,
     muiRequire: 'absolute',
     disableLog: DISABLE_LOG,
     outputDir: null,
@@ -247,7 +251,7 @@ describe('Template rendering', () => {
   });
 
   it('should produce the expected output', done => {
-    build.main(options, () => {
+    builder.main(options, () => {
       const expectedFilePath = path.join(MUI_ICONS_ROOT, 'expected', 'Accessibility.js');
       const actualFilePath = path.join(tempPath, 'Accessibility.js');
 
