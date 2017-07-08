@@ -478,6 +478,9 @@ class ListItem extends Component {
   };
 
   handleNestedListToggle = (event) => {
+    if (this.props.leftCheckbox) {
+      event.preventDefault();
+    }
     event.stopPropagation();
 
     if (this.props.open === null) {

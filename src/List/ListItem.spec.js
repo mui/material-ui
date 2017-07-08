@@ -104,10 +104,10 @@ describe('<ListItem />', () => {
 
       assert.strictEqual(wrapper.find(NestedList).props().open, false);
 
-      primaryTextButton.simulate('touchTap', {stopPropagation: () => {}});
+      primaryTextButton.simulate('touchTap', {preventDefault: () => {}, stopPropagation: () => {}});
       assert.strictEqual(wrapper.find(NestedList).props().open, true);
 
-      primaryTextButton.simulate('touchTap', {stopPropagation: () => {}});
+      primaryTextButton.simulate('touchTap', {preventDefault: () => {}, stopPropagation: () => {}});
       assert.strictEqual(wrapper.find(NestedList).props().open, false);
     });
 
@@ -169,7 +169,7 @@ describe('<ListItem />', () => {
       );
 
       const primaryTextButton = wrapper.find(EnhancedButton);
-      primaryTextButton.simulate('touchTap', {stopPropagation: () => {}});
+      primaryTextButton.simulate('touchTap', {preventDefault: () => {}, stopPropagation: () => {}});
       assert.strictEqual(wrapper.find(NestedList).props().open, true);
     });
 
@@ -185,7 +185,7 @@ describe('<ListItem />', () => {
       );
 
       const primaryTextButton = wrapper.find(EnhancedButton);
-      primaryTextButton.simulate('touchTap', {stopPropagation: () => {}});
+      primaryTextButton.simulate('touchTap', {preventDefault: () => {}, stopPropagation: () => {}});
       assert.strictEqual(wrapper.find(NestedList).props().open, false);
     });
   });
