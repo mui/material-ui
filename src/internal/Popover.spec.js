@@ -224,7 +224,7 @@ describe('<Popover />', () => {
       });
 
       it('should set the inline styles for the enter phase', () => {
-        assert.strictEqual(element.style.opacity, 0, 'should be transparent');
+        assert.strictEqual(element.style.opacity, '0', 'should be transparent');
         assert.strictEqual(
           element.style.transform,
           Popover.getScale(0.75),
@@ -263,7 +263,7 @@ describe('<Popover />', () => {
       });
 
       it('should set the inline styles for the entering phase', () => {
-        assert.strictEqual(element.style.opacity, 1, 'should be visible');
+        assert.strictEqual(element.style.opacity, '1', 'should be visible');
         assert.strictEqual(
           element.style.transform,
           Popover.getScale(1),
@@ -287,7 +287,7 @@ describe('<Popover />', () => {
       });
 
       it('should set the inline styles for the exit phase', () => {
-        assert.strictEqual(element.style.opacity, 0, 'should be transparent');
+        assert.strictEqual(element.style.opacity, '0', 'should be transparent');
         assert.strictEqual(
           element.style.transform,
           Popover.getScale(0.75),

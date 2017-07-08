@@ -10,6 +10,7 @@ import ClickAwayListener from '../internal/ClickAwayListener';
 import { capitalizeFirstLetter, createChainedFunction } from '../utils/helpers';
 import Slide from '../transitions/Slide';
 import SnackbarContent from './SnackbarContent';
+import type { TransitionCallback } from '../internal/Transition';
 
 export const styleSheet = createStyleSheet('MuiSnackbar', theme => {
   const gutter = theme.spacing.unit * 3;
@@ -127,27 +128,27 @@ type Props = DefaultProps & {
   /**
    * Callback fired before the transition is entering.
    */
-  onEnter?: Function,
+  onEnter?: TransitionCallback,
   /**
    * Callback fired when the transition is entering.
    */
-  onEntering?: Function,
+  onEntering?: TransitionCallback,
   /**
    * Callback fired when the transition has entered.
    */
-  onEntered?: Function,
+  onEntered?: TransitionCallback,
   /**
    * Callback fired before the transition is exiting.
    */
-  onExit?: Function,
+  onExit?: TransitionCallback,
   /**
    * Callback fired when the transition is exiting.
    */
-  onExiting?: Function,
+  onExiting?: TransitionCallback,
   /**
    * Callback fired when the transition has exited.
    */
-  onExited?: Function,
+  onExited?: TransitionCallback,
   /**
    * @ignore
    */

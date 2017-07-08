@@ -5,6 +5,7 @@ import type { Element } from 'react';
 import Transition from '../internal/Transition';
 import { duration } from '../styles/transitions';
 import customPropTypes from '../utils/customPropTypes';
+import type { TransitionCallback } from '../internal/Transition';
 
 type DefaultProps = {
   in: boolean,
@@ -29,27 +30,27 @@ type Props = DefaultProps & {
   /**
    * Callback fired before the component enters.
    */
-  onEnter?: Function,
+  onEnter?: TransitionCallback,
   /**
    * Callback fired when the component is entering.
    */
-  onEntering?: Function,
+  onEntering?: TransitionCallback,
   /**
    * Callback fired when the component has entered.
    */
-  onEntered?: Function, // eslint-disable-line react/sort-prop-types
+  onEntered?: TransitionCallback, // eslint-disable-line react/sort-prop-types
   /**
    * Callback fired before the component exits.
    */
-  onExit?: Function,
+  onExit?: TransitionCallback,
   /**
    * Callback fired when the component is exiting.
    */
-  onExiting?: Function,
+  onExiting?: TransitionCallback,
   /**
    * Callback fired when the component has exited.
    */
-  onExited?: Function, // eslint-disable-line react/sort-prop-types
+  onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
 };
 
 class Fade extends Component<DefaultProps, Props, void> {

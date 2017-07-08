@@ -10,6 +10,7 @@ import Modal from '../internal/Modal';
 import Fade from '../transitions/Fade';
 import { duration } from '../styles/transitions';
 import Paper from '../Paper';
+import type { TransitionCallback } from '../internal/Transition';
 
 export const styleSheet = createStyleSheet('MuiDialog', theme => ({
   root: {
@@ -91,15 +92,15 @@ type Props = {
   /**
    * Callback fired before the dialog enters.
    */
-  onEnter?: Function,
+  onEnter?: TransitionCallback,
   /**
    * Callback fired when the dialog is entering.
    */
-  onEntering?: Function,
+  onEntering?: TransitionCallback,
   /**
    * Callback fired when the dialog has entered.
    */
-  onEntered?: Function, // eslint-disable-line react/sort-prop-types
+  onEntered?: TransitionCallback, // eslint-disable-line react/sort-prop-types
   /**
    * Callback fires when the escape key is released and the modal is in focus.
    */
@@ -107,15 +108,15 @@ type Props = {
   /**
    * Callback fired before the dialog exits.
    */
-  onExit?: Function,
+  onExit?: TransitionCallback,
   /**
    * Callback fired when the dialog is exiting.
    */
-  onExiting?: Function,
+  onExiting?: TransitionCallback,
   /**
    * Callback fired when the dialog has exited.
    */
-  onExited?: Function, // eslint-disable-line react/sort-prop-types
+  onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
   /**
    * Callback fired when the dialog requests to be closed.
    */

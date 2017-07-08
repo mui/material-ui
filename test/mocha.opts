@@ -1,4 +1,5 @@
 --require babel-register
+--require jsdom-global/register
 --reporter dot
 --recursive
 test/utils/setup.js
