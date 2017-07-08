@@ -43,15 +43,6 @@ describe('<Menu />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should be classes.root');
   });
 
-  it('should pass `classes.entered` to the Popover for the enteredClassName', () => {
-    const wrapper = shallow(<Menu />);
-    assert.strictEqual(
-      wrapper.props().enteredClassName,
-      classes.entered,
-      'should be classes.entered',
-    );
-  });
-
   it('should pass the instance function `getContentAnchorEl` to Popover', () => {
     const wrapper = shallow(<Menu />);
     assert.strictEqual(

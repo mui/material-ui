@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React, { Component } from 'react';
 import type { Element as ReactElement } from 'react'; // DOM type `Element` used below
@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import transitionInfo from 'dom-helpers/transition/properties';
 import addEventListener from 'dom-helpers/events/on';
 import classNames from 'classnames';
+import type { SyntheticUIEventHandler } from './types';
 
 const transitionEndEvent = transitionInfo.end;
 
@@ -15,30 +16,10 @@ export const ENTERING = 2;
 export const ENTERED = 3;
 export const EXITING = 4;
 
-type State = {
-  status: 0 | 1 | 2 | 3 | 4,
-};
-
-type DOMNode = Element | Text | null; // return type of ReactDOM.findDOMNode()
-
-type TransitionCallback = (node: DOMNode) => void;
-
-type DefaultProps = {
-  in: boolean,
-  unmountOnExit: boolean,
-  transitionAppear: boolean,
-  timeout: number,
-  onEnter: TransitionCallback,
-  onEntering: TransitionCallback,
-  onEntered: TransitionCallback,
-  onExit: TransitionCallback,
-  onExiting: TransitionCallback,
-  onExited: TransitionCallback,
-};
-
-// A helper function that calls back when any pending animations have started
-// This is needed as the callback hooks might be setting some style properties
-// that needs a frame to take effect.
+/**
+ * A helper function that calls back when any pending animations have started This is needed as the
+ * callback hooks might be setting some style properties that needs a frame to take effect.
+ */
 function requestAnimationStart(callback) {
   // Feature detect rAF, fallback to setTimeout
   if (window.requestAnimationFrame) {
@@ -52,6 +33,27 @@ function requestAnimationStart(callback) {
     setTimeout(callback, 0);
   }
 }
+
+type State = {
+  status: 0 | 1 | 2 | 3 | 4,
+};
+
+export type TransitionCallback = (element: HTMLElement) => void;
+
+export type TransitionRequestTimeout = (element: HTMLElement) => number;
+
+type DefaultProps = {
+  in: boolean,
+  unmountOnExit: boolean,
+  transitionAppear: boolean,
+  timeout: number,
+  onEnter: TransitionCallback,
+  onEntering: TransitionCallback,
+  onEntered: TransitionCallback,
+  onExit: TransitionCallback,
+  onExiting: TransitionCallback,
+  onExited: TransitionCallback,
+};
 
 type Props = DefaultProps & {
   /**
@@ -109,7 +111,7 @@ type Props = DefaultProps & {
   /**
    * @ignore
    */
-  onRequestTimeout?: TransitionCallback,
+  onRequestTimeout?: TransitionRequestTimeout,
   /**
    * A Timeout for the animation, in milliseconds, to ensure that a node doesn't
    * transition indefinitely if the browser transitionEnd events are
@@ -246,18 +248,19 @@ class Transition extends Component<DefaultProps, Props, State> {
   performEnter(props: Props) {
     this.cancelNextCallback();
     const node = ReactDOM.findDOMNode(this);
-
-    props.onEnter(node);
-    return this.performEntering(node);
+    if (node instanceof HTMLElement) {
+      props.onEnter(node);
+      this.performEntering(node);
+    }
   }
 
-  performEntering(node: DOMNode) {
+  performEntering(element: HTMLElement) {
     this.safeSetState({ status: ENTERING }, () => {
-      this.props.onEntering(node);
+      this.props.onEntering(element);
 
-      this.onTransitionEnd(node, () => {
+      this.onTransitionEnd(element, () => {
         this.safeSetState({ status: ENTERED }, () => {
-          this.props.onEntered(node);
+          this.props.onEntered(element);
         });
       });
     });
@@ -266,19 +269,20 @@ class Transition extends Component<DefaultProps, Props, State> {
   performExit(props: Props) {
     this.cancelNextCallback();
     const node = ReactDOM.findDOMNode(this);
+    if (node instanceof HTMLElement) {
+      // Not this.props, because we might be about to receive new props.
+      props.onExit(node);
 
-    // Not this.props, because we might be about to receive new props.
-    props.onExit(node);
+      this.safeSetState({ status: EXITING }, () => {
+        this.props.onExiting(node);
 
-    this.safeSetState({ status: EXITING }, () => {
-      this.props.onExiting(node);
-
-      this.onTransitionEnd(node, () => {
-        this.safeSetState({ status: EXITED }, () => {
-          this.props.onExited(node);
+        this.onTransitionEnd(node, () => {
+          this.safeSetState({ status: EXITED }, () => {
+            this.props.onExited(node);
+          });
         });
       });
-    });
+    }
   }
 
   cancelNextCallback() {
@@ -295,12 +299,12 @@ class Transition extends Component<DefaultProps, Props, State> {
     this.setState(nextState, this.setNextCallback(callback));
   }
 
-  setNextCallback(callback) {
+  setNextCallback(callback: SyntheticUIEventHandler) {
     let active = true;
 
     // FIXME: These next two blocks are a real enigma for flow typing outside of weak mode.
     // FIXME: I suggest we refactor - rosskevin
-    this.nextCallback = (event?: Event) => {
+    this.nextCallback = (event?: SyntheticUIEvent) => {
       requestAnimationStart(() => {
         if (active) {
           active = false;
@@ -318,26 +322,26 @@ class Transition extends Component<DefaultProps, Props, State> {
     return this.nextCallback;
   }
 
-  onTransitionEnd(node: DOMNode, handler) {
+  onTransitionEnd(element: HTMLElement, handler: SyntheticUIEventHandler) {
     this.setNextCallback(handler);
 
-    if (node) {
-      addEventListener(node, transitionEndEvent, event => {
-        if (event.target === node && this.nextCallback) {
+    if (element) {
+      addEventListener(element, transitionEndEvent, event => {
+        if (event.target === element && this.nextCallback) {
           this.nextCallback();
         }
       });
-      setTimeout(this.nextCallback, this.getTimeout(node));
+      setTimeout(this.nextCallback, this.getTimeout(element));
     } else {
       setTimeout(this.nextCallback, 0);
     }
   }
 
-  getTimeout(node: DOMNode) {
+  getTimeout(element: HTMLElement) {
     let timeout;
 
-    if (this.props.onRequestTimeout) {
-      timeout = this.props.onRequestTimeout(node);
+    if (this.props.onRequestTimeout && element instanceof HTMLElement) {
+      timeout = this.props.onRequestTimeout(element);
     }
 
     if (typeof timeout !== 'number') {

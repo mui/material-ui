@@ -9,6 +9,7 @@ import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import Popover from '../internal/Popover';
 import withStyles from '../styles/withStyles';
 import MenuList from './MenuList';
+import type { TransitionCallback } from '../internal/Transition';
 
 type DefaultProps = {
   open: boolean,
@@ -39,27 +40,27 @@ type Props = DefaultProps & {
   /**
    * Callback fired before the Menu enters.
    */
-  onEnter?: Function,
+  onEnter?: TransitionCallback,
   /**
    * Callback fired when the Menu is entering.
    */
-  onEntering?: Function,
+  onEntering?: TransitionCallback,
   /**
    * Callback fired when the Menu has entered.
    */
-  onEntered?: Function, // eslint-disable-line react/sort-prop-types
+  onEntered?: TransitionCallback, // eslint-disable-line react/sort-prop-types
   /**
    * Callback fired before the Menu exits.
    */
-  onExit?: Function,
+  onExit?: TransitionCallback,
   /**
    * Callback fired when the Menu is exiting.
    */
-  onExiting?: Function,
+  onExiting?: TransitionCallback,
   /**
    * Callback fired when the Menu has exited.
    */
-  onExited?: Function, // eslint-disable-line react/sort-prop-types
+  onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
   /**
    * Callback function fired when the menu is requested to be closed.
    *
@@ -78,7 +79,12 @@ type Props = DefaultProps & {
 
 export const styleSheet = createStyleSheet('MuiMenu', {
   root: {
-    maxHeight: 250,
+    /**
+     * specZ: The maximum height of a simple menu should be one or more rows less than the view
+     * height. This ensures a tappable area outside of the simple menu with which to dismiss
+     * the menu.
+     */
+    maxHeight: 'calc(100vh - 96px)',
   },
 });
 
@@ -90,7 +96,7 @@ class Menu extends Component<DefaultProps, Props, void> {
 
   menuList = undefined;
 
-  handleEnter = element => {
+  handleEnter = (element: HTMLElement) => {
     const list = findDOMNode(this.menuList);
 
     if (this.menuList && this.menuList.selectedItem) {
@@ -115,7 +121,7 @@ class Menu extends Component<DefaultProps, Props, void> {
     }
   };
 
-  handleListKeyDown = (event, key) => {
+  handleListKeyDown = (event: SyntheticUIEvent, key: string) => {
     if (key === 'tab') {
       event.preventDefault();
       const { onRequestClose } = this.props;
@@ -161,7 +167,6 @@ class Menu extends Component<DefaultProps, Props, void> {
         getContentAnchorEl={this.getContentAnchorEl}
         className={classNames(classes.root, className)}
         open={open}
-        enteredClassName={classes.entered}
         onEnter={this.handleEnter}
         onEntering={onEntering}
         onEntered={onEntered}
