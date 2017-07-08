@@ -31,6 +31,19 @@ describe('makeSelectable', () => {
     />,
   ];
 
+  const testChildrenWithObjectValues = [
+    <ListItem
+      key={1}
+      value={{first: 'Brendan', last: 'Lim'}}
+      primaryText="Brendan Lim"
+    />,
+    <ListItem
+      key={2}
+      value={{first: 'Kerem', last: 'Suer'}}
+      primaryText="Kerem Suer"
+    />,
+  ];
+
   it('should display the children', () => {
     const SelectableList = makeSelectable(List);
 
@@ -59,6 +72,23 @@ describe('makeSelectable', () => {
     const nodeTree = TestUtils.scryRenderedDOMComponentsWithTag(render, 'div');
     assert.equal(
       nodeTree[0].firstChild.lastChild.querySelector('span').style.backgroundColor,
+      'rgba(0, 0, 0, 0.2)',
+      'Change the backgroundColor of the selected item'
+    );
+  });
+
+  it('should select the right item with object value', () => {
+    const SelectableList = injectTheme(makeSelectable(List));
+    const secondItemValue = {first: 'Kerem', last: 'Suer'};
+    const render = TestUtils.renderIntoDocument(
+      <SelectableList value={secondItemValue}>
+        {testChildrenWithObjectValues}
+      </SelectableList>
+    );
+
+    const nodeTree = TestUtils.scryRenderedDOMComponentsWithTag(render, 'div');
+    assert.equal(
+      nodeTree[0].lastChild.querySelector('span').style.backgroundColor,
       'rgba(0, 0, 0, 0.2)',
       'Change the backgroundColor of the selected item'
     );
