@@ -97,23 +97,25 @@ class Menu extends Component<DefaultProps, Props, void> {
   menuList = undefined;
 
   handleEnter = (element: HTMLElement) => {
-    const list = findDOMNode(this.menuList);
+    const menuList = findDOMNode(this.menuList);
 
     if (this.menuList && this.menuList.selectedItem) {
       // $FlowFixMe
       findDOMNode(this.menuList.selectedItem).focus();
-    } else if (list) {
+    } else if (menuList) {
       // $FlowFixMe
-      list.firstChild.focus();
+      menuList.firstChild.focus();
     }
 
+    // Let's ignore that piece of logic if users are already overriding the width
+    // of the menu.
     // $FlowFixMe
-    if (list && element.clientHeight < list.clientHeight) {
+    if (menuList && element.clientHeight < menuList.clientHeight && !menuList.style.width) {
       const size = `${getScrollbarSize()}px`;
       // $FlowFixMe
-      list.style.paddingRight = size;
+      menuList.style.paddingRight = size;
       // $FlowFixMe
-      list.style.width = `calc(100% + ${size})`;
+      menuList.style.width = `calc(100% + ${size})`;
     }
 
     if (this.props.onEnter) {

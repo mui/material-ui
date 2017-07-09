@@ -414,26 +414,6 @@ describe('<Popover />', () => {
         expectPopover(expectedTop, expectedLeft);
       });
     });
-
-    // it('should be positioned over the bottom right of the anchor', () => {
-    //   popoverEl = window.document.querySelector('[data-mui-test="Popover"]');
-
-    //   const anchorRect = anchorEl.getBoundingClientRect();
-    //   const expectedTop = anchorRect.bottom <= 16 ? 16 : anchorRect.bottom;
-    //   const expectedLeft = anchorRect.right <= 16 ? 16 : anchorRect.right;
-
-    //   assert.strictEqual(
-    //     popoverEl.style.top,
-    //     `${expectedTop}px`,
-    //     'should position at the correct top offset'
-    //   );
-
-    //   assert.strictEqual(
-    //     popoverEl.style.left,
-    //     `${expectedLeft}px`,
-    //     'should position at the correct left offset'
-    //   );
-    // });
   });
 
   describe('getPositioningStyle(element)', () => {
@@ -634,6 +614,21 @@ describe('<Popover />', () => {
       it('should return props.transitionDuration + 20', () => {
         assert.strictEqual(instance.handleRequestTimeout(), transitionDuration + 20);
       });
+    });
+  });
+
+  describe('prop: getContentAnchorEl', () => {
+    it('should position accordingly', () => {
+      const element = {
+        scrollTop: 5,
+      };
+      const child = {
+        offsetTop: 40,
+        clientHeight: 20,
+        parentNode: element,
+      };
+      const wrapper = shallow(<Popover getContentAnchorEl={() => child} />);
+      assert.strictEqual(wrapper.instance().getContentAnchorOffset(element), 45);
     });
   });
 });

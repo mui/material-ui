@@ -22,11 +22,17 @@ Choosing an option should immediately ideally commit the option and close the me
 
 {{demo='pages/component-demos/menus/SimpleMenu.js'}}
 
+## Selected menus
+
 If used for item selection, when opened, simple menus attempt to vertically align the currently selected menu item with the anchor element. The currently selected menu item is set using the `selected` prop.
 
 {{demo='pages/component-demos/menus/SimpleListMenu.js'}}
 
 If text in a simple menu wraps to a second line, use a simple dialog instead. Simple dialogs can have rows with varying heights.
+
+## Max height menus
+
+{{demo='pages/component-demos/menus/LongMenu.js'}}
 
 ## TextField select menus
 
