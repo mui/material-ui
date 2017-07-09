@@ -127,11 +127,6 @@ describe('<SwitchBase />', () => {
     });
   });
 
-  it('should set the icon to aria-hidden="true" to avoid being read by screen readers', () => {
-    const wrapper = shallow(<SwitchBase />);
-    assert.strictEqual(wrapper.childAt(0).prop('aria-hidden'), 'true');
-  });
-
   it('should disable the components, and render the IconButton with the disabled className', () => {
     const wrapper = shallow(<SwitchBase disabled />);
     assert.strictEqual(wrapper.props().disabled, true, 'should disable the root node');

@@ -9,7 +9,7 @@
 |:-----|:-----|:--------|:------------|
 | checked | union:&nbsp;bool<br>&nbsp;string<br> |  | If `true`, the component appears selected. |
 | checkedClassName | string |  | The CSS class name of the root element when checked. |
-| checkedIcon | node |  | The icon to display when the component is checked. |
+| checkedIcon | node |  | The icon to display when the component is checked. If a string is provided, it will be used as a font ligature. |
 | classes | object |  | Useful to extend the style applied to components. |
 | disableRipple | bool |  | If `true`, the ripple effect will be disabled. |
 | disabled | bool |  | If `true`, the switch will be disabled. |
@@ -27,11 +27,11 @@ Any other properties supplied will be spread to the root element.
 You can overrides all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `root`
+- `bar`
+- `icon`
 - `default`
 - `checked`
 - `disabled`
-- `bar`
-- `icon`
 
 Have a look at [overriding with class names](/customization/overrides#overriding-with-class-names)
 section for more detail.
