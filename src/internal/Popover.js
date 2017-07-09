@@ -48,6 +48,18 @@ function getTransformOriginValue(transformOrigin) {
     .join(' ');
 }
 
+// Sum the scrollTop between two elements
+function getScrollParent(parent, child) {
+  let element = child;
+  let scrollTop = 0;
+
+  while (element && element !== parent) {
+    element = element.parentNode;
+    scrollTop += element.scrollTop;
+  }
+  return scrollTop;
+}
+
 export const styleSheet = createStyleSheet('MuiPopover', {
   paper: {
     position: 'absolute',
@@ -347,16 +359,18 @@ class Popover extends Component<DefaultProps, Props, void> {
   }
 
   /**
-   * Returns the vertical offset of inner
-   * content to anchor the transform on if provided
+   * Returns the vertical offset of inner content to anchor the transform on if provided
    */
   getContentAnchorOffset(element) {
     let contentAnchorOffset = 0;
 
     if (this.props.getContentAnchorEl) {
       const contentAnchorEl = this.props.getContentAnchorEl(element);
+
       if (contentAnchorEl && contains(element, contentAnchorEl)) {
-        contentAnchorOffset = contentAnchorEl.offsetTop + contentAnchorEl.clientHeight / 2 || 0;
+        const scrollTop = getScrollParent(element, contentAnchorEl);
+        contentAnchorOffset =
+          contentAnchorEl.offsetTop + contentAnchorEl.clientHeight / 2 - scrollTop || 0;
       }
     }
 

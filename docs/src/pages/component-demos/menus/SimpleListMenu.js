@@ -9,7 +9,7 @@ import Menu, { MenuItem } from 'material-ui/Menu';
 const styleSheet = createStyleSheet('SimpleListMenu', theme => ({
   root: {
     width: '100%',
-    maxWidth: '360px',
+    maxWidth: 360,
     background: theme.palette.background.paper,
   },
 }));
