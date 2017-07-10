@@ -9,4 +9,8 @@ export type SyntheticUIEventHandler = (event?: SyntheticUIEvent) => void;
  *
  * To use it as a typical node, check with `if (node instanceof HTMLElement) { ... }`
  */
-export type DOMNode = Element | Text | null;
+// Actual flow type:
+// export type DOMNode = Element | Text | null;
+
+// Workaround type (results in `any`) due to https://github.com/brigand/babel-plugin-flow-react-proptypes/issues/115
+export type DOMNode = typeof Element | typeof Text | null;
