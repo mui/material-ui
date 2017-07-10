@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import transitionInfo from 'dom-helpers/transition/properties';
 import addEventListener from 'dom-helpers/events/on';
 import classNames from 'classnames';
-import type { SyntheticUIEventHandler } from './types';
+import type { SyntheticUIEventHandler } from '../utils/dom';
 
 const transitionEndEvent = transitionInfo.end;
 
