@@ -1,8 +1,8 @@
 // @flow
 
 import React, { Component } from 'react';
-import { LabelCheckbox } from 'material-ui/Checkbox';
-import { FormGroup } from 'material-ui/Form';
+import Checkbox from 'material-ui/Checkbox';
+import { FormGroup, FormControlLabel } from 'material-ui/Form';
 
 export default class Checkboxes extends Component {
   state = {
@@ -13,22 +13,38 @@ export default class Checkboxes extends Component {
   render() {
     return (
       <FormGroup row>
-        <LabelCheckbox
-          checked={this.state.checkedA}
-          onChange={(event, checked) => this.setState({ checkedA: checked })}
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={this.state.checkedA}
+              onChange={(event, checked) => this.setState({ checkedA: checked })}
+              value="checkedA"
+            />
+          }
           label="Option A"
-          value="checkedA"
         />
-        <LabelCheckbox
-          checked={this.state.checkedB}
-          onChange={(event, checked) => this.setState({ checkedB: checked })}
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={this.state.checkedB}
+              onChange={(event, checked) => this.setState({ checkedB: checked })}
+              value="checkedB"
+            />
+          }
           label="Option B"
-          value="checkedB"
         />
-        <LabelCheckbox label="Option C" value="checkedC" />
-        <LabelCheckbox disabled label="Disabled" value="checkedD" />
-        <LabelCheckbox checked disabled label="Disabled" value="checkedE" />
-        <LabelCheckbox checked disabled indeterminate label="Indeterminate" value="checkedF" />
+        <FormControlLabel control={<Checkbox value="checkedC" />} label="Option C" />
+        <FormControlLabel disabled control={<Checkbox value="checkedD" />} label="Disabled" />
+        <FormControlLabel
+          disabled
+          control={<Checkbox checked value="checkedE" />}
+          label="Disabled"
+        />
+        <FormControlLabel
+          disabled
+          control={<Checkbox checked value="checkedE" indeterminate />}
+          label="Indeterminate"
+        />
       </FormGroup>
     );
   }

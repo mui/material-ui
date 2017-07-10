@@ -18,6 +18,7 @@
 | indeterminate | bool | false | If `true`, the component appears indeterminate. |
 | indeterminateIcon | node | <IndeterminateCheckBoxIcon /> | The icon to display when the component is indeterminate. If a string is provided, it will be used as a font ligature. |
 | inputProps | object |  | Properties applied to the `input` element. |
+| inputRef | function |  | Use that property to pass a ref callback to the native input component. |
 | name | string |  |  |
 | onChange | function |  | Callback fired when the state is changed.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* `change` event<br>*checked:* The `checked` value of the switch |
 | value | string |  | The value of the component. |

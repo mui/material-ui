@@ -4,9 +4,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
-import { LabelRadio, RadioGroup } from 'material-ui/Radio';
+import { FormLabel, FormControlLabel } from 'material-ui/Form';
+import Radio, { RadioGroup } from 'material-ui/Radio';
 import Paper from 'material-ui/Paper';
-import { FormLabel } from 'material-ui/Form';
 
 const styleSheet = createStyleSheet('GuttersGrid', theme => ({
   root: {
@@ -53,16 +53,17 @@ class GuttersGrid extends Component {
               <Grid item>
                 <FormLabel>gutter</FormLabel>
                 <RadioGroup
+                  name="gutter"
                   aria-label="gutter"
                   selectedValue={gutter}
                   onChange={this.handleChange('gutter')}
                   row
                 >
-                  <LabelRadio label="0" value="0" />
-                  <LabelRadio label="8" value="8" />
-                  <LabelRadio label="16" value="16" />
-                  <LabelRadio label="24" value="24" />
-                  <LabelRadio label="40" value="40" />
+                  <FormControlLabel value="0" control={<Radio />} label="0" />
+                  <FormControlLabel value="8" control={<Radio />} label="8" />
+                  <FormControlLabel value="16" control={<Radio />} label="16" />
+                  <FormControlLabel value="24" control={<Radio />} label="24" />
+                  <FormControlLabel value="40" control={<Radio />} label="40" />
                 </RadioGroup>
               </Grid>
             </Grid>

@@ -1,12 +1,13 @@
 // @flow
 
 import React from 'react';
-import Checkbox, { LabelCheckbox } from 'material-ui/Checkbox';
+import Checkbox from 'material-ui/Checkbox';
+import { FormControlLabel } from 'material-ui/Form';
 
 export default function DisabledCheckbox() {
   return (
     <div>
-      <LabelCheckbox label="Foo" disabled />
+      <FormControlLabel disabled control={<Checkbox />} label="Foo" />
       <Checkbox disabled />
       <Checkbox checked disabled />
     </div>

@@ -1,12 +1,13 @@
 // @flow
 
 import React from 'react';
-import Switch, { LabelSwitch } from 'material-ui/Switch';
+import Switch from 'material-ui/Switch';
+import { FormControlLabel } from 'material-ui/Form';
 
 export default function DisabledSwitch() {
   return (
     <div>
-      <LabelSwitch label="Foo" disabled />
+      <FormControlLabel control={<Switch />} label="Foo" disabled />
       <Switch disabled />
       <Switch checked disabled />
     </div>

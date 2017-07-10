@@ -94,6 +94,7 @@ export default function createSwitch(
         disabledClassName,
         icon: iconProp,
         inputProps,
+        inputRef,
         name,
         onChange,
         tabIndex,
@@ -139,6 +140,9 @@ export default function createSwitch(
           <input
             ref={node => {
               this.input = node;
+              if (inputRef) {
+                inputRef(node);
+              }
             }}
             type={inputType}
             name={name}
@@ -202,6 +206,10 @@ export default function createSwitch(
      * Properties applied to the `input` element.
      */
     inputProps: PropTypes.object,
+    /**
+     * Use that property to pass a ref callback to the native input component.
+     */
+    inputRef: PropTypes.func,
     /*
      * @ignore
      */

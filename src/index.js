@@ -10,7 +10,7 @@ export { default as Button } from './Button';
 
 export { default as Card, CardActions, CardContent, CardHeader, CardMedia } from './Card';
 
-export { default as Checkbox, LabelCheckbox } from './Checkbox';
+export { default as Checkbox } from './Checkbox';
 export { default as Chip } from './Chip';
 
 export {
@@ -24,7 +24,7 @@ export {
 export { default as Divider } from './Divider';
 export { default as Drawer } from './Drawer';
 
-export { FormControl, FormGroup, FormLabel, FormHelperText } from './Form';
+export { FormControl, FormGroup, FormLabel, FormHelperText, FormControlLabel } from './Form';
 
 export { default as Hidden } from './Hidden';
 export { default as Icon } from './Icon';
@@ -50,7 +50,7 @@ export { default as Paper } from './Paper';
 
 export { CircularProgress, LinearProgress } from './Progress';
 
-export { default as Radio, RadioGroup, LabelRadio } from './Radio';
+export { default as Radio, RadioGroup } from './Radio';
 
 export { default as Snackbar, SnackbarContent } from './Snackbar';
 
@@ -63,7 +63,7 @@ export { colors };
 
 export { default as SvgIcon } from './SvgIcon';
 
-export { default as Switch, LabelSwitch } from './Switch';
+export { default as Switch } from './Switch';
 
 export {
   default as Table,
