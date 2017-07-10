@@ -38,6 +38,7 @@ class Calendar extends Component {
     onTouchTapDay: PropTypes.func,
     onTouchTapOk: PropTypes.func,
     open: PropTypes.bool,
+    openToYearSelection: PropTypes.bool,
     shouldDisableDate: PropTypes.func,
     utils: PropTypes.object,
   };
@@ -56,7 +57,7 @@ class Calendar extends Component {
 
   state = {
     displayDate: undefined,
-    displayMonthDay: true,
+    displayMonthDay: undefined,
     selectedDate: undefined,
     transitionDirection: 'left',
     transitionEnter: true,
@@ -66,6 +67,7 @@ class Calendar extends Component {
     this.setState({
       displayDate: this.props.utils.getFirstDayOfMonth(this.props.initialDate),
       selectedDate: this.props.initialDate,
+      displayMonthDay: !this.props.openToYearSelection,
     });
   }
 

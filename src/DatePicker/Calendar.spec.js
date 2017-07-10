@@ -3,6 +3,8 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {assert} from 'chai';
 import Calendar from './Calendar';
+import CalendarMonth from './CalendarMonth';
+import CalendarYear from './CalendarYear';
 import DateDisplay from './DateDisplay';
 import {addMonths, dateTimeFormat} from './dateUtils';
 import getMuiTheme from '../styles/getMuiTheme';
@@ -221,6 +223,31 @@ describe('<Calendar />', () => {
 
       assert.strictEqual(wrapper.find(DateDisplay).length, 0, 'should hide date display');
       assert.strictEqual(wrapper.props().style.width, 310, 'should not allow space for date display');
+    });
+  });
+
+  describe('initial state', () => {
+    it('should display the month day pick view by default', () => {
+      const wrapper = shallowWithContext(
+        <Calendar
+          DateTimeFormat={dateTimeFormat}
+          locale="en-US"
+        />
+      );
+
+      assert.strictEqual(wrapper.find(CalendarMonth).length, 1, 'should have the calendar month select');
+    });
+
+    it('should display the year selection view when openToYearSelection is true', () => {
+      const wrapper = shallowWithContext(
+        <Calendar
+          DateTimeFormat={dateTimeFormat}
+          locale="en-US"
+          openToYearSelection={true}
+        />
+      );
+
+      assert.strictEqual(wrapper.find(CalendarYear).length, 1, 'should have the year select');
     });
   });
 });
