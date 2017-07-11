@@ -24,7 +24,7 @@ function App() {
 ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
-**./MyComponent.js**
+**./Root.js**
 ```jsx
 import React from 'react';
 import Button from 'material-ui/Button';
