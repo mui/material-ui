@@ -265,7 +265,7 @@ class Chip extends Component {
     const deleteIcon = deletable ? (
       <DeleteIcon
         color={styles.deleteIcon.color}
-        style={prepareStyles(Object.assign(styles.deleteIcon, deleteIconStyle))}
+        style={Object.assign(styles.deleteIcon, deleteIconStyle)}
         onTouchTap={this.handleTouchTapDeleteIcon}
         onMouseEnter={this.handleMouseEnterDeleteIcon}
         onMouseLeave={this.handleMouseLeaveDeleteIcon}
