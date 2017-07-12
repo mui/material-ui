@@ -4,6 +4,7 @@ import React, { Component, createElement, cloneElement } from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
+import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import ClickAwayListener from '../internal/ClickAwayListener';
@@ -169,7 +170,7 @@ type Props = DefaultProps & {
    * @param {event} event The event that triggered the close request
    * @param {string} reason Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"`
    */
-  onRequestClose?: (event: ?SyntheticUIEvent, reason: string) => void,
+  onRequestClose?: (event: ?Event, reason: string) => void,
   /**
    * If true, `Snackbar` is open.
    */
@@ -238,35 +239,48 @@ class Snackbar extends Component<DefaultProps, Props, State> {
 
   // Timer that controls delay before snackbar auto hides
   setAutoHideTimer(autoHideDuration = null) {
-    if (this.props.autoHideDuration === null) {
+    if (!this.props.onRequestClose || this.props.autoHideDuration === null) {
       return;
     }
 
     clearTimeout(this.timerAutoHide);
     this.timerAutoHide = setTimeout(() => {
-      if (this.props.onRequestClose) {
-        this.props.onRequestClose(null, 'timeout');
+      if (!this.props.onRequestClose || this.props.autoHideDuration === null) {
+        return;
       }
+
+      this.props.onRequestClose(null, 'timeout');
     }, autoHideDuration || this.props.autoHideDuration);
   }
 
-  handleMouseEnter = event => {
+  handleMouseEnter = (event: SyntheticUIEvent) => {
     if (this.props.onMouseEnter) {
       this.props.onMouseEnter(event);
     }
-    clearTimeout(this.timerAutoHide);
+    this.handlePause();
   };
 
-  handleMouseLeave = event => {
+  handleMouseLeave = (event: SyntheticUIEvent) => {
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(event);
     }
-    this.setAutoHideTimer(2e3);
+    this.handleResume();
   };
 
-  handleClickAway = event => {
+  handleClickAway = (event: Event) => {
     if (this.props.onRequestClose) {
       this.props.onRequestClose(event, 'clickaway');
+    }
+  };
+
+  // Pause the timer when the user is interacting with the Snackbar or when he can't see it.
+  handlePause = () => {
+    clearTimeout(this.timerAutoHide);
+  };
+
+  handleResume = () => {
+    if (this.props.autoHideDuration !== null) {
+      this.setAutoHideTimer(this.props.autoHideDuration * 0.5);
     }
   };
 
@@ -309,36 +323,40 @@ class Snackbar extends Component<DefaultProps, Props, State> {
     const transition = transitionProp || <Slide direction={vertical === 'top' ? 'down' : 'up'} />;
 
     return (
-      <ClickAwayListener onClickAway={this.handleClickAway}>
-        <div
-          className={classNames(
-            classes.root,
-            classes[`anchor${capitalizeFirstLetter(vertical)}${capitalizeFirstLetter(horizontal)}`],
-            className,
-          )}
-          onMouseEnter={this.handleMouseEnter}
-          onMouseLeave={this.handleMouseLeave}
-          {...other}
-        >
-          {createTransitionFn(
-            transition,
-            {
-              in: open,
-              transitionAppear: true,
-              enterTransitionDuration,
-              leaveTransitionDuration,
-              onEnter,
-              onEntering,
-              onEntered,
-              onExit,
-              onExiting,
-              onExited: createChainedFunction(this.handleTransitionExited, onExited),
-            },
-            children ||
-              <SnackbarContent message={message} action={action} {...SnackbarContentProps} />,
-          )}
-        </div>
-      </ClickAwayListener>
+      <EventListener target="window" onFocus={this.handleResume} onBlur={this.handlePause}>
+        <ClickAwayListener onClickAway={this.handleClickAway}>
+          <div
+            className={classNames(
+              classes.root,
+              classes[
+                `anchor${capitalizeFirstLetter(vertical)}${capitalizeFirstLetter(horizontal)}`
+              ],
+              className,
+            )}
+            onMouseEnter={this.handleMouseEnter}
+            onMouseLeave={this.handleMouseLeave}
+            {...other}
+          >
+            {createTransitionFn(
+              transition,
+              {
+                in: open,
+                transitionAppear: true,
+                enterTransitionDuration,
+                leaveTransitionDuration,
+                onEnter,
+                onEntering,
+                onEntered,
+                onExit,
+                onExiting,
+                onExited: createChainedFunction(this.handleTransitionExited, onExited),
+              },
+              children ||
+                <SnackbarContent message={message} action={action} {...SnackbarContentProps} />,
+            )}
+          </div>
+        </ClickAwayListener>
+      </EventListener>
     );
   }
 }

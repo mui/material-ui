@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import EventListener from 'react-event-listener';
 import PropTypes from 'prop-types';
+import debounce from 'lodash/debounce';
 import createEagerFactory from 'recompose/createEagerFactory';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import customPropTypes from '../utils/customPropTypes';
@@ -52,17 +53,12 @@ function withWidth(options = {}) {
       }
 
       componentWillUnmount() {
-        clearTimeout(this.deferTimer);
+        this.handleResize.cancel();
       }
 
-      deferTimer = null;
-
-      handleResize = () => {
-        clearTimeout(this.deferTimer);
-        this.deferTimer = setTimeout(() => {
-          this.updateWidth(window.innerWidth);
-        }, resizeInterval);
-      };
+      handleResize = debounce(() => {
+        this.updateWidth(window.innerWidth);
+      }, resizeInterval);
 
       updateWidth(innerWidth) {
         const breakpoints = this.context.styleManager.theme.breakpoints;

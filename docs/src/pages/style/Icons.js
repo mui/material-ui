@@ -8,7 +8,7 @@ import Icon from 'material-ui/Icon';
 const styleSheet = createStyleSheet('Icons', {
   root: {
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'flex-end',
     justifyContent: 'space-around',
     width: '70%',
   },
@@ -22,8 +22,12 @@ function Icons(props) {
       <Icon color="action">add_circle</Icon>
       <Icon color="contrast">add_circle</Icon>
       <Icon color="disabled">add_circle</Icon>
-      <Icon color="error">add_circle</Icon>
-      <Icon color="primary">add_circle</Icon>
+      <Icon color="primary" style={{ fontSize: 30 }}>
+        add_circle
+      </Icon>
+      <Icon color="error" style={{ fontSize: 36 }}>
+        add_circle
+      </Icon>
     </div>
   );
 }
