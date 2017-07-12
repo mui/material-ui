@@ -46,7 +46,7 @@ describe('<BottomNavigation />', () => {
 
   it('should pass selected prop to children', () => {
     const wrapper = shallow(
-      <BottomNavigation showLabels index={1}>
+      <BottomNavigation showLabels value={1}>
         <BottomNavigationButton icon={icon} />
         <BottomNavigationButton icon={icon} />
       </BottomNavigation>,
@@ -57,7 +57,7 @@ describe('<BottomNavigation />', () => {
 
   it('should overwrite parent showLabel prop', () => {
     const wrapper = shallow(
-      <BottomNavigation showLabels index={1}>
+      <BottomNavigation showLabels value={1}>
         <BottomNavigationButton icon={icon} />
         <BottomNavigationButton icon={icon} showLabel={false} />
       </BottomNavigation>,
@@ -69,13 +69,13 @@ describe('<BottomNavigation />', () => {
   it('should pass selected prop to children', () => {
     const handleChange = spy();
     const wrapper = mount(
-      <BottomNavigation showLabels index={0} onChange={handleChange}>
+      <BottomNavigation showLabels value={0} onChange={handleChange}>
         <BottomNavigationButton icon={icon} />
         <BottomNavigationButton icon={icon} />
       </BottomNavigation>,
     );
     wrapper.find(BottomNavigationButton).at(1).simulate('click');
     assert.strictEqual(handleChange.callCount, 1, 'should have been called once');
-    assert.strictEqual(handleChange.args[0][1], 1, 'should have been called with index 1');
+    assert.strictEqual(handleChange.args[0][1], 1, 'should have been called with value 1');
   });
 });
