@@ -45,7 +45,7 @@ We provide a separate NPM package,
 [material-ui-icons](https://www.npmjs.com/package/material-ui-icons),
 that includes the [material.io/icons](https://material.io/icons/) converted to SvgIcon components.
 Let's say you are looking for an icon.
-You can take advantage of the search bar of [material.io/icons](https://material.io/icons/).
+You can take advantage of the **search bar** of [material.io/icons](https://material.io/icons/).
 Keep in mind that we `PascalCase` the names of the icons, for instance:
 - [`alarm`](https://material.io/icons/#ic_alarm) is exposed as `material-ui-icons/Alarm`
 - [`alarm off`](https://material.io/icons/#ic_alarm_off) is exposed as `material-ui-icons/AlarmOff`
