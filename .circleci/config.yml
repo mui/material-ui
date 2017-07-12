@@ -57,9 +57,6 @@ jobs:
       - run:
           name: Coverage
           command: bash <(curl -s https://codecov.io/bash)
-      - run:
-          name: Can we generate the docs?
-          command: yarn build:docs
   test_browser:
     <<: *defaults
     steps:
@@ -68,6 +65,15 @@ jobs:
       - run:
           name: Tests real browsers
           command: yarn test:karma
+      - run:
+          name: Can we generate the build?
+          command: yarn build
+      - run:
+          name: Is the size acceptable?
+          command: yarn size
+      - run:
+          name: Can we generate the docs?
+          command: yarn build:docs
   test_regressions:
     <<: *defaults
     docker:
