@@ -91,7 +91,7 @@ class Tabs extends Component {
   handleResize = debounce(() => {
     this.updateIndicatorState(this.props);
     this.updateScrollButtonState();
-  }, 100);
+  }, 166);
 
   handleLeftScrollClick = () => {
     this.moveTabsScroll(-this.tabs.clientWidth);
@@ -111,7 +111,7 @@ class Tabs extends Component {
 
   handleTabsScroll = debounce(() => {
     this.updateScrollButtonState();
-  }, 100);
+  }, 166);
 
   getConditionalElements = () => {
     const { buttonClassName, scrollable, scrollButtons, width } = this.props;

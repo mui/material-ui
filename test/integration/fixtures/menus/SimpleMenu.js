@@ -12,7 +12,7 @@ export default class SimpleMenu extends Component {
     selectedIndex: undefined,
   };
 
-  handleMenuItemClick = (event: Event, index: number) => {
+  handleMenuItemClick = (event: SyntheticUIEvent, index: number) => {
     this.setState({ selectedIndex: index, open: false });
   };
 

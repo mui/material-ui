@@ -34,8 +34,20 @@ function SvgIcons(props) {
   return (
     <div>
       <HomeIcon className={classes.icon} />
-      <HomeIcon className={classNames(classes.icon, classes.iconBlue)} />
-      <HomeIcon className={classNames(classes.icon, classes.iconHover)} />
+      <HomeIcon
+        className={classNames(classes.icon, classes.iconBlue)}
+        style={{
+          width: 30,
+          height: 30,
+        }}
+      />
+      <HomeIcon
+        className={classNames(classes.icon, classes.iconHover)}
+        style={{
+          width: 36,
+          height: 36,
+        }}
+      />
     </div>
   );
 }
