@@ -34,3 +34,5 @@ Aside from the above composition trade-off, we enforce the following rules:
   - their own `xxxRef` property when user might need to perform so imperative action.
   For instance, we expose a `inputRef` property.
 - The name of the boolean properties should be chosen based on the default value. We are following the HTML specification. For instance, the `disabled` attribute on an input element. This choice allows the shorthand notation.
+- Most of the controllable component are controlled via the `value` and the `onChange` properties.
+However, we also use the `open`/`onRequestClose` combinaison for display relative state.

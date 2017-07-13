@@ -20,7 +20,7 @@ function BottomNavigation(props) {
     children: childrenProp,
     classes,
     className: classNameProp,
-    index,
+    value,
     onChange,
     showLabels,
     ...other
@@ -30,9 +30,9 @@ function BottomNavigation(props) {
 
   const children = Children.map(childrenProp, (child, childIndex) => {
     return cloneElement(child, {
-      selected: childIndex === index,
+      selected: childIndex === value,
       showLabel: child.props.showLabel !== undefined ? child.props.showLabel : showLabels,
-      index: childIndex,
+      value: child.props.value || childIndex,
       onChange,
     });
   });
@@ -58,11 +58,10 @@ BottomNavigation.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The index of the currently selected `BottomNavigationButton`.
-   */
-  index: PropTypes.number,
-  /**
-   * Function called when the index changes.
+   * Function called when the value changes.
+   *
+   * @param {event} event The event that triggered the change
+   * @param {string} value We default to the index of the child
    */
   onChange: PropTypes.func,
   /**
@@ -70,6 +69,10 @@ BottomNavigation.propTypes = {
    * By default only the selected `BottomNavigationButton` will show its label.
    */
   showLabels: PropTypes.bool,
+  /**
+   * The value of the currently selected `BottomNavigationButton`.
+   */
+  value: PropTypes.number,
 };
 
 BottomNavigation.defaultProps = {
