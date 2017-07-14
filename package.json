@@ -53,7 +53,7 @@
     "lodash.merge": "^4.6.0",
     "lodash.throttle": "^4.1.1",
     "prop-types": "^15.5.7",
-    "react-transition-group": "^1.1.2",
+    "react-transition-group": "^2.1.0",
     "react-event-listener": "^0.4.5",
     "recompose": "0.24.0",
     "simple-assign": "^0.1.0",
