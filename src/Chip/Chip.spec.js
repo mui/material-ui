@@ -4,9 +4,9 @@ import React from 'react';
 import keycode from 'keycode';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount } from '../test-utils';
-import Chip, { styleSheet } from './Chip';
+import { createShallow, createMount, getClasses } from '../test-utils';
 import Avatar from '../Avatar';
+import Chip, { styleSheet } from './Chip';
 
 describe('<Chip />', () => {
   let shallow;
@@ -14,7 +14,7 @@ describe('<Chip />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
   });
 
   describe('text only', () => {

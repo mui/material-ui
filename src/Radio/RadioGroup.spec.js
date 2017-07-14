@@ -17,11 +17,7 @@ describe('<RadioGroup />', () => {
   it('should render a FormGroup with the radiogroup role', () => {
     const wrapper = shallow(<RadioGroup />);
     assert.strictEqual(wrapper.name(), 'withStyles(FormGroup)');
-    assert.strictEqual(
-      wrapper.props().role,
-      'radiogroup',
-      'should be a FormGroup with the correct role',
-    );
+    assert.strictEqual(wrapper.props().role, 'radiogroup');
   });
 
   it('should fire the onBlur callback', () => {

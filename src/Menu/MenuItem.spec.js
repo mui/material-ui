@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow } from '../test-utils';
+import { createShallow, getClasses } from '../test-utils';
 import MenuItem, { styleSheet } from './MenuItem';
 
 describe('<MenuItem />', () => {
@@ -12,7 +12,7 @@ describe('<MenuItem />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
   });
 
   it('should render a button ListItem with with ripple', () => {
@@ -24,8 +24,8 @@ describe('<MenuItem />', () => {
 
   it('should render with the user and root classes', () => {
     const wrapper = shallow(<MenuItem className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass('woof'), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should render with the selected class', () => {
@@ -78,7 +78,7 @@ describe('<MenuItem />', () => {
     });
   });
 
-  describe('props: component', () => {
+  describe('prop: component', () => {
     it('should be able to override the rendered component', () => {
       const wrapper = shallow(<MenuItem component="a" />);
 

@@ -1,41 +1,27 @@
 # Usage
 
-Material-UI components require a theme and a style manager to be provided.
-You need to use the `<MuiThemeProvider />` component in order to inject them into your application context.
-Following that, you can use any of the components as demonstrated in our documentation.
+Material-UI components work in isolation.
+**They are self-supporting**, they will inject and only inject the style they need to display.
+They don't rely on any global style like [normalize.css](https://github.com/necolas/normalize.css/).
+You can use any of the components as demonstrated in our documentation.
 
 Here is a quick example to get you started:
 
 **./App.js**
 ```jsx
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { MuiThemeProvider } from 'material-ui/styles';
-import Root from './Root';
-
-function App() {
-  return (
-    <MuiThemeProvider>
-      <Root />
-    </MuiThemeProvider>
-  );
-}
-
-ReactDOM.render(<App />, document.querySelector('#app'));
-```
-
-**./Root.js**
-```jsx
-import React from 'react';
+import { render } from 'react-dom';
 import Button from 'material-ui/Button';
 
-export default function MyComponent() {
+function App() {
   return (
     <Button>
       Hello World
     </Button>
-  )
+  );
 }
+
+render(<App />, document.querySelector('#app'));
 ```
 
 Please refer to each component's [demo page](/component-demos) to see how they should be imported.

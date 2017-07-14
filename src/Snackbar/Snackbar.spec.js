@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createShallow, createMount } from '../test-utils';
+import { createShallow, createMount, getClasses } from '../test-utils';
 import Snackbar, { styleSheet } from './Snackbar';
 import Slide from '../transitions/Slide';
 
@@ -14,7 +14,7 @@ describe('<Snackbar />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
     mount = createMount();
   });
 

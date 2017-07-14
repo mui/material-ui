@@ -2,9 +2,9 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createMount } from '../test-utils';
-import FormControlLabel, { styleSheet } from './FormControlLabel';
+import { createShallow, createMount, getClasses } from '../test-utils';
 import Checkbox from '../Checkbox';
+import FormControlLabel, { styleSheet } from './FormControlLabel';
 
 describe('FormControlLabel', () => {
   let shallow;
@@ -15,7 +15,7 @@ describe('FormControlLabel', () => {
   before(() => {
     shallow = createShallow({ dive: true });
     mount = createMount();
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
     wrapper = shallow(<FormControlLabel label="Pizza" control={<div />} />);
   });
 

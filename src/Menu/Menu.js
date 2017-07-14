@@ -4,10 +4,10 @@ import React, { Component } from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
 import { findDOMNode } from 'react-dom';
-import { createStyleSheet } from 'jss-theme-reactor';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
-import Popover from '../internal/Popover';
+import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
+import Popover from '../internal/Popover';
 import MenuList from './MenuList';
 import type { TransitionCallback } from '../internal/Transition';
 

@@ -2,9 +2,9 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '../test-utils';
-import IconButton, { styleSheet } from './IconButton';
+import { createShallow, getClasses } from '../test-utils';
 import Icon from '../Icon';
+import IconButton, { styleSheet } from './IconButton';
 
 describe('<IconButton />', () => {
   let shallow;
@@ -12,12 +12,12 @@ describe('<IconButton />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
   });
 
   it('should render a ButtonBase', () => {
     const wrapper = shallow(<IconButton>book</IconButton>);
-    assert.strictEqual(wrapper.name(), 'ButtonBase');
+    assert.strictEqual(wrapper.name(), 'withStyles(ButtonBase)');
   });
 
   it('should render an inner label span (bloody safari)', () => {
@@ -85,8 +85,8 @@ describe('<IconButton />', () => {
 
   it('should render with the user and root classes', () => {
     const wrapper = shallow(<IconButton className="woof">book</IconButton>);
-    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass('woof'), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should pass centerRipple={true} to ButtonBase', () => {

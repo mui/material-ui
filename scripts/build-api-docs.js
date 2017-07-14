@@ -36,7 +36,7 @@ function buildDocs(componentPath) {
 
   if (component.styleSheet) {
     // Collect the customization points of the `classes` property.
-    styles.classes = Object.keys(component.styleSheet.createRules(theme));
+    styles.classes = Object.keys(component.styleSheet.createStyles(theme));
     styles.name = component.styleSheet.name;
   }
 

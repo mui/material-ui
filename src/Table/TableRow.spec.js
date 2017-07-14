@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '../test-utils';
+import { createShallow, getClasses } from '../test-utils';
 import TableRow, { styleSheet } from './TableRow';
 
 describe('<TableRow />', () => {
@@ -11,7 +11,7 @@ describe('<TableRow />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
   });
 
   it('should render a tr', () => {
@@ -26,8 +26,8 @@ describe('<TableRow />', () => {
 
   it('should render with the user and root classes', () => {
     const wrapper = shallow(<TableRow className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass('woof'), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should render children', () => {
@@ -43,14 +43,14 @@ describe('<TableRow />', () => {
   it('should render with the head class when in the context of a table head', () => {
     const wrapper = shallow(<TableRow />);
     wrapper.setContext({ ...wrapper.options.context, table: { head: true } });
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.head), true, 'should have the head class');
   });
 
   it('should render with the footer class when in the context of a table footer', () => {
     const wrapper = shallow(<TableRow />);
     wrapper.setContext({ ...wrapper.options.context, table: { footer: true } });
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.footer), true, 'should have the footer class');
   });
 });

@@ -29,8 +29,8 @@ By default, Material-UI will look for a html comment named ` <!-- material-ui --
 When the `className` property isn't enough and you need to access deeper elements, you can take advantage of the `classes` property
 to customize all the CSS inject by Material-UI for the given component.
 The list of these classes is documented under the **Component API** section.
-For instance, you can have a look at the [Button](/component-api/button#css-api).
-Alternatively, you can always have a look at the [implementation](https://github.com/callemall/material-ui/blob/next/src/Button/Button.js).
+For instance, you can have a look at the [Button CSS API](/component-api/button#css-api).
+Alternatively, you can always have a look at the [implementation](https://github.com/callemall/material-ui/blob/v1-alpha/src/Button/Button.js).
 
 Let's see an example:
 

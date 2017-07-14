@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '../test-utils';
+import { createShallow, getClasses } from '../test-utils';
 import FormGroup, { styleSheet } from './FormGroup';
 
 describe('<FormGroup />', () => {
@@ -11,7 +11,7 @@ describe('<FormGroup />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
   });
 
   it('should render a div with the root and user classes', () => {

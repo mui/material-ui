@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '../test-utils';
+import { createShallow, getClasses } from '../test-utils';
 import SvgIcon, { styleSheet } from './SvgIcon';
 
 describe('<SvgIcon />', () => {
@@ -12,7 +12,7 @@ describe('<SvgIcon />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
     path = <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />;
   });
 

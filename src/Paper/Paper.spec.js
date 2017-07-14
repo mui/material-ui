@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '../test-utils';
+import { createShallow, getClasses } from '../test-utils';
 import Paper, { styleSheet } from './Paper';
 
 describe('<Paper />', () => {
@@ -13,7 +13,7 @@ describe('<Paper />', () => {
     shallow = createShallow({
       dive: true,
     });
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
   });
 
   it('should render a div', () => {
@@ -23,7 +23,7 @@ describe('<Paper />', () => {
 
   it('should render with the root class, default depth class, and rounded', () => {
     const wrapper = shallow(<Paper>Hello World</Paper>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.rounded), true, 'should be rounded by default');
   });
 

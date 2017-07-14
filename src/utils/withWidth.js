@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
 import createEagerFactory from 'recompose/createEagerFactory';
 import wrapDisplayName from 'recompose/wrapDisplayName';
-import customPropTypes from '../utils/customPropTypes';
+import withTheme from '../styles/withTheme';
 import { keys } from '../styles/breakpoints';
 
 /**
@@ -63,7 +63,7 @@ function withWidth(options = {}) {
       }, resizeInterval);
 
       updateWidth(innerWidth) {
-        const breakpoints = this.context.styleManager.theme.breakpoints;
+        const breakpoints = this.props.theme.breakpoints;
         let width = null;
 
         /**
@@ -96,7 +96,7 @@ function withWidth(options = {}) {
       }
 
       render() {
-        const { initalWidth, width, ...other } = this.props;
+        const { initalWidth, theme, width, ...other } = this.props;
         const props = {
           width: width || this.state.width || initalWidth,
           ...other,
@@ -134,20 +134,20 @@ function withWidth(options = {}) {
        */
       initalWidth: PropTypes.oneOf(keys),
       /**
+       * @ignore
+       */
+      theme: PropTypes.object.isRequired,
+      /**
        * Bypass the width calculation logic.
        */
       width: PropTypes.oneOf(keys),
-    };
-
-    Width.contextTypes = {
-      styleManager: customPropTypes.muiRequired,
     };
 
     if (process.env.NODE_ENV !== 'production') {
       Width.displayName = wrapDisplayName(BaseComponent, 'withWidth');
     }
 
-    return Width;
+    return withTheme(Width);
   };
 }
 

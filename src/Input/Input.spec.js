@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount } from '../test-utils';
+import { createShallow, createMount, getClasses } from '../test-utils';
 import Textarea from './Textarea';
 import Input, { styleSheet, isDirty } from './Input';
 
@@ -15,7 +15,7 @@ describe('<Input />', () => {
   before(() => {
     shallow = createShallow({ dive: true });
     mount = createMount();
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
   });
 
   after(() => {
@@ -25,7 +25,7 @@ describe('<Input />', () => {
   it('should render a <div />', () => {
     const wrapper = shallow(<Input />);
     assert.strictEqual(wrapper.name(), 'div');
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.inkbar), true, 'should have the inkbar class');
     assert.strictEqual(
       wrapper.hasClass(classes.underline),

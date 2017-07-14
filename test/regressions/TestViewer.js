@@ -1,18 +1,17 @@
 // @flow
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import { createStyleSheet, withStyles } from 'material-ui/styles';
 
-const globalStyleSheet = createStyleSheet('global', theme => {
-  const { palette } = theme;
+const styleSheet = createStyleSheet('TestViewer', theme => {
   return {
     '@global': {
       html: {
         // Do the opposite of the docs in order to help catching issues.
         boxSizing: 'border-box',
       },
+      // Disable transitions to avoid flaky screenshots
       '*, *:before, *:after': {
         boxSizing: 'inherit',
         transition: 'none !important',
@@ -20,49 +19,30 @@ const globalStyleSheet = createStyleSheet('global', theme => {
       },
       body: {
         margin: 0,
-        background: palette.background.default,
+        background: theme.palette.background.default,
         overflowX: 'hidden',
         WebkitFontSmoothing: 'antialiased',
       },
-      a: {
-        color: palette.accent.A400,
-        textDecoration: 'none',
-      },
-      'a:hover': {
-        textDecoration: 'underline',
-      },
     },
-  };
-});
-
-const styleSheet = createStyleSheet('TestViewer', theme => {
-  return {
     root: {
       padding: theme.spacing.unit,
     },
   };
 });
 
-export default class TestViewer extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-  };
+function TestViewer(props) {
+  const { children, classes } = props;
 
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
-  componentWillMount() {
-    this.context.styleManager.render(globalStyleSheet);
-  }
-
-  render() {
-    const { children } = this.props;
-    const classes = this.context.styleManager.render(styleSheet);
-    return (
-      <div className={classes.root}>
-        {children}
-      </div>
-    );
-  }
+  return (
+    <div className={classes.root}>
+      {children}
+    </div>
+  );
 }
+
+TestViewer.propTypes = {
+  children: PropTypes.node,
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(TestViewer);

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, createMount } from '../test-utils';
+import { createShallow, createMount, getClasses } from '../test-utils';
 import TabScrollButton, { styleSheet } from './TabScrollButton';
 import ButtonBase from '../internal/ButtonBase';
 import KeyboardArrowLeft from '../svg-icons/keyboard-arrow-left';
@@ -15,7 +15,7 @@ describe('<TabScrollButton />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
     mount = createMount();
   });
 
@@ -28,7 +28,7 @@ describe('<TabScrollButton />', () => {
       const wrapper = shallow(<TabScrollButton visible />);
 
       assert.strictEqual(wrapper.is(ButtonBase), true, 'should be a button');
-      assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
     });
   });
 
@@ -37,15 +37,15 @@ describe('<TabScrollButton />', () => {
       const wrapper = shallow(<TabScrollButton visible={false} />);
 
       assert.strictEqual(wrapper.name(), 'div');
-      assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
     });
   });
 
   describe('prop: className', () => {
     it('should render with the user and root classes', () => {
       const wrapper = shallow(<TabScrollButton className="woof" />);
-      assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
-      assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass('woof'), true);
     });
   });
 

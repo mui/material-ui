@@ -2,12 +2,12 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
+import createStyleSheet from '../styles/createStyleSheet';
+import withStyles from '../styles/withStyles';
 import ButtonBase from '../internal/ButtonBase';
 import KeyboardArrowLeft from '../svg-icons/keyboard-arrow-left';
 import KeyboardArrowRight from '../svg-icons/keyboard-arrow-right';
-import withStyles from '../styles/withStyles';
 
 export const styleSheet = createStyleSheet('MuiTabScrollButton', theme => ({
   root: {
@@ -46,18 +46,15 @@ TabScrollButton.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * @ignore
    * Which direction should the button indicate?
    */
   direction: PropTypes.oneOf(['left', 'right']),
   /**
-   * @ignore
-   * Callback to execute for button press
+   * Callback to execute for button press.
    */
   onClick: PropTypes.func,
   /**
-   * @ignore
-   * Should the button be present or just consume space
+   * Should the button be present or just consume space.
    */
   visible: PropTypes.bool,
 };
