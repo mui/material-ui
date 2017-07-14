@@ -33,7 +33,7 @@ describe('customPropTypes', () => {
           'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED',
         );
 
-        assert.match(error.message, /You need to provide a theme to Material-UI/);
+        assert.match(error.message, /Material-UI: You need to provide a theme/);
       });
     });
   });
