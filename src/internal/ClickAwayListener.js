@@ -12,6 +12,9 @@ const isDescendant = (el, target) => {
   return false;
 };
 
+/**
+ * @ignore - internal component.
+ */
 class ClickAwayListener extends Component {
   static propTypes = {
     children: PropTypes.element.isRequired,

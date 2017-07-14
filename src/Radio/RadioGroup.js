@@ -107,7 +107,7 @@ RadioGroup.propTypes = {
   /**
    * Callback fired when a radio button is selected.
    *
-   * @param {object} event `change` event
+   * @param {object} event The event source of the callback
    * @param {boolean} checked The `checked` value of the switch
    */
   onChange: PropTypes.func,

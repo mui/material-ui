@@ -14,7 +14,7 @@
 | inputRef | function |  | Use that property to pass a ref callback to the native input component. |
 | <span style="color: #31a148">label *</span> | node |  | The text to be used in an enclosing label element. |
 | name | string |  |  |
-| onChange | function |  | Callback fired when the state is changed.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* `change` event<br>*checked:* The `checked` value of the switch |
+| onChange | function |  | Callback fired when the state is changed.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* The event source of the callback<br>*checked:* The `checked` value of the switch |
 | value | string |  | The value of the component. |
 
 Any other properties supplied will be spread to the root element.

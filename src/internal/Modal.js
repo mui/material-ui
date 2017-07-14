@@ -136,7 +136,9 @@ type Props = DefaultProps & {
    */
   onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
   /**
-   * Callback fired when the modal requests to be closed.
+   * Callback fired when the component requests to be closed.
+   *
+   * @param {object} event The event source of the callback
    */
   onRequestClose?: Function,
   /**
@@ -149,6 +151,9 @@ type State = {
   exited: boolean,
 };
 
+/**
+ * @ignore - internal component.
+ */
 class Modal extends Component<DefaultProps, Props, State> {
   props: Props;
 

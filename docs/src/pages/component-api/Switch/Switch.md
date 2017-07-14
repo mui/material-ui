@@ -17,7 +17,7 @@
 | icon | node |  | The icon to display when the component is unchecked. If a string is provided, it will be used as a font ligature. |
 | inputProps | object |  | Properties applied to the `input` element. |
 | name | string |  |  |
-| onChange | function |  | Callback fired when the  is changed.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* `change` event<br>*checked:* The `checked` value of the switch |
+| onChange | function |  | Callback fired when the  is changed.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* The event source of the callback<br>*checked:* The `checked` value of the switch |
 | value | string |  | The value of the component. |
 
 Any other properties supplied will be spread to the root element.

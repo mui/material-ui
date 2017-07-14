@@ -15,7 +15,7 @@ Notice that this Component is incompatible with server side rendering.
 | <span style="color: #31a148">index *</span> | union:&nbsp;[object Object]<br>&nbsp;number<br> |  | The index of the currently selected `Tab`. If you don't want any selected `Tab`, you can set this property to `false`. |
 | indicatorClassName | string |  | The CSS class name of the indicator element. |
 | indicatorColor | union:&nbsp;[object Object],[object Object]<br>&nbsp;string<br> | 'accent' | Determines the color of the indicator. |
-| <span style="color: #31a148">onChange *</span> | function |  | Function called when the index change. |
+| <span style="color: #31a148">onChange *</span> | function |  | Callback fired when the index changes.<br><br>**Signature:**<br>`function(event: object, index: number) => void`<br>*event:* The event source of the callback<br>*index:* We default to the index of the child |
 | scrollButtons | enum:&nbsp;'auto'<br>&nbsp;'on'<br>&nbsp;'off'<br> | 'auto' | Determine behavior of scroll buttons when tabs are set to scroll `auto` will only present them on medium and larger viewports `on` will always present them `off` will never present them |
 | scrollable | bool | false | True invokes scrolling properties and allow for horizontally scrolling (or swiping) the tab bar. |
 | textColor | union:&nbsp;[object Object],[object Object],[object Object]<br>&nbsp;string<br> | 'inherit' | Determines the color of the `Tab`. |

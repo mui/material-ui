@@ -23,7 +23,7 @@ Dialogs are overlaid modal paper based components with a backdrop.
 | onExit | TransitionCallback |  | Callback fired before the dialog exits. |
 | onExited | TransitionCallback |  | Callback fired when the dialog has exited. |
 | onExiting | TransitionCallback |  | Callback fired when the dialog is exiting. |
-| onRequestClose | Function |  | Callback fired when the dialog requests to be closed. |
+| onRequestClose | Function |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | open | boolean | false | If `true`, the Dialog is open. |
 | transition | union:&nbsp;Function<br>&nbsp;Element<*><br> | Fade | Transition component. |
 

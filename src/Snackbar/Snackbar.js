@@ -167,7 +167,7 @@ type Props = DefaultProps & {
    * The `reason` parameter can optionally be used to control the response to `onRequestClose`,
    * for example ignoring `clickaway`.
    *
-   * @param {event} event The event that triggered the close request
+   * @param {object} event The event source of the callback
    * @param {string} reason Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"`
    */
   onRequestClose?: (event: ?Event, reason: string) => void,

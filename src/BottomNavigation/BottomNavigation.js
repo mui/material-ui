@@ -58,10 +58,10 @@ BottomNavigation.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Function called when the value changes.
+   * Callback fired when the value changes.
    *
-   * @param {event} event The event that triggered the change
-   * @param {string} value We default to the index of the child
+   * @param {object} event The event source of the callback
+   * @param {any} value We default to the index of the child
    */
   onChange: PropTypes.func,
   /**
@@ -72,7 +72,7 @@ BottomNavigation.propTypes = {
   /**
    * The value of the currently selected `BottomNavigationButton`.
    */
-  value: PropTypes.number,
+  value: PropTypes.any,
 };
 
 BottomNavigation.defaultProps = {

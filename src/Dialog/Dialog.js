@@ -118,7 +118,9 @@ type Props = {
    */
   onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
   /**
-   * Callback fired when the dialog requests to be closed.
+   * Callback fired when the component requests to be closed.
+   *
+   * @param {object} event The event source of the callback
    */
   onRequestClose?: Function,
   /**
