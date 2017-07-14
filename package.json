@@ -88,7 +88,7 @@
     "eslint-plugin-material-ui": "./packages/eslint-plugin-material-ui",
     "eslint-plugin-mocha": "^4.9.0",
     "eslint-plugin-react": "^7.0.0",
-    "fs-extra": "^2.1.2",
+    "fs-extra": "^4.0.0",
     "glob": "^7.1.1",
     "istanbul": "^1.1.0-alpha.1",
     "jsdom": "^9.12.0",
