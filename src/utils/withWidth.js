@@ -11,6 +11,7 @@ import { keys } from '../styles/breakpoints';
 
 /**
  * By default, returns true if screen width is the same or greater than the given breakpoint.
+ *
  * @param screenWidth
  * @param breakpoint
  * @param inclusive - defaults to true
@@ -24,6 +25,7 @@ export const isWidthUp = (breakpoint, screenWidth, inclusive = true) => {
 
 /**
  * By default, returns true if screen width is the same or less than the given breakpoint.
+ *
  * @param screenWidth
  * @param breakpoint
  * @param inclusive - defaults to true

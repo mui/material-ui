@@ -127,6 +127,8 @@ type Props = DefaultProps & {
 };
 
 /**
+ * @ignore - internal component.
+ *
  * Drawn from https://raw.githubusercontent.com/react-bootstrap/react-overlays/master/src/Transition.js
  *
  * The Transition component lets you define and run CSS transitions with a simple declarative api.

@@ -118,7 +118,9 @@ type Props = {
    */
   leaveTransitionDuration?: number,
   /**
-   * Callback fired when the internal modal requests to be closed.
+   * Callback fired when the component requests to be closed.
+   *
+   * @param {object} event The event source of the callback
    */
   onRequestClose?: Function,
   /**

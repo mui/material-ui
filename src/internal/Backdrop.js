@@ -43,6 +43,9 @@ type Props = {
   invisible?: boolean,
 };
 
+/**
+ * @ignore - internal component.
+ */
 function Backdrop(props: Props) {
   const { children, classes, className, invisible, ...other } = props;
 

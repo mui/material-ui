@@ -332,7 +332,10 @@ Tabs.propTypes = {
    */
   indicatorColor: PropTypes.oneOfType([PropTypes.oneOf(['accent', 'primary']), PropTypes.string]),
   /**
-   * Function called when the index change.
+   * Callback fired when the index changes.
+   *
+   * @param {object} event The event source of the callback
+   * @param {number} index We default to the index of the child
    */
   onChange: PropTypes.func.isRequired,
   /**

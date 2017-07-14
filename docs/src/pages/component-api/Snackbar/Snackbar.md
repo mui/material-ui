@@ -23,7 +23,7 @@
 | onExit | TransitionCallback |  | Callback fired before the transition is exiting. |
 | onExited | TransitionCallback |  | Callback fired when the transition has exited. |
 | onExiting | TransitionCallback |  | Callback fired when the transition is exiting. |
-| onRequestClose | signature |  | Callback fired when the component requests to be closed.<br>Typically `onRequestClose` is used to set state in the parent component, which is used to control the `Snackbar` `open` prop.<br>The `reason` parameter can optionally be used to control the response to `onRequestClose`, for example ignoring `clickaway`. |
+| onRequestClose | signature |  | Callback fired when the component requests to be closed.<br>Typically `onRequestClose` is used to set state in the parent component, which is used to control the `Snackbar` `open` prop.<br>The `reason` parameter can optionally be used to control the response to `onRequestClose`, for example ignoring `clickaway`.<br><br>**Signature:**<br>`function(event: object, reason: string) => void`<br>*event:* The event source of the callback<br>*reason:* Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"` |
 | <span style="color: #31a148">open *</span> | boolean |  | If true, `Snackbar` is open. |
 | transition | union:&nbsp;Function<br>&nbsp;Element<*><br> |  | Object with Transition component, props & create Fn. |
 

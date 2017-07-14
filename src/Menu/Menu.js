@@ -62,9 +62,9 @@ type Props = DefaultProps & {
    */
   onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
   /**
-   * Callback function fired when the menu is requested to be closed.
+   * Callback fired when the component requests to be closed.
    *
-   * @param {event} event The event that triggered the close request
+   * @param {object} event The event source of the callback
    */
   onRequestClose?: Function,
   /**

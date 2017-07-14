@@ -17,7 +17,7 @@
 | onExit | TransitionCallback |  | Callback fired before the Menu exits. |
 | onExited | TransitionCallback |  | Callback fired when the Menu has exited. |
 | onExiting | TransitionCallback |  | Callback fired when the Menu is exiting. |
-| onRequestClose | Function |  | Callback function fired when the menu is requested to be closed. |
+| onRequestClose | Function |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | open | boolean | false | If `true`, the menu is visible. |
 | transitionDuration | union:&nbsp;number<br>&nbsp;'auto'<br> | 'auto' | The length of the transition in `ms`, or 'auto' |
 

@@ -202,7 +202,8 @@ Chip.propTypes = {
   /**
    * Callback function fired when the delete icon is clicked.
    * If set, the delete icon will be shown.
-   * @param {object} event `onClick` event targeting the delete icon element.
+   *
+   * @param {object} event The event source of the callback
    */
   onRequestDelete: PropTypes.func,
   /**

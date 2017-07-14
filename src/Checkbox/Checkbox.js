@@ -99,7 +99,7 @@ Checkbox.propTypes = {
   /**
    * Callback fired when the state is changed.
    *
-   * @param {object} event `change` event
+   * @param {object} event The event source of the callback
    * @param {boolean} checked The `checked` value of the switch
    */
   onChange: PropTypes.func,
