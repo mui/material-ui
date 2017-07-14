@@ -20,13 +20,12 @@ customPropTypes.muiRequired = (props, propName, componentName, location, propFul
   );
 
   if (error) {
-    error.message =
-      'You need to provide a theme to Material-UI. ' +
-      'Wrap the root component in a `<MuiThemeProvider />`. ' +
-      '\n' +
-      'Have a look at http://www.material-ui.com/#/get-started/usage for an example.' +
-      '\n' +
-      error.message;
+    error.message = [
+      'Material-UI: You need to provide a theme.',
+      'Wrap the root component in a `<MuiThemeProvider />` component.',
+      '',
+      'Have a look at https://material-ui-1dab0.firebaseapp.com/getting-started/usage for an example.',
+    ].join('\n');
   }
 
   return error;

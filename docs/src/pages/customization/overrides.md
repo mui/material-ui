@@ -1,7 +1,6 @@
 # Overrides
 
-We have identified four different types of customization needs as components evolve in different contexts.
-Going from the **most specific** to the **most generic** one:
+As components evolve in different contexts, we have identified four different types of customization needs going from **the most specific** to **the most generic** one:
 
 1. [Specific variation for a one-time situation](#1-specific-variation-for-a-one-time-situation)
 2. [Specific variation of a component](#2-specific-variation-of-a-component) **made by a user** used in different contexts
