@@ -92,15 +92,20 @@ That's really up to you. At least, you gonna have to
 ### When do we intend to release `v1-alpha`?
 
 We don't have an ETA for the release of the `v1-alpha` branch,
-however, it's going to follow a specific release plan:
+however, we are going to try to follow this plan:
 
-1. We focus on migrating the components to the `v1-alpha` branch. They may not be fully migrated.
-2. We merge the `v1-alpha` branch into master.
-At that point, we're going to stop supporting the `v0.18.x` releases.
-3. We release our first alpha.
-4. We focus on finishing the migration of all the components to get a good feature parity with `v0.18.x`.
-5. We release our first pre-release.
-6. We ship :100:.
+1. We completely address the styling issue before moving from *alpha* to [*beta*](https://github.com/callemall/material-ui/milestone/22).
+2. We publish our first beta releases.
+3. We fix the last API inconsistencies (as we can make breaking changes without having to worry much).
+4. We merge the beta branch into master
+5. We publish our first pre-releases, if all goes well, we move to the next step.
+6. We publish v1 :tada:
+
+At that point, some features and components from the v0.x will be missing in the v1.
+So, what about them?
+- First, both versions can be used at the same time, people can progressively migrate, one component at the time.
+- Then, **with the help of the community** and over time, we will support more and more components.
+- We would rather **support few use-cases very well and allow people to build on top of it** than many poorly.
 
 ### Have we ever considered using the best libraries for each piece of functionality and provide only a wrapper for the UI?
 
