@@ -236,6 +236,14 @@ class AutoComplete extends Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.open !== this.state.open) {
+      if (!this.state.open && this.props.onClose) {
+        this.props.onClose();
+      }
+    }
+  }
+
   componentWillUnmount() {
     clearTimeout(this.timerTouchTapCloseId);
     clearTimeout(this.timerBlurClose);
@@ -246,10 +254,6 @@ class AutoComplete extends Component {
       open: false,
       anchorEl: null,
     });
-
-    if (this.props.onClose) {
-      this.props.onClose();
-    }
   }
 
   handleRequestClose = () => {
