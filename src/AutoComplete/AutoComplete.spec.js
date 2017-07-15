@@ -215,6 +215,23 @@ describe('<AutoComplete />', () => {
     });
   });
 
+  describe('prop: onOpen', () => {
+    it('should call onOpen when the menu is opened', (done) => {
+      const handleOpen = spy();
+      const wrapper = shallowWithContext(
+        <AutoComplete dataSource={['foo', 'bar']} onOpen={handleOpen} />
+      );
+
+      assert.strictEqual(handleOpen.callCount, 0);
+      wrapper.setState({open: true});
+
+      setTimeout(() => {
+        assert.strictEqual(handleOpen.callCount, 1);
+        done();
+      }, 20);
+    });
+  });
+
   describe('prop: searchText', () => {
     it('onItemTouchTap should not call setState:searchText when searchText is controlled', () => {
       const wrapper = shallowWithContext(
