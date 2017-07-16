@@ -29,7 +29,7 @@ function assertMenuItemFocused(wrapper, tabIndexed) {
 
   items.forEach((item, index) => {
     if (index === tabIndexed) {
-      assert.strictEqual(item.find('div').get(0), document.activeElement, 'should be focused');
+      assert.strictEqual(item.find('li').get(0), document.activeElement, 'should be focused');
     }
   });
 }

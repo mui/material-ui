@@ -75,7 +75,7 @@ type Props = DefaultProps & {
 class List extends Component<DefaultProps, Props, void> {
   props: Props;
   static defaultProps: DefaultProps = {
-    component: 'div',
+    component: 'ul',
     dense: false,
     disablePadding: false,
   };

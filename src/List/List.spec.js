@@ -16,12 +16,12 @@ describe('<List />', () => {
   });
 
   it('should render a div', () => {
-    const wrapper = shallow(<List />);
+    const wrapper = shallow(<List component="div" />);
     assert.strictEqual(wrapper.name(), 'div');
   });
 
   it('should render a ul', () => {
-    const wrapper = shallow(<List component="ul" />);
+    const wrapper = shallow(<List />);
     assert.strictEqual(wrapper.name(), 'ul');
   });
 
