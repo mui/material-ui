@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
+import { createShallow } from '../test-utils';
 import GridTileTitlebar from './GridTileTitlebar';
 
 describe('<GridTileTitlebar />', () => {
@@ -20,12 +20,13 @@ describe('<GridTileTitlebar />', () => {
 
   describe('prop: title', () => {
     it('should renders title', () => {
-      const wrapper = shallow(
-        <GridTileTitlebar title={tileData.title} />,
-      );
+      const wrapper = shallow(<GridTileTitlebar title={tileData.title} />);
 
-      assert.strictEqual(wrapper.children('div').text(), tileData.title,
-        'should contain the title');
+      assert.strictEqual(
+        wrapper.children('div').text(),
+        tileData.title,
+        'should contain the title',
+      );
     });
   });
 });

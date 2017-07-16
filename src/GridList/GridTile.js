@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('MuiGridTile', (theme) => {
+export const styleSheet = createStyleSheet('MuiGridTile', theme => {
   return {
     root: {
       position: 'relative',
@@ -52,10 +52,7 @@ export default class GridTile extends Component {
      * The component used for the root node.
      * Either a string to use a DOM element or a component.
      */
-    component: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.func,
-    ]),
+    component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     /**
      * Height of the tile in number of grid cells.
      */
@@ -124,11 +121,13 @@ export default class GridTile extends Component {
 
     const classes = this.context.styleManager.render(styleSheet);
 
-    const newChildren = React.Children.map(children, (child) => {
+    const newChildren = React.Children.map(children, child => {
       if (child.type === 'img') {
         return React.cloneElement(child, {
           key: 'img',
-          ref: (img) => { this.imgElement = img; },
+          ref: img => {
+            this.imgElement = img;
+          },
           className: classNames(classes.childImg, child.props.className),
         });
       }

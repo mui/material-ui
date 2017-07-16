@@ -22,7 +22,6 @@ const styleSheet = createStyleSheet('ImageGridList', () => ({
   },
 }));
 
-
 /**
  * The example data is structured as follows:
  *
@@ -45,19 +44,12 @@ export default function ImageGridList(props, context) {
   const classes = context.styleManager.render(styleSheet);
   return (
     <div className={classes.container}>
-      <GridList
-        cellHeight={160}
-        className={classes.gridList}
-        cols={3}
-      >
-        {tileData.map((tile) => (
-          <GridTile
-            key={tile.img}
-            cols={tile.cols || 1}
-          >
+      <GridList cellHeight={160} className={classes.gridList} cols={3}>
+        {tileData.map(tile =>
+          <GridTile key={tile.img} cols={tile.cols || 1}>
             <img src={tile.img} alt={tile.title} />
-          </GridTile>
-        ))}
+          </GridTile>,
+        )}
       </GridList>
     </div>
   );

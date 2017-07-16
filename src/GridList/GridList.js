@@ -43,19 +43,23 @@ export default function GridList(props, context) {
 
   const classes = context.styleManager.render(styleSheet);
 
-  const wrappedChildren = React.Children.map(children, (currentChild) => {
+  const wrappedChildren = React.Children.map(children, currentChild => {
     if (React.isValidElement(currentChild) && currentChild.type.muiName === 'ListSubheader') {
       return currentChild;
     }
     const childCols = currentChild.props.cols || 1;
     const childRows = currentChild.props.rows || 1;
     const itemStyle = {
-      width: `${((100 / cols) * childCols)}%`,
-      height: cellHeight === 'auto' ? 'auto' : (cellHeight * childRows) + padding,
+      width: `${100 / cols * childCols}%`,
+      height: cellHeight === 'auto' ? 'auto' : cellHeight * childRows + padding,
       padding: padding / 2,
     };
 
-    return <div className={classes.item} style={itemStyle}>{currentChild}</div>;
+    return (
+      <div className={classes.item} style={itemStyle}>
+        {currentChild}
+      </div>
+    );
   });
 
   return (
@@ -74,10 +78,7 @@ GridList.propTypes = {
    * Number of px for one cell height.
    * You can set `'auto'` if you want to let the children determine the height.
    */
-  cellHeight: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.oneOf(['auto']),
-  ]),
+  cellHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['auto'])]),
   /**
    * Grid Tiles that will be in Grid List.
    */
@@ -94,10 +95,7 @@ GridList.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
    * Number of px for the padding/spacing between items.
    */

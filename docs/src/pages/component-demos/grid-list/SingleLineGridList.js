@@ -8,7 +8,7 @@ import IconButton from 'material-ui/IconButton';
 import StarBorderIcon from 'material-ui-icons/StarBorder';
 import tileData from './tileData';
 
-const styleSheet = createStyleSheet('SingleLineGridList', (theme) => ({
+const styleSheet = createStyleSheet('SingleLineGridList', theme => ({
   container: {
     backgroundColor: 'white',
     width: '100%',
@@ -21,8 +21,8 @@ const styleSheet = createStyleSheet('SingleLineGridList', (theme) => ({
     color: theme.palette.primary[200],
   },
   titleBar: {
-    background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, ' +
-    'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+    background:
+      'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
   },
 }));
 
@@ -48,19 +48,21 @@ export default function SingleLineGridList(props, context) {
   return (
     <div className={classes.container}>
       <GridList className={classes.gridList} cols={3.5}>
-        {tileData.map((tile) => (
-          <GridTile
-            key={tile.img}
-          >
+        {tileData.map(tile =>
+          <GridTile key={tile.img}>
             <img src={tile.img} alt={tile.title} />
             <GridTileTitlebar
               className={classes.titleBar}
               title={tile.title}
               titleClassName={classes.title}
-              actionIcon={<IconButton><StarBorderIcon className={classes.title} /></IconButton>}
+              actionIcon={
+                <IconButton>
+                  <StarBorderIcon className={classes.title} />
+                </IconButton>
+              }
             />
-          </GridTile>
-        ))}
+          </GridTile>,
+        )}
       </GridList>
     </div>
   );

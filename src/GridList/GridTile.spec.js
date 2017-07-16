@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from 'src/test-utils';
+import { createShallow } from '../test-utils';
 import GridTile from './GridTile';
 
 describe('<GridTile />', () => {
@@ -21,7 +21,9 @@ describe('<GridTile />', () => {
   it('should render a div', () => {
     const testChildren = <img src={tileData.img} alt="foo" />;
     const wrapper = shallow(
-      <GridTile>{testChildren}</GridTile>,
+      <GridTile>
+        {testChildren}
+      </GridTile>,
     );
     assert.strictEqual(wrapper.name(), 'div');
   });
@@ -29,7 +31,9 @@ describe('<GridTile />', () => {
   it('should render a ul', () => {
     const testChildren = <img src={tileData.img} alt="foo" />;
     const wrapper = shallow(
-      <GridTile component="li">{testChildren}</GridTile>,
+      <GridTile component="li">
+        {testChildren}
+      </GridTile>,
     );
     assert.strictEqual(wrapper.name(), 'li');
   });
@@ -38,11 +42,16 @@ describe('<GridTile />', () => {
     it('should render children by default', () => {
       const testChildren = <img src={tileData.img} alt="foo" />;
       const wrapper = shallow(
-        <GridTile>{testChildren}</GridTile>,
+        <GridTile>
+          {testChildren}
+        </GridTile>,
       );
 
-      assert.strictEqual(wrapper.containsMatchingElement(testChildren), true,
-        'should contain the children');
+      assert.strictEqual(
+        wrapper.containsMatchingElement(testChildren),
+        true,
+        'should contain the children',
+      );
     });
   });
 
@@ -50,11 +59,12 @@ describe('<GridTile />', () => {
     it('should renders className', () => {
       const testChildren = <img src={tileData.img} alt="foo" />;
       const wrapper = shallow(
-        <GridTile className="foo">{testChildren}</GridTile>,
+        <GridTile className="foo">
+          {testChildren}
+        </GridTile>,
       );
 
-      assert.strictEqual(wrapper.hasClass('foo'), true,
-        'should contain the className');
+      assert.strictEqual(wrapper.hasClass('foo'), true, 'should contain the className');
     });
   });
 });

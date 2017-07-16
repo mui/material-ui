@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from '../utils/customPropTypes';
 
-export const styleSheet = createStyleSheet('MuiGridTileTitlebar', (theme) => {
+export const styleSheet = createStyleSheet('MuiGridTileTitlebar', theme => {
   return {
     titleBar: {
       position: 'absolute',
@@ -96,13 +96,10 @@ export default function GridTileTitlebar(props, context) {
   );
 
   // Remove the margin between the title / subtitle wrapper, and the Action Icon
-  const titleWrapClassName = classNames(
-    classes.titleWrap,
-    {
-      [classes.titleWrapActionLeft]: actionPos === 'left',
-      [classes.titleWrapActionRight]: actionPos === 'right',
-    },
-  );
+  const titleWrapClassName = classNames(classes.titleWrap, {
+    [classes.titleWrapActionLeft]: actionPos === 'left',
+    [classes.titleWrapActionRight]: actionPos === 'right',
+  });
 
   return (
     <div className={className} {...other}>
@@ -110,17 +107,17 @@ export default function GridTileTitlebar(props, context) {
         <div className={classNames(classes.title, titleClassNameProp)}>
           {title}
         </div>
-        {subtitle ? (
-          <div className={classNames(classes.subtitle, subtitleClassNameProp)}>
-            {subtitle}
-          </div>
-        ) : null}
+        {subtitle
+          ? <div className={classNames(classes.subtitle, subtitleClassNameProp)}>
+              {subtitle}
+            </div>
+          : null}
       </div>
-      {actionIcon ? (
-        <div className={classNames({ [classes.actionIconPositionLeft]: actionPos === 'left' })}>
-          {actionIcon}
-        </div>
-      ) : null}
+      {actionIcon
+        ? <div className={classNames({ [classes.actionIconPositionLeft]: actionPos === 'left' })}>
+            {actionIcon}
+          </div>
+        : null}
     </div>
   );
 }

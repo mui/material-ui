@@ -46,25 +46,26 @@ export default function TitlebarGridList(props, context) {
   const classes = context.styleManager.render(styleSheet);
   return (
     <div className={classes.container}>
-      <GridList
-        cellHeight={180}
-        className={classes.gridList}
-      >
+      <GridList cellHeight={180} className={classes.gridList}>
         <Subheader className={classes.subheader}>December</Subheader>
-        {tileData.map((tile) => (
-          <GridTile
-            key={tile.img}
-          >
+        {tileData.map(tile =>
+          <GridTile key={tile.img}>
             <img src={tile.img} alt={tile.title} />
             <GridTileTitlebar
               title={tile.title}
-              subtitle={<span>by: {tile.author}</span>}
+              subtitle={
+                <span>
+                  by: {tile.author}
+                </span>
+              }
               actionIcon={
-                <IconButton><InfoIcon color="rgba(255, 255, 255, 0.54)" /></IconButton>
+                <IconButton>
+                  <InfoIcon color="rgba(255, 255, 255, 0.54)" />
+                </IconButton>
               }
             />
-          </GridTile>
-        ))}
+          </GridTile>,
+        )}
       </GridList>
     </div>
   );
