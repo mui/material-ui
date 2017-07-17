@@ -142,15 +142,6 @@ class TableBody extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.allRowsSelected !== nextProps.allRowsSelected) {
-      if (!nextProps.allRowsSelected) {
-        this.setState({
-          selectedRows: [],
-        });
-        return;
-      }
-    }
-
     this.setState({
       selectedRows: this.getSelectedRows(nextProps),
     });
@@ -234,33 +225,31 @@ class TableBody extends Component {
   }
 
   getSelectedRows(props) {
-    const selectedRows = [];
+    var selectedRows = this.state.selectedRows;
 
     if (props.selectable) {
       let index = 0;
-      React.Children.forEach(props.children, (child) => {
-        if (React.isValidElement(child)) {
-          if (child.props.selected !== undefined) {
-            this.isControlled = true;
-          }
-
-          if (child.props.selected && (selectedRows.length === 0 || props.multiSelectable)) {
+      if(props.allRowsSelected) {
+        selectedRows = [];
+        React.Children.forEach(props.children, (child) => {
+          if (React.isValidElement(child)) {
+            if (child.props.selected !== undefined) {
+              this.isControlled = true;
+            }
             selectedRows.push(index);
+            index++;
           }
-
-          index++;
-        }
-      });
+        });
+      }
+    }
+    else if (selectedRows.length == props.children.length) {
+      selectedRows = [];
     }
 
     return selectedRows;
   }
-
+  
   isRowSelected(rowNumber) {
-    if (this.props.allRowsSelected) {
-      return true;
-    }
-
     return this.state.selectedRows.some((row) => {
       if (typeof row === 'object') {
         if (this.isValueInRange(rowNumber, row)) {
@@ -339,11 +328,11 @@ class TableBody extends Component {
     }
 
     if (!this.isControlled) {
-      this.setState({selectedRows});
-    }
-
-    if (this.props.onRowSelection) {
-      this.props.onRowSelection(this.flattenRanges(selectedRows));
+      this.setState({selectedRows},() => {
+        if (this.props.onRowSelection) {
+          this.props.onRowSelection(this.flattenRanges(selectedRows));
+        }
+      })
     }
   }
 
