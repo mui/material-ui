@@ -18,7 +18,7 @@ font in mind. So be sure to follow [those instructions](/style/typography#genera
 ## Icon Font
 
 In order to use the font `Icon` component, or to use icon names (ligatures) directly in components
-that support them, you must first the add the [Material icons](https://material.io/icons/) font.
+that support them, you must first add the [Material icons](https://material.io/icons/) font.
 Here are [some instructions](http://google.github.io/material-design-icons/#icon-font-for-the-web)
 on how to do so.
 
