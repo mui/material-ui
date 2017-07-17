@@ -52,9 +52,13 @@ class SelectField extends Component {
      */
     inputClassName: PropTypes.string,
     /**
-     * Properties applied to the internal `<Input />` component.
+     * Passed as `inputProps` to the internal `<Input />` component.
      */
     inputProps: PropTypes.object,
+    /**
+     * Properties applied to the internal `<Input />` component.
+     */
+    InputProps: PropTypes.object,
     /**
      * The label text.
      */
@@ -164,7 +168,8 @@ class SelectField extends Component {
       error,
       hideLabel,
       inputClassName,
-      inputProps,
+      inputProps: inputPropsProp,
+      InputProps,
       label,
       labelClassName,
       onChange, // eslint-disable-line no-unused-vars
@@ -176,6 +181,15 @@ class SelectField extends Component {
       ...other
     } = this.props;
     const initialShrink = value !== '' && typeof value !== 'undefined';
+
+    const inputProps = {
+      onClick: this.handleClick,
+      onMouseDown: this.handleMouseDown,
+      onSelectFocus: this.handleSelectFocus,
+      onSelectBlur: this.handleSelectBlur,
+      options: children,
+      ...inputPropsProp,
+    };
 
     return (
       <FormControl
@@ -194,15 +208,11 @@ class SelectField extends Component {
           value={value}
           type={type}
           disabled={disabled}
-          onMouseDown={this.handleMouseDown}
           onKeyDown={this.handleKeyDown}
-          onClick={this.handleClick}
-          onSelectFocus={this.handleSelectFocus}
-          onSelectBlur={this.handleSelectBlur}
           component={SelectFieldInput}
           label={label}
-          options={children}
-          {...inputProps}
+          inputProps={inputProps}
+          {...InputProps}
         />
         <Menu
           anchorEl={this.state.anchorEl}

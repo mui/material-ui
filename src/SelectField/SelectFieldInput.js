@@ -41,6 +41,7 @@ const SelectFieldInput = (props, context) => {
     onSelectFocus,
     onSelectBlur,
     className: classNameProp,
+    rowsMax,
     ...inputprops
   } = props;
   const selectClassName = classNames(

@@ -5,8 +5,7 @@ import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/Menu/MenuItem';
-import { Card, CardHeader, CardContent } from 'material-ui/Card';
-
+import Card, { CardHeader, CardContent } from 'material-ui/Card';
 
 const styleSheet = createStyleSheet('SimpleSelectField', () => ({
   selectBox: {

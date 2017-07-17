@@ -4,10 +4,11 @@ import React, { Component } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import customPropTypes from 'material-ui/utils/customPropTypes';
 import SelectField from 'material-ui/SelectField';
-import { LabelCheckbox } from 'material-ui/Checkbox';
+import Checkbox from 'material-ui/Checkbox';
+import { FormControlLabel } from 'material-ui/Form';
 import TextField from 'material-ui/TextField';
 import MenuItem from 'material-ui/Menu/MenuItem';
-import { Card, CardHeader, CardContent } from 'material-ui/Card';
+import Card, { CardHeader, CardContent } from 'material-ui/Card';
 
 
 const styleSheet = createStyleSheet('FocusSelectField', () => ({
@@ -61,7 +62,7 @@ export default class FocusSelectField extends Component {
               label="Tab Here"
               value={this.state.value}
               onChange={this.handleChange}
-              inputProps={{
+              InputProps={{
                 onFocus: this.handleFocus,
                 onBlur: this.handleBlur,
                 onClean: this.handleClean,
@@ -75,16 +76,24 @@ export default class FocusSelectField extends Component {
             </SelectField>
           </div>
           <div className={classes.row}>
-            <LabelCheckbox
-              className={classes.column}
-              checked={this.state.selectFocused}
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={this.state.selectFocused}
+                />
+              }
               label="Is Focused"
+              className={classes.column}
               disabled
             />
-            <LabelCheckbox
-              className={classes.column}
-              checked={this.state.selectClean}
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={this.state.selectClean}
+                />
+              }
               label="Is Clean"
+              className={classes.column}
               disabled
             />
           </div>
