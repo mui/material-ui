@@ -225,7 +225,7 @@ class TableBody extends Component {
   }
 
   getSelectedRows(props) {
-    const selectedRows = this.state.selectedRows;
+    let selectedRows = this.state.selectedRows;
 
     if (props.selectable) {
       let index = 0;
@@ -246,7 +246,7 @@ class TableBody extends Component {
     }
     return selectedRows;
   }
-  
+
   isRowSelected(rowNumber) {
     return this.state.selectedRows.some((row) => {
       if (typeof row === 'object') {
