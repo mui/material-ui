@@ -225,11 +225,11 @@ class TableBody extends Component {
   }
 
   getSelectedRows(props) {
-    var selectedRows = this.state.selectedRows;
+    const selectedRows = this.state.selectedRows;
 
     if (props.selectable) {
       let index = 0;
-      if(props.allRowsSelected) {
+      if (props.allRowsSelected) {
         selectedRows = [];
         React.Children.forEach(props.children, (child) => {
           if (React.isValidElement(child)) {
@@ -241,11 +241,9 @@ class TableBody extends Component {
           }
         });
       }
-    }
-    else if (selectedRows.length == props.children.length) {
+    } else if (selectedRows.length === props.children.length) {
       selectedRows = [];
     }
-
     return selectedRows;
   }
   
@@ -328,11 +326,11 @@ class TableBody extends Component {
     }
 
     if (!this.isControlled) {
-      this.setState({selectedRows},() => {
+      this.setState({selectedRows}, () => {
         if (this.props.onRowSelection) {
           this.props.onRowSelection(this.flattenRanges(selectedRows));
         }
-      })
+      });
     }
   }
 
