@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import customPropTypes from '../utils/customPropTypes';
 import ArrowDropDownIcon from '../svg-icons/arrow-drop-down';
 
-const styleSheet = createStyleSheet('MuiSelectFieldInput', (theme) => {
+const styleSheet = createStyleSheet('MuiSelectFieldInput', theme => {
   return {
     container: {
       position: 'relative',
@@ -55,11 +55,7 @@ const SelectFieldInput = (props, context) => {
   );
 
   return (
-    <div
-      onFocus={onFocus}
-      onBlur={onBlur}
-      className={classes.container}
-    >
+    <div onFocus={onFocus} onBlur={onBlur} className={classes.container}>
       <select
         className={selectClassName}
         onFocus={onSelectFocus}
@@ -67,12 +63,14 @@ const SelectFieldInput = (props, context) => {
         {...inputProps}
       >
         {/* Need this option for proper select sizing */}
-        <option className={classes.labelHolder}>{label}</option>
-        {React.Children.map(options, (option, index) => (
+        <option className={classes.labelHolder}>
+          {label}
+        </option>
+        {React.Children.map(options, (option, index) =>
           <option key={index} value={option.props.value}>
             {option.props.value && option.props.children}
-          </option>
-        ))}
+          </option>,
+        )}
       </select>
       <ArrowDropDownIcon className={classes.icon} />
     </div>
@@ -100,6 +98,8 @@ SelectFieldInput.propTypes = {
    * Select options.
    */
   options: PropTypes.arrayOf(PropTypes.node),
+  /** @ignore */
+  rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 SelectFieldInput.contextTypes = {

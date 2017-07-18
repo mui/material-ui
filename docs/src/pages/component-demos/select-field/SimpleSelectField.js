@@ -31,9 +31,7 @@ export default class SimpleSelectField extends Component {
 
     return (
       <Card>
-        <CardHeader
-          title="Basic Select Field"
-        />
+        <CardHeader title="Basic Select Field" />
         <CardContent>
           <SelectField
             className={classes.selectBox}

@@ -118,30 +118,30 @@ class SelectField extends Component {
     selectedIndex: undefined,
   };
 
-  handleMouseDown = (event) => event.preventDefault();
+  handleMouseDown = event => event.preventDefault();
 
-  handleKeyDown = (event) => {
+  handleKeyDown = event => {
     if (OPEN_MENU_KEYS.includes(keycode(event))) {
       event.preventDefault();
       this.setState({ open: true, anchorEl: event.currentTarget });
     }
   };
 
-  handleClick = (event) => {
+  handleClick = event => {
     event.currentTarget.focus();
     this.setState({ open: true, anchorEl: event.currentTarget });
   };
 
   handleRequestClose = () => this.setState({ open: false });
 
-  handleSelectFocus = (event) => {
+  handleSelectFocus = event => {
     if (this.state.ignoreFocusOnce) {
       event.stopPropagation();
       this.setState({ ignoreFocusOnce: false });
     }
   };
 
-  handleSelectBlur = (event) => {
+  handleSelectBlur = event => {
     if (this.state.open) {
       event.stopPropagation();
     }
@@ -149,10 +149,8 @@ class SelectField extends Component {
 
   handleItemClick = (event, index, value) => {
     event.persist();
-    this.setState({
-      open: false,
-      ignoreFocusOnce: true,
-    }, () => {
+
+    this.setState({ open: false, ignoreFocusOnce: true }, () => {
       if (this.props.onChange) {
         this.props.onChange(event, index, value);
       }
@@ -192,17 +190,12 @@ class SelectField extends Component {
     };
 
     return (
-      <FormControl
-        className={className}
-        error={error}
-        required={required}
-        {...other}
-      >
-        {label && !(hideLabel && value) && (
+      <FormControl className={className} error={error} required={required} {...other}>
+        {label &&
+          !(hideLabel && value) &&
           <InputLabel className={labelClassName} shrink={initialShrink}>
             {label}
-          </InputLabel>
-        )}
+          </InputLabel>}
         <Input
           className={inputClassName}
           value={value}
@@ -221,12 +214,15 @@ class SelectField extends Component {
           onRequestClose={this.handleRequestClose}
           {...menuProps}
         >
-          {React.Children.map(children, (child, index) =>
-            (typeof child.props.value === 'undefined' ? child : React.cloneElement(child, {
+          {React.Children.map(children, (child, index) => {
+            if (typeof child.props.value === 'undefined') {
+              return child;
+            }
+            return React.cloneElement(child, {
               selected: compareFunction(value, child.props.value),
-              onClick: (event) => this.handleItemClick(event, index, child.props.value),
-            })),
-          )}
+              onClick: event => this.handleItemClick(event, index, child.props.value),
+            });
+          })}
         </Menu>
       </FormControl>
     );

@@ -10,7 +10,6 @@ import TextField from 'material-ui/TextField';
 import MenuItem from 'material-ui/Menu/MenuItem';
 import Card, { CardHeader, CardContent } from 'material-ui/Card';
 
-
 const styleSheet = createStyleSheet('FocusSelectField', () => ({
   row: {
     display: 'flex',
@@ -49,15 +48,10 @@ export default class FocusSelectField extends Component {
 
     return (
       <Card>
-        <CardHeader
-          title="Focus Select Field"
-        />
+        <CardHeader title="Focus Select Field" />
         <CardContent>
           <div className={classes.row}>
-            <TextField
-              className={classes.column}
-              label="Focus Here"
-            />
+            <TextField className={classes.column} label="Focus Here" />
             <SelectField
               className={classes.column}
               label="Tab Here"
@@ -78,21 +72,13 @@ export default class FocusSelectField extends Component {
           </div>
           <div className={classes.row}>
             <FormControlLabel
-              control={
-                <Checkbox
-                  checked={this.state.selectFocused}
-                />
-              }
+              control={<Checkbox checked={this.state.selectFocused} />}
               label="Is Focused"
               className={classes.column}
               disabled
             />
             <FormControlLabel
-              control={
-                <Checkbox
-                  checked={this.state.selectClean}
-                />
-              }
+              control={<Checkbox checked={this.state.selectClean} />}
               label="Is Clean"
               className={classes.column}
               disabled
