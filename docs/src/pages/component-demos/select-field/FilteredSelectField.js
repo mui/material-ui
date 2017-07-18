@@ -24,6 +24,7 @@ const styleSheet = createStyleSheet('FilteredSelectField', (theme) => {
       display: 'flex',
     },
     column: {
+      width: 200,
       flex: 1,
       flexDirection: 'row',
       margin: 8,
