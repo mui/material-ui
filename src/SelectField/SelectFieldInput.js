@@ -42,10 +42,10 @@ const SelectFieldInput = (props, context) => {
     onSelectBlur,
     className: classNameProp,
     rowsMax,
-    ...inputprops
+    ...inputProps
   } = props;
   const selectClassName = classNames(
-    !inputprops.disabled && classes.selectEnabled,
+    !inputProps.disabled && classes.selectEnabled,
     classes.select,
     classNameProp,
   );
@@ -59,7 +59,7 @@ const SelectFieldInput = (props, context) => {
         className={selectClassName}
         onFocus={onSelectFocus}
         onBlur={onSelectBlur}
-        {...inputprops}
+        {...inputProps}
       >
         {/* Need this option for proper select sizing */}
         <option className={classes.labelHolder}>{label}</option>
