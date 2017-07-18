@@ -2,12 +2,76 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-alpha.22
+###### _Jul 18, 2017_
+
+##### Breaking changes
+
+- [Switch] New FormControlLabel component (#7388) @oliviertassinari
+```diff
+<RadioGroup>
+-  <LabelRadio label="Male" value="male" />
++  <FormControlLabel value="male" control={<Radio />} label="Male" />
+</RadioGroup>
+```
+
+This change provides more flexibility.
+
+- [BottomNavigation] Use value over index (#7421) @oliviertassinari
+```diff
+-  <BottomNavigation index={index} onChange={this.handleChange}>
++  <BottomNavigation value={value} onChange={this.handleChange}>
+```
+
+Also plan to do the same for the `Tabs` in order to have a consistant API
+where we always use `value`/`onChange` for controlled components.
+
+##### Component Fixes / Enhancements
+
+- [Avatar] Avoid shrink (#7344) @oliviertassinari
+- [withWidth] Add a initalWidth property (#7343) @oliviertassinari
+- [TextField] vertical spacing to match visual spec (#7359) @rosskevin
+- [TextField/FormControl] dense implementation (#7364) @rosskevin
+- [Input/FormHelperText] Dense margin fixes (#7374) @rosskevin
+- [LinearProgress] Improve perf and clean (#7356) @oliviertassinari
+- [TextField] Address autoComplete issue (#7377) @oliviertassinari
+- [Menu] maxHeight spec compliance (#7378) @rosskevin
+- [Menu] Add ripple (#7381) @oliviertassinari
+- [Menu] Fix wrong scroll positioning (#7391) @oliviertassinari
+- [Modal] Fix concurrency issue (#7383) @oliviertassinari
+- [Checkbox] Add indeterminate property (#7390) @oliviertassinari
+- [Snackbar] Handle inactive tabs (#7420) @
+
+##### Docs
+
+- [docs] Color import correction (#7398) @wieseljonas
+- [docs] Fix typo (#7338) @adamborowski
+- [docs] Fix the path of imported colors (#7348) @shug0
+- [docs] Update documentation to reflect component name (#7406) @the-noob
+- [docs] Better warning message for missing MuiThemeProvider (#7429) @oliviertassinari
+- [docs] Add @param everywhere (#7432) @oliviertassinari
+
+##### Core
+
+- [flow] global dom element workaround (#7401) @rosskevin
+- [core] Add size-limit (#7422)
+- [core] Upgrade some dependencies (#7361) @oliviertassinari
+- [core] Upgrade dependencies (#7433) @oliviertassinari
+- [icons] Upgrade the dependencies (#7385) @oliviertassinari
+
 ## 1.0.0-alpha.21
 ###### _Jul 4, 2017_
 
 ##### Breaking changes
 
-🤔
+- [core] Reduce the bundle size (#7306) @oliviertassinari
+Change the colors location as you most likely only need 20% of them in your bundle
+```diff
+-import { blue, fullWhite } from 'material-ui/styles/colors'
++import blue from 'material-ui/colors/blue'
++import common from 'material-ui/colors/common'
++const { fullWhite } = common
+```
 
 ##### Component Fixes / Enhancements
 
