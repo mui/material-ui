@@ -9,9 +9,13 @@ import ArrowDropDownIcon from '../svg-icons/arrow-drop-down';
 
 const styleSheet = createStyleSheet('MuiSelectFieldInput', (theme) => {
   return {
+    container: {
+      position: 'relative',
+      width: '100%',
+    },
     select: {
-      height: 32,
-      paddingRight: 32,
+      width: '100%',
+      paddingRight: theme.spacing.unit * 4,
       position: 'relative',
       zIndex: 2,
     },
@@ -54,6 +58,7 @@ const SelectFieldInput = (props, context) => {
     <div
       onFocus={onFocus}
       onBlur={onBlur}
+      className={classes.container}
     >
       <select
         className={selectClassName}
