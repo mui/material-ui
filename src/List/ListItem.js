@@ -106,7 +106,7 @@ class ListItem extends Component<DefaultProps, Props, void> {
   props: Props;
   static defaultProps: DefaultProps = {
     button: false,
-    component: 'div',
+    component: 'li',
     dense: false,
     disabled: false,
     disableGutters: false,
@@ -156,7 +156,7 @@ class ListItem extends Component<DefaultProps, Props, void> {
 
     if (button) {
       ComponentMain = ButtonBase;
-      listItemProps.component = componentProp || 'div';
+      listItemProps.component = componentProp || 'li';
       listItemProps.keyboardFocusedClassName = classes.keyboardFocused;
     }
 

@@ -17,12 +17,12 @@ describe('<ListItem />', () => {
   });
 
   it('should render a div', () => {
-    const wrapper = shallow(<ListItem />);
+    const wrapper = shallow(<ListItem component="div" />);
     assert.strictEqual(wrapper.name(), 'div');
   });
 
   it('should render a li', () => {
-    const wrapper = shallow(<ListItem component="li" />);
+    const wrapper = shallow(<ListItem />);
     assert.strictEqual(wrapper.name(), 'li');
   });
 
@@ -44,9 +44,9 @@ describe('<ListItem />', () => {
   });
 
   describe('prop: button', () => {
-    it('should render a div', () => {
+    it('should render a li', () => {
       const wrapper = shallow(<ListItem button />);
-      assert.strictEqual(wrapper.props().component, 'div');
+      assert.strictEqual(wrapper.props().component, 'li');
     });
   });
 
