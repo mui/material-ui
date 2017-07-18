@@ -107,8 +107,8 @@
     "file-loader": "^0.11.2",
     "flow-bin": "^0.50.0",
     "flow-copy-source": "^1.2.0",
-    "flow-typed": "^2.1.2",
-    "fs-extra": "^3.0.1",
+    "flow-typed": "^2.1.5",
+    "fs-extra": "^4.0.0",
     "glob": "^7.1.2",
     "jsdom": "^11.1.0",
     "json-loader": "^0.5.4",
@@ -122,7 +122,7 @@
     "mocha": "^3.4.2",
     "nyc": "^11.0.3",
     "phantomjs-prebuilt": "^2.1.14",
-    "prettier": "^1.5.2",
+    "prettier": "^1.5.3",
     "random-words": "0.0.1",
     "raw-loader": "^0.5.1",
     "react": "^15.6.1",
@@ -138,7 +138,7 @@
     "url-loader": "^0.5.9",
     "vrtest": "^0.2.0",
     "webfontloader": "^1.6.28",
-    "webpack": "^3.2.0"
+    "webpack": "^3.3.0"
   },
   "nyc": {
     "include": [
