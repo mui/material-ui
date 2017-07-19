@@ -198,6 +198,12 @@ autoprefixer@^6.3.1:
     postcss "^5.2.16"
     postcss-value-parser "^3.2.3"
 
+autosuggest-highlight@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/autosuggest-highlight/-/autosuggest-highlight-3.1.0.tgz#d5df5115b4840af49f2370a8fb88e5ce9b461ef9"
+  dependencies:
+    diacritic "0.0.2"
+
 aws-sign2@~0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/aws-sign2/-/aws-sign2-0.6.0.tgz#14342dd38dbcc94d0e5b87d763cd63612c0e794f"
@@ -1017,6 +1023,10 @@ detect-indent@^4.0.0:
   resolved "https://registry.yarnpkg.com/detect-indent/-/detect-indent-4.0.0.tgz#f76d064352cdf43a1cb6ce619c4ee3a9475de208"
   dependencies:
     repeating "^2.0.0"
+
+diacritic@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/diacritic/-/diacritic-0.0.2.tgz#fc2a887b5a5bc0a0a854fb614c7c2f209061ee04"
 
 diffie-hellman@^5.0.0:
   version "5.0.2"
@@ -2361,6 +2371,10 @@ oauth-sign@~0.8.1:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.8.2.tgz#46a6ab7f0aead8deae9ec0565780b7d4efeb9d43"
 
+object-assign@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-3.0.0.tgz#9bedd5ca0897949bca47e7ff408062d549f587f2"
+
 object-assign@^4.0.1, object-assign@^4.1.0, object-assign@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
@@ -2843,7 +2857,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6:
+prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.8:
   version "15.5.10"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.10.tgz#2797dfc3126182e3a95e3dfbb2e893ddd7456154"
   dependencies:
@@ -2938,6 +2952,22 @@ rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-autosuggest@^9.3.1:
+  version "9.3.1"
+  resolved "https://registry.yarnpkg.com/react-autosuggest/-/react-autosuggest-9.3.1.tgz#cf106d95e650de292a08e6506372d3eb4b6b2614"
+  dependencies:
+    prop-types "^15.5.10"
+    react-autowhatever "^10.1.0"
+    shallow-equal "^1.0.0"
+
+react-autowhatever@^10.1.0:
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/react-autowhatever/-/react-autowhatever-10.1.0.tgz#41f6d69382437d3447a0a3c8913bb8ca2feaabc1"
+  dependencies:
+    prop-types "^15.5.8"
+    react-themeable "^1.1.0"
+    section-iterator "^2.0.0"
+
 react-deep-force-update@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/react-deep-force-update/-/react-deep-force-update-2.0.1.tgz#4f7f6c12c3e7de42f345992a3c518236fa1ecad3"
@@ -3029,6 +3059,12 @@ react-swipeable-views@^0.12.4:
     react-swipeable-views-utils "^0.12.0"
     warning "^3.0.0"
 
+react-themeable@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-themeable/-/react-themeable-1.1.0.tgz#7d4466dd9b2b5fa75058727825e9f152ba379a0e"
+  dependencies:
+    object-assign "^3.0.0"
+
 read-pkg-up@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/read-pkg-up/-/read-pkg-up-1.0.1.tgz#9d63c13276c065918d57f002a57f40a1b643fb02"
@@ -3065,16 +3101,7 @@ readdirp@^2.0.0:
     readable-stream "^2.0.2"
     set-immediate-shim "^1.0.1"
 
-redbox-react@^1.2.5:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/redbox-react/-/redbox-react-1.4.2.tgz#7fe35d3c567301e97938cc7fd6a10918f424c6b4"
-  dependencies:
-    error-stack-parser "^1.3.6"
-    object-assign "^4.0.1"
-    prop-types "^15.5.4"
-    sourcemapped-stacktrace "^1.1.6"
-
-redbox-react@^1.4.3:
+redbox-react@^1.2.5, redbox-react@^1.4.3:
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/redbox-react/-/redbox-react-1.4.3.tgz#51744987867ea4627d58ccb1b0e5df5a5ae40e57"
   dependencies:
@@ -3240,6 +3267,10 @@ scroll-behavior@^0.9.3:
     dom-helpers "^3.0.0"
     invariant "^2.2.1"
 
+section-iterator@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/section-iterator/-/section-iterator-2.0.0.tgz#bf444d7afeeb94ad43c39ad2fb26151627ccba2a"
+
 select-hose@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/select-hose/-/select-hose-2.0.0.tgz#625d8658f865af43ec962bfc376a37359a4994ca"
@@ -3322,6 +3353,10 @@ sha.js@^2.3.6:
   resolved "https://registry.yarnpkg.com/sha.js/-/sha.js-2.4.8.tgz#37068c2c476b6baf402d14a49c67f597921f634f"
   dependencies:
     inherits "^2.0.1"
+
+shallow-equal@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/shallow-equal/-/shallow-equal-1.0.0.tgz#508d1838b3de590ab8757b011b25e430900945f7"
 
 shebang-command@^1.2.0:
   version "1.2.0"
