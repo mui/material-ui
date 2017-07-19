@@ -38,6 +38,7 @@ export const styleSheet = createStyleSheet('MuiSwitch', theme => ({
   },
   // For SwitchBase
   default: {
+    zIndex: 1,
     color: theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[400],
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
