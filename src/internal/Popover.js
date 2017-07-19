@@ -2,9 +2,12 @@
 
 import React, { Component } from 'react';
 import type { Element } from 'react';
+import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import contains from 'dom-helpers/query/contains';
+import debounce from 'lodash/debounce';
+import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
 import customPropTypes from '../utils/customPropTypes';
 import Modal from './Modal';
@@ -211,7 +214,22 @@ class Popover extends Component<DefaultProps, Props, void> {
     return `scale(${value}, ${value ** 2})`;
   }
 
+  componentWillUnmount = () => {
+    this.handleResize.cancel();
+  };
+
   autoTransitionDuration = undefined;
+  transitionEl = undefined;
+
+  setPositioningStyles = (element: HTMLElement) => {
+    if (element && element.style) {
+      const positioning = this.getPositioningStyle(element);
+
+      element.style.top = positioning.top;
+      element.style.left = positioning.left;
+      element.style.transformOrigin = positioning.transformOrigin;
+    }
+  };
 
   handleEnter = (element: HTMLElement) => {
     element.style.opacity = '0';
@@ -221,11 +239,7 @@ class Popover extends Component<DefaultProps, Props, void> {
       this.props.onEnter(element);
     }
 
-    const positioning = this.getPositioningStyle(element);
-
-    element.style.top = positioning.top;
-    element.style.left = positioning.left;
-    element.style.transformOrigin = positioning.transformOrigin;
+    this.setPositioningStyles(element);
 
     let { transitionDuration } = this.props;
     const { transitions } = this.context.styleManager.theme;
@@ -280,6 +294,11 @@ class Popover extends Component<DefaultProps, Props, void> {
       this.props.onExit(element);
     }
   };
+
+  handleResize = debounce(() => {
+    const element: any = ReactDOM.findDOMNode(this.transitionEl);
+    this.setPositioningStyles(element);
+  }, 166);
 
   handleRequestTimeout = () => {
     if (this.props.transitionDuration === 'auto') {
@@ -437,6 +456,7 @@ class Popover extends Component<DefaultProps, Props, void> {
           role={role}
           onRequestTimeout={this.handleRequestTimeout}
           transitionAppear
+          ref={node => (this.transitionEl = node)}
         >
           <Paper
             data-mui-test="Popover"
@@ -444,6 +464,7 @@ class Popover extends Component<DefaultProps, Props, void> {
             elevation={elevation}
             {...other}
           >
+            <EventListener target="window" onResize={this.handleResize} />
             {children}
           </Paper>
         </Transition>
