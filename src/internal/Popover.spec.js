@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { spy, stub } from 'sinon';
+import { spy, stub, useFakeTimers } from 'sinon';
 import css from 'dom-helpers/style';
 import { createShallow, createMount } from '../test-utils';
 import Popover, { styleSheet } from './Popover';
@@ -413,6 +413,33 @@ describe('<Popover />', () => {
         const expectedLeft = anchorRect.right <= 16 ? 16 : anchorRect.right;
         expectPopover(expectedTop, expectedLeft);
       });
+    });
+  });
+
+  describe('on window resize', () => {
+    let clock;
+
+    before(() => {
+      clock = useFakeTimers();
+    });
+
+    after(() => {
+      clock.restore();
+    });
+
+    it('should recalculate position if the popover is open', () => {
+      const wrapper = shallow(<Popover open transitionDuration={0} />);
+      const instance = wrapper.instance();
+
+      stub(instance, 'setPositioningStyles');
+      wrapper.find('EventListener').at(0).simulate('resize');
+      clock.tick(166);
+      assert.isTrue(instance.setPositioningStyles.called, 'position styles recalculated');
+    });
+
+    it('should not recalculate position if the popover is closed', () => {
+      const wrapper = mount(<Popover transitionDuration={0} />);
+      assert.isNotTrue(wrapper.contains('EventListener'), 'no component listening on resize');
     });
   });
 
