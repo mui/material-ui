@@ -23,7 +23,6 @@ export const styleSheet = createStyleSheet('MuiIconButton', theme => ({
     borderRadius: '50%',
     backgroundColor: 'transparent',
     color: theme.palette.action.active,
-    zIndex: 1,
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
     }),
