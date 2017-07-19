@@ -1,7 +1,7 @@
 // @flow
 
-export Step from './Step';
-export StepButton from './StepButton';
-// export StepContent from './StepContent';
-export StepLabel from './StepLabel';
-export Stepper from './Stepper';
+export { default as Stepper } from './Stepper';
+export { default as Step } from './Step';
+export { default as StepButton } from './StepButton';
+export { default as StepContent } from './StepContent';
+export { default as StepLabel } from './StepLabel';

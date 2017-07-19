@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import warning from 'warning';
 import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.

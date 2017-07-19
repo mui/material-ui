@@ -1,101 +1,150 @@
-// @flow weak
+// @flow
+// @inheritedComponent ButtonBase
 
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import { createStyleSheet } from "jss-theme-reactor";
-import withStyles from "../styles/withStyles";
-import ButtonBase from '../internal/ButtonBase';
+import React, { Children } from 'react';
+import type { Element } from 'react';
+import classNames from 'classnames';
+import withStyles from '../styles/withStyles';
+import ButtonBase from '../ButtonBase';
 import StepLabel from './StepLabel';
+import type { Orientation } from './Stepper';
 
-const isLabel = (child) => {
-  return child && child.type && child.type.muiName === 'StepLabel';
-};
+const isLabel = child =>
+  child &&
+  Children.count(child) === 1 &&
+  child.type &&
+  child.type.muiName &&
+  child.type.muiName === 'StepLabel';
 
-export const styleSheet = createStyleSheet("MuiStepButton", theme => ({
+export const styles = () => ({
   root: {
     display: 'flex',
     alignItems: 'center',
-    paddingLeft: 14,
-    paddingRight: 14,
+    paddingLeft: 0,
+    paddingRight: 0,
     background: 'none',
   },
-}));
+  alternativeLabelRoot: {
+    margin: '0 auto',
+  },
+});
 
-function StepButton(props) {
+export type Icon = Element<any> | string | number;
+
+type ProvidedProps = {
+  active: boolean,
+  alternativeLabel: boolean,
+  classes: Object,
+  completed: boolean,
+  disabled: boolean,
+  icon: Icon,
+  last: boolean,
+  optional: boolean,
+  orientation: Orientation,
+};
+
+export type Props = {
+  /**
+   * @ignore
+   * Passed in via `Step` - passed through to `StepLabel`.
+   */
+  active?: boolean,
+  /**
+   * @ignore
+   * Set internally by Stepper when it's supplied with the alternativeLabel prop.
+   */
+  alternativeLabel?: boolean,
+  /**
+   * Can be a `StepLabel` or a node to place inside `StepLabel` as children.
+   */
+  children: Element<any>,
+  /**
+   * @ignore
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * @ignore
+   * Sets completed styling. Is passed to StepLabel.
+   */
+  completed?: boolean,
+  /**
+   * @ignore
+   * Disables the button and sets disabled styling. Is passed to StepLabel.
+   */
+  disabled?: boolean,
+  /**
+   * The icon displayed by the step label.
+   */
+  icon?: Icon,
+  /**
+   * Pass down to the the `StepLabel` prop `iconContainerClassName`.
+   */
+  iconContainerClassName?: string,
+  /**
+   * @ignore
+   */
+  last?: boolean,
+  /**
+   * @ignore
+   */
+  optional?: boolean,
+  /**
+   * @ignore
+   */
+  orientation: Orientation,
+};
+
+function StepButton(props: ProvidedProps & Props) {
   const {
     active,
+    alternativeLabel,
     children,
     className: classNameProp,
     completed,
     classes,
     disabled,
     icon,
-    iconContainerStyle,
+    iconContainerClassName,
     last, // eslint-disable-line no-unused-vars
+    optional,
     orientation,
     ...other
   } = props;
 
-  const className = classNames(classes.root, classNameProp);
-  const child = isLabel(children) ? children : <StepLabel>{children}</StepLabel>;
+  const className = classNames(
+    classes.root,
+    {
+      [classes.alternativeLabelRoot]: alternativeLabel,
+    },
+    classNameProp,
+  );
+  const childProps = {
+    active,
+    alternativeLabel,
+    completed,
+    disabled,
+    icon,
+    iconContainerClassName,
+    optional,
+    orientation,
+  };
+  const child = isLabel(children) ? (
+    React.cloneElement(children, childProps)
+  ) : (
+    <StepLabel {...childProps}>{children}</StepLabel>
+  );
 
   return (
-    <ButtonBase
-      disabled={disabled}
-      className={className}
-      {...other}
-    >
-      {React.cloneElement(child, {active, completed, disabled, icon, iconContainerStyle, orientation})}
+    <ButtonBase disabled={disabled} className={className} {...other}>
+      {child}
     </ButtonBase>
   );
 }
 
-StepButton.propTypes = {
-  /**
-   * Passed from `Step` Is passed to StepLabel.
-   */
-  active: PropTypes.bool,
-  /**
-   * Can be a `StepLabel` or a node to place inside `StepLabel` as children.
-   */
-  children: PropTypes.node,
-  /**
-   * @ignore
-   */
-  classes: PropTypes.object,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * Sets completed styling. Is passed to StepLabel.
-   */
-  completed: PropTypes.bool,
-  /**
-   * Disables the button and sets disabled styling. Is passed to StepLabel.
-   */
-  disabled: PropTypes.bool,
-  /**
-   * The icon displayed by the step label.
-   */
-  icon: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.string,
-    PropTypes.number,
-  ]),
-  /**
-   * Override the inline-styles of the icon container element.
-   */
-  iconContainerStyle: PropTypes.object,
-  /**
-   * @ignore
-   */
-  last: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  orientation: PropTypes.oneOf(["horizontal", "vertical"]).isRequired,
-};
+StepButton.muiName = 'StepButton';
 
-export default withStyles(styleSheet)(StepButton);
+export default withStyles(styles)(StepButton);

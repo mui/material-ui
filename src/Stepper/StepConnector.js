@@ -1,54 +1,84 @@
-// @flow weak
+// @flow
 
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import { createStyleSheet } from "jss-theme-reactor";
-import withStyles from "../styles/withStyles";
+import React from 'react';
+import classNames from 'classnames';
+import withStyles from '../styles/withStyles';
+import type { Orientation } from './Stepper';
 
-export const styleSheet = createStyleSheet("MuiStepConnector", theme => ({
+export const styles = (theme: Object) => ({
   root: {
-    flex: "1 1 auto"
+    flex: '1 1 auto',
   },
   line: {
-    display: "block",
+    display: 'block',
     borderColor: theme.palette.line.stepper,
   },
   rootVertical: {
-    marginLeft: 14 + 11 // padding + 1/2 icon
+    marginLeft: 12, // half icon
+    padding: `0 0 ${theme.spacing.unit}px`,
   },
   lineHorizontal: {
-    marginLeft: -6,
-    borderTopStyle: "solid",
-    borderTopWidth: 1
+    borderTopStyle: 'solid',
+    borderTopWidth: 1,
   },
   lineVertical: {
-    borderLeftStyle: "solid",
+    borderLeftStyle: 'solid',
     borderLeftWidth: 1,
-    minHeight: 28
-  }
-}));
+    minHeight: 24,
+  },
+  alternativeLabelRoot: {
+    position: 'absolute',
+    top: theme.spacing.unit + 4,
+    left: 'calc(50% + 20px)',
+    right: 'calc(-50% + 20px)',
+  },
+  alternativeLabelLine: {
+    marginLeft: 0,
+  },
+});
 
-function StepConnector(props) {
-  const {
-    className: classNameProp,
-    classes,
-    orientation,
-    ...other
-  } = props;
+type ProvidedProps = {
+  alternativeLabel: boolean,
+  classes: Object,
+  orientation: Orientation,
+};
+
+export type Props = {
+  /**
+   * @ignore
+   * Set internally by Step when it's supplied with the alternativeLabel prop.
+   */
+  alternativeLabel?: boolean,
+  /**
+   * Useful to extend the style applied to the component.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * @ignore
+   */
+  orientation?: Orientation,
+};
+
+function StepConnector(props: ProvidedProps & Props) {
+  const { alternativeLabel, className: classNameProp, classes, orientation, ...other } = props;
 
   const className = classNames(
-    classes.root,
-    { [classes.rootVertical]: orientation === "vertical" },
-    classNameProp
-  );
-  const lineClassName = classNames(
-    classes.line,
     {
-      [classes.lineHorizontal]: orientation === 'horizontal',
-      [classes.lineVertical]: orientation === 'vertical',
-    }
+      [classes.root]: !alternativeLabel,
+      [classes.rootVertical]: orientation === 'vertical',
+      [classes.alternativeLabelRoot]: alternativeLabel,
+    },
+    classNameProp,
   );
+  const lineClassName = classNames(classes.line, {
+    [classes.lineHorizontal]: orientation === 'horizontal',
+    [classes.lineVertical]: orientation === 'vertical',
+    [classes.alternativeLabelLine]: alternativeLabel,
+  });
 
   return (
     <div className={className} {...other}>
@@ -57,19 +87,11 @@ function StepConnector(props) {
   );
 }
 
-StepConnector.propTypes = {
-  /**
-   * Useful to extend the style applied to the component.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * @ignore
-   */
-  orientation: PropTypes.oneOf(["horizontal", "vertical"]).isRequired
+StepConnector.defaultProps = {
+  alternativeLabel: false,
+  orientation: 'horizontal',
 };
 
-export default withStyles(styleSheet)(StepConnector);
+StepConnector.muiName = 'StepConnector';
+
+export default withStyles(styles)(StepConnector);

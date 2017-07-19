@@ -1,5 +1,5 @@
 ---
-components: MobileStepper
+components: Stepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, StepPositionIcon, MobileStepper
 ---
 
 # Stepper
@@ -26,14 +26,16 @@ components: MobileStepper
 - Non-linear
 
 
-## Horizontal Linear Stepper
+## Horizontal Linear
 
 The `<Stepper>` can be controlled by passing the current step index (zero based) as the `activeStep` prop. `<Stepper>` orientation is set using the `orientation` prop.
 
-{{demo='pages/component-demos/stepper/HorizontalLinearStepper.js'}}
+This example also shows the use of an optional step by placing the `optional` prop on the second `<Step>` component. Note that it's up to you to manage when an optional step is skipped. Once you've determined this for a particular step you must set `completed={false}` to signify that even though the active step index has gone beyond the optional step, it's not actually complete.
+
+{{demo='pages/demos/stepper/HorizontalLinearStepper.js'}}
 
 
-## Horizontal Non Linear Stepper
+## Horizontal Non Linear
 
 Non-linear steppers allow users to enter a multi-step flow at any point.
 
@@ -43,12 +45,24 @@ We've used the `<StepButton>` here to demonstrate clickable step labels as well 
 flag however because steps can be accessed in a non-linear fashion it's up to your own implementation to 
 determine when all steps are completed (or even if they need to be completed).
 
-{{demo='pages/component-demos/stepper/HorizontalNonLinearStepper.js'}}
+{{demo='pages/demos/stepper/HorizontalNonLinearStepper.js'}}
+
+
+## Horizontal Linear - Alternative Label
+
+Labels can be placed below the step icon by setting the `alternativeLabel` prop on the `<Stepper>` component.
+
+{{demo='pages/demos/stepper/HorizontalLinearAlternativeLabelStepper.js'}}
+
+
+## Horizontal Non Linear - Alternative Label
+
+{{demo='pages/demos/stepper/HorizontalNonLinearAlternativeLabelStepper.js'}}
 
 
 ## Vertical Stepper
 
-{{demo='pages/component-demos/stepper/VerticalLinearStepper.js'}}
+{{demo='pages/demos/stepper/VerticalLinearStepper.js'}}
 
 ## Mobile Stepper
 
