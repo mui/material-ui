@@ -89,6 +89,11 @@ class Popover extends Component {
      * The zDepth of the popover.
      */
     zDepth: propTypes.zDepth,
+
+    scrollElement :  PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.string,
+    ]),
   };
 
   static defaultProps = {
@@ -304,8 +309,8 @@ class Popover extends Component {
       targetPosition = this.applyAutoPositionIfNeeded(anchor, target, targetOrigin, anchorOrigin, targetPosition);
     }
 
-    targetEl.style.top = `${Math.max(0, targetPosition.top)}px`;
-    targetEl.style.left = `${Math.max(0, targetPosition.left)}px`;
+    targetEl.style.top = `${targetPosition.top}px`;
+    targetEl.style.left = `${targetPosition.left}px`;
     targetEl.style.maxHeight = `${window.innerHeight}px`;
   };
 
@@ -395,7 +400,7 @@ class Popover extends Component {
     return (
       <div style={styles.root}>
         <EventListener
-          target="window"
+          target={this.props.scrollElement || "window"}
           onScroll={this.handleScroll}
           onResize={this.handleResize}
         />
