@@ -39,10 +39,6 @@ class Portal extends Component {
   }
 
   unrenderLayer() {
-    // Support react@15.x
-    if (ReactDOM.unstable_createPortal) {
-      return;
-    }
     if (!this.layer) {
       return;
     }
