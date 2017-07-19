@@ -134,6 +134,10 @@ class TextField extends Component {
      */
     errorText: PropTypes.node,
     /**
+     * The style object to use to override floating label asterik styles.
+     */
+    floatingLabelAsteriskStyle: PropTypes.object,
+    /**
      * If true, the floating label will float even when there is no value.
      */
     floatingLabelFixed: PropTypes.bool,
@@ -195,6 +199,10 @@ class TextField extends Component {
     onChange: PropTypes.func,
     /** @ignore */
     onFocus: PropTypes.func,
+    /**
+     * If `true`, the label will indicate that the input is required.
+     */
+    required: PropTypes.bool,
     /**
      * Number of rows to display when multiLine option is set to true.
      */
@@ -393,6 +401,7 @@ class TextField extends Component {
       disabled,
       errorStyle,
       errorText, // eslint-disable-line no-unused-vars
+      floatingLabelAsteriskStyle,
       floatingLabelFixed,
       floatingLabelFocusStyle,
       floatingLabelShrinkStyle,
@@ -407,6 +416,7 @@ class TextField extends Component {
       onBlur, // eslint-disable-line no-unused-vars
       onChange, // eslint-disable-line no-unused-vars
       onFocus, // eslint-disable-line no-unused-vars
+      required,
       style,
       type,
       underlineDisabledStyle,
@@ -438,7 +448,9 @@ class TextField extends Component {
           this.state.isFocused ? floatingLabelFocusStyle : null
         )}
         shrinkStyle={floatingLabelShrinkStyle}
+        asteriskStyle={floatingLabelAsteriskStyle}
         htmlFor={inputId}
+        required={required}
         shrink={this.state.hasValue || this.state.isFocused || floatingLabelFixed}
         disabled={disabled}
       >

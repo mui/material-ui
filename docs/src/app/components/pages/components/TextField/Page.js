@@ -14,6 +14,8 @@ import TextFieldExampleError from './ExampleError';
 import textFieldExampleErrorCode from '!raw!./ExampleError';
 import TextFieldExampleDisabled from './ExampleDisabled';
 import textFieldExampleDisabledCode from '!raw!./ExampleDisabled';
+import TextFieldExampleRequired from './ExampleRequired';
+import textFieldExampleRequiredCode from '!raw!./ExampleRequired';
 import TextFieldExampleControlled from './ExampleControlled';
 import textFieldExampleControlledCode from '!raw!./ExampleControlled';
 import textFieldCode from '!raw!material-ui/TextField/TextField';
@@ -23,6 +25,7 @@ const descriptions = {
   error: 'The `errorText` property used in combination with various other features.',
   styled: 'Examples of styling various Text Field features.',
   disabled: 'Various examples of `disabled` Text Fields.',
+  required: 'Examples of `required` Text Fields.',
   controlled: 'A controlled Text Field example.',
 };
 const TextFieldsPage = () => (
@@ -56,6 +59,13 @@ const TextFieldsPage = () => (
       code={textFieldExampleDisabledCode}
     >
       <TextFieldExampleDisabled />
+    </CodeExample>
+    <CodeExample
+      title="Required examples"
+      description={descriptions.required}
+      code={textFieldExampleRequiredCode}
+    >
+      <TextFieldExampleRequired />
     </CodeExample>
     <CodeExample
       title="Controlled example"

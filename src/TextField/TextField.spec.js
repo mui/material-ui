@@ -126,6 +126,21 @@ describe('<TextField />', () => {
     });
   });
 
+  describe('props: required / floatingLabelAsteriskStyle', () => {
+    it('should be passed to the TextFieldLabel', () => {
+      const wrapper = shallowWithContext(
+        <TextField
+          floatingLabelAsteriskStyle={{color: 'red'}}
+          floatingLabelText="Name"
+          required={true}
+        />
+      );
+      const textFieldLabelProps = wrapper.find(TextFieldLabel).props();
+      assert.deepEqual(textFieldLabelProps.asteriskStyle, {color: 'red'});
+      assert.strictEqual(textFieldLabelProps.required, true);
+    });
+  });
+
   describe('prop: floatingLabelFocusStyle', () => {
     it('should be applied when the input is focused', () => {
       const wrapper = shallowWithContext(
