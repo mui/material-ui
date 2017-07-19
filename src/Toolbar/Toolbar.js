@@ -11,9 +11,12 @@ export const styleSheet = createStyleSheet('MuiToolbar', theme => ({
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
-    height: 56,
+    minHeight: 56,
+    [`${theme.breakpoints.up('xs')} and (orientation: landscape)`]: {
+      minHeight: 48,
+    },
     [theme.breakpoints.up('sm')]: {
-      height: 64,
+      minHeight: 64,
     },
   },
   gutters: theme.mixins.gutters({}),
