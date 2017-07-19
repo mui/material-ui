@@ -27,11 +27,13 @@ function getStyles(props) {
 
 const TextFieldLabel = (props) => {
   const {
+    asteriskStyle,
     muiTheme,
     className,
     children,
     htmlFor,
     onTouchTap,
+    required,
   } = props;
 
   const {prepareStyles} = muiTheme;
@@ -45,11 +47,19 @@ const TextFieldLabel = (props) => {
       onTouchTap={onTouchTap}
     >
       {children}
+      {required &&
+        <span style={asteriskStyle}>
+          {'\u2009*'}
+        </span>}
     </label>
   );
 };
 
 TextFieldLabel.propTypes = {
+  /**
+   * Override the inline-styles of the asterisk.
+   */
+  asteriskStyle: PropTypes.object,
   /**
    * The label contents.
    */
@@ -77,6 +87,10 @@ TextFieldLabel.propTypes = {
    * @param {object} event TouchTap event targeting the text field label.
    */
   onTouchTap: PropTypes.func,
+  /**
+   * If `true`, the label will indicate that the input is required.
+   */
+  required: PropTypes.bool,
   /**
    * True if the floating label should shrink.
    */

@@ -22,4 +22,44 @@ describe('<TextFieldLabel>', () => {
     wrapper.setProps({shrink: true});
     expect(wrapper.prop('style').color).to.equal('focuscolor');
   });
+
+  describe('required', function() {
+    describe('when true', function() {
+      it('renders an asterik', function() {
+        const wrapper = shallow(
+          <TextFieldLabel muiTheme={getMuiTheme()} required={true}>
+            my label
+          </TextFieldLabel>
+        );
+
+        expect(wrapper.text()).to.contain('*');
+      });
+
+      describe('asteriskStyle', function() {
+        it('adds the given styles to the asterik span', function() {
+          const wrapper = shallow(
+            <TextFieldLabel
+              muiTheme={getMuiTheme()}
+              required={true}
+              asteriskStyle={{color: 'errorcolor'}}
+            />
+          );
+
+          expect(wrapper.find('span').prop('style')).to.eql({color: 'errorcolor'});
+        });
+      });
+    });
+
+    describe('when false', function() {
+      it('does not render an asterik', function() {
+        const wrapper = shallow(
+          <TextFieldLabel muiTheme={getMuiTheme()}>
+            my label
+          </TextFieldLabel>
+        );
+
+        expect(wrapper.text()).to.not.contain('*');
+      });
+    });
+  });
 });
