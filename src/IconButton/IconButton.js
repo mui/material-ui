@@ -36,6 +36,9 @@ export const styleSheet = createStyleSheet('MuiIconButton', theme => ({
   colorContrast: {
     color: theme.palette.getContrastText(theme.palette.primary[500]),
   },
+  colorPrimary: {
+    color: theme.palette.primary[500],
+  },
   colorInherit: {
     color: 'inherit',
   },
@@ -113,7 +116,7 @@ IconButton.propTypes = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color: PropTypes.oneOf(['default', 'inherit', 'contrast', 'accent']),
+  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'contrast', 'accent']),
   /**
    * If `true`, the button will be disabled.
    */
