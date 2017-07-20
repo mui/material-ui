@@ -729,6 +729,7 @@ class ListItem extends Component {
               onTouchStart={this.handleTouchStart}
               onTouchEnd={this.handleTouchEnd}
               onTouchTap={this.handleTouchTap}
+              disabled={disabled}
               ref={(node) => this.button = node}
               style={Object.assign({}, styles.root, style)}
             >
