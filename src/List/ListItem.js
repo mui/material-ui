@@ -389,6 +389,7 @@ class ListItem extends Component {
     const {
       innerDivStyle,
       style,
+      onTouchTap // eslint-disable-line no-unused-vars
     } = this.props;
 
     const mergedDivStyles = Object.assign({},
