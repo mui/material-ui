@@ -18,6 +18,7 @@ import withStyles from '../styles/withStyles';
 import createModalManager from './modalManager';
 import Backdrop from './Backdrop';
 import Portal from './Portal';
+import type { TransitionCallback } from './Transition';
 
 /**
  * Modals don't open on the server so this won't break concurrency.
@@ -109,15 +110,15 @@ type Props = DefaultProps & {
   /**
    * Callback fired before the modal is entering.
    */
-  onEnter?: Function,
+  onEnter?: TransitionCallback,
   /**
    * Callback fired when the modal is entering.
    */
-  onEntering?: Function,
+  onEntering?: TransitionCallback,
   /**
    * Callback fired when the modal has entered.
    */
-  onEntered?: Function, // eslint-disable-line react/sort-prop-types
+  onEntered?: TransitionCallback, // eslint-disable-line react/sort-prop-types
   /**
    * Callback fires when the escape key is pressed and the modal is in focus.
    */
@@ -125,17 +126,19 @@ type Props = DefaultProps & {
   /**
    * Callback fired before the modal is exiting.
    */
-  onExit?: Function,
+  onExit?: TransitionCallback,
   /**
    * Callback fired when the modal is exiting.
    */
-  onExiting?: Function,
+  onExiting?: TransitionCallback,
   /**
    * Callback fired when the modal has exited.
    */
-  onExited?: Function, // eslint-disable-line react/sort-prop-types
+  onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
   /**
-   * Callback fired when the modal requests to be closed.
+   * Callback fired when the component requests to be closed.
+   *
+   * @param {object} event The event source of the callback
    */
   onRequestClose?: Function,
   /**
@@ -148,6 +151,9 @@ type State = {
   exited: boolean,
 };
 
+/**
+ * @ignore - internal component.
+ */
 class Modal extends Component<DefaultProps, Props, State> {
   props: Props;
 
@@ -399,7 +405,7 @@ class Modal extends Component<DefaultProps, Props, State> {
 
     let backdropProps;
 
-    if (backdropInvisible && modalChild.props.hasOwnProperty('in')) {
+    if (modalChild.props.hasOwnProperty('in')) {
       Object.keys(transitionCallbacks).forEach(key => {
         childProps[key] = createChainedFunction(transitionCallbacks[key], modalChild.props[key]);
       });

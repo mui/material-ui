@@ -259,6 +259,24 @@ describe('<Input />', () => {
       });
     });
 
+    describe('margin', () => {
+      describe('context margin: dense', () => {
+        beforeEach(() => {
+          setFormControlContext({ margin: 'dense' });
+        });
+
+        it('should have the inputDense class', () => {
+          assert.strictEqual(wrapper.find('input').hasClass(classes.inputDense), true);
+        });
+      });
+
+      it('should be overridden by props', () => {
+        assert.strictEqual(wrapper.find('input').hasClass(classes.inputDense), false);
+        wrapper.setProps({ margin: 'dense' });
+        assert.strictEqual(wrapper.find('input').hasClass(classes.inputDense), true);
+      });
+    });
+
     describe('required', () => {
       it('should have the aria-required prop with value true', () => {
         setFormControlContext({ required: true });

@@ -3,8 +3,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
-import { LabelRadio, RadioGroup } from 'material-ui/Radio';
-import { FormLabel, FormControl } from 'material-ui/Form';
+import Radio, { RadioGroup } from 'material-ui/Radio';
+import { FormLabel, FormControl, FormControlLabel } from 'material-ui/Form';
 
 const styleSheet = createStyleSheet('RadioButtonsGroup', theme => ({
   group: {
@@ -28,16 +28,16 @@ class RadioButtonsGroup extends Component {
       <FormControl required>
         <FormLabel>Gender</FormLabel>
         <RadioGroup
-          aria-label="Gender"
+          aria-label="gender"
           name="gender"
           className={classes.group}
           selectedValue={this.state.selectedValue}
           onChange={this.handleChange}
         >
-          <LabelRadio label="Male" value="male" />
-          <LabelRadio label="Female" value="female" />
-          <LabelRadio label="Other" value="other" />
-          <LabelRadio label="Disabled" value="disabled" disabled />
+          <FormControlLabel value="male" control={<Radio />} label="Male" />
+          <FormControlLabel value="female" control={<Radio />} label="Female" />
+          <FormControlLabel value="other" control={<Radio />} label="Other" />
+          <FormControlLabel value="disabled" disabled control={<Radio />} label="Disabled" />
         </RadioGroup>
       </FormControl>
     );

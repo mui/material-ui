@@ -6,7 +6,8 @@ import { connect } from 'react-redux';
 import MuiThemeProvider, { MUI_SHEET_ORDER } from 'material-ui/styles/MuiThemeProvider';
 import { createMuiTheme } from 'material-ui/styles';
 import createPalette from 'material-ui/styles/palette';
-import { blue, pink } from 'material-ui/styles/colors';
+import blue from 'material-ui/colors/blue';
+import pink from 'material-ui/colors/pink';
 import { lightTheme, darkTheme, setPrismTheme } from 'docs/src/utils/prism';
 import AppRouter from 'docs/src/components/AppRouter';
 

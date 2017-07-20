@@ -4,7 +4,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Avatar from 'material-ui/Avatar';
-import { deepOrange, deepPurple } from 'material-ui/styles/colors';
+import deepOrange from 'material-ui/colors/deepOrange';
+import deepPurple from 'material-ui/colors/deepPurple';
 
 const styleSheet = createStyleSheet('LetterAvatars', {
   avatar: {

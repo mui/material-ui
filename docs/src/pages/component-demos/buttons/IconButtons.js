@@ -30,6 +30,9 @@ function IconButtons(props) {
       <IconButton color="contrast" className={classes.button} aria-label="Add to shopping cart">
         <AddShoppingCartIcon />
       </IconButton>
+      <IconButton color="primary" className={classes.button} aria-label="Add to shopping cart">
+        <AddShoppingCartIcon />
+      </IconButton>
     </div>
   );
 }

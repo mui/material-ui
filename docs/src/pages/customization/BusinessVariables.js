@@ -2,7 +2,7 @@
 
 import Checkbox from 'material-ui/Checkbox';
 import { createMuiTheme, createStyleSheet, MuiThemeProvider, withStyles } from 'material-ui/styles';
-import { orange } from 'material-ui/styles/colors';
+import orange from 'material-ui/colors/orange';
 import PropTypes from 'prop-types';
 import React from 'react';
 

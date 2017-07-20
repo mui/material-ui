@@ -1,5 +1,5 @@
 ---
-components: FormControl, FormGroup, FormLabel, RadioGroup, Checkbox
+components: FormControl, FormGroup, FormLabel, FormSwitchLabel, RadioGroup, Checkbox
 ---
 
 # Selection Controls

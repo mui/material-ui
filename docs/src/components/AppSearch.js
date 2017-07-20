@@ -6,7 +6,6 @@ import pure from 'recompose/pure';
 import PropTypes from 'prop-types';
 import withWidth, { isWidthUp } from 'material-ui/utils/withWidth';
 import Search from 'material-ui-icons/Search';
-import { white } from 'material-ui/styles/colors';
 import { fade } from 'material-ui/styles/colorManipulator';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 
@@ -65,9 +64,9 @@ const styleSheet = createStyleSheet('AppSearch', theme => ({
     fontFamily: theme.typography.fontFamily,
     position: 'relative',
     borderRadius: 2,
-    background: fade(white, 0.15),
+    background: fade(theme.palette.common.white, 0.15),
     '&:hover': {
-      background: fade(white, 0.25),
+      background: fade(theme.palette.common.white, 0.25),
     },
     '& $input': {
       transition: theme.transitions.create('width'),

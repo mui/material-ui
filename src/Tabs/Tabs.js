@@ -8,7 +8,6 @@ import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
-import isEqual from 'lodash/isEqual';
 import ScrollbarSize from 'react-scrollbar-size';
 import scroll from 'scroll';
 import withStyles from '../styles/withStyles';
@@ -92,7 +91,7 @@ class Tabs extends Component {
   handleResize = debounce(() => {
     this.updateIndicatorState(this.props);
     this.updateScrollButtonState();
-  }, 100);
+  }, 166);
 
   handleLeftScrollClick = () => {
     this.moveTabsScroll(-this.tabs.clientWidth);
@@ -112,7 +111,7 @@ class Tabs extends Component {
 
   handleTabsScroll = debounce(() => {
     this.updateScrollButtonState();
-  }, 100);
+  }, 166);
 
   getConditionalElements = () => {
     const { buttonClassName, scrollable, scrollButtons, width } = this.props;
@@ -172,14 +171,16 @@ class Tabs extends Component {
 
   updateIndicatorState(props) {
     const { tabsMeta, tabMeta } = this.getTabsMeta(props.index);
-
     const indicatorStyle = {
       left: tabMeta && tabsMeta ? tabMeta.left + (tabsMeta.scrollLeft - tabsMeta.left) : 0,
       // May be wrong until the font is loaded.
       width: tabMeta ? tabMeta.width : 0,
     };
 
-    if (!isEqual(indicatorStyle, this.state.indicatorStyle)) {
+    if (
+      indicatorStyle.left !== this.state.indicatorStyle.left ||
+      indicatorStyle.width !== this.state.indicatorStyle.width
+    ) {
       this.setState({ indicatorStyle });
     }
   }
@@ -331,7 +332,10 @@ Tabs.propTypes = {
    */
   indicatorColor: PropTypes.oneOfType([PropTypes.oneOf(['accent', 'primary']), PropTypes.string]),
   /**
-   * Function called when the index change.
+   * Callback fired when the index changes.
+   *
+   * @param {object} event The event source of the callback
+   * @param {number} index We default to the index of the child
    */
   onChange: PropTypes.func.isRequired,
   /**

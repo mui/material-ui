@@ -3,7 +3,7 @@
 import { assert } from 'chai';
 import createMuiTheme from './theme';
 import createPalette, { dark, light } from './palette';
-import { indigo, pink, deepOrange, green, fullBlack } from './colors';
+import { indigo, pink, deepOrange, green, common } from '../colors';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
 
 describe('styles/theme', () => {
@@ -67,7 +67,7 @@ describe('styles/theme', () => {
     });
 
     it('should throw an exception when a non-palette primary color is specified', () => {
-      createPalette({ primary: fullBlack });
+      createPalette({ primary: null });
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.match(
         consoleErrorMock.args()[0][0],
@@ -76,7 +76,7 @@ describe('styles/theme', () => {
     });
 
     it('should throw an exception when a non-palette accent color is specified', () => {
-      createPalette({ accent: fullBlack });
+      createPalette({ accent: common.fullBlack });
       assert.strictEqual(consoleErrorMock.callCount(), 2);
       assert.match(
         consoleErrorMock.args()[1][0],
@@ -85,7 +85,7 @@ describe('styles/theme', () => {
     });
 
     it('should throw an exception when a non-palette error color is specified', () => {
-      createPalette({ error: fullBlack });
+      createPalette({ error: common.fullBlack });
       assert.strictEqual(consoleErrorMock.callCount(), 3);
       assert.match(
         consoleErrorMock.args()[2][0],

@@ -1,26 +1,20 @@
-// @flow weak
+// @flow
 
-import { Component } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
-import addEventListener from 'dom-helpers/events/on';
-import removeEventListener from 'dom-helpers/events/off';
+import EventListener from 'react-event-listener';
 
 const isDescendant = (el, target) => {
-  if (target !== null) {
+  if (target !== null && target.parentNode) {
     return el === target || isDescendant(el, target.parentNode);
   }
   return false;
 };
 
-const clickAwayEvents = ['mouseup', 'touchend'];
-const bind = callback => {
-  clickAwayEvents.forEach(event => addEventListener(document, event, callback));
-};
-const unbind = callback => {
-  clickAwayEvents.forEach(event => removeEventListener(document, event, callback));
-};
-
+/**
+ * @ignore - internal component.
+ */
 class ClickAwayListener extends Component {
   static propTypes = {
     children: PropTypes.element.isRequired,
@@ -29,17 +23,15 @@ class ClickAwayListener extends Component {
 
   componentDidMount() {
     this.mounted = true;
-    bind(this.handleClickAway);
   }
 
   componentWillUnmount() {
     this.mounted = false;
-    unbind(this.handleClickAway);
   }
 
   mounted = false;
 
-  handleClickAway = event => {
+  handleClickAway = (event: Event) => {
     // Ignore events that have been `event.preventDefault()` marked.
     if (event.defaultPrevented) {
       return;
@@ -50,7 +42,7 @@ class ClickAwayListener extends Component {
       const el = findDOMNode(this);
 
       if (
-        document &&
+        event.target instanceof HTMLElement &&
         document.documentElement &&
         document.documentElement.contains(event.target) &&
         !isDescendant(el, event.target)
@@ -61,7 +53,15 @@ class ClickAwayListener extends Component {
   };
 
   render() {
-    return this.props.children;
+    return (
+      <EventListener
+        target="document"
+        onMouseup={this.handleClickAway}
+        onTouchend={this.handleClickAway}
+      >
+        {this.props.children}
+      </EventListener>
+    );
   }
 }
 

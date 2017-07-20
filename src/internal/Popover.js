@@ -1,15 +1,19 @@
-// @flow weak
+// @flow
 
 import React, { Component } from 'react';
 import type { Element } from 'react';
+import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import contains from 'dom-helpers/query/contains';
+import debounce from 'lodash/debounce';
+import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
 import customPropTypes from '../utils/customPropTypes';
 import Modal from './Modal';
 import Transition from './Transition';
 import Paper from '../Paper';
+import type { TransitionCallback } from './Transition';
 
 function getOffsetTop(rect, vertical) {
   let offset = 0;
@@ -45,6 +49,18 @@ function getTransformOriginValue(transformOrigin) {
       return typeof n === 'number' ? `${n}px` : n;
     })
     .join(' ');
+}
+
+// Sum the scrollTop between two elements
+function getScrollParent(parent, child) {
+  let element = child;
+  let scrollTop = 0;
+
+  while (element && element !== parent) {
+    element = element.parentNode;
+    scrollTop += element.scrollTop;
+  }
+  return scrollTop;
 }
 
 export const styleSheet = createStyleSheet('MuiPopover', {
@@ -127,31 +143,31 @@ type Props = DefaultProps & {
   /**
    * Callback fired before the component is entering
    */
-  onEnter?: Function,
+  onEnter?: TransitionCallback,
   /**
    * Callback fired when the component is entering
    */
-  onEntering?: Function,
+  onEntering?: TransitionCallback,
   /**
    * Callback fired when the component has entered
    */
-  onEntered?: Function, // eslint-disable-line react/sort-prop-types
+  onEntered?: TransitionCallback, // eslint-disable-line react/sort-prop-types
   /**
    * Callback fired before the component is exiting
    */
-  onExit?: Function,
+  onExit?: TransitionCallback,
   /**
    * Callback fired when the component is exiting
    */
-  onExiting?: Function,
+  onExiting?: TransitionCallback,
   /**
    * Callback fired when the component has exited
    */
-  onExited?: Function, // eslint-disable-line react/sort-prop-types
+  onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
   /**
-   * Callback function fired when the popover is requested to be closed.
+   * Callback fired when the component requests to be closed.
    *
-   * @param {event} event The event that triggered the close request
+   * @param {object} event The event source of the callback
    */
   onRequestClose?: Function,
   /**
@@ -174,6 +190,9 @@ type Props = DefaultProps & {
   transitionDuration: number | 'auto',
 };
 
+/**
+ * @ignore - internal component.
+ */
 class Popover extends Component<DefaultProps, Props, void> {
   props: Props;
   static defaultProps: DefaultProps = {
@@ -195,21 +214,32 @@ class Popover extends Component<DefaultProps, Props, void> {
     return `scale(${value}, ${value ** 2})`;
   }
 
-  autoTransitionDuration = undefined;
+  componentWillUnmount = () => {
+    this.handleResize.cancel();
+  };
 
-  handleEnter = element => {
-    element.style.opacity = 0;
+  autoTransitionDuration = undefined;
+  transitionEl = undefined;
+
+  setPositioningStyles = (element: HTMLElement) => {
+    if (element && element.style) {
+      const positioning = this.getPositioningStyle(element);
+
+      element.style.top = positioning.top;
+      element.style.left = positioning.left;
+      element.style.transformOrigin = positioning.transformOrigin;
+    }
+  };
+
+  handleEnter = (element: HTMLElement) => {
+    element.style.opacity = '0';
     element.style.transform = Popover.getScale(0.75);
 
     if (this.props.onEnter) {
       this.props.onEnter(element);
     }
 
-    const positioning = this.getPositioningStyle(element);
-
-    element.style.top = positioning.top;
-    element.style.left = positioning.left;
-    element.style.transformOrigin = positioning.transformOrigin;
+    this.setPositioningStyles(element);
 
     let { transitionDuration } = this.props;
     const { transitions } = this.context.styleManager.theme;
@@ -229,16 +259,16 @@ class Popover extends Component<DefaultProps, Props, void> {
     ].join(',');
   };
 
-  handleEntering = element => {
-    element.style.opacity = 1;
+  handleEntering = (element: HTMLElement) => {
+    element.style.opacity = '1';
     element.style.transform = Popover.getScale(1);
 
     if (this.props.onEntering) {
-      this.props.onEntering();
+      this.props.onEntering(element);
     }
   };
 
-  handleExit = element => {
+  handleExit = (element: HTMLElement) => {
     let { transitionDuration } = this.props;
     const { transitions } = this.context.styleManager.theme;
 
@@ -257,13 +287,18 @@ class Popover extends Component<DefaultProps, Props, void> {
       }),
     ].join(',');
 
-    element.style.opacity = 0;
+    element.style.opacity = '0';
     element.style.transform = Popover.getScale(0.75);
 
     if (this.props.onExit) {
-      this.props.onExit();
+      this.props.onExit(element);
     }
   };
+
+  handleResize = debounce(() => {
+    const element: any = ReactDOM.findDOMNode(this.transitionEl);
+    this.setPositioningStyles(element);
+  }, 166);
 
   handleRequestTimeout = () => {
     if (this.props.transitionDuration === 'auto') {
@@ -346,16 +381,18 @@ class Popover extends Component<DefaultProps, Props, void> {
   }
 
   /**
-   * Returns the vertical offset of inner
-   * content to anchor the transform on if provided
+   * Returns the vertical offset of inner content to anchor the transform on if provided
    */
   getContentAnchorOffset(element) {
     let contentAnchorOffset = 0;
 
     if (this.props.getContentAnchorEl) {
       const contentAnchorEl = this.props.getContentAnchorEl(element);
+
       if (contentAnchorEl && contains(element, contentAnchorEl)) {
-        contentAnchorOffset = contentAnchorEl.offsetTop + contentAnchorEl.clientHeight / 2 || 0;
+        const scrollTop = getScrollParent(element, contentAnchorEl);
+        contentAnchorOffset =
+          contentAnchorEl.offsetTop + contentAnchorEl.clientHeight / 2 - scrollTop || 0;
       }
     }
 
@@ -419,6 +456,7 @@ class Popover extends Component<DefaultProps, Props, void> {
           role={role}
           onRequestTimeout={this.handleRequestTimeout}
           transitionAppear
+          ref={node => (this.transitionEl = node)}
         >
           <Paper
             data-mui-test="Popover"
@@ -426,6 +464,7 @@ class Popover extends Component<DefaultProps, Props, void> {
             elevation={elevation}
             {...other}
           >
+            <EventListener target="window" onResize={this.handleResize} />
             {children}
           </Paper>
         </Transition>

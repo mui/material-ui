@@ -31,8 +31,8 @@ export const styleSheet = createStyleSheet('MuiSwitchBase', {
 
 export default function createSwitch(
   {
-    defaultIcon = <CheckBoxOutlineBlankIcon aria-hidden="true" />,
-    defaultCheckedIcon = <CheckBoxIcon aria-hidden="true" />,
+    defaultIcon = <CheckBoxOutlineBlankIcon />,
+    defaultCheckedIcon = <CheckBoxIcon />,
     inputType = 'checkbox',
     styleSheet: switchStyleSheet,
   } = {},
@@ -94,6 +94,7 @@ export default function createSwitch(
         disabledClassName,
         icon: iconProp,
         inputProps,
+        inputRef,
         name,
         onChange,
         tabIndex,
@@ -139,6 +140,9 @@ export default function createSwitch(
           <input
             ref={node => {
               this.input = node;
+              if (inputRef) {
+                inputRef(node);
+              }
             }}
             type={inputType}
             name={name}
@@ -170,6 +174,7 @@ export default function createSwitch(
     checkedClassName: PropTypes.string,
     /**
      * The icon to display when the component is checked.
+     * If a string is provided, it will be used as a font ligature.
      */
     checkedIcon: PropTypes.node,
     /**
@@ -201,6 +206,10 @@ export default function createSwitch(
      * Properties applied to the `input` element.
      */
     inputProps: PropTypes.object,
+    /**
+     * Use that property to pass a ref callback to the native input component.
+     */
+    inputRef: PropTypes.func,
     /*
      * @ignore
      */
@@ -208,7 +217,7 @@ export default function createSwitch(
     /**
      * Callback fired when the  is changed.
      *
-     * @param {object} event `change` event
+     * @param {object} event The event source of the callback
      * @param {boolean} checked The `checked` value of the switch
      */
     onChange: PropTypes.func,

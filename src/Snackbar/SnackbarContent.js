@@ -1,7 +1,7 @@
-// @flow weak
+// @flow
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Element } from 'react';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
@@ -43,7 +43,26 @@ export const styleSheet = createStyleSheet('MuiSnackbarContent', theme => {
   };
 });
 
-function SnackbarContent(props) {
+type Props = {
+  /**
+   * The action to display.
+   */
+  action?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * The message to display.
+   */
+  message: Element<*>,
+};
+
+function SnackbarContent(props: Props) {
   const { action, classes, className, message, ...other } = props;
 
   return (
@@ -69,24 +88,5 @@ function SnackbarContent(props) {
     </Paper>
   );
 }
-
-SnackbarContent.propTypes = {
-  /**
-   * The action to display.
-   */
-  action: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * The message to display.
-   */
-  message: PropTypes.node.isRequired,
-};
 
 export default withStyles(styleSheet)(SnackbarContent);

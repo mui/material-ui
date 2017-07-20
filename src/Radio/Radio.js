@@ -43,12 +43,13 @@ RadioDocs.propTypes = {
   checkedClassName: PropTypes.string,
   /**
    * The icon to display when selected.
+   * If a string is provided, it will be used as a font ligature.
    */
   checkedIcon: PropTypes.node,
   /**
    * Useful to extend the style applied to components.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -78,6 +79,10 @@ RadioDocs.propTypes = {
    * Properties applied to the `input` element.
    */
   inputProps: PropTypes.object,
+  /**
+   * Use that property to pass a ref callback to the native input component.
+   */
+  inputRef: PropTypes.func,
   /*
    * @ignore
    */
@@ -85,7 +90,7 @@ RadioDocs.propTypes = {
   /**
    * Callback fired when the state is changed.
    *
-   * @param {object} event `change` event
+   * @param {object} event The event source of the callback
    * @param {boolean} checked The `checked` value of the switch
    */
   onChange: PropTypes.func,

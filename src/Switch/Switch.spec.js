@@ -4,7 +4,6 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow } from '../test-utils';
 import Switch, { styleSheet } from './Switch';
-import LabelSwitch from './LabelSwitch';
 
 describe('<Switch />', () => {
   let shallow;
@@ -49,13 +48,6 @@ describe('<Switch />', () => {
 
       assert.strictEqual(bar.is('div'), true);
       assert.strictEqual(bar.hasClass(classes.bar), true);
-    });
-  });
-
-  describe('named LabelSwitch export', () => {
-    it('should be Switch wrapped with SwitchLabel', () => {
-      assert.strictEqual(LabelSwitch.name, 'Style');
-      assert.strictEqual(LabelSwitch.displayName, 'withStyles(LabelwithStyles(Switch))');
     });
   });
 });

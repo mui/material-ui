@@ -9,6 +9,7 @@ import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import Popover from '../internal/Popover';
 import withStyles from '../styles/withStyles';
 import MenuList from './MenuList';
+import type { TransitionCallback } from '../internal/Transition';
 
 type DefaultProps = {
   open: boolean,
@@ -39,31 +40,31 @@ type Props = DefaultProps & {
   /**
    * Callback fired before the Menu enters.
    */
-  onEnter?: Function,
+  onEnter?: TransitionCallback,
   /**
    * Callback fired when the Menu is entering.
    */
-  onEntering?: Function,
+  onEntering?: TransitionCallback,
   /**
    * Callback fired when the Menu has entered.
    */
-  onEntered?: Function, // eslint-disable-line react/sort-prop-types
+  onEntered?: TransitionCallback, // eslint-disable-line react/sort-prop-types
   /**
    * Callback fired before the Menu exits.
    */
-  onExit?: Function,
+  onExit?: TransitionCallback,
   /**
    * Callback fired when the Menu is exiting.
    */
-  onExiting?: Function,
+  onExiting?: TransitionCallback,
   /**
    * Callback fired when the Menu has exited.
    */
-  onExited?: Function, // eslint-disable-line react/sort-prop-types
+  onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
   /**
-   * Callback function fired when the menu is requested to be closed.
+   * Callback fired when the component requests to be closed.
    *
-   * @param {event} event The event that triggered the close request
+   * @param {object} event The event source of the callback
    */
   onRequestClose?: Function,
   /**
@@ -78,7 +79,12 @@ type Props = DefaultProps & {
 
 export const styleSheet = createStyleSheet('MuiMenu', {
   root: {
-    maxHeight: 250,
+    /**
+     * specZ: The maximum height of a simple menu should be one or more rows less than the view
+     * height. This ensures a tappable area outside of the simple menu with which to dismiss
+     * the menu.
+     */
+    maxHeight: 'calc(100vh - 96px)',
   },
 });
 
@@ -90,24 +96,26 @@ class Menu extends Component<DefaultProps, Props, void> {
 
   menuList = undefined;
 
-  handleEnter = element => {
-    const list = findDOMNode(this.menuList);
+  handleEnter = (element: HTMLElement) => {
+    const menuList = findDOMNode(this.menuList);
 
     if (this.menuList && this.menuList.selectedItem) {
       // $FlowFixMe
       findDOMNode(this.menuList.selectedItem).focus();
-    } else if (list) {
+    } else if (menuList) {
       // $FlowFixMe
-      list.firstChild.focus();
+      menuList.firstChild.focus();
     }
 
+    // Let's ignore that piece of logic if users are already overriding the width
+    // of the menu.
     // $FlowFixMe
-    if (list && element.clientHeight < list.clientHeight) {
+    if (menuList && element.clientHeight < menuList.clientHeight && !menuList.style.width) {
       const size = `${getScrollbarSize()}px`;
       // $FlowFixMe
-      list.style.paddingRight = size;
+      menuList.style.paddingRight = size;
       // $FlowFixMe
-      list.style.width = `calc(100% + ${size})`;
+      menuList.style.width = `calc(100% + ${size})`;
     }
 
     if (this.props.onEnter) {
@@ -115,7 +123,7 @@ class Menu extends Component<DefaultProps, Props, void> {
     }
   };
 
-  handleListKeyDown = (event, key) => {
+  handleListKeyDown = (event: SyntheticUIEvent, key: string) => {
     if (key === 'tab') {
       event.preventDefault();
       const { onRequestClose } = this.props;
@@ -161,7 +169,6 @@ class Menu extends Component<DefaultProps, Props, void> {
         getContentAnchorEl={this.getContentAnchorEl}
         className={classNames(classes.root, className)}
         open={open}
-        enteredClassName={classes.entered}
         onEnter={this.handleEnter}
         onEntering={onEntering}
         onEntered={onEntered}

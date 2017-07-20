@@ -7,16 +7,23 @@ components: Input, TextField, FormHelperText
 [Text fields](https://material.google.com/components/text-fields.html) allow users to input text and usually appear in forms.
 Users may enter text, numbers, or mixed-format types of input.
 
-## Input
-
-{{demo='pages/component-demos/text-fields/TextInputs.js'}}
-
 ## TextField
-
 The `<TextField>` wrapper component is a complete form control including a label, input and help text.
 
 {{demo='pages/component-demos/text-fields/TextFields.js'}}
 
-This component is composed of smaller components that you can also leverage yourself to significantly customize your input.
+## Components
+`TextField` is composed of smaller components (`FormControl`, `InputLabel`, `Input`, and `FormHelperText`) that you 
+can leverage directly to significantly customize your form inputs.
 
 {{demo='pages/component-demos/text-fields/ComposedTextField.js'}}
+
+## Layout
+`TextField`, `FormControl` allow the specification of `margin` to alter the vertical spacing of inputs. Using
+`none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will as well as alter
+other styles to meet the specification.
+
+{{demo='pages/component-demos/text-fields/TextFieldMargins.js'}}
+
+## Inputs
+{{demo='pages/component-demos/text-fields/Inputs.js'}}

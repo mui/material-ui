@@ -10,8 +10,6 @@ class SimpleMenu extends Component {
     open: false,
   };
 
-  button = undefined;
-
   handleClick = event => {
     this.setState({ open: true, anchorEl: event.currentTarget });
   };

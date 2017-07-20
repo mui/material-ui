@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { spy, stub } from 'sinon';
+import { spy, stub, useFakeTimers } from 'sinon';
 import scroll from 'scroll';
 import { createShallow, createMount } from '../test-utils';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
@@ -147,34 +147,40 @@ describe('<Tabs />', () => {
   });
 
   describe('prop: scrollable', () => {
+    let clock;
     let wrapper;
+
     before(() => {
+      clock = useFakeTimers();
       wrapper = shallowWithWidth(
         <Tabs width="md" onChange={noop} index={0} scrollable>
           <Tab />
         </Tabs>,
       );
     });
+
+    after(() => {
+      clock.restore();
+    });
+
     it('should render with the scrollable class', () => {
       const selector = `.${classes.scrollingContainer}.${classes.scrollable}`;
       assert.strictEqual(wrapper.find(selector).is('div'), true, 'should be a div');
       assert.lengthOf(wrapper.find(selector), 1, 'should only be one');
     });
 
-    it('should response to scroll events', done => {
+    it('should response to scroll events', () => {
       const instance = wrapper.instance();
       instance.tabs = { scrollLeft: 100 };
       spy(instance, 'updateScrollButtonState');
       const selector = `.${classes.scrollingContainer}.${classes.scrollable}`;
       wrapper.find(selector).simulate('scroll');
-      setTimeout(() => {
-        assert.strictEqual(
-          instance.updateScrollButtonState.called,
-          true,
-          'should have called updateScrollButtonState',
-        );
-        done();
-      }, 150);
+      clock.tick(166);
+      assert.strictEqual(
+        instance.updateScrollButtonState.called,
+        true,
+        'should have called updateScrollButtonState',
+      );
     });
 
     it('should get a scrollbar size listener', () => {
@@ -204,6 +210,16 @@ describe('<Tabs />', () => {
   });
 
   describe('prop: scrollButtons', () => {
+    let clock;
+
+    before(() => {
+      clock = useFakeTimers();
+    });
+
+    after(() => {
+      clock.restore();
+    });
+
     it('should render scroll buttons', () => {
       const wrapper = shallowWithWidth(
         <Tabs width="md" onChange={noop} index={0} scrollable scrollButtons="on">
@@ -231,7 +247,7 @@ describe('<Tabs />', () => {
       assert.lengthOf(wrapper.find(TabScrollButton), 0, 'should be zero');
     });
 
-    it('should handle window resize event', done => {
+    it('should handle window resize event', () => {
       const wrapper = shallowWithWidth(
         <Tabs width="md" onChange={noop} index={0} scrollable scrollButtons="on">
           <Tab />
@@ -241,19 +257,17 @@ describe('<Tabs />', () => {
       stub(instance, 'updateScrollButtonState');
       stub(instance, 'updateIndicatorState');
       wrapper.find('EventListener').at(0).simulate('resize');
-      setTimeout(() => {
-        assert.strictEqual(
-          instance.updateScrollButtonState.called,
-          true,
-          'should have called updateScrollButtonState',
-        );
-        assert.strictEqual(
-          instance.updateIndicatorState.called,
-          true,
-          'should have called updateIndicatorState',
-        );
-        done();
-      }, 150);
+      clock.tick(166);
+      assert.strictEqual(
+        instance.updateScrollButtonState.called,
+        true,
+        'should have called updateScrollButtonState',
+      );
+      assert.strictEqual(
+        instance.updateIndicatorState.called,
+        true,
+        'should have called updateIndicatorState',
+      );
     });
 
     describe('scroll button visibility states', () => {

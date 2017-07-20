@@ -13,27 +13,6 @@ export const styleSheet = createStyleSheet('MuiSwitch', theme => ({
     width: 62,
     position: 'relative',
   },
-  default: {
-    color: theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[400],
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  checked: {
-    color: theme.palette.primary[500],
-    transform: 'translateX(14px)',
-    '& + $bar': {
-      backgroundColor: theme.palette.primary[500],
-      opacity: 0.5,
-    },
-  },
-  disabled: {
-    color: theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
-    '& + $bar': {
-      backgroundColor: theme.palette.type === 'light' ? '#000' : '#fff',
-      opacity: theme.palette.type === 'light' ? 0.12 : 0.1,
-    },
-  },
   bar: {
     borderRadius: 7,
     display: 'block',
@@ -56,6 +35,29 @@ export const styleSheet = createStyleSheet('MuiSwitch', theme => ({
     width: 20,
     height: 20,
     borderRadius: '50%',
+  },
+  // For SwitchBase
+  default: {
+    zIndex: 1,
+    color: theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[400],
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  checked: {
+    color: theme.palette.primary[500],
+    transform: 'translateX(14px)',
+    '& + $bar': {
+      backgroundColor: theme.palette.primary[500],
+      opacity: 0.5,
+    },
+  },
+  disabled: {
+    color: theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
+    '& + $bar': {
+      backgroundColor: theme.palette.type === 'light' ? '#000' : '#fff',
+      opacity: theme.palette.type === 'light' ? 0.12 : 0.1,
+    },
   },
 }));
 
@@ -85,6 +87,7 @@ Switch.propTypes = {
   checkedClassName: PropTypes.string,
   /**
    * The icon to display when the component is checked.
+   * If a string is provided, it will be used as a font ligature.
    */
   checkedIcon: PropTypes.node,
   /**
@@ -127,7 +130,7 @@ Switch.propTypes = {
   /**
    * Callback fired when the  is changed.
    *
-   * @param {object} event `change` event
+   * @param {object} event The event source of the callback
    * @param {boolean} checked The `checked` value of the switch
    */
   onChange: PropTypes.func,

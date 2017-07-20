@@ -4,6 +4,9 @@ import { Component, Children } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
+/**
+ * @ignore - internal component.
+ */
 class Portal extends Component {
   static defaultProps = {
     open: false,
@@ -36,10 +39,6 @@ class Portal extends Component {
   }
 
   unrenderLayer() {
-    // Support react@15.x
-    if (ReactDOM.unstable_createPortal) {
-      return;
-    }
     if (!this.layer) {
       return;
     }

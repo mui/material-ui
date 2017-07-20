@@ -7,7 +7,8 @@ import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog';
-import { LabelRadio as Radio, RadioGroup } from 'material-ui/Radio';
+import Radio, { RadioGroup } from 'material-ui/Radio';
+import { FormControlLabel } from 'material-ui/Form';
 
 const options = [
   'None',
@@ -77,12 +78,14 @@ class ConfirmationDialog extends Component {
             innerRef={node => {
               this.radioGroup = node;
             }}
-            aria-label="Gender"
-            name="gender"
+            aria-label="ringtone"
+            name="ringtone"
             selectedValue={this.state.selectedValue}
             onChange={this.handleChange}
           >
-            {options.map(option => <Radio label={option} value={option} key={option} />)}
+            {options.map(option =>
+              <FormControlLabel value={option} key={option} control={<Radio />} label={option} />,
+            )}
           </RadioGroup>
         </DialogContent>
         <DialogActions>

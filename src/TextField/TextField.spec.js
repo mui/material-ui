@@ -30,11 +30,17 @@ describe('<TextField />', () => {
     describe('structure', () => {
       it('should be a FormControl', () => {
         assert.strictEqual(wrapper.name(), 'withStyles(FormControl)');
+        assert.strictEqual(wrapper.dive().is('FormControl'), true);
       });
 
       it('should pass className to the FormControl', () => {
         wrapper.setProps({ className: 'foo' });
-        assert.strictEqual(wrapper.hasClass('foo'), true);
+        assert.strictEqual(wrapper.dive().hasClass('foo'), true);
+      });
+
+      it('should pass margin to the FormControl', () => {
+        wrapper.setProps({ margin: 'normal' });
+        assert.strictEqual(wrapper.dive().props().margin, 'normal');
       });
 
       it('should have an Input as the only child', () => {

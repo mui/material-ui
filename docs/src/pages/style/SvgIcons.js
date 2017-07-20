@@ -4,7 +4,9 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
-import { blue, red, green } from 'material-ui/styles/colors';
+import blue from 'material-ui/colors/blue';
+import green from 'material-ui/colors/green';
+import red from 'material-ui/colors/red';
 import SvgIcon from 'material-ui/SvgIcon';
 
 const styleSheet = createStyleSheet('SvgIcons', theme => ({
@@ -32,8 +34,20 @@ function SvgIcons(props) {
   return (
     <div>
       <HomeIcon className={classes.icon} />
-      <HomeIcon className={classNames(classes.icon, classes.iconBlue)} />
-      <HomeIcon className={classNames(classes.icon, classes.iconHover)} />
+      <HomeIcon
+        className={classNames(classes.icon, classes.iconBlue)}
+        style={{
+          width: 30,
+          height: 30,
+        }}
+      />
+      <HomeIcon
+        className={classNames(classes.icon, classes.iconHover)}
+        style={{
+          width: 36,
+          height: 36,
+        }}
+      />
     </div>
   );
 }

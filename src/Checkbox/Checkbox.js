@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createStyleSheet } from 'jss-theme-reactor';
 import createSwitch from '../internal/SwitchBase';
+import IndeterminateCheckBoxIcon from '../svg-icons/indeterminate-check-box';
 
 export const styleSheet = createStyleSheet('MuiCheckbox', theme => ({
   default: {
@@ -17,15 +18,21 @@ export const styleSheet = createStyleSheet('MuiCheckbox', theme => ({
   },
 }));
 
-const Checkbox = createSwitch({ styleSheet });
+const SwitchBase = createSwitch({ styleSheet });
 
-Checkbox.displayName = 'Checkbox';
+function Checkbox(props) {
+  const { checkedIcon, icon, indeterminate, indeterminateIcon, ...other } = props;
 
-export default Checkbox;
+  return (
+    <SwitchBase
+      checkedIcon={indeterminate ? indeterminateIcon : checkedIcon}
+      icon={indeterminate ? indeterminateIcon : icon}
+      {...other}
+    />
+  );
+}
 
-export const CheckboxDocs = () => <span />;
-
-CheckboxDocs.propTypes = {
+Checkbox.propTypes = {
   /**
    * If `true`, the component is checked.
    */
@@ -36,12 +43,13 @@ CheckboxDocs.propTypes = {
   checkedClassName: PropTypes.string,
   /**
    * The icon to display when the component is checked.
+   * If a string is provided, it will be used as a font ligature.
    */
   checkedIcon: PropTypes.node,
   /**
    * Useful to extend the style applied to components.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -68,9 +76,22 @@ CheckboxDocs.propTypes = {
    */
   icon: PropTypes.node,
   /**
+   * If `true`, the component appears indeterminate.
+   */
+  indeterminate: PropTypes.bool,
+  /**
+   * The icon to display when the component is indeterminate.
+   * If a string is provided, it will be used as a font ligature.
+   */
+  indeterminateIcon: PropTypes.node,
+  /**
    * Properties applied to the `input` element.
    */
   inputProps: PropTypes.object,
+  /**
+   * Use that property to pass a ref callback to the native input component.
+   */
+  inputRef: PropTypes.func,
   /*
    * @ignore
    */
@@ -78,7 +99,7 @@ CheckboxDocs.propTypes = {
   /**
    * Callback fired when the state is changed.
    *
-   * @param {object} event `change` event
+   * @param {object} event The event source of the callback
    * @param {boolean} checked The `checked` value of the switch
    */
   onChange: PropTypes.func,
@@ -91,3 +112,10 @@ CheckboxDocs.propTypes = {
    */
   value: PropTypes.string,
 };
+
+Checkbox.defaultProps = {
+  indeterminate: false,
+  indeterminateIcon: <IndeterminateCheckBoxIcon />,
+};
+
+export default Checkbox;

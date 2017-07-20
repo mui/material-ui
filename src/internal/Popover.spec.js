@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { spy, stub } from 'sinon';
+import { spy, stub, useFakeTimers } from 'sinon';
 import css from 'dom-helpers/style';
 import { createShallow, createMount } from '../test-utils';
 import Popover, { styleSheet } from './Popover';
@@ -224,7 +224,7 @@ describe('<Popover />', () => {
       });
 
       it('should set the inline styles for the enter phase', () => {
-        assert.strictEqual(element.style.opacity, 0, 'should be transparent');
+        assert.strictEqual(element.style.opacity, '0', 'should be transparent');
         assert.strictEqual(
           element.style.transform,
           Popover.getScale(0.75),
@@ -263,7 +263,7 @@ describe('<Popover />', () => {
       });
 
       it('should set the inline styles for the entering phase', () => {
-        assert.strictEqual(element.style.opacity, 1, 'should be visible');
+        assert.strictEqual(element.style.opacity, '1', 'should be visible');
         assert.strictEqual(
           element.style.transform,
           Popover.getScale(1),
@@ -287,7 +287,7 @@ describe('<Popover />', () => {
       });
 
       it('should set the inline styles for the exit phase', () => {
-        assert.strictEqual(element.style.opacity, 0, 'should be transparent');
+        assert.strictEqual(element.style.opacity, '0', 'should be transparent');
         assert.strictEqual(
           element.style.transform,
           Popover.getScale(0.75),
@@ -414,26 +414,33 @@ describe('<Popover />', () => {
         expectPopover(expectedTop, expectedLeft);
       });
     });
+  });
 
-    // it('should be positioned over the bottom right of the anchor', () => {
-    //   popoverEl = window.document.querySelector('[data-mui-test="Popover"]');
+  describe('on window resize', () => {
+    let clock;
 
-    //   const anchorRect = anchorEl.getBoundingClientRect();
-    //   const expectedTop = anchorRect.bottom <= 16 ? 16 : anchorRect.bottom;
-    //   const expectedLeft = anchorRect.right <= 16 ? 16 : anchorRect.right;
+    before(() => {
+      clock = useFakeTimers();
+    });
 
-    //   assert.strictEqual(
-    //     popoverEl.style.top,
-    //     `${expectedTop}px`,
-    //     'should position at the correct top offset'
-    //   );
+    after(() => {
+      clock.restore();
+    });
 
-    //   assert.strictEqual(
-    //     popoverEl.style.left,
-    //     `${expectedLeft}px`,
-    //     'should position at the correct left offset'
-    //   );
-    // });
+    it('should recalculate position if the popover is open', () => {
+      const wrapper = shallow(<Popover open transitionDuration={0} />);
+      const instance = wrapper.instance();
+
+      stub(instance, 'setPositioningStyles');
+      wrapper.find('EventListener').at(0).simulate('resize');
+      clock.tick(166);
+      assert.isTrue(instance.setPositioningStyles.called, 'position styles recalculated');
+    });
+
+    it('should not recalculate position if the popover is closed', () => {
+      const wrapper = mount(<Popover transitionDuration={0} />);
+      assert.isNotTrue(wrapper.contains('EventListener'), 'no component listening on resize');
+    });
   });
 
   describe('getPositioningStyle(element)', () => {
@@ -634,6 +641,21 @@ describe('<Popover />', () => {
       it('should return props.transitionDuration + 20', () => {
         assert.strictEqual(instance.handleRequestTimeout(), transitionDuration + 20);
       });
+    });
+  });
+
+  describe('prop: getContentAnchorEl', () => {
+    it('should position accordingly', () => {
+      const element = {
+        scrollTop: 5,
+      };
+      const child = {
+        offsetTop: 40,
+        clientHeight: 20,
+        parentNode: element,
+      };
+      const wrapper = shallow(<Popover getContentAnchorEl={() => child} />);
+      assert.strictEqual(wrapper.instance().getContentAnchorOffset(element), 45);
     });
   });
 });

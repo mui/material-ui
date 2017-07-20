@@ -1,3 +1,5 @@
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
 # Menu
 
 
@@ -9,13 +11,13 @@
 | anchorEl | Object |  | The DOM element used to set the position of the menu. |
 | children | Element |  | Menu contents, normally `MenuItem`s. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| onEnter | Function |  | Callback fired before the Menu enters. |
-| onEntered | Function |  | Callback fired when the Menu has entered. |
-| onEntering | Function |  | Callback fired when the Menu is entering. |
-| onExit | Function |  | Callback fired before the Menu exits. |
-| onExited | Function |  | Callback fired when the Menu has exited. |
-| onExiting | Function |  | Callback fired when the Menu is exiting. |
-| onRequestClose | Function |  | Callback function fired when the menu is requested to be closed. |
+| onEnter | TransitionCallback |  | Callback fired before the Menu enters. |
+| onEntered | TransitionCallback |  | Callback fired when the Menu has entered. |
+| onEntering | TransitionCallback |  | Callback fired when the Menu is entering. |
+| onExit | TransitionCallback |  | Callback fired before the Menu exits. |
+| onExited | TransitionCallback |  | Callback fired when the Menu has exited. |
+| onExiting | TransitionCallback |  | Callback fired when the Menu is exiting. |
+| onRequestClose | Function |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | open | boolean | false | If `true`, the menu is visible. |
 | transitionDuration | union:&nbsp;number<br>&nbsp;'auto'<br> | 'auto' | The length of the transition in `ms`, or 'auto' |
 

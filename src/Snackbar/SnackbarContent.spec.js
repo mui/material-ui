@@ -10,13 +10,13 @@ describe('<SnackbarContent />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    shallow = createShallow({ untilSelector: 'withStyles(Paper)' });
     classes = shallow.context.styleManager.render(styleSheet);
   });
 
   it('should render a Paper with classes', () => {
     const wrapper = shallow(<SnackbarContent message="message" />);
-    assert.strictEqual(wrapper.name(), 'withStyles(Paper)');
+    assert.strictEqual(wrapper.name(), 'Paper');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
   });
 

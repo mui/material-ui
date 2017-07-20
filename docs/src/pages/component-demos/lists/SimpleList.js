@@ -39,7 +39,7 @@ function SimpleList(props) {
         <ListItem button>
           <ListItemText primary="Trash" />
         </ListItem>
-        <ListItem button>
+        <ListItem button component="a" href="#simple-list">
           <ListItemText primary="Spam" />
         </ListItem>
       </List>

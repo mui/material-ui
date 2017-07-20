@@ -1,3 +1,5 @@
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
 # BottomNavigation
 
 
@@ -7,9 +9,9 @@
 |:-----|:-----|:--------|:------------|
 | <span style="color: #31a148">children *</span> | node |  | The content of the component. |
 | classes | object |  | Useful to extend the style applied to components. |
-| index | number |  | The index of the currently selected `BottomNavigationButton`. |
-| onChange | function |  | Function called when the index changes. |
+| onChange | function |  | Callback fired when the value changes.<br><br>**Signature:**<br>`function(event: object, value: any) => void`<br>*event:* The event source of the callback<br>*value:* We default to the index of the child |
 | showLabels | bool | false | If `true`, all `BottomNavigationButton`s will show their labels. By default only the selected `BottomNavigationButton` will show its label. |
+| value | any |  | The value of the currently selected `BottomNavigationButton`. |
 
 Any other properties supplied will be spread to the root element.
 

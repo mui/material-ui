@@ -2,12 +2,16 @@ defaults: &defaults
   working_directory: /tmp/material-ui
   docker:
     - image: circleci/node:6.11
+restore_repo: &restore_repo
+  restore_cache:
+    keys:
+      - v1-repo-{{ .Branch }}-{{ .Revision }}
 version: 2
 jobs:
   checkout:
     <<: *defaults
     steps:
-      # Fetch the code
+      - *restore_repo
       - checkout
       - run:
           name: Check versions and env
@@ -19,25 +23,24 @@ jobs:
             env
             yarn cache dir
       - restore_cache:
-          key: yarn-sha-{{ checksum "yarn.lock" }}
+          key: v1-yarn-sha-{{ checksum "yarn.lock" }}
       - run:
           name: Install js dependencies
           command: |
             yarn install --pure-lockfile
             cd docs && yarn install --pure-lockfile
       - save_cache:
-          key: yarn-sha-{{ checksum "yarn.lock" }}
+          key: v1-yarn-sha-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn/v1
-      - persist_to_workspace:
-          root: /tmp/material-ui
+      - save_cache:
+          key: v1-repo-{{ .Branch }}-{{ .Revision }}
           paths:
-            - material-ui
+            - /tmp/material-ui
   test_unit:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: /tmp/material-ui
+      - *restore_repo
       - run:
           name: Lint
           command: yarn lint
@@ -57,25 +60,29 @@ jobs:
       - run:
           name: Coverage
           command: bash <(curl -s https://codecov.io/bash)
-      - run:
-          name: Can we generate the docs?
-          command: yarn build:docs
   test_browser:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: /tmp/material-ui
+      - *restore_repo
       - run:
           name: Tests real browsers
           command: yarn test:karma
+      - run:
+          name: Can we generate the build?
+          command: yarn build
+      - run:
+          name: Is the size acceptable?
+          command: yarn size
+      - run:
+          name: Can we generate the docs?
+          command: yarn build:docs
   test_regressions:
     <<: *defaults
     docker:
       - image: circleci/node:6.11
       - image: selenium/standalone-chrome:3.4.0
     steps:
-      - attach_workspace:
-          at: /tmp/material-ui
+      - *restore_repo
       - run:
           name: Visual regression tests
           command: |

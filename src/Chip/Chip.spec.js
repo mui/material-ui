@@ -28,8 +28,8 @@ describe('<Chip />', () => {
       );
     });
 
-    it('should render a button containing a span', () => {
-      assert.strictEqual(wrapper.name(), 'button');
+    it('should render a div containing a span', () => {
+      assert.strictEqual(wrapper.name(), 'div');
       assert.strictEqual(wrapper.childAt(0).is('span'), true, 'should be a span');
     });
 
@@ -57,8 +57,8 @@ describe('<Chip />', () => {
       );
     });
 
-    it('should render a button containing a span', () => {
-      assert.strictEqual(wrapper.name(), 'button');
+    it('should render a div containing a span', () => {
+      assert.strictEqual(wrapper.name(), 'div');
       assert.strictEqual(wrapper.childAt(0).is('span'), true, 'should be a span');
     });
 
@@ -69,8 +69,8 @@ describe('<Chip />', () => {
       assert.strictEqual(wrapper.props().onClick, handleClick);
     });
 
-    it('should not have a tabIndex prop', () => {
-      assert.strictEqual(wrapper.props().tabIndex, undefined);
+    it('should have a tabIndex prop', () => {
+      assert.strictEqual(wrapper.props().tabIndex, 0);
     });
 
     it('should apply user value of tabIndex', () => {
@@ -105,8 +105,8 @@ describe('<Chip />', () => {
       );
     });
 
-    it('should render a button containing an Avatar, span and svg', () => {
-      assert.strictEqual(wrapper.name(), 'button');
+    it('should render a div containing an Avatar, span and svg', () => {
+      assert.strictEqual(wrapper.name(), 'div');
       assert.strictEqual(wrapper.childAt(0).is(Avatar), true, 'should have an Avatar');
       assert.strictEqual(wrapper.childAt(1).is('span'), true, 'should have a span');
       assert.strictEqual(wrapper.childAt(2).is('pure(Cancel)'), true, 'should be an svg icon');
@@ -124,8 +124,8 @@ describe('<Chip />', () => {
       assert.strictEqual(wrapper.childAt(0).prop('data-my-prop'), 'woof');
     });
 
-    it('should not have a tabIndex prop', () => {
-      assert.strictEqual(wrapper.props().tabIndex, undefined);
+    it('should have a tabIndex prop', () => {
+      assert.strictEqual(wrapper.props().tabIndex, 0);
     });
 
     it('should fire the function given in onDeleteRequest', () => {
@@ -173,7 +173,7 @@ describe('<Chip />', () => {
       const anyKeydownEvent = {
         keyCode: keycode('p'),
       };
-      wrapper.find('button').simulate('keydown', anyKeydownEvent);
+      wrapper.find('div').simulate('keydown', anyKeydownEvent);
       assert.strictEqual(onKeyDownSpy.callCount, 1, 'should have called onKeyDown');
       assert(onKeyDownSpy.calledWith(anyKeydownEvent));
     });
@@ -193,7 +193,7 @@ describe('<Chip />', () => {
         const wrapper2 = mount(<Chip.Naked classes={{}}>Text Chip</Chip.Naked>);
         const handleBlur = spy();
         wrapper2.instance().chipRef.blur = handleBlur;
-        wrapper2.find('button').simulate('keydown', {
+        wrapper2.find('div').simulate('keydown', {
           preventDefault: () => {},
           keyCode: keycode('esc'),
         });
@@ -218,7 +218,7 @@ describe('<Chip />', () => {
           preventDefault: preventDefaultSpy,
           keyCode: keycode('space'),
         };
-        wrapper.find('button').simulate('keydown', spaceKeydownEvent);
+        wrapper.find('div').simulate('keydown', spaceKeydownEvent);
         assert.strictEqual(preventDefaultSpy.callCount, 1, 'should have stopped event propagation');
         assert.strictEqual(onClickSpy.callCount, 1, 'should have called onClick');
         assert(onClickSpy.calledWith(spaceKeydownEvent));
@@ -230,7 +230,7 @@ describe('<Chip />', () => {
           preventDefault: preventDefaultSpy,
           keyCode: keycode('enter'),
         };
-        wrapper.find('button').simulate('keydown', enterKeydownEvent);
+        wrapper.find('div').simulate('keydown', enterKeydownEvent);
         assert.strictEqual(preventDefaultSpy.callCount, 1, 'should have stopped event propagation');
         assert.strictEqual(onClickSpy.callCount, 1, 'should have called onClick');
         assert(onClickSpy.calledWith(enterKeydownEvent));
@@ -247,7 +247,7 @@ describe('<Chip />', () => {
           preventDefault: preventDefaultSpy,
           keyCode: keycode('backspace'),
         };
-        wrapper.find('button').simulate('keydown', backspaceKeydownEvent);
+        wrapper.find('div').simulate('keydown', backspaceKeydownEvent);
 
         assert.strictEqual(preventDefaultSpy.callCount, 1, 'should have stopped event propagation');
         assert.strictEqual(onRequestDeleteSpy.callCount, 1, 'should have called onClick');

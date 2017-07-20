@@ -1,3 +1,5 @@
+<!--- This documentation is automatically generated, do not try to edit it. -->
+
 # ListItemIcon
 
 A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.

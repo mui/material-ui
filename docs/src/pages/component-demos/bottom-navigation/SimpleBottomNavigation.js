@@ -16,20 +16,20 @@ const styleSheet = createStyleSheet('SimpleBottomNavigation', {
 
 class SimpleBottomNavigation extends Component {
   state = {
-    index: 0,
+    value: 0,
   };
 
-  handleChange = (event, index) => {
-    this.setState({ index });
+  handleChange = (event, value) => {
+    this.setState({ value });
   };
 
   render() {
     const classes = this.props.classes;
-    const { index } = this.state;
+    const { value } = this.state;
 
     return (
       <div className={classes.root}>
-        <BottomNavigation index={index} onChange={this.handleChange} showLabels>
+        <BottomNavigation value={value} onChange={this.handleChange} showLabels>
           <BottomNavigationButton label="Recents" icon={<RestoreIcon />} />
           <BottomNavigationButton label="Favorites" icon={<FavoriteIcon />} />
           <BottomNavigationButton label="Nearby" icon={<LocationOnIcon />} />
