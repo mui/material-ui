@@ -186,7 +186,6 @@ class Table extends Component {
         onRowHoverExit: this.onRowHoverExit,
         onRowSelection: this.onRowSelection,
         selectable: this.props.selectable,
-        style: Object.assign({}, base.props.style),
       }
     );
   }
