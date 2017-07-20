@@ -7,7 +7,7 @@ import withStyles from '../styles/withStyles';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import { fade } from '../styles/colorManipulator';
-import { black } from '../styles/colors';
+import common from '../colors/common';
 
 /**
  * Specification according to material.io
@@ -27,8 +27,8 @@ export const styleSheet = createStyleSheet('MuiToggleButton', theme => ({
   },
   active: {
     backgroundColor: theme.palette.background.paper,
-    boxShadow: `0 3px 6px ${fade(black, 0.12)},
-        0 3px 6px ${fade(black, 0.12)}`,
+    boxShadow: `0 3px 6px ${fade(common.black, 0.12)},
+        0 3px 6px ${fade(common.black, 0.12)}`,
   },
   toggleIcon: {
     overflow: 'visible',
@@ -71,8 +71,6 @@ class ToggleButton extends Component{
     let indexes = this.state.selectedOptions;
     let ind = indexes.indexOf(option.index);
     let active = false;
-
-    console.log(ind);
 
     if(ind > -1){
       if(option.children){

@@ -9,7 +9,8 @@ import ArrowDropdown from '../svg-icons/arrow-drop-down';
 import withStyles from '../styles/withStyles';
 import { createStyleSheet } from 'jss-theme-reactor';
 import { fade } from '../styles/colorManipulator';
-import { black, grey} from '../styles/colors';
+import  common from '../colors/common';
+import  grey from '../colors/grey';
 import classNames from 'classnames';
 
 
@@ -36,7 +37,7 @@ export const styleSheet = createStyleSheet('MuiOption', theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    color: fade(black, 0.3),
+    color: fade(common.black, 0.3),
   },
   dropDownButton: {
     display: 'flex',
@@ -44,13 +45,13 @@ export const styleSheet = createStyleSheet('MuiOption', theme => ({
     justifyContent: 'center',
     flexDirection: 'column',
     float: "left", //TODO: Move this down to where the dropdown is being generated
-    color: fade(black, 0.3),
+    color: fade(common.black, 0.3),
   },
   textSelected: {
-    color: fade(black, 0.54),
+    color: fade(common.black, 0.54),
   },
   backgroundSelected: {
-    backgroundColor: fade(black, 0.3),
+    backgroundColor: fade(common.black, 0.3),
   },
   iconAndText: {
     height: 58,
@@ -165,7 +166,7 @@ class Option extends Component{
         React.createElement(ArrowDropdown, {
           style: {
             transform: label && icon? "translate(50%, 50%)": "none",  //TODO: Move this to get style
-            color: selected? fade(black, 0.54) : fade(black, 0.3),
+            color: selected? fade(common.black, 0.54) : fade(common.black, 0.3),
           }
         })
       );
