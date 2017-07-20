@@ -89,8 +89,10 @@ class Popover extends Component {
      * The zDepth of the popover.
      */
     zDepth: propTypes.zDepth,
-
-    scrollElement :  PropTypes.oneOfType([
+    /**
+     * TODO
+     */
+    scrollElement: PropTypes.oneOfType([
       PropTypes.object,
       PropTypes.string,
     ]),
