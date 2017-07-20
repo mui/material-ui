@@ -184,8 +184,6 @@ class IntegrationAutosuggest extends Component {
         }}
         renderInputComponent={renderInput}
         suggestions={this.state.suggestions}
-        // suggestions={suggestions}
-        // alwaysRenderSuggestions
         onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
         renderSuggestionsContainer={renderSuggestionsContainer}
