@@ -8,37 +8,54 @@ import withStyles from '../styles/withStyles';
 
 const transitionDuration = 4; // 400ms
 
+const getBar = color => ({
+  position: 'absolute',
+  left: 0,
+  bottom: 0,
+  top: 0,
+  transition: 'transform 0.2s linear',
+  backgroundColor: color,
+});
+
+const getDashed = color => ({
+  position: 'absolute',
+  marginTop: 0,
+  height: '100%',
+  width: '100%',
+  background: `radial-gradient(${color} 0%, ${color} 16%, transparent 42%)`,
+  backgroundSize: '10px 10px',
+  backgroundPosition: '0px -23px',
+  animation: 'buffer 3s infinite linear',
+});
+
+const getBufferBar2 = color => ({
+  transition: `width .${transitionDuration}s linear`,
+  backgroundColor: color,
+});
+
 export const styleSheet = createStyleSheet('MuiLinearProgress', theme => ({
   root: {
     position: 'relative',
     overflow: 'hidden',
     height: 5,
+  },
+  primaryColor: {
     backgroundColor: theme.palette.primary[100],
   },
+  accentColor: {
+    backgroundColor: theme.palette.accent.A100,
+  },
+  primaryBar: getBar(theme.palette.primary[500]),
+  primaryDashed: getDashed(theme.palette.primary[100]),
+  primaryBufferBar2: getBufferBar2(theme.palette.primary[100]),
+  accentBar: getBar(theme.palette.accent.A200),
+  accentDashed: getDashed(theme.palette.accent.A100),
+  accentBufferBar2: getBufferBar2(theme.palette.accent.A100),
   rootBuffer: {
     backgroundColor: 'transparent',
   },
   rootQuery: {
     transform: 'rotate(180deg)',
-  },
-  bar: {
-    position: 'absolute',
-    left: 0,
-    bottom: 0,
-    top: 0,
-    transition: 'transform 0.2s linear',
-    backgroundColor: theme.palette.primary[500],
-  },
-  dashed: {
-    position: 'absolute',
-    marginTop: 0,
-    height: '100%',
-    width: '100%',
-    background: `radial-gradient(${theme.palette.primary[100]} 0%, ${theme.palette
-      .primary[100]} 16%, transparent 42%)`,
-    backgroundSize: '10px 10px',
-    backgroundPosition: '0px -23px',
-    animation: 'buffer 3s infinite linear',
   },
   indeterminateBar1: {
     willChange: 'left, right',
@@ -57,9 +74,13 @@ export const styleSheet = createStyleSheet('MuiLinearProgress', theme => ({
     zIndex: 1,
     transition: `width .${transitionDuration}s linear`,
   },
-  bufferBar2: {
+  bufferBar2Primary: {
     transition: `width .${transitionDuration}s linear`,
     backgroundColor: theme.palette.primary[100],
+  },
+  bufferBar2Accent: {
+    transition: `width .${transitionDuration}s linear`,
+    backgroundColor: theme.palette.accent.A100,
   },
   '@keyframes mui-indeterminate1': {
     '0%': {
@@ -106,23 +127,37 @@ export const styleSheet = createStyleSheet('MuiLinearProgress', theme => ({
 }));
 
 function LinearProgress(props) {
-  const { classes, className, mode, value, valueBuffer, ...other } = props;
+  const { classes, className, color, mode, value, valueBuffer, ...other } = props;
+
+  const dashedClass = classNames({
+    [classes.defaultDashed]: color === 'default',
+    [classes.primaryDashed]: color === 'primary',
+    [classes.accentDashed]: color === 'accent',
+  });
+
   const rootClasses = classNames(
     classes.root,
     {
+      [classes.primaryColor]: color === 'primary',
+      [classes.accentColor]: color === 'accent',
       [classes.rootBuffer]: mode === 'buffer',
       [classes.rootQuery]: mode === 'query',
     },
     className,
   );
-  const primaryClasses = classNames(classes.bar, {
+  const primaryClasses = classNames({
+    [classes.primaryBar]: color === 'primary',
+    [classes.accentBar]: color === 'accent',
     [classes.indeterminateBar1]: mode === 'indeterminate' || mode === 'query',
     [classes.determinateBar1]: mode === 'determinate',
     [classes.bufferBar1]: mode === 'buffer',
   });
-  const secondaryClasses = classNames(classes.bar, {
+  const secondaryClasses = classNames({
+    [classes.primaryBar]: color === 'primary',
+    [classes.primaryBufferBar2]: color === 'primary' && mode === 'buffer',
+    [classes.accentBar]: color === 'accent',
+    [classes.accentBufferBar2]: color === 'accent' && mode === 'buffer',
     [classes.indeterminateBar2]: mode === 'indeterminate' || mode === 'query',
-    [classes.bufferBar2]: mode === 'buffer',
   });
   const styles = { primary: {}, secondary: {} };
   const rootProps = {};
@@ -137,7 +172,7 @@ function LinearProgress(props) {
 
   return (
     <div className={rootClasses} {...rootProps} {...other}>
-      {mode === 'buffer' ? <div className={classes.dashed} /> : null}
+      {mode === 'buffer' ? <div className={dashedClass} /> : null}
       <div className={primaryClasses} style={styles.primary} />
       {mode === 'determinate'
         ? null
@@ -156,6 +191,10 @@ LinearProgress.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * The color of the component. It's using the theme palette when that makes sense.
+   */
+  color: PropTypes.oneOf(['primary', 'accent']),
+  /**
    * The mode of show your progress, indeterminate
    * for when there is no value for progress.
    */
@@ -173,6 +212,7 @@ LinearProgress.propTypes = {
 };
 
 LinearProgress.defaultProps = {
+  color: 'primary',
   mode: 'indeterminate',
   value: 0,
 };

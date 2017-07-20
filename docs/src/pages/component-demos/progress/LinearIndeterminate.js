@@ -17,6 +17,8 @@ function LinearIndeterminate(props) {
   return (
     <div className={classes.root}>
       <LinearProgress />
+      <br />
+      <LinearProgress color="accent" />
     </div>
   );
 }
