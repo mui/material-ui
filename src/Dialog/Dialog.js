@@ -19,6 +19,7 @@ export const styleSheet = createStyleSheet('MuiDialog', theme => ({
   },
   paper: {
     display: 'flex',
+    margin: theme.spacing.unit * 4,
     flexDirection: 'column',
     flex: '0 1 auto',
     position: 'relative',
