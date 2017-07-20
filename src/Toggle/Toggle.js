@@ -249,6 +249,7 @@ class Toggle extends Component {
     const enhancedSwitchProps = {
       ref: 'enhancedSwitch',
       inputType: 'checkbox',
+      elementStyle: elementStyle,
       switchElement: toggleElement,
       rippleStyle: styles.ripple,
       rippleColor: styles.ripple.color,
