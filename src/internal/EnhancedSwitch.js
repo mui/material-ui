@@ -77,6 +77,7 @@ class EnhancedSwitch extends Component {
     disableFocusRipple: PropTypes.bool,
     disableTouchRipple: PropTypes.bool,
     disabled: PropTypes.bool,
+    elementStyle: PropTypes.object,
     iconStyle: PropTypes.object,
     inputStyle: PropTypes.object,
     inputType: PropTypes.string.isRequired,
@@ -277,6 +278,7 @@ class EnhancedSwitch extends Component {
       style,
       switched, // eslint-disable-line no-unused-vars
       switchElement,
+      elementStyle,
       thumbStyle,
       trackStyle,
       ...other
@@ -355,7 +357,7 @@ class EnhancedSwitch extends Component {
         {ripples}
       </div>
     ) : (
-      <div style={prepareStyles(wrapStyles)}>
+      <div style={prepareStyles(Object.assign({}, wrapStyles, elementStyle))}>
         <div style={prepareStyles(Object.assign({}, trackStyle))} />
         <Paper style={thumbStyle} zDepth={1} circle={true}> {ripples} </Paper>
       </div>
