@@ -116,7 +116,7 @@ to discuss the approach before submitting a PR.
   - [Character counter](https://www.google.com/design/spec/components/text-fields.html#text-fields-character-counter)
   - **[Auto-complete](https://www.google.com/design/spec/components/text-fields.html#text-fields-auto-complete-text-field) (Can be done using external libraries) ✓**
   - [Search filter](https://www.google.com/design/spec/components/text-fields.html#text-fields-search-filter)
-  - [Password](https://www.google.com/design/spec/components/text-fields.html#text-fields-password-input)
+  - **[Password](https://www.google.com/design/spec/components/text-fields.html#text-fields-password-input) ✓**
 - [Toolbars](https://www.google.com/design/spec/components/toolbars.html)
 - [Tooltips](https://www.google.com/design/spec/components/tooltips.html) (IconButton & TableHeader only)
   - [Desktop](https://www.google.com/design/spec/components/tooltips.html#tooltips-tooltips-desktop-)
