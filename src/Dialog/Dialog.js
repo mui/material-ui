@@ -19,6 +19,7 @@ export const styleSheet = createStyleSheet('MuiDialog', theme => ({
   },
   paper: {
     display: 'flex',
+    margin: theme.spacing.unit * 4,
     flexDirection: 'column',
     flex: '0 1 auto',
     position: 'relative',
@@ -29,13 +30,9 @@ export const styleSheet = createStyleSheet('MuiDialog', theme => ({
   },
   paperWidthXs: {
     maxWidth: theme.breakpoints.getWidth('xs'),
-    marginLeft: '40px',
-    marginRight: '40px',
   },
   paperWidthSm: {
     maxWidth: theme.breakpoints.getWidth('sm'),
-    marginLeft: '40px',
-    marginRight: '40px',
   },
   paperWidthMd: {
     maxWidth: theme.breakpoints.getWidth('md'),
