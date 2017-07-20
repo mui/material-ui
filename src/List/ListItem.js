@@ -388,7 +388,7 @@ class ListItem extends Component {
   createDisabledElement(styles, contentChildren, additionalProps) {
     const {
       innerDivStyle,
-      style
+      style,
     } = this.props;
 
     const {
