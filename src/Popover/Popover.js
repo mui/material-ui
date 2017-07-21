@@ -68,6 +68,15 @@ class Popover extends Component {
      */
     open: PropTypes.bool,
     /**
+     * Represents the parent scrollable container
+     * It could be an object as element's it self or string like 'window'
+     * Default: 'window'
+     */
+    scrollableContainer :  PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.string,
+    ]),
+    /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
@@ -89,15 +98,6 @@ class Popover extends Component {
      * The zDepth of the popover.
      */
     zDepth: propTypes.zDepth,
-    /**
-     * Represents the parent scrollable container
-     * It could be an object as element's it self or string like 'window'
-     * Default: 'window'
-     */
-    scrollableContainer :  PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.string,
-    ]),
   };
 
   static defaultProps = {
@@ -110,6 +110,7 @@ class Popover extends Component {
     canAutoPosition: true,
     onRequestClose: () => {},
     open: false,
+    scrollableContainer: 'window',
     style: {
       overflowY: 'auto',
     },
@@ -119,7 +120,6 @@ class Popover extends Component {
     },
     useLayerForClickAway: true,
     zDepth: 1,
-    scrollableContainer: 'window',
   };
 
   static contextTypes = {
