@@ -82,11 +82,16 @@ class Textarea extends Component {
 
   handleResize = debounce(event => {
     this.syncHeightWithShadow(event);
-  }, 100);
+  }, 166);
 
   syncHeightWithShadow(event, props = this.props) {
     const shadow = this.shadow;
     const singlelineShadow = this.singlelineShadow;
+
+    // The component is controlled, we need to update the shallow value.
+    if (typeof this.props.value !== 'undefined') {
+      this.shadow.value = props.value;
+    }
 
     const lineHeight = singlelineShadow.scrollHeight;
     let newHeight = shadow.scrollHeight;
@@ -127,7 +132,9 @@ class Textarea extends Component {
 
   handleChange = event => {
     this.value = event.target.value;
-    if (!this.props.value) {
+
+    if (typeof this.props.value === 'undefined') {
+      // The component is not controlled, we need to update the shallow value.
       this.shadow.value = this.value;
       this.syncHeightWithShadow(event);
     }

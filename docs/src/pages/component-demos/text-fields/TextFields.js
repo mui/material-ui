@@ -20,6 +20,13 @@ const styleSheet = createStyleSheet('TextFields', theme => ({
 class TextFields extends Component {
   state = {
     name: 'Cat in the Hat',
+    multiline: 'Controlled',
+  };
+
+  handleChangeMultiline = event => {
+    this.setState({
+      multiline: event.target.value,
+    });
   };
 
   render() {
@@ -71,7 +78,8 @@ class TextFields extends Component {
           label="Multiline"
           multiline
           rowsMax="4"
-          defaultValue="Default Value"
+          value={this.state.multiline}
+          onChange={this.handleChangeMultiline}
           className={classes.textField}
           margin="normal"
         />
@@ -91,6 +99,9 @@ class TextFields extends Component {
           defaultValue="2017-05-24"
           className={classes.textField}
           margin="normal"
+          InputLabelProps={{
+            shrink: true,
+          }}
         />
         <TextField
           id="helperText"

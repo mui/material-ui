@@ -1,5 +1,5 @@
 ---
-components: Input, TextField, FormHelperText
+components: Input, InputLabel, TextField, FormHelperText, FormControl
 ---
 
 # Text Fields
@@ -8,17 +8,19 @@ components: Input, TextField, FormHelperText
 Users may enter text, numbers, or mixed-format types of input.
 
 ## TextField
+
 The `<TextField>` wrapper component is a complete form control including a label, input and help text.
 
 {{demo='pages/component-demos/text-fields/TextFields.js'}}
 
 ## Components
-`TextField` is composed of smaller components (`FormControl`, `InputLabel`, `Input`, and `FormHelperText`) that you 
-can leverage directly to significantly customize your form inputs.
+
+`TextField` is composed of smaller components (`FormControl`, `InputLabel`, `Input`, and `FormHelperText`) that you can leverage directly to significantly customize your form inputs.
 
 {{demo='pages/component-demos/text-fields/ComposedTextField.js'}}
 
 ## Layout
+
 `TextField`, `FormControl` allow the specification of `margin` to alter the vertical spacing of inputs. Using
 `none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will as well as alter
 other styles to meet the specification.
@@ -26,4 +28,5 @@ other styles to meet the specification.
 {{demo='pages/component-demos/text-fields/TextFieldMargins.js'}}
 
 ## Inputs
+
 {{demo='pages/component-demos/text-fields/Inputs.js'}}
