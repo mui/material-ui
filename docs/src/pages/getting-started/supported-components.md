@@ -38,7 +38,7 @@ to discuss the approach before submitting a PR.
 - **[Cards](https://www.google.com/design/spec/components/cards.html) ✓**
 - **[Chips](https://www.google.com/design/spec/components/chips.html) ✓**
   - **[Standard](https://www.google.com/design/spec/components/chips.html) ✓**
-  - [Contact](https://www.google.com/design/spec/components/chips.html#chips-contact-chips)
+  - **[Contact](https://www.google.com/design/spec/components/chips.html#chips-contact-chips) ✓**
 - **[Data tables](https://www.google.com/design/spec/components/data-tables.html) ✓**
   - **Sortable ✓**
   - **Selectable ✓**
@@ -88,7 +88,7 @@ to discuss the approach before submitting a PR.
 - [Sliders](https://www.google.com/design/spec/components/sliders.html)
   - [Continuous](https://www.google.com/design/spec/components/sliders.html#sliders-continuous-slider)
   - [Discrete](https://www.google.com/design/spec/components/sliders.html#sliders-discrete-slider)
-- [Snackbars](https://www.google.com/design/spec/components/snackbars-toasts.html)
+- **[Snackbars](https://www.google.com/design/spec/components/snackbars-toasts.html) ✓**
 - **[Subheaders](https://www.google.com/design/spec/components/subheaders.html) ✓**
   - **[List](https://www.google.com/design/spec/components/subheaders.html#subheaders-list-subheaders) ✓**
   - [Grid](https://www.google.com/design/spec/components/subheaders.html#subheaders-list-subheaders)
@@ -112,9 +112,9 @@ to discuss the approach before submitting a PR.
 - **[Text fields](https://www.google.com/design/spec/components/text-fields.html) ✓**
   - **[Single-line](https://www.google.com/design/spec/components/text-fields.html#text-fields-single-line-text-field) ✓**
   - [Multi-line](https://www.google.com/design/spec/components/text-fields.html#text-fields-multi-line-text-field)
-  - [Full-width](https://www.google.com/design/spec/components/text-fields.html#text-fields-multi-line-text-field)
+  - **[Full-width](https://www.google.com/design/spec/components/text-fields.html#text-fields-multi-line-text-field) ✓**
   - [Character counter](https://www.google.com/design/spec/components/text-fields.html#text-fields-character-counter)
-  - [Auto-complete](https://www.google.com/design/spec/components/text-fields.html#text-fields-auto-complete-text-field)
+  - **[Auto-complete](https://www.google.com/design/spec/components/text-fields.html#text-fields-auto-complete-text-field) (Can be done using external libraries) ✓**
   - [Search filter](https://www.google.com/design/spec/components/text-fields.html#text-fields-search-filter)
   - [Password](https://www.google.com/design/spec/components/text-fields.html#text-fields-password-input)
 - [Toolbars](https://www.google.com/design/spec/components/toolbars.html)
