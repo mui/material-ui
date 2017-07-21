@@ -184,13 +184,51 @@ describe('<AutoComplete />', () => {
   });
 
   describe('prop: onClose', () => {
-    it('should call onClose when the menu is closed', () => {
+    it('should call onClose when the menu is closed', (done) => {
+      const handleClose = spy();
+      const wrapper = shallowWithContext(
+        <AutoComplete dataSource={['foo', 'bar']} open={true} onClose={handleClose} />
+      );
+
+      assert.strictEqual(handleClose.callCount, 0);
+      wrapper.instance().close();
+
+      setTimeout(() => {
+        assert.strictEqual(handleClose.callCount, 1);
+        done();
+      }, 20);
+    });
+
+    it('should not call onClose when the menu is not closed', (done) => {
       const handleClose = spy();
       const wrapper = shallowWithContext(
         <AutoComplete dataSource={['foo', 'bar']} onClose={handleClose} />
       );
+
+      assert.strictEqual(handleClose.callCount, 0);
       wrapper.instance().close();
-      assert.strictEqual(handleClose.callCount, 1);
+
+      setTimeout(() => {
+        assert.strictEqual(handleClose.callCount, 0);
+        done();
+      }, 20);
+    });
+  });
+
+  describe('prop: onOpen', () => {
+    it('should call onOpen when the menu is opened', (done) => {
+      const handleOpen = spy();
+      const wrapper = shallowWithContext(
+        <AutoComplete dataSource={['foo', 'bar']} onOpen={handleOpen} />
+      );
+
+      assert.strictEqual(handleOpen.callCount, 0);
+      wrapper.setState({open: true});
+
+      setTimeout(() => {
+        assert.strictEqual(handleOpen.callCount, 1);
+        done();
+      }, 20);
     });
   });
 

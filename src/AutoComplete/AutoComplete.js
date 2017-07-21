@@ -141,6 +141,10 @@ class AutoComplete extends Component {
      */
     onNewRequest: PropTypes.func,
     /**
+     * Callback function fired when the menu is opened.
+     */
+    onOpen: PropTypes.func,
+    /**
      * Callback function that is fired when the user updates the `TextField`.
      *
      * @param {string} searchText The auto-complete's `searchText` value.
@@ -236,6 +240,17 @@ class AutoComplete extends Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.open !== this.state.open) {
+      if (!this.state.open && this.props.onClose) {
+        this.props.onClose();
+      }
+      if (this.state.open && this.props.onOpen) {
+        this.props.onOpen();
+      }
+    }
+  }
+
   componentWillUnmount() {
     clearTimeout(this.timerTouchTapCloseId);
     clearTimeout(this.timerBlurClose);
@@ -246,10 +261,6 @@ class AutoComplete extends Component {
       open: false,
       anchorEl: null,
     });
-
-    if (this.props.onClose) {
-      this.props.onClose();
-    }
   }
 
   handleRequestClose = () => {
@@ -418,6 +429,7 @@ class AutoComplete extends Component {
       onFocus, // eslint-disable-line no-unused-vars
       onKeyDown, // eslint-disable-line no-unused-vars
       onNewRequest, // eslint-disable-line no-unused-vars
+      onOpen, // eslint-disable-line no-unused-vars
       onUpdateInput, // eslint-disable-line no-unused-vars
       openOnFocus, // eslint-disable-line no-unused-vars
       popoverProps,
