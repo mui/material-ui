@@ -89,8 +89,12 @@ class Popover extends Component {
      * The zDepth of the popover.
      */
     zDepth: propTypes.zDepth,
-
-    scrollElement :  PropTypes.oneOfType([
+    /**
+     * Represents the parent scrollable container
+     * It could be an object as element's it self or string like 'window'
+     * Default: 'window'
+     */
+    scrollableContainer :  PropTypes.oneOfType([
       PropTypes.object,
       PropTypes.string,
     ]),
@@ -115,6 +119,7 @@ class Popover extends Component {
     },
     useLayerForClickAway: true,
     zDepth: 1,
+    scrollableContainer: 'window',
   };
 
   static contextTypes = {
@@ -400,7 +405,7 @@ class Popover extends Component {
     return (
       <div style={styles.root}>
         <EventListener
-          target={this.props.scrollElement || "window"}
+          target={this.props.scrollableContainer}
           onScroll={this.handleScroll}
           onResize={this.handleResize}
         />
