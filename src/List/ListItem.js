@@ -584,7 +584,7 @@ class ListItem extends Component {
       onMouseLeave, // eslint-disable-line no-unused-vars
       onNestedListToggle, // eslint-disable-line no-unused-vars
       onTouchStart, // eslint-disable-line no-unused-vars
-+     onTouchTap, // eslint-disable-line no-unused-vars
+      onTouchTap, // eslint-disable-line no-unused-vars
       rightAvatar,
       rightIcon,
       rightIconButton,
