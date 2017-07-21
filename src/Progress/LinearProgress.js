@@ -8,31 +8,6 @@ import withStyles from '../styles/withStyles';
 
 const transitionDuration = 4; // 400ms
 
-const getBar = color => ({
-  position: 'absolute',
-  left: 0,
-  bottom: 0,
-  top: 0,
-  transition: 'transform 0.2s linear',
-  backgroundColor: color,
-});
-
-const getDashed = color => ({
-  position: 'absolute',
-  marginTop: 0,
-  height: '100%',
-  width: '100%',
-  background: `radial-gradient(${color} 0%, ${color} 16%, transparent 42%)`,
-  backgroundSize: '10px 10px',
-  backgroundPosition: '0px -23px',
-  animation: 'buffer 3s infinite linear',
-});
-
-const getBufferBar2 = color => ({
-  transition: `width .${transitionDuration}s linear`,
-  backgroundColor: color,
-});
-
 export const styleSheet = createStyleSheet('MuiLinearProgress', theme => ({
   root: {
     position: 'relative',
@@ -42,16 +17,44 @@ export const styleSheet = createStyleSheet('MuiLinearProgress', theme => ({
   primaryColor: {
     backgroundColor: theme.palette.primary[100],
   },
+  primaryColorBar: {
+    backgroundColor: theme.palette.primary[500],
+  },
+  primaryDashed: {
+    background: `radial-gradient(${theme.palette.primary[100]} 0%, ${theme.palette
+      .primary[100]} 16%, transparent 42%)`,
+    backgroundSize: '10px 10px',
+    backgroundPosition: '0px -23px',
+  },
   accentColor: {
     backgroundColor: theme.palette.accent.A100,
   },
-  // support for color property
-  primaryBar: getBar(theme.palette.primary[500]),
-  primaryDashed: getDashed(theme.palette.primary[100]),
-  primaryBufferBar2: getBufferBar2(theme.palette.primary[100]),
-  accentBar: getBar(theme.palette.accent.A200),
-  accentDashed: getDashed(theme.palette.accent.A100),
-  accentBufferBar2: getBufferBar2(theme.palette.accent.A100),
+  accentColorBar: {
+    backgroundColor: theme.palette.accent.A200,
+  },
+  accentDashed: {
+    background: `radial-gradient(${theme.palette.accent.A100} 0%, ${theme.palette.accent
+      .A100} 16%, transparent 42%)`,
+    backgroundSize: '10px 10px',
+    backgroundPosition: '0px -23px',
+  },
+  bar: {
+    position: 'absolute',
+    left: 0,
+    bottom: 0,
+    top: 0,
+    transition: 'transform 0.2s linear',
+  },
+  dashed: {
+    position: 'absolute',
+    marginTop: 0,
+    height: '100%',
+    width: '100%',
+    animation: 'buffer 3s infinite linear',
+  },
+  bufferBar2: {
+    transition: `width .${transitionDuration}s linear`,
+  },
   rootBuffer: {
     backgroundColor: 'transparent',
   },
@@ -130,7 +133,7 @@ export const styleSheet = createStyleSheet('MuiLinearProgress', theme => ({
 function LinearProgress(props) {
   const { classes, className, color, mode, value, valueBuffer, ...other } = props;
 
-  const dashedClass = classNames({
+  const dashedClass = classNames(classes.dashed, {
     [classes.primaryDashed]: color === 'primary',
     [classes.accentDashed]: color === 'accent',
   });
@@ -145,18 +148,19 @@ function LinearProgress(props) {
     },
     className,
   );
-  const primaryClasses = classNames({
-    [classes.primaryBar]: color === 'primary',
-    [classes.accentBar]: color === 'accent',
+  const primaryClasses = classNames(classes.bar, {
+    [classes.primaryColorBar]: color === 'primary',
+    [classes.accentColorBar]: color === 'accent',
     [classes.indeterminateBar1]: mode === 'indeterminate' || mode === 'query',
     [classes.determinateBar1]: mode === 'determinate',
     [classes.bufferBar1]: mode === 'buffer',
   });
-  const secondaryClasses = classNames({
-    [classes.primaryBar]: color === 'primary',
-    [classes.primaryBufferBar2]: color === 'primary' && mode === 'buffer',
-    [classes.accentBar]: color === 'accent',
-    [classes.accentBufferBar2]: color === 'accent' && mode === 'buffer',
+  const secondaryClasses = classNames(classes.bar, {
+    [classes.bufferBar2]: mode === 'buffer',
+    [classes.primaryColorBar]: color === 'primary' && mode !== 'buffer',
+    [classes.primaryColor]: color === 'primary' && mode === 'buffer',
+    [classes.accentColorBar]: color === 'accent' && mode !== 'buffer',
+    [classes.accentColor]: color === 'accent' && mode === 'buffer',
     [classes.indeterminateBar2]: mode === 'indeterminate' || mode === 'query',
   });
   const styles = { primary: {}, secondary: {} };
