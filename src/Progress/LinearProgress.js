@@ -45,6 +45,7 @@ export const styleSheet = createStyleSheet('MuiLinearProgress', theme => ({
   accentColor: {
     backgroundColor: theme.palette.accent.A100,
   },
+  // support for color property
   primaryBar: getBar(theme.palette.primary[500]),
   primaryDashed: getDashed(theme.palette.primary[100]),
   primaryBufferBar2: getBufferBar2(theme.palette.primary[100]),
@@ -130,7 +131,6 @@ function LinearProgress(props) {
   const { classes, className, color, mode, value, valueBuffer, ...other } = props;
 
   const dashedClass = classNames({
-    [classes.defaultDashed]: color === 'default',
     [classes.primaryDashed]: color === 'primary',
     [classes.accentDashed]: color === 'accent',
   });
