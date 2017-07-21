@@ -27,7 +27,7 @@ function DialogActions(props) {
 
   return (
     <div data-mui-test="DialogActions" className={classNames(classes.root, className)} {...other}>
-      {Children.map(children, button =>
+      {Children.map(Children.toArray(children), button =>
         <div className={classes.action}>
           {cloneElement(button, { className: classNames(classes.button, button.props.className) })}
         </div>,
