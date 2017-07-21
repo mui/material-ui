@@ -391,11 +391,6 @@ class ListItem extends Component {
       style,
     } = this.props;
 
-    const {
-        onTouchTap, // eslint-disable-line no-unused-vars
-        ...other
-    } = additionalProps;
-
     const mergedDivStyles = Object.assign({},
       styles.root,
       styles.innerDiv,
@@ -405,7 +400,7 @@ class ListItem extends Component {
 
     return (
       <div
-        {...other}
+        {...additionalProps}
         style={this.context.muiTheme.prepareStyles(mergedDivStyles)}
       >
         {contentChildren}
@@ -589,6 +584,7 @@ class ListItem extends Component {
       onMouseLeave, // eslint-disable-line no-unused-vars
       onNestedListToggle, // eslint-disable-line no-unused-vars
       onTouchStart, // eslint-disable-line no-unused-vars
++     onTouchTap, // eslint-disable-line no-unused-vars
       rightAvatar,
       rightIcon,
       rightIconButton,
