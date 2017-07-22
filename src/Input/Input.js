@@ -317,6 +317,7 @@ class Input extends Component<DefaultProps, Props, State> {
   componentDidMount() {
     if (!this.isControlled()) {
       this.checkDirty(this.input);
+      this.handleDateTypeInput(this.input);
     }
   }
 
@@ -331,12 +332,30 @@ class Input extends Component<DefaultProps, Props, State> {
 
   handleFocus = event => {
     this.setState({ focused: true });
+    const target = event.target;
+    if (target && target.type === 'text' && this.props.type === 'date') {
+      const convertStringToDate = textString => {
+        if (!textString) {
+          return null;
+        }
+        // to avoid bug caused by timezones
+        return new Date(textString.replace(/\//g, '-'));
+      };
+      const targetValue = target.value;
+      target.type = 'date';
+      // set value of the date type input
+      target.valueAsDate = convertStringToDate(targetValue);
+    }
     if (this.props.onFocus) {
       this.props.onFocus(event);
     }
   };
 
   handleBlur = event => {
+    const target = event.target;
+    if (target && target.type === 'date') {
+      this.handleDateTypeInput(target);
+    }
     this.setState({ focused: false });
     if (this.props.onBlur) {
       this.props.onBlur(event);
@@ -363,6 +382,33 @@ class Input extends Component<DefaultProps, Props, State> {
     this.input = node;
     if (this.props.inputRef) {
       this.props.inputRef(node);
+    }
+  };
+
+  handleDateTypeInput = obj => {
+    if (!obj || obj.type !== 'date') {
+      return;
+    }
+    if (!obj.value) {
+      obj.type = 'text';
+      obj.value = '';
+      return;
+    }
+    const dateVal = obj.value;
+    // format the text value as YYYY/MM/DD
+    const convertDateToString = inputDateStr => {
+      if (inputDateStr === null) {
+        return '';
+      }
+      const date = new Date(inputDateStr);
+      const d = date.getDate();
+      const m = date.getMonth() + 1;
+      const y = date.getUTCFullYear();
+      return `${y}/${m <= 9 ? `0${m}` : m}/${d <= 9 ? `0${d}` : d}`;
+    };
+    if (dateVal) {
+      obj.type = 'text';
+      obj.value = convertDateToString(dateVal);
     }
   };
 
