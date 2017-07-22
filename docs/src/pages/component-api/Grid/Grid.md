@@ -65,7 +65,7 @@ This property accepts the following keys:
 - `@media (min-width:1280px)`
 - `@media (min-width:1920px)`
 
-Have a look at [overriding with class names](/customization/overrides#overriding-with-class-names)
+Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)
 section for more detail.
 
 If using the `overrides` key of the theme as documented

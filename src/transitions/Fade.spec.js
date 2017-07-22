@@ -10,7 +10,9 @@ describe('<Fade />', () => {
   let shallow;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({
+      dive: true,
+    });
   });
 
   it('should render a Transition', () => {

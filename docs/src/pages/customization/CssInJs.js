@@ -4,9 +4,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
+import Typography from 'material-ui/Typography';
 
 // 1. We define the styles.
-const styleSheet = createStyleSheet('MyLink', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   root: {
     color: 'inherit',
     textDecoration: 'inherit',
@@ -50,7 +51,7 @@ const MyLinkStyled = withStyles(styleSheet)(MyLink);
 
 export default function CssInJs() {
   return (
-    <div>
+    <Typography type="subheading">
       <MyLinkStyled href="#">
         {'MyLink'}
       </MyLinkStyled>
@@ -58,6 +59,6 @@ export default function CssInJs() {
       <MyLinkStyled href="#" variant="primary">
         {'primary'}
       </MyLinkStyled>
-    </div>
+    </Typography>
   );
 }

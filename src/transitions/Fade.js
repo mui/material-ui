@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import type { Element } from 'react';
 import Transition from '../internal/Transition';
 import { duration } from '../styles/transitions';
-import customPropTypes from '../utils/customPropTypes';
+import withTheme from '../styles/withTheme';
 import type { TransitionCallback } from '../internal/Transition';
 
 type DefaultProps = {
@@ -51,6 +51,10 @@ type Props = DefaultProps & {
    * Callback fired when the component has exited.
    */
   onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  /**
+   * @ignore
+   */
+  theme: Object,
 };
 
 class Fade extends Component<DefaultProps, Props, void> {
@@ -70,7 +74,7 @@ class Fade extends Component<DefaultProps, Props, void> {
   };
 
   handleEntering = element => {
-    const { transitions } = this.context.styleManager.theme;
+    const { transitions } = this.props.theme;
     element.style.transition = transitions.create('opacity', {
       duration: this.props.enterTransitionDuration,
     });
@@ -84,7 +88,7 @@ class Fade extends Component<DefaultProps, Props, void> {
   };
 
   handleExit = element => {
-    const { transitions } = this.context.styleManager.theme;
+    const { transitions } = this.props.theme;
     element.style.transition = transitions.create('opacity', {
       duration: this.props.leaveTransitionDuration,
     });
@@ -105,6 +109,7 @@ class Fade extends Component<DefaultProps, Props, void> {
       onEnter,
       onEntering,
       onExit,
+      theme,
       ...other
     } = this.props;
 
@@ -123,8 +128,4 @@ class Fade extends Component<DefaultProps, Props, void> {
   }
 }
 
-Fade.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
-
-export default Fade;
+export default withTheme(Fade);

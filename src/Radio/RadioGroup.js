@@ -3,7 +3,7 @@
 import React, { Component, Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
+import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import FormGroup from '../Form/FormGroup';
 import { find } from '../utils/helpers';

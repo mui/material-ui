@@ -3,9 +3,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import { capitalizeFirstLetter } from '../utils/helpers';
+import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
+import { capitalizeFirstLetter } from '../utils/helpers';
 
 const RADIUS = 12;
 

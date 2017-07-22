@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '../test-utils';
+import { createShallow, getClasses } from '../test-utils';
 import Icon, { styleSheet } from './Icon';
 
 describe('<Icon />', () => {
@@ -11,7 +11,7 @@ describe('<Icon />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
   });
 
   it('renders children by default', () => {

@@ -13,7 +13,7 @@ describe('<Hidden />', () => {
     shallow = createShallow();
   });
 
-  describe('props: implementation', () => {
+  describe('prop: implementation', () => {
     it('should use HiddenJs by default', () => {
       const wrapper = shallow(
         <Hidden>

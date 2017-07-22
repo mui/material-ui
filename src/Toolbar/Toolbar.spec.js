@@ -2,19 +2,16 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '../test-utils';
+import { createShallow, getClasses } from '../test-utils';
 import Toolbar, { styleSheet } from './Toolbar';
 
-/**
- * An item that goes in lists.
- */
 describe('<Toolbar />', () => {
   let shallow;
   let classes;
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
   });
 
   it('should render a div', () => {
@@ -24,14 +21,14 @@ describe('<Toolbar />', () => {
 
   it('should render with the user, root and gutters classes', () => {
     const wrapper = shallow(<Toolbar className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
-    assert.strictEqual(wrapper.hasClass(classes.gutters), true, 'should have the gutters class');
+    assert.strictEqual(wrapper.hasClass('woof'), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.gutters), true);
   });
 
   it('should disable the gutters', () => {
     const wrapper = shallow(<Toolbar disableGutters />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(
       wrapper.hasClass(classes.gutters),
       false,

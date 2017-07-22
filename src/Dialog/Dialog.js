@@ -3,9 +3,9 @@
 import React, { createElement, cloneElement } from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import { capitalizeFirstLetter } from '../utils/helpers';
+import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
+import { capitalizeFirstLetter } from '../utils/helpers';
 import Modal from '../internal/Modal';
 import Fade from '../transitions/Fade';
 import { duration } from '../styles/transitions';

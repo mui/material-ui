@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import Transition from '../internal/Transition';
-import customPropTypes from '../utils/customPropTypes';
+import withTheme from '../styles/withTheme';
 import { duration } from '../styles/transitions';
 
 const GUTTER = 24;
@@ -67,7 +67,7 @@ class Slide extends Component {
   };
 
   handleEntering = element => {
-    const { transitions } = this.context.styleManager.theme;
+    const { transitions } = this.props.theme;
     element.style.transition = transitions.create('transform', {
       duration: this.props.enterTransitionDuration,
       easing: transitions.easing.easeOut,
@@ -84,7 +84,7 @@ class Slide extends Component {
   };
 
   handleExit = element => {
-    const { transitions } = this.context.styleManager.theme;
+    const { transitions } = this.props.theme;
     element.style.transition = transitions.create('transform', {
       duration: this.props.leaveTransitionDuration,
       easing: transitions.easing.sharp,
@@ -111,6 +111,7 @@ class Slide extends Component {
       onExit,
       enterTransitionDuration,
       leaveTransitionDuration,
+      theme,
       ...other
     } = this.props;
 
@@ -185,10 +186,10 @@ Slide.propTypes = {
    * Callback fired when the component has exited.
    */
   onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
+  /**
+   * @ginore
+   */
+  theme: PropTypes.object.isRequired,
 };
 
-Slide.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
-
-export default Slide;
+export default withTheme(Slide);

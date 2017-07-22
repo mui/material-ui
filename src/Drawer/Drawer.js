@@ -3,13 +3,12 @@
 import React, { Component } from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
 import Modal from '../internal/Modal';
+import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import Slide from '../transitions/Slide';
 import Paper from '../Paper';
 import { capitalizeFirstLetter } from '../utils/helpers';
-import customPropTypes from '../utils/customPropTypes';
 import { duration } from '../styles/transitions';
 
 function getSlideDirection(anchor) {
@@ -131,6 +130,10 @@ type Props = {
    * Properties applied to the `Slide` element.
    */
   SlideProps?: Object,
+  /**
+   * @ignore
+   */
+  theme: Object,
 };
 
 type State = {
@@ -170,13 +173,14 @@ class Drawer extends Component<DefaultProps, Props, State> {
       docked,
       enterTransitionDuration,
       leaveTransitionDuration,
-      open,
       elevation,
+      open,
       SlideProps,
+      theme,
       ...other
     } = this.props;
 
-    const rtl = this.context.styleManager.theme.dir === 'rtl';
+    const rtl = theme.dir === 'rtl';
     let anchor = anchorProp;
     if (rtl && ['left', 'right'].includes(anchor)) {
       anchor = anchor === 'left' ? 'right' : 'left';
@@ -222,8 +226,4 @@ class Drawer extends Component<DefaultProps, Props, State> {
   }
 }
 
-Drawer.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
-
-export default withStyles(styleSheet)(Drawer);
+export default withStyles(styleSheet, { withTheme: true })(Drawer);

@@ -2,29 +2,28 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '../test-utils';
+import { createShallow, getClasses } from '../test-utils';
 import Paper from '../Paper';
+import type { Breakpoint } from '../styles/breakpoints';
 import Dialog, { styleSheet } from './Dialog';
 import withResponsiveFullScreen from './withResponsiveFullScreen';
-import type { Breakpoint } from '../styles/breakpoints';
 
 describe('withResponsiveFullScreen', () => {
-  let shallowWithWidth;
+  let shallow;
   let classes;
 
   before(() => {
-    const shallow = createShallow();
-    shallowWithWidth = (node, options = {}) => {
-      return shallow(node, options).dive().dive().dive();
-    };
-    classes = shallow.context.styleManager.render(styleSheet);
+    shallow = createShallow({
+      untilSelector: 'Dialog',
+    });
+    classes = getClasses(styleSheet);
   });
 
   function isFullScreen(breakpoints: Array<Breakpoint>, width: Breakpoint) {
     breakpoints.forEach(breakpoint => {
       it(`is for width: ${width} <= ${breakpoint}`, () => {
         const ResponsiveDialog = withResponsiveFullScreen({ breakpoint })(Dialog);
-        const wrapper = shallowWithWidth(<ResponsiveDialog width={width} />);
+        const wrapper = shallow(<ResponsiveDialog width={width} />);
         // the fullscreen class on the Paper element
         assert.strictEqual(wrapper.find(Paper).hasClass(classes.fullScreen), true);
       });
@@ -35,7 +34,7 @@ describe('withResponsiveFullScreen', () => {
     breakpoints.forEach(breakpoint => {
       it(`is not for width: ${width} > ${breakpoint}`, () => {
         const ResponsiveDialog = withResponsiveFullScreen({ breakpoint })(Dialog);
-        const wrapper = shallowWithWidth(<ResponsiveDialog width={width} />);
+        const wrapper = shallow(<ResponsiveDialog width={width} />);
         assert.strictEqual(wrapper.find(Paper).hasClass(classes.fullScreen), false);
       });
     });

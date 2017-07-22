@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import type { Element } from 'react';
 import { findDOMNode } from 'react-dom';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
 import keycode from 'keycode';
-import customPropTypes from '../utils/customPropTypes';
+import createStyleSheet from '../styles/createStyleSheet';
+import withStyles from '../styles/withStyles';
 import { listenForFocusKeys, detectKeyboardFocus, focusKeyPressed } from '../utils/keyboardFocus';
 import TouchRipple from './TouchRipple';
 import createRippleHandler from './createRippleHandler';
@@ -42,6 +42,10 @@ type Props = DefaultProps & {
    * The content of the component.
    */
   children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: Object,
   /**
    * @ignore
    */
@@ -220,7 +224,7 @@ class ButtonBase extends Component<DefaultProps, Props, State> {
     if (!this.props.disableRipple && !this.props.disabled) {
       return (
         <TouchRipple
-          ref={node => {
+          innerRef={node => {
             this.ripple = node;
           }}
           center={this.props.centerRipple}
@@ -235,6 +239,7 @@ class ButtonBase extends Component<DefaultProps, Props, State> {
     const {
       centerRipple,
       children,
+      classes,
       className: classNameProp,
       component,
       disabled,
@@ -256,7 +261,6 @@ class ButtonBase extends Component<DefaultProps, Props, State> {
       ...other
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet);
     const className = classNames(
       classes.root,
       {
@@ -314,8 +318,4 @@ class ButtonBase extends Component<DefaultProps, Props, State> {
   }
 }
 
-ButtonBase.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
-
-export default ButtonBase;
+export default withStyles(styleSheet)(ButtonBase);

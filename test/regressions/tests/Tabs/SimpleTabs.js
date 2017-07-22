@@ -1,8 +1,8 @@
 // @flow weak
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { createStyleSheet, withStyles } from 'material-ui/styles';
 import Icon from 'material-ui/Icon';
 import Paper from 'material-ui/Paper';
 import Tabs from 'material-ui/Tabs';
@@ -18,8 +18,8 @@ const styleSheet = createStyleSheet('SimpleTabs', theme => ({
   },
 }));
 
-export default function SimpleTabs(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function SimpleTabs(props) {
+  const { classes } = props;
 
   return (
     <div className={classes.root}>
@@ -62,6 +62,8 @@ export default function SimpleTabs(props, context) {
   );
 }
 
-SimpleTabs.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+SimpleTabs.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(SimpleTabs);

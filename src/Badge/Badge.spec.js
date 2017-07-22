@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '../test-utils';
+import { createShallow, getClasses } from '../test-utils';
 import Badge, { styleSheet } from './Badge';
 
 describe('<Badge />', () => {
@@ -11,7 +11,7 @@ describe('<Badge />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
   });
 
   const testChildren = <div className="unique">Hello World</div>;

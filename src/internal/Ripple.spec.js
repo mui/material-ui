@@ -4,7 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createShallow, createMount } from '../test-utils';
-import Ripple, { styleSheet } from './Ripple';
+import Ripple from './Ripple';
 
 describe('<Ripple />', () => {
   let shallow;
@@ -12,16 +12,23 @@ describe('<Ripple />', () => {
 
   before(() => {
     shallow = createShallow();
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = {
+      wrapperLeaving: 'wrapperLeaving',
+      wrapperPulsating: 'wrapperPulsating',
+      fast: 'fast',
+      ripple: 'ripple',
+      rippleVisible: 'rippleVisible',
+      rippleFast: 'rippleFast',
+    };
   });
 
   it('should render a span', () => {
-    const wrapper = shallow(<Ripple rippleX={0} rippleY={0} rippleSize={10} />);
+    const wrapper = shallow(<Ripple classes={classes} rippleX={0} rippleY={0} rippleSize={10} />);
     assert.strictEqual(wrapper.name(), 'span');
   });
 
   it('should have the ripple className', () => {
-    const wrapper = shallow(<Ripple rippleX={0} rippleY={0} rippleSize={11} />);
+    const wrapper = shallow(<Ripple classes={classes} rippleX={0} rippleY={0} rippleSize={11} />);
     assert.strictEqual(
       wrapper.childAt(0).hasClass(classes.ripple),
       true,
@@ -38,16 +45,16 @@ describe('<Ripple />', () => {
     let wrapper;
 
     before(() => {
-      wrapper = shallow(<Ripple rippleX={0} rippleY={0} rippleSize={11} />);
+      wrapper = shallow(<Ripple classes={classes} rippleX={0} rippleY={0} rippleSize={11} />);
     });
 
     it('should start the ripple', () => {
-      assert.strictEqual(wrapper.state('rippleVisible'), false, 'should not be visible');
+      assert.strictEqual(wrapper.state().rippleVisible, false, 'should not be visible');
 
       wrapper.instance().componentWillEnter();
       wrapper.update(); // needed for class assertion since we used instance method to change state
 
-      assert.strictEqual(wrapper.state('rippleVisible'), true, 'should be visible');
+      assert.strictEqual(wrapper.state().rippleVisible, true, 'should be visible');
       assert.strictEqual(
         wrapper.childAt(0).hasClass(classes.rippleVisible),
         true,
@@ -58,10 +65,9 @@ describe('<Ripple />', () => {
     it('should stop the ripple', done => {
       wrapper.instance().componentWillLeave(done);
       wrapper.update(); // needed for class assertion since we used instance method to change state
-
-      assert.strictEqual(wrapper.state('rippleLeaving'), true, 'should be leaving');
+      assert.strictEqual(wrapper.state().rippleLeaving, true, 'should be leaving');
       assert.strictEqual(
-        wrapper.hasClass(classes.rootLeaving),
+        wrapper.hasClass(classes.wrapperLeaving),
         true,
         'should have the leaving class',
       );
@@ -72,13 +78,15 @@ describe('<Ripple />', () => {
     let wrapper;
 
     before(() => {
-      wrapper = shallow(<Ripple rippleX={0} rippleY={0} rippleSize={11} pulsate />);
+      wrapper = shallow(
+        <Ripple classes={classes} rippleX={0} rippleY={0} rippleSize={11} pulsate />,
+      );
     });
 
     it('should render the ripple inside a pulsating span', () => {
       assert.strictEqual(wrapper.name(), 'span');
       assert.strictEqual(
-        wrapper.hasClass(classes.rootPulsating),
+        wrapper.hasClass(classes.wrapperPulsating),
         true,
         'should have the pulsating class',
       );
@@ -88,14 +96,14 @@ describe('<Ripple />', () => {
     });
 
     it('should start the ripple', () => {
-      assert.strictEqual(wrapper.state('rippleVisible'), false, 'should not be visible');
+      assert.strictEqual(wrapper.state().rippleVisible, false, 'should not be visible');
 
       wrapper.instance().componentWillEnter();
       wrapper.update(); // needed for class assertion since we used instance method to change state
 
-      assert.strictEqual(wrapper.state('rippleVisible'), true, 'should be visible');
+      assert.strictEqual(wrapper.state().rippleVisible, true, 'should be visible');
       assert.strictEqual(
-        wrapper.hasClass(classes.rootPulsating),
+        wrapper.hasClass(classes.wrapperPulsating),
         true,
         'should have the pulsating class',
       );
@@ -110,9 +118,9 @@ describe('<Ripple />', () => {
       wrapper.instance().componentWillLeave(done);
       wrapper.update(); // needed for class assertion since we used instance method to change state
 
-      assert.strictEqual(wrapper.state('rippleLeaving'), true, 'should be leaving');
+      assert.strictEqual(wrapper.state().rippleLeaving, true, 'should be leaving');
       assert.strictEqual(
-        wrapper.hasClass(classes.rootLeaving),
+        wrapper.hasClass(classes.wrapperLeaving),
         true,
         'should have the leaving class',
       );
@@ -126,7 +134,7 @@ describe('<Ripple />', () => {
 
     before(() => {
       mount = createMount();
-      wrapper = mount(<Ripple rippleX={0} rippleY={0} rippleSize={11} pulsate />);
+      wrapper = mount(<Ripple classes={classes} rippleX={0} rippleY={0} rippleSize={11} pulsate />);
       clock = useFakeTimers();
     });
 

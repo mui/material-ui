@@ -1,32 +1,101 @@
 // @flow
 
-import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
-import createMuiTheme from './theme';
-// eslint-disable-next-line max-len
-import muiThemeProviderFactory, {
-  MUI_SHEET_ORDER as muiSheetOrder,
-} from './muiThemeProviderFactory';
+import createBroadcast from 'brcast';
+import themeListener, { CHANNEL } from './themeListener';
 
-export const MUI_SHEET_ORDER = muiSheetOrder;
+class MuiThemeProvider extends Component {
+  constructor(props: Object, context: Object) {
+    super(props, context);
 
-const MuiThemeProvider = muiThemeProviderFactory(createMuiTheme());
+    // Get the outer theme from the context, can be null
+    this.outerTheme = themeListener.initial(context);
+    // Propagate the theme so it can be accessed by the children
+    this.broadcast.setState(this.mergeOuterLocalTheme(this.props.theme));
+  }
 
-export default MuiThemeProvider;
+  getChildContext() {
+    if (this.props.sheetsManager) {
+      return {
+        [CHANNEL]: this.broadcast,
+        sheetsManager: this.props.sheetsManager,
+      };
+    }
 
-export const MuiThemeProviderDocs = () => <span />;
+    return {
+      [CHANNEL]: this.broadcast,
+    };
+  }
 
-MuiThemeProviderDocs.propTypes = {
+  componentDidMount() {
+    // Subscribe on the outer theme, if present
+    this.unsubscribe = themeListener.subscribe(this.context, outerTheme => {
+      this.outerTheme = outerTheme;
+      // Forward the parent theme update to the children
+      this.broadcast.setState(this.mergeOuterLocalTheme(this.props.theme));
+    });
+  }
+
+  componentWillReceiveProps(nextProps: Object) {
+    // Propagate a local theme update
+    if (this.props.theme !== nextProps.theme) {
+      this.broadcast.setState(this.mergeOuterLocalTheme(nextProps.theme));
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.unsubscribe !== null) {
+      this.unsubscribe();
+    }
+  }
+
+  broadcast = createBroadcast();
+  unsubscribe = null;
+  // We are not using the React state in order to avoid unnecessary rerender.
+  outerTheme = null;
+
+  // Simple merge between the outer theme and the local theme
+  mergeOuterLocalTheme(localTheme: Object) {
+    // To support composition of theme.
+    if (typeof localTheme === 'function') {
+      return localTheme(this.outerTheme);
+    }
+
+    if (!this.outerTheme) {
+      return localTheme;
+    }
+
+    return { ...this.outerTheme, ...localTheme };
+  }
+
+  render() {
+    return this.props.children;
+  }
+}
+
+MuiThemeProvider.propTypes = {
   /**
    * You can only provide a single element.
    */
   children: PropTypes.element.isRequired,
   /**
-   * A style manager instance.
+   * The sheetsManager is used in order to only inject once a style sheet in a page for
+   * a given theme object.
+   * You should provide on the server.
    */
-  styleManager: PropTypes.object,
+  sheetsManager: PropTypes.object,
   /**
    * A theme object.
    */
-  theme: PropTypes.object,
+  theme: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
+
+MuiThemeProvider.childContextTypes = {
+  ...themeListener.contextTypes,
+  sheetsManager: PropTypes.object,
+};
+
+MuiThemeProvider.contextTypes = themeListener.contextTypes;
+
+export default MuiThemeProvider;

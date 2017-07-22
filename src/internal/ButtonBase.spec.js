@@ -1,10 +1,10 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import keycode from 'keycode';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createShallow, createMount } from '../test-utils';
+import { createShallow, createMount, getClasses } from '../test-utils';
 import TouchRipple from './TouchRipple';
 import ButtonBase, { styleSheet } from './ButtonBase';
 
@@ -14,8 +14,10 @@ describe('<ButtonBase />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
-    classes = shallow.context.styleManager.render(styleSheet);
+    shallow = createShallow({
+      dive: true,
+    });
+    classes = getClasses(styleSheet);
     mount = createMount();
   });
 
@@ -56,7 +58,7 @@ describe('<ButtonBase />', () => {
         true,
         'should pass the test className',
       );
-      assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
     });
 
     it('should change the button type to span and set role="button"', () => {
@@ -307,7 +309,11 @@ describe('<ButtonBase />', () => {
 
     before(() => {
       clock = useFakeTimers();
-      wrapper = mount(<ButtonBase id="test-button">Hello</ButtonBase>);
+      wrapper = mount(
+        <ButtonBase.Naked classes={{}} id="test-button">
+          Hello
+        </ButtonBase.Naked>,
+      );
       instance = wrapper.instance();
 
       button = document.getElementById('test-button');
@@ -362,7 +368,11 @@ describe('<ButtonBase />', () => {
 
   describe('handleFocus()', () => {
     it('when disabled should not persist event', () => {
-      const wrapper = mount(<ButtonBase disabled>Hello</ButtonBase>);
+      const wrapper = mount(
+        <ButtonBase.Naked classes={{}} disabled>
+          Hello
+        </ButtonBase.Naked>,
+      );
       const instance = wrapper.instance();
       const eventMock = {
         persist: spy(),
@@ -375,9 +385,9 @@ describe('<ButtonBase />', () => {
       const eventMock = 'woof';
       const onKeyboardFocusSpy = spy();
       const wrapper = mount(
-        <ButtonBase component="span" onKeyboardFocus={onKeyboardFocusSpy}>
+        <ButtonBase.Naked classes={{}} component="span" onKeyboardFocus={onKeyboardFocusSpy}>
           Hello
-        </ButtonBase>,
+        </ButtonBase.Naked>,
       );
       const instance = wrapper.instance();
       instance.onKeyboardFocusHandler(eventMock);
@@ -393,7 +403,7 @@ describe('<ButtonBase />', () => {
 
     describe('avoids multiple keydown presses', () => {
       it('should work', () => {
-        wrapper = mount(<ButtonBase>Hello</ButtonBase>);
+        wrapper = mount(<ButtonBase.Naked classes={{}}>Hello</ButtonBase.Naked>);
         wrapper.setProps({
           focusRipple: true,
         });
@@ -423,7 +433,7 @@ describe('<ButtonBase />', () => {
 
     describe('prop: onKeyDown', () => {
       it('should work', () => {
-        wrapper = mount(<ButtonBase>Hello</ButtonBase>);
+        wrapper = mount(<ButtonBase.Naked classes={{}}>Hello</ButtonBase.Naked>);
         const onKeyDownSpy = spy();
         wrapper.setProps({
           onKeyDown: onKeyDownSpy,
@@ -449,7 +459,7 @@ describe('<ButtonBase />', () => {
 
     describe('Keyboard accessibility for non interactive elements', () => {
       it('should work', () => {
-        wrapper = mount(<ButtonBase>Hello</ButtonBase>);
+        wrapper = mount(<ButtonBase.Naked classes={{}}>Hello</ButtonBase.Naked>);
         const onClickSpy = spy();
         wrapper.setProps({
           onClick: onClickSpy,
@@ -480,7 +490,11 @@ describe('<ButtonBase />', () => {
 
   describe('focus()', () => {
     it('should call the focus on the instance.button', () => {
-      const instance = mount(<ButtonBase component="span">Hello</ButtonBase>).instance();
+      const instance = mount(
+        <ButtonBase.Naked classes={{}} component="span">
+          Hello
+        </ButtonBase.Naked>,
+      ).instance();
       instance.button = {
         focus: spy(),
       };

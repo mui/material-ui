@@ -7,12 +7,15 @@ import { findDOMNode } from 'react-dom';
 import { createShallow, createMount } from '../test-utils';
 import Slide from './Slide';
 import transitions, { easing, duration } from '../styles/transitions';
+import createMuiTheme from '../styles/theme';
 
 describe('<Slide />', () => {
   let shallow;
 
   before(() => {
-    shallow = createShallow();
+    shallow = createShallow({
+      dive: true,
+    });
   });
 
   it('should render a Transition', () => {
@@ -21,11 +24,11 @@ describe('<Slide />', () => {
   });
 
   it('enterTransitionDuration prop should have default value from standard durations', () => {
-    assert.strictEqual(Slide.defaultProps.enterTransitionDuration, duration.enteringScreen);
+    assert.strictEqual(Slide.Naked.defaultProps.enterTransitionDuration, duration.enteringScreen);
   });
 
   it('leaveTransitionDuration prop should have default value from standard durations', () => {
-    assert.strictEqual(Slide.defaultProps.leaveTransitionDuration, duration.leavingScreen);
+    assert.strictEqual(Slide.Naked.defaultProps.leaveTransitionDuration, duration.leavingScreen);
   });
 
   describe('event callbacks', () => {
@@ -193,9 +196,9 @@ describe('<Slide />', () => {
 
     it('should work when initialy hidden', () => {
       const wrapper = mount(
-        <Slide in={false}>
+        <Slide.Naked theme={createMuiTheme()} in={false}>
           <div>Foo</div>
-        </Slide>,
+        </Slide.Naked>,
       );
       const transition = findDOMNode(wrapper.instance().transition);
       // $FlowFixMe

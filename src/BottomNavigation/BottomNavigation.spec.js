@@ -3,10 +3,10 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount } from '../test-utils';
-import BottomNavigation, { styleSheet } from './BottomNavigation';
+import { createShallow, createMount, getClasses } from '../test-utils';
 import BottomNavigationButton from './BottomNavigationButton';
 import Icon from '../Icon';
+import BottomNavigation, { styleSheet } from './BottomNavigation';
 
 describe('<BottomNavigation />', () => {
   let shallow;
@@ -16,7 +16,7 @@ describe('<BottomNavigation />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
     mount = createMount();
   });
 
@@ -31,7 +31,7 @@ describe('<BottomNavigation />', () => {
       </BottomNavigation>,
     );
     assert.strictEqual(wrapper.name(), 'div');
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should render with the user and root classes', () => {
@@ -40,8 +40,8 @@ describe('<BottomNavigation />', () => {
         <BottomNavigationButton icon={icon} />
       </BottomNavigation>,
     );
-    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass('woof'), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should pass selected prop to children', () => {

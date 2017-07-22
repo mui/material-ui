@@ -2,10 +2,10 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import debounce from 'lodash/debounce';
-import { createStyleSheet } from 'jss-theme-reactor';
 import classnames from 'classnames';
+import debounce from 'lodash/debounce';
 import EventListener from 'react-event-listener';
+import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
 const rowsHeight = 24;

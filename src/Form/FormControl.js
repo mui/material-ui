@@ -4,7 +4,7 @@ import React, { Children, Component } from 'react';
 import type { Element } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
+import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { isDirty } from '../Input/Input';
 
