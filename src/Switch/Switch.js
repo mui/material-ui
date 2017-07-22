@@ -68,7 +68,14 @@ function Switch(props) {
 
   return (
     <div className={classNames(classes.root, className)}>
-      <SwitchBase icon={icon} checkedIcon={icon} {...other} />
+      <SwitchBase icon={icon} checkedIcon={icon} {...other}
+        switchOverrideClass={
+          {
+            checked: classes.checked,
+            default: classes.default,
+            disabled: classes.disabled,
+          }
+        } />
       <div className={classes.bar} />
     </div>
   );
