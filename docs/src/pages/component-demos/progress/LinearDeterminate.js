@@ -41,6 +41,8 @@ class LinearDeterminate extends Component {
     return (
       <div className={classes.root}>
         <LinearProgress mode="determinate" value={this.state.completed} />
+        <br />
+        <LinearProgress color="accent" mode="determinate" value={this.state.completed} />
       </div>
     );
   }
