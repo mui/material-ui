@@ -115,42 +115,19 @@ achieved in the following two ways:
 * [Use a custom theme to style components](http://material-ui.com/#/customization/themes)
 * [Override individual component styles via the `style` prop](http://material-ui.com/#/customization/inline-styles)
 
-## Examples
+## [Examples](https://github.com/callemall/material-ui/blob/v1-beta/docs/src/pages/getting-started/examples.md)
 
-There are 2 projects that you can look at to get started. They can be found in the
-[examples folder](https://github.com/callemall/material-ui/tree/master/examples).
-These projects are basic examples that show how to consume material-ui components
-in your own project. The first project uses [browserify](http://browserify.org/)
-for module bundling and [gulp](http://gulpjs.com/) for JS task automation,
-while the second project uses [webpack](http://webpack.github.io/) for module bundling and building.
+## [Roadmap](https://github.com/callemall/material-ui/blob/master/ROADMAP.md)
 
-The source code for this documentation site is also included in the repository.
-This is a slightly more complex project that also uses webpack, and contains
-examples of every material-ui component. Check out the
-[docs folder](https://github.com/callemall/material-ui/tree/master/docs)
-for build instructions.
-
-## Roadmap
-
-The future plans and high priority features and enhancements can be found
-in the [ROADMAP.md](https://github.com/callemall/material-ui/blob/master/ROADMAP.md) file.
-
-## Contribute
-
-[Material-UI](http://www.material-ui.com/) came about from our love of
-[React](http://facebook.github.io/react/) and
-[Google's Material Design](https://www.google.com/design/spec/material-design/introduction.html).
-We're currently using it on a project at [Call-Em-All](https://www.call-em-all.com/Careers)
-and plan on adding to it and making it better. If you'd like to help,
-check out the [docs folder](https://github.com/callemall/material-ui/tree/master/docs).
-We'd greatly appreciate any [contribution](https://github.com/callemall/material-ui/blob/master/CONTRIBUTING.md)
-you make. :)
+## [Contributing](https://github.com/callemall/material-ui/blob/master/CONTRIBUTING.md)
 
 ## Thanks
 
 [<img src="https://www.browserstack.com/images/mail/browserstack-logo-footer.png" width="120">](https://www.browserstack.com/)
-Thank you to [BrowserStack](https://www.browserstack.com/) for providing the infrastructure that allows us to test `material-ui` in real browsers.
+
+Thank you to [BrowserStack](https://www.browserstack.com/) for providing the infrastructure that allows us to test in real browsers.
 
 ## License
+
 This project is licensed under the terms of the
 [MIT license](https://github.com/callemall/material-ui/blob/master/LICENSE)
