@@ -6,6 +6,7 @@ import Checkbox from 'material-ui/Checkbox';
 import { createMuiTheme, createStyleSheet, MuiThemeProvider, withStyles } from 'material-ui/styles';
 import orange from 'material-ui/colors/orange';
 import green from 'material-ui/colors/green';
+import pink from 'material-ui/colors/pink';
 
 const styleSheet = createStyleSheet('NestedCheckbox', theme => ({
   danger: {
@@ -37,12 +38,25 @@ const theme2 = outerTheme => ({
   },
 });
 
+const theme3 = outerTheme => ({
+  ...outerTheme,
+  status: {
+    color: pink[500],
+  },
+});
+
 function Nested() {
   return (
     <MuiThemeProvider theme={theme1}>
-      <MuiThemeProvider theme={theme2}>
+      <div>
         <NestedCheckbox />
-      </MuiThemeProvider>
+        <MuiThemeProvider theme={theme2}>
+          <NestedCheckbox />
+        </MuiThemeProvider>
+        <MuiThemeProvider theme={theme3}>
+          <NestedCheckbox />
+        </MuiThemeProvider>
+      </div>
     </MuiThemeProvider>
   );
 }
