@@ -99,9 +99,6 @@ class TextFields extends Component {
           defaultValue="2017-05-24"
           className={classes.textField}
           margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
         />
         <TextField
           id="helperText"
