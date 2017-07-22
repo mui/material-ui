@@ -30,7 +30,7 @@ export const styleSheet = createStyleSheet('MuiLinearProgress', theme => ({
     backgroundColor: theme.palette.accent.A100,
   },
   accentColorBar: {
-    backgroundColor: theme.palette.accent.A200,
+    backgroundColor: theme.palette.accent.A400,
   },
   accentDashed: {
     background: `radial-gradient(${theme.palette.accent.A100} 0%, ${theme.palette.accent
