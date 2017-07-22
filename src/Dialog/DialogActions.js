@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Children, cloneElement } from 'react';
+import React, { Children, cloneElement, isValidElement } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
@@ -27,10 +27,15 @@ function DialogActions(props) {
 
   return (
     <div data-mui-test="DialogActions" className={classNames(classes.root, className)} {...other}>
-      {Children.map(children, button =>
-        <div className={classes.action}>
-          {cloneElement(button, { className: classNames(classes.button, button.props.className) })}
-        </div>,
+      {Children.map(
+        children,
+        button =>
+          isValidElement(button) &&
+          <div className={classes.action}>
+            {cloneElement(button, {
+              className: classNames(classes.button, button.props.className),
+            })}
+          </div>,
       )}
     </div>
   );
