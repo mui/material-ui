@@ -108,8 +108,7 @@ export default function createSwitch(
       const switchClasses = switchStyleSheet
         ? this.context.styleManager.render(switchStyleSheet)
         : {};
-      if (switchOverrideClass) {
-        console.log(switchOverrideClass);
+      if (switchOverrideClass && (switchOverrideClass.checked || switchOverrideClass.default || switchOverrideClass.disabled)) {
         Object.assign(switchClasses, switchOverrideClass)
       }
       const className = classNames(classes.root, switchClasses.default, classNameProp, {
