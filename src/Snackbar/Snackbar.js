@@ -3,8 +3,8 @@
 import React, { Component, createElement, cloneElement } from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
 import EventListener from 'react-event-listener';
+import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import ClickAwayListener from '../internal/ClickAwayListener';

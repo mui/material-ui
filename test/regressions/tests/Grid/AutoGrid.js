@@ -1,9 +1,9 @@
 // @flow weak
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import Paper from 'material-ui/Paper';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import { createStyleSheet, withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 
 const styleSheet = createStyleSheet('AutoGrid', () => ({
@@ -16,8 +16,8 @@ const styleSheet = createStyleSheet('AutoGrid', () => ({
   },
 }));
 
-export default function AutoGrid(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function AutoGrid(props) {
+  const { classes } = props;
 
   return (
     <div className={classes.root}>
@@ -47,6 +47,8 @@ export default function AutoGrid(props, context) {
   );
 }
 
-AutoGrid.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+AutoGrid.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(AutoGrid);

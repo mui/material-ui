@@ -3,7 +3,7 @@
 import React from 'react';
 import { spy } from 'sinon';
 import { assert } from 'chai';
-import { createShallow } from '../test-utils';
+import { createShallow, getClasses } from '../test-utils';
 import Input from '../Input';
 import FormControl, { styleSheet } from './FormControl';
 
@@ -13,7 +13,7 @@ describe('<FormControl />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
   });
 
   describe('initial state', () => {

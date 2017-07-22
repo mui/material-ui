@@ -3,40 +3,40 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow } from '../test-utils';
-import BottomNavigationButton, { styleSheet } from './BottomNavigationButton';
+import { createShallow, getClasses } from '../test-utils';
 import Icon from '../Icon';
+import BottomNavigationButton, { styleSheet } from './BottomNavigationButton';
 
-describe('<BottomNavigationButton / />', () => {
+describe('<BottomNavigationButton />', () => {
   let shallow;
   let classes;
   const icon = <Icon>restore</Icon>;
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
   });
 
   it('should render a ButtonBase', () => {
     const wrapper = shallow(<BottomNavigationButton icon={icon} />);
-    assert.strictEqual(wrapper.name(), 'ButtonBase');
+    assert.strictEqual(wrapper.name(), 'withStyles(ButtonBase)');
   });
 
   it('should render with the root class', () => {
     const wrapper = shallow(<BottomNavigationButton icon={icon} />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should render with the user and root classes', () => {
     const wrapper = shallow(<BottomNavigationButton className="woof" icon={icon} />);
-    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass('woof'), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should render with the selected and root classes', () => {
     const wrapper = shallow(<BottomNavigationButton icon={icon} selected />);
     assert.strictEqual(wrapper.hasClass(classes.selected), true, 'should have the selected class');
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should render with the selectedIconOnly and root classes', () => {
@@ -46,7 +46,7 @@ describe('<BottomNavigationButton / />', () => {
       true,
       'should have the selectedIconOnly class',
     );
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should render icon with the icon class', () => {

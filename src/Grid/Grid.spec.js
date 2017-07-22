@@ -3,9 +3,9 @@
 import React from 'react';
 import { assert } from 'chai';
 import forOwn from 'lodash/forOwn';
-import { createShallow } from '../test-utils';
-import Grid, { styleSheet } from './Grid';
+import { createShallow, getClasses } from '../test-utils';
 import Hidden from '../Hidden';
+import Grid, { styleSheet } from './Grid';
 
 describe('<Grid />', () => {
   let shallow;
@@ -19,7 +19,7 @@ describe('<Grid />', () => {
         context: shallowInner.context,
       });
     };
-    classes = shallowInner.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
   });
 
   it('should render', () => {

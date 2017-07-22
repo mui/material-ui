@@ -2,9 +2,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { createStyleSheet } from 'jss-theme-reactor';
+import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
-import customPropTypes from '../utils/customPropTypes';
 import Transition from '../internal/Transition';
 
 const reflow = elem => elem.offsetHeight;
@@ -37,11 +36,11 @@ class Collapse extends Component {
   };
 
   handleEntering = element => {
-    const { transitionDuration } = this.props;
+    const { transitionDuration, theme } = this.props;
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
 
     if (transitionDuration === 'auto') {
-      const { getAutoHeightDuration } = this.context.styleManager.theme.transitions;
+      const { getAutoHeightDuration } = theme.transitions;
       element.style.transitionDuration = `${getAutoHeightDuration(wrapperHeight)}ms`;
     } else if (typeof transitionDuration === 'number') {
       element.style.transitionDuration = `${transitionDuration}ms`;
@@ -74,12 +73,12 @@ class Collapse extends Component {
   };
 
   handleExiting = element => {
-    const { transitionDuration } = this.props;
+    const { transitionDuration, theme } = this.props;
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
 
     if (transitionDuration) {
       if (transitionDuration === 'auto') {
-        const { getAutoHeightDuration } = this.context.styleManager.theme.transitions;
+        const { getAutoHeightDuration } = theme.transitions;
         element.style.transitionDuration = `${getAutoHeightDuration(wrapperHeight)}ms`;
       } else if (typeof transitionDuration === 'number') {
         element.style.transitionDuration = `${transitionDuration}ms`;
@@ -103,6 +102,7 @@ class Collapse extends Component {
       onExit,
       onExiting,
       transitionDuration,
+      theme,
       ...other
     } = this.props;
 
@@ -168,6 +168,10 @@ Collapse.propTypes = {
    */
   onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
   /**
+   * @ignore
+   */
+  theme: PropTypes.object.isRequired,
+  /**
    * Set to 'auto' to automatically calculate transition time based on height.
    */
   transitionDuration: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -178,8 +182,6 @@ Collapse.defaultProps = {
   transitionDuration: 300,
 };
 
-Collapse.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
-
-export default withStyles(styleSheet)(Collapse);
+export default withStyles(styleSheet, {
+  withTheme: true,
+})(Collapse);

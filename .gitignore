@@ -10,6 +10,9 @@ tmp
 # OS files
 .DS_STORE
 
+# Screenshors generated for Argos-CI
+test/regressions/screenshots/
+
 # npm files
 node_modules
 package-lock.json

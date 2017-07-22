@@ -3,8 +3,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
+import createStyleSheet from '../styles/createStyleSheet';
+import withStyles from '../styles/withStyles';
 import IconButton from '../IconButton';
 import CheckBoxOutlineBlankIcon from '../svg-icons/check-box-outline-blank';
 import CheckBoxIcon from '../svg-icons/check-box';
@@ -87,6 +87,7 @@ export default function createSwitch(
     render() {
       const {
         checked: checkedProp,
+        classes,
         className: classNameProp,
         checkedClassName,
         checkedIcon,
@@ -103,14 +104,9 @@ export default function createSwitch(
       } = this.props;
 
       const checked = this.isControlled ? checkedProp : this.state.checked;
-      const classes = this.context.styleManager.render(styleSheet);
-      const switchClasses = switchStyleSheet
-        ? this.context.styleManager.render(switchStyleSheet)
-        : {};
-
-      const className = classNames(classes.root, switchClasses.default, classNameProp, {
-        [classNames(switchClasses.checked, checkedClassName)]: checked,
-        [classNames(switchClasses.disabled, disabledClassName)]: disabled,
+      const className = classNames(classes.root, classes.default, classNameProp, {
+        [classNames(classes.checked, checkedClassName)]: checked,
+        [classNames(classes.disabled, disabledClassName)]: disabled,
       });
 
       let icon = checked ? checkedIcon : iconProp;
@@ -178,6 +174,10 @@ export default function createSwitch(
      */
     checkedIcon: PropTypes.node,
     /**
+     * Useful to extend the style applied to components.
+     */
+    classes: PropTypes.object.isRequired,
+    /**
      * @ignore
      */
     className: PropTypes.string,
@@ -231,9 +231,5 @@ export default function createSwitch(
     value: PropTypes.string,
   };
 
-  SwitchBase.contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
-  return SwitchBase;
+  return withStyles([switchStyleSheet, styleSheet])(SwitchBase);
 }

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '../test-utils';
+import { createShallow, getClasses } from '../test-utils';
 import Card, { styleSheet } from './Card';
 
 describe('<Card />', () => {
@@ -11,7 +11,7 @@ describe('<Card />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
   });
 
   it('should render Paper with 2dp', () => {

@@ -18,6 +18,7 @@
 | onExit | function |  | Callback fired before the component exits. |
 | onExited | function |  | Callback fired when the component has exited. |
 | onExiting | function |  | Callback fired when the component is exiting. |
+| <span style="color: #31a148">theme *</span> | object |  |  |
 
 Any other properties supplied will be spread to the root element.
 

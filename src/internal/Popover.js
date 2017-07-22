@@ -4,12 +4,11 @@ import React, { Component } from 'react';
 import type { Element } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
 import contains from 'dom-helpers/query/contains';
 import debounce from 'lodash/debounce';
 import EventListener from 'react-event-listener';
+import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
-import customPropTypes from '../utils/customPropTypes';
 import Modal from './Modal';
 import Transition from './Transition';
 import Paper from '../Paper';
@@ -188,6 +187,10 @@ type Props = DefaultProps & {
    * Set to 'auto' to automatically calculate transition time based on height
    */
   transitionDuration: number | 'auto',
+  /**
+   * @ignore
+   */
+  theme: Object,
 };
 
 /**
@@ -242,7 +245,7 @@ class Popover extends Component<DefaultProps, Props, void> {
     this.setPositioningStyles(element);
 
     let { transitionDuration } = this.props;
-    const { transitions } = this.context.styleManager.theme;
+    const { transitions } = this.props.theme;
 
     if (transitionDuration === 'auto') {
       transitionDuration = transitions.getAutoHeightDuration(element.clientHeight);
@@ -270,7 +273,7 @@ class Popover extends Component<DefaultProps, Props, void> {
 
   handleExit = (element: HTMLElement) => {
     let { transitionDuration } = this.props;
-    const { transitions } = this.context.styleManager.theme;
+    const { transitions } = this.props.theme;
 
     if (transitionDuration === 'auto') {
       transitionDuration = transitions.getAutoHeightDuration(element.clientHeight);
@@ -436,6 +439,7 @@ class Popover extends Component<DefaultProps, Props, void> {
       onExiting,
       onExited,
       elevation,
+      theme,
       ...other
     } = this.props;
 
@@ -473,8 +477,4 @@ class Popover extends Component<DefaultProps, Props, void> {
   }
 }
 
-Popover.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
-
-export default withStyles(styleSheet)(Popover);
+export default withStyles(styleSheet, { withTheme: true })(Popover);

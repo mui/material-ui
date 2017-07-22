@@ -1,9 +1,9 @@
 // @flow weak
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import Paper from 'material-ui/Paper';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import { createStyleSheet, withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 
 const styleSheet = createStyleSheet('SimpleGrid', () => ({
@@ -16,8 +16,8 @@ const styleSheet = createStyleSheet('SimpleGrid', () => ({
   },
 }));
 
-export default function SimpleGrid(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function SimpleGrid(props) {
+  const { classes } = props;
 
   return (
     <div className={classes.root}>
@@ -48,6 +48,8 @@ export default function SimpleGrid(props, context) {
   );
 }
 
-SimpleGrid.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+SimpleGrid.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(SimpleGrid);

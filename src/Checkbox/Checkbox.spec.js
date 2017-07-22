@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '../test-utils';
+import { createShallow, getClasses } from '../test-utils';
 import Checkbox, { styleSheet } from './Checkbox';
 
 describe('<Checkbox />', () => {
@@ -11,7 +11,7 @@ describe('<Checkbox />', () => {
 
   before(() => {
     shallow = createShallow();
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
   });
 
   describe('styleSheet', () => {
@@ -25,6 +25,6 @@ describe('<Checkbox />', () => {
   it('should render a div with a SwitchBase', () => {
     assert.strictEqual(Checkbox.name, 'Checkbox', 'set for debugging');
     const wrapper = shallow(<Checkbox />);
-    assert.strictEqual(wrapper.name(), 'SwitchBase');
+    assert.strictEqual(wrapper.name(), 'withStyles(SwitchBase)');
   });
 });

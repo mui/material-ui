@@ -9,11 +9,12 @@ import type { Breakpoint } from '../styles/breakpoints';
 import Typography from '../Typography';
 
 describe('<HiddenJs />', () => {
-  let shallowWithWidth;
+  let shallow;
 
   before(() => {
-    const shallow = createShallow();
-    shallowWithWidth = (node, options = {}) => shallow(node, options).dive();
+    shallow = createShallow({
+      untilSelector: 'EventListener',
+    });
   });
 
   function resolvePropName(upDownOnly, breakpoint) {
@@ -41,7 +42,7 @@ describe('<HiddenJs />', () => {
         const props = { width, [prop]: breakpoint };
 
         // children
-        let wrapper = shallowWithWidth(
+        let wrapper = shallow(
           <HiddenJs component="div" {...props}>
             foo
           </HiddenJs>,
@@ -49,7 +50,7 @@ describe('<HiddenJs />', () => {
         assert.isNull(wrapper.type(), 'should render null');
 
         // element
-        wrapper = shallowWithWidth(
+        wrapper = shallow(
           <HiddenJs component={<Typography>foo</Typography>} {...props}>
             foo
           </HiddenJs>,
@@ -76,7 +77,7 @@ describe('<HiddenJs />', () => {
         const props = { width, [prop]: breakpoint };
 
         // children
-        let wrapper = shallowWithWidth(
+        let wrapper = shallow(
           <HiddenJs {...props}>
             <div>foo</div>
           </HiddenJs>,
@@ -86,7 +87,7 @@ describe('<HiddenJs />', () => {
         assert.strictEqual(wrapper.first().text(), 'foo', 'should render children');
 
         // element
-        wrapper = shallowWithWidth(
+        wrapper = shallow(
           <HiddenJs {...props}>
             <Typography>foo</Typography>
           </HiddenJs>,

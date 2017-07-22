@@ -25,8 +25,7 @@ const docs = (state = { dark: false }, action) => {
   return state;
 };
 
-export const store = createStore(docs);
-
+const store = createStore(docs);
 const rootEl = document.querySelector('#app');
 
 render(

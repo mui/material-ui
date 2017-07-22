@@ -3,8 +3,9 @@
 import React, { Children, cloneElement, isValidElement } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
+import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
+import '../Button'; // So we don't have any override priority issue.
 
 export const styleSheet = createStyleSheet('MuiDialogActions', theme => ({
   root: {
