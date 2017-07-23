@@ -89,7 +89,7 @@ function handleRender(req, res) {
   });
 
   // Configure JSS
-  const jss = create(preset);
+  const jss = create(preset());
   jss.options.createGenerateClassName = createGenerateClassName;
 
   // Render the component to a string.
