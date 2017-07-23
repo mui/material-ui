@@ -1,5 +1,31 @@
 ## HEAD
 
+## 0.18.7
+###### _Jul 23, 2017_
+
+Big thanks to the 11 contributors who made this release possible.
+As always, we are focusing on bug fixes.
+
+##### Component Fixes / Enhancements
+
+- [Table] Don't set height to tbody (#7484) @GAumala
+- [Popover] Scroll Container issue (#7472) @gorkemcnr
+- [ListItem] Fix triggers onTouchTap when disabled (#7486) @jonashartwig
+- [Chip] Fix warning when using onRequestDelete (#7407) @leMaik
+- [Datepicker] Option to select year first (#7367) @chrisjbrown
+- [List] Fix clicking "Toggle Nested Items" icon triggering left checkbox toggle (#7171) @hwo411
+
+##### Docs
+
+- [ROADMAP] Update the release plan for v1: fasteeer (#7428) @oliviertassinari
+- [docs] Update ROADMAP.md with v1-alpha branch (#7345) @whyvez
+- [docs] Update CONTRIBUTING.md with v1-alpha branch (#7371) @akshaynaik404
+- [docs] Fix typo in Avatar (#7478) @brianlheim
+
+##### Core
+
+N.A
+
 ## 0.18.6
 ###### _Jul 4, 2017_
 
