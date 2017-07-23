@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { createStyleSheet } from 'jss-theme-reactor';
 import withStyles from '../styles/withStyles';
+import classesOverrider from '../styles/classesOverrider';
 import createSwitch from '../internal/SwitchBase';
 
 export const styleSheet = createStyleSheet('MuiSwitch', theme => ({
@@ -60,7 +61,6 @@ export const styleSheet = createStyleSheet('MuiSwitch', theme => ({
 }));
 
 const SwitchBase = createSwitch({ styleSheet });
-
 function Switch(props) {
   const { classes, className, ...other } = props;
 
@@ -68,14 +68,12 @@ function Switch(props) {
 
   return (
     <div className={classNames(classes.root, className)}>
-      <SwitchBase icon={icon} checkedIcon={icon} {...other}
-        switchOverrideClass={
-          {
-            checked: classes.checked,
-            default: classes.default,
-            disabled: classes.disabled,
-          }
-        } />
+      <SwitchBase
+        icon={icon}
+        checkedIcon={icon}
+        overrideClass={classesOverrider(classes, ['default', 'checked', 'disabled'])}
+        {...other}
+      />
       <div className={classes.bar} />
     </div>
   );
