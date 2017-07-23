@@ -73,7 +73,7 @@ import preset from 'jss-preset-default';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import createPalette from 'material-ui/styles/palette';
 import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
-import { green, red } from 'material-ui/styles/colors';
+import { green, red } from 'material-ui/colors';
 
 function handleRender(req, res) {
   // Create a sheetsRegistry instance.
@@ -142,7 +142,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import createPalette from 'material-ui/styles/palette';
-import { green, red } from 'material-ui/styles/colors';
+import { green, red } from 'material-ui/colors';
 import App from './App';
 
 class Main extends Component {
