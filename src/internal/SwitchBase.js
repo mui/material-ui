@@ -34,7 +34,7 @@ export default function createSwitch(
     defaultIcon = <CheckBoxOutlineBlankIcon aria-hidden="true" />,
     defaultCheckedIcon = <CheckBoxIcon aria-hidden="true" />,
     inputType = 'checkbox',
-    styleSheet: switchStyleSheet
+    styleSheet: switchStyleSheet,
   } = {},
 ) {
   /**
@@ -45,7 +45,7 @@ export default function createSwitch(
       icon: defaultIcon,
       checkedIcon: defaultCheckedIcon,
       disableRipple: false,
-      switchOverrideClass: {}
+      switchOverrideClass: {},
     };
 
     state = {};
@@ -99,7 +99,7 @@ export default function createSwitch(
         onChange,
         tabIndex,
         value,
-        switchOverrideClass,
+        overrideClass,
         ...other
       } = this.props;
 
@@ -108,8 +108,8 @@ export default function createSwitch(
       const switchClasses = switchStyleSheet
         ? this.context.styleManager.render(switchStyleSheet)
         : {};
-      if (switchOverrideClass && (switchOverrideClass.checked || switchOverrideClass.default || switchOverrideClass.disabled)) {
-        Object.assign(switchClasses, switchOverrideClass)
+      if (overrideClass) {
+        Object.assign(switchClasses, overrideClass);
       }
       const className = classNames(classes.root, switchClasses.default, classNameProp, {
         [classNames(switchClasses.checked, checkedClassName)]: checked,
@@ -218,7 +218,7 @@ export default function createSwitch(
     /**
      * @ignore
      */
-    switchOverrideClass: PropTypes.object,
+    overrideClass: PropTypes.object,
     /**
      * @ignore
      */
