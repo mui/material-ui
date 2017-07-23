@@ -30,7 +30,7 @@ When the `className` property isn't enough and you need to access deeper element
 to customize all the CSS inject by Material-UI for the given component.
 The list of these classes is documented under the **Component API** section.
 For instance, you can have a look at the [Button CSS API](/component-api/button#css-api).
-Alternatively, you can always have a look at the [implementation](https://github.com/callemall/material-ui/blob/v1-alpha/src/Button/Button.js).
+Alternatively, you can always have a look at the [implementation](https://github.com/callemall/material-ui/blob/v1-beta/src/Button/Button.js).
 
 Let's see an example:
 

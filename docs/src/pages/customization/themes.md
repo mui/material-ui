@@ -58,7 +58,7 @@ You can make a theme dark by setting `type` to `dark`.
 ### The other variables
 
 We have tried to normalize the implementation by adding many more variables: typography, breakpoints, transitions, etc. You can see below what the theme object looks like with the default values.
-If you want to learn more, we suggesting having a look at [`material-ui/style/theme.js`](https://github.com/callemall/material-ui/blob/v1-alpha/src/styles/theme.js).
+If you want to learn more, we suggesting having a look at [`material-ui/style/theme.js`](https://github.com/callemall/material-ui/blob/v1-beta/src/styles/theme.js).
 
 {{demo='pages/customization/ThemeDefault.js'}}
 
@@ -81,7 +81,7 @@ That's a really powerful feature.
 
 The list of these customization points for each component is documented under the **Component API** section.
 For instance, you can have a look at the [Button](/component-api/button#css-api).
-Alternatively, you can always have a look at the [implementation](https://github.com/callemall/material-ui/blob/v1-alpha/src/Button/Button.js).
+Alternatively, you can always have a look at the [implementation](https://github.com/callemall/material-ui/blob/v1-beta/src/Button/Button.js).
 
 ## Accessing the theme in a component
 

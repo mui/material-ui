@@ -53,7 +53,7 @@ Please note that `@next` will only point to pre-releases; to get the latest stab
 ### Roboto Font
 
 Material-UI was designed with the [Roboto](http://www.google.com/fonts/specimen/Roboto)
-font in mind. So be sure to follow [those instructions](https://github.com/callemall/material-ui/blob/v1-alpha/docs/src/pages/style/typography.md#general).
+font in mind. So be sure to follow [those instructions](https://github.com/callemall/material-ui/blob/v1-beta/docs/src/pages/style/typography.md#general).
 
 ### Packaging for use with separate React
 
