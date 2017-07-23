@@ -64,13 +64,13 @@ export const styleSheet = createStyleSheet('MuiSwitch', theme => ({
 const SwitchBase = createSwitch({ styleSheet });
 
 function Switch(props) {
-  const { classes, className, ...other } = props;
+  const { classes: { root, ...classes }, className, ...other } = props;
 
   const icon = <div className={classes.icon} />;
 
   return (
-    <div className={classNames(classes.root, className)}>
-      <SwitchBase icon={icon} checkedIcon={icon} {...other} />
+    <div className={classNames(root, className)}>
+      <SwitchBase icon={icon} classes={classes} checkedIcon={icon} {...other} />
       <div className={classes.bar} />
     </div>
   );

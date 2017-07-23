@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import Radio from 'material-ui/Radio';
 
-export default class RadioButtons extends Component {
+class RadioButtons extends Component {
   state = {
     selectedValue: undefined,
   };
@@ -40,3 +40,5 @@ export default class RadioButtons extends Component {
     );
   }
 }
+
+export default RadioButtons;

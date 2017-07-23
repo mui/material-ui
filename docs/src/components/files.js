@@ -46,7 +46,7 @@ export const demoComponentsTree = demos.map(demo => {
     return node;
   }
 
-  node.components = components[1].split(', ');
+  node.components = components[1].split(', ').sort();
 
   return node;
 });
