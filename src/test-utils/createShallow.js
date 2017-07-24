@@ -30,7 +30,5 @@ export default function createShallow(options: Object = {}) {
     return wrapper;
   };
 
-  shallowWithContext.context = context;
-
   return shallowWithContext;
 }
