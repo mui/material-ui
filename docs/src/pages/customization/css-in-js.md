@@ -96,7 +96,7 @@ It does not modify the component passed to it; instead, it returns a new compone
 This `classes` object contains the name of the class names injected in the DOM.
 
 Some implementation details that might be interesting to being aware of:
- - It's not forwarding react static properties so this HOC is more "transparent".
+ - It's forwarding *non react static* properties so this HOC is more "transparent".
  - It's adding a `innerRef` property so you can get a reference to the wrapped component.
  - It's adding a `classes` property so you can override the injected class names from the outside.
 
