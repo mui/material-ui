@@ -18,6 +18,9 @@ const styleSheet = createStyleSheet('FullScreenDialog', {
   appBar: {
     position: 'relative',
   },
+  paper: {
+    margin: 0,
+  },
   flex: {
     flex: 1,
   },
@@ -37,11 +40,14 @@ class FullScreenDialog extends Component {
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
     return (
       <div>
         <Button onClick={this.handleOpen}>Open full-screen dialog</Button>
         <Dialog
+          classes={{
+            paper: classes.paper,
+          }}
           fullScreen
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
