@@ -19,7 +19,7 @@ function getStyles(props, context) {
 
   const styles = {
     root: {
-      // Nested div bacause the List scales x faster than it scales y
+      // Nested div because the List scales x faster than it scales y
       zIndex: muiTheme.zIndex.menu,
       maxHeight: maxHeight,
       overflowY: maxHeight ? 'auto' : null,
