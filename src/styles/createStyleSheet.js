@@ -30,7 +30,9 @@ function createStyleSheet(name: string | GetStyles, callback?: GetStyles, option
     name: typeof name === 'string' ? name : false,
     createStyles,
     options,
-    themingEnabled: typeof getStyles === 'function',
+    // Enable the theme if the getStyles is a function (as we provide the theme as first argument)
+    // or if the sheets has a name (as we can use the overrides key of the theme).
+    themingEnabled: typeof getStyles === 'function' || typeof name === 'string',
   };
 }
 

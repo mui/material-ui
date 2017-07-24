@@ -109,7 +109,7 @@ describe('withStyles', () => {
     });
 
     it('should run lifecycles with no theme', () => {
-      const styleSheet = createStyleSheet('MuiTextField', {
+      const styleSheet = createStyleSheet({
         root: {
           display: 'flex',
         },
@@ -125,19 +125,19 @@ describe('withStyles', () => {
       );
       assert.strictEqual(sheetsRegistry.registry.length, 1);
       assert.deepEqual(sheetsRegistry.registry[0].classes, {
-        root: 'MuiTextField-root-1',
+        root: 'Empty-root-1',
       });
       wrapper.update();
       assert.strictEqual(sheetsRegistry.registry.length, 1, 'should only attach once');
       assert.deepEqual(sheetsRegistry.registry[0].classes, {
-        root: 'MuiTextField-root-1',
+        root: 'Empty-root-1',
       });
       wrapper.setProps({
         theme: createMuiTheme(),
       });
       assert.strictEqual(sheetsRegistry.registry.length, 1, 'should only attach once');
       assert.deepEqual(sheetsRegistry.registry[0].classes, {
-        root: 'MuiTextField-root-1',
+        root: 'Empty-root-1',
       });
 
       wrapper.unmount();
@@ -169,6 +169,40 @@ describe('withStyles', () => {
       assert.strictEqual(sheetsRegistry.registry.length, 1, 'should only attach once');
       assert.deepEqual(sheetsRegistry.registry[0].classes, {
         root: 'MuiTextField-root-2',
+      });
+    });
+
+    it('should support the overrides key', () => {
+      const styleSheet = createStyleSheet('MuiTextField', {
+        root: {
+          padding: 8,
+        },
+      });
+      const StyledComponent = withStyles(styleSheet)(Empty);
+
+      mount(
+        <MuiThemeProvider
+          theme={createMuiTheme({
+            overrides: {
+              MuiTextField: {
+                root: {
+                  padding: 9,
+                },
+              },
+            },
+          })}
+        >
+          <JssProvider registry={sheetsRegistry} jss={jss}>
+            <StyledComponent />
+          </JssProvider>
+        </MuiThemeProvider>,
+      );
+
+      assert.strictEqual(sheetsRegistry.registry.length, 1, 'should only attach once');
+      assert.deepEqual(sheetsRegistry.registry[0].rules.raw, {
+        root: {
+          padding: 9,
+        },
       });
     });
   });
