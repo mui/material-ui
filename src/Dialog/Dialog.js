@@ -38,6 +38,7 @@ export const styleSheet = createStyleSheet('MuiDialog', theme => ({
     maxWidth: theme.breakpoints.getWidth('md'),
   },
   fullScreen: {
+    margin: 0,
     width: '100%',
     maxWidth: '100%',
     height: '100%',
