@@ -101,7 +101,7 @@ class List extends Component<DefaultProps, Props, void> {
     const className = classNames(
       classes.root,
       {
-        [classes.dense]: dense,
+        [classes.dense]: dense && !disablePadding,
         [classes.padding]: !disablePadding,
         [classes.subheader]: subheader,
       },
