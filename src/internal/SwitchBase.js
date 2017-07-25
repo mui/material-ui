@@ -155,10 +155,8 @@ export default function createSwitch(
     }
   }
 
-  /**
-   ** NB: If changed, please update Checkbox, Switch and Radio
-   ** so that the API documentation is updated.
-   **/
+  // NB: If changed, please update Checkbox, Switch and Radio
+  // so that the API documentation is updated.
   SwitchBase.propTypes = {
     /**
      * If `true`, the component appears selected.

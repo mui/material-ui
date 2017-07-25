@@ -26,8 +26,8 @@
     "redbox-react": "^1.4.3",
     "rimraf": "^2.6.1",
     "style-loader": "^0.18.2",
-    "webpack": "^3.2.0",
-    "webpack-dev-server": "^2.5.1"
+    "webpack": "^3.3.0",
+    "webpack-dev-server": "^2.6.1"
   },
   "dependencies": {
     "autosuggest-highlight": "^3.1.0",
