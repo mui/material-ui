@@ -460,7 +460,9 @@ class Popover extends Component<DefaultProps, Props, void> {
           role={role}
           onRequestTimeout={this.handleRequestTimeout}
           transitionAppear
-          ref={node => (this.transitionEl = node)}
+          ref={node => {
+            this.transitionEl = node;
+          }}
         >
           <Paper
             data-mui-test="Popover"

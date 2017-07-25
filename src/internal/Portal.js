@@ -42,6 +42,7 @@ class Portal extends Component {
     if (!this.layer) {
       return;
     }
+
     ReactDOM.unmountComponentAtNode(this.layer);
     if (document.body) {
       document.body.removeChild(this.layer);
