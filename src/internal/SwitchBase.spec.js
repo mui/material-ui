@@ -3,11 +3,11 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount } from '../test-utils';
+import { createShallow, createMount, getClasses } from '../test-utils';
 import createSwitch, { styleSheet } from './SwitchBase';
 import Icon from '../Icon';
 
-function assertIsChecked(classes, wrapper) {
+function assertIsChecked(wrapper) {
   const iconButton = wrapper.find('span').at(0);
 
   assert.strictEqual(
@@ -24,7 +24,7 @@ function assertIsChecked(classes, wrapper) {
   assert.strictEqual(icon.is('pure(CheckBox)'), true, 'should be the CheckBox icon');
 }
 
-function assertIsNotChecked(classes, wrapper) {
+function assertIsNotChecked(wrapper) {
   const iconButton = wrapper.find('span').at(0);
 
   assert.strictEqual(
@@ -47,15 +47,17 @@ function assertIsNotChecked(classes, wrapper) {
 
 describe('<SwitchBase />', () => {
   let shallow;
-  let classes;
   let mount;
+  let classes;
   let SwitchBase;
 
   before(() => {
     SwitchBase = createSwitch();
-    shallow = createShallow();
+    shallow = createShallow({
+      dive: true,
+    });
     mount = createMount();
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
   });
 
   after(() => {
@@ -91,19 +93,16 @@ describe('<SwitchBase />', () => {
     assert.strictEqual(wrapper.props().disableRipple, true, 'should set disableRipple to true');
   });
 
-  // IT SHOULD RENDER
-  // WITH A CUSTOM ICON!!!
-
   // className is put on the root node, this is a special case!
   it('should render with the user and root classes', () => {
     const wrapper = shallow(<SwitchBase className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass('woof'), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should spread custom props on the root node', () => {
     const wrapper = shallow(<SwitchBase data-my-prop="woof" />);
-    assert.strictEqual(wrapper.prop('data-my-prop'), 'woof', 'custom prop should be woof');
+    assert.strictEqual(wrapper.props()['data-my-prop'], 'woof', 'custom prop should be woof');
   });
 
   it('should pass tabIndex to the input so it can be taken out of focus rotation', () => {
@@ -123,14 +122,14 @@ describe('<SwitchBase />', () => {
     const input = wrapper.find('input');
 
     Object.keys(props).forEach(n => {
-      assert.strictEqual(input.prop(n), props[n]);
+      assert.strictEqual(input.props()[n], props[n]);
     });
   });
 
   it('should disable the components, and render the IconButton with the disabled className', () => {
     const wrapper = shallow(<SwitchBase disabled />);
     assert.strictEqual(wrapper.props().disabled, true, 'should disable the root node');
-    assert.strictEqual(wrapper.childAt(1).prop('disabled'), true, 'should disable the input node');
+    assert.strictEqual(wrapper.childAt(1).props().disabled, true, 'should disable the input node');
   });
 
   it('should apply the custom disabled className when disabled', () => {
@@ -158,7 +157,12 @@ describe('<SwitchBase />', () => {
 
     beforeEach(() => {
       wrapper = mount(
-        <SwitchBase className="test-class" checkedClassName="test-class-checked" checked={false} />,
+        <SwitchBase.Naked
+          classes={{}}
+          className="test-class"
+          checkedClassName="test-class-checked"
+          checked={false}
+        />,
       );
     });
 
@@ -171,18 +175,18 @@ describe('<SwitchBase />', () => {
     });
 
     it('should not not be checked', () => {
-      assertIsNotChecked(classes, wrapper);
+      assertIsNotChecked(wrapper);
     });
 
     it('should check the checkbox', () => {
       wrapper.setProps({ checked: true });
-      assertIsChecked(classes, wrapper);
+      assertIsChecked(wrapper);
     });
 
     it('should uncheck the checkbox', () => {
       wrapper.setProps({ checked: true });
       wrapper.setProps({ checked: false });
-      assertIsNotChecked(classes, wrapper);
+      assertIsNotChecked(wrapper);
     });
   });
 
@@ -190,30 +194,32 @@ describe('<SwitchBase />', () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = mount(<SwitchBase className="test-class" checkedClassName="test-class-checked" />);
-    });
-
-    it('should recognize an uncontrolled input', () => {
-      assert.strictEqual(
-        wrapper.instance().isControlled,
-        false,
-        'should set instance.isControlled to false',
+      wrapper = mount(
+        <SwitchBase.Naked
+          classes={{}}
+          className="test-class"
+          checkedClassName="test-class-checked"
+        />,
       );
     });
 
+    it('should recognize an uncontrolled input', () => {
+      assert.strictEqual(wrapper.instance().isControlled, false);
+    });
+
     it('should not not be checked', () => {
-      assertIsNotChecked(classes, wrapper);
+      assertIsNotChecked(wrapper);
     });
 
     it('should check the checkbox', () => {
       wrapper.find('input').node.click();
-      assertIsChecked(classes, wrapper);
+      assertIsChecked(wrapper);
     });
 
     it('should uncheck the checkbox', () => {
       wrapper.find('input').node.click();
       wrapper.find('input').node.click();
-      assertIsNotChecked(classes, wrapper);
+      assertIsNotChecked(wrapper);
     });
   });
 
@@ -233,7 +239,7 @@ describe('<SwitchBase />', () => {
     before(() => {
       event = 'woof';
       onChangeSpy = spy();
-      wrapper = mount(<SwitchBase />);
+      wrapper = mount(<SwitchBase.Naked classes={{}} />);
       wrapper.setProps({ onChange: onChangeSpy });
       instance = wrapper.instance();
     });

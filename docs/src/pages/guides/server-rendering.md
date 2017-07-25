@@ -11,9 +11,9 @@ We must provide to the page the needed style.
 It's important that we provide the page with the required CSS, otherwise the page will render with just the HTML then wait for the CSS to be injected by the client, causing it to flicker.
 To inject the style down to the client, we need to:
 
-1. Create a fresh, new `styleManager` and `theme` instance on every request.
+1. Create a fresh, new `sheetsRegistry` and `theme` instance on every request.
 2. Render the React tree with the server-side API and the instance.
-3. Pull the CSS out of the `styleManager`.
+3. Pull the CSS out of the `sheetsRegistry`.
 4. Pass the CSS along to the client.
 
 On the client side, the CSS will be injected a second time before removing the server side injected CSS.
@@ -56,46 +56,53 @@ app.listen(port);
 
 ### Handling the Request
 
-The first thing that we need to do on every request is create a new `styleManager` and `theme` instance.
+The first thing that we need to do on every request is create a new `sheetsRegistry` and `theme` instance.
 
 When rendering, we will wrap `<App />`, our root component,
-inside a `<MuiThemeProvider>` to make the `styleManage` and the `theme` available to all components in the component tree.
+inside a `<JssProvider />` and `<MuiThemeProvider />` to make the `sheetsRegistry` and the `theme` available to all components in the component tree.
 
 The key step in server side rendering is to render the initial HTML of our component **before** we send it to the client side. To do this, we use [ReactDOMServer.renderToString()](https://facebook.github.io/react/docs/react-dom-server.html).
 
-We then get the CSS from our `styleManager` using `styleManager.sheetsToString()`. We will see how this is passed along in our `renderFullPage` function.
+We then get the CSS from our `sheetsRegistry` using `sheetsRegistry.toString()`. We will see how this is passed along in our `renderFullPage` function.
 
 ```js
 import { renderToString } from 'react-dom/server'
+import { JssProvider, SheetsRegistry } from 'react-jss'
+import { create } from 'jss';
+import preset from 'jss-preset-default';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import createPalette from 'material-ui/styles/palette';
-import { green, red } from 'material-ui/styles/colors';
-
-function createStyleManager() {
-  return MuiThemeProvider.createDefaultContext({
-    theme: createMuiTheme({
-      palette: createPalette({
-        primary: green,
-        accent: red,
-        type: 'light',
-      }),
-    }),
-  });
-}
+import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
+import { green, red } from 'material-ui/colors';
 
 function handleRender(req, res) {
-  // Create a styleManager instance.
-  const { styleManager, theme } = createStyleManager();
+  // Create a sheetsRegistry instance.
+  const sheetsRegistry = new SheetsRegistry();
+
+  // Create a theme instance.
+  const theme = createMuiTheme({
+    palette: createPalette({
+      primary: green,
+      accent: red,
+      type: 'light',
+    }),
+  });
+
+  // Configure JSS
+  const jss = create(preset());
+  jss.options.createGenerateClassName = createGenerateClassName;
 
   // Render the component to a string.
   const html = renderToString(
-    <MuiThemeProvider styleManager={styleManager} theme={theme}>
-      <App />
-    </MuiThemeProvider>
+    <JssProvider registry={sheetsRegistry} jss={jss}>
+      <MuiThemeProvider theme={theme} sheetsManager={new WeakMap()}>
+        <App />
+      </MuiThemeProvider>
+    </JssProvider>
   )
 
-  // Grab the CSS from our styleManager.
-  const css = styleManager.sheetsToString()
+  // Grab the CSS from our sheetsRegistry.
+  const css = sheetsRegistry.toString()
 
   // Send the rendered page back to the client.
   res.send(renderFullPage(html, css))
@@ -133,22 +140,10 @@ Let's take a look at our client file:
 ```jsx
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { MuiThemeProvider,  createMuiTheme } from 'material-ui/styles';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import createPalette from 'material-ui/styles/palette';
-import { green, red } from 'material-ui/styles/colors';
+import { green, red } from 'material-ui/colors';
 import App from './App';
-
-function createStyleManager() {
-  return MuiThemeProvider.createDefaultContext({
-    theme: createMuiTheme({
-      palette: createPalette({
-        primary: green,
-        accent: red,
-        type: 'light',
-      }),
-    }),
-  });
-}
 
 class Main extends Component {
   // Remove the server-side injected CSS.
@@ -164,11 +159,17 @@ class Main extends Component {
   }
 }
 
-// Create a styleManager instance.
-const { styleManager, theme } = createStyleManager();
+// Create a theme instance.
+const theme = createMuiTheme({
+  palette: createPalette({
+    primary: green,
+    accent: red,
+    type: 'light',
+  }),
+});
 
 render(
-  <MuiThemeProvider styleManager={styleManager} theme={theme}>
+  <MuiThemeProvider theme={theme}>
     <Main />
   </MuiThemeProvider>,
   document.querySelector('#root'),

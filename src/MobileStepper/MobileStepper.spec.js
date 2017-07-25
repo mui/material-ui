@@ -2,12 +2,12 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '../test-utils';
-import MobileStepper, { styleSheet } from './MobileStepper';
+import { createShallow, getClasses } from '../test-utils';
 import Button from '../Button/Button';
 import KeyboardArrowLeft from '../svg-icons/keyboard-arrow-left';
 import KeyboardArrowRight from '../svg-icons/keyboard-arrow-right';
 import { LinearProgress } from '../Progress';
+import MobileStepper, { styleSheet } from './MobileStepper';
 
 describe('<MobileStepper />', () => {
   let shallow;
@@ -20,7 +20,7 @@ describe('<MobileStepper />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
   });
 
   it('should render a Paper component', () => {
@@ -31,7 +31,7 @@ describe('<MobileStepper />', () => {
 
   it('should render with the root class', () => {
     const wrapper = shallow(<MobileStepper {...defaultProps} />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should render the custom className and the root class', () => {

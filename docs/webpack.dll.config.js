@@ -1,10 +1,18 @@
 // @flow weak
+
 const path = require('path');
 const webpack = require('webpack');
 const packageJson = require('./package.json');
 const packageJsonSrc = require('../package.json');
 
-const excludedDeps = ['lodash', 'recompose', 'object-assign', 'material-ui-icons', 'babel-runtime'];
+const excludedDeps = [
+  'lodash',
+  'recompose',
+  'object-assign',
+  'material-ui-icons',
+  'babel-runtime',
+  'autosuggest-highlight',
+];
 
 const deps = [
   'react-hot-loader/index',

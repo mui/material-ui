@@ -3,9 +3,9 @@
 import React, { Component, isValidElement } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import ButtonBase from '../internal/ButtonBase';
+import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
+import ButtonBase from '../internal/ButtonBase';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import Icon from '../Icon';
 

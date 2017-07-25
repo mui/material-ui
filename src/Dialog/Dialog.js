@@ -3,9 +3,9 @@
 import React, { createElement, cloneElement } from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import { capitalizeFirstLetter } from '../utils/helpers';
+import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
+import { capitalizeFirstLetter } from '../utils/helpers';
 import Modal from '../internal/Modal';
 import Fade from '../transitions/Fade';
 import { duration } from '../styles/transitions';
@@ -19,6 +19,7 @@ export const styleSheet = createStyleSheet('MuiDialog', theme => ({
   },
   paper: {
     display: 'flex',
+    margin: theme.spacing.unit * 4,
     flexDirection: 'column',
     flex: '0 1 auto',
     position: 'relative',
@@ -37,6 +38,7 @@ export const styleSheet = createStyleSheet('MuiDialog', theme => ({
     maxWidth: theme.breakpoints.getWidth('md'),
   },
   fullScreen: {
+    margin: 0,
     width: '100%',
     maxWidth: '100%',
     height: '100%',

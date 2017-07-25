@@ -2,10 +2,10 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '../test-utils';
+import { createShallow, getClasses } from '../test-utils';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
-import ListItemAvatar, { styleSheet } from './ListItemAvatar';
 import Avatar from '../Avatar';
+import ListItemAvatar, { styleSheet } from './ListItemAvatar';
 
 describe('<ListItemAvatar />', () => {
   let shallow;
@@ -13,7 +13,7 @@ describe('<ListItemAvatar />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
   });
 
   it('should render with the user and root classes', () => {
@@ -29,7 +29,7 @@ describe('<ListItemAvatar />', () => {
     );
     assert.strictEqual(wrapper.hasClass('foo'), true, 'should have the "foo" class');
     assert.strictEqual(wrapper.hasClass('bar'), true, 'should have the "bar" class');
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   describe('List', () => {

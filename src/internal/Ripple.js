@@ -3,75 +3,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
-
-export const styleSheet = createStyleSheet('MuiRipple', theme => ({
-  root: {
-    opacity: 1,
-  },
-  rootLeaving: {
-    opacity: 0,
-    animation: `mui-ripple-exit 550ms ${theme.transitions.easing.easeInOut}`,
-  },
-  rootPulsating: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    display: 'block',
-    width: '100%',
-    height: '100%',
-    animation: `mui-ripple-pulsate 1500ms ${theme.transitions.easing.easeInOut} 200ms infinite`,
-    rippleVisible: {
-      opacity: 0.2,
-    },
-  },
-  '@keyframes mui-ripple-enter': {
-    '0%': {
-      transform: 'scale(0)',
-    },
-    '100%': {
-      transform: 'scale(1)',
-    },
-  },
-  '@keyframes mui-ripple-exit': {
-    '0%': {
-      opacity: 1,
-    },
-    '100%': {
-      opacity: 0,
-    },
-  },
-  '@keyframes mui-ripple-pulsate': {
-    '0%': {
-      transform: 'scale(1)',
-    },
-    '50%': {
-      transform: 'scale(0.9)',
-    },
-    '100%': {
-      transform: 'scale(1)',
-    },
-  },
-  ripple: {
-    width: 50,
-    height: 50,
-    left: 0,
-    top: 0,
-    opacity: 0,
-    position: 'absolute',
-    borderRadius: '50%',
-    background: 'currentColor',
-  },
-  rippleVisible: {
-    opacity: 0.3,
-    transform: 'scale(1)',
-    animation: `mui-ripple-enter 550ms ${theme.transitions.easing.easeInOut}`,
-  },
-  rippleFast: {
-    animationDuration: '200ms',
-  },
-}));
 
 /**
  * @ignore - internal component.
@@ -122,8 +53,8 @@ class Ripple extends Component {
     );
   };
 
-  getRippleStyles() {
-    const { rippleSize, rippleX, rippleY } = this.props;
+  getRippleStyles = props => {
+    const { rippleSize, rippleX, rippleY } = props;
 
     return {
       width: rippleSize,
@@ -131,18 +62,17 @@ class Ripple extends Component {
       top: -(rippleSize / 2) + rippleY,
       left: -(rippleSize / 2) + rippleX,
     };
-  }
+  };
 
   render() {
-    const { className: classNameProp, pulsate } = this.props;
+    const { classes, className: classNameProp, pulsate } = this.props;
     const { rippleVisible, rippleLeaving } = this.state;
-    const classes = this.context.styleManager.render(styleSheet);
 
     const className = classNames(
-      classes.root,
+      classes.wrapper,
       {
-        [classes.rootLeaving]: rippleLeaving,
-        [classes.rootPulsating]: pulsate,
+        [classes.wrapperLeaving]: rippleLeaving,
+        [classes.wrapperPulsating]: pulsate,
       },
       classNameProp,
     );
@@ -152,17 +82,19 @@ class Ripple extends Component {
       [classes.rippleFast]: pulsate,
     });
 
-    const rippleStyles = this.getRippleStyles();
-
     return (
       <span className={className}>
-        <span className={rippleClassName} style={rippleStyles} />
+        <span className={rippleClassName} style={this.getRippleStyles(this.props)} />
       </span>
     );
   }
 }
 
 Ripple.propTypes = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
@@ -183,10 +115,6 @@ Ripple.propTypes = {
    * Vertical position of the ripple center.
    */
   rippleY: PropTypes.number.isRequired,
-};
-
-Ripple.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
 };
 
 export default Ripple;

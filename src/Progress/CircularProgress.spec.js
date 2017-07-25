@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '../test-utils';
+import { createShallow, getClasses } from '../test-utils';
 import CircularProgress, { styleSheet } from './CircularProgress';
 
 describe('<CircularProgress />', () => {
@@ -11,7 +11,7 @@ describe('<CircularProgress />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
   });
 
   it('should render a div with the root class', () => {
@@ -19,10 +19,37 @@ describe('<CircularProgress />', () => {
     assert.strictEqual(wrapper.name(), 'div');
   });
 
+  it('should render with the primary color by default', () => {
+    const wrapper = shallow(<CircularProgress />);
+    assert.strictEqual(
+      wrapper.hasClass(classes.primaryColor),
+      true,
+      'should have the primaryColor class',
+    );
+  });
+
+  it('should render with the primary color', () => {
+    const wrapper = shallow(<CircularProgress color="primary" />);
+    assert.strictEqual(
+      wrapper.hasClass(classes.primaryColor),
+      true,
+      'should have the primaryColor class',
+    );
+  });
+
+  it('should render with the accent color', () => {
+    const wrapper = shallow(<CircularProgress color="accent" />);
+    assert.strictEqual(
+      wrapper.hasClass(classes.accentColor),
+      true,
+      'should have the accentColor class',
+    );
+  });
+
   it('should render with the user and root classes', () => {
     const wrapper = shallow(<CircularProgress className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass('woof'), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.props().role, 'progressbar');
   });
 
@@ -41,7 +68,7 @@ describe('<CircularProgress />', () => {
 
   it('should render intermediate mode by default', () => {
     const wrapper = shallow(<CircularProgress />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
     const svg = wrapper.childAt(0);
     assert.strictEqual(svg.is('svg'), true, 'should be a svg');
     assert.strictEqual(svg.hasClass(classes.svg), true, 'should have the svg class');
@@ -60,7 +87,7 @@ describe('<CircularProgress />', () => {
 
   it('should render with a different size', () => {
     const wrapper = shallow(<CircularProgress size={60} />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.props().style.width, 60, 'should have width correctly set');
     assert.strictEqual(wrapper.props().style.height, 60, 'should have width correctly set');
     const svg = wrapper.childAt(0);
@@ -72,7 +99,7 @@ describe('<CircularProgress />', () => {
 
   it('should render with determinate classes', () => {
     const wrapper = shallow(<CircularProgress mode="determinate" />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
     const svg = wrapper.childAt(0);
     assert.strictEqual(svg.is('svg'), true, 'should be a svg');
     assert.strictEqual(svg.hasClass(classes.svg), true, 'should have the svg class');
@@ -91,7 +118,7 @@ describe('<CircularProgress />', () => {
 
   it('should set strokeDasharray of circle on determinate mode', () => {
     const wrapper = shallow(<CircularProgress mode="determinate" value={70} />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
     const svg = wrapper.childAt(0);
     assert.strictEqual(
       svg.childAt(0).props().style.strokeDasharray,
@@ -105,7 +132,7 @@ describe('<CircularProgress />', () => {
 
   it('should set strokeDasharray of circle on determinate mode based on min max', () => {
     const wrapper = shallow(<CircularProgress mode="determinate" value={5} min={0} max={10} />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
     const svg = wrapper.childAt(0);
     assert.strictEqual(
       svg.childAt(0).props().style.strokeDasharray,

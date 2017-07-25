@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '../test-utils';
+import { createShallow, getClasses } from '../test-utils';
 import AppBar, { styleSheet } from './AppBar';
 
 describe('<AppBar />', () => {
@@ -11,7 +11,7 @@ describe('<AppBar />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
   });
 
   it('should render a Paper component', () => {
@@ -22,7 +22,7 @@ describe('<AppBar />', () => {
 
   it('should render with the root class and primary', () => {
     const wrapper = shallow(<AppBar>Hello World</AppBar>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(
       wrapper.hasClass(classes.colorPrimary),
       true,
@@ -38,7 +38,7 @@ describe('<AppBar />', () => {
   it('should render the custom className and the appBar class', () => {
     const wrapper = shallow(<AppBar className="test-class-name" />);
     assert.strictEqual(wrapper.is('.test-class-name'), true, 'should pass the test className');
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(
       wrapper.hasClass(classes.colorPrimary),
       true,
@@ -48,7 +48,7 @@ describe('<AppBar />', () => {
 
   it('should render a primary app bar', () => {
     const wrapper = shallow(<AppBar color="primary">Hello World</AppBar>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(
       wrapper.hasClass(classes.colorPrimary),
       true,
@@ -63,7 +63,7 @@ describe('<AppBar />', () => {
 
   it('should render an accent app bar', () => {
     const wrapper = shallow(<AppBar color="accent">Hello World</AppBar>);
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(
       wrapper.hasClass(classes.colorPrimary),
       false,

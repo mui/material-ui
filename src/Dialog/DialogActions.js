@@ -1,10 +1,11 @@
 // @flow weak
 
-import React, { Children, cloneElement } from 'react';
+import React, { Children, cloneElement, isValidElement } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
+import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
+import '../Button'; // So we don't have any override priority issue.
 
 export const styleSheet = createStyleSheet('MuiDialogActions', theme => ({
   root: {
@@ -27,10 +28,15 @@ function DialogActions(props) {
 
   return (
     <div data-mui-test="DialogActions" className={classNames(classes.root, className)} {...other}>
-      {Children.map(children, button =>
-        <div className={classes.action}>
-          {cloneElement(button, { className: classNames(classes.button, button.props.className) })}
-        </div>,
+      {Children.map(
+        children,
+        button =>
+          isValidElement(button) &&
+          <div className={classes.action}>
+            {cloneElement(button, {
+              className: classNames(classes.button, button.props.className),
+            })}
+          </div>,
       )}
     </div>
   );

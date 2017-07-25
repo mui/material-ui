@@ -5,7 +5,7 @@ import { assert } from 'chai';
 import { spy, stub } from 'sinon';
 import keycode from 'keycode';
 import contains from 'dom-helpers/query/contains';
-import { createShallow, createMount } from '../test-utils';
+import { createShallow, createMount, getClasses } from '../test-utils';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
 import Fade from '../transitions/Fade';
 import Backdrop from './Backdrop';
@@ -18,7 +18,7 @@ describe('<Modal />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
     mount = createMount();
   });
 
@@ -140,8 +140,8 @@ describe('<Modal />', () => {
 
     it('should render a backdrop wrapped in a fade transition', () => {
       const transition = wrapper.childAt(0).childAt(0);
-      assert.strictEqual(transition.is('Fade'), true, 'should be the fade transition');
-      assert.strictEqual(transition.prop('in'), true, 'should set the transition to in');
+      assert.strictEqual(transition.name(), 'withTheme(Fade)');
+      assert.strictEqual(transition.props().in, true, 'should set the transition to in');
       const backdrop = transition.childAt(0);
       assert.strictEqual(backdrop.is(Backdrop), true, 'should be the backdrop component');
     });
@@ -454,7 +454,7 @@ describe('<Modal />', () => {
     });
   });
 
-  describe('props: onExited', () => {
+  describe('prop: onExited', () => {
     it('should avoid concurrency issue by chaining internal with the public API', () => {
       const handleExited = spy();
       const wrapper = shallow(

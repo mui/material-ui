@@ -1,33 +1,22 @@
 // @flow weak
 
-import { create } from 'jss';
-import jssPreset from 'jss-preset-default';
-import { createStyleManager } from 'jss-theme-reactor';
+import type { Element } from 'react';
 import { shallow as enzymeShallow } from 'enzyme';
-import createMuiTheme from '../styles/theme';
 import until from './until';
 
-// Generate an enhanced shallow function with the needed context.
-export default function createShallow(options = {}) {
-  const {
-    shallow = enzymeShallow,
-    otherContext = {},
-    dive = false,
-    untilSelector = false,
-  } = options;
-  const theme = createMuiTheme();
-  const jss = create(jssPreset());
-  const styleManager = createStyleManager({ jss, theme });
-  const context = {
-    styleManager,
-    ...otherContext,
-  };
-  const shallowWithContext = function shallowWithContext(node, options2 = {}) {
+// Generate an enhanced shallow function.
+export default function createShallow(options: Object = {}) {
+  const { shallow = enzymeShallow, otherContext, dive = false, untilSelector = false } = options;
+
+  const shallowWithContext = function shallowWithContext(node: Element<*>, options2: Object = {}) {
+    const { context: context2, ...other } = options2;
+
     const wrapper = shallow(node, {
       context: {
-        ...context,
-        ...options2.context,
+        ...otherContext,
+        ...context2,
       },
+      ...other,
     });
 
     if (dive) {
@@ -40,8 +29,6 @@ export default function createShallow(options = {}) {
 
     return wrapper;
   };
-
-  shallowWithContext.context = context;
 
   return shallowWithContext;
 }

@@ -4,13 +4,14 @@
 
 We take tests seriously, we have written and we maintain **a wide range** of tests so we can
 iterate with confidence on the components. For instance, the visual regression tests provided by [Argos-CI](https://www.argos-ci.com/callemall/material-ui) have proven to be really helpful.
-To learn more about our internal tests, you can have a look at the [README](https://github.com/callemall/material-ui/blob/next/test/README.md).
+To learn more about our internal tests, you can have a look at the [README](https://github.com/callemall/material-ui/blob/v1-beta/test/README.md).
 
-[![Coverage Status](https://img.shields.io/codecov/c/github/callemall/material-ui/next.svg)](https://codecov.io/gh/callemall/material-ui/branch/next)
+[![Coverage Status](https://img.shields.io/codecov/c/github/callemall/material-ui/v1-beta.svg)](https://codecov.io/gh/callemall/material-ui/branch/v1-beta)
 
 ## Userspace
 
-But what about writing tests in userspace? Material-UI styling infrastructure relies on the context feature of React to work correctly. You are going to need that context when testing your react components with ours.
+But what about writing tests in userspace? Material-UI styling infrastructure use some helper function on top of enzyme to make the process easier.
+You can take advantage of those helpers if you want to.
 
 ### Shallow rendering
 

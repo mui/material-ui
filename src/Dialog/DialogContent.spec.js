@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '../test-utils';
+import { createShallow, getClasses } from '../test-utils';
 import DialogContent, { styleSheet } from './DialogContent';
 
 describe('<DialogContent />', () => {
@@ -11,7 +11,7 @@ describe('<DialogContent />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
   });
 
   it('should render a div', () => {
@@ -26,8 +26,8 @@ describe('<DialogContent />', () => {
 
   it('should render with the user and root classes', () => {
     const wrapper = shallow(<DialogContent className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass('woof'), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should render children', () => {

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createStyleSheet } from 'jss-theme-reactor';
+import createStyleSheet from '../styles/createStyleSheet';
 import createSwitch from '../internal/SwitchBase';
 import RadioButtonCheckedIcon from '../svg-icons/radio-button-checked';
 import RadioButtonUncheckedIcon from '../svg-icons/radio-button-unchecked';

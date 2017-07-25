@@ -1,16 +1,37 @@
 // @flow
 
-import { stub } from 'sinon';
+import { spy } from 'sinon';
 import { assert } from 'chai';
-import { create } from 'jss';
-import jssPreset from 'jss-preset-default';
-import { createStyleManager } from 'jss-theme-reactor';
 import React from 'react';
+import PropTypes from 'prop-types';
+import { create } from 'jss';
+import preset from 'jss-preset-default';
+import { JssProvider, SheetsRegistry } from 'react-jss';
 import { renderToString } from 'react-dom/server';
 import { createMount } from '../test-utils';
 import { createMuiTheme } from '../styles';
 import Button from '../Button';
+import createGenerateClassName from './createGenerateClassName';
+import withTheme from './withTheme';
 import MuiThemeProvider from './MuiThemeProvider';
+
+function getThemeSpy() {
+  const themeSpy = spy();
+  const ThemeSpy = props => {
+    themeSpy(props.theme);
+    return props.children;
+  };
+
+  ThemeSpy.propTypes = {
+    children: PropTypes.element.isRequired,
+    theme: PropTypes.object,
+  };
+
+  return {
+    ThemeSpy: withTheme(ThemeSpy),
+    themeSpy,
+  };
+}
 
 describe('<MuiThemeProvider />', () => {
   describe('server side', () => {
@@ -19,121 +40,111 @@ describe('<MuiThemeProvider />', () => {
       return;
     }
 
-    let theme;
-    let styleManager;
-
-    before(() => {
-      theme = createMuiTheme();
-      const jss = create(jssPreset());
-      styleManager = createStyleManager({ jss, theme });
-    });
-
-    after(() => {
-      styleManager.reset();
-    });
-
     it('should be able to extract the styles', () => {
+      const theme = createMuiTheme();
+      const sheetsRegistry = new SheetsRegistry();
+      const jss = create(preset());
+      jss.options.createGenerateClassName = createGenerateClassName;
+
       const markup = renderToString(
-        <MuiThemeProvider theme={theme} styleManager={styleManager}>
-          <Button>Hello World</Button>
-        </MuiThemeProvider>,
+        <JssProvider registry={sheetsRegistry} jss={jss}>
+          <MuiThemeProvider theme={theme} sheetsManager={new WeakMap()}>
+            <Button>Hello World</Button>
+          </MuiThemeProvider>
+        </JssProvider>,
       );
 
       assert.notStrictEqual(markup.match('Hello World'), null);
-      assert.strictEqual(styleManager.sheetsToString().length > 4000, true);
+      assert.strictEqual(sheetsRegistry.registry.length, 3);
+      assert.strictEqual(sheetsRegistry.toString().length > 4000, true);
+      assert.strictEqual(sheetsRegistry.registry[0].classes.root, 'MuiTouchRipple-root-h');
+      assert.deepEqual(
+        sheetsRegistry.registry[1].classes,
+        {
+          disabled: 'MuiButtonBase-disabled-g',
+          root: 'MuiButtonBase-root-f',
+        },
+        'the class names should be deterministic',
+      );
+      assert.strictEqual(sheetsRegistry.registry[2].classes.root, 'MuiButton-root-1');
     });
   });
 
-  describe('react component', () => {
+  describe('mount', () => {
     let mount;
-    let child;
-    let wrapper;
-    let instance;
-
-    let themeObj;
-    let styleManagerObj;
 
     before(() => {
       mount = createMount();
-      child = <div />;
-      wrapper = mount(
-        <MuiThemeProvider>
-          {child}
-        </MuiThemeProvider>,
-      );
-      instance = wrapper.instance();
-
-      themeObj = { themeObjProperty: 'woof' };
-      styleManagerObj = { styleManagerObjProperty: 'woof' };
-      stub(MuiThemeProvider, 'createDefaultContext').returns({
-        theme: themeObj,
-        styleManager: styleManagerObj,
-      });
     });
 
     after(() => {
       mount.cleanUp();
-      MuiThemeProvider.createDefaultContext.restore();
     });
 
-    describe('setProps() with different styleManager', () => {
-      before(() => {
-        MuiThemeProvider.createDefaultContext.resetHistory();
-        wrapper.setProps({});
+    it('should work with nesting theme', () => {
+      const { themeSpy: themeSpy1, ThemeSpy: ThemeSpy1 } = getThemeSpy();
+      const { themeSpy: themeSpy2, ThemeSpy: ThemeSpy2 } = getThemeSpy();
+      const { themeSpy: themeSpy3, ThemeSpy: ThemeSpy3 } = getThemeSpy();
+
+      const theme1 = createMuiTheme({
+        status: {
+          color: 'orange',
+        },
       });
 
-      it('should call createDefaultContext() exactly once', () => {
-        assert.strictEqual(MuiThemeProvider.createDefaultContext.callCount, 1);
+      const theme2 = outerTheme => ({
+        ...outerTheme,
+        status: {
+          color: 'green',
+        },
       });
 
-      it('should set instance.theme to createDefaultContext().theme', () => {
-        assert.property(instance, 'theme');
-        assert.property(instance.theme, 'themeObjProperty');
-        assert.strictEqual(instance.theme.themeObjProperty, themeObj.themeObjProperty);
+      const theme3 = createMuiTheme({
+        status: {
+          color: 'yellow',
+        },
       });
 
-      it('should set instance.styleManager to createDefaultContext().theme', () => {
-        assert.property(instance, 'styleManager');
-        assert.property(instance.styleManager, 'styleManagerObjProperty');
-        assert.strictEqual(
-          instance.styleManager.styleManagerObjProperty,
-          styleManagerObj.styleManagerObjProperty,
-        );
-      });
-    });
+      const wrapper = mount(
+        <MuiThemeProvider theme={theme1}>
+          <ThemeSpy1>
+            <div>
+              <MuiThemeProvider theme={theme2}>
+                <ThemeSpy2>
+                  <span>Foo</span>
+                </ThemeSpy2>
+              </MuiThemeProvider>
+              <MuiThemeProvider theme={theme3}>
+                <ThemeSpy3>
+                  <span>Bar</span>
+                </ThemeSpy3>
+              </MuiThemeProvider>
+            </div>
+          </ThemeSpy1>
+        </MuiThemeProvider>,
+      );
 
-    describe('setProps() with same styleManager', () => {
-      let updateThemeStub;
-      let nextProps;
+      assert.strictEqual(themeSpy1.callCount, 1);
+      assert.strictEqual(themeSpy1.args[0][0].status.color, 'orange');
+      assert.strictEqual(themeSpy2.callCount, 1);
+      assert.strictEqual(themeSpy2.args[0][0].status.color, 'green');
+      assert.strictEqual(themeSpy3.callCount, 1);
+      assert.strictEqual(themeSpy3.args[0][0].status.color, 'yellow');
 
-      before(() => {
-        MuiThemeProvider.createDefaultContext.resetHistory();
-        updateThemeStub = stub();
-        instance.styleManager.updateTheme = updateThemeStub;
-        nextProps = {
-          styleManager: instance.styleManager,
-          theme: {
-            themeProperty: 'woof',
+      wrapper.setProps({
+        theme: createMuiTheme({
+          status: {
+            color: 'blue',
           },
-        };
-        wrapper.setProps(nextProps);
+        }),
       });
 
-      it('should not call createDefaultContext() at all', () => {
-        assert.strictEqual(MuiThemeProvider.createDefaultContext.callCount, 0);
-      });
-
-      it('should set instance.theme to nextProps.theme', () => {
-        assert.strictEqual(instance.theme, nextProps.theme);
-      });
-
-      it('should call instance.styleManager.updateTheme() exactly once', () => {
-        assert.strictEqual(instance.styleManager.updateTheme.callCount, 1);
-      });
-
-      it('should call instance.styleManager.updateTheme() with instance.theme', () => {
-        assert.strictEqual(instance.styleManager.updateTheme.calledWith(instance.theme), true);
-      });
+      assert.strictEqual(themeSpy1.callCount, 2);
+      assert.strictEqual(themeSpy1.args[1][0].status.color, 'blue');
+      assert.strictEqual(themeSpy2.callCount, 2);
+      assert.strictEqual(themeSpy2.args[1][0].status.color, 'green');
+      assert.strictEqual(themeSpy3.callCount, 2);
+      assert.strictEqual(themeSpy3.args[1][0].status.color, 'yellow');
     });
   });
 });

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '../test-utils';
+import { createShallow, getClasses } from '../test-utils';
 import Divider, { styleSheet } from './Divider';
 
 describe('<Divider />', () => {
@@ -11,7 +11,7 @@ describe('<Divider />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
   });
 
   it('should render a hr', () => {
@@ -21,7 +21,7 @@ describe('<Divider />', () => {
 
   it('should render with the root and default class', () => {
     const wrapper = shallow(<Divider />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.default), true, 'should have the default class');
   });
 

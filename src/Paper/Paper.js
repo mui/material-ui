@@ -3,7 +3,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import warning from 'warning';
-import { createStyleSheet } from 'jss-theme-reactor';
+import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
 export const styleSheet = createStyleSheet('MuiPaper', theme => {

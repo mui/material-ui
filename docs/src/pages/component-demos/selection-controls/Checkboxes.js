@@ -1,23 +1,39 @@
-// @flow
+// @flow weak
 
 import React, { Component } from 'react';
-import Checkbox from 'material-ui/Checkbox';
+import PropTypes from 'prop-types';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
+import green from 'material-ui/colors/green';
 import { FormGroup, FormControlLabel } from 'material-ui/Form';
+import Checkbox from 'material-ui/Checkbox';
 
-export default class Checkboxes extends Component {
+const styleSheet = createStyleSheet('Checkboxes', {
+  checked: {
+    color: green[500],
+  },
+});
+
+class Checkboxes extends Component {
   state = {
     checkedA: true,
     checkedB: false,
+    checkedF: true,
+  };
+
+  handleChange = name => (event, checked) => {
+    this.setState({ [name]: checked });
   };
 
   render() {
+    const { classes } = this.props;
+
     return (
       <FormGroup row>
         <FormControlLabel
           control={
             <Checkbox
               checked={this.state.checkedA}
-              onChange={(event, checked) => this.setState({ checkedA: checked })}
+              onChange={this.handleChange('checkedA')}
               value="checkedA"
             />
           }
@@ -27,7 +43,7 @@ export default class Checkboxes extends Component {
           control={
             <Checkbox
               checked={this.state.checkedB}
-              onChange={(event, checked) => this.setState({ checkedB: checked })}
+              onChange={this.handleChange('checkedB')}
               value="checkedB"
             />
           }
@@ -45,7 +61,26 @@ export default class Checkboxes extends Component {
           control={<Checkbox checked value="checkedE" indeterminate />}
           label="Indeterminate"
         />
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={this.state.checkedF}
+              onChange={this.handleChange('checkedF')}
+              classes={{
+                checked: classes.checked,
+              }}
+              value="checkedF"
+            />
+          }
+          label="Custom color"
+        />
       </FormGroup>
     );
   }
 }
+
+Checkboxes.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(Checkboxes);

@@ -44,6 +44,8 @@ class LinearBuffer extends Component {
     return (
       <div className={classes.root}>
         <LinearProgress mode="buffer" value={completed} valueBuffer={buffer} />
+        <br />
+        <LinearProgress color="accent" mode="buffer" value={completed} valueBuffer={buffer} />
       </div>
     );
   }

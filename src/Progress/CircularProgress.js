@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
+import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
 const THICKNESS = 3.6;
@@ -17,7 +17,12 @@ function getRelativeValue(value, min, max) {
 export const styleSheet = createStyleSheet('MuiCircularProgress', theme => ({
   root: {
     display: 'inline-block',
+  },
+  primaryColor: {
     color: theme.palette.primary[500],
+  },
+  accentColor: {
+    color: theme.palette.accent.A200,
   },
   svg: {
     transform: 'rotate(-90deg)',
@@ -67,7 +72,7 @@ export const styleSheet = createStyleSheet('MuiCircularProgress', theme => ({
 }));
 
 function CircularProgress(props) {
-  const { classes, className, size, mode, value, min, max, ...other } = props;
+  const { classes, className, color, size, mode, value, min, max, ...other } = props;
   const radius = size / 2;
   const rootProps = {};
   const svgClasses = classNames(classes.svg, {
@@ -90,9 +95,11 @@ function CircularProgress(props) {
     rootProps['aria-valuemax'] = max;
   }
 
+  const colorClass = classes[`${color}Color`];
+
   return (
     <div
-      className={classNames(classes.root, className)}
+      className={classNames(classes.root, colorClass, className)}
       style={{ width: size, height: size }}
       role="progressbar"
       {...rootProps}
@@ -124,6 +131,10 @@ CircularProgress.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * The color of the component. It's using the theme palette when that makes sense.
+   */
+  color: PropTypes.oneOf(['primary', 'accent']),
+  /**
    * The max value of progress in determinate mode.
    */
   max: PropTypes.number,
@@ -148,6 +159,7 @@ CircularProgress.propTypes = {
 };
 
 CircularProgress.defaultProps = {
+  color: 'primary',
   size: 40,
   mode: 'indeterminate',
   value: 0,

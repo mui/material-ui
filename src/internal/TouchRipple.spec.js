@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '../test-utils';
+import { createShallow, getClasses } from '../test-utils';
 import TouchRipple, { styleSheet } from './TouchRipple';
 
 describe('<TouchRipple />', () => {
@@ -10,8 +10,10 @@ describe('<TouchRipple />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow();
-    classes = shallow.context.styleManager.render(styleSheet);
+    shallow = createShallow({
+      dive: true,
+    });
+    classes = getClasses(styleSheet);
   });
 
   it('should render a <ReactTransitionGroup> component', () => {
@@ -22,7 +24,7 @@ describe('<TouchRipple />', () => {
 
   it('should have the root class', () => {
     const wrapper = shallow(<TouchRipple />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should render the custom className', () => {

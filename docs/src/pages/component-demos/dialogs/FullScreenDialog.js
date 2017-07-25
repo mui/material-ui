@@ -37,7 +37,7 @@ class FullScreenDialog extends Component {
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
     return (
       <div>
         <Button onClick={this.handleOpen}>Open full-screen dialog</Button>

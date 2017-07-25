@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow } from '../test-utils';
+import { createShallow, getClasses } from '../test-utils';
 import CardMedia, { styleSheet } from './CardMedia';
 
 describe('<CardMedia />', () => {
@@ -11,7 +11,7 @@ describe('<CardMedia />', () => {
 
   before(() => {
     shallow = createShallow({ untilSelector: 'CardMedia' });
-    classes = shallow.context.styleManager.render(styleSheet);
+    classes = getClasses(styleSheet);
   });
 
   it('should have the root class', () => {

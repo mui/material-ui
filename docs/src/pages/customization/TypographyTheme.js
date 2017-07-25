@@ -1,32 +1,34 @@
 // @flow
 
 import React from 'react';
-import { MuiThemeProvider, createMuiTheme, createTypography } from 'material-ui/styles';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import createTypography from 'material-ui/styles/typography';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 
-let theme = createMuiTheme();
-const typography = createTypography(theme.palette, {
-  // System font
-  fontFamily:
-    '-apple-system,system-ui,BlinkMacSystemFont,' +
-    '"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
-});
+function theme(outerTheme) {
+  const typography = createTypography(outerTheme.palette, {
+    // System font
+    fontFamily:
+      '-apple-system,system-ui,BlinkMacSystemFont,' +
+      '"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
+  });
 
-theme = {
-  ...theme,
-  typography: {
-    ...typography,
-    body1: {
-      ...typography.body1,
-      fontWeight: typography.fontWeightMedium,
+  return {
+    ...outerTheme,
+    typography: {
+      ...typography,
+      body1: {
+        ...typography.body1,
+        fontWeight: typography.fontWeightMedium,
+      },
+      button: {
+        ...typography.button,
+        fontStyle: 'italic',
+      },
     },
-    button: {
-      ...typography.button,
-      fontStyle: 'italic',
-    },
-  },
-};
+  };
+}
 
 function TypographyTheme() {
   return (

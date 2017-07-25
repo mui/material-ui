@@ -3,29 +3,26 @@
 import React from 'react';
 import { spy } from 'sinon';
 import { assert } from 'chai';
-import { createStyleSheet } from 'jss-theme-reactor';
-import { createShallow, createMount } from '../test-utils';
-import consoleErrorMock from '../../test/utils/consoleErrorMock';
+import { JssProvider, SheetsRegistry } from 'react-jss';
+import { create } from 'jss';
+import preset from 'jss-preset-default';
+import createStyleSheet from './createStyleSheet';
 import withStyles from './withStyles';
+import MuiThemeProvider from './MuiThemeProvider';
+import createMuiTheme from './theme';
+import createGenerateClassName from './createGenerateClassName';
+import { createShallow, createMount, getClasses } from '../test-utils';
+import consoleErrorMock from '../../test/utils/consoleErrorMock';
 
 const Empty = () => <div />;
 Empty.propTypes = {}; // Breaks the referential transparency for testing purposes.
 
 describe('withStyles', () => {
   let shallow;
-  let StyledComponent;
-  let classes;
   let mount;
-  const styleSheet = createStyleSheet('MuiTextField', {
-    root: {
-      display: 'flex',
-    },
-  });
 
   before(() => {
     shallow = createShallow();
-    StyledComponent = withStyles(styleSheet)(Empty);
-    classes = shallow.context.styleManager.render(styleSheet);
     mount = createMount();
   });
 
@@ -33,58 +30,180 @@ describe('withStyles', () => {
     mount.cleanUp();
   });
 
-  it('should provide a classes property', () => {
-    const wrapper = shallow(<StyledComponent />);
-    assert.strictEqual(wrapper.props().classes, classes, 'Should provide the classes property');
-  });
+  describe('props', () => {
+    let StyledComponent1;
+    let classes;
 
-  describe('prop: classes', () => {
     before(() => {
-      consoleErrorMock.spy();
-    });
-
-    after(() => {
-      consoleErrorMock.reset();
-    });
-
-    it('should accept a classes property', () => {
-      const wrapper = shallow(<StyledComponent classes={{ root: 'h1' }} />);
-
-      assert.deepEqual(wrapper.props().classes, {
-        root: `${classes.root} h1`,
+      const styleSheet = createStyleSheet('MuiTextField', {
+        root: {
+          display: 'flex',
+        },
       });
-      assert.strictEqual(consoleErrorMock.callCount(), 0);
+      StyledComponent1 = withStyles(styleSheet)(Empty);
+      classes = getClasses(styleSheet);
     });
 
-    it('should ignore undefined property', () => {
-      const wrapper = shallow(<StyledComponent classes={{ root: undefined }} />);
-
-      assert.deepEqual(wrapper.props().classes, {
-        root: `${classes.root}`,
-      });
-      assert.strictEqual(consoleErrorMock.callCount(), 0);
+    it('should provide a classes property', () => {
+      const wrapper = shallow(<StyledComponent1 />);
+      assert.deepEqual(wrapper.props().classes, classes, 'Should provide the classes property');
     });
 
-    it('should warn if providing a unknown key', () => {
-      const wrapper = shallow(<StyledComponent classes={{ bar: 'foo' }} />);
-
-      assert.deepEqual(wrapper.props().classes, {
-        root: classes.root,
-        bar: 'undefined foo',
+    describe('prop: classes', () => {
+      before(() => {
+        consoleErrorMock.spy();
       });
-      assert.strictEqual(consoleErrorMock.callCount(), 1);
-      assert.match(
-        consoleErrorMock.args()[0][0],
-        /Material-UI: the key `bar` provided to the classes property object is not implemented/,
-      );
+
+      after(() => {
+        consoleErrorMock.reset();
+      });
+
+      it('should accept a classes property', () => {
+        const wrapper = shallow(<StyledComponent1 classes={{ root: 'h1' }} />);
+        assert.deepEqual(wrapper.props().classes, {
+          root: `${classes.root} h1`,
+        });
+        assert.strictEqual(consoleErrorMock.callCount(), 0);
+      });
+
+      it('should ignore undefined property', () => {
+        const wrapper = shallow(<StyledComponent1 classes={{ root: undefined }} />);
+        assert.deepEqual(wrapper.props().classes, {
+          root: `${classes.root}`,
+        });
+        assert.strictEqual(consoleErrorMock.callCount(), 0);
+      });
+
+      it('should warn if providing a unknown key', () => {
+        const wrapper = shallow(<StyledComponent1 classes={{ bar: 'foo' }} />);
+
+        assert.deepEqual(wrapper.props().classes, {
+          root: classes.root,
+          bar: 'undefined foo',
+        });
+        assert.strictEqual(consoleErrorMock.callCount(), 1);
+        assert.match(
+          consoleErrorMock.args()[0][0],
+          /Material-UI: the key `bar` provided to the classes property object is not implemented/,
+        );
+      });
+    });
+
+    describe('prop: innerRef', () => {
+      it('should provide a ref on the inner component', () => {
+        const handleRef = spy();
+        mount(<StyledComponent1 innerRef={handleRef} />);
+        assert.strictEqual(handleRef.callCount, 1);
+      });
     });
   });
 
-  describe('prop: innerRef', () => {
-    it('should provide a ref on the inner component', () => {
-      const handleRef = spy();
-      mount(<StyledComponent innerRef={handleRef} />);
-      assert.strictEqual(handleRef.callCount, 1);
+  describe('mount', () => {
+    let sheetsRegistry;
+    let jss;
+
+    beforeEach(() => {
+      jss = create(preset());
+      jss.options.createGenerateClassName = createGenerateClassName;
+      sheetsRegistry = new SheetsRegistry();
+    });
+
+    it('should run lifecycles with no theme', () => {
+      const styleSheet = createStyleSheet({
+        root: {
+          display: 'flex',
+        },
+      });
+      const StyledComponent = withStyles(styleSheet)(Empty);
+
+      const wrapper = mount(
+        <MuiThemeProvider theme={createMuiTheme()}>
+          <JssProvider registry={sheetsRegistry} jss={jss}>
+            <StyledComponent />
+          </JssProvider>
+        </MuiThemeProvider>,
+      );
+      assert.strictEqual(sheetsRegistry.registry.length, 1);
+      assert.deepEqual(sheetsRegistry.registry[0].classes, {
+        root: 'Empty-root-1',
+      });
+      wrapper.update();
+      assert.strictEqual(sheetsRegistry.registry.length, 1, 'should only attach once');
+      assert.deepEqual(sheetsRegistry.registry[0].classes, {
+        root: 'Empty-root-1',
+      });
+      wrapper.setProps({
+        theme: createMuiTheme(),
+      });
+      assert.strictEqual(sheetsRegistry.registry.length, 1, 'should only attach once');
+      assert.deepEqual(sheetsRegistry.registry[0].classes, {
+        root: 'Empty-root-1',
+      });
+
+      wrapper.unmount();
+      assert.strictEqual(sheetsRegistry.registry.length, 0);
+    });
+
+    it('should work when depending on a theme', () => {
+      const styleSheet = createStyleSheet('MuiTextField', theme => ({
+        root: {
+          padding: theme.spacing.unit,
+        },
+      }));
+      const StyledComponent = withStyles(styleSheet)(Empty);
+
+      const wrapper = mount(
+        <MuiThemeProvider theme={createMuiTheme()}>
+          <JssProvider registry={sheetsRegistry} jss={jss}>
+            <StyledComponent />
+          </JssProvider>
+        </MuiThemeProvider>,
+      );
+      assert.strictEqual(sheetsRegistry.registry.length, 1, 'should only attach once');
+      assert.deepEqual(sheetsRegistry.registry[0].classes, {
+        root: 'MuiTextField-root-1',
+      });
+      wrapper.setProps({
+        theme: createMuiTheme(),
+      });
+      assert.strictEqual(sheetsRegistry.registry.length, 1, 'should only attach once');
+      assert.deepEqual(sheetsRegistry.registry[0].classes, {
+        root: 'MuiTextField-root-2',
+      });
+    });
+
+    it('should support the overrides key', () => {
+      const styleSheet = createStyleSheet('MuiTextField', {
+        root: {
+          padding: 8,
+        },
+      });
+      const StyledComponent = withStyles(styleSheet)(Empty);
+
+      mount(
+        <MuiThemeProvider
+          theme={createMuiTheme({
+            overrides: {
+              MuiTextField: {
+                root: {
+                  padding: 9,
+                },
+              },
+            },
+          })}
+        >
+          <JssProvider registry={sheetsRegistry} jss={jss}>
+            <StyledComponent />
+          </JssProvider>
+        </MuiThemeProvider>,
+      );
+
+      assert.strictEqual(sheetsRegistry.registry.length, 1, 'should only attach once');
+      assert.deepEqual(sheetsRegistry.registry[0].rules.raw, {
+        root: {
+          padding: 9,
+        },
+      });
     });
   });
 });

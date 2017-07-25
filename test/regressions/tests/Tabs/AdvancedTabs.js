@@ -1,8 +1,8 @@
 // @flow weak
 
 import React from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import PropTypes from 'prop-types';
+import { createStyleSheet, withStyles } from 'material-ui/styles';
 import Icon from 'material-ui/Icon';
 import Paper from 'material-ui/Paper';
 import Tabs from 'material-ui/Tabs';
@@ -18,8 +18,8 @@ const styleSheet = createStyleSheet('AdvancedTabs', theme => ({
   },
 }));
 
-export default function AdvancedTabs(props, context) {
-  const classes = context.styleManager.render(styleSheet);
+function AdvancedTabs(props) {
+  const { classes } = props;
 
   return (
     <div className={classes.root}>
@@ -67,6 +67,8 @@ export default function AdvancedTabs(props, context) {
   );
 }
 
-AdvancedTabs.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
+AdvancedTabs.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
+
+export default withStyles(styleSheet)(AdvancedTabs);

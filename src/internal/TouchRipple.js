@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import ReactTransitionGroup from 'react-transition-group/TransitionGroup';
 import classNames from 'classnames';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from '../utils/customPropTypes';
-import Ripple, { styleSheet as rippleStyleSheet } from './Ripple';
+import createStyleSheet from '../styles/createStyleSheet';
+import withStyles from '../styles/withStyles';
+import Ripple from './Ripple';
 
-export const styleSheet = createStyleSheet('MuiTouchRipple', {
+export const styleSheet = createStyleSheet('MuiTouchRipple', theme => ({
   root: {
     display: 'block',
     position: 'absolute',
@@ -22,7 +22,71 @@ export const styleSheet = createStyleSheet('MuiTouchRipple', {
     pointerEvents: 'none',
     zIndex: 0,
   },
-});
+  wrapper: {
+    opacity: 1,
+  },
+  wrapperLeaving: {
+    opacity: 0,
+    animation: `mui-ripple-exit 550ms ${theme.transitions.easing.easeInOut}`,
+  },
+  wrapperPulsating: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    display: 'block',
+    width: '100%',
+    height: '100%',
+    animation: `mui-ripple-pulsate 1500ms ${theme.transitions.easing.easeInOut} 200ms infinite`,
+    rippleVisible: {
+      opacity: 0.2,
+    },
+  },
+  '@keyframes mui-ripple-enter': {
+    '0%': {
+      transform: 'scale(0)',
+    },
+    '100%': {
+      transform: 'scale(1)',
+    },
+  },
+  '@keyframes mui-ripple-exit': {
+    '0%': {
+      opacity: 1,
+    },
+    '100%': {
+      opacity: 0,
+    },
+  },
+  '@keyframes mui-ripple-pulsate': {
+    '0%': {
+      transform: 'scale(1)',
+    },
+    '50%': {
+      transform: 'scale(0.9)',
+    },
+    '100%': {
+      transform: 'scale(1)',
+    },
+  },
+  ripple: {
+    width: 50,
+    height: 50,
+    left: 0,
+    top: 0,
+    opacity: 0,
+    position: 'absolute',
+    borderRadius: '50%',
+    background: 'currentColor',
+  },
+  rippleVisible: {
+    opacity: 0.3,
+    transform: 'scale(1)',
+    animation: `mui-ripple-enter 550ms ${theme.transitions.easing.easeInOut}`,
+  },
+  rippleFast: {
+    animationDuration: '200ms',
+  },
+}));
 
 /**
  * @ignore - internal component.
@@ -36,11 +100,6 @@ class TouchRipple extends Component {
     nextKey: 0,
     ripples: [],
   };
-
-  componentWillMount() {
-    // Pre-render the ripple styles
-    this.context.styleManager.render(rippleStyleSheet);
-  }
 
   // Used to filter out mouse emulated events on mobile.
   ignoringMouseDown = false;
@@ -126,6 +185,7 @@ class TouchRipple extends Component {
       <Ripple
         key={this.state.nextKey}
         event={event}
+        classes={this.props.classes}
         pulsate={pulsate}
         rippleX={rippleX}
         rippleY={rippleY}
@@ -155,8 +215,7 @@ class TouchRipple extends Component {
   };
 
   render() {
-    const { center, className, ...other } = this.props;
-    const classes = this.context.styleManager.render(styleSheet);
+    const { center, classes, className, ...other } = this.props;
 
     return (
       <ReactTransitionGroup
@@ -179,13 +238,13 @@ TouchRipple.propTypes = {
    */
   center: PropTypes.bool,
   /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
    * @ignore
    */
   className: PropTypes.string,
 };
 
-TouchRipple.contextTypes = {
-  styleManager: customPropTypes.muiRequired,
-};
-
-export default TouchRipple;
+export default withStyles(styleSheet)(TouchRipple);
