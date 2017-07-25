@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import Menu from '../Menu'
 import ArrowDropdown from '../svg-icons/arrow-drop-down';
 import withStyles from '../styles/withStyles';
-import { createStyleSheet } from 'jss-theme-reactor';
+import createStyleSheet from '../styles/createStyleSheet';
 import { fade } from '../styles/colorManipulator';
 import  common from '../colors/common';
 import  grey from '../colors/grey';

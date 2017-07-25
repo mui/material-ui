@@ -4,7 +4,7 @@
 import React, {Component, Children, cloneElement, isValidElement} from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '../styles/withStyles';
-import { createStyleSheet } from 'jss-theme-reactor';
+import createStyleSheet from '../styles/createStyleSheet';
 import classNames from 'classnames';
 import { fade } from '../styles/colorManipulator';
 import common from '../colors/common';
