@@ -15,14 +15,14 @@ The ecosystem has evolved a lot since then, we have also learned a lot.
 taking advantage of this knowledge to address long-standing issues.
 Expect various **breaking changes**.
 
-The core team is now helping him in the [v1-alpha](https://github.com/callemall/material-ui/tree/v1-alpha) branch.
-If you are interested in following our progress or if you want to help us reach that goal faster, you can have a look at the two following milestones:
-- [v1.0.0-beta](https://github.com/callemall/material-ui/milestone/22)
+The core team is now helping him in the [v1-beta](https://github.com/callemall/material-ui/tree/v1-beta) branch.
+If you are interested in following our progress or if you want to help us reach that goal faster, you can have a look at the following milestones:
+- ~~[v1.0.0-beta](https://github.com/callemall/material-ui/milestone/22)~~ - complete!
 - [v1.0.0-prerelease](https://github.com/callemall/material-ui/milestone/14)
 
-## Q&A with the v1-alpha branch
+## Q&A with the v1-beta branch
 
-The `v1-alpha` branch has become more mature.
+The `v1-beta` branch has become more mature.
 We think that it's a good time to communicate more on this effort.
 We have a lot of people opening PRs and getting them closed, this is not a good thing.
 This Q&A tries to answer some of your questions.
@@ -61,7 +61,7 @@ Yes, it does. You can have a look at [this presentation](https://github.com/oliv
 
 ## What does it mean to migrate a component? Should we discuss each one of them first?
 
-Migrating a component to the `v1-alpha` branch isn't just a style migration.
+Migrating a component to the `v1-beta` branch isn't just a style migration.
 We think that it's our best opportunity to clear the API and improve the implementation of the components.
 @nathanmarks ended up fixing a lot of long standing issues in the process.
 
@@ -74,24 +74,24 @@ We should answer the following questions:
 
 That conversation could start on one of the following [issues](https://github.com/callemall/material-ui/issues?q=is%3Aissue+is%3Aopen+label%3ARefactoring+label%3Anext).
 
-### How do I know if a component still needs to be migrated `v1-alpha`?
+### How do I know if a component still needs to be migrated `v1-beta`?
 
-We have [Github project](https://github.com/callemall/material-ui/projects/1) to **coordinate** the work toward the `v1-alpha` release.
-You can check the *Component to migrate* column to know the ones needing to be migrated to `v1-alpha`.
+We have [Github project](https://github.com/callemall/material-ui/projects/1) to **coordinate** the work toward the `v1-beta` release.
+You can check the *Component to migrate* column to know the ones needing to be migrated to `v1-beta`.
 
-### How do I start migrating components to the `v1-alpha` branch?
+### How do I start migrating components to the `v1-beta` branch?
 
 Once we agree on the migration plan you're gonna have to get your hands dirty.
 That's really up to you. At least, you gonna have to
-- clone the `v1-alpha` branch
+- clone the `v1-beta` branch
 - install the npm dependencies
 - play with the documentation site
 - write some documentation
 - write some tests (unit, integration, visual)
 
-### When do we intend to release `v1-alpha`?
+### When do we intend to release `v1-beta`?
 
-We don't have an ETA for the release of the `v1-alpha` branch,
+We don't have an ETA for the release of the `v1-beta` branch,
 however, we are going to try to follow this plan:
 
 1. We completely address the styling issue before moving from *alpha* to [*beta*](https://github.com/callemall/material-ui/milestone/22).
