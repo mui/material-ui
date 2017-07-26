@@ -53,6 +53,8 @@
     "react-dom": "^15.3.0 || ^16.0.0-alpha.13"
   },
   "dependencies": {
+    "@types/enzyme": "^2.8.4",
+    "@types/react": "^15.0.39",
     "babel-runtime": "^6.23.0",
     "brcast": "^2.0.1",
     "classnames": "^2.2.5",
@@ -73,8 +75,6 @@
     "warning": "^3.0.0"
   },
   "devDependencies": {
-    "@types/enzyme": "^2.8.4",
-    "@types/react": "^15.0.39",
     "app-module-path": "^2.2.0",
     "argos-cli": "^0.0.9",
     "babel-cli": "^6.24.1",
