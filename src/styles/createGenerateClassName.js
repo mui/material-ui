@@ -1,7 +1,7 @@
 // @flow
 
 import warning from 'warning';
-import type { StyleSheet } from 'jss/lib/StyleSheet';
+import type StyleSheet from 'jss/lib/StyleSheet';
 import type { Rule, generateClassName } from 'jss/lib/types';
 
 // Returns a function which generates unique class names based on counters.
