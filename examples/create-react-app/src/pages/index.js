@@ -18,7 +18,7 @@ const styles = {
   },
 };
 
-class App extends Component {
+class Index extends Component {
   state = {
     open: false,
   };
@@ -63,4 +63,4 @@ class App extends Component {
   }
 }
 
-export default withRoot(App);
+export default withRoot(Index);
