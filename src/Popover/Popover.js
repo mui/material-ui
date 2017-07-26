@@ -201,6 +201,7 @@ class Popover extends Component {
       style,
       targetOrigin,
       useLayerForClickAway, // eslint-disable-line no-unused-vars
+      scrollableContainer, // eslint-disable-line no-unused-vars
       ...other
     } = this.props;
 
