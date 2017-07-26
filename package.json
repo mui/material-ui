@@ -48,8 +48,8 @@
     "publish": "npm run build && cd build && npm publish --tag next"
   },
   "peerDependencies": {
-    "react": "^15.3.0 || ^16.0.0-alpha.13",
-    "react-dom": "^15.3.0 || ^16.0.0-alpha.13"
+    "react": "^15.3.0 || ^16.0.0-beta.1",
+    "react-dom": "^15.3.0 || ^16.0.0-beta.1"
   },
   "dependencies": {
     "babel-runtime": "^6.23.0",
