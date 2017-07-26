@@ -13,7 +13,7 @@ export const styleSheet = createStyleSheet('MuiTouchRipple', theme => ({
   root: {
     display: 'block',
     position: 'absolute',
-    //overflow: 'hidden', The ripple should be limited by an external component in my opinion.
+    // overflow: 'hidden', The ripple should be limited by an external component in my opinion.
     borderRadius: 'inherit',
     width: '100%',
     height: '100%',
