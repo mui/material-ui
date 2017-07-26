@@ -1,18 +1,13 @@
-/**
- * Created by zabieru on 6/23/2017.
- */
 // @flow
 
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
-import ToggleButton from 'material-ui/ToggleButton';
-import {Option} from 'material-ui/ToggleButton'
-import Icon from 'material-ui/Icon'
-import {MenuItem} from 'material-ui/Menu';
+import ToggleButton, { Option } from 'material-ui/ToggleButton';
+import Icon from 'material-ui/Icon';
+import { MenuItem } from 'material-ui/Menu';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
-
 
 const styleSheet = createStyleSheet('NormalToggleButton', {
   root: {
@@ -20,48 +15,48 @@ const styleSheet = createStyleSheet('NormalToggleButton', {
   },
   paper: {
     padding: 30,
-  }
+  },
 });
 
 function NormalToggleButton(props) {
   const classes = props.classes;
 
-  function changeColor(value){
-    var div = document.getElementById('dummyDiv').style;
-    if (value == 4){
+  function changeColor(value) {
+    const div = document.getElementById('dummyDiv').style;
+    if (value === 4) {
       div.background = '#F44336';
-    } else if(value == 5){
+    } else if (value === 5) {
       div.background = '#2196F3';
-    } else if(value == 6){
+    } else if (value === 6) {
       div.background = '#009688';
     }
-  };
+  }
 
   function colorReset() {
     document.getElementById('dummyDiv').style.background = 'white';
-  };
+  }
 
   function changeText(value) {
-    var text = document.getElementById('dummyText').style;
-    if (value == 1){
+    const text = document.getElementById('dummyText').style;
+    if (value === 1) {
       text.fontWeight = 800;
-    } else if(value == 2){
+    } else if (value === 2) {
       text.fontStyle = 'italic';
-    } else if(value == 3){
+    } else if (value === 3) {
       text.textDecoration = 'underline';
     }
-  };
+  }
 
   function resetText(value) {
-    var text = document.getElementById('dummyText').style;
-    if (value == 1){
+    const text = document.getElementById('dummyText').style;
+    if (value === 1) {
       text.fontWeight = 'normal';
-    } else if(value == 2){
+    } else if (value === 2) {
       text.fontStyle = 'normal';
-    } else if(value == 3){
+    } else if (value === 3) {
       text.textDecoration = 'none';
     }
-  };
+  }
 
   return (
     <div className={classes.root}>
@@ -89,9 +84,9 @@ function NormalToggleButton(props) {
           onSelect={changeColor}
           onDeselect={colorReset}
         >
-          <MenuItem value={4} >Red</MenuItem>
-          <MenuItem value={5} >Blue</MenuItem>
-          <MenuItem value={6} >Green</MenuItem>
+          <MenuItem value={4}>Red</MenuItem>
+          <MenuItem value={5}>Blue</MenuItem>
+          <MenuItem value={6}>Green</MenuItem>
         </Option>
       </ToggleButton>
 

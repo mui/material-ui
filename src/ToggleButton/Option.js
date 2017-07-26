@@ -1,25 +1,23 @@
-/**
- * Created by zabieru on 6/7/2017.
- */
-import React, {Component} from 'react';
-import ButtonBase from '../internal/ButtonBase'
+// @flow
+
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Menu from '../Menu'
+import classNames from 'classnames';
+import ButtonBase from '../internal/ButtonBase';
+import Menu from '../Menu';
 import ArrowDropdown from '../svg-icons/arrow-drop-down';
 import withStyles from '../styles/withStyles';
 import createStyleSheet from '../styles/createStyleSheet';
 import { fade } from '../styles/colorManipulator';
-import  common from '../colors/common';
-import  grey from '../colors/grey';
-import classNames from 'classnames';
-
+import common from '../colors/common';
+import grey from '../colors/grey';
 
 /**
  * Represents an option within a Toggle Button
  *
  */
 
-export const styleSheet = createStyleSheet('MuiOption', theme => ({
+export const styleSheet = createStyleSheet('MuiOption', {
   root: {
     backgroundColor: 'transparent',
     borderRadius: 0,
@@ -28,7 +26,7 @@ export const styleSheet = createStyleSheet('MuiOption', theme => ({
     float: 'left',
     padding: '0px 12px',
     textTransform: 'uppercase',
-    // borderLeft: props.optionStyle.borderLeft? props.optionStyle.borderLeft : 'none', //TODO: Maybe just do a merge?
+    // borderLeft: props.optionStyle.borderLeft? props.optionStyle.borderLeft : 'none',
     // borderRight: props.optionStyle.borderRight? props.optionStyle.borderRight : 'none',
     height: 36,
   },
@@ -44,7 +42,7 @@ export const styleSheet = createStyleSheet('MuiOption', theme => ({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    float: "left", //TODO: Move this down to where the dropdown is being generated
+    float: 'left', // TODO: Move this down to where the dropdown is being generated
     color: fade(common.black, 0.3),
   },
   textSelected: {
@@ -56,12 +54,12 @@ export const styleSheet = createStyleSheet('MuiOption', theme => ({
   iconAndText: {
     height: 58,
   },
-  divided:{
-    borderLeft : '0.25px solid ' + grey[500],
-  }
-}));
+  divided: {
+    borderLeft: `0.25px solid ${grey[500]}`,
+  },
+});
 
-class Option extends Component{
+class Option extends Component {
   static muiName = 'Option';
 
   static defaultProps = {
@@ -69,7 +67,7 @@ class Option extends Component{
   };
 
   componentWillMount() {
-    if(this.props.children){
+    if (this.props.children) {
       this.setState({
         value: null,
         anchorEl: undefined,
@@ -78,13 +76,13 @@ class Option extends Component{
     }
   }
 
-  handleDropDownClick = (item) =>{
-    const newValue = (this.props.value === item.props.value) ? null : item.props.value;
+  handleDropDownClick = item => {
+    const newValue = this.props.value === item.props.value ? null : item.props.value;
     this.setState({
       value: newValue,
       open: false,
     });
-    if (this.props.onClick){
+    if (this.props.onClick) {
       const props = Object.assign({}, this.props);
       props.value = newValue;
       this.props.onClick(props);
@@ -92,7 +90,7 @@ class Option extends Component{
   };
 
   handleOptionClick = () => {
-    if (this.props.onClick && !this.props.children) { //Regular functionality if not dropdown
+    if (this.props.onClick && !this.props.children) {
       this.props.onClick(this.props);
     }
   };
@@ -105,70 +103,65 @@ class Option extends Component{
     this.setState({ open: false });
   };
 
-  render(){
-    const {
-      icon,
-      label,
-      classes,
-      style,
-      divider,
-      noBackground,
-      selected,
-      children,
-    } = this.props;
+  render() {
+    const { icon, label, classes, divider, noBackground, selected, children } = this.props;
 
-    const buttonProps ={
+    const buttonProps = {
       className: classNames(classes.root, {
-        [classes.iconAndText] : icon && label,
-        [classes.backgroundSelected] : selected && !noBackground,
-        [classes.divided] : divider,
+        [classes.iconAndText]: icon && label,
+        [classes.backgroundSelected]: selected && !noBackground,
+        [classes.divided]: divider,
       }),
       onClick: this.handleOptionClick,
       centerRipple: true,
     };
-    const rootProps ={
+    const rootProps = {
       className: classNames(classes.button, {
-        [classes.textSelected] : selected,
+        [classes.textSelected]: selected,
       }),
     };
     const dropDownProps = {
       className: classNames(classes.dropDownButton, {
-        [classes.textSelected] : selected,
+        [classes.textSelected]: selected,
       }),
     };
 
     let optionButton;
     let option;
-    //If there are children available, make it a Dropdown Menu.
-    if(!children){
-      optionButton = React.createElement("div", rootProps, icon, label);
+    // If there are children available, make it a Dropdown Menu.
+    if (!children) {
+      optionButton = React.createElement('div', rootProps, icon, label);
       option = React.createElement(ButtonBase, buttonProps, optionButton);
-    }else {
+    } else {
       const items = children.map((child, index) => {
         return React.cloneElement(child, {
           key: index,
           onClick: () => this.handleDropDownClick(child),
         });
       });
-      const dropButtonProps ={
-        'aria-owns': "option-menu",
-        'aria-haspopup' : true,
+      const dropButtonProps = {
+        'aria-owns': 'option-menu',
+        'aria-haspopup': true,
         className: classNames(classes.root, {
-          [classes.iconAndText] : icon && label,
-          [classes.backgroundSelected] : selected && !noBackground,
-          [classes.divided] : divider,
+          [classes.iconAndText]: icon && label,
+          [classes.backgroundSelected]: selected && !noBackground,
+          [classes.divided]: divider,
         }),
         onClick: this.handleClick,
-        //centerRipple: true,
+        // centerRipple: true,
       };
-      optionButton = React.createElement("div", dropDownProps, icon, label);
-      let dropDownButton = React.createElement(ButtonBase, dropButtonProps, optionButton,
+      optionButton = React.createElement('div', dropDownProps, icon, label);
+      const dropDownButton = React.createElement(
+        ButtonBase,
+        dropButtonProps,
+        optionButton,
         React.createElement(ArrowDropdown, {
           style: {
-            transform: label && icon? "translate(50%, 50%)": "none",  //TODO: Move this to get style
-            color: selected? fade(common.black, 0.54) : fade(common.black, 0.3),
-          }
-        })
+            // TODO: Move this to get style
+            transform: label && icon ? 'translate(50%, 50%)' : 'none',
+            color: selected ? fade(common.black, 0.54) : fade(common.black, 0.3),
+          },
+        }),
       );
       const menuProps = {
         id: 'option-menu',
@@ -176,16 +169,28 @@ class Option extends Component{
         open: this.state.open,
         onRequestClose: this.handleRequestClose,
       };
-      option = React.createElement("div", {style :{ display: 'inline-block', float: 'left', overflow: 'hidden',}}, dropDownButton, //Move Style to Stylesheet
-        React.createElement(Menu, menuProps, items)
+      option = React.createElement(
+        'div',
+        {
+          style: {
+            display: 'inline-block',
+            float: 'left',
+            overflow: 'hidden',
+          },
+        },
+        dropDownButton, // Move Style to Stylesheet
+        React.createElement(Menu, menuProps, items),
       );
     }
     return option;
   }
 }
 
-Option.propTypes ={
-
+Option.propTypes = {
+  /**
+   * If specified, renders a dropdown of Options of type 'MenuItem'.
+   */
+  children: PropTypes.node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -195,13 +200,13 @@ Option.propTypes ={
    */
   className: PropTypes.string,
   /**
-   * Sets the icon of the tab, you can pass `FontIcon` or `SvgIcon` elements.
-   */
-  icon: PropTypes.node,
-  /**
    * Set a divider to the right of the option.
    */
   divider: PropTypes.bool,
+  /**
+   * Sets the icon of the tab, you can pass `FontIcon` or `SvgIcon` elements.
+   */
+  icon: PropTypes.node,
   /**
    * @ignore
    */
@@ -242,15 +247,7 @@ Option.propTypes ={
   /**
    * Sets the value of the option which may be one of the primitive types.
    */
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool
-  ]),
-  /**
-   * If specified, renders a dropdown of Options of type 'MenuItem'.
-   */
-  children: PropTypes.node,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
 };
 
-export default withStyles(styleSheet) (Option);
+export default withStyles(styleSheet)(Option);

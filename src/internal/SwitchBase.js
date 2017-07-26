@@ -155,7 +155,7 @@ export default function createSwitch(
     }
   }
 
-  /**
+   /**
    ** NB: If changed, please update Checkbox, Switch and Radio
    ** so that the API documentation is updated.
    **/
