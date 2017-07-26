@@ -148,6 +148,7 @@ declare module 'material-ui' {
 
 declare module 'material-ui/AppBar' {
   export { default } from 'material-ui/AppBar/AppBar';
+  export * from 'material-ui/AppBar/AppBar';
 }
 
 declare module 'material-ui/AppBar/AppBar' {
@@ -161,6 +162,7 @@ declare module 'material-ui/AppBar/AppBar' {
 
 declare module 'material-ui/Avatar' {
   export { default } from 'material-ui/Avatar/Avatar';
+  export * from 'material-ui/Avatar/Avatar';
 }
 
 declare module 'material-ui/Avatar/Avatar' {
@@ -179,6 +181,7 @@ declare module 'material-ui/Avatar/Avatar' {
 
 declare module 'material-ui/Badge' {
   export { default } from 'material-ui/Badge/Badge';
+  export * from 'material-ui/Badge/Badge';
 }
 
 declare module 'material-ui/Badge/Badge' {
@@ -193,9 +196,11 @@ declare module 'material-ui/Badge/Badge' {
 
 declare module 'material-ui/BottomNavigation' {
   export { default } from 'material-ui/BottomNavigation/BottomNavigation';
+  export * from 'material-ui/BottomNavigation/BottomNavigation';
   export {
     default as BottomNavigationButton,
   } from 'material-ui/BottomNavigation/BottomNavigationButton';
+  export * from 'material-ui/BottomNavigation/BottomNavigationButton';
 }
 
 declare module 'material-ui/BottomNavigation/BottomNavigation' {
@@ -229,6 +234,7 @@ declare module 'material-ui/BottomNavigation/BottomNavigationButton' {
 
 declare module 'material-ui/Button' {
   export { default } from 'material-ui/Button/Button';
+  export * from 'material-ui/Button/Button';
 }
 
 declare module 'material-ui/Button/Button' {
@@ -250,10 +256,15 @@ declare module 'material-ui/Button/Button' {
 
 declare module 'material-ui/Card' {
   export { default } from 'material-ui/Card/Card';
+  export * from 'material-ui/Card/Card';
   export { default as CardActions } from 'material-ui/Card/CardActions';
+  export * from 'material-ui/Card/CardActions';
   export { default as CardContent } from 'material-ui/Card/CardContent';
+  export * from 'material-ui/Card/CardContent';
   export { default as CardHeader } from 'material-ui/Card/CardHeader';
+  export * from 'material-ui/Card/CardHeader';
   export { default as CardMedia } from 'material-ui/Card/CardMedia';
+  export * from 'material-ui/Card/CardMedia';
 }
 
 declare module 'material-ui/Card/Card' {
@@ -302,6 +313,7 @@ declare module 'material-ui/Card/CardMedia' {
 
 declare module 'material-ui/Checkbox' {
   export { default } from 'material-ui/Checkbox/Checkbox';
+  export * from 'material-ui/Checkbox/Checkbox';
 }
 
 declare module 'material-ui/Checkbox/Checkbox' {
@@ -329,6 +341,7 @@ declare module 'material-ui/Checkbox/Checkbox' {
 
 declare module 'material-ui/Chip' {
   export { default } from 'material-ui/Chip/Chip';
+  export * from 'material-ui/Chip/Chip';
 }
 
 declare module 'material-ui/Chip/Chip' {
@@ -346,15 +359,21 @@ declare module 'material-ui/Chip/Chip' {
 
 declare module 'material-ui/Dialog' {
   export { default } from 'material-ui/Dialog/Dialog';
+  export * from 'material-ui/Dialog/Dialog';
   export { default as DialogActions } from 'material-ui/Dialog/DialogActions';
+  export * from 'material-ui/Dialog/DialogActions';
   export { default as DialogTitle } from 'material-ui/Dialog/DialogTitle';
+  export * from 'material-ui/Dialog/DialogTitle';
   export { default as DialogContent } from 'material-ui/Dialog/DialogContent';
+  export * from 'material-ui/Dialog/DialogContent';
   export {
     default as DialogContentText,
   } from 'material-ui/Dialog/DialogContentText';
+  export * from 'material-ui/Dialog/DialogContentText';
   export {
     default as withResponsiveFullScreen,
   } from 'material-ui/Dialog/withResponsiveFullScreen';
+  export * from 'material-ui/Dialog/withResponsiveFullScreen';
 }
 
 declare module 'material-ui/Dialog/Dialog' {
@@ -426,6 +445,7 @@ declare module 'material-ui/Dialog/withResponsiveFullScreen' {
 
 declare module 'material-ui/Divider' {
   export { default } from 'material-ui/Divider/Divider';
+  export * from 'material-ui/Divider/Divider';
 }
 
 declare module 'material-ui/Divider/Divider' {
@@ -440,6 +460,7 @@ declare module 'material-ui/Divider/Divider' {
 
 declare module 'material-ui/Drawer' {
   export { default } from 'material-ui/Drawer/Drawer';
+  export * from 'material-ui/Drawer/Drawer';
 }
 
 declare module 'material-ui/Drawer/Drawer' {
@@ -462,12 +483,17 @@ declare module 'material-ui/Drawer/Drawer' {
 
 declare module 'material-ui/Form' {
   export { default as FormGroup } from 'material-ui/Form/FormGroup';
+  export * from 'material-ui/Form/FormGroup';
   export { default as FormLabel } from 'material-ui/Form/FormLabel';
+  export * from 'material-ui/Form/FormLabel';
   export { default as FormControl } from 'material-ui/Form/FormControl';
+  export * from 'material-ui/Form/FormControl';
   export { default as FormHelperText } from 'material-ui/Form/FormHelperText';
+  export * from 'material-ui/Form/FormHelperText';
   export {
     default as FormControlLabel,
   } from 'material-ui/Form/FormControlLabel';
+  export * from 'material-ui/Form/FormControlLabel';
 }
 
 declare module 'material-ui/Form/FormControl' {
@@ -536,6 +562,7 @@ declare module 'material-ui/Form/FormLabel' {
 
 declare module 'material-ui/Grid' {
   export { default } from 'material-ui/Grid/Grid';
+  export * from 'material-ui/Grid/Grid';
 }
 
 declare module 'material-ui/Grid/Grid' {
@@ -580,7 +607,9 @@ declare module 'material-ui/Grid/Grid' {
 
 declare module 'material-ui/Hidden' {
   export { default } from 'material-ui/Hidden/Hidden';
+  export * from 'material-ui/Hidden/Hidden';
   export { default as HiddenJs } from 'material-ui/Hidden/HiddenJs';
+  export * from 'material-ui/Hidden/HiddenJs';
 }
 
 declare module 'material-ui/Hidden/Hidden' {
@@ -607,7 +636,7 @@ declare module 'material-ui/Hidden/Hidden' {
 declare module 'material-ui/Hidden/HiddenJs' {
   import { Breakpoint } from 'material-ui/styles/breakpoints';
 
-  export interface HiddenProps {
+  export interface HiddenJsProps {
     only?: Breakpoint | Array<Breakpoint>;
     xsUp?: boolean;
     smUp?: boolean;
@@ -621,11 +650,12 @@ declare module 'material-ui/Hidden/HiddenJs' {
     xlDown?: boolean;
   }
 
-  export default class Hidden extends MaterialUI.Component<HiddenProps> {}
+  export default class HiddenJs extends MaterialUI.Component<HiddenJsProps> {}
 }
 
 declare module 'material-ui/Icon' {
   export { default } from 'material-ui/Icon/Icon';
+  export * from 'material-ui/Icon/Icon';
 }
 
 declare module 'material-ui/Icon/Icon' {
@@ -645,6 +675,7 @@ declare module 'material-ui/Icon/Icon' {
 
 declare module 'material-ui/IconButton' {
   export { default } from 'material-ui/IconButton/IconButton';
+  export * from 'material-ui/IconButton/IconButton';
 }
 
 declare module 'material-ui/IconButton/IconButton' {
@@ -664,7 +695,9 @@ declare module 'material-ui/IconButton/IconButton' {
 
 declare module 'material-ui/Input' {
   export { default } from 'material-ui/Input/Input';
+  export * from 'material-ui/Input/Input';
   export { default as InputLabel } from 'material-ui/Input/InputLabel';
+  export * from 'material-ui/Input/InputLabel';
   // NOTE: Textarea is missing from exports (intentional?)
 }
 
@@ -726,14 +759,21 @@ declare module 'material-ui/Input/Textarea' {
 
 declare module 'material-ui/List' {
   export { default } from 'material-ui/List/List';
+  export * from 'material-ui/List/List';
   export { default as ListItem } from 'material-ui/List/ListItem';
+  export * from 'material-ui/List/ListItem';
   export { default as ListItemAvatar } from 'material-ui/List/ListItemAvatar';
+  export * from 'material-ui/List/ListItemAvatar';
   export { default as ListItemText } from 'material-ui/List/ListItemText';
+  export * from 'material-ui/List/ListItemText';
   export { default as ListItemIcon } from 'material-ui/List/ListItemIcon';
+  export * from 'material-ui/List/ListItemIcon';
   export {
     default as ListItemSecondaryAction,
   } from 'material-ui/List/ListItemSecondaryAction';
+  export * from 'material-ui/List/ListItemSecondaryAction';
   export { default as ListSubheader } from 'material-ui/List/ListSubheader';
+  export * from 'material-ui/List/ListSubheader';
 }
 
 declare module 'material-ui/List/List' {
@@ -811,8 +851,11 @@ declare module 'material-ui/List/ListSubheader' {
 
 declare module 'material-ui/Menu' {
   export { default } from 'material-ui/Menu/Menu';
+  export * from 'material-ui/Menu/Menu';
   export { default as MenuList } from 'material-ui/Menu/MenuList';
+  export *  from 'material-ui/Menu/MenuList';
   export { default as MenuItem } from 'material-ui/Menu/MenuItem';
+  export *  from 'material-ui/Menu/MenuItem';
 }
 
 declare module 'material-ui/Menu/Menu' {
@@ -849,6 +892,7 @@ declare module 'material-ui/Menu/MenuList' {
 
 declare module 'material-ui/MobileStepper' {
   export { default } from 'material-ui/MobileStepper/MobileStepper';
+  export * from 'material-ui/MobileStepper/MobileStepper';
 }
 
 declare module 'material-ui/MobileStepper/MobileStepper' {
@@ -872,6 +916,7 @@ declare module 'material-ui/MobileStepper/MobileStepper' {
 
 declare module 'material-ui/Paper' {
   export { default } from 'material-ui/Paper/Paper';
+  export * from 'material-ui/Paper/Paper';
 }
 
 declare module 'material-ui/Paper/Paper' {
@@ -888,9 +933,11 @@ declare module 'material-ui/Progress' {
   export {
     default as CircularProgress,
   } from 'material-ui/Progress/CircularProgress';
+  export * from 'material-ui/Progress/CircularProgress';
   export {
     default as LinearProgress,
   } from 'material-ui/Progress/LinearProgress';
+  export * from 'material-ui/Progress/LinearProgress';
 }
 
 declare module 'material-ui/Progress/CircularProgress' {
@@ -923,7 +970,9 @@ declare module 'material-ui/Progress/LinearProgress' {
 
 declare module 'material-ui/Radio' {
   export { default } from 'material-ui/Radio/Radio';
+  export * from 'material-ui/Radio/Radio';
   export { default as RadioGroup } from 'material-ui/Radio/RadioGroup';
+  export * from 'material-ui/Radio/RadioGroup';
 }
 
 declare module 'material-ui/Radio/Radio' {
@@ -964,9 +1013,11 @@ declare module 'material-ui/Radio/RadioGroup' {
 
 declare module 'material-ui/Snackbar' {
   export { default } from 'material-ui/Snackbar/Snackbar';
+  export * from 'material-ui/Snackbar/Snackbar';
   export {
     default as SnackbarContent,
   } from 'material-ui/Snackbar/SnackbarContent';
+  export * from 'material-ui/Snackbar/SnackbarContent';
 }
 
 declare module 'material-ui/Snackbar/Snackbar' {
@@ -1008,6 +1059,7 @@ declare module 'material-ui/Snackbar/SnackbarContent' {
 
 declare module 'material-ui/SvgIcon' {
   export { default } from 'material-ui/SvgIcon/SvgIcon';
+  export * from 'material-ui/SvgIcon/SvgIcon';
 }
 
 declare module 'material-ui/SvgIcon/SvgIcon' {
@@ -1021,6 +1073,7 @@ declare module 'material-ui/SvgIcon/SvgIcon' {
 
 declare module 'material-ui/Switch' {
   export { default } from 'material-ui/Switch/Switch';
+  export * from 'material-ui/Switch/Switch';
 }
 
 declare module 'material-ui/Switch/Switch' {
@@ -1045,11 +1098,17 @@ declare module 'material-ui/Switch/Switch' {
 
 declare module 'material-ui/Table' {
   export { default } from 'material-ui/Table/Table';
+  export * from 'material-ui/Table/Table';
   export { default as TableHead } from 'material-ui/Table/TableHead';
+  export *  from 'material-ui/Table/TableHead';
   export { default as TableBody } from 'material-ui/Table/TableBody';
+  export *  from 'material-ui/Table/TableBody';
   export { default as TableRow } from 'material-ui/Table/TableRow';
+  export *  from 'material-ui/Table/TableRow';
   export { default as TableCell } from 'material-ui/Table/TableCell';
+  export *  from 'material-ui/Table/TableCell';
   export { default as TableSortLabel } from 'material-ui/Table/TableSortLabel';
+  export *  from 'material-ui/Table/TableSortLabel';
 }
 
 declare module 'material-ui/Table/Table' {
@@ -1103,7 +1162,9 @@ declare module 'material-ui/Table/TableSortLabel' {
 
 declare module 'material-ui/Tabs' {
   export { default } from 'material-ui/Tabs/Tabs';
+  export * from 'material-ui/Tabs/Tabs';
   export { default as Tab } from 'material-ui/Tabs/Tab';
+  export * from 'material-ui/Tabs/Tab';
 }
 
 declare module 'material-ui/Tabs/Tab' {
@@ -1173,6 +1234,7 @@ declare module 'material-ui/Tabs/Tabs' {
 
 declare module 'material-ui/TextField' {
   export { default } from 'material-ui/TextField/TextField';
+  export * from 'material-ui/TextField/TextField';
 }
 
 declare module 'material-ui/TextField/TextField' {
@@ -1213,6 +1275,7 @@ declare module 'material-ui/TextField/TextField' {
 
 declare module 'material-ui/Toolbar' {
   export { default } from 'material-ui/Toolbar/Toolbar';
+  export * from 'material-ui/Toolbar/Toolbar';
 }
 
 declare module 'material-ui/Toolbar/Toolbar' {
@@ -1225,6 +1288,7 @@ declare module 'material-ui/Toolbar/Toolbar' {
 
 declare module 'material-ui/Typography' {
   export { default } from 'material-ui/Typography/Typography';
+  export * from 'material-ui/Typography/Typography';
 }
 
 declare module 'material-ui/Typography/Typography' {
@@ -1812,13 +1876,15 @@ declare module 'material-ui/test-utils/createShallow' {
 }
 
 declare module 'material-ui/test-utils/getClasses' {
-  export default function getClasses(
+  import { StyleSheet } from 'material-ui/styles/createStyleSheet';
+
+  export default function getClasses<T = { [name: string]: string }>(
     stylesheets: StyleSheet | StyleSheet[],
     options?: Partial<{ withTheme: boolean }>
-  ): { [name: string]: string };
+  ): T;
 }
 
-declare module 'maerial-ui/test-utils/until' {
+declare module 'material-ui/test-utils/until' {
   import { CommonWrapper } from 'enzyme';
 
   export default function until<P = any, S = any>(
