@@ -240,7 +240,7 @@ declare module 'material-ui/Button' {
 declare module 'material-ui/Button/Button' {
   export interface ButtonProps {
     color?: MaterialUI.PropTypes.Color | 'contrast';
-    component?: React.ReactNode;
+    component?: React.ReactType;
     dense?: boolean;
     disabled?: boolean;
     disableFocusRipple?: boolean;
@@ -853,9 +853,9 @@ declare module 'material-ui/Menu' {
   export { default } from 'material-ui/Menu/Menu';
   export * from 'material-ui/Menu/Menu';
   export { default as MenuList } from 'material-ui/Menu/MenuList';
-  export *  from 'material-ui/Menu/MenuList';
+  export * from 'material-ui/Menu/MenuList';
   export { default as MenuItem } from 'material-ui/Menu/MenuItem';
-  export *  from 'material-ui/Menu/MenuItem';
+  export * from 'material-ui/Menu/MenuItem';
 }
 
 declare module 'material-ui/Menu/Menu' {
@@ -1100,15 +1100,15 @@ declare module 'material-ui/Table' {
   export { default } from 'material-ui/Table/Table';
   export * from 'material-ui/Table/Table';
   export { default as TableHead } from 'material-ui/Table/TableHead';
-  export *  from 'material-ui/Table/TableHead';
+  export * from 'material-ui/Table/TableHead';
   export { default as TableBody } from 'material-ui/Table/TableBody';
-  export *  from 'material-ui/Table/TableBody';
+  export * from 'material-ui/Table/TableBody';
   export { default as TableRow } from 'material-ui/Table/TableRow';
-  export *  from 'material-ui/Table/TableRow';
+  export * from 'material-ui/Table/TableRow';
   export { default as TableCell } from 'material-ui/Table/TableCell';
-  export *  from 'material-ui/Table/TableCell';
+  export * from 'material-ui/Table/TableCell';
   export { default as TableSortLabel } from 'material-ui/Table/TableSortLabel';
-  export *  from 'material-ui/Table/TableSortLabel';
+  export * from 'material-ui/Table/TableSortLabel';
 }
 
 declare module 'material-ui/Table/Table' {
@@ -1439,7 +1439,7 @@ declare module 'material-ui/styles/MuiThemeProvider' {
 
   export interface MuiThemeProviderProps {
     theme?: Theme<any>;
-    sheetsManager?: Object;
+    sheetsManager?: object;
     children: React.ReactNode;
   }
 
@@ -1478,10 +1478,9 @@ declare module 'material-ui/styles/breakpoints' {
 
 declare module 'material-ui/styles/colorManipulator' {
   export type ColorFormat = 'rgb' | 'rgba' | 'hsl' | 'hsla';
-  export type ColorObject = {
-    type: ColorFormat;
-    color: [number, number, number] | [number, number, number, number];
-  };
+  export type ColorObject =
+    | { type: 'rgb' | 'hsl'; color: [number, number, number] }
+    | { type: 'rgba' | 'hsla'; color: [number, number, number, number] };
 
   export function convertColorToString(color: ColorObject): string;
   export function convertHexToRGB(hex: string): string;
@@ -1503,8 +1502,8 @@ declare module 'material-ui/styles/createGenerateClassName' {
    *        So the following typigns are not really good.
    */
   export default function createGenerateClassName(): (
-    rule: Object,
-    stylesheet?: Object
+    rule: object,
+    stylesheet?: object
   ) => string;
 }
 
