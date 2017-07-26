@@ -11,6 +11,7 @@
     "material design",
     "material-ui"
   ],
+  "typings": "./typings/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/callemall/material-ui.git"
@@ -72,6 +73,8 @@
     "warning": "^3.0.0"
   },
   "devDependencies": {
+    "@types/enzyme": "^2.8.4",
+    "@types/react": "^15.0.39",
     "app-module-path": "^2.2.0",
     "argos-cli": "^0.0.9",
     "babel-cli": "^6.24.1",
