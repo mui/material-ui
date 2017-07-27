@@ -3,11 +3,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import ReactTransitionGroup from 'react-transition-group/TransitionGroup';
+import TransitionGroup from 'react-transition-group/TransitionGroup';
 import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import Ripple from './Ripple';
+
+const DURATION = 550;
 
 export const styleSheet = createStyleSheet('MuiTouchRipple', theme => ({
   root: {
@@ -27,7 +29,7 @@ export const styleSheet = createStyleSheet('MuiTouchRipple', theme => ({
   },
   wrapperLeaving: {
     opacity: 0,
-    animation: `mui-ripple-exit 550ms ${theme.transitions.easing.easeInOut}`,
+    animation: `mui-ripple-exit ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
   },
   wrapperPulsating: {
     position: 'absolute',
@@ -81,7 +83,7 @@ export const styleSheet = createStyleSheet('MuiTouchRipple', theme => ({
   rippleVisible: {
     opacity: 0.3,
     transform: 'scale(1)',
-    animation: `mui-ripple-enter 550ms ${theme.transitions.easing.easeInOut}`,
+    animation: `mui-ripple-enter ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
   },
   rippleFast: {
     animationDuration: '200ms',
@@ -184,8 +186,11 @@ class TouchRipple extends Component {
       ...ripples,
       <Ripple
         key={this.state.nextKey}
-        event={event}
         classes={this.props.classes}
+        timeout={{
+          exit: DURATION,
+          enter: DURATION,
+        }}
         pulsate={pulsate}
         rippleX={rippleX}
         rippleY={rippleY}
@@ -218,15 +223,15 @@ class TouchRipple extends Component {
     const { center, classes, className, ...other } = this.props;
 
     return (
-      <ReactTransitionGroup
+      <TransitionGroup
         component="span"
-        transitionEnterTimeout={550}
-        transitionLeaveTimeout={550}
+        enter
+        exit
         className={classNames(classes.root, className)}
         {...other}
       >
         {this.state.ripples}
-      </ReactTransitionGroup>
+      </TransitionGroup>
     );
   }
 }

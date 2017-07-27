@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import Transition from 'react-transition-group/Transition';
 
 /**
  * @ignore - internal component.
@@ -16,41 +17,16 @@ class Ripple extends Component {
     rippleVisible: false,
   };
 
-  componentWillUnmount() {
-    clearTimeout(this.leaveTimer);
-  }
-
-  componentWillEnter(callback) {
-    this.start(callback);
-  }
-
-  componentWillLeave(callback) {
-    this.stop(() => {
-      this.leaveTimer = setTimeout(() => {
-        callback();
-      }, 550);
+  handleEnter = () => {
+    this.setState({
+      rippleVisible: true,
     });
-  }
-
-  ripple = null;
-  leaveTimer = null;
-
-  start = callback => {
-    this.setState(
-      {
-        rippleVisible: true,
-      },
-      callback,
-    );
   };
 
-  stop = callback => {
-    this.setState(
-      {
-        rippleLeaving: true,
-      },
-      callback,
-    );
+  handleExit = () => {
+    this.setState({
+      rippleLeaving: true,
+    });
   };
 
   getRippleStyles = props => {
@@ -65,7 +41,15 @@ class Ripple extends Component {
   };
 
   render() {
-    const { classes, className: classNameProp, pulsate } = this.props;
+    const {
+      classes,
+      className: classNameProp,
+      pulsate,
+      rippleX,
+      rippleY,
+      rippleSize,
+      ...other
+    } = this.props;
     const { rippleVisible, rippleLeaving } = this.state;
 
     const className = classNames(
@@ -83,9 +67,11 @@ class Ripple extends Component {
     });
 
     return (
-      <span className={className}>
-        <span className={rippleClassName} style={this.getRippleStyles(this.props)} />
-      </span>
+      <Transition onEnter={this.handleEnter} onExit={this.handleExit} {...other}>
+        <span className={className}>
+          <span className={rippleClassName} style={this.getRippleStyles(this.props)} />
+        </span>
+      </Transition>
     );
   }
 }

@@ -1,5 +1,5 @@
 {
-  "presets": ["./scripts/material-ui-babel-preset-es2015", "stage-1", "react"],
+  "presets": ["./scripts/material-ui-babel-preset-env", "stage-1", "react"],
   "plugins": [
     "transform-object-assign"
   ],
