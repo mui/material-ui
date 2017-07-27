@@ -20,7 +20,8 @@ Those properties are always applied to the root element.
 
 The CSS inject by Material-UI to style the components has the lowest specificity possible (the `<link />` are injected at the top of the `<head />`). If you are experiencing any CSS injection order issue, have a look at [the mechanism JSS provides](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-dom-insertion-point) to handle it.
 
-By default, Material-UI will look for a html comment named ` <!-- material-ui -->` to inject styles after. By adjusting the placement of this comment within your HTML body you can control the order that CSS rules are applied to your components.
+By default, Material-UI will look for a html comment named ` <!-- jss -->` to inject styles after.
+By adjusting the placement of this comment within your HTML body [you can control the order that CSS rules are applied to your components](http://cssinjs.org/js-api/#setup-jss-instance).
 
 {{demo='pages/customization/OverridesClassNames.js'}}
 

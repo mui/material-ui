@@ -11,7 +11,7 @@ import contextTypes from 'react-jss/lib/contextTypes';
 import jss from 'react-jss/lib/jss';
 import * as ns from 'react-jss/lib/ns';
 import createMuiTheme from './theme';
-import themeListener, { CHANNEL } from './themeListener';
+import themeListener from './themeListener';
 import createGenerateClassName from './createGenerateClassName';
 
 // Use a singleton or the provided one by the context.
@@ -134,13 +134,8 @@ const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) =>
 
         if (sheetManagerTheme.refs === 0) {
           const styles = currentStyleSheet.createStyles(theme);
-          const name = currentStyleSheet.name
-            ? currentStyleSheet.name
-            : getDisplayName(BaseComponent);
           const sheet = this.jss.createStyleSheet(styles, {
-            meta: name,
-            name,
-            insertionPoint: CHANNEL,
+            meta: currentStyleSheet.name ? currentStyleSheet.name : getDisplayName(BaseComponent),
             link: false,
             ...this.sheetOptions,
             ...currentStyleSheet.options,

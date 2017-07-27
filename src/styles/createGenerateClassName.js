@@ -24,14 +24,11 @@ export default function createGenerateClassName(): generateClassName {
     );
 
     if (process.env.NODE_ENV === 'production') {
-      // Change the base representation from 10 to 36 in order to shorten the className.
-      // That helps with SSR perfs.
-      // I'm expecting the runtime/bandwidth tradeoff to worth it.
-      return `c${ruleCounter.toString(36)}`;
+      return `c${ruleCounter}`;
     }
 
-    if (sheet && sheet.options.name) {
-      return `${sheet.options.name}-${rule.key}-${ruleCounter.toString(36)}`;
+    if (sheet && sheet.options.meta) {
+      return `${sheet.options.meta}-${rule.key}-${ruleCounter}`;
     }
 
     return `${rule.key}-${ruleCounter.toString(36)}`;
