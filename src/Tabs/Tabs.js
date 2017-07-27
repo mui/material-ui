@@ -73,6 +73,7 @@ class Tabs extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    this.updateScrollButtonState();
     if (
       this.props.width !== prevProps.width ||
       this.state.indicatorStyle !== prevState.indicatorStyle
