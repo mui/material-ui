@@ -85,7 +85,7 @@ const TextFieldUnderline = (props) => {
       bottom: 8,
       boxSizing: 'content-box',
       margin: 0,
-      position: 'absolute',
+      position: 'relative',
       width: '100%',
     },
     disabled: {
@@ -96,6 +96,7 @@ const TextFieldUnderline = (props) => {
     focus: {
       borderBottomStyle: 'solid',
       borderBottomWidth: 2,
+      bottom: 10,
       borderColor: focusColor,
       transform: 'scaleX(0)',
       transition: transitions.easeOut(),
