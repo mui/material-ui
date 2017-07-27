@@ -43,6 +43,10 @@ class Tabs extends Component {
      */
     initialSelectedIndex: PropTypes.number,
     /**
+     * The css class name of the InkBar's container.
+     */
+    inkBarContainerClassName: PropTypes.string,
+    /**
      * Override the inline-styles of the InkBar.
      */
     inkBarStyle: PropTypes.object,
@@ -54,6 +58,10 @@ class Tabs extends Component {
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
+    /**
+     * The css class name of the tab-label's container.
+     */
+    tabItemContainerClassName: PropTypes.string,
     /**
      * Override the inline-styles of the tab-labels container.
      */
@@ -173,9 +181,11 @@ class Tabs extends Component {
       contentContainerClassName,
       contentContainerStyle,
       initialSelectedIndex, // eslint-disable-line no-unused-vars
+      inkBarContainerClassName,
       inkBarStyle,
       onChange, // eslint-disable-line no-unused-vars
       style,
+      tabItemContainerClassName,
       tabItemContainerStyle,
       tabTemplate,
       tabTemplateStyle,
@@ -228,10 +238,16 @@ class Tabs extends Component {
 
     return (
       <div style={prepareStyles(Object.assign({}, style))} {...other}>
-        <div style={prepareStyles(Object.assign(styles.tabItemContainer, tabItemContainerStyle))}>
+        <div
+          style={prepareStyles(Object.assign(styles.tabItemContainer, tabItemContainerStyle))}
+          className={tabItemContainerClassName}
+        >
           {tabs}
         </div>
-        <div style={{width: inkBarContainerWidth}}>
+        <div
+          style={{width: inkBarContainerWidth}}
+          className={inkBarContainerClassName}
+        >
           {inkBar}
         </div>
         <div
