@@ -18,13 +18,13 @@ describe('createGenerateClassName', () => {
   });
 
   describe('formating', () => {
-    it('should take the sheet name in development if available', () => {
+    it('should take the sheet meta in development if available', () => {
       const rule = {
         key: 'root',
       };
       const sheet = {
         options: {
-          name: 'Button',
+          meta: 'Button',
         },
       };
       const generateClassName = createGenerateClassName();
