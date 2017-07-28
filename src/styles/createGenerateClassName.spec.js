@@ -31,7 +31,7 @@ describe('createGenerateClassName', () => {
       assert.strictEqual(generateClassName(rule, sheet), 'Button-root-1');
     });
 
-    it('should use a base 36 representation', () => {
+    it('should use a base 10 representation', () => {
       const rule = {
         key: 'root',
       };
@@ -45,10 +45,7 @@ describe('createGenerateClassName', () => {
       assert.strictEqual(generateClassName(rule), 'root-7');
       assert.strictEqual(generateClassName(rule), 'root-8');
       assert.strictEqual(generateClassName(rule), 'root-9');
-      assert.strictEqual(generateClassName(rule), 'root-a');
-      assert.strictEqual(generateClassName(rule), 'root-b');
-      assert.strictEqual(generateClassName(rule), 'root-c');
-      assert.strictEqual(generateClassName(rule), 'root-d');
+      assert.strictEqual(generateClassName(rule), 'root-10');
     });
 
     describe('production', () => {

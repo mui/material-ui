@@ -31,6 +31,6 @@ export default function createGenerateClassName(): generateClassName {
       return `${sheet.options.meta}-${rule.key}-${ruleCounter}`;
     }
 
-    return `${rule.key}-${ruleCounter.toString(36)}`;
+    return `${rule.key}-${ruleCounter}`;
   };
 }
