@@ -68,7 +68,7 @@ to discuss the approach before submitting a PR.
   - [Leave-behinds](https://www.google.com/design/spec/components/lists-controls.html#lists-controls-types-of-list-controls)
 - **[Menus](https://www.google.com/design/spec/components/menus.html) ✓**
   - **[Button menu](https://www.google.com/design/spec/components/menus.html#menus-usage) (Can be constructed) ✓**
-  - [Scrollable](https://www.google.com/design/spec/components/menus.html#menus-usage)
+  - **[Scrollable](https://www.google.com/design/spec/components/menus.html#menus-usage) ✓**
   - [Cascade](https://www.google.com/design/spec/components/menus.html#menus-usage)
   - [Textfield dropdown](https://www.google.com/design/spec/components/menus.html#menus-behavior) (DropDownMenu)
   - [Contextual / App bar dropdown](https://www.google.com/design/spec/components/menus.html#menus-usage) (IconMenu)
@@ -114,11 +114,11 @@ to discuss the approach before submitting a PR.
   - [Multi-line](https://www.google.com/design/spec/components/text-fields.html#text-fields-multi-line-text-field)
   - **[Full-width](https://www.google.com/design/spec/components/text-fields.html#text-fields-multi-line-text-field) ✓**
   - [Character counter](https://www.google.com/design/spec/components/text-fields.html#text-fields-character-counter)
-  - **[Auto-complete](https://www.google.com/design/spec/components/text-fields.html#text-fields-auto-complete-text-field) (Can be done using external libraries) ✓**
+  - **[Autocomplete](https://www.google.com/design/spec/components/text-fields.html#text-fields-auto-complete-text-field) (Can be done with external library such as [react-autosuggest](https://github.com/moroshko/react-autosuggest)) ✓**
   - [Search filter](https://www.google.com/design/spec/components/text-fields.html#text-fields-search-filter)
   - [Password](https://www.google.com/design/spec/components/text-fields.html#text-fields-password-input)
-- [Toolbars](https://www.google.com/design/spec/components/toolbars.html)
-- [Tooltips](https://www.google.com/design/spec/components/tooltips.html) (IconButton & TableHeader only)
+- **[Toolbars](https://www.google.com/design/spec/components/toolbars.html) ✓**
+- [Tooltips](https://www.google.com/design/spec/components/tooltips.html)
   - [Desktop](https://www.google.com/design/spec/components/tooltips.html#tooltips-tooltips-desktop-)
   - [Mobile](https://www.google.com/design/spec/components/tooltips.html#tooltips-tooltips-mobile-)
 - [Widgets](https://material.io/guidelines/components/widgets.html)
