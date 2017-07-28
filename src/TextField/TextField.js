@@ -177,7 +177,7 @@ function TextField(props: Props) {
       {...other}
     >
       {label &&
-        <InputLabel className={labelClassName} {...InputLabelProps}>
+        <InputLabel htmlFor={id} className={labelClassName} {...InputLabelProps}>
           {label}
         </InputLabel>}
       <Input
