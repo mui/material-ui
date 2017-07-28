@@ -111,7 +111,12 @@ class ButtonBase extends Component<DefaultProps, Props, State> {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    if (this.props.focusRipple && nextState.keyboardFocused && !this.state.keyboardFocused) {
+    if (
+      this.props.focusRipple &&
+      nextState.keyboardFocused &&
+      !this.state.keyboardFocused &&
+      !this.props.disableRipple
+    ) {
       this.ripple.pulsate();
     }
   }

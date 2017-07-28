@@ -64,7 +64,7 @@ class AppDrawerNavItem extends Component {
   };
 
   render() {
-    const { children, classes, title, to } = this.props;
+    const { children, classes, title, to, openImmediately } = this.props;
 
     if (to) {
       return (
@@ -72,8 +72,8 @@ class AppDrawerNavItem extends Component {
           <Button
             component={Link}
             to={to}
-            className={classNames(classes.button, classes.navLinkButton)}
             activeClassName={classes.activeButton}
+            className={classNames(classes.button, classes.navLinkButton)}
             disableRipple
             onClick={this.props.onClick}
           >
@@ -85,7 +85,13 @@ class AppDrawerNavItem extends Component {
 
     return (
       <ListItem className={classes.navItem} disableGutters>
-        <Button className={classes.button} onClick={this.handleClick}>
+        <Button
+          classes={{
+            root: classes.button,
+            label: openImmediately ? 'algolia-lvl0' : '',
+          }}
+          onClick={this.handleClick}
+        >
           {title}
         </Button>
         <Collapse in={this.state.open} transitionDuration="auto" unmountOnExit>
