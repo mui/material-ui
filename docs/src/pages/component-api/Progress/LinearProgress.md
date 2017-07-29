@@ -21,13 +21,14 @@ You can overrides all the class names injected by Material-UI thanks to the `cla
 This property accepts the following keys:
 - `root`
 - `primaryColor`
-- `accentColor`
-- `primaryBar`
+- `primaryColorBar`
 - `primaryDashed`
-- `primaryBufferBar2`
-- `accentBar`
+- `accentColor`
+- `accentColorBar`
 - `accentDashed`
-- `accentBufferBar2`
+- `bar`
+- `dashed`
+- `bufferBar2`
 - `rootBuffer`
 - `rootQuery`
 - `indeterminateBar1`
