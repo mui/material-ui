@@ -257,4 +257,27 @@ describe('<Menu />', () => {
       assert.deepEqual(wrapper.state().value, ['item2', 'item3']);
     });
   });
+
+  describe('Nested menu', () => {
+    it('should ignore loosing focus on click away for item with menu items', () => {
+      const menuItems = [<MenuItem />, <MenuItem />];
+
+      const wrapper = mountWithContext(
+        <Menu className="menu">
+          <MenuItem className="item1" />
+          <MenuItem className="item2" menuItems={menuItems} />
+        </Menu>
+      );
+
+      wrapper.find('.item1').simulate('touchTap');
+      assert.strictEqual(wrapper.state('focusIndex'), 0);
+      document.body.dispatchEvent(new window.Event('mouseup', {bubbles: true}));
+      assert.strictEqual(wrapper.state('focusIndex'), -1);
+
+      wrapper.find('.item2').simulate('touchTap');
+      assert.strictEqual(wrapper.state('focusIndex'), 1);
+      document.body.dispatchEvent(new window.Event('mouseup', {bubbles: true}));
+      assert.strictEqual(wrapper.state('focusIndex'), 1);
+    });
+  });
 });
