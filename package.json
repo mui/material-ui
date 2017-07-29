@@ -21,14 +21,14 @@
   },
   "homepage": "http://material-ui.com/",
   "scripts": {
-    "deploy": "cd docs && yarn build && firebase deploy",
+    "docs:deploy": "cd docs && yarn build && firebase deploy",
+    "docs:build": "rimraf docs/src/pages/component-api/* && babel-node ./scripts/build-api-docs.js",
     "build": "npm run build:es2015 && npm run build:es2015modules && npm run build:copy-files && npm run build:umd:dev && npm run build:umd:prod",
     "build:es2015": "cross-env NODE_ENV=production babel ./src --ignore *.spec.js --out-dir ./build",
     "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel ./src/index.js --out-file ./build/index.es.js",
     "build:copy-files": "babel-node ./scripts/copy-files.js",
     "build:umd:dev": "webpack --config scripts/umd.webpack.config.js",
     "build:umd:prod": "cross-env NODE_ENV=production webpack --config scripts/umd.webpack.config.js",
-    "build:docs": "rimraf docs/src/pages/component-api/* && babel-node ./scripts/build-api-docs.js",
     "prettier": "find . -name \"*.js\" | grep -v -f .eslintignore | xargs prettier --write --single-quote --trailing-comma all --print-width 100",
     "clean:build": "rimraf build",
     "lint": "eslint . --cache && echo \"eslint: no lint errors\"",
@@ -45,7 +45,9 @@
     "test:regressions": "webpack --config test/regressions/webpack.config.js && vrtest run --config test/vrtest.config.js --record",
     "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN || true",
     "flow": "flow --show-all-errors",
-    "publish": "npm run build && cd build && npm publish --tag next"
+    "version": "yarn build",
+    "release": "np --no-publish --any-branch",
+    "postrelease": "yarn docs:deploy && npm publish build --tag next"
   },
   "peerDependencies": {
     "react": "^15.3.0 || ^16.0.0-beta.1",
