@@ -10,10 +10,11 @@ import { listenForFocusKeys, detectKeyboardFocus, focusKeyPressed } from '../uti
 import TouchRipple from './TouchRipple';
 import createRippleHandler from './createRippleHandler';
 
-export const styleSheet = createStyleSheet('MuiButtonBase', {
+export const styleSheet = createStyleSheet('MuiButtonBase', theme => ({
   root: {
     position: 'relative',
-    WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+    // Remove Gray Highlight
+    WebkitTapHighlightColor: theme.palette.common.transparent,
     outline: 'none',
     border: 0,
     cursor: 'pointer',
@@ -26,7 +27,7 @@ export const styleSheet = createStyleSheet('MuiButtonBase', {
   disabled: {
     cursor: 'default',
   },
-});
+}));
 
 type DefaultProps = {
   centerRipple: boolean,

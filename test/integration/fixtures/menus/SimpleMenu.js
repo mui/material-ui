@@ -5,7 +5,7 @@ import Menu, { MenuItem } from 'src/Menu';
 
 const options = ['Menu Item 1', 'Menu Item 2', 'Menu Item 3'];
 
-export default class SimpleMenu extends Component {
+class SimpleMenu extends Component {
   state = {
     anchorEl: undefined,
     open: false,
@@ -45,3 +45,5 @@ export default class SimpleMenu extends Component {
     );
   }
 }
+
+export default SimpleMenu;

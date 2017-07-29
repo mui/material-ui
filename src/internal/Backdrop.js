@@ -14,13 +14,15 @@ export const styleSheet = createStyleSheet('MuiBackdrop', theme => ({
     position: 'fixed',
     top: 0,
     left: 0,
+    // Remove Gray Highlight
+    WebkitTapHighlightColor: theme.palette.common.transparent,
     backgroundColor: theme.palette.common.lightBlack,
     transition: theme.transitions.create('opacity'),
     willChange: 'opacity',
     opacity: 0,
   },
   invisible: {
-    backgroundColor: 'rgba(0, 0, 0, 0)',
+    backgroundColor: theme.palette.common.transparent,
   },
 }));
 
