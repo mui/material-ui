@@ -19,7 +19,7 @@
     "babel-loader": "^7.1.1",
     "cross-env": "^5.0.1",
     "css-loader": "^0.28.4",
-    "file-loader": "^1.0.0",
+    "file-loader": "^0.11.2",
     "object-assign": "^4.1.1",
     "raw-loader": "^0.5.1",
     "react-hot-loader": "3.0.0-beta.6",
