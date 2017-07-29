@@ -21,7 +21,7 @@ function assertIsChecked(wrapper) {
 
   const label = iconButton.childAt(0);
   const icon = label.childAt(0);
-  assert.strictEqual(icon.is('pure(CheckBox)'), true, 'should be the CheckBox icon');
+  assert.strictEqual(icon.is('CheckBox'), true, 'should be the CheckBox icon');
 }
 
 function assertIsNotChecked(wrapper) {
@@ -39,7 +39,7 @@ function assertIsNotChecked(wrapper) {
   const label = iconButton.childAt(0);
   const icon = label.childAt(0);
   assert.strictEqual(
-    icon.is('pure(CheckBoxOutlineBlank)'),
+    icon.is('CheckBoxOutlineBlank'),
     true,
     'should be the CheckBoxOutlineBlank icon',
   );
@@ -72,7 +72,7 @@ describe('<SwitchBase />', () => {
   it('should render an icon and input inside the button by default', () => {
     const wrapper = shallow(<SwitchBase />);
     assert.strictEqual(
-      wrapper.childAt(0).is('pure(CheckBoxOutlineBlank)'),
+      wrapper.childAt(0).is('CheckBoxOutlineBlank'),
       true,
       'should be an SVG icon',
     );
