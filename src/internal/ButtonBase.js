@@ -196,6 +196,7 @@ class ButtonBase extends Component<DefaultProps, Props, State> {
   });
 
   handleTouchStart = createRippleHandler(this, 'TouchStart', 'start');
+
   handleTouchEnd = createRippleHandler(this, 'TouchEnd', 'stop');
 
   handleBlur = createRippleHandler(this, 'Blur', 'stop', () => {
