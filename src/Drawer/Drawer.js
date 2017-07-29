@@ -207,7 +207,7 @@ class Drawer extends Component<DefaultProps, Props, State> {
 
     if (docked) {
       return (
-        <div className={classNames(classes.docked, className)}>
+        <div className={classNames(classes.docked, className)} {...other}>
           {drawer}
         </div>
       );
