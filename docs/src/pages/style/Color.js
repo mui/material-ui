@@ -28,7 +28,7 @@ const neutralColors = ['Brown', 'Grey', 'Blue Grey'];
 const mainPalette = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 const altPalette = ['A100', 'A200', 'A400', 'A700'];
 
-export const styleSheet = createStyleSheet('colors', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',

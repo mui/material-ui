@@ -8,7 +8,7 @@ import Grid from 'material-ui/Grid';
 import withWidth from 'material-ui/utils/withWidth';
 import Typography from 'material-ui/Typography';
 
-const styleSheet = createStyleSheet('GridIntegration', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   root: {
     flexGrow: 1,
     paddingTop: 42,

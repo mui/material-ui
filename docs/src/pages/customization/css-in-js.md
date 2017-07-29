@@ -55,13 +55,14 @@ They are easy to debug in development and as short as possible in production:
 
 ## API
 
-### `createStyleSheet(name, styles) => styleSheet`
+### `createStyleSheet([name], styles) => styleSheet`
 
 Generate a new style sheet that represents the style you want to inject in the DOM.
 
 #### Arguments
 
-1. `name` (*String*): The name of the style sheet. Useful for debugging.
+1. `name` (*String* [optional]): The name of the style sheet. Useful for debugging.
+If the value isn't provided, we will try to fallback to the name of the component.
 2. `styles` (*Function | Object*): A function generating the styles or an object.
 
 Use the function if you need to have access to the theme. It's provided as the first argument.
@@ -75,7 +76,7 @@ Use the function if you need to have access to the theme. It's provided as the f
 ```js
 import { createStyleSheet } from 'material-ui/styles';
 
-const styleSheet = createStyleSheet('MyLink', (theme) => ({
+const styleSheet = createStyleSheet((theme) => ({
   root: {
     color: 'inherit',
     textDecoration: 'inherit',

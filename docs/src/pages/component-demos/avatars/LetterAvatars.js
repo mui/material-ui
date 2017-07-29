@@ -7,7 +7,7 @@ import Avatar from 'material-ui/Avatar';
 import deepOrange from 'material-ui/colors/deepOrange';
 import deepPurple from 'material-ui/colors/deepPurple';
 
-const styleSheet = createStyleSheet('LetterAvatars', {
+const styleSheet = createStyleSheet({
   avatar: {
     margin: 10,
   },

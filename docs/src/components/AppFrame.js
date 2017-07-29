@@ -51,7 +51,7 @@ const styleSheet = createStyleSheet('AppFrame', theme => ({
       width: 'auto',
     },
   },
-  appFrame: {
+  root: {
     display: 'flex',
     alignItems: 'stretch',
     minHeight: '100vh',
@@ -121,7 +121,7 @@ class AppFrame extends Component {
     }
 
     return (
-      <div className={classes.appFrame}>
+      <div className={classes.root}>
         <AppBar className={appBarClassName}>
           <Toolbar>
             <IconButton

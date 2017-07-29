@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
 import InputLabel from 'material-ui/Input/InputLabel';
 
-const styleSheet = createStyleSheet('InputLabels', () => ({
+const styleSheet = createStyleSheet(() => ({
   container: {
     display: 'flex',
     flexDirection: 'column',

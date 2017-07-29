@@ -7,7 +7,7 @@ import { withStyles, createStyleSheet } from 'material-ui/styles';
 import withWidth from 'material-ui/utils/withWidth';
 import Typography from 'material-ui/Typography';
 
-const styleSheet = createStyleSheet('MediaQuery', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   root: {
     padding: theme.spacing.unit,
     [theme.breakpoints.up('md')]: {

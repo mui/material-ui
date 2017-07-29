@@ -15,7 +15,7 @@ import blue from 'material-ui/colors/blue';
 
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 
-const styleSheet = createStyleSheet('SimpleDialog', () => ({
+const styleSheet = createStyleSheet(() => ({
   avatar: {
     background: blue[100],
     color: blue[600],

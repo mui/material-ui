@@ -7,7 +7,7 @@ import Badge from 'material-ui/Badge';
 import MailIcon from 'material-ui-icons/Mail';
 import FolderIcon from 'material-ui-icons/Folder';
 
-const styleSheet = createStyleSheet('SimpleBadge', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   badge: {
     margin: `0 ${theme.spacing.unit * 2}px`,
   },

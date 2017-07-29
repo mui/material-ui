@@ -12,7 +12,7 @@ const action = (
   </Button>
 );
 
-const styleSheet = createStyleSheet('LongTextSnackbar', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   root: {
     marginTop: theme.spacing.unit * 3,
   },

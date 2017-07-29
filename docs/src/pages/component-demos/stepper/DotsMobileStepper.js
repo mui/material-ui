@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import MobileStepper from 'material-ui/MobileStepper';
 
-const styleSheet = createStyleSheet('DotsMobileStepper', {
+const styleSheet = createStyleSheet({
   root: {
     maxWidth: 400,
     flexGrow: 1,

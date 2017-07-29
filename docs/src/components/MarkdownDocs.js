@@ -7,7 +7,7 @@ import Button from 'material-ui/Button';
 import MarkdownElement from 'docs/src/components/MarkdownElement';
 import Demo from 'docs/src/components/Demo';
 
-const styleSheet = createStyleSheet('MarkdownDocs', {
+const styleSheet = createStyleSheet({
   root: {
     marginBottom: 100,
   },

@@ -6,7 +6,7 @@ import Paper from 'material-ui/Paper';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 
-const styleSheet = createStyleSheet('AutoGrid', () => ({
+const styleSheet = createStyleSheet(() => ({
   root: {
     width: 400,
   },

@@ -17,7 +17,7 @@ TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const styleSheet = createStyleSheet('FullWidthTabs', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
   },

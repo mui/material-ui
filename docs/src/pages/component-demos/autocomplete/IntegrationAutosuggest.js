@@ -121,7 +121,7 @@ function getSuggestions(value) {
       });
 }
 
-const styleSheet = createStyleSheet('IntegrationAutosuggest', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   container: {
     flexGrow: 1,
     position: 'relative',

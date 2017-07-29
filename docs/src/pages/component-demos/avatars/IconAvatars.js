@@ -10,7 +10,7 @@ import FolderIcon from 'material-ui-icons/Folder';
 import PageviewIcon from 'material-ui-icons/Pageview';
 import AssignmentIcon from 'material-ui-icons/Assignment';
 
-const styleSheet = createStyleSheet('IconAvatars', {
+const styleSheet = createStyleSheet({
   avatar: {
     margin: 10,
   },

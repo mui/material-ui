@@ -6,7 +6,7 @@ import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
 
-const styleSheet = createStyleSheet('BasicTable', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   paper: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,

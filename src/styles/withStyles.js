@@ -134,8 +134,17 @@ const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) =>
 
         if (sheetManagerTheme.refs === 0) {
           const styles = currentStyleSheet.createStyles(theme);
+          let meta;
+
+          if (process.env.NODE_ENV !== 'production') {
+            meta = currentStyleSheet.name ? currentStyleSheet.name : getDisplayName(BaseComponent);
+            // Sanitize the string as will be used in development to prefix the generated
+            // class name.
+            meta = meta.replace(new RegExp(/[!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~]/g), '-');
+          }
+
           const sheet = this.jss.createStyleSheet(styles, {
-            meta: currentStyleSheet.name ? currentStyleSheet.name : getDisplayName(BaseComponent),
+            meta,
             link: false,
             ...this.sheetOptions,
             ...currentStyleSheet.options,

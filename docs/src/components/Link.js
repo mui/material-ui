@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { Link as LinkRouter } from 'react-router';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 
-const styleSheet = createStyleSheet('Link', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   root: {
     color: 'inherit',
     textDecoration: 'none',
