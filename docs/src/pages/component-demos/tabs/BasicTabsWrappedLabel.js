@@ -1,4 +1,4 @@
-// @flow
+// @flow weak
 /* eslint-disable react/no-multi-comp */
 
 import React, { Component } from 'react';

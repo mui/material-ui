@@ -1,4 +1,4 @@
-// @flow
+// @flow weak
 
 import React, { cloneElement, Component } from 'react';
 import PropTypes from 'prop-types';
@@ -34,7 +34,6 @@ const styleSheet = createStyleSheet(theme => ({
 
 function generate(element) {
   return [0, 1, 2].map(value =>
-    // $FlowFixMe https://github.com/facebook/flow/issues/4172
     cloneElement(element, {
       key: value,
     }),
