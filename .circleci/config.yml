@@ -75,7 +75,7 @@ jobs:
           command: yarn size
       - run:
           name: Can we generate the docs?
-          command: yarn build:docs
+          command: yarn docs:build
   test_regressions:
     <<: *defaults
     docker:
