@@ -33,22 +33,22 @@ class ComposedTextField extends Component {
     return (
       <div className={classes.container}>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="name">Name</InputLabel>
-          <Input id="name" value={this.state.name} onChange={this.handleChange} />
+          <InputLabel htmlFor="name-simple">Name</InputLabel>
+          <Input id="name-simple" value={this.state.name} onChange={this.handleChange} />
         </FormControl>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="name">Name</InputLabel>
-          <Input id="name" value={this.state.name} onChange={this.handleChange} />
+          <InputLabel htmlFor="name-helper">Name</InputLabel>
+          <Input id="name-helper" value={this.state.name} onChange={this.handleChange} />
           <FormHelperText>Some important helper text</FormHelperText>
         </FormControl>
         <FormControl className={classes.formControl} disabled>
-          <InputLabel htmlFor="name">Name</InputLabel>
-          <Input id="name" value={this.state.name} onChange={this.handleChange} />
+          <InputLabel htmlFor="name-disabled">Name</InputLabel>
+          <Input id="name-disabled" value={this.state.name} onChange={this.handleChange} />
           <FormHelperText>Some important helper text</FormHelperText>
         </FormControl>
         <FormControl className={classes.formControl} error>
-          <InputLabel htmlFor="name">Name</InputLabel>
-          <Input id="name" value={this.state.name} onChange={this.handleChange} />
+          <InputLabel htmlFor="name-error">Name</InputLabel>
+          <Input id="name-error" value={this.state.name} onChange={this.handleChange} />
           <FormHelperText>Some important helper text</FormHelperText>
         </FormControl>
       </div>

@@ -47,7 +47,7 @@ function MarkdownDocs(props) {
   return (
     <div className={classes.root}>
       <div className={classes.header}>
-        <Button component="a" href={markdownUrl} target="_blank">
+        <Button component="a" href={markdownUrl}>
           {'Edit this page'}
         </Button>
       </div>
