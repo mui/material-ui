@@ -6,7 +6,7 @@ import Checkbox from 'material-ui/Checkbox';
 import { createMuiTheme, createStyleSheet, MuiThemeProvider, withStyles } from 'material-ui/styles';
 import orange from 'material-ui/colors/orange';
 
-const styleSheet = createStyleSheet('BusinessCheckbox', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   danger: {
     color: theme.status.danger,
   },

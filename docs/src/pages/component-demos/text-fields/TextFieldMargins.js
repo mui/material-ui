@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 
-const styleSheet = createStyleSheet('TextFieldMargins', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',

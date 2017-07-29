@@ -16,7 +16,7 @@ TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const styleSheet = createStyleSheet('BasicTabsWrappedLabel', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   root: {
     flexGrow: 1,
     marginTop: theme.spacing.unit * 3,

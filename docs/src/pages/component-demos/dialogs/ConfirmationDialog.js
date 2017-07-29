@@ -106,7 +106,7 @@ ConfirmationDialog.propTypes = {
   selectedValue: PropTypes.string,
 };
 
-const styleSheet = createStyleSheet('ConfirmationDialogDemo', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   root: {
     width: '100%',
     maxWidth: 360,

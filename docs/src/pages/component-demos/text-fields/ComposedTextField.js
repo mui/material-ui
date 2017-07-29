@@ -8,7 +8,7 @@ import InputLabel from 'material-ui/Input/InputLabel';
 import FormControl from 'material-ui/Form/FormControl';
 import FormHelperText from 'material-ui/Form/FormHelperText';
 
-const styleSheet = createStyleSheet('ComposedTextField', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',

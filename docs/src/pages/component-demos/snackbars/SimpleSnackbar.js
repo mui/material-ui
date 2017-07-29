@@ -8,7 +8,7 @@ import Snackbar from 'material-ui/Snackbar';
 import IconButton from 'material-ui/IconButton';
 import CloseIcon from 'material-ui-icons/Close';
 
-const styleSheet = createStyleSheet('SimpleSnackbar', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   close: {
     width: theme.spacing.unit * 4,
     height: theme.spacing.unit * 4,

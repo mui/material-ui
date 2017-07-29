@@ -9,7 +9,7 @@ import { ListItem } from 'material-ui/List';
 import Button from 'material-ui/Button';
 import Collapse from 'material-ui/transitions/Collapse';
 
-const styleSheet = createStyleSheet('AppDrawerNavItem', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   button: theme.mixins.gutters({
     borderRadius: 0,
     justifyContent: 'flex-start',

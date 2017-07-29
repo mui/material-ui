@@ -11,7 +11,7 @@ import Divider from 'material-ui/Divider';
 import AppDrawerNavItem from 'docs/src/components/AppDrawerNavItem';
 import Link from 'docs/src/components/Link';
 
-const styleSheet = createStyleSheet('AppDrawer', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   paper: {
     width: 250,
     backgroundColor: theme.palette.background.paper,

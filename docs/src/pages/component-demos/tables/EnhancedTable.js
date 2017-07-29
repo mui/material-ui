@@ -79,7 +79,7 @@ class EnhancedTableHead extends Component {
   }
 }
 
-const toolbarStyleSheet = createStyleSheet('EnhancedTableToolbar', theme => ({
+const toolbarStyleSheet = createStyleSheet(theme => ({
   root: {
     paddingRight: 2,
   },
@@ -141,7 +141,7 @@ EnhancedTableToolbar.propTypes = {
 
 EnhancedTableToolbar = withStyles(toolbarStyleSheet)(EnhancedTableToolbar);
 
-const styleSheet = createStyleSheet('EnhancedTable', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   paper: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,

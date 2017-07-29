@@ -55,7 +55,7 @@ const anchorLinkStyle = theme => ({
   },
 });
 
-const styleSheet = createStyleSheet('MarkdownElement', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   root: {
     fontFamily: theme.typography.fontFamily,
     marginTop: theme.spacing.unit * 2,

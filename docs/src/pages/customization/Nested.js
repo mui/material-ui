@@ -8,7 +8,7 @@ import orange from 'material-ui/colors/orange';
 import green from 'material-ui/colors/green';
 import pink from 'material-ui/colors/pink';
 
-const styleSheet = createStyleSheet('NestedCheckbox', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   danger: {
     color: theme.status.color,
   },

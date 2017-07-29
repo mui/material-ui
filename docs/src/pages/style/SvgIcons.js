@@ -9,7 +9,7 @@ import green from 'material-ui/colors/green';
 import red from 'material-ui/colors/red';
 import SvgIcon from 'material-ui/SvgIcon';
 
-const styleSheet = createStyleSheet('SvgIcons', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   icon: {
     margin: theme.spacing.unit,
   },

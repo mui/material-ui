@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
 
-const styleSheet = createStyleSheet('TestViewer', theme => {
+const styleSheet = createStyleSheet(theme => {
   return {
     '@global': {
       html: {

@@ -8,7 +8,7 @@ import Checkbox from 'material-ui/Checkbox';
 import IconButton from 'material-ui/IconButton';
 import CommentIcon from 'material-ui-icons/Comment';
 
-const styleSheet = createStyleSheet('CheckboxList', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   root: {
     width: '100%',
     maxWidth: 360,

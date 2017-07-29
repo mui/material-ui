@@ -6,7 +6,7 @@ import { withStyles, createStyleSheet } from 'material-ui/styles';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Menu, { MenuItem } from 'material-ui/Menu';
 
-const styleSheet = createStyleSheet('SimpleListMenu', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   root: {
     width: '100%',
     maxWidth: 360,

@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
 import Input from 'material-ui/Input/Input';
 
-const styleSheet = createStyleSheet('Inputs', () => ({
+const styleSheet = createStyleSheet(() => ({
   container: {
     display: 'flex',
     flexDirection: 'column',

@@ -23,7 +23,7 @@ TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const styleSheet = createStyleSheet('ScrollableTabsButtonForce', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   root: {
     flexGrow: 1,
     width: '100%',

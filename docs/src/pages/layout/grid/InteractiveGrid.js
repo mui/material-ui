@@ -8,7 +8,7 @@ import { FormLabel, FormControlLabel } from 'material-ui/Form';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 import Paper from 'material-ui/Paper';
 
-const styleSheet = createStyleSheet('InteractiveGrid', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   root: {
     flexGrow: 1,
   },
