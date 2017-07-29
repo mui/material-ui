@@ -109,7 +109,7 @@ describe('<Chip />', () => {
       assert.strictEqual(wrapper.name(), 'div');
       assert.strictEqual(wrapper.childAt(0).is(Avatar), true, 'should have an Avatar');
       assert.strictEqual(wrapper.childAt(1).is('span'), true, 'should have a span');
-      assert.strictEqual(wrapper.childAt(2).is('pure(Cancel)'), true, 'should be an svg icon');
+      assert.strictEqual(wrapper.childAt(2).is('Cancel'), true, 'should be an svg icon');
     });
 
     it('should merge user classes & spread custom props to the root node', () => {
@@ -132,7 +132,7 @@ describe('<Chip />', () => {
       const onRequestDeleteSpy = spy();
       wrapper.setProps({ onRequestDelete: onRequestDeleteSpy });
 
-      wrapper.find('pure(Cancel)').simulate('click', { stopPropagation: () => {} });
+      wrapper.find('Cancel').simulate('click', { stopPropagation: () => {} });
       assert.strictEqual(
         onRequestDeleteSpy.callCount,
         1,
@@ -145,7 +145,7 @@ describe('<Chip />', () => {
       const stopPropagationSpy = spy();
       wrapper.setProps({ onRequestDelete: onRequestDeleteSpy });
 
-      wrapper.find('pure(Cancel)').simulate('click', { stopPropagation: stopPropagationSpy });
+      wrapper.find('Cancel').simulate('click', { stopPropagation: stopPropagationSpy });
       assert.strictEqual(
         stopPropagationSpy.callCount,
         1,
