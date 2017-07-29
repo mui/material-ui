@@ -108,7 +108,7 @@ class AppFrame extends Component {
     const title = getTitle(routes);
 
     let drawerDocked = isWidthUp('lg', width);
-    let navIconClassName = classes.icon;
+    let navIconClassName = '';
     let appBarClassName = classes.appBar;
 
     if (title === null) {
@@ -126,6 +126,7 @@ class AppFrame extends Component {
           <Toolbar>
             <IconButton
               color="contrast"
+              aria-label="open drawer"
               onClick={this.handleDrawerToggle}
               className={navIconClassName}
             >
@@ -142,6 +143,7 @@ class AppFrame extends Component {
             <IconButton
               title="Toggle light/dark theme"
               color="contrast"
+              aria-label="change theme"
               onClick={this.handleToggleShade}
             >
               <LightbulbOutline />
