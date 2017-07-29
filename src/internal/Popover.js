@@ -95,7 +95,8 @@ type Props = DefaultProps & {
   anchorEl?: Object,
   /**
    * This is the point on the anchor where the popover's
-   * `targetOrigin` will attach to.
+   * `anchorEl` will attach to.
+   *
    * Options:
    * vertical: [top, center, bottom];
    * horizontal: [left, center, right].
@@ -366,6 +367,7 @@ class Popover extends Component<DefaultProps, Props, void> {
 
   handleGetOffsetTop = getOffsetTop;
   handleGetOffsetLeft = getOffsetLeft;
+
   /**
    * Returns the top/left offset of the position
    * to attach to on the anchor element (or body if none is provided)

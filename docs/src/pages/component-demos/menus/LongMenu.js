@@ -1,8 +1,9 @@
 // @flow weak
 
 import React, { Component } from 'react';
-import Button from 'material-ui/Button';
+import IconButton from 'material-ui/IconButton';
 import Menu, { MenuItem } from 'material-ui/Menu';
+import MoreVertIcon from 'material-ui-icons/MoreVert';
 
 const options = [
   'None',
@@ -40,15 +41,19 @@ class LongMenu extends Component {
   render() {
     return (
       <div>
-        <Button aria-owns="long-menu" aria-haspopup="true" onClick={this.handleClick}>
-          Open Long Menu
-        </Button>
+        <IconButton
+          aria-label="Delete"
+          aria-owns="long-menu"
+          aria-haspopup="true"
+          onClick={this.handleClick}
+        >
+          <MoreVertIcon />
+        </IconButton>
         <Menu
           id="long-menu"
           anchorEl={this.state.anchorEl}
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
-          onClick={this.handleRequestClose}
           style={{ maxHeight: ITEM_HEIGHT * 4.5 }}
           MenuListProps={{
             style: {
@@ -57,7 +62,7 @@ class LongMenu extends Component {
           }}
         >
           {options.map(option =>
-            <MenuItem key={option} selected={option === 'Pyxis'}>
+            <MenuItem key={option} selected={option === 'Pyxis'} onClick={this.handleRequestClose}>
               {option}
             </MenuItem>,
           )}
