@@ -42,7 +42,7 @@ class LongMenu extends Component {
     return (
       <div>
         <IconButton
-          aria-label="Delete"
+          aria-label="More"
           aria-owns="long-menu"
           aria-haspopup="true"
           onClick={this.handleClick}
