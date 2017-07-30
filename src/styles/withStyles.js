@@ -74,6 +74,10 @@ const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) =>
       super(props, context);
       this.jss = this.context[ns.jss] || jss;
       this.sheetsManager = this.context.sheetsManager || sheetsManager;
+      // Attach the styleSheets to the instance of the component as in the context
+      // of react-hot-loader the hooks can be executed in a different closure context:
+      // https://github.com/gaearon/react-hot-loader/blob/master/src/patch.dev.js#L107
+      this.styleSheets = styleSheets;
       this.sheetOptions = {
         generateClassName,
         ...this.context[ns.sheetOptions],
@@ -114,7 +118,7 @@ const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) =>
     }
 
     attach(theme: Object) {
-      styleSheets.forEach(currentStyleSheet => {
+      this.styleSheets.forEach(currentStyleSheet => {
         let sheetManager = this.sheetsManager.get(currentStyleSheet);
 
         if (!sheetManager) {
@@ -164,7 +168,7 @@ const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) =>
     }
 
     detach(theme: Object) {
-      styleSheets.forEach(currentStyleSheet => {
+      this.styleSheets.forEach(currentStyleSheet => {
         const sheetManager = this.sheetsManager.get(currentStyleSheet);
         const sheetManagerTheme = sheetManager.get(theme);
 
@@ -190,7 +194,7 @@ const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) =>
       const { classes: classesProp, innerRef, ...other } = this.props;
 
       let classes;
-      const renderedClasses = styleSheets.reduce((acc, current) => {
+      const renderedClasses = this.styleSheets.reduce((acc, current) => {
         const sheetManager = this.sheetsManager.get(current);
         const sheetsManagerTheme = sheetManager.get(this.theme);
 
