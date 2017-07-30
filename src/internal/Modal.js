@@ -37,7 +37,7 @@ export const styleSheet = createStyleSheet('MuiModal', theme => ({
     left: 0,
   },
   hidden: {
-    pointerEvents: 'none',
+    visibility: 'hidden',
   },
 }));
 
@@ -405,6 +405,7 @@ class Modal extends Component<DefaultProps, Props, State> {
 
     let backdropProps;
 
+    // It's a Transition like component
     if (modalChild.props.hasOwnProperty('in')) {
       Object.keys(transitionCallbacks).forEach(key => {
         childProps[key] = createChainedFunction(transitionCallbacks[key], modalChild.props[key]);
@@ -427,7 +428,7 @@ class Modal extends Component<DefaultProps, Props, State> {
         <div
           data-mui-test="Modal"
           className={classNames(classes.root, className, {
-            [classes.hidden]: !show,
+            [classes.hidden]: this.state.exited,
           })}
           ref={node => {
             this.modal = node;
