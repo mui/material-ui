@@ -177,6 +177,7 @@ class Drawer extends Component<DefaultProps, Props, State> {
       open,
       SlideProps,
       theme,
+      onRequestClose,
       ...other
     } = this.props;
 
