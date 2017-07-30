@@ -71,23 +71,30 @@ function reduceChildRoutes(props, items, childRoute, index) {
 }
 
 function AppDrawer(props) {
-  const classes = props.classes;
+  const { classes, className, docked, onRequestClose, routes } = props;
   const GITHUB_RELEASE_BASE_URL = 'https://github.com/callemall/material-ui/releases/tag/';
+  let other = {};
+
+  if (!docked) {
+    other = {
+      keepMounted: true,
+    };
+  }
 
   return (
     <Drawer
-      className={props.className}
+      className={className}
       classes={{
         paper: classes.paper,
       }}
       open={props.open}
-      onRequestClose={props.onRequestClose}
-      docked={props.docked}
-      keepMounted
+      onRequestClose={onRequestClose}
+      docked={docked}
+      {...other}
     >
       <div className={classes.nav}>
         <Toolbar className={classes.toolbar}>
-          <Link className={classes.title} to="/" onClick={props.onRequestClose}>
+          <Link className={classes.title} to="/" onClick={onRequestClose}>
             <Typography type="title" gutterBottom color="inherit">
               Material-UI
             </Typography>
@@ -102,7 +109,7 @@ function AppDrawer(props) {
             : null}
           <Divider absolute />
         </Toolbar>
-        {renderNavItems(props, props.routes[0])}
+        {renderNavItems(props, routes[0])}
       </div>
     </Drawer>
   );
