@@ -85,6 +85,7 @@ export const styleSheet = createStyleSheet('MuiMenu', {
      * the menu.
      */
     maxHeight: 'calc(100vh - 96px)',
+    WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
   },
 });
 
@@ -126,9 +127,8 @@ class Menu extends Component<DefaultProps, Props, void> {
   handleListKeyDown = (event: SyntheticUIEvent, key: string) => {
     if (key === 'tab') {
       event.preventDefault();
-      const { onRequestClose } = this.props;
-      if (onRequestClose) {
-        return onRequestClose(event);
+      if (this.props.onRequestClose) {
+        return this.props.onRequestClose(event);
       }
     }
 

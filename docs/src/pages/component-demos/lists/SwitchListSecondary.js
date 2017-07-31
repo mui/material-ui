@@ -1,4 +1,4 @@
-// @flow
+// @flow weak
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -14,7 +14,7 @@ import Switch from 'material-ui/Switch';
 import WifiIcon from 'material-ui-icons/Wifi';
 import BluetoothIcon from 'material-ui-icons/Bluetooth';
 
-const styleSheet = createStyleSheet('SwitchListSecondary', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   root: {
     width: '100%',
     maxWidth: 360,

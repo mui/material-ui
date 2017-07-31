@@ -1,4 +1,4 @@
-// @flow
+// @flow weak
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -8,7 +8,7 @@ import Avatar from 'material-ui/Avatar';
 import remyImage from 'docs/src/assets/images/remy.jpg';
 import uxecoImage from 'docs/src/assets/images/uxceo-128.jpg';
 
-const styleSheet = createStyleSheet('ImageAvatars', {
+const styleSheet = createStyleSheet({
   row: {
     display: 'flex',
     justifyContent: 'center',

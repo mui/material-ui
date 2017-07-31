@@ -1,4 +1,4 @@
-// @flow
+// @flow weak
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -15,7 +15,7 @@ import ShareIcon from 'material-ui-icons/Share';
 import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 import paellaImage from 'docs/src/assets/images/paella.jpg';
 
-const styleSheet = createStyleSheet('RecipeReviewCard', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   card: { maxWidth: 400 },
   expand: {
     transform: 'rotate(0deg)',

@@ -1,4 +1,4 @@
-// @flow
+// @flow weak
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -11,7 +11,7 @@ import PlayArrowIcon from 'material-ui-icons/PlayArrow';
 import SkipNextIcon from 'material-ui-icons/SkipNext';
 import albumCover from 'docs/src/assets/images/live-from-space.jpg';
 
-const styleSheet = createStyleSheet('NowPlayingCard', {
+const styleSheet = createStyleSheet({
   card: {
     display: 'flex',
   },

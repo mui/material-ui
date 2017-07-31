@@ -1,4 +1,4 @@
-// @flow
+// @flow weak
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -8,7 +8,7 @@ import RestoreIcon from 'material-ui-icons/Restore';
 import FavoriteIcon from 'material-ui-icons/Favorite';
 import LocationOnIcon from 'material-ui-icons/LocationOn';
 
-const styleSheet = createStyleSheet('SimpleBottomNavigation', {
+const styleSheet = createStyleSheet({
   root: {
     width: 500,
   },

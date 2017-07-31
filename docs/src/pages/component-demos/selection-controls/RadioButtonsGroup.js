@@ -6,7 +6,7 @@ import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 import { FormLabel, FormControl, FormControlLabel } from 'material-ui/Form';
 
-const styleSheet = createStyleSheet('RadioButtonsGroup', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   group: {
     margin: `${theme.spacing.unit}px 0`,
   },

@@ -43,7 +43,11 @@ class Portal extends Component {
       return;
     }
 
-    ReactDOM.unmountComponentAtNode(this.layer);
+    // Support react@15.x
+    if (!ReactDOM.unstable_createPortal) {
+      ReactDOM.unmountComponentAtNode(this.layer);
+    }
+
     if (document.body) {
       document.body.removeChild(this.layer);
     }

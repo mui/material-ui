@@ -1,4 +1,4 @@
-// @flow
+// @flow weak
 /* eslint-disable react/no-array-index-key */
 
 import React, { Component } from 'react';
@@ -121,7 +121,7 @@ function getSuggestions(value) {
       });
 }
 
-const styleSheet = createStyleSheet('IntegrationAutosuggest', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   container: {
     flexGrow: 1,
     position: 'relative',

@@ -11,7 +11,7 @@ import MarkdownElement from 'docs/src/components/MarkdownElement';
 const requireDemos = require.context('docs/src', true, /\.js$/);
 const requireDemoSource = require.context('!raw-loader!docs/src', true, /\.js$/);
 
-const styleSheet = createStyleSheet('Demo', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   root: {
     fontFamily: theme.typography.fontFamily,
     position: 'relative',

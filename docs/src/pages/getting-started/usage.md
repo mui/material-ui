@@ -5,9 +5,8 @@ Material-UI components work in isolation.
 They don't rely on any global style like [normalize.css](https://github.com/necolas/normalize.css/).
 You can use any of the components as demonstrated in our documentation.
 
-Here is a quick example to get you started:
+Here is a quick example to get you started, it's all you need:
 
-**./App.js**
 ```jsx
 import React from 'react';
 import { render } from 'react-dom';

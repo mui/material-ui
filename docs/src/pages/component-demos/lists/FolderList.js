@@ -1,4 +1,4 @@
-// @flow
+// @flow weak
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -7,7 +7,7 @@ import List, { ListItem, ListItemText } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import FolderIcon from 'material-ui-icons/Folder';
 
-const styleSheet = createStyleSheet('FolderList', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   root: {
     width: '100%',
     maxWidth: 360,

@@ -2,6 +2,51 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.3
+###### _Jul 29, 2017_
+
+Big thanks to the 8 contributors who made this release possible.
+
+This release is full of bug fixes and documentation improvements following the major
+styling update of the previous release.
+
+##### Component Fixes / Enhancements
+
+- [Drawer] Fix docked not inheriting props (#7590) @foreggs
+- [Dialog] Better fullscreen fix (4deee4b5e3465682996d4dce35e5c60fd040502b) @oliviertassinari
+- [List] Fix padding issue (#7529) @markselby9
+- [test] Remove dead code (4e2cf38ae3181cf38a5796179bfb2887c402b4ac) @oliviertassinari
+- [flow] Fix wrong import (5a88d950bb3e9c7105cfa6b45c796d167827f1d7) @oliviertassinari
+- [Tabs] Fix Scroll button visibility state when child tab items are modified (#7576) @shawnmcknight
+- [TextField] Forward the id to the label & more (#7584) @oliviertassinari
+- [ios] Fix some style issue with Safari iOS (#7588) @oliviertassinari
+
+##### Docs
+
+- [docs] Add example with Create React App (#7485) @akshaynaik404
+- [docs] Minor tweaks to grammar of CSS in JS page (#7530) @mbrookes
+- [docs] Server side fix docs (91a30ee2276d8d06776f6fba831930568974dacc) @oliviertassinari
+- [docs] Fix 'colors' path in imports (#7519) @burnoo
+- [docs] Some fixes after the latest upgrade (#7528) @oliviertassinari
+- [docs] Update for supported components (#7586) @skirunman
+- [docs] Fix small issues I have noticed (#7591) @oliviertassinari
+- [docs] Optional style sheet name (#7594) @oliviertassinari
+- [docs] Use flow weak on the demos as we can't expect users to have flow (cd25e63a214c37ed7945e31aa9b08f02baa17351) @oliviertassinari
+
+##### Core
+
+- [core] Support react@16.0.0-beta.1 (#7561) @oliviertassinari
+- [core] Small fixes of the styling solution (#7572) @oliviertassinari
+- [core] Better themingEnabled logic (#7533) @oliviertassinari
+- [core] Upgrade dependencies and build for the supported targets (#7575) @oliviertassinari
+- [core] Upgrade dependencies (#7539) @oliviertassinari
+- [flow] Increase coverage (6f4b2b3b3773ace568de54aaefbca963ab408b40) @oliviertassinari
+
+## 1.0.0-beta.2
+###### _Jul 23, 2017_
+
+Publish a new version as `v1.0.0-beta.1` was already used.
+
 ## 1.0.0-beta.1
 ###### _Jul 23, 2017_
 

@@ -1,4 +1,4 @@
-// @flow
+// @flow weak
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -9,7 +9,7 @@ import Button from 'material-ui/Button';
 import CheckIcon from 'material-ui-icons/Check';
 import SaveIcon from 'material-ui-icons/Save';
 
-const styleSheet = createStyleSheet('CircularFab', {
+const styleSheet = createStyleSheet({
   wrapper: {
     position: 'relative',
   },

@@ -21,7 +21,11 @@ class SimpleMenu extends Component {
   render() {
     return (
       <div>
-        <Button aria-owns="simple-menu" aria-haspopup="true" onClick={this.handleClick}>
+        <Button
+          aria-owns={this.state.open ? 'simple-menu' : null}
+          aria-haspopup="true"
+          onClick={this.handleClick}
+        >
           Open Menu
         </Button>
         <Menu

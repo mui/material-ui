@@ -6,7 +6,7 @@ import AccessAlarmIcon from 'material-ui-icons/AccessAlarm';
 import ThreeDRotation from 'material-ui-icons/ThreeDRotation';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 
-const styleSheet = createStyleSheet('SvgMaterialIcons', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   icon: {
     margin: theme.spacing.unit,
   },

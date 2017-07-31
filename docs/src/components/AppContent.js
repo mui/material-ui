@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import MarkdownElement from 'docs/src/components/MarkdownElement';
 
-const styleSheet = createStyleSheet('AppContent', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   content: theme.mixins.gutters({
     paddingTop: 80,
     flex: '1 1 100%',

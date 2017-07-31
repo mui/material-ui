@@ -1,4 +1,4 @@
-// @flow
+// @flow weak
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -8,7 +8,7 @@ import Divider from 'material-ui/Divider';
 import InboxIcon from 'material-ui-icons/Inbox';
 import DraftsIcon from 'material-ui-icons/Drafts';
 
-const styleSheet = createStyleSheet('SimpleList', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   root: {
     width: '100%',
     maxWidth: 360,

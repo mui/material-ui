@@ -55,7 +55,7 @@ const anchorLinkStyle = theme => ({
   },
 });
 
-const styleSheet = createStyleSheet('MarkdownElement', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   root: {
     fontFamily: theme.typography.fontFamily,
     marginTop: theme.spacing.unit * 2,
@@ -112,6 +112,8 @@ const styleSheet = createStyleSheet('MarkdownElement', theme => ({
     },
     '& table': {
       width: '100%',
+      display: 'block',
+      overflowX: 'auto',
       borderCollapse: 'collapse',
       borderSpacing: 0,
       overflow: 'hidden',
@@ -128,7 +130,7 @@ const styleSheet = createStyleSheet('MarkdownElement', theme => ({
     },
     '& td': {
       borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
-      padding: `${theme.spacing.unit}px ${theme.spacing.unit * 8}px ${theme.spacing.unit}px ${theme
+      padding: `${theme.spacing.unit}px ${theme.spacing.unit * 5}px ${theme.spacing.unit}px ${theme
         .spacing.unit * 3}px`,
       textAlign: 'left',
     },
@@ -145,7 +147,7 @@ const styleSheet = createStyleSheet('MarkdownElement', theme => ({
     '& th': {
       whiteSpace: 'pre',
       borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
-      padding: '0 56px 0 24px',
+      padding: `0 ${theme.spacing.unit * 5}px 0 ${theme.spacing.unit * 3}px`,
       textAlign: 'left',
     },
     '& th:last-child': {

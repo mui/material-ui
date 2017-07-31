@@ -7,7 +7,7 @@ import green from 'material-ui/colors/green';
 import { FormGroup, FormControlLabel } from 'material-ui/Form';
 import Checkbox from 'material-ui/Checkbox';
 
-const styleSheet = createStyleSheet('Checkboxes', {
+const styleSheet = createStyleSheet({
   checked: {
     color: green[500],
   },

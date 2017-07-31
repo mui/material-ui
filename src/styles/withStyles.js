@@ -11,7 +11,7 @@ import contextTypes from 'react-jss/lib/contextTypes';
 import jss from 'react-jss/lib/jss';
 import * as ns from 'react-jss/lib/ns';
 import createMuiTheme from './theme';
-import themeListener, { CHANNEL } from './themeListener';
+import themeListener from './themeListener';
 import createGenerateClassName from './createGenerateClassName';
 
 // Use a singleton or the provided one by the context.
@@ -74,6 +74,10 @@ const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) =>
       super(props, context);
       this.jss = this.context[ns.jss] || jss;
       this.sheetsManager = this.context.sheetsManager || sheetsManager;
+      // Attach the styleSheets to the instance of the component as in the context
+      // of react-hot-loader the hooks can be executed in a different closure context:
+      // https://github.com/gaearon/react-hot-loader/blob/master/src/patch.dev.js#L107
+      this.styleSheets = styleSheets;
       this.sheetOptions = {
         generateClassName,
         ...this.context[ns.sheetOptions],
@@ -114,7 +118,7 @@ const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) =>
     }
 
     attach(theme: Object) {
-      styleSheets.forEach(currentStyleSheet => {
+      this.styleSheets.forEach(currentStyleSheet => {
         let sheetManager = this.sheetsManager.get(currentStyleSheet);
 
         if (!sheetManager) {
@@ -134,13 +138,17 @@ const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) =>
 
         if (sheetManagerTheme.refs === 0) {
           const styles = currentStyleSheet.createStyles(theme);
-          const name = currentStyleSheet.name
-            ? currentStyleSheet.name
-            : getDisplayName(BaseComponent);
+          let meta;
+
+          if (process.env.NODE_ENV !== 'production') {
+            meta = currentStyleSheet.name ? currentStyleSheet.name : getDisplayName(BaseComponent);
+            // Sanitize the string as will be used in development to prefix the generated
+            // class name.
+            meta = meta.replace(new RegExp(/[!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~]/g), '-');
+          }
+
           const sheet = this.jss.createStyleSheet(styles, {
-            meta: name,
-            name,
-            insertionPoint: CHANNEL,
+            meta,
             link: false,
             ...this.sheetOptions,
             ...currentStyleSheet.options,
@@ -160,7 +168,7 @@ const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) =>
     }
 
     detach(theme: Object) {
-      styleSheets.forEach(currentStyleSheet => {
+      this.styleSheets.forEach(currentStyleSheet => {
         const sheetManager = this.sheetsManager.get(currentStyleSheet);
         const sheetManagerTheme = sheetManager.get(theme);
 
@@ -186,7 +194,7 @@ const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) =>
       const { classes: classesProp, innerRef, ...other } = this.props;
 
       let classes;
-      const renderedClasses = styleSheets.reduce((acc, current) => {
+      const renderedClasses = this.styleSheets.reduce((acc, current) => {
         const sheetManager = this.sheetsManager.get(current);
         const sheetsManagerTheme = sheetManager.get(this.theme);
 

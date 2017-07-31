@@ -1,11 +1,11 @@
-// @flow
+// @flow weak
 
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 
-const styleSheet = createStyleSheet('TextFieldMargins', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -24,12 +24,14 @@ const TextFieldMargins = props => {
     <div className={classes.container}>
       <TextField
         label="None"
+        id="margin-none"
         defaultValue="Default Value"
         className={classes.textField}
         helperText="Some important text"
       />
       <TextField
         label="Dense"
+        id="margin-dense"
         defaultValue="Default Value"
         className={classes.textField}
         helperText="Some important text"
@@ -37,6 +39,7 @@ const TextFieldMargins = props => {
       />
       <TextField
         label="Normal"
+        id="margin-normal"
         defaultValue="Default Value"
         className={classes.textField}
         helperText="Some important text"

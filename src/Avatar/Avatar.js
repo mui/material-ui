@@ -34,7 +34,6 @@ export const styleSheet = createStyleSheet('MuiAvatar', theme => ({
 }));
 
 type DefaultProps = {
-  alt: string,
   component: string,
 };
 
@@ -142,7 +141,6 @@ function Avatar(props: Props) {
 }
 
 Avatar.defaultProps = {
-  alt: '',
   component: 'div',
 };
 

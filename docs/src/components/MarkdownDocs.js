@@ -7,7 +7,7 @@ import Button from 'material-ui/Button';
 import MarkdownElement from 'docs/src/components/MarkdownElement';
 import Demo from 'docs/src/components/Demo';
 
-const styleSheet = createStyleSheet('MarkdownDocs', {
+const styleSheet = createStyleSheet({
   root: {
     marginBottom: 100,
   },
@@ -47,7 +47,7 @@ function MarkdownDocs(props) {
   return (
     <div className={classes.root}>
       <div className={classes.header}>
-        <Button component="a" href={markdownUrl} target="_blank">
+        <Button component="a" href={markdownUrl}>
           {'Edit this page'}
         </Button>
       </div>

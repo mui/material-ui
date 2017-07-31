@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 
-const styleSheet = createStyleSheet('TypograpghyTheme', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   root: theme.typography.button,
 }));
 
