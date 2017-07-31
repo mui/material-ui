@@ -62,4 +62,4 @@ Material-UI attempts to implement all of these variations. Please refer to the [
 
 ## 4. User global theme variation
 
-In order to promote consistency and manage the user interface as a whole, Material-UI provide a mechanisms to apply global changes. You can tweak the [configuration variables](/customization/themes#configuration-variables) as well as [customizing all instances of a component type](/customization/themes#customizing-all-instances-of-a-component-type).
+In order to promote consistency and manage the user interface as a whole, Material-UI provide mechanisms to apply global changes. You can tweak the [configuration variables](/customization/themes#configuration-variables) as well as [customizing all instances of a component type](/customization/themes#customizing-all-instances-of-a-component-type).
