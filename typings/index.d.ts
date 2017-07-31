@@ -39,7 +39,7 @@ declare namespace MaterialUI {
 
 declare namespace MaterialUI.PropTypes {
   type Alignment = 'inherit' | 'left' | 'center' | 'right' | 'justify';
-  type Color = 'inherit' | 'secondary' | 'accent' | 'default';
+  type Color = 'inherit' | 'primary' | 'accent' | 'default';
   type Margin = 'none' | 'dense' | 'normal';
 }
 
@@ -217,7 +217,9 @@ declare module 'material-ui/BottomNavigation/BottomNavigation' {
 }
 
 declare module 'material-ui/BottomNavigation/BottomNavigationButton' {
-  export interface BottomNavigationButtonProps {
+  import { ButtonBaseProps } from 'material-ui/internal/ButtonBase';
+
+  export interface BottomNavigationButtonProps extends ButtonBaseProps {
     icon?: React.ReactNode;
     label?: React.ReactNode;
     onChange?: (event: React.ChangeEvent<{}>, value: number) => void;
@@ -238,9 +240,11 @@ declare module 'material-ui/Button' {
 }
 
 declare module 'material-ui/Button/Button' {
-  export interface ButtonProps {
+  import { ButtonBaseProps } from 'material-ui/internal/ButtonBase';
+
+  export interface ButtonProps extends ButtonBaseProps {
     color?: MaterialUI.PropTypes.Color | 'contrast';
-    component?: React.ReactType;
+    component?: React.ReactNode;
     dense?: boolean;
     disabled?: boolean;
     disableFocusRipple?: boolean;
@@ -422,7 +426,7 @@ declare module 'material-ui/Dialog/DialogContentText' {
 
 declare module 'material-ui/Dialog/DialogTitle' {
   export interface DialogTitleProps {
-    disableTypography: boolean;
+    disableTypography?: boolean;
   }
 
   export default class DialogTitle extends MaterialUI.Component<
@@ -679,10 +683,10 @@ declare module 'material-ui/IconButton' {
 }
 
 declare module 'material-ui/IconButton/IconButton' {
-  import { CSSProperties } from 'react';
+  import { ButtonBaseProps } from 'material-ui/internal/ButtonBase';
 
-  export interface IconButtonProps {
-    color?: MaterialUI.PropTypes.Color;
+  export interface IconButtonProps extends ButtonBaseProps {
+    color?: MaterialUI.PropTypes.Color | 'contrast';
     disabled?: boolean;
     disableRipple?: boolean;
     rootRef?: Function;
@@ -789,14 +793,26 @@ declare module 'material-ui/List/List' {
 }
 
 declare module 'material-ui/List/ListItem' {
-  export interface ListItemProps {
-    button?: boolean;
+  import { ButtonBaseProps } from 'material-ui/internal/ButtonBase';
+
+  type ListItemCommonProps = {
     component?: React.ReactNode;
     dense?: boolean;
     disabled?: boolean;
     disableGutters?: boolean;
     divider?: boolean;
-  }
+  };
+
+  type ListItemDefaultProps = {
+    button?: false;
+  } & ListItemCommonProps;
+
+  type ListItemButtonProps = {
+    button?: true;
+  } & ListItemCommonProps &
+    ButtonBaseProps;
+
+  export type ListItemProps = ListItemDefaultProps | ListItemButtonProps;
 
   export default class ListItem extends MaterialUI.Component<ListItemProps> {}
 }
@@ -1150,7 +1166,9 @@ declare module 'material-ui/Table/TableRow' {
 }
 
 declare module 'material-ui/Table/TableSortLabel' {
-  export interface TableSortLabelProps {
+  import { ButtonBaseProps } from 'material-ui/internal/ButtonBase';
+
+  export interface TableSortLabelProps extends ButtonBaseProps {
     active?: boolean;
     direction?: 'asc' | 'desc';
   }
@@ -1199,9 +1217,10 @@ declare module 'material-ui/Tabs/TabIndicator' {
 }
 
 declare module 'material-ui/Tabs/TabScrollButton' {
-  export interface TabScrollButtonProps {
+  import { ButtonBaseProps } from 'material-ui/internal/ButtonBase';
+
+  export interface TabScrollButtonProps extends ButtonBaseProps {
     direction?: 'left' | 'right';
-    onClick?: React.EventHandler<any>;
     visible?: boolean;
   }
 
@@ -1211,7 +1230,9 @@ declare module 'material-ui/Tabs/TabScrollButton' {
 }
 
 declare module 'material-ui/Tabs/Tabs' {
-  export interface TabsProps {
+  import { ButtonBaseProps } from 'material-ui/internal/ButtonBase';
+
+  export interface TabsProps extends ButtonBaseProps {
     buttonClassName?: string;
     centered?: boolean;
     children?: React.ReactNode;
@@ -1219,10 +1240,7 @@ declare module 'material-ui/Tabs/Tabs' {
     index: false | number;
     indicatorClassName?: string;
     indicatorColor?: 'accent' | 'primary' | string;
-    onChange: (
-      event: React.ChangeEvent<{ checked: boolean }>,
-      index: number
-    ) => void;
+    onChange: (event: React.ChangeEvent<{}>, index: number) => void;
     scrollable?: boolean;
     scrollButtons?: 'auto' | 'on' | 'off';
     textColor?: 'accent' | 'primary' | 'inherit' | string;
@@ -1280,7 +1298,7 @@ declare module 'material-ui/Toolbar' {
 
 declare module 'material-ui/Toolbar/Toolbar' {
   export interface ToolbarProps {
-    disableGutters: boolean;
+    disableGutters?: boolean;
   }
 
   export default class Toolbar extends MaterialUI.Component<ToolbarProps> {}
@@ -1296,7 +1314,7 @@ declare module 'material-ui/Typography/Typography' {
   export interface TypographyProps {
     align?: MaterialUI.PropTypes.Alignment;
     component?: React.ReactNode;
-    color?: MaterialUI.PropTypes.Color;
+    color?: MaterialUI.PropTypes.Color | 'secondary';
     gutterBottom?: boolean;
     headlineMapping?: { [type in TextStyle]: string };
     noWrap?: boolean;
@@ -1413,6 +1431,35 @@ declare module 'material-ui/internal/Transition' {
   export default class Transition extends React.Component<TransitionProps> {}
 }
 
+declare module 'material-ui/internal/ButtonBase' {
+  export interface ButtonBaseProps {
+    centerRipple?: boolean;
+    component?: React.ReactNode;
+    disabled?: boolean;
+    disableRipple?: boolean;
+    focusRipple?: boolean;
+    keyboardFocusedClassName?: string;
+    onBlur?: React.FocusEventHandler<{}>;
+    onClick?: React.MouseEventHandler<{}>;
+    onFocus?: React.FocusEventHandler<{}>;
+    onKeyboardFocus?: React.FocusEventHandler<{}>;
+    onKeyDown?: React.KeyboardEventHandler<{}>;
+    onKeyUp?: React.KeyboardEventHandler<{}>;
+    onMouseDown?: React.MouseEventHandler<{}>;
+    onMouseLeave?: React.MouseEventHandler<{}>;
+    onMouseUp?: React.MouseEventHandler<{}>;
+    onTouchEnd?: React.TouchEventHandler<{}>;
+    onTouchStart?: React.TouchEventHandler<{}>;
+    role?: string;
+    tabIndex?: string;
+    type?: string;
+  }
+
+  export default class ButtonBase extends MaterialUI.Component<
+    ButtonBaseProps
+  > {}
+}
+
 /* ============================================= */
 /*                                               */
 /*                     STYLES                    */
@@ -1439,7 +1486,7 @@ declare module 'material-ui/styles/MuiThemeProvider' {
 
   export interface MuiThemeProviderProps {
     theme?: Theme<any>;
-    sheetsManager?: object;
+    sheetsManager?: Object;
     children: React.ReactNode;
   }
 
@@ -1478,9 +1525,10 @@ declare module 'material-ui/styles/breakpoints' {
 
 declare module 'material-ui/styles/colorManipulator' {
   export type ColorFormat = 'rgb' | 'rgba' | 'hsl' | 'hsla';
-  export type ColorObject =
-    | { type: 'rgb' | 'hsl'; color: [number, number, number] }
-    | { type: 'rgba' | 'hsla'; color: [number, number, number, number] };
+  export type ColorObject = {
+    type: ColorFormat;
+    color: [number, number, number] | [number, number, number, number];
+  };
 
   export function convertColorToString(color: ColorObject): string;
   export function convertHexToRGB(hex: string): string;
@@ -1502,8 +1550,8 @@ declare module 'material-ui/styles/createGenerateClassName' {
    *        So the following typigns are not really good.
    */
   export default function createGenerateClassName(): (
-    rule: object,
-    stylesheet?: object
+    rule: Object,
+    stylesheet?: Object
   ) => string;
 }
 
