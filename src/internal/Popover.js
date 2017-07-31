@@ -87,7 +87,7 @@ type DefaultProps = {
   elevation: number,
 };
 
-type Props = DefaultProps & {
+export type Props = DefaultProps & {
   /**
    * This is the DOM element that will be used
    * to set the position of the popover.

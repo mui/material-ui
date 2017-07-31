@@ -36,7 +36,7 @@ type DefaultProps = {
   required: boolean,
 };
 
-type Props = DefaultProps & {
+export type Props = DefaultProps & {
   /**
    * The contents of the form control.
    */

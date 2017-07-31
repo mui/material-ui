@@ -37,7 +37,7 @@ type DefaultProps = {
   component: string,
 };
 
-type Props = DefaultProps & {
+export type Props = DefaultProps & {
   /**
    * Used in combination with `src` or `srcSet` to
    * provide an alt attribute for the rendered `img` element.

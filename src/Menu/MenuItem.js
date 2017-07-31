@@ -33,7 +33,7 @@ type DefaultProps = {
   selected: boolean,
 };
 
-type Props = DefaultProps & {
+export type Props = DefaultProps & {
   /**
    * Menu item contents.
    */

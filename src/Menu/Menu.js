@@ -16,7 +16,7 @@ type DefaultProps = {
   transitionDuration: 'auto',
 };
 
-type Props = DefaultProps & {
+export type Props = DefaultProps & {
   /**
    * The DOM element used to set the position of the menu.
    */

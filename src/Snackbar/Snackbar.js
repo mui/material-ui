@@ -80,7 +80,7 @@ type DefaultProps = {
   leaveTransitionDuration: number,
 };
 
-type Props = DefaultProps & {
+export type Props = DefaultProps & {
   /**
    * The action to display.
    */

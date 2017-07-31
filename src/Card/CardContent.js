@@ -14,7 +14,7 @@ export const styleSheet = createStyleSheet('MuiCardContent', theme => ({
   },
 }));
 
-type Props = {
+export type Props = {
   /**
    * Useful to extend the style applied to components.
    */

@@ -32,7 +32,7 @@ type DefaultProps = {
   square: boolean,
 };
 
-type Props = DefaultProps & {
+export type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */

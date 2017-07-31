@@ -13,7 +13,7 @@ type DefaultProps = {
   leaveTransitionDuration: number,
 };
 
-type Props = DefaultProps & {
+export type Props = DefaultProps & {
   children?: Element<*>,
   /**
    * If `true`, the component will transition in.

@@ -15,7 +15,7 @@ export const styleSheet = createStyleSheet('MuiListItemIcon', theme => ({
   },
 }));
 
-type Props = {
+export type Props = {
   /**
    * The content of the component, normally `Icon`, `SvgIcon`,
    * or a `material-ui-icons` SVG icon component.

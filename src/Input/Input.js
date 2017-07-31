@@ -167,7 +167,7 @@ type DefaultProps = {
   type: string,
 };
 
-type Props = DefaultProps & {
+export type Props = DefaultProps & {
   /**
    * This property helps users to fill forms faster, especially on mobile devices.
    * The name can be confusion, it's more like an autofill.

@@ -132,7 +132,7 @@ type DefaultProps = {
   type: 'button',
 };
 
-type Props = DefaultProps & {
+export type Props = DefaultProps & {
   /**
    * The content of the button.
    */

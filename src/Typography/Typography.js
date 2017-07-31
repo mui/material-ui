@@ -70,7 +70,7 @@ type Type =
   | 'caption'
   | 'button';
 
-type Props = {
+export type Props = {
   align?: 'inherit' | 'left' | 'center' | 'right' | 'justify',
   children?: Element<*>,
   /**

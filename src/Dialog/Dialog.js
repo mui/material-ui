@@ -47,7 +47,7 @@ export const styleSheet = createStyleSheet('MuiDialog', theme => ({
   },
 }));
 
-type Props = {
+export type Props = {
   /**
    * Dialog children, usually the included sub-components.
    */

@@ -15,7 +15,7 @@ export const styleSheet = createStyleSheet('MuiListItemSecondaryAction', theme =
   },
 }));
 
-type Props = {
+export type Props = {
   /**
    * The content of the component, normally an `IconButton` or selection control.
    */

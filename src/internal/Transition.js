@@ -49,7 +49,7 @@ type DefaultProps = {
   timeout: number,
 };
 
-type Props = DefaultProps & {
+export type Props = DefaultProps & {
   /**
    * The content of the component.
    */

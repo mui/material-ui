@@ -37,7 +37,7 @@ type DefaultProps = {
   type: string,
 };
 
-type Props = DefaultProps & {
+export type Props = DefaultProps & {
   centerRipple?: boolean,
   /**
    * The content of the component.

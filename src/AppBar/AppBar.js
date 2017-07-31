@@ -50,7 +50,7 @@ type DefaultProps = {
   position: 'fixed',
 };
 
-type Props = DefaultProps & {
+export type Props = DefaultProps & {
   /**
    * The content of the component.
    */

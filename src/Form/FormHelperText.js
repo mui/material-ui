@@ -29,7 +29,7 @@ export const styleSheet = createStyleSheet('MuiFormHelperText', theme => ({
   },
 }));
 
-type Props = {
+export type Props = {
   /**
    * The content of the component.
    */

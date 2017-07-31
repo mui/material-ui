@@ -21,7 +21,7 @@ export const styleSheet = createStyleSheet('MuiListItemAvatar', {
   },
 });
 
-type Props = {
+export type Props = {
   /**
    * The content of the component, normally `Avatar`.
    */

@@ -6,7 +6,7 @@ import Input, { InputLabel } from '../Input';
 import FormControl from '../Form/FormControl';
 import FormHelperText from '../Form/FormHelperText';
 
-type Props = {
+export type Props = {
   /**
    * This property helps users to fill forms faster, especially on mobile devices.
    * The name can be confusion, it's more like an autofill.

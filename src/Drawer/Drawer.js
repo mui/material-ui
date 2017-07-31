@@ -82,7 +82,7 @@ type DefaultProps = {
   elevation: number,
 };
 
-type Props = {
+export type Props = {
   /**
    * Side which will the drawer will appear from.
    */

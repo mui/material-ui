@@ -43,7 +43,7 @@ export const styleSheet = createStyleSheet('MuiSnackbarContent', theme => {
   };
 });
 
-type Props = {
+export type Props = {
   /**
    * The action to display.
    */

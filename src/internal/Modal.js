@@ -52,7 +52,7 @@ type DefaultProps = {
   show: boolean,
 };
 
-type Props = DefaultProps & {
+export type Props = DefaultProps & {
   /**
    * The CSS class name of the backdrop element.
    */

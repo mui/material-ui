@@ -26,7 +26,7 @@ export const styleSheet = createStyleSheet('MuiBackdrop', theme => ({
   },
 }));
 
-type Props = {
+export type Props = {
   /**
    * Can be used, for instance, to render a letter inside the avatar.
    */

@@ -35,7 +35,7 @@ type DefaultProps = {
   color: 'inherit',
 };
 
-type Props = DefaultProps & {
+export type Props = DefaultProps & {
   /**
    * The name of the icon font ligature.
    */
