@@ -55,8 +55,6 @@
     "react-dom": "^15.3.0 || ^16.0.0-beta.1"
   },
   "dependencies": {
-    "@types/enzyme": "^2.8.4",
-    "@types/react": "^15.0.39",
     "babel-runtime": "^6.25.0",
     "brcast": "^2.0.1",
     "classnames": "^2.2.5",
