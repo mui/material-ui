@@ -850,7 +850,7 @@ declare module 'material-ui/List/ListItemText' {
   }
 
   export default class ListItemText extends MaterialUI.Component<
-    ListItemText
+    ListItemTextProps
   > {}
 }
 
