@@ -479,7 +479,7 @@ declare module 'material-ui/Drawer/Drawer' {
     onRequestClose?: React.EventHandler<any>;
     open?: boolean;
     SlideProps?: Object;
-    theme: Theme;
+    theme?: Theme;
   }
 
   export default class Drawer extends MaterialUI.Component<DrawerProps> {}
