@@ -76,6 +76,7 @@ export const styleSheet = createStyleSheet('MuiInput', theme => {
       // slight alteration to spec spacing to match visual spec result
       padding: `${theme.spacing.unit - 1}px 0`,
       border: 0,
+      borderRadius: 0,
       display: 'block',
       boxSizing: 'content-box',
       verticalAlign: 'middle',
@@ -110,7 +111,11 @@ export const styleSheet = createStyleSheet('MuiInput', theme => {
     disabled: {
       color: theme.palette.text.disabled,
     },
-    focused: {},
+    focused: {
+      '&:after': {
+        transform: 'scaleX(1)',
+      },
+    },
     underline: {
       paddingBottom: 2,
       '&:before': {
@@ -372,8 +377,13 @@ class Input extends Component<DefaultProps, Props, State> {
 
   checkDirty(obj) {
     const { muiFormControl } = this.context;
+    const nextDirty = isDirty(obj);
 
-    if (isDirty(obj)) {
+    if (muiFormControl && muiFormControl.dirty === nextDirty) {
+      return;
+    }
+
+    if (nextDirty) {
       if (muiFormControl && muiFormControl.onDirty) {
         muiFormControl.onDirty();
       }

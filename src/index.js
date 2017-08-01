@@ -52,17 +52,11 @@ export { CircularProgress, LinearProgress } from './Progress';
 
 export { default as Radio, RadioGroup } from './Radio';
 
+export { default as SelectField, SelectFieldInput } from './SelectField';
+
 export { default as Snackbar, SnackbarContent } from './Snackbar';
 
 export { MuiThemeProvider } from './styles';
-
-export {
-  SelectField,
-} from './SelectField';
-
-export {
- MuiThemeProvider,
-} from './styles';
 
 // eslint-disable-next-line import/first
 import * as colors from './colors';

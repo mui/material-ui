@@ -1,3 +1,7 @@
+---
+components: SelectField, SelectFieldInput
+---
+
 # Select Field
 
 To learn more about SelectField please visit the specifications [here](https://material.io/guidelines/components/menus.html#menus-usage).

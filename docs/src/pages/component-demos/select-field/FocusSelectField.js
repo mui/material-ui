@@ -1,31 +1,26 @@
 // @flow weak
-
 import React, { Component } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 import SelectField from 'material-ui/SelectField';
-import { LabelCheckbox } from 'material-ui/Checkbox';
+import Checkbox from 'material-ui/Checkbox';
+import { FormControlLabel } from 'material-ui/Form';
 import TextField from 'material-ui/TextField';
 import MenuItem from 'material-ui/Menu/MenuItem';
-import { Card, CardHeader, CardContent } from 'material-ui/Card';
-
+import Card, { CardHeader, CardContent } from 'material-ui/Card';
 
 const styleSheet = createStyleSheet('FocusSelectField', () => ({
   row: {
     display: 'flex',
   },
   column: {
+    width: 200,
     flex: 1,
     flexDirection: 'row',
     margin: 8,
   },
 }));
 
-export default class FocusSelectField extends Component {
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
+class FocusSelectField extends Component {
   state = {
     value: '',
     selectFocused: false,
@@ -43,25 +38,20 @@ export default class FocusSelectField extends Component {
   handleDirty = () => this.setState({ selectClean: false });
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
+    const classes = this.props.classes;
 
     return (
       <Card>
-        <CardHeader
-          title="Focus Select Field"
-        />
+        <CardHeader title="Focus Select Field" />
         <CardContent>
           <div className={classes.row}>
-            <TextField
-              className={classes.column}
-              label="Focus Here"
-            />
+            <TextField className={classes.column} label="Focus Here" />
             <SelectField
               className={classes.column}
               label="Tab Here"
               value={this.state.value}
               onChange={this.handleChange}
-              inputProps={{
+              InputProps={{
                 onFocus: this.handleFocus,
                 onBlur: this.handleBlur,
                 onClean: this.handleClean,
@@ -75,16 +65,16 @@ export default class FocusSelectField extends Component {
             </SelectField>
           </div>
           <div className={classes.row}>
-            <LabelCheckbox
-              className={classes.column}
-              checked={this.state.selectFocused}
+            <FormControlLabel
+              control={<Checkbox checked={this.state.selectFocused} />}
               label="Is Focused"
+              className={classes.column}
               disabled
             />
-            <LabelCheckbox
-              className={classes.column}
-              checked={this.state.selectClean}
+            <FormControlLabel
+              control={<Checkbox checked={this.state.selectClean} />}
               label="Is Clean"
+              className={classes.column}
               disabled
             />
           </div>
@@ -93,3 +83,5 @@ export default class FocusSelectField extends Component {
     );
   }
 }
+
+export default withStyles(styleSheet)(FocusSelectField)

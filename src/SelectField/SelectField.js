@@ -2,9 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import shallowEqual from 'recompose/shallowEqual';
 import keycode from 'keycode';
-import customPropTypes from '../utils/customPropTypes';
 import SelectFieldInput from './SelectFieldInput';
 import FormControl from '../Form/FormControl';
 import InputLabel from '../Input/InputLabel';
@@ -53,9 +51,13 @@ class SelectField extends Component {
      */
     inputClassName: PropTypes.string,
     /**
-     * Properties applied to the internal `<Input />` component.
+     * Passed as `inputProps` to the internal `<Input />` component.
      */
     inputProps: PropTypes.object,
+    /**
+     * Properties applied to the internal `<Input />` component.
+     */
+    InputProps: PropTypes.object,
     /**
      * The label text.
      */
@@ -84,6 +86,10 @@ class SelectField extends Component {
      */
     onChange: PropTypes.func,
     /** @ignore */
+    onClean: PropTypes.func,
+    /** @ignore */
+    onDirty: PropTypes.func,
+    /** @ignore */
     onFocus: PropTypes.func,
     /**
      * Whether the label should be displayed as required (asterisk).
@@ -104,10 +110,6 @@ class SelectField extends Component {
     disabled: false,
   };
 
-  static contextTypes = {
-    styleManager: customPropTypes.muiRequired,
-  };
-
   state = {
     anchorEl: undefined,
     ignoreFocusOnce: false,
@@ -115,30 +117,30 @@ class SelectField extends Component {
     selectedIndex: undefined,
   };
 
-  handleMouseDown = (event) => event.preventDefault();
+  handleMouseDown = event => event.preventDefault();
 
-  handleKeyDown = (event) => {
+  handleKeyDown = event => {
     if (OPEN_MENU_KEYS.includes(keycode(event))) {
       event.preventDefault();
       this.setState({ open: true, anchorEl: event.currentTarget });
     }
   };
 
-  handleClick = (event) => {
+  handleClick = event => {
     event.currentTarget.focus();
     this.setState({ open: true, anchorEl: event.currentTarget });
   };
 
   handleRequestClose = () => this.setState({ open: false });
 
-  handleSelectFocus = (event) => {
+  handleSelectFocus = event => {
     if (this.state.ignoreFocusOnce) {
       event.stopPropagation();
       this.setState({ ignoreFocusOnce: false });
     }
   };
 
-  handleSelectBlur = (event) => {
+  handleSelectBlur = event => {
     if (this.state.open) {
       event.stopPropagation();
     }
@@ -146,14 +148,17 @@ class SelectField extends Component {
 
   handleItemClick = (event, index, value) => {
     event.persist();
-    this.setState({
-      open: false,
-      ignoreFocusOnce: true,
-    }, () => {
-      if (this.props.onChange) {
-        this.props.onChange(event, index, value);
-      }
-    });
+    this.setState(
+      {
+        open: false,
+        ignoreFocusOnce: true,
+      },
+      () => {
+        if (this.props.onChange) {
+          this.props.onChange(event, index, value);
+        }
+      },
+    );
   };
 
   render() {
@@ -165,9 +170,12 @@ class SelectField extends Component {
       error,
       hideLabel,
       inputClassName,
-      inputProps,
+      inputProps: inputPropsProp,
+      InputProps,
       label,
       labelClassName,
+      onDirty,
+      onClean,
       onChange, // eslint-disable-line no-unused-vars
       menuClassName,
       menuProps,
@@ -178,32 +186,32 @@ class SelectField extends Component {
     } = this.props;
     const initialShrink = value !== '' && typeof value !== 'undefined';
 
+    const inputProps = {
+      onClick: this.handleClick,
+      onMouseDown: this.handleMouseDown,
+      onSelectFocus: this.handleSelectFocus,
+      onSelectBlur: this.handleSelectBlur,
+      options: children,
+      label,
+      ...inputPropsProp,
+    };
+
     return (
-      <FormControl
-        className={className}
-        error={error}
-        required={required}
-        {...other}
-      >
-        {label && !(hideLabel && value) && (
+      <FormControl className={className} error={error} required={required} {...other}>
+        {label &&
+          !(hideLabel && value) &&
           <InputLabel className={labelClassName} shrink={initialShrink}>
             {label}
-          </InputLabel>
-        )}
+          </InputLabel>}
         <Input
           className={inputClassName}
           value={value}
           type={type}
           disabled={disabled}
-          onMouseDown={this.handleMouseDown}
           onKeyDown={this.handleKeyDown}
-          onClick={this.handleClick}
-          onSelectFocus={this.handleSelectFocus}
-          onSelectBlur={this.handleSelectBlur}
           component={SelectFieldInput}
-          label={label}
-          options={children}
-          {...inputProps}
+          inputProps={inputProps}
+          {...InputProps}
         />
         <Menu
           anchorEl={this.state.anchorEl}
@@ -212,12 +220,14 @@ class SelectField extends Component {
           onRequestClose={this.handleRequestClose}
           {...menuProps}
         >
-          {React.Children.map(children, (child, index) =>
-            (typeof child.props.value === 'undefined' ? child : React.cloneElement(child, {
-              selected: compareFunction(value, child.props.value),
-              onClick: (event) => this.handleItemClick(event, index, child.props.value),
-            })),
-          )}
+          {React.Children.map(children, (child, index) => {
+            return typeof child.props.value === 'undefined'
+              ? child
+              : React.cloneElement(child, {
+                  selected: compareFunction(value, child.props.value),
+                  onClick: event => this.handleItemClick(event, index, child.props.value),
+                });
+          })}
         </Menu>
       </FormControl>
     );
