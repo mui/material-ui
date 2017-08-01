@@ -7,17 +7,20 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| checked | union:&nbsp;bool<br>&nbsp;string<br> |  | If `true`, the component appears selected. |
+| checked | union:&nbsp;boolean<br>&nbsp;string<br> |  | If `true`, the component is checked. |
 | checkedClassName | string |  | The CSS class name of the root element when checked. |
-| checkedIcon | node |  | The icon to display when the component is checked. If a string is provided, it will be used as a font ligature. |
-| classes | object |  | Useful to extend the style applied to components. |
-| disableRipple | bool |  | If `true`, the ripple effect will be disabled. |
-| disabled | bool |  | If `true`, the switch will be disabled. |
+| checkedIcon | Element |  | The icon to display when the component is checked. If a string is provided, it will be used as a font ligature. |
+| classes | Object |  | Useful to extend the style applied to components. |
+| disableRipple | boolean |  | If `true`, the ripple effect will be disabled. |
+| disabled | boolean |  | If `true`, the switch will be disabled. |
 | disabledClassName | string |  | The CSS class name of the root element when disabled. |
-| icon | node |  | The icon to display when the component is unchecked. If a string is provided, it will be used as a font ligature. |
-| inputProps | object |  | Properties applied to the `input` element. |
+| icon | Element |  | The icon to display when the component is unchecked. If a string is provided, it will be used as a font ligature. |
+| indeterminate | boolean |  | If `true`, the component appears indeterminate. |
+| indeterminateIcon | union:&nbsp;string<br>&nbsp;Element<*><br> |  | The icon to display when the component is indeterminate. If a string is provided, it will be used as a font ligature. |
+| inputProps | Object |  | Properties applied to the `input` element. |
+| inputRef | Function |  | Use that property to pass a ref callback to the native input component. |
 | name | string |  |  |
-| onChange | function |  | Callback fired when the  is changed.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* The event source of the callback<br>*checked:* The `checked` value of the switch |
+| onChange | Function |  | Callback fired when the state is changed.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* The event source of the callback<br>*checked:* The `checked` value of the switch |
 | value | string |  | The value of the component. |
 
 Any other properties supplied will be spread to the root element.
