@@ -41,7 +41,6 @@ class InteractiveGrid extends Component {
   render() {
     const classes = this.props.classes;
     const { align, direction, justify } = this.state;
-
     return (
       <Grid container className={classes.root}>
         <Grid item xs={12}>
@@ -54,7 +53,10 @@ class InteractiveGrid extends Component {
           >
             {[0, 1, 2].map(value =>
               <Grid key={value} item>
-                <Paper className={classes.paper}>
+                <Paper
+                  className={classes.paper}
+                  style={{ paddingTop: (value + 1) * 10, paddingBottom: (value + 1) * 10 }}
+                >
                   {`Cell ${value + 1}`}
                 </Paper>
               </Grid>,
@@ -113,6 +115,7 @@ class InteractiveGrid extends Component {
                   <FormControlLabel value="center" control={<Radio />} label="center" />
                   <FormControlLabel value="flex-end" control={<Radio />} label="flex-end" />
                   <FormControlLabel value="stretch" control={<Radio />} label="stretch" />
+                  <FormControlLabel value="baseline" control={<Radio />} label="baseline" />
                 </RadioGroup>
               </Grid>
             </Grid>

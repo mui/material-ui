@@ -7,7 +7,7 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| align | union:&nbsp;'flex-start'<br>&nbsp;'center'<br>&nbsp;'flex-end'<br>&nbsp;'stretch'<br> | 'stretch' | Defines the `align-items` style property. It's applied for all screen sizes. |
+| align | union:&nbsp;'flex-start'<br>&nbsp;'center'<br>&nbsp;'flex-end'<br>&nbsp;'stretch'<br>&nbsp;'baseline'<br> | 'stretch' | Defines the `align-items` style property. It's applied for all screen sizes. |
 | children | Element |  | The content of the component. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | component | union:&nbsp;string<br>&nbsp;Function<br> | 'div' | The component used for the root node. Either a string to use a DOM element or a component. |
@@ -39,6 +39,7 @@ This property accepts the following keys:
 - `align-xs-center`
 - `align-xs-flex-start`
 - `align-xs-flex-end`
+- `align-xs-baseline`
 - `justify-xs-center`
 - `justify-xs-flex-end`
 - `justify-xs-space-between`
