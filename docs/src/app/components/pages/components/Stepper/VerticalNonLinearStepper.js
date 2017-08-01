@@ -39,7 +39,7 @@ class VerticalNonLinear extends React.Component {
           disableTouchRipple={true}
           disableFocusRipple={true}
           primary={true}
-          onTouchTap={this.handleNext}
+          onClick={this.handleNext}
           style={{marginRight: 12}}
         />
         {step > 0 && (
@@ -47,7 +47,7 @@ class VerticalNonLinear extends React.Component {
             label="Back"
             disableTouchRipple={true}
             disableFocusRipple={true}
-            onTouchTap={this.handlePrev}
+            onClick={this.handlePrev}
           />
         )}
       </div>
@@ -65,7 +65,7 @@ class VerticalNonLinear extends React.Component {
           orientation="vertical"
         >
           <Step>
-            <StepButton onTouchTap={() => this.setState({stepIndex: 0})}>
+            <StepButton onClick={() => this.setState({stepIndex: 0})}>
               Select campaign settings
             </StepButton>
             <StepContent>
@@ -78,7 +78,7 @@ class VerticalNonLinear extends React.Component {
             </StepContent>
           </Step>
           <Step>
-            <StepButton onTouchTap={() => this.setState({stepIndex: 1})}>
+            <StepButton onClick={() => this.setState({stepIndex: 1})}>
               Create an ad group
             </StepButton>
             <StepContent>
@@ -87,7 +87,7 @@ class VerticalNonLinear extends React.Component {
             </StepContent>
           </Step>
           <Step>
-            <StepButton onTouchTap={() => this.setState({stepIndex: 2})}>
+            <StepButton onClick={() => this.setState({stepIndex: 2})}>
               Create an ad
             </StepButton>
             <StepContent>

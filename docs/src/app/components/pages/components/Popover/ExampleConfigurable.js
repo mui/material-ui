@@ -75,7 +75,7 @@ export default class PopoverExampleConfigurable extends React.Component {
     return (
       <div>
         <RaisedButton
-          onTouchTap={this.handleTouchTap}
+          onClick={this.handleTouchTap}
           label="Click me"
         />
         <h3 style={styles.h3}>Current Settings</h3>

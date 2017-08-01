@@ -249,10 +249,10 @@ describe('<Menu />', () => {
 
       const wrapper = mountWithContext(<MyComponent1 />);
 
-      wrapper.find('.item1').simulate('touchTap');
-      wrapper.find('.item2').simulate('touchTap');
-      wrapper.find('.item3').simulate('touchTap');
-      wrapper.find('.item1').simulate('touchTap');   // deselect
+      wrapper.find('.item1').simulate('click');
+      wrapper.find('.item2').simulate('click');
+      wrapper.find('.item3').simulate('click');
+      wrapper.find('.item1').simulate('click');   // deselect
 
       assert.deepEqual(wrapper.state().value, ['item2', 'item3']);
     });

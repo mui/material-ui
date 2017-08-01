@@ -17,7 +17,7 @@ export default class DrawerSimpleExample extends React.Component {
       <div>
         <RaisedButton
           label="Toggle Drawer"
-          onTouchTap={this.handleToggle}
+          onClick={this.handleToggle}
         />
         <Drawer open={this.state.open}>
           <MenuItem>Menu Item</MenuItem>

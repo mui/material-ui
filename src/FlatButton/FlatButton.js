@@ -103,7 +103,7 @@ class FlatButton extends Component {
      *
      * @param {object} event TouchTap event targeting the button.
      */
-    onTouchTap: PropTypes.func,
+    onClick: PropTypes.func,
     /**
      * If true, colors button according to
      * primaryTextColor from the Theme.

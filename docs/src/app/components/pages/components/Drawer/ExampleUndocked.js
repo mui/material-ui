@@ -19,7 +19,7 @@ export default class DrawerUndockedExample extends React.Component {
       <div>
         <RaisedButton
           label="Open Drawer"
-          onTouchTap={this.handleToggle}
+          onClick={this.handleToggle}
         />
         <Drawer
           docked={false}
@@ -27,8 +27,8 @@ export default class DrawerUndockedExample extends React.Component {
           open={this.state.open}
           onRequestChange={(open) => this.setState({open})}
         >
-          <MenuItem onTouchTap={this.handleClose}>Menu Item</MenuItem>
-          <MenuItem onTouchTap={this.handleClose}>Menu Item 2</MenuItem>
+          <MenuItem onClick={this.handleClose}>Menu Item</MenuItem>
+          <MenuItem onClick={this.handleClose}>Menu Item 2</MenuItem>
         </Drawer>
       </div>
     );

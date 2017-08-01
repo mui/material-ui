@@ -69,7 +69,7 @@ class TimePicker extends Component {
     /**
      * Callback function fired when the TimePicker is tapped or clicked.
      */
-    onTouchTap: PropTypes.func,
+    onClick: PropTypes.func,
     /**
      * If true, uses ("noon" / "midnight") instead of ("12 a.m." / "12 p.m.").
      *
@@ -163,8 +163,8 @@ class TimePicker extends Component {
       this.openDialog();
     }
 
-    if (this.props.onTouchTap) {
-      this.props.onTouchTap(event);
+    if (this.props.onClick) {
+      this.props.onClick(event);
     }
   };
 
@@ -190,7 +190,7 @@ class TimePicker extends Component {
       format,
       okLabel,
       onFocus, // eslint-disable-line no-unused-vars
-      onTouchTap, // eslint-disable-line no-unused-vars
+      onClick, // eslint-disable-line no-unused-vars
       onShow,
       onDismiss,
       pedantic,
@@ -211,7 +211,7 @@ class TimePicker extends Component {
           ref="input"
           value={time === emptyTime ? null : formatTime(time, format, pedantic)}
           onFocus={this.handleFocusInput}
-          onTouchTap={this.handleTouchTapInput}
+          onClick={this.handleTouchTapInput}
         />
         <TimePickerDialog
           ref="dialogWindow"

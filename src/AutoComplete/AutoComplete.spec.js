@@ -156,7 +156,7 @@ describe('<AutoComplete />', () => {
             'bar',
           ],
           {
-            source: 'touchTap',
+            source: 'click',
           },
         ]);
         done();

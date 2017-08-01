@@ -36,7 +36,7 @@ class CalendarActionButton extends Component {
       <div style={styles.root} >
         <FlatButton
           label={cancelLabel}
-          onTouchTap={this.props.onTouchTapCancel}
+          onClick={this.props.onTouchTapCancel}
           primary={true}
           style={styles.flatButtons}
         />
@@ -44,7 +44,7 @@ class CalendarActionButton extends Component {
           <FlatButton
             disabled={this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled()}
             label={okLabel}
-            onTouchTap={this.props.onTouchTapOk}
+            onClick={this.props.onTouchTapOk}
             primary={true}
             style={styles.flatButtons}
           />

@@ -31,13 +31,13 @@ export default class DialogExampleScrollable extends React.Component {
       <FlatButton
         label="Cancel"
         primary={true}
-        onTouchTap={this.handleClose}
+        onClick={this.handleClose}
       />,
       <FlatButton
         label="Submit"
         primary={true}
         keyboardFocused={true}
-        onTouchTap={this.handleClose}
+        onClick={this.handleClose}
       />,
     ];
 
@@ -55,7 +55,7 @@ export default class DialogExampleScrollable extends React.Component {
 
     return (
       <div>
-        <RaisedButton label="Scrollable Dialog" onTouchTap={this.handleOpen} />
+        <RaisedButton label="Scrollable Dialog" onClick={this.handleOpen} />
         <Dialog
           title="Scrollable Dialog"
           actions={actions}

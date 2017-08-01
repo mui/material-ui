@@ -17,7 +17,7 @@ export default class DrawerOpenRightExample extends React.Component {
       <div>
         <RaisedButton
           label="Toggle Drawer"
-          onTouchTap={this.handleToggle}
+          onClick={this.handleToggle}
         />
         <Drawer width={200} openSecondary={true} open={this.state.open} >
           <AppBar title="AppBar" />

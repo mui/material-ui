@@ -41,7 +41,7 @@ class CardExpandable extends Component {
     return (
       <IconButton
         style={Object.assign(styles.root, this.props.style)}
-        onTouchTap={this.props.onExpanding}
+        onClick={this.props.onExpanding}
         iconStyle={this.props.iconStyle}
       >
         {this.props.expanded ? this.props.openIcon : this.props.closeIcon}

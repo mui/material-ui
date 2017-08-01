@@ -442,7 +442,7 @@ class DropDownMenu extends Component {
         className={className}
         style={prepareStyles(Object.assign({}, styles.root, open && styles.rootWhenOpen, style))}
       >
-        <ClearFix style={styles.control} onTouchTap={this.handleTouchTapControl}>
+        <ClearFix style={styles.control} onClick={this.handleTouchTapControl}>
           <div style={prepareStyles(Object.assign({}, styles.label, open && styles.labelWhenOpen, labelStyle))}>
             {displayValue}
           </div>

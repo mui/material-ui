@@ -211,7 +211,7 @@ class AppBar extends Component {
     const titleComponent = typeof title === 'string' || title instanceof String ? 'h1' : 'div';
 
     const titleElement = React.createElement(titleComponent, {
-      onTouchTap: this.handleTitleTouchTap,
+      onClick: this.handleTitleTouchTap,
       style: prepareStyles(Object.assign(styles.title, styles.mainElement, titleStyle)),
     }, title);
 
@@ -232,8 +232,8 @@ class AppBar extends Component {
           iconElementLeftProps.iconStyle = Object.assign({}, iconButtonIconStyle, iconElementLeft.props.iconStyle);
         }
 
-        if (!iconElementLeft.props.onTouchTap && this.props.onLeftIconButtonTouchTap) {
-          iconElementLeftProps.onTouchTap = this.handleTouchTapLeftIconButton;
+        if (!iconElementLeft.props.onClick && this.props.onLeftIconButtonTouchTap) {
+          iconElementLeftProps.onClick = this.handleTouchTapLeftIconButton;
         }
 
         menuElementLeft = (
@@ -249,7 +249,7 @@ class AppBar extends Component {
             style={iconLeftStyle}
             iconStyle={styles.iconButtonIconStyle}
             iconClassName={iconClassNameLeft}
-            onTouchTap={this.handleTouchTapLeftIconButton}
+            onClick={this.handleTouchTapLeftIconButton}
           >
             {iconClassNameLeft ?
               '' :
@@ -288,8 +288,8 @@ class AppBar extends Component {
         default:
       }
 
-      if (!iconElementRight.props.onTouchTap && this.props.onRightIconButtonTouchTap) {
-        iconElementRightProps.onTouchTap = this.handleTouchTapRightIconButton;
+      if (!iconElementRight.props.onClick && this.props.onRightIconButtonTouchTap) {
+        iconElementRightProps.onClick = this.handleTouchTapRightIconButton;
       }
 
       menuElementRight = (
@@ -305,7 +305,7 @@ class AppBar extends Component {
           style={iconRightStyle}
           iconStyle={styles.iconButtonIconStyle}
           iconClassName={iconClassNameRight}
-          onTouchTap={this.handleTouchTapRightIconButton}
+          onClick={this.handleTouchTapRightIconButton}
         />
       );
     }

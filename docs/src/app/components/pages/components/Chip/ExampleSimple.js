@@ -43,14 +43,14 @@ export default class ChipExampleSimple extends React.Component {
 
         <Chip
           onRequestDelete={handleRequestDelete}
-          onTouchTap={handleTouchTap}
+          onClick={handleTouchTap}
           style={styles.chip}
         >
           Deletable Text Chip
         </Chip>
 
         <Chip
-          onTouchTap={handleTouchTap}
+          onClick={handleTouchTap}
           style={styles.chip}
         >
           <Avatar src="images/uxceo-128.jpg" />
@@ -59,7 +59,7 @@ export default class ChipExampleSimple extends React.Component {
 
         <Chip
           onRequestDelete={handleRequestDelete}
-          onTouchTap={handleTouchTap}
+          onClick={handleTouchTap}
           style={styles.chip}
         >
           <Avatar src="images/ok-128.jpg" />
@@ -67,7 +67,7 @@ export default class ChipExampleSimple extends React.Component {
         </Chip>
 
         <Chip
-          onTouchTap={handleTouchTap}
+          onClick={handleTouchTap}
           style={styles.chip}
         >
           <Avatar icon={<FontIcon className="material-icons">perm_identity</FontIcon>} />
@@ -76,14 +76,14 @@ export default class ChipExampleSimple extends React.Component {
 
         <Chip
           onRequestDelete={handleRequestDelete}
-          onTouchTap={handleTouchTap}
+          onClick={handleTouchTap}
           style={styles.chip}
         >
           <Avatar color="#444" icon={<SvgIconFace />} />
           SvgIcon Avatar Chip
         </Chip>
 
-        <Chip onTouchTap={handleTouchTap} style={styles.chip}>
+        <Chip onClick={handleTouchTap} style={styles.chip}>
           <Avatar size={32}>A</Avatar>
           Text Avatar Chip
         </Chip>
@@ -91,7 +91,7 @@ export default class ChipExampleSimple extends React.Component {
         <Chip
           backgroundColor={blue300}
           onRequestDelete={handleRequestDelete}
-          onTouchTap={handleTouchTap}
+          onClick={handleTouchTap}
           style={styles.chip}
         >
           <Avatar size={32} color={blue300} backgroundColor={indigo900}>

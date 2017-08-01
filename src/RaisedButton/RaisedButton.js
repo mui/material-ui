@@ -211,7 +211,7 @@ class RaisedButton extends Component {
      *
      * @param {object} event TouchTap event targeting the button.
      */
-    onTouchTap: PropTypes.func,
+    onClick: PropTypes.func,
     /**
      * Override the inline style of the button overlay.
      */

@@ -42,7 +42,7 @@ describe('<EnhancedButton />', () => {
     assert.ok(wrapper.contains(testChildren), 'should contain the children');
   });
 
-  it('renders a disabled button when disabled={true} which blocks onTouchTap from firing', () => {
+  it('renders a disabled button when disabled={true} which blocks onClick from firing', () => {
     const wrapper = shallowWithContext(
       <EnhancedButton disabled={true}>Button</EnhancedButton>
     );
@@ -50,18 +50,14 @@ describe('<EnhancedButton />', () => {
     assert.ok(wrapper.is('button[disabled]'), 'should be a disabled button element');
 
     let clicked = false;
-    let touched = false;
     wrapper.setProps({
       onClick: () => clicked = true,
-      onTouchTap: () => touched = true,
     });
     wrapper.simulate('click');
-    wrapper.simulate('touchTap');
     assert.strictEqual(clicked, false, 'should not trigger the click');
-    assert.strictEqual(touched, false, 'should not trigger the touchTap');
   });
 
-  it('renders a dummy link button when disabled={true} which blocks onTouchTap from firing', () => {
+  it('renders a dummy link button when disabled={true} which blocks onClick from firing', () => {
     const wrapper = shallowWithContext(
       <EnhancedButton
         disabled={true}
@@ -75,15 +71,11 @@ describe('<EnhancedButton />', () => {
     assert.notOk(wrapper.is('button'), 'should not be an <a> element');
 
     let clicked = false;
-    let touched = false;
     wrapper.setProps({
       onClick: () => clicked = true,
-      onTouchTap: () => touched = true,
     });
     wrapper.simulate('click');
-    wrapper.simulate('touchTap');
     assert.strictEqual(clicked, false, 'should not trigger the click');
-    assert.strictEqual(touched, false, 'should not trigger the touchTap');
   });
 
   it('should be styleable', () => {
@@ -289,14 +281,14 @@ describe('<EnhancedButton />', () => {
     assert.strictEqual(wrapper.find('FocusRipple').length, 0, 'should not have a FocusRipple');
   });
 
-  it('should fire the touchtap handler if keyboard focused and the enter or space keys are hit', () => {
+  it('should fire the click handler if keyboard focused and the enter or space keys are hit', () => {
     const eventStack = [];
     eventStack.reset = () => eventStack.splice(0, eventStack.length);
 
     const wrapper = shallowWithContext(
       <EnhancedButton
         keyboardFocused={true}
-        onTouchTap={() => eventStack.push('touchTap')}
+        onClick={() => eventStack.push('click')}
       >
         Button
       </EnhancedButton>

@@ -108,6 +108,12 @@ class FloatingActionButton extends Component {
      * If true, the button will be a small floating action button.
      */
     mini: PropTypes.bool,
+    /**
+     * Callback function fired when the button is touch-tapped.
+     *
+     * @param {object} event TouchTap event targeting the button.
+     */
+    onClick: PropTypes.func,
     /** @ignore */
     onMouseDown: PropTypes.func,
     /** @ignore */
@@ -120,12 +126,6 @@ class FloatingActionButton extends Component {
     onTouchEnd: PropTypes.func,
     /** @ignore */
     onTouchStart: PropTypes.func,
-    /**
-     * Callback function fired when the button is touch-tapped.
-     *
-     * @param {object} event TouchTap event targeting the button.
-     */
-    onTouchTap: PropTypes.func,
     /**
      * If true, the button will use the secondary button colors.
      */

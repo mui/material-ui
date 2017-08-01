@@ -105,13 +105,13 @@ class TimePickerDialog extends Component {
         key={0}
         label={cancelLabel}
         primary={true}
-        onTouchTap={this.handleTouchTapCancel}
+        onClick={this.handleTouchTapCancel}
       />,
       <FlatButton
         key={1}
         label={okLabel}
         primary={true}
-        onTouchTap={this.handleTouchTapOK}
+        onClick={this.handleTouchTapOK}
       />,
     ];
 

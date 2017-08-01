@@ -53,7 +53,7 @@ describe('<SelectField />', () => {
         }
       }
       wrapper = mountWithContext(<MyComponent2 />);
-      wrapper.find('IconButton').simulate('touchTap');   // open
+      wrapper.find('IconButton').simulate('click');   // open
 
       const item1 = document.getElementsByClassName('item1')[0];
       assert.ok(item1);
@@ -62,12 +62,12 @@ describe('<SelectField />', () => {
       const item3 = document.getElementsByClassName('item3')[0];
       assert.ok(item3);
 
-      TestUtils.Simulate.touchTap(item1);
-      TestUtils.Simulate.touchTap(item2);
-      TestUtils.Simulate.touchTap(item3);
+      TestUtils.Simulate.click(item1);
+      TestUtils.Simulate.click(item2);
+      TestUtils.Simulate.click(item3);
       assert.deepEqual(wrapper.state().value, ['item1', 'item2', 'item3']);
 
-      TestUtils.Simulate.touchTap(item1);  // deselect
+      TestUtils.Simulate.click(item1);  // deselect
       assert.deepEqual(wrapper.state().value, ['item2', 'item3']);
     });
 
@@ -101,7 +101,7 @@ describe('<SelectField />', () => {
         }
       }
       wrapper = mountWithContext(<MyComponent2 />);
-      wrapper.find('IconButton').simulate('touchTap');   // open
+      wrapper.find('IconButton').simulate('click');   // open
 
       const item1 = document.getElementsByClassName('item1')[0];
       assert.ok(item1);
@@ -110,12 +110,12 @@ describe('<SelectField />', () => {
       const item3 = document.getElementsByClassName('item3')[0];
       assert.ok(item3);
 
-      TestUtils.Simulate.touchTap(item1);
-      TestUtils.Simulate.touchTap(item2);
-      TestUtils.Simulate.touchTap(item3);
+      TestUtils.Simulate.click(item1);
+      TestUtils.Simulate.click(item2);
+      TestUtils.Simulate.click(item3);
       assert.deepEqual(wrapper.state().value, ['item1', 'item2', 'item3']);
 
-      wrapper.find('IconButton').simulate('touchTap');   // close
+      wrapper.find('IconButton').simulate('click');   // close
       assert.deepEqual(wrapper.find('#selection1').text(), 'item1;item2;item3');
     });
 

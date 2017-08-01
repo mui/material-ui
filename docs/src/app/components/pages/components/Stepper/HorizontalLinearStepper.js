@@ -85,13 +85,13 @@ class HorizontalLinearStepper extends React.Component {
                 <FlatButton
                   label="Back"
                   disabled={stepIndex === 0}
-                  onTouchTap={this.handlePrev}
+                  onClick={this.handlePrev}
                   style={{marginRight: 12}}
                 />
                 <RaisedButton
                   label={stepIndex === 2 ? 'Finish' : 'Next'}
                   primary={true}
-                  onTouchTap={this.handleNext}
+                  onClick={this.handleNext}
                 />
               </div>
             </div>

@@ -92,7 +92,7 @@ class IconButton extends Component {
      *
      * @param {object} event TouchTap event targeting the button.
      */
-    onTouchTap: PropTypes.func,
+    onClick: PropTypes.func,
     /**
      * Override the inline-styles of the root element.
      */

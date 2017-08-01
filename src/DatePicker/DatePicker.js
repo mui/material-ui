@@ -118,7 +118,7 @@ class DatePicker extends Component {
      *
      * @param {object} event TouchTap event targeting the `TextField`.
      */
-    onTouchTap: PropTypes.func,
+    onClick: PropTypes.func,
     /**
      * If true sets the datepicker to open to year selection first.
      */
@@ -239,8 +239,8 @@ class DatePicker extends Component {
   };
 
   handleTouchTap = (event) => {
-    if (this.props.onTouchTap) {
-      this.props.onTouchTap(event);
+    if (this.props.onClick) {
+      this.props.onClick(event);
     }
 
     if (!this.props.disabled) {
@@ -293,7 +293,7 @@ class DatePicker extends Component {
       onDismiss,
       onFocus, // eslint-disable-line no-unused-vars
       onShow,
-      onTouchTap, // eslint-disable-line no-unused-vars
+      onClick, // eslint-disable-line no-unused-vars
       openToYearSelection,
       shouldDisableDate,
       hideCalendarDate,
@@ -311,7 +311,7 @@ class DatePicker extends Component {
         <TextField
           {...other}
           onFocus={this.handleFocus}
-          onTouchTap={this.handleTouchTap}
+          onClick={this.handleTouchTap}
           ref="input"
           style={textFieldStyle}
           value={this.state.date ? formatDate(this.state.date) : ''}

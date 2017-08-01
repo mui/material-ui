@@ -64,7 +64,7 @@ ${this.props.children}
 
     return (
       <div style={styles.root}>
-        <div onTouchTap={this.handleTouchTap} style={styles.codeBlockTitle}>
+        <div onClick={this.handleTouchTap} style={styles.codeBlockTitle}>
           <CodeBlockTitle title={this.props.title} tooltip={tooltip} />
         </div>
         <MarkdownElement style={codeStyle} text={text} />
