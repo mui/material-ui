@@ -1,7 +1,8 @@
-// @flow weak
+// @flow
 /* eslint-disable jsx-a11y/label-has-for */
 
 import React, { cloneElement } from 'react';
+import type { Element } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
@@ -29,7 +30,53 @@ export const styleSheet = createStyleSheet('MuiFormControlLabel', theme => ({
   },
 }));
 
-function FormControlLabel(props) {
+export type Props = {
+  /**
+   * If `true`, the component appears selected.
+   */
+  checked?: boolean | string,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * A control element. For instance, it can be be a `Radio`, a `Switch` or a `Checkbox`.
+   */
+  control: Element<*>,
+  /**
+   * If `true`, the control will be disabled.
+   */
+  disabled?: boolean,
+  /**
+   * Use that property to pass a ref callback to the native input component.
+   */
+  inputRef?: Function,
+  /**
+   * The text to be used in an enclosing label element.
+   */
+  label: PropTypes.node.isRequired,
+  /*
+   * @ignore
+   */
+  name?: string | Element<*>,
+  /**
+   * Callback fired when the state is changed.
+   *
+   * @param {object} event The event source of the callback
+   * @param {boolean} checked The `checked` value of the switch
+   */
+  onChange?: Function,
+  /**
+   * The value of the component.
+   */
+  value?: string,
+};
+
+function FormControlLabel(props: Props) {
   const {
     checked,
     classes,
@@ -69,52 +116,6 @@ function FormControlLabel(props) {
     </label>
   );
 }
-
-FormControlLabel.propTypes = {
-  /**
-   * If `true`, the component appears selected.
-   */
-  checked: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * A control element. For instance, it can be be a `Radio`, a `Switch` or a `Checkbox`.
-   */
-  control: PropTypes.element.isRequired,
-  /**
-   * If `true`, the control will be disabled.
-   */
-  disabled: PropTypes.bool,
-  /**
-   * Use that property to pass a ref callback to the native input component.
-   */
-  inputRef: PropTypes.func,
-  /**
-   * The text to be used in an enclosing label element.
-   */
-  label: PropTypes.node.isRequired,
-  /*
-   * @ignore
-   */
-  name: PropTypes.string,
-  /**
-   * Callback fired when the state is changed.
-   *
-   * @param {object} event The event source of the callback
-   * @param {boolean} checked The `checked` value of the switch
-   */
-  onChange: PropTypes.func,
-  /**
-   * The value of the component.
-   */
-  value: PropTypes.string,
-};
 
 FormControlLabel.defaultProps = {
   disabled: false,
