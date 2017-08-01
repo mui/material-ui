@@ -3,7 +3,6 @@
 
 import React, { cloneElement } from 'react';
 import type { Element } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
@@ -58,11 +57,11 @@ export type Props = {
   /**
    * The text to be used in an enclosing label element.
    */
-  label: PropTypes.node.isRequired,
+  label: string,
   /*
    * @ignore
    */
-  name?: string | Element<*>,
+  name?: string,
   /**
    * Callback fired when the state is changed.
    *
