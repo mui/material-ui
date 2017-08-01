@@ -107,15 +107,6 @@ export type Props = {
    */
   icon?: Element<*>,
   /**
-   * If `true`, the component appears indeterminate.
-   */
-  indeterminate?: boolean,
-  /**
-   * The icon to display when the component is indeterminate.
-   * If a string is provided, it will be used as a font ligature.
-   */
-  indeterminateIcon?: string | Element<*>,
-  /**
    * Properties applied to the `input` element.
    */
   inputProps?: Object,
