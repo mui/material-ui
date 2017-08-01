@@ -113,7 +113,7 @@
     "eslint-plugin-react": "^7.1.0",
     "eventsource-polyfill": "^0.9.6",
     "file-loader": "^0.11.2",
-    "flow-bin": "^0.51.0",
+    "flow-bin": "^0.51.1",
     "flow-copy-source": "^1.2.0",
     "flow-typed": "^2.1.5",
     "fs-extra": "^4.0.0",
