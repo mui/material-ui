@@ -123,6 +123,9 @@ export const styleSheet = createStyleSheet('MuiGrid', theme => {
     'align-xs-flex-end': {
       alignItems: 'flex-end',
     },
+    'align-xs-baseline': {
+      alignItems: 'baseline',
+    },
     'justify-xs-center': {
       justifyContent: 'center',
     },
@@ -179,7 +182,7 @@ type Props = {
    * Defines the `align-items` style property.
    * It's applied for all screen sizes.
    */
-  align?: 'flex-start' | 'center' | 'flex-end' | 'stretch',
+  align?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline',
   /**
    * Defines the `flex-direction` style property.
    * It is applied for all screen sizes.
