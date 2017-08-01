@@ -56,6 +56,14 @@ export { default as Snackbar, SnackbarContent } from './Snackbar';
 
 export { MuiThemeProvider } from './styles';
 
+export {
+  SelectField,
+} from './SelectField';
+
+export {
+ MuiThemeProvider,
+} from './styles';
+
 // eslint-disable-next-line import/first
 import * as colors from './colors';
 
