@@ -7,12 +7,12 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | node |  | The content of the component. |
-| classes | object |  | Useful to extend the style applied to components. |
-| disabled | bool |  | If `true`, the label should be displayed in a disabled state. |
-| error | bool |  | If `true`, the label should be displayed in an error state. |
-| focused | bool |  | If `true`, the input of this label is focused (used by `FormGroup` components). |
-| required | bool |  | If `true`, the label will indicate that the input is required. |
+| children | Element |  | The content of the component. |
+| classes | Object |  | Useful to extend the style applied to components. |
+| disabled | boolean |  | If `true`, the label should be displayed in a disabled state. |
+| error | boolean |  | If `true`, the label should be displayed in an error state. |
+| focused | boolean |  | If `true`, the input of this label is focused (used by `FormGroup` components). |
+| required | boolean |  | If `true`, the label will indicate that the input is required. |
 
 Any other properties supplied will be spread to the root element.
 

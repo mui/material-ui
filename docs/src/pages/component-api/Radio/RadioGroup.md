@@ -7,10 +7,10 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | node |  | The content of the component. |
-| classes | object |  | Useful to extend the style applied to components. |
+| children | Element |  | The content of the component. |
+| classes | Object |  | Useful to extend the style applied to components. |
 | name | string |  | The name used to reference the value of the control. |
-| onChange | function |  | Callback fired when a radio button is selected.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* The event source of the callback<br>*checked:* The `checked` value of the switch |
+| onChange | Function |  | Callback fired when a radio button is selected.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* The event source of the callback<br>*checked:* The `checked` value of the switch |
 | selectedValue | string |  | Value of the selected radio button |
 
 Any other properties supplied will be spread to the root element.
