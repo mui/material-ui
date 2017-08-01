@@ -1401,34 +1401,14 @@ declare module 'material-ui/internal' {
    */
 }
 
-declare module 'material-ui/internal/Transition' {
-  export type TransitionCallback = (element: HTMLElement) => void;
-  export type TransitionRequestTimeout = (element: HTMLElement) => number;
-
-  export type TransitionHandlers = {
-    onEnter: TransitionCallback;
-    onEntering: TransitionCallback;
-    onEntered: TransitionCallback;
-    onExit: TransitionCallback;
-    onExiting: TransitionCallback;
-    onExited: TransitionCallback;
-  };
-
-  export interface TransitionProps extends Partial<TransitionHandlers> {
-    children?: React.ReactElement<any>;
-    className?: string;
-    enteredClassName?: string;
-    enteringClassName?: string;
-    exitedClassName?: string;
-    exitingClassName?: string;
-    in?: boolean;
-    onRequestTimeout?: TransitionRequestTimeout;
-    timeout?: number;
-    transitionAppear?: boolean;
-    unmountOnExit?: boolean;
+declare module 'material-ui/internal/Backdrop' {
+  export interface BackdropProps {
+    invisible?: boolean;
+    onClick?: React.ReactEventHandler<{}>;
+    [prop: string]: any;
   }
 
-  export default class Transition extends React.Component<TransitionProps> {}
+  export default class Backdrop extends MaterialUI.Component<BackdropProps> {}
 }
 
 declare module 'material-ui/internal/ButtonBase' {
@@ -1458,6 +1438,67 @@ declare module 'material-ui/internal/ButtonBase' {
   export default class ButtonBase extends MaterialUI.Component<
     ButtonBaseProps
   > {}
+}
+
+declare module 'material-ui/internal/Modal' {
+  import { BackdropProps } from 'material-ui/internal/Backdrop';
+  import { TransitionHandlers } from 'material-ui/internal/Transition';
+
+  export interface ModalProps extends TransitionHandlers {
+    backdropClassName?: string;
+    backdropComponent?: React.ComponentType<BackdropProps>;
+    backdropInvisible?: boolean;
+    backdropTransitionDuration?: number;
+    keepMounted?: boolean;
+    disableBackdrop?: boolean;
+    ignoreBackdropClick?: boolean;
+    ignoreEscapeKeyUp?: boolean;
+    modalManager?: Object;
+    onBackdropClick?: React.ReactEventHandler<{}>;
+    onEscapeKeyUp?: React.ReactEventHandler<{}>;
+    onRequestClose?: React.ReactEventHandler<{}>;
+    show?: boolean;
+  }
+
+  export default class Modal extends MaterialUI.Component<ModalProps> {}
+}
+
+declare module 'material-ui/internal/Portal' {
+  export interface PortalProps {
+    open?: boolean;
+  }
+
+  export default class Portal extends React.Component<PortalProps> {}
+}
+
+declare module 'material-ui/internal/Transition' {
+  export type TransitionCallback = (element: HTMLElement) => void;
+  export type TransitionRequestTimeout = (element: HTMLElement) => number;
+
+  export type TransitionHandlers = {
+    onEnter: TransitionCallback;
+    onEntering: TransitionCallback;
+    onEntered: TransitionCallback;
+    onExit: TransitionCallback;
+    onExiting: TransitionCallback;
+    onExited: TransitionCallback;
+  };
+
+  export interface TransitionProps extends Partial<TransitionHandlers> {
+    children?: React.ReactElement<any>;
+    className?: string;
+    enteredClassName?: string;
+    enteringClassName?: string;
+    exitedClassName?: string;
+    exitingClassName?: string;
+    in?: boolean;
+    onRequestTimeout?: TransitionRequestTimeout;
+    timeout?: number;
+    transitionAppear?: boolean;
+    unmountOnExit?: boolean;
+  }
+
+  export default class Transition extends React.Component<TransitionProps> {}
 }
 
 /* ============================================= */
