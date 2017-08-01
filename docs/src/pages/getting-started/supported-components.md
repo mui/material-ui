@@ -52,7 +52,7 @@ to discuss the approach before submitting a PR.
 - **[Dividers](https://material.io/guidelines/components/dividers.html) ✓**
   - **[Full bleed](https://material.io/guidelines/components/dividers.html#dividers-types-of-dividers) ✓**
   - **[Inset](https://material.io/guidelines/components/dividers.html#dividers-types-of-dividers) ✓**
-- [Expansion Panels](https://material.io/guidelines/components/expansion-panels.html)
+- **[Expansion Panels](https://material.io/guidelines/components/expansion-panels.html) ✓**
 - **[Grid lists](https://material.io/guidelines/components/grid-lists.html) ✓**
 - **[Lists](https://material.io/guidelines/components/lists.html) ✓**
   - **[Single line](https://material.io/guidelines/components/lists.html#lists-specs) ✓**
