@@ -74,15 +74,6 @@ export type Props = {
    */
   icon?: Element<*>,
   /**
-   * If `true`, the component appears indeterminate.
-   */
-  indeterminate?: boolean,
-  /**
-   * The icon to display when the component is indeterminate.
-   * If a string is provided, it will be used as a font ligature.
-   */
-  indeterminateIcon?: string | Element<*>,
-  /**
    * Properties applied to the `input` element.
    */
   inputProps?: Object,
@@ -111,5 +102,5 @@ export type Props = {
   value?: string,
 };
 
-// FIXME: here just to generate docs?? -rosskevin
+// This is here solely to trigger api doc generation
 export const RadioDocs = (props: Props) => <span />; // eslint-disable-line no-unused-vars
