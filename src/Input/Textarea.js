@@ -1,7 +1,6 @@
-// @flow weak
+// @flow
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import debounce from 'lodash/debounce';
 import EventListener from 'react-event-listener';
@@ -40,24 +39,72 @@ export const styleSheet = createStyleSheet('MuiTextarea', {
   },
 });
 
-class Textarea extends Component {
+type DefaultProps = {
+  rows: number,
+};
+
+export type Props = DefaultProps & {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * @ignore
+   */
+  defaultValue?: string,
+  /**
+   * @ignore
+   */
+  disabled?: boolean,
+  /**
+   * @ignore
+   */
+  onChange?: Function,
+  /**
+   * Number of rows to display when multiline option is set to true.
+   */
+  rows?: string | number,
+  /**
+   * Maxium number of rows to display when multiline option is set to true.
+   */
+  rowsMax?: string | number,
+  /**
+   * Use that property to pass a ref callback to the native textarea component.
+   */
+  textareaRef?: Function,
+  /**
+   * @ignore
+   */
+  value?: string,
+};
+
+type State = {
+  height: ?number,
+};
+
+class Textarea extends Component<DefaultProps, Props, State> {
+  props: Props;
   shadow: HTMLInputElement;
   singlelineShadow: HTMLInputElement;
   input: HTMLInputElement;
   value: string;
 
-  static defaultProps = {
+  static defaultProps: DefaultProps = {
     rows: 1,
   };
 
-  state = {
+  state: State = {
     height: null,
   };
 
   componentWillMount() {
     // <Input> expects the components it renders to respond to 'value'
     // so that it can check whether they are dirty
-    this.value = this.props.value || this.props.defaultValue;
+    this.value = this.props.value || this.props.defaultValue || '';
     this.setState({
       height: Number(this.props.rows) * rowsHeight,
     });
@@ -90,7 +137,7 @@ class Textarea extends Component {
 
     // The component is controlled, we need to update the shallow value.
     if (typeof this.props.value !== 'undefined') {
-      this.shadow.value = props.value;
+      this.shadow.value = props.value || '';
     }
 
     const lineHeight = singlelineShadow.scrollHeight;
@@ -192,44 +239,5 @@ class Textarea extends Component {
     );
   }
 }
-
-Textarea.propTypes = {
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * @ignore
-   */
-  defaultValue: PropTypes.any,
-  /**
-   * @ignore
-   */
-  disabled: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  onChange: PropTypes.func,
-  /**
-   * Number of rows to display when multiline option is set to true.
-   */
-  rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /**
-   * Maxium number of rows to display when multiline option is set to true.
-   */
-  rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /**
-   * Use that property to pass a ref callback to the native textarea component.
-   */
-  textareaRef: PropTypes.func,
-  /**
-   * @ignore
-   */
-  value: PropTypes.string,
-};
 
 export default withStyles(styleSheet)(Textarea);
