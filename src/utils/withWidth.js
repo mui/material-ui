@@ -96,9 +96,9 @@ function withWidth(options = {}) {
       }
 
       render() {
-        const { initalWidth, theme, width, ...other } = this.props;
+        const { initialWidth, theme, width, ...other } = this.props;
         const props = {
-          width: width || this.state.width || initalWidth,
+          width: width || this.state.width || initialWidth,
           ...other,
         };
 
@@ -132,7 +132,7 @@ function withWidth(options = {}) {
        * For instance, you could be using the user-agent or the client-hints.
        * http://caniuse.com/#search=client%20hint
        */
-      initalWidth: PropTypes.oneOf(keys),
+      initialWidth: PropTypes.oneOf(keys),
       /**
        * @ignore
        */
