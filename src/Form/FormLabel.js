@@ -1,7 +1,8 @@
-// @flow weak
+// @flow
 /* eslint-disable jsx-a11y/label-has-for */
 
 import React from 'react';
+import type { Element } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
@@ -27,7 +28,38 @@ export const styleSheet = createStyleSheet('MuiFormLabel', theme => {
   };
 });
 
-function FormLabel(props, context) {
+export type Props = {
+  /**
+   * The content of the component.
+   */
+  children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * If `true`, the label should be displayed in a disabled state.
+   */
+  disabled?: boolean,
+  /**
+   * If `true`, the label should be displayed in an error state.
+   */
+  error?: boolean,
+  /**
+   * If `true`, the input of this label is focused (used by `FormGroup` components).
+   */
+  focused?: boolean,
+  /**
+   * If `true`, the label will indicate that the input is required.
+   */
+  required?: boolean,
+};
+
+function FormLabel(props: Props, context: { muiFormControl: Object }) {
   const {
     children,
     classes,
@@ -85,37 +117,6 @@ function FormLabel(props, context) {
     </label>
   );
 }
-
-FormLabel.propTypes = {
-  /**
-   * The content of the component.
-   */
-  children: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * If `true`, the label should be displayed in a disabled state.
-   */
-  disabled: PropTypes.bool,
-  /**
-   * If `true`, the label should be displayed in an error state.
-   */
-  error: PropTypes.bool,
-  /**
-   * If `true`, the input of this label is focused (used by `FormGroup` components).
-   */
-  focused: PropTypes.bool,
-  /**
-   * If `true`, the label will indicate that the input is required.
-   */
-  required: PropTypes.bool,
-};
 
 FormLabel.contextTypes = {
   muiFormControl: PropTypes.object,

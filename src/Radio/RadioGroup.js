@@ -1,7 +1,7 @@
-// @flow weak
+// @flow
 
-import React, { Component, Children, cloneElement } from 'react';
-import PropTypes from 'prop-types';
+import React, { PureComponent, Children, cloneElement } from 'react';
+import type { Element } from 'react';
 import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
@@ -16,8 +16,47 @@ export const styleSheet = createStyleSheet('MuiRadioGroup', {
   },
 });
 
-class RadioGroup extends Component {
-  radios = undefined;
+export type Props = {
+  /**
+   * The content of the component.
+   */
+  children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * The name used to reference the value of the control.
+   */
+  name?: string,
+  /**
+   * @ignore
+   */
+  onBlur?: Function,
+  /**
+   * Callback fired when a radio button is selected.
+   *
+   * @param {object} event The event source of the callback
+   * @param {boolean} checked The `checked` value of the switch
+   */
+  onChange?: Function,
+  /**
+   * @ignore
+   */
+  onKeyDown?: Function,
+  /**
+   * Value of the selected radio button
+   */
+  selectedValue?: string,
+};
+
+class RadioGroup extends PureComponent<void, Props, void> {
+  props: Props;
+  radios: Array<HTMLInputElement> = [];
 
   focus = () => {
     if (!this.radios || !this.radios.length) {
@@ -82,43 +121,5 @@ class RadioGroup extends Component {
     );
   }
 }
-
-RadioGroup.propTypes = {
-  /**
-   * The content of the component.
-   */
-  children: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * The name used to reference the value of the control.
-   */
-  name: PropTypes.string,
-  /**
-   * @ignore
-   */
-  onBlur: PropTypes.func,
-  /**
-   * Callback fired when a radio button is selected.
-   *
-   * @param {object} event The event source of the callback
-   * @param {boolean} checked The `checked` value of the switch
-   */
-  onChange: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyDown: PropTypes.func,
-  /**
-   * Value of the selected radio button
-   */
-  selectedValue: PropTypes.string,
-};
 
 export default withStyles(styleSheet)(RadioGroup);

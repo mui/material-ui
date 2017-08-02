@@ -1,7 +1,7 @@
-// @flow weak
+// @flow
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Element } from 'react';
 import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
@@ -17,11 +17,30 @@ export const styleSheet = createStyleSheet('MuiFormGroup', {
   },
 });
 
+export type Props = {
+  /**
+   * The content of the component.
+   */
+  children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * Display group of elements in a compact row.
+   */
+  row?: boolean,
+};
+
 /**
  * FormGroup wraps controls such as Checkbox and Switch.
  * It provides compact row layout and FormLabel awareness.
  */
-function FormGroup(props) {
+function FormGroup(props: Props) {
   const { classes, className, children, row, ...other } = props;
   const rootClassName = classNames(
     classes.root,
@@ -37,25 +56,6 @@ function FormGroup(props) {
     </div>
   );
 }
-
-FormGroup.propTypes = {
-  /**
-   * The content of the component.
-   */
-  children: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * Display group of elements in a compact row.
-   */
-  row: PropTypes.bool,
-};
 
 FormGroup.defaultProps = {
   row: false,

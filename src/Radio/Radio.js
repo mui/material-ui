@@ -1,7 +1,7 @@
 // @flow weak
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Element } from 'react';
 import createStyleSheet from '../styles/createStyleSheet';
 import createSwitch from '../internal/SwitchBase';
 import RadioButtonCheckedIcon from '../svg-icons/radio-button-checked';
@@ -30,76 +30,77 @@ Radio.displayName = 'Radio';
 
 export default Radio;
 
-export const RadioDocs = () => <span />;
-
-RadioDocs.propTypes = {
+export type Props = {
   /**
-   * If `true`, the component appears selected.
+   * If `true`, the component is checked.
    */
-  checked: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  checked?: boolean | string,
   /**
-   * The CSS class name of the root element when selected.
+   * The CSS class name of the root element when checked.
    */
-  checkedClassName: PropTypes.string,
+  checkedClassName?: string,
   /**
-   * The icon to display when selected.
+   * The icon to display when the component is checked.
    * If a string is provided, it will be used as a font ligature.
    */
-  checkedIcon: PropTypes.node,
+  checkedIcon?: Element<*>,
   /**
    * Useful to extend the style applied to components.
    */
-  classes: PropTypes.object,
+  classes?: Object,
   /**
    * @ignore
    */
-  className: PropTypes.string,
+  className?: string,
   /**
    * @ignore
    */
-  defaultChecked: PropTypes.bool,
+  defaultChecked?: boolean,
   /**
-   * If `true`, the component disabled.
+   * If `true`, the switch will be disabled.
    */
-  disabled: PropTypes.bool,
+  disabled?: boolean,
   /**
    * The CSS class name of the root element when disabled.
    */
-  disabledClassName: PropTypes.string,
+  disabledClassName?: string,
   /**
    * If `true`, the ripple effect will be disabled.
    */
-  disableRipple: PropTypes.bool,
+  disableRipple?: boolean,
   /**
-   * The icon to display when the component is unselected.
+   * The icon to display when the component is unchecked.
    * If a string is provided, it will be used as a font ligature.
    */
-  icon: PropTypes.node,
+  icon?: Element<*>,
   /**
    * Properties applied to the `input` element.
    */
-  inputProps: PropTypes.object,
+  inputProps?: Object,
   /**
    * Use that property to pass a ref callback to the native input component.
    */
-  inputRef: PropTypes.func,
+  inputRef?: Function,
   /*
    * @ignore
    */
-  name: PropTypes.string,
+  name?: string,
   /**
    * Callback fired when the state is changed.
    *
    * @param {object} event The event source of the callback
    * @param {boolean} checked The `checked` value of the switch
    */
-  onChange: PropTypes.func,
+  onChange?: Function,
   /**
    * @ignore
    */
-  tabIndex: PropTypes.string,
+  tabIndex?: string,
   /**
    * The value of the component.
    */
-  value: PropTypes.string,
+  value?: string,
 };
+
+// This is here solely to trigger api doc generation
+export const RadioDocs = (props: Props) => <span />; // eslint-disable-line no-unused-vars
