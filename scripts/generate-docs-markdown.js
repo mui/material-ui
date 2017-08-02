@@ -117,7 +117,7 @@ function generatePropType(type) {
       } else {
         values = type.value.map(v => v.value || v.name);
       }
-      // Display one value per line as it's better for lisibility.
+      // Display one value per line as it's better for visibility.
       if (values.length < 5) {
         values = values.join('<br>&nbsp;');
       } else {

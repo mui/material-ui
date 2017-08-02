@@ -66,7 +66,7 @@ type Props = DefaultProps & {
    */
   backdropInvisible?: boolean,
   /**
-   * Duration in ms for the backgrop transition.
+   * Duration in ms for the backdrop transition.
    */
   backdropTransitionDuration?: number,
   /**
