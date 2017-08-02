@@ -1028,7 +1028,7 @@ declare module 'material-ui/Radio/RadioGroup' {
     className?: string;
     name?: string;
     onBlur?: React.EventHandler<any>;
-    onChange?: (event: React.ChangeEvent<{}>, checked: boolean) => void;
+    onChange?: (event: React.ChangeEvent<{}>, value: string) => void;
     onKeyDown?: React.EventHandler<any>;
     selectedValue?: string;
   }
