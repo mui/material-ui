@@ -9,7 +9,7 @@ import Typography from 'material-ui/Typography';
 import SkipPreviousIcon from 'material-ui-icons/SkipPrevious';
 import PlayArrowIcon from 'material-ui-icons/PlayArrow';
 import SkipNextIcon from 'material-ui-icons/SkipNext';
-import albumCover from 'docs/src/assets/images/live-from-space.jpg';
+import albumCover from 'docs/src/assets/images/cards/live-from-space.jpg';
 
 const styleSheet = createStyleSheet({
   card: {

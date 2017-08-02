@@ -581,7 +581,7 @@ declare module 'material-ui/Grid/Grid' {
     | 'column'
     | 'column-reverse';
 
-  export type GridGutter = 0 | 8 | 16 | 24 | 40;
+  export type GridSpacing = 0 | 8 | 16 | 24 | 40;
 
   export type GridJustification =
     | 'flex-start'
@@ -600,7 +600,7 @@ declare module 'material-ui/Grid/Grid' {
     item?: boolean;
     align?: GridAlignment;
     direction?: GridDirection;
-    gutter?: GridGutter;
+    spacing?: GridSpacing;
     hidden?: HiddenProps;
     justify?: GridJustification;
     wrap?: GridWrap;

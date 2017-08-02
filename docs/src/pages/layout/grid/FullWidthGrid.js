@@ -23,7 +23,7 @@ function FullWidthGrid(props) {
 
   return (
     <div className={classes.root}>
-      <Grid container gutter={24}>
+      <Grid container spacing={24}>
         <Grid item xs={12}>
           <Paper className={classes.paper}>xs=12</Paper>
         </Grid>
