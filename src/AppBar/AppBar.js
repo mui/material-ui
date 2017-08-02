@@ -74,14 +74,7 @@ type Props = DefaultProps & {
 };
 
 function AppBar(props: Props) {
-  const {
-    children,
-    classes,
-    className: classNameProp,
-    color,
-    position,
-    ...other
-  } = props;
+  const { children, classes, className: classNameProp, color, position, ...other } = props;
 
   const className = classNames(
     classes.root,
