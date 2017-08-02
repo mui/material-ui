@@ -79,7 +79,7 @@ function AppBar(props: Props) {
     classes,
     className: classNameProp,
     color,
-    position, // eslint-disable-line no-unused-vars
+    position,
     ...other
   } = props;
 
