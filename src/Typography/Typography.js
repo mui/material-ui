@@ -74,7 +74,7 @@ type DefaultProps = {
   classes: Object,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   align?: 'inherit' | 'left' | 'center' | 'right' | 'justify',
   children?: Element<*>,
   /**
@@ -119,7 +119,9 @@ export type Props = DefaultProps & {
   type?: Type,
 };
 
-function Typography(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function Typography(props: AllProps) {
   const {
     align,
     classes,

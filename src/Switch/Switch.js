@@ -67,7 +67,7 @@ type DefaultProps = {
   classes: Object,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * If `true`, the component is checked.
    */
@@ -139,7 +139,9 @@ export type Props = DefaultProps & {
   value?: string,
 };
 
-function Switch(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function Switch(props: AllProps) {
   const { classes: { root, ...classes }, className, ...other } = props;
 
   const icon = <div className={classes.icon} />;

@@ -21,7 +21,7 @@ type DefaultProps = {
   classes: Object,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * The content of the component.
    */
@@ -40,11 +40,13 @@ export type Props = DefaultProps & {
   row?: boolean,
 };
 
+type AllProps = DefaultProps & Props;
+
 /**
  * FormGroup wraps controls such as Checkbox and Switch.
  * It provides compact row layout and FormLabel awareness.
  */
-function FormGroup(props: Props) {
+function FormGroup(props: AllProps) {
   const { classes, className, children, row, ...other } = props;
   const rootClassName = classNames(
     classes.root,

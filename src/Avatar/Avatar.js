@@ -38,7 +38,7 @@ type DefaultProps = {
   component: string,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * Used in combination with `src` or `srcSet` to
    * provide an alt attribute for the rendered `img` element.
@@ -90,7 +90,9 @@ export type Props = DefaultProps & {
   srcSet?: string,
 };
 
-function Avatar(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function Avatar(props: AllProps) {
   const {
     alt,
     classes,

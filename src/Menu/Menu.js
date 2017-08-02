@@ -17,7 +17,7 @@ type DefaultProps = {
   transitionDuration: 'auto',
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * The DOM element used to set the position of the menu.
    */
@@ -78,6 +78,8 @@ export type Props = DefaultProps & {
   transitionDuration?: number | 'auto',
 };
 
+type AllProps = DefaultProps & Props;
+
 export const styleSheet = createStyleSheet('MuiMenu', {
   root: {
     /**
@@ -90,7 +92,8 @@ export const styleSheet = createStyleSheet('MuiMenu', {
   },
 });
 
-class Menu extends Component<DefaultProps, Props, void> {
+class Menu extends Component<DefaultProps, AllProps, void> {
+  props: AllProps;
   static defaultProps: DefaultProps = {
     classes: {},
     open: false,

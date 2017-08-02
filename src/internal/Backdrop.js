@@ -30,7 +30,7 @@ type DefaultProps = {
   classes: Object,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * Can be used, for instance, to render a letter inside the avatar.
    */
@@ -49,10 +49,12 @@ export type Props = DefaultProps & {
   invisible?: boolean,
 };
 
+type AllProps = DefaultProps & Props;
+
 /**
  * @ignore - internal component.
  */
-function Backdrop(props: Props) {
+function Backdrop(props: AllProps) {
   const { children, classes, className, invisible, ...other } = props;
 
   const backdropClass = classNames(

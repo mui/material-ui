@@ -44,7 +44,7 @@ type DefaultProps = {
   rows: number,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * Useful to extend the style applied to components.
    */
@@ -83,12 +83,14 @@ export type Props = DefaultProps & {
   value?: string,
 };
 
+type AllProps = DefaultProps & Props;
+
 type State = {
   height: ?number,
 };
 
-class Textarea extends Component<DefaultProps, Props, State> {
-  props: Props;
+class Textarea extends Component<DefaultProps, AllProps, State> {
+  props: AllProps;
   shadow: HTMLInputElement;
   singlelineShadow: HTMLInputElement;
   input: HTMLInputElement;

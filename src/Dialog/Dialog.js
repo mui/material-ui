@@ -51,7 +51,7 @@ type DefaultProps = {
   classes: Object,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * Dialog children, usually the included sub-components.
    */
@@ -139,10 +139,12 @@ export type Props = DefaultProps & {
   transition?: Function | Element<*>,
 };
 
+type AllProps = DefaultProps & Props;
+
 /**
  * Dialogs are overlaid modal paper based components with a backdrop.
  */
-function Dialog(props: Props) {
+function Dialog(props: AllProps) {
   const {
     children,
     classes,

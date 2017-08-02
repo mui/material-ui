@@ -35,7 +35,7 @@ type DefaultProps = {
   disablePadding: boolean,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * The content of the component.
    */
@@ -73,8 +73,10 @@ export type Props = DefaultProps & {
   subheader?: Element<*>,
 };
 
-class List extends Component<DefaultProps, Props, void> {
-  props: Props;
+type AllProps = DefaultProps & Props;
+
+class List extends Component<DefaultProps, AllProps, void> {
+  props: AllProps;
   static defaultProps: DefaultProps = {
     classes: {},
     component: 'ul',

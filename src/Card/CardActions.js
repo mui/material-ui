@@ -24,7 +24,7 @@ type DefaultProps = {
   disableActionSpacing: boolean,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * The content of the component.
    */
@@ -43,7 +43,9 @@ export type Props = DefaultProps & {
   disableActionSpacing?: boolean,
 };
 
-function CardActions(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function CardActions(props: AllProps) {
   const { disableActionSpacing, children, classes, className, ...other } = props;
 
   return (

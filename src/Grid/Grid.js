@@ -154,7 +154,7 @@ type DefaultProps = {
   classes: Object,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * The content of the component.
    */
@@ -238,7 +238,9 @@ export type Props = DefaultProps & {
   xl?: GridSizes,
 };
 
-function Grid(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function Grid(props: AllProps) {
   const {
     classes,
     className: classNameProp,

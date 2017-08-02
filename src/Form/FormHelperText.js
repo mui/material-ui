@@ -33,7 +33,7 @@ type DefaultProps = {
   classes: Object,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * The content of the component.
    */
@@ -61,7 +61,9 @@ export type Props = DefaultProps & {
   margin?: 'dense',
 };
 
-function FormHelperText(props: Props, context: { muiFormControl: Object }) {
+type AllProps = DefaultProps & Props;
+
+function FormHelperText(props: AllProps, context: { muiFormControl: Object }) {
   const {
     children,
     classes,

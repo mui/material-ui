@@ -20,7 +20,7 @@ type DefaultProps = {
   classes: Object,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * The content of the component.
    */
@@ -58,8 +58,10 @@ export type Props = DefaultProps & {
   selectedValue?: string,
 };
 
-class RadioGroup extends PureComponent<void, Props, void> {
-  props: Props;
+type AllProps = DefaultProps & Props;
+
+class RadioGroup extends PureComponent<void, AllProps, void> {
+  props: AllProps;
   radios: Array<HTMLInputElement> = [];
 
   focus = () => {

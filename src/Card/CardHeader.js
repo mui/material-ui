@@ -26,7 +26,7 @@ type DefaultProps = {
   classes: Object,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * The Avatar  for the Card Header.
    */
@@ -49,7 +49,9 @@ export type Props = DefaultProps & {
   title?: Element<*>,
 };
 
-function CardHeader(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function CardHeader(props: AllProps) {
   const { avatar, classes, className: classNameProp, subheader, title, ...other } = props;
 
   const className = classNames(classes.root, classNameProp);

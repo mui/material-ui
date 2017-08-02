@@ -33,7 +33,7 @@ type DefaultProps = {
   classes: Object,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * If `true`, the component appears selected.
    */
@@ -79,7 +79,9 @@ export type Props = DefaultProps & {
   value?: string,
 };
 
-function FormControlLabel(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function FormControlLabel(props: AllProps) {
   const {
     checked,
     classes,

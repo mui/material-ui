@@ -64,7 +64,7 @@ type DefaultProps = {
   divider: false,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * If `true`, the ListItem will be a button.
    */
@@ -104,8 +104,10 @@ export type Props = DefaultProps & {
   divider?: boolean,
 };
 
-class ListItem extends Component<DefaultProps, Props, void> {
-  props: Props;
+type AllProps = DefaultProps & Props;
+
+class ListItem extends Component<DefaultProps, AllProps, void> {
+  props: AllProps;
   static defaultProps: DefaultProps = {
     button: false,
     classes: {},

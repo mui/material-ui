@@ -133,7 +133,7 @@ type DefaultProps = {
   type: 'button',
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * The content of the button.
    */
@@ -192,7 +192,9 @@ export type Props = DefaultProps & {
   type?: string,
 };
 
-function Button(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function Button(props: AllProps) {
   const {
     children,
     classes,

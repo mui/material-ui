@@ -19,7 +19,7 @@ type DefaultProps = {
   classes: Object,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * The content of the component, normally `Icon`, `SvgIcon`,
    * or a `material-ui-icons` SVG icon component.
@@ -35,10 +35,12 @@ export type Props = DefaultProps & {
   className?: string,
 };
 
+type AllProps = DefaultProps & Props;
+
 /**
  * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
  */
-function ListItemIcon(props: Props) {
+function ListItemIcon(props: AllProps) {
   const { children, classes, className: classNameProp, ...other } = props;
 
   return React.cloneElement(children, {

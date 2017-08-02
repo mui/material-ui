@@ -40,7 +40,7 @@ type DefaultProps = {
   disableAnimation: boolean,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * The contents of the `InputLabel`.
    */
@@ -79,7 +79,9 @@ export type Props = DefaultProps & {
   shrink?: boolean,
 };
 
-function InputLabel(props: Props, context: { muiFormControl: Object }) {
+type AllProps = DefaultProps & Props;
+
+function InputLabel(props: AllProps, context: { muiFormControl: Object }) {
   const {
     disabled,
     disableAnimation,

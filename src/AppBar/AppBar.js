@@ -51,7 +51,7 @@ type DefaultProps = {
   position: 'fixed',
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * The content of the component.
    */
@@ -74,7 +74,9 @@ export type Props = DefaultProps & {
   position?: 'static' | 'fixed' | 'absolute',
 };
 
-function AppBar(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function AppBar(props: AllProps) {
   const { children, classes, className: classNameProp, color, position, ...other } = props;
 
   const className = classNames(

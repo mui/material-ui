@@ -168,7 +168,7 @@ type DefaultProps = {
   type: string,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * This property helps users to fill forms faster, especially on mobile devices.
    * The name can be confusion, it's more like an autofill.
@@ -290,11 +290,14 @@ export type Props = DefaultProps & {
   value?: string | number,
 };
 
+type AllProps = DefaultProps & Props;
+
 type State = {
   focused: boolean,
 };
 
-class Input extends Component<DefaultProps, Props, State> {
+class Input extends Component<DefaultProps, AllProps, State> {
+  props: AllProps;
   static muiName = 'Input';
   static defaultProps = {
     disableUnderline: false,

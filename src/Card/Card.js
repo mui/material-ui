@@ -17,7 +17,7 @@ type DefaultProps = {
   raised: boolean,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * Useful to extend the style applied to components.
    */
@@ -32,7 +32,9 @@ export type Props = DefaultProps & {
   raised?: boolean,
 };
 
-function Card(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function Card(props: AllProps) {
   const { classes, className, raised, ...other } = props;
 
   return (

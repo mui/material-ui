@@ -34,7 +34,7 @@ type DefaultProps = {
   selected: boolean,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * Menu item contents.
    */
@@ -62,7 +62,9 @@ export type Props = DefaultProps & {
   selected?: boolean,
 };
 
-function MenuItem(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function MenuItem(props: AllProps) {
   const { classes, className: classNameProp, component, selected, role, ...other } = props;
 
   const className = classNames(

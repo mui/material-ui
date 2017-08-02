@@ -18,7 +18,7 @@ type DefaultProps = {
   classes: Object,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * Useful to extend the style applied to components.
    */
@@ -29,7 +29,9 @@ export type Props = DefaultProps & {
   className?: string,
 };
 
-function CardContent(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function CardContent(props: AllProps) {
   const { classes, className, ...other } = props;
 
   return <div className={classNames(classes.root, className)} {...other} />;

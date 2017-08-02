@@ -47,7 +47,7 @@ type DefaultProps = {
   classes: Object,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * The action to display.
    */
@@ -66,7 +66,9 @@ export type Props = DefaultProps & {
   message: Element<*>,
 };
 
-function SnackbarContent(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function SnackbarContent(props: AllProps) {
   const { action, classes, className, message, ...other } = props;
 
   return (

@@ -38,7 +38,7 @@ type DefaultProps = {
   type: string,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   centerRipple?: boolean,
   /**
    * The content of the component.
@@ -88,6 +88,8 @@ export type Props = DefaultProps & {
   type: string,
 };
 
+type AllProps = DefaultProps & Props;
+
 type State = {
   keyboardFocused: boolean,
 };
@@ -95,7 +97,8 @@ type State = {
 /**
  * @ignore - internal component.
  */
-class ButtonBase extends Component<DefaultProps, Props, State> {
+class ButtonBase extends Component<DefaultProps, AllProps, State> {
+  props: AllProps;
   static defaultProps: DefaultProps = {
     centerRipple: false,
     classes: {},

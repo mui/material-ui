@@ -36,7 +36,7 @@ type DefaultProps = {
   color: 'inherit',
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * The name of the icon font ligature.
    */
@@ -55,7 +55,9 @@ export type Props = DefaultProps & {
   color?: 'inherit' | 'accent' | 'action' | 'contrast' | 'disabled' | 'error' | 'primary',
 };
 
-function Icon(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function Icon(props: AllProps) {
   const { children, classes, className: classNameProp, color, ...other } = props;
 
   const className = classNames(

@@ -33,7 +33,7 @@ type DefaultProps = {
   square: boolean,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * Useful to extend the style applied to components.
    */
@@ -58,7 +58,9 @@ export type Props = DefaultProps & {
   square?: boolean,
 };
 
-function Paper(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function Paper(props: AllProps) {
   const {
     classes,
     className: classNameProp,

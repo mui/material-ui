@@ -38,7 +38,7 @@ type DefaultProps = {
 
 // NB: If changed, please update Checkbox, Switch and Radio
 // so that the API documentation is updated.
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * If `true`, the component is checked.
    */
@@ -119,6 +119,8 @@ export type Props = DefaultProps & {
   value?: string,
 };
 
+type AllProps = DefaultProps & Props;
+
 type State = {
   checked?: boolean,
 };
@@ -141,8 +143,8 @@ export default function createSwitch(
   /**
    * @ignore - internal component.
    */
-  class SwitchBase extends Component<DefaultProps, Props, State> {
-    props: Props;
+  class SwitchBase extends Component<DefaultProps, AllProps, State> {
+    props: AllProps;
     static defaultProps: DefaultProps = {
       checkedIcon: defaultCheckedIcon,
       classes: {},

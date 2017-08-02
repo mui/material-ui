@@ -83,7 +83,7 @@ type DefaultProps = {
   elevation: number,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * Side which will the drawer will appear from.
    */
@@ -137,12 +137,14 @@ export type Props = DefaultProps & {
   theme: Object,
 };
 
+type AllProps = DefaultProps & Props;
+
 type State = {
   firstMount: boolean,
 };
 
-class Drawer extends Component<DefaultProps, Props, State> {
-  props: Props;
+class Drawer extends Component<DefaultProps, AllProps, State> {
+  props: AllProps;
   static defaultProps = {
     anchor: 'left',
     docked: false,

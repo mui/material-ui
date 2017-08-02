@@ -37,7 +37,7 @@ type DefaultProps = {
   required: boolean,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * The contents of the form control.
    */
@@ -80,6 +80,8 @@ export type Props = DefaultProps & {
   margin?: 'none' | 'dense' | 'normal',
 };
 
+type AllProps = DefaultProps & Props;
+
 type State = {
   dirty: boolean,
   focused: boolean,
@@ -88,7 +90,8 @@ type State = {
 /**
  * Provides context such as dirty/focused/error/required for form inputs.
  */
-class FormControl extends Component<DefaultProps, Props, State> {
+class FormControl extends Component<DefaultProps, AllProps, State> {
+  props: AllProps;
   static defaultProps = {
     classes: {},
     disabled: false,

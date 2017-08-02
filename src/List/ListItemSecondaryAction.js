@@ -19,7 +19,7 @@ type DefaultProps = {
   classes: Object,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * The content of the component, normally an `IconButton` or selection control.
    */
@@ -34,7 +34,9 @@ export type Props = DefaultProps & {
   className?: string,
 };
 
-function ListItemSecondaryAction(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function ListItemSecondaryAction(props: AllProps) {
   const { children, classes, className } = props;
 
   return (

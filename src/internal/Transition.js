@@ -49,7 +49,7 @@ type DefaultProps = {
   timeout: number,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * The content of the component.
    */
@@ -126,6 +126,8 @@ export type Props = DefaultProps & {
   unmountOnExit?: boolean,
 };
 
+type AllProps = DefaultProps & Props;
+
 /**
  * @ignore - internal component.
  *
@@ -139,8 +141,8 @@ export type Props = DefaultProps & {
  * The extensive set of lifecyle callbacks means you have control over
  * the transitioning now at each step of the way.
  */
-class Transition extends Component<DefaultProps, Props, State> {
-  props: Props;
+class Transition extends Component<DefaultProps, AllProps, State> {
+  props: AllProps;
 
   static defaultProps: DefaultProps = {
     in: false,
