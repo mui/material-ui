@@ -84,10 +84,14 @@ class FilteredSelectField extends Component {
     choices: US_PRESIDENTS,
   };
 
+  filterInput = undefined;
+
   handleChange = (event, index, value) => this.setState({ value });
 
   handleEnter = () => {
-    this.filterInput.focus();
+    if (this.filterInput !== undefined) {
+      this.filterInput.focus();
+    }
   };
 
   handleFilter = event => {
