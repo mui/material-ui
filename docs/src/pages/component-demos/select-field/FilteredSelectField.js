@@ -1,6 +1,7 @@
 // @flow weak
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import SelectField from 'material-ui/SelectField';
 import Input from 'material-ui/Input';
@@ -87,7 +88,7 @@ class FilteredSelectField extends Component {
 
   handleEnter = () => {
     this.filterInput.focus();
-  }
+  };
 
   handleFilter = event => {
     const { filter: oldFilter } = this.state;
@@ -122,11 +123,13 @@ class FilteredSelectField extends Component {
                   placeholder="Filter..."
                   value={this.state.filter}
                   onChange={this.handleFilter}
-                  inputRef={(input) => { this.filterInput = input; }}
-                  onFocus={(event) => {
-                    const { value } = event.target
-                    event.target.value = ''
-                    event.target.value = value
+                  inputRef={input => {
+                    this.filterInput = input;
+                  }}
+                  onFocus={event => {
+                    const { value } = event.target;
+                    event.target.value = '';
+                    event.target.value = value;
                   }}
                 />
               </ListItem>
@@ -143,4 +146,8 @@ class FilteredSelectField extends Component {
   }
 }
 
-export default withStyles(styleSheet)(FilteredSelectField)
+FilteredSelectField.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(FilteredSelectField);

@@ -1,6 +1,7 @@
 // @flow weak
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/Menu/MenuItem';
@@ -68,4 +69,8 @@ class SimpleSelectField extends Component {
   }
 }
 
-export default withStyles(styleSheet)(SimpleSelectField)
+SimpleSelectField.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(SimpleSelectField);

@@ -1,5 +1,6 @@
 // @flow weak
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import SelectField from 'material-ui/SelectField';
 import Checkbox from 'material-ui/Checkbox';
@@ -84,4 +85,8 @@ class FocusSelectField extends Component {
   }
 }
 
-export default withStyles(styleSheet)(FocusSelectField)
+FocusSelectField.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styleSheet)(FocusSelectField);
