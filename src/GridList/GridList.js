@@ -19,7 +19,7 @@ export const styleSheet = createStyleSheet('MuiGridList', {
 function GridList(props) {
   const {
     cols,
-    gutter,
+    spacing,
     cellHeight,
     children,
     classes,
@@ -32,7 +32,7 @@ function GridList(props) {
   return (
     <ComponentProp
       className={classNames(classes.root, classNameProp)}
-      style={{ margin: -gutter / 2, ...style }}
+      style={{ margin: -spacing / 2, ...style }}
       {...other}
     >
       {Children.map(children, currentChild => {
@@ -43,8 +43,8 @@ function GridList(props) {
           style: Object.assign(
             {
               width: `${100 / cols * childCols}%`,
-              height: cellHeight === 'auto' ? 'auto' : cellHeight * childRows + gutter,
-              padding: gutter / 2,
+              height: cellHeight === 'auto' ? 'auto' : cellHeight * childRows + spacing,
+              padding: spacing / 2,
             },
             currentChild.props.style,
           ),
@@ -67,7 +67,7 @@ GridList.propTypes = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: PropTypes.object,
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
@@ -83,9 +83,9 @@ GridList.propTypes = {
    */
   component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   /**
-   * Number of px for the gutter/spacing between tiles.
+   * Number of px for the spacing between tiles.
    */
-  gutter: PropTypes.number,
+  spacing: PropTypes.number,
   /**
    * @ignore
    */
@@ -94,7 +94,7 @@ GridList.propTypes = {
 
 GridList.defaultProps = {
   cols: 2,
-  gutter: 4,
+  spacing: 4,
   cellHeight: 180,
   component: 'ul',
 };

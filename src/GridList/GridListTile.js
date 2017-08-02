@@ -64,6 +64,10 @@ class GridListTile extends Component {
       return;
     }
 
+    if (!imgElement.complete) {
+      return;
+    }
+
     if (
       imgElement.width / imgElement.height >
       imgElement.parentNode.offsetWidth / imgElement.parentNode.offsetHeight
@@ -98,7 +102,6 @@ class GridListTile extends Component {
       cols,
       component: ComponentProp,
       rows,
-      theme,
       ...other
     } = this.props;
 
@@ -130,11 +133,11 @@ GridListTile.propTypes = {
    * in which case GridListTile takes care of making the image "cover" available space
    * (similar to `background-size: cover` or to `object-fit: cover`).
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Useful to extend the style applied to components.
    */
-  classes: PropTypes.object,
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */
@@ -152,10 +155,6 @@ GridListTile.propTypes = {
    * Height of the tile in number of grid cells.
    */
   rows: PropTypes.number,
-  /**
-   * @ignore
-   */
-  theme: PropTypes.object,
 };
 
-export default withStyles(styleSheet, { withTheme: true })(GridListTile);
+export default withStyles(styleSheet)(GridListTile);

@@ -127,7 +127,7 @@ GridListTileBar.propTypes = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: PropTypes.object,
+  classes: PropTypes.object.isRequired,
   /**
    * @ignore
    */

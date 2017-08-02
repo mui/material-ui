@@ -125,10 +125,10 @@ describe('<GridList />', () => {
     );
   });
 
-  it('renders children and change gutter', () => {
-    const gutter = 10;
+  it('renders children and change spacing', () => {
+    const spacing = 10;
     const wrapper = shallow(
-      <GridList gutter={gutter}>
+      <GridList spacing={spacing}>
         {tilesData.map(tile =>
           <span
             key={tile.img}
@@ -149,7 +149,7 @@ describe('<GridList />', () => {
     assert.strictEqual(wrapper.find('.grid-tile').length, 2, 'should contain the children');
     assert.strictEqual(
       wrapper.children().at(0).prop('style').padding,
-      gutter / 2,
+      spacing / 2,
       'should have 5 of padding',
     );
   });
