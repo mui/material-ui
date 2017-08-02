@@ -72,6 +72,7 @@ type Type =
 
 type DefaultProps = {
   classes: Object,
+  headlineMapping: { [key: Type]: string },
 };
 
 export type Props = {
@@ -104,7 +105,7 @@ export type Props = {
    * For instance, h1 to h6. If you wish to change that mapping, you can provide your own.
    * Alternatively, you can use the `component` property.
    */
-  headlineMapping: { [key: Type]: string },
+  headlineMapping?: { [key: Type]: string },
   /**
    * If `true`, the text will not wrap, but instead will truncate with an ellipsis.
    */
