@@ -468,19 +468,30 @@ declare module 'material-ui/Drawer' {
 }
 
 declare module 'material-ui/Drawer/Drawer' {
+  import { ModalProps } from 'material-ui/internal/Modal';
   import { Theme } from 'material-ui/styles/theme';
 
-  export interface DrawerProps {
+  type DrawerCommonProps = {
     anchor?: 'left' | 'top' | 'right' | 'bottom';
-    docked?: boolean;
     elevation?: number;
     enterTransitionDuration?: number;
     leaveTransitionDuration?: number;
-    onRequestClose?: React.EventHandler<any>;
     open?: boolean;
     SlideProps?: Object;
     theme?: Theme;
-  }
+  };
+
+  type DrawerDockedProps = {
+    docked?: true;
+  } & DrawerCommonProps &
+    React.HtmlHTMLAttributes<HTMLDivElement>;
+
+  type DrawerModalProps = {
+    docked?: false;
+    onRequestClose?: React.EventHandler<any>;
+  } & ModalProps;
+
+  export type DrawerProps = DrawerDockedProps | DrawerModalProps;
 
   export default class Drawer extends MaterialUI.Component<DrawerProps> {}
 }
@@ -1444,7 +1455,7 @@ declare module 'material-ui/internal/Modal' {
   import { BackdropProps } from 'material-ui/internal/Backdrop';
   import { TransitionHandlers } from 'material-ui/internal/Transition';
 
-  export interface ModalProps extends TransitionHandlers {
+  export type ModalProps = {
     backdropClassName?: string;
     backdropComponent?: React.ComponentType<BackdropProps>;
     backdropInvisible?: boolean;
@@ -1458,7 +1469,8 @@ declare module 'material-ui/internal/Modal' {
     onEscapeKeyUp?: React.ReactEventHandler<{}>;
     onRequestClose?: React.ReactEventHandler<{}>;
     show?: boolean;
-  }
+  } & TransitionHandlers &
+    React.HtmlHTMLAttributes<HTMLDivElement>;
 
   export default class Modal extends MaterialUI.Component<ModalProps> {}
 }
