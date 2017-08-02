@@ -25,6 +25,7 @@ function getStyles(props, context, state) {
     rightToggle,
     secondaryText,
     secondaryTextLines,
+    secondaryTextColor
   } = props;
 
   const {muiTheme} = context;
@@ -131,7 +132,7 @@ function getStyles(props, context, state) {
       height: threeLine ? 36 : 16,
       margin: 0,
       marginTop: 4,
-      color: listItem.secondaryTextColor,
+      color: secondaryTextColor ? secondaryTextColor : listItem.secondaryTextColor,
 
       // needed for 2 and 3 line ellipsis
       overflow: 'hidden',
@@ -308,6 +309,10 @@ class ListItem extends Component {
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
+    /**
+     * Override the secondary text color.
+     */
+    secondaryTextColor: PropTypes.string
   };
 
   static defaultProps = {
@@ -594,6 +599,7 @@ class ListItem extends Component {
       secondaryText,
       secondaryTextLines, // eslint-disable-line no-unused-vars
       style,
+      secondaryTextColor,
       ...other
     } = this.props;
 
