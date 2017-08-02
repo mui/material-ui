@@ -27,7 +27,7 @@ const SOURCE_CODE_ROOT_URL = 'https://github.com/callemall/material-ui/tree/v1-b
 function MarkdownDocs(props) {
   const { classes, route } = props;
   const contents = route.content
-    .replace(headerRegexp, '') // Remove header informations
+    .replace(headerRegexp, '') // Remove header information
     .split(/^{{|}}$/gm) // Split markdown into an array, separating demos
     .filter(content => !emptyRegexp.test(content)); // Remove empty lines
 

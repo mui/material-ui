@@ -51,7 +51,7 @@ describe('styles/theme', () => {
       );
     });
 
-    it('should create a palette with custom colours', () => {
+    it('should create a palette with custom colors', () => {
       const palette = createPalette({ primary: deepOrange, accent: green });
       assert.strictEqual(palette.primary, deepOrange, 'should use deepOrange as the primary color');
       assert.strictEqual(palette.accent, green, 'should use green as the accent color');

@@ -30,7 +30,7 @@ describe('withWidth', () => {
   });
 
   describe('server side rendering', () => {
-    it('should not render the children as the width is unkown', () => {
+    it('should not render the children as the width is unknown', () => {
       const wrapper = shallow(<EmptyWithWidth />);
       assert.strictEqual(wrapper.type(), null, 'should render nothing');
     });

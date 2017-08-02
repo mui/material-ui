@@ -78,7 +78,7 @@ describe('<Snackbar />', () => {
       assert.deepEqual(handleRequestClose.args[0], [null, 'timeout']);
     });
 
-    it('should not call onRequestClose when the autoHideDuration is reseted', () => {
+    it('should not call onRequestClose when the autoHideDuration is reset', () => {
       const handleRequestClose = spy();
       const autoHideDuration = 2e3;
       const wrapper = mount(
