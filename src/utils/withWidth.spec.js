@@ -111,9 +111,9 @@ describe('withWidth', () => {
     });
   });
 
-  describe('prop: initalWidth', () => {
+  describe('prop: initialWidth', () => {
     it('should work as expected', () => {
-      const element = <EmptyWithWidth initalWidth="lg" />;
+      const element = <EmptyWithWidth initialWidth="lg" />;
 
       // First mount on the server
       const wrapper1 = shallow(element);
