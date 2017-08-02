@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { isDirty } from '../Input/Input';
+import { isMuiComponent } from '../utils/reactHelpers';
 
 export const styleSheet = createStyleSheet('MuiFormControl', theme => ({
   root: {
@@ -127,7 +128,7 @@ class FormControl extends Component<DefaultProps, Props, State> {
     // We need to iterate through the children and find the Input in order
     // to fully support server side rendering.
     Children.forEach(this.props.children, child => {
-      if (child && child.type && child.type.muiName === 'Input' && isDirty(child.props, true)) {
+      if (isMuiComponent(child, 'Input') && isDirty(child.props, true)) {
         this.setState({ dirty: true });
       }
     });
