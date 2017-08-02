@@ -1346,7 +1346,7 @@ declare module 'material-ui/Typography/Typography' {
 
 declare module 'material-ui/colors' {
   export type Contrast = 'light' | 'dark' | 'brown';
-  export interface Color<C extends Contrast = 'light'> {
+  export interface Color {
     50: string;
     100: string;
     200: string;
@@ -1361,28 +1361,28 @@ declare module 'material-ui/colors' {
     A200: string;
     A400: string;
     A700: string;
-    contrastDefaultColor: C;
+    contrastDefaultColor: Contrast;
   }
 
-  export const amber: Color<'dark'>;
+  export const amber: Color;
   export const blue: Color;
   export const blueGrey: Color;
-  export const brown: Color<'brown'>;
-  export const cyan: Color<'dark'>;
+  export const brown: Color;
+  export const cyan: Color;
   export const deepOrange: Color;
   export const deepPurple: Color;
-  export const green: Color<'dark'>;
-  export const grey: Color<'dark'>;
+  export const green: Color;
+  export const grey: Color;
   export const indigo: Color;
-  export const lightBlue: Color<'dark'>;
-  export const lightGreen: Color<'dark'>;
-  export const lime: Color<'dark'>;
-  export const orange: Color<'dark'>;
+  export const lightBlue: Color;
+  export const lightGreen: Color;
+  export const lime: Color;
+  export const orange: Color;
   export const pink: Color;
   export const purple: Color;
   export const red: Color;
-  export const teal: Color<'dark'>;
-  export const yellow: Color<'dark'>;
+  export const teal: Color;
+  export const yellow: Color;
 
   // From `/common`
   export const black: string;
