@@ -70,7 +70,11 @@ type Type =
   | 'caption'
   | 'button';
 
-export type Props = {
+type DefaultProps = {
+  classes: Object,
+};
+
+export type Props = DefaultProps & {
   align?: 'inherit' | 'left' | 'center' | 'right' | 'justify',
   children?: Element<*>,
   /**

@@ -161,6 +161,7 @@ export const styleSheet = createStyleSheet('MuiInput', theme => {
 });
 
 type DefaultProps = {
+  classes: Object,
   disableUnderline: boolean,
   fullWidth: boolean,
   multiline: boolean,
@@ -182,7 +183,7 @@ export type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * The CSS class name of the wrapper element.
    */

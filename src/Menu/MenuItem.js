@@ -29,6 +29,7 @@ export const styleSheet = createStyleSheet('MuiMenuItem', theme => ({
 }));
 
 type DefaultProps = {
+  classes: Object,
   role: string,
   selected: boolean,
 };
@@ -41,7 +42,7 @@ export type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */

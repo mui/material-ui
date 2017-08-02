@@ -47,7 +47,11 @@ export const styleSheet = createStyleSheet('MuiDialog', theme => ({
   },
 }));
 
-export type Props = {
+type DefaultProps = {
+  classes: Object,
+};
+
+export type Props = DefaultProps & {
   /**
    * Dialog children, usually the included sub-components.
    */
@@ -55,7 +59,7 @@ export type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */

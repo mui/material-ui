@@ -30,6 +30,7 @@ export const styleSheet = createStyleSheet('MuiList', theme => ({
 
 type DefaultProps = {
   component: string,
+  classes: Object,
   dense: boolean,
   disablePadding: boolean,
 };
@@ -42,7 +43,7 @@ export type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -75,6 +76,7 @@ export type Props = DefaultProps & {
 class List extends Component<DefaultProps, Props, void> {
   props: Props;
   static defaultProps: DefaultProps = {
+    classes: {},
     component: 'ul',
     dense: false,
     disablePadding: false,

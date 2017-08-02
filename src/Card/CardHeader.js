@@ -22,7 +22,11 @@ export const styleSheet = createStyleSheet('MuiCardHeader', theme => ({
   },
 }));
 
-export type Props = {
+type DefaultProps = {
+  classes: Object,
+};
+
+export type Props = DefaultProps & {
   /**
    * The Avatar  for the Card Header.
    */
@@ -30,7 +34,7 @@ export type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */

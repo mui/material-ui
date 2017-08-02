@@ -21,7 +21,11 @@ export const styleSheet = createStyleSheet('MuiListItemAvatar', {
   },
 });
 
-export type Props = {
+type DefaultProps = {
+  classes: Object,
+};
+
+export type Props = DefaultProps & {
   /**
    * The content of the component, normally `Avatar`.
    */
@@ -29,7 +33,7 @@ export type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */

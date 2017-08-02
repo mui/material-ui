@@ -32,6 +32,7 @@ export const styleSheet = createStyleSheet('MuiIcon', theme => ({
 }));
 
 type DefaultProps = {
+  classes: Object,
   color: 'inherit',
 };
 
@@ -43,7 +44,7 @@ export type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */

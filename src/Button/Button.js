@@ -122,6 +122,7 @@ export const styleSheet = createStyleSheet('MuiButton', theme => ({
 }));
 
 type DefaultProps = {
+  classes: Object,
   color: 'default',
   dense: boolean,
   disabled: boolean,
@@ -140,7 +141,7 @@ export type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */

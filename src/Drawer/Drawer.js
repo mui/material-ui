@@ -76,13 +76,14 @@ export const styleSheet = createStyleSheet('MuiDrawer', theme => ({
 type DefaultProps = {
   anchor: 'left',
   docked: boolean,
+  classes: Object,
   enterTransitionDuration: number,
   leaveTransitionDuration: number,
   open: boolean,
   elevation: number,
 };
 
-export type Props = {
+export type Props = DefaultProps & {
   /**
    * Side which will the drawer will appear from.
    */
@@ -94,7 +95,7 @@ export type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -145,6 +146,7 @@ class Drawer extends Component<DefaultProps, Props, State> {
   static defaultProps = {
     anchor: 'left',
     docked: false,
+    classes: {},
     enterTransitionDuration: duration.enteringScreen,
     leaveTransitionDuration: duration.leavingScreen,
     open: false,

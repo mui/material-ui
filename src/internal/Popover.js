@@ -80,6 +80,7 @@ type Origin = {
 
 type DefaultProps = {
   anchorOrigin: Origin,
+  classes: Object,
   modal: boolean,
   open: boolean,
   transformOrigin: Origin,
@@ -109,7 +110,7 @@ export type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -204,6 +205,7 @@ class Popover extends Component<DefaultProps, Props, void> {
       vertical: 'top',
       horizontal: 'left',
     },
+    classes: {},
     modal: true,
     open: false,
     transformOrigin: {

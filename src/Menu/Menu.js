@@ -12,6 +12,7 @@ import MenuList from './MenuList';
 import type { TransitionCallback } from '../internal/Transition';
 
 type DefaultProps = {
+  classes: Object,
   open: boolean,
   transitionDuration: 'auto',
 };
@@ -28,7 +29,7 @@ export type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -91,6 +92,7 @@ export const styleSheet = createStyleSheet('MuiMenu', {
 
 class Menu extends Component<DefaultProps, Props, void> {
   static defaultProps: DefaultProps = {
+    classes: {},
     open: false,
     transitionDuration: 'auto',
   };

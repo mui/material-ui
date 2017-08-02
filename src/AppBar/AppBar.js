@@ -46,6 +46,7 @@ export const styleSheet = createStyleSheet('MuiAppBar', theme => ({
 }));
 
 type DefaultProps = {
+  classes: Object,
   color: 'primary',
   position: 'fixed',
 };
@@ -58,7 +59,7 @@ export type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */

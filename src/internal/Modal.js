@@ -45,6 +45,7 @@ type DefaultProps = {
   backdropComponent: Function,
   backdropTransitionDuration: number,
   backdropInvisible: boolean,
+  classes: Object,
   disableBackdrop: boolean,
   ignoreBackdropClick: boolean,
   ignoreEscapeKeyUp: boolean,
@@ -76,7 +77,7 @@ export type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -161,6 +162,7 @@ class Modal extends Component<DefaultProps, Props, State> {
     backdropComponent: Backdrop,
     backdropTransitionDuration: 300,
     backdropInvisible: false,
+    classes: {},
     keepMounted: false,
     disableBackdrop: false,
     ignoreBackdropClick: false,

@@ -30,6 +30,7 @@ export const styleSheet = createStyleSheet('MuiFormControl', theme => ({
 
 type DefaultProps = {
   disabled: boolean,
+  classes: Object,
   error: boolean,
   fullWidth: boolean,
   margin: 'none',
@@ -44,7 +45,7 @@ export type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -89,6 +90,7 @@ type State = {
  */
 class FormControl extends Component<DefaultProps, Props, State> {
   static defaultProps = {
+    classes: {},
     disabled: false,
     error: false,
     fullWidth: false,

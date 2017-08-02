@@ -20,6 +20,7 @@ export const styleSheet = createStyleSheet('MuiCardActions', {
 });
 
 type DefaultProps = {
+  classes: Object,
   disableActionSpacing: boolean,
 };
 
@@ -31,7 +32,7 @@ export type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
