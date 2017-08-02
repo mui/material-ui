@@ -16,9 +16,9 @@ describe('transitions', () => {
   });
 
   describe('formatMs() function', () => {
-    it('should round decimal digits and return formated value', () => {
-      const formatedValue = formatMs(12.125);
-      assert.strictEqual(formatedValue, '12ms');
+    it('should round decimal digits and return formatted value', () => {
+      const formattedValue = formatMs(12.125);
+      assert.strictEqual(formattedValue, '12ms');
     });
   });
 
@@ -71,7 +71,7 @@ describe('transitions', () => {
   });
 
   describe('create() function', () => {
-    it('should create default transition withnout arguments', () => {
+    it('should create default transition without arguments', () => {
       const transition = transitions.create();
       assert.strictEqual(transition, `all ${duration.standard}ms ${easing.easeInOut} 0ms`);
       assert.strictEqual(consoleErrorStub.callCount, 0, 'Wrong number of calls of warning()');

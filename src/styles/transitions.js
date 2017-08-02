@@ -33,7 +33,7 @@ export const duration = {
   leavingScreen: 195,
 };
 
-export const formatMs = (miliseconds: number) => `${Math.round(miliseconds)}ms`;
+export const formatMs = (milliseconds: number) => `${Math.round(milliseconds)}ms`;
 export const isString = (value: any) => typeof value === 'string';
 export const isNumber = (value: any) => !isNaN(parseFloat(value));
 

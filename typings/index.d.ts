@@ -1763,7 +1763,7 @@ declare module 'material-ui/styles/transitions' {
   }
   export const duration: Duration;
 
-  export function formatMs(miliseconds: number): string;
+  export function formatMs(milliseconds: number): string;
 
   export interface Transitions {
     easing: Easing;

@@ -45,7 +45,7 @@ DialogTitle.propTypes = {
   className: PropTypes.string,
   /**
    * If `true`, the children won't be wrapped by a typography component.
-   * For instance, that can be usefull to can render an h4 instead of a
+   * For instance, that can be useful to can render an h4 instead of a
    */
   disableTypography: PropTypes.bool,
 };

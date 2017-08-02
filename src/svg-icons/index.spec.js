@@ -14,7 +14,7 @@ describe('svg-icons', () => {
   });
 
   it('should be able to render all of them', done => {
-    // This test can only be runned on the node env
+    // This test can only be run on the node env
     if (!fs.readdir) {
       done();
       return;

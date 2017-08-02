@@ -3,7 +3,7 @@
 // Makes sure the tests fails when a PropType validation fails.
 function consoleError() {
   console.error = (...args) => {
-    // Can't use log as karam is not displaying them.
+    // Can't use log as karma is not displaying them.
     console.info(...args);
     throw new Error(...args);
   };

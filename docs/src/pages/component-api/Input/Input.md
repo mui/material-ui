@@ -32,7 +32,7 @@
 | onKeyUp | Function |  | TODO |
 | placeholder | string |  | TODO |
 | rows | union:&nbsp;string<br>&nbsp;number<br> |  | Number of rows to display when multiline option is set to true. |
-| rowsMax | union:&nbsp;string<br>&nbsp;number<br> |  | Maxium number of rows to display when multiline option is set to true. |
+| rowsMax | union:&nbsp;string<br>&nbsp;number<br> |  | Maximum number of rows to display when multiline option is set to true. |
 | type | string | 'text' | Type of the input element. It should be a valid HTML5 input type. |
 | value | union:&nbsp;string<br>&nbsp;number<br> |  | The input value, required for a controlled component. |
 
