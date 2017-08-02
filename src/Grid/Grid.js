@@ -71,10 +71,10 @@ function generateGutter(theme, breakpoint) {
     }
 
     styles[`gutter-${breakpoint}-${gutter}`] = {
-      margin: -gutter / 2,
-      width: `calc(100% + ${gutter}px)`,
+      padding: gutter / 2,
+      width: `calc(100% - ${gutter}px)`,
       '& > $typeItem': {
-        padding: gutter / 2,
+        margin: gutter / 2,
       },
     };
   });
