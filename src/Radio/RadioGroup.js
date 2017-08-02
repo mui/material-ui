@@ -41,7 +41,7 @@ export type Props = {
    * Callback fired when a radio button is selected.
    *
    * @param {object} event The event source of the callback
-   * @param {boolean} checked The `checked` value of the switch
+   * @param {string} value The `value` of the selected radio button
    */
   onChange?: Function,
   /**
