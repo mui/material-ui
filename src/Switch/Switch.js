@@ -63,7 +63,11 @@ export const styleSheet = createStyleSheet('MuiSwitch', theme => ({
 
 const SwitchBase = createSwitch({ styleSheet });
 
-export type Props = {
+type DefaultProps = {
+  classes: Object,
+};
+
+export type Props = DefaultProps & {
   /**
    * If `true`, the component is checked.
    */
@@ -80,7 +84,7 @@ export type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */

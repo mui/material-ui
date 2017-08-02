@@ -35,6 +35,7 @@ export const styleSheet = createStyleSheet('MuiInputLabel', theme => ({
 }));
 
 type DefaultProps = {
+  classes: Object,
   disabled: boolean,
   disableAnimation: boolean,
 };
@@ -47,7 +48,7 @@ export type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */

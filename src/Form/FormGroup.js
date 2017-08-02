@@ -17,7 +17,11 @@ export const styleSheet = createStyleSheet('MuiFormGroup', {
   },
 });
 
-export type Props = {
+type DefaultProps = {
+  classes: Object,
+};
+
+export type Props = DefaultProps & {
   /**
    * The content of the component.
    */
@@ -25,7 +29,7 @@ export type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */

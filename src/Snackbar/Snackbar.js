@@ -195,7 +195,7 @@ class Snackbar extends Component<DefaultProps, Props, State> {
   static defaultProps: DefaultProps = {
     anchorOrigin: { vertical: 'bottom', horizontal: 'center' },
     autoHideDuration: null,
-    classes: Object,
+    classes: {},
     enterTransitionDuration: duration.enteringScreen,
     leaveTransitionDuration: duration.leavingScreen,
   };
