@@ -57,8 +57,8 @@ class DayButton extends Component {
     date: PropTypes.object,
     disabled: PropTypes.bool,
     locale: PropTypes.string.isRequired,
-    onKeyboardFocus: PropTypes.func,
     onClick: PropTypes.func,
+    onKeyboardFocus: PropTypes.func,
     selected: PropTypes.bool,
   };
 

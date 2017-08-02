@@ -102,6 +102,12 @@ class DatePicker extends Component {
      */
     onChange: PropTypes.func,
     /**
+     * Callback function that is fired when a touch tap event occurs on the Date Picker's `TextField`.
+     *
+     * @param {object} event TouchTap event targeting the `TextField`.
+     */
+    onClick: PropTypes.func,
+    /**
      * Callback function that is fired when the Date Picker's dialog is dismissed.
      */
     onDismiss: PropTypes.func,
@@ -113,12 +119,6 @@ class DatePicker extends Component {
      * Callback function that is fired when the Date Picker's dialog is shown.
      */
     onShow: PropTypes.func,
-    /**
-     * Callback function that is fired when a touch tap event occurs on the Date Picker's `TextField`.
-     *
-     * @param {object} event TouchTap event targeting the `TextField`.
-     */
-    onClick: PropTypes.func,
     /**
      * If true sets the datepicker to open to year selection first.
      */

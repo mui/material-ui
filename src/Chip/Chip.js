@@ -80,6 +80,12 @@ class Chip extends Component {
     labelStyle: PropTypes.object,
     /** @ignore */
     onBlur: PropTypes.func,
+    /**
+     * Callback function fired when the `Chip` element is touch-tapped.
+     *
+     * @param {object} event TouchTap event targeting the element.
+     */
+    onClick: PropTypes.func,
     /** @ignore */
     onFocus: PropTypes.func,
     /** @ignore */
@@ -103,12 +109,6 @@ class Chip extends Component {
     onTouchEnd: PropTypes.func,
     /** @ignore */
     onTouchStart: PropTypes.func,
-    /**
-     * Callback function fired when the `Chip` element is touch-tapped.
-     *
-     * @param {object} event TouchTap event targeting the element.
-     */
-    onClick: PropTypes.func,
     /**
      * Override the inline-styles of the root element.
      */

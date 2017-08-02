@@ -17,3 +17,4 @@ jsconfig.json
 
 # OS files
 .DS_STORE
+yarn.lock

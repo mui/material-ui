@@ -234,6 +234,12 @@ class ListItem extends Component {
      */
     nestedListStyle: PropTypes.object,
     /**
+     * Callback function fired when the list item is touch-tapped.
+     *
+     * @param {object} event TouchTap event targeting the list item.
+     */
+    onClick: PropTypes.func,
+    /**
      * Callback function fired when the `ListItem` is focused or blurred by the keyboard.
      *
      * @param {object} event `focus` or `blur` event targeting the `ListItem`.
@@ -254,12 +260,6 @@ class ListItem extends Component {
     onTouchEnd: PropTypes.func,
     /** @ignore */
     onTouchStart: PropTypes.func,
-    /**
-     * Callback function fired when the list item is touch-tapped.
-     *
-     * @param {object} event TouchTap event targeting the list item.
-     */
-    onClick: PropTypes.func,
     /**
      * Control toggle state of nested list.
      */

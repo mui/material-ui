@@ -55,6 +55,10 @@ class TimePicker extends Component {
      */
     onChange: PropTypes.func,
     /**
+     * Callback function fired when the TimePicker is tapped or clicked.
+     */
+    onClick: PropTypes.func,
+    /**
      * Callback function fired when the TimePicker dialog is dismissed.
      */
     onDismiss: PropTypes.func,
@@ -66,10 +70,6 @@ class TimePicker extends Component {
      * Callback function fired when the TimePicker dialog is shown.
      */
     onShow: PropTypes.func,
-    /**
-     * Callback function fired when the TimePicker is tapped or clicked.
-     */
-    onClick: PropTypes.func,
     /**
      * If true, uses ("noon" / "midnight") instead of ("12 a.m." / "12 p.m.").
      *

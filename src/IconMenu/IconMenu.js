@@ -57,6 +57,12 @@ class IconMenu extends Component {
      */
     multiple: PropTypes.bool,
     /**
+     * Callback function fired when the `IconButton` element is touch-tapped.
+     *
+     * @param {object} event TouchTap event targeting the `IconButton` element.
+     */
+    onClick: PropTypes.func,
+    /**
      * Callback function fired when a menu item is selected with a touch-tap.
      *
      * @param {object} event TouchTap event targeting the selected menu item element.
@@ -87,12 +93,6 @@ class IconMenu extends Component {
      * for close requests.
      */
     onRequestChange: PropTypes.func,
-    /**
-     * Callback function fired when the `IconButton` element is touch-tapped.
-     *
-     * @param {object} event TouchTap event targeting the `IconButton` element.
-     */
-    onClick: PropTypes.func,
     /**
      * If true, the `IconMenu` is opened.
      */
