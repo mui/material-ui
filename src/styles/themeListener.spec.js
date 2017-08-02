@@ -7,16 +7,16 @@ import themeListener from './themeListener';
 const CHANNEL = 'material-ui';
 
 describe('themeListener', () => {
-  it('should be able to get the inital state', () => {
+  it('should be able to get the initial state', () => {
     const broadcast = createBroadcast();
-    const initalState = {};
-    broadcast.setState(initalState);
+    const initialState = {};
+    broadcast.setState(initialState);
 
     assert.strictEqual(
       themeListener.initial({
         [CHANNEL]: broadcast,
       }),
-      initalState,
+      initialState,
     );
   });
 
@@ -26,9 +26,9 @@ describe('themeListener', () => {
 
   it('should be able to subscribe to the event stream', done => {
     const broadcast = createBroadcast();
-    const initalState = {};
+    const initialState = {};
     const secondState = {};
-    broadcast.setState(initalState);
+    broadcast.setState(initialState);
 
     themeListener.subscribe(
       {
