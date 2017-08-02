@@ -194,7 +194,7 @@ describe('<Slide />', () => {
       mount.cleanUp();
     });
 
-    it('should work when initialy hidden', () => {
+    it('should work when initially hidden', () => {
       const wrapper = mount(
         <Slide.Naked theme={createMuiTheme()} in={false}>
           <div>Foo</div>
