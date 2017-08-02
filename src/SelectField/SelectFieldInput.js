@@ -102,7 +102,7 @@ SelectFieldInput.propTypes = {
   /**
    * Select options.
    */
-  options: PropTypes.arrayOf(PropTypes.node),
+  options: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]),
   /** @ignore */
   rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
