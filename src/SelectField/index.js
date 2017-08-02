@@ -1,5 +1,4 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow
 
-export default from './SelectField';
-export SelectField from './SelectField';
-export SelectFieldInput from './SelectFieldInput';
+export { default } from './SelectField';
+export { default as SelectFieldInput } from './SelectFieldInput';
