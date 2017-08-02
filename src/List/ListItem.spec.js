@@ -6,6 +6,7 @@ import { createShallow, getClasses } from '../test-utils';
 import ListItemText from './ListItemText';
 import ListItemSecondaryAction from './ListItemSecondaryAction';
 import ListItem, { styleSheet } from './ListItem';
+import ListItemAvatar from './ListItemAvatar';
 
 describe('<ListItem />', () => {
   let shallow;
@@ -41,6 +42,21 @@ describe('<ListItem />', () => {
       false,
       'should not have the gutters class',
     );
+  });
+
+  it('should use dense class when ListItemAvatar is present', () => {
+    const wrapper = shallow(
+      <ListItem>
+        <ListItemAvatar />
+      </ListItem>,
+      {
+        context: {
+          dense: false,
+        },
+      },
+    );
+
+    assert.strictEqual(wrapper.hasClass(classes.dense), true);
   });
 
   describe('prop: button', () => {

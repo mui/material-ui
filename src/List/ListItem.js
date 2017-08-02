@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../internal/ButtonBase';
+import { isMuiComponent } from '../utils/reactHelpers';
 
 export const styleSheet = createStyleSheet('MuiListItem', theme => ({
   root: {
@@ -135,9 +136,7 @@ class ListItem extends Component<DefaultProps, Props, void> {
     const isDense = dense || this.context.dense || false;
     const children = React.Children.toArray(childrenProp);
 
-    const hasAvatar = children.some(value => {
-      return value.type && value.type.muiName === 'ListItemAvatar';
-    });
+    const hasAvatar = children.some(value => isMuiComponent(value, 'ListItemAvatar'));
 
     const className = classNames(
       classes.root,
@@ -162,8 +161,7 @@ class ListItem extends Component<DefaultProps, Props, void> {
 
     if (
       children.length &&
-      children[children.length - 1].type &&
-      children[children.length - 1].type.muiName === 'ListItemSecondaryAction'
+      isMuiComponent(children[children.length - 1], 'ListItemSecondaryAction')
     ) {
       const secondaryAction = children.pop();
       return (

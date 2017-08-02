@@ -15,3 +15,7 @@ export function cloneChildrenWithClassName(children, className) {
     );
   });
 }
+
+export function isMuiComponent(element: any, muiName: string) {
+  return isValidElement(element) && element.type.muiName === muiName;
+}
