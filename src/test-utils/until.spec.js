@@ -60,7 +60,7 @@ describe('until', () => {
     );
   });
 
-  it('throws when iassert.strictEqual called on an empty wrapper', () => {
+  it('throws when assert.strictEqual called on an empty wrapper', () => {
     assert.throws(
       () => {
         until.call(shallow(<Div />).find('Foo'), 'div');
