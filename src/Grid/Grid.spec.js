@@ -61,10 +61,10 @@ describe('<Grid />', () => {
     });
   });
 
-  describe('prop: gutter', () => {
-    it('should have a default gutter', () => {
+  describe('prop: spacing', () => {
+    it('should have a default spacing', () => {
       const wrapper = shallow(<Grid container />);
-      assert.strictEqual(wrapper.hasClass(classes['gutter-xs-16']), true);
+      assert.strictEqual(wrapper.hasClass(classes['spacing-xs-16']), true);
     });
   });
 

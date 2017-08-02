@@ -7,14 +7,14 @@ import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
 export const styleSheet = createStyleSheet('MuiDialogContent', theme => {
-  const gutter = theme.spacing.unit * 3;
+  const spacing = theme.spacing.unit * 3;
   return {
     root: {
       flex: '1 1 auto',
       overflowY: 'auto',
-      padding: `0 ${gutter}px ${gutter}px ${gutter}px`,
+      padding: `0 ${spacing}px ${spacing}px ${spacing}px`,
       '&:first-child': {
-        paddingTop: gutter,
+        paddingTop: spacing,
       },
     },
   };

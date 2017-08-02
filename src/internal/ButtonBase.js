@@ -13,7 +13,7 @@ import createRippleHandler from './createRippleHandler';
 export const styleSheet = createStyleSheet('MuiButtonBase', theme => ({
   root: {
     position: 'relative',
-    // Remove Gray Highlight
+    // Remove grey highlight
     WebkitTapHighlightColor: theme.palette.common.transparent,
     outline: 'none',
     border: 0,

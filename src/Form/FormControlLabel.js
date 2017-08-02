@@ -12,7 +12,7 @@ export const styleSheet = createStyleSheet('MuiFormControlLabel', theme => ({
     display: 'inline-flex',
     alignItems: 'center',
     cursor: 'pointer',
-    // Remove Gray Highlight
+    // Remove grey highlight
     WebkitTapHighlightColor: theme.palette.common.transparent,
   },
   disabled: {

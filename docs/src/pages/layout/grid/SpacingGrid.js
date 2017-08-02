@@ -23,7 +23,7 @@ const styleSheet = createStyleSheet(theme => ({
 
 class GuttersGrid extends Component {
   state = {
-    gutter: '16',
+    spacing: '16',
   };
 
   handleChange = key => (event, value) => {
@@ -34,12 +34,12 @@ class GuttersGrid extends Component {
 
   render() {
     const classes = this.props.classes;
-    const { gutter } = this.state;
+    const { spacing } = this.state;
 
     return (
       <Grid container className={classes.root}>
         <Grid item xs={12}>
-          <Grid container className={classes.demo} justify="center" gutter={Number(gutter)}>
+          <Grid container className={classes.demo} justify="center" spacing={Number(spacing)}>
             {[0, 1, 2].map(value =>
               <Grid key={value} item>
                 <Paper className={classes.paper} />
@@ -51,12 +51,12 @@ class GuttersGrid extends Component {
           <Paper className={classes.control}>
             <Grid container>
               <Grid item>
-                <FormLabel>gutter</FormLabel>
+                <FormLabel>spacing</FormLabel>
                 <RadioGroup
-                  name="gutter"
-                  aria-label="gutter"
-                  selectedValue={gutter}
-                  onChange={this.handleChange('gutter')}
+                  name="spacing"
+                  aria-label="spacing"
+                  selectedValue={spacing}
+                  onChange={this.handleChange('spacing')}
                   row
                 >
                   <FormControlLabel value="0" control={<Radio />} label="0" />
