@@ -32,7 +32,7 @@ describe('<Divider />', () => {
 
   it('should set the inset class', () => {
     const wrapper = shallow(<Divider inset />);
-    assert.strictEqual(wrapper.hasClass(classes.inset), true, 'should have inset cass');
+    assert.strictEqual(wrapper.hasClass(classes.inset), true, 'should have inset class');
   });
 
   it('should set the light class', () => {
