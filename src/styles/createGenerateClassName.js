@@ -18,7 +18,7 @@ export default function createGenerateClassName(): generateClassName {
     warning(
       ruleCounter < 1e10,
       [
-        'Material-UI: You might have a memory leak.',
+        'Material-UI: you might have a memory leak.',
         'The ruleCounter is not supposed to grow that much.',
       ].join(''),
     );

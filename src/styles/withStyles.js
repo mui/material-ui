@@ -61,7 +61,7 @@ const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) =>
   warning(
     indexCounter < 0,
     [
-      'Material-UI: You might have a memory leak.',
+      'Material-UI: you might have a memory leak.',
       'The indexCounter is not supposed to grow that much.',
     ].join(' '),
   );
