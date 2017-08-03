@@ -17,13 +17,9 @@
   version "6.0.84"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.84.tgz#193ffe5a9f42864d425ffd9739d95b753c6a1eab"
 
-"@types/react@*":
+"@types/react@*", "@types/react@^16.0.0":
   version "16.0.0"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.0.tgz#fec7e6302e11c1cd307129d8ce1e6d5dca4a0283"
-
-"@types/react@^15.6.0":
-  version "15.6.1"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-15.6.1.tgz#497f7228762da4432e335957cb34fe9b40f150ae"
 
 abab@^1.0.3:
   version "1.0.3"
