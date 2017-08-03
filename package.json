@@ -36,7 +36,7 @@
     "prebuild": "npm run clean:build",
     "size": "size-limit 120KB build/index.js",
     "size:why": "size-limit --why build/index.js",
-    "spellcheck": "eslint . --config .eslintrc.spellcheck.js --cache && echo \"eslint: no lint errors\"",
+    "spellcheck": "eslint . --config .eslintrc.spellcheck.js && echo \"eslint: no lint errors\"",
     "start": "cd docs && npm start",
     "test": "npm run lint && npm run flow && npm run test:unit",
     "test:unit": "cross-env NODE_ENV=test mocha test/**/*.spec.js src/{,**/}*.spec.js",
