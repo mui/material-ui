@@ -330,24 +330,9 @@ declare module 'material-ui/Checkbox' {
 }
 
 declare module 'material-ui/Checkbox/Checkbox' {
-  export interface CheckboxProps {
-    checked?: boolean | string;
-    checkedClassName?: string;
-    checkedIcon?: React.ReactNode;
-    defaultChecked?: boolean;
-    disabled?: boolean;
-    disabledClassName?: string;
-    disabledRipple?: boolean;
-    icon?: React.ReactNode;
-    indeterminate?: boolean;
-    indeterminateIcon?: React.ReactNode;
-    inputProps?: Object;
-    inputRef?: Function;
-    name?: string;
-    onChange?: (event: React.ChangeEvent<{}>, checked: boolean) => void;
-    tabIndex?: string;
-    value?: string;
-  }
+  import { SwitchBaseProps } from 'material-ui/internal/SwitchBase';
+
+  export interface CheckboxProps extends SwitchBaseProps {}
 
   export default class Checkbox extends MaterialUI.Component<CheckboxProps> {}
 }
@@ -1506,6 +1491,42 @@ declare module 'material-ui/internal/Portal' {
   }
 
   export default class Portal extends React.Component<PortalProps> {}
+}
+
+declare module 'material-ui/internal/SwitchBase' {
+  import { StyleSheet } from 'material-ui/styles/createStyleSheet';
+
+  export interface SwitchBaseProps {
+    checked?: boolean | string;
+    checkedClassName?: string;
+    checkedIcon?: React.ReactNode;
+    defaultChecked?: boolean;
+    disabled?: boolean;
+    disabledClassName?: string;
+    disableRipple?: boolean;
+    icon?: React.ReactNode;
+    indeterminate?: boolean;
+    indeterminateIcon?: React.ReactNode;
+    inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+    inputRef?: React.Ref<any>;
+    name?: string;
+    onChange?: (event: React.ChangeEvent<{}>, checked: boolean) => void;
+    tabIndex?: string;
+    value?: string;
+  }
+
+  export class SwitchBase extends MaterialUI.Component<SwitchBaseProps> {}
+
+  export interface CreateSwitchBaseOptions {
+    defaultIcon?: React.ReactNode;
+    defaultCheckedIcon?: React.ReactNode;
+    inputType?: string;
+    styleSheet?: StyleSheet;
+  }
+
+  export default function createSwitch(
+    options: CreateSwitchBaseOptions
+  ): SwitchBase;
 }
 
 declare module 'material-ui/internal/Transition' {
