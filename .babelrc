@@ -34,7 +34,7 @@
         ["transform-react-remove-prop-types", {
           "mode": "wrap",
           "plugins": [
-            "babel-plugin-flow-react-proptypes",
+            ["babel-plugin-flow-react-proptypes", {"omitRuntimeTypeExport": true}],
             "babel-plugin-transform-flow-strip-types"
           ]
         }]
