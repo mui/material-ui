@@ -306,11 +306,11 @@ declare module 'material-ui/Card/CardContent' {
 declare module 'material-ui/Card/CardHeader' {
   import { CardContentProps } from 'material-ui/Card/CardContent';
 
-  export interface CardHeaderProps extends CardContentProps {
+  export type CardHeaderProps = {
     avatar?: React.ReactNode;
     subheader?: React.ReactNode;
     title?: React.ReactNode;
-  }
+  } & CardContentProps;
 
   export default class CardHeader extends MaterialUI.Component<
     CardHeaderProps
@@ -377,7 +377,7 @@ declare module 'material-ui/Dialog' {
 declare module 'material-ui/Dialog/Dialog' {
   import { ModalProps } from 'material-ui/internal/Modal';
 
-  export interface DialogProps extends ModalProps {
+  export type DialogProps = {
     fullScreen?: boolean;
     ignoreBackdropClick?: boolean;
     ignoreEscapeKeyUp?: boolean;
@@ -389,7 +389,7 @@ declare module 'material-ui/Dialog/Dialog' {
     onRequestClose?: React.EventHandler<any>;
     open?: boolean;
     transition?: Function | React.ReactElement<any>;
-  }
+  } & ModalProps;
 
   export default class Dialog extends MaterialUI.Component<DialogProps> {}
 }
@@ -414,7 +414,7 @@ declare module 'material-ui/Dialog/DialogContent' {
 
 declare module 'material-ui/Dialog/DialogContentText' {
   export interface DialogContentTextProps
-    extends HTMLAttributes<HTMLParagraphElement> {}
+    extends React.HTMLAttributes<HTMLParagraphElement> {}
 
   export default class DialogContentText extends MaterialUI.Component<
     DialogContentTextProps
@@ -451,7 +451,7 @@ declare module 'material-ui/Divider' {
 }
 
 declare module 'material-ui/Divider/Divider' {
-  export interface DividerProps extends HTMLAttributes<HTMLHRElement> {
+  export interface DividerProps extends React.HTMLAttributes<HTMLHRElement> {
     absolute?: boolean;
     inset?: boolean;
     light?: boolean;
@@ -527,8 +527,7 @@ declare module 'material-ui/Form/FormControl' {
 }
 
 declare module 'material-ui/Form/FormControlLabel' {
-  export interface FormControlLabelProps
-    extends React.LabelHTMLAttributes<HTMLLabelElement> {
+  export type FormControlLabelProps = {
     checked?: boolean | string;
     control: React.ReactElement<any>;
     disabled?: boolean;
@@ -537,7 +536,7 @@ declare module 'material-ui/Form/FormControlLabel' {
     name?: string;
     onChange?: (event: React.ChangeEvent<{}>, checked: boolean) => void;
     value?: string;
-  }
+  } & React.LabelHTMLAttributes<HTMLLabelElement>;
 
   export default class FormControlLabel extends MaterialUI.Component<
     FormControlLabelProps
@@ -677,7 +676,7 @@ declare module 'material-ui/Icon' {
 }
 
 declare module 'material-ui/Icon/Icon' {
-  export interface IconProps extends HTMLAttributes<HTMLSpanElement> {
+  export interface IconProps extends React.HTMLAttributes<HTMLSpanElement> {
     color?:
       | 'inherit'
       | 'accent'
@@ -770,8 +769,7 @@ declare module 'material-ui/Input/InputLabel' {
 }
 
 declare module 'material-ui/Input/Textarea' {
-  export interface TextareaProps
-    extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  export type TextareaProps = {
     defaultValue?: any;
     disabled?: boolean;
     onChange?: React.EventHandler<React.ChangeEvent<{}>>;
@@ -779,7 +777,7 @@ declare module 'material-ui/Input/Textarea' {
     rowsMax?: string | number;
     textareaRef?: React.Ref<any>;
     value?: string;
-  }
+  } & React.TextareaHTMLAttributes<HTMLTextAreaElement>;
 
   export default class Textarea extends MaterialUI.Component<TextareaProps> {}
 }
@@ -931,9 +929,9 @@ declare module 'material-ui/Menu/MenuItem' {
 declare module 'material-ui/Menu/MenuList' {
   import { ListProps } from 'material-ui/List/List';
 
-  export interface MenuListProps extends ListProps {
+  export type MenuListProps = {
     onKeyDown?: React.ReactEventHandler<React.KeyboardEvent<any>>;
-  }
+  } & ListProps;
 
   export default class MenuList extends MaterialUI.Component<MenuListProps> {}
 }
@@ -1053,14 +1051,14 @@ declare module 'material-ui/Radio/Radio' {
 declare module 'material-ui/Radio/RadioGroup' {
   import { FormGroupProps } from 'material-ui/Form/FormGroup';
 
-  export interface RadioGroupProps extends FormGroupProps {
+  export type RadioGroupProps = {
     className?: string;
     name?: string;
     onBlur?: React.EventHandler<any>;
     onChange?: (event: React.ChangeEvent<{}>, value: string) => void;
     onKeyDown?: React.EventHandler<any>;
     selectedValue?: string;
-  }
+  } & FormGroupProps;
 
   export default class RadioGroup extends MaterialUI.Component<
     RadioGroupProps
@@ -1200,8 +1198,8 @@ declare module 'material-ui/Table/TableCell' {
     compact?: boolean;
     disablePadding?: boolean;
     numeric?: boolean;
-  } & ThHTMLAttributes<HTMLTableHeaderCellElement> &
-    TdHTMLAttributes<HTMLTableDataCellElement>;
+  } & React.ThHTMLAttributes<HTMLTableHeaderCellElement> &
+    React.TdHTMLAttributes<HTMLTableDataCellElement>;
 
   export default class TableCell extends MaterialUI.Component<TableCellProps> {}
 }
