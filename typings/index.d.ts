@@ -152,7 +152,8 @@ declare module 'material-ui/AppBar' {
 }
 
 declare module 'material-ui/AppBar/AppBar' {
-  export interface AppBarProps {
+  import { PaperProps } from 'material-ui/Paper/Paper';
+  export interface AppBarProps extends PaperProps {
     color?: MaterialUI.PropTypes.Color;
     position?: 'static' | 'fixed' | 'absolute';
   }
@@ -185,7 +186,7 @@ declare module 'material-ui/Badge' {
 }
 
 declare module 'material-ui/Badge/Badge' {
-  export interface BadgeProps {
+  export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
     badgeContent: React.ReactNode;
     children: React.ReactNode;
     color?: 'default' | 'primary' | 'accent';
@@ -204,7 +205,8 @@ declare module 'material-ui/BottomNavigation' {
 }
 
 declare module 'material-ui/BottomNavigation/BottomNavigation' {
-  export interface BottomNavigationProps {
+  export interface BottomNavigationProps
+    extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
     onChange?: React.ReactEventHandler<any>;
     showLabels?: boolean;
@@ -272,7 +274,9 @@ declare module 'material-ui/Card' {
 }
 
 declare module 'material-ui/Card/Card' {
-  export interface CardProps {
+  import { PaperProps } from 'material-ui/Paper/Paper';
+
+  export interface CardProps extends PaperProps {
     raised?: boolean;
   }
 
@@ -280,7 +284,8 @@ declare module 'material-ui/Card/Card' {
 }
 
 declare module 'material-ui/Card/CardActions' {
-  export interface CardActionsProps {
+  export interface CardActionsProps
+    extends React.HTMLAttributes<HTMLDivElement> {
     disableActionSpacing?: boolean;
   }
 
@@ -290,7 +295,8 @@ declare module 'material-ui/Card/CardActions' {
 }
 
 declare module 'material-ui/Card/CardContent' {
-  export interface CardContentProps {}
+  export interface CardContentProps
+    extends React.HTMLAttributes<HTMLDivElement> {}
 
   export default class CardContent extends MaterialUI.Component<
     CardContentProps
@@ -298,7 +304,9 @@ declare module 'material-ui/Card/CardContent' {
 }
 
 declare module 'material-ui/Card/CardHeader' {
-  export interface CardHeaderProps {
+  import { CardContentProps } from 'material-ui/Card/CardContent';
+
+  export interface CardHeaderProps extends CardContentProps {
     avatar?: React.ReactNode;
     subheader?: React.ReactNode;
     title?: React.ReactNode;
@@ -310,7 +318,8 @@ declare module 'material-ui/Card/CardHeader' {
 }
 
 declare module 'material-ui/Card/CardMedia' {
-  export interface CardMediaProps {}
+  export interface CardMediaProps
+    extends React.HTMLAttributes<HTMLDivElement> {}
 
   export default class CardMedia extends MaterialUI.Component<CardMediaProps> {}
 }
@@ -1173,13 +1182,15 @@ declare module 'material-ui/Table/TableCell' {
 }
 
 declare module 'material-ui/Table/TableHead' {
-  export interface TableHeadProps extends React.HTMLAttributes<HTMLTableSectionElement> {}
+  export interface TableHeadProps
+    extends React.HTMLAttributes<HTMLTableSectionElement> {}
 
   export default class TableHead extends MaterialUI.Component<TableHeadProps> {}
 }
 
 declare module 'material-ui/Table/TableRow' {
-  export interface TableRowProps extends React.HTMLAttributes<HTMLTableRowElement> {
+  export interface TableRowProps
+    extends React.HTMLAttributes<HTMLTableRowElement> {
     hover?: boolean;
     selected?: boolean;
   }
