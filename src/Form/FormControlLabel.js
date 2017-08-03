@@ -29,6 +29,10 @@ export const styleSheet = createStyleSheet('MuiFormControlLabel', theme => ({
   },
 }));
 
+type DefaultProps = {
+  classes: Object,
+};
+
 export type Props = {
   /**
    * If `true`, the component appears selected.
@@ -37,7 +41,7 @@ export type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -75,7 +79,9 @@ export type Props = {
   value?: string,
 };
 
-function FormControlLabel(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function FormControlLabel(props: AllProps) {
   const {
     checked,
     classes,

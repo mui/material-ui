@@ -15,7 +15,11 @@ export const styleSheet = createStyleSheet('MuiListItemSecondaryAction', theme =
   },
 }));
 
-type Props = {
+type DefaultProps = {
+  classes: Object,
+};
+
+export type Props = {
   /**
    * The content of the component, normally an `IconButton` or selection control.
    */
@@ -23,14 +27,16 @@ type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
   className?: string,
 };
 
-function ListItemSecondaryAction(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function ListItemSecondaryAction(props: AllProps) {
   const { children, classes, className } = props;
 
   return (

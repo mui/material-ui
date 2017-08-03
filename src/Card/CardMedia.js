@@ -11,18 +11,24 @@ export const styleSheet = createStyleSheet('MuiCardMedia', {
   },
 });
 
-type Props = {
+type DefaultProps = {
+  classes: Object,
+};
+
+export type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
   className?: string,
 };
 
-function CardMedia(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function CardMedia(props: AllProps) {
   const { classes, className, ...other } = props;
 
   return <div className={classNames(classes.root, className)} {...other} />;

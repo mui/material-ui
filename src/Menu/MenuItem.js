@@ -29,11 +29,12 @@ export const styleSheet = createStyleSheet('MuiMenuItem', theme => ({
 }));
 
 type DefaultProps = {
+  classes: Object,
   role: string,
   selected: boolean,
 };
 
-type Props = DefaultProps & {
+export type Props = {
   /**
    * Menu item contents.
    */
@@ -41,7 +42,7 @@ type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -61,7 +62,9 @@ type Props = DefaultProps & {
   selected?: boolean,
 };
 
-function MenuItem(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function MenuItem(props: AllProps) {
   const { classes, className: classNameProp, component, selected, role, ...other } = props;
 
   const className = classNames(

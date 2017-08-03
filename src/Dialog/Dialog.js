@@ -47,7 +47,11 @@ export const styleSheet = createStyleSheet('MuiDialog', theme => ({
   },
 }));
 
-type Props = {
+type DefaultProps = {
+  classes: Object,
+};
+
+export type Props = {
   /**
    * Dialog children, usually the included sub-components.
    */
@@ -55,7 +59,7 @@ type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -135,10 +139,12 @@ type Props = {
   transition?: Function | Element<*>,
 };
 
+type AllProps = DefaultProps & Props;
+
 /**
  * Dialogs are overlaid modal paper based components with a backdrop.
  */
-function Dialog(props: Props) {
+function Dialog(props: AllProps) {
   const {
     children,
     classes,

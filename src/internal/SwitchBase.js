@@ -30,14 +30,15 @@ export const styleSheet = createStyleSheet('MuiSwitchBase', {
 });
 
 type DefaultProps = {
-  icon: Element<*>,
   checkedIcon: Element<*>,
+  classes: Object,
   disableRipple: boolean,
+  icon: Element<*>,
 };
 
 // NB: If changed, please update Checkbox, Switch and Radio
 // so that the API documentation is updated.
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * If `true`, the component is checked.
    */
@@ -54,7 +55,7 @@ export type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -118,6 +119,8 @@ export type Props = DefaultProps & {
   value?: string,
 };
 
+type AllProps = DefaultProps & Props;
+
 type State = {
   checked?: boolean,
 };
@@ -140,12 +143,13 @@ export default function createSwitch(
   /**
    * @ignore - internal component.
    */
-  class SwitchBase extends Component<DefaultProps, Props, State> {
-    props: Props;
+  class SwitchBase extends Component<DefaultProps, AllProps, State> {
+    props: AllProps;
     static defaultProps: DefaultProps = {
-      icon: defaultIcon,
       checkedIcon: defaultCheckedIcon,
+      classes: {},
       disableRipple: false,
+      icon: defaultIcon,
     };
 
     state: State = {};

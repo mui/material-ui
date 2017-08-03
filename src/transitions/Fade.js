@@ -13,7 +13,7 @@ type DefaultProps = {
   leaveTransitionDuration: number,
 };
 
-type Props = DefaultProps & {
+export type Props = {
   children?: Element<*>,
   /**
    * If `true`, the component will transition in.
@@ -57,8 +57,10 @@ type Props = DefaultProps & {
   theme: Object,
 };
 
-class Fade extends Component<DefaultProps, Props, void> {
-  props: Props;
+type AllProps = DefaultProps & Props;
+
+class Fade extends Component<DefaultProps, AllProps, void> {
+  props: AllProps;
 
   static defaultProps: DefaultProps = {
     in: false,

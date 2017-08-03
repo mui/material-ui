@@ -17,6 +17,10 @@ export const styleSheet = createStyleSheet('MuiFormGroup', {
   },
 });
 
+type DefaultProps = {
+  classes: Object,
+};
+
 export type Props = {
   /**
    * The content of the component.
@@ -25,7 +29,7 @@ export type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -36,11 +40,13 @@ export type Props = {
   row?: boolean,
 };
 
+type AllProps = DefaultProps & Props;
+
 /**
  * FormGroup wraps controls such as Checkbox and Switch.
  * It provides compact row layout and FormLabel awareness.
  */
-function FormGroup(props: Props) {
+function FormGroup(props: AllProps) {
   const { classes, className, children, row, ...other } = props;
   const rootClassName = classNames(
     classes.root,

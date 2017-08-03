@@ -45,6 +45,7 @@ type DefaultProps = {
   backdropComponent: Function,
   backdropTransitionDuration: number,
   backdropInvisible: boolean,
+  classes: Object,
   disableBackdrop: boolean,
   ignoreBackdropClick: boolean,
   ignoreEscapeKeyUp: boolean,
@@ -52,7 +53,7 @@ type DefaultProps = {
   show: boolean,
 };
 
-type Props = DefaultProps & {
+export type Props = {
   /**
    * The CSS class name of the backdrop element.
    */
@@ -76,7 +77,7 @@ type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -147,6 +148,8 @@ type Props = DefaultProps & {
   show?: boolean,
 };
 
+type AllProps = DefaultProps & Props;
+
 type State = {
   exited: boolean,
 };
@@ -154,13 +157,14 @@ type State = {
 /**
  * @ignore - internal component.
  */
-class Modal extends Component<DefaultProps, Props, State> {
-  props: Props;
+class Modal extends Component<DefaultProps, AllProps, State> {
+  props: AllProps;
 
   static defaultProps: DefaultProps = {
     backdropComponent: Backdrop,
     backdropTransitionDuration: 300,
     backdropInvisible: false,
+    classes: {},
     keepMounted: false,
     disableBackdrop: false,
     ignoreBackdropClick: false,

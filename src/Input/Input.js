@@ -161,13 +161,14 @@ export const styleSheet = createStyleSheet('MuiInput', theme => {
 });
 
 type DefaultProps = {
+  classes: Object,
   disableUnderline: boolean,
   fullWidth: boolean,
   multiline: boolean,
   type: string,
 };
 
-type Props = DefaultProps & {
+export type Props = {
   /**
    * This property helps users to fill forms faster, especially on mobile devices.
    * The name can be confusion, it's more like an autofill.
@@ -182,7 +183,7 @@ type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * The CSS class name of the wrapper element.
    */
@@ -289,11 +290,14 @@ type Props = DefaultProps & {
   value?: string | number,
 };
 
+type AllProps = DefaultProps & Props;
+
 type State = {
   focused: boolean,
 };
 
-class Input extends Component<DefaultProps, Props, State> {
+class Input extends Component<DefaultProps, AllProps, State> {
+  props: AllProps;
   static muiName = 'Input';
   static defaultProps = {
     disableUnderline: false,
