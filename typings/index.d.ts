@@ -1139,36 +1139,47 @@ declare module 'material-ui/Table' {
 }
 
 declare module 'material-ui/Table/Table' {
-  export interface TableProps {}
+  export interface TableProps
+    extends React.TableHTMLAttributes<HTMLTableElement> {}
 
   export default class Table extends MaterialUI.Component<TableProps> {}
 }
 
 declare module 'material-ui/Table/TableBody' {
-  export interface TableBodyProps {}
+  export interface TableBodyProps
+    extends React.HTMLAttributes<HTMLTableSectionElement> {}
 
   export default class TableBody extends MaterialUI.Component<TableBodyProps> {}
 }
 
 declare module 'material-ui/Table/TableCell' {
-  export interface TableCellProps {
+  /**
+   * `<TableCell>` will be rendered as an `<th>`or `<td>` depending
+   * on the context it is used in. Where context literally is the
+   * React `context`.
+   *
+   * Since it is not decided via prop, we have create loose typings
+   * here.
+   */
+  export type TableCellProps = {
     checkbox?: boolean;
     compact?: boolean;
     disablePadding?: boolean;
     numeric?: boolean;
-  }
+  } & ThHTMLAttributes<HTMLTableHeaderCellElement> &
+    TdHTMLAttributes<HTMLTableDataCellElement>;
 
   export default class TableCell extends MaterialUI.Component<TableCellProps> {}
 }
 
 declare module 'material-ui/Table/TableHead' {
-  export interface TableHeadProps {}
+  export interface TableHeadProps extends React.HTMLAttributes<HTMLTableSectionElement> {}
 
   export default class TableHead extends MaterialUI.Component<TableHeadProps> {}
 }
 
 declare module 'material-ui/Table/TableRow' {
-  export interface TableRowProps {
+  export interface TableRowProps extends React.HTMLAttributes<HTMLTableRowElement> {
     hover?: boolean;
     selected?: boolean;
   }
