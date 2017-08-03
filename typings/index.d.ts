@@ -532,7 +532,7 @@ declare module 'material-ui/Form/FormControlLabel' {
     checked?: boolean | string;
     control: React.ReactElement<any>;
     disabled?: boolean;
-    inputRef?: Function;
+    inputRef?: React.Ref<any>;
     label: React.ReactNode;
     name?: string;
     onChange?: (event: React.ChangeEvent<{}>, checked: boolean) => void;
@@ -703,7 +703,7 @@ declare module 'material-ui/IconButton/IconButton' {
     color?: MaterialUI.PropTypes.Color | 'contrast';
     disabled?: boolean;
     disableRipple?: boolean;
-    rootRef?: Function;
+    rootRef?: React.Ref<any>;
   }
 
   export default class IconButton extends MaterialUI.Component<
@@ -737,7 +737,7 @@ declare module 'material-ui/Input/Input' {
     inputProps?:
       | React.TextareaHTMLAttributes<HTMLTextAreaElement>
       | React.InputHTMLAttributes<HTMLInputElement>;
-    inputRef?: Function;
+    inputRef?: React.Ref<any>;
     margin?: 'dense';
     multiline?: boolean;
     name?: string;
@@ -777,7 +777,7 @@ declare module 'material-ui/Input/Textarea' {
     onChange?: React.EventHandler<React.ChangeEvent<{}>>;
     rows?: string | number;
     rowsMax?: string | number;
-    textareaRef?: Function;
+    textareaRef?: React.Ref<any>;
     value?: string;
   }
 
@@ -808,7 +808,7 @@ declare module 'material-ui/List/List' {
     component?: React.ReactNode;
     dense?: boolean;
     disablePadding?: boolean;
-    rootRef?: Function;
+    rootRef?: React.Ref<any>;
     subheader?: React.ReactElement<any>;
   }
 
@@ -1039,7 +1039,7 @@ declare module 'material-ui/Radio/Radio' {
     disableRipple?: boolean;
     icon?: React.ReactNode;
     inputProps?: Object;
-    inputRef?: Function;
+    inputRef?: React.Ref<any>;
     name?: string;
     onChange?: (event: React.ChangeEvent<{}>, checked: boolean) => void;
     tabIndex?: string;
@@ -1337,14 +1337,14 @@ declare module 'material-ui/TextField/TextField' {
     InputLabelProps?: InputLabelProps;
     inputProps?: Object;
     InputProps?: InputProps;
-    inputRef?: Function;
+    inputRef?: React.Ref<any>;
     label?: React.ReactElement<any> | string;
     labelClassName?: string;
     multiline?: boolean;
     name?: string;
     placeholder?: string;
     required?: boolean;
-    rootRef?: Function;
+    rootRef?: React.Ref<any>;
     rows?: string | number;
     rowsMax?: string | number;
     type?: string;
