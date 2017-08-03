@@ -397,7 +397,8 @@ declare module 'material-ui/Dialog/Dialog' {
 }
 
 declare module 'material-ui/Dialog/DialogActions' {
-  export interface DialogActionsProps extends React.HTMLAttributes<HTMLDivElement> {}
+  export interface DialogActionsProps
+    extends React.HTMLAttributes<HTMLDivElement> {}
 
   export default class DialogActions extends MaterialUI.Component<
     DialogActionsProps
@@ -405,7 +406,8 @@ declare module 'material-ui/Dialog/DialogActions' {
 }
 
 declare module 'material-ui/Dialog/DialogContent' {
-  export interface DialogContentProps extends React.HTMLAttributes<HTMLDivElement> {}
+  export interface DialogContentProps
+    extends React.HTMLAttributes<HTMLDivElement> {}
 
   export default class DialogContent extends MaterialUI.Component<
     DialogContentProps
@@ -413,7 +415,8 @@ declare module 'material-ui/Dialog/DialogContent' {
 }
 
 declare module 'material-ui/Dialog/DialogContentText' {
-  export interface DialogContentTextProps extends HTMLAttributes<HTMLParagraphElement> {}
+  export interface DialogContentTextProps
+    extends HTMLAttributes<HTMLParagraphElement> {}
 
   export default class DialogContentText extends MaterialUI.Component<
     DialogContentTextProps
@@ -421,7 +424,8 @@ declare module 'material-ui/Dialog/DialogContentText' {
 }
 
 declare module 'material-ui/Dialog/DialogTitle' {
-  export interface DialogTitleProps extends React.HTMLAttributes<HTMLDivElement> {
+  export interface DialogTitleProps
+    extends React.HTMLAttributes<HTMLDivElement> {
     disableTypography?: boolean;
   }
 
@@ -449,7 +453,7 @@ declare module 'material-ui/Divider' {
 }
 
 declare module 'material-ui/Divider/Divider' {
-  export interface DividerProps extends HTMLAttributes<HTMLHRElement>{
+  export interface DividerProps extends HTMLAttributes<HTMLHRElement> {
     absolute?: boolean;
     inset?: boolean;
     light?: boolean;
@@ -508,7 +512,8 @@ declare module 'material-ui/Form' {
 }
 
 declare module 'material-ui/Form/FormControl' {
-  export interface FormControlProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
+  export interface FormControlProps
+    extends React.HtmlHTMLAttributes<HTMLDivElement> {
     disabled?: boolean;
     error?: boolean;
     fullWidth?: boolean;
@@ -524,7 +529,8 @@ declare module 'material-ui/Form/FormControl' {
 }
 
 declare module 'material-ui/Form/FormControlLabel' {
-  export interface FormControlLabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
+  export interface FormControlLabelProps
+    extends React.LabelHTMLAttributes<HTMLLabelElement> {
     checked?: boolean | string;
     control: React.ReactElement<any>;
     disabled?: boolean;
@@ -541,7 +547,8 @@ declare module 'material-ui/Form/FormControlLabel' {
 }
 
 declare module 'material-ui/Form/FormGroup' {
-  export interface FormGroupProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
+  export interface FormGroupProps
+    extends React.HtmlHTMLAttributes<HTMLDivElement> {
     row: boolean;
   }
 
@@ -549,7 +556,8 @@ declare module 'material-ui/Form/FormGroup' {
 }
 
 declare module 'material-ui/Form/FormHelperText' {
-  export interface FormHelperTextProps extends React.HTMLAttributes<HTMLParagraphElement> {
+  export interface FormHelperTextProps
+    extends React.HTMLAttributes<HTMLParagraphElement> {
     disabled?: boolean;
     error?: boolean;
     margin?: 'dense';
@@ -561,7 +569,8 @@ declare module 'material-ui/Form/FormHelperText' {
 }
 
 declare module 'material-ui/Form/FormLabel' {
-  export interface FormLabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
+  export interface FormLabelProps
+    extends React.LabelHTMLAttributes<HTMLLabelElement> {
     disabled?: boolean;
     error?: boolean;
     focused?: boolean;
@@ -670,7 +679,7 @@ declare module 'material-ui/Icon' {
 }
 
 declare module 'material-ui/Icon/Icon' {
-  export interface IconProps {
+  export interface IconProps extends HTMLAttributes<HTMLSpanElement> {
     color?:
       | 'inherit'
       | 'accent'
@@ -713,8 +722,7 @@ declare module 'material-ui/Input' {
 }
 
 declare module 'material-ui/Input/Input' {
-  export interface InputProps
-    extends Partial<MaterialUI.InputEventEmitter<HTMLElement>> {
+  export type InputProps = {
     autoComplete?: string;
     autoFocus?: boolean;
     component?: React.ReactNode;
@@ -724,7 +732,13 @@ declare module 'material-ui/Input/Input' {
     error?: boolean;
     fullWidth?: boolean;
     id?: string;
-    inputProps?: Object;
+    /**
+     * TODO: Can we be more restrictive? E.g. it's only an <input>
+     * if [component] is not set.
+     */
+    inputProps?:
+      | React.TextareaHTMLAttributes<HTMLTextAreaElement>
+      | React.InputHTMLAttributes<HTMLInputElement>;
     inputRef?: Function;
     margin?: 'dense';
     multiline?: boolean;
@@ -734,13 +748,16 @@ declare module 'material-ui/Input/Input' {
     rowsMax?: string | number;
     type?: string;
     value?: string | number;
-  }
+  } & React.HTMLAttributes<HTMLDivElement> &
+    Partial<MaterialUI.InputEventEmitter<HTMLElement>>;
 
   export default class Input extends MaterialUI.Component<InputProps> {}
 }
 
 declare module 'material-ui/Input/InputLabel' {
-  export interface InputLabelProps {
+  import { FormLabelProps } from 'material-ui/Form/FormLabel';
+
+  export interface InputLabelProps extends FormLabelProps {
     disableAnimation?: boolean;
     disabled?: boolean;
     error?: boolean;
@@ -755,7 +772,8 @@ declare module 'material-ui/Input/InputLabel' {
 }
 
 declare module 'material-ui/Input/Textarea' {
-  export interface TextareaProps {
+  export interface TextareaProps
+    extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
     defaultValue?: any;
     disabled?: boolean;
     onChange?: React.EventHandler<React.ChangeEvent<{}>>;
@@ -788,7 +806,7 @@ declare module 'material-ui/List' {
 }
 
 declare module 'material-ui/List/List' {
-  export interface ListProps {
+  export interface ListProps extends React.HTMLAttributes<HTMLUListElement> {
     component?: React.ReactNode;
     dense?: boolean;
     disablePadding?: boolean;
@@ -802,13 +820,13 @@ declare module 'material-ui/List/List' {
 declare module 'material-ui/List/ListItem' {
   import { ButtonBaseProps } from 'material-ui/internal/ButtonBase';
 
-  type ListItemCommonProps = {
+  interface ListItemCommonProps extends React.LiHTMLAttributes<HTMLLIElement> {
     component?: React.ReactNode;
     dense?: boolean;
     disabled?: boolean;
     disableGutters?: boolean;
     divider?: boolean;
-  };
+  }
 
   type ListItemDefaultProps = {
     button?: false;
@@ -849,7 +867,8 @@ declare module 'material-ui/List/ListItemSecondaryAction' {
 }
 
 declare module 'material-ui/List/ListItemText' {
-  export interface ListItemTextProps {
+  export interface ListItemTextProps
+    extends React.HTMLAttributes<HTMLDivElement> {
     disableTypography?: boolean;
     inset?: boolean;
     primary?: React.ReactNode;
@@ -862,7 +881,8 @@ declare module 'material-ui/List/ListItemText' {
 }
 
 declare module 'material-ui/List/ListSubheader' {
-  export interface ListSubheaderProps {
+  export interface ListSubheaderProps
+    extends React.HTMLAttributes<HTMLDivElement> {
     color?: 'default' | 'primary' | 'inherit';
     inset?: boolean;
   }
@@ -883,13 +903,17 @@ declare module 'material-ui/Menu' {
 
 declare module 'material-ui/Menu/Menu' {
   import { TransitionHandlers } from 'material-ui/internal/Transition';
-  export interface MenuProps extends Partial<TransitionHandlers> {
+  import { MenuListProps } from 'material-ui/Menu/MenuList';
+  import { PopoverProps } from 'material-ui/internal/Popover';
+
+  export type MenuProps = {
     anchorEl?: HTMLElement;
-    MenuListProps?: Object;
+    MenuListProps?: MenuListProps;
     onRequestClose?: React.EventHandler<any>;
     open?: boolean;
     transitionDuration?: number | 'auto';
-  }
+  } & Partial<TransitionHandlers> &
+    PopoverProps;
 
   export default class Menu extends MaterialUI.Component<MenuProps> {}
 }
@@ -905,7 +929,9 @@ declare module 'material-ui/Menu/MenuItem' {
 }
 
 declare module 'material-ui/Menu/MenuList' {
-  export interface MenuListProps {
+  import { ListProps } from 'material-ui/List/List';
+
+  export interface MenuListProps extends ListProps {
     onBlur?: Function;
     onKeyDown?: React.ReactEventHandler<React.KeyboardEvent<any>>;
   }
@@ -919,7 +945,9 @@ declare module 'material-ui/MobileStepper' {
 }
 
 declare module 'material-ui/MobileStepper/MobileStepper' {
-  export interface MobileStepperProps {
+  import { PaperProps } from 'material-ui/Paper/Paper';
+
+  export interface MobileStepperProps extends PaperProps {
     activeStep?: number;
     backButtonText?: React.ReactNode;
     disableBack?: boolean;
@@ -943,7 +971,7 @@ declare module 'material-ui/Paper' {
 }
 
 declare module 'material-ui/Paper/Paper' {
-  export interface PaperProps {
+  export interface PaperProps extends React.HTMLAttributes<HTMLDivElement> {
     component?: React.ReactNode;
     elevation?: number;
     square?: boolean;
@@ -964,7 +992,8 @@ declare module 'material-ui/Progress' {
 }
 
 declare module 'material-ui/Progress/CircularProgress' {
-  export interface CircularProgressProps {
+  export interface CircularProgressProps
+    extends React.HTMLAttributes<HTMLDivElement> {
     color?: 'primary' | 'accent';
     max?: number;
     min?: number;
@@ -979,7 +1008,8 @@ declare module 'material-ui/Progress/CircularProgress' {
 }
 
 declare module 'material-ui/Progress/LinearProgress' {
-  export interface LinearProgressProps {
+  export interface LinearProgressProps
+    extends React.HTMLAttributes<HTMLDivElement> {
     color?: 'primary' | 'accent';
     mode?: 'determinate' | 'indeterminate' | 'buffer' | 'query';
     value?: number;
@@ -999,7 +1029,9 @@ declare module 'material-ui/Radio' {
 }
 
 declare module 'material-ui/Radio/Radio' {
-  export interface RadioProps {
+  import { SwitchBaseProps } from 'material-ui/internal/SwitchBase';
+
+  export interface RadioProps extends SwitchBaseProps {
     checked?: boolean | string;
     checkedClassName?: string;
     checkedIcon?: React.ReactNode;
@@ -1020,7 +1052,9 @@ declare module 'material-ui/Radio/Radio' {
 }
 
 declare module 'material-ui/Radio/RadioGroup' {
-  export interface RadioGroupProps {
+  import { FormGroupProps } from 'material-ui/Form/FormGroup';
+
+  export interface RadioGroupProps extends FormGroupProps {
     className?: string;
     name?: string;
     onBlur?: React.EventHandler<any>;
@@ -1050,7 +1084,7 @@ declare module 'material-ui/Snackbar/Snackbar' {
     vertical?: 'top' | 'center' | 'bottom' | number;
   };
 
-  export interface SnackbarProps extends Partial<TransitionHandlers> {
+  export type SnackbarProps = {
     action?: React.ReactElement<any>;
     anchorOrigin?: Origin;
     autoHideDuration?: number;
@@ -1064,13 +1098,16 @@ declare module 'material-ui/Snackbar/Snackbar' {
     open: boolean;
     SnackbarContentProps?: Object;
     transition?: React.ReactNode;
-  }
+  } & Partial<TransitionHandlers> &
+    React.HTMLAttributes<HTMLDivElement>;
 
   export default class Snackbar extends MaterialUI.Component<SnackbarProps> {}
 }
 
 declare module 'material-ui/Snackbar/SnackbarContent' {
-  export interface SnackbarContentProps {
+  import { PaperProps } from 'material-ui/Paper/Paper';
+
+  export interface SnackbarContentProps extends PaperProps {
     action?: React.ReactElement<any>;
     message: React.ReactElement<any>;
   }
@@ -1086,7 +1123,7 @@ declare module 'material-ui/SvgIcon' {
 }
 
 declare module 'material-ui/SvgIcon/SvgIcon' {
-  export interface SvgIconProps {
+  export interface SvgIconProps extends React.SVGProps<SVGSVGElement> {
     titleAccess?: string;
     viewBox?: string;
   }
@@ -1100,7 +1137,9 @@ declare module 'material-ui/Switch' {
 }
 
 declare module 'material-ui/Switch/Switch' {
-  export interface SwitchProps {
+  import { SwitchBaseProps } from 'material-ui/internal/SwitchBase';
+
+  export interface SwitchProps extends SwitchBaseProps{
     checked?: boolean | string;
     checkedClassName?: string;
     checkedIcon?: React.ReactNode;
@@ -1279,23 +1318,27 @@ declare module 'material-ui/TextField' {
 }
 
 declare module 'material-ui/TextField/TextField' {
-  export interface InputProps
-    extends Partial<MaterialUI.InputEventEmitter<HTMLElement>> {
+  import { FormControlProps } from 'material-ui/Form/FormControl';
+  import { FormHelperTextProps } from 'material-ui/Form/FormHelperText';
+  import { InputProps } from 'material-ui/Input/Input';
+  import { InputLabelProps } from 'material-ui/Input/InputLabel';
+
+  export type InputProps = {
     autoComplete?: string;
     autoFocus?: boolean;
     defaultValue?: string | number;
     disabled?: boolean;
     error?: boolean;
-    FormHelperTextProps?: Object;
+    FormHelperTextProps?: FormHelperTextProps;
     fullWidth?: boolean;
     helperText?: React.ReactNode;
     helperTextClassName?: string;
     id?: string;
     inputClassName?: string;
     InputClassName?: string;
-    InputLabelProps?: Object;
+    InputLabelProps?: InputLabelProps;
     inputProps?: Object;
-    InputProps?: Object;
+    InputProps?: InputProps;
     inputRef?: Function;
     label?: React.ReactElement<any> | string;
     labelClassName?: string;
@@ -1309,7 +1352,7 @@ declare module 'material-ui/TextField/TextField' {
     type?: string;
     value?: string | number;
     margin?: MaterialUI.PropTypes.Margin;
-  }
+  } & Partial<MaterialUI.InputEventEmitter<HTMLElement>> & FormControlProps;
 
   export default class Input extends MaterialUI.Component<InputProps> {}
 }
@@ -1320,7 +1363,7 @@ declare module 'material-ui/Toolbar' {
 }
 
 declare module 'material-ui/Toolbar/Toolbar' {
-  export interface ToolbarProps {
+  export interface ToolbarProps extends React.HTMLAttributes<HTMLDivElement> {
     disableGutters?: boolean;
   }
 
@@ -1334,7 +1377,7 @@ declare module 'material-ui/Typography' {
 
 declare module 'material-ui/Typography/Typography' {
   import { Style, TextStyle } from 'material-ui/styles/typography';
-  export interface TypographyProps {
+  export interface TypographyProps extends React.HTMLAttributes<HTMLElement>{
     align?: MaterialUI.PropTypes.Alignment;
     component?: React.ReactNode;
     color?: MaterialUI.PropTypes.Color | 'secondary';
@@ -1485,6 +1528,37 @@ declare module 'material-ui/internal/Modal' {
     React.HtmlHTMLAttributes<HTMLDivElement>;
 
   export default class Modal extends MaterialUI.Component<ModalProps> {}
+}
+
+declare module 'material-ui/internal/Popover' {
+  import { PaperProps } from 'material-ui/Paper/Paper';
+  import { TransitionHandlers } from 'material-ui/internal/Transition';
+
+  export type Origin = {
+    horizontal: 'left' | 'center' | 'right' | number;
+    vertical: 'top' | 'center' | 'bottom' | number;
+  };
+
+  export type PopoverProps = {
+    anchorEl?: Object;
+    anchorOrigin?: Origin;
+    elevation?: number;
+    enteredClassName?: string;
+    enteringClassName?: string;
+    exitedClassName?: string;
+    exitingClassName?: string;
+    getContentAnchorEl?: Function;
+    modal?: boolean;
+    onRequestClose?: Function;
+    open?: boolean;
+    role?: string;
+    transformOrigin?: Origin;
+    transitionDuration?: number | 'auto';
+    theme?: Object;
+  } & Partial<TransitionHandlers> &
+    PaperProps;
+
+  export default class Popover extends MaterialUI.Component<PopoverProps> {}
 }
 
 declare module 'material-ui/internal/Portal' {
