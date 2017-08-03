@@ -27,16 +27,17 @@ export const styleSheet = createStyleSheet('MuiPaper', theme => {
 });
 
 type DefaultProps = {
+  classes: Object,
   component: string,
   elevation: number,
   square: boolean,
 };
 
-type Props = DefaultProps & {
+export type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -57,7 +58,9 @@ type Props = DefaultProps & {
   square?: boolean,
 };
 
-function Paper(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function Paper(props: AllProps) {
   const {
     classes,
     className: classNameProp,

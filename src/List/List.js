@@ -30,11 +30,12 @@ export const styleSheet = createStyleSheet('MuiList', theme => ({
 
 type DefaultProps = {
   component: string,
+  classes: Object,
   dense: boolean,
   disablePadding: boolean,
 };
 
-type Props = DefaultProps & {
+export type Props = {
   /**
    * The content of the component.
    */
@@ -42,7 +43,7 @@ type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -72,9 +73,12 @@ type Props = DefaultProps & {
   subheader?: Element<*>,
 };
 
-class List extends Component<DefaultProps, Props, void> {
-  props: Props;
+type AllProps = DefaultProps & Props;
+
+class List extends Component<DefaultProps, AllProps, void> {
+  props: AllProps;
   static defaultProps: DefaultProps = {
+    classes: {},
     component: 'ul',
     dense: false,
     disablePadding: false,

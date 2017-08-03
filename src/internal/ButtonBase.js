@@ -33,13 +33,14 @@ export const styleSheet = createStyleSheet('MuiButtonBase', theme => ({
 
 type DefaultProps = {
   centerRipple: boolean,
+  classes: Object,
   focusRipple: boolean,
   disableRipple: boolean,
   tabIndex: string,
   type: string,
 };
 
-type Props = DefaultProps & {
+export type Props = {
   centerRipple?: boolean,
   /**
    * The content of the component.
@@ -48,7 +49,7 @@ type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -89,6 +90,8 @@ type Props = DefaultProps & {
   type: string,
 };
 
+type AllProps = DefaultProps & Props;
+
 type State = {
   keyboardFocused: boolean,
 };
@@ -96,9 +99,11 @@ type State = {
 /**
  * @ignore - internal component.
  */
-class ButtonBase extends Component<DefaultProps, Props, State> {
+class ButtonBase extends Component<DefaultProps, AllProps, State> {
+  props: AllProps;
   static defaultProps: DefaultProps = {
     centerRipple: false,
+    classes: {},
     focusRipple: false,
     disableRipple: false,
     tabIndex: '0',

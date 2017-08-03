@@ -35,11 +35,12 @@ export const styleSheet = createStyleSheet('MuiInputLabel', theme => ({
 }));
 
 type DefaultProps = {
+  classes: Object,
   disabled: boolean,
   disableAnimation: boolean,
 };
 
-export type Props = DefaultProps & {
+export type Props = {
   /**
    * The contents of the `InputLabel`.
    */
@@ -47,7 +48,7 @@ export type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -78,7 +79,9 @@ export type Props = DefaultProps & {
   shrink?: boolean,
 };
 
-function InputLabel(props: Props, context: { muiFormControl: Object }) {
+type AllProps = DefaultProps & Props;
+
+function InputLabel(props: AllProps, context: { muiFormControl: Object }) {
   const {
     disabled,
     disableAnimation,

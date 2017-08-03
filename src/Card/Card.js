@@ -13,14 +13,15 @@ export const styleSheet = createStyleSheet('MuiCard', {
 });
 
 type DefaultProps = {
+  classes: Object,
   raised: boolean,
 };
 
-type Props = DefaultProps & {
+export type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -31,7 +32,9 @@ type Props = DefaultProps & {
   raised?: boolean,
 };
 
-function Card(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function Card(props: AllProps) {
   const { classes, className, raised, ...other } = props;
 
   return (

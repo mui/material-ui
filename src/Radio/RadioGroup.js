@@ -16,6 +16,10 @@ export const styleSheet = createStyleSheet('MuiRadioGroup', {
   },
 });
 
+type DefaultProps = {
+  classes: Object,
+};
+
 export type Props = {
   /**
    * The content of the component.
@@ -24,7 +28,7 @@ export type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -54,8 +58,10 @@ export type Props = {
   selectedValue?: string,
 };
 
-class RadioGroup extends PureComponent<void, Props, void> {
-  props: Props;
+type AllProps = DefaultProps & Props;
+
+class RadioGroup extends PureComponent<void, AllProps, void> {
+  props: AllProps;
   radios: Array<HTMLInputElement> = [];
 
   focus = () => {

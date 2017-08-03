@@ -32,10 +32,11 @@ export const styleSheet = createStyleSheet('MuiIcon', theme => ({
 }));
 
 type DefaultProps = {
+  classes: Object,
   color: 'inherit',
 };
 
-type Props = DefaultProps & {
+export type Props = {
   /**
    * The name of the icon font ligature.
    */
@@ -43,7 +44,7 @@ type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -54,7 +55,9 @@ type Props = DefaultProps & {
   color?: 'inherit' | 'accent' | 'action' | 'contrast' | 'disabled' | 'error' | 'primary',
 };
 
-function Icon(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function Icon(props: AllProps) {
   const { children, classes, className: classNameProp, color, ...other } = props;
 
   const className = classNames(
