@@ -826,11 +826,11 @@ declare module 'material-ui/List/ListItem' {
     divider?: boolean;
   }
 
-  type ListItemDefaultProps = {
+  export type ListItemDefaultProps = {
     button?: false;
   } & ListItemCommonProps;
 
-  type ListItemButtonProps = {
+  export type ListItemButtonProps = {
     button?: true;
   } & ListItemCommonProps &
     ButtonBaseProps;
@@ -917,7 +917,9 @@ declare module 'material-ui/Menu/Menu' {
 }
 
 declare module 'material-ui/Menu/MenuItem' {
-  export interface MenuItemProps {
+  import { ListItemButtonProps } from 'material-ui/List/ListItem';
+
+  export interface MenuItemProps extends ListItemButtonProps {
     component?: React.ReactNode;
     role?: string;
     selected?: boolean;
@@ -930,7 +932,6 @@ declare module 'material-ui/Menu/MenuList' {
   import { ListProps } from 'material-ui/List/List';
 
   export interface MenuListProps extends ListProps {
-    onBlur?: Function;
     onKeyDown?: React.ReactEventHandler<React.KeyboardEvent<any>>;
   }
 
