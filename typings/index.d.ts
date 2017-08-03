@@ -376,9 +376,8 @@ declare module 'material-ui/Dialog' {
 
 declare module 'material-ui/Dialog/Dialog' {
   import { ModalProps } from 'material-ui/internal/Modal';
-  import { TransitionHandlers } from 'material-ui/internal/Transition';
 
-  export type DialogProps = {
+  export interface DialogProps extends ModalProps {
     fullScreen?: boolean;
     ignoreBackdropClick?: boolean;
     ignoreEscapeKeyUp?: boolean;
@@ -390,8 +389,7 @@ declare module 'material-ui/Dialog/Dialog' {
     onRequestClose?: React.EventHandler<any>;
     open?: boolean;
     transition?: Function | React.ReactElement<any>;
-  } & ModalProps &
-    Partial<TransitionHandlers>;
+  }
 
   export default class Dialog extends MaterialUI.Component<DialogProps> {}
 }
@@ -1139,7 +1137,7 @@ declare module 'material-ui/Switch' {
 declare module 'material-ui/Switch/Switch' {
   import { SwitchBaseProps } from 'material-ui/internal/SwitchBase';
 
-  export interface SwitchProps extends SwitchBaseProps{
+  export interface SwitchProps extends SwitchBaseProps {
     checked?: boolean | string;
     checkedClassName?: string;
     checkedIcon?: React.ReactNode;
@@ -1352,7 +1350,8 @@ declare module 'material-ui/TextField/TextField' {
     type?: string;
     value?: string | number;
     margin?: MaterialUI.PropTypes.Margin;
-  } & Partial<MaterialUI.InputEventEmitter<HTMLElement>> & FormControlProps;
+  } & Partial<MaterialUI.InputEventEmitter<HTMLElement>> &
+    FormControlProps;
 
   export default class Input extends MaterialUI.Component<InputProps> {}
 }
@@ -1377,7 +1376,7 @@ declare module 'material-ui/Typography' {
 
 declare module 'material-ui/Typography/Typography' {
   import { Style, TextStyle } from 'material-ui/styles/typography';
-  export interface TypographyProps extends React.HTMLAttributes<HTMLElement>{
+  export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
     align?: MaterialUI.PropTypes.Alignment;
     component?: React.ReactNode;
     color?: MaterialUI.PropTypes.Color | 'secondary';
@@ -1524,7 +1523,7 @@ declare module 'material-ui/internal/Modal' {
     onEscapeKeyUp?: React.ReactEventHandler<{}>;
     onRequestClose?: React.ReactEventHandler<{}>;
     show?: boolean;
-  } & TransitionHandlers &
+  } & Partial<TransitionHandlers> &
     React.HtmlHTMLAttributes<HTMLDivElement>;
 
   export default class Modal extends MaterialUI.Component<ModalProps> {}
