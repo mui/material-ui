@@ -343,7 +343,7 @@ declare module 'material-ui/Chip' {
 }
 
 declare module 'material-ui/Chip/Chip' {
-  export interface ChipProps {
+  export interface ChipProps extends React.HTMLAttributes<HTMLDivElement> {
     avatar?: React.ReactNode;
     label?: React.ReactNode;
     onClick?: React.EventHandler<any>;
@@ -375,9 +375,10 @@ declare module 'material-ui/Dialog' {
 }
 
 declare module 'material-ui/Dialog/Dialog' {
+  import { ModalProps } from 'material-ui/internal/Modal';
   import { TransitionHandlers } from 'material-ui/internal/Transition';
 
-  export interface DialogProps extends Partial<TransitionHandlers> {
+  export type DialogProps = {
     fullScreen?: boolean;
     ignoreBackdropClick?: boolean;
     ignoreEscapeKeyUp?: boolean;
@@ -389,13 +390,14 @@ declare module 'material-ui/Dialog/Dialog' {
     onRequestClose?: React.EventHandler<any>;
     open?: boolean;
     transition?: Function | React.ReactElement<any>;
-  }
+  } & ModalProps &
+    Partial<TransitionHandlers>;
 
   export default class Dialog extends MaterialUI.Component<DialogProps> {}
 }
 
 declare module 'material-ui/Dialog/DialogActions' {
-  export interface DialogActionsProps {}
+  export interface DialogActionsProps extends React.HTMLAttributes<HTMLDivElement> {}
 
   export default class DialogActions extends MaterialUI.Component<
     DialogActionsProps
@@ -403,7 +405,7 @@ declare module 'material-ui/Dialog/DialogActions' {
 }
 
 declare module 'material-ui/Dialog/DialogContent' {
-  export interface DialogContentProps {}
+  export interface DialogContentProps extends React.HTMLAttributes<HTMLDivElement> {}
 
   export default class DialogContent extends MaterialUI.Component<
     DialogContentProps
@@ -411,7 +413,7 @@ declare module 'material-ui/Dialog/DialogContent' {
 }
 
 declare module 'material-ui/Dialog/DialogContentText' {
-  export interface DialogContentTextProps {}
+  export interface DialogContentTextProps extends HTMLAttributes<HTMLParagraphElement> {}
 
   export default class DialogContentText extends MaterialUI.Component<
     DialogContentTextProps
@@ -419,7 +421,7 @@ declare module 'material-ui/Dialog/DialogContentText' {
 }
 
 declare module 'material-ui/Dialog/DialogTitle' {
-  export interface DialogTitleProps {
+  export interface DialogTitleProps extends React.HTMLAttributes<HTMLDivElement> {
     disableTypography?: boolean;
   }
 
@@ -447,7 +449,7 @@ declare module 'material-ui/Divider' {
 }
 
 declare module 'material-ui/Divider/Divider' {
-  export interface DividerProps {
+  export interface DividerProps extends HTMLAttributes<HTMLHRElement>{
     absolute?: boolean;
     inset?: boolean;
     light?: boolean;
@@ -506,7 +508,7 @@ declare module 'material-ui/Form' {
 }
 
 declare module 'material-ui/Form/FormControl' {
-  export interface FormControlProps {
+  export interface FormControlProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
     disabled?: boolean;
     error?: boolean;
     fullWidth?: boolean;
@@ -522,7 +524,7 @@ declare module 'material-ui/Form/FormControl' {
 }
 
 declare module 'material-ui/Form/FormControlLabel' {
-  export interface FormControlLabelProps {
+  export interface FormControlLabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
     checked?: boolean | string;
     control: React.ReactElement<any>;
     disabled?: boolean;
@@ -539,7 +541,7 @@ declare module 'material-ui/Form/FormControlLabel' {
 }
 
 declare module 'material-ui/Form/FormGroup' {
-  export interface FormGroupProps {
+  export interface FormGroupProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
     row: boolean;
   }
 
@@ -547,7 +549,7 @@ declare module 'material-ui/Form/FormGroup' {
 }
 
 declare module 'material-ui/Form/FormHelperText' {
-  export interface FormHelperTextProps {
+  export interface FormHelperTextProps extends React.HTMLAttributes<HTMLParagraphElement> {
     disabled?: boolean;
     error?: boolean;
     margin?: 'dense';
@@ -559,7 +561,7 @@ declare module 'material-ui/Form/FormHelperText' {
 }
 
 declare module 'material-ui/Form/FormLabel' {
-  export interface FormLabelProps {
+  export interface FormLabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
     disabled?: boolean;
     error?: boolean;
     focused?: boolean;
