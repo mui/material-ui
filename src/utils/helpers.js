@@ -51,7 +51,7 @@ export function createChainedFunction(...funcs: Array<any>) {
   return funcs.filter(func => func != null).reduce((acc, func) => {
     warning(
       typeof func === 'function',
-      'Material-UI: Invalid Argument Type, must only provide functions, undefined, or null.',
+      'Material-UI: invalid Argument Type, must only provide functions, undefined, or null.',
     );
 
     if (acc === null) {

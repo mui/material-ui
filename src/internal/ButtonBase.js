@@ -1,7 +1,9 @@
 // @flow weak
+
 import React, { Component } from 'react';
 import type { Element } from 'react';
 import { findDOMNode } from 'react-dom';
+import warning from 'warning';
 import classNames from 'classnames';
 import keycode from 'keycode';
 import createStyleSheet from '../styles/createStyleSheet';
@@ -109,6 +111,12 @@ class ButtonBase extends Component<DefaultProps, Props, State> {
 
   componentDidMount() {
     listenForFocusKeys();
+
+    warning(
+      this.button,
+      `Material-UI: please provide a class to the component property.
+      The keyboard focus logic needs a reference to work correctly.`,
+    );
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -208,10 +216,12 @@ class ButtonBase extends Component<DefaultProps, Props, State> {
       return;
     }
 
-    event.persist();
+    if (this.button) {
+      event.persist();
 
-    const keyboardFocusCallback = this.onKeyboardFocusHandler.bind(this, event);
-    detectKeyboardFocus(this, findDOMNode(this.button), keyboardFocusCallback);
+      const keyboardFocusCallback = this.onKeyboardFocusHandler.bind(this, event);
+      detectKeyboardFocus(this, findDOMNode(this.button), keyboardFocusCallback);
+    }
 
     if (this.props.onFocus) {
       this.props.onFocus(event);
