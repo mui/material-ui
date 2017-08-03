@@ -5,6 +5,8 @@ import keycode from 'keycode';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createShallow, createMount, getClasses } from '../test-utils';
+import { focusKeyPressed } from '../utils/keyboardFocus';
+import consoleErrorMock from '../../test/utils/consoleErrorMock';
 import TouchRipple from './TouchRipple';
 import ButtonBase, { styleSheet } from './ButtonBase';
 
@@ -315,9 +317,7 @@ describe('<ButtonBase />', () => {
         </ButtonBase.Naked>,
       );
       instance = wrapper.instance();
-
       button = document.getElementById('test-button');
-
       if (!button) {
         throw new Error('missing button');
       }
@@ -332,13 +332,18 @@ describe('<ButtonBase />', () => {
       clock.restore();
     });
 
-    it('should not set keyboard focus before time has passed', () => {
-      assert.strictEqual(wrapper.state('keyboardFocused'), false, 'should not be keyboardFocused');
-    });
-
-    it('should listen for tab presses and set keyboard focus', () => {
+    it('should work', () => {
+      assert.strictEqual(
+        wrapper.state('keyboardFocused'),
+        false,
+        'should not set keyboard focus before time has passed',
+      );
       clock.tick(instance.keyboardFocusCheckTime * instance.keyboardFocusMaxCheckTimes);
-      assert.strictEqual(wrapper.state('keyboardFocused'), true, 'should be keyboardFocused');
+      assert.strictEqual(
+        wrapper.state('keyboardFocused'),
+        true,
+        'should listen for tab presses and set keyboard focus',
+      );
     });
   });
 
@@ -367,6 +372,18 @@ describe('<ButtonBase />', () => {
   });
 
   describe('handleFocus()', () => {
+    let clock;
+
+    before(() => {
+      clock = useFakeTimers();
+      consoleErrorMock.spy();
+    });
+
+    after(() => {
+      clock.restore();
+      consoleErrorMock.reset();
+    });
+
     it('when disabled should not persist event', () => {
       const wrapper = mount(
         <ButtonBase.Naked classes={{}} disabled>
@@ -393,6 +410,24 @@ describe('<ButtonBase />', () => {
       instance.onKeyboardFocusHandler(eventMock);
       assert.strictEqual(onKeyboardFocusSpy.callCount, 1);
       assert.strictEqual(onKeyboardFocusSpy.calledWith(eventMock), true);
+    });
+
+    it('should work with a functionnal component', () => {
+      focusKeyPressed(true);
+      const MyLink = props =>
+        <a href="/foo" {...props}>
+          bar
+        </a>;
+      const wrapper = mount(
+        <ButtonBase.Naked classes={{}} component={MyLink}>
+          Hello
+        </ButtonBase.Naked>,
+      );
+      assert.match(consoleErrorMock.args()[0][0], /Material-UI: please provide a class/);
+      const instance = wrapper.instance();
+      instance.focusKeyPressed = true;
+      wrapper.simulate('focus');
+      clock.tick(instance.keyboardFocusCheckTime);
     });
   });
 

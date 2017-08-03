@@ -73,7 +73,7 @@ function HiddenJs(props: Props) {
 
   warning(
     Object.keys(other).length === 0,
-    `Material-UI: Unsupported properties received ${JSON.stringify(other)}`,
+    `Material-UI: unsupported properties received ${JSON.stringify(other)}`,
   );
 
   return children;
