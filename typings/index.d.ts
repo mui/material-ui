@@ -1575,7 +1575,7 @@ declare module 'material-ui/styles/breakpoints' {
 
   export interface Breakpoints {
     keys: typeof keys;
-    values: BreakpointMap;
+    values: number[];
     up: (key: Breakpoint) => string;
     down: (key: Breakpoint) => string;
     between: (start: Breakpoint, end: Breakpoint) => string;
