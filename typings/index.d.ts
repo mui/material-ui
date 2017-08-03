@@ -1197,7 +1197,9 @@ declare module 'material-ui/Tabs' {
 }
 
 declare module 'material-ui/Tabs/Tab' {
-  export interface TabProps {
+  import { ButtonBaseProps } from 'material-ui/internal/ButtonBase';
+
+  export interface TabProps extends ButtonBaseProps {
     disabled?: boolean;
     fullWidth?: boolean;
     icon?: React.ReactNode;
@@ -1217,7 +1219,8 @@ declare module 'material-ui/Tabs/Tab' {
 }
 
 declare module 'material-ui/Tabs/TabIndicator' {
-  export interface TabIndicatorProps {
+  export interface TabIndicatorProps
+    extends React.HTMLAttributes<HTMLDivElement> {
     color: 'accent' | 'primary' | string;
     style: { left: number; width: number };
   }
