@@ -35,6 +35,13 @@ declare namespace MaterialUI {
     onKeyDown: React.ReactEventHandler<T>;
     onKeyUp: React.ReactEventHandler<T>;
   }
+
+  /**
+   * Utilies types based on:
+   * https://github.com/Microsoft/TypeScript/issues/12215#issuecomment-307871458
+   */
+  type Diff<T extends string, U extends string> = ({[P in T]: P } & {[P in U]: never } & { [x: string]: never })[T];
+  type Omit<T, K extends keyof T> = {[P in Diff<keyof T, K>]: T[P]};
 }
 
 declare namespace MaterialUI.PropTypes {
@@ -295,8 +302,7 @@ declare module 'material-ui/Card/CardActions' {
 }
 
 declare module 'material-ui/Card/CardContent' {
-  export interface CardContentProps
-    extends React.HTMLAttributes<HTMLDivElement> {}
+  export type CardContentProps = {} & React.HTMLAttributes<HTMLDivElement>;
 
   export default class CardContent extends MaterialUI.Component<
     CardContentProps
@@ -310,7 +316,7 @@ declare module 'material-ui/Card/CardHeader' {
     avatar?: React.ReactNode;
     subheader?: React.ReactNode;
     title?: React.ReactNode;
-  } & CardContentProps;
+  } & Partial<MaterialUI.Omit<CardContentProps, 'title'>>;
 
   export default class CardHeader extends MaterialUI.Component<
     CardHeaderProps
