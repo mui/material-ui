@@ -51,7 +51,7 @@ export type Props = {
   /**
    * @ignore
    */
-  className: string,
+  className?: string,
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
