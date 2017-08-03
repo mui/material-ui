@@ -10,7 +10,7 @@ import type { Rule, generateClassName } from 'jss/lib/types';
 //
 // It's an improved version of
 // https://github.com/cssinjs/jss/blob/4e6a05dd3f7b6572fdd3ab216861d9e446c20331/src/utils/createGenerateClassName.js
-export default function createGenerateClassName(): generateClassName {
+export default function createGenerateClassName(prefix: string = "c"): generateClassName {
   let ruleCounter = 0;
 
   return (rule: Rule, sheet?: StyleSheet): string => {
@@ -24,7 +24,7 @@ export default function createGenerateClassName(): generateClassName {
     );
 
     if (process.env.NODE_ENV === 'production') {
-      return `c${ruleCounter}`;
+      return `${prefix}${ruleCounter}`;
     }
 
     if (sheet && sheet.options.meta) {
