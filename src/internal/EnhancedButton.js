@@ -232,15 +232,6 @@ class EnhancedButton extends Component {
     }
   };
 
-  /*
-  handleClick = (event) => {
-    if (!this.props.disabled) {
-      tabPressed = false;
-      this.props.onClick(event);
-    }
-  };
-  */
-
   handleTouchTap = (event) => {
     this.cancelFocusTimeout();
     if (!this.props.disabled) {
