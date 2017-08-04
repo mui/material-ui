@@ -24,19 +24,19 @@ export default class DialogExampleModal extends React.Component {
       <FlatButton
         label="Cancel"
         primary={true}
-        onTouchTap={this.handleClose}
+        onClick={this.handleClose}
       />,
       <FlatButton
         label="Submit"
         primary={true}
         disabled={true}
-        onTouchTap={this.handleClose}
+        onClick={this.handleClose}
       />,
     ];
 
     return (
       <div>
-        <RaisedButton label="Modal Dialog" onTouchTap={this.handleOpen} />
+        <RaisedButton label="Modal Dialog" onClick={this.handleOpen} />
         <Dialog
           title="Dialog With Actions"
           actions={actions}

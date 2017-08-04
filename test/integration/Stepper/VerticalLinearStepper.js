@@ -39,7 +39,7 @@ class VerticalLinearStepper extends Component {
           disableTouchRipple={true}
           disableFocusRipple={true}
           primary={true}
-          onTouchTap={this.handleNext}
+          onClick={this.handleNext}
           style={{marginRight: 12}}
         />
         {step > 0 && (
@@ -48,7 +48,7 @@ class VerticalLinearStepper extends Component {
             disabled={stepIndex === 0}
             disableTouchRipple={true}
             disableFocusRipple={true}
-            onTouchTap={this.handlePrev}
+            onClick={this.handlePrev}
           />
         )}
       </div>

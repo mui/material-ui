@@ -18,7 +18,7 @@ describe('<Chip />', () => {
 
   describe('state', () => {
     const wrapper = themedShallow(
-      <Chip onTouchTap={() => {}}>Label</Chip>
+      <Chip onClick={() => {}}>Label</Chip>
     );
 
     it('renders with initial state of false for clicked and focused', () => {
@@ -123,7 +123,7 @@ describe('<Chip />', () => {
       const wrapper = themedShallow(
         <Chip onRequestDelete={handleRequestDelete}>Label</Chip>
       );
-      wrapper.childAt(1).simulate('touchTap', {stopPropagation() {}});
+      wrapper.childAt(1).simulate('click', {stopPropagation() {}});
       assert.ok(handleRequestDelete.calledOnce);
     });
 

@@ -57,6 +57,12 @@ class IconMenu extends Component {
      */
     multiple: PropTypes.bool,
     /**
+     * Callback function fired when the `IconButton` element is touch-tapped.
+     *
+     * @param {object} event TouchTap event targeting the `IconButton` element.
+     */
+    onClick: PropTypes.func,
+    /**
      * Callback function fired when a menu item is selected with a touch-tap.
      *
      * @param {object} event TouchTap event targeting the selected menu item element.
@@ -87,12 +93,6 @@ class IconMenu extends Component {
      * for close requests.
      */
     onRequestChange: PropTypes.func,
-    /**
-     * Callback function fired when the `IconButton` element is touch-tapped.
-     *
-     * @param {object} event TouchTap event targeting the `IconButton` element.
-     */
-    onTouchTap: PropTypes.func,
     /**
      * If true, the `IconMenu` is opened.
      */
@@ -138,7 +138,7 @@ class IconMenu extends Component {
     onMouseEnter: () => {},
     onMouseUp: () => {},
     onRequestChange: () => {},
-    onTouchTap: () => {},
+    onClick: () => {},
     targetOrigin: {
       vertical: 'top',
       horizontal: 'left',
@@ -245,7 +245,7 @@ class IconMenu extends Component {
       onMouseEnter,
       onMouseUp,
       onRequestChange, // eslint-disable-line no-unused-vars
-      onTouchTap,
+      onClick,
       listStyle,
       menuStyle,
       style,
@@ -277,10 +277,10 @@ You should wrapped it with an <IconButton />.`);
 
     const iconButtonProps = {
       onKeyboardFocus: onKeyboardFocus,
-      onTouchTap: (event) => {
+      onClick: (event) => {
         this.open(Events.isKeyboard(event) ? 'keyboard' : 'iconTap', event);
-        if (iconButtonElement.props.onTouchTap) {
-          iconButtonElement.props.onTouchTap(event);
+        if (iconButtonElement.props.onClick) {
+          iconButtonElement.props.onClick(event);
         }
       },
       ref: 'iconButton',
@@ -313,7 +313,7 @@ You should wrapped it with an <IconButton />.`);
         onMouseLeave={onMouseLeave}
         onMouseEnter={onMouseEnter}
         onMouseUp={onMouseUp}
-        onTouchTap={onTouchTap}
+        onClick={onClick}
         style={prepareStyles(mergedRootStyles)}
       >
         {iconButton}

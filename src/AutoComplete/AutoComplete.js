@@ -272,7 +272,7 @@ class AutoComplete extends Component {
     const searchText = this.chosenRequestText(chosenRequest);
 
     const updateInput = () => this.props.onUpdateInput(searchText, this.props.dataSource, {
-      source: 'touchTap',
+      source: 'click',
     });
     this.timerTouchTapCloseId = () => setTimeout(() => {
       this.timerTouchTapCloseId = null;

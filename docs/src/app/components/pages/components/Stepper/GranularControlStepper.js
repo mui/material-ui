@@ -122,13 +122,13 @@ class GranularControlStepper extends React.Component {
               <FlatButton
                 label="Back"
                 disabled={stepIndex === 0}
-                onTouchTap={this.handlePrev}
+                onClick={this.handlePrev}
                 style={styles.backButton}
               />
               <RaisedButton
                 label="Next"
                 primary={true}
-                onTouchTap={this.handleNext}
+                onClick={this.handleNext}
               />
             </div>
           )}

@@ -28,10 +28,10 @@ export const makeSelectable = (MyComponent) => {
         this.keyIndex += 1;
 
         return React.cloneElement(child, {
-          onTouchTap: (event) => {
+          onClick: (event) => {
             this.handleItemTouchTap(event, child);
-            if (child.props.onTouchTap) {
-              child.props.onTouchTap(event);
+            if (child.props.onClick) {
+              child.props.onClick(event);
             }
           },
           key: this.keyIndex,

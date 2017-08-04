@@ -106,7 +106,7 @@ class Card extends Component {
         return;
       if (currentChild.props.actAsExpander === true) {
         doClone = true;
-        newProps.onTouchTap = this.handleExpanding;
+        newProps.onClick = this.handleExpanding;
         newProps.style = Object.assign({cursor: 'pointer'}, currentChild.props.style);
       }
       if (currentChild.props.showExpandableButton === true) {

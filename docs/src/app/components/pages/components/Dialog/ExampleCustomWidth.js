@@ -29,18 +29,18 @@ export default class DialogExampleCustomWidth extends React.Component {
       <FlatButton
         label="Cancel"
         primary={true}
-        onTouchTap={this.handleClose}
+        onClick={this.handleClose}
       />,
       <FlatButton
         label="Submit"
         primary={true}
-        onTouchTap={this.handleClose}
+        onClick={this.handleClose}
       />,
     ];
 
     return (
       <div>
-        <RaisedButton label="Dialog With Custom Width" onTouchTap={this.handleOpen} />
+        <RaisedButton label="Dialog With Custom Width" onClick={this.handleOpen} />
         <Dialog
           title="Dialog With Custom Width"
           actions={actions}

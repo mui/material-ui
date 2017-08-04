@@ -27,17 +27,17 @@ class BottomNavigationExampleSimple extends Component {
           <BottomNavigationItem
             label="Recents"
             icon={recentsIcon}
-            onTouchTap={() => this.select(0)}
+            onClick={() => this.select(0)}
           />
           <BottomNavigationItem
             label="Favorites"
             icon={favoritesIcon}
-            onTouchTap={() => this.select(1)}
+            onClick={() => this.select(1)}
           />
           <BottomNavigationItem
             label="Nearby"
             icon={nearbyIcon}
-            onTouchTap={() => this.select(2)}
+            onClick={() => this.select(2)}
           />
         </BottomNavigation>
       </Paper>

@@ -3,7 +3,7 @@ import Chip from 'material-ui/Chip';
 
 /**
  * An example of rendering multiple Chips from an array of values. Deleting a chip removes it from the array.
- * Note that since no `onTouchTap` property is defined, the Chip can be focused, but does not gain depth
+ * Note that since no `onClick` property is defined, the Chip can be focused, but does not gain depth
  * while clicked or touched.
  */
 export default class ChipExampleArray extends React.Component {

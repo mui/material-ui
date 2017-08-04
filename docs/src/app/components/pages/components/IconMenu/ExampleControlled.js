@@ -78,7 +78,7 @@ export default class IconMenuExampleControlled extends Component {
           <MenuItem value="3" primaryText="Android App" />
           <MenuItem value="4" primaryText="iOS App" />
         </IconMenu>
-        <RaisedButton onTouchTap={this.handleOpenMenu} label="Downloads" />
+        <RaisedButton onClick={this.handleOpenMenu} label="Downloads" />
       </div>
     );
   }

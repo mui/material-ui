@@ -24,18 +24,18 @@ export default class DialogExampleAlert extends React.Component {
       <FlatButton
         label="Cancel"
         primary={true}
-        onTouchTap={this.handleClose}
+        onClick={this.handleClose}
       />,
       <FlatButton
         label="Discard"
         primary={true}
-        onTouchTap={this.handleClose}
+        onClick={this.handleClose}
       />,
     ];
 
     return (
       <div>
-        <RaisedButton label="Alert" onTouchTap={this.handleOpen} />
+        <RaisedButton label="Alert" onClick={this.handleOpen} />
         <Dialog
           actions={actions}
           modal={false}

@@ -21,12 +21,14 @@
   },
   "homepage": "http://material-ui.com/",
   "scripts": {
+    "watch": "npm run build:copy-files && npm run build:babel:watch",
     "build": "npm run build:icon-index && npm run build:babel && npm run build:copy-files && npm run build:es",
     "build:icon-index": "babel-node ./scripts/icon-index-generator.js",
     "build:es": "npm run build:es-index && npm run build:es-icon-index",
     "build:es-index": " cross-env BABEL_ENV=es babel ./src/index.js --out-file ./build/index.es.js",
     "build:es-icon-index": "cross-env BABEL_ENV=es babel ./src/svg-icons/index.js --out-file ./build/svg-icons/index.es.js",
     "build:babel": "cross-env NODE_ENV=release babel ./src --out-dir ./build --ignore spec.js",
+    "build:babel:watch": "cross-env NODE_ENV=release babel --watch ./src --out-dir ./build --ignore spec.js",
     "build:copy-files": "babel-node ./scripts/copy-files.js",
     "clean:build": "rimraf build",
     "lint": "eslint src docs/src test --quiet --cache && echo \"eslint: no lint errors\"",
@@ -43,8 +45,7 @@
   },
   "peerDependencies": {
     "react": "^15.4.0",
-    "react-dom": "^15.4.0",
-    "react-tap-event-plugin": "^2.0.1"
+    "react-dom": "^15.4.0"
   },
   "dependencies": {
     "babel-runtime": "^6.23.0",
@@ -106,7 +107,6 @@
     "react": "^15.5.0",
     "react-dom": "^15.5.0",
     "react-test-renderer": "^15.5.0",
-    "react-tap-event-plugin": "^2.0.0",
     "recursive-readdir-sync": "^1.0.6",
     "rimraf": "^2.6.1",
     "sinon": "^3.0.0",

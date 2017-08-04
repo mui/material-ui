@@ -39,7 +39,7 @@ export default class SnackbarExampleTwice extends React.Component {
     return (
       <div>
         <RaisedButton
-          onTouchTap={this.handleTouchTap}
+          onClick={this.handleTouchTap}
           label="Add to my calendar two times"
         />
         <Snackbar

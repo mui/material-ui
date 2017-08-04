@@ -83,12 +83,12 @@ describe('<AppBar />', () => {
       );
     });
 
-    it('should triggers the onTouchTap', () => {
+    it('should triggers the onClick', () => {
       const handleTouchTap = spy();
       const wrapper = shallowWithContext(
-        <AppBar iconElementLeft={<IconButton onTouchTap={handleTouchTap}><div /></IconButton>} />
+        <AppBar iconElementLeft={<IconButton onClick={handleTouchTap}><div /></IconButton>} />
       );
-      wrapper.find(IconButton).simulate('touchTap');
+      wrapper.find(IconButton).simulate('click');
       assert.strictEqual(handleTouchTap.callCount, 1);
     });
   });
@@ -117,18 +117,18 @@ describe('<AppBar />', () => {
   });
 
   describe('onLeftIconButtonTouchTap', () => {
-    it('should trigger the onTouchTap', () => {
+    it('should trigger the onClick', () => {
       const onLeftIconButtonTouchTap = spy();
       const wrapper = shallowWithContext(
         <AppBar onLeftIconButtonTouchTap={onLeftIconButtonTouchTap} />
       );
 
-      wrapper.find(IconButton).simulate('touchTap');
+      wrapper.find(IconButton).simulate('click');
       assert.strictEqual(onLeftIconButtonTouchTap.callCount, 1,
         'should have called onLeftIconButtonTouchTap callback function');
     });
 
-    it('should forward the onTouchTap to onLeftIconButtonTouchTap', () => {
+    it('should forward the onClick to onLeftIconButtonTouchTap', () => {
       const handleTouchTap = spy();
       const wrapper = shallowWithContext(
         <AppBar
@@ -136,24 +136,24 @@ describe('<AppBar />', () => {
           onLeftIconButtonTouchTap={handleTouchTap}
         />
       );
-      wrapper.find(IconButton).simulate('touchTap');
+      wrapper.find(IconButton).simulate('click');
       assert.strictEqual(handleTouchTap.callCount, 1);
     });
   });
 
   describe('onRightIconButtonTouchTap', () => {
-    it('should trigger the onTouchTap', () => {
+    it('should trigger the onClick', () => {
       const handleRightIconButtonTouchTap = spy();
       const wrapper = shallowWithContext(
         <AppBar onRightIconButtonTouchTap={handleRightIconButtonTouchTap} iconClassNameRight="foo" />
       );
 
-      wrapper.find(IconButton).at(1).simulate('touchTap');
+      wrapper.find(IconButton).at(1).simulate('click');
       assert.strictEqual(handleRightIconButtonTouchTap.callCount, 1,
         'should have called onRightIconButtonTouchTap callback function');
     });
 
-    it('should forward the onTouchTap to onRightIconButtonTouchTap', () => {
+    it('should forward the onClick to onRightIconButtonTouchTap', () => {
       const handleTouchTap = spy();
       const wrapper = shallowWithContext(
         <AppBar
@@ -161,7 +161,7 @@ describe('<AppBar />', () => {
           onRightIconButtonTouchTap={handleTouchTap}
         />
       );
-      wrapper.find(IconButton).at(1).simulate('touchTap');
+      wrapper.find(IconButton).at(1).simulate('click');
       assert.strictEqual(handleTouchTap.callCount, 1);
     });
   });
@@ -172,7 +172,7 @@ describe('<AppBar />', () => {
       <AppBar title="Title" onTitleTouchTap={onTitleTouchTap} />
     );
 
-    wrapper.find('h1').simulate('touchTap');
+    wrapper.find('h1').simulate('click');
     assert.strictEqual(onTitleTouchTap.callCount, 1,
       'should have called onTitleTouchTap callback function');
   });

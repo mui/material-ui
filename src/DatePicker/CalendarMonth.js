@@ -92,7 +92,7 @@ class CalendarMonth extends Component {
           date={day}
           disabled={disabled}
           key={`db${(i + j)}`}
-          onTouchTap={this.handleTouchTapDay}
+          onClick={this.handleTouchTapDay}
           selected={selected}
         />
       );

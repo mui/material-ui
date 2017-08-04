@@ -86,6 +86,12 @@ class FlatButton extends Component {
      */
     labelStyle: PropTypes.object,
     /**
+     * Callback function fired when the button is touch-tapped.
+     *
+     * @param {object} event TouchTap event targeting the button.
+     */
+    onClick: PropTypes.func,
+    /**
      * Callback function fired when the element is focused or blurred by the keyboard.
      *
      * @param {object} event `focus` or `blur` event targeting the element.
@@ -98,12 +104,6 @@ class FlatButton extends Component {
     onMouseLeave: PropTypes.func,
     /** @ignore */
     onTouchStart: PropTypes.func,
-    /**
-     * Callback function fired when the button is touch-tapped.
-     *
-     * @param {object} event TouchTap event targeting the button.
-     */
-    onTouchTap: PropTypes.func,
     /**
      * If true, colors button according to
      * primaryTextColor from the Theme.

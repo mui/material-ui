@@ -26,13 +26,13 @@ export default class DialogExampleDialogDatePicker extends React.Component {
         label="Ok"
         primary={true}
         keyboardFocused={true}
-        onTouchTap={this.handleClose}
+        onClick={this.handleClose}
       />,
     ];
 
     return (
       <div>
-        <RaisedButton label="Dialog With Date Picker" onTouchTap={this.handleOpen} />
+        <RaisedButton label="Dialog With Date Picker" onClick={this.handleOpen} />
         <Dialog
           title="Dialog With Date Picker"
           actions={actions}

@@ -93,7 +93,7 @@ class HomePage extends Component {
           <RaisedButton
             className="demo-button"
             label="Demo"
-            onTouchTap={this.handleTouchTapDemo}
+            onClick={this.handleTouchTapDemo}
             style={styles.demoStyle}
             labelStyle={styles.label}
           />
