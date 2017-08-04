@@ -269,12 +269,12 @@ describe('<Menu />', () => {
         </Menu>
       );
 
-      wrapper.find('.item1').simulate('touchTap');
+      wrapper.find('.item1').simulate('click');
       assert.strictEqual(wrapper.state('focusIndex'), 0);
       document.body.dispatchEvent(new window.Event('mouseup', {bubbles: true}));
       assert.strictEqual(wrapper.state('focusIndex'), -1);
 
-      wrapper.find('.item2').simulate('touchTap');
+      wrapper.find('.item2').simulate('click');
       assert.strictEqual(wrapper.state('focusIndex'), 1);
       document.body.dispatchEvent(new window.Event('mouseup', {bubbles: true}));
       assert.strictEqual(wrapper.state('focusIndex'), 1);
