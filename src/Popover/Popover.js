@@ -412,7 +412,6 @@ class Popover extends Component {
           onResize={this.handleResize}
         />
         <RenderToLayer
-          rendererReady={this.setPlacement}
           ref={(ref) => this.popoverRefs.layer = ref}
           open={this.state.open}
           componentClickAway={this.componentClickAway}
