@@ -235,6 +235,17 @@ class Menu extends Component {
       return;
     }
 
+    const {focusIndex} = this.state;
+    if (focusIndex < 0) {
+      return;
+    }
+
+    const filteredChildren = this.getFilteredChildren(this.props.children);
+    const focusedItem = filteredChildren[focusIndex];
+    if (focusedItem.props.menuItems && focusedItem.props.menuItems.length > 0) {
+      return;
+    }
+
     this.setFocusIndex(event, -1, false);
   };
 
