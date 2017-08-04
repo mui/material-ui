@@ -90,6 +90,7 @@ describe('internal/modalManager', () => {
       fixedNode.classList.add('mui-fixed');
       fixedNode.style.padding = '14px';
       window.document.body.appendChild(fixedNode);
+      window.innerWidth += 1; // simulate a scrollbar
     });
 
     afterEach(() => {

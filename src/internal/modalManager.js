@@ -17,7 +17,12 @@ function bodyIsOverflowing(node) {
   const doc = ownerDocument(node);
   const win = isWindow(doc);
 
-  return doc.body.clientWidth < win.innerWidth;
+  // Takes in account potential non zero margin on the body.
+  const style = window.getComputedStyle(doc.body);
+  const marginLeft = parseInt(style.getPropertyValue('margin-left'), 10);
+  const marginRight = parseInt(style.getPropertyValue('margin-right'), 10);
+
+  return marginLeft + doc.body.clientWidth + marginRight < win.innerWidth;
 }
 
 // The container shouldn't be used on the server.
@@ -67,13 +72,14 @@ function createModalManager(
 
       if (bodyIsOverflowing(container)) {
         prevPaddings = [getPaddingRight(container)];
-        container.style.paddingRight = `${prevPaddings[0] + getScrollbarSize()}px`;
+        const scrollbarSize = getScrollbarSize();
+        container.style.paddingRight = `${prevPaddings[0] + scrollbarSize}px`;
 
         const fixedNodes = document.querySelectorAll('.mui-fixed');
         for (let i = 0; i < fixedNodes.length; i += 1) {
           const paddingRight = getPaddingRight(fixedNodes[i]);
           prevPaddings.push(paddingRight);
-          fixedNodes[i].style.paddingRight = `${paddingRight + getScrollbarSize()}px`;
+          fixedNodes[i].style.paddingRight = `${paddingRight + scrollbarSize}px`;
         }
       }
 
