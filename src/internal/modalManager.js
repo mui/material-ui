@@ -1,6 +1,7 @@
 // @flow
 // Taken from https://github.com/react-bootstrap/react-overlays/blob/master/src/ModalManager.js
 
+import warning from 'warning';
 import isWindow from 'dom-helpers/query/isWindow';
 import ownerDocument from 'dom-helpers/ownerDocument';
 import canUseDom from 'dom-helpers/util/inDOM';
@@ -31,6 +32,15 @@ const defaultContainer = canUseDom ? window.document.body : {};
 function createModalManager(
   { container = defaultContainer, hideSiblingNodes = true }: Object = {},
 ) {
+  warning(
+    container !== null,
+    `
+    Material-UI: you are most likely evaluating the code before the
+    browser has a chance to reach the <body>.
+    Please move the import at the end of the <body>.
+  `,
+  );
+
   const modals = [];
 
   let prevOverflow;
