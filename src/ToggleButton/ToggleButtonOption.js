@@ -17,6 +17,8 @@ import grey from '../colors/grey';
  *
  */
 
+
+
 export const styleSheet = createStyleSheet('MuiToggleButtonOption', {
   root: {
     backgroundColor: 'transparent',
@@ -28,14 +30,24 @@ export const styleSheet = createStyleSheet('MuiToggleButtonOption', {
     textTransform: 'uppercase',
     // borderLeft: props.optionStyle.borderLeft? props.optionStyle.borderLeft : 'none',
     // borderRight: props.optionStyle.borderRight? props.optionStyle.borderRight : 'none',
+  },
+  rootButton:{
     height: 36,
   },
-  button: {
+  rootToggle:{
+    height: 48,
+  },
+  buttonBase: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  button:{
     color: fade(common.black, 0.3),
+  },
+  toggle:{
+    color: fade(common.black, 0.54),
   },
   dropDownButton: {
     display: 'flex',
@@ -48,8 +60,12 @@ export const styleSheet = createStyleSheet('MuiToggleButtonOption', {
   textSelected: {
     color: fade(common.black, 0.54),
   },
-  backgroundSelected: {
+  buttonSelected: {
     backgroundColor: fade(common.black, 0.3),
+  },
+  toggleSelected:{
+    backgroundColor: fade(common.black, 0.2),
+    borderRadius: "50%",
   },
   iconAndText: {
     height: 58,
@@ -108,16 +124,21 @@ class ToggleButtonOption extends Component {
 
     const buttonProps = {
       className: classNames(classes.root, {
+        [classes.rootButton]: !noBackground,
+        [classes.rootToggle] : noBackground,
         [classes.iconAndText]: icon && label,
-        [classes.backgroundSelected]: selected && !noBackground,
+        [classes.buttonSelected]: selected && !noBackground,
+        [classes.toggleSelected] : selected && noBackground,
         [classes.divided]: divider,
       }),
       onClick: this.handleOptionClick,
       centerRipple: true,
     };
     const rootProps = {
-      className: classNames(classes.button, {
-        [classes.textSelected]: selected,
+      className: classNames(classes.buttonBase, {
+        [classes.textSelected]: selected && !noBackground,
+        [classes.button] : !noBackground,
+        [classes.toggle] : noBackground,
       }),
     };
     const dropDownProps = {
@@ -142,9 +163,9 @@ class ToggleButtonOption extends Component {
       const dropButtonProps = {
         'aria-owns': 'option-menu',
         'aria-haspopup': true,
-        className: classNames(classes.root, {
+        className: classNames(classes.root, classes.rootButton, {
           [classes.iconAndText]: icon && label,
-          [classes.backgroundSelected]: selected && !noBackground,
+          [classes.buttonSelected]: selected && !noBackground,
           [classes.divided]: divider,
         }),
         onClick: this.handleClick,
