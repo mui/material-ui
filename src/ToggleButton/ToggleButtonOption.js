@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component, Children } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
@@ -17,8 +17,6 @@ import grey from '../colors/grey';
  *
  */
 
-
-
 export const styleSheet = createStyleSheet('MuiToggleButtonOption', {
   root: {
     backgroundColor: 'transparent',
@@ -31,10 +29,10 @@ export const styleSheet = createStyleSheet('MuiToggleButtonOption', {
     // borderLeft: props.optionStyle.borderLeft? props.optionStyle.borderLeft : 'none',
     // borderRight: props.optionStyle.borderRight? props.optionStyle.borderRight : 'none',
   },
-  rootButton:{
+  rootButton: {
     height: 36,
   },
-  rootToggle:{
+  rootToggle: {
     height: 48,
   },
   buttonBase: {
@@ -43,10 +41,10 @@ export const styleSheet = createStyleSheet('MuiToggleButtonOption', {
     alignItems: 'center',
     justifyContent: 'center',
   },
-  button:{
+  button: {
     color: fade(common.black, 0.3),
   },
-  toggle:{
+  toggle: {
     color: fade(common.black, 0.54),
   },
   dropDownButton: {
@@ -63,9 +61,9 @@ export const styleSheet = createStyleSheet('MuiToggleButtonOption', {
   buttonSelected: {
     backgroundColor: fade(common.black, 0.3),
   },
-  toggleSelected:{
+  toggleSelected: {
     backgroundColor: fade(common.black, 0.2),
-    borderRadius: "50%",
+    borderRadius: '50%',
   },
   iconAndText: {
     height: 58,
@@ -126,10 +124,10 @@ class ToggleButtonOption extends Component {
     const buttonProps = {
       className: classNames(classes.root, {
         [classes.rootButton]: !toggle,
-        [classes.rootToggle] : toggle,
+        [classes.rootToggle]: toggle,
         [classes.iconAndText]: icon && label,
         [classes.buttonSelected]: selected && !toggle,
-        [classes.toggleSelected] : selected && toggle && !disabled,
+        [classes.toggleSelected]: selected && toggle && !disabled,
         [classes.divided]: divider,
       }),
       onClick: this.handleOptionClick,
@@ -138,8 +136,8 @@ class ToggleButtonOption extends Component {
     const rootProps = {
       className: classNames(classes.buttonBase, {
         [classes.textSelected]: selected && !toggle,
-        [classes.button] : !toggle || disabled,
-        [classes.toggle] : toggle && !disabled,
+        [classes.button]: !toggle || disabled,
+        [classes.toggle]: toggle && !disabled,
       }),
     };
     const dropDownProps = {
@@ -155,9 +153,8 @@ class ToggleButtonOption extends Component {
       optionButton = React.createElement('div', rootProps, icon, label);
       option = React.createElement(ButtonBase, buttonProps, optionButton);
     } else {
-      const items = children.map((child, index) => {
+      const items = children.map(child => {
         return React.cloneElement(child, {
-          key: index,
           onClick: () => this.handleDropDownClick(child),
         });
       });
@@ -208,7 +205,7 @@ class ToggleButtonOption extends Component {
   }
 }
 
-Option.propTypes = {
+ToggleButtonOption.propTypes = {
   /**
    * If specified, renders a dropdown of Options of type 'MenuItem'.
    */
@@ -224,7 +221,7 @@ Option.propTypes = {
   /**
    * Determines if a toggle icon is disabled or not.
    */
-  disabled : PropTypes.bool,
+  disabled: PropTypes.bool,
   /**
    * Set a divider to the right of the option.
    */
@@ -241,11 +238,6 @@ Option.propTypes = {
    * Sets the text value of the option to the string specified.
    */
   label: PropTypes.string,
-  /**
-   * @ignore
-   * This property is overriden by the ToggleButton component.
-   */
-  toggle: PropTypes.bool,
   /**
    * @ignore
    * This property is overriden by the ToggleButton component.
@@ -270,6 +262,11 @@ Option.propTypes = {
    * The ToggleButton component is responsible for setting this property.
    */
   selected: PropTypes.bool,
+  /**
+   * @ignore
+   * This property is overriden by the ToggleButton component.
+   */
+  toggle: PropTypes.bool,
   /**
    * Sets the value of the option which may be one of the primitive types.
    */

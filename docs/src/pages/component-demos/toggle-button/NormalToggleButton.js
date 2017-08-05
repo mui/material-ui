@@ -88,9 +88,15 @@ function NormalToggleButton(props) {
           onSelect={changeColor}
           onDeselect={colorReset}
         >
-          <MenuItem value={4}>Red</MenuItem>
-          <MenuItem value={5}>Blue</MenuItem>
-          <MenuItem value={6}>Green</MenuItem>
+          <MenuItem key="1" value={4}>
+            Red
+          </MenuItem>
+          <MenuItem key="2" value={5}>
+            Blue
+          </MenuItem>
+          <MenuItem key="3cl" value={6}>
+            Green
+          </MenuItem>
         </ToggleButtonOption>
       </ToggleButton>
 
