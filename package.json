@@ -76,6 +76,8 @@
     "warning": "^3.0.0"
   },
   "devDependencies": {
+    "@types/enzyme": "^2.8.4",
+    "@types/react": "^16.0.0",
     "app-module-path": "^2.2.0",
     "argos-cli": "^0.0.9",
     "babel-cli": "^6.24.1",
