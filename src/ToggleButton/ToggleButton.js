@@ -159,7 +159,7 @@ class ToggleButton extends Component {
         index,
         divider,
         selected,
-        noBackground: toggleIcons,
+        toggle: toggleIcons,
         onClick: this.handleOptionClick,
       });
     });

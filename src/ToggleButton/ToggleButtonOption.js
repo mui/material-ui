@@ -120,15 +120,15 @@ class ToggleButtonOption extends Component {
   };
 
   render() {
-    const { icon, label, classes, divider, noBackground, selected, children } = this.props;
+    const { icon, label, classes, divider, toggle, selected, children } = this.props;
 
     const buttonProps = {
       className: classNames(classes.root, {
-        [classes.rootButton]: !noBackground,
-        [classes.rootToggle] : noBackground,
+        [classes.rootButton]: !toggle,
+        [classes.rootToggle] : toggle,
         [classes.iconAndText]: icon && label,
-        [classes.buttonSelected]: selected && !noBackground,
-        [classes.toggleSelected] : selected && noBackground,
+        [classes.buttonSelected]: selected && !toggle,
+        [classes.toggleSelected] : selected && toggle,
         [classes.divided]: divider,
       }),
       onClick: this.handleOptionClick,
@@ -136,9 +136,9 @@ class ToggleButtonOption extends Component {
     };
     const rootProps = {
       className: classNames(classes.buttonBase, {
-        [classes.textSelected]: selected && !noBackground,
-        [classes.button] : !noBackground,
-        [classes.toggle] : noBackground,
+        [classes.textSelected]: selected && !toggle,
+        [classes.button] : !toggle,
+        [classes.toggle] : toggle,
       }),
     };
     const dropDownProps = {
@@ -165,7 +165,7 @@ class ToggleButtonOption extends Component {
         'aria-haspopup': true,
         className: classNames(classes.root, classes.rootButton, {
           [classes.iconAndText]: icon && label,
-          [classes.buttonSelected]: selected && !noBackground,
+          [classes.buttonSelected]: selected && !toggle,
           [classes.divided]: divider,
         }),
         onClick: this.handleClick,
@@ -240,7 +240,7 @@ Option.propTypes = {
    * @ignore
    * This property is overriden by the ToggleButton component.
    */
-  noBackground: PropTypes.bool,
+  toggle: PropTypes.bool,
   /**
    * @ignore
    * This property is overriden by the ToggleButton component.
