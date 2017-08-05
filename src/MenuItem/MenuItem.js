@@ -189,7 +189,6 @@ class MenuItem extends Component {
   }
 
   componentDidUpdate() {
-    this.applyFocusState();
   }
 
   componentWillUnmount() {
