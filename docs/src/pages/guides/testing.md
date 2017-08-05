@@ -128,10 +128,6 @@ describe('<MyComponent />', () => {
     render = createRender();
   });
 
-  after(() => {
-    render.cleanUp();
-  });
-
   it('should work', () => {
     const wrapper = render(<MyComponent />);
   });

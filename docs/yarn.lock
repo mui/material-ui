@@ -3084,6 +3084,15 @@ react-deep-force-update@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/react-deep-force-update/-/react-deep-force-update-2.0.1.tgz#4f7f6c12c3e7de42f345992a3c518236fa1ecad3"
 
+react-dom@next:
+  version "16.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.0.0-beta.3.tgz#6b662e8db127d14565b98799c13532044c7768b9"
+  dependencies:
+    fbjs "^0.8.9"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.0"
+    prop-types "^15.5.6"
+
 react-event-listener@^0.4.5:
   version "0.4.5"
   resolved "https://registry.yarnpkg.com/react-event-listener/-/react-event-listener-0.4.5.tgz#e3e895a0970cf14ee8f890113af68197abf3d0b1"
@@ -3176,6 +3185,15 @@ react-themeable@^1.1.0:
   resolved "https://registry.yarnpkg.com/react-themeable/-/react-themeable-1.1.0.tgz#7d4466dd9b2b5fa75058727825e9f152ba379a0e"
   dependencies:
     object-assign "^3.0.0"
+
+react@next:
+  version "16.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.0.0-beta.3.tgz#f3974ce09dfef8e7debaba87c063a35aa09878a4"
+  dependencies:
+    fbjs "^0.8.9"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.0"
+    prop-types "^15.5.6"
 
 read-pkg-up@^1.0.1:
   version "1.0.1"
