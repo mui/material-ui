@@ -10,7 +10,5 @@ export default function createRender(options: Object = {}) {
     return render(node, options2);
   };
 
-  renderWithContext.cleanUp = () => {};
-
   return renderWithContext;
 }

@@ -426,7 +426,7 @@ class Modal extends Component<DefaultProps, AllProps, State> {
       <Portal
         open
         ref={node => {
-          this.mountNode = node ? node.getLayer() : node;
+          this.mountNode = node ? node.getLayer() : null;
         }}
       >
         <div

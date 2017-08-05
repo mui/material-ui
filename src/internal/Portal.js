@@ -1,8 +1,9 @@
 // @flow weak
 
 import { Component, Children } from 'react';
-import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+import canUseDom from 'dom-helpers/util/inDOM';
 
 /**
  * @ignore - internal component.
@@ -12,21 +13,11 @@ class Portal extends Component {
     open: false,
   };
 
-  state = {
-    mounted: false,
-  };
-
   componentDidMount() {
     // Support react@15.x, will be removed at some point
     if (!ReactDOM.unstable_createPortal) {
       this.renderLayer();
-      return;
     }
-
-    // eslint-disable-next-line react/no-did-mount-set-state
-    this.setState({
-      mounted: true,
-    });
   }
 
   componentDidUpdate() {
@@ -94,12 +85,12 @@ class Portal extends Component {
     }
 
     // Can't be rendered server-side.
-    if (this.state.mounted) {
+    if (canUseDom) {
       if (open) {
-        ReactDOM.unstable_createPortal(children, this.getLayer());
-      } else {
-        this.unrenderLayer();
+        return ReactDOM.unstable_createPortal(children, this.getLayer());
       }
+
+      this.unrenderLayer();
     }
 
     return null;
