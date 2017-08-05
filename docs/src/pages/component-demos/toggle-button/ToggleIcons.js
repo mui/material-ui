@@ -18,9 +18,9 @@ function ToggleIcon(props) {
   return (
     <div className={classes.root}>
       <ToggleButton toggleIcons>
-        <ToggleButtonOption icon={<Icon className="material-icons">mood</Icon>} value="1" />
-        <ToggleButtonOption icon={<Icon className="material-icons">mood_bad</Icon>} value="1" />
-        <ToggleButtonOption icon={<Icon className="material-icons">whatshot</Icon>} value="3" />
+        <ToggleButtonOption key="1" icon={<Icon className="material-icons">mood</Icon>} value="1" />
+        <ToggleButtonOption key="2" icon={<Icon className="material-icons">mood_bad</Icon>} value="1" />
+        <ToggleButtonOption key="3" icon={<Icon className="material-icons">whatshot</Icon>} value="3" />
       </ToggleButton>
     </div>
   );

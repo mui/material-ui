@@ -155,7 +155,6 @@ class ToggleButton extends Component {
       }
 
       return cloneElement(option, {
-        key: index,
         index,
         divider,
         selected,

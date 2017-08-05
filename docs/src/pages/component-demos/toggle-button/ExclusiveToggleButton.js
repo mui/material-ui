@@ -40,18 +40,21 @@ function ExclusiveToggleButton(props) {
     <div className={classes.root}>
       <ToggleButton exclusive className="toggle">
         <ToggleButtonOption
+          key="1"
           icon={<Icon className="material-icons">format_align_left</Icon>}
           value="1"
           onSelect={alignLeft}
           onDeselect={alignReset}
         />
         <ToggleButtonOption
+          key="2"
           icon={<Icon className="material-icons">format_align_center</Icon>}
           value="2"
           onSelect={alignCenter}
           onDeselect={alignReset}
         />
         <ToggleButtonOption
+          key="3"
           icon={<Icon className="material-icons">format_align_right</Icon>}
           value="3"
           onSelect={alignRight}

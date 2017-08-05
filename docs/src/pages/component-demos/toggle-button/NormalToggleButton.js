@@ -62,24 +62,28 @@ function NormalToggleButton(props) {
     <div className={classes.root}>
       <ToggleButton>
         <ToggleButtonOption
+          key="1"
           icon={<Icon className="material-icons">format_bold</Icon>}
           value={1}
           onSelect={changeText}
           onDeselect={resetText}
         />
         <ToggleButtonOption
+          key="2"
           icon={<Icon className="material-icons">format_italic</Icon>}
           value={2}
           onSelect={changeText}
           onDeselect={resetText}
         />
         <ToggleButtonOption
+          key="3"
           icon={<Icon className="material-icons">format_underline</Icon>}
           value={3}
           onSelect={changeText}
           onDeselect={resetText}
         />
         <ToggleButtonOption
+          key="4"
           icon={<Icon className="material-icons">format_color_fill</Icon>}
           onSelect={changeColor}
           onDeselect={colorReset}
