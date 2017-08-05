@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
+import React, { Component, Children } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import ButtonBase from '../internal/ButtonBase';
@@ -17,7 +17,7 @@ import grey from '../colors/grey';
  *
  */
 
-export const styleSheet = createStyleSheet('MuiOption', {
+export const styleSheet = createStyleSheet('MuiToggleButtonOption', {
   root: {
     backgroundColor: 'transparent',
     borderRadius: 0,
@@ -59,7 +59,7 @@ export const styleSheet = createStyleSheet('MuiOption', {
   },
 });
 
-class Option extends Component {
+class ToggleButtonOption extends Component {
   static muiName = 'Option';
 
   static defaultProps = {
@@ -250,4 +250,4 @@ Option.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
 };
 
-export default withStyles(styleSheet)(Option);
+export default withStyles(styleSheet)(ToggleButtonOption);

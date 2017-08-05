@@ -1,9 +1,9 @@
-// @flow
+//@flow
 
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
-import ToggleButton, { Option } from 'material-ui/ToggleButton';
+import ToggleButton, { ToggleButtonOption } from 'material-ui/ToggleButton';
 import Icon from 'material-ui/Icon';
 
 const styleSheet = createStyleSheet('NormalToggleButton', {
@@ -18,9 +18,9 @@ function ToggleIcon(props) {
   return (
     <div className={classes.root}>
       <ToggleButton toggleIcons>
-        <Option icon={<Icon className="material-icons">mood</Icon>} value="1" />
-        <Option icon={<Icon className="material-icons">mood_bad</Icon>} value="1" />
-        <Option icon={<Icon className="material-icons">whatshot</Icon>} value="3" />
+        <ToggleButtonOption icon={<Icon className="material-icons">mood</Icon>} value="1" />
+        <ToggleButtonOption icon={<Icon className="material-icons">mood_bad</Icon>} value="1" />
+        <ToggleButtonOption icon={<Icon className="material-icons">whatshot</Icon>} value="3" />
       </ToggleButton>
     </div>
   );

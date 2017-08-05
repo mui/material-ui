@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
-import ToggleButton, { Option } from 'material-ui/ToggleButton';
+import ToggleButton, { ToggleButtonOption } from 'material-ui/ToggleButton';
 import Icon from 'material-ui/Icon';
 import { MenuItem } from 'material-ui/Menu';
 import Paper from 'material-ui/Paper';
@@ -61,25 +61,25 @@ function NormalToggleButton(props) {
   return (
     <div className={classes.root}>
       <ToggleButton>
-        <Option
+        <ToggleButtonOption
           icon={<Icon className="material-icons">format_bold</Icon>}
           value={1}
           onSelect={changeText}
           onDeselect={resetText}
         />
-        <Option
+        <ToggleButtonOption
           icon={<Icon className="material-icons">format_italic</Icon>}
           value={2}
           onSelect={changeText}
           onDeselect={resetText}
         />
-        <Option
+        <ToggleButtonOption
           icon={<Icon className="material-icons">format_underline</Icon>}
           value={3}
           onSelect={changeText}
           onDeselect={resetText}
         />
-        <Option
+        <ToggleButtonOption
           icon={<Icon className="material-icons">format_color_fill</Icon>}
           onSelect={changeColor}
           onDeselect={colorReset}
@@ -87,7 +87,7 @@ function NormalToggleButton(props) {
           <MenuItem value={4}>Red</MenuItem>
           <MenuItem value={5}>Blue</MenuItem>
           <MenuItem value={6}>Green</MenuItem>
-        </Option>
+        </ToggleButtonOption>
       </ToggleButton>
 
       <Paper id="dummyDiv" className={classes.paper} elevation={4}>

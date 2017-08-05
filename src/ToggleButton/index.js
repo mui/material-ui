@@ -1,4 +1,4 @@
 // @flow
 
 export { default } from './ToggleButton';
-export { default as Option } from './Option';
+export { default as ToggleButtonOption } from './ToggleButtonOption';
