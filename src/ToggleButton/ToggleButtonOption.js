@@ -80,6 +80,7 @@ class ToggleButtonOption extends Component {
 
   static defaultProps = {
     selected: false,
+    disabled: false,
   };
 
   componentWillMount() {
@@ -120,7 +121,7 @@ class ToggleButtonOption extends Component {
   };
 
   render() {
-    const { icon, label, classes, divider, toggle, selected, children } = this.props;
+    const { icon, label, classes, disabled, divider, toggle, selected, children } = this.props;
 
     const buttonProps = {
       className: classNames(classes.root, {
@@ -128,7 +129,7 @@ class ToggleButtonOption extends Component {
         [classes.rootToggle] : toggle,
         [classes.iconAndText]: icon && label,
         [classes.buttonSelected]: selected && !toggle,
-        [classes.toggleSelected] : selected && toggle,
+        [classes.toggleSelected] : selected && toggle && !disabled,
         [classes.divided]: divider,
       }),
       onClick: this.handleOptionClick,
@@ -137,8 +138,8 @@ class ToggleButtonOption extends Component {
     const rootProps = {
       className: classNames(classes.buttonBase, {
         [classes.textSelected]: selected && !toggle,
-        [classes.button] : !toggle,
-        [classes.toggle] : toggle,
+        [classes.button] : !toggle || disabled,
+        [classes.toggle] : toggle && !disabled,
       }),
     };
     const dropDownProps = {
@@ -220,6 +221,10 @@ Option.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * Determines if a toggle icon is disabled or not.
+   */
+  disabled : PropTypes.bool,
   /**
    * Set a divider to the right of the option.
    */
