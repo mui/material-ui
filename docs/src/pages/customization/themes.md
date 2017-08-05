@@ -42,7 +42,7 @@ If you want to learn more about color, you can check out [the color section](/st
 
 Too many type sizes and styles at once can wreck any layout.
 We use a **limited set of type sizes** that work well together along with the layout grid.
-Those sizes are used accros our components.
+Those sizes are used across our components.
 
 Have a look at the following example regarding changing the default values, like the font family.
 If you want to learn more about color, you can check out [the typography section](/style/typography).
