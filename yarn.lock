@@ -5481,7 +5481,7 @@ react-docgen@^3.0.0-beta4:
     node-dir "^0.1.10"
     recast "^0.11.5"
 
-react-dom@^15.6.1:
+react-dom@latest:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.6.1.tgz#2cb0ed4191038e53c209eb3a79a23e2a4cf99470"
   dependencies:
@@ -5535,7 +5535,7 @@ react-transition-group@^2.2.0:
     prop-types "^15.5.8"
     warning "^3.0.0"
 
-react@^15.5.4, react@^15.6.1:
+react@^15.5.4, react@latest:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/react/-/react-15.6.1.tgz#baa8434ec6780bde997cdc380b79cd33b96393df"
   dependencies:

@@ -3,16 +3,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { assert } from 'chai';
-import { createMount } from '../test-utils';
+import { createMount, createRender } from '../test-utils';
 import Portal from './Portal';
 
 const versions = ['latets', 'next'];
 
 describe('<Portal />', () => {
   let mount;
+  let render;
 
   before(() => {
     mount = createMount();
+    render = createRender();
   });
 
   after(() => {
@@ -39,6 +41,21 @@ describe('<Portal />', () => {
           // $FlowFixMe
           ReactDOM.unstable_createPortal = undefined;
         }
+      });
+
+      describe('server side', () => {
+        // Only run the test on node.
+        if (!/jsdom/.test(window.navigator.userAgent) || verion === 'next') {
+          return;
+        }
+
+        it('render nothing on the server', () => {
+          const markup1 = render(<div>Hello World</div>);
+          assert.strictEqual(markup1.text(), 'Hello World');
+
+          const markup2 = render(<Portal>Hello World</Portal>);
+          assert.strictEqual(markup2.text(), '');
+        });
       });
 
       it('should render nothing directly', () => {
