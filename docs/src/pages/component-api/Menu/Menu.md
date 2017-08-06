@@ -10,7 +10,7 @@
 | MenuListProps | Object |  | Properties applied to the `MenuList` element. |
 | anchorEl | Object |  | The DOM element used to set the position of the menu. |
 | children | Element |  | Menu contents, normally `MenuItem`s. |
-| classes | Object |  | Useful to extend the style applied to components. |
+| classes | Object | {} | Useful to extend the style applied to components. |
 | onEnter | TransitionCallback |  | Callback fired before the Menu enters. |
 | onEntered | TransitionCallback |  | Callback fired when the Menu has entered. |
 | onEntering | TransitionCallback |  | Callback fired when the Menu is entering. |

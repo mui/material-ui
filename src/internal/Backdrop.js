@@ -14,17 +14,23 @@ export const styleSheet = createStyleSheet('MuiBackdrop', theme => ({
     position: 'fixed',
     top: 0,
     left: 0,
+    // Remove grey highlight
+    WebkitTapHighlightColor: theme.palette.common.transparent,
     backgroundColor: theme.palette.common.lightBlack,
     transition: theme.transitions.create('opacity'),
     willChange: 'opacity',
     opacity: 0,
   },
   invisible: {
-    backgroundColor: 'rgba(0, 0, 0, 0)',
+    backgroundColor: theme.palette.common.transparent,
   },
 }));
 
-type Props = {
+type DefaultProps = {
+  classes: Object,
+};
+
+export type Props = {
   /**
    * Can be used, for instance, to render a letter inside the avatar.
    */
@@ -32,7 +38,7 @@ type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -43,10 +49,12 @@ type Props = {
   invisible?: boolean,
 };
 
+type AllProps = DefaultProps & Props;
+
 /**
  * @ignore - internal component.
  */
-function Backdrop(props: Props) {
+function Backdrop(props: AllProps) {
   const { children, classes, className, invisible, ...other } = props;
 
   const backdropClass = classNames(

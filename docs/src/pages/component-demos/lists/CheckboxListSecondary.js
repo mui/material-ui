@@ -1,4 +1,4 @@
-// @flow
+// @flow weak
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -8,7 +8,7 @@ import Checkbox from 'material-ui/Checkbox';
 import Avatar from 'material-ui/Avatar';
 import remyImage from 'docs/src/assets/images/remy.jpg';
 
-const styleSheet = createStyleSheet('CheckboxListSecondary', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   root: {
     width: '100%',
     maxWidth: 360,

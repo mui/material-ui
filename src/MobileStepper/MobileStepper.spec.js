@@ -136,7 +136,7 @@ describe('<MobileStepper />', () => {
     );
   });
 
-  it('should honour the activeStep prop', () => {
+  it('should honor the activeStep prop', () => {
     const wrapper = shallow(<MobileStepper type="dots" activeStep={1} {...defaultProps} />);
     assert.strictEqual(
       wrapper.childAt(1).childAt(1).hasClass(classes.dotActive),

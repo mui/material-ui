@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Icon from 'material-ui/Icon';
 
-const styleSheet = createStyleSheet('Icons', {
+const styleSheet = createStyleSheet({
   root: {
     display: 'flex',
     alignItems: 'flex-end',

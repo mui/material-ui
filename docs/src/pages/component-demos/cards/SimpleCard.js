@@ -1,4 +1,4 @@
-// @flow
+// @flow weak
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -7,7 +7,7 @@ import Card, { CardActions, CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 
-const styleSheet = createStyleSheet('SimpleCard', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   card: {
     minWidth: 275,
   },

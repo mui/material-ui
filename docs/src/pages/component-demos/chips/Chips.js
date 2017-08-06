@@ -1,4 +1,4 @@
-// @flow
+// @flow weak
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -9,7 +9,7 @@ import FaceIcon from 'material-ui-icons/Face';
 import grey from 'material-ui/colors/grey';
 import uxecoImage from 'docs/src/assets/images/uxceo-128.jpg';
 
-const styleSheet = createStyleSheet('Chips', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   chip: {
     margin: theme.spacing.unit,
   },

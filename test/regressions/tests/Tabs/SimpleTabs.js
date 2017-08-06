@@ -8,7 +8,7 @@ import Paper from 'material-ui/Paper';
 import Tabs from 'material-ui/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
 
-const styleSheet = createStyleSheet('SimpleTabs', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   root: {
     width: 600,
   },

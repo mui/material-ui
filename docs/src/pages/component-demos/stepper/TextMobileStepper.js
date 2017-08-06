@@ -1,4 +1,4 @@
-// @flow
+// @flow weak
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -7,7 +7,7 @@ import MobileStepper from 'material-ui/MobileStepper';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 
-const styleSheet = createStyleSheet('TextMobileStepper', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   root: {
     maxWidth: 400,
     flexGrow: 1,

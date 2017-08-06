@@ -6,7 +6,7 @@ import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid';
 
-const styleSheet = createStyleSheet('AutoGrid', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   root: {
     flexGrow: 1,
     marginTop: 30,
@@ -23,7 +23,7 @@ function AutoGrid(props) {
 
   return (
     <div className={classes.root}>
-      <Grid container gutter={24}>
+      <Grid container spacing={24}>
         <Grid item xs>
           <Paper className={classes.paper}>xs</Paper>
         </Grid>
@@ -34,7 +34,7 @@ function AutoGrid(props) {
           <Paper className={classes.paper}>xs</Paper>
         </Grid>
       </Grid>
-      <Grid container gutter={24}>
+      <Grid container spacing={24}>
         <Grid item xs>
           <Paper className={classes.paper}>xs</Paper>
         </Grid>

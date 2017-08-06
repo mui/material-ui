@@ -6,7 +6,7 @@ import Input, { InputLabel } from '../Input';
 import FormControl from '../Form/FormControl';
 import FormHelperText from '../Form/FormHelperText';
 
-type Props = {
+export type Props = {
   /**
    * This property helps users to fill forms faster, especially on mobile devices.
    * The name can be confusion, it's more like an autofill.
@@ -108,7 +108,7 @@ type Props = {
    */
   rows?: string | number,
   /**
-   * Maxium number of rows to display when multiline option is set to true.
+   * Maximum number of rows to display when multiline option is set to true.
    */
   rowsMax?: string | number,
   /**
@@ -177,7 +177,7 @@ function TextField(props: Props) {
       {...other}
     >
       {label &&
-        <InputLabel className={labelClassName} {...InputLabelProps}>
+        <InputLabel htmlFor={id} className={labelClassName} {...InputLabelProps}>
           {label}
         </InputLabel>}
       <Input

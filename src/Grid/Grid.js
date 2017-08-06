@@ -64,17 +64,17 @@ function generateGrid(globalStyles, theme, breakpoint) {
 function generateGutter(theme, breakpoint) {
   const styles = {};
 
-  GUTTERS.forEach((gutter, index) => {
+  GUTTERS.forEach((spacing, index) => {
     if (index === 0) {
       // Skip the default style.
       return;
     }
 
-    styles[`gutter-${breakpoint}-${gutter}`] = {
-      margin: -gutter / 2,
-      width: `calc(100% + ${gutter}px)`,
+    styles[`spacing-${breakpoint}-${spacing}`] = {
+      margin: -spacing / 2,
+      width: `calc(100% + ${spacing}px)`,
       '& > $typeItem': {
-        padding: gutter / 2,
+        padding: spacing / 2,
       },
     };
   });
@@ -123,6 +123,9 @@ export const styleSheet = createStyleSheet('MuiGrid', theme => {
     'align-xs-flex-end': {
       alignItems: 'flex-end',
     },
+    'align-xs-baseline': {
+      alignItems: 'baseline',
+    },
     'justify-xs-center': {
       justifyContent: 'center',
     },
@@ -147,7 +150,11 @@ export const styleSheet = createStyleSheet('MuiGrid', theme => {
 
 type GridSizes = boolean | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
-type Props = {
+type DefaultProps = {
+  classes: Object,
+};
+
+export type Props = {
   /**
    * The content of the component.
    */
@@ -155,7 +162,7 @@ type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -179,7 +186,7 @@ type Props = {
    * Defines the `align-items` style property.
    * It's applied for all screen sizes.
    */
-  align?: 'flex-start' | 'center' | 'flex-end' | 'stretch',
+  align?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline',
   /**
    * Defines the `flex-direction` style property.
    * It is applied for all screen sizes.
@@ -189,7 +196,7 @@ type Props = {
    * Defines the space between the type `item` component.
    * It can only be used on a type `container` component.
    */
-  gutter?: 0 | 8 | 16 | 24 | 40,
+  spacing?: 0 | 8 | 16 | 24 | 40,
   /**
    * If provided, will wrap with [Hidden](/component-api/Hidden) component and given properties.
    */
@@ -231,7 +238,9 @@ type Props = {
   xl?: GridSizes,
 };
 
-function Grid(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function Grid(props: AllProps) {
   const {
     classes,
     className: classNameProp,
@@ -240,7 +249,7 @@ function Grid(props: Props) {
     item,
     align,
     direction,
-    gutter,
+    spacing,
     hidden,
     justify,
     wrap,
@@ -256,7 +265,7 @@ function Grid(props: Props) {
     {
       [classes.typeContainer]: container,
       [classes.typeItem]: item,
-      [classes[`gutter-xs-${String(gutter)}`]]: container && gutter !== 0,
+      [classes[`spacing-xs-${String(spacing)}`]]: container && spacing !== 0,
       [classes[`direction-xs-${String(direction)}`]]: direction !== Grid.defaultProps.direction,
       [classes[`wrap-xs-${String(wrap)}`]]: wrap !== Grid.defaultProps.wrap,
       [classes[`align-xs-${String(align)}`]]: align !== Grid.defaultProps.align,
@@ -291,15 +300,15 @@ function Grid(props: Props) {
 }
 
 Grid.defaultProps = {
+  align: 'stretch',
   component: 'div',
   container: false,
-  item: false,
-  align: 'stretch',
   direction: 'row',
-  gutter: 16,
-  justify: 'flex-start',
-  wrap: 'wrap',
   hidden: undefined,
+  item: false,
+  justify: 'flex-start',
+  spacing: 16,
+  wrap: 'wrap',
 };
 
 /**
@@ -316,11 +325,11 @@ if (process.env.NODE_ENV !== 'production') {
   GridWrapper.propTypes = {
     align: requireProp('container'),
     direction: requireProp('container'),
-    gutter: requireProp('container'),
     justify: requireProp('container'),
     lg: requireProp('item'),
     md: requireProp('item'),
     sm: requireProp('item'),
+    spacing: requireProp('container'),
     wrap: requireProp('container'),
     xs: requireProp('item'),
   };

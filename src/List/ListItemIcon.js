@@ -15,7 +15,11 @@ export const styleSheet = createStyleSheet('MuiListItemIcon', theme => ({
   },
 }));
 
-type Props = {
+type DefaultProps = {
+  classes: Object,
+};
+
+export type Props = {
   /**
    * The content of the component, normally `Icon`, `SvgIcon`,
    * or a `material-ui-icons` SVG icon component.
@@ -24,17 +28,19 @@ type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
   className?: string,
 };
 
+type AllProps = DefaultProps & Props;
+
 /**
  * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
  */
-function ListItemIcon(props: Props) {
+function ListItemIcon(props: AllProps) {
   const { children, classes, className: classNameProp, ...other } = props;
 
   return React.cloneElement(children, {

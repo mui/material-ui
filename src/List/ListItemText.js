@@ -23,7 +23,8 @@ export const styleSheet = createStyleSheet('MuiListItemText', theme => ({
   dense: {
     fontSize: 13,
   },
-  text: {
+  text: {},
+  textDense: {
     fontSize: 'inherit',
   },
 }));
@@ -53,7 +54,10 @@ function ListItemText(props, context) {
       {primary &&
         (disableTypography
           ? primary
-          : <Typography type="subheading" className={classNames({ [classes.text]: dense })}>
+          : <Typography
+              type="subheading"
+              className={classNames(classes.text, { [classes.textDense]: dense })}
+            >
               {primary}
             </Typography>)}
       {secondary &&
@@ -62,7 +66,7 @@ function ListItemText(props, context) {
           : <Typography
               color="secondary"
               type="body1"
-              className={classNames({ [classes.text]: dense })}
+              className={classNames(classes.text, { [classes.textDense]: dense })}
             >
               {secondary}
             </Typography>)}
@@ -81,7 +85,7 @@ ListItemText.propTypes = {
   className: PropTypes.string,
   /**
    * If `true`, the children won't be wrapped by a typography component.
-   * For instance, that can be usefull to can render an h4 instead of a
+   * For instance, that can be useful to can render an h4 instead of a
    */
   disableTypography: PropTypes.bool,
   /**

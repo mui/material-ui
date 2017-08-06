@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { isDirty } from '../Input/Input';
+import { isMuiComponent } from '../utils/reactHelpers';
 
 export const styleSheet = createStyleSheet('MuiFormControl', theme => ({
   root: {
@@ -29,13 +30,14 @@ export const styleSheet = createStyleSheet('MuiFormControl', theme => ({
 
 type DefaultProps = {
   disabled: boolean,
+  classes: Object,
   error: boolean,
   fullWidth: boolean,
   margin: 'none',
   required: boolean,
 };
 
-type Props = DefaultProps & {
+export type Props = {
   /**
    * The contents of the form control.
    */
@@ -43,7 +45,7 @@ type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -78,6 +80,8 @@ type Props = DefaultProps & {
   margin?: 'none' | 'dense' | 'normal',
 };
 
+type AllProps = DefaultProps & Props;
+
 type State = {
   dirty: boolean,
   focused: boolean,
@@ -86,8 +90,10 @@ type State = {
 /**
  * Provides context such as dirty/focused/error/required for form inputs.
  */
-class FormControl extends Component<DefaultProps, Props, State> {
+class FormControl extends Component<DefaultProps, AllProps, State> {
+  props: AllProps;
   static defaultProps = {
+    classes: {},
     disabled: false,
     error: false,
     fullWidth: false,
@@ -127,7 +133,7 @@ class FormControl extends Component<DefaultProps, Props, State> {
     // We need to iterate through the children and find the Input in order
     // to fully support server side rendering.
     Children.forEach(this.props.children, child => {
-      if (child && child.type && child.type.muiName === 'Input' && isDirty(child.props, true)) {
+      if (isMuiComponent(child, 'Input') && isDirty(child.props, true)) {
         this.setState({ dirty: true });
       }
     });

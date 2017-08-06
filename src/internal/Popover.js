@@ -80,6 +80,7 @@ type Origin = {
 
 type DefaultProps = {
   anchorOrigin: Origin,
+  classes: Object,
   modal: boolean,
   open: boolean,
   transformOrigin: Origin,
@@ -87,7 +88,7 @@ type DefaultProps = {
   elevation: number,
 };
 
-type Props = DefaultProps & {
+export type Props = {
   /**
    * This is the DOM element that will be used
    * to set the position of the popover.
@@ -95,7 +96,8 @@ type Props = DefaultProps & {
   anchorEl?: Object,
   /**
    * This is the point on the anchor where the popover's
-   * `targetOrigin` will attach to.
+   * `anchorEl` will attach to.
+   *
    * Options:
    * vertical: [top, center, bottom];
    * horizontal: [left, center, right].
@@ -108,7 +110,7 @@ type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -193,16 +195,19 @@ type Props = DefaultProps & {
   theme: Object,
 };
 
+type AllProps = DefaultProps & Props;
+
 /**
  * @ignore - internal component.
  */
-class Popover extends Component<DefaultProps, Props, void> {
-  props: Props;
+class Popover extends Component<DefaultProps, AllProps, void> {
+  props: AllProps;
   static defaultProps: DefaultProps = {
     anchorOrigin: {
       vertical: 'top',
       horizontal: 'left',
     },
+    classes: {},
     modal: true,
     open: false,
     transformOrigin: {
@@ -366,6 +371,7 @@ class Popover extends Component<DefaultProps, Props, void> {
 
   handleGetOffsetTop = getOffsetTop;
   handleGetOffsetLeft = getOffsetLeft;
+
   /**
    * Returns the top/left offset of the position
    * to attach to on the anchor element (or body if none is provided)

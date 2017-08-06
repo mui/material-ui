@@ -6,7 +6,7 @@ import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid';
 
-const styleSheet = createStyleSheet('CenteredGrid', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   root: {
     flexGrow: 1,
     marginTop: 30,
@@ -23,7 +23,7 @@ function CenteredGrid(props) {
 
   return (
     <div className={classes.root}>
-      <Grid container gutter={24}>
+      <Grid container spacing={24}>
         <Grid item xs={12}>
           <Paper className={classes.paper}>xs=12</Paper>
         </Grid>

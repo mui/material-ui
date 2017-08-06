@@ -136,7 +136,7 @@ describe('<Chip />', () => {
       assert.strictEqual(
         onRequestDeleteSpy.callCount,
         1,
-        'should have called the onRequestDelete hanlder',
+        'should have called the onRequestDelete handler',
       );
     });
 
@@ -149,7 +149,7 @@ describe('<Chip />', () => {
       assert.strictEqual(
         stopPropagationSpy.callCount,
         1,
-        'should have called the stopPropagation hanlder',
+        'should have called the stopPropagation handler',
       );
     });
   });

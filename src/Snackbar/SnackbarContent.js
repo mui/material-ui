@@ -43,7 +43,11 @@ export const styleSheet = createStyleSheet('MuiSnackbarContent', theme => {
   };
 });
 
-type Props = {
+type DefaultProps = {
+  classes: Object,
+};
+
+export type Props = {
   /**
    * The action to display.
    */
@@ -51,7 +55,7 @@ type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -62,7 +66,9 @@ type Props = {
   message: Element<*>,
 };
 
-function SnackbarContent(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function SnackbarContent(props: AllProps) {
   const { action, classes, className, message, ...other } = props;
 
   return (

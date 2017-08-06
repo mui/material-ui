@@ -187,7 +187,7 @@ Slide.propTypes = {
    */
   onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
   /**
-   * @ginore
+   * @ignore
    */
   theme: PropTypes.object.isRequired,
 };

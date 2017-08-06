@@ -1,11 +1,11 @@
-// @flow
+// @flow weak
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Chip from 'material-ui/Chip';
 
-const styleSheet = createStyleSheet('ChipsArray', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   chip: {
     margin: theme.spacing.unit / 2,
   },

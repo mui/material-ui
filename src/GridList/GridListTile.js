@@ -1,0 +1,160 @@
+// @flow weak
+
+import React, { Component, Children, cloneElement } from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import EventListener from 'react-event-listener';
+import debounce from 'lodash/debounce';
+import createStyleSheet from '../styles/createStyleSheet';
+import withStyles from '../styles/withStyles';
+
+export const styleSheet = createStyleSheet('MuiGridListTile', {
+  root: {
+    boxSizing: 'border-box',
+  },
+  tile: {
+    position: 'relative',
+    display: 'block', // In case it's not renderd with a div.
+    height: '100%',
+    overflow: 'hidden',
+  },
+  imgFullHeight: {
+    height: '100%',
+    transform: 'translateX(-50%)',
+    position: 'relative',
+    left: '50%',
+  },
+  imgFullWidth: {
+    width: '100%',
+    position: 'relative',
+    transform: 'translateY(-50%)',
+    top: '50%',
+  },
+});
+
+class GridListTile extends Component {
+  static defaultProps = {
+    cols: 1,
+    rows: 1,
+    component: 'li',
+  };
+
+  componentDidMount() {
+    this.ensureImageCover();
+  }
+
+  componentDidUpdate() {
+    this.ensureImageCover();
+  }
+
+  componentWillUnmount() {
+    this.handleResize.cancel();
+  }
+
+  imgElement = null;
+
+  handleResize = debounce(() => {
+    this.fit();
+  }, 166);
+
+  fit = () => {
+    const imgElement = this.imgElement;
+
+    if (!imgElement) {
+      return;
+    }
+
+    if (!imgElement.complete) {
+      return;
+    }
+
+    if (
+      imgElement.width / imgElement.height >
+      imgElement.parentNode.offsetWidth / imgElement.parentNode.offsetHeight
+    ) {
+      imgElement.classList.remove(this.props.classes.imgFullWidth);
+      imgElement.classList.add(this.props.classes.imgFullHeight);
+    } else {
+      imgElement.classList.remove(this.props.classes.imgFullHeight);
+      imgElement.classList.add(this.props.classes.imgFullWidth);
+    }
+
+    imgElement.removeEventListener('load', this.fit);
+  };
+
+  ensureImageCover() {
+    if (!this.imgElement) {
+      return;
+    }
+
+    if (this.imgElement.complete) {
+      this.fit();
+    } else {
+      this.imgElement.addEventListener('load', this.fit);
+    }
+  }
+
+  render() {
+    const {
+      children,
+      classes,
+      className,
+      cols,
+      component: ComponentProp,
+      rows,
+      ...other
+    } = this.props;
+
+    return (
+      <ComponentProp className={classNames(classes.root, className)} {...other}>
+        <EventListener target="window" onResize={this.handleResize} />
+        <div className={classes.tile}>
+          {Children.map(children, child => {
+            if (child.type === 'img') {
+              return cloneElement(child, {
+                key: 'img',
+                ref: node => {
+                  this.imgElement = node;
+                },
+              });
+            }
+
+            return child;
+          })}
+        </div>
+      </ComponentProp>
+    );
+  }
+}
+
+GridListTile.propTypes = {
+  /**
+   * Theoretically you can pass any node as children, but the main use case is to pass an img,
+   * in which case GridListTile takes care of making the image "cover" available space
+   * (similar to `background-size: cover` or to `object-fit: cover`).
+   */
+  children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * Width of the tile in number of grid cells.
+   */
+  cols: PropTypes.number,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  /**
+   * Height of the tile in number of grid cells.
+   */
+  rows: PropTypes.number,
+};
+
+export default withStyles(styleSheet)(GridListTile);

@@ -6,7 +6,7 @@ import Paper from 'material-ui/Paper';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 
-const styleSheet = createStyleSheet('SimpleGrid', () => ({
+const styleSheet = createStyleSheet(() => ({
   root: {
     width: 400,
   },
@@ -21,7 +21,7 @@ function SimpleGrid(props) {
 
   return (
     <div className={classes.root}>
-      <Grid container gutter={24}>
+      <Grid container spacing={24}>
         <Grid item xs={12}>
           <Paper className={classes.paper}>xs=12</Paper>
         </Grid>

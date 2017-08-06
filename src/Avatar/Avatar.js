@@ -34,11 +34,11 @@ export const styleSheet = createStyleSheet('MuiAvatar', theme => ({
 }));
 
 type DefaultProps = {
-  alt: string,
+  classes: Object,
   component: string,
 };
 
-type Props = DefaultProps & {
+export type Props = {
   /**
    * Used in combination with `src` or `srcSet` to
    * provide an alt attribute for the rendered `img` element.
@@ -61,7 +61,7 @@ type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -90,7 +90,9 @@ type Props = DefaultProps & {
   srcSet?: string,
 };
 
-function Avatar(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function Avatar(props: AllProps) {
   const {
     alt,
     classes,
@@ -142,7 +144,6 @@ function Avatar(props: Props) {
 }
 
 Avatar.defaultProps = {
-  alt: '',
   component: 'div',
 };
 

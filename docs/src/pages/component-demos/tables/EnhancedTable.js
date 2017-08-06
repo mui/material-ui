@@ -37,6 +37,7 @@ const columnData = [
 
 class EnhancedTableHead extends Component {
   static propTypes = {
+    numSelected: PropTypes.number.isRequired,
     onRequestSort: PropTypes.func.isRequired,
     onSelectAllClick: PropTypes.func.isRequired,
     order: PropTypes.string.isRequired,
@@ -48,13 +49,17 @@ class EnhancedTableHead extends Component {
   };
 
   render() {
-    const { onSelectAllClick, order, orderBy } = this.props;
+    const { onSelectAllClick, order, orderBy, numSelected } = this.props;
 
     return (
       <TableHead>
         <TableRow>
           <TableCell checkbox>
-            <Checkbox onChange={onSelectAllClick} />
+            <Checkbox
+              indeterminate={numSelected > 0 && numSelected < 5}
+              checked={numSelected === 5}
+              onChange={onSelectAllClick}
+            />
           </TableCell>
           {columnData.map(column => {
             return (
@@ -79,7 +84,7 @@ class EnhancedTableHead extends Component {
   }
 }
 
-const toolbarStyleSheet = createStyleSheet('EnhancedTableToolbar', theme => ({
+const toolbarStyleSheet = createStyleSheet(theme => ({
   root: {
     paddingRight: 2,
   },
@@ -141,7 +146,7 @@ EnhancedTableToolbar.propTypes = {
 
 EnhancedTableToolbar = withStyles(toolbarStyleSheet)(EnhancedTableToolbar);
 
-const styleSheet = createStyleSheet('EnhancedTable', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   paper: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
@@ -224,6 +229,7 @@ class EnhancedTable extends Component {
         <EnhancedTableToolbar numSelected={selected.length} />
         <Table>
           <EnhancedTableHead
+            numSelected={selected.length}
             order={order}
             orderBy={orderBy}
             onSelectAllClick={this.handleSelectAllClick}

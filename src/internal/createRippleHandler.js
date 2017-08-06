@@ -1,7 +1,7 @@
-// @flow weak
+// @flow
 
-export default function createRippleHandler(instance, eventName, action, cb) {
-  return function handleEvent(event) {
+function createRippleHandler(instance: Object, eventName: string, action: string, cb: ?Function) {
+  return function handleEvent(event: SyntheticUIEvent) {
     if (cb) {
       cb.call(instance, event);
     }
@@ -21,3 +21,5 @@ export default function createRippleHandler(instance, eventName, action, cb) {
     return true;
   };
 }
+
+export default createRippleHandler;

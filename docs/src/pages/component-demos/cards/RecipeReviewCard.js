@@ -1,4 +1,4 @@
-// @flow
+// @flow weak
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -13,10 +13,12 @@ import red from 'material-ui/colors/red';
 import FavoriteIcon from 'material-ui-icons/Favorite';
 import ShareIcon from 'material-ui-icons/Share';
 import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
-import paellaImage from 'docs/src/assets/images/paella.jpg';
+import paellaImage from 'docs/src/assets/images/cards/paella.jpg';
 
-const styleSheet = createStyleSheet('RecipeReviewCard', theme => ({
-  card: { maxWidth: 400 },
+const styleSheet = createStyleSheet(theme => ({
+  card: {
+    maxWidth: 400,
+  },
   expand: {
     transform: 'rotate(0deg)',
     transition: theme.transitions.create('transform', {
@@ -26,8 +28,12 @@ const styleSheet = createStyleSheet('RecipeReviewCard', theme => ({
   expandOpen: {
     transform: 'rotate(180deg)',
   },
-  avatar: { backgroundColor: red[500] },
-  flexGrow: { flex: '1 1 auto' },
+  avatar: {
+    backgroundColor: red[500],
+  },
+  flexGrow: {
+    flex: '1 1 auto',
+  },
 }));
 
 class RecipeReviewCard extends Component {

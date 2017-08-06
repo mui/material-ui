@@ -76,13 +76,14 @@ export const styleSheet = createStyleSheet('MuiDrawer', theme => ({
 type DefaultProps = {
   anchor: 'left',
   docked: boolean,
+  classes: Object,
   enterTransitionDuration: number,
   leaveTransitionDuration: number,
   open: boolean,
   elevation: number,
 };
 
-type Props = {
+export type Props = {
   /**
    * Side which will the drawer will appear from.
    */
@@ -94,7 +95,7 @@ type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -136,15 +137,18 @@ type Props = {
   theme: Object,
 };
 
+type AllProps = DefaultProps & Props;
+
 type State = {
   firstMount: boolean,
 };
 
-class Drawer extends Component<DefaultProps, Props, State> {
-  props: Props;
+class Drawer extends Component<DefaultProps, AllProps, State> {
+  props: AllProps;
   static defaultProps = {
     anchor: 'left',
     docked: false,
+    classes: {},
     enterTransitionDuration: duration.enteringScreen,
     leaveTransitionDuration: duration.leavingScreen,
     open: false,
@@ -154,7 +158,7 @@ class Drawer extends Component<DefaultProps, Props, State> {
   state: State = {
     // Let's assume that the Drawer will always be rendered on user space.
     // We use that state is order to skip the appear transition during the
-    // inital mount of the component.
+    // initial mount of the component.
     firstMount: true,
   };
 
@@ -206,8 +210,10 @@ class Drawer extends Component<DefaultProps, Props, State> {
     );
 
     if (docked) {
+      const { onRequestClose, ...otherDocked } = other;
+
       return (
-        <div className={classNames(classes.docked, className)}>
+        <div className={classNames(classes.docked, className)} {...otherDocked}>
           {drawer}
         </div>
       );

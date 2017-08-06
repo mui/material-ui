@@ -1,11 +1,11 @@
-// @flow
+// @flow weak
 
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import { LinearProgress } from 'material-ui/Progress';
 
-const styleSheet = createStyleSheet('LinearIndeterminate', {
+const styleSheet = createStyleSheet({
   root: {
     width: '100%',
     marginTop: 30,

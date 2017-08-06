@@ -1,4 +1,4 @@
-// @flow
+// @flow weak
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -10,7 +10,7 @@ import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 
-const styleSheet = createStyleSheet('ButtonAppBar', {
+const styleSheet = createStyleSheet({
   root: {
     marginTop: 30,
     width: '100%',

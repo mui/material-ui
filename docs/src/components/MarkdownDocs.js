@@ -7,7 +7,7 @@ import Button from 'material-ui/Button';
 import MarkdownElement from 'docs/src/components/MarkdownElement';
 import Demo from 'docs/src/components/Demo';
 
-const styleSheet = createStyleSheet('MarkdownDocs', {
+const styleSheet = createStyleSheet({
   root: {
     marginBottom: 100,
   },
@@ -27,7 +27,7 @@ const SOURCE_CODE_ROOT_URL = 'https://github.com/callemall/material-ui/tree/v1-b
 function MarkdownDocs(props) {
   const { classes, route } = props;
   const contents = route.content
-    .replace(headerRegexp, '') // Remove header informations
+    .replace(headerRegexp, '') // Remove header information
     .split(/^{{|}}$/gm) // Split markdown into an array, separating demos
     .filter(content => !emptyRegexp.test(content)); // Remove empty lines
 
@@ -47,7 +47,7 @@ function MarkdownDocs(props) {
   return (
     <div className={classes.root}>
       <div className={classes.header}>
-        <Button component="a" href={markdownUrl} target="_blank">
+        <Button component="a" href={markdownUrl}>
           {'Edit this page'}
         </Button>
       </div>

@@ -4,7 +4,7 @@ import { keys as breakpoints } from '../styles/breakpoints';
 import withWidth, { isWidthDown, isWidthUp } from '../utils/withWidth';
 import type { HiddenProps } from './types';
 
-type Props = HiddenProps & {
+export type Props = HiddenProps & {
   /**
    * @ignore
    * width prop provided by withWidth decorator
@@ -73,7 +73,7 @@ function HiddenJs(props: Props) {
 
   warning(
     Object.keys(other).length === 0,
-    `Material-UI: Unsupported properties received ${JSON.stringify(other)}`,
+    `Material-UI: unsupported properties received ${JSON.stringify(other)}`,
   );
 
   return children;

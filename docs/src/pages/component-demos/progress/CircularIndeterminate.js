@@ -1,11 +1,11 @@
-// @flow
+// @flow weak
 
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import { CircularProgress } from 'material-ui/Progress';
 
-const styleSheet = createStyleSheet('CircularIndeterminate', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   progress: {
     margin: `0 ${theme.spacing.unit * 2}px`,
   },

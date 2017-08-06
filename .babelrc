@@ -1,5 +1,5 @@
 {
-  "presets": ["./scripts/material-ui-babel-preset-es2015", "stage-1", "react"],
+  "presets": ["./scripts/material-ui-babel-preset-env", "stage-1", "react"],
   "plugins": [
     "transform-object-assign"
   ],
@@ -34,8 +34,8 @@
         ["transform-react-remove-prop-types", {
           "mode": "wrap",
           "plugins": [
-            "babel-plugin-flow-react-proptypes",
-            "babel-plugin-transform-flow-strip-types",
+            ["babel-plugin-flow-react-proptypes", {"omitRuntimeTypeExport": true}],
+            "babel-plugin-transform-flow-strip-types"
           ]
         }]
       ]

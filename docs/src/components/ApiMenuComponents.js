@@ -33,7 +33,8 @@ class ApiMenuComponents extends Component {
         <IconButton
           color="contrast"
           onClick={this.handleMenuClick}
-          aria-owns="api-menu"
+          aria-label="open menu api"
+          aria-owns={this.state.open ? 'api-menu' : null}
           aria-haspopup="true"
         >
           <MoreVertIcon />

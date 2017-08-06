@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../internal/ButtonBase';
+import { isMuiComponent } from '../utils/reactHelpers';
 
 export const styleSheet = createStyleSheet('MuiListItem', theme => ({
   root: {
@@ -55,6 +56,7 @@ export const styleSheet = createStyleSheet('MuiListItem', theme => ({
 
 type DefaultProps = {
   button: boolean,
+  classes: Object,
   component: string,
   dense: boolean,
   disabled: false,
@@ -62,7 +64,7 @@ type DefaultProps = {
   divider: false,
 };
 
-type Props = DefaultProps & {
+export type Props = {
   /**
    * If `true`, the ListItem will be a button.
    */
@@ -74,7 +76,7 @@ type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -102,10 +104,13 @@ type Props = DefaultProps & {
   divider?: boolean,
 };
 
-class ListItem extends Component<DefaultProps, Props, void> {
-  props: Props;
+type AllProps = DefaultProps & Props;
+
+class ListItem extends Component<DefaultProps, AllProps, void> {
+  props: AllProps;
   static defaultProps: DefaultProps = {
     button: false,
+    classes: {},
     component: 'li',
     dense: false,
     disabled: false,
@@ -135,9 +140,7 @@ class ListItem extends Component<DefaultProps, Props, void> {
     const isDense = dense || this.context.dense || false;
     const children = React.Children.toArray(childrenProp);
 
-    const hasAvatar = children.some(value => {
-      return value.type && value.type.muiName === 'ListItemAvatar';
-    });
+    const hasAvatar = children.some(value => isMuiComponent(value, 'ListItemAvatar'));
 
     const className = classNames(
       classes.root,
@@ -162,8 +165,7 @@ class ListItem extends Component<DefaultProps, Props, void> {
 
     if (
       children.length &&
-      children[children.length - 1].type &&
-      children[children.length - 1].type.muiName === 'ListItemSecondaryAction'
+      isMuiComponent(children[children.length - 1], 'ListItemSecondaryAction')
     ) {
       const secondaryAction = children.pop();
       return (

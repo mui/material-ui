@@ -1,4 +1,4 @@
-// @flow
+// @flow weak
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -15,7 +15,7 @@ import MailIcon from 'material-ui-icons/Mail';
 import DeleteIcon from 'material-ui-icons/Delete';
 import ReportIcon from 'material-ui-icons/Report';
 
-const styleSheet = createStyleSheet('UndockedDrawer', {
+const styleSheet = createStyleSheet({
   list: {
     width: 250,
     flex: 'initial',

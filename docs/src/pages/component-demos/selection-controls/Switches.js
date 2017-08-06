@@ -6,7 +6,7 @@ import { withStyles, createStyleSheet } from 'material-ui/styles';
 import green from 'material-ui/colors/green';
 import Switch from 'material-ui/Switch';
 
-const styleSheet = createStyleSheet('Switches', {
+const styleSheet = createStyleSheet({
   bar: {},
   checked: {
     color: green[500],
