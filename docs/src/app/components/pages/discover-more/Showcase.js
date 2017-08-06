@@ -155,6 +155,12 @@ const appList = [
     img: 'images/showcase/brainbok-for-pmp-capm-certification.png',
     link: 'https://www.brainbok.com',
   },
+  {
+    title: 'HoopHubs篮圈 - 查CBA/NBA比赛数据，就上HoopHubs篮圈',
+    author: 'HoopHubs',
+    img: 'images/showcase/hoophubs-basketball-stats-tool.png',
+    link: 'http://www.hoophubs.com',
+  },
 ];
 
 const Showcase = () => (
