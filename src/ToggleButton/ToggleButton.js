@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import createStyleSheet from '../styles/createStyleSheet';
-import { fade } from '../styles/colorManipulator';
-import common from '../colors/common';
 
 /**
  * Specification according to material.io
@@ -26,8 +24,7 @@ export const styleSheet = createStyleSheet('MuiToggleButton', theme => ({
   },
   active: {
     backgroundColor: theme.palette.background.paper,
-    boxShadow: `0 3px 6px ${fade(common.black, 0.12)},
-        0 3px 6px ${fade(common.black, 0.12)}`,
+    boxShadow: theme.shadows[3],
   },
   toggleIcon: {
     overflow: 'visible',
@@ -99,8 +96,8 @@ class ToggleButton extends Component {
       selectedOptions: indexes,
     });
 
-    if(option.onChange){
-      option.onChange(option.value, indexes.indexOf(option.index) > -1)
+    if (option.onChange) {
+      option.onChange(option.value, indexes.indexOf(option.index) > -1);
     }
   };
 
@@ -109,7 +106,6 @@ class ToggleButton extends Component {
       children,
       active: activeProp,
       selectedOptions,
-      values,
       exclusive,
       classes,
       className: classNameProp,
@@ -196,12 +192,6 @@ ToggleButton.propTypes = {
    * Determines if the ToggleButtons are buttons or icons(ToggleIcons).
    */
   toggleIcons: PropTypes.bool,
-  /**
-   * Values of the currently selected options on the 'ToggleButton'.
-   */
-  values: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
-  ),
 };
 
 export default withStyles(styleSheet)(ToggleButton);

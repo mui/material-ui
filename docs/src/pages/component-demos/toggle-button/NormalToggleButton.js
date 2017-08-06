@@ -19,6 +19,40 @@ const styleSheet = createStyleSheet(theme => ({
   },
 }));
 
+function alterText(value, selected) {
+  const text = document.getElementById('dummyText').style;
+  if (selected) {
+    if (value === 1) {
+      text.fontWeight = 800;
+    } else if (value === 2) {
+      text.fontStyle = 'italic';
+    } else if (value === 3) {
+      text.textDecoration = 'underline';
+    }
+  } else if (value === 1) {
+    text.fontWeight = 'normal';
+  } else if (value === 2) {
+    text.fontStyle = 'normal';
+  } else if (value === 3) {
+    text.textDecoration = 'none';
+  }
+}
+
+function alterColor(value, selected) {
+  const div = document.getElementById('dummyDiv').style;
+  if (selected) {
+    if (value === 4) {
+      div.background = '#F44336';
+    } else if (value === 5) {
+      div.background = '#2196F3';
+    } else if (value === 6) {
+      div.background = '#009688';
+    }
+  } else {
+    document.getElementById('dummyDiv').style.background = 'white';
+  }
+}
+
 function NormalToggleButton(props) {
   const classes = props.classes;
 
@@ -66,59 +100,6 @@ function NormalToggleButton(props) {
       </Paper>
     </div>
   );
-}
-
-function changeColor(value) {
-  const div = document.getElementById('dummyDiv').style;
-  if (value === 4) {
-    div.background = '#F44336';
-  } else if (value === 5) {
-    div.background = '#2196F3';
-  } else if (value === 6) {
-    div.background = '#009688';
-  }
-}
-
-function colorReset() {
-  document.getElementById('dummyDiv').style.background = 'white';
-}
-
-function changeText(value) {
-  const text = document.getElementById('dummyText').style;
-  if (value === 1) {
-    text.fontWeight = 800;
-  } else if (value === 2) {
-    text.fontStyle = 'italic';
-  } else if (value === 3) {
-    text.textDecoration = 'underline';
-  }
-}
-
-function resetText(value) {
-  const text = document.getElementById('dummyText').style;
-  if (value === 1) {
-    text.fontWeight = 'normal';
-  } else if (value === 2) {
-    text.fontStyle = 'normal';
-  } else if (value === 3) {
-    text.textDecoration = 'none';
-  }
-}
-
-function alterText(value, selected) {
-  if (selected) {
-    changeText(value)
-  } else {
-    resetText(value)
-  }
-}
-
-function alterColor(value, selected) {
-  if (selected) {
-    changeColor(value)
-  } else {
-    colorReset()
-  }
 }
 
 NormalToggleButton.propTypes = {

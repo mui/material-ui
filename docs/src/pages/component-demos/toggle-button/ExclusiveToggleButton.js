@@ -18,6 +18,20 @@ const styleSheet = createStyleSheet(theme => ({
   },
 }));
 
+function alterText(value, selected) {
+  if (selected) {
+    if (value === '1') {
+      document.getElementById('dummyDiv2').style.textAlign = 'left';
+    } else if (value === '2') {
+      document.getElementById('dummyDiv2').style.textAlign = 'center';
+    } else if (value === '3') {
+      document.getElementById('dummyDiv2').style.textAlign = 'right';
+    }
+  } else {
+    document.getElementById('dummyDiv2').style.textAlign = 'initial';
+  }
+}
+
 function ExclusiveToggleButton(props) {
   const classes = props.classes;
 
@@ -50,20 +64,6 @@ function ExclusiveToggleButton(props) {
       </Paper>
     </div>
   );
-}
-
-function alterText(value, selected){
-  if (selected) {
-    if (value == "1"){
-      document.getElementById('dummyDiv2').style.textAlign = 'left';
-    } else if (value == "2") {
-      document.getElementById('dummyDiv2').style.textAlign = 'center';
-    } else if (value == "3") {
-      document.getElementById('dummyDiv2').style.textAlign = 'right';
-    }
-  } else {
-    document.getElementById('dummyDiv2').style.textAlign = 'initial';
-  }
 }
 
 ExclusiveToggleButton.propTypes = {

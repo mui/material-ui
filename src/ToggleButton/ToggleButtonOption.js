@@ -183,14 +183,14 @@ class ToggleButtonOption extends Component {
         <div>
           <ButtonBase {...dropButtonProps}>
             <div
-              className= {classNames(classes.dropDownButton, {
+              className={classNames(classes.dropDownButton, {
                 [classes.textSelected]: selected,
               })}
             >
               {icon}
               {label}
             </div>
-            <ArrowDropdown {...arrowProp}/>
+            <ArrowDropdown {...arrowProp} />
           </ButtonBase>
           <Menu {...menuProps}>
             {items}
