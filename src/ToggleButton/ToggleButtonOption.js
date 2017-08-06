@@ -72,11 +72,10 @@ export const styleSheet = createStyleSheet('MuiToggleButtonOption', theme => ({
 }));
 
 class ToggleButtonOption extends Component {
-  static muiName = 'Option';
-
   static defaultProps = {
     selected: false,
     disabled: false,
+    divider: false,
   };
 
   componentWillMount() {
@@ -138,18 +137,18 @@ class ToggleButtonOption extends Component {
         [classes.toggle]: toggle && !disabled,
       }),
     };
-    const dropDownProps = {
-      className: classNames(classes.dropDownButton, {
-        [classes.textSelected]: selected,
-      }),
-    };
 
-    let optionButton;
     let option;
     // If there are children available, make it a Dropdown Menu.
     if (!children) {
-      optionButton = React.createElement('div', rootProps, icon, label);
-      option = React.createElement(ButtonBase, buttonProps, optionButton);
+      option = (
+        <ButtonBase {...buttonProps}>
+          <div {...rootProps}>
+            {icon}
+            {label}
+          </div>
+        </ButtonBase>
+      );
     } else {
       const items = children.map(child => {
         return React.cloneElement(child, {
@@ -167,30 +166,36 @@ class ToggleButtonOption extends Component {
         onClick: this.handleClick,
         // centerRipple: true,
       };
-      optionButton = React.createElement('div', dropDownProps, icon, label);
-      const dropDownButton = React.createElement(
-        ButtonBase,
-        dropButtonProps,
-        optionButton,
-        React.createElement(ArrowDropdown, {
-          style: {
-            // TODO: Move this to get style
-            transform: label && icon ? 'translate(50%, 50%)' : 'none',
-            color: selected ? fade(common.black, 0.54) : fade(common.black, 0.3),
-          },
-        }),
-      );
+      const arrowProp = {
+        style: {
+          // TODO: Move this to get style
+          transform: label && icon ? 'translate(50%, 50%)' : 'none',
+          color: selected ? fade(common.black, 0.54) : fade(common.black, 0.3),
+        },
+      };
       const menuProps = {
         id: 'option-menu',
         anchorEl: this.state.anchorEl,
         open: this.state.open,
         onRequestClose: this.handleRequestClose,
       };
-      option = React.createElement(
-        'div',
-        {},
-        dropDownButton,
-        React.createElement(Menu, menuProps, items),
+      option = (
+        <div>
+          <ButtonBase {...dropButtonProps}>
+            <div
+              className= {classNames(classes.dropDownButton, {
+                [classes.textSelected]: selected,
+              })}
+            >
+              {icon}
+              {label}
+            </div>
+            <ArrowDropdown {...arrowProp}/>
+          </ButtonBase>
+          <Menu {...menuProps}>
+            {items}
+          </Menu>
+        </div>
       );
     }
     return option;
