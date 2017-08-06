@@ -29,28 +29,24 @@ function NormalToggleButton(props) {
           key="1"
           icon={<Icon className="material-icons">format_bold</Icon>}
           value={1}
-          onSelect={changeText}
-          onDeselect={resetText}
+          onChange={alterText}
         />
         <ToggleButtonOption
           key="2"
           icon={<Icon className="material-icons">format_italic</Icon>}
           value={2}
-          onSelect={changeText}
-          onDeselect={resetText}
+          onChange={alterText}
         />
         <ToggleButtonOption
           key="3"
           icon={<Icon className="material-icons">format_underline</Icon>}
           value={3}
-          onSelect={changeText}
-          onDeselect={resetText}
+          onChange={alterText}
         />
         <ToggleButtonOption
           key="4"
           icon={<Icon className="material-icons">format_color_fill</Icon>}
-          onSelect={changeColor}
-          onDeselect={colorReset}
+          onChange={alterColor}
         >
           <MenuItem key="1" value={4}>
             Red
@@ -106,6 +102,22 @@ function resetText(value) {
     text.fontStyle = 'normal';
   } else if (value === 3) {
     text.textDecoration = 'none';
+  }
+}
+
+function alterText(value, selected) {
+  if (selected) {
+    changeText(value)
+  } else {
+    resetText(value)
+  }
+}
+
+function alterColor(value, selected) {
+  if (selected) {
+    changeColor(value)
+  } else {
+    colorReset()
   }
 }
 

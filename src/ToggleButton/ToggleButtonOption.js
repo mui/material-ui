@@ -236,24 +236,18 @@ ToggleButtonOption.propTypes = {
    */
   label: PropTypes.string,
   /**
+   * Fired when an option is either selected or deselected.
+   * Use this event to specify any functionality when an option gets changed.
+   *
+   * @param {number, boolean, string} value The current value of the selected option.
+   * @param {boolean} selected Specifies whether or not the current option is selected.
+   */
+  onChange: PropTypes.func,
+  /**
    * @ignore
    * This property is overriden by the ToggleButton component.
    */
   onClick: PropTypes.func,
-  /**
-   * Fired when an option is deselected.
-   * Use this event to specify any functionality when an option gets deselected.
-   *
-   * @param {number, boolean, string} value The current value of the selected option.
-   */
-  onDeselect: PropTypes.func,
-  /**
-   * Fired when an option is selected.
-   * Use this event to specify any functionality when an option gets selected.
-   *
-   * @param {number, boolean, string} value The current value of the selected option.
-   */
-  onSelect: PropTypes.func,
   /**
    * Defines if the current option is selected or not.
    * The ToggleButton component is responsible for setting this property.

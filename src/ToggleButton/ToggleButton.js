@@ -99,12 +99,8 @@ class ToggleButton extends Component {
       selectedOptions: indexes,
     });
 
-    if (indexes.indexOf(option.index) > -1) {
-      if (option.onSelect) {
-        option.onSelect(option.value);
-      }
-    } else if (option.onDeselect) {
-      option.onDeselect(option.value);
+    if(option.onChange){
+      option.onChange(option.value, indexes.indexOf(option.index) > -1)
     }
   };
 

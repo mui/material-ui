@@ -28,22 +28,19 @@ function ExclusiveToggleButton(props) {
           key="1"
           icon={<Icon className="material-icons">format_align_left</Icon>}
           value="1"
-          onSelect={alignLeft}
-          onDeselect={alignReset}
+          onChange={alterText}
         />
         <ToggleButtonOption
           key="2"
           icon={<Icon className="material-icons">format_align_center</Icon>}
           value="2"
-          onSelect={alignCenter}
-          onDeselect={alignReset}
+          onChange={alterText}
         />
         <ToggleButtonOption
           key="3"
           icon={<Icon className="material-icons">format_align_right</Icon>}
           value="3"
-          onSelect={alignRight}
-          onDeselect={alignReset}
+          onChange={alterText}
         />
       </ToggleButton>
       <Paper id="dummyDiv2" className={classes.paper} elevation={4}>
@@ -55,20 +52,18 @@ function ExclusiveToggleButton(props) {
   );
 }
 
-function alignRight() {
-  document.getElementById('dummyDiv2').style.textAlign = 'right';
-}
-
-function alignCenter() {
-  document.getElementById('dummyDiv2').style.textAlign = 'center';
-}
-
-function alignLeft() {
-  document.getElementById('dummyDiv2').style.textAlign = 'left';
-}
-
-function alignReset() {
-  document.getElementById('dummyDiv2').style.textAlign = 'initial';
+function alterText(value, selected){
+  if (selected) {
+    if (value == "1"){
+      document.getElementById('dummyDiv2').style.textAlign = 'left';
+    } else if (value == "2") {
+      document.getElementById('dummyDiv2').style.textAlign = 'center';
+    } else if (value == "3") {
+      document.getElementById('dummyDiv2').style.textAlign = 'right';
+    }
+  } else {
+    document.getElementById('dummyDiv2').style.textAlign = 'initial';
+  }
 }
 
 ExclusiveToggleButton.propTypes = {
