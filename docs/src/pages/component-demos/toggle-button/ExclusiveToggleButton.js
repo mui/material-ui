@@ -19,16 +19,17 @@ const styleSheet = createStyleSheet(theme => ({
 }));
 
 function alterText(value, selected) {
+  const div = document.getElementById('dummyDiv2');
   if (selected) {
     if (value === '1') {
-      document.getElementById('dummyDiv2').style.textAlign = 'left';
+      div.style.textAlign = 'left';
     } else if (value === '2') {
-      document.getElementById('dummyDiv2').style.textAlign = 'center';
+      div.style.textAlign = 'center';
     } else if (value === '3') {
-      document.getElementById('dummyDiv2').style.textAlign = 'right';
+      div.style.textAlign = 'right';
     }
   } else {
-    document.getElementById('dummyDiv2').style.textAlign = 'initial';
+    div.style.textAlign = 'initial';
   }
 }
 
