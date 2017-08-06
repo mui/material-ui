@@ -16,7 +16,7 @@ import common from '../colors/common';
 
 export const styleSheet = createStyleSheet('MuiToggleButton', theme => ({
   root: {
-    display: 'inline-block',
+    display: 'inline-flex',
     borderRadius: 2,
     boxShadow: 'none',
     overflow: 'hidden',

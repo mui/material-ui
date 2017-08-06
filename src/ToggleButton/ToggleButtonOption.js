@@ -17,13 +17,12 @@ import grey from '../colors/grey';
  *
  */
 
-export const styleSheet = createStyleSheet('MuiToggleButtonOption', {
+export const styleSheet = createStyleSheet('MuiToggleButtonOption', theme => ({
   root: {
     backgroundColor: 'transparent',
     borderRadius: 0,
     fontWeight: 600,
     fontSize: 14,
-    float: 'left',
     padding: '0px 12px',
     textTransform: 'uppercase',
     // borderLeft: props.optionStyle.borderLeft? props.optionStyle.borderLeft : 'none',
@@ -42,21 +41,20 @@ export const styleSheet = createStyleSheet('MuiToggleButtonOption', {
     justifyContent: 'center',
   },
   button: {
-    color: fade(common.black, 0.3),
+    color: theme.palette.text.hint,
   },
   toggle: {
-    color: fade(common.black, 0.54),
+    color: theme.palette.action.active,
   },
   dropDownButton: {
-    display: 'flex',
+    display: 'inline-block',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    float: 'left', // TODO: Move this down to where the dropdown is being generated
-    color: fade(common.black, 0.3),
+    color: theme.palette.text.hint,
   },
   textSelected: {
-    color: fade(common.black, 0.54),
+    color: theme.palette.action.active,
   },
   buttonSelected: {
     backgroundColor: fade(common.black, 0.3),
@@ -71,7 +69,7 @@ export const styleSheet = createStyleSheet('MuiToggleButtonOption', {
   divided: {
     borderLeft: `0.25px solid ${grey[500]}`,
   },
-});
+}));
 
 class ToggleButtonOption extends Component {
   static muiName = 'Option';
@@ -190,14 +188,8 @@ class ToggleButtonOption extends Component {
       };
       option = React.createElement(
         'div',
-        {
-          style: {
-            display: 'inline-block',
-            float: 'left',
-            overflow: 'hidden',
-          },
-        },
-        dropDownButton, // Move Style to Stylesheet
+        {},
+        dropDownButton,
         React.createElement(Menu, menuProps, items),
       );
     }

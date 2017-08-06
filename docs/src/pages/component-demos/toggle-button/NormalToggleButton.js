@@ -15,6 +15,7 @@ const styleSheet = createStyleSheet(theme => ({
   },
   paper: {
     padding: theme.spacing.unit * 4,
+    'margin-top': theme.spacing.unit,
   },
 }));
 
