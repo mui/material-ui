@@ -6,7 +6,7 @@ import { withStyles, createStyleSheet } from 'material-ui/styles';
 import ToggleButton, { ToggleButtonOption } from 'material-ui/ToggleButton';
 import Icon from 'material-ui/Icon';
 
-const styleSheet = createStyleSheet('NormalToggleButton', {
+const styleSheet = createStyleSheet({
   root: {
     width: '100%',
   },

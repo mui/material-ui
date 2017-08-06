@@ -8,33 +8,17 @@ import Icon from 'material-ui/Icon';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 
-const styleSheet = createStyleSheet('ExclusiveToggleButton', {
+const styleSheet = createStyleSheet(theme => ({
   root: {
     width: '100%',
   },
   paper: {
-    padding: 30,
+    padding: theme.spacing.unit * 4,
   },
-});
+}));
 
 function ExclusiveToggleButton(props) {
   const classes = props.classes;
-
-  function alignRight() {
-    document.getElementById('dummyDiv2').style.textAlign = 'right';
-  }
-
-  function alignCenter() {
-    document.getElementById('dummyDiv2').style.textAlign = 'center';
-  }
-
-  function alignLeft() {
-    document.getElementById('dummyDiv2').style.textAlign = 'left';
-  }
-
-  function alignReset() {
-    document.getElementById('dummyDiv2').style.textAlign = 'initial';
-  }
 
   return (
     <div className={classes.root}>
@@ -61,7 +45,6 @@ function ExclusiveToggleButton(props) {
           onDeselect={alignReset}
         />
       </ToggleButton>
-
       <Paper id="dummyDiv2" className={classes.paper} elevation={4}>
         <Typography type="headline" component="h3">
           This text is gonna move.
@@ -69,6 +52,22 @@ function ExclusiveToggleButton(props) {
       </Paper>
     </div>
   );
+}
+
+function alignRight() {
+  document.getElementById('dummyDiv2').style.textAlign = 'right';
+}
+
+function alignCenter() {
+  document.getElementById('dummyDiv2').style.textAlign = 'center';
+}
+
+function alignLeft() {
+  document.getElementById('dummyDiv2').style.textAlign = 'left';
+}
+
+function alignReset() {
+  document.getElementById('dummyDiv2').style.textAlign = 'initial';
 }
 
 ExclusiveToggleButton.propTypes = {

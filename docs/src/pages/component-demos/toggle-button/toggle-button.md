@@ -22,6 +22,3 @@ Exclusive toggle button allowing only one option to be selected at a time.
 Icons are appropriate for toggle buttons that allow a single choice to be selected or deselected, such as adding or removing a star to an item.
 
 {{demo='pages/component-demos/toggle-button/ToggleIcons.js'}}
-
-
-
