@@ -49,7 +49,7 @@ function alterColor(value, selected) {
       div.background = '#009688';
     }
   } else {
-    div.style.background = 'white';
+    div.background = 'white';
   }
 }
 
