@@ -4,7 +4,6 @@ import React from 'react';
 import Paper from '../Paper';
 
 type DefaultProps = {
-  classes: Object,
   raised: boolean,
 };
 
