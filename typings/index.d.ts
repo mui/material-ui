@@ -642,10 +642,10 @@ declare module 'material-ui/GridList' {
 
 declare module 'material-ui/GridList/GridList' {
   export interface GridListProps {
-    cellHeight: number | 'auto';
-    cols: number;
-    component: React.ReactElement<any> | string;
-    spacing: number;
+    cellHeight?: number | 'auto';
+    cols?: number;
+    component?: React.ReactElement<any> | string;
+    spacing?: number;
   }
 
   export default class GridList extends MaterialUI.Component<GridListProps> {}
@@ -653,9 +653,9 @@ declare module 'material-ui/GridList/GridList' {
 
 declare module 'material-ui/GridList/GridListTitle' {
   export interface GridListTitleProps {
-    cols: number;
-    component: React.ReactElement<any> | string;
-    row: number;
+    cols?: number;
+    component?: React.ReactElement<any> | string;
+    row?: number;
   }
 
   export default class GridListTitle extends MaterialUI.Component<
@@ -665,11 +665,11 @@ declare module 'material-ui/GridList/GridListTitle' {
 
 declare module 'material-ui/GridList/GridListTitleBar' {
   export interface GridListTitleBarProps {
-    actionIcon: React.ReactElement<any>;
-    actionPosition: 'left' | 'right';
-    subtitle: React.ReactNode;
-    title: React.ReactNode;
-    titlePosition: 'top' | 'bottom';
+    actionIcon?: React.ReactElement<any>;
+    actionPosition?: 'left' | 'right';
+    subtitle?: React.ReactNode;
+    title?: React.ReactNode;
+    titlePosition?: 'top' | 'bottom';
   }
 
   export default class GridListTitleBar extends MaterialUI.Component<
