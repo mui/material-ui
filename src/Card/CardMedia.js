@@ -7,8 +7,6 @@ import withStyles from '../styles/withStyles';
 
 export const styleSheet = createStyleSheet('MuiCardMedia', {
   root: {
-    // position: 'relative', // old?
-    // background-image: url(images/16-9.jpg);
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
   },
