@@ -40,8 +40,9 @@ declare namespace MaterialUI {
    * Utilies types based on:
    * https://github.com/Microsoft/TypeScript/issues/12215#issuecomment-307871458
    */
-  type Diff<T extends string, U extends string> = ({[P in T]: P } & {[P in U]: never } & { [x: string]: never })[T];
-  type Omit<T, K extends keyof T> = {[P in Diff<keyof T, K>]: T[P]};
+  type Diff<T extends string, U extends string> = ({ [P in T]: P } &
+    { [P in U]: never } & { [x: string]: never })[T];
+  type Omit<T, K extends keyof T> = { [P in Diff<keyof T, K>]: T[P] };
 }
 
 declare namespace MaterialUI.PropTypes {
@@ -352,7 +353,6 @@ declare module 'material-ui/Chip/Chip' {
   export interface ChipProps extends React.HTMLAttributes<HTMLDivElement> {
     avatar?: React.ReactNode;
     label?: React.ReactNode;
-    onClick?: React.EventHandler<any>;
     onKeyDown?: React.EventHandler<React.KeyboardEvent<any>>;
     onRequestDelete?: React.EventHandler<any>;
     tabIndex?: number;
@@ -626,6 +626,55 @@ declare module 'material-ui/Grid/Grid' {
   } & Partial<{ [key in Breakpoint]: boolean | GridSize }>;
 
   export default class Grid extends MaterialUI.Component<GridProps> {}
+}
+
+declare module 'material-ui/GridList' {
+  export { default } from 'material-ui/GridList/GridList';
+  export * from 'material-ui/GridList/GridList';
+  export { default as GridList } from 'material-ui/GridList/GridList';
+  export { default as GridListTitle } from 'material-ui/GridList/GridListTitle';
+  export * from 'material-ui/GridList/GridListTitle';
+  export {
+    default as GridListTitleBar,
+  } from 'material-ui/GridList/GridListTitleBar';
+  export * from 'material-ui/GridList/GridListTitleBar';
+}
+
+declare module 'material-ui/GridList/GridList' {
+  export interface GridListProps {
+    cellHeight: number | 'auto';
+    cols: number;
+    component: React.ReactElement<any> | string;
+    spacing: number;
+  }
+
+  export default class GridList extends MaterialUI.Component<GridListProps> {}
+}
+
+declare module 'material-ui/GridList/GridListTitle' {
+  export interface GridListTitleProps {
+    cols: number;
+    component: React.ReactElement<any> | string;
+    row: number;
+  }
+
+  export default class GridListTitle extends MaterialUI.Component<
+    GridListTitleProps
+  > {}
+}
+
+declare module 'material-ui/GridList/GridListTitleBar' {
+  export interface GridListTitleBarProps {
+    actionIcon: React.ReactElement<any>;
+    actionPosition: 'left' | 'right';
+    subtitle: React.ReactNode;
+    title: React.ReactNode;
+    titlePosition: 'top' | 'bottom';
+  }
+
+  export default class GridListTitleBar extends MaterialUI.Component<
+    GridListTitleBarProps
+  > {}
 }
 
 declare module 'material-ui/Hidden' {
@@ -2044,7 +2093,6 @@ declare module 'material-ui/styles/zIndex' {
   export default zIndex;
 }
 
-
 /* ============================================= */
 /*                                               */
 /*                  TRANSITIONS                  */
@@ -2087,7 +2135,6 @@ declare module 'material-ui/transitions/Slide' {
 
   export default class Slide extends MaterialUI.Component<SlideProps> {}
 }
-
 
 /* ============================================= */
 /*                                               */
