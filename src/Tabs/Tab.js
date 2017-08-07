@@ -55,7 +55,7 @@ export const styleSheet = createStyleSheet('MuiTab', theme => ({
     opacity: 0.4,
   },
   fullWidth: {
-    flex: '1 0 0',
+    flexGrow: 1,
   },
   labelContainer: {
     paddingTop: 6,
