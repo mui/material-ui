@@ -387,8 +387,8 @@ declare module 'material-ui/Dialog/Dialog' {
     fullScreen?: boolean;
     ignoreBackdropClick?: boolean;
     ignoreEscapeKeyUp?: boolean;
-    enterTransitionDuration?: number;
-    leaveTransitionDuration?: number;
+    enterTransitionDuration?: number | string;
+    leaveTransitionDuration?: number | string;
     maxWidth?: 'xs' | 'sm' | 'md';
     onBackdropClick?: Function;
     onEscapeKeyUp?: Function;
@@ -2043,6 +2043,51 @@ declare module 'material-ui/styles/zIndex' {
   const zIndex: ZIndex;
   export default zIndex;
 }
+
+
+/* ============================================= */
+/*                                               */
+/*                  TRANSITIONS                  */
+/*                                               */
+/* ============================================= */
+declare module 'material-ui/transitions/Collapse' {
+  import { Theme } from 'material-ui/styles/theme';
+  import { TransitionProps } from 'material-ui/internal/Transition';
+
+  export interface CollapseProps extends TransitionProps {
+    theme?: Theme;
+    transitionDuration?: number | string;
+  }
+
+  export default class Collapse extends MaterialUI.Component<CollapseProps> {}
+}
+
+declare module 'material-ui/transitions/Fade' {
+  import { Theme } from 'material-ui/styles/theme';
+  import { TransitionProps } from 'material-ui/internal/Transition';
+
+  export interface FadeProps extends TransitionProps {
+    theme?: Theme;
+    enterTransitionDuration?: number | string;
+    leaveTransitionDuration?: number | string;
+  }
+
+  export default class Fade extends MaterialUI.Component<FadeProps> {}
+}
+
+declare module 'material-ui/transitions/Slide' {
+  import { Theme } from 'material-ui/styles/theme';
+  import { TransitionProps } from 'material-ui/internal/Transition';
+
+  export interface SlideProps extends TransitionProps {
+    theme?: Theme;
+    enterTransitionDuration?: number | string;
+    leaveTransitionDuration?: number | string;
+  }
+
+  export default class Slide extends MaterialUI.Component<SlideProps> {}
+}
+
 
 /* ============================================= */
 /*                                               */
