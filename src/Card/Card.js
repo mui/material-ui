@@ -1,13 +1,27 @@
 // @flow
 
 import React from 'react';
+import classNames from 'classnames';
+import createStyleSheet from '../styles/createStyleSheet';
+import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
 
+export const styleSheet = createStyleSheet('MuiCard', {
+  root: {
+    overflow: 'hidden',
+  },
+});
+
 type DefaultProps = {
+  classes: Object,
   raised: boolean,
 };
 
 export type Props = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
   /**
    * @ignore
    */
@@ -18,17 +32,18 @@ export type Props = {
   raised?: boolean,
 };
 
-// $FlowFixMe - invalid error? claims raised prop is missing
 type AllProps = DefaultProps & Props;
 
 function Card(props: AllProps) {
-  const { raised, ...other } = props;
+  const { classes, className, raised, ...other } = props;
 
-  return <Paper elevation={raised ? 8 : 2} {...other} />;
+  return (
+    <Paper className={classNames(classes.root, className)} elevation={raised ? 8 : 2} {...other} />
+  );
 }
 
 Card.defaultProps = {
   raised: false,
 };
 
-export default Card;
+export default withStyles(styleSheet)(Card);
