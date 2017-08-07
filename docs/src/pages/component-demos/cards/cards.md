@@ -28,7 +28,7 @@ Supplemental actions within the card are explicitly called out using icons, text
 
 Here's an example of a media control card.
 
-{{demo='pages/component-demos/cards/NowPlayingCard.js'}}
+{{demo='pages/component-demos/cards/MediaControlCard.js'}}
 
 ## Complex Interaction
 
