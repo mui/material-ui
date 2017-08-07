@@ -1326,7 +1326,7 @@ declare module 'material-ui/TextField/TextField' {
   import { InputProps } from 'material-ui/Input/Input';
   import { InputLabelProps } from 'material-ui/Input/InputLabel';
 
-  export type InputProps = {
+  export type TextFieldProps = {
     autoComplete?: string;
     autoFocus?: boolean;
     defaultValue?: string | number;
@@ -1355,10 +1355,10 @@ declare module 'material-ui/TextField/TextField' {
     type?: string;
     value?: string | number;
     margin?: MaterialUI.PropTypes.Margin;
-  } & Partial<MaterialUI.InputEventEmitter<HTMLElement>> &
+  } & Partial<MaterialUI.InputEventEmitter<HTMLInputElement>> &
     FormControlProps;
 
-  export default class Input extends MaterialUI.Component<InputProps> {}
+  export default class Input extends MaterialUI.Component<TextFieldProps> {}
 }
 
 declare module 'material-ui/Toolbar' {
