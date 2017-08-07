@@ -1137,7 +1137,7 @@ declare module 'material-ui/Snackbar/Snackbar' {
   };
 
   export type SnackbarProps = {
-    action?: React.ReactElement<any>;
+    action?: React.ReactElement<any> | React.ReactElement<any>[];
     anchorOrigin?: Origin;
     autoHideDuration?: number;
     enterTransitionDuration?: number;
@@ -1161,7 +1161,7 @@ declare module 'material-ui/Snackbar/SnackbarContent' {
 
   export interface SnackbarContentProps extends PaperProps {
     action?: React.ReactElement<any>;
-    message: React.ReactElement<any>;
+    message: React.ReactElement<any> | string;
   }
 
   export default class SnackbarContent extends MaterialUI.Component<
