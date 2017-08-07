@@ -26,8 +26,8 @@ export type Props = {
    */
   className?: string,
   /**
-   * Image to be displayed as a background image.  Note that caller must specify height otherwise
-   * the image will not be visible.
+   * Image to be displayed as a background image.
+   * Note that caller must specify height otherwise the image will not be visible.
    */
   image: string,
 };
