@@ -20,6 +20,8 @@ export const styleSheet = createStyleSheet('MuiCardHeader', theme => ({
   content: {
     flex: '1 1 auto',
   },
+  title: {},
+  subheader: {},
 }));
 
 type DefaultProps = {
@@ -67,10 +69,15 @@ function CardHeader(props: AllProps) {
           {avatar}
         </div>}
       <div className={classes.content}>
-        <Typography type={titleType} component="span">
+        <Typography type={titleType} component="span" className={classes.title}>
           {title}
         </Typography>
-        <Typography type={subheaderType} component="span" color="secondary">
+        <Typography
+          type={subheaderType}
+          component="span"
+          color="secondary"
+          className={classes.subheader}
+        >
           {subheader}
         </Typography>
       </div>
