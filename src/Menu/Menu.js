@@ -89,6 +89,9 @@ export const styleSheet = createStyleSheet('MuiMenu', {
      */
     maxHeight: 'calc(100vh - 96px)',
     WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
+    // So we see the menu when it's empty.
+    minWidth: 16,
+    minHeight: 16,
   },
 });
 
@@ -108,7 +111,7 @@ class Menu extends Component<DefaultProps, AllProps, void> {
     if (this.menuList && this.menuList.selectedItem) {
       // $FlowFixMe
       findDOMNode(this.menuList.selectedItem).focus();
-    } else if (menuList) {
+    } else if (menuList && menuList.firstChild) {
       // $FlowFixMe
       menuList.firstChild.focus();
     }
