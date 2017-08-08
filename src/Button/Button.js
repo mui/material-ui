@@ -27,7 +27,11 @@ export const styleSheet = createStyleSheet('MuiButton', theme => ({
     }),
     '&:hover': {
       textDecoration: 'none',
+      // Reset on mouse devices
       backgroundColor: fade(theme.palette.text.primary, 0.12),
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
       '&$disabled': {
         backgroundColor: 'transparent',
       },
@@ -49,18 +53,30 @@ export const styleSheet = createStyleSheet('MuiButton', theme => ({
     color: theme.palette.primary[500],
     '&:hover': {
       backgroundColor: fade(theme.palette.primary[500], 0.12),
+      // Reset on mouse devices
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
     },
   },
   flatAccent: {
     color: theme.palette.accent.A200,
     '&:hover': {
       backgroundColor: fade(theme.palette.accent.A200, 0.12),
+      // Reset on mouse devices
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
     },
   },
   flatContrast: {
     color: theme.palette.getContrastText(theme.palette.primary[500]),
     '&:hover': {
       backgroundColor: fade(theme.palette.getContrastText(theme.palette.primary[500]), 0.12),
+      // Reset on mouse devices
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
     },
   },
   colorInherit: {
@@ -82,8 +98,16 @@ export const styleSheet = createStyleSheet('MuiButton', theme => ({
     },
     '&:hover': {
       backgroundColor: theme.palette.grey.A100,
+      // Reset on mouse devices
+      '@media (hover: none)': {
+        backgroundColor: theme.palette.grey[300],
+      },
       '&$disabled': {
         backgroundColor: theme.palette.text.divider,
+        // Reset on mouse devices
+        '@media (hover: none)': {
+          backgroundColor: theme.palette.grey[300],
+        },
       },
     },
   },
@@ -93,6 +117,10 @@ export const styleSheet = createStyleSheet('MuiButton', theme => ({
     backgroundColor: theme.palette.primary[500],
     '&:hover': {
       backgroundColor: theme.palette.primary[700],
+      // Reset on mouse devices
+      '@media (hover: none)': {
+        backgroundColor: theme.palette.primary[500],
+      },
     },
   },
   raisedAccent: {
@@ -100,6 +128,10 @@ export const styleSheet = createStyleSheet('MuiButton', theme => ({
     backgroundColor: theme.palette.accent.A200,
     '&:hover': {
       backgroundColor: theme.palette.accent.A400,
+      // Reset on mouse devices
+      '@media (hover: none)': {
+        backgroundColor: theme.palette.accent.A200,
+      },
     },
   },
   raisedContrast: {

@@ -36,18 +36,18 @@ export default function withTheme(BaseComponent) {
     state = {};
 
     componentDidMount() {
-      this.unsubscribe = themeListener.subscribe(this.context, theme => {
+      this.unsubscribeId = themeListener.subscribe(this.context, theme => {
         this.setState({ theme });
       });
     }
 
     componentWillUnmount() {
-      if (this.unsubscribe !== null) {
-        this.unsubscribe();
+      if (this.unsubscribeId !== null) {
+        themeListener.unsubscribe(this.context, this.unsubscribeId);
       }
     }
 
-    unsubscribe = null;
+    unsubscribeId = null;
 
     render() {
       return factory({ theme: this.state.theme, ...this.props });

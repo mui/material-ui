@@ -22,6 +22,11 @@ const themeListener = {
 
     return context[CHANNEL].subscribe(cb);
   },
+  unsubscribe(context: Object, subscriptionId: number) {
+    if (context[CHANNEL]) {
+      context[CHANNEL].unsubscribe(subscriptionId);
+    }
+  },
 };
 
 export default themeListener;

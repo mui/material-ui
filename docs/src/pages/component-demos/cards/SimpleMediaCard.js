@@ -12,6 +12,9 @@ const styleSheet = createStyleSheet({
   card: {
     maxWidth: 345,
   },
+  media: {
+    height: 200,
+  },
 });
 
 function SimpleMediaCard(props) {
@@ -19,9 +22,7 @@ function SimpleMediaCard(props) {
   return (
     <div>
       <Card className={classes.card}>
-        <CardMedia>
-          <img src={reptileImage} alt="Contemplative Reptile" />
-        </CardMedia>
+        <CardMedia className={classes.media} image={reptileImage} title="Contemplative Reptile" />
         <CardContent>
           <Typography type="headline" component="h2">
             Lizard
