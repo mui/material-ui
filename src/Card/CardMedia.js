@@ -7,25 +7,43 @@ import withStyles from '../styles/withStyles';
 
 export const styleSheet = createStyleSheet('MuiCardMedia', {
   root: {
-    position: 'relative',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
   },
 });
 
-type Props = {
+type DefaultProps = {
+  classes: Object,
+};
+
+export type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
   className?: string,
+  /**
+   * Image to be displayed as a background image.
+   * Note that caller must specify height otherwise the image will not be visible.
+   */
+  image: string,
 };
 
-function CardMedia(props: Props) {
-  const { classes, className, ...other } = props;
+type AllProps = DefaultProps & Props;
 
-  return <div className={classNames(classes.root, className)} {...other} />;
+function CardMedia(props: AllProps) {
+  const { classes, className, image, ...other } = props;
+
+  return (
+    <div
+      className={classNames(classes.root, className)}
+      style={{ backgroundImage: `url(${image})` }}
+      {...other}
+    />
+  );
 }
 
 export default withStyles(styleSheet)(CardMedia);

@@ -150,7 +150,11 @@ export const styleSheet = createStyleSheet('MuiGrid', theme => {
 
 type GridSizes = boolean | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
-type Props = {
+type DefaultProps = {
+  classes: Object,
+};
+
+export type Props = {
   /**
    * The content of the component.
    */
@@ -158,7 +162,7 @@ type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -234,7 +238,9 @@ type Props = {
   xl?: GridSizes,
 };
 
-function Grid(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function Grid(props: AllProps) {
   const {
     classes,
     className: classNameProp,

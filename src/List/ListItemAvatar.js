@@ -21,7 +21,11 @@ export const styleSheet = createStyleSheet('MuiListItemAvatar', {
   },
 });
 
-type Props = {
+type DefaultProps = {
+  classes: Object,
+};
+
+export type Props = {
   /**
    * The content of the component, normally `Avatar`.
    */
@@ -29,17 +33,19 @@ type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
   className?: string,
 };
 
+type AllProps = DefaultProps & Props;
+
 /**
  * It's a simple wrapper to apply the `dense` mode styles to `Avatar`.
  */
-function ListItemAvatar(props: Props, context: { dense: boolean }) {
+function ListItemAvatar(props: AllProps, context: { dense: boolean }) {
   if (context.dense === undefined) {
     warning(
       false,

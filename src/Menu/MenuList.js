@@ -9,7 +9,7 @@ import activeElement from 'dom-helpers/activeElement';
 import ownerDocument from 'dom-helpers/ownerDocument';
 import List from '../List';
 
-type Props = {
+export type Props = {
   /**
    * MenuList contents, normally `MenuItem`s.
    */

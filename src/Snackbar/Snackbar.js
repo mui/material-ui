@@ -76,11 +76,12 @@ type Origin = {
 type DefaultProps = {
   anchorOrigin: Origin,
   autoHideDuration: ?number,
+  classes: Object,
   enterTransitionDuration: number,
   leaveTransitionDuration: number,
 };
 
-type Props = DefaultProps & {
+export type Props = {
   /**
    * The action to display.
    */
@@ -102,7 +103,7 @@ type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -185,15 +186,18 @@ type Props = DefaultProps & {
   transition?: Function | Element<*>,
 };
 
+type AllProps = DefaultProps & Props;
+
 type State = {
   exited: boolean,
 };
 
-class Snackbar extends Component<DefaultProps, Props, State> {
-  props: Props;
+class Snackbar extends Component<DefaultProps, AllProps, State> {
+  props: AllProps;
   static defaultProps: DefaultProps = {
     anchorOrigin: { vertical: 'bottom', horizontal: 'center' },
     autoHideDuration: null,
+    classes: {},
     enterTransitionDuration: duration.enteringScreen,
     leaveTransitionDuration: duration.leavingScreen,
   };

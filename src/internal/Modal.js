@@ -45,6 +45,7 @@ type DefaultProps = {
   backdropComponent: Function,
   backdropTransitionDuration: number,
   backdropInvisible: boolean,
+  classes: Object,
   disableBackdrop: boolean,
   ignoreBackdropClick: boolean,
   ignoreEscapeKeyUp: boolean,
@@ -52,7 +53,7 @@ type DefaultProps = {
   show: boolean,
 };
 
-type Props = DefaultProps & {
+export type Props = {
   /**
    * The CSS class name of the backdrop element.
    */
@@ -76,7 +77,7 @@ type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -147,6 +148,8 @@ type Props = DefaultProps & {
   show?: boolean,
 };
 
+type AllProps = DefaultProps & Props;
+
 type State = {
   exited: boolean,
 };
@@ -154,13 +157,14 @@ type State = {
 /**
  * @ignore - internal component.
  */
-class Modal extends Component<DefaultProps, Props, State> {
-  props: Props;
+class Modal extends Component<DefaultProps, AllProps, State> {
+  props: AllProps;
 
   static defaultProps: DefaultProps = {
     backdropComponent: Backdrop,
     backdropTransitionDuration: 300,
     backdropInvisible: false,
+    classes: {},
     keepMounted: false,
     disableBackdrop: false,
     ignoreBackdropClick: false,
@@ -236,7 +240,7 @@ class Modal extends Component<DefaultProps, Props, State> {
         modalContent.setAttribute('tabIndex', -1);
         warning(
           false,
-          'Material-UI: The modal content node does not accept focus. ' +
+          'Material-UI: the modal content node does not accept focus. ' +
             'For the benefit of assistive technologies, ' +
             'the tabIndex of the node is being set to "-1".',
         );
@@ -422,7 +426,7 @@ class Modal extends Component<DefaultProps, Props, State> {
       <Portal
         open
         ref={node => {
-          this.mountNode = node ? node.getLayer() : node;
+          this.mountNode = node ? node.getLayer() : null;
         }}
       >
         <div

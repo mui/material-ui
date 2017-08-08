@@ -1,8 +1,9 @@
 // @flow weak
 
 import { Component, Children } from 'react';
-import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+import canUseDom from 'dom-helpers/util/inDOM';
 
 /**
  * @ignore - internal component.
@@ -13,11 +14,17 @@ class Portal extends Component {
   };
 
   componentDidMount() {
-    this.renderLayer();
+    // Support react@15.x, will be removed at some point
+    if (!ReactDOM.unstable_createPortal) {
+      this.renderLayer();
+    }
   }
 
   componentDidUpdate() {
-    this.renderLayer();
+    // Support react@15.x, will be removed at some point
+    if (!ReactDOM.unstable_createPortal) {
+      this.renderLayer();
+    }
   }
 
   componentWillUnmount() {
@@ -43,7 +50,7 @@ class Portal extends Component {
       return;
     }
 
-    // Support react@15.x
+    // Support react@15.x, will be removed at some point
     if (!ReactDOM.unstable_createPortal) {
       ReactDOM.unmountComponentAtNode(this.layer);
     }
@@ -55,21 +62,13 @@ class Portal extends Component {
   }
 
   renderLayer() {
-    // Support react@15.x
-    if (ReactDOM.unstable_createPortal) {
-      return;
-    }
-
     const { children, open } = this.props;
 
     if (open) {
-      /**
-       * By calling this method in componentDidMount() and
-       * componentDidUpdate(), you're effectively creating a "wormhole" that
-       * funnels React's hierarchical updates through to a DOM node on an
-       * entirely different part of the page.
-       */
-
+      // By calling this method in componentDidMount() and
+      // componentDidUpdate(), you're effectively creating a "wormhole" that
+      // funnels React's hierarchical updates through to a DOM node on an
+      // entirely different part of the page.
       const layerElement = Children.only(children);
       ReactDOM.unstable_renderSubtreeIntoContainer(this, layerElement, this.getLayer());
     } else {
@@ -80,9 +79,18 @@ class Portal extends Component {
   render() {
     const { children, open } = this.props;
 
-    // Support react@16.x
-    if (ReactDOM.unstable_createPortal && open) {
-      return ReactDOM.unstable_createPortal(children, this.getLayer());
+    // Support react@15.x, will be removed at some point
+    if (!ReactDOM.unstable_createPortal) {
+      return null;
+    }
+
+    // Can't be rendered server-side.
+    if (canUseDom) {
+      if (open) {
+        return ReactDOM.unstable_createPortal(children, this.getLayer());
+      }
+
+      this.unrenderLayer();
     }
 
     return null;

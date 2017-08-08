@@ -2,6 +2,39 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.4
+###### _Aug 5, 2016_
+
+Big thanks to the 7 contributors who made this release possible.
+
+##### Component Fixes / Enhancements
+
+- [Grid] Add baseline to container's align property (#7623) @kgregory
+- [GridList] Migrate to v1 branch (#7626) @mbrookes
+- [ListItemText] Repurpose text class (#7645) @kgregory
+- [Drawer] Fix docker warning (#7598) @oliviertassinari
+- [Drawer] Fix Chrome regression (#7599) @oliviertassinari
+- [style] Fix HMR issue with react-hot-loader (#7601) @oliviertassinari
+- [ButtonBase] Explicit the need for a class component (#7656) @oliviertassinari
+- [Modal] Take into account the body margin (#7666) @oliviertassinari
+- Fixes in the subway (#7661) @oliviertassinari
+
+##### Docs
+
+- [docs] Fix language issues for clarity (#7610) @skirunman
+- [docs] Update docs for <RadioGroup> (#7640) @sebald
+- [docs] Fixed "initial" word in vars and typo (#7639) @kybarg
+- [docs] Spell check eslint script (#7643) @kybarg
+- [docs] Fix audit issues (#7595) @oliviertassinari
+- [docs] Show how to use the insertionPoint (#7611) @oliviertassinari
+
+##### Core
+
+- [flow] Export type Props for composability (#7609) @rosskevin
+- [typescript] Add TS typings (#7553) @sebald
+- [typescript] Improve the coverage (#7606) @sebald
+- [core] Add isMuiComponent helper (#7635) @katzoo
+
 ## 1.0.0-beta.3
 ###### _Jul 29, 2017_
 

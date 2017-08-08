@@ -8,7 +8,7 @@ Provides context such as dirty/focused/error/required for form inputs.
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | Element |  | The contents of the form control. |
-| classes | Object |  | Useful to extend the style applied to components. |
+| classes | Object | {} | Useful to extend the style applied to components. |
 | disabled | boolean | false | If `true`, the label, input and helper text should be displayed in a disabled state. |
 | error | boolean | false | If `true`, the label should be displayed in an error state. |
 | fullWidth | boolean | false | If `true`, the label will take up the full width of its container. |

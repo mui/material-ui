@@ -12,11 +12,12 @@ import MenuList from './MenuList';
 import type { TransitionCallback } from '../internal/Transition';
 
 type DefaultProps = {
+  classes: Object,
   open: boolean,
   transitionDuration: 'auto',
 };
 
-type Props = DefaultProps & {
+export type Props = {
   /**
    * The DOM element used to set the position of the menu.
    */
@@ -28,7 +29,7 @@ type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -77,6 +78,8 @@ type Props = DefaultProps & {
   transitionDuration?: number | 'auto',
 };
 
+type AllProps = DefaultProps & Props;
+
 export const styleSheet = createStyleSheet('MuiMenu', {
   root: {
     /**
@@ -89,8 +92,10 @@ export const styleSheet = createStyleSheet('MuiMenu', {
   },
 });
 
-class Menu extends Component<DefaultProps, Props, void> {
+class Menu extends Component<DefaultProps, AllProps, void> {
+  props: AllProps;
   static defaultProps: DefaultProps = {
+    classes: {},
     open: false,
     transitionDuration: 'auto',
   };

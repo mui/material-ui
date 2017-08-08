@@ -7,7 +7,7 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| classes | Object |  | Useful to extend the style applied to components. |
+| classes | Object | {} | Useful to extend the style applied to components. |
 | rows | union:&nbsp;string<br>&nbsp;number<br> | 1 | Number of rows to display when multiline option is set to true. |
 | rowsMax | union:&nbsp;string<br>&nbsp;number<br> |  | Maximum number of rows to display when multiline option is set to true. |
 | textareaRef | Function |  | Use that property to pass a ref callback to the native textarea component. |

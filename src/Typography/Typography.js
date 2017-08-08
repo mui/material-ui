@@ -70,13 +70,18 @@ type Type =
   | 'caption'
   | 'button';
 
-type Props = {
+type DefaultProps = {
+  classes: Object,
+  headlineMapping: { [key: Type]: string },
+};
+
+export type Props = {
   align?: 'inherit' | 'left' | 'center' | 'right' | 'justify',
   children?: Element<*>,
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -100,7 +105,7 @@ type Props = {
    * For instance, h1 to h6. If you wish to change that mapping, you can provide your own.
    * Alternatively, you can use the `component` property.
    */
-  headlineMapping: { [key: Type]: string },
+  headlineMapping?: { [key: Type]: string },
   /**
    * If `true`, the text will not wrap, but instead will truncate with an ellipsis.
    */
@@ -115,7 +120,9 @@ type Props = {
   type?: Type,
 };
 
-function Typography(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function Typography(props: AllProps) {
   const {
     align,
     classes,

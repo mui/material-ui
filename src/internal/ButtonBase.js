@@ -1,7 +1,9 @@
 // @flow weak
+
 import React, { Component } from 'react';
 import type { Element } from 'react';
 import { findDOMNode } from 'react-dom';
+import warning from 'warning';
 import classNames from 'classnames';
 import keycode from 'keycode';
 import createStyleSheet from '../styles/createStyleSheet';
@@ -31,13 +33,14 @@ export const styleSheet = createStyleSheet('MuiButtonBase', theme => ({
 
 type DefaultProps = {
   centerRipple: boolean,
+  classes: Object,
   focusRipple: boolean,
   disableRipple: boolean,
   tabIndex: string,
   type: string,
 };
 
-type Props = DefaultProps & {
+export type Props = {
   centerRipple?: boolean,
   /**
    * The content of the component.
@@ -46,7 +49,7 @@ type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -87,6 +90,8 @@ type Props = DefaultProps & {
   type: string,
 };
 
+type AllProps = DefaultProps & Props;
+
 type State = {
   keyboardFocused: boolean,
 };
@@ -94,9 +99,11 @@ type State = {
 /**
  * @ignore - internal component.
  */
-class ButtonBase extends Component<DefaultProps, Props, State> {
+class ButtonBase extends Component<DefaultProps, AllProps, State> {
+  props: AllProps;
   static defaultProps: DefaultProps = {
     centerRipple: false,
+    classes: {},
     focusRipple: false,
     disableRipple: false,
     tabIndex: '0',
@@ -109,6 +116,12 @@ class ButtonBase extends Component<DefaultProps, Props, State> {
 
   componentDidMount() {
     listenForFocusKeys();
+
+    warning(
+      this.button,
+      `Material-UI: please provide a class to the component property.
+      The keyboard focus logic needs a reference to work correctly.`,
+    );
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -208,10 +221,12 @@ class ButtonBase extends Component<DefaultProps, Props, State> {
       return;
     }
 
-    event.persist();
+    if (this.button) {
+      event.persist();
 
-    const keyboardFocusCallback = this.onKeyboardFocusHandler.bind(this, event);
-    detectKeyboardFocus(this, findDOMNode(this.button), keyboardFocusCallback);
+      const keyboardFocusCallback = this.onKeyboardFocusHandler.bind(this, event);
+      detectKeyboardFocus(this, findDOMNode(this.button), keyboardFocusCallback);
+    }
 
     if (this.props.onFocus) {
       this.props.onFocus(event);

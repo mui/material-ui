@@ -28,6 +28,10 @@ export const styleSheet = createStyleSheet('MuiFormLabel', theme => {
   };
 });
 
+type DefaultProps = {
+  classes: Object,
+};
+
 export type Props = {
   /**
    * The content of the component.
@@ -36,7 +40,7 @@ export type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -59,7 +63,9 @@ export type Props = {
   required?: boolean,
 };
 
-function FormLabel(props: Props, context: { muiFormControl: Object }) {
+type AllProps = DefaultProps & Props;
+
+function FormLabel(props: AllProps, context: { muiFormControl: Object }) {
   const {
     children,
     classes,

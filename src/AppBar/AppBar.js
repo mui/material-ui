@@ -46,11 +46,12 @@ export const styleSheet = createStyleSheet('MuiAppBar', theme => ({
 }));
 
 type DefaultProps = {
+  classes: Object,
   color: 'primary',
   position: 'fixed',
 };
 
-type Props = DefaultProps & {
+export type Props = {
   /**
    * The content of the component.
    */
@@ -58,7 +59,7 @@ type Props = DefaultProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -73,7 +74,9 @@ type Props = DefaultProps & {
   position?: 'static' | 'fixed' | 'absolute',
 };
 
-function AppBar(props: Props) {
+type AllProps = DefaultProps & Props;
+
+function AppBar(props: AllProps) {
   const { children, classes, className: classNameProp, color, position, ...other } = props;
 
   const className = classNames(

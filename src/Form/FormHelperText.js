@@ -29,7 +29,11 @@ export const styleSheet = createStyleSheet('MuiFormHelperText', theme => ({
   },
 }));
 
-type Props = {
+type DefaultProps = {
+  classes: Object,
+};
+
+export type Props = {
   /**
    * The content of the component.
    */
@@ -37,7 +41,7 @@ type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -57,7 +61,9 @@ type Props = {
   margin?: 'dense',
 };
 
-function FormHelperText(props: Props, context: { muiFormControl: Object }) {
+type AllProps = DefaultProps & Props;
+
+function FormHelperText(props: AllProps, context: { muiFormControl: Object }) {
   const {
     children,
     classes,
