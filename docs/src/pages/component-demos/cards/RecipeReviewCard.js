@@ -19,6 +19,9 @@ const styleSheet = createStyleSheet(theme => ({
   card: {
     maxWidth: 400,
   },
+  media: {
+    height: 194,
+  },
   expand: {
     transform: 'rotate(0deg)',
     transition: theme.transitions.create('transform', {
@@ -58,9 +61,7 @@ class RecipeReviewCard extends Component {
             title="Shrimp and Chorizo Paella"
             subheader="September 14, 2016"
           />
-          <CardMedia>
-            <img src={paellaImage} alt="Contemplative Reptile" />
-          </CardMedia>
+          <CardMedia className={classes.media} image={paellaImage} title="Contemplative Reptile" />
           <CardContent>
             <Typography component="p">
               This impressive paella is a perfect party dish and a fun meal to cook together with

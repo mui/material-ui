@@ -97,7 +97,7 @@ const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) =>
         return;
       }
 
-      this.unsubscribe = themeListener.subscribe(this.context, theme => {
+      this.unsubscribeId = themeListener.subscribe(this.context, theme => {
         const oldTheme = this.theme;
         this.theme = theme;
         this.attach(this.theme);
@@ -112,8 +112,8 @@ const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) =>
     componentWillUnmount() {
       this.detach(this.theme);
 
-      if (this.unsubscribe !== null) {
-        this.unsubscribe();
+      if (this.unsubscribeId !== null) {
+        themeListener.unsubscribe(this.context, this.unsubscribeId);
       }
     }
 
@@ -185,7 +185,7 @@ const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) =>
       });
     }
 
-    unsubscribe = null;
+    unsubscribeId = null;
     jss = null;
     sheetOptions = null;
     theme = null;
