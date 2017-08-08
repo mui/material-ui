@@ -54,7 +54,7 @@ describe('<CardHeader />', () => {
       const subheader = wrapper.childAt(1);
       assert.strictEqual(subheader.hasClass(extraClasses.subheader), true);
     });
-  });  
+  });
 
   describe('without an avatar', () => {
     let wrapper;
