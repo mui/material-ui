@@ -143,7 +143,7 @@ function parseArgs() {
 }
 
 function main(options, callback) {
-  let originalWrite; // todo, add wiston / other logging tool
+  let originalWrite; // todo, add winston / other logging tool
 
   options = _.defaults(options, DEFAULT_OPTIONS);
   if (options.disableLog) {

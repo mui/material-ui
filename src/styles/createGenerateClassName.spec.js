@@ -17,7 +17,7 @@ describe('createGenerateClassName', () => {
     });
   });
 
-  describe('formating', () => {
+  describe('formatting', () => {
     it('should take the sheet meta in development if available', () => {
       const rule = {
         key: 'root',

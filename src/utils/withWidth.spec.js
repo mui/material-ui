@@ -30,7 +30,7 @@ describe('withWidth', () => {
   });
 
   describe('server side rendering', () => {
-    it('should not render the children as the width is unkown', () => {
+    it('should not render the children as the width is unknown', () => {
       const wrapper = shallow(<EmptyWithWidth />);
       assert.strictEqual(wrapper.type(), null, 'should render nothing');
     });
@@ -111,9 +111,9 @@ describe('withWidth', () => {
     });
   });
 
-  describe('prop: initalWidth', () => {
+  describe('prop: initialWidth', () => {
     it('should work as expected', () => {
-      const element = <EmptyWithWidth initalWidth="lg" />;
+      const element = <EmptyWithWidth initialWidth="lg" />;
 
       // First mount on the server
       const wrapper1 = shallow(element);

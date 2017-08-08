@@ -32,7 +32,7 @@
 | required | boolean | false | If `true`, the label is displayed as required. |
 | rootRef | Function |  | Use that property to pass a ref callback to the root component. |
 | rows | union:&nbsp;string<br>&nbsp;number<br> |  | Number of rows to display when multiline option is set to true. |
-| rowsMax | union:&nbsp;string<br>&nbsp;number<br> |  | Maxium number of rows to display when multiline option is set to true. |
+| rowsMax | union:&nbsp;string<br>&nbsp;number<br> |  | Maximum number of rows to display when multiline option is set to true. |
 | type | string |  | Type attribute of the `Input` element. It should be a valid HTML5 input type. |
 | value | union:&nbsp;string<br>&nbsp;number<br> |  | The value of the `Input` element, required for a controlled component. |
 

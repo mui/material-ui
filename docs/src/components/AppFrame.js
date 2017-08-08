@@ -45,11 +45,6 @@ const styleSheet = createStyleSheet('AppFrame', theme => ({
       WebkitFontSmoothing: 'antialiased', // Antialiasing.
       MozOsxFontSmoothing: 'grayscale', // Antialiasing.
     },
-    img: {
-      maxWidth: '100%',
-      height: 'auto',
-      width: 'auto',
-    },
   },
   root: {
     display: 'flex',

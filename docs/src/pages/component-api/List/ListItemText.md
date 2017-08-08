@@ -8,7 +8,7 @@
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | classes | object |  | Useful to extend the style applied to components. |
-| disableTypography | bool | false | If `true`, the children won't be wrapped by a typography component. For instance, that can be usefull to can render an h4 instead of a |
+| disableTypography | bool | false | If `true`, the children won't be wrapped by a typography component. For instance, that can be useful to can render an h4 instead of a |
 | inset | bool | false | If `true`, the children will be indented. This should be used if there is no left avatar or left icon. |
 | primary | node | false |  |
 | secondary | node | false |  |
@@ -23,6 +23,7 @@ This property accepts the following keys:
 - `inset`
 - `dense`
 - `text`
+- `textDense`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)
 section for more detail.

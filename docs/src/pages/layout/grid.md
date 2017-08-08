@@ -9,16 +9,16 @@ The grid system is implemented with the `<Grid />` component:
 - It’s using [CSS’s Flexible Box module](https://www.w3.org/TR/css-flexbox-1/) for high flexibility.
 - There is two type of layout: *containers* and *items*.
 - Item widths are set in percentages, so they’re always fluid and sized relative to their parent element.
-- Items have padding to create the gutters between individual items.
+- Items have padding to create the spacing between individual items.
 - There are five grid breakpoints: xs, sm, md, lg, and xl.
 
-## Gutters
+## Spacing
 
-The responsive grid focuses on consistent gutter widths, rather than column width.
+The responsive grid focuses on consistent spacing widths, rather than column width.
 Material design margins and columns follow a **8dp** square baseline grid.
-Gutters can be 8, 16, 24, or 40dp wide.
+Spacing can be 8, 16, 24, or 40dp wide.
 
-{{demo='pages/layout/grid/GuttersGrid.js'}}
+{{demo='pages/layout/grid/SpacingGrid.js'}}
 
 ## Full-width vs Centered
 

@@ -112,7 +112,7 @@ type Props = DefaultProps & {
    */
   enterTransitionDuration?: number,
   /**
-   * When displaying multiple consecutive Snackbars from a parent renedering a single
+   * When displaying multiple consecutive Snackbars from a parent rendering a single
    * <Snackbar/>, add the key property to ensure independent treatment of each message.
    * e.g. <Snackbar key={message} />, otherwise, the message may update-in-place and
    * features such as autoHideDuration may be canceled.
