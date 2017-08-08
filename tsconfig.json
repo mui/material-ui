@@ -10,8 +10,8 @@
     "suppressImplicitAnyIndexErrors": true,
     "noEmit": true
   },
-  "exclude": [
-    "node_modules",
-    "docs"
+  "include": [
+    "src/index.d.ts",
+    "test/typescript/*"
   ]
 }
