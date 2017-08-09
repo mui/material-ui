@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import type { Element } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
@@ -200,7 +200,7 @@ type AllProps = DefaultProps & Props;
 /**
  * @ignore - internal component.
  */
-class Popover extends Component<DefaultProps, AllProps, void> {
+class Popover extends PureComponent<DefaultProps, AllProps, void> {
   props: AllProps;
   static defaultProps: DefaultProps = {
     anchorOrigin: {

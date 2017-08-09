@@ -1,10 +1,14 @@
 // @flow
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import type { Element } from 'react';
 import withTheme from '../styles/withTheme';
 import Transition from '../internal/Transition';
 import type { TransitionCallback } from '../internal/Transition';
+
+export function getScale(value: number) {
+  return `scale(${value}, ${value ** 2})`;
+}
 
 type DefaultProps = {
   theme: Object,
@@ -43,7 +47,7 @@ export type Props = {
   /**
    * Use that property to pass a ref callback to the root component.
    */
-  rootRef: Function,
+  rootRef?: Function,
   /**
    * @ignore
    */
@@ -59,22 +63,18 @@ type AllProps = DefaultProps & Props;
 /**
  * @ignore - internal component.
  */
-class Popover extends Component<DefaultProps, AllProps, void> {
+class Popover extends PureComponent<DefaultProps, AllProps, void> {
   props: AllProps;
   static defaultProps: DefaultProps = {
     theme: {},
     transitionDuration: 'auto',
   };
 
-  static getScale(value) {
-    return `scale(${value}, ${value ** 2})`;
-  }
-
   autoTransitionDuration = undefined;
 
   handleEnter = (element: HTMLElement) => {
     element.style.opacity = '0';
-    element.style.transform = Popover.getScale(0.75);
+    element.style.transform = getScale(0.75);
 
     if (this.props.onEnter) {
       this.props.onEnter(element);
@@ -100,7 +100,7 @@ class Popover extends Component<DefaultProps, AllProps, void> {
 
   handleEntering = (element: HTMLElement) => {
     element.style.opacity = '1';
-    element.style.transform = Popover.getScale(1);
+    element.style.transform = getScale(1);
 
     if (this.props.onEntering) {
       this.props.onEntering(element);
@@ -127,7 +127,7 @@ class Popover extends Component<DefaultProps, AllProps, void> {
     ].join(',');
 
     element.style.opacity = '0';
-    element.style.transform = Popover.getScale(0.75);
+    element.style.transform = getScale(0.75);
 
     if (this.props.onExit) {
       this.props.onExit(element);
