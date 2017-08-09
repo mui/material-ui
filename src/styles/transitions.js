@@ -63,7 +63,10 @@ export default {
       isString(props) || Array.isArray(props),
       'Material-UI: argument "props" must be a string or Array',
     );
-    warning(isNumber(durationOption), 'Material-UI: argument "duration" must be a number');
+    warning(
+      isNumber(durationOption),
+      `Material-UI: argument "duration" must be a number but found ${durationOption}`,
+    );
     warning(isString(easingOption), 'Material-UI: argument "easing" must be a string');
     warning(isNumber(delay), 'Material-UI: argument "delay" must be a string');
     warning(
