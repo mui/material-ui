@@ -1,10 +1,11 @@
-// @flow weak
+// @flow
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { PureComponent } from 'react';
+import type { Element } from 'react';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import Transition from '../internal/Transition';
+import type { TransitionCallback } from '../internal/Transition';
 
 const reflow = elem => elem.offsetHeight;
 
@@ -20,9 +21,69 @@ export const styleSheet = createStyleSheet('MuiCollapse', theme => ({
   },
 }));
 
-class Collapse extends Component {
-  static defaultProps = {
+type DefaultProps = {
+  classes: Object,
+  in: boolean,
+  theme: Object,
+  transitionDuration: number,
+};
+
+export type Props = {
+  /**
+   * The content node to be collapsed.
+   */
+  children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * If `true`, the component will transition in.
+   */
+  in?: boolean,
+  /**
+   * Callback fired before the component is entering.
+   */
+  onEnter?: TransitionCallback,
+  /**
+   * Callback fired when the component is entering.
+   */
+  onEntering?: TransitionCallback,
+  /**
+   * Callback fired when the component has entered.
+   */
+  onEntered?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  /**
+   * Callback fired before the component is exiting.
+   */
+  onExit?: TransitionCallback,
+  /**
+   * Callback fired when the component is exiting.
+   */
+  onExiting?: TransitionCallback,
+  /**
+   * Callback fired when the component has exited.
+   */
+  onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  /**
+   * @ignore
+   */
+  theme?: Object,
+  /**
+   * Set to 'auto' to automatically calculate transition time based on height.
+   */
+  transitionDuration?: number | string,
+};
+
+type AllProps = DefaultProps & Props;
+
+class Collapse extends PureComponent<DefaultProps, AllProps, void> {
+  props: AllProps;
+
+  static defaultProps: DefaultProps = {
+    classes: {},
     in: false,
+    theme: {},
     transitionDuration: 300,
   };
 
@@ -129,58 +190,6 @@ class Collapse extends Component {
     );
   }
 }
-
-Collapse.propTypes = {
-  /**
-   * The content node to be collapsed.
-   */
-  children: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * If `true`, the component will transition in.
-   */
-  in: PropTypes.bool,
-  /**
-   * Callback fired before the component is entering.
-   */
-  onEnter: PropTypes.func,
-  /**
-   * Callback fired when the component is entering.
-   */
-  onEntering: PropTypes.func,
-  /**
-   * Callback fired when the component has entered.
-   */
-  onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
-  /**
-   * Callback fired before the component is exiting.
-   */
-  onExit: PropTypes.func,
-  /**
-   * Callback fired when the component is exiting.
-   */
-  onExiting: PropTypes.func,
-  /**
-   * Callback fired when the component has exited.
-   */
-  onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
-  /**
-   * @ignore
-   */
-  theme: PropTypes.object.isRequired,
-  /**
-   * Set to 'auto' to automatically calculate transition time based on height.
-   */
-  transitionDuration: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-};
-
-Collapse.defaultProps = {
-  in: false,
-  transitionDuration: 300,
-};
 
 export default withStyles(styleSheet, {
   withTheme: true,
