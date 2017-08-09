@@ -63,7 +63,7 @@ type AllProps = DefaultProps & Props;
 /**
  * @ignore - internal component.
  */
-class Popover extends PureComponent<DefaultProps, AllProps, void> {
+class Grow extends PureComponent<DefaultProps, AllProps, void> {
   props: AllProps;
   static defaultProps: DefaultProps = {
     theme: {},
@@ -169,4 +169,4 @@ class Popover extends PureComponent<DefaultProps, AllProps, void> {
   }
 }
 
-export default withTheme(Popover);
+export default withTheme(Grow);

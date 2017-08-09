@@ -128,7 +128,7 @@ describe('<Popover />', () => {
       const wrapper = shallow(<Popover />);
       assert.strictEqual(wrapper.children().length, 1, 'should have one child');
       assert.strictEqual(
-        wrapper.childAt(0).is('withTheme(Popover)'),
+        wrapper.childAt(0).is('withTheme(Grow)'),
         true,
         'should be withTheme(Popover) Transition',
       );
@@ -160,7 +160,7 @@ describe('<Popover />', () => {
 
       events.forEach(n => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
-        wrapper.find('withTheme(Popover)').simulate(event, { style: {} });
+        wrapper.find('withTheme(Grow)').simulate(event, { style: {} });
         assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
       });
     });

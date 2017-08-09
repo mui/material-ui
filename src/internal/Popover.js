@@ -10,7 +10,7 @@ import EventListener from 'react-event-listener';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import Modal from './Modal';
-import PopoverTransition from '../transitions/Popover';
+import Grow from '../transitions/Grow';
 import Paper from '../Paper';
 import type { TransitionCallback } from './Transition';
 
@@ -384,7 +384,7 @@ class Popover extends PureComponent<DefaultProps, AllProps, void> {
     // FIXME: props API consistency problem? - `...other` not spread over the root
     return (
       <Modal show={open} backdropInvisible onRequestClose={onRequestClose}>
-        <PopoverTransition
+        <Grow
           in={open}
           enteredClassName={enteredClassName}
           enteringClassName={enteringClassName}
@@ -411,7 +411,7 @@ class Popover extends PureComponent<DefaultProps, AllProps, void> {
             <EventListener target="window" onResize={this.handleResize} />
             {children}
           </Paper>
-        </PopoverTransition>
+        </Grow>
       </Modal>
     );
   }

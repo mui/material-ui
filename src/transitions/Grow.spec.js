@@ -4,9 +4,9 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow } from '../test-utils';
-import Popover, { getScale } from './Popover';
+import Grow, { getScale } from './Grow';
 
-describe('<Popover />', () => {
+describe('<Grow />', () => {
   let shallow;
 
   before(() => {
@@ -22,7 +22,7 @@ describe('<Popover />', () => {
         return result;
       }, {});
 
-      const wrapper = shallow(<Popover {...handlers} />);
+      const wrapper = shallow(<Grow {...handlers} />);
 
       events.forEach(n => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
@@ -51,7 +51,7 @@ describe('<Popover />', () => {
 
       before(() => {
         handleEnter = spy();
-        wrapper = shallow(<Popover onEnter={handleEnter} />);
+        wrapper = shallow(<Grow onEnter={handleEnter} />);
         wrapper.instance().handleEnter(element);
       });
 
@@ -80,7 +80,7 @@ describe('<Popover />', () => {
 
       before(() => {
         handleEntering = spy();
-        wrapper = shallow(<Popover onEntering={handleEntering} />);
+        wrapper = shallow(<Grow onEntering={handleEntering} />);
         wrapper.instance().handleEntering(element);
       });
 
@@ -100,7 +100,7 @@ describe('<Popover />', () => {
 
       before(() => {
         handleExit = spy();
-        wrapper = shallow(<Popover onExit={handleExit} />);
+        wrapper = shallow(<Grow onExit={handleExit} />);
         wrapper.instance().handleExit(element);
       });
 
@@ -120,7 +120,7 @@ describe('<Popover />', () => {
     let instance;
 
     before(() => {
-      wrapper = shallow(<Popover />);
+      wrapper = shallow(<Grow />);
     });
 
     describe('transitionDuration is auto', () => {
