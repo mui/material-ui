@@ -41,6 +41,10 @@ export type Props = {
    */
   onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
   /**
+   * Use that property to pass a ref callback to the root component.
+   */
+  rootRef: Function,
+  /**
    * @ignore
    */
   theme?: Object,
@@ -67,7 +71,6 @@ class Popover extends Component<DefaultProps, AllProps, void> {
   }
 
   autoTransitionDuration = undefined;
-  transitionEl = undefined;
 
   handleEnter = (element: HTMLElement) => {
     element.style.opacity = '0';
@@ -145,6 +148,7 @@ class Popover extends Component<DefaultProps, AllProps, void> {
       onEnter,
       onEntering,
       onExit,
+      rootRef,
       theme,
       ...other
     } = this.props;
@@ -157,9 +161,7 @@ class Popover extends Component<DefaultProps, AllProps, void> {
         onRequestTimeout={this.handleRequestTimeout}
         transitionAppear
         {...other}
-        ref={node => {
-          this.transitionEl = node;
-        }}
+        ref={rootRef}
       >
         {children}
       </Transition>
