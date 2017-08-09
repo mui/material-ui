@@ -188,7 +188,7 @@ export type Props = {
   /**
    * Set to 'auto' to automatically calculate transition time based on height
    */
-  transitionDuration: number | 'auto',
+  transitionDuration?: number | 'auto',
   /**
    * @ignore
    */
