@@ -153,38 +153,12 @@ class Menu extends Component<DefaultProps, AllProps, void> {
   };
 
   render() {
-    const {
-      anchorEl,
-      children,
-      classes,
-      className,
-      open,
-      MenuListProps,
-      onEnter,
-      onEntering,
-      onEntered,
-      onExit,
-      onExiting,
-      onExited,
-      onRequestClose,
-      transitionDuration,
-      ...other
-    } = this.props;
-
+    const { children, classes, className, MenuListProps, onEnter, ...other } = this.props;
     return (
       <Popover
-        anchorEl={anchorEl}
         getContentAnchorEl={this.getContentAnchorEl}
         className={classNames(classes.root, className)}
-        open={open}
         onEnter={this.handleEnter}
-        onEntering={onEntering}
-        onEntered={onEntered}
-        onExiting={onExiting}
-        onExit={onExit}
-        onExited={onExited}
-        onRequestClose={onRequestClose}
-        transitionDuration={transitionDuration}
         {...other}
       >
         <MenuList
