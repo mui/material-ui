@@ -11,7 +11,7 @@
     "noEmit": true
   },
   "include": [
-    "src/index.d.ts",
+    "typings/*",
     "test/typescript/*"
   ]
 }

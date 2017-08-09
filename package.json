@@ -11,7 +11,7 @@
     "material design",
     "material-ui"
   ],
-  "typings": "index.d.ts",
+  "typings": "typings/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/callemall/material-ui.git"
