@@ -3,7 +3,6 @@
 
 import path from 'path';
 import fse from 'fs-extra';
-import glob from 'glob';
 import flowCopySource from 'flow-copy-source';
 
 function copyFile(file) {
@@ -14,16 +13,6 @@ function copyFile(file) {
       resolve();
     });
   }).then(() => console.log(`Copied ${file} to ${buildPath}`));
-}
-
-function copyTypings(folder) {
-  return new Promise(resolve => {
-    glob(`${folder}/**/*.d.ts`, (err, files) => {
-      if (err) throw err;
-      console.log(files);
-      resolve(files);
-    });
-  }).then(files => Promise.all(files.map(file => copyFile(file))));
 }
 
 function createPackageFile() {
@@ -82,12 +71,9 @@ function createPackageFile() {
     });
 }
 
-const files = ['README.md', 'CHANGELOG.md', 'LICENSE'];
-const typings = path.resolve(__dirname, '../typings');
+const files = ['README.md', 'CHANGELOG.md', 'LICENSE', 'typings/index.d.ts'];
 
-Promise.all(files.map(file => copyFile(file)))
-  .then(() => copyTypings(typings))
-  .then(() => createPackageFile());
+Promise.all(files.map(file => copyFile(file))).then(() => createPackageFile());
 
 // Copy original implementation files for flow.
 flowCopySource(['src'], 'build', { verbose: true, ignore: '**/*.spec.js' });
