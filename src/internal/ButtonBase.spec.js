@@ -399,7 +399,7 @@ describe('<ButtonBase />', () => {
     });
 
     it('onKeyboardFocusHandler() should propogate call to onKeyboardFocus prop', () => {
-      const eventMock = 'woof';
+      const eventMock = 'woofButtonBase';
       const onKeyboardFocusSpy = spy();
       const wrapper = mount(
         <ButtonBase.Naked classes={{}} component="span" onKeyboardFocus={onKeyboardFocusSpy}>
@@ -498,10 +498,10 @@ describe('<ButtonBase />', () => {
         const onClickSpy = spy();
         wrapper.setProps({
           onClick: onClickSpy,
-          component: 'woof',
+          component: 'woofButtonBase',
         });
 
-        const eventTargetMock = 'woof';
+        const eventTargetMock = 'woofButtonBase';
         event = {
           persist: spy(),
           preventDefault: spy(),

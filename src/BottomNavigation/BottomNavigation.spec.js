@@ -36,11 +36,11 @@ describe('<BottomNavigation />', () => {
 
   it('should render with the user and root classes', () => {
     const wrapper = shallow(
-      <BottomNavigation showLabels className="woof">
+      <BottomNavigation showLabels className="woofBottomNavigation">
         <BottomNavigationButton icon={icon} />
       </BottomNavigation>,
     );
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+    assert.strictEqual(wrapper.hasClass('woofBottomNavigation'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 

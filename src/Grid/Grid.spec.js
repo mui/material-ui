@@ -23,9 +23,9 @@ describe('<Grid />', () => {
   });
 
   it('should render', () => {
-    const wrapper = shallow(<Grid className="woof" />);
+    const wrapper = shallow(<Grid className="woofGrid" />);
     assert.strictEqual(wrapper.name(), 'div');
-    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the user class');
+    assert.strictEqual(wrapper.hasClass('woofGrid'), true, 'should have the user class');
   });
 
   describe('prop: container', () => {

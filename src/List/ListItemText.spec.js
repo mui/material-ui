@@ -21,8 +21,8 @@ describe('<ListItemText />', () => {
   });
 
   it('should render with the user and root classes', () => {
-    const wrapper = shallow(<ListItemText className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+    const wrapper = shallow(<ListItemText className="woofListItemText" />);
+    assert.strictEqual(wrapper.hasClass('woofListItemText'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 

@@ -43,9 +43,9 @@ describe('<TabScrollButton />', () => {
 
   describe('prop: className', () => {
     it('should render with the user and root classes', () => {
-      const wrapper = shallow(<TabScrollButton className="woof" />);
+      const wrapper = shallow(<TabScrollButton className="woofTabScrollButton" />);
       assert.strictEqual(wrapper.hasClass(classes.root), true);
-      assert.strictEqual(wrapper.hasClass('woof'), true);
+      assert.strictEqual(wrapper.hasClass('woofTabScrollButton'), true);
     });
   });
 
