@@ -127,7 +127,11 @@ describe('<Popover />', () => {
     it('should have Transition as the only child of Modal', () => {
       const wrapper = shallow(<Popover />);
       assert.strictEqual(wrapper.children().length, 1, 'should have one child');
-      assert.strictEqual(wrapper.childAt(0).is('Transition'), true, 'should be Transition');
+      assert.strictEqual(
+        wrapper.childAt(0).is('withTheme(Grow)'),
+        true,
+        'should be withTheme(Popover) Transition',
+      );
       assert.strictEqual(
         wrapper.childAt(0).prop('transitionAppear'),
         true,
@@ -144,15 +148,8 @@ describe('<Popover />', () => {
       assert.strictEqual(wrapper.childAt(0).props().in, false, 'should not be in');
     });
 
-    it('should fire transition event callbacks', () => {
-      const events = [
-        // 'onEnter', this is currently async in Popover, test separately
-        'onEntering',
-        'onEntered',
-        'onExit',
-        'onExiting',
-        'onExited',
-      ];
+    it('should fire Popover transition event callbacks', () => {
+      const events = ['onEntering', 'onEnter', 'onEntered', 'onExit', 'onExiting', 'onExited'];
 
       const handlers = events.reduce((result, n) => {
         result[n] = spy();
@@ -163,7 +160,7 @@ describe('<Popover />', () => {
 
       events.forEach(n => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
-        wrapper.childAt(0).simulate(event, { style: {} });
+        wrapper.find('withTheme(Grow)').simulate(event, { style: {} });
         assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
       });
     });
@@ -222,79 +219,16 @@ describe('<Popover />', () => {
       });
 
       it('should set the inline styles for the enter phase', () => {
-        assert.strictEqual(element.style.opacity, '0', 'should be transparent');
-        assert.strictEqual(
-          element.style.transform,
-          Popover.getScale(0.75),
-          'should have the starting scale',
-        );
         assert.strictEqual(
           element.style.top === '16px' && element.style.left === '16px',
           true,
           'should offset the element from the top left of the screen by 16px',
         );
         assert.strictEqual(
-          element.style.transition,
-          'opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms', // eslint-disable-line max-len
-          'should apply a transition for transform and opacity',
-        );
-        assert.strictEqual(
           element.style.transformOrigin,
           wrapper.instance().getPositioningStyle(element).transformOrigin,
           'should have a transformOrigin',
         );
-      });
-
-      it('should invoke the callback', () => {
-        assert.strictEqual(handleEnter.callCount, 1, 'should have been called once');
-      });
-    });
-
-    describe('handleEntering(element)', () => {
-      let wrapper;
-      let handleEntering;
-
-      before(() => {
-        handleEntering = spy();
-        wrapper = shallow(<Popover onEntering={handleEntering} />);
-        wrapper.instance().handleEntering(element);
-      });
-
-      it('should set the inline styles for the entering phase', () => {
-        assert.strictEqual(element.style.opacity, '1', 'should be visible');
-        assert.strictEqual(
-          element.style.transform,
-          Popover.getScale(1),
-          'should have the full scale',
-        );
-      });
-
-      it('should invoke the callback', () => {
-        assert.strictEqual(handleEntering.callCount, 1, 'should have been called once');
-      });
-    });
-
-    describe('handleExit(element)', () => {
-      let wrapper;
-      let handleExit;
-
-      before(() => {
-        handleExit = spy();
-        wrapper = shallow(<Popover onExit={handleExit} />);
-        wrapper.instance().handleExit(element);
-      });
-
-      it('should set the inline styles for the exit phase', () => {
-        assert.strictEqual(element.style.opacity, '0', 'should be transparent');
-        assert.strictEqual(
-          element.style.transform,
-          Popover.getScale(0.75),
-          'should have the exit scale',
-        );
-      });
-
-      it('should invoke the callback', () => {
-        assert.strictEqual(handleExit.callCount, 1, 'should have been called once');
       });
     });
   });
@@ -597,47 +531,6 @@ describe('<Popover />', () => {
 
       it('should transformOrigin according to marginThreshold', () => {
         assert.strictEqual(positioningStyle.transformOrigin, '1px 0px');
-      });
-    });
-  });
-
-  describe('handleRequestTimeout()', () => {
-    let wrapper;
-    let instance;
-
-    before(() => {
-      wrapper = shallow(<Popover />);
-    });
-
-    describe('transitionDuration is auto', () => {
-      before(() => {
-        wrapper.setProps({ transitionDuration: 'auto' });
-        instance = wrapper.instance();
-      });
-
-      it('should return autoTransitionDuration + 20', () => {
-        const autoTransitionDuration = 10;
-        instance.autoTransitionDuration = autoTransitionDuration;
-        assert.strictEqual(instance.handleRequestTimeout(), autoTransitionDuration + 20);
-      });
-
-      it('should return 20', () => {
-        instance.autoTransitionDuration = undefined;
-        assert.strictEqual(instance.handleRequestTimeout(), 20);
-      });
-    });
-
-    describe('transitionDuration is number', () => {
-      let transitionDuration;
-
-      before(() => {
-        transitionDuration = 10;
-        wrapper.setProps({ transitionDuration });
-        instance = wrapper.instance();
-      });
-
-      it('should return props.transitionDuration + 20', () => {
-        assert.strictEqual(instance.handleRequestTimeout(), transitionDuration + 20);
       });
     });
   });

@@ -56,13 +56,17 @@ describe('<Dialog />', () => {
   });
 
   it('should spread custom props on the paper (dialog "root") node', () => {
-    const wrapper = shallow(<Dialog data-my-prop="woof" />);
-    assert.strictEqual(wrapper.prop('data-my-prop'), 'woof', 'custom prop should be woof');
+    const wrapper = shallow(<Dialog data-my-prop="woofDialog" />);
+    assert.strictEqual(
+      wrapper.prop('data-my-prop'),
+      'woofDialog',
+      'custom prop should be woofDialog',
+    );
   });
 
   it('should render with the user classes on the root node', () => {
-    const wrapper = shallow(<Dialog className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+    const wrapper = shallow(<Dialog className="woofDialog" />);
+    assert.strictEqual(wrapper.hasClass('woofDialog'), true);
   });
 
   it('should render Fade > Paper > children inside the Modal', () => {

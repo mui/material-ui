@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 /* eslint-disable no-param-reassign */
 
 import warning from 'warning';
@@ -44,11 +44,14 @@ export const isNumber = (value: any) => !isNaN(parseFloat(value));
  * @param {number} param.duration
  * @param {string} param.easing
  * @param {number} param.delay
-*/
+ */
 export default {
   easing,
   duration,
-  create(props = ['all'], options: Object = {}) {
+  create(
+    props: string | Array<string> = ['all'],
+    options: { prop?: string, duration?: number, easing?: string, delay?: number } = {},
+  ) {
     const {
       duration: durationOption = duration.standard,
       easing: easingOption = easing.easeInOut,
@@ -60,7 +63,10 @@ export default {
       isString(props) || Array.isArray(props),
       'Material-UI: argument "props" must be a string or Array',
     );
-    warning(isNumber(durationOption), 'Material-UI: argument "duration" must be a number');
+    warning(
+      isNumber(durationOption),
+      `Material-UI: argument "duration" must be a number but found ${durationOption}`,
+    );
     warning(isString(easingOption), 'Material-UI: argument "easing" must be a string');
     warning(isNumber(delay), 'Material-UI: argument "delay" must be a string');
     warning(

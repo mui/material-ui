@@ -41,11 +41,11 @@ describe('<Tabs />', () => {
   describe('prop: className', () => {
     it('should render with the user and root classes', () => {
       const wrapper = shallow(
-        <Tabs width="md" onChange={noop} index={0} className="woof">
+        <Tabs width="md" onChange={noop} index={0} className="woofTabs">
           <Tab />
         </Tabs>,
       );
-      assert.strictEqual(wrapper.hasClass('woof'), true);
+      assert.strictEqual(wrapper.hasClass('woofTabs'), true);
       assert.strictEqual(wrapper.hasClass(classes.root), true);
     });
   });

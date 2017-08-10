@@ -22,7 +22,7 @@ describe('<Chip />', () => {
 
     before(() => {
       wrapper = shallow(
-        <Chip className="my-Chip" data-my-prop="woof">
+        <Chip className="my-Chip" data-my-prop="woofChip">
           Text Chip
         </Chip>,
       );
@@ -36,7 +36,7 @@ describe('<Chip />', () => {
     it('should merge user classes & spread custom props to the root node', () => {
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.hasClass('my-Chip'), true);
-      assert.strictEqual(wrapper.prop('data-my-prop'), 'woof');
+      assert.strictEqual(wrapper.prop('data-my-prop'), 'woofChip');
     });
 
     it('should have a tabIndex prop with value -1', () => {
@@ -51,7 +51,7 @@ describe('<Chip />', () => {
     before(() => {
       handleClick = () => {};
       wrapper = shallow(
-        <Chip className="my-Chip" data-my-prop="woof" onClick={handleClick}>
+        <Chip className="my-Chip" data-my-prop="woofChip" onClick={handleClick}>
           Text Chip
         </Chip>,
       );
@@ -65,7 +65,7 @@ describe('<Chip />', () => {
     it('should merge user classes & spread custom props to the root node', () => {
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.hasClass('my-Chip'), true);
-      assert.strictEqual(wrapper.prop('data-my-prop'), 'woof');
+      assert.strictEqual(wrapper.prop('data-my-prop'), 'woofChip');
       assert.strictEqual(wrapper.props().onClick, handleClick);
     });
 
@@ -93,14 +93,14 @@ describe('<Chip />', () => {
       wrapper = shallow(
         <Chip
           avatar={
-            <Avatar className="my-Avatar" data-my-prop="woof">
+            <Avatar className="my-Avatar" data-my-prop="woofChip">
               MB
             </Avatar>
           }
           label="Text Avatar Chip"
           onRequestDelete={() => {}}
           className="my-Chip"
-          data-my-prop="woof"
+          data-my-prop="woofChip"
         />,
       );
     });
@@ -115,13 +115,13 @@ describe('<Chip />', () => {
     it('should merge user classes & spread custom props to the root node', () => {
       assert.strictEqual(wrapper.hasClass(classes.root), true);
       assert.strictEqual(wrapper.hasClass('my-Chip'), true);
-      assert.strictEqual(wrapper.prop('data-my-prop'), 'woof');
+      assert.strictEqual(wrapper.prop('data-my-prop'), 'woofChip');
     });
 
     it('should merge user classes & spread custom props to the Avatar node', () => {
       assert.strictEqual(wrapper.childAt(0).hasClass(classes.avatar), true);
       assert.strictEqual(wrapper.childAt(0).hasClass('my-Avatar'), true);
-      assert.strictEqual(wrapper.childAt(0).prop('data-my-prop'), 'woof');
+      assert.strictEqual(wrapper.childAt(0).prop('data-my-prop'), 'woofChip');
     });
 
     it('should have a tabIndex prop', () => {
@@ -160,7 +160,7 @@ describe('<Chip />', () => {
 
     before(() => {
       wrapper = shallow(
-        <Chip className="my-Chip" data-my-prop="woof">
+        <Chip className="my-Chip" data-my-prop="woofChip">
           Text Chip
         </Chip>,
       );

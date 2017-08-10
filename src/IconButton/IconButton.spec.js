@@ -84,8 +84,8 @@ describe('<IconButton />', () => {
   });
 
   it('should render with the user and root classes', () => {
-    const wrapper = shallow(<IconButton className="woof">book</IconButton>);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+    const wrapper = shallow(<IconButton className="woofIconButton">book</IconButton>);
+    assert.strictEqual(wrapper.hasClass('woofIconButton'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 

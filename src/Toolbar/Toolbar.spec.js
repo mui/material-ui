@@ -20,8 +20,8 @@ describe('<Toolbar />', () => {
   });
 
   it('should render with the user, root and gutters classes', () => {
-    const wrapper = shallow(<Toolbar className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+    const wrapper = shallow(<Toolbar className="woofToolbar" />);
+    assert.strictEqual(wrapper.hasClass('woofToolbar'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.gutters), true);
   });

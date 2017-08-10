@@ -122,7 +122,7 @@ describe('<RadioGroup />', () => {
 
     it('should fire onChange', () => {
       const internalRadio = wrapper.children().first();
-      const event = { target: { value: 'woof' } };
+      const event = { target: { value: 'woofRadioGroup' } };
       const onChangeSpy = spy();
       wrapper.setProps({ onChange: onChangeSpy });
 
@@ -135,7 +135,7 @@ describe('<RadioGroup />', () => {
       const internalRadio = wrapper.children().first();
       const onChangeSpy = spy();
       wrapper.setProps({ onChange: onChangeSpy });
-      internalRadio.simulate('change', { target: { value: 'woof' } }, false);
+      internalRadio.simulate('change', { target: { value: 'woofRadioGroup' } }, false);
       assert.strictEqual(onChangeSpy.callCount, 0);
     });
   });

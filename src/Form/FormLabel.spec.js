@@ -15,10 +15,10 @@ describe('<FormLabel />', () => {
   });
 
   it('should render a <label />', () => {
-    const wrapper = shallow(<FormLabel className="woof" />);
+    const wrapper = shallow(<FormLabel className="woofFormLabel" />);
     assert.strictEqual(wrapper.name(), 'label');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the user class');
+    assert.strictEqual(wrapper.hasClass('woofFormLabel'), true, 'should have the user class');
   });
 
   describe('prop: required', () => {

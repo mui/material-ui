@@ -15,9 +15,9 @@ describe('<CardMedia />', () => {
   });
 
   it('should have the root and custom class', () => {
-    const wrapper = shallow(<CardMedia className="woof" image="/foo.jpg" />);
+    const wrapper = shallow(<CardMedia className="woofCardMedia" image="/foo.jpg" />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+    assert.strictEqual(wrapper.hasClass('woofCardMedia'), true);
   });
 
   it('should have the backgroundImage specified', () => {
@@ -26,7 +26,11 @@ describe('<CardMedia />', () => {
   });
 
   it('should spread custom props on the root node', () => {
-    const wrapper = shallow(<CardMedia image="/foo.jpg" data-my-prop="woof" />);
-    assert.strictEqual(wrapper.prop('data-my-prop'), 'woof', 'custom prop should be woof');
+    const wrapper = shallow(<CardMedia image="/foo.jpg" data-my-prop="woofCardMedia" />);
+    assert.strictEqual(
+      wrapper.prop('data-my-prop'),
+      'woofCardMedia',
+      'custom prop should be woofCardMedia',
+    );
   });
 });

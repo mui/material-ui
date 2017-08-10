@@ -21,8 +21,8 @@ describe('<ListItemSecondaryAction />', () => {
   });
 
   it('should render with the user and root classes', () => {
-    const wrapper = shallow(<ListItemSecondaryAction className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+    const wrapper = shallow(<ListItemSecondaryAction className="woofListItemSecondaryAction" />);
+    assert.strictEqual(wrapper.hasClass('woofListItemSecondaryAction'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 });

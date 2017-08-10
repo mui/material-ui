@@ -31,8 +31,8 @@ describe('<Tab />', () => {
 
   describe('prop: className', () => {
     it('should render with the user and root classes', () => {
-      const wrapper = shallow(<Tab textColor="inherit" className="woof" />);
-      assert.strictEqual(wrapper.hasClass('woof'), true);
+      const wrapper = shallow(<Tab textColor="inherit" className="woofTab" />);
+      assert.strictEqual(wrapper.hasClass('woofTab'), true);
       assert.strictEqual(wrapper.hasClass(classes.root), true);
     });
   });

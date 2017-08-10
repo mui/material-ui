@@ -61,7 +61,7 @@ describe('<Portal />', () => {
       it('should render nothing directly', () => {
         const wrapper = mount(
           <Portal>
-            <h1 className="woof">Hello</h1>
+            <h1 className="woofPortal">Hello</h1>
           </Portal>,
         );
         assert.strictEqual(wrapper.children().length, 0, 'should have no children');
@@ -70,7 +70,7 @@ describe('<Portal />', () => {
       it('should not open by default', () => {
         const wrapper = mount(
           <Portal>
-            <h1 className="woof">Hello</h1>
+            <h1 className="woofPortal">Hello</h1>
           </Portal>,
         );
         const instance = wrapper.instance();
@@ -86,7 +86,7 @@ describe('<Portal />', () => {
         before(() => {
           wrapper = mount(
             <Portal open>
-              <h1 id="woof">Hello</h1>
+              <h1 id="woofPortal">Hello</h1>
             </Portal>,
           );
           instance = wrapper.instance();
@@ -106,8 +106,8 @@ describe('<Portal />', () => {
           );
           assert.strictEqual(
             portal.firstChild.getAttribute('id'),
-            'woof',
-            'should have the woof id',
+            'woofPortal',
+            'should have the woofPortal id',
           );
           assert.strictEqual(portal.firstChild.innerHTML, 'Hello', 'have the contents');
           portal.setAttribute('id', 'meow');
@@ -117,7 +117,7 @@ describe('<Portal />', () => {
             'should have the portal in the DOM',
           );
           assert.strictEqual(
-            document.getElementById('woof'),
+            document.getElementById('woofPortal'),
             portal.firstChild,
             'should have the heading in the DOM',
           );
@@ -131,7 +131,7 @@ describe('<Portal />', () => {
             'should not have the portal in the DOM',
           );
           assert.strictEqual(
-            document.getElementById('woof'),
+            document.getElementById('woofPortal'),
             null,
             'should not have the heading in the DOM',
           );

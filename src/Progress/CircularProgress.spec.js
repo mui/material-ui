@@ -47,8 +47,8 @@ describe('<CircularProgress />', () => {
   });
 
   it('should render with the user and root classes', () => {
-    const wrapper = shallow(<CircularProgress className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+    const wrapper = shallow(<CircularProgress className="woofCircularProgress" />);
+    assert.strictEqual(wrapper.hasClass('woofCircularProgress'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.props().role, 'progressbar');
   });

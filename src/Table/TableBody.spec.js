@@ -20,8 +20,8 @@ describe('<TableBody />', () => {
   });
 
   it('should render with the user and root classes', () => {
-    const wrapper = shallow(<TableBody className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+    const wrapper = shallow(<TableBody className="woofTableBody" />);
+    assert.strictEqual(wrapper.hasClass('woofTableBody'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 

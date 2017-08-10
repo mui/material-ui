@@ -88,13 +88,13 @@ describe('<Drawer />', () => {
 
   it('should set the Paper className', () => {
     const wrapper = shallow(
-      <Drawer classes={{ paper: 'woof' }}>
+      <Drawer classes={{ paper: 'woofDrawer' }}>
         <h1>Hello</h1>
       </Drawer>,
     );
     const paper = wrapper.find(Paper);
     assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the paper class');
-    assert.strictEqual(paper.hasClass('woof'), true, 'should have the woof class');
+    assert.strictEqual(paper.hasClass('woofDrawer'), true, 'should have the woofDrawer class');
   });
 
   it('should be closed by default', () => {

@@ -40,7 +40,7 @@ describe('<Modal />', () => {
 
     before(() => {
       wrapper = shallow(
-        <Modal show data-my-prop="woof">
+        <Modal show data-my-prop="woofModal">
           <p>Hello World</p>
         </Modal>,
       );

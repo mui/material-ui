@@ -7,15 +7,15 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | node |  | The content node to be collapsed. |
-| classes | object |  | Useful to extend the style applied to components. |
-| in | bool | false | If `true`, the component will transition in. |
-| onEnter | function |  | Callback fired before the component is entering. |
-| onEntered | function |  | Callback fired when the component has entered. |
-| onEntering | function |  | Callback fired when the component is entering. |
-| onExit | function |  | Callback fired before the component is exiting. |
-| onExited | function |  | Callback fired when the component has exited. |
-| onExiting | function |  | Callback fired when the component is exiting. |
+| children | Element |  | The content node to be collapsed. |
+| classes | Object | {} | Useful to extend the style applied to components. |
+| in | boolean | false | If `true`, the component will transition in. |
+| onEnter | TransitionCallback |  | Callback fired before the component is entering. |
+| onEntered | TransitionCallback |  | Callback fired when the component has entered. |
+| onEntering | TransitionCallback |  | Callback fired when the component is entering. |
+| onExit | TransitionCallback |  | Callback fired before the component is exiting. |
+| onExited | TransitionCallback |  | Callback fired when the component has exited. |
+| onExiting | TransitionCallback |  | Callback fired when the component is exiting. |
 | transitionDuration | union:&nbsp;number<br>&nbsp;string<br> | 300 | Set to 'auto' to automatically calculate transition time based on height. |
 
 Any other properties supplied will be spread to the root element.

@@ -44,10 +44,6 @@ export type Props = {
    */
   children?: ReactElement<*>,
   /**
-   * @ignore
-   */
-  className?: string,
-  /**
    * Direction the child element will enter from.
    */
   direction?: Direction,

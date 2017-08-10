@@ -313,7 +313,7 @@ describe('<Input />', () => {
 
     it('should call checkDirty with input value', () => {
       instance.isControlled = () => false;
-      instance.input = 'woof';
+      instance.input = 'woofinput';
       instance.componentDidMount();
       assert.strictEqual(instance.checkDirty.calledWith(instance.input), true);
     });

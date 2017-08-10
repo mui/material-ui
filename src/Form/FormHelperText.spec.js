@@ -15,10 +15,10 @@ describe('<FormHelperText />', () => {
   });
 
   it('should render a <p />', () => {
-    const wrapper = shallow(<FormHelperText className="woof" />);
+    const wrapper = shallow(<FormHelperText className="woofHelperText" />);
     assert.strictEqual(wrapper.name(), 'p');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the user class');
+    assert.strictEqual(wrapper.hasClass('woofHelperText'), true, 'should have the user class');
   });
 
   describe('prop: error', () => {
