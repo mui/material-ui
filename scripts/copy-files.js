@@ -17,13 +17,17 @@ function copyFile(file) {
 
 function createPackageFile() {
   return new Promise(resolve => {
-    fse.readFile(path.resolve(__dirname, '../package.json'), 'utf8', (err, data) => {
-      if (err) {
-        throw err;
-      }
+    fse.readFile(
+      path.resolve(__dirname, '../package.json'),
+      'utf8',
+      (err, data) => {
+        if (err) {
+          throw err;
+        }
 
-      resolve(data);
-    });
+        resolve(data);
+      }
+    );
   })
     .then(data => JSON.parse(data))
     .then(packageData => {
@@ -38,7 +42,6 @@ function createPackageFile() {
         homepage,
         peerDependencies,
         dependencies,
-        typings,
       } = packageData;
 
       const minimalPackage = {
@@ -49,6 +52,7 @@ function createPackageFile() {
         main: './index.js',
         module: './index.es.js',
         'jsnext:main': './index.es.js',
+        typings: './index.d.ts',
         keywords,
         repository,
         license,
@@ -56,7 +60,6 @@ function createPackageFile() {
         homepage,
         peerDependencies,
         dependencies,
-        typings,
       };
 
       return new Promise(resolve => {
