@@ -10,7 +10,7 @@ import { capitalizeFirstLetter } from '../utils/helpers';
 import Icon from '../Icon';
 import { isMuiComponent } from '../utils/reactHelpers';
 
-export const styleSheet = createStyleSheet('MuiIconButton', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -138,4 +138,4 @@ IconButton.defaultProps = {
   disableRipple: false,
 };
 
-export default withStyles(styleSheet)(IconButton);
+export default withStyles(styleSheet, { name: 'MuiIconButton' })(IconButton);

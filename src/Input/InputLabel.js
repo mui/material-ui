@@ -8,7 +8,7 @@ import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { FormLabel } from '../Form';
 
-export const styleSheet = createStyleSheet('MuiInputLabel', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     transformOrigin: 'top left',
   },
@@ -126,4 +126,4 @@ InputLabel.contextTypes = {
   muiFormControl: PropTypes.object,
 };
 
-export default withStyles(styleSheet)(InputLabel);
+export default withStyles(styleSheet, { name: 'MuiInputLabel' })(InputLabel);

@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import ListItemText, { styleSheet } from './ListItemText';
+import ListItemText from './ListItemText';
 
 describe('<ListItemText />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<ListItemText />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<ListItemText />);
   });
 
   it('should render a div', () => {

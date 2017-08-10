@@ -6,7 +6,7 @@ import { createShallow, getClasses } from '../test-utils';
 import Slide from '../transitions/Slide';
 import Modal from '../internal/Modal';
 import Paper from '../Paper';
-import Drawer, { styleSheet } from './Drawer';
+import Drawer from './Drawer';
 
 describe('<Drawer />', () => {
   let shallow;
@@ -14,7 +14,7 @@ describe('<Drawer />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Drawer />);
   });
 
   it('should render a Modal', () => {

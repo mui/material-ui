@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiList', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     flex: '1 1 auto',
     overflow: 'auto',
@@ -125,4 +125,4 @@ List.childContextTypes = {
   dense: PropTypes.bool,
 };
 
-export default withStyles(styleSheet)(List);
+export default withStyles(styleSheet, { name: 'MuiList' })(List);

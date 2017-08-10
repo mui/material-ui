@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiDialogContent', theme => {
+export const styleSheet = createStyleSheet(theme => {
   const spacing = theme.spacing.unit * 3;
   return {
     root: {
@@ -45,4 +45,4 @@ DialogContent.propTypes = {
   className: PropTypes.string,
 };
 
-export default withStyles(styleSheet)(DialogContent);
+export default withStyles(styleSheet, { name: 'MuiDialogContent' })(DialogContent);

@@ -62,7 +62,7 @@ function getScrollParent(parent, child) {
   return scrollTop;
 }
 
-export const styleSheet = createStyleSheet('MuiPopover', {
+export const styleSheet = createStyleSheet({
   paper: {
     position: 'absolute',
     overflowY: 'auto',
@@ -412,4 +412,4 @@ class Popover extends Component<DefaultProps, AllProps, void> {
   }
 }
 
-export default withStyles(styleSheet)(Popover);
+export default withStyles(styleSheet, { name: 'MuiPopover' })(Popover);

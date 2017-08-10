@@ -5,7 +5,7 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, getClasses } from '../test-utils';
 import Icon from '../Icon';
-import BottomNavigationButton, { styleSheet } from './BottomNavigationButton';
+import BottomNavigationButton from './BottomNavigationButton';
 
 describe('<BottomNavigationButton />', () => {
   let shallow;
@@ -14,7 +14,7 @@ describe('<BottomNavigationButton />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<BottomNavigationButton />);
   });
 
   it('should render a ButtonBase', () => {

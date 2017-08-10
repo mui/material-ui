@@ -9,7 +9,7 @@ import withStyles from '../styles/withStyles';
 import DeleteIcon from '../svg-icons/cancel';
 import { emphasize, fade } from '../styles/colorManipulator';
 
-export const styleSheet = createStyleSheet('MuiChip', theme => {
+export const styleSheet = createStyleSheet(theme => {
   const height = 32;
   const backgroundColor = emphasize(theme.palette.background.default, 0.12);
   const deleteIconColor = fade(theme.palette.text.primary, 0.26);
@@ -212,4 +212,4 @@ Chip.propTypes = {
   tabIndex: PropTypes.number,
 };
 
-export default withStyles(styleSheet)(Chip);
+export default withStyles(styleSheet, { name: 'MuiChip' })(Chip);

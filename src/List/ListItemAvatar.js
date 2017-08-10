@@ -8,7 +8,7 @@ import warning from 'warning';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiListItemAvatar', {
+export const styleSheet = createStyleSheet({
   root: {
     width: 36,
     height: 36,
@@ -77,4 +77,4 @@ ListItemAvatar.contextTypes = {
 
 ListItemAvatar.muiName = 'ListItemAvatar';
 
-export default withStyles(styleSheet)(ListItemAvatar);
+export default withStyles(styleSheet, { name: 'MuiListItemAvatar' })(ListItemAvatar);

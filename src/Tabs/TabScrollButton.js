@@ -9,7 +9,7 @@ import ButtonBase from '../ButtonBase';
 import KeyboardArrowLeft from '../svg-icons/keyboard-arrow-left';
 import KeyboardArrowRight from '../svg-icons/keyboard-arrow-right';
 
-export const styleSheet = createStyleSheet('MuiTabScrollButton', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     background: 'none',
     color: 'inherit',
@@ -63,4 +63,4 @@ TabScrollButton.defaultProps = {
   visible: true,
 };
 
-export default withStyles(styleSheet)(TabScrollButton);
+export default withStyles(styleSheet, { name: 'MuiTabScrollButton' })(TabScrollButton);

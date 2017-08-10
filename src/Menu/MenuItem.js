@@ -7,7 +7,7 @@ import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import ListItem from '../List/ListItem';
 
-export const styleSheet = createStyleSheet('MuiMenuItem', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     ...theme.typography.subheading,
     height: 48,
@@ -92,4 +92,4 @@ MenuItem.defaultProps = {
   selected: false,
 };
 
-export default withStyles(styleSheet)(MenuItem);
+export default withStyles(styleSheet, { name: 'MuiMenuItem' })(MenuItem);

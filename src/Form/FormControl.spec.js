@@ -5,7 +5,7 @@ import { spy } from 'sinon';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
 import Input from '../Input';
-import FormControl, { styleSheet } from './FormControl';
+import FormControl from './FormControl';
 
 describe('<FormControl />', () => {
   let shallow;
@@ -13,7 +13,7 @@ describe('<FormControl />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<FormControl />);
   });
 
   describe('initial state', () => {

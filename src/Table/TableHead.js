@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiTableHead', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     fontSize: 12,
     fontWeight: theme.typography.fontWeightMedium,
@@ -59,4 +59,4 @@ TableHead.childContextTypes = {
   table: PropTypes.object,
 };
 
-export default withStyles(styleSheet)(TableHead);
+export default withStyles(styleSheet, { name: 'MuiTableHead' })(TableHead);

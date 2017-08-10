@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import Typography, { styleSheet } from './Typography';
+import Typography from './Typography';
 
 describe('<Typography />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<Typography />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Typography />);
   });
 
   it('should render the text', () => {

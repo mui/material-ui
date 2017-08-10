@@ -8,7 +8,7 @@ import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 import CardContent from './CardContent';
 
-export const styleSheet = createStyleSheet('MuiCardHeader', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     display: 'flex',
     alignItems: 'center',
@@ -85,4 +85,4 @@ function CardHeader(props: AllProps) {
   );
 }
 
-export default withStyles(styleSheet)(CardHeader);
+export default withStyles(styleSheet, { name: 'MuiCardHeader' })(CardHeader);

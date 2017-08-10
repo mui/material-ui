@@ -5,7 +5,7 @@ import createStyleSheet from './createStyleSheet';
 
 describe('createStyleSheet', () => {
   const name = 'name';
-  const styleSheet = createStyleSheet(name, {
+  const styleSheet = createStyleSheet({
     root: {
       color: 'black',
       '&:hover': {
@@ -43,7 +43,7 @@ describe('createStyleSheet', () => {
           },
         },
       };
-      const styles = styleSheet.createStyles(theme);
+      const styles = styleSheet.createStyles(theme, name);
       assert.deepEqual(styles, {
         root: {
           color: 'white',

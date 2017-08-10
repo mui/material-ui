@@ -15,7 +15,7 @@ import withWidth, { isWidthUp } from '../utils/withWidth';
 import TabIndicator from './TabIndicator';
 import TabScrollButton from './TabScrollButton';
 
-export const styleSheet = createStyleSheet('MuiTabs', {
+export const styleSheet = createStyleSheet({
   root: {
     overflow: 'hidden',
   },
@@ -365,4 +365,4 @@ Tabs.propTypes = {
   width: PropTypes.string,
 };
 
-export default compose(withStyles(styleSheet), withWidth())(Tabs);
+export default compose(withStyles(styleSheet, { name: 'MuiTabs' }), withWidth())(Tabs);

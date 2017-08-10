@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiCardMedia', {
+export const styleSheet = createStyleSheet({
   root: {
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
@@ -46,4 +46,4 @@ function CardMedia(props: AllProps) {
   );
 }
 
-export default withStyles(styleSheet)(CardMedia);
+export default withStyles(styleSheet, { name: 'MuiCardMedia' })(CardMedia);

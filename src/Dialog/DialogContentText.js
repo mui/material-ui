@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiDialogContentText', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     ...theme.typography.subheading,
     color: theme.palette.text.secondary,
@@ -39,4 +39,4 @@ DialogContentText.propTypes = {
   className: PropTypes.string,
 };
 
-export default withStyles(styleSheet)(DialogContentText);
+export default withStyles(styleSheet, { name: 'MuiDialogContentText' })(DialogContentText);

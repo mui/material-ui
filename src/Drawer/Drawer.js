@@ -24,7 +24,7 @@ function getSlideDirection(anchor) {
   return 'up';
 }
 
-export const styleSheet = createStyleSheet('MuiDrawer', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   paper: {
     overflowY: 'auto',
     display: 'flex',
@@ -232,4 +232,4 @@ class Drawer extends Component<DefaultProps, AllProps, State> {
   }
 }
 
-export default withStyles(styleSheet, { withTheme: true })(Drawer);
+export default withStyles(styleSheet, { withTheme: true, name: 'MuiDrawer' })(Drawer);

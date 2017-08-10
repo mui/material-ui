@@ -4,7 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow, createMount, getClasses } from '../test-utils';
 import Checkbox from '../Checkbox';
-import FormControlLabel, { styleSheet } from './FormControlLabel';
+import FormControlLabel from './FormControlLabel';
 
 describe('FormControlLabel', () => {
   let shallow;
@@ -15,7 +15,7 @@ describe('FormControlLabel', () => {
   before(() => {
     shallow = createShallow({ dive: true });
     mount = createMount();
-    classes = getClasses(styleSheet);
+    classes = getClasses(<FormControlLabel label="Pizza" control={<div />} />);
     wrapper = shallow(<FormControlLabel label="Pizza" control={<div />} />);
   });
 

@@ -80,7 +80,7 @@ export type Props = {
 
 type AllProps = DefaultProps & Props;
 
-export const styleSheet = createStyleSheet('MuiMenu', {
+export const styleSheet = createStyleSheet({
   root: {
     /**
      * specZ: The maximum height of a simple menu should be one or more rows less than the view
@@ -177,4 +177,4 @@ class Menu extends Component<DefaultProps, AllProps, void> {
   }
 }
 
-export default withStyles(styleSheet)(Menu);
+export default withStyles(styleSheet, { name: 'MuiMenu' })(Menu);

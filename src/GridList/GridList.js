@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiGridList', {
+export const styleSheet = createStyleSheet({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -99,4 +99,4 @@ GridList.defaultProps = {
   component: 'ul',
 };
 
-export default withStyles(styleSheet)(GridList);
+export default withStyles(styleSheet, { name: 'MuiGridList' })(GridList);

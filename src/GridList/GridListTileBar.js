@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiGridListTileBar', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     position: 'absolute',
     left: 0,
@@ -151,4 +151,4 @@ GridListTileBar.defaultProps = {
   actionPosition: 'right',
 };
 
-export default withStyles(styleSheet)(GridListTileBar);
+export default withStyles(styleSheet, { name: 'MuiGridListTileBar' })(GridListTileBar);

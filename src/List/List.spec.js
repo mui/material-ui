@@ -4,7 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
 import ListSubheader from './ListSubheader';
-import List, { styleSheet } from './List';
+import List from './List';
 
 describe('<List />', () => {
   let shallow;
@@ -12,7 +12,7 @@ describe('<List />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<List />);
   });
 
   it('should render a div', () => {

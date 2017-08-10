@@ -5,10 +5,8 @@ import merge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 
 
 type GetStyles = Object | ((theme: Object) => Object);
 
-function createStyleSheet(name: string | GetStyles, callback?: GetStyles, options: Object = {}) {
-  const getStyles = typeof name === 'string' ? callback : name;
-
-  function createStyles(theme: Object = {}): Object {
+function createStyleSheet(getStyles?: GetStyles) {
+  function createStyles(theme: Object = {}, name?: String): Object {
     const styles = typeof getStyles === 'function' ? getStyles(theme) : getStyles;
 
     if (!theme.overrides || !theme.overrides[name]) {
@@ -27,12 +25,11 @@ function createStyleSheet(name: string | GetStyles, callback?: GetStyles, option
   }
 
   return {
-    name: typeof name === 'string' ? name : false,
     createStyles,
-    options,
+    options: {},
     // Enable the theme if the getStyles is a function (as we provide the theme as first argument)
     // or if the sheets has a name (as we can use the overrides key of the theme).
-    themingEnabled: typeof getStyles === 'function' || typeof name === 'string',
+    themingEnabled: typeof getStyles === 'function',
   };
 }
 

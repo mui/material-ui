@@ -82,7 +82,7 @@ function generateGutter(theme, breakpoint) {
   return styles;
 }
 
-export const styleSheet = createStyleSheet('MuiGrid', theme => {
+export const styleSheet = createStyleSheet(theme => {
   // Default CSS values
   // flex: '0 1 auto',
   // flexDirection: 'row',
@@ -335,4 +335,4 @@ if (process.env.NODE_ENV !== 'production') {
   };
 }
 
-export default withStyles(styleSheet)(GridWrapper);
+export default withStyles(styleSheet, { name: 'MuiGrid' })(GridWrapper);

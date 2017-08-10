@@ -7,7 +7,7 @@ import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import createSwitch from '../internal/SwitchBase';
 
-export const styleSheet = createStyleSheet('MuiSwitch', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     display: 'inline-flex',
     width: 62,
@@ -61,7 +61,7 @@ export const styleSheet = createStyleSheet('MuiSwitch', theme => ({
   },
 }));
 
-const SwitchBase = createSwitch({ styleSheet });
+const SwitchBase = createSwitch();
 
 type DefaultProps = {
   classes: Object,
@@ -142,16 +142,24 @@ export type Props = {
 type AllProps = DefaultProps & Props;
 
 function Switch(props: AllProps) {
-  const { classes: { root, ...classes }, className, ...other } = props;
-
+  const { classes, className, ...other } = props;
   const icon = <div className={classes.icon} />;
 
   return (
-    <div className={classNames(root, className)}>
-      <SwitchBase icon={icon} classes={classes} checkedIcon={icon} {...other} />
+    <div className={classNames(classes.root, className)}>
+      <SwitchBase
+        icon={icon}
+        classes={{
+          default: classes.default,
+          checked: classes.checked,
+          disabled: classes.disabled,
+        }}
+        checkedIcon={icon}
+        {...other}
+      />
       <div className={classes.bar} />
     </div>
   );
 }
 
-export default withStyles(styleSheet)(Switch);
+export default withStyles(styleSheet, { name: 'MuiSwitch' })(Switch);

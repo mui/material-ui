@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiListItemSecondaryAction', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     position: 'absolute',
     right: 4,
@@ -48,4 +48,6 @@ function ListItemSecondaryAction(props: AllProps) {
 
 ListItemSecondaryAction.muiName = 'ListItemSecondaryAction';
 
-export default withStyles(styleSheet)(ListItemSecondaryAction);
+export default withStyles(styleSheet, { name: 'MuiListItemSecondaryAction' })(
+  ListItemSecondaryAction,
+);

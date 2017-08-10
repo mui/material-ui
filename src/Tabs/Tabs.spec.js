@@ -6,7 +6,7 @@ import { spy, stub, useFakeTimers } from 'sinon';
 import scroll from 'scroll';
 import { createShallow, createMount, getClasses } from '../test-utils';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
-import Tabs, { styleSheet } from './Tabs';
+import Tabs from './Tabs';
 import TabScrollButton from './TabScrollButton';
 import TabIndicator from './TabIndicator';
 import Tab from './Tab';
@@ -20,7 +20,7 @@ describe('<Tabs />', () => {
 
   before(() => {
     shallow = createShallow({ untilSelector: 'Tabs' });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Tabs />);
     mount = createMount();
   });
 

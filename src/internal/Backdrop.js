@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiBackdrop', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     zIndex: -1,
     width: '100%',
@@ -76,4 +76,4 @@ Backdrop.defaultProps = {
   invisible: false,
 };
 
-export default withStyles(styleSheet)(Backdrop);
+export default withStyles(styleSheet, { name: 'MuiBackdrop' })(Backdrop);

@@ -4,7 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';
 import { createShallow, createMount, getClasses } from '../test-utils';
-import Tab, { styleSheet } from './Tab';
+import Tab from './Tab';
 import Icon from '../Icon';
 
 describe('<Tab />', () => {
@@ -16,7 +16,7 @@ describe('<Tab />', () => {
   before(() => {
     shallow = createShallow({ dive: true });
     mount = createMount();
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Tab textColor="inherit" />);
   });
 
   after(() => {

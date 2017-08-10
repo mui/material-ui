@@ -8,7 +8,7 @@ import { createShallow, createMount, getClasses } from '../test-utils';
 import { focusKeyPressed } from '../utils/keyboardFocus';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
 import TouchRipple from './TouchRipple';
-import ButtonBase, { styleSheet } from './ButtonBase';
+import ButtonBase from './ButtonBase';
 
 describe('<ButtonBase />', () => {
   let mount;
@@ -19,8 +19,8 @@ describe('<ButtonBase />', () => {
     shallow = createShallow({
       dive: true,
     });
-    classes = getClasses(styleSheet);
     mount = createMount();
+    classes = getClasses(<ButtonBase />);
   });
 
   after(() => {

@@ -28,7 +28,7 @@ function getTitle(routes) {
   return null;
 }
 
-const styleSheet = createStyleSheet('AppFrame', theme => ({
+const styleSheet = createStyleSheet(theme => ({
   '@global': {
     html: {
       boxSizing: 'border-box',
@@ -174,4 +174,10 @@ AppFrame.propTypes = {
   width: PropTypes.string.isRequired,
 };
 
-export default compose(withStyles(styleSheet), withWidth(), connect())(AppFrame);
+export default compose(
+  withStyles(styleSheet, {
+    name: 'AppFrame',
+  }),
+  withWidth(),
+  connect(),
+)(AppFrame);

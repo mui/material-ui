@@ -6,7 +6,7 @@ import { spy } from 'sinon';
 import { createShallow, createMount, getClasses } from '../test-utils';
 import BottomNavigationButton from './BottomNavigationButton';
 import Icon from '../Icon';
-import BottomNavigation, { styleSheet } from './BottomNavigation';
+import BottomNavigation from './BottomNavigation';
 
 describe('<BottomNavigation />', () => {
   let shallow;
@@ -16,7 +16,11 @@ describe('<BottomNavigation />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(
+      <BottomNavigation showLabels>
+        <BottomNavigationButton icon={icon} />
+      </BottomNavigation>,
+    );
     mount = createMount();
   });
 

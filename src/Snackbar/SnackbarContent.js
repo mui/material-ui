@@ -8,7 +8,7 @@ import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
 import Typography from '../Typography';
 
-export const styleSheet = createStyleSheet('MuiSnackbarContent', theme => {
+export const styleSheet = createStyleSheet(theme => {
   const type = theme.palette.type === 'light' ? 'dark' : 'light';
   const backgroundColor = theme.palette.shades[type].background.default;
 
@@ -95,4 +95,4 @@ function SnackbarContent(props: AllProps) {
   );
 }
 
-export default withStyles(styleSheet)(SnackbarContent);
+export default withStyles(styleSheet, { name: 'MuiSnackbarContent' })(SnackbarContent);

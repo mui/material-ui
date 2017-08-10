@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import CardActions, { styleSheet } from './CardActions';
+import CardActions from './CardActions';
 
 describe('<CardActions />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<CardActions />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<CardActions />);
   });
 
   it('should render a div with the root class', () => {

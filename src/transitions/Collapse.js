@@ -9,7 +9,7 @@ import type { TransitionCallback } from '../internal/Transition';
 
 const reflow = elem => elem.offsetHeight;
 
-export const styleSheet = createStyleSheet('MuiCollapse', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   container: {
     height: 0,
     overflow: 'hidden',
@@ -193,4 +193,5 @@ class Collapse extends PureComponent<DefaultProps, AllProps, void> {
 
 export default withStyles(styleSheet, {
   withTheme: true,
+  name: 'MuiCollapse',
 })(Collapse);

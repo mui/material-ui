@@ -5,7 +5,7 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, createMount, getClasses } from '../test-utils';
 import Textarea from './Textarea';
-import Input, { styleSheet, isDirty } from './Input';
+import Input, { isDirty } from './Input';
 
 describe('<Input />', () => {
   let shallow;
@@ -15,7 +15,7 @@ describe('<Input />', () => {
   before(() => {
     shallow = createShallow({ dive: true });
     mount = createMount();
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Input />);
   });
 
   after(() => {

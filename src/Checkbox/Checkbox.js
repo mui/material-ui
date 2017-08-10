@@ -3,10 +3,11 @@
 import React from 'react';
 import type { Element } from 'react';
 import createStyleSheet from '../styles/createStyleSheet';
+import withStyles from '../styles/withStyles';
 import createSwitch from '../internal/SwitchBase';
 import IndeterminateCheckBoxIcon from '../svg-icons/indeterminate-check-box';
 
-export const styleSheet = createStyleSheet('MuiCheckbox', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   default: {
     color: theme.palette.text.secondary,
   },
@@ -18,7 +19,7 @@ export const styleSheet = createStyleSheet('MuiCheckbox', theme => ({
   },
 }));
 
-const SwitchBase = createSwitch({ styleSheet });
+export const SwitchBase = withStyles(styleSheet, { name: 'MuiCheckbox' })(createSwitch());
 
 export type Props = {
   /**

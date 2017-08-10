@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import CircularProgress, { styleSheet } from './CircularProgress';
+import CircularProgress from './CircularProgress';
 
 describe('<CircularProgress />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<CircularProgress />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<CircularProgress />);
   });
 
   it('should render a div with the root class', () => {

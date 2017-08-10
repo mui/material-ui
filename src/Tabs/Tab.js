@@ -9,7 +9,7 @@ import ButtonBase from '../ButtonBase';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import Icon from '../Icon';
 
-export const styleSheet = createStyleSheet('MuiTab', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     ...theme.typography.button,
     maxWidth: 264,
@@ -269,4 +269,4 @@ Tab.propTypes = {
   ]),
 };
 
-export default withStyles(styleSheet)(Tab);
+export default withStyles(styleSheet, { name: 'MuiTab' })(Tab);

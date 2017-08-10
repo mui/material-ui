@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiTableRow', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     height: 48,
     '&:focus': {
@@ -87,4 +87,4 @@ TableRow.contextTypes = {
   table: PropTypes.object,
 };
 
-export default withStyles(styleSheet)(TableRow);
+export default withStyles(styleSheet, { name: 'MuiTableRow' })(TableRow);

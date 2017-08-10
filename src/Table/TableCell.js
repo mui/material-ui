@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiTableCell', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
     whiteSpace: 'nowrap',
@@ -114,4 +114,4 @@ TableCell.contextTypes = {
   table: PropTypes.object,
 };
 
-export default withStyles(styleSheet)(TableCell);
+export default withStyles(styleSheet, { name: 'MuiTableCell' })(TableCell);

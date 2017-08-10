@@ -5,7 +5,7 @@ import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
 import Paper from '../Paper';
 import Fade from '../transitions/Fade';
-import Dialog, { styleSheet } from './Dialog';
+import Dialog from './Dialog';
 
 describe('<Dialog />', () => {
   let shallow;
@@ -13,7 +13,7 @@ describe('<Dialog />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Dialog />);
   });
 
   it('should render a Modal', () => {

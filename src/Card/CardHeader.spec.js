@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import CardHeader, { styleSheet } from './CardHeader';
+import CardHeader from './CardHeader';
 
 describe('<CardHeader />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<CardHeader />', () => {
 
   before(() => {
     shallow = createShallow({ untilSelector: 'div' });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<CardHeader />);
   });
 
   it('should render CardContent', () => {

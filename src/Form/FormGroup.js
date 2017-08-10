@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiFormGroup', {
+export const styleSheet = createStyleSheet({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -67,4 +67,4 @@ FormGroup.defaultProps = {
   row: false,
 };
 
-export default withStyles(styleSheet)(FormGroup);
+export default withStyles(styleSheet, { name: 'MuiFormGroup' })(FormGroup);

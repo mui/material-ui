@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiBottomNavigation', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     display: 'flex',
     justifyContent: 'center',
@@ -79,4 +79,4 @@ BottomNavigation.defaultProps = {
   showLabels: false,
 };
 
-export default withStyles(styleSheet)(BottomNavigation);
+export default withStyles(styleSheet, 'MuiBottomNavigation')(BottomNavigation);
