@@ -150,7 +150,7 @@
     "url-loader": "^0.5.9",
     "vrtest": "^0.2.0",
     "webfontloader": "^1.6.28",
-    "webpack": "^3.4.1"
+    "webpack": "^3.5.3"
   },
   "nyc": {
     "include": [
