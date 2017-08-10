@@ -17,17 +17,13 @@ function copyFile(file) {
 
 function createPackageFile() {
   return new Promise(resolve => {
-    fse.readFile(
-      path.resolve(__dirname, '../package.json'),
-      'utf8',
-      (err, data) => {
-        if (err) {
-          throw err;
-        }
-
-        resolve(data);
+    fse.readFile(path.resolve(__dirname, '../package.json'), 'utf8', (err, data) => {
+      if (err) {
+        throw err;
       }
-    );
+
+      resolve(data);
+    });
   })
     .then(data => JSON.parse(data))
     .then(packageData => {
