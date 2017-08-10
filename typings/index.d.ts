@@ -2114,8 +2114,8 @@ declare module 'material-ui/transitions/Fade' {
 
   export interface FadeProps extends TransitionProps {
     theme?: Theme;
-    enterTransitionDuration?: number | string;
-    leaveTransitionDuration?: number | string;
+    enterTransitionDuration?: number;
+    leaveTransitionDuration?: number;
   }
 
   export default class Fade extends MaterialUI.Component<FadeProps> {}
@@ -2129,8 +2129,8 @@ declare module 'material-ui/transitions/Slide' {
     direction?: 'left' | 'right' | 'up' | 'down';
     offset?: string;
     theme?: Theme;
-    enterTransitionDuration?: number | string;
-    leaveTransitionDuration?: number | string;
+    enterTransitionDuration?: number;
+    leaveTransitionDuration?: number;
   }
 
   export default class Slide extends MaterialUI.Component<SlideProps> {}
