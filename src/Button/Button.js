@@ -198,7 +198,7 @@ export type Props = {
   disabled?: boolean,
   /**
    * If `true`, the  keyboard focus ripple will be disabled.
-   * `ripple` must also be true.
+   * `disableRipple` must also be true.
    */
   disableFocusRipple?: boolean,
   /**
