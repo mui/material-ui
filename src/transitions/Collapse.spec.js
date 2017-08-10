@@ -110,12 +110,17 @@ describe('<Collapse />', () => {
       describe('transitionDuration', () => {
         let theme;
         let transitionDurationMock;
+        let restore;
 
         before(() => {
           theme = instance.props.theme;
+          restore = theme.transitions.getAutoHeightDuration;
           theme.transitions.getAutoHeightDuration = stub().returns('woofCollapseStub');
           wrapper.setProps({ transitionDuration: 'auto' });
           instance = wrapper.instance();
+        });
+        after(() => {
+          theme.transitions.getAutoHeightDuration = restore;
         });
 
         it('no wrapper', () => {
@@ -236,12 +241,17 @@ describe('<Collapse />', () => {
       describe('transitionDuration', () => {
         let theme;
         let transitionDurationMock;
+        let restore;
 
         before(() => {
           theme = instance.props.theme;
+          restore = theme.transitions.getAutoHeightDuration;
           theme.transitions.getAutoHeightDuration = stub().returns('woofCollapseStub2');
           wrapper.setProps({ transitionDuration: 'auto' });
           instance = wrapper.instance();
+        });
+        after(() => {
+          theme.transitions.getAutoHeightDuration = restore;
         });
 
         it('no wrapper', () => {
