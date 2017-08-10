@@ -473,6 +473,7 @@ declare module 'material-ui/Drawer' {
 
 declare module 'material-ui/Drawer/Drawer' {
   import { ModalProps } from 'material-ui/internal/Modal';
+  import { SlideProps } from 'material-ui/transitions/Slide';
   import { Theme } from 'material-ui/styles/theme';
 
   type DrawerCommonProps = {
@@ -481,7 +482,7 @@ declare module 'material-ui/Drawer/Drawer' {
     enterTransitionDuration?: number;
     leaveTransitionDuration?: number;
     open?: boolean;
-    SlideProps?: Object;
+    SlideProps?: SlideProps;
     theme?: Theme;
   };
 
@@ -2125,6 +2126,8 @@ declare module 'material-ui/transitions/Slide' {
   import { TransitionProps } from 'material-ui/internal/Transition';
 
   export interface SlideProps extends TransitionProps {
+    direction?: 'left' | 'right' | 'up' | 'down';
+    offset?: string;
     theme?: Theme;
     enterTransitionDuration?: number | string;
     leaveTransitionDuration?: number | string;
