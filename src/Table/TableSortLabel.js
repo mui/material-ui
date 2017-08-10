@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
-import ButtonBase from '../internal/ButtonBase';
+import ButtonBase from '../ButtonBase';
 import ArrowDownwardIcon from '../svg-icons/arrow-downward';
 
 export const styleSheet = createStyleSheet('MuiTableSortLabel', theme => ({

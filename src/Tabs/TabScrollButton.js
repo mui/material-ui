@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
-import ButtonBase from '../internal/ButtonBase';
+import ButtonBase from '../ButtonBase';
 import KeyboardArrowLeft from '../svg-icons/keyboard-arrow-left';
 import KeyboardArrowRight from '../svg-icons/keyboard-arrow-right';
 
