@@ -552,7 +552,7 @@ declare module 'material-ui/Form/FormControlLabel' {
 declare module 'material-ui/Form/FormGroup' {
   export interface FormGroupProps
     extends React.HtmlHTMLAttributes<HTMLDivElement> {
-    row: boolean;
+    row?: boolean;
   }
 
   export default class FormGroup extends MaterialUI.Component<FormGroupProps> {}
