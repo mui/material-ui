@@ -6,6 +6,7 @@ import withTheme from '../styles/withTheme';
 import Transition from '../internal/Transition';
 import type { TransitionCallback } from '../internal/Transition';
 
+// only exported for tests
 export function getScale(value: number) {
   return `scale(${value}, ${value ** 2})`;
 }
