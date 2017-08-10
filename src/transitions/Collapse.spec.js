@@ -21,10 +21,10 @@ describe('<Collapse />', () => {
   });
 
   it('should render a container around the wrapper', () => {
-    const wrapper = shallow(<Collapse classes={{ container: 'woofCollapse' }} />);
+    const wrapper = shallow(<Collapse classes={{ container: 'woofCollapse1' }} />);
     assert.strictEqual(wrapper.childAt(0).is('div'), true, 'should be a div');
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.container), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass('woofCollapse'), true);
+    assert.strictEqual(wrapper.childAt(0).hasClass('woofCollapse1'), true);
   });
 
   it('should render a wrapper around the children', () => {
@@ -113,7 +113,7 @@ describe('<Collapse />', () => {
 
         before(() => {
           theme = instance.props.theme;
-          theme.transitions.getAutoHeightDuration = stub().returns('woofCollapse');
+          theme.transitions.getAutoHeightDuration = stub().returns('woofCollapseStub');
           wrapper.setProps({ transitionDuration: 'auto' });
           instance = wrapper.instance();
         });
@@ -147,7 +147,7 @@ describe('<Collapse />', () => {
         });
 
         it('string should set transitionDuration to string', () => {
-          transitionDurationMock = 'woofCollapse';
+          transitionDurationMock = 'woofCollapseStub';
           wrapper.setProps({ transitionDuration: transitionDurationMock });
           instance = wrapper.instance();
           instance.handleEntering(element);
@@ -239,7 +239,7 @@ describe('<Collapse />', () => {
 
         before(() => {
           theme = instance.props.theme;
-          theme.transitions.getAutoHeightDuration = stub().returns('woofCollapse');
+          theme.transitions.getAutoHeightDuration = stub().returns('woofCollapseStub2');
           wrapper.setProps({ transitionDuration: 'auto' });
           instance = wrapper.instance();
         });
@@ -273,7 +273,7 @@ describe('<Collapse />', () => {
         });
 
         it('string should set transitionDuration to string', () => {
-          transitionDurationMock = 'woofCollapse';
+          transitionDurationMock = 'woofCollapseStub2';
           wrapper.setProps({ transitionDuration: transitionDurationMock });
           instance = wrapper.instance();
           instance.handleExiting(element);
