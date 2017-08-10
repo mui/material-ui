@@ -1,6 +1,6 @@
 // @flow
 
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import type { Element } from 'react';
 import withTheme from '../styles/withTheme';
 import Transition from '../internal/Transition';
@@ -61,9 +61,9 @@ export type Props = {
 type AllProps = DefaultProps & Props;
 
 /**
- * @ignore - internal component.
+ * Grow transition used by popovers such as Menu.
  */
-class Grow extends PureComponent<DefaultProps, AllProps, void> {
+class Grow extends Component<DefaultProps, AllProps, void> {
   props: AllProps;
   static defaultProps: DefaultProps = {
     theme: {},
