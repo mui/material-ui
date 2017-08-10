@@ -189,10 +189,6 @@ export type Props = {
    * Set to 'auto' to automatically calculate transition time based on height
    */
   transitionDuration?: number | 'auto',
-  /**
-   * @ignore
-   */
-  theme: Object,
 };
 
 type AllProps = DefaultProps & Props;
@@ -377,7 +373,6 @@ class Popover extends Component<DefaultProps, AllProps, void> {
       onExiting,
       onExited,
       elevation,
-      theme,
       ...other
     } = this.props;
 
@@ -417,4 +412,4 @@ class Popover extends Component<DefaultProps, AllProps, void> {
   }
 }
 
-export default withStyles(styleSheet, { withTheme: true })(Popover);
+export default withStyles(styleSheet)(Popover);
