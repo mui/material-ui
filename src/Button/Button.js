@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
-import ButtonBase from '../internal/ButtonBase';
+import ButtonBase from '../ButtonBase';
 
 export const styleSheet = createStyleSheet('MuiButton', theme => ({
   root: {

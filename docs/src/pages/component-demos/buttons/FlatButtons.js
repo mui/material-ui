@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Button from 'material-ui/Button';
+import Link from 'react-router/lib/Link';
 
 const styleSheet = createStyleSheet(theme => ({
   button: {
@@ -30,6 +31,9 @@ function FlatButtons(props) {
       </Button>
       <Button href="#flat-buttons" className={classes.button}>
         Link
+      </Button>
+      <Button disabled component={Link} to="/" className={classes.button}>
+        Link disabled
       </Button>
       <Button dense className={classes.button}>
         Dense
