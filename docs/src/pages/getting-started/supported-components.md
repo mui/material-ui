@@ -4,7 +4,7 @@ The following is a list of Material Design components & features.
 Those currently supported by Material-UI are **highlighted ✓**.
 
 While we strive to follow the guidelines where practical (applying
-common sense where guidelines contadict - a more common occurence than
+common sense where guidelines contradict - a more common occurence than
 one might expect), we do not expect to support every component, or every
 feature of every component, but rather to provide the building blocks to
 allow developers to create compelling user interfaces and experiences.
