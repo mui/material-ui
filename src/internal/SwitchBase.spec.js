@@ -102,7 +102,11 @@ describe('<SwitchBase />', () => {
 
   it('should spread custom props on the root node', () => {
     const wrapper = shallow(<SwitchBase data-my-prop="woofSwitchBase" />);
-    assert.strictEqual(wrapper.props()['data-my-prop'], 'woofSwitchBase', 'custom prop should be woofSwitchBase');
+    assert.strictEqual(
+      wrapper.props()['data-my-prop'],
+      'woofSwitchBase',
+      'custom prop should be woofSwitchBase',
+    );
   });
 
   it('should pass tabIndex to the input so it can be taken out of focus rotation', () => {

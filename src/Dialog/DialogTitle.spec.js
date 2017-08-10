@@ -21,7 +21,11 @@ describe('<DialogTitle />', () => {
 
   it('should spread custom props on the root node', () => {
     const wrapper = shallow(<DialogTitle data-my-prop="woofDialogTitle" />);
-    assert.strictEqual(wrapper.prop('data-my-prop'), 'woofDialogTitle', 'custom prop should be woofDialogTitle');
+    assert.strictEqual(
+      wrapper.prop('data-my-prop'),
+      'woofDialogTitle',
+      'custom prop should be woofDialogTitle',
+    );
   });
 
   it('should render with the user and root classes', () => {

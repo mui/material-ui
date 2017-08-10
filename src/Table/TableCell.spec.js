@@ -21,7 +21,11 @@ describe('<TableCell />', () => {
 
   it('should spread custom props on the root node', () => {
     const wrapper = shallow(<TableCell data-my-prop="woofTableCell" />);
-    assert.strictEqual(wrapper.prop('data-my-prop'), 'woofTableCell', 'custom prop should be woofTableCell');
+    assert.strictEqual(
+      wrapper.prop('data-my-prop'),
+      'woofTableCell',
+      'custom prop should be woofTableCell',
+    );
   });
 
   it('should render with the user, root and padding classes', () => {
