@@ -81,6 +81,8 @@ class Calendar extends Component {
     }
   }
 
+  calendarRefs = {};
+
   getMinDate() {
     return this.props.minDate || this.props.utils.addYears(new Date(), -100);
   }
@@ -98,7 +100,11 @@ class Calendar extends Component {
       return false;
     }
 
-    return this.refs.calendar.isSelectedDateDisabled();
+    if (this.calendarRefs.calendar) {
+      return this.calendarRefs.calendar.isSelectedDateDisabled();
+    } else {
+      return false;
+    }
   }
 
   addSelectedDays(days) {
@@ -365,7 +371,7 @@ class Calendar extends Component {
                   minDate={this.getMinDate()}
                   maxDate={this.getMaxDate()}
                   onTouchTapDay={this.handleTouchTapDay}
-                  ref="calendar"
+                  ref={(ref) => this.calendarRefs.calendar = ref}
                   selectedDate={this.state.selectedDate}
                   shouldDisableDate={this.props.shouldDisableDate}
                   utils={utils}
