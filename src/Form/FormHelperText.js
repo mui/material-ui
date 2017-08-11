@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiFormHelperText', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     color: theme.palette.input.helperText,
     fontFamily: theme.typography.fontFamily,
@@ -114,4 +114,4 @@ FormHelperText.contextTypes = {
   muiFormControl: PropTypes.object,
 };
 
-export default withStyles(styleSheet)(FormHelperText);
+export default withStyles(styleSheet, { name: 'MuiFormHelperText' })(FormHelperText);

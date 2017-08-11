@@ -7,7 +7,7 @@ import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { cloneChildrenWithClassName } from '../utils/reactHelpers';
 
-export const styleSheet = createStyleSheet('MuiCardActions', {
+export const styleSheet = createStyleSheet({
   root: {
     height: 52,
     display: 'flex',
@@ -61,4 +61,4 @@ CardActions.defaultProps = {
   disableActionSpacing: false,
 };
 
-export default withStyles(styleSheet)(CardActions);
+export default withStyles(styleSheet, { name: 'MuiCardActions' })(CardActions);

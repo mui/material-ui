@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import SvgIcon, { styleSheet } from './SvgIcon';
+import SvgIcon from './SvgIcon';
 
 describe('<SvgIcon />', () => {
   let shallow;
@@ -12,7 +12,7 @@ describe('<SvgIcon />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<SvgIcon />);
     path = <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />;
   });
 

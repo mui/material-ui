@@ -4,7 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
 import CancelIcon from '../svg-icons/cancel';
-import Avatar, { styleSheet } from './Avatar';
+import Avatar from './Avatar';
 
 describe('<Avatar />', () => {
   let shallow;
@@ -12,7 +12,7 @@ describe('<Avatar />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Avatar />);
   });
 
   describe('image avatar', () => {

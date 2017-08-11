@@ -35,13 +35,13 @@ describe('withStyles', () => {
     let classes;
 
     before(() => {
-      const styleSheet = createStyleSheet('MuiTextField', {
+      const styleSheet = createStyleSheet({
         root: {
           display: 'flex',
         },
       });
-      StyledComponent1 = withStyles(styleSheet)(Empty);
-      classes = getClasses(styleSheet);
+      StyledComponent1 = withStyles(styleSheet, { name: 'MuiTextField' })(Empty);
+      classes = getClasses(<StyledComponent1 />);
     });
 
     it('should provide a classes property', () => {
@@ -145,12 +145,12 @@ describe('withStyles', () => {
     });
 
     it('should work when depending on a theme', () => {
-      const styleSheet = createStyleSheet('MuiTextField', theme => ({
+      const styleSheet = createStyleSheet(theme => ({
         root: {
           padding: theme.spacing.unit,
         },
       }));
-      const StyledComponent = withStyles(styleSheet)(Empty);
+      const StyledComponent = withStyles(styleSheet, { name: 'MuiTextField' })(Empty);
 
       const wrapper = mount(
         <MuiThemeProvider theme={createMuiTheme()}>
@@ -173,12 +173,12 @@ describe('withStyles', () => {
     });
 
     it('should support the overrides key', () => {
-      const styleSheet = createStyleSheet('MuiTextField', {
+      const styleSheet = createStyleSheet({
         root: {
           padding: 8,
         },
       });
-      const StyledComponent = withStyles(styleSheet)(Empty);
+      const StyledComponent = withStyles(styleSheet, { name: 'MuiTextField' })(Empty);
 
       mount(
         <MuiThemeProvider

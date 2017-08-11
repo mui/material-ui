@@ -14,7 +14,7 @@ function getRelativeValue(value, min, max) {
   return (clampedValue - min) / (max - min);
 }
 
-export const styleSheet = createStyleSheet('MuiCircularProgress', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     display: 'inline-block',
   },
@@ -167,4 +167,4 @@ CircularProgress.defaultProps = {
   max: 100,
 };
 
-export default withStyles(styleSheet)(CircularProgress);
+export default withStyles(styleSheet, { name: 'MuiCircularProgress' })(CircularProgress);

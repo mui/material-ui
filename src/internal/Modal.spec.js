@@ -9,7 +9,7 @@ import { createShallow, createMount, getClasses } from '../test-utils';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
 import Fade from '../transitions/Fade';
 import Backdrop from './Backdrop';
-import Modal, { styleSheet } from './Modal';
+import Modal from './Modal';
 
 describe('<Modal />', () => {
   let shallow;
@@ -18,7 +18,7 @@ describe('<Modal />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Modal />);
     mount = createMount();
   });
 

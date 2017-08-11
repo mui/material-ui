@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiCardContent', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     padding: theme.spacing.unit * 2,
     '&:last-child': {
@@ -37,4 +37,4 @@ function CardContent(props: AllProps) {
   return <div className={classNames(classes.root, className)} {...other} />;
 }
 
-export default withStyles(styleSheet)(CardContent);
+export default withStyles(styleSheet, { name: 'MuiCardContent' })(CardContent);

@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiFormControlLabel', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -126,4 +126,4 @@ FormControlLabel.defaultProps = {
   disabled: false,
 };
 
-export default withStyles(styleSheet)(FormControlLabel);
+export default withStyles(styleSheet, { name: 'MuiFormControlLabel' })(FormControlLabel);

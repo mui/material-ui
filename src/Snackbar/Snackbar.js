@@ -13,7 +13,7 @@ import Slide from '../transitions/Slide';
 import SnackbarContent from './SnackbarContent';
 import type { TransitionCallback } from '../internal/Transition';
 
-export const styleSheet = createStyleSheet('MuiSnackbar', theme => {
+export const styleSheet = createStyleSheet(theme => {
   const gutter = theme.spacing.unit * 3;
   const top = { top: 0 };
   const bottom = { bottom: 0 };
@@ -365,4 +365,4 @@ class Snackbar extends Component<DefaultProps, AllProps, State> {
   }
 }
 
-export default withStyles(styleSheet)(Snackbar);
+export default withStyles(styleSheet, { name: 'MuiSnackbar' })(Snackbar);

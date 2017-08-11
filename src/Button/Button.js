@@ -8,7 +8,7 @@ import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 
-export const styleSheet = createStyleSheet('MuiButton', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     ...theme.typography.button,
     lineHeight: '1em',
@@ -285,4 +285,4 @@ Button.defaultProps = {
   type: 'button',
 };
 
-export default withStyles(styleSheet)(Button);
+export default withStyles(styleSheet, { name: 'MuiButton' })(Button);

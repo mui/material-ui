@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import LinearProgress, { styleSheet } from './LinearProgress';
+import LinearProgress from './LinearProgress';
 
 describe('<LinearProgress />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<LinearProgress />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<LinearProgress />);
   });
 
   it('should render a div with the root class', () => {

@@ -27,7 +27,7 @@ const generateClassName = createGenerateClassName();
 // that parent has a higher specificity.
 let indexCounter = Number.MIN_SAFE_INTEGER;
 
-const sheetsManager = new WeakMap();
+export const sheetsManager = new Map();
 const noopTheme = {};
 
 let defaultTheme;
@@ -44,12 +44,14 @@ function getDefaultTheme() {
 // Link a style sheet with a component.
 // It does not modify the component passed to it;
 // instead, it returns a new, with a `classes` property.
-const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) => BaseComponent => {
-  const { withTheme = false } = options;
+const withStyles = (styleSheet: Object, options: Object = {}) => BaseComponent => {
+  const { withTheme = false, name, ...styleSheetOptions } = options;
   const factory = createEagerFactory(BaseComponent);
-  const styleSheets = (Array.isArray(styleSheet) ? styleSheet : [styleSheet]).filter(Boolean);
+  const styleSheets = [styleSheet].filter(Boolean);
   const listenToTheme =
-    styleSheets.some(currentStyleSheet => currentStyleSheet.themingEnabled) || withTheme;
+    styleSheets.some(currentStyleSheet => currentStyleSheet.themingEnabled) ||
+    withTheme ||
+    typeof name === 'string';
 
   styleSheets.forEach(currentStyleSheet => {
     if (currentStyleSheet.options.index === undefined) {
@@ -137,11 +139,11 @@ const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) =>
         }
 
         if (sheetManagerTheme.refs === 0) {
-          const styles = currentStyleSheet.createStyles(theme);
+          const styles = currentStyleSheet.createStyles(theme, name);
           let meta;
 
           if (process.env.NODE_ENV !== 'production') {
-            meta = currentStyleSheet.name ? currentStyleSheet.name : getDisplayName(BaseComponent);
+            meta = name || currentStyleSheet.name || getDisplayName(BaseComponent);
             // Sanitize the string as will be used in development to prefix the generated
             // class name.
             meta = meta.replace(new RegExp(/[!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~]/g), '-');
@@ -152,6 +154,8 @@ const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) =>
             link: false,
             ...this.sheetOptions,
             ...currentStyleSheet.options,
+            name,
+            ...styleSheetOptions,
           });
 
           sheetManagerTheme.sheet = sheet;

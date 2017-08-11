@@ -9,7 +9,7 @@ import withStyles from '../styles/withStyles';
 
 const rowsHeight = 24;
 
-export const styleSheet = createStyleSheet('MuiTextarea', {
+export const styleSheet = createStyleSheet({
   root: {
     position: 'relative', // because the shadow has position: 'absolute',
   },
@@ -244,4 +244,4 @@ class Textarea extends Component<DefaultProps, AllProps, State> {
   }
 }
 
-export default withStyles(styleSheet)(Textarea);
+export default withStyles(styleSheet, { name: 'MuiTextarea' })(Textarea);

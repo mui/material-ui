@@ -55,15 +55,14 @@ They are easy to debug in development and as short as possible in production:
 
 ## API
 
-### `createStyleSheet([name], styles) => styleSheet`
+### `createStyleSheet(styles) => styleSheet`
 
 Generate a new style sheet that represents the style you want to inject in the DOM.
 
 #### Arguments
 
-1. `name` (*String* [optional]): The name of the style sheet. Useful for debugging.
 If the value isn't provided, we will try to fallback to the name of the component.
-2. `styles` (*Function | Object*): A function generating the styles or an object.
+1. `styles` (*Function | Object*): A function generating the styles or an object.
 
 Use the function if you need to have access to the theme. It's provided as the first argument.
 
@@ -97,15 +96,17 @@ It does not modify the component passed to it; instead, it returns a new compone
 This `classes` object contains the name of the class names injected in the DOM.
 
 Some implementation details that might be interesting to being aware of:
- - It's forwarding *non react static* properties so this HOC is more "transparent".
- - It's adding a `innerRef` property so you can get a reference to the wrapped component.
- - It's adding a `classes` property so you can override the injected class names from the outside.
+- It's adding a `classes` property so you can override the injected class names from the outside.
+- It's adding a `innerRef` property so you can get a reference to the wrapped component.
+- It's forwarding *non react static* properties so this HOC is more "transparent".
+For instance, it can be used to defined a `getInitialProps()` static method (next.js).
 
 #### Arguments
 
 1. `styleSheet` (*Object*): The style sheet to link to the component. This object can be created with `createStyleSheet`.
 2. `options` (*Object* [optional]):
   - `options.withTheme` (Boolean [optional]): Provide the `theme` object to the component as a property.
+  - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging.
 
 #### Returns
 
@@ -117,20 +118,24 @@ Some implementation details that might be interesting to being aware of:
 import { withStyles } from 'material-ui/styles';
 
 class MyComponent extends Component {
-  render () {}
+  render () {
+    return <div />;
+  }
 }
 
 export default withStyles(styleSheet)(MyComponent);
 ```
 
-You can use as [decorators](https://babeljs.io/docs/plugins/transform-decorators/) like so:
+Also, you can use as [decorators](https://babeljs.io/docs/plugins/transform-decorators/) like so:
 
 ```js
 import { withStyles } from 'material-ui/styles';
 
 @withStyles(styleSheet)
 class MyComponent extends Component {
-  render () {}
+  render () {
+    return <div />;
+  }
 }
 
 export default MyComponent

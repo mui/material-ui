@@ -7,7 +7,7 @@ import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 
-export const styleSheet = createStyleSheet('MuiListItemText', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     flex: '1 1 auto',
     padding: '0 16px',
@@ -108,4 +108,4 @@ ListItemText.contextTypes = {
   dense: PropTypes.bool,
 };
 
-export default withStyles(styleSheet)(ListItemText);
+export default withStyles(styleSheet, { name: 'MuiListItemText' })(ListItemText);

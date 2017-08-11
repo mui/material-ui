@@ -5,7 +5,7 @@ import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
 import ListItemText from './ListItemText';
 import ListItemSecondaryAction from './ListItemSecondaryAction';
-import ListItem, { styleSheet } from './ListItem';
+import ListItem from './ListItem';
 import ListItemAvatar from './ListItemAvatar';
 
 describe('<ListItem />', () => {
@@ -14,7 +14,7 @@ describe('<ListItem />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<ListItem />);
   });
 
   it('should render a div', () => {

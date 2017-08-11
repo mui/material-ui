@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import ListSubheader, { styleSheet } from './ListSubheader';
+import ListSubheader from './ListSubheader';
 
 describe('<ListSubheader />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<ListSubheader />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<ListSubheader />);
   });
 
   it('should render a div', () => {

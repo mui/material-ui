@@ -6,7 +6,7 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, createMount, getClasses } from '../test-utils';
 import Avatar from '../Avatar';
-import Chip, { styleSheet } from './Chip';
+import Chip from './Chip';
 
 describe('<Chip />', () => {
   let shallow;
@@ -14,7 +14,7 @@ describe('<Chip />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Chip />);
   });
 
   describe('text only', () => {

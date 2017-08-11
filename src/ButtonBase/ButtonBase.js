@@ -12,7 +12,7 @@ import { listenForFocusKeys, detectKeyboardFocus, focusKeyPressed } from '../uti
 import TouchRipple from './TouchRipple';
 import createRippleHandler from './createRippleHandler';
 
-export const styleSheet = createStyleSheet('MuiButtonBase', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     position: 'relative',
     // Remove grey highlight
@@ -390,4 +390,4 @@ class ButtonBase extends Component<DefaultProps, AllProps, State> {
   }
 }
 
-export default withStyles(styleSheet)(ButtonBase);
+export default withStyles(styleSheet, { name: 'MuiButtonBase' })(ButtonBase);

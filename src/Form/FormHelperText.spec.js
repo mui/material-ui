@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import FormHelperText, { styleSheet } from './FormHelperText';
+import FormHelperText from './FormHelperText';
 
 describe('<FormHelperText />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<FormHelperText />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<FormHelperText />);
   });
 
   it('should render a <p />', () => {

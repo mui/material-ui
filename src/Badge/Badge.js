@@ -9,7 +9,7 @@ import { capitalizeFirstLetter } from '../utils/helpers';
 
 const RADIUS = 12;
 
-export const styleSheet = createStyleSheet('MuiBadge', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     position: 'relative',
     display: 'inline-block',
@@ -87,4 +87,4 @@ Badge.defaultProps = {
   color: 'default',
 };
 
-export default withStyles(styleSheet)(Badge);
+export default withStyles(styleSheet, { name: 'MuiBadge' })(Badge);

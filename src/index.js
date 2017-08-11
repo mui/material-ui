@@ -38,7 +38,15 @@ export { default as Paper } from './Paper';
 export { CircularProgress, LinearProgress } from './Progress';
 export { default as Radio, RadioGroup } from './Radio';
 export { default as Snackbar, SnackbarContent } from './Snackbar';
-export { MuiThemeProvider } from './styles';
+export {
+  MuiThemeProvider,
+  withStyles,
+  withTheme,
+  createMuiTheme,
+  createTypography,
+  createBreakpoints,
+  createPalette,
+} from './styles';
 
 // eslint-disable-next-line import/first
 import * as colors from './colors';

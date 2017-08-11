@@ -26,7 +26,7 @@ import type { TransitionCallback } from './Transition';
  */
 const modalManager = createModalManager();
 
-export const styleSheet = createStyleSheet('MuiModal', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     display: 'flex',
     width: '100%',
@@ -449,4 +449,4 @@ class Modal extends Component<DefaultProps, AllProps, State> {
   }
 }
 
-export default withStyles(styleSheet)(Modal);
+export default withStyles(styleSheet, { name: 'MuiModal' })(Modal);

@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiToolbar', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     position: 'relative',
     display: 'flex',
@@ -63,4 +63,4 @@ Toolbar.defaultProps = {
   disableGutters: false,
 };
 
-export default withStyles(styleSheet)(Toolbar);
+export default withStyles(styleSheet, { name: 'MuiCollapse' })(Toolbar);

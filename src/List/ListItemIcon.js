@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiListItemIcon', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     height: 24,
     marginRight: theme.spacing.unit * 2,
@@ -49,4 +49,4 @@ function ListItemIcon(props: AllProps) {
   });
 }
 
-export default withStyles(styleSheet)(ListItemIcon);
+export default withStyles(styleSheet, { name: 'MuiListItemIcon' })(ListItemIcon);

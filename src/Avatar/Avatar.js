@@ -7,7 +7,7 @@ import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { emphasize } from '../styles/colorManipulator';
 
-export const styleSheet = createStyleSheet('MuiAvatar', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     position: 'relative',
     display: 'flex',
@@ -147,4 +147,4 @@ Avatar.defaultProps = {
   component: 'div',
 };
 
-export default withStyles(styleSheet)(Avatar);
+export default withStyles(styleSheet, { name: 'MuiAvatar' })(Avatar);

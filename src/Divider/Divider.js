@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiDivider', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     height: 1,
     margin: 0, // Reset browser default style.
@@ -71,4 +71,4 @@ Divider.defaultProps = {
   light: false,
 };
 
-export default withStyles(styleSheet)(Divider);
+export default withStyles(styleSheet, { name: 'MuiDivider' })(Divider);

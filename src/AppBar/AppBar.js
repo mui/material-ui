@@ -8,7 +8,7 @@ import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import Paper from '../Paper';
 
-export const styleSheet = createStyleSheet('MuiAppBar', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -101,4 +101,4 @@ AppBar.defaultProps = {
   position: 'fixed',
 };
 
-export default withStyles(styleSheet)(AppBar);
+export default withStyles(styleSheet, { name: 'MuiAppBar' })(AppBar);

@@ -7,7 +7,7 @@ import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
 
-export const styleSheet = createStyleSheet('MuiIcon', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     userSelect: 'none',
   },
@@ -82,4 +82,4 @@ Icon.defaultProps = {
 
 Icon.muiName = 'Icon';
 
-export default withStyles(styleSheet)(Icon);
+export default withStyles(styleSheet, { name: 'MuiIcon' })(Icon);

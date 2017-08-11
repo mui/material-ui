@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import FormLabel, { styleSheet } from './FormLabel';
+import FormLabel from './FormLabel';
 
 describe('<FormLabel />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<FormLabel />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<FormLabel />);
   });
 
   it('should render a <label />', () => {

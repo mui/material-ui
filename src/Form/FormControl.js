@@ -9,7 +9,7 @@ import withStyles from '../styles/withStyles';
 import { isDirty } from '../Input/Input';
 import { isMuiComponent } from '../utils/reactHelpers';
 
-export const styleSheet = createStyleSheet('MuiFormControl', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     display: 'inline-flex',
     flexDirection: 'column',
@@ -202,4 +202,4 @@ class FormControl extends Component<DefaultProps, AllProps, State> {
   }
 }
 
-export default withStyles(styleSheet)(FormControl);
+export default withStyles(styleSheet, { name: 'MuiFormControl' })(FormControl);

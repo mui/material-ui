@@ -4,7 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, createMount, getClasses } from '../test-utils';
-import createSwitch, { styleSheet } from './SwitchBase';
+import createSwitch from './SwitchBase';
 import Icon from '../Icon';
 
 function assertIsChecked(wrapper) {
@@ -57,7 +57,7 @@ describe('<SwitchBase />', () => {
       dive: true,
     });
     mount = createMount();
-    classes = getClasses(styleSheet);
+    classes = getClasses(<SwitchBase />);
   });
 
   after(() => {

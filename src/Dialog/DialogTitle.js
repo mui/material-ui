@@ -7,7 +7,7 @@ import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 
-export const styleSheet = createStyleSheet('MuiDialogTitle', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     margin: 0,
     padding: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px \
@@ -54,4 +54,4 @@ DialogTitle.defaultProps = {
   disableTypography: false,
 };
 
-export default withStyles(styleSheet)(DialogTitle);
+export default withStyles(styleSheet, { name: 'MuiDialogTitle' })(DialogTitle);

@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import DialogContentText, { styleSheet } from './DialogContentText';
+import DialogContentText from './DialogContentText';
 
 describe('<DialogContentText />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<DialogContentText />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<DialogContentText />);
   });
 
   describe('prop: className', () => {

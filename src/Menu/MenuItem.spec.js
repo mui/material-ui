@@ -4,7 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, getClasses } from '../test-utils';
-import MenuItem, { styleSheet } from './MenuItem';
+import MenuItem from './MenuItem';
 
 describe('<MenuItem />', () => {
   let shallow;
@@ -12,7 +12,7 @@ describe('<MenuItem />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<MenuItem />);
   });
 
   it('should render a button ListItem with with ripple', () => {

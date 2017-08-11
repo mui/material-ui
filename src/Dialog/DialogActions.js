@@ -7,7 +7,7 @@ import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import '../Button'; // So we don't have any override priority issue.
 
-export const styleSheet = createStyleSheet('MuiDialogActions', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     display: 'flex',
     justifyContent: 'flex-end',
@@ -57,4 +57,4 @@ DialogActions.propTypes = {
   className: PropTypes.string,
 };
 
-export default withStyles(styleSheet)(DialogActions);
+export default withStyles(styleSheet, { name: 'MuiDialogActions' })(DialogActions);

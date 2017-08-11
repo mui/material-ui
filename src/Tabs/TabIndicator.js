@@ -7,7 +7,7 @@ import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
 
-export const styleSheet = createStyleSheet('MuiTabIndicator', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     position: 'relative',
     height: 2,
@@ -71,4 +71,4 @@ TabIndicator.propTypes = {
   }).isRequired,
 };
 
-export default withStyles(styleSheet)(TabIndicator);
+export default withStyles(styleSheet, { name: 'MuiTabIndicator' })(TabIndicator);

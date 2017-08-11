@@ -8,7 +8,7 @@ import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import Icon from '../Icon';
 
-export const styleSheet = createStyleSheet('MuiBottomNavigationButton', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     transition: theme.transitions.create(['color', 'padding-top'], {
       duration: theme.transitions.duration.short,
@@ -151,4 +151,6 @@ BottomNavigationButton.propTypes = {
   value: PropTypes.number,
 };
 
-export default withStyles(styleSheet)(BottomNavigationButton);
+export default withStyles(styleSheet, { name: 'MuiBottomNavigationButton' })(
+  BottomNavigationButton,
+);

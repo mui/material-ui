@@ -7,7 +7,7 @@ import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
 
-export const styleSheet = createStyleSheet('MuiTypography', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     display: 'block',
     margin: 0,
@@ -178,4 +178,4 @@ Typography.defaultProps = {
   type: 'body1',
 };
 
-export default withStyles(styleSheet)(Typography);
+export default withStyles(styleSheet, { name: 'MuiTypography' })(Typography);

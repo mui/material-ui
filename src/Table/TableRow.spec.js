@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import TableRow, { styleSheet } from './TableRow';
+import TableRow from './TableRow';
 
 describe('<TableRow />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<TableRow />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<TableRow />);
   });
 
   it('should render a tr', () => {

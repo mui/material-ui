@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import CardMedia, { styleSheet } from './CardMedia';
+import CardMedia from './CardMedia';
 
 describe('<CardMedia />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<CardMedia />', () => {
 
   before(() => {
     shallow = createShallow({ untilSelector: 'CardMedia' });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<CardMedia image="/foo.jpg" />);
   });
 
   it('should have the root and custom class', () => {

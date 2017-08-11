@@ -12,7 +12,7 @@ import { duration } from '../styles/transitions';
 import Paper from '../Paper';
 import type { TransitionCallback } from '../internal/Transition';
 
-export const styleSheet = createStyleSheet('MuiDialog', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -227,4 +227,4 @@ Dialog.defaultProps = {
   transition: Fade,
 };
 
-export default withStyles(styleSheet)(Dialog);
+export default withStyles(styleSheet, { name: 'MuiDialog' })(Dialog);

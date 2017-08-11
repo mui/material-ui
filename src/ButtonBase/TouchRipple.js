@@ -11,7 +11,7 @@ import Ripple from './Ripple';
 
 const DURATION = 550;
 
-export const styleSheet = createStyleSheet('MuiTouchRipple', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     display: 'block',
     position: 'absolute',
@@ -252,4 +252,4 @@ TouchRipple.propTypes = {
   className: PropTypes.string,
 };
 
-export default withStyles(styleSheet)(TouchRipple);
+export default withStyles(styleSheet, { name: 'MuiTouchRipple' })(TouchRipple);

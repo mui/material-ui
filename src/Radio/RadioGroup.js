@@ -8,7 +8,7 @@ import withStyles from '../styles/withStyles';
 import FormGroup from '../Form/FormGroup';
 import { find } from '../utils/helpers';
 
-export const styleSheet = createStyleSheet('MuiRadioGroup', {
+export const styleSheet = createStyleSheet({
   root: {
     flex: '1 1 auto',
     margin: 0,
@@ -128,4 +128,4 @@ class RadioGroup extends PureComponent<void, AllProps, void> {
   }
 }
 
-export default withStyles(styleSheet)(RadioGroup);
+export default withStyles(styleSheet, { name: 'MuiRadioGroup' })(RadioGroup);

@@ -6,7 +6,7 @@ import warning from 'warning';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiPaper', theme => {
+export const styleSheet = createStyleSheet(theme => {
   const shadows = {};
 
   theme.shadows.forEach((shadow, index) => {
@@ -93,4 +93,4 @@ Paper.defaultProps = {
   square: false,
 };
 
-export default withStyles(styleSheet)(Paper);
+export default withStyles(styleSheet, { name: 'MuiPaper' })(Paper);

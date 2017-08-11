@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiSvgIcon', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     display: 'inline-block',
     fill: 'currentColor',
@@ -74,4 +74,4 @@ SvgIcon.defaultProps = {
 
 SvgIcon.muiName = 'SvgIcon';
 
-export default withStyles(styleSheet)(SvgIcon);
+export default withStyles(styleSheet, { name: 'MuiSvgIcon' })(SvgIcon);

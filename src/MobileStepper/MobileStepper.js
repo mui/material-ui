@@ -12,7 +12,7 @@ import KeyboardArrowLeft from '../svg-icons/keyboard-arrow-left';
 import KeyboardArrowRight from '../svg-icons/keyboard-arrow-right';
 import { LinearProgress } from '../Progress';
 
-export const styleSheet = createStyleSheet('MuiMobileStepper', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'row',
@@ -172,4 +172,4 @@ MobileStepper.defaultProps = {
   type: 'dots',
 };
 
-export default withStyles(styleSheet)(MobileStepper);
+export default withStyles(styleSheet, { name: 'MuiMobileStepper' })(MobileStepper);

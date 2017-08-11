@@ -8,7 +8,7 @@ import withStyles from '../styles/withStyles';
 
 const transitionDuration = 4; // 400ms
 
-export const styleSheet = createStyleSheet('MuiLinearProgress', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     position: 'relative',
     overflow: 'hidden',
@@ -223,4 +223,4 @@ LinearProgress.defaultProps = {
   value: 0,
 };
 
-export default withStyles(styleSheet)(LinearProgress);
+export default withStyles(styleSheet, { name: 'MuiLinearProgress' })(LinearProgress);

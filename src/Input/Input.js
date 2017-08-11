@@ -15,7 +15,7 @@ export function isDirty(obj, SSR = false) {
   );
 }
 
-export const styleSheet = createStyleSheet('MuiInput', theme => {
+export const styleSheet = createStyleSheet(theme => {
   const placeholder = {
     color: 'currentColor',
     opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
@@ -528,4 +528,4 @@ class Input extends Component<DefaultProps, AllProps, State> {
   }
 }
 
-export default withStyles(styleSheet)(Input);
+export default withStyles(styleSheet, { name: 'MuiInput' })(Input);

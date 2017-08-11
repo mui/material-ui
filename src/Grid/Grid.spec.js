@@ -5,7 +5,7 @@ import { assert } from 'chai';
 import forOwn from 'lodash/forOwn';
 import { createShallow, getClasses } from '../test-utils';
 import Hidden from '../Hidden';
-import Grid, { styleSheet } from './Grid';
+import Grid from './Grid';
 
 describe('<Grid />', () => {
   let shallow;
@@ -19,7 +19,7 @@ describe('<Grid />', () => {
         context: shallowInner.context,
       });
     };
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Grid />);
   });
 
   it('should render', () => {

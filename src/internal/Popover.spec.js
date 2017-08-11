@@ -5,7 +5,7 @@ import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import css from 'dom-helpers/style';
 import { createShallow, createMount, getClasses } from '../test-utils';
-import Popover, { styleSheet } from './Popover';
+import Popover from './Popover';
 
 describe('<Popover />', () => {
   let shallow;
@@ -15,9 +15,7 @@ describe('<Popover />', () => {
   before(() => {
     shallow = createShallow({ dive: true });
     mount = createMount();
-    classes = getClasses(styleSheet, {
-      withTheme: true,
-    });
+    classes = getClasses(<Popover />);
   });
 
   after(() => {

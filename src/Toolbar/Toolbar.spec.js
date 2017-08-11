@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import Toolbar, { styleSheet } from './Toolbar';
+import Toolbar from './Toolbar';
 
 describe('<Toolbar />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<Toolbar />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Toolbar />);
   });
 
   it('should render a div', () => {

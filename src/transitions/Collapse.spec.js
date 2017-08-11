@@ -4,7 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';
 import { createShallow, createMount, getClasses } from '../test-utils';
-import Collapse, { styleSheet } from './Collapse';
+import Collapse from './Collapse';
 
 describe('<Collapse />', () => {
   let shallow;
@@ -12,7 +12,7 @@ describe('<Collapse />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Collapse />);
   });
 
   it('should render a Transition', () => {

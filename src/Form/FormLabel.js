@@ -8,7 +8,7 @@ import classNames from 'classnames';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiFormLabel', theme => {
+export const styleSheet = createStyleSheet(theme => {
   const focusColor = theme.palette.primary[theme.palette.type === 'light' ? 'A700' : 'A200'];
   return {
     root: {
@@ -128,4 +128,4 @@ FormLabel.contextTypes = {
   muiFormControl: PropTypes.object,
 };
 
-export default withStyles(styleSheet)(FormLabel);
+export default withStyles(styleSheet, { name: 'MuiFormLabel' })(FormLabel);

@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import TableBody, { styleSheet } from './TableBody';
+import TableBody from './TableBody';
 
 describe('<TableBody />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<TableBody />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<TableBody />);
   });
 
   it('should render a tbody', () => {

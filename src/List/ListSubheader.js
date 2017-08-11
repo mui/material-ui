@@ -7,7 +7,7 @@ import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
 
-export const styleSheet = createStyleSheet('MuiListSubheader', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     boxSizing: 'border-box',
     lineHeight: '48px',
@@ -76,4 +76,4 @@ ListSubheader.defaultProps = {
 
 ListSubheader.muiName = 'ListSubheader';
 
-export default withStyles(styleSheet)(ListSubheader);
+export default withStyles(styleSheet, { name: 'MuiListSubheader' })(ListSubheader);

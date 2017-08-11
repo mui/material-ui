@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import SnackbarContent, { styleSheet } from './SnackbarContent';
+import SnackbarContent from './SnackbarContent';
 
 describe('<SnackbarContent />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<SnackbarContent />', () => {
 
   before(() => {
     shallow = createShallow({ untilSelector: 'withStyles(Paper)' });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<SnackbarContent message="message" />);
   });
 
   it('should render a Paper with classes', () => {

@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import Checkbox, { styleSheet } from './Checkbox';
+import Checkbox, { SwitchBase } from './Checkbox';
 
 describe('<Checkbox />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<Checkbox />', () => {
 
   before(() => {
     shallow = createShallow();
-    classes = getClasses(styleSheet);
+    classes = getClasses(<SwitchBase />);
   });
 
   describe('styleSheet', () => {
@@ -25,6 +25,6 @@ describe('<Checkbox />', () => {
   it('should render a div with a SwitchBase', () => {
     assert.strictEqual(Checkbox.name, 'Checkbox', 'set for debugging');
     const wrapper = shallow(<Checkbox />);
-    assert.strictEqual(wrapper.name(), 'withStyles(SwitchBase)');
+    assert.strictEqual(wrapper.name(), 'withStyles(withStyles(SwitchBase))');
   });
 });

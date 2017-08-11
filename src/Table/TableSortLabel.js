@@ -8,7 +8,7 @@ import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import ArrowDownwardIcon from '../svg-icons/arrow-downward';
 
-export const styleSheet = createStyleSheet('MuiTableSortLabel', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     cursor: 'pointer',
     display: 'inline-flex',
@@ -101,4 +101,4 @@ TableSortLabel.defaultProps = {
   direction: 'desc',
 };
 
-export default withStyles(styleSheet)(TableSortLabel);
+export default withStyles(styleSheet, { name: 'MuiTableSortLabel' })(TableSortLabel);

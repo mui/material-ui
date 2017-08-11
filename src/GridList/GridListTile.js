@@ -8,7 +8,7 @@ import debounce from 'lodash/debounce';
 import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiGridListTile', {
+export const styleSheet = createStyleSheet({
   root: {
     boxSizing: 'border-box',
   },
@@ -157,4 +157,4 @@ GridListTile.propTypes = {
   rows: PropTypes.number,
 };
 
-export default withStyles(styleSheet)(GridListTile);
+export default withStyles(styleSheet, { name: 'MuiGridListTile' })(GridListTile);

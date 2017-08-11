@@ -9,7 +9,7 @@ import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import { isMuiComponent } from '../utils/reactHelpers';
 
-export const styleSheet = createStyleSheet('MuiListItem', theme => ({
+export const styleSheet = createStyleSheet(theme => ({
   root: {
     display: 'flex',
     alignItems: 'center',
@@ -194,4 +194,4 @@ ListItem.childContextTypes = {
   dense: PropTypes.bool,
 };
 
-export default withStyles(styleSheet)(ListItem);
+export default withStyles(styleSheet, { name: 'MuiListItem' })(ListItem);
