@@ -30,7 +30,7 @@ The best place to start is by looking at the features each [plugin](http://cssin
 ## Sheet registry
 
 When rendering on the server, you will need to get all rendered styles as a CSS string.
-`SheetsRegistry` classs allows you to manually aggregate and stringify them.
+`SheetsRegistry` class allows you to manually aggregate and stringify them.
 Read more about [Server Rendering here](/guides/server-rendering).
 
 {{demo='pages/customization/JssRegistry.js'}}
