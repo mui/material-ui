@@ -1,14 +1,14 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow weak
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 import { FormLabel, FormControlLabel } from 'material-ui/Form';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 import Paper from 'material-ui/Paper';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     flexGrow: 1,
   },
@@ -19,7 +19,7 @@ const styleSheet = createStyleSheet(theme => ({
   control: {
     padding: theme.spacing.unit * 2,
   },
-}));
+});
 
 class GuttersGrid extends Component {
   state = {
@@ -78,4 +78,4 @@ GuttersGrid.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(GuttersGrid);
+export default withStyles(styles)(GuttersGrid);

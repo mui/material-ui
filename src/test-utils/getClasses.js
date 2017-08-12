@@ -1,16 +1,24 @@
 // @flow
 
-import React from 'react';
+import * as ns from 'react-jss/lib/ns';
+import { SheetsRegistry } from 'react-jss';
 import createShallow from './createShallow';
-import withStyles from '../styles/withStyles';
+import { sheetsManager } from '../styles/withStyles';
 
 const shallow = createShallow();
-const Empty = () => <div />;
-Empty.defaultProps = {};
 
 // Helper function to extract the classes from a styleSheet.
-export default function getClasses(styleSheet: Object, options?: Object) {
-  const Extractor = withStyles(styleSheet, options)(Empty);
+export default function getClasses(element: Object, options: Object = {}) {
+  const sheetsRegistry = new SheetsRegistry();
 
-  return shallow(<Extractor />).props().classes;
+  sheetsManager.clear();
+  shallow(element, {
+    ...options,
+    context: {
+      [ns.sheetsRegistry]: sheetsRegistry,
+      ...options.context,
+    },
+  });
+
+  return sheetsRegistry.registry[0].classes;
 }

@@ -9,13 +9,12 @@ import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
 import ScrollbarSize from 'react-scrollbar-size';
 import scroll from 'scroll';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import withWidth, { isWidthUp } from '../utils/withWidth';
 import TabIndicator from './TabIndicator';
 import TabScrollButton from './TabScrollButton';
 
-export const styleSheet = createStyleSheet('MuiTabs', {
+export const styles = {
   root: {
     overflow: 'hidden',
   },
@@ -37,7 +36,7 @@ export const styleSheet = createStyleSheet('MuiTabs', {
   centered: {
     justifyContent: 'center',
   },
-});
+};
 
 /**
  * Notice that this Component is incompatible with server side rendering.
@@ -67,7 +66,7 @@ class Tabs extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.index !== nextProps.index) {
+    if (this.props.value !== nextProps.value) {
       this.updateIndicatorState(nextProps);
     }
   }
@@ -88,6 +87,7 @@ class Tabs extends Component {
   }
 
   tabs = undefined;
+  valueToIndex = undefined;
 
   handleResize = debounce(() => {
     this.updateIndicatorState(this.props);
@@ -149,7 +149,7 @@ class Tabs extends Component {
     return conditionalElements;
   };
 
-  getTabsMeta = index => {
+  getTabsMeta = value => {
     let tabsMeta;
     if (this.tabs) {
       tabsMeta = this.tabs.getBoundingClientRect();
@@ -157,10 +157,10 @@ class Tabs extends Component {
     }
 
     let tabMeta;
-    if (this.tabs && index !== false) {
-      const tab = this.tabs.children[0].children[index];
-      warning(tab, `Material-UI: the index provided \`${index}\` is invalid`);
-      tabMeta = tab ? this.tabs.children[0].children[index].getBoundingClientRect() : null;
+    if (this.tabs && value !== false) {
+      const tab = this.tabs.children[0].children[this.valueToIndex[value]];
+      warning(tab, `Material-UI: the value provided \`${value}\` is invalid`);
+      tabMeta = tab ? tab.getBoundingClientRect() : null;
     }
     return { tabsMeta, tabMeta };
   };
@@ -171,7 +171,7 @@ class Tabs extends Component {
   };
 
   updateIndicatorState(props) {
-    const { tabsMeta, tabMeta } = this.getTabsMeta(props.index);
+    const { tabsMeta, tabMeta } = this.getTabsMeta(props.value);
     const indicatorStyle = {
       left: tabMeta && tabsMeta ? tabMeta.left + (tabsMeta.scrollLeft - tabsMeta.left) : 0,
       // May be wrong until the font is loaded.
@@ -187,7 +187,7 @@ class Tabs extends Component {
   }
 
   scrollSelectedIntoView = () => {
-    const { tabsMeta, tabMeta } = this.getTabsMeta(this.props.index);
+    const { tabsMeta, tabMeta } = this.getTabsMeta(this.props.value);
 
     if (!tabMeta || !tabsMeta) {
       return;
@@ -229,13 +229,13 @@ class Tabs extends Component {
       children: childrenProp,
       className: classNameProp,
       fullWidth,
-      index,
       indicatorClassName,
       indicatorColor,
       onChange,
       scrollable,
       scrollButtons,
       textColor,
+      value,
       width,
       ...other
     } = this.props;
@@ -249,13 +249,16 @@ class Tabs extends Component {
       [classes.centered]: centered && !scrollable,
     });
 
-    const children = Children.map(childrenProp, (tab, childIndex) => {
-      return cloneElement(tab, {
+    this.valueToIndex = {};
+    const children = Children.map(childrenProp, (child, childIndex) => {
+      const childValue = child.props.value || childIndex;
+      this.valueToIndex[childValue] = childIndex;
+      return cloneElement(child, {
         fullWidth,
-        selected: childIndex === index,
-        index: childIndex,
+        selected: childValue === value,
         onChange,
         textColor,
+        value: childValue,
       });
     });
 
@@ -320,11 +323,6 @@ Tabs.propTypes = {
    */
   fullWidth: PropTypes.bool,
   /**
-   * The index of the currently selected `Tab`.
-   * If you don't want any selected `Tab`, you can set this property to `false`.
-   */
-  index: PropTypes.oneOfType([PropTypes.oneOf([false]), PropTypes.number]).isRequired,
-  /**
    * The CSS class name of the indicator element.
    */
   indicatorClassName: PropTypes.string,
@@ -333,10 +331,10 @@ Tabs.propTypes = {
    */
   indicatorColor: PropTypes.oneOfType([PropTypes.oneOf(['accent', 'primary']), PropTypes.string]),
   /**
-   * Callback fired when the index changes.
+   * Callback fired when the value changes.
    *
    * @param {object} event The event source of the callback
-   * @param {number} index We default to the index of the child
+   * @param {number} value We default to the index of the child
    */
   onChange: PropTypes.func.isRequired,
   /**
@@ -359,10 +357,15 @@ Tabs.propTypes = {
     PropTypes.string,
   ]),
   /**
+   * The value of the currently selected `Tab`.
+   * If you don't want any selected `Tab`, you can set this property to `false`.
+   */
+  value: PropTypes.any.isRequired,
+  /**
    * @ignore
    * width prop provided by withWidth decorator
    */
   width: PropTypes.string,
 };
 
-export default compose(withStyles(styleSheet), withWidth())(Tabs);
+export default compose(withStyles(styles, { name: 'MuiTabs' }), withWidth())(Tabs);

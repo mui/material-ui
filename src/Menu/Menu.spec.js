@@ -5,7 +5,7 @@ import { spy, stub } from 'sinon';
 import { assert } from 'chai';
 import ReactDOM from 'react-dom';
 import { createShallow, createMount, getClasses } from '../test-utils';
-import Menu, { styleSheet } from './Menu';
+import Menu from './Menu';
 
 describe('<Menu />', () => {
   let shallow;
@@ -13,7 +13,7 @@ describe('<Menu />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Menu />);
   });
 
   it('should render a Popover', () => {

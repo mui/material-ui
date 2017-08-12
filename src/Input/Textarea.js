@@ -4,12 +4,11 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import debounce from 'lodash/debounce';
 import EventListener from 'react-event-listener';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
 const rowsHeight = 24;
 
-export const styleSheet = createStyleSheet('MuiTextarea', {
+export const styles = {
   root: {
     position: 'relative', // because the shadow has position: 'absolute',
   },
@@ -37,7 +36,7 @@ export const styleSheet = createStyleSheet('MuiTextarea', {
     height: 'auto',
     whiteSpace: 'pre-wrap',
   },
-});
+};
 
 type DefaultProps = {
   classes: Object,
@@ -244,4 +243,4 @@ class Textarea extends Component<DefaultProps, AllProps, State> {
   }
 }
 
-export default withStyles(styleSheet)(Textarea);
+export default withStyles(styles, { name: 'MuiTextarea' })(Textarea);

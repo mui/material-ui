@@ -3,14 +3,13 @@
 import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
-import ButtonBase from '../internal/ButtonBase';
+import ButtonBase from '../ButtonBase';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import Icon from '../Icon';
 import { isMuiComponent } from '../utils/reactHelpers';
 
-export const styleSheet = createStyleSheet('MuiIconButton', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -56,7 +55,7 @@ export const styleSheet = createStyleSheet('MuiIconButton', theme => ({
   keyboardFocused: {
     backgroundColor: theme.palette.text.divider,
   },
-}));
+});
 
 /**
  * Refer to the [Icons](/style/icons) section of the documentation
@@ -138,4 +137,4 @@ IconButton.defaultProps = {
   disableRipple: false,
 };
 
-export default withStyles(styleSheet)(IconButton);
+export default withStyles(styles, { name: 'MuiIconButton' })(IconButton);

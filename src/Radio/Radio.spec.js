@@ -1,14 +1,15 @@
 // @flow
 
+import React from 'react';
 import { assert } from 'chai';
 import { getClasses } from '../test-utils';
-import Radio, { styleSheet } from './Radio';
+import Radio from './Radio';
 
 describe('<Radio />', () => {
   let classes;
 
   before(() => {
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Radio />);
   });
 
   describe('styleSheet', () => {

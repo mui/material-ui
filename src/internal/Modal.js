@@ -13,7 +13,6 @@ import ownerDocument from 'dom-helpers/ownerDocument';
 import addEventListener from '../utils/addEventListener';
 import { createChainedFunction } from '../utils/helpers';
 import Fade from '../transitions/Fade';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import createModalManager from './modalManager';
 import Backdrop from './Backdrop';
@@ -26,7 +25,7 @@ import type { TransitionCallback } from './Transition';
  */
 const modalManager = createModalManager();
 
-export const styleSheet = createStyleSheet('MuiModal', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     display: 'flex',
     width: '100%',
@@ -39,7 +38,7 @@ export const styleSheet = createStyleSheet('MuiModal', theme => ({
   hidden: {
     visibility: 'hidden',
   },
-}));
+});
 
 type DefaultProps = {
   backdropComponent: Function,
@@ -449,4 +448,4 @@ class Modal extends Component<DefaultProps, AllProps, State> {
   }
 }
 
-export default withStyles(styleSheet)(Modal);
+export default withStyles(styles, { name: 'MuiModal' })(Modal);

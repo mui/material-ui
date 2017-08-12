@@ -4,9 +4,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link as LinkRouter } from 'react-router';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     color: 'inherit',
     textDecoration: 'none',
@@ -20,7 +20,7 @@ const styleSheet = createStyleSheet(theme => ({
   accent: {
     color: theme.palette.accent.A400,
   },
-}));
+});
 
 function Link(props) {
   const { component: ComponentProp, classes, className, variant, to, ...other } = props;
@@ -59,4 +59,4 @@ Link.propTypes = {
   variant: PropTypes.oneOf(['primary', 'accent']),
 };
 
-export default withStyles(styleSheet)(Link);
+export default withStyles(styles)(Link);

@@ -3,11 +3,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 
-export const styleSheet = createStyleSheet('MuiListItemText', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     flex: '1 1 auto',
     padding: '0 16px',
@@ -23,11 +22,11 @@ export const styleSheet = createStyleSheet('MuiListItemText', theme => ({
   dense: {
     fontSize: 13,
   },
-  text: {},
+  text: {}, // Present to allow external customization
   textDense: {
     fontSize: 'inherit',
   },
-}));
+});
 
 function ListItemText(props, context) {
   const {
@@ -108,4 +107,4 @@ ListItemText.contextTypes = {
   dense: PropTypes.bool,
 };
 
-export default withStyles(styleSheet)(ListItemText);
+export default withStyles(styles, { name: 'MuiListItemText' })(ListItemText);

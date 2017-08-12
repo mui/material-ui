@@ -3,10 +3,9 @@
 import React from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiFormGroup', {
+export const styles = {
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -15,7 +14,7 @@ export const styleSheet = createStyleSheet('MuiFormGroup', {
   row: {
     flexDirection: 'row',
   },
-});
+};
 
 type DefaultProps = {
   classes: Object,
@@ -67,4 +66,4 @@ FormGroup.defaultProps = {
   row: false,
 };
 
-export default withStyles(styleSheet)(FormGroup);
+export default withStyles(styles, { name: 'MuiFormGroup' })(FormGroup);

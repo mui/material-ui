@@ -3,11 +3,10 @@
 import React from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
 
-export const styleSheet = createStyleSheet('MuiTypography', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     display: 'block',
     margin: 0,
@@ -55,7 +54,7 @@ export const styleSheet = createStyleSheet('MuiTypography', theme => ({
   colorAccent: {
     color: theme.palette.accent.A400,
   },
-}));
+});
 
 type Type =
   | 'display4'
@@ -178,4 +177,4 @@ Typography.defaultProps = {
   type: 'body1',
 };
 
-export default withStyles(styleSheet)(Typography);
+export default withStyles(styles, { name: 'MuiTypography' })(Typography);

@@ -3,13 +3,14 @@ module.exports = {
   root: true,
   plugins: ['spellcheck'],
   rules: {
-    'spellcheck/spell-checker': [1,
+    'spellcheck/spell-checker': [
+      1,
       {
-        'comments': true,
-        'strings': true,
-        'identifiers': true,
-        'lang': 'en_US',
-        'skipWords': [
+        comments: true,
+        strings: true,
+        identifiers: true,
+        lang: 'en_US',
+        skipWords: [
           '100vh',
           '100vw',
           '10px',
@@ -249,7 +250,7 @@ module.exports = {
           'webfontloader',
           'Webkit',
           'webpack',
-          'webpack\'s',
+          "webpack's",
           'Wifi',
           'wifi',
           'winston',
@@ -292,7 +293,6 @@ module.exports = {
           'uglify',
           'webdriver',
 
-
           //file extensions
           'css',
           'html',
@@ -303,7 +303,6 @@ module.exports = {
           'png',
           'scss',
           'tpl',
-
 
           // programming gibberish
           'addon',
@@ -455,7 +454,6 @@ module.exports = {
           'iso',
           'utc',
 
-
           // names provided by external source code dependencies or standard
           // library
           //
@@ -472,14 +470,13 @@ module.exports = {
           'scrollwheel', // in Google Map options
           'sref', // in [ui-sref]
           'starttag', // a config name in gulp-plugin-inject
-          'stringify',  // in JSON.stringify
+          'stringify', // in JSON.stringify
           'stylers', // https://developers.google.com/maps/documentation/javascript/styling#overview
           'substr', // in String#substr
-          'thru',  // in _.thru
+          'thru', // in _.thru
           'transclude', // in angular directive
           'transclusion', // in angular directive
           'unshift', // in Array#unshift
-
 
           // Moment.js date format strings
           'YYYY',
@@ -502,7 +499,6 @@ module.exports = {
           'ss',
           'zz',
 
-
           // Lorem ipsum 1st sentence
           'Lorem',
           'ipsum',
@@ -512,7 +508,6 @@ module.exports = {
           'consectetur',
           'adipiscing',
           'elit',
-
 
           // Related to Google Maps
           //
@@ -541,28 +536,28 @@ module.exports = {
           'foo',
           'bar',
           'baz',
-          'quux'
+          'quux',
         ],
-        'skipIfMatch': [
+        skipIfMatch: [
           'http(s)?://[^s]*',
           // Auxiliary werbs
           // see: https://github.com/aotaduy/eslint-plugin-spellcheck/issues/7
-          '(\\s|^)\\w+\'t(\\s | $)',
+          "(\\s|^)\\w+'t(\\s | $)",
           // ordinals
           // https://github.com/aotaduy/eslint-plugin-spellcheck/issues/8
           '(\\s|^|\\w+)\\d+(st|nd|rd|th)(\\s|[A-Z][a-zA-Z]+|$)',
           // pre/post prefixes both in kebab case and camel case
           '(\\s|^)(pre|post)([-\\w]|[A-Z])[a-zA-Z]+(\\s|$)',
           // mimetypes
-          '^[-\\w]+\/[-\\w\\.]+$',
+          '^[-\\w]+/[-\\w\\.]+$',
           // xml tags
-          '<(?:\/)?[\\w-]+>',
+          '<(?:/)?[\\w-]+>',
           // cryptographic octal hashes
           '^[0-9a-f]{5,999}$',
           // hex colors
-          '^#[0-9a-f]{3,6}$'
-        ]
-      }
-    ]
+          '^#[0-9a-f]{3,6}$',
+        ],
+      },
+    ],
   },
 };

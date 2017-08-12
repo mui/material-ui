@@ -29,8 +29,6 @@ This property accepts the following keys:
 - `circle`
 - `indeterminateCircle`
 - `determinateCircle`
-- `@keyframes mui-rotate-progress-circle`
-- `@keyframes mui-scale-progress-circle`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)
 section for more detail.

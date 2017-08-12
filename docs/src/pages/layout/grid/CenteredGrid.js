@@ -1,12 +1,12 @@
-// @flow
+// @flow weak
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     flexGrow: 1,
     marginTop: 30,
@@ -16,7 +16,7 @@ const styleSheet = createStyleSheet(theme => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
-}));
+});
 
 function CenteredGrid(props) {
   const classes = props.classes;
@@ -54,4 +54,4 @@ CenteredGrid.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(CenteredGrid);
+export default withStyles(styles)(CenteredGrid);

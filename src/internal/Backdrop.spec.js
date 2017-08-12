@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import Backdrop, { styleSheet } from './Backdrop';
+import Backdrop from './Backdrop';
 
 describe('<Backdrop />', () => {
   let shallow;
@@ -11,12 +11,12 @@ describe('<Backdrop />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Backdrop />);
   });
 
   it('should render a backdrop div', () => {
-    const wrapper = shallow(<Backdrop className="woof" />);
+    const wrapper = shallow(<Backdrop className="woofBackdrop" />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+    assert.strictEqual(wrapper.hasClass('woofBackdrop'), true);
   });
 });

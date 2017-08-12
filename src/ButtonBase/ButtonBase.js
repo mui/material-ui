@@ -6,13 +6,12 @@ import { findDOMNode } from 'react-dom';
 import warning from 'warning';
 import classNames from 'classnames';
 import keycode from 'keycode';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { listenForFocusKeys, detectKeyboardFocus, focusKeyPressed } from '../utils/keyboardFocus';
 import TouchRipple from './TouchRipple';
 import createRippleHandler from './createRippleHandler';
 
-export const styleSheet = createStyleSheet('MuiButtonBase', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     position: 'relative',
     // Remove grey highlight
@@ -27,9 +26,10 @@ export const styleSheet = createStyleSheet('MuiButtonBase', theme => ({
     color: 'inherit',
   },
   disabled: {
+    pointerEvents: 'none', // Disable link interactions
     cursor: 'default',
   },
-}));
+});
 
 type DefaultProps = {
   centerRipple: boolean,
@@ -41,6 +41,10 @@ type DefaultProps = {
 };
 
 export type Props = {
+  /**
+   * If `true`, the ripples will be centered.
+   * They won't start at the cursor interaction position.
+   */
   centerRipple?: boolean,
   /**
    * The content of the component.
@@ -73,20 +77,68 @@ export type Props = {
    * `disableRipple` must also be `false`.
    */
   focusRipple?: boolean,
+  /**
+   * The CSS class applied while the component is keyboard focused.
+   */
   keyboardFocusedClassName?: string,
+  /**
+   * @ignore
+   */
   onBlur?: Function,
+  /**
+   * @ignore
+   */
   onClick?: Function,
+  /**
+   * @ignore
+   */
   onFocus?: Function,
+  /**
+   * Callback fired when the component is focused with a keyboard.
+   * We trigger a `onFocus` callback too.
+   *
+   * @param {object} event The event source of the callback
+   */
   onKeyboardFocus?: Function,
+  /**
+   * @ignore
+   */
   onKeyDown?: Function,
+  /**
+   * @ignore
+   */
   onKeyUp?: Function,
+  /**
+   * @ignore
+   */
   onMouseDown?: Function,
+  /**
+   * @ignore
+   */
   onMouseLeave?: Function,
+  /**
+   * @ignore
+   */
   onMouseUp?: Function,
+  /**
+   * @ignore
+   */
   onTouchEnd?: Function,
+  /**
+   * @ignore
+   */
   onTouchStart?: Function,
+  /**
+   * @ignore
+   */
   role?: string,
+  /**
+   * @ignore
+   */
   tabIndex?: string,
+  /**
+   * @ignore
+   */
   type: string,
 };
 
@@ -96,9 +148,6 @@ type State = {
   keyboardFocused: boolean,
 };
 
-/**
- * @ignore - internal component.
- */
 class ButtonBase extends Component<DefaultProps, AllProps, State> {
   props: AllProps;
   static defaultProps: DefaultProps = {
@@ -340,4 +389,4 @@ class ButtonBase extends Component<DefaultProps, AllProps, State> {
   }
 }
 
-export default withStyles(styleSheet)(ButtonBase);
+export default withStyles(styles, { name: 'MuiButtonBase' })(ButtonBase);

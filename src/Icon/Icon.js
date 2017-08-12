@@ -3,11 +3,10 @@
 import React from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
 
-export const styleSheet = createStyleSheet('MuiIcon', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     userSelect: 'none',
   },
@@ -29,7 +28,7 @@ export const styleSheet = createStyleSheet('MuiIcon', theme => ({
   colorPrimary: {
     color: theme.palette.primary[500],
   },
-}));
+});
 
 type DefaultProps = {
   classes: Object,
@@ -82,4 +81,4 @@ Icon.defaultProps = {
 
 Icon.muiName = 'Icon';
 
-export default withStyles(styleSheet)(Icon);
+export default withStyles(styles, { name: 'MuiIcon' })(Icon);

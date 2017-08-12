@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import ListItemIcon, { styleSheet } from './ListItemIcon';
+import ListItemIcon from './ListItemIcon';
 
 describe('<ListItemIcon />', () => {
   let shallow;
@@ -11,7 +11,11 @@ describe('<ListItemIcon />', () => {
 
   before(() => {
     shallow = createShallow();
-    classes = getClasses(styleSheet);
+    classes = getClasses(
+      <ListItemIcon>
+        <span />
+      </ListItemIcon>,
+    );
   });
 
   it('should render a span', () => {

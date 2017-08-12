@@ -2,15 +2,15 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import MobileStepper from 'material-ui/MobileStepper';
 
-const styleSheet = createStyleSheet({
+const styles = {
   root: {
     maxWidth: 400,
     flexGrow: 1,
   },
-});
+};
 
 class DotsMobileStepper extends Component {
   state = {
@@ -51,4 +51,4 @@ DotsMobileStepper.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(DotsMobileStepper);
+export default withStyles(styles)(DotsMobileStepper);

@@ -4,10 +4,9 @@ import React, { Component } from 'react';
 import type { Element } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiList', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     flex: '1 1 auto',
     overflow: 'auto',
@@ -26,7 +25,7 @@ export const styleSheet = createStyleSheet('MuiList', theme => ({
   subheader: {
     paddingTop: 0,
   },
-}));
+});
 
 type DefaultProps = {
   component: string,
@@ -125,4 +124,4 @@ List.childContextTypes = {
   dense: PropTypes.bool,
 };
 
-export default withStyles(styleSheet)(List);
+export default withStyles(styles, { name: 'MuiList' })(List);

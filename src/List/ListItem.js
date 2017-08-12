@@ -4,12 +4,11 @@ import React, { Component } from 'react';
 import type { Element } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
-import ButtonBase from '../internal/ButtonBase';
+import ButtonBase from '../ButtonBase';
 import { isMuiComponent } from '../utils/reactHelpers';
 
-export const styleSheet = createStyleSheet('MuiListItem', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     display: 'flex',
     alignItems: 'center',
@@ -52,7 +51,7 @@ export const styleSheet = createStyleSheet('MuiListItem', theme => ({
       },
     },
   },
-}));
+});
 
 type DefaultProps = {
   button: boolean,
@@ -194,4 +193,4 @@ ListItem.childContextTypes = {
   dense: PropTypes.bool,
 };
 
-export default withStyles(styleSheet)(ListItem);
+export default withStyles(styles, { name: 'MuiListItem' })(ListItem);

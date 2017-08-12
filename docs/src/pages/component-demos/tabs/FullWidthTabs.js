@@ -3,47 +3,50 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import SwipeableViews from 'react-swipeable-views';
 import AppBar from 'material-ui/AppBar';
 import Tabs, { Tab } from 'material-ui/Tabs';
 
-const TabContainer = props =>
-  <div style={{ padding: 24 }}>
-    {props.children}
-  </div>;
+function TabContainer(props) {
+  return (
+    <div style={{ padding: 20 }}>
+      {props.children}
+    </div>
+  );
+}
 
 TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
   },
-}));
+});
 
 class FullWidthTabs extends Component {
   state = {
-    index: 0,
+    value: 0,
   };
 
-  handleChange = (event, index) => {
-    this.setState({ index });
+  handleChange = (event, value) => {
+    this.setState({ value });
   };
 
   handleChangeIndex = index => {
-    this.setState({ index });
+    this.setState({ value: index });
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
 
     return (
       <div className={classes.root} style={{ width: 500 }}>
         <AppBar position="static" color="default">
           <Tabs
-            index={this.state.index}
+            value={this.state.value}
             onChange={this.handleChange}
             indicatorColor="primary"
             textColor="primary"
@@ -54,7 +57,7 @@ class FullWidthTabs extends Component {
             <Tab label="Item Three" />
           </Tabs>
         </AppBar>
-        <SwipeableViews index={this.state.index} onChangeIndex={this.handleChangeIndex}>
+        <SwipeableViews index={this.state.value} onChangeIndex={this.handleChangeIndex}>
           <TabContainer>
             {'Item One'}
           </TabContainer>
@@ -74,4 +77,4 @@ FullWidthTabs.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(FullWidthTabs);
+export default withStyles(styles)(FullWidthTabs);

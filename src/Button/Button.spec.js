@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, createRender, getClasses } from '../test-utils';
-import Button, { styleSheet } from './Button';
+import Button from './Button';
 
 describe('<Button />', () => {
   let shallow;
@@ -13,7 +13,7 @@ describe('<Button />', () => {
   before(() => {
     shallow = createShallow({ dive: true });
     render = createRender();
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Button>Hello World</Button>);
   });
 
   it('should render a <ButtonBase> element', () => {

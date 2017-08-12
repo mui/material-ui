@@ -3,13 +3,12 @@
 import React, { Component, isValidElement } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
-import ButtonBase from '../internal/ButtonBase';
+import ButtonBase from '../ButtonBase';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import Icon from '../Icon';
 
-export const styleSheet = createStyleSheet('MuiTab', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     ...theme.typography.button,
     maxWidth: 264,
@@ -79,7 +78,7 @@ export const styleSheet = createStyleSheet('MuiTab', theme => ({
       fontSize: theme.typography.fontSize - 2,
     },
   },
-}));
+});
 
 class Tab extends Component {
   static defaultProps = {
@@ -106,9 +105,9 @@ class Tab extends Component {
   }
 
   handleChange = event => {
-    const { onChange, index, onClick } = this.props;
+    const { onChange, value, onClick } = this.props;
 
-    onChange(event, index);
+    onChange(event, value);
 
     if (onClick) {
       onClick(event);
@@ -130,15 +129,15 @@ class Tab extends Component {
     const {
       classes,
       className: classNameProp,
+      disabled,
       fullWidth,
       icon: iconProp,
-      index,
       label: labelProp,
       onChange,
       selected,
       style: styleProp,
       textColor,
-      disabled,
+      value,
       ...other
     } = this.props;
 
@@ -237,10 +236,6 @@ Tab.propTypes = {
    */
   icon: PropTypes.node,
   /**
-   * @ignore
-   */
-  index: PropTypes.number,
-  /**
    * The label element.
    */
   label: PropTypes.node,
@@ -267,6 +262,10 @@ Tab.propTypes = {
     PropTypes.oneOf(['accent', 'primary', 'inherit']),
     PropTypes.string,
   ]),
+  /**
+   * You can provide your own value. Otherwise, we fallback to the child position index.
+   */
+  value: PropTypes.any,
 };
 
-export default withStyles(styleSheet)(Tab);
+export default withStyles(styles, { name: 'MuiTab' })(Tab);

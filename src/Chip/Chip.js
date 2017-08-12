@@ -4,12 +4,11 @@ import React, { Component, cloneElement, isValidElement } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import keycode from 'keycode';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import DeleteIcon from '../svg-icons/cancel';
 import { emphasize, fade } from '../styles/colorManipulator';
 
-export const styleSheet = createStyleSheet('MuiChip', theme => {
+export const styles = (theme: Object) => {
   const height = 32;
   const backgroundColor = emphasize(theme.palette.background.default, 0.12);
   const deleteIconColor = fade(theme.palette.text.primary, 0.26);
@@ -77,7 +76,7 @@ export const styleSheet = createStyleSheet('MuiChip', theme => {
       },
     },
   };
-});
+};
 
 /**
  * Chips represent complex entities in small blocks, such as a contact.
@@ -212,4 +211,4 @@ Chip.propTypes = {
   tabIndex: PropTypes.number,
 };
 
-export default withStyles(styleSheet)(Chip);
+export default withStyles(styles, { name: 'MuiChip' })(Chip);

@@ -1,5 +1,5 @@
 ---
-components: Button, IconButton
+components: Button, IconButton, ButtonBase
 ---
 
 # Buttons
@@ -42,3 +42,10 @@ Icon buttons are commonly found in app bars and toolbars.
 Icons are also appropriate for toggle buttons that allow a single choice to be selected or deselected, such as adding or removing a star to an item.
 
 {{demo='pages/component-demos/buttons/IconButtons.js'}}
+
+## Complex Buttons
+
+The Flat Buttons, Raised Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`.
+You can take advantage of this lower level component to build custom interactions.
+
+{{demo='pages/component-demos/buttons/ButtonBases.js'}}

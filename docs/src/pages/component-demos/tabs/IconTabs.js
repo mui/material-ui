@@ -9,22 +9,22 @@ import PersonPinIcon from 'material-ui-icons/PersonPin';
 
 export default class IconTabs extends Component {
   state = {
-    index: 0,
+    value: 0,
   };
 
-  handleChange = (event, index) => {
-    this.setState({ index });
+  handleChange = (event, value) => {
+    this.setState({ value });
   };
 
   render() {
     return (
       <Paper style={{ width: 500 }}>
         <Tabs
-          index={this.state.index}
+          value={this.state.value}
           onChange={this.handleChange}
+          fullWidth
           indicatorColor="primary"
           textColor="primary"
-          fullWidth
         >
           <Tab icon={<PhoneIcon />} />
           <Tab icon={<FavoriteIcon />} />

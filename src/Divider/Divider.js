@@ -3,10 +3,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiDivider', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     height: 1,
     margin: 0, // Reset browser default style.
@@ -27,7 +26,7 @@ export const styleSheet = createStyleSheet('MuiDivider', theme => ({
     left: 0,
     width: '100%',
   },
-}));
+});
 
 function Divider(props) {
   const { absolute, classes, className: classNameProp, inset, light, ...other } = props;
@@ -71,4 +70,4 @@ Divider.defaultProps = {
   light: false,
 };
 
-export default withStyles(styleSheet)(Divider);
+export default withStyles(styles, { name: 'MuiDivider' })(Divider);

@@ -1,11 +1,11 @@
 // @flow
 
 import { assert } from 'chai';
-import createStyleSheet from './createStyleSheet';
+import getStylesCreator from './getStylesCreator';
 
-describe('createStyleSheet', () => {
+describe('getStylesCreator', () => {
   const name = 'name';
-  const styleSheet = createStyleSheet(name, {
+  const stylesCreator = getStylesCreator({
     root: {
       color: 'black',
       '&:hover': {
@@ -16,7 +16,7 @@ describe('createStyleSheet', () => {
   });
 
   it('should be able to get the styles', () => {
-    const styles = styleSheet.createStyles({});
+    const styles = stylesCreator.create({});
     assert.deepEqual(styles, {
       root: {
         color: 'black',
@@ -43,7 +43,7 @@ describe('createStyleSheet', () => {
           },
         },
       };
-      const styles = styleSheet.createStyles(theme);
+      const styles = stylesCreator.create(theme, name);
       assert.deepEqual(styles, {
         root: {
           color: 'white',

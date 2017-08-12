@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
 import Modal from '../internal/Modal';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import Slide from '../transitions/Slide';
 import Paper from '../Paper';
@@ -24,7 +23,7 @@ function getSlideDirection(anchor) {
   return 'up';
 }
 
-export const styleSheet = createStyleSheet('MuiDrawer', theme => ({
+export const styles = (theme: Object) => ({
   paper: {
     overflowY: 'auto',
     display: 'flex',
@@ -71,7 +70,7 @@ export const styleSheet = createStyleSheet('MuiDrawer', theme => ({
     },
   },
   modal: {},
-}));
+});
 
 type DefaultProps = {
   anchor: 'left',
@@ -232,4 +231,4 @@ class Drawer extends Component<DefaultProps, AllProps, State> {
   }
 }
 
-export default withStyles(styleSheet, { withTheme: true })(Drawer);
+export default withStyles(styles, { withTheme: true, name: 'MuiDrawer' })(Drawer);

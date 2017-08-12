@@ -6,17 +6,17 @@ import until from './until';
 
 // Generate an enhanced shallow function.
 export default function createShallow(options: Object = {}) {
-  const { shallow = enzymeShallow, otherContext, dive = false, untilSelector = false } = options;
+  const { shallow = enzymeShallow, context, dive = false, untilSelector = false } = options;
 
   const shallowWithContext = function shallowWithContext(node: Element<*>, options2: Object = {}) {
     const { context: context2, ...other } = options2;
 
     const wrapper = shallow(node, {
+      ...other,
       context: {
-        ...otherContext,
+        ...context,
         ...context2,
       },
-      ...other,
     });
 
     if (dive) {

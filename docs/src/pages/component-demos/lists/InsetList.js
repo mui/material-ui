@@ -2,17 +2,17 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import StarIcon from 'material-ui-icons/Star';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
     background: theme.palette.background.paper,
   },
-}));
+});
 
 function InsetList(props) {
   const classes = props.classes;
@@ -35,4 +35,4 @@ InsetList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(InsetList);
+export default withStyles(styles)(InsetList);

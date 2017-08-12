@@ -2,13 +2,13 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Link from 'react-router/lib/Link';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import muiLogo from 'docs/src/assets/images/material-ui-logo.svg';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     flex: '1 0 100%',
   },
@@ -25,7 +25,6 @@ const styleSheet = createStyleSheet(theme => ({
   content: {
     paddingTop: theme.spacing.unit * 8,
     paddingBottom: theme.spacing.unit * 8,
-    textAlign: 'center',
     [theme.breakpoints.up('sm')]: {
       paddingTop: theme.spacing.unit * 16,
       paddingBottom: theme.spacing.unit * 16,
@@ -34,6 +33,14 @@ const styleSheet = createStyleSheet(theme => ({
   text: {
     paddingLeft: theme.spacing.unit * 4,
     paddingRight: theme.spacing.unit * 4,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headline: {
+    maxWidth: 500,
+    textAlign: 'center',
   },
   button: {
     marginTop: 20,
@@ -44,7 +51,7 @@ const styleSheet = createStyleSheet(theme => ({
     height: '40vw',
     maxHeight: 230,
   },
-}));
+});
 
 function Home(props) {
   const classes = props.classes;
@@ -55,10 +62,10 @@ function Home(props) {
         <div className={classes.content}>
           <img src={muiLogo} alt="Material-UI Logo" className={classes.logo} />
           <div className={classes.text}>
-            <Typography type="display2" component="h1" color="inherit">
+            <Typography type="display2" component="h1" color="inherit" gutterBottom>
               {'Material-UI'}
             </Typography>
-            <Typography type="subheading" component="h2" color="inherit">
+            <Typography type="headline" component="h2" color="inherit" className={classes.headline}>
               {"A React component library implementing Google's Material Design"}
             </Typography>
             <Button
@@ -80,4 +87,4 @@ Home.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(Home);
+export default withStyles(styles)(Home);

@@ -7,10 +7,9 @@ import classNames from 'classnames';
 import contains from 'dom-helpers/query/contains';
 import debounce from 'lodash/debounce';
 import EventListener from 'react-event-listener';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import Modal from './Modal';
-import Transition from './Transition';
+import Grow from '../transitions/Grow';
 import Paper from '../Paper';
 import type { TransitionCallback } from './Transition';
 
@@ -62,7 +61,7 @@ function getScrollParent(parent, child) {
   return scrollTop;
 }
 
-export const styleSheet = createStyleSheet('MuiPopover', {
+export const styles = {
   paper: {
     position: 'absolute',
     overflowY: 'auto',
@@ -71,7 +70,7 @@ export const styleSheet = createStyleSheet('MuiPopover', {
       outline: 'none',
     },
   },
-});
+};
 
 type Origin = {
   horizontal: 'left' | 'center' | 'right' | number,
@@ -188,11 +187,7 @@ export type Props = {
   /**
    * Set to 'auto' to automatically calculate transition time based on height
    */
-  transitionDuration: number | 'auto',
-  /**
-   * @ignore
-   */
-  theme: Object,
+  transitionDuration?: number | 'auto',
 };
 
 type AllProps = DefaultProps & Props;
@@ -218,15 +213,10 @@ class Popover extends Component<DefaultProps, AllProps, void> {
     elevation: 8,
   };
 
-  static getScale(value) {
-    return `scale(${value}, ${value ** 2})`;
-  }
-
   componentWillUnmount = () => {
     this.handleResize.cancel();
   };
 
-  autoTransitionDuration = undefined;
   transitionEl = undefined;
 
   setPositioningStyles = (element: HTMLElement) => {
@@ -240,80 +230,17 @@ class Popover extends Component<DefaultProps, AllProps, void> {
   };
 
   handleEnter = (element: HTMLElement) => {
-    element.style.opacity = '0';
-    element.style.transform = Popover.getScale(0.75);
-
     if (this.props.onEnter) {
       this.props.onEnter(element);
     }
 
     this.setPositioningStyles(element);
-
-    let { transitionDuration } = this.props;
-    const { transitions } = this.props.theme;
-
-    if (transitionDuration === 'auto') {
-      transitionDuration = transitions.getAutoHeightDuration(element.clientHeight);
-      this.autoTransitionDuration = transitionDuration;
-    }
-
-    element.style.transition = [
-      transitions.create('opacity', {
-        duration: transitionDuration,
-      }),
-      transitions.create('transform', {
-        duration: transitionDuration * 0.666,
-      }),
-    ].join(',');
-  };
-
-  handleEntering = (element: HTMLElement) => {
-    element.style.opacity = '1';
-    element.style.transform = Popover.getScale(1);
-
-    if (this.props.onEntering) {
-      this.props.onEntering(element);
-    }
-  };
-
-  handleExit = (element: HTMLElement) => {
-    let { transitionDuration } = this.props;
-    const { transitions } = this.props.theme;
-
-    if (transitionDuration === 'auto') {
-      transitionDuration = transitions.getAutoHeightDuration(element.clientHeight);
-      this.autoTransitionDuration = transitionDuration;
-    }
-
-    element.style.transition = [
-      transitions.create('opacity', {
-        duration: transitionDuration,
-      }),
-      transitions.create('transform', {
-        duration: transitionDuration * 0.666,
-        delay: transitionDuration * 0.333,
-      }),
-    ].join(',');
-
-    element.style.opacity = '0';
-    element.style.transform = Popover.getScale(0.75);
-
-    if (this.props.onExit) {
-      this.props.onExit(element);
-    }
   };
 
   handleResize = debounce(() => {
     const element: any = ReactDOM.findDOMNode(this.transitionEl);
     this.setPositioningStyles(element);
   }, 166);
-
-  handleRequestTimeout = () => {
-    if (this.props.transitionDuration === 'auto') {
-      return (this.autoTransitionDuration || 0) + 20;
-    }
-    return this.props.transitionDuration + 20;
-  };
 
   marginThreshold = 16;
 
@@ -445,28 +372,27 @@ class Popover extends Component<DefaultProps, AllProps, void> {
       onExiting,
       onExited,
       elevation,
-      theme,
       ...other
     } = this.props;
 
+    // FIXME: props API consistency problem? - `...other` not spread over the root
     return (
       <Modal show={open} backdropInvisible onRequestClose={onRequestClose}>
-        <Transition
+        <Grow
           in={open}
           enteredClassName={enteredClassName}
           enteringClassName={enteringClassName}
           exitedClassName={exitedClassName}
           exitingClassName={exitingClassName}
           onEnter={this.handleEnter}
-          onEntering={this.handleEntering}
+          onEntering={onEntering}
           onEntered={onEntered}
-          onExit={this.handleExit}
+          onExit={onExit}
           onExiting={onExiting}
           onExited={onExited}
           role={role}
-          onRequestTimeout={this.handleRequestTimeout}
           transitionAppear
-          ref={node => {
+          rootRef={node => {
             this.transitionEl = node;
           }}
         >
@@ -479,10 +405,10 @@ class Popover extends Component<DefaultProps, AllProps, void> {
             <EventListener target="window" onResize={this.handleResize} />
             {children}
           </Paper>
-        </Transition>
+        </Grow>
       </Modal>
     );
   }
 }
 
-export default withStyles(styleSheet, { withTheme: true })(Popover);
+export default withStyles(styles, { name: 'MuiPopover' })(Popover);

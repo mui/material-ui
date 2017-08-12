@@ -34,8 +34,9 @@ import { Button, TextField } from 'material-ui';
 
 Pick one of the following plugins:
 
-- [babel-plugin-material-ui](https://github.com/umidbekkarimov/babel-plugin-material-ui) that targets specifically Material-UI.
 - [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) is quite customizable and with enough tweaks works with Material-UI.
+- [babel-transform-imports](https://bitbucket.org/amctheatres/babel-transform-imports) has a different api than a `babel-plugin-import` but does same thing.
+- [babel-plugin-direct-import](https://github.com/umidbekkarimov/babel-plugin-direct-import) automatically scans exported modules so in most cases it works with 0 configuration.
 - [babel-plugin-lodash](https://github.com/lodash/babel-plugin-lodash) aims to work out of the box with all the `package.json`.
 
 **Important note**: Both of the options *should be temporary* until you add tree shaking capabilities to your project.

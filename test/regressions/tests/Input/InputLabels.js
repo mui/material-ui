@@ -2,17 +2,17 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createStyleSheet, withStyles } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import InputLabel from 'material-ui/Input/InputLabel';
 
-const styleSheet = createStyleSheet(() => ({
+const styles = {
   container: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
     padding: 20, // so transform doesn't let things get cut off
   },
-}));
+};
 
 function InputLabels(props) {
   const { classes } = props;
@@ -38,4 +38,4 @@ InputLabels.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(InputLabels);
+export default withStyles(styles)(InputLabels);

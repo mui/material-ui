@@ -2,17 +2,17 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     width: '100%',
     maxWidth: '360px',
     background: theme.palette.background.paper,
   },
-}));
+});
 
 function ListDividers(props) {
   const classes = props.classes;
@@ -37,4 +37,4 @@ ListDividers.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(ListDividers);
+export default withStyles(styles)(ListDividers);

@@ -5,7 +5,7 @@ import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
 import Paper from '../Paper';
 import type { Breakpoint } from '../styles/breakpoints';
-import Dialog, { styleSheet } from './Dialog';
+import Dialog from './Dialog';
 import withResponsiveFullScreen from './withResponsiveFullScreen';
 
 describe('withResponsiveFullScreen', () => {
@@ -16,7 +16,7 @@ describe('withResponsiveFullScreen', () => {
     shallow = createShallow({
       untilSelector: 'Dialog',
     });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Dialog />);
   });
 
   function isFullScreen(breakpoints: Array<Breakpoint>, width: Breakpoint) {

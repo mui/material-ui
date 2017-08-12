@@ -48,7 +48,7 @@ describe('<MuiThemeProvider />', () => {
 
       const markup = renderToString(
         <JssProvider registry={sheetsRegistry} jss={jss}>
-          <MuiThemeProvider theme={theme} sheetsManager={new WeakMap()}>
+          <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
             <Button>Hello World</Button>
           </MuiThemeProvider>
         </JssProvider>,

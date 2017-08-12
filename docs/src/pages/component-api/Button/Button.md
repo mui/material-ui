@@ -12,7 +12,7 @@
 | color | union:&nbsp;'default', 'inherit', 'primary', 'accent', 'contrast'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |
 | component | union:&nbsp;string<br>&nbsp;Function<br> |  | The component used for the root node. Either a string to use a DOM element or a component. The default value is a `button`. |
 | dense | boolean | false | Uses a smaller minWidth, ideal for things like card actions. |
-| disableFocusRipple | boolean | false | If `true`, the  keyboard focus ripple will be disabled. `ripple` must also be true. |
+| disableFocusRipple | boolean | false | If `true`, the  keyboard focus ripple will be disabled. `disableRipple` must also be true. |
 | disableRipple | boolean | false | If `true`, the ripple effect will be disabled. |
 | disabled | boolean | false | If `true`, the button will be disabled. |
 | fab | boolean | false | If `true`, well use floating action button styling. |

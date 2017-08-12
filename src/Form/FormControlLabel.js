@@ -4,10 +4,10 @@
 import React, { cloneElement } from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
+import Typography from '../Typography';
 
-export const styleSheet = createStyleSheet('MuiFormControlLabel', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -24,10 +24,9 @@ export const styleSheet = createStyleSheet('MuiFormControlLabel', theme => ({
     marginRight: theme.spacing.unit * 2, // used for row presentation of radio/checkbox
   },
   label: {
-    fontFamily: theme.typography.fontFamily,
     userSelect: 'none',
   },
-}));
+});
 
 type DefaultProps = {
   classes: Object,
@@ -115,9 +114,9 @@ function FormControlLabel(props: AllProps) {
         value: control.props.value || value,
         inputRef: control.props.inputRef || inputRef,
       })}
-      <span className={classes.label}>
+      <Typography className={classes.label}>
         {label}
-      </span>
+      </Typography>
     </label>
   );
 }
@@ -126,4 +125,4 @@ FormControlLabel.defaultProps = {
   disabled: false,
 };
 
-export default withStyles(styleSheet)(FormControlLabel);
+export default withStyles(styles, { name: 'MuiFormControlLabel' })(FormControlLabel);

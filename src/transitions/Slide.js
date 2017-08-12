@@ -1,18 +1,19 @@
-// @flow weak
+// @flow
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { PureComponent } from 'react';
+import type { Element as ReactElement } from 'react'; // global Element used below.
 import { findDOMNode } from 'react-dom';
 import Transition from '../internal/Transition';
 import withTheme from '../styles/withTheme';
 import { duration } from '../styles/transitions';
+import type { TransitionCallback } from '../internal/Transition';
 
 const GUTTER = 24;
 
 // Translate the element so he can't be seen in the screen.
 // Later, we gonna translate back the element to his original location
 // with `translate3d(0, 0, 0)`.`
-function getTranslateValue(props, element) {
+function getTranslateValue(props, element: Element) {
   const { direction } = props;
   const rect = element.getBoundingClientRect();
 
@@ -28,11 +29,80 @@ function getTranslateValue(props, element) {
   return `translate3d(0, ${0 - (rect.top + rect.height)}px, 0)`;
 }
 
-class Slide extends Component {
-  static defaultProps = {
+type Direction = 'left' | 'right' | 'up' | 'down';
+
+type DefaultProps = {
+  direction: Direction,
+  enterTransitionDuration: number,
+  leaveTransitionDuration: number,
+  theme: Object,
+};
+
+export type Props = {
+  /**
+   * @ignore
+   */
+  children?: ReactElement<*>,
+  /**
+   * Direction the child element will enter from.
+   */
+  direction?: Direction,
+  /**
+   * Duration of the animation when the element is entering.
+   */
+  enterTransitionDuration?: number,
+  /**
+   * If `true`, show the component; triggers the enter or exit animation.
+   */
+  in?: boolean,
+  /**
+   * Duration of the animation when the element is exiting.
+   */
+  leaveTransitionDuration?: number,
+  /**
+   * Slide in by a fixed number of pixels or %.
+   */
+  offset?: string,
+  /**
+   * Callback fired before the component enters.
+   */
+  onEnter?: TransitionCallback,
+  /**
+   * Callback fired when the component is entering.
+   */
+  onEntering?: TransitionCallback,
+  /**
+   * Callback fired when the component has entered.
+   */
+  onEntered?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  /**
+   * Callback fired before the component exits.
+   */
+  onExit?: TransitionCallback,
+  /**
+   * Callback fired when the component is exiting.
+   */
+  onExiting?: TransitionCallback,
+  /**
+   * Callback fired when the component has exited.
+   */
+  onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  /**
+   * @ignore
+   */
+  theme?: Object,
+};
+
+type AllProps = DefaultProps & Props;
+
+class Slide extends PureComponent<DefaultProps, AllProps, void> {
+  props: AllProps;
+
+  static defaultProps: DefaultProps = {
     direction: 'down',
     enterTransitionDuration: duration.enteringScreen,
     leaveTransitionDuration: duration.leavingScreen,
+    theme: {},
   };
 
   componentDidMount() {
@@ -40,11 +110,12 @@ class Slide extends Component {
       // We need to set initial translate values of transition element
       // otherwise component will be shown when in=false.
       const element = findDOMNode(this.transition);
-      const transform = getTranslateValue(this.props, element);
-      // $FlowFixMe
-      element.style.transform = transform;
-      // $FlowFixMe
-      element.style.WebkitTransform = transform;
+      if (element instanceof HTMLElement) {
+        const transform = getTranslateValue(this.props, element);
+        element.style.transform = transform;
+        // $FlowFixMe
+        element.style.WebkitTransform = transform;
+      }
     }
   }
 
@@ -132,64 +203,5 @@ class Slide extends Component {
     );
   }
 }
-
-Slide.propTypes = {
-  /**
-   * @ignore
-   */
-  children: PropTypes.node,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * Direction the child element will enter from.
-   */
-  direction: PropTypes.oneOf(['left', 'right', 'up', 'down']),
-  /**
-   * Duration of the animation when the element is entering.
-   */
-  enterTransitionDuration: PropTypes.number,
-  /**
-   * If `true`, show the component; triggers the enter or exit animation.
-   */
-  in: PropTypes.bool,
-  /**
-   * Duration of the animation when the element is exiting.
-   */
-  leaveTransitionDuration: PropTypes.number,
-  /**
-   * Slide in by a fixed number of pixels or %.
-   */
-  offset: PropTypes.string,
-  /**
-   * Callback fired before the component enters.
-   */
-  onEnter: PropTypes.func,
-  /**
-   * Callback fired when the component is entering.
-   */
-  onEntering: PropTypes.func,
-  /**
-   * Callback fired when the component has entered.
-   */
-  onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
-  /**
-   * Callback fired before the component exits.
-   */
-  onExit: PropTypes.func,
-  /**
-   * Callback fired when the component is exiting.
-   */
-  onExiting: PropTypes.func,
-  /**
-   * Callback fired when the component has exited.
-   */
-  onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
-  /**
-   * @ignore
-   */
-  theme: PropTypes.object.isRequired,
-};
 
 export default withTheme(Slide);

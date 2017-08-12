@@ -5,11 +5,11 @@ please use [StackOverflow](http://stackoverflow.com/questions/tagged/material-ui
 instead of Github issues. There is a StackOverflow tag called "material-ui"
 that you can use to tag your questions.
 
-# [Material-UI](http://www.material-ui.com/)
+# [Material-UI@v1-beta](https://material-ui-1dab0.firebaseapp.com/)
 [![npm package](https://img.shields.io/npm/v/material-ui.svg)](https://www.npmjs.org/package/material-ui)
-[![CircleCI](https://img.shields.io/circleci/project/github/callemall/material-ui/next.svg)](https://circleci.com/gh/callemall/material-ui/tree/next)
+[![CircleCI](https://img.shields.io/circleci/project/github/callemall/material-ui/v1-beta.svg)](https://circleci.com/gh/callemall/material-ui/tree/v1-beta)
 [![Gitter](https://img.shields.io/badge/gitter-join%20chat-f81a65.svg)](https://gitter.im/callemall/material-ui?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Coverage Status](https://img.shields.io/codecov/c/github/callemall/material-ui/next.svg)](https://codecov.io/gh/callemall/material-ui/branch/next)
+[![Coverage Status](https://img.shields.io/codecov/c/github/callemall/material-ui/v1-beta.svg)](https://codecov.io/gh/callemall/material-ui/branch/v1-beta)
 
 [![PeerDependencies](https://img.shields.io/david/peer/callemall/material-ui.svg)](https://david-dm.org/callemall/material-ui#info=peerDependencies&view=list)
 [![Dependencies](https://img.shields.io/david/callemall/material-ui.svg)](https://david-dm.org/callemall/material-ui)

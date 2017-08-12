@@ -3,12 +3,11 @@
 import React, { Component, cloneElement, isValidElement } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
-import ButtonBase from '../internal/ButtonBase';
+import ButtonBase from '../ButtonBase';
 import Icon from '../Icon';
 
-export const styleSheet = createStyleSheet('MuiBottomNavigationButton', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     transition: theme.transitions.create(['color', 'padding-top'], {
       duration: theme.transitions.duration.short,
@@ -48,7 +47,7 @@ export const styleSheet = createStyleSheet('MuiBottomNavigationButton', theme =>
     display: 'block',
     margin: 'auto',
   },
-}));
+});
 
 class BottomNavigationButton extends Component {
   handleChange = event => {
@@ -146,9 +145,9 @@ BottomNavigationButton.propTypes = {
    */
   showLabel: PropTypes.bool,
   /**
-   * @ignore
+   * You can provide your own value. Otherwise, we fallback to the child position index.
    */
-  value: PropTypes.number,
+  value: PropTypes.any,
 };
 
-export default withStyles(styleSheet)(BottomNavigationButton);
+export default withStyles(styles, { name: 'MuiBottomNavigationButton' })(BottomNavigationButton);

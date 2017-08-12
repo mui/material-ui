@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import Table, { styleSheet } from './Table';
+import Table from './Table';
 
 describe('<Table />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<Table />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Table />);
   });
 
   it('should render a table', () => {
@@ -20,13 +20,17 @@ describe('<Table />', () => {
   });
 
   it('should spread custom props on the root node', () => {
-    const wrapper = shallow(<Table data-my-prop="woof" />);
-    assert.strictEqual(wrapper.prop('data-my-prop'), 'woof', 'custom prop should be woof');
+    const wrapper = shallow(<Table data-my-prop="woofTable" />);
+    assert.strictEqual(
+      wrapper.prop('data-my-prop'),
+      'woofTable',
+      'custom prop should be woofTable',
+    );
   });
 
   it('should render with the user and root classes', () => {
-    const wrapper = shallow(<Table className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+    const wrapper = shallow(<Table className="woofTable" />);
+    assert.strictEqual(wrapper.hasClass('woofTable'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 

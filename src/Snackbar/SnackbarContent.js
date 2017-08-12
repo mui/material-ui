@@ -3,12 +3,11 @@
 import React from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
 import Typography from '../Typography';
 
-export const styleSheet = createStyleSheet('MuiSnackbarContent', theme => {
+export const styles = (theme: Object) => {
   const type = theme.palette.type === 'light' ? 'dark' : 'light';
   const backgroundColor = theme.palette.shades[type].background.default;
 
@@ -41,7 +40,7 @@ export const styleSheet = createStyleSheet('MuiSnackbarContent', theme => {
       marginRight: -theme.spacing.unit,
     },
   };
-});
+};
 
 type DefaultProps = {
   classes: Object,
@@ -95,4 +94,4 @@ function SnackbarContent(props: AllProps) {
   );
 }
 
-export default withStyles(styleSheet)(SnackbarContent);
+export default withStyles(styles, { name: 'MuiSnackbarContent' })(SnackbarContent);

@@ -4,6 +4,7 @@
 .*/node_modules/react-event-listener/src/.*
 .*/node_modules/fbjs/lib/partitionObjectByKey.js
 .*/node_modules/jss/lib/.*\.js\.flow
+.*/node_modules/mitt/src/.*\.js
 .*/node_modules/react-swipeable-views/src/.*
 .*/node_modules/eslint-plugin-jsx-a11y/src/.*
 .*/scripts/*
@@ -28,4 +29,5 @@ module.system.node.resolve_dirname=node_modules
 module.system.node.resolve_dirname=.
 
 suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe
+suppress_comment= \\(.\\|\n\\)*\\$FlowExpectedError
 suppress_type=$FlowToDo

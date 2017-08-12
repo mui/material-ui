@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import classnames from 'classnames';
 import Card, { CardHeader, CardMedia, CardContent, CardActions } from 'material-ui/Card';
 import Collapse from 'material-ui/transitions/Collapse';
@@ -15,7 +15,7 @@ import ShareIcon from 'material-ui-icons/Share';
 import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 import paellaImage from 'docs/src/assets/images/cards/paella.jpg';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   card: {
     maxWidth: 400,
   },
@@ -37,7 +37,7 @@ const styleSheet = createStyleSheet(theme => ({
   flexGrow: {
     flex: '1 1 auto',
   },
-}));
+});
 
 class RecipeReviewCard extends Component {
   state = { expanded: false };
@@ -126,4 +126,4 @@ RecipeReviewCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(RecipeReviewCard);
+export default withStyles(styles)(RecipeReviewCard);
