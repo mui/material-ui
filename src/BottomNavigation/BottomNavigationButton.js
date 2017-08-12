@@ -145,9 +145,9 @@ BottomNavigationButton.propTypes = {
    */
   showLabel: PropTypes.bool,
   /**
-   * @ignore
+   * You can provide your own value. Otherwise, we fallback to the child position index.
    */
-  value: PropTypes.number,
+  value: PropTypes.any,
 };
 
 export default withStyles(styles, { name: 'MuiBottomNavigationButton' })(BottomNavigationButton);

@@ -24,35 +24,35 @@ function SimpleTabs(props) {
   return (
     <div className={classes.root}>
       <Paper className={classes.appBar}>
-        <Tabs index={0}>
+        <Tabs value={0}>
           <Tab label="Item One" />
           <Tab label="Item Two" />
           <Tab label="Item Three" disabled />
         </Tabs>
       </Paper>
       <Paper className={classes.root}>
-        <Tabs index={1} textColor="accent" centered>
+        <Tabs value={1} textColor="accent" centered>
           <Tab label="Item One" />
           <Tab label="Item Two" />
           <Tab label="Item Three" disabled />
         </Tabs>
       </Paper>
       <Paper>
-        <Tabs index={2} textColor="accent" fullWidth>
+        <Tabs value={2} textColor="accent" fullWidth>
           <Tab label="Item One" />
           <Tab label="Item Two" />
           <Tab label="Item Three" />
         </Tabs>
       </Paper>
       <Paper>
-        <Tabs index={0} textColor="accent" fullWidth>
+        <Tabs value={0} textColor="accent" fullWidth>
           <Tab icon={<Icon>phone</Icon>} />
           <Tab icon={<Icon>favorite</Icon>} />
           <Tab icon={<Icon>person_pin</Icon>} disabled />
         </Tabs>
       </Paper>
       <Paper>
-        <Tabs index={1} fullWidth textColor="accent">
+        <Tabs value={1} fullWidth textColor="accent">
           <Tab icon={<Icon>phone</Icon>} label="RECENTS" />
           <Tab icon={<Icon>favorite</Icon>} label="FAVORITES" />
           <Tab icon={<Icon>person_pin</Icon>} label="NEARBY" disabled />

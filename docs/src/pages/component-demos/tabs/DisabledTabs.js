@@ -7,18 +7,18 @@ import Tabs, { Tab } from 'material-ui/Tabs';
 
 class DisabledTabs extends Component {
   state = {
-    index: 0,
+    value: 0,
   };
 
-  handleChange = (event, index) => {
-    this.setState({ index });
+  handleChange = (event, value) => {
+    this.setState({ value });
   };
 
   render() {
     return (
       <Paper>
         <Tabs
-          index={this.state.index}
+          value={this.state.value}
           indicatorColor="primary"
           textColor="primary"
           onChange={this.handleChange}

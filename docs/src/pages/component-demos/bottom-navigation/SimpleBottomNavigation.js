@@ -28,13 +28,16 @@ class SimpleBottomNavigation extends Component {
     const { value } = this.state;
 
     return (
-      <div className={classes.root}>
-        <BottomNavigation value={value} onChange={this.handleChange} showLabels>
-          <BottomNavigationButton label="Recents" icon={<RestoreIcon />} />
-          <BottomNavigationButton label="Favorites" icon={<FavoriteIcon />} />
-          <BottomNavigationButton label="Nearby" icon={<LocationOnIcon />} />
-        </BottomNavigation>
-      </div>
+      <BottomNavigation
+        value={value}
+        onChange={this.handleChange}
+        showLabels
+        className={classes.root}
+      >
+        <BottomNavigationButton label="Recents" icon={<RestoreIcon />} />
+        <BottomNavigationButton label="Favorites" icon={<FavoriteIcon />} />
+        <BottomNavigationButton label="Nearby" icon={<LocationOnIcon />} />
+      </BottomNavigation>
     );
   }
 }

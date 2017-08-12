@@ -15,20 +15,20 @@ const styles = theme => ({
 
 class CenteredTabs extends Component {
   state = {
-    index: 0,
+    value: 0,
   };
 
-  handleChange = (event, index) => {
-    this.setState({ index });
+  handleChange = (event, value) => {
+    this.setState({ value });
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
 
     return (
       <Paper className={classes.root}>
         <Tabs
-          index={this.state.index}
+          value={this.state.value}
           onChange={this.handleChange}
           indicatorColor="primary"
           textColor="primary"

@@ -17,7 +17,7 @@ describe('<BottomNavigation />', () => {
   before(() => {
     shallow = createShallow({ dive: true });
     classes = getClasses(
-      <BottomNavigation showLabels>
+      <BottomNavigation showLabels value={0}>
         <BottomNavigationButton icon={icon} />
       </BottomNavigation>,
     );
@@ -30,7 +30,7 @@ describe('<BottomNavigation />', () => {
 
   it('should render with the root class', () => {
     const wrapper = shallow(
-      <BottomNavigation showLabels>
+      <BottomNavigation showLabels value={0}>
         <BottomNavigationButton icon={icon} />
       </BottomNavigation>,
     );
@@ -40,7 +40,7 @@ describe('<BottomNavigation />', () => {
 
   it('should render with the user and root classes', () => {
     const wrapper = shallow(
-      <BottomNavigation showLabels className="woofBottomNavigation">
+      <BottomNavigation showLabels value={0} className="woofBottomNavigation">
         <BottomNavigationButton icon={icon} />
       </BottomNavigation>,
     );
