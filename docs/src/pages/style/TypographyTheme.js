@@ -1,12 +1,12 @@
-// @flow
+// @flow weak
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: theme.typography.button,
-}));
+});
 
 function TypograpghyTheme(props) {
   return (
@@ -20,4 +20,4 @@ TypograpghyTheme.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(TypograpghyTheme);
+export default withStyles(styles)(TypograpghyTheme);

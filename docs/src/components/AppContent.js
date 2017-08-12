@@ -3,10 +3,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import MarkdownElement from 'docs/src/components/MarkdownElement';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   content: theme.mixins.gutters({
     paddingTop: 80,
     flex: '1 1 100%',
@@ -18,7 +18,7 @@ const styleSheet = createStyleSheet(theme => ({
       maxWidth: 900,
     },
   },
-}));
+});
 
 function AppContent(props) {
   const { className, classes, children: childrenProp, route } = props;
@@ -48,4 +48,4 @@ AppContent.propTypes = {
   route: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(AppContent);
+export default withStyles(styles)(AppContent);

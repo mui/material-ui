@@ -2,10 +2,10 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Input from 'material-ui/Input/Input';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -13,7 +13,7 @@ const styleSheet = createStyleSheet(theme => ({
   input: {
     margin: theme.spacing.unit,
   },
-}));
+});
 
 function Inputs(props) {
   const classes = props.classes;
@@ -57,4 +57,4 @@ Inputs.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(Inputs);
+export default withStyles(styles)(Inputs);

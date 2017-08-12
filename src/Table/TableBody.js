@@ -3,15 +3,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet(theme => ({
+export const styles = (theme: Object) => ({
   root: {
     fontSize: 13,
     color: theme.palette.text.primary,
   },
-}));
+});
 
 class TableBody extends Component {
   getChildContext() {
@@ -58,4 +57,4 @@ TableBody.childContextTypes = {
   table: PropTypes.object,
 };
 
-export default withStyles(styleSheet, { name: 'MuiTableBody' })(TableBody);
+export default withStyles(styles, { name: 'MuiTableBody' })(TableBody);

@@ -2,16 +2,16 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import green from 'material-ui/colors/green';
 import { FormGroup, FormControlLabel } from 'material-ui/Form';
 import Checkbox from 'material-ui/Checkbox';
 
-const styleSheet = createStyleSheet({
+const styles = {
   checked: {
     color: green[500],
   },
-});
+};
 
 class Checkboxes extends Component {
   state = {
@@ -83,4 +83,4 @@ Checkboxes.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(Checkboxes);
+export default withStyles(styles)(Checkboxes);

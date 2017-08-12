@@ -3,12 +3,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Avatar from 'material-ui/Avatar';
 import remyImage from 'docs/src/assets/images/remy.jpg';
 import uxecoImage from 'docs/src/assets/images/uxceo-128.jpg';
 
-const styleSheet = createStyleSheet({
+const styles = {
   row: {
     display: 'flex',
     justifyContent: 'center',
@@ -20,7 +20,7 @@ const styleSheet = createStyleSheet({
     width: 60,
     height: 60,
   },
-});
+};
 
 function ImageAvatars(props) {
   const classes = props.classes;
@@ -40,4 +40,4 @@ ImageAvatars.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(ImageAvatars);
+export default withStyles(styles)(ImageAvatars);

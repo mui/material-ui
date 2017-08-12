@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
@@ -28,7 +28,7 @@ function getTitle(routes) {
   return null;
 }
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   '@global': {
     html: {
       boxSizing: 'border-box',
@@ -77,7 +77,7 @@ const styleSheet = createStyleSheet(theme => ({
       display: 'none',
     },
   },
-}));
+});
 
 class AppFrame extends Component {
   state = {
@@ -175,7 +175,7 @@ AppFrame.propTypes = {
 };
 
 export default compose(
-  withStyles(styleSheet, {
+  withStyles(styles, {
     name: 'AppFrame',
   }),
   withWidth(),

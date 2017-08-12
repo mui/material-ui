@@ -4,12 +4,11 @@ import React, { Children, Component } from 'react';
 import type { Element } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { isDirty } from '../Input/Input';
 import { isMuiComponent } from '../utils/reactHelpers';
 
-export const styleSheet = createStyleSheet(theme => ({
+export const styles = (theme: Object) => ({
   root: {
     display: 'inline-flex',
     flexDirection: 'column',
@@ -26,7 +25,7 @@ export const styleSheet = createStyleSheet(theme => ({
   fullWidth: {
     width: '100%',
   },
-}));
+});
 
 type DefaultProps = {
   disabled: boolean,
@@ -202,4 +201,4 @@ class FormControl extends Component<DefaultProps, AllProps, State> {
   }
 }
 
-export default withStyles(styleSheet, { name: 'MuiFormControl' })(FormControl);
+export default withStyles(styles, { name: 'MuiFormControl' })(FormControl);

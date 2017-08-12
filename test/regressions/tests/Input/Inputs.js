@@ -3,10 +3,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet, withStyles } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Input from 'material-ui/Input/Input';
 
-const styleSheet = createStyleSheet(() => ({
+const styles = {
   container: {
     display: 'flex',
     flexDirection: 'column',
@@ -18,7 +18,7 @@ const styleSheet = createStyleSheet(() => ({
   large: {
     width: 300,
   },
-}));
+};
 
 class Inputs extends Component {
   componentDidMount() {
@@ -55,4 +55,4 @@ Inputs.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(Inputs);
+export default withStyles(styles)(Inputs);

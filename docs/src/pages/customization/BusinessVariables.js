@@ -3,14 +3,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Checkbox from 'material-ui/Checkbox';
-import { createMuiTheme, createStyleSheet, MuiThemeProvider, withStyles } from 'material-ui/styles';
+import { createMuiTheme, MuiThemeProvider, withStyles } from 'material-ui/styles';
 import orange from 'material-ui/colors/orange';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   danger: {
     color: theme.status.danger,
   },
-}));
+});
 
 let BusinessCheckbox = props =>
   <Checkbox defaultChecked className={props.classes.danger}>
@@ -21,7 +21,7 @@ BusinessCheckbox.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-BusinessCheckbox = withStyles(styleSheet)(BusinessCheckbox);
+BusinessCheckbox = withStyles(styles)(BusinessCheckbox);
 
 const theme = createMuiTheme({
   status: {

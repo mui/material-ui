@@ -3,17 +3,16 @@
 import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet(theme => ({
+export const styles = (theme: Object) => ({
   root: {
     display: 'flex',
     justifyContent: 'center',
     height: 56,
     backgroundColor: theme.palette.background.paper,
   },
-}));
+});
 
 function BottomNavigation(props) {
   const {
@@ -79,4 +78,4 @@ BottomNavigation.defaultProps = {
   showLabels: false,
 };
 
-export default withStyles(styleSheet, 'MuiBottomNavigation')(BottomNavigation);
+export default withStyles(styles, { name: 'MuiBottomNavigation' })(BottomNavigation);

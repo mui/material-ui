@@ -2,10 +2,10 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -15,7 +15,7 @@ const styleSheet = createStyleSheet(theme => ({
     marginRight: theme.spacing.unit,
     width: 200,
   },
-}));
+});
 
 class TextFields extends Component {
   state = {
@@ -128,4 +128,4 @@ TextFields.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(TextFields);
+export default withStyles(styles)(TextFields);

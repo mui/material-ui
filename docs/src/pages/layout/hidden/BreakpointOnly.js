@@ -1,14 +1,15 @@
-// @flow
+// @flow weak
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Hidden from 'material-ui/Hidden';
 import withWidth from 'material-ui/utils/withWidth';
 import Typography from 'material-ui/Typography';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   container: {
     flexGrow: 1,
     paddingTop: 30,
@@ -32,7 +33,7 @@ const styleSheet = createStyleSheet(theme => ({
     top: 0,
     padding: 5,
   },
-}));
+});
 
 function BreakpointOnly(props) {
   const classes = props.classes;
@@ -60,4 +61,4 @@ BreakpointOnly.propTypes = {
   width: PropTypes.string,
 };
 
-export default compose(withStyles(styleSheet), withWidth())(BreakpointOnly);
+export default compose(withStyles(styles), withWidth())(BreakpointOnly);

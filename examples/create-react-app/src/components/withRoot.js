@@ -2,11 +2,11 @@
 
 import React, { Component } from 'react';
 import { JssProvider } from 'react-jss';
-import { withStyles, createStyleSheet, MuiThemeProvider } from 'material-ui/styles';
+import { withStyles, MuiThemeProvider } from 'material-ui/styles';
 import createContext from '../styles/createContext';
 
 // Apply some reset
-const styleSheet = createStyleSheet(theme => ({
+const styles = (theme: Object) => ({
   '@global': {
     html: {
       background: theme.palette.background.default,
@@ -17,11 +17,11 @@ const styleSheet = createStyleSheet(theme => ({
       margin: 0,
     },
   },
-}));
+});
 
 let AppWrapper = props => props.children;
 
-AppWrapper = withStyles(styleSheet)(AppWrapper);
+AppWrapper = withStyles(styles)(AppWrapper);
 
 const context = createContext();
 

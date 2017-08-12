@@ -3,12 +3,11 @@
 import React from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 import CardContent from './CardContent';
 
-export const styleSheet = createStyleSheet(theme => ({
+export const styles = (theme: Object) => ({
   root: {
     display: 'flex',
     alignItems: 'center',
@@ -22,7 +21,7 @@ export const styleSheet = createStyleSheet(theme => ({
   },
   title: {},
   subheader: {},
-}));
+});
 
 type DefaultProps = {
   classes: Object,
@@ -85,4 +84,4 @@ function CardHeader(props: AllProps) {
   );
 }
 
-export default withStyles(styleSheet, { name: 'MuiCardHeader' })(CardHeader);
+export default withStyles(styles, { name: 'MuiCardHeader' })(CardHeader);

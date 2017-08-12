@@ -3,10 +3,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Paper from 'material-ui/Paper';
-import { createStyleSheet, withStyles } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = (theme: Object) => ({
   root: {
     width: 400,
     backgroundColor: theme.palette.primary.A400,
@@ -15,7 +15,7 @@ const styleSheet = createStyleSheet(theme => ({
     padding: 16,
     textAlign: 'center',
   },
-}));
+});
 
 function StressGrid(props) {
   const { classes } = props;
@@ -64,4 +64,4 @@ StressGrid.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(StressGrid);
+export default withStyles(styles)(StressGrid);

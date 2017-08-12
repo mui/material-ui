@@ -5,10 +5,9 @@ import type { Element } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import warning from 'warning';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet({
+export const styles = {
   root: {
     width: 36,
     height: 36,
@@ -19,7 +18,7 @@ export const styleSheet = createStyleSheet({
     width: 20,
     height: 20,
   },
-});
+};
 
 type DefaultProps = {
   classes: Object,
@@ -77,4 +76,4 @@ ListItemAvatar.contextTypes = {
 
 ListItemAvatar.muiName = 'ListItemAvatar';
 
-export default withStyles(styleSheet, { name: 'MuiListItemAvatar' })(ListItemAvatar);
+export default withStyles(styles, { name: 'MuiListItemAvatar' })(ListItemAvatar);

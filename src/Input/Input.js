@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import Textarea from './Textarea';
 
@@ -15,7 +14,7 @@ export function isDirty(obj, SSR = false) {
   );
 }
 
-export const styleSheet = createStyleSheet(theme => {
+export const styles = (theme: Object) => {
   const placeholder = {
     color: 'currentColor',
     opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
@@ -158,7 +157,7 @@ export const styleSheet = createStyleSheet(theme => {
       width: '100%',
     },
   };
-});
+};
 
 type DefaultProps = {
   classes: Object,
@@ -528,4 +527,4 @@ class Input extends Component<DefaultProps, AllProps, State> {
   }
 }
 
-export default withStyles(styleSheet, { name: 'MuiInput' })(Input);
+export default withStyles(styles, { name: 'MuiInput' })(Input);

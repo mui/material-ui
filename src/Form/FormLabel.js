@@ -1,14 +1,12 @@
 // @flow
-/* eslint-disable jsx-a11y/label-has-for */
 
 import React from 'react';
 import type { Element } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet(theme => {
+export const styles = (theme: Object) => {
   const focusColor = theme.palette.primary[theme.palette.type === 'light' ? 'A700' : 'A200'];
   return {
     root: {
@@ -26,7 +24,7 @@ export const styleSheet = createStyleSheet(theme => {
       color: theme.palette.input.disabled,
     },
   };
-});
+};
 
 type DefaultProps = {
   classes: Object,
@@ -114,6 +112,7 @@ function FormLabel(props: AllProps, context: { muiFormControl: Object }) {
   });
 
   return (
+    // eslint-disable-next-line jsx-a11y/label-has-for
     <label className={className} {...other}>
       {children}
       {required &&
@@ -128,4 +127,4 @@ FormLabel.contextTypes = {
   muiFormControl: PropTypes.object,
 };
 
-export default withStyles(styleSheet, { name: 'MuiFormLabel' })(FormLabel);
+export default withStyles(styles, { name: 'MuiFormLabel' })(FormLabel);

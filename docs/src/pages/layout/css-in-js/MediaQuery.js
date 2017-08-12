@@ -1,13 +1,13 @@
-// @flow
+// @flow weak
 
 import React from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import withWidth from 'material-ui/utils/withWidth';
 import Typography from 'material-ui/Typography';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     padding: theme.spacing.unit,
     [theme.breakpoints.up('md')]: {
@@ -17,7 +17,7 @@ const styleSheet = createStyleSheet(theme => ({
       backgroundColor: theme.palette.accent.A400,
     },
   },
-}));
+});
 
 function MediaQuery(props) {
   const classes = props.classes;
@@ -36,4 +36,4 @@ MediaQuery.propTypes = {
   width: PropTypes.string.isRequired,
 };
 
-export default compose(withStyles(styleSheet), withWidth())(MediaQuery);
+export default compose(withStyles(styles), withWidth())(MediaQuery);

@@ -2,16 +2,16 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Tabs, { Tab } from 'material-ui/Tabs';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     flexGrow: 1,
     marginTop: theme.spacing.unit * 3,
   },
-}));
+});
 
 class CenteredTabs extends Component {
   state = {
@@ -47,4 +47,4 @@ CenteredTabs.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(CenteredTabs);
+export default withStyles(styles)(CenteredTabs);

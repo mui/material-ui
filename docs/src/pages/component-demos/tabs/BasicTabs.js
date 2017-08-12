@@ -3,7 +3,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Tabs, { Tab } from 'material-ui/Tabs';
 
@@ -16,13 +16,13 @@ TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     flexGrow: 1,
     marginTop: theme.spacing.unit * 3,
     backgroundColor: theme.palette.background.paper,
   },
-}));
+});
 
 class BasicTabs extends Component {
   state = {
@@ -66,4 +66,4 @@ BasicTabs.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(BasicTabs);
+export default withStyles(styles)(BasicTabs);

@@ -2,14 +2,14 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
 import FaceIcon from 'material-ui-icons/Face';
 import grey from 'material-ui/colors/grey';
 import uxecoImage from 'docs/src/assets/images/uxceo-128.jpg';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   chip: {
     margin: theme.spacing.unit,
   },
@@ -21,7 +21,7 @@ const styleSheet = createStyleSheet(theme => ({
     justifyContent: 'center',
     flexWrap: 'wrap',
   },
-}));
+});
 
 function handleRequestDelete() {
   alert('You clicked the delete icon.'); // eslint-disable-line no-alert
@@ -67,4 +67,4 @@ Chips.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(Chips);
+export default withStyles(styles)(Chips);

@@ -25,7 +25,7 @@ function createContext() {
     jss,
     theme,
     // This is needed in order to deduplicate the injection of CSS in the page.
-    sheetsManager: new WeakMap(),
+    sheetsManager: new Map(),
     // This is needed in order to inject the critical CSS.
     sheetsRegistry: new SheetsRegistry(),
   };

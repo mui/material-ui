@@ -2,18 +2,18 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import BottomNavigation, { BottomNavigationButton } from 'material-ui/BottomNavigation';
 import RestoreIcon from 'material-ui-icons/Restore';
 import FavoriteIcon from 'material-ui-icons/Favorite';
 import LocationOnIcon from 'material-ui-icons/LocationOn';
 import FolderIcon from 'material-ui-icons/Folder';
 
-const styleSheet = createStyleSheet({
+const styles = {
   root: {
     width: 500,
   },
-});
+};
 
 class LabelBottomNavigation extends Component {
   state = {
@@ -45,4 +45,4 @@ LabelBottomNavigation.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(LabelBottomNavigation);
+export default withStyles(styles)(LabelBottomNavigation);

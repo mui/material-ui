@@ -3,14 +3,13 @@
 import React, { Component } from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import IconButton from '../IconButton';
 import CheckBoxOutlineBlankIcon from '../svg-icons/check-box-outline-blank';
 import CheckBoxIcon from '../svg-icons/check-box';
 import Icon from '../Icon';
 
-export const styleSheet = createStyleSheet({
+export const styles = {
   root: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -30,7 +29,7 @@ export const styleSheet = createStyleSheet({
   default: {},
   checked: {},
   disabled: {},
-});
+};
 
 type DefaultProps = {
   checkedIcon: Element<*>,
@@ -261,5 +260,5 @@ export default function createSwitch(
     }
   }
 
-  return withStyles(styleSheet, { name: 'MuiSwitchBase' })(SwitchBase);
+  return withStyles(styles, { name: 'MuiSwitchBase' })(SwitchBase);
 }

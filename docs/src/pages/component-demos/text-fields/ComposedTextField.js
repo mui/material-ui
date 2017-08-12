@@ -2,13 +2,13 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Input from 'material-ui/Input';
 import InputLabel from 'material-ui/Input/InputLabel';
 import FormControl from 'material-ui/Form/FormControl';
 import FormHelperText from 'material-ui/Form/FormHelperText';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -16,7 +16,7 @@ const styleSheet = createStyleSheet(theme => ({
   formControl: {
     margin: theme.spacing.unit,
   },
-}));
+});
 
 class ComposedTextField extends Component {
   state = {
@@ -60,4 +60,4 @@ ComposedTextField.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(ComposedTextField);
+export default withStyles(styles)(ComposedTextField);

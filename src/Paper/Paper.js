@@ -3,10 +3,9 @@
 import React from 'react';
 import classNames from 'classnames';
 import warning from 'warning';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet(theme => {
+export const styles = (theme: Object) => {
   const shadows = {};
 
   theme.shadows.forEach((shadow, index) => {
@@ -24,7 +23,7 @@ export const styleSheet = createStyleSheet(theme => {
     },
     ...shadows,
   };
-});
+};
 
 type DefaultProps = {
   classes: Object,
@@ -93,4 +92,4 @@ Paper.defaultProps = {
   square: false,
 };
 
-export default withStyles(styleSheet, { name: 'MuiPaper' })(Paper);
+export default withStyles(styles, { name: 'MuiPaper' })(Paper);

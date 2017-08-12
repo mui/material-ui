@@ -2,11 +2,11 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createStyleSheet, withStyles } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import { GridList, GridListTile } from 'material-ui/GridList';
 import tileData from './tileData';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -21,7 +21,7 @@ const styleSheet = createStyleSheet(theme => ({
   subheader: {
     width: '100%',
   },
-}));
+});
 
 /**
  * The example data is structured as follows:
@@ -61,4 +61,4 @@ ImageGridList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(ImageGridList);
+export default withStyles(styles)(ImageGridList);

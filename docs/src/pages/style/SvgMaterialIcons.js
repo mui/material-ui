@@ -1,16 +1,16 @@
-// @flow
+// @flow weak
 
 import React from 'react';
 import PropTypes from 'prop-types';
 import AccessAlarmIcon from 'material-ui-icons/AccessAlarm';
 import ThreeDRotation from 'material-ui-icons/ThreeDRotation';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   icon: {
     margin: theme.spacing.unit,
   },
-}));
+});
 
 function SvgMaterialIcons(props) {
   const classes = props.classes;
@@ -26,4 +26,4 @@ SvgMaterialIcons.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(SvgMaterialIcons);
+export default withStyles(styles)(SvgMaterialIcons);

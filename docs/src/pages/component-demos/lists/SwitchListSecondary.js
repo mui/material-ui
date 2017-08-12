@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import List, {
   ListItem,
   ListItemIcon,
@@ -14,13 +14,13 @@ import Switch from 'material-ui/Switch';
 import WifiIcon from 'material-ui-icons/Wifi';
 import BluetoothIcon from 'material-ui-icons/Bluetooth';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
     background: theme.palette.background.paper,
   },
-}));
+});
 
 class SwitchListSecondary extends Component {
   state = {
@@ -83,4 +83,4 @@ SwitchListSecondary.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(SwitchListSecondary);
+export default withStyles(styles)(SwitchListSecondary);

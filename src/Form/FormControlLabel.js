@@ -4,10 +4,9 @@
 import React, { cloneElement } from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet(theme => ({
+export const styles = (theme: Object) => ({
   root: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -27,7 +26,7 @@ export const styleSheet = createStyleSheet(theme => ({
     fontFamily: theme.typography.fontFamily,
     userSelect: 'none',
   },
-}));
+});
 
 type DefaultProps = {
   classes: Object,
@@ -126,4 +125,4 @@ FormControlLabel.defaultProps = {
   disabled: false,
 };
 
-export default withStyles(styleSheet, { name: 'MuiFormControlLabel' })(FormControlLabel);
+export default withStyles(styles, { name: 'MuiFormControlLabel' })(FormControlLabel);

@@ -3,10 +3,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet(theme => {
+export const styles = (theme: Object) => {
   const spacing = theme.spacing.unit * 3;
   return {
     root: {
@@ -18,7 +17,7 @@ export const styleSheet = createStyleSheet(theme => {
       },
     },
   };
-});
+};
 
 function DialogContent(props) {
   const { classes, children, className, ...other } = props;
@@ -45,4 +44,4 @@ DialogContent.propTypes = {
   className: PropTypes.string,
 };
 
-export default withStyles(styleSheet, { name: 'MuiDialogContent' })(DialogContent);
+export default withStyles(styles, { name: 'MuiDialogContent' })(DialogContent);

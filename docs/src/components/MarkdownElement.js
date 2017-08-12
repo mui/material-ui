@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import marked from 'marked';
 import prism from 'docs/src/utils/prism';
 
@@ -55,7 +55,7 @@ const anchorLinkStyle = theme => ({
   },
 });
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     fontFamily: theme.typography.fontFamily,
     marginTop: theme.spacing.unit * 2,
@@ -177,7 +177,7 @@ const styleSheet = createStyleSheet(theme => ({
       },
     },
   },
-}));
+});
 
 function MarkdownElement(props) {
   const { classes, className, text, ...other } = props;
@@ -199,4 +199,4 @@ MarkdownElement.propTypes = {
   text: PropTypes.string.isRequired,
 };
 
-export default withStyles(styleSheet)(MarkdownElement);
+export default withStyles(styles)(MarkdownElement);

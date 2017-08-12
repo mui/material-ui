@@ -2,13 +2,13 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createStyleSheet, withStyles } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Icon from 'material-ui/Icon';
 import Paper from 'material-ui/Paper';
 import Tabs from 'material-ui/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = (theme: Object) => ({
   root: {
     width: 600,
   },
@@ -16,7 +16,7 @@ const styleSheet = createStyleSheet(theme => ({
     backgroundColor: theme.palette.primary[500],
     color: theme.palette.getContrastText(theme.palette.primary[500]),
   },
-}));
+});
 
 function AdvancedTabs(props) {
   const { classes } = props;
@@ -71,4 +71,4 @@ AdvancedTabs.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(AdvancedTabs);
+export default withStyles(styles)(AdvancedTabs);

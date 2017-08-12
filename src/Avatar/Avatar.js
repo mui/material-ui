@@ -3,11 +3,10 @@
 import React from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { emphasize } from '../styles/colorManipulator';
 
-export const styleSheet = createStyleSheet(theme => ({
+export const styles = (theme: Object) => ({
   root: {
     position: 'relative',
     display: 'flex',
@@ -31,7 +30,7 @@ export const styleSheet = createStyleSheet(theme => ({
     width: '100%',
     height: 'auto',
   },
-}));
+});
 
 type DefaultProps = {
   classes: Object,
@@ -147,4 +146,4 @@ Avatar.defaultProps = {
   component: 'div',
 };
 
-export default withStyles(styleSheet, { name: 'MuiAvatar' })(Avatar);
+export default withStyles(styles, { name: 'MuiAvatar' })(Avatar);
