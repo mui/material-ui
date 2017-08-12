@@ -37,9 +37,6 @@ This property accepts the following keys:
 - `bufferBar1`
 - `bufferBar2Primary`
 - `bufferBar2Accent`
-- `@keyframes mui-indeterminate1`
-- `@keyframes mui-indeterminate2`
-- `@keyframes buffer`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)
 section for more detail.

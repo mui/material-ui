@@ -18,7 +18,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-export const SwitchBase = withStyles(styles, { name: 'MuiCheckbox' })(createSwitch());
+const SwitchBase = createSwitch();
 
 export type Props = {
   /**
@@ -118,4 +118,4 @@ Checkbox.defaultProps = {
   indeterminateIcon: <IndeterminateCheckBoxIcon />,
 };
 
-export default Checkbox;
+export default withStyles(styles, { name: 'MuiCheckbox' })(Checkbox);

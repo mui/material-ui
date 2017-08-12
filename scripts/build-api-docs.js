@@ -6,6 +6,7 @@ import path from 'path';
 import * as reactDocgen from 'react-docgen';
 import generateMarkdown from './generate-docs-markdown';
 import createMuiTheme from '../src/styles/theme';
+import getStylesCreator from '../src/styles/getStylesCreator';
 
 const theme = createMuiTheme();
 const componentRegex = /^([A-Z][a-z]+)+\.js/;
@@ -34,10 +35,12 @@ function buildDocs(componentPath) {
     name: null,
   };
 
-  if (component.styleSheet) {
+  if (component.styles && component.default.options) {
     // Collect the customization points of the `classes` property.
-    styles.classes = Object.keys(component.styleSheet.createStyles(theme));
-    styles.name = component.styleSheet.name;
+    styles.classes = Object.keys(getStylesCreator(component.styles).create(theme)).filter(
+      className => !className.match(/^(@media|@keyframes)/),
+    );
+    styles.name = component.default.options.name;
   }
 
   readFile(componentPath, 'utf8', (err, src) => {

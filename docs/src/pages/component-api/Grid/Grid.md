@@ -61,10 +61,6 @@ This property accepts the following keys:
 - `grid-xs-10`
 - `grid-xs-11`
 - `grid-xs-12`
-- `@media (min-width:600px)`
-- `@media (min-width:960px)`
-- `@media (min-width:1280px)`
-- `@media (min-width:1920px)`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)
 section for more detail.
