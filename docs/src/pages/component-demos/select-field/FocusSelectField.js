@@ -1,7 +1,7 @@
 // @flow weak
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import withStyles from 'material-ui/styles/withStyles';
 import SelectField from 'material-ui/SelectField';
 import Checkbox from 'material-ui/Checkbox';
 import { FormControlLabel } from 'material-ui/Form';
@@ -9,7 +9,7 @@ import TextField from 'material-ui/TextField';
 import MenuItem from 'material-ui/Menu/MenuItem';
 import Card, { CardHeader, CardContent } from 'material-ui/Card';
 
-const styleSheet = createStyleSheet('FocusSelectField', () => ({
+const styles = {
   row: {
     display: 'flex',
   },
@@ -19,7 +19,7 @@ const styleSheet = createStyleSheet('FocusSelectField', () => ({
     flexDirection: 'row',
     margin: 8,
   },
-}));
+};
 
 class FocusSelectField extends Component {
   state = {
@@ -89,4 +89,4 @@ FocusSelectField.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(FocusSelectField);
+export default withStyles(styles)(FocusSelectField);

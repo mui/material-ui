@@ -2,18 +2,18 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import withStyles from 'material-ui/styles/withStyles';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/Menu/MenuItem';
 import Card, { CardHeader, CardContent } from 'material-ui/Card';
 
-const styleSheet = createStyleSheet('SimpleSelectField', {
+const styles = {
   selectBox: {
     width: 200,
     display: 'inline-flex',
     margin: 8,
   },
-});
+};
 
 class SimpleSelectField extends Component {
   state = {
@@ -73,4 +73,4 @@ SimpleSelectField.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(SimpleSelectField);
+export default withStyles(styles)(SimpleSelectField);

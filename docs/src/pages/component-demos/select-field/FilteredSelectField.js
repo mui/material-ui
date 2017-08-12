@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import withStyles from 'material-ui/styles/withStyles';
 import SelectField from 'material-ui/SelectField';
 import Input from 'material-ui/Input';
 import { MenuItem } from 'material-ui/Menu';
@@ -56,7 +56,7 @@ const US_PRESIDENTS = [
   'Zachary Taylor',
 ];
 
-const styleSheet = createStyleSheet('FilteredSelectField', theme => {
+const styles = theme => {
   const { typography } = theme;
   return {
     filter: {
@@ -75,7 +75,7 @@ const styleSheet = createStyleSheet('FilteredSelectField', theme => {
       margin: 8,
     },
   };
-});
+};
 
 class FilteredSelectField extends Component {
   state = {
@@ -154,4 +154,4 @@ FilteredSelectField.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(FilteredSelectField);
+export default withStyles(styles)(FilteredSelectField);

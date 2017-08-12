@@ -2,16 +2,22 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '../test-utils';
-import SelectFieldInput, { styleSheet } from './SelectFieldInput';
+import { createShallow, createMount, getClasses } from '../test-utils';
+import SelectFieldInput from './SelectFieldInput';
 
 describe('<SelectFieldInput />', () => {
   let shallow;
   let classes;
+  let mount;
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    mount = createMount();
+    classes = getClasses(<SelectFieldInput />);
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   it('should render a <div />', () => {

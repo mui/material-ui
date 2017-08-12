@@ -1,42 +1,73 @@
 // @flow weak
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Element } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import ArrowDropDownIcon from '../svg-icons/arrow-drop-down';
 
-export const styleSheet = createStyleSheet(
-  'MuiSelectFieldInput',
-  theme => ({
-    root: {
-      position: 'relative',
-    },
-    select: {
-      paddingRight: theme.spacing.unit * 4,
-      position: 'relative',
-      width: `calc(100% - ${theme.spacing.unit * 4}px)`,
-      zIndex: 2,
-    },
-    selectEnabled: {
-      cursor: 'pointer',
-    },
-    labelHolder: {
-      display: 'none',
-    },
-    icon: {
-      color: theme.palette.text.secondary,
-      position: 'absolute',
-      right: 0,
-      top: 4,
-      zIndex: 1,
-    },
-  }),
-  { index: 2 },
-);
+export const styles = (theme: Object) => ({
+  root: {
+    position: 'relative',
+  },
+  select: {
+    paddingRight: theme.spacing.unit * 4,
+    position: 'relative',
+    width: `calc(100% - ${theme.spacing.unit * 4}px)`,
+    zIndex: 2,
+  },
+  selectEnabled: {
+    cursor: 'pointer',
+  },
+  labelHolder: {
+    display: 'none',
+  },
+  icon: {
+    color: theme.palette.text.secondary,
+    position: 'absolute',
+    right: 0,
+    top: 4,
+    zIndex: 1,
+  },
+});
 
-const SelectFieldInput = props => {
+type DefaultProps = {
+  classes: Object,
+};
+
+export type Props = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * The CSS class name of the select element.
+   */
+  className?: string,
+  /**
+   * The label content.
+   */
+  label?: string | Element<*>,
+  children?: Element<*>,
+  /** @ignore */
+  onBlur?: Function,
+  /** @ignore */
+  onFocus?: Function,
+  /** @ignore */
+  onSelectBlur?: Function,
+  /** @ignore */
+  onSelectFocus?: Function,
+  /**
+   * Select options.
+   */
+  options?: Element<*>,
+  /** @ignore */
+  rowsMax?: string | number,
+};
+
+type AllProps = DefaultProps & Props;
+
+function SelectFieldInput(props: AllProps) {
   const {
     classes,
     label,
@@ -76,35 +107,6 @@ const SelectFieldInput = props => {
       <ArrowDropDownIcon className={classes.icon} />
     </div>
   );
-};
+}
 
-SelectFieldInput.propTypes = {
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * The CSS class name of the select element.
-   */
-  className: PropTypes.string,
-  /**
-   * The label text.
-   */
-  label: PropTypes.node,
-  /** @ignore */
-  onBlur: PropTypes.func,
-  /** @ignore */
-  onFocus: PropTypes.func,
-  /** @ignore */
-  onSelectBlur: PropTypes.func,
-  /** @ignore */
-  onSelectFocus: PropTypes.func,
-  /**
-   * Select options.
-   */
-  options: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]),
-  /** @ignore */
-  rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-};
-
-export default withStyles(styleSheet)(SelectFieldInput);
+export default withStyles(styles, { name: 'MuiSelectFieldInput', index: 2 })(SelectFieldInput);
