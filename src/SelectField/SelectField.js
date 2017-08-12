@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import type { Element } from 'react';
 import keycode from 'keycode';
 import SelectFieldInput from './SelectFieldInput';
 import FormControl from '../Form/FormControl';
@@ -12,150 +12,159 @@ import Menu from '../Menu/Menu';
 
 const OPEN_MENU_KEYS = ['enter', 'space', 'up', 'down'];
 
-/**
- * ```jsx
- * <SelectField />
- * ```
- */
-class SelectField extends Component {
-  static propTypes = {
-    /**
-     * If `true`, the input will be focused during the first mount.
-     */
-    autoFocus: PropTypes.bool,
-    /**
-     * The `MenuItem` elements to populate the select field with.
-     */
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-    /**
-     * Custom compare function.
-     */
-    compareFunction: PropTypes.func,
-    /**
-     * The default value of the `Input` element.
-     */
-    defaultValue: PropTypes.string,
-    /**
-     * If `true`, the select field will be disabled.
-     */
-    disabled: PropTypes.bool,
-    /**
-     * Whether the label should be displayed in an error state.
-     */
-    error: PropTypes.bool,
-    /**
-     * Properties applied to the `FormHelperText` element.
-     */
-    FormHelperTextProps: PropTypes.object,
-    /**
-     * If `true`, the input will take up the full width of its container.
-     */
-    fullWidth: PropTypes.bool,
-    /**
-     * The helper text content.
-     */
-    helperText: PropTypes.node,
-    /**
-     * The CSS class name of the helper text element.
-     */
-    helperTextClassName: PropTypes.string,
-    /**
-     * Whether the label should be hidden when option is selected.
-     */
-    hideLabel: PropTypes.bool,
-    /*
-     * @ignore
-     */
-    id: PropTypes.string,
-    /**
-     * The CSS class name of the input element.
-     */
-    inputClassName: PropTypes.string,
-    /**
-     * The CSS class name of the `Input` element.
-     */
-    InputClassName: PropTypes.string,
-    /**
-     * Properties applied to the `InputLabel` element.
-     */
-    InputLabelProps: PropTypes.object,
-    /**
-     * Passed as `inputProps` to the internal `<Input />` component.
-     */
-    inputProps: PropTypes.object,
-    /**
-     * Properties applied to the internal `<Input />` component.
-     */
-    InputProps: PropTypes.object,
-    /**
-     * Use that property to pass a ref callback to the native input component.
-     */
-    inputRef: PropTypes.func,
-    /**
-     * The label text.
-     */
-    label: PropTypes.node,
-    /**
-     * The CSS class name of the label element.
-     */
-    labelClassName: PropTypes.string,
-    /**
-     * The CSS class name of the `Menu` element.
-     */
-    menuClassName: PropTypes.string,
-    /**
-     * Properties applied to the internal `<Menu />` component.
-     */
-    menuProps: PropTypes.object,
-    /**
-     * Name attribute of the `Input` element.
-     */
-    name: PropTypes.string,
-    /** @ignore */
-    onBlur: PropTypes.func,
-    /**
-     * Callback function fired when a menu item is selected.
-     *
-     * @param {object} event TouchTap event targeting the menu item
-     * that was selected.
-     * @param {number} key The index of the selected menu item.
-     * @param {any} payload The `value` prop of the selected menu item.
-     */
-    onChange: PropTypes.func,
-    /** @ignore */
-    onClean: PropTypes.func,
-    /** @ignore */
-    onDirty: PropTypes.func,
-    /** @ignore */
-    onFocus: PropTypes.func,
-    /**
-     * Whether the label should be displayed as required (asterisk).
-     */
-    placeholder: PropTypes.string,
-    required: PropTypes.bool,
-    /**
-     * Use that property to pass a ref callback to the root component.
-     */
-    rootRef: PropTypes.func,
-    /**
-     * Type of the input element. It should be a valid HTML5 input type.
-     */
-    type: PropTypes.string,
-    /**
-     * The input value, required for a controlled component.
-     */
-    value: PropTypes.any,
-  };
+type DefaultProps = {
+  compareFunction: Function,
+  disabled: boolean,
+};
 
+export type Props = {
+  /**
+   * If `true`, the input will be focused during the first mount.
+   */
+  autoFocus?: boolean,
+  /**
+   * The `MenuItem` elements to populate the select field with.
+   */
+  children?: Element<*>,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * Custom compare function.
+   */
+  compareFunction?: Function,
+  /**
+   * The default value of the `Input` element.
+   */
+  defaultValue?: string,
+  /**
+   * If `true`, the input will be disabled.
+   */
+  disabled?: boolean,
+  /**
+   * If `true`, the label will be displayed in an error state.
+   */
+  error?: boolean,
+  /**
+   * Properties applied to the `FormHelperText` element.
+   */
+  FormHelperTextProps?: Object,
+  /**
+   * If `true`, the input will take up the full width of its container.
+   */
+  fullWidth?: boolean,
+  /**
+   * The helper text content.
+   */
+  helperText?: string | Element<*>,
+  /**
+   * The CSS class name of the helper text element.
+   */
+  helperTextClassName?: string,
+  /**
+   * If `true`, the label will be hidden when option is selected.
+   */
+  hideLabel?: boolean,
+  /**
+   * The id of the `input` element.
+   */
+  id?: string,
+  /**
+   * The CSS class name of the `input` element.
+   */
+  inputClassName?: string,
+  /**
+   * The CSS class name of the `Input` element.
+   */
+  InputClassName?: string,
+  /**
+   * Properties applied to the `InputLabel` element.
+   */
+  InputLabelProps?: Object,
+  /**
+   * Properties applied to the `input` element.
+   */
+  inputProps?: Object,
+  /**
+   * Properties applied to the `Input` element.
+   */
+  InputProps?: Object,
+  /**
+   * Use that property to pass a ref callback to the native input component.
+   */
+  inputRef?: Function,
+  /**
+   * The label content.
+   */
+  label?: string | Element<*>,
+  /**
+   * The CSS class name of the label element.
+   */
+  labelClassName?: string,
+  /**
+   * The CSS class name of the `Menu` element.
+   */
+  menuClassName?: string,
+  /**
+   * Properties applied to the internal `<Menu />` component.
+   */
+  menuProps?: Object,
+  /**
+   * Name attribute of the `Input` element.
+   */
+  name?: string,
+  /** @ignore */
+  onBlur?: Function,
+  /**
+   * Callback function fired when a menu item is selected.
+   *
+   * @param {object} event TouchTap event targeting the menu item
+   * that was selected.
+   * @param {number} key The index of the selected menu item.
+   * @param {any} payload The `value` prop of the selected menu item.
+   */
+  onChange?: Function,
+  /** @ignore */
+  onClean?: Function,
+  /** @ignore */
+  onDirty?: Function,
+  /** @ignore */
+  onFocus?: Function,
+  placeholder?: string,
+  /**
+   * If `true`, the label is displayed as required.
+   */
+  required?: boolean,
+  /**
+   * Use that property to pass a ref callback to the root component.
+   */
+  rootRef?: Function,
+  /**
+   * Type attribute of the `Input` element. It should be a valid HTML5 input type.
+   */
+  type?: string,
+  /**
+   * The value of the `Input` element, required for a controlled component.
+   */
+  value?: string | number,
+};
+
+type AllProps = DefaultProps & Props;
+
+type State = {
+  anchorEl: Object,
+  ignoreFocusOnce: boolean,
+  open: boolean,
+  selectedIndex: number,
+};
+
+class SelectField extends Component<DefaultProps, AllProps, State> {
+  props: AllProps;
   static defaultProps = {
     compareFunction: (currentValue, itemValue) => currentValue === itemValue,
     disabled: false,
   };
-
   state = {
     anchorEl: undefined,
     ignoreFocusOnce: false,
