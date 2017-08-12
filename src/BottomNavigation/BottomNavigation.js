@@ -19,19 +19,20 @@ function BottomNavigation(props) {
     children: childrenProp,
     classes,
     className: classNameProp,
-    value,
     onChange,
     showLabels,
+    value,
     ...other
   } = props;
 
   const className = classNames(classes.root, classNameProp);
 
   const children = Children.map(childrenProp, (child, childIndex) => {
+    const childValue = child.props.value || childIndex;
     return cloneElement(child, {
-      selected: childIndex === value,
+      selected: childValue === value,
       showLabel: child.props.showLabel !== undefined ? child.props.showLabel : showLabels,
-      value: child.props.value || childIndex,
+      value: childValue,
       onChange,
     });
   });
@@ -71,7 +72,7 @@ BottomNavigation.propTypes = {
   /**
    * The value of the currently selected `BottomNavigationButton`.
    */
-  value: PropTypes.any,
+  value: PropTypes.any.isRequired,
 };
 
 BottomNavigation.defaultProps = {

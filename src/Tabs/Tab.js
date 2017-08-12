@@ -105,9 +105,9 @@ class Tab extends Component {
   }
 
   handleChange = event => {
-    const { onChange, index, onClick } = this.props;
+    const { onChange, value, onClick } = this.props;
 
-    onChange(event, index);
+    onChange(event, value);
 
     if (onClick) {
       onClick(event);
@@ -129,15 +129,15 @@ class Tab extends Component {
     const {
       classes,
       className: classNameProp,
+      disabled,
       fullWidth,
       icon: iconProp,
-      index,
       label: labelProp,
       onChange,
       selected,
       style: styleProp,
       textColor,
-      disabled,
+      value,
       ...other
     } = this.props;
 
@@ -236,10 +236,6 @@ Tab.propTypes = {
    */
   icon: PropTypes.node,
   /**
-   * @ignore
-   */
-  index: PropTypes.number,
-  /**
    * The label element.
    */
   label: PropTypes.node,
@@ -266,6 +262,10 @@ Tab.propTypes = {
     PropTypes.oneOf(['accent', 'primary', 'inherit']),
     PropTypes.string,
   ]),
+  /**
+   * You can provide your own value. Otherwise, we fallback to the child position index.
+   */
+  value: PropTypes.any,
 };
 
 export default withStyles(styles, { name: 'MuiTab' })(Tab);

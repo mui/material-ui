@@ -7,10 +7,13 @@ import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Tabs, { Tab } from 'material-ui/Tabs';
 
-const TabContainer = props =>
-  <div style={{ padding: 24 }}>
-    {props.children}
-  </div>;
+function TabContainer(props) {
+  return (
+    <div style={{ padding: 20 }}>
+      {props.children}
+    </div>
+  );
+}
 
 TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
@@ -27,21 +30,22 @@ const styles = theme => ({
 
 class ScrollableTabsButtonAuto extends Component {
   state = {
-    index: 0,
+    value: 0,
   };
 
-  handleChange = (event, index) => {
-    this.setState({ index });
+  handleChange = (event, value) => {
+    this.setState({ value });
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
+    const { value } = this.state;
 
     return (
       <div className={classes.root}>
         <AppBar position="static" color="default">
           <Tabs
-            index={this.state.index}
+            value={value}
             onChange={this.handleChange}
             indicatorColor="primary"
             textColor="primary"
@@ -57,31 +61,31 @@ class ScrollableTabsButtonAuto extends Component {
             <Tab label="Item Seven" />
           </Tabs>
         </AppBar>
-        {this.state.index === 0 &&
+        {value === 0 &&
           <TabContainer>
             {'Item One'}
           </TabContainer>}
-        {this.state.index === 1 &&
+        {value === 1 &&
           <TabContainer>
             {'Item Two'}
           </TabContainer>}
-        {this.state.index === 2 &&
+        {value === 2 &&
           <TabContainer>
             {'Item Three'}
           </TabContainer>}
-        {this.state.index === 3 &&
+        {value === 3 &&
           <TabContainer>
             {'Item Four'}
           </TabContainer>}
-        {this.state.index === 4 &&
+        {value === 4 &&
           <TabContainer>
             {'Item Five'}
           </TabContainer>}
-        {this.state.index === 5 &&
+        {value === 5 &&
           <TabContainer>
             {'Item Six'}
           </TabContainer>}
-        {this.state.index === 6 &&
+        {value === 6 &&
           <TabContainer>
             {'Item Seven'}
           </TabContainer>}
