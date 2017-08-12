@@ -18,6 +18,7 @@ class Checkboxes extends Component {
     checkedA: true,
     checkedB: false,
     checkedF: true,
+    checkedG: true,
   };
 
   handleChange = name => (event, checked) => {
@@ -57,19 +58,25 @@ class Checkboxes extends Component {
           label="Disabled"
         />
         <FormControlLabel
-          disabled
-          control={<Checkbox checked value="checkedE" indeterminate />}
+          control={
+            <Checkbox
+              checked={this.state.checkedF}
+              onChange={this.handleChange('checkedF')}
+              value="checkedF"
+              indeterminate
+            />
+          }
           label="Indeterminate"
         />
         <FormControlLabel
           control={
             <Checkbox
-              checked={this.state.checkedF}
-              onChange={this.handleChange('checkedF')}
+              checked={this.state.checkedG}
+              onChange={this.handleChange('checkedG')}
               classes={{
                 checked: classes.checked,
               }}
-              value="checkedF"
+              value="checkedG"
             />
           }
           label="Custom color"

@@ -23,12 +23,11 @@ describe('FormControlLabel', () => {
     mount.cleanUp();
   });
 
-  it('should render the label text inside an additional span', () => {
-    const span = wrapper.childAt(1);
+  it('should render the label text inside an additional element', () => {
+    const label = wrapper.childAt(1);
     assert.strictEqual(FormControlLabel.displayName, 'withStyles(FormControlLabel)');
     assert.strictEqual(wrapper.name(), 'label');
-    assert.strictEqual(span.is('span'), true, 'should render a span');
-    assert.strictEqual(span.childAt(0).node, 'Pizza', 'should be the label text');
+    assert.strictEqual(label.childAt(0).node, 'Pizza', 'should be the label text');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the "root" class');
   });
 

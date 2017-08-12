@@ -5,6 +5,7 @@ import React, { cloneElement } from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
+import Typography from '../Typography';
 
 export const styles = (theme: Object) => ({
   root: {
@@ -23,7 +24,6 @@ export const styles = (theme: Object) => ({
     marginRight: theme.spacing.unit * 2, // used for row presentation of radio/checkbox
   },
   label: {
-    fontFamily: theme.typography.fontFamily,
     userSelect: 'none',
   },
 });
@@ -114,9 +114,9 @@ function FormControlLabel(props: AllProps) {
         value: control.props.value || value,
         inputRef: control.props.inputRef || inputRef,
       })}
-      <span className={classes.label}>
+      <Typography className={classes.label}>
         {label}
-      </span>
+      </Typography>
     </label>
   );
 }
