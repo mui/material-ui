@@ -3,16 +3,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Checkbox from 'material-ui/Checkbox';
-import { createMuiTheme, createStyleSheet, MuiThemeProvider, withStyles } from 'material-ui/styles';
+import { createMuiTheme, MuiThemeProvider, withStyles } from 'material-ui/styles';
 import orange from 'material-ui/colors/orange';
 import green from 'material-ui/colors/green';
 import pink from 'material-ui/colors/pink';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   danger: {
     color: theme.status.color,
   },
-}));
+});
 
 let NestedCheckbox = props =>
   <Checkbox defaultChecked className={props.classes.danger}>
@@ -23,7 +23,7 @@ NestedCheckbox.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-NestedCheckbox = withStyles(styleSheet)(NestedCheckbox);
+NestedCheckbox = withStyles(styles)(NestedCheckbox);
 
 const theme1 = createMuiTheme({
   status: {

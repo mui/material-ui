@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import { SnackbarContent } from 'material-ui/Snackbar';
 
 const action = (
@@ -12,14 +12,14 @@ const action = (
   </Button>
 );
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     marginTop: theme.spacing.unit * 3,
   },
   snackbar: {
     margin: theme.spacing.unit,
   },
-}));
+});
 
 function LongTextSnackbar(props) {
   const { classes } = props;
@@ -55,4 +55,4 @@ LongTextSnackbar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(LongTextSnackbar);
+export default withStyles(styles)(LongTextSnackbar);

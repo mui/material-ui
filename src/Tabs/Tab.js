@@ -3,13 +3,12 @@
 import React, { Component, isValidElement } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import Icon from '../Icon';
 
-export const styleSheet = createStyleSheet(theme => ({
+export const styles = (theme: Object) => ({
   root: {
     ...theme.typography.button,
     maxWidth: 264,
@@ -79,7 +78,7 @@ export const styleSheet = createStyleSheet(theme => ({
       fontSize: theme.typography.fontSize - 2,
     },
   },
-}));
+});
 
 class Tab extends Component {
   static defaultProps = {
@@ -269,4 +268,4 @@ Tab.propTypes = {
   ]),
 };
 
-export default withStyles(styleSheet, { name: 'MuiTab' })(Tab);
+export default withStyles(styles, { name: 'MuiTab' })(Tab);

@@ -2,12 +2,12 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import MarkdownElement from 'docs/src/components/MarkdownElement';
 import Demo from 'docs/src/components/Demo';
 
-const styleSheet = createStyleSheet({
+const styles = {
   root: {
     marginBottom: 100,
   },
@@ -16,7 +16,7 @@ const styleSheet = createStyleSheet({
     flexDirection: 'column',
     alignItems: 'flex-end',
   },
-});
+};
 
 const headerRegexp = /---\n(.*)\n---/;
 const demoRegexp = /^demo='(.*)'$/;
@@ -72,4 +72,4 @@ MarkdownDocs.propTypes = {
   }).isRequired,
 };
 
-export default withStyles(styleSheet)(MarkdownDocs);
+export default withStyles(styles)(MarkdownDocs);

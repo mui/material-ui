@@ -2,15 +2,15 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import Link from 'react-router/lib/Link';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
   },
-}));
+});
 
 function FlatButtons(props) {
   const classes = props.classes;
@@ -46,4 +46,4 @@ FlatButtons.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(FlatButtons);
+export default withStyles(styles)(FlatButtons);

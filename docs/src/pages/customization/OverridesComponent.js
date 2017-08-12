@@ -1,4 +1,4 @@
-// @flow
+// @flow weak
 
 import React from 'react';
 import OverridesClassNames from 'docs/src/pages/customization/OverridesClassNames';

@@ -7,7 +7,6 @@ import classNames from 'classnames';
 import contains from 'dom-helpers/query/contains';
 import debounce from 'lodash/debounce';
 import EventListener from 'react-event-listener';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import Modal from './Modal';
 import Grow from '../transitions/Grow';
@@ -62,7 +61,7 @@ function getScrollParent(parent, child) {
   return scrollTop;
 }
 
-export const styleSheet = createStyleSheet({
+export const styles = {
   paper: {
     position: 'absolute',
     overflowY: 'auto',
@@ -71,7 +70,7 @@ export const styleSheet = createStyleSheet({
       outline: 'none',
     },
   },
-});
+};
 
 type Origin = {
   horizontal: 'left' | 'center' | 'right' | number,
@@ -412,4 +411,4 @@ class Popover extends Component<DefaultProps, AllProps, void> {
   }
 }
 
-export default withStyles(styleSheet, { name: 'MuiPopover' })(Popover);
+export default withStyles(styles, { name: 'MuiPopover' })(Popover);

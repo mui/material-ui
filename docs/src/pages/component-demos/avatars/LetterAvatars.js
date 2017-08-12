@@ -2,12 +2,12 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Avatar from 'material-ui/Avatar';
 import deepOrange from 'material-ui/colors/deepOrange';
 import deepPurple from 'material-ui/colors/deepPurple';
 
-const styleSheet = createStyleSheet({
+const styles = {
   avatar: {
     margin: 10,
   },
@@ -25,7 +25,7 @@ const styleSheet = createStyleSheet({
     display: 'flex',
     justifyContent: 'center',
   },
-});
+};
 
 function LetterAvatars(props) {
   const classes = props.classes;
@@ -42,4 +42,4 @@ LetterAvatars.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(LetterAvatars);
+export default withStyles(styles)(LetterAvatars);

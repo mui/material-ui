@@ -2,16 +2,16 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import AddIcon from 'material-ui-icons/Add';
 import ModeEditIcon from 'material-ui-icons/ModeEdit';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
   },
-}));
+});
 
 function FloatingActionButtons(props) {
   const classes = props.classes;
@@ -31,4 +31,4 @@ FloatingActionButtons.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(FloatingActionButtons);
+export default withStyles(styles)(FloatingActionButtons);

@@ -6,13 +6,12 @@ import { findDOMNode } from 'react-dom';
 import warning from 'warning';
 import classNames from 'classnames';
 import keycode from 'keycode';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { listenForFocusKeys, detectKeyboardFocus, focusKeyPressed } from '../utils/keyboardFocus';
 import TouchRipple from './TouchRipple';
 import createRippleHandler from './createRippleHandler';
 
-export const styleSheet = createStyleSheet(theme => ({
+export const styles = (theme: Object) => ({
   root: {
     position: 'relative',
     // Remove grey highlight
@@ -30,7 +29,7 @@ export const styleSheet = createStyleSheet(theme => ({
     pointerEvents: 'none', // Disable link interactions
     cursor: 'default',
   },
-}));
+});
 
 type DefaultProps = {
   centerRipple: boolean,
@@ -390,4 +389,4 @@ class ButtonBase extends Component<DefaultProps, AllProps, State> {
   }
 }
 
-export default withStyles(styleSheet, { name: 'MuiButtonBase' })(ButtonBase);
+export default withStyles(styles, { name: 'MuiButtonBase' })(ButtonBase);

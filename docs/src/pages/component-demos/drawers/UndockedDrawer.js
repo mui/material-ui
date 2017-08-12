@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
 import Button from 'material-ui/Button';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
@@ -15,7 +15,7 @@ import MailIcon from 'material-ui-icons/Mail';
 import DeleteIcon from 'material-ui-icons/Delete';
 import ReportIcon from 'material-ui-icons/Report';
 
-const styleSheet = createStyleSheet({
+const styles = {
   list: {
     width: 250,
     flex: 'initial',
@@ -24,7 +24,7 @@ const styleSheet = createStyleSheet({
     width: 'auto',
     flex: 'initial',
   },
-});
+};
 
 class UndockedDrawer extends Component {
   state = {
@@ -176,4 +176,4 @@ UndockedDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(UndockedDrawer);
+export default withStyles(styles)(UndockedDrawer);

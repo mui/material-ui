@@ -3,16 +3,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet(theme => ({
+export const styles = (theme: Object) => ({
   root: {
     ...theme.typography.subheading,
     color: theme.palette.text.secondary,
     margin: 0,
   },
-}));
+});
 
 function DialogContentText(props) {
   const { children, classes, className, ...other } = props;
@@ -39,4 +38,4 @@ DialogContentText.propTypes = {
   className: PropTypes.string,
 };
 
-export default withStyles(styleSheet, { name: 'MuiDialogContentText' })(DialogContentText);
+export default withStyles(styles, { name: 'MuiDialogContentText' })(DialogContentText);

@@ -3,11 +3,10 @@
 import React from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import createSwitch from '../internal/SwitchBase';
 
-export const styleSheet = createStyleSheet(theme => ({
+export const styles = (theme: Object) => ({
   root: {
     display: 'inline-flex',
     width: 62,
@@ -59,7 +58,7 @@ export const styleSheet = createStyleSheet(theme => ({
       opacity: theme.palette.type === 'light' ? 0.12 : 0.1,
     },
   },
-}));
+});
 
 const SwitchBase = createSwitch();
 
@@ -162,4 +161,4 @@ function Switch(props: AllProps) {
   );
 }
 
-export default withStyles(styleSheet, { name: 'MuiSwitch' })(Switch);
+export default withStyles(styles, { name: 'MuiSwitch' })(Switch);

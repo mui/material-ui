@@ -2,11 +2,11 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import green from 'material-ui/colors/green';
 import Switch from 'material-ui/Switch';
 
-const styleSheet = createStyleSheet({
+const styles = {
   bar: {},
   checked: {
     color: green[500],
@@ -14,7 +14,7 @@ const styleSheet = createStyleSheet({
       backgroundColor: green[500],
     },
   },
-});
+};
 
 class Switches extends Component {
   state = {
@@ -62,4 +62,4 @@ Switches.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(Switches);
+export default withStyles(styles)(Switches);

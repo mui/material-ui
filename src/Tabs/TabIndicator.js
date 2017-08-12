@@ -3,11 +3,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
 
-export const styleSheet = createStyleSheet(theme => ({
+export const styles = (theme: Object) => ({
   root: {
     position: 'relative',
     height: 2,
@@ -21,7 +20,7 @@ export const styleSheet = createStyleSheet(theme => ({
   colorPrimary: {
     backgroundColor: theme.palette.primary[500],
   },
-}));
+});
 
 /**
  * @ignore - internal component.
@@ -71,4 +70,4 @@ TabIndicator.propTypes = {
   }).isRequired,
 };
 
-export default withStyles(styleSheet, { name: 'MuiTabIndicator' })(TabIndicator);
+export default withStyles(styles, { name: 'MuiTabIndicator' })(TabIndicator);

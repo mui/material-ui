@@ -2,14 +2,14 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import ButtonBase from 'material-ui/ButtonBase';
 import Typography from 'material-ui/Typography';
 import breakfastImage from 'docs/src/assets/images/grid-list/breakfast.jpg';
 import burgersImage from 'docs/src/assets/images/grid-list/burgers.jpg';
 import cameraImage from 'docs/src/assets/images/grid-list/camera.jpg';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     marginTop: theme.spacing.unit * 4,
     display: 'flex',
@@ -80,7 +80,7 @@ const styleSheet = createStyleSheet(theme => ({
     left: 'calc(50% - 9px)',
     transition: theme.transitions.create('opacity'),
   },
-}));
+});
 
 const images = [
   {
@@ -142,4 +142,4 @@ ButtonBases.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(ButtonBases);
+export default withStyles(styles)(ButtonBases);

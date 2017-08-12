@@ -3,7 +3,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Tabs, { Tab } from 'material-ui/Tabs';
 
@@ -16,14 +16,14 @@ TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     flexGrow: 1,
     width: '100%',
     marginTop: theme.spacing.unit * 3,
     backgroundColor: theme.palette.background.paper,
   },
-}));
+});
 
 class ScrollableTabsButtonAuto extends Component {
   state = {
@@ -94,4 +94,4 @@ ScrollableTabsButtonAuto.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(ScrollableTabsButtonAuto);
+export default withStyles(styles)(ScrollableTabsButtonAuto);

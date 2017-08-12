@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Card, { CardContent, CardMedia } from 'material-ui/Card';
 import IconButton from 'material-ui/IconButton';
 import Typography from 'material-ui/Typography';
@@ -11,7 +11,7 @@ import PlayArrowIcon from 'material-ui-icons/PlayArrow';
 import SkipNextIcon from 'material-ui-icons/SkipNext';
 import albumCover from 'docs/src/assets/images/cards/live-from-space.jpg';
 
-const styleSheet = createStyleSheet({
+const styles = {
   card: {
     display: 'flex',
   },
@@ -36,7 +36,7 @@ const styleSheet = createStyleSheet({
     height: 38,
     width: 38,
   },
-});
+};
 
 function MediaControlCard(props) {
   const classes = props.classes;
@@ -77,4 +77,4 @@ MediaControlCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(MediaControlCard);
+export default withStyles(styles)(MediaControlCard);

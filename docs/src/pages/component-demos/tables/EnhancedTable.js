@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import keycode from 'keycode';
 import Table, {
   TableBody,
@@ -84,7 +84,7 @@ class EnhancedTableHead extends Component {
   }
 }
 
-const toolbarStyleSheet = createStyleSheet(theme => ({
+const toolbarStyles = theme => ({
   root: {
     paddingRight: 2,
   },
@@ -107,7 +107,7 @@ const toolbarStyleSheet = createStyleSheet(theme => ({
   title: {
     flex: '0 0 auto',
   },
-}));
+});
 
 let EnhancedTableToolbar = props => {
   const { numSelected, classes } = props;
@@ -144,15 +144,15 @@ EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
 };
 
-EnhancedTableToolbar = withStyles(toolbarStyleSheet)(EnhancedTableToolbar);
+EnhancedTableToolbar = withStyles(toolbarStyles)(EnhancedTableToolbar);
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   paper: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
   },
-}));
+});
 
 class EnhancedTable extends Component {
   state = {
@@ -281,4 +281,4 @@ EnhancedTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(EnhancedTable);
+export default withStyles(styles)(EnhancedTable);

@@ -3,12 +3,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
 const transitionDuration = 4; // 400ms
 
-export const styleSheet = createStyleSheet(theme => ({
+export const styles = (theme: Object) => ({
   root: {
     position: 'relative',
     overflow: 'hidden',
@@ -130,7 +129,7 @@ export const styleSheet = createStyleSheet(theme => ({
       backgroundPosition: '-200px -23px',
     },
   },
-}));
+});
 
 function LinearProgress(props) {
   const { classes, className, color, mode, value, valueBuffer, ...other } = props;
@@ -165,24 +164,24 @@ function LinearProgress(props) {
     [classes.accentColor]: color === 'accent' && mode === 'buffer',
     [classes.indeterminateBar2]: mode === 'indeterminate' || mode === 'query',
   });
-  const styles = { primary: {}, secondary: {} };
+  const inlineStyles = { primary: {}, secondary: {} };
   const rootProps = {};
 
   if (mode === 'determinate') {
-    styles.primary.transform = `scaleX(${value / 100})`;
+    inlineStyles.primary.transform = `scaleX(${value / 100})`;
     rootProps['aria-valuenow'] = Math.round(value);
   } else if (mode === 'buffer') {
-    styles.primary.transform = `scaleX(${value / 100})`;
-    styles.secondary.transform = `scaleX(${valueBuffer / 100})`;
+    inlineStyles.primary.transform = `scaleX(${value / 100})`;
+    inlineStyles.secondary.transform = `scaleX(${valueBuffer / 100})`;
   }
 
   return (
     <div className={rootClasses} {...rootProps} {...other}>
       {mode === 'buffer' ? <div className={dashedClass} /> : null}
-      <div className={primaryClasses} style={styles.primary} />
+      <div className={primaryClasses} style={inlineStyles.primary} />
       {mode === 'determinate'
         ? null
-        : <div className={secondaryClasses} style={styles.secondary} />}
+        : <div className={secondaryClasses} style={inlineStyles.secondary} />}
     </div>
   );
 }
@@ -223,4 +222,4 @@ LinearProgress.defaultProps = {
   value: 0,
 };
 
-export default withStyles(styleSheet, { name: 'MuiLinearProgress' })(LinearProgress);
+export default withStyles(styles, { name: 'MuiLinearProgress' })(LinearProgress);

@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import Dialog from 'material-ui/Dialog';
 import List, { ListItem, ListItemText } from 'material-ui/List';
@@ -14,14 +14,14 @@ import Typography from 'material-ui/Typography';
 import CloseIcon from 'material-ui-icons/Close';
 import Slide from 'material-ui/transitions/Slide';
 
-const styleSheet = createStyleSheet({
+const styles = {
   appBar: {
     position: 'relative',
   },
   flex: {
     flex: 1,
   },
-});
+};
 
 class FullScreenDialog extends Component {
   state = {
@@ -79,4 +79,4 @@ FullScreenDialog.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(FullScreenDialog);
+export default withStyles(styles)(FullScreenDialog);

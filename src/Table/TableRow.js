@@ -3,10 +3,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet(theme => ({
+export const styles = (theme: Object) => ({
   root: {
     height: 48,
     '&:focus': {
@@ -27,7 +26,7 @@ export const styleSheet = createStyleSheet(theme => ({
   selected: {
     background: theme.palette.background.appBar,
   },
-}));
+});
 
 /**
  * Will automatically set dynamic row height
@@ -87,4 +86,4 @@ TableRow.contextTypes = {
   table: PropTypes.object,
 };
 
-export default withStyles(styleSheet, { name: 'MuiTableRow' })(TableRow);
+export default withStyles(styles, { name: 'MuiTableRow' })(TableRow);

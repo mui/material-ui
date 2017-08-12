@@ -3,7 +3,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import SwipeableViews from 'react-swipeable-views';
 import AppBar from 'material-ui/AppBar';
 import Tabs, { Tab } from 'material-ui/Tabs';
@@ -17,11 +17,11 @@ TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
   },
-}));
+});
 
 class FullWidthTabs extends Component {
   state = {
@@ -74,4 +74,4 @@ FullWidthTabs.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(FullWidthTabs);
+export default withStyles(styles)(FullWidthTabs);

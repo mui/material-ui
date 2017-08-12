@@ -2,15 +2,15 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import { LinearProgress } from 'material-ui/Progress';
 
-const styleSheet = createStyleSheet({
+const styles = {
   root: {
     width: '100%',
     marginTop: 30,
   },
-});
+};
 
 class LinearBuffer extends Component {
   timer: number;
@@ -55,4 +55,4 @@ LinearBuffer.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(LinearBuffer);
+export default withStyles(styles)(LinearBuffer);

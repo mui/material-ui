@@ -2,13 +2,13 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Link from 'react-router/lib/Link';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import muiLogo from 'docs/src/assets/images/material-ui-logo.svg';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     flex: '1 0 100%',
   },
@@ -44,7 +44,7 @@ const styleSheet = createStyleSheet(theme => ({
     height: '40vw',
     maxHeight: 230,
   },
-}));
+});
 
 function Home(props) {
   const classes = props.classes;
@@ -80,4 +80,4 @@ Home.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(Home);
+export default withStyles(styles)(Home);

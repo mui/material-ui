@@ -9,13 +9,12 @@ import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
 import ScrollbarSize from 'react-scrollbar-size';
 import scroll from 'scroll';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import withWidth, { isWidthUp } from '../utils/withWidth';
 import TabIndicator from './TabIndicator';
 import TabScrollButton from './TabScrollButton';
 
-export const styleSheet = createStyleSheet({
+export const styles = {
   root: {
     overflow: 'hidden',
   },
@@ -37,7 +36,7 @@ export const styleSheet = createStyleSheet({
   centered: {
     justifyContent: 'center',
   },
-});
+};
 
 /**
  * Notice that this Component is incompatible with server side rendering.
@@ -365,4 +364,4 @@ Tabs.propTypes = {
   width: PropTypes.string,
 };
 
-export default compose(withStyles(styleSheet, { name: 'MuiTabs' }), withWidth())(Tabs);
+export default compose(withStyles(styles, { name: 'MuiTabs' }), withWidth())(Tabs);

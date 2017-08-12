@@ -6,7 +6,6 @@ import { assert } from 'chai';
 import { JssProvider, SheetsRegistry } from 'react-jss';
 import { create } from 'jss';
 import preset from 'jss-preset-default';
-import createStyleSheet from './createStyleSheet';
 import withStyles from './withStyles';
 import MuiThemeProvider from './MuiThemeProvider';
 import createMuiTheme from './theme';
@@ -35,12 +34,12 @@ describe('withStyles', () => {
     let classes;
 
     before(() => {
-      const styleSheet = createStyleSheet({
+      const styles = {
         root: {
           display: 'flex',
         },
-      });
-      StyledComponent1 = withStyles(styleSheet, { name: 'MuiTextField' })(Empty);
+      };
+      StyledComponent1 = withStyles(styles, { name: 'MuiTextField' })(Empty);
       classes = getClasses(<StyledComponent1 />);
     });
 
@@ -109,12 +108,12 @@ describe('withStyles', () => {
     });
 
     it('should run lifecycles with no theme', () => {
-      const styleSheet = createStyleSheet({
+      const styles = {
         root: {
           display: 'flex',
         },
-      });
-      const StyledComponent = withStyles(styleSheet)(Empty);
+      };
+      const StyledComponent = withStyles(styles)(Empty);
 
       const wrapper = mount(
         <MuiThemeProvider theme={createMuiTheme()}>
@@ -145,12 +144,12 @@ describe('withStyles', () => {
     });
 
     it('should work when depending on a theme', () => {
-      const styleSheet = createStyleSheet(theme => ({
+      const styles = (theme: Object) => ({
         root: {
           padding: theme.spacing.unit,
         },
-      }));
-      const StyledComponent = withStyles(styleSheet, { name: 'MuiTextField' })(Empty);
+      });
+      const StyledComponent = withStyles(styles, { name: 'MuiTextField' })(Empty);
 
       const wrapper = mount(
         <MuiThemeProvider theme={createMuiTheme()}>
@@ -173,12 +172,12 @@ describe('withStyles', () => {
     });
 
     it('should support the overrides key', () => {
-      const styleSheet = createStyleSheet({
+      const styles = {
         root: {
           padding: 8,
         },
-      });
-      const StyledComponent = withStyles(styleSheet, { name: 'MuiTextField' })(Empty);
+      };
+      const StyledComponent = withStyles(styles, { name: 'MuiTextField' })(Empty);
 
       mount(
         <MuiThemeProvider

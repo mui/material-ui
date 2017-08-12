@@ -3,10 +3,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet(theme => ({
+export const styles = (theme: Object) => ({
   root: {
     fontFamily: theme.typography.fontFamily,
     width: '100%',
@@ -14,7 +13,7 @@ export const styleSheet = createStyleSheet(theme => ({
     borderSpacing: 0,
     overflow: 'hidden',
   },
-}));
+});
 
 class Table extends Component {
   getChildContext() {
@@ -55,4 +54,4 @@ Table.childContextTypes = {
   table: PropTypes.object,
 };
 
-export default withStyles(styleSheet, { name: 'MuiTable' })(Table);
+export default withStyles(styles, { name: 'MuiTable' })(Table);

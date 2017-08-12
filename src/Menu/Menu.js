@@ -5,7 +5,6 @@ import type { Element } from 'react';
 import classNames from 'classnames';
 import { findDOMNode } from 'react-dom';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import Popover from '../internal/Popover';
 import MenuList from './MenuList';
@@ -80,7 +79,7 @@ export type Props = {
 
 type AllProps = DefaultProps & Props;
 
-export const styleSheet = createStyleSheet({
+export const styles = {
   root: {
     /**
      * specZ: The maximum height of a simple menu should be one or more rows less than the view
@@ -93,7 +92,7 @@ export const styleSheet = createStyleSheet({
     minWidth: 16,
     minHeight: 16,
   },
-});
+};
 
 class Menu extends Component<DefaultProps, AllProps, void> {
   props: AllProps;
@@ -177,4 +176,4 @@ class Menu extends Component<DefaultProps, AllProps, void> {
   }
 }
 
-export default withStyles(styleSheet, { name: 'MuiMenu' })(Menu);
+export default withStyles(styles, { name: 'MuiMenu' })(Menu);
