@@ -28,6 +28,7 @@ export const styles = (theme: Object) => {
 
 type DefaultProps = {
   classes: Object,
+  component: string,
 };
 
 export type Props = {
@@ -43,6 +44,11 @@ export type Props = {
    * @ignore
    */
   className?: string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component?: string | Function,
   /**
    * If `true`, the label should be displayed in a disabled state.
    */
@@ -68,6 +74,7 @@ function FormLabel(props: AllProps, context: { muiFormControl: Object }) {
     children,
     classes,
     className: classNameProp,
+    component: Component,
     disabled: disabledProp,
     error: errorProp,
     focused: focusedProp,
@@ -112,16 +119,19 @@ function FormLabel(props: AllProps, context: { muiFormControl: Object }) {
   });
 
   return (
-    // eslint-disable-next-line jsx-a11y/label-has-for
-    <label className={className} {...other}>
+    <Component className={className} {...other}>
       {children}
       {required &&
         <span className={asteriskClassName} data-mui-test="FormLabelAsterisk">
           {'\u2009*'}
         </span>}
-    </label>
+    </Component>
   );
 }
+
+FormLabel.defaultProps = {
+  component: 'label',
+};
 
 FormLabel.contextTypes = {
   muiFormControl: PropTypes.object,

@@ -25,8 +25,8 @@ class RadioButtonsGroup extends Component {
     const classes = this.props.classes;
 
     return (
-      <FormControl required>
-        <FormLabel>Gender</FormLabel>
+      <FormControl component="fieldset" required>
+        <FormLabel component="legend">Gender</FormLabel>
         <RadioGroup
           aria-label="gender"
           name="gender"
