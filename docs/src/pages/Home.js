@@ -25,7 +25,6 @@ const styles = theme => ({
   content: {
     paddingTop: theme.spacing.unit * 8,
     paddingBottom: theme.spacing.unit * 8,
-    textAlign: 'center',
     [theme.breakpoints.up('sm')]: {
       paddingTop: theme.spacing.unit * 16,
       paddingBottom: theme.spacing.unit * 16,
@@ -34,6 +33,14 @@ const styles = theme => ({
   text: {
     paddingLeft: theme.spacing.unit * 4,
     paddingRight: theme.spacing.unit * 4,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headline: {
+    maxWidth: 500,
+    textAlign: 'center',
   },
   button: {
     marginTop: 20,
@@ -55,10 +62,10 @@ function Home(props) {
         <div className={classes.content}>
           <img src={muiLogo} alt="Material-UI Logo" className={classes.logo} />
           <div className={classes.text}>
-            <Typography type="display2" component="h1" color="inherit">
+            <Typography type="display2" component="h1" color="inherit" gutterBottom>
               {'Material-UI'}
             </Typography>
-            <Typography type="subheading" component="h2" color="inherit">
+            <Typography type="headline" component="h2" color="inherit" className={classes.headline}>
               {"A React component library implementing Google's Material Design"}
             </Typography>
             <Button
