@@ -278,6 +278,10 @@ const withStyles = (stylesOrCreator: Object, options?: Object = {}) => BaseCompo
 
   hoistNonReactStatics(Style, BaseComponent);
 
+  // Added for tests purposes
+  // $FlowFixMe
+  Style.options = options;
+
   if (process.env.NODE_ENV !== 'production') {
     Style.displayName = wrapDisplayName(BaseComponent, 'withStyles');
   }

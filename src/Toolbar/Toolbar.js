@@ -62,4 +62,4 @@ Toolbar.defaultProps = {
   disableGutters: false,
 };
 
-export default withStyles(styles, { name: 'MuiCollapse' })(Toolbar);
+export default withStyles(styles, { name: 'MuiToolbar' })(Toolbar);
