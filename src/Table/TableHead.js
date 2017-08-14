@@ -24,13 +24,14 @@ class TableHead extends Component {
   }
 
   render() {
-    const { classes, className: classNameProp, children, ...other } = this.props;
+    const { classes, className: classNameProp, children, component, ...other } = this.props;
     const className = classNames(classes.root, classNameProp);
+    const ComponentHeader = component || 'thead';
 
     return (
-      <thead className={className} {...other}>
+      <ComponentHeader className={className} {...other}>
         {children}
-      </thead>
+      </ComponentHeader>
     );
   }
 }
@@ -48,6 +49,11 @@ TableHead.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.string,
 };
 
 TableHead.contextTypes = {

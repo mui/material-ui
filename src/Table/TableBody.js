@@ -23,13 +23,14 @@ class TableBody extends Component {
   }
 
   render() {
-    const { classes, className: classNameProp, children, ...other } = this.props;
+    const { classes, className: classNameProp, children, component, ...other } = this.props;
     const className = classNames(classes.root, classNameProp);
+    const ComponentBody = component || 'tbody';
 
     return (
-      <tbody className={className} {...other}>
+      <ComponentBody className={className} {...other}>
         {children}
-      </tbody>
+      </ComponentBody>
     );
   }
 }
@@ -47,6 +48,11 @@ TableBody.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.string,
 };
 
 TableBody.contextTypes = {

@@ -33,7 +33,15 @@ export const styles = (theme: Object) => ({
  * based on the material table element parent (head, body, etc).
  */
 function TableRow(props, context) {
-  const { classes, className: classNameProp, children, hover, selected, ...other } = props;
+  const {
+    classes,
+    className: classNameProp,
+    children,
+    component,
+    hover,
+    selected,
+    ...other
+  } = props;
   const { table } = context;
 
   const className = classNames(
@@ -46,11 +54,12 @@ function TableRow(props, context) {
     },
     classNameProp,
   );
+  const ComponentRow = component || 'tr';
 
   return (
-    <tr className={className} {...other}>
+    <ComponentRow className={className} {...other}>
       {children}
-    </tr>
+    </ComponentRow>
   );
 }
 
@@ -67,6 +76,11 @@ TableRow.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.string,
   /**
    * If `true`, the table row will shade on hover.
    */
