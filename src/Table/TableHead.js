@@ -26,7 +26,7 @@ class TableHead extends Component {
   render() {
     const { classes, className: classNameProp, children, component, ...other } = this.props;
     const className = classNames(classes.root, classNameProp);
-    const ComponentHeader = component || 'thead';
+    const ComponentHeader = component;
 
     return (
       <ComponentHeader className={className} {...other}>
@@ -62,6 +62,10 @@ TableHead.contextTypes = {
 
 TableHead.childContextTypes = {
   table: PropTypes.object,
+};
+
+TableHead.defaultProps = {
+  component: 'thead',
 };
 
 export default withStyles(styles, { name: 'MuiTableHead' })(TableHead);

@@ -26,7 +26,7 @@ class Table extends Component {
   render() {
     const { classes, className: classNameProp, children, component, ...other } = this.props;
     const className = classNames(classes.root, classNameProp);
-    const ComponentTable = component || 'table';
+    const ComponentTable = component;
 
     return (
       <ComponentTable className={className} {...other}>
@@ -58,6 +58,10 @@ Table.propTypes = {
 
 Table.childContextTypes = {
   table: PropTypes.object,
+};
+
+Table.defaultProps = {
+  component: 'table',
 };
 
 export default withStyles(styles, { name: 'MuiTable' })(Table);

@@ -25,7 +25,7 @@ class TableBody extends Component {
   render() {
     const { classes, className: classNameProp, children, component, ...other } = this.props;
     const className = classNames(classes.root, classNameProp);
-    const ComponentBody = component || 'tbody';
+    const ComponentBody = component;
 
     return (
       <ComponentBody className={className} {...other}>
@@ -61,6 +61,10 @@ TableBody.contextTypes = {
 
 TableBody.childContextTypes = {
   table: PropTypes.object,
+};
+
+TableBody.defaultProps = {
+  component: 'tbody',
 };
 
 export default withStyles(styles, { name: 'MuiTableBody' })(TableBody);

@@ -54,7 +54,7 @@ function TableRow(props, context) {
     },
     classNameProp,
   );
-  const ComponentRow = component || 'tr';
+  const ComponentRow = component;
 
   return (
     <ComponentRow className={className} {...other}>
@@ -94,6 +94,7 @@ TableRow.propTypes = {
 TableRow.defaultProps = {
   hover: false,
   selected: false,
+  component: 'tr',
 };
 
 TableRow.contextTypes = {
