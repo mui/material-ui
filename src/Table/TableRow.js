@@ -37,7 +37,7 @@ function TableRow(props, context) {
     classes,
     className: classNameProp,
     children,
-    component,
+    component: Component,
     hover,
     selected,
     ...other
@@ -54,12 +54,11 @@ function TableRow(props, context) {
     },
     classNameProp,
   );
-  const ComponentRow = component;
 
   return (
-    <ComponentRow className={className} {...other}>
+    <Component className={className} {...other}>
       {children}
-    </ComponentRow>
+    </Component>
   );
 }
 
