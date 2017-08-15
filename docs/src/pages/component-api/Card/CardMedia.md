@@ -8,6 +8,7 @@
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | classes | Object |  | Useful to extend the style applied to components. |
+| <span style="color: #31a148">image *</span> | string |  | Image to be displayed as a background image. Note that caller must specify height otherwise the image will not be visible. |
 
 Any other properties supplied will be spread to the root element.
 

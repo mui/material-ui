@@ -2,11 +2,11 @@
 
 import React from 'react';
 import type { Element } from 'react';
-import createStyleSheet from '../styles/createStyleSheet';
+import withStyles from '../styles/withStyles';
 import createSwitch from '../internal/SwitchBase';
 import IndeterminateCheckBoxIcon from '../svg-icons/indeterminate-check-box';
 
-export const styleSheet = createStyleSheet('MuiCheckbox', theme => ({
+export const styles = (theme: Object) => ({
   default: {
     color: theme.palette.text.secondary,
   },
@@ -16,9 +16,9 @@ export const styleSheet = createStyleSheet('MuiCheckbox', theme => ({
   disabled: {
     color: theme.palette.action.disabled,
   },
-}));
+});
 
-const SwitchBase = createSwitch({ styleSheet });
+const SwitchBase = createSwitch();
 
 export type Props = {
   /**
@@ -118,4 +118,4 @@ Checkbox.defaultProps = {
   indeterminateIcon: <IndeterminateCheckBoxIcon />,
 };
 
-export default Checkbox;
+export default withStyles(styles, { name: 'MuiCheckbox' })(Checkbox);

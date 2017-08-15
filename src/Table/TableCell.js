@@ -3,10 +3,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiTableCell', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
     whiteSpace: 'nowrap',
@@ -35,7 +34,7 @@ export const styleSheet = createStyleSheet('MuiTableCell', theme => ({
     paddingRight: 12,
   },
   footer: {},
-}));
+});
 
 function TableCell(props, context) {
   const {
@@ -114,4 +113,4 @@ TableCell.contextTypes = {
   table: PropTypes.object,
 };
 
-export default withStyles(styleSheet)(TableCell);
+export default withStyles(styles, { name: 'MuiTableCell' })(TableCell);

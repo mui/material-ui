@@ -3,7 +3,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { createStyleSheet, withStyles } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import Avatar from 'material-ui/Avatar';
 import List, { ListItem, ListItemAvatar, ListItemText } from 'material-ui/List';
@@ -14,13 +14,12 @@ import Typography from 'material-ui/Typography';
 import blue from 'material-ui/colors/blue';
 
 const emails = ['username@gmail.com', 'user02@gmail.com'];
-
-const styleSheet = createStyleSheet(() => ({
+const styles = {
   avatar: {
     background: blue[100],
     color: blue[600],
   },
-}));
+};
 
 class SimpleDialog extends Component {
   handleRequestClose = () => {
@@ -70,7 +69,7 @@ SimpleDialog.propTypes = {
   selectedValue: PropTypes.string,
 };
 
-const SimpleDialogWrapped = withStyles(styleSheet)(SimpleDialog);
+const SimpleDialogWrapped = withStyles(styles)(SimpleDialog);
 
 class SimpleDialogDemo extends Component {
   state = {

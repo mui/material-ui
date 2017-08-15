@@ -3,10 +3,9 @@
 import React, { Children } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiGridList', {
+export const styles = {
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -14,7 +13,7 @@ export const styleSheet = createStyleSheet('MuiGridList', {
     listStyle: 'none',
     padding: 0,
   },
-});
+};
 
 function GridList(props) {
   const {
@@ -99,4 +98,4 @@ GridList.defaultProps = {
   component: 'ul',
 };
 
-export default withStyles(styleSheet)(GridList);
+export default withStyles(styles, { name: 'MuiGridList' })(GridList);

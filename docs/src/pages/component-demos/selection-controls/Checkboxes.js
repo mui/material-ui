@@ -2,22 +2,23 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import green from 'material-ui/colors/green';
 import { FormGroup, FormControlLabel } from 'material-ui/Form';
 import Checkbox from 'material-ui/Checkbox';
 
-const styleSheet = createStyleSheet({
+const styles = {
   checked: {
     color: green[500],
   },
-});
+};
 
 class Checkboxes extends Component {
   state = {
     checkedA: true,
     checkedB: false,
     checkedF: true,
+    checkedG: true,
   };
 
   handleChange = name => (event, checked) => {
@@ -57,19 +58,25 @@ class Checkboxes extends Component {
           label="Disabled"
         />
         <FormControlLabel
-          disabled
-          control={<Checkbox checked value="checkedE" indeterminate />}
+          control={
+            <Checkbox
+              checked={this.state.checkedF}
+              onChange={this.handleChange('checkedF')}
+              value="checkedF"
+              indeterminate
+            />
+          }
           label="Indeterminate"
         />
         <FormControlLabel
           control={
             <Checkbox
-              checked={this.state.checkedF}
-              onChange={this.handleChange('checkedF')}
+              checked={this.state.checkedG}
+              onChange={this.handleChange('checkedG')}
               classes={{
                 checked: classes.checked,
               }}
-              value="checkedF"
+              value="checkedG"
             />
           }
           label="Custom color"
@@ -83,4 +90,4 @@ Checkboxes.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(Checkboxes);
+export default withStyles(styles)(Checkboxes);

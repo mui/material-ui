@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import List from 'material-ui/List';
 import Toolbar from 'material-ui/Toolbar';
 import Drawer from 'material-ui/Drawer';
@@ -11,7 +11,7 @@ import Divider from 'material-ui/Divider';
 import AppDrawerNavItem from 'docs/src/components/AppDrawerNavItem';
 import Link from 'docs/src/components/Link';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   paper: {
     width: 250,
     backgroundColor: theme.palette.background.paper,
@@ -30,7 +30,7 @@ const styleSheet = createStyleSheet(theme => ({
   anchor: {
     color: theme.palette.text.secondary,
   },
-}));
+});
 
 function renderNavItems(props, navRoot) {
   let navItems = null;
@@ -124,4 +124,4 @@ AppDrawer.propTypes = {
   routes: PropTypes.array.isRequired,
 };
 
-export default withStyles(styleSheet)(AppDrawer);
+export default withStyles(styles)(AppDrawer);

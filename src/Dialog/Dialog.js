@@ -3,7 +3,6 @@
 import React, { createElement, cloneElement } from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import Modal from '../internal/Modal';
@@ -12,7 +11,7 @@ import { duration } from '../styles/transitions';
 import Paper from '../Paper';
 import type { TransitionCallback } from '../internal/Transition';
 
-export const styleSheet = createStyleSheet('MuiDialog', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -45,7 +44,7 @@ export const styleSheet = createStyleSheet('MuiDialog', theme => ({
     maxHeight: '100%',
     borderRadius: 0,
   },
-}));
+});
 
 type DefaultProps = {
   classes: Object,
@@ -227,4 +226,4 @@ Dialog.defaultProps = {
   transition: Fade,
 };
 
-export default withStyles(styleSheet)(Dialog);
+export default withStyles(styles, { name: 'MuiDialog' })(Dialog);

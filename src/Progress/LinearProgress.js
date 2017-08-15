@@ -3,12 +3,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
 const transitionDuration = 4; // 400ms
 
-export const styleSheet = createStyleSheet('MuiLinearProgress', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     position: 'relative',
     overflow: 'hidden',
@@ -39,11 +38,13 @@ export const styleSheet = createStyleSheet('MuiLinearProgress', theme => ({
     backgroundPosition: '0px -23px',
   },
   bar: {
+    width: '100%',
     position: 'absolute',
     left: 0,
     bottom: 0,
     top: 0,
     transition: 'transform 0.2s linear',
+    transformOrigin: 'left',
   },
   dashed: {
     position: 'absolute',
@@ -53,7 +54,7 @@ export const styleSheet = createStyleSheet('MuiLinearProgress', theme => ({
     animation: 'buffer 3s infinite linear',
   },
   bufferBar2: {
-    transition: `width .${transitionDuration}s linear`,
+    transition: `transform .${transitionDuration}s linear`,
   },
   rootBuffer: {
     backgroundColor: 'transparent',
@@ -71,19 +72,19 @@ export const styleSheet = createStyleSheet('MuiLinearProgress', theme => ({
     animationDelay: '1.15s',
   },
   determinateBar1: {
-    willChange: 'width',
-    transition: `width .${transitionDuration}s linear`,
+    willChange: 'transform',
+    transition: `transform .${transitionDuration}s linear`,
   },
   bufferBar1: {
     zIndex: 1,
-    transition: `width .${transitionDuration}s linear`,
+    transition: `transform .${transitionDuration}s linear`,
   },
   bufferBar2Primary: {
-    transition: `width .${transitionDuration}s linear`,
+    transition: `transform .${transitionDuration}s linear`,
     backgroundColor: theme.palette.primary[100],
   },
   bufferBar2Accent: {
-    transition: `width .${transitionDuration}s linear`,
+    transition: `transform .${transitionDuration}s linear`,
     backgroundColor: theme.palette.accent.A100,
   },
   '@keyframes mui-indeterminate1': {
@@ -128,7 +129,7 @@ export const styleSheet = createStyleSheet('MuiLinearProgress', theme => ({
       backgroundPosition: '-200px -23px',
     },
   },
-}));
+});
 
 function LinearProgress(props) {
   const { classes, className, color, mode, value, valueBuffer, ...other } = props;
@@ -163,24 +164,24 @@ function LinearProgress(props) {
     [classes.accentColor]: color === 'accent' && mode === 'buffer',
     [classes.indeterminateBar2]: mode === 'indeterminate' || mode === 'query',
   });
-  const styles = { primary: {}, secondary: {} };
+  const inlineStyles = { primary: {}, secondary: {} };
   const rootProps = {};
 
   if (mode === 'determinate') {
-    styles.primary.width = `${value}%`;
+    inlineStyles.primary.transform = `scaleX(${value / 100})`;
     rootProps['aria-valuenow'] = Math.round(value);
   } else if (mode === 'buffer') {
-    styles.primary.width = `${value}%`;
-    styles.secondary.width = `${valueBuffer}%`;
+    inlineStyles.primary.transform = `scaleX(${value / 100})`;
+    inlineStyles.secondary.transform = `scaleX(${valueBuffer / 100})`;
   }
 
   return (
     <div className={rootClasses} {...rootProps} {...other}>
       {mode === 'buffer' ? <div className={dashedClass} /> : null}
-      <div className={primaryClasses} style={styles.primary} />
+      <div className={primaryClasses} style={inlineStyles.primary} />
       {mode === 'determinate'
         ? null
-        : <div className={secondaryClasses} style={styles.secondary} />}
+        : <div className={secondaryClasses} style={inlineStyles.secondary} />}
     </div>
   );
 }
@@ -221,4 +222,4 @@ LinearProgress.defaultProps = {
   value: 0,
 };
 
-export default withStyles(styleSheet)(LinearProgress);
+export default withStyles(styles, { name: 'MuiLinearProgress' })(LinearProgress);

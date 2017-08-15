@@ -2,13 +2,13 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createStyleSheet, withStyles } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import { GridList, GridListTile, GridListTileBar } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import StarBorderIcon from 'material-ui-icons/StarBorder';
 import tileData from './tileData';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -27,7 +27,7 @@ const styleSheet = createStyleSheet(theme => ({
       'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
       'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
   },
-}));
+});
 
 /**
  * The example data is structured as follows:
@@ -78,4 +78,4 @@ AdvancedGridList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(AdvancedGridList);
+export default withStyles(styles)(AdvancedGridList);

@@ -3,17 +3,16 @@
 import React from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiListItemIcon', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     height: 24,
     marginRight: theme.spacing.unit * 2,
     width: 24,
     color: theme.palette.action.active,
   },
-}));
+});
 
 type DefaultProps = {
   classes: Object,
@@ -49,4 +48,4 @@ function ListItemIcon(props: AllProps) {
   });
 }
 
-export default withStyles(styleSheet)(ListItemIcon);
+export default withStyles(styles, { name: 'MuiListItemIcon' })(ListItemIcon);

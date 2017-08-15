@@ -1,0 +1,16 @@
+{
+  "name": "next.js",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "material-ui": "next",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  }
+}

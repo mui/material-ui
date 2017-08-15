@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import TouchRipple, { styleSheet } from './TouchRipple';
+import TouchRipple from './TouchRipple';
 
 describe('<TouchRipple />', () => {
   let shallow;
@@ -13,7 +13,7 @@ describe('<TouchRipple />', () => {
     shallow = createShallow({
       dive: true,
     });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<TouchRipple />);
   });
 
   it('should render a <ReactTransitionGroup> component', () => {

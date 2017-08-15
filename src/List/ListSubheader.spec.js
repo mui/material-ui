@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import ListSubheader, { styleSheet } from './ListSubheader';
+import ListSubheader from './ListSubheader';
 
 describe('<ListSubheader />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<ListSubheader />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<ListSubheader />);
   });
 
   it('should render a div', () => {
@@ -20,8 +20,8 @@ describe('<ListSubheader />', () => {
   });
 
   it('should render with the user and root classes', () => {
-    const wrapper = shallow(<ListSubheader className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+    const wrapper = shallow(<ListSubheader className="woofListSubheader" />);
+    assert.strictEqual(wrapper.hasClass('woofListSubheader'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 

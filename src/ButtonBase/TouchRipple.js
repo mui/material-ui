@@ -5,13 +5,12 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import Ripple from './Ripple';
 
 const DURATION = 550;
 
-export const styleSheet = createStyleSheet('MuiTouchRipple', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     display: 'block',
     position: 'absolute',
@@ -88,7 +87,7 @@ export const styleSheet = createStyleSheet('MuiTouchRipple', theme => ({
   rippleFast: {
     animationDuration: '200ms',
   },
-}));
+});
 
 /**
  * @ignore - internal component.
@@ -252,4 +251,4 @@ TouchRipple.propTypes = {
   className: PropTypes.string,
 };
 
-export default withStyles(styleSheet)(TouchRipple);
+export default withStyles(styles, { name: 'MuiTouchRipple' })(TouchRipple);

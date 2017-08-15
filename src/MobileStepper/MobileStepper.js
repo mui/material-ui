@@ -3,7 +3,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
 import Button from '../Button';
@@ -12,7 +11,7 @@ import KeyboardArrowLeft from '../svg-icons/keyboard-arrow-left';
 import KeyboardArrowRight from '../svg-icons/keyboard-arrow-right';
 import { LinearProgress } from '../Progress';
 
-export const styleSheet = createStyleSheet('MuiMobileStepper', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     display: 'flex',
     flexDirection: 'row',
@@ -54,7 +53,7 @@ export const styleSheet = createStyleSheet('MuiMobileStepper', theme => ({
   progress: {
     width: '50%',
   },
-}));
+});
 
 function MobileStepper(props) {
   const {
@@ -172,4 +171,4 @@ MobileStepper.defaultProps = {
   type: 'dots',
 };
 
-export default withStyles(styleSheet)(MobileStepper);
+export default withStyles(styles, { name: 'MuiMobileStepper' })(MobileStepper);

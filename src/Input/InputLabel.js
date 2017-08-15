@@ -4,11 +4,10 @@ import React from 'react';
 import type { Element } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { FormLabel } from '../Form';
 
-export const styleSheet = createStyleSheet('MuiInputLabel', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     transformOrigin: 'top left',
   },
@@ -32,7 +31,7 @@ export const styleSheet = createStyleSheet('MuiInputLabel', theme => ({
   disabled: {
     color: theme.palette.input.disabled,
   },
-}));
+});
 
 type DefaultProps = {
   classes: Object,
@@ -126,4 +125,4 @@ InputLabel.contextTypes = {
   muiFormControl: PropTypes.object,
 };
 
-export default withStyles(styleSheet)(InputLabel);
+export default withStyles(styles, { name: 'MuiInputLabel' })(InputLabel);

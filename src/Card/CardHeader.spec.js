@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import CardHeader, { styleSheet } from './CardHeader';
+import CardHeader from './CardHeader';
 
 describe('<CardHeader />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<CardHeader />', () => {
 
   before(() => {
     shallow = createShallow({ untilSelector: 'div' });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<CardHeader />);
   });
 
   it('should render CardContent', () => {
@@ -22,6 +22,38 @@ describe('<CardHeader />', () => {
   it('should have the root class', () => {
     const wrapper = shallow(<CardHeader />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
+  });
+
+  describe('with custom styles', () => {
+    let wrapper;
+    let extraClasses;
+
+    beforeEach(() => {
+      extraClasses = {
+        title: 'foo',
+        subheader: 'bar',
+      };
+      wrapper = shallow(
+        <CardHeader
+          title="Title"
+          subheader="Subheader"
+          classes={{
+            title: extraClasses.title,
+            subheader: extraClasses.subheader,
+          }}
+        />,
+      ).childAt(0);
+    });
+
+    it('should render with the title class', () => {
+      const title = wrapper.childAt(0);
+      assert.strictEqual(title.hasClass(extraClasses.title), true);
+    });
+
+    it('should render with the subheader class', () => {
+      const subheader = wrapper.childAt(1);
+      assert.strictEqual(subheader.hasClass(extraClasses.subheader), true);
+    });
   });
 
   describe('without an avatar', () => {

@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import CardContent, { styleSheet } from './CardContent';
+import CardContent from './CardContent';
 
 describe('<CardContent />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<CardContent />', () => {
 
   before(() => {
     shallow = createShallow({ untilSelector: 'CardContent' });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<CardContent />);
   });
 
   it('should render a div with the root class', () => {

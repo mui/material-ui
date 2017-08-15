@@ -2,15 +2,15 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 import { FormLabel, FormControl, FormControlLabel } from 'material-ui/Form';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   group: {
     margin: `${theme.spacing.unit}px 0`,
   },
-}));
+});
 
 class RadioButtonsGroup extends Component {
   state = {
@@ -25,8 +25,8 @@ class RadioButtonsGroup extends Component {
     const classes = this.props.classes;
 
     return (
-      <FormControl required>
-        <FormLabel>Gender</FormLabel>
+      <FormControl component="fieldset" required>
+        <FormLabel component="legend">Gender</FormLabel>
         <RadioGroup
           aria-label="gender"
           name="gender"
@@ -48,4 +48,4 @@ RadioButtonsGroup.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(RadioButtonsGroup);
+export default withStyles(styles)(RadioButtonsGroup);

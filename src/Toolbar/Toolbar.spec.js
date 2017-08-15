@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import Toolbar, { styleSheet } from './Toolbar';
+import Toolbar from './Toolbar';
 
 describe('<Toolbar />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<Toolbar />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Toolbar />);
   });
 
   it('should render a div', () => {
@@ -20,8 +20,8 @@ describe('<Toolbar />', () => {
   });
 
   it('should render with the user, root and gutters classes', () => {
-    const wrapper = shallow(<Toolbar className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+    const wrapper = shallow(<Toolbar className="woofToolbar" />);
+    assert.strictEqual(wrapper.hasClass('woofToolbar'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.gutters), true);
   });

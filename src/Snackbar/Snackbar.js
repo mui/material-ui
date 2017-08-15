@@ -4,7 +4,6 @@ import React, { Component, createElement, cloneElement } from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
 import EventListener from 'react-event-listener';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import ClickAwayListener from '../internal/ClickAwayListener';
@@ -13,7 +12,7 @@ import Slide from '../transitions/Slide';
 import SnackbarContent from './SnackbarContent';
 import type { TransitionCallback } from '../internal/Transition';
 
-export const styleSheet = createStyleSheet('MuiSnackbar', theme => {
+export const styles = (theme: Object) => {
   const gutter = theme.spacing.unit * 3;
   const top = { top: 0 };
   const bottom = { bottom: 0 };
@@ -66,7 +65,7 @@ export const styleSheet = createStyleSheet('MuiSnackbar', theme => {
       },
     },
   };
-});
+};
 
 type Origin = {
   horizontal?: 'left' | 'center' | 'right' | number,
@@ -365,4 +364,4 @@ class Snackbar extends Component<DefaultProps, AllProps, State> {
   }
 }
 
-export default withStyles(styleSheet)(Snackbar);
+export default withStyles(styles, { name: 'MuiSnackbar' })(Snackbar);

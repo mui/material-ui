@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import Divider, { styleSheet } from './Divider';
+import Divider from './Divider';
 
 describe('<Divider />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<Divider />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Divider />);
   });
 
   it('should render a hr', () => {

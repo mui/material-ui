@@ -3,10 +3,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiToolbar', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     position: 'relative',
     display: 'flex',
@@ -20,7 +19,7 @@ export const styleSheet = createStyleSheet('MuiToolbar', theme => ({
     },
   },
   gutters: theme.mixins.gutters({}),
-}));
+});
 
 function Toolbar(props) {
   const { children, classes, className: classNameProp, disableGutters, ...other } = props;
@@ -63,4 +62,4 @@ Toolbar.defaultProps = {
   disableGutters: false,
 };
 
-export default withStyles(styleSheet)(Toolbar);
+export default withStyles(styles, { name: 'MuiToolbar' })(Toolbar);

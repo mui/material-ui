@@ -2,15 +2,14 @@
 
 import React from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiCardMedia', {
+export const styles = {
   root: {
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
   },
-});
+};
 
 type DefaultProps = {
   classes: Object,
@@ -46,4 +45,4 @@ function CardMedia(props: AllProps) {
   );
 }
 
-export default withStyles(styleSheet)(CardMedia);
+export default withStyles(styles, { name: 'MuiCardMedia' })(CardMedia);

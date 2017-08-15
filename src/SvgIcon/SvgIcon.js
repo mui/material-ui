@@ -3,10 +3,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiSvgIcon', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     display: 'inline-block',
     fill: 'currentColor',
@@ -17,7 +16,7 @@ export const styleSheet = createStyleSheet('MuiSvgIcon', theme => ({
       duration: theme.transitions.duration.shorter,
     }),
   },
-}));
+});
 
 function SvgIcon(props) {
   const { children, classes, className, titleAccess, viewBox, ...other } = props;
@@ -74,4 +73,4 @@ SvgIcon.defaultProps = {
 
 SvgIcon.muiName = 'SvgIcon';
 
-export default withStyles(styleSheet)(SvgIcon);
+export default withStyles(styles, { name: 'MuiSvgIcon' })(SvgIcon);

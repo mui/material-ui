@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import AppBar, { styleSheet } from './AppBar';
+import AppBar from './AppBar';
 
 describe('<AppBar />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<AppBar />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<AppBar />);
   });
 
   it('should render a Paper component', () => {

@@ -2,19 +2,19 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
 import IconButton from 'material-ui/IconButton';
 import CommentIcon from 'material-ui-icons/Comment';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
     background: theme.palette.background.paper,
   },
-}));
+});
 
 class CheckboxList extends Component {
   state = {
@@ -68,4 +68,4 @@ CheckboxList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(CheckboxList);
+export default withStyles(styles)(CheckboxList);

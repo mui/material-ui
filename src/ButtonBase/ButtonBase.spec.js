@@ -8,7 +8,7 @@ import { createShallow, createMount, getClasses } from '../test-utils';
 import { focusKeyPressed } from '../utils/keyboardFocus';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
 import TouchRipple from './TouchRipple';
-import ButtonBase, { styleSheet } from './ButtonBase';
+import ButtonBase from './ButtonBase';
 
 describe('<ButtonBase />', () => {
   let mount;
@@ -19,8 +19,8 @@ describe('<ButtonBase />', () => {
     shallow = createShallow({
       dive: true,
     });
-    classes = getClasses(styleSheet);
     mount = createMount();
+    classes = getClasses(<ButtonBase />);
   });
 
   after(() => {
@@ -399,7 +399,7 @@ describe('<ButtonBase />', () => {
     });
 
     it('onKeyboardFocusHandler() should propogate call to onKeyboardFocus prop', () => {
-      const eventMock = 'woof';
+      const eventMock = 'woofButtonBase';
       const onKeyboardFocusSpy = spy();
       const wrapper = mount(
         <ButtonBase.Naked classes={{}} component="span" onKeyboardFocus={onKeyboardFocusSpy}>
@@ -498,10 +498,10 @@ describe('<ButtonBase />', () => {
         const onClickSpy = spy();
         wrapper.setProps({
           onClick: onClickSpy,
-          component: 'woof',
+          component: 'woofButtonBase',
         });
 
-        const eventTargetMock = 'woof';
+        const eventTargetMock = 'woofButtonBase';
         event = {
           persist: spy(),
           preventDefault: spy(),

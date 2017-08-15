@@ -1,15 +1,15 @@
-// @flow
+// @flow weak
 
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import blue from 'material-ui/colors/blue';
 import green from 'material-ui/colors/green';
 import red from 'material-ui/colors/red';
 import SvgIcon from 'material-ui/SvgIcon';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   icon: {
     margin: theme.spacing.unit,
   },
@@ -22,7 +22,7 @@ const styleSheet = createStyleSheet(theme => ({
       fill: green[200],
     },
   },
-}));
+});
 
 const HomeIcon = props =>
   <SvgIcon {...props}>
@@ -56,4 +56,4 @@ SvgIcons.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(SvgIcons);
+export default withStyles(styles)(SvgIcons);

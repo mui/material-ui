@@ -1,4 +1,4 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow weak
 
 import { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -13,6 +13,7 @@ import * as ns from 'react-jss/lib/ns';
 import createMuiTheme from './theme';
 import themeListener from './themeListener';
 import createGenerateClassName from './createGenerateClassName';
+import getStylesCreator from './getStylesCreator';
 
 // Use a singleton or the provided one by the context.
 const generateClassName = createGenerateClassName();
@@ -27,9 +28,12 @@ const generateClassName = createGenerateClassName();
 // that parent has a higher specificity.
 let indexCounter = Number.MIN_SAFE_INTEGER;
 
-const sheetsManager = new WeakMap();
+export const sheetsManager = new Map();
+
+// We use the same empty object to ref count the styles that don't need a theme object.
 const noopTheme = {};
 
+// In order to have self-supporting components, we rely on default theme when not provided.
 let defaultTheme;
 
 function getDefaultTheme() {
@@ -44,17 +48,19 @@ function getDefaultTheme() {
 // Link a style sheet with a component.
 // It does not modify the component passed to it;
 // instead, it returns a new, with a `classes` property.
-const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) => BaseComponent => {
-  const { withTheme = false } = options;
+const withStyles = (stylesOrCreator: Object, options?: Object = {}) => BaseComponent => {
+  const { withTheme = false, name, ...styleSheetOptions } = options;
   const factory = createEagerFactory(BaseComponent);
-  const styleSheets = (Array.isArray(styleSheet) ? styleSheet : [styleSheet]).filter(Boolean);
+  const stylesCreators = [getStylesCreator(stylesOrCreator)];
   const listenToTheme =
-    styleSheets.some(currentStyleSheet => currentStyleSheet.themingEnabled) || withTheme;
+    stylesCreators.some(stylesCreator => stylesCreator.themingEnabled) ||
+    withTheme ||
+    typeof name === 'string';
 
-  styleSheets.forEach(currentStyleSheet => {
-    if (currentStyleSheet.options.index === undefined) {
+  stylesCreators.forEach(stylesCreator => {
+    if (stylesCreator.options.index === undefined) {
       indexCounter += 1;
-      currentStyleSheet.options.index = indexCounter;
+      stylesCreator.options.index = indexCounter;
     }
   });
 
@@ -74,10 +80,10 @@ const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) =>
       super(props, context);
       this.jss = this.context[ns.jss] || jss;
       this.sheetsManager = this.context.sheetsManager || sheetsManager;
-      // Attach the styleSheets to the instance of the component as in the context
+      // Attach the stylesCreators to the instance of the component as in the context
       // of react-hot-loader the hooks can be executed in a different closure context:
       // https://github.com/gaearon/react-hot-loader/blob/master/src/patch.dev.js#L107
-      this.styleSheets = styleSheets;
+      this.stylesCreators = stylesCreators;
       this.sheetOptions = {
         generateClassName,
         ...this.context[ns.sheetOptions],
@@ -118,12 +124,12 @@ const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) =>
     }
 
     attach(theme: Object) {
-      this.styleSheets.forEach(currentStyleSheet => {
-        let sheetManager = this.sheetsManager.get(currentStyleSheet);
+      this.stylesCreators.forEach(stylesCreator => {
+        let sheetManager = this.sheetsManager.get(stylesCreator);
 
         if (!sheetManager) {
           sheetManager = new Map();
-          this.sheetsManager.set(currentStyleSheet, sheetManager);
+          this.sheetsManager.set(stylesCreator, sheetManager);
         }
 
         let sheetManagerTheme = sheetManager.get(theme);
@@ -137,11 +143,11 @@ const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) =>
         }
 
         if (sheetManagerTheme.refs === 0) {
-          const styles = currentStyleSheet.createStyles(theme);
+          const styles = stylesCreator.create(theme, name);
           let meta;
 
           if (process.env.NODE_ENV !== 'production') {
-            meta = currentStyleSheet.name ? currentStyleSheet.name : getDisplayName(BaseComponent);
+            meta = name || getDisplayName(BaseComponent);
             // Sanitize the string as will be used in development to prefix the generated
             // class name.
             meta = meta.replace(new RegExp(/[!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~]/g), '-');
@@ -151,7 +157,9 @@ const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) =>
             meta,
             link: false,
             ...this.sheetOptions,
-            ...currentStyleSheet.options,
+            ...stylesCreator.options,
+            name,
+            ...styleSheetOptions,
           });
 
           sheetManagerTheme.sheet = sheet;
@@ -168,8 +176,8 @@ const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) =>
     }
 
     detach(theme: Object) {
-      this.styleSheets.forEach(currentStyleSheet => {
-        const sheetManager = this.sheetsManager.get(currentStyleSheet);
+      this.stylesCreators.forEach(stylesCreator => {
+        const sheetManager = this.sheetsManager.get(stylesCreator);
         const sheetManagerTheme = sheetManager.get(theme);
 
         sheetManagerTheme.refs -= 1;
@@ -187,6 +195,9 @@ const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) =>
 
     unsubscribeId = null;
     jss = null;
+    sheetsManager = null;
+    stylesCreators = null;
+    theme = null;
     sheetOptions = null;
     theme = null;
 
@@ -194,12 +205,12 @@ const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) =>
       const { classes: classesProp, innerRef, ...other } = this.props;
 
       let classes;
-      const renderedClasses = this.styleSheets.reduce((acc, current) => {
+      const renderedClasses = this.stylesCreators.reduce((accumulator, current) => {
         const sheetManager = this.sheetsManager.get(current);
         const sheetsManagerTheme = sheetManager.get(this.theme);
 
         return {
-          ...acc,
+          ...accumulator,
           ...sheetsManagerTheme.sheet.classes,
         };
       }, {});
@@ -207,7 +218,7 @@ const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) =>
       if (classesProp) {
         classes = {
           ...renderedClasses,
-          ...Object.keys(classesProp).reduce((acc, key) => {
+          ...Object.keys(classesProp).reduce((accumulator, key) => {
             warning(
               renderedClasses[key],
               [
@@ -222,9 +233,9 @@ const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) =>
             );
 
             if (classesProp[key] !== undefined) {
-              acc[key] = `${renderedClasses[key]} ${classesProp[key]}`;
+              accumulator[key] = `${renderedClasses[key]} ${classesProp[key]}`;
             }
-            return acc;
+            return accumulator;
           }, {}),
         };
       } else {
@@ -266,6 +277,10 @@ const withStyles = (styleSheet: Array<Object> | Object, options: Object = {}) =>
   };
 
   hoistNonReactStatics(Style, BaseComponent);
+
+  // Added for tests purposes
+  // $FlowFixMe
+  Style.options = options;
 
   if (process.env.NODE_ENV !== 'production') {
     Style.displayName = wrapDisplayName(BaseComponent, 'withStyles');

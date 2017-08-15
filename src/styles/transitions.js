@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 /* eslint-disable no-param-reassign */
 
 import warning from 'warning';
@@ -7,14 +7,14 @@ import warning from 'warning';
 // to learn the context in which each easing should be used.
 export const easing = {
   // This is the most common easing curve.
-  easeInOut: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
+  easeInOut: 'cubic-bezier(0.4, 0, 0.2, 1)',
   // Objects enter the screen at full velocity from off-screen and
   // slowly decelerate to a resting point.
-  easeOut: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
+  easeOut: 'cubic-bezier(0.0, 0, 0.2, 1)',
   // Objects leave the screen at full velocity. They do not decelerate when off-screen.
-  easeIn: 'cubic-bezier(0.4, 0.0, 1, 1)',
+  easeIn: 'cubic-bezier(0.4, 0, 1, 1)',
   // The sharp curve is used by objects that may return to the screen at any time.
-  sharp: 'cubic-bezier(0.4, 0.0, 0.6, 1)',
+  sharp: 'cubic-bezier(0.4, 0, 0.6, 1)',
 };
 
 // Follow https://material.io/guidelines/motion/duration-easing.html#duration-easing-common-durations
@@ -44,11 +44,14 @@ export const isNumber = (value: any) => !isNaN(parseFloat(value));
  * @param {number} param.duration
  * @param {string} param.easing
  * @param {number} param.delay
-*/
+ */
 export default {
   easing,
   duration,
-  create(props = ['all'], options: Object = {}) {
+  create(
+    props: string | Array<string> = ['all'],
+    options: { prop?: string, duration?: number, easing?: string, delay?: number } = {},
+  ) {
     const {
       duration: durationOption = duration.standard,
       easing: easingOption = easing.easeInOut,
@@ -60,7 +63,10 @@ export default {
       isString(props) || Array.isArray(props),
       'Material-UI: argument "props" must be a string or Array',
     );
-    warning(isNumber(durationOption), 'Material-UI: argument "duration" must be a number');
+    warning(
+      isNumber(durationOption),
+      `Material-UI: argument "duration" must be a number but found ${durationOption}`,
+    );
     warning(isString(easingOption), 'Material-UI: argument "easing" must be a string');
     warning(isNumber(delay), 'Material-UI: argument "delay" must be a string');
     warning(

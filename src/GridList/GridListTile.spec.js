@@ -4,7 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createShallow, createMount, getClasses } from '../test-utils';
-import GridListTile, { styleSheet } from './GridListTile';
+import GridListTile from './GridListTile';
 
 describe('<GridListTile />', () => {
   let shallow;
@@ -16,7 +16,7 @@ describe('<GridListTile />', () => {
       dive: true,
     });
     mount = createMount();
-    classes = getClasses(styleSheet);
+    classes = getClasses(<GridListTile />);
   });
 
   after(() => {

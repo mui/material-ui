@@ -4,7 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
 import Icon from '../Icon';
-import IconButton, { styleSheet } from './IconButton';
+import IconButton from './IconButton';
 
 describe('<IconButton />', () => {
   let shallow;
@@ -12,7 +12,7 @@ describe('<IconButton />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<IconButton />);
   });
 
   it('should render a ButtonBase', () => {
@@ -84,8 +84,8 @@ describe('<IconButton />', () => {
   });
 
   it('should render with the user and root classes', () => {
-    const wrapper = shallow(<IconButton className="woof">book</IconButton>);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+    const wrapper = shallow(<IconButton className="woofIconButton">book</IconButton>);
+    assert.strictEqual(wrapper.hasClass('woofIconButton'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 

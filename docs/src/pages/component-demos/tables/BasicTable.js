@@ -2,17 +2,17 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   paper: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
   },
-}));
+});
 
 let id = 0;
 function createData(name, calories, fat, carbs, protein) {
@@ -75,4 +75,4 @@ BasicTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(BasicTable);
+export default withStyles(styles)(BasicTable);

@@ -3,11 +3,10 @@
 import React from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import ListItem from '../List/ListItem';
 
-export const styleSheet = createStyleSheet('MuiMenuItem', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     ...theme.typography.subheading,
     height: 48,
@@ -26,7 +25,7 @@ export const styleSheet = createStyleSheet('MuiMenuItem', theme => ({
   selected: {
     backgroundColor: theme.palette.text.divider,
   },
-}));
+});
 
 type DefaultProps = {
   classes: Object,
@@ -92,4 +91,4 @@ MenuItem.defaultProps = {
   selected: false,
 };
 
-export default withStyles(styleSheet)(MenuItem);
+export default withStyles(styles, { name: 'MuiMenuItem' })(MenuItem);

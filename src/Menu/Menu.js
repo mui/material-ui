@@ -5,7 +5,6 @@ import type { Element } from 'react';
 import classNames from 'classnames';
 import { findDOMNode } from 'react-dom';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import Popover from '../internal/Popover';
 import MenuList from './MenuList';
@@ -80,7 +79,7 @@ export type Props = {
 
 type AllProps = DefaultProps & Props;
 
-export const styleSheet = createStyleSheet('MuiMenu', {
+export const styles = {
   root: {
     /**
      * specZ: The maximum height of a simple menu should be one or more rows less than the view
@@ -89,8 +88,11 @@ export const styleSheet = createStyleSheet('MuiMenu', {
      */
     maxHeight: 'calc(100vh - 96px)',
     WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
+    // So we see the menu when it's empty.
+    minWidth: 16,
+    minHeight: 16,
   },
-});
+};
 
 class Menu extends Component<DefaultProps, AllProps, void> {
   props: AllProps;
@@ -108,7 +110,7 @@ class Menu extends Component<DefaultProps, AllProps, void> {
     if (this.menuList && this.menuList.selectedItem) {
       // $FlowFixMe
       findDOMNode(this.menuList.selectedItem).focus();
-    } else if (menuList) {
+    } else if (menuList && menuList.firstChild) {
       // $FlowFixMe
       menuList.firstChild.focus();
     }
@@ -150,38 +152,12 @@ class Menu extends Component<DefaultProps, AllProps, void> {
   };
 
   render() {
-    const {
-      anchorEl,
-      children,
-      classes,
-      className,
-      open,
-      MenuListProps,
-      onEnter,
-      onEntering,
-      onEntered,
-      onExit,
-      onExiting,
-      onExited,
-      onRequestClose,
-      transitionDuration,
-      ...other
-    } = this.props;
-
+    const { children, classes, className, MenuListProps, onEnter, ...other } = this.props;
     return (
       <Popover
-        anchorEl={anchorEl}
         getContentAnchorEl={this.getContentAnchorEl}
         className={classNames(classes.root, className)}
-        open={open}
         onEnter={this.handleEnter}
-        onEntering={onEntering}
-        onEntered={onEntered}
-        onExiting={onExiting}
-        onExit={onExit}
-        onExited={onExited}
-        onRequestClose={onRequestClose}
-        transitionDuration={transitionDuration}
         {...other}
       >
         <MenuList
@@ -200,4 +176,4 @@ class Menu extends Component<DefaultProps, AllProps, void> {
   }
 }
 
-export default withStyles(styleSheet)(Menu);
+export default withStyles(styles, { name: 'MuiMenu' })(Menu);

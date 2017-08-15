@@ -21,6 +21,8 @@ This property accepts the following keys:
 - `root`
 - `avatar`
 - `content`
+- `title`
+- `subheader`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)
 section for more detail.

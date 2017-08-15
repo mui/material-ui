@@ -2,14 +2,14 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import { CircularProgress } from 'material-ui/Progress';
 import green from 'material-ui/colors/green';
 import Button from 'material-ui/Button';
 import CheckIcon from 'material-ui-icons/Check';
 import SaveIcon from 'material-ui-icons/Save';
 
-const styleSheet = createStyleSheet({
+const styles = {
   wrapper: {
     position: 'relative',
   },
@@ -25,7 +25,7 @@ const styleSheet = createStyleSheet({
     top: -2,
     left: -2,
   },
-});
+};
 
 class CircularFab extends Component {
   state = {
@@ -82,4 +82,4 @@ CircularFab.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(CircularFab);
+export default withStyles(styles)(CircularFab);

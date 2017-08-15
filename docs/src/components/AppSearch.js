@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import withWidth, { isWidthUp } from 'material-ui/utils/withWidth';
 import Search from 'material-ui-icons/Search';
 import { fade } from 'material-ui/styles/colorManipulator';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 
 let docsearchDisplay = false;
 let searchTimer;
@@ -37,7 +37,7 @@ function removeDocsearch() {
   clearInterval(searchTimer);
 }
 
-const styleSheet = createStyleSheet('AppSearch', theme => ({
+const styles = theme => ({
   '@global': {
     '.algolia-autocomplete': {
       fontFamily: theme.typography.fontFamily,
@@ -101,7 +101,7 @@ const styleSheet = createStyleSheet('AppSearch', theme => ({
       outline: 0,
     },
   },
-}));
+});
 
 function AppSearch(props) {
   const { classes, width } = props;
@@ -128,4 +128,4 @@ AppSearch.propTypes = {
   width: PropTypes.string.isRequired,
 };
 
-export default compose(pure, withStyles(styleSheet), withWidth())(AppSearch);
+export default compose(pure, withStyles(styles, { name: 'AppSearch' }), withWidth())(AppSearch);

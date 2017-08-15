@@ -4,7 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, createMount, getClasses } from '../test-utils';
-import createSwitch, { styleSheet } from './SwitchBase';
+import createSwitch from './SwitchBase';
 import Icon from '../Icon';
 
 function assertIsChecked(wrapper) {
@@ -57,7 +57,7 @@ describe('<SwitchBase />', () => {
       dive: true,
     });
     mount = createMount();
-    classes = getClasses(styleSheet);
+    classes = getClasses(<SwitchBase />);
   });
 
   after(() => {
@@ -95,14 +95,18 @@ describe('<SwitchBase />', () => {
 
   // className is put on the root node, this is a special case!
   it('should render with the user and root classes', () => {
-    const wrapper = shallow(<SwitchBase className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+    const wrapper = shallow(<SwitchBase className="woofSwitchBase" />);
+    assert.strictEqual(wrapper.hasClass('woofSwitchBase'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should spread custom props on the root node', () => {
-    const wrapper = shallow(<SwitchBase data-my-prop="woof" />);
-    assert.strictEqual(wrapper.props()['data-my-prop'], 'woof', 'custom prop should be woof');
+    const wrapper = shallow(<SwitchBase data-my-prop="woofSwitchBase" />);
+    assert.strictEqual(
+      wrapper.props()['data-my-prop'],
+      'woofSwitchBase',
+      'custom prop should be woofSwitchBase',
+    );
   });
 
   it('should pass tabIndex to the input so it can be taken out of focus rotation', () => {
@@ -237,7 +241,7 @@ describe('<SwitchBase />', () => {
     let onChangeSpy;
 
     before(() => {
-      event = 'woof';
+      event = 'woofSwitchBase';
       onChangeSpy = spy();
       wrapper = mount(<SwitchBase.Naked classes={{}} />);
       wrapper.setProps({ onChange: onChangeSpy });

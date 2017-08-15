@@ -2,18 +2,18 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import FolderIcon from 'material-ui-icons/Folder';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
     background: theme.palette.background.paper,
   },
-}));
+});
 
 function FolderList(props) {
   const classes = props.classes;
@@ -41,4 +41,4 @@ FolderList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(FolderList);
+export default withStyles(styles)(FolderList);

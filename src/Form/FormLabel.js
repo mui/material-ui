@@ -1,14 +1,12 @@
 // @flow
-/* eslint-disable jsx-a11y/label-has-for */
 
 import React from 'react';
 import type { Element } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiFormLabel', theme => {
+export const styles = (theme: Object) => {
   const focusColor = theme.palette.primary[theme.palette.type === 'light' ? 'A700' : 'A200'];
   return {
     root: {
@@ -26,10 +24,11 @@ export const styleSheet = createStyleSheet('MuiFormLabel', theme => {
       color: theme.palette.input.disabled,
     },
   };
-});
+};
 
 type DefaultProps = {
   classes: Object,
+  component: string,
 };
 
 export type Props = {
@@ -45,6 +44,11 @@ export type Props = {
    * @ignore
    */
   className?: string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component?: string | Function,
   /**
    * If `true`, the label should be displayed in a disabled state.
    */
@@ -70,6 +74,7 @@ function FormLabel(props: AllProps, context: { muiFormControl: Object }) {
     children,
     classes,
     className: classNameProp,
+    component: Component,
     disabled: disabledProp,
     error: errorProp,
     focused: focusedProp,
@@ -114,18 +119,22 @@ function FormLabel(props: AllProps, context: { muiFormControl: Object }) {
   });
 
   return (
-    <label className={className} {...other}>
+    <Component className={className} {...other}>
       {children}
       {required &&
         <span className={asteriskClassName} data-mui-test="FormLabelAsterisk">
           {'\u2009*'}
         </span>}
-    </label>
+    </Component>
   );
 }
+
+FormLabel.defaultProps = {
+  component: 'label',
+};
 
 FormLabel.contextTypes = {
   muiFormControl: PropTypes.object,
 };
 
-export default withStyles(styleSheet)(FormLabel);
+export default withStyles(styles, { name: 'MuiFormLabel' })(FormLabel);

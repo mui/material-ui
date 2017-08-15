@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import type { Element } from 'react';
 import Transition from '../internal/Transition';
 import { duration } from '../styles/transitions';
@@ -11,6 +11,7 @@ type DefaultProps = {
   in: boolean,
   enterTransitionDuration: number,
   leaveTransitionDuration: number,
+  theme: Object,
 };
 
 export type Props = {
@@ -54,18 +55,19 @@ export type Props = {
   /**
    * @ignore
    */
-  theme: Object,
+  theme?: Object,
 };
 
 type AllProps = DefaultProps & Props;
 
-class Fade extends Component<DefaultProps, AllProps, void> {
+class Fade extends PureComponent<DefaultProps, AllProps, void> {
   props: AllProps;
 
   static defaultProps: DefaultProps = {
     in: false,
     enterTransitionDuration: duration.enteringScreen,
     leaveTransitionDuration: duration.leavingScreen,
+    theme: {},
   };
 
   handleEnter = element => {

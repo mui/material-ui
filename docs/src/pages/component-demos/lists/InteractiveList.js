@@ -2,7 +2,7 @@
 
 import React, { cloneElement, Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import List, {
   ListItem,
   ListItemAvatar,
@@ -19,7 +19,7 @@ import Typography from 'material-ui/Typography';
 import FolderIcon from 'material-ui-icons/Folder';
 import DeleteIcon from 'material-ui-icons/Delete';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     flexGrow: 1,
     maxWidth: 752,
@@ -30,7 +30,7 @@ const styleSheet = createStyleSheet(theme => ({
   title: {
     margin: `${theme.spacing.unit * 4}px 0 ${theme.spacing.unit * 2}px`,
   },
-}));
+});
 
 function generate(element) {
   return [0, 1, 2].map(value =>
@@ -173,4 +173,4 @@ InteractiveList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(InteractiveList);
+export default withStyles(styles)(InteractiveList);

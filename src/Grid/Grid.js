@@ -15,7 +15,6 @@
 import React from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import requirePropFactory from '../utils/requirePropFactory';
 import Hidden from '../Hidden';
@@ -82,70 +81,66 @@ function generateGutter(theme, breakpoint) {
   return styles;
 }
 
-export const styleSheet = createStyleSheet('MuiGrid', theme => {
-  // Default CSS values
-  // flex: '0 1 auto',
-  // flexDirection: 'row',
-  // alignItems: 'flex-start',
-  // flexWrap: 'nowrap',
-  // justifyContent: 'flex-start',
-
-  return {
-    typeContainer: {
-      boxSizing: 'border-box',
-      display: 'flex',
-      flexWrap: 'wrap',
-      width: '100%',
-    },
-    typeItem: {
-      boxSizing: 'border-box',
-      flex: '0 0 auto',
-      margin: '0', // For instance, it's useful when used with a `figure` element.
-    },
-    'direction-xs-column': {
-      flexDirection: 'column',
-    },
-    'direction-xs-column-reverse': {
-      flexDirection: 'column-reverse',
-    },
-    'direction-xs-row-reverse': {
-      flexDirection: 'row-reverse',
-    },
-    'wrap-xs-nowrap': {
-      flexWrap: 'nowrap',
-    },
-    'align-xs-center': {
-      alignItems: 'center',
-    },
-    'align-xs-flex-start': {
-      alignItems: 'flex-start',
-    },
-    'align-xs-flex-end': {
-      alignItems: 'flex-end',
-    },
-    'align-xs-baseline': {
-      alignItems: 'baseline',
-    },
-    'justify-xs-center': {
-      justifyContent: 'center',
-    },
-    'justify-xs-flex-end': {
-      justifyContent: 'flex-end',
-    },
-    'justify-xs-space-between': {
-      justifyContent: 'space-between',
-    },
-    'justify-xs-space-around': {
-      justifyContent: 'space-around',
-    },
-    ...generateGutter(theme, 'xs'),
-    ...theme.breakpoints.keys.reduce((styles, key) => {
-      // Use side effect for performance.
-      generateGrid(styles, theme, key);
-
-      return styles;
-    }, {}),
-  };
+// Default CSS values
+// flex: '0 1 auto',
+// flexDirection: 'row',
+// alignItems: 'flex-start',
+// flexWrap: 'nowrap',
+// justifyContent: 'flex-start',
+export const styles = (theme: Object) => ({
+  typeContainer: {
+    boxSizing: 'border-box',
+    display: 'flex',
+    flexWrap: 'wrap',
+    width: '100%',
+  },
+  typeItem: {
+    boxSizing: 'border-box',
+    flex: '0 0 auto',
+    margin: '0', // For instance, it's useful when used with a `figure` element.
+  },
+  'direction-xs-column': {
+    flexDirection: 'column',
+  },
+  'direction-xs-column-reverse': {
+    flexDirection: 'column-reverse',
+  },
+  'direction-xs-row-reverse': {
+    flexDirection: 'row-reverse',
+  },
+  'wrap-xs-nowrap': {
+    flexWrap: 'nowrap',
+  },
+  'align-xs-center': {
+    alignItems: 'center',
+  },
+  'align-xs-flex-start': {
+    alignItems: 'flex-start',
+  },
+  'align-xs-flex-end': {
+    alignItems: 'flex-end',
+  },
+  'align-xs-baseline': {
+    alignItems: 'baseline',
+  },
+  'justify-xs-center': {
+    justifyContent: 'center',
+  },
+  'justify-xs-flex-end': {
+    justifyContent: 'flex-end',
+  },
+  'justify-xs-space-between': {
+    justifyContent: 'space-between',
+  },
+  'justify-xs-space-around': {
+    justifyContent: 'space-around',
+  },
+  ...generateGutter(theme, 'xs'),
+  ...theme.breakpoints.keys.reduce((accumulator, key) => {
+    // Use side effect over immutability for better performance.
+    generateGrid(accumulator, theme, key);
+    return accumulator;
+  }, {}),
 });
 
 type GridSizes = boolean | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
@@ -335,4 +330,4 @@ if (process.env.NODE_ENV !== 'production') {
   };
 }
 
-export default withStyles(styleSheet)(GridWrapper);
+export default withStyles(styles, { name: 'MuiGrid' })(GridWrapper);

@@ -95,7 +95,7 @@ function handleRender(req, res) {
   // Render the component to a string.
   const html = renderToString(
     <JssProvider registry={sheetsRegistry} jss={jss}>
-      <MuiThemeProvider theme={theme} sheetsManager={new WeakMap()}>
+      <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
         <App />
       </MuiThemeProvider>
     </JssProvider>

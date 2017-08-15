@@ -5,10 +5,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiGridListTile', {
+export const styles = {
   root: {
     boxSizing: 'border-box',
   },
@@ -30,7 +29,7 @@ export const styleSheet = createStyleSheet('MuiGridListTile', {
     transform: 'translateY(-50%)',
     top: '50%',
   },
-});
+};
 
 class GridListTile extends Component {
   static defaultProps = {
@@ -157,4 +156,4 @@ GridListTile.propTypes = {
   rows: PropTypes.number,
 };
 
-export default withStyles(styleSheet)(GridListTile);
+export default withStyles(styles, { name: 'MuiGridListTile' })(GridListTile);

@@ -2,20 +2,20 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import reptileImage from 'docs/src/assets/images/cards/contemplative-reptile.jpg';
 
-const styleSheet = createStyleSheet({
+const styles = {
   card: {
     maxWidth: 345,
   },
   media: {
     height: 200,
   },
-});
+};
 
 function SimpleMediaCard(props) {
   const classes = props.classes;
@@ -49,4 +49,4 @@ SimpleMediaCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(SimpleMediaCard);
+export default withStyles(styles)(SimpleMediaCard);

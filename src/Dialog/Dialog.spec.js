@@ -5,7 +5,7 @@ import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
 import Paper from '../Paper';
 import Fade from '../transitions/Fade';
-import Dialog, { styleSheet } from './Dialog';
+import Dialog from './Dialog';
 
 describe('<Dialog />', () => {
   let shallow;
@@ -13,7 +13,7 @@ describe('<Dialog />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Dialog />);
   });
 
   it('should render a Modal', () => {
@@ -56,13 +56,17 @@ describe('<Dialog />', () => {
   });
 
   it('should spread custom props on the paper (dialog "root") node', () => {
-    const wrapper = shallow(<Dialog data-my-prop="woof" />);
-    assert.strictEqual(wrapper.prop('data-my-prop'), 'woof', 'custom prop should be woof');
+    const wrapper = shallow(<Dialog data-my-prop="woofDialog" />);
+    assert.strictEqual(
+      wrapper.prop('data-my-prop'),
+      'woofDialog',
+      'custom prop should be woofDialog',
+    );
   });
 
   it('should render with the user classes on the root node', () => {
-    const wrapper = shallow(<Dialog className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+    const wrapper = shallow(<Dialog className="woofDialog" />);
+    assert.strictEqual(wrapper.hasClass('woofDialog'), true);
   });
 
   it('should render Fade > Paper > children inside the Modal', () => {

@@ -3,7 +3,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog';
@@ -106,7 +106,7 @@ ConfirmationDialog.propTypes = {
   selectedValue: PropTypes.string,
 };
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
@@ -116,7 +116,7 @@ const styleSheet = createStyleSheet(theme => ({
     width: '80%',
     maxHeight: 435,
   },
-}));
+});
 
 class ConfirmationDialogDemo extends Component {
   state = {
@@ -174,4 +174,4 @@ ConfirmationDialogDemo.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(ConfirmationDialogDemo);
+export default withStyles(styles)(ConfirmationDialogDemo);

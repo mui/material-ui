@@ -3,12 +3,11 @@
 import React from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import Paper from '../Paper';
 
-export const styleSheet = createStyleSheet('MuiAppBar', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -43,7 +42,7 @@ export const styleSheet = createStyleSheet('MuiAppBar', theme => ({
     backgroundColor: theme.palette.accent.A200,
     color: theme.palette.getContrastText(theme.palette.accent.A200),
   },
-}));
+});
 
 type DefaultProps = {
   classes: Object,
@@ -101,4 +100,4 @@ AppBar.defaultProps = {
   position: 'fixed',
 };
 
-export default withStyles(styleSheet)(AppBar);
+export default withStyles(styles, { name: 'MuiAppBar' })(AppBar);

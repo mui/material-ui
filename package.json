@@ -2,7 +2,7 @@
   "name": "material-ui-build-next",
   "private": true,
   "author": "Material-UI Team",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.5",
   "description": "Material Design UI components built with React",
   "main": "./src/index.js",
   "keywords": [
@@ -77,8 +77,8 @@
     "warning": "^3.0.0"
   },
   "devDependencies": {
-    "@types/enzyme": "^2.8.4",
-    "@types/react": "^16.0.0",
+    "@types/enzyme": "^2.8.5",
+    "@types/react": "^16.0.2",
     "app-module-path": "^2.2.0",
     "argos-cli": "^0.0.9",
     "babel-cli": "^6.24.1",
@@ -101,7 +101,7 @@
     "babel-preset-stage-1": "^6.24.1",
     "babel-register": "^6.24.1",
     "chai": "^4.1.1",
-    "cross-env": "^5.0.4",
+    "cross-env": "^5.0.5",
     "doctrine": "^2.0.0",
     "enzyme": "^2.9.1",
     "eslint": "^3.19.0",
@@ -114,7 +114,7 @@
     "eslint-plugin-material-ui": "file:packages/eslint-plugin-material-ui",
     "eslint-plugin-mocha": "^4.11.0",
     "eslint-plugin-prettier": "^2.1.2",
-    "eslint-plugin-react": "^7.1.0",
+    "eslint-plugin-react": "^7.2.0",
     "eslint-plugin-spellcheck": "^0.0.8",
     "eventsource-polyfill": "^0.9.6",
     "file-loader": "^0.11.2",
@@ -146,13 +146,13 @@
     "recast": "^0.12.6",
     "recursive-readdir-sync": "^1.0.6",
     "rimraf": "^2.6.1",
-    "sinon": "^3.0.0",
-    "size-limit": "^0.8.0",
+    "sinon": "^3.2.0",
+    "size-limit": "^0.9.0",
     "typescript": "^2.4.2",
     "url-loader": "^0.5.9",
     "vrtest": "^0.2.0",
     "webfontloader": "^1.6.28",
-    "webpack": "^3.4.1"
+    "webpack": "^3.5.3"
   },
   "nyc": {
     "include": [

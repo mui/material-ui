@@ -3,11 +3,10 @@
 import React from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { cloneChildrenWithClassName } from '../utils/reactHelpers';
 
-export const styleSheet = createStyleSheet('MuiCardActions', {
+export const styles = {
   root: {
     height: 52,
     display: 'flex',
@@ -17,7 +16,7 @@ export const styleSheet = createStyleSheet('MuiCardActions', {
   actionSpacing: {
     margin: '0 4px',
   },
-});
+};
 
 type DefaultProps = {
   classes: Object,
@@ -61,4 +60,4 @@ CardActions.defaultProps = {
   disableActionSpacing: false,
 };
 
-export default withStyles(styleSheet)(CardActions);
+export default withStyles(styles, { name: 'MuiCardActions' })(CardActions);

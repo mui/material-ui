@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import IconButton from 'material-ui/IconButton';
 import Collapse from 'material-ui/transitions/Collapse';
 import CodeIcon from 'material-ui-icons/Code';
@@ -11,7 +11,7 @@ import MarkdownElement from 'docs/src/components/MarkdownElement';
 const requireDemos = require.context('docs/src', true, /\.js$/);
 const requireDemoSource = require.context('!raw-loader!docs/src', true, /\.js$/);
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     fontFamily: theme.typography.fontFamily,
     position: 'relative',
@@ -55,7 +55,7 @@ const styleSheet = createStyleSheet(theme => ({
       marginRight: 0,
     },
   },
-}));
+});
 
 class Demo extends Component {
   state = {
@@ -95,4 +95,4 @@ Demo.propTypes = {
   demo: PropTypes.string.isRequired,
 };
 
-export default withStyles(styleSheet)(Demo);
+export default withStyles(styles)(Demo);

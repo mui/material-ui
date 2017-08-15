@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import ListItemText, { styleSheet } from './ListItemText';
+import ListItemText from './ListItemText';
 
 describe('<ListItemText />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<ListItemText />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<ListItemText />);
   });
 
   it('should render a div', () => {
@@ -21,8 +21,8 @@ describe('<ListItemText />', () => {
   });
 
   it('should render with the user and root classes', () => {
-    const wrapper = shallow(<ListItemText className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+    const wrapper = shallow(<ListItemText className="woofListItemText" />);
+    assert.strictEqual(wrapper.hasClass('woofListItemText'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 

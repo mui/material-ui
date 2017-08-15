@@ -2,12 +2,12 @@
 
 import React from 'react';
 import type { Element } from 'react';
-import createStyleSheet from '../styles/createStyleSheet';
+import withStyles from '../styles/withStyles';
 import createSwitch from '../internal/SwitchBase';
 import RadioButtonCheckedIcon from '../svg-icons/radio-button-checked';
 import RadioButtonUncheckedIcon from '../svg-icons/radio-button-unchecked';
 
-export const styleSheet = createStyleSheet('MuiRadio', theme => ({
+export const styles = (theme: Object) => ({
   default: {
     color: theme.palette.text.secondary,
   },
@@ -17,14 +17,15 @@ export const styleSheet = createStyleSheet('MuiRadio', theme => ({
   disabled: {
     color: theme.palette.action.disabled,
   },
-}));
-
-const Radio = createSwitch({
-  styleSheet,
-  inputType: 'radio',
-  defaultIcon: <RadioButtonUncheckedIcon />,
-  defaultCheckedIcon: <RadioButtonCheckedIcon />,
 });
+
+const Radio = withStyles(styles, { name: 'MuiRadio' })(
+  createSwitch({
+    inputType: 'radio',
+    defaultIcon: <RadioButtonUncheckedIcon />,
+    defaultCheckedIcon: <RadioButtonCheckedIcon />,
+  }),
+);
 
 Radio.displayName = 'Radio';
 

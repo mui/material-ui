@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import pink from 'material-ui/colors/pink';
 import green from 'material-ui/colors/green';
 import Avatar from 'material-ui/Avatar';
@@ -10,7 +10,7 @@ import FolderIcon from 'material-ui-icons/Folder';
 import PageviewIcon from 'material-ui-icons/Pageview';
 import AssignmentIcon from 'material-ui-icons/Assignment';
 
-const styleSheet = createStyleSheet({
+const styles = {
   avatar: {
     margin: 10,
   },
@@ -28,7 +28,7 @@ const styleSheet = createStyleSheet({
     display: 'flex',
     justifyContent: 'center',
   },
-});
+};
 
 function IconAvatars(props) {
   const classes = props.classes;
@@ -51,4 +51,4 @@ IconAvatars.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(IconAvatars);
+export default withStyles(styles)(IconAvatars);

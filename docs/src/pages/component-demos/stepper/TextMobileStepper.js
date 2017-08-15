@@ -2,12 +2,12 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import MobileStepper from 'material-ui/MobileStepper';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     maxWidth: 400,
     flexGrow: 1,
@@ -20,7 +20,7 @@ const styleSheet = createStyleSheet(theme => ({
     marginBottom: 20,
     background: theme.palette.background.default,
   },
-}));
+});
 
 class TextMobileStepper extends Component {
   state = {
@@ -68,4 +68,4 @@ TextMobileStepper.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(TextMobileStepper);
+export default withStyles(styles)(TextMobileStepper);

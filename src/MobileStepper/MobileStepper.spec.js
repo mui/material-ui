@@ -7,7 +7,7 @@ import Button from '../Button/Button';
 import KeyboardArrowLeft from '../svg-icons/keyboard-arrow-left';
 import KeyboardArrowRight from '../svg-icons/keyboard-arrow-right';
 import { LinearProgress } from '../Progress';
-import MobileStepper, { styleSheet } from './MobileStepper';
+import MobileStepper from './MobileStepper';
 
 describe('<MobileStepper />', () => {
   let shallow;
@@ -20,7 +20,7 @@ describe('<MobileStepper />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<MobileStepper {...defaultProps} />);
   });
 
   it('should render a Paper component', () => {

@@ -2,14 +2,14 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import { CircularProgress } from 'material-ui/Progress';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   progress: {
     margin: `0 ${theme.spacing.unit * 2}px`,
   },
-}));
+});
 
 function CircularDeterminate(props) {
   const classes = props.classes;
@@ -42,4 +42,4 @@ CircularDeterminate.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(CircularDeterminate);
+export default withStyles(styles)(CircularDeterminate);

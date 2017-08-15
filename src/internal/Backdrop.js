@@ -3,10 +3,9 @@
 import React from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiBackdrop', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     zIndex: -1,
     width: '100%',
@@ -24,7 +23,7 @@ export const styleSheet = createStyleSheet('MuiBackdrop', theme => ({
   invisible: {
     backgroundColor: theme.palette.common.transparent,
   },
-}));
+});
 
 type DefaultProps = {
   classes: Object,
@@ -76,4 +75,4 @@ Backdrop.defaultProps = {
   invisible: false,
 };
 
-export default withStyles(styleSheet)(Backdrop);
+export default withStyles(styles, { name: 'MuiBackdrop' })(Backdrop);

@@ -5,7 +5,7 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, getClasses } from '../test-utils';
 import Icon from '../Icon';
-import BottomNavigationButton, { styleSheet } from './BottomNavigationButton';
+import BottomNavigationButton from './BottomNavigationButton';
 
 describe('<BottomNavigationButton />', () => {
   let shallow;
@@ -14,7 +14,7 @@ describe('<BottomNavigationButton />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<BottomNavigationButton />);
   });
 
   it('should render a ButtonBase', () => {
@@ -28,8 +28,10 @@ describe('<BottomNavigationButton />', () => {
   });
 
   it('should render with the user and root classes', () => {
-    const wrapper = shallow(<BottomNavigationButton className="woof" icon={icon} />);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+    const wrapper = shallow(
+      <BottomNavigationButton className="woofBottomNavigationButton" icon={icon} />,
+    );
+    assert.strictEqual(wrapper.hasClass('woofBottomNavigationButton'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
