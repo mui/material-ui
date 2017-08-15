@@ -146,7 +146,7 @@
     "recursive-readdir-sync": "^1.0.6",
     "rimraf": "^2.6.1",
     "sinon": "^3.2.0",
-    "size-limit": "^0.8.4",
+    "size-limit": "^0.9.0",
     "url-loader": "^0.5.9",
     "vrtest": "^0.2.0",
     "webfontloader": "^1.6.28",
