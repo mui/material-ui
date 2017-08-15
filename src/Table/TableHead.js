@@ -57,14 +57,13 @@ class TableHead extends Component<DefaultProps, AllProps, void> {
   }
 
   render() {
-    const { classes, className: classNameProp, children, component, ...other } = this.props;
+    const { classes, className: classNameProp, children, component: ComponentProp, ...other } = this.props;
     const className = classNames(classes.root, classNameProp);
-    const ComponentHeader = component;
 
     return (
-      <ComponentHeader className={className} {...other}>
+      <ComponentProp className={className} {...other}>
         {children}
-      </ComponentHeader>
+      </ComponentProp>
     );
   }
 }
