@@ -11,7 +11,7 @@
     "material design",
     "material-ui"
   ],
-  "typings": "./typings/index.d.ts",
+  "typings": "typings/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/callemall/material-ui.git"
@@ -45,6 +45,7 @@
     "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha test/**/*.spec.js src/{,**/}*.spec.js && nyc report --reporter=html",
     "test:karma": "cross-env NODE_ENV=test karma start test/karma.conf.js --single-run",
     "test:regressions": "webpack --config test/regressions/webpack.config.js && vrtest run --config test/vrtest.config.js --record",
+    "test:typings": "tsc -p tsconfig.json",
     "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN || true",
     "flow": "flow --show-all-errors",
     "version": "yarn build",
@@ -147,6 +148,7 @@
     "rimraf": "^2.6.1",
     "sinon": "^3.2.0",
     "size-limit": "^0.9.0",
+    "typescript": "^2.4.2",
     "url-loader": "^0.5.9",
     "vrtest": "^0.2.0",
     "webfontloader": "^1.6.28",

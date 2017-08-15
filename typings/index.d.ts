@@ -40,8 +40,9 @@ declare namespace MaterialUI {
    * Utilies types based on:
    * https://github.com/Microsoft/TypeScript/issues/12215#issuecomment-307871458
    */
-  type Diff<T extends string, U extends string> = ({[P in T]: P } & {[P in U]: never } & { [x: string]: never })[T];
-  type Omit<T, K extends keyof T> = {[P in Diff<keyof T, K>]: T[P]};
+  type Diff<T extends string, U extends string> = ({ [P in T]: P } &
+    { [P in U]: never } & { [x: string]: never })[T];
+  type Omit<T, K extends keyof T> = { [P in Diff<keyof T, K>]: T[P] };
 }
 
 declare namespace MaterialUI.PropTypes {
@@ -352,7 +353,6 @@ declare module 'material-ui/Chip/Chip' {
   export interface ChipProps extends React.HTMLAttributes<HTMLDivElement> {
     avatar?: React.ReactNode;
     label?: React.ReactNode;
-    onClick?: React.EventHandler<any>;
     onKeyDown?: React.EventHandler<React.KeyboardEvent<any>>;
     onRequestDelete?: React.EventHandler<any>;
     tabIndex?: number;
@@ -387,8 +387,8 @@ declare module 'material-ui/Dialog/Dialog' {
     fullScreen?: boolean;
     ignoreBackdropClick?: boolean;
     ignoreEscapeKeyUp?: boolean;
-    enterTransitionDuration?: number;
-    leaveTransitionDuration?: number;
+    enterTransitionDuration?: number | string;
+    leaveTransitionDuration?: number | string;
     maxWidth?: 'xs' | 'sm' | 'md';
     onBackdropClick?: Function;
     onEscapeKeyUp?: Function;
@@ -473,6 +473,7 @@ declare module 'material-ui/Drawer' {
 
 declare module 'material-ui/Drawer/Drawer' {
   import { ModalProps } from 'material-ui/internal/Modal';
+  import { SlideProps } from 'material-ui/transitions/Slide';
   import { Theme } from 'material-ui/styles/theme';
 
   type DrawerCommonProps = {
@@ -481,7 +482,7 @@ declare module 'material-ui/Drawer/Drawer' {
     enterTransitionDuration?: number;
     leaveTransitionDuration?: number;
     open?: boolean;
-    SlideProps?: Object;
+    SlideProps?: SlideProps;
     theme?: Theme;
   };
 
@@ -552,7 +553,7 @@ declare module 'material-ui/Form/FormControlLabel' {
 declare module 'material-ui/Form/FormGroup' {
   export interface FormGroupProps
     extends React.HtmlHTMLAttributes<HTMLDivElement> {
-    row: boolean;
+    row?: boolean;
   }
 
   export default class FormGroup extends MaterialUI.Component<FormGroupProps> {}
@@ -626,6 +627,55 @@ declare module 'material-ui/Grid/Grid' {
   } & Partial<{ [key in Breakpoint]: boolean | GridSize }>;
 
   export default class Grid extends MaterialUI.Component<GridProps> {}
+}
+
+declare module 'material-ui/GridList' {
+  export { default } from 'material-ui/GridList/GridList';
+  export * from 'material-ui/GridList/GridList';
+  export { default as GridList } from 'material-ui/GridList/GridList';
+  export { default as GridListTitle } from 'material-ui/GridList/GridListTitle';
+  export * from 'material-ui/GridList/GridListTitle';
+  export {
+    default as GridListTitleBar,
+  } from 'material-ui/GridList/GridListTitleBar';
+  export * from 'material-ui/GridList/GridListTitleBar';
+}
+
+declare module 'material-ui/GridList/GridList' {
+  export interface GridListProps {
+    cellHeight?: number | 'auto';
+    cols?: number;
+    component?: React.ReactElement<any> | string;
+    spacing?: number;
+  }
+
+  export default class GridList extends MaterialUI.Component<GridListProps> {}
+}
+
+declare module 'material-ui/GridList/GridListTitle' {
+  export interface GridListTitleProps {
+    cols?: number;
+    component?: React.ReactElement<any> | string;
+    row?: number;
+  }
+
+  export default class GridListTitle extends MaterialUI.Component<
+    GridListTitleProps
+  > {}
+}
+
+declare module 'material-ui/GridList/GridListTitleBar' {
+  export interface GridListTitleBarProps {
+    actionIcon?: React.ReactElement<any>;
+    actionPosition?: 'left' | 'right';
+    subtitle?: React.ReactNode;
+    title?: React.ReactNode;
+    titlePosition?: 'top' | 'bottom';
+  }
+
+  export default class GridListTitleBar extends MaterialUI.Component<
+    GridListTitleBarProps
+  > {}
 }
 
 declare module 'material-ui/Hidden' {
@@ -1058,13 +1108,10 @@ declare module 'material-ui/Radio/RadioGroup' {
   import { FormGroupProps } from 'material-ui/Form/FormGroup';
 
   export type RadioGroupProps = {
-    className?: string;
     name?: string;
-    onBlur?: React.EventHandler<any>;
     onChange?: (event: React.ChangeEvent<{}>, value: string) => void;
-    onKeyDown?: React.EventHandler<any>;
     selectedValue?: string;
-  } & FormGroupProps;
+  } & Partial<MaterialUI.Omit<FormGroupProps, 'onChange'>>;
 
   export default class RadioGroup extends MaterialUI.Component<
     RadioGroupProps
@@ -1088,7 +1135,7 @@ declare module 'material-ui/Snackbar/Snackbar' {
   };
 
   export type SnackbarProps = {
-    action?: React.ReactElement<any>;
+    action?: React.ReactElement<any> | React.ReactElement<any>[];
     anchorOrigin?: Origin;
     autoHideDuration?: number;
     enterTransitionDuration?: number;
@@ -1112,7 +1159,7 @@ declare module 'material-ui/Snackbar/SnackbarContent' {
 
   export interface SnackbarContentProps extends PaperProps {
     action?: React.ReactElement<any>;
-    message: React.ReactElement<any>;
+    message: React.ReactElement<any> | string;
   }
 
   export default class SnackbarContent extends MaterialUI.Component<
@@ -1326,7 +1373,7 @@ declare module 'material-ui/TextField/TextField' {
   import { InputProps } from 'material-ui/Input/Input';
   import { InputLabelProps } from 'material-ui/Input/InputLabel';
 
-  export type InputProps = {
+  export type TextFieldProps = {
     autoComplete?: string;
     autoFocus?: boolean;
     defaultValue?: string | number;
@@ -1355,10 +1402,10 @@ declare module 'material-ui/TextField/TextField' {
     type?: string;
     value?: string | number;
     margin?: MaterialUI.PropTypes.Margin;
-  } & Partial<MaterialUI.InputEventEmitter<HTMLElement>> &
+  } & Partial<MaterialUI.InputEventEmitter<HTMLInputElement>> &
     FormControlProps;
 
-  export default class Input extends MaterialUI.Component<InputProps> {}
+  export default class Input extends MaterialUI.Component<TextFieldProps> {}
 }
 
 declare module 'material-ui/Toolbar' {
@@ -2042,6 +2089,51 @@ declare module 'material-ui/styles/zIndex' {
 
   const zIndex: ZIndex;
   export default zIndex;
+}
+
+/* ============================================= */
+/*                                               */
+/*                  TRANSITIONS                  */
+/*                                               */
+/* ============================================= */
+declare module 'material-ui/transitions/Collapse' {
+  import { Theme } from 'material-ui/styles/theme';
+  import { TransitionProps } from 'material-ui/internal/Transition';
+
+  export interface CollapseProps extends TransitionProps {
+    theme?: Theme;
+    transitionDuration?: number | string;
+  }
+
+  export default class Collapse extends MaterialUI.Component<CollapseProps> {}
+}
+
+declare module 'material-ui/transitions/Fade' {
+  import { Theme } from 'material-ui/styles/theme';
+  import { TransitionProps } from 'material-ui/internal/Transition';
+
+  export interface FadeProps extends TransitionProps {
+    theme?: Theme;
+    enterTransitionDuration?: number;
+    leaveTransitionDuration?: number;
+  }
+
+  export default class Fade extends MaterialUI.Component<FadeProps> {}
+}
+
+declare module 'material-ui/transitions/Slide' {
+  import { Theme } from 'material-ui/styles/theme';
+  import { TransitionProps } from 'material-ui/internal/Transition';
+
+  export interface SlideProps extends TransitionProps {
+    direction?: 'left' | 'right' | 'up' | 'down';
+    offset?: string;
+    theme?: Theme;
+    enterTransitionDuration?: number;
+    leaveTransitionDuration?: number;
+  }
+
+  export default class Slide extends MaterialUI.Component<SlideProps> {}
 }
 
 /* ============================================= */
