@@ -19,6 +19,11 @@ describe('<TableRow />', () => {
     assert.strictEqual(wrapper.name(), 'tr');
   });
 
+  it('should render a div', () => {
+    const wrapper = shallow(<TableRow component="div" />);
+    assert.strictEqual(wrapper.name(), 'div');
+  });
+
   it('should spread custom props on the root node', () => {
     const wrapper = shallow(<TableRow data-my-prop="woofTableRow" />);
     assert.strictEqual(

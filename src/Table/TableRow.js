@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -33,7 +33,15 @@ export const styles = (theme: Object) => ({
  * based on the material table element parent (head, body, etc).
  */
 function TableRow(props, context) {
-  const { classes, className: classNameProp, children, hover, selected, ...other } = props;
+  const {
+    classes,
+    className: classNameProp,
+    children,
+    component: Component,
+    hover,
+    selected,
+    ...other
+  } = props;
   const { table } = context;
 
   const className = classNames(
@@ -48,9 +56,9 @@ function TableRow(props, context) {
   );
 
   return (
-    <tr className={className} {...other}>
+    <Component className={className} {...other}>
       {children}
-    </tr>
+    </Component>
   );
 }
 
@@ -68,6 +76,11 @@ TableRow.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.string,
+  /**
    * If `true`, the table row will shade on hover.
    */
   hover: PropTypes.bool,
@@ -80,6 +93,7 @@ TableRow.propTypes = {
 TableRow.defaultProps = {
   hover: false,
   selected: false,
+  component: 'tr',
 };
 
 TableRow.contextTypes = {

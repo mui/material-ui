@@ -19,6 +19,11 @@ describe('<TableBody />', () => {
     assert.strictEqual(wrapper.name(), 'tbody');
   });
 
+  it('should render a div', () => {
+    const wrapper = shallow(<TableBody component="div" />);
+    assert.strictEqual(wrapper.name(), 'div');
+  });
+
   it('should render with the user and root classes', () => {
     const wrapper = shallow(<TableBody className="woofTableBody" />);
     assert.strictEqual(wrapper.hasClass('woofTableBody'), true);
