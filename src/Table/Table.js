@@ -58,7 +58,13 @@ class Table extends Component<DefaultProps, AllProps, void> {
   }
 
   render() {
-    const { classes, className: classNameProp, children, component: ComponentProp, ...other } = this.props;
+    const {
+      classes,
+      className: classNameProp,
+      children,
+      component: ComponentProp,
+      ...other
+    } = this.props;
     const className = classNames(classes.root, classNameProp);
 
     return (
