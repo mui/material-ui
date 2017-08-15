@@ -46,7 +46,7 @@ class FullWidthTabs extends Component {
       <div className={classes.root} style={{ width: 500 }}>
         <AppBar position="static" color="default">
           <Tabs
-            value={this.state.value}
+            index={this.state.value}
             onChange={this.handleChange}
             indicatorColor="primary"
             textColor="primary"
