@@ -10,6 +10,7 @@ Big thanks to the 11 contributors who made this release possible.
 ##### Breaking changes
 
 - [Tabs][BottomNavigation] Use value over index property (#7741) @oliviertassinari
+
 This is an effort in the prolongation of #2957 where `value`/`onChange` is the idiomatic interface to control a component.
 ```diff
 -<Tabs index={0}>
@@ -17,6 +18,7 @@ This is an effort in the prolongation of #2957 where `value`/`onChange` is the i
 // ...
 ```
 - [core] Remove createStyleSheet (#7740)(#7730) @oliviertassinari
+
 The primary motivation for this change is simplicity, it's also making our interface closer to
 `react-jss`.
 ```diff
