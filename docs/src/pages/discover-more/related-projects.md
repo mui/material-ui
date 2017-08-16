@@ -2,6 +2,7 @@
 
 ## Material-UI Specific Projects
 
+- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/) A data grid for Material-UI with paging, sorting, filtering, grouping and editing features.
 - [formsy-material-ui](https://github.com/mbrookes/formsy-material-ui)
 A Formsy compatibility wrapper for Material-UI form components.
 - [react-materialui-notifications](https://github.com/puranjayjain/react-materialui-notifications) Spec compliant notifications for react and material ui users.
