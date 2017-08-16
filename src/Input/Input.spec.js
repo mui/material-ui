@@ -102,32 +102,41 @@ describe('<Input />', () => {
     before(() => {
       handleClean = spy();
       handleDirty = spy();
-      wrapper = shallow(<Input value="" onDirty={handleDirty} onClean={handleClean} />);
     });
 
-    it('should check that the component is controlled', () => {
-      const instance = wrapper.instance();
-      assert.strictEqual(instance.isControlled(), true, 'isControlled() should return true');
-    });
+    ['', 1].forEach(value => {
+      describe(`${typeof value} value`, () => {
+        before(() => {
+          wrapper = shallow(
+            <Input value={value} onChange={() => {}} onDirty={handleDirty} onClean={handleClean} />,
+          );
+        });
 
-    it('should have called the handleClean callback', () => {
-      assert.strictEqual(handleClean.callCount, 1, 'should have called the onClean cb');
-    });
+        it('should check that the component is controlled', () => {
+          const instance = wrapper.instance();
+          assert.strictEqual(instance.isControlled(), true, 'isControlled() should return true');
+        });
 
-    it('should fire the onDirty callback when dirtied', () => {
-      assert.strictEqual(handleDirty.callCount, 0, 'should not have called the onDirty cb yet');
-      wrapper.setProps({ value: 'hello' });
-      assert.strictEqual(handleDirty.callCount, 1, 'should have called the onDirty cb');
-    });
+        it('should have called the handleClean callback', () => {
+          assert.strictEqual(handleClean.callCount, 1, 'should have called the onClean cb');
+        });
 
-    it('should fire the onClean callback when dirtied', () => {
-      assert.strictEqual(
-        handleClean.callCount,
-        1,
-        'should have called the onClean cb once already',
-      );
-      wrapper.setProps({ value: '' });
-      assert.strictEqual(handleClean.callCount, 2, 'should have called the onClean cb again');
+        it('should fire the onDirty callback when dirtied', () => {
+          assert.strictEqual(handleDirty.callCount, 0, 'should not have called the onDirty cb yet');
+          wrapper.setProps({ value: 'hello' });
+          assert.strictEqual(handleDirty.callCount, 1, 'should have called the onDirty cb');
+        });
+
+        it('should fire the onClean callback when dirtied', () => {
+          assert.strictEqual(
+            handleClean.callCount,
+            1,
+            'should have called the onClean cb once already',
+          );
+          wrapper.setProps({ value: '' });
+          assert.strictEqual(handleClean.callCount, 2, 'should have called the onClean cb again');
+        });
+      });
     });
   });
 
