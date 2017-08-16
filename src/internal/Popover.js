@@ -372,12 +372,13 @@ class Popover extends Component<DefaultProps, AllProps, void> {
       onExiting,
       onExited,
       elevation,
+      autoFocus,
       ...other
     } = this.props;
 
     // FIXME: props API consistency problem? - `...other` not spread over the root
     return (
-      <Modal show={open} backdropInvisible onRequestClose={onRequestClose}>
+      <Modal show={open} backdropInvisible onRequestClose={onRequestClose} autoFocus={autoFocus}>
         <Grow
           in={open}
           enteredClassName={enteredClassName}
