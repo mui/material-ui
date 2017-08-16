@@ -478,16 +478,9 @@ class Input extends Component<DefaultProps, AllProps, State> {
     };
 
     if (component) {
-      inputProps = {
-        rowsMax,
-        ...inputProps,
-      };
       InputComponent = component;
     } else if (multiline) {
       if (rows && !rowsMax) {
-        inputProps = {
-          ...inputProps,
-        };
         InputComponent = 'textarea';
       } else {
         inputProps = {
