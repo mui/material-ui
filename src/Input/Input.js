@@ -369,8 +369,16 @@ class Input extends Component<DefaultProps, AllProps, State> {
     }
   };
 
+  /**
+   * A controlled input accepts its current value as a prop, as well as a callback
+   * to change that value.
+   *
+   * @returns {boolean}
+   * @see https://facebook.github.io/react/docs/forms.html#controlled-components
+   */
   isControlled() {
-    return typeof this.props.value === 'string';
+    const { onChange, value } = this.props;
+    return !!onChange && value !== undefined; // null necessary for no number
   }
 
   checkDirty(obj) {

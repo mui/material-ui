@@ -95,20 +95,24 @@ describe('<Input />', () => {
   });
 
   describe('controlled', () => {
-    let wrapper;
-    let handleDirty;
-    let handleClean;
-
-    before(() => {
-      handleClean = spy();
-      handleDirty = spy();
-    });
-
     ['', 1].forEach(value => {
       describe(`${typeof value} value`, () => {
+        let wrapper;
+        let handleDirty;
+        let handleClean;
+        let initialValue;
+
         before(() => {
+          handleClean = spy();
+          handleDirty = spy();
+          initialValue = typeof value === 'number' ? null : value;
           wrapper = shallow(
-            <Input value={value} onChange={() => {}} onDirty={handleDirty} onClean={handleClean} />,
+            <Input
+              value={initialValue} // no number is null
+              onChange={() => {}}
+              onDirty={handleDirty}
+              onClean={handleClean}
+            />,
           );
         });
 
@@ -123,7 +127,7 @@ describe('<Input />', () => {
 
         it('should fire the onDirty callback when dirtied', () => {
           assert.strictEqual(handleDirty.callCount, 0, 'should not have called the onDirty cb yet');
-          wrapper.setProps({ value: 'hello' });
+          wrapper.setProps({ value: typeof value === 'number' ? 2 : 'hello' });
           assert.strictEqual(handleDirty.callCount, 1, 'should have called the onDirty cb');
         });
 
@@ -133,7 +137,7 @@ describe('<Input />', () => {
             1,
             'should have called the onClean cb once already',
           );
-          wrapper.setProps({ value: '' });
+          wrapper.setProps({ value: initialValue });
           assert.strictEqual(handleClean.callCount, 2, 'should have called the onClean cb again');
         });
       });
