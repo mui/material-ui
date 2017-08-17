@@ -5,7 +5,7 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, createMount, getClasses } from '../test-utils';
 import Textarea from './Textarea';
-import Input, { isDirty } from './Input';
+import Input, { hasValue, isDirty } from './Input';
 
 describe('<Input />', () => {
   let shallow;
@@ -95,24 +95,17 @@ describe('<Input />', () => {
   });
 
   describe('controlled', () => {
-    ['', 1].forEach(value => {
+    ['', 0].forEach(value => {
       describe(`${typeof value} value`, () => {
         let wrapper;
         let handleDirty;
         let handleClean;
-        let initialValue;
 
         before(() => {
           handleClean = spy();
           handleDirty = spy();
-          initialValue = typeof value === 'number' ? null : value;
           wrapper = shallow(
-            <Input
-              value={initialValue} // no number is null
-              onChange={() => {}}
-              onDirty={handleDirty}
-              onClean={handleClean}
-            />,
+            <Input value={value} onChange={() => {}} onDirty={handleDirty} onClean={handleClean} />,
           );
         });
 
@@ -137,7 +130,7 @@ describe('<Input />', () => {
             1,
             'should have called the onClean cb once already',
           );
-          wrapper.setProps({ value: initialValue });
+          wrapper.setProps({ value });
           assert.strictEqual(handleClean.callCount, 2, 'should have called the onClean cb again');
         });
       });
@@ -358,14 +351,38 @@ describe('<Input />', () => {
     });
   });
 
+  describe('hasValue', () => {
+    ['', 0].forEach(value => {
+      it(`is true for ${value}`, () => {
+        assert.strictEqual(hasValue(value), true);
+      });
+    });
+
+    [null, undefined].forEach(value => {
+      it(`is false for ${value}`, () => {
+        assert.strictEqual(hasValue(value), false);
+      });
+    });
+  });
+
   describe('isDirty', () => {
-    it('should support integer', () => {
-      assert.strictEqual(
-        isDirty({
-          value: 3,
-        }),
-        true,
-      );
+    // no number is null
+    [' ', 1].forEach(value => {
+      it(`is true for value ${value}`, () => {
+        assert.strictEqual(isDirty({ value }), true);
+      });
+
+      it(`is true for SSR defaultValue ${value}`, () => {
+        assert.strictEqual(isDirty({ defaultValue: value }, true), true);
+      });
+    });
+    [null, undefined, '', 0].forEach(value => {
+      it(`is false for value ${value}`, () => {
+        assert.strictEqual(isDirty({ value }), false);
+      });
+      it(`is false for SSR defaultValue ${value}`, () => {
+        assert.strictEqual(isDirty({ defaultValue: value }, true), false);
+      });
     });
   });
 });

@@ -6,11 +6,40 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Textarea from './Textarea';
 
+const isString = (value: ?(string | number)) => typeof value === 'string';
+const isNumber = (value: ?(string | number)) => !isNaN(parseFloat(value));
+
+/**
+ * @param value
+ * @returns {boolean} true if string or number (including zero)
+ */
+export function hasValue(value: ?(number | string)) {
+  if (isString(value)) {
+    return true;
+  } else if (isNumber(value)) {
+    return true;
+  }
+  return !!value;
+}
+
+/**
+ *
+ * @param obj
+ * @param SSR
+ * @returns {boolean} false when not present or empty string or zero value
+ */
 export function isDirty(obj, SSR = false) {
+  if (!obj) {
+    return false;
+  }
+
+  if (isNumber(obj.value) || (SSR && isNumber(obj.defaultValue))) {
+    return obj.value !== 0 && obj.defaultValue !== 0;
+  }
+
   return (
-    obj &&
-    ((obj.value && obj.value.toString().length) ||
-      (SSR && obj.defaultValue && obj.defaultValue.toString().length)) > 0
+    (hasValue(obj.value) && obj.value.toString().length > 0) ||
+    (SSR && hasValue(obj.defaultValue) && obj.defaultValue.toString().length > 0)
   );
 }
 
@@ -378,7 +407,7 @@ class Input extends Component<DefaultProps, AllProps, State> {
    */
   isControlled() {
     const { onChange, value } = this.props;
-    return !!onChange && value !== undefined; // null necessary for no number
+    return !!onChange && hasValue(value);
   }
 
   checkDirty(obj) {
