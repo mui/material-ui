@@ -48,7 +48,7 @@ import Table, {
   TableHead,
   TableRow,
 } from 'material-ui/Table';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles, StyleRulesCallback } from 'material-ui/styles';
 
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
@@ -595,13 +595,13 @@ const StepperTest = () =>
   };
 
 const TableTest = () => {
-  const styleSheet = createStyleSheet(theme => ({
+  const styles: StyleRulesCallback = theme => ({
     paper: {
       width: '100%',
       marginTop: theme.spacing.unit * 3,
       overflowX: 'auto',
     },
-  }));
+  });
 
   let id = 0;
   function createData(name, calories, fat, carbs, protein) {
@@ -660,7 +660,7 @@ const TableTest = () => {
     );
   }
 
-  return withStyles(styleSheet)(BasicTable);
+  return withStyles(styles)(BasicTable);
 };
 
 const TabsTest = () => {
@@ -669,13 +669,13 @@ const TabsTest = () => {
       {props.children}
     </div>;
 
-  const styleSheet = createStyleSheet(theme => ({
+  const styles = theme => ({
     root: {
       flexGrow: 1,
       marginTop: theme.spacing.unit * 3,
       backgroundColor: theme.palette.background.paper,
     },
-  }));
+  });
 
   class BasicTabs extends React.Component<{ classes: { root: string } }> {
     state = {
@@ -715,7 +715,7 @@ const TabsTest = () => {
     }
   }
 
-  return withStyles(styleSheet)(BasicTabs);
+  return withStyles(styles)(BasicTabs);
 };
 
 const TextFieldTest = () =>
