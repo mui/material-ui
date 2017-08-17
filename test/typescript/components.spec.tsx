@@ -679,11 +679,11 @@ const TabsTest = () => {
 
   class BasicTabs extends React.Component<{ classes: { root: string } }> {
     state = {
-      index: 0,
+      value: 0,
     };
 
-    handleChange = (event, index) => {
-      this.setState({ index });
+    handleChange = (event, value) => {
+      this.setState({ value });
     };
 
     render() {
@@ -692,21 +692,21 @@ const TabsTest = () => {
       return (
         <div className={classes.root}>
           <AppBar position="static">
-            <Tabs index={this.state.index} onChange={this.handleChange}>
+            <Tabs value={this.state.value} onChange={this.handleChange}>
               <Tab label="Item One" />
               <Tab label="Item Two" />
               <Tab label="Item Three" />
             </Tabs>
           </AppBar>
-          {this.state.index === 0 &&
+          {this.state.value === 0 &&
             <TabContainer>
               {'Item One'}
             </TabContainer>}
-          {this.state.index === 1 &&
+          {this.state.value === 1 &&
             <TabContainer>
               {'Item Two'}
             </TabContainer>}
-          {this.state.index === 2 &&
+          {this.state.value === 2 &&
             <TabContainer>
               {'Item Three'}
             </TabContainer>}

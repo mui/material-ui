@@ -1301,11 +1301,11 @@ declare module 'material-ui/Tabs/Tab' {
     disabled?: boolean;
     fullWidth?: boolean;
     icon?: React.ReactNode;
-    value?: number;
+    value?: any;
     label?: React.ReactNode;
     onChange?: (
       event: React.ChangeEvent<{ checked: boolean }>,
-      value: number
+      value: any
     ) => void;
     onClick?: React.EventHandler<any>;
     selected?: boolean;
@@ -1349,10 +1349,10 @@ declare module 'material-ui/Tabs/Tabs' {
     centered?: boolean;
     children?: React.ReactNode;
     fullWidth?: boolean;
-    index: false | number;
+    value: any;
     indicatorClassName?: string;
     indicatorColor?: 'accent' | 'primary' | string;
-    onChange: (event: React.ChangeEvent<{}>, index: number) => void;
+    onChange: (event: React.ChangeEvent<{}>, value: any) => void;
     scrollable?: boolean;
     scrollButtons?: 'auto' | 'on' | 'off';
     textColor?: 'accent' | 'primary' | 'inherit' | string;
