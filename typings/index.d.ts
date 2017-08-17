@@ -1301,11 +1301,11 @@ declare module 'material-ui/Tabs/Tab' {
     disabled?: boolean;
     fullWidth?: boolean;
     icon?: React.ReactNode;
-    index?: number;
+    value?: number;
     label?: React.ReactNode;
     onChange?: (
       event: React.ChangeEvent<{ checked: boolean }>,
-      index: number
+      value: number
     ) => void;
     onClick?: React.EventHandler<any>;
     selected?: boolean;
