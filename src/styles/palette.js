@@ -75,7 +75,7 @@ function getContrastText(color) {
 }
 
 export default function createPalette(options = {}) {
-  const { primary = indigo, accent = pink, error = red, type = 'light' } = options;
+  const { primary = indigo, accent = pink, error = red, grey = grey, type = 'light' } = options;
 
   if (process.env.NODE_ENV !== 'production') {
     const difference = (base, compare) => {
@@ -97,7 +97,7 @@ export default function createPalette(options = {}) {
         false,
         [
           `Material-UI: ${name} color is missing the following hues: ${missing.join(',')}`,
-          'See the default colors, indigo, or pink, as exported from material-ui/colors.',
+          'See the default colors, indigo, pink, or grey, as exported from material-ui/colors.',
         ].join('\n'),
       );
     };
@@ -105,6 +105,7 @@ export default function createPalette(options = {}) {
     paletteColorError('primary', indigo, primary);
     paletteColorError('accent', pink, accent);
     paletteColorError('error', red, error);
+    paletteColorError('grey', grey, grey);
   }
 
   const shades = { dark, light };
