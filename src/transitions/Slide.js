@@ -60,10 +60,6 @@ export type Props = {
    */
   leaveTransitionDuration?: number,
   /**
-   * Slide in by a fixed number of pixels or %.
-   */
-  offset?: string,
-  /**
    * Callback fired before the component enters.
    */
   onEnter?: TransitionCallback,
@@ -176,7 +172,6 @@ class Slide extends PureComponent<DefaultProps, AllProps, void> {
   render() {
     const {
       children,
-      offset,
       onEnter,
       onEntering,
       onExit,
