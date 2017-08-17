@@ -11,7 +11,7 @@ import getDisplayName from 'recompose/getDisplayName';
 import contextTypes from 'react-jss/lib/contextTypes';
 import jss from 'react-jss/lib/jss';
 import * as ns from 'react-jss/lib/ns';
-import createMuiTheme from './theme';
+import createMuiTheme from './createMuiTheme';
 import themeListener from './themeListener';
 import createGenerateClassName from './createGenerateClassName';
 import getStylesCreator from './getStylesCreator';

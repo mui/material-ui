@@ -1,13 +1,13 @@
 // @flow
 
 import { assert } from 'chai';
-import createBreakpoints from './breakpoints';
+import createBreakpoints from './createBreakpoints';
 
 describe('createBreakpoints', () => {
   let breakpoints;
 
   before(() => {
-    breakpoints = createBreakpoints();
+    breakpoints = createBreakpoints({});
   });
 
   describe('up', () => {

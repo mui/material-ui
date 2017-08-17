@@ -5,7 +5,7 @@ import createEagerFactory from 'recompose/createEagerFactory';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import withWidth, { isWidthDown } from '../utils/withWidth';
 import Dialog from './Dialog';
-import type { Breakpoint } from '../styles/breakpoints';
+import type { Breakpoint } from '../styles/createBreakpoints';
 
 type Options = { breakpoint: Breakpoint };
 

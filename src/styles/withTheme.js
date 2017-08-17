@@ -4,7 +4,7 @@ import React from 'react';
 import type { ComponentType } from 'react';
 import createEagerFactory from 'recompose/createEagerFactory';
 import wrapDisplayName from 'recompose/wrapDisplayName';
-import createMuiTheme from './theme';
+import createMuiTheme from './createMuiTheme';
 import themeListener from './themeListener';
 
 let defaultTheme;

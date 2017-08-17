@@ -3,7 +3,7 @@
 import React from 'react';
 import warning from 'warning';
 import classNames from 'classnames';
-import { keys as breakpoints } from '../styles/breakpoints';
+import { keys as breakpoints } from '../styles/createBreakpoints';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 import type { HiddenProps } from './types';

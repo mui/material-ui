@@ -1,7 +1,7 @@
 // @flow
 
 import type { Element } from 'react';
-import type { Breakpoint } from '../styles/breakpoints';
+import type { Breakpoint } from '../styles/createBreakpoints';
 
 export type HiddenProps = {
   /**

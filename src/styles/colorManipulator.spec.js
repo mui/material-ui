@@ -14,9 +14,6 @@ import {
 } from './colorManipulator';
 
 describe('utils/colorManipulator', () => {
-  /**
-   * convertColorToString()
-   */
   describe('convertColorToString', () => {
     it('converts a decomposed rgb color object to a string` ', () => {
       assert.strictEqual(
@@ -47,9 +44,6 @@ describe('utils/colorManipulator', () => {
     });
   });
 
-  /**
-   * convertHexToRGB()
-   */
   describe('convertHexToRGB', () => {
     it('converts a short hex color to an rgb color` ', () => {
       assert.strictEqual(convertHexToRGB('#9f3'), 'rgb(153, 255, 51)');
@@ -60,9 +54,6 @@ describe('utils/colorManipulator', () => {
     });
   });
 
-  /**
-   * decomposeColor()
-   */
   describe('decomposeColor', () => {
     it('converts an rgb color string to an object with `type` and `value` keys', () => {
       const { type, values } = decomposeColor('rgb(255, 255, 255)');
@@ -89,9 +80,6 @@ describe('utils/colorManipulator', () => {
     });
   });
 
-  /**
-   * getContrastRatio()
-   */
   describe('getContrastRatio', () => {
     it('returns a ratio of 21 for black : white', () => {
       assert.strictEqual(getContrastRatio('#000', '#FFF'), 21);
@@ -114,9 +102,6 @@ describe('utils/colorManipulator', () => {
     });
   });
 
-  /**
-   * getLuminance()
-   */
   describe('getLuminance', () => {
     it('returns a luminance of 1 for rgb white', () => {
       assert.strictEqual(getLuminance('rgb(0, 0, 0)'), 0);
@@ -137,11 +122,14 @@ describe('utils/colorManipulator', () => {
     it('returns a normalized luminance from an hsl color', () => {
       assert.strictEqual(getLuminance('hsl(100, 100%, 50%)'), 0.5);
     });
+
+    it('throw on invalid colors', () => {
+      assert.throw(() => {
+        getLuminance('black');
+      }, 'unsupported `black` color');
+    });
   });
 
-  /**
-   * emphasize()
-   */
   describe('emphasize', () => {
     it('lightens a dark rgb color with the coefficient provided', () => {
       assert.strictEqual(emphasize('rgb(1, 2, 3)', 0.4), lighten('rgb(1, 2, 3)', 0.4));
@@ -160,9 +148,6 @@ describe('utils/colorManipulator', () => {
     });
   });
 
-  /**
-   * fade()
-   */
   describe('fade', () => {
     it('converts an rgb color to an rgba color with the value provided', () => {
       assert.strictEqual(fade('rgb(1, 2, 3)', 0.4), 'rgba(1, 2, 3, 0.4)');
@@ -181,9 +166,6 @@ describe('utils/colorManipulator', () => {
     });
   });
 
-  /**
-   * darken()
-   */
   describe('darken', () => {
     it("doesn't modify rgb black", () => {
       assert.strictEqual(darken('rgb(0, 0, 0)', 0.1), 'rgb(0, 0, 0)');
@@ -234,9 +216,6 @@ describe('utils/colorManipulator', () => {
     });
   });
 
-  /**
-   * lighten()
-   */
   describe('lighten', () => {
     it("doesn't modify rgb white", () => {
       assert.strictEqual(lighten('rgb(255, 255, 255)', 0.1), 'rgb(255, 255, 255)');
