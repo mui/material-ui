@@ -6,8 +6,8 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Textarea from './Textarea';
 
-const isString = (value: ?(string | number)) => typeof value === 'string';
-const isNumber = (value: ?(string | number)) => !isNaN(parseFloat(value));
+export const isString = (value: ?(string | number)) => typeof value === 'string';
+export const isNumber = (value: ?(string | number)) => !isNaN(parseFloat(value));
 
 /**
  * @param value
@@ -23,10 +23,14 @@ export function hasValue(value: ?(number | string)) {
 }
 
 /**
+ * Determine if field is dirty (a.k.a. filled).
+ *
+ * Response determines if label is presented above field or as placeholder.
  *
  * @param obj
  * @param SSR
- * @returns {boolean} false when not present or empty string or zero value
+ * @returns {boolean} False when not present or empty string.
+ *                    True when number or string with length.
  */
 export function isDirty(obj, SSR = false) {
   if (!obj) {
@@ -34,7 +38,7 @@ export function isDirty(obj, SSR = false) {
   }
 
   if (isNumber(obj.value) || (SSR && isNumber(obj.defaultValue))) {
-    return obj.value !== 0 && obj.defaultValue !== 0;
+    return true;
   }
 
   return (

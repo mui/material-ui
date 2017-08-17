@@ -5,7 +5,7 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, createMount, getClasses } from '../test-utils';
 import Textarea from './Textarea';
-import Input, { hasValue, isDirty } from './Input';
+import Input, { hasValue, isDirty, isNumber } from './Input';
 
 describe('<Input />', () => {
   let shallow;
@@ -114,25 +114,32 @@ describe('<Input />', () => {
           assert.strictEqual(instance.isControlled(), true, 'isControlled() should return true');
         });
 
-        it('should have called the handleClean callback', () => {
-          assert.strictEqual(handleClean.callCount, 1, 'should have called the onClean cb');
-        });
+        // don't test number because zero is a dirty state, whereas '' is not
+        if (!isNumber(value)) {
+          it('should have called the handleClean callback', () => {
+            assert.strictEqual(handleClean.callCount, 1, 'should have called the onClean cb');
+          });
 
-        it('should fire the onDirty callback when dirtied', () => {
-          assert.strictEqual(handleDirty.callCount, 0, 'should not have called the onDirty cb yet');
-          wrapper.setProps({ value: typeof value === 'number' ? 2 : 'hello' });
-          assert.strictEqual(handleDirty.callCount, 1, 'should have called the onDirty cb');
-        });
+          it('should fire the onDirty callback when dirtied', () => {
+            assert.strictEqual(
+              handleDirty.callCount,
+              0,
+              'should not have called the onDirty cb yet',
+            );
+            wrapper.setProps({ value: typeof value === 'number' ? 2 : 'hello' });
+            assert.strictEqual(handleDirty.callCount, 1, 'should have called the onDirty cb');
+          });
 
-        it('should fire the onClean callback when dirtied', () => {
-          assert.strictEqual(
-            handleClean.callCount,
-            1,
-            'should have called the onClean cb once already',
-          );
-          wrapper.setProps({ value });
-          assert.strictEqual(handleClean.callCount, 2, 'should have called the onClean cb again');
-        });
+          it('should fire the onClean callback when dirtied', () => {
+            assert.strictEqual(
+              handleClean.callCount,
+              1,
+              'should have called the onClean cb once already',
+            );
+            wrapper.setProps({ value });
+            assert.strictEqual(handleClean.callCount, 2, 'should have called the onClean cb again');
+          });
+        }
       });
     });
   });
@@ -366,8 +373,7 @@ describe('<Input />', () => {
   });
 
   describe('isDirty', () => {
-    // no number is null
-    [' ', 1].forEach(value => {
+    [' ', 0].forEach(value => {
       it(`is true for value ${value}`, () => {
         assert.strictEqual(isDirty({ value }), true);
       });
@@ -376,7 +382,7 @@ describe('<Input />', () => {
         assert.strictEqual(isDirty({ defaultValue: value }, true), true);
       });
     });
-    [null, undefined, '', 0].forEach(value => {
+    [null, undefined, ''].forEach(value => {
       it(`is false for value ${value}`, () => {
         assert.strictEqual(isDirty({ value }), false);
       });
