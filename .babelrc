@@ -11,15 +11,13 @@
     "docs-production": {
       "plugins": [
         ["transform-replace-object-assign", "simple-assign"],
-        "transform-react-remove-prop-types",
         "transform-react-constant-elements",
         "transform-react-inline-elements"
       ]
     },
     "release": {
       "plugins": [
-        "transform-runtime",
-        ["transform-react-remove-prop-types", {"mode": "wrap"}]
+        "transform-runtime"
       ]
     }
   }
