@@ -5,7 +5,7 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, createMount, getClasses } from '../test-utils';
 import Textarea from './Textarea';
-import Input, { hasValue, isDirty, isNumber } from './Input';
+import Input, { hasValue, isDirty } from './Input';
 
 describe('<Input />', () => {
   let shallow;
@@ -104,9 +104,7 @@ describe('<Input />', () => {
         before(() => {
           handleClean = spy();
           handleDirty = spy();
-          wrapper = shallow(
-            <Input value={value} onChange={() => {}} onDirty={handleDirty} onClean={handleClean} />,
-          );
+          wrapper = shallow(<Input value={value} onDirty={handleDirty} onClean={handleClean} />);
         });
 
         it('should check that the component is controlled', () => {
@@ -115,7 +113,7 @@ describe('<Input />', () => {
         });
 
         // don't test number because zero is a dirty state, whereas '' is not
-        if (!isNumber(value)) {
+        if (typeof value !== 'number') {
           it('should have called the handleClean callback', () => {
             assert.strictEqual(handleClean.callCount, 1, 'should have called the onClean cb');
           });

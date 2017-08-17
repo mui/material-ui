@@ -6,20 +6,16 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Textarea from './Textarea';
 
-export const isString = (value: ?(string | number)) => typeof value === 'string';
-export const isNumber = (value: ?(string | number)) => !isNaN(parseFloat(value));
-
 /**
+ * Supports determination of isControlled().
+ * Controlled input accepts its current value as a prop.
+ *
+ * @see https://facebook.github.io/react/docs/forms.html#controlled-components
  * @param value
- * @returns {boolean} true if string or number (including zero)
+ * @returns {boolean} true if string (including '') or number (including zero)
  */
 export function hasValue(value: ?(number | string)) {
-  if (isString(value)) {
-    return true;
-  } else if (isNumber(value)) {
-    return true;
-  }
-  return !!value;
+  return value !== undefined && value !== null && !(Array.isArray(value) && value.length === 0);
 }
 
 /**
@@ -30,20 +26,13 @@ export function hasValue(value: ?(number | string)) {
  * @param obj
  * @param SSR
  * @returns {boolean} False when not present or empty string.
- *                    True when number or string with length.
+ *                    True when any number or string with length.
  */
 export function isDirty(obj, SSR = false) {
-  if (!obj) {
-    return false;
-  }
-
-  if (isNumber(obj.value) || (SSR && isNumber(obj.defaultValue))) {
-    return true;
-  }
-
   return (
-    (hasValue(obj.value) && obj.value.toString().length > 0) ||
-    (SSR && hasValue(obj.defaultValue) && obj.defaultValue.toString().length > 0)
+    obj &&
+    ((hasValue(obj.value) && obj.value !== '') ||
+      (SSR && hasValue(obj.defaultValue) && obj.defaultValue !== ''))
   );
 }
 
@@ -403,15 +392,13 @@ class Input extends Component<DefaultProps, AllProps, State> {
   };
 
   /**
-   * A controlled input accepts its current value as a prop, as well as a callback
-   * to change that value.
+   * A controlled input accepts its current value as a prop.
    *
-   * @returns {boolean}
    * @see https://facebook.github.io/react/docs/forms.html#controlled-components
+   * @returns {boolean} true if string (including '') or number (including zero)
    */
   isControlled() {
-    const { onChange, value } = this.props;
-    return !!onChange && hasValue(value);
+    return hasValue(this.props.value);
   }
 
   checkDirty(obj) {
