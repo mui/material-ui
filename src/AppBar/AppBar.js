@@ -3,6 +3,7 @@
 import React from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
+import warning from 'warning';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import Paper from '../Paper';
@@ -48,6 +49,7 @@ type DefaultProps = {
   classes: Object,
   color: 'primary',
   position: 'fixed',
+  elevation: number,
 };
 
 export type Props = {
@@ -71,12 +73,17 @@ export type Props = {
    * The positioning type.
    */
   position?: 'static' | 'fixed' | 'absolute',
+  /**
+   * Shadow depth, corresponds to `dp` in the spec.
+   * It's accepting values between 0 and 24 inclusive.
+   */
+  elevation?: number,
 };
 
 type AllProps = DefaultProps & Props;
 
 function AppBar(props: AllProps) {
-  const { children, classes, className: classNameProp, color, position, ...other } = props;
+  const { children, classes, className: classNameProp, color, position, elevation, ...other } = props;
 
   const className = classNames(
     classes.root,
@@ -87,9 +94,14 @@ function AppBar(props: AllProps) {
     },
     classNameProp,
   );
+  
+  warning(
+    elevation >= 0 && elevation < 25,
+    `Material-UI: this elevation \`${elevation}\` is not implemented.`,
+  );
 
   return (
-    <Paper square component="header" elevation={4} className={className} {...other}>
+    <Paper square component="header" elevation={elevation} className={className} {...other}>
       {children}
     </Paper>
   );
@@ -98,6 +110,7 @@ function AppBar(props: AllProps) {
 AppBar.defaultProps = {
   color: 'primary',
   position: 'fixed',
+  elevation: 4,
 };
 
 export default withStyles(styles, { name: 'MuiAppBar' })(AppBar);
