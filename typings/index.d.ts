@@ -2095,7 +2095,6 @@ declare module 'material-ui/transitions/Slide' {
 
   export interface SlideProps extends TransitionProps {
     direction?: 'left' | 'right' | 'up' | 'down';
-    offset?: string;
     theme?: Theme;
     enterTransitionDuration?: number;
     leaveTransitionDuration?: number;
