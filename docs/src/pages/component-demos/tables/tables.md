@@ -26,3 +26,7 @@ This example demonstrates the use `Checkbox` and clickable rows for selection wi
 It uses the `TableSortLabel` component to help style column headings.
 
 {{demo='pages/component-demos/tables/EnhancedTable.js'}}
+
+## Advanced use cases
+
+For more advanced use cases you might be able to take advantage of [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/). It's a data grid for Material-UI with paging, sorting, filtering, grouping and editing features.
