@@ -476,27 +476,16 @@ declare module 'material-ui/Drawer/Drawer' {
   import { SlideProps } from 'material-ui/transitions/Slide';
   import { Theme } from 'material-ui/styles/theme';
 
-  type DrawerCommonProps = {
+  export interface DrawerProps extends ModalProps {
     anchor?: 'left' | 'top' | 'right' | 'bottom';
+    docked?: boolean;
     elevation?: number;
     enterTransitionDuration?: number;
     leaveTransitionDuration?: number;
     open?: boolean;
     SlideProps?: SlideProps;
     theme?: Theme;
-  };
-
-  type DrawerDockedProps = {
-    docked?: true;
-  } & DrawerCommonProps &
-    React.HtmlHTMLAttributes<HTMLDivElement>;
-
-  type DrawerModalProps = {
-    docked?: false;
-    onRequestClose?: React.EventHandler<any>;
-  } & ModalProps;
-
-  export type DrawerProps = DrawerDockedProps | DrawerModalProps;
+  }
 
   export default class Drawer extends MaterialUI.Component<DrawerProps> {}
 }
@@ -872,24 +861,15 @@ declare module 'material-ui/List/List' {
 declare module 'material-ui/List/ListItem' {
   import { ButtonBaseProps } from 'material-ui/internal/ButtonBase';
 
-  interface ListItemCommonProps extends React.LiHTMLAttributes<HTMLLIElement> {
+  export type ListItemProps = {
+    button?: boolean;
     component?: React.ReactNode;
     dense?: boolean;
     disabled?: boolean;
     disableGutters?: boolean;
     divider?: boolean;
-  }
-
-  export type ListItemDefaultProps = {
-    button?: false;
-  } & ListItemCommonProps;
-
-  export type ListItemButtonProps = {
-    button?: true;
-  } & ListItemCommonProps &
-    ButtonBaseProps;
-
-  export type ListItemProps = ListItemDefaultProps | ListItemButtonProps;
+  } & ButtonBaseProps &
+    React.LiHTMLAttributes<HTMLLIElement>;
 
   export default class ListItem extends MaterialUI.Component<ListItemProps> {}
 }
@@ -971,9 +951,9 @@ declare module 'material-ui/Menu/Menu' {
 }
 
 declare module 'material-ui/Menu/MenuItem' {
-  import { ListItemButtonProps } from 'material-ui/List/ListItem';
+  import { ListItemProps } from 'material-ui/List/ListItem';
 
-  export interface MenuItemProps extends ListItemButtonProps {
+  export interface MenuItemProps extends ListItemProps {
     component?: React.ReactNode;
     role?: string;
     selected?: boolean;
@@ -1301,11 +1281,11 @@ declare module 'material-ui/Tabs/Tab' {
     disabled?: boolean;
     fullWidth?: boolean;
     icon?: React.ReactNode;
-    index?: number;
+    value?: any;
     label?: React.ReactNode;
     onChange?: (
       event: React.ChangeEvent<{ checked: boolean }>,
-      index: number
+      value: any
     ) => void;
     onClick?: React.EventHandler<any>;
     selected?: boolean;
@@ -1349,10 +1329,10 @@ declare module 'material-ui/Tabs/Tabs' {
     centered?: boolean;
     children?: React.ReactNode;
     fullWidth?: boolean;
-    index: false | number;
+    value: any;
     indicatorClassName?: string;
     indicatorColor?: 'accent' | 'primary' | string;
-    onChange: (event: React.ChangeEvent<{}>, index: number) => void;
+    onChange: (event: React.ChangeEvent<{}>, value: any) => void;
     scrollable?: boolean;
     scrollButtons?: 'auto' | 'on' | 'off';
     textColor?: 'accent' | 'primary' | 'inherit' | string;
@@ -1621,8 +1601,6 @@ declare module 'material-ui/internal/Portal' {
 }
 
 declare module 'material-ui/internal/SwitchBase' {
-  import { StyleSheet } from 'material-ui/styles/createStyleSheet';
-
   export interface SwitchBaseProps {
     checked?: boolean | string;
     checkedClassName?: string;
@@ -1648,7 +1626,6 @@ declare module 'material-ui/internal/SwitchBase' {
     defaultIcon?: React.ReactNode;
     defaultCheckedIcon?: React.ReactNode;
     inputType?: string;
-    styleSheet?: StyleSheet;
   }
 
   export default function createSwitch(
@@ -1699,12 +1676,14 @@ declare module 'material-ui/styles' {
   export { default as createBreakpoints } from 'material-ui/styles/breakpoints';
   export { default as createMuiTheme } from 'material-ui/styles/theme';
   export { default as createPalette } from 'material-ui/styles/palette';
-  export {
-    default as createStyleSheet,
-  } from 'material-ui/styles/createStyleSheet';
   export { default as createTypography } from 'material-ui/styles/typography';
   export { default as withStyles } from 'material-ui/styles/withStyles';
   export { default as withTheme } from 'material-ui/styles/withTheme';
+
+  export {
+    StyleRules,
+    StyleRulesCallback,
+  } from 'material-ui/styles/withStyles';
 }
 
 declare module 'material-ui/styles/MuiThemeProvider' {
@@ -1779,34 +1758,6 @@ declare module 'material-ui/styles/createGenerateClassName' {
     rule: Object,
     stylesheet?: Object
   ) => string;
-}
-
-declare module 'material-ui/styles/createStyleSheet' {
-  import { Theme } from 'material-ui/styles/theme';
-
-  export interface StyleRules {
-    [displayName: string]: Partial<React.CSSProperties>;
-  }
-
-  export interface StyleRulesCallback<Theme> {
-    (theme: Theme): StyleRules;
-  }
-
-  export interface StyleSheet {
-    name: string | false;
-    createStyles<T extends Theme = Theme>(theme: T): StyleRules;
-    options: Object;
-    themingEnabled: boolean;
-  }
-
-  export default function createStyleSheet<T extends Theme = Theme>(
-    callback: StyleRulesCallback<Theme> | StyleRules
-  ): StyleSheet;
-  export default function createStyleSheet<T extends Theme = Theme>(
-    name: string,
-    callback: StyleRulesCallback<Theme> | StyleRules,
-    options?: Object
-  ): StyleSheet;
 }
 
 declare module 'material-ui/styles/mixins' {
@@ -2050,11 +2001,28 @@ declare module 'material-ui/styles/typography' {
 
 declare module 'material-ui/styles/withStyles' {
   import { Theme } from 'material-ui/styles/theme';
-  import { StyleSheet } from 'material-ui/styles/createStyleSheet';
+
+  /**
+   * This is basically the API of JSS. It defines a Map<string, CSS>,
+   * where
+   *
+   * - the `keys` are the class (names) that will be created
+   * - the `values` are objects that represent CSS rules (`React.CSSProperties`).
+   */
+  export interface StyleRules {
+    [displayName: string]: Partial<React.CSSProperties>;
+  }
+
+  export type StyleRulesCallback = (theme: Theme) => StyleRules;
+
+  export interface WithStylesOptions {
+    withTheme?: boolean;
+    name?: string;
+  }
 
   const withStyles: <P = {}, ClassNames = {}>(
-    stylesheets: StyleSheet | StyleSheet[],
-    options?: Partial<{ withTheme: boolean }>
+    style: StyleRules | StyleRulesCallback,
+    options?: WithStylesOptions
   ) => (
     component: React.ComponentType<P & { classes: ClassNames }>
   ) => React.ComponentClass<P>;
@@ -2194,10 +2162,8 @@ declare module 'material-ui/test-utils/createShallow' {
 }
 
 declare module 'material-ui/test-utils/getClasses' {
-  import { StyleSheet } from 'material-ui/styles/createStyleSheet';
-
   export default function getClasses<T = { [name: string]: string }>(
-    stylesheets: StyleSheet | StyleSheet[],
+    element: React.ReactElement<any>,
     options?: Partial<{ withTheme: boolean }>
   ): T;
 }

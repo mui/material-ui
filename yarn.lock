@@ -6,9 +6,9 @@
   version "0.22.2"
   resolved "https://registry.yarnpkg.com/@types/cheerio/-/cheerio-0.22.2.tgz#539625874bc856086ad491c2fdc9b10c05ae308e"
 
-"@types/enzyme@^2.8.5":
-  version "2.8.5"
-  resolved "https://registry.yarnpkg.com/@types/enzyme/-/enzyme-2.8.5.tgz#0bcf505358db8967fea2d86534fce6b901539ce7"
+"@types/enzyme@^2.8.6":
+  version "2.8.6"
+  resolved "https://registry.yarnpkg.com/@types/enzyme/-/enzyme-2.8.6.tgz#b508da0860b4fcda2ab851d600e5bfaf695775dd"
   dependencies:
     "@types/cheerio" "*"
     "@types/react" "*"
@@ -17,11 +17,7 @@
   version "6.0.84"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.84.tgz#193ffe5a9f42864d425ffd9739d95b753c6a1eab"
 
-"@types/react@*":
-  version "16.0.0"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.0.tgz#fec7e6302e11c1cd307129d8ce1e6d5dca4a0283"
-
-"@types/react@^16.0.2":
+"@types/react@*", "@types/react@^16.0.2":
   version "16.0.2"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.2.tgz#0b31a73cdde6272b719e5b05a7df6d1e2654a804"
 
