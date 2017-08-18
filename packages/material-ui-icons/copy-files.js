@@ -47,6 +47,7 @@ function createPackageFile() {
         main: './index.js',
         module: './index.es.js',
         'jsnext:main': './index.es.js',
+        typings: './index.d.ts',
         keywords,
         repository,
         license,
