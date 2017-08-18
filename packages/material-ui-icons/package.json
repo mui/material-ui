@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "material-ui-icons-builder",
-  "version": "1.0.0-alpha.19",
+  "version": "1.0.0-beta.4",
   "description": "Material Design Svg Icons converted to Material-UI React components.",
   "author": "Material-UI Team",
   "license": "MIT",
@@ -22,14 +22,15 @@
     "react-component"
   ],
   "scripts": {
-    "build": "npm run build:icons && npm run build:es2015 && npm run build:es2015modules && npm run build:copy-files && npm run build:typings",
+    "prebuild": "rimraf build",
     "build:es2015": "cross-env NODE_ENV=production babel ./src --out-dir ./build",
     "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel ./src/index.js --out-file ./build/index.es.js",
     "build:copy-files": "babel-node ./copy-files.js",
     "build:icons": "babel-node ./builder.js --output-dir ./src --svg-dir ./node_modules/material-design-icons --glob '/**/production/*_24px.svg' --renameFilter ./filters/rename/material-design-icons.js",
     "build:typings": "babel-node ./create-typings.js",
-    "clean": "rimraf build",
-    "prebuild": "npm run clean",
+    "build": "npm run build:icons && npm run build:es2015 && npm run build:es2015modules && npm run build:copy-files && npm run build:typings",
+    "version": "yarn build",
+    "release": "np --any-branch",
     "test": "mocha",
     "test:watch": "mocha -w"
   },

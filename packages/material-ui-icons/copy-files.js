@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 /* eslint-disable no-console */
 
 import path from 'path';
