@@ -18,6 +18,51 @@
         "transform-flow-strip-types"
       ]
     },
+    "docs-development": {
+      "presets": [
+        "next/babel"
+      ],
+      "plugins": [
+        "preval",
+        [
+          "module-resolver",
+          {
+            "alias": {
+              "pages": "./pages",
+              "material-ui": "./src",
+              "material-ui-icons": './packages/material-ui-icons/src',
+              "docs": "./docs"
+            }
+          }
+        ],
+        "flow-react-proptypes",
+        "transform-flow-strip-types"
+      ]
+    },
+    "docs-production": {
+      "presets": [
+        "next/babel"
+      ],
+      "plugins": [
+        "preval",
+        [
+          "module-resolver",
+          {
+            "alias": {
+              "pages": "./pages",
+              "material-ui": "./src",
+              "material-ui-icons": './packages/material-ui-icons/src',
+              "docs": "./docs"
+            }
+          }
+        ],
+        "transform-react-constant-elements",
+        "transform-dev-warning",
+        "transform-runtime",
+        ["react-remove-properties", {"properties": ["data-mui-test"]}],
+        ["transform-react-remove-prop-types", {"mode": "remove"}]
+      ]
+    },
     "test": {
       "sourceMaps": "both",
       "plugins": [

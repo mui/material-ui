@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { JssProvider } from 'react-jss';
 import { withStyles, MuiThemeProvider } from 'material-ui/styles';
+import wrapDisplayName from 'recompose/wrapDisplayName';
 import createContext from '../styles/createContext';
 
 // Apply some reset
@@ -48,7 +49,9 @@ function withRoot(BaseComponent) {
     }
   }
 
-  WithRoot.displayName = `withRoot(${BaseComponent.displayName})`;
+  if (process.env.NODE_ENV !== 'production') {
+    WithRoot.displayName = wrapDisplayName(BaseComponent, 'withRoot');
+  }
 
   return WithRoot;
 }

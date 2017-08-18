@@ -1,46 +1,61 @@
 // @flow
 
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 
 const styles = (theme: Object) => ({
   '@global': {
     html: {
+      WebkitFontSmoothing: 'antialiased', // Antialiasing.
+      MozOsxFontSmoothing: 'grayscale', // Antialiasing.
       // Do the opposite of the docs in order to help catching issues.
       boxSizing: 'border-box',
     },
-    // Disable transitions to avoid flaky screenshots
     '*, *:before, *:after': {
       boxSizing: 'inherit',
+      // Disable transitions to avoid flaky screenshots
       transition: 'none !important',
       animation: 'none !important',
     },
     body: {
       margin: 0,
-      background: theme.palette.background.default,
       overflowX: 'hidden',
-      WebkitFontSmoothing: 'antialiased',
     },
   },
   root: {
+    background: theme.palette.background.default,
     padding: theme.spacing.unit,
   },
 });
 
-function TestViewer(props) {
-  const { children, classes } = props;
+class TestViewer extends Component {
+  getChildContext() {
+    return {
+      url: {
+        pathname: '/',
+      },
+    };
+  }
 
-  return (
-    <div className={classes.root}>
-      {children}
-    </div>
-  );
+  render() {
+    const { children, classes } = this.props;
+
+    return (
+      <div className={classes.root}>
+        {children}
+      </div>
+    );
+  }
 }
 
 TestViewer.propTypes = {
   children: PropTypes.node,
   classes: PropTypes.object.isRequired,
+};
+
+TestViewer.childContextTypes = {
+  url: PropTypes.object,
 };
 
 export default withStyles(styles)(TestViewer);
