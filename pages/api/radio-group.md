@@ -11,7 +11,7 @@
 | classes | Object |  | Useful to extend the style applied to components. |
 | name | string |  | The name used to reference the value of the control. |
 | onChange | Function |  | Callback fired when a radio button is selected.<br><br>**Signature:**<br>`function(event: object, value: string) => void`<br>*event:* The event source of the callback<br>*value:* The `value` of the selected radio button |
-| selectedValue | string |  | Value of the selected radio button |
+| <span style="color: #31a148">value *</span> | string |  | Value of the selected radio button. |
 
 Any other properties supplied will be spread to the root element.
 

@@ -1,6 +1,6 @@
 // @flow
 
-import React, { PureComponent, Children, cloneElement } from 'react';
+import React, { Component, Children, cloneElement } from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -52,15 +52,16 @@ export type Props = {
    */
   onKeyDown?: Function,
   /**
-   * Value of the selected radio button
+   * Value of the selected radio button.
    */
-  selectedValue?: string,
+  value: string,
 };
 
 type AllProps = DefaultProps & Props;
 
-class RadioGroup extends PureComponent<void, AllProps, void> {
+class RadioGroup extends Component<void, AllProps, void> {
   props: AllProps;
+
   radios: Array<HTMLInputElement> = [];
 
   focus = () => {
@@ -96,7 +97,7 @@ class RadioGroup extends PureComponent<void, AllProps, void> {
       classes,
       className: classNameProp,
       name,
-      selectedValue,
+      value,
       onChange,
       ...other
     } = this.props;
@@ -111,7 +112,7 @@ class RadioGroup extends PureComponent<void, AllProps, void> {
         {...other}
       >
         {Children.map(children, (child, index) => {
-          const selected = selectedValue === child.props.value;
+          const selected = value === child.props.value;
           return cloneElement(child, {
             key: index,
             name,

@@ -55,7 +55,7 @@ class GuttersGrid extends Component {
                 <RadioGroup
                   name="spacing"
                   aria-label="spacing"
-                  selectedValue={spacing}
+                  value={spacing}
                   onChange={this.handleChange('spacing')}
                   row
                 >

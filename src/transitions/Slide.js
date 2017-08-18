@@ -1,6 +1,6 @@
 // @flow
 
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import type { Element as ReactElement } from 'react'; // global Element used below.
 import { findDOMNode } from 'react-dom';
 import Transition from '../internal/Transition';
@@ -91,7 +91,7 @@ export type Props = {
 
 type AllProps = DefaultProps & Props;
 
-class Slide extends PureComponent<DefaultProps, AllProps, void> {
+class Slide extends Component<DefaultProps, AllProps, void> {
   props: AllProps;
 
   static defaultProps: DefaultProps = {
