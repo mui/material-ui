@@ -30,7 +30,8 @@
     "build:typings": "babel-node ./create-typings.js",
     "build": "npm run build:icons && npm run build:es2015 && npm run build:es2015modules && npm run build:copy-files && npm run build:typings",
     "version": "yarn build",
-    "release": "np --any-branch",
+    "release": "np --no-publish --any-branch",
+    "postrelease": "npm publish build",
     "test": "mocha",
     "test:watch": "mocha -w"
   },
