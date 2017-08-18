@@ -118,7 +118,7 @@
     "eslint-plugin-spellcheck": "^0.0.8",
     "eventsource-polyfill": "^0.9.6",
     "file-loader": "^0.11.2",
-    "flow-bin": "^0.52.0",
+    "flow-bin": "^0.53.0",
     "flow-copy-source": "^1.2.0",
     "flow-typed": "^2.1.5",
     "fs-extra": "^4.0.1",
