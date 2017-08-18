@@ -1,17 +1,18 @@
 # Exclude compiled files
 build
-coverage
 /lib
-/test/regressions/screenshots/output
-/test/selenium-output
-.eslintcache
-tmp
+/.next
+/.eslintcache
+/docs/export
+/tmp
+coverage
 
 # OS files
 .DS_STORE
 
 # Screenshors generated for Argos-CI
-test/regressions/screenshots/
+/test/regressions/screenshots
+/test/selenium-output
 
 # npm files
 node_modules

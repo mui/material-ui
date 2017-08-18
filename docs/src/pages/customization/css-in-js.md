@@ -83,6 +83,7 @@ Use the function signature if you need to have access to the theme. It's provide
   - `options.withTheme` (Boolean [optional]): Provide the `theme` object to the component as a property. It's `false` by default.
   - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging.
   If the value isn't provided, we will try to fallback to the name of the component.
+  - The other keys are forwarded to the options argument of [jss.createStyleSheet()](http://cssinjs.org/js-api/#create-style-sheet).
 
 #### Returns
 

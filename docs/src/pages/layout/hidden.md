@@ -1,3 +1,7 @@
+---
+components: Hidden
+---
+
 # Hidden
 
 All elements are visible unless **they are explicitly hidden**.
@@ -25,13 +29,13 @@ For those using server side rendering, you can set `implementation="css"` if you
 
 Using any breakpoint *up* property, the given *children* will be hidden *at or above* the breakpoint.
 
-{{demo='pages/layout/hidden/BreakpointUp.js'}}
+{{demo='pages/layout/BreakpointUp.js'}}
 
 ## Breakpoint down
 
 Using any breakpoint *down* property, the given *children* will be hidden *at or below* the breakpoint.
 
-{{demo='pages/layout/hidden/BreakpointDown.js'}}
+{{demo='pages/layout/BreakpointDown.js'}}
 
 ## Breakpoint only
 
@@ -39,11 +43,11 @@ The `only` property can be used in two ways:
  - list a single breakpoint
  - list an array of breakpoints
 
-{{demo='pages/layout/hidden/BreakpointOnly.js'}}
+{{demo='pages/layout/BreakpointOnly.js'}}
 
 ## Integration with Grid
 
 It is quite common to alter `Grid` at different responsive breakpoints, and in many cases, you want to hide some of those elements.
 For brevity, where you are already using `Grid`, you may specify `Hidden` behaviors as the `hidden` prop.
 
-{{demo='pages/layout/hidden/GridIntegration.js'}}
+{{demo='pages/layout/GridIntegration.js'}}
