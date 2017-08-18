@@ -476,27 +476,16 @@ declare module 'material-ui/Drawer/Drawer' {
   import { SlideProps } from 'material-ui/transitions/Slide';
   import { Theme } from 'material-ui/styles/theme';
 
-  type DrawerCommonProps = {
+  export interface DrawerProps extends ModalProps {
     anchor?: 'left' | 'top' | 'right' | 'bottom';
+    docked?: boolean;
     elevation?: number;
     enterTransitionDuration?: number;
     leaveTransitionDuration?: number;
     open?: boolean;
     SlideProps?: SlideProps;
     theme?: Theme;
-  };
-
-  type DrawerDockedProps = {
-    docked?: true;
-  } & DrawerCommonProps &
-    React.HtmlHTMLAttributes<HTMLDivElement>;
-
-  type DrawerModalProps = {
-    docked?: false;
-    onRequestClose?: React.EventHandler<any>;
-  } & ModalProps;
-
-  export type DrawerProps = DrawerDockedProps | DrawerModalProps;
+  }
 
   export default class Drawer extends MaterialUI.Component<DrawerProps> {}
 }
@@ -872,24 +861,15 @@ declare module 'material-ui/List/List' {
 declare module 'material-ui/List/ListItem' {
   import { ButtonBaseProps } from 'material-ui/internal/ButtonBase';
 
-  interface ListItemCommonProps extends React.LiHTMLAttributes<HTMLLIElement> {
+  export type ListItemProps = {
+    button?: boolean;
     component?: React.ReactNode;
     dense?: boolean;
     disabled?: boolean;
     disableGutters?: boolean;
     divider?: boolean;
-  }
-
-  export type ListItemDefaultProps = {
-    button?: false;
-  } & ListItemCommonProps;
-
-  export type ListItemButtonProps = {
-    button?: true;
-  } & ListItemCommonProps &
-    ButtonBaseProps;
-
-  export type ListItemProps = ListItemDefaultProps | ListItemButtonProps;
+  } & ButtonBaseProps &
+    React.LiHTMLAttributes<HTMLLIElement>;
 
   export default class ListItem extends MaterialUI.Component<ListItemProps> {}
 }
@@ -971,9 +951,9 @@ declare module 'material-ui/Menu/Menu' {
 }
 
 declare module 'material-ui/Menu/MenuItem' {
-  import { ListItemButtonProps } from 'material-ui/List/ListItem';
+  import { ListItemProps } from 'material-ui/List/ListItem';
 
-  export interface MenuItemProps extends ListItemButtonProps {
+  export interface MenuItemProps extends ListItemProps {
     component?: React.ReactNode;
     role?: string;
     selected?: boolean;

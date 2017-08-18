@@ -308,6 +308,19 @@ const DrawerTest = () => {
   );
 };
 
+const DockedDrawerTest = () =>
+  class DockedDrawer extends React.Component<{}, { docked: boolean }> {
+    state = { docked: true };
+    render() {
+      const docked: true | false = this.state.docked;
+      return (
+        <Drawer anchor="bottom" open={true} docked={docked}>
+          List
+        </Drawer>
+      );
+    }
+  };
+
 const GridListTest = () =>
   <GridList cellHeight={160} cols={3}>
     <GridListTest cols={1}>
