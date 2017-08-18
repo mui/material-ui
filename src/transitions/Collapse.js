@@ -1,6 +1,6 @@
 // @flow
 
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import type { Element } from 'react';
 import withStyles from '../styles/withStyles';
 import Transition from '../internal/Transition';
@@ -76,7 +76,7 @@ export type Props = {
 
 type AllProps = DefaultProps & Props;
 
-class Collapse extends PureComponent<DefaultProps, AllProps, void> {
+class Collapse extends Component<DefaultProps, AllProps, void> {
   props: AllProps;
 
   static defaultProps: DefaultProps = {
