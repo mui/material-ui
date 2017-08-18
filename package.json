@@ -72,7 +72,7 @@
     "react-jss": "^7.0.2",
     "react-scrollbar-size": "^2.0.0",
     "react-transition-group": "^2.2.0",
-    "recompose": "^0.24.0",
+    "recompose": "^0.25.0",
     "scroll": "^2.0.0",
     "warning": "^3.0.0"
   },
