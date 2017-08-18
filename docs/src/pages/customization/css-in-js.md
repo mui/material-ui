@@ -62,7 +62,7 @@ They are easy to debug in development and as short as possible in production:
 
 ## API
 
-### `withStyles(styleSheet, [options]) => Higher-order Component`
+### `withStyles(styles, [options]) => Higher-order Component`
 
 Link a style sheet with a component.
 It does not modify the component passed to it; instead, it returns a new component, with a `classes` property.
