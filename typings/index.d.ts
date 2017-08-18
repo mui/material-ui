@@ -1090,7 +1090,7 @@ declare module 'material-ui/Radio/RadioGroup' {
   export type RadioGroupProps = {
     name?: string;
     onChange?: (event: React.ChangeEvent<{}>, value: string) => void;
-    selectedValue?: string;
+    value: string;
   } & Partial<MaterialUI.Omit<FormGroupProps, 'onChange'>>;
 
   export default class RadioGroup extends MaterialUI.Component<

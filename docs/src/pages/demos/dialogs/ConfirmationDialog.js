@@ -29,17 +29,17 @@ const options = [
 
 class ConfirmationDialog extends Component {
   state = {
-    selectedValue: undefined,
+    value: undefined,
   };
 
   componentWillMount() {
-    this.setState({ selectedValue: this.props.selectedValue });
+    this.setState({ value: this.props.value });
   }
 
   componentWillUpdate(nextProps) {
-    if (nextProps.selectedValue !== this.props.selectedValue) {
+    if (nextProps.value !== this.props.value) {
       // eslint-disable-next-line react/no-will-update-set-state
-      this.setState({ selectedValue: nextProps.selectedValue });
+      this.setState({ value: nextProps.value });
     }
   }
 
@@ -50,19 +50,19 @@ class ConfirmationDialog extends Component {
   };
 
   handleCancel = () => {
-    this.props.onRequestClose(this.props.selectedValue);
+    this.props.onRequestClose(this.props.value);
   };
 
   handleOk = () => {
-    this.props.onRequestClose(this.state.selectedValue);
+    this.props.onRequestClose(this.state.value);
   };
 
   handleChange = (event, value) => {
-    this.setState({ selectedValue: value });
+    this.setState({ value });
   };
 
   render() {
-    const { selectedValue, ...other } = this.props;
+    const { value, ...other } = this.props;
 
     return (
       <Dialog
@@ -80,7 +80,7 @@ class ConfirmationDialog extends Component {
             }}
             aria-label="ringtone"
             name="ringtone"
-            selectedValue={this.state.selectedValue}
+            value={this.state.value}
             onChange={this.handleChange}
           >
             {options.map(option =>
@@ -103,7 +103,7 @@ class ConfirmationDialog extends Component {
 
 ConfirmationDialog.propTypes = {
   onRequestClose: PropTypes.func,
-  selectedValue: PropTypes.string,
+  value: PropTypes.string,
 };
 
 const styles = theme => ({
@@ -122,7 +122,7 @@ class ConfirmationDialogDemo extends Component {
   state = {
     anchorEl: undefined,
     open: false,
-    selectedValue: 'Dione',
+    value: 'Dione',
   };
 
   button = undefined;
@@ -132,7 +132,7 @@ class ConfirmationDialogDemo extends Component {
   };
 
   handleRequestClose = value => {
-    this.setState({ selectedValue: value, open: false });
+    this.setState({ value, open: false });
   };
 
   render() {
@@ -151,7 +151,7 @@ class ConfirmationDialogDemo extends Component {
             aria-label="Phone ringtone"
             onClick={this.handleClickListItem}
           >
-            <ListItemText primary="Phone ringtone" secondary={this.state.selectedValue} />
+            <ListItemText primary="Phone ringtone" secondary={this.state.value} />
           </ListItem>
           <ListItem button divider disabled>
             <ListItemText primary="Default notification ringtone" secondary="Tethys" />
@@ -162,7 +162,7 @@ class ConfirmationDialogDemo extends Component {
             }}
             open={this.state.open}
             onRequestClose={this.handleRequestClose}
-            selectedValue={this.state.selectedValue}
+            value={this.state.value}
           />
         </List>
       </div>

@@ -14,11 +14,11 @@ const styles = theme => ({
 
 class RadioButtonsGroup extends Component {
   state = {
-    selectedValue: undefined,
+    value: '',
   };
 
   handleChange = (event, value) => {
-    this.setState({ selectedValue: value });
+    this.setState({ value });
   };
 
   render() {
@@ -31,7 +31,7 @@ class RadioButtonsGroup extends Component {
           aria-label="gender"
           name="gender"
           className={classes.group}
-          selectedValue={this.state.selectedValue}
+          value={this.state.value}
           onChange={this.handleChange}
         >
           <FormControlLabel value="male" control={<Radio />} label="Male" />

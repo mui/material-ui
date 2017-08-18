@@ -71,7 +71,7 @@ class InteractiveGrid extends Component {
                 <RadioGroup
                   name="direction"
                   aria-label="direction"
-                  selectedValue={direction}
+                  value={direction}
                   onChange={this.handleChange('direction')}
                 >
                   <FormControlLabel value="row" control={<Radio />} label="row" />
@@ -89,7 +89,7 @@ class InteractiveGrid extends Component {
                 <RadioGroup
                   name="justify"
                   aria-label="justify"
-                  selectedValue={justify}
+                  value={justify}
                   onChange={this.handleChange('justify')}
                 >
                   <FormControlLabel value="flex-start" control={<Radio />} label="flex-start" />
@@ -108,7 +108,7 @@ class InteractiveGrid extends Component {
                 <RadioGroup
                   name="align"
                   aria-label="align"
-                  selectedValue={align}
+                  value={align}
                   onChange={this.handleChange('align')}
                 >
                   <FormControlLabel value="flex-start" control={<Radio />} label="flex-start" />
