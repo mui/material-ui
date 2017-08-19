@@ -64,6 +64,7 @@ function buildDocs(options) {
   reactAPI.name = path.parse(componentPath).name;
   reactAPI.styles = styles;
   reactAPI.pagesMarkdown = pagesMarkdown;
+  reactAPI.src = src;
   let markdown;
   try {
     markdown = generateMarkdown(reactAPI);
