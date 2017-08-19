@@ -31,6 +31,10 @@ If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiCardHeader`.
 
+## Inheritance
+
+The properties of the [&lt;CardContent /&gt;](/api/card-content) component are also available.
+
 ## Demos
 
 - [Cards](/demos/cards)

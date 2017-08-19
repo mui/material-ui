@@ -42,6 +42,10 @@ If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiMobileStepper`.
 
+## Inheritance
+
+The properties of the [&lt;Paper /&gt;](/api/paper) component are also available.
+
 ## Demos
 
 - [Stepper](/demos/stepper)

@@ -39,6 +39,10 @@
 Any other properties supplied will be spread to the root element.
 
 
+## Inheritance
+
+The properties of the [&lt;FormControl /&gt;](/api/form-control) component are also available.
+
 ## Demos
 
 - [Autocomplete](/demos/autocomplete)
