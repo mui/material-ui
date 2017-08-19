@@ -2,6 +2,7 @@
 
 import { parse as parseDoctrine } from 'doctrine';
 import recast from 'recast';
+import kebabCase from 'lodash/kebabCase';
 import { pageToTitle } from './helpers';
 
 function getDeprecatedInfo(type) {
@@ -196,6 +197,26 @@ you need to use the following style sheet name: \`${reactAPI.styles.name}\`.`
     : '';
 }
 
+const inheritedComponentRegexp = /\/\/ @inheritedComponent (.*)/;
+
+function generateInheritance(reactAPI) {
+  const inheritedComponent = reactAPI.src.match(inheritedComponentRegexp);
+
+  if (!inheritedComponent) {
+    return '';
+  }
+
+  const component = inheritedComponent[1];
+
+  return `
+## Inheritance
+
+The properties of the [&lt;${component} /&gt;](/api/${kebabCase(
+    component,
+  )}) component are also available.
+`;
+}
+
 function generateDemos(reactAPI) {
   const pagesMarkdown = reactAPI.pagesMarkdown.reduce((accumulator, page) => {
     if (page.components.includes(reactAPI.name)) {
@@ -224,6 +245,7 @@ export default function generateMarkdown(reactAPI: Object) {
     `${generateProps(reactAPI)}\n` +
     'Any other properties supplied will be spread to the root element.\n' +
     `${generateClasses(reactAPI)}\n` +
+    `${generateInheritance(reactAPI)}` +
     `${generateDemos(reactAPI)}\n`
   );
 }

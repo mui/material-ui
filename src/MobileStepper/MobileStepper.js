@@ -1,4 +1,5 @@
 // @flow weak
+// @inheritedComponent Paper
 
 import React from 'react';
 import PropTypes from 'prop-types';
