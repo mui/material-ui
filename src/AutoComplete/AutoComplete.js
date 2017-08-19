@@ -135,7 +135,7 @@ class AutoComplete extends Component {
      * Callback function that is fired when a list item is selected, or enter is pressed in the `TextField`.
      *
      * @param {string} chosenRequest Either the `TextField` input value, if enter is pressed in the `TextField`,
-     * or the text value of the corresponding list item that was selected.
+     * or the dataSource object corresponding to the list item that was selected.
      * @param {number} index The index in `dataSource` of the list item selected, or `-1` if enter is pressed in the
      * `TextField`.
      */
