@@ -114,7 +114,8 @@ export const styles = (theme: Object) => {
         // Remove the padding when type=search.
         appearance: 'none',
       },
-      'label + $formControl > &': {
+      // Show and hide the placeholder logic
+      'label + $formControl &': {
         '&::-webkit-input-placeholder': placeholderForm,
         '&::-moz-placeholder': placeholderForm, // Firefox 19+
         '&:-ms-input-placeholder': placeholderForm, // IE 11
@@ -162,7 +163,7 @@ export const styles = (theme: Object) => {
       },
     },
     multiline: {
-      padding: `${theme.spacing.unit - 2}px 0 ${theme.spacing.unit + 1}px`,
+      padding: `${theme.spacing.unit - 2}px 0 ${theme.spacing.unit - 1}px`,
     },
     inputDisabled: {
       opacity: 1, // Reset iOS opacity
