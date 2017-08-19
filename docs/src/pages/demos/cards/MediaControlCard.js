@@ -10,7 +10,7 @@ import SkipPreviousIcon from 'material-ui-icons/SkipPrevious';
 import PlayArrowIcon from 'material-ui-icons/PlayArrow';
 import SkipNextIcon from 'material-ui-icons/SkipNext';
 
-const styles = {
+const styles = theme => ({
   card: {
     display: 'flex',
   },
@@ -28,14 +28,14 @@ const styles = {
   controls: {
     display: 'flex',
     alignItems: 'center',
-    paddingLeft: 8,
-    paddingBottom: 8,
+    paddingLeft: theme.spacing.unit,
+    paddingBottom: theme.spacing.unit,
   },
   playIcon: {
     height: 38,
     width: 38,
   },
-};
+});
 
 function MediaControlCard(props) {
   const classes = props.classes;
