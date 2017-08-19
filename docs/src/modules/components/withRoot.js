@@ -124,6 +124,9 @@ const pages = [
       {
         pathname: '/discover-more/roadmap',
       },
+      {
+        pathname: '/discover-more/team',
+      },
     ],
   },
   {
