@@ -74,6 +74,17 @@ class TextFields extends Component {
           margin="normal"
         />
         <TextField
+          id="date"
+          label="From date"
+          type="date"
+          defaultValue="2017-05-24"
+          className={classes.textField}
+          margin="normal"
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+        <TextField
           id="multiline-flexible"
           label="Multiline"
           multiline
@@ -93,17 +104,6 @@ class TextFields extends Component {
           margin="normal"
         />
         <TextField
-          id="date"
-          label="From date"
-          type="date"
-          defaultValue="2017-05-24"
-          className={classes.textField}
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-        <TextField
           id="helperText"
           label="Helper text"
           defaultValue="Default Value"
@@ -112,10 +112,21 @@ class TextFields extends Component {
           margin="normal"
         />
         <TextField
+          label="With placeholder"
+          placeholder="Placeholder"
+          className={classes.textField}
+        />
+        <TextField
+          label="With placeholder multiline"
+          placeholder="Placeholder"
+          multiline
+          className={classes.textField}
+        />
+        <TextField
           id="placeholder"
           label="Label"
           InputProps={{ placeholder: 'Placeholder' }}
-          helperText="Full width!!!"
+          helperText="Full width!"
           fullWidth
           margin="normal"
         />
