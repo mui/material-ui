@@ -14,11 +14,11 @@ import blue from 'material-ui/colors/blue';
 import pink from 'material-ui/colors/pink';
 import { lightTheme, darkTheme, setPrismTheme } from 'docs/src/modules/utils/prism';
 
-// Injected the styles after docssearch
+// Injected the insertion-point-jss after docssearch
 if (process.browser && !global.__INSERTION_POINT__) {
   global.__INSERTION_POINT__ = true;
   const styleNode = document.createComment('insertion-point-jss');
-  const docsearchStylesSheet = document.querySelector('#docsearch-styles-sheet');
+  const docsearchStylesSheet = document.querySelector('#insertion-point-jss');
 
   if (document.head && docsearchStylesSheet) {
     document.head.insertBefore(styleNode, docsearchStylesSheet.nextSibling);
