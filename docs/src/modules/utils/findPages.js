@@ -1,9 +1,8 @@
 // @flow
 
-import path from 'path';
 import { findPages } from './find';
 
-const pages = findPages(path.resolve(__dirname, '../../../../pages'), {
+const pages = findPages({
   front: true,
 });
 

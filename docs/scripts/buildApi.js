@@ -11,8 +11,6 @@ import { getComponents } from '../src/modules/utils/parseMarkdown';
 import createMuiTheme from '../../src/styles/theme';
 import getStylesCreator from '../../src/styles/getStylesCreator';
 
-const srcDirectory = path.resolve(__dirname, '../../src');
-
 function ensureExists(pat, mask, cb) {
   mkdir(pat, mask, err => {
     if (err) {
@@ -101,7 +99,7 @@ export default withRoot(Page);
   });
 }
 
-const pagesMarkdown = findPagesMarkdown(path.resolve(__dirname, '../src/pages'))
+const pagesMarkdown = findPagesMarkdown()
   .map(markdown => {
     const markdownSource = readFileSync(markdown.filename, 'utf8');
 
@@ -112,7 +110,7 @@ const pagesMarkdown = findPagesMarkdown(path.resolve(__dirname, '../src/pages'))
   })
   .filter(markdown => markdown.components.length > 0);
 
-const components = findComponents(srcDirectory);
+const components = findComponents();
 
 components.forEach(component => {
   buildDocs({
