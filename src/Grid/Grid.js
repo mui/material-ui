@@ -302,7 +302,7 @@ Grid.defaultProps = {
   hidden: undefined,
   item: false,
   justify: 'flex-start',
-  spacing: 16,
+  spacing: 0,
   wrap: 'wrap',
 };
 
