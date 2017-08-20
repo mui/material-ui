@@ -50,6 +50,7 @@ class InteractiveGrid extends Component {
             align={align}
             direction={direction}
             justify={justify}
+			spacing={16}
           >
             {[0, 1, 2].map(value =>
               <Grid key={value} item>
