@@ -8,6 +8,18 @@ import wrapDisplayName from 'recompose/wrapDisplayName';
 import AppWrapper from 'docs/src/modules/components/AppWrapper';
 import initRedux from 'docs/src/modules/redux/initRedux';
 import findPages from /* preval */ 'docs/src/modules/utils/findPages';
+import { loadCSS } from 'fg-loadcss/src/loadCSS';
+
+if (process.browser) {
+  loadCSS(
+    'https://fonts.googleapis.com/icon?family=Material+Icons',
+    document.querySelector('#insertion-point-jss'),
+  );
+  loadCSS(
+    'https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css',
+    document.querySelector('#insertion-point-jss'),
+  );
+}
 
 const pages = [
   {

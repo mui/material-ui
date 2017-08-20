@@ -30,6 +30,9 @@ module.exports = {
 
     return Object.assign({}, config, {
       plugins,
+      externals: Object.assign({}, {
+        fs: 'fs',
+      }),
       module: Object.assign({}, config.module, {
         rules: config.module.rules.concat([
           {
