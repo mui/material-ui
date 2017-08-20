@@ -2,32 +2,32 @@
   "name": "Material-UI",
   "short_name": "Material-UI",
   "display": "standalone",
-  "start_url": "/?launcher=true",
+  "start_url": "/",
   "theme_color": "#2196f3",
-  "background_color": "#fafafa",
+  "background_color": "#2196f3",
   "icons": [
     {
-      "src": "/icons/48x48.png",
+      "src": "/static/icons/48x48.png",
       "sizes": "48x48"
     },
     {
-      "src": "/icons/96x96.png",
+      "src": "/static/icons/96x96.png",
       "sizes": "96x96"
     },
     {
-      "src": "/icons/192x192.png",
+      "src": "/static/icons/192x192.png",
       "sizes": "192x192"
     },
     {
-      "src": "/icons/256x256.png",
+      "src": "/static/icons/256x256.png",
       "sizes": "256x256"
     },
     {
-      "src": "/icons/384x384.png",
+      "src": "/static/icons/384x384.png",
       "sizes": "384x384"
     },
     {
-      "src": "/icons/512x512.png",
+      "src": "/static/icons/512x512.png",
       "sizes": "512x512"
     }
   ]
