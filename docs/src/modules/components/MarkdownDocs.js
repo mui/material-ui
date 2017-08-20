@@ -30,13 +30,18 @@ function MarkdownDocs(props, context) {
   const contents = getContents(markdown);
   const components = getComponents(markdown);
 
+  let sourceLocation = context.activePage.pathname;
+  // Hack for handling the nested demos
+  if (sourceLocation.indexOf('/demos') === 0) {
+    const token = sourceLocation.split('/');
+    token.push(token[token.length - 1]);
+    sourceLocation = token.join('/');
+  }
+
   return (
     <AppContent className={classes.root}>
       <div className={classes.header}>
-        <Button
-          component="a"
-          href={`${SOURCE_CODE_ROOT_URL}/docs/src/pages${context.activePage.pathname}.md`}
-        >
+        <Button component="a" href={`${SOURCE_CODE_ROOT_URL}/docs/src/pages${sourceLocation}.md`}>
           {'Edit this page'}
         </Button>
       </div>

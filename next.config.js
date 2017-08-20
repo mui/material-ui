@@ -53,7 +53,7 @@ module.exports = {
   webpackDevMiddleware: config => config,
   poweredByHeader: false,
   exportPathMap: () => {
-    const pages = findPages(path.resolve(__dirname, 'pages'), {});
+    const pages = findPages();
     const map = {
       '/': { page: '/' },
     }

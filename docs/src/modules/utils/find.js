@@ -1,11 +1,13 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 const fs = require('fs');
 const path = require('path');
 
 const markdownRegex = /\.md$/;
 
-function findPagesMarkdown(directory, pagesMarkdown = []) {
+// Returns the markdowns of the documentation in a flat array.
+function findPagesMarkdown(
+  directory = path.resolve(__dirname, '../../../src/pages'),
+  pagesMarkdown = []
+) {
   const items = fs.readdirSync(directory);
 
   items.forEach(item => {
@@ -27,7 +29,9 @@ function findPagesMarkdown(directory, pagesMarkdown = []) {
     }
 
     pagesMarkdown.push({
+      // Relative location in the path (URL) system.
       pathname,
+      // Relative location in the file system.
       filename: itemPath,
     });
   });
@@ -37,7 +41,8 @@ function findPagesMarkdown(directory, pagesMarkdown = []) {
 
 const componentRegex = /^([A-Z][a-z]+)+\.js/;
 
-function findComponents(directory, components = []) {
+// Returns the component source in a flat array.
+function findComponents(directory = path.resolve(__dirname, '../../../../src'), components = []) {
   const items = fs.readdirSync(directory);
 
   items.forEach(item => {
@@ -63,7 +68,12 @@ function findComponents(directory, components = []) {
 const jsRegex = /\.js$/;
 const blackList = ['/.eslintrc', '/_document'];
 
-function findPages(directory, options, pages = []) {
+// Returns the next.js pages available in a nested format.
+function findPages(
+  options = {},
+  directory = path.resolve(__dirname, '../../../../pages'),
+  pages = []
+) {
   fs.readdirSync(directory).forEach(item => {
     const itemPath = path.resolve(directory, item);
     const pathname = itemPath.replace(/^.*\/pages/, '').replace('.js', '');
@@ -78,7 +88,7 @@ function findPages(directory, options, pages = []) {
         pathname,
         children,
       });
-      findPages(itemPath, options, children);
+      findPages(options, itemPath, children);
       return;
     }
 
