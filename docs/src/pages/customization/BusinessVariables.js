@@ -1,6 +1,6 @@
 // @flow weak
 
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import Checkbox from 'material-ui/Checkbox';
 import { createMuiTheme, MuiThemeProvider, withStyles } from 'material-ui/styles';

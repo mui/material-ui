@@ -40,7 +40,7 @@ function generate(element) {
   );
 }
 
-class InteractiveList extends Component {
+class InteractiveList extends Component<$FlowFixMeProps, $FlowFixMeState> {
   state = {
     dense: false,
     secondary: false,

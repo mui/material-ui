@@ -81,7 +81,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-class Tab extends Component {
+class Tab extends Component<$FlowFixMeProps, $FlowFixMeState> {
   static defaultProps = {
     disabled: false,
   };

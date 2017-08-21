@@ -8,7 +8,7 @@ import Transition from 'react-transition-group/Transition';
 /**
  * @ignore - internal component.
  */
-class Ripple extends Component {
+class Ripple extends Component<$FlowFixMeProps, $FlowFixMeState> {
   static defaultProps = {
     pulsate: false,
   };

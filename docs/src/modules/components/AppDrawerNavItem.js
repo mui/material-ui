@@ -44,7 +44,7 @@ const styles = theme => ({
   },
 });
 
-class AppDrawerNavItem extends Component {
+class AppDrawerNavItem extends Component<$FlowFixMeProps, $FlowFixMeState> {
   static defaultProps = {
     openImmediately: false,
   };

@@ -1,7 +1,7 @@
 // @flow
 
-import React from 'react';
-import type { Element } from 'react';
+import * as React from 'react';
+import type { ChildrenArray } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
@@ -23,7 +23,7 @@ export type Props = {
    * The content of the component, normally `Icon`, `SvgIcon`,
    * or a `material-ui-icons` SVG icon component.
    */
-  children: Element<*>,
+  children: React.Element<any>,
   /**
    * Useful to extend the style applied to components.
    */

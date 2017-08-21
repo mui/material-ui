@@ -147,7 +147,7 @@ const styles = theme => ({
   },
 });
 
-class IntegrationAutosuggest extends Component {
+class IntegrationAutosuggest extends Component<$FlowFixMeProps, $FlowFixMeState> {
   state = {
     value: '',
     suggestions: [],

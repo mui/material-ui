@@ -7,7 +7,7 @@ import PhoneIcon from 'material-ui-icons/Phone';
 import FavoriteIcon from 'material-ui-icons/Favorite';
 import PersonPinIcon from 'material-ui-icons/PersonPin';
 
-export default class IconLabelTabs extends Component {
+export default class IconLabelTabs extends Component<{}, $FlowFixMeState> {
   state = {
     value: 0,
   };

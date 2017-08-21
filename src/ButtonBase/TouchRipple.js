@@ -92,7 +92,7 @@ export const styles = (theme: Object) => ({
 /**
  * @ignore - internal component.
  */
-class TouchRipple extends Component {
+class TouchRipple extends Component<$FlowFixMeProps, $FlowFixMeState> {
   static defaultProps = {
     center: false,
   };

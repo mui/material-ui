@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
+import type { ChildrenArray, Element } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import IconButton from '../IconButton';
@@ -32,10 +32,10 @@ export const styles = {
 };
 
 type DefaultProps = {
-  checkedIcon: Element<*>,
+  checkedIcon: Element<any>,
   classes: Object,
   disableRipple: boolean,
-  icon: Element<*>,
+  icon: Element<any>,
 };
 
 // NB: If changed, please update Checkbox, Switch and Radio
@@ -53,7 +53,7 @@ export type Props = {
    * The icon to display when the component is checked.
    * If a string is provided, it will be used as a font ligature.
    */
-  checkedIcon?: Element<*>,
+  checkedIcon?: ChildrenArray<*>,
   /**
    * Useful to extend the style applied to components.
    */
@@ -82,7 +82,7 @@ export type Props = {
    * The icon to display when the component is unchecked.
    * If a string is provided, it will be used as a font ligature.
    */
-  icon?: Element<*>,
+  icon?: Element<any>,
   /**
    * If `true`, the component appears indeterminate.
    */
@@ -91,7 +91,7 @@ export type Props = {
    * The icon to display when the component is indeterminate.
    * If a string is provided, it will be used as a font ligature.
    */
-  indeterminateIcon?: string | Element<*>,
+  indeterminateIcon?: string | Element<any>,
   /**
    * Properties applied to the `input` element.
    */
@@ -128,8 +128,8 @@ type State = {
 };
 
 type Options = {
-  defaultIcon?: Element<*>,
-  defaultCheckedIcon?: Element<*>,
+  defaultIcon?: Element<any>,
+  defaultCheckedIcon?: Element<any>,
   inputType?: string,
 };
 
@@ -143,7 +143,7 @@ export default function createSwitch(
   /**
    * @ignore - internal component.
    */
-  class SwitchBase extends Component<DefaultProps, AllProps, State> {
+  class SwitchBase extends Component<AllProps, State> {
     props: AllProps;
     static defaultProps: DefaultProps = {
       checkedIcon: defaultCheckedIcon,

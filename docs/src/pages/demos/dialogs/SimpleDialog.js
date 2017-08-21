@@ -21,7 +21,7 @@ const styles = {
   },
 };
 
-class SimpleDialog extends Component {
+class SimpleDialog extends Component<$FlowFixMeProps> {
   handleRequestClose = () => {
     this.props.onRequestClose(this.props.selectedValue);
   };
@@ -71,7 +71,7 @@ SimpleDialog.propTypes = {
 
 const SimpleDialogWrapped = withStyles(styles)(SimpleDialog);
 
-class SimpleDialogDemo extends Component {
+class SimpleDialogDemo extends Component<{}, $FlowFixMeState> {
   state = {
     open: false,
     selectedValue: emails[1],

@@ -1,7 +1,7 @@
 // @flow weak
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
+import type { ChildrenArray } from 'react';
 import Transition from '../internal/Transition';
 import { duration } from '../styles/transitions';
 import withTheme from '../styles/withTheme';
@@ -15,7 +15,7 @@ type DefaultProps = {
 };
 
 export type Props = {
-  children?: Element<*>,
+  children?: ChildrenArray<*>,
   /**
    * If `true`, the component will transition in.
    */
@@ -60,7 +60,7 @@ export type Props = {
 
 type AllProps = DefaultProps & Props;
 
-class Fade extends Component<DefaultProps, AllProps, void> {
+class Fade extends Component<AllProps, void> {
   props: AllProps;
 
   static defaultProps: DefaultProps = {

@@ -2,7 +2,7 @@
 
 import { spy } from 'sinon';
 import { assert } from 'chai';
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { create } from 'jss';
 import preset from 'jss-preset-default';

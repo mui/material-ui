@@ -18,10 +18,10 @@ function getDefaultTheme() {
 }
 
 // Provide the theme object as a property to the input component.
-export default function withTheme(BaseComponent) {
+export default function withTheme<P: Object>(BaseComponent) {
   const factory = createEagerFactory(BaseComponent);
 
-  class WithTheme extends Component {
+  class WithTheme extends Component<P, { theme: any }> {
     // Exposed for test purposes.
     static Naked = BaseComponent;
 

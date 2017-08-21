@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 import { spy } from 'sinon';
 import { assert } from 'chai';
 import { JssProvider, SheetsRegistry } from 'react-jss';

@@ -27,7 +27,7 @@ const styles = theme => ({
   },
 });
 
-class BasicTabsWrappedLabel extends Component {
+class BasicTabsWrappedLabel extends Component<$FlowFixMeProps, $FlowFixMeState> {
   state = {
     value: 'one',
   };

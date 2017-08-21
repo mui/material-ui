@@ -25,7 +25,7 @@ if (process.browser && !global.__INSERTION_POINT__) {
   }
 }
 
-class AppWrapper extends Component {
+class AppWrapper extends Component<$FlowFixMeProps> {
   componentWillMount() {
     this.styleContext = getContext();
   }

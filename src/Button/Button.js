@@ -1,8 +1,8 @@
 // @flow
 // @inheritedComponent ButtonBase
 
-import React from 'react';
-import type { Element } from 'react';
+import * as React from 'react';
+import type { ChildrenArray } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
@@ -169,7 +169,7 @@ export type Props = {
   /**
    * The content of the button.
    */
-  children: Element<*>,
+  children: React.Element<any>,
   /**
    * Useful to extend the style applied to components.
    */

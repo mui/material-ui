@@ -45,7 +45,7 @@ function withWidth(options = {}) {
   return BaseComponent => {
     const factory = createEagerFactory(BaseComponent);
 
-    class Width extends Component {
+    class Width extends Component<$FlowFixMeProps, $FlowFixMeState> {
       state = {
         width: undefined,
       };

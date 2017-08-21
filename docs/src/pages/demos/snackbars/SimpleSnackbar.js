@@ -15,7 +15,7 @@ const styles = theme => ({
   },
 });
 
-class SimpleSnackbar extends Component {
+class SimpleSnackbar extends Component<$FlowFixMeProps, $FlowFixMeState> {
   state = {
     open: false,
     message: null,

@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element as ReactElement } from 'react'; // DOM type `Element` used below
+import type { ChildrenArray } from 'react'; // DOM type `Element` used below
 import ReactDOM from 'react-dom';
 import transitionInfo from 'dom-helpers/transition/properties';
 import addEventListener from 'dom-helpers/events/on';
@@ -53,7 +53,7 @@ export type Props = {
   /**
    * The content of the component.
    */
-  children?: ReactElement<*>,
+  children?: ChildrenArray<*>,
   /**
    * @ignore
    */
@@ -141,7 +141,7 @@ type AllProps = DefaultProps & Props;
  * The extensive set of lifecyle callbacks means you have control over
  * the transitioning now at each step of the way.
  */
-class Transition extends Component<DefaultProps, AllProps, State> {
+class Transition extends Component<AllProps, State> {
   props: AllProps;
 
   static defaultProps: DefaultProps = {
@@ -305,7 +305,7 @@ class Transition extends Component<DefaultProps, AllProps, State> {
 
     // FIXME: These next two blocks are a real enigma for flow typing outside of weak mode.
     // FIXME: I suggest we refactor - rosskevin
-    this.nextCallback = (event?: SyntheticUIEvent) => {
+    this.nextCallback = (event?: SyntheticUIEvent<>) => {
       requestAnimationStart(() => {
         if (active) {
           active = false;

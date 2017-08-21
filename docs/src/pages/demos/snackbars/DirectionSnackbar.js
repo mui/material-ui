@@ -5,7 +5,7 @@ import Button from 'material-ui/Button';
 import Snackbar from 'material-ui/Snackbar';
 import Slide from 'material-ui/transitions/Slide';
 
-class DirectionSnackbar extends Component {
+class DirectionSnackbar extends Component<{}, $FlowFixMeState> {
   state = {
     open: false,
     direction: null,

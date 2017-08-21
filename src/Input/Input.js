@@ -318,7 +318,7 @@ type State = {
   focused: boolean,
 };
 
-class Input extends Component<DefaultProps, AllProps, State> {
+class Input extends Component<AllProps, State> {
   props: AllProps;
   static muiName = 'Input';
   static defaultProps = {

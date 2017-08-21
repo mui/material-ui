@@ -35,7 +35,7 @@ const columnData = [
   { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
 ];
 
-class EnhancedTableHead extends Component {
+class EnhancedTableHead extends Component<$FlowFixMeProps> {
   static propTypes = {
     numSelected: PropTypes.number.isRequired,
     onRequestSort: PropTypes.func.isRequired,
@@ -154,7 +154,7 @@ const styles = theme => ({
   },
 });
 
-class EnhancedTable extends Component {
+class EnhancedTable extends Component<$FlowFixMeProps, $FlowFixMeState> {
   state = {
     order: 'asc',
     orderBy: 'calories',

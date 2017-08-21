@@ -27,7 +27,7 @@ AppWrapper = withStyles(styles)(AppWrapper);
 const context = createContext();
 
 function withRoot(BaseComponent) {
-  class WithRoot extends Component {
+  class WithRoot extends Component<{}> {
     componentDidMount() {
       // Remove the server-side injected CSS.
       const jssStyles = document.querySelector('#jss-server-side');

@@ -238,7 +238,7 @@ describe('<Transition />', () => {
   });
 
   describe('unmountOnExit', () => {
-    class UnmountTransition extends Component {
+    class UnmountTransition extends Component<$FlowFixMeProps, $FlowFixMeState> {
       state = {};
 
       componentWillMount() {

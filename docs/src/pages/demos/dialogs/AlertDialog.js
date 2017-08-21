@@ -9,7 +9,7 @@ import Dialog, {
   DialogTitle,
 } from 'material-ui/Dialog';
 
-export default class AlertDialog extends Component {
+export default class AlertDialog extends Component<{}, $FlowFixMeState> {
   state = {
     open: false,
   };

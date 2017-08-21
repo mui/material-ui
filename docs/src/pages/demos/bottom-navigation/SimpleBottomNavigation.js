@@ -14,7 +14,7 @@ const styles = {
   },
 };
 
-class SimpleBottomNavigation extends Component {
+class SimpleBottomNavigation extends Component<$FlowFixMeProps, $FlowFixMeState> {
   state = {
     value: 0,
   };

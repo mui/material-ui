@@ -17,7 +17,7 @@ const styles = theme => ({
   },
 });
 
-class TextFields extends Component {
+class TextFields extends Component<$FlowFixMeProps, $FlowFixMeState> {
   state = {
     name: 'Cat in the Hat',
     multiline: 'Controlled',

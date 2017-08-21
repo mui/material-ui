@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import Radio from 'material-ui/Radio';
 
-class RadioButtons extends Component {
+class RadioButtons extends Component<{}, $FlowFixMeState> {
   state = {
     selectedValue: undefined,
   };

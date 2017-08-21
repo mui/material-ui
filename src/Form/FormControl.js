@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Children, Component } from 'react';
-import type { Element } from 'react';
+import type { ChildrenArray } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -46,7 +46,7 @@ export type Props = {
   /**
    * The contents of the form control.
    */
-  children?: Element<*>,
+  children?: ChildrenArray<*>,
   /**
    * Useful to extend the style applied to components.
    */
@@ -100,7 +100,7 @@ type State = {
 /**
  * Provides context such as dirty/focused/error/required for form inputs.
  */
-class FormControl extends Component<DefaultProps, AllProps, State> {
+class FormControl extends Component<AllProps, State> {
   props: AllProps;
 
   static defaultProps = {
@@ -143,9 +143,13 @@ class FormControl extends Component<DefaultProps, AllProps, State> {
   }
 
   componentWillMount() {
+    const { children } = this.props;
+    if (!children) {
+      return;
+    }
     // We need to iterate through the children and find the Input in order
     // to fully support server side rendering.
-    Children.forEach(this.props.children, child => {
+    Children.forEach(children, child => {
       if (isMuiComponent(child, 'Input') && isDirty(child.props, true)) {
         this.setState({ dirty: true });
       }

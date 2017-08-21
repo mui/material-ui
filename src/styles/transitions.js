@@ -88,6 +88,6 @@ export default {
 
     const constant = height / 36;
 
-    return Math.round((4 + 15 * constant ** 0.25 + constant / 5) * 10);
+    return Math.round((4 + 15 * (constant ** 0.25) + constant / 5) * 10);
   },
 };

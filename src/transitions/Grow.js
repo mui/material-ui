@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
+import type { ChildrenArray } from 'react';
 import withTheme from '../styles/withTheme';
 import Transition from '../internal/Transition';
 import type { TransitionCallback } from '../internal/Transition';
@@ -20,7 +20,7 @@ export type Props = {
   /**
    * The content of the component.
    */
-  children?: Element<*>,
+  children?: ChildrenArray<*>,
   /**
    * Callback fired before the component is entering
    */
@@ -64,7 +64,7 @@ type AllProps = DefaultProps & Props;
 /**
  * Grow transition used by popovers such as Menu.
  */
-class Grow extends Component<DefaultProps, AllProps, void> {
+class Grow extends Component<AllProps, void> {
   props: AllProps;
   static defaultProps: DefaultProps = {
     theme: {},

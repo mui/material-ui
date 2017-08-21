@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component, Children, cloneElement } from 'react';
-import type { Element } from 'react';
+import type { ChildrenArray } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import FormGroup from '../Form/FormGroup';
@@ -23,7 +23,7 @@ export type Props = {
   /**
    * The content of the component.
    */
-  children?: Element<*>,
+  children?: ChildrenArray<*>,
   /**
    * Useful to extend the style applied to components.
    */
@@ -59,7 +59,7 @@ export type Props = {
 
 type AllProps = DefaultProps & Props;
 
-class RadioGroup extends Component<void, AllProps, void> {
+class RadioGroup extends Component<AllProps, void> {
   props: AllProps;
 
   radios: Array<HTMLInputElement> = [];

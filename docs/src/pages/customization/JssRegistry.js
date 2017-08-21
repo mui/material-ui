@@ -8,7 +8,7 @@ import CssInJs from './CssInJs';
 const sheetsRegistry = new SheetsRegistry();
 const theme = createMuiTheme();
 
-class JssRegistry extends Component {
+class JssRegistry extends Component<{}, $FlowFixMeState> {
   state = {
     length: 0,
   };

@@ -21,7 +21,7 @@ const styles = theme => ({
   },
 });
 
-class GuttersGrid extends Component {
+class GuttersGrid extends Component<$FlowFixMeProps, $FlowFixMeState> {
   state = {
     spacing: '16',
   };

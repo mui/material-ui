@@ -13,7 +13,7 @@ const styles = {
   },
 };
 
-class Checkboxes extends Component {
+class Checkboxes extends Component<$FlowFixMeProps, $FlowFixMeState> {
   state = {
     checkedA: true,
     checkedB: false,

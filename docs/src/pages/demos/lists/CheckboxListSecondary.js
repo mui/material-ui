@@ -15,7 +15,7 @@ const styles = theme => ({
   },
 });
 
-class CheckboxListSecondary extends Component {
+class CheckboxListSecondary extends Component<$FlowFixMeProps, $FlowFixMeState> {
   state = {
     checked: [1],
   };

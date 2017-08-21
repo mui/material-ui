@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import createBroadcast from 'brcast';
 import themeListener, { CHANNEL } from './themeListener';
 
-class MuiThemeProvider extends Component {
+class MuiThemeProvider extends Component<Object> {
   constructor(props: Object, context: Object) {
     super(props, context);
 

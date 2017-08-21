@@ -38,7 +38,7 @@ const styles = theme => ({
   },
 });
 
-class RecipeReviewCard extends Component {
+class RecipeReviewCard extends Component<$FlowFixMeProps, $FlowFixMeState> {
   state = { expanded: false };
 
   handleExpandClick = () => {

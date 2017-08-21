@@ -27,7 +27,7 @@ const options = [
   'Umbriel',
 ];
 
-class ConfirmationDialog extends Component {
+class ConfirmationDialog extends Component<$FlowFixMeProps, $FlowFixMeState> {
   state = {
     value: undefined,
   };
@@ -118,7 +118,7 @@ const styles = theme => ({
   },
 });
 
-class ConfirmationDialogDemo extends Component {
+class ConfirmationDialogDemo extends Component<$FlowFixMeProps, $FlowFixMeState> {
   state = {
     anchorEl: undefined,
     open: false,

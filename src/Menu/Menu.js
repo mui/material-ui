@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
+import type { ChildrenArray } from 'react';
 import classNames from 'classnames';
 import { findDOMNode } from 'react-dom';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
@@ -24,7 +24,7 @@ export type Props = {
   /**
    * Menu contents, normally `MenuItem`s.
    */
-  children?: Element<*>,
+  children?: ChildrenArray<*>,
   /**
    * Useful to extend the style applied to components.
    */
@@ -94,7 +94,7 @@ export const styles = {
   },
 };
 
-class Menu extends Component<DefaultProps, AllProps, void> {
+class Menu extends Component<AllProps, void> {
   props: AllProps;
   static defaultProps: DefaultProps = {
     classes: {},
@@ -131,7 +131,7 @@ class Menu extends Component<DefaultProps, AllProps, void> {
     }
   };
 
-  handleListKeyDown = (event: SyntheticUIEvent, key: string) => {
+  handleListKeyDown = (event: SyntheticUIEvent<>, key: string) => {
     if (key === 'tab') {
       event.preventDefault();
       if (this.props.onRequestClose) {

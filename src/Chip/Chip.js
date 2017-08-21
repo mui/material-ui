@@ -81,7 +81,7 @@ export const styles = (theme: Object) => {
 /**
  * Chips represent complex entities in small blocks, such as a contact.
  */
-class Chip extends Component {
+class Chip extends Component<$FlowFixMeProps> {
   chipRef = null;
 
   handleDeleteIconClick = event => {
