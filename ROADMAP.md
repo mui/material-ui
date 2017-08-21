@@ -2,7 +2,7 @@
 
 The roadmap is a living document, and it is likely that priorities will change, but the list below should give some indication of our plans for the next major release, and for the future.
 
-:warning: New features based on `v0.18.x` have low priority and will most likely not be reviewed nor merged. We want to focus on bug fixes.
+:warning: New features based on `v0.19.x` have low priority and will most likely not be reviewed nor merged. We want to focus on bug fixes.
 
 ## Version 1 (published on NPM under the next tag)
 
@@ -114,12 +114,15 @@ For UI related things, providing a wrapper for the functionality is often the wr
 We think that it should be done the other way around, i.e. providing a low-level API that can be combined with third-party libraries, e.g.:
  - [react-virtualized](https://github.com/bvaughn/react-virtualized)
  - [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views)
+ - [react-autosuggest](https://github.com/moroshko/react-autosuggest)
+ - [react-popper](https://github.com/souporserious/react-popper)
+ - [downshift](https://github.com/paypal/downshift)
  - [react-dnd](https://github.com/gaearon/react-dnd)
 
 On the other hand, using a smart date library for the DatePicker / TimePicker would probably be much better as date management is tricky and not a core business.
 
 ## Future
 
-- [[#2863](https://github.com/callemall/material-ui/issues/2863)] Add missing components, and missing features from current ones.
-- [[#593](https://github.com/callemall/material-ui/issues/593)] Full support for react-native.
-- Add example on how to use [react-virtualized](https://github.com/bvaughn/react-virtualized) / [react-list](https://github.com/orgsync/react-list) for lists, menu items and table.
+- Add missing components, and missing features from current ones
+- [[#7721](https://github.com/callemall/material-ui/issues/7721)] Preact support
+- [[#593](https://github.com/callemall/material-ui/issues/593)] Support React Native

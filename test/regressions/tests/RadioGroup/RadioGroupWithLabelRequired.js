@@ -8,7 +8,7 @@ export default function RadioGroupWithLabelRequired() {
   return (
     <FormControl style={{ width: 100 }} required>
       <FormLabel>Location</FormLabel>
-      <RadioGroup selectedValue="home">
+      <RadioGroup value="home">
         <FormControlLabel value="home" control={<Radio />} label="Home" />
         <FormControlLabel value="work" control={<Radio />} label="Work" />
       </RadioGroup>

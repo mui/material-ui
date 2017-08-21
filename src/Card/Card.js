@@ -1,4 +1,5 @@
 // @flow
+// @inheritedComponent Paper
 
 import React from 'react';
 import Paper from '../Paper';

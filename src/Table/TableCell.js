@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -48,12 +48,22 @@ function TableCell(props, context) {
     component,
     ...other
   } = props;
+<<<<<<< HEAD
   const { table } = context;
   let ComponentCell;
   if (component) {
     ComponentCell = component;
   } else {
     ComponentCell = table && table.head ? 'th' : 'td';
+=======
+
+  const { table } = context;
+  let Component;
+  if (component) {
+    Component = component;
+  } else {
+    Component = table && table.head ? 'th' : 'td';
+>>>>>>> 099920cc0e14a2ff44c5e925ddb28c376fecd599
   }
   const className = classNames(
     classes.root,

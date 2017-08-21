@@ -2,6 +2,58 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.6
+###### _Aug 20, 2016_
+
+A big shout-out to @sebald for our first TypeScript coverage.
+Another notable change is [the migration of the documentation](#7759) to [Next.js](https://github.com/zeit/next.js), it's twice as fast as before 🚀.
+
+Big thanks to the 9 contributors who made this release possible.
+
+##### Breaking changes
+
+- [RadioGroup] Rename selectedValue to value (#7832) @
+
+Push #7741 initiative forward (use `value` and `onChange` as controlling properties)
+
+```diff
+-<RadioGroup selectedValue="foo">
++<RadioGroup value="foo">
+// ...
+```
+
+##### Component Fixes / Enhancements
+
+- [Table] Add the possibility of custom element type (#7765) @wieseljonas
+- [Input] remove extraneous props when using custom component (#7784) @rosskevin
+- [Input] should accommodate number and string values (#7791) @rosskevin
+- [Slide] Remove Slide offset property from src and docs (#7808) @gfpacheco
+- [typescript] Create typings for material-ui-icons (#7820) @sebald
+- [typescript] Add tests for typings + fixes (#7686) @sebald
+- [typescript] Update typings for beta.4 and beta.5 (#7793) @sebald
+- [typescript] Update <Slide> typings (#7817) @sebald
+- [TextField] Fix placeholder issue (#7838) @oliviertassinari
+
+##### Docs
+
+- [docs] Use Next.js: x2 performance (#7759) @oliviertassinari
+- [docs] Add the 'data grid for Material-UI' reference (#7786) @dxbykov
+- [docs] Renamed the styleSheet argument in withStyles to styles (#7819) @phiilu
+- [docs] Advanced table (#7824) @oliviertassinari
+- [docs] Fix typo (#7777) @Merkyl999x
+- [docs] Fix run-on sentences (#7792) @gitname
+- [docs] Show inherited components (#7846) @oliviertassinari
+- [docs] Add a team page (#7842) @oliviertassinari
+- [docs] Add a ROADMAP page (#7840) @oliviertassinari
+- [docs] Some last improvement before the release (#7847) @oliviertassinari
+
+##### Core
+
+- [core] Better usage of the CI 🚀 (#7833) @oliviertassinari
+- [core] Fix size-limit warning (#7822) @oliviertassinari
+- [icons] Automate release process (#7823) @oliviertassinari
+- [core] Update some dependencies (#7831) @oliviertassinari
+
 ## 1.0.0-beta.5
 ###### _Aug 15, 2016_
 

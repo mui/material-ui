@@ -7,4 +7,4 @@ for the [Grid](/layout/grid) and [Hidden](/layout/hidden) components.
 
 This can be accomplished using [CSS-in-JS](/customization/css-in-js).
 
-{{demo='pages/layout/css-in-js/MediaQuery.js'}}
+{{demo='pages/layout/MediaQuery.js'}}

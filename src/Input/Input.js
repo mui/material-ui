@@ -6,11 +6,33 @@ import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Textarea from './Textarea';
 
+/**
+ * Supports determination of isControlled().
+ * Controlled input accepts its current value as a prop.
+ *
+ * @see https://facebook.github.io/react/docs/forms.html#controlled-components
+ * @param value
+ * @returns {boolean} true if string (including '') or number (including zero)
+ */
+export function hasValue(value: ?(number | string)) {
+  return value !== undefined && value !== null && !(Array.isArray(value) && value.length === 0);
+}
+
+/**
+ * Determine if field is dirty (a.k.a. filled).
+ *
+ * Response determines if label is presented above field or as placeholder.
+ *
+ * @param obj
+ * @param SSR
+ * @returns {boolean} False when not present or empty string.
+ *                    True when any number or string with length.
+ */
 export function isDirty(obj, SSR = false) {
   return (
     obj &&
-    ((obj.value && obj.value.toString().length) ||
-      (SSR && obj.defaultValue && obj.defaultValue.toString().length)) > 0
+    ((hasValue(obj.value) && obj.value !== '') ||
+      (SSR && hasValue(obj.defaultValue) && obj.defaultValue !== ''))
   );
 }
 
@@ -92,7 +114,8 @@ export const styles = (theme: Object) => {
         // Remove the padding when type=search.
         appearance: 'none',
       },
-      'label + $formControl > &': {
+      // Show and hide the placeholder logic
+      'label + $formControl &': {
         '&::-webkit-input-placeholder': placeholderForm,
         '&::-moz-placeholder': placeholderForm, // Firefox 19+
         '&:-ms-input-placeholder': placeholderForm, // IE 11
@@ -140,7 +163,7 @@ export const styles = (theme: Object) => {
       },
     },
     multiline: {
-      padding: `${theme.spacing.unit - 2}px 0 ${theme.spacing.unit + 1}px`,
+      padding: `${theme.spacing.unit - 2}px 0 ${theme.spacing.unit - 1}px`,
     },
     inputDisabled: {
       opacity: 1, // Reset iOS opacity
@@ -369,8 +392,14 @@ class Input extends Component<DefaultProps, AllProps, State> {
     }
   };
 
+  /**
+   * A controlled input accepts its current value as a prop.
+   *
+   * @see https://facebook.github.io/react/docs/forms.html#controlled-components
+   * @returns {boolean} true if string (including '') or number (including zero)
+   */
   isControlled() {
-    return typeof this.props.value === 'string';
+    return hasValue(this.props.value);
   }
 
   checkDirty(obj) {
@@ -478,16 +507,9 @@ class Input extends Component<DefaultProps, AllProps, State> {
     };
 
     if (component) {
-      inputProps = {
-        rowsMax,
-        ...inputProps,
-      };
       InputComponent = component;
     } else if (multiline) {
       if (rows && !rowsMax) {
-        inputProps = {
-          ...inputProps,
-        };
         InputComponent = 'textarea';
       } else {
         inputProps = {

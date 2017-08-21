@@ -193,7 +193,7 @@ export type Props = {
    */
   spacing?: 0 | 8 | 16 | 24 | 40,
   /**
-   * If provided, will wrap with [Hidden](/component-api/Hidden) component and given properties.
+   * If provided, will wrap with [Hidden](/api/hidden) component and given properties.
    */
   hidden?: HiddenProps,
   /**

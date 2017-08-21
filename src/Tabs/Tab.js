@@ -1,4 +1,5 @@
 // @flow weak
+// @inheritedComponent ButtonBase
 
 import React, { Component, isValidElement } from 'react';
 import PropTypes from 'prop-types';

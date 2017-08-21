@@ -10,6 +10,7 @@ import withStyles from '../styles/withStyles';
 export const styles = {
   root: {
     boxSizing: 'border-box',
+    flexShrink: 0,
   },
   tile: {
     position: 'relative',

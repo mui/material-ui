@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React, { Component } from 'react';
 import type { Element } from 'react';
@@ -45,6 +45,10 @@ type AllProps = DefaultProps & Props;
 
 class Table extends Component<DefaultProps, AllProps, void> {
   props: AllProps;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 099920cc0e14a2ff44c5e925ddb28c376fecd599
   static defaultProps: DefaultProps = {
     classes: {},
     component: 'table',
