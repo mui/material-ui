@@ -386,7 +386,6 @@ class Slider extends Component {
       value: valueProp,
       defaultValue,
       min,
-      max,
     } = this.props;
 
     let value = valueProp;
@@ -394,27 +393,35 @@ class Slider extends Component {
       value = defaultValue !== undefined ? defaultValue : min;
     }
 
-    if (value > max) {
-      value = max;
-    } else if (value < min) {
-      value = min;
-    }
-
     this.setState({
-      value: value,
+      value: this.resolveValue(value),
     });
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== undefined && !this.state.dragging) {
       this.setState({
-        value: nextProps.value,
+        value: this.resolveValue(nextProps.value),
       });
     }
   }
 
   track = null;
   handle = null;
+
+  resolveValue = (value) => {
+    const {max, min} = this.props;
+
+    if (value > max) {
+      return max;
+    }
+
+    if (value < min) {
+      return min;
+    }
+
+    return value;
+  }
 
   handleKeyDown = (event) => {
     const {
@@ -491,13 +498,7 @@ class Slider extends Component {
 
       // We need to use toFixed() because of float point errors.
       // For example, 0.01 + 0.06 = 0.06999999999999999
-      newValue = parseFloat(newValue.toFixed(5));
-
-      if (newValue > max) {
-        newValue = max;
-      } else if (newValue < min) {
-        newValue = min;
-      }
+      newValue = this.resolveValue(parseFloat(newValue.toFixed(5)));
 
       if (this.state.value !== newValue) {
         this.setState({
@@ -744,6 +745,8 @@ class Slider extends Component {
       value = Math.round(value / step) * step + min;
       value = parseFloat(value.toFixed(5));
     }
+
+    value = this.resolveValue(value);
 
     if (this.state.value !== value) {
       this.setState({
