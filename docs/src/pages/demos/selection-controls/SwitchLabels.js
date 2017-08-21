@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { FormControlLabel } from 'material-ui/Form';
 import Switch from 'material-ui/Switch';
 
-class SwitchLabels extends Component {
+class SwitchLabels extends Component<{}, $FlowFixMeState> {
   state = {
     checkedA: true,
     checkedB: false,

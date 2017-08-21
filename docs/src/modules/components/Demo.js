@@ -54,7 +54,7 @@ const styles = theme => ({
   },
 });
 
-class Demo extends Component {
+class Demo extends Component<$FlowFixMeProps, $FlowFixMeState> {
   state = {
     codeOpen: false,
   };

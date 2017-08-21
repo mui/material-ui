@@ -102,7 +102,7 @@ const styles = theme => ({
   },
 });
 
-class AppFrame extends Component {
+class AppFrame extends Component<$FlowFixMeProps, $FlowFixMeState> {
   state = {
     drawerOpen: false,
   };

@@ -1,7 +1,7 @@
 // @flow
 
-import React from 'react';
-import type { Element } from 'react';
+import * as React from 'react';
+import type { ChildrenArray } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { emphasize } from '../styles/colorManipulator';
@@ -50,7 +50,7 @@ export type Props = {
    *
    * This can be an element, or just a string.
    */
-  children?: Element<*>,
+  children?: ChildrenArray<*>,
   /**
    * @ignore
    * The className of the child element.
@@ -96,6 +96,7 @@ function Avatar(props: AllProps) {
     alt,
     classes,
     className: classNameProp,
+    // $FlowFixMe Unsure proper refinement on line 121.
     children: childrenProp,
     childrenClassName: childrenClassNameProp,
     component: ComponentProp,
@@ -116,7 +117,7 @@ function Avatar(props: AllProps) {
   let children = null;
 
   if (childrenProp) {
-    if (childrenClassNameProp && React.isValidElement(childrenProp)) {
+    if (childrenClassNameProp && childrenProp.props && React.isValidElement(childrenProp)) {
       const childrenClassName = classNames(childrenClassNameProp, childrenProp.props.className);
       children = React.cloneElement(childrenProp, { className: childrenClassName });
     } else {

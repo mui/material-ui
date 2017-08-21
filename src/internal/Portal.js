@@ -8,7 +8,7 @@ import canUseDom from 'dom-helpers/util/inDOM';
 /**
  * @ignore - internal component.
  */
-class Portal extends Component {
+class Portal extends Component<$FlowFixMeProps> {
   static defaultProps = {
     open: false,
   };

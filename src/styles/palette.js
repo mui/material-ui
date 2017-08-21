@@ -109,7 +109,7 @@ export default function createPalette(options = {}) {
 
   const shades = { dark, light };
 
-  warning(shades[type], `Material-UI: the palette type \`${type}\` is not supported.`);
+  warning(!!shades[type], `Material-UI: the palette type \`${type}\` is not supported.`);
 
   return {
     common,

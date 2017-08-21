@@ -22,7 +22,7 @@ const styles = theme => ({
   },
 });
 
-class SwitchListSecondary extends Component {
+class SwitchListSecondary extends Component<$FlowFixMeProps, $FlowFixMeState> {
   state = {
     checked: ['wifi'],
   };

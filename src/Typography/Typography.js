@@ -1,7 +1,7 @@
 // @flow
 
-import React from 'react';
-import type { Element } from 'react';
+import * as React from 'react';
+import type { ChildrenArray } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -76,7 +76,7 @@ type DefaultProps = {
 
 export type Props = {
   align?: 'inherit' | 'left' | 'center' | 'right' | 'justify',
-  children?: Element<*>,
+  children?: ChildrenArray<*>,
   /**
    * Useful to extend the style applied to components.
    */

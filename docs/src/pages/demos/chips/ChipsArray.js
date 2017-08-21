@@ -16,7 +16,7 @@ const styles = theme => ({
   },
 });
 
-class ChipsArray extends Component {
+class ChipsArray extends Component<$FlowFixMeProps, $FlowFixMeState> {
   state = {
     chipData: [
       { key: 0, label: 'Angular' },

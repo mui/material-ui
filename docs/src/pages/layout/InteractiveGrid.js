@@ -24,7 +24,7 @@ const styles = theme => ({
   },
 });
 
-class InteractiveGrid extends Component {
+class InteractiveGrid extends Component<$FlowFixMeProps, $FlowFixMeState> {
   state = {
     direction: 'row',
     justify: 'center',

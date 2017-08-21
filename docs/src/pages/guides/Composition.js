@@ -1,6 +1,6 @@
 // @flow weak
 
-import React from 'react';
+import * as React from 'react';
 import IconButton from 'material-ui/IconButton';
 import Icon from 'material-ui/Icon';
 

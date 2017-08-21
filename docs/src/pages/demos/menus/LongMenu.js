@@ -24,7 +24,7 @@ const options = [
 
 const ITEM_HEIGHT = 48;
 
-class LongMenu extends Component {
+class LongMenu extends Component<{}, $FlowFixMeState> {
   state = {
     anchorEl: undefined,
     open: false,

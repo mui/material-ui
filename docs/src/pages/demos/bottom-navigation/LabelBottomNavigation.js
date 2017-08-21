@@ -15,7 +15,7 @@ const styles = {
   },
 };
 
-class LabelBottomNavigation extends Component {
+class LabelBottomNavigation extends Component<$FlowFixMeProps, $FlowFixMeState> {
   state = {
     value: 'recents',
   };

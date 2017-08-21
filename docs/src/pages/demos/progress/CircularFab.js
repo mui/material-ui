@@ -27,7 +27,7 @@ const styles = {
   },
 };
 
-class CircularFab extends Component {
+class CircularFab extends Component<$FlowFixMeProps, $FlowFixMeState> {
   state = {
     loading: false,
     success: false,

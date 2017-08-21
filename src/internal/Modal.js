@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
+import type { ChildrenArray } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import warning from 'warning';
@@ -72,7 +72,7 @@ export type Props = {
   /**
    * Content of the modal.
    */
-  children?: Element<*>,
+  children?: ChildrenArray<*>,
   /**
    * Useful to extend the style applied to components.
    */
@@ -156,7 +156,7 @@ type State = {
 /**
  * @ignore - internal component.
  */
-class Modal extends Component<DefaultProps, AllProps, State> {
+class Modal extends Component<AllProps, State> {
   props: AllProps;
 
   static defaultProps: DefaultProps = {

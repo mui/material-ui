@@ -88,11 +88,11 @@ type State = {
   height: ?number,
 };
 
-class Textarea extends Component<DefaultProps, AllProps, State> {
+class Textarea extends Component<AllProps, State> {
   props: AllProps;
-  shadow: HTMLInputElement;
-  singlelineShadow: HTMLInputElement;
-  input: HTMLInputElement;
+  shadow: ?HTMLInputElement;
+  singlelineShadow: ?HTMLInputElement;
+  input: ?HTMLInputElement;
   value: string;
 
   static defaultProps: DefaultProps = {
@@ -138,9 +138,13 @@ class Textarea extends Component<DefaultProps, AllProps, State> {
     const shadow = this.shadow;
     const singlelineShadow = this.singlelineShadow;
 
+    if (!shadow || !singlelineShadow) {
+      return;
+    }
+
     // The component is controlled, we need to update the shallow value.
     if (typeof this.props.value !== 'undefined') {
-      this.shadow.value = props.value || '';
+      shadow.value = props.value || '';
     }
 
     const lineHeight = singlelineShadow.scrollHeight;
@@ -183,7 +187,7 @@ class Textarea extends Component<DefaultProps, AllProps, State> {
   handleChange = event => {
     this.value = event.target.value;
 
-    if (typeof this.props.value === 'undefined') {
+    if (this.shadow && typeof this.props.value === 'undefined') {
       // The component is not controlled, we need to update the shallow value.
       this.shadow.value = this.value;
       this.syncHeightWithShadow(event);

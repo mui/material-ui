@@ -1,6 +1,6 @@
 // @flow weak
 
-import type { Element } from 'react';
+import type { ChildrenArray } from 'react';
 import { unmountComponentAtNode } from 'react-dom';
 import { mount as enzymeMount } from 'enzyme';
 
@@ -13,7 +13,7 @@ export default function createMount(options: Object = {}) {
   attachTo.setAttribute('id', 'app');
   window.document.body.insertBefore(attachTo, window.document.body.firstChild);
 
-  const mountWithContext = function mountWithContext(node: Element<*>, options2: Object = {}) {
+  const mountWithContext = function mountWithContext(node: React$Element<any>, options2: Object = {}) {
     return mount(node, {
       attachTo,
       ...options2,

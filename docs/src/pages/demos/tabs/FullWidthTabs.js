@@ -26,7 +26,7 @@ const styles = theme => ({
   },
 });
 
-class FullWidthTabs extends Component {
+class FullWidthTabs extends Component<$FlowFixMeProps, $FlowFixMeState> {
   state = {
     value: 0,
   };

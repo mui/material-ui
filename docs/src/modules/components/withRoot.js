@@ -173,7 +173,7 @@ function withRoot(BaseComponent) {
   // Prevent rerendering
   const PureBaseComponent = pure(BaseComponent);
 
-  class WithRoot extends Component {
+  class WithRoot extends Component<$FlowFixMeProps> {
     static getInitialProps(ctx) {
       let initialProps = {};
       const redux = initRedux({});

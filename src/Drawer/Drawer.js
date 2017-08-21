@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
+import type { ChildrenArray } from 'react';
 import classNames from 'classnames';
 import Modal from '../internal/Modal';
 import withStyles from '../styles/withStyles';
@@ -90,7 +90,7 @@ export type Props = {
   /**
    * The contents of the drawer.
    */
-  children?: Element<*>,
+  children?: ChildrenArray<*>,
   /**
    * Useful to extend the style applied to components.
    */
@@ -142,7 +142,7 @@ type State = {
   firstMount: boolean,
 };
 
-class Drawer extends Component<DefaultProps, AllProps, State> {
+class Drawer extends Component<AllProps, State> {
   props: AllProps;
   static defaultProps = {
     anchor: 'left',

@@ -12,7 +12,7 @@ const styles = {
   },
 };
 
-class LinearBuffer extends Component {
+class LinearBuffer extends Component<$FlowFixMeProps, $FlowFixMeState> {
   timer: number;
   state = {
     completed: 0,

@@ -50,7 +50,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-class BottomNavigationButton extends Component {
+class BottomNavigationButton extends Component<$FlowFixMeProps> {
   handleChange = event => {
     const { onChange, value, onClick } = this.props;
 

@@ -32,7 +32,7 @@ export const styles = {
   },
 };
 
-class GridListTile extends Component {
+class GridListTile extends Component<$FlowFixMeProps> {
   static defaultProps = {
     cols: 1,
     rows: 1,

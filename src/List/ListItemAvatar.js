@@ -1,7 +1,7 @@
 // @flow
 
-import React from 'react';
-import type { Element } from 'react';
+import * as React from 'react';
+import type { ChildrenArray } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import warning from 'warning';
@@ -28,7 +28,7 @@ export type Props = {
   /**
    * The content of the component, normally `Avatar`.
    */
-  children: Element<*>,
+  children: React.Element<any>,
   /**
    * Useful to extend the style applied to components.
    */

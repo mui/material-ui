@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 import { assert } from 'chai';
 import { createShallow, createMount } from '../test-utils';
 import Input, { InputLabel } from '../Input';

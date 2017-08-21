@@ -12,7 +12,7 @@ const styles = {
   },
 };
 
-class LinearDeterminate extends Component {
+class LinearDeterminate extends Component<$FlowFixMeProps, $FlowFixMeState> {
   timer: number;
   state = {
     completed: 0,

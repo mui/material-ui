@@ -15,7 +15,7 @@ const isDescendant = (el, target) => {
 /**
  * @ignore - internal component.
  */
-class ClickAwayListener extends Component {
+class ClickAwayListener extends Component<$FlowFixMeProps> {
   static propTypes = {
     children: PropTypes.element.isRequired,
     onClickAway: PropTypes.func.isRequired,

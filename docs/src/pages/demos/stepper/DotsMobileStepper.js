@@ -12,7 +12,7 @@ const styles = {
   },
 };
 
-class DotsMobileStepper extends Component {
+class DotsMobileStepper extends Component<$FlowFixMeProps, $FlowFixMeState> {
   state = {
     activeStep: 0,
   };

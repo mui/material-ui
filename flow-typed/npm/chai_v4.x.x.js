@@ -1,5 +1,5 @@
-// flow-typed signature: bad3c03afed474d4fb576a7afe069701
-// flow-typed version: 731a6ee6c3/chai_v3.5.x/flow_>=v0.24.0
+// flow-typed signature: f4c38ee453c1a780b0ce642321a96131
+// flow-typed version: 147ab6243c/chai_v4.x.x/flow_>=v0.15.0
 
 declare module "chai" {
 
@@ -57,7 +57,7 @@ declare module "chai" {
         keys: (key: string | Array<string>, ...keys: Array<string>) => ExpectChain<T>,
 
         throw: <E>(
-            err: Class<E> | Error | RegExp | string,
+            err?: Class<E> | Error | RegExp | string,
             errMsgMatcher?: RegExp | string,
             msg?: string) => ExpectChain<T>,
 
@@ -84,6 +84,10 @@ declare module "chai" {
         exist: () => ExpectChain<T>,
         empty: () => ExpectChain<T>,
 
+        extensible: () => ExpectChain<T>,
+        sealed: () => ExpectChain<T>,
+        frozen: () => ExpectChain<T>,
+
         // chai-immutable
         size: (n: number) => ExpectChain<T>,
 
@@ -91,6 +95,8 @@ declare module "chai" {
         called: () => ExpectChain<T>,
         callCount: (n: number) => ExpectChain<T>,
         calledOnce: () => ExpectChain<T>,
+        calledTwice: () => ExpectChain<T>,
+        calledThrice: () => ExpectChain<T>,
         calledBefore: (spy: mixed) => ExpectChain<T>,
         calledAfter: (spy: mixed) => ExpectChain<T>,
         calledWith: (...args: Array<mixed>) => ExpectChain<T>,
@@ -104,6 +110,7 @@ declare module "chai" {
         rejectedWith: (value: mixed) => Promise<mixed> & ExpectChain<T>,
         rejected: () => Promise<mixed> & ExpectChain<T>,
         notify: (callback: () => mixed) => ExpectChain<T>,
+        fulfilled: () => Promise<mixed> & ExpectChain<T>,
 
         // chai-subset
         containSubset: (obj: Object | Object[]) => ExpectChain<T>

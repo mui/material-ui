@@ -13,7 +13,7 @@ const styles = theme => ({
   },
 });
 
-class CenteredTabs extends Component {
+class CenteredTabs extends Component<$FlowFixMeProps, $FlowFixMeState> {
   state = {
     value: 0,
   };

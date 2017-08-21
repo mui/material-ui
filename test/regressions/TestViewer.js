@@ -29,7 +29,7 @@ const styles = (theme: Object) => ({
   },
 });
 
-class TestViewer extends Component {
+class TestViewer extends Component<$FlowFixMeProps> {
   getChildContext() {
     return {
       url: {

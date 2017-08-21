@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element } from 'react';
+import type { ChildrenArray } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import contains from 'dom-helpers/query/contains';
@@ -105,7 +105,7 @@ export type Props = {
   /**
    * The content of the component.
    */
-  children?: Element<*>,
+  children?: ChildrenArray<*>,
   /**
    * Useful to extend the style applied to components.
    */
@@ -195,7 +195,7 @@ type AllProps = DefaultProps & Props;
 /**
  * @ignore - internal component.
  */
-class Popover extends Component<DefaultProps, AllProps, void> {
+class Popover extends Component<AllProps, void> {
   props: AllProps;
   static defaultProps: DefaultProps = {
     anchorOrigin: {

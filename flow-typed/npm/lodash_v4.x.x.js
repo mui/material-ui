@@ -1,5 +1,5 @@
-// flow-typed signature: b611e91eea833723f66a55f458ee8e27
-// flow-typed version: 13ceae43c9/lodash_v4.x.x/flow_>=v0.47.x
+// flow-typed signature: 5987de2b8b7cd774785cd3b8c488f96e
+// flow-typed version: 8daeabda84/lodash_v4.x.x/flow_>=v0.47.x
 
 declare module 'lodash' {
   declare type TemplateSettings = {
@@ -77,8 +77,8 @@ declare module 'lodash' {
     dropRightWhile<T>(array: ?Array<T>, predicate?: Predicate<T>): Array<T>;
     dropWhile<T>(array: ?Array<T>, predicate?: Predicate<T>): Array<T>;
     fill<T, U>(array: ?Array<T>, value: U, start?: number, end?: number): Array<T|U>;
-    findIndex<T>(array: ?Array<T>, predicate?: Predicate<T>): number;
-    findLastIndex<T>(array: ?Array<T>, predicate?: Predicate<T>): number;
+    findIndex<T>(array: ?Array<T>, predicate?: Predicate<T>, fromIndex?: number): number;
+    findLastIndex<T>(array: ?Array<T>, predicate?: Predicate<T>, fromIndex?: number): number;
     // alias of _.head
     first<T>(array: ?Array<T>): T;
     flatten<T,X>(array: Array<Array<T>|X>): Array<T|X>;
@@ -179,9 +179,9 @@ declare module 'lodash' {
     every<T: Object>(object: T, iteratee?: OIteratee<T>): bool;
     filter<T>(array: ?Array<T>, predicate?: Predicate<T>): Array<T>;
     filter<A, T: {[id: string]: A}>(object: T, predicate?: OPredicate<A, T>): Array<A>;
-    find<T>(array: ?Array<T>, predicate?: Predicate<T>): T|void;
-    find<V, A, T: {[id: string]: A}>(object: T, predicate?: OPredicate<A, T>): V;
-    findLast<T>(array: ?Array<T>, predicate?: Predicate<T>): T|void;
+    find<T>(array: ?Array<T>, predicate?: Predicate<T>, fromIndex?: number): T|void;
+    find<V, A, T: {[id: string]: A}>(object: T, predicate?: OPredicate<A, T>, fromIndex?: number): V;
+    findLast<T>(array: ?Array<T>, predicate?: Predicate<T>, fromIndex?: number): T|void;
     findLast<V, A, T: {[id: string]: A}>(object: T, predicate?: OPredicate<A, T>): V;
     flatMap<T, U>(array: ?Array<T>, iteratee?: FlatMapIteratee<T, U>): Array<U>;
     flatMap<T: Object, U>(object: T, iteratee?: OFlatMapIteratee<T, U>): Array<U>;
@@ -193,8 +193,8 @@ declare module 'lodash' {
     forEach<T: Object>(object: T, iteratee?: OIteratee<T>): T;
     forEachRight<T>(array: ?Array<T>, iteratee?: Iteratee<T>): Array<T>;
     forEachRight<T: Object>(object: T, iteratee?: OIteratee<T>): T;
-    groupBy<V, T>(array: ?Array<T>, iteratee?: ValueOnlyIteratee<T>): {[key: V]: ?Array<T>};
-    groupBy<V, A, T: {[id: string]: A}>(object: T, iteratee?: ValueOnlyIteratee<A>): {[key: V]: ?Array<A>};
+    groupBy<V, T>(array: ?Array<T>, iteratee?: ValueOnlyIteratee<T>): {[key: V]: Array<T>};
+    groupBy<V, A, T: {[id: string]: A}>(object: T, iteratee?: ValueOnlyIteratee<A>): {[key: V]: Array<A>};
     includes<T>(array: ?Array<T>, value: T, fromIndex?: number): bool;
     includes<T: Object>(object: T, value: any, fromIndex?: number): bool;
     includes(str: string, value: string, fromIndex?: number): bool;
@@ -303,7 +303,7 @@ declare module 'lodash' {
     isSafeInteger(value: any): bool;
     isSet(value: any): bool;
     isString(value: string): true;
-    isString(value: number|Function|void|null|Object|Array<any>): false;
+    isString(value: number|bool|Function|void|null|Object|Array<any>): false;
     isSymbol(value: any): bool;
     isTypedArray(value: any): bool;
     isUndefined(value: any): bool;
@@ -457,7 +457,7 @@ declare module 'lodash' {
     words(string?: string, pattern?: RegExp|string): Array<string>;
 
     // Util
-    attempt(func: Function): any;
+    attempt(func: Function, ...args: Array<any>): any;
     bindAll(object?: ?Object, methodNames: Array<string>): Object;
     bindAll(object?: ?Object, ...methodNames: Array<string>): Object;
     cond(pairs: NestedArray<Function>): Function;

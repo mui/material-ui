@@ -1,7 +1,7 @@
 // @flow
 
 import React, { createElement, cloneElement } from 'react';
-import type { Element } from 'react';
+import type { ChildrenArray, Element } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -54,7 +54,7 @@ export type Props = {
   /**
    * Dialog children, usually the included sub-components.
    */
-  children?: Element<*>,
+  children?: ChildrenArray<*>,
   /**
    * Useful to extend the style applied to components.
    */
@@ -135,7 +135,7 @@ export type Props = {
   /**
    * Transition component.
    */
-  transition?: Function | Element<*>,
+  transition?: Function | Element<any>,
 };
 
 type AllProps = DefaultProps & Props;

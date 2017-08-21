@@ -1,6 +1,6 @@
 // @flow weak
 
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
@@ -39,12 +39,12 @@ function MyLink(props) {
   );
 }
 
-MyLink.propTypes = {
-  children: PropTypes.node.isRequired,
-  classes: PropTypes.object.isRequired,
-  className: PropTypes.string,
-  variant: PropTypes.oneOf(['primary']),
-};
+// MyLink.propTypes = {
+//   children: PropTypes.node.isRequired,
+//   classes: PropTypes.object.isRequired,
+//   className: PropTypes.string,
+//   variant: PropTypes.oneOf(['primary']),
+// };
 
 // 2. We inject the styles.
 const MyLinkStyled = withStyles(styles)(MyLink);

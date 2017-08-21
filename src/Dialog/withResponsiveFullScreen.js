@@ -16,7 +16,7 @@ type Options = { breakpoint: Breakpoint };
 function withResponsiveFullScreen(options: Options = { breakpoint: 'sm' }) {
   const { breakpoint } = options;
 
-  return (BaseDialog: Dialog) => {
+  return (BaseDialog: typeof Dialog) => {
     const factory = createEagerFactory(BaseDialog);
 
     function ResponsiveFullScreen(props: { width: string }) {

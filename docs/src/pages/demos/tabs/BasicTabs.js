@@ -27,7 +27,7 @@ const styles = theme => ({
   },
 });
 
-class BasicTabs extends Component {
+class BasicTabs extends Component<$FlowFixMeProps, $FlowFixMeState> {
   state = {
     value: 0,
   };

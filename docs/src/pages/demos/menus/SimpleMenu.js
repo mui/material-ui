@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import Button from 'material-ui/Button';
 import Menu, { MenuItem } from 'material-ui/Menu';
 
-class SimpleMenu extends Component {
+class SimpleMenu extends Component<{}, $FlowFixMeState> {
   state = {
     anchorEl: undefined,
     open: false,

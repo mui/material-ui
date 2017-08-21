@@ -30,7 +30,7 @@ const styles = theme => ({
   },
 });
 
-class OnClick extends Component {
+class OnClick extends Component<$FlowFixMeProps> {
   handleClick = event => {
     if (this.props.onClick) {
       this.props.onClick(event);

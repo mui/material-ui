@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
-import type { Element as ReactElement } from 'react'; // global Element used below.
+import type { ChildrenArray } from 'react'; // global Element used below.
 import { findDOMNode } from 'react-dom';
 import Transition from '../internal/Transition';
 import withTheme from '../styles/withTheme';
@@ -42,7 +42,7 @@ export type Props = {
   /**
    * @ignore
    */
-  children?: ReactElement<*>,
+  children?: ChildrenArray<*>,
   /**
    * Direction the child element will enter from.
    */
@@ -91,7 +91,7 @@ export type Props = {
 
 type AllProps = DefaultProps & Props;
 
-class Slide extends Component<DefaultProps, AllProps, void> {
+class Slide extends Component<AllProps, void> {
   props: AllProps;
 
   static defaultProps: DefaultProps = {

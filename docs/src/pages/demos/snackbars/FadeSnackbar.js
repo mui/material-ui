@@ -5,7 +5,7 @@ import Button from 'material-ui/Button';
 import Snackbar from 'material-ui/Snackbar';
 import Fade from 'material-ui/transitions/Fade';
 
-class FadeSnackbar extends Component {
+class FadeSnackbar extends Component<{}, $FlowFixMeState> {
   state = {
     open: false,
   };
