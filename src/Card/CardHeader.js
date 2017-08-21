@@ -1,4 +1,5 @@
 // @flow
+// @inheritedComponent CardContent
 
 import React from 'react';
 import type { Element } from 'react';

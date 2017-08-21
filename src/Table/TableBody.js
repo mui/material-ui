@@ -1,6 +1,7 @@
-// @flow weak
+// @flow
 
 import React, { Component } from 'react';
+import type { Element } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -12,7 +13,41 @@ export const styles = (theme: Object) => ({
   },
 });
 
-class TableBody extends Component {
+type DefaultProps = {
+  classes: Object,
+  component: string,
+};
+
+export type Props = {
+  /**
+   * The content of the component, normally `TableRow`.
+   */
+  children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component?: string | Function,
+};
+
+type AllProps = DefaultProps & Props;
+
+class TableBody extends Component<DefaultProps, AllProps, void> {
+  props: AllProps;
+
+  static defaultProps: DefaultProps = {
+    classes: {},
+    component: 'tbody',
+  };
+
   getChildContext() {
     // eslint-disable-line class-methods-use-this
     return {
@@ -23,31 +58,22 @@ class TableBody extends Component {
   }
 
   render() {
-    const { classes, className: classNameProp, children, ...other } = this.props;
+    const {
+      classes,
+      className: classNameProp,
+      children,
+      component: ComponentProp,
+      ...other
+    } = this.props;
     const className = classNames(classes.root, classNameProp);
 
     return (
-      <tbody className={className} {...other}>
+      <ComponentProp className={className} {...other}>
         {children}
-      </tbody>
+      </ComponentProp>
     );
   }
 }
-
-TableBody.propTypes = {
-  /**
-   * The content of the component, normally `TableRow`.
-   */
-  children: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-};
 
 TableBody.contextTypes = {
   table: PropTypes.object,

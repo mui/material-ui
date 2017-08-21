@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -45,12 +45,17 @@ function TableCell(props, context) {
     checkbox,
     numeric,
     disablePadding,
+    component,
     ...other
   } = props;
+
   const { table } = context;
-
-  const Component = table && table.head ? 'th' : 'td';
-
+  let Component;
+  if (component) {
+    Component = component;
+  } else {
+    Component = table && table.head ? 'th' : 'td';
+  }
   const className = classNames(
     classes.root,
     {
@@ -93,6 +98,11 @@ TableCell.propTypes = {
    */
   compact: PropTypes.bool,
   /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.string,
+  /**
    * If `true`, left/right cell padding will be disabled.
    */
   disablePadding: PropTypes.bool,
@@ -107,6 +117,7 @@ TableCell.defaultProps = {
   compact: false,
   numeric: false,
   disablePadding: false,
+  component: null,
 };
 
 TableCell.contextTypes = {

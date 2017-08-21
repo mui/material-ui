@@ -1,30 +1,14 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow
 
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
-import { getContext } from '../styles/context';
+import { getContext, setContext } from '../styles/context';
 
-export default class MyDocument extends Document {
-  static getInitialProps(ctx) {
-    const page = ctx.renderPage();
-    // Get the context with the collected side effects.
-    const context = getContext();
-    return {
-      ...page,
-      styles: (
-        <style
-          id="jss-server-side"
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: context.sheetsRegistry.toString() }}
-        />
-      ),
-    };
-  }
-
+class MyDocument extends Document {
   render() {
     const context = getContext();
     return (
-      <html lang="en">
+      <html lang="en" dir="ltr">
         <Head>
           <title>My page</title>
           <meta charSet="utf-8" />
@@ -56,3 +40,40 @@ export default class MyDocument extends Document {
     );
   }
 }
+
+MyDocument.getInitialProps = ctx => {
+  // Resolution order
+  //
+  // On the server:
+  // 1. page.getInitialProps
+  // 2. document.getInitialProps
+  // 3. page.render
+  // 4. document.render
+  //
+  // On the server with error:
+  // 2. document.getInitialProps
+  // 3. page.render
+  // 4. document.render
+  //
+  // On the client
+  // 1. page.getInitialProps
+  // 3. page.render
+
+  // Reset the context for handling a new request.
+  setContext();
+  const page = ctx.renderPage();
+  // Get the context with the collected side effects.
+  const context = getContext();
+  return {
+    ...page,
+    styles: (
+      <style
+        id="jss-server-side"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: context.sheetsRegistry.toString() }}
+      />
+    ),
+  };
+};
+
+export default MyDocument;

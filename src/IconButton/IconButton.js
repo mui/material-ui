@@ -1,4 +1,5 @@
 // @flow weak
+// @inheritedComponent ButtonBase
 
 import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';

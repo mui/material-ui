@@ -1,3 +1,7 @@
+---
+components: Icon, SvgIcon
+---
+
 # Icons
 
 Material [icons](https://material.io/guidelines/style/icons.html) use geometric shapes to visually

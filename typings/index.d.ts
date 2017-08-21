@@ -40,8 +40,9 @@ declare namespace MaterialUI {
    * Utilies types based on:
    * https://github.com/Microsoft/TypeScript/issues/12215#issuecomment-307871458
    */
-  type Diff<T extends string, U extends string> = ({[P in T]: P } & {[P in U]: never } & { [x: string]: never })[T];
-  type Omit<T, K extends keyof T> = {[P in Diff<keyof T, K>]: T[P]};
+  type Diff<T extends string, U extends string> = ({ [P in T]: P } &
+    { [P in U]: never } & { [x: string]: never })[T];
+  type Omit<T, K extends keyof T> = { [P in Diff<keyof T, K>]: T[P] };
 }
 
 declare namespace MaterialUI.PropTypes {
@@ -352,7 +353,6 @@ declare module 'material-ui/Chip/Chip' {
   export interface ChipProps extends React.HTMLAttributes<HTMLDivElement> {
     avatar?: React.ReactNode;
     label?: React.ReactNode;
-    onClick?: React.EventHandler<any>;
     onKeyDown?: React.EventHandler<React.KeyboardEvent<any>>;
     onRequestDelete?: React.EventHandler<any>;
     tabIndex?: number;
@@ -387,8 +387,8 @@ declare module 'material-ui/Dialog/Dialog' {
     fullScreen?: boolean;
     ignoreBackdropClick?: boolean;
     ignoreEscapeKeyUp?: boolean;
-    enterTransitionDuration?: number;
-    leaveTransitionDuration?: number;
+    enterTransitionDuration?: number | string;
+    leaveTransitionDuration?: number | string;
     maxWidth?: 'xs' | 'sm' | 'md';
     onBackdropClick?: Function;
     onEscapeKeyUp?: Function;
@@ -473,29 +473,19 @@ declare module 'material-ui/Drawer' {
 
 declare module 'material-ui/Drawer/Drawer' {
   import { ModalProps } from 'material-ui/internal/Modal';
+  import { SlideProps } from 'material-ui/transitions/Slide';
   import { Theme } from 'material-ui/styles/theme';
 
-  type DrawerCommonProps = {
+  export interface DrawerProps extends ModalProps {
     anchor?: 'left' | 'top' | 'right' | 'bottom';
+    docked?: boolean;
     elevation?: number;
     enterTransitionDuration?: number;
     leaveTransitionDuration?: number;
     open?: boolean;
-    SlideProps?: Object;
+    SlideProps?: SlideProps;
     theme?: Theme;
-  };
-
-  type DrawerDockedProps = {
-    docked?: true;
-  } & DrawerCommonProps &
-    React.HtmlHTMLAttributes<HTMLDivElement>;
-
-  type DrawerModalProps = {
-    docked?: false;
-    onRequestClose?: React.EventHandler<any>;
-  } & ModalProps;
-
-  export type DrawerProps = DrawerDockedProps | DrawerModalProps;
+  }
 
   export default class Drawer extends MaterialUI.Component<DrawerProps> {}
 }
@@ -552,7 +542,7 @@ declare module 'material-ui/Form/FormControlLabel' {
 declare module 'material-ui/Form/FormGroup' {
   export interface FormGroupProps
     extends React.HtmlHTMLAttributes<HTMLDivElement> {
-    row: boolean;
+    row?: boolean;
   }
 
   export default class FormGroup extends MaterialUI.Component<FormGroupProps> {}
@@ -626,6 +616,55 @@ declare module 'material-ui/Grid/Grid' {
   } & Partial<{ [key in Breakpoint]: boolean | GridSize }>;
 
   export default class Grid extends MaterialUI.Component<GridProps> {}
+}
+
+declare module 'material-ui/GridList' {
+  export { default } from 'material-ui/GridList/GridList';
+  export * from 'material-ui/GridList/GridList';
+  export { default as GridList } from 'material-ui/GridList/GridList';
+  export { default as GridListTitle } from 'material-ui/GridList/GridListTitle';
+  export * from 'material-ui/GridList/GridListTitle';
+  export {
+    default as GridListTitleBar,
+  } from 'material-ui/GridList/GridListTitleBar';
+  export * from 'material-ui/GridList/GridListTitleBar';
+}
+
+declare module 'material-ui/GridList/GridList' {
+  export interface GridListProps {
+    cellHeight?: number | 'auto';
+    cols?: number;
+    component?: React.ReactElement<any> | string;
+    spacing?: number;
+  }
+
+  export default class GridList extends MaterialUI.Component<GridListProps> {}
+}
+
+declare module 'material-ui/GridList/GridListTitle' {
+  export interface GridListTitleProps {
+    cols?: number;
+    component?: React.ReactElement<any> | string;
+    row?: number;
+  }
+
+  export default class GridListTitle extends MaterialUI.Component<
+    GridListTitleProps
+  > {}
+}
+
+declare module 'material-ui/GridList/GridListTitleBar' {
+  export interface GridListTitleBarProps {
+    actionIcon?: React.ReactElement<any>;
+    actionPosition?: 'left' | 'right';
+    subtitle?: React.ReactNode;
+    title?: React.ReactNode;
+    titlePosition?: 'top' | 'bottom';
+  }
+
+  export default class GridListTitleBar extends MaterialUI.Component<
+    GridListTitleBarProps
+  > {}
 }
 
 declare module 'material-ui/Hidden' {
@@ -822,24 +861,15 @@ declare module 'material-ui/List/List' {
 declare module 'material-ui/List/ListItem' {
   import { ButtonBaseProps } from 'material-ui/internal/ButtonBase';
 
-  interface ListItemCommonProps extends React.LiHTMLAttributes<HTMLLIElement> {
+  export type ListItemProps = {
+    button?: boolean;
     component?: React.ReactNode;
     dense?: boolean;
     disabled?: boolean;
     disableGutters?: boolean;
     divider?: boolean;
-  }
-
-  export type ListItemDefaultProps = {
-    button?: false;
-  } & ListItemCommonProps;
-
-  export type ListItemButtonProps = {
-    button?: true;
-  } & ListItemCommonProps &
-    ButtonBaseProps;
-
-  export type ListItemProps = ListItemDefaultProps | ListItemButtonProps;
+  } & ButtonBaseProps &
+    React.LiHTMLAttributes<HTMLLIElement>;
 
   export default class ListItem extends MaterialUI.Component<ListItemProps> {}
 }
@@ -921,9 +951,9 @@ declare module 'material-ui/Menu/Menu' {
 }
 
 declare module 'material-ui/Menu/MenuItem' {
-  import { ListItemButtonProps } from 'material-ui/List/ListItem';
+  import { ListItemProps } from 'material-ui/List/ListItem';
 
-  export interface MenuItemProps extends ListItemButtonProps {
+  export interface MenuItemProps extends ListItemProps {
     component?: React.ReactNode;
     role?: string;
     selected?: boolean;
@@ -1058,13 +1088,10 @@ declare module 'material-ui/Radio/RadioGroup' {
   import { FormGroupProps } from 'material-ui/Form/FormGroup';
 
   export type RadioGroupProps = {
-    className?: string;
     name?: string;
-    onBlur?: React.EventHandler<any>;
     onChange?: (event: React.ChangeEvent<{}>, value: string) => void;
-    onKeyDown?: React.EventHandler<any>;
-    selectedValue?: string;
-  } & FormGroupProps;
+    value: string;
+  } & Partial<MaterialUI.Omit<FormGroupProps, 'onChange'>>;
 
   export default class RadioGroup extends MaterialUI.Component<
     RadioGroupProps
@@ -1088,7 +1115,7 @@ declare module 'material-ui/Snackbar/Snackbar' {
   };
 
   export type SnackbarProps = {
-    action?: React.ReactElement<any>;
+    action?: React.ReactElement<any> | React.ReactElement<any>[];
     anchorOrigin?: Origin;
     autoHideDuration?: number;
     enterTransitionDuration?: number;
@@ -1112,7 +1139,7 @@ declare module 'material-ui/Snackbar/SnackbarContent' {
 
   export interface SnackbarContentProps extends PaperProps {
     action?: React.ReactElement<any>;
-    message: React.ReactElement<any>;
+    message: React.ReactElement<any> | string;
   }
 
   export default class SnackbarContent extends MaterialUI.Component<
@@ -1254,11 +1281,11 @@ declare module 'material-ui/Tabs/Tab' {
     disabled?: boolean;
     fullWidth?: boolean;
     icon?: React.ReactNode;
-    index?: number;
+    value?: any;
     label?: React.ReactNode;
     onChange?: (
       event: React.ChangeEvent<{ checked: boolean }>,
-      index: number
+      value: any
     ) => void;
     onClick?: React.EventHandler<any>;
     selected?: boolean;
@@ -1302,10 +1329,10 @@ declare module 'material-ui/Tabs/Tabs' {
     centered?: boolean;
     children?: React.ReactNode;
     fullWidth?: boolean;
-    index: false | number;
+    value: any;
     indicatorClassName?: string;
     indicatorColor?: 'accent' | 'primary' | string;
-    onChange: (event: React.ChangeEvent<{}>, index: number) => void;
+    onChange: (event: React.ChangeEvent<{}>, value: any) => void;
     scrollable?: boolean;
     scrollButtons?: 'auto' | 'on' | 'off';
     textColor?: 'accent' | 'primary' | 'inherit' | string;
@@ -1326,7 +1353,7 @@ declare module 'material-ui/TextField/TextField' {
   import { InputProps } from 'material-ui/Input/Input';
   import { InputLabelProps } from 'material-ui/Input/InputLabel';
 
-  export type InputProps = {
+  export type TextFieldProps = {
     autoComplete?: string;
     autoFocus?: boolean;
     defaultValue?: string | number;
@@ -1355,10 +1382,10 @@ declare module 'material-ui/TextField/TextField' {
     type?: string;
     value?: string | number;
     margin?: MaterialUI.PropTypes.Margin;
-  } & Partial<MaterialUI.InputEventEmitter<HTMLElement>> &
+  } & Partial<MaterialUI.InputEventEmitter<HTMLInputElement>> &
     FormControlProps;
 
-  export default class Input extends MaterialUI.Component<InputProps> {}
+  export default class Input extends MaterialUI.Component<TextFieldProps> {}
 }
 
 declare module 'material-ui/Toolbar' {
@@ -1574,8 +1601,6 @@ declare module 'material-ui/internal/Portal' {
 }
 
 declare module 'material-ui/internal/SwitchBase' {
-  import { StyleSheet } from 'material-ui/styles/createStyleSheet';
-
   export interface SwitchBaseProps {
     checked?: boolean | string;
     checkedClassName?: string;
@@ -1601,7 +1626,6 @@ declare module 'material-ui/internal/SwitchBase' {
     defaultIcon?: React.ReactNode;
     defaultCheckedIcon?: React.ReactNode;
     inputType?: string;
-    styleSheet?: StyleSheet;
   }
 
   export default function createSwitch(
@@ -1652,12 +1676,14 @@ declare module 'material-ui/styles' {
   export { default as createBreakpoints } from 'material-ui/styles/breakpoints';
   export { default as createMuiTheme } from 'material-ui/styles/theme';
   export { default as createPalette } from 'material-ui/styles/palette';
-  export {
-    default as createStyleSheet,
-  } from 'material-ui/styles/createStyleSheet';
   export { default as createTypography } from 'material-ui/styles/typography';
   export { default as withStyles } from 'material-ui/styles/withStyles';
   export { default as withTheme } from 'material-ui/styles/withTheme';
+
+  export {
+    StyleRules,
+    StyleRulesCallback,
+  } from 'material-ui/styles/withStyles';
 }
 
 declare module 'material-ui/styles/MuiThemeProvider' {
@@ -1732,34 +1758,6 @@ declare module 'material-ui/styles/createGenerateClassName' {
     rule: Object,
     stylesheet?: Object
   ) => string;
-}
-
-declare module 'material-ui/styles/createStyleSheet' {
-  import { Theme } from 'material-ui/styles/theme';
-
-  export interface StyleRules {
-    [displayName: string]: Partial<React.CSSProperties>;
-  }
-
-  export interface StyleRulesCallback<Theme> {
-    (theme: Theme): StyleRules;
-  }
-
-  export interface StyleSheet {
-    name: string | false;
-    createStyles<T extends Theme = Theme>(theme: T): StyleRules;
-    options: Object;
-    themingEnabled: boolean;
-  }
-
-  export default function createStyleSheet<T extends Theme = Theme>(
-    callback: StyleRulesCallback<Theme> | StyleRules
-  ): StyleSheet;
-  export default function createStyleSheet<T extends Theme = Theme>(
-    name: string,
-    callback: StyleRulesCallback<Theme> | StyleRules,
-    options?: Object
-  ): StyleSheet;
 }
 
 declare module 'material-ui/styles/mixins' {
@@ -2003,11 +2001,28 @@ declare module 'material-ui/styles/typography' {
 
 declare module 'material-ui/styles/withStyles' {
   import { Theme } from 'material-ui/styles/theme';
-  import { StyleSheet } from 'material-ui/styles/createStyleSheet';
+
+  /**
+   * This is basically the API of JSS. It defines a Map<string, CSS>,
+   * where
+   *
+   * - the `keys` are the class (names) that will be created
+   * - the `values` are objects that represent CSS rules (`React.CSSProperties`).
+   */
+  export interface StyleRules {
+    [displayName: string]: Partial<React.CSSProperties>;
+  }
+
+  export type StyleRulesCallback = (theme: Theme) => StyleRules;
+
+  export interface WithStylesOptions {
+    withTheme?: boolean;
+    name?: string;
+  }
 
   const withStyles: <P = {}, ClassNames = {}>(
-    stylesheets: StyleSheet | StyleSheet[],
-    options?: Partial<{ withTheme: boolean }>
+    style: StyleRules | StyleRulesCallback,
+    options?: WithStylesOptions
   ) => (
     component: React.ComponentType<P & { classes: ClassNames }>
   ) => React.ComponentClass<P>;
@@ -2042,6 +2057,50 @@ declare module 'material-ui/styles/zIndex' {
 
   const zIndex: ZIndex;
   export default zIndex;
+}
+
+/* ============================================= */
+/*                                               */
+/*                  TRANSITIONS                  */
+/*                                               */
+/* ============================================= */
+declare module 'material-ui/transitions/Collapse' {
+  import { Theme } from 'material-ui/styles/theme';
+  import { TransitionProps } from 'material-ui/internal/Transition';
+
+  export interface CollapseProps extends TransitionProps {
+    theme?: Theme;
+    transitionDuration?: number | string;
+  }
+
+  export default class Collapse extends MaterialUI.Component<CollapseProps> {}
+}
+
+declare module 'material-ui/transitions/Fade' {
+  import { Theme } from 'material-ui/styles/theme';
+  import { TransitionProps } from 'material-ui/internal/Transition';
+
+  export interface FadeProps extends TransitionProps {
+    theme?: Theme;
+    enterTransitionDuration?: number;
+    leaveTransitionDuration?: number;
+  }
+
+  export default class Fade extends MaterialUI.Component<FadeProps> {}
+}
+
+declare module 'material-ui/transitions/Slide' {
+  import { Theme } from 'material-ui/styles/theme';
+  import { TransitionProps } from 'material-ui/internal/Transition';
+
+  export interface SlideProps extends TransitionProps {
+    direction?: 'left' | 'right' | 'up' | 'down';
+    theme?: Theme;
+    enterTransitionDuration?: number;
+    leaveTransitionDuration?: number;
+  }
+
+  export default class Slide extends MaterialUI.Component<SlideProps> {}
 }
 
 /* ============================================= */
@@ -2102,10 +2161,8 @@ declare module 'material-ui/test-utils/createShallow' {
 }
 
 declare module 'material-ui/test-utils/getClasses' {
-  import { StyleSheet } from 'material-ui/styles/createStyleSheet';
-
   export default function getClasses<T = { [name: string]: string }>(
-    stylesheets: StyleSheet | StyleSheet[],
+    element: React.ReactElement<any>,
     options?: Partial<{ withTheme: boolean }>
   ): T;
 }
