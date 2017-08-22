@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
@@ -33,6 +33,7 @@ marked.setOptions({
   sanitize: false,
   smartLists: true,
   smartypants: false,
+  // $FlowFixMe
   highlight(code) {
     return prism.highlight(code, prism.languages.jsx);
   },

@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import pure from 'recompose/pure';
@@ -173,7 +173,7 @@ function withRoot(BaseComponent) {
   // Prevent rerendering
   const PureBaseComponent = pure(BaseComponent);
 
-  class WithRoot extends Component {
+  class WithRoot extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
     static getInitialProps(ctx) {
       let initialProps = {};
       const redux = initRedux({});
