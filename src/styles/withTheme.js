@@ -18,10 +18,12 @@ function getDefaultTheme() {
 }
 
 // Provide the theme object as a property to the input component.
-export default function withTheme(BaseComponent: React.ComponentType<*>) {
+export default function withTheme<BaseProps: {}>(BaseComponent: React.ComponentType<*>) {
   const factory = createEagerFactory(BaseComponent);
 
-  class WithTheme extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+  class WithTheme extends React.Component<{ theme: Object } & BaseProps, { theme: Object }> {
+    static contextTypes = themeListener.contextTypes;
+    static displayName = wrapDisplayName(BaseComponent, 'withTheme');
     // Exposed for test purposes.
     static Naked = BaseComponent;
 
@@ -53,9 +55,6 @@ export default function withTheme(BaseComponent: React.ComponentType<*>) {
       return factory({ theme: this.state.theme, ...this.props });
     }
   }
-
-  WithTheme.contextTypes = themeListener.contextTypes;
-  WithTheme.displayName = wrapDisplayName(BaseComponent, 'withTheme');
 
   return WithTheme;
 }
