@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component, cloneElement, isValidElement } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import keycode from 'keycode';
@@ -81,7 +81,7 @@ export const styles = (theme: Object) => {
 /**
  * Chips represent complex entities in small blocks, such as a contact.
  */
-class Chip extends Component {
+class Chip extends React.Component<$FlowFixMeProps> {
   chipRef = null;
 
   handleDeleteIconClick = event => {
@@ -138,8 +138,8 @@ class Chip extends Component {
     }
 
     let avatar = null;
-    if (avatarProp && isValidElement(avatarProp)) {
-      avatar = cloneElement(avatarProp, {
+    if (avatarProp && React.isValidElement(avatarProp)) {
+      avatar = React.cloneElement(avatarProp, {
         className: classNames(classes.avatar, avatarProp.props.className),
         childrenClassName: classNames(classes.avatarChildren, avatarProp.props.childrenClassName),
       });

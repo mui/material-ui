@@ -1,6 +1,6 @@
 // @flow weak
 
-import { Component } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import hoistNonReactStatics from 'hoist-non-react-statics';
@@ -72,7 +72,7 @@ const withStyles = (stylesOrCreator: Object, options?: Object = {}) => BaseCompo
     ].join(' '),
   );
 
-  class Style extends Component {
+  class Style extends React.Component<Object, $FlowFixMeState> {
     // Exposed for test purposes.
     static Naked = BaseComponent;
 

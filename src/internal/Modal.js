@@ -1,7 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
-import type { Element } from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import warning from 'warning';
@@ -72,7 +71,7 @@ export type Props = {
   /**
    * Content of the modal.
    */
-  children?: Element<*>,
+  children?: React.Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -156,7 +155,7 @@ type State = {
 /**
  * @ignore - internal component.
  */
-class Modal extends Component<DefaultProps, AllProps, State> {
+class Modal extends React.Component<AllProps, State> {
   props: AllProps;
 
   static defaultProps: DefaultProps = {

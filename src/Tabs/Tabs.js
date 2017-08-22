@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component, Children, cloneElement } from 'react';
+import * as React from 'react';
 import warning from 'warning';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
@@ -41,7 +41,7 @@ export const styles = {
 /**
  * Notice that this Component is incompatible with server side rendering.
  */
-class Tabs extends Component {
+class Tabs extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
   static defaultProps = {
     centered: false,
     fullWidth: false,
@@ -250,10 +250,10 @@ class Tabs extends Component {
     });
 
     this.valueToIndex = {};
-    const children = Children.map(childrenProp, (child, childIndex) => {
+    const children = React.Children.map(childrenProp, (child, childIndex) => {
       const childValue = child.props.value || childIndex;
       this.valueToIndex[childValue] = childIndex;
-      return cloneElement(child, {
+      return React.cloneElement(child, {
         fullWidth,
         selected: childValue === value,
         onChange,

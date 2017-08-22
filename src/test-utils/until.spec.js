@@ -1,7 +1,7 @@
 // @flow
 
 import assert from 'assert';
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import until from './until';
@@ -82,7 +82,7 @@ describe('until', () => {
   const Foo = () => <Div />;
   Foo.contextTypes = { quux: PropTypes.bool.isRequired };
 
-  class Bar extends React.Component {
+  class Bar extends React.Component<{}> {
     static childContextTypes = { quux: PropTypes.bool };
     getChildContext = () => ({ quux: true });
     render = () => <Foo />;

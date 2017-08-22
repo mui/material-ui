@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import EventListener from 'react-event-listener';
@@ -15,7 +15,7 @@ const isDescendant = (el, target) => {
 /**
  * @ignore - internal component.
  */
-class ClickAwayListener extends Component {
+class ClickAwayListener extends React.Component<$FlowFixMeProps> {
   static propTypes = {
     children: PropTypes.element.isRequired,
     onClickAway: PropTypes.func.isRequired,

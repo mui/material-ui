@@ -1,7 +1,6 @@
 // @flow weak
 
-import React, { Component } from 'react';
-import type { Element } from 'react';
+import * as React from 'react';
 import { findDOMNode } from 'react-dom';
 import warning from 'warning';
 import classNames from 'classnames';
@@ -49,7 +48,7 @@ export type Props = {
   /**
    * The content of the component.
    */
-  children?: Element<*>,
+  children?: React.Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -148,7 +147,7 @@ type State = {
   keyboardFocused: boolean,
 };
 
-class ButtonBase extends Component<DefaultProps, AllProps, State> {
+class ButtonBase extends React.Component<AllProps, State> {
   props: AllProps;
   static defaultProps: DefaultProps = {
     centerRipple: false,

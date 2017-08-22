@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import classnames from 'classnames';
 import debounce from 'lodash/debounce';
 import EventListener from 'react-event-listener';
@@ -88,7 +88,7 @@ type State = {
   height: ?number,
 };
 
-class Textarea extends Component<DefaultProps, AllProps, State> {
+class Textarea extends React.Component<AllProps, State> {
   props: AllProps;
   shadow: HTMLInputElement;
   singlelineShadow: HTMLInputElement;

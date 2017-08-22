@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Children, cloneElement } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -27,9 +27,9 @@ function BottomNavigation(props) {
 
   const className = classNames(classes.root, classNameProp);
 
-  const children = Children.map(childrenProp, (child, childIndex) => {
+  const children = React.Children.map(childrenProp, (child, childIndex) => {
     const childValue = child.props.value || childIndex;
-    return cloneElement(child, {
+    return React.cloneElement(child, {
       selected: childValue === value,
       showLabel: child.props.showLabel !== undefined ? child.props.showLabel : showLabels,
       value: childValue,

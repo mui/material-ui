@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
@@ -92,7 +92,7 @@ export const styles = (theme: Object) => ({
 /**
  * @ignore - internal component.
  */
-class TouchRipple extends Component {
+class TouchRipple extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
   static defaultProps = {
     center: false,
   };

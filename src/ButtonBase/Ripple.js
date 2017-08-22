@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Transition from 'react-transition-group/Transition';
@@ -8,7 +8,7 @@ import Transition from 'react-transition-group/Transition';
 /**
  * @ignore - internal component.
  */
-class Ripple extends Component {
+class Ripple extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
   static defaultProps = {
     pulsate: false,
   };

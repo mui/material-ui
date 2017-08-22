@@ -1,7 +1,6 @@
 // @flow
 
-import React, { Component, createElement, cloneElement } from 'react';
-import type { Element } from 'react';
+import * as React from 'react';
 import classNames from 'classnames';
 import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
@@ -84,7 +83,7 @@ export type Props = {
   /**
    * The action to display.
    */
-  action?: Element<*>,
+  action?: React.Node,
   /**
    * The anchor of the `Snackbar`.
    */
@@ -98,7 +97,7 @@ export type Props = {
    * If you wish the take control over the children of the component you can use that property.
    * When using it, no `SnackbarContent` component will be rendered.
    */
-  children?: Element<*>,
+  children?: React.Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -125,7 +124,7 @@ export type Props = {
   /**
    * The message to display.
    */
-  message?: Element<*>,
+  message?: React.Node,
   /**
    * Callback fired before the transition is entering.
    */
@@ -182,7 +181,7 @@ export type Props = {
   /**
    * Object with Transition component, props & create Fn.
    */
-  transition?: Function | Element<*>,
+  transition?: React.Node,
 };
 
 type AllProps = DefaultProps & Props;
@@ -191,7 +190,7 @@ type State = {
   exited: boolean,
 };
 
-class Snackbar extends Component<DefaultProps, AllProps, State> {
+class Snackbar extends React.Component<AllProps, State> {
   props: AllProps;
   static defaultProps: DefaultProps = {
     anchorOrigin: { vertical: 'bottom', horizontal: 'center' },
@@ -256,14 +255,14 @@ class Snackbar extends Component<DefaultProps, AllProps, State> {
     }, autoHideDuration || this.props.autoHideDuration);
   }
 
-  handleMouseEnter = (event: SyntheticUIEvent) => {
+  handleMouseEnter = (event: SyntheticUIEvent<>) => {
     if (this.props.onMouseEnter) {
       this.props.onMouseEnter(event);
     }
     this.handlePause();
   };
 
-  handleMouseLeave = (event: SyntheticUIEvent) => {
+  handleMouseLeave = (event: SyntheticUIEvent<>) => {
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(event);
     }
@@ -322,7 +321,8 @@ class Snackbar extends Component<DefaultProps, AllProps, State> {
       return null;
     }
 
-    const createTransitionFn = typeof transitionProp === 'function' ? createElement : cloneElement;
+    const createTransitionFn =
+      typeof transitionProp === 'function' ? React.createElement : React.cloneElement;
     const transition = transitionProp || <Slide direction={vertical === 'top' ? 'down' : 'up'} />;
 
     return (

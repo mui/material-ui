@@ -1,7 +1,7 @@
 // @flow weak
 // @inheritedComponent ButtonBase
 
-import React, { Component, isValidElement } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -81,7 +81,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-class Tab extends Component {
+class Tab extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
   static defaultProps = {
     disabled: false,
   };
@@ -145,7 +145,7 @@ class Tab extends Component {
     let icon;
 
     if (iconProp !== undefined) {
-      icon = isValidElement(iconProp)
+      icon = React.isValidElement(iconProp)
         ? iconProp
         : <Icon>
             {iconProp}

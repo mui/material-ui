@@ -1,6 +1,6 @@
 // @flow weak
 
-import { Component } from 'react';
+import * as React from 'react';
 import createEagerFactory from 'recompose/createEagerFactory';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import createMuiTheme from './theme';
@@ -21,7 +21,7 @@ function getDefaultTheme() {
 export default function withTheme(BaseComponent) {
   const factory = createEagerFactory(BaseComponent);
 
-  class WithTheme extends Component {
+  class WithTheme extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
     // Exposed for test purposes.
     static Naked = BaseComponent;
 

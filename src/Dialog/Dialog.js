@@ -1,7 +1,6 @@
 // @flow
 
-import React, { createElement, cloneElement } from 'react';
-import type { Element } from 'react';
+import * as React from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -54,7 +53,7 @@ export type Props = {
   /**
    * Dialog children, usually the included sub-components.
    */
-  children?: Element<*>,
+  children?: React.Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -135,7 +134,7 @@ export type Props = {
   /**
    * Transition component.
    */
-  transition?: Function | Element<*>,
+  transition?: React.Node,
 };
 
 type AllProps = DefaultProps & Props;
@@ -170,7 +169,8 @@ function Dialog(props: AllProps) {
 
   // workaround: see #2 test case from https://github.com/facebook/flow/issues/1660#issuecomment-302468866
   const maxWidth = maxWidthProp || Dialog.defaultProps.maxWidth;
-  const createTransitionFn = typeof transition === 'function' ? createElement : cloneElement;
+  const createTransitionFn =
+    typeof transition === 'function' ? React.createElement : React.cloneElement;
 
   return (
     <Modal

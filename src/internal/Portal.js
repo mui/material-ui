@@ -1,6 +1,6 @@
 // @flow weak
 
-import { Component, Children } from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import canUseDom from 'dom-helpers/util/inDOM';
@@ -8,7 +8,7 @@ import canUseDom from 'dom-helpers/util/inDOM';
 /**
  * @ignore - internal component.
  */
-class Portal extends Component {
+class Portal extends React.Component<$FlowFixMeProps> {
   static defaultProps = {
     open: false,
   };
@@ -69,7 +69,7 @@ class Portal extends Component {
       // componentDidUpdate(), you're effectively creating a "wormhole" that
       // funnels React's hierarchical updates through to a DOM node on an
       // entirely different part of the page.
-      const layerElement = Children.only(children);
+      const layerElement = React.Children.only(children);
       ReactDOM.unstable_renderSubtreeIntoContainer(this, layerElement, this.getLayer());
     } else {
       this.unrenderLayer();

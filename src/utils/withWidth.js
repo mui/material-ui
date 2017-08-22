@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import EventListener from 'react-event-listener';
 import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
@@ -45,7 +45,7 @@ function withWidth(options = {}) {
   return BaseComponent => {
     const factory = createEagerFactory(BaseComponent);
 
-    class Width extends Component {
+    class Width extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
       state = {
         width: undefined,
       };
