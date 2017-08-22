@@ -10,7 +10,6 @@ import getDisplayName from 'recompose/getDisplayName';
 import contextTypes from 'react-jss/lib/contextTypes';
 import jss from 'react-jss/lib/jss';
 import * as ns from 'react-jss/lib/ns';
-import type { StyleSheetFactoryOptions } from 'jss/lib/types';
 import createMuiTheme from './theme';
 import themeListener from './themeListener';
 import createGenerateClassName from './createGenerateClassName';
@@ -49,7 +48,18 @@ function getDefaultTheme() {
 type Options = {
   withTheme?: boolean,
   name?: string,
-  ...StyleSheetFactoryOptions,
+
+  // Problem: https://github.com/brigand/babel-plugin-flow-react-proptypes/issues/127
+  // import type { StyleSheetFactoryOptions } from 'jss/lib/types';
+  //  ...StyleSheetFactoryOptions,
+  // and the fact that we currently cannot import/spread types with
+  //  https://github.com/brigand/babel-plugin-flow-react-proptypes/issues/106
+  media?: string,
+  meta?: string,
+  index?: number,
+  link?: boolean,
+  element?: HTMLStyleElement,
+  generateClassName?: Function, // generateClassName - use generic to stop the bleeding.
 };
 
 // Link a style sheet with a component.
