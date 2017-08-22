@@ -39,9 +39,9 @@ type DefaultProps = {
 
 export type Props = {
   /**
-   * @ignore
+   * The single child content component.
    */
-  children?: React.Node,
+  children?: React.Element<*>,
   /**
    * Direction the child element will enter from.
    */

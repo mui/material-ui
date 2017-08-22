@@ -14,7 +14,10 @@ type DefaultProps = {
 };
 
 export type Props = {
-  children?: React.Node,
+  /**
+   * The single child content component.
+   */
+  children?: React.Element<*>,
   /**
    * If `true`, the component will transition in.
    */

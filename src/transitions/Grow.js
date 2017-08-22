@@ -17,9 +17,9 @@ type DefaultProps = {
 
 export type Props = {
   /**
-   * The content of the component.
+   * The single child content component.
    */
-  children?: React.Node,
+  children?: React.Element<*>,
   /**
    * Callback fired before the component is entering
    */
