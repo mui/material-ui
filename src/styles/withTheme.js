@@ -18,7 +18,7 @@ function getDefaultTheme() {
 }
 
 // Provide the theme object as a property to the input component.
-export default function withTheme<BaseProps: {}>(BaseComponent: React.ComponentType<*>) {
+export default function withTheme<BaseProps: {}>(BaseComponent: React.ComponentType<BaseProps>) {
   const factory = createEagerFactory(BaseComponent);
 
   class WithTheme extends React.Component<{ theme: Object } & BaseProps, { theme: Object }> {

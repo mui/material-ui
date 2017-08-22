@@ -65,11 +65,8 @@ type Options = {
 // Link a style sheet with a component.
 // It does not modify the component passed to it;
 // instead, it returns a new, with a `classes` property.
-function withStyles(
-  stylesOrCreator: Object,
-  options?: Options = {},
-) {
-  return BaseComponent => {
+function withStyles(stylesOrCreator: Object, options?: Options = {}) {
+  function enhance<BaseProps: {}>(BaseComponent: React.ComponentType<BaseProps>) {
     const { withTheme = false, name, ...styleSheetOptions } = options;
     const factory = createEagerFactory(BaseComponent);
     const stylesCreators = [getStylesCreator(stylesOrCreator)];
@@ -104,8 +101,9 @@ function withStyles(
       innerRef: Function,
     };
 
-    class Style extends React.Component<StyleProps, {}> {
-      props: StyleProps;
+    type AllProps = StyleProps & BaseProps;
+    class Style extends React.Component<AllProps, {}> {
+      props: AllProps;
       static contextTypes = {
         sheetsManager: PropTypes.object,
         ...contextTypes,
@@ -116,7 +114,7 @@ function withStyles(
       // Exposed for test purposes.
       static Naked = BaseComponent;
 
-      constructor(props: Object, context: Object) {
+      constructor(props: AllProps, context: Object) {
         super(props, context);
         this.jss = this.context[ns.jss] || jss;
         this.sheetsManager = this.context.sheetsManager || sheetsManager;
@@ -265,9 +263,9 @@ function withStyles(
                 renderedClasses[key],
                 [
                   `Material-UI: the key \`${key}\` ` +
-                  `provided to the classes property object is not implemented in ${getDisplayName(
-                    BaseComponent,
-                  )}.`,
+                    `provided to the classes property object is not implemented in ${getDisplayName(
+                      BaseComponent,
+                    )}.`,
                   `You can only overrides one of the following: ${Object.keys(renderedClasses).join(
                     ',',
                   )}`,
@@ -308,7 +306,9 @@ function withStyles(
     }
 
     return Style;
-  };
+  }
+
+  return enhance;
 }
 
 export default withStyles;
