@@ -6,7 +6,7 @@ type marked$AlignFlag = 'left' | 'right' | 'center'
 type marked$NodeCallback<T> = (e: ?Error, d: ?T) => void
 
 class marked$Renderer {
-  constructor: (o?: marked$MarkedOptions) => marked$Renderer
+  // constructor: (o?: marked$MarkedOptions) => marked$Renderer // rosskevin: https://github.com/flowtype/flow-typed/issues/1165
   options: marked$MarkedOptions;
   code: (c: string, l: string) => string;
   blockquote: (q: string) => string;
@@ -98,7 +98,7 @@ class marked$Lexer {
   static lexer: (t: string, o?: marked$MarkedOptions) => marked$Tokens;
   static rules: { [key: string]: marked$Rule };
   rules: { [key: string]: marked$Rule };
-  constructor: (o?: marked$MarkedOptions) => marked$Lexer;
+  // constructor: (o?: marked$MarkedOptions) => marked$Lexer; // rosskevin: https://github.com/flowtype/flow-typed/issues/1165
   lex: marked$lex;
   tokens: marked$Tokens;
   options: marked$MarkedOptions;
@@ -106,7 +106,7 @@ class marked$Lexer {
 
 class marked$Parser {
   static parse: (t: marked$Tokens, o?: marked$MarkedOptions) => string;
-  constructor: (o?: marked$MarkedOptions) => marked$Parser;
+  //  constructor: (o?: marked$MarkedOptions) => marked$Parser; // rosskevin: https://github.com/flowtype/flow-typed/issues/1165
   parse: (t: marked$Tokens) => string;
   next: () => marked$Token;
   peek: () => marked$Token;
@@ -121,7 +121,7 @@ class marked$Parser {
 class marked$InlineLexer {
   static rules: Array<marked$Rule>;
   static output: (s: string, l: Array<marked$Link>, o?: marked$MarkedOptions) => string;
-  constructor: (l: Array<marked$Link>, o?: marked$MarkedOptions) => marked$InlineLexer;
+  //  constructor: (l: Array<marked$Link>, o?: marked$MarkedOptions) => marked$InlineLexer; // rosskevin: https://github.com/flowtype/flow-typed/issues/1165
   output: (s: string) => string;
   outputmarked$Link: (c: Array<string>, l: marked$Link) => string;
   smartypants: (t: string) => string;
