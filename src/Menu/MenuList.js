@@ -12,7 +12,7 @@ export type Props = {
   /**
    * MenuList contents, normally `MenuItem`s.
    */
-  children?: React.Node,
+  children?: $ReadOnlyArray<React.ChildrenArray<*>>,
   /**
    * @ignore
    */

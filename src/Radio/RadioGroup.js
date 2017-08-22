@@ -22,7 +22,7 @@ export type Props = {
   /**
    * The content of the component.
    */
-  children?: React.Node,
+  children?: React.ChildrenArray<*>,
   /**
    * Useful to extend the style applied to components.
    */

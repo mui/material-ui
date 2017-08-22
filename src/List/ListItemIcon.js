@@ -22,7 +22,7 @@ export type Props = {
    * The content of the component, normally `Icon`, `SvgIcon`,
    * or a `material-ui-icons` SVG icon component.
    */
-  children: React.Node,
+  children: React.Element<*>,
   /**
    * Useful to extend the style applied to components.
    */

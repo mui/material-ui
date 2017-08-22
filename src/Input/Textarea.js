@@ -90,9 +90,9 @@ type State = {
 
 class Textarea extends React.Component<AllProps, State> {
   props: AllProps;
-  shadow: HTMLInputElement;
-  singlelineShadow: HTMLInputElement;
-  input: HTMLInputElement;
+  shadow: ?HTMLInputElement;
+  singlelineShadow: ?HTMLInputElement;
+  input: ?HTMLInputElement;
   value: string;
 
   static defaultProps: DefaultProps = {
@@ -135,33 +135,32 @@ class Textarea extends React.Component<AllProps, State> {
   }, 166);
 
   syncHeightWithShadow(event, props = this.props) {
-    const shadow = this.shadow;
-    const singlelineShadow = this.singlelineShadow;
+    if (this.shadow && this.singlelineShadow) {
+      // The component is controlled, we need to update the shallow value.
+      if (typeof this.props.value !== 'undefined') {
+        this.shadow.value = props.value || '';
+      }
 
-    // The component is controlled, we need to update the shallow value.
-    if (typeof this.props.value !== 'undefined') {
-      this.shadow.value = props.value || '';
-    }
+      const lineHeight = this.singlelineShadow.scrollHeight;
+      let newHeight = this.shadow.scrollHeight;
 
-    const lineHeight = singlelineShadow.scrollHeight;
-    let newHeight = shadow.scrollHeight;
+      // Guarding for jsdom, where scrollHeight isn't present.
+      // See https://github.com/tmpvar/jsdom/issues/1013
+      if (newHeight === undefined) {
+        return;
+      }
 
-    // Guarding for jsdom, where scrollHeight isn't present.
-    // See https://github.com/tmpvar/jsdom/issues/1013
-    if (newHeight === undefined) {
-      return;
-    }
+      if (Number(props.rowsMax) >= Number(props.rows)) {
+        newHeight = Math.min(Number(props.rowsMax) * lineHeight, newHeight);
+      }
 
-    if (Number(props.rowsMax) >= Number(props.rows)) {
-      newHeight = Math.min(Number(props.rowsMax) * lineHeight, newHeight);
-    }
+      newHeight = Math.max(newHeight, lineHeight);
 
-    newHeight = Math.max(newHeight, lineHeight);
-
-    if (this.state.height !== newHeight) {
-      this.setState({
-        height: newHeight,
-      });
+      if (this.state.height !== newHeight) {
+        this.setState({
+          height: newHeight,
+        });
+      }
     }
   }
 
@@ -180,10 +179,10 @@ class Textarea extends React.Component<AllProps, State> {
     this.shadow = node;
   };
 
-  handleChange = event => {
-    this.value = event.target.value;
+  handleChange = (event: SyntheticEvent<HTMLInputElement>) => {
+    this.value = event.currentTarget.value;
 
-    if (typeof this.props.value === 'undefined') {
+    if (typeof this.props.value === 'undefined' && this.shadow) {
       // The component is not controlled, we need to update the shallow value.
       this.shadow.value = this.value;
       this.syncHeightWithShadow(event);
