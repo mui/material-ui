@@ -1,14 +1,15 @@
 [ignore]
 
 <PROJECT_ROOT>/build
-.*/node_modules/react-event-listener/src/.*
+.*/node_modules/react-event-listener
 .*/node_modules/fbjs/lib/partitionObjectByKey.js
-.*/node_modules/jss/lib/.*\.js\.flow
-.*/node_modules/mitt/src/.*\.js
-.*/node_modules/react-swipeable-views/src/.*
-.*/node_modules/eslint-plugin-jsx-a11y/src/.*
-.*/scripts/*
+.*/node_modules/mitt
+.*/node_modules/react-swipeable-views
+.*/node_modules/eslint-plugin-jsx-a11y
+.*/scripts
 .*/docs/webpack.*
+; FIXME: we should be flow checking against jss
+.*/node_modules/jss/lib/.*\.js\.flow
 
 [libs]
 
