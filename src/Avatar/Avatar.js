@@ -49,7 +49,7 @@ export type Props = {
    *
    * This can be an element, or just a string.
    */
-  children?: React.Node,
+  children?: React.Element<*>,
   /**
    * @ignore
    * The className of the child element.

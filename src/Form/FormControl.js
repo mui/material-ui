@@ -45,7 +45,7 @@ export type Props = {
   /**
    * The contents of the form control.
    */
-  children?: React.Node,
+  children: React.ChildrenArray<*>,
   /**
    * Useful to extend the style applied to components.
    */

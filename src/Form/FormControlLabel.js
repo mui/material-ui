@@ -47,7 +47,7 @@ export type Props = {
   /**
    * A control element. For instance, it can be be a `Radio`, a `Switch` or a `Checkbox`.
    */
-  control: React.Node,
+  control: React.Element<*>,
   /**
    * If `true`, the control will be disabled.
    */
