@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import Button from 'material-ui/Button';
 import Dialog, {
   DialogTitle,
@@ -18,7 +18,7 @@ const styles = {
   },
 };
 
-class Index extends Component {
+class Index extends React.Component<{}, { open: boolean }> {
   state = {
     open: false,
   };
