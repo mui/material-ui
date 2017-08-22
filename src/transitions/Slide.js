@@ -108,8 +108,7 @@ class Slide extends React.Component<AllProps, void> {
       if (element instanceof HTMLElement) {
         const transform = getTranslateValue(this.props, element);
         element.style.transform = transform;
-        // $FlowFixMe
-        element.style.WebkitTransform = transform;
+        element.style.webkitTransform = transform;
       }
     }
   }
@@ -121,11 +120,11 @@ class Slide extends React.Component<AllProps, void> {
     // That's triggering a reflow.
     if (element.style.transform) {
       element.style.transform = 'translate3d(0, 0, 0)';
-      element.style.WebkitTransform = 'translate3d(0, 0, 0)';
+      element.style.webkitTransform = 'translate3d(0, 0, 0)';
     }
     const transform = getTranslateValue(this.props, element);
     element.style.transform = transform;
-    element.style.WebkitTransform = transform;
+    element.style.webkitTransform = transform;
 
     if (this.props.onEnter) {
       this.props.onEnter(element);
@@ -138,12 +137,13 @@ class Slide extends React.Component<AllProps, void> {
       duration: this.props.enterTransitionDuration,
       easing: transitions.easing.easeOut,
     });
-    element.style.WebkitTransition = transitions.create('-webkit-transform', {
+    // $FlowFixMe - not yet present in https://github.com/facebook/flow/blob/v0.53.1/lib/cssom.js#L357
+    element.style.webkitTransition = transitions.create('-webkit-transform', {
       duration: this.props.enterTransitionDuration,
       easing: transitions.easing.easeOut,
     });
     element.style.transform = 'translate3d(0, 0, 0)';
-    element.style.WebkitTransform = 'translate3d(0, 0, 0)';
+    element.style.webkitTransform = 'translate3d(0, 0, 0)';
     if (this.props.onEntering) {
       this.props.onEntering(element);
     }
@@ -155,13 +155,14 @@ class Slide extends React.Component<AllProps, void> {
       duration: this.props.leaveTransitionDuration,
       easing: transitions.easing.sharp,
     });
-    element.style.WebkitTransition = transitions.create('-webkit-transform', {
+    // $FlowFixMe - not yet present in https://github.com/facebook/flow/blob/v0.53.1/lib/cssom.js#L357
+    element.style.webkitTransition = transitions.create('-webkit-transform', {
       duration: this.props.leaveTransitionDuration,
       easing: transitions.easing.sharp,
     });
     const transform = getTranslateValue(this.props, element);
     element.style.transform = transform;
-    element.style.WebkitTransform = transform;
+    element.style.webkitTransform = transform;
 
     if (this.props.onExit) {
       this.props.onExit(element);
