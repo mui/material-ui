@@ -18,7 +18,7 @@ function getDefaultTheme() {
 }
 
 // Provide the theme object as a property to the input component.
-export default function withTheme(BaseComponent) {
+export default function withTheme(BaseComponent: React.ComponentType<*>) {
   const factory = createEagerFactory(BaseComponent);
 
   class WithTheme extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
