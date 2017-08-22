@@ -102,8 +102,7 @@ const styles = {
 
 class MyComponent extends Component {
   render () {
-    {classes} = this.props;
-    return <div className={classes.root} />;
+    return <div className={this.props.classes.root} />;
   }
 }
 
@@ -124,8 +123,7 @@ const styles = {
 @withStyles(styles)
 class MyComponent extends Component {
   render () {
-    {classes} = this.props;  
-    return <div className={classes.root} />;
+    return <div className={this.props.classes.root} />;
   }
 }
 
