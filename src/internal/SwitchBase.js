@@ -31,7 +31,7 @@ export const styles = {
 };
 
 type DefaultProps = {
-  checkedIcon: React.Node,
+  checkedIcon: React.Element<*>,
   classes: Object,
   disableRipple: boolean,
   icon: React.Node,
@@ -52,7 +52,7 @@ export type Props = {
    * The icon to display when the component is checked.
    * If a string is provided, it will be used as a font ligature.
    */
-  checkedIcon?: React.Node,
+  checkedIcon?: React.Element<*>,
   /**
    * Useful to extend the style applied to components.
    */
@@ -127,8 +127,8 @@ type State = {
 };
 
 type Options = {
-  defaultIcon?: React.Node,
-  defaultCheckedIcon?: React.Node,
+  defaultIcon?: React.Element<*>,
+  defaultCheckedIcon?: React.Element<*>,
   inputType?: string,
 };
 

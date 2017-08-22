@@ -97,7 +97,7 @@ export type Props = {
    * If you wish the take control over the children of the component you can use that property.
    * When using it, no `SnackbarContent` component will be rendered.
    */
-  children?: React.Node,
+  children?: React.Element<*>,
   /**
    * Useful to extend the style applied to components.
    */
@@ -181,7 +181,7 @@ export type Props = {
   /**
    * Object with Transition component, props & create Fn.
    */
-  transition?: React.Node,
+  transition?: React.Element<*>,
 };
 
 type AllProps = DefaultProps & Props;
@@ -312,7 +312,6 @@ class Snackbar extends React.Component<AllProps, State> {
       onRequestClose,
       open,
       SnackbarContentProps,
-      // $FlowFixMe - invalid error? Property cannot be accessed on any member of intersection type
       transition: transitionProp,
       ...other
     } = this.props;
@@ -321,9 +320,31 @@ class Snackbar extends React.Component<AllProps, State> {
       return null;
     }
 
-    const createTransitionFn =
-      typeof transitionProp === 'function' ? React.createElement : React.cloneElement;
-    const transition = transitionProp || <Slide direction={vertical === 'top' ? 'down' : 'up'} />;
+    const transitionProps = {
+      in: open,
+      transitionAppear: true,
+      enterTransitionDuration,
+      leaveTransitionDuration,
+      onEnter,
+      onEntering,
+      onEntered,
+      onExit,
+      onExiting,
+      onExited: createChainedFunction(this.handleTransitionExited, onExited),
+    };
+    const transitionContent =
+      children || <SnackbarContent message={message} action={action} {...SnackbarContentProps} />;
+
+    let transition;
+    if (typeof transitionProp === 'function') {
+      transition = React.createElement(transitionProp, transitionProps, transitionContent);
+    } else {
+      transition = React.cloneElement(
+        transitionProp || <Slide direction={vertical === 'top' ? 'down' : 'up'} />,
+        transitionProps,
+        transitionContent,
+      );
+    }
 
     return (
       <EventListener target="window" onFocus={this.handleResume} onBlur={this.handlePause}>
@@ -340,23 +361,7 @@ class Snackbar extends React.Component<AllProps, State> {
             onMouseLeave={this.handleMouseLeave}
             {...other}
           >
-            {createTransitionFn(
-              transition,
-              {
-                in: open,
-                transitionAppear: true,
-                enterTransitionDuration,
-                leaveTransitionDuration,
-                onEnter,
-                onEntering,
-                onEntered,
-                onExit,
-                onExiting,
-                onExited: createChainedFunction(this.handleTransitionExited, onExited),
-              },
-              children ||
-                <SnackbarContent message={message} action={action} {...SnackbarContentProps} />,
-            )}
+            {transition}
           </div>
         </ClickAwayListener>
       </EventListener>

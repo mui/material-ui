@@ -15,7 +15,7 @@ type DefaultProps = {
 
 export type Props = {
   /**
-   * The single child content component.
+   * A single child content element.
    */
   children?: React.Element<*>,
   /**

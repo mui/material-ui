@@ -69,9 +69,9 @@ export type Props = {
    */
   backdropTransitionDuration?: number,
   /**
-   * Content of the modal.
+   * A single child content element.
    */
-  children?: React.Node,
+  children?: React.Element<*>,
   /**
    * Useful to extend the style applied to components.
    */
