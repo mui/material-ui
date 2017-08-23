@@ -82,8 +82,8 @@ class Clock extends Component {
           format={format}
           affix={affix}
           onSelectAffix={onSetAffix}
-          onSelectHour={() => { onSetMode('hour'); }}
-          onSelectMin={() => { onSetMode('minute'); }}
+          onSelectHour={(...args) => { onSetMode('hour', ...args);}}
+          onSelectMin={(...args) => { onSetMode('minute', ...args);}}
         />
         <div className={classNames(classes.container, { [classes.landscapeContainer]: landscape })} >
           <div className={classNames({ [classes.circle]: true })} />
