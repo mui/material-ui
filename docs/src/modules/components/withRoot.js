@@ -169,16 +169,27 @@ function findActivePage(currentPages, url) {
   return activePage;
 }
 
-function withRoot(BaseComponent) {
+function withRoot<BaseProps: {}>(BaseComponent: React.ComponentType<BaseProps>) {
   // Prevent rerendering
   const PureBaseComponent = pure(BaseComponent);
 
-  class WithRoot extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+  type WithRootProps = {
+    reduxServerState?: Object,
+    url: Object,
+  };
+  class WithRoot extends React.Component<WithRootProps> {
+    props: WithRootProps;
+    static childContextTypes = {
+      url: PropTypes.object,
+      pages: PropTypes.array,
+      activePage: PropTypes.object,
+    };
     static getInitialProps(ctx) {
       let initialProps = {};
       const redux = initRedux({});
 
       if (BaseComponent.getInitialProps) {
+        // $FlowFixMe - a next component signature?
         const baseComponentInitialProps = BaseComponent.getInitialProps({ ...ctx, redux });
         initialProps = {
           ...baseComponentInitialProps,
@@ -200,7 +211,7 @@ function withRoot(BaseComponent) {
 
     constructor(props) {
       super(props);
-      this.redux = initRedux(this.props.reduxServerState);
+      this.redux = initRedux(this.props.reduxServerState || {});
     }
 
     getChildContext() {
@@ -227,17 +238,6 @@ function withRoot(BaseComponent) {
   if (process.env.NODE_ENV !== 'production') {
     WithRoot.displayName = wrapDisplayName(BaseComponent, 'withRoot');
   }
-
-  WithRoot.propTypes = {
-    reduxServerState: PropTypes.object,
-    url: PropTypes.object.isRequired,
-  };
-
-  WithRoot.childContextTypes = {
-    url: PropTypes.object,
-    pages: PropTypes.array,
-    activePage: PropTypes.object,
-  };
 
   return WithRoot;
 }

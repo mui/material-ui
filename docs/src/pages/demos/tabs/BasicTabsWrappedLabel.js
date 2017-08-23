@@ -27,7 +27,7 @@ const styles = theme => ({
   },
 });
 
-class BasicTabsWrappedLabel extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class BasicTabsWrappedLabel extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   state = {
     value: 'one',

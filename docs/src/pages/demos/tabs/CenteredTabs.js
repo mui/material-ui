@@ -13,7 +13,7 @@ const styles = theme => ({
   },
 });
 
-class CenteredTabs extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class CenteredTabs extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   state = {
     value: 0,

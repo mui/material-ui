@@ -40,7 +40,7 @@ function generate(element) {
   );
 }
 
-class InteractiveList extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class InteractiveList extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   state = {
     dense: false,

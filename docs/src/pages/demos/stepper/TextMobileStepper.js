@@ -22,7 +22,7 @@ const styles = theme => ({
   },
 });
 
-class TextMobileStepper extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class TextMobileStepper extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   state = {
     activeStep: 0,

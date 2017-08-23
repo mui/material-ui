@@ -30,7 +30,7 @@ const styles = theme => ({
   },
 });
 
-class OnClick extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class OnClick extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   handleClick = event => {
     if (this.props.onClick) {

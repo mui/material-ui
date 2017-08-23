@@ -13,7 +13,7 @@ const styles = {
   },
 };
 
-class Checkboxes extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class Checkboxes extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   state = {
     checkedA: true,

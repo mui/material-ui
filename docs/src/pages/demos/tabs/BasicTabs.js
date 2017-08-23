@@ -27,7 +27,7 @@ const styles = theme => ({
   },
 });
 
-class BasicTabs extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class BasicTabs extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   state = {
     value: 0,

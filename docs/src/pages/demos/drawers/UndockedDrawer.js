@@ -26,7 +26,7 @@ const styles = {
   },
 };
 
-class UndockedDrawer extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class UndockedDrawer extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   state = {
     open: {

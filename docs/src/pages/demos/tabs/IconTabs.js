@@ -7,7 +7,7 @@ import PhoneIcon from 'material-ui-icons/Phone';
 import FavoriteIcon from 'material-ui-icons/Favorite';
 import PersonPinIcon from 'material-ui-icons/PersonPin';
 
-export default class IconTabs extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+export default class IconTabs extends React.Component<any, any> {
   static defaultProps: {};
   state = {
     value: 0,

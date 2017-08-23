@@ -5,7 +5,7 @@ import * as React from 'react';
 import Paper from 'material-ui/Paper';
 import Tabs, { Tab } from 'material-ui/Tabs';
 
-class DisabledTabs extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class DisabledTabs extends React.Component<any, any> {
   static defaultProps: {};
   state = {
     value: 0,

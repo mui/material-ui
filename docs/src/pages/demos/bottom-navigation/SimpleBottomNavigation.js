@@ -14,7 +14,7 @@ const styles = {
   },
 };
 
-class SimpleBottomNavigation extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class SimpleBottomNavigation extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   state = {
     value: 0,

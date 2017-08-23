@@ -16,7 +16,7 @@ const styles = theme => ({
   },
 });
 
-class ChipsArray extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class ChipsArray extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   state = {
     chipData: [

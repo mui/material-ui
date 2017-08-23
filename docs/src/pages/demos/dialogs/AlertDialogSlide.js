@@ -10,7 +10,7 @@ import Dialog, {
 } from 'material-ui/Dialog';
 import Slide from 'material-ui/transitions/Slide';
 
-export default class AlertDialogSlide extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+export default class AlertDialogSlide extends React.Component<any, any> {
   static defaultProps: {};
   state = {
     open: false,

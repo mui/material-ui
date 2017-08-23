@@ -12,7 +12,7 @@ const styles = {
   },
 };
 
-class LinearBuffer extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class LinearBuffer extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   timer: number;
   state = {

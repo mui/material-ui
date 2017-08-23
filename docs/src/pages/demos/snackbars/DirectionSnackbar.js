@@ -5,7 +5,7 @@ import Button from 'material-ui/Button';
 import Snackbar from 'material-ui/Snackbar';
 import Slide from 'material-ui/transitions/Slide';
 
-class DirectionSnackbar extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class DirectionSnackbar extends React.Component<any, any> {
   static defaultProps: {};
   state = {
     open: false,

@@ -38,7 +38,7 @@ const styles = theme => ({
   },
 });
 
-class RecipeReviewCard extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class RecipeReviewCard extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   state = { expanded: false };
 

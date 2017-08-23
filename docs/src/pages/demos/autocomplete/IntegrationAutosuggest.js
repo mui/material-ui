@@ -147,7 +147,7 @@ const styles = theme => ({
   },
 });
 
-class IntegrationAutosuggest extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class IntegrationAutosuggest extends React.Component<any, any> {
   state = {
     value: '',
     suggestions: [],

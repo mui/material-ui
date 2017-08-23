@@ -23,7 +23,7 @@ const styles = {
   },
 };
 
-class FullScreenDialog extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class FullScreenDialog extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   state = {
     open: false,

@@ -18,7 +18,7 @@ const styles = theme => ({
   },
 });
 
-class ComposedTextField extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class ComposedTextField extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   state = {
     name: 'Composed TextField',

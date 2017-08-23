@@ -35,7 +35,7 @@ const columnData = [
   { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
 ];
 
-class EnhancedTableHead extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class EnhancedTableHead extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   static propTypes = {
     numSelected: PropTypes.number.isRequired,
@@ -155,7 +155,7 @@ const styles = theme => ({
   },
 });
 
-class EnhancedTable extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class EnhancedTable extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   state = {
     order: 'asc',

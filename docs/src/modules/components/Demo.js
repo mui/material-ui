@@ -54,7 +54,7 @@ const styles = theme => ({
   },
 });
 
-class Demo extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class Demo extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   state = {
     codeOpen: false,

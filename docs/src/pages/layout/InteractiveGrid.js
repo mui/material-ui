@@ -24,7 +24,7 @@ const styles = theme => ({
   },
 });
 
-class InteractiveGrid extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class InteractiveGrid extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   state = {
     direction: 'row',

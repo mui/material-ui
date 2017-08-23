@@ -28,7 +28,7 @@ const styles = theme => ({
   },
 });
 
-class ScrollableTabsButtonAuto extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class ScrollableTabsButtonAuto extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   state = {
     value: 0,

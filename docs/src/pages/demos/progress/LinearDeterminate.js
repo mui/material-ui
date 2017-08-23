@@ -12,7 +12,7 @@ const styles = {
   },
 };
 
-class LinearDeterminate extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class LinearDeterminate extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   timer: number;
   state = {

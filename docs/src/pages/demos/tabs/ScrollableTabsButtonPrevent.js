@@ -35,7 +35,7 @@ const styles = theme => ({
   },
 });
 
-class ScrollableTabsButtonPrevent extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class ScrollableTabsButtonPrevent extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   state = {
     value: 0,

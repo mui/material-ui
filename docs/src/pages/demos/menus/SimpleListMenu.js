@@ -20,7 +20,7 @@ const options = [
   'Hide all notification content',
 ];
 
-class SimpleListMenu extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class SimpleListMenu extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   state = {
     anchorEl: undefined,

@@ -22,7 +22,7 @@ const styles = theme => ({
   },
 });
 
-class SwitchListSecondary extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class SwitchListSecondary extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   state = {
     checked: ['wifi'],

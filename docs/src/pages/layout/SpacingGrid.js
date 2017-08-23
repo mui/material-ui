@@ -21,7 +21,7 @@ const styles = theme => ({
   },
 });
 
-class GuttersGrid extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class GuttersGrid extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   state = {
     spacing: '16',

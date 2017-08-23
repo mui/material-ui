@@ -26,7 +26,7 @@ const styles = theme => ({
   },
 });
 
-class FullWidthTabs extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class FullWidthTabs extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   state = {
     value: 0,

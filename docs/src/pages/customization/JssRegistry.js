@@ -8,7 +8,7 @@ import CssInJs from './CssInJs';
 const sheetsRegistry = new SheetsRegistry();
 const theme = createMuiTheme();
 
-class JssRegistry extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class JssRegistry extends React.Component<any, any> {
   static defaultProps: {};
   state = {
     length: 0,

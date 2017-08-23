@@ -27,7 +27,7 @@ const styles = {
   },
 };
 
-class CircularFab extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class CircularFab extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   state = {
     loading: false,

@@ -16,7 +16,7 @@ const styles = {
   },
 };
 
-class Switches extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class Switches extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   state = {
     checkedA: true,

@@ -102,7 +102,7 @@ const styles = theme => ({
   },
 });
 
-class AppFrame extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class AppFrame extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   state = {
     drawerOpen: false,

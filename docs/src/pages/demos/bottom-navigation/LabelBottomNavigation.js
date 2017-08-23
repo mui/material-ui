@@ -15,7 +15,7 @@ const styles = {
   },
 };
 
-class LabelBottomNavigation extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class LabelBottomNavigation extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   state = {
     value: 'recents',

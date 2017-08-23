@@ -21,7 +21,7 @@ const styles = {
   },
 };
 
-class SimpleDialog extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class SimpleDialog extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   handleRequestClose = () => {
     this.props.onRequestClose(this.props.selectedValue);
@@ -72,7 +72,7 @@ SimpleDialog.propTypes = {
 
 const SimpleDialogWrapped = withStyles(styles)(SimpleDialog);
 
-class SimpleDialogDemo extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class SimpleDialogDemo extends React.Component<any, any> {
   static defaultProps: {};
   state = {
     open: false,

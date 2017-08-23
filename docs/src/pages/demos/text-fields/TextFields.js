@@ -17,7 +17,7 @@ const styles = theme => ({
   },
 });
 
-class TextFields extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class TextFields extends React.Component<any, any> {
   state = {
     name: 'Cat in the Hat',
     multiline: 'Controlled',

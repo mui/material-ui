@@ -9,7 +9,7 @@ import Dialog, {
   DialogTitle,
 } from 'material-ui/Dialog';
 
-export default class AlertDialog extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+export default class AlertDialog extends React.Component<any, any> {
   static defaultProps: {};
   state = {
     open: false,

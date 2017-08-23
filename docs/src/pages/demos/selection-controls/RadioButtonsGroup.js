@@ -12,7 +12,7 @@ const styles = theme => ({
   },
 });
 
-class RadioButtonsGroup extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class RadioButtonsGroup extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   state = {
     value: '',

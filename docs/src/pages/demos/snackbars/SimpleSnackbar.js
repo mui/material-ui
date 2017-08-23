@@ -15,7 +15,7 @@ const styles = theme => ({
   },
 });
 
-class SimpleSnackbar extends React.Component<$FlowFixMeProps, $FlowFixMeState> {
+class SimpleSnackbar extends React.Component<any, any> {
   static defaultProps: $FlowFixMeProps;
   state = {
     open: false,
