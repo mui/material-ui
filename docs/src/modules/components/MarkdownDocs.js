@@ -4,12 +4,13 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import kebabCase from 'lodash/kebabCase';
 import warning from 'warning';
+import Head from 'next/head';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import AppContent from 'docs/src/modules/components/AppContent';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Demo from 'docs/src/modules/components/Demo';
-import { getComponents, getContents } from 'docs/src/modules/utils/parseMarkdown';
+import { getComponents, getContents, getTitle } from 'docs/src/modules/utils/parseMarkdown';
 
 const styles = {
   root: {
@@ -40,6 +41,11 @@ function MarkdownDocs(props, context) {
 
   return (
     <AppContent className={classes.root}>
+      <Head>
+        <title>
+          {getTitle(markdown)}
+        </title>
+      </Head>
       <div className={classes.header}>
         <Button component="a" href={`${SOURCE_CODE_ROOT_URL}/docs/src/pages${sourceLocation}.md`}>
           {'Edit this page'}

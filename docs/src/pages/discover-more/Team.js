@@ -65,6 +65,7 @@ const styles = theme => ({
   cover: {
     width: 124,
     height: 124,
+    backgroundColor: theme.palette.background.default,
   },
   controls: {
     display: 'flex',

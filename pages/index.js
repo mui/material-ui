@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
+import Head from 'next/head';
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
@@ -59,6 +60,9 @@ function PageHome(props) {
 
   return (
     <div className={classes.root}>
+      <Head>
+        <title>Material-UI</title>
+      </Head>
       <div className={classes.hero}>
         <div className={classes.content}>
           <img

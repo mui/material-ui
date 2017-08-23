@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import Dialog, {
   DialogTitle,
@@ -9,10 +10,11 @@ import Dialog, {
   DialogActions,
 } from 'material-ui/Dialog';
 import Typography from 'material-ui/Typography';
+import withStyles from 'material-ui/styles/withStyles';
 import withRoot from '../components/withRoot';
 
 const styles = {
-  container: {
+  root: {
     textAlign: 'center',
     paddingTop: 200,
   },
@@ -37,7 +39,7 @@ class Index extends Component<{}, $FlowFixMeState> {
 
   render() {
     return (
-      <div style={styles.container}>
+      <div className={this.props.classes.root}>
         <Dialog open={this.state.open} onRequestClose={this.handleRequestClose}>
           <DialogTitle>Super Secret Password</DialogTitle>
           <DialogContent>
@@ -63,4 +65,8 @@ class Index extends Component<{}, $FlowFixMeState> {
   }
 }
 
-export default withRoot(Index);
+Index.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withRoot(withStyles(styles)(Index));
