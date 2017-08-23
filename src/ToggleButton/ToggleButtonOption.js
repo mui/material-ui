@@ -63,7 +63,7 @@ export const styleSheet = createStyleSheet('MuiToggleButtonOption', theme => ({
     height: 58,
   },
   divided: {
-    borderLeft: `0.25px solid ${grey[500]}`,
+    boxShadow: `-0.3px 0 0 0.3px ${grey[500]}`,
   },
   colorDefault: {
     color: theme.palette.action.active,

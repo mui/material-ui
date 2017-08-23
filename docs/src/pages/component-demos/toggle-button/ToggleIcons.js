@@ -37,6 +37,12 @@ function ToggleIcon(props) {
           value="4"
           color="accent"
         />
+        <ToggleButtonOption
+          key="5"
+          icon={<Icon className="material-icons">grade</Icon>}
+          value="5"
+          disabled
+        />
       </ToggleButton>
     </div>
   );
