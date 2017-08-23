@@ -1,6 +1,4 @@
-// @flow weak
-
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Input from 'material-ui/Input';
@@ -18,7 +16,7 @@ const styles = theme => ({
   },
 });
 
-class ComposedTextField extends React.Component<any, any> {
+class ComposedTextField extends React.Component {
   static defaultProps: $FlowFixMeProps;
   state = {
     name: 'Composed TextField',

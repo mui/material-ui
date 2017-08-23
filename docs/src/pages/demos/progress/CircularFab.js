@@ -1,6 +1,4 @@
-// @flow weak
-
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import { CircularProgress } from 'material-ui/Progress';
@@ -27,7 +25,7 @@ const styles = {
   },
 };
 
-class CircularFab extends React.Component<any, any> {
+class CircularFab extends React.Component {
   static defaultProps: $FlowFixMeProps;
   state = {
     loading: false,

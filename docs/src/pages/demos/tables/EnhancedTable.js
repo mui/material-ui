@@ -1,7 +1,6 @@
-// @flow weak
 /* eslint-disable react/no-multi-comp */
 
-import * as React from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
@@ -35,7 +34,7 @@ const columnData = [
   { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
 ];
 
-class EnhancedTableHead extends React.Component<any, any> {
+class EnhancedTableHead extends React.Component {
   static defaultProps: $FlowFixMeProps;
   static propTypes = {
     numSelected: PropTypes.number.isRequired,
@@ -155,7 +154,7 @@ const styles = theme => ({
   },
 });
 
-class EnhancedTable extends React.Component<any, any> {
+class EnhancedTable extends React.Component {
   static defaultProps: $FlowFixMeProps;
   state = {
     order: 'asc',

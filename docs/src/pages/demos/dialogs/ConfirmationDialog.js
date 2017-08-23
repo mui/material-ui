@@ -1,7 +1,6 @@
-// @flow weak
 /* eslint-disable react/no-multi-comp */
 
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
@@ -27,7 +26,7 @@ const options = [
   'Umbriel',
 ];
 
-class ConfirmationDialog extends React.Component<any, any> {
+class ConfirmationDialog extends React.Component {
   static defaultProps: $FlowFixMeProps;
   state = {
     value: undefined,
@@ -119,7 +118,7 @@ const styles = theme => ({
   },
 });
 
-class ConfirmationDialogDemo extends React.Component<any, any> {
+class ConfirmationDialogDemo extends React.Component {
   static defaultProps: $FlowFixMeProps;
   state = {
     anchorEl: undefined,

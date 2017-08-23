@@ -1,7 +1,6 @@
-// @flow weak
 /* eslint-disable react/no-array-index-key */
 
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Autosuggest from 'react-autosuggest';
 import TextField from 'material-ui/TextField';
@@ -147,7 +146,7 @@ const styles = theme => ({
   },
 });
 
-class IntegrationAutosuggest extends React.Component<any, any> {
+class IntegrationAutosuggest extends React.Component {
   state = {
     value: '',
     suggestions: [],

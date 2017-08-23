@@ -1,6 +1,4 @@
-// @flow weak
-
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
@@ -15,7 +13,7 @@ const styles = theme => ({
   },
 });
 
-class CheckboxListSecondary extends React.Component<any, any> {
+class CheckboxListSecondary extends React.Component {
   static defaultProps: $FlowFixMeProps;
   state = {
     checked: [1],
