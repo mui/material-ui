@@ -16,7 +16,6 @@ import grey from '../colors/grey';
  * Represents an option within a Toggle Button
  *
  */
-
 export const styleSheet = createStyleSheet('MuiToggleButtonOption', theme => ({
   root: {
     backgroundColor: 'transparent',
@@ -25,6 +24,9 @@ export const styleSheet = createStyleSheet('MuiToggleButtonOption', theme => ({
     fontSize: 14,
     padding: '0px 12px',
     textTransform: 'uppercase',
+    transition: theme.transitions.create(['background-color'], {
+      duration: theme.transitions.duration.standard,
+    }),
     // borderLeft: props.optionStyle.borderLeft? props.optionStyle.borderLeft : 'none',
     // borderRight: props.optionStyle.borderRight? props.optionStyle.borderRight : 'none',
   },
@@ -33,6 +35,7 @@ export const styleSheet = createStyleSheet('MuiToggleButtonOption', theme => ({
   },
   rootToggle: {
     height: 48,
+    borderRadius: '50%',
   },
   buttonBase: {
     display: 'flex',
@@ -42,9 +45,6 @@ export const styleSheet = createStyleSheet('MuiToggleButtonOption', theme => ({
   },
   button: {
     color: theme.palette.text.hint,
-  },
-  toggle: {
-    color: theme.palette.action.active,
   },
   dropDownButton: {
     display: 'inline-block',
@@ -59,15 +59,45 @@ export const styleSheet = createStyleSheet('MuiToggleButtonOption', theme => ({
   buttonSelected: {
     backgroundColor: fade(common.black, 0.3),
   },
-  toggleSelected: {
-    backgroundColor: fade(common.black, 0.2),
-    borderRadius: '50%',
-  },
   iconAndText: {
     height: 58,
   },
   divided: {
     borderLeft: `0.25px solid ${grey[500]}`,
+  },
+  colorDefault: {
+    color: theme.palette.action.active,
+  },
+  colorPrimary: {
+    color: theme.palette.primary[500],
+  },
+  colorAccent: {
+    color: theme.palette.accent.A200,
+  },
+  colorContrast: {
+    color: theme.palette.getContrastText(theme.palette.primary[500]),
+  },
+  colorInherit: {
+    color: 'blue',
+  },
+  togglePrimary: {
+    backgroundColor: fade(theme.palette.primary[500], 0.26),
+    borderRadius: '50%',
+  },
+  toggleAccent: {
+    backgroundColor: fade(theme.palette.accent.A200, 0.26),
+    borderRadius: '50%',
+  },
+  toggleContrast: {
+    backgroundColor: theme.palette.type === 'light' ? fade(theme.palette.getContrastText(theme.palette.primary[500]), 0.3) : fade(theme.palette.getContrastText(theme.palette.primary[500]), 0.2) ,
+    borderRadius: '50%',
+  },
+  toggleDefault: {
+    backgroundColor: theme.palette.type === 'light' ? fade(common.black, 0.12) : fade(common.black, 0.2),
+    borderRadius: '50%',
+  },
+  toggleInherit: {
+    borderRadius: '50%',
   },
 }));
 
@@ -76,6 +106,7 @@ class ToggleButtonOption extends Component {
     selected: false,
     disabled: false,
     divider: false,
+    color: 'default',
   };
 
   componentWillMount() {
@@ -116,7 +147,7 @@ class ToggleButtonOption extends Component {
   };
 
   render() {
-    const { icon, label, classes, disabled, divider, toggle, selected, children } = this.props;
+    const { icon, label, classes, color, disabled, divider, toggle, selected, children } = this.props;
 
     const buttonProps = {
       className: classNames(classes.root, {
@@ -124,17 +155,23 @@ class ToggleButtonOption extends Component {
         [classes.rootToggle]: toggle,
         [classes.iconAndText]: icon && label,
         [classes.buttonSelected]: selected && !toggle,
-        [classes.toggleSelected]: selected && toggle && !disabled,
+        [classes.toggleDefault]: color === 'default' && selected && toggle && !disabled,
+        [classes.togglePrimary]: color === 'primary' && selected && toggle && !disabled,
+        [classes.toggleAccent]: color === 'accent' && selected && toggle && !disabled,
+        [classes.toggleContrast]: color === 'contrast' && selected && toggle && !disabled,
         [classes.divided]: divider,
       }),
       onClick: this.handleOptionClick,
-      centerRipple: true,
+      disableRipple: true,
     };
     const rootProps = {
       className: classNames(classes.buttonBase, {
         [classes.textSelected]: selected && !toggle,
         [classes.button]: !toggle || disabled,
-        [classes.toggle]: toggle && !disabled,
+        [classes.colorDefault]: color === 'default' && toggle && !disabled,
+        [classes.colorPrimary]: color === 'primary' && toggle && !disabled,
+        [classes.colorAccent]: color === 'accent' && toggle && !disabled,
+        [classes.colorContrast]: color === 'contrast' && toggle && !disabled,
       }),
     };
 
@@ -215,6 +252,10 @@ ToggleButtonOption.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The color of the component. It's using the theme palette when that makes sense.
+   */
+  color: PropTypes.oneOf(['default', 'primary', 'accent', 'contrast']),
   /**
    * Determines if a toggle icon is disabled or not.
    */

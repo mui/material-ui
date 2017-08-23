@@ -23,11 +23,19 @@ function ToggleIcon(props) {
           key="2"
           icon={<Icon className="material-icons">mood_bad</Icon>}
           value="1"
+          color="primary"
         />
         <ToggleButtonOption
           key="3"
           icon={<Icon className="material-icons">whatshot</Icon>}
           value="3"
+          color="contrast"
+        />
+        <ToggleButtonOption
+          key="4"
+          icon={<Icon className="material-icons">favorite</Icon>}
+          value="4"
+          color="accent"
         />
       </ToggleButton>
     </div>
