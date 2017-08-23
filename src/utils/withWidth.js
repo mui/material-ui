@@ -45,6 +45,10 @@ function withWidth(options = {}) {
   function enhance<BaseProps: {}>(BaseComponent: React.ComponentType<BaseProps>) {
     const factory = createEagerFactory(BaseComponent);
 
+    type DefaultProps = {
+      theme: Object,
+    };
+
     type WidthProps = {
       /**
        * As `window.innerWidth` is unavailable on the server,
@@ -66,7 +70,7 @@ function withWidth(options = {}) {
       width?: Breakpoint,
     };
 
-    type AllProps = WidthProps & BaseProps;
+    type AllProps = DefaultProps & WidthProps & BaseProps;
     class Width extends React.Component<AllProps, { width: ?Breakpoint }> {
       props: AllProps;
       state = {
