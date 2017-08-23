@@ -56,7 +56,7 @@ export type Props = {
   /**
    * The content of the component.
    */
-  children?: $ReadOnlyArray<ChildrenArray<*>>,
+  children?: ChildrenArray<*>,
   /**
    * Useful to extend the style applied to components.
    */
