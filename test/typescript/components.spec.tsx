@@ -38,17 +38,17 @@ import {
   TextField,
   Toolbar,
   Typography,
-} from 'material-ui';
-import Collapse from 'material-ui/transitions/Collapse';
-import { GridList } from 'material-ui/GridList';
-import MobileStepper from 'material-ui/MobileStepper/MobileStepper';
+} from '../../src';
+import Collapse from '../../src/transitions/Collapse';
+import { GridList } from '../../src/GridList';
+import MobileStepper from '../../src/MobileStepper/MobileStepper';
 import Table, {
   TableBody,
   TableCell,
   TableHead,
   TableRow,
-} from 'material-ui/Table';
-import { withStyles, StyleRulesCallback } from 'material-ui/styles';
+} from '../../src/Table';
+import { withStyles, StyleRulesCallback } from '../../src/styles';
 
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;

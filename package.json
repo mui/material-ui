@@ -5,13 +5,7 @@
   "version": "1.0.0-beta.6",
   "description": "Material Design UI components built with React",
   "main": "./src/index.js",
-  "keywords": [
-    "react",
-    "react-component",
-    "material design",
-    "material-ui"
-  ],
-  "typings": "typings/index.d.ts",
+  "keywords": ["react", "react-component", "material design", "material-ui"],
   "repository": {
     "type": "git",
     "url": "https://github.com/callemall/material-ui.git"
@@ -180,12 +174,8 @@
     }
   ],
   "nyc": {
-    "include": [
-      "src/**/*.js"
-    ],
-    "exclude": [
-      "**/*.spec.js"
-    ],
+    "include": ["src/**/*.js"],
+    "exclude": ["**/*.spec.js"],
     "sourceMap": false,
     "instrument": false
   }
