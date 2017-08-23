@@ -45,7 +45,7 @@ export type Props = {
   /**
    * The contents of the form control.
    */
-  children: React.ChildrenArray<*>,
+  children?: React.ChildrenArray<*>,
   /**
    * Useful to extend the style applied to components.
    */
@@ -144,11 +144,14 @@ class FormControl extends React.Component<AllProps, State> {
   componentWillMount() {
     // We need to iterate through the children and find the Input in order
     // to fully support server side rendering.
-    React.Children.forEach(this.props.children, child => {
-      if (isMuiComponent(child, 'Input') && isDirty(child.props, true)) {
-        this.setState({ dirty: true });
-      }
-    });
+    const { children } = this.props;
+    if (children) {
+      React.Children.forEach(children, child => {
+        if (isMuiComponent(child, 'Input') && isDirty(child.props, true)) {
+          this.setState({ dirty: true });
+        }
+      });
+    }
   }
 
   handleFocus = event => {
