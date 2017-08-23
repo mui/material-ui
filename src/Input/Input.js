@@ -1,6 +1,7 @@
 // @flow weak
 
 import React from 'react';
+import type { ComponentType } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -215,7 +216,7 @@ export type Props = {
    * Either a string to use a DOM element or a component.
    * It's an `input` by default.
    */
-  component?: string | Function,
+  component?: string | ComponentType<*>,
   /**
    * The default input value, useful when not controlling the component.
    */

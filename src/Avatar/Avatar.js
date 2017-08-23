@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { Element } from 'react';
+import type { ComponentType, Element } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { emphasize } from '../styles/colorManipulator';
@@ -69,7 +69,7 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: string | Function,
+  component?: string | ComponentType<*>,
   /**
    * Properties applied to the `img` element when the component
    * is used to display an image.
