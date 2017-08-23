@@ -10,5 +10,5 @@
     "suppressImplicitAnyIndexErrors": true,
     "noEmit": true
   },
-  "include": ["src/index.d.ts", "src/*/**.d.ts", "test/typescript/*"]
+  "include": ["src/**/*", "test/typescript/*"]
 }

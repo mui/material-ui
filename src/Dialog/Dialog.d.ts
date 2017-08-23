@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StyledComponent } from '..';
 import { ModalProps } from '../internal/Modal';
 
-export interface DialogProps extends ModalProps {
+export type DialogProps = {
   fullScreen?: boolean;
   ignoreBackdropClick?: boolean;
   ignoreEscapeKeyUp?: boolean;
@@ -14,6 +14,6 @@ export interface DialogProps extends ModalProps {
   onRequestClose?: React.EventHandler<any>;
   open?: boolean;
   transition?: Function | React.ReactElement<any>;
-}
+} & ModalProps;
 
 export default class Dialog extends StyledComponent<DialogProps> {}

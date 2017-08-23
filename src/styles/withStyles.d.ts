@@ -19,10 +19,9 @@ export interface WithStylesOptions {
   name?: string;
 }
 
-interface withStyles<P = {}, ClassNames = {}> {
-  (style: StyleRules | StyleRulesCallback, options?: WithStylesOptions): (
-    component: React.ComponentType<P & { classes: ClassNames }>
-  ) => React.ComponentClass<P>;
-}
-
-export default withStyles;
+export default function withStyles<P = {}, ClassNames = {}>(
+  style: StyleRules | StyleRulesCallback,
+  options?: WithStylesOptions
+): (
+  component: React.ComponentType<P & { classes: ClassNames }>
+) => React.ComponentClass<P>;

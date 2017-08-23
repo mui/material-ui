@@ -4,9 +4,9 @@ import {
   StyleRules,
   createMuiTheme,
   MuiThemeProvider,
-} from 'material-ui/styles';
-import { Theme } from 'material-ui/styles/theme';
-import Button from 'material-ui/Button/Button';
+} from '../../src/styles';
+import { Theme } from '../../src/styles/theme';
+import Button from '../../src/Button/Button';
 
 const styles = ({ palette, spacing }) => ({
   root: {
