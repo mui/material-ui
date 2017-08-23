@@ -10,8 +10,5 @@
     "suppressImplicitAnyIndexErrors": true,
     "noEmit": true
   },
-  "include": [
-    "typings/*",
-    "test/typescript/*"
-  ]
+  "include": ["src/**/*", "test/typescript/*"]
 }
