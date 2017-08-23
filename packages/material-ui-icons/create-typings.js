@@ -4,7 +4,6 @@
 // Generate type definitions for `material-ui-icons`.
 
 const path = require('path');
-const { EOL } = require('os');
 const chalk = require('chalk');
 const { outputFile } = require('fs-extra');
 const glob = require('glob');
