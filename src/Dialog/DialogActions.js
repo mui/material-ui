@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Children, cloneElement, isValidElement } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -27,12 +27,12 @@ function DialogActions(props) {
 
   return (
     <div data-mui-test="DialogActions" className={classNames(classes.root, className)} {...other}>
-      {Children.map(
+      {React.Children.map(
         children,
         button =>
-          isValidElement(button) &&
+          React.isValidElement(button) &&
           <div className={classes.action}>
-            {cloneElement(button, {
+            {React.cloneElement(button, {
               className: classNames(classes.button, button.props.className),
             })}
           </div>,

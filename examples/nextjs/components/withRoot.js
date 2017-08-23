@@ -25,7 +25,7 @@ let AppWrapper = props => props.children;
 AppWrapper = withStyles(styles)(AppWrapper);
 
 function withRoot(BaseComponent) {
-  class WithRoot extends Component {
+  class WithRoot extends Component<$FlowFixMeProps> {
     static getInitialProps(ctx) {
       if (BaseComponent.getInitialProps) {
         return BaseComponent.getInitialProps(ctx);

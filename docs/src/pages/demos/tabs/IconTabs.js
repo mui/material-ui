@@ -1,13 +1,12 @@
-// @flow weak
-
-import React, { Component } from 'react';
+import React from 'react';
 import Paper from 'material-ui/Paper';
 import Tabs, { Tab } from 'material-ui/Tabs';
 import PhoneIcon from 'material-ui-icons/Phone';
 import FavoriteIcon from 'material-ui-icons/Favorite';
 import PersonPinIcon from 'material-ui-icons/PersonPin';
 
-export default class IconTabs extends Component {
+export default class IconTabs extends React.Component {
+  static defaultProps: {};
   state = {
     value: 0,
   };

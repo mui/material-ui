@@ -1,6 +1,4 @@
-// @flow weak
-
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import green from 'material-ui/colors/green';
@@ -16,7 +14,8 @@ const styles = {
   },
 };
 
-class Switches extends Component {
+class Switches extends React.Component {
+  static defaultProps: $FlowFixMeProps;
   state = {
     checkedA: true,
     checkedB: false,

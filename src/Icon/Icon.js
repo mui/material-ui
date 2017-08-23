@@ -1,7 +1,6 @@
 // @flow
 
-import React from 'react';
-import type { Element } from 'react';
+import * as React from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -39,7 +38,7 @@ export type Props = {
   /**
    * The name of the icon font ligature.
    */
-  children?: Element<*>,
+  children?: React.Node,
   /**
    * Useful to extend the style applied to components.
    */

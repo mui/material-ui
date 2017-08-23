@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 import { DialogActions, DialogContent, DialogContentText, DialogTitle } from 'material-ui/Dialog';
 import Paper from 'material-ui/Paper';
 import Button from 'material-ui/Button';

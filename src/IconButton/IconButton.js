@@ -1,7 +1,7 @@
 // @flow weak
 // @inheritedComponent ButtonBase
 
-import React, { Children, cloneElement } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -86,9 +86,9 @@ function IconButton(props) {
           ? <Icon className={classes.icon}>
               {children}
             </Icon>
-          : Children.map(children, child => {
+          : React.Children.map(children, child => {
               if (isMuiComponent(child, 'Icon')) {
-                return cloneElement(child, {
+                return React.cloneElement(child, {
                   className: classNames(classes.icon, child.props.className),
                 });
               }

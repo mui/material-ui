@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import NextLink from 'next/link';
@@ -30,7 +30,8 @@ const styles = theme => ({
   },
 });
 
-class OnClick extends Component {
+class OnClick extends React.Component<any, any> {
+  static defaultProps: $FlowFixMeProps;
   handleClick = event => {
     if (this.props.onClick) {
       this.props.onClick(event);

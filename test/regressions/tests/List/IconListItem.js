@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 import Icon from 'material-ui/Icon';
 import { ListItem, ListItemText, ListItemIcon } from 'material-ui/List';
 

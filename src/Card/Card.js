@@ -1,7 +1,7 @@
 // @flow
 // @inheritedComponent Paper
 
-import React from 'react';
+import * as React from 'react';
 import Paper from '../Paper';
 
 type DefaultProps = {
@@ -19,7 +19,6 @@ export type Props = {
   raised?: boolean,
 };
 
-// $FlowFixMe - invalid error? claims raised prop is missing
 type AllProps = DefaultProps & Props;
 
 function Card(props: AllProps) {

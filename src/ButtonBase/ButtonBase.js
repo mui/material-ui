@@ -1,7 +1,6 @@
 // @flow weak
 
-import React, { Component } from 'react';
-import type { Element } from 'react';
+import * as React from 'react';
 import { findDOMNode } from 'react-dom';
 import warning from 'warning';
 import classNames from 'classnames';
@@ -32,12 +31,7 @@ export const styles = (theme: Object) => ({
 });
 
 type DefaultProps = {
-  centerRipple: boolean,
   classes: Object,
-  focusRipple: boolean,
-  disableRipple: boolean,
-  tabIndex: string,
-  type: string,
 };
 
 export type Props = {
@@ -49,7 +43,7 @@ export type Props = {
   /**
    * The content of the component.
    */
-  children?: Element<*>,
+  children?: React.Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -96,10 +90,8 @@ export type Props = {
   /**
    * Callback fired when the component is focused with a keyboard.
    * We trigger a `onFocus` callback too.
-   *
-   * @param {object} event The event source of the callback
    */
-  onKeyboardFocus?: Function,
+  onKeyboardFocus?: (event: SyntheticEvent<>) => void,
   /**
    * @ignore
    */
@@ -148,9 +140,9 @@ type State = {
   keyboardFocused: boolean,
 };
 
-class ButtonBase extends Component<DefaultProps, AllProps, State> {
+class ButtonBase extends React.Component<AllProps, State> {
   props: AllProps;
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     centerRipple: false,
     classes: {},
     focusRipple: false,

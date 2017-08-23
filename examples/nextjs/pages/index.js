@@ -20,7 +20,7 @@ const styles = {
   },
 };
 
-class Index extends Component {
+class Index extends React.Component<{}, { open: boolean }> {
   state = {
     open: false,
   };

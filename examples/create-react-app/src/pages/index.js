@@ -20,7 +20,7 @@ const styles = {
   },
 };
 
-class Index extends Component {
+class Index extends Component<{}, $FlowFixMeState> {
   state = {
     open: false,
   };

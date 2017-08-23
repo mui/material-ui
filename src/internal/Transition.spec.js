@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import { findDOMNode } from 'react-dom';
 import { assert } from 'chai';
 import { spy } from 'sinon';
@@ -238,7 +238,7 @@ describe('<Transition />', () => {
   });
 
   describe('unmountOnExit', () => {
-    class UnmountTransition extends Component {
+    class UnmountTransition extends React.Component<any, any> {
       state = {};
 
       componentWillMount() {

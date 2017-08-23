@@ -12,8 +12,7 @@
  * - https://css-tricks.com/snippets/css/a-guide-to-flexbox/
  */
 
-import React from 'react';
-import type { Element } from 'react';
+import * as React from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import requirePropFactory from '../utils/requirePropFactory';
@@ -153,7 +152,7 @@ export type Props = {
   /**
    * The content of the component.
    */
-  children?: Element<*>,
+  children?: React.Node,
   /**
    * Useful to extend the style applied to components.
    */

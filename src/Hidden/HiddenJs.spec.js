@@ -1,7 +1,7 @@
 // @flow weak
 /* eslint-disable no-loop-func */
 
-import React from 'react';
+import * as React from 'react';
 import { assert } from 'chai';
 import { createShallow } from '../test-utils';
 import HiddenJs from './HiddenJs';

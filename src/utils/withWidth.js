@@ -1,13 +1,13 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import EventListener from 'react-event-listener';
-import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
 import createEagerFactory from 'recompose/createEagerFactory';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import withTheme from '../styles/withTheme';
 import { keys } from '../styles/breakpoints';
+import type { Breakpoint } from '../styles/breakpoints';
 
 /**
  * By default, returns true if screen width is the same or greater than the given breakpoint.
@@ -42,10 +42,37 @@ function withWidth(options = {}) {
     resizeInterval = 166, // Corresponds to 10 frames at 60 Hz.
   } = options;
 
-  return BaseComponent => {
+  function enhance<BaseProps: {}>(BaseComponent: React.ComponentType<BaseProps>) {
     const factory = createEagerFactory(BaseComponent);
 
-    class Width extends Component {
+    type DefaultProps = {
+      theme: Object,
+    };
+
+    type WidthProps = {
+      /**
+       * As `window.innerWidth` is unavailable on the server,
+       * we default to rendering an empty componenent during the first mount.
+       * In some situation you might want to use an heristic to approximate
+       * the screen width of the client browser screen width.
+       *
+       * For instance, you could be using the user-agent or the client-hints.
+       * http://caniuse.com/#search=client%20hint
+       */
+      initialWidth?: Breakpoint,
+      /**
+       * @ignore
+       */
+      theme?: Object,
+      /**
+       * Bypass the width calculation logic.
+       */
+      width?: Breakpoint,
+    };
+
+    type AllProps = DefaultProps & WidthProps & BaseProps;
+    class Width extends React.Component<AllProps, { width: ?Breakpoint }> {
+      props: AllProps;
       state = {
         width: undefined,
       };
@@ -122,33 +149,14 @@ function withWidth(options = {}) {
       }
     }
 
-    Width.propTypes = {
-      /**
-       * As `window.innerWidth` is unavailable on the server,
-       * we default to rendering an empty componenent during the first mount.
-       * In some situation you might want to use an heristic to approximate
-       * the screen width of the client browser screen width.
-       *
-       * For instance, you could be using the user-agent or the client-hints.
-       * http://caniuse.com/#search=client%20hint
-       */
-      initialWidth: PropTypes.oneOf(keys),
-      /**
-       * @ignore
-       */
-      theme: PropTypes.object.isRequired,
-      /**
-       * Bypass the width calculation logic.
-       */
-      width: PropTypes.oneOf(keys),
-    };
-
     if (process.env.NODE_ENV !== 'production') {
       Width.displayName = wrapDisplayName(BaseComponent, 'withWidth');
     }
 
     return withTheme(Width);
-  };
+  }
+
+  return enhance;
 }
 
 export default withWidth;

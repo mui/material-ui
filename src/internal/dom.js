@@ -1,6 +1,6 @@
 // @flow
 
-export type SyntheticUIEventHandler = (event?: SyntheticUIEvent) => void;
+export type SyntheticUIEventHandler = (event?: SyntheticUIEvent<>) => void;
 
 /**
  * return type of ReactDOM.findDOMNode()

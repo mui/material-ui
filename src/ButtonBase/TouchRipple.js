@@ -1,7 +1,6 @@
 // @flow weak
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import classNames from 'classnames';
@@ -89,10 +88,35 @@ export const styles = (theme: Object) => ({
   },
 });
 
+type DefaultProps = {
+  classes: Object,
+};
+
+export type Props = {
+  /**
+   * If `true`, the ripple starts at the center of the component
+   * rather than at the point of interaction.
+   */
+  center?: boolean,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+};
+
+type AllProps = DefaultProps & Props;
+
+type State = { nextKey: number, ripples: Array<*> };
+
 /**
  * @ignore - internal component.
  */
-class TouchRipple extends Component {
+class TouchRipple extends React.Component<AllProps, State> {
+  props: AllProps;
   static defaultProps = {
     center: false,
   };
@@ -234,21 +258,5 @@ class TouchRipple extends Component {
     );
   }
 }
-
-TouchRipple.propTypes = {
-  /**
-   * If `true`, the ripple starts at the center of the component
-   * rather than at the point of interaction.
-   */
-  center: PropTypes.bool,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-};
 
 export default withStyles(styles, { name: 'MuiTouchRipple' })(TouchRipple);

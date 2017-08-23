@@ -1,4 +1,4 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 import Minimist from 'minimist';
 import Mocha from 'mocha';

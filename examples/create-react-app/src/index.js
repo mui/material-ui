@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 import { render } from 'react-dom';
 import Index from './pages/index';
 

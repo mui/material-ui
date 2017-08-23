@@ -1,7 +1,7 @@
 // @flow weak
 // @inheritedComponent ButtonBase
 
-import React, { Component, cloneElement, isValidElement } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -50,7 +50,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-class BottomNavigationButton extends Component {
+class BottomNavigationButton extends React.Component<$FlowFixMeProps> {
   handleChange = event => {
     const { onChange, value, onClick } = this.props;
 
@@ -87,11 +87,11 @@ class BottomNavigationButton extends Component {
 
     const iconClassName = classNames(
       classes.icon,
-      isValidElement(iconProp) ? iconProp.props.className : null,
+      React.isValidElement(iconProp) ? iconProp.props.className : null,
     );
 
-    const icon = isValidElement(iconProp)
-      ? cloneElement(iconProp, { className: iconClassName })
+    const icon = React.isValidElement(iconProp)
+      ? React.cloneElement(iconProp, { className: iconClassName })
       : <Icon>
           {iconProp}
         </Icon>;

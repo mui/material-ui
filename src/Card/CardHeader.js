@@ -1,8 +1,7 @@
 // @flow
 // @inheritedComponent CardContent
 
-import React from 'react';
-import type { Element } from 'react';
+import * as React from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
@@ -30,9 +29,9 @@ type DefaultProps = {
 
 export type Props = {
   /**
-   * The Avatar  for the Card Header.
+   * The Avatar for the Card Header.
    */
-  avatar?: Element<*>,
+  avatar?: React.Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -44,11 +43,11 @@ export type Props = {
   /**
    * The content of the component.
    */
-  subheader?: Element<*>,
+  subheader?: React.Node,
   /**
    * The content of the Card Title.
    */
-  title?: Element<*>,
+  title?: React.Node,
 };
 
 type AllProps = DefaultProps & Props;

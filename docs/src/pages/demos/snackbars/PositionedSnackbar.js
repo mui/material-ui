@@ -1,10 +1,9 @@
-// @flow weak
-
-import React, { Component } from 'react';
+import React from 'react';
 import Button from 'material-ui/Button';
 import Snackbar from 'material-ui/Snackbar';
 
-class PositionedSnackbar extends Component {
+class PositionedSnackbar extends React.Component {
+  static defaultProps: {};
   state = {
     open: false,
     vertical: null,

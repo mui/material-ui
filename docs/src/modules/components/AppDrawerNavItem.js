@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'docs/src/modules/components/Link';
 import classNames from 'classnames';
@@ -44,7 +44,7 @@ const styles = theme => ({
   },
 });
 
-class AppDrawerNavItem extends Component {
+class AppDrawerNavItem extends React.Component<any, any> {
   static defaultProps = {
     openImmediately: false,
   };

@@ -20,7 +20,7 @@ const styles = {
   },
 };
 
-class Inputs extends Component {
+class Inputs extends Component<$FlowFixMeProps> {
   componentDidMount() {
     this.focusInput.focus();
   }
