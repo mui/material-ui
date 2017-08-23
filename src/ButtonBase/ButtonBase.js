@@ -90,10 +90,8 @@ export type Props = {
   /**
    * Callback fired when the component is focused with a keyboard.
    * We trigger a `onFocus` callback too.
-   *
-   * @param {object} event The event source of the callback
    */
-  onKeyboardFocus?: Function,
+  onKeyboardFocus?: (event: SyntheticEvent<>) => void,
   /**
    * @ignore
    */
