@@ -91,7 +91,7 @@ const styles = theme => ({
   },
   [theme.breakpoints.up('lg')]: {
     drawer: {
-      width: '250px',
+      width: 250,
     },
     appBarShift: {
       width: 'calc(100% - 250px)',
