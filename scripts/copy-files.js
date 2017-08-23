@@ -48,7 +48,6 @@ function createPackageFile() {
         main: './index.js',
         module: './index.es.js',
         'jsnext:main': './index.es.js',
-        typings: './index.d.ts',
         keywords,
         repository,
         license,
@@ -70,7 +69,7 @@ function createPackageFile() {
     });
 }
 
-const files = ['README.md', 'CHANGELOG.md', 'LICENSE', 'typings/index.d.ts'];
+const files = ['README.md', 'CHANGELOG.md', 'LICENSE'];
 
 Promise.all(files.map(file => copyFile(file))).then(() => createPackageFile());
 
