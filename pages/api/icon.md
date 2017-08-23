@@ -35,3 +35,4 @@ you need to use the following style sheet name: `MuiIcon`.
 ## Demos
 
 - [Icons](/style/icons)
+

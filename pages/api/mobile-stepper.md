@@ -49,3 +49,4 @@ The properties of the [&lt;Paper /&gt;](/api/paper) component are also available
 ## Demos
 
 - [Stepper](/demos/stepper)
+

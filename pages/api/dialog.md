@@ -50,3 +50,4 @@ you need to use the following style sheet name: `MuiDialog`.
 ## Demos
 
 - [Dialogs](/demos/dialogs)
+

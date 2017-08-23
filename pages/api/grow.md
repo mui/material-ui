@@ -18,3 +18,5 @@ Grow transition used by popovers such as Menu.
 | transitionDuration | union:&nbsp;number<br>&nbsp;'auto'<br> | 'auto' | Set to 'auto' to automatically calculate transition time based on height |
 
 Any other properties supplied will be spread to the root element.
+
+

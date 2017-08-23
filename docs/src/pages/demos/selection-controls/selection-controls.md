@@ -44,3 +44,4 @@ On/off switches toggle the state of a single settings option. The option that th
 
 `Switch` can also be used with a `label`.
 {{demo='pages/demos/selection-controls/SwitchLabels.js'}}
+

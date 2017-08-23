@@ -43,3 +43,4 @@ you need to use the following style sheet name: `MuiCheckbox`.
 ## Demos
 
 - [Selection Controls](/demos/selection-controls)
+

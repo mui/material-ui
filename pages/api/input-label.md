@@ -38,3 +38,4 @@ you need to use the following style sheet name: `MuiInputLabel`.
 ## Demos
 
 - [Text Fields](/demos/text-fields)
+

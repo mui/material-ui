@@ -48,3 +48,4 @@ you need to use the following style sheet name: `MuiLinearProgress`.
 ## Demos
 
 - [Progress](/demos/progress)
+

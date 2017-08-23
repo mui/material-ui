@@ -39,3 +39,4 @@ you need to use the following style sheet name: `MuiTableCell`.
 ## Demos
 
 - [Tables](/demos/tables)
+

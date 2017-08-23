@@ -29,3 +29,4 @@ you need to use the following style sheet name: `MuiDialogTitle`.
 ## Demos
 
 - [Dialogs](/demos/dialogs)
+

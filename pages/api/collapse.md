@@ -37,3 +37,4 @@ you need to use the following style sheet name: `MuiCollapse`.
 ## Demos
 
 - [Cards](/demos/cards)
+

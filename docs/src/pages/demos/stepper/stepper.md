@@ -28,3 +28,4 @@ Use dots when the number of steps isn’t large.
 Use a progress bar when there are many steps, or if there are steps that need to be inserted during the process (based on responses to earlier steps).
 
 {{demo='pages/demos/stepper/ProgressMobileStepper.js'}}
+

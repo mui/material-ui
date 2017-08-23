@@ -30,3 +30,4 @@ you need to use the following style sheet name: `MuiToolbar`.
 ## Demos
 
 - [App Bar](/demos/app-bar)
+

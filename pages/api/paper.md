@@ -57,3 +57,4 @@ you need to use the following style sheet name: `MuiPaper`.
 
 - [Autocomplete](/demos/autocomplete)
 - [Paper](/demos/paper)
+

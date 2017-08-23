@@ -34,3 +34,4 @@ you need to use the following style sheet name: `MuiTableSortLabel`.
 ## Demos
 
 - [Tables](/demos/tables)
+

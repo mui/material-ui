@@ -40,3 +40,4 @@ The properties of the [&lt;Paper /&gt;](/api/paper) component are also available
 ## Demos
 
 - [App Bar](/demos/app-bar)
+

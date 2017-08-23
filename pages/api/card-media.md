@@ -28,3 +28,4 @@ you need to use the following style sheet name: `MuiCardMedia`.
 ## Demos
 
 - [Cards](/demos/cards)
+
