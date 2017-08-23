@@ -72,6 +72,7 @@ type Type =
 type DefaultProps = {
   classes: Object,
   headlineMapping: { [key: Type]: string },
+  type: Type,
 };
 
 export type Props = {
@@ -119,9 +120,7 @@ export type Props = {
   type?: Type,
 };
 
-type AllProps = DefaultProps & Props;
-
-function Typography(props: AllProps) {
+function Typography(props: DefaultProps & Props) {
   const {
     align,
     classes,
@@ -132,12 +131,9 @@ function Typography(props: AllProps) {
     headlineMapping,
     noWrap,
     paragraph,
-    type: typeProp,
+    type,
     ...other
   } = props;
-
-  // workaround: see https://github.com/facebook/flow/issues/1660#issuecomment-297775427
-  const type = typeProp || Typography.defaultProps.type;
 
   const className = classNames(
     classes.root,

@@ -153,7 +153,7 @@ function Dialog(props: AllProps) {
     ignoreEscapeKeyUp,
     enterTransitionDuration,
     leaveTransitionDuration,
-    maxWidth: maxWidthProp,
+    maxWidth,
     open,
     onBackdropClick,
     onEscapeKeyUp,
@@ -168,8 +168,6 @@ function Dialog(props: AllProps) {
     ...other
   } = props;
 
-  // workaround: see #2 test case from https://github.com/facebook/flow/issues/1660#issuecomment-302468866
-  const maxWidth = maxWidthProp || Dialog.defaultProps.maxWidth;
   const createTransitionFn =
     typeof transition === 'function' ? React.createElement : React.cloneElement;
 
@@ -186,7 +184,7 @@ function Dialog(props: AllProps) {
       {...other}
     >
       {createTransitionFn(
-        /* $FlowFixMe */
+        /* $FlowFixMe - FIXME See Snackbar for similar create vs clone example */
         transition,
         {
           in: open,
