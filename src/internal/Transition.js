@@ -41,13 +41,6 @@ export type TransitionCallback = (element: HTMLElement) => void;
 
 export type TransitionRequestTimeout = (element: HTMLElement) => number;
 
-type DefaultProps = {
-  in: boolean,
-  unmountOnExit: boolean,
-  transitionAppear: boolean,
-  timeout: number,
-};
-
 export type Props = {
   /**
    * A single child content element.
@@ -125,7 +118,7 @@ export type Props = {
   unmountOnExit?: boolean,
 };
 
-type AllProps = DefaultProps & Props;
+type AllProps = Props;
 
 /**
  * @ignore - internal component.
@@ -143,7 +136,7 @@ type AllProps = DefaultProps & Props;
 class Transition extends React.Component<AllProps, State> {
   props: AllProps;
 
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     in: false,
     unmountOnExit: false,
     transitionAppear: false,

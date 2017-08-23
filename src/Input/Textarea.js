@@ -40,7 +40,6 @@ export const styles = {
 
 type DefaultProps = {
   classes: Object,
-  rows: number,
 };
 
 export type Props = {
@@ -95,7 +94,7 @@ class Textarea extends React.Component<AllProps, State> {
   input: ?HTMLInputElement;
   value: string;
 
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     classes: {},
     rows: 1,
   };

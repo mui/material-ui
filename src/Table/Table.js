@@ -45,7 +45,7 @@ type AllProps = DefaultProps & Props;
 class Table extends React.Component<AllProps, void> {
   props: AllProps;
 
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     classes: {},
     component: 'table',
   };

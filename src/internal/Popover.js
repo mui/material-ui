@@ -77,13 +77,7 @@ type Origin = {
 };
 
 type DefaultProps = {
-  anchorOrigin: Origin,
   classes: Object,
-  modal: boolean,
-  open: boolean,
-  transformOrigin: Origin,
-  transitionDuration: 'auto',
-  elevation: number,
 };
 
 export type Props = {
@@ -196,7 +190,7 @@ type AllProps = DefaultProps & Props;
  */
 class Popover extends React.Component<AllProps, void> {
   props: AllProps;
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     anchorOrigin: {
       vertical: 'top',
       horizontal: 'left',

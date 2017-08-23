@@ -41,14 +41,8 @@ export const styles = (theme: Object) => ({
 
 type DefaultProps = {
   backdropComponent: Function,
-  backdropTransitionDuration: number,
-  backdropInvisible: boolean,
   classes: Object,
-  disableBackdrop: boolean,
-  ignoreBackdropClick: boolean,
-  ignoreEscapeKeyUp: boolean,
   modalManager: Object,
-  show: boolean,
 };
 
 export type Props = {
@@ -158,7 +152,7 @@ type State = {
 class Modal extends React.Component<AllProps, State> {
   props: AllProps;
 
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     backdropComponent: Backdrop,
     backdropTransitionDuration: 300,
     backdropInvisible: false,

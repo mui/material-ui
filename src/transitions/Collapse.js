@@ -21,7 +21,6 @@ export const styles = (theme: Object) => ({
 
 type DefaultProps = {
   classes: Object,
-  in: boolean,
   theme: Object,
   transitionDuration: number,
 };
@@ -78,7 +77,7 @@ type AllProps = DefaultProps & Props;
 class Collapse extends React.Component<AllProps, void> {
   props: AllProps;
 
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     classes: {},
     in: false,
     theme: {},

@@ -7,7 +7,6 @@ import withTheme from '../styles/withTheme';
 import type { TransitionCallback } from '../internal/Transition';
 
 type DefaultProps = {
-  in: boolean,
   enterTransitionDuration: number,
   leaveTransitionDuration: number,
   theme: Object,
@@ -65,7 +64,7 @@ type AllProps = DefaultProps & Props;
 class Fade extends React.Component<AllProps, void> {
   props: AllProps;
 
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     in: false,
     enterTransitionDuration: duration.enteringScreen,
     leaveTransitionDuration: duration.leavingScreen,

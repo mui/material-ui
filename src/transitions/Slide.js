@@ -31,7 +31,6 @@ function getTranslateValue(props, element: Element) {
 type Direction = 'left' | 'right' | 'up' | 'down';
 
 type DefaultProps = {
-  direction: Direction,
   enterTransitionDuration: number,
   leaveTransitionDuration: number,
   theme: Object,
@@ -93,7 +92,7 @@ type AllProps = DefaultProps & Props;
 class Slide extends React.Component<AllProps, void> {
   props: AllProps;
 
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     direction: 'down',
     enterTransitionDuration: duration.enteringScreen,
     leaveTransitionDuration: duration.leavingScreen,

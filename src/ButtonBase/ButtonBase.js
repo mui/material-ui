@@ -31,12 +31,7 @@ export const styles = (theme: Object) => ({
 });
 
 type DefaultProps = {
-  centerRipple: boolean,
   classes: Object,
-  focusRipple: boolean,
-  disableRipple: boolean,
-  tabIndex: string,
-  type: string,
 };
 
 export type Props = {
@@ -149,7 +144,7 @@ type State = {
 
 class ButtonBase extends React.Component<AllProps, State> {
   props: AllProps;
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     centerRipple: false,
     classes: {},
     focusRipple: false,

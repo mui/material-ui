@@ -31,10 +31,7 @@ export const styles = {
 };
 
 type DefaultProps = {
-  checkedIcon: React.Element<*>,
   classes: Object,
-  disableRipple: boolean,
-  icon: React.Node,
 };
 
 // NB: If changed, please update Checkbox, Switch and Radio
@@ -144,7 +141,7 @@ export default function createSwitch(
    */
   class SwitchBase extends React.Component<AllProps, State> {
     props: AllProps;
-    static defaultProps: DefaultProps = {
+    static defaultProps = {
       checkedIcon: defaultCheckedIcon,
       classes: {},
       disableRipple: false,

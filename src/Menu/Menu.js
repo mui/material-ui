@@ -11,8 +11,6 @@ import type { TransitionCallback } from '../internal/Transition';
 
 type DefaultProps = {
   classes: Object,
-  open: boolean,
-  transitionDuration: 'auto',
 };
 
 export type Props = {
@@ -95,7 +93,7 @@ export const styles = {
 
 class Menu extends React.Component<AllProps, void> {
   props: AllProps;
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     classes: {},
     open: false,
     transitionDuration: 'auto',

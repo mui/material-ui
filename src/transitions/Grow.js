@@ -65,7 +65,7 @@ type AllProps = DefaultProps & Props;
  */
 class Grow extends React.Component<AllProps, void> {
   props: AllProps;
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     theme: {},
     transitionDuration: 'auto',
   };
