@@ -1,6 +1,4 @@
-// @flow weak
-
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import List, {
@@ -40,7 +38,7 @@ function generate(element) {
   );
 }
 
-class InteractiveList extends React.Component<any, any> {
+class InteractiveList extends React.Component {
   static defaultProps: $FlowFixMeProps;
   state = {
     dense: false,

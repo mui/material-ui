@@ -1,6 +1,4 @@
-// @flow weak
-
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
@@ -15,7 +13,7 @@ const styles = theme => ({
   },
 });
 
-class SimpleSnackbar extends React.Component<any, any> {
+class SimpleSnackbar extends React.Component {
   static defaultProps: $FlowFixMeProps;
   state = {
     open: false,

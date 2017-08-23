@@ -1,10 +1,8 @@
-// @flow weak
-
-import * as React from 'react';
+import React from 'react';
 import Button from 'material-ui/Button';
 import Menu, { MenuItem } from 'material-ui/Menu';
 
-class SimpleMenu extends React.Component<any, any> {
+class SimpleMenu extends React.Component {
   static defaultProps: {};
   state = {
     anchorEl: undefined,

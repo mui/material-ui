@@ -1,6 +1,4 @@
-// @flow weak
-
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import classnames from 'classnames';
@@ -38,7 +36,7 @@ const styles = theme => ({
   },
 });
 
-class RecipeReviewCard extends React.Component<any, any> {
+class RecipeReviewCard extends React.Component {
   static defaultProps: $FlowFixMeProps;
   state = { expanded: false };
 

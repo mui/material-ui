@@ -1,6 +1,4 @@
-// @flow weak
-
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import List, {
@@ -22,7 +20,7 @@ const styles = theme => ({
   },
 });
 
-class SwitchListSecondary extends React.Component<any, any> {
+class SwitchListSecondary extends React.Component {
   static defaultProps: $FlowFixMeProps;
   state = {
     checked: ['wifi'],

@@ -1,11 +1,9 @@
-// @flow weak
-
-import * as React from 'react';
+import React from 'react';
 import Button from 'material-ui/Button';
 import Snackbar from 'material-ui/Snackbar';
 import Slide from 'material-ui/transitions/Slide';
 
-class DirectionSnackbar extends React.Component<any, any> {
+class DirectionSnackbar extends React.Component {
   static defaultProps: {};
   state = {
     open: false,
