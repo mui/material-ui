@@ -1,10 +1,11 @@
+/* eslint-disable flowtype/require-valid-file-annotation */
+
 import React from 'react';
 import Button from 'material-ui/Button';
 import Snackbar from 'material-ui/Snackbar';
 import Fade from 'material-ui/transitions/Fade';
 
 class FadeSnackbar extends React.Component {
-  static defaultProps: {};
   state = {
     open: false,
   };

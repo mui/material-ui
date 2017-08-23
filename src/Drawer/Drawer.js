@@ -1,6 +1,7 @@
 // @flow
 
-import * as React from 'react';
+import React from 'react';
+import type { Node } from 'react';
 import classNames from 'classnames';
 import Modal from '../internal/Modal';
 import withStyles from '../styles/withStyles';
@@ -89,7 +90,7 @@ export type Props = {
   /**
    * The contents of the drawer.
    */
-  children?: React.Node,
+  children?: Node,
   /**
    * Useful to extend the style applied to components.
    */

@@ -1,9 +1,10 @@
+/* eslint-disable flowtype/require-valid-file-annotation */
+
 import React from 'react';
 import { FormControlLabel } from 'material-ui/Form';
 import Switch from 'material-ui/Switch';
 
 class SwitchLabels extends React.Component {
-  static defaultProps: {};
   state = {
     checkedA: true,
     checkedB: false,

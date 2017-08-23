@@ -1,6 +1,6 @@
 // @flow weak
 
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import pure from 'recompose/pure';
@@ -169,7 +169,7 @@ function findActivePage(currentPages, url) {
   return activePage;
 }
 
-function withRoot<BaseProps: {}>(BaseComponent: React.ComponentType<BaseProps>) {
+function withRoot(BaseComponent) {
   // Prevent rerendering
   const PureBaseComponent = pure(BaseComponent);
 
@@ -189,7 +189,6 @@ function withRoot<BaseProps: {}>(BaseComponent: React.ComponentType<BaseProps>) 
       const redux = initRedux({});
 
       if (BaseComponent.getInitialProps) {
-        // $FlowFixMe - a next component signature?
         const baseComponentInitialProps = BaseComponent.getInitialProps({ ...ctx, redux });
         initialProps = {
           ...baseComponentInitialProps,

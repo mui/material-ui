@@ -1,7 +1,8 @@
 // @flow
 // @inheritedComponent ButtonBase
 
-import * as React from 'react';
+import React from 'react';
+import type { Element } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
@@ -104,11 +105,11 @@ export type Props = {
   /**
    * The icon element. If a string is provided, it will be used as a font ligature.
    */
-  icon?: React.Element<*>,
+  icon?: Element<*>,
   /**
    * The label element.
    */
-  label?: React.Element<*>,
+  label?: Element<*>,
   /**
    * @ignore
    */

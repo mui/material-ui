@@ -1,7 +1,7 @@
 // @flow
 // @inheritedComponent Paper
 
-import * as React from 'react';
+import React from 'react';
 import Paper from '../Paper';
 
 type DefaultProps = {

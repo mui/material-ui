@@ -1,7 +1,8 @@
 // @flow
 // @inheritedComponent Paper
 
-import * as React from 'react';
+import React from 'react';
+import type { Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -54,7 +55,7 @@ export type Props = {
   /**
    * The content of the component.
    */
-  children?: React.Node,
+  children?: Node,
   /**
    * Useful to extend the style applied to components.
    */

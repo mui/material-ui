@@ -1,6 +1,7 @@
 // @flow weak
 
-import * as React from 'react';
+import React from 'react';
+import type { ComponentType } from 'react';
 import createEagerFactory from 'recompose/createEagerFactory';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import createMuiTheme from './theme';
@@ -18,7 +19,7 @@ function getDefaultTheme() {
 }
 
 // Provide the theme object as a property to the input component.
-export default function withTheme<BaseProps: {}>(BaseComponent: React.ComponentType<BaseProps>) {
+export default function withTheme<BaseProps: {}>(BaseComponent: ComponentType<BaseProps>) {
   const factory = createEagerFactory(BaseComponent);
 
   class WithTheme extends React.Component<{ theme?: Object } & BaseProps, { theme: Object }> {

@@ -1,6 +1,7 @@
 // @flow
 
-import * as React from 'react';
+import React from 'react';
+import type { ChildrenArray } from 'react';
 import { findDOMNode } from 'react-dom';
 import keycode from 'keycode';
 import contains from 'dom-helpers/query/contains';
@@ -12,7 +13,7 @@ export type Props = {
   /**
    * MenuList contents, normally `MenuItem`s.
    */
-  children?: $ReadOnlyArray<React.ChildrenArray<*>>,
+  children?: $ReadOnlyArray<ChildrenArray<*>>,
   /**
    * @ignore
    */

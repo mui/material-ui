@@ -1,6 +1,7 @@
 // @flow weak
 
-import * as React from 'react';
+import React from 'react';
+import type { Element } from 'react';
 import Transition from '../internal/Transition';
 import { duration } from '../styles/transitions';
 import withTheme from '../styles/withTheme';
@@ -16,7 +17,7 @@ export type Props = {
   /**
    * A single child content element.
    */
-  children?: React.Element<*>,
+  children?: Element<*>,
   /**
    * If `true`, the component will transition in.
    */

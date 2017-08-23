@@ -1,6 +1,6 @@
 // @flow weak
 
-import * as React from 'react';
+import React from 'react';
 import pure from 'recompose/pure';
 import SvgIcon from '../SvgIcon';
 

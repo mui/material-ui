@@ -1,6 +1,6 @@
-// @flow
+// @flow weak
 
-import * as React from 'react';
+import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import { getContext, setContext } from '../styles/context';
 

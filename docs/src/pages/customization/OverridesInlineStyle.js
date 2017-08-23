@@ -1,6 +1,6 @@
 // @flow weak
 
-import * as React from 'react';
+import React from 'react';
 import Button from 'material-ui/Button';
 
 // We can use inline-style

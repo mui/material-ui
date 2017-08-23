@@ -1,8 +1,9 @@
+/* eslint-disable flowtype/require-valid-file-annotation */
+
 import React from 'react';
 import Radio from 'material-ui/Radio';
 
 class RadioButtons extends React.Component {
-  static defaultProps: {};
   state = {
     selectedValue: undefined,
   };

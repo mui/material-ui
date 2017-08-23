@@ -1,6 +1,7 @@
 // @flow
 
-import * as React from 'react';
+import React from 'react';
+import type { Element } from 'react';
 import ReactDOM from 'react-dom';
 import transitionInfo from 'dom-helpers/transition/properties';
 import addEventListener from 'dom-helpers/events/on';
@@ -45,7 +46,7 @@ export type Props = {
   /**
    * A single child content element.
    */
-  children?: React.Element<*>,
+  children?: Element<*>,
   /**
    * @ignore
    */

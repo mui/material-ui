@@ -1,6 +1,7 @@
 // @flow
 
-import * as React from 'react';
+import React from 'react';
+import type { Node, Element } from 'react';
 import classNames from 'classnames';
 import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
@@ -81,7 +82,7 @@ export type Props = {
   /**
    * The action to display.
    */
-  action?: React.Node,
+  action?: Node,
   /**
    * The anchor of the `Snackbar`.
    */
@@ -95,7 +96,7 @@ export type Props = {
    * If you wish the take control over the children of the component you can use that property.
    * When using it, no `SnackbarContent` component will be rendered.
    */
-  children?: React.Element<*>,
+  children?: Element<*>,
   /**
    * Useful to extend the style applied to components.
    */
@@ -122,7 +123,7 @@ export type Props = {
   /**
    * The message to display.
    */
-  message?: React.Node,
+  message?: Node,
   /**
    * Callback fired before the transition is entering.
    */
@@ -179,7 +180,7 @@ export type Props = {
   /**
    * Object with Transition component, props & create Fn.
    */
-  transition?: React.Element<*>,
+  transition?: Element<*>,
 };
 
 type AllProps = DefaultProps & Props;

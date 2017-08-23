@@ -1,3 +1,5 @@
+/* eslint-disable flowtype/require-valid-file-annotation */
+
 import React from 'react';
 import IconButton from 'material-ui/IconButton';
 import Menu, { MenuItem } from 'material-ui/Menu';
@@ -23,7 +25,6 @@ const options = [
 const ITEM_HEIGHT = 48;
 
 class LongMenu extends React.Component {
-  static defaultProps: {};
   state = {
     anchorEl: undefined,
     open: false,

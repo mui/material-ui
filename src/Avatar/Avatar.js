@@ -1,6 +1,7 @@
 // @flow
 
-import * as React from 'react';
+import React from 'react';
+import type { Element } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { emphasize } from '../styles/colorManipulator';
@@ -49,7 +50,7 @@ export type Props = {
    *
    * This can be an element, or just a string.
    */
-  children?: React.Element<*>,
+  children?: Element<*>,
   /**
    * @ignore
    * The className of the child element.

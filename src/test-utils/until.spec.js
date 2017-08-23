@@ -1,7 +1,7 @@
 // @flow
 
 import assert from 'assert';
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import until from './until';
