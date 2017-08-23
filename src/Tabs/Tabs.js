@@ -8,6 +8,7 @@ import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
 import ScrollbarSize from 'react-scrollbar-size';
 import scroll from 'scroll';
+import pick from 'lodash/pick';
 import withStyles from '../styles/withStyles';
 import withWidth, { isWidthUp } from '../utils/withWidth';
 import TabIndicator from './TabIndicator';
@@ -250,7 +251,18 @@ class Tabs extends React.Component<AllProps, State> {
   getTabsMeta = (value): { tabsMeta: ?TabsMeta, tabMeta: ?ClientRect } => {
     let tabsMeta;
     if (this.tabs) {
-      tabsMeta = { scrollLeft: this.tabs.scrollLeft, ...this.tabs.getBoundingClientRect() };
+      // create a new object with ClientRect class props + scrollLeft
+      tabsMeta = {
+        scrollLeft: this.tabs.scrollLeft,
+        ...pick(this.tabs.getBoundingClientRect(), [
+          'left',
+          'width',
+          'right',
+          'top',
+          'bottom',
+          'height',
+        ]),
+      };
     }
 
     let tabMeta;
