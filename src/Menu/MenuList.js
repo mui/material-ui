@@ -1,34 +1,40 @@
-// @flow weak
+// @flow
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import type { Element } from 'react';
 import { findDOMNode } from 'react-dom';
 import keycode from 'keycode';
 import contains from 'dom-helpers/query/contains';
 import activeElement from 'dom-helpers/activeElement';
 import ownerDocument from 'dom-helpers/ownerDocument';
-import { List } from '../List';
+import List from '../List';
 
-export default class MenuList extends Component {
-  static propTypes = {
-    /**
-     * MenuList contents, should be menu items.
-     */
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-    /**
-     * @ignore
-     */
-    onBlur: PropTypes.func,
-    /**
-     * @ignore
-     */
-    onKeyDown: PropTypes.func,
-  };
+export type Props = {
+  /**
+   * MenuList contents, normally `MenuItem`s.
+   */
+  children?: Element<*>,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * @ignore
+   */
+  onBlur?: Function,
+  /**
+   * @ignore
+   */
+  onKeyDown?: (event: SyntheticUIEvent, key: string) => void,
+};
 
-  state = {
+type State = {
+  currentTabIndex: ?number,
+};
+
+class MenuList extends Component<void, Props, State> {
+  props: Props;
+  state: State = {
     currentTabIndex: undefined,
   };
 
@@ -44,7 +50,7 @@ export default class MenuList extends Component {
   selectedItem = undefined;
   blurTimer = undefined;
 
-  handleBlur = (event) => {
+  handleBlur = (event: SyntheticUIEvent) => {
     this.blurTimer = setTimeout(() => {
       if (this.list) {
         const list = findDOMNode(this.list);
@@ -60,7 +66,7 @@ export default class MenuList extends Component {
     }
   };
 
-  handleKeyDown = (event) => {
+  handleKeyDown = (event: SyntheticUIEvent) => {
     const list = findDOMNode(this.list);
     const key = keycode(event);
     const currentFocus = activeElement(ownerDocument(list));
@@ -70,8 +76,10 @@ export default class MenuList extends Component {
       (!currentFocus || (currentFocus && !contains(list, currentFocus)))
     ) {
       if (this.selectedItem) {
-        findDOMNode(this.selectedItem).focus(); // eslint-disable-line react/no-find-dom-node
+        // $FlowFixMe
+        findDOMNode(this.selectedItem).focus();
       } else {
+        // $FlowFixMe
         list.firstChild.focus();
       }
     } else if (key === 'down') {
@@ -91,10 +99,12 @@ export default class MenuList extends Component {
     }
   };
 
-  handleItemFocus = (event) => {
+  handleItemFocus = (event: SyntheticUIEvent) => {
     const list = findDOMNode(this.list);
     if (list) {
+      // $FlowFixMe
       for (let i = 0; i < list.children.length; i += 1) {
+        // $FlowFixMe
         if (list.children[i] === event.currentTarget) {
           this.setTabIndex(i);
           break;
@@ -111,8 +121,10 @@ export default class MenuList extends Component {
     }
 
     if (currentTabIndex && currentTabIndex >= 0) {
+      // $FlowFixMe
       list.children[currentTabIndex].focus();
     } else {
+      // $FlowFixMe
       list.firstChild.focus();
     }
   }
@@ -120,6 +132,7 @@ export default class MenuList extends Component {
   resetTabIndex() {
     const list = findDOMNode(this.list);
     const currentFocus = activeElement(ownerDocument(list));
+    // $FlowFixMe
     const items = [...list.children];
     const currentFocusIndex = items.indexOf(currentFocus);
 
@@ -134,24 +147,20 @@ export default class MenuList extends Component {
     return this.setTabIndex(0);
   }
 
-  setTabIndex(n) {
-    this.setState({ currentTabIndex: n });
+  setTabIndex(index: number) {
+    this.setState({ currentTabIndex: index });
   }
 
   render() {
-    const {
-      children,
-      className,
-      onBlur, // eslint-disable-line no-unused-vars
-      onKeyDown, // eslint-disable-line no-unused-vars
-      ...other
-    } = this.props;
+    const { children, className, onBlur, onKeyDown, ...other } = this.props;
 
     return (
       <List
         data-mui-test="MenuList"
         role="menu"
-        rootRef={(c) => { this.list = c; }}
+        rootRef={node => {
+          this.list = node;
+        }}
         className={className}
         onKeyDown={this.handleKeyDown}
         onBlur={this.handleBlur}
@@ -160,7 +169,11 @@ export default class MenuList extends Component {
         {React.Children.map(children, (child, index) =>
           React.cloneElement(child, {
             tabIndex: index === this.state.currentTabIndex ? '0' : '-1',
-            ref: child.props.selected ? ((c) => { this.selectedItem = c; }) : undefined,
+            ref: child.props.selected
+              ? node => {
+                  this.selectedItem = node;
+                }
+              : undefined,
             onFocus: this.handleItemFocus,
           }),
         )}
@@ -169,3 +182,4 @@ export default class MenuList extends Component {
   }
 }
 
+export default MenuList;

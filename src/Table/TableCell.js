@@ -1,74 +1,73 @@
-// @flow weak
+// @flow
 
-import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('TableCell', (theme) => {
-  return {
-    root: {
-      borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
-      whiteSpace: 'nowrap',
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
-      textAlign: 'left',
+export const styles = (theme: Object) => ({
+  root: {
+    borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    textAlign: 'left',
+  },
+  numeric: {
+    textAlign: 'right',
+    flexDirection: 'row-reverse', // can be dynamically inherited at runtime by contents
+  },
+  head: {
+    whiteSpace: 'pre',
+  },
+  padding: {
+    padding: `0 ${theme.spacing.unit * 7}px 0 ${theme.spacing.unit * 3}px`,
+    '&:last-child': {
+      paddingRight: theme.spacing.unit * 3,
     },
-    numeric: {
-      textAlign: 'right',
-      flexDirection: 'row-reverse', // can be dynamically inherited at runtime by contents
-    },
-    head: {
-      whiteSpace: 'pre',
-    },
-    padding: {
-      padding: '0 56px 0 24px',
-      '&:last-child': {
-        paddingRight: 24,
-      },
-    },
-    compact: {
-      paddingRight: 24,
-    },
-    checkbox: {
-      paddingLeft: 12,
-      paddingRight: 0,
-    },
-    footer: {},
-  };
+  },
+  compact: {
+    paddingRight: theme.spacing.unit * 3,
+  },
+  checkbox: {
+    paddingLeft: 12,
+    paddingRight: 12,
+  },
+  footer: {},
 });
 
-/**
- * A material table cell.
- *
- * When placed in a `TableHead`, this will automatically render a `th` element.
- *
- * ```jsx
- * <TableCell>Hello</TableCell>
- * ```
- */
-export default function TableCell(props, context) {
+function TableCell(props, context) {
   const {
+    classes,
     className: classNameProp,
     children,
     compact,
     checkbox,
     numeric,
-    padding,
+    disablePadding,
+    component,
     ...other
   } = props;
-  const { table, styleManager } = context;
-  const classes = styleManager.render(styleSheet);
 
-  const Component = table && table.head ? 'th' : 'td';
-
-  const className = classNames(classes.root, {
-    [classes.numeric]: numeric,
-    [classes.compact]: compact,
-    [classes.checkbox]: checkbox,
-    [classes.padding]: padding,
-    [classes.head]: table && table.head,
-    [classes.footer]: table && table.footer,
-  }, classNameProp);
+  const { table } = context;
+  let Component;
+  if (component) {
+    Component = component;
+  } else {
+    Component = table && table.head ? 'th' : 'td';
+  }
+  const className = classNames(
+    classes.root,
+    {
+      [classes.numeric]: numeric,
+      [classes.compact]: compact,
+      [classes.checkbox]: checkbox,
+      [classes.padding]: !disablePadding,
+      [classes.head]: table && table.head,
+      [classes.footer]: table && table.footer,
+    },
+    classNameProp,
+  );
 
   return (
     <Component className={className} {...other}>
@@ -79,7 +78,7 @@ export default function TableCell(props, context) {
 
 TableCell.propTypes = {
   /**
-   * If true, the cell padding will be adjusted to better accomodate a checkbox.
+   * If `true`, the cell padding will be adjusted to accommodate a checkbox.
    */
   checkbox: PropTypes.bool,
   /**
@@ -87,31 +86,42 @@ TableCell.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
   /**
-   * If set to true, will use more compact cell padding to accomodate more content.
+   * If `true`, compact cell padding will be used to accommodate more content.
    */
   compact: PropTypes.bool,
   /**
-   * If set to true, will align content to the right hand side.
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.string,
+  /**
+   * If `true`, left/right cell padding will be disabled.
+   */
+  disablePadding: PropTypes.bool,
+  /**
+   * If `true`, content will align to the right.
    */
   numeric: PropTypes.bool,
-  /**
-   * If set to false, will disable left/right cell padding.
-   */
-  padding: PropTypes.bool,
 };
 
 TableCell.defaultProps = {
   checkbox: false,
   compact: false,
   numeric: false,
-  padding: true,
+  disablePadding: false,
+  component: null,
 };
 
 TableCell.contextTypes = {
   table: PropTypes.object,
-  styleManager: PropTypes.object.isRequired,
 };
+
+export default withStyles(styles, { name: 'MuiTableCell' })(TableCell);

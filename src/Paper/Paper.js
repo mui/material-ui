@@ -1,78 +1,95 @@
-// @flow weak
+// @flow
 
-import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
+import React from 'react';
 import classNames from 'classnames';
+import warning from 'warning';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('Paper', (theme) => {
-  const { palette } = theme;
+export const styles = (theme: Object) => {
   const shadows = {};
 
   theme.shadows.forEach((shadow, index) => {
-    shadows[`dp${index}`] = {
+    shadows[`shadow${index}`] = {
       boxShadow: shadow,
     };
   });
 
   return {
-    paper: {
-      backgroundColor: palette.background.paper,
+    root: {
+      backgroundColor: theme.palette.background.paper,
     },
     rounded: {
-      borderRadius: '2px',
+      borderRadius: 2,
     },
     ...shadows,
   };
-});
+};
 
-/**
- * A piece of material paper.
- *
- * ```js
- * import Paper from 'material-ui/Paper';
- *
- * const Component = () => <Paper zDepth={8}>Hello World</Paper>;
- * ```
- */
-export default function Paper(props, context) {
-  const {
-    className: classNameProp,
-    rounded,
-    zDepth,
-    ...other
-  } = props;
-  const classes = context.styleManager.render(styleSheet);
+type DefaultProps = {
+  classes: Object,
+  component: string,
+  elevation: number,
+  square: boolean,
+};
 
-  const classNameZDepth = `dp${zDepth >= 0 ? zDepth : 0}`;
-  const className = classNames(classes.paper, classes[classNameZDepth], {
-    [classes.rounded]: rounded,
-  }, classNameProp);
-
-  return (
-    <div className={className} {...other} />
-  );
-}
-
-Paper.propTypes = {
+export type Props = {
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
    */
-  className: PropTypes.string,
+  classes?: Object,
   /**
-   * Set to false to disable rounded corners.
+   * @ignore
    */
-  rounded: PropTypes.bool,
+  className?: string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component?: string | Function,
   /**
    * Shadow depth, corresponds to `dp` in the spec.
+   * It's accepting values between 0 and 24 inclusive.
    */
-  zDepth: PropTypes.number,
+  elevation?: number,
+  /**
+   * If `true`, rounded corners are disabled.
+   */
+  square?: boolean,
 };
+
+type AllProps = DefaultProps & Props;
+
+function Paper(props: AllProps) {
+  const {
+    classes,
+    className: classNameProp,
+    component: ComponentProp,
+    square,
+    elevation,
+    ...other
+  } = props;
+
+  warning(
+    elevation >= 0 && elevation < 25,
+    `Material-UI: this elevation \`${elevation}\` is not implemented.`,
+  );
+
+  const className = classNames(
+    classes.root,
+    classes[`shadow${elevation >= 0 ? elevation : 0}`],
+    {
+      [classes.rounded]: !square,
+    },
+    classNameProp,
+  );
+
+  return <ComponentProp className={className} {...other} />;
+}
 
 Paper.defaultProps = {
-  rounded: true,
-  zDepth: 2,
+  component: 'div',
+  elevation: 2,
+  square: false,
 };
 
-Paper.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
-};
+export default withStyles(styles, { name: 'MuiPaper' })(Paper);

@@ -1,75 +1,127 @@
-// @flow weak
+// @flow
 
-import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
+import React, { Component } from 'react';
+import type { Element } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('List', () => {
-  return {
-    root: {
-      flex: '1 1 auto',
-      overflow: 'auto',
-      listStyle: 'none',
-      margin: 0,
-      padding: 0,
-    },
-    padding: {
-      paddingTop: 8,
-      paddingBottom: 8,
-    },
-    subheader: {
-      paddingTop: 0,
-    },
-  };
+export const styles = (theme: Object) => ({
+  root: {
+    flex: '1 1 auto',
+    overflow: 'auto',
+    listStyle: 'none',
+    margin: 0,
+    padding: 0,
+  },
+  padding: {
+    paddingTop: theme.spacing.unit,
+    paddingBottom: theme.spacing.unit,
+  },
+  dense: {
+    paddingTop: theme.spacing.unit / 2,
+    paddingBottom: theme.spacing.unit / 2,
+  },
+  subheader: {
+    paddingTop: 0,
+  },
 });
 
-/**
- * A simple list component.
- */
-export default function List(props, context) {
-  const {
-    className: classNameProp,
-    component: ComponentProp,
-    padding,
-    children,
-    subheader,
-    rootRef,
-    ...other
-  } = props;
-  const classes = context.styleManager.render(styleSheet);
-  const className = classNames(classes.root, {
-    [classes.padding]: padding,
-    [classes.subheader]: subheader,
-  }, classNameProp);
+type DefaultProps = {
+  component: string,
+  classes: Object,
+  dense: boolean,
+  disablePadding: boolean,
+};
 
-  return (
-    <ComponentProp ref={rootRef} className={className} {...other}>
-      {subheader}
-      {children}
-    </ComponentProp>
-  );
-}
-
-List.propTypes = {
-  children: PropTypes.node,
+export type Props = {
   /**
-   * The CSS class name of the root element.
+   * The content of the component.
    */
-  className: PropTypes.string,
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  padding: PropTypes.bool,
+  children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
   /**
    * @ignore
    */
-  rootRef: PropTypes.func,
-  subheader: PropTypes.node,
+  className?: string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component?: string | Function,
+  /**
+   * If `true`, compact vertical padding designed for keyboard and mouse input will be used for
+   * the list and list items. The property is available to descendant components as the
+   * `dense` context.
+   */
+  dense?: boolean,
+  /**
+   * If `true`, vertical padding will be removed from the list.
+   */
+  disablePadding?: boolean,
+  /**
+   * Use that property to pass a ref callback to the root component.
+   */
+  rootRef?: Function,
+  /**
+   * The content of the component, normally `ListItem`.
+   */
+  subheader?: Element<*>,
 };
 
-List.defaultProps = {
-  component: 'div',
-  padding: true,
+type AllProps = DefaultProps & Props;
+
+class List extends Component<DefaultProps, AllProps, void> {
+  props: AllProps;
+  static defaultProps: DefaultProps = {
+    classes: {},
+    component: 'ul',
+    dense: false,
+    disablePadding: false,
+  };
+
+  getChildContext() {
+    return {
+      dense: this.props.dense,
+    };
+  }
+
+  render() {
+    const {
+      classes,
+      className: classNameProp,
+      component: ComponentProp,
+      disablePadding,
+      children,
+      dense,
+      subheader,
+      rootRef,
+      ...other
+    } = this.props;
+    const className = classNames(
+      classes.root,
+      {
+        [classes.dense]: dense && !disablePadding,
+        [classes.padding]: !disablePadding,
+        [classes.subheader]: subheader,
+      },
+      classNameProp,
+    );
+
+    return (
+      <ComponentProp ref={rootRef} className={className} {...other}>
+        {subheader}
+        {children}
+      </ComponentProp>
+    );
+  }
+}
+
+List.childContextTypes = {
+  dense: PropTypes.bool,
 };
 
-List.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
-};
+export default withStyles(styles, { name: 'MuiList' })(List);

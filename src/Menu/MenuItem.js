@@ -1,85 +1,94 @@
-// @flow weak
+// @flow
 
-import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
+import React from 'react';
+import type { Element } from 'react';
 import classNames from 'classnames';
+import withStyles from '../styles/withStyles';
 import ListItem from '../List/ListItem';
 
-export const styleSheet = createStyleSheet('MenuItem', (theme) => {
-  const { palette, typography, transitions } = theme;
-  return {
-    root: {
-      ...typography.subheading,
-      height: 48,
-      background: 'none',
-      transition: transitions.create('background-color', '250ms'),
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap',
-      '&:focus': {
-        background: palette.text.divider,
-      },
-      '&:hover': {
-        backgroundColor: palette.text.divider,
-      },
+export const styles = (theme: Object) => ({
+  root: {
+    ...theme.typography.subheading,
+    height: 48,
+    boxSizing: 'border-box',
+    background: 'none',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    '&:focus': {
+      background: theme.palette.text.divider,
     },
-    selected: {
-      backgroundColor: palette.text.divider,
+    '&:hover': {
+      backgroundColor: theme.palette.text.divider,
     },
-  };
+  },
+  selected: {
+    backgroundColor: theme.palette.text.divider,
+  },
 });
 
-export default class MenuItem extends Component {
-  static propTypes = {
-    /**
-     * Menu item contents.
-     */
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-    /**
-     * @ignore
-     */
-    role: PropTypes.string,
-    /**
-     * Use to apply selected styling.
-     */
-    selected: PropTypes.bool,
-  };
+type DefaultProps = {
+  classes: Object,
+  role: string,
+  selected: boolean,
+};
 
-  static defaultProps = {
-    role: 'menuitem',
-    selected: false,
-  };
+export type Props = {
+  /**
+   * Menu item contents.
+   */
+  children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component?: string | Function,
+  /**
+   * @ignore
+   */
+  role?: string,
+  /**
+   * Use to apply selected styling.
+   */
+  selected?: boolean,
+};
 
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
-  };
+type AllProps = DefaultProps & Props;
 
-  render() {
-    const {
-      className: classNameProp,
-      selected,
-      role,
-      ...other
-    } = this.props;
+function MenuItem(props: AllProps) {
+  const { classes, className: classNameProp, component, selected, role, ...other } = props;
 
-    const classes = this.context.styleManager.render(styleSheet);
-    const className = classNames(classes.root, {
+  const className = classNames(
+    classes.root,
+    {
       [classes.selected]: selected,
-    }, classNameProp);
+    },
+    classNameProp,
+  );
 
-    return (
-      <ListItem
-        button
-        role={role}
-        tabIndex="-1"
-        className={className}
-        ripple={false}
-        {...other}
-      />
-    );
-  }
+  return (
+    <ListItem
+      button
+      role={role}
+      tabIndex="-1"
+      className={className}
+      component={component}
+      {...other}
+    />
+  );
 }
+
+MenuItem.defaultProps = {
+  role: 'menuitem',
+  selected: false,
+};
+
+export default withStyles(styles, { name: 'MuiMenuItem' })(MenuItem);

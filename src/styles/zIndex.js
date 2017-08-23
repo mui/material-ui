@@ -1,6 +1,8 @@
-// @flow weak
+// @flow
 
+// Needed as the zIndex works with absolute values.
 export default {
+  mobileStepper: 900,
   menu: 1000,
   appBar: 1100,
   drawerOverlay: 1200,

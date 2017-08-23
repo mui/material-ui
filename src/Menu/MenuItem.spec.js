@@ -1,33 +1,31 @@
-// @flow weak
-/* eslint-env mocha */
+// @flow
+
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallowWithContext } from 'test/utils';
-import MenuItem, { styleSheet } from './MenuItem';
+import { createShallow, getClasses } from '../test-utils';
+import MenuItem from './MenuItem';
 
-describe('<MenuItem>', () => {
+describe('<MenuItem />', () => {
   let shallow;
   let classes;
 
   before(() => {
-    shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet);
+    shallow = createShallow({ dive: true });
+    classes = getClasses(<MenuItem />);
   });
 
-  it('should render a button ListItem with no ripple', () => {
-    const wrapper = shallow(
-      <MenuItem />,
-    );
-    assert.strictEqual(wrapper.is('ListItem'), true, 'should be a ListItem');
-    assert.strictEqual(wrapper.prop('button'), true, 'should have the button prop');
-    assert.strictEqual(wrapper.prop('ripple'), false, 'should not have a ripple');
+  it('should render a button ListItem with with ripple', () => {
+    const wrapper = shallow(<MenuItem />);
+    assert.strictEqual(wrapper.name(), 'withStyles(ListItem)');
+    assert.strictEqual(wrapper.props().button, true, 'should have the button prop');
+    assert.strictEqual(wrapper.props().disableRipple, undefined, 'should have a ripple');
   });
 
   it('should render with the user and root classes', () => {
-    const wrapper = shallow(<MenuItem className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
+    const wrapper = shallow(<MenuItem className="woofMenuItem" />);
+    assert.strictEqual(wrapper.hasClass('woofMenuItem'), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should render with the selected class', () => {
@@ -37,17 +35,17 @@ describe('<MenuItem>', () => {
 
   it('should have a default role of menuitem', () => {
     const wrapper = shallow(<MenuItem />);
-    assert.strictEqual(wrapper.prop('role'), 'menuitem', 'should have the menuitem role');
+    assert.strictEqual(wrapper.props().role, 'menuitem', 'should have the menuitem role');
   });
 
   it('should have a role of option', () => {
-    const wrapper = shallow(<MenuItem role="option" />);
-    assert.strictEqual(wrapper.prop('role'), 'option', 'should have the option role');
+    const wrapper = shallow(<MenuItem role="option" aria-selected={false} />);
+    assert.strictEqual(wrapper.props().role, 'option', 'should have the option role');
   });
 
   it('should have a tabIndex of -1 by default', () => {
     const wrapper = shallow(<MenuItem />);
-    assert.strictEqual(wrapper.prop('tabIndex'), '-1', 'should have a -1 tabIndex');
+    assert.strictEqual(wrapper.props().tabIndex, '-1', 'should have a -1 tabIndex');
   });
 
   describe('event callbacks', () => {
@@ -72,11 +70,20 @@ describe('<MenuItem>', () => {
 
       const wrapper = shallow(<MenuItem {...handlers} />);
 
-      events.forEach((n) => {
+      events.forEach(n => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
         wrapper.simulate(event, { persist: () => {} });
         assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
       });
+    });
+  });
+
+  describe('prop: component', () => {
+    it('should be able to override the rendered component', () => {
+      const wrapper = shallow(<MenuItem component="a" />);
+
+      assert.strictEqual(wrapper.props().component, 'a');
+      assert.strictEqual(wrapper.props().disableRipple, undefined);
     });
   });
 });

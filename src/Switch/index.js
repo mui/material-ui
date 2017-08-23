@@ -1,4 +1,3 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow
 
-export default from './Switch';
-export Switch from './Switch';
+export { default } from './Switch';

@@ -1,23 +1,22 @@
-// @flow weak
-/* eslint-env mocha */
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallowWithContext } from 'test/utils';
-import Backdrop, { styleSheet } from './Backdrop';
+import { createShallow, getClasses } from '../test-utils';
+import Backdrop from './Backdrop';
 
-describe('<Backdrop>', () => {
+describe('<Backdrop />', () => {
   let shallow;
   let classes;
 
   before(() => {
-    shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet);
+    shallow = createShallow({ dive: true });
+    classes = getClasses(<Backdrop />);
   });
 
   it('should render a backdrop div', () => {
-    const wrapper = shallow(<Backdrop className="woof" />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
-    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the woof class');
+    const wrapper = shallow(<Backdrop className="woofBackdrop" />);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass('woofBackdrop'), true);
   });
 });

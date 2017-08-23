@@ -1,41 +1,23 @@
-// @flow weak
-/* eslint-env mocha */
+// @flow
 
 import { assert } from 'chai';
-import {
-  transform,
-  contains,
-  find,
-} from './helpers';
+import { capitalizeFirstLetter, contains, find } from './helpers';
 
-describe('utils//helpers.js', () => {
-  describe('transform(obj, cb, accumulator)', () => {
-    it('should transform an object into an array', () => {
-      const obj = {
-        woof: 'meow',
-        roar: 'foo',
-      };
-
-      const result = transform(obj, (res, value, key) => {
-        res.push(key);
-        res.push(value);
-      }, []);
-
-      assert.strictEqual(result[0], 'woof');
-      assert.strictEqual(result[1], 'meow');
-      assert.strictEqual(result[2], 'roar');
-      assert.strictEqual(result[3], 'foo');
+describe('utils/helpers.js', () => {
+  describe('capitalizeFirstLetter', () => {
+    it('should work', () => {
+      assert.strictEqual(capitalizeFirstLetter('foo'), 'Foo');
     });
   });
 
   describe('find(arr, pred)', () => {
     it('should search for an item in an array containing the predicate', () => {
-      const array = ['woof', 'meow', { foo: 'bar' }, { woof: 'meow' }];
+      const array = ['woofHelpers', 'meow', { foo: 'bar' }, { woofHelpers: 'meow' }];
       assert.strictEqual(find(array, 'lol'), undefined, 'should work for primitives');
-      assert.strictEqual(find(array, 'woof'), array[0], 'should work for primitives');
+      assert.strictEqual(find(array, 'woofHelpers'), array[0], 'should work for primitives');
       assert.strictEqual(find(array, { foo: 'bar' }), array[2], 'should work for objects');
       assert.strictEqual(
-        find(array, (n) => n && n.woof === 'meow'),
+        find(array, n => n && n.woofHelpers === 'meow'),
         array[3],
         'should work for functions',
       );
@@ -45,7 +27,7 @@ describe('utils//helpers.js', () => {
   describe('contains(obj, pred)', () => {
     it('should check if an object contains the partial object', () => {
       const obj = {
-        woof: 'meow',
+        woofHelpers: 'meow',
         cat: 'dog',
       };
       const pred = { cat: 'dog' };

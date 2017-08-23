@@ -1,44 +1,42 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import withStyles from '../styles/withStyles';
+import { capitalizeFirstLetter } from '../utils/helpers';
 
-export const styleSheet = createStyleSheet('ListSubheader', (theme) => {
-  const { palette, typography } = theme;
-
-  return {
-    root: {
-      boxSizing: 'border-box',
-      lineHeight: '48px',
-      paddingLeft: 16,
-      color: palette.text.secondary,
-      fontFamily: typography.fontFamily,
-      fontWeight: typography.fontWeightMedium,
-      fontSize: typography.fontSize,
-    },
-    primary: {
-      color: palette.primary[500],
-    },
-    inset: {
-      paddingLeft: 72,
-    },
-  };
+export const styles = (theme: Object) => ({
+  root: {
+    boxSizing: 'border-box',
+    lineHeight: '48px',
+    paddingLeft: 16,
+    color: theme.palette.text.secondary,
+    fontFamily: theme.typography.fontFamily,
+    fontWeight: theme.typography.fontWeightMedium,
+    fontSize: theme.typography.fontSize,
+  },
+  colorPrimary: {
+    color: theme.palette.primary[500],
+  },
+  colorInherit: {
+    color: 'inherit',
+  },
+  inset: {
+    paddingLeft: theme.spacing.unit * 9,
+  },
 });
 
-export default function ListSubheader(props, context) {
-  const {
-    className: classNameProp,
-    primary,
-    inset,
-    children,
-    ...other
-  } = props;
-  const classes = context.styleManager.render(styleSheet);
-  const className = classNames(classes.root, {
-    [classes.primary]: primary,
-    [classes.inset]: inset,
-  }, classNameProp);
+function ListSubheader(props) {
+  const { classes, className: classNameProp, color, inset, children, ...other } = props;
+  const className = classNames(
+    classes.root,
+    {
+      [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
+      [classes.inset]: inset,
+    },
+    classNameProp,
+  );
 
   return (
     <div className={className} {...other}>
@@ -49,28 +47,32 @@ export default function ListSubheader(props, context) {
 
 ListSubheader.propTypes = {
   /**
-   * The content of the ListSubheader.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
   /**
-   * If true, the ListSubheader will be indented.
+   * The color of the component. It's using the theme palette when that makes sense.
+   */
+  color: PropTypes.oneOf(['default', 'primary', 'inherit']),
+  /**
+   * If `true`, the List Subheader will be indented.
    */
   inset: PropTypes.bool,
-  /**
-   * If true, the ListSubheader will have the theme primary color.
-   */
-  primary: PropTypes.bool,
 };
 
 ListSubheader.defaultProps = {
+  color: 'default',
   inset: false,
-  primary: false,
 };
 
-ListSubheader.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
-};
+ListSubheader.muiName = 'ListSubheader';
+
+export default withStyles(styles, { name: 'MuiListSubheader' })(ListSubheader);

@@ -1,83 +1,119 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import type { Element } from 'react';
 import Transition from '../internal/Transition';
+import { duration } from '../styles/transitions';
+import withTheme from '../styles/withTheme';
+import type { TransitionCallback } from '../internal/Transition';
 
-export default class Fade extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    /**
-     * Set to true to transition in.
-     */
-    in: PropTypes.bool,
-    /**
-     * Callback fired before the component is entering.
-     */
-    onEnter: PropTypes.func,
-    /**
-     * Callback fired when the component is entering.
-     */
-    onEntering: PropTypes.func,
-    /**
-     * Callback fired when the component has entered.
-     */
-    onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
-    /**
-     * Callback fired before the component is exiting.
-     */
-    onExit: PropTypes.func,
-    /**
-     * Callback fired when the component is exiting.
-     */
-    onExiting: PropTypes.func,
-    /**
-     * Callback fired when the component has exited.
-     */
-    onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
-    transitionDuration: PropTypes.number,
-  };
+type DefaultProps = {
+  in: boolean,
+  enterTransitionDuration: number,
+  leaveTransitionDuration: number,
+  theme: Object,
+};
 
-  static defaultProps = {
+export type Props = {
+  children?: Element<*>,
+  /**
+   * If `true`, the component will transition in.
+   */
+  in?: boolean,
+  /**
+   * Duration of the animation when the element is entering.
+   */
+  enterTransitionDuration?: number, // eslint-disable-line react/sort-prop-types
+  /**
+   * Duration of the animation when the element is exiting.
+   */
+  leaveTransitionDuration?: number,
+  /**
+   * Callback fired before the component enters.
+   */
+  onEnter?: TransitionCallback,
+  /**
+   * Callback fired when the component is entering.
+   */
+  onEntering?: TransitionCallback,
+  /**
+   * Callback fired when the component has entered.
+   */
+  onEntered?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  /**
+   * Callback fired before the component exits.
+   */
+  onExit?: TransitionCallback,
+  /**
+   * Callback fired when the component is exiting.
+   */
+  onExiting?: TransitionCallback,
+  /**
+   * Callback fired when the component has exited.
+   */
+  onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  /**
+   * @ignore
+   */
+  theme?: Object,
+};
+
+type AllProps = DefaultProps & Props;
+
+class Fade extends Component<DefaultProps, AllProps, void> {
+  props: AllProps;
+
+  static defaultProps: DefaultProps = {
     in: false,
-    transitionDuration: 300,
+    enterTransitionDuration: duration.enteringScreen,
+    leaveTransitionDuration: duration.leavingScreen,
+    theme: {},
   };
 
-  static contextTypes = {
-    theme: PropTypes.object.isRequired,
-  };
-
-  handleEnter = (element) => {
+  handleEnter = element => {
     element.style.opacity = 0;
-    element.style.transition = this.context.theme.transitions.create(
-      'opacity',
-      `${this.props.transitionDuration}ms`,
-    );
     if (this.props.onEnter) {
-      this.props.onEnter();
+      this.props.onEnter(element);
     }
   };
 
-  handleEntering = (element) => {
+  handleEntering = element => {
+    const { transitions } = this.props.theme;
+    element.style.transition = transitions.create('opacity', {
+      duration: this.props.enterTransitionDuration,
+    });
+    element.style.WebkitTransition = transitions.create('opacity', {
+      duration: this.props.enterTransitionDuration,
+    });
     element.style.opacity = 1;
     if (this.props.onEntering) {
-      this.props.onEntering();
+      this.props.onEntering(element);
     }
   };
 
-  handleExit = (element) => {
+  handleExit = element => {
+    const { transitions } = this.props.theme;
+    element.style.transition = transitions.create('opacity', {
+      duration: this.props.leaveTransitionDuration,
+    });
+    element.style.WebkitTransition = transitions.create('opacity', {
+      duration: this.props.leaveTransitionDuration,
+    });
     element.style.opacity = 0;
     if (this.props.onExit) {
-      this.props.onExit();
+      this.props.onExit(element);
     }
   };
 
   render() {
     const {
       children,
-      onEnter, // eslint-disable-line no-unused-vars
-      onEntering, // eslint-disable-line no-unused-vars
-      onExit, // eslint-disable-line no-unused-vars
-      transitionDuration, // eslint-disable-line no-unused-vars
+      enterTransitionDuration,
+      leaveTransitionDuration,
+      onEnter,
+      onEntering,
+      onExit,
+      theme,
       ...other
     } = this.props;
 
@@ -86,6 +122,8 @@ export default class Fade extends Component {
         onEnter={this.handleEnter}
         onEntering={this.handleEntering}
         onExit={this.handleExit}
+        timeout={Math.max(enterTransitionDuration, leaveTransitionDuration) + 10}
+        transitionAppear
         {...other}
       >
         {children}
@@ -93,3 +131,5 @@ export default class Fade extends Component {
     );
   }
 }
+
+export default withTheme(Fade);

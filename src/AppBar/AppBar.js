@@ -1,80 +1,104 @@
-// @flow weak
+// @flow
+// @inheritedComponent Paper
 
-import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
+import React from 'react';
+import type { Element } from 'react';
 import classNames from 'classnames';
+import withStyles from '../styles/withStyles';
+import { capitalizeFirstLetter } from '../utils/helpers';
 import Paper from '../Paper';
 
-export const styleSheet = createStyleSheet('AppBar', (theme) => {
-  const { palette } = theme;
-
-  return {
-    appBar: {
-      display: 'flex',
-      flexDirection: 'column',
-      width: '100%',
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      zIndex: theme.zIndex.appBar,
-    },
-    primary: {
-      backgroundColor: palette.primary[500],
-      color: palette.getContrastText(palette.primary[500]),
-    },
-    accent: {
-      backgroundColor: palette.accent.A200,
-      color: palette.getContrastText(palette.accent.A200),
-    },
-  };
+export const styles = (theme: Object) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+    zIndex: theme.zIndex.appBar,
+  },
+  positionFixed: {
+    position: 'fixed',
+    top: 0,
+    left: 'auto',
+    right: 0,
+  },
+  positionAbsolute: {
+    position: 'absolute',
+    top: 0,
+    left: 'auto',
+    right: 0,
+  },
+  positionStatic: {
+    position: 'static',
+    flexShrink: 0,
+  },
+  colorDefault: {
+    backgroundColor: theme.palette.background.appBar,
+    color: theme.palette.getContrastText(theme.palette.background.appBar),
+  },
+  colorPrimary: {
+    backgroundColor: theme.palette.primary[500],
+    color: theme.palette.getContrastText(theme.palette.primary[500]),
+  },
+  colorAccent: {
+    backgroundColor: theme.palette.accent.A200,
+    color: theme.palette.getContrastText(theme.palette.accent.A200),
+  },
 });
 
-export default class AppBar extends Component {
-  static propTypes = {
-    accent: PropTypes.bool,
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-    primary: PropTypes.bool,
-  };
+type DefaultProps = {
+  classes: Object,
+  color: 'primary',
+  position: 'fixed',
+};
 
-  static defaultProps = {
-    accent: false,
-    primary: true,
-  };
+export type Props = {
+  /**
+   * The content of the component.
+   */
+  children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * The color of the component. It's using the theme palette when that makes sense.
+   */
+  color?: 'inherit' | 'primary' | 'accent' | 'default',
+  /**
+   * The positioning type.
+   */
+  position?: 'static' | 'fixed' | 'absolute',
+};
 
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
-  };
+type AllProps = DefaultProps & Props;
 
-  render() {
-    const {
-      accent,
-      children,
-      className: classNameProp,
-      primary,
-      ...other
-    } = this.props;
+function AppBar(props: AllProps) {
+  const { children, classes, className: classNameProp, color, position, ...other } = props;
 
-    const classes = this.context.styleManager.render(styleSheet);
+  const className = classNames(
+    classes.root,
+    classes[`position${capitalizeFirstLetter(position)}`],
+    {
+      [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'inherit',
+      'mui-fixed': position === 'fixed', // Useful for the Dialog
+    },
+    classNameProp,
+  );
 
-    const className = classNames({
-      [classes.appBar]: true,
-      [classes.primary]: primary && !accent,
-      [classes.accent]: accent,
-    }, classNameProp);
-
-    return (
-      <Paper
-        rounded={false}
-        zDepth={4}
-        className={className}
-        {...other}
-      >
-        {children}
-      </Paper>
-    );
-  }
+  return (
+    <Paper square component="header" elevation={4} className={className} {...other}>
+      {children}
+    </Paper>
+  );
 }
+
+AppBar.defaultProps = {
+  color: 'primary',
+  position: 'fixed',
+};
+
+export default withStyles(styles, { name: 'MuiAppBar' })(AppBar);

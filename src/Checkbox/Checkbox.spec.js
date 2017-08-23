@@ -1,45 +1,29 @@
-// @flow weak
-/* eslint-env mocha */
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallowWithContext } from 'test/utils';
-import Checkbox, { styleSheet } from './Checkbox';
+import { createShallow, getClasses } from '../test-utils';
+import Checkbox from './Checkbox';
 
-describe('<Checkbox>', () => {
+describe('<Checkbox />', () => {
   let shallow;
   let classes;
 
   before(() => {
-    shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet);
+    shallow = createShallow({ dive: true });
+    classes = getClasses(<Checkbox />);
   });
 
-  it('should render a SwitchBase', () => {
-    const wrapper = shallow(
-      <Checkbox />,
-    );
-    assert.strictEqual(wrapper.is('SwitchBase'), true, 'should be a SwitchBase');
+  describe('styleSheet', () => {
+    it('should have the classes required for Checkbox', () => {
+      assert.strictEqual(typeof classes.default, 'string');
+      assert.strictEqual(typeof classes.checked, 'string');
+      assert.strictEqual(typeof classes.disabled, 'string');
+    });
   });
 
-  it('should render with the default and checked classes', () => {
-    const wrapper = shallow(<Checkbox checked className="woof" checkedClassName="meow" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
-    assert.strictEqual(wrapper.hasClass(classes.default), true, 'should have the default class');
-    assert.strictEqual(
-      wrapper.prop('checkedClassName').indexOf('meow') !== -1,
-      true,
-      'should have the "meow" class',
-    );
-    assert.strictEqual(
-      wrapper.prop('checkedClassName').indexOf(classes.checked) !== -1,
-      true,
-      'should have the checked class',
-    );
-  });
-
-  it('should spread custom props on the root node', () => {
-    const wrapper = shallow(<Checkbox data-my-prop="woof" />);
-    assert.strictEqual(wrapper.prop('data-my-prop'), 'woof', 'custom prop should be woof');
+  it('should render a div with a SwitchBase', () => {
+    const wrapper = shallow(<Checkbox />);
+    assert.strictEqual(wrapper.name(), 'withStyles(SwitchBase)');
   });
 });

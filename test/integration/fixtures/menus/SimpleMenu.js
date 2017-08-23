@@ -1,22 +1,24 @@
-// @flow weak
+// @flow
+
 import React, { Component } from 'react';
-import { Menu, MenuItem } from 'src/Menu';
+import Menu, { MenuItem } from 'src/Menu';
 
-const options = [
-  'Menu Item 1',
-  'Menu Item 2',
-  'Menu Item 3',
-];
+const options = ['Menu Item 1', 'Menu Item 2', 'Menu Item 3'];
 
-export default class SimpleMenu extends Component {
+class SimpleMenu extends Component {
   state = {
     anchorEl: undefined,
     open: false,
     selectedIndex: undefined,
   };
 
-  handleMenuItemClick = (event, index) => this.setState({ selectedIndex: index, open: false });
-  handleRequestClose = () => this.setState({ open: false });
+  handleMenuItemClick = (event: SyntheticUIEvent, index: number) => {
+    this.setState({ selectedIndex: index, open: false });
+  };
+
+  handleRequestClose = () => {
+    this.setState({ open: false });
+  };
 
   render() {
     return (
@@ -27,14 +29,14 @@ export default class SimpleMenu extends Component {
           onRequestClose={this.handleRequestClose}
           {...this.props}
         >
-          {options.map((n, index) => {
+          {options.map((label, index) => {
             return (
               <MenuItem
-                key={index}
+                key={label}
                 selected={index === this.state.selectedIndex}
-                onClick={(event) => this.handleMenuItemClick(event, index)}
+                onClick={event => this.handleMenuItemClick(event, index)}
               >
-                {n}
+                {label}
               </MenuItem>
             );
           })}
@@ -44,3 +46,4 @@ export default class SimpleMenu extends Component {
   }
 }
 
+export default SimpleMenu;

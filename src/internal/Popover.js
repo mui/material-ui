@@ -1,13 +1,17 @@
-// @flow weak
+// @flow
 
-import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
+import React, { Component } from 'react';
+import type { Element } from 'react';
+import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import contains from 'dom-helpers/query/contains';
-import customPropTypes from '../utils/propTypes';
+import debounce from 'lodash/debounce';
+import EventListener from 'react-event-listener';
+import withStyles from '../styles/withStyles';
 import Modal from './Modal';
-import Transition from './Transition';
+import Grow from '../transitions/Grow';
 import Paper from '../Paper';
+import type { TransitionCallback } from './Transition';
 
 function getOffsetTop(rect, vertical) {
   let offset = 0;
@@ -39,129 +43,166 @@ function getOffsetLeft(rect, horizontal) {
 
 function getTransformOriginValue(transformOrigin) {
   return [transformOrigin.horizontal, transformOrigin.vertical]
-    .map((n) => {
+    .map(n => {
       return typeof n === 'number' ? `${n}px` : n;
     })
     .join(' ');
 }
 
-export const styleSheet = createStyleSheet('Popover', () => {
-  return {
-    popover: {
-      position: 'absolute',
-      overflowY: 'auto',
-      overflowX: 'hidden',
-      '&:focus': {
-        outline: 'none',
-      },
+// Sum the scrollTop between two elements
+function getScrollParent(parent, child) {
+  let element = child;
+  let scrollTop = 0;
+
+  while (element && element !== parent) {
+    element = element.parentNode;
+    scrollTop += element.scrollTop;
+  }
+  return scrollTop;
+}
+
+export const styles = {
+  paper: {
+    position: 'absolute',
+    overflowY: 'auto',
+    overflowX: 'hidden',
+    '&:focus': {
+      outline: 'none',
     },
-  };
-});
+  },
+};
 
-export default class Popover extends Component {
-  static propTypes = {
-    /**
-     * This is the DOM element that will be used
-     * to set the position of the popover.
-     */
-    anchorEl: PropTypes.object,
-    /**
-     * This is the point on the anchor where the popover's
-     * `targetOrigin` will attach to.
-     * Options:
-     * vertical: [top, center, bottom];
-     * horizontal: [left, center, right].
-     */
-    anchorOrigin: customPropTypes.origin,
-    /**
-     * The content of the popover.
-     */
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-    /**
-     * CSS class or classes applied when the component is entered
-     */
-    enteredClassName: PropTypes.string,
-    /**
-     * CSS class or classes applied while the component is entering
-     */
-    enteringClassName: PropTypes.string,
-    /**
-     * CSS class or classes applied when the component is exited
-     */
-    exitedClassName: PropTypes.string,
-    /**
-     * CSS class or classes applied while the component is exiting
-     */
-    exitingClassName: PropTypes.string,
-    /**
-     * @ignore
-     */
-    getContentAnchorEl: PropTypes.func,
-    /**
-     * If true, the Popover will be rendered as a modal with
-     * scroll locking, focus trapping and a clickaway layer beneath
-     */
-    modal: PropTypes.bool,
-    /**
-     * Callback fired before the component is entering
-     */
-    onEnter: PropTypes.func,
-    /**
-     * Callback fired when the component is entering
-     */
-    onEntering: PropTypes.func,
-    /**
-     * Callback fired when the component has entered
-     */
-    onEntered: PropTypes.func, // eslint-disable-line react/sort-prop-types
-    /**
-     * Callback fired before the component is exiting
-     */
-    onExit: PropTypes.func,
-    /**
-     * Callback fired when the component is exiting
-     */
-    onExiting: PropTypes.func,
-    /**
-     * Callback fired when the component has exited
-     */
-    onExited: PropTypes.func, // eslint-disable-line react/sort-prop-types
-    /**
-     * Callback function fired when the popover is requested to be closed.
-     *
-     * @param {event} event The event that triggered the close request
-     */
-    onRequestClose: PropTypes.func,
-    /**
-     * If true, the popover is visible.
-     */
-    open: PropTypes.bool,
-    role: PropTypes.string,
-    /**
-     * This is the point on the popover which
-     * will attach to the anchor's origin.
-     *
-     * Options:
-     * vertical: [top, center, bottom, x(px)];
-     * horizontal: [left, center, right, x(px)].
-     */
-    transformOrigin: customPropTypes.origin,
-    /**
-     * Set to 'auto' to automatically calculate transition time based on height
-     */
-    transitionDuration: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    zDepth: PropTypes.number,
-  };
+type Origin = {
+  horizontal: 'left' | 'center' | 'right' | number,
+  vertical: 'top' | 'center' | 'bottom' | number,
+};
 
-  static defaultProps = {
+type DefaultProps = {
+  anchorOrigin: Origin,
+  classes: Object,
+  modal: boolean,
+  open: boolean,
+  transformOrigin: Origin,
+  transitionDuration: 'auto',
+  elevation: number,
+};
+
+export type Props = {
+  /**
+   * This is the DOM element that will be used
+   * to set the position of the popover.
+   */
+  anchorEl?: Object,
+  /**
+   * This is the point on the anchor where the popover's
+   * `anchorEl` will attach to.
+   *
+   * Options:
+   * vertical: [top, center, bottom];
+   * horizontal: [left, center, right].
+   */
+  anchorOrigin: Origin,
+  /**
+   * The content of the component.
+   */
+  children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * CSS class or classes applied when the component is entered
+   */
+  elevation?: number,
+  enteredClassName?: string,
+  /**
+   * CSS class or classes applied while the component is entering
+   */
+  enteringClassName?: string,
+  /**
+   * CSS class or classes applied when the component is exited
+   */
+  exitedClassName?: string,
+  /**
+   * CSS class or classes applied while the component is exiting
+   */
+  exitingClassName?: string,
+  /**
+   * @ignore
+   */
+  getContentAnchorEl?: Function,
+  /**
+   * If `true`, the Popover will be rendered as a modal with
+   * scroll locking, focus trapping and a clickaway layer beneath
+   */
+  modal?: boolean,
+  /**
+   * Callback fired before the component is entering
+   */
+  onEnter?: TransitionCallback,
+  /**
+   * Callback fired when the component is entering
+   */
+  onEntering?: TransitionCallback,
+  /**
+   * Callback fired when the component has entered
+   */
+  onEntered?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  /**
+   * Callback fired before the component is exiting
+   */
+  onExit?: TransitionCallback,
+  /**
+   * Callback fired when the component is exiting
+   */
+  onExiting?: TransitionCallback,
+  /**
+   * Callback fired when the component has exited
+   */
+  onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  /**
+   * Callback fired when the component requests to be closed.
+   *
+   * @param {object} event The event source of the callback
+   */
+  onRequestClose?: Function,
+  /**
+   * If `true`, the popover is visible.
+   */
+  open?: boolean,
+  role?: string,
+  /**
+   * This is the point on the popover which
+   * will attach to the anchor's origin.
+   *
+   * Options:
+   * vertical: [top, center, bottom, x(px)];
+   * horizontal: [left, center, right, x(px)].
+   */
+  transformOrigin: Origin,
+  /**
+   * Set to 'auto' to automatically calculate transition time based on height
+   */
+  transitionDuration?: number | 'auto',
+};
+
+type AllProps = DefaultProps & Props;
+
+/**
+ * @ignore - internal component.
+ */
+class Popover extends Component<DefaultProps, AllProps, void> {
+  props: AllProps;
+  static defaultProps: DefaultProps = {
     anchorOrigin: {
       vertical: 'top',
       horizontal: 'left',
     },
+    classes: {},
     modal: true,
     open: false,
     transformOrigin: {
@@ -169,84 +210,39 @@ export default class Popover extends Component {
       horizontal: 'left',
     },
     transitionDuration: 'auto',
-    zDepth: 8,
+    elevation: 8,
   };
 
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
+  componentWillUnmount = () => {
+    this.handleResize.cancel();
   };
 
-  static getScale(value) {
-    return `scale(${value}, ${value ** 2})`;
-  }
+  transitionEl = undefined;
 
-  autoTransitionDuration = undefined;
+  setPositioningStyles = (element: HTMLElement) => {
+    if (element && element.style) {
+      const positioning = this.getPositioningStyle(element);
 
-  handleEnter = (element) => {
-    element.style.opacity = 0;
-    element.style.transform = Popover.getScale(0.75);
+      element.style.top = positioning.top;
+      element.style.left = positioning.left;
+      element.style.transformOrigin = positioning.transformOrigin;
+    }
+  };
 
+  handleEnter = (element: HTMLElement) => {
     if (this.props.onEnter) {
       this.props.onEnter(element);
     }
 
-    const positioning = this.getPositioningStyle(element);
-
-    element.style.top = positioning.top;
-    element.style.left = positioning.left;
-    element.style.transformOrigin = positioning.transformOrigin;
-
-    let { transitionDuration } = this.props;
-    const { transitions } = this.context.styleManager.theme;
-
-    if (transitionDuration === 'auto') {
-      transitionDuration = transitions.getAutoHeightDuration(element.clientHeight);
-      this.autoTransitionDuration = transitionDuration;
-    }
-
-    element.style.transition = [
-      transitions.create('opacity', `${transitionDuration}ms`),
-      transitions.create('transform', `${transitionDuration * 0.666}ms`),
-    ].join(',');
+    this.setPositioningStyles(element);
   };
 
-  handleEntering = (element) => {
-    element.style.opacity = 1;
-    element.style.transform = Popover.getScale(1);
+  handleResize = debounce(() => {
+    const element: any = ReactDOM.findDOMNode(this.transitionEl);
+    this.setPositioningStyles(element);
+  }, 166);
 
-    if (this.props.onEntering) {
-      this.props.onEntering();
-    }
-  };
-
-  handleExit = (element) => {
-    let { transitionDuration } = this.props;
-    const { transitions } = this.context.styleManager.theme;
-
-    if (transitionDuration === 'auto') {
-      transitionDuration = transitions.getAutoHeightDuration(element.clientHeight);
-      this.autoTransitionDuration = transitionDuration;
-    }
-
-    element.style.transition = [
-      transitions.create('opacity', `${transitionDuration}ms`),
-      transitions.create('transform', `${transitionDuration * 0.666}ms`, `${transitionDuration * 0.333}`),
-    ].join(',');
-
-    element.style.opacity = 0;
-    element.style.transform = Popover.getScale(0.75);
-
-    if (this.props.onExit) {
-      this.props.onExit();
-    }
-  };
-
-  handleRequestTimeout = () => {
-    if (this.props.transitionDuration === 'auto') {
-      return (this.autoTransitionDuration || 0) + 20;
-    }
-    return this.props.transitionDuration + 20;
-  };
+  marginThreshold = 16;
 
   getPositioningStyle(element) {
     // Check if the parent has requested anchoring on an inner content node
@@ -268,13 +264,12 @@ export default class Popover extends Component {
     const right = left + elemRect.width;
 
     // Window thresholds taking required margin into account
-    const marginThreshold = 16;
-    const heightThreshold = window.innerHeight - marginThreshold;
-    const widthThreshold = window.innerWidth - marginThreshold;
+    const heightThreshold = window.innerHeight - this.marginThreshold;
+    const widthThreshold = window.innerWidth - this.marginThreshold;
 
     // Check if the vertical axis needs shifting
-    if (top < marginThreshold) {
-      const diff = top - marginThreshold;
+    if (top < this.marginThreshold) {
+      const diff = top - this.marginThreshold;
       top -= diff;
       transformOrigin.vertical += diff;
     } else if (bottom > heightThreshold) {
@@ -284,8 +279,8 @@ export default class Popover extends Component {
     }
 
     // Check if the horizontal axis needs shifting
-    if (left < marginThreshold) {
-      const diff = left - marginThreshold;
+    if (left < this.marginThreshold) {
+      const diff = left - this.marginThreshold;
       left -= diff;
       transformOrigin.horizontal += diff;
     } else if (right > widthThreshold) {
@@ -301,34 +296,39 @@ export default class Popover extends Component {
     };
   }
 
+  handleGetOffsetTop = getOffsetTop;
+  handleGetOffsetLeft = getOffsetLeft;
+
   /**
    * Returns the top/left offset of the position
    * to attach to on the anchor element (or body if none is provided)
    */
   getAnchorOffset(contentAnchorOffset) {
-    const { anchorEl: anchorElProp, anchorOrigin } = this.props;
-
-    const anchorEl = anchorElProp || document.body;
-    const anchorRect = anchorEl.getBoundingClientRect();
+    // $FlowFixMe
+    const { anchorEl, anchorOrigin } = this.props;
+    const anchorElement = anchorEl || document.body;
+    const anchorRect = anchorElement.getBoundingClientRect();
     const anchorVertical = contentAnchorOffset === 0 ? anchorOrigin.vertical : 'center';
 
     return {
-      top: anchorRect.top + getOffsetTop(anchorRect, anchorVertical),
-      left: anchorRect.left + getOffsetLeft(anchorRect, anchorOrigin.horizontal),
+      top: anchorRect.top + this.handleGetOffsetTop(anchorRect, anchorVertical),
+      left: anchorRect.left + this.handleGetOffsetLeft(anchorRect, anchorOrigin.horizontal),
     };
   }
 
   /**
-   * Returns the vertical offset of inner
-   * content to anchor the transform on if provided
+   * Returns the vertical offset of inner content to anchor the transform on if provided
    */
   getContentAnchorOffset(element) {
     let contentAnchorOffset = 0;
 
     if (this.props.getContentAnchorEl) {
       const contentAnchorEl = this.props.getContentAnchorEl(element);
+
       if (contentAnchorEl && contains(element, contentAnchorEl)) {
-        contentAnchorOffset = contentAnchorEl.offsetTop + (contentAnchorEl.clientHeight / 2) || 0;
+        const scrollTop = getScrollParent(element, contentAnchorEl);
+        contentAnchorOffset =
+          contentAnchorEl.offsetTop + contentAnchorEl.clientHeight / 2 - scrollTop || 0;
       }
     }
 
@@ -342,72 +342,73 @@ export default class Popover extends Component {
   getTransformOrigin(elemRect, contentAnchorOffset = 0) {
     const { transformOrigin } = this.props;
     return {
-      vertical: getOffsetTop(elemRect, transformOrigin.vertical) + contentAnchorOffset,
-      horizontal: getOffsetLeft(elemRect, transformOrigin.horizontal),
+      vertical: this.handleGetOffsetTop(elemRect, transformOrigin.vertical) + contentAnchorOffset,
+      horizontal: this.handleGetOffsetLeft(elemRect, transformOrigin.horizontal),
     };
   }
 
   render() {
     const {
       children,
+      classes,
       className,
-      modal, // eslint-disable-line no-unused-vars
+      modal,
       onRequestClose,
       open,
-      getContentAnchorEl, // eslint-disable-line no-unused-vars
-      anchorEl, // eslint-disable-line no-unused-vars
-      anchorOrigin, // eslint-disable-line no-unused-vars
-      role, // eslint-disable-line no-unused-vars
-      transformOrigin, // eslint-disable-line no-unused-vars
-      transitionDuration, // eslint-disable-line no-unused-vars
+      getContentAnchorEl,
+      anchorEl,
+      anchorOrigin,
+      role,
+      transformOrigin,
+      transitionDuration,
       enteredClassName,
       enteringClassName,
       exitedClassName,
       exitingClassName,
-      onEnter, // eslint-disable-line no-unused-vars
-      onEntering, // eslint-disable-line no-unused-vars
+      onEnter,
+      onEntering,
       onEntered,
-      onExit, // eslint-disable-line no-unused-vars
+      onExit,
       onExiting,
       onExited,
-      zDepth,
+      elevation,
       ...other
     } = this.props;
 
-    const classes = this.context.styleManager.render(styleSheet);
-
+    // FIXME: props API consistency problem? - `...other` not spread over the root
     return (
-      <Modal
-        show={open}
-        backdropVisible={false}
-        onRequestClose={onRequestClose}
-      >
-        <Transition
+      <Modal show={open} backdropInvisible onRequestClose={onRequestClose}>
+        <Grow
           in={open}
           enteredClassName={enteredClassName}
           enteringClassName={enteringClassName}
           exitedClassName={exitedClassName}
           exitingClassName={exitingClassName}
           onEnter={this.handleEnter}
-          onEntering={this.handleEntering}
+          onEntering={onEntering}
           onEntered={onEntered}
-          onExit={this.handleExit}
+          onExit={onExit}
           onExiting={onExiting}
           onExited={onExited}
           role={role}
-          onRequestTimeout={this.handleRequestTimeout}
           transitionAppear
+          rootRef={node => {
+            this.transitionEl = node;
+          }}
         >
           <Paper
             data-mui-test="Popover"
-            className={classNames(classes.popover, className)}
-            zDepth={zDepth}
+            className={classNames(classes.paper, className)}
+            elevation={elevation}
             {...other}
           >
+            <EventListener target="window" onResize={this.handleResize} />
             {children}
           </Paper>
-        </Transition>
+        </Grow>
       </Modal>
     );
   }
 }
+
+export default withStyles(styles, { name: 'MuiPopover' })(Popover);

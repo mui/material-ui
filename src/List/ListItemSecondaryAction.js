@@ -1,43 +1,50 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
+import React from 'react';
+import type { Element } from 'react';
 import classNames from 'classnames';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('ListItemSecondaryAction', () => ({
-  secondaryAction: {
+export const styles = (theme: Object) => ({
+  root: {
     position: 'absolute',
     right: 4,
     top: '50%',
-    marginTop: -24,
+    marginTop: -theme.spacing.unit * 3,
   },
-}));
+});
 
-export default function ListItemSecondaryAction(props, context) {
-  const {
-    children,
-    className: classNameProp,
-  } = props;
-  const classes = context.styleManager.render(styleSheet);
-  const className = classNames(classes.secondaryAction, classNameProp);
+type DefaultProps = {
+  classes: Object,
+};
+
+export type Props = {
+  /**
+   * The content of the component, normally an `IconButton` or selection control.
+   */
+  children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+};
+
+type AllProps = DefaultProps & Props;
+
+function ListItemSecondaryAction(props: AllProps) {
+  const { children, classes, className } = props;
 
   return (
-    <div className={className}>
+    <div className={classNames(classes.root, className)}>
       {children}
     </div>
   );
 }
 
-ListItemSecondaryAction.propTypes = {
-  children: PropTypes.node,
-  /**
-   * The CSS class name of the root element.
-   */
-  className: PropTypes.string,
-};
-
-ListItemSecondaryAction.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
-};
-
 ListItemSecondaryAction.muiName = 'ListItemSecondaryAction';
+
+export default withStyles(styles, { name: 'MuiListItemSecondaryAction' })(ListItemSecondaryAction);

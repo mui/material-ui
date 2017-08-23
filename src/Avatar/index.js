@@ -1,4 +1,3 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow
 
-export default from './Avatar';
-export Avatar from './Avatar';
+export { default } from './Avatar';

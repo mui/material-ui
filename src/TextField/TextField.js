@@ -1,163 +1,214 @@
-// @flow weak
+// @flow
+// @inheritedComponent FormControl
 
-import React, { Component, Children, cloneElement, PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import classNames from 'classnames';
-import { easing } from '../styles/transitions';
-import { createChainedFunction } from '../utils/helpers';
+import React from 'react';
+import type { Element } from 'react';
+import Input, { InputLabel } from '../Input';
+import FormControl from '../Form/FormControl';
+import FormHelperText from '../Form/FormHelperText';
 
-export const styleSheet = createStyleSheet('TextField', (theme) => {
-  const focusColor = theme.palette.accent.A200;
+export type Props = {
+  /**
+   * This property helps users to fill forms faster, especially on mobile devices.
+   * The name can be confusion, it's more like an autofill.
+   * You can learn about it with that article
+   * https://developers.google.com/web/updates/2015/06/checkout-faster-with-autofill
+   */
+  autoComplete?: string,
+  /**
+   * If `true`, the input will be focused during the first mount.
+   */
+  autoFocus?: boolean,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * The default value of the `Input` element.
+   */
+  defaultValue?: string,
+  /**
+   * If `true`, the input will be disabled.
+   */
+  disabled?: boolean,
+  /**
+   * If `true`, the label will be displayed in an error state.
+   */
+  error?: boolean,
+  /**
+   * Properties applied to the `FormHelperText` element.
+   */
+  FormHelperTextProps?: Object,
+  /**
+   * If `true`, the input will take up the full width of its container.
+   */
+  fullWidth?: boolean,
+  /**
+   * The helper text content.
+   */
+  helperText?: string | Element<*>,
+  /**
+   * The CSS class name of the helper text element.
+   */
+  helperTextClassName?: string,
+  /**
+   * The id of the `input` element.
+   */
+  id?: string,
+  /**
+   * The CSS class name of the `input` element.
+   */
+  inputClassName?: string,
+  /**
+   * The CSS class name of the `Input` element.
+   */
+  InputClassName?: string,
+  /**
+   * Properties applied to the `InputLabel` element.
+   */
+  InputLabelProps?: Object,
+  /**
+   * Properties applied to the `input` element.
+   */
+  inputProps?: Object,
+  /**
+   * Properties applied to the `Input` element.
+   */
+  InputProps?: Object,
+  /**
+   * Use that property to pass a ref callback to the native input component.
+   */
+  inputRef?: Function,
+  /**
+   * The label content.
+   */
+  label?: string | Element<*>,
+  /**
+   * The CSS class name of the label element.
+   */
+  labelClassName?: string,
+  /**
+   * If `true`, a textarea element will be rendered instead of an input.
+   */
+  multiline?: boolean,
+  /**
+   * Name attribute of the `Input` element.
+   */
+  name?: string,
+  placeholder?: string,
+  /**
+   * If `true`, the label is displayed as required.
+   */
+  required?: boolean,
+  /**
+   * Use that property to pass a ref callback to the root component.
+   */
+  rootRef?: Function,
+  /**
+   * Number of rows to display when multiline option is set to true.
+   */
+  rows?: string | number,
+  /**
+   * Maximum number of rows to display when multiline option is set to true.
+   */
+  rowsMax?: string | number,
+  /**
+   * Type attribute of the `Input` element. It should be a valid HTML5 input type.
+   */
+  type?: string,
+  /**
+   * The value of the `Input` element, required for a controlled component.
+   */
+  value?: string | number,
+  /**
+   * If `dense` | `normal`, will adjust vertical spacing of this and contained components.
+   */
+  margin?: 'none' | 'dense' | 'normal',
+};
 
-  return {
-    root: {
-      display: 'flex',
-      position: 'relative',
-      marginTop: 16,
-      // Expanding underline
-      '&:after': {
-        backgroundColor: focusColor,
-        left: 0,
-        bottom: 9,
-        content: '\'\'',
-        height: 2,
-        position: 'absolute',
-        width: '100%',
-        transform: 'scaleX(0)',
-        transition: theme.transitions.create(
-          'transform',
-          '200ms',
-          null,
-          easing.easeOut,
-        ),
-      },
-    },
-    label: {},
-    input: {
-      display: 'block',
-      marginTop: 10,
-      marginBottom: 10,
-      width: '100%',
-      zIndex: 1,
-    },
-    focused: {
-      '& $label': {
-        color: focusColor,
-      },
-      '&:after': {
-        transform: 'scaleX(1)',
-      },
-    },
-  };
-});
+function TextField(props: Props) {
+  const {
+    autoComplete,
+    autoFocus,
+    className,
+    defaultValue,
+    disabled,
+    error,
+    id,
+    inputClassName,
+    InputClassName,
+    inputProps: inputPropsProp,
+    InputProps,
+    inputRef,
+    label,
+    labelClassName,
+    InputLabelProps,
+    helperText,
+    helperTextClassName,
+    FormHelperTextProps,
+    fullWidth,
+    required,
+    type,
+    multiline,
+    name,
+    placeholder,
+    rootRef,
+    rows,
+    rowsMax,
+    value,
+    ...other
+  } = props;
 
-/**
- * TextField
- *
- * @see https://material.google.com/components/text-fields.html
- *
- * ```js
- * import TextField from 'material-ui/TextField';
- *
- * const Component = () => <TextField value="Hello World">;
- * ```
- */
-export default class TextField extends Component {
-  static propTypes = {
-    /**
-     * The contents of the `TextField`.
-     */
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-    /**
-     * Whether this text field is required.
-     */
-    required: PropTypes.bool,
-  };
+  let inputProps = inputPropsProp;
 
-  static defaultProps = {
-    required: false,
-  };
-
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
-  };
-
-  state = {
-    dirty: false,
-    focused: false,
-  };
-
-  classes = {};
-
-  handleFocus = () => this.setState({ focused: true });
-  handleBlur = () => this.setState({ focused: false });
-
-  handleDirty = () => {
-    if (!this.state.dirty) {
-      this.setState({ dirty: true });
-    }
-  };
-
-  handleClean = () => {
-    if (this.state.dirty) {
-      this.setState({ dirty: false });
-    }
-  };
-
-  renderChild = (child) => {
-    const { muiName } = child.type;
-
-    if (muiName === 'TextFieldInput') {
-      return this.renderInput(child);
-    } else if (muiName === 'TextFieldLabel') {
-      return this.renderLabel(child);
-    }
-
-    return child;
-  };
-
-  renderInput = (input) => (
-    cloneElement(input, {
-      className: classNames(this.classes.input, input.props.className),
-      onDirty: this.handleDirty,
-      onClean: this.handleClean,
-      onFocus: createChainedFunction(this.handleFocus, input.props.onFocus),
-      onBlur: createChainedFunction(this.handleBlur, input.props.onBlur),
-    })
-  );
-
-  renderLabel = (label) => (
-    cloneElement(label, {
-      className: classNames(this.classes.label, label.props.className),
-      focused: this.state.focused,
-      shrink: label.props.hasOwnProperty('shrink') ? // Shrink the label if dirty or focused
-        label.props.shrink : (this.state.dirty || this.state.focused),
-      required: this.props.required,
-    })
-  );
-
-  render() {
-    const {
-      children,
-      className: classNameProp,
-      ...other
-    } = this.props;
-
-    this.classes = this.context.styleManager.render(styleSheet);
-
-    const className = classNames({
-      [this.classes.root]: true,
-      [this.classes.focused]: this.state.focused,
-    }, classNameProp);
-
-    return (
-      <div className={className} {...other}>
-        {Children.map(children, this.renderChild)}
-      </div>
-    );
+  if (inputClassName) {
+    inputProps = {
+      className: inputClassName,
+      ...inputProps,
+    };
   }
+
+  return (
+    <FormControl
+      fullWidth={fullWidth}
+      ref={rootRef}
+      className={className}
+      error={error}
+      required={required}
+      {...other}
+    >
+      {label &&
+        <InputLabel htmlFor={id} className={labelClassName} {...InputLabelProps}>
+          {label}
+        </InputLabel>}
+      <Input
+        autoComplete={autoComplete}
+        autoFocus={autoFocus}
+        className={InputClassName}
+        defaultValue={defaultValue}
+        disabled={disabled}
+        multiline={multiline}
+        name={name}
+        rows={rows}
+        rowsMax={rowsMax}
+        type={type}
+        value={value}
+        id={id}
+        inputProps={inputProps}
+        inputRef={inputRef}
+        placeholder={placeholder}
+        {...InputProps}
+      />
+      {helperText &&
+        <FormHelperText className={helperTextClassName} {...FormHelperTextProps}>
+          {helperText}
+        </FormHelperText>}
+    </FormControl>
+  );
 }
+
+TextField.defaultProps = {
+  required: false,
+};
+
+export default TextField;

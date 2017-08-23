@@ -1,237 +1,131 @@
-// @flow weak
+// @flow
 
-import React, { Component, Children, cloneElement, PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import { findDOMNode } from 'react-dom';
+import React, { Component, Children, cloneElement } from 'react';
+import type { Element } from 'react';
 import classNames from 'classnames';
-import keycode from 'keycode';
-import querySelectorAll from 'dom-helpers/query/querySelectorAll';
-import contains from 'dom-helpers/query/contains';
-import activeElement from 'dom-helpers/activeElement';
-import ownerDocument from 'dom-helpers/ownerDocument';
+import withStyles from '../styles/withStyles';
+import FormGroup from '../Form/FormGroup';
+import { find } from '../utils/helpers';
 
-function changeFocus(currentFocusIndex = 0, event, radios) {
-  const key = keycode(event);
+export const styles = {
+  root: {
+    flex: '1 1 auto',
+    margin: 0,
+    padding: 0,
+  },
+};
 
-  if (key === 'down' || key === 'right') {
-    event.preventDefault();
-    if (currentFocusIndex < radios.length - 1) {
-      radios[currentFocusIndex + 1].focus();
-    } else {
-      radios[0].focus();
-    }
-  } else if (key === 'up' || key === 'left') {
-    event.preventDefault();
-    if (currentFocusIndex > 0) {
-      radios[currentFocusIndex - 1].focus();
-    } else {
-      radios[radios.length - 1].focus();
-    }
-  }
-}
+type DefaultProps = {
+  classes: Object,
+};
 
-export const styleSheet = createStyleSheet('RadioGroup', () => {
-  return {
-    root: {
-      flex: '1 1 auto',
-      margin: 0,
-      padding: 0,
-    },
-  };
-});
+export type Props = {
+  /**
+   * The content of the component.
+   */
+  children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * The name used to reference the value of the control.
+   */
+  name?: string,
+  /**
+   * @ignore
+   */
+  onBlur?: Function,
+  /**
+   * Callback fired when a radio button is selected.
+   *
+   * @param {object} event The event source of the callback
+   * @param {string} value The `value` of the selected radio button
+   */
+  onChange?: Function,
+  /**
+   * @ignore
+   */
+  onKeyDown?: Function,
+  /**
+   * Value of the selected radio button.
+   */
+  value: string,
+};
 
-export default class RadioGroup extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-    component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    /**
-     * @ignore
-     * For uncontrolled support
-     */
-    defaultValue: PropTypes.string,
-    name: PropTypes.string,
-    onBlur: PropTypes.func,
-    onChange: PropTypes.func,
-    onKeyDown: PropTypes.func,
-    selectedValue: PropTypes.string,
-  };
+type AllProps = DefaultProps & Props;
 
-  static defaultProps = {
-    component: 'div',
-  };
+class RadioGroup extends Component<void, AllProps, void> {
+  props: AllProps;
 
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
-  };
+  radios: Array<HTMLInputElement> = [];
 
-  static childContextTypes = {
-    radioGroup: PropTypes.object,
-  };
-
-  state = {
-    currentTabIndex: undefined,
-    selectedValue: undefined, // used for uncontrolled support
-  };
-
-  componentWillMount() {
-    this.isControlled = this.props.selectedValue !== undefined;
-
-    // not controlled, use internal state
-    if (!this.isControlled && this.props.defaultValue) {
-      this.setState({ selectedValue: this.props.defaultValue });
-    }
-  }
-
-  componentDidMount() {
-    this.resetTabIndex();
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this.blurTimer);
-  }
-
-  group = undefined;
-  blurTimer = undefined;
-  isControlled = undefined;
-
-  handleBlur = (event) => {
-    this.blurTimer = setTimeout(() => {
-      if (this.group) {
-        const group = findDOMNode(this.group);
-        const currentFocus = activeElement(ownerDocument(group));
-        if (!contains(group, currentFocus)) {
-          this.resetTabIndex();
-        }
-      }
-    }, 50);
-
-    if (this.props.onBlur) {
-      this.props.onBlur(event);
-    }
-  };
-
-  handleKeyDown = (event) => {
-    const group = findDOMNode(this.group);
-
-    if (group) {
-      const currentFocus = activeElement(ownerDocument(group));
-      const radios = querySelectorAll(group, '[role="radio"]');
-
-      let currentFocusIndex = -1;
-
-      for (let i = 0; i < radios.length; i += 1) {
-        if (radios[i] === currentFocus || contains(radios[i], currentFocus)) {
-          currentFocusIndex = i;
-          break;
-        }
-      }
-
-      changeFocus(currentFocusIndex, event, radios);
+  focus = () => {
+    if (!this.radios || !this.radios.length) {
+      return;
     }
 
-    if (this.props.onKeyDown) {
-      this.props.onKeyDown(event);
+    const focusRadios = this.radios.filter(n => !n.disabled);
+
+    if (!focusRadios.length) {
+      return;
     }
+
+    const selectedRadio = find(focusRadios, n => n.checked);
+
+    if (selectedRadio) {
+      selectedRadio.focus();
+      return;
+    }
+
+    focusRadios[0].focus();
   };
 
   handleRadioChange = (event, checked) => {
-    if (checked) {
-      if (!this.isControlled) {
-        this.setState({ selectedValue: event.target.value });
-      }
-      if (this.props.onChange) {
-        this.props.onChange(event, event.target.value);
-      }
+    if (checked && this.props.onChange) {
+      this.props.onChange(event, event.target.value);
     }
   };
-
-  handleRadioFocus = (event) => {
-    const group = findDOMNode(this.group);
-    if (group) {
-      const radios = querySelectorAll(group, '[role="radio"]');
-      for (let i = 0; i < radios.length; i += 1) {
-        if (radios[i] === event.currentTarget || contains(radios[i], event.currentTarget)) {
-          this.setTabIndex(i);
-          break;
-        }
-      }
-    }
-  };
-
-  focus() {
-    const { currentTabIndex } = this.state;
-    if (currentTabIndex && currentTabIndex >= 0) {
-      const group = findDOMNode(this.group);
-      const radios = querySelectorAll(group, '[role="radio"]');
-      if (radios && radios[currentTabIndex]) {
-        radios[currentTabIndex].focus();
-      }
-    }
-  }
-
-  resetTabIndex() {
-    const group = findDOMNode(this.group);
-    const currentFocus = activeElement(ownerDocument(group));
-    const radios = querySelectorAll(group, '[role="radio"]');
-    const currentFocusIndex = radios.indexOf(currentFocus);
-
-    if (currentFocusIndex !== -1) {
-      return this.setTabIndex(currentFocusIndex);
-    }
-
-    const selectedRadio = group.querySelector('[aria-checked="true"]');
-
-    if (selectedRadio) {
-      return this.setTabIndex(radios.indexOf(selectedRadio));
-    }
-
-    return this.setTabIndex(0);
-  }
-
-  setTabIndex(n) {
-    this.setState({ currentTabIndex: n });
-  }
 
   render() {
     const {
       children,
+      classes,
       className: classNameProp,
-      component: ComponentProp,
       name,
-      selectedValue: selectedValueProp,
-      onChange, // eslint-disable-line no-unused-vars
+      value,
+      onChange,
       ...other
     } = this.props;
 
-    const selectedValue = this.isControlled ? selectedValueProp : this.state.selectedValue;
-    const classes = this.context.styleManager.render(styleSheet);
+    this.radios = [];
 
     return (
-      <ComponentProp
+      <FormGroup
         className={classNames(classes.root, classNameProp)}
         data-mui-test="RadioGroup"
-        ref={(c) => { this.group = c; }}
         role="radiogroup"
         {...other}
-        onKeyDown={this.handleKeyDown}
-        onBlur={this.handleBlur}
       >
         {Children.map(children, (child, index) => {
+          const selected = value === child.props.value;
           return cloneElement(child, {
             key: index,
             name,
-            checked: selectedValue === child.props.value,
-            tabIndex: index === this.state.currentTabIndex ? '0' : '-1',
+            inputRef: node => {
+              this.radios.push(node);
+            },
+            checked: selected,
             onChange: this.handleRadioChange,
-            onFocus: this.handleRadioFocus,
           });
         })}
-      </ComponentProp>
+      </FormGroup>
     );
   }
 }
 
+export default withStyles(styles, { name: 'MuiRadioGroup' })(RadioGroup);

@@ -1,130 +1,141 @@
 // @flow weak
+// @inheritedComponent ButtonBase
 
-import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
+import React, { Children, cloneElement } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import ButtonBase from '../internal/ButtonBase';
+import withStyles from '../styles/withStyles';
+import ButtonBase from '../ButtonBase';
+import { capitalizeFirstLetter } from '../utils/helpers';
+import Icon from '../Icon';
+import { isMuiComponent } from '../utils/reactHelpers';
 
-export const styleSheet = createStyleSheet('IconButton', (theme) => {
-  return {
-    iconButton: {
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      textAlign: 'center',
-      flex: '0 0 auto',
-      fontSize: 24,
-      width: 48,
-      height: 48,
-      padding: 0,
-      borderRadius: '50%',
-      backgroundColor: 'transparent',
-      color: theme.color,
-      zIndex: 1,
-      transition: theme.transition,
-    },
-    contrast: {
-      color: theme.contrast,
-    },
-    label: {
-      width: '100%',
-      display: 'flex',
-      alignItems: 'inherit',
-      justifyContent: 'inherit',
-      '& .material-icons': {
-        width: '1em',
-        height: '1em',
-      },
-    },
-    keyboardFocused: {
-      backgroundColor: theme.focusBackground,
-    },
-    primary: {
-      color: theme.primary[500],
-    },
-    accent: {
-      color: theme.accent.A200,
-    },
-  };
-});
-
-styleSheet.registerLocalTheme((theme) => {
-  const { palette, transitions } = theme;
-  return {
-    color: palette.type === 'light' ?
-      palette.text.secondary : palette.text.primary,
-    contrast: palette.type === 'light' ?
-      palette.shades.dark.text.primary : palette.shades.light.text.secondary,
-    primary: palette.primary,
-    accent: palette.accent,
-    transition: transitions.create('background-color', '150ms'),
-    focusBackground: palette.text.divider,
-  };
+export const styles = (theme: Object) => ({
+  root: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    flex: '0 0 auto',
+    fontSize: 24,
+    width: theme.spacing.unit * 6,
+    height: theme.spacing.unit * 6,
+    padding: 0,
+    borderRadius: '50%',
+    backgroundColor: 'transparent',
+    color: theme.palette.action.active,
+    transition: theme.transitions.create('background-color', {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  disabled: {
+    color: theme.palette.action.disabled,
+  },
+  colorAccent: {
+    color: theme.palette.accent.A200,
+  },
+  colorContrast: {
+    color: theme.palette.getContrastText(theme.palette.primary[500]),
+  },
+  colorPrimary: {
+    color: theme.palette.primary[500],
+  },
+  colorInherit: {
+    color: 'inherit',
+  },
+  label: {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'inherit',
+    justifyContent: 'inherit',
+  },
+  icon: {
+    width: '1em',
+    height: '1em',
+  },
+  keyboardFocused: {
+    backgroundColor: theme.palette.text.divider,
+  },
 });
 
 /**
- * @see https://material.google.com/components/buttons.html
- *
- * ```js
- * import IconButton from 'material-ui/IconButton';
- *
- * const Component = () => <IconButton>delete</IconButton>;
- * ```
+ * Refer to the [Icons](/style/icons) section of the documentation
+ * regarding the available icon options.
  */
-export default class IconButton extends Component {
-  static propTypes = {
-    /**
-     * The icon element. If a string is passed,
-     * it will be used as a material icon font ligature.
-     */
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-    contrast: PropTypes.bool,
-    /**
-     * If true, the button will be disabled.
-     */
-    disabled: PropTypes.bool,
-    /**
-     * If false, the ripple effect will be disabled.
-     */
-    ripple: PropTypes.bool,
-    /**
-     * @ignore
-     */
-    theme: PropTypes.object,
-  };
+function IconButton(props) {
+  const { children, classes, className, color, disabled, rootRef, ...other } = props;
 
-  static defaultProps = {
-    contrast: false,
-    disabled: false,
-    ripple: true,
-  };
+  return (
+    <ButtonBase
+      className={classNames(
+        classes.root,
+        {
+          [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
+          [classes.disabled]: disabled,
+        },
+        className,
+      )}
+      centerRipple
+      keyboardFocusedClassName={classes.keyboardFocused}
+      disabled={disabled}
+      ref={rootRef}
+      {...other}
+    >
+      <span className={classes.label}>
+        {typeof children === 'string'
+          ? <Icon className={classes.icon}>
+              {children}
+            </Icon>
+          : Children.map(children, child => {
+              if (isMuiComponent(child, 'Icon')) {
+                return cloneElement(child, {
+                  className: classNames(classes.icon, child.props.className),
+                });
+              }
 
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
-  };
-
-  render() {
-    const { children, className, contrast, theme, ...other } = this.props;
-    const classes = this.context.styleManager.render(styleSheet, theme);
-    return (
-      <ButtonBase
-        className={classNames(classes.iconButton, {
-          [classes.contrast]: contrast,
-        }, className)}
-        centerRipple
-        keyboardFocusedClassName={classes.keyboardFocused}
-        {...other}
-      >
-        <span className={classes.label}>
-          {typeof children === 'string' ?
-            <span className="material-icons">{children}</span> : children
-          }
-        </span>
-      </ButtonBase>
-    );
-  }
+              return child;
+            })}
+      </span>
+    </ButtonBase>
+  );
 }
+
+IconButton.propTypes = {
+  /**
+   * The icon element.
+   * If a string is provided, it will be used as an icon font ligature.
+   */
+  children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The color of the component. It's using the theme palette when that makes sense.
+   */
+  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'contrast', 'accent']),
+  /**
+   * If `true`, the button will be disabled.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * If `true`, the ripple will be disabled.
+   */
+  disableRipple: PropTypes.bool,
+  /**
+   * Use that property to pass a ref callback to the root component.
+   */
+  rootRef: PropTypes.func,
+};
+
+IconButton.defaultProps = {
+  color: 'default',
+  disabled: false,
+  disableRipple: false,
+};
+
+export default withStyles(styles, { name: 'MuiIconButton' })(IconButton);

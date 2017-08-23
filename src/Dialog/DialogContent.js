@@ -1,31 +1,26 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('DialogContent', () => {
-  const gutter = 24;
+export const styles = (theme: Object) => {
+  const spacing = theme.spacing.unit * 3;
   return {
     root: {
       flex: '1 1 auto',
       overflowY: 'auto',
-      padding: `0 ${gutter}px ${gutter}px ${gutter}px`,
+      padding: `0 ${spacing}px ${spacing}px ${spacing}px`,
       '&:first-child': {
-        paddingTop: gutter,
+        paddingTop: spacing,
       },
     },
   };
-});
+};
 
-export default function DialogContent(props, context) {
-  const {
-    children,
-    className,
-    ...other
-  } = props;
-
-  const classes = context.styleManager.render(styleSheet);
+function DialogContent(props) {
+  const { classes, children, className, ...other } = props;
 
   return (
     <div className={classNames(classes.root, className)} {...other}>
@@ -35,13 +30,18 @@ export default function DialogContent(props, context) {
 }
 
 DialogContent.propTypes = {
+  /**
+   * The content of the component.
+   */
   children: PropTypes.node,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
 };
 
-DialogContent.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
-};
+export default withStyles(styles, { name: 'MuiDialogContent' })(DialogContent);

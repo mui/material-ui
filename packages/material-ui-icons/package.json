@@ -1,0 +1,62 @@
+{
+  "private": true,
+  "name": "material-ui-icons-builder",
+  "version": "1.0.0-beta.5",
+  "description": "Material Design Svg Icons converted to Material-UI React components.",
+  "author": "Material-UI Team",
+  "license": "MIT",
+  "homepage": "http://material-ui.com/",
+  "bugs": {
+    "url": "https://github.com/callemall/material-ui/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "callemall/material-ui"
+  },
+  "keywords": [
+    "Material",
+    "Design",
+    "Material-UI",
+    "Icons",
+    "React",
+    "react-component"
+  ],
+  "scripts": {
+    "prebuild": "rimraf build",
+    "build:es2015": "cross-env NODE_ENV=production babel ./src --out-dir ./build",
+    "build:es2015modules": "cross-env NODE_ENV=production BABEL_ENV=modules babel ./src/index.js --out-file ./build/index.es.js",
+    "build:copy-files": "babel-node ./copy-files.js",
+    "build:icons": "babel-node ./builder.js --output-dir ./src --svg-dir ./node_modules/material-design-icons --glob '/**/production/*_24px.svg' --renameFilter ./filters/rename/material-design-icons.js",
+    "build:typings": "babel-node ./create-typings.js",
+    "build": "npm run build:icons && npm run build:es2015 && npm run build:es2015modules && npm run build:copy-files && npm run build:typings",
+    "version": "yarn build",
+    "release": "np --no-publish --any-branch",
+    "postrelease": "npm publish build",
+    "test": "mocha",
+    "test:watch": "mocha -w"
+  },
+  "peerDependencies": {
+    "material-ui": "^1.0.0-beta",
+    "react": "^15.3.0 || ^16.0.0-beta.1",
+    "react-dom": "^15.3.0 || ^16.0.0-beta.1"
+  },
+  "dependencies": {
+    "recompose": "^0.24.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "chai": "^4.1.1",
+    "cross-env": "^5.0.5",
+    "fs-extra": "^4.0.1",
+    "glob": "^7.1.2",
+    "lodash": "^4.0.0",
+    "material-design-icons": "^3.0.0",
+    "mkdirp": "^0.5.0",
+    "mocha": "^3.5.0",
+    "mustache": "^2.0.0",
+    "recursive-readdir-sync": "^1.0.6",
+    "rimraf": "^2.0.0",
+    "temp": "^0.8.3",
+    "yargs": "^8.0.2"
+  }
+}

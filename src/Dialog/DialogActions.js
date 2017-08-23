@@ -1,64 +1,59 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
+import React, { Children, cloneElement, isValidElement } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import withStyles from '../styles/withStyles';
+import '../Button'; // So we don't have any override priority issue.
 
-export const styleSheet = createStyleSheet('DialogActions', () => {
-  return {
-    root: {
-      display: 'flex',
-      justifyContent: 'flex-end',
-      alignItems: 'center',
-      margin: '8px 4px',
-      flex: '0 0 auto',
-    },
-    action: {
-      margin: '0 4px',
-    },
-    button: {
-      minWidth: '64px',
-    },
-  };
+export const styles = (theme: Object) => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    margin: `${theme.spacing.unit}px 4px`,
+    flex: '0 0 auto',
+  },
+  action: {
+    margin: '0 4px',
+  },
+  button: {
+    minWidth: 64,
+  },
 });
 
-export default class DialogActions extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-  };
+function DialogActions(props) {
+  const { children, classes, className, ...other } = props;
 
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
-  };
-
-  classes = {};
-
-  renderButton = (button) => (
-    <div className={this.classes.action}>
-      {React.cloneElement(
-        button,
-        { className: classNames(this.classes.button, button.props.className) },
+  return (
+    <div data-mui-test="DialogActions" className={classNames(classes.root, className)} {...other}>
+      {Children.map(
+        children,
+        button =>
+          isValidElement(button) &&
+          <div className={classes.action}>
+            {cloneElement(button, {
+              className: classNames(classes.button, button.props.className),
+            })}
+          </div>,
       )}
     </div>
   );
-
-  render() {
-    const {
-      children,
-      className,
-      ...other
-    } = this.props;
-
-    this.classes = this.context.styleManager.render(styleSheet);
-
-    return (
-      <div data-mui-test="DialogActions" className={classNames(this.classes.root, className)} {...other}>
-        {React.Children.map(children, this.renderButton)}
-      </div>
-    );
-  }
 }
+
+DialogActions.propTypes = {
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+};
+
+export default withStyles(styles, { name: 'MuiDialogActions' })(DialogActions);

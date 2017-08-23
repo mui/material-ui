@@ -1,19 +1,19 @@
 // @flow weak
-/* eslint-env mocha */
 
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createMountWithContext } from 'test/utils';
+import { createMount } from '../test-utils';
 import Transition, { UNMOUNTED, EXITED, ENTERING, ENTERED, EXITING } from './Transition';
 
-describe('<Transition>', () => {
+describe('<Transition />', () => {
   let mount;
 
   before(() => {
-    mount = createMountWithContext();
+    mount = createMount();
   });
+
   after(() => {
     mount.cleanUp();
   });
@@ -45,13 +45,13 @@ describe('<Transition>', () => {
     assert.strictEqual(wrapper.state('status'), ENTERING);
   });
 
-  it('should flush new props to the DOM before initiating a transition', (done) => {
+  it('should flush new props to the DOM before initiating a transition', done => {
     const wrapper = mount(
       <Transition
         in={false}
         timeout={0}
         enteringClassName="test-entering"
-        onEnter={(node) => {
+        onEnter={node => {
           assert.strictEqual(
             node.classList.contains('test-class'),
             true,
@@ -79,17 +79,13 @@ describe('<Transition>', () => {
 
     beforeEach(() => {
       wrapper = mount(
-        <Transition
-          timeout={10}
-          enteredClassName="test-enter"
-          enteringClassName="test-entering"
-        >
+        <Transition timeout={10} enteredClassName="test-enter" enteringClassName="test-entering">
           <div />
         </Transition>,
       );
     });
 
-    it('should fire callbacks', (done) => {
+    it('should fire callbacks', done => {
       const onEnter = spy();
       const onEntering = spy();
 
@@ -108,7 +104,7 @@ describe('<Transition>', () => {
       });
     });
 
-    it('should move to each transition state', (done) => {
+    it('should move to each transition state', done => {
       let count = 0;
 
       assert.strictEqual(wrapper.state('status'), EXITED);
@@ -131,7 +127,7 @@ describe('<Transition>', () => {
       });
     });
 
-    it('should apply classes at each transition state', (done) => {
+    it('should apply classes at each transition state', done => {
       let count = 0;
 
       assert.strictEqual(wrapper.state('status'), EXITED);
@@ -160,18 +156,13 @@ describe('<Transition>', () => {
 
     beforeEach(() => {
       wrapper = mount(
-        <Transition
-          in
-          timeout={10}
-          exitedClassName="test-exit"
-          exitingClassName="test-exiting"
-        >
+        <Transition in timeout={10} exitedClassName="test-exit" exitingClassName="test-exiting">
           <div />
         </Transition>,
       );
     });
 
-    it('should fire callbacks', (done) => {
+    it('should fire callbacks', done => {
       const onExit = spy();
       const onExiting = spy();
 
@@ -193,7 +184,7 @@ describe('<Transition>', () => {
       });
     });
 
-    it('should move to each transition state', (done) => {
+    it('should move to each transition state', done => {
       let count = 0;
 
       assert.strictEqual(wrapper.state('status'), ENTERED);
@@ -219,7 +210,7 @@ describe('<Transition>', () => {
       });
     });
 
-    it('should apply classes at each transition state', (done) => {
+    it('should apply classes at each transition state', done => {
       let count = 0;
 
       assert.strictEqual(wrapper.state('status'), ENTERED);
@@ -264,15 +255,15 @@ describe('<Transition>', () => {
 
       render() {
         const {
-          initialIn, // eslint-disable-line no-unused-vars, react/prop-types
+          initialIn, // eslint-disable-line react/prop-types
           ...other
         } = this.props;
 
         return (
           <Transition
-            ref={(c) => {
-              if (c !== null) {
-                this.transition = c;
+            ref={node => {
+              if (node !== null) {
+                this.transition = node;
               }
             }}
             unmountOnExit
@@ -286,7 +277,7 @@ describe('<Transition>', () => {
       }
     }
 
-    it('should mount when entering', (done) => {
+    it('should mount when entering', done => {
       const wrapper = mount(
         <UnmountTransition
           initialIn={false}
@@ -299,18 +290,18 @@ describe('<Transition>', () => {
       );
 
       assert.strictEqual(wrapper.instance().getStatus(), UNMOUNTED);
-      assert.notOk(findDOMNode(wrapper.instance()));
+      assert.isNotOk(findDOMNode(wrapper.instance()));
 
       wrapper.setState({ in: true });
     });
 
-    it('should unmount after exiting', (done) => {
+    it('should unmount after exiting', done => {
       const wrapper = mount(
         <UnmountTransition
           initialIn
           onExited={() => {
             assert.strictEqual(wrapper.instance().getStatus(), UNMOUNTED);
-            assert.notOk(findDOMNode(wrapper.instance()));
+            assert.isNotOk(findDOMNode(wrapper.instance()));
             done();
           }}
         />,
@@ -320,6 +311,65 @@ describe('<Transition>', () => {
       assert.ok(findDOMNode(wrapper.instance()));
 
       wrapper.setState({ in: false });
+    });
+  });
+
+  describe('shouldComponentUpdate', () => {
+    let wrapper;
+    let instance;
+    let currentState;
+    let nextState;
+    let result;
+
+    const nextProps = {};
+
+    before(() => {
+      wrapper = mount(
+        <Transition>
+          <div />
+        </Transition>,
+      );
+    });
+
+    it('should update', () => {
+      currentState = { status: EXITED };
+      wrapper.setProps({ in: true });
+      nextState = currentState;
+      wrapper.setState(currentState);
+      instance = wrapper.instance();
+      result = instance.shouldComponentUpdate(nextProps, nextState);
+      assert.strictEqual(result, false);
+    });
+
+    it("shouldn't update due to prop:in being false", () => {
+      currentState = { status: EXITED };
+      nextState = currentState;
+      wrapper.setState({ status: EXITED });
+      wrapper.setProps({ in: false });
+      instance = wrapper.instance();
+      result = instance.shouldComponentUpdate(nextProps, nextState);
+      assert.strictEqual(result, true);
+    });
+
+    it("shouldn't update due to currentState.status != EXITED", () => {
+      currentState = { status: UNMOUNTED };
+      wrapper.setState(currentState);
+      nextState = currentState;
+      wrapper.setProps({ in: true });
+      instance = wrapper.instance();
+      result = instance.shouldComponentUpdate(nextProps, nextState);
+      assert.strictEqual(result, true);
+    });
+
+    it("shouldn't update due to currentState.status != nextState.status", () => {
+      currentState = { status: EXITED };
+      wrapper.setState(currentState);
+      nextState = currentState;
+      nextState.status = UNMOUNTED;
+      wrapper.setProps({ in: true });
+      instance = wrapper.instance();
+      result = instance.shouldComponentUpdate(nextProps, nextState);
+      assert.strictEqual(result, true);
     });
   });
 });

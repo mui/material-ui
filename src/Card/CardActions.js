@@ -1,12 +1,13 @@
-// @flow weak
+// @flow
 
-import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
+import React from 'react';
+import type { Element } from 'react';
 import classNames from 'classnames';
+import withStyles from '../styles/withStyles';
 import { cloneChildrenWithClassName } from '../utils/reactHelpers';
 
-export const styleSheet = createStyleSheet('CardActions', () => ({
-  cardActions: {
+export const styles = {
+  root: {
     height: 52,
     display: 'flex',
     alignItems: 'center',
@@ -15,39 +16,48 @@ export const styleSheet = createStyleSheet('CardActions', () => ({
   actionSpacing: {
     margin: '0 4px',
   },
-}));
+};
 
-export default function CardActions(props, context) {
-  const {
-    actionSpacing,
-    children,
-    className: classNameProp,
-    ...other
-  } = props;
+type DefaultProps = {
+  classes: Object,
+  disableActionSpacing: boolean,
+};
 
-  const classes = context.styleManager.render(styleSheet);
-  const className = classNames(classes.cardActions, classNameProp);
+export type Props = {
+  /**
+   * The content of the component.
+   */
+  children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * If `true`, the card actions do not have additional margin.
+   */
+  disableActionSpacing?: boolean,
+};
+
+type AllProps = DefaultProps & Props;
+
+function CardActions(props: AllProps) {
+  const { disableActionSpacing, children, classes, className, ...other } = props;
 
   return (
-    <div className={className} {...other}>
-      {actionSpacing ? cloneChildrenWithClassName(children, classes.actionSpacing) : children}
+    <div className={classNames(classes.root, className)} {...other}>
+      {disableActionSpacing
+        ? children
+        : cloneChildrenWithClassName(children, classes.actionSpacing)}
     </div>
   );
 }
 
-CardActions.propTypes = {
-  actionSpacing: PropTypes.bool,
-  children: PropTypes.node,
-  /**
-   * The CSS class name of the root element.
-   */
-  className: PropTypes.string,
-};
-
 CardActions.defaultProps = {
-  actionSpacing: true,
+  disableActionSpacing: false,
 };
 
-CardActions.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
-};
+export default withStyles(styles, { name: 'MuiCardActions' })(CardActions);

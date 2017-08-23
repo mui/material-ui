@@ -1,33 +1,32 @@
-// @flow weak
-/* eslint-env mocha */
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallowWithContext } from 'test/utils';
-import CardActions, { styleSheet } from './CardActions';
+import { createShallow, getClasses } from '../test-utils';
+import CardActions from './CardActions';
 
-describe('<CardActions>', () => {
+describe('<CardActions />', () => {
   let shallow;
   let classes;
 
   before(() => {
-    shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet);
+    shallow = createShallow({ dive: true });
+    classes = getClasses(<CardActions />);
   });
 
-  it('should render a div with the cardActions class', () => {
-    const wrapper = shallow(
-      <CardActions />,
-    );
-    assert.strictEqual(wrapper.is('div'), true, 'should be a div');
-    assert.strictEqual(wrapper.hasClass(classes.cardActions), true, 'should have the cardActions class');
+  it('should render a div with the root class', () => {
+    const wrapper = shallow(<CardActions />);
+    assert.strictEqual(wrapper.name(), 'div');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should pass the actionSpacing class to children', () => {
+    const child3 = false;
     const wrapper = shallow(
       <CardActions>
         <div id="child1" />
         <div id="child2" />
+        {child3 && <div id="child3" />}
       </CardActions>,
     );
 
@@ -37,7 +36,7 @@ describe('<CardActions>', () => {
 
   it('should not pass the actionSpacing class to children', () => {
     const wrapper = shallow(
-      <CardActions actionSpacing={false}>
+      <CardActions disableActionSpacing>
         <div id="child1" />
         <div id="child2" />
       </CardActions>,

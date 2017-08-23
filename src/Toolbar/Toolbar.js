@@ -1,41 +1,39 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('Toolbar', (theme) => {
-  return {
-    root: {
-      position: 'relative',
-      display: 'flex',
-      alignItems: 'center',
-      height: 56,
+export const styles = (theme: Object) => ({
+  root: {
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    minHeight: 56,
+    [`${theme.breakpoints.up('xs')} and (orientation: landscape)`]: {
+      minHeight: 48,
     },
-    gutters: theme.mixins.gutters({}),
     [theme.breakpoints.up('sm')]: {
-      root: {
-        height: 64,
-      },
+      minHeight: 64,
     },
-  };
+  },
+  gutters: theme.mixins.gutters({}),
 });
 
-export default function Toolbar(props, context) {
-  const {
-    children,
-    className: classNameProp,
-    gutters,
-    ...other
-  } = props;
+function Toolbar(props) {
+  const { children, classes, className: classNameProp, disableGutters, ...other } = props;
 
-  const classes = context.styleManager.render(styleSheet);
-  const className = classNames(classes.root, {
-    [classes.gutters]: gutters,
-  }, classNameProp);
+  const className = classNames(
+    classes.root,
+    {
+      [classes.gutters]: !disableGutters,
+    },
+    classNameProp,
+  );
 
   return (
-    <div className={className} {...other} >
+    <div className={className} {...other}>
       {children}
     </div>
   );
@@ -47,19 +45,21 @@ Toolbar.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
   /**
-   * If set to true, enables gutter padding.
+   * If `true`, disables gutter padding.
    */
-  gutters: PropTypes.bool,
+  disableGutters: PropTypes.bool,
 };
 
 Toolbar.defaultProps = {
-  gutters: true,
+  disableGutters: false,
 };
 
-Toolbar.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
-};
+export default withStyles(styles, { name: 'MuiToolbar' })(Toolbar);

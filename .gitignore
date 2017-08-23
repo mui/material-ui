@@ -1,25 +1,26 @@
-node_modules
-npm-debug.log
-local.log
-dist
-build
-coverage
-selenium-output
-test/regressions/screenshots/output
-
 # Exclude compiled files
+build
 /lib
-icon-builder/js
-icon-builder/jsx
-
-# Exclude IDE project folders
-.idea
-*.sublime-project
-*.sublime-workspace
-jsconfig.json
+/.next
+/.eslintcache
+/docs/export
+/tmp
+coverage
 
 # OS files
 .DS_STORE
 
-# tmp
-tmp*
+# Screenshors generated for Argos-CI
+/test/regressions/screenshots
+/test/selenium-output
+
+# npm files
+node_modules
+package-lock.json
+*.log
+
+# Editor files
+.idea
+.vscode
+
+.nyc_output

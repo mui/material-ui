@@ -1,41 +1,57 @@
-// @flow weak
+// @flow
+// Taken from https://github.com/react-bootstrap/react-overlays/blob/master/src/ModalManager.js
 
-import css from 'dom-helpers/style';
+import warning from 'warning';
 import isWindow from 'dom-helpers/query/isWindow';
 import ownerDocument from 'dom-helpers/ownerDocument';
 import canUseDom from 'dom-helpers/util/inDOM';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import { hideSiblings, showSiblings, ariaHidden } from '../utils/manageAriaHidden';
 
-/**
- * Do we have a scroll bar?
- * @private
- */
+function getPaddingRight(node) {
+  return parseInt(node.style.paddingRight || 0, 10);
+}
+
+// Do we have a scroll bar?
 function bodyIsOverflowing(node) {
   const doc = ownerDocument(node);
   const win = isWindow(doc);
-  return doc.body.clientWidth < win.innerWidth;
+
+  // Takes in account potential non zero margin on the body.
+  const style = window.getComputedStyle(doc.body);
+  const marginLeft = parseInt(style.getPropertyValue('margin-left'), 10);
+  const marginRight = parseInt(style.getPropertyValue('margin-right'), 10);
+
+  return marginLeft + doc.body.clientWidth + marginRight < win.innerWidth;
 }
 
 // The container shouldn't be used on the server.
 const defaultContainer = canUseDom ? window.document.body : {};
 
 /**
- * State managment helper for modals/layers.
+ * State management helper for modals/layers.
  * Simplified, but inspired by react-overlay's ModalManager class
  *
  * @internal Used by the Modal to ensure proper focus management.
  */
-export function createModalManager({
-  container = defaultContainer,
-  hideSiblingNodes = true,
-} = {}) {
+function createModalManager(
+  { container = defaultContainer, hideSiblingNodes = true }: Object = {},
+) {
+  warning(
+    container !== null,
+    `
+    Material-UI: you are most likely evaluating the code before the
+    browser has a chance to reach the <body>.
+    Please move the import at the end of the <body>.
+  `,
+  );
+
   const modals = [];
 
   let prevOverflow;
-  let prevPadding;
+  let prevPaddings = [];
 
-  function add(modal) {
+  function add(modal: Object) {
     let modalIdx = modals.indexOf(modal);
 
     if (modalIdx !== -1) {
@@ -49,26 +65,31 @@ export function createModalManager({
       hideSiblings(container, modal.mountNode);
     }
 
-    const containerStyle = {
-      overflow: 'hidden',
-      paddingRight: undefined,
-    };
+    if (modals.length === 1) {
+      // Save our current overflow so we can revert
+      // back to it when all modals are closed!
+      prevOverflow = container.style.overflow;
 
-    // Save our current overflow so we can revert
-    // back to it when all modals are closed!
-    prevOverflow = container.style.overflow;
+      if (bodyIsOverflowing(container)) {
+        prevPaddings = [getPaddingRight(container)];
+        const scrollbarSize = getScrollbarSize();
+        container.style.paddingRight = `${prevPaddings[0] + scrollbarSize}px`;
 
-    if (bodyIsOverflowing((container))) {
-      prevPadding = container.style.paddingRight;
-      containerStyle.paddingRight = `${parseInt(prevPadding || 0, 10) + getScrollbarSize()}px`;
+        const fixedNodes = document.querySelectorAll('.mui-fixed');
+        for (let i = 0; i < fixedNodes.length; i += 1) {
+          const paddingRight = getPaddingRight(fixedNodes[i]);
+          prevPaddings.push(paddingRight);
+          fixedNodes[i].style.paddingRight = `${paddingRight + scrollbarSize}px`;
+        }
+      }
+
+      container.style.overflow = 'hidden';
     }
-
-    css(container, containerStyle);
 
     return modalIdx;
   }
 
-  function remove(modal) {
+  function remove(modal: Object) {
     const modalIdx = modals.indexOf(modal);
 
     if (modalIdx === -1) {
@@ -79,9 +100,15 @@ export function createModalManager({
 
     if (modals.length === 0) {
       container.style.overflow = prevOverflow;
-      container.style.paddingRight = prevPadding;
+      container.style.paddingRight = prevPaddings[0];
+
+      const fixedNodes = document.querySelectorAll('.mui-fixed');
+      for (let i = 0; i < fixedNodes.length; i += 1) {
+        fixedNodes[i].style.paddingRight = `${prevPaddings[i + 1]}px`;
+      }
+
       prevOverflow = undefined;
-      prevPadding = undefined;
+      prevPaddings = [];
       if (hideSiblingNodes) {
         showSiblings(container, modal.mountNode);
       }
@@ -93,7 +120,7 @@ export function createModalManager({
     return modalIdx;
   }
 
-  function isTopModal(modal) {
+  function isTopModal(modal: Object) {
     return !!modals.length && modals[modals.length - 1] === modal;
   }
 
@@ -101,3 +128,5 @@ export function createModalManager({
 
   return modalManager;
 }
+
+export default createModalManager;

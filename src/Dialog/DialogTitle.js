@@ -1,47 +1,56 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Text from '../Text';
+import withStyles from '../styles/withStyles';
+import Typography from '../Typography';
 
-export const styleSheet = createStyleSheet('DialogTitle', () => {
-  const gutter = 24;
-  return {
-    root: {
-      margin: 0,
-      padding: `${gutter}px ${gutter}px 20px ${gutter}px`,
-      flex: '0 0 auto',
-    },
-  };
+export const styles = (theme: Object) => ({
+  root: {
+    margin: 0,
+    padding: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px \
+      20px ${theme.spacing.unit * 3}px`,
+    flex: '0 0 auto',
+  },
 });
 
-export default function DialogTitle(props, context) {
-  const {
-    children,
-    className,
-    ...other
-  } = props;
-
-  const classes = context.styleManager.render(styleSheet);
+function DialogTitle(props) {
+  const { children, classes, className, disableTypography, ...other } = props;
 
   return (
     <div data-mui-test="DialogTitle" className={classNames(classes.root, className)} {...other}>
-      {typeof children === 'string' ? (
-        <Text type="title">{children}</Text>
-      ) : children}
+      {disableTypography
+        ? children
+        : <Typography type="title">
+            {children}
+          </Typography>}
     </div>
   );
 }
 
 DialogTitle.propTypes = {
+  /**
+   * The content of the component.
+   */
   children: PropTypes.node,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
+  /**
+   * If `true`, the children won't be wrapped by a typography component.
+   * For instance, that can be useful to can render an h4 instead of a
+   */
+  disableTypography: PropTypes.bool,
 };
 
-DialogTitle.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
+DialogTitle.defaultProps = {
+  disableTypography: false,
 };
+
+export default withStyles(styles, { name: 'MuiDialogTitle' })(DialogTitle);

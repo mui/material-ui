@@ -1,50 +1,58 @@
-// @flow weak
+// @flow
 
-import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
+import React, { Component } from 'react';
+import type { Element } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('Table', () => {
-  return {
-    root: {
-      width: '100%',
-      borderCollapse: 'collapse',
-      borderSpacing: 0,
-      overflow: 'hidden',
-    },
-  };
+export const styles = (theme: Object) => ({
+  root: {
+    fontFamily: theme.typography.fontFamily,
+    width: '100%',
+    borderCollapse: 'collapse',
+    borderSpacing: 0,
+    overflow: 'hidden',
+  },
 });
 
-/**
- * A material table root element.
- *
- * ```jsx
- * <Table>
- *   <TableHeader>....</TableHeader>
- *   <TableBody>....</TableBody>
- * </Table>
- * ```
- */
-export default class Table extends Component {
-  static propTypes = {
-    /**
-     * Should be valid `<table>` children such as
-     * `TableHeader` and `TableBody`.
-     */
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
+type DefaultProps = {
+  classes: Object,
+  component: string,
+};
+
+export type Props = {
+  /**
+   * The content of the table, normally `TableHeader` and `TableBody`.
+   */
+  children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component?: string | Function,
+};
+
+type AllProps = DefaultProps & Props;
+
+class Table extends Component<DefaultProps, AllProps, void> {
+  props: AllProps;
+
+  static defaultProps: DefaultProps = {
+    classes: {},
+    component: 'table',
   };
 
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
-  };
-
-  static childContextTypes = { table: PropTypes.object };
-
-  getChildContext() { // eslint-disable-line class-methods-use-this
+  getChildContext() {
+    // eslint-disable-line class-methods-use-this
     return {
       table: {},
     };
@@ -52,17 +60,24 @@ export default class Table extends Component {
 
   render() {
     const {
+      classes,
       className: classNameProp,
       children,
+      component: ComponentProp,
       ...other
     } = this.props;
-    const classes = this.context.styleManager.render(styleSheet);
     const className = classNames(classes.root, classNameProp);
 
     return (
-      <table className={className} {...other}>
+      <ComponentProp className={className} {...other}>
         {children}
-      </table>
+      </ComponentProp>
     );
   }
 }
+
+Table.childContextTypes = {
+  table: PropTypes.object,
+};
+
+export default withStyles(styles, { name: 'MuiTable' })(Table);

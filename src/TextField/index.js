@@ -1,6 +1,3 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow
 
-export default from './TextField';
-export TextField from './TextField';
-export TextFieldInput from './TextFieldInput';
-export TextFieldLabel from './TextFieldLabel';
+export { default } from './TextField';

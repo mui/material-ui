@@ -1,19 +1,34 @@
 [ignore]
 
-.*/node_modules/fbjs/*
-./scripts/*
-./test/e2e/*
+<PROJECT_ROOT>/build
+.*/node_modules/react-event-listener/src/.*
+.*/node_modules/fbjs/lib/partitionObjectByKey.js
+.*/node_modules/jss/lib/.*\.js\.flow
+.*/node_modules/mitt/src/.*\.js
+.*/node_modules/react-swipeable-views/src/.*
+.*/node_modules/eslint-plugin-jsx-a11y/src/.*
+.*/scripts/*
+.*/docs/webpack.*
 
 [libs]
+
 flow/interfaces
 
 [options]
 
 esproposal.class_static_fields=enable
 esproposal.class_instance_fields=enable
-
+module.file_ext=.js
+module.file_ext=.md
 module.name_mapper='.*\.\(html\|css\|svg\|png\|jpg\|gif\)$' -> '<PROJECT_ROOT>/flow/stubs/url-loader.js'
 module.name_mapper='^material-ui\/\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
+module.name_mapper='^material-ui-docs\/\(.*\)$' -> '<PROJECT_ROOT>/docs/\1'
+module.name_mapper='^material-ui-icons\/\(.*\)$' -> '<PROJECT_ROOT>/packages/material-ui-icons/src/\1'
 
+module.ignore_non_literal_requires=true
 module.system.node.resolve_dirname=node_modules
 module.system.node.resolve_dirname=.
+
+suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe
+suppress_comment= \\(.\\|\n\\)*\\$FlowExpectedError
+suppress_type=$FlowToDo

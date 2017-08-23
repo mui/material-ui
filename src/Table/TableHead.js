@@ -1,48 +1,56 @@
-// @flow weak
+// @flow
 
-import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
+import React, { Component } from 'react';
+import type { Element } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('TableHead', (theme) => {
-  return {
-    root: {
-      fontSize: 12,
-      fontWeight: 500,
-      color: theme.palette.text.secondary,
-    },
-  };
+export const styles = (theme: Object) => ({
+  root: {
+    fontSize: 12,
+    fontWeight: theme.typography.fontWeightMedium,
+    color: theme.palette.text.secondary,
+  },
 });
 
-/**
- * A material table head.
- *
- * ```jsx
- * <TableHead>
- *   <TableRow>....</TableRow>
- * </TableHead>
- * ```
- */
-export default class TableHead extends Component {
-  static propTypes = {
-    /**
-     * Should be valid `<thead>` children such as `TableRow`.
-     */
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
+type DefaultProps = {
+  classes: Object,
+  component: string,
+};
+
+export type Props = {
+  /**
+   * The content of the component, normally `TableRow`.
+   */
+  children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component?: string | Function,
+};
+
+type AllProps = DefaultProps & Props;
+
+class TableHead extends Component<DefaultProps, AllProps, void> {
+  props: AllProps;
+
+  static defaultProps: DefaultProps = {
+    classes: {},
+    component: 'thead',
   };
 
-  static contextTypes = {
-    table: PropTypes.object,
-    styleManager: PropTypes.object.isRequired,
-  };
-
-  static childContextTypes = { table: PropTypes.object };
-
-  getChildContext() { // eslint-disable-line class-methods-use-this
+  getChildContext() {
+    // eslint-disable-line class-methods-use-this
     return {
       table: {
         head: true,
@@ -52,17 +60,28 @@ export default class TableHead extends Component {
 
   render() {
     const {
+      classes,
       className: classNameProp,
       children,
+      component: ComponentProp,
       ...other
     } = this.props;
-    const classes = this.context.styleManager.render(styleSheet);
     const className = classNames(classes.root, classNameProp);
 
     return (
-      <thead className={className} {...other}>
+      <ComponentProp className={className} {...other}>
         {children}
-      </thead>
+      </ComponentProp>
     );
   }
 }
+
+TableHead.contextTypes = {
+  table: PropTypes.object,
+};
+
+TableHead.childContextTypes = {
+  table: PropTypes.object,
+};
+
+export default withStyles(styles, { name: 'MuiTableHead' })(TableHead);

@@ -1,69 +1,88 @@
-// @flow weak
+// @flow
+// @inheritedComponent CardContent
 
-import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
+import React from 'react';
+import type { Element } from 'react';
 import classNames from 'classnames';
+import withStyles from '../styles/withStyles';
+import Typography from '../Typography';
 import CardContent from './CardContent';
-import Text from '../Text';
 
-export const styleSheet = createStyleSheet('CardHeader', () => ({
-  cardHeader: {
+export const styles = (theme: Object) => ({
+  root: {
     display: 'flex',
     alignItems: 'center',
   },
   avatar: {
     flex: '0 0 auto',
-    marginRight: 16,
+    marginRight: theme.spacing.unit * 2,
   },
   content: {
     flex: '1 1 auto',
   },
-}));
+  title: {},
+  subheader: {},
+});
 
-export default function CardHeader(props, context) {
-  const {
-    avatar,
-    className: classNameProp,
-    subhead,
-    title,
-    ...other
-  } = props;
+type DefaultProps = {
+  classes: Object,
+};
 
-  const classes = context.styleManager.render(styleSheet);
-  const className = classNames(classes.cardHeader, classNameProp);
+export type Props = {
+  /**
+   * The Avatar  for the Card Header.
+   */
+  avatar?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * The content of the component.
+   */
+  subheader?: Element<*>,
+  /**
+   * The content of the Card Title.
+   */
+  title?: Element<*>,
+};
 
-  if (avatar) {
-    return (
-      <CardContent className={className} {...other}>
-        <div className={classes.avatar}>
-          {avatar}
-        </div>
-        <div className={classes.content}>
-          <Text type="body2" gutterBottom>{title}</Text>
-          <Text type="body2" secondary>{subhead}</Text>
-        </div>
-      </CardContent>
-    );
-  }
+type AllProps = DefaultProps & Props;
+
+function CardHeader(props: AllProps) {
+  const { avatar, classes, className: classNameProp, subheader, title, ...other } = props;
+
+  const className = classNames(classes.root, classNameProp);
+
+  // Adjustments that depend on the presence of an avatar
+  const titleType = avatar ? 'body2' : 'headline';
+  const subheaderType = avatar ? 'body2' : 'body1';
 
   return (
     <CardContent className={className} {...other}>
-      <Text type="headline">{title}</Text>
-      <Text type="body1" secondary>{subhead}</Text>
+      {avatar &&
+        <div className={classes.avatar}>
+          {avatar}
+        </div>}
+      <div className={classes.content}>
+        <Typography type={titleType} component="span" className={classes.title}>
+          {title}
+        </Typography>
+        <Typography
+          type={subheaderType}
+          component="span"
+          color="secondary"
+          className={classes.subheader}
+        >
+          {subheader}
+        </Typography>
+      </div>
     </CardContent>
   );
 }
 
-CardHeader.propTypes = {
-  avatar: PropTypes.node,
-  /**
-   * The CSS class name of the root element.
-   */
-  className: PropTypes.string,
-  subhead: PropTypes.string,
-  title: PropTypes.string,
-};
-
-CardHeader.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
-};
+export default withStyles(styles, { name: 'MuiCardHeader' })(CardHeader);

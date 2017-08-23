@@ -1,4 +1,3 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow
 
-export default from './Checkbox';
-export Checkbox from './Checkbox';
+export { default } from './Checkbox';

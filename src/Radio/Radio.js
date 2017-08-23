@@ -1,76 +1,107 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
-import classNames from 'classnames';
-import SwitchBase from '../internal/SwitchBase';
+import React from 'react';
+import type { Element } from 'react';
+import withStyles from '../styles/withStyles';
+import createSwitch from '../internal/SwitchBase';
+import RadioButtonCheckedIcon from '../svg-icons/radio-button-checked';
+import RadioButtonUncheckedIcon from '../svg-icons/radio-button-unchecked';
 
-export const styleSheet = createStyleSheet('Radio', (theme) => {
-  return {
-    default: {
-      color: theme.palette.text.secondary,
-    },
-    checked: {
-      color: theme.palette.accent[500],
-    },
-    label: {
-      marginLeft: -12,
-      display: 'flex',
-      alignItems: 'center',
-      cursor: 'pointer',
-    },
-  };
+export const styles = (theme: Object) => ({
+  default: {
+    color: theme.palette.text.secondary,
+  },
+  checked: {
+    color: theme.palette.primary[500],
+  },
+  disabled: {
+    color: theme.palette.action.disabled,
+  },
 });
 
-export default function Radio(props, context) {
-  const {
-    className,
-    checkedClassName,
-    label,
-    onChange,
-    value,
-    ...other
-  } = props;
+const Radio = withStyles(styles, { name: 'MuiRadio' })(
+  createSwitch({
+    inputType: 'radio',
+    defaultIcon: <RadioButtonUncheckedIcon />,
+    defaultCheckedIcon: <RadioButtonCheckedIcon />,
+  }),
+);
 
-  const classes = context.styleManager.render(styleSheet);
+Radio.displayName = 'Radio';
 
-  const switchProps = {
-    className: classNames(classes.default, className),
-    checkedClassName: classNames(classes.checked, checkedClassName),
-    icon: 'radio_button_unchecked',
-    checkedIcon: 'radio_button_checked',
-    type: 'radio',
-    value,
-    onChange,
-    ...other,
-  };
+export default Radio;
 
-  if (label) {
-    switchProps['aria-label'] = label;
-    return (
-      <label className={classes.label} role="presentation">
-        <SwitchBase {...switchProps} />
-        <span aria-hidden="true" role="presentation">{label}</span>
-      </label>
-    );
-  }
-
-  return <SwitchBase {...switchProps} />;
-}
-
-
-Radio.propTypes = {
-  checkedClassName: PropTypes.string,
+export type Props = {
   /**
-   * The CSS class name of the root element.
+   * If `true`, the component is checked.
    */
-  className: PropTypes.string,
-  label: PropTypes.string,
-  name: PropTypes.string,
-  onChange: PropTypes.func,
-  value: PropTypes.string,
+  checked?: boolean | string,
+  /**
+   * The CSS class name of the root element when checked.
+   */
+  checkedClassName?: string,
+  /**
+   * The icon to display when the component is checked.
+   * If a string is provided, it will be used as a font ligature.
+   */
+  checkedIcon?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * @ignore
+   */
+  defaultChecked?: boolean,
+  /**
+   * If `true`, the switch will be disabled.
+   */
+  disabled?: boolean,
+  /**
+   * The CSS class name of the root element when disabled.
+   */
+  disabledClassName?: string,
+  /**
+   * If `true`, the ripple effect will be disabled.
+   */
+  disableRipple?: boolean,
+  /**
+   * The icon to display when the component is unchecked.
+   * If a string is provided, it will be used as a font ligature.
+   */
+  icon?: Element<*>,
+  /**
+   * Properties applied to the `input` element.
+   */
+  inputProps?: Object,
+  /**
+   * Use that property to pass a ref callback to the native input component.
+   */
+  inputRef?: Function,
+  /*
+   * @ignore
+   */
+  name?: string,
+  /**
+   * Callback fired when the state is changed.
+   *
+   * @param {object} event The event source of the callback
+   * @param {boolean} checked The `checked` value of the switch
+   */
+  onChange?: Function,
+  /**
+   * @ignore
+   */
+  tabIndex?: string,
+  /**
+   * The value of the component.
+   */
+  value?: string,
 };
 
-Radio.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
-};
+// This is here solely to trigger api doc generation
+export const RadioDocs = (props: Props) => <span />; // eslint-disable-line no-unused-vars

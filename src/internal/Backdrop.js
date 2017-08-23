@@ -1,73 +1,78 @@
-// @flow weak
+// @flow
 
-import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
+import React from 'react';
+import type { Element } from 'react';
 import classNames from 'classnames';
-import { lightBlack } from '../styles/colors';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('Backdrop', (theme) => {
-  return {
-    root: {
-      zIndex: -1,
-      width: '100%',
-      height: '100%',
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      backgroundColor: lightBlack,
-      transition: theme.transitions.create('opacity'),
-      willChange: 'opacity',
-      opacity: 0,
-    },
-    invisible: {
-      backgroundColor: 'rgba(0, 0, 0, 0)',
-    },
-  };
+export const styles = (theme: Object) => ({
+  root: {
+    zIndex: -1,
+    width: '100%',
+    height: '100%',
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    // Remove grey highlight
+    WebkitTapHighlightColor: theme.palette.common.transparent,
+    backgroundColor: theme.palette.common.lightBlack,
+    transition: theme.transitions.create('opacity'),
+    willChange: 'opacity',
+    opacity: 0,
+  },
+  invisible: {
+    backgroundColor: theme.palette.common.transparent,
+  },
 });
 
-export default class Backdrop extends Component {
+type DefaultProps = {
+  classes: Object,
+};
 
-  static propTypes = {
-    /**
-     * Can be used, for instance, to render a letter inside the avatar.
-     */
-    children: PropTypes.node,
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-    visible: PropTypes.bool,
-  };
+export type Props = {
+  /**
+   * Can be used, for instance, to render a letter inside the avatar.
+   */
+  children?: Element<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * If `true`, the backdrop is invisible.
+   */
+  invisible?: boolean,
+};
 
-  static defaultProps = {
-    visible: true,
-  };
+type AllProps = DefaultProps & Props;
 
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
-  };
+/**
+ * @ignore - internal component.
+ */
+function Backdrop(props: AllProps) {
+  const { children, classes, className, invisible, ...other } = props;
 
-  render() {
-    const {
-      children,
-      className,
-      visible,
-      ...other
-    } = this.props;
+  const backdropClass = classNames(
+    classes.root,
+    {
+      [classes.invisible]: invisible,
+    },
+    className,
+  );
 
-    const classes = this.context.styleManager.render(styleSheet);
-    const backdropClass = classNames(classes.root, {
-      [classes.invisible]: !visible,
-    }, className);
-    return (
-      <div
-        data-mui-test="Backdrop"
-        className={backdropClass}
-        aria-hidden="true"
-        {...other}
-      >
-        {children}
-      </div>
-    );
-  }
+  return (
+    <div data-mui-test="Backdrop" className={backdropClass} aria-hidden="true" {...other}>
+      {children}
+    </div>
+  );
 }
+
+Backdrop.defaultProps = {
+  invisible: false,
+};
+
+export default withStyles(styles, { name: 'MuiBackdrop' })(Backdrop);

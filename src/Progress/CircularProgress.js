@@ -1,114 +1,169 @@
 // @flow weak
 
-import React, { Component, PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { easing } from '../styles/transitions';
+import withStyles from '../styles/withStyles';
 
 const THICKNESS = 3.6;
-const PI = 3.1415; // Simple version of Math.PI for the css generated.
+const PI = 3.1416; // Simple version of Math.PI for the CSS generated.
 
-export const styleSheet = createStyleSheet('CircularProgress', (theme) => {
-  return {
-    root: {
-      display: 'inline-block',
-      color: theme.palette.primary[500],
+function getRelativeValue(value, min, max) {
+  const clampedValue = Math.min(Math.max(min, value), max);
+  return (clampedValue - min) / (max - min);
+}
+
+export const styles = (theme: Object) => ({
+  root: {
+    display: 'inline-block',
+  },
+  primaryColor: {
+    color: theme.palette.primary[500],
+  },
+  accentColor: {
+    color: theme.palette.accent.A200,
+  },
+  svg: {
+    transform: 'rotate(-90deg)',
+  },
+  indeterminateSvg: {
+    // The main animation is loop 4 times (4 / 3 * 1300).
+    animation: 'mui-rotate-progress-circle 1733ms linear infinite',
+  },
+  circle: {
+    stroke: 'currentColor',
+    strokeLinecap: 'square',
+    transition: theme.transitions.create('all', { duration: 1300 }),
+  },
+  indeterminateCircle: {
+    strokeDasharray: `1, calc((100% - ${THICKNESS}px) * ${PI})`,
+    strokeDashoffset: '0%',
+    animation: `mui-scale-progress-circle 1300ms ${theme.transitions.easing.easeInOut} infinite`,
+  },
+  determinateCircle: {
+    willChange: 'strokeDasharray',
+    strokeDashoffset: '0%',
+  },
+  '@keyframes mui-rotate-progress-circle': {
+    '0%': {
+      transform: 'rotate(-90deg)',
     },
-    svg: {
-      // The main animation is loop 4 times (4 / 3 * 1300).
-      animation: 'rotate-progress-circle 1733ms linear infinite',
+    '100%': {
+      transform: 'rotate(270deg)',
     },
-    circle: {
-      strokeDasharray: '1, calc((100% - 3px) * 3.141)',
-      strokeDashoffset: '0%',
-      stroke: 'currentColor',
-      strokeLinecap: 'square',
-      transition: theme.transitions.create('all', '1.30s'),
-      animation: `scale-progress-circle 1300ms ${easing.easeInOut} infinite`,
+  },
+  '@keyframes mui-scale-progress-circle': {
+    '8%': {
+      strokeDasharray: `1, calc((100% - ${THICKNESS}px) * ${PI})`,
+      strokeDashoffset: 0,
     },
-    '@keyframes rotate-progress-circle': {
-      '0%': {
-        transform: 'rotate(0deg)',
-      },
-      '100%': {
-        transform: 'rotate(360deg)',
-      },
+    '50%, 58%': {
+      // eslint-disable-next-line max-len
+      strokeDasharray: `calc((65% - ${THICKNESS}px) * ${PI}), calc((100% - ${THICKNESS}px) * ${PI})`,
+      strokeDashoffset: `calc((25% - ${THICKNESS}px) * -${PI})`,
     },
-    '@keyframes scale-progress-circle': {
-      '8%': {
-        strokeDasharray: `1, calc((100% - ${THICKNESS}px) * ${PI})`,
-        strokeDashoffset: 0,
-      },
-      '50%, 58%': {
-        strokeDasharray: `calc((65% - ${THICKNESS}px) * ${PI}), calc((100% - ${THICKNESS}px) * ${PI})`,
-        strokeDashoffset: `calc((25% - ${THICKNESS}px) * -${PI})`,
-      },
-      '100%': {
-        strokeDasharray: `calc((65% - ${THICKNESS}px) * ${PI}), calc((100% - ${THICKNESS}px) * ${PI})`,
-        strokeDashoffset: `calc((99% - ${THICKNESS}px) * -${PI})`,
-      },
+    '100%': {
+      // eslint-disable-next-line max-len
+      strokeDasharray: `calc((65% - ${THICKNESS}px) * ${PI}), calc((100% - ${THICKNESS}px) * ${PI})`,
+      strokeDashoffset: `calc((99% - ${THICKNESS}px) * -${PI})`,
     },
-  };
+  },
 });
 
-export default class CircularProgress extends Component {
-  static propTypes = {
-    /**
-     * The CSS class name of the root element.
-     */
-    className: PropTypes.string,
-    /**
-     * The mode of show your progress, indeterminate
-     * for when there is no value for progress.
-     */
-    mode: PropTypes.oneOf(['determinate', 'indeterminate']),
-    /**
-     * The size of the circle.
-     */
-    size: PropTypes.number,
-    /**
-     * The value of progress, only works in determinate mode.
-     */
-    value: PropTypes.number,
-  };
+function CircularProgress(props) {
+  const { classes, className, color, size, mode, value, min, max, ...other } = props;
+  const radius = size / 2;
+  const rootProps = {};
+  const svgClasses = classNames(classes.svg, {
+    [classes.indeterminateSvg]: mode === 'indeterminate',
+  });
 
-  static defaultProps = {
-    mode: 'indeterminate',
-    size: 40,
-  };
+  const circleClasses = classNames(classes.circle, {
+    [classes.indeterminateCircle]: mode === 'indeterminate',
+    [classes.determinateCircle]: mode === 'determinate',
+  });
 
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
-  };
-
-  render() {
-    const {
-      className,
-      mode, // eslint-disable-line no-unused-vars
-      size,
-      ...other
-    } = this.props;
-    const classes = this.context.styleManager.render(styleSheet);
-    const radius = size / 2;
-
-    return (
-      <div
-        className={classNames(classes.root, className)}
-        style={{ width: size, height: size }}
-        {...other}
-      >
-        <svg className={classes.svg} viewBox={`0 0 ${size} ${size}`}>
-          <circle
-            className={classes.circle}
-            cx={radius}
-            cy={radius}
-            r={radius - (THICKNESS / 2)}
-            fill="none"
-            strokeWidth={THICKNESS}
-            strokeMiterlimit="20"
-          />
-        </svg>
-      </div>
-    );
+  const circleStyle = {};
+  if (mode === 'determinate') {
+    const relVal = getRelativeValue(value, min, max);
+    circleStyle.strokeDasharray =
+      `calc(((100% - ${THICKNESS}px) * ${PI}) * ${relVal}),` +
+      `calc((100% - ${THICKNESS}px) * ${PI})`;
+    rootProps['aria-valuenow'] = value;
+    rootProps['aria-valuemin'] = min;
+    rootProps['aria-valuemax'] = max;
   }
+
+  const colorClass = classes[`${color}Color`];
+
+  return (
+    <div
+      className={classNames(classes.root, colorClass, className)}
+      style={{ width: size, height: size }}
+      role="progressbar"
+      {...rootProps}
+      {...other}
+    >
+      <svg className={svgClasses} viewBox={`0 0 ${size} ${size}`}>
+        <circle
+          className={circleClasses}
+          style={circleStyle}
+          cx={radius}
+          cy={radius}
+          r={radius - THICKNESS / 2}
+          fill="none"
+          strokeWidth={THICKNESS}
+          strokeMiterlimit="20"
+        />
+      </svg>
+    </div>
+  );
 }
+
+CircularProgress.propTypes = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The color of the component. It's using the theme palette when that makes sense.
+   */
+  color: PropTypes.oneOf(['primary', 'accent']),
+  /**
+   * The max value of progress in determinate mode.
+   */
+  max: PropTypes.number,
+  /**
+   * The min value of progress in determinate mode.
+   */
+  min: PropTypes.number,
+  /**
+   * The mode of show your progress. Indeterminate
+   * for when there is no value for progress.
+   * Determinate for controlled progress value.
+   */
+  mode: PropTypes.oneOf(['determinate', 'indeterminate']),
+  /**
+   * The size of the circle.
+   */
+  size: PropTypes.number,
+  /**
+   * The value of progress in determinate mode.
+  */
+  value: PropTypes.number,
+};
+
+CircularProgress.defaultProps = {
+  color: 'primary',
+  size: 40,
+  mode: 'indeterminate',
+  value: 0,
+  min: 0,
+  max: 100,
+};
+
+export default withStyles(styles, { name: 'MuiCircularProgress' })(CircularProgress);

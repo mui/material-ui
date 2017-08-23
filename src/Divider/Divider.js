@@ -1,66 +1,73 @@
 // @flow weak
 
-import React, { PropTypes } from 'react';
-import { createStyleSheet } from 'jss-theme-reactor';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('Divider', (theme) => {
-  const { palette } = theme;
-
-  return {
-    root: {
-      height: 1,
-      margin: '0 -1px 0 0',
-      border: 'none',
-    },
-    default: {
-      backgroundColor: palette.text.divider,
-    },
-    light: {
-      backgroundColor: palette.text.lightDivider,
-    },
-    absolute: {
-      margin: 0,
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      width: '100%',
-    },
-  };
+export const styles = (theme: Object) => ({
+  root: {
+    height: 1,
+    margin: 0, // Reset browser default style.
+    border: 'none',
+  },
+  default: {
+    backgroundColor: theme.palette.text.divider,
+  },
+  inset: {
+    marginLeft: 72,
+  },
+  light: {
+    backgroundColor: theme.palette.text.lightDivider,
+  },
+  absolute: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    width: '100%',
+  },
 });
 
-export default function Divider(props, context) {
-  const {
-    absolute,
-    className: classNameProp,
-    light,
-    ...other
-  } = props;
-  const classes = context.styleManager.render(styleSheet);
-  const className = classNames(classes.root, {
-    [classes.absolute]: absolute,
-    [light ? classes.light : classes.default]: true,
-  }, classNameProp);
+function Divider(props) {
+  const { absolute, classes, className: classNameProp, inset, light, ...other } = props;
 
-  return (
-    <hr className={className} {...other} />
+  const className = classNames(
+    classes.root,
+    {
+      [classes.absolute]: absolute,
+      [classes.inset]: inset,
+      [light ? classes.light : classes.default]: true,
+    },
+    classNameProp,
   );
+
+  return <hr className={className} {...other} />;
 }
 
 Divider.propTypes = {
   absolute: PropTypes.bool,
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
+   */
+  classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
    */
   className: PropTypes.string,
+  /**
+   * If `true`, the divider will be indented.
+   */
+  inset: PropTypes.bool,
+  /**
+   * If `true`, the divider will have a lighter color.
+   */
   light: PropTypes.bool,
 };
 
 Divider.defaultProps = {
   absolute: false,
+  inset: false,
   light: false,
 };
 
-Divider.contextTypes = {
-  styleManager: PropTypes.object.isRequired,
-};
+export default withStyles(styles, { name: 'MuiDivider' })(Divider);

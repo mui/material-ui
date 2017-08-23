@@ -1,40 +1,38 @@
-// @flow weak
-/* eslint-env mocha */
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallowWithContext } from 'test/utils';
-import Toolbar, { styleSheet } from './Toolbar';
+import { createShallow, getClasses } from '../test-utils';
+import Toolbar from './Toolbar';
 
-/**
- * An item that goes in lists.
- */
-describe('<Toolbar>', () => {
+describe('<Toolbar />', () => {
   let shallow;
   let classes;
 
   before(() => {
-    shallow = createShallowWithContext();
-    classes = shallow.context.styleManager.render(styleSheet);
+    shallow = createShallow({ dive: true });
+    classes = getClasses(<Toolbar />);
   });
 
   it('should render a div', () => {
-    const wrapper = shallow(
-      <Toolbar />,
-    );
-    assert.strictEqual(wrapper.is('div'), true, 'should be a div');
+    const wrapper = shallow(<Toolbar />);
+    assert.strictEqual(wrapper.name(), 'div');
   });
 
   it('should render with the user, root and gutters classes', () => {
-    const wrapper = shallow(<Toolbar className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the "woof" class');
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
-    assert.strictEqual(wrapper.hasClass(classes.gutters), true, 'should have the gutters class');
+    const wrapper = shallow(<Toolbar className="woofToolbar" />);
+    assert.strictEqual(wrapper.hasClass('woofToolbar'), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.gutters), true);
   });
 
   it('should disable the gutters', () => {
-    const wrapper = shallow(<Toolbar gutters={false} />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
-    assert.strictEqual(wrapper.hasClass(classes.gutters), false, 'should not have the gutters class');
+    const wrapper = shallow(<Toolbar disableGutters />);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(
+      wrapper.hasClass(classes.gutters),
+      false,
+      'should not have the gutters class',
+    );
   });
 });

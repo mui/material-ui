@@ -1,3 +1,3 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow
 
-export default from './AppBar';
+export { default } from './AppBar';
