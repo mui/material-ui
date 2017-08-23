@@ -1,6 +1,6 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
@@ -21,8 +21,7 @@ const styles = theme => ({
   },
 });
 
-class GuttersGrid extends React.Component<any, any> {
-  static defaultProps: $FlowFixMeProps;
+class GuttersGrid extends React.Component {
   state = {
     spacing: '16',
   };

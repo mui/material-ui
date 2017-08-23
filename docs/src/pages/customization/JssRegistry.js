@@ -1,6 +1,6 @@
 // @flow weak
 
-import * as React from 'react';
+import React from 'react';
 import { JssProvider, SheetsRegistry } from 'react-jss';
 import { createMuiTheme, MuiThemeProvider } from 'material-ui/styles';
 import CssInJs from './CssInJs';

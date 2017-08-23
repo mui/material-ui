@@ -1,6 +1,7 @@
 // @flow
 
-import * as React from 'react';
+import React from 'react';
+import type { Node } from 'react';
 import withStyles from '../styles/withStyles';
 import Transition from '../internal/Transition';
 import type { TransitionCallback } from '../internal/Transition';
@@ -29,7 +30,7 @@ export type Props = {
   /**
    * The content node to be collapsed.
    */
-  children?: React.Node,
+  children?: Node,
   /**
    * Useful to extend the style applied to components.
    */

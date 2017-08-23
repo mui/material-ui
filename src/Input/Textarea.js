@@ -1,6 +1,6 @@
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import debounce from 'lodash/debounce';
 import EventListener from 'react-event-listener';

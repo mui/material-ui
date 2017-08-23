@@ -1,3 +1,4 @@
+/* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-disable react/no-multi-comp */
 
 import React from 'react';
@@ -27,7 +28,6 @@ const options = [
 ];
 
 class ConfirmationDialog extends React.Component {
-  static defaultProps: $FlowFixMeProps;
   state = {
     value: undefined,
   };
@@ -119,7 +119,6 @@ const styles = theme => ({
 });
 
 class ConfirmationDialogDemo extends React.Component {
-  static defaultProps: $FlowFixMeProps;
   state = {
     anchorEl: undefined,
     open: false,

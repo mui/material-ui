@@ -1,6 +1,6 @@
 // @flow weak
 
-import * as React from 'react';
+import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import createTypography from 'material-ui/styles/typography';
 import Typography from 'material-ui/Typography';

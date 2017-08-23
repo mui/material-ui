@@ -1,3 +1,4 @@
+/* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-disable react/no-multi-comp */
 
 import React from 'react';
@@ -21,7 +22,6 @@ const styles = {
 };
 
 class SimpleDialog extends React.Component {
-  static defaultProps: $FlowFixMeProps;
   handleRequestClose = () => {
     this.props.onRequestClose(this.props.selectedValue);
   };

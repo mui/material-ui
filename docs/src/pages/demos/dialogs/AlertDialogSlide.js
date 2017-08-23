@@ -1,3 +1,5 @@
+/* eslint-disable flowtype/require-valid-file-annotation */
+
 import React from 'react';
 import Button from 'material-ui/Button';
 import Dialog, {
@@ -9,7 +11,6 @@ import Dialog, {
 import Slide from 'material-ui/transitions/Slide';
 
 export default class AlertDialogSlide extends React.Component {
-  static defaultProps: {};
   state = {
     open: false,
   };

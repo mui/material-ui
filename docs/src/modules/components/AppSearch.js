@@ -1,6 +1,6 @@
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import compose from 'recompose/compose';
 import pure from 'recompose/pure';
 import PropTypes from 'prop-types';

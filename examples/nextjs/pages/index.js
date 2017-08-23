@@ -1,4 +1,4 @@
-// @flow
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -20,7 +20,7 @@ const styles = {
   },
 };
 
-class Index extends React.Component<{}, { open: boolean }> {
+class Index extends Component {
   state = {
     open: false,
   };

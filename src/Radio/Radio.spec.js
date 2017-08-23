@@ -1,6 +1,6 @@
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import { assert } from 'chai';
 import { getClasses } from '../test-utils';
 import Radio from './Radio';

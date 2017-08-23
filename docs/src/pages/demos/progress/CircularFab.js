@@ -1,3 +1,5 @@
+/* eslint-disable flowtype/require-valid-file-annotation */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
@@ -26,7 +28,6 @@ const styles = {
 };
 
 class CircularFab extends React.Component {
-  static defaultProps: $FlowFixMeProps;
   state = {
     loading: false,
     success: false,

@@ -1,6 +1,6 @@
 // @flow weak
 
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import AccessAlarmIcon from 'material-ui-icons/AccessAlarm';
 import ThreeDRotation from 'material-ui-icons/ThreeDRotation';

@@ -1,7 +1,7 @@
 // @flow weak
 /* eslint-disable no-underscore-dangle */
 
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { JssProvider } from 'react-jss';
 import { getContext } from 'docs/src/modules/styles/context';

@@ -10,6 +10,7 @@
 .*/docs/webpack.*
 ; FIXME: we should be flow checking against jss
 .*/node_modules/jss/lib/.*\.js\.flow
+.*/examples/.*/node_modules/.*
 
 [libs]
 

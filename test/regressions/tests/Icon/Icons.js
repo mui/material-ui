@@ -1,5 +1,5 @@
 // @flow
-import * as React from 'react';
+import React from 'react';
 import Icon from 'material-ui/Icon';
 
 export default function Icons() {

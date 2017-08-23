@@ -1,6 +1,7 @@
 // @flow weak
 
-import * as React from 'react';
+import React from 'react';
+import type { ComponentType } from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import hoistNonReactStatics from 'hoist-non-react-statics';
@@ -66,7 +67,7 @@ type Options = {
 // It does not modify the component passed to it;
 // instead, it returns a new, with a `classes` property.
 function withStyles(stylesOrCreator: Object, options?: Options = {}) {
-  function enhance<BaseProps: {}>(BaseComponent: React.ComponentType<BaseProps>) {
+  function enhance<BaseProps: {}>(BaseComponent: ComponentType<BaseProps>) {
     const { withTheme = false, name, ...styleSheetOptions } = options;
     const factory = createEagerFactory(BaseComponent);
     const stylesCreators = [getStylesCreator(stylesOrCreator)];
