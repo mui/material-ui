@@ -145,12 +145,10 @@ export type Props = {
   transition?: Node,
 };
 
-type AllProps = DefaultProps & Props;
-
 /**
  * Dialogs are overlaid modal paper based components with a backdrop.
  */
-function Dialog(props: AllProps) {
+function Dialog(props: DefaultProps & Props) {
   const {
     children,
     classes,

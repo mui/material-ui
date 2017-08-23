@@ -19,9 +19,7 @@ export type Props = {
   raised?: boolean,
 };
 
-type AllProps = DefaultProps & Props;
-
-function Card(props: AllProps) {
+function Card(props: DefaultProps & Props) {
   const { raised, ...other } = props;
 
   return <Paper elevation={raised ? 8 : 2} {...other} />;

@@ -66,9 +66,7 @@ export type Props = {
   message: Node,
 };
 
-type AllProps = DefaultProps & Props;
-
-function SnackbarContent(props: AllProps) {
+function SnackbarContent(props: DefaultProps & Props) {
   const { action, classes, className, message, ...other } = props;
 
   return (

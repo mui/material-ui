@@ -142,15 +142,11 @@ export type Props = {
   type: string,
 };
 
-type AllProps = DefaultProps & Props;
-
 type State = {
   keyboardFocused: boolean,
 };
 
-class ButtonBase extends React.Component<AllProps, State> {
-  props: AllProps;
-
+class ButtonBase extends React.Component<DefaultProps & Props, State> {
   static defaultProps = {
     centerRipple: false,
     focusRipple: false,

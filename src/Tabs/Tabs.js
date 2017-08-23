@@ -112,8 +112,6 @@ export type Props = {
   value: any,
 };
 
-type AllProps = DefaultProps & Props;
-
 type State = {
   indicatorStyle: Object,
   scrollerStyle: Object,
@@ -136,8 +134,7 @@ type TabsMeta = {
 /**
  * Notice that this Component is incompatible with server side rendering.
  */
-class Tabs extends React.Component<AllProps, State> {
-  props: AllProps;
+class Tabs extends React.Component<DefaultProps & Props, State> {
   static defaultProps = {
     centered: false,
     fullWidth: false,

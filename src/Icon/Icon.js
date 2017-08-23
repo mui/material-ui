@@ -54,9 +54,7 @@ export type Props = {
   color?: 'inherit' | 'accent' | 'action' | 'contrast' | 'disabled' | 'error' | 'primary',
 };
 
-type AllProps = DefaultProps & Props;
-
-function Icon(props: AllProps) {
+function Icon(props: DefaultProps & Props) {
   const { children, classes, className: classNameProp, color, ...other } = props;
 
   const className = classNames(

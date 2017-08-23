@@ -220,9 +220,7 @@ export type Props = {
   type?: string,
 };
 
-type AllProps = DefaultProps & Props;
-
-function Button(props: AllProps) {
+function Button(props: DefaultProps & Props) {
   const {
     children,
     classes,

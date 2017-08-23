@@ -48,12 +48,10 @@ export type Props = {
   invisible?: boolean,
 };
 
-type AllProps = DefaultProps & Props;
-
 /**
  * @ignore - internal component.
  */
-function Backdrop(props: AllProps) {
+function Backdrop(props: DefaultProps & Props) {
   const { children, classes, className, invisible, ...other } = props;
 
   const backdropClass = classNames(

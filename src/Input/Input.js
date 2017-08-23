@@ -322,15 +322,11 @@ export type Props = {
   value?: string | number | Array<string | number>,
 };
 
-type AllProps = DefaultProps & Props;
-
 type State = {
   focused: boolean,
 };
 
-class Input extends React.Component<AllProps, State> {
-  props: AllProps;
-
+class Input extends React.Component<DefaultProps & Props, State> {
   static muiName = 'Input';
 
   static defaultProps = {

@@ -97,9 +97,12 @@ function withStyles(stylesOrCreator: Object, options?: Options = {}) {
       innerRef?: Function,
     };
 
-    type AllProps = StyleProps & BaseProps;
-    class Style extends React.Component<AllProps, {}> {
-      props: AllProps;
+    class Style extends React.Component<StyleProps & BaseProps> {
+      static contextTypes = {
+        sheetsManager: PropTypes.object,
+        ...contextTypes,
+        ...(listenToTheme ? themeListener.contextTypes : {}),
+      };
 
       // Exposed for tests purposes
       static options: ?Options;
@@ -107,7 +110,7 @@ function withStyles(stylesOrCreator: Object, options?: Options = {}) {
       // Exposed for test purposes.
       static Naked = BaseComponent;
 
-      constructor(props: AllProps, context: Object) {
+      constructor(props: StyleProps & BaseProps, context: Object) {
         super(props, context);
         this.jss = this.context[ns.jss] || jss;
         this.sheetsManager = this.context.sheetsManager || sheetsManager;

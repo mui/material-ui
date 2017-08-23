@@ -118,8 +118,6 @@ export type Props = {
   value?: string,
 };
 
-type AllProps = DefaultProps & Props;
-
 type State = {
   checked?: boolean,
 };
@@ -140,9 +138,7 @@ export default function createSwitch(
   /**
    * @ignore - internal component.
    */
-  class SwitchBase extends React.Component<AllProps, State> {
-    props: AllProps;
-
+  class SwitchBase extends React.Component<DefaultProps & Props, State> {
     static defaultProps = {
       checkedIcon: defaultCheckedIcon,
       disableRipple: false,

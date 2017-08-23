@@ -139,9 +139,7 @@ export type Props = {
   value?: string,
 };
 
-type AllProps = DefaultProps & Props;
-
-function Switch(props: AllProps) {
+function Switch(props: DefaultProps & Props) {
   const { classes, className, ...other } = props;
   const icon = <div className={classes.icon} />;
 

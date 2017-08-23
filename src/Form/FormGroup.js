@@ -39,14 +39,12 @@ export type Props = {
   row?: boolean,
 };
 
-type AllProps = DefaultProps & Props;
-
 /**
  * `FormGroup` wraps controls such as `Checkbox` and `Switch`.
  * It provides compact row layout.
  * For the `Radio`, you should be using the `RadioGroup` component instead of this one.
  */
-function FormGroup(props: AllProps) {
+function FormGroup(props: DefaultProps & Props) {
   const { classes, className, children, row, ...other } = props;
   const rootClassName = classNames(
     classes.root,

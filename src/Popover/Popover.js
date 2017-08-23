@@ -190,11 +190,7 @@ export type Props = {
   transitionDuration?: number | 'auto',
 };
 
-type AllProps = DefaultProps & Props;
-
-class Popover extends React.Component<AllProps, void> {
-  props: AllProps;
-
+class Popover extends React.Component<DefaultProps & Props> {
   static defaultProps = {
     anchorOrigin: {
       vertical: 'top',

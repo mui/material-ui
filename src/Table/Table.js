@@ -41,11 +41,7 @@ export type Props = {
   component?: ElementType,
 };
 
-type AllProps = DefaultProps & Props;
-
-class Table extends React.Component<AllProps, void> {
-  props: AllProps;
-
+class Table extends React.Component<DefaultProps & Props> {
   static defaultProps = {
     component: 'table',
   };

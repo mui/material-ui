@@ -108,15 +108,12 @@ export type Props = {
   className?: string,
 };
 
-type AllProps = DefaultProps & Props;
-
 type State = { nextKey: number, ripples: Array<*> };
 
 /**
  * @ignore - internal component.
  */
-class TouchRipple extends React.Component<AllProps, State> {
-  props: AllProps;
+class TouchRipple extends React.Component<DefaultProps & Props, State> {
   static defaultProps = {
     center: false,
   };

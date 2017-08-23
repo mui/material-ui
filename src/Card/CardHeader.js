@@ -51,9 +51,7 @@ export type Props = {
   title?: Node,
 };
 
-type AllProps = DefaultProps & Props;
-
-function CardHeader(props: AllProps) {
+function CardHeader(props: DefaultProps & Props) {
   const { avatar, classes, className: classNameProp, subheader, title, ...other } = props;
 
   const className = classNames(classes.root, classNameProp);

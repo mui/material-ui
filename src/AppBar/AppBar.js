@@ -75,9 +75,7 @@ export type Props = {
   position?: 'static' | 'fixed' | 'absolute',
 };
 
-type AllProps = DefaultProps & Props;
-
-function AppBar(props: AllProps) {
+function AppBar(props: DefaultProps & Props) {
   const { children, classes, className: classNameProp, color, position, ...other } = props;
 
   const className = classNames(

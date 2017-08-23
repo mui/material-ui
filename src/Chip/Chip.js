@@ -123,14 +123,10 @@ export type Props = {
   tabIndex?: number | string,
 };
 
-type AllProps = DefaultProps & Props;
-
 /**
  * Chips represent complex entities in small blocks, such as a contact.
  */
-class Chip extends React.Component<AllProps> {
-  props: AllProps;
-
+class Chip extends React.Component<DefaultProps & Props> {
   chipRef: ?HTMLElement = null;
 
   handleDeleteIconClick = event => {

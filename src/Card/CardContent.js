@@ -28,9 +28,7 @@ export type Props = {
   className?: string,
 };
 
-type AllProps = DefaultProps & Props;
-
-function CardContent(props: AllProps) {
+function CardContent(props: DefaultProps & Props) {
   const { classes, className, ...other } = props;
 
   return <div className={classNames(classes.root, className)} {...other} />;

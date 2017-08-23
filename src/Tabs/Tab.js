@@ -149,14 +149,11 @@ export type Props = {
   value?: any,
 };
 
-type AllProps = DefaultProps & Props;
-
 type State = {
   wrappedText: boolean,
 };
 
-class Tab extends React.Component<AllProps, State> {
-  props: AllProps;
+class Tab extends React.Component<DefaultProps & Props, State> {
   static defaultProps = {
     disabled: false,
   };

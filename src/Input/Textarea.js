@@ -81,8 +81,6 @@ export type Props = {
   value?: string,
 };
 
-type AllProps = DefaultProps & Props;
-
 type State = {
   height: ?number,
 };
@@ -90,9 +88,7 @@ type State = {
 /**
  * @ignore - internal component.
  */
-class Textarea extends React.Component<AllProps, State> {
-  props: AllProps;
-
+class Textarea extends React.Component<DefaultProps & Props, State> {
   shadow: ?HTMLInputElement;
 
   singlelineShadow: ?HTMLInputElement;

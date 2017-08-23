@@ -199,15 +199,11 @@ export type Props = {
   transition?: Element<*>,
 };
 
-type AllProps = DefaultProps & Props;
-
 type State = {
   exited: boolean,
 };
 
-class Snackbar extends React.Component<AllProps, State> {
-  props: AllProps;
-
+class Snackbar extends React.Component<DefaultProps & Props, State> {
   static defaultProps = {
     anchorOrigin: { vertical: 'bottom', horizontal: 'center' },
     autoHideDuration: null,

@@ -139,8 +139,6 @@ export type Props = {
   show?: boolean,
 };
 
-type AllProps = DefaultProps & Props;
-
 type State = {
   exited: boolean,
 };
@@ -148,9 +146,7 @@ type State = {
 /**
  * @ignore - internal component.
  */
-class Modal extends React.Component<AllProps, State> {
-  props: AllProps;
-
+class Modal extends React.Component<DefaultProps & Props, State> {
   static defaultProps = {
     backdropComponent: Backdrop,
     backdropTransitionDuration: 300,

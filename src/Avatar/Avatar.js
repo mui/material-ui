@@ -89,9 +89,7 @@ export type Props = {
   srcSet?: string,
 };
 
-type AllProps = DefaultProps & Props;
-
-function Avatar(props: AllProps) {
+function Avatar(props: DefaultProps & Props) {
   const {
     alt,
     classes,

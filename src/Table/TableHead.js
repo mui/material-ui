@@ -39,11 +39,7 @@ export type Props = {
   component?: ElementType,
 };
 
-type AllProps = DefaultProps & Props;
-
-class TableHead extends React.Component<AllProps, void> {
-  props: AllProps;
-
+class TableHead extends React.Component<DefaultProps & Props> {
   static defaultProps = {
     component: 'thead',
   };

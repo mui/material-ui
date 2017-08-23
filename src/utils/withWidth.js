@@ -71,9 +71,10 @@ function withWidth(options = {}) {
       width?: Breakpoint,
     };
 
-    type AllProps = DefaultProps & WidthProps & BaseProps;
-    class Width extends React.Component<AllProps, { width: ?Breakpoint }> {
-      props: AllProps;
+    class Width extends React.Component<
+      DefaultProps & WidthProps & BaseProps,
+      { width: ?Breakpoint },
+    > {
       state = {
         width: undefined,
       };

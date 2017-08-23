@@ -21,7 +21,6 @@ export type Props = {
  * @ignore - internal component.
  */
 class ClickAwayListener extends React.Component<Props> {
-  props: Props;
   componentDidMount() {
     this.mounted = true;
   }

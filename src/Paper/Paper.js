@@ -58,9 +58,7 @@ export type Props = {
   square?: boolean,
 };
 
-type AllProps = DefaultProps & Props;
-
-function Paper(props: AllProps) {
+function Paper(props: DefaultProps & Props) {
   const {
     classes,
     className: classNameProp,

@@ -66,10 +66,7 @@ export type Props = {
   rows?: number,
 };
 
-type AllProps = DefaultProps & Props;
-
-class GridListTile extends React.Component<AllProps> {
-  props: AllProps;
+class GridListTile extends React.Component<DefaultProps & Props> {
   static defaultProps = {
     cols: 1,
     rows: 1,

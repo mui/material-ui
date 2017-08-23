@@ -20,7 +20,6 @@ export type Props = {
  * @ignore - internal component.
  */
 class Portal extends React.Component<Props> {
-  props: Props;
   static defaultProps = {
     open: false,
   };

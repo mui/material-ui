@@ -42,10 +42,8 @@ export type Props = {
   disableActionSpacing?: boolean,
 };
 
-type AllProps = DefaultProps & Props;
-
-function CardActions(props: AllProps) {
-  const { children, classes, className, disableActionSpacing, ...other } = props;
+function CardActions(props: DefaultProps & Props) {
+  const { disableActionSpacing, children, classes, className, ...other } = props;
 
   return (
     <div className={classNames(classes.root, className)} {...other}>

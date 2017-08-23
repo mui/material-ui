@@ -60,9 +60,7 @@ export type Props = {
   margin?: 'dense',
 };
 
-type AllProps = DefaultProps & Props;
-
-function FormHelperText(props: AllProps, context: { muiFormControl: Object }) {
+function FormHelperText(props: DefaultProps & Props, context: { muiFormControl: Object }) {
   const {
     children,
     classes,
