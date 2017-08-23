@@ -1,4 +1,5 @@
 // @flow
+
 import warning from 'warning';
 import { keys as breakpoints } from '../styles/breakpoints';
 import withWidth, { isWidthDown, isWidthUp } from '../utils/withWidth';

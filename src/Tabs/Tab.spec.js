@@ -1,6 +1,6 @@
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';
 import { createShallow, createMount, getClasses } from '../test-utils';

@@ -1,6 +1,7 @@
 // @flow
 
-import * as React from 'react';
+import React from 'react';
+import type { ChildrenArray } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -45,7 +46,7 @@ export type Props = {
   /**
    * The contents of the form control.
    */
-  children?: React.ChildrenArray<*>,
+  children?: ChildrenArray<*>,
   /**
    * Useful to extend the style applied to components.
    */

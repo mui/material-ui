@@ -1,3 +1,4 @@
+/* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-disable react/no-multi-comp */
 
 import React from 'react';
@@ -35,7 +36,6 @@ const columnData = [
 ];
 
 class EnhancedTableHead extends React.Component {
-  static defaultProps: $FlowFixMeProps;
   static propTypes = {
     numSelected: PropTypes.number.isRequired,
     onRequestSort: PropTypes.func.isRequired,
@@ -155,7 +155,6 @@ const styles = theme => ({
 });
 
 class EnhancedTable extends React.Component {
-  static defaultProps: $FlowFixMeProps;
   state = {
     order: 'asc',
     orderBy: 'calories',

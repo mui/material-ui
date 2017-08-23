@@ -1,6 +1,7 @@
 // @flow
 
-import * as React from 'react';
+import React from 'react';
+import type { Element } from 'react';
 import { findDOMNode } from 'react-dom';
 import Transition from '../internal/Transition';
 import withTheme from '../styles/withTheme';
@@ -12,7 +13,7 @@ const GUTTER = 24;
 // Translate the element so he can't be seen in the screen.
 // Later, we gonna translate back the element to his original location
 // with `translate3d(0, 0, 0)`.`
-function getTranslateValue(props, element: Element) {
+function getTranslateValue(props, element: HTMLElement) {
   const { direction } = props;
   const rect = element.getBoundingClientRect();
 
@@ -40,7 +41,7 @@ export type Props = {
   /**
    * A single child content element.
    */
-  children?: React.Element<*>,
+  children?: Element<*>,
   /**
    * Direction the child element will enter from.
    */
@@ -136,7 +137,6 @@ class Slide extends React.Component<AllProps, void> {
       duration: this.props.enterTransitionDuration,
       easing: transitions.easing.easeOut,
     });
-    // $FlowFixMe - not yet present in https://github.com/facebook/flow/blob/v0.53.1/lib/cssom.js#L357
     element.style.webkitTransition = transitions.create('-webkit-transform', {
       duration: this.props.enterTransitionDuration,
       easing: transitions.easing.easeOut,
@@ -154,7 +154,6 @@ class Slide extends React.Component<AllProps, void> {
       duration: this.props.leaveTransitionDuration,
       easing: transitions.easing.sharp,
     });
-    // $FlowFixMe - not yet present in https://github.com/facebook/flow/blob/v0.53.1/lib/cssom.js#L357
     element.style.webkitTransition = transitions.create('-webkit-transform', {
       duration: this.props.leaveTransitionDuration,
       easing: transitions.easing.sharp,

@@ -1,6 +1,7 @@
 // @flow
 
-import * as React from 'react';
+import React from 'react';
+import type { Element } from 'react';
 import withTheme from '../styles/withTheme';
 import Transition from '../internal/Transition';
 import type { TransitionCallback } from '../internal/Transition';
@@ -19,7 +20,7 @@ export type Props = {
   /**
    * A single child content element.
    */
-  children?: React.Element<*>,
+  children?: Element<*>,
   /**
    * Callback fired before the component is entering
    */

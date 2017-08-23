@@ -1,3 +1,5 @@
+/* eslint-disable flowtype/require-valid-file-annotation */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
@@ -11,7 +13,6 @@ const styles = {
 };
 
 class LinearBuffer extends React.Component {
-  static defaultProps: $FlowFixMeProps;
   timer: number;
   state = {
     completed: 0,

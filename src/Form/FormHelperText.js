@@ -1,6 +1,7 @@
 // @flow
 
-import * as React from 'react';
+import React from 'react';
+import type { Node } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -35,7 +36,7 @@ export type Props = {
   /**
    * The content of the component.
    */
-  children?: React.Node,
+  children?: Node,
   /**
    * Useful to extend the style applied to components.
    */

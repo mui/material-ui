@@ -1,6 +1,6 @@
 // @flow weak
 
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from 'material-ui/Typography';
 import { withTheme } from 'material-ui/styles';

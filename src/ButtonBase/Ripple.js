@@ -1,6 +1,6 @@
 // @flow weak
 
-import * as React from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import Transition from 'react-transition-group/Transition';
 

@@ -1,6 +1,6 @@
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import Radio from 'material-ui/Radio';
 import { FormControlLabel } from 'material-ui/Form';
 

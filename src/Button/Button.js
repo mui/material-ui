@@ -1,7 +1,8 @@
 // @flow
 // @inheritedComponent ButtonBase
 
-import * as React from 'react';
+import React from 'react';
+import type { Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
@@ -168,7 +169,7 @@ export type Props = {
   /**
    * The content of the button.
    */
-  children: React.Node,
+  children: Node,
   /**
    * Useful to extend the style applied to components.
    */

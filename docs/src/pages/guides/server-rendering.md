@@ -138,7 +138,7 @@ Let's take a look at our client file:
 `client.js`
 
 ```jsx
-import * as React from 'react';
+import React from 'react';
 import { render } from 'react-dom';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import createPalette from 'material-ui/styles/palette';

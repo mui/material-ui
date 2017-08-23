@@ -1,6 +1,6 @@
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import { assert } from 'chai';
 import forOwn from 'lodash/forOwn';
 import { createShallow, getClasses } from '../test-utils';

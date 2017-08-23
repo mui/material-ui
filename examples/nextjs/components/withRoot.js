@@ -1,4 +1,4 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 import React, { Component } from 'react';
 import { JssProvider } from 'react-jss';
@@ -7,7 +7,7 @@ import wrapDisplayName from 'recompose/wrapDisplayName';
 import { getContext } from '../styles/context';
 
 // Apply some reset
-const styles = (theme: Object) => ({
+const styles = theme => ({
   '@global': {
     html: {
       background: theme.palette.background.default,
@@ -25,7 +25,7 @@ let AppWrapper = props => props.children;
 AppWrapper = withStyles(styles)(AppWrapper);
 
 function withRoot(BaseComponent) {
-  class WithRoot extends Component<$FlowFixMeProps> {
+  class WithRoot extends Component {
     static getInitialProps(ctx) {
       if (BaseComponent.getInitialProps) {
         return BaseComponent.getInitialProps(ctx);

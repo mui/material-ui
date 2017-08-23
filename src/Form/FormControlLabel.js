@@ -1,7 +1,8 @@
 // @flow
 /* eslint-disable jsx-a11y/label-has-for */
 
-import * as React from 'react';
+import React from 'react';
+import type { Element } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
@@ -47,7 +48,7 @@ export type Props = {
   /**
    * A control element. For instance, it can be be a `Radio`, a `Switch` or a `Checkbox`.
    */
-  control: React.Element<*>,
+  control: Element<*>,
   /**
    * If `true`, the control will be disabled.
    */

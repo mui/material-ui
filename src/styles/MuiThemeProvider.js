@@ -1,6 +1,6 @@
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import createBroadcast from 'brcast';
 import themeListener, { CHANNEL } from './themeListener';

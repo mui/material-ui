@@ -1,6 +1,5 @@
 // @flow
 
-import * as React from 'react';
 import createEagerFactory from 'recompose/createEagerFactory';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import withWidth, { isWidthDown } from '../utils/withWidth';
@@ -17,7 +16,7 @@ type Options = { breakpoint: Breakpoint };
 function withResponsiveFullScreen(options: Options = { breakpoint: 'sm' }) {
   const { breakpoint } = options;
 
-  return (BaseDialog: React.Element<typeof Dialog>) => {
+  return (BaseDialog: Element<typeof Dialog>) => {
     const factory = createEagerFactory(BaseDialog);
 
     function ResponsiveFullScreen(props: { width: string }) {

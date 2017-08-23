@@ -1,6 +1,6 @@
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import Paper from 'material-ui/Paper';
 
 const style = {

@@ -1,3 +1,5 @@
+/* eslint-disable flowtype/require-valid-file-annotation */
+
 import React from 'react';
 import Paper from 'material-ui/Paper';
 import Tabs, { Tab } from 'material-ui/Tabs';
@@ -6,7 +8,6 @@ import FavoriteIcon from 'material-ui-icons/Favorite';
 import PersonPinIcon from 'material-ui-icons/PersonPin';
 
 export default class IconTabs extends React.Component {
-  static defaultProps: {};
   state = {
     value: 0,
   };

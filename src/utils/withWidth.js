@@ -1,6 +1,7 @@
 // @flow weak
 
-import * as React from 'react';
+import React from 'react';
+import type { ComponentType } from 'react';
 import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
 import createEagerFactory from 'recompose/createEagerFactory';
@@ -42,7 +43,7 @@ function withWidth(options = {}) {
     resizeInterval = 166, // Corresponds to 10 frames at 60 Hz.
   } = options;
 
-  function enhance<BaseProps: {}>(BaseComponent: React.ComponentType<BaseProps>) {
+  function enhance<BaseProps: {}>(BaseComponent: ComponentType<BaseProps>) {
     const factory = createEagerFactory(BaseComponent);
 
     type DefaultProps = {

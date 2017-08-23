@@ -1,6 +1,7 @@
 // @flow
 
-import * as React from 'react';
+import React from 'react';
+import type { Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
@@ -32,7 +33,7 @@ export type Props = {
   /**
    * Can be used, for instance, to render a letter inside the avatar.
    */
-  children?: React.Node,
+  children?: Node,
   /**
    * Useful to extend the style applied to components.
    */
