@@ -55,15 +55,15 @@ function withWidth(options = {}) {
        * For instance, you could be using the user-agent or the client-hints.
        * http://caniuse.com/#search=client%20hint
        */
-      initialWidth: ?Breakpoint,
+      initialWidth?: Breakpoint,
       /**
        * @ignore
        */
-      theme: Object,
+      theme?: Object,
       /**
        * Bypass the width calculation logic.
        */
-      width: Breakpoint,
+      width?: Breakpoint,
     };
 
     type AllProps = WidthProps & BaseProps;

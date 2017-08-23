@@ -94,11 +94,11 @@ function withStyles(stylesOrCreator: Object, options?: Options = {}) {
       /**
        * Useful to extend the style applied to components.
        */
-      classes: Object,
+      classes?: Object,
       /**
        * Use that property to pass a ref callback to the decorated component.
        */
-      innerRef: Function,
+      innerRef?: Function,
     };
 
     type AllProps = StyleProps & BaseProps;
