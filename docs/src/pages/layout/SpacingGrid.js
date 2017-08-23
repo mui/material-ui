@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
@@ -21,7 +21,8 @@ const styles = theme => ({
   },
 });
 
-class GuttersGrid extends Component {
+class GuttersGrid extends React.Component<any, any> {
+  static defaultProps: $FlowFixMeProps;
   state = {
     spacing: '16',
   };

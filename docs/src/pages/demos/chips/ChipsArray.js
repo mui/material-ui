@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Chip from 'material-ui/Chip';
@@ -16,7 +16,8 @@ const styles = theme => ({
   },
 });
 
-class ChipsArray extends Component {
+class ChipsArray extends React.Component<any, any> {
+  static defaultProps: $FlowFixMeProps;
   state = {
     chipData: [
       { key: 0, label: 'Angular' },

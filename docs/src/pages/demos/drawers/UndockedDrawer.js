@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
@@ -26,7 +26,8 @@ const styles = {
   },
 };
 
-class UndockedDrawer extends Component {
+class UndockedDrawer extends React.Component<any, any> {
+  static defaultProps: $FlowFixMeProps;
   state = {
     open: {
       top: false,

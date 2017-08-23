@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
@@ -102,7 +102,8 @@ const styles = theme => ({
   },
 });
 
-class AppFrame extends Component {
+class AppFrame extends React.Component<any, any> {
+  static defaultProps: $FlowFixMeProps;
   state = {
     drawerOpen: false,
   };

@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemText } from 'material-ui/List';
@@ -20,7 +20,8 @@ const options = [
   'Hide all notification content',
 ];
 
-class SimpleListMenu extends Component {
+class SimpleListMenu extends React.Component<any, any> {
+  static defaultProps: $FlowFixMeProps;
   state = {
     anchorEl: undefined,
     open: false,

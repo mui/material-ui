@@ -23,6 +23,12 @@ function getDeprecatedInfo(type) {
 function generatePropDescription(description, type) {
   let deprecated = '';
 
+  // FIXME: unsupported flow props from 0.53.x upgrade
+  // https://github.com/reactjs/react-docgen/issues/207
+  if (type === undefined) {
+    return '';
+  }
+
   if (type.name === 'custom') {
     const deprecatedInfo = getDeprecatedInfo(type);
 
@@ -86,6 +92,12 @@ function generatePropDescription(description, type) {
 }
 
 function generatePropType(type) {
+  // FIXME: unsupported flow props from 0.53.x upgrade
+  // https://github.com/reactjs/react-docgen/issues/207
+  if (type === undefined) {
+    return '';
+  }
+
   switch (type.name) {
     case 'func':
       return 'function';
@@ -146,6 +158,12 @@ function generateProps(reactAPI) {
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|\n`;
 
+  // FIXME: unsupported flow props from 0.53.x upgrade
+  // https://github.com/reactjs/react-docgen/issues/207
+  if (reactAPI.props === undefined) {
+    return text;
+  }
+
   text = Object.keys(reactAPI.props).sort().reduce((textProps, propRaw) => {
     const prop = getProp(reactAPI.props, propRaw);
     const description = generatePropDescription(prop.description, prop.flowType || prop.type);
@@ -165,7 +183,7 @@ function generateProps(reactAPI) {
     }
 
     const type = prop.flowType || prop.type;
-    if (type.name === 'custom') {
+    if (type && type.name === 'custom') {
       if (getDeprecatedInfo(prop.type)) {
         propRaw = `~~${propRaw}~~`;
       }

@@ -1,6 +1,6 @@
 // @flow weak
 
-import React from 'react';
+import * as React from 'react';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import createPalette from 'material-ui/styles/palette';
 import WithTheme from './WithTheme';

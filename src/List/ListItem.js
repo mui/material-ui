@@ -1,7 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
-import type { Element } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -54,13 +53,8 @@ export const styles = (theme: Object) => ({
 });
 
 type DefaultProps = {
-  button: boolean,
   classes: Object,
   component: string,
-  dense: boolean,
-  disabled: false,
-  disableGutters: false,
-  divider: false,
 };
 
 export type Props = {
@@ -71,7 +65,7 @@ export type Props = {
   /**
    * The content of the component.
    */
-  children?: Element<*>,
+  children?: React.Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -105,9 +99,9 @@ export type Props = {
 
 type AllProps = DefaultProps & Props;
 
-class ListItem extends Component<DefaultProps, AllProps, void> {
+class ListItem extends React.Component<AllProps, void> {
   props: AllProps;
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     button: false,
     classes: {},
     component: 'li',

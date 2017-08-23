@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
@@ -17,7 +17,7 @@ const styles = theme => ({
   },
 });
 
-class TextFields extends Component {
+class TextFields extends React.Component<any, any> {
   state = {
     name: 'Cat in the Hat',
     multiline: 'Controlled',

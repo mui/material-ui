@@ -1,11 +1,12 @@
 // @flow weak
 /* eslint-disable react/no-multi-comp */
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import Paper from 'material-ui/Paper';
 import Tabs, { Tab } from 'material-ui/Tabs';
 
-class DisabledTabs extends Component {
+class DisabledTabs extends React.Component<any, any> {
+  static defaultProps: {};
   state = {
     value: 0,
   };

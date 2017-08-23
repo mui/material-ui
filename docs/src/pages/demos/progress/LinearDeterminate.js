@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import { LinearProgress } from 'material-ui/Progress';
@@ -12,7 +12,8 @@ const styles = {
   },
 };
 
-class LinearDeterminate extends Component {
+class LinearDeterminate extends React.Component<any, any> {
+  static defaultProps: $FlowFixMeProps;
   timer: number;
   state = {
     completed: 0,

@@ -1,7 +1,7 @@
 // @flow weak
 /* eslint-disable no-underscore-dangle */
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { JssProvider } from 'react-jss';
 import { getContext } from 'docs/src/modules/styles/context';
@@ -25,7 +25,8 @@ if (process.browser && !global.__INSERTION_POINT__) {
   }
 }
 
-class AppWrapper extends Component {
+class AppWrapper extends React.Component<any, any> {
+  static defaultProps: $FlowFixMeProps;
   componentWillMount() {
     this.styleContext = getContext();
   }

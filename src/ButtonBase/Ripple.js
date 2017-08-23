@@ -1,20 +1,50 @@
 // @flow weak
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import classNames from 'classnames';
 import Transition from 'react-transition-group/Transition';
+
+export type Props = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * If `true`, the ripple pulsates, typically indicating the keyboard focus state of an element.
+   */
+  pulsate?: boolean,
+  /**
+   * Diameter of the ripple.
+   */
+  rippleSize: number,
+  /**
+   * Horizontal position of the ripple center.
+   */
+  rippleX: number,
+  /**
+   * Vertical position of the ripple center.
+   */
+  rippleY: number,
+};
+
+type State = { rippleVisible: boolean, rippleLeaving: boolean };
 
 /**
  * @ignore - internal component.
  */
-class Ripple extends Component {
+class Ripple extends React.Component<Props, State> {
+  props: Props;
   static defaultProps = {
     pulsate: false,
   };
 
   state = {
     rippleVisible: false,
+    rippleLeaving: false,
   };
 
   handleEnter = () => {
@@ -75,32 +105,5 @@ class Ripple extends Component {
     );
   }
 }
-
-Ripple.propTypes = {
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * If `true`, the ripple pulsates, typically indicating the keyboard focus state of an element.
-   */
-  pulsate: PropTypes.bool,
-  /**
-   * Diameter of the ripple.
-   */
-  rippleSize: PropTypes.number.isRequired,
-  /**
-   * Horizontal position of the ripple center.
-   */
-  rippleX: PropTypes.number.isRequired,
-  /**
-   * Vertical position of the ripple center.
-   */
-  rippleY: PropTypes.number.isRequired,
-};
 
 export default Ripple;

@@ -1,7 +1,7 @@
 // @flow weak
 /* eslint-disable react/no-multi-comp */
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
@@ -28,7 +28,8 @@ const styles = theme => ({
   },
 });
 
-class ScrollableTabsButtonAuto extends Component {
+class ScrollableTabsButtonAuto extends React.Component<any, any> {
+  static defaultProps: $FlowFixMeProps;
   state = {
     value: 0,
   };

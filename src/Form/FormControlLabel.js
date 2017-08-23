@@ -1,8 +1,7 @@
 // @flow
 /* eslint-disable jsx-a11y/label-has-for */
 
-import React, { cloneElement } from 'react';
-import type { Element } from 'react';
+import * as React from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
@@ -48,7 +47,7 @@ export type Props = {
   /**
    * A control element. For instance, it can be be a `Radio`, a `Switch` or a `Checkbox`.
    */
-  control: Element<*>,
+  control: React.Element<*>,
   /**
    * If `true`, the control will be disabled.
    */
@@ -106,7 +105,7 @@ function FormControlLabel(props: AllProps) {
 
   return (
     <label className={className} {...other}>
-      {cloneElement(control, {
+      {React.cloneElement(control, {
         disabled: typeof control.props.disabled === 'undefined' ? disabled : control.props.disabled,
         checked: typeof control.props.checked === 'undefined' ? checked : control.props.checked,
         name: control.props.name || name,

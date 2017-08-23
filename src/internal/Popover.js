@@ -1,7 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
-import type { Element } from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import contains from 'dom-helpers/query/contains';
@@ -78,13 +77,7 @@ type Origin = {
 };
 
 type DefaultProps = {
-  anchorOrigin: Origin,
   classes: Object,
-  modal: boolean,
-  open: boolean,
-  transformOrigin: Origin,
-  transitionDuration: 'auto',
-  elevation: number,
 };
 
 export type Props = {
@@ -105,7 +98,7 @@ export type Props = {
   /**
    * The content of the component.
    */
-  children?: Element<*>,
+  children?: React.Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -195,9 +188,9 @@ type AllProps = DefaultProps & Props;
 /**
  * @ignore - internal component.
  */
-class Popover extends Component<DefaultProps, AllProps, void> {
+class Popover extends React.Component<AllProps, void> {
   props: AllProps;
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     anchorOrigin: {
       vertical: 'top',
       horizontal: 'left',

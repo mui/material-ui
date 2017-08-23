@@ -1,7 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
-import type { Element } from 'react';
+import * as React from 'react';
 import withStyles from '../styles/withStyles';
 import Transition from '../internal/Transition';
 import type { TransitionCallback } from '../internal/Transition';
@@ -22,7 +21,6 @@ export const styles = (theme: Object) => ({
 
 type DefaultProps = {
   classes: Object,
-  in: boolean,
   theme: Object,
   transitionDuration: number,
 };
@@ -31,7 +29,7 @@ export type Props = {
   /**
    * The content node to be collapsed.
    */
-  children?: Element<*>,
+  children?: React.Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -76,10 +74,10 @@ export type Props = {
 
 type AllProps = DefaultProps & Props;
 
-class Collapse extends Component<DefaultProps, AllProps, void> {
+class Collapse extends React.Component<AllProps, void> {
   props: AllProps;
 
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     classes: {},
     in: false,
     theme: {},

@@ -1,9 +1,10 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import Radio from 'material-ui/Radio';
 
-class RadioButtons extends Component {
+class RadioButtons extends React.Component<any, any> {
+  static defaultProps: {};
   state = {
     selectedValue: undefined,
   };

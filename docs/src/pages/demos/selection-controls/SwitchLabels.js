@@ -1,10 +1,11 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import { FormControlLabel } from 'material-ui/Form';
 import Switch from 'material-ui/Switch';
 
-class SwitchLabels extends Component {
+class SwitchLabels extends React.Component<any, any> {
+  static defaultProps: {};
   state = {
     checkedA: true,
     checkedB: false,

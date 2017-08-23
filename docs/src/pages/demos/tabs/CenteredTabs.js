@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
@@ -13,7 +13,8 @@ const styles = theme => ({
   },
 });
 
-class CenteredTabs extends Component {
+class CenteredTabs extends React.Component<any, any> {
+  static defaultProps: $FlowFixMeProps;
   state = {
     value: 0,
   };

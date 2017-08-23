@@ -1,7 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
-import type { Element } from 'react';
+import * as React from 'react';
 import { findDOMNode } from 'react-dom';
 import keycode from 'keycode';
 import contains from 'dom-helpers/query/contains';
@@ -13,7 +12,7 @@ export type Props = {
   /**
    * MenuList contents, normally `MenuItem`s.
    */
-  children?: Element<*>,
+  children?: $ReadOnlyArray<React.ChildrenArray<*>>,
   /**
    * @ignore
    */
@@ -25,14 +24,14 @@ export type Props = {
   /**
    * @ignore
    */
-  onKeyDown?: (event: SyntheticUIEvent, key: string) => void,
+  onKeyDown?: (event: SyntheticUIEvent<>, key: string) => void,
 };
 
 type State = {
   currentTabIndex: ?number,
 };
 
-class MenuList extends Component<void, Props, State> {
+class MenuList extends React.Component<Props, State> {
   props: Props;
   state: State = {
     currentTabIndex: undefined,
@@ -50,7 +49,7 @@ class MenuList extends Component<void, Props, State> {
   selectedItem = undefined;
   blurTimer = undefined;
 
-  handleBlur = (event: SyntheticUIEvent) => {
+  handleBlur = (event: SyntheticUIEvent<>) => {
     this.blurTimer = setTimeout(() => {
       if (this.list) {
         const list = findDOMNode(this.list);
@@ -66,7 +65,7 @@ class MenuList extends Component<void, Props, State> {
     }
   };
 
-  handleKeyDown = (event: SyntheticUIEvent) => {
+  handleKeyDown = (event: SyntheticUIEvent<>) => {
     const list = findDOMNode(this.list);
     const key = keycode(event);
     const currentFocus = activeElement(ownerDocument(list));
@@ -99,7 +98,7 @@ class MenuList extends Component<void, Props, State> {
     }
   };
 
-  handleItemFocus = (event: SyntheticUIEvent) => {
+  handleItemFocus = (event: SyntheticUIEvent<>) => {
     const list = findDOMNode(this.list);
     if (list) {
       // $FlowFixMe

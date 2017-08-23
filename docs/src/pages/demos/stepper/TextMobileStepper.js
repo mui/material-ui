@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import MobileStepper from 'material-ui/MobileStepper';
@@ -22,7 +22,8 @@ const styles = theme => ({
   },
 });
 
-class TextMobileStepper extends Component {
+class TextMobileStepper extends React.Component<any, any> {
+  static defaultProps: $FlowFixMeProps;
   state = {
     activeStep: 0,
   };

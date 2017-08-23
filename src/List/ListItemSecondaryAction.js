@@ -1,7 +1,6 @@
 // @flow weak
 
-import React from 'react';
-import type { Element } from 'react';
+import * as React from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
@@ -22,7 +21,7 @@ export type Props = {
   /**
    * The content of the component, normally an `IconButton` or selection control.
    */
-  children?: Element<*>,
+  children?: React.Node,
   /**
    * Useful to extend the style applied to components.
    */

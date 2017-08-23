@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Children } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -34,7 +34,7 @@ function GridList(props) {
       style={{ margin: -spacing / 2, ...style }}
       {...other}
     >
-      {Children.map(children, currentChild => {
+      {React.Children.map(children, currentChild => {
         const childCols = currentChild.props.cols || 1;
         const childRows = currentChild.props.rows || 1;
 

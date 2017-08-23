@@ -1,11 +1,12 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import Button from 'material-ui/Button';
 import Snackbar from 'material-ui/Snackbar';
 import Fade from 'material-ui/transitions/Fade';
 
-class FadeSnackbar extends Component {
+class FadeSnackbar extends React.Component<any, any> {
+  static defaultProps: {};
   state = {
     open: false,
   };

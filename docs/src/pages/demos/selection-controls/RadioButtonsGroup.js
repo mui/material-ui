@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Radio, { RadioGroup } from 'material-ui/Radio';
@@ -12,7 +12,8 @@ const styles = theme => ({
   },
 });
 
-class RadioButtonsGroup extends Component {
+class RadioButtonsGroup extends React.Component<any, any> {
+  static defaultProps: $FlowFixMeProps;
   state = {
     value: '',
   };

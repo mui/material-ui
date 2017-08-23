@@ -1,6 +1,5 @@
 // @flow weak
 
-import type { Element } from 'react';
 import { shallow as enzymeShallow } from 'enzyme';
 import until from './until';
 
@@ -8,7 +7,10 @@ import until from './until';
 export default function createShallow(options: Object = {}) {
   const { shallow = enzymeShallow, context, dive = false, untilSelector = false } = options;
 
-  const shallowWithContext = function shallowWithContext(node: Element<*>, options2: Object = {}) {
+  const shallowWithContext = function shallowWithContext(
+    node: React$Element<any>,
+    options2: Object = {},
+  ) {
     const { context: context2, ...other } = options2;
 
     const wrapper = shallow(node, {

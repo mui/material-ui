@@ -1,7 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { findDOMNode } from 'react-dom';
 import EventListener from 'react-event-listener';
 
@@ -12,15 +11,16 @@ const isDescendant = (el, target) => {
   return false;
 };
 
+export type Props = {
+  children: React.Node,
+  onClickAway: (event: Event) => void,
+};
+
 /**
  * @ignore - internal component.
  */
-class ClickAwayListener extends Component {
-  static propTypes = {
-    children: PropTypes.element.isRequired,
-    onClickAway: PropTypes.func.isRequired,
-  };
-
+class ClickAwayListener extends React.Component<Props> {
+  props: Props;
   componentDidMount() {
     this.mounted = true;
   }

@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import Button from 'material-ui/Button';
 import Dialog, {
   DialogActions,
@@ -9,7 +9,8 @@ import Dialog, {
   DialogTitle,
 } from 'material-ui/Dialog';
 
-export default class AlertDialog extends Component {
+export default class AlertDialog extends React.Component<any, any> {
+  static defaultProps: {};
   state = {
     open: false,
   };

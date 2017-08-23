@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 import classNames from 'classnames';
 import warning from 'warning';
 import withStyles from '../styles/withStyles';

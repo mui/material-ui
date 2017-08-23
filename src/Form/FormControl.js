@@ -1,7 +1,6 @@
 // @flow
 
-import React, { Children, Component } from 'react';
-import type { Element } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -46,7 +45,7 @@ export type Props = {
   /**
    * The contents of the form control.
    */
-  children?: Element<*>,
+  children?: React.ChildrenArray<*>,
   /**
    * Useful to extend the style applied to components.
    */
@@ -100,7 +99,7 @@ type State = {
 /**
  * Provides context such as dirty/focused/error/required for form inputs.
  */
-class FormControl extends Component<DefaultProps, AllProps, State> {
+class FormControl extends React.Component<AllProps, State> {
   props: AllProps;
 
   static defaultProps = {
@@ -145,11 +144,14 @@ class FormControl extends Component<DefaultProps, AllProps, State> {
   componentWillMount() {
     // We need to iterate through the children and find the Input in order
     // to fully support server side rendering.
-    Children.forEach(this.props.children, child => {
-      if (isMuiComponent(child, 'Input') && isDirty(child.props, true)) {
-        this.setState({ dirty: true });
-      }
-    });
+    const { children } = this.props;
+    if (children) {
+      React.Children.forEach(children, child => {
+        if (isMuiComponent(child, 'Input') && isDirty(child.props, true)) {
+          this.setState({ dirty: true });
+        }
+      });
+    }
   }
 
   handleFocus = event => {

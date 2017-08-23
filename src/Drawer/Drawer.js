@@ -1,7 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
-import type { Element } from 'react';
+import * as React from 'react';
 import classNames from 'classnames';
 import Modal from '../internal/Modal';
 import withStyles from '../styles/withStyles';
@@ -90,7 +89,7 @@ export type Props = {
   /**
    * The contents of the drawer.
    */
-  children?: Element<*>,
+  children?: React.Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -142,7 +141,7 @@ type State = {
   firstMount: boolean,
 };
 
-class Drawer extends Component<DefaultProps, AllProps, State> {
+class Drawer extends React.Component<AllProps, State> {
   props: AllProps;
   static defaultProps = {
     anchor: 'left',

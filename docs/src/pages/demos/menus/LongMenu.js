@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import IconButton from 'material-ui/IconButton';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
@@ -24,7 +24,8 @@ const options = [
 
 const ITEM_HEIGHT = 48;
 
-class LongMenu extends Component {
+class LongMenu extends React.Component<any, any> {
+  static defaultProps: {};
   state = {
     anchorEl: undefined,
     open: false,
