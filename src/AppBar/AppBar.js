@@ -40,8 +40,8 @@ export const styles = (theme: Object) => ({
     color: theme.palette.getContrastText(theme.palette.primary[500]),
   },
   colorAccent: {
-    backgroundColor: theme.palette.accent.A200,
-    color: theme.palette.getContrastText(theme.palette.accent.A200),
+    backgroundColor: theme.palette.secondary.A200,
+    color: theme.palette.getContrastText(theme.palette.secondary.A200),
   },
 });
 

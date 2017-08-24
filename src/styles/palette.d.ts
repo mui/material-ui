@@ -35,7 +35,7 @@ export const dark: Shade;
 
 type PaletteOptions = {
   primary: Color;
-  accent: Color;
+  secondary: Color;
   error: Color;
   type: Contrast;
 };

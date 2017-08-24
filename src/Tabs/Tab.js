@@ -30,7 +30,7 @@ export const styles = (theme: Object) => ({
     color: theme.palette.text.secondary,
   },
   rootAccentSelected: {
-    color: theme.palette.accent.A200,
+    color: theme.palette.secondary.A200,
   },
   rootAccentDisabled: {
     color: theme.palette.text.disabled,

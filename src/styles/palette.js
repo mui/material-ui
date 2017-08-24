@@ -75,7 +75,7 @@ function getContrastText(color) {
 }
 
 export default function createPalette(options = {}) {
-  const { primary = indigo, accent = pink, error = red, type = 'light' } = options;
+  const { primary = indigo, secondary = pink, error = red, type = 'light' } = options;
 
   if (process.env.NODE_ENV !== 'production') {
     const difference = (base, compare) => {
@@ -103,7 +103,7 @@ export default function createPalette(options = {}) {
     };
 
     paletteColorError('primary', indigo, primary);
-    paletteColorError('accent', pink, accent);
+    paletteColorError('secondary', pink, secondary);
     paletteColorError('error', red, error);
   }
 
@@ -120,7 +120,7 @@ export default function createPalette(options = {}) {
     action: shades[type].action,
     background: shades[type].background,
     primary,
-    accent,
+    secondary,
     error,
     grey,
     getContrastText,

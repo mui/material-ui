@@ -26,13 +26,13 @@ export const styles = (theme: Object) => ({
     backgroundPosition: '0px -23px',
   },
   accentColor: {
-    backgroundColor: theme.palette.accent.A100,
+    backgroundColor: theme.palette.secondary.A100,
   },
   accentColorBar: {
-    backgroundColor: theme.palette.accent.A400,
+    backgroundColor: theme.palette.secondary.A400,
   },
   accentDashed: {
-    background: `radial-gradient(${theme.palette.accent.A100} 0%, ${theme.palette.accent
+    background: `radial-gradient(${theme.palette.secondary.A100} 0%, ${theme.palette.secondary
       .A100} 16%, transparent 42%)`,
     backgroundSize: '10px 10px',
     backgroundPosition: '0px -23px',
@@ -85,7 +85,7 @@ export const styles = (theme: Object) => ({
   },
   bufferBar2Accent: {
     transition: `transform .${transitionDuration}s linear`,
-    backgroundColor: theme.palette.accent.A100,
+    backgroundColor: theme.palette.secondary.A100,
   },
   '@keyframes mui-indeterminate1': {
     '0%': {
