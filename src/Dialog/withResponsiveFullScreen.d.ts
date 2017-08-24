@@ -1,5 +1,5 @@
 import { Breakpoint } from '../styles/breakpoints';
-import { WithWidthEnhancement } from '../utils/withWidth';
+import { WithWidthProps } from '../utils/withWidth';
 
 export interface WithResponsiveFullScreenOptions {
   breakpoint: Breakpoint;
@@ -7,4 +7,4 @@ export interface WithResponsiveFullScreenOptions {
 
 export default function withResponsiveFullScreen<P>(
   options: WithResponsiveFullScreenOptions
-): React.ComponentClass<P & WithWidthEnhancement>;
+): React.ComponentClass<P & WithWidthProps>;
