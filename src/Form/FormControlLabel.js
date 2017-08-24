@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-for */
 
 import React from 'react';
-import type { Element } from 'react';
+import type { Node, Element } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
@@ -14,14 +14,12 @@ export const styles = (theme: Object) => ({
     cursor: 'pointer',
     // Remove grey highlight
     WebkitTapHighlightColor: theme.palette.common.transparent,
+    marginLeft: -12,
+    marginRight: theme.spacing.unit * 2, // used for row presentation of radio/checkbox
   },
   disabled: {
     color: theme.palette.text.disabled,
     cursor: 'default',
-  },
-  hasLabel: {
-    marginLeft: -12,
-    marginRight: theme.spacing.unit * 2, // used for row presentation of radio/checkbox
   },
   label: {
     userSelect: 'none',
@@ -60,7 +58,7 @@ export type Props = {
   /**
    * The text to be used in an enclosing label element.
    */
-  label: string,
+  label: Node,
   /*
    * @ignore
    */
@@ -98,7 +96,6 @@ function FormControlLabel(props: AllProps) {
   const className = classNames(
     classes.root,
     {
-      [classes.hasLabel]: label && label.length,
       [classes.disabled]: disabled,
     },
     classNameProp,
