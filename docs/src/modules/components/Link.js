@@ -21,7 +21,7 @@ const styles = theme => ({
     color: theme.palette.primary[500],
   },
   variantAccent: {
-    color: theme.palette.accent.A400,
+    color: theme.palette.secondary.A400,
   },
   variantButton: {
     '&:hover': {

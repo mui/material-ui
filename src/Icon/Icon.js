@@ -11,7 +11,7 @@ export const styles = (theme: Object) => ({
     userSelect: 'none',
   },
   colorAccent: {
-    color: theme.palette.accent.A200,
+    color: theme.palette.secondary.A200,
   },
   colorAction: {
     color: theme.palette.action.active,

@@ -32,7 +32,7 @@ export const styles = (theme: Object) => ({
     color: theme.palette.action.disabled,
   },
   colorAccent: {
-    color: theme.palette.accent.A200,
+    color: theme.palette.secondary.A200,
   },
   colorContrast: {
     color: theme.palette.getContrastText(theme.palette.primary[500]),

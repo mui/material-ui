@@ -52,7 +52,7 @@ export const styles = (theme: Object) => ({
     color: theme.palette.text.secondary,
   },
   colorAccent: {
-    color: theme.palette.accent.A400,
+    color: theme.palette.secondary.A400,
   },
 });
 
