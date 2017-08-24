@@ -99,7 +99,7 @@ class Textarea extends React.Component<AllProps, State> {
     rows: 1,
   };
 
-  state: State = {
+  state = {
     height: null,
   };
 

@@ -34,7 +34,7 @@ type State = {
 
 class MenuList extends React.Component<Props, State> {
   props: Props;
-  state: State = {
+  state = {
     currentTabIndex: undefined,
   };
 
@@ -166,8 +166,12 @@ class MenuList extends React.Component<Props, State> {
         onBlur={this.handleBlur}
         {...other}
       >
-        {React.Children.map(children, (child, index) =>
-          React.cloneElement(child, {
+        {React.Children.map(children, (child, index) => {
+          if (!React.isValidElement(child)) {
+            return null;
+          }
+
+          return React.cloneElement(child, {
             tabIndex: index === this.state.currentTabIndex ? '0' : '-1',
             ref: child.props.selected
               ? node => {
@@ -175,8 +179,8 @@ class MenuList extends React.Component<Props, State> {
                 }
               : undefined,
             onFocus: this.handleItemFocus,
-          }),
-        )}
+          });
+        })}
       </List>
     );
   }

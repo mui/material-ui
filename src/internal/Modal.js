@@ -166,7 +166,7 @@ class Modal extends React.Component<AllProps, State> {
     show: false,
   };
 
-  state: State = {
+  state = {
     exited: false,
   };
 

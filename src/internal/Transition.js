@@ -144,7 +144,7 @@ class Transition extends React.Component<AllProps, State> {
     timeout: 5000,
   };
 
-  state: State = {
+  state = {
     status: UNMOUNTED,
   };
 
