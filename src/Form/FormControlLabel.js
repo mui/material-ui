@@ -60,7 +60,7 @@ export type Props = {
   /**
    * The text to be used in an enclosing label element.
    */
-  label: string,
+  label: React.Node,
   /*
    * @ignore
    */
@@ -98,7 +98,7 @@ function FormControlLabel(props: AllProps) {
   const className = classNames(
     classes.root,
     {
-      [classes.hasLabel]: label && label.length,
+      [classes.hasLabel]: label,
       [classes.disabled]: disabled,
     },
     classNameProp,
