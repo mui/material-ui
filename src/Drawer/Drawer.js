@@ -154,7 +154,7 @@ class Drawer extends React.Component<AllProps, State> {
     elevation: 16,
   };
 
-  state: State = {
+  state = {
     // Let's assume that the Drawer will always be rendered on user space.
     // We use that state is order to skip the appear transition during the
     // initial mount of the component.

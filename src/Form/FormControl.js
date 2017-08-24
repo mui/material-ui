@@ -117,7 +117,7 @@ class FormControl extends React.Component<AllProps, State> {
     muiFormControl: PropTypes.object.isRequired,
   };
 
-  state: State = {
+  state = {
     dirty: false,
     focused: false,
   };

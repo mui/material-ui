@@ -199,7 +199,7 @@ class Snackbar extends React.Component<AllProps, State> {
     leaveTransitionDuration: duration.leavingScreen,
   };
 
-  state: State = {
+  state = {
     // Used to only render active snackbars.
     exited: false,
   };

@@ -153,7 +153,7 @@ class ButtonBase extends React.Component<AllProps, State> {
     type: 'button',
   };
 
-  state: State = {
+  state = {
     keyboardFocused: false,
   };
 

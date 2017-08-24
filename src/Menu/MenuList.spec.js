@@ -31,4 +31,17 @@ describe('<MenuList />', () => {
       assert.strictEqual(wrapper.hasClass('test-class'), true);
     });
   });
+
+  describe('prop: children', () => {
+    it('should support invalid children', () => {
+      const wrapper = shallow(
+        <MenuList>
+          <div />
+          <div />
+          {null}
+        </MenuList>,
+      );
+      assert.strictEqual(wrapper.find('div').length, 2);
+    });
+  });
 });

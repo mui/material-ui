@@ -149,7 +149,7 @@ export default function createSwitch(
       icon: defaultIcon,
     };
 
-    state: State = {};
+    state = {};
 
     componentWillMount() {
       const { props } = this;
