@@ -5,6 +5,7 @@ import type { ComponentType, Node } from 'react';
 import { findDOMNode } from 'react-dom';
 import warning from 'warning';
 import classNames from 'classnames';
+import getDisplayName from 'recompose/getDisplayName';
 import keycode from 'keycode';
 import withStyles from '../styles/withStyles';
 import { listenForFocusKeys, detectKeyboardFocus, focusKeyPressed } from '../utils/keyboardFocus';
@@ -161,8 +162,14 @@ class ButtonBase extends React.Component<AllProps, State> {
 
     warning(
       this.button,
-      `Material-UI: please provide a class to the component property.
-      The keyboard focus logic needs a reference to work correctly.`,
+      [
+        'Material-UI: please provide a class to the component property.',
+        // eslint-disable-next-line prefer-template
+        'You need to fix: ' + getDisplayName(this.props.component) === 'component'
+          ? this.props.component
+          : getDisplayName(this.props.component),
+        'The keyboard focus logic needs a reference to work correctly.',
+      ].join('\n'),
     );
   }
 
