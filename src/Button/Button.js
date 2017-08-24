@@ -2,7 +2,7 @@
 // @inheritedComponent ButtonBase
 
 import React from 'react';
-import type { Node } from 'react';
+import type { ComponentType, Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
@@ -187,7 +187,7 @@ export type Props = {
    * Either a string to use a DOM element or a component.
    * The default value is a `button`.
    */
-  component?: string | Function,
+  component?: string | ComponentType<*>,
   /**
    * Uses a smaller minWidth, ideal for things like card actions.
    */

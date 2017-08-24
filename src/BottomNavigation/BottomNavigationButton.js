@@ -1,8 +1,8 @@
-// @flow weak
+// @flow
 // @inheritedComponent ButtonBase
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Element } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
@@ -50,7 +50,53 @@ export const styles = (theme: Object) => ({
   },
 });
 
-class BottomNavigationButton extends React.Component<$FlowFixMeProps> {
+type DefaultProps = {
+  classes: Object,
+};
+
+export type Props = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * The icon element. If a string is provided, it will be used as a font ligature.
+   */
+  icon?: Element<*>,
+  /**
+   * The label element.
+   */
+  label?: Element<*>,
+  /**
+   * @ignore
+   */
+  onChange?: Function,
+  /**
+   * @ignore
+   */
+  onClick?: Function,
+  /**
+   * @ignore
+   */
+  selected?: boolean,
+  /**
+   * If `true`, the BottomNavigationButton will show its label.
+   */
+  showLabel?: boolean,
+  /**
+   * You can provide your own value. Otherwise, we fallback to the child position index.
+   */
+  value?: any,
+};
+
+type AllProps = DefaultProps & Props;
+
+class BottomNavigationButton extends React.Component<AllProps> {
+  props: AllProps;
   handleChange = event => {
     const { onChange, value, onClick } = this.props;
 
@@ -66,6 +112,7 @@ class BottomNavigationButton extends React.Component<$FlowFixMeProps> {
   render() {
     const {
       label,
+      // $FlowFixMe - no idea why it cannot find icon.
       icon: iconProp,
       selected,
       classes,
@@ -111,44 +158,5 @@ class BottomNavigationButton extends React.Component<$FlowFixMeProps> {
     );
   }
 }
-
-BottomNavigationButton.propTypes = {
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * The icon element. If a string is provided, it will be used as a font ligature.
-   */
-  icon: PropTypes.node,
-  /**
-   * The label element.
-   */
-  label: PropTypes.node,
-  /**
-   * @ignore
-   */
-  onChange: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onClick: PropTypes.func,
-  /**
-   * @ignore
-   */
-  selected: PropTypes.bool,
-  /**
-   * If `true`, the BottomNavigationButton will show its label.
-   */
-  showLabel: PropTypes.bool,
-  /**
-   * You can provide your own value. Otherwise, we fallback to the child position index.
-   */
-  value: PropTypes.any,
-};
 
 export default withStyles(styles, { name: 'MuiBottomNavigationButton' })(BottomNavigationButton);

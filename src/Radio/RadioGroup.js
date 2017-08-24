@@ -54,7 +54,7 @@ export type Props = {
   /**
    * Value of the selected radio button.
    */
-  value: string,
+  value?: string,
 };
 
 type AllProps = DefaultProps & Props;

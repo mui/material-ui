@@ -1,14 +1,26 @@
-// @flow weak
+// @flow
 
 import React from 'react';
+import type { Node } from 'react';
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
 import canUseDom from 'dom-helpers/util/inDOM';
+
+export type Props = {
+  /**
+   * The content to portal in order to escape the parent DOM node.
+   */
+  children?: Node,
+  /**
+   * If `true` the children will be mounted into the DOM.
+   */
+  open?: boolean,
+};
 
 /**
  * @ignore - internal component.
  */
-class Portal extends React.Component<$FlowFixMeProps> {
+class Portal extends React.Component<Props> {
+  props: Props;
   static defaultProps = {
     open: false,
   };
@@ -31,13 +43,13 @@ class Portal extends React.Component<$FlowFixMeProps> {
     this.unrenderLayer();
   }
 
-  layer = null;
+  layer: ?HTMLElement = null;
 
   getLayer() {
     if (!this.layer) {
       this.layer = document.createElement('div');
       this.layer.setAttribute('data-mui-portal', 'true');
-      if (document.body) {
+      if (document.body && this.layer) {
         document.body.appendChild(this.layer);
       }
     }
@@ -70,6 +82,7 @@ class Portal extends React.Component<$FlowFixMeProps> {
       // funnels React's hierarchical updates through to a DOM node on an
       // entirely different part of the page.
       const layerElement = React.Children.only(children);
+      // $FlowFixMe
       ReactDOM.unstable_renderSubtreeIntoContainer(this, layerElement, this.getLayer());
     } else {
       this.unrenderLayer();
@@ -96,16 +109,5 @@ class Portal extends React.Component<$FlowFixMeProps> {
     return null;
   }
 }
-
-Portal.propTypes = {
-  /**
-   * The content to portal in order to escape the parent DOM node.
-   */
-  children: PropTypes.node,
-  /**
-   * If `true` the children will be mounted into the DOM.
-   */
-  open: PropTypes.bool,
-};
 
 export default Portal;
