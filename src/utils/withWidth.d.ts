@@ -4,7 +4,7 @@ export interface WithWidthOptions {
 }
 
 export interface WithWidthEnhancement {
-  width: number;
+  width: Breakpoint;
 }
 
 export function isWidthUp(
