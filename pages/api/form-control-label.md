@@ -25,7 +25,6 @@ You can overrides all the class names injected by Material-UI thanks to the `cla
 This property accepts the following keys:
 - `root`
 - `disabled`
-- `hasLabel`
 - `label`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)
