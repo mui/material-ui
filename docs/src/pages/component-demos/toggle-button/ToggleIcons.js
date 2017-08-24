@@ -8,7 +8,8 @@ import Icon from 'material-ui/Icon';
 
 const styleSheet = createStyleSheet({
   root: {
-    width: '100%',
+    background: 'lightgrey',
+    padding: 20,
   },
 });
 

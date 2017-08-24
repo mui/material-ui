@@ -20,7 +20,7 @@ const styleSheet = createStyleSheet(theme => ({
 
 function alterText(value, selected) {
   const div = document.getElementById('dummyDiv2');
-  if (selected) {
+  if (selected && div !== null) {
     if (value === '1') {
       div.style.textAlign = 'left';
     } else if (value === '2') {
@@ -28,7 +28,7 @@ function alterText(value, selected) {
     } else if (value === '3') {
       div.style.textAlign = 'right';
     }
-  } else {
+  } else if (div !== null) {
     div.style.textAlign = 'initial';
   }
 }

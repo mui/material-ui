@@ -1,6 +1,8 @@
+// @flow
+
 import React from 'react';
 import { assert } from 'chai';
-import { spy, stub } from 'sinon';
+import { spy } from 'sinon';
 import { createShallow, createMount, getClasses } from '../test-utils';
 import ToggleButton, { styleSheet } from './ToggleButton';
 import ToggleButtonOption from './ToggleButtonOption';
@@ -20,50 +22,45 @@ describe('<ToggleButton/>', () => {
     mount.cleanUp();
   });
 
-  it('should render with root class', () => {
+  it('should render a div with root class', () => {
     const wrapper = shallow(
       <ToggleButton>
-        <ToggleButtonOption/>
-      </ToggleButton>
+        <ToggleButtonOption key="1" />
+      </ToggleButton>,
     );
     assert.strictEqual(wrapper.name(), 'div');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
-  //Test for rendering proper children check Tabs?
-
-  //Prop tests
-  describe('prop : active', () => {
-    it('should render with active class', () => {
-
-    });
-  });
-
-  describe('prop : exclusive', () => {
-    it('should have only one option selected after clicking multiple options', () => {
-
-    });
-  });
-
-  describe('prop : selectedOptions', () => {
-    it('should pass props to children specified within this prop', () => {
-      //Should also be active
-    });
-  });
-
   describe('prop : toggleIcons', () => {
     it('should render with toggleIcon class', () => {
-
-    });
-
-    it('should not render with active class', () => {
-
+      const wrapper = shallow(
+        <ToggleButton toggleIcons>
+          <ToggleButtonOption key="1" />
+        </ToggleButton>,
+      );
+      assert.strictEqual(wrapper.hasClass(classes.toggleIcon), true);
     });
   });
 
-  //Behaviour Tests
   describe('user click', () => {
-    //calls appropriate things
+    it('should call onChange with appropriate params', () => {
+      const handleChange = spy();
+      const wrapper = mount(
+        <ToggleButton>
+          <ToggleButtonOption onChange={handleChange} value={2} key="1" />
+        </ToggleButton>,
+      );
+      wrapper.find(ToggleButtonOption).at(0).simulate('click');
+      assert.strictEqual(handleChange.callCount, 1, 'should have been called once');
+      assert.strictEqual(
+        handleChange.args[0][1],
+        true,
+        'should have been called with true for selected',
+      );
+      assert.strictEqual(handleChange.args[0][0], 2, 'should have been called with 2 for value');
+      assert.strictEqual(wrapper.hasClass(classes.active), true);
+      wrapper.unmount();
+    });
   });
-
 });

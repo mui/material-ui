@@ -27,8 +27,6 @@ export const styleSheet = createStyleSheet('MuiToggleButtonOption', theme => ({
     transition: theme.transitions.create(['background-color'], {
       duration: theme.transitions.duration.standard,
     }),
-    // borderLeft: props.optionStyle.borderLeft? props.optionStyle.borderLeft : 'none',
-    // borderRight: props.optionStyle.borderRight? props.optionStyle.borderRight : 'none',
   },
   rootButton: {
     height: 36,
@@ -89,11 +87,15 @@ export const styleSheet = createStyleSheet('MuiToggleButtonOption', theme => ({
     borderRadius: '50%',
   },
   toggleContrast: {
-    backgroundColor: theme.palette.type === 'light' ? fade(theme.palette.getContrastText(theme.palette.primary[500]), 0.3) : fade(theme.palette.getContrastText(theme.palette.primary[500]), 0.2) ,
+    backgroundColor:
+      theme.palette.type === 'light'
+        ? fade(theme.palette.getContrastText(theme.palette.primary[500]), 0.3)
+        : fade(theme.palette.getContrastText(theme.palette.primary[500]), 0.2),
     borderRadius: '50%',
   },
   toggleDefault: {
-    backgroundColor: theme.palette.type === 'light' ? fade(common.black, 0.12) : fade(common.black, 0.2),
+    backgroundColor:
+      theme.palette.type === 'light' ? fade(common.black, 0.12) : fade(common.black, 0.2),
     borderRadius: '50%',
   },
   toggleInherit: {
@@ -107,6 +109,12 @@ class ToggleButtonOption extends Component {
     disabled: false,
     divider: false,
     color: 'default',
+  };
+
+  state = {
+    value: null,
+    anchorEl: undefined,
+    open: false,
   };
 
   componentWillMount() {
@@ -147,7 +155,17 @@ class ToggleButtonOption extends Component {
   };
 
   render() {
-    const { icon, label, classes, color, disabled, divider, toggle, selected, children } = this.props;
+    const {
+      icon,
+      label,
+      classes,
+      color,
+      disabled,
+      divider,
+      toggle,
+      selected,
+      children,
+    } = this.props;
 
     const buttonProps = {
       className: classNames(classes.root, {
@@ -176,7 +194,7 @@ class ToggleButtonOption extends Component {
     };
 
     let option;
-    // If there are children available, make it a Dropdown Menu.
+    // If there are children available, make it a DropDown Menu.
     if (!children) {
       option = (
         <ButtonBase {...buttonProps}>

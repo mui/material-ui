@@ -20,36 +20,38 @@ const styleSheet = createStyleSheet(theme => ({
 }));
 
 function alterText(value, selected) {
-  const text = document.getElementById('dummyText').style;
-  if (selected) {
+  const text = document.getElementById('dummyText');
+  if (selected && text !== null) {
     if (value === 1) {
-      text.fontWeight = 800;
+      text.style.fontWeight = '800';
     } else if (value === 2) {
-      text.fontStyle = 'italic';
+      text.style.fontStyle = 'italic';
     } else if (value === 3) {
-      text.textDecoration = 'underline';
+      text.style.textDecoration = 'underline';
     }
-  } else if (value === 1) {
-    text.fontWeight = 'normal';
-  } else if (value === 2) {
-    text.fontStyle = 'normal';
-  } else if (value === 3) {
-    text.textDecoration = 'none';
+  } else if (text !== null) {
+    if (value === 1) {
+      text.style.fontWeight = 'normal';
+    } else if (value === 2) {
+      text.style.fontStyle = 'normal';
+    } else if (value === 3) {
+      text.style.textDecoration = 'none';
+    }
   }
 }
 
 function alterColor(value, selected) {
-  const div = document.getElementById('dummyDiv').style;
-  if (selected) {
+  const div = document.getElementById('dummyDiv');
+  if (selected && div !== null) {
     if (value === 4) {
-      div.background = '#F44336';
+      div.style.background = '#F44336';
     } else if (value === 5) {
-      div.background = '#2196F3';
+      div.style.background = '#2196F3';
     } else if (value === 6) {
-      div.background = '#009688';
+      div.style.background = '#009688';
     }
-  } else {
-    div.background = 'white';
+  } else if (div !== null) {
+    div.style.background = 'white';
   }
 }
 

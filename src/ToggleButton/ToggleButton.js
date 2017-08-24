@@ -104,7 +104,6 @@ class ToggleButton extends Component {
   render() {
     const {
       children,
-      active: activeProp,
       selectedOptions,
       exclusive,
       classes,
@@ -125,18 +124,6 @@ class ToggleButton extends Component {
     );
 
     const options = this.getOptions().map((option, index) => {
-      // warning(option.type && option.type.muiName === 'Option',
-      //   `Material-UI: ToggleButton only accepts Option Components as children.
-      //   Found ${option.type.muiName || option.type}
-      //   as child number ${index + 1} of ToggleButton`);
-      //
-      // if(!option.props.children){
-      //   warning(option.props.value !== undefined,
-      //     `Material-UI: ToggleButton value prop has been passed, but Option ${index}
-      //   does not have a value prop. Needs value if ToggleButton is going
-      //   to be a controlled component.`);
-      // }
-
       const selected = this.getSelected(index);
       let divider = false;
 
@@ -164,10 +151,6 @@ class ToggleButton extends Component {
 }
 
 ToggleButton.propTypes = {
-  /**
-   * Determines whether or not the 'ToggleButton' component is selected.
-   */
-  active: PropTypes.bool,
   /**
    * Should be used to pass `Option` components.
    */
