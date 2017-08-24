@@ -5,11 +5,11 @@ import { ButtonBaseProps } from '../ButtonBase';
 export interface BottomNavigationButtonProps extends ButtonBaseProps {
   icon?: React.ReactNode;
   label?: React.ReactNode;
-  onChange?: (event: React.ChangeEvent<{}>, value: number) => void;
+  onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
   onClick?: React.ReactEventHandler<any>;
   selected?: boolean;
   showLabel?: boolean;
-  value?: number;
+  value?: any;
 }
 
 export default class BottomNavigationButton extends StyledComponent<

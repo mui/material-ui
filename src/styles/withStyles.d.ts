@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { StyledComponentProps } from '..';
 import { Theme } from './theme';
 
 /**
@@ -23,5 +24,5 @@ export default function withStyles<P = {}, ClassNames = {}>(
   style: StyleRules | StyleRulesCallback,
   options?: WithStylesOptions
 ): (
-  component: React.ComponentType<P & { classes: ClassNames }>
-) => React.ComponentClass<P>;
+  component: React.ComponentType<P & { classes: ClassNames; theme?: Theme }>
+) => React.ComponentClass<P & StyledComponentProps<ClassNames>>;
