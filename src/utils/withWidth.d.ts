@@ -3,8 +3,8 @@ export interface WithWidthOptions {
   resizeInterval: number;
 }
 
-export interface WithWidthEnhancement {
-  width: number;
+export interface WithWidthProps {
+  width: Breakpoint;
 }
 
 export function isWidthUp(
@@ -17,4 +17,4 @@ export default function withWidth<P = {}>(
   options?: WithWidthOptions
 ): (
   component: React.ComponentType<P>
-) => React.ComponentClass<P & WithWidthEnhancement>;
+) => React.ComponentClass<P & WithWidthProps>;
