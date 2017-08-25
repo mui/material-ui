@@ -1,4 +1,5 @@
 // @flow
+// @inheritedComponent FormGroup
 
 import React from 'react';
 import type { ChildrenArray } from 'react';

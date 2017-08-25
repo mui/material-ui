@@ -39,6 +39,12 @@ function MarkdownDocs(props, context) {
     sourceLocation = token.join('/');
   }
 
+  if (sourceLocation.indexOf('/api') === 0) {
+    sourceLocation = `/pages/${sourceLocation}.md`;
+  } else {
+    sourceLocation = `/docs/src/pages${sourceLocation}.md`;
+  }
+
   return (
     <AppContent className={classes.root}>
       <Head>
@@ -47,7 +53,7 @@ function MarkdownDocs(props, context) {
         </title>
       </Head>
       <div className={classes.header}>
-        <Button component="a" href={`${SOURCE_CODE_ROOT_URL}/docs/src/pages${sourceLocation}.md`}>
+        <Button component="a" href={`${SOURCE_CODE_ROOT_URL}${sourceLocation}`}>
           {'Edit this page'}
         </Button>
       </div>
