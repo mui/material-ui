@@ -3156,7 +3156,7 @@ fastparse@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/fastparse/-/fastparse-1.1.1.tgz#d1e2643b38a94d7583b479060e6c4affc94071f8"
 
-fbjs@^0.8.1, fbjs@^0.8.4, fbjs@^0.8.9:
+fbjs@^0.8.1, fbjs@^0.8.14, fbjs@^0.8.4, fbjs@^0.8.9:
   version "0.8.14"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.14.tgz#d1dbe2be254c35a91e09f31f9cd50a40b2a0ed1c"
   dependencies:
@@ -6445,6 +6445,15 @@ react-event-listener@^0.4.5:
     babel-runtime "^6.20.0"
     fbjs "^0.8.4"
     prop-types "^15.5.4"
+    warning "^3.0.0"
+
+react-event-listener@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/react-event-listener/-/react-event-listener-0.5.0.tgz#d82105135573e187e3d900d18150a5882304b8d1"
+  dependencies:
+    babel-runtime "^6.26.0"
+    fbjs "^0.8.14"
+    prop-types "^15.5.10"
     warning "^3.0.0"
 
 react-hot-loader@3.0.0-beta.7:

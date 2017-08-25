@@ -1,7 +1,7 @@
 [ignore]
 
 <PROJECT_ROOT>/build
-.*/node_modules/react-event-listener
+.*/node_modules/react-scrollbar-size
 .*/node_modules/fbjs/lib/partitionObjectByKey.js
 .*/node_modules/mitt
 .*/node_modules/react-swipeable-views
