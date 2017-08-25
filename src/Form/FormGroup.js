@@ -1,12 +1,11 @@
 // @flow
 
 import React from 'react';
-import type { Element } from 'react';
+import type { Node } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiFormGroup', {
+export const styles = {
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -15,7 +14,7 @@ export const styleSheet = createStyleSheet('MuiFormGroup', {
   row: {
     flexDirection: 'row',
   },
-});
+};
 
 type DefaultProps = {
   classes: Object,
@@ -25,7 +24,7 @@ export type Props = {
   /**
    * The content of the component.
    */
-  children?: Element<*>,
+  children?: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -43,8 +42,9 @@ export type Props = {
 type AllProps = DefaultProps & Props;
 
 /**
- * FormGroup wraps controls such as Checkbox and Switch.
- * It provides compact row layout and FormLabel awareness.
+ * `FormGroup` wraps controls such as `Checkbox` and `Switch`.
+ * It provides compact row layout.
+ * For the `Radio`, you should be using the `RadioGroup` component instead of this one.
  */
 function FormGroup(props: AllProps) {
   const { classes, className, children, row, ...other } = props;
@@ -67,4 +67,4 @@ FormGroup.defaultProps = {
   row: false,
 };
 
-export default withStyles(styleSheet)(FormGroup);
+export default withStyles(styles, { name: 'MuiFormGroup' })(FormGroup);

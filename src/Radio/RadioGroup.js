@@ -1,20 +1,20 @@
 // @flow
+// @inheritedComponent FormGroup
 
-import React, { PureComponent, Children, cloneElement } from 'react';
-import type { Element } from 'react';
+import React from 'react';
+import type { ChildrenArray, Node } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import FormGroup from '../Form/FormGroup';
 import { find } from '../utils/helpers';
 
-export const styleSheet = createStyleSheet('MuiRadioGroup', {
+export const styles = {
   root: {
     flex: '1 1 auto',
     margin: 0,
     padding: 0,
   },
-});
+};
 
 type DefaultProps = {
   classes: Object,
@@ -24,7 +24,7 @@ export type Props = {
   /**
    * The content of the component.
    */
-  children?: Element<*>,
+  children?: $ReadOnlyArray<ChildrenArray<Node>>,
   /**
    * Useful to extend the style applied to components.
    */
@@ -53,15 +53,16 @@ export type Props = {
    */
   onKeyDown?: Function,
   /**
-   * Value of the selected radio button
+   * Value of the selected radio button.
    */
-  selectedValue?: string,
+  value?: string,
 };
 
 type AllProps = DefaultProps & Props;
 
-class RadioGroup extends PureComponent<void, AllProps, void> {
+class RadioGroup extends React.Component<AllProps, void> {
   props: AllProps;
+
   radios: Array<HTMLInputElement> = [];
 
   focus = () => {
@@ -97,7 +98,7 @@ class RadioGroup extends PureComponent<void, AllProps, void> {
       classes,
       className: classNameProp,
       name,
-      selectedValue,
+      value,
       onChange,
       ...other
     } = this.props;
@@ -111,15 +112,18 @@ class RadioGroup extends PureComponent<void, AllProps, void> {
         role="radiogroup"
         {...other}
       >
-        {Children.map(children, (child, index) => {
-          const selected = selectedValue === child.props.value;
-          return cloneElement(child, {
+        {React.Children.map(children, (child, index) => {
+          if (!React.isValidElement(child)) {
+            return null;
+          }
+
+          return React.cloneElement(child, {
             key: index,
             name,
             inputRef: node => {
               this.radios.push(node);
             },
-            checked: selected,
+            checked: value === child.props.value,
             onChange: this.handleRadioChange,
           });
         })}
@@ -128,4 +132,4 @@ class RadioGroup extends PureComponent<void, AllProps, void> {
   }
 }
 
-export default withStyles(styleSheet)(RadioGroup);
+export default withStyles(styles, { name: 'MuiRadioGroup' })(RadioGroup);

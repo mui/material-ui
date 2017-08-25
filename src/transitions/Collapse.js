@@ -1,15 +1,14 @@
 // @flow
 
-import React, { PureComponent } from 'react';
-import type { Element } from 'react';
-import createStyleSheet from '../styles/createStyleSheet';
+import React from 'react';
+import type { Node } from 'react';
 import withStyles from '../styles/withStyles';
 import Transition from '../internal/Transition';
 import type { TransitionCallback } from '../internal/Transition';
 
 const reflow = elem => elem.offsetHeight;
 
-export const styleSheet = createStyleSheet('MuiCollapse', theme => ({
+export const styles = (theme: Object) => ({
   container: {
     height: 0,
     overflow: 'hidden',
@@ -19,11 +18,10 @@ export const styleSheet = createStyleSheet('MuiCollapse', theme => ({
     height: 'auto',
     transitionDuration: '0ms',
   },
-}));
+});
 
 type DefaultProps = {
   classes: Object,
-  in: boolean,
   theme: Object,
   transitionDuration: number,
 };
@@ -32,7 +30,7 @@ export type Props = {
   /**
    * The content node to be collapsed.
    */
-  children?: Element<*>,
+  children?: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -77,11 +75,10 @@ export type Props = {
 
 type AllProps = DefaultProps & Props;
 
-class Collapse extends PureComponent<DefaultProps, AllProps, void> {
+class Collapse extends React.Component<AllProps, void> {
   props: AllProps;
 
-  static defaultProps: DefaultProps = {
-    classes: {},
+  static defaultProps = {
     in: false,
     theme: {},
     transitionDuration: 300,
@@ -191,6 +188,7 @@ class Collapse extends PureComponent<DefaultProps, AllProps, void> {
   }
 }
 
-export default withStyles(styleSheet, {
+export default withStyles(styles, {
   withTheme: true,
+  name: 'MuiCollapse',
 })(Collapse);

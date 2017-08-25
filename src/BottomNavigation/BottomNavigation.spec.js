@@ -6,7 +6,7 @@ import { spy } from 'sinon';
 import { createShallow, createMount, getClasses } from '../test-utils';
 import BottomNavigationButton from './BottomNavigationButton';
 import Icon from '../Icon';
-import BottomNavigation, { styleSheet } from './BottomNavigation';
+import BottomNavigation from './BottomNavigation';
 
 describe('<BottomNavigation />', () => {
   let shallow;
@@ -16,7 +16,11 @@ describe('<BottomNavigation />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(
+      <BottomNavigation showLabels value={0}>
+        <BottomNavigationButton icon={icon} />
+      </BottomNavigation>,
+    );
     mount = createMount();
   });
 
@@ -26,7 +30,7 @@ describe('<BottomNavigation />', () => {
 
   it('should render with the root class', () => {
     const wrapper = shallow(
-      <BottomNavigation showLabels>
+      <BottomNavigation showLabels value={0}>
         <BottomNavigationButton icon={icon} />
       </BottomNavigation>,
     );
@@ -36,11 +40,11 @@ describe('<BottomNavigation />', () => {
 
   it('should render with the user and root classes', () => {
     const wrapper = shallow(
-      <BottomNavigation showLabels className="woof">
+      <BottomNavigation showLabels value={0} className="woofBottomNavigation">
         <BottomNavigationButton icon={icon} />
       </BottomNavigation>,
     );
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+    assert.strictEqual(wrapper.hasClass('woofBottomNavigation'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
@@ -74,7 +78,10 @@ describe('<BottomNavigation />', () => {
         <BottomNavigationButton icon={icon} />
       </BottomNavigation>,
     );
-    wrapper.find(BottomNavigationButton).at(1).simulate('click');
+    wrapper
+      .find(BottomNavigationButton)
+      .at(1)
+      .simulate('click');
     assert.strictEqual(handleChange.callCount, 1, 'should have been called once');
     assert.strictEqual(handleChange.args[0][1], 1, 'should have been called with value 1');
   });

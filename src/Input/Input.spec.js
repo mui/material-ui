@@ -5,7 +5,7 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, createMount, getClasses } from '../test-utils';
 import Textarea from './Textarea';
-import Input, { styleSheet, isDirty } from './Input';
+import Input, { hasValue, isDirty } from './Input';
 
 describe('<Input />', () => {
   let shallow;
@@ -15,7 +15,7 @@ describe('<Input />', () => {
   before(() => {
     shallow = createShallow({ dive: true });
     mount = createMount();
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Input />);
   });
 
   after(() => {
@@ -40,7 +40,7 @@ describe('<Input />', () => {
     assert.strictEqual(input.name(), 'input');
     assert.strictEqual(input.props().type, 'text', 'should pass the text type prop');
     assert.strictEqual(input.hasClass(classes.input), true, 'should have the input class');
-    assert.strictEqual(input.prop('aria-required'), undefined);
+    assert.strictEqual(input.props().required, undefined);
   });
 
   it('should render an <Textarea /> when passed the multiline prop', () => {
@@ -85,7 +85,7 @@ describe('<Input />', () => {
       return result;
     }, {});
 
-    const wrapper = shallow(<Input {...handlers} />);
+    const wrapper = mount(<Input {...handlers} />);
 
     events.forEach(n => {
       const event = n.charAt(2).toLowerCase() + n.slice(3);
@@ -95,45 +95,56 @@ describe('<Input />', () => {
   });
 
   describe('controlled', () => {
-    let wrapper;
-    let handleDirty;
-    let handleClean;
+    ['', 0].forEach(value => {
+      describe(`${typeof value} value`, () => {
+        let wrapper;
+        let handleDirty;
+        let handleClean;
 
-    before(() => {
-      handleClean = spy();
-      handleDirty = spy();
-      wrapper = shallow(<Input value="" onDirty={handleDirty} onClean={handleClean} />);
-    });
+        before(() => {
+          handleClean = spy();
+          handleDirty = spy();
+          wrapper = shallow(<Input value={value} onDirty={handleDirty} onClean={handleClean} />);
+        });
 
-    it('should check that the component is controlled', () => {
-      const instance = wrapper.instance();
-      assert.strictEqual(instance.isControlled(), true, 'isControlled() should return true');
-    });
+        it('should check that the component is controlled', () => {
+          const instance = wrapper.instance();
+          assert.strictEqual(instance.isControlled(), true, 'isControlled() should return true');
+        });
 
-    it('should have called the handleClean callback', () => {
-      assert.strictEqual(handleClean.callCount, 1, 'should have called the onClean cb');
-    });
+        // don't test number because zero is a dirty state, whereas '' is not
+        if (typeof value !== 'number') {
+          it('should have called the handleClean callback', () => {
+            assert.strictEqual(handleClean.callCount, 1, 'should have called the onClean cb');
+          });
 
-    it('should fire the onDirty callback when dirtied', () => {
-      assert.strictEqual(handleDirty.callCount, 0, 'should not have called the onDirty cb yet');
-      wrapper.setProps({ value: 'hello' });
-      assert.strictEqual(handleDirty.callCount, 1, 'should have called the onDirty cb');
-    });
+          it('should fire the onDirty callback when dirtied', () => {
+            assert.strictEqual(
+              handleDirty.callCount,
+              0,
+              'should not have called the onDirty cb yet',
+            );
+            wrapper.setProps({ value: typeof value === 'number' ? 2 : 'hello' });
+            assert.strictEqual(handleDirty.callCount, 1, 'should have called the onDirty cb');
+          });
 
-    it('should fire the onClean callback when dirtied', () => {
-      assert.strictEqual(
-        handleClean.callCount,
-        1,
-        'should have called the onClean cb once already',
-      );
-      wrapper.setProps({ value: '' });
-      assert.strictEqual(handleClean.callCount, 2, 'should have called the onClean cb again');
+          it('should fire the onClean callback when dirtied', () => {
+            assert.strictEqual(
+              handleClean.callCount,
+              1,
+              'should have called the onClean cb once already',
+            );
+            wrapper.setProps({ value });
+            assert.strictEqual(handleClean.callCount, 2, 'should have called the onClean cb again');
+          });
+        }
+      });
     });
   });
 
-  describe('prop: component', () => {
+  describe('prop: inputComponent', () => {
     it('should accept any component', () => {
-      const wrapper = shallow(<Input component="span" />);
+      const wrapper = shallow(<Input inputComponent="span" />);
       assert.strictEqual(wrapper.find('span').length, 1);
     });
   });
@@ -281,7 +292,7 @@ describe('<Input />', () => {
       it('should have the aria-required prop with value true', () => {
         setFormControlContext({ required: true });
         const input = wrapper.find('input');
-        assert.strictEqual(input.prop('aria-required'), true);
+        assert.strictEqual(input.props().required, true);
       });
     });
   });
@@ -313,7 +324,7 @@ describe('<Input />', () => {
 
     it('should call checkDirty with input value', () => {
       instance.isControlled = () => false;
-      instance.input = 'woof';
+      instance.input = 'woofinput';
       instance.componentDidMount();
       assert.strictEqual(instance.checkDirty.calledWith(instance.input), true);
     });
@@ -345,14 +356,45 @@ describe('<Input />', () => {
     });
   });
 
+  describe('hasValue', () => {
+    ['', 0].forEach(value => {
+      it(`is true for ${value}`, () => {
+        assert.strictEqual(hasValue(value), true);
+      });
+    });
+
+    [null, undefined].forEach(value => {
+      it(`is false for ${value}`, () => {
+        assert.strictEqual(hasValue(value), false);
+      });
+    });
+  });
+
   describe('isDirty', () => {
-    it('should support integer', () => {
-      assert.strictEqual(
-        isDirty({
-          value: 3,
-        }),
-        true,
-      );
+    [' ', 0].forEach(value => {
+      it(`is true for value ${value}`, () => {
+        assert.strictEqual(isDirty({ value }), true);
+      });
+
+      it(`is true for SSR defaultValue ${value}`, () => {
+        assert.strictEqual(isDirty({ defaultValue: value }, true), true);
+      });
+    });
+    [null, undefined, ''].forEach(value => {
+      it(`is false for value ${value}`, () => {
+        assert.strictEqual(isDirty({ value }), false);
+      });
+      it(`is false for SSR defaultValue ${value}`, () => {
+        assert.strictEqual(isDirty({ defaultValue: value }, true), false);
+      });
+    });
+  });
+
+  describe('prop: inputProps', () => {
+    it('should apply the props on the input', () => {
+      const wrapper = shallow(<Input inputProps={{ className: 'foo', readOnly: true }} />);
+      assert.strictEqual(wrapper.find('input').props().className, 'foo');
+      assert.strictEqual(wrapper.find('input').props().readOnly, true);
     });
   });
 });

@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import LinearProgress, { styleSheet } from './LinearProgress';
+import LinearProgress from './LinearProgress';
 
 describe('<LinearProgress />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<LinearProgress />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<LinearProgress />);
   });
 
   it('should render a div with the root class', () => {
@@ -21,8 +21,8 @@ describe('<LinearProgress />', () => {
   });
 
   it('should render with the user and root classes', () => {
-    const wrapper = shallow(<LinearProgress className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+    const wrapper = shallow(<LinearProgress className="woofLinearProgress" />);
+    assert.strictEqual(wrapper.hasClass('woofLinearProgress'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
@@ -129,7 +129,11 @@ describe('<LinearProgress />', () => {
   it('should set width of bar1 on determinate mode', () => {
     const wrapper = shallow(<LinearProgress mode="determinate" value={77} />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.childAt(0).props().style.width, '77%', 'should have width set');
+    assert.strictEqual(
+      wrapper.childAt(0).props().style.transform,
+      'scaleX(0.77)',
+      'should have width set',
+    );
     assert.strictEqual(wrapper.props()['aria-valuenow'], 77);
   });
 
@@ -226,8 +230,16 @@ describe('<LinearProgress />', () => {
   it('should set width of bar1 and bar2 on buffer mode', () => {
     const wrapper = shallow(<LinearProgress mode="buffer" value={77} valueBuffer={85} />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.childAt(1).props().style.width, '77%', 'should have width set');
-    assert.strictEqual(wrapper.childAt(2).props().style.width, '85%', 'should have width set');
+    assert.strictEqual(
+      wrapper.childAt(1).props().style.transform,
+      'scaleX(0.77)',
+      'should have width set',
+    );
+    assert.strictEqual(
+      wrapper.childAt(2).props().style.transform,
+      'scaleX(0.85)',
+      'should have width set',
+    );
   });
 
   it('should render with query classes', () => {

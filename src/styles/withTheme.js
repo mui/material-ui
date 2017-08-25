@@ -1,9 +1,10 @@
 // @flow weak
 
-import { Component } from 'react';
+import React from 'react';
+import type { ComponentType } from 'react';
 import createEagerFactory from 'recompose/createEagerFactory';
 import wrapDisplayName from 'recompose/wrapDisplayName';
-import createMuiTheme from './theme';
+import createMuiTheme from './createMuiTheme';
 import themeListener from './themeListener';
 
 let defaultTheme;
@@ -18,10 +19,12 @@ function getDefaultTheme() {
 }
 
 // Provide the theme object as a property to the input component.
-export default function withTheme(BaseComponent) {
+export default function withTheme<BaseProps: {}>(BaseComponent: ComponentType<BaseProps>) {
   const factory = createEagerFactory(BaseComponent);
 
-  class WithTheme extends Component {
+  class WithTheme extends React.Component<{ theme?: Object } & BaseProps, { theme: Object }> {
+    static displayName = wrapDisplayName(BaseComponent, 'withTheme');
+
     // Exposed for test purposes.
     static Naked = BaseComponent;
 
@@ -55,7 +58,6 @@ export default function withTheme(BaseComponent) {
   }
 
   WithTheme.contextTypes = themeListener.contextTypes;
-  WithTheme.displayName = wrapDisplayName(BaseComponent, 'withTheme');
 
   return WithTheme;
 }

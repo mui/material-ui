@@ -1,15 +1,16 @@
 // @flow
 
 import React from 'react';
-import type { Element } from 'react';
+import type { Node } from 'react';
 import HiddenJs from './HiddenJs';
-import type { Breakpoint } from '../styles/breakpoints';
+import HiddenCss from './HiddenCss';
+import type { Breakpoint } from '../styles/createBreakpoints';
 
 export type Props = {
   /**
    * The content of the component.
    */
-  children?: Element<*>,
+  children?: Node,
   /**
    * @ignore
    */
@@ -75,7 +76,7 @@ function Hidden(props: Props) {
     return <HiddenJs {...other} />;
   }
 
-  throw new Error('<Hidden implementation="css" /> is not yet implemented');
+  return <HiddenCss {...other} />;
 }
 
 Hidden.defaultProps = {

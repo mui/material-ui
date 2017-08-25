@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import InputLabel, { styleSheet } from './InputLabel';
+import InputLabel from './InputLabel';
 
 describe('<InputLabel />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<InputLabel />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<InputLabel />);
   });
 
   it('should render a FormLabel', () => {
@@ -36,6 +36,13 @@ describe('<InputLabel />', () => {
     assert.strictEqual(wrapper.hasClass(classes.disabled), true);
   });
 
+  describe('props: FormControlClasses', () => {
+    it('should be able to change the FormLabel style', () => {
+      const wrapper = shallow(<InputLabel FormControlClasses={{ foo: 'bar' }}>Foo</InputLabel>);
+      assert.strictEqual(wrapper.props().classes.foo, 'bar');
+    });
+  });
+
   describe('with muiFormControl context', () => {
     let wrapper;
     let muiFormControl;
@@ -53,6 +60,12 @@ describe('<InputLabel />', () => {
       setFormControlContext({});
       assert.strictEqual(wrapper.hasClass(classes.formControl), true);
     });
+
+    it('should have the labelDense class when margin is dense', () => {
+      setFormControlContext({ margin: 'dense' });
+      assert.strictEqual(wrapper.hasClass(classes.labelDense), true);
+    });
+
     ['dirty', 'focused'].forEach(state => {
       describe(state, () => {
         beforeEach(() => {

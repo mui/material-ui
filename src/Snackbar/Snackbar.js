@@ -1,10 +1,9 @@
 // @flow
 
-import React, { Component, createElement, cloneElement } from 'react';
-import type { Element } from 'react';
+import React from 'react';
+import type { Node, Element } from 'react';
 import classNames from 'classnames';
 import EventListener from 'react-event-listener';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import ClickAwayListener from '../internal/ClickAwayListener';
@@ -13,7 +12,7 @@ import Slide from '../transitions/Slide';
 import SnackbarContent from './SnackbarContent';
 import type { TransitionCallback } from '../internal/Transition';
 
-export const styleSheet = createStyleSheet('MuiSnackbar', theme => {
+export const styles = (theme: Object) => {
   const gutter = theme.spacing.unit * 3;
   const top = { top: 0 };
   const bottom = { bottom: 0 };
@@ -23,6 +22,11 @@ export const styleSheet = createStyleSheet('MuiSnackbar', theme => {
   const bottomSpace = { bottom: gutter };
   const rightSpace = { right: gutter };
   const leftSpace = { left: gutter };
+  const center = {
+    left: '50%',
+    right: 'auto',
+    transform: 'translateX(-50%)',
+  };
 
   return {
     root: {
@@ -33,40 +37,43 @@ export const styleSheet = createStyleSheet('MuiSnackbar', theme => {
       right: 0,
       justifyContent: 'center',
       alignItems: 'center',
-      pointerEvents: 'none',
     },
     anchorTopCenter: {
-      extend: [top],
+      extend: [top, center],
     },
     anchorBottomCenter: {
-      extend: [bottom],
+      extend: [bottom, center],
     },
     anchorTopRight: {
       extend: [top, right],
       [theme.breakpoints.up('md')]: {
+        left: 'auto',
         extend: [topSpace, rightSpace],
       },
     },
     anchorBottomRight: {
       extend: [bottom, right],
       [theme.breakpoints.up('md')]: {
+        left: 'auto',
         extend: [bottomSpace, rightSpace],
       },
     },
     anchorTopLeft: {
       extend: [top, left],
       [theme.breakpoints.up('md')]: {
+        right: 'auto',
         extend: [topSpace, leftSpace],
       },
     },
     anchorBottomLeft: {
       extend: [bottom, left],
       [theme.breakpoints.up('md')]: {
+        right: 'auto',
         extend: [bottomSpace, leftSpace],
       },
     },
   };
-});
+};
 
 type Origin = {
   horizontal?: 'left' | 'center' | 'right' | number,
@@ -76,16 +83,15 @@ type Origin = {
 type DefaultProps = {
   anchorOrigin: Origin,
   autoHideDuration: ?number,
+  resumeHideDuration: ?number,
   classes: Object,
-  enterTransitionDuration: number,
-  leaveTransitionDuration: number,
 };
 
 export type Props = {
   /**
    * The action to display.
    */
-  action?: Element<*>,
+  action?: Node,
   /**
    * The anchor of the `Snackbar`.
    */
@@ -95,6 +101,13 @@ export type Props = {
    * This behavior is disabled by default with the `null` value.
    */
   autoHideDuration?: number,
+  /**
+   * The number of milliseconds to wait before dismissing after user interaction.
+   * If `autoHideDuration` property isn't specified, it does nothing.
+   * If `autoHideDuration` property is specified but `resumeHideDuration` isn't,
+   * we default to `autoHideDuration / 2` ms.
+   */
+  resumeHideDuration?: number,
   /**
    * If you wish the take control over the children of the component you can use that property.
    * When using it, no `SnackbarContent` component will be rendered.
@@ -126,7 +139,7 @@ export type Props = {
   /**
    * The message to display.
    */
-  message?: Element<*>,
+  message?: Node,
   /**
    * Callback fired before the transition is entering.
    */
@@ -183,7 +196,7 @@ export type Props = {
   /**
    * Object with Transition component, props & create Fn.
    */
-  transition?: Function | Element<*>,
+  transition?: Element<*>,
 };
 
 type AllProps = DefaultProps & Props;
@@ -192,17 +205,18 @@ type State = {
   exited: boolean,
 };
 
-class Snackbar extends Component<DefaultProps, AllProps, State> {
+class Snackbar extends React.Component<AllProps, State> {
   props: AllProps;
-  static defaultProps: DefaultProps = {
+
+  static defaultProps = {
     anchorOrigin: { vertical: 'bottom', horizontal: 'center' },
     autoHideDuration: null,
-    classes: {},
+    resumeHideDuration: null,
     enterTransitionDuration: duration.enteringScreen,
     leaveTransitionDuration: duration.leavingScreen,
   };
 
-  state: State = {
+  state = {
     // Used to only render active snackbars.
     exited: false,
   };
@@ -257,14 +271,14 @@ class Snackbar extends Component<DefaultProps, AllProps, State> {
     }, autoHideDuration || this.props.autoHideDuration);
   }
 
-  handleMouseEnter = (event: SyntheticUIEvent) => {
+  handleMouseEnter = (event: SyntheticUIEvent<>) => {
     if (this.props.onMouseEnter) {
       this.props.onMouseEnter(event);
     }
     this.handlePause();
   };
 
-  handleMouseLeave = (event: SyntheticUIEvent) => {
+  handleMouseLeave = (event: SyntheticUIEvent<>) => {
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(event);
     }
@@ -277,13 +291,20 @@ class Snackbar extends Component<DefaultProps, AllProps, State> {
     }
   };
 
-  // Pause the timer when the user is interacting with the Snackbar or when he can't see it.
+  // Pause the timer when the user is interacting with the Snackbar
+  // or when the user hide the window.
   handlePause = () => {
     clearTimeout(this.timerAutoHide);
   };
 
+  // Restart the timer when the user is no longer interacting with the Snackbar
+  // or when the window is shown back.
   handleResume = () => {
     if (this.props.autoHideDuration !== null) {
+      if (this.props.resumeHideDuration !== null) {
+        this.setAutoHideTimer(this.props.resumeHideDuration);
+        return;
+      }
       this.setAutoHideTimer(this.props.autoHideDuration * 0.5);
     }
   };
@@ -297,6 +318,7 @@ class Snackbar extends Component<DefaultProps, AllProps, State> {
       action,
       anchorOrigin: { vertical, horizontal },
       autoHideDuration,
+      resumeHideDuration,
       children,
       classes,
       className,
@@ -314,7 +336,6 @@ class Snackbar extends Component<DefaultProps, AllProps, State> {
       onRequestClose,
       open,
       SnackbarContentProps,
-      // $FlowFixMe - invalid error? Property cannot be accessed on any member of intersection type
       transition: transitionProp,
       ...other
     } = this.props;
@@ -323,8 +344,32 @@ class Snackbar extends Component<DefaultProps, AllProps, State> {
       return null;
     }
 
-    const createTransitionFn = typeof transitionProp === 'function' ? createElement : cloneElement;
-    const transition = transitionProp || <Slide direction={vertical === 'top' ? 'down' : 'up'} />;
+    const transitionProps = {
+      in: open,
+      transitionAppear: true,
+      enterTransitionDuration,
+      leaveTransitionDuration,
+      onEnter,
+      onEntering,
+      onEntered,
+      onExit,
+      onExiting,
+      onExited: createChainedFunction(this.handleTransitionExited, onExited),
+    };
+    const transitionContent = children || (
+      <SnackbarContent message={message} action={action} {...SnackbarContentProps} />
+    );
+
+    let transition;
+    if (typeof transitionProp === 'function') {
+      transition = React.createElement(transitionProp, transitionProps, transitionContent);
+    } else {
+      transition = React.cloneElement(
+        transitionProp || <Slide direction={vertical === 'top' ? 'down' : 'up'} />,
+        transitionProps,
+        transitionContent,
+      );
+    }
 
     return (
       <EventListener target="window" onFocus={this.handleResume} onBlur={this.handlePause}>
@@ -341,23 +386,7 @@ class Snackbar extends Component<DefaultProps, AllProps, State> {
             onMouseLeave={this.handleMouseLeave}
             {...other}
           >
-            {createTransitionFn(
-              transition,
-              {
-                in: open,
-                transitionAppear: true,
-                enterTransitionDuration,
-                leaveTransitionDuration,
-                onEnter,
-                onEntering,
-                onEntered,
-                onExit,
-                onExiting,
-                onExited: createChainedFunction(this.handleTransitionExited, onExited),
-              },
-              children ||
-                <SnackbarContent message={message} action={action} {...SnackbarContentProps} />,
-            )}
+            {transition}
           </div>
         </ClickAwayListener>
       </EventListener>
@@ -365,4 +394,4 @@ class Snackbar extends Component<DefaultProps, AllProps, State> {
   }
 }
 
-export default withStyles(styleSheet)(Snackbar);
+export default withStyles(styles, { name: 'MuiSnackbar' })(Snackbar);

@@ -3,11 +3,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 
-export const styleSheet = createStyleSheet('MuiListItemText', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     flex: '1 1 auto',
     padding: '0 16px',
@@ -23,11 +22,11 @@ export const styleSheet = createStyleSheet('MuiListItemText', theme => ({
   dense: {
     fontSize: 13,
   },
-  text: {},
+  text: {}, // Present to allow external customization
   textDense: {
     fontSize: 'inherit',
   },
-}));
+});
 
 function ListItemText(props, context) {
   const {
@@ -52,24 +51,28 @@ function ListItemText(props, context) {
   return (
     <div className={className} {...other}>
       {primary &&
-        (disableTypography
-          ? primary
-          : <Typography
-              type="subheading"
-              className={classNames(classes.text, { [classes.textDense]: dense })}
-            >
-              {primary}
-            </Typography>)}
+        (disableTypography ? (
+          primary
+        ) : (
+          <Typography
+            type="subheading"
+            className={classNames(classes.text, { [classes.textDense]: dense })}
+          >
+            {primary}
+          </Typography>
+        ))}
       {secondary &&
-        (disableTypography
-          ? secondary
-          : <Typography
-              color="secondary"
-              type="body1"
-              className={classNames(classes.text, { [classes.textDense]: dense })}
-            >
-              {secondary}
-            </Typography>)}
+        (disableTypography ? (
+          secondary
+        ) : (
+          <Typography
+            color="secondary"
+            type="body1"
+            className={classNames(classes.text, { [classes.textDense]: dense })}
+          >
+            {secondary}
+          </Typography>
+        ))}
     </div>
   );
 }
@@ -108,4 +111,4 @@ ListItemText.contextTypes = {
   dense: PropTypes.bool,
 };
 
-export default withStyles(styleSheet)(ListItemText);
+export default withStyles(styles, { name: 'MuiListItemText' })(ListItemText);

@@ -5,7 +5,7 @@ import { assert } from 'chai';
 import forOwn from 'lodash/forOwn';
 import { createShallow, getClasses } from '../test-utils';
 import Hidden from '../Hidden';
-import Grid, { styleSheet } from './Grid';
+import Grid from './Grid';
 
 describe('<Grid />', () => {
   let shallow;
@@ -15,17 +15,19 @@ describe('<Grid />', () => {
     const shallowInner = createShallow({ dive: true });
     // Render deeper to bypass the GridWrapper.
     shallow = node => {
-      return shallowInner(node).find('Grid').shallow({
-        context: shallowInner.context,
-      });
+      return shallowInner(node)
+        .find('Grid')
+        .shallow({
+          context: shallowInner.context,
+        });
     };
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Grid />);
   });
 
   it('should render', () => {
-    const wrapper = shallow(<Grid className="woof" />);
+    const wrapper = shallow(<Grid className="woofGrid" />);
     assert.strictEqual(wrapper.name(), 'div');
-    assert.strictEqual(wrapper.hasClass('woof'), true, 'should have the user class');
+    assert.strictEqual(wrapper.hasClass('woofGrid'), true, 'should have the user class');
   });
 
   describe('prop: container', () => {

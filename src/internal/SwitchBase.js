@@ -1,16 +1,15 @@
 // @flow
 
-import React, { Component } from 'react';
-import type { Element } from 'react';
+import React from 'react';
+import type { Node, Element } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import IconButton from '../IconButton';
-import CheckBoxOutlineBlankIcon from '../svg-icons/check-box-outline-blank';
-import CheckBoxIcon from '../svg-icons/check-box';
+import CheckBoxOutlineBlankIcon from '../svg-icons/CheckBoxOutlineBlank';
+import CheckBoxIcon from '../svg-icons/CheckBox';
 import Icon from '../Icon';
 
-export const styleSheet = createStyleSheet('MuiSwitchBase', {
+export const styles = {
   root: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -27,13 +26,13 @@ export const styleSheet = createStyleSheet('MuiSwitchBase', {
     margin: 0,
     padding: 0,
   },
-});
+  default: {},
+  checked: {},
+  disabled: {},
+};
 
 type DefaultProps = {
-  checkedIcon: Element<*>,
   classes: Object,
-  disableRipple: boolean,
-  icon: Element<*>,
 };
 
 // NB: If changed, please update Checkbox, Switch and Radio
@@ -80,7 +79,7 @@ export type Props = {
    * The icon to display when the component is unchecked.
    * If a string is provided, it will be used as a font ligature.
    */
-  icon?: Element<*>,
+  icon?: Node,
   /**
    * If `true`, the component appears indeterminate.
    */
@@ -89,7 +88,7 @@ export type Props = {
    * The icon to display when the component is indeterminate.
    * If a string is provided, it will be used as a font ligature.
    */
-  indeterminateIcon?: string | Element<*>,
+  indeterminateIcon?: Node,
   /**
    * Properties applied to the `input` element.
    */
@@ -112,7 +111,7 @@ export type Props = {
   /**
    * @ignore
    */
-  tabIndex?: string,
+  tabIndex?: number | string,
   /**
    * The value of the component.
    */
@@ -129,7 +128,6 @@ type Options = {
   defaultIcon?: Element<*>,
   defaultCheckedIcon?: Element<*>,
   inputType?: string,
-  styleSheet?: Object,
 };
 
 export default function createSwitch(
@@ -137,22 +135,21 @@ export default function createSwitch(
     defaultIcon = <CheckBoxOutlineBlankIcon />,
     defaultCheckedIcon = <CheckBoxIcon />,
     inputType = 'checkbox',
-    styleSheet: switchStyleSheet,
   }: Options = {},
 ) {
   /**
    * @ignore - internal component.
    */
-  class SwitchBase extends Component<DefaultProps, AllProps, State> {
+  class SwitchBase extends React.Component<AllProps, State> {
     props: AllProps;
-    static defaultProps: DefaultProps = {
+
+    static defaultProps = {
       checkedIcon: defaultCheckedIcon,
-      classes: {},
       disableRipple: false,
       icon: defaultIcon,
     };
 
-    state: State = {};
+    state = {};
 
     componentWillMount() {
       const { props } = this;
@@ -217,11 +214,7 @@ export default function createSwitch(
       let icon = checked ? checkedIcon : iconProp;
 
       if (typeof icon === 'string') {
-        icon = (
-          <Icon>
-            {icon}
-          </Icon>
-        );
+        icon = <Icon>{icon}</Icon>;
       }
 
       return (
@@ -260,5 +253,5 @@ export default function createSwitch(
     }
   }
 
-  return withStyles([switchStyleSheet, styleSheet])(SwitchBase);
+  return withStyles(styles, { name: 'MuiSwitchBase' })(SwitchBase);
 }

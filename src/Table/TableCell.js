@@ -1,12 +1,11 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiTableCell', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
     whiteSpace: 'nowrap',
@@ -20,6 +19,7 @@ export const styleSheet = createStyleSheet('MuiTableCell', theme => ({
   },
   head: {
     whiteSpace: 'pre',
+    fontWeight: theme.typography.fontWeightMedium,
   },
   padding: {
     padding: `0 ${theme.spacing.unit * 7}px 0 ${theme.spacing.unit * 3}px`,
@@ -34,8 +34,10 @@ export const styleSheet = createStyleSheet('MuiTableCell', theme => ({
     paddingLeft: 12,
     paddingRight: 12,
   },
-  footer: {},
-}));
+  footer: {
+    borderBottom: 0,
+  },
+});
 
 function TableCell(props, context) {
   const {
@@ -46,12 +48,17 @@ function TableCell(props, context) {
     checkbox,
     numeric,
     disablePadding,
+    component,
     ...other
   } = props;
+
   const { table } = context;
-
-  const Component = table && table.head ? 'th' : 'td';
-
+  let Component;
+  if (component) {
+    Component = component;
+  } else {
+    Component = table && table.head ? 'th' : 'td';
+  }
   const className = classNames(
     classes.root,
     {
@@ -94,6 +101,11 @@ TableCell.propTypes = {
    */
   compact: PropTypes.bool,
   /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.string,
+  /**
    * If `true`, left/right cell padding will be disabled.
    */
   disablePadding: PropTypes.bool,
@@ -108,10 +120,11 @@ TableCell.defaultProps = {
   compact: false,
   numeric: false,
   disablePadding: false,
+  component: null,
 };
 
 TableCell.contextTypes = {
-  table: PropTypes.object,
+  table: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(TableCell);
+export default withStyles(styles, { name: 'MuiTableCell' })(TableCell);

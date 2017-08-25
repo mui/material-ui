@@ -1,20 +1,17 @@
 // @flow weak
+// @inheritedComponent ButtonBase
 
-import React, { Children, cloneElement } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
-import ButtonBase from '../internal/ButtonBase';
+import ButtonBase from '../ButtonBase';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import Icon from '../Icon';
-import { isMuiComponent } from '../utils/reactHelpers';
+import { isMuiElement } from '../utils/reactHelpers';
 
-export const styleSheet = createStyleSheet('MuiIconButton', theme => ({
+export const styles = (theme: Object) => ({
   root: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
     textAlign: 'center',
     flex: '0 0 auto',
     fontSize: 24,
@@ -28,11 +25,8 @@ export const styleSheet = createStyleSheet('MuiIconButton', theme => ({
       duration: theme.transitions.duration.shortest,
     }),
   },
-  disabled: {
-    color: theme.palette.action.disabled,
-  },
   colorAccent: {
-    color: theme.palette.accent.A200,
+    color: theme.palette.secondary.A200,
   },
   colorContrast: {
     color: theme.palette.getContrastText(theme.palette.primary[500]),
@@ -42,6 +36,9 @@ export const styleSheet = createStyleSheet('MuiIconButton', theme => ({
   },
   colorInherit: {
     color: 'inherit',
+  },
+  disabled: {
+    color: theme.palette.action.disabled,
   },
   label: {
     width: '100%',
@@ -56,7 +53,7 @@ export const styleSheet = createStyleSheet('MuiIconButton', theme => ({
   keyboardFocused: {
     backgroundColor: theme.palette.text.divider,
   },
-}));
+});
 
 /**
  * Refer to the [Icons](/style/icons) section of the documentation
@@ -82,19 +79,19 @@ function IconButton(props) {
       {...other}
     >
       <span className={classes.label}>
-        {typeof children === 'string'
-          ? <Icon className={classes.icon}>
-              {children}
-            </Icon>
-          : Children.map(children, child => {
-              if (isMuiComponent(child, 'Icon')) {
-                return cloneElement(child, {
-                  className: classNames(classes.icon, child.props.className),
-                });
-              }
+        {typeof children === 'string' ? (
+          <Icon className={classes.icon}>{children}</Icon>
+        ) : (
+          React.Children.map(children, child => {
+            if (isMuiElement(child, ['Icon'])) {
+              return React.cloneElement(child, {
+                className: classNames(classes.icon, child.props.className),
+              });
+            }
 
-              return child;
-            })}
+            return child;
+          })
+        )}
       </span>
     </ButtonBase>
   );
@@ -138,4 +135,4 @@ IconButton.defaultProps = {
   disableRipple: false,
 };
 
-export default withStyles(styleSheet)(IconButton);
+export default withStyles(styles, { name: 'MuiIconButton' })(IconButton);

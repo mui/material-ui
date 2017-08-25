@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import DialogContentText, { styleSheet } from './DialogContentText';
+import DialogContentText from './DialogContentText';
 
 describe('<DialogContentText />', () => {
   let shallow;
@@ -11,13 +11,13 @@ describe('<DialogContentText />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<DialogContentText />);
   });
 
   describe('prop: className', () => {
     it('should render with the user and root classes', () => {
-      const wrapper = shallow(<DialogContentText className="woof" />);
-      assert.strictEqual(wrapper.hasClass('woof'), true);
+      const wrapper = shallow(<DialogContentText className="woofDialogContentText" />);
+      assert.strictEqual(wrapper.hasClass('woofDialogContentText'), true);
       assert.strictEqual(wrapper.hasClass(classes.root), true);
     });
   });
@@ -25,11 +25,7 @@ describe('<DialogContentText />', () => {
   describe('prop: children', () => {
     it('should render children', () => {
       const children = <p />;
-      const wrapper = shallow(
-        <DialogContentText>
-          {children}
-        </DialogContentText>,
-      );
+      const wrapper = shallow(<DialogContentText>{children}</DialogContentText>);
       assert.strictEqual(wrapper.children().equals(children), true);
     });
   });

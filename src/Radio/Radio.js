@@ -1,13 +1,13 @@
 // @flow weak
 
 import React from 'react';
-import type { Element } from 'react';
-import createStyleSheet from '../styles/createStyleSheet';
+import type { Node } from 'react';
+import withStyles from '../styles/withStyles';
 import createSwitch from '../internal/SwitchBase';
-import RadioButtonCheckedIcon from '../svg-icons/radio-button-checked';
-import RadioButtonUncheckedIcon from '../svg-icons/radio-button-unchecked';
+import RadioButtonCheckedIcon from '../svg-icons/RadioButtonChecked';
+import RadioButtonUncheckedIcon from '../svg-icons/RadioButtonUnchecked';
 
-export const styleSheet = createStyleSheet('MuiRadio', theme => ({
+export const styles = (theme: Object) => ({
   default: {
     color: theme.palette.text.secondary,
   },
@@ -17,14 +17,15 @@ export const styleSheet = createStyleSheet('MuiRadio', theme => ({
   disabled: {
     color: theme.palette.action.disabled,
   },
-}));
-
-const Radio = createSwitch({
-  styleSheet,
-  inputType: 'radio',
-  defaultIcon: <RadioButtonUncheckedIcon />,
-  defaultCheckedIcon: <RadioButtonCheckedIcon />,
 });
+
+const Radio = withStyles(styles, { name: 'MuiRadio' })(
+  createSwitch({
+    inputType: 'radio',
+    defaultIcon: <RadioButtonUncheckedIcon />,
+    defaultCheckedIcon: <RadioButtonCheckedIcon />,
+  }),
+);
 
 Radio.displayName = 'Radio';
 
@@ -43,7 +44,7 @@ export type Props = {
    * The icon to display when the component is checked.
    * If a string is provided, it will be used as a font ligature.
    */
-  checkedIcon?: Element<*>,
+  checkedIcon?: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -72,7 +73,7 @@ export type Props = {
    * The icon to display when the component is unchecked.
    * If a string is provided, it will be used as a font ligature.
    */
-  icon?: Element<*>,
+  icon?: Node,
   /**
    * Properties applied to the `input` element.
    */
@@ -95,7 +96,7 @@ export type Props = {
   /**
    * @ignore
    */
-  tabIndex?: string,
+  tabIndex?: number | string,
   /**
    * The value of the component.
    */

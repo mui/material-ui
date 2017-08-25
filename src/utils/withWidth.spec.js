@@ -5,14 +5,14 @@ import { assert } from 'chai';
 import { useFakeTimers } from 'sinon';
 import { createMount, createShallow } from '../test-utils';
 import withWidth, { isWidthDown, isWidthUp } from './withWidth';
-import createBreakpoints from '../styles/breakpoints';
+import createBreakpoints from '../styles/createBreakpoints';
 
 const Empty = () => <div />;
 Empty.propTypes = {}; // Breaks the referencial transparency for testing purposes.
 const EmptyWithWidth = withWidth()(Empty);
 
-const breakpoints = createBreakpoints();
-const TEST_ENV_WIDTH = window.innerWidth > breakpoints.getWidth('md') ? 'md' : 'sm';
+const breakpoints = createBreakpoints({});
+const TEST_ENV_WIDTH = window.innerWidth > breakpoints.values.md ? 'md' : 'sm';
 
 describe('withWidth', () => {
   let shallow;
@@ -85,7 +85,7 @@ describe('withWidth', () => {
       const updateWidth = instance.updateWidth.bind(instance);
 
       breakpoints.keys.forEach(key => {
-        updateWidth(breakpoints.getWidth(key));
+        updateWidth(breakpoints.values[key]);
         assert.strictEqual(wrapper.state().width, key, 'should return the matching width');
       });
     });

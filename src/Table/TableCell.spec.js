@@ -3,15 +3,20 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import TableCell, { styleSheet } from './TableCell';
+import TableCell from './TableCell';
 
 describe('<TableCell />', () => {
   let shallow;
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    shallow = createShallow({
+      dive: true,
+      context: {
+        table: { footer: true },
+      },
+    });
+    classes = getClasses(<TableCell />);
   });
 
   it('should render a td', () => {
@@ -20,20 +25,24 @@ describe('<TableCell />', () => {
   });
 
   it('should spread custom props on the root node', () => {
-    const wrapper = shallow(<TableCell data-my-prop="woof" />);
-    assert.strictEqual(wrapper.prop('data-my-prop'), 'woof', 'custom prop should be woof');
+    const wrapper = shallow(<TableCell data-my-prop="woofTableCell" />);
+    assert.strictEqual(
+      wrapper.props()['data-my-prop'],
+      'woofTableCell',
+      'custom prop should be woofTableCell',
+    );
   });
 
   it('should render with the user, root and padding classes', () => {
-    const wrapper = shallow(<TableCell className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+    const wrapper = shallow(<TableCell className="woofTableCell" />);
+    assert.strictEqual(wrapper.hasClass('woofTableCell'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.padding), true, 'should have the padding class');
   });
 
   it('should render with the user, root and padding classes', () => {
-    const wrapper = shallow(<TableCell className="woof" disablePadding />);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+    const wrapper = shallow(<TableCell className="woofTableCell" disablePadding />);
+    assert.strictEqual(wrapper.hasClass('woofTableCell'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(
       wrapper.hasClass(classes.padding),
@@ -44,11 +53,7 @@ describe('<TableCell />', () => {
 
   it('should render children', () => {
     const children = <p className="test">Hello</p>;
-    const wrapper = shallow(
-      <TableCell>
-        {children}
-      </TableCell>,
-    );
+    const wrapper = shallow(<TableCell>{children}</TableCell>);
     assert.strictEqual(wrapper.childAt(0).equals(children), true);
   });
 
@@ -58,6 +63,20 @@ describe('<TableCell />', () => {
     assert.strictEqual(wrapper.name(), 'th');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.head), true, 'should have the head class');
+  });
+
+  it('should render a th with the footer class when in the context of a table footer', () => {
+    const wrapper = shallow(<TableCell />);
+    wrapper.setContext({ ...wrapper.options.context, table: { footer: true } });
+    assert.strictEqual(wrapper.name(), 'td');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.footer), true, 'should have the footer class');
+  });
+
+  it('should render a div when custom component prop is used', () => {
+    const wrapper = shallow(<TableCell component="div" />);
+    assert.strictEqual(wrapper.name(), 'div', 'should be a div element');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   it('should render with the footer class when in the context of a table footer', () => {

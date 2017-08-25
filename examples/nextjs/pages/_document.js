@@ -1,30 +1,14 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow weak
 
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
-import { getContext } from '../styles/context';
+import JssProvider from 'react-jss/lib/JssProvider';
+import getContext from '../styles/getContext';
 
-export default class MyDocument extends Document {
-  static getInitialProps(ctx) {
-    const page = ctx.renderPage();
-    // Get the context with the collected side effects.
-    const context = getContext();
-    return {
-      ...page,
-      styles: (
-        <style
-          id="jss-server-side"
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: context.sheetsRegistry.toString() }}
-        />
-      ),
-    };
-  }
-
+class MyDocument extends Document {
   render() {
-    const context = getContext();
     return (
-      <html lang="en">
+      <html lang="en" dir="ltr">
         <Head>
           <title>My page</title>
           <meta charSet="utf-8" />
@@ -42,7 +26,7 @@ export default class MyDocument extends Document {
           */}
           <link rel="manifest" href="/static/manifest.json" />
           {/* PWA primary color */}
-          <meta name="theme-color" content={context.theme.palette.primary[500]} />
+          <meta name="theme-color" content={this.props.stylesContext.theme.palette.primary[500]} />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
@@ -56,3 +40,44 @@ export default class MyDocument extends Document {
     );
   }
 }
+
+MyDocument.getInitialProps = ctx => {
+  // Resolution order
+  //
+  // On the server:
+  // 1. page.getInitialProps
+  // 2. document.getInitialProps
+  // 3. page.render
+  // 4. document.render
+  //
+  // On the server with error:
+  // 2. document.getInitialProps
+  // 3. page.render
+  // 4. document.render
+  //
+  // On the client
+  // 1. page.getInitialProps
+  // 3. page.render
+
+  // Get the context to collected side effects.
+  const context = getContext();
+  const page = ctx.renderPage(Component => props => (
+    <JssProvider registry={context.sheetsRegistry} jss={context.jss}>
+      <Component {...props} />
+    </JssProvider>
+  ));
+
+  return {
+    ...page,
+    stylesContext: context,
+    styles: (
+      <style
+        id="jss-server-side"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: context.sheetsRegistry.toString() }}
+      />
+    ),
+  };
+};
+
+export default MyDocument;

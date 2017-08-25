@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import Paper, { styleSheet } from './Paper';
+import Paper from './Paper';
 
 describe('<Paper />', () => {
   let shallow;
@@ -13,7 +13,7 @@ describe('<Paper />', () => {
     shallow = createShallow({
       dive: true,
     });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Paper />);
   });
 
   it('should render a div', () => {

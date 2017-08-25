@@ -1,13 +1,13 @@
 // @flow
+// @inheritedComponent ListItem
 
 import React from 'react';
-import type { Element } from 'react';
+import type { ElementType, Node } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import ListItem from '../List/ListItem';
 
-export const styleSheet = createStyleSheet('MuiMenuItem', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     ...theme.typography.subheading,
     height: 48,
@@ -26,7 +26,7 @@ export const styleSheet = createStyleSheet('MuiMenuItem', theme => ({
   selected: {
     backgroundColor: theme.palette.text.divider,
   },
-}));
+});
 
 type DefaultProps = {
   classes: Object,
@@ -38,7 +38,7 @@ export type Props = {
   /**
    * Menu item contents.
    */
-  children?: Element<*>,
+  children?: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -51,7 +51,7 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: string | Function,
+  component?: ElementType,
   /**
    * @ignore
    */
@@ -79,7 +79,7 @@ function MenuItem(props: AllProps) {
     <ListItem
       button
       role={role}
-      tabIndex="-1"
+      tabIndex={-1}
       className={className}
       component={component}
       {...other}
@@ -92,4 +92,4 @@ MenuItem.defaultProps = {
   selected: false,
 };
 
-export default withStyles(styleSheet)(MenuItem);
+export default withStyles(styles, { name: 'MuiMenuItem' })(MenuItem);

@@ -1,4 +1,5 @@
-// @flow weak
+// @flow
+
 const webpack = require('webpack');
 const path = require('path');
 const pkg = require('../package.json');
@@ -14,9 +15,9 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      docs: path.resolve(__dirname, '../docs'),
       'material-ui': path.resolve(__dirname, '../src'),
       'material-ui-icons': path.resolve(__dirname, '../packages/material-ui-icons/src'),
+      docs: path.resolve(__dirname, '../docs'),
     },
   },
   output: {

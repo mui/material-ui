@@ -67,11 +67,11 @@ We then get the CSS from our `sheetsRegistry` using `sheetsRegistry.toString()`.
 
 ```js
 import { renderToString } from 'react-dom/server'
-import { JssProvider, SheetsRegistry } from 'react-jss'
+import { SheetsRegistry } from 'react-jss/lib/jss';
+import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
 import preset from 'jss-preset-default';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import createPalette from 'material-ui/styles/palette';
 import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
 import { green, red } from 'material-ui/colors';
 
@@ -81,11 +81,11 @@ function handleRender(req, res) {
 
   // Create a theme instance.
   const theme = createMuiTheme({
-    palette: createPalette({
+    palette: {
       primary: green,
       accent: red,
       type: 'light',
-    }),
+    },
   });
 
   // Configure JSS
@@ -95,7 +95,7 @@ function handleRender(req, res) {
   // Render the component to a string.
   const html = renderToString(
     <JssProvider registry={sheetsRegistry} jss={jss}>
-      <MuiThemeProvider theme={theme} sheetsManager={new WeakMap()}>
+      <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
         <App />
       </MuiThemeProvider>
     </JssProvider>
@@ -138,14 +138,14 @@ Let's take a look at our client file:
 `client.js`
 
 ```jsx
-import React, { Component } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import createPalette from 'material-ui/styles/palette';
 import { green, red } from 'material-ui/colors';
 import App from './App';
 
-class Main extends Component {
+class Main extends React.Component {
   // Remove the server-side injected CSS.
   componentDidMount() {
     const jssStyles = document.getElementById('jss-server-side');

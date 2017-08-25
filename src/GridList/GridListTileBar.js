@@ -3,10 +3,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiGridListTileBar', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     position: 'absolute',
     left: 0,
@@ -62,7 +61,7 @@ export const styleSheet = createStyleSheet('MuiGridListTileBar', theme => ({
     position: 'relative',
     left: '50%',
   },
-}));
+});
 
 function GridListTileBar(props) {
   const {
@@ -96,20 +95,14 @@ function GridListTileBar(props) {
   return (
     <div className={className} {...other}>
       <div className={titleWrapClassName}>
-        <div className={classes.title}>
-          {title}
-        </div>
-        {subtitle
-          ? <div className={classes.subtitle}>
-              {subtitle}
-            </div>
-          : null}
+        <div className={classes.title}>{title}</div>
+        {subtitle ? <div className={classes.subtitle}>{subtitle}</div> : null}
       </div>
-      {actionIcon
-        ? <div className={classNames({ [classes.actionIconPositionLeft]: actionPos === 'left' })}>
-            {actionIcon}
-          </div>
-        : null}
+      {actionIcon ? (
+        <div className={classNames({ [classes.actionIconPositionLeft]: actionPos === 'left' })}>
+          {actionIcon}
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -151,4 +144,4 @@ GridListTileBar.defaultProps = {
   actionPosition: 'right',
 };
 
-export default withStyles(styleSheet)(GridListTileBar);
+export default withStyles(styles, { name: 'MuiGridListTileBar' })(GridListTileBar);

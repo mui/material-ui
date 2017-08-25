@@ -1,19 +1,20 @@
 // @flow
+// @inheritedComponent Paper
 
 import React from 'react';
-import type { Element } from 'react';
+import type { Node } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import Paper from '../Paper';
 
-export const styleSheet = createStyleSheet('MuiAppBar', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
     zIndex: theme.zIndex.appBar,
+    flexShrink: 0,
   },
   positionFixed: {
     position: 'fixed',
@@ -40,10 +41,10 @@ export const styleSheet = createStyleSheet('MuiAppBar', theme => ({
     color: theme.palette.getContrastText(theme.palette.primary[500]),
   },
   colorAccent: {
-    backgroundColor: theme.palette.accent.A200,
-    color: theme.palette.getContrastText(theme.palette.accent.A200),
+    backgroundColor: theme.palette.secondary.A200,
+    color: theme.palette.getContrastText(theme.palette.secondary.A200),
   },
-}));
+});
 
 type DefaultProps = {
   classes: Object,
@@ -55,7 +56,7 @@ export type Props = {
   /**
    * The content of the component.
    */
-  children?: Element<*>,
+  children?: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -101,4 +102,4 @@ AppBar.defaultProps = {
   position: 'fixed',
 };
 
-export default withStyles(styleSheet)(AppBar);
+export default withStyles(styles, { name: 'MuiAppBar' })(AppBar);

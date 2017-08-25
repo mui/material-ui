@@ -9,7 +9,7 @@ import { createShallow, createMount, getClasses } from '../test-utils';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
 import Fade from '../transitions/Fade';
 import Backdrop from './Backdrop';
-import Modal, { styleSheet } from './Modal';
+import Modal from './Modal';
 
 describe('<Modal />', () => {
   let shallow;
@@ -18,7 +18,7 @@ describe('<Modal />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Modal />);
     mount = createMount();
   });
 
@@ -40,7 +40,7 @@ describe('<Modal />', () => {
 
     before(() => {
       wrapper = shallow(
-        <Modal show data-my-prop="woof">
+        <Modal show data-my-prop="woofModal">
           <p>Hello World</p>
         </Modal>,
       );
@@ -433,9 +433,7 @@ describe('<Modal />', () => {
       const children = <p>Hello World</p>;
       const wrapper = shallow(
         <Modal keepMounted show={false}>
-          <div>
-            {children}
-          </div>
+          <div>{children}</div>
         </Modal>,
       );
       assert.strictEqual(wrapper.contains(children), true);
@@ -445,9 +443,7 @@ describe('<Modal />', () => {
       const children = <p>Hello World</p>;
       const wrapper = shallow(
         <Modal show={false}>
-          <div>
-            {children}
-          </div>
+          <div>{children}</div>
         </Modal>,
       );
       assert.strictEqual(wrapper.contains(children), false);
@@ -462,7 +458,10 @@ describe('<Modal />', () => {
           <Fade in />
         </Modal>,
       );
-      wrapper.find(Fade).at(1).simulate('exited');
+      wrapper
+        .find(Fade)
+        .at(1)
+        .simulate('exited');
       assert.strictEqual(handleExited.callCount, 1);
       assert.strictEqual(wrapper.state().exited, true);
     });
@@ -474,7 +473,10 @@ describe('<Modal />', () => {
           <div />
         </Modal>,
       );
-      wrapper.find(Fade).at(0).simulate('exited');
+      wrapper
+        .find(Fade)
+        .at(0)
+        .simulate('exited');
       assert.strictEqual(handleExited.callCount, 1);
       assert.strictEqual(wrapper.state().exited, true);
     });

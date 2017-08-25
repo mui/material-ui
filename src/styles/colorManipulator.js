@@ -1,5 +1,5 @@
 // @flow weak
-/* eslint-disable */
+/* eslint-disable no-use-before-define */
 
 /**
  * Returns a number whose value is limited to the given range.
@@ -27,13 +27,13 @@ function clamp(value, min, max) {
  * @param {array} color.values - [n,n,n] or [n,n,n,n]
  * @returns {string} A CSS color string
  */
-export function convertColorToString(color) {
+export function convertColorToString(color: Object) {
   const { type, values } = color;
 
   if (type.indexOf('rgb') > -1) {
     // Only convert the first 3 values to int (i.e. not alpha)
-    for (let i = 0; i < 3; i++) {
-      values[i] = parseInt(values[i]);
+    for (let i = 0; i < 3; i += 1) {
+      values[i] = parseInt(values[i], 10);
     }
   }
 
@@ -60,10 +60,10 @@ export function convertColorToString(color) {
  *  @param {string} color - Hex color, i.e. #nnn or #nnnnnn
  *  @returns {string} A CSS rgb color string
  */
-export function convertHexToRGB(color) {
+export function convertHexToRGB(color: string) {
   if (color.length === 4) {
     let extendedColor = '#';
-    for (let i = 1; i < color.length; i++) {
+    for (let i = 1; i < color.length; i += 1) {
       extendedColor += color.charAt(i) + color.charAt(i);
     }
     color = extendedColor;
@@ -86,7 +86,7 @@ export function convertHexToRGB(color) {
  * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
  * @returns {{type: string, values: number[]}} A MUI color object
  */
-export function decomposeColor(color) {
+export function decomposeColor(color: string) {
   if (color.charAt(0) === '#') {
     return decomposeColor(convertHexToRGB(color));
   }
@@ -96,7 +96,7 @@ export function decomposeColor(color) {
   let values = color.substring(marker + 1, color.length - 1).split(',');
   values = values.map(value => parseFloat(value));
 
-  return { type: type, values: values };
+  return { type, values };
 }
 
 /**
@@ -108,7 +108,7 @@ export function decomposeColor(color) {
  * @param {string} background - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
  * @returns {number} A contrast ratio value in the range 0 - 21 with 2 digit precision.
  */
-export function getContrastRatio(foreground, background) {
+export function getContrastRatio(foreground: string, background: string) {
   const lumA = getLuminance(foreground);
   const lumB = getLuminance(background);
   const contrastRatio = (Math.max(lumA, lumB) + 0.05) / (Math.min(lumA, lumB) + 0.05);
@@ -125,18 +125,21 @@ export function getContrastRatio(foreground, background) {
  * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
  * @returns {number} The relative brightness of the color in the range 0 - 1
  */
-export function getLuminance(color) {
-  color = decomposeColor(color);
+export function getLuminance(color: string) {
+  const decomposedColor = decomposeColor(color);
 
-  if (color.type.indexOf('rgb') > -1) {
-    const rgb = color.values.map(val => {
+  if (decomposedColor.type.indexOf('rgb') > -1) {
+    const rgb = decomposedColor.values.map(val => {
       val /= 255; // normalized
       return val <= 0.03928 ? val / 12.92 : Math.pow((val + 0.055) / 1.055, 2.4);
     });
-    return Number((0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]).toFixed(3)); // Truncate at 3 digits
-  } else if (color.type.indexOf('hsl') > -1) {
-    return color.values[2] / 100;
+    // Truncate at 3 digits
+    return Number((0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]).toFixed(3));
+  } else if (decomposedColor.type.indexOf('hsl') > -1) {
+    return decomposedColor.values[2] / 100;
   }
+
+  throw new Error(`Material-UI: unsupported \`${color}\` color.`);
 }
 
 /**
@@ -147,7 +150,7 @@ export function getLuminance(color) {
  * @param {number} coefficient=0.15 - multiplier in the range 0 - 1
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
-export function emphasize(color, coefficient = 0.15) {
+export function emphasize(color: string, coefficient: number = 0.15) {
   return getLuminance(color) > 0.5 ? darken(color, coefficient) : lighten(color, coefficient);
 }
 
@@ -159,7 +162,7 @@ export function emphasize(color, coefficient = 0.15) {
  * @param {number} value - value to set the alpha channel to in the range 0 -1
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
-export function fade(color, value) {
+export function fade(color: string, value: number) {
   color = decomposeColor(color);
   value = clamp(value, 0, 1);
 
@@ -178,14 +181,14 @@ export function fade(color, value) {
  * @param {number} coefficient - multiplier in the range 0 - 1
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
-export function darken(color, coefficient) {
+export function darken(color: string, coefficient: number) {
   color = decomposeColor(color);
   coefficient = clamp(coefficient, 0, 1);
 
   if (color.type.indexOf('hsl') > -1) {
     color.values[2] *= 1 - coefficient;
   } else if (color.type.indexOf('rgb') > -1) {
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 3; i += 1) {
       color.values[i] *= 1 - coefficient;
     }
   }
@@ -199,14 +202,14 @@ export function darken(color, coefficient) {
  * @param {number} coefficient - multiplier in the range 0 - 1
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
-export function lighten(color, coefficient) {
+export function lighten(color: string, coefficient: number) {
   color = decomposeColor(color);
   coefficient = clamp(coefficient, 0, 1);
 
   if (color.type.indexOf('hsl') > -1) {
     color.values[2] += (100 - color.values[2]) * coefficient;
   } else if (color.type.indexOf('rgb') > -1) {
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 3; i += 1) {
       color.values[i] += (255 - color.values[i]) * coefficient;
     }
   }

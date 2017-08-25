@@ -1,8 +1,8 @@
-// @flow
+// @flow weak
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import * as colors from 'material-ui/colors';
 import { getContrastRatio } from 'material-ui/styles/colorManipulator';
 
@@ -28,7 +28,7 @@ const neutralColors = ['Brown', 'Grey', 'Blue Grey'];
 const mainPalette = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 const altPalette = ['A100', 'A200', 'A400', 'A700'];
 
-export const styleSheet = createStyleSheet(theme => ({
+export const styles = theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -57,7 +57,7 @@ export const styleSheet = createStyleSheet(theme => ({
     ...theme.typography.caption,
     color: 'inherit',
   },
-}));
+});
 
 function getColorBlock(classes, colorName, colorValue, colorTitle) {
   const bgColor = colors[colorName][colorValue];
@@ -69,11 +69,7 @@ function getColorBlock(classes, colorName, colorValue, colorTitle) {
 
   let blockTitle;
   if (colorTitle) {
-    blockTitle = (
-      <div className={classes.name}>
-        {colorName}
-      </div>
-    );
+    blockTitle = <div className={classes.name}>{colorName}</div>;
   }
 
   let rowStyle = {
@@ -94,12 +90,8 @@ function getColorBlock(classes, colorName, colorValue, colorTitle) {
     <li style={rowStyle} key={colorValue}>
       {blockTitle}
       <div className={classes.colorContainer}>
-        <span>
-          {colorValue}
-        </span>
-        <span className={classes.colorValue}>
-          {bgColor.toUpperCase()}
-        </span>
+        <span>{colorValue}</span>
+        <span className={classes.colorValue}>{bgColor.toUpperCase()}</span>
       </div>
     </li>
   );
@@ -153,4 +145,4 @@ Color.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(Color);
+export default withStyles(styles)(Color);

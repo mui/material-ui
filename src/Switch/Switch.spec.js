@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import Switch, { styleSheet } from './Switch';
+import Switch from './Switch';
 
 describe('<Switch />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<Switch />', () => {
 
   before(() => {
     shallow = createShallow({ untilSelector: 'div' });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Switch />);
   });
 
   describe('styleSheet', () => {

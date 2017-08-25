@@ -5,7 +5,7 @@ import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
 import Avatar from '../Avatar';
-import ListItemAvatar, { styleSheet } from './ListItemAvatar';
+import ListItemAvatar from './ListItemAvatar';
 
 describe('<ListItemAvatar />', () => {
   let shallow;
@@ -13,7 +13,16 @@ describe('<ListItemAvatar />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(
+      <ListItemAvatar className="foo">
+        <Avatar className="bar" />
+      </ListItemAvatar>,
+      {
+        context: {
+          dense: true,
+        },
+      },
+    );
   });
 
   it('should render with the user and root classes', () => {

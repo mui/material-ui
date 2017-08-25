@@ -1,20 +1,19 @@
 // @flow
-/* eslint-disable jsx-a11y/label-has-for */
 
 import React from 'react';
-import type { Element } from 'react';
+import type { ElementType, Node } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiFormLabel', theme => {
+export const styles = (theme: Object) => {
   const focusColor = theme.palette.primary[theme.palette.type === 'light' ? 'A700' : 'A200'];
   return {
     root: {
       fontFamily: theme.typography.fontFamily,
       color: theme.palette.input.labelText,
       lineHeight: 1,
+      padding: 0,
     },
     focused: {
       color: focusColor,
@@ -26,17 +25,18 @@ export const styleSheet = createStyleSheet('MuiFormLabel', theme => {
       color: theme.palette.input.disabled,
     },
   };
-});
+};
 
 type DefaultProps = {
   classes: Object,
+  component: string,
 };
 
 export type Props = {
   /**
    * The content of the component.
    */
-  children?: Element<*>,
+  children?: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -45,6 +45,11 @@ export type Props = {
    * @ignore
    */
   className?: string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component?: ElementType,
   /**
    * If `true`, the label should be displayed in a disabled state.
    */
@@ -70,6 +75,7 @@ function FormLabel(props: AllProps, context: { muiFormControl: Object }) {
     children,
     classes,
     className: classNameProp,
+    component: Component,
     disabled: disabledProp,
     error: errorProp,
     focused: focusedProp,
@@ -114,18 +120,23 @@ function FormLabel(props: AllProps, context: { muiFormControl: Object }) {
   });
 
   return (
-    <label className={className} {...other}>
+    <Component className={className} {...other}>
       {children}
-      {required &&
+      {required && (
         <span className={asteriskClassName} data-mui-test="FormLabelAsterisk">
           {'\u2009*'}
-        </span>}
-    </label>
+        </span>
+      )}
+    </Component>
   );
 }
+
+FormLabel.defaultProps = {
+  component: 'label',
+};
 
 FormLabel.contextTypes = {
   muiFormControl: PropTypes.object,
 };
 
-export default withStyles(styleSheet)(FormLabel);
+export default withStyles(styles, { name: 'MuiFormLabel' })(FormLabel);

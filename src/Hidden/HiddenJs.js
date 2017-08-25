@@ -1,6 +1,7 @@
 // @flow
+
 import warning from 'warning';
-import { keys as breakpoints } from '../styles/breakpoints';
+import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import withWidth, { isWidthDown, isWidthUp } from '../utils/withWidth';
 import type { HiddenProps } from './types';
 
@@ -33,6 +34,11 @@ function HiddenJs(props: Props) {
     ...other
   } = props;
 
+  warning(
+    Object.keys(other).length === 0,
+    `Material-UI: unsupported properties received ${JSON.stringify(other)} by \`<Hidden />\`.`,
+  );
+
   let visible = true;
 
   // `only` check is faster to get out sooner if used.
@@ -53,8 +59,8 @@ function HiddenJs(props: Props) {
   // Allow `only` to be combined with other props. If already hidden, no need to check others.
   if (visible) {
     // determine visibility based on the smallest size up
-    for (let i = 0; i < breakpoints.length; i += 1) {
-      const breakpoint = breakpoints[i];
+    for (let i = 0; i < breakpointKeys.length; i += 1) {
+      const breakpoint = breakpointKeys[i];
       const breakpointUp = props[`${breakpoint}Up`];
       const breakpointDown = props[`${breakpoint}Down`];
       if (
@@ -70,11 +76,6 @@ function HiddenJs(props: Props) {
   if (!visible) {
     return null;
   }
-
-  warning(
-    Object.keys(other).length === 0,
-    `Material-UI: unsupported properties received ${JSON.stringify(other)}`,
-  );
 
   return children;
 }

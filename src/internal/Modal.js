@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
+import React from 'react';
 import type { Element } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
@@ -13,20 +13,17 @@ import ownerDocument from 'dom-helpers/ownerDocument';
 import addEventListener from '../utils/addEventListener';
 import { createChainedFunction } from '../utils/helpers';
 import Fade from '../transitions/Fade';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import createModalManager from './modalManager';
 import Backdrop from './Backdrop';
 import Portal from './Portal';
 import type { TransitionCallback } from './Transition';
 
-/**
- * Modals don't open on the server so this won't break concurrency.
- * Could also put this on context.
- */
+// Modals don't open on the server so this won't break concurrency.
+// Could also put this on context.
 const modalManager = createModalManager();
 
-export const styleSheet = createStyleSheet('MuiModal', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     display: 'flex',
     width: '100%',
@@ -39,18 +36,12 @@ export const styleSheet = createStyleSheet('MuiModal', theme => ({
   hidden: {
     visibility: 'hidden',
   },
-}));
+});
 
 type DefaultProps = {
   backdropComponent: Function,
-  backdropTransitionDuration: number,
-  backdropInvisible: boolean,
   classes: Object,
-  disableBackdrop: boolean,
-  ignoreBackdropClick: boolean,
-  ignoreEscapeKeyUp: boolean,
   modalManager: Object,
-  show: boolean,
 };
 
 export type Props = {
@@ -71,7 +62,7 @@ export type Props = {
    */
   backdropTransitionDuration?: number,
   /**
-   * Content of the modal.
+   * A single child content element.
    */
   children?: Element<*>,
   /**
@@ -84,7 +75,7 @@ export type Props = {
   className?: string,
   /**
    * Always keep the children in the DOM.
-   * That property can be useful in SEO situation or
+   * This property can be useful in SEO situation or
    * when you want to maximize the responsiveness of the Modal.
    */
   keepMounted?: boolean,
@@ -157,14 +148,13 @@ type State = {
 /**
  * @ignore - internal component.
  */
-class Modal extends Component<DefaultProps, AllProps, State> {
+class Modal extends React.Component<AllProps, State> {
   props: AllProps;
 
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     backdropComponent: Backdrop,
     backdropTransitionDuration: 300,
     backdropInvisible: false,
-    classes: {},
     keepMounted: false,
     disableBackdrop: false,
     ignoreBackdropClick: false,
@@ -173,7 +163,7 @@ class Modal extends Component<DefaultProps, AllProps, State> {
     show: false,
   };
 
-  state: State = {
+  state = {
     exited: false,
   };
 
@@ -185,7 +175,7 @@ class Modal extends Component<DefaultProps, AllProps, State> {
 
   componentDidMount() {
     this.mounted = true;
-    if (this.props.show === true) {
+    if (this.props.show) {
       this.handleShow();
     }
   }
@@ -206,6 +196,7 @@ class Modal extends Component<DefaultProps, AllProps, State> {
     if (!prevProps.show && this.props.show) {
       this.handleShow();
     }
+    // We are waiting for the onExited callback to call handleHide.
   }
 
   componentWillUnmount() {
@@ -228,28 +219,6 @@ class Modal extends Component<DefaultProps, AllProps, State> {
     }
   }
 
-  focus() {
-    const currentFocus = activeElement(ownerDocument(ReactDOM.findDOMNode(this)));
-    const modalContent = this.modal && this.modal.lastChild;
-    const focusInModal = currentFocus && contains(modalContent, currentFocus);
-
-    if (modalContent && !focusInModal) {
-      this.lastFocus = currentFocus;
-
-      if (!modalContent.hasAttribute('tabIndex')) {
-        modalContent.setAttribute('tabIndex', -1);
-        warning(
-          false,
-          'Material-UI: the modal content node does not accept focus. ' +
-            'For the benefit of assistive technologies, ' +
-            'the tabIndex of the node is being set to "-1".',
-        );
-      }
-
-      modalContent.focus();
-    }
-  }
-
   restoreLastFocus() {
     if (this.lastFocus && this.lastFocus.focus) {
       this.lastFocus.focus();
@@ -263,6 +232,26 @@ class Modal extends Component<DefaultProps, AllProps, State> {
     this.onDocumentKeyUpListener = addEventListener(doc, 'keyup', this.handleDocumentKeyUp);
     this.onFocusListener = addEventListener(doc, 'focus', this.handleFocusListener, true);
     this.focus();
+  }
+
+  focus() {
+    const currentFocus = activeElement(ownerDocument(ReactDOM.findDOMNode(this)));
+    const modalContent = this.modal && this.modal.lastChild;
+    const focusInModal = currentFocus && contains(modalContent, currentFocus);
+
+    if (modalContent && !focusInModal) {
+      if (!modalContent.hasAttribute('tabIndex')) {
+        modalContent.setAttribute('tabIndex', -1);
+        warning(
+          false,
+          'Material-UI: the modal content node does not accept focus. ' +
+            'For the benefit of assistive technologies, ' +
+            'the tabIndex of the node is being set to "-1".',
+        );
+      }
+
+      modalContent.focus();
+    }
   }
 
   handleHide() {
@@ -290,16 +279,18 @@ class Modal extends Component<DefaultProps, AllProps, State> {
       return;
     }
 
-    if (keycode(event) === 'esc') {
-      const { onEscapeKeyUp, onRequestClose, ignoreEscapeKeyUp } = this.props;
+    if (keycode(event) !== 'esc') {
+      return;
+    }
 
-      if (onEscapeKeyUp) {
-        onEscapeKeyUp(event);
-      }
+    const { onEscapeKeyUp, onRequestClose, ignoreEscapeKeyUp } = this.props;
 
-      if (onRequestClose && !ignoreEscapeKeyUp) {
-        onRequestClose(event);
-      }
+    if (onEscapeKeyUp) {
+      onEscapeKeyUp(event);
+    }
+
+    if (onRequestClose && !ignoreEscapeKeyUp) {
+      onRequestClose(event);
     }
   };
 
@@ -404,7 +395,7 @@ class Modal extends Component<DefaultProps, AllProps, State> {
     }
 
     if (tabIndex === undefined) {
-      childProps.tabIndex = tabIndex == null ? '-1' : tabIndex;
+      childProps.tabIndex = tabIndex == null ? -1 : tabIndex;
     }
 
     let backdropProps;
@@ -449,4 +440,4 @@ class Modal extends Component<DefaultProps, AllProps, State> {
   }
 }
 
-export default withStyles(styleSheet)(Modal);
+export default withStyles(styles, { name: 'MuiModal' })(Modal);

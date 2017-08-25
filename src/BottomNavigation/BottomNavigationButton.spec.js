@@ -5,7 +5,7 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, getClasses } from '../test-utils';
 import Icon from '../Icon';
-import BottomNavigationButton, { styleSheet } from './BottomNavigationButton';
+import BottomNavigationButton from './BottomNavigationButton';
 
 describe('<BottomNavigationButton />', () => {
   let shallow;
@@ -14,7 +14,7 @@ describe('<BottomNavigationButton />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<BottomNavigationButton />);
   });
 
   it('should render a ButtonBase', () => {
@@ -28,8 +28,10 @@ describe('<BottomNavigationButton />', () => {
   });
 
   it('should render with the user and root classes', () => {
-    const wrapper = shallow(<BottomNavigationButton className="woof" icon={icon} />);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+    const wrapper = shallow(
+      <BottomNavigationButton className="woofBottomNavigationButton" icon={icon} />,
+    );
+    assert.strictEqual(wrapper.hasClass('woofBottomNavigationButton'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
@@ -51,31 +53,31 @@ describe('<BottomNavigationButton />', () => {
 
   it('should render icon with the icon class', () => {
     const wrapper = shallow(<BottomNavigationButton icon={icon} />);
-    const iconWrapper = wrapper.childAt(0);
+    const iconWrapper = wrapper.childAt(0).childAt(0);
     assert.strictEqual(iconWrapper.hasClass(classes.icon), true, 'should have the icon class');
   });
 
   it('should render icon with the user and icon classes', () => {
     const wrapper = shallow(<BottomNavigationButton icon={icon} />);
 
-    const iconWrapper = wrapper.childAt(0);
+    const iconWrapper = wrapper.childAt(0).childAt(0);
     assert.strictEqual(iconWrapper.is(Icon), true, 'should be an Icon');
     assert.strictEqual(iconWrapper.hasClass(classes.icon), true, 'should have the icon class');
 
-    const labelWrapper = wrapper.childAt(1);
+    const labelWrapper = wrapper.childAt(0).childAt(1);
     assert.strictEqual(labelWrapper.hasClass(classes.label), true, 'should have the label class');
   });
 
   it('should render label with the selectedLabel class', () => {
     const wrapper = shallow(<BottomNavigationButton icon={icon} selected />);
-    const labelWrapper = wrapper.childAt(1);
+    const labelWrapper = wrapper.childAt(0).childAt(1);
     assert.strictEqual(labelWrapper.hasClass(classes.selectedLabel), true);
     assert.strictEqual(labelWrapper.hasClass(classes.label), true);
   });
 
   it('should render label with the hiddenLabel class', () => {
     const wrapper = shallow(<BottomNavigationButton icon={icon} showLabel={false} />);
-    const labelWrapper = wrapper.childAt(1);
+    const labelWrapper = wrapper.childAt(0).childAt(1);
     assert.strictEqual(
       labelWrapper.hasClass(classes.hiddenLabel),
       true,
@@ -86,7 +88,7 @@ describe('<BottomNavigationButton />', () => {
 
   it('should render a font icon if a icon string is provided', () => {
     const wrapper = shallow(<BottomNavigationButton icon="book" />);
-    const iconWrapper = wrapper.childAt(0);
+    const iconWrapper = wrapper.childAt(0).childAt(0);
     assert.strictEqual(iconWrapper.is(Icon), true, 'should be an Icon');
   });
 

@@ -1,12 +1,11 @@
 // @flow weak
 
-import React, { Children } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiGridList', {
+export const styles = {
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -14,7 +13,7 @@ export const styleSheet = createStyleSheet('MuiGridList', {
     listStyle: 'none',
     padding: 0,
   },
-});
+};
 
 function GridList(props) {
   const {
@@ -35,7 +34,7 @@ function GridList(props) {
       style={{ margin: -spacing / 2, ...style }}
       {...other}
     >
-      {Children.map(children, currentChild => {
+      {React.Children.map(children, currentChild => {
         const childCols = currentChild.props.cols || 1;
         const childRows = currentChild.props.rows || 1;
 
@@ -99,4 +98,4 @@ GridList.defaultProps = {
   component: 'ul',
 };
 
-export default withStyles(styleSheet)(GridList);
+export default withStyles(styles, { name: 'MuiGridList' })(GridList);

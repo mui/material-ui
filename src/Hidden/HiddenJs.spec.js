@@ -5,8 +5,10 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow } from '../test-utils';
 import HiddenJs from './HiddenJs';
-import type { Breakpoint } from '../styles/breakpoints';
+import type { Breakpoint } from '../styles/createBreakpoints';
 import Typography from '../Typography';
+
+const Foo = () => <div>bar</div>;
 
 describe('<HiddenJs />', () => {
   let shallow;
@@ -41,17 +43,23 @@ describe('<HiddenJs />', () => {
       it(descriptions[upDownOnly], () => {
         const props = { width, [prop]: breakpoint };
 
-        // children
-        let wrapper = shallow(
-          <HiddenJs component="div" {...props}>
-            foo
+        // Node
+        let wrapper = shallow(<HiddenJs {...props}>foo</HiddenJs>);
+        assert.isNull(wrapper.type(), 'should render null');
+
+        // Element
+        wrapper = shallow(
+          <HiddenJs {...props}>
+            <Foo />
           </HiddenJs>,
         );
         assert.isNull(wrapper.type(), 'should render null');
 
-        // element
+        // ChildrenArray
         wrapper = shallow(
-          <HiddenJs component={<Typography>foo</Typography>} {...props}>
+          <HiddenJs {...props}>
+            <Foo />
+            <Foo />
             foo
           </HiddenJs>,
         );

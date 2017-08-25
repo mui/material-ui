@@ -1,7 +1,7 @@
 // @flow
 
-import React, { Component } from 'react';
-import type { Element as ReactElement } from 'react'; // DOM type `Element` used below
+import React from 'react';
+import type { Element } from 'react';
 import ReactDOM from 'react-dom';
 import transitionInfo from 'dom-helpers/transition/properties';
 import addEventListener from 'dom-helpers/events/on';
@@ -42,18 +42,11 @@ export type TransitionCallback = (element: HTMLElement) => void;
 
 export type TransitionRequestTimeout = (element: HTMLElement) => number;
 
-type DefaultProps = {
-  in: boolean,
-  unmountOnExit: boolean,
-  transitionAppear: boolean,
-  timeout: number,
-};
-
 export type Props = {
   /**
-   * The content of the component.
+   * A single child content element.
    */
-  children?: ReactElement<*>,
+  children?: Element<*>,
   /**
    * @ignore
    */
@@ -126,7 +119,7 @@ export type Props = {
   unmountOnExit?: boolean,
 };
 
-type AllProps = DefaultProps & Props;
+type AllProps = Props;
 
 /**
  * @ignore - internal component.
@@ -141,17 +134,17 @@ type AllProps = DefaultProps & Props;
  * The extensive set of lifecyle callbacks means you have control over
  * the transitioning now at each step of the way.
  */
-class Transition extends Component<DefaultProps, AllProps, State> {
+class Transition extends React.Component<AllProps, State> {
   props: AllProps;
 
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     in: false,
     unmountOnExit: false,
     transitionAppear: false,
     timeout: 5000,
   };
 
-  state: State = {
+  state = {
     status: UNMOUNTED,
   };
 
@@ -305,7 +298,7 @@ class Transition extends Component<DefaultProps, AllProps, State> {
 
     // FIXME: These next two blocks are a real enigma for flow typing outside of weak mode.
     // FIXME: I suggest we refactor - rosskevin
-    this.nextCallback = (event?: SyntheticUIEvent) => {
+    this.nextCallback = (event?: SyntheticUIEvent<>) => {
       requestAnimationStart(() => {
         if (active) {
           active = false;

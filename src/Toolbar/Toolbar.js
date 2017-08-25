@@ -3,24 +3,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiToolbar', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
-    minHeight: 56,
-    [`${theme.breakpoints.up('xs')} and (orientation: landscape)`]: {
-      minHeight: 48,
-    },
-    [theme.breakpoints.up('sm')]: {
-      minHeight: 64,
-    },
+    ...theme.mixins.toolbar,
   },
   gutters: theme.mixins.gutters({}),
-}));
+});
 
 function Toolbar(props) {
   const { children, classes, className: classNameProp, disableGutters, ...other } = props;
@@ -42,7 +35,7 @@ function Toolbar(props) {
 
 Toolbar.propTypes = {
   /**
-   * Can be a `ToolbarGroup` to render a group of related items.
+   * Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.
    */
   children: PropTypes.node,
   /**
@@ -63,4 +56,4 @@ Toolbar.defaultProps = {
   disableGutters: false,
 };
 
-export default withStyles(styleSheet)(Toolbar);
+export default withStyles(styles, { name: 'MuiToolbar' })(Toolbar);

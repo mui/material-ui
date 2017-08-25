@@ -2,7 +2,7 @@
 
 ## Internal
 
-We take tests seriously, we have written and we maintain **a wide range** of tests so we can
+We take tests seriously. We have written and maintain **a wide range** of tests so we can
 iterate with confidence on the components. For instance, the visual regression tests provided by [Argos-CI](https://www.argos-ci.com/callemall/material-ui) have proven to be really helpful.
 To learn more about our internal tests, you can have a look at the [README](https://github.com/callemall/material-ui/blob/v1-beta/test/README.md).
 
@@ -10,17 +10,17 @@ To learn more about our internal tests, you can have a look at the [README](http
 
 ## Userspace
 
-But what about writing tests in userspace? Material-UI styling infrastructure use some helper function on top of enzyme to make the process easier.
-You can take advantage of those helpers if you want to.
+What about writing tests in userspace? The Material-UI styling infrastructure uses some helper functions on top of enzyme to make the process easier.
+You can take advantage of those helpers if you so choose.
 
 ### Shallow rendering
 
-Shallow rendering is useful to constrain yourself to testing a component as a unit, and to ensure that your tests aren't indirectly asserting on behavior of child components.
-We expose a `createShallow()` function for this situation. However, you will most likely not need it most of the time as shallow rendering was created to test components in isolation, without leaking children implementation details, like the context.
+Shallow rendering is useful to constrain yourself to testing a component as a unit. This also ensures that your tests aren't indirectly asserting behavior of child components.
+We expose a `createShallow()` function for this situation. However, you will most likely not need it most of the time. Shallow rendering was created to test components in isolation. This means without leaking children implementation details such as the context.
 
 ### Full DOM rendering
 
-Full DOM rendering is ideal for use cases where you have components that may interact with DOM APIs, or may require the full lifecycle in order to fully test the component (i.e., `componentDidMount` etc.).
+Full DOM rendering is ideal for use cases where you have components that may interact with DOM APIs or may require the full lifecycle in order to fully test the component (i.e., `componentDidMount` etc.).
 We expose a `createMount()` function for this situation.
 
 ### Render to string

@@ -1,14 +1,14 @@
 // @flow
+// @inheritedComponent CardContent
 
 import React from 'react';
-import type { Element } from 'react';
+import type { Node } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 import CardContent from './CardContent';
 
-export const styleSheet = createStyleSheet('MuiCardHeader', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     display: 'flex',
     alignItems: 'center',
@@ -22,7 +22,7 @@ export const styleSheet = createStyleSheet('MuiCardHeader', theme => ({
   },
   title: {},
   subheader: {},
-}));
+});
 
 type DefaultProps = {
   classes: Object,
@@ -30,9 +30,9 @@ type DefaultProps = {
 
 export type Props = {
   /**
-   * The Avatar  for the Card Header.
+   * The Avatar for the Card Header.
    */
-  avatar?: Element<*>,
+  avatar?: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -44,11 +44,11 @@ export type Props = {
   /**
    * The content of the component.
    */
-  subheader?: Element<*>,
+  subheader?: Node,
   /**
    * The content of the Card Title.
    */
-  title?: Element<*>,
+  title?: Node,
 };
 
 type AllProps = DefaultProps & Props;
@@ -64,10 +64,7 @@ function CardHeader(props: AllProps) {
 
   return (
     <CardContent className={className} {...other}>
-      {avatar &&
-        <div className={classes.avatar}>
-          {avatar}
-        </div>}
+      {avatar && <div className={classes.avatar}>{avatar}</div>}
       <div className={classes.content}>
         <Typography type={titleType} component="span" className={classes.title}>
           {title}
@@ -85,4 +82,4 @@ function CardHeader(props: AllProps) {
   );
 }
 
-export default withStyles(styleSheet)(CardHeader);
+export default withStyles(styles, { name: 'MuiCardHeader' })(CardHeader);

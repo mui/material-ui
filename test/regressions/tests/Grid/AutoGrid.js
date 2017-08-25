@@ -3,10 +3,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Paper from 'material-ui/Paper';
-import { createStyleSheet, withStyles } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 
-const styleSheet = createStyleSheet(() => ({
+const styles = {
   root: {
     width: 400,
   },
@@ -14,7 +14,7 @@ const styleSheet = createStyleSheet(() => ({
     padding: 16,
     textAlign: 'center',
   },
-}));
+};
 
 function AutoGrid(props) {
   const { classes } = props;
@@ -51,4 +51,4 @@ AutoGrid.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(AutoGrid);
+export default withStyles(styles)(AutoGrid);

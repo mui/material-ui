@@ -3,10 +3,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { createStyleSheet, withStyles } from 'material-ui/styles';
-import Input from 'material-ui/Input/Input';
+import { withStyles } from 'material-ui/styles';
+import Input from 'material-ui/Input';
 
-const styleSheet = createStyleSheet(() => ({
+const styles = {
   container: {
     display: 'flex',
     flexDirection: 'column',
@@ -18,9 +18,9 @@ const styleSheet = createStyleSheet(() => ({
   large: {
     width: 300,
   },
-}));
+};
 
-class Inputs extends Component {
+class Inputs extends Component<$FlowFixMeProps> {
   componentDidMount() {
     this.focusInput.focus();
   }
@@ -55,4 +55,4 @@ Inputs.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(Inputs);
+export default withStyles(styles)(Inputs);

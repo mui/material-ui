@@ -1,12 +1,12 @@
 // @flow
 
 import React from 'react';
+import type { ElementType } from 'react';
 import classNames from 'classnames';
 import warning from 'warning';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiPaper', theme => {
+export const styles = (theme: Object) => {
   const shadows = {};
 
   theme.shadows.forEach((shadow, index) => {
@@ -24,7 +24,7 @@ export const styleSheet = createStyleSheet('MuiPaper', theme => {
     },
     ...shadows,
   };
-});
+};
 
 type DefaultProps = {
   classes: Object,
@@ -46,7 +46,7 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: string | Function,
+  component?: ElementType,
   /**
    * Shadow depth, corresponds to `dp` in the spec.
    * It's accepting values between 0 and 24 inclusive.
@@ -93,4 +93,4 @@ Paper.defaultProps = {
   square: false,
 };
 
-export default withStyles(styleSheet)(Paper);
+export default withStyles(styles, { name: 'MuiPaper' })(Paper);

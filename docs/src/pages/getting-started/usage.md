@@ -23,4 +23,4 @@ function App() {
 render(<App />, document.querySelector('#app'));
 ```
 
-Please refer to each component's [demo page](/component-demos) to see how they should be imported.
+Please refer to each component's [demo page](/demos/app-bar/) to see how they should be imported.

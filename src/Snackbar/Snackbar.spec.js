@@ -4,7 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createShallow, createMount, getClasses } from '../test-utils';
-import Snackbar, { styleSheet } from './Snackbar';
+import Snackbar from './Snackbar';
 import Slide from '../transitions/Slide';
 
 describe('<Snackbar />', () => {
@@ -14,7 +14,7 @@ describe('<Snackbar />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Snackbar open />);
     mount = createMount();
   });
 
@@ -26,7 +26,10 @@ describe('<Snackbar />', () => {
     const wrapper = shallow(<Snackbar open message="message" />);
     assert.strictEqual(wrapper.name(), 'EventListener');
     assert.strictEqual(
-      wrapper.childAt(0).childAt(0).hasClass(classes.root),
+      wrapper
+        .childAt(0)
+        .childAt(0)
+        .hasClass(classes.root),
       true,
       'should have the root class',
     );
@@ -170,6 +173,65 @@ describe('<Snackbar />', () => {
     });
   });
 
+  describe('prop: resumeHideDuration', () => {
+    let clock;
+
+    before(() => {
+      clock = useFakeTimers();
+    });
+
+    after(() => {
+      clock.restore();
+    });
+
+    it('should not call onRequestClose with not timeout after user interaction', () => {
+      const handleRequestClose = spy();
+      const autoHideDuration = 2e3;
+      const resumeHideDuration = 3e3;
+      const wrapper = mount(
+        <Snackbar
+          open
+          onRequestClose={handleRequestClose}
+          message="message"
+          autoHideDuration={autoHideDuration}
+          resumeHideDuration={resumeHideDuration}
+        />,
+      );
+      assert.strictEqual(handleRequestClose.callCount, 0);
+      clock.tick(autoHideDuration / 2);
+      wrapper.simulate('mouseEnter');
+      clock.tick(autoHideDuration / 2);
+      wrapper.simulate('mouseLeave');
+      assert.strictEqual(handleRequestClose.callCount, 0);
+      clock.tick(2e3);
+      assert.strictEqual(handleRequestClose.callCount, 0);
+    });
+
+    it('should call onRequestClose when timer done after user interaction', () => {
+      const handleRequestClose = spy();
+      const autoHideDuration = 2e3;
+      const resumeHideDuration = 3e3;
+      const wrapper = mount(
+        <Snackbar
+          open
+          onRequestClose={handleRequestClose}
+          message="message"
+          autoHideDuration={autoHideDuration}
+          resumeHideDuration={resumeHideDuration}
+        />,
+      );
+      assert.strictEqual(handleRequestClose.callCount, 0);
+      clock.tick(autoHideDuration / 2);
+      wrapper.simulate('mouseEnter');
+      clock.tick(autoHideDuration / 2);
+      wrapper.simulate('mouseLeave');
+      assert.strictEqual(handleRequestClose.callCount, 0);
+      clock.tick(resumeHideDuration);
+      assert.strictEqual(handleRequestClose.callCount, 1);
+      assert.deepEqual(handleRequestClose.args[0], [null, 'timeout']);
+    });
+  });
+
   describe('prop: open', () => {
     it('should not render anything when closed', () => {
       const wrapper = shallow(<Snackbar open={false} message="" />);
@@ -189,11 +251,7 @@ describe('<Snackbar />', () => {
   describe('prop: children', () => {
     it('should render the children', () => {
       const children = <div />;
-      const wrapper = shallow(
-        <Snackbar open>
-          {children}
-        </Snackbar>,
-      );
+      const wrapper = shallow(<Snackbar open>{children}</Snackbar>);
       assert.strictEqual(wrapper.contains(children), true);
     });
   });

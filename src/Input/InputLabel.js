@@ -1,14 +1,13 @@
 // @flow
 
 import React from 'react';
-import type { Element } from 'react';
+import type { Node } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { FormLabel } from '../Form';
 
-export const styleSheet = createStyleSheet('MuiInputLabel', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     transformOrigin: 'top left',
   },
@@ -18,6 +17,10 @@ export const styleSheet = createStyleSheet('MuiInputLabel', theme => ({
     top: 0,
     // slight alteration to spec spacing to match visual spec result
     transform: `translate(0, ${theme.spacing.unit * 3 - 1}px) scale(1)`,
+  },
+  labelDense: {
+    // Compensation for the `Input.inputDense` style.
+    transform: `translate(0, ${theme.spacing.unit * 2.5 + 1}px) scale(1)`,
   },
   shrink: {
     transform: 'translate(0, 1.5px) scale(0.75)',
@@ -32,7 +35,7 @@ export const styleSheet = createStyleSheet('MuiInputLabel', theme => ({
   disabled: {
     color: theme.palette.input.disabled,
   },
-}));
+});
 
 type DefaultProps = {
   classes: Object,
@@ -44,7 +47,7 @@ export type Props = {
   /**
    * The contents of the `InputLabel`.
    */
-  children?: Element<*>,
+  children?: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -66,9 +69,18 @@ export type Props = {
    */
   error?: boolean,
   /**
+   * `classes` property applied to the `FormControl` element.
+   */
+  FormControlClasses?: Object,
+  /**
    * If `true`, the input of this label is focused.
    */
   focused?: boolean,
+  /**
+   * If `dense`, will adjust vertical spacing. This is normally obtained via context from
+   * FormControl.
+   */
+  margin?: 'dense',
   /**
    * if `true`, the label will indicate that the input is required.
    */
@@ -88,7 +100,9 @@ function InputLabel(props: AllProps, context: { muiFormControl: Object }) {
     children,
     classes,
     className: classNameProp,
+    FormControlClasses,
     shrink: shrinkProp,
+    margin: marginProp,
     ...other
   } = props;
 
@@ -99,6 +113,11 @@ function InputLabel(props: AllProps, context: { muiFormControl: Object }) {
     shrink = muiFormControl.dirty || muiFormControl.focused;
   }
 
+  let margin = marginProp;
+  if (typeof margin === 'undefined' && muiFormControl) {
+    margin = muiFormControl.margin;
+  }
+
   const className = classNames(
     classes.root,
     {
@@ -106,12 +125,13 @@ function InputLabel(props: AllProps, context: { muiFormControl: Object }) {
       [classes.animated]: !disableAnimation,
       [classes.shrink]: shrink,
       [classes.disabled]: disabled,
+      [classes.labelDense]: margin === 'dense',
     },
     classNameProp,
   );
 
   return (
-    <FormLabel className={className} {...other}>
+    <FormLabel className={className} classes={FormControlClasses} {...other}>
       {children}
     </FormLabel>
   );
@@ -126,4 +146,4 @@ InputLabel.contextTypes = {
   muiFormControl: PropTypes.object,
 };
 
-export default withStyles(styleSheet)(InputLabel);
+export default withStyles(styles, { name: 'MuiInputLabel' })(InputLabel);

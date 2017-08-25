@@ -3,13 +3,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
 
 const RADIUS = 12;
 
-export const styleSheet = createStyleSheet('MuiBadge', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     position: 'relative',
     display: 'inline-block',
@@ -38,10 +37,10 @@ export const styleSheet = createStyleSheet('MuiBadge', theme => ({
     color: theme.palette.getContrastText(theme.palette.primary[500]),
   },
   colorAccent: {
-    backgroundColor: theme.palette.accent.A200,
-    color: theme.palette.getContrastText(theme.palette.accent.A200),
+    backgroundColor: theme.palette.secondary.A200,
+    color: theme.palette.getContrastText(theme.palette.secondary.A200),
   },
-}));
+});
 
 function Badge(props) {
   const { badgeContent, classes, className: classNameProp, color, children, ...other } = props;
@@ -53,9 +52,7 @@ function Badge(props) {
   return (
     <div className={className} {...other}>
       {children}
-      <span className={badgeClassName}>
-        {badgeContent}
-      </span>
+      <span className={badgeClassName}>{badgeContent}</span>
     </div>
   );
 }
@@ -87,4 +84,4 @@ Badge.defaultProps = {
   color: 'default',
 };
 
-export default withStyles(styleSheet)(Badge);
+export default withStyles(styles, { name: 'MuiBadge' })(Badge);

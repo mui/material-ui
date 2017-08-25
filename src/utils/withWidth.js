@@ -1,13 +1,14 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import React from 'react';
+import type { ComponentType } from 'react';
 import EventListener from 'react-event-listener';
-import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
 import createEagerFactory from 'recompose/createEagerFactory';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import withTheme from '../styles/withTheme';
-import { keys } from '../styles/breakpoints';
+import { keys as breakpointKeys } from '../styles/createBreakpoints';
+import type { Breakpoint } from '../styles/createBreakpoints';
 
 /**
  * By default, returns true if screen width is the same or greater than the given breakpoint.
@@ -18,9 +19,9 @@ import { keys } from '../styles/breakpoints';
  */
 export const isWidthUp = (breakpoint, screenWidth, inclusive = true) => {
   if (inclusive) {
-    return keys.indexOf(breakpoint) <= keys.indexOf(screenWidth);
+    return breakpointKeys.indexOf(breakpoint) <= breakpointKeys.indexOf(screenWidth);
   }
-  return keys.indexOf(breakpoint) < keys.indexOf(screenWidth);
+  return breakpointKeys.indexOf(breakpoint) < breakpointKeys.indexOf(screenWidth);
 };
 
 /**
@@ -32,9 +33,9 @@ export const isWidthUp = (breakpoint, screenWidth, inclusive = true) => {
  */
 export const isWidthDown = (breakpoint, screenWidth, inclusive = true) => {
   if (inclusive) {
-    return keys.indexOf(screenWidth) <= keys.indexOf(breakpoint);
+    return breakpointKeys.indexOf(screenWidth) <= breakpointKeys.indexOf(breakpoint);
   }
-  return keys.indexOf(screenWidth) < keys.indexOf(breakpoint);
+  return breakpointKeys.indexOf(screenWidth) < breakpointKeys.indexOf(breakpoint);
 };
 
 function withWidth(options = {}) {
@@ -42,10 +43,37 @@ function withWidth(options = {}) {
     resizeInterval = 166, // Corresponds to 10 frames at 60 Hz.
   } = options;
 
-  return BaseComponent => {
+  function enhance<BaseProps: {}>(BaseComponent: ComponentType<BaseProps>) {
     const factory = createEagerFactory(BaseComponent);
 
-    class Width extends Component {
+    type DefaultProps = {
+      theme: Object,
+    };
+
+    type WidthProps = {
+      /**
+       * As `window.innerWidth` is unavailable on the server,
+       * we default to rendering an empty componenent during the first mount.
+       * In some situation you might want to use an heristic to approximate
+       * the screen width of the client browser screen width.
+       *
+       * For instance, you could be using the user-agent or the client-hints.
+       * http://caniuse.com/#search=client%20hint
+       */
+      initialWidth?: Breakpoint,
+      /**
+       * @ignore
+       */
+      theme?: Object,
+      /**
+       * Bypass the width calculation logic.
+       */
+      width?: Breakpoint,
+    };
+
+    type AllProps = DefaultProps & WidthProps & BaseProps;
+    class Width extends React.Component<AllProps, { width: ?Breakpoint }> {
+      props: AllProps;
       state = {
         width: undefined,
       };
@@ -74,12 +102,12 @@ function withWidth(options = {}) {
          * width      |  xs   |  xs   |  sm   |  md   |  lg   |  xl
          */
         let index = 1;
-        while (width === null && index < breakpoints.keys.length) {
-          const currentWidth = breakpoints.keys[index];
+        while (width === null && index < breakpointKeys.length) {
+          const currentWidth = breakpointKeys[index];
 
           // @media are inclusive, so reproduce the behavior here.
-          if (innerWidth < breakpoints.getWidth(currentWidth)) {
-            width = breakpoints.keys[index - 1];
+          if (innerWidth < breakpoints.values[currentWidth]) {
+            width = breakpointKeys[index - 1];
             break;
           }
 
@@ -122,33 +150,14 @@ function withWidth(options = {}) {
       }
     }
 
-    Width.propTypes = {
-      /**
-       * As `window.innerWidth` is unavailable on the server,
-       * we default to rendering an empty componenent during the first mount.
-       * In some situation you might want to use an heristic to approximate
-       * the screen width of the client browser screen width.
-       *
-       * For instance, you could be using the user-agent or the client-hints.
-       * http://caniuse.com/#search=client%20hint
-       */
-      initialWidth: PropTypes.oneOf(keys),
-      /**
-       * @ignore
-       */
-      theme: PropTypes.object.isRequired,
-      /**
-       * Bypass the width calculation logic.
-       */
-      width: PropTypes.oneOf(keys),
-    };
-
     if (process.env.NODE_ENV !== 'production') {
       Width.displayName = wrapDisplayName(BaseComponent, 'withWidth');
     }
 
     return withTheme(Width);
-  };
+  }
+
+  return enhance;
 }
 
 export default withWidth;

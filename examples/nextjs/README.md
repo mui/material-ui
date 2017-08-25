@@ -6,7 +6,7 @@
 Download the example [or clone the repo](https://github.com/callemall/material-ui):
 
 ```bash
-curl https://codeload.github.com/callemall/material-ui/tar.gz/v1-beta | tar -xz --strip=2 next.js-master/examples/nextjs
+curl https://codeload.github.com/callemall/material-ui/tar.gz/v1-beta | tar -xz --strip=2  material-ui-1-beta/examples/nextjs
 cd nextjs
 ```
 

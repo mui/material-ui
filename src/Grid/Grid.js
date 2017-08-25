@@ -1,22 +1,20 @@
 // @flow
-/**
- * A grid component using the following libs as inspiration.
- *
- * For the implementation:
- * - http://v4-alpha.getbootstrap.com/layout/flexbox-grid/
- * - https://github.com/kristoferjoseph/flexboxgrid/blob/master/src/css/flexboxgrid.css
- * - https://github.com/roylee0704/react-flexbox-grid
- * - https://material.angularjs.org/latest/layout/introduction
- *
- * Follow this flexbox Guide to better understand the underlying model:
- * - https://css-tricks.com/snippets/css/a-guide-to-flexbox/
- */
+// A grid component using the following libs as inspiration.
+//
+// For the implementation:
+// - http://v4-alpha.getbootstrap.com/layout/flexbox-grid/
+// - https://github.com/kristoferjoseph/flexboxgrid/blob/master/src/css/flexboxgrid.css
+// - https://github.com/roylee0704/react-flexbox-grid
+// - https://material.angularjs.org/latest/layout/introduction
+//
+// Follow this flexbox Guide to better understand the underlying model:
+// - https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
 import React from 'react';
-import type { Element } from 'react';
+import type { ElementType, Node } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
+import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import requirePropFactory from '../utils/requirePropFactory';
 import Hidden from '../Hidden';
 import type { HiddenProps } from '../Hidden/types';
@@ -82,83 +80,80 @@ function generateGutter(theme, breakpoint) {
   return styles;
 }
 
-export const styleSheet = createStyleSheet('MuiGrid', theme => {
-  // Default CSS values
-  // flex: '0 1 auto',
-  // flexDirection: 'row',
-  // alignItems: 'flex-start',
-  // flexWrap: 'nowrap',
-  // justifyContent: 'flex-start',
-
-  return {
-    typeContainer: {
-      boxSizing: 'border-box',
-      display: 'flex',
-      flexWrap: 'wrap',
-      width: '100%',
-    },
-    typeItem: {
-      boxSizing: 'border-box',
-      flex: '0 0 auto',
-      margin: '0', // For instance, it's useful when used with a `figure` element.
-    },
-    'direction-xs-column': {
-      flexDirection: 'column',
-    },
-    'direction-xs-column-reverse': {
-      flexDirection: 'column-reverse',
-    },
-    'direction-xs-row-reverse': {
-      flexDirection: 'row-reverse',
-    },
-    'wrap-xs-nowrap': {
-      flexWrap: 'nowrap',
-    },
-    'align-xs-center': {
-      alignItems: 'center',
-    },
-    'align-xs-flex-start': {
-      alignItems: 'flex-start',
-    },
-    'align-xs-flex-end': {
-      alignItems: 'flex-end',
-    },
-    'align-xs-baseline': {
-      alignItems: 'baseline',
-    },
-    'justify-xs-center': {
-      justifyContent: 'center',
-    },
-    'justify-xs-flex-end': {
-      justifyContent: 'flex-end',
-    },
-    'justify-xs-space-between': {
-      justifyContent: 'space-between',
-    },
-    'justify-xs-space-around': {
-      justifyContent: 'space-around',
-    },
-    ...generateGutter(theme, 'xs'),
-    ...theme.breakpoints.keys.reduce((styles, key) => {
-      // Use side effect for performance.
-      generateGrid(styles, theme, key);
-
-      return styles;
-    }, {}),
-  };
+// Default CSS values
+// flex: '0 1 auto',
+// flexDirection: 'row',
+// alignItems: 'flex-start',
+// flexWrap: 'nowrap',
+// justifyContent: 'flex-start',
+export const styles = (theme: Object) => ({
+  typeContainer: {
+    boxSizing: 'border-box',
+    display: 'flex',
+    flexWrap: 'wrap',
+    width: '100%',
+  },
+  typeItem: {
+    boxSizing: 'border-box',
+    flex: '0 0 auto',
+    margin: '0', // For instance, it's useful when used with a `figure` element.
+  },
+  'direction-xs-column': {
+    flexDirection: 'column',
+  },
+  'direction-xs-column-reverse': {
+    flexDirection: 'column-reverse',
+  },
+  'direction-xs-row-reverse': {
+    flexDirection: 'row-reverse',
+  },
+  'wrap-xs-nowrap': {
+    flexWrap: 'nowrap',
+  },
+  'align-xs-center': {
+    alignItems: 'center',
+  },
+  'align-xs-flex-start': {
+    alignItems: 'flex-start',
+  },
+  'align-xs-flex-end': {
+    alignItems: 'flex-end',
+  },
+  'align-xs-baseline': {
+    alignItems: 'baseline',
+  },
+  'justify-xs-center': {
+    justifyContent: 'center',
+  },
+  'justify-xs-flex-end': {
+    justifyContent: 'flex-end',
+  },
+  'justify-xs-space-between': {
+    justifyContent: 'space-between',
+  },
+  'justify-xs-space-around': {
+    justifyContent: 'space-around',
+  },
+  ...generateGutter(theme, 'xs'),
+  ...breakpointKeys.reduce((accumulator, key) => {
+    // Use side effect over immutability for better performance.
+    generateGrid(accumulator, theme, key);
+    return accumulator;
+  }, {}),
 });
 
 type GridSizes = boolean | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 type DefaultProps = {
   classes: Object,
+  component: ElementType,
 };
 
 export type Props = {
   /**
    * The content of the component.
    */
-  children?: Element<*>,
+  children?: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -171,7 +166,7 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: string | Function,
+  component?: ElementType,
   /**
    * If `true`, the component will have the flex *container* behavior.
    * You should be wrapping *items* with a *container*.
@@ -198,7 +193,7 @@ export type Props = {
    */
   spacing?: 0 | 8 | 16 | 24 | 40,
   /**
-   * If provided, will wrap with [Hidden](/component-api/Hidden) component and given properties.
+   * If provided, will wrap with [Hidden](/api/hidden) component and given properties.
    */
   hidden?: HiddenProps,
   /**
@@ -238,13 +233,11 @@ export type Props = {
   xl?: GridSizes,
 };
 
-type AllProps = DefaultProps & Props;
-
-function Grid(props: AllProps) {
+function Grid(props: DefaultProps & Props) {
   const {
     classes,
     className: classNameProp,
-    component,
+    component: ComponentProp,
     container,
     item,
     align,
@@ -285,9 +278,6 @@ function Grid(props: AllProps) {
   );
   const gridProps = { className, ...other };
 
-  // workaround: see https://github.com/facebook/flow/issues/1660#issuecomment-297775427
-  const ComponentProp = component || Grid.defaultProps.component;
-
   if (hidden) {
     return (
       <Hidden {...hidden}>
@@ -311,10 +301,8 @@ Grid.defaultProps = {
   wrap: 'wrap',
 };
 
-/**
- * Add a wrapper component to generate some helper messages in the development
- * environment.
- */
+// Add a wrapper component to generate some helper messages in the development
+// environment.
 let GridWrapper = Grid; // eslint-disable-line import/no-mutable-exports
 
 if (process.env.NODE_ENV !== 'production') {
@@ -335,4 +323,4 @@ if (process.env.NODE_ENV !== 'production') {
   };
 }
 
-export default withStyles(styleSheet)(GridWrapper);
+export default withStyles(styles, { name: 'MuiGrid' })(GridWrapper);

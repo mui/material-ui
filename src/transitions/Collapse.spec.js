@@ -4,7 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';
 import { createShallow, createMount, getClasses } from '../test-utils';
-import Collapse, { styleSheet } from './Collapse';
+import Collapse from './Collapse';
 
 describe('<Collapse />', () => {
   let shallow;
@@ -12,7 +12,7 @@ describe('<Collapse />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Collapse />);
   });
 
   it('should render a Transition', () => {
@@ -21,22 +21,29 @@ describe('<Collapse />', () => {
   });
 
   it('should render a container around the wrapper', () => {
-    const wrapper = shallow(<Collapse classes={{ container: 'woof' }} />);
+    const wrapper = shallow(<Collapse classes={{ container: 'woofCollapse1' }} />);
     assert.strictEqual(wrapper.childAt(0).is('div'), true, 'should be a div');
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.container), true);
-    assert.strictEqual(wrapper.childAt(0).hasClass('woof'), true);
+    assert.strictEqual(wrapper.childAt(0).hasClass('woofCollapse1'), true);
   });
 
   it('should render a wrapper around the children', () => {
     const children = <h1>Hello</h1>;
-    const wrapper = shallow(
-      <Collapse>
-        {children}
-      </Collapse>,
-    );
-    assert.strictEqual(wrapper.childAt(0).childAt(0).is('div'), true, 'should be a div');
+    const wrapper = shallow(<Collapse>{children}</Collapse>);
     assert.strictEqual(
-      wrapper.childAt(0).childAt(0).children().equals(children),
+      wrapper
+        .childAt(0)
+        .childAt(0)
+        .is('div'),
+      true,
+      'should be a div',
+    );
+    assert.strictEqual(
+      wrapper
+        .childAt(0)
+        .childAt(0)
+        .children()
+        .equals(children),
       true,
       'should wrap the children',
     );
@@ -110,12 +117,18 @@ describe('<Collapse />', () => {
       describe('transitionDuration', () => {
         let theme;
         let transitionDurationMock;
+        let restore;
 
         before(() => {
           theme = instance.props.theme;
-          theme.transitions.getAutoHeightDuration = stub().returns('woof');
+          restore = theme.transitions.getAutoHeightDuration;
+          theme.transitions.getAutoHeightDuration = stub().returns('woofCollapseStub');
           wrapper.setProps({ transitionDuration: 'auto' });
           instance = wrapper.instance();
+        });
+
+        after(() => {
+          theme.transitions.getAutoHeightDuration = restore;
         });
 
         it('no wrapper', () => {
@@ -147,7 +160,7 @@ describe('<Collapse />', () => {
         });
 
         it('string should set transitionDuration to string', () => {
-          transitionDurationMock = 'woof';
+          transitionDurationMock = 'woofCollapseStub';
           wrapper.setProps({ transitionDuration: transitionDurationMock });
           instance = wrapper.instance();
           instance.handleEntering(element);
@@ -236,12 +249,18 @@ describe('<Collapse />', () => {
       describe('transitionDuration', () => {
         let theme;
         let transitionDurationMock;
+        let restore;
 
         before(() => {
           theme = instance.props.theme;
-          theme.transitions.getAutoHeightDuration = stub().returns('woof');
+          restore = theme.transitions.getAutoHeightDuration;
+          theme.transitions.getAutoHeightDuration = stub().returns('woofCollapseStub2');
           wrapper.setProps({ transitionDuration: 'auto' });
           instance = wrapper.instance();
+        });
+
+        after(() => {
+          theme.transitions.getAutoHeightDuration = restore;
         });
 
         it('no wrapper', () => {
@@ -273,7 +292,7 @@ describe('<Collapse />', () => {
         });
 
         it('string should set transitionDuration to string', () => {
-          transitionDurationMock = 'woof';
+          transitionDurationMock = 'woofCollapseStub2';
           wrapper.setProps({ transitionDuration: transitionDurationMock });
           instance = wrapper.instance();
           instance.handleExiting(element);

@@ -1,17 +1,17 @@
 // @flow
 
-import React, { Component } from 'react';
-import type { Element } from 'react';
+import React from 'react';
+import type { ElementType, Node } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
-import ButtonBase from '../internal/ButtonBase';
-import { isMuiComponent } from '../utils/reactHelpers';
+import ButtonBase from '../ButtonBase';
+import { isMuiElement } from '../utils/reactHelpers';
 
-export const styleSheet = createStyleSheet('MuiListItem', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     display: 'flex',
+    justifyContent: 'initial',
     alignItems: 'center',
     position: 'relative',
     textDecoration: 'none',
@@ -52,16 +52,16 @@ export const styleSheet = createStyleSheet('MuiListItem', theme => ({
       },
     },
   },
-}));
+  secondaryAction: {
+    // Add some space to avoid collision as `ListItemSecondaryAction`
+    // is absolutely positionned.
+    paddingRight: theme.spacing.unit * 4,
+  },
+});
 
 type DefaultProps = {
-  button: boolean,
   classes: Object,
   component: string,
-  dense: boolean,
-  disabled: false,
-  disableGutters: false,
-  divider: false,
 };
 
 export type Props = {
@@ -72,7 +72,7 @@ export type Props = {
   /**
    * The content of the component.
    */
-  children?: Element<*>,
+  children?: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -85,7 +85,7 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: string | Function,
+  component?: ElementType,
   /**
    * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
    */
@@ -106,11 +106,11 @@ export type Props = {
 
 type AllProps = DefaultProps & Props;
 
-class ListItem extends Component<DefaultProps, AllProps, void> {
+class ListItem extends React.Component<AllProps, void> {
   props: AllProps;
-  static defaultProps: DefaultProps = {
+
+  static defaultProps = {
     button: false,
-    classes: {},
     component: 'li',
     dense: false,
     disabled: false,
@@ -140,7 +140,9 @@ class ListItem extends Component<DefaultProps, AllProps, void> {
     const isDense = dense || this.context.dense || false;
     const children = React.Children.toArray(childrenProp);
 
-    const hasAvatar = children.some(value => isMuiComponent(value, 'ListItemAvatar'));
+    const hasAvatar = children.some(value => isMuiElement(value, ['ListItemAvatar']));
+    const hasSecondaryAction =
+      children.length && isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
 
     const className = classNames(
       classes.root,
@@ -149,6 +151,7 @@ class ListItem extends Component<DefaultProps, AllProps, void> {
         [classes.divider]: divider,
         [classes.disabled]: disabled,
         [classes.button]: button,
+        [classes.secondaryAction]: hasSecondaryAction,
         [isDense || hasAvatar ? classes.dense : classes.default]: true,
       },
       classNameProp,
@@ -163,26 +166,16 @@ class ListItem extends Component<DefaultProps, AllProps, void> {
       listItemProps.keyboardFocusedClassName = classes.keyboardFocused;
     }
 
-    if (
-      children.length &&
-      isMuiComponent(children[children.length - 1], 'ListItemSecondaryAction')
-    ) {
-      const secondaryAction = children.pop();
+    if (hasSecondaryAction) {
       return (
         <div className={classes.container}>
-          <ComponentMain {...listItemProps}>
-            {children}
-          </ComponentMain>
-          {secondaryAction}
+          <ComponentMain {...listItemProps}>{children}</ComponentMain>
+          {children.pop()}
         </div>
       );
     }
 
-    return (
-      <ComponentMain {...listItemProps}>
-        {children}
-      </ComponentMain>
-    );
+    return <ComponentMain {...listItemProps}>{children}</ComponentMain>;
   }
 }
 
@@ -194,4 +187,4 @@ ListItem.childContextTypes = {
   dense: PropTypes.bool,
 };
 
-export default withStyles(styleSheet)(ListItem);
+export default withStyles(styles, { name: 'MuiListItem' })(ListItem);

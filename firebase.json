@@ -1,17 +1,5 @@
 {
-  "database": {
-    "rules": "database.rules.json"
-  },
   "hosting": {
-    "public": "docs",
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ],
-    "ignore": [
-      "**/node_modules/**"
-    ]
+    "public": "docs/export"
   }
 }

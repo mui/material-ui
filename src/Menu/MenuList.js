@@ -1,7 +1,7 @@
 // @flow
 
-import React, { Component } from 'react';
-import type { Element } from 'react';
+import React from 'react';
+import type { ChildrenArray, Node } from 'react';
 import { findDOMNode } from 'react-dom';
 import keycode from 'keycode';
 import contains from 'dom-helpers/query/contains';
@@ -13,7 +13,7 @@ export type Props = {
   /**
    * MenuList contents, normally `MenuItem`s.
    */
-  children?: Element<*>,
+  children?: $ReadOnlyArray<ChildrenArray<Node>>,
   /**
    * @ignore
    */
@@ -25,16 +25,16 @@ export type Props = {
   /**
    * @ignore
    */
-  onKeyDown?: (event: SyntheticUIEvent, key: string) => void,
+  onKeyDown?: (event: SyntheticUIEvent<>, key: string) => void,
 };
 
 type State = {
   currentTabIndex: ?number,
 };
 
-class MenuList extends Component<void, Props, State> {
+class MenuList extends React.Component<Props, State> {
   props: Props;
-  state: State = {
+  state = {
     currentTabIndex: undefined,
   };
 
@@ -50,7 +50,7 @@ class MenuList extends Component<void, Props, State> {
   selectedItem = undefined;
   blurTimer = undefined;
 
-  handleBlur = (event: SyntheticUIEvent) => {
+  handleBlur = (event: SyntheticUIEvent<>) => {
     this.blurTimer = setTimeout(() => {
       if (this.list) {
         const list = findDOMNode(this.list);
@@ -66,7 +66,7 @@ class MenuList extends Component<void, Props, State> {
     }
   };
 
-  handleKeyDown = (event: SyntheticUIEvent) => {
+  handleKeyDown = (event: SyntheticUIEvent<>) => {
     const list = findDOMNode(this.list);
     const key = keycode(event);
     const currentFocus = activeElement(ownerDocument(list));
@@ -99,7 +99,7 @@ class MenuList extends Component<void, Props, State> {
     }
   };
 
-  handleItemFocus = (event: SyntheticUIEvent) => {
+  handleItemFocus = (event: SyntheticUIEvent<>) => {
     const list = findDOMNode(this.list);
     if (list) {
       // $FlowFixMe
@@ -166,17 +166,21 @@ class MenuList extends Component<void, Props, State> {
         onBlur={this.handleBlur}
         {...other}
       >
-        {React.Children.map(children, (child, index) =>
-          React.cloneElement(child, {
-            tabIndex: index === this.state.currentTabIndex ? '0' : '-1',
+        {React.Children.map(children, (child, index) => {
+          if (!React.isValidElement(child)) {
+            return null;
+          }
+
+          return React.cloneElement(child, {
+            tabIndex: index === this.state.currentTabIndex ? 0 : -1,
             ref: child.props.selected
               ? node => {
                   this.selectedItem = node;
                 }
               : undefined,
             onFocus: this.handleItemFocus,
-          }),
-        )}
+          });
+        })}
       </List>
     );
   }

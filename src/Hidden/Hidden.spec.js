@@ -5,6 +5,7 @@ import { assert } from 'chai';
 import { createShallow } from '../test-utils';
 import Hidden from './Hidden';
 import HiddenJs from './HiddenJs';
+import HiddenCss from './HiddenCss';
 
 describe('<Hidden />', () => {
   let shallow;
@@ -15,22 +16,13 @@ describe('<Hidden />', () => {
 
   describe('prop: implementation', () => {
     it('should use HiddenJs by default', () => {
-      const wrapper = shallow(
-        <Hidden>
-          {'Hello'}
-        </Hidden>,
-      );
+      const wrapper = shallow(<Hidden>{'Hello'}</Hidden>);
       assert.strictEqual(wrapper.find(HiddenJs).length, 1);
     });
 
-    it('should use change the implementation', () => {
-      assert.throws(() => {
-        shallow(
-          <Hidden implementation="css">
-            {'Hello'}
-          </Hidden>,
-        );
-      }, 'is not yet implemented');
+    it('should change the implementation', () => {
+      const wrapper = shallow(<Hidden implementation="css">{'Hello'}</Hidden>);
+      assert.strictEqual(wrapper.find(HiddenCss).length, 1);
     });
   });
 });

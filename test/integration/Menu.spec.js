@@ -5,7 +5,7 @@ import keycode from 'keycode';
 import { assert } from 'chai';
 import { ReactWrapper } from 'enzyme';
 import { createMount } from 'src/test-utils';
-import Popover from 'src/internal/Popover';
+import Popover from 'src/Popover';
 import SimpleMenu from './fixtures/menus/SimpleMenu';
 
 describe('<Menu> integration', () => {
@@ -29,7 +29,7 @@ describe('<Menu> integration', () => {
 
     it('should not be open', () => {
       const popover = wrapper.find(Popover);
-      assert.strictEqual(popover.prop('open'), false, 'should have passed open=false to Popover');
+      assert.strictEqual(popover.props().open, false, 'should have passed open=false to Popover');
       const menuEl = document.getElementById('simple-menu');
       assert.strictEqual(menuEl, null, 'should not render the menu to the DOM');
     });
@@ -140,7 +140,7 @@ describe('<Menu> integration', () => {
 
     it('should not be open', () => {
       const popover = wrapper.find(Popover);
-      assert.strictEqual(popover.prop('open'), false, 'should have passed open=false to Popover');
+      assert.strictEqual(popover.props().open, false, 'should have passed open=false to Popover');
       const menuEl = document.getElementById('simple-menu');
       assert.strictEqual(menuEl, null, 'should not render the menu to the DOM');
     });

@@ -3,21 +3,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiSvgIcon', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     display: 'inline-block',
     fill: 'currentColor',
     height: 24,
     width: 24,
     userSelect: 'none',
+    flexShrink: 0,
     transition: theme.transitions.create('fill', {
       duration: theme.transitions.duration.shorter,
     }),
   },
-}));
+});
 
 function SvgIcon(props) {
   const { children, classes, className, titleAccess, viewBox, ...other } = props;
@@ -25,16 +25,12 @@ function SvgIcon(props) {
   return (
     <svg
       className={classNames(classes.root, className)}
-      focusable={false}
+      focusable="false"
       viewBox={viewBox}
       aria-hidden={titleAccess ? 'false' : 'true'}
       {...other}
     >
-      {titleAccess
-        ? <title>
-            {titleAccess}
-          </title>
-        : null}
+      {titleAccess ? <title>{titleAccess}</title> : null}
       {children}
     </svg>
   );
@@ -74,4 +70,4 @@ SvgIcon.defaultProps = {
 
 SvgIcon.muiName = 'SvgIcon';
 
-export default withStyles(styleSheet)(SvgIcon);
+export default withStyles(styles, { name: 'MuiSvgIcon' })(SvgIcon);

@@ -1,7 +1,8 @@
 // @flow
+// @inheritedComponent FormControl
 
 import React from 'react';
-import type { Element } from 'react';
+import type { Node } from 'react';
 import Input, { InputLabel } from '../Input';
 import FormControl from '../Form/FormControl';
 import FormHelperText from '../Form/FormHelperText';
@@ -45,7 +46,7 @@ export type Props = {
   /**
    * The helper text content.
    */
-  helperText?: string | Element<*>,
+  helperText?: Node,
   /**
    * The CSS class name of the helper text element.
    */
@@ -81,7 +82,7 @@ export type Props = {
   /**
    * The label content.
    */
-  label?: string | Element<*>,
+  label?: Node,
   /**
    * The CSS class name of the label element.
    */
@@ -91,9 +92,12 @@ export type Props = {
    */
   multiline?: boolean,
   /**
-   * Name attribute of the `Input` element.
+   * Name attribute of the `input` element.
    */
   name?: string,
+  /**
+   * TODO
+   */
   placeholder?: string,
   /**
    * If `true`, the label is displayed as required.
@@ -120,7 +124,7 @@ export type Props = {
    */
   value?: string | number,
   /**
-   * If `dense` | `normal`, will adjust vertical spacing of this and contained components.
+   * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
    */
   margin?: 'none' | 'dense' | 'normal',
 };
@@ -176,10 +180,11 @@ function TextField(props: Props) {
       required={required}
       {...other}
     >
-      {label &&
+      {label && (
         <InputLabel htmlFor={id} className={labelClassName} {...InputLabelProps}>
           {label}
-        </InputLabel>}
+        </InputLabel>
+      )}
       <Input
         autoComplete={autoComplete}
         autoFocus={autoFocus}
@@ -198,10 +203,11 @@ function TextField(props: Props) {
         placeholder={placeholder}
         {...InputProps}
       />
-      {helperText &&
+      {helperText && (
         <FormHelperText className={helperTextClassName} {...FormHelperTextProps}>
           {helperText}
-        </FormHelperText>}
+        </FormHelperText>
+      )}
     </FormControl>
   );
 }

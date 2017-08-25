@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import Badge, { styleSheet } from './Badge';
+import Badge from './Badge';
 
 describe('<Badge />', () => {
   let shallow;
@@ -11,17 +11,13 @@ describe('<Badge />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Badge badgeContent={1}>Hello World</Badge>);
   });
 
   const testChildren = <div className="unique">Hello World</div>;
 
   it('renders children and badgeContent', () => {
-    const wrapper = shallow(
-      <Badge badgeContent={10}>
-        {testChildren}
-      </Badge>,
-    );
+    const wrapper = shallow(<Badge badgeContent={10}>{testChildren}</Badge>);
 
     assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
     assert.ok(wrapper.find('span').length, 'should contain the badgeContent');
@@ -41,11 +37,7 @@ describe('<Badge />', () => {
   });
 
   it('renders children by default', () => {
-    const wrapper = shallow(
-      <Badge badgeContent={10}>
-        {testChildren}
-      </Badge>,
-    );
+    const wrapper = shallow(<Badge badgeContent={10}>{testChildren}</Badge>);
 
     assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
   });

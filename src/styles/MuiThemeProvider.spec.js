@@ -6,7 +6,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { create } from 'jss';
 import preset from 'jss-preset-default';
-import { JssProvider, SheetsRegistry } from 'react-jss';
+import JssProvider from 'react-jss/lib/JssProvider';
+import { SheetsRegistry } from 'react-jss/lib/jss';
 import { renderToString } from 'react-dom/server';
 import { createMount } from '../test-utils';
 import { createMuiTheme } from '../styles';
@@ -48,7 +49,7 @@ describe('<MuiThemeProvider />', () => {
 
       const markup = renderToString(
         <JssProvider registry={sheetsRegistry} jss={jss}>
-          <MuiThemeProvider theme={theme} sheetsManager={new WeakMap()}>
+          <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
             <Button>Hello World</Button>
           </MuiThemeProvider>
         </JssProvider>,

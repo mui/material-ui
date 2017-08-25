@@ -13,10 +13,10 @@ If you think you have found a bug, or have a new feature idea, please start by m
 Next, create a new issue that briefly explains the problem, and provides a bit of background as to the circumstances that triggered it, and steps to reproduce it.
 
 For code issues please include:
-* Material-UI version
-* React version
-* Browser version
-* A code example or link to a repo, gist or running site.
+- Material-UI version
+- React version
+- Browser version
+- A code example or link to a repo, gist or running site.
 
 For visual or layout problems, images or animated gifs can help explain your issue.
 
@@ -24,11 +24,9 @@ For feature requests please include a link to the relevant section of Material D
 
 ### Issue Guidelines
 
-Please begin the title with '[ComponentName]' where appropriate, and use a succint description. "doesn't work" doesn't help others find similar issues.
-
-Please don't group multiple topics into one issue, but instead each should be its own issue.
-
-And please don't just '+1' an issue. It spams the maintainers and doesn't help move the issue forward.
+- Please begin the title with '[ComponentName]' where appropriate, and use a succint description. "doesn't work" doesn't help others find similar issues.
+- Please don't group multiple topics into one issue, but instead each should be its own issue.
+- And please don't just comment '+1' on an issue. It spams the maintainers and doesn't help move the issue forward.
 
 ## Submitting a Pull Request
 
@@ -38,20 +36,20 @@ When in doubt, keep your pull requests small. To give a PR the best chance of ge
 
 As with issues, please begin the title with [ComponentName].
 
-When adding new features or modifying existing, please attempt to include tests to confirm the new behaviour. You can read more about our test setup [here](https://github.com/callemall/material-ui/blob/master/test/README.md).
+When adding new features or modifying existing, please attempt to include tests to confirm the new behaviour. You can read more about our test setup [here](https://github.com/callemall/material-ui/blob/v1-beta/test/README.md).
 
 ### Branch Structure
 
-All stable releases are tagged ([view tags](https://github.com/callemall/material-ui/tags)). At any given time, `master` represents the latest development version of the library. Patches or hotfix releases are prepared on an independent branch.
+All stable releases are tagged ([view tags](https://github.com/callemall/material-ui/tags)). At any given time, `v1-beta` represents the latest development version of the library.
+Patches or hotfix releases are prepared on an independent branch.
 
-#### `master` is unsafe
+#### `v1-beta` is unsafe
 
-We will do our best to keep `master` in good shape, with tests passing at all times. But in order to move fast, we will make API changes that your application might not be compatible with. 
-
+We will do our best to keep `v1-beta` in good shape, with tests passing at all times. But in order to move fast, we will make API changes that your application might not be compatible with.
 
 ## Getting started
 
-Please create a new branch from an up to date master on your fork. (Note, urgent hotfixes should be branched off the latest stable release rather than master)
+Please create a new branch from an up to date v1-beta on your fork. (Note, urgent hotfixes should be branched off the latest stable release rather than v1-beta)
 
 1. Fork the Material-UI repository on Github
 2. Clone your fork to your local machine `git clone git@github.com:<yourname>/material-ui.git`
@@ -62,35 +60,34 @@ Please create a new branch from an up to date master on your fork. (Note, urgent
 If you have an existing local repository, please update it before you start, to minimise the chance of merge conflicts.
 ```js
 git remote add upstream git@github.com:callemall/material-ui.git
-git checkout master
-git pull upstream master
+git checkout v1-beta
+git pull upstream v1-beta
 git checkout -b my-topic-branch
-npm update
+yarn
 ```
 
 ### Testing the documentation site
 
 The documentation site is built with Material-UI, and contains examples of all the components. To get started:
 ```js
-npm install
-cd docs
-npm install
-npm start
+yarn
+yarn docs:dev
 ```
 You can now access the documentation site [locally](http://localhost:3000).
 
-Test coverage is limited at present, but where possible, please add tests for any changes you make. Tests can be run with `npm run test`.
+Test coverage is limited at present, but where possible, please add tests for any changes you make. Tests can be run with `yarn test`.
 
 ### Coding style
 
-Please follow the coding style of the current code base. Material-UI uses eslint, so if possible, enable linting in your editor to get realtime feedback. The linting rules are also run when Webpack recompiles your changes, and can be run manually with `npm run lint`.
+Please follow the coding style of the current code base. Material-UI uses eslint, so if possible, enable linting in your editor to get realtime feedback. The linting rules are also run when Webpack recompiles your changes, and can be run manually with `yarn lint`.
 
-You can also run linting on a subset of the codebase with `gulp eslint:src`, `gulp eslint:docs` or `gulp eslint:test`. Finally, when you submit a pull request, they are run again by Travis CI, but hopefully by then your code is already clean!
+You can also run `yarn prettier` to reformat the code.
+
+Finally, when you submit a pull request, they are run again by Circle CI, but hopefully by then your code is already clean!
 
 ## Roadmap
 
-To get a sense of where Material-UI is heading, or for ideas on where you could contribute, take a look at the [roadmap](https://github.com/callemall/material-ui/blob/master/ROADMAP.md) and the list of [Material Design components](https://github.com/callemall/material-ui/issues/2863).
-
+To get a sense of where Material-UI is heading, or for ideas on where you could contribute, take a look at the [ROADMAP](https://github.com/callemall/material-ui/blob/v1-beta/ROADMAP.md).
 
 ## License
 
