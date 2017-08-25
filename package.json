@@ -72,7 +72,7 @@
     "lodash": "^4.17.4",
     "next": "^3.0.3",
     "prop-types": "^15.5.10",
-    "react-event-listener": "^0.4.5",
+    "react-event-listener": "^0.5.0",
     "react-jss": "^7.1.0",
     "react-scrollbar-size": "^2.0.0",
     "react-transition-group": "^2.2.0",
