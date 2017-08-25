@@ -73,6 +73,7 @@
     "prop-types": "^15.5.10",
     "react-event-listener": "^0.5.0",
     "react-jss": "^7.1.0",
+    "react-popper": "^0.7.2",
     "react-scrollbar-size": "^2.0.0",
     "react-transition-group": "^2.2.0",
     "recompose": "^0.24.0",
@@ -175,7 +176,7 @@
   "size-limit": [
     {
       "path": "build/index.js",
-      "limit": "81 KB"
+      "limit": "90 KB"
     }
   ],
   "nyc": {
