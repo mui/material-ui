@@ -11,6 +11,7 @@ export const styles = (theme: Object) => ({
     marginRight: theme.spacing.unit * 2,
     width: 24,
     color: theme.palette.action.active,
+    flexShrink: 0,
   },
 });
 
