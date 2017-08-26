@@ -49,7 +49,7 @@ function MarkdownDocs(props, context) {
     <AppContent className={classes.root}>
       <Head>
         <title>
-          {getTitle(markdown)}
+          {`${getTitle(markdown)} - Material-UI`}
         </title>
       </Head>
       <div className={classes.header}>

@@ -26,7 +26,6 @@ if (process.browser && !global.__INSERTION_POINT__) {
 }
 
 class AppWrapper extends React.Component<any, any> {
-  static defaultProps: $FlowFixMeProps;
   componentWillMount() {
     this.styleContext = getContext();
   }

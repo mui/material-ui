@@ -3,6 +3,7 @@
 import React from 'react';
 import type { Node } from 'react';
 import HiddenJs from './HiddenJs';
+import HiddenCss from './HiddenCss';
 import type { Breakpoint } from '../styles/breakpoints';
 
 export type Props = {
@@ -75,7 +76,7 @@ function Hidden(props: Props) {
     return <HiddenJs {...other} />;
   }
 
-  throw new Error('<Hidden implementation="css" /> is not yet implemented');
+  return <HiddenCss {...other} />;
 }
 
 Hidden.defaultProps = {

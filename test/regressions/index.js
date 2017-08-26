@@ -27,7 +27,6 @@ const blacklistSuite = [
 
   // Needs interaction
   'docs-demos-dialogs',
-  'docs-demos-drawers',
   'docs-demos-menus',
 
   // Useless
