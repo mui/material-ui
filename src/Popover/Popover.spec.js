@@ -15,7 +15,11 @@ describe('<Popover />', () => {
   before(() => {
     shallow = createShallow({ dive: true });
     mount = createMount();
-    classes = getClasses(<Popover />);
+    classes = getClasses(
+      <Popover>
+        <div />
+      </Popover>,
+    );
   });
 
   after(() => {
@@ -24,14 +28,22 @@ describe('<Popover />', () => {
 
   describe('root node', () => {
     it('should render a Modal with an invisible backdrop as the root node', () => {
-      const wrapper = shallow(<Popover />);
+      const wrapper = shallow(
+        <Popover>
+          <div />
+        </Popover>,
+      );
       assert.strictEqual(wrapper.name(), 'withStyles(Modal)');
       assert.strictEqual(wrapper.props().backdropInvisible, true);
     });
 
     it('should pass onRequestClose prop to Modal', () => {
       const fn = () => {};
-      const wrapper = shallow(<Popover onRequestClose={fn} />);
+      const wrapper = shallow(
+        <Popover onRequestClose={fn}>
+          <div />
+        </Popover>,
+      );
       assert.strictEqual(
         wrapper.props().onRequestClose,
         fn,
@@ -40,7 +52,11 @@ describe('<Popover />', () => {
     });
 
     it('should pass open prop to Modal as `show`', () => {
-      const wrapper = shallow(<Popover />);
+      const wrapper = shallow(
+        <Popover>
+          <div />
+        </Popover>,
+      );
       assert.strictEqual(wrapper.props().show, false, 'should not be open');
       wrapper.setProps({ open: true });
       assert.strictEqual(wrapper.props().show, true, 'should be open');
@@ -53,7 +69,11 @@ describe('<Popover />', () => {
       let rect;
 
       before(() => {
-        instance = shallow(<Popover />).instance();
+        instance = shallow(
+          <Popover>
+            <div />
+          </Popover>,
+        ).instance();
         rect = {
           height: 1,
         };
@@ -89,7 +109,11 @@ describe('<Popover />', () => {
       let rect;
 
       before(() => {
-        instance = shallow(<Popover />).instance();
+        instance = shallow(
+          <Popover>
+            <div />
+          </Popover>,
+        ).instance();
         rect = {
           width: 1,
         };
@@ -123,7 +147,11 @@ describe('<Popover />', () => {
 
   describe('transition', () => {
     it('should have Transition as the only child of Modal', () => {
-      const wrapper = shallow(<Popover />);
+      const wrapper = shallow(
+        <Popover>
+          <div />
+        </Popover>,
+      );
       assert.strictEqual(wrapper.children().length, 1, 'should have one child');
       assert.strictEqual(
         wrapper.childAt(0).is('withTheme(Grow)'),
@@ -138,7 +166,11 @@ describe('<Popover />', () => {
     });
 
     it('should set the transition in/out based on the open prop', () => {
-      const wrapper = shallow(<Popover />);
+      const wrapper = shallow(
+        <Popover>
+          <div />
+        </Popover>,
+      );
       assert.strictEqual(wrapper.childAt(0).props().in, false, 'should not be in');
       wrapper.setProps({ open: true });
       assert.strictEqual(wrapper.childAt(0).props().in, true, 'should be in');
@@ -154,7 +186,11 @@ describe('<Popover />', () => {
         return result;
       }, {});
 
-      const wrapper = shallow(<Popover {...handlers} />);
+      const wrapper = shallow(
+        <Popover {...handlers}>
+          <div />
+        </Popover>,
+      );
 
       events.forEach(n => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
@@ -166,20 +202,32 @@ describe('<Popover />', () => {
 
   describe('paper', () => {
     it('should have Paper as the only child of Transition', () => {
-      const wrapper = shallow(<Popover />);
+      const wrapper = shallow(
+        <Popover>
+          <div />
+        </Popover>,
+      );
       assert.strictEqual(wrapper.childAt(0).children().length, 1, 'should have one child');
       assert.strictEqual(wrapper.childAt(0).childAt(0).name(), 'withStyles(Paper)');
     });
 
     it('should have the paper class and user classes', () => {
-      const wrapper = shallow(<Popover className="test-class" />);
+      const wrapper = shallow(
+        <Popover className="test-class">
+          <div />
+        </Popover>,
+      );
       const paper = wrapper.childAt(0).childAt(0);
       assert.strictEqual(paper.hasClass('test-class'), true, 'should have the user class');
       assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the popover class');
     });
 
     it('should have a elevation prop passed down', () => {
-      const wrapper = shallow(<Popover />);
+      const wrapper = shallow(
+        <Popover>
+          <div />
+        </Popover>,
+      );
       assert.strictEqual(
         wrapper.childAt(0).childAt(0).prop('elevation'),
         8,
@@ -212,7 +260,11 @@ describe('<Popover />', () => {
 
       before(() => {
         handleEnter = spy();
-        wrapper = shallow(<Popover onEnter={handleEnter} />);
+        wrapper = shallow(
+          <Popover onEnter={handleEnter}>
+            <div />
+          </Popover>,
+        );
         wrapper.instance().handleEnter(element);
       });
 
@@ -262,7 +314,9 @@ describe('<Popover />', () => {
                 popoverEl = window.document.querySelector('[data-mui-test="Popover"]');
                 resolve();
               }}
-            />,
+            >
+              <div />
+            </Popover>,
           );
           wrapper.setProps({ open: true });
         });
@@ -358,7 +412,11 @@ describe('<Popover />', () => {
     });
 
     it('should recalculate position if the popover is open', () => {
-      const wrapper = shallow(<Popover open transitionDuration={0} />);
+      const wrapper = shallow(
+        <Popover open transitionDuration={0}>
+          <div />
+        </Popover>,
+      );
       const instance = wrapper.instance();
 
       stub(instance, 'setPositioningStyles');
@@ -368,7 +426,11 @@ describe('<Popover />', () => {
     });
 
     it('should not recalculate position if the popover is closed', () => {
-      const wrapper = mount(<Popover transitionDuration={0} />);
+      const wrapper = mount(
+        <Popover transitionDuration={0}>
+          <div />
+        </Popover>,
+      );
       assert.isNotTrue(wrapper.contains('EventListener'), 'no component listening on resize');
     });
   });
@@ -385,7 +447,11 @@ describe('<Popover />', () => {
     let innerWidthContainer;
 
     before(() => {
-      instance = shallow(<Popover />).instance();
+      instance = shallow(
+        <Popover>
+          <div />
+        </Popover>,
+      ).instance();
       instance.getContentAnchorOffset = spy();
 
       innerHeightContainer = global.window.innerHeight;
@@ -543,7 +609,11 @@ describe('<Popover />', () => {
         clientHeight: 20,
         parentNode: element,
       };
-      const wrapper = shallow(<Popover getContentAnchorEl={() => child} />);
+      const wrapper = shallow(
+        <Popover getContentAnchorEl={() => child}>
+          <div />
+        </Popover>,
+      );
       assert.strictEqual(wrapper.instance().getContentAnchorOffset(element), 45);
     });
   });

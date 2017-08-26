@@ -8,10 +8,10 @@ import contains from 'dom-helpers/query/contains';
 import debounce from 'lodash/debounce';
 import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
-import Modal from './Modal';
+import Modal from '../internal/Modal';
+import type { TransitionCallback } from '../internal/Transition';
 import Grow from '../transitions/Grow';
 import Paper from '../Paper';
-import type { TransitionCallback } from './Transition';
 
 function getOffsetTop(rect, vertical) {
   let offset = 0;
@@ -99,7 +99,7 @@ export type Props = {
   /**
    * The content of the component.
    */
-  children?: Node,
+  children: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -109,20 +109,23 @@ export type Props = {
    */
   className?: string,
   /**
-   * CSS class or classes applied when the component is entered
+   * The elevation of the popover.
    */
   elevation?: number,
+  /**
+   * The CSS class name applied while the component is entering
+   */
   enteredClassName?: string,
   /**
-   * CSS class or classes applied while the component is entering
+   * The CSS class name applied while the component is entering
    */
   enteringClassName?: string,
   /**
-   * CSS class or classes applied when the component is exited
+   * The CSS class name applied when the component is exited
    */
   exitedClassName?: string,
   /**
-   * CSS class or classes applied while the component is exiting
+   * The CSS class name applied while the component is exiting
    */
   exitingClassName?: string,
   /**
@@ -168,6 +171,9 @@ export type Props = {
    * If `true`, the popover is visible.
    */
   open?: boolean,
+  /**
+   * @ignore
+   */
   role?: string,
   /**
    * This is the point on the popover which
@@ -293,10 +299,8 @@ class Popover extends React.Component<AllProps, void> {
   handleGetOffsetTop = getOffsetTop;
   handleGetOffsetLeft = getOffsetLeft;
 
-  /**
-   * Returns the top/left offset of the position
-   * to attach to on the anchor element (or body if none is provided)
-   */
+  // Returns the top/left offset of the position
+  // to attach to on the anchor element (or body if none is provided)
   getAnchorOffset(contentAnchorOffset) {
     // $FlowFixMe
     const { anchorEl, anchorOrigin } = this.props;
@@ -310,9 +314,7 @@ class Popover extends React.Component<AllProps, void> {
     };
   }
 
-  /**
-   * Returns the vertical offset of inner content to anchor the transform on if provided
-   */
+  // Returns the vertical offset of inner content to anchor the transform on if provided
   getContentAnchorOffset(element) {
     let contentAnchorOffset = 0;
 
@@ -329,10 +331,8 @@ class Popover extends React.Component<AllProps, void> {
     return contentAnchorOffset;
   }
 
-  /**
-   * Return the base transform origin using the element
-   * and taking the content anchor offset into account if in use
-   */
+  // Return the base transform origin using the element
+  // and taking the content anchor offset into account if in use
   getTransformOrigin(elemRect, contentAnchorOffset = 0) {
     const { transformOrigin } = this.props;
     return {
@@ -369,9 +369,8 @@ class Popover extends React.Component<AllProps, void> {
       ...other
     } = this.props;
 
-    // FIXME: props API consistency problem? - `...other` not spread over the root
     return (
-      <Modal show={open} backdropInvisible onRequestClose={onRequestClose}>
+      <Modal show={open} backdropInvisible onRequestClose={onRequestClose} {...other}>
         <Grow
           in={open}
           enteredClassName={enteredClassName}
@@ -394,7 +393,6 @@ class Popover extends React.Component<AllProps, void> {
             data-mui-test="Popover"
             className={classNames(classes.paper, className)}
             elevation={elevation}
-            {...other}
           >
             <EventListener target="window" onResize={this.handleResize} />
             {children}

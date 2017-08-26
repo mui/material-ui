@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
-import { FormLabel, FormControlLabel } from 'material-ui/Form';
+import { FormControl, FormLabel, FormControlLabel } from 'material-ui/Form';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 import Paper from 'material-ui/Paper';
 
@@ -67,56 +67,66 @@ class InteractiveGrid extends React.Component {
           <Paper className={classes.control}>
             <Grid container>
               <Grid item xs={6} sm={4}>
-                <FormLabel>direction</FormLabel>
-                <RadioGroup
-                  name="direction"
-                  aria-label="direction"
-                  value={direction}
-                  onChange={this.handleChange('direction')}
-                >
-                  <FormControlLabel value="row" control={<Radio />} label="row" />
-                  <FormControlLabel value="row-reverse" control={<Radio />} label="row-reverse" />
-                  <FormControlLabel value="column" control={<Radio />} label="column" />
-                  <FormControlLabel
-                    value="column-reverse"
-                    control={<Radio />}
-                    label="column-reverse"
-                  />
-                </RadioGroup>
+                <FormControl component="fieldset">
+                  <FormLabel>direction</FormLabel>
+                  <RadioGroup
+                    name="direction"
+                    aria-label="direction"
+                    value={direction}
+                    onChange={this.handleChange('direction')}
+                  >
+                    <FormControlLabel value="row" control={<Radio />} label="row" />
+                    <FormControlLabel value="row-reverse" control={<Radio />} label="row-reverse" />
+                    <FormControlLabel value="column" control={<Radio />} label="column" />
+                    <FormControlLabel
+                      value="column-reverse"
+                      control={<Radio />}
+                      label="column-reverse"
+                    />
+                  </RadioGroup>
+                </FormControl>
               </Grid>
               <Grid item xs={6} sm={4}>
-                <FormLabel>justify</FormLabel>
-                <RadioGroup
-                  name="justify"
-                  aria-label="justify"
-                  value={justify}
-                  onChange={this.handleChange('justify')}
-                >
-                  <FormControlLabel value="flex-start" control={<Radio />} label="flex-start" />
-                  <FormControlLabel value="center" control={<Radio />} label="center" />
-                  <FormControlLabel value="flex-end" control={<Radio />} label="flex-end" />
-                  <FormControlLabel
-                    value="space-between"
-                    control={<Radio />}
-                    label="space-between"
-                  />
-                  <FormControlLabel value="space-around" control={<Radio />} label="space-around" />
-                </RadioGroup>
+                <FormControl component="fieldset">
+                  <FormLabel>justify</FormLabel>
+                  <RadioGroup
+                    name="justify"
+                    aria-label="justify"
+                    value={justify}
+                    onChange={this.handleChange('justify')}
+                  >
+                    <FormControlLabel value="flex-start" control={<Radio />} label="flex-start" />
+                    <FormControlLabel value="center" control={<Radio />} label="center" />
+                    <FormControlLabel value="flex-end" control={<Radio />} label="flex-end" />
+                    <FormControlLabel
+                      value="space-between"
+                      control={<Radio />}
+                      label="space-between"
+                    />
+                    <FormControlLabel
+                      value="space-around"
+                      control={<Radio />}
+                      label="space-around"
+                    />
+                  </RadioGroup>
+                </FormControl>
               </Grid>
               <Grid item xs={6} sm={4}>
-                <FormLabel>align</FormLabel>
-                <RadioGroup
-                  name="align"
-                  aria-label="align"
-                  value={align}
-                  onChange={this.handleChange('align')}
-                >
-                  <FormControlLabel value="flex-start" control={<Radio />} label="flex-start" />
-                  <FormControlLabel value="center" control={<Radio />} label="center" />
-                  <FormControlLabel value="flex-end" control={<Radio />} label="flex-end" />
-                  <FormControlLabel value="stretch" control={<Radio />} label="stretch" />
-                  <FormControlLabel value="baseline" control={<Radio />} label="baseline" />
-                </RadioGroup>
+                <FormControl component="fieldset">
+                  <FormLabel>align</FormLabel>
+                  <RadioGroup
+                    name="align"
+                    aria-label="align"
+                    value={align}
+                    onChange={this.handleChange('align')}
+                  >
+                    <FormControlLabel value="flex-start" control={<Radio />} label="flex-start" />
+                    <FormControlLabel value="center" control={<Radio />} label="center" />
+                    <FormControlLabel value="flex-end" control={<Radio />} label="flex-end" />
+                    <FormControlLabel value="stretch" control={<Radio />} label="stretch" />
+                    <FormControlLabel value="baseline" control={<Radio />} label="baseline" />
+                  </RadioGroup>
+                </FormControl>
               </Grid>
             </Grid>
           </Paper>
