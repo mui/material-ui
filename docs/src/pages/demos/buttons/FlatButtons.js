@@ -43,11 +43,7 @@ function FlatButtons(props) {
       <Button dense className={classes.button}>
         Dense
       </Button>
-      <Button
-        className={classes.button}
-        onClick={doSomething}
-        data-something="here I am"
-      >
+      <Button className={classes.button} onClick={doSomething} data-something="here I am">
         Does something
       </Button>
     </div>
