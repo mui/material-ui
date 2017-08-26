@@ -1,5 +1,6 @@
 // @flow
 
+import type { Element } from 'react';
 import createEagerFactory from 'recompose/createEagerFactory';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import withWidth, { isWidthDown } from '../utils/withWidth';
