@@ -123,10 +123,6 @@ class Menu extends React.Component<AllProps, void> {
       // $FlowFixMe
       menuList.style.width = `calc(100% + ${size})`;
     }
-
-    if (this.props.onEnter) {
-      this.props.onEnter(element);
-    }
   };
 
   handleListKeyDown = (event: SyntheticUIEvent<>, key: string) => {
@@ -155,7 +151,13 @@ class Menu extends React.Component<AllProps, void> {
       <Popover
         getContentAnchorEl={this.getContentAnchorEl}
         className={classNames(classes.root, className)}
-        onEnter={this.handleEnter}
+        onEnter={(...args) => {
+          if (onEnter instanceof Function) {
+            return onEnter.apply(this, args);
+          }
+
+          return this.handleEnter(...args);
+        }}
         {...other}
       >
         <MenuList

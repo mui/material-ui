@@ -41,12 +41,17 @@ export const styles = (theme: Object) => ({
 });
 
 type DefaultProps = {
+  autoFocus: true,
   backdropComponent: Function,
   classes: Object,
   modalManager: Object,
 };
 
 export type Props = {
+  /**
+   * If `false`, do not pull the focus off any currently focussed element
+   */
+  autoFocus?: boolean,
   /**
    * The CSS class name of the backdrop element.
    */
@@ -255,7 +260,9 @@ class Modal extends React.Component<AllProps, State> {
     this.props.modalManager.add(this);
     this.onDocumentKeyUpListener = addEventListener(doc, 'keyup', this.handleDocumentKeyUp);
     this.onFocusListener = addEventListener(doc, 'focus', this.handleFocusListener, true);
-    this.focus();
+    if (this.props.autoFocus !== false) {
+      this.focus();
+    }
   }
 
   handleHide() {

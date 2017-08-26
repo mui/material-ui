@@ -36,6 +36,7 @@ export {
 export { default as Menu, MenuItem, MenuList } from './Menu';
 export { default as Paper } from './Paper';
 export { CircularProgress, LinearProgress } from './Progress';
+export { default as Popover } from './internal/Popover';
 export { default as Radio, RadioGroup } from './Radio';
 export { default as Snackbar, SnackbarContent } from './Snackbar';
 export {
