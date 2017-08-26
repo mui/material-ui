@@ -12,6 +12,12 @@ const styles = theme => ({
   },
 });
 
+function doSomething(event) {
+  /* eslint-disable no-console */
+  console.log(event.target.parentElement.getAttribute('data-something'));
+  /* eslint-enable no-console */
+}
+
 function FlatButtons(props) {
   const classes = props.classes;
   return (
@@ -37,6 +43,11 @@ function FlatButtons(props) {
       </Button>
       <Button dense className={classes.button}>
         Dense
+      </Button>
+      <Button className={classes.button}
+        onClick={doSomething}
+        data-something="here I am">
+        Does something
       </Button>
     </div>
   );
