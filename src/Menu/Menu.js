@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { findDOMNode } from 'react-dom';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import withStyles from '../styles/withStyles';
-import Popover from '../internal/Popover';
+import Popover from '../Popover';
 import MenuList from './MenuList';
 import type { TransitionCallback } from '../internal/Transition';
 
@@ -79,13 +79,12 @@ type AllProps = DefaultProps & Props;
 
 export const styles = {
   root: {
-    /**
-     * specZ: The maximum height of a simple menu should be one or more rows less than the view
-     * height. This ensures a tappable area outside of the simple menu with which to dismiss
-     * the menu.
-     */
+    // specZ: The maximum height of a simple menu should be one or more rows less than the view
+    // height. This ensures a tappable area outside of the simple menu with which to dismiss
+    // the menu.
     maxHeight: 'calc(100vh - 96px)',
-    WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
+    // Add iOS momentum scrolling.
+    WebkitOverflowScrolling: 'touch',
     // So we see the menu when it's empty.
     minWidth: 16,
     minHeight: 16,
@@ -151,6 +150,7 @@ class Menu extends React.Component<AllProps, void> {
 
   render() {
     const { children, classes, className, MenuListProps, onEnter, ...other } = this.props;
+
     return (
       <Popover
         getContentAnchorEl={this.getContentAnchorEl}
