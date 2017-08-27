@@ -29,6 +29,8 @@ export const styleSheet = createStyleSheet('MuiToggleButtonOption', theme => ({
     }),
   },
   rootButton: {
+    display: 'flex',
+    alignItems: 'center',
     height: 36,
   },
   rootToggle: {
@@ -167,38 +169,35 @@ class ToggleButtonOption extends Component {
       children,
     } = this.props;
 
-    const buttonProps = {
-      className: classNames(classes.root, {
-        [classes.rootButton]: !toggle,
-        [classes.rootToggle]: toggle,
-        [classes.iconAndText]: icon && label,
-        [classes.buttonSelected]: selected && !toggle,
-        [classes.toggleDefault]: color === 'default' && selected && toggle && !disabled,
-        [classes.togglePrimary]: color === 'primary' && selected && toggle && !disabled,
-        [classes.toggleAccent]: color === 'accent' && selected && toggle && !disabled,
-        [classes.toggleContrast]: color === 'contrast' && selected && toggle && !disabled,
-        [classes.divided]: divider,
-      }),
-      onClick: this.handleOptionClick,
-      disableRipple: true,
-    };
-    const rootProps = {
-      className: classNames(classes.buttonBase, {
-        [classes.textSelected]: selected && !toggle,
-        [classes.button]: !toggle || disabled,
-        [classes.colorDefault]: color === 'default' && toggle && !disabled,
-        [classes.colorPrimary]: color === 'primary' && toggle && !disabled,
-        [classes.colorAccent]: color === 'accent' && toggle && !disabled,
-        [classes.colorContrast]: color === 'contrast' && toggle && !disabled,
-      }),
-    };
-
     let option;
     // If there are children available, make it a DropDown Menu.
     if (!children) {
       option = (
-        <ButtonBase {...buttonProps}>
-          <div {...rootProps}>
+        <ButtonBase
+          className={classNames(classes.root, {
+            [classes.rootButton]: !toggle,
+            [classes.rootToggle]: toggle,
+            [classes.iconAndText]: icon && label,
+            [classes.buttonSelected]: selected && !toggle,
+            [classes.toggleDefault]: color === 'default' && selected && toggle && !disabled,
+            [classes.togglePrimary]: color === 'primary' && selected && toggle && !disabled,
+            [classes.toggleAccent]: color === 'accent' && selected && toggle && !disabled,
+            [classes.toggleContrast]: color === 'contrast' && selected && toggle && !disabled,
+            [classes.colorDefault]: color === 'default' && toggle && !disabled,
+            [classes.colorPrimary]: color === 'primary' && toggle && !disabled,
+            [classes.colorAccent]: color === 'accent' && toggle && !disabled,
+            [classes.colorContrast]: color === 'contrast' && toggle && !disabled,
+            [classes.divided]: divider,
+          })}
+          onClick={this.handleOptionClick}
+          focusRipple
+        >
+          <div
+            className={classNames(classes.buttonBase, {
+              [classes.textSelected]: selected && !toggle,
+              [classes.button]: !toggle || disabled,
+            })}
+          >
             {icon}
             {label}
           </div>
@@ -210,33 +209,20 @@ class ToggleButtonOption extends Component {
           onClick: () => this.handleDropDownClick(child),
         });
       });
-      const dropButtonProps = {
-        'aria-owns': 'option-menu',
-        'aria-haspopup': true,
-        className: classNames(classes.root, classes.rootButton, {
-          [classes.iconAndText]: icon && label,
-          [classes.buttonSelected]: selected && !toggle,
-          [classes.divided]: divider,
-        }),
-        onClick: this.handleClick,
-        // centerRipple: true,
-      };
-      const arrowProp = {
-        style: {
-          // TODO: Move this to get style
-          transform: label && icon ? 'translate(50%, 50%)' : 'none',
-          color: selected ? fade(common.black, 0.54) : fade(common.black, 0.3),
-        },
-      };
-      const menuProps = {
-        id: 'option-menu',
-        anchorEl: this.state.anchorEl,
-        open: this.state.open,
-        onRequestClose: this.handleRequestClose,
-      };
+
       option = (
         <div>
-          <ButtonBase {...dropButtonProps}>
+          <ButtonBase
+            aria-owns="option-menu"
+            aria-haspopup
+            className={classNames(classes.root, classes.rootButton, {
+              [classes.iconAndText]: icon && label,
+              [classes.buttonSelected]: selected && !toggle,
+              [classes.divided]: divider,
+            })}
+            onClick={this.handleClick}
+            centerRipple
+          >
             <div
               className={classNames(classes.dropDownButton, {
                 [classes.textSelected]: selected,
@@ -245,9 +231,20 @@ class ToggleButtonOption extends Component {
               {icon}
               {label}
             </div>
-            <ArrowDropdown {...arrowProp} />
+            <ArrowDropdown
+              style={{
+                // TODO: Move this to get style
+                transform: label && icon ? 'translate(50%, 50%)' : 'none',
+                color: selected ? fade(common.black, 0.54) : fade(common.black, 0.3),
+              }}
+            />
           </ButtonBase>
-          <Menu {...menuProps}>
+          <Menu
+            id="option-menu"
+            anchorEl={this.state.anchorEl}
+            open={this.state.open}
+            onRequestClose={this.handleRequestClose}
+          >
             {items}
           </Menu>
         </div>

@@ -21,12 +21,18 @@ const styleSheet = createStyleSheet(theme => ({
 function alterText(value, selected) {
   const div = document.getElementById('dummyDiv2');
   if (selected && div !== null) {
-    if (value === '1') {
-      div.style.textAlign = 'left';
-    } else if (value === '2') {
-      div.style.textAlign = 'center';
-    } else if (value === '3') {
-      div.style.textAlign = 'right';
+    switch (value) {
+      case '1':
+        div.style.textAlign = 'left';
+        break;
+      case '2':
+        div.style.textAlign = 'center';
+        break;
+      case '3':
+        div.style.textAlign = 'right';
+        break;
+      default:
+        break;
     }
   } else if (div !== null) {
     div.style.textAlign = 'initial';

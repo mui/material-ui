@@ -34,7 +34,7 @@
     "clean:build": "rimraf build",
     "lint": "eslint . --cache && echo \"eslint: no lint errors\"",
     "prebuild": "npm run clean:build",
-    "size": "size-limit 120KB build/index.js",
+    "size": "size-limit 121KB build/index.js",
     "size:why": "size-limit --why build/index.js",
     "spellcheck": "eslint . --config .eslintrc.spellcheck.js && echo \"eslint: no lint errors\"",
     "start": "cd docs && npm start",

@@ -32,7 +32,7 @@ describe('<ToggleButton/>', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
-  describe('prop : toggleIcons', () => {
+  describe('prop: toggleIcons', () => {
     it('should render with toggleIcon class', () => {
       const wrapper = shallow(
         <ToggleButton toggleIcons>

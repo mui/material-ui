@@ -22,20 +22,32 @@ const styleSheet = createStyleSheet(theme => ({
 function alterText(value, selected) {
   const text = document.getElementById('dummyText');
   if (selected && text !== null) {
-    if (value === 1) {
-      text.style.fontWeight = '800';
-    } else if (value === 2) {
-      text.style.fontStyle = 'italic';
-    } else if (value === 3) {
-      text.style.textDecoration = 'underline';
+    switch (value) {
+      case 1:
+        text.style.fontWeight = '800';
+        break;
+      case 2:
+        text.style.fontStyle = 'italic';
+        break;
+      case 3:
+        text.style.textDecoration = 'underline';
+        break;
+      default:
+        break;
     }
   } else if (text !== null) {
-    if (value === 1) {
-      text.style.fontWeight = 'normal';
-    } else if (value === 2) {
-      text.style.fontStyle = 'normal';
-    } else if (value === 3) {
-      text.style.textDecoration = 'none';
+    switch (value) {
+      case 1:
+        text.style.fontWeight = 'normal';
+        break;
+      case 2:
+        text.style.fontStyle = 'normal';
+        break;
+      case 3:
+        text.style.textDecoration = 'none';
+        break;
+      default:
+        break;
     }
   }
 }

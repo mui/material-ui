@@ -28,29 +28,29 @@ describe('<ToggleButtonOption/>', () => {
     assert.strictEqual(wrapper.hasClass(classes.rootButton), true);
   });
 
-  describe('prop : color', () => {
+  describe('prop: color', () => {
     it('should render with colorDefault class when toggle is set and no color is specified', () => {
       const wrapper = shallow(<ToggleButtonOption toggle />);
-      assert.strictEqual(wrapper.find('div').hasClass(classes.colorDefault), true);
+      assert.strictEqual(wrapper.hasClass(classes.colorDefault), true);
     });
 
     it('should render with colorPrimary class when toggle is set and color = primary', () => {
       const wrapper = shallow(<ToggleButtonOption toggle color="primary" />);
-      assert.strictEqual(wrapper.find('div').hasClass(classes.colorPrimary), true);
+      assert.strictEqual(wrapper.hasClass(classes.colorPrimary), true);
     });
 
     it('should render with colorAccent class when toggle is set and color = accent', () => {
       const wrapper = shallow(<ToggleButtonOption toggle color="accent" />);
-      assert.strictEqual(wrapper.find('div').hasClass(classes.colorAccent), true);
+      assert.strictEqual(wrapper.hasClass(classes.colorAccent), true);
     });
 
     it('should render with colorContrast class when toggle is set and color = contrast', () => {
       const wrapper = shallow(<ToggleButtonOption toggle color="contrast" />);
-      assert.strictEqual(wrapper.find('div').hasClass(classes.colorContrast), true);
+      assert.strictEqual(wrapper.hasClass(classes.colorContrast), true);
     });
   });
 
-  describe('prop : disabled', () => {
+  describe('prop: disabled', () => {
     it('should not render with colorDefault and button classes when specified', () => {
       const wrapper = shallow(<ToggleButtonOption disabled />);
       assert.strictEqual(wrapper.hasClass(classes.colorDefault), false);
@@ -63,14 +63,14 @@ describe('<ToggleButtonOption/>', () => {
     });
   });
 
-  describe('prop : divider', () => {
+  describe('prop: divider', () => {
     it('should render with divider class when specified', () => {
       const wrapper = shallow(<ToggleButtonOption divider />);
       assert.strictEqual(wrapper.hasClass(classes.divided), true);
     });
   });
 
-  describe('prop : icon', () => {
+  describe('prop: icon', () => {
     it('should contain Icon element', () => {
       const wrapper = shallow(
         <ToggleButtonOption icon={<Icon className="material-icons">mood</Icon>} />,
@@ -86,7 +86,7 @@ describe('<ToggleButtonOption/>', () => {
     });
   });
 
-  describe('prop : selected', () => {
+  describe('prop: selected', () => {
     it('should render with buttonSelected and textSelected classes', () => {
       const wrapper = shallow(<ToggleButtonOption selected />);
       assert.strictEqual(wrapper.hasClass(classes.buttonSelected), true);
@@ -94,7 +94,7 @@ describe('<ToggleButtonOption/>', () => {
     });
   });
 
-  describe('prop : toggle', () => {
+  describe('prop: toggle', () => {
     it('should render with rootToggle class', () => {
       const wrapper = shallow(<ToggleButtonOption toggle />);
       assert.strictEqual(wrapper.hasClass(classes.rootToggle), true);
@@ -122,7 +122,7 @@ describe('<ToggleButtonOption/>', () => {
     });
   });
 
-  describe('prop : label', () => {
+  describe('prop: label', () => {
     it('should render a string', () => {
       const wrapper = mount(<ToggleButtonOption label="Toggle" />);
       assert.strictEqual(wrapper.childAt(0).text(), 'Toggle');
