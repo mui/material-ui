@@ -43,10 +43,12 @@ type AllProps = DefaultProps & Props;
 
 class TableHead extends Component<DefaultProps, AllProps, void> {
   props: AllProps;
+
   static defaultProps: DefaultProps = {
     classes: {},
     component: 'thead',
   };
+
   getChildContext() {
     // eslint-disable-line class-methods-use-this
     return {

@@ -48,12 +48,13 @@ function TableCell(props, context) {
     component,
     ...other
   } = props;
+
   const { table } = context;
-  let ComponentCell;
+  let Component;
   if (component) {
-    ComponentCell = component;
+    Component = component;
   } else {
-    ComponentCell = table && table.head ? 'th' : 'td';
+    Component = table && table.head ? 'th' : 'td';
   }
   const className = classNames(
     classes.root,
@@ -69,9 +70,9 @@ function TableCell(props, context) {
   );
 
   return (
-    <ComponentCell className={className} {...other}>
+    <Component className={className} {...other}>
       {children}
-    </ComponentCell>
+    </Component>
   );
 }
 

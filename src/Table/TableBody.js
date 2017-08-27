@@ -42,6 +42,7 @@ type AllProps = DefaultProps & Props;
 
 class TableBody extends Component<DefaultProps, AllProps, void> {
   props: AllProps;
+
   static defaultProps: DefaultProps = {
     classes: {},
     component: 'tbody',
