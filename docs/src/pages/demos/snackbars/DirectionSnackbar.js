@@ -1,11 +1,11 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 
-import React, { Component } from 'react';
+import React from 'react';
 import Button from 'material-ui/Button';
 import Snackbar from 'material-ui/Snackbar';
 import Slide from 'material-ui/transitions/Slide';
 
-class DirectionSnackbar extends Component {
+class DirectionSnackbar extends React.Component {
   state = {
     open: false,
     direction: null,

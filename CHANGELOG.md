@@ -3,7 +3,7 @@
 Changes. Changes everywhere!
 
 ## 1.0.0-beta.6
-###### _Aug 20, 2016_
+###### _Aug 20, 2017_
 
 A big shout-out to @sebald for our first TypeScript coverage.
 Another notable change is [the migration of the documentation](#7759) to [Next.js](https://github.com/zeit/next.js), it's twice as fast as before 🚀.
@@ -55,7 +55,7 @@ Push #7741 initiative forward (use `value` and `onChange` as controlling propert
 - [core] Update some dependencies (#7831) @oliviertassinari
 
 ## 1.0.0-beta.5
-###### _Aug 15, 2016_
+###### _Aug 15, 2017_
 
 Big thanks to the 11 contributors who made this release possible.
 
@@ -118,7 +118,7 @@ The primary motivation for this change is simplicity, it's also making our inter
 - [core] General maintenance (#7690) @oliviertassinari
 
 ## 1.0.0-beta.4
-###### _Aug 5, 2016_
+###### _Aug 5, 2017_
 
 Big thanks to the 7 contributors who made this release possible.
 

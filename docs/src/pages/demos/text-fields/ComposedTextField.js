@@ -1,6 +1,6 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Input from 'material-ui/Input';
@@ -18,7 +18,7 @@ const styles = theme => ({
   },
 });
 
-class ComposedTextField extends Component {
+class ComposedTextField extends React.Component {
   state = {
     name: 'Composed TextField',
   };

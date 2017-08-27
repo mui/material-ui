@@ -5,13 +5,14 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { findPages } = require('./docs/src/modules/utils/find');
 
 const ENABLE_STATS = false;
+process.env.MATERIAL_UI_VERSION = pkg.version,
 
 module.exports = {
   webpack: config => {
     const plugins = config.plugins.concat([
       new webpack.DefinePlugin({
         'process.env': {
-          MATERIAL_UI_VERSION: JSON.stringify(pkg.version),
+          MATERIAL_UI_VERSION: JSON.stringify(process.env.MATERIAL_UI_VERSION),
         },
       }),
     ]);

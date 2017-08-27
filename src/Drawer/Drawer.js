@@ -1,7 +1,7 @@
 // @flow
 
-import React, { Component } from 'react';
-import type { Element } from 'react';
+import React from 'react';
+import type { Node } from 'react';
 import classNames from 'classnames';
 import Modal from '../internal/Modal';
 import withStyles from '../styles/withStyles';
@@ -74,23 +74,22 @@ export const styles = (theme: Object) => ({
 
 type DefaultProps = {
   anchor: 'left',
-  docked: boolean,
   classes: Object,
+  elevation: number,
   enterTransitionDuration: number,
   leaveTransitionDuration: number,
   open: boolean,
-  elevation: number,
 };
 
 export type Props = {
   /**
-   * Side which will the drawer will appear from.
+   * Side from which the drawer will appear.
    */
   anchor?: 'left' | 'top' | 'right' | 'bottom',
   /**
    * The contents of the drawer.
    */
-  children?: Element<*>,
+  children: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -100,22 +99,21 @@ export type Props = {
    */
   className?: string,
   /**
-   * If `true`, the drawer will dock itself
-   * and will no longer slide in with an overlay.
+   * Customizes duration of enter animation (ms)
    */
-  docked?: boolean,
+  enterTransitionDuration?: number,
   /**
    * The elevation of the drawer.
    */
   elevation?: number,
   /**
-   * Customizes duration of enter animation (ms)
-   */
-  enterTransitionDuration?: number,
-  /**
    * Customizes duration of leave animation (ms)
    */
   leaveTransitionDuration?: number,
+  /**
+   * Properties applied to the `Modal` element.
+   */
+  ModalProps?: Object,
   /**
    * Callback fired when the component requests to be closed.
    *
@@ -134,6 +132,10 @@ export type Props = {
    * @ignore
    */
   theme: Object,
+  /**
+   * The type of drawer.
+   */
+  type: 'permanent' | 'persistent' | 'temporary',
 };
 
 type AllProps = DefaultProps & Props;
@@ -142,19 +144,20 @@ type State = {
   firstMount: boolean,
 };
 
-class Drawer extends Component<DefaultProps, AllProps, State> {
+class Drawer extends React.Component<AllProps, State> {
   props: AllProps;
+
   static defaultProps = {
     anchor: 'left',
-    docked: false,
     classes: {},
+    elevation: 16,
     enterTransitionDuration: duration.enteringScreen,
     leaveTransitionDuration: duration.leavingScreen,
     open: false,
-    elevation: 16,
+    type: 'temporary', // Mobile first.
   };
 
-  state: State = {
+  state = {
     // Let's assume that the Drawer will always be rendered on user space.
     // We use that state is order to skip the appear transition during the
     // initial mount of the component.
@@ -173,13 +176,15 @@ class Drawer extends Component<DefaultProps, AllProps, State> {
       children,
       classes,
       className,
-      docked,
+      elevation,
       enterTransitionDuration,
       leaveTransitionDuration,
-      elevation,
+      ModalProps,
+      onRequestClose,
       open,
       SlideProps,
       theme,
+      type,
       ...other
     } = this.props;
 
@@ -190,6 +195,24 @@ class Drawer extends Component<DefaultProps, AllProps, State> {
     }
 
     const drawer = (
+      <Paper
+        elevation={type === 'temporary' ? elevation : 0}
+        square
+        className={classNames(classes.paper, classes[`anchor${capitalizeFirstLetter(anchor)}`])}
+      >
+        {children}
+      </Paper>
+    );
+
+    if (type === 'permanent') {
+      return (
+        <div className={classNames(classes.docked, className)} {...other}>
+          {drawer}
+        </div>
+      );
+    }
+
+    const slidingDrawer = (
       <Slide
         in={open}
         direction={getSlideDirection(anchor)}
@@ -198,34 +221,29 @@ class Drawer extends Component<DefaultProps, AllProps, State> {
         transitionAppear={!this.state.firstMount}
         {...SlideProps}
       >
-        <Paper
-          elevation={docked ? 0 : elevation}
-          square
-          className={classNames(classes.paper, classes[`anchor${capitalizeFirstLetter(anchor)}`])}
-        >
-          {children}
-        </Paper>
+        {drawer}
       </Slide>
     );
 
-    if (docked) {
-      const { onRequestClose, ...otherDocked } = other;
-
+    if (type === 'persistent') {
       return (
-        <div className={classNames(classes.docked, className)} {...otherDocked}>
-          {drawer}
+        <div className={classNames(classes.docked, className)} {...other}>
+          {slidingDrawer}
         </div>
       );
     }
 
+    // type === temporary
     return (
       <Modal
         backdropTransitionDuration={open ? enterTransitionDuration : leaveTransitionDuration}
-        className={classNames(classes.modal, className)}
-        {...other}
+        className={classes.modal}
         show={open}
+        onRequestClose={onRequestClose}
+        {...other}
+        {...ModalProps}
       >
-        {drawer}
+        {slidingDrawer}
       </Modal>
     );
   }

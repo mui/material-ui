@@ -1,11 +1,11 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-disable react/no-multi-comp */
 
-import React, { Component } from 'react';
+import React from 'react';
 import Paper from 'material-ui/Paper';
 import Tabs, { Tab } from 'material-ui/Tabs';
 
-class DisabledTabs extends Component {
+class DisabledTabs extends React.Component {
   state = {
     value: 0,
   };

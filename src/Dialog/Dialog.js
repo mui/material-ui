@@ -1,7 +1,7 @@
 // @flow
 
-import React, { createElement, cloneElement } from 'react';
-import type { Element } from 'react';
+import React from 'react';
+import type { Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -54,7 +54,7 @@ export type Props = {
   /**
    * Dialog children, usually the included sub-components.
    */
-  children?: Element<*>,
+  children?: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -135,7 +135,7 @@ export type Props = {
   /**
    * Transition component.
    */
-  transition?: Function | Element<*>,
+  transition?: Node,
 };
 
 type AllProps = DefaultProps & Props;
@@ -153,7 +153,7 @@ function Dialog(props: AllProps) {
     ignoreEscapeKeyUp,
     enterTransitionDuration,
     leaveTransitionDuration,
-    maxWidth: maxWidthProp,
+    maxWidth,
     open,
     onBackdropClick,
     onEscapeKeyUp,
@@ -168,9 +168,8 @@ function Dialog(props: AllProps) {
     ...other
   } = props;
 
-  // workaround: see #2 test case from https://github.com/facebook/flow/issues/1660#issuecomment-302468866
-  const maxWidth = maxWidthProp || Dialog.defaultProps.maxWidth;
-  const createTransitionFn = typeof transition === 'function' ? createElement : cloneElement;
+  const createTransitionFn =
+    typeof transition === 'function' ? React.createElement : React.cloneElement;
 
   return (
     <Modal
@@ -185,7 +184,7 @@ function Dialog(props: AllProps) {
       {...other}
     >
       {createTransitionFn(
-        /* $FlowFixMe */
+        /* $FlowFixMe - FIXME See Snackbar for similar create vs clone example */
         transition,
         {
           in: open,

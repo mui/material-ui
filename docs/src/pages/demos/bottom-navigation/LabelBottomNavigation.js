@@ -1,6 +1,6 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import BottomNavigation, { BottomNavigationButton } from 'material-ui/BottomNavigation';
@@ -15,7 +15,7 @@ const styles = {
   },
 };
 
-class LabelBottomNavigation extends Component {
+class LabelBottomNavigation extends React.Component {
   state = {
     value: 'recents',
   };

@@ -1,7 +1,7 @@
 // @flow
 
-import React, { Component } from 'react';
-import type { Element } from 'react';
+import React from 'react';
+import type { ComponentType, Node } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -23,7 +23,7 @@ export type Props = {
   /**
    * The content of the component, normally `TableRow`.
    */
-  children?: Element<*>,
+  children?: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -36,15 +36,15 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: string | Function,
+  component?: string | ComponentType<*>,
 };
 
 type AllProps = DefaultProps & Props;
 
-class TableHead extends Component<DefaultProps, AllProps, void> {
+class TableHead extends React.Component<AllProps, void> {
   props: AllProps;
 
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     classes: {},
     component: 'thead',
   };

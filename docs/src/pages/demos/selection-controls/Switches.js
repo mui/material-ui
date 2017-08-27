@@ -1,6 +1,6 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import green from 'material-ui/colors/green';
@@ -16,7 +16,7 @@ const styles = {
   },
 };
 
-class Switches extends Component {
+class Switches extends React.Component {
   state = {
     checkedA: true,
     checkedB: false,

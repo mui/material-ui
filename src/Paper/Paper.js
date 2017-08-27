@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react';
+import type { ComponentType } from 'react';
 import classNames from 'classnames';
 import warning from 'warning';
 import withStyles from '../styles/withStyles';
@@ -45,7 +46,7 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: string | Function,
+  component?: string | ComponentType<*>,
   /**
    * Shadow depth, corresponds to `dp` in the spec.
    * It's accepting values between 0 and 24 inclusive.

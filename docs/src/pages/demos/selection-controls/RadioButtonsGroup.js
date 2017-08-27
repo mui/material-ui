@@ -1,6 +1,6 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Radio, { RadioGroup } from 'material-ui/Radio';
@@ -12,7 +12,7 @@ const styles = theme => ({
   },
 });
 
-class RadioButtonsGroup extends Component {
+class RadioButtonsGroup extends React.Component {
   state = {
     value: '',
   };

@@ -1,6 +1,6 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
@@ -16,7 +16,7 @@ const styles = theme => ({
   },
 });
 
-class CheckboxList extends Component {
+class CheckboxList extends React.Component {
   state = {
     checked: [0],
   };

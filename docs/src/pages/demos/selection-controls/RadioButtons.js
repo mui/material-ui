@@ -1,9 +1,9 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 
-import React, { Component } from 'react';
+import React from 'react';
 import Radio from 'material-ui/Radio';
 
-class RadioButtons extends Component {
+class RadioButtons extends React.Component {
   state = {
     selectedValue: undefined,
   };

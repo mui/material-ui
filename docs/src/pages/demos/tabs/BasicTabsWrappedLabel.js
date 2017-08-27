@@ -1,7 +1,7 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-disable react/no-multi-comp */
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
@@ -27,7 +27,7 @@ const styles = theme => ({
   },
 });
 
-class BasicTabsWrappedLabel extends Component {
+class BasicTabsWrappedLabel extends React.Component {
   state = {
     value: 'one',
   };

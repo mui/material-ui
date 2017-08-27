@@ -100,9 +100,9 @@ const styles = {
   },
 };
 
-class MyComponent extends Component {
+class MyComponent extends React.Component {
   render () {
-    return <div className={this.classes.root} />;
+    return <div className={this.props.classes.root} />;
   }
 }
 
@@ -121,9 +121,9 @@ const styles = {
 };
 
 @withStyles(styles)
-class MyComponent extends Component {
+class MyComponent extends React.Component {
   render () {
-    return <div className={this.classes.root} />;
+    return <div className={this.props.classes.root} />;
   }
 }
 

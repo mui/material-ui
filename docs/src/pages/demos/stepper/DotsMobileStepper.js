@@ -1,6 +1,6 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import MobileStepper from 'material-ui/MobileStepper';
@@ -12,7 +12,7 @@ const styles = {
   },
 };
 
-class DotsMobileStepper extends Component {
+class DotsMobileStepper extends React.Component {
   state = {
     activeStep: 0,
   };

@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import NextLink from 'next/link';
@@ -21,7 +21,7 @@ const styles = theme => ({
     color: theme.palette.primary[500],
   },
   variantAccent: {
-    color: theme.palette.accent.A400,
+    color: theme.palette.secondary.A400,
   },
   variantButton: {
     '&:hover': {
@@ -30,7 +30,7 @@ const styles = theme => ({
   },
 });
 
-class OnClick extends Component {
+class OnClick extends React.Component<any, any> {
   handleClick = event => {
     if (this.props.onClick) {
       this.props.onClick(event);

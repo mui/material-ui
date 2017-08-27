@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { Element } from 'react';
+import type { ComponentType, Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -52,7 +52,7 @@ export const styles = (theme: Object) => ({
     color: theme.palette.text.secondary,
   },
   colorAccent: {
-    color: theme.palette.accent.A400,
+    color: theme.palette.secondary.A400,
   },
 });
 
@@ -72,11 +72,12 @@ type Type =
 type DefaultProps = {
   classes: Object,
   headlineMapping: { [key: Type]: string },
+  type: Type,
 };
 
 export type Props = {
   align?: 'inherit' | 'left' | 'center' | 'right' | 'justify',
-  children?: Element<*>,
+  children?: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -90,7 +91,7 @@ export type Props = {
    * Either a string to use a DOM element or a component.
    * By default we map the type to a good default headline component.
    */
-  component?: string | Function,
+  component?: string | ComponentType<*>,
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
@@ -119,9 +120,7 @@ export type Props = {
   type?: Type,
 };
 
-type AllProps = DefaultProps & Props;
-
-function Typography(props: AllProps) {
+function Typography(props: DefaultProps & Props) {
   const {
     align,
     classes,
@@ -132,12 +131,9 @@ function Typography(props: AllProps) {
     headlineMapping,
     noWrap,
     paragraph,
-    type: typeProp,
+    type,
     ...other
   } = props;
-
-  // workaround: see https://github.com/facebook/flow/issues/1660#issuecomment-297775427
-  const type = typeProp || Typography.defaultProps.type;
 
   const className = classNames(
     classes.root,

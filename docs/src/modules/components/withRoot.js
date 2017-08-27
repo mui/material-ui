@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import pure from 'recompose/pure';
@@ -173,7 +173,17 @@ function withRoot(BaseComponent) {
   // Prevent rerendering
   const PureBaseComponent = pure(BaseComponent);
 
-  class WithRoot extends Component {
+  type WithRootProps = {
+    reduxServerState?: Object,
+    url: Object,
+  };
+  class WithRoot extends React.Component<WithRootProps> {
+    props: WithRootProps;
+    static childContextTypes = {
+      url: PropTypes.object,
+      pages: PropTypes.array,
+      activePage: PropTypes.object,
+    };
     static getInitialProps(ctx) {
       let initialProps = {};
       const redux = initRedux({});
@@ -200,7 +210,7 @@ function withRoot(BaseComponent) {
 
     constructor(props) {
       super(props);
-      this.redux = initRedux(this.props.reduxServerState);
+      this.redux = initRedux(this.props.reduxServerState || {});
     }
 
     getChildContext() {
@@ -227,17 +237,6 @@ function withRoot(BaseComponent) {
   if (process.env.NODE_ENV !== 'production') {
     WithRoot.displayName = wrapDisplayName(BaseComponent, 'withRoot');
   }
-
-  WithRoot.propTypes = {
-    reduxServerState: PropTypes.object,
-    url: PropTypes.object.isRequired,
-  };
-
-  WithRoot.childContextTypes = {
-    url: PropTypes.object,
-    pages: PropTypes.array,
-    activePage: PropTypes.object,
-  };
 
   return WithRoot;
 }

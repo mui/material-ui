@@ -1,7 +1,7 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-disable react/no-multi-comp */
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import SwipeableViews from 'react-swipeable-views';
@@ -26,7 +26,7 @@ const styles = theme => ({
   },
 });
 
-class FullWidthTabs extends Component {
+class FullWidthTabs extends React.Component {
   state = {
     value: 0,
   };

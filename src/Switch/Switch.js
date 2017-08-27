@@ -1,7 +1,7 @@
 // @flow weak
 
 import React from 'react';
-import type { Element } from 'react';
+import type { Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import createSwitch from '../internal/SwitchBase';
@@ -79,7 +79,7 @@ export type Props = {
    * The icon to display when the component is checked.
    * If a string is provided, it will be used as a font ligature.
    */
-  checkedIcon?: Element<*>,
+  checkedIcon?: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -108,7 +108,7 @@ export type Props = {
    * The icon to display when the component is unchecked.
    * If a string is provided, it will be used as a font ligature.
    */
-  icon?: Element<*>,
+  icon?: Node,
   /**
    * Properties applied to the `input` element.
    */

@@ -1,10 +1,10 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 
-import React, { Component } from 'react';
+import React from 'react';
 import Button from 'material-ui/Button';
 import Menu, { MenuItem } from 'material-ui/Menu';
 
-class SimpleMenu extends Component {
+class SimpleMenu extends React.Component {
   state = {
     anchorEl: undefined,
     open: false,

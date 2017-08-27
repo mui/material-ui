@@ -21,7 +21,7 @@ export const styles = (theme: Object) => ({
     color: theme.palette.primary[500],
   },
   accentColor: {
-    color: theme.palette.accent.A200,
+    color: theme.palette.secondary.A200,
   },
   svg: {
     transform: 'rotate(-90deg)',

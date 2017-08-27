@@ -1,10 +1,11 @@
 // @flow weak
 
-import React, { Component } from 'react';
-import type { Element } from 'react';
+import React from 'react';
+import type { ComponentType, Node } from 'react';
 import { findDOMNode } from 'react-dom';
 import warning from 'warning';
 import classNames from 'classnames';
+import getDisplayName from 'recompose/getDisplayName';
 import keycode from 'keycode';
 import withStyles from '../styles/withStyles';
 import { listenForFocusKeys, detectKeyboardFocus, focusKeyPressed } from '../utils/keyboardFocus';
@@ -32,12 +33,7 @@ export const styles = (theme: Object) => ({
 });
 
 type DefaultProps = {
-  centerRipple: boolean,
   classes: Object,
-  focusRipple: boolean,
-  disableRipple: boolean,
-  tabIndex: string,
-  type: string,
 };
 
 export type Props = {
@@ -49,7 +45,7 @@ export type Props = {
   /**
    * The content of the component.
    */
-  children?: Element<*>,
+  children?: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -63,7 +59,7 @@ export type Props = {
    * Either a string to use a DOM element or a component.
    * The default value is a `button`.
    */
-  component?: string | Function,
+  component?: string | ComponentType<*>,
   /**
    * If `true`, the base button will be disabled.
    */
@@ -96,10 +92,8 @@ export type Props = {
   /**
    * Callback fired when the component is focused with a keyboard.
    * We trigger a `onFocus` callback too.
-   *
-   * @param {object} event The event source of the callback
    */
-  onKeyboardFocus?: Function,
+  onKeyboardFocus?: (event: SyntheticEvent<>) => void,
   /**
    * @ignore
    */
@@ -148,9 +142,9 @@ type State = {
   keyboardFocused: boolean,
 };
 
-class ButtonBase extends Component<DefaultProps, AllProps, State> {
+class ButtonBase extends React.Component<AllProps, State> {
   props: AllProps;
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     centerRipple: false,
     classes: {},
     focusRipple: false,
@@ -159,7 +153,7 @@ class ButtonBase extends Component<DefaultProps, AllProps, State> {
     type: 'button',
   };
 
-  state: State = {
+  state = {
     keyboardFocused: false,
   };
 
@@ -168,8 +162,14 @@ class ButtonBase extends Component<DefaultProps, AllProps, State> {
 
     warning(
       this.button,
-      `Material-UI: please provide a class to the component property.
-      The keyboard focus logic needs a reference to work correctly.`,
+      [
+        'Material-UI: please provide a class to the component property.',
+        // eslint-disable-next-line prefer-template
+        'You need to fix: ' + getDisplayName(this.props.component) === 'component'
+          ? this.props.component
+          : getDisplayName(this.props.component),
+        'The keyboard focus logic needs a reference to work correctly.',
+      ].join('\n'),
     );
   }
 

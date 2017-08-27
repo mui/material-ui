@@ -1,4 +1,5 @@
 // @flow
+
 import React from 'react';
 import { assert } from 'chai';
 import { isMuiComponent } from './reactHelpers';

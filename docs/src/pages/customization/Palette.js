@@ -11,7 +11,7 @@ import Button from 'material-ui/Button';
 const theme = createMuiTheme({
   palette: createPalette({
     primary: purple, // Purple and green play nicely together.
-    accent: {
+    secondary: {
       ...green,
       A400: '#00e677',
     },

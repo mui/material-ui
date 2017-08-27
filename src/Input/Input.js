@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { Component } from 'react';
+import React from 'react';
+import type { ComponentType } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -220,7 +221,7 @@ export type Props = {
    * Either a string to use a DOM element or a component.
    * It's an `input` by default.
    */
-  component?: string | Function,
+  component?: string | ComponentType<*>,
   /**
    * The default input value, useful when not controlling the component.
    */
@@ -323,7 +324,7 @@ type State = {
   focused: boolean,
 };
 
-class Input extends Component<DefaultProps, AllProps, State> {
+class Input extends React.Component<AllProps, State> {
   props: AllProps;
   static muiName = 'Input';
   static defaultProps = {

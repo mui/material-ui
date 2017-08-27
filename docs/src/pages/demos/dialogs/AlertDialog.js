@@ -1,6 +1,6 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 
-import React, { Component } from 'react';
+import React from 'react';
 import Button from 'material-ui/Button';
 import Dialog, {
   DialogActions,
@@ -9,7 +9,7 @@ import Dialog, {
   DialogTitle,
 } from 'material-ui/Dialog';
 
-export default class AlertDialog extends Component {
+export default class AlertDialog extends React.Component {
   state = {
     open: false,
   };

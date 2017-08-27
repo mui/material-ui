@@ -4,7 +4,7 @@
 declare module 'enzyme' {
   declare type PredicateFunction<T: Wrapper> = (wrapper: T) => boolean;
   declare type NodeOrNodes = React$Element<any> | Array<React$Element<any>>;
-  declare type EnzymeSelector = string | ReactClass<any> | Object;
+  declare type EnzymeSelector = string | React$Element<*> | Object;
 
   // CheerioWrapper is a type alias for an actual cheerio instance
   // TODO: Reference correct type from cheerio's type declarations

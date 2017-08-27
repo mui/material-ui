@@ -2,7 +2,7 @@
 // @inheritedComponent ButtonBase
 
 import React from 'react';
-import type { Element } from 'react';
+import type { ComponentType, Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
@@ -60,9 +60,9 @@ export const styles = (theme: Object) => ({
     },
   },
   flatAccent: {
-    color: theme.palette.accent.A200,
+    color: theme.palette.secondary.A200,
     '&:hover': {
-      backgroundColor: fade(theme.palette.accent.A200, 0.12),
+      backgroundColor: fade(theme.palette.secondary.A200, 0.12),
       // Reset on mouse devices
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -124,13 +124,13 @@ export const styles = (theme: Object) => ({
     },
   },
   raisedAccent: {
-    color: theme.palette.getContrastText(theme.palette.accent.A200),
-    backgroundColor: theme.palette.accent.A200,
+    color: theme.palette.getContrastText(theme.palette.secondary.A200),
+    backgroundColor: theme.palette.secondary.A200,
     '&:hover': {
-      backgroundColor: theme.palette.accent.A400,
+      backgroundColor: theme.palette.secondary.A400,
       // Reset on mouse devices
       '@media (hover: none)': {
-        backgroundColor: theme.palette.accent.A200,
+        backgroundColor: theme.palette.secondary.A200,
       },
     },
   },
@@ -169,7 +169,7 @@ export type Props = {
   /**
    * The content of the button.
    */
-  children: Element<*>,
+  children: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -187,7 +187,7 @@ export type Props = {
    * Either a string to use a DOM element or a component.
    * The default value is a `button`.
    */
-  component?: string | Function,
+  component?: string | ComponentType<*>,
   /**
    * Uses a smaller minWidth, ideal for things like card actions.
    */

@@ -82,7 +82,7 @@ describe('until', () => {
   const Foo = () => <Div />;
   Foo.contextTypes = { quux: PropTypes.bool.isRequired };
 
-  class Bar extends React.Component {
+  class Bar extends React.Component<{}> {
     static childContextTypes = { quux: PropTypes.bool };
     getChildContext = () => ({ quux: true });
     render = () => <Foo />;

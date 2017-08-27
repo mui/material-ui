@@ -1,10 +1,10 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 
-import React, { Component } from 'react';
+import React from 'react';
 import Button from 'material-ui/Button';
 import Snackbar from 'material-ui/Snackbar';
 
-class PositionedSnackbar extends Component {
+class PositionedSnackbar extends React.Component {
   state = {
     open: false,
     vertical: null,

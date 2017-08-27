@@ -1,7 +1,7 @@
 // @flow
 
-import React, { Children, Component } from 'react';
-import type { Element } from 'react';
+import React from 'react';
+import type { ChildrenArray, ComponentType } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -46,7 +46,7 @@ export type Props = {
   /**
    * The contents of the form control.
    */
-  children?: Element<*>,
+  children?: ChildrenArray<*>,
   /**
    * Useful to extend the style applied to components.
    */
@@ -59,7 +59,7 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: string | Function,
+  component?: string | ComponentType<*>,
   /**
    * If `true`, the label, input and helper text should be displayed in a disabled state.
    */
@@ -100,7 +100,7 @@ type State = {
 /**
  * Provides context such as dirty/focused/error/required for form inputs.
  */
-class FormControl extends Component<DefaultProps, AllProps, State> {
+class FormControl extends React.Component<AllProps, State> {
   props: AllProps;
 
   static defaultProps = {
@@ -117,7 +117,7 @@ class FormControl extends Component<DefaultProps, AllProps, State> {
     muiFormControl: PropTypes.object.isRequired,
   };
 
-  state: State = {
+  state = {
     dirty: false,
     focused: false,
   };
@@ -145,11 +145,14 @@ class FormControl extends Component<DefaultProps, AllProps, State> {
   componentWillMount() {
     // We need to iterate through the children and find the Input in order
     // to fully support server side rendering.
-    Children.forEach(this.props.children, child => {
-      if (isMuiComponent(child, 'Input') && isDirty(child.props, true)) {
-        this.setState({ dirty: true });
-      }
-    });
+    const { children } = this.props;
+    if (children) {
+      React.Children.forEach(children, child => {
+        if (isMuiComponent(child, 'Input') && isDirty(child.props, true)) {
+          this.setState({ dirty: true });
+        }
+      });
+    }
   }
 
   handleFocus = event => {

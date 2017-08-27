@@ -1,10 +1,10 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 
-import React, { Component } from 'react';
+import React from 'react';
 import { FormControlLabel } from 'material-ui/Form';
 import Switch from 'material-ui/Switch';
 
-class SwitchLabels extends Component {
+class SwitchLabels extends React.Component {
   state = {
     checkedA: true,
     checkedB: false,

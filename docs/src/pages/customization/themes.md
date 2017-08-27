@@ -28,7 +28,7 @@ A color intention is a mapping of a palette to a given intention within your app
 We expose the following color intentions:
 
 - primary - used to represent primary interface elements for a user.
-- accent - used to represent secondary interface elements for a user.
+- secondary - used to represent secondary interface elements for a user.
 - error - used to represent interface elements that the user should be careful of.
 
 The palette is using the hues prefixed with `A` (`A200`, etc.) for the accent color and the hues unprefixed for the other intentions.

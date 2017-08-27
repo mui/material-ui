@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { Element } from 'react';
+import type { Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -11,7 +11,7 @@ export const styles = (theme: Object) => ({
     userSelect: 'none',
   },
   colorAccent: {
-    color: theme.palette.accent.A200,
+    color: theme.palette.secondary.A200,
   },
   colorAction: {
     color: theme.palette.action.active,
@@ -39,7 +39,7 @@ export type Props = {
   /**
    * The name of the icon font ligature.
    */
-  children?: Element<*>,
+  children?: Node,
   /**
    * Useful to extend the style applied to components.
    */

@@ -1,6 +1,6 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemText } from 'material-ui/List';
@@ -20,7 +20,7 @@ const options = [
   'Hide all notification content',
 ];
 
-class SimpleListMenu extends Component {
+class SimpleListMenu extends React.Component {
   state = {
     anchorEl: undefined,
     open: false,

@@ -1,6 +1,6 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import { CircularProgress } from 'material-ui/Progress';
@@ -27,7 +27,7 @@ const styles = {
   },
 };
 
-class CircularFab extends Component {
+class CircularFab extends React.Component {
   state = {
     loading: false,
     success: false,

@@ -1,4 +1,5 @@
 // @flow
+
 import warning from 'warning';
 import { keys as breakpoints } from '../styles/breakpoints';
 import withWidth, { isWidthDown, isWidthUp } from '../utils/withWidth';
@@ -32,6 +33,11 @@ function HiddenJs(props: Props) {
     width,
     ...other
   } = props;
+
+  warning(
+    Object.keys(other).length === 0,
+    `Material-UI: unsupported properties received ${JSON.stringify(other)} by \`<Hidden />\`.`,
+  );
 
   let visible = true;
 
@@ -70,11 +76,6 @@ function HiddenJs(props: Props) {
   if (!visible) {
     return null;
   }
-
-  warning(
-    Object.keys(other).length === 0,
-    `Material-UI: unsupported properties received ${JSON.stringify(other)}`,
-  );
 
   return children;
 }

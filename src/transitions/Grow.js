@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
+import React from 'react';
 import type { Element } from 'react';
 import withTheme from '../styles/withTheme';
 import Transition from '../internal/Transition';
@@ -18,7 +18,7 @@ type DefaultProps = {
 
 export type Props = {
   /**
-   * The content of the component.
+   * A single child content element.
    */
   children?: Element<*>,
   /**
@@ -64,9 +64,9 @@ type AllProps = DefaultProps & Props;
 /**
  * Grow transition used by popovers such as Menu.
  */
-class Grow extends Component<DefaultProps, AllProps, void> {
+class Grow extends React.Component<AllProps, void> {
   props: AllProps;
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     theme: {},
     transitionDuration: 'auto',
   };

@@ -1,19 +1,17 @@
 // @flow
-/**
- * A grid component using the following libs as inspiration.
- *
- * For the implementation:
- * - http://v4-alpha.getbootstrap.com/layout/flexbox-grid/
- * - https://github.com/kristoferjoseph/flexboxgrid/blob/master/src/css/flexboxgrid.css
- * - https://github.com/roylee0704/react-flexbox-grid
- * - https://material.angularjs.org/latest/layout/introduction
- *
- * Follow this flexbox Guide to better understand the underlying model:
- * - https://css-tricks.com/snippets/css/a-guide-to-flexbox/
- */
+// A grid component using the following libs as inspiration.
+//
+// For the implementation:
+// - http://v4-alpha.getbootstrap.com/layout/flexbox-grid/
+// - https://github.com/kristoferjoseph/flexboxgrid/blob/master/src/css/flexboxgrid.css
+// - https://github.com/roylee0704/react-flexbox-grid
+// - https://material.angularjs.org/latest/layout/introduction
+//
+// Follow this flexbox Guide to better understand the underlying model:
+// - https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
 import React from 'react';
-import type { Element } from 'react';
+import type { ComponentType, Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import requirePropFactory from '../utils/requirePropFactory';
@@ -147,13 +145,14 @@ type GridSizes = boolean | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 type DefaultProps = {
   classes: Object,
+  component: ComponentType<*>,
 };
 
 export type Props = {
   /**
    * The content of the component.
    */
-  children?: Element<*>,
+  children?: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -166,7 +165,7 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: string | Function,
+  component?: string | ComponentType<*>,
   /**
    * If `true`, the component will have the flex *container* behavior.
    * You should be wrapping *items* with a *container*.
@@ -233,13 +232,11 @@ export type Props = {
   xl?: GridSizes,
 };
 
-type AllProps = DefaultProps & Props;
-
-function Grid(props: AllProps) {
+function Grid(props: DefaultProps & Props) {
   const {
     classes,
     className: classNameProp,
-    component,
+    component: ComponentProp,
     container,
     item,
     align,
@@ -279,9 +276,6 @@ function Grid(props: AllProps) {
     classNameProp,
   );
   const gridProps = { className, ...other };
-
-  // workaround: see https://github.com/facebook/flow/issues/1660#issuecomment-297775427
-  const ComponentProp = component || Grid.defaultProps.component;
 
   if (hidden) {
     return (

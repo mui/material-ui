@@ -1,7 +1,7 @@
 // @flow
 
-import React, { Component } from 'react';
-import type { Element } from 'react';
+import React from 'react';
+import type { Node, Element } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import IconButton from '../IconButton';
@@ -32,10 +32,7 @@ export const styles = {
 };
 
 type DefaultProps = {
-  checkedIcon: Element<*>,
   classes: Object,
-  disableRipple: boolean,
-  icon: Element<*>,
 };
 
 // NB: If changed, please update Checkbox, Switch and Radio
@@ -82,7 +79,7 @@ export type Props = {
    * The icon to display when the component is unchecked.
    * If a string is provided, it will be used as a font ligature.
    */
-  icon?: Element<*>,
+  icon?: Node,
   /**
    * If `true`, the component appears indeterminate.
    */
@@ -91,7 +88,7 @@ export type Props = {
    * The icon to display when the component is indeterminate.
    * If a string is provided, it will be used as a font ligature.
    */
-  indeterminateIcon?: string | Element<*>,
+  indeterminateIcon?: Node,
   /**
    * Properties applied to the `input` element.
    */
@@ -143,16 +140,16 @@ export default function createSwitch(
   /**
    * @ignore - internal component.
    */
-  class SwitchBase extends Component<DefaultProps, AllProps, State> {
+  class SwitchBase extends React.Component<AllProps, State> {
     props: AllProps;
-    static defaultProps: DefaultProps = {
+    static defaultProps = {
       checkedIcon: defaultCheckedIcon,
       classes: {},
       disableRipple: false,
       icon: defaultIcon,
     };
 
-    state: State = {};
+    state = {};
 
     componentWillMount() {
       const { props } = this;

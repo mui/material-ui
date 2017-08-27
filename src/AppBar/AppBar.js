@@ -2,7 +2,7 @@
 // @inheritedComponent Paper
 
 import React from 'react';
-import type { Element } from 'react';
+import type { Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -40,8 +40,8 @@ export const styles = (theme: Object) => ({
     color: theme.palette.getContrastText(theme.palette.primary[500]),
   },
   colorAccent: {
-    backgroundColor: theme.palette.accent.A200,
-    color: theme.palette.getContrastText(theme.palette.accent.A200),
+    backgroundColor: theme.palette.secondary.A200,
+    color: theme.palette.getContrastText(theme.palette.secondary.A200),
   },
 });
 
@@ -55,7 +55,7 @@ export type Props = {
   /**
    * The content of the component.
    */
-  children?: Element<*>,
+  children?: Node,
   /**
    * Useful to extend the style applied to components.
    */

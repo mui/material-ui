@@ -1,19 +1,17 @@
 // @flow
 
-import React, { Component } from 'react';
-import type { Element } from 'react';
+import React from 'react';
+import type { Node } from 'react';
 import classNames from 'classnames';
 import { findDOMNode } from 'react-dom';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import withStyles from '../styles/withStyles';
-import Popover from '../internal/Popover';
+import Popover from '../Popover';
 import MenuList from './MenuList';
 import type { TransitionCallback } from '../internal/Transition';
 
 type DefaultProps = {
   classes: Object,
-  open: boolean,
-  transitionDuration: 'auto',
 };
 
 export type Props = {
@@ -24,7 +22,7 @@ export type Props = {
   /**
    * Menu contents, normally `MenuItem`s.
    */
-  children?: Element<*>,
+  children?: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -81,22 +79,21 @@ type AllProps = DefaultProps & Props;
 
 export const styles = {
   root: {
-    /**
-     * specZ: The maximum height of a simple menu should be one or more rows less than the view
-     * height. This ensures a tappable area outside of the simple menu with which to dismiss
-     * the menu.
-     */
+    // specZ: The maximum height of a simple menu should be one or more rows less than the view
+    // height. This ensures a tappable area outside of the simple menu with which to dismiss
+    // the menu.
     maxHeight: 'calc(100vh - 96px)',
-    WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
+    // Add iOS momentum scrolling.
+    WebkitOverflowScrolling: 'touch',
     // So we see the menu when it's empty.
     minWidth: 16,
     minHeight: 16,
   },
 };
 
-class Menu extends Component<DefaultProps, AllProps, void> {
+class Menu extends React.Component<AllProps, void> {
   props: AllProps;
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     classes: {},
     open: false,
     transitionDuration: 'auto',
@@ -131,7 +128,7 @@ class Menu extends Component<DefaultProps, AllProps, void> {
     }
   };
 
-  handleListKeyDown = (event: SyntheticUIEvent, key: string) => {
+  handleListKeyDown = (event: SyntheticUIEvent<>, key: string) => {
     if (key === 'tab') {
       event.preventDefault();
       if (this.props.onRequestClose) {
@@ -153,6 +150,7 @@ class Menu extends Component<DefaultProps, AllProps, void> {
 
   render() {
     const { children, classes, className, MenuListProps, onEnter, ...other } = this.props;
+
     return (
       <Popover
         getContentAnchorEl={this.getContentAnchorEl}

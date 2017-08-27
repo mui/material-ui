@@ -2,11 +2,11 @@
 
 The roadmap is a living document, and it is likely that priorities will change, but the list below should give some indication of our plans for the next major release, and for the future.
 
-:warning: New features based on `v0.19.x` have low priority and will most likely not be reviewed nor merged. We want to focus on bug fixes.
+⚠️ New features based on `v0.19.x` have low priority and will most likely not be reviewed nor merged. We want to focus on bug fixes.
 
 ## Version 1 (published on NPM under the next tag)
 
-Version 1 release is going to be huge :sparkles:.
+Version 1 release is going to be huge ✨.
 We host a temporary [documentation](https://material-ui-1dab0.firebaseapp.com) for the pre-releases.
 
 Material-UI was started [3 years ago](https://github.com/callemall/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46).
@@ -48,12 +48,12 @@ That was also an issue for users wanting to use a single component without payin
 
 We later came up with an **inline-style approach** solving the majority of our issues.
 But:
-- We had lost around 25% of the performance :turtle:.
+- We had lost around 25% of the performance 🐢.
 Computing the inline-style at each render with no caching isn't really efficient.
-- Some more advanced CSS feature wasn't available, e.g. keyframes, pseudo-elements, pseudo-classes :nail_care:.
+- Some more advanced CSS feature wasn't available, e.g. keyframes, pseudo-elements, pseudo-classes 💅.
 - Media queries aren't available on the server. At least [not yet](http://caniuse.com/#feat=client-hints-dpr-width-viewport).
 - The debugging was really challenging. Browser dev tools aren't tuned for inline-styles.
-- React v15 has changed the method of injecting styles into the DOM meaning, for example, that prefixing all browsers for `display:flex` is no longer possible :boom:.
+- React v15 has changed the method of injecting styles into the DOM meaning, for example, that prefixing all browsers for `display:flex` is no longer possible 💥.
 
 ### Does JSS solve them?
 
@@ -99,7 +99,7 @@ however, we are going to try to follow this plan:
 3. We fix the last API inconsistencies (as we can make breaking changes without having to worry much).
 4. We merge the beta branch into master
 5. We publish our first pre-releases, if all goes well, we move to the next step.
-6. We publish v1 :tada:
+6. We publish v1 🎉
 
 At that point, some features and components from the v0.x will be missing in the v1.
 So, what about them?

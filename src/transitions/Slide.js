@@ -1,7 +1,7 @@
 // @flow
 
-import React, { Component } from 'react';
-import type { Element as ReactElement } from 'react'; // global Element used below.
+import React from 'react';
+import type { Element } from 'react';
 import { findDOMNode } from 'react-dom';
 import Transition from '../internal/Transition';
 import withTheme from '../styles/withTheme';
@@ -13,7 +13,7 @@ const GUTTER = 24;
 // Translate the element so he can't be seen in the screen.
 // Later, we gonna translate back the element to his original location
 // with `translate3d(0, 0, 0)`.`
-function getTranslateValue(props, element: Element) {
+function getTranslateValue(props, element: HTMLElement) {
   const { direction } = props;
   const rect = element.getBoundingClientRect();
 
@@ -32,7 +32,6 @@ function getTranslateValue(props, element: Element) {
 type Direction = 'left' | 'right' | 'up' | 'down';
 
 type DefaultProps = {
-  direction: Direction,
   enterTransitionDuration: number,
   leaveTransitionDuration: number,
   theme: Object,
@@ -40,9 +39,9 @@ type DefaultProps = {
 
 export type Props = {
   /**
-   * @ignore
+   * A single child content element.
    */
-  children?: ReactElement<*>,
+  children?: Element<*>,
   /**
    * Direction the child element will enter from.
    */
@@ -91,10 +90,10 @@ export type Props = {
 
 type AllProps = DefaultProps & Props;
 
-class Slide extends Component<DefaultProps, AllProps, void> {
+class Slide extends React.Component<AllProps, void> {
   props: AllProps;
 
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     direction: 'down',
     enterTransitionDuration: duration.enteringScreen,
     leaveTransitionDuration: duration.leavingScreen,
@@ -109,8 +108,7 @@ class Slide extends Component<DefaultProps, AllProps, void> {
       if (element instanceof HTMLElement) {
         const transform = getTranslateValue(this.props, element);
         element.style.transform = transform;
-        // $FlowFixMe
-        element.style.WebkitTransform = transform;
+        element.style.webkitTransform = transform;
       }
     }
   }
@@ -122,11 +120,11 @@ class Slide extends Component<DefaultProps, AllProps, void> {
     // That's triggering a reflow.
     if (element.style.transform) {
       element.style.transform = 'translate3d(0, 0, 0)';
-      element.style.WebkitTransform = 'translate3d(0, 0, 0)';
+      element.style.webkitTransform = 'translate3d(0, 0, 0)';
     }
     const transform = getTranslateValue(this.props, element);
     element.style.transform = transform;
-    element.style.WebkitTransform = transform;
+    element.style.webkitTransform = transform;
 
     if (this.props.onEnter) {
       this.props.onEnter(element);
@@ -139,12 +137,12 @@ class Slide extends Component<DefaultProps, AllProps, void> {
       duration: this.props.enterTransitionDuration,
       easing: transitions.easing.easeOut,
     });
-    element.style.WebkitTransition = transitions.create('-webkit-transform', {
+    element.style.webkitTransition = transitions.create('-webkit-transform', {
       duration: this.props.enterTransitionDuration,
       easing: transitions.easing.easeOut,
     });
     element.style.transform = 'translate3d(0, 0, 0)';
-    element.style.WebkitTransform = 'translate3d(0, 0, 0)';
+    element.style.webkitTransform = 'translate3d(0, 0, 0)';
     if (this.props.onEntering) {
       this.props.onEntering(element);
     }
@@ -156,13 +154,13 @@ class Slide extends Component<DefaultProps, AllProps, void> {
       duration: this.props.leaveTransitionDuration,
       easing: transitions.easing.sharp,
     });
-    element.style.WebkitTransition = transitions.create('-webkit-transform', {
+    element.style.webkitTransition = transitions.create('-webkit-transform', {
       duration: this.props.leaveTransitionDuration,
       easing: transitions.easing.sharp,
     });
     const transform = getTranslateValue(this.props, element);
     element.style.transform = transform;
-    element.style.WebkitTransform = transform;
+    element.style.webkitTransform = transform;
 
     if (this.props.onExit) {
       this.props.onExit(element);

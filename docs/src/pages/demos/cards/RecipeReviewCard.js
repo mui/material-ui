@@ -1,6 +1,6 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import classnames from 'classnames';
@@ -38,7 +38,7 @@ const styles = theme => ({
   },
 });
 
-class RecipeReviewCard extends Component {
+class RecipeReviewCard extends React.Component {
   state = { expanded: false };
 
   handleExpandClick = () => {

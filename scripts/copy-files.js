@@ -4,6 +4,7 @@
 import path from 'path';
 import fse from 'fs-extra';
 import flowCopySource from 'flow-copy-source';
+import glob from 'glob';
 
 function copyFile(file) {
   const buildPath = path.resolve(__dirname, '../build/', path.basename(file));
@@ -13,6 +14,12 @@ function copyFile(file) {
       resolve();
     });
   }).then(() => console.log(`Copied ${file} to ${buildPath}`));
+}
+
+function copyTypings(from, to) {
+  const files = glob.sync('**/*.d.ts', { cwd: from });
+  const cmds = files.map(file => fse.copy(path.resolve(from, file), path.resolve(to, file)));
+  return Promise.all(cmds);
 }
 
 function createPackageFile() {
@@ -48,7 +55,6 @@ function createPackageFile() {
         main: './index.js',
         module: './index.es.js',
         'jsnext:main': './index.es.js',
-        typings: './index.d.ts',
         keywords,
         repository,
         license,
@@ -70,9 +76,11 @@ function createPackageFile() {
     });
 }
 
-const files = ['README.md', 'CHANGELOG.md', 'LICENSE', 'typings/index.d.ts'];
+const files = ['README.md', 'CHANGELOG.md', 'LICENSE'];
 
-Promise.all(files.map(file => copyFile(file))).then(() => createPackageFile());
+Promise.all(files.map(file => copyFile(file)))
+  .then(() => createPackageFile())
+  .then(() => copyTypings(path.resolve(__dirname, '../src'), path.resolve(__dirname, '../build')));
 
 // Copy original implementation files for flow.
 flowCopySource(['src'], 'build', { verbose: true, ignore: '**/*.spec.js' });

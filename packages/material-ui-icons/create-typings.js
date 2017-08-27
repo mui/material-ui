@@ -2,17 +2,14 @@
 /* eslint-disable no-console */
 
 // Generate type definitions for `material-ui-icons`.
-// The generated contens will be written to
-// `src/typings/material-ui-icons.d.ts`!
 
 const path = require('path');
-const { EOL } = require('os');
 const chalk = require('chalk');
 const { outputFile } = require('fs-extra');
 const glob = require('glob');
 
 const SRC_DIR = path.resolve(__dirname, 'src');
-const TARGET_FILE = path.resolve(__dirname, 'build/index.d.ts');
+const TARGET_DIR = path.resolve(__dirname, 'build');
 
 function getFiles(dir) {
   return new Promise((resolve, reject) => {
@@ -20,27 +17,41 @@ function getFiles(dir) {
   });
 }
 
-function normalizeFileName(name) {
-  return path.parse(name).name;
+function normalizeFileName(file) {
+  return path.parse(file).name;
 }
 
 function createTypeDefinition(name) {
-  return `declare module 'material-ui-icons/${name}' {
-    import SvgIcon from 'material-ui/SvgIcon';
-    export default class ${name} extends SvgIcon {}
-  }`;
+  return `import SvgIcon from 'material-ui/SvgIcon';
+export default class ${name} extends SvgIcon {}`;
 }
 
-function convertFilesToTypings(files) {
-  return files.map(file => createTypeDefinition(normalizeFileName(file)));
+function createIconTyping(file) {
+  const name = normalizeFileName(file);
+  return outputFile(path.resolve(TARGET_DIR, `${name}.d.ts`), createTypeDefinition(name), {
+    encoding: 'utf8',
+  });
+}
+
+function createIndexTyping(files) {
+  const contents = files
+    .map(file => {
+      const name = normalizeFileName(file);
+      return `export { default as ${name} } from './${name}';`;
+    })
+    .join('\n');
+  return outputFile(path.resolve(TARGET_DIR, 'index.d.ts'), contents, {
+    encoding: 'utf8',
+  });
 }
 
 console.log(`\u{1f52c}  Searching for modules inside "${chalk.dim(SRC_DIR)}".`);
 getFiles(SRC_DIR)
-  .then(convertFilesToTypings)
-  .then(typings => typings.join(`${EOL}${EOL}`))
-  .then(contents => outputFile(TARGET_FILE, contents, { encoding: 'utf8' }))
-  .then(() => console.log(`\u{1F5C4}  Written typings to ${chalk.dim(TARGET_FILE)}.`))
+  .then(files => {
+    const typings = files.map(file => createIconTyping(file));
+    return Promise.all([...typings, createIndexTyping(files)]);
+  })
+  .then(() => console.log(`\u{1F5C4}  Written typings to ${chalk.dim(TARGET_DIR)}.`))
   .catch(err => {
     if (err) {
       console.log(err);

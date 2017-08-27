@@ -33,6 +33,7 @@ marked.setOptions({
   sanitize: false,
   smartLists: true,
   smartypants: false,
+  // $FlowFixMe
   highlight(code) {
     return prism.highlight(code, prism.languages.jsx);
   },
@@ -173,7 +174,7 @@ const styles = theme => ({
     },
     '& a, & a code': {
       // Style taken from the Link component
-      color: theme.palette.accent.A400,
+      color: theme.palette.secondary.A400,
       textDecoration: 'none',
       '&:hover': {
         textDecoration: 'underline',

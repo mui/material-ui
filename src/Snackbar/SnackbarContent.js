@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { Element } from 'react';
+import type { Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
@@ -50,7 +50,7 @@ export type Props = {
   /**
    * The action to display.
    */
-  action?: Element<*>,
+  action?: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -62,7 +62,7 @@ export type Props = {
   /**
    * The message to display.
    */
-  message: Element<*>,
+  message: Node,
 };
 
 type AllProps = DefaultProps & Props;

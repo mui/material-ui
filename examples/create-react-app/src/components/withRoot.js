@@ -1,4 +1,4 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 import React, { Component } from 'react';
 import { JssProvider } from 'react-jss';
@@ -7,7 +7,7 @@ import wrapDisplayName from 'recompose/wrapDisplayName';
 import createContext from '../styles/createContext';
 
 // Apply some reset
-const styles = (theme: Object) => ({
+const styles = theme => ({
   '@global': {
     html: {
       background: theme.palette.background.default,

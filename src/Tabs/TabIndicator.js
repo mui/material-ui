@@ -15,7 +15,7 @@ export const styles = (theme: Object) => ({
     willChange: 'left, width',
   },
   colorAccent: {
-    backgroundColor: theme.palette.accent.A200,
+    backgroundColor: theme.palette.secondary.A200,
   },
   colorPrimary: {
     backgroundColor: theme.palette.primary[500],

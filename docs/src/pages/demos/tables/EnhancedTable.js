@@ -1,7 +1,7 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 /* eslint-disable react/no-multi-comp */
 
-import React, { Component } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
@@ -35,7 +35,7 @@ const columnData = [
   { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
 ];
 
-class EnhancedTableHead extends Component {
+class EnhancedTableHead extends React.Component {
   static propTypes = {
     numSelected: PropTypes.number.isRequired,
     onRequestSort: PropTypes.func.isRequired,
@@ -91,12 +91,12 @@ const toolbarStyles = theme => ({
   highlight:
     theme.palette.type === 'light'
       ? {
-          color: theme.palette.accent.A700,
-          backgroundColor: theme.palette.accent.A100,
+          color: theme.palette.secondary.A700,
+          backgroundColor: theme.palette.secondary.A100,
         }
       : {
-          color: theme.palette.accent.A100,
-          backgroundColor: theme.palette.accent.A700,
+          color: theme.palette.secondary.A100,
+          backgroundColor: theme.palette.secondary.A700,
         },
   spacer: {
     flex: '1 1 100%',
@@ -154,7 +154,7 @@ const styles = theme => ({
   },
 });
 
-class EnhancedTable extends Component {
+class EnhancedTable extends React.Component {
   state = {
     order: 'asc',
     orderBy: 'calories',
