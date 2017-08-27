@@ -207,8 +207,6 @@ class IconMenu extends Component {
       menuInitiallyKeyboardFocused: Events.isKeyboard(event),
       anchorEl: event.currentTarget,
     });
-
-    event.preventDefault();
   }
 
   handleItemTouchTap = (event, child) => {
