@@ -49,6 +49,7 @@ function createModalManager(
   const modals = [];
 
   let prevOverflow;
+  let prevPosition;
   let prevPaddings = [];
 
   function add(modal: Object) {
@@ -69,6 +70,7 @@ function createModalManager(
       // Save our current overflow so we can revert
       // back to it when all modals are closed!
       prevOverflow = container.style.overflow;
+      prevPosition = container.style.position;
 
       if (bodyIsOverflowing(container)) {
         prevPaddings = [getPaddingRight(container)];
@@ -84,6 +86,7 @@ function createModalManager(
       }
 
       container.style.overflow = 'hidden';
+      container.style.position = 'fixed';
     }
 
     return modalIdx;
@@ -100,6 +103,7 @@ function createModalManager(
 
     if (modals.length === 0) {
       container.style.overflow = prevOverflow;
+      container.style.position = prevPosition;
       container.style.paddingRight = prevPaddings[0];
 
       const fixedNodes = document.querySelectorAll('.mui-fixed');
@@ -107,6 +111,7 @@ function createModalManager(
         fixedNodes[i].style.paddingRight = `${prevPaddings[i + 1]}px`;
       }
 
+      prevPosition = undefined;
       prevOverflow = undefined;
       prevPaddings = [];
       if (hideSiblingNodes) {
