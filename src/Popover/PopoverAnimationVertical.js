@@ -8,7 +8,7 @@ function getStyles(props, context, state) {
   const {targetOrigin} = props;
   const {open} = state;
   const {muiTheme} = context;
-  const horizontal = targetOrigin.horizontal.replace('middle', 'vertical');
+  const horizontal = targetOrigin.horizontal.replace('middle', 'center');
 
   return {
     root: {
