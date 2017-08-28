@@ -24,7 +24,12 @@ const styles = theme => ({
       color: theme.palette.primary[500],
     },
   },
+  // https://github.com/philipwalton/flexbugs#3-min-height-on-a-flex-container-wont-apply-to-its-flex-items
+  toolbarIe11: {
+    display: 'flex',
+  },
   toolbar: {
+    flexGrow: 1,
     flexDirection: 'column',
     alignItems: 'flex-start',
     justifyContent: 'center',
@@ -86,22 +91,24 @@ function AppDrawer(props, context) {
 
   const drawer = (
     <div className={classes.nav}>
-      <Toolbar className={classes.toolbar}>
-        <Link className={classes.title} href="/" onClick={onRequestClose}>
-          <Typography type="title" gutterBottom color="inherit">
-            Material-UI
-          </Typography>
-        </Link>
-        {process.env.MATERIAL_UI_VERSION
-          ? <Link
-              className={classes.anchor}
-              href={`${GITHUB_RELEASE_BASE_URL}v${process.env.MATERIAL_UI_VERSION}`}
-            >
-              <Typography type="caption">{`v${process.env.MATERIAL_UI_VERSION}`}</Typography>
-            </Link>
-          : null}
-        <Divider absolute />
-      </Toolbar>
+      <div className={classes.toolbarIe11}>
+        <Toolbar className={classes.toolbar}>
+          <Link className={classes.title} href="/" onClick={onRequestClose}>
+            <Typography type="title" gutterBottom color="inherit">
+              Material-UI
+            </Typography>
+          </Link>
+          {process.env.MATERIAL_UI_VERSION
+            ? <Link
+                className={classes.anchor}
+                href={`${GITHUB_RELEASE_BASE_URL}v${process.env.MATERIAL_UI_VERSION}`}
+              >
+                <Typography type="caption">{`v${process.env.MATERIAL_UI_VERSION}`}</Typography>
+              </Link>
+            : null}
+          <Divider absolute />
+        </Toolbar>
+      </div>
       {renderNavItems(props, context.pages, context.activePage)}
     </div>
   );
