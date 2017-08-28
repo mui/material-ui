@@ -26,7 +26,10 @@ describe('<Snackbar />', () => {
     const wrapper = shallow(<Snackbar open message="message" />);
     assert.strictEqual(wrapper.name(), 'EventListener');
     assert.strictEqual(
-      wrapper.childAt(0).childAt(0).hasClass(classes.root),
+      wrapper
+        .childAt(0)
+        .childAt(0)
+        .hasClass(classes.root),
       true,
       'should have the root class',
     );
@@ -189,11 +192,7 @@ describe('<Snackbar />', () => {
   describe('prop: children', () => {
     it('should render the children', () => {
       const children = <div />;
-      const wrapper = shallow(
-        <Snackbar open>
-          {children}
-        </Snackbar>,
-      );
+      const wrapper = shallow(<Snackbar open>{children}</Snackbar>);
       assert.strictEqual(wrapper.contains(children), true);
     });
   });

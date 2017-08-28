@@ -71,9 +71,7 @@ class AppWrapper extends React.Component<any, any> {
           theme={this.styleContext.theme}
           sheetsManager={this.styleContext.sheetsManager}
         >
-          <AppFrame>
-            {children}
-          </AppFrame>
+          <AppFrame>{children}</AppFrame>
         </MuiThemeProvider>
       </JssProvider>
     );

@@ -51,7 +51,7 @@ class InteractiveGrid extends React.Component {
             direction={direction}
             justify={justify}
           >
-            {[0, 1, 2].map(value =>
+            {[0, 1, 2].map(value => (
               <Grid key={value} item>
                 <Paper
                   className={classes.paper}
@@ -59,8 +59,8 @@ class InteractiveGrid extends React.Component {
                 >
                   {`Cell ${value + 1}`}
                 </Paper>
-              </Grid>,
-            )}
+              </Grid>
+            ))}
           </Grid>
         </Grid>
         <Grid item xs={12}>

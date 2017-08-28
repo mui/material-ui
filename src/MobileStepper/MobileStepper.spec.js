@@ -80,7 +80,10 @@ describe('<MobileStepper />', () => {
   it('should set the backButtonText', () => {
     const wrapper = shallow(<MobileStepper backButtonText="Past" {...defaultProps} />);
     assert.strictEqual(
-      wrapper.childAt(0).childAt(1).text(),
+      wrapper
+        .childAt(0)
+        .childAt(1)
+        .text(),
       'Past',
       'should set the back button text',
     );
@@ -89,7 +92,10 @@ describe('<MobileStepper />', () => {
   it('should set the nextButtonText', () => {
     const wrapper = shallow(<MobileStepper nextButtonText="Future" {...defaultProps} />);
     assert.strictEqual(
-      wrapper.childAt(2).childAt(0).text(),
+      wrapper
+        .childAt(2)
+        .childAt(0)
+        .text(),
       'Future',
       'should set the back button text',
     );
@@ -130,7 +136,10 @@ describe('<MobileStepper />', () => {
   it('should render the first dot as active if activeStep is not set', () => {
     const wrapper = shallow(<MobileStepper type="dots" {...defaultProps} />);
     assert.strictEqual(
-      wrapper.childAt(1).childAt(0).hasClass(classes.dotActive),
+      wrapper
+        .childAt(1)
+        .childAt(0)
+        .hasClass(classes.dotActive),
       true,
       'should render the first dot active',
     );
@@ -139,7 +148,10 @@ describe('<MobileStepper />', () => {
   it('should honor the activeStep prop', () => {
     const wrapper = shallow(<MobileStepper type="dots" activeStep={1} {...defaultProps} />);
     assert.strictEqual(
-      wrapper.childAt(1).childAt(1).hasClass(classes.dotActive),
+      wrapper
+        .childAt(1)
+        .childAt(1)
+        .hasClass(classes.dotActive),
       true,
       'should render the second dot active',
     );

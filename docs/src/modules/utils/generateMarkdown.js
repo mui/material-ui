@@ -164,35 +164,39 @@ function generateProps(reactAPI) {
     return text;
   }
 
-  text = Object.keys(reactAPI.props).sort().reduce((textProps, propRaw) => {
-    const prop = getProp(reactAPI.props, propRaw);
-    const description = generatePropDescription(prop.description, prop.flowType || prop.type);
+  text = Object.keys(reactAPI.props)
+    .sort()
+    .reduce((textProps, propRaw) => {
+      const prop = getProp(reactAPI.props, propRaw);
+      const description = generatePropDescription(prop.description, prop.flowType || prop.type);
 
-    if (description === null) {
-      return textProps;
-    }
-
-    let defaultValue = '';
-
-    if (prop.defaultValue) {
-      defaultValue = prop.defaultValue.value.replace(/\n/g, '');
-    }
-
-    if (prop.required) {
-      propRaw = `<span style="color: #31a148">${propRaw}\u2009*</span>`;
-    }
-
-    const type = prop.flowType || prop.type;
-    if (type && type.name === 'custom') {
-      if (getDeprecatedInfo(prop.type)) {
-        propRaw = `~~${propRaw}~~`;
+      if (description === null) {
+        return textProps;
       }
-    }
 
-    textProps += `| ${propRaw} | ${generatePropType(type)} | ${defaultValue} | ${description} |\n`;
+      let defaultValue = '';
 
-    return textProps;
-  }, text);
+      if (prop.defaultValue) {
+        defaultValue = prop.defaultValue.value.replace(/\n/g, '');
+      }
+
+      if (prop.required) {
+        propRaw = `<span style="color: #31a148">${propRaw}\u2009*</span>`;
+      }
+
+      const type = prop.flowType || prop.type;
+      if (type && type.name === 'custom') {
+        if (getDeprecatedInfo(prop.type)) {
+          propRaw = `~~${propRaw}~~`;
+        }
+      }
+
+      textProps += `| ${propRaw} | ${generatePropType(
+        type,
+      )} | ${defaultValue} | ${description} |\n`;
+
+      return textProps;
+    }, text);
 
   return text;
 }

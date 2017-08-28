@@ -65,15 +65,15 @@ class SimpleListMenu extends React.Component {
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
         >
-          {options.map((option, index) =>
+          {options.map((option, index) => (
             <MenuItem
               key={option}
               selected={index === this.state.selectedIndex}
               onClick={event => this.handleMenuItemClick(event, index)}
             >
               {option}
-            </MenuItem>,
-          )}
+            </MenuItem>
+          ))}
         </Menu>
       </div>
     );

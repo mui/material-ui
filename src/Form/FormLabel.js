@@ -121,10 +121,11 @@ function FormLabel(props: AllProps, context: { muiFormControl: Object }) {
   return (
     <Component className={className} {...other}>
       {children}
-      {required &&
+      {required && (
         <span className={asteriskClassName} data-mui-test="FormLabelAsterisk">
           {'\u2009*'}
-        </span>}
+        </span>
+      )}
     </Component>
   );
 }

@@ -95,20 +95,14 @@ function GridListTileBar(props) {
   return (
     <div className={className} {...other}>
       <div className={titleWrapClassName}>
-        <div className={classes.title}>
-          {title}
-        </div>
-        {subtitle
-          ? <div className={classes.subtitle}>
-              {subtitle}
-            </div>
-          : null}
+        <div className={classes.title}>{title}</div>
+        {subtitle ? <div className={classes.subtitle}>{subtitle}</div> : null}
       </div>
-      {actionIcon
-        ? <div className={classNames({ [classes.actionIconPositionLeft]: actionPos === 'left' })}>
-            {actionIcon}
-          </div>
-        : null}
+      {actionIcon ? (
+        <div className={classNames({ [classes.actionIconPositionLeft]: actionPos === 'left' })}>
+          {actionIcon}
+        </div>
+      ) : null}
     </div>
   );
 }

@@ -15,11 +15,7 @@ const style = {
 };
 
 function OverridesInlineStyle() {
-  return (
-    <Button style={style}>
-      {'inline-style'}
-    </Button>
-  );
+  return <Button style={style}>{'inline-style'}</Button>;
 }
 
 export default OverridesInlineStyle;

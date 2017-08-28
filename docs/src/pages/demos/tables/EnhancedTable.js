@@ -119,21 +119,23 @@ let EnhancedTableToolbar = props => {
       })}
     >
       <div className={classes.title}>
-        {numSelected > 0
-          ? <Typography type="subheading">
-              {numSelected} selected
-            </Typography>
-          : <Typography type="title">Nutrition</Typography>}
+        {numSelected > 0 ? (
+          <Typography type="subheading">{numSelected} selected</Typography>
+        ) : (
+          <Typography type="title">Nutrition</Typography>
+        )}
       </div>
       <div className={classes.spacer} />
       <div className={classes.actions}>
-        {numSelected > 0
-          ? <IconButton aria-label="Delete">
-              <DeleteIcon />
-            </IconButton>
-          : <IconButton aria-label="Filter list">
-              <FilterListIcon />
-            </IconButton>}
+        {numSelected > 0 ? (
+          <IconButton aria-label="Delete">
+            <DeleteIcon />
+          </IconButton>
+        ) : (
+          <IconButton aria-label="Filter list">
+            <FilterListIcon />
+          </IconButton>
+        )}
       </div>
     </Toolbar>
   );
@@ -252,21 +254,11 @@ class EnhancedTable extends React.Component {
                   <TableCell checkbox>
                     <Checkbox checked={isSelected} />
                   </TableCell>
-                  <TableCell disablePadding>
-                    {n.name}
-                  </TableCell>
-                  <TableCell numeric>
-                    {n.calories}
-                  </TableCell>
-                  <TableCell numeric>
-                    {n.fat}
-                  </TableCell>
-                  <TableCell numeric>
-                    {n.carbs}
-                  </TableCell>
-                  <TableCell numeric>
-                    {n.protein}
-                  </TableCell>
+                  <TableCell disablePadding>{n.name}</TableCell>
+                  <TableCell numeric>{n.calories}</TableCell>
+                  <TableCell numeric>{n.fat}</TableCell>
+                  <TableCell numeric>{n.carbs}</TableCell>
+                  <TableCell numeric>{n.protein}</TableCell>
                 </TableRow>
               );
             })}

@@ -25,12 +25,8 @@ function WithTheme(props) {
 
   return (
     <div>
-      <Typography style={styles.primaryColor}>
-        {`Primary color ${primaryColor}`}
-      </Typography>
-      <Typography style={styles.primaryText}>
-        {`Primary text ${primaryText}`}
-      </Typography>
+      <Typography style={styles.primaryColor}>{`Primary color ${primaryColor}`}</Typography>
+      <Typography style={styles.primaryText}>{`Primary text ${primaryText}`}</Typography>
     </div>
   );
 }

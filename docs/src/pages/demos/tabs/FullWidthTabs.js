@@ -9,11 +9,7 @@ import AppBar from 'material-ui/AppBar';
 import Tabs, { Tab } from 'material-ui/Tabs';
 
 function TabContainer(props) {
-  return (
-    <div style={{ padding: 20 }}>
-      {props.children}
-    </div>
-  );
+  return <div style={{ padding: 20 }}>{props.children}</div>;
 }
 
 TabContainer.propTypes = {
@@ -58,15 +54,9 @@ class FullWidthTabs extends React.Component {
           </Tabs>
         </AppBar>
         <SwipeableViews index={this.state.value} onChangeIndex={this.handleChangeIndex}>
-          <TabContainer>
-            {'Item One'}
-          </TabContainer>
-          <TabContainer>
-            {'Item Two'}
-          </TabContainer>
-          <TabContainer>
-            {'Item Three'}
-          </TabContainer>
+          <TabContainer>{'Item One'}</TabContainer>
+          <TabContainer>{'Item Two'}</TabContainer>
+          <TabContainer>{'Item Three'}</TabContainer>
         </SwipeableViews>
       </div>
     );

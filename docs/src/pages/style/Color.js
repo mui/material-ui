@@ -69,11 +69,7 @@ function getColorBlock(classes, colorName, colorValue, colorTitle) {
 
   let blockTitle;
   if (colorTitle) {
-    blockTitle = (
-      <div className={classes.name}>
-        {colorName}
-      </div>
-    );
+    blockTitle = <div className={classes.name}>{colorName}</div>;
   }
 
   let rowStyle = {
@@ -94,12 +90,8 @@ function getColorBlock(classes, colorName, colorValue, colorTitle) {
     <li style={rowStyle} key={colorValue}>
       {blockTitle}
       <div className={classes.colorContainer}>
-        <span>
-          {colorValue}
-        </span>
-        <span className={classes.colorValue}>
-          {bgColor.toUpperCase()}
-        </span>
+        <span>{colorValue}</span>
+        <span className={classes.colorValue}>{bgColor.toUpperCase()}</span>
       </div>
     </li>
   );

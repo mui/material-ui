@@ -38,7 +38,7 @@ class SimpleDialog extends React.Component {
         <DialogTitle>Set backup account</DialogTitle>
         <div>
           <List>
-            {emails.map(email =>
+            {emails.map(email => (
               <ListItem button onClick={() => this.handleListItemClick(email)} key={email}>
                 <ListItemAvatar>
                   <Avatar className={classes.avatar}>
@@ -46,8 +46,8 @@ class SimpleDialog extends React.Component {
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText primary={email} />
-              </ListItem>,
-            )}
+              </ListItem>
+            ))}
             <ListItem button onClick={() => this.handleListItemClick('addAccount')}>
               <ListItemAvatar>
                 <Avatar>
@@ -85,9 +85,7 @@ class SimpleDialogDemo extends React.Component {
   render() {
     return (
       <div>
-        <Typography type="subheading">
-          Selected: {this.state.selectedValue}
-        </Typography>
+        <Typography type="subheading">Selected: {this.state.selectedValue}</Typography>
         <br />
         <Button onClick={() => this.setState({ open: true })}>Open simple dialog</Button>
         <SimpleDialogWrapped

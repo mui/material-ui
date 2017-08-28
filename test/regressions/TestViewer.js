@@ -41,11 +41,7 @@ class TestViewer extends Component<$FlowFixMeProps> {
   render() {
     const { children, classes } = this.props;
 
-    return (
-      <div className={classes.root}>
-        {children}
-      </div>
-    );
+    return <div className={classes.root}>{children}</div>;
   }
 }
 

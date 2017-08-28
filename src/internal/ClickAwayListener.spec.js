@@ -20,11 +20,7 @@ describe('<ClickAwayListener />', () => {
 
   it('should render the children', () => {
     const children = <span>Hello</span>;
-    const wrapper = mount(
-      <ClickAwayListener onClickAway={() => {}}>
-        {children}
-      </ClickAwayListener>,
-    );
+    const wrapper = mount(<ClickAwayListener onClickAway={() => {}}>{children}</ClickAwayListener>);
     assert.strictEqual(wrapper.contains(children), true);
   });
 

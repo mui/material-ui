@@ -181,10 +181,11 @@ class AppFrame extends React.Component<any, any> {
             >
               <MenuIcon />
             </IconButton>
-            {title !== null &&
+            {title !== null && (
               <Typography className={classes.title} type="title" color="inherit" noWrap>
                 {title}
-              </Typography>}
+              </Typography>
+            )}
             <div className={classes.grow} />
             <AppSearch />
             <IconButton

@@ -25,11 +25,7 @@ describe('<DialogContentText />', () => {
   describe('prop: children', () => {
     it('should render children', () => {
       const children = <p />;
-      const wrapper = shallow(
-        <DialogContentText>
-          {children}
-        </DialogContentText>,
-      );
+      const wrapper = shallow(<DialogContentText>{children}</DialogContentText>);
       assert.strictEqual(wrapper.children().equals(children), true);
     });
   });

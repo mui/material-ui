@@ -32,11 +32,7 @@ describe('<TableBody />', () => {
 
   it('should render children', () => {
     const children = <tr className="test" />;
-    const wrapper = shallow(
-      <TableBody>
-        {children}
-      </TableBody>,
-    );
+    const wrapper = shallow(<TableBody>{children}</TableBody>);
     assert.strictEqual(wrapper.childAt(0).equals(children), true);
   });
 });

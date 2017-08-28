@@ -9,11 +9,7 @@ const styles = theme => ({
 });
 
 function TypograpghyTheme(props) {
-  return (
-    <div className={props.classes.root}>
-      {'This div looks like a button.'}
-    </div>
-  );
+  return <div className={props.classes.root}>{'This div looks like a button.'}</div>;
 }
 
 TypograpghyTheme.propTypes = {

@@ -51,24 +51,28 @@ function ListItemText(props, context) {
   return (
     <div className={className} {...other}>
       {primary &&
-        (disableTypography
-          ? primary
-          : <Typography
-              type="subheading"
-              className={classNames(classes.text, { [classes.textDense]: dense })}
-            >
-              {primary}
-            </Typography>)}
+        (disableTypography ? (
+          primary
+        ) : (
+          <Typography
+            type="subheading"
+            className={classNames(classes.text, { [classes.textDense]: dense })}
+          >
+            {primary}
+          </Typography>
+        ))}
       {secondary &&
-        (disableTypography
-          ? secondary
-          : <Typography
-              color="secondary"
-              type="body1"
-              className={classNames(classes.text, { [classes.textDense]: dense })}
-            >
-              {secondary}
-            </Typography>)}
+        (disableTypography ? (
+          secondary
+        ) : (
+          <Typography
+            color="secondary"
+            type="body1"
+            className={classNames(classes.text, { [classes.textDense]: dense })}
+          >
+            {secondary}
+          </Typography>
+        ))}
     </div>
   );
 }

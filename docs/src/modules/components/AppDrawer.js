@@ -47,11 +47,7 @@ function renderNavItems(props, pages, activePage) {
     navItems = pages.reduce(reduceChildRoutes.bind(null, props, activePage), []);
   }
 
-  return (
-    <List>
-      {navItems}
-    </List>
-  );
+  return <List>{navItems}</List>;
 }
 
 function reduceChildRoutes(props, activePage, items, childPage, index) {
@@ -98,14 +94,14 @@ function AppDrawer(props, context) {
               Material-UI
             </Typography>
           </Link>
-          {process.env.MATERIAL_UI_VERSION
-            ? <Link
-                className={classes.anchor}
-                href={`${GITHUB_RELEASE_BASE_URL}v${process.env.MATERIAL_UI_VERSION}`}
-              >
-                <Typography type="caption">{`v${process.env.MATERIAL_UI_VERSION}`}</Typography>
-              </Link>
-            : null}
+          {process.env.MATERIAL_UI_VERSION ? (
+            <Link
+              className={classes.anchor}
+              href={`${GITHUB_RELEASE_BASE_URL}v${process.env.MATERIAL_UI_VERSION}`}
+            >
+              <Typography type="caption">{`v${process.env.MATERIAL_UI_VERSION}`}</Typography>
+            </Link>
+          ) : null}
           <Divider absolute />
         </Toolbar>
       </div>
@@ -130,19 +126,19 @@ function AppDrawer(props, context) {
           {drawer}
         </Drawer>
       </Hidden>
-      {disablePermanent
-        ? null
-        : <Hidden lgDown implementation="css">
-            <Drawer
-              classes={{
-                paper: classes.paper,
-              }}
-              type="permanent"
-              open
-            >
-              {drawer}
-            </Drawer>
-          </Hidden>}
+      {disablePermanent ? null : (
+        <Hidden lgDown implementation="css">
+          <Drawer
+            classes={{
+              paper: classes.paper,
+            }}
+            type="permanent"
+            open
+          >
+            {drawer}
+          </Drawer>
+        </Hidden>
+      )}
     </div>
   );
 }

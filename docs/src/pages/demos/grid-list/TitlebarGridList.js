@@ -49,24 +49,20 @@ function TitlebarGridList(props) {
         <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
           <Subheader>December</Subheader>
         </GridListTile>
-        {tileData.map(tile =>
+        {tileData.map(tile => (
           <GridListTile key={tile.img}>
             <img src={tile.img} alt={tile.title} />
             <GridListTileBar
               title={tile.title}
-              subtitle={
-                <span>
-                  by: {tile.author}
-                </span>
-              }
+              subtitle={<span>by: {tile.author}</span>}
               actionIcon={
                 <IconButton>
                   <InfoIcon color="rgba(255, 255, 255, 0.54)" />
                 </IconButton>
               }
             />
-          </GridListTile>,
-        )}
+          </GridListTile>
+        ))}
       </GridList>
     </div>
   );

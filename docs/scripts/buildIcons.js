@@ -13,15 +13,17 @@ display.info('Generating Icons');
 const promises = SIZES.map(
   size =>
     new Promise((resolve, reject) => {
-      gm(INPUT_ICON).resize(size, size).write(path.join(OUTPUT_DIR, `${size}x${size}.png`), err => {
-        if (err) {
-          reject(err);
-          return;
-        }
+      gm(INPUT_ICON)
+        .resize(size, size)
+        .write(path.join(OUTPUT_DIR, `${size}x${size}.png`), err => {
+          if (err) {
+            reject(err);
+            return;
+          }
 
-        resolve();
-        display.success(`Size ${size} created`);
-      });
+          resolve();
+          display.success(`Size ${size} created`);
+        });
     }),
 );
 

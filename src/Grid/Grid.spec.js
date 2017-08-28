@@ -15,9 +15,11 @@ describe('<Grid />', () => {
     const shallowInner = createShallow({ dive: true });
     // Render deeper to bypass the GridWrapper.
     shallow = node => {
-      return shallowInner(node).find('Grid').shallow({
-        context: shallowInner.context,
-      });
+      return shallowInner(node)
+        .find('Grid')
+        .shallow({
+          context: shallowInner.context,
+        });
     };
     classes = getClasses(<Grid />);
   });

@@ -8,11 +8,7 @@ import AppBar from 'material-ui/AppBar';
 import Tabs, { Tab } from 'material-ui/Tabs';
 
 function TabContainer(props) {
-  return (
-    <div style={{ padding: 20 }}>
-      {props.children}
-    </div>
-  );
+  return <div style={{ padding: 20 }}>{props.children}</div>;
 }
 
 TabContainer.propTypes = {
@@ -61,34 +57,13 @@ class ScrollableTabsButtonAuto extends React.Component {
             <Tab label="Item Seven" />
           </Tabs>
         </AppBar>
-        {value === 0 &&
-          <TabContainer>
-            {'Item One'}
-          </TabContainer>}
-        {value === 1 &&
-          <TabContainer>
-            {'Item Two'}
-          </TabContainer>}
-        {value === 2 &&
-          <TabContainer>
-            {'Item Three'}
-          </TabContainer>}
-        {value === 3 &&
-          <TabContainer>
-            {'Item Four'}
-          </TabContainer>}
-        {value === 4 &&
-          <TabContainer>
-            {'Item Five'}
-          </TabContainer>}
-        {value === 5 &&
-          <TabContainer>
-            {'Item Six'}
-          </TabContainer>}
-        {value === 6 &&
-          <TabContainer>
-            {'Item Seven'}
-          </TabContainer>}
+        {value === 0 && <TabContainer>{'Item One'}</TabContainer>}
+        {value === 1 && <TabContainer>{'Item Two'}</TabContainer>}
+        {value === 2 && <TabContainer>{'Item Three'}</TabContainer>}
+        {value === 3 && <TabContainer>{'Item Four'}</TabContainer>}
+        {value === 4 && <TabContainer>{'Item Five'}</TabContainer>}
+        {value === 5 && <TabContainer>{'Item Six'}</TabContainer>}
+        {value === 6 && <TabContainer>{'Item Seven'}</TabContainer>}
       </div>
     );
   }

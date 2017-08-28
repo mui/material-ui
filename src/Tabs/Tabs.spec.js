@@ -80,22 +80,38 @@ describe('<Tabs />', () => {
 
     it('should pass selected prop to children', () => {
       assert.strictEqual(
-        wrapper.find(Tab).at(0).props().selected,
+        wrapper
+          .find(Tab)
+          .at(0)
+          .props().selected,
         false,
         'should have selected to false',
       );
-      assert.strictEqual(wrapper.find(Tab).at(1).props().selected, true, 'should have selected');
+      assert.strictEqual(
+        wrapper
+          .find(Tab)
+          .at(1)
+          .props().selected,
+        true,
+        'should have selected',
+      );
     });
 
     it('should switch from the original value', () => {
       wrapper.setProps({ value: 0 });
       assert.strictEqual(
-        wrapper.find(Tab).at(0).props().selected,
+        wrapper
+          .find(Tab)
+          .at(0)
+          .props().selected,
         true,
         'should have switched to true',
       );
       assert.strictEqual(
-        wrapper.find(Tab).at(1).props().selected,
+        wrapper
+          .find(Tab)
+          .at(1)
+          .props().selected,
         false,
         'should have switched to false',
       );
@@ -137,7 +153,10 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      wrapper.find(Tab).at(1).simulate('click');
+      wrapper
+        .find(Tab)
+        .at(1)
+        .simulate('click');
       wrapper.setProps({ value: 1 });
       assert.strictEqual(handleChange.callCount, 1, 'should have been called once');
       assert.strictEqual(handleChange.args[0][1], 1, 'should have been called with value 1');
@@ -255,7 +274,10 @@ describe('<Tabs />', () => {
       const instance = wrapper.instance();
       stub(instance, 'updateScrollButtonState');
       stub(instance, 'updateIndicatorState');
-      wrapper.find('EventListener').at(0).simulate('resize');
+      wrapper
+        .find('EventListener')
+        .at(0)
+        .simulate('resize');
       clock.tick(166);
       assert.strictEqual(
         instance.updateScrollButtonState.called,
@@ -346,13 +368,19 @@ describe('<Tabs />', () => {
     });
 
     it('should call moveTabsScroll', () => {
-      wrapper.find(TabScrollButton).at(0).simulate('click');
+      wrapper
+        .find(TabScrollButton)
+        .at(0)
+        .simulate('click');
       assert.strictEqual(
         scrollSpy.args[0][0],
         -dimensions.clientWidth,
         `should be called with -${dimensions.clientWidth}`,
       );
-      wrapper.find(TabScrollButton).at(1).simulate('click');
+      wrapper
+        .find(TabScrollButton)
+        .at(1)
+        .simulate('click');
       assert.strictEqual(
         scrollSpy.args[1][0],
         dimensions.clientWidth,

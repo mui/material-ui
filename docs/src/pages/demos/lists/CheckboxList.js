@@ -43,7 +43,7 @@ class CheckboxList extends React.Component {
     return (
       <div className={classes.root}>
         <List>
-          {[0, 1, 2, 3].map(value =>
+          {[0, 1, 2, 3].map(value => (
             <ListItem dense button key={value} onClick={event => this.handleToggle(event, value)}>
               <Checkbox
                 checked={this.state.checked.indexOf(value) !== -1}
@@ -56,8 +56,8 @@ class CheckboxList extends React.Component {
                   <CommentIcon />
                 </IconButton>
               </ListItemSecondaryAction>
-            </ListItem>,
-          )}
+            </ListItem>
+          ))}
         </List>
       </div>
     );

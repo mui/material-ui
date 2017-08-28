@@ -82,14 +82,8 @@ function SnackbarContent(props: AllProps) {
       className={classNames(classes.root, className)}
       {...other}
     >
-      <div className={classes.message}>
-        {message}
-      </div>
-      {action
-        ? <div className={classes.action}>
-            {action}
-          </div>
-        : null}
+      <div className={classes.message}>{message}</div>
+      {action ? <div className={classes.action}>{action}</div> : null}
     </Paper>
   );
 }

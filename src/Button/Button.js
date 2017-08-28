@@ -267,9 +267,7 @@ function Button(props: AllProps) {
       keyboardFocusedClassName={classes.keyboardFocused}
       {...other}
     >
-      <span className={classes.label}>
-        {children}
-      </span>
+      <span className={classes.label}>{children}</span>
     </ButtonBase>
   );
 }

@@ -414,10 +414,11 @@ describe('<ButtonBase />', () => {
 
     it('should work with a functionnal component', () => {
       focusKeyPressed(true);
-      const MyLink = props =>
+      const MyLink = props => (
         <a href="/foo" {...props}>
           bar
-        </a>;
+        </a>
+      );
       const wrapper = mount(
         <ButtonBase.Naked classes={{}} component={MyLink}>
           Hello

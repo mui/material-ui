@@ -31,32 +31,20 @@ describe('<GridListTile />', () => {
 
   it('should render a li', () => {
     const children = <img src={tileData.img} alt="foo" />;
-    const wrapper = shallow(
-      <GridListTile>
-        {children}
-      </GridListTile>,
-    );
+    const wrapper = shallow(<GridListTile>{children}</GridListTile>);
     assert.strictEqual(wrapper.name(), 'li');
   });
 
   it('should render a ul', () => {
     const children = <img src={tileData.img} alt="foo" />;
-    const wrapper = shallow(
-      <GridListTile component="li">
-        {children}
-      </GridListTile>,
-    );
+    const wrapper = shallow(<GridListTile component="li">{children}</GridListTile>);
     assert.strictEqual(wrapper.name(), 'li');
   });
 
   describe('prop: children', () => {
     it('should render children by default', () => {
       const children = <img src={tileData.img} alt="foo" />;
-      const wrapper = shallow(
-        <GridListTile>
-          {children}
-        </GridListTile>,
-      );
+      const wrapper = shallow(<GridListTile>{children}</GridListTile>);
 
       assert.strictEqual(
         wrapper.containsMatchingElement(children),
@@ -67,11 +55,7 @@ describe('<GridListTile />', () => {
 
     it('should not change non image child', () => {
       const children = <div />;
-      const wrapper = shallow(
-        <GridListTile>
-          {children}
-        </GridListTile>,
-      );
+      const wrapper = shallow(<GridListTile>{children}</GridListTile>);
       assert.strictEqual(wrapper.containsMatchingElement(children), true);
     });
   });
@@ -79,11 +63,7 @@ describe('<GridListTile />', () => {
   describe('prop: className', () => {
     it('should renders className', () => {
       const children = <img src={tileData.img} alt="foo" />;
-      const wrapper = shallow(
-        <GridListTile className="foo">
-          {children}
-        </GridListTile>,
-      );
+      const wrapper = shallow(<GridListTile className="foo">{children}</GridListTile>);
 
       assert.strictEqual(wrapper.hasClass('foo'), true, 'should contain the className');
     });
@@ -199,7 +179,10 @@ describe('<GridListTile />', () => {
         },
         removeEventListener: () => {},
       };
-      wrapper.find('EventListener').at(0).simulate('resize');
+      wrapper
+        .find('EventListener')
+        .at(0)
+        .simulate('resize');
       assert.strictEqual(instance.imgElement.classList.remove.callCount, 0);
       clock.tick(166);
       assert.strictEqual(instance.imgElement.classList.remove.callCount, 1);
