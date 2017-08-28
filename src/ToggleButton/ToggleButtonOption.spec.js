@@ -14,7 +14,7 @@ describe('<ToggleButtonOption/>', () => {
   before(() => {
     shallow = createShallow({ dive: true });
     mount = createMount();
-    classes = getClasses(styleSheet);
+    classes = getClasses(<ToggleButtonOption />);
   });
 
   after(() => {

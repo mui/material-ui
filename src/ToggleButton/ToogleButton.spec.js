@@ -14,7 +14,7 @@ describe('<ToggleButton/>', () => {
 
   before(() => {
     shallow = createShallow({ untilSelector: 'ToggleButton' });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<ToggleButton />);
     mount = createMount();
   });
 
