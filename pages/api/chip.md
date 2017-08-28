@@ -7,10 +7,6 @@ Chips represent complex entities in small blocks, such as a contact.
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| avatar | node |  | Avatar element. |
-| classes | object |  | Useful to extend the style applied to components. |
-| label | node |  | The content of the label. |
-| onRequestDelete | function |  | Callback function fired when the delete icon is clicked. If set, the delete icon will be shown.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 
 Any other properties supplied will be spread to the root element.
 
@@ -32,8 +28,4 @@ section for more detail.
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiChip`.
-
-## Demos
-
-- [Chips](/demos/chips)
 

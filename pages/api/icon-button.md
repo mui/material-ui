@@ -42,8 +42,3 @@ you need to use the following style sheet name: `MuiIconButton`.
 
 The properties of the [&lt;ButtonBase /&gt;](/api/button-base) component are also available.
 
-## Demos
-
-- [Buttons](/demos/buttons)
-- [Grid List](/demos/grid-list)
-

@@ -7,7 +7,7 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Element |  | The content of the component. |
+| children | Node |  | The content of the component. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | disableActionSpacing | boolean | false | If `true`, the card actions do not have additional margin. |
 
@@ -26,8 +26,4 @@ section for more detail.
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiCardActions`.
-
-## Demos
-
-- [Cards](/demos/cards)
 

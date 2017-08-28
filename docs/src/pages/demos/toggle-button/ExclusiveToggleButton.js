@@ -2,13 +2,13 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import ToggleButton, { ToggleButtonOption } from 'material-ui/ToggleButton';
 import Icon from 'material-ui/Icon';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   root: {
     width: '100%',
   },
@@ -16,7 +16,7 @@ const styleSheet = createStyleSheet(theme => ({
     padding: theme.spacing.unit * 4,
     'margin-top': theme.spacing.unit,
   },
-}));
+});
 
 function alterText(value, selected) {
   const div = document.getElementById('dummyDiv2');
@@ -77,4 +77,4 @@ ExclusiveToggleButton.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(ExclusiveToggleButton);
+export default withStyles(styles)(ExclusiveToggleButton);

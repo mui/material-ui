@@ -8,7 +8,7 @@ It provides compact row layout and FormLabel awareness.
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Element |  | The content of the component. |
+| children | Node |  | The content of the component. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | row | boolean | false | Display group of elements in a compact row. |
 
@@ -27,8 +27,4 @@ section for more detail.
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiFormGroup`.
-
-## Demos
-
-- [Selection Controls](/demos/selection-controls)
 

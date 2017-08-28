@@ -4,7 +4,6 @@ import React, { Component, Children, cloneElement, isValidElement } from 'react'
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import createStyleSheet from '../styles/createStyleSheet';
 
 /**
  * Specification according to material.io
@@ -12,7 +11,7 @@ import createStyleSheet from '../styles/createStyleSheet';
  * - Label buttons with text, an icon, or both
  */
 
-export const styleSheet = createStyleSheet('MuiToggleButton', theme => ({
+export const styles = (theme:Object) => ({
   root: {
     display: 'inline-flex',
     borderRadius: 2,
@@ -29,7 +28,7 @@ export const styleSheet = createStyleSheet('MuiToggleButton', theme => ({
   toggleIcon: {
     overflow: 'visible',
   },
-}));
+});
 
 class ToggleButton extends Component {
   static defaultProps = {
@@ -177,4 +176,4 @@ ToggleButton.propTypes = {
   toggleIcons: PropTypes.bool,
 };
 
-export default withStyles(styleSheet)(ToggleButton);
+export default withStyles(styles, { name: 'MuiToggleButton' })(ToggleButton);

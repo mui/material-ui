@@ -7,7 +7,7 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Element |  | The content of the component. |
+| children | Node |  | The content of the component. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | color | union:&nbsp;'inherit'<br>&nbsp;'primary'<br>&nbsp;'accent'<br>&nbsp;'default'<br> | 'primary' | The color of the component. It's using the theme palette when that makes sense. |
 | position | union:&nbsp;'static'<br>&nbsp;'fixed'<br>&nbsp;'absolute'<br> | 'fixed' | The positioning type. |
@@ -36,8 +36,4 @@ you need to use the following style sheet name: `MuiAppBar`.
 ## Inheritance
 
 The properties of the [&lt;Paper /&gt;](/api/paper) component are also available.
-
-## Demos
-
-- [App Bar](/demos/app-bar)
 

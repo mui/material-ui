@@ -7,9 +7,9 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| action | Element |  | The action to display. |
+| action | Node |  | The action to display. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| <span style="color: #31a148">message *</span> | Element |  | The message to display. |
+| <span style="color: #31a148">message *</span> | Node |  | The message to display. |
 
 Any other properties supplied will be spread to the root element.
 
@@ -27,8 +27,4 @@ section for more detail.
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiSnackbarContent`.
-
-## Demos
-
-- [Snackbars](/demos/snackbars)
 

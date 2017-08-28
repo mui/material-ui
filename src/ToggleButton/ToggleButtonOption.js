@@ -3,11 +3,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import ButtonBase from '../internal/ButtonBase';
+import ButtonBase from '../ButtonBase';
 import Menu from '../Menu';
 import ArrowDropdown from '../svg-icons/arrow-drop-down';
 import withStyles from '../styles/withStyles';
-import createStyleSheet from '../styles/createStyleSheet';
 import { fade } from '../styles/colorManipulator';
 import common from '../colors/common';
 import grey from '../colors/grey';
@@ -16,7 +15,7 @@ import grey from '../colors/grey';
  * Represents an option within a Toggle Button
  *
  */
-export const styleSheet = createStyleSheet('MuiToggleButtonOption', theme => ({
+export const styles = (theme:Object) => ({
   root: {
     backgroundColor: 'transparent',
     borderRadius: 0,
@@ -72,7 +71,7 @@ export const styleSheet = createStyleSheet('MuiToggleButtonOption', theme => ({
     color: theme.palette.primary[500],
   },
   colorAccent: {
-    color: theme.palette.accent.A200,
+    color: theme.palette.secondary.A200,
   },
   colorContrast: {
     color: theme.palette.getContrastText(theme.palette.primary[500]),
@@ -85,7 +84,7 @@ export const styleSheet = createStyleSheet('MuiToggleButtonOption', theme => ({
     borderRadius: '50%',
   },
   toggleAccent: {
-    backgroundColor: fade(theme.palette.accent.A200, 0.26),
+    backgroundColor: fade(theme.palette.secondary.A200, 0.26),
     borderRadius: '50%',
   },
   toggleContrast: {
@@ -103,7 +102,7 @@ export const styleSheet = createStyleSheet('MuiToggleButtonOption', theme => ({
   toggleInherit: {
     borderRadius: '50%',
   },
-}));
+});
 
 class ToggleButtonOption extends Component {
   static defaultProps = {
@@ -320,4 +319,4 @@ ToggleButtonOption.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
 };
 
-export default withStyles(styleSheet)(ToggleButtonOption);
+export default withStyles(styles, { name: 'MuiToggleButtonOption' })(ToggleButtonOption);

@@ -7,7 +7,7 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Element |  | The contents of the `InputLabel`. |
+| children | Node |  | The contents of the `InputLabel`. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | disableAnimation | boolean | false | If `true`, the transition animation is disabled. |
 | disabled | boolean | false | If `true`, apply disabled class. |
@@ -34,8 +34,4 @@ section for more detail.
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiInputLabel`.
-
-## Demos
-
-- [Text Fields](/demos/text-fields)
 

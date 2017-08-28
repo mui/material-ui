@@ -2,16 +2,16 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import ToggleButton, { ToggleButtonOption } from 'material-ui/ToggleButton';
 import Icon from 'material-ui/Icon';
 
-const styleSheet = createStyleSheet({
+const styles = {
   root: {
     background: 'lightgrey',
     padding: 20,
   },
-});
+};
 
 function ToggleIcon(props) {
   const classes = props.classes;
@@ -53,4 +53,4 @@ ToggleIcon.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(ToggleIcon);
+export default withStyles(styles)(ToggleIcon);
