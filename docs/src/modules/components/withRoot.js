@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import find from 'lodash/find';
 import { Provider } from 'react-redux';
 import pure from 'recompose/pure';
 import wrapDisplayName from 'recompose/wrapDisplayName';
@@ -148,7 +149,7 @@ const pages = [
 ];
 
 function findActivePage(currentPages, url) {
-  const activePage = currentPages.find(page => {
+  const activePage = find(currentPages, page => {
     if (page.children) {
       return url.pathname.indexOf(page.pathname) !== -1;
     }
