@@ -8,7 +8,7 @@ import { create } from 'jss';
 import preset from 'jss-preset-default';
 import withStyles from './withStyles';
 import MuiThemeProvider from './MuiThemeProvider';
-import createMuiTheme from './theme';
+import createMuiTheme from './createMuiTheme';
 import createGenerateClassName from './createGenerateClassName';
 import { createShallow, createMount, getClasses } from '../test-utils';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';

@@ -1,11 +1,11 @@
-// @flow weak
+// @flow
 
 export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 // Sorted ASC by size. That's important.
 export const keys = ['xs', 'sm', 'md', 'lg', 'xl'];
 
-const defaultBreakpoints = {
+const defaultBreakpointsMap = {
   xs: 360,
   sm: 600,
   md: 960,
@@ -14,8 +14,10 @@ const defaultBreakpoints = {
 };
 
 // Keep in mind that @media is inclusive by the CSS specification.
-export default function createBreakpoints(breakpoints = defaultBreakpoints, unit = 'px', step = 1) {
-  const values = keys.map(key => breakpoints[key]);
+export default function createBreakpoints(breakpoints: Object) {
+  const { breakpointsMap = defaultBreakpointsMap, unit = 'px', step = 1, ...other } = breakpoints;
+
+  const values = keys.map(key => breakpointsMap[key]);
 
   function up(key) {
     let value;
@@ -23,13 +25,13 @@ export default function createBreakpoints(breakpoints = defaultBreakpoints, unit
     if (key === 'xs') {
       value = 0;
     } else {
-      value = breakpoints[key] || key;
+      value = breakpointsMap[key] || key;
     }
     return `@media (min-width:${value}${unit})`;
   }
 
   function down(key) {
-    const value = breakpoints[key] || key;
+    const value = breakpointsMap[key] || key;
     return `@media (max-width:${value - step / 100}${unit})`;
   }
 
@@ -51,7 +53,7 @@ export default function createBreakpoints(breakpoints = defaultBreakpoints, unit
   }
 
   function getWidth(key) {
-    return breakpoints[key];
+    return breakpointsMap[key];
   }
 
   return {
@@ -62,5 +64,6 @@ export default function createBreakpoints(breakpoints = defaultBreakpoints, unit
     between,
     only,
     getWidth,
+    ...other,
   };
 }

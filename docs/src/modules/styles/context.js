@@ -4,19 +4,18 @@
 import { create } from 'jss';
 import preset from 'jss-preset-default';
 import { SheetsRegistry } from 'react-jss';
-import createPalette from 'material-ui/styles/palette';
-import createMuiTheme from 'material-ui/styles/theme';
+import { createMuiTheme } from 'material-ui/styles';
 import blue from 'material-ui/colors/blue';
 import pink from 'material-ui/colors/pink';
 import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
 
 export function getTheme(dark) {
   const theme = createMuiTheme({
-    palette: createPalette({
+    palette: {
       primary: blue,
-      accent: pink,
+      secondary: pink,
       type: dark ? 'dark' : 'light',
-    }),
+    },
   });
 
   return theme;

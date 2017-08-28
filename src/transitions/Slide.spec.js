@@ -7,7 +7,7 @@ import { findDOMNode } from 'react-dom';
 import { createShallow, createMount } from '../test-utils';
 import Slide from './Slide';
 import transitions, { easing, duration } from '../styles/transitions';
-import createMuiTheme from '../styles/theme';
+import createMuiTheme from '../styles/createMuiTheme';
 
 describe('<Slide />', () => {
   let shallow;

@@ -8,7 +8,7 @@ import * as reactDocgen from 'react-docgen';
 import generateMarkdown from '../src/modules/utils/generateMarkdown';
 import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';
 import { getComponents } from '../src/modules/utils/parseMarkdown';
-import createMuiTheme from '../../src/styles/theme';
+import createMuiTheme from '../../src/styles/createMuiTheme';
 import getStylesCreator from '../../src/styles/getStylesCreator';
 
 function ensureExists(pat, mask, cb) {

@@ -4,7 +4,7 @@ import React from 'react';
 import type { Node } from 'react';
 import HiddenJs from './HiddenJs';
 import HiddenCss from './HiddenCss';
-import type { Breakpoint } from '../styles/breakpoints';
+import type { Breakpoint } from '../styles/createBreakpoints';
 
 export type Props = {
   /**

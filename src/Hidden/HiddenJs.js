@@ -1,7 +1,7 @@
 // @flow
 
 import warning from 'warning';
-import { keys as breakpoints } from '../styles/breakpoints';
+import { keys as breakpoints } from '../styles/createBreakpoints';
 import withWidth, { isWidthDown, isWidthUp } from '../utils/withWidth';
 import type { HiddenProps } from './types';
 

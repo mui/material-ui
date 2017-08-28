@@ -4,7 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
 import Paper from '../Paper';
-import type { Breakpoint } from '../styles/breakpoints';
+import type { Breakpoint } from '../styles/createBreakpoints';
 import Dialog from './Dialog';
 import withResponsiveFullScreen from './withResponsiveFullScreen';
 
