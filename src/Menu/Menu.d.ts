@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyledComponent } from '..';
-import { PopoverProps } from '../internal/Popover';
+import { PopoverProps } from '../Popover';
 import { TransitionHandlers } from '../internal/Transition';
 import { MenuListProps } from './MenuList';
 

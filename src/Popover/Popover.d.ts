@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyledComponent } from '..';
 import { PaperProps } from '../Paper';
-import { TransitionHandlers } from './Transition';
+import { TransitionHandlers } from '../internal/Transition';
 
 export type Origin = {
   horizontal: 'left' | 'center' | 'right' | number;
