@@ -162,7 +162,10 @@ describe('<Textarea />', () => {
       const refs = assignRefs(wrapper);
       refs.textareaShadow.scrollHeight = 43;
       refs.singlelineShadow.scrollHeight = 43;
-      wrapper.find('EventListener').at(0).simulate('resize');
+      wrapper
+        .find('EventListener')
+        .at(0)
+        .simulate('resize');
       assert.strictEqual(wrapper.state().height, 24);
       clock.tick(166);
       assert.strictEqual(wrapper.state().height, 43);

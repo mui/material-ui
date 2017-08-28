@@ -64,10 +64,7 @@ function CardHeader(props: AllProps) {
 
   return (
     <CardContent className={className} {...other}>
-      {avatar &&
-        <div className={classes.avatar}>
-          {avatar}
-        </div>}
+      {avatar && <div className={classes.avatar}>{avatar}</div>}
       <div className={classes.content}>
         <Typography type={titleType} component="span" className={classes.title}>
           {title}

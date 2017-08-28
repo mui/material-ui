@@ -30,12 +30,13 @@ function DialogActions(props) {
       {React.Children.map(
         children,
         button =>
-          React.isValidElement(button) &&
-          <div className={classes.action}>
-            {React.cloneElement(button, {
-              className: classNames(classes.button, button.props.className),
-            })}
-          </div>,
+          React.isValidElement(button) && (
+            <div className={classes.action}>
+              {React.cloneElement(button, {
+                className: classNames(classes.button, button.props.className),
+              })}
+            </div>
+          ),
       )}
     </div>
   );

@@ -71,10 +71,11 @@ describe('until', () => {
   });
 
   it('shallow renders non-root wrappers', () => {
-    const Container = () =>
+    const Container = () => (
       <div>
         <Div />
-      </div>;
+      </div>
+    );
     const wrapper = until.call(shallow(<Container />).find(Div));
     assert.strictEqual(wrapper.contains(<div />), true);
   });

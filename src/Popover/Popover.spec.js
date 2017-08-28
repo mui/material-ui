@@ -208,7 +208,13 @@ describe('<Popover />', () => {
         </Popover>,
       );
       assert.strictEqual(wrapper.childAt(0).children().length, 1, 'should have one child');
-      assert.strictEqual(wrapper.childAt(0).childAt(0).name(), 'withStyles(Paper)');
+      assert.strictEqual(
+        wrapper
+          .childAt(0)
+          .childAt(0)
+          .name(),
+        'withStyles(Paper)',
+      );
     });
 
     it('should have the paper class and user classes', () => {
@@ -229,13 +235,19 @@ describe('<Popover />', () => {
         </Popover>,
       );
       assert.strictEqual(
-        wrapper.childAt(0).childAt(0).prop('elevation'),
+        wrapper
+          .childAt(0)
+          .childAt(0)
+          .prop('elevation'),
         8,
         'should be 8 elevation by default',
       );
       wrapper.setProps({ elevation: 16 });
       assert.strictEqual(
-        wrapper.childAt(0).childAt(0).prop('elevation'),
+        wrapper
+          .childAt(0)
+          .childAt(0)
+          .prop('elevation'),
         16,
         'should be 16 elevation',
       );
@@ -420,7 +432,10 @@ describe('<Popover />', () => {
       const instance = wrapper.instance();
 
       stub(instance, 'setPositioningStyles');
-      wrapper.find('EventListener').at(0).simulate('resize');
+      wrapper
+        .find('EventListener')
+        .at(0)
+        .simulate('resize');
       clock.tick(166);
       assert.isTrue(instance.setPositioningStyles.called, 'position styles recalculated');
     });

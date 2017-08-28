@@ -137,11 +137,11 @@ class BottomNavigationButton extends React.Component<AllProps> {
       React.isValidElement(iconProp) ? iconProp.props.className : null,
     );
 
-    const icon = React.isValidElement(iconProp)
-      ? React.cloneElement(iconProp, { className: iconClassName })
-      : <Icon>
-          {iconProp}
-        </Icon>;
+    const icon = React.isValidElement(iconProp) ? (
+      React.cloneElement(iconProp, { className: iconClassName })
+    ) : (
+      <Icon>{iconProp}</Icon>
+    );
 
     const labelClassName = classNames(classes.label, {
       [classes.selectedLabel]: selected,
@@ -151,9 +151,7 @@ class BottomNavigationButton extends React.Component<AllProps> {
     return (
       <ButtonBase className={className} focusRipple {...other} onClick={this.handleChange}>
         {icon}
-        <span className={labelClassName}>
-          {label}
-        </span>
+        <span className={labelClassName}>{label}</span>
       </ButtonBase>
     );
   }

@@ -24,9 +24,7 @@ function MediaQuery(props) {
 
   return (
     <div className={classes.root}>
-      <Typography type="subheading">
-        {`Current width: ${props.width}`}
-      </Typography>
+      <Typography type="subheading">{`Current width: ${props.width}`}</Typography>
     </div>
   );
 }

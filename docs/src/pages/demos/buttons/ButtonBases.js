@@ -102,7 +102,7 @@ function ButtonBases(props) {
 
   return (
     <div className={classes.root}>
-      {images.map(image =>
+      {images.map(image => (
         <ButtonBase
           focusRipple
           key={image.title}
@@ -129,8 +129,8 @@ function ButtonBases(props) {
               <div className={classes.imageMarked} />
             </Typography>
           </div>
-        </ButtonBase>,
-      )}
+        </ButtonBase>
+      ))}
     </div>
   );
 }

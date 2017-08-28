@@ -29,11 +29,7 @@ function SvgIcon(props) {
       aria-hidden={titleAccess ? 'false' : 'true'}
       {...other}
     >
-      {titleAccess
-        ? <title>
-            {titleAccess}
-          </title>
-        : null}
+      {titleAccess ? <title>{titleAccess}</title> : null}
       {children}
     </svg>
   );

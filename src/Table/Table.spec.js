@@ -41,11 +41,7 @@ describe('<Table />', () => {
 
   it('should render children', () => {
     const children = <tbody className="test" />;
-    const wrapper = shallow(
-      <Table>
-        {children}
-      </Table>,
-    );
+    const wrapper = shallow(<Table>{children}</Table>);
     assert.strictEqual(wrapper.childAt(0).equals(children), true);
   });
 });

@@ -44,9 +44,7 @@ class TextMobileStepper extends React.Component {
     return (
       <div className={classes.root}>
         <Paper square elevation={0} className={classes.header}>
-          <Typography>
-            Step {this.state.activeStep + 1} of 6
-          </Typography>
+          <Typography>Step {this.state.activeStep + 1} of 6</Typography>
         </Paper>
         <MobileStepper
           type="text"

@@ -82,7 +82,7 @@ function Team(props) {
   const classes = props.classes;
   return (
     <div className={classes.root}>
-      {members.map(member =>
+      {members.map(member => (
         <Card key={member.name} className={classes.card}>
           <CardMedia
             className={classes.cover}
@@ -91,15 +91,13 @@ function Team(props) {
           />
           <div className={classes.details}>
             <CardContent className={classes.content}>
-              <Typography type="headline">
-                {member.name}
-              </Typography>
+              <Typography type="headline">{member.name}</Typography>
               <Typography type="subheading" color="secondary">
                 {member.city}
               </Typography>
             </CardContent>
             <div className={classes.controls}>
-              {member.github &&
+              {member.github && (
                 <IconButton
                   aria-label="github"
                   component="a"
@@ -107,8 +105,9 @@ function Team(props) {
                   className={classes.icon}
                 >
                   <Github />
-                </IconButton>}
-              {member.twitter &&
+                </IconButton>
+              )}
+              {member.twitter && (
                 <IconButton
                   aria-label="twitter"
                   component="a"
@@ -116,11 +115,12 @@ function Team(props) {
                   className={classes.icon}
                 >
                   <Twitter />
-                </IconButton>}
+                </IconButton>
+              )}
             </div>
           </div>
-        </Card>,
-      )}
+        </Card>
+      ))}
     </div>
   );
 }

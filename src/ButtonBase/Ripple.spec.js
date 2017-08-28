@@ -40,7 +40,10 @@ describe('<Ripple />', () => {
       <Ripple classes={classes} timeout={{}} rippleX={0} rippleY={0} rippleSize={11} />,
     );
     assert.strictEqual(
-      wrapper.childAt(0).childAt(0).hasClass(classes.ripple),
+      wrapper
+        .childAt(0)
+        .childAt(0)
+        .hasClass(classes.ripple),
       true,
       'should have the ripple class',
     );

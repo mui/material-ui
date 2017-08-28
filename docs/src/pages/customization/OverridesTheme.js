@@ -25,9 +25,7 @@ const theme = createMuiTheme({
 function OverridesTheme() {
   return (
     <MuiThemeProvider theme={theme}>
-      <Button>
-        {'Overrides'}
-      </Button>
+      <Button>{'Overrides'}</Button>
     </MuiThemeProvider>
   );
 }

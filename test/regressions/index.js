@@ -10,7 +10,10 @@ import TestViewer from './TestViewer';
 // Get all the tests specifically written for preventing regressions.
 const requireRegression = require.context('./tests', true, /js$/);
 const regressions = requireRegression.keys().reduce((res, path) => {
-  const [suite, name] = path.replace('./', '').replace('.js', '').split('/');
+  const [suite, name] = path
+    .replace('./', '')
+    .replace('.js', '')
+    .split('/');
   res.push({
     path,
     suite: `regression-${suite}`,
@@ -40,7 +43,11 @@ const blacklistName = ['tileData'];
 // Also use some of the demos to avoid code duplication.
 const requireDemos = require.context('docs/src/pages', true, /js$/);
 const demos = requireDemos.keys().reduce((res, path) => {
-  const [name, ...suiteArray] = path.replace('./', '').replace('.js', '').split('/').reverse();
+  const [name, ...suiteArray] = path
+    .replace('./', '')
+    .replace('.js', '')
+    .split('/')
+    .reverse();
   const suite = `docs-${suiteArray.reverse().join('-')}`;
 
   if (!blacklistSuite.includes(suite) && !blacklistName.includes(name)) {

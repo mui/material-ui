@@ -36,11 +36,7 @@ describe('<IconButton />', () => {
 
   it('should render the child normally inside the label span', () => {
     const child = <p>H</p>;
-    const wrapper = shallow(
-      <IconButton>
-        {child}
-      </IconButton>,
-    );
+    const wrapper = shallow(<IconButton>{child}</IconButton>);
     const label = wrapper.childAt(0);
     const icon = label.childAt(0);
     assert.strictEqual(icon.equals(child), true, 'should be the child');
@@ -51,9 +47,7 @@ describe('<IconButton />', () => {
     const iconChild = <Icon className={childClassName} />;
     const buttonClassName = 'button-woof';
     const wrapper = shallow(
-      <IconButton classes={{ icon: buttonClassName }}>
-        {iconChild}
-      </IconButton>,
+      <IconButton classes={{ icon: buttonClassName }}>{iconChild}</IconButton>,
     );
     const label = wrapper.childAt(0);
     const renderedIconChild = label.childAt(0);

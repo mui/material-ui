@@ -78,13 +78,9 @@ function PermanentDrawer(props) {
         >
           <div className={classes.drawerHeader} />
           <Divider />
-          <List>
-            {mailFolderListItems}
-          </List>
+          <List>{mailFolderListItems}</List>
           <Divider />
-          <List>
-            {otherMailFolderListItems}
-          </List>
+          <List>{otherMailFolderListItems}</List>
         </Drawer>
         <main className={classes.content}>
           <Typography type="body1" noWrap>

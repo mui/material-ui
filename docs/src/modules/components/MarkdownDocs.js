@@ -48,9 +48,7 @@ function MarkdownDocs(props, context) {
   return (
     <AppContent className={classes.root}>
       <Head>
-        <title>
-          {`${getTitle(markdown)} - Material-UI`}
-        </title>
+        <title>{`${getTitle(markdown)} - Material-UI`}</title>
       </Head>
       <div className={classes.header}>
         <Button component="a" href={`${SOURCE_CODE_ROOT_URL}${sourceLocation}`}>
@@ -68,17 +66,17 @@ function MarkdownDocs(props, context) {
 
         return <MarkdownElement key={content} text={content} />;
       })}
-      {components.length > 0
-        ? <MarkdownElement
-            text={`
+      {components.length > 0 ? (
+        <MarkdownElement
+          text={`
 ## API
 
 ${components
-              .map(component => `- [&lt;${component} /&gt;](/api/${kebabCase(component)})`)
-              .join('\n')}
+            .map(component => `- [&lt;${component} /&gt;](/api/${kebabCase(component)})`)
+            .join('\n')}
             `}
-          />
-        : null}
+        />
+      ) : null}
     </AppContent>
   );
 }

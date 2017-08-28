@@ -29,14 +29,21 @@ describe('<Collapse />', () => {
 
   it('should render a wrapper around the children', () => {
     const children = <h1>Hello</h1>;
-    const wrapper = shallow(
-      <Collapse>
-        {children}
-      </Collapse>,
-    );
-    assert.strictEqual(wrapper.childAt(0).childAt(0).is('div'), true, 'should be a div');
+    const wrapper = shallow(<Collapse>{children}</Collapse>);
     assert.strictEqual(
-      wrapper.childAt(0).childAt(0).children().equals(children),
+      wrapper
+        .childAt(0)
+        .childAt(0)
+        .is('div'),
+      true,
+      'should be a div',
+    );
+    assert.strictEqual(
+      wrapper
+        .childAt(0)
+        .childAt(0)
+        .children()
+        .equals(children),
       true,
       'should wrap the children',
     );

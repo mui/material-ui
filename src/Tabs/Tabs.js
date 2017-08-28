@@ -217,34 +217,34 @@ class Tabs extends React.Component<AllProps, State> {
   getConditionalElements = () => {
     const { buttonClassName, scrollable, scrollButtons, width } = this.props;
     const conditionalElements = {};
-    conditionalElements.scrollbarSizeListener = scrollable
-      ? <ScrollbarSize
-          onLoad={this.handleScrollbarSizeChange}
-          onChange={this.handleScrollbarSizeChange}
-        />
-      : null;
+    conditionalElements.scrollbarSizeListener = scrollable ? (
+      <ScrollbarSize
+        onLoad={this.handleScrollbarSizeChange}
+        onChange={this.handleScrollbarSizeChange}
+      />
+    ) : null;
 
     const showScrollButtons =
       scrollable &&
       ((isWidthUp('md', width) && scrollButtons === 'auto') || scrollButtons === 'on');
 
-    conditionalElements.scrollButtonLeft = showScrollButtons
-      ? <TabScrollButton
-          direction="left"
-          onClick={this.handleLeftScrollClick}
-          visible={this.state.showLeftScroll}
-          className={buttonClassName}
-        />
-      : null;
+    conditionalElements.scrollButtonLeft = showScrollButtons ? (
+      <TabScrollButton
+        direction="left"
+        onClick={this.handleLeftScrollClick}
+        visible={this.state.showLeftScroll}
+        className={buttonClassName}
+      />
+    ) : null;
 
-    conditionalElements.scrollButtonRight = showScrollButtons
-      ? <TabScrollButton
-          className={buttonClassName}
-          direction="right"
-          onClick={this.handleRightScrollClick}
-          visible={this.state.showRightScroll}
-        />
-      : null;
+    conditionalElements.scrollButtonRight = showScrollButtons ? (
+      <TabScrollButton
+        className={buttonClassName}
+        direction="right"
+        onClick={this.handleRightScrollClick}
+        visible={this.state.showRightScroll}
+      />
+    ) : null;
 
     return conditionalElements;
   };
@@ -391,9 +391,7 @@ class Tabs extends React.Component<AllProps, State> {
             role="tablist"
             onScroll={this.handleTabsScroll}
           >
-            <div className={tabItemContainerClassName}>
-              {children}
-            </div>
+            <div className={tabItemContainerClassName}>{children}</div>
             <TabIndicator
               style={this.state.indicatorStyle}
               className={indicatorClassName}

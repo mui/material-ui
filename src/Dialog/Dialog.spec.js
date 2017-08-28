@@ -71,11 +71,7 @@ describe('<Dialog />', () => {
 
   it('should render Fade > Paper > children inside the Modal', () => {
     const children = <p>Hello</p>;
-    const wrapper = shallow(
-      <Dialog>
-        {children}
-      </Dialog>,
-    );
+    const wrapper = shallow(<Dialog>{children}</Dialog>);
 
     const fade = wrapper.childAt(0);
     assert.strictEqual(fade.name(), 'withTheme(Fade)', 'immediate wrapper child should be Fade');

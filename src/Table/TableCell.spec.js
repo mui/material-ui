@@ -48,11 +48,7 @@ describe('<TableCell />', () => {
 
   it('should render children', () => {
     const children = <p className="test">Hello</p>;
-    const wrapper = shallow(
-      <TableCell>
-        {children}
-      </TableCell>,
-    );
+    const wrapper = shallow(<TableCell>{children}</TableCell>);
     assert.strictEqual(wrapper.childAt(0).equals(children), true);
   });
 
