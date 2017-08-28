@@ -21,8 +21,7 @@ function findPagesMarkdown(
     if (!markdownRegex.test(item)) {
       return;
     }
-
-    let pathname = itemPath.replace(/^.*\/pages/, '').replace('.md', '');
+    let pathname = itemPath.replace(new RegExp(`\\${path.sep}`, 'g'), '/').replace(/^.*\/pages/, '').replace('.md', '');
 
     if (pathname.indexOf('/demos') === 0) {
       pathname = pathname.split('/').slice(0, 3).join('/');
@@ -76,7 +75,7 @@ function findPages(
 ) {
   fs.readdirSync(directory).forEach(item => {
     const itemPath = path.resolve(directory, item);
-    const pathname = itemPath.replace(/^.*\/pages/, '').replace('.js', '');
+    const pathname = itemPath.replace(new RegExp(`\\${path.sep}`, 'g'), '/').replace(/^.*\/pages/, '').replace('.js', '');
 
     if (options.front && pathname.indexOf('/demos') === -1 && pathname.indexOf('/api') === -1) {
       return;
