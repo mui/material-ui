@@ -1,14 +1,13 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
-import ButtonBase from '../internal/ButtonBase';
+import ButtonBase from '../ButtonBase';
 import ArrowDownwardIcon from '../svg-icons/arrow-downward';
 
-export const styleSheet = createStyleSheet('MuiTableSortLabel', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     cursor: 'pointer',
     display: 'inline-flex',
@@ -46,7 +45,7 @@ export const styleSheet = createStyleSheet('MuiTableSortLabel', theme => ({
   asc: {
     transform: 'rotate(180deg)',
   },
-}));
+});
 
 /**
  * A button based label for placing inside `TableCell` for column sorting.
@@ -101,4 +100,4 @@ TableSortLabel.defaultProps = {
   direction: 'desc',
 };
 
-export default withStyles(styleSheet)(TableSortLabel);
+export default withStyles(styles, { name: 'MuiTableSortLabel' })(TableSortLabel);

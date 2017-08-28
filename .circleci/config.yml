@@ -26,9 +26,7 @@ jobs:
           key: v1-yarn-sha-{{ checksum "yarn.lock" }}
       - run:
           name: Install js dependencies
-          command: |
-            yarn install --pure-lockfile
-            cd docs && yarn install --pure-lockfile
+          command: yarn install --pure-lockfile
       - save_cache:
           key: v1-yarn-sha-{{ checksum "yarn.lock" }}
           paths:
@@ -60,13 +58,10 @@ jobs:
       - run:
           name: Coverage
           command: bash <(curl -s https://codecov.io/bash)
-  test_browser:
+  test_build:
     <<: *defaults
     steps:
       - *restore_repo
-      - run:
-          name: Tests real browsers
-          command: yarn test:karma
       - run:
           name: Can we generate the build?
           command: yarn build
@@ -76,6 +71,13 @@ jobs:
       - run:
           name: Can we generate the docs?
           command: yarn docs:build
+  test_browser:
+    <<: *defaults
+    steps:
+      - *restore_repo
+      - run:
+          name: Tests real browsers
+          command: yarn test:karma
   test_regressions:
     <<: *defaults
     docker:
@@ -99,7 +101,11 @@ workflows:
       - test_browser:
           requires:
             - checkout
+      - test_build:
+          requires:
+            - checkout
       - test_regressions:
           requires:
             - test_unit
             - test_browser
+            - test_build

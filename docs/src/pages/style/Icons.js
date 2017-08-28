@@ -1,18 +1,18 @@
-// @flow
+// @flow weak
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Icon from 'material-ui/Icon';
 
-const styleSheet = createStyleSheet({
+const styles = {
   root: {
     display: 'flex',
     alignItems: 'flex-end',
     justifyContent: 'space-around',
     width: '70%',
   },
-});
+};
 
 function Icons(props) {
   return (
@@ -36,4 +36,4 @@ Icons.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(Icons);
+export default withStyles(styles)(Icons);

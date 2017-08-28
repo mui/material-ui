@@ -1,6 +1,9 @@
 module.exports = {
   // So parent files don't get applied
   root: true,
+  globals: {
+    preval: false,
+  },
   env: {
     es6: true,
     browser: true,

@@ -1,12 +1,11 @@
 // @flow
 
 import React from 'react';
-import type { Element } from 'react';
+import type { Node } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiBackdrop', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     zIndex: -1,
     width: '100%',
@@ -24,7 +23,7 @@ export const styleSheet = createStyleSheet('MuiBackdrop', theme => ({
   invisible: {
     backgroundColor: theme.palette.common.transparent,
   },
-}));
+});
 
 type DefaultProps = {
   classes: Object,
@@ -34,7 +33,7 @@ export type Props = {
   /**
    * Can be used, for instance, to render a letter inside the avatar.
    */
-  children?: Element<*>,
+  children?: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -76,4 +75,4 @@ Backdrop.defaultProps = {
   invisible: false,
 };
 
-export default withStyles(styleSheet)(Backdrop);
+export default withStyles(styles, { name: 'MuiBackdrop' })(Backdrop);

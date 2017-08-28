@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import Typography, { styleSheet } from './Typography';
+import Typography from './Typography';
 
 describe('<Typography />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<Typography />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Typography />);
   });
 
   it('should render the text', () => {
@@ -31,14 +31,14 @@ describe('<Typography />', () => {
   });
 
   it('should merge user classes', () => {
-    const wrapper = shallow(<Typography className="woof">Hello</Typography>);
+    const wrapper = shallow(<Typography className="woofTypography">Hello</Typography>);
     assert.strictEqual(wrapper.hasClass(classes.body1), true);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+    assert.strictEqual(wrapper.hasClass('woofTypography'), true);
   });
 
   it('should center text', () => {
     const wrapper = shallow(
-      <Typography align="center" className="woof">
+      <Typography align="center" className="woofTypography">
         Hello
       </Typography>,
     );

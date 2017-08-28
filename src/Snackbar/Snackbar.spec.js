@@ -4,7 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createShallow, createMount, getClasses } from '../test-utils';
-import Snackbar, { styleSheet } from './Snackbar';
+import Snackbar from './Snackbar';
 import Slide from '../transitions/Slide';
 
 describe('<Snackbar />', () => {
@@ -14,7 +14,7 @@ describe('<Snackbar />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Snackbar open />);
     mount = createMount();
   });
 

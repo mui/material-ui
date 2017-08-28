@@ -1,5 +1,5 @@
-// flow-typed signature: 74ed560ff9d196654e6aff911d2b1786
-// flow-typed version: 622c2ee76d/webfontloader_v1.x.x/flow_>=v0.23.x
+// flow-typed signature: 597f18897fff6626c749060115ba6252
+// flow-typed version: b43dff3e0e/webfontloader_v1.x.x/flow_>=v0.15.x
 
 declare module 'webfontloader' {
   declare type WebFontConfig = {

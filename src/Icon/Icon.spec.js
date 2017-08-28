@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import Icon, { styleSheet } from './Icon';
+import Icon from './Icon';
 
 describe('<Icon />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<Icon />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<Icon />);
   });
 
   it('renders children by default', () => {

@@ -1,13 +1,12 @@
 // @flow
 
 import React from 'react';
-import type { Element } from 'react';
+import type { ComponentType, Element } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { emphasize } from '../styles/colorManipulator';
 
-export const styleSheet = createStyleSheet('MuiAvatar', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     position: 'relative',
     display: 'flex',
@@ -31,7 +30,7 @@ export const styleSheet = createStyleSheet('MuiAvatar', theme => ({
     width: '100%',
     height: 'auto',
   },
-}));
+});
 
 type DefaultProps = {
   classes: Object,
@@ -70,7 +69,7 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: string | Function,
+  component?: string | ComponentType<*>,
   /**
    * Properties applied to the `img` element when the component
    * is used to display an image.
@@ -147,4 +146,4 @@ Avatar.defaultProps = {
   component: 'div',
 };
 
-export default withStyles(styleSheet)(Avatar);
+export default withStyles(styles, { name: 'MuiAvatar' })(Avatar);

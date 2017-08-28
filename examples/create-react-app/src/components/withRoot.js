@@ -1,12 +1,13 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 import React, { Component } from 'react';
 import { JssProvider } from 'react-jss';
-import { withStyles, createStyleSheet, MuiThemeProvider } from 'material-ui/styles';
+import { withStyles, MuiThemeProvider } from 'material-ui/styles';
+import wrapDisplayName from 'recompose/wrapDisplayName';
 import createContext from '../styles/createContext';
 
 // Apply some reset
-const styleSheet = createStyleSheet(theme => ({
+const styles = theme => ({
   '@global': {
     html: {
       background: theme.palette.background.default,
@@ -17,11 +18,11 @@ const styleSheet = createStyleSheet(theme => ({
       margin: 0,
     },
   },
-}));
+});
 
 let AppWrapper = props => props.children;
 
-AppWrapper = withStyles(styleSheet)(AppWrapper);
+AppWrapper = withStyles(styles)(AppWrapper);
 
 const context = createContext();
 
@@ -48,7 +49,9 @@ function withRoot(BaseComponent) {
     }
   }
 
-  WithRoot.displayName = `withRoot(${BaseComponent.displayName})`;
+  if (process.env.NODE_ENV !== 'production') {
+    WithRoot.displayName = wrapDisplayName(BaseComponent, 'withRoot');
+  }
 
   return WithRoot;
 }

@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import TabIndicator, { styleSheet } from './TabIndicator';
+import TabIndicator from './TabIndicator';
 
 describe('<TabIndicator />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<TabIndicator />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<TabIndicator color="accent" style={{}} />);
   });
 
   it('should render with the root class', () => {

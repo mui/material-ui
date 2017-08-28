@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
+import React from 'react';
 import type { Element } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
@@ -13,7 +13,6 @@ import ownerDocument from 'dom-helpers/ownerDocument';
 import addEventListener from '../utils/addEventListener';
 import { createChainedFunction } from '../utils/helpers';
 import Fade from '../transitions/Fade';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import createModalManager from './modalManager';
 import Backdrop from './Backdrop';
@@ -26,7 +25,7 @@ import type { TransitionCallback } from './Transition';
  */
 const modalManager = createModalManager();
 
-export const styleSheet = createStyleSheet('MuiModal', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     display: 'flex',
     width: '100%',
@@ -39,18 +38,12 @@ export const styleSheet = createStyleSheet('MuiModal', theme => ({
   hidden: {
     visibility: 'hidden',
   },
-}));
+});
 
 type DefaultProps = {
   backdropComponent: Function,
-  backdropTransitionDuration: number,
-  backdropInvisible: boolean,
   classes: Object,
-  disableBackdrop: boolean,
-  ignoreBackdropClick: boolean,
-  ignoreEscapeKeyUp: boolean,
   modalManager: Object,
-  show: boolean,
 };
 
 export type Props = {
@@ -71,7 +64,7 @@ export type Props = {
    */
   backdropTransitionDuration?: number,
   /**
-   * Content of the modal.
+   * A single child content element.
    */
   children?: Element<*>,
   /**
@@ -84,7 +77,7 @@ export type Props = {
   className?: string,
   /**
    * Always keep the children in the DOM.
-   * That property can be useful in SEO situation or
+   * This property can be useful in SEO situation or
    * when you want to maximize the responsiveness of the Modal.
    */
   keepMounted?: boolean,
@@ -157,10 +150,10 @@ type State = {
 /**
  * @ignore - internal component.
  */
-class Modal extends Component<DefaultProps, AllProps, State> {
+class Modal extends React.Component<AllProps, State> {
   props: AllProps;
 
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     backdropComponent: Backdrop,
     backdropTransitionDuration: 300,
     backdropInvisible: false,
@@ -173,7 +166,7 @@ class Modal extends Component<DefaultProps, AllProps, State> {
     show: false,
   };
 
-  state: State = {
+  state = {
     exited: false,
   };
 
@@ -449,4 +442,4 @@ class Modal extends Component<DefaultProps, AllProps, State> {
   }
 }
 
-export default withStyles(styleSheet)(Modal);
+export default withStyles(styles, { name: 'MuiModal' })(Modal);

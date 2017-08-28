@@ -1,11 +1,11 @@
 // @flow
 
-import { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import createBroadcast from 'brcast';
 import themeListener, { CHANNEL } from './themeListener';
 
-class MuiThemeProvider extends Component {
+class MuiThemeProvider extends React.Component<Object> {
   constructor(props: Object, context: Object) {
     super(props, context);
 
@@ -30,7 +30,7 @@ class MuiThemeProvider extends Component {
 
   componentDidMount() {
     // Subscribe on the outer theme, if present
-    this.unsubscribe = themeListener.subscribe(this.context, outerTheme => {
+    this.unsubscribeId = themeListener.subscribe(this.context, outerTheme => {
       this.outerTheme = outerTheme;
       // Forward the parent theme update to the children
       this.broadcast.setState(this.mergeOuterLocalTheme(this.props.theme));
@@ -45,13 +45,13 @@ class MuiThemeProvider extends Component {
   }
 
   componentWillUnmount() {
-    if (this.unsubscribe !== null) {
-      this.unsubscribe();
+    if (this.unsubscribeId !== null) {
+      themeListener.unsubscribe(this.context, this.unsubscribeId);
     }
   }
 
   broadcast = createBroadcast();
-  unsubscribe = null;
+  unsubscribeId = null;
   // We are not using the React state in order to avoid unnecessary rerender.
   outerTheme = null;
 

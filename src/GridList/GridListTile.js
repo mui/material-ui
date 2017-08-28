@@ -1,16 +1,16 @@
 // @flow weak
 
-import React, { Component, Children, cloneElement } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+import type { ChildrenArray, ComponentType } from 'react';
 import classNames from 'classnames';
 import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiGridListTile', {
+export const styles = {
   root: {
     boxSizing: 'border-box',
+    flexShrink: 0,
   },
   tile: {
     position: 'relative',
@@ -30,9 +30,46 @@ export const styleSheet = createStyleSheet('MuiGridListTile', {
     transform: 'translateY(-50%)',
     top: '50%',
   },
-});
+};
 
-class GridListTile extends Component {
+type DefaultProps = {
+  classes: Object,
+};
+
+export type Props = {
+  /**
+   * Theoretically you can pass any node as children, but the main use case is to pass an img,
+   * in which case GridListTile takes care of making the image "cover" available space
+   * (similar to `background-size: cover` or to `object-fit: cover`).
+   */
+  children?: ChildrenArray<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * Width of the tile in number of grid cells.
+   */
+  cols?: number,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component?: string | ComponentType<*>,
+  /**
+   * Height of the tile in number of grid cells.
+   */
+  rows?: number,
+};
+
+type AllProps = DefaultProps & Props;
+
+class GridListTile extends React.Component<AllProps> {
+  props: AllProps;
   static defaultProps = {
     cols: 1,
     rows: 1,
@@ -100,6 +137,7 @@ class GridListTile extends Component {
       classes,
       className,
       cols,
+      // $FlowFixMe - no idea why it cannot find component on intersection
       component: ComponentProp,
       rows,
       ...other
@@ -109,9 +147,9 @@ class GridListTile extends Component {
       <ComponentProp className={classNames(classes.root, className)} {...other}>
         <EventListener target="window" onResize={this.handleResize} />
         <div className={classes.tile}>
-          {Children.map(children, child => {
+          {React.Children.map(children, child => {
             if (child.type === 'img') {
-              return cloneElement(child, {
+              return React.cloneElement(child, {
                 key: 'img',
                 ref: node => {
                   this.imgElement = node;
@@ -127,34 +165,4 @@ class GridListTile extends Component {
   }
 }
 
-GridListTile.propTypes = {
-  /**
-   * Theoretically you can pass any node as children, but the main use case is to pass an img,
-   * in which case GridListTile takes care of making the image "cover" available space
-   * (similar to `background-size: cover` or to `object-fit: cover`).
-   */
-  children: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * Width of the tile in number of grid cells.
-   */
-  cols: PropTypes.number,
-  /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a component.
-   */
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  /**
-   * Height of the tile in number of grid cells.
-   */
-  rows: PropTypes.number,
-};
-
-export default withStyles(styleSheet)(GridListTile);
+export default withStyles(styles, { name: 'MuiGridListTile' })(GridListTile);

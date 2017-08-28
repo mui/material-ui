@@ -5,7 +5,7 @@ import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
 import ListItemText from './ListItemText';
 import ListItemSecondaryAction from './ListItemSecondaryAction';
-import ListItem, { styleSheet } from './ListItem';
+import ListItem from './ListItem';
 import ListItemAvatar from './ListItemAvatar';
 
 describe('<ListItem />', () => {
@@ -14,7 +14,7 @@ describe('<ListItem />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<ListItem />);
   });
 
   it('should render a div', () => {
@@ -28,8 +28,8 @@ describe('<ListItem />', () => {
   });
 
   it('should render with the user, root and gutters classes', () => {
-    const wrapper = shallow(<ListItem className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+    const wrapper = shallow(<ListItem className="woofListItem" />);
+    assert.strictEqual(wrapper.hasClass('woofListItem'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.gutters), true, 'should have the gutters class');
   });

@@ -3,7 +3,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
 const THICKNESS = 3.6;
@@ -14,7 +13,7 @@ function getRelativeValue(value, min, max) {
   return (clampedValue - min) / (max - min);
 }
 
-export const styleSheet = createStyleSheet('MuiCircularProgress', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     display: 'inline-block',
   },
@@ -22,7 +21,7 @@ export const styleSheet = createStyleSheet('MuiCircularProgress', theme => ({
     color: theme.palette.primary[500],
   },
   accentColor: {
-    color: theme.palette.accent.A200,
+    color: theme.palette.secondary.A200,
   },
   svg: {
     transform: 'rotate(-90deg)',
@@ -69,7 +68,7 @@ export const styleSheet = createStyleSheet('MuiCircularProgress', theme => ({
       strokeDashoffset: `calc((99% - ${THICKNESS}px) * -${PI})`,
     },
   },
-}));
+});
 
 function CircularProgress(props) {
   const { classes, className, color, size, mode, value, min, max, ...other } = props;
@@ -167,4 +166,4 @@ CircularProgress.defaultProps = {
   max: 100,
 };
 
-export default withStyles(styleSheet)(CircularProgress);
+export default withStyles(styles, { name: 'MuiCircularProgress' })(CircularProgress);

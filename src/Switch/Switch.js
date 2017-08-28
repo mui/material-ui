@@ -1,13 +1,12 @@
 // @flow weak
 
 import React from 'react';
-import type { Element } from 'react';
+import type { Node } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import createSwitch from '../internal/SwitchBase';
 
-export const styleSheet = createStyleSheet('MuiSwitch', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     display: 'inline-flex',
     width: 62,
@@ -59,9 +58,9 @@ export const styleSheet = createStyleSheet('MuiSwitch', theme => ({
       opacity: theme.palette.type === 'light' ? 0.12 : 0.1,
     },
   },
-}));
+});
 
-const SwitchBase = createSwitch({ styleSheet });
+const SwitchBase = createSwitch();
 
 type DefaultProps = {
   classes: Object,
@@ -80,7 +79,7 @@ export type Props = {
    * The icon to display when the component is checked.
    * If a string is provided, it will be used as a font ligature.
    */
-  checkedIcon?: Element<*>,
+  checkedIcon?: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -109,7 +108,7 @@ export type Props = {
    * The icon to display when the component is unchecked.
    * If a string is provided, it will be used as a font ligature.
    */
-  icon?: Element<*>,
+  icon?: Node,
   /**
    * Properties applied to the `input` element.
    */
@@ -142,16 +141,24 @@ export type Props = {
 type AllProps = DefaultProps & Props;
 
 function Switch(props: AllProps) {
-  const { classes: { root, ...classes }, className, ...other } = props;
-
+  const { classes, className, ...other } = props;
   const icon = <div className={classes.icon} />;
 
   return (
-    <div className={classNames(root, className)}>
-      <SwitchBase icon={icon} classes={classes} checkedIcon={icon} {...other} />
+    <div className={classNames(classes.root, className)}>
+      <SwitchBase
+        icon={icon}
+        classes={{
+          default: classes.default,
+          checked: classes.checked,
+          disabled: classes.disabled,
+        }}
+        checkedIcon={icon}
+        {...other}
+      />
       <div className={classes.bar} />
     </div>
   );
 }
 
-export default withStyles(styleSheet)(Switch);
+export default withStyles(styles, { name: 'MuiSwitch' })(Switch);

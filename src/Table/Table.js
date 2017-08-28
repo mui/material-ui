@@ -1,12 +1,12 @@
-// @flow weak
+// @flow
 
-import React, { Component } from 'react';
+import React from 'react';
+import type { ComponentType, Node } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiTable', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     fontFamily: theme.typography.fontFamily,
     width: '100%',
@@ -14,9 +14,43 @@ export const styleSheet = createStyleSheet('MuiTable', theme => ({
     borderSpacing: 0,
     overflow: 'hidden',
   },
-}));
+});
 
-class Table extends Component {
+type DefaultProps = {
+  classes: Object,
+  component: string,
+};
+
+export type Props = {
+  /**
+   * The content of the table, normally `TableHeader` and `TableBody`.
+   */
+  children?: Node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component?: string | ComponentType<*>,
+};
+
+type AllProps = DefaultProps & Props;
+
+class Table extends React.Component<AllProps, void> {
+  props: AllProps;
+
+  static defaultProps = {
+    classes: {},
+    component: 'table',
+  };
+
   getChildContext() {
     // eslint-disable-line class-methods-use-this
     return {
@@ -25,34 +59,25 @@ class Table extends Component {
   }
 
   render() {
-    const { classes, className: classNameProp, children, ...other } = this.props;
+    const {
+      classes,
+      className: classNameProp,
+      children,
+      component: ComponentProp,
+      ...other
+    } = this.props;
     const className = classNames(classes.root, classNameProp);
 
     return (
-      <table className={className} {...other}>
+      <ComponentProp className={className} {...other}>
         {children}
-      </table>
+      </ComponentProp>
     );
   }
 }
-
-Table.propTypes = {
-  /**
-   * The content of the table, normally `TableHeader` and `TableBody`.
-   */
-  children: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-};
 
 Table.childContextTypes = {
   table: PropTypes.object,
 };
 
-export default withStyles(styleSheet)(Table);
+export default withStyles(styles, { name: 'MuiTable' })(Table);

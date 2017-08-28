@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import ListItemSecondaryAction, { styleSheet } from './ListItemSecondaryAction';
+import ListItemSecondaryAction from './ListItemSecondaryAction';
 
 describe('<ListItemSecondaryAction />', () => {
   let shallow;
@@ -11,7 +11,7 @@ describe('<ListItemSecondaryAction />', () => {
 
   before(() => {
     shallow = createShallow({ untilSelector: 'ListItemSecondaryAction' });
-    classes = getClasses(styleSheet);
+    classes = getClasses(<ListItemSecondaryAction />);
   });
 
   it('should render a div', () => {
@@ -21,8 +21,8 @@ describe('<ListItemSecondaryAction />', () => {
   });
 
   it('should render with the user and root classes', () => {
-    const wrapper = shallow(<ListItemSecondaryAction className="woof" />);
-    assert.strictEqual(wrapper.hasClass('woof'), true);
+    const wrapper = shallow(<ListItemSecondaryAction className="woofListItemSecondaryAction" />);
+    assert.strictEqual(wrapper.hasClass('woofListItemSecondaryAction'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 });

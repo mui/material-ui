@@ -1,19 +1,23 @@
 // @flow
 
-import React, { Children, Component } from 'react';
-import type { Element } from 'react';
+import React from 'react';
+import type { ChildrenArray, ComponentType } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { isDirty } from '../Input/Input';
 import { isMuiComponent } from '../utils/reactHelpers';
 
-export const styleSheet = createStyleSheet('MuiFormControl', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     display: 'inline-flex',
     flexDirection: 'column',
     position: 'relative',
+    // Reset fieldset default style
+    minWidth: 0,
+    padding: 0,
+    margin: 0,
+    border: 0,
   },
   marginNormal: {
     marginTop: theme.spacing.unit * 2,
@@ -26,11 +30,12 @@ export const styleSheet = createStyleSheet('MuiFormControl', theme => ({
   fullWidth: {
     width: '100%',
   },
-}));
+});
 
 type DefaultProps = {
   disabled: boolean,
   classes: Object,
+  component: string,
   error: boolean,
   fullWidth: boolean,
   margin: 'none',
@@ -41,7 +46,7 @@ export type Props = {
   /**
    * The contents of the form control.
    */
-  children?: Element<*>,
+  children?: ChildrenArray<*>,
   /**
    * Useful to extend the style applied to components.
    */
@@ -50,6 +55,11 @@ export type Props = {
    * @ignore
    */
   className?: string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component?: string | ComponentType<*>,
   /**
    * If `true`, the label, input and helper text should be displayed in a disabled state.
    */
@@ -90,21 +100,24 @@ type State = {
 /**
  * Provides context such as dirty/focused/error/required for form inputs.
  */
-class FormControl extends Component<DefaultProps, AllProps, State> {
+class FormControl extends React.Component<AllProps, State> {
   props: AllProps;
+
   static defaultProps = {
     classes: {},
+    component: 'div',
     disabled: false,
     error: false,
     fullWidth: false,
     margin: 'none',
     required: false,
   };
+
   static childContextTypes = {
     muiFormControl: PropTypes.object.isRequired,
   };
 
-  state: State = {
+  state = {
     dirty: false,
     focused: false,
   };
@@ -132,11 +145,14 @@ class FormControl extends Component<DefaultProps, AllProps, State> {
   componentWillMount() {
     // We need to iterate through the children and find the Input in order
     // to fully support server side rendering.
-    Children.forEach(this.props.children, child => {
-      if (isMuiComponent(child, 'Input') && isDirty(child.props, true)) {
-        this.setState({ dirty: true });
-      }
-    });
+    const { children } = this.props;
+    if (children) {
+      React.Children.forEach(children, child => {
+        if (isMuiComponent(child, 'Input') && isDirty(child.props, true)) {
+          this.setState({ dirty: true });
+        }
+      });
+    }
   }
 
   handleFocus = event => {
@@ -174,6 +190,7 @@ class FormControl extends Component<DefaultProps, AllProps, State> {
       children,
       classes,
       className,
+      component: ComponentProp,
       disabled,
       error,
       fullWidth,
@@ -182,7 +199,7 @@ class FormControl extends Component<DefaultProps, AllProps, State> {
     } = this.props;
 
     return (
-      <div
+      <ComponentProp
         className={classNames(
           classes.root,
           {
@@ -197,9 +214,9 @@ class FormControl extends Component<DefaultProps, AllProps, State> {
         onBlur={this.handleBlur}
       >
         {children}
-      </div>
+      </ComponentProp>
     );
   }
 }
 
-export default withStyles(styleSheet)(FormControl);
+export default withStyles(styles, { name: 'MuiFormControl' })(FormControl);

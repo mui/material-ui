@@ -3,19 +3,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
-import ButtonBase from '../internal/ButtonBase';
+import ButtonBase from '../ButtonBase';
 import KeyboardArrowLeft from '../svg-icons/keyboard-arrow-left';
 import KeyboardArrowRight from '../svg-icons/keyboard-arrow-right';
 
-export const styleSheet = createStyleSheet('MuiTabScrollButton', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     background: 'none',
     color: 'inherit',
     flex: `0 0 ${theme.spacing.unit * 7}px`,
   },
-}));
+});
 
 /**
  * @ignore - internal component.
@@ -63,4 +62,4 @@ TabScrollButton.defaultProps = {
   visible: true,
 };
 
-export default withStyles(styleSheet)(TabScrollButton);
+export default withStyles(styles, { name: 'MuiTabScrollButton' })(TabScrollButton);

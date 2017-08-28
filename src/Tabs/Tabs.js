@@ -1,21 +1,21 @@
-// @flow weak
+// @flow
 
-import React, { Component, Children, cloneElement } from 'react';
+import React from 'react';
+import type { ChildrenArray } from 'react';
 import warning from 'warning';
-import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import classNames from 'classnames';
 import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
 import ScrollbarSize from 'react-scrollbar-size';
 import scroll from 'scroll';
-import createStyleSheet from '../styles/createStyleSheet';
+import pick from 'lodash/pick';
 import withStyles from '../styles/withStyles';
 import withWidth, { isWidthUp } from '../utils/withWidth';
 import TabIndicator from './TabIndicator';
 import TabScrollButton from './TabScrollButton';
 
-export const styleSheet = createStyleSheet('MuiTabs', {
+export const styles = {
   root: {
     overflow: 'hidden',
   },
@@ -37,12 +37,107 @@ export const styleSheet = createStyleSheet('MuiTabs', {
   centered: {
     justifyContent: 'center',
   },
-});
+};
+
+type DefaultProps = {
+  classes: Object,
+};
+
+export type Props = {
+  /**
+   * The CSS class name of the scroll button elements.
+   */
+  buttonClassName?: string,
+  /**
+   * If `true`, the tabs will be centered.
+   * This property is intended for large views.
+   */
+  centered?: boolean,
+  /**
+   * The content of the component.
+   */
+  children?: ChildrenArray<*>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * If `true`, the tabs will grow to use all the available space.
+   * This property is intended for small views.
+   */
+  fullWidth?: boolean,
+  /**
+   * The CSS class name of the indicator element.
+   */
+  indicatorClassName?: string,
+  /**
+   * Determines the color of the indicator.
+   */
+  indicatorColor?: 'accent' | 'primary' | string,
+  /**
+   * Callback fired when the value changes.
+   *
+   * @param {object} event The event source of the callback
+   * @param {number} value We default to the index of the child
+   */
+  onChange: Function,
+  /**
+   * True invokes scrolling properties and allow for horizontally scrolling
+   * (or swiping) the tab bar.
+   */
+  scrollable?: boolean,
+  /**
+   * Determine behavior of scroll buttons when tabs are set to scroll
+   * `auto` will only present them on medium and larger viewports
+   * `on` will always present them
+   * `off` will never present them
+   */
+  scrollButtons?: 'auto' | 'on' | 'off',
+  /**
+   * Determines the color of the `Tab`.
+   */
+  textColor?: 'accent' | 'primary' | 'inherit',
+  /**
+   * The value of the currently selected `Tab`.
+   * If you don't want any selected `Tab`, you can set this property to `false`.
+   */
+  value: any,
+  /**
+   * @ignore
+   * width prop provided by withWidth decorator
+   */
+  width?: string,
+};
+
+type AllProps = DefaultProps & Props;
+
+type State = {
+  indicatorStyle: Object,
+  scrollerStyle: Object,
+  showLeftScroll: boolean,
+  showRightScroll: boolean,
+};
+
+type TabsMeta = {
+  scrollLeft: number,
+  // ClientRect
+  left: number,
+  width: number,
+  right: number,
+  top: number,
+  bottom: number,
+  height: number,
+};
 
 /**
  * Notice that this Component is incompatible with server side rendering.
  */
-class Tabs extends Component {
+class Tabs extends React.Component<AllProps, State> {
+  props: AllProps;
   static defaultProps = {
     centered: false,
     fullWidth: false,
@@ -67,7 +162,7 @@ class Tabs extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.index !== nextProps.index) {
+    if (this.props.value !== nextProps.value) {
       this.updateIndicatorState(nextProps);
     }
   }
@@ -87,7 +182,8 @@ class Tabs extends Component {
     this.handleTabsScroll.cancel();
   }
 
-  tabs = undefined;
+  tabs: ?HTMLElement = undefined;
+  valueToIndex: { [key: any]: any } = {};
 
   handleResize = debounce(() => {
     this.updateIndicatorState(this.props);
@@ -95,11 +191,15 @@ class Tabs extends Component {
   }, 166);
 
   handleLeftScrollClick = () => {
-    this.moveTabsScroll(-this.tabs.clientWidth);
+    if (this.tabs) {
+      this.moveTabsScroll(-this.tabs.clientWidth);
+    }
   };
 
   handleRightScrollClick = () => {
-    this.moveTabsScroll(this.tabs.clientWidth);
+    if (this.tabs) {
+      this.moveTabsScroll(this.tabs.clientWidth);
+    }
   };
 
   handleScrollbarSizeChange = ({ scrollbarHeight }) => {
@@ -149,29 +249,41 @@ class Tabs extends Component {
     return conditionalElements;
   };
 
-  getTabsMeta = index => {
+  getTabsMeta = (value): { tabsMeta: ?TabsMeta, tabMeta: ?ClientRect } => {
     let tabsMeta;
     if (this.tabs) {
-      tabsMeta = this.tabs.getBoundingClientRect();
-      tabsMeta.scrollLeft = this.tabs.scrollLeft;
+      // create a new object with ClientRect class props + scrollLeft
+      tabsMeta = {
+        scrollLeft: this.tabs.scrollLeft,
+        ...pick(this.tabs.getBoundingClientRect(), [
+          'left',
+          'width',
+          'right',
+          'top',
+          'bottom',
+          'height',
+        ]),
+      };
     }
 
     let tabMeta;
-    if (this.tabs && index !== false) {
-      const tab = this.tabs.children[0].children[index];
-      warning(tab, `Material-UI: the index provided \`${index}\` is invalid`);
-      tabMeta = tab ? this.tabs.children[0].children[index].getBoundingClientRect() : null;
+    if (this.tabs && value !== false) {
+      const tab = this.tabs.children[0].children[this.valueToIndex[value]];
+      warning(tab, `Material-UI: the value provided \`${value}\` is invalid`);
+      tabMeta = tab ? tab.getBoundingClientRect() : null;
     }
     return { tabsMeta, tabMeta };
   };
 
   moveTabsScroll = delta => {
-    const nextScrollLeft = this.tabs.scrollLeft + delta;
-    scroll.left(this.tabs, nextScrollLeft);
+    if (this.tabs) {
+      const nextScrollLeft = this.tabs.scrollLeft + delta;
+      scroll.left(this.tabs, nextScrollLeft);
+    }
   };
 
   updateIndicatorState(props) {
-    const { tabsMeta, tabMeta } = this.getTabsMeta(props.index);
+    const { tabsMeta, tabMeta } = this.getTabsMeta(props.value);
     const indicatorStyle = {
       left: tabMeta && tabsMeta ? tabMeta.left + (tabsMeta.scrollLeft - tabsMeta.left) : 0,
       // May be wrong until the font is loaded.
@@ -187,7 +299,7 @@ class Tabs extends Component {
   }
 
   scrollSelectedIntoView = () => {
-    const { tabsMeta, tabMeta } = this.getTabsMeta(this.props.index);
+    const { tabsMeta, tabMeta } = this.getTabsMeta(this.props.value);
 
     if (!tabMeta || !tabsMeta) {
       return;
@@ -207,7 +319,7 @@ class Tabs extends Component {
   updateScrollButtonState = () => {
     const { scrollable, scrollButtons } = this.props;
 
-    if (scrollable && scrollButtons !== 'off') {
+    if (this.tabs && scrollable && scrollButtons !== 'off') {
       const { scrollLeft, scrollWidth, clientWidth } = this.tabs;
       const showLeftScroll = scrollLeft > 0;
       const showRightScroll = scrollWidth > clientWidth + scrollLeft;
@@ -229,13 +341,13 @@ class Tabs extends Component {
       children: childrenProp,
       className: classNameProp,
       fullWidth,
-      index,
       indicatorClassName,
       indicatorColor,
       onChange,
       scrollable,
       scrollButtons,
       textColor,
+      value,
       width,
       ...other
     } = this.props;
@@ -249,13 +361,16 @@ class Tabs extends Component {
       [classes.centered]: centered && !scrollable,
     });
 
-    const children = Children.map(childrenProp, (tab, childIndex) => {
-      return cloneElement(tab, {
+    this.valueToIndex = {};
+    const children = React.Children.map(childrenProp, (child, childIndex) => {
+      const childValue = child.props.value || childIndex;
+      this.valueToIndex[childValue] = childIndex;
+      return React.cloneElement(child, {
         fullWidth,
-        selected: childIndex === index,
-        index: childIndex,
+        selected: childValue === value,
         onChange,
         textColor,
+        value: childValue,
       });
     });
 
@@ -292,77 +407,4 @@ class Tabs extends Component {
   }
 }
 
-Tabs.propTypes = {
-  /**
-   * The CSS class name of the scroll button elements.
-   */
-  buttonClassName: PropTypes.string,
-  /**
-   * If `true`, the tabs will be centered.
-   * This property is intended for large views.
-   */
-  centered: PropTypes.bool,
-  /**
-   * The content of the component.
-   */
-  children: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * If `true`, the tabs will grow to use all the available space.
-   * This property is intended for small views.
-   */
-  fullWidth: PropTypes.bool,
-  /**
-   * The index of the currently selected `Tab`.
-   * If you don't want any selected `Tab`, you can set this property to `false`.
-   */
-  index: PropTypes.oneOfType([PropTypes.oneOf([false]), PropTypes.number]).isRequired,
-  /**
-   * The CSS class name of the indicator element.
-   */
-  indicatorClassName: PropTypes.string,
-  /**
-   * Determines the color of the indicator.
-   */
-  indicatorColor: PropTypes.oneOfType([PropTypes.oneOf(['accent', 'primary']), PropTypes.string]),
-  /**
-   * Callback fired when the index changes.
-   *
-   * @param {object} event The event source of the callback
-   * @param {number} index We default to the index of the child
-   */
-  onChange: PropTypes.func.isRequired,
-  /**
-   * True invokes scrolling properties and allow for horizontally scrolling
-   * (or swiping) the tab bar.
-   */
-  scrollable: PropTypes.bool,
-  /**
-   * Determine behavior of scroll buttons when tabs are set to scroll
-   * `auto` will only present them on medium and larger viewports
-   * `on` will always present them
-   * `off` will never present them
-   */
-  scrollButtons: PropTypes.oneOf(['auto', 'on', 'off']),
-  /**
-   * Determines the color of the `Tab`.
-   */
-  textColor: PropTypes.oneOfType([
-    PropTypes.oneOf(['accent', 'primary', 'inherit']),
-    PropTypes.string,
-  ]),
-  /**
-   * @ignore
-   * width prop provided by withWidth decorator
-   */
-  width: PropTypes.string,
-};
-
-export default compose(withStyles(styleSheet), withWidth())(Tabs);
+export default compose(withStyles(styles, { name: 'MuiTabs' }), withWidth())(Tabs);

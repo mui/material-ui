@@ -2,14 +2,14 @@
 
 import React from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiCardMedia', {
+export const styles = {
   root: {
-    position: 'relative',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
   },
-});
+};
 
 type DefaultProps = {
   classes: Object,
@@ -24,14 +24,25 @@ export type Props = {
    * @ignore
    */
   className?: string,
+  /**
+   * Image to be displayed as a background image.
+   * Note that caller must specify height otherwise the image will not be visible.
+   */
+  image: string,
 };
 
 type AllProps = DefaultProps & Props;
 
 function CardMedia(props: AllProps) {
-  const { classes, className, ...other } = props;
+  const { classes, className, image, ...other } = props;
 
-  return <div className={classNames(classes.root, className)} {...other} />;
+  return (
+    <div
+      className={classNames(classes.root, className)}
+      style={{ backgroundImage: `url(${image})` }}
+      {...other}
+    />
+  );
 }
 
-export default withStyles(styleSheet)(CardMedia);
+export default withStyles(styles, { name: 'MuiCardMedia' })(CardMedia);

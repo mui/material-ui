@@ -1,12 +1,11 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiTableRow', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     height: 48,
     '&:focus': {
@@ -27,14 +26,22 @@ export const styleSheet = createStyleSheet('MuiTableRow', theme => ({
   selected: {
     background: theme.palette.background.appBar,
   },
-}));
+});
 
 /**
  * Will automatically set dynamic row height
  * based on the material table element parent (head, body, etc).
  */
 function TableRow(props, context) {
-  const { classes, className: classNameProp, children, hover, selected, ...other } = props;
+  const {
+    classes,
+    className: classNameProp,
+    children,
+    component: Component,
+    hover,
+    selected,
+    ...other
+  } = props;
   const { table } = context;
 
   const className = classNames(
@@ -49,9 +56,9 @@ function TableRow(props, context) {
   );
 
   return (
-    <tr className={className} {...other}>
+    <Component className={className} {...other}>
       {children}
-    </tr>
+    </Component>
   );
 }
 
@@ -69,6 +76,11 @@ TableRow.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.string,
+  /**
    * If `true`, the table row will shade on hover.
    */
   hover: PropTypes.bool,
@@ -81,10 +93,11 @@ TableRow.propTypes = {
 TableRow.defaultProps = {
   hover: false,
   selected: false,
+  component: 'tr',
 };
 
 TableRow.contextTypes = {
   table: PropTypes.object,
 };
 
-export default withStyles(styleSheet)(TableRow);
+export default withStyles(styles, { name: 'MuiTableRow' })(TableRow);

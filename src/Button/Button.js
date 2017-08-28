@@ -1,14 +1,14 @@
 // @flow
+// @inheritedComponent ButtonBase
 
 import React from 'react';
-import type { Element } from 'react';
+import type { ComponentType, Node } from 'react';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
-import ButtonBase from '../internal/ButtonBase';
+import ButtonBase from '../ButtonBase';
 
-export const styleSheet = createStyleSheet('MuiButton', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     ...theme.typography.button,
     lineHeight: '1em',
@@ -27,7 +27,11 @@ export const styleSheet = createStyleSheet('MuiButton', theme => ({
     }),
     '&:hover': {
       textDecoration: 'none',
+      // Reset on mouse devices
       backgroundColor: fade(theme.palette.text.primary, 0.12),
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
       '&$disabled': {
         backgroundColor: 'transparent',
       },
@@ -49,18 +53,30 @@ export const styleSheet = createStyleSheet('MuiButton', theme => ({
     color: theme.palette.primary[500],
     '&:hover': {
       backgroundColor: fade(theme.palette.primary[500], 0.12),
+      // Reset on mouse devices
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
     },
   },
   flatAccent: {
-    color: theme.palette.accent.A200,
+    color: theme.palette.secondary.A200,
     '&:hover': {
-      backgroundColor: fade(theme.palette.accent.A200, 0.12),
+      backgroundColor: fade(theme.palette.secondary.A200, 0.12),
+      // Reset on mouse devices
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
     },
   },
   flatContrast: {
     color: theme.palette.getContrastText(theme.palette.primary[500]),
     '&:hover': {
       backgroundColor: fade(theme.palette.getContrastText(theme.palette.primary[500]), 0.12),
+      // Reset on mouse devices
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
     },
   },
   colorInherit: {
@@ -82,8 +98,16 @@ export const styleSheet = createStyleSheet('MuiButton', theme => ({
     },
     '&:hover': {
       backgroundColor: theme.palette.grey.A100,
+      // Reset on mouse devices
+      '@media (hover: none)': {
+        backgroundColor: theme.palette.grey[300],
+      },
       '&$disabled': {
         backgroundColor: theme.palette.text.divider,
+        // Reset on mouse devices
+        '@media (hover: none)': {
+          backgroundColor: theme.palette.grey[300],
+        },
       },
     },
   },
@@ -93,13 +117,21 @@ export const styleSheet = createStyleSheet('MuiButton', theme => ({
     backgroundColor: theme.palette.primary[500],
     '&:hover': {
       backgroundColor: theme.palette.primary[700],
+      // Reset on mouse devices
+      '@media (hover: none)': {
+        backgroundColor: theme.palette.primary[500],
+      },
     },
   },
   raisedAccent: {
-    color: theme.palette.getContrastText(theme.palette.accent.A200),
-    backgroundColor: theme.palette.accent.A200,
+    color: theme.palette.getContrastText(theme.palette.secondary.A200),
+    backgroundColor: theme.palette.secondary.A200,
     '&:hover': {
-      backgroundColor: theme.palette.accent.A400,
+      backgroundColor: theme.palette.secondary.A400,
+      // Reset on mouse devices
+      '@media (hover: none)': {
+        backgroundColor: theme.palette.secondary.A200,
+      },
     },
   },
   raisedContrast: {
@@ -119,7 +151,7 @@ export const styleSheet = createStyleSheet('MuiButton', theme => ({
       boxShadow: theme.shadows[12],
     },
   },
-}));
+});
 
 type DefaultProps = {
   classes: Object,
@@ -137,7 +169,7 @@ export type Props = {
   /**
    * The content of the button.
    */
-  children: Element<*>,
+  children: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -155,7 +187,7 @@ export type Props = {
    * Either a string to use a DOM element or a component.
    * The default value is a `button`.
    */
-  component?: string | Function,
+  component?: string | ComponentType<*>,
   /**
    * Uses a smaller minWidth, ideal for things like card actions.
    */
@@ -166,7 +198,7 @@ export type Props = {
   disabled?: boolean,
   /**
    * If `true`, the  keyboard focus ripple will be disabled.
-   * `ripple` must also be true.
+   * `disableRipple` must also be true.
    */
   disableFocusRipple?: boolean,
   /**
@@ -253,4 +285,4 @@ Button.defaultProps = {
   type: 'button',
 };
 
-export default withStyles(styleSheet)(Button);
+export default withStyles(styles, { name: 'MuiButton' })(Button);

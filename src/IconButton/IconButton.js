@@ -1,16 +1,16 @@
 // @flow weak
+// @inheritedComponent ButtonBase
 
-import React, { Children, cloneElement } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
-import ButtonBase from '../internal/ButtonBase';
+import ButtonBase from '../ButtonBase';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import Icon from '../Icon';
 import { isMuiComponent } from '../utils/reactHelpers';
 
-export const styleSheet = createStyleSheet('MuiIconButton', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -32,7 +32,7 @@ export const styleSheet = createStyleSheet('MuiIconButton', theme => ({
     color: theme.palette.action.disabled,
   },
   colorAccent: {
-    color: theme.palette.accent.A200,
+    color: theme.palette.secondary.A200,
   },
   colorContrast: {
     color: theme.palette.getContrastText(theme.palette.primary[500]),
@@ -56,7 +56,7 @@ export const styleSheet = createStyleSheet('MuiIconButton', theme => ({
   keyboardFocused: {
     backgroundColor: theme.palette.text.divider,
   },
-}));
+});
 
 /**
  * Refer to the [Icons](/style/icons) section of the documentation
@@ -86,9 +86,9 @@ function IconButton(props) {
           ? <Icon className={classes.icon}>
               {children}
             </Icon>
-          : Children.map(children, child => {
+          : React.Children.map(children, child => {
               if (isMuiComponent(child, 'Icon')) {
-                return cloneElement(child, {
+                return React.cloneElement(child, {
                   className: classNames(classes.icon, child.props.className),
                 });
               }
@@ -138,4 +138,4 @@ IconButton.defaultProps = {
   disableRipple: false,
 };
 
-export default withStyles(styleSheet)(IconButton);
+export default withStyles(styles, { name: 'MuiIconButton' })(IconButton);

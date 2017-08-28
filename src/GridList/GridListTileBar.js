@@ -3,10 +3,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiGridListTileBar', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     position: 'absolute',
     left: 0,
@@ -62,7 +61,7 @@ export const styleSheet = createStyleSheet('MuiGridListTileBar', theme => ({
     position: 'relative',
     left: '50%',
   },
-}));
+});
 
 function GridListTileBar(props) {
   const {
@@ -151,4 +150,4 @@ GridListTileBar.defaultProps = {
   actionPosition: 'right',
 };
 
-export default withStyles(styleSheet)(GridListTileBar);
+export default withStyles(styles, { name: 'MuiGridListTileBar' })(GridListTileBar);

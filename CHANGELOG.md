@@ -2,8 +2,123 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.6
+###### _Aug 20, 2017_
+
+A big shout-out to @sebald for our first TypeScript coverage.
+Another notable change is [the migration of the documentation](#7759) to [Next.js](https://github.com/zeit/next.js), it's twice as fast as before 🚀.
+
+Big thanks to the 9 contributors who made this release possible.
+
+##### Breaking changes
+
+- [RadioGroup] Rename selectedValue to value (#7832) @
+
+Push #7741 initiative forward (use `value` and `onChange` as controlling properties)
+
+```diff
+-<RadioGroup selectedValue="foo">
++<RadioGroup value="foo">
+// ...
+```
+
+##### Component Fixes / Enhancements
+
+- [Table] Add the possibility of custom element type (#7765) @wieseljonas
+- [Input] remove extraneous props when using custom component (#7784) @rosskevin
+- [Input] should accommodate number and string values (#7791) @rosskevin
+- [Slide] Remove Slide offset property from src and docs (#7808) @gfpacheco
+- [typescript] Create typings for material-ui-icons (#7820) @sebald
+- [typescript] Add tests for typings + fixes (#7686) @sebald
+- [typescript] Update typings for beta.4 and beta.5 (#7793) @sebald
+- [typescript] Update <Slide> typings (#7817) @sebald
+- [TextField] Fix placeholder issue (#7838) @oliviertassinari
+
+##### Docs
+
+- [docs] Use Next.js: x2 performance (#7759) @oliviertassinari
+- [docs] Add the 'data grid for Material-UI' reference (#7786) @dxbykov
+- [docs] Renamed the styleSheet argument in withStyles to styles (#7819) @phiilu
+- [docs] Advanced table (#7824) @oliviertassinari
+- [docs] Fix typo (#7777) @Merkyl999x
+- [docs] Fix run-on sentences (#7792) @gitname
+- [docs] Show inherited components (#7846) @oliviertassinari
+- [docs] Add a team page (#7842) @oliviertassinari
+- [docs] Add a ROADMAP page (#7840) @oliviertassinari
+- [docs] Some last improvement before the release (#7847) @oliviertassinari
+
+##### Core
+
+- [core] Better usage of the CI 🚀 (#7833) @oliviertassinari
+- [core] Fix size-limit warning (#7822) @oliviertassinari
+- [icons] Automate release process (#7823) @oliviertassinari
+- [core] Update some dependencies (#7831) @oliviertassinari
+
+## 1.0.0-beta.5
+###### _Aug 15, 2017_
+
+Big thanks to the 11 contributors who made this release possible.
+
+##### Breaking changes
+
+- [Tabs][BottomNavigation] Use value over index property (#7741) @oliviertassinari
+
+This is an effort in the prolongation of #2957 where `value`/`onChange` is the idiomatic interface to control a component.
+```diff
+-<Tabs index={0}>
++<Tabs value={0}>
+// ...
+```
+- [core] Remove createStyleSheet (#7740)(#7730) @oliviertassinari
+
+The primary motivation for this change is simplicity, it's also making our interface closer to
+`react-jss`.
+```diff
+-import { withStyles, createStyleSheet } from 'material-ui/styles';
++import { withStyles } from 'material-ui/styles';
+
+-const styleSheet = createStyleSheet('Button', {
++const styles = {
+  root: {
+    background: 'red',
+  },
+-});
++};
+
+// ...
+
+-export default withStyles(styleSheet)(AppContent);
++export default withStyles(styles, { name: 'Button' })(Button);
+```
+
+##### Component Fixes / Enhancements
+
+- [Modal] Fix with react@next (#7673) @oliviertassinari
+- [Card] allow overflow - important for content such as autosuggest (#7687) @rosskevin
+- [CardHeader] Allow classes in title and subheader (#7701) @bmuenzenmeyer
+- [Tabs] Fix full width issue (#7691) @oliviertassinari
+- [Button] Disable the hover effect on touch devices (#7692) @oliviertassinari
+- [Popover] Refactor popover transition - separation of concerns (#7720) @rosskevin
+- [ButtonBase] Expose internal component (#7727) @oliviertassinari
+- [LinearProgress] Use transform instead width (#7732) @kevindantas
+
+##### Docs
+
+- [docs] Update Minimizing Bundle Size Documentation (#7707) @umidbekkarimov
+- [docs] Fix broken menu on the autocomplete page (#7702) @oliviertassinari
+- [examples] Take ownership on the next.js example (#7703) @oliviertassinari
+- [docs] Create CODE_OF_CONDUCT.md (1f3e67326d76f5d2053b128d5ca2cdefa0d6d90f) @oliviertassinari
+- [docs] Update supported-components.md (#7722) @BLipscomb
+- [docs] Fix the installation instructions of the examples (#7733) @dawogfather
+- [docs] Fix Typo (#7736) @Merkyl999x
+
+##### Core
+
+- [core] Flow type transitions Slide, Fade, Collapse (#7719) @rosskevin
+- [core] General maintenance (#7690) @oliviertassinari
+
 ## 1.0.0-beta.4
-###### _Aug 5, 2016_
+###### _Aug 5, 2017_
 
 Big thanks to the 7 contributors who made this release possible.
 

@@ -1,13 +1,12 @@
 // @flow
 
 import React from 'react';
-import type { Element } from 'react';
+import type { Node } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 
-export const styleSheet = createStyleSheet('MuiFormHelperText', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     color: theme.palette.input.helperText,
     fontFamily: theme.typography.fontFamily,
@@ -27,7 +26,7 @@ export const styleSheet = createStyleSheet('MuiFormHelperText', theme => ({
   disabled: {
     color: theme.palette.input.disabled,
   },
-}));
+});
 
 type DefaultProps = {
   classes: Object,
@@ -37,7 +36,7 @@ export type Props = {
   /**
    * The content of the component.
    */
-  children?: Element<*>,
+  children?: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -114,4 +113,4 @@ FormHelperText.contextTypes = {
   muiFormControl: PropTypes.object,
 };
 
-export default withStyles(styleSheet)(FormHelperText);
+export default withStyles(styles, { name: 'MuiFormHelperText' })(FormHelperText);

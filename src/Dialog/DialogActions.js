@@ -1,13 +1,12 @@
 // @flow weak
 
-import React, { Children, cloneElement, isValidElement } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import createStyleSheet from '../styles/createStyleSheet';
 import withStyles from '../styles/withStyles';
 import '../Button'; // So we don't have any override priority issue.
 
-export const styleSheet = createStyleSheet('MuiDialogActions', theme => ({
+export const styles = (theme: Object) => ({
   root: {
     display: 'flex',
     justifyContent: 'flex-end',
@@ -21,19 +20,19 @@ export const styleSheet = createStyleSheet('MuiDialogActions', theme => ({
   button: {
     minWidth: 64,
   },
-}));
+});
 
 function DialogActions(props) {
   const { children, classes, className, ...other } = props;
 
   return (
     <div data-mui-test="DialogActions" className={classNames(classes.root, className)} {...other}>
-      {Children.map(
+      {React.Children.map(
         children,
         button =>
-          isValidElement(button) &&
+          React.isValidElement(button) &&
           <div className={classes.action}>
-            {cloneElement(button, {
+            {React.cloneElement(button, {
               className: classNames(classes.button, button.props.className),
             })}
           </div>,
@@ -57,4 +56,4 @@ DialogActions.propTypes = {
   className: PropTypes.string,
 };
 
-export default withStyles(styleSheet)(DialogActions);
+export default withStyles(styles, { name: 'MuiDialogActions' })(DialogActions);
