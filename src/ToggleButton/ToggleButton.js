@@ -11,7 +11,7 @@ import withStyles from '../styles/withStyles';
  * - Label buttons with text, an icon, or both
  */
 
-export const styles = (theme:Object) => ({
+export const styles = (theme: Object) => ({
   root: {
     display: 'inline-flex',
     borderRadius: 2,

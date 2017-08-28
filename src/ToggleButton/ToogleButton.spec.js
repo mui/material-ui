@@ -4,7 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, createMount, getClasses } from '../test-utils';
-import ToggleButton, { styleSheet } from './ToggleButton';
+import ToggleButton from './ToggleButton';
 import ToggleButtonOption from './ToggleButtonOption';
 
 describe('<ToggleButton/>', () => {

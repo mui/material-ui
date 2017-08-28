@@ -15,7 +15,7 @@ import grey from '../colors/grey';
  * Represents an option within a Toggle Button
  *
  */
-export const styles = (theme:Object) => ({
+export const styles = (theme: Object) => ({
   root: {
     backgroundColor: 'transparent',
     borderRadius: 0,

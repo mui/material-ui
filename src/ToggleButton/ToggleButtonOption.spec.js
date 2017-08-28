@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, createMount, getClasses } from '../test-utils';
-import ToggleButtonOption, { styleSheet } from './ToggleButtonOption';
+import ToggleButtonOption from './ToggleButtonOption';
 import Icon from '../Icon';
 
 describe('<ToggleButtonOption/>', () => {
