@@ -192,9 +192,6 @@ export type Props = {
 
 type AllProps = DefaultProps & Props;
 
-/**
- * @ignore - internal component.
- */
 class Popover extends React.Component<AllProps, void> {
   props: AllProps;
   static defaultProps = {
