@@ -24,7 +24,7 @@ The styling solution of Material-UI is using [JSS](https://github.com/cssinjs/js
 It's a [high performance](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JS to CSS compiler which works at runtime and server-side.
 It is about 5KB (minified and gzipped) and is extensible via a [plugins](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
 
-If you end up using that styling solution in your codebase, you're going to need to *learn the API*.
+If you end up using this styling solution in your codebase, you're going to need to *learn the API*.
 The best place to start is by looking at the features each [plugin](http://cssinjs.org/plugins) is providing. Material-UI is using the [`jss-preset-default`](http://cssinjs.org/jss-preset-default) module. You can always add new plugins if needed with the [`JssProvider` helper](https://github.com/cssinjs/react-jss#custom-setup).
 
 ## Sheets registry
