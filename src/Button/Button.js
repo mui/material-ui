@@ -206,7 +206,7 @@ export type Props = {
    */
   disableRipple?: boolean,
   /**
-   * If `true`, well use floating action button styling.
+   * If `true`, will use floating action button styling.
    */
   fab?: boolean,
   /**
