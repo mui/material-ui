@@ -95,14 +95,12 @@ function SelectFieldInput(props: AllProps) {
         {...inputprops}
       >
         {/* Need this option for proper select sizing */}
-        <option className={classes.labelHolder}>
-          {label}
-        </option>
-        {React.Children.map(options, (option, index) =>
+        <option className={classes.labelHolder}>{label}</option>
+        {React.Children.map(options, (option, index) => (
           <option key={index} value={option.props.value}>
             {option.props.value && option.props.children}
-          </option>,
-        )}
+          </option>
+        ))}
       </select>
       <ArrowDropDownIcon className={classes.icon} />
     </div>

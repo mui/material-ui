@@ -168,7 +168,13 @@ describe('<SelectField />', () => {
     });
 
     it('second Menu child should be selected', () => {
-      assert.strictEqual(wrapper.find(Menu).childAt(1).props().selected, true);
+      assert.strictEqual(
+        wrapper
+          .find(Menu)
+          .childAt(1)
+          .props().selected,
+        true,
+      );
     });
   });
 

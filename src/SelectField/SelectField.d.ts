@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { StyledComponent, PropTypes } from '..';
+import { StyledComponent } from '..';
 import { FormControlProps, FormHelperTextProps } from '../Form';
 import { InputProps, InputLabelProps } from '../Input';
 
 export type SelectFieldProps = {
   autoFocus?: boolean;
-  children?: Element<*>;
+  children?: React.ReactElement<any>;
   className?: string;
   compareFunction?: Function;
   defaultValue?: string;
@@ -13,7 +13,7 @@ export type SelectFieldProps = {
   error?: boolean;
   FormHelperTextProps?: FormHelperTextProps;
   fullWidth?: boolean;
-  helperText?: string | Element<*>;
+  helperText?: React.ReactNode;
   helperTextClassName?: string;
   hideLabel?: boolean;
   id?: string;
@@ -23,21 +23,21 @@ export type SelectFieldProps = {
   inputProps?: Object;
   InputProps?: InputProps;
   inputRef?: React.Ref<any>;
-  label?: string | Element<*>;
+  label?: React.ReactElement<any> | string;
   labelClassName?: string;
   menuClassName?: string;
   menuProps?: Object;
   name?: string;
-  onBlur?: Function;
-  onChange?: Function;
-  onClean?: Function;
-  onDirty?: Function;
-  onFocus?: Function;
+  onBlur?: React.EventHandler<any>;
+  onChange?: React.EventHandler<any>;
+  onClean?: () => void;
+  onDirty?: () => void;
+  onFocus?: React.EventHandler<any>;
   placeholder?: string;
   required?: boolean;
-  rootRef?: Function;
+  rootRef?: React.Ref<any>;
   type?: string;
   value?: string | number;
 } & FormControlProps;
 
-export default class Input extends StyledComponent<SelectFieldProps> {}
+export default class SelectField extends StyledComponent<SelectFieldProps> {}

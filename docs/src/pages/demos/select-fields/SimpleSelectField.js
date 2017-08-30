@@ -1,6 +1,6 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'material-ui/styles/withStyles';
 import SelectField from 'material-ui/SelectField';
@@ -15,7 +15,7 @@ const styles = {
   },
 };
 
-class SimpleSelectField extends Component {
+class SimpleSelectField extends React.Component {
   state = {
     value: '',
   };

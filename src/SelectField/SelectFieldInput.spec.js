@@ -11,7 +11,7 @@ describe('<SelectFieldInput />', () => {
   let mount;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    shallow = createShallow();
     mount = createMount();
     classes = getClasses(<SelectFieldInput />);
   });

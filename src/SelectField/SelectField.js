@@ -1,7 +1,8 @@
 // @flow weak
+// @inheritedComponent FormControl
 
-import React, { Component } from 'react';
-import type { Element } from 'react';
+import React from 'react';
+import type { ChildrenArray, Element } from 'react';
 import keycode from 'keycode';
 import SelectFieldInput from './SelectFieldInput';
 import FormControl from '../Form/FormControl';
@@ -25,7 +26,7 @@ export type Props = {
   /**
    * The `MenuItem` elements to populate the select field with.
    */
-  children?: Element<*>,
+  children?: $ReadOnlyArray<ChildrenArray<*>>,
   /**
    * @ignore
    */
@@ -67,11 +68,11 @@ export type Props = {
    */
   hideLabel?: boolean,
   /**
-   * The id of the `input` element.
+   * The id of the `select` element.
    */
   id?: string,
   /**
-   * The CSS class name of the `input` element.
+   * The CSS class name of the `select` element.
    */
   inputClassName?: string,
   /**
@@ -83,7 +84,7 @@ export type Props = {
    */
   InputLabelProps?: Object,
   /**
-   * Properties applied to the `input` element.
+   * Properties applied to the `select` element.
    */
   inputProps?: Object,
   /**
@@ -91,7 +92,7 @@ export type Props = {
    */
   InputProps?: Object,
   /**
-   * Use that property to pass a ref callback to the native input component.
+   * Use that property to pass a ref callback to the native select component.
    */
   inputRef?: Function,
   /**
@@ -132,6 +133,8 @@ export type Props = {
   /** @ignore */
   onFocus?: Function,
   placeholder?: string,
+  /** @ignore */
+  type?: string,
   /**
    * If `true`, the label is displayed as required.
    */
@@ -141,10 +144,6 @@ export type Props = {
    */
   rootRef?: Function,
   /**
-   * Type attribute of the `Input` element. It should be a valid HTML5 input type.
-   */
-  type?: string,
-  /**
    * The value of the `Input` element, required for a controlled component.
    */
   value?: string | number,
@@ -153,37 +152,38 @@ export type Props = {
 type AllProps = DefaultProps & Props;
 
 type State = {
-  anchorEl: Object,
   ignoreFocusOnce: boolean,
   open: boolean,
-  selectedIndex: number,
+  selectedIndex: ?number,
 };
 
-class SelectField extends Component<DefaultProps, AllProps, State> {
+class SelectField extends React.Component<AllProps, State> {
   props: AllProps;
   static defaultProps = {
     compareFunction: (currentValue, itemValue) => currentValue === itemValue,
     disabled: false,
   };
   state = {
-    anchorEl: undefined,
     ignoreFocusOnce: false,
     open: false,
     selectedIndex: undefined,
   };
+  anchorEl: ?HTMLElement = null;
 
   handleMouseDown = event => event.preventDefault();
 
   handleKeyDown = event => {
     if (OPEN_MENU_KEYS.includes(keycode(event))) {
       event.preventDefault();
-      this.setState({ open: true, anchorEl: event.currentTarget });
+      this.anchorEl = event.currentTarget;
+      this.setState({ open: true });
     }
   };
 
   handleClick = event => {
     event.currentTarget.focus();
-    this.setState({ open: true, anchorEl: event.currentTarget });
+    this.anchorEl = event.currentTarget;
+    this.setState({ open: true });
   };
 
   handleRequestClose = () => this.setState({ open: false });
@@ -218,8 +218,8 @@ class SelectField extends Component<DefaultProps, AllProps, State> {
 
   render() {
     const {
-      children,
       autoFocus,
+      children,
       className,
       compareFunction,
       defaultValue,
@@ -281,7 +281,7 @@ class SelectField extends Component<DefaultProps, AllProps, State> {
         {...other}
       >
         {label &&
-          !(hideLabel && value) &&
+        !(hideLabel && value) && (
           <InputLabel
             htmlFor={id}
             className={labelClassName}
@@ -289,7 +289,8 @@ class SelectField extends Component<DefaultProps, AllProps, State> {
             {...InputLabelProps}
           >
             {label}
-          </InputLabel>}
+          </InputLabel>
+        )}
         <Input
           autoFocus={autoFocus}
           className={InputClassName}
@@ -298,7 +299,6 @@ class SelectField extends Component<DefaultProps, AllProps, State> {
           disabled={disabled}
           name={name}
           onKeyDown={this.handleKeyDown}
-          type={type}
           value={value}
           id={id}
           inputProps={inputProps}
@@ -306,12 +306,13 @@ class SelectField extends Component<DefaultProps, AllProps, State> {
           placeholder={placeholder}
           {...InputProps}
         />
-        {helperText &&
+        {helperText && (
           <FormHelperText className={helperTextClassName} {...FormHelperTextProps}>
             {helperText}
-          </FormHelperText>}
+          </FormHelperText>
+        )}
         <Menu
-          anchorEl={this.state.anchorEl}
+          anchorEl={this.anchorEl}
           className={menuClassName}
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
