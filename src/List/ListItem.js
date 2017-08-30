@@ -164,19 +164,13 @@ class ListItem extends React.Component<AllProps, void> {
       const secondaryAction = children.pop();
       return (
         <div className={classes.container}>
-          <ComponentMain {...listItemProps}>
-            {children}
-          </ComponentMain>
+          <ComponentMain {...listItemProps}>{children}</ComponentMain>
           {secondaryAction}
         </div>
       );
     }
 
-    return (
-      <ComponentMain {...listItemProps}>
-        {children}
-      </ComponentMain>
-    );
+    return <ComponentMain {...listItemProps}>{children}</ComponentMain>;
   }
 }
 

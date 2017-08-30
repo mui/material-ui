@@ -179,9 +179,9 @@ function LinearProgress(props) {
     <div className={rootClasses} {...rootProps} {...other}>
       {mode === 'buffer' ? <div className={dashedClass} /> : null}
       <div className={primaryClasses} style={inlineStyles.primary} />
-      {mode === 'determinate'
-        ? null
-        : <div className={secondaryClasses} style={inlineStyles.secondary} />}
+      {mode === 'determinate' ? null : (
+        <div className={secondaryClasses} style={inlineStyles.secondary} />
+      )}
     </div>
   );
 }

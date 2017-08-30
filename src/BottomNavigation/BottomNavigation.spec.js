@@ -78,7 +78,10 @@ describe('<BottomNavigation />', () => {
         <BottomNavigationButton icon={icon} />
       </BottomNavigation>,
     );
-    wrapper.find(BottomNavigationButton).at(1).simulate('click');
+    wrapper
+      .find(BottomNavigationButton)
+      .at(1)
+      .simulate('click');
     assert.strictEqual(handleChange.callCount, 1, 'should have been called once');
     assert.strictEqual(handleChange.args[0][1], 1, 'should have been called with value 1');
   });

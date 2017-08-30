@@ -1,6 +1,6 @@
 // @flow
 
-export default function createMixins(breakpoints: Object, spacing: Object) {
+export default function createMixins(breakpoints: Object, spacing: Object, mixins: Object) {
   return {
     gutters: (styles: Object) => {
       styles.paddingLeft = spacing.unit * 2;
@@ -11,5 +11,6 @@ export default function createMixins(breakpoints: Object, spacing: Object) {
       };
       return styles;
     },
+    ...mixins,
   };
 }

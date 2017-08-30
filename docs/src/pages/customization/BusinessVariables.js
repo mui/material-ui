@@ -12,10 +12,11 @@ const styles = theme => ({
   },
 });
 
-let BusinessCheckbox = props =>
+let BusinessCheckbox = props => (
   <Checkbox defaultChecked className={props.classes.danger}>
     {'Danger'}
-  </Checkbox>;
+  </Checkbox>
+);
 
 BusinessCheckbox.propTypes = {
   classes: PropTypes.object.isRequired,

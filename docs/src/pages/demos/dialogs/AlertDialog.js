@@ -23,9 +23,7 @@ export default class AlertDialog extends React.Component {
       <div>
         <Button onClick={() => this.setState({ open: true })}>Open alert dialog</Button>
         <Dialog open={this.state.open} onRequestClose={this.handleRequestClose}>
-          <DialogTitle>
-            {"Use Google's location service?"}
-          </DialogTitle>
+          <DialogTitle>{"Use Google's location service?"}</DialogTitle>
           <DialogContent>
             <DialogContentText>
               Let Google help apps determine location. This means sending anonymous location data to

@@ -214,11 +214,7 @@ export default function createSwitch(
       let icon = checked ? checkedIcon : iconProp;
 
       if (typeof icon === 'string') {
-        icon = (
-          <Icon>
-            {icon}
-          </Icon>
-        );
+        icon = <Icon>{icon}</Icon>;
       }
 
       return (

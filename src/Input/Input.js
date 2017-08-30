@@ -112,6 +112,10 @@ export const styles = (theme: Object) => {
       '&:focus': {
         outline: 0,
       },
+      // Reset Firefox invalid required input style
+      '&:invalid': {
+        boxShadow: 'none',
+      },
       '&::-webkit-search-decoration': {
         // Remove the padding when type=search.
         appearance: 'none',
@@ -545,7 +549,7 @@ class Input extends React.Component<AllProps, State> {
           onKeyUp={onKeyUp}
           onKeyDown={onKeyDown}
           disabled={disabled}
-          aria-required={required ? true : undefined}
+          required={required ? true : undefined}
           value={value}
           id={id}
           name={name}

@@ -1,5 +1,5 @@
 node_modules
-build
+/build
 /tmp
 coverage
 /.next

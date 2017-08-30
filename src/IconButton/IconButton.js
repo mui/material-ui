@@ -82,19 +82,19 @@ function IconButton(props) {
       {...other}
     >
       <span className={classes.label}>
-        {typeof children === 'string'
-          ? <Icon className={classes.icon}>
-              {children}
-            </Icon>
-          : React.Children.map(children, child => {
-              if (isMuiComponent(child, 'Icon')) {
-                return React.cloneElement(child, {
-                  className: classNames(classes.icon, child.props.className),
-                });
-              }
+        {typeof children === 'string' ? (
+          <Icon className={classes.icon}>{children}</Icon>
+        ) : (
+          React.Children.map(children, child => {
+            if (isMuiComponent(child, 'Icon')) {
+              return React.cloneElement(child, {
+                className: classNames(classes.icon, child.props.className),
+              });
+            }
 
-              return child;
-            })}
+            return child;
+          })
+        )}
       </span>
     </ButtonBase>
   );

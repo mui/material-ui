@@ -209,11 +209,7 @@ class Tab extends React.Component<AllProps, State> {
     let icon;
 
     if (iconProp !== undefined) {
-      icon = React.isValidElement(iconProp)
-        ? iconProp
-        : <Icon>
-            {iconProp}
-          </Icon>;
+      icon = React.isValidElement(iconProp) ? iconProp : <Icon>{iconProp}</Icon>;
     }
 
     let label;

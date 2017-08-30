@@ -177,10 +177,11 @@ function TextField(props: Props) {
       required={required}
       {...other}
     >
-      {label &&
+      {label && (
         <InputLabel htmlFor={id} className={labelClassName} {...InputLabelProps}>
           {label}
-        </InputLabel>}
+        </InputLabel>
+      )}
       <Input
         autoComplete={autoComplete}
         autoFocus={autoFocus}
@@ -199,10 +200,11 @@ function TextField(props: Props) {
         placeholder={placeholder}
         {...InputProps}
       />
-      {helperText &&
+      {helperText && (
         <FormHelperText className={helperTextClassName} {...FormHelperTextProps}>
           {helperText}
-        </FormHelperText>}
+        </FormHelperText>
+      )}
     </FormControl>
   );
 }

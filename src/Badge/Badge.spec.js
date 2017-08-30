@@ -17,11 +17,7 @@ describe('<Badge />', () => {
   const testChildren = <div className="unique">Hello World</div>;
 
   it('renders children and badgeContent', () => {
-    const wrapper = shallow(
-      <Badge badgeContent={10}>
-        {testChildren}
-      </Badge>,
-    );
+    const wrapper = shallow(<Badge badgeContent={10}>{testChildren}</Badge>);
 
     assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
     assert.ok(wrapper.find('span').length, 'should contain the badgeContent');
@@ -41,11 +37,7 @@ describe('<Badge />', () => {
   });
 
   it('renders children by default', () => {
-    const wrapper = shallow(
-      <Badge badgeContent={10}>
-        {testChildren}
-      </Badge>,
-    );
+    const wrapper = shallow(<Badge badgeContent={10}>{testChildren}</Badge>);
 
     assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
   });

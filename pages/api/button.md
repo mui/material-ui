@@ -15,7 +15,7 @@
 | disableFocusRipple | boolean | false | If `true`, the  keyboard focus ripple will be disabled. `disableRipple` must also be true. |
 | disableRipple | boolean | false | If `true`, the ripple effect will be disabled. |
 | disabled | boolean | false | If `true`, the button will be disabled. |
-| fab | boolean | false | If `true`, well use floating action button styling. |
+| fab | boolean | false | If `true`, will use floating action button styling. |
 | href | string |  | The URL to link to when the button is clicked. If defined, an `a` element will be used as the root node. |
 | raised | boolean | false | If `true`, the button will use raised styling. |
 

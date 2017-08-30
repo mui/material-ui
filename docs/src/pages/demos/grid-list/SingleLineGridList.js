@@ -53,7 +53,7 @@ function SingleLineGridList(props) {
   return (
     <div className={classes.root}>
       <GridList className={classes.gridList} cols={2.5}>
-        {tileData.map(tile =>
+        {tileData.map(tile => (
           <GridListTile key={tile.img}>
             <img src={tile.img} alt={tile.title} />
             <GridListTileBar
@@ -68,8 +68,8 @@ function SingleLineGridList(props) {
                 </IconButton>
               }
             />
-          </GridListTile>,
-        )}
+          </GridListTile>
+        ))}
       </GridList>
     </div>
   );

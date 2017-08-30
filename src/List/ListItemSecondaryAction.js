@@ -38,11 +38,7 @@ type AllProps = DefaultProps & Props;
 function ListItemSecondaryAction(props: AllProps) {
   const { children, classes, className } = props;
 
-  return (
-    <div className={classNames(classes.root, className)}>
-      {children}
-    </div>
-  );
+  return <div className={classNames(classes.root, className)}>{children}</div>;
 }
 
 ListItemSecondaryAction.muiName = 'ListItemSecondaryAction';

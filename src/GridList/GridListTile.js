@@ -42,7 +42,7 @@ export type Props = {
    * in which case GridListTile takes care of making the image "cover" available space
    * (similar to `background-size: cover` or to `object-fit: cover`).
    */
-  children?: ChildrenArray<*>,
+  children?: $ReadOnlyArray<ChildrenArray<*>>,
   /**
    * Useful to extend the style applied to components.
    */

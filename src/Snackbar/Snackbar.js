@@ -331,8 +331,9 @@ class Snackbar extends React.Component<AllProps, State> {
       onExiting,
       onExited: createChainedFunction(this.handleTransitionExited, onExited),
     };
-    const transitionContent =
-      children || <SnackbarContent message={message} action={action} {...SnackbarContentProps} />;
+    const transitionContent = children || (
+      <SnackbarContent message={message} action={action} {...SnackbarContentProps} />
+    );
 
     let transition;
     if (typeof transitionProp === 'function') {

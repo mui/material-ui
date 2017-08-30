@@ -5,7 +5,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow } from '../test-utils';
 import HiddenJs from './HiddenJs';
-import type { Breakpoint } from '../styles/breakpoints';
+import type { Breakpoint } from '../styles/createBreakpoints';
 import Typography from '../Typography';
 
 describe('<HiddenJs />', () => {

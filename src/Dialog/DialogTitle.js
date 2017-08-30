@@ -20,11 +20,7 @@ function DialogTitle(props) {
 
   return (
     <div data-mui-test="DialogTitle" className={classNames(classes.root, className)} {...other}>
-      {disableTypography
-        ? children
-        : <Typography type="title">
-            {children}
-          </Typography>}
+      {disableTypography ? children : <Typography type="title">{children}</Typography>}
     </div>
   );
 }

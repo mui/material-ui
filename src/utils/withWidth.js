@@ -7,8 +7,8 @@ import debounce from 'lodash/debounce';
 import createEagerFactory from 'recompose/createEagerFactory';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import withTheme from '../styles/withTheme';
-import { keys } from '../styles/breakpoints';
-import type { Breakpoint } from '../styles/breakpoints';
+import { keys } from '../styles/createBreakpoints';
+import type { Breakpoint } from '../styles/createBreakpoints';
 
 /**
  * By default, returns true if screen width is the same or greater than the given breakpoint.

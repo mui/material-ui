@@ -41,11 +41,7 @@ describe('<TableRow />', () => {
 
   it('should render children', () => {
     const children = <td className="test" />;
-    const wrapper = shallow(
-      <TableRow>
-        {children}
-      </TableRow>,
-    );
+    const wrapper = shallow(<TableRow>{children}</TableRow>);
     assert.strictEqual(wrapper.childAt(0).equals(children), true);
   });
 

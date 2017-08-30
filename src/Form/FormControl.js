@@ -46,7 +46,7 @@ export type Props = {
   /**
    * The contents of the form control.
    */
-  children?: ChildrenArray<*>,
+  children?: $ReadOnlyArray<ChildrenArray<*>>,
   /**
    * Useful to extend the style applied to components.
    */

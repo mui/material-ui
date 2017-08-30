@@ -111,9 +111,7 @@ function FormControlLabel(props: AllProps) {
         value: control.props.value || value,
         inputRef: control.props.inputRef || inputRef,
       })}
-      <Typography className={classes.label}>
-        {label}
-      </Typography>
+      <Typography className={classes.label}>{label}</Typography>
     </label>
   );
 }

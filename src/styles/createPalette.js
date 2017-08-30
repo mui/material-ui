@@ -1,6 +1,7 @@
-// @flow weak
+// @flow
 
 import warning from 'warning';
+import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
 import indigo from '../colors/indigo';
 import pink from '../colors/pink';
 import grey from '../colors/grey';
@@ -74,9 +75,31 @@ function getContrastText(color) {
   return light.text.primary;
 }
 
-export default function createPalette(options = {}) {
-  const { primary = indigo, secondary = pink, error = red, type = 'light' } = options;
+export default function createPalette(palette: Object) {
+  const { primary = indigo, secondary = pink, error = red, type = 'light', ...other } = palette;
+  const shades = { dark, light };
 
+  warning(shades[type], `Material-UI: the palette type \`${type}\` is not supported.`);
+
+  const paletteOutput = deepmerge(
+    {
+      common,
+      type,
+      primary,
+      secondary,
+      error,
+      grey,
+      shades,
+      text: shades[type].text,
+      input: shades[type].input,
+      action: shades[type].action,
+      background: shades[type].background,
+      getContrastText,
+    },
+    other,
+  );
+
+  // Dev warnings
   if (process.env.NODE_ENV !== 'production') {
     const difference = (base, compare) => {
       if (!compare) {
@@ -88,13 +111,8 @@ export default function createPalette(options = {}) {
 
     const paletteColorError = (name, base, compare) => {
       const missing = difference(base, compare);
-
-      if (missing.length === 0) {
-        return;
-      }
-
       warning(
-        false,
+        missing.length === 0,
         [
           `Material-UI: ${name} color is missing the following hues: ${missing.join(',')}`,
           'See the default colors, indigo, or pink, as exported from material-ui/colors.',
@@ -102,27 +120,11 @@ export default function createPalette(options = {}) {
       );
     };
 
-    paletteColorError('primary', indigo, primary);
-    paletteColorError('secondary', pink, secondary);
-    paletteColorError('error', red, error);
+    paletteColorError('primary', indigo, paletteOutput.primary);
+    paletteColorError('secondary', pink, paletteOutput.secondary);
+    paletteColorError('error', red, paletteOutput.error);
+    paletteColorError('grey', red, paletteOutput.grey);
   }
 
-  const shades = { dark, light };
-
-  warning(shades[type], `Material-UI: the palette type \`${type}\` is not supported.`);
-
-  return {
-    common,
-    type,
-    shades,
-    text: shades[type].text,
-    input: shades[type].input,
-    action: shades[type].action,
-    background: shades[type].background,
-    primary,
-    secondary,
-    error,
-    grey,
-    getContrastText,
-  };
+  return paletteOutput;
 }

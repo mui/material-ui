@@ -206,7 +206,7 @@ export type Props = {
    */
   disableRipple?: boolean,
   /**
-   * If `true`, well use floating action button styling.
+   * If `true`, will use floating action button styling.
    */
   fab?: boolean,
   /**
@@ -267,9 +267,7 @@ function Button(props: AllProps) {
       keyboardFocusedClassName={classes.keyboardFocused}
       {...other}
     >
-      <span className={classes.label}>
-        {children}
-      </span>
+      <span className={classes.label}>{children}</span>
     </ButtonBase>
   );
 }

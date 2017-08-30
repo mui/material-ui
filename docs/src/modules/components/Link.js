@@ -110,11 +110,7 @@ function Link(props, context) {
     };
   }
 
-  return (
-    <ComponentRoot {...rootProps}>
-      {children}
-    </ComponentRoot>
-  );
+  return <ComponentRoot {...rootProps}>{children}</ComponentRoot>;
 }
 
 Link.propTypes = {

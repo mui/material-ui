@@ -83,9 +83,9 @@ class ConfirmationDialog extends React.Component {
             value={this.state.value}
             onChange={this.handleChange}
           >
-            {options.map(option =>
-              <FormControlLabel value={option} key={option} control={<Radio />} label={option} />,
-            )}
+            {options.map(option => (
+              <FormControlLabel value={option} key={option} control={<Radio />} label={option} />
+            ))}
           </RadioGroup>
         </DialogContent>
         <DialogActions>

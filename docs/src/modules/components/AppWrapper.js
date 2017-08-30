@@ -7,9 +7,7 @@ import { JssProvider } from 'react-jss';
 import { getContext } from 'docs/src/modules/styles/context';
 import { connect } from 'react-redux';
 import AppFrame from 'docs/src/modules/components/AppFrame';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import createMuiTheme from 'material-ui/styles/theme';
-import createPalette from 'material-ui/styles/palette';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import blue from 'material-ui/colors/blue';
 import pink from 'material-ui/colors/pink';
 import { lightTheme, darkTheme, setPrismTheme } from 'docs/src/modules/utils/prism';
@@ -47,11 +45,11 @@ class AppWrapper extends React.Component<any, any> {
   componentWillReceiveProps(nextProps) {
     if (nextProps.dark !== this.props.dark) {
       this.styleContext.theme = createMuiTheme({
-        palette: createPalette({
+        palette: {
           primary: blue,
-          accent: pink,
+          secondary: pink,
           type: nextProps.dark ? 'dark' : 'light',
-        }),
+        },
       });
 
       if (nextProps.dark) {
@@ -73,9 +71,7 @@ class AppWrapper extends React.Component<any, any> {
           theme={this.styleContext.theme}
           sheetsManager={this.styleContext.sheetsManager}
         >
-          <AppFrame>
-            {children}
-          </AppFrame>
+          <AppFrame>{children}</AppFrame>
         </MuiThemeProvider>
       </JssProvider>
     );

@@ -73,25 +73,17 @@ class TemporaryDrawer extends React.Component {
 
     const sideList = (
       <div>
-        <List className={classes.list}>
-          {mailFolderListItems}
-        </List>
+        <List className={classes.list}>{mailFolderListItems}</List>
         <Divider />
-        <List className={classes.list}>
-          {otherMailFolderListItems}
-        </List>
+        <List className={classes.list}>{otherMailFolderListItems}</List>
       </div>
     );
 
     const fullList = (
       <div>
-        <List className={classes.listFull}>
-          {mailFolderListItems}
-        </List>
+        <List className={classes.listFull}>{mailFolderListItems}</List>
         <Divider />
-        <List className={classes.listFull}>
-          {otherMailFolderListItems}
-        </List>
+        <List className={classes.listFull}>{otherMailFolderListItems}</List>
       </div>
     );
 

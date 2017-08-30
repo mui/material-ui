@@ -14,10 +14,11 @@ const styles = theme => ({
   },
 });
 
-let NestedCheckbox = props =>
+let NestedCheckbox = props => (
   <Checkbox defaultChecked className={props.classes.danger}>
     {'Danger'}
-  </Checkbox>;
+  </Checkbox>
+);
 
 NestedCheckbox.propTypes = {
   classes: PropTypes.object.isRequired,
