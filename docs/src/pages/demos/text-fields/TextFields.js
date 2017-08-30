@@ -33,7 +33,7 @@ class TextFields extends React.Component {
     const classes = this.props.classes;
 
     return (
-      <div className={classes.container}>
+      <form className={classes.container} noValidate>
         <TextField
           id="name"
           label="Name"
@@ -130,7 +130,7 @@ class TextFields extends React.Component {
           fullWidth
           margin="normal"
         />
-      </div>
+      </form>
     );
   }
 }

@@ -13,10 +13,10 @@ If you think you have found a bug, or have a new feature idea, please start by m
 Next, create a new issue that briefly explains the problem, and provides a bit of background as to the circumstances that triggered it, and steps to reproduce it.
 
 For code issues please include:
-* Material-UI version
-* React version
-* Browser version
-* A code example or link to a repo, gist or running site.
+- Material-UI version
+- React version
+- Browser version
+- A code example or link to a repo, gist or running site.
 
 For visual or layout problems, images or animated gifs can help explain your issue.
 
@@ -24,11 +24,9 @@ For feature requests please include a link to the relevant section of Material D
 
 ### Issue Guidelines
 
-Please begin the title with '[ComponentName]' where appropriate, and use a succint description. "doesn't work" doesn't help others find similar issues.
-
-Please don't group multiple topics into one issue, but instead each should be its own issue.
-
-And please don't just '+1' an issue. It spams the maintainers and doesn't help move the issue forward.
+- Please begin the title with '[ComponentName]' where appropriate, and use a succint description. "doesn't work" doesn't help others find similar issues.
+- Please don't group multiple topics into one issue, but instead each should be its own issue.
+- And please don't just comment '+1' on an issue. It spams the maintainers and doesn't help move the issue forward.
 
 ## Submitting a Pull Request
 
@@ -83,11 +81,13 @@ Test coverage is limited at present, but where possible, please add tests for an
 
 Please follow the coding style of the current code base. Material-UI uses eslint, so if possible, enable linting in your editor to get realtime feedback. The linting rules are also run when Webpack recompiles your changes, and can be run manually with `yarn lint`.
 
-You can also run linting on a subset of the codebase with `gulp eslint:src`, `gulp eslint:docs` or `gulp eslint:test`. Finally, when you submit a pull request, they are run again by Travis CI, but hopefully by then your code is already clean!
+You can also run `yarn prettier` to reformat the code.
+
+Finally, when you submit a pull request, they are run again by Circle CI, but hopefully by then your code is already clean!
 
 ## Roadmap
 
-To get a sense of where Material-UI is heading, or for ideas on where you could contribute, take a look at the [roadmap](https://github.com/callemall/material-ui/blob/v1-beta/ROADMAP.md) and the list of [Material Design components](https://github.com/callemall/material-ui/issues/2863).
+To get a sense of where Material-UI is heading, or for ideas on where you could contribute, take a look at the [ROADMAP](https://github.com/callemall/material-ui/blob/v1-beta/ROADMAP.md).
 
 ## License
 

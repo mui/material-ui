@@ -40,7 +40,7 @@ describe('<Input />', () => {
     assert.strictEqual(input.name(), 'input');
     assert.strictEqual(input.props().type, 'text', 'should pass the text type prop');
     assert.strictEqual(input.hasClass(classes.input), true, 'should have the input class');
-    assert.strictEqual(input.prop('aria-required'), undefined);
+    assert.strictEqual(input.props().required, undefined);
   });
 
   it('should render an <Textarea /> when passed the multiline prop', () => {
@@ -292,7 +292,7 @@ describe('<Input />', () => {
       it('should have the aria-required prop with value true', () => {
         setFormControlContext({ required: true });
         const input = wrapper.find('input');
-        assert.strictEqual(input.prop('aria-required'), true);
+        assert.strictEqual(input.props().required, true);
       });
     });
   });
