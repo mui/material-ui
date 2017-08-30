@@ -53,6 +53,12 @@ describe('<InputLabel />', () => {
       setFormControlContext({});
       assert.strictEqual(wrapper.hasClass(classes.formControl), true);
     });
+
+    it('should have the labelDense class when margin is dense', () => {
+      setFormControlContext({ margin: 'dense' });
+      assert.strictEqual(wrapper.hasClass(classes.labelDense), true);
+    });
+
     ['dirty', 'focused'].forEach(state => {
       describe(state, () => {
         beforeEach(() => {

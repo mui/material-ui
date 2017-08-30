@@ -18,6 +18,10 @@ export const styles = (theme: Object) => ({
     // slight alteration to spec spacing to match visual spec result
     transform: `translate(0, ${theme.spacing.unit * 3 - 1}px) scale(1)`,
   },
+  // Compensation for the `Input.inputDense` style.
+  labelDense: {
+    transform: `translate(0, ${theme.spacing.unit * 2.5 + 1}px) scale(1)`,
+  },
   shrink: {
     transform: 'translate(0, 1.5px) scale(0.75)',
     transformOrigin: 'top left',
@@ -69,6 +73,11 @@ export type Props = {
    */
   focused?: boolean,
   /**
+   * If `dense`, will adjust vertical spacing. This is normally obtained via context from
+   * FormControl.
+   */
+  margin?: 'dense',
+  /**
    * if `true`, the label will indicate that the input is required.
    */
   required?: boolean,
@@ -88,6 +97,7 @@ function InputLabel(props: AllProps, context: { muiFormControl: Object }) {
     classes,
     className: classNameProp,
     shrink: shrinkProp,
+    margin: marginProp,
     ...other
   } = props;
 
@@ -98,6 +108,11 @@ function InputLabel(props: AllProps, context: { muiFormControl: Object }) {
     shrink = muiFormControl.dirty || muiFormControl.focused;
   }
 
+  let margin = marginProp;
+  if (typeof margin === 'undefined' && muiFormControl) {
+    margin = muiFormControl.margin;
+  }
+
   const className = classNames(
     classes.root,
     {
@@ -105,6 +120,7 @@ function InputLabel(props: AllProps, context: { muiFormControl: Object }) {
       [classes.animated]: !disableAnimation,
       [classes.shrink]: shrink,
       [classes.disabled]: disabled,
+      [classes.labelDense]: margin === 'dense',
     },
     classNameProp,
   );
