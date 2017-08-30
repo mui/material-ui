@@ -10,7 +10,7 @@ describe('<SelectFieldInput />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    shallow = createShallow({ untilSelector: 'SelectFieldInput' });
     classes = getClasses(<SelectFieldInput />);
   });
 
