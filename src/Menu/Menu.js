@@ -87,6 +87,7 @@ export const styles = {
     // Add iOS momentum scrolling.
     WebkitOverflowScrolling: 'touch',
     // So we see the menu when it's empty.
+    // It's most likely on issue on userland.
     minWidth: 16,
     minHeight: 16,
   },
@@ -94,8 +95,8 @@ export const styles = {
 
 class Menu extends React.Component<AllProps, void> {
   props: AllProps;
+
   static defaultProps = {
-    classes: {},
     open: false,
     transitionDuration: 'auto',
   };

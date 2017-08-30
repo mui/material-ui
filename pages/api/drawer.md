@@ -11,7 +11,7 @@
 | SlideProps | Object |  | Properties applied to the `Slide` element. |
 | anchor | union:&nbsp;'left'<br>&nbsp;'top'<br>&nbsp;'right'<br>&nbsp;'bottom'<br> | 'left' | Side from which the drawer will appear. |
 | <span style="color: #31a148">children *</span> | Node |  | The contents of the drawer. |
-| classes | Object | {} | Useful to extend the style applied to components. |
+| classes | Object |  | Useful to extend the style applied to components. |
 | elevation | number | 16 | The elevation of the drawer. |
 | enterTransitionDuration | number | duration.enteringScreen | Customizes duration of enter animation (ms) |
 | leaveTransitionDuration | number | duration.leavingScreen | Customizes duration of leave animation (ms) |

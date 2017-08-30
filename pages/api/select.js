@@ -3,7 +3,7 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from './textarea.md';
+import markdown from './select.md';
 
 function Page() {
   return <MarkdownDocs markdown={markdown} />;

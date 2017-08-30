@@ -45,7 +45,6 @@ class TableHead extends React.Component<AllProps, void> {
   props: AllProps;
 
   static defaultProps = {
-    classes: {},
     component: 'thead',
   };
 

@@ -35,7 +35,3 @@ If text in a simple menu wraps to a second line, use a simple dialog instead. Si
 If the height of a menu prevents all menu items from being displayed, the menu can scroll internally.
 
 {{demo='pages/demos/menus/LongMenu.js'}}
-
-## TextField select menus
-
-Coming soon...

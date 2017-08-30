@@ -105,13 +105,10 @@ function withStyles(stylesOrCreator: Object, options?: Options = {}) {
     type AllProps = StyleProps & BaseProps;
     class Style extends React.Component<AllProps, {}> {
       props: AllProps;
-      static contextTypes = {
-        sheetsManager: PropTypes.object,
-        ...contextTypes,
-        ...(listenToTheme ? themeListener.contextTypes : {}),
-      };
+
       // Exposed for tests purposes
       static options: ?Options;
+
       // Exposed for test purposes.
       static Naked = BaseComponent;
 
@@ -299,6 +296,12 @@ function withStyles(stylesOrCreator: Object, options?: Options = {}) {
         });
       }
     }
+
+    Style.contextTypes = {
+      sheetsManager: PropTypes.object,
+      ...contextTypes,
+      ...(listenToTheme ? themeListener.contextTypes : {}),
+    };
 
     hoistNonReactStatics(Style, BaseComponent);
 

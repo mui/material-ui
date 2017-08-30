@@ -79,7 +79,6 @@ class Collapse extends React.Component<AllProps, void> {
   props: AllProps;
 
   static defaultProps = {
-    classes: {},
     in: false,
     theme: {},
     transitionDuration: 300,

@@ -8,8 +8,8 @@ import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
 import Button from '../Button';
 import { capitalizeFirstLetter } from '../utils/helpers';
-import KeyboardArrowLeft from '../svg-icons/keyboard-arrow-left';
-import KeyboardArrowRight from '../svg-icons/keyboard-arrow-right';
+import KeyboardArrowLeft from '../svg-icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '../svg-icons/KeyboardArrowRight';
 import { LinearProgress } from '../Progress';
 
 export const styles = (theme: Object) => ({

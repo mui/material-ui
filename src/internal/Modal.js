@@ -157,7 +157,6 @@ class Modal extends React.Component<AllProps, State> {
     backdropComponent: Backdrop,
     backdropTransitionDuration: 300,
     backdropInvisible: false,
-    classes: {},
     keepMounted: false,
     disableBackdrop: false,
     ignoreBackdropClick: false,

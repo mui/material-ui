@@ -25,7 +25,7 @@
     "docs:api": "rimraf pages/api/* && babel-node ./docs/scripts/buildApi.js",
     "docs:icons": "rimraf static/icons/* && babel-node ./docs/scripts/buildIcons.js",
     "docs:build": "cross-env BABEL_ENV=docs-production next build",
-    "docs:dev": "cross-env BABEL_ENV=docs-development next dev",
+    "docs:dev": "rimraf node_modules/.cache/babel-loader && cross-env BABEL_ENV=docs-development next dev",
     "docs:start": "next start",
     "docs:export": "next export -o docs/export",
     "prebuild": "rimraf build",
@@ -48,7 +48,7 @@
     "test:coverage:html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc mocha test/**/*.spec.js src/{,**/}*.spec.js && nyc report --reporter=html",
     "test:karma": "cross-env NODE_ENV=test karma start test/karma.conf.js --single-run",
     "test:regressions": "webpack --config test/regressions/webpack.config.js && rimraf test/regressions/screenshots/chrome/* && vrtest run --config test/vrtest.config.js --record",
-    "test:typings": "tsc -p tsconfig.json",
+    "test:typescript": "tsc -p tsconfig.json",
     "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN || true",
     "flow": "flow --show-all-errors",
     "version": "yarn build",
@@ -175,7 +175,7 @@
   "size-limit": [
     {
       "path": "build/index.js",
-      "limit": "79 KB"
+      "limit": "81 KB"
     }
   ],
   "nyc": {

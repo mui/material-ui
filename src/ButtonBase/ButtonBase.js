@@ -144,9 +144,9 @@ type State = {
 
 class ButtonBase extends React.Component<AllProps, State> {
   props: AllProps;
+
   static defaultProps = {
     centerRipple: false,
-    classes: {},
     focusRipple: false,
     disableRipple: false,
     tabIndex: '0',

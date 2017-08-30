@@ -70,7 +70,7 @@ jobs:
           command: yarn size
       - run:
           name: Can we generate the docs?
-          command: yarn docs:build
+          command: yarn docs:api && yarn docs:build
   test_browser:
     <<: *defaults
     steps:

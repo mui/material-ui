@@ -4,8 +4,8 @@ import React from 'react';
 import type { Node } from 'react';
 import withStyles from '../styles/withStyles';
 import createSwitch from '../internal/SwitchBase';
-import RadioButtonCheckedIcon from '../svg-icons/radio-button-checked';
-import RadioButtonUncheckedIcon from '../svg-icons/radio-button-unchecked';
+import RadioButtonCheckedIcon from '../svg-icons/RadioButtonChecked';
+import RadioButtonUncheckedIcon from '../svg-icons/RadioButtonUnchecked';
 
 export const styles = (theme: Object) => ({
   default: {

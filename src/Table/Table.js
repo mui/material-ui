@@ -47,7 +47,6 @@ class Table extends React.Component<AllProps, void> {
   props: AllProps;
 
   static defaultProps = {
-    classes: {},
     component: 'table',
   };
 

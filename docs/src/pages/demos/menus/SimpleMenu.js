@@ -6,7 +6,7 @@ import Menu, { MenuItem } from 'material-ui/Menu';
 
 class SimpleMenu extends React.Component {
   state = {
-    anchorEl: undefined,
+    anchorEl: null,
     open: false,
   };
 

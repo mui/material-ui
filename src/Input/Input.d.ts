@@ -4,7 +4,7 @@ import { StyledComponent } from '..';
 export type InputProps = {
   autoComplete?: string;
   autoFocus?: boolean;
-  component?: React.ReactNode;
+  inputComponent?: React.ReactNode;
   defaultValue?: string | number;
   disabled?: boolean;
   disableUnderline?: boolean;

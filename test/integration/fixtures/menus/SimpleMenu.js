@@ -7,7 +7,6 @@ const options = ['Menu Item 1', 'Menu Item 2', 'Menu Item 3'];
 
 class SimpleMenu extends React.Component<any, any> {
   state = {
-    anchorEl: undefined,
     open: false,
     selectedIndex: undefined,
   };

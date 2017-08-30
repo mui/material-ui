@@ -74,8 +74,8 @@ type AllProps = DefaultProps & Props;
 
 class List extends React.Component<AllProps, void> {
   props: AllProps;
+
   static defaultProps = {
-    classes: {},
     component: 'ul',
     dense: false,
     disablePadding: false,

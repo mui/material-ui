@@ -92,9 +92,12 @@ export type Props = {
    */
   multiline?: boolean,
   /**
-   * Name attribute of the `Input` element.
+   * Name attribute of the `input` element.
    */
   name?: string,
+  /**
+   * TODO
+   */
   placeholder?: string,
   /**
    * If `true`, the label is displayed as required.

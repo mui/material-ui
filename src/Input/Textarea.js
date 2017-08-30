@@ -72,7 +72,7 @@ export type Props = {
    */
   rowsMax?: string | number,
   /**
-   * Use that property to pass a ref callback to the native textarea component.
+   * Use that property to pass a ref callback to the native textarea element.
    */
   textareaRef?: Function,
   /**
@@ -87,15 +87,21 @@ type State = {
   height: ?number,
 };
 
+/**
+ * @ignore - internal component.
+ */
 class Textarea extends React.Component<AllProps, State> {
   props: AllProps;
+
   shadow: ?HTMLInputElement;
+
   singlelineShadow: ?HTMLInputElement;
+
   input: ?HTMLInputElement;
+
   value: string;
 
   static defaultProps = {
-    classes: {},
     rows: 1,
   };
 

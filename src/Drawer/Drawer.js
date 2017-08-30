@@ -149,7 +149,6 @@ class Drawer extends React.Component<AllProps, State> {
 
   static defaultProps = {
     anchor: 'left',
-    classes: {},
     elevation: 16,
     enterTransitionDuration: duration.enteringScreen,
     leaveTransitionDuration: duration.leavingScreen,
