@@ -2,6 +2,114 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.7
+###### _Aug 30, 2017_
+
+This release is particularly dense! Here at some highlights
+- We release 4 breaking changes at the same time.
+This is a first for the project.
+We wanted to release them as soon as possible, while the v1-beta market share is still at 10% of the v0.x version.
+Hopefully, the frequency of the breaking changes will slow down.
+- @rosskevin has upgraded the Flow dependency. v0.53 is providing a much better typing integration with React.
+- The Drawer component has some new features.
+One of them is allowing the documentation to fully take advantage of the SSR.
+We expect the documentation to render even faster with this beta.
+
+Big thanks to the 12 contributors who made this release possible.
+
+##### Breaking changes
+
+- [theme] Use secondary wording over accent (#7906) @oliviertassinari
+
+```diff
+     const theme = createMuiTheme({
+-      palette: createPalette({ primary: deepOrange, accent: green }),
++      palette: createPalette({ primary: deepOrange, secondary: green }),
+     });
+```
+
+```diff
+   flatAccent: {
+-    color: theme.palette.accent.A200,
++    color: theme.palette.secondary.A200,
+```
+
+- [Drawer] New improvements (#7925) @oliviertassinari
+
+
+```diff
+-<Drawer docked />
++<Drawer type="persistent" />
+```
+
+- [theme] Simplification of the API (#7934) @oliviertassinari
+
+- If you are using a direct import of `material-ui/styles/theme`, the path changed:
+```diff
+-import createMuiTheme from 'material-ui/styles/theme';
++import createMuiTheme from 'material-ui/styles/createMuiTheme';
+```
+
+- We have removed the intermediary functions, now you can provide a nested structure to override the generated theme structure inside the first argument of `createMuiTheme()`. Notice that you can still change the output object before providing it to the `<MuiThemeProvider />`.
+
+```diff
+ const theme = createMuiTheme({
+-  palette: createPalette({
++  palette: {
+     primary: blue,
+     secondary: pink,
+   }),
+-  typography: createTypography(palette, {
++  typography: {
+     // System font
+     fontFamily:
+       '-apple-system,system-ui,BlinkMacSystemFont,' +
+       '"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
+-  }),
++  },
+-},
++});
+```
+
+- [Input] Better support required field (#7955) @oliviertassinari
+
+Following Bootstrap, we are now forwarding the required property down to the input component. We used to only apply `aria-required`. This move makes us less opinionated and should help with native form handling.
+
+If you want to avoid the default browser required property handling, you can add a `noValidate` property to the parent `form`.
+
+##### Component Fixes / Enhancements
+
+- [TextField] Fix label position with dense margins (#7946) @phallguy
+- [FormControlLabel] Allow for node in the label prop (#7903) @Taldrain
+- [ListItemIcon] Icon should not shrink fixes (#7917) @gulderov
+- [withResponsiveFullScreen] missed type import (#7926) @rosskevin
+- [TypeScript] Fixes/improvements for withWith/withStyle/BottomNavigationButton (#7897) @sebald
+- [TypeScript] Update typings to popover changes (#7937) @sebald
+- [Popover] Expose the component (#7927) @oliviertassinari
+- [ButtonBase] Better warning message (#7904) @oliviertassinari
+- [Menu] Allow invalid children (#7907) @oliviertassinari
+- [Menu] Add a new warning (#7962) @oliviertassinari
+
+##### Docs
+
+- [docs] Fix missing props in css-in-js examples (#7867) @Izhaki
+- [docs] Fix docs build on Windows (#7938) @kybarg
+- [docs] remove flow from demos (#7883) @rosskevin
+- [docs] Use emoji directly instead of :shortcodes: (#7912) @markspolakovs
+- [docs] Show an example with the data- pattern (#7924) @Sigfried
+- [docs] Small fixes after the next.js refactorization (#7851) @oliviertassinari
+- [docs] Fix typo in floating-action button property of Button (#7951) @kgregory
+- [docs] Add the title for SEO (#7885) @oliviertassinari
+- [docs] Better support IE11 (#7939) @oliviertassinari
+- [docs] The style is injected at the bottom of the head (#7954) @oliviertassinari
+
+##### Core
+
+- [TypeScript] Refactor typings to modules (#7874) @sebald
+- [flow] Upgrade to flow 0.53.1 (#7869) @rosskevin
+- [core] Misc flow fixes (#7890) @rosskevin
+- [core] Upgrade prettier (#7941) @oliviertassinari
+
 ## 1.0.0-beta.6
 ###### _Aug 20, 2017_
 
