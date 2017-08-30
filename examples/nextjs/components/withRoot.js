@@ -1,10 +1,9 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import React, { Component } from 'react';
-import { JssProvider } from 'react-jss';
 import { withStyles, MuiThemeProvider } from 'material-ui/styles';
 import wrapDisplayName from 'recompose/wrapDisplayName';
-import { getContext } from '../styles/context';
+import getContext from '../styles/getContext';
 
 // Apply some reset
 const styles = theme => ({
@@ -34,6 +33,10 @@ function withRoot(BaseComponent) {
       return {};
     }
 
+    componentWillMount() {
+      this.styleContext = getContext();
+    }
+
     componentDidMount() {
       // Remove the server-side injected CSS.
       const jssStyles = document.querySelector('#jss-server-side');
@@ -43,26 +46,12 @@ function withRoot(BaseComponent) {
     }
 
     render() {
-      const context = getContext();
-
-      if (process.browser) {
-        return (
-          <MuiThemeProvider theme={context.theme}>
-            <AppWrapper>
-              <BaseComponent {...this.props} />
-            </AppWrapper>
-          </MuiThemeProvider>
-        );
-      }
-
       return (
-        <JssProvider registry={context.sheetsRegistry} jss={context.jss}>
-          <MuiThemeProvider theme={context.theme} sheetsManager={context.sheetsManager}>
-            <AppWrapper>
-              <BaseComponent {...this.props} />
-            </AppWrapper>
-          </MuiThemeProvider>
-        </JssProvider>
+        <MuiThemeProvider theme={this.styleContext.theme}>
+          <AppWrapper>
+            <BaseComponent {...this.props} />
+          </AppWrapper>
+        </MuiThemeProvider>
       );
     }
   }

@@ -2,14 +2,14 @@
 
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
-import { getContext, setContext } from 'docs/src/modules/styles/context';
+import getContext from 'docs/src/modules/styles/getContext';
+import { JssProvider } from 'react-jss';
 import CleanCSS from 'clean-css';
 
 const cleanCSS = new CleanCSS();
 
 class MyDocument extends Document {
   render() {
-    const context = getContext();
     return (
       <html lang="en" dir="ltr">
         <Head>
@@ -33,7 +33,7 @@ class MyDocument extends Document {
           */}
           <link rel="manifest" href="/static/manifest.json" />
           {/* PWA primary color */}
-          <meta name="theme-color" content={context.theme.palette.primary[500]} />
+          <meta name="theme-color" content={this.props.stylesContext.theme.palette.primary[500]} />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
@@ -78,11 +78,13 @@ MyDocument.getInitialProps = ctx => {
   // 1. page.getInitialProps
   // 3. page.render
 
-  // Reset the context for handling a new request.
-  setContext();
-  const page = ctx.renderPage();
-  // Get the context with the collected side effects.
+  // Get the context to collected side effects.
   const context = getContext();
+  const page = ctx.renderPage(Component => props => (
+    <JssProvider registry={context.sheetsRegistry} jss={context.jss}>
+      <Component {...props} />
+    </JssProvider>
+  ));
 
   let css = context.sheetsRegistry.toString();
   if (process.env.NODE_ENV === 'production') {
@@ -91,6 +93,7 @@ MyDocument.getInitialProps = ctx => {
 
   return {
     ...page,
+    stylesContext: context,
     styles: (
       <style
         id="jss-server-side"

@@ -3,13 +3,10 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { JssProvider } from 'react-jss';
-import { getContext } from 'docs/src/modules/styles/context';
+import getContext, { getTheme } from 'docs/src/modules/styles/getContext';
 import { connect } from 'react-redux';
 import AppFrame from 'docs/src/modules/components/AppFrame';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import blue from 'material-ui/colors/blue';
-import pink from 'material-ui/colors/pink';
+import { MuiThemeProvider } from 'material-ui/styles';
 import { lightTheme, darkTheme, setPrismTheme } from 'docs/src/modules/utils/prism';
 
 // Injected the insertion-point-jss after docssearch
@@ -44,13 +41,7 @@ class AppWrapper extends React.Component<any, any> {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.dark !== this.props.dark) {
-      this.styleContext.theme = createMuiTheme({
-        palette: {
-          primary: blue,
-          secondary: pink,
-          type: nextProps.dark ? 'dark' : 'light',
-        },
-      });
+      this.styleContext.theme = getTheme(nextProps.dark);
 
       if (nextProps.dark) {
         setPrismTheme(darkTheme);
@@ -66,14 +57,12 @@ class AppWrapper extends React.Component<any, any> {
     const { children } = this.props;
 
     return (
-      <JssProvider registry={this.styleContext.sheetsRegistry} jss={this.styleContext.jss}>
-        <MuiThemeProvider
-          theme={this.styleContext.theme}
-          sheetsManager={this.styleContext.sheetsManager}
-        >
-          <AppFrame>{children}</AppFrame>
-        </MuiThemeProvider>
-      </JssProvider>
+      <MuiThemeProvider
+        theme={this.styleContext.theme}
+        sheetsManager={this.styleContext.sheetsManager}
+      >
+        <AppFrame>{children}</AppFrame>
+      </MuiThemeProvider>
     );
   }
 }
