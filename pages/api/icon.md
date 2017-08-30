@@ -7,7 +7,7 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Element |  | The name of the icon font ligature. |
+| children | Node |  | The name of the icon font ligature. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | color | union:&nbsp;'inherit', 'accent', 'action', 'contrast', 'disabled', 'error', 'primary'<br> | 'inherit' | The color of the component. It's using the theme palette when that makes sense. |
 
@@ -31,8 +31,4 @@ section for more detail.
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiIcon`.
-
-## Demos
-
-- [Icons](/style/icons)
 

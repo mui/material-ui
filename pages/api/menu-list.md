@@ -7,12 +7,8 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Element |  | MenuList contents, normally `MenuItem`s. |
+| <span style="color: #31a148">currentTabIndex *</span> | number |  |  |
 
 Any other properties supplied will be spread to the root element.
 
-
-## Demos
-
-- [Menus](/demos/menus)
 

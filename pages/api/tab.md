@@ -7,11 +7,8 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| classes | object |  | Useful to extend the style applied to components. |
-| disabled | bool | false | If `true`, the tab will be disabled. |
-| icon | node |  | The icon element. If a string is provided, it will be used as a font ligature. |
-| label | node |  | The label element. |
-| value | any |  | You can provide your own value. Otherwise, we fallback to the child position index. |
+| disabled |  | false |  |
+| <span style="color: #31a148">wrappedText *</span> | boolean |  |  |
 
 Any other properties supplied will be spread to the root element.
 
@@ -45,8 +42,4 @@ you need to use the following style sheet name: `MuiTab`.
 ## Inheritance
 
 The properties of the [&lt;ButtonBase /&gt;](/api/button-base) component are also available.
-
-## Demos
-
-- [Tabs](/demos/tabs)
 

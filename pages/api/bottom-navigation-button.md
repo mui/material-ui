@@ -7,11 +7,6 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| classes | object |  | Useful to extend the style applied to components. |
-| icon | node |  | The icon element. If a string is provided, it will be used as a font ligature. |
-| label | node |  | The label element. |
-| showLabel | bool |  | If `true`, the BottomNavigationButton will show its label. |
-| value | any |  | You can provide your own value. Otherwise, we fallback to the child position index. |
 
 Any other properties supplied will be spread to the root element.
 
@@ -37,8 +32,4 @@ you need to use the following style sheet name: `MuiBottomNavigationButton`.
 ## Inheritance
 
 The properties of the [&lt;ButtonBase /&gt;](/api/button-base) component are also available.
-
-## Demos
-
-- [Bottom Navigation](/demos/bottom-navigation)
 

@@ -16,7 +16,3 @@ Any other properties supplied will be spread to the root element.
 
 The properties of the [&lt;Paper /&gt;](/api/paper) component are also available.
 
-## Demos
-
-- [Cards](/demos/cards)
-
