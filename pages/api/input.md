@@ -11,7 +11,7 @@
 | autoFocus | boolean |  | If `true`, the input will be focused during the first mount. |
 | className | string |  | The CSS class name of the wrapper element. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| component | union:&nbsp;string<br>&nbsp;Function<br> |  | The component used for the root node. Either a string to use a DOM element or a component. It's an `input` by default. |
+| component | union:&nbsp;string<br>&nbsp;ComponentType<*><br> |  | The component used for the root node. Either a string to use a DOM element or a component. It's an `input` by default. |
 | defaultValue | union:&nbsp;string<br>&nbsp;number<br> |  | The default input value, useful when not controlling the component. |
 | disableUnderline | boolean | false | If `true`, the input will not have an underline. |
 | disabled | boolean |  | TODO |

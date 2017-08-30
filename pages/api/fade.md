@@ -7,7 +7,7 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Element |  |  |
+| children | Element |  | A single child content element. |
 | enterTransitionDuration | number | duration.enteringScreen | Duration of the animation when the element is entering. |
 | in | boolean | false | If `true`, the component will transition in. |
 | leaveTransitionDuration | number | duration.leavingScreen | Duration of the animation when the element is exiting. |

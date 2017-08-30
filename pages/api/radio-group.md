@@ -7,11 +7,11 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Element |  | The content of the component. |
+| children | $ReadOnlyArray |  | The content of the component. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | name | string |  | The name used to reference the value of the control. |
 | onChange | Function |  | Callback fired when a radio button is selected.<br><br>**Signature:**<br>`function(event: object, value: string) => void`<br>*event:* The event source of the callback<br>*value:* The `value` of the selected radio button |
-| <span style="color: #31a148">value *</span> | string |  | Value of the selected radio button. |
+| value | string |  | Value of the selected radio button. |
 
 Any other properties supplied will be spread to the root element.
 
@@ -27,6 +27,10 @@ section for more detail.
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiRadioGroup`.
+
+## Inheritance
+
+The properties of the [&lt;FormGroup /&gt;](/api/form-group) component are also available.
 
 ## Demos
 

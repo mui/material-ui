@@ -7,7 +7,7 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Element |  | The content node to be collapsed. |
+| children | Node |  | The content node to be collapsed. |
 | classes | Object | {} | Useful to extend the style applied to components. |
 | in | boolean | false | If `true`, the component will transition in. |
 | onEnter | TransitionCallback |  | Callback fired before the component is entering. |

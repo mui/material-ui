@@ -7,9 +7,9 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Element |  | The content of the component, normally `TableRow`. |
+| children | Node |  | The content of the component, normally `TableRow`. |
 | classes | Object | {} | Useful to extend the style applied to components. |
-| component | union:&nbsp;string<br>&nbsp;Function<br> | 'thead' | The component used for the root node. Either a string to use a DOM element or a component. |
+| component | union:&nbsp;string<br>&nbsp;ComponentType<*><br> | 'thead' | The component used for the root node. Either a string to use a DOM element or a component. |
 
 Any other properties supplied will be spread to the root element.
 

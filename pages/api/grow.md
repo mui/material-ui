@@ -7,7 +7,7 @@ Grow transition used by popovers such as Menu.
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Element |  | The content of the component. |
+| children | Element |  | A single child content element. |
 | onEnter | TransitionCallback |  | Callback fired before the component is entering |
 | onEntered | TransitionCallback |  | Callback fired when the component has entered |
 | onEntering | TransitionCallback |  | Callback fired when the component is entering |

@@ -7,12 +7,13 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Element |  | The contents of the `InputLabel`. |
+| children | Node |  | The contents of the `InputLabel`. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | disableAnimation | boolean | false | If `true`, the transition animation is disabled. |
 | disabled | boolean | false | If `true`, apply disabled class. |
 | error | boolean |  | If `true`, the label will be displayed in an error state. |
 | focused | boolean |  | If `true`, the input of this label is focused. |
+| margin | literal |  | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
 | required | boolean |  | if `true`, the label will indicate that the input is required. |
 | shrink | boolean |  | If `true`, the label is shrunk. |
 
@@ -24,6 +25,7 @@ You can overrides all the class names injected by Material-UI thanks to the `cla
 This property accepts the following keys:
 - `root`
 - `formControl`
+- `labelDense`
 - `shrink`
 - `animated`
 - `disabled`

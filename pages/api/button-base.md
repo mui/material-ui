@@ -8,14 +8,14 @@
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | centerRipple | boolean | false | If `true`, the ripples will be centered. They won't start at the cursor interaction position. |
-| children | Element |  | The content of the component. |
+| children | Node |  | The content of the component. |
 | classes | Object | {} | Useful to extend the style applied to components. |
-| component | union:&nbsp;string<br>&nbsp;Function<br> |  | The component used for the root node. Either a string to use a DOM element or a component. The default value is a `button`. |
+| component | union:&nbsp;string<br>&nbsp;ComponentType<*><br> |  | The component used for the root node. Either a string to use a DOM element or a component. The default value is a `button`. |
 | disableRipple | boolean | false | If `true`, the ripple effect will be disabled. |
 | disabled | boolean |  | If `true`, the base button will be disabled. |
 | focusRipple | boolean | false | If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`. |
 | keyboardFocusedClassName | string |  | The CSS class applied while the component is keyboard focused. |
-| onKeyboardFocus | Function |  | Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
+| onKeyboardFocus | signature |  | Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too. |
 
 Any other properties supplied will be spread to the root element.
 

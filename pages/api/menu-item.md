@@ -7,9 +7,9 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Element |  | Menu item contents. |
+| children | Node |  | Menu item contents. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| component | union:&nbsp;string<br>&nbsp;Function<br> |  | The component used for the root node. Either a string to use a DOM element or a component. |
+| component | union:&nbsp;string<br>&nbsp;ComponentType<*><br> |  | The component used for the root node. Either a string to use a DOM element or a component. |
 | selected | boolean | false | Use to apply selected styling. |
 
 Any other properties supplied will be spread to the root element.

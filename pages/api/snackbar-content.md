@@ -7,9 +7,9 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| action | Element |  | The action to display. |
+| action | Node |  | The action to display. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| <span style="color: #31a148">message *</span> | Element |  | The message to display. |
+| <span style="color: #31a148">message *</span> | Node |  | The message to display. |
 
 Any other properties supplied will be spread to the root element.
 

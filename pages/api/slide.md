@@ -7,6 +7,7 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| children | Element |  | A single child content element. |
 | direction | union:&nbsp;'left'<br>&nbsp;'right'<br>&nbsp;'up'<br>&nbsp;'down'<br> | 'down' | Direction the child element will enter from. |
 | enterTransitionDuration | number | duration.enteringScreen | Duration of the animation when the element is entering. |
 | in | boolean |  | If `true`, show the component; triggers the enter or exit animation. |

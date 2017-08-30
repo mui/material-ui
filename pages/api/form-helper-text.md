@@ -7,7 +7,7 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Element |  | The content of the component. |
+| children | Node |  | The content of the component. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | disabled | boolean |  | If `true`, the helper text should be displayed in a disabled state. |
 | error | boolean |  | If `true`, helper text should be displayed in an error state. |

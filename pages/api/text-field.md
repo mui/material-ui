@@ -17,13 +17,13 @@
 | disabled | boolean |  | If `true`, the input will be disabled. |
 | error | boolean |  | If `true`, the label will be displayed in an error state. |
 | fullWidth | boolean |  | If `true`, the input will take up the full width of its container. |
-| helperText | union:&nbsp;string<br>&nbsp;Element<*><br> |  | The helper text content. |
+| helperText | Node |  | The helper text content. |
 | helperTextClassName | string |  | The CSS class name of the helper text element. |
 | id | string |  | The id of the `input` element. |
 | inputClassName | string |  | The CSS class name of the `input` element. |
 | inputProps | Object |  | Properties applied to the `input` element. |
 | inputRef | Function |  | Use that property to pass a ref callback to the native input component. |
-| label | union:&nbsp;string<br>&nbsp;Element<*><br> |  | The label content. |
+| label | Node |  | The label content. |
 | labelClassName | string |  | The CSS class name of the label element. |
 | margin | union:&nbsp;'none'<br>&nbsp;'dense'<br>&nbsp;'normal'<br> |  | If `dense` | `normal`, will adjust vertical spacing of this and contained components. |
 | multiline | boolean |  | If `true`, a textarea element will be rendered instead of an input. |
