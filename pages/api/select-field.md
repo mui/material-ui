@@ -30,7 +30,7 @@
 | menuClassName | string |  | The CSS class name of the `Menu` element. |
 | menuProps | Object |  | Properties applied to the internal `<Menu />` component. |
 | name | string |  | Name attribute of the `Input` element. |
-| onChange | Function |  | Callback function fired when a menu item is selected.<br><br>**Signature:**<br>`function(event: object, key: number, payload: any) => void`<br>*event:* TouchTap event targeting the menu item that was selected.<br>*key:* The index of the selected menu item.<br>*payload:* The `value` prop of the selected menu item. |
+| onChange | Function |  | Callback function fired when a menu item is selected.<br><br>**Signature:**<br>`function(event: object, key: number, payload: any) => void`<br>*event:* TouchTap event targeting the menu item that was selected.<br>*key:* The index of the selected menu item.<br>*payload:* The `value` prop of the selected menu item. |
 | placeholder | string |  |  |
 | required | boolean |  | If `true`, the label is displayed as required. |
 | rootRef | Function |  | Use that property to pass a ref callback to the root component. |
@@ -38,5 +38,13 @@
 | value | union:&nbsp;string<br>&nbsp;number<br> |  | The value of the `Input` element, required for a controlled component. |
 
 Any other properties supplied will be spread to the root element.
+
+## Inheritance
+
+The properties of the [&lt;FormControl /&gt;](/api/form-control) component are also available.
+
+## Demos
+
+- [Select Fields](/demos/select-fields)
 
 

@@ -3,39 +3,32 @@
 import React from 'react';
 import withRoot from 'docs/src/modules/components/withRoot';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from 'docs/src/pages/demos/text-fields/text-fields.md';
+import markdown from 'docs/src/pages/demos/select-fields/select-fields.md';
 
 function Page() {
   return (
     <MarkdownDocs
       markdown={markdown}
       demos={{
-        'pages/demos/text-fields/TextFields.js': {
-          js: require('docs/src/pages/demos/text-fields/TextFields').default,
+        'pages/demos/select-fields/SimpleSelectField.js': {
+          js: require('docs/src/pages/demos/select-fields/SimpleSelectField').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/text-fields/TextFields'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/select-fields/SimpleSelectField'), 'utf8')
 `,
         },
-        'pages/demos/text-fields/ComposedTextField.js': {
-          js: require('docs/src/pages/demos/text-fields/ComposedTextField').default,
+        'pages/demos/select-fields/FocusSelectField.js': {
+          js: require('docs/src/pages/demos/select-fields/FocusSelectField').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/text-fields/ComposedTextField'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/select-fields/FocusSelectField'), 'utf8')
 `,
         },
-        'pages/demos/text-fields/TextFieldMargins.js': {
-          js: require('docs/src/pages/demos/text-fields/TextFieldMargins').default,
+        'pages/demos/select-fields/FilteredSelectField.js': {
+          js: require('docs/src/pages/demos/select-fields/FilteredSelectField').default,
           raw: preval`
 module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/text-fields/TextFieldMargins'), 'utf8')
-`,
-        },
-        'pages/demos/text-fields/Inputs.js': {
-          js: require('docs/src/pages/demos/text-fields/Inputs').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/demos/text-fields/Inputs'), 'utf8')
+  .readFileSync(require.resolve('docs/src/pages/demos/select-fields/FilteredSelectField'), 'utf8')
 `,
         },
       }}
