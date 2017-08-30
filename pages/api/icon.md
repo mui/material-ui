@@ -7,7 +7,7 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Element |  | The name of the icon font ligature. |
+| children | Node |  | The name of the icon font ligature. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | color | union:&nbsp;'inherit', 'accent', 'action', 'contrast', 'disabled', 'error', 'primary'<br> | 'inherit' | The color of the component. It's using the theme palette when that makes sense. |
 

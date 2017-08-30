@@ -7,10 +7,10 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| classes | object |  | Useful to extend the style applied to components. |
-| disabled | bool | false | If `true`, the tab will be disabled. |
-| icon | node |  | The icon element. If a string is provided, it will be used as a font ligature. |
-| label | node |  | The label element. |
+| classes | Object |  | Useful to extend the style applied to components. |
+| disabled | boolean | false | If `true`, the tab will be disabled. |
+| icon | Element |  | The icon element. If a string is provided, it will be used as a font ligature. |
+| label | Element |  | The label element. |
 | value | any |  | You can provide your own value. Otherwise, we fallback to the child position index. |
 
 Any other properties supplied will be spread to the root element.

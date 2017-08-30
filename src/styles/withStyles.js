@@ -111,7 +111,7 @@ function withStyles(stylesOrCreator: Object, options?: Options = {}) {
         ...(listenToTheme ? themeListener.contextTypes : {}),
       };
       // Exposed for tests purposes
-      static options: ?Options = options;
+      static options: ?Options;
       // Exposed for test purposes.
       static Naked = BaseComponent;
 
@@ -301,6 +301,9 @@ function withStyles(stylesOrCreator: Object, options?: Options = {}) {
     }
 
     hoistNonReactStatics(Style, BaseComponent);
+
+    // Higher specificity
+    Style.options = options;
 
     if (process.env.NODE_ENV !== 'production') {
       Style.displayName = wrapDisplayName(BaseComponent, 'withStyles');

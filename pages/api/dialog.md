@@ -7,7 +7,7 @@ Dialogs are overlaid modal paper based components with a backdrop.
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Element |  | Dialog children, usually the included sub-components. |
+| children | Node |  | Dialog children, usually the included sub-components. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | enterTransitionDuration | number | duration.enteringScreen | Duration of the animation when the element is entering. |
 | fullScreen | boolean | false | If `true`, it will be full-screen |
@@ -25,7 +25,7 @@ Dialogs are overlaid modal paper based components with a backdrop.
 | onExiting | TransitionCallback |  | Callback fired when the dialog is exiting. |
 | onRequestClose | Function |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | open | boolean | false | If `true`, the Dialog is open. |
-| transition | union:&nbsp;Function<br>&nbsp;Element<*><br> | Fade | Transition component. |
+| transition | Node | Fade | Transition component. |
 
 Any other properties supplied will be spread to the root element.
 

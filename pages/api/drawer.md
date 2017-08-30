@@ -7,16 +7,17 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| ModalProps | Object |  | Properties applied to the `Modal` element. |
 | SlideProps | Object |  | Properties applied to the `Slide` element. |
-| anchor | union:&nbsp;'left'<br>&nbsp;'top'<br>&nbsp;'right'<br>&nbsp;'bottom'<br> | 'left' | Side which will the drawer will appear from. |
-| children | Element |  | The contents of the drawer. |
+| anchor | union:&nbsp;'left'<br>&nbsp;'top'<br>&nbsp;'right'<br>&nbsp;'bottom'<br> | 'left' | Side from which the drawer will appear. |
+| <span style="color: #31a148">children *</span> | Node |  | The contents of the drawer. |
 | classes | Object | {} | Useful to extend the style applied to components. |
-| docked | boolean | false | If `true`, the drawer will dock itself and will no longer slide in with an overlay. |
 | elevation | number | 16 | The elevation of the drawer. |
 | enterTransitionDuration | number | duration.enteringScreen | Customizes duration of enter animation (ms) |
 | leaveTransitionDuration | number | duration.leavingScreen | Customizes duration of leave animation (ms) |
 | onRequestClose | Function |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | open | boolean | false | If `true`, the drawer is open. |
+| <span style="color: #31a148">type *</span> | union:&nbsp;'permanent'<br>&nbsp;'persistent'<br>&nbsp;'temporary'<br> | 'temporary' | The type of drawer. |
 
 Any other properties supplied will be spread to the root element.
 

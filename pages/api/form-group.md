@@ -8,7 +8,7 @@ It provides compact row layout and FormLabel awareness.
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Element |  | The content of the component. |
+| children | Node |  | The content of the component. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | row | boolean | false | Display group of elements in a compact row. |
 

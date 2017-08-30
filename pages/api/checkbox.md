@@ -9,14 +9,14 @@
 |:-----|:-----|:--------|:------------|
 | checked | union:&nbsp;boolean<br>&nbsp;string<br> |  | If `true`, the component is checked. |
 | checkedClassName | string |  | The CSS class name of the root element when checked. |
-| checkedIcon | Element |  | The icon to display when the component is checked. If a string is provided, it will be used as a font ligature. |
+| checkedIcon | Node |  | The icon to display when the component is checked. If a string is provided, it will be used as a font ligature. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | disableRipple | boolean |  | If `true`, the ripple effect will be disabled. |
 | disabled | boolean |  | If `true`, the switch will be disabled. |
 | disabledClassName | string |  | The CSS class name of the root element when disabled. |
-| icon | Element |  | The icon to display when the component is unchecked. If a string is provided, it will be used as a font ligature. |
+| icon | Node |  | The icon to display when the component is unchecked. If a string is provided, it will be used as a font ligature. |
 | indeterminate | boolean | false | If `true`, the component appears indeterminate. |
-| indeterminateIcon | union:&nbsp;string<br>&nbsp;Element<*><br> | <IndeterminateCheckBoxIcon /> | The icon to display when the component is indeterminate. If a string is provided, it will be used as a font ligature. |
+| indeterminateIcon | Node | <IndeterminateCheckBoxIcon /> | The icon to display when the component is indeterminate. If a string is provided, it will be used as a font ligature. |
 | inputProps | Object |  | Properties applied to the `input` element. |
 | inputRef | Function |  | Use that property to pass a ref callback to the native input component. |
 | name | string |  |  |

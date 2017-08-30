@@ -9,7 +9,7 @@
 |:-----|:-----|:--------|:------------|
 | MenuListProps | Object |  | Properties applied to the `MenuList` element. |
 | anchorEl | Object |  | The DOM element used to set the position of the menu. |
-| children | Element |  | Menu contents, normally `MenuItem`s. |
+| children | Node |  | Menu contents, normally `MenuItem`s. |
 | classes | Object | {} | Useful to extend the style applied to components. |
 | onEnter | TransitionCallback |  | Callback fired before the Menu enters. |
 | onEntered | TransitionCallback |  | Callback fired when the Menu has entered. |
@@ -35,6 +35,10 @@ section for more detail.
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiMenu`.
+
+## Inheritance
+
+The properties of the [&lt;Popover /&gt;](/api/popover) component are also available.
 
 ## Demos
 

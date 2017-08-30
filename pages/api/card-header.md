@@ -7,10 +7,10 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| avatar | Element |  | The Avatar  for the Card Header. |
+| avatar | Node |  | The Avatar for the Card Header. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| subheader | Element |  | The content of the component. |
-| title | Element |  | The content of the Card Title. |
+| subheader | Node |  | The content of the component. |
+| title | Node |  | The content of the Card Title. |
 
 Any other properties supplied will be spread to the root element.
 

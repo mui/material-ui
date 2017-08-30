@@ -7,10 +7,10 @@ Chips represent complex entities in small blocks, such as a contact.
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| avatar | node |  | Avatar element. |
-| classes | object |  | Useful to extend the style applied to components. |
-| label | node |  | The content of the label. |
-| onRequestDelete | function |  | Callback function fired when the delete icon is clicked. If set, the delete icon will be shown.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
+| avatar | Element |  | Avatar element. |
+| classes | Object |  | Useful to extend the style applied to components. |
+| label | Element |  | The content of the label. |
+| onRequestDelete | signature |  | Callback function fired when the delete icon is clicked. If set, the delete icon will be shown. |
 
 Any other properties supplied will be spread to the root element.
 
