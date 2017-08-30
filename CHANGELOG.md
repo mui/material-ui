@@ -5,14 +5,14 @@ Changes. Changes everywhere!
 ## 1.0.0-beta.7
 ###### _Aug 30, 2017_
 
-This release is particularly dense! Here at some highlights
+This release is particularly dense! Here are some highlights:
 - We release 4 breaking changes at the same time.
 This is a first for the project.
 We wanted to release them as soon as possible, while the v1-beta market share is still at 10% of the v0.x version.
 Hopefully, the frequency of the breaking changes will slow down.
 - @rosskevin has upgraded the Flow dependency. v0.53 is providing a much better typing integration with React.
 - The Drawer component has some new features.
-One of them is allowing the documentation to fully take advantage of the SSR.
+One of them is allowing the documentation to fully take advantage of the server side rendering.
 We expect the documentation to render even faster with this beta.
 
 Big thanks to the 12 contributors who made this release possible.
@@ -43,33 +43,32 @@ Big thanks to the 12 contributors who made this release possible.
 ```
 
 - [theme] Simplification of the API (#7934) @oliviertassinari
+  - If you are using a direct import of `material-ui/styles/theme`, the path changed:
+  ```diff
+  -import createMuiTheme from 'material-ui/styles/theme';
+  +import createMuiTheme from 'material-ui/styles/createMuiTheme';
+  ```
 
-- If you are using a direct import of `material-ui/styles/theme`, the path changed:
-```diff
--import createMuiTheme from 'material-ui/styles/theme';
-+import createMuiTheme from 'material-ui/styles/createMuiTheme';
-```
+  - We have removed the intermediary functions, now you can provide a nested structure to override the generated theme structure inside the first argument of `createMuiTheme()`. Notice that you can still change the output object before providing it to the `<MuiThemeProvider />`.
 
-- We have removed the intermediary functions, now you can provide a nested structure to override the generated theme structure inside the first argument of `createMuiTheme()`. Notice that you can still change the output object before providing it to the `<MuiThemeProvider />`.
-
-```diff
- const theme = createMuiTheme({
--  palette: createPalette({
-+  palette: {
-     primary: blue,
-     secondary: pink,
-   }),
--  typography: createTypography(palette, {
-+  typography: {
-     // System font
-     fontFamily:
-       '-apple-system,system-ui,BlinkMacSystemFont,' +
-       '"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
--  }),
-+  },
--},
-+});
-```
+  ```diff
+   const theme = createMuiTheme({
+  -  palette: createPalette({
+  +  palette: {
+       primary: blue,
+       secondary: pink,
+     }),
+  -  typography: createTypography(palette, {
+  +  typography: {
+       // System font
+       fontFamily:
+         '-apple-system,system-ui,BlinkMacSystemFont,' +
+         '"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
+  -  }),
+  +  },
+  -},
+  +});
+  ```
 
 - [Input] Better support required field (#7955) @oliviertassinari
 
