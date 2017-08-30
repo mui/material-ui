@@ -4,6 +4,7 @@ import React from 'react';
 import type { Node } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
+import warning from 'warning';
 import contains from 'dom-helpers/query/contains';
 import debounce from 'lodash/debounce';
 import EventListener from 'react-event-listener';
@@ -323,6 +324,15 @@ class Popover extends React.Component<AllProps, void> {
         contentAnchorOffset =
           contentAnchorEl.offsetTop + contentAnchorEl.clientHeight / 2 - scrollTop || 0;
       }
+
+      // != the default value
+      warning(
+        this.props.anchorOrigin.vertical === 'top',
+        [
+          'Material-UI: You can change the `anchorOrigin.vertical` value when also ',
+          'providing the `getContentAnchorOffset` property. Pick one.',
+        ].join(),
+      );
     }
 
     return contentAnchorOffset;
