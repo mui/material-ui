@@ -1,3 +1,4 @@
 import { Color } from '..';
 
-export default Color;
+declare const blueGrey:Color
+export default blueGrey;

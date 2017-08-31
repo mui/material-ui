@@ -1,3 +1,4 @@
 import { Color } from '..';
 
-export default Color;
+declare const pink:Color
+export default pink;
