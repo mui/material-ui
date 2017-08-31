@@ -1,3 +1,4 @@
 import { Color } from '..';
 
-export default Color;
+declare const lime:Color
+export default lime;

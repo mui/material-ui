@@ -1,3 +1,4 @@
 import { Color } from '..';
 
-export default Color;
+declare const deepOrange:Color
+export default deepOrange;

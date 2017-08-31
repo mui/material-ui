@@ -1,3 +1,4 @@
 import { Color } from '..';
 
-export default Color;
+declare const lightGreen:Color
+export default lightGreen;

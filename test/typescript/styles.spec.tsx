@@ -7,6 +7,14 @@ import {
   Theme,
 } from '../../src/styles';
 import Button from '../../src/Button/Button';
+import {green, common } from '../../src/colors'; // white is no longer apart of colors
+
+const colorTest = (theme: Theme) => ({
+    root: {
+        backgroundColor: green[200], // This has the error,
+        color: common.black
+    }
+})
 
 const styles = ({ palette, spacing }) => ({
   root: {
