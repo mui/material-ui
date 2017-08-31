@@ -71,7 +71,7 @@ import { JssProvider, SheetsRegistry } from 'react-jss'
 import { create } from 'jss';
 import preset from 'jss-preset-default';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import createPalette from 'material-ui/styles/palette';
+import createPalette from 'material-ui/styles/createPalette';
 import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
 import { green, red } from 'material-ui/colors';
 
