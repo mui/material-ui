@@ -1,4 +1,4 @@
-import { Breakpoint } from '../styles/breakpoints';
+import { Breakpoint } from '../styles/createBreakpoints';
 import { WithWidthProps } from '../utils/withWidth';
 
 export interface WithResponsiveFullScreenOptions {

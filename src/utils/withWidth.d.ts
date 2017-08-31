@@ -1,4 +1,4 @@
-import { Breakpoint } from '../styles/breakpoints';
+import { Breakpoint } from '../styles/createBreakpoints';
 export interface WithWidthOptions {
   resizeInterval: number;
 }

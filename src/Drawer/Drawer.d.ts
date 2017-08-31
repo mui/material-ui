@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StyledComponent } from '..';
 import { ModalProps } from '../internal/Modal';
 import { SlideProps } from '../transitions/Slide';
-import { Theme } from '../styles/theme';
+import { Theme } from '../styles/createMuiTheme';
 
 export interface DrawerProps extends ModalProps {
   anchor?: 'left' | 'top' | 'right' | 'bottom';

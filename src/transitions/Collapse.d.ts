@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyledComponent } from '..';
-import { Theme } from '../styles/theme';
+import { Theme } from '../styles/createMuiTheme';
 import { TransitionProps } from '../internal/Transition';
 
 export interface CollapseProps extends TransitionProps {
