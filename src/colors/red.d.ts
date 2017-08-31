@@ -1,3 +1,5 @@
 import { Color } from '..';
 
-export default Color;
+declare const color: Color;
+
+export default color;

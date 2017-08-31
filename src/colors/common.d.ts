@@ -1,17 +1,25 @@
-import { Color } from '..';
+declare const black: string;
+declare const white: string;
+declare const transparent: string;
+declare const fullBlack: string;
+declare const darkBlack: string;
+declare const lightBlack: string;
+declare const minBlack: string;
+declare const faintBlack: string;
+declare const fullWhite: string;
+declare const darkWhite: string;
+declare const lightWhite: string;
 
-interface CommonColors {
-  black: Color;
-  white: Color;
-  transparent: Color;
-  fullBlack: Color;
-  darkBlack: Color;
-  lightBlack: Color;
-  minBlack: Color;
-  faintBlack: Color;
-  fullWhite: Color;
-  darkWhite: Color;
-  lightWhite: Color;
-}
-
-export default CommonColors;
+export default {
+  black,
+  white,
+  transparent,
+  fullBlack,
+  darkBlack,
+  lightBlack,
+  minBlack,
+  faintBlack,
+  fullWhite,
+  darkWhite,
+  lightWhite
+};
