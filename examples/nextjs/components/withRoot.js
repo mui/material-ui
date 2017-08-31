@@ -47,7 +47,10 @@ function withRoot(BaseComponent) {
 
     render() {
       return (
-        <MuiThemeProvider theme={this.styleContext.theme}>
+        <MuiThemeProvider
+          theme={this.styleContext.theme}
+          sheetsManager={this.styleContext.sheetsManager}
+        >
           <AppWrapper>
             <BaseComponent {...this.props} />
           </AppWrapper>
