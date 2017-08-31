@@ -38,6 +38,7 @@ import {
   TextField,
   Toolbar,
   Typography,
+  Grid,
 } from '../../src';
 import Collapse from '../../src/transitions/Collapse';
 import { GridList } from '../../src/GridList';
@@ -320,6 +321,13 @@ const DockedDrawerTest = () =>
       );
     }
   };
+
+const GridTest = () =>
+  <Grid container>
+    <Grid item xs={12}>...</Grid>
+    <Grid item sm={12}>...</Grid>
+    <Grid item xl={true}>...</Grid>
+  </Grid>
 
 const GridListTest = () =>
   <GridList cellHeight={160} cols={3}>
