@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Theme } from './theme';
+import { Theme } from './createMuiTheme';
 
 export interface MuiThemeProviderProps {
   theme?: Theme<any>;

@@ -4,8 +4,8 @@ import {
   StyleRules,
   createMuiTheme,
   MuiThemeProvider,
+  Theme,
 } from '../../src/styles';
-import { Theme } from '../../src/styles/theme';
 import Button from '../../src/Button/Button';
 
 const styles = ({ palette, spacing }) => ({

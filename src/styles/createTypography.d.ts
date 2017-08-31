@@ -1,4 +1,4 @@
-import { Palette } from './palette';
+import { Palette } from './createPalette';
 
 export type TextStyle =
   | 'display1'

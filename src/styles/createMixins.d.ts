@@ -1,4 +1,4 @@
-import { Breakpoints } from './breakpoints';
+import { Breakpoints } from './createBreakpoints';
 import { Spacing } from './spacing';
 
 export interface Mixins {
