@@ -24,5 +24,7 @@ export type Theme<T = {}> = {
   T;
 
 export default function createMuiTheme<T = {}>(
-  options?: Partial<ThemeOptions> & T
+  options?: {
+    [K in keyof ThemeOptions]?: Partial<ThemeOptions[K]>
+  } & T
 ): Theme<T>;
