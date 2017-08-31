@@ -1,10 +1,10 @@
-import { Breakpoints } from './breakpoints';
-import { Mixins } from './mixins';
-import { Palette } from './palette';
+import { Breakpoints } from './createBreakpoints';
+import { Mixins } from './createMixins';
+import { Palette } from './createPalette';
 import { Shadows } from './shadows';
 import { Spacing } from './spacing';
 import { Transitions } from './transitions';
-import { Typography } from './typography';
+import { Typography } from './createTypography';
 import { ZIndex } from './zIndex';
 
 export interface ThemeOptions {

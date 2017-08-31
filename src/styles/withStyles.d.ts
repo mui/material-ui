@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyledComponentProps } from '..';
-import { Theme } from './theme';
+import { Theme } from './createMuiTheme';
 
 /**
    * This is basically the API of JSS. It defines a Map<string, CSS>,
