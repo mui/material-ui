@@ -110,8 +110,7 @@ This component should preferably be used at **the root of your component tree**.
 ```jsx
 import React from 'react';
 import { render } from 'react-dom';
-import createMuiTheme from 'material-ui/styles/theme';
-import { MuiThemeProvider } from 'material-ui/styles';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import Root from './Root';
 
 const theme = createMuiTheme();

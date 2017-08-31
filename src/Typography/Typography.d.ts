@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyledComponent, PropTypes } from '..';
-import { Style, TextStyle } from '../styles/typography';
+import { Style, TextStyle } from '../styles/createTypography';
 
 export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
   align?: PropTypes.Alignment;

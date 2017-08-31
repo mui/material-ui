@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyledComponent } from '..';
 import { HiddenProps } from '../Hidden/Hidden';
-import { Breakpoint } from '../styles/breakpoints';
+import { Breakpoint } from '../styles/createBreakpoints';
 
 export type GridAlignment = 'flex-start' | 'center' | 'flex-end' | 'stretch';
 

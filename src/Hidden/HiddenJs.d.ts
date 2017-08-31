@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyledComponent } from '..';
-import { Breakpoint } from '../styles/breakpoints';
+import { Breakpoint } from '../styles/createBreakpoints';
 
 export interface HiddenJsProps {
   only?: Breakpoint | Array<Breakpoint>;
