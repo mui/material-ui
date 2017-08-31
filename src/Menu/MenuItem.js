@@ -1,4 +1,5 @@
 // @flow
+// @inheritedComponent ListItem
 
 import React from 'react';
 import type { ComponentType, Node } from 'react';
