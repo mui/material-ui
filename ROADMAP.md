@@ -76,8 +76,7 @@ That conversation could start on one of the following [issues](https://github.co
 
 ### How do I know if a component still needs to be migrated `v1-beta`?
 
-We have [Github project](https://github.com/callemall/material-ui/projects/1) to **coordinate** the work toward the `v1-beta` release.
-You can check the *Component to migrate* column to know the ones needing to be migrated to `v1-beta`.
+We have [some open issues](https://github.com/callemall/material-ui/issues?q=is%3Aopen+is%3Aissue+label%3ARefactoring+label%3Av1) to **coordinate** the work toward the `v1.0.0` release.
 
 ### How do I start migrating components to the `v1-beta` branch?
 

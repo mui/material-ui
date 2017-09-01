@@ -27,22 +27,25 @@ const demoRegexp = /^demo='(.*)'$/;
 const SOURCE_CODE_ROOT_URL = 'https://github.com/callemall/material-ui/tree/v1-beta';
 
 function MarkdownDocs(props, context) {
-  const { classes, demos, markdown } = props;
+  const { classes, demos, markdown, sourceLocation: sourceLocationProp } = props;
   const contents = getContents(markdown);
   const components = getComponents(markdown);
 
-  let sourceLocation = context.activePage.pathname;
-  // Hack for handling the nested demos
-  if (sourceLocation.indexOf('/demos') === 0) {
-    const token = sourceLocation.split('/');
-    token.push(token[token.length - 1]);
-    sourceLocation = token.join('/');
-  }
+  let sourceLocation = sourceLocationProp || context.activePage.pathname;
 
-  if (sourceLocation.indexOf('/api') === 0) {
-    sourceLocation = `/pages/${sourceLocation}.md`;
-  } else {
-    sourceLocation = `/docs/src/pages${sourceLocation}.md`;
+  if (!sourceLocationProp) {
+    // Hack for handling the nested demos
+    if (sourceLocation.indexOf('/demos') === 0) {
+      const token = sourceLocation.split('/');
+      token.push(token[token.length - 1]);
+      sourceLocation = token.join('/');
+    }
+
+    if (sourceLocation.indexOf('/api') === 0) {
+      sourceLocation = `/pages/${sourceLocation}.md`;
+    } else {
+      sourceLocation = `/docs/src/pages${sourceLocation}.md`;
+    }
   }
 
   return (
@@ -85,6 +88,9 @@ MarkdownDocs.propTypes = {
   classes: PropTypes.object.isRequired,
   demos: PropTypes.object,
   markdown: PropTypes.string.isRequired,
+  // You can define the direction location of the markdown file.
+  // Otherwise, we try to determine it with an heuristic.
+  sourceLocation: PropTypes.string,
 };
 
 MarkdownDocs.contextTypes = {
