@@ -70,6 +70,12 @@ const theme = createMuiTheme({
   },
 });
 
+const customTheme = createMuiTheme({
+  palette: {
+    type: 'dark'
+  }
+});
+
 function OverridesTheme() {
   return (
     <MuiThemeProvider theme={theme}>
