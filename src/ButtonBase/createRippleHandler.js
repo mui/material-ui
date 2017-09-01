@@ -5,10 +5,11 @@ function createRippleHandler(instance: Object, eventName: string, action: string
     /**
       do not ripple on right clicks
     */
-    const clicks = {left: 1, right: 3}
-    if (event.nativeEvent.which === clicks.right) {
-      instance.ripple['stop'](event);
-      return;
+    const clicks = { left: 1, right: 3 };
+    if (event.nativeEvent && event.nativeEvent.which === clicks.right) {
+      action = 'stop';
+      instance.ripple[action](event);
+      event.preventDefault();
     }
 
     if (cb) {
