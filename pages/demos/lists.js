@@ -31,6 +31,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/lists/InsetList'), 'utf8')
 `,
         },
+        'pages/demos/lists/NestedList.js': {
+          js: require('docs/src/pages/demos/lists/NestedList').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/lists/NestedList'), 'utf8')
+`,
+        },
         'pages/demos/lists/CheckboxList.js': {
           js: require('docs/src/pages/demos/lists/CheckboxList').default,
           raw: preval`

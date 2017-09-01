@@ -22,6 +22,10 @@ Lists are best suited for similar data types.
 
 {{demo='pages/demos/lists/InsetList.js'}}
 
+### Nested List
+
+{{demo='pages/demos/lists/NestedList.js'}}
+
 ## List Controls
 
 ### Checkbox
