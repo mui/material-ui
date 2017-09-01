@@ -6,10 +6,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
-import Button from '../Button';
 import { capitalizeFirstLetter } from '../utils/helpers';
-import KeyboardArrowLeft from '../svg-icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '../svg-icons/KeyboardArrowRight';
 import { LinearProgress } from '../Progress';
 
 export const styles = (theme: Object) => ({
@@ -36,7 +33,6 @@ export const styles = (theme: Object) => ({
     zIndex: theme.zIndex.mobileStepper,
   },
   positionStatic: {},
-  button: {},
   dots: {
     display: 'flex',
     flexDirection: 'row',
@@ -59,16 +55,12 @@ export const styles = (theme: Object) => ({
 function MobileStepper(props) {
   const {
     activeStep,
-    backButtonText,
+    backButton,
     classes,
     className: classNameProp,
-    disableBack,
-    disableNext,
     position,
     type,
-    nextButtonText,
-    onBack,
-    onNext,
+    nextButton,
     steps,
     ...other
   } = props;
@@ -81,10 +73,7 @@ function MobileStepper(props) {
 
   return (
     <Paper square elevation={0} className={className} {...other}>
-      <Button className={classes.button} onClick={onBack} disabled={disableBack}>
-        <KeyboardArrowLeft />
-        {backButtonText}
-      </Button>
+      {backButton}
       {type === 'dots' && (
         <div className={classes.dots}>
           {[...new Array(steps)].map((_, step) => {
@@ -104,10 +93,7 @@ function MobileStepper(props) {
           <LinearProgress mode="determinate" value={Math.ceil(activeStep / (steps - 1) * 100)} />
         </div>
       )}
-      <Button className={classes.button} onClick={onNext} disabled={disableNext}>
-        {nextButtonText}
-        <KeyboardArrowRight />
-      </Button>
+      {nextButton}
     </Paper>
   );
 }
@@ -119,9 +105,9 @@ MobileStepper.propTypes = {
    */
   activeStep: PropTypes.number,
   /**
-   * Set the text that appears for the back button.
+   * A back button element. For instance, it can be be a `Button` or a `IconButton`.
    */
-  backButtonText: PropTypes.node,
+  backButton: PropTypes.element.isRequired,
   /**
    * Useful to extend the style applied to components.
    */
@@ -131,25 +117,9 @@ MobileStepper.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Set to true to disable the back button.
+   * A next button element. For instance, it can be be a `Button` or a `IconButton`.
    */
-  disableBack: PropTypes.bool,
-  /**
-   * Set to true to disable the next button.
-   */
-  disableNext: PropTypes.bool,
-  /**
-   * Set the text that appears for the next button.
-   */
-  nextButtonText: PropTypes.node,
-  /**
-   * Passed into the onClick prop of the Back button.
-   */
-  onBack: PropTypes.func.isRequired,
-  /**
-   * Passed into the onClick prop of the Next button.
-   */
-  onNext: PropTypes.func.isRequired,
+  nextButton: PropTypes.element.isRequired,
   /**
    * Set the positioning type.
    */
@@ -166,10 +136,6 @@ MobileStepper.propTypes = {
 
 MobileStepper.defaultProps = {
   activeStep: 0,
-  backButtonText: 'Back',
-  disableBack: false,
-  disableNext: false,
-  nextButtonText: 'Next',
   position: 'bottom',
   type: 'dots',
 };
