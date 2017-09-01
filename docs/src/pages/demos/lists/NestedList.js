@@ -1,4 +1,4 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -9,8 +9,8 @@ import Collapse from 'material-ui/transitions/Collapse';
 import InboxIcon from 'material-ui-icons/MoveToInbox';
 import DraftsIcon from 'material-ui-icons/Drafts';
 import SendIcon from 'material-ui-icons/Send';
-import KeyboardArrowUp from 'material-ui-icons/KeyboardArrowUp';
-import KeyboardArrowDown from 'material-ui-icons/KeyboardArrowDown';
+import ExpandLess from 'material-ui-icons/ExpandLess';
+import ExpandMore from 'material-ui-icons/ExpandMore';
 import StarBorder from 'material-ui-icons/StarBorder';
 
 const styles = theme => ({
@@ -19,12 +19,17 @@ const styles = theme => ({
     maxWidth: 360,
     background: theme.palette.background.paper,
   },
+  nested: {
+    paddingLeft: theme.spacing.unit * 4,
+  },
 });
 
 class NestedList extends React.Component {
-  state = { open: false };
+  state = { open: true };
 
-  handleClick = () => this.setState({ open: !this.state.open });
+  handleClick = () => {
+    this.setState({ open: !this.state.open });
+  };
 
   render() {
     const classes = this.props.classes;
@@ -47,12 +52,10 @@ class NestedList extends React.Component {
             <InboxIcon />
           </ListItemIcon>
           <ListItemText inset primary="Inbox" />
-          <ListItemIcon>
-            {this.state.open ? <KeyboardArrowDown /> : <KeyboardArrowUp />}
-          </ListItemIcon>
+          {this.state.open ? <ExpandMore /> : <ExpandLess />}
         </ListItem>
         <Collapse in={this.state.open} transitionDuration="auto" unmountOnExit>
-          <ListItem button>
+          <ListItem button className={classes.nested}>
             <ListItemIcon>
               <StarBorder />
             </ListItemIcon>
