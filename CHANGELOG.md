@@ -5,6 +5,12 @@ Changes. Changes everywhere!
 ## 1.0.0-beta.8
 ###### _Sep 2, 2017_
 
+Big thanks to the 8 contributors who made this release possible.
+
+##### Breaking changes
+
+N.A
+
 ##### Component Fixes / Enhancements
 
 - [typescript] Adjust typings to refactoring in `styles` (#7975) @sebald
