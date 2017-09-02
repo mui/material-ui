@@ -215,9 +215,11 @@ class Tabs extends Component {
       });
     });
 
-    const inkBar = this.state.selectedIndex !== -1 ? (
+    const realSelectedIndex = valueLink.value ? this.getSelectedIndex(this.props) : this.state.selectedIndex;
+
+    const inkBar = realSelectedIndex !== -1 ? (
       <InkBar
-        left={`${width * this.state.selectedIndex}%`}
+        left={`${width * realSelectedIndex}%`}
         width={`${width}%`}
         style={inkBarStyle}
       />
