@@ -38,6 +38,7 @@ export { default as Paper } from './Paper';
 export { default as Popover } from './Popover';
 export { CircularProgress, LinearProgress } from './Progress';
 export { default as Radio, RadioGroup } from './Radio';
+export { default as SelectField, SelectFieldInput } from './SelectField';
 export { default as Snackbar, SnackbarContent } from './Snackbar';
 export { MuiThemeProvider, withStyles, withTheme, createMuiTheme } from './styles';
 
