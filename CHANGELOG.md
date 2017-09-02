@@ -2,6 +2,30 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.8
+###### _Sep 2, 2017_
+
+##### Component Fixes / Enhancements
+
+- [typescript] Adjust typings to refactoring in `styles` (#7975) @sebald
+- [Drawer] Add `type` property, remove `docked` property in TypeScript definition (#7998) @jaredklewis
+- [typescript] Make createMuiTheme's ThemeOptions recursively partial (#7993) @fathyb
+- [npm] Move "next" to the dev dependencies (#7980) @oliviertassinari
+
+##### Docs
+
+- [docs] Add a NestedList example (#7995) @apalanki
+- [SSR] Remove the singleton hack ✨ (#7965)
+- [docs] Fix SSR palette creation section (#7987) @Shastel
+- [docs] Remove typo on the Paper demo page (#7979) @jzakotnik
+- [docs] Add missing inheritance pragma to MenuItem (#7983) @yuchi
+- [example] Fix next.js CSS blink (cd0f883325b2b74515972d58f12868897fc34bf6) @oliviertassinari
+- [docs] Fix ROADMAP page issues (#8008) @oliviertassinari
+
+##### Core
+
+- [typescript] Add test for Grid (#7991) @sebald
+
 ## 1.0.0-beta.7
 ###### _Aug 30, 2017_
 
@@ -82,8 +106,8 @@ If you want to avoid the default browser required property handling, you can add
 - [FormControlLabel] Allow for node in the label prop (#7903) @Taldrain
 - [ListItemIcon] Icon should not shrink fixes (#7917) @gulderov
 - [withResponsiveFullScreen] missed type import (#7926) @rosskevin
-- [TypeScript] Fixes/improvements for withWith/withStyle/BottomNavigationButton (#7897) @sebald
-- [TypeScript] Update typings to popover changes (#7937) @sebald
+- [typescript] Fixes/improvements for withWith/withStyle/BottomNavigationButton (#7897) @sebald
+- [typescript] Update typings to popover changes (#7937) @sebald
 - [Popover] Expose the component (#7927) @oliviertassinari
 - [ButtonBase] Better warning message (#7904) @oliviertassinari
 - [Menu] Allow invalid children (#7907) @oliviertassinari
@@ -104,7 +128,7 @@ If you want to avoid the default browser required property handling, you can add
 
 ##### Core
 
-- [TypeScript] Refactor typings to modules (#7874) @sebald
+- [typescript] Refactor typings to modules (#7874) @sebald
 - [flow] Upgrade to flow 0.53.1 (#7869) @rosskevin
 - [core] Misc flow fixes (#7890) @rosskevin
 - [core] Upgrade prettier (#7941) @oliviertassinari
