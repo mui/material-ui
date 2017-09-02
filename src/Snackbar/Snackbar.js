@@ -274,11 +274,14 @@ class Snackbar extends React.Component<AllProps, State> {
     }
   };
 
-  // Pause the timer when the user is interacting with the Snackbar or when he can't see it.
+  // Pause the timer when the user is interacting with the Snackbar
+  // or when the user hide the window.
   handlePause = () => {
     clearTimeout(this.timerAutoHide);
   };
 
+  // Restart the timer when the user is no longer interacting with the Snackbar
+  // or when the window is shown back.
   handleResume = () => {
     if (this.props.autoHideDuration !== null) {
       this.setAutoHideTimer(this.props.autoHideDuration * 0.5);
