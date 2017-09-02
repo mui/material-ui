@@ -1,5 +1,26 @@
 ## HEAD
 
+## 0.19.1
+###### _Sep 2, 2017_
+
+Big thanks to the 7 contributors who made this release possible.
+
+##### Component Fixes / Enhancements
+
+- [Popover] Fix PopOver animation origin when targetOrigin.horizontal=middle (#7930) @tsholmes
+- [Slider] Resolve slider value to respect max and min (#7863) @janmarsicek
+- [IconMenu] Stop preventing event default on open (#7933) @DoloMike
+- [AutoComplete] Fix bug where controlled component behaves uncontrolled (#7967) @djblue
+- [Tabs] Fix InkBar location for controlled component (#8010) @jgreubel
+
+##### Docs
+
+- [Autocomplete] Fix onNewRequest documentation (#7835) @baerrach
+
+##### Core
+
+N.A
+
 ## 0.19.0
 ###### _Aug 15, 2017_
 
