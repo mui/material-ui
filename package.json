@@ -164,7 +164,7 @@
     "redux-logger": "^3.0.6",
     "rimraf": "^2.6.1",
     "sinon": "^3.2.1",
-    "size-limit": "^0.10.0",
+    "size-limit": "^0.11.0",
     "typescript": "^2.4.2",
     "url-loader": "^0.5.9",
     "vrtest": "^0.2.0",
@@ -175,7 +175,7 @@
   "size-limit": [
     {
       "path": "build/index.js",
-      "limit": "123 KB"
+      "limit": "79 KB"
     }
   ],
   "nyc": {
