@@ -1,5 +1,5 @@
-// flow-typed signature: c5fac64666f9589a0c1b2de956dc7919
-// flow-typed version: 81d6274128/react-redux_v5.x.x/flow_>=v0.53.x
+// flow-typed signature: f0d96df48e9abc14bcc1405ba2a47dde
+// flow-typed version: 83053e4020/react-redux_v5.x.x/flow_>=v0.53.x
 
 // flow-typed signature: 8db7b853f57c51094bf0ab8b2650fd9c
 // flow-typed version: ab8db5f14d/react-redux_v5.x.x/flow_>=v0.30.x
@@ -20,7 +20,7 @@ declare module "react-redux" {
   declare type MapStateToProps<S, OP: Object, SP: Object> = (
     state: S,
     ownProps: OP
-  ) => SP | MapStateToProps<S, OP, SP>;
+  ) => ((state: S, ownProps: OP) => SP) | SP;
 
   declare type MapDispatchToProps<A, OP: Object, DP: Object> =
     | ((dispatch: Dispatch<A>, ownProps: OP) => DP)
