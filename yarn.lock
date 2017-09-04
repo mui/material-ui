@@ -1567,9 +1567,9 @@ bytes@2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-2.4.0.tgz#7d97196f9d5baf7f6935e25985549edd2a6c2339"
 
-bytes@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/bytes/-/bytes-2.5.0.tgz#4c9423ea2d252c270c41b2bdefeff9bb6b62c06a"
+bytes@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/bytes/-/bytes-3.0.0.tgz#d32815404d689699f85a4ea4fa8755dd13a96048"
 
 cacache@^9.2.9:
   version "9.2.9"
@@ -2139,9 +2139,9 @@ css-color-names@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/css-color-names/-/css-color-names-0.0.4.tgz#808adc2e79cf84738069b646cb20ec27beb629e0"
 
-css-loader@^0.28.4:
-  version "0.28.5"
-  resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-0.28.5.tgz#dd02bb91b94545710212ef7f6aaa66663113d754"
+css-loader@^0.28.7:
+  version "0.28.7"
+  resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-0.28.7.tgz#5f2ee989dd32edd907717f953317656160999c1b"
   dependencies:
     babel-code-frame "^6.11.0"
     css-selector-tokenizer "^0.7.0"
@@ -3280,9 +3280,9 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
-flow-bin@^0.53.1:
-  version "0.53.1"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.53.1.tgz#9b22b63a23c99763ae533ebbab07f88c88c97d84"
+flow-bin@^0.54.0:
+  version "0.54.0"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.54.0.tgz#f2fb0478e9e99702b623c9ed84079a39903bba77"
 
 flow-copy-source@^1.2.1:
   version "1.2.1"
@@ -7082,15 +7082,16 @@ sinon@^3.2.1:
     text-encoding "0.6.4"
     type-detect "^4.0.0"
 
-size-limit@^0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/size-limit/-/size-limit-0.10.0.tgz#ab9ae1935198896ee5117fe3d6e6a3f042a1500e"
+size-limit@^0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/size-limit/-/size-limit-0.11.0.tgz#789455ceb009aa7907e25236b8eb3933d99e883a"
   dependencies:
-    bytes "^2.5.0"
+    bytes "^3.0.0"
     chalk "^2.1.0"
     ci-job-number "^0.3.0"
     compression-webpack-plugin "^1.0.0"
-    css-loader "^0.28.4"
+    css-loader "^0.28.7"
+    escape-string-regexp "^1.0.5"
     file-loader "^0.11.2"
     globby "^6.1.0"
     gzip-size "^3.0.0"
@@ -7098,7 +7099,7 @@ size-limit@^0.10.0:
     read-pkg-up "^2.0.0"
     style-loader "^0.18.2"
     uglifyjs-webpack-plugin "^1.0.0-beta.2"
-    webpack "^3.5.4"
+    webpack "^3.5.5"
     webpack-bundle-analyzer "^2.9.0"
     yargs "^8.0.2"
 
@@ -8062,7 +8063,7 @@ webpack@3.3.0:
     webpack-sources "^1.0.1"
     yargs "^6.0.0"
 
-webpack@^3.5.4, webpack@^3.5.5:
+webpack@^3.5.5:
   version "3.5.5"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-3.5.5.tgz#3226f09fc8b3e435ff781e7af34f82b68b26996c"
   dependencies:
