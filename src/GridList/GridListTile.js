@@ -1,7 +1,7 @@
 // @flow weak
 
 import React from 'react';
-import type { ChildrenArray, ComponentType } from 'react';
+import type { ChildrenArray, ComponentType, Node } from 'react';
 import classNames from 'classnames';
 import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
@@ -42,7 +42,7 @@ export type Props = {
    * in which case GridListTile takes care of making the image "cover" available space
    * (similar to `background-size: cover` or to `object-fit: cover`).
    */
-  children?: $ReadOnlyArray<ChildrenArray<*>>,
+  children?: $ReadOnlyArray<ChildrenArray<Node>>,
   /**
    * Useful to extend the style applied to components.
    */

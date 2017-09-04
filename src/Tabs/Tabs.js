@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { ChildrenArray } from 'react';
+import type { ChildrenArray, Node } from 'react';
 import warning from 'warning';
 import compose from 'recompose/compose';
 import classNames from 'classnames';
@@ -56,7 +56,7 @@ export type Props = {
   /**
    * The content of the component.
    */
-  children?: $ReadOnlyArray<ChildrenArray<*>>,
+  children?: $ReadOnlyArray<ChildrenArray<Node>>,
   /**
    * Useful to extend the style applied to components.
    */
