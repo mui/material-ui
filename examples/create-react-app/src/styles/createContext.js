@@ -23,6 +23,7 @@ export default function createContext() {
     jss,
     theme,
     // This is needed in order to deduplicate the injection of CSS in the page.
+    // $FlowFixMe 0.54.0 bug https://github.com/facebook/flow/issues/4805
     sheetsManager: new Map(),
     // This is needed in order to inject the critical CSS.
     sheetsRegistry: new SheetsRegistry(),
