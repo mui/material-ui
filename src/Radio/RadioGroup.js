@@ -2,7 +2,7 @@
 // @inheritedComponent FormGroup
 
 import React from 'react';
-import type { ChildrenArray } from 'react';
+import type { ChildrenArray, Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import FormGroup from '../Form/FormGroup';
@@ -24,7 +24,7 @@ export type Props = {
   /**
    * The content of the component.
    */
-  children?: $ReadOnlyArray<ChildrenArray<*>>,
+  children?: $ReadOnlyArray<ChildrenArray<Node>>,
   /**
    * Useful to extend the style applied to components.
    */
