@@ -29,8 +29,7 @@ const generateClassName = createGenerateClassName();
 // that parent has a higher specificity.
 let indexCounter = Number.MIN_SAFE_INTEGER;
 
-// $FlowFixMe 0.54.0 bug https://github.com/facebook/flow/issues/4805
-export const sheetsManager = new Map();
+export const sheetsManager: Map<*, *> = new Map();
 
 // We use the same empty object to ref count the styles that don't need a theme object.
 const noopTheme = {};
