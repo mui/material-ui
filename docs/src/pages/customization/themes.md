@@ -58,7 +58,15 @@ You can make a theme dark by setting `type` to `dark`.
 ### The other variables
 
 We have tried to normalize the implementation by adding many more variables: typography, breakpoints, transitions, etc. You can see below what the theme object looks like with the default values.
-If you want to learn more, we suggesting having a look at [`material-ui/style/theme.js`](https://github.com/callemall/material-ui/blob/v1-beta/src/styles/theme.js).
+If you want to learn more, we suggesting having a look at the following files:
+* [`material-ui/style/createTypography.js`](https://github.com/callemall/material-ui/blob/v1-beta/src/styles/createTypography.js)
+* [`material-ui/style/createBreakpoints.js`](https://github.com/callemall/material-ui/blob/v1-beta/src/styles/createBreakpoints.js)
+* [`material-ui/style/createPalette.js`](https://github.com/callemall/material-ui/blob/v1-beta/src/styles/createPalette.js)
+* [`material-ui/style/createMixins.js`](https://github.com/callemall/material-ui/blob/v1-beta/src/styles/createMixins.js)
+* [`material-ui/style/transitions.js`](https://github.com/callemall/material-ui/blob/v1-beta/src/styles/transitions.js)
+* [`material-ui/style/shadows.js`](https://github.com/callemall/material-ui/blob/v1-beta/src/styles/shadows.js)
+* [`material-ui/style/spacing.js`](https://github.com/callemall/material-ui/blob/v1-beta/src/styles/spacing.js)
+* [`material-ui/style/zIndex.js`](https://github.com/callemall/material-ui/blob/v1-beta/src/styles/zIndex.js)
 
 {{demo='pages/customization/ThemeDefault.js'}}
 
