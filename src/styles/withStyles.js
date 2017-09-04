@@ -225,7 +225,7 @@ function withStyles(stylesOrCreator: Object, options?: Options = {}) {
 
           if (sheetManagerTheme.refs === 0) {
             sheetManager.delete(theme);
-            sheetManagerTheme.sheet.detach();
+            this.jss.removeStyleSheet(sheetManagerTheme.sheet);
             const sheetsRegistry = this.context[ns.sheetsRegistry];
             if (sheetsRegistry) {
               sheetsRegistry.remove(sheetManagerTheme.sheet);
