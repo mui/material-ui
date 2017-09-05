@@ -28,6 +28,10 @@ If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiMenuItem`.
 
+## Inheritance
+
+The properties of the [&lt;ListItem /&gt;](/api/list-item) component are also available.
+
 ## Demos
 
 - [Autocomplete](/demos/autocomplete)

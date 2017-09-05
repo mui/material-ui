@@ -1306,9 +1306,9 @@ babylon@^6.11.0, babylon@^6.17.0, babylon@^6.17.2, babylon@^6.17.4, babylon@^6.1
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.18.0.tgz#af2f3b88fa6f5c1e4c634d1a0f8eac4f55b395e3"
 
-babylon@v7.0.0-beta.17:
-  version "7.0.0-beta.17"
-  resolved "https://registry.yarnpkg.com/babylon/-/babylon-7.0.0-beta.17.tgz#2aad4d6764f409dfb3ac216d855dc93d70d37911"
+babylon@v7.0.0-beta.20:
+  version "7.0.0-beta.20"
+  resolved "https://registry.yarnpkg.com/babylon/-/babylon-7.0.0-beta.20.tgz#7dbc70cc88de13334066fe5200e0efaa30c0490e"
 
 backo2@1.0.2:
   version "1.0.2"
@@ -6422,13 +6422,13 @@ react-deep-force-update@^2.0.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/react-deep-force-update/-/react-deep-force-update-2.1.1.tgz#8ea4263cd6455a050b37445b3f08fd839d86e909"
 
-react-docgen@^3.0.0-beta6:
-  version "3.0.0-beta6"
-  resolved "https://registry.yarnpkg.com/react-docgen/-/react-docgen-3.0.0-beta6.tgz#2827b52c52b8644722e0e215c5bf7c15c0458c34"
+react-docgen@^3.0.0-beta7:
+  version "3.0.0-beta7"
+  resolved "https://registry.yarnpkg.com/react-docgen/-/react-docgen-3.0.0-beta7.tgz#5fbb2ffc487a3252c99459867eedcc8ed4c7988c"
   dependencies:
     async "^2.1.4"
     babel-runtime "^6.9.2"
-    babylon v7.0.0-beta.17
+    babylon v7.0.0-beta.20
     commander "^2.9.0"
     doctrine "^2.0.0"
     node-dir "^0.1.10"
