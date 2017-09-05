@@ -13,6 +13,8 @@ export const styles = (theme: Object) => ({
     listStyle: 'none',
     margin: 0,
     padding: 0,
+    overflowScrolling: 'touch',
+    WebkitOverflowScrolling: 'touch',
   },
   padding: {
     paddingTop: theme.spacing.unit,
