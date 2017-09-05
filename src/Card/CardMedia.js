@@ -107,18 +107,24 @@ class CardMedia extends Component {
     const color = this.context.muiTheme.cardMedia.color;
 
     const styledChildren = React.Children.map(children, (child) => {
+      if (!child) {
+        return child;
+      }
+
       return React.cloneElement(child, {
         style: prepareStyles(Object.assign({}, styles.mediaChild, child.props.style)),
       });
     });
 
     const overlayChildren = React.Children.map(overlay, (child) => {
-      if (child.type.muiName === 'CardHeader' || child.type.muiName === 'CardTitle') {
+      const childMuiName = (child && child.type) ? child.type.muiName : null;
+
+      if (childMuiName === 'CardHeader' || childMuiName === 'CardTitle') {
         return React.cloneElement(child, {
           titleColor: titleColor,
           subtitleColor: subtitleColor,
         });
-      } else if (child.type.muiName === 'CardText') {
+      } else if (childMuiName === 'CardText') {
         return React.cloneElement(child, {
           color: color,
         });
