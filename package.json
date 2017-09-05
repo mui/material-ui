@@ -153,7 +153,7 @@
     "react": "latest",
     "react-a11y": "^0.3.4",
     "react-autosuggest": "^9.3.2",
-    "react-docgen": "^3.0.0-beta6",
+    "react-docgen": "^3.0.0-beta7",
     "react-dom": "latest",
     "react-redux": "^5.0.6",
     "react-swipeable-views": "^0.12.8",
