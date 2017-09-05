@@ -11,6 +11,7 @@ export interface ButtonProps extends ButtonBaseProps {
   disableRipple?: boolean;
   fab?: boolean;
   href?: string;
+  to?: string;
   raised?: boolean;
   type?: string;
 }
