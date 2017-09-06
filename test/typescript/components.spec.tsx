@@ -144,8 +144,8 @@ const CardMediaTest = () =>
       title="Shrimp and Chorizo Paella"
       subheader="September 14, 2016"
     />
-    <CardMedia>
-      <img src={'image/src.png'} alt="Contemplative Reptile" />
+    <CardMedia image="src.png">
+      <img src={'image/src.png'} alt="Contemplative Reptile"/>
     </CardMedia>
     <CardContent>
       <Typography component="p">
@@ -275,6 +275,7 @@ const DrawerTest = () => {
   return (
     <div>
       <Drawer
+        type="persistent"
         open={open.left}
         onRequestClose={(e: React.SyntheticEvent<any>) => log(e)}
         onClick={(e: React.SyntheticEvent<any>) => log(e)}
@@ -282,6 +283,7 @@ const DrawerTest = () => {
         List
       </Drawer>
       <Drawer
+        type="temporary"
         anchor="top"
         open={open.top}
         onRequestClose={(e: React.SyntheticEvent<any>) => log(e)}
@@ -291,6 +293,7 @@ const DrawerTest = () => {
       </Drawer>
       <Drawer
         anchor="bottom"
+        type="temporary"
         open={open.bottom}
         onRequestClose={(e: React.SyntheticEvent<any>) => log(e)}
         onClick={(e: React.SyntheticEvent<any>) => log(e)}
@@ -298,6 +301,7 @@ const DrawerTest = () => {
         List
       </Drawer>
       <Drawer
+        type="persistent"
         anchor="right"
         open={open.right}
         onRequestClose={(e: React.SyntheticEvent<any>) => log(e)}
@@ -308,19 +312,6 @@ const DrawerTest = () => {
     </div>
   );
 };
-
-const DockedDrawerTest = () =>
-  class DockedDrawer extends React.Component<{}, { docked: boolean }> {
-    state = { docked: true };
-    render() {
-      const docked: true | false = this.state.docked;
-      return (
-        <Drawer anchor="bottom" open={true} docked={docked}>
-          List
-        </Drawer>
-      );
-    }
-  };
 
 const GridTest = () =>
   <Grid container>
@@ -750,4 +741,5 @@ const TextFieldTest = () =>
       onChange={(event: React.SyntheticEvent<any>) =>
         log({ name: event.currentTarget.value })}
     />
+    <TextField id="name" label="Name" value={'Alice'} InputProps={{ classes: { foo: 'bar' } }}/>
   </div>;

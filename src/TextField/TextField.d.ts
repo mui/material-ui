@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyledComponent, PropTypes } from '..';
+import { StyledComponent, PropTypes, StyledComponentProps } from '..';
 import { FormControlProps, FormHelperTextProps } from '../Form';
 import { InputProps, InputLabelProps } from '../Input';
 
@@ -9,16 +9,16 @@ export type TextFieldProps = {
   defaultValue?: string | number;
   disabled?: boolean;
   error?: boolean;
-  FormHelperTextProps?: FormHelperTextProps;
+  FormHelperTextProps?: FormHelperTextProps & StyledComponentProps<any>;
   fullWidth?: boolean;
   helperText?: React.ReactNode;
   helperTextClassName?: string;
   id?: string;
   inputClassName?: string;
   InputClassName?: string;
-  InputLabelProps?: InputLabelProps;
+  InputLabelProps?: InputLabelProps & StyledComponentProps<any>;
   inputProps?: Object;
-  InputProps?: InputProps;
+  InputProps?: InputProps & StyledComponentProps<any>;
   inputRef?: React.Ref<any>;
   label?: React.ReactElement<any> | string;
   labelClassName?: string;
