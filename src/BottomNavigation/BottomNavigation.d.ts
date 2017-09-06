@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { StyledComponent } from '..';
 
-export interface BottomNavigationProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+export type BottomNavigationProps = {
   children: React.ReactNode;
-  onChange?: React.ReactEventHandler<any>;
+  onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
   showLabels?: boolean;
   value?: any;
-}
+} & React.HTMLAttributes<HTMLDivElement>;
 
 export default class BottomNavigation extends StyledComponent<
   BottomNavigationProps
