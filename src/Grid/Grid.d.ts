@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StyledComponent, StyledComponentProps } from '..';
 import { HiddenProps } from '../Hidden/Hidden';
 import { Breakpoint } from '../styles/createBreakpoints';
 
@@ -27,7 +27,7 @@ export type GridProps = {
   align?: GridAlignment;
   direction?: GridDirection;
   spacing?: GridSpacing;
-  hidden?: HiddenProps;
+  hidden?: HiddenProps & StyledComponentProps<any>;
   justify?: GridJustification;
   wrap?: GridWrap;
 } & Partial<{ [key in Breakpoint]: boolean | GridSize }>;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StyledComponent, StyledComponentProps } from '..';
 import { ModalProps } from '../internal/Modal';
 import { SlideProps } from '../transitions/Slide';
 import { Theme } from '../styles/createMuiTheme';
@@ -10,7 +10,7 @@ export interface DrawerProps extends ModalProps {
   enterTransitionDuration?: number;
   leaveTransitionDuration?: number;
   open?: boolean;
-  SlideProps?: SlideProps;
+  SlideProps?: SlideProps & StyledComponentProps<any>;
   theme?: Theme;
   type: 'permanent' | 'persistent' | 'temporary';
 }
