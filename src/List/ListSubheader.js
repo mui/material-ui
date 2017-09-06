@@ -10,7 +10,8 @@ export const styles = (theme: Object) => ({
   root: {
     boxSizing: 'border-box',
     lineHeight: '48px',
-    paddingLeft: 16,
+    paddingLeft: theme.spacing.unit * 2,
+    paddingRight: theme.spacing.unit * 2,
     color: theme.palette.text.secondary,
     fontFamily: theme.typography.fontFamily,
     fontWeight: theme.typography.fontWeightMedium,

@@ -5,8 +5,8 @@ import type { Node, Element } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import IconButton from '../IconButton';
-import CheckBoxOutlineBlankIcon from '../svg-icons/check-box-outline-blank';
-import CheckBoxIcon from '../svg-icons/check-box';
+import CheckBoxOutlineBlankIcon from '../svg-icons/CheckBoxOutlineBlank';
+import CheckBoxIcon from '../svg-icons/CheckBox';
 import Icon from '../Icon';
 
 export const styles = {
@@ -142,9 +142,9 @@ export default function createSwitch(
    */
   class SwitchBase extends React.Component<AllProps, State> {
     props: AllProps;
+
     static defaultProps = {
       checkedIcon: defaultCheckedIcon,
-      classes: {},
       disableRipple: false,
       icon: defaultIcon,
     };

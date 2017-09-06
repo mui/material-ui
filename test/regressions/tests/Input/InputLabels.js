@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import InputLabel from 'material-ui/Input/InputLabel';
+import { InputLabel } from 'material-ui/Input';
 
 const styles = {
   container: {

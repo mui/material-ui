@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
-import ArrowDownwardIcon from '../svg-icons/arrow-downward';
+import ArrowDownwardIcon from '../svg-icons/ArrowDownward';
 
 export const styles = (theme: Object) => ({
   root: {

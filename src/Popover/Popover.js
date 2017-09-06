@@ -173,6 +173,10 @@ export type Props = {
    */
   open?: boolean,
   /**
+   * Properties applied to the `Paper` element.
+   */
+  PaperProps?: Object,
+  /**
    * @ignore
    */
   role?: string,
@@ -195,12 +199,12 @@ type AllProps = DefaultProps & Props;
 
 class Popover extends React.Component<AllProps, void> {
   props: AllProps;
+
   static defaultProps = {
     anchorOrigin: {
       vertical: 'top',
       horizontal: 'left',
     },
-    classes: {},
     modal: true,
     open: false,
     transformOrigin: {
@@ -350,29 +354,30 @@ class Popover extends React.Component<AllProps, void> {
 
   render() {
     const {
+      anchorEl,
+      anchorOrigin,
       children,
       classes,
       className,
-      modal,
-      onRequestClose,
-      open,
-      getContentAnchorEl,
-      anchorEl,
-      anchorOrigin,
-      role,
-      transformOrigin,
-      transitionDuration,
+      elevation,
       enteredClassName,
       enteringClassName,
       exitedClassName,
       exitingClassName,
+      getContentAnchorEl,
+      modal,
       onEnter,
       onEntering,
       onEntered,
       onExit,
       onExiting,
       onExited,
-      elevation,
+      onRequestClose,
+      open,
+      PaperProps,
+      role,
+      transformOrigin,
+      transitionDuration,
       ...other
     } = this.props;
 
@@ -401,6 +406,7 @@ class Popover extends React.Component<AllProps, void> {
             data-mui-test="Popover"
             className={classNames(classes.paper, className)}
             elevation={elevation}
+            {...PaperProps}
           >
             <EventListener target="window" onResize={this.handleResize} />
             {children}

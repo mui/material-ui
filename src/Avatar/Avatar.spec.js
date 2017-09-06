@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
-import CancelIcon from '../svg-icons/cancel';
+import CancelIcon from '../svg-icons/Cancel';
 import Avatar from './Avatar';
 
 describe('<Avatar />', () => {

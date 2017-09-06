@@ -5,7 +5,7 @@ import type { Element } from 'react';
 import classNames from 'classnames';
 import keycode from 'keycode';
 import withStyles from '../styles/withStyles';
-import DeleteIcon from '../svg-icons/cancel';
+import CancelIcon from '../svg-icons/Cancel';
 import { emphasize, fade } from '../styles/colorManipulator';
 
 export const styles = (theme: Object) => {
@@ -125,6 +125,7 @@ type AllProps = DefaultProps & Props;
  */
 class Chip extends React.Component<AllProps> {
   props: AllProps;
+
   chipRef: ?HTMLElement = null;
 
   handleDeleteIconClick = event => {
@@ -181,7 +182,7 @@ class Chip extends React.Component<AllProps> {
     let deleteIcon = null;
     if (onRequestDelete) {
       deleteIcon = (
-        <DeleteIcon className={classes.deleteIcon} onClick={this.handleDeleteIconClick} />
+        <CancelIcon className={classes.deleteIcon} onClick={this.handleDeleteIconClick} />
       );
     }
 

@@ -8,7 +8,7 @@ import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import Icon from '../Icon';
-import { isMuiComponent } from '../utils/reactHelpers';
+import { isMuiElement } from '../utils/reactHelpers';
 
 export const styles = (theme: Object) => ({
   root: {
@@ -86,7 +86,7 @@ function IconButton(props) {
           <Icon className={classes.icon}>{children}</Icon>
         ) : (
           React.Children.map(children, child => {
-            if (isMuiComponent(child, 'Icon')) {
+            if (isMuiElement(child, ['Icon'])) {
               return React.cloneElement(child, {
                 className: classNames(classes.icon, child.props.className),
               });

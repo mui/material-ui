@@ -120,7 +120,7 @@ const styles = theme => ({
 
 class ConfirmationDialogDemo extends React.Component {
   state = {
-    anchorEl: undefined,
+    anchorEl: null,
     open: false,
     value: 'Dione',
   };

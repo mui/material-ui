@@ -4,7 +4,7 @@ import React from 'react';
 import type { Node } from 'react';
 import withStyles from '../styles/withStyles';
 import createSwitch from '../internal/SwitchBase';
-import IndeterminateCheckBoxIcon from '../svg-icons/indeterminate-check-box';
+import IndeterminateCheckBoxIcon from '../svg-icons/IndeterminateCheckBox';
 
 export const styles = (theme: Object) => ({
   default: {

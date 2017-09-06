@@ -23,8 +23,8 @@ export default function withTheme<BaseProps: {}>(BaseComponent: ComponentType<Ba
   const factory = createEagerFactory(BaseComponent);
 
   class WithTheme extends React.Component<{ theme?: Object } & BaseProps, { theme: Object }> {
-    static contextTypes = themeListener.contextTypes;
     static displayName = wrapDisplayName(BaseComponent, 'withTheme');
+
     // Exposed for test purposes.
     static Naked = BaseComponent;
 
@@ -56,6 +56,8 @@ export default function withTheme<BaseProps: {}>(BaseComponent: ComponentType<Ba
       return factory({ theme: this.state.theme, ...this.props });
     }
   }
+
+  WithTheme.contextTypes = themeListener.contextTypes;
 
   return WithTheme;
 }

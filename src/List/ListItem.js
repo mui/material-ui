@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
-import { isMuiComponent } from '../utils/reactHelpers';
+import { isMuiElement } from '../utils/reactHelpers';
 
 export const styles = (theme: Object) => ({
   root: {
@@ -102,9 +102,9 @@ type AllProps = DefaultProps & Props;
 
 class ListItem extends React.Component<AllProps, void> {
   props: AllProps;
+
   static defaultProps = {
     button: false,
-    classes: {},
     component: 'li',
     dense: false,
     disabled: false,
@@ -134,7 +134,7 @@ class ListItem extends React.Component<AllProps, void> {
     const isDense = dense || this.context.dense || false;
     const children = React.Children.toArray(childrenProp);
 
-    const hasAvatar = children.some(value => isMuiComponent(value, 'ListItemAvatar'));
+    const hasAvatar = children.some(value => isMuiElement(value, ['ListItemAvatar']));
 
     const className = classNames(
       classes.root,
@@ -159,7 +159,7 @@ class ListItem extends React.Component<AllProps, void> {
 
     if (
       children.length &&
-      isMuiComponent(children[children.length - 1], 'ListItemSecondaryAction')
+      isMuiElement(children[children.length - 1], ['ListItemSecondaryAction'])
     ) {
       const secondaryAction = children.pop();
       return (

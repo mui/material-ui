@@ -191,10 +191,10 @@ type State = {
 
 class Snackbar extends React.Component<AllProps, State> {
   props: AllProps;
+
   static defaultProps = {
     anchorOrigin: { vertical: 'bottom', horizontal: 'center' },
     autoHideDuration: null,
-    classes: {},
     enterTransitionDuration: duration.enteringScreen,
     leaveTransitionDuration: duration.leavingScreen,
   };

@@ -26,7 +26,7 @@ const ITEM_HEIGHT = 48;
 
 class LongMenu extends React.Component {
   state = {
-    anchorEl: undefined,
+    anchorEl: null,
     open: false,
   };
 
@@ -54,9 +54,9 @@ class LongMenu extends React.Component {
           anchorEl={this.state.anchorEl}
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
-          style={{ maxHeight: ITEM_HEIGHT * 4.5 }}
-          MenuListProps={{
+          PaperProps={{
             style: {
+              maxHeight: ITEM_HEIGHT * 4.5,
               width: 200,
             },
           }}

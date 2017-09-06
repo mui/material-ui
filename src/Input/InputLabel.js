@@ -18,8 +18,8 @@ export const styles = (theme: Object) => ({
     // slight alteration to spec spacing to match visual spec result
     transform: `translate(0, ${theme.spacing.unit * 3 - 1}px) scale(1)`,
   },
-  // Compensation for the `Input.inputDense` style.
   labelDense: {
+    // Compensation for the `Input.inputDense` style.
     transform: `translate(0, ${theme.spacing.unit * 2.5 + 1}px) scale(1)`,
   },
   shrink: {

@@ -5,30 +5,27 @@ import type { ComponentType } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
+import { isMuiComponent } from '../utils/reactHelpers';
 import Textarea from './Textarea';
 
-/**
- * Supports determination of isControlled().
- * Controlled input accepts its current value as a prop.
- *
- * @see https://facebook.github.io/react/docs/forms.html#controlled-components
- * @param value
- * @returns {boolean} true if string (including '') or number (including zero)
- */
-export function hasValue(value: ?(number | string)) {
+// Supports determination of isControlled().
+// Controlled input accepts its current value as a prop.
+//
+// @see https://facebook.github.io/react/docs/forms.html#controlled-components
+// @param value
+// @returns {boolean} true if string (including '') or number (including zero)
+export function hasValue(value: ?(number | string | Array<*>)) {
   return value !== undefined && value !== null && !(Array.isArray(value) && value.length === 0);
 }
 
-/**
- * Determine if field is dirty (a.k.a. filled).
- *
- * Response determines if label is presented above field or as placeholder.
- *
- * @param obj
- * @param SSR
- * @returns {boolean} False when not present or empty string.
- *                    True when any number or string with length.
- */
+// Determine if field is dirty (a.k.a. filled).
+//
+// Response determines if label is presented above field or as placeholder.
+//
+// @param obj
+// @param SSR
+// @returns {boolean} False when not present or empty string.
+//                    True when any number or string with length.
 export function isDirty(obj, SSR = false) {
   return (
     obj &&
@@ -216,17 +213,11 @@ export type Props = {
    */
   className?: string,
   /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a component.
-   * It's an `input` by default.
-   */
-  component?: string | ComponentType<*>,
-  /**
    * The default input value, useful when not controlling the component.
    */
   defaultValue?: string | number,
   /**
-   * TODO
+   * If `true`, the input will be disabled.
    */
   disabled?: boolean,
   /**
@@ -247,6 +238,12 @@ export type Props = {
    */
   id?: string,
   /**
+   * The component used for the input node.
+   * Either a string to use a DOM element or a component.
+   * It's an `input` by default.
+   */
+  inputComponent?: string | ComponentType<*>,
+  /**
    * Properties applied to the `input` element.
    */
   inputProps?: Object,
@@ -264,11 +261,15 @@ export type Props = {
    */
   multiline?: boolean,
   /**
-   * TODO
+   * Name attribute of the `input` element.
    */
   name?: string,
   /**
-   * TODO
+   * @ignore
+   */
+  readOnly?: boolean,
+  /**
+   * @ignore
    */
   onBlur?: Function,
   /**
@@ -284,15 +285,15 @@ export type Props = {
    */
   onDirty?: Function,
   /**
-   * TODO
+   * @ignore
    */
   onFocus?: Function,
   /**
-   * TODO
+   * @ignore
    */
   onKeyDown?: Function,
   /**
-   * TODO
+   * @ignore
    */
   onKeyUp?: Function,
   /**
@@ -314,7 +315,7 @@ export type Props = {
   /**
    * The input value, required for a controlled component.
    */
-  value?: string | number,
+  value?: string | number | Array<string | number>,
 };
 
 type AllProps = DefaultProps & Props;
@@ -325,16 +326,16 @@ type State = {
 
 class Input extends React.Component<AllProps, State> {
   props: AllProps;
+
   static muiName = 'Input';
+
   static defaultProps = {
     disableUnderline: false,
     fullWidth: false,
     multiline: false,
     type: 'text',
   };
-  static contextTypes = {
-    muiFormControl: PropTypes.object,
-  };
+
   state = {
     focused: false,
   };
@@ -346,9 +347,12 @@ class Input extends React.Component<AllProps, State> {
   }
 
   componentDidMount() {
-    if (!this.isControlled()) {
-      this.checkDirty(this.input);
-    }
+    // Fix SSR issue with the go back feature of the browsers.
+    // Let's say you start filling the input with "foo", you change the page then after comes back.
+    // The browser will reset the input value to "foo", but we also need to tell React about it.
+    this.handleChange({
+      target: this.input,
+    });
   }
 
   componentWillUpdate(nextProps) {
@@ -360,14 +364,14 @@ class Input extends React.Component<AllProps, State> {
   // Holds the input reference
   input = null;
 
-  handleFocus = event => {
+  handleFocus = (event: SyntheticFocusEvent<>) => {
     this.setState({ focused: true });
     if (this.props.onFocus) {
       this.props.onFocus(event);
     }
   };
 
-  handleBlur = event => {
+  handleBlur = (event: SyntheticFocusEvent<>) => {
     this.setState({ focused: false });
     if (this.props.onBlur) {
       this.props.onBlur(event);
@@ -390,19 +394,10 @@ class Input extends React.Component<AllProps, State> {
     }
   };
 
-  handleRefTextarea = node => {
-    this.input = node;
-    if (this.props.inputRef) {
-      this.props.inputRef(node);
-    }
-  };
-
-  /**
-   * A controlled input accepts its current value as a prop.
-   *
-   * @see https://facebook.github.io/react/docs/forms.html#controlled-components
-   * @returns {boolean} true if string (including '') or number (including zero)
-   */
+  // A controlled input accepts its current value as a prop.
+  //
+  // @see https://facebook.github.io/react/docs/forms.html#controlled-components
+  // @returns {boolean} true if string (including '') or number (including zero)
   isControlled() {
     return hasValue(this.props.value);
   }
@@ -434,13 +429,13 @@ class Input extends React.Component<AllProps, State> {
       autoFocus,
       classes,
       className: classNameProp,
-      component,
       defaultValue,
       disabled: disabledProp,
       disableUnderline,
       error: errorProp,
       fullWidth,
       id,
+      inputComponent,
       inputProps: inputPropsProp,
       inputRef,
       margin: marginProp,
@@ -454,6 +449,7 @@ class Input extends React.Component<AllProps, State> {
       onKeyUp,
       placeholder,
       name,
+      readOnly,
       rows,
       rowsMax,
       type,
@@ -511,15 +507,23 @@ class Input extends React.Component<AllProps, State> {
       ...inputPropsProp,
     };
 
-    if (component) {
-      InputComponent = component;
+    if (inputComponent) {
+      InputComponent = inputComponent;
+
+      if (isMuiComponent(InputComponent, ['SelectInput'])) {
+        inputProps = {
+          selectRef: this.handleRefInput,
+          ...inputProps,
+          ref: null,
+        };
+      }
     } else if (multiline) {
       if (rows && !rowsMax) {
         InputComponent = 'textarea';
       } else {
         inputProps = {
           rowsMax,
-          textareaRef: this.handleRefTextarea,
+          textareaRef: this.handleRefInput,
           ...inputProps,
           ref: null,
         };
@@ -528,13 +532,11 @@ class Input extends React.Component<AllProps, State> {
     }
 
     return (
-      <div className={className} {...other}>
+      <div onBlur={this.handleBlur} onFocus={this.handleFocus} className={className} {...other}>
         <InputComponent
           autoComplete={autoComplete}
           autoFocus={autoFocus}
           className={inputClassName}
-          onBlur={this.handleBlur}
-          onFocus={this.handleFocus}
           onChange={this.handleChange}
           onKeyUp={onKeyUp}
           onKeyDown={onKeyDown}
@@ -546,6 +548,7 @@ class Input extends React.Component<AllProps, State> {
           defaultValue={defaultValue}
           placeholder={placeholder}
           type={type}
+          readOnly={readOnly}
           rows={rows}
           {...inputProps}
         />
@@ -553,5 +556,9 @@ class Input extends React.Component<AllProps, State> {
     );
   }
 }
+
+Input.contextTypes = {
+  muiFormControl: PropTypes.object,
+};
 
 export default withStyles(styles, { name: 'MuiInput' })(Input);

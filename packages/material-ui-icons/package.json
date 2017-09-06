@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "chai": "^4.1.1",
+    "chai": "^4.1.2",
     "cross-env": "^5.0.5",
     "fs-extra": "^4.0.1",
     "glob": "^7.1.2",

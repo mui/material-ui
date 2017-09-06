@@ -3,10 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Input from 'material-ui/Input';
-import InputLabel from 'material-ui/Input/InputLabel';
-import FormControl from 'material-ui/Form/FormControl';
-import FormHelperText from 'material-ui/Form/FormHelperText';
+import Input, { InputLabel } from 'material-ui/Input';
+import { FormControl, FormHelperText } from 'material-ui/Form';
 
 const styles = theme => ({
   container: {
@@ -44,12 +42,12 @@ class ComposedTextField extends React.Component {
         <FormControl className={classes.formControl} disabled>
           <InputLabel htmlFor="name-disabled">Name</InputLabel>
           <Input id="name-disabled" value={this.state.name} onChange={this.handleChange} />
-          <FormHelperText>Some important helper text</FormHelperText>
+          <FormHelperText>Disabled</FormHelperText>
         </FormControl>
         <FormControl className={classes.formControl} error>
           <InputLabel htmlFor="name-error">Name</InputLabel>
           <Input id="name-error" value={this.state.name} onChange={this.handleChange} />
-          <FormHelperText>Some important helper text</FormHelperText>
+          <FormHelperText>Error</FormHelperText>
         </FormControl>
       </div>
     );

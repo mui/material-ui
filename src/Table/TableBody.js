@@ -44,7 +44,6 @@ class TableBody extends React.Component<AllProps, void> {
   props: AllProps;
 
   static defaultProps = {
-    classes: {},
     component: 'tbody',
   };
 

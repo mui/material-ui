@@ -1,4 +1,4 @@
-# material-ui-icons
+# Svg Icons
 
 The icons provided here are intended for use internally within Material-UI components.
 
