@@ -9,7 +9,6 @@ import withStyles from '../styles/withStyles';
 export const styles = (theme: Object) => ({
   root: {
     flex: '1 1 auto',
-    overflow: 'auto',
     listStyle: 'none',
     margin: 0,
     padding: 0,
