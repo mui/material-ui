@@ -33,12 +33,13 @@ function generatePropDescription(description, type) {
 
   const parsed = parseDoctrine(description);
 
-  // two new lines result in a newline in the table. all other new lines
-  // must be eliminated to prevent markdown mayhem.
+  // Two new lines result in a newline in the table.
+  // All other new lines must be eliminated to prevent markdown mayhem.
   const jsDocText = parsed.description
     .replace(/\n\n/g, '<br>')
     .replace(/\n/g, ' ')
-    .replace(/\r/g, '');
+    .replace(/\r/g, '')
+    .replace(/\|/g, '&#124;'); // As the pipe is use for the table structure
 
   if (parsed.tags.some(tag => tag.title === 'ignore')) {
     return null;

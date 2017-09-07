@@ -74,7 +74,7 @@ For instance:
 ## Customizing all instances of a component type
 
 When the configuration variables aren't powerful enough, you can take advantage of the
-`overrides` key to potentially change every single style injected by Material-UI into the DOM.
+`overrides` key of the `theme` to potentially change every single style injected by Material-UI into the DOM.
 That's a really powerful feature.
 
 {{demo='pages/customization/OverridesTheme.js'}}

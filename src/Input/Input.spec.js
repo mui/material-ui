@@ -393,4 +393,12 @@ describe('<Input />', () => {
       });
     });
   });
+
+  describe('prop: inputProps', () => {
+    it('should apply the props on the input', () => {
+      const wrapper = shallow(<Input inputProps={{ className: 'foo', readOnly: true }} />);
+      assert.strictEqual(wrapper.find('input').props().className, 'foo');
+      assert.strictEqual(wrapper.find('input').props().readOnly, true);
+    });
+  });
 });

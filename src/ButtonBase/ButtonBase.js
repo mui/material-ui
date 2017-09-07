@@ -163,12 +163,14 @@ class ButtonBase extends React.Component<AllProps, State> {
     warning(
       this.button,
       [
-        'Material-UI: please provide a class to the component property.',
+        'Material-UI: you have provided a custom Component to the `component` ' +
+          'property of `ButtonBase`.',
+        'In order to make the keyboard focus logic work, we need a reference on the root element.',
+        'Please provide a class component instead of a functional component.',
         // eslint-disable-next-line prefer-template
-        'You need to fix: ' + getDisplayName(this.props.component) === 'component'
-          ? this.props.component
-          : getDisplayName(this.props.component),
-        'The keyboard focus logic needs a reference to work correctly.',
+        `You need to fix the: ${getDisplayName(this.props.component) === 'component'
+          ? String(this.props.component)
+          : getDisplayName(this.props.component)} component.`,
       ].join('\n'),
     );
   }

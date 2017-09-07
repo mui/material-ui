@@ -261,7 +261,7 @@ function withStyles(stylesOrCreator: Object, options?: Options = {}) {
                 renderedClasses[key],
                 [
                   `Material-UI: the key \`${key}\` ` +
-                    `provided to the classes property object is not implemented in ${getDisplayName(
+                    `provided to the classes property is not implemented in ${getDisplayName(
                       BaseComponent,
                     )}.`,
                   `You can only overrides one of the following: ${Object.keys(renderedClasses).join(
@@ -270,9 +270,21 @@ function withStyles(stylesOrCreator: Object, options?: Options = {}) {
                 ].join('\n'),
               );
 
-              if (classesProp[key] !== undefined) {
+              warning(
+                !classesProp[key] || typeof classesProp[key] === 'string',
+                [
+                  `Material-UI: the key \`${key}\` ` +
+                    `provided to the classes property is not valid for ${getDisplayName(
+                      BaseComponent,
+                    )}.`,
+                  `You need to provide a non empty string instead of: ${classesProp[key]}.`,
+                ].join('\n'),
+              );
+
+              if (classesProp[key]) {
                 accumulator[key] = `${renderedClasses[key]} ${classesProp[key]}`;
               }
+
               return accumulator;
             }, {}),
           };
