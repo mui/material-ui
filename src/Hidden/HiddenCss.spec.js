@@ -28,7 +28,7 @@ describe('<HiddenCss />', () => {
         </HiddenCss>,
       );
       assert.strictEqual(wrapper.type(), 'span');
-      assert.isTrue(wrapper.hasClass(classes.onlySm));
+      assert.strictEqual(wrapper.hasClass(classes.onlySm), true);
       const div = wrapper.childAt(0);
       assert.strictEqual(div.type(), 'div');
       assert.strictEqual(div.props().className, 'foo');
@@ -40,7 +40,7 @@ describe('<HiddenCss />', () => {
           <div className="foo" />
         </HiddenCss>,
       );
-      assert.isTrue(wrapper.hasClass(classes.mdDown));
+      assert.strictEqual(wrapper.hasClass(classes.mdDown), true);
     });
 
     it('should be ok with mdUp', () => {
@@ -49,7 +49,7 @@ describe('<HiddenCss />', () => {
           <div className="foo" />
         </HiddenCss>,
       );
-      assert.isTrue(wrapper.hasClass(classes.mdUp));
+      assert.strictEqual(wrapper.hasClass(classes.mdUp), true);
     });
   });
 
@@ -57,14 +57,14 @@ describe('<HiddenCss />', () => {
     it('should work when empty', () => {
       const wrapper = shallow(<HiddenCss mdUp />);
       assert.strictEqual(wrapper.type(), 'span');
-      assert.isTrue(wrapper.hasClass(classes.mdUp));
+      assert.strictEqual(wrapper.hasClass(classes.mdUp), true);
       assert.isNull(wrapper.childAt(0).type());
     });
 
     it('should work when text Node', () => {
       const wrapper = shallow(<HiddenCss mdUp>foo</HiddenCss>);
       assert.strictEqual(wrapper.type(), 'span');
-      assert.isTrue(wrapper.hasClass(classes.mdUp));
+      assert.strictEqual(wrapper.hasClass(classes.mdUp), true);
       assert.strictEqual(wrapper.childAt(0).text(), 'foo');
     });
 
@@ -75,8 +75,8 @@ describe('<HiddenCss />', () => {
         </HiddenCss>,
       );
       assert.strictEqual(wrapper.type(), 'span');
-      assert.isTrue(wrapper.hasClass(classes.mdUp));
-      assert.isTrue(wrapper.childAt(0).is(Foo));
+      assert.strictEqual(wrapper.hasClass(classes.mdUp), true);
+      assert.strictEqual(wrapper.childAt(0).is(Foo), true);
     });
 
     it('should work when mixed ChildrenArray', () => {
@@ -88,9 +88,9 @@ describe('<HiddenCss />', () => {
         </HiddenCss>,
       );
       assert.strictEqual(wrapper.type(), 'span');
-      assert.isTrue(wrapper.hasClass(classes.mdUp));
-      assert.isTrue(wrapper.childAt(0).is(Foo));
-      assert.isTrue(wrapper.childAt(1).is(Foo));
+      assert.strictEqual(wrapper.hasClass(classes.mdUp), true);
+      assert.strictEqual(wrapper.childAt(0).is(Foo), true);
+      assert.strictEqual(wrapper.childAt(1).is(Foo), true);
       assert.strictEqual(wrapper.childAt(2).text(), 'foo');
     });
   });

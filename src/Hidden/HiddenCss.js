@@ -64,8 +64,7 @@ function HiddenCss(props: AllProps) {
   } = props;
 
   warning(
-    Object.keys(other).length === 0 ||
-      (Object.keys(other).length === 1 && other.hasOwnProperty('ref')),
+    Object.keys(other).length === 0,
     `Material-UI: unsupported properties received ${JSON.stringify(other)} by \`<Hidden />\`.`,
   );
 
