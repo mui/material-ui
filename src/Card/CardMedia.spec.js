@@ -33,4 +33,17 @@ describe('<CardMedia />', () => {
       'custom prop should be woofCardMedia',
     );
   });
+
+  it('should have backgroundImage specified even though custom styles got passed', () => {
+    const wrapper = shallow(<CardMedia image="/foo.jpg" style={{ height: 200 }} />);
+    assert.strictEqual(wrapper.prop('style').backgroundImage, 'url(/foo.jpg)');
+    assert.strictEqual(wrapper.prop('style').height, 200);
+  });
+
+  it('should be possible to overwrite backgroundImage via custom styles', () => {
+    const wrapper = shallow(
+      <CardMedia image="/foo.jpg" style={{ backgroundImage: 'url(/bar.jpg)' }} />,
+    );
+    assert.strictEqual(wrapper.prop('style').backgroundImage, 'url(/bar.jpg)');
+  });
 });
