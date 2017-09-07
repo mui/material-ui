@@ -8,6 +8,6 @@ export interface SelectProps extends React.HTMLAttributes<HTMLDivElement> {
   MenuProps?: Object;
   renderValue?: Function;
   value?: Array<string | number> | string | number;
-};
+}
 
 export default class Select extends StyledComponent<SelectProps> {}
