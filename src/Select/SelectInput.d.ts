@@ -14,6 +14,6 @@ export interface SelectInputProps {
   renderValue?: Function,
   selectRef?: Function,
   value?: string | number | Array<string | number>,
-};
+}
 
 export default class SelectInput extends StyledComponent<SelectInputProps> {}
