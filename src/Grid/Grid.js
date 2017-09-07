@@ -300,10 +300,8 @@ Grid.defaultProps = {
   wrap: 'wrap',
 };
 
-/**
- * Add a wrapper component to generate some helper messages in the development
- * environment.
- */
+// Add a wrapper component to generate some helper messages in the development
+// environment.
 let GridWrapper = Grid; // eslint-disable-line import/no-mutable-exports
 
 if (process.env.NODE_ENV !== 'production') {

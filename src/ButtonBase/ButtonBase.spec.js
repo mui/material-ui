@@ -424,7 +424,10 @@ describe('<ButtonBase />', () => {
           Hello
         </ButtonBase.Naked>,
       );
-      assert.match(consoleErrorMock.args()[0][0], /Material-UI: please provide a class/);
+      assert.match(
+        consoleErrorMock.args()[0][0],
+        /Material-UI: you have provided a custom Component to the/,
+      );
       const instance = wrapper.instance();
       instance.focusKeyPressed = true;
       wrapper.simulate('focus');

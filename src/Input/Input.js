@@ -436,7 +436,7 @@ class Input extends React.Component<AllProps, State> {
       fullWidth,
       id,
       inputComponent,
-      inputProps: inputPropsProp,
+      inputProps: { inputPropsClassName, ...inputPropsProp } = {},
       inputRef,
       margin: marginProp,
       multiline,
@@ -492,12 +492,16 @@ class Input extends React.Component<AllProps, State> {
       classNameProp,
     );
 
-    const inputClassName = classNames(classes.input, {
-      [classes.inputDisabled]: disabled,
-      [classes.inputSingleline]: !multiline,
-      [classes.inputMultiline]: multiline,
-      [classes.inputDense]: margin === 'dense',
-    });
+    const inputClassName = classNames(
+      classes.input,
+      {
+        [classes.inputDisabled]: disabled,
+        [classes.inputSingleline]: !multiline,
+        [classes.inputMultiline]: multiline,
+        [classes.inputDense]: margin === 'dense',
+      },
+      inputPropsClassName,
+    );
 
     const required = muiFormControl && muiFormControl.required === true;
 

@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import List from 'material-ui/List';
@@ -114,7 +115,7 @@ function AppDrawer(props, context) {
       <Hidden lgUp={!disablePermanent}>
         <Drawer
           classes={{
-            paper: classes.paper,
+            paper: classNames(classes.paper, 'algolia-drawer'),
           }}
           type="temporary"
           open={mobileOpen}

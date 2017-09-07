@@ -40,14 +40,28 @@ class MyDocument extends Document {
           />
           <style id="insertion-point-jss" />
           {/* Twitter */}
-          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:card" content="summary" />
           <meta name="twitter:site" content="@MaterialUI" />
           <meta name="twitter:title" content="Material-UI" />
           <meta
             name="twitter:description"
             content="React Components that Implement Google's Material Design."
           />
-          <meta name="twitter:image" content="/static/icons/512x512.png" />
+          <meta
+            name="twitter:image"
+            content="https://material-ui-1dab0.firebaseapp.com/static/brand.png"
+          />
+          {/* Facebook */}
+          <meta property="og:type" content="website" />
+          <meta property="og:title" content="Material-UI" />
+          <meta
+            property="og:description"
+            content="React Components that Implement Google's Material Design."
+          />
+          <meta
+            property="og:image"
+            content="https://material-ui-1dab0.firebaseapp.com/static/brand.png"
+          />
           <link rel="shortcut icon" href="/static/favicon.ico" />
         </Head>
         <body>

@@ -124,7 +124,7 @@ export type Props = {
    */
   value?: string | number,
   /**
-   * If `dense` | `normal`, will adjust vertical spacing of this and contained components.
+   * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
    */
   margin?: 'none' | 'dense' | 'normal',
 };

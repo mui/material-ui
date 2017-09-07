@@ -25,7 +25,7 @@
 | inputRef | Function |  | Use that property to pass a ref callback to the native input component. |
 | label | Node |  | The label content. |
 | labelClassName | string |  | The CSS class name of the label element. |
-| margin | union:&nbsp;'none'<br>&nbsp;'dense'<br>&nbsp;'normal'<br> |  | If `dense` | `normal`, will adjust vertical spacing of this and contained components. |
+| margin | union:&nbsp;'none'<br>&nbsp;'dense'<br>&nbsp;'normal'<br> |  | If `dense` or `normal`, will adjust vertical spacing of this and contained components. |
 | multiline | boolean |  | If `true`, a textarea element will be rendered instead of an input. |
 | name | string |  | Name attribute of the `input` element. |
 | placeholder | string |  | TODO |

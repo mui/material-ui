@@ -10,26 +10,26 @@ import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 
-const styles = {
+const styles = theme => ({
   root: {
-    marginTop: 30,
+    marginTop: theme.spacing.unit * 3,
     width: '100%',
   },
   flex: {
     flex: 1,
   },
   menuButton: {
-    marginLeft: 12,
+    marginLeft: -12,
     marginRight: 20,
   },
-};
+});
 
 function ButtonAppBar(props) {
   const classes = props.classes;
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar disableGutters>
+        <Toolbar>
           <IconButton className={classes.menuButton} color="contrast" aria-label="Menu">
             <MenuIcon />
           </IconButton>
