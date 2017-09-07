@@ -5,6 +5,7 @@ import {
   createMuiTheme,
   MuiThemeProvider,
   Theme,
+  withTheme,
 } from '../../src/styles';
 import Button from '../../src/Button/Button';
 
@@ -26,10 +27,7 @@ interface StyledComponentProps {
 
 const Component: React.SFC<
   StyledComponentProps & { classes: StyledComponentClassNames }
-> = ({ classes, text }) =>
-  <div className={classes.root}>
-    {text}
-  </div>;
+> = ({ classes, text }) => <div className={classes.root}>{text}</div>;
 
 const StyledComponent = withStyles<
   StyledComponentProps,
@@ -72,16 +70,35 @@ const theme = createMuiTheme({
 
 const customTheme = createMuiTheme({
   palette: {
-    type: 'dark'
-  }
+    type: 'dark',
+  },
 });
 
 function OverridesTheme() {
   return (
     <MuiThemeProvider theme={theme}>
-      <Button>
-        {'Overrides'}
-      </Button>
+      <Button>{'Overrides'}</Button>
     </MuiThemeProvider>
   );
 }
+
+// withTheme
+
+const ThemedComponent: React.SFC<{ theme: Theme }> = ({ theme }) => (
+  <div>{theme.spacing.unit}</div>
+);
+const ComponentWithTheme = withTheme(ThemedComponent);
+
+// withStyles + withTheme
+interface AllTheProps {
+  theme: Theme;
+  classes: StyledComponentClassNames;
+}
+
+const AllTheStyles: React.SFC<AllTheProps> = ({ theme, classes }) => (
+  <div className={classes.root}>{theme.palette.text.primary}</div>
+);
+
+const AllTheComposition = withTheme(
+  withStyles<{ theme: Theme }, StyledComponentClassNames>(styles)(AllTheStyles)
+);
