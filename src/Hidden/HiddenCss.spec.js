@@ -5,6 +5,8 @@ import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
 import HiddenCss from './HiddenCss';
 
+const Foo = () => <div>bar</div>;
+
 describe('<HiddenCss />', () => {
   let shallow;
   let classes;
@@ -50,6 +52,28 @@ describe('<HiddenCss />', () => {
   describe('prop: children', () => {
     it('should work when empty', () => {
       shallow(<HiddenCss mdUp />);
+    });
+
+    it('should work when Node', () => {
+      shallow(<HiddenCss mdUp>foo</HiddenCss>);
+    });
+
+    it('should work when Element', () => {
+      shallow(
+        <HiddenCss mdUp>
+          <Foo />
+        </HiddenCss>,
+      );
+    });
+
+    it('should work when ChildrenArray', () => {
+      shallow(
+        <HiddenCss mdUp>
+          <Foo />
+          <Foo />
+          foo
+        </HiddenCss>,
+      );
     });
   });
 });
