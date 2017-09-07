@@ -6,6 +6,7 @@
     "material-ui": "next",
     "react": "latest",
     "react-dom": "latest",
+    "react-jss": "latest",
     "react-scripts": "latest"
   },
   "scripts": {
