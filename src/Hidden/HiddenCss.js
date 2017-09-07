@@ -2,7 +2,6 @@
 
 import React from 'react';
 import warning from 'warning';
-import classNames from 'classnames';
 import { keys as breakpoints } from '../styles/createBreakpoints';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
@@ -89,13 +88,7 @@ function HiddenCss(props: AllProps) {
     className.push(classes[`only${capitalizeFirstLetter(only)}`]);
   }
 
-  if (!React.isValidElement(children)) {
-    return null;
-  }
-
-  return React.cloneElement(children, {
-    className: classNames(children.props.className, className.join(' ')),
-  });
+  return <span className={className}>{children}</span>;
 }
 
 export default withStyles(styles, { name: 'MuiHiddenCss' })(HiddenCss);
