@@ -12,7 +12,7 @@ describe('<HiddenCss />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    shallow = createShallow({ untilSelector: 'span' });
     classes = getClasses(
       <HiddenCss>
         <div />
