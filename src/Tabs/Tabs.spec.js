@@ -63,6 +63,18 @@ describe('<Tabs />', () => {
     });
   });
 
+  describe('prop: children', () => {
+    it('should accept an invalid child', () => {
+      const wrapper = shallow(
+        <Tabs width="md" onChange={noop} value={0}>
+          {null}
+          <Tab />
+        </Tabs>,
+      );
+      assert.strictEqual(wrapper.find(Tab).length, 1);
+    });
+  });
+
   describe('prop: value', () => {
     let wrapper;
     before(() => {
