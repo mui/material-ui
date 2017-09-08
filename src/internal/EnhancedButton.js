@@ -313,7 +313,6 @@ class EnhancedButton extends Component {
       style: prepareStyles(mergedStyles),
       ref: (node) => this.button = node,
       disabled: disabled,
-      href: href,
       onBlur: this.handleBlur,
       onFocus: this.handleFocus,
       onKeyUp: this.handleKeyUp,
@@ -321,6 +320,8 @@ class EnhancedButton extends Component {
       onClick: this.handleTouchTap,
       tabIndex: disabled || disableKeyboardFocus ? -1 : tabIndex,
     };
+
+    if (href) buttonProps.href = href;
 
     const buttonChildren = this.createButtonChildren();
 
