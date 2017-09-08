@@ -87,7 +87,7 @@ describe('<HiddenCss />', () => {
           foo
         </HiddenCss>,
       );
-      
+
       assert.strictEqual(wrapper.type(), 'span');
       assert.strictEqual(wrapper.hasClass(classes.mdUp), true);
       assert.strictEqual(wrapper.childAt(0).is(Foo), true);
