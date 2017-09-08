@@ -69,6 +69,10 @@ export type Props = {
    */
   error?: boolean,
   /**
+   * `classes` property applied to the `FormControl` element.
+   */
+  FormControlClasses?: Object,
+  /**
    * If `true`, the input of this label is focused.
    */
   focused?: boolean,
@@ -96,6 +100,7 @@ function InputLabel(props: AllProps, context: { muiFormControl: Object }) {
     children,
     classes,
     className: classNameProp,
+    FormControlClasses,
     shrink: shrinkProp,
     margin: marginProp,
     ...other
@@ -126,7 +131,7 @@ function InputLabel(props: AllProps, context: { muiFormControl: Object }) {
   );
 
   return (
-    <FormLabel className={className} {...other}>
+    <FormLabel className={className} classes={FormControlClasses} {...other}>
       {children}
     </FormLabel>
   );

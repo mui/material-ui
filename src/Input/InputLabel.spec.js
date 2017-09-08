@@ -36,6 +36,13 @@ describe('<InputLabel />', () => {
     assert.strictEqual(wrapper.hasClass(classes.disabled), true);
   });
 
+  describe('props: FormControlClasses', () => {
+    it('should be able to change the FormLabel style', () => {
+      const wrapper = shallow(<InputLabel FormControlClasses={{ foo: 'bar' }}>Foo</InputLabel>);
+      assert.strictEqual(wrapper.props().classes.foo, 'bar');
+    });
+  });
+
   describe('with muiFormControl context', () => {
     let wrapper;
     let muiFormControl;

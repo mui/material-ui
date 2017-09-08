@@ -60,14 +60,14 @@ function TableSortLabel(props) {
     classNameProp,
   );
 
-  const iconClasses = classNames(classes.icon, {
+  const iconClassName = classNames(classes.icon, {
     [classes[direction]]: !!direction,
   });
 
   return (
     <ButtonBase className={className} component="span" disableRipple {...other}>
       {children}
-      <ArrowDownwardIcon className={iconClasses} />
+      <ArrowDownwardIcon className={iconClassName} />
     </ButtonBase>
   );
 }
