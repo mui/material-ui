@@ -28,9 +28,6 @@ export const styles = (theme: Object) => ({
       duration: theme.transitions.duration.shortest,
     }),
   },
-  disabled: {
-    color: theme.palette.action.disabled,
-  },
   colorAccent: {
     color: theme.palette.secondary.A200,
   },
@@ -42,6 +39,9 @@ export const styles = (theme: Object) => ({
   },
   colorInherit: {
     color: 'inherit',
+  },
+  disabled: {
+    color: theme.palette.action.disabled,
   },
   label: {
     width: '100%',

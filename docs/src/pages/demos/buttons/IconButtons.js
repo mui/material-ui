@@ -21,7 +21,7 @@ function IconButtons(props) {
       <IconButton className={classes.button} aria-label="Delete">
         <DeleteIcon />
       </IconButton>
-      <IconButton className={classes.button} aria-label="Delete" disabled>
+      <IconButton className={classes.button} aria-label="Delete" disabled color="primary">
         <DeleteIcon />
       </IconButton>
       <IconButton color="accent" className={classes.button} aria-label="Add an alarm">
