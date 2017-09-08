@@ -14,7 +14,7 @@ based on the material table element parent (head, body, etc).
 | hover | bool | false | If `true`, the table row will shade on hover. |
 | selected | bool | false | If `true`, the table row will have the selected shading. |
 
-Any other properties supplied will be spread to the root element.
+Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 ## CSS API
 

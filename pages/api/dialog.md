@@ -27,7 +27,7 @@ Dialogs are overlaid modal paper based components with a backdrop.
 | open | boolean | false | If `true`, the Dialog is open. |
 | transition | Node | Fade | Transition component. |
 
-Any other properties supplied will be spread to the root element.
+Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 ## CSS API
 

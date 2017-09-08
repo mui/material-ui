@@ -36,7 +36,7 @@
 | type | string |  | Type attribute of the `Input` element. It should be a valid HTML5 input type. |
 | value | union:&nbsp;string<br>&nbsp;number<br> |  | The value of the `Input` element, required for a controlled component. |
 
-Any other properties supplied will be spread to the root element.
+Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 
 ## Inheritance

@@ -19,7 +19,7 @@
 | open | boolean | false | If `true`, the drawer is open. |
 | <span style="color: #31a148">type *</span> | union:&nbsp;'permanent'<br>&nbsp;'persistent'<br>&nbsp;'temporary'<br> | 'temporary' | The type of drawer. |
 
-Any other properties supplied will be spread to the root element.
+Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 ## CSS API
 

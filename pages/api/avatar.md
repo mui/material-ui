@@ -16,7 +16,7 @@
 | src | string |  | The `src` attribute for the `img` element. |
 | srcSet | string |  | The `srcSet` attribute for the `img` element. |
 
-Any other properties supplied will be spread to the root element.
+Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 ## CSS API
 

@@ -16,7 +16,7 @@
 | renderValue | Function |  | Render the selected value. It's only useful when the `native` property is not set to `true`. |
 | value | union:&nbsp;Array<string<br>&nbsp;number><br>&nbsp;string<br>&nbsp;number<br> |  | The input value, required for a controlled component. |
 
-Any other properties supplied will be spread to the root element.
+Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 ## CSS API
 

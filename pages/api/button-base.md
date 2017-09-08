@@ -17,7 +17,7 @@
 | keyboardFocusedClassName | string |  | The CSS class applied while the component is keyboard focused. |
 | onKeyboardFocus | signature |  | Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too. |
 
-Any other properties supplied will be spread to the root element.
+Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 ## CSS API
 

@@ -16,7 +16,7 @@ Provides context such as dirty/focused/error/required for form inputs.
 | margin | union:&nbsp;'none'<br>&nbsp;'dense'<br>&nbsp;'normal'<br> | 'none' | If `dense` or `normal`, will adjust vertical spacing of this and contained components. |
 | required | boolean | false | If `true`, the label will indicate that the input is required. |
 
-Any other properties supplied will be spread to the root element.
+Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 ## CSS API
 

@@ -21,7 +21,7 @@ Responsively hides children based on the selected implementation.
 | xsDown | boolean | false | If true, screens this size and down will be hidden. |
 | xsUp | boolean | false | If true, screens this size and up will be hidden. |
 
-Any other properties supplied will be spread to the root element.
+Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 
 ## Demos

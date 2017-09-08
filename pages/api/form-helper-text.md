@@ -13,7 +13,7 @@
 | error | boolean |  | If `true`, helper text should be displayed in an error state. |
 | margin | literal |  | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
 
-Any other properties supplied will be spread to the root element.
+Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 ## CSS API
 

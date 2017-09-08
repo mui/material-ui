@@ -27,7 +27,7 @@
 | <span style="color: #31a148">open *</span> | boolean |  | If true, `Snackbar` is open. |
 | transition | Element |  | Object with Transition component, props & create Fn. |
 
-Any other properties supplied will be spread to the root element.
+Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 ## CSS API
 

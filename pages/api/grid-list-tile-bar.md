@@ -14,7 +14,7 @@
 | <span style="color: #31a148">title *</span> | node |  | Title to be displayed on tile. |
 | titlePosition | enum:&nbsp;'top'<br>&nbsp;'bottom'<br> | 'bottom' | Position of the title bar. |
 
-Any other properties supplied will be spread to the root element.
+Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 ## CSS API
 

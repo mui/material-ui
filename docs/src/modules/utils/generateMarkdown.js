@@ -248,7 +248,8 @@ export default function generateMarkdown(reactAPI: Object) {
     `# ${reactAPI.name}\n\n` +
     `${reactAPI.description}\n\n` +
     `${generateProps(reactAPI)}\n` +
-    'Any other properties supplied will be spread to the root element.\n' +
+    'Any other properties supplied will be ' +
+    '[spread to the root element](/customization/api#spread).\n' +
     `${generateClasses(reactAPI)}\n` +
     `${generateInheritance(reactAPI)}` +
     `${generateDemos(reactAPI)}\n`

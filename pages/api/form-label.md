@@ -15,7 +15,7 @@
 | focused | boolean |  | If `true`, the input of this label is focused (used by `FormGroup` components). |
 | required | boolean |  | If `true`, the label will indicate that the input is required. |
 
-Any other properties supplied will be spread to the root element.
+Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 ## CSS API
 

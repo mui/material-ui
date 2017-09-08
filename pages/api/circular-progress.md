@@ -15,7 +15,7 @@
 | size | number | 40 | The size of the circle. |
 | value | number | 0 | The value of progress in determinate mode. |
 
-Any other properties supplied will be spread to the root element.
+Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 ## CSS API
 
