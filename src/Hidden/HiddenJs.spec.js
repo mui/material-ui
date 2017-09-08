@@ -8,6 +8,8 @@ import HiddenJs from './HiddenJs';
 import type { Breakpoint } from '../styles/createBreakpoints';
 import Typography from '../Typography';
 
+const Foo = () => <div>bar</div>;
+
 describe('<HiddenJs />', () => {
   let shallow;
 
@@ -41,12 +43,26 @@ describe('<HiddenJs />', () => {
       it(descriptions[upDownOnly], () => {
         const props = { width, [prop]: breakpoint };
 
-        // children
+        // Node
         let wrapper = shallow(<HiddenJs {...props}>foo</HiddenJs>);
         assert.isNull(wrapper.type(), 'should render null');
 
-        // element
-        wrapper = shallow(<HiddenJs {...props}>foo</HiddenJs>);
+        // Element
+        wrapper = shallow(
+          <HiddenJs {...props}>
+            <Foo />
+          </HiddenJs>,
+        );
+        assert.isNull(wrapper.type(), 'should render null');
+
+        // ChildrenArray
+        wrapper = shallow(
+          <HiddenJs {...props}>
+            <Foo />
+            <Foo />
+            foo
+          </HiddenJs>,
+        );
         assert.isNull(wrapper.type(), 'should render null');
       });
     });
