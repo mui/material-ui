@@ -362,9 +362,16 @@ class Tabs extends React.Component<AllProps, State> {
     });
 
     this.valueToIndex = {};
-    const children = React.Children.map(childrenProp, (child, childIndex) => {
+    let childIndex = 0;
+    const children = React.Children.map(childrenProp, child => {
+      if (!React.isValidElement(child)) {
+        return null;
+      }
+
       const childValue = child.props.value || childIndex;
       this.valueToIndex[childValue] = childIndex;
+
+      childIndex += 1;
       return React.cloneElement(child, {
         fullWidth,
         selected: childValue === value,
