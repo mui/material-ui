@@ -20,7 +20,7 @@ Notice that this Component is incompatible with server side rendering.
 | textColor | union:&nbsp;'accent'<br>&nbsp;'primary'<br>&nbsp;'inherit'<br> | 'inherit' | Determines the color of the `Tab`. |
 | <span style="color: #31a148">value *</span> | any |  | The value of the currently selected `Tab`. If you don't want any selected `Tab`, you can set this property to `false`. |
 
-Any other properties supplied will be spread to the root element.
+Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 ## CSS API
 

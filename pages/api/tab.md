@@ -13,7 +13,7 @@
 | label | Element |  | The label element. |
 | value | any |  | You can provide your own value. Otherwise, we fallback to the child position index. |
 
-Any other properties supplied will be spread to the root element.
+Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 ## CSS API
 

@@ -11,7 +11,7 @@
 | classes | Object |  | Useful to extend the style applied to components. |
 | color | union:&nbsp;'inherit', 'accent', 'action', 'contrast', 'disabled', 'error', 'primary'<br> | 'inherit' | The color of the component. It's using the theme palette when that makes sense. |
 
-Any other properties supplied will be spread to the root element.
+Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 ## CSS API
 

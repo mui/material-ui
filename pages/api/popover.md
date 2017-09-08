@@ -29,7 +29,7 @@
 | <span style="color: #31a148">transformOrigin *</span> | signature | {  vertical: 'top',  horizontal: 'left',} | This is the point on the popover which will attach to the anchor's origin.<br>Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)]. |
 | transitionDuration | union:&nbsp;number<br>&nbsp;'auto'<br> | 'auto' | Set to 'auto' to automatically calculate transition time based on height |
 
-Any other properties supplied will be spread to the root element.
+Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 ## CSS API
 

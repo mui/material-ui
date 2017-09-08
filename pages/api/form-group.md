@@ -12,7 +12,7 @@ It provides compact row layout and FormLabel awareness.
 | classes | Object |  | Useful to extend the style applied to components. |
 | row | boolean | false | Display group of elements in a compact row. |
 
-Any other properties supplied will be spread to the root element.
+Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 ## CSS API
 

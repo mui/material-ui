@@ -9,7 +9,7 @@
 |:-----|:-----|:--------|:------------|
 | classes | Object |  | Useful to extend the style applied to components. |
 
-Any other properties supplied will be spread to the root element.
+Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 ## CSS API
 

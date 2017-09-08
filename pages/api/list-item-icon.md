@@ -10,7 +10,7 @@ A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
 | <span style="color: #31a148">children *</span> | Element |  | The content of the component, normally `Icon`, `SvgIcon`, or a `material-ui-icons` SVG icon component. |
 | classes | Object |  | Useful to extend the style applied to components. |
 
-Any other properties supplied will be spread to the root element.
+Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 ## CSS API
 

@@ -21,7 +21,7 @@
 | open | boolean | false | If `true`, the menu is visible. |
 | transitionDuration | union:&nbsp;number<br>&nbsp;'auto'<br> | 'auto' | The length of the transition in `ms`, or 'auto' |
 
-Any other properties supplied will be spread to the root element.
+Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 ## CSS API
 

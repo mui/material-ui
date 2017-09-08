@@ -15,7 +15,7 @@ regarding the available icon options.
 | disabled | bool | false | If `true`, the button will be disabled. |
 | rootRef | function |  | Use that property to pass a ref callback to the root component. |
 
-Any other properties supplied will be spread to the root element.
+Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 ## CSS API
 

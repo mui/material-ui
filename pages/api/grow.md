@@ -17,6 +17,6 @@ Grow transition used by popovers such as Menu.
 | rootRef | Function |  | Use that property to pass a ref callback to the root component. |
 | transitionDuration | union:&nbsp;number<br>&nbsp;'auto'<br> | 'auto' | Set to 'auto' to automatically calculate transition time based on height |
 
-Any other properties supplied will be spread to the root element.
+Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 

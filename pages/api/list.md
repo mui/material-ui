@@ -15,7 +15,7 @@
 | rootRef | Function |  | Use that property to pass a ref callback to the root component. |
 | subheader | Node |  | The content of the component, normally `ListItem`. |
 
-Any other properties supplied will be spread to the root element.
+Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 ## CSS API
 

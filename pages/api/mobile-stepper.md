@@ -19,7 +19,7 @@
 | <span style="color: #31a148">steps *</span> | number |  | The total steps. |
 | type | enum:&nbsp;'text'<br>&nbsp;'dots'<br>&nbsp;'progress'<br> | 'dots' | The type of mobile stepper to use. |
 
-Any other properties supplied will be spread to the root element.
+Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 ## CSS API
 
