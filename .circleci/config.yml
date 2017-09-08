@@ -69,8 +69,8 @@ jobs:
           name: Is the size acceptable?
           command: yarn size
       - run:
-          name: Can we generate the docs?
-          command: yarn docs:api && yarn docs:build
+          name: Can we generate the api of the docs?
+          command: yarn docs:api
   test_browser:
     <<: *defaults
     steps:

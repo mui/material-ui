@@ -74,11 +74,11 @@ function CircularProgress(props) {
   const { classes, className, color, size, mode, value, min, max, ...other } = props;
   const radius = size / 2;
   const rootProps = {};
-  const svgClasses = classNames(classes.svg, {
+  const svgClassName = classNames(classes.svg, {
     [classes.indeterminateSvg]: mode === 'indeterminate',
   });
 
-  const circleClasses = classNames(classes.circle, {
+  const circleClassName = classNames(classes.circle, {
     [classes.indeterminateCircle]: mode === 'indeterminate',
     [classes.determinateCircle]: mode === 'determinate',
   });
@@ -104,9 +104,9 @@ function CircularProgress(props) {
       {...rootProps}
       {...other}
     >
-      <svg className={svgClasses} viewBox={`0 0 ${size} ${size}`}>
+      <svg className={svgClassName} viewBox={`0 0 ${size} ${size}`}>
         <circle
-          className={circleClasses}
+          className={circleClassName}
           style={circleStyle}
           cx={radius}
           cy={radius}

@@ -139,7 +139,7 @@ function LinearProgress(props) {
     [classes.accentDashed]: color === 'accent',
   });
 
-  const rootClasses = classNames(
+  const rootClassName = classNames(
     classes.root,
     {
       [classes.primaryColor]: color === 'primary',
@@ -149,14 +149,14 @@ function LinearProgress(props) {
     },
     className,
   );
-  const primaryClasses = classNames(classes.bar, {
+  const primaryClassName = classNames(classes.bar, {
     [classes.primaryColorBar]: color === 'primary',
     [classes.accentColorBar]: color === 'accent',
     [classes.indeterminateBar1]: mode === 'indeterminate' || mode === 'query',
     [classes.determinateBar1]: mode === 'determinate',
     [classes.bufferBar1]: mode === 'buffer',
   });
-  const secondaryClasses = classNames(classes.bar, {
+  const secondaryClassName = classNames(classes.bar, {
     [classes.bufferBar2]: mode === 'buffer',
     [classes.primaryColorBar]: color === 'primary' && mode !== 'buffer',
     [classes.primaryColor]: color === 'primary' && mode === 'buffer',
@@ -176,11 +176,11 @@ function LinearProgress(props) {
   }
 
   return (
-    <div className={rootClasses} {...rootProps} {...other}>
+    <div className={rootClassName} {...rootProps} {...other}>
       {mode === 'buffer' ? <div className={dashedClass} /> : null}
-      <div className={primaryClasses} style={inlineStyles.primary} />
+      <div className={primaryClassName} style={inlineStyles.primary} />
       {mode === 'determinate' ? null : (
-        <div className={secondaryClasses} style={inlineStyles.secondary} />
+        <div className={secondaryClassName} style={inlineStyles.secondary} />
       )}
     </div>
   );
