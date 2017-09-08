@@ -90,11 +90,7 @@ describe('<Input />', () => {
     events.forEach(n => {
       const event = n.charAt(2).toLowerCase() + n.slice(3);
       wrapper.find('input').simulate(event);
-      assert.strictEqual(
-        handlers[n].callCount,
-        n === 'onChange' ? 2 : 1,
-        `should have called the ${n} handler`,
-      );
+      assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
     });
   });
 
