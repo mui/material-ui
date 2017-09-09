@@ -33,7 +33,7 @@ class TextFields extends React.Component {
     const { classes } = this.props;
 
     return (
-      <form className={classes.container} noValidate>
+      <form className={classes.container} noValidate autoComplete="off">
         <TextField
           id="name"
           label="Name"

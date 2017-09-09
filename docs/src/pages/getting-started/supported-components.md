@@ -70,8 +70,8 @@ to discuss the approach before submitting a PR.
   - **[Button menu](https://www.google.com/design/spec/components/menus.html#menus-usage) (Can be constructed) ✓**
   - **[Scrollable](https://www.google.com/design/spec/components/menus.html#menus-usage) ✓**
   - [Cascade](https://www.google.com/design/spec/components/menus.html#menus-usage)
-  - [Textfield dropdown](https://www.google.com/design/spec/components/menus.html#menus-behavior) (DropDownMenu)
-  - [Contextual / App bar dropdown](https://www.google.com/design/spec/components/menus.html#menus-usage) (IconMenu)
+  - **[Textfield dropdown](https://www.google.com/design/spec/components/menus.html#menus-behavior) (Selet) ✓**
+  - **[Contextual / App bar dropdown](https://www.google.com/design/spec/components/menus.html#menus-usage) (IconButton + Menu) ✓**
   - **[Simple menus](https://www.google.com/design/spec/components/menus.html#menus-simple-menus) (Menu) ✓**
 - [Pickers](https://www.google.com/design/spec/components/pickers.html)
   - [Date picker](https://www.google.com/design/spec/components/pickers.html#pickers-date-pickers)
@@ -91,7 +91,7 @@ to discuss the approach before submitting a PR.
 - **[Snackbars](https://www.google.com/design/spec/components/snackbars-toasts.html) ✓**
 - **[Subheaders](https://www.google.com/design/spec/components/subheaders.html) ✓**
   - **[List](https://www.google.com/design/spec/components/subheaders.html#subheaders-list-subheaders) ✓**
-  - [Grid](https://www.google.com/design/spec/components/subheaders.html#subheaders-list-subheaders)
+  - **[Grid](https://www.google.com/design/spec/components/subheaders.html#subheaders-list-subheaders) ✓**
   - [Menu](https://www.google.com/design/spec/components/subheaders.html#subheaders-list-subheaders)
 - [Steppers](https://www.google.com/design/spec/components/steppers.html)
   - [Horizontal](https://www.google.com/design/spec/components/steppers.html#steppers-types-of-steppers)
@@ -111,7 +111,8 @@ to discuss the approach before submitting a PR.
     - **[Icon and text](https://www.google.com/design/spec/components/tabs.html#tabs-usage) ✓**
 - **[Text fields](https://www.google.com/design/spec/components/text-fields.html) ✓**
   - **[Single-line](https://www.google.com/design/spec/components/text-fields.html#text-fields-single-line-text-field) ✓**
-  - [Multi-line](https://www.google.com/design/spec/components/text-fields.html#text-fields-multi-line-text-field)
+  - [Multi-line](https://material.io/guidelines/components/text-fields.html#text-fields-field-types)
+  - [Text-area](https://material.io/guidelines/components/text-fields.html#text-fields-field-types)
   - **[Full-width](https://www.google.com/design/spec/components/text-fields.html#text-fields-multi-line-text-field) ✓**
   - [Character counter](https://www.google.com/design/spec/components/text-fields.html#text-fields-character-counter)
   - **[Autocomplete](https://www.google.com/design/spec/components/text-fields.html#text-fields-auto-complete-text-field) (Can be done with external library such as [react-autosuggest](https://github.com/moroshko/react-autosuggest)) ✓**
