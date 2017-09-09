@@ -1,7 +1,7 @@
 // @flow
 
 import * as ns from 'react-jss/lib/ns';
-import { SheetsRegistry } from 'react-jss';
+import { SheetsRegistry } from 'react-jss/lib/jss';
 import createShallow from './createShallow';
 import { sheetsManager } from '../styles/withStyles';
 

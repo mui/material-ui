@@ -3,7 +3,7 @@
 
 import { create } from 'jss';
 import preset from 'jss-preset-default';
-import { SheetsRegistry } from 'react-jss';
+import { SheetsRegistry } from 'react-jss/lib/jss';
 import { createMuiTheme } from 'material-ui/styles';
 import blue from 'material-ui/colors/blue';
 import pink from 'material-ui/colors/pink';
