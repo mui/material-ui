@@ -13,7 +13,7 @@ import Toolbar from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 import LightbulbOutline from 'material-ui-icons/LightbulbOutline';
-import Github from 'docs/src/modules/components/Github';
+import Github from 'docs/src/modules/components/GitHub';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
 import AppSearch from 'docs/src/modules/components/AppSearch';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';

@@ -12,16 +12,76 @@ import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Demo from 'docs/src/modules/components/Demo';
 import { getComponents, getContents, getTitle } from 'docs/src/modules/utils/parseMarkdown';
 
-const styles = {
+const styles = theme => ({
+  '@global': {
+    '#carbonads': {
+      padding: theme.spacing.unit,
+      boxSizing: 'content-box',
+      backgroundColor: theme.palette.background.paper,
+      borderRadius: 4,
+      position: 'relative',
+      [theme.breakpoints.up('sm')]: {
+        margin: `${theme.spacing.unit * 2}px ${theme.spacing.unit}px ${theme.spacing.unit}px`,
+        maxWidth: 130,
+        float: 'right',
+      },
+      [theme.breakpoints.up('xl')]: {
+        position: 'fixed',
+        margin: 0,
+        right: theme.spacing.unit * 2,
+        bottom: theme.spacing.unit * 2,
+      },
+      '& img': {
+        verticalAlign: 'middle',
+      },
+      '& a': {
+        textDecoration: 'none',
+      },
+      '& .carbon-wrap': {
+        display: 'flex',
+        [theme.breakpoints.up('sm')]: {
+          display: 'block',
+        },
+      },
+      '& .carbon-text': {
+        ...theme.typography.body1,
+        display: 'block',
+        margin: `0 0 0 ${theme.spacing.unit}px`,
+        [theme.breakpoints.up('sm')]: {
+          margin: `${theme.spacing.unit}px 0`,
+        },
+      },
+      '& .carbon-poweredby': {
+        ...theme.typography.caption,
+        display: 'block',
+        marginTop: theme.spacing.unit / 2,
+        position: 'absolute',
+        right: 4,
+        bottom: 4,
+        [theme.breakpoints.up('sm')]: {
+          marginTop: 0,
+          position: 'static',
+        },
+      },
+    },
+  },
   root: {
     marginBottom: 100,
+  },
+  ad: {
+    minHeight: 120,
+    margin: `${theme.spacing.unit}px 0 0`,
+    [theme.breakpoints.up('sm')]: {
+      margin: 0,
+      minHeight: 0,
+    },
   },
   header: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-end',
   },
-};
+});
 
 const demoRegexp = /^demo='(.*)'$/;
 const SOURCE_CODE_ROOT_URL = 'https://github.com/callemall/material-ui/tree/v1-beta';
@@ -57,6 +117,13 @@ function MarkdownDocs(props, context) {
         <Button component="a" href={`${SOURCE_CODE_ROOT_URL}${sourceLocation}`}>
           {'Edit this page'}
         </Button>
+      </div>
+      <div className={classes.ad}>
+        <script
+          async
+          src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=materialuicom"
+          id="_carbonads_js"
+        />
       </div>
       {contents.map(content => {
         const match = content.match(demoRegexp);

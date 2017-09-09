@@ -6,7 +6,7 @@ import { withStyles } from 'material-ui/styles';
 import Card, { CardContent, CardMedia } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
-import Github from 'docs/src/modules/components/Github';
+import Github from 'docs/src/modules/components/GitHub';
 import Twitter from 'docs/src/modules/components/Twitter';
 
 const members = [
