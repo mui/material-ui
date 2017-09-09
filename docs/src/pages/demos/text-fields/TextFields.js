@@ -30,7 +30,7 @@ class TextFields extends React.Component {
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
 
     return (
       <form className={classes.container} noValidate>
@@ -72,17 +72,6 @@ class TextFields extends React.Component {
           type="password"
           autoComplete="current-password"
           margin="normal"
-        />
-        <TextField
-          id="date"
-          label="From date"
-          type="date"
-          defaultValue="2017-05-24"
-          className={classes.textField}
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
         />
         <TextField
           id="multiline-flexible"
