@@ -115,7 +115,7 @@ export type Props = {
   /**
    * @ignore
    */
-  tabIndex?: number,
+  tabIndex?: number | string,
 };
 
 type AllProps = DefaultProps & Props;

@@ -129,7 +129,7 @@ export type Props = {
   /**
    * @ignore
    */
-  tabIndex?: number,
+  tabIndex?: number | string,
   /**
    * @ignore
    */
