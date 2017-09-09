@@ -172,7 +172,7 @@ class MenuList extends React.Component<Props, State> {
           }
 
           return React.cloneElement(child, {
-            tabIndex: index === this.state.currentTabIndex ? '0' : '-1',
+            tabIndex: index === this.state.currentTabIndex ? 0 : -1,
             ref: child.props.selected
               ? node => {
                   this.selectedItem = node;

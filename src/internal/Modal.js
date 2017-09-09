@@ -396,7 +396,7 @@ class Modal extends React.Component<AllProps, State> {
     }
 
     if (tabIndex === undefined) {
-      childProps.tabIndex = tabIndex == null ? '-1' : tabIndex;
+      childProps.tabIndex = tabIndex == null ? -1 : tabIndex;
     }
 
     let backdropProps;

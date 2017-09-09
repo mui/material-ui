@@ -47,7 +47,7 @@ class CheckboxList extends React.Component {
             <ListItem dense button key={value} onClick={event => this.handleToggle(event, value)}>
               <Checkbox
                 checked={this.state.checked.indexOf(value) !== -1}
-                tabIndex="-1"
+                tabIndex={-1}
                 disableRipple
               />
               <ListItemText primary={`Line item ${value + 1}`} />

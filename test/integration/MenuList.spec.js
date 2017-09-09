@@ -13,11 +13,11 @@ function assertMenuItemTabIndexed(wrapper, tabIndexed) {
 
   items.forEach((item, index) => {
     if (index === tabIndexed) {
-      assert.strictEqual(item.prop('tabIndex'), '0', 'should have the tab index');
+      assert.strictEqual(item.prop('tabIndex'), 0, 'should have the tab index');
     } else {
       assert.strictEqual(
         item.prop('tabIndex'),
-        '-1',
+        -1,
         `item at index ${index} should not be tab focusable`,
       );
     }
