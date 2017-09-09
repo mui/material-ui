@@ -8,6 +8,7 @@ import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import withRoot from 'docs/src/modules/components/withRoot';
+import AppFooter from 'docs/src/modules/components/AppFooter';
 import Link from 'docs/src/modules/components/Link';
 
 const styles = theme => ({
@@ -90,6 +91,7 @@ function PageHome(props) {
           </div>
         </div>
       </div>
+      <AppFooter />
     </div>
   );
 }

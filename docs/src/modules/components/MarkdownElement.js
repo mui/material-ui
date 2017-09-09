@@ -61,7 +61,7 @@ const styles = theme => ({
     fontFamily: theme.typography.fontFamily,
     marginTop: theme.spacing.unit * 2,
     marginBottom: theme.spacing.unit * 2,
-    padding: '0 10px',
+    padding: `0 ${theme.spacing.unit}px`,
     color: theme.palette.text.primary,
     '& .anchor-link': {
       marginTop: -theme.spacing.unit * 12, // Offset for the anchor.
