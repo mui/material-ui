@@ -3,7 +3,8 @@
 import React from 'react';
 import { spy } from 'sinon';
 import { assert } from 'chai';
-import { JssProvider, SheetsRegistry } from 'react-jss';
+import JssProvider from 'react-jss/lib/JssProvider';
+import { SheetsRegistry } from 'react-jss/lib/jss';
 import { create } from 'jss';
 import preset from 'jss-preset-default';
 import withStyles from './withStyles';

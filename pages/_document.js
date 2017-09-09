@@ -3,7 +3,7 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import getContext from 'docs/src/modules/styles/getContext';
-import { JssProvider } from 'react-jss';
+import JssProvider from 'react-jss/lib/JssProvider';
 import CleanCSS from 'clean-css';
 
 const cleanCSS = new CleanCSS();
