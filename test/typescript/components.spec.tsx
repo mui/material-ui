@@ -354,7 +354,7 @@ const ListTest = () => (
         key={value}
         onClick={(e: React.SyntheticEvent<any>) => log(e)}
       >
-        <Checkbox checked={true} tabIndex="-1" disableRipple />
+        <Checkbox checked={true} tabIndex={-1} disableRipple />
         <ListItemText primary={`Line item ${value + 1}`} />
         <ListItemSecondaryAction>
           <IconButton aria-label="Comments">

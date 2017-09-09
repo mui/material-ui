@@ -309,7 +309,7 @@ class SelectInput extends React.Component<AllProps, State> {
             classNameProp,
           )}
           aria-pressed={this.state.open ? 'true' : 'false'}
-          tabIndex={disabled ? null : '0'}
+          tabIndex={disabled ? null : 0}
           role="button"
           aria-owns={this.state.open ? `menu-${name || ''}` : null}
           aria-haspopup="true"

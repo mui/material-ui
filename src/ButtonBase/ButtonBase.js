@@ -129,7 +129,7 @@ export type Props = {
   /**
    * @ignore
    */
-  tabIndex?: string,
+  tabIndex?: number | string,
   /**
    * @ignore
    */
@@ -149,7 +149,7 @@ class ButtonBase extends React.Component<AllProps, State> {
     centerRipple: false,
     focusRipple: false,
     disableRipple: false,
-    tabIndex: '0',
+    tabIndex: 0,
     type: 'button',
   };
 
@@ -379,7 +379,7 @@ class ButtonBase extends React.Component<AllProps, State> {
         onMouseUp={this.handleMouseUp}
         onTouchEnd={this.handleTouchEnd}
         onTouchStart={this.handleTouchStart}
-        tabIndex={disabled ? '-1' : tabIndex}
+        tabIndex={disabled ? -1 : tabIndex}
         className={className}
         {...buttonProps}
         {...other}

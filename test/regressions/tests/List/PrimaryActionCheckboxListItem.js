@@ -9,14 +9,14 @@ export default function PrimaryActionCheckboxListItem() {
   return (
     <div style={{ background: '#fff', width: 300 }}>
       <ListItem button>
-        <Checkbox tabIndex="-1" disableRipple />
+        <Checkbox tabIndex={-1} disableRipple />
         <ListItemText primary="Primary" />
         <ListItemSecondaryAction>
           <IconButton>comment</IconButton>
         </ListItemSecondaryAction>
       </ListItem>
       <ListItem button dense>
-        <Checkbox tabIndex="-1" disableRipple />
+        <Checkbox tabIndex={-1} disableRipple />
         <ListItemText primary="Primary" />
         <ListItemSecondaryAction>
           <IconButton>comment</IconButton>

@@ -217,7 +217,7 @@ class Textarea extends React.Component<AllProps, State> {
         <textarea
           ref={this.handleRefSinglelineShadow}
           className={classnames(classes.shadow, classes.textarea)}
-          tabIndex="-1"
+          tabIndex={-1}
           rows="1"
           readOnly
           aria-hidden="true"
@@ -226,7 +226,7 @@ class Textarea extends React.Component<AllProps, State> {
         <textarea
           ref={this.handleRefShadow}
           className={classnames(classes.shadow, classes.textarea)}
-          tabIndex="-1"
+          tabIndex={-1}
           rows={rows}
           aria-hidden="true"
           readOnly

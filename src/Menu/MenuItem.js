@@ -79,7 +79,7 @@ function MenuItem(props: AllProps) {
     <ListItem
       button
       role={role}
-      tabIndex="-1"
+      tabIndex={-1}
       className={className}
       component={component}
       {...other}
