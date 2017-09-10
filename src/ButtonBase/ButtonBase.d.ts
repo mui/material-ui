@@ -20,7 +20,7 @@ export interface ButtonBaseProps {
   onTouchEnd?: React.TouchEventHandler<any>;
   onTouchStart?: React.TouchEventHandler<any>;
   role?: string;
-  tabIndex?: number | string;
+  tabIndex?: number;
   type?: string;
 }
 
