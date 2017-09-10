@@ -114,7 +114,6 @@ const styles = theme => ({
     transition: theme.transitions.create('width'),
   },
   appBarHome: {
-    backgroundColor: 'transparent',
     boxShadow: 'none',
   },
   appBarShift: {

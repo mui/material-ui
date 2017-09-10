@@ -34,7 +34,7 @@ function AppFooter(props) {
         <Typography type="title" gutterBottom>
           Quick Links
         </Typography>
-        <Typography type="subheading" color="inherit" component="div">
+        <Typography type="subheading" component="div">
           <Grid container spacing={0}>
             <Grid item xs={12} sm={6}>
               <ul className={classes.list}>
