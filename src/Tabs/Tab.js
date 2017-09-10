@@ -15,6 +15,7 @@ export const styles = (theme: Object) => ({
     maxWidth: 264,
     minWidth: 72,
     background: 'none',
+    flexDirection: 'column',
     padding: 0,
     height: 48,
     flex: 'none',

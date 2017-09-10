@@ -13,6 +13,7 @@ export const styles = (theme: Object) => ({
     transition: theme.transitions.create(['color', 'padding-top'], {
       duration: theme.transitions.duration.short,
     }),
+    flexDirection: 'column',
     paddingTop: 8,
     paddingBottom: 10,
     paddingLeft: 12,
@@ -28,7 +29,7 @@ export const styles = (theme: Object) => ({
     color: theme.palette.primary[500],
   },
   selectedIconOnly: {
-    paddingTop: 16,
+    paddingTop: 25,
   },
   label: {
     fontFamily: theme.typography.fontFamily,

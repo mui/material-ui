@@ -12,9 +12,6 @@ import { isMuiElement } from '../utils/reactHelpers';
 
 export const styles = (theme: Object) => ({
   root: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
     textAlign: 'center',
     flex: '0 0 auto',
     fontSize: 24,
