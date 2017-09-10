@@ -47,5 +47,5 @@ export type Palette = {
   Shade;
 
 export default function createPalette(
-  options?: Partial<PaletteOptions>
+  palette?: Partial<Palette>
 ): Palette;
