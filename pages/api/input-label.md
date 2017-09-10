@@ -7,6 +7,7 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| FormControlClasses | Object |  | `classes` property applied to the `FormControl` element. |
 | children | Node |  | The contents of the `InputLabel`. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | disableAnimation | boolean | false | If `true`, the transition animation is disabled. |

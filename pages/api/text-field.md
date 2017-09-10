@@ -46,5 +46,6 @@ The properties of the [&lt;FormControl /&gt;](/api/form-control) component are a
 ## Demos
 
 - [Autocomplete](/demos/autocomplete)
+- [Pickers](/demos/pickers)
 - [Text Fields](/demos/text-fields)
 

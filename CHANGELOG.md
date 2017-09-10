@@ -2,6 +2,63 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.9
+###### _Sep 10, 2017_
+
+Again, this release is particularly dense! Here are some highlights:
+- Many typing fixes (typescript and flow) by @sebald, @rosskevin and @xaviergonz
+- A new Select component thanks to @kybarg (#8023)
+- A new Pickers documentation page (#8117)
+
+Big thanks to the 13 contributors who made this release possible.
+
+### Breaking changes
+
+N.A
+
+#### Component Fixes / Enhancements
+
+- [Select] First implementation (#8023) @kybarg
+- [style] Fix memory leak (#8036) @oliviertassinari
+- [RadioGroup] Fix TypeScript definition for value property (#8026) @jaredklewis
+- [Popover] Pass transitionDuration to Grow (#8049) @nvma
+- [typescript] Add `image` to CardMediaProps (#8033) @sebald
+- [typescript] Fix typings of withTheme (#8052) @sebald
+- [typescript] Fix `BottomNavigation`s onChange type (#8067) @sebald
+- [typescript] Allow to pass stylings props via component props (#8066) @sebald
+- [typescript] Update index and format (#8076) @sebald
+- [CardMedia] Allow styling without breaking image (#8079) @pex
+- [List] Remove overflow (#8086) @oliviertassinari
+- [SvgIcon] Fix react@16 issue with `focusable` (#8102) @NLincoln
+- [Hidden] Change children type to allow many and add children tests (#8082) @rosskevin
+- [IconButton] Correct CSS precedence (#8106) @oliviertassinari
+- [Tabs] Accept null children (#8107) @oliviertassinari
+- [Snackbar] Fix click-through issue in IE11 (#8096) @stbenz88
+- [InputLabel] Add a FormControlClasses property (#8108) @oliviertassinari
+- [typings] Switch tabIndex from string type to number | string (#8115) @xaviergonz
+- [Input] Dodge the BFcache issue (#8110) @rosskevin
+
+#### Docs
+
+- [Picker] Add page section in the documentation (#8117) @oliviertassinari
+- [docs] Update basics.md (#8014) @kgaregin
+- [docs] 🚑 Fix broken link (#8029) @wcandillon
+- [examples] Fix typo in extraction path (#8031) @freiit
+- [Drawer] Fix for mini variant drawer can be scrolled horizontally when collapsed (#8112) @xaviergonz
+- [docs] Update react-docgen and fix api docs (#8056) @rosskevin
+- [docs] Remove defensive checks (#8057) @rosskevin
+- [examples] Fix create react app explicit dependencies (#8087) @rosskevin
+- [docs] Add a spread section to the API page (#8097) @oliviertassinari
+- [docs] Reduce the bundle size 📦 (#8121) @oliviertassinari
+- [docs] Add carbon (#8118) @oliviertassinari
+- [docs] Makes the sections bolder (#8116) @oliviertassinari
+
+#### Core
+
+- [core] Flow 0.54.0 updates (#8042) @rosskevin
+- [typescript] Add example for using withStyle/Theme together (#8078) @sebald
+- [core] Small improvements (#8084) @oliviertassinari
+
 ## 1.0.0-beta.8
 ###### _Sep 2, 2017_
 

@@ -23,9 +23,9 @@
 | margin | literal |  | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
 | multiline | boolean | false | If `true`, a textarea element will be rendered. |
 | name | string |  | Name attribute of the `input` element. |
-| onChange | Function |  | TODO |
-| onClean | Function |  | TODO |
-| onDirty | Function |  | TODO |
+| onChange | signature |  | TODO |
+| onClean | signature |  | TODO |
+| onDirty | signature |  | TODO |
 | placeholder | string |  | TODO |
 | rows | union:&nbsp;string<br>&nbsp;number<br> |  | Number of rows to display when multiline option is set to true. |
 | rowsMax | union:&nbsp;string<br>&nbsp;number<br> |  | Maximum number of rows to display when multiline option is set to true. |
