@@ -11,6 +11,7 @@ import { isMuiElement } from '../utils/reactHelpers';
 export const styles = (theme: Object) => ({
   root: {
     display: 'flex',
+    justifyContent: 'initial',
     alignItems: 'center',
     position: 'relative',
     textDecoration: 'none',

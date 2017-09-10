@@ -12,6 +12,7 @@ export const styles = (theme: Object) => ({
     height: 24,
     width: 24,
     userSelect: 'none',
+    flexShrink: 0,
     transition: theme.transitions.create('fill', {
       duration: theme.transitions.duration.shorter,
     }),

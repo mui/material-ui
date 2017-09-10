@@ -12,9 +12,6 @@ export const styles = (theme: Object) => ({
   root: {
     ...theme.typography.button,
     lineHeight: '1em',
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
     boxSizing: 'border-box',
     minWidth: 88,
     minHeight: 36,

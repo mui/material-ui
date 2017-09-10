@@ -42,7 +42,7 @@ class BasicTabs extends React.Component {
           <Tabs value={value} onChange={this.handleChange}>
             <Tab label="Item One" />
             <Tab label="Item Two" />
-            <Tab label="Item Three" />
+            <Tab label="Item Three" href="#basic-tabs" />
           </Tabs>
         </AppBar>
         {value === 0 && <TabContainer>{'Item One'}</TabContainer>}

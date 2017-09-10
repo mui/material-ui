@@ -14,6 +14,9 @@ import createRippleHandler from './createRippleHandler';
 
 export const styles = (theme: Object) => ({
   root: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     position: 'relative',
     // Remove grey highlight
     WebkitTapHighlightColor: theme.palette.common.transparent,
