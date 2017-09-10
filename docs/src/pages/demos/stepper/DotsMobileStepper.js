@@ -4,6 +4,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import MobileStepper from 'material-ui/MobileStepper';
+import Button from 'material-ui/Button';
+import KeyboardArrowLeft from 'material-ui-icons/KeyboardArrowLeft';
+import KeyboardArrowRight from 'material-ui-icons/KeyboardArrowRight';
 
 const styles = {
   root: {
@@ -38,10 +41,18 @@ class DotsMobileStepper extends React.Component {
         position="static"
         activeStep={this.state.activeStep}
         className={classes.root}
-        onBack={this.handleBack}
-        onNext={this.handleNext}
-        disableBack={this.state.activeStep === 0}
-        disableNext={this.state.activeStep === 5}
+        nextButton={
+          <Button dense onClick={this.handleNext} disabled={this.state.activeStep === 5}>
+            Next
+            <KeyboardArrowRight />
+          </Button>
+        }
+        backButton={
+          <Button dense onClick={this.handleBack} disabled={this.state.activeStep === 0}>
+            <KeyboardArrowLeft />
+            Back
+          </Button>
+        }
       />
     );
   }
