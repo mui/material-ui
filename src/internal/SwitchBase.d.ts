@@ -16,7 +16,7 @@ export interface SwitchBaseProps {
   inputRef?: React.Ref<any>;
   name?: string;
   onChange?: (event: React.ChangeEvent<{}>, checked: boolean) => void;
-  tabIndex?: number | string;
+  tabIndex?: number;
   value?: string;
 }
 

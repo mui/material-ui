@@ -14,7 +14,7 @@ export interface SwitchProps extends SwitchBaseProps {
   inputProps?: object;
   name?: string;
   onChange?: (event: React.ChangeEvent<{}>, checked: boolean) => void;
-  tabIndex?: number | string;
+  tabIndex?: number;
   value?: string;
 }
 
