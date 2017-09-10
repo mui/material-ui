@@ -14,18 +14,8 @@ describe('<MobileStepper />', () => {
   let classes;
   const defaultProps = {
     steps: 2,
-    nextButton: (
-      <Button>
-        Next
-        <KeyboardArrowRight />
-      </Button>
-    ),
-    backButton: (
-      <Button>
-        <KeyboardArrowLeft />
-        Back
-      </Button>
-    ),
+    onBack: () => {},
+    onNext: () => {},
   };
 
   before(() => {
@@ -87,18 +77,8 @@ describe('<MobileStepper />', () => {
     );
   });
 
-  it('should render backButton custom text', () => {
-    const props = {
-      steps: defaultProps.steps,
-      nextButton: defaultProps.nextButton,
-      backButton: (
-        <Button>
-          <KeyboardArrowLeft />
-          Past
-        </Button>
-      ),
-    };
-    const wrapper = shallow(<MobileStepper {...props} />);
+  it('should set the backButtonText', () => {
+    const wrapper = shallow(<MobileStepper backButtonText="Past" {...defaultProps} />);
     assert.strictEqual(
       wrapper
         .childAt(0)
@@ -109,18 +89,8 @@ describe('<MobileStepper />', () => {
     );
   });
 
-  it('should render nextButton custom text', () => {
-    const props = {
-      steps: defaultProps.steps,
-      nextButton: (
-        <Button>
-          Future
-          <KeyboardArrowRight />
-        </Button>
-      ),
-      backButton: defaultProps.backButton,
-    };
-    const wrapper = shallow(<MobileStepper {...props} />);
+  it('should set the nextButtonText', () => {
+    const wrapper = shallow(<MobileStepper nextButtonText="Future" {...defaultProps} />);
     assert.strictEqual(
       wrapper
         .childAt(2)
@@ -131,24 +101,14 @@ describe('<MobileStepper />', () => {
     );
   });
 
-  it('should render disabled backButton', () => {
-    const props = {
-      steps: defaultProps.steps,
-      nextButton: defaultProps.nextButton,
-      backButton: <Button disabled />,
-    };
-    const wrapper = shallow(<MobileStepper {...props} />);
+  it('should disable the back button if prop disableBack is passed', () => {
+    const wrapper = shallow(<MobileStepper disableBack {...defaultProps} />);
     const backButton = wrapper.childAt(0);
     assert.strictEqual(backButton.props().disabled, true, 'should disable the back button');
   });
 
-  it('should render disabled nextButton', () => {
-    const props = {
-      steps: defaultProps.steps,
-      nextButton: <Button disabled />,
-      backButton: defaultProps.backButton,
-    };
-    const wrapper = shallow(<MobileStepper {...props} />);
+  it('should disable the next button if prop disableNext is passed', () => {
+    const wrapper = shallow(<MobileStepper disableNext {...defaultProps} />);
     const nextButton = wrapper.childAt(2);
     assert.strictEqual(nextButton.props().disabled, true, 'should disable the next button');
   });
@@ -204,8 +164,8 @@ describe('<MobileStepper />', () => {
 
   it('should calculate the <LinearProgress /> value correctly', () => {
     const props = {
-      backButton: defaultProps.backButton,
-      nextButton: defaultProps.nextButton,
+      onBack: defaultProps.onBack,
+      onNext: defaultProps.onNext,
     };
     let wrapper = shallow(<MobileStepper type="progress" steps={3} {...props} />);
     let linearProgressProps = wrapper.find(LinearProgress).props();
