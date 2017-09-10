@@ -115,6 +115,18 @@ describe('<Drawer />', () => {
       assert.strictEqual(wrapper.find(Modal).props().backdropTransitionDuration, testDuration);
     });
 
+    it('should set the custom className for Modal when type is temporary', () => {
+      const wrapper = shallow(
+        <Drawer className="woofDrawer" type="temporary">
+          <h1>Hello</h1>
+        </Drawer>,
+      );
+
+      const modal = wrapper.find(Modal);
+
+      assert.strictEqual(modal.hasClass('woofDrawer'), true, 'should have the woofDrawer class');
+    });
+
     it('should set the Paper className', () => {
       const wrapper = shallow(
         <Drawer classes={{ paper: 'woofDrawer' }}>
