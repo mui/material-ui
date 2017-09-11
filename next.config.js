@@ -31,6 +31,12 @@ module.exports = {
 
     return Object.assign({}, config, {
       plugins,
+      resolve: Object.assign({}, config.resolve, {
+        alias: Object.assign({}, config.resolve.alias, {
+          'react': 'preact-compat/dist/preact-compat',
+          'react-dom': 'preact-compat/dist/preact-compat'
+        }),
+      }),
       externals: Object.assign({}, config.externals, {
         fs: 'fs',
       }),
