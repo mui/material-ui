@@ -6,11 +6,23 @@ components: Tooltip
 
 The [tooltips](https://material.io/guidelines/components/tooltips.html#) are text labels that appear when the user hovers over, focuses on, or touches an element.
 
-## Buttons with Tooltips
+## Simple Tooltips
 
-{{demo='pages/demos/tooltips/UncontrolledButtonTooltips.js'}}
+{{demo='pages/demos/tooltips/SimpleTooltips.js'}}
 
+## Positioned Tooltips
 
-## Buttons with Controlled Tooltips
+The `Tooltip` has 12 placements choice.
+They don’t have directional arrows; instead, they rely on motion emanating from the source to convey direction.
 
-{{demo='pages/demos/tooltips/ControlledButtonTooltips.js'}}
+{{demo='pages/demos/tooltips/PositionedTooltips.js'}}
+
+## Controlled Tooltips
+
+{{demo='pages/demos/tooltips/ControlledTooltips.js'}}
+
+## Showing and hiding
+
+The tooltip is immediately shown when the user's mouse hovers over the element and immediately hides when the user's mouse leaves. A delay in showing or hiding the tooltip can be added through the inputs `enterDelay` and `leaveDelay`.
+
+On mobile, the tooltip is displayed when the user longpresses the element and hides after a delay of 1500ms. You can disable this feature with the `disableTriggerTouch` property.

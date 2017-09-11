@@ -7,15 +7,21 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span style="color: #31a148">children *</span> | Node |  | Tooltip reference component |
+| PopperProps | Object |  | Properties applied to the `Popper` element. |
+| <span style="color: #31a148">children *</span> | Element |  | Tooltip reference component. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| <span style="color: #31a148">label *</span> | string |  | Tooltip label. |
+| disableTriggerFocus | boolean | false | Do not respond to focus events. |
+| disableTriggerHover | boolean | false | Do not respond to hover events. |
+| disableTriggerTouch | boolean | false | Do not respond to long press touch events. |
+| enterDelay | number | 0 | The number of milliseconds to wait before showing the tooltip. |
+| <span style="color: #31a148">label *</span> | Node |  | Tooltip label. |
+| leaveDelay | number | 0 | The number of milliseconds to wait before hidding the tooltip. |
 | onRequestClose | Function |  | Callback fired when the tooltip requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
-| onRequestOpen | Function |  | Callback fired when the tooltip requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
+| onRequestOpen | Function |  | Callback fired when the tooltip requests to be open.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | open | boolean |  | If `true`, the tooltip is shown. |
 | placement | union:&nbsp;, 'bottom-end', 'bottom-start', 'bottom', 'left-end', 'left-start', 'left', 'right-end', 'right-start', 'right', 'top-end', 'top-start', 'top'<br> | 'bottom' | Tooltip placement |
 
-Any other properties supplied will be spread to the root element.
+Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 ## CSS API
 

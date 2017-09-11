@@ -2,7 +2,7 @@
 
 import React from 'react';
 import classNames from 'classnames';
-import type { Element } from 'react';
+import type { Element, Node } from 'react';
 import { Manager, Target, Popper } from 'react-popper';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import common from '../colors/common';
@@ -21,10 +21,10 @@ export const styles = (theme: Object) => ({
     borderRadius: 2,
     color: common.fullWhite,
     fontSize: 14,
-    height: 32,
+    height: theme.spacing.unit * 4,
     lineHeight: '32px',
     opacity: 0,
-    padding: '0 16px',
+    padding: `0 ${theme.spacing.unit}px`,
     transform: 'scale(0)',
     transition: theme.transitions.create(['opacity', 'transform'], {
       duration: theme.transitions.duration.shortest,
@@ -32,29 +32,33 @@ export const styles = (theme: Object) => ({
     [theme.breakpoints.up('sm')]: {
       height: 22,
       lineHeight: '22px',
-      padding: '0 8px',
+      padding: `0 ${theme.spacing.unit}px`,
       fontSize: 10,
     },
   },
   tooltipLeft: {
+    transformOrigin: 'right center',
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up('sm')]: {
       marginRight: 14,
     },
   },
   tooltipRight: {
+    transformOrigin: 'left center',
     marginLeft: theme.spacing.unit * 3,
     [theme.breakpoints.up('sm')]: {
       marginLeft: 14,
     },
   },
   tooltipTop: {
+    transformOrigin: 'center bottom',
     marginBottom: theme.spacing.unit * 3,
     [theme.breakpoints.up('sm')]: {
       marginBottom: 14,
     },
   },
   tooltipBottom: {
+    transformOrigin: 'center top',
     marginTop: theme.spacing.unit * 3,
     [theme.breakpoints.up('sm')]: {
       marginTop: 14,
@@ -68,12 +72,17 @@ export const styles = (theme: Object) => ({
 
 type DefaultProps = {
   classes: Object,
+  disableTriggerFocus: boolean,
+  disableTriggerHover: boolean,
+  disableTriggerTouch: boolean,
+  enterDelay: number,
+  leaveDelay: number,
   placement: string,
 };
 
 export type Props = {
   /**
-   * Tooltip reference component
+   * Tooltip reference component.
    */
   children: Element<*>,
   /**
@@ -85,9 +94,21 @@ export type Props = {
    */
   className?: string,
   /**
+   * Do not respond to focus events.
+   */
+  disableTriggerFocus?: boolean,
+  /**
+   * Do not respond to hover events.
+   */
+  disableTriggerHover?: boolean,
+  /**
+   * Do not respond to long press touch events.
+   */
+  disableTriggerTouch?: boolean,
+  /**
    * Tooltip label.
    */
-  label: string,
+  label: Node,
   /**
    * Callback fired when the tooltip requests to be closed.
    *
@@ -95,7 +116,7 @@ export type Props = {
    */
   onRequestClose?: Function,
   /**
-   * Callback fired when the tooltip requests to be closed.
+   * Callback fired when the tooltip requests to be open.
    *
    * @param {object} event The event source of the callback
    */
@@ -104,6 +125,14 @@ export type Props = {
    * If `true`, the tooltip is shown.
    */
   open?: boolean,
+  /**
+   * The number of milliseconds to wait before showing the tooltip.
+   */
+  enterDelay?: number,
+  /**
+   * The number of milliseconds to wait before hidding the tooltip.
+   */
+  leaveDelay?: number,
   /**
    * Tooltip placement
    */
@@ -120,6 +149,10 @@ export type Props = {
     | 'top-end'
     | 'top-start'
     | 'top',
+  /**
+   * Properties applied to the `Popper` element.
+   */
+  PopperProps?: Object,
 };
 
 type AllProps = DefaultProps & Props;
@@ -132,6 +165,11 @@ class Tooltip extends React.Component<AllProps, State> {
   props: AllProps;
 
   static defaultProps = {
+    disableTriggerFocus: false,
+    disableTriggerHover: false,
+    disableTriggerTouch: false,
+    enterDelay: 0,
+    leaveDelay: 0,
     placement: 'bottom',
   };
 
@@ -150,63 +188,156 @@ class Tooltip extends React.Component<AllProps, State> {
     }
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.enterTimer);
+    clearTimeout(this.leaveTimer);
+  }
+
+  enterTimer = null;
+  leaveTimer = null;
+  touchTimer = null;
   isControlled = null;
+  ignoreNonTouchEvents = false;
 
-  handleRequestClose = event => {
-    const newOpen = false;
+  handleRequestOpen = event => {
+    const childrenProps = this.props.children.props;
 
-    if (!this.isControlled) {
-      this.setState({ open: newOpen });
+    if (event.type === 'focus' && childrenProps.onFocus) {
+      childrenProps.onFocus(event);
     }
 
-    if (this.props.onRequestClose) {
-      this.props.onRequestClose(event, newOpen);
+    if (event.type === 'mouseover' && childrenProps.onMouseOver) {
+      childrenProps.onMouseOver(event);
+    }
+
+    if (this.ignoreNonTouchEvents && event.type !== 'touchstart') {
+      return;
+    }
+
+    clearTimeout(this.leaveTimer);
+    if (this.props.enterDelay > 0) {
+      this.leaveTimer = setTimeout(() => {
+        this.requestOpen(event);
+      }, this.props.enterDelay);
+    } else {
+      this.requestOpen(event);
     }
   };
 
-  handleRequestOpen = event => {
-    const newOpen = true;
-
+  requestOpen = event => {
     if (!this.isControlled) {
-      this.setState({ open: newOpen });
+      this.setState({ open: true });
     }
 
     if (this.props.onRequestOpen) {
-      this.props.onRequestOpen(event, newOpen);
+      this.props.onRequestOpen(event, true);
     }
+  };
+
+  handleRequestClose = event => {
+    const childrenProps = this.props.children.props;
+
+    if (event.type === 'blur' && childrenProps.onBlur) {
+      childrenProps.onBlur(event);
+    }
+
+    if (event.type === 'mouseleave' && childrenProps.onMouseLeave) {
+      childrenProps.onMouseLeave(event);
+    }
+
+    clearTimeout(this.leaveTimer);
+    if (this.props.leaveDelay) {
+      this.leaveTimer = setTimeout(() => {
+        this.requestClose(event);
+      }, this.props.leaveDelay);
+    } else {
+      this.requestClose(event);
+    }
+  };
+
+  requestClose = event => {
+    this.ignoreNonTouchEvents = false;
+
+    if (!this.isControlled) {
+      this.setState({ open: false });
+    }
+
+    if (this.props.onRequestClose) {
+      this.props.onRequestClose(event, false);
+    }
+  };
+
+  handleTouchStart = event => {
+    this.ignoreNonTouchEvents = true;
+    const childrenProps = this.props.children.props;
+
+    if (childrenProps.onTouchStart) {
+      childrenProps.onTouchStart(event);
+    }
+
+    clearTimeout(this.touchTimer);
+    event.persist();
+    this.touchTimer = setTimeout(() => {
+      this.handleRequestOpen(event);
+    }, 1e3);
+  };
+
+  handleTouchEnd = event => {
+    const childrenProps = this.props.children.props;
+
+    if (childrenProps.onTouchEnd) {
+      childrenProps.onTouchEnd(event);
+    }
+
+    clearTimeout(this.touchTimer);
+    clearTimeout(this.leaveTimer);
+    event.persist();
+    this.leaveTimer = setTimeout(() => {
+      this.requestClose(event);
+    }, 1500 + this.props.leaveDelay);
   };
 
   render() {
     const {
       children: childrenProp,
       classes,
+      className,
+      disableTriggerFocus,
+      disableTriggerHover,
+      disableTriggerTouch,
+      enterDelay,
+      leaveDelay,
       label,
       open: openProp,
+      onRequestClose,
+      onRequestOpen,
       placement,
-      className: classNameProp,
+      PopperProps,
+      ...other
     } = this.props;
 
     const open = this.isControlled ? openProp : this.state.open;
+    const childrenProps = {};
 
-    let children = null;
-    if (childrenProp) {
-      if (React.isValidElement(childrenProp)) {
-        children = React.cloneElement(childrenProp, {
-          onMouseOver: this.handleRequestOpen,
-          onFocus: this.handleRequestOpen,
-          onMouseLeave: this.handleRequestClose,
-          onBlur: this.handleRequestClose,
-          onKeyboardFocus: open ? this.handleRequestClose : this.handleRequestOpen,
-        });
-      } else {
-        children = childrenProp;
-      }
+    if (!disableTriggerTouch) {
+      childrenProps.onTouchStart = this.handleTouchStart;
+      childrenProps.onTouchEnd = this.handleTouchEnd;
+    }
+
+    if (!disableTriggerHover) {
+      childrenProps.onMouseOver = this.handleRequestOpen;
+      childrenProps.onMouseLeave = this.handleRequestClose;
+    }
+
+    if (!disableTriggerFocus) {
+      childrenProps.onFocus = this.handleRequestOpen;
+      childrenProps.onBlur = this.handleRequestClose;
     }
 
     return (
-      <Manager className={classNames(classes.root, classNameProp)}>
-        <Target>{children}</Target>
-        <Popper placement={placement} className={classes.popper}>
+      <Manager className={classNames(classes.root, className)} {...other}>
+        <Target>{React.cloneElement(childrenProp, childrenProps)}</Target>
+        <Popper placement={placement} className={classes.popper} {...PopperProps}>
           <div
             className={classNames(
               classes.tooltip,
