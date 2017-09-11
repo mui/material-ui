@@ -63,10 +63,12 @@ export const styles = (theme: Object) => ({
     transform: 'rotate(180deg)',
   },
   indeterminateBar1: {
+    width: 'auto',
     willChange: 'left, right',
     animation: 'mui-indeterminate1 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite',
   },
   indeterminateBar2: {
+    width: 'auto',
     willChange: 'left, right',
     animation: 'mui-indeterminate2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite',
     animationDelay: '1.15s',
@@ -87,11 +89,17 @@ export const styles = (theme: Object) => ({
     transition: `transform .${transitionDuration}s linear`,
     backgroundColor: theme.palette.secondary.A100,
   },
+  // Legends:
+  // || represents the viewport
+  // -  represents a light background
+  // x  represents a dark background
   '@keyframes mui-indeterminate1': {
+    //  |-----|---x-||-----||-----|
     '0%': {
       left: '-35%',
       right: '100%',
     },
+    //  |-----|-----||-----||xxxx-|
     '60%': {
       left: '100%',
       right: '-90%',
@@ -102,10 +110,12 @@ export const styles = (theme: Object) => ({
     },
   },
   '@keyframes mui-indeterminate2': {
+    //  |xxxxx|xxxxx||-----||-----|
     '0%': {
       left: '-200%',
       right: '100%',
     },
+    //  |-----|-----||-----||-x----|
     '60%': {
       left: '107%',
       right: '-8%',

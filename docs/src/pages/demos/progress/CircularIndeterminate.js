@@ -18,7 +18,6 @@ function CircularIndeterminate(props) {
       <CircularProgress className={classes.progress} />
       <CircularProgress className={classes.progress} size={50} />
       <CircularProgress color="accent" className={classes.progress} />
-      <CircularProgress color="accent" className={classes.progress} size={50} />
     </div>
   );
 }

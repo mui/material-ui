@@ -32,21 +32,21 @@ You can take advantage of this behavior:
 ```jsx
 <MenuItem disableRipple />
 ```
-The `disableRipple` property will flow this way: `MenuItem` > `ListItem` > `ButtonBase`.
+The `disableRipple` property will flow this way: [`MenuItem`](/api/menu-item) > [`ListItem`](/api/list-item) > [`ButtonBase`](/api/button-base).
 
 ### Native properties
 
-We avoid documenting native properties natively supported by the DOM like `className`.
+We avoid documenting native properties supported by the DOM like `className`.
 
 ### Classes
 
-All the components accept a `classes` property to customize the style.
+All the components accept a `classes` property to customize the styles.
 
 ### Internal components
 
 Internal components have:
-- their own `xxxClassName` property when `classes` isn't enough.
 - their own `xxxProps` property when users might need to tweak internal render method's components. For instance, we expose a `inputProps` and a `InputProps` properties.
+- their own `xxxClassName` property when `classes` isn't enough.
 - their own flattened properties when they are key to the abstraction. For instance, we expose a `value` property.
 - their own `xxxRef` property when user might need to perform so imperative action.
 For instance, we expose a `inputRef` property.
