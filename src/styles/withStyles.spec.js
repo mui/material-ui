@@ -100,6 +100,14 @@ describe('withStyles', () => {
           /Material-UI: the key `root` provided to the classes property is not valid/,
         );
       });
+
+      it('should recycle the object between two render if possible', () => {
+        const wrapper = mount(<StyledComponent1 />);
+        const classes1 = wrapper.find(Empty).props().classes;
+        wrapper.update();
+        const classes2 = wrapper.find(Empty).props().classes;
+        assert.strictEqual(classes1, classes2);
+      });
     });
 
     describe('prop: innerRef', () => {

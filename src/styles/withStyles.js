@@ -70,18 +70,13 @@ function withStyles(stylesOrCreator: Object, options?: Options = {}) {
   function enhance<BaseProps: {}>(BaseComponent: ComponentType<BaseProps>) {
     const { withTheme = false, name, ...styleSheetOptions } = options;
     const factory = createEagerFactory(BaseComponent);
-    const stylesCreators = [getStylesCreator(stylesOrCreator)];
-    const listenToTheme =
-      stylesCreators.some(stylesCreator => stylesCreator.themingEnabled) ||
-      withTheme ||
-      typeof name === 'string';
+    const stylesCreator = getStylesCreator(stylesOrCreator);
+    const listenToTheme = stylesCreator.themingEnabled || withTheme || typeof name === 'string';
 
-    stylesCreators.forEach(stylesCreator => {
-      if (stylesCreator.options.index === undefined) {
-        indexCounter += 1;
-        stylesCreator.options.index = indexCounter;
-      }
-    });
+    if (stylesCreator.options.index === undefined) {
+      indexCounter += 1;
+      stylesCreator.options.index = indexCounter;
+    }
 
     warning(
       indexCounter < 0,
@@ -116,10 +111,10 @@ function withStyles(stylesOrCreator: Object, options?: Options = {}) {
         super(props, context);
         this.jss = this.context[ns.jss] || jss;
         this.sheetsManager = this.context.sheetsManager || sheetsManager;
-        // Attach the stylesCreators to the instance of the component as in the context
+        // Attach the stylesCreator to the instance of the component as in the context
         // of react-hot-loader the hooks can be executed in a different closure context:
         // https://github.com/gaearon/react-hot-loader/blob/master/src/patch.dev.js#L107
-        this.stylesCreators = stylesCreators;
+        this.stylesCreatorSaved = stylesCreator;
         this.sheetOptions = {
           generateClassName,
           ...this.context[ns.sheetOptions],
@@ -162,79 +157,77 @@ function withStyles(stylesOrCreator: Object, options?: Options = {}) {
       }
 
       attach(theme: Object) {
-        this.stylesCreators.forEach(stylesCreator => {
-          let sheetManager = this.sheetsManager.get(stylesCreator);
+        const stylesCreatorSaved = this.stylesCreatorSaved;
+        let sheetManager = this.sheetsManager.get(stylesCreatorSaved);
 
-          if (!sheetManager) {
-            sheetManager = new Map();
-            this.sheetsManager.set(stylesCreator, sheetManager);
+        if (!sheetManager) {
+          sheetManager = new Map();
+          this.sheetsManager.set(stylesCreatorSaved, sheetManager);
+        }
+
+        let sheetManagerTheme = sheetManager.get(theme);
+
+        if (!sheetManagerTheme) {
+          sheetManagerTheme = {
+            refs: 0,
+            sheet: null,
+          };
+          sheetManager.set(theme, sheetManagerTheme);
+        }
+
+        if (sheetManagerTheme.refs === 0) {
+          const styles = stylesCreatorSaved.create(theme, name);
+          let meta;
+
+          if (process.env.NODE_ENV !== 'production') {
+            meta = name || getDisplayName(BaseComponent);
+            // Sanitize the string as will be used in development to prefix the generated
+            // class name.
+            meta = meta.replace(new RegExp(/[!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~]/g), '-');
           }
 
-          let sheetManagerTheme = sheetManager.get(theme);
+          const sheet = this.jss.createStyleSheet(styles, {
+            meta,
+            link: false,
+            ...this.sheetOptions,
+            ...stylesCreatorSaved.options,
+            name,
+            ...styleSheetOptions,
+          });
 
-          if (!sheetManagerTheme) {
-            sheetManagerTheme = {
-              refs: 0,
-              sheet: null,
-            };
-            sheetManager.set(theme, sheetManagerTheme);
+          sheetManagerTheme.sheet = sheet;
+          sheet.attach();
+
+          const sheetsRegistry = this.context[ns.sheetsRegistry];
+          if (sheetsRegistry) {
+            sheetsRegistry.add(sheet);
           }
+        }
 
-          if (sheetManagerTheme.refs === 0) {
-            const styles = stylesCreator.create(theme, name);
-            let meta;
-
-            if (process.env.NODE_ENV !== 'production') {
-              meta = name || getDisplayName(BaseComponent);
-              // Sanitize the string as will be used in development to prefix the generated
-              // class name.
-              meta = meta.replace(new RegExp(/[!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~]/g), '-');
-            }
-
-            const sheet = this.jss.createStyleSheet(styles, {
-              meta,
-              link: false,
-              ...this.sheetOptions,
-              ...stylesCreator.options,
-              name,
-              ...styleSheetOptions,
-            });
-
-            sheetManagerTheme.sheet = sheet;
-            sheet.attach();
-
-            const sheetsRegistry = this.context[ns.sheetsRegistry];
-            if (sheetsRegistry) {
-              sheetsRegistry.add(sheet);
-            }
-          }
-
-          sheetManagerTheme.refs += 1;
-        });
+        sheetManagerTheme.refs += 1;
       }
 
       detach(theme: Object) {
-        this.stylesCreators.forEach(stylesCreator => {
-          const sheetManager = this.sheetsManager.get(stylesCreator);
-          const sheetManagerTheme = sheetManager.get(theme);
+        const stylesCreatorSaved = this.stylesCreatorSaved;
+        const sheetManager = this.sheetsManager.get(stylesCreatorSaved);
+        const sheetManagerTheme = sheetManager.get(theme);
 
-          sheetManagerTheme.refs -= 1;
+        sheetManagerTheme.refs -= 1;
 
-          if (sheetManagerTheme.refs === 0) {
-            sheetManager.delete(theme);
-            this.jss.removeStyleSheet(sheetManagerTheme.sheet);
-            const sheetsRegistry = this.context[ns.sheetsRegistry];
-            if (sheetsRegistry) {
-              sheetsRegistry.remove(sheetManagerTheme.sheet);
-            }
+        if (sheetManagerTheme.refs === 0) {
+          sheetManager.delete(theme);
+          this.jss.removeStyleSheet(sheetManagerTheme.sheet);
+          const sheetsRegistry = this.context[ns.sheetsRegistry];
+          if (sheetsRegistry) {
+            sheetsRegistry.remove(sheetManagerTheme.sheet);
           }
-        });
+        }
       }
 
       unsubscribeId = null;
       jss = null;
       sheetsManager = null;
-      stylesCreators = null;
+      stylesCreatorSaved = null;
       theme = null;
       sheetOptions = null;
       theme = null;
@@ -243,15 +236,9 @@ function withStyles(stylesOrCreator: Object, options?: Options = {}) {
         const { classes: classesProp, innerRef, ...other } = this.props;
 
         let classes;
-        const renderedClasses = this.stylesCreators.reduce((accumulator, current) => {
-          const sheetManager = this.sheetsManager.get(current);
-          const sheetsManagerTheme = sheetManager.get(this.theme);
-
-          return {
-            ...accumulator,
-            ...sheetsManagerTheme.sheet.classes,
-          };
-        }, {});
+        const sheetManager = this.sheetsManager.get(this.stylesCreatorSaved);
+        const sheetsManagerTheme = sheetManager.get(this.theme);
+        const renderedClasses = sheetsManagerTheme.sheet.classes;
 
         if (classesProp) {
           classes = {
