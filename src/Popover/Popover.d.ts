@@ -24,7 +24,7 @@ export type PopoverProps = {
   transformOrigin?: Origin;
   transitionDuration?: number | 'auto';
   theme?: Object;
-} & Partial<TransitionHandlers> &
-  PaperProps;
+  PaperProps?: Partial<PaperProps>;
+} & Partial<TransitionHandlers>;
 
 export default class Popover extends StyledComponent<PopoverProps> {}
