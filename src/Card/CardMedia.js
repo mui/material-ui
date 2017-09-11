@@ -8,6 +8,7 @@ export const styles = {
   root: {
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
   },
 };
 
