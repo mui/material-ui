@@ -1,4 +1,4 @@
-// @flow
+// @flow weak
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -69,7 +69,7 @@ const styles = theme => ({
     marginBottom: 100,
   },
   ad: {
-    minHeight: 120,
+    minHeight: 116,
     margin: `${theme.spacing.unit}px 0 0`,
     [theme.breakpoints.up('sm')]: {
       margin: 0,
@@ -86,69 +86,89 @@ const styles = theme => ({
 const demoRegexp = /^demo='(.*)'$/;
 const SOURCE_CODE_ROOT_URL = 'https://github.com/callemall/material-ui/tree/v1-beta';
 
-function MarkdownDocs(props, context) {
-  const { classes, demos, markdown, sourceLocation: sourceLocationProp } = props;
-  const contents = getContents(markdown);
-  const components = getComponents(markdown);
+let adsFirst = true;
 
-  let sourceLocation = sourceLocationProp || context.activePage.pathname;
-
-  if (!sourceLocationProp) {
-    // Hack for handling the nested demos
-    if (sourceLocation.indexOf('/demos') === 0) {
-      const token = sourceLocation.split('/');
-      token.push(token[token.length - 1]);
-      sourceLocation = token.join('/');
+class MarkdownDocs extends React.Component<any> {
+  componentDidMount() {
+    if (adsFirst) {
+      adsFirst = false;
+      return;
     }
 
-    if (sourceLocation.indexOf('/api') === 0) {
-      sourceLocation = `/pages/${sourceLocation}.md`;
-    } else {
-      sourceLocation = `/docs/src/pages${sourceLocation}.md`;
+    // eslint-disable-next-line no-underscore-dangle
+    if (!document.querySelector('#carbonads') && window._carbonads) {
+      // eslint-disable-next-line no-underscore-dangle
+      window._carbonads.refresh();
     }
   }
 
-  return (
-    <AppContent className={classes.root}>
-      <Head>
-        <title>{`${getTitle(markdown)} - Material-UI`}</title>
-      </Head>
-      <div className={classes.header}>
-        <Button component="a" href={`${SOURCE_CODE_ROOT_URL}${sourceLocation}`}>
-          {'Edit this page'}
-        </Button>
-      </div>
-      <div className={classes.ad}>
-        <script
-          async
-          src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=materialuicom"
-          id="_carbonads_js"
-        />
-      </div>
-      {contents.map(content => {
-        const match = content.match(demoRegexp);
+  render() {
+    const { classes, demos, markdown, sourceLocation: sourceLocationProp } = this.props;
+    const contents = getContents(markdown);
+    const components = getComponents(markdown);
 
-        if (match) {
-          const name = match[1];
-          warning(demos && demos[name], `Missing demo: ${name}.`);
-          return <Demo key={content} name={name} js={demos[name].js} raw={demos[name].raw} />;
-        }
+    let sourceLocation = sourceLocationProp || this.context.activePage.pathname;
 
-        return <MarkdownElement key={content} text={content} />;
-      })}
-      {components.length > 0 ? (
-        <MarkdownElement
-          text={`
+    if (!sourceLocationProp) {
+      // Hack for handling the nested demos
+      if (sourceLocation.indexOf('/demos') === 0) {
+        const token = sourceLocation.split('/');
+        token.push(token[token.length - 1]);
+        sourceLocation = token.join('/');
+      }
+
+      if (sourceLocation.indexOf('/api') === 0) {
+        sourceLocation = `/pages/${sourceLocation}.md`;
+      } else {
+        sourceLocation = `/docs/src/pages${sourceLocation}.md`;
+      }
+    }
+
+    return (
+      <AppContent className={classes.root}>
+        <Head>
+          <title>{`${getTitle(markdown)} - Material-UI`}</title>
+        </Head>
+        <div className={classes.header}>
+          <Button component="a" href={`${SOURCE_CODE_ROOT_URL}${sourceLocation}`}>
+            {'Edit this page'}
+          </Button>
+        </div>
+        <div className={classes.ad}>
+          {process.env.NODE_ENV === 'production' && (
+            <script
+              key={getTitle(markdown)}
+              async
+              src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=materialuicom"
+              id="_carbonads_js"
+            />
+          )}
+        </div>
+        {contents.map(content => {
+          const match = content.match(demoRegexp);
+
+          if (match) {
+            const name = match[1];
+            warning(demos && demos[name], `Missing demo: ${name}.`);
+            return <Demo key={content} name={name} js={demos[name].js} raw={demos[name].raw} />;
+          }
+
+          return <MarkdownElement key={content} text={content} />;
+        })}
+        {components.length > 0 ? (
+          <MarkdownElement
+            text={`
 ## API
 
 ${components
-            .map(component => `- [&lt;${component} /&gt;](/api/${kebabCase(component)})`)
-            .join('\n')}
+              .map(component => `- [&lt;${component} /&gt;](/api/${kebabCase(component)})`)
+              .join('\n')}
             `}
-        />
-      ) : null}
-    </AppContent>
-  );
+          />
+        ) : null}
+      </AppContent>
+    );
+  }
 }
 
 MarkdownDocs.propTypes = {
