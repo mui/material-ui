@@ -52,7 +52,7 @@ class NestedList extends React.Component {
             <InboxIcon />
           </ListItemIcon>
           <ListItemText inset primary="Inbox" />
-          {this.state.open ? <ExpandMore /> : <ExpandLess />}
+          {this.state.open ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Collapse in={this.state.open} transitionDuration="auto" unmountOnExit>
           <ListItem button className={classes.nested}>
