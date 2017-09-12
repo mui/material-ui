@@ -20,12 +20,19 @@ const styles = theme => ({
 class TextFields extends React.Component {
   state = {
     name: 'Cat in the Hat',
+    age: '',
     multiline: 'Controlled',
   };
 
   handleChangeMultiline = event => {
     this.setState({
       multiline: event.target.value,
+    });
+  };
+
+  handleChange = name => event => {
+    this.setState({
+      [name]: event.target.value,
     });
   };
 
@@ -39,7 +46,7 @@ class TextFields extends React.Component {
           label="Name"
           className={classes.textField}
           value={this.state.name}
-          onChange={event => this.setState({ name: event.target.value })}
+          onChange={this.handleChange('name')}
           margin="normal"
         />
         <TextField
@@ -104,15 +111,36 @@ class TextFields extends React.Component {
           label="With placeholder"
           placeholder="Placeholder"
           className={classes.textField}
+          margin="normal"
         />
         <TextField
           label="With placeholder multiline"
           placeholder="Placeholder"
           multiline
           className={classes.textField}
+          margin="normal"
         />
         <TextField
-          id="placeholder"
+          id="number"
+          label="Number"
+          value={this.state.age}
+          onChange={this.handleChange('age')}
+          type="number"
+          className={classes.textField}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          margin="normal"
+        />
+        <TextField
+          id="search"
+          label="Search field"
+          type="search"
+          className={classes.textField}
+          margin="normal"
+        />
+        <TextField
+          id="full-width"
           label="Label"
           InputProps={{ placeholder: 'Placeholder' }}
           helperText="Full width!"

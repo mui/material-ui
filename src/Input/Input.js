@@ -172,6 +172,8 @@ export const styles = (theme: Object) => {
     },
     inputSingleline: {
       height: '1em',
+    },
+    inputSearch: {
       appearance: 'textfield', // Improve type search style.
     },
     inputMultiline: {
@@ -255,7 +257,7 @@ export type Props = {
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.
    */
-  margin?: 'dense',
+  margin?: 'dense' | 'none',
   /**
    * If `true`, a textarea element will be rendered.
    */
@@ -378,7 +380,9 @@ class Input extends React.Component<AllProps, State> {
   handleChange = (event: SyntheticInputEvent<>) => {
     if (!this.isControlled()) {
       this.checkDirty(this.input);
-    } // else perform in the willUpdate
+    }
+
+    // Perform in the willUpdate
     if (this.props.onChange) {
       this.props.onChange(event);
     }
@@ -494,6 +498,7 @@ class Input extends React.Component<AllProps, State> {
       {
         [classes.inputDisabled]: disabled,
         [classes.inputSingleline]: !multiline,
+        [classes.inputSearch]: type === 'search',
         [classes.inputMultiline]: multiline,
         [classes.inputDense]: margin === 'dense',
       },
