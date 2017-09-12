@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
-import { JssProvider } from 'react-jss/lib/JssProvider';
+import JssProvider from 'react-jss/lib/JssProvider';
 import getContext from '../styles/getContext';
 
 class MyDocument extends Document {
