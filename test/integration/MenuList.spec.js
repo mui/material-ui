@@ -40,6 +40,7 @@ describe('<MenuList> integration', () => {
   before(() => {
     mount = createMount();
   });
+
   after(() => {
     mount.cleanUp();
   });

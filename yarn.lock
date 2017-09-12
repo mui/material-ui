@@ -5958,6 +5958,10 @@ pngjs@^2.2.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/pngjs/-/pngjs-2.3.1.tgz#11d1e12b9cb64d63e30c143a330f4c1f567da85f"
 
+popper.js@^1.10.8:
+  version "1.12.3"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.12.3.tgz#e46a99c52e74e310411df505d820b61bdbe7eaee"
+
 postcss-calc@^5.2.0:
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/postcss-calc/-/postcss-calc-5.3.1.tgz#77bae7ca928ad85716e2fda42f261bf7c1d65b5e"
@@ -6510,6 +6514,14 @@ react-jss@^7.1.0:
     jss-preset-default "^3.0.0"
     prop-types "^15.5.8"
     theming "^1.1.0"
+
+react-popper@^0.7.2:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-0.7.2.tgz#5daa821eadc6f2ca802176d7be271d0f03f25f58"
+  dependencies:
+    is-equal-shallow "^0.1.3"
+    popper.js "^1.10.8"
+    prop-types "^15.5.10"
 
 react-proxy@^3.0.0-alpha.0:
   version "3.0.0-alpha.1"

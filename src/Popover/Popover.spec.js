@@ -437,7 +437,11 @@ describe('<Popover />', () => {
         .at(0)
         .simulate('resize');
       clock.tick(166);
-      assert.isTrue(instance.setPositioningStyles.called, 'position styles recalculated');
+      assert.strictEqual(
+        instance.setPositioningStyles.called,
+        true,
+        'position styles recalculated',
+      );
     });
 
     it('should not recalculate position if the popover is closed', () => {
@@ -446,7 +450,11 @@ describe('<Popover />', () => {
           <div />
         </Popover>,
       );
-      assert.isNotTrue(wrapper.contains('EventListener'), 'no component listening on resize');
+      assert.strictEqual(
+        wrapper.contains('EventListener'),
+        false,
+        'no component listening on resize',
+      );
     });
   });
 
