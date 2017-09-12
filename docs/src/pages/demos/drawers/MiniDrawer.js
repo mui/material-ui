@@ -80,10 +80,7 @@ const styles = theme => ({
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: '0 8px',
-    height: 56,
-    [theme.breakpoints.up('sm')]: {
-      height: 64,
-    },
+    ...theme.mixins.toolbar,
   },
   content: {
     width: '100%',
