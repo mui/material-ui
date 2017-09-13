@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StyledComponent, Omit } from '..';
 import { ButtonBaseProps } from '../ButtonBase';
 
-export interface TabsProps extends ButtonBaseProps {
+export type TabsProps = {
   buttonClassName?: string;
   centered?: boolean;
   children?: React.ReactNode;
@@ -15,6 +15,6 @@ export interface TabsProps extends ButtonBaseProps {
   scrollButtons?: 'auto' | 'on' | 'off';
   textColor?: 'accent' | 'primary' | 'inherit' | string;
   width?: string;
-}
+} & Partial<Omit<ButtonBaseProps, 'onChange'>>;
 
 export default class Tabs extends StyledComponent<TabsProps> {}
