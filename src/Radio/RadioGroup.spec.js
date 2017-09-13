@@ -109,6 +109,15 @@ describe('<RadioGroup />', () => {
     });
   });
 
+  it('should accept invalid child', () => {
+    shallow(
+      <RadioGroup value="">
+        <Radio />
+        {null}
+      </RadioGroup>,
+    );
+  });
+
   describe('children radios fire change event', () => {
     let wrapper;
 

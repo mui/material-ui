@@ -113,14 +113,17 @@ class RadioGroup extends React.Component<AllProps, void> {
         {...other}
       >
         {React.Children.map(children, (child, index) => {
-          const selected = value === child.props.value;
+          if (!React.isValidElement(child)) {
+            return null;
+          }
+
           return React.cloneElement(child, {
             key: index,
             name,
             inputRef: node => {
               this.radios.push(node);
             },
-            checked: selected,
+            checked: value === child.props.value,
             onChange: this.handleRadioChange,
           });
         })}
