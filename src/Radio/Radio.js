@@ -100,7 +100,7 @@ export type Props = {
   /**
    * The value of the component.
    */
-  value?: string,
+  value?: string | number,
 };
 
 // This is here solely to trigger api doc generation
