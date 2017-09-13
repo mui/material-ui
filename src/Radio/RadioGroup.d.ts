@@ -5,7 +5,7 @@ import { FormGroupProps } from '../Form';
 export type RadioGroupProps = {
   name?: string;
   onChange?: (event: React.ChangeEvent<{}>, value: string) => void;
-  value?: string;
+  value?: string | number;
 } & Partial<Omit<FormGroupProps, 'onChange'>>;
 
 export default class RadioGroup extends StyledComponent<RadioGroupProps> {}
