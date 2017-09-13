@@ -110,6 +110,7 @@ const AllTheComposition = withTheme(
   withStyles<{ theme: Theme }, StyledComponentClassNames>(styles)(AllTheStyles)
 );
 
+// As decorator
 @withStyles(styles)
 class DecoratedComponent extends React.Component<
   StyledComponentProps & { classes: StyledComponentClassNames }
