@@ -11,6 +11,7 @@ export const styles = (theme: Object) => ({
     display: 'inline-flex',
     width: 62,
     position: 'relative',
+    flexShrink: 0,
   },
   bar: {
     borderRadius: 7,
