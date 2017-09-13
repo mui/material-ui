@@ -52,6 +52,8 @@ import Table, {
   TableRow,
 } from '../../src/Table';
 import { withStyles, StyleRulesCallback } from '../../src/styles';
+import withResponsiveFullScreen from '../../src/Dialog/withResponsiveFullScreen';
+import { DialogProps } from '../../src/Dialog/Dialog';
 
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
@@ -100,9 +102,12 @@ const ButtonTest = () =>
     <Button fab color="primary" aria-label="add">
       <FakeIcon />
     </Button>
+<<<<<<< HEAD
+=======
     <Button tabIndex={1} title="some button">
       Raised
     </Button>
+>>>>>>> v1-beta
   </div>;
 
 const IconButtonTest = () =>
@@ -771,3 +776,18 @@ const SelectTest = () =>
     <MenuItem value={20}>Twenty</MenuItem>
     <MenuItem value={30}>Thirty</MenuItem>
   </Select>;
+
+const ResponsiveComponentTest = () => {
+  const ResponsiveComponent = withResponsiveFullScreen({
+    breakpoint: 'sm',
+  })(({ children, width }) =>
+    <div style={{ width }}>
+      {children}
+    </div>
+  );
+  <ResponsiveComponent />;
+
+  const ResponsiveDialogComponent = withResponsiveFullScreen<DialogProps>({
+    breakpoint: 'sm',
+  })(Dialog);
+};
