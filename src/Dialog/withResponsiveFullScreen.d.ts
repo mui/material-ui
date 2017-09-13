@@ -5,6 +5,8 @@ export interface WithResponsiveFullScreenOptions {
   breakpoint: Breakpoint;
 }
 
-export default function withResponsiveFullScreen<P>(
+export default function withResponsiveFullScreen<P = {}>(
   options: WithResponsiveFullScreenOptions
-): React.ComponentClass<P & WithWidthProps>;
+): (
+  component: React.ComponentType<P & Partial<WithWidthProps>>
+) => React.ComponentClass<P & Partial<WithWidthProps>>;
