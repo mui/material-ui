@@ -10,6 +10,8 @@ Hopefully, we are in a better state now.
 Here are some highlights:
 - Keeping pushing typing fixes @xaviergonz and @sebald
 - A new Tooltip component thanks to @quanglam2807 (#7909)
+- Our internal styling solution should be faster with (#8142).
+With the last release we fix a memory leak (#8036), so thanks for reporting those issues!
 
 Big thanks to the 13 contributors who made this release possible.
 
