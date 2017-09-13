@@ -9,8 +9,9 @@ import createSwitch from '../internal/SwitchBase';
 export const styles = (theme: Object) => ({
   root: {
     display: 'inline-flex',
-    minWidth: 62,
+    width: 62,
     position: 'relative',
+    flexShrink: 0,
   },
   bar: {
     borderRadius: 7,
