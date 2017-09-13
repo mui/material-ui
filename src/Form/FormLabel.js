@@ -13,6 +13,7 @@ export const styles = (theme: Object) => {
       fontFamily: theme.typography.fontFamily,
       color: theme.palette.input.labelText,
       lineHeight: 1,
+      padding: 0,
     },
     focused: {
       color: focusColor,
