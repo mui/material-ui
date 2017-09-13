@@ -8,7 +8,8 @@
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "suppressImplicitAnyIndexErrors": true,
-    "noEmit": true
+    "noEmit": true,
+    "experimentalDecorators": true
   },
   "include": ["src/**/*", "test/typescript/*"]
 }

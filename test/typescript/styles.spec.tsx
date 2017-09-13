@@ -27,7 +27,10 @@ interface StyledComponentProps {
 
 const Component: React.SFC<
   StyledComponentProps & { classes: StyledComponentClassNames }
-> = ({ classes, text }) => <div className={classes.root}>{text}</div>;
+> = ({ classes, text }) =>
+  <div className={classes.root}>
+    {text}
+  </div>;
 
 const StyledComponent = withStyles<
   StyledComponentProps,
@@ -77,16 +80,19 @@ const customTheme = createMuiTheme({
 function OverridesTheme() {
   return (
     <MuiThemeProvider theme={theme}>
-      <Button>{'Overrides'}</Button>
+      <Button>
+        {'Overrides'}
+      </Button>
     </MuiThemeProvider>
   );
 }
 
 // withTheme
 
-const ThemedComponent: React.SFC<{ theme: Theme }> = ({ theme }) => (
-  <div>{theme.spacing.unit}</div>
-);
+const ThemedComponent: React.SFC<{ theme: Theme }> = ({ theme }) =>
+  <div>
+    {theme.spacing.unit}
+  </div>;
 const ComponentWithTheme = withTheme(ThemedComponent);
 
 // withStyles + withTheme
@@ -95,10 +101,26 @@ interface AllTheProps {
   classes: StyledComponentClassNames;
 }
 
-const AllTheStyles: React.SFC<AllTheProps> = ({ theme, classes }) => (
-  <div className={classes.root}>{theme.palette.text.primary}</div>
-);
+const AllTheStyles: React.SFC<AllTheProps> = ({ theme, classes }) =>
+  <div className={classes.root}>
+    {theme.palette.text.primary}
+  </div>;
 
 const AllTheComposition = withTheme(
   withStyles<{ theme: Theme }, StyledComponentClassNames>(styles)(AllTheStyles)
 );
+
+// As decorator
+@withStyles(styles)
+class DecoratedComponent extends React.Component<
+  StyledComponentProps & { classes: StyledComponentClassNames }
+> {
+  render() {
+    const { classes, text } = this.props;
+    return (
+      <div className={classes.root}>
+        {text}
+      </div>
+    );
+  }
+}
