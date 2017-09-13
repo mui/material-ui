@@ -2,6 +2,76 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.10
+###### _Sep 14, 2017_
+
+This is an early release as we have been breaking the typescript typings with 1.0.0-beta.9.
+Hopefully, we are in a better state now.
+Here are some highlights:
+- Keeping pushing typing fixes @xaviergonz and @sebald
+- A new Tooltip component thanks to @quanglam2807 (#7909)
+
+Big thanks to the 13 contributors who made this release possible.
+
+### Breaking changes
+
+- [MobileStepper] Add nextButton and backButton property (#8001) @wieseljonas
+
+```diff
++import KeyboardArrowLeft from 'material-ui-icons/KeyboardArrowLeft';
++import KeyboardArrowRight from 'material-ui-icons/KeyboardArrowRight';
+
+     <MobileStepper
+-        onBack={this.handleBack}
+-        onNext={this.handleNext}
+-        disableBack={this.state.activeStep === 0}
+-        disableNext={this.state.activeStep === 5}
++        nextButton={
++          <Button dense onClick={this.handleNext} disabled={this.state.activeStep === 5}>
++            Next
++            <KeyboardArrowRight />
++          </Button>
++        }
++        backButton={
++          <Button dense onClick={this.handleBack} disabled={this.state.activeStep === 0}>
++            <KeyboardArrowLeft />
++            Back
++          </Button>
++        }
+      />
+```
+
+#### Component Fixes / Enhancements
+
+- [Tooltip] New component (#7909) @quanglam2807
+- [typescript] Fix ts tabindex to use number (#8125) @xaviergonz
+- [Drawer] Fix delegation of the className (#8126) @daveish
+- [ButtonBase] Make the `button` and `a` behavior the same (#8130) @oliviertassinari
+- [withStyle] Memoize the classes object between renders (#8142) @oliviertassinari
+- [typescript] Fix for Popover -> PaperProps typing (#8129) @xaviergonz
+- [typescript] Fix for createPalette TS types (#8123) @xaviergonz
+- [LinearProgress] Fix loop (#8146) @oliviertassinari
+- [Card] Add `backgroundPosition: 'center'` to CardMedia (#8148) @kripod
+- [ImgBot] Optimize images (#8154) @dabutvin
+- [Input] Better handle type=number (#8164) @oliviertassinari
+- [typescript] Improve typings for `ButtonBase` (#8175) @sebald
+- [typescript] Make `withStyles` usable as decorator (#8178) @sebald
+- [FormControls] Fix styling for component (#8186) @slavab89
+- [Toolbar] Add a toolbar mixins 💄 (#8157) @wcandillon
+- [Switch] Styling bug fix on long labels (#8181) @willfarrell
+- [Radio] Accept invalid children (#8187) @oliviertassinari
+- [theme] Extend createMuiTheme behavior (#8188) @oliviertassinari
+
+#### Docs
+
+- [docs] Fix popover component name (#8161) @cherniavskii
+- [Snackbar] 6e3 -> 6000; better to be less clever and more clear (#8151) @davidcalhoun
+- [docs] Inverse expand icons on the NestedList demo (51f40016e29f5159a87cafae1092eb85416eb0d5) @oliviertassinari
+
+#### Core
+
+- [core] Bump some dependencies (#8149) @oliviertassinari
+
 ## 1.0.0-beta.9
 ###### _Sep 10, 2017_
 
