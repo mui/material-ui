@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StyledComponent, Omit } from '..';
 import { ButtonBaseProps } from '../ButtonBase';
 
-export interface BottomNavigationButtonProps extends ButtonBaseProps {
+export type BottomNavigationButtonProps = {
   icon?: React.ReactNode;
   label?: React.ReactNode;
   onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
@@ -10,7 +10,7 @@ export interface BottomNavigationButtonProps extends ButtonBaseProps {
   selected?: boolean;
   showLabel?: boolean;
   value?: any;
-}
+} & Partial<Omit<ButtonBaseProps, 'onChange'>>;
 
 export default class BottomNavigationButton extends StyledComponent<
   BottomNavigationButtonProps
