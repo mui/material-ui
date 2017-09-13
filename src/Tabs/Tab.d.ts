@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StyledComponent, Omit } from '..';
 import { ButtonBaseProps } from '../ButtonBase';
 
-export interface TabProps extends ButtonBaseProps {
+export type TabProps = {
   disabled?: boolean;
   fullWidth?: boolean;
   icon?: React.ReactNode;
@@ -16,6 +16,6 @@ export interface TabProps extends ButtonBaseProps {
   selected?: boolean;
   style?: object;
   textColor?: string | 'accent' | 'primary' | 'inherit';
-}
+} & Partial<Omit<ButtonBaseProps, 'onChange'>>;
 
 export default class Tab extends StyledComponent<TabProps> {}

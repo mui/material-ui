@@ -102,6 +102,12 @@ const ButtonTest = () =>
     <Button fab color="primary" aria-label="add">
       <FakeIcon />
     </Button>
+<<<<<<< HEAD
+=======
+    <Button tabIndex={1} title="some button">
+      Raised
+    </Button>
+>>>>>>> v1-beta
   </div>;
 
 const IconButtonTest = () =>
@@ -600,6 +606,11 @@ const StepperTest = () =>
 
     render() {
       const classes = this.props.classes;
+      const defaultProps = {
+        steps: 2,
+        nextButton: <Button>Next</Button>,
+        backButton: <Button>Back</Button>,
+      };
       return (
         <MobileStepper
           type="dots"
@@ -607,10 +618,7 @@ const StepperTest = () =>
           position="static"
           activeStep={this.state.activeStep}
           className={classes.root}
-          onBack={this.handleBack}
-          onNext={this.handleNext}
-          disableBack={this.state.activeStep === 0}
-          disableNext={this.state.activeStep === 5}
+          {...defaultProps}
         />
       );
     }

@@ -2,10 +2,10 @@ import * as React from 'react';
 import { StyledComponent } from '..';
 
 export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
-  label: React.Node;
+  label: React.ReactNode;
   onRequestClose?: (event: React.ChangeEvent<{}>) => void;
   onRequestOpen?: (event: React.ChangeEvent<{}>) => void;
-  open?: boolean,
+  open?: boolean;
   place?:
     | 'bottom-end'
     | 'bottom-start'

@@ -9,6 +9,7 @@ const KEYS = ['HTMLElement'];
 function createDOM() {
   const dom = new JSDOM('');
   global.window = dom.window;
+  global.document = undefined;
   global.Node = Node;
 
   Object.keys(dom.window).forEach(property => {
