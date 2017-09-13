@@ -112,3 +112,18 @@ const AllTheComposition = withTheme(
 
 const props = {} as any;
 <AllTheComposition {...props} />;
+
+// As decorator
+@withStyles(styles)
+class DecoratedComponent extends React.Component<
+  StyledComponentProps & { classes: StyledComponentClassNames }
+> {
+  render() {
+    const { classes, text } = this.props;
+    return (
+      <div className={classes.root}>
+        {text}
+      </div>
+    );
+  }
+}
