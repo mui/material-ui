@@ -20,9 +20,22 @@ export interface WithStylesOptions {
   name?: string;
 }
 
-export default function withStyles<P = {}, ClassNames = {}>(
+declare function withStyles(
+  style: StyleRules | StyleRulesCallback,
+  options?: WithStylesOptions
+): <
+  C extends React.ComponentType<P & { classes: ClassNames; theme?: Theme }>,
+  P = {},
+  ClassNames = {}
+>(
+  component: C
+) => C & React.ComponentClass<P & StyledComponentProps<ClassNames>>
+
+declare function withStyles<P = {}, ClassNames = {}>(
   style: StyleRules | StyleRulesCallback,
   options?: WithStylesOptions
 ): (
   component: React.ComponentType<P & { classes: ClassNames; theme?: Theme }>
-) => React.ComponentClass<P & StyledComponentProps<ClassNames>>;
+) => React.ComponentClass<P & StyledComponentProps<ClassNames>>
+
+export default withStyles;
