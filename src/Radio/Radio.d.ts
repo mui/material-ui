@@ -16,7 +16,7 @@ export interface RadioProps extends SwitchBaseProps {
   name?: string;
   onChange?: (event: React.ChangeEvent<{}>, checked: boolean) => void;
   tabIndex?: number;
-  value?: string;
+  value?: string | number;
 }
 
 export default class Radio extends StyledComponent<RadioProps> {}
