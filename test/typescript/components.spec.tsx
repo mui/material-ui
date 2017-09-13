@@ -56,7 +56,7 @@ import { withStyles, StyleRulesCallback } from '../../src/styles';
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
 
-const AppBarTest = () => (
+const AppBarTest = () =>
   <AppBar position="static">
     <Toolbar>
       <IconButton color="contrast" aria-label="Menu">
@@ -67,16 +67,14 @@ const AppBarTest = () => (
       </Typography>
       <Button color="contrast">Login</Button>
     </Toolbar>
-  </AppBar>
-);
+  </AppBar>;
 
 const AvatarTest = () => <Avatar alt="Image Alt" src="example.jpg" />;
 
-const BadgeTest = () => (
+const BadgeTest = () =>
   <Badge badgeContent={4} color="primary">
     <FakeIcon />
-  </Badge>
-);
+  </Badge>;
 
 const BottomNavigationTest = () => {
   const value = 123;
@@ -91,7 +89,7 @@ const BottomNavigationTest = () => {
   );
 };
 
-const ButtonTest = () => (
+const ButtonTest = () =>
   <div>
     <Button>I am a button!</Button>
     <Button color="contrast">Contrast</Button>
@@ -102,10 +100,12 @@ const ButtonTest = () => (
     <Button fab color="primary" aria-label="add">
       <FakeIcon />
     </Button>
-  </div>
-);
+    <Button tabIndex={1} title="some button">
+      Raised
+    </Button>
+  </div>;
 
-const IconButtonTest = () => (
+const IconButtonTest = () =>
   <div>
     <IconButton aria-label="Delete">
       <FakeIcon />
@@ -122,10 +122,9 @@ const IconButtonTest = () => (
     <IconButton color="primary" aria-label="Add to shopping cart">
       <FakeIcon />
     </IconButton>
-  </div>
-);
+  </div>;
 
-const CardTest = () => (
+const CardTest = () =>
   <Card>
     <CardContent>
       <Typography type="body1">Word of the Day</Typography>
@@ -141,10 +140,9 @@ const CardTest = () => (
     <CardActions>
       <Button dense>Learn More</Button>
     </CardActions>
-  </Card>
-);
+  </Card>;
 
-const CardMediaTest = () => (
+const CardMediaTest = () =>
   <Card>
     <CardHeader
       avatar={<Avatar aria-label="Recipe">R</Avatar>}
@@ -204,10 +202,9 @@ const CardMediaTest = () => (
         </Typography>
       </CardContent>
     </Collapse>
-  </Card>
-);
+  </Card>;
 
-const ChipsTest = () => (
+const ChipsTest = () =>
   <div>
     <Chip label="Basic Chip" />
     <Chip
@@ -230,8 +227,7 @@ const ChipsTest = () => (
       onClick={(e: React.SyntheticEvent<any>) => log(e)}
       onRequestDelete={(e: React.SyntheticEvent<any>) => log(e)}
     />
-  </div>
-);
+  </div>;
 
 const DialogTest = () => {
   const emails = ['username@gmail.com', 'user02@gmail.com'];
@@ -240,7 +236,7 @@ const DialogTest = () => {
       <DialogTitle>Set backup account</DialogTitle>
       <div>
         <List>
-          {emails.map(email => (
+          {emails.map(email =>
             <ListItem
               button
               onClick={(e: React.SyntheticEvent<any>) => log(e)}
@@ -253,7 +249,7 @@ const DialogTest = () => {
               </ListItemAvatar>
               <ListItemText primary={email} />
             </ListItem>
-          ))}
+          )}
           <ListItem button onClick={(e: React.SyntheticEvent<any>) => log(e)}>
             <ListItemAvatar>
               <Avatar>
@@ -268,12 +264,11 @@ const DialogTest = () => {
   );
 };
 
-const DividerTest = () => (
+const DividerTest = () =>
   <div>
     <Divider />
     <Divider light />
-  </div>
-);
+  </div>;
 
 const DrawerTest = () => {
   const open = {
@@ -323,7 +318,7 @@ const DrawerTest = () => {
   );
 };
 
-const GridTest = () => (
+const GridTest = () =>
   <Grid container>
     <Grid item xs={12}>
       ...
@@ -334,20 +329,18 @@ const GridTest = () => (
     <Grid item xl={true}>
       ...
     </Grid>
-  </Grid>
-);
+  </Grid>;
 
-const GridListTest = () => (
+const GridListTest = () =>
   <GridList cellHeight={160} cols={3}>
     <GridListTest cols={1}>
       <img src="img.png" alt="alt text" />
     </GridListTest>,
-  </GridList>
-);
+  </GridList>;
 
-const ListTest = () => (
+const ListTest = () =>
   <List>
-    {[0, 1, 2, 3].map(value => (
+    {[0, 1, 2, 3].map(value =>
       <ListItem
         dense
         button
@@ -362,9 +355,8 @@ const ListTest = () => (
           </IconButton>
         </ListItemSecondaryAction>
       </ListItem>
-    ))}
-  </List>
-);
+    )}
+  </List>;
 
 const MenuTest = () => {
   const anchorEl = document.getElementById('foo');
@@ -381,7 +373,7 @@ const MenuTest = () => {
       open={true}
       onRequestClose={(e: React.SyntheticEvent<any>) => log(e)}
     >
-      {options.map((option, index) => (
+      {options.map((option, index) =>
         <MenuItem
           key={option}
           selected={false}
@@ -389,12 +381,12 @@ const MenuTest = () => {
         >
           {option}
         </MenuItem>
-      ))}
+      )}
     </Menu>
   );
 };
 
-const PaperTest = () => (
+const PaperTest = () =>
   <Paper elevation={4}>
     <Typography type="headline" component="h3">
       This is a sheet of paper.
@@ -402,24 +394,21 @@ const PaperTest = () => (
     <Typography type="body1" component="p">
       Paper can be used to build surface or other elements for your application.
     </Typography>
-  </Paper>
-);
+  </Paper>;
 
-const CircularProgessTest = () => (
+const CircularProgessTest = () =>
   <div>
     <CircularProgress />
     <CircularProgress size={50} />
     <CircularProgress color="accent" />
     <CircularProgress color="accent" size={50} />
-  </div>
-);
+  </div>;
 
-const LinearProgressTest = () => (
+const LinearProgressTest = () =>
   <div>
     <LinearProgress mode="determinate" value={12} />
     <LinearProgress color="accent" mode="determinate" value={76} />
-  </div>
-);
+  </div>;
 
 const SelectionControlTest = () => {
   const state = {
@@ -522,7 +511,7 @@ const SwitchTest = () => {
   );
 };
 
-const SnackbarTest = () => (
+const SnackbarTest = () =>
   <div>
     <Button onClick={(e: React.SyntheticEvent<any>) => log(e)}>
       Open simple snackbar
@@ -558,8 +547,7 @@ const SnackbarTest = () => (
         </IconButton>,
       ]}
     />
-  </div>
-);
+  </div>;
 
 const SnackbarContentTest = () => {
   const action = (
@@ -613,6 +601,11 @@ const StepperTest = () =>
 
     render() {
       const classes = this.props.classes;
+      const defaultProps = {
+        steps: 2,
+        nextButton: <Button>Next</Button>,
+        backButton: <Button>Back</Button>,
+      };
       return (
         <MobileStepper
           type="dots"
@@ -620,10 +613,7 @@ const StepperTest = () =>
           position="static"
           activeStep={this.state.activeStep}
           className={classes.root}
-          onBack={this.handleBack}
-          onNext={this.handleNext}
-          disableBack={this.state.activeStep === 0}
-          disableNext={this.state.activeStep === 5}
+          {...defaultProps}
         />
       );
     }
@@ -671,11 +661,21 @@ const TableTest = () => {
             {data.map(n => {
               return (
                 <TableRow key={n.id}>
-                  <TableCell>{n.name}</TableCell>
-                  <TableCell numeric>{n.calories}</TableCell>
-                  <TableCell numeric>{n.fat}</TableCell>
-                  <TableCell numeric>{n.carbs}</TableCell>
-                  <TableCell numeric>{n.protein}</TableCell>
+                  <TableCell>
+                    {n.name}
+                  </TableCell>
+                  <TableCell numeric>
+                    {n.calories}
+                  </TableCell>
+                  <TableCell numeric>
+                    {n.fat}
+                  </TableCell>
+                  <TableCell numeric>
+                    {n.carbs}
+                  </TableCell>
+                  <TableCell numeric>
+                    {n.protein}
+                  </TableCell>
                 </TableRow>
               );
             })}
@@ -689,9 +689,10 @@ const TableTest = () => {
 };
 
 const TabsTest = () => {
-  const TabContainer = props => (
-    <div style={{ padding: 20 }}>{props.children}</div>
-  );
+  const TabContainer = props =>
+    <div style={{ padding: 20 }}>
+      {props.children}
+    </div>;
 
   const styles = theme => ({
     root: {
@@ -722,11 +723,18 @@ const TabsTest = () => {
               <Tab label="Item Three" />
             </Tabs>
           </AppBar>
-          {this.state.value === 0 && <TabContainer>{'Item One'}</TabContainer>}
-          {this.state.value === 1 && <TabContainer>{'Item Two'}</TabContainer>}
-          {this.state.value === 2 && (
-            <TabContainer>{'Item Three'}</TabContainer>
-          )}
+          {this.state.value === 0 &&
+            <TabContainer>
+              {'Item One'}
+            </TabContainer>}
+          {this.state.value === 1 &&
+            <TabContainer>
+              {'Item Two'}
+            </TabContainer>}
+          {this.state.value === 2 &&
+            <TabContainer>
+              {'Item Three'}
+            </TabContainer>}
         </div>
       );
     }
@@ -735,7 +743,7 @@ const TabsTest = () => {
   return withStyles(styles)(BasicTabs);
 };
 
-const TextFieldTest = () => (
+const TextFieldTest = () =>
   <div>
     <TextField id="name" label="Name" value={'Alice'} />
     <TextField id="name" label={<strong>Name</strong>} value={'Alice'} />
@@ -752,10 +760,9 @@ const TextFieldTest = () => (
       value={'Alice'}
       InputProps={{ classes: { foo: 'bar' } }}
     />
-  </div>
-);
+  </div>;
 
-const SelectTest = () => (
+const SelectTest = () =>
   <Select input={<Input />} value={10}>
     <MenuItem value="">
       <em>None</em>
@@ -763,5 +770,4 @@ const SelectTest = () => (
     <MenuItem value={10}>Ten</MenuItem>
     <MenuItem value={20}>Twenty</MenuItem>
     <MenuItem value={30}>Thirty</MenuItem>
-  </Select>
-);
+  </Select>;
