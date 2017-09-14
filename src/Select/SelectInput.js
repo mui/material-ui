@@ -265,6 +265,9 @@ class SelectInput extends React.Component<AllProps, State> {
     }
 
     const items = React.Children.map(children, child => {
+      if (!React.isValidElement(child)) {
+        return null;
+      }
       let selected;
 
       if (multiple) {

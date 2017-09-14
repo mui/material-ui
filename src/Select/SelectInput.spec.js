@@ -47,6 +47,15 @@ describe('<SelectInput />', () => {
     assert.strictEqual(wrapper.name(), 'div');
   });
 
+  it('should accept invalid child', () => {
+    shallow(
+      <SelectInput {...props}>
+        {null}
+        <MenuItem />
+      </SelectInput>,
+    );
+  });
+
   describe('prop: readOnly', () => {
     it('should not trigger any event with readOnly', () => {
       const wrapper = shallow(<SelectInput {...props} readOnly />);
