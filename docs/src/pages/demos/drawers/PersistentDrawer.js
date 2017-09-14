@@ -55,7 +55,7 @@ const styles = theme => ({
   },
   drawerPaper: {
     position: 'relative',
-    height: 'auto',
+    height: '100%',
     width: drawerWidth,
   },
   drawerHeader: {
