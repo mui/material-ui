@@ -14,6 +14,7 @@ export const styles = (theme: Object) => ({
     flexDirection: 'column',
     width: '100%',
     zIndex: theme.zIndex.appBar,
+    flexShrink: 0,
   },
   positionFixed: {
     position: 'fixed',
