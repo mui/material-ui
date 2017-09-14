@@ -9,7 +9,7 @@ export type FormControlLabelProps = {
   label: React.ReactNode;
   name?: string;
   onChange?: (event: React.ChangeEvent<{}>, checked: boolean) => void;
-  value?: string;
+  value?: string | number;
 } & React.LabelHTMLAttributes<HTMLLabelElement>;
 
 export default class FormControlLabel extends StyledComponent<

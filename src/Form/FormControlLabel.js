@@ -73,7 +73,7 @@ export type Props = {
   /**
    * The value of the component.
    */
-  value?: string,
+  value?: string | number,
 };
 
 type AllProps = DefaultProps & Props;

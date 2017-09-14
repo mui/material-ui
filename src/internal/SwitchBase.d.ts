@@ -17,7 +17,7 @@ export interface SwitchBaseProps {
   name?: string;
   onChange?: (event: React.ChangeEvent<{}>, checked: boolean) => void;
   tabIndex?: number;
-  value?: string;
+  value?: string | number;
 }
 
 export class SwitchBase extends StyledComponent<SwitchBaseProps> {}
