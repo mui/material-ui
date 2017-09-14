@@ -16,6 +16,7 @@ import LightbulbOutline from 'material-ui-icons/LightbulbOutline';
 import Github from 'docs/src/modules/components/GitHub';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
 import AppSearch from 'docs/src/modules/components/AppSearch';
+import Tooltip from 'material-ui/Tooltip';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
 
 // Disaply a progress bar between route transitions
@@ -187,14 +188,15 @@ class AppFrame extends React.Component<any, any> {
             )}
             <div className={classes.grow} />
             <AppSearch />
-            <IconButton
-              title="Toggle light/dark theme"
-              color="contrast"
-              aria-label="change theme"
-              onClick={this.handleToggleShade}
-            >
-              <LightbulbOutline />
-            </IconButton>
+            <Tooltip label="Toggle light/dark theme" enterDelay={300}>
+              <IconButton
+                color="contrast"
+                aria-label="change theme"
+                onClick={this.handleToggleShade}
+              >
+                <LightbulbOutline />
+              </IconButton>
+            </Tooltip>
             <IconButton
               component="a"
               title="GitHub"
