@@ -53,31 +53,31 @@ describe('<BottomNavigationButton />', () => {
 
   it('should render icon with the icon class', () => {
     const wrapper = shallow(<BottomNavigationButton icon={icon} />);
-    const iconWrapper = wrapper.childAt(0);
+    const iconWrapper = wrapper.childAt(0).childAt(0);
     assert.strictEqual(iconWrapper.hasClass(classes.icon), true, 'should have the icon class');
   });
 
   it('should render icon with the user and icon classes', () => {
     const wrapper = shallow(<BottomNavigationButton icon={icon} />);
 
-    const iconWrapper = wrapper.childAt(0);
+    const iconWrapper = wrapper.childAt(0).childAt(0);
     assert.strictEqual(iconWrapper.is(Icon), true, 'should be an Icon');
     assert.strictEqual(iconWrapper.hasClass(classes.icon), true, 'should have the icon class');
 
-    const labelWrapper = wrapper.childAt(1);
+    const labelWrapper = wrapper.childAt(0).childAt(1);
     assert.strictEqual(labelWrapper.hasClass(classes.label), true, 'should have the label class');
   });
 
   it('should render label with the selectedLabel class', () => {
     const wrapper = shallow(<BottomNavigationButton icon={icon} selected />);
-    const labelWrapper = wrapper.childAt(1);
+    const labelWrapper = wrapper.childAt(0).childAt(1);
     assert.strictEqual(labelWrapper.hasClass(classes.selectedLabel), true);
     assert.strictEqual(labelWrapper.hasClass(classes.label), true);
   });
 
   it('should render label with the hiddenLabel class', () => {
     const wrapper = shallow(<BottomNavigationButton icon={icon} showLabel={false} />);
-    const labelWrapper = wrapper.childAt(1);
+    const labelWrapper = wrapper.childAt(0).childAt(1);
     assert.strictEqual(
       labelWrapper.hasClass(classes.hiddenLabel),
       true,
@@ -88,7 +88,7 @@ describe('<BottomNavigationButton />', () => {
 
   it('should render a font icon if a icon string is provided', () => {
     const wrapper = shallow(<BottomNavigationButton icon="book" />);
-    const iconWrapper = wrapper.childAt(0);
+    const iconWrapper = wrapper.childAt(0).childAt(0);
     assert.strictEqual(iconWrapper.is(Icon), true, 'should be an Icon');
   });
 

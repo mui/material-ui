@@ -70,7 +70,10 @@ describe('<Tab />', () => {
   describe('prop: label', () => {
     it('should render label with the label class', () => {
       const wrapper = shallow(<Tab textColor="inherit" label="foo" />);
-      const label = wrapper.childAt(0).childAt(0);
+      const label = wrapper
+        .childAt(0)
+        .childAt(0)
+        .childAt(0);
       assert.strictEqual(label.hasClass(classes.label), true);
     });
 
@@ -81,7 +84,10 @@ describe('<Tab />', () => {
         getClientRects: stub().returns({ length: 2 }),
       };
       instance.checkTextWrap();
-      const label = wrapper.childAt(0).childAt(0);
+      const label = wrapper
+        .childAt(0)
+        .childAt(0)
+        .childAt(0);
       assert.strictEqual(
         label.hasClass(classes.labelWrapped),
         true,
@@ -96,7 +102,10 @@ describe('<Tab />', () => {
       const wrapper = shallow(
         <Tab textColor="inherit" label="foo" classes={{ label: 'MyLabel' }} />,
       );
-      const label = wrapper.childAt(0).childAt(0);
+      const label = wrapper
+        .childAt(0)
+        .childAt(0)
+        .childAt(0);
       assert.strictEqual(label.hasClass(classes.label), true);
       assert.strictEqual(label.hasClass('MyLabel'), true);
     });
@@ -105,7 +114,7 @@ describe('<Tab />', () => {
   describe('prop: icon', () => {
     it('should render icon element', () => {
       const wrapper = shallow(<Tab textColor="inherit" icon={icon} />);
-      const iconWrapper = wrapper.childAt(0);
+      const iconWrapper = wrapper.childAt(0).childAt(0);
       assert.strictEqual(iconWrapper.is(Icon), true);
     });
 
