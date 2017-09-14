@@ -20,7 +20,7 @@
 | inputComponent | union:&nbsp;string<br>&nbsp;ComponentType<*><br> |  | The component used for the input node. Either a string to use a DOM element or a component. It's an `input` by default. |
 | inputProps | Object |  | Properties applied to the `input` element. |
 | inputRef | Function |  | Use that property to pass a ref callback to the native input component. |
-| margin | literal |  | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
+| margin | union:&nbsp;'dense'<br>&nbsp;'none'<br> |  | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
 | multiline | boolean | false | If `true`, a textarea element will be rendered. |
 | name | string |  | Name attribute of the `input` element. |
 | onChange | signature |  | TODO |
@@ -50,6 +50,7 @@ This property accepts the following keys:
 - `multiline`
 - `inputDisabled`
 - `inputSingleline`
+- `inputSearch`
 - `inputMultiline`
 - `fullWidth`
 

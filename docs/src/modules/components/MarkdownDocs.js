@@ -16,6 +16,7 @@ const styles = theme => ({
   '@global': {
     '#carbonads': {
       padding: theme.spacing.unit,
+      zIndex: 1,
       boxSizing: 'content-box',
       backgroundColor: theme.palette.background.paper,
       borderRadius: 4,
@@ -90,7 +91,21 @@ let adsFirst = true;
 
 class MarkdownDocs extends React.Component<any> {
   componentDidMount() {
+    if (process.env.NODE_ENV !== 'production') {
+      return;
+    }
+
     if (adsFirst) {
+      const script = document.createElement('script');
+      script.setAttribute('async', '');
+      script.src =
+        '//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=materialuicom';
+      script.id = '_carbonads_js';
+      const ad = document.querySelector('#ad');
+      if (ad) {
+        ad.appendChild(script);
+      }
+
       adsFirst = false;
       return;
     }
@@ -134,16 +149,7 @@ class MarkdownDocs extends React.Component<any> {
             {'Edit this page'}
           </Button>
         </div>
-        <div className={classes.ad}>
-          {process.env.NODE_ENV === 'production' && (
-            <script
-              key={getTitle(markdown)}
-              async
-              src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=materialuicom"
-              id="_carbonads_js"
-            />
-          )}
-        </div>
+        <div className={classes.ad} id="ad" />
         {contents.map(content => {
           const match = content.match(demoRegexp);
 

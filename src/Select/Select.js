@@ -6,11 +6,14 @@ import type { ChildrenArray, Element } from 'react';
 import warning from 'warning';
 import SelectInput from './SelectInput';
 import withStyles from '../styles/withStyles';
-import '../Input'; // Import to enforce the CSS injection order
+import Input from '../Input'; // Import to enforce the CSS injection order
 import { isMuiElement } from '../utils/reactHelpers';
 
 type DefaultProps = {
   classes: Object,
+  input: Element<*>,
+  native: boolean,
+  multiple: boolean,
 };
 
 export const styles = (theme: Object) => ({
@@ -72,7 +75,7 @@ export type Props = {
   /**
    * An `Input` element.
    */
-  input: Element<*>,
+  input?: Element<*>,
   /**
    * If `true`, the component will be using a native `select` element.
    */
@@ -128,6 +131,7 @@ function Select(props: AllProps) {
 }
 
 Select.defaultProps = {
+  input: <Input />,
   native: false,
   multiple: false,
 };

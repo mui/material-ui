@@ -71,7 +71,11 @@ class Demo extends React.Component<any, any> {
 
     return (
       <div className={classes.root}>
-        <IconButton onClick={this.handleCodeButtonClick} className={classes.codeButton}>
+        <IconButton
+          title={this.state.codeOpen ? 'Hide the source' : 'Show the source'}
+          onClick={this.handleCodeButtonClick}
+          className={classes.codeButton}
+        >
           <CodeIcon />
         </IconButton>
         <Collapse in={this.state.codeOpen}>
