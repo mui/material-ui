@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { Palette } from './createPalette';
 
 export type TextStyle =
@@ -15,20 +16,20 @@ export type TextStyle =
 export type Style = TextStyle | 'button';
 
 export interface FontStyle {
-  fontFamily: string;
-  fontSize: number | string;
+  fontFamily: React.CSSProperties['fontFamily'];
+  fontSize: React.CSSProperties['fontSize'];
   fontWeightLight: number | string;
   fontWeightRegular: number | string;
   fontWeightMedium: number | string;
 }
 
 export interface TypographyStyle {
-  color: string;
-  fontFamily: string;
-  fontSize: number | string;
-  fontWeight: number | string;
-  letterSpacing: string;
-  lineHeight: number | string;
+  color: React.CSSProperties['color'];
+  fontFamily: React.CSSProperties['fontFamily'];
+  fontSize: React.CSSProperties['fontSize'];
+  fontWeight: React.CSSProperties['fontWeight'];
+  letterSpacing: React.CSSProperties['letterSpacing'];
+  lineHeight: React.CSSProperties['lineHeight'];
 }
 
 export type Typography = { [type in Style]: TypographyStyle } & FontStyle;
