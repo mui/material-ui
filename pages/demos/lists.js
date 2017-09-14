@@ -38,6 +38,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/lists/NestedList'), 'utf8')
 `,
         },
+        'pages/demos/lists/PinnedSubheaderList.js': {
+          js: require('docs/src/pages/demos/lists/PinnedSubheaderList').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/lists/PinnedSubheaderList'), 'utf8')
+`,
+        },
         'pages/demos/lists/CheckboxList.js': {
           js: require('docs/src/pages/demos/lists/CheckboxList').default,
           raw: preval`

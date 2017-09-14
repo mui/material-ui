@@ -9,7 +9,7 @@
 |:-----|:-----|:--------|:------------|
 | children | Node |  | The content of the component, normally `TableRow`. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| component | union:&nbsp;string<br>&nbsp;ComponentType<*><br> | 'tbody' | The component used for the root node. Either a string to use a DOM element or a component. |
+| component | ElementType | 'tbody' | The component used for the root node. Either a string to use a DOM element or a component. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 

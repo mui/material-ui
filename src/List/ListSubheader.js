@@ -26,15 +26,30 @@ export const styles = (theme: Object) => ({
   inset: {
     paddingLeft: theme.spacing.unit * 9,
   },
+  sticky: {
+    position: 'sticky',
+    top: 0,
+    zIndex: 1,
+    backgroundColor: 'inherit',
+  },
 });
 
 function ListSubheader(props) {
-  const { classes, className: classNameProp, color, inset, children, ...other } = props;
+  const {
+    children,
+    classes,
+    className: classNameProp,
+    color,
+    disableSticky,
+    inset,
+    ...other
+  } = props;
   const className = classNames(
     classes.root,
     {
       [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
       [classes.inset]: inset,
+      [classes.sticky]: !disableSticky,
     },
     classNameProp,
   );
@@ -64,6 +79,10 @@ ListSubheader.propTypes = {
    */
   color: PropTypes.oneOf(['default', 'primary', 'inherit']),
   /**
+   * If `true`, the List Subheader will not stick to the top during scroll.
+   */
+  disableSticky: PropTypes.bool,
+  /**
    * If `true`, the List Subheader will be indented.
    */
   inset: PropTypes.bool,
@@ -71,6 +90,7 @@ ListSubheader.propTypes = {
 
 ListSubheader.defaultProps = {
   color: 'default',
+  disableSticky: false,
   inset: false,
 };
 

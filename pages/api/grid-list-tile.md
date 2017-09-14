@@ -10,7 +10,7 @@
 | children | $ReadOnlyArray |  | Theoretically you can pass any node as children, but the main use case is to pass an img, in which case GridListTile takes care of making the image "cover" available space (similar to `background-size: cover` or to `object-fit: cover`). |
 | classes | Object |  | Useful to extend the style applied to components. |
 | cols | number | 1 | Width of the tile in number of grid cells. |
-| component | union:&nbsp;string<br>&nbsp;ComponentType<*><br> | 'li' | The component used for the root node. Either a string to use a DOM element or a component. |
+| component | ElementType | 'li' | The component used for the root node. Either a string to use a DOM element or a component. |
 | rows | number | 1 | Height of the tile in number of grid cells. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).

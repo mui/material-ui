@@ -7,7 +7,7 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Node |  | The content of the component. |
+| children | ChildrenArray |  | The content of the component. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | disableActionSpacing | boolean | false | If `true`, the card actions do not have additional margin. |
 

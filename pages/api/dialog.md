@@ -11,6 +11,7 @@ Dialogs are overlaid modal paper based components with a backdrop.
 | classes | Object |  | Useful to extend the style applied to components. |
 | enterTransitionDuration | number | duration.enteringScreen | Duration of the animation when the element is entering. |
 | fullScreen | boolean | false | If `true`, it will be full-screen |
+| fullWidth | boolean | false | If specified, stretches dialog to max width. |
 | ignoreBackdropClick | boolean | false | If `true`, clicking the backdrop will not fire the `onRequestClose` callback. |
 | ignoreEscapeKeyUp | boolean | false | If `true`, hitting escape will not fire the `onRequestClose` callback. |
 | leaveTransitionDuration | number | duration.leavingScreen | Duration of the animation when the element is leaving. |
@@ -38,6 +39,7 @@ This property accepts the following keys:
 - `paperWidthXs`
 - `paperWidthSm`
 - `paperWidthMd`
+- `fullWidth`
 - `fullScreen`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)

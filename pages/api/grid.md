@@ -10,7 +10,7 @@
 | align | union:&nbsp;'flex-start', 'center', 'flex-end', 'stretch', 'baseline'<br> | 'stretch' | Defines the `align-items` style property. It's applied for all screen sizes. |
 | children | Node |  | The content of the component. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| component | union:&nbsp;string<br>&nbsp;ComponentType<*><br> | 'div' | The component used for the root node. Either a string to use a DOM element or a component. |
+| component | ElementType | 'div' | The component used for the root node. Either a string to use a DOM element or a component. |
 | container | boolean | false | If `true`, the component will have the flex *container* behavior. You should be wrapping *items* with a *container*. |
 | direction | union:&nbsp;'row'<br>&nbsp;'row-reverse'<br>&nbsp;'column'<br>&nbsp;'column-reverse'<br> | 'row' | Defines the `flex-direction` style property. It is applied for all screen sizes. |
 | hidden | [HiddenProps](/layout/hidden) | undefined | If provided, will wrap with [Hidden](/api/hidden) component and given properties. |

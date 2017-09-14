@@ -26,6 +26,15 @@ Lists are best suited for similar data types.
 
 {{demo='pages/demos/lists/NestedList.js'}}
 
+### Pinned Subheader List
+
+Upon scrolling, subheaders remain pinned to the top of the screen until pushed off screen by the next subheader.
+
+This feature is relying on the CSS sticky positioning.
+Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the browsers we are supporting. We default to `disableSticky` when not supported.
+
+{{demo='pages/demos/lists/PinnedSubheaderList.js'}}
+
 ## List Controls
 
 ### Checkbox
