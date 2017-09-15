@@ -20,6 +20,7 @@ export const styles = (theme: Object) => ({
     background: grey[700],
     borderRadius: 2,
     color: common.fullWhite,
+    fontFamily: theme.typography.fontFamily,
     fontSize: 14,
     height: theme.spacing.unit * 4,
     lineHeight: '32px',
