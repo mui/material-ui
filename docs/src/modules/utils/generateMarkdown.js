@@ -189,7 +189,7 @@ function generateClasses(reactAPI) {
     ? `
 ## CSS API
 
-You can overrides all the class names injected by Material-UI thanks to the \`classes\` property.
+You can override all the class names injected by Material-UI thanks to the \`classes\` property.
 This property accepts the following keys:
 ${reactAPI.styles.classes.map(className => `- \`${className}\``).join('\n')}
 
