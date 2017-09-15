@@ -5,14 +5,12 @@ import * as React from 'react';
  * with the `withStyles` HOC and allow customization via
  * the following props:
  *
- * - `className`
  * - `classes`
- * - `style`
+ * - `innerRef`
  */
 export interface StyledComponentProps<StyleClasses> {
-  className?: string;
   classes?: StyleClasses;
-  style?: Partial<React.CSSProperties>;
+  innerRef?: React.Ref<any>;
 }
 export class StyledComponent<P, C = Object> extends React.Component<
   P & StyledComponentProps<C>
