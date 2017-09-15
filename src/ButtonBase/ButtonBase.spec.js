@@ -424,10 +424,6 @@ describe('<ButtonBase />', () => {
           Hello
         </ButtonBase.Naked>,
       );
-      assert.match(
-        consoleErrorMock.args()[0][0],
-        /Material-UI: you have provided a custom Component to the/,
-      );
       const instance = wrapper.instance();
       instance.focusKeyPressed = true;
       wrapper.simulate('focus');
@@ -527,18 +523,17 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describe('focus()', () => {
-    it('should call the focus on the instance.button', () => {
-      const instance = mount(
-        <ButtonBase.Naked classes={{}} component="span">
-          Hello
-        </ButtonBase.Naked>,
-      ).instance();
-      instance.button = {
-        focus: spy(),
-      };
-      instance.focus();
-      assert.strictEqual(instance.button.focus.callCount, 1);
+  describe('prop: rootRef', () => {
+    it('should be able to get a ref of the root element', () => {
+      const refCallback = spy();
+      const wrapper = mount(<ButtonBase rootRef={refCallback}>Hello</ButtonBase>);
+      assert.strictEqual(refCallback.callCount, 1, 'should call the ref function');
+      refCallback.args[0][0].focus();
+      assert.strictEqual(
+        document.activeElement,
+        wrapper.getDOMNode(),
+        'should be able to use the ref to focus the button',
+      );
     });
   });
 });

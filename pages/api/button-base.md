@@ -16,6 +16,7 @@
 | focusRipple | boolean | false | If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`. |
 | keyboardFocusedClassName | string |  | The CSS class applied while the component is keyboard focused. |
 | onKeyboardFocus | signature |  | Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too. |
+| rootRef | Function |  | Use that property to pass a ref callback to the root component. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 

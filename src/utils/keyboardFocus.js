@@ -1,6 +1,7 @@
 // @flow weak
 
 import keycode from 'keycode';
+import warning from 'warning';
 import contains from 'dom-helpers/query/contains';
 import addEventListener from '../utils/addEventListener';
 
@@ -23,15 +24,21 @@ export function focusKeyPressed(pressed) {
   return internal.focusKeyPressed;
 }
 
-export function detectKeyboardFocus(instance, element, cb, attempt = 1) {
+export function detectKeyboardFocus(instance, element, callback, attempt = 1) {
+  warning(instance.keyboardFocusCheckTime, 'Material-UI: missing instance.keyboardFocusCheckTime');
+  warning(
+    instance.keyboardFocusMaxCheckTimes,
+    'Material-UI: missing instance.keyboardFocusMaxCheckTimes',
+  );
+
   instance.keyboardFocusTimeout = setTimeout(() => {
     if (
       focusKeyPressed() &&
       (document.activeElement === element || contains(element, document.activeElement))
     ) {
-      cb();
+      callback();
     } else if (attempt < instance.keyboardFocusMaxCheckTimes) {
-      detectKeyboardFocus(instance, element, cb, attempt + 1);
+      detectKeyboardFocus(instance, element, callback, attempt + 1);
     }
   }, instance.keyboardFocusCheckTime);
 }

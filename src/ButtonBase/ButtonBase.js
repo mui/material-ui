@@ -3,9 +3,7 @@
 import React from 'react';
 import type { ComponentType, Node } from 'react';
 import { findDOMNode } from 'react-dom';
-import warning from 'warning';
 import classNames from 'classnames';
-import getDisplayName from 'recompose/getDisplayName';
 import keycode from 'keycode';
 import withStyles from '../styles/withStyles';
 import { listenForFocusKeys, detectKeyboardFocus, focusKeyPressed } from '../utils/keyboardFocus';
@@ -130,6 +128,10 @@ export type Props = {
    */
   role?: string,
   /**
+   * Use that property to pass a ref callback to the root component.
+   */
+  rootRef?: Function,
+  /**
    * @ignore
    */
   tabIndex?: number | string,
@@ -161,21 +163,8 @@ class ButtonBase extends React.Component<AllProps, State> {
   };
 
   componentDidMount() {
+    this.button = findDOMNode(this);
     listenForFocusKeys();
-
-    warning(
-      this.button,
-      [
-        'Material-UI: you have provided a custom Component to the `component` ' +
-          'property of `ButtonBase`.',
-        'In order to make the keyboard focus logic work, we need a reference on the root element.',
-        'Please provide a class component instead of a functional component.',
-        // eslint-disable-next-line prefer-template
-        `You need to fix the: ${getDisplayName(this.props.component) === 'component'
-          ? String(this.props.component)
-          : getDisplayName(this.props.component)} component.`,
-      ].join('\n'),
-    );
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -190,6 +179,7 @@ class ButtonBase extends React.Component<AllProps, State> {
   }
 
   componentWillUnmount() {
+    this.button = null;
     clearTimeout(this.keyboardFocusTimeout);
   }
 
@@ -199,10 +189,6 @@ class ButtonBase extends React.Component<AllProps, State> {
   keyboardFocusTimeout = null;
   keyboardFocusCheckTime = 40;
   keyboardFocusMaxCheckTimes = 5;
-
-  focus = () => {
-    this.button.focus();
-  };
 
   handleKeyDown = event => {
     const { component, focusRipple, onKeyDown, onClick } = this.props;
@@ -279,7 +265,7 @@ class ButtonBase extends React.Component<AllProps, State> {
       event.persist();
 
       const keyboardFocusCallback = this.onKeyboardFocusHandler.bind(this, event);
-      detectKeyboardFocus(this, findDOMNode(this.button), keyboardFocusCallback);
+      detectKeyboardFocus(this, this.button, keyboardFocusCallback);
     }
 
     if (this.props.onFocus) {
@@ -332,6 +318,7 @@ class ButtonBase extends React.Component<AllProps, State> {
       onMouseUp,
       onTouchEnd,
       onTouchStart,
+      rootRef,
       tabIndex,
       type,
       ...other
@@ -370,9 +357,6 @@ class ButtonBase extends React.Component<AllProps, State> {
 
     return (
       <ComponentProp
-        ref={node => {
-          this.button = node;
-        }}
         onBlur={this.handleBlur}
         onFocus={this.handleFocus}
         onKeyDown={this.handleKeyDown}
@@ -382,6 +366,7 @@ class ButtonBase extends React.Component<AllProps, State> {
         onMouseUp={this.handleMouseUp}
         onTouchEnd={this.handleTouchEnd}
         onTouchStart={this.handleTouchStart}
+        ref={rootRef}
         tabIndex={disabled ? -1 : tabIndex}
         className={className}
         {...buttonProps}
