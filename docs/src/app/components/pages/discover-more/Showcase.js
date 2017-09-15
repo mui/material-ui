@@ -161,6 +161,12 @@ const appList = [
     img: 'images/showcase/hoophubs-basketball-stats-tool.png',
     link: 'http://www.hoophubs.com',
   },
+  {
+    title: 'AlarmDJ - Online Alarm Clock',
+    author: 'Arnon Eilat',
+    img: 'images/showcase/alarmdj.png',
+    link: 'https://alarmdj.com',
+  },
 ];
 
 const Showcase = () => (
