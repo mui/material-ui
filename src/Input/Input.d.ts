@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StyledComponent, Omit } from '..';
 
 export type InputProps = {
   autoComplete?: string;
@@ -25,6 +25,24 @@ export type InputProps = {
   value?: string | number;
   onClean?: () => void;
   onDirty?: () => void;
-} & React.HTMLAttributes<HTMLDivElement>;
+  /**
+   * `onChange`, `onKeyUp` + `onKeyDown` are applied to the inner `InputComponent`,
+   * which by default is an input or textarea. Since these handlers differ from the
+   * ones inherited by `React.HTMLAttributes<HTMLDivElement>` we need to omit them.
+   *
+   * Note that  `blur` and `focus` event handler are applied to the outter `<div>`.
+   * So these can just be inherited from the native `<div>`.
+   */
+  onChange?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+  onKeyUp?: React.KeyboardEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+  onKeyDown?: React.KeyboardEventHandler<
+    HTMLTextAreaElement | HTMLInputElement
+  >;
+} & Partial<
+  Omit<
+    React.HTMLAttributes<HTMLDivElement>,
+    'onChange' | 'onKeyUp' | 'onKeyDown'
+  >
+>;
 
 export default class Input extends StyledComponent<InputProps> {}

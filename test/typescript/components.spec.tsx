@@ -52,6 +52,7 @@ import Table, {
   TableRow,
 } from '../../src/Table';
 import { withStyles, StyleRulesCallback } from '../../src/styles';
+import { withResponsiveFullScreen, DialogProps } from '../../src/Dialog';
 
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
@@ -762,8 +763,12 @@ const TextFieldTest = () =>
     />
   </div>;
 
-const SelectTest = () =>
-  <Select input={<Input />} value={10}>
+const SelectTest = () => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.currentTarget.value);
+  };
+
+  <Select input={<Input />} value={10} onChange={handleChange}>
     <MenuItem value="">
       <em>None</em>
     </MenuItem>
@@ -771,3 +776,19 @@ const SelectTest = () =>
     <MenuItem value={20}>Twenty</MenuItem>
     <MenuItem value={30}>Thirty</MenuItem>
   </Select>;
+};
+
+const ResponsiveComponentTest = () => {
+  const ResponsiveComponent = withResponsiveFullScreen({
+    breakpoint: 'sm',
+  })(({ children, width }) =>
+    <div style={{ width }}>
+      {children}
+    </div>
+  );
+  <ResponsiveComponent />;
+
+  const ResponsiveDialogComponent = withResponsiveFullScreen<DialogProps>({
+    breakpoint: 'sm',
+  })(Dialog);
+};
