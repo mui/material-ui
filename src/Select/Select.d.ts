@@ -3,7 +3,7 @@ import { StyledComponent, Omit } from '..';
 import { InputProps } from '../Input';
 
 export type SelectProps = {
-  input: React.ReactNode;
+  input?: React.ReactNode;
   native?: boolean;
   multiple?: boolean;
   MenuProps?: Object;
