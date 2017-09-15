@@ -311,6 +311,7 @@ class SelectInput extends React.Component<AllProps, State> {
             },
             classNameProp,
           )}
+          data-mui-test="SelectDisplay"
           aria-pressed={this.state.open ? 'true' : 'false'}
           tabIndex={disabled ? null : 0}
           role="button"
