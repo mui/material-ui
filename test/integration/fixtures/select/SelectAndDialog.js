@@ -5,10 +5,14 @@ import { MenuItem } from 'src/Menu';
 import Select from 'src/Select';
 import Dialog from 'src/Dialog';
 
-function SelectAndDialog() {
+type Props = {
+  MenuProps?: Object,
+};
+
+function SelectAndDialog(props: Props) {
   return (
     <Dialog open>
-      <Select value={10}>
+      <Select value={10} MenuProps={props.MenuProps}>
         <MenuItem value="">
           <em>None</em>
         </MenuItem>

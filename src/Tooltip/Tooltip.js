@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react';
+import warning from 'warning';
 import classNames from 'classnames';
 import type { Element, Node } from 'react';
 import { Manager, Target, Popper } from 'react-popper';
@@ -107,9 +108,10 @@ export type Props = {
    */
   disableTriggerTouch?: boolean,
   /**
-   * Tooltip label.
+   * The relationship between the tooltip and the wrapper componnet is not clear from the DOM.
+   * By providind this property, we can use aria-describedby to solve the accessibility issue.
    */
-  label: Node,
+  id?: string,
   /**
    * Callback fired when the tooltip requests to be closed.
    *
@@ -126,6 +128,10 @@ export type Props = {
    * If `true`, the tooltip is shown.
    */
   open?: boolean,
+  /**
+   * Tooltip title.
+   */
+  title: Node,
   /**
    * The number of milliseconds to wait before showing the tooltip.
    */
@@ -307,11 +313,12 @@ class Tooltip extends React.Component<AllProps, State> {
       disableTriggerHover,
       disableTriggerTouch,
       enterDelay,
+      id,
       leaveDelay,
-      label,
       open: openProp,
       onRequestClose,
       onRequestOpen,
+      title,
       placement,
       PopperProps,
       ...other
@@ -319,6 +326,8 @@ class Tooltip extends React.Component<AllProps, State> {
 
     const open = this.isControlled ? openProp : this.state.open;
     const childrenProps = {};
+
+    childrenProps['aria-describedby'] = id;
 
     if (!disableTriggerTouch) {
       childrenProps.onTouchStart = this.handleTouchStart;
@@ -335,18 +344,31 @@ class Tooltip extends React.Component<AllProps, State> {
       childrenProps.onBlur = this.handleRequestClose;
     }
 
+    if (childrenProp.props) {
+      warning(
+        !childrenProp.props.title,
+        [
+          'Material-UI: you have been providing a `title` property to the child of <Tooltip />.',
+          `Remove this title property \`${childrenProp.props.title}\` or the Tooltip component.`,
+        ].join('\n'),
+      );
+    }
+
     return (
       <Manager className={classNames(classes.root, className)} {...other}>
         <Target>{React.cloneElement(childrenProp, childrenProps)}</Target>
         <Popper placement={placement} className={classes.popper} {...PopperProps}>
           <div
+            id={id}
+            role="tooltip"
+            aria-hidden={!open}
             className={classNames(
               classes.tooltip,
               { [classes.tooltipOpen]: open },
               classes[`tooltip${capitalizeFirstLetter(placement.split('-')[0])}`],
             )}
           >
-            {label}
+            {title}
           </div>
         </Popper>
       </Manager>

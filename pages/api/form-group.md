@@ -2,8 +2,9 @@
 
 # FormGroup
 
-FormGroup wraps controls such as Checkbox and Switch.
-It provides compact row layout and FormLabel awareness.
+`FormGroup` wraps controls such as `Checkbox` and `Switch`.
+It provides compact row layout.
+For the `Radio`, you should be using the `RadioGroup` component instead of this one.
 
 ## Props
 | Name | Type | Default | Description |
@@ -16,7 +17,7 @@ Any other properties supplied will be [spread to the root element](/customizatio
 
 ## CSS API
 
-You can overrides all the class names injected by Material-UI thanks to the `classes` property.
+You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `root`
 - `row`

@@ -17,7 +17,6 @@
 | enteringClassName | string |  | The CSS class name applied while the component is entering |
 | exitedClassName | string |  | The CSS class name applied when the component is exited |
 | exitingClassName | string |  | The CSS class name applied while the component is exiting |
-| modal | boolean | true | If `true`, the Popover will be rendered as a modal with scroll locking, focus trapping and a clickaway layer beneath |
 | onEnter | TransitionCallback |  | Callback fired before the component is entering |
 | onEntered | TransitionCallback |  | Callback fired when the component has entered |
 | onEntering | TransitionCallback |  | Callback fired when the component is entering |
@@ -33,7 +32,7 @@ Any other properties supplied will be [spread to the root element](/customizatio
 
 ## CSS API
 
-You can overrides all the class names injected by Material-UI thanks to the `classes` property.
+You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `paper`
 

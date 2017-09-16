@@ -219,28 +219,6 @@ class Modal extends React.Component<AllProps, State> {
     }
   }
 
-  focus() {
-    const currentFocus = activeElement(ownerDocument(ReactDOM.findDOMNode(this)));
-    const modalContent = this.modal && this.modal.lastChild;
-    const focusInModal = currentFocus && contains(modalContent, currentFocus);
-
-    if (modalContent && !focusInModal) {
-      this.lastFocus = currentFocus;
-
-      if (!modalContent.hasAttribute('tabIndex')) {
-        modalContent.setAttribute('tabIndex', -1);
-        warning(
-          false,
-          'Material-UI: the modal content node does not accept focus. ' +
-            'For the benefit of assistive technologies, ' +
-            'the tabIndex of the node is being set to "-1".',
-        );
-      }
-
-      modalContent.focus();
-    }
-  }
-
   restoreLastFocus() {
     if (this.lastFocus && this.lastFocus.focus) {
       this.lastFocus.focus();
@@ -254,6 +232,26 @@ class Modal extends React.Component<AllProps, State> {
     this.onDocumentKeyUpListener = addEventListener(doc, 'keyup', this.handleDocumentKeyUp);
     this.onFocusListener = addEventListener(doc, 'focus', this.handleFocusListener, true);
     this.focus();
+  }
+
+  focus() {
+    const currentFocus = activeElement(ownerDocument(ReactDOM.findDOMNode(this)));
+    const modalContent = this.modal && this.modal.lastChild;
+    const focusInModal = currentFocus && contains(modalContent, currentFocus);
+
+    if (modalContent && !focusInModal) {
+      if (!modalContent.hasAttribute('tabIndex')) {
+        modalContent.setAttribute('tabIndex', -1);
+        warning(
+          false,
+          'Material-UI: the modal content node does not accept focus. ' +
+            'For the benefit of assistive technologies, ' +
+            'the tabIndex of the node is being set to "-1".',
+        );
+      }
+
+      modalContent.focus();
+    }
   }
 
   handleHide() {
@@ -281,16 +279,18 @@ class Modal extends React.Component<AllProps, State> {
       return;
     }
 
-    if (keycode(event) === 'esc') {
-      const { onEscapeKeyUp, onRequestClose, ignoreEscapeKeyUp } = this.props;
+    if (keycode(event) !== 'esc') {
+      return;
+    }
 
-      if (onEscapeKeyUp) {
-        onEscapeKeyUp(event);
-      }
+    const { onEscapeKeyUp, onRequestClose, ignoreEscapeKeyUp } = this.props;
 
-      if (onRequestClose && !ignoreEscapeKeyUp) {
-        onRequestClose(event);
-      }
+    if (onEscapeKeyUp) {
+      onEscapeKeyUp(event);
+    }
+
+    if (onRequestClose && !ignoreEscapeKeyUp) {
+      onRequestClose(event);
     }
   };
 

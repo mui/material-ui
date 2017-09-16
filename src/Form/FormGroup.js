@@ -42,8 +42,9 @@ export type Props = {
 type AllProps = DefaultProps & Props;
 
 /**
- * FormGroup wraps controls such as Checkbox and Switch.
- * It provides compact row layout and FormLabel awareness.
+ * `FormGroup` wraps controls such as `Checkbox` and `Switch`.
+ * It provides compact row layout.
+ * For the `Radio`, you should be using the `RadioGroup` component instead of this one.
  */
 function FormGroup(props: AllProps) {
   const { classes, className, children, row, ...other } = props;

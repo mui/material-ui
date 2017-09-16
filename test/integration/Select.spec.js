@@ -19,23 +19,47 @@ describe('<Select> integration', () => {
 
   describe('with Dialog', () => {
     let wrapper;
+    let portalDialogWrapper;
 
     before(() => {
-      wrapper = mount(<SelectAndDialog />);
+      wrapper = mount(<SelectAndDialog open />);
+      const portalDialog = wrapper.find('Modal').node.mountNode.firstChild;
+      portalDialogWrapper = new ReactWrapper(portalDialog, portalDialog);
     });
 
-    it('should focus the first item as nothing has been selected', () => {
-      const portal = wrapper.find('Modal').node.mountNode.firstChild;
-      const portalWrapper = new ReactWrapper(portal, portal);
+    it('should focus the selected item', done => {
+      const selectDisplay = portalDialogWrapper.find('[data-mui-test="SelectDisplay"]');
 
-      const selectDisplay = portalWrapper.find('[data-mui-test="SelectDisplay"]');
+      wrapper.setProps({
+        MenuProps: {
+          onExited: () => {
+            assert.strictEqual(
+              document.activeElement,
+              selectDisplay.getDOMNode(),
+              'should focus back the select input',
+            );
+            done();
+          },
+        },
+      });
+
+      // Let's open the select component
+      selectDisplay.getDOMNode().focus();
       selectDisplay.simulate('click');
+
       const menuEl = document.querySelector('[data-mui-test="Menu"]');
       assert.strictEqual(
         document.activeElement,
         menuEl && menuEl.children[1],
-        'should be the 2nd menu item',
+        'should focus the selected menu item',
       );
+
+      const portalSelect = portalDialogWrapper.find('Modal').node.mountNode.firstChild;
+      const portalSelectWrapper = new ReactWrapper(portalSelect, portalSelect);
+
+      // Now, let's close the select component
+      const backdrop = portalSelectWrapper.find('Backdrop');
+      backdrop.simulate('click');
     });
   });
 });

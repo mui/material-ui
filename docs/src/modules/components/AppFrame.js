@@ -188,7 +188,7 @@ class AppFrame extends React.Component<any, any> {
             )}
             <div className={classes.grow} />
             <AppSearch />
-            <Tooltip label="Toggle light/dark theme" enterDelay={300}>
+            <Tooltip title="Toggle light/dark theme" enterDelay={300}>
               <IconButton
                 color="contrast"
                 aria-label="change theme"

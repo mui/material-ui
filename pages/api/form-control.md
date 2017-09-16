@@ -3,6 +3,13 @@
 # FormControl
 
 Provides context such as dirty/focused/error/required for form inputs.
+Relying on the context provides high flexibilty and ensures that the state always stay
+consitent across the children of the `FormControl`.
+This context is used by the following components:
+ - FormLabel
+ - FormHelperText
+ - Input
+ - InputLabel
 
 ## Props
 | Name | Type | Default | Description |
@@ -20,7 +27,7 @@ Any other properties supplied will be [spread to the root element](/customizatio
 
 ## CSS API
 
-You can overrides all the class names injected by Material-UI thanks to the `classes` property.
+You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `root`
 - `marginNormal`

@@ -72,10 +72,15 @@ SimpleDialog.propTypes = {
 const SimpleDialogWrapped = withStyles(styles)(SimpleDialog);
 
 class SimpleDialogDemo extends React.Component {
-  static defaultProps: {};
   state = {
     open: false,
     selectedValue: emails[1],
+  };
+
+  handleClickOpen = () => {
+    this.setState({
+      open: true,
+    });
   };
 
   handleRequestClose = value => {
@@ -87,7 +92,7 @@ class SimpleDialogDemo extends React.Component {
       <div>
         <Typography type="subheading">Selected: {this.state.selectedValue}</Typography>
         <br />
-        <Button onClick={() => this.setState({ open: true })}>Open simple dialog</Button>
+        <Button onClick={this.handleClickOpen}>Open simple dialog</Button>
         <SimpleDialogWrapped
           selectedValue={this.state.selectedValue}
           open={this.state.open}

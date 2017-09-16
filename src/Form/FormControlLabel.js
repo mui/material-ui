@@ -78,6 +78,10 @@ export type Props = {
 
 type AllProps = DefaultProps & Props;
 
+/**
+ * Drop in replacement of the `Radio`, `Switch` and `Checkbox` component.
+ * Use this component if you want to display an extra label.
+ */
 function FormControlLabel(props: AllProps) {
   const {
     checked,

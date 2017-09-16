@@ -15,7 +15,7 @@ describe('<Tooltip />', () => {
   before(() => {
     shallow = createShallow({ dive: true });
     mount = createMount();
-    classes = getClasses(<Tooltip label="Hello World">Hello World</Tooltip>);
+    classes = getClasses(<Tooltip title="Hello World">Hello World</Tooltip>);
   });
 
   after(() => {
@@ -23,13 +23,13 @@ describe('<Tooltip />', () => {
   });
 
   it('should render a Manager', () => {
-    const wrapper = shallow(<Tooltip label="Hello World">Hello World</Tooltip>);
+    const wrapper = shallow(<Tooltip title="Hello World">Hello World</Tooltip>);
     assert.strictEqual(wrapper.name(), 'Manager');
   });
 
   it('should render with the user, root and tooltip classes', () => {
     const wrapper = shallow(
-      <Tooltip className="woofTooltip" label="Hello World">
+      <Tooltip className="woofTooltip" title="Hello World">
         Hello World
       </Tooltip>,
     );
@@ -46,7 +46,7 @@ describe('<Tooltip />', () => {
 
   it('should have top placement', () => {
     const wrapper = shallow(
-      <Tooltip placement="top" label="Hello World">
+      <Tooltip placement="top" title="Hello World">
         Hello World
       </Tooltip>,
     );
@@ -70,7 +70,7 @@ describe('<Tooltip />', () => {
 
   it('should call handleRequestClose & handleRequestOpen', () => {
     const wrapper = shallow(
-      <Tooltip placement="top" label="Hello World">
+      <Tooltip placement="top" title="Hello World">
         <button>Hello World</button>
       </Tooltip>,
     );
@@ -94,7 +94,7 @@ describe('<Tooltip />', () => {
     const wrapper = shallow(
       <Tooltip
         placement="top"
-        label="Hello World"
+        title="Hello World"
         open
         onRequestOpen={handleRequestOpen}
         onRequestClose={handleRequestClose}
@@ -130,7 +130,7 @@ describe('<Tooltip />', () => {
 
     it('should not respond to quick events', () => {
       const wrapper = shallow(
-        <Tooltip label="Hello World">
+        <Tooltip title="Hello World">
           <button>Hello World</button>
         </Tooltip>,
       );
@@ -154,7 +154,7 @@ describe('<Tooltip />', () => {
 
     it('should open on long press', () => {
       const wrapper = shallow(
-        <Tooltip label="Hello World">
+        <Tooltip title="Hello World">
           <button>Hello World</button>
         </Tooltip>,
       );
@@ -187,7 +187,7 @@ describe('<Tooltip />', () => {
 
       mount(
         <Tooltip
-          label="Hello World"
+          title="Hello World"
           PopperProps={{
             component: Hack,
           }}
@@ -211,7 +211,7 @@ describe('<Tooltip />', () => {
 
     it('should take the enterDelay into account', () => {
       const wrapper = shallow(
-        <Tooltip enterDelay={111} label="Hello World">
+        <Tooltip enterDelay={111} title="Hello World">
           <button>Hello World</button>
         </Tooltip>,
       );
@@ -226,7 +226,7 @@ describe('<Tooltip />', () => {
 
     it('should take the leaveDelay into account', () => {
       const wrapper = shallow(
-        <Tooltip leaveDelay={111} label="Hello World">
+        <Tooltip leaveDelay={111} title="Hello World">
           <button>Hello World</button>
         </Tooltip>,
       );
@@ -256,7 +256,7 @@ describe('<Tooltip />', () => {
       it(`should be transparent for the ${name} event`, () => {
         const handler = spy();
         const wrapper = shallow(
-          <Tooltip label="Hello World">
+          <Tooltip title="Hello World">
             <button {...{ [name]: handler }}>Hello World</button>
           </Tooltip>,
         );
