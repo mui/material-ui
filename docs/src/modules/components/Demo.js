@@ -11,7 +11,6 @@ import NoSSR from 'docs/src/modules/components/NoSSR';
 
 const styles = theme => ({
   root: {
-    fontFamily: theme.typography.fontFamily,
     position: 'relative',
     backgroundColor: theme.palette.background.contentFrame,
     marginBottom: 40,
