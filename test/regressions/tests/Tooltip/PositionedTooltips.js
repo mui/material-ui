@@ -9,10 +9,13 @@ import Tooltip from 'material-ui/Tooltip';
 
 const styles = {
   root: {
-    width: 500,
+    width: 400,
+    height: 400,
+    padding: 60,
   },
 };
 
+// Used /docs/src/pages/demos/tooltips/PositionedTooltips.js as inspiration.
 class PositionedTooltips extends React.Component {
   state = {
     placement: 'bottom',
