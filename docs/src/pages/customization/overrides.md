@@ -30,7 +30,7 @@ By adjusting the placement of the `insertionPoint` comment within your HTML body
 
 When the `className` property isn't enough and you need to access deeper elements, you can take advantage of the `classes` property to customize all the CSS injected by Material-UI for that given component.
 The list of these classes is documented in the **Component API** section.
-For instance, you can have a look at the [Button CSS API](/component-api/button#css-api).
+For instance, you can have a look at the [Button CSS API](/api/button#css-api).
 Alternatively, you can always look at the [implementation details](https://github.com/callemall/material-ui/blob/v1-beta/src/Button/Button.js).
 
 An example:

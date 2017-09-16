@@ -21,3 +21,9 @@ The `Select` component can handle multiple selections.
 It's enabled with the `multiple` property.
 
 {{demo='pages/demos/selects/MultipleSelect.js'}}
+
+## With a Dialog
+
+While it's not encouraged by the Material Design specification, you can use a select inside a dialog.
+
+{{demo='pages/demos/selects/DialogSelect.js'}}

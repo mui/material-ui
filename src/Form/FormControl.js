@@ -99,6 +99,13 @@ type State = {
 
 /**
  * Provides context such as dirty/focused/error/required for form inputs.
+ * Relying on the context provides high flexibilty and ensures that the state always stay
+ * consitent across the children of the `FormControl`.
+ * This context is used by the following components:
+ *  - FormLabel
+ *  - FormHelperText
+ *  - Input
+ *  - InputLabel
  */
 class FormControl extends React.Component<AllProps, State> {
   props: AllProps;

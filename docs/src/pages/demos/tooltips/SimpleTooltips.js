@@ -29,12 +29,12 @@ class SimpleTooltips extends React.Component {
     return (
       <div className={classes.root}>
         <div>
-          <Tooltip label="Delete" placement="bottom">
+          <Tooltip id="tooltip-icon" title="Delete" placement="bottom">
             <IconButton aria-label="Delete">
               <DeleteIcon />
             </IconButton>
           </Tooltip>
-          <Tooltip className={classes.fab} label="Add" placement="bottom">
+          <Tooltip id="tooltip-fab" className={classes.fab} title="Add" placement="bottom">
             <Button fab color="primary" aria-label="Add">
               <AddIcon />
             </Button>
