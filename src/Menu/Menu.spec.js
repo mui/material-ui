@@ -10,10 +10,16 @@ import Menu from './Menu';
 describe('<Menu />', () => {
   let shallow;
   let classes;
+  let mount;
 
   before(() => {
     shallow = createShallow({ dive: true });
     classes = getClasses(<Menu />);
+    mount = createMount();
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   it('should render a Popover', () => {
@@ -97,8 +103,23 @@ describe('<Menu />', () => {
     });
   });
 
+  it('should open during the initial mount', () => {
+    const wrapper = mount(
+      <Menu open classes={classes}>
+        <div />
+      </Menu>,
+    );
+    const popover = wrapper.find('Popover');
+    assert.strictEqual(popover.props().open, true);
+    const menuEl = document.querySelector('[data-mui-test="Menu"]');
+    assert.strictEqual(
+      document.activeElement,
+      menuEl && menuEl.firstChild,
+      'should be the first menu item',
+    );
+  });
+
   describe('mount', () => {
-    let mount;
     let wrapper;
     let instance;
 
@@ -114,7 +135,6 @@ describe('<Menu />', () => {
     let findDOMNodeStub;
 
     before(() => {
-      mount = createMount();
       wrapper = mount(<Menu.Naked classes={classes} />);
       instance = wrapper.instance();
 
@@ -142,7 +162,6 @@ describe('<Menu />', () => {
     });
 
     after(() => {
-      mount.cleanUp();
       findDOMNodeStub.restore();
     });
 

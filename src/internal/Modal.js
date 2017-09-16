@@ -19,10 +19,8 @@ import Backdrop from './Backdrop';
 import Portal from './Portal';
 import type { TransitionCallback } from './Transition';
 
-/**
- * Modals don't open on the server so this won't break concurrency.
- * Could also put this on context.
- */
+// Modals don't open on the server so this won't break concurrency.
+// Could also put this on context.
 const modalManager = createModalManager();
 
 export const styles = (theme: Object) => ({
@@ -177,7 +175,7 @@ class Modal extends React.Component<AllProps, State> {
 
   componentDidMount() {
     this.mounted = true;
-    if (this.props.show === true) {
+    if (this.props.show) {
       this.handleShow();
     }
   }
@@ -198,6 +196,7 @@ class Modal extends React.Component<AllProps, State> {
     if (!prevProps.show && this.props.show) {
       this.handleShow();
     }
+    // We are waiting for the onExited callback to call handleHide.
   }
 
   componentWillUnmount() {
