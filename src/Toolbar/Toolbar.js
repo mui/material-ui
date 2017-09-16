@@ -35,7 +35,7 @@ function Toolbar(props) {
 
 Toolbar.propTypes = {
   /**
-   * Can be a `ToolbarGroup` to render a group of related items.
+   * Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.
    */
   children: PropTypes.node,
   /**
