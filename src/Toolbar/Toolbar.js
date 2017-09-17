@@ -10,6 +10,9 @@ export const styles = (theme: Object) => ({
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
+    '& a': {
+      textDecoration: 'none',
+    },
     ...theme.mixins.toolbar,
   },
   gutters: theme.mixins.gutters({}),
