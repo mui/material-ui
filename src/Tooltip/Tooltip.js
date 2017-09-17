@@ -1,18 +1,33 @@
+/* eslint-disable react/no-multi-comp */
 // @flow
 
 import React from 'react';
+import type { Element, Node } from 'react';
+import { findDOMNode } from 'react-dom';
 import warning from 'warning';
 import classNames from 'classnames';
-import type { Element, Node } from 'react';
 import { Manager, Target, Popper } from 'react-popper';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import common from '../colors/common';
 import grey from '../colors/grey';
 import withStyles from '../styles/withStyles';
 
+type TargetChildrenProps = {
+  element: Element<*>,
+};
+
+// Use a class component so we can get a reference.
+class TargetChildren extends React.Component<TargetChildrenProps> {
+  props: TargetChildrenProps;
+
+  render() {
+    return this.props.element;
+  }
+}
+
 export const styles = (theme: Object) => ({
   root: {
-    display: 'inline-flex',
+    display: 'inline',
   },
   popper: {
     zIndex: theme.zIndex.tooltip,
@@ -23,7 +38,7 @@ export const styles = (theme: Object) => ({
     color: common.fullWhite,
     fontFamily: theme.typography.fontFamily,
     fontSize: 14,
-    height: theme.spacing.unit * 4,
+    minHeight: theme.spacing.unit * 4,
     lineHeight: '32px',
     opacity: 0,
     padding: `0 ${theme.spacing.unit}px`,
@@ -32,7 +47,7 @@ export const styles = (theme: Object) => ({
       duration: theme.transitions.duration.shortest,
     }),
     [theme.breakpoints.up('sm')]: {
-      height: 22,
+      minHeight: 22,
       lineHeight: '22px',
       padding: `0 ${theme.spacing.unit}px`,
       fontSize: 10,
@@ -40,30 +55,30 @@ export const styles = (theme: Object) => ({
   },
   tooltipLeft: {
     transformOrigin: 'right center',
-    marginRight: theme.spacing.unit * 3,
+    margin: `0 ${theme.spacing.unit * 3}px`,
     [theme.breakpoints.up('sm')]: {
-      marginRight: 14,
+      margin: '0 14px',
     },
   },
   tooltipRight: {
     transformOrigin: 'left center',
-    marginLeft: theme.spacing.unit * 3,
+    margin: `0 ${theme.spacing.unit * 3}px`,
     [theme.breakpoints.up('sm')]: {
-      marginLeft: 14,
+      margin: '0 14px',
     },
   },
   tooltipTop: {
     transformOrigin: 'center bottom',
-    marginBottom: theme.spacing.unit * 3,
+    margin: `${theme.spacing.unit * 3}px 0`,
     [theme.breakpoints.up('sm')]: {
-      marginBottom: 14,
+      margin: '14px 0',
     },
   },
   tooltipBottom: {
     transformOrigin: 'center top',
-    marginTop: theme.spacing.unit * 3,
+    margin: `${theme.spacing.unit * 3}px 0`,
     [theme.breakpoints.up('sm')]: {
-      marginTop: 14,
+      margin: '14px 0',
     },
   },
   tooltipOpen: {
@@ -356,7 +371,16 @@ class Tooltip extends React.Component<AllProps, State> {
 
     return (
       <Manager className={classNames(classes.root, className)} {...other}>
-        <Target>{React.cloneElement(childrenProp, childrenProps)}</Target>
+        <Target>
+          {({ targetProps }) => (
+            <TargetChildren
+              element={React.cloneElement(childrenProp, childrenProps)}
+              ref={node => {
+                targetProps.ref(findDOMNode(node));
+              }}
+            />
+          )}
+        </Target>
         <Popper placement={placement} className={classes.popper} {...PopperProps}>
           <div
             id={id}

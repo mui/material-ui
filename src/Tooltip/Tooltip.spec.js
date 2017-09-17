@@ -4,8 +4,19 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { Target, Popper } from 'react-popper';
+import { ShallowWrapper } from 'enzyme';
 import { createShallow, createMount, getClasses } from '../test-utils';
 import Tooltip from './Tooltip';
+
+function getChildren(wrapper) {
+  return new ShallowWrapper(
+    wrapper
+      .find(Target)
+      .props()
+      .children({}).props.element,
+    wrapper,
+  );
+}
 
 describe('<Tooltip />', () => {
   let shallow;
@@ -74,16 +85,11 @@ describe('<Tooltip />', () => {
         <button>Hello World</button>
       </Tooltip>,
     );
+    const children = getChildren(wrapper);
     assert.strictEqual(wrapper.state().open, false);
-    wrapper
-      .find(Target)
-      .childAt(0)
-      .simulate('mouseOver', {});
+    children.simulate('mouseOver', {});
     assert.strictEqual(wrapper.state().open, true);
-    wrapper
-      .find(Target)
-      .childAt(0)
-      .simulate('blur', {});
+    children.simulate('blur', {});
     assert.strictEqual(wrapper.state().open, false);
   });
 
@@ -102,7 +108,7 @@ describe('<Tooltip />', () => {
         <button>Hello World</button>
       </Tooltip>,
     );
-    const children = wrapper.find(Target).childAt(0);
+    const children = getChildren(wrapper);
     assert.strictEqual(handleRequestOpen.callCount, 0);
     assert.strictEqual(handleRequestClose.callCount, 0);
     children.simulate('mouseOver', {
@@ -134,7 +140,7 @@ describe('<Tooltip />', () => {
           <button>Hello World</button>
         </Tooltip>,
       );
-      const children = wrapper.find(Target).childAt(0);
+      const children = getChildren(wrapper);
       children.simulate('touchStart', {
         type: 'touchstart',
         persist: () => {},
@@ -158,7 +164,7 @@ describe('<Tooltip />', () => {
           <button>Hello World</button>
         </Tooltip>,
       );
-      const children = wrapper.find(Target).childAt(0);
+      const children = getChildren(wrapper);
       children.simulate('touchStart', {
         type: 'touchstart',
         persist: () => {},
@@ -215,7 +221,7 @@ describe('<Tooltip />', () => {
           <button>Hello World</button>
         </Tooltip>,
       );
-      const children = wrapper.find(Target).childAt(0);
+      const children = getChildren(wrapper);
       children.simulate('focus', {
         type: 'focus',
       });
@@ -230,7 +236,7 @@ describe('<Tooltip />', () => {
           <button>Hello World</button>
         </Tooltip>,
       );
-      const children = wrapper.find(Target).childAt(0);
+      const children = getChildren(wrapper);
       children.simulate('focus', {
         type: 'focus',
       });
@@ -260,7 +266,7 @@ describe('<Tooltip />', () => {
             <button {...{ [name]: handler }}>Hello World</button>
           </Tooltip>,
         );
-        const children = wrapper.find(Target).childAt(0);
+        const children = getChildren(wrapper);
         const type = name.slice(2).toLowerCase();
         children.simulate(type, { type, persist: () => {} });
         assert.strictEqual(handler.callCount, 1);
