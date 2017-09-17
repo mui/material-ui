@@ -22,50 +22,16 @@ const styles = {
 
 class TemporaryDrawer extends React.Component {
   state = {
-    open: {
-      top: false,
-      left: false,
-      bottom: false,
-      right: false,
-    },
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
   };
 
-  toggleDrawer = (side, open) => {
-    const drawerState = {};
-    drawerState[side] = open;
-    this.setState({ open: drawerState });
-  };
-
-  handleTopOpen = () => {
-    this.toggleDrawer('top', true);
-  };
-
-  handleTopClose = () => {
-    this.toggleDrawer('top', false);
-  };
-
-  handleLeftOpen = () => {
-    this.toggleDrawer('left', true);
-  };
-
-  handleLeftClose = () => {
-    this.toggleDrawer('left', false);
-  };
-
-  handleBottomOpen = () => {
-    this.toggleDrawer('bottom', true);
-  };
-
-  handleBottomClose = () => {
-    this.toggleDrawer('bottom', false);
-  };
-
-  handleRightOpen = () => {
-    this.toggleDrawer('right', true);
-  };
-
-  handleRightClose = () => {
-    this.toggleDrawer('right', false);
+  toggleDrawer = (side, open) => () => {
+    this.setState({
+      [side]: open,
+    });
   };
 
   render() {
@@ -89,40 +55,37 @@ class TemporaryDrawer extends React.Component {
 
     return (
       <div>
-        <Button onClick={this.handleLeftOpen}>Open Left</Button>
-        <Button onClick={this.handleRightOpen}>Open Right</Button>
-        <Button onClick={this.handleTopOpen}>Open Top</Button>
-        <Button onClick={this.handleBottomOpen}>Open Bottom</Button>
-        <Drawer
-          open={this.state.open.left}
-          onRequestClose={this.handleLeftClose}
-          onClick={this.handleLeftClose}
-        >
-          {sideList}
+        <Button onClick={this.toggleDrawer('left', true)}>Open Left</Button>
+        <Button onClick={this.toggleDrawer('right', true)}>Open Right</Button>
+        <Button onClick={this.toggleDrawer('top', true)}>Open Top</Button>
+        <Button onClick={this.toggleDrawer('bottom', true)}>Open Bottom</Button>
+        <Drawer open={this.state.left} onRequestClose={this.toggleDrawer('left', false)}>
+          <div tabIndex={0} role="button" onClick={this.toggleDrawer('left', false)}>
+            {sideList}
+          </div>
         </Drawer>
-        <Drawer
-          anchor="top"
-          open={this.state.open.top}
-          onRequestClose={this.handleTopClose}
-          onClick={this.handleTopClose}
-        >
-          {fullList}
+        <Drawer anchor="top" open={this.state.top} onRequestClose={this.toggleDrawer('top', false)}>
+          <div tabIndex={0} role="button" onClick={this.toggleDrawer('top', false)}>
+            {fullList}
+          </div>
         </Drawer>
         <Drawer
           anchor="bottom"
-          open={this.state.open.bottom}
-          onRequestClose={this.handleBottomClose}
-          onClick={this.handleBottomClose}
+          open={this.state.bottom}
+          onRequestClose={this.toggleDrawer('bottom', false)}
         >
-          {fullList}
+          <div tabIndex={0} role="button" onClick={this.toggleDrawer('bottom', false)}>
+            {fullList}
+          </div>
         </Drawer>
         <Drawer
           anchor="right"
-          open={this.state.open.right}
-          onRequestClose={this.handleRightClose}
-          onClick={this.handleRightClose}
+          open={this.state.right}
+          onRequestClose={this.toggleDrawer('right', false)}
         >
-          {sideList}
+          <div tabIndex={0} role="button" onClick={this.toggleDrawer('right', false)}>
+            {sideList}
+          </div>
         </Drawer>
       </div>
     );
