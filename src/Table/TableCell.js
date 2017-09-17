@@ -19,6 +19,7 @@ export const styles = (theme: Object) => ({
   },
   head: {
     whiteSpace: 'pre',
+    fontWeight: theme.typography.fontWeightMedium,
   },
   padding: {
     padding: `0 ${theme.spacing.unit * 7}px 0 ${theme.spacing.unit * 3}px`,
