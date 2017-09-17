@@ -2,9 +2,10 @@
 
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
-import getContext from 'docs/src/modules/styles/getContext';
-import JssProvider from 'react-jss/lib/JssProvider';
 import CleanCSS from 'clean-css';
+import JssProvider from 'react-jss/lib/JssProvider';
+import getContext from 'docs/src/modules/styles/getContext';
+import config from 'docs/src/config';
 
 const cleanCSS = new CleanCSS();
 
@@ -66,8 +67,19 @@ class MyDocument extends Document {
         </Head>
         <body>
           <Main />
+          {/* Global Site Tag (gtag.js) - Google Analytics */}
+          <script async src={`https://www.googletagmanager.com/gtag/js?id=${config.google.id}`} />
+          <script
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: `
+window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};
+gtag('js', new Date());
+              `,
+            }}
+          />
           <NextScript />
-          <script src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js" async defer />
+          <script async src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js" />
         </body>
       </html>
     );

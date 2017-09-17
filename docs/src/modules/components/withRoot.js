@@ -180,11 +180,13 @@ function withRoot(BaseComponent) {
   };
   class WithRoot extends React.Component<WithRootProps> {
     props: WithRootProps;
+
     static childContextTypes = {
       url: PropTypes.object,
       pages: PropTypes.array,
       activePage: PropTypes.object,
     };
+
     static getInitialProps(ctx) {
       let initialProps = {};
       const redux = initRedux({});
