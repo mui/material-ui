@@ -13,7 +13,7 @@ export const styles = (theme: Object) => ({
     },
   },
   head: {
-    height: 64,
+    height: 56,
   },
   footer: {
     height: 56,
