@@ -3,11 +3,12 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import getContext, { getTheme } from 'docs/src/modules/styles/getContext';
 import { connect } from 'react-redux';
-import AppFrame from 'docs/src/modules/components/AppFrame';
 import { MuiThemeProvider } from 'material-ui/styles';
+import getContext, { getTheme } from 'docs/src/modules/styles/getContext';
+import AppFrame from 'docs/src/modules/components/AppFrame';
 import { lightTheme, darkTheme, setPrismTheme } from 'docs/src/modules/utils/prism';
+import config from 'docs/src/config';
 
 // Injected the insertion-point-jss after docssearch
 if (process.browser && !global.__INSERTION_POINT__) {
@@ -37,6 +38,13 @@ class AppWrapper extends React.Component<any, any> {
     } else {
       setPrismTheme(lightTheme);
     }
+
+    // Wait for the title to be updated.
+    this.googleTimer = setTimeout(() => {
+      window.gtag('config', config.google.id, {
+        page_path: location.pathname,
+      });
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -51,7 +59,12 @@ class AppWrapper extends React.Component<any, any> {
     }
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.googleTimer);
+  }
+
   styleContext = null;
+  googleTimer = null;
 
   render() {
     const { children } = this.props;
