@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -10,171 +10,80 @@ import Button from 'material-ui/Button';
 import AppContent from 'docs/src/modules/components/AppContent';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Demo from 'docs/src/modules/components/Demo';
+import Carbon from 'docs/src/modules/components/Carbon';
 import { getComponents, getContents, getTitle } from 'docs/src/modules/utils/parseMarkdown';
 
-const styles = theme => ({
-  '@global': {
-    '#carbonads': {
-      padding: theme.spacing.unit,
-      zIndex: 1,
-      boxSizing: 'content-box',
-      backgroundColor: theme.palette.background.paper,
-      borderRadius: 4,
-      position: 'relative',
-      [theme.breakpoints.up('sm')]: {
-        margin: `${theme.spacing.unit * 2}px ${theme.spacing.unit}px ${theme.spacing.unit}px`,
-        maxWidth: 130,
-        float: 'right',
-      },
-      [theme.breakpoints.up('xl')]: {
-        position: 'fixed',
-        margin: 0,
-        right: theme.spacing.unit * 2,
-        bottom: theme.spacing.unit * 2,
-      },
-      '& img': {
-        verticalAlign: 'middle',
-      },
-      '& a': {
-        textDecoration: 'none',
-      },
-      '& .carbon-wrap': {
-        display: 'flex',
-        [theme.breakpoints.up('sm')]: {
-          display: 'block',
-        },
-      },
-      '& .carbon-text': {
-        ...theme.typography.body1,
-        display: 'block',
-        margin: `0 0 0 ${theme.spacing.unit}px`,
-        [theme.breakpoints.up('sm')]: {
-          margin: `${theme.spacing.unit}px 0`,
-        },
-      },
-      '& .carbon-poweredby': {
-        ...theme.typography.caption,
-        display: 'block',
-        marginTop: theme.spacing.unit / 2,
-        position: 'absolute',
-        right: 4,
-        bottom: 4,
-        [theme.breakpoints.up('sm')]: {
-          marginTop: 0,
-          position: 'static',
-        },
-      },
-    },
-  },
+const styles = {
   root: {
     marginBottom: 100,
-  },
-  ad: {
-    minHeight: 116,
-    margin: `${theme.spacing.unit}px 0 0`,
-    [theme.breakpoints.up('sm')]: {
-      margin: 0,
-      minHeight: 0,
-    },
   },
   header: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-end',
   },
-});
+};
 
 const demoRegexp = /^demo='(.*)'$/;
 const SOURCE_CODE_ROOT_URL = 'https://github.com/callemall/material-ui/tree/v1-beta';
 
-let adsFirst = true;
+function MarkdownDocs(props, context) {
+  const { classes, demos, markdown, sourceLocation: sourceLocationProp } = props;
+  const contents = getContents(markdown);
+  const components = getComponents(markdown);
 
-class MarkdownDocs extends React.Component<any> {
-  componentDidMount() {
-    if (process.env.NODE_ENV !== 'production') {
-      return;
+  let sourceLocation = sourceLocationProp || context.activePage.pathname;
+
+  if (!sourceLocationProp) {
+    // Hack for handling the nested demos
+    if (sourceLocation.indexOf('/demos') === 0) {
+      const token = sourceLocation.split('/');
+      token.push(token[token.length - 1]);
+      sourceLocation = token.join('/');
     }
 
-    if (adsFirst) {
-      const script = document.createElement('script');
-      script.setAttribute('async', '');
-      script.src =
-        '//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=materialuicom';
-      script.id = '_carbonads_js';
-      const ad = document.querySelector('#ad');
-      if (ad) {
-        ad.appendChild(script);
-      }
-
-      adsFirst = false;
-      return;
-    }
-
-    // eslint-disable-next-line no-underscore-dangle
-    if (!document.querySelector('#carbonads') && window._carbonads) {
-      // eslint-disable-next-line no-underscore-dangle
-      window._carbonads.refresh();
+    if (sourceLocation.indexOf('/api') === 0) {
+      sourceLocation = `/pages/${sourceLocation}.md`;
+    } else {
+      sourceLocation = `/docs/src/pages${sourceLocation}.md`;
     }
   }
 
-  render() {
-    const { classes, demos, markdown, sourceLocation: sourceLocationProp } = this.props;
-    const contents = getContents(markdown);
-    const components = getComponents(markdown);
+  return (
+    <AppContent className={classes.root}>
+      <Head>
+        <title>{`${getTitle(markdown)} - Material-UI`}</title>
+      </Head>
+      <div className={classes.header}>
+        <Button component="a" href={`${SOURCE_CODE_ROOT_URL}${sourceLocation}`}>
+          {'Edit this page'}
+        </Button>
+      </div>
+      <Carbon key={sourceLocation} />
+      {contents.map(content => {
+        const match = content.match(demoRegexp);
 
-    let sourceLocation = sourceLocationProp || this.context.activePage.pathname;
+        if (match) {
+          const name = match[1];
+          warning(demos && demos[name], `Missing demo: ${name}.`);
+          return <Demo key={content} name={name} js={demos[name].js} raw={demos[name].raw} />;
+        }
 
-    if (!sourceLocationProp) {
-      // Hack for handling the nested demos
-      if (sourceLocation.indexOf('/demos') === 0) {
-        const token = sourceLocation.split('/');
-        token.push(token[token.length - 1]);
-        sourceLocation = token.join('/');
-      }
-
-      if (sourceLocation.indexOf('/api') === 0) {
-        sourceLocation = `/pages/${sourceLocation}.md`;
-      } else {
-        sourceLocation = `/docs/src/pages${sourceLocation}.md`;
-      }
-    }
-
-    return (
-      <AppContent className={classes.root}>
-        <Head>
-          <title>{`${getTitle(markdown)} - Material-UI`}</title>
-        </Head>
-        <div className={classes.header}>
-          <Button component="a" href={`${SOURCE_CODE_ROOT_URL}${sourceLocation}`}>
-            {'Edit this page'}
-          </Button>
-        </div>
-        <div className={classes.ad} id="ad" />
-        {contents.map(content => {
-          const match = content.match(demoRegexp);
-
-          if (match) {
-            const name = match[1];
-            warning(demos && demos[name], `Missing demo: ${name}.`);
-            return <Demo key={content} name={name} js={demos[name].js} raw={demos[name].raw} />;
-          }
-
-          return <MarkdownElement key={content} text={content} />;
-        })}
-        {components.length > 0 ? (
-          <MarkdownElement
-            text={`
+        return <MarkdownElement key={content} text={content} />;
+      })}
+      {components.length > 0 ? (
+        <MarkdownElement
+          text={`
 ## API
 
 ${components
-              .map(component => `- [&lt;${component} /&gt;](/api/${kebabCase(component)})`)
-              .join('\n')}
-            `}
-          />
-        ) : null}
-      </AppContent>
-    );
-  }
+            .map(component => `- [&lt;${component} /&gt;](/api/${kebabCase(component)})`)
+            .join('\n')}
+          `}
+        />
+      ) : null}
+    </AppContent>
+  );
 }
 
 MarkdownDocs.propTypes = {
