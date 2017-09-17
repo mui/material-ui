@@ -8,6 +8,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {darkWhite, lightWhite, grey900} from 'material-ui/styles/colors';
 import AppNavDrawer from './AppNavDrawer';
 import FullWidthSection from './FullWidthSection';
+import Carbon from './Carbon';
 import withWidth, {MEDIUM, LARGE} from 'material-ui/utils/withWidth';
 
 class Master extends Component {
@@ -209,6 +210,7 @@ class Master extends Component {
         {title !== '' ?
           <div style={prepareStyles(styles.root)}>
             <div style={prepareStyles(styles.content)}>
+              <Carbon key={location.pathname} />
               {React.cloneElement(children, {
                 onChangeMuiTheme: this.handleChangeMuiTheme,
               })}
