@@ -10,3 +10,5 @@ export { default as TableCell } from './TableCell';
 export * from './TableCell';
 export { default as TableSortLabel } from './TableSortLabel';
 export * from './TableSortLabel';
+export { default as TableFooter } from './TableFooter';
+export * from './TableFooter';

@@ -33,7 +33,9 @@ export const styles = (theme: Object) => ({
     paddingLeft: 12,
     paddingRight: 12,
   },
-  footer: {},
+  footer: {
+    borderBottom: 0,
+  },
 });
 
 function TableCell(props, context) {

@@ -6,3 +6,4 @@ export { default as TableBody } from './TableBody';
 export { default as TableRow } from './TableRow';
 export { default as TableCell } from './TableCell';
 export { default as TableSortLabel } from './TableSortLabel';
+export { default as TableFooter } from './TableFooter';
