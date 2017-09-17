@@ -4,6 +4,10 @@ require('./Carbon.css');
 
 class Carbon extends React.Component {
   componentDidMount() {
+    window.gtag('config', 'UA-106598593-1', {
+      page_path: location.hash.slice(1),
+    });
+
     if (process.env.NODE_ENV !== 'production') {
       return;
     }
