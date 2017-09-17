@@ -8,6 +8,7 @@ import Collapse from 'material-ui/transitions/Collapse';
 import CodeIcon from 'material-ui-icons/Code';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import NoSSR from 'docs/src/modules/components/NoSSR';
+import Tooltip from 'material-ui/Tooltip';
 
 const styles = theme => ({
   root: {
@@ -70,13 +71,14 @@ class Demo extends React.Component<any, any> {
 
     return (
       <div className={classes.root}>
-        <IconButton
+        <Tooltip
           title={this.state.codeOpen ? 'Hide the source' : 'Show the source'}
-          onClick={this.handleCodeButtonClick}
-          className={classes.codeButton}
+          placement="top"
         >
-          <CodeIcon />
-        </IconButton>
+          <IconButton onClick={this.handleCodeButtonClick} className={classes.codeButton}>
+            <CodeIcon />
+          </IconButton>
+        </Tooltip>
         <Collapse in={this.state.codeOpen}>
           <NoSSR>
             <MarkdownElement className={classes.code} text={`\`\`\`js\n${raw}\n\`\`\``} />
