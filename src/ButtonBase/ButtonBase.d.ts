@@ -8,6 +8,7 @@ export type ButtonBaseProps = {
   focusRipple?: boolean;
   keyboardFocusedClassName?: string;
   onKeyboardFocus?: React.FocusEventHandler<any>;
+  rootRef?: React.Ref<any>;
 } & React.ButtonHTMLAttributes<HTMLButtonElement> &
   React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
