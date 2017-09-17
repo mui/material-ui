@@ -52,6 +52,11 @@ export const styles = (theme: Object) => ({
       },
     },
   },
+  secondaryAction: {
+    // Add some space to avoid collision as `ListItemSecondaryAction`
+    // is absolutely positionned.
+    paddingRight: theme.spacing.unit * 4,
+  },
 });
 
 type DefaultProps = {
@@ -136,6 +141,8 @@ class ListItem extends React.Component<AllProps, void> {
     const children = React.Children.toArray(childrenProp);
 
     const hasAvatar = children.some(value => isMuiElement(value, ['ListItemAvatar']));
+    const hasSecondaryAction =
+      children.length && isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
 
     const className = classNames(
       classes.root,
@@ -144,6 +151,7 @@ class ListItem extends React.Component<AllProps, void> {
         [classes.divider]: divider,
         [classes.disabled]: disabled,
         [classes.button]: button,
+        [classes.secondaryAction]: hasSecondaryAction,
         [isDense || hasAvatar ? classes.dense : classes.default]: true,
       },
       classNameProp,
@@ -158,15 +166,11 @@ class ListItem extends React.Component<AllProps, void> {
       listItemProps.keyboardFocusedClassName = classes.keyboardFocused;
     }
 
-    if (
-      children.length &&
-      isMuiElement(children[children.length - 1], ['ListItemSecondaryAction'])
-    ) {
-      const secondaryAction = children.pop();
+    if (hasSecondaryAction) {
       return (
         <div className={classes.container}>
           <ComponentMain {...listItemProps}>{children}</ComponentMain>
-          {secondaryAction}
+          {children.pop()}
         </div>
       );
     }

@@ -20,7 +20,7 @@ class CheckboxListSecondary extends React.Component {
     checked: [1],
   };
 
-  handleToggle = (event, value) => {
+  handleToggle = value => () => {
     const { checked } = this.state;
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
@@ -43,12 +43,12 @@ class CheckboxListSecondary extends React.Component {
       <div className={classes.root}>
         <List>
           {[0, 1, 2, 3].map(value => (
-            <ListItem dense button key={value}>
+            <ListItem key={value} dense button className={classes.listItem}>
               <Avatar alt="Remy Sharp" src="/static/images/remy.jpg" />
               <ListItemText primary={`Line item ${value + 1}`} />
               <ListItemSecondaryAction>
                 <Checkbox
-                  onClick={event => this.handleToggle(event, value)}
+                  onClick={this.handleToggle(value)}
                   checked={this.state.checked.indexOf(value) !== -1}
                 />
               </ListItemSecondaryAction>

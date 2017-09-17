@@ -7,7 +7,7 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | node |  | Can be a `ToolbarGroup` to render a group of related items. |
+| children | node |  | Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`. |
 | classes | object |  | Useful to extend the style applied to components. |
 | disableGutters | bool | false | If `true`, disables gutter padding. |
 

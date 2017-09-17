@@ -30,6 +30,7 @@ This property accepts the following keys:
 - `divider`
 - `gutters`
 - `button`
+- `secondaryAction`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)
 section for more detail.
