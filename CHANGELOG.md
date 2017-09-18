@@ -2,6 +2,54 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.11
+###### _Sep 18, 2017_
+
+Big thanks to the 12 contributors who made this release possible.
+
+### Breaking change
+
+- [Tooltip] Rename label to title property to match the native HTML feature wording (#8234) @oliviertassinari
+
+```diff
+-  <Tooltip label="Add">
++  <Tooltip title="Add">
+```
+
+#### Component Fixes / Enhancements
+
+- [AppBar] Height shall not shrink (#8192) @hongyuan1306
+- [Select] Allow invalid children (#8201) @sakulstra
+- [typescript] Correct TypeScript types of typography definitions (#8199) @TorstenStueber
+- [Drawer] Height should be set to 100% to allow scrolling (#8203) @Skaronator
+- [ButtonBase] Wrong layout with Safari (#8211) @oliviertassinari
+- [typescript] Fix `withResponsiveFullScreen`, `Input` + `Select` (#8214) @sebald
+- [typescript] Correct definition of StyledComponentProps (#8221) @TorstenStueber
+- [Tooltip] Add fontFamily to component (#8226) @nel-co
+- [Tooltip] Add accessibility support (#8234) @oliviertassinari
+- [Menu] Second iteration on focus issue (#8234) @oliviertassinari
+- [ListItem] Add some spacing for ListItemSecondaryAction (#8239) @oliviertassinari
+- [ButtonBase] Better support of the component property (#8218) @dobryanskyy
+- [TableRow] Adjust head row height according to the specs (#8249) @leMaik
+- [Tooltip] Fix core issues with the component (#8250) @oliviertassinari
+- [typescript] Fix prop name typo (#8261) @Portgass
+
+#### Docs
+
+- [Tooltip] Add a warning when using the title native feature at the same time (#8234) @oliviertassinari
+- [Popover] Remove unsupported modal property from the Popover component that doesn't match his purpose. (#8234) @oliviertassinari
+- [Form] Extend the description of the component (#8234) @oliviertassinari
+- [docs] Some fixes (#8210) @oliviertassinari
+- [docs] Fix typo in markdown generation (#8222) @albinekb
+- [Toolbar] Fix documentation of children property (#8230) @eyn
+- [Drawer] Improve the Temporary demo (#8241) @oliviertassinari
+- [docs] Simplify the carbon integration (#8244) @oliviertassinari
+- [docs] Add google analytics (#8247) @oliviertassinari
+
+#### Core
+
+- [Tooltip] Add a visual regression test (#8228) @oliviertassinari
+
 ## 1.0.0-beta.10
 ###### _Sep 14, 2017_
 
