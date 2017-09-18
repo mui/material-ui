@@ -22,6 +22,11 @@ export const styles = (theme: Object) => {
   const bottomSpace = { bottom: gutter };
   const rightSpace = { right: gutter };
   const leftSpace = { left: gutter };
+  const center = {
+    left: '50%',
+    right: 'auto',
+    transform: 'translateX(-50%)',
+  };
 
   return {
     root: {
@@ -34,32 +39,36 @@ export const styles = (theme: Object) => {
       alignItems: 'center',
     },
     anchorTopCenter: {
-      extend: [top],
+      extend: [top, center],
     },
     anchorBottomCenter: {
-      extend: [bottom],
+      extend: [bottom, center],
     },
     anchorTopRight: {
       extend: [top, right],
       [theme.breakpoints.up('md')]: {
+        left: 'auto',
         extend: [topSpace, rightSpace],
       },
     },
     anchorBottomRight: {
       extend: [bottom, right],
       [theme.breakpoints.up('md')]: {
+        left: 'auto',
         extend: [bottomSpace, rightSpace],
       },
     },
     anchorTopLeft: {
       extend: [top, left],
       [theme.breakpoints.up('md')]: {
+        right: 'auto',
         extend: [topSpace, leftSpace],
       },
     },
     anchorBottomLeft: {
       extend: [bottom, left],
       [theme.breakpoints.up('md')]: {
+        right: 'auto',
         extend: [bottomSpace, leftSpace],
       },
     },
