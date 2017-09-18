@@ -1,5 +1,21 @@
 ## HEAD
 
+## 0.19.2
+###### _Sep 18, 2017_
+
+Big thanks to the 4 contributors who made this release possible.
+
+##### Component Fixes / Enhancements
+
+- [CardMedia] Guard against null children and overlays (#8055) @AlexMayants
+- [EnhancedButton] Prevent href being overwritten by undefined (#8103) @doverdb
+
+##### Docs
+
+- [docs] Add AlarmDJ.com in showcase (#8220) @ArnonEilat
+- [docs] Add carbon (#8242) @oliviertassinari
+- [docs] Add analytics (#8248) @oliviertassinari
+
 ## 0.19.1
 ###### _Sep 2, 2017_
 
