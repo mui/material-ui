@@ -180,7 +180,7 @@ const footerStyles = theme => ({
   },
   actions: {
     color: theme.palette.text.secondary,
-    marginLeft: 20
+    marginLeft: 20,
   },
   title: {
     flex: '0 0 auto',
@@ -211,15 +211,21 @@ let EnhancedTableFooter = props => {
               <Typography type="caption">Rows per page:</Typography>
             </div>
             <Select
-              classes={{ root: classes.selectRoot, select: classes.select, }}
+              classes={{ root: classes.selectRoot, select: classes.select }}
               input={<Input disableUnderline />}
               value={rowsPerPage}
               onChange={onChangeRowsPerPage}
             >
-              {rowsPerPageOptions.map((v) => <MenuItem key={v} value={v}>{v}</MenuItem>)}
+              {rowsPerPageOptions.map(v => (
+                <MenuItem key={v} value={v}>
+                  {v}
+                </MenuItem>
+              ))}
             </Select>
             <div>
-              <Typography type="caption">{page * rowsPerPage + 1}-{Math.min(count, (page + 1) * rowsPerPage)} of {count}</Typography>
+              <Typography type="caption">
+                {page * rowsPerPage + 1}-{Math.min(count, (page + 1) * rowsPerPage)} of {count}
+              </Typography>
             </div>
             <div className={classes.actions}>
               <IconButton
@@ -247,11 +253,11 @@ let EnhancedTableFooter = props => {
 EnhancedTableFooter.propTypes = {
   classes: PropTypes.object.isRequired,
   count: PropTypes.number.isRequired,
-  rowsPerPage: PropTypes.number.isRequired,
-  rowsPerPageOptions: PropTypes.arrayOf(PropTypes.number),
+  onChangePage: PropTypes.func.isRequired,
   onChangeRowsPerPage: PropTypes.func.isRequired,
   page: PropTypes.number.isRequired,
-  onChangePage: PropTypes.func.isRequired,
+  rowsPerPage: PropTypes.number.isRequired,
+  rowsPerPageOptions: PropTypes.arrayOf(PropTypes.number),
 };
 
 EnhancedTableFooter.defaultProps = {
@@ -342,12 +348,12 @@ class EnhancedTable extends React.Component {
     this.setState({ selected: newSelected });
   };
 
-  handleChangePage = (page) => {
-    this.setState({ page })
+  handleChangePage = page => {
+    this.setState({ page });
   };
 
-  handleChangeRowsPerPage = (e) => {
-    this.setState({ rowsPerPage: e.target.value })
+  handleChangeRowsPerPage = e => {
+    this.setState({ rowsPerPage: e.target.value });
   };
 
   isSelected = id => this.state.selected.indexOf(id) !== -1;
