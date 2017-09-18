@@ -9,7 +9,7 @@ import Grid from 'material-ui/Grid';
 const styles = (theme: Object) => ({
   root: {
     width: 400,
-    backgroundColor: theme.palette.primary.A400,
+    backgroundColor: theme.palette.secondary.A400,
   },
   paper: {
     padding: 16,
