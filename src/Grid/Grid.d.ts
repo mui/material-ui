@@ -20,6 +20,8 @@ export type GridWrap = 'nowrap' | 'wrap' | 'wrap-reverse';
 
 export type GridSize = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
+export type GridBasis = GridSize | 'fill' | 'max-content' | 'min-content' | 'fit-content' | 'auto';
+
 export type GridProps = {
   component?: React.ReactNode;
   container?: boolean;
@@ -30,6 +32,10 @@ export type GridProps = {
   hidden?: HiddenProps & StyledComponentProps<any>;
   justify?: GridJustification;
   wrap?: GridWrap;
+  grow?: GridSize | 0;
+  shrink?: GridSize | 0;
+  basis?: GridBasis;
+  order?: number;
 } & Partial<{ [key in Breakpoint]: boolean | GridSize }>;
 
 export default class Grid extends StyledComponent<GridProps> {}

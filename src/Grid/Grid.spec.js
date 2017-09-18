@@ -70,6 +70,39 @@ describe('<Grid />', () => {
     });
   });
 
+  describe('prop: grow', () => {
+    it('should apply flex-grow class', () => {
+      const wrapper = shallow(<Grid item grow={2} />);
+      assert.strictEqual(wrapper.hasClass(classes['grow-xs-2']), true);
+    });
+  });
+
+  describe('prop: shrink', () => {
+    it('should apply flex-shrink class', () => {
+      const wrapper = shallow(<Grid item shrink={2} />);
+      assert.strictEqual(wrapper.hasClass(classes['shrink-xs-2']), true);
+    });
+  });
+
+  describe('prop: basis', () => {
+    it('should apply flex-basis class by given number', () => {
+      const wrapper = shallow(<Grid item basis={2} />);
+      assert.strictEqual(wrapper.hasClass(classes['basis-xs-2']), true);
+    });
+
+    it('should apply flex-basis class by given string', () => {
+      const wrapper = shallow(<Grid item basis="fill" />);
+      assert.strictEqual(wrapper.hasClass(classes['basis-xs-fill']), true);
+    });
+  });
+
+  describe('prop: order', () => {
+    it('should apply order class', () => {
+      const wrapper = shallow(<Grid item order={1} />);
+      assert.strictEqual(wrapper.hasClass(classes['order-xs-1']), true);
+    });
+  });
+
   describe('prop: other', () => {
     it('should spread the other properties to the root element', () => {
       const handleClick = () => {};

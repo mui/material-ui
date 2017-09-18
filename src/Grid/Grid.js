@@ -48,6 +48,22 @@ function generateGrid(globalStyles, theme, breakpoint) {
       flexBasis: width,
       maxWidth: width,
     };
+
+    styles[`grow-${breakpoint}-${size}`] = {
+      flexGrow: size,
+    };
+
+    styles[`shrink-${breakpoint}-${size}`] = {
+      flexShrink: size,
+    };
+
+    styles[`basis-${breakpoint}-${size}`] = {
+      flexBasis: width,
+    };
+
+    styles[`order-${breakpoint}-${size}`] = {
+      order: size,
+    };
   });
 
   // No need for a media query for the first size.
@@ -133,6 +149,27 @@ export const styles = (theme: Object) => ({
   'justify-xs-space-around': {
     justifyContent: 'space-around',
   },
+  'grow-xs-0': {
+    flexGrow: '0',
+  },
+  'shrink-xs-0': {
+    flexShrink: '0',
+  },
+  'basis-xs-fill': {
+    flexBasis: 'fill',
+  },
+  'basis-xs-max-content': {
+    flexBasis: 'max-content',
+  },
+  'basis-xs-min-content': {
+    flexBasis: 'min-content',
+  },
+  'basis-xs-fill-content': {
+    flexBasis: 'fill-content',
+  },
+  'basis-xs-content': {
+    flexBasis: 'content',
+  },
   ...generateGutter(theme, 'xs'),
   ...theme.breakpoints.keys.reduce((accumulator, key) => {
     // Use side effect over immutability for better performance.
@@ -206,6 +243,26 @@ export type Props = {
    */
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse',
   /**
+   * Defines the `flex-grow` style property.
+   * It's applied for all screen sizes.
+   */
+  grow?: GridSizes | 0,
+  /**
+   * Defines the `flex-shrink` style property.
+   * It's applied for all screen sizes.
+   */
+  shrink?: GridSizes | 0,
+  /**
+   * Defines the `flex-basis` style property.
+   * It's applied for all screen sizes.
+   */
+  basis?: GridSizes | 'fill' | 'max-content' | 'min-content' | 'fit-content' | 'auto',
+  /**
+   * Defines the `flex-order` style property.
+   * It's applied for all screen sizes.
+   */
+  order?: number,
+  /**
    * Defines the number of grids the component is going to use.
    * It's applied for all the screen sizes with the lowest priority.
    */
@@ -245,6 +302,10 @@ function Grid(props: DefaultProps & Props) {
     hidden,
     justify,
     wrap,
+    grow,
+    shrink,
+    basis,
+    order,
     xs,
     sm,
     md,
@@ -262,6 +323,10 @@ function Grid(props: DefaultProps & Props) {
       [classes[`wrap-xs-${String(wrap)}`]]: wrap !== Grid.defaultProps.wrap,
       [classes[`align-xs-${String(align)}`]]: align !== Grid.defaultProps.align,
       [classes[`justify-xs-${String(justify)}`]]: justify !== Grid.defaultProps.justify,
+      [classes[`grow-xs-${String(grow)}`]]: grow !== Grid.defaultProps.grow,
+      [classes[`shrink-xs-${String(shrink)}`]]: shrink !== Grid.defaultProps.shrink,
+      [classes[`basis-xs-${String(basis)}`]]: basis !== Grid.defaultProps.basis,
+      [classes[`order-xs-${String(order)}`]]: order !== Grid.defaultProps.order,
       [classes['grid-xs']]: xs === true,
       [classes[`grid-xs-${String(xs)}`]]: xs && xs !== true,
       [classes['grid-sm']]: sm === true,
@@ -298,6 +363,10 @@ Grid.defaultProps = {
   justify: 'flex-start',
   spacing: 16,
   wrap: 'wrap',
+  grow: 0,
+  shrink: 1,
+  basis: 'auto',
+  order: 0,
 };
 
 // Add a wrapper component to generate some helper messages in the development
@@ -311,10 +380,14 @@ if (process.env.NODE_ENV !== 'production') {
 
   GridWrapper.propTypes = {
     align: requireProp('container'),
+    basis: requireProp('item'),
     direction: requireProp('container'),
+    grow: requireProp('item'),
     justify: requireProp('container'),
     lg: requireProp('item'),
     md: requireProp('item'),
+    order: requireProp('item'),
+    shrink: requireProp('item'),
     sm: requireProp('item'),
     spacing: requireProp('container'),
     wrap: requireProp('container'),
