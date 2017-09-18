@@ -161,13 +161,10 @@ class Tabs extends React.Component<AllProps, State> {
     this.updateScrollButtonState();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.value !== nextProps.value) {
-      this.updateIndicatorState(nextProps);
-    }
-  }
-
   componentDidUpdate(prevProps, prevState) {
+    if (prevProps.value !== this.props.value) {
+      this.updateIndicatorState(this.props);
+    }
     this.updateScrollButtonState();
     if (
       this.props.width !== prevProps.width ||
