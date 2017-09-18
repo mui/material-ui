@@ -32,6 +32,9 @@ export const styles = (theme: Object) => ({
   popper: {
     zIndex: theme.zIndex.tooltip,
   },
+  popperClose: {
+    pointerEvents: 'none',
+  },
   tooltip: {
     background: grey[700],
     borderRadius: 2,
@@ -335,7 +338,7 @@ class Tooltip extends React.Component<AllProps, State> {
       onRequestOpen,
       title,
       placement,
-      PopperProps,
+      PopperProps: { PopperClassName, ...PopperOther } = {},
       ...other
     } = this.props;
 
@@ -381,7 +384,11 @@ class Tooltip extends React.Component<AllProps, State> {
             />
           )}
         </Target>
-        <Popper placement={placement} className={classes.popper} {...PopperProps}>
+        <Popper
+          placement={placement}
+          className={classNames(classes.popper, { [classes.popperClose]: !open }, PopperClassName)}
+          {...PopperOther}
+        >
           <div
             id={id}
             role="tooltip"
