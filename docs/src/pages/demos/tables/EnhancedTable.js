@@ -48,6 +48,7 @@ class EnhancedTableHead extends React.Component {
     onSelectAllClick: PropTypes.func.isRequired,
     order: PropTypes.string.isRequired,
     orderBy: PropTypes.string.isRequired,
+    rowCount: PropTypes.number.isRequired,
   };
 
   createSortHandler = property => event => {
@@ -55,15 +56,15 @@ class EnhancedTableHead extends React.Component {
   };
 
   render() {
-    const { onSelectAllClick, order, orderBy, numSelected } = this.props;
+    const { onSelectAllClick, order, orderBy, numSelected, rowCount } = this.props;
 
     return (
       <TableHead>
         <TableRow>
           <TableCell checkbox>
             <Checkbox
-              indeterminate={numSelected > 0 && numSelected < 5}
-              checked={numSelected === 5}
+              indeterminate={numSelected > 0 && numSelected < rowCount}
+              checked={numSelected === rowCount}
               onChange={onSelectAllClick}
             />
           </TableCell>
@@ -167,7 +168,7 @@ const footerStyles = theme => ({
     flex: '1 1 100%',
   },
   select: {
-    marginLeft: 8,
+    marginLeft: theme.spacing.unit,
     width: 34,
     textAlign: 'right',
     paddingRight: 22,
@@ -176,11 +177,11 @@ const footerStyles = theme => ({
     lineHeight: '32px',
   },
   selectRoot: {
-    marginRight: 32,
+    marginRight: theme.spacing.unit * 4,
   },
   actions: {
     color: theme.palette.text.secondary,
-    marginLeft: 20,
+    marginLeft: theme.spacing.unit * 2.5,
   },
   title: {
     flex: '0 0 auto',
@@ -216,9 +217,9 @@ let EnhancedTableFooter = props => {
               value={rowsPerPage}
               onChange={onChangeRowsPerPage}
             >
-              {rowsPerPageOptions.map(v => (
-                <MenuItem key={v} value={v}>
-                  {v}
+              {rowsPerPageOptions.map(rowsPerPageOption => (
+                <MenuItem key={rowsPerPageOption} value={rowsPerPageOption}>
+                  {rowsPerPageOption}
                 </MenuItem>
               ))}
             </Select>
@@ -372,6 +373,7 @@ class EnhancedTable extends React.Component {
             orderBy={orderBy}
             onSelectAllClick={this.handleSelectAllClick}
             onRequestSort={this.handleRequestSort}
+            rowCount={data.length}
           />
           <TableBody>
             {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(n => {
