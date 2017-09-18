@@ -60,7 +60,7 @@ const styles = theme => ({
         '& [class^=ds-dataset-]': {
           border: 0,
           borderRadius: 2,
-          background: theme.palette.background.default,
+          background: theme.palette.background.paper,
         },
       },
     },
