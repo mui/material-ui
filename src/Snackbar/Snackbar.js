@@ -32,6 +32,7 @@ export const styles = (theme: Object) => {
       right: 0,
       justifyContent: 'center',
       alignItems: 'center',
+      pointerEvents: 'none',
     },
     anchorTopCenter: {
       extend: [top],
