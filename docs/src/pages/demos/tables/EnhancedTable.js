@@ -9,6 +9,7 @@ import keycode from 'keycode';
 import Table, {
   TableBody,
   TableCell,
+  TableFooter,
   TableHead,
   TableRow,
   TableSortLabel,
@@ -18,7 +19,12 @@ import Typography from 'material-ui/Typography';
 import Paper from 'material-ui/Paper';
 import Checkbox from 'material-ui/Checkbox';
 import IconButton from 'material-ui/IconButton';
+import Select from 'material-ui/Select';
+import { MenuItem } from 'material-ui/Menu';
+import Input from 'material-ui/Input';
 import DeleteIcon from 'material-ui-icons/Delete';
+import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
+import ChevronRightIcon from 'material-ui-icons/ChevronRight';
 import FilterListIcon from 'material-ui-icons/FilterList';
 
 let counter = 0;
@@ -148,6 +154,112 @@ EnhancedTableToolbar.propTypes = {
 
 EnhancedTableToolbar = withStyles(toolbarStyles)(EnhancedTableToolbar);
 
+const footerStyles = theme => ({
+  cell: {
+    padding: '0 !important',
+  },
+  toolbar: {
+    height: 56,
+    minHeight: 56,
+    paddingRight: 2,
+  },
+  spacer: {
+    flex: '1 1 100%',
+  },
+  select: {
+    marginLeft: 8,
+    width: 34,
+    textAlign: 'right',
+    paddingRight: 22,
+    color: theme.palette.text.secondary,
+    height: 32,
+    lineHeight: '32px',
+  },
+  selectRoot: {
+    marginRight: 32,
+  },
+  actions: {
+    color: theme.palette.text.secondary,
+    marginLeft: 20
+  },
+  title: {
+    flex: '0 0 auto',
+  },
+});
+
+let EnhancedTableFooter = props => {
+  const {
+    rowsPerPage,
+    rowsPerPageOptions,
+    count,
+    page,
+    onChangePage,
+    onChangeRowsPerPage,
+    classes,
+  } = props;
+
+  return (
+    <TableFooter>
+      <TableRow>
+        <TableCell
+          className={classes.cell}
+          colSpan={9001} // col-span over everything
+        >
+          <Toolbar className={classes.toolbar}>
+            <div className={classes.spacer} />
+            <div>
+              <Typography type="caption">Rows per page:</Typography>
+            </div>
+            <Select
+              classes={{ root: classes.selectRoot, select: classes.select, }}
+              input={<Input disableUnderline />}
+              value={rowsPerPage}
+              onChange={onChangeRowsPerPage}
+            >
+              {rowsPerPageOptions.map((v) => <MenuItem key={v} value={v}>{v}</MenuItem>)}
+            </Select>
+            <div>
+              <Typography type="caption">{page * rowsPerPage + 1}-{Math.min(count, (page + 1) * rowsPerPage)} of {count}</Typography>
+            </div>
+            <div className={classes.actions}>
+              <IconButton
+                aria-label="Previous page"
+                onClick={() => onChangePage(page - 1)}
+                disabled={page === 0}
+              >
+                <ChevronLeftIcon />
+              </IconButton>
+              <IconButton
+                aria-label="Next page"
+                onClick={() => onChangePage(page + 1)}
+                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+              >
+                <ChevronRightIcon />
+              </IconButton>
+            </div>
+          </Toolbar>
+        </TableCell>
+      </TableRow>
+    </TableFooter>
+  );
+};
+
+EnhancedTableFooter.propTypes = {
+  classes: PropTypes.object.isRequired,
+  count: PropTypes.number.isRequired,
+  rowsPerPage: PropTypes.number.isRequired,
+  rowsPerPageOptions: PropTypes.arrayOf(PropTypes.number),
+  onChangeRowsPerPage: PropTypes.func.isRequired,
+  page: PropTypes.number.isRequired,
+  onChangePage: PropTypes.func.isRequired,
+};
+
+EnhancedTableFooter.defaultProps = {
+  rowsPerPageOptions: [5, 10, 25],
+};
+
+EnhancedTableFooter = withStyles(footerStyles)(EnhancedTableFooter);
+
 const styles = theme => ({
   paper: {
     width: '100%',
@@ -162,12 +274,22 @@ class EnhancedTable extends React.Component {
     orderBy: 'calories',
     selected: [],
     data: [
-      createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-      createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-      createData('Eclair', 262, 16.0, 24, 6.0),
       createData('Cupcake', 305, 3.7, 67, 4.3),
+      createData('Donut', 452, 25.0, 51, 4.9),
+      createData('Eclair', 262, 16.0, 24, 6.0),
+      createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
       createData('Gingerbread', 356, 16.0, 49, 3.9),
+      createData('Honeycomb', 408, 3.2, 87, 6.5),
+      createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+      createData('Jelly Bean', 375, 0.0, 94, 0.0),
+      createData('KitKat', 518, 26.0, 65, 7.0),
+      createData('Lollipop', 392, 0.2, 98, 0.0),
+      createData('Marshmallow', 318, 0, 81, 2.0),
+      createData('Nougat', 360, 19.0, 9, 37.0),
+      createData('Oreo', 437, 18.0, 63, 4.0),
     ],
+    page: 0,
+    rowsPerPage: 5,
   };
 
   handleRequestSort = (event, property) => {
@@ -220,11 +342,19 @@ class EnhancedTable extends React.Component {
     this.setState({ selected: newSelected });
   };
 
+  handleChangePage = (page) => {
+    this.setState({ page })
+  };
+
+  handleChangeRowsPerPage = (e) => {
+    this.setState({ rowsPerPage: e.target.value })
+  };
+
   isSelected = id => this.state.selected.indexOf(id) !== -1;
 
   render() {
     const classes = this.props.classes;
-    const { data, order, orderBy, selected } = this.state;
+    const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
 
     return (
       <Paper className={classes.paper}>
@@ -238,7 +368,7 @@ class EnhancedTable extends React.Component {
             onRequestSort={this.handleRequestSort}
           />
           <TableBody>
-            {data.map(n => {
+            {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(n => {
               const isSelected = this.isSelected(n.id);
               return (
                 <TableRow
@@ -263,6 +393,13 @@ class EnhancedTable extends React.Component {
               );
             })}
           </TableBody>
+          <EnhancedTableFooter
+            count={data.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onChangePage={this.handleChangePage}
+            onChangeRowsPerPage={this.handleChangeRowsPerPage}
+          />
         </Table>
       </Paper>
     );
