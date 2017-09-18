@@ -6,7 +6,7 @@ export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   onRequestClose?: (event: React.ChangeEvent<{}>) => void;
   onRequestOpen?: (event: React.ChangeEvent<{}>) => void;
   open?: boolean;
-  place?:
+  placement?:
     | 'bottom-end'
     | 'bottom-start'
     | 'bottom'
