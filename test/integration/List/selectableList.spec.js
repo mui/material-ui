@@ -36,14 +36,14 @@ describe('makeSelectable', () => {
       key={1}
       value={{
         id: 1,
-        name: "Brendan Lim"
+        name: 'Brendan Lim',
       }}
       primaryText="Brendan Lim"
       nestedItems={[
         <ListItem
           value={{
             id: 2,
-            name: "Grace Ng"
+            name: 'Grace Ng',
           }}
           primaryText="Grace Ng"
         />,
@@ -53,7 +53,7 @@ describe('makeSelectable', () => {
       key={3}
       value={{
         id: 3,
-        name: "Kerem Suer"
+        name: 'Kerem Suer',
       }}
       primaryText="Kerem Suer"
     />,
