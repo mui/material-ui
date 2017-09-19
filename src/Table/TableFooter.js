@@ -64,19 +64,14 @@ class TableFooter extends React.Component<AllProps, void> {
       component: ComponentProp,
       ...other
     } = this.props;
-    const className = classNames(classes.root, classNameProp);
 
     return (
-      <ComponentProp className={className} {...other}>
+      <ComponentProp className={classNames(classes.root, classNameProp)} {...other}>
         {children}
       </ComponentProp>
     );
   }
 }
-
-TableFooter.contextTypes = {
-  table: PropTypes.object,
-};
 
 TableFooter.childContextTypes = {
   table: PropTypes.object,

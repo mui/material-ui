@@ -234,12 +234,12 @@ class EnhancedTable extends React.Component {
     this.setState({ selected: newSelected });
   };
 
-  handleChangePage = (e, page) => {
+  handleChangePage = (event, page) => {
     this.setState({ page });
   };
 
-  handleChangeRowsPerPage = e => {
-    this.setState({ rowsPerPage: e.target.value });
+  handleChangeRowsPerPage = event => {
+    this.setState({ rowsPerPage: event.target.value });
   };
 
   isSelected = id => this.state.selected.indexOf(id) !== -1;

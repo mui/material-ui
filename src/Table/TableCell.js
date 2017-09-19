@@ -123,7 +123,7 @@ TableCell.defaultProps = {
 };
 
 TableCell.contextTypes = {
-  table: PropTypes.object,
+  table: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { name: 'MuiTableCell' })(TableCell);

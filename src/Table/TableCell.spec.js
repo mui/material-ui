@@ -10,7 +10,12 @@ describe('<TableCell />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    shallow = createShallow({
+      dive: true,
+      context: {
+        table: { footer: true },
+      },
+    });
     classes = getClasses(<TableCell />);
   });
 
@@ -22,7 +27,7 @@ describe('<TableCell />', () => {
   it('should spread custom props on the root node', () => {
     const wrapper = shallow(<TableCell data-my-prop="woofTableCell" />);
     assert.strictEqual(
-      wrapper.prop('data-my-prop'),
+      wrapper.props()['data-my-prop'],
       'woofTableCell',
       'custom prop should be woofTableCell',
     );

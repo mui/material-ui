@@ -75,10 +75,6 @@ class TableHead extends React.Component<AllProps, void> {
   }
 }
 
-TableHead.contextTypes = {
-  table: PropTypes.object,
-};
-
 TableHead.childContextTypes = {
   table: PropTypes.object,
 };

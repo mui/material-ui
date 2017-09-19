@@ -16,7 +16,10 @@ import KeyboardArrowRight from '../svg-icons/KeyboardArrowRight';
 
 export const styles = (theme: Object) => ({
   cell: {
-    padding: '0 !important',
+    // Increase the specificity to override TableCell.
+    '&:last-child': {
+      padding: '0',
+    },
   },
   toolbar: {
     height: 56,
@@ -85,22 +88,20 @@ function TablePagination(props) {
               </MenuItem>
             ))}
           </Select>
-          <div>
-            <Typography type="caption">
-              {labelDisplayedRows({
-                from: page * rowsPerPage + 1,
-                to: Math.min(count, (page + 1) * rowsPerPage),
-                count,
-                page,
-              })}
-            </Typography>
-          </div>
+          <Typography type="caption">
+            {labelDisplayedRows({
+              from: page * rowsPerPage + 1,
+              to: Math.min(count, (page + 1) * rowsPerPage),
+              count,
+              page,
+            })}
+          </Typography>
           <div className={classes.actions}>
-            <IconButton onClick={e => onChangePage(e, page - 1)} disabled={page === 0}>
+            <IconButton onClick={event => onChangePage(event, page - 1)} disabled={page === 0}>
               <KeyboardArrowLeft />
             </IconButton>
             <IconButton
-              onClick={e => onChangePage(e, page + 1)}
+              onClick={event => onChangePage(event, page + 1)}
               disabled={page >= Math.ceil(count / rowsPerPage) - 1}
             >
               <KeyboardArrowRight />
@@ -164,4 +165,4 @@ TablePagination.defaultProps = {
   rowsPerPageOptions: [5, 10, 25],
 };
 
-export default withStyles(styles, { name: 'TablePagination' })(TablePagination);
+export default withStyles(styles, { name: 'MuiTablePagination' })(TablePagination);
