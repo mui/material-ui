@@ -10,6 +10,7 @@ export type SnackbarProps = {
   action?: React.ReactElement<any> | React.ReactElement<any>[];
   anchorOrigin?: Origin;
   autoHideDuration?: number;
+  resumeHideDuration?: number;
   enterTransitionDuration?: number;
   key?: number;
   leaveTransitionDuration?: number;
