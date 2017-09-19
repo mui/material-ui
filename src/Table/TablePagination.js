@@ -73,9 +73,7 @@ function TablePagination(props) {
       >
         <Toolbar className={classes.toolbar}>
           <div className={classes.spacer} />
-          <div>
-            <Typography type="caption">{labelRowsPerPage}</Typography>
-          </div>
+          <Typography type="caption">{labelRowsPerPage}</Typography>
           <Select
             classes={{ root: classes.selectRoot, select: classes.select }}
             input={<Input disableUnderline />}
