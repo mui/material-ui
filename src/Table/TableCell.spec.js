@@ -60,6 +60,14 @@ describe('<TableCell />', () => {
     assert.strictEqual(wrapper.hasClass(classes.head), true, 'should have the head class');
   });
 
+  it('should render a th with the footer class when in the context of a table footer', () => {
+    const wrapper = shallow(<TableCell />);
+    wrapper.setContext({ ...wrapper.options.context, table: { footer: true } });
+    assert.strictEqual(wrapper.name(), 'td');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.footer), true, 'should have the footer class');
+  });
+
   it('should render a div when custom component prop is used', () => {
     const wrapper = shallow(<TableCell component="div" />);
     assert.strictEqual(wrapper.name(), 'div', 'should be a div element');

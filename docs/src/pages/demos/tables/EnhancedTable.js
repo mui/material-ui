@@ -11,6 +11,7 @@ import Table, {
   TableCell,
   TableFooter,
   TableHead,
+  TablePagination,
   TableRow,
   TableSortLabel,
 } from 'material-ui/Table';
@@ -19,12 +20,7 @@ import Typography from 'material-ui/Typography';
 import Paper from 'material-ui/Paper';
 import Checkbox from 'material-ui/Checkbox';
 import IconButton from 'material-ui/IconButton';
-import Select from 'material-ui/Select';
-import { MenuItem } from 'material-ui/Menu';
-import Input from 'material-ui/Input';
 import DeleteIcon from 'material-ui-icons/Delete';
-import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
-import ChevronRightIcon from 'material-ui-icons/ChevronRight';
 import FilterListIcon from 'material-ui-icons/FilterList';
 
 let counter = 0;
@@ -155,118 +151,6 @@ EnhancedTableToolbar.propTypes = {
 
 EnhancedTableToolbar = withStyles(toolbarStyles)(EnhancedTableToolbar);
 
-const footerStyles = theme => ({
-  cell: {
-    padding: '0 !important',
-  },
-  toolbar: {
-    height: 56,
-    minHeight: 56,
-    paddingRight: 2,
-  },
-  spacer: {
-    flex: '1 1 100%',
-  },
-  select: {
-    marginLeft: theme.spacing.unit,
-    width: 34,
-    textAlign: 'right',
-    paddingRight: 22,
-    color: theme.palette.text.secondary,
-    height: 32,
-    lineHeight: '32px',
-  },
-  selectRoot: {
-    marginRight: theme.spacing.unit * 4,
-  },
-  actions: {
-    color: theme.palette.text.secondary,
-    marginLeft: theme.spacing.unit * 2.5,
-  },
-  title: {
-    flex: '0 0 auto',
-  },
-});
-
-let EnhancedTableFooter = props => {
-  const {
-    rowsPerPage,
-    rowsPerPageOptions,
-    count,
-    page,
-    onChangePage,
-    onChangeRowsPerPage,
-    classes,
-  } = props;
-
-  return (
-    <TableFooter>
-      <TableRow>
-        <TableCell
-          className={classes.cell}
-          colSpan={9001} // col-span over everything
-        >
-          <Toolbar className={classes.toolbar}>
-            <div className={classes.spacer} />
-            <div>
-              <Typography type="caption">Rows per page:</Typography>
-            </div>
-            <Select
-              classes={{ root: classes.selectRoot, select: classes.select }}
-              input={<Input disableUnderline />}
-              value={rowsPerPage}
-              onChange={onChangeRowsPerPage}
-            >
-              {rowsPerPageOptions.map(rowsPerPageOption => (
-                <MenuItem key={rowsPerPageOption} value={rowsPerPageOption}>
-                  {rowsPerPageOption}
-                </MenuItem>
-              ))}
-            </Select>
-            <div>
-              <Typography type="caption">
-                {page * rowsPerPage + 1}-{Math.min(count, (page + 1) * rowsPerPage)} of {count}
-              </Typography>
-            </div>
-            <div className={classes.actions}>
-              <IconButton
-                aria-label="Previous page"
-                onClick={() => onChangePage(page - 1)}
-                disabled={page === 0}
-              >
-                <ChevronLeftIcon />
-              </IconButton>
-              <IconButton
-                aria-label="Next page"
-                onClick={() => onChangePage(page + 1)}
-                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-              >
-                <ChevronRightIcon />
-              </IconButton>
-            </div>
-          </Toolbar>
-        </TableCell>
-      </TableRow>
-    </TableFooter>
-  );
-};
-
-EnhancedTableFooter.propTypes = {
-  classes: PropTypes.object.isRequired,
-  count: PropTypes.number.isRequired,
-  onChangePage: PropTypes.func.isRequired,
-  onChangeRowsPerPage: PropTypes.func.isRequired,
-  page: PropTypes.number.isRequired,
-  rowsPerPage: PropTypes.number.isRequired,
-  rowsPerPageOptions: PropTypes.arrayOf(PropTypes.number),
-};
-
-EnhancedTableFooter.defaultProps = {
-  rowsPerPageOptions: [5, 10, 25],
-};
-
-EnhancedTableFooter = withStyles(footerStyles)(EnhancedTableFooter);
-
 const styles = theme => ({
   paper: {
     width: '100%',
@@ -307,9 +191,10 @@ class EnhancedTable extends React.Component {
       order = 'asc';
     }
 
-    const data = this.state.data.sort(
-      (a, b) => (order === 'desc' ? (b[orderBy] > a[orderBy] ? -1 : 1) : (a[orderBy] > b[orderBy] ? -1 : 1)),
-    );
+    const data =
+      order === 'desc'
+        ? this.state.data.sort((a, b) => (b[orderBy] < a[orderBy] ? -1 : 1))
+        : this.state.data.sort((a, b) => (a[orderBy] < b[orderBy] ? -1 : 1));
 
     this.setState({ data, order, orderBy });
   };
@@ -349,7 +234,7 @@ class EnhancedTable extends React.Component {
     this.setState({ selected: newSelected });
   };
 
-  handleChangePage = page => {
+  handleChangePage = (e, page) => {
     this.setState({ page });
   };
 
@@ -401,13 +286,15 @@ class EnhancedTable extends React.Component {
               );
             })}
           </TableBody>
-          <EnhancedTableFooter
-            count={data.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onChangePage={this.handleChangePage}
-            onChangeRowsPerPage={this.handleChangeRowsPerPage}
-          />
+          <TableFooter>
+            <TablePagination
+              count={data.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onChangePage={this.handleChangePage}
+              onChangeRowsPerPage={this.handleChangeRowsPerPage}
+            />
+          </TableFooter>
         </Table>
       </Paper>
     );
