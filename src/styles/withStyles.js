@@ -251,7 +251,7 @@ function withStyles(stylesOrCreator: Object, options?: Options = {}) {
                     `provided to the classes property is not implemented in ${getDisplayName(
                       BaseComponent,
                     )}.`,
-                  `You can only overrides one of the following: ${Object.keys(renderedClasses).join(
+                  `You can only override one of the following: ${Object.keys(renderedClasses).join(
                     ',',
                   )}`,
                 ].join('\n'),
