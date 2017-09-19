@@ -176,7 +176,7 @@
   "size-limit": [
     {
       "path": "build/index.js",
-      "limit": "90 KB"
+      "limit": "91 KB"
     }
   ],
   "nyc": {
