@@ -12,6 +12,7 @@ export const styles = (theme: Object) => {
   const height = 32;
   const backgroundColor = emphasize(theme.palette.background.default, 0.12);
   const deleteIconColor = fade(theme.palette.text.primary, 0.26);
+
   return {
     root: {
       fontFamily: theme.typography.fontFamily,
@@ -33,6 +34,8 @@ export const styles = (theme: Object) => {
       padding: 0, // Remove `button` padding
     },
     clickable: {
+      // Remove grey highlight
+      WebkitTapHighlightColor: theme.palette.common.transparent,
       cursor: 'pointer',
       '&:hover, &:focus': {
         backgroundColor: emphasize(backgroundColor, 0.08),
@@ -67,6 +70,8 @@ export const styles = (theme: Object) => {
       cursor: 'inherit',
     },
     deleteIcon: {
+      // Remove grey highlight
+      WebkitTapHighlightColor: theme.palette.common.transparent,
       color: deleteIconColor,
       cursor: 'pointer',
       height: 'auto',
