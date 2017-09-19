@@ -31,6 +31,34 @@ describe('makeSelectable', () => {
     />,
   ];
 
+  const testChildrenWithObjectAsValue = [
+    <ListItem
+      key={1}
+      value={{
+        id: 1,
+        name: 'Brendan Lim',
+      }}
+      primaryText="Brendan Lim"
+      nestedItems={[
+        <ListItem
+          value={{
+            id: 2,
+            name: 'Grace Ng',
+          }}
+          primaryText="Grace Ng"
+        />,
+      ]}
+    />,
+    <ListItem
+      key={3}
+      value={{
+        id: 3,
+        name: 'Kerem Suer',
+      }}
+      primaryText="Kerem Suer"
+    />,
+  ];
+
   it('should display the children', () => {
     const SelectableList = makeSelectable(List);
 
@@ -53,6 +81,23 @@ describe('makeSelectable', () => {
     const render = TestUtils.renderIntoDocument(
       <SelectableList value={2}>
         {testChildren}
+      </SelectableList>
+    );
+
+    const nodeTree = TestUtils.scryRenderedDOMComponentsWithTag(render, 'div');
+    assert.equal(
+      nodeTree[0].firstChild.lastChild.querySelector('span').style.backgroundColor,
+      'rgba(0, 0, 0, 0.2)',
+      'Change the backgroundColor of the selected item'
+    );
+  });
+
+  it('should select the right item has object value', () => {
+    const SelectableList = injectTheme(makeSelectable(List));
+
+    const render = TestUtils.renderIntoDocument(
+      <SelectableList value={{id: 2, name: 'Grace Ng'}}>
+        {testChildrenWithObjectAsValue}
       </SelectableList>
     );
 
