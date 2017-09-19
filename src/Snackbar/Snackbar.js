@@ -103,6 +103,9 @@ export type Props = {
   autoHideDuration?: number,
   /**
    * The number of milliseconds to wait before dismissing after user interaction.
+   * If `autoHideDuration` property isn't specified, it does nothing.
+   * If `autoHideDuration` property is specified but `resumeHideDuration` isn't,
+   * we default to `autoHideDuration / 2` ms.
    */
   resumeHideDuration?: number,
   /**
