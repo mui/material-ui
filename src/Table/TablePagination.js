@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Node } from 'react';
 import withStyles from '../styles/withStyles';
 import IconButton from '../IconButton';
 import Input from '../Input';
@@ -47,120 +47,155 @@ export const styles = (theme: Object) => ({
   },
 });
 
-/**
- * A `TableRow` based component for placing inside `TableFooter` for pagination.
- */
-function TablePagination(props) {
-  const {
-    classes,
-    className,
-    count,
-    labelDisplayedRows,
-    labelRowsPerPage,
-    onChangePage,
-    onChangeRowsPerPage,
-    page,
-    rowsPerPage,
-    rowsPerPageOptions,
-    ...other
-  } = props;
+type LabelDisplayedRowsArgs = {
+  from: number,
+  to: number,
+  count: number,
+  page: number,
+};
 
-  return (
-    <TableRow className={className} {...other}>
-      <TableCell
-        className={classes.cell}
-        colSpan={9001} // col-span over everything
-      >
-        <Toolbar className={classes.toolbar}>
-          <div className={classes.spacer} />
-          <Typography type="caption">{labelRowsPerPage}</Typography>
-          <Select
-            classes={{ root: classes.selectRoot, select: classes.select }}
-            input={<Input disableUnderline />}
-            value={rowsPerPage}
-            onChange={onChangeRowsPerPage}
-          >
-            {rowsPerPageOptions.map(rowsPerPageOption => (
-              <MenuItem key={rowsPerPageOption} value={rowsPerPageOption}>
-                {rowsPerPageOption}
-              </MenuItem>
-            ))}
-          </Select>
-          <Typography type="caption">
-            {labelDisplayedRows({
-              from: page * rowsPerPage + 1,
-              to: Math.min(count, (page + 1) * rowsPerPage),
-              count,
-              page,
-            })}
-          </Typography>
-          <div className={classes.actions}>
-            <IconButton onClick={event => onChangePage(event, page - 1)} disabled={page === 0}>
-              <KeyboardArrowLeft />
-            </IconButton>
-            <IconButton
-              onClick={event => onChangePage(event, page + 1)}
-              disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-            >
-              <KeyboardArrowRight />
-            </IconButton>
-          </div>
-        </Toolbar>
-      </TableCell>
-    </TableRow>
-  );
-}
+type DefaultProps = {
+  classes: Object,
+  labelRowsPerPage: string,
+  labelDisplayedRows: (paginationInfo: LabelDisplayedRowsArgs) => string,
+  rowsPerPageOptions: number[],
+};
 
-TablePagination.propTypes = {
+export type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: PropTypes.object.isRequired,
+  classes?: Object,
   /**
    * @ignore
    */
-  className: PropTypes.string,
+  className?: string,
   /**
    * The total number of rows.
    */
-  count: PropTypes.number.isRequired,
+  count: number,
   /**
    * Useful to customize the displayed rows label.
    */
-  labelDisplayedRows: PropTypes.func,
+  labelDisplayedRows?: (paginationInfo: LabelDisplayedRowsArgs) => Node,
   /**
    * Useful to customize the rows per page label. Invoked with a `{ from, to, count, page }`
    * object.
    */
-  labelRowsPerPage: PropTypes.node,
+  labelRowsPerPage?: Node,
   /**
    * Callback fired when the page is changed. Invoked with two arguments: the event and the
    * page to show.
    */
-  onChangePage: PropTypes.func.isRequired,
+  onChangePage: (event: SyntheticInputEvent<> | null, page: number) => void,
   /**
    * Callback fired when the number of rows per page is changed. Invoked with two arguments: the
    * event.
    */
-  onChangeRowsPerPage: PropTypes.func.isRequired,
+  onChangeRowsPerPage: (event: SyntheticInputEvent<>) => void,
   /**
    * The zero-based index of the current page.
    */
-  page: PropTypes.number.isRequired,
+  page: number,
   /**
    * The number of rows per page.
    */
-  rowsPerPage: PropTypes.number.isRequired,
+  rowsPerPage: number,
   /**
    * Customizes the options of the rows per page select field.
    */
-  rowsPerPageOptions: PropTypes.arrayOf(PropTypes.number),
+  rowsPerPageOptions?: number[],
 };
 
-TablePagination.defaultProps = {
-  labelRowsPerPage: 'Rows per page:',
-  labelDisplayedRows: ({ from, to, count }) => `${from}-${to} of ${count}`,
-  rowsPerPageOptions: [5, 10, 25],
-};
+type AllProps = DefaultProps & Props;
+
+/**
+ * A `TableRow` based component for placing inside `TableFooter` for pagination.
+ */
+class TablePagination extends React.Component<AllProps, void> {
+  props: AllProps;
+
+  static defaultProps = {
+    labelRowsPerPage: 'Rows per page:',
+    labelDisplayedRows: ({ from, to, count }) => `${from}-${to} of ${count}`,
+    rowsPerPageOptions: [5, 10, 25],
+  };
+
+  componentWillReceiveProps({ count, onChangePage, rowsPerPage }) {
+    const newLastPage = Math.ceil(count / rowsPerPage) - 1;
+    if (this.props.page > newLastPage) {
+      onChangePage(null, newLastPage);
+    }
+  }
+
+  handleBackButtonClick = event => {
+    this.props.onChangePage(event, this.props.page - 1);
+  };
+
+  handleNextButtonClick = event => {
+    this.props.onChangePage(event, this.props.page + 1);
+  };
+
+  render() {
+    const {
+      classes,
+      className,
+      count,
+      labelDisplayedRows,
+      labelRowsPerPage,
+      onChangePage,
+      onChangeRowsPerPage,
+      page,
+      rowsPerPage,
+      rowsPerPageOptions,
+      ...other
+    } = this.props;
+
+    return (
+      <TableRow className={className} {...other}>
+        <TableCell
+          className={classes.cell}
+          colSpan={9001} // col-span over everything
+        >
+          <Toolbar className={classes.toolbar}>
+            <div className={classes.spacer} />
+            <Typography type="caption">{labelRowsPerPage}</Typography>
+            <Select
+              classes={{ root: classes.selectRoot, select: classes.select }}
+              input={<Input disableUnderline />}
+              value={rowsPerPage}
+              onChange={onChangeRowsPerPage}
+            >
+              {rowsPerPageOptions.map(rowsPerPageOption => (
+                <MenuItem key={rowsPerPageOption} value={rowsPerPageOption}>
+                  {rowsPerPageOption}
+                </MenuItem>
+              ))}
+            </Select>
+            <Typography type="caption">
+              {labelDisplayedRows({
+                from: page * rowsPerPage + 1,
+                to: Math.min(count, (page + 1) * rowsPerPage),
+                count,
+                page,
+              })}
+            </Typography>
+            <div className={classes.actions}>
+              <IconButton onClick={this.handleBackButtonClick} disabled={page === 0}>
+                <KeyboardArrowLeft />
+              </IconButton>
+              <IconButton
+                onClick={this.handleNextButtonClick}
+                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+              >
+                <KeyboardArrowRight />
+              </IconButton>
+            </div>
+          </Toolbar>
+        </TableCell>
+      </TableRow>
+    );
+  }
+}
 
 export default withStyles(styles, { name: 'MuiTablePagination' })(TablePagination);

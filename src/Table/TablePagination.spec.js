@@ -98,5 +98,120 @@ describe('<TablePagination />', () => {
       );
       assert.strictEqual(wrapper.html().includes('Zeilen pro Seite:'), true);
     });
+
+    it('should disable the back button on the first page', () => {
+      const wrapper = mount(
+        <table>
+          <TableFooter>
+            <TablePagination
+              count={6}
+              page={0}
+              onChangePage={noop}
+              onChangeRowsPerPage={noop}
+              rowsPerPage={5}
+            />
+          </TableFooter>
+        </table>,
+      );
+
+      const backButton = wrapper.find('withStyles(IconButton)').at(0);
+      const nextButton = wrapper.find('withStyles(IconButton)').at(1);
+      assert.strictEqual(backButton.props().disabled, true);
+      assert.strictEqual(nextButton.props().disabled, false);
+    });
+
+    it('should disable the next button on the last page', () => {
+      const wrapper = mount(
+        <table>
+          <TableFooter>
+            <TablePagination
+              count={6}
+              page={1}
+              onChangePage={noop}
+              onChangeRowsPerPage={noop}
+              rowsPerPage={5}
+            />
+          </TableFooter>
+        </table>,
+      );
+
+      const backButton = wrapper.find('withStyles(IconButton)').at(0);
+      const nextButton = wrapper.find('withStyles(IconButton)').at(1);
+      assert.strictEqual(backButton.props().disabled, false);
+      assert.strictEqual(nextButton.props().disabled, true);
+    });
+
+    it('should handle next button clicks properly', () => {
+      let page = 1;
+      const wrapper = mount(
+        <table>
+          <TableFooter>
+            <TablePagination
+              count={15}
+              page={page}
+              onChangePage={(event, nextPage) => {
+                page = nextPage;
+              }}
+              onChangeRowsPerPage={noop}
+              rowsPerPage={5}
+            />
+          </TableFooter>
+        </table>,
+      );
+
+      const nextButton = wrapper.find('withStyles(IconButton)').at(1);
+      nextButton.simulate('click');
+      assert.strictEqual(page, 2);
+    });
+
+    it('should handle back button clicks properly', () => {
+      let page = 1;
+      const wrapper = mount(
+        <table>
+          <TableFooter>
+            <TablePagination
+              count={15}
+              page={page}
+              onChangePage={(event, nextPage) => {
+                page = nextPage;
+              }}
+              onChangeRowsPerPage={noop}
+              rowsPerPage={5}
+            />
+          </TableFooter>
+        </table>,
+      );
+
+      const nextButton = wrapper.find('withStyles(IconButton)').at(0);
+      nextButton.simulate('click');
+      assert.strictEqual(page, 0);
+    });
+
+    it('should handle too high pages after changing rowsPerPage', () => {
+      let page = 2;
+      function ExampleTable(props) {
+        // setProps only works on the mounted root element, so wrap the table
+        return (
+          <table>
+            <TableFooter>
+              <TablePagination
+                count={11}
+                page={page}
+                onChangePage={(event, nextPage) => {
+                  page = nextPage;
+                }}
+                onChangeRowsPerPage={noop}
+                {...props}
+              />
+            </TableFooter>
+          </table>
+        );
+      }
+
+      const wrapper = mount(<ExampleTable rowsPerPage={5} />);
+      wrapper.setProps({ rowsPerPage: 10 });
+      // now, the third page doesn't exist anymore
+      assert.strictEqual(page, 1);
+    });
   });
 });
