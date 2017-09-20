@@ -288,7 +288,6 @@ class EnhancedButton extends Component {
       fontWeight: 'inherit',
       position: 'relative', // This is needed so that ripples do not bleed past border radius.
       verticalAlign: href ? 'middle' : null,
-      zIndex: 1, // This is also needed so that (onTouch) ripples do not bleed past border radius.
     }, style);
 
 
