@@ -4,7 +4,7 @@ import { StyledComponent } from '..';
 export interface GridListProps {
   cellHeight?: number | 'auto';
   cols?: number;
-  component?: React.ReactElement<any> | string;
+  component?: React.ReactType;
   spacing?: number;
 }
 

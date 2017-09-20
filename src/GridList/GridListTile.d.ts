@@ -3,7 +3,7 @@ import { StyledComponent } from '..';
 
 export interface GridListTileProps {
   cols?: number;
-  component?: React.ReactElement<any> | string;
+  component?: React.ReactType;
   row?: number;
 }
 

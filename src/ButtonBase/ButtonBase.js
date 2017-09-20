@@ -1,7 +1,7 @@
 // @flow weak
 
 import React from 'react';
-import type { ComponentType, Node } from 'react';
+import type { ElementType, Node } from 'react';
 import { findDOMNode } from 'react-dom';
 import classNames from 'classnames';
 import keycode from 'keycode';
@@ -60,7 +60,7 @@ export type Props = {
    * Either a string to use a DOM element or a component.
    * The default value is a `button`.
    */
-  component?: string | ComponentType<*>,
+  component?: ElementType,
   /**
    * If `true`, the base button will be disabled.
    */
