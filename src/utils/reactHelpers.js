@@ -1,9 +1,10 @@
 // @flow
 /* eslint-disable import/prefer-default-export */
 
-import { cloneElement, Children, isValidElement, type ChildrenArray } from 'react';
+import { cloneElement, Children, isValidElement } from 'react';
+import type { ChildrenArray } from 'react';
 
-export function cloneChildrenWithClassName(children: ChildrenArray<*>, className: string) {
+export function cloneChildrenWithClassName(children?: ChildrenArray<*>, className: string) {
   return Children.map(children, child => {
     return (
       isValidElement(child) &&
