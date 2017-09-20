@@ -205,6 +205,7 @@ class TouchRipple extends Component {
         left: 0,
         overflow: 'hidden',
         pointerEvents: 'none',
+        zIndex: 1, // This is also needed so that ripples do not bleed past a parent border radius.
       }, style);
 
       rippleGroup = (
