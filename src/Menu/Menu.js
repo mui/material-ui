@@ -132,6 +132,10 @@ class Menu extends Component {
     /**
      * Override the inline-styles of selected menu items.
      */
+    onScroll: PropTypes.func,
+    /**
+     * Add funciton scroll event
+     */
     selectedMenuItemStyle: PropTypes.object,
     /**
      * Override the inline-styles of the root element.
@@ -531,6 +535,7 @@ class Menu extends Component {
       selectedMenuItemStyle, // eslint-disable-line no-unused-vars
       menuItemStyle, // eslint-disable-line no-unused-vars
       style,
+      onScroll, // eslint-disable-line no-unused-vars
       value, // eslint-disable-line no-unused-vars
       valueLink, // eslint-disable-line no-unused-vars
       width, // eslint-disable-line no-unused-vars
@@ -578,6 +583,7 @@ class Menu extends Component {
           style={prepareStyles(mergedRootStyles)}
           ref="scrollContainer"
           role="presentation"
+          onScroll={this.props.onScroll ? this.props.onScroll : null}
         >
           <List
             {...other}

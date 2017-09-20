@@ -103,6 +103,10 @@ class AutoComplete extends Component {
     /**
      * Override style for list.
      */
+    isMobile: PropTypes.bool,
+    /**
+     * If true the mode is mobile and when scroll the keyboard closed.
+     */
     listStyle: PropTypes.object,
     /**
      * The max number of search results to be shown.
@@ -189,6 +193,7 @@ class AutoComplete extends Component {
       value: 'value',
     },
     disableFocusRipple: true,
+    isMobile: false,
     filter: (searchText, key) => searchText !== '' && key.indexOf(searchText) !== -1,
     fullWidth: false,
     open: false,
@@ -210,6 +215,7 @@ class AutoComplete extends Component {
     anchorEl: null,
     focusTextField: true,
     open: false,
+    isScroll: false,
     searchText: undefined,
   };
 
@@ -356,9 +362,17 @@ class AutoComplete extends Component {
   };
 
   handleBlur = (event) => {
+    const {isMobile} = this.props;
     if (this.state.focusTextField && this.timerTouchTapCloseId === null) {
       this.timerBlurClose = setTimeout(() => {
-        this.close();
+        if (isMobile) {
+          if (!this.state.isScroll) {
+            this.close();
+          }
+          this.setState({isScroll: false});
+        } else {
+          this.close();
+        }
       }, 0);
     }
 
@@ -366,8 +380,19 @@ class AutoComplete extends Component {
       this.props.onBlur(event);
     }
   };
-
+  handleOnScroll = () => {
+    const {isMobile} = this.props;
+    this.setState({isScroll: true});
+    if (isMobile) {
+      // Remove the focus from the input to rempve the keyborad
+      this.blur();
+    }
+  };
   handleFocus = (event) => {
+    const {isMobile} = this.props;
+    if (isMobile) {
+      this.setState({isScroll: false});
+    }
     if (!this.state.open && this.props.openOnFocus) {
       this.setState({
         open: true,
@@ -412,6 +437,7 @@ class AutoComplete extends Component {
       menuStyle,
       menuProps,
       listStyle,
+      isMobile, // eslint-disable-line no-unused-vars
       targetOrigin,
       onBlur, // eslint-disable-line no-unused-vars
       onClose, // eslint-disable-line no-unused-vars
@@ -511,6 +537,7 @@ class AutoComplete extends Component {
         style={Object.assign(styles.menu, menuStyle)}
         listStyle={Object.assign(styles.list, listStyle)}
         {...menuProps}
+        onScroll={this.handleOnScroll}
       >
         {requestsList.map((i) => i.value)}
       </Menu>
