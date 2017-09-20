@@ -6,6 +6,7 @@ import { createShallow, createMount } from '../test-utils';
 import Input, { InputLabel } from '../Input';
 import FormHelperText from '../Form/FormHelperText';
 import TextField from './TextField';
+import Select from '../Select/Select';
 
 describe('<TextField />', () => {
   let shallow;
@@ -30,7 +31,7 @@ describe('<TextField />', () => {
     describe('structure', () => {
       it('should be a FormControl', () => {
         assert.strictEqual(wrapper.name(), 'withStyles(FormControl)');
-        assert.strictEqual(wrapper.dive().is('FormControl'), true);
+        assert.strictEqual(wrapper.dive().name(), 'FormControl');
       });
 
       it('should pass className to the FormControl', () => {
@@ -45,7 +46,7 @@ describe('<TextField />', () => {
 
       it('should have an Input as the only child', () => {
         assert.strictEqual(wrapper.children().length, 1);
-        assert.strictEqual(wrapper.childAt(0).is(Input), true);
+        assert.strictEqual(wrapper.childAt(0).type(), Input);
       });
 
       it('should forward the multiline prop to Input', () => {
@@ -74,7 +75,7 @@ describe('<TextField />', () => {
       });
 
       it('should have an InputLabel as the first child', () => {
-        assert.strictEqual(wrapper.childAt(0).is(InputLabel), true);
+        assert.strictEqual(wrapper.childAt(0).type(), InputLabel);
       });
 
       it('should pass labelClassName to the InputLabel as className', () => {
@@ -83,7 +84,7 @@ describe('<TextField />', () => {
       });
 
       it('should have an Input as the second child', () => {
-        assert.strictEqual(wrapper.childAt(1).is(Input), true);
+        assert.strictEqual(wrapper.childAt(1).type(), Input);
       });
     });
 
@@ -97,7 +98,7 @@ describe('<TextField />', () => {
       });
 
       it('should have an FormHelperText as the second child', () => {
-        assert.strictEqual(wrapper.childAt(1).is(FormHelperText), true);
+        assert.strictEqual(wrapper.childAt(1).type(), FormHelperText);
       });
 
       it('should pass helperTextClassName to the FormHelperText as className', () => {
@@ -106,7 +107,7 @@ describe('<TextField />', () => {
       });
 
       it('should have an Input as the first child', () => {
-        assert.strictEqual(wrapper.childAt(0).is(Input), true);
+        assert.strictEqual(wrapper.childAt(0).type(), Input);
       });
     });
 
@@ -132,6 +133,45 @@ describe('<TextField />', () => {
         />,
       );
       assert.strictEqual(wrapper.find('input').props().readOnly, true);
+    });
+  });
+
+  describe('prop: select', () => {
+    it('should be able to render a select as expected', () => {
+      const currencies = [
+        {
+          value: 'USD',
+          label: '$',
+        },
+        {
+          value: 'BTC',
+          label: '฿',
+        },
+      ];
+
+      const wrapper = shallow(
+        <TextField
+          select
+          SelectProps={{
+            native: true,
+          }}
+        >
+          {currencies.map(option => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </TextField>,
+      );
+      assert.strictEqual(wrapper.childAt(0).type(), Select);
+      assert.strictEqual(wrapper.childAt(0).props().input.type, Input);
+      assert.strictEqual(
+        wrapper
+          .childAt(0)
+          .children()
+          .every('option'),
+        true,
+      );
     });
   });
 });

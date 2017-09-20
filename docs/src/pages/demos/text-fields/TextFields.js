@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
+import MenuItem from 'material-ui/Menu/MenuItem';
 import TextField from 'material-ui/TextField';
 
 const styles = theme => ({
@@ -15,19 +16,36 @@ const styles = theme => ({
     marginRight: theme.spacing.unit,
     width: 200,
   },
+  menu: {
+    width: 200,
+  },
 });
+
+const currencies = [
+  {
+    value: 'USD',
+    label: '$',
+  },
+  {
+    value: 'EUR',
+    label: '€',
+  },
+  {
+    value: 'BTC',
+    label: '฿',
+  },
+  {
+    value: 'JPY',
+    label: '¥',
+  },
+];
 
 class TextFields extends React.Component {
   state = {
     name: 'Cat in the Hat',
     age: '',
     multiline: 'Controlled',
-  };
-
-  handleChangeMultiline = event => {
-    this.setState({
-      multiline: event.target.value,
-    });
+    currency: 'EUR',
   };
 
   handleChange = name => event => {
@@ -86,7 +104,7 @@ class TextFields extends React.Component {
           multiline
           rowsMax="4"
           value={this.state.multiline}
-          onChange={this.handleChangeMultiline}
+          onChange={this.handleChange('multiline')}
           className={classes.textField}
           margin="normal"
         />
@@ -139,6 +157,49 @@ class TextFields extends React.Component {
           className={classes.textField}
           margin="normal"
         />
+        <TextField
+          id="select-currency"
+          select
+          label="Select"
+          className={classes.textField}
+          value={this.state.currency}
+          onChange={this.handleChange('currency')}
+          SelectProps={{
+            MenuProps: {
+              className: classes.menu,
+            },
+          }}
+          helperText="Please select your currency"
+          margin="normal"
+        >
+          {currencies.map(option => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+        <TextField
+          id="select-currency-native"
+          select
+          label="Native select"
+          className={classes.textField}
+          value={this.state.currency}
+          onChange={this.handleChange('currency')}
+          SelectProps={{
+            native: true,
+            MenuProps: {
+              className: classes.menu,
+            },
+          }}
+          helperText="Please select your currency"
+          margin="normal"
+        >
+          {currencies.map(option => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </TextField>
         <TextField
           id="full-width"
           label="Label"
