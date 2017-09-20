@@ -8,8 +8,8 @@ import withStyles from '../styles/withStyles';
 
 export const styles = (theme: Object) => ({
   root: {
-    fontSize: 13,
-    color: theme.palette.text.primary,
+    fontSize: 12,
+    color: theme.palette.text.secondary,
   },
 });
 
@@ -40,18 +40,18 @@ export type Props = {
 
 type AllProps = DefaultProps & Props;
 
-class TableBody extends React.Component<AllProps, void> {
+class TableFooter extends React.Component<AllProps, void> {
   props: AllProps;
 
   static defaultProps = {
-    component: 'tbody',
+    component: 'tfoot',
   };
 
   getChildContext() {
     // eslint-disable-line class-methods-use-this
     return {
       table: {
-        body: true,
+        footer: true,
       },
     };
   }
@@ -64,18 +64,17 @@ class TableBody extends React.Component<AllProps, void> {
       component: ComponentProp,
       ...other
     } = this.props;
-    const className = classNames(classes.root, classNameProp);
 
     return (
-      <ComponentProp className={className} {...other}>
+      <ComponentProp className={classNames(classes.root, classNameProp)} {...other}>
         {children}
       </ComponentProp>
     );
   }
 }
 
-TableBody.childContextTypes = {
+TableFooter.childContextTypes = {
   table: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiTableBody' })(TableBody);
+export default withStyles(styles, { name: 'MuiTableFooter' })(TableFooter);

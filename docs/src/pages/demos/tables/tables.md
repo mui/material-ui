@@ -1,5 +1,5 @@
 ---
-components: Table, TableBody, TableCell, TableHead, TableRow, TableSortLabel
+components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
 
 # Tables

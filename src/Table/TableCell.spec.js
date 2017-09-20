@@ -10,7 +10,12 @@ describe('<TableCell />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    shallow = createShallow({
+      dive: true,
+      context: {
+        table: { footer: true },
+      },
+    });
     classes = getClasses(<TableCell />);
   });
 
@@ -22,7 +27,7 @@ describe('<TableCell />', () => {
   it('should spread custom props on the root node', () => {
     const wrapper = shallow(<TableCell data-my-prop="woofTableCell" />);
     assert.strictEqual(
-      wrapper.prop('data-my-prop'),
+      wrapper.props()['data-my-prop'],
       'woofTableCell',
       'custom prop should be woofTableCell',
     );
@@ -58,6 +63,14 @@ describe('<TableCell />', () => {
     assert.strictEqual(wrapper.name(), 'th');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.head), true, 'should have the head class');
+  });
+
+  it('should render a th with the footer class when in the context of a table footer', () => {
+    const wrapper = shallow(<TableCell />);
+    wrapper.setContext({ ...wrapper.options.context, table: { footer: true } });
+    assert.strictEqual(wrapper.name(), 'td');
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.footer), true, 'should have the footer class');
   });
 
   it('should render a div when custom component prop is used', () => {

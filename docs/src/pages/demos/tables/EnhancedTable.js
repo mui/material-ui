@@ -9,7 +9,9 @@ import keycode from 'keycode';
 import Table, {
   TableBody,
   TableCell,
+  TableFooter,
   TableHead,
+  TablePagination,
   TableRow,
   TableSortLabel,
 } from 'material-ui/Table';
@@ -42,6 +44,7 @@ class EnhancedTableHead extends React.Component {
     onSelectAllClick: PropTypes.func.isRequired,
     order: PropTypes.string.isRequired,
     orderBy: PropTypes.string.isRequired,
+    rowCount: PropTypes.number.isRequired,
   };
 
   createSortHandler = property => event => {
@@ -49,15 +52,15 @@ class EnhancedTableHead extends React.Component {
   };
 
   render() {
-    const { onSelectAllClick, order, orderBy, numSelected } = this.props;
+    const { onSelectAllClick, order, orderBy, numSelected, rowCount } = this.props;
 
     return (
       <TableHead>
         <TableRow>
           <TableCell checkbox>
             <Checkbox
-              indeterminate={numSelected > 0 && numSelected < 5}
-              checked={numSelected === 5}
+              indeterminate={numSelected > 0 && numSelected < rowCount}
+              checked={numSelected === rowCount}
               onChange={onSelectAllClick}
             />
           </TableCell>
@@ -157,18 +160,31 @@ const styles = theme => ({
 });
 
 class EnhancedTable extends React.Component {
-  state = {
-    order: 'asc',
-    orderBy: 'calories',
-    selected: [],
-    data: [
-      createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-      createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-      createData('Eclair', 262, 16.0, 24, 6.0),
-      createData('Cupcake', 305, 3.7, 67, 4.3),
-      createData('Gingerbread', 356, 16.0, 49, 3.9),
-    ],
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      order: 'asc',
+      orderBy: 'calories',
+      selected: [],
+      data: [
+        createData('Cupcake', 305, 3.7, 67, 4.3),
+        createData('Donut', 452, 25.0, 51, 4.9),
+        createData('Eclair', 262, 16.0, 24, 6.0),
+        createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+        createData('Gingerbread', 356, 16.0, 49, 3.9),
+        createData('Honeycomb', 408, 3.2, 87, 6.5),
+        createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+        createData('Jelly Bean', 375, 0.0, 94, 0.0),
+        createData('KitKat', 518, 26.0, 65, 7.0),
+        createData('Lollipop', 392, 0.2, 98, 0.0),
+        createData('Marshmallow', 318, 0, 81, 2.0),
+        createData('Nougat', 360, 19.0, 9, 37.0),
+        createData('Oreo', 437, 18.0, 63, 4.0),
+      ].sort((a, b) => (a.calories < b.calories ? -1 : 1)),
+      page: 0,
+      rowsPerPage: 5,
+    };
+  }
 
   handleRequestSort = (event, property) => {
     const orderBy = property;
@@ -178,9 +194,10 @@ class EnhancedTable extends React.Component {
       order = 'asc';
     }
 
-    const data = this.state.data.sort(
-      (a, b) => (order === 'desc' ? b[orderBy] > a[orderBy] : a[orderBy] > b[orderBy]),
-    );
+    const data =
+      order === 'desc'
+        ? this.state.data.sort((a, b) => (b[orderBy] < a[orderBy] ? -1 : 1))
+        : this.state.data.sort((a, b) => (a[orderBy] < b[orderBy] ? -1 : 1));
 
     this.setState({ data, order, orderBy });
   };
@@ -220,11 +237,19 @@ class EnhancedTable extends React.Component {
     this.setState({ selected: newSelected });
   };
 
+  handleChangePage = (event, page) => {
+    this.setState({ page });
+  };
+
+  handleChangeRowsPerPage = event => {
+    this.setState({ rowsPerPage: event.target.value });
+  };
+
   isSelected = id => this.state.selected.indexOf(id) !== -1;
 
   render() {
     const classes = this.props.classes;
-    const { data, order, orderBy, selected } = this.state;
+    const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
 
     return (
       <Paper className={classes.paper}>
@@ -236,9 +261,10 @@ class EnhancedTable extends React.Component {
             orderBy={orderBy}
             onSelectAllClick={this.handleSelectAllClick}
             onRequestSort={this.handleRequestSort}
+            rowCount={data.length}
           />
           <TableBody>
-            {data.map(n => {
+            {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(n => {
               const isSelected = this.isSelected(n.id);
               return (
                 <TableRow
@@ -263,6 +289,15 @@ class EnhancedTable extends React.Component {
               );
             })}
           </TableBody>
+          <TableFooter>
+            <TablePagination
+              count={data.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onChangePage={this.handleChangePage}
+              onChangeRowsPerPage={this.handleChangeRowsPerPage}
+            />
+          </TableFooter>
         </Table>
       </Paper>
     );
