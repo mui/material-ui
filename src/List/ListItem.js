@@ -251,7 +251,7 @@ class ListItem extends Component {
     /** @ignore */
     onMouseLeave: PropTypes.func,
     /**
-     * Callbak function fired when the `ListItem` toggles its nested list.
+     * Callback function fired when the `ListItem` toggles its nested list.
      *
      * @param {object} listItem The `ListItem`.
      */
