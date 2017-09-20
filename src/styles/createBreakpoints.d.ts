@@ -3,7 +3,7 @@ export type BreakpointMap = { [key in Breakpoint]: number };
 export const keys: Breakpoint[];
 
 export interface BreakpointsOptions {
-  breakpoints: BreakpointMap;
+  breakpointsMap: BreakpointMap;
   unit: string;
   step: number;
 }
