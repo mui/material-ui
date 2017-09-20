@@ -17,6 +17,7 @@ You can take advantage of those helpers if you so choose.
 
 Shallow rendering is useful to constrain yourself to testing a component as a unit. This also ensures that your tests aren't indirectly asserting behavior of child components.
 We expose a `createShallow()` function for this situation. However, you will most likely not need it most of the time. Shallow rendering was created to test components in isolation. This means without leaking children implementation details such as the context.
+
 ### Full DOM rendering
 
 Full DOM rendering is ideal for use cases where you have components that may interact with DOM APIs or may require the full lifecycle in order to fully test the component (i.e., `componentDidMount` etc.).
