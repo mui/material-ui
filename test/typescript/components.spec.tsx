@@ -72,6 +72,8 @@ const AppBarTest = () =>
 
 const AvatarTest = () => <Avatar alt="Image Alt" src="example.jpg" />;
 
+const AvaterClassName = () => <Avatar className="foo" />;
+
 const BadgeTest = () =>
   <Badge badgeContent={4} color="primary">
     <FakeIcon />
