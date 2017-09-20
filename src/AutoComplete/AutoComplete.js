@@ -353,10 +353,10 @@ class AutoComplete extends Component {
       state.searchText = searchText;
     }
 
-    this.setState(state, () => {
-      this.props.onUpdateInput(searchText, this.props.dataSource, {
-        source: 'change',
-      });
+    this.setState(state);
+
+    this.props.onUpdateInput(searchText, this.props.dataSource, {
+      source: 'change',
     });
   };
 
