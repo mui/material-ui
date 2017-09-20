@@ -49,11 +49,9 @@ function CardActions(props: AllProps) {
 
   return (
     <div className={classNames(classes.root, className)} {...other}>
-      {disableActionSpacing ? (
-        children
-      ) : (
-        cloneChildrenWithClassName(children, classes.actionSpacing)
-      )}
+      {disableActionSpacing
+        ? children
+        : cloneChildrenWithClassName(children, classes.actionSpacing)}
     </div>
   );
 }
