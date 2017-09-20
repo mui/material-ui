@@ -42,7 +42,7 @@ to discuss the approach before submitting a PR.
 - **[Data tables](https://www.google.com/design/spec/components/data-tables.html) ✓**
   - **Sortable ✓**
   - **Selectable ✓**
-  - Pagination
+  - **Pagination ✓**
 - **[Dialogs](https://www.google.com/design/spec/components/dialogs.html) ✓**
   - **[Alerts](https://www.google.com/design/spec/components/dialogs.html#dialogs-alerts) ✓**
   - **[Simple menus](https://www.google.com/design/spec/components/dialogs.html#dialogs-simple-menus) (Menu) ✓**
