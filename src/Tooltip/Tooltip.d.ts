@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyledComponent } from '..';
 
-export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
+export type TooltipProps = React.HTMLAttributes<HTMLDivElement> & {
   title: React.ReactNode;
   onRequestClose?: (event: React.ChangeEvent<{}>) => void;
   onRequestOpen?: (event: React.ChangeEvent<{}>) => void;
