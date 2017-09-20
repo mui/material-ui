@@ -119,9 +119,9 @@ to discuss the approach before submitting a PR.
   - [Search filter](https://www.google.com/design/spec/components/text-fields.html#text-fields-search-filter)
   - [Password](https://www.google.com/design/spec/components/text-fields.html#text-fields-password-input)
 - **[Toolbars](https://www.google.com/design/spec/components/toolbars.html) ✓**
-- [Tooltips](https://www.google.com/design/spec/components/tooltips.html)
-  - [Desktop](https://www.google.com/design/spec/components/tooltips.html#tooltips-tooltips-desktop-)
-  - [Mobile](https://www.google.com/design/spec/components/tooltips.html#tooltips-tooltips-mobile-)
+-  **[Tooltips](https://www.google.com/design/spec/components/tooltips.html ✓**
+  -  **[Desktop](https://www.google.com/design/spec/components/tooltips.html#tooltips-tooltips-desktop-) ✓**
+  -  **[Mobile](https://www.google.com/design/spec/components/tooltips.html#tooltips-tooltips-mobile-) ✓**
 - [Widgets](https://material.io/guidelines/components/widgets.html)
   - [Information widgets](https://material.io/guidelines/components/widgets.html#widgets-types-of-widgets)
   - [Collection widgets](https://material.io/guidelines/components/widgets.html#widgets-types-of-widgets)
