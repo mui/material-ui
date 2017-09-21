@@ -1,8 +1,8 @@
 const pathConversion = {
   'app-bar': 'AppBar',
   'auto-complete': 'AutoComplete',
-  'avatar': 'Avatar',
-  'badge': 'Badge',
+  avatar: 'Avatar',
+  badge: 'Badge',
   'flat-button': 'FlatButton',
   'raised-button': 'RaisedButton',
   'floating-action-button': 'FloatingActionButton',
@@ -14,8 +14,8 @@ const pathConversion = {
   'card/card-title': 'Card/CardTitle',
   'card/card-text': 'Card/CardText',
   'date-picker/date-picker': 'DatePicker',
-  'dialog': 'Dialog',
-  'divider': 'Divider',
+  dialog: 'Dialog',
+  divider: 'Divider',
   'grid-list/grid-list': 'GridList/GridList',
   'grid-list/grid-tile': 'GridList/GridTile',
   'font-icon': 'FontIcon',
@@ -26,18 +26,18 @@ const pathConversion = {
   'menus/menu': 'Menu',
   'menus/menu-item': 'MenuItem',
   'menus/icon-menu': 'IconMenu',
-  'paper': 'Paper',
+  paper: 'Paper',
   'popover/popover': 'Popover',
   'circular-progress': 'CircularProgress',
   'linear-progress': 'LinearProgress',
   'refresh-indicator': 'RefreshIndicator',
   'select-field': 'SelectField',
-  'slider': 'Slider',
-  'checkbox': 'Checkbox',
+  slider: 'Slider',
+  checkbox: 'Checkbox',
   'radio-button': 'RadioButton',
   'radio-button-group': 'RadioButton/RadioButtonGroup',
-  'toggle': 'Toggle',
-  'snackbar': 'Snackbar',
+  toggle: 'Toggle',
+  snackbar: 'Snackbar',
   'table/table': 'Table/Table',
   'table/table-header-column': 'Table/TableHeaderColumn',
   'table/table-row': 'Table/TableRow',
@@ -53,26 +53,20 @@ const pathConversion = {
   'toolbar/toolbar-group': 'Toolbar/ToolbarGroup',
   'toolbar/toolbar-separator': 'Toolbar/ToolbarSeparator',
   'toolbar/toolbar-title': 'Toolbar/ToolbarTitle',
-  'MuiThemeProvider': 'styles/MuiThemeProvider',
+  MuiThemeProvider: 'styles/MuiThemeProvider',
 };
 
-const pathBaseSource = [
-  'material-ui/src/',
-  'material-ui/src/',
-];
-const pathBasePackage = [
-  'material-ui/lib/',
-  'material-ui/',
-];
+const pathBaseSource = ['material-ui/src/', 'material-ui/src/'];
+const pathBasePackage = ['material-ui/lib/', 'material-ui/'];
 
 function getPathsBase(path) {
   if (path.indexOf(pathBaseSource[0]) === 0) {
     return pathBaseSource;
   } else if (path.indexOf(pathBasePackage[0]) === 0) {
     return pathBasePackage;
-  } else {
-    return new Error('Wrong path', path);
   }
+
+  return new Error('Wrong path');
 }
 
 export default function transformer(file, api) {
@@ -80,27 +74,25 @@ export default function transformer(file, api) {
 
   return j(file.source)
     .find(j.ImportDeclaration)
-    .filter((path) => {
+    .filter(path => {
       // Only consider Material-UI imports
       return path.value.source.value.indexOf('material-ui/') === 0;
     })
-    .replaceWith(
-      (path) => {
-        const pathOld = path.value.source.value;
-        const pathsBase = getPathsBase(pathOld);
-        const pathSuffix = pathOld.substring(pathsBase[0].length);
+    .replaceWith(path => {
+      const pathOld = path.value.source.value;
+      const pathsBase = getPathsBase(pathOld);
+      const pathSuffix = pathOld.substring(pathsBase[0].length);
 
-        let pathNew;
+      let pathNew;
 
-        if (pathConversion[pathSuffix]) {
-          pathNew = pathsBase[1] + pathConversion[pathSuffix];
-        } else {
-          pathNew = pathsBase[1] + pathSuffix;
-        }
-
-        return j.importDeclaration(path.node.specifiers, j.literal(pathNew));
+      if (pathConversion[pathSuffix]) {
+        pathNew = pathsBase[1] + pathConversion[pathSuffix];
+      } else {
+        pathNew = pathsBase[1] + pathSuffix;
       }
-    )
+
+      return j.importDeclaration(path.node.specifiers, j.literal(pathNew));
+    })
     .toSource({
       quote: 'single',
     });

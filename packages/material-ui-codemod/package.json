@@ -1,7 +1,7 @@
 {
   "name": "material-ui-codemod",
   "author": "Material-UI collaborators",
-  "version": "0.1.5",
+  "version": "1.0.0-beta.11",
   "description": "Codemod scripts for Material-UI",
   "keywords": [
     "react",
@@ -10,23 +10,27 @@
     "jscodeshift"
   ],
   "scripts": {
-    "test": "babel-node test.js",
-    "build": "rimraf transforms && babel ./modules --out-dir ./transforms",
-    "prepublish": "npm run build"
+    "test": "yarn test:unit",
+    "test:unit": "mocha src/**/*.spec.js",
+    "test:watch": "yarn test:unit -- -w",
+    "build": "rimraf lib && babel ./src --out-dir ./lib",
+    "prepublish": "yarn build"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/callemall/material-ui.git"
   },
   "files": [
-    "modules",
-    "transforms"
+    "src",
+    "lib"
   ],
   "homepage": "https://github.com/callemall/material-ui/tree/master/packages/material-ui-codemod",
   "license": "MIT",
   "devDependencies": {
-    "babel-cli": "^6.7.5",
-    "babel-plugin-add-module-exports": "^0.1.4",
-    "jscodeshift": "^0.3.18"
+    "babel-cli": "^6.26.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "cross-env": "^5.0.5",
+    "jscodeshift": "^0.3.18",
+    "mocha": "^3.5.3"
   }
 }

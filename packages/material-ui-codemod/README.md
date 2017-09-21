@@ -19,13 +19,36 @@ APIs.
 
 ## Included Scripts
 
+### v1.0.0
+
+#### `color-imports`
+
+Updates the `color-imports` for the new location of Material-UI color palettes.
+The diff should look like this:
+
+```diff
+-import { blue, teal500 } from 'material-ui/src/styles/colors';
++import blue from 'material-ui/src/colors/blue';
++import teal from 'material-ui/src/colors/teal';
++const teal500 = teal['500'];
+```
+
+```sh
+find src -name '*.js' -print | xargs jscodeshift -t node_modules/material-ui-codemod/lib/v1.0.0/color-imports.js
+```
+
+**additional options**
+```
+jscodeshift -t <color-imports.js> <path> --importPath='mui/styles/colors' --targetPath='mui/colors'
+```
+
 ### v0.15.0
 
-#### `import path`
+#### `import-path`
 
-Updates the import paths for the new location of the components.
+Updates the `import-paths` for the new location of the components.
 Material-UI v0.15.0 is reorganizing the folder distribution of the project.
-Use this codemod to easily ugrade. The diff should look like this:
+The diff should look like this:
 
 ```diff
 // From the source
@@ -38,7 +61,7 @@ Use this codemod to easily ugrade. The diff should look like this:
 ```
 
 ```sh
-find src -name '*.js' -print | xargs jscodeshift -t node_modules/material-ui-codemod/transforms/v0.15.0/import-path.js
+find src -name '*.js' -print | xargs jscodeshift -t node_modules/material-ui-codemod/lib/v0.15.0/import-path.js
 ```
 
 ### Recast Options
