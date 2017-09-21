@@ -24,7 +24,7 @@ declare function withStyles(
   style: StyleRules | StyleRulesCallback,
   options?: WithStylesOptions
 ): <
-  C extends React.ComponentType<P & { classes: ClassNames; theme?: Theme }>,
+  C extends React.ComponentType<P & { classes?: ClassNames; theme?: Theme }>,
   P = {},
   ClassNames = {}
 >(
@@ -35,7 +35,7 @@ declare function withStyles<P = {}, ClassNames = {}>(
   style: StyleRules | StyleRulesCallback,
   options?: WithStylesOptions
 ): (
-  component: React.ComponentType<P & { classes: ClassNames; theme?: Theme }>
+  component: React.ComponentType<P & { classes?: ClassNames; theme?: Theme }>
 ) => React.ComponentClass<P & StyledComponentProps<ClassNames>>
 
 export default withStyles;
