@@ -338,6 +338,9 @@ const GridTest = () =>
     <Grid item xl={true}>
       ...
     </Grid>
+    <Grid item hidden={{ smDown: true }} style={{ color: 'red' }}>
+      ...
+    </Grid>
   </Grid>;
 
 const GridListTest = () =>
