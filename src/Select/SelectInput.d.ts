@@ -2,6 +2,7 @@ import * as React from 'react';
 import { StyledComponent } from '..';
 
 export interface SelectInputProps {
+  autoWidth?: boolean,
   disabled?: boolean,
   native: boolean,
   multiple: boolean,

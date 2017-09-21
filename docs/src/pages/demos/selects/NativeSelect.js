@@ -103,7 +103,7 @@ class NativeSelect extends React.Component {
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="name-input">Name</InputLabel>
           <Input id="name-input" />
-          <FormHelperText>Alignement with an input</FormHelperText>
+          <FormHelperText>Alignment with an input</FormHelperText>
         </FormControl>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="uncontrolled-native">Name</InputLabel>
