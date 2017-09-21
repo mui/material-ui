@@ -77,6 +77,10 @@ const pages = [
       {
         pathname: '/guides/testing',
       },
+      {
+        pathname: '/guides/migration-v0.x',
+        title: 'Migration from v0.x',
+      },
     ],
   },
   {
