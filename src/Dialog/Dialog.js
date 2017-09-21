@@ -28,13 +28,13 @@ export const styles = (theme: Object) => ({
     },
   },
   paperWidthXs: {
-    maxWidth: theme.breakpoints.getWidth('xs'),
+    maxWidth: theme.breakpoints.values.xs,
   },
   paperWidthSm: {
-    maxWidth: theme.breakpoints.getWidth('sm'),
+    maxWidth: theme.breakpoints.values.sm,
   },
   paperWidthMd: {
-    maxWidth: theme.breakpoints.getWidth('md'),
+    maxWidth: theme.breakpoints.values.md,
   },
   fullScreen: {
     margin: 0,
