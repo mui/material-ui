@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StyledComponent } from '..';
 
 export interface PaperProps extends React.HTMLAttributes<HTMLDivElement> {
-  component?: React.ReactNode;
+  component?: React.ReactType;
   elevation?: number;
   square?: boolean;
 }

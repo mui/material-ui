@@ -3,7 +3,7 @@ import { StyledComponent } from '..';
 
 export type ButtonBaseProps = {
   centerRipple?: boolean;
-  component?: React.ReactNode;
+  component?: React.ReactType;
   disableRipple?: boolean;
   focusRipple?: boolean;
   keyboardFocusedClassName?: string;

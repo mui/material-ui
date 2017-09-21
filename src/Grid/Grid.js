@@ -11,7 +11,7 @@
 // - https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
 import React from 'react';
-import type { ComponentType, Node } from 'react';
+import type { ElementType, Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import requirePropFactory from '../utils/requirePropFactory';
@@ -145,7 +145,7 @@ type GridSizes = boolean | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 type DefaultProps = {
   classes: Object,
-  component: ComponentType<*>,
+  component: ElementType,
 };
 
 export type Props = {
@@ -165,7 +165,7 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: string | ComponentType<*>,
+  component?: ElementType,
   /**
    * If `true`, the component will have the flex *container* behavior.
    * You should be wrapping *items* with a *container*.

@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { ComponentType, Node } from 'react';
+import type { ElementType, Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -91,7 +91,7 @@ export type Props = {
    * Either a string to use a DOM element or a component.
    * By default we map the type to a good default headline component.
    */
-  component?: string | ComponentType<*>,
+  component?: ElementType,
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */

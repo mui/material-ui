@@ -4,7 +4,7 @@ import { StyledComponent } from '..';
 export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   alt?: string;
   childrenClassName?: string;
-  component?: React.ReactNode;
+  component?: React.ReactType;
   imgProps?: Object;
   sizes?: string;
   src?: string;

@@ -106,6 +106,12 @@ const ButtonTest = () =>
     <Button tabIndex={1} title="some button">
       Raised
     </Button>
+    <Button component="a">
+      Simple Link
+    </Button>
+    <Button component={props => <a {...props} />}>
+      Complexe Link
+    </Button>
   </div>;
 
 const IconButtonTest = () =>

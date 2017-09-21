@@ -4,7 +4,7 @@ import { ButtonBaseProps } from '../ButtonBase';
 
 export type ListItemProps = {
   button?: boolean;
-  component?: React.ReactNode;
+  component?: React.ReactType;
   dense?: boolean;
   disabled?: boolean;
   disableGutters?: boolean;

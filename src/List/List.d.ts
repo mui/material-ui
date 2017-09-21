@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StyledComponent } from '..';
 
 export interface ListProps extends React.HTMLAttributes<HTMLUListElement> {
-  component?: React.ReactNode;
+  component?: React.ReactType;
   dense?: boolean;
   disablePadding?: boolean;
   rootRef?: React.Ref<any>;

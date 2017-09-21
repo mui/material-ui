@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { ChildrenArray, ComponentType, Node } from 'react';
+import type { ChildrenArray, ElementType, Node } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -59,7 +59,7 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: string | ComponentType<*>,
+  component?: ElementType,
   /**
    * If `true`, the label, input and helper text should be displayed in a disabled state.
    */

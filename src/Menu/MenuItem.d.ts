@@ -3,7 +3,7 @@ import { StyledComponent } from '..';
 import { ListItemProps } from '../List';
 
 export interface MenuItemProps extends ListItemProps {
-  component?: React.ReactNode;
+  component?: React.ReactType;
   role?: string;
   selected?: boolean;
 }
