@@ -14,6 +14,7 @@ import React from 'react';
 import type { ElementType, Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
+import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import requirePropFactory from '../utils/requirePropFactory';
 import Hidden from '../Hidden';
 import type { HiddenProps } from '../Hidden/types';
@@ -134,7 +135,7 @@ export const styles = (theme: Object) => ({
     justifyContent: 'space-around',
   },
   ...generateGutter(theme, 'xs'),
-  ...theme.breakpoints.keys.reduce((accumulator, key) => {
+  ...breakpointKeys.reduce((accumulator, key) => {
     // Use side effect over immutability for better performance.
     generateGrid(accumulator, theme, key);
     return accumulator;

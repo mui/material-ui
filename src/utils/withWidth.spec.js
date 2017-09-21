@@ -12,7 +12,7 @@ Empty.propTypes = {}; // Breaks the referencial transparency for testing purpose
 const EmptyWithWidth = withWidth()(Empty);
 
 const breakpoints = createBreakpoints({});
-const TEST_ENV_WIDTH = window.innerWidth > breakpoints.getWidth('md') ? 'md' : 'sm';
+const TEST_ENV_WIDTH = window.innerWidth > breakpoints.values.md ? 'md' : 'sm';
 
 describe('withWidth', () => {
   let shallow;
@@ -85,7 +85,7 @@ describe('withWidth', () => {
       const updateWidth = instance.updateWidth.bind(instance);
 
       breakpoints.keys.forEach(key => {
-        updateWidth(breakpoints.getWidth(key));
+        updateWidth(breakpoints.values[key]);
         assert.strictEqual(wrapper.state().width, key, 'should return the matching width');
       });
     });

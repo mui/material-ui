@@ -7,7 +7,7 @@ import debounce from 'lodash/debounce';
 import createEagerFactory from 'recompose/createEagerFactory';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import withTheme from '../styles/withTheme';
-import { keys } from '../styles/createBreakpoints';
+import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import type { Breakpoint } from '../styles/createBreakpoints';
 
 /**
@@ -19,9 +19,9 @@ import type { Breakpoint } from '../styles/createBreakpoints';
  */
 export const isWidthUp = (breakpoint, screenWidth, inclusive = true) => {
   if (inclusive) {
-    return keys.indexOf(breakpoint) <= keys.indexOf(screenWidth);
+    return breakpointKeys.indexOf(breakpoint) <= breakpointKeys.indexOf(screenWidth);
   }
-  return keys.indexOf(breakpoint) < keys.indexOf(screenWidth);
+  return breakpointKeys.indexOf(breakpoint) < breakpointKeys.indexOf(screenWidth);
 };
 
 /**
@@ -33,9 +33,9 @@ export const isWidthUp = (breakpoint, screenWidth, inclusive = true) => {
  */
 export const isWidthDown = (breakpoint, screenWidth, inclusive = true) => {
   if (inclusive) {
-    return keys.indexOf(screenWidth) <= keys.indexOf(breakpoint);
+    return breakpointKeys.indexOf(screenWidth) <= breakpointKeys.indexOf(breakpoint);
   }
-  return keys.indexOf(screenWidth) < keys.indexOf(breakpoint);
+  return breakpointKeys.indexOf(screenWidth) < breakpointKeys.indexOf(breakpoint);
 };
 
 function withWidth(options = {}) {
@@ -102,12 +102,12 @@ function withWidth(options = {}) {
          * width      |  xs   |  xs   |  sm   |  md   |  lg   |  xl
          */
         let index = 1;
-        while (width === null && index < breakpoints.keys.length) {
-          const currentWidth = breakpoints.keys[index];
+        while (width === null && index < breakpointKeys.length) {
+          const currentWidth = breakpointKeys[index];
 
           // @media are inclusive, so reproduce the behavior here.
-          if (innerWidth < breakpoints.getWidth(currentWidth)) {
-            width = breakpoints.keys[index - 1];
+          if (innerWidth < breakpoints.values[currentWidth]) {
+            width = breakpointKeys[index - 1];
             break;
           }
 
