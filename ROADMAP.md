@@ -20,7 +20,7 @@ If you are interested in following our progress or if you want to help us reach 
 - ~~[v1.0.0-beta](https://github.com/callemall/material-ui/milestone/22)~~ - complete!
 - [v1.0.0-prerelease](https://github.com/callemall/material-ui/milestone/14)
 
-## Q&A with the v1-beta branch
+## Q&A with the v1 version
 
 The `v1-beta` branch has become more mature.
 We think that it's a good time to communicate more on this effort.

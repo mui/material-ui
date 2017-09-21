@@ -34,8 +34,20 @@ marked.setOptions({
   smartLists: true,
   smartypants: false,
   // $FlowFixMe
-  highlight(code) {
-    return prism.highlight(code, prism.languages.jsx);
+  highlight(code: string, lang?: string) {
+    let language;
+    switch (lang) {
+      case 'diff':
+        language = prism.languages.diff;
+        break;
+
+      case 'jsx':
+      default:
+        language = prism.languages.jsx;
+        break;
+    }
+
+    return prism.highlight(code, language);
   },
   renderer,
 });
