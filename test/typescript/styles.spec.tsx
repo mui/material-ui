@@ -144,6 +144,9 @@ const WithStylesDoesntRequireClassesTest = () => {
     bestComponentLibrary: string
   } & MUIStyledComponentProps<NoClassesRequiredStyles>
 
+  /* If classes regresses and is no longer nullable for components using
+     withStyles, this will not compile. */
+  @withStyles(styles)
   class NoClassesRequired extends React.Component<NoClassesRequiredProps> {
 
     render() {
@@ -157,7 +160,4 @@ const WithStylesDoesntRequireClassesTest = () => {
 
   <NoClassesRequired bestComponentLibrary="MUI"/>
 
-  /* If classes regresses and is no longer nullable for components using
-     withStyles, this will not compile. */
-  return withStyles(styles)(NoClassesRequired);
 };
