@@ -10,7 +10,6 @@ import KeyboardArrowRight from '../svg-icons/KeyboardArrowRight';
 
 export const styles = (theme: Object) => ({
   root: {
-    background: 'none',
     color: 'inherit',
     flex: `0 0 ${theme.spacing.unit * 7}px`,
   },

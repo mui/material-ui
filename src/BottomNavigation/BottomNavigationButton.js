@@ -19,7 +19,6 @@ export const styles = (theme: Object) => ({
     paddingRight: 12,
     minWidth: 80,
     maxWidth: 168,
-    background: 'none',
     color: theme.palette.text.secondary,
     flex: '1',
   },

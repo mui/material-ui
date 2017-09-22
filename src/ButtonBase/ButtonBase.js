@@ -18,6 +18,7 @@ export const styles = (theme: Object) => ({
     position: 'relative',
     // Remove grey highlight
     WebkitTapHighlightColor: theme.palette.common.transparent,
+    backgroundColor: 'transparent', // Reset default value
     outline: 'none',
     border: 0,
     cursor: 'pointer',
