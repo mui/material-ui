@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyledComponentProps } from '..';
+import { ClassNameMap, StyledComponentProps } from '..';
 import { Theme } from './createMuiTheme';
 
 /**
@@ -21,7 +21,7 @@ export interface WithStylesOptions {
 }
 
 export type WithStyles<P, Names extends string = string> = P & {
-  classes: Record<Names, string>
+  classes: ClassNameMap<Names>
   theme?: Theme
 }
 
@@ -30,4 +30,4 @@ export default function withStyles<Names extends string>(
   options?: WithStylesOptions
 ): <P>(
   component: React.ComponentType<WithStyles<P, Names>>
-) => React.ComponentType<P & StyledComponentProps<Record<Names, string>>>
+) => React.ComponentType<P & StyledComponentProps<Names>>

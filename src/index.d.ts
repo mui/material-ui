@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+export type ClassNameMap<Names extends string> = Record<Names, string>;
+
 /**
  * Component exposed by `material-ui` are usually wrapped
  * with the `withStyles` HOC and allow customization via
@@ -9,13 +11,13 @@ import * as React from 'react';
  * - `classes`
  * - `innerRef`
  */
-export interface StyledComponentProps<StyleClasses> {
+export interface StyledComponentProps<Names extends string = string> {
   className?: string;
-  classes?: StyleClasses;
+  classes?: ClassNameMap<Names>;
   innerRef?: React.Ref<any>;
 }
-export class StyledComponent<P, C = Object> extends React.Component<
-  P & StyledComponentProps<C>
+export class StyledComponent<P = {}, Names extends string = string> extends React.Component<
+  P & StyledComponentProps<Names>
 > {}
 
 export type Contrast = 'light' | 'dark' | 'brown';
