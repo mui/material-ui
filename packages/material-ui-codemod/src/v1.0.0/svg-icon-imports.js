@@ -3,9 +3,7 @@
  * @param {string} string
  */
 function capitalize(string) {
-  return string
-    ? `${string[0].toUpperCase()}${string.slice(1)}` 
-    : string;
+  return string ? `${string[0].toUpperCase()}${string.slice(1)}` : string;
 }
 
 /**
@@ -14,7 +12,10 @@ function capitalize(string) {
  * @param {string} iconName
  */
 function pascalize(iconName) {
-  return iconName.split('-').map(capitalize).join('');
+  return iconName
+    .split('-')
+    .map(capitalize)
+    .join('');
 }
 
 /**
@@ -27,10 +28,11 @@ function pascalize(iconName) {
  */
 function transformSVGIconImports(j, root) {
   const pathMatchRegex = /^material-ui\/svg-icons\/.+\/(.+)$/;
-  root.find(j.Literal)
-    .filter(path => (pathMatchRegex.test(path.node.value)))
+  root
+    .find(j.Literal)
+    .filter(path => pathMatchRegex.test(path.node.value))
     .forEach(path => {
-      const [,iconName] = path.node.value.match(pathMatchRegex);
+      const [, iconName] = path.node.value.match(pathMatchRegex);
 
       // update to new path
       path.node.value = `material-ui-icons/${pascalize(iconName)}`;
