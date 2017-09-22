@@ -20,11 +20,14 @@ export interface WithStylesOptions {
   name?: string;
 }
 
-declare function withStyles<Names extends string>(
+export type WithStyles<P, Names extends string> = P & {
+  classes: Record<Names, string>
+  theme?: Theme
+}
+
+export default function withStyles<Names extends string>(
   style: StyleRules<Names> | StyleRulesCallback<Names>,
   options?: WithStylesOptions
 ): <P>(
-  component: React.ComponentType<P & { classes: Record<Names, string>; theme?: Theme }>
+  component: React.ComponentType<WithStyles<P, Names>>
 ) => React.ComponentType<P & StyledComponentProps<Record<Names, string>>>
-
-export default withStyles;
