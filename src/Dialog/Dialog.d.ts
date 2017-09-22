@@ -9,6 +9,7 @@ export type DialogProps = {
   enterTransitionDuration?: number | string;
   leaveTransitionDuration?: number | string;
   maxWidth?: 'xs' | 'sm' | 'md';
+  fullWidth?: boolean;
   onBackdropClick?: Function;
   onEscapeKeyUp?: Function;
   onRequestClose?: React.EventHandler<any>;

@@ -36,6 +36,9 @@ export const styles = (theme: Object) => ({
   paperWidthMd: {
     maxWidth: theme.breakpoints.values.md,
   },
+  fullWidth: {
+    width: '100%',
+  },
   fullScreen: {
     margin: 0,
     width: '100%',
@@ -90,6 +93,10 @@ export type Props = {
    * application.
    */
   maxWidth?: 'xs' | 'sm' | 'md',
+  /**
+   * If specified, stretches dialog to max width.
+   */
+  fullWidth?: boolean,
   /**
    * Callback fired when the backdrop is clicked.
    */
@@ -154,6 +161,7 @@ function Dialog(props: AllProps) {
     enterTransitionDuration,
     leaveTransitionDuration,
     maxWidth,
+    fullWidth,
     open,
     onBackdropClick,
     onEscapeKeyUp,
@@ -204,7 +212,10 @@ function Dialog(props: AllProps) {
           className={classNames(
             classes.paper,
             classes[`paperWidth${capitalizeFirstLetter(maxWidth)}`],
-            { [classes.fullScreen]: fullScreen },
+            {
+              [classes.fullScreen]: fullScreen,
+              [classes.fullWidth]: fullWidth,
+            },
           )}
         >
           {children}
@@ -221,6 +232,7 @@ Dialog.defaultProps = {
   enterTransitionDuration: duration.enteringScreen,
   leaveTransitionDuration: duration.leavingScreen,
   maxWidth: 'sm',
+  fullWidth: false,
   open: false,
   transition: Fade,
 };
