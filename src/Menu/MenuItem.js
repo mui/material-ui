@@ -10,8 +10,8 @@ import ListItem from '../List/ListItem';
 export const styles = (theme: Object) => ({
   root: {
     ...theme.typography.subheading,
-    height: 48,
-    boxSizing: 'border-box',
+    height: 24,
+    boxSizing: 'content-box',
     background: 'none',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
