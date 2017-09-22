@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyledComponentProps } from '..';
+import { ClassNameMap, StyledComponentProps } from '..';
 import { Theme } from './createMuiTheme';
 
 /**
@@ -9,33 +9,23 @@ import { Theme } from './createMuiTheme';
    * - the `keys` are the class (names) that will be created
    * - the `values` are objects that represent CSS rules (`React.CSSProperties`).
    */
-export interface StyleRules {
-  [displayName: string]: Partial<React.CSSProperties>;
-}
+export type StyleRules<Names extends string = string> = Record<Names, Partial<React.CSSProperties>>;
 
-export type StyleRulesCallback = (theme: Theme) => StyleRules;
+export type StyleRulesCallback<Names extends string = string> = (theme: Theme) => StyleRules<Names>;
 
 export interface WithStylesOptions {
   withTheme?: boolean;
   name?: string;
 }
 
-declare function withStyles(
-  style: StyleRules | StyleRulesCallback,
-  options?: WithStylesOptions
-): <
-  C extends React.ComponentType<P & { classes: ClassNames; theme?: Theme }>,
-  P = {},
-  ClassNames = {}
->(
-  component: C
-) => C & React.ComponentClass<P & StyledComponentProps<ClassNames>>
+export type WithStyles<P, Names extends string = string> = P & {
+  classes: ClassNameMap<Names>
+  theme?: Theme
+};
 
-declare function withStyles<P = {}, ClassNames = {}>(
-  style: StyleRules | StyleRulesCallback,
+export default function withStyles<Names extends string>(
+  style: StyleRules<Names> | StyleRulesCallback<Names>,
   options?: WithStylesOptions
-): (
-  component: React.ComponentType<P & { classes: ClassNames; theme?: Theme }>
-) => React.ComponentClass<P & StyledComponentProps<ClassNames>>
-
-export default withStyles;
+): <P>(
+  component: React.ComponentType<WithStyles<P, Names>>
+) => React.ComponentType<P & StyledComponentProps<Names>>;

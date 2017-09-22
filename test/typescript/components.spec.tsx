@@ -632,7 +632,7 @@ const StepperTest = () =>
   };
 
 const TableTest = () => {
-  const styles: StyleRulesCallback = theme => ({
+  const styles: StyleRulesCallback<'paper'> = theme => ({
     paper: {
       width: '100%',
       marginTop: theme.spacing.unit * 3,

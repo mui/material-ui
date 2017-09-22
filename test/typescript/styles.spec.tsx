@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
   withStyles,
-  StyleRules,
+  WithStyles,
   createMuiTheme,
   MuiThemeProvider,
   Theme,
@@ -25,29 +25,25 @@ interface StyledComponentProps {
   text: string;
 }
 
-const Component: React.SFC<
-  StyledComponentProps & { classes: StyledComponentClassNames }
-> = ({ classes, text }) =>
-  <div className={classes.root}>
-    {text}
-  </div>;
-
-const StyledComponent = withStyles<
-  StyledComponentProps,
-  StyledComponentClassNames
->(styles)(Component);
+const StyledComponent = withStyles(styles)<StyledComponentProps>(
+  ({ classes, text }) => (
+    <div className={classes.root}>
+      {text}
+    </div>
+  )
+);
 
 <StyledComponent text="I am styled!" />;
 
 // Also works with a plain object
 
-const stylesAsPojo: StyleRules = {
+const stylesAsPojo = {
   root: {
     background: 'hotpink',
   },
 };
 
-const AnotherStyledComponent = withStyles<{}, StyledComponentClassNames>({
+const AnotherStyledComponent = withStyles({
   root: { background: 'hotpink' },
 })(({ classes }) => <div className={classes.root}>Stylish!</div>);
 
@@ -107,20 +103,24 @@ const AllTheStyles: React.SFC<AllTheProps> = ({ theme, classes }) =>
   </div>;
 
 const AllTheComposition = withTheme(
-  withStyles<{ theme: Theme }, StyledComponentClassNames>(styles)(AllTheStyles)
+  withStyles(styles)(AllTheStyles)
 );
 
-// As decorator
-@withStyles(styles)
-class DecoratedComponent extends React.Component<
-  StyledComponentProps & { classes: StyledComponentClassNames }
-> {
-  render() {
-    const { classes, text } = this.props;
-    return (
-      <div className={classes.root}>
-        {text}
-      </div>
-    );
+// Can't use withStyles effectively as a decorator in TypeScript
+// due to https://github.com/Microsoft/TypeScript/issues/4881
+// @withStyles(styles)
+const DecoratedComponent = withStyles(styles)(
+  class extends React.Component<WithStyles<StyledComponentProps, 'root'>> {
+    render() {
+      const { classes, text } = this.props;
+      return (
+        <div className={classes.root}>
+          {text}
+        </div>
+      );
+    }
   }
-}
+);
+
+// no 'classes' property required at element creation time (#8267)
+<DecoratedComponent text="foo" />
