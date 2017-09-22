@@ -386,6 +386,7 @@ class Tooltip extends React.Component<AllProps, State> {
         </Target>
         <Popper
           placement={placement}
+          eventsEnabled={open}
           className={classNames(classes.popper, { [classes.popperClose]: !open }, PopperClassName)}
           {...PopperOther}
         >
