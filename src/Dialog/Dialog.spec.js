@@ -118,6 +118,18 @@ describe('<Dialog />', () => {
     });
   });
 
+  describe('prop: fullWidth', () => {
+    it('should set `fullWidth` class if specified', () => {
+      const wrapper = shallow(<Dialog fullWidth />);
+      assert.strictEqual(wrapper.find(Paper).hasClass(classes.fullWidth), true);
+    });
+
+    it('should not set `fullWidth` class if not specified', () => {
+      const wrapper = shallow(<Dialog />);
+      assert.strictEqual(wrapper.find(Paper).hasClass(classes.fullWidth), false);
+    });
+  });
+
   describe('prop: fullScreen', () => {
     it('true should render fullScreen', () => {
       const wrapper = shallow(<Dialog fullScreen />);
