@@ -49,4 +49,4 @@ Note: Importing named exports in this way will result in the code for *every ico
 If you are upgrading an existing project from Material-UI 0.x.x, you will need to revise the import paths
 from `material-ui/svg-icons/<category>/<icon-name>` to `material-ui-icons/<IconName>`.
 
-We may provide a [codemod](https://github.com/facebook/codemod) in a future release.
+[Here](https://github.com/callemall/material-ui/tree/v1-beta/packages/material-ui-codemod#svg-icon-imports)'s a `jscodeshift` [codemod](https://github.com/facebook/codemod) to help you upgrade.

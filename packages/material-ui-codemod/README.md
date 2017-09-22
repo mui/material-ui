@@ -42,6 +42,22 @@ find src -name '*.js' -print | xargs jscodeshift -t node_modules/material-ui-cod
 jscodeshift -t <color-imports.js> <path> --importPath='mui/styles/colors' --targetPath='mui/colors'
 ```
 
+#### `svg-icon-imports`
+
+Updates the `svg-icons` import paths from `material-ui/svg-icons/<category>/<icon-name>` to `material-ui-icons/<IconName>`, to use the new [`material-ui-icons`](https://github.com/callemall/material-ui/tree/v1-beta/packages/material-ui-icons) package.
+The diff should look like this:
+
+```diff
+-import AccessAlarmIcon from 'material-ui/svg-icons/device/AccessAlarm';
+-import ThreeDRotation from 'material-ui/svg-icons/action/ThreeDRotation';
++import AccessAlarmIcon from 'material-ui-icons/AccessAlarm';
++import ThreeDRotation from 'material-ui-icons/ThreeDRotation';
+```
+
+```sh
+find src -name '*.js' -print | xargs jscodeshift -t node_modules/material-ui-codemod/lib/v1.0.0/svg-icon-imports.js
+```
+
 ### v0.15.0
 
 #### `import-path`
