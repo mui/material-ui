@@ -46,6 +46,9 @@ jobs:
           name: Flow
           command: yarn flow
       - run:
+          name: TypeScript
+          command: yarn typescript
+      - run:
           name: Tests fake browser
           command: yarn test:coverage
       - run:
