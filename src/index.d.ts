@@ -7,11 +7,13 @@ import * as React from 'react';
  *
  * - `className`
  * - `classes`
+ * - `style`
  * - `innerRef`
  */
 export interface StyledComponentProps<StyleClasses> {
   className?: string;
   classes?: StyleClasses;
+  style?: Partial<React.CSSProperties>;
   innerRef?: React.Ref<any>;
 }
 export class StyledComponent<P, C = Object> extends React.Component<
