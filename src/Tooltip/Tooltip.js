@@ -372,6 +372,10 @@ class Tooltip extends React.Component<AllProps, State> {
       );
     }
 
+    if (typeof PopperOther.eventsEnabled === 'undefined') {
+      PopperOther.eventsEnabled = open;
+    }
+
     return (
       <Manager className={classNames(classes.root, className)} {...other}>
         <Target>
