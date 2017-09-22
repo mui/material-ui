@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export type ClassNameMap<Names extends string> = Record<Names, string>;
+export type ClassNameMap<Names extends string = string> = Record<Names, string>;
 
 /**
  * Component exposed by `material-ui` are usually wrapped
