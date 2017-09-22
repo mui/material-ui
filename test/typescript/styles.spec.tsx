@@ -2,7 +2,6 @@ import * as React from 'react';
 import {
   withStyles,
   WithStyles,
-  StyleRules,
   createMuiTheme,
   MuiThemeProvider,
   Theme,
@@ -38,7 +37,7 @@ const StyledComponent = withStyles(styles)<StyledComponentProps>(
 
 // Also works with a plain object
 
-const stylesAsPojo: StyleRules<'root'> = {
+const stylesAsPojo = {
   root: {
     background: 'hotpink',
   },
