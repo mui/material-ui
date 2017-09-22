@@ -124,3 +124,40 @@ class DecoratedComponent extends React.Component<
     );
   }
 }
+
+// Avoid naming conflict with 'StyledComponentProps' used in other tests
+import { StyledComponentProps as MUIStyledComponentProps } from '../../src';
+// Ensure that providing a classes prop is optional for components that use withStyles
+const WithStylesDoesntRequireClassesTest = () => {
+
+  const styles = theme => ({
+    root: {
+      color: "aqua"
+    }
+  });
+
+  interface NoClassesRequiredStyles {
+    root: string
+  }
+
+  type NoClassesRequiredProps = {
+    bestComponentLibrary: string
+  } & MUIStyledComponentProps<NoClassesRequiredStyles>
+
+  class NoClassesRequired extends React.Component<NoClassesRequiredProps> {
+
+    render() {
+      const classes = this.props.classes;
+      return (
+        <div className={classes.root}/>
+      );
+    }
+
+  }
+
+  <NoClassesRequired bestComponentLibrary="MUI"/>
+
+  /* If classes regresses and is no longer nullable for components using
+     withStyles, this will not compile. */
+  return withStyles(styles)(NoClassesRequired);
+};
