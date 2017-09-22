@@ -9,18 +9,18 @@ import { Theme } from './createMuiTheme';
    * - the `keys` are the class (names) that will be created
    * - the `values` are objects that represent CSS rules (`React.CSSProperties`).
    */
-export type StyleRules<Names extends string> = {
+export type StyleRules<Names extends string = string> = {
   [Name in Names]: Partial<React.CSSProperties>;
 }
 
-export type StyleRulesCallback<Names extends string> = (theme: Theme) => StyleRules<Names>;
+export type StyleRulesCallback<Names extends string = string> = (theme: Theme) => StyleRules<Names>;
 
 export interface WithStylesOptions {
   withTheme?: boolean;
   name?: string;
 }
 
-export type WithStyles<P, Names extends string> = P & {
+export type WithStyles<P, Names extends string = string> = P & {
   classes: Record<Names, string>
   theme?: Theme
 }
