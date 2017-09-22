@@ -109,18 +109,18 @@ const AllTheComposition = withTheme(
 // Can't use withStyles effectively as a decorator in TypeScript
 // due to https://github.com/Microsoft/TypeScript/issues/4881
 // @withStyles(styles)
-class DecoratableComponent extends React.Component<WithStyles<StyledComponentProps, 'root'>> {
-  render() {
-    const { classes, text } = this.props;
-    return (
-      <div className={classes.root}>
-        {text}
-      </div>
-    );
+const DecoratedComponent = withStyles(styles)(
+  class extends React.Component<WithStyles<StyledComponentProps, 'root'>> {
+    render() {
+      const { classes, text } = this.props;
+      return (
+        <div className={classes.root}>
+          {text}
+        </div>
+      );
+    }
   }
-}
-
-const DecoratedComponent = withStyles(styles)(DecoratableComponent);
+);
 
 // no 'classes' property required at element creation time (#8267)
 <DecoratedComponent text="foo" />
