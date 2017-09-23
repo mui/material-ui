@@ -49,15 +49,21 @@ describe('createGenerateClassName', () => {
     });
 
     describe('production', () => {
+      // Only run the test on node.
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        return;
+      }
+
       let nodeEnv;
+      const env = process.env;
 
       before(() => {
-        nodeEnv = process.env.NODE_ENV;
-        process.env.NODE_ENV = 'production';
+        nodeEnv = env.NODE_ENV;
+        env.NODE_ENV = 'production';
       });
 
       after(() => {
-        process.env.NODE_ENV = nodeEnv;
+        env.NODE_ENV = nodeEnv;
       });
 
       it('should us a short representation', () => {

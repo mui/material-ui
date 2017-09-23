@@ -1,5 +1,7 @@
 // @flow weak
+
 const path = require('path');
+const webpack = require('webpack');
 
 const browserStack = {
   username: process.env.BROWSERSTACK_USERNAME,
@@ -50,6 +52,13 @@ module.exports = function setKarmaConfig(config) {
     reporters: ['dots'],
     webpack: {
       devtool: 'inline-source-map',
+      plugins: [
+        new webpack.DefinePlugin({
+          'process.env': {
+            NODE_ENV: JSON.stringify('test'),
+          },
+        }),
+      ],
       module: {
         rules: [
           {
