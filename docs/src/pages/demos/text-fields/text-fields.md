@@ -34,3 +34,10 @@ other styles to meet the specification.
 ## Inputs
 
 {{demo='pages/demos/text-fields/Inputs.js'}}
+
+## Formatted inputs
+
+We demonstrate how you could be using third-party libraries to [format your input](https://material.io/guidelines/components/text-fields.html#text-fields-input-types).
+Here, we are using [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format).
+
+{{demo='pages/demos/text-fields/FormattedInputs.js'}}
