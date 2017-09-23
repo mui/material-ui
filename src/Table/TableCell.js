@@ -137,8 +137,6 @@ TableCell.defaultProps = {
   component: null,
 };
 
-// Required to set TableCell.contextTypes otherwise context is not passed to a stateless component
-// https://facebook.github.io/react/docs/context.html#referencing-context-in-stateless-functional-components
 TableCell.contextTypes = {
   table: PropTypes.object.isRequired,
 };
