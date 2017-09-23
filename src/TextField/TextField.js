@@ -2,10 +2,12 @@
 // @inheritedComponent FormControl
 
 import React from 'react';
-import type { Node } from 'react';
+import warning from 'warning';
+import type { ChildrenArray, Node } from 'react';
 import Input, { InputLabel } from '../Input';
 import FormControl from '../Form/FormControl';
 import FormHelperText from '../Form/FormHelperText';
+import Select from '../Select/Select';
 
 export type Props = {
   /**
@@ -19,6 +21,10 @@ export type Props = {
    * If `true`, the input will be focused during the first mount.
    */
   autoFocus?: boolean,
+  /**
+   * @ignore
+   */
+  children?: ChildrenArray<*>,
   /**
    * @ignore
    */
@@ -96,7 +102,13 @@ export type Props = {
    */
   name?: string,
   /**
-   * TODO
+   * Callback fired when the value is changed.
+   *
+   * @param {object} event The event source of the callback
+   */
+  onChange?: (event: SyntheticInputEvent<>) => void,
+  /**
+   * The short hint displayed in the input before the user enters a value.
    */
   placeholder?: string,
   /**
@@ -116,6 +128,15 @@ export type Props = {
    */
   rowsMax?: string | number,
   /**
+   * Render a `Select` element while passing the `Input` element to `Select` as `input` parameter.
+   * If this option is set you must pass the options of the select as children.
+   */
+  select?: boolean,
+  /**
+   * Properties applied to the `Select` element.
+   */
+  SelectProps?: Object,
+  /**
    * Type attribute of the `Input` element. It should be a valid HTML5 input type.
    */
   type?: string,
@@ -133,6 +154,7 @@ function TextField(props: Props) {
   const {
     autoComplete,
     autoFocus,
+    children,
     className,
     defaultValue,
     disabled,
@@ -154,10 +176,13 @@ function TextField(props: Props) {
     type,
     multiline,
     name,
+    onChange,
     placeholder,
     rootRef,
     rows,
     rowsMax,
+    select,
+    SelectProps,
     value,
     ...other
   } = props;
@@ -170,6 +195,33 @@ function TextField(props: Props) {
       ...inputProps,
     };
   }
+
+  warning(
+    !select || children,
+    'Material-UI: `children` must be passed when using the `TextField` component with `select`.',
+  );
+
+  const InputComponent = (
+    <Input
+      autoComplete={autoComplete}
+      autoFocus={autoFocus}
+      className={InputClassName}
+      defaultValue={defaultValue}
+      disabled={disabled}
+      multiline={multiline}
+      name={name}
+      rows={rows}
+      rowsMax={rowsMax}
+      type={type}
+      value={value}
+      id={id}
+      inputProps={inputProps}
+      inputRef={inputRef}
+      onChange={onChange}
+      placeholder={placeholder}
+      {...InputProps}
+    />
+  );
 
   return (
     <FormControl
@@ -185,24 +237,13 @@ function TextField(props: Props) {
           {label}
         </InputLabel>
       )}
-      <Input
-        autoComplete={autoComplete}
-        autoFocus={autoFocus}
-        className={InputClassName}
-        defaultValue={defaultValue}
-        disabled={disabled}
-        multiline={multiline}
-        name={name}
-        rows={rows}
-        rowsMax={rowsMax}
-        type={type}
-        value={value}
-        id={id}
-        inputProps={inputProps}
-        inputRef={inputRef}
-        placeholder={placeholder}
-        {...InputProps}
-      />
+      {select ? (
+        <Select input={InputComponent} {...SelectProps}>
+          {children}
+        </Select>
+      ) : (
+        InputComponent
+      )}
       {helperText && (
         <FormHelperText className={helperTextClassName} {...FormHelperTextProps}>
           {helperText}
@@ -214,6 +255,7 @@ function TextField(props: Props) {
 
 TextField.defaultProps = {
   required: false,
+  select: false,
 };
 
 export default TextField;

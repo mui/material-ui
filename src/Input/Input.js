@@ -275,7 +275,9 @@ export type Props = {
    */
   onBlur?: (event: SyntheticFocusEvent<>) => void,
   /**
-   * TODO
+   * Callback fired when the value is changed.
+   *
+   * @param {object} event The event source of the callback
    */
   onChange?: (event: SyntheticInputEvent<>) => void,
   /**
@@ -299,7 +301,7 @@ export type Props = {
    */
   onKeyUp?: (event: SyntheticKeyboardEvent<>) => void,
   /**
-   * TODO
+   * The short hint displayed in the input before the user enters a value.
    */
   placeholder?: string,
   /**

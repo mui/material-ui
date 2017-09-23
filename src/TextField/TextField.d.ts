@@ -6,6 +6,7 @@ import { InputProps, InputLabelProps } from '../Input';
 export type TextFieldProps = {
   autoComplete?: string;
   autoFocus?: boolean;
+  children?: React.ReactNode;
   defaultValue?: string | number;
   disabled?: boolean;
   error?: boolean;
@@ -29,6 +30,8 @@ export type TextFieldProps = {
   rootRef?: React.Ref<any>;
   rows?: string | number;
   rowsMax?: string | number;
+  select?: boolean;
+  SelectProps?: Object;
   type?: string;
   value?: string | number;
   margin?: PropTypes.Margin;

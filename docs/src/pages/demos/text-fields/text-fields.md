@@ -9,7 +9,7 @@ Users may enter text, numbers, or mixed-format types of input.
 
 ## TextField
 
-The `<TextField>` wrapper component is a complete form control including a label, input and help text.
+The `TextField` wrapper component is a complete form control including a label, input and help text.
 
 {{demo='pages/demos/text-fields/TextFields.js'}}
 

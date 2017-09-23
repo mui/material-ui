@@ -23,10 +23,10 @@
 | margin | union:&nbsp;'dense'<br>&nbsp;'none'<br> |  | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
 | multiline | boolean | false | If `true`, a textarea element will be rendered. |
 | name | string |  | Name attribute of the `input` element. |
-| onChange | signature |  | TODO |
+| onChange | signature |  | Callback fired when the value is changed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | onClean | signature |  | TODO |
 | onDirty | signature |  | TODO |
-| placeholder | string |  | TODO |
+| placeholder | string |  | The short hint displayed in the input before the user enters a value. |
 | rows | union:&nbsp;string<br>&nbsp;number<br> |  | Number of rows to display when multiline option is set to true. |
 | rowsMax | union:&nbsp;string<br>&nbsp;number<br> |  | Maximum number of rows to display when multiline option is set to true. |
 | type | string | 'text' | Type of the input element. It should be a valid HTML5 input type. |
