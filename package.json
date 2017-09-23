@@ -172,6 +172,7 @@
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0"
   },
+  "side-effects": false,
   "size-limit": [
     {
       "path": "build/index.js",
