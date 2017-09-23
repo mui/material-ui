@@ -10,6 +10,7 @@
 | children | node |  | The content of the component. |
 | classes | object |  | Useful to extend the style applied to components. |
 | color | enum:&nbsp;'default'<br>&nbsp;'primary'<br>&nbsp;'inherit'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |
+| disableSticky | bool | false | If `true`, the List Subheader will not stick to the top during scroll. |
 | inset | bool | false | If `true`, the List Subheader will be indented. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
@@ -22,6 +23,7 @@ This property accepts the following keys:
 - `colorPrimary`
 - `colorInherit`
 - `inset`
+- `sticky`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)
 section for more detail.

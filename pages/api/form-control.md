@@ -16,7 +16,7 @@ This context is used by the following components:
 |:-----|:-----|:--------|:------------|
 | children | $ReadOnlyArray |  | The contents of the form control. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| component | union:&nbsp;string<br>&nbsp;ComponentType<*><br> | 'div' | The component used for the root node. Either a string to use a DOM element or a component. |
+| component | ElementType | 'div' | The component used for the root node. Either a string to use a DOM element or a component. |
 | disabled | boolean | false | If `true`, the label, input and helper text should be displayed in a disabled state. |
 | error | boolean | false | If `true`, the label should be displayed in an error state. |
 | fullWidth | boolean | false | If `true`, the label will take up the full width of its container. |

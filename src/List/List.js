@@ -12,6 +12,7 @@ export const styles = (theme: Object) => ({
     listStyle: 'none',
     margin: 0,
     padding: 0,
+    position: 'relative',
   },
   padding: {
     paddingTop: theme.spacing.unit,

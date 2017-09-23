@@ -40,4 +40,16 @@ describe('<ListSubheader />', () => {
     assert.strictEqual(wrapper.hasClass(classes.inset), true, 'should have the primary class');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
+
+  describe('prop: disableSticky', () => {
+    it('should display sticky class', () => {
+      const wrapper = shallow(<ListSubheader />);
+      assert.strictEqual(wrapper.hasClass(classes.sticky), true);
+    });
+
+    it('should not display sticky class', () => {
+      const wrapper = shallow(<ListSubheader disableSticky />);
+      assert.strictEqual(wrapper.hasClass(classes.sticky), false);
+    });
+  });
 });
