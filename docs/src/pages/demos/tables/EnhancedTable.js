@@ -152,9 +152,11 @@ EnhancedTableToolbar.propTypes = {
 EnhancedTableToolbar = withStyles(toolbarStyles)(EnhancedTableToolbar);
 
 const styles = theme => ({
-  paper: {
+  root: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
+  },
+  tableWrapper: {
     overflowX: 'auto',
   },
 });
@@ -252,53 +254,55 @@ class EnhancedTable extends React.Component {
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
 
     return (
-      <Paper className={classes.paper}>
+      <Paper className={classes.root}>
         <EnhancedTableToolbar numSelected={selected.length} />
-        <Table>
-          <EnhancedTableHead
-            numSelected={selected.length}
-            order={order}
-            orderBy={orderBy}
-            onSelectAllClick={this.handleSelectAllClick}
-            onRequestSort={this.handleRequestSort}
-            rowCount={data.length}
-          />
-          <TableBody>
-            {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(n => {
-              const isSelected = this.isSelected(n.id);
-              return (
-                <TableRow
-                  hover
-                  onClick={event => this.handleClick(event, n.id)}
-                  onKeyDown={event => this.handleKeyDown(event, n.id)}
-                  role="checkbox"
-                  aria-checked={isSelected}
-                  tabIndex={-1}
-                  key={n.id}
-                  selected={isSelected}
-                >
-                  <TableCell checkbox>
-                    <Checkbox checked={isSelected} />
-                  </TableCell>
-                  <TableCell disablePadding>{n.name}</TableCell>
-                  <TableCell numeric>{n.calories}</TableCell>
-                  <TableCell numeric>{n.fat}</TableCell>
-                  <TableCell numeric>{n.carbs}</TableCell>
-                  <TableCell numeric>{n.protein}</TableCell>
-                </TableRow>
-              );
-            })}
-          </TableBody>
-          <TableFooter>
-            <TablePagination
-              count={data.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onChangePage={this.handleChangePage}
-              onChangeRowsPerPage={this.handleChangeRowsPerPage}
+        <div className={classes.tableWrapper}>
+          <Table>
+            <EnhancedTableHead
+              numSelected={selected.length}
+              order={order}
+              orderBy={orderBy}
+              onSelectAllClick={this.handleSelectAllClick}
+              onRequestSort={this.handleRequestSort}
+              rowCount={data.length}
             />
-          </TableFooter>
-        </Table>
+            <TableBody>
+              {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(n => {
+                const isSelected = this.isSelected(n.id);
+                return (
+                  <TableRow
+                    hover
+                    onClick={event => this.handleClick(event, n.id)}
+                    onKeyDown={event => this.handleKeyDown(event, n.id)}
+                    role="checkbox"
+                    aria-checked={isSelected}
+                    tabIndex={-1}
+                    key={n.id}
+                    selected={isSelected}
+                  >
+                    <TableCell checkbox>
+                      <Checkbox checked={isSelected} />
+                    </TableCell>
+                    <TableCell disablePadding>{n.name}</TableCell>
+                    <TableCell numeric>{n.calories}</TableCell>
+                    <TableCell numeric>{n.fat}</TableCell>
+                    <TableCell numeric>{n.carbs}</TableCell>
+                    <TableCell numeric>{n.protein}</TableCell>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+            <TableFooter>
+              <TablePagination
+                count={data.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onChangePage={this.handleChangePage}
+                onChangeRowsPerPage={this.handleChangeRowsPerPage}
+              />
+            </TableFooter>
+          </Table>
+        </div>
       </Paper>
     );
   }
