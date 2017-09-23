@@ -71,7 +71,7 @@ export type Props = {
   /**
    * The current sort direction.
    */
-  direction: 'asc' | 'desc',
+  direction?: 'asc' | 'desc',
 };
 
 /**
