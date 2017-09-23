@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
@@ -46,10 +46,38 @@ export const styles = (theme: Object) => ({
   },
 });
 
+type DefaultProps = {
+  active: boolean,
+  direction: string,
+};
+
+export type Props = {
+  /**
+   * If `true`, the label will have the active styling (should be true for the sorted column).
+   */
+  active?: boolean,
+  /**
+   * Label contents, the arrow will be appended automatically.
+   */
+  children?: Node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * The current sort direction.
+   */
+  direction?: 'asc' | 'desc',
+};
+
 /**
  * A button based label for placing inside `TableCell` for column sorting.
  */
-function TableSortLabel(props) {
+function TableSortLabel(props: DefaultProps & Props) {
   const { active, classes, className: classNameProp, children, direction, ...other } = props;
   const className = classNames(
     classes.root,
@@ -70,29 +98,6 @@ function TableSortLabel(props) {
     </ButtonBase>
   );
 }
-
-TableSortLabel.propTypes = {
-  /**
-   * If `true`, the label will have the active styling (should be true for the sorted column).
-   */
-  active: PropTypes.bool,
-  /**
-   * Label contents, the arrow will be appended automatically.
-   */
-  children: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * The current sort direction.
-   */
-  direction: PropTypes.oneOf(['asc', 'desc']),
-};
 
 TableSortLabel.defaultProps = {
   active: false,

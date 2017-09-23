@@ -2,8 +2,58 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import type { ElementType, Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
+
+export type Context = {
+  table: Object,
+};
+
+type Default = {
+  checkbox: boolean,
+  compact: boolean,
+  numeric: boolean,
+  disablePadding: boolean,
+  component: ElementType,
+};
+
+export type Props = {
+  /**
+   * If `true`, the cell padding will be adjusted to accommodate a checkbox.
+   */
+  checkbox?: boolean,
+  /**
+   * The table cell contents.
+   */
+  children?: Node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * If `true`, compact cell padding will be used to accommodate more content.
+   */
+  compact?: boolean,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component?: ElementType,
+  /**
+   * If `true`, left/right cell padding will be disabled.
+   * If `compact` is also `true` then `disablePadding` will have no effect.
+   */
+  disablePadding?: boolean,
+  /**
+   * If `true`, content will align to the right.
+   */
+  numeric?: boolean,
+};
 
 export const styles = (theme: Object) => ({
   root: {
@@ -39,7 +89,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-function TableCell(props, context) {
+function TableCell(props: Default & Props, context: Context) {
   const {
     classes,
     className: classNameProp,
@@ -78,42 +128,6 @@ function TableCell(props, context) {
     </Component>
   );
 }
-
-TableCell.propTypes = {
-  /**
-   * If `true`, the cell padding will be adjusted to accommodate a checkbox.
-   */
-  checkbox: PropTypes.bool,
-  /**
-   * The table cell contents.
-   */
-  children: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * If `true`, compact cell padding will be used to accommodate more content.
-   */
-  compact: PropTypes.bool,
-  /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a component.
-   */
-  component: PropTypes.string,
-  /**
-   * If `true`, left/right cell padding will be disabled.
-   */
-  disablePadding: PropTypes.bool,
-  /**
-   * If `true`, content will align to the right.
-   */
-  numeric: PropTypes.bool,
-};
 
 TableCell.defaultProps = {
   checkbox: false,
