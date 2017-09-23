@@ -107,8 +107,6 @@ TableRow.defaultProps = {
   component: 'tr',
 };
 
-// Required to set TableRow.contextTypes otherwise context is not passed to a stateless component
-// https://facebook.github.io/react/docs/context.html#referencing-context-in-stateless-functional-components
 TableRow.contextTypes = {
   table: PropTypes.object,
 };
