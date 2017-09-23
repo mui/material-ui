@@ -71,7 +71,7 @@ export type Props = {
  * Will automatically set dynamic row height
  * based on the material table element parent (head, body, etc).
  */
-function TableRow(props: Props & DefaultProps, context: Context) {
+function TableRow(props: DefaultProps & Props, context: Context) {
   const {
     classes,
     className: classNameProp,
