@@ -14,7 +14,6 @@ export const styles = (theme: Object) => ({
     justifyContent: 'flex-start',
     flexDirection: 'inherit',
     alignItems: 'center',
-    background: 'transparent',
     '&:hover': {
       color: theme.palette.text.primary,
     },

@@ -18,7 +18,6 @@ export const styles = (theme: Object) => ({
     padding: `11px ${theme.spacing.unit * 2}px`,
     borderRadius: 2,
     color: theme.palette.text.primary,
-    backgroundColor: 'transparent',
     transition: theme.transitions.create(['background-color', 'box-shadow'], {
       duration: theme.transitions.duration.short,
     }),

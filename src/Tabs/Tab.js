@@ -14,7 +14,6 @@ export const styles = (theme: Object) => ({
     ...theme.typography.button,
     maxWidth: 264,
     minWidth: 72,
-    background: 'none',
     padding: 0,
     height: 48,
     flex: 'none',
