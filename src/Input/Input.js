@@ -57,6 +57,7 @@ export const styles = (theme: Object) => {
       position: 'relative',
       fontFamily: theme.typography.fontFamily,
       color: theme.palette.input.inputText,
+      paddingBottom: 2,
     },
     formControl: {
       'label + &': {
@@ -136,7 +137,6 @@ export const styles = (theme: Object) => {
     },
     focused: {},
     underline: {
-      paddingBottom: 2,
       '&:before': {
         backgroundColor: theme.palette.input.bottomLine,
         left: 0,
