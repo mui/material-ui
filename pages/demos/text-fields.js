@@ -38,6 +38,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/text-fields/Inputs'), 'utf8')
 `,
         },
+        'pages/demos/text-fields/FormattedInputs.js': {
+          js: require('docs/src/pages/demos/text-fields/FormattedInputs').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/text-fields/FormattedInputs'), 'utf8')
+`,
+        },
       }}
     />
   );

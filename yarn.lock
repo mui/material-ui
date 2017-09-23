@@ -6463,7 +6463,7 @@ prop-types-exact@^1.1.1:
     has "^1.0.1"
     object.assign "^4.0.4"
 
-prop-types@15.5.10, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.8:
+prop-types@15.5.10, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.8:
   version "15.5.10"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.10.tgz#2797dfc3126182e3a95e3dfbb2e893ddd7456154"
   dependencies:
@@ -6707,6 +6707,12 @@ react-jss@^7.1.0:
     prop-types "^15.5.8"
     theming "^1.1.0"
 
+react-number-format@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/react-number-format/-/react-number-format-2.0.4.tgz#90cd7a44a4181305bc4c6aa66380205adf5e158b"
+  dependencies:
+    prop-types "^15.5.8"
+
 react-popper@^0.7.2:
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-0.7.2.tgz#5daa821eadc6f2ca802176d7be271d0f03f25f58"
@@ -6775,6 +6781,12 @@ react-test-renderer@^15.6.1:
   dependencies:
     fbjs "^0.8.9"
     object-assign "^4.1.0"
+
+react-text-mask@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/react-text-mask/-/react-text-mask-5.0.2.tgz#09bce3f94ac244c11932082e42328cb455b73aa6"
+  dependencies:
+    prop-types "^15.5.6"
 
 react-themeable@^1.1.0:
   version "1.1.0"
