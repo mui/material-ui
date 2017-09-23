@@ -11,7 +11,7 @@ describe('<TableCell />', () => {
 
   before(() => {
     shallow = createShallow({
-      dive: true,
+      untilSelector: 'TableCell',
       context: {
         table: { footer: true },
       },

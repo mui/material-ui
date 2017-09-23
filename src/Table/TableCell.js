@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import type { ElementType, Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
+import requirePropFalseFactory from '../utils/requirePropFalseFactory';
 
 export type Context = {
   table: Object,
@@ -141,4 +142,18 @@ TableCell.contextTypes = {
   table: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { name: 'MuiTableCell' })(TableCell);
+// Add a wrapper component to generate some helper messages in the development
+// environment.
+let TableCellWrapper = TableCell; // eslint-disable-line import/no-mutable-exports
+
+if (process.env.NODE_ENV !== 'production') {
+  const requirePropFalse = requirePropFalseFactory('TableCell');
+  TableCellWrapper = (props: any) => <TableCell {...props} />;
+
+  TableCellWrapper.propTypes = {
+    compact: requirePropFalse('checkbox'),
+    disablePadding: requirePropFalse(['compact', 'checkbox']),
+  };
+}
+
+export default withStyles(styles, { name: 'MuiTableCell' })(TableCellWrapper);
