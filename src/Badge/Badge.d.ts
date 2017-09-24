@@ -7,6 +7,13 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
   color?: PropTypes.Color;
 }
 
-declare const Badge: StyledComponent<BadgeProps>;
+export type BadgeClassKey =
+  | 'root'
+  | 'badge'
+  | 'colorPrimary'
+  | 'colorAccent'
+  ;
+
+declare const Badge: StyledComponent<BadgeProps, BadgeClassKey>;
 
 export default Badge;
