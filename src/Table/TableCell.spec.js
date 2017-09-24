@@ -59,12 +59,12 @@ describe('<TableCell />', () => {
     assert.strictEqual(wrapper.hasClass(classes.checkbox), true);
   });
 
-  it('should render with the user, root, padding, and compact classes', () => {
-    const wrapper = shallow(<TableCell className="woofTableCell" padding="compact" />);
+  it('should render with the user, root, padding, and dense classes', () => {
+    const wrapper = shallow(<TableCell className="woofTableCell" padding="dense" />);
     assert.strictEqual(wrapper.hasClass('woofTableCell'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.padding), true);
-    assert.strictEqual(wrapper.hasClass(classes.compact), true);
+    assert.strictEqual(wrapper.hasClass(classes.dense), true);
   });
 
   it('should render children', () => {

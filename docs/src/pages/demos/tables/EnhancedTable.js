@@ -57,7 +57,7 @@ class EnhancedTableHead extends React.Component {
     return (
       <TableHead>
         <TableRow>
-          <TableCell checkbox>
+          <TableCell padding="checkbox">
             <Checkbox
               indeterminate={numSelected > 0 && numSelected < rowCount}
               checked={numSelected === rowCount}
@@ -69,7 +69,7 @@ class EnhancedTableHead extends React.Component {
               <TableCell
                 key={column.id}
                 numeric={column.numeric}
-                disablePadding={column.disablePadding}
+                padding={column.disablePadding ? 'none' : 'default'}
               >
                 <TableSortLabel
                   active={orderBy === column.id}
@@ -280,10 +280,10 @@ class EnhancedTable extends React.Component {
                     key={n.id}
                     selected={isSelected}
                   >
-                    <TableCell checkbox>
+                    <TableCell padding="checkbox">
                       <Checkbox checked={isSelected} />
                     </TableCell>
-                    <TableCell disablePadding>{n.name}</TableCell>
+                    <TableCell padding="none">{n.name}</TableCell>
                     <TableCell numeric>{n.calories}</TableCell>
                     <TableCell numeric>{n.fat}</TableCell>
                     <TableCell numeric>{n.carbs}</TableCell>
