@@ -4,4 +4,6 @@ import { StyledComponent } from '..';
 export interface TableBodyProps
   extends React.HTMLAttributes<HTMLTableSectionElement> {}
 
-export default class TableBody extends StyledComponent<TableBodyProps> {}
+declare const TableBody: StyledComponent<TableBodyProps>;
+
+export default TableBody;

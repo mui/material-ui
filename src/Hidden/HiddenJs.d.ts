@@ -16,4 +16,6 @@ export interface HiddenJsProps {
   xlDown?: boolean;
 }
 
-export default class HiddenJs extends StyledComponent<HiddenJsProps> {}
+declare const HiddenJs: StyledComponent<HiddenJsProps>;
+
+export default HiddenJs;

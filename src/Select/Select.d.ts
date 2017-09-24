@@ -11,4 +11,6 @@ export type SelectProps = {
   value?: Array<string | number> | string | number;
 } & Partial<Omit<InputProps, 'value'>>;
 
-export default class Select extends StyledComponent<SelectProps> {}
+declare const Select: StyledComponent<SelectProps>;
+
+export default Select;

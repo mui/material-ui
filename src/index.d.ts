@@ -18,9 +18,8 @@ export interface StyledComponentProps<Names extends string = string> {
   style?: Partial<React.CSSProperties>;
   innerRef?: React.Ref<any>;
 }
-export class StyledComponent<P = {}, Names extends string = string> extends React.Component<
-  P & StyledComponentProps<Names>
-> {}
+export type StyledComponent<P = {}, Names extends string = string> =
+  React.ComponentType<P & StyledComponentProps<Names>>
 
 export type Contrast = 'light' | 'dark' | 'brown';
 export interface Color {

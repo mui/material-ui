@@ -17,4 +17,6 @@ export type TableCellProps = {
 } & React.ThHTMLAttributes<HTMLTableHeaderCellElement> &
   React.TdHTMLAttributes<HTMLTableDataCellElement>;
 
-export default class TableCell extends StyledComponent<TableCellProps> {}
+declare const TableCell: StyledComponent<TableCellProps>;
+
+export default TableCell;

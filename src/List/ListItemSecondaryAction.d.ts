@@ -2,6 +2,6 @@ import { StyledComponent } from '..';
 
 export interface ListItemSecondaryActionProps {}
 
-export default class ListItemSecondaryAction extends StyledComponent<
-  ListItemSecondaryActionProps
-> {}
+declare const ListItemSecondaryAction: StyledComponent<ListItemSecondaryActionProps>;
+
+export default ListItemSecondaryAction;

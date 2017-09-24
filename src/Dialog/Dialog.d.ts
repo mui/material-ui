@@ -17,4 +17,6 @@ export type DialogProps = {
   transition?: Function | React.ReactElement<any>;
 } & ModalProps;
 
-export default class Dialog extends StyledComponent<DialogProps> {}
+declare const Dialog: StyledComponent<DialogProps>;
+
+export default Dialog;

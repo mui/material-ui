@@ -7,6 +7,6 @@ export interface SnackbarContentProps extends PaperProps {
   message: React.ReactElement<any> | string;
 }
 
-export default class SnackbarContent extends StyledComponent<
-  SnackbarContentProps
-> {}
+declare const SnackbarContent: StyledComponent<SnackbarContentProps>;
+
+export default SnackbarContent;

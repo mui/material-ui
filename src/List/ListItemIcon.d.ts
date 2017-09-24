@@ -2,4 +2,6 @@ import { StyledComponent } from '..';
 
 export interface ListItemIconProps {}
 
-export default class ListItemIcon extends StyledComponent<ListItemIconProps> {}
+declare const ListItemIcon: StyledComponent<ListItemIconProps>;
+
+export default ListItemIcon;

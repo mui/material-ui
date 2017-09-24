@@ -11,6 +11,6 @@ export interface CircularProgressProps
   value?: number;
 }
 
-export default class CircularProgress extends StyledComponent<
-  CircularProgressProps
-> {}
+declare const CircularProgress: StyledComponent<CircularProgressProps>;
+
+export default CircularProgress

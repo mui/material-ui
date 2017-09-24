@@ -15,4 +15,6 @@ export interface ButtonProps extends ButtonBaseProps {
   type?: string;
 }
 
-export default class Button extends StyledComponent<ButtonProps> {}
+declare const Button: StyledComponent<ButtonProps>;
+
+export default Button

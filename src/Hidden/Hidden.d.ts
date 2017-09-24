@@ -17,4 +17,6 @@ export interface HiddenProps {
   implementation?: 'js' | 'css';
 }
 
-export default class Hidden extends StyledComponent<HiddenProps> {}
+declare const Hidden: StyledComponent<HiddenProps>;
+
+export default Hidden;

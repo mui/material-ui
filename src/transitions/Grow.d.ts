@@ -8,4 +8,6 @@ export interface GrowProps extends TransitionProps {
   transitionDuration?: number | string;
 }
 
-export default class Grow extends StyledComponent<GrowProps> {}
+declare const Grow: StyledComponent<GrowProps>;
+
+export default Grow;

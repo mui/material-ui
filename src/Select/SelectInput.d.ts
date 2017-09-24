@@ -16,4 +16,6 @@ export interface SelectInputProps {
   value?: string | number | Array<string | number>,
 }
 
-export default class SelectInput extends StyledComponent<SelectInputProps> {}
+declare const SelectInput: StyledComponent<SelectInputProps>;
+
+export default SelectInput;

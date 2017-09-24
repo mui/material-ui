@@ -5,4 +5,6 @@ export interface CardMediaProps extends React.HTMLAttributes<HTMLDivElement> {
   image: string;
 }
 
-export default class CardMedia extends StyledComponent<CardMediaProps> {}
+declare const CardMedia: StyledComponent<CardMediaProps>;
+
+export default CardMedia;

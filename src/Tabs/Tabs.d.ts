@@ -17,4 +17,6 @@ export type TabsProps = {
   width?: string;
 } & Partial<Omit<ButtonBaseProps, 'onChange'>>;
 
-export default class Tabs extends StyledComponent<TabsProps> {}
+declare const Tabs: StyledComponent<TabsProps>;
+
+export default Tabs;

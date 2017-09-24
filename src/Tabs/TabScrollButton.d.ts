@@ -7,6 +7,6 @@ export interface TabScrollButtonProps extends ButtonBaseProps {
   visible?: boolean;
 }
 
-export default class TabScrollButton extends StyledComponent<
-  TabScrollButtonProps
-> {}
+declare const TabScrollButton: StyledComponent<TabScrollButtonProps>;
+
+export default TabScrollButton;

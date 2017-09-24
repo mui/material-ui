@@ -9,6 +9,7 @@ import {
   withTheme,
 } from '../../src/styles';
 import Button from '../../src/Button/Button';
+import { StyledComponentProps } from '../../src/index'
 
 const styles = ({ palette, spacing }) => ({
   root: {
@@ -108,7 +109,7 @@ const AllTheComposition = withTheme(
 );
 
 @withStyles(styles)
-class DecoratedComponent extends StyledComponent<NonStyleProps, 'root'> {
+class DecoratedComponent extends React.Component<NonStyleProps & StyledComponentProps<'root'>> {
   render() {
     const { classes, text } = this.props;
     return (

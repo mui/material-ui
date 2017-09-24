@@ -8,6 +8,6 @@ export interface FormHelperTextProps
   margin?: 'dense';
 }
 
-export default class FormHelperText extends StyledComponent<
-  FormHelperTextProps
-> {}
+declare const FormHelperText: StyledComponent<FormHelperTextProps>;
+
+export default FormHelperText;

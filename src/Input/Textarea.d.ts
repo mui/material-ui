@@ -10,4 +10,6 @@ export type TextareaProps = {
   value?: string;
 } & React.TextareaHTMLAttributes<HTMLTextAreaElement>;
 
-export default class Textarea extends StyledComponent<TextareaProps> {}
+declare const Textarea: StyledComponent<TextareaProps>;
+
+export default Textarea;

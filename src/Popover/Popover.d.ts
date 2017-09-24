@@ -29,4 +29,6 @@ export type PopoverProps = {
 } & Partial<TransitionHandlers> &
   ModalProps;
 
-export default class Popover extends StyledComponent<PopoverProps> {}
+declare const Popover: StyledComponent<PopoverProps>;
+
+export default Popover;

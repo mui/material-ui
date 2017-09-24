@@ -13,4 +13,6 @@ export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
   type?: Style | 'caption' | 'button';
 }
 
-export default class Typography extends StyledComponent<TypographyProps> {}
+declare const Typography: StyledComponent<TypographyProps>;
+
+export default Typography;

@@ -18,4 +18,6 @@ export type TabProps = {
   textColor?: string | 'accent' | 'primary' | 'inherit';
 } & Partial<Omit<ButtonBaseProps, 'onChange'>>;
 
-export default class Tab extends StyledComponent<TabProps> {}
+declare const Tab: StyledComponent<TabProps>;
+
+export default Tab;

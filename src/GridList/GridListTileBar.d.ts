@@ -9,6 +9,6 @@ export interface GridListTileBarProps {
   titlePosition?: 'top' | 'bottom';
 }
 
-export default class GridListTileBar extends StyledComponent<
-  GridListTileBarProps
-> {}
+declare const GridListTileBar: StyledComponent<GridListTileBarProps>;
+
+export default GridListTileBar;

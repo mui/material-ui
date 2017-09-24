@@ -9,4 +9,6 @@ export interface ListItemTextProps
   secondary?: React.ReactNode;
 }
 
-export default class ListItemText extends StyledComponent<ListItemTextProps> {}
+declare const ListItemText: StyledComponent<ListItemTextProps>;
+
+export default ListItemText;

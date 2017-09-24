@@ -7,6 +7,6 @@ export interface TableSortLabelProps extends ButtonBaseProps {
   direction?: 'asc' | 'desc';
 }
 
-export default class TableSortLabel extends StyledComponent<
-  TableSortLabelProps
-> {}
+declare const TableSortLabel: StyledComponent<TableSortLabelProps>;
+
+export default TableSortLabel;

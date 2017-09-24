@@ -11,4 +11,6 @@ export interface InputLabelProps extends FormLabelProps {
   shrink?: boolean;
 }
 
-export default class InputLabel extends StyledComponent<InputLabelProps> {}
+declare const InputLabel: StyledComponent<InputLabelProps>;
+
+export default InputLabel;

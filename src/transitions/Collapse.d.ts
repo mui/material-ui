@@ -8,4 +8,6 @@ export interface CollapseProps extends TransitionProps {
   transitionDuration?: number | string;
 }
 
-export default class Collapse extends StyledComponent<CollapseProps> {}
+declare const Collapse: StyledComponent<CollapseProps>;
+
+export default Collapse;

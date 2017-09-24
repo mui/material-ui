@@ -19,4 +19,6 @@ export interface RadioProps extends SwitchBaseProps {
   value?: string;
 }
 
-export default class Radio extends StyledComponent<RadioProps> {}
+declare const Radio: StyledComponent<RadioProps>;
+
+export default Radio;

@@ -19,4 +19,6 @@ export interface TablePaginationProps {
   rowsPerPageOptions?: number[];
 }
 
-export default class TablePagination extends StyledComponent<TablePaginationProps> {}
+declare const TablePagination: StyledComponent<TablePaginationProps>;
+
+export default TablePagination;

@@ -15,4 +15,6 @@ export interface DrawerProps extends ModalProps {
   type: 'permanent' | 'persistent' | 'temporary';
 }
 
-export default class Drawer extends StyledComponent<DrawerProps> {}
+declare const Drawer: StyledComponent<DrawerProps>;
+
+export default Drawer;

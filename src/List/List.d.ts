@@ -9,4 +9,6 @@ export interface ListProps extends React.HTMLAttributes<HTMLUListElement> {
   subheader?: React.ReactElement<any>;
 }
 
-export default class List extends StyledComponent<ListProps> {}
+declare const List: StyledComponent<ListProps>;
+
+export default List;

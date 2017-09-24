@@ -9,6 +9,6 @@ export interface LinearProgressProps
   valueBuffer?: number;
 }
 
-export default class LinearProgress extends StyledComponent<
-  LinearProgressProps
-> {}
+declare const LinearProgress: StyledComponent<LinearProgressProps>;
+
+export default LinearProgress;

@@ -7,4 +7,6 @@ export interface DividerProps extends React.HTMLAttributes<HTMLHRElement> {
   light?: boolean;
 }
 
-export default class Divider extends StyledComponent<DividerProps> {}
+declare const Divider: StyledComponent<DividerProps>;
+
+export default Divider;
