@@ -17,7 +17,7 @@ Here are some highlights ✨:
 - The TypeScript definitions made an important step forward with more than 10 PRs merged. @pelotom @sebald @xaviergonz and more
 - Wondering how Material-UI compares to the other solutions out there?
 We have created a documentation page to stress the tradeoffs taken. (#8319)
-- `material-ui@next` has just [crossed **react-toolbox**](https://npm-stat.com/charts.html?package=react-scrollbar-size&package=react-toolbox&from=2017-01-24&to=2017-09-24) in terms on download on npm.
+- `material-ui@next` has just [crossed **react-toolbox**](https://npm-stat.com/charts.html?package=react-scrollbar-size&package=react-toolbox&from=2017-01-24&to=2017-09-24) in terms of downloads on npm.
 
 ### Breaking change
 
