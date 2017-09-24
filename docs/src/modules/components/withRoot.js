@@ -81,6 +81,9 @@ const pages = [
         pathname: '/guides/migration-v0.x',
         title: 'Migration from v0.x',
       },
+      {
+        pathname: '/guides/comparison',
+      },
     ],
   },
   {
