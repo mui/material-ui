@@ -3,11 +3,49 @@
 Changes. Changes everywhere!
 
 ## 1.0.0-beta.12
-###### _TBA_
+###### _Sep 24, 2017_
+
+Big thanks to the 25 contributors who made this release possible.
+
+Wait, what?! We have been merging 52 pull requests from 25 different people in just 6 days.
+This is a new record for the project.
+The `v1-beta` version is definitely getting traction.
+Thanks for the support!
+
+Here are some highlights ✨:
+- Introduction of the first codemods for the `v0.x -> v1.x` migration as well as a documentation page. @vividh (#8311, #8333, #8314)
+- The TypeScript definitions made an important step forward with more than 10 PRs merged. @pelotom @sebald @xaviergonz and more
+- Wondering how Material-UI compares to the other solutions out there?
+We have created a documentation page to stress the tradeoffs taken. (#8319)
+- material-ui@next has just crossed [react-toolbox downloads](https://npm-stat.com/charts.html?package=react-scrollbar-size&package=react-toolbox&from=2017-01-24&to=2017-09-24)
 
 ### Breaking change
 
-- [typescript] Improve type definition for withStyles (#8320)
+- [styles] Refactorisation of the breakpoints (#8308) @oliviertassinari
+
+```diff
+const muiTheme = createMuiTheme({
+  breakpoints: {
+-    breakpointsMap: {
++    values: {
+      xs: 360,
+      sm: 768,
+      md: 992,
+      lg: 1200,
+      xl: 1440,
+    },
+  },
+});
+```
+
+ ```diff
+   paperWidthXs: {
+-    maxWidth: theme.breakpoints.getWidth('xs'),
++    maxWidth: theme.breakpoints.values.xs,
+   },
+```
+
+- [typescript] Improve type definition for withStyles (#8320) @pelotom
 
 @pelotom did a great job improving the `withStyles` typings, such that less generics are required to be written! Most notably, you no longer have to pass a map of class names to `withStyles`:
 
@@ -33,6 +71,61 @@ Also, `props` can now be set when applying the HOC:
 ```
 
 When `withStyles()` is used as a decorator and `strictNullChecks` is enabled, one has to use the `!` operator to access classes from within the class.
+
+#### Component Fixes / Enhancements
+
+- [Tabs] Move updateIndicatorState after render lifecycle (#8260) @markselby9
+- [Tabs] Handle sever side rendering (#8358) @oliviertassinari
+- [Tooltip] Fix overlaps and prevents clicking on element belows (#8257) @quanglam2807
+- [Tooltip] Fix forced reflows #8293 (#8325) @mctep
+- [Chip] Remove highlight on Android and iOS (#8280)@oliviertassinari
+- [Snackbar] Add `resumeHideDuration` property (#8272) @AndriusBil
+- [ListSubheader] Use sticky list by default (#8194) @slavab89
+- [TextField] Add a select mode (#8274) @ctavan
+- [TextField] Add Formatted input section in the docs (#8347)
+- [MenuItem] Fix dense mode (#8330) @dapetcu21
+- [Table] Add a TableFooter for pagination (#8254) @leMaik
+- [Table] Update flow types for remaining table components (#8345) @eyn
+- [Table] Enhance PropType checks for TableCell (#8350) @eyn
+- [Input] Add underline padding at all times (#8348) @dapetcu21
+- [Drawer] Add border anchor right (#8361)
+- [Dialog] Add `fullWidth` property (#8329) @AndriusBil
+
+#### Docs
+
+- [codemod] Update import paths for colors v1 (#8311) @vividh
+- [codemod] Update import paths for svg-icons v1 (#8333) @vividh
+- [docs] Add a comparison section (#8319) @oliviertassinari
+- [docs] Add small migration guide, to be continued (#8314) @oliviertassinari
+- [docs] Add some details about TextField vision (0c9936c40a359a3b7d81d44ca63061a0116b9d6d) @oliviertassinari
+- [docs] Right colors (#8268) @oliviertassinari
+- [docs] Minor grammatical fixes (#8283) @vpicone
+- [docs] Tooltips are supported (#8282) @skirunman
+- [docs] Autosuggest example typo fix (#8315) @the-noob
+- [docs] Changing type 'Alignement' to Alignment (#8335) @apearson
+- [CHANGELOG] Add info for withStyles BC (#8342) @sebald
+
+#### Core
+
+- [flow] Remove class property props to reduce bundle size (#7884) @rosskevin
+- [flow] Update to flow 55 (#8305) @oliviertassinari
+- [types] Better component typing (#8304) @oliviertassinari
+- [styles] Add a new defensive warning (#8341) @oliviertassinari
+- [core] Upgrade the dependencies (#8284) @oliviertassinari
+- [core] Help Webpack doing dead code elimination (#8340) @oliviertassinari
+- [core] Add TypeScript in the CI (#8328) @oliviertassinari
+- [typescript] Fix typo in Tooltip (#8271) @Rid
+- [typescript] Fix definitions for BreakpointsOptions (#8285) @peterprice
+- [typescript] Fix for Avatar.d.ts not having a style property definition (#8277) @xaviergonz
+- [typescript] Fix missing attribute in FormControl (#8297) @maresja1
+- [typescript] Fix Tooltip typings (#8292) @lagunoff
+- [typescript] Add className to StyledComponentProps (#8295) @pelotom
+- [typescript] Allow `Grid` to accept `HTMLAttributes` props (#8317) @michaelgruber
+- [typescript] Add style to StyledComponentProps (#8322) @pelotom
+- [typescript] Restore withStyles class decorator (#8354) @pelotom
+- [typescript] Enable strictNullChecks (#8356) @pelotom
+- [typescript] Allow overriding a subset of classes (#8355) @pelotom
+- [typescript] Allow overriding a subset of classes (#8355) @pelotom
 
 ## 1.0.0-beta.11
 ###### _Sep 18, 2017_
