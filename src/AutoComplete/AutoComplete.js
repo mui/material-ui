@@ -145,6 +145,10 @@ class AutoComplete extends Component {
      */
     onNewRequest: PropTypes.func,
     /**
+     * Callback function that is fired when the user is scroll
+     */
+    onScroll: PropTypes.func,
+    /**
      * Callback function that is fired when the user updates the `TextField`.
      *
      * @param {string} searchText The auto-complete's `searchText` value.
@@ -200,6 +204,7 @@ class AutoComplete extends Component {
     openOnFocus: false,
     onUpdateInput: () => {},
     onNewRequest: () => {},
+    onScroll: () => {},
     menuCloseDelay: 300,
     targetOrigin: {
       vertical: 'top',
@@ -383,6 +388,9 @@ class AutoComplete extends Component {
   handleOnScroll = () => {
     const {isMobile} = this.props;
     this.setState({isScroll: true});
+    if (this.props.onScroll) {
+      this.props.onScroll();
+    }
     if (isMobile) {
       // Remove the focus from the input to rempve the keyborad
       this.blur();
@@ -446,6 +454,7 @@ class AutoComplete extends Component {
       onNewRequest, // eslint-disable-line no-unused-vars
       onUpdateInput, // eslint-disable-line no-unused-vars
       openOnFocus, // eslint-disable-line no-unused-vars
+      onScroll, // eslint-disable-line no-unused-vars
       popoverProps,
       searchText: searchTextProp, // eslint-disable-line no-unused-vars
       ...other
