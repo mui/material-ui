@@ -2,6 +2,38 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.12
+###### _TBA_
+
+### Breaking change
+
+- [typescript] Improve type definition for withStyles (#8320)
+
+@pelotom did a great job improving the `withStyles` typings, such that less generics are required to be written! Most notably, you no longer have to pass a map of class names to `withStyles`:
+
+```diff
+- withStyles<{ root: string; }>(...)
++ withStyles(...)
+```
+
+Also, `props` can now be set when applying the HOC:
+
+```diff
+- const StyledComponent = withStyles<
+-   StyledComponentProps,
+-   StyledComponentClassNames
+- >(styles)(Component);
++ const StyledComponent = withStyles(styles)<StyledComponentProps>(
++   ({ classes, text }) => (
++     <div className={classes.root}>
++       {text}
++     </div>
++   )
++ );
+```
+
+When `withStyles()` is used as a decorator and `strictNullChecks` is enabled, one has to use the `!` operator to access classes from within the class.
+
 ## 1.0.0-beta.11
 ###### _Sep 18, 2017_
 
