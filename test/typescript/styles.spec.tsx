@@ -112,7 +112,7 @@ class DecoratedComponent extends StyledComponent<NonStyleProps, 'root'> {
   render() {
     const { classes, text } = this.props;
     return (
-      <div className={classes.root}>
+      <div className={classes!.root}>
         {text}
       </div>
     );
