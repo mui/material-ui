@@ -371,7 +371,7 @@ const ListTest = () =>
   </List>;
 
 const MenuTest = () => {
-  const anchorEl = document.getElementById('foo');
+  const anchorEl = document.getElementById('foo')!;
   const options = [
     'Show all notification content',
     'Hide sensitive notification content',
