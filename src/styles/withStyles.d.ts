@@ -26,6 +26,11 @@ export type WithStyles<Names extends string = string> = {
 export default function withStyles<Names extends string>(
   style: StyleRules<Names> | StyleRulesCallback<Names>,
   options?: WithStylesOptions
-): <P>(
-  component: React.ComponentType<P & WithStyles<Names>>
-) => React.ComponentType<P & StyledComponentProps<Names>>;
+): {
+  <P>(
+    component: React.StatelessComponent<P & WithStyles<Names>>
+  ): React.ComponentType<P & StyledComponentProps<Names>>;
+  <P, C extends React.ComponentClass<P & StyledComponentProps<Names>>>(
+    component: C
+  ): C;
+};
