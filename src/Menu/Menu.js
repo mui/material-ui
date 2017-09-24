@@ -76,8 +76,6 @@ export type Props = {
   transitionDuration?: number | 'auto',
 };
 
-type AllProps = DefaultProps & Props;
-
 export const styles = {
   root: {
     // specZ: The maximum height of a simple menu should be one or more rows less than the view
@@ -93,9 +91,7 @@ export const styles = {
   },
 };
 
-class Menu extends React.Component<AllProps, void> {
-  props: AllProps;
-
+class Menu extends React.Component<DefaultProps & Props> {
   static defaultProps = {
     open: false,
     transitionDuration: 'auto',

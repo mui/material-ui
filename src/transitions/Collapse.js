@@ -73,11 +73,7 @@ export type Props = {
   transitionDuration?: number | string,
 };
 
-type AllProps = DefaultProps & Props;
-
-class Collapse extends React.Component<AllProps, void> {
-  props: AllProps;
-
+class Collapse extends React.Component<DefaultProps & Props> {
   static defaultProps = {
     in: false,
     theme: {},

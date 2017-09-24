@@ -37,7 +37,6 @@ type State = { rippleVisible: boolean, rippleLeaving: boolean };
  * @ignore - internal component.
  */
 class Ripple extends React.Component<Props, State> {
-  props: Props;
   static defaultProps = {
     pulsate: false,
   };

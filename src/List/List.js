@@ -70,11 +70,7 @@ export type Props = {
   subheader?: Node,
 };
 
-type AllProps = DefaultProps & Props;
-
-class List extends React.Component<AllProps, void> {
-  props: AllProps;
-
+class List extends React.Component<DefaultProps & Props> {
   static defaultProps = {
     component: 'ul',
     dense: false,

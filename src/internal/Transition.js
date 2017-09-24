@@ -119,8 +119,6 @@ export type Props = {
   unmountOnExit?: boolean,
 };
 
-type AllProps = Props;
-
 /**
  * @ignore - internal component.
  *
@@ -134,9 +132,7 @@ type AllProps = Props;
  * The extensive set of lifecyle callbacks means you have control over
  * the transitioning now at each step of the way.
  */
-class Transition extends React.Component<AllProps, State> {
-  props: AllProps;
-
+class Transition extends React.Component<Props, State> {
   static defaultProps = {
     in: false,
     unmountOnExit: false,

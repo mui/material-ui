@@ -58,11 +58,7 @@ export type Props = {
   value?: string,
 };
 
-type AllProps = DefaultProps & Props;
-
-class RadioGroup extends React.Component<AllProps, void> {
-  props: AllProps;
-
+class RadioGroup extends React.Component<DefaultProps & Props> {
   radios: Array<HTMLInputElement> = [];
 
   focus = () => {

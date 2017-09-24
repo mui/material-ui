@@ -33,7 +33,6 @@ type State = {
 };
 
 class MenuList extends React.Component<Props, State> {
-  props: Props;
   state = {
     currentTabIndex: undefined,
   };

@@ -38,11 +38,7 @@ export type Props = {
   component?: ElementType,
 };
 
-type AllProps = DefaultProps & Props;
-
-class TableFooter extends React.Component<AllProps, void> {
-  props: AllProps;
-
+class TableFooter extends React.Component<DefaultProps & Props> {
   static defaultProps = {
     component: 'tfoot',
   };

@@ -90,8 +90,6 @@ export type Props = {
   margin?: 'none' | 'dense' | 'normal',
 };
 
-type AllProps = DefaultProps & Props;
-
 type State = {
   dirty: boolean,
   focused: boolean,
@@ -107,9 +105,7 @@ type State = {
  *  - Input
  *  - InputLabel
  */
-class FormControl extends React.Component<AllProps, State> {
-  props: AllProps;
-
+class FormControl extends React.Component<DefaultProps & Props, State> {
   static defaultProps = {
     component: 'div',
     disabled: false,

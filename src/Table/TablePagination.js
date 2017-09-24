@@ -107,14 +107,10 @@ export type Props = {
   rowsPerPageOptions?: number[],
 };
 
-type AllProps = DefaultProps & Props;
-
 /**
  * A `TableRow` based component for placing inside `TableFooter` for pagination.
  */
-class TablePagination extends React.Component<AllProps, void> {
-  props: AllProps;
-
+class TablePagination extends React.Component<DefaultProps & Props> {
   static defaultProps = {
     labelRowsPerPage: 'Rows per page:',
     labelDisplayedRows: ({ from, to, count }) => `${from}-${to} of ${count}`,

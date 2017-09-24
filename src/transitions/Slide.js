@@ -88,11 +88,7 @@ export type Props = {
   theme?: Object,
 };
 
-type AllProps = DefaultProps & Props;
-
-class Slide extends React.Component<AllProps, void> {
-  props: AllProps;
-
+class Slide extends React.Component<DefaultProps & Props> {
   static defaultProps = {
     direction: 'down',
     enterTransitionDuration: duration.enteringScreen,

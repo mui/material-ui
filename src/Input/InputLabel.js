@@ -91,9 +91,7 @@ export type Props = {
   shrink?: boolean,
 };
 
-type AllProps = DefaultProps & Props;
-
-function InputLabel(props: AllProps, context: { muiFormControl: Object }) {
+function InputLabel(props: DefaultProps & Props, context: { muiFormControl: Object }) {
   const {
     disabled,
     disableAnimation,

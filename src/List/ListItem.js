@@ -104,11 +104,7 @@ export type Props = {
   divider?: boolean,
 };
 
-type AllProps = DefaultProps & Props;
-
-class ListItem extends React.Component<AllProps, void> {
-  props: AllProps;
-
+class ListItem extends React.Component<DefaultProps & Props> {
   static defaultProps = {
     button: false,
     component: 'li',

@@ -60,11 +60,7 @@ export type Props = {
   theme?: Object,
 };
 
-type AllProps = DefaultProps & Props;
-
-class Fade extends React.Component<AllProps, void> {
-  props: AllProps;
-
+class Fade extends React.Component<DefaultProps & Props> {
   static defaultProps = {
     in: false,
     enterTransitionDuration: duration.enteringScreen,

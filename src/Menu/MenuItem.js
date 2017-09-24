@@ -62,9 +62,7 @@ export type Props = {
   selected?: boolean,
 };
 
-type AllProps = DefaultProps & Props;
-
-function MenuItem(props: AllProps) {
+function MenuItem(props: DefaultProps & Props) {
   const { classes, className: classNameProp, component, selected, role, ...other } = props;
 
   const className = classNames(

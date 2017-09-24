@@ -99,10 +99,7 @@ export type Props = {
   value?: any,
 };
 
-type AllProps = DefaultProps & Props;
-
-class BottomNavigationButton extends React.Component<AllProps> {
-  props: AllProps;
+class BottomNavigationButton extends React.Component<DefaultProps & Props> {
   handleChange = event => {
     const { onChange, value, onClick } = this.props;
 

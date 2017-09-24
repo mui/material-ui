@@ -40,12 +40,10 @@ function generateStyles(theme) {
 
 const styles = (theme: Object) => generateStyles(theme);
 
-type AllProps = DefaultProps & Props;
-
 /**
  * @ignore - internal component.
  */
-function HiddenCss(props: AllProps) {
+function HiddenCss(props: DefaultProps & Props) {
   const {
     children,
     classes,

@@ -33,9 +33,7 @@ export type Props = {
   className?: string,
 };
 
-type AllProps = DefaultProps & Props;
-
-function ListItemSecondaryAction(props: AllProps) {
+function ListItemSecondaryAction(props: DefaultProps & Props) {
   const { children, classes, className } = props;
 
   return <div className={classNames(classes.root, className)}>{children}</div>;

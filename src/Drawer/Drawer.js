@@ -141,15 +141,11 @@ export type Props = {
   type: 'permanent' | 'persistent' | 'temporary',
 };
 
-type AllProps = DefaultProps & Props;
-
 type State = {
   firstMount: boolean,
 };
 
-class Drawer extends React.Component<AllProps, State> {
-  props: AllProps;
-
+class Drawer extends React.Component<DefaultProps & Props, State> {
   static defaultProps = {
     anchor: 'left',
     elevation: 16,

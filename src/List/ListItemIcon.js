@@ -35,12 +35,10 @@ export type Props = {
   className?: string,
 };
 
-type AllProps = DefaultProps & Props;
-
 /**
  * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
  */
-function ListItemIcon(props: AllProps) {
+function ListItemIcon(props: DefaultProps & Props) {
   const { children, classes, className: classNameProp, ...other } = props;
 
   return React.cloneElement(children, {

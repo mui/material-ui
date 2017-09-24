@@ -59,13 +59,10 @@ export type Props = {
   transitionDuration?: number | 'auto',
 };
 
-type AllProps = DefaultProps & Props;
-
 /**
  * Grow transition used by popovers such as Menu.
  */
-class Grow extends React.Component<AllProps, void> {
-  props: AllProps;
+class Grow extends React.Component<DefaultProps & Props> {
   static defaultProps = {
     theme: {},
     transitionDuration: 'auto',

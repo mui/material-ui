@@ -68,9 +68,7 @@ export type Props = {
   required?: boolean,
 };
 
-type AllProps = DefaultProps & Props;
-
-function FormLabel(props: AllProps, context: { muiFormControl: Object }) {
+function FormLabel(props: DefaultProps & Props, context: { muiFormControl: Object }) {
   const {
     children,
     classes,
