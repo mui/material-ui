@@ -11,6 +11,12 @@ export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   srcSet?: string;
 }
 
-declare const Avatar: StyledComponent<AvatarProps>;
+export type AvatarClassKey =
+  | 'root'
+  | 'colorDefault'
+  | 'img'
+  ;
+
+declare const Avatar: StyledComponent<AvatarProps, AvatarClassKey>;
 
 export default Avatar;
