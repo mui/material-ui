@@ -12,6 +12,17 @@ export type BottomNavigationButtonProps = {
   value?: any;
 } & Partial<Omit<ButtonBaseProps, 'onChange'>>;
 
-declare const BottomNavigationButton: StyledComponent<BottomNavigationButtonProps>;
+export type BottomNavigationButtonClassKey =
+  | 'root'
+  | 'selected'
+  | 'selectedIconOnly'
+  | 'wrapper'
+  | 'label'
+  | 'selectedLabel'
+  | 'hiddenLabel'
+  | 'icon'
+  ;
+
+declare const BottomNavigationButton: StyledComponent<BottomNavigationButtonProps, BottomNavigationButtonClassKey>;
 
 export default BottomNavigationButton;
