@@ -5,25 +5,18 @@ import PropTypes from 'prop-types';
 import type { ElementType, Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import requirePropFalseFactory from '../utils/requirePropFalseFactory';
 
 export type Context = {
   table: Object,
 };
 
 type Default = {
-  checkbox: boolean,
-  compact: boolean,
+  padding: 'default' | 'checkbox' | 'dense' | 'none',
   numeric: boolean,
-  disablePadding: boolean,
   component: ElementType,
 };
 
 export type Props = {
-  /**
-   * If `true`, the cell padding will be adjusted to accommodate a checkbox.
-   */
-  checkbox?: boolean,
   /**
    * The table cell contents.
    */
@@ -37,23 +30,18 @@ export type Props = {
    */
   className?: string,
   /**
-   * If `true`, compact cell padding will be used to accommodate more content.
-   */
-  compact?: boolean,
-  /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
   component?: ElementType,
   /**
-   * If `true`, left/right cell padding will be disabled.
-   * If `compact` is also `true` then `disablePadding` will have no effect.
-   */
-  disablePadding?: boolean,
-  /**
    * If `true`, content will align to the right.
    */
   numeric?: boolean,
+  /**
+   * Sets the padding applied to the cell.
+   */
+  padding?: 'default' | 'checkbox' | 'dense' | 'none',
 };
 
 export const styles = (theme: Object) => ({
@@ -78,7 +66,7 @@ export const styles = (theme: Object) => ({
       paddingRight: theme.spacing.unit * 3,
     },
   },
-  compact: {
+  dense: {
     paddingRight: theme.spacing.unit * 3,
   },
   checkbox: {
@@ -95,10 +83,8 @@ function TableCell(props: Default & Props, context: Context) {
     classes,
     className: classNameProp,
     children,
-    compact,
-    checkbox,
     numeric,
-    disablePadding,
+    padding,
     component,
     ...other
   } = props;
@@ -114,9 +100,9 @@ function TableCell(props: Default & Props, context: Context) {
     classes.root,
     {
       [classes.numeric]: numeric,
-      [classes.compact]: compact,
-      [classes.checkbox]: checkbox,
-      [classes.padding]: !disablePadding,
+      [classes.dense]: padding === 'dense',
+      [classes.checkbox]: padding === 'checkbox',
+      [classes.padding]: padding !== 'none',
       [classes.head]: table && table.head,
       [classes.footer]: table && table.footer,
     },
@@ -131,29 +117,13 @@ function TableCell(props: Default & Props, context: Context) {
 }
 
 TableCell.defaultProps = {
-  checkbox: false,
-  compact: false,
-  numeric: false,
-  disablePadding: false,
   component: null,
+  numeric: false,
+  padding: 'default',
 };
 
 TableCell.contextTypes = {
   table: PropTypes.object.isRequired,
 };
 
-// Add a wrapper component to generate some helper messages in the development
-// environment.
-let TableCellWrapper = TableCell; // eslint-disable-line import/no-mutable-exports
-
-if (process.env.NODE_ENV !== 'production') {
-  const requirePropFalse = requirePropFalseFactory('TableCell');
-  TableCellWrapper = (props: any) => <TableCell {...props} />;
-
-  TableCellWrapper.propTypes = {
-    compact: requirePropFalse('checkbox'),
-    disablePadding: requirePropFalse(['compact', 'checkbox']),
-  };
-}
-
-export default withStyles(styles, { name: 'MuiTableCell' })(TableCellWrapper);
+export default withStyles(styles, { name: 'MuiTableCell' })(TableCell);

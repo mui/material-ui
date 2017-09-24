@@ -11,7 +11,7 @@ describe('<TableCell />', () => {
 
   before(() => {
     shallow = createShallow({
-      untilSelector: 'TableCell',
+      untilSelector: TableCell,
       context: {
         table: { footer: true },
       },
@@ -40,8 +40,8 @@ describe('<TableCell />', () => {
     assert.strictEqual(wrapper.hasClass(classes.padding), true, 'should have the padding class');
   });
 
-  it('should render with the user, root and padding classes', () => {
-    const wrapper = shallow(<TableCell className="woofTableCell" disablePadding />);
+  it('should render with the user, root and without the padding classes', () => {
+    const wrapper = shallow(<TableCell className="woofTableCell" padding="none" />);
     assert.strictEqual(wrapper.hasClass('woofTableCell'), true);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(
@@ -49,6 +49,22 @@ describe('<TableCell />', () => {
       false,
       'should not have the padding class',
     );
+  });
+
+  it('should render with the user, root, padding, and checkbox classes', () => {
+    const wrapper = shallow(<TableCell className="woofTableCell" padding="checkbox" />);
+    assert.strictEqual(wrapper.hasClass('woofTableCell'), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.padding), true);
+    assert.strictEqual(wrapper.hasClass(classes.checkbox), true);
+  });
+
+  it('should render with the user, root, padding, and dense classes', () => {
+    const wrapper = shallow(<TableCell className="woofTableCell" padding="dense" />);
+    assert.strictEqual(wrapper.hasClass('woofTableCell'), true);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.padding), true);
+    assert.strictEqual(wrapper.hasClass(classes.dense), true);
   });
 
   it('should render children', () => {
