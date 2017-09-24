@@ -712,6 +712,9 @@ const TabsTest = () => {
       marginTop: theme.spacing.unit * 3,
       backgroundColor: theme.palette.background.paper,
     },
+    button: {
+      display: 'flex',
+    },
   });
 
   class BasicTabs extends React.Component<{ classes: { root: string } }> {
