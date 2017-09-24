@@ -27,9 +27,20 @@ export default function withStyles<Names extends string>(
   style: StyleRules<Names> | StyleRulesCallback<Names>,
   options?: WithStylesOptions
 ): {
+  /**
+   * Decorating a stateless functional component.
+   */
   <P>(
     component: React.StatelessComponent<P & WithStyles<Names>>
   ): React.ComponentType<P & StyledComponentProps<Names>>;
+
+  /**
+   * Decorating a class component. This is slightly less type safe than the
+   * function decoration case, due to current restrictions on TypeScript
+   * decorators (https://github.com/Microsoft/TypeScript/issues/4881). The
+   * upshot is that one has to use the non-null assertion operator (`!`) when
+   * accessing `props.classes`.
+   */
   <P, C extends React.ComponentClass<P & StyledComponentProps<Names>>>(
     component: C
   ): C;
