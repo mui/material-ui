@@ -183,6 +183,9 @@ export const styles = (theme: Object) => {
     fullWidth: {
       width: '100%',
     },
+    inputAction: {
+      paddingRight: theme.spacing.unit * 3,
+    },
   };
 };
 
@@ -461,6 +464,7 @@ class Input extends React.Component<DefaultProps & Props, State> {
     let disabled = disabledProp;
     let error = errorProp;
     let margin = marginProp;
+    let hasInputAction = false;
 
     if (muiFormControl) {
       if (typeof disabled === 'undefined') {
@@ -474,6 +478,8 @@ class Input extends React.Component<DefaultProps & Props, State> {
       if (typeof margin === 'undefined') {
         margin = muiFormControl.margin;
       }
+
+      hasInputAction = muiFormControl.hasInputAction;
     }
 
     const className = classNames(
@@ -485,6 +491,7 @@ class Input extends React.Component<DefaultProps & Props, State> {
         [classes.focused]: this.state.focused,
         [classes.formControl]: muiFormControl,
         [classes.inkbar]: !disableUnderline,
+        [classes.inputAction]: hasInputAction,
         [classes.multiline]: multiline,
         [classes.underline]: !disableUnderline,
       },
