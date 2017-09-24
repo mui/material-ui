@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { StyledComponent } from '../../src';
 import {
   withStyles,
   WithStyles,
@@ -21,11 +22,11 @@ interface StyledComponentClassNames {
   root: string;
 }
 
-interface StyledComponentProps {
+interface NonStyleProps {
   text: string;
 }
 
-const StyledComponent = withStyles(styles)<StyledComponentProps>(
+const StyledSFC = withStyles(styles)<NonStyleProps>(
   ({ classes, text }) => (
     <div className={classes.root}>
       {text}
@@ -33,7 +34,7 @@ const StyledComponent = withStyles(styles)<StyledComponentProps>(
   )
 );
 
-<StyledComponent text="I am styled!" />;
+<StyledSFC text="I am styled!" />;
 
 // Also works with a plain object
 
@@ -43,7 +44,7 @@ const stylesAsPojo = {
   },
 };
 
-const AnotherStyledComponent = withStyles({
+const AnotherStyledSFC = withStyles({
   root: { background: 'hotpink' },
 })(({ classes }) => <div className={classes.root}>Stylish!</div>);
 
@@ -106,21 +107,17 @@ const AllTheComposition = withTheme(
   withStyles(styles)(AllTheStyles)
 );
 
-// Can't use withStyles effectively as a decorator in TypeScript
-// due to https://github.com/Microsoft/TypeScript/issues/4881
-// @withStyles(styles)
-const DecoratedComponent = withStyles(styles)(
-  class extends React.Component<WithStyles<StyledComponentProps, 'root'>> {
-    render() {
-      const { classes, text } = this.props;
-      return (
-        <div className={classes.root}>
-          {text}
-        </div>
-      );
-    }
+@withStyles(styles)
+class DecoratedComponent extends StyledComponent<NonStyleProps, 'root'> {
+  render() {
+    const { classes, text } = this.props;
+    return (
+      <div className={classes!.root}>
+        {text}
+      </div>
+    );
   }
-);
+}
 
 // no 'classes' property required at element creation time (#8267)
 <DecoratedComponent text="foo" />
