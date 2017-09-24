@@ -18,7 +18,7 @@ export interface WithStylesOptions {
   name?: string;
 }
 
-export type WithStyles<P, Names extends string = string> = P & {
+export type WithStyles<Names extends string = string> = {
   classes: ClassNameMap<Names>
   theme?: Theme
 };
@@ -27,5 +27,5 @@ export default function withStyles<Names extends string>(
   style: StyleRules<Names> | StyleRulesCallback<Names>,
   options?: WithStylesOptions
 ): <P>(
-  component: React.ComponentType<WithStyles<P, Names>>
+  component: React.ComponentType<P & WithStyles<Names>>
 ) => React.ComponentType<P & StyledComponentProps<Names>>;

@@ -110,7 +110,7 @@ const AllTheComposition = withTheme(
 // due to https://github.com/Microsoft/TypeScript/issues/4881
 // @withStyles(styles)
 const DecoratedComponent = withStyles(styles)(
-  class extends React.Component<WithStyles<StyledComponentProps, 'root'>> {
+  class extends React.Component<StyledComponentProps & WithStyles<'root'>> {
     render() {
       const { classes, text } = this.props;
       return (
