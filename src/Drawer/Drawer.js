@@ -24,6 +24,9 @@ function getSlideDirection(anchor) {
 }
 
 export const styles = (theme: Object) => ({
+  docked: {
+    flex: '0 0 auto',
+  },
   paper: {
     overflowY: 'auto',
     display: 'flex',
@@ -39,15 +42,15 @@ export const styles = (theme: Object) => ({
     },
     WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
   },
-  anchorLeft: {
+  paperAnchorLeft: {
     left: 0,
     right: 'auto',
   },
-  anchorRight: {
+  paperAnchorRight: {
     left: 'auto',
     right: 0,
   },
-  anchorTop: {
+  paperAnchorTop: {
     top: 0,
     left: 0,
     bottom: 'auto',
@@ -55,7 +58,7 @@ export const styles = (theme: Object) => ({
     height: 'auto',
     maxHeight: '100vh',
   },
-  anchorBottom: {
+  paperAnchorBottom: {
     top: 'auto',
     left: 0,
     bottom: 0,
@@ -63,13 +66,13 @@ export const styles = (theme: Object) => ({
     height: 'auto',
     maxHeight: '100vh',
   },
-  docked: {
-    flex: '0 0 auto',
-    '& $paper': {
-      borderRight: `1px solid ${theme.palette.text.divider}`,
-    },
+  paperAnchorDockedLeft: {
+    borderRight: `1px solid ${theme.palette.text.divider}`,
   },
-  modal: {},
+  paperAnchorDockedRight: {
+    borderLeft: `1px solid ${theme.palette.text.divider}`,
+  },
+  modal: {}, // Just here so people can override the style.
 });
 
 type DefaultProps = {
@@ -197,7 +200,10 @@ class Drawer extends React.Component<AllProps, State> {
       <Paper
         elevation={type === 'temporary' ? elevation : 0}
         square
-        className={classNames(classes.paper, classes[`anchor${capitalizeFirstLetter(anchor)}`])}
+        className={classNames(classes.paper, {
+          [classes[`paperAnchor${capitalizeFirstLetter(anchor)}`]]: type !== 'permanent',
+          [classes[`paperAnchorDocked${capitalizeFirstLetter(anchor)}`]]: type !== 'temporary',
+        })}
       >
         {children}
       </Paper>
