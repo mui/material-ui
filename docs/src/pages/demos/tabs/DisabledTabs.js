@@ -7,7 +7,7 @@ import Tabs, { Tab } from 'material-ui/Tabs';
 
 class DisabledTabs extends React.Component {
   state = {
-    value: 0,
+    value: 2,
   };
 
   handleChange = (event, value) => {

@@ -20,7 +20,7 @@ describe('<Tabs />', () => {
 
   before(() => {
     shallow = createShallow({ untilSelector: 'Tabs' });
-    classes = getClasses(<Tabs />);
+    classes = getClasses(<Tabs onChange={noop} value={0} />);
     mount = createMount();
   });
 
@@ -59,7 +59,7 @@ describe('<Tabs />', () => {
       );
       const selector = `.${classes.flexContainer}.${classes.centered}`;
       assert.strictEqual(wrapper.find(selector).is('div'), true, 'should be a div');
-      assert.lengthOf(wrapper.find(selector), 1, 'should only be one');
+      assert.strictEqual(wrapper.find(selector).length, 1, 'should only be one');
     });
   });
 
@@ -129,14 +129,63 @@ describe('<Tabs />', () => {
       );
     });
 
-    it('should accept a false value', () => {
-      const wrapper2 = mount(
-        <Tabs width="md" onChange={noop} value={false}>
-          <Tab />
-          <Tab />
-        </Tabs>,
-      );
-      assert.strictEqual(wrapper2.find(TabIndicator).props().style.width, 0);
+    describe('indicator', () => {
+      it('should accept a false value', () => {
+        const wrapper2 = mount(
+          <Tabs width="md" onChange={noop} value={false}>
+            <Tab />
+            <Tab />
+          </Tabs>,
+        );
+        assert.strictEqual(wrapper2.find(TabIndicator).props().style.width, 0);
+      });
+
+      it('should let the selected <Tab /> render the indicator', () => {
+        const wrapper2 = shallow(
+          <Tabs width="md" onChange={noop} value={1}>
+            <Tab />
+            <Tab />
+          </Tabs>,
+        );
+        assert.strictEqual(
+          wrapper2
+            .find(Tab)
+            .at(0)
+            .props().indicator,
+          false,
+        );
+        assert.strictEqual(
+          wrapper2
+            .find(Tab)
+            .at(1)
+            .props().indicator.type,
+          TabIndicator,
+        );
+      });
+
+      it('should render the indicator', () => {
+        const wrapper2 = mount(
+          <Tabs width="md" onChange={noop} value={1}>
+            <Tab />
+            <Tab />
+          </Tabs>,
+        );
+        assert.strictEqual(
+          wrapper2
+            .find(Tab)
+            .at(0)
+            .props().indicator,
+          false,
+        );
+        assert.strictEqual(
+          wrapper2
+            .find(Tab)
+            .at(1)
+            .props().indicator,
+          false,
+        );
+        assert.strictEqual(wrapper2.find(TabIndicator).length, 1);
+      });
     });
 
     it('should warn when the value is invalid', () => {
@@ -196,7 +245,7 @@ describe('<Tabs />', () => {
     it('should render with the scrollable class', () => {
       const selector = `.${classes.scrollingContainer}.${classes.scrollable}`;
       assert.strictEqual(wrapper.find(selector).is('div'), true, 'should be a div');
-      assert.lengthOf(wrapper.find(selector), 1, 'should only be one');
+      assert.strictEqual(wrapper.find(selector).length, 1, 'should only be one');
     });
 
     it('should response to scroll events', () => {
@@ -220,7 +269,7 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      assert.lengthOf(mountWrapper.find('ScrollbarSize'), 1, 'should be one');
+      assert.strictEqual(mountWrapper.find('ScrollbarSize').length, 1, 'should be one');
       mountWrapper.unmount();
     });
   });
@@ -234,8 +283,8 @@ describe('<Tabs />', () => {
       );
       const baseSelector = `.${classes.scrollingContainer}`;
       const selector = `.${classes.scrollingContainer}.${classes.scrollable}`;
-      assert.lengthOf(wrapper.find(baseSelector), 1, 'base selector should exist');
-      assert.lengthOf(wrapper.find(selector), 0, 'scrolling selector should not exist');
+      assert.strictEqual(wrapper.find(baseSelector).length, 1, 'base selector should exist');
+      assert.strictEqual(wrapper.find(selector).length, 0, 'scrolling selector should not exist');
     });
   });
 
@@ -256,7 +305,7 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      assert.lengthOf(wrapper.find(TabScrollButton), 2, 'should be two');
+      assert.strictEqual(wrapper.find(TabScrollButton).length, 2, 'should be two');
     });
 
     it('should render scroll buttons automatically', () => {
@@ -265,7 +314,7 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      assert.lengthOf(wrapper.find(TabScrollButton), 2, 'should be two');
+      assert.strictEqual(wrapper.find(TabScrollButton).length, 2, 'should be two');
     });
 
     it('should should not render scroll buttons automatically', () => {
@@ -274,7 +323,11 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      assert.lengthOf(wrapper.find(TabScrollButton), 0, 'should be zero');
+      assert.strictEqual(wrapper.find(TabScrollButton).length, 2, 'should be zero');
+      assert.strictEqual(
+        wrapper.find(TabScrollButton).everyWhere(node => node.hasClass(classes.buttonAuto)),
+        true,
+      );
     });
 
     it('should handle window resize event', () => {
@@ -322,8 +375,8 @@ describe('<Tabs />', () => {
           clientWidth: 100,
         };
         instance.updateScrollButtonState();
-        assert.strictEqual(wrapper.state('showLeftScroll'), false, 'left scroll should be false');
-        assert.strictEqual(wrapper.state('showRightScroll'), false, 'right scroll should be false');
+        assert.strictEqual(wrapper.state().showLeftScroll, false, 'left scroll should be false');
+        assert.strictEqual(wrapper.state().showRightScroll, false, 'right scroll should be false');
       });
 
       it('should set only left scroll button state', () => {
@@ -331,8 +384,8 @@ describe('<Tabs />', () => {
           scrollLeft: 1,
         };
         instance.updateScrollButtonState();
-        assert.strictEqual(wrapper.state('showLeftScroll'), true, 'left scroll should be true');
-        assert.strictEqual(wrapper.state('showRightScroll'), false, 'right scroll should be false');
+        assert.strictEqual(wrapper.state().showLeftScroll, true, 'left scroll should be true');
+        assert.strictEqual(wrapper.state().showRightScroll, false, 'right scroll should be false');
       });
 
       it('should set only right scroll button state', () => {
@@ -342,8 +395,8 @@ describe('<Tabs />', () => {
           clientWidth: 100,
         };
         instance.updateScrollButtonState();
-        assert.strictEqual(wrapper.state('showLeftScroll'), false, 'left scroll should be false');
-        assert.strictEqual(wrapper.state('showRightScroll'), true, 'right scroll should be true');
+        assert.strictEqual(wrapper.state().showLeftScroll, false, 'left scroll should be false');
+        assert.strictEqual(wrapper.state().showRightScroll, true, 'right scroll should be true');
       });
 
       it('should set both left and right scroll button state', () => {
@@ -353,8 +406,8 @@ describe('<Tabs />', () => {
           clientWidth: 100,
         };
         instance.updateScrollButtonState();
-        assert.strictEqual(wrapper.state('showLeftScroll'), true, 'left scroll should be true');
-        assert.strictEqual(wrapper.state('showRightScroll'), true, 'right scroll should be true');
+        assert.strictEqual(wrapper.state().showLeftScroll, true, 'left scroll should be true');
+        assert.strictEqual(wrapper.state().showRightScroll, true, 'right scroll should be true');
       });
     });
   });
