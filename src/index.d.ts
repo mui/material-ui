@@ -14,7 +14,7 @@ export type ClassNameMap<Names extends string = string> = Record<Names, string>;
  */
 export interface StyledComponentProps<Names extends string = string> {
   className?: string;
-  classes?: ClassNameMap<Names>;
+  classes?: Partial<ClassNameMap<Names>>;
   style?: Partial<React.CSSProperties>;
   innerRef?: React.Ref<any>;
 }
