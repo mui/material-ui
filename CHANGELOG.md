@@ -7,7 +7,7 @@ Changes. Changes everywhere!
 
 Big thanks to the 25 contributors who made this release possible.
 
-Wait, what?! We have been merging 52 pull requests from 25 different people in just 6 days.
+Wait, what?! We have been merging 52 pull requests from 25 different people in just 6 days (and closed 60 issues).
 This is a new record for the project.
 The `v1-beta` version is definitely getting traction.
 Thanks for the support!
@@ -17,7 +17,7 @@ Here are some highlights ✨:
 - The TypeScript definitions made an important step forward with more than 10 PRs merged. @pelotom @sebald @xaviergonz and more
 - Wondering how Material-UI compares to the other solutions out there?
 We have created a documentation page to stress the tradeoffs taken. (#8319)
-- material-ui@next has just crossed [react-toolbox downloads](https://npm-stat.com/charts.html?package=react-scrollbar-size&package=react-toolbox&from=2017-01-24&to=2017-09-24)
+- `material-ui@next` has just [crossed **react-toolbox**](https://npm-stat.com/charts.html?package=react-scrollbar-size&package=react-toolbox&from=2017-01-24&to=2017-09-24) in terms on download on npm.
 
 ### Breaking change
 
