@@ -8,9 +8,10 @@ import { capitalizeFirstLetter } from '../utils/helpers';
 
 export const styles = (theme: Object) => ({
   root: {
-    position: 'relative',
+    position: 'absolute',
     height: 2,
-    marginTop: -2,
+    bottom: 0,
+    width: '100%',
     transition: theme.transitions.create(),
     willChange: 'left, width',
   },

@@ -13,6 +13,7 @@ export const styles = (theme: Object) => ({
   root: {
     ...theme.typography.button,
     maxWidth: 264,
+    position: 'relative',
     minWidth: 72,
     padding: 0,
     height: 48,
@@ -113,6 +114,12 @@ export type Props = {
    */
   icon?: Element<*>,
   /**
+   * @ignore
+   * For server side rendering consideration, we let the selected tab
+   * render the indicator.
+   */
+  indicator?: Element<*>,
+  /**
    * The label element.
    */
   label?: Element<*>,
@@ -203,6 +210,7 @@ class Tab extends React.Component<AllProps, State> {
       disabled,
       fullWidth,
       icon: iconProp,
+      indicator,
       label: labelProp,
       onChange,
       selected,
@@ -278,6 +286,7 @@ class Tab extends React.Component<AllProps, State> {
           {icon}
           {label}
         </span>
+        {indicator}
       </ButtonBase>
     );
   }

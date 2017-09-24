@@ -3,7 +3,6 @@
 import React from 'react';
 import type { ChildrenArray, Node } from 'react';
 import warning from 'warning';
-import compose from 'recompose/compose';
 import classNames from 'classnames';
 import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
@@ -11,11 +10,10 @@ import ScrollbarSize from 'react-scrollbar-size';
 import scroll from 'scroll';
 import pick from 'lodash/pick';
 import withStyles from '../styles/withStyles';
-import withWidth, { isWidthUp } from '../utils/withWidth';
 import TabIndicator from './TabIndicator';
 import TabScrollButton from './TabScrollButton';
 
-export const styles = {
+export const styles = (theme: Object) => ({
   root: {
     overflow: 'hidden',
   },
@@ -23,6 +21,7 @@ export const styles = {
     display: 'flex',
   },
   scrollingContainer: {
+    position: 'relative',
     display: 'inline-block',
     flex: '1 1 auto',
     whiteSpace: 'nowrap',
@@ -37,7 +36,12 @@ export const styles = {
   centered: {
     justifyContent: 'center',
   },
-};
+  buttonAuto: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+  },
+});
 
 type DefaultProps = {
   classes: Object,
@@ -106,11 +110,6 @@ export type Props = {
    * If you don't want any selected `Tab`, you can set this property to `false`.
    */
   value: any,
-  /**
-   * @ignore
-   * width prop provided by withWidth decorator
-   */
-  width?: string,
 };
 
 type AllProps = DefaultProps & Props;
@@ -120,6 +119,7 @@ type State = {
   scrollerStyle: Object,
   showLeftScroll: boolean,
   showRightScroll: boolean,
+  mounted: boolean,
 };
 
 type TabsMeta = {
@@ -154,9 +154,12 @@ class Tabs extends React.Component<AllProps, State> {
     },
     showLeftScroll: false,
     showRightScroll: false,
+    mounted: false,
   };
 
   componentDidMount() {
+    // eslint-disable-next-line react/no-did-mount-set-state
+    this.setState({ mounted: true });
     this.updateIndicatorState(this.props);
     this.updateScrollButtonState();
   }
@@ -166,10 +169,7 @@ class Tabs extends React.Component<AllProps, State> {
       this.updateIndicatorState(this.props);
     }
     this.updateScrollButtonState();
-    if (
-      this.props.width !== prevProps.width ||
-      this.state.indicatorStyle !== prevState.indicatorStyle
-    ) {
+    if (this.state.indicatorStyle !== prevState.indicatorStyle) {
       this.scrollSelectedIntoView();
     }
   }
@@ -212,7 +212,7 @@ class Tabs extends React.Component<AllProps, State> {
   }, 166);
 
   getConditionalElements = () => {
-    const { buttonClassName, scrollable, scrollButtons, width } = this.props;
+    const { classes, buttonClassName, scrollable, scrollButtons } = this.props;
     const conditionalElements = {};
     conditionalElements.scrollbarSizeListener = scrollable ? (
       <ScrollbarSize
@@ -221,25 +221,33 @@ class Tabs extends React.Component<AllProps, State> {
       />
     ) : null;
 
-    const showScrollButtons =
-      scrollable &&
-      ((isWidthUp('md', width) && scrollButtons === 'auto') || scrollButtons === 'on');
+    const showScrollButtons = scrollable && (scrollButtons === 'auto' || scrollButtons === 'on');
 
     conditionalElements.scrollButtonLeft = showScrollButtons ? (
       <TabScrollButton
         direction="left"
         onClick={this.handleLeftScrollClick}
         visible={this.state.showLeftScroll}
-        className={buttonClassName}
+        className={classNames(
+          {
+            [classes.buttonAuto]: scrollButtons === 'auto',
+          },
+          buttonClassName,
+        )}
       />
     ) : null;
 
     conditionalElements.scrollButtonRight = showScrollButtons ? (
       <TabScrollButton
-        className={buttonClassName}
         direction="right"
         onClick={this.handleRightScrollClick}
         visible={this.state.showRightScroll}
+        className={classNames(
+          {
+            [classes.buttonAuto]: scrollButtons === 'auto',
+          },
+          buttonClassName,
+        )}
       />
     ) : null;
 
@@ -345,7 +353,6 @@ class Tabs extends React.Component<AllProps, State> {
       scrollButtons,
       textColor,
       value,
-      width,
       ...other
     } = this.props;
 
@@ -358,6 +365,14 @@ class Tabs extends React.Component<AllProps, State> {
       [classes.centered]: centered && !scrollable,
     });
 
+    const indicator = (
+      <TabIndicator
+        style={this.state.indicatorStyle}
+        className={indicatorClassName}
+        color={indicatorColor}
+      />
+    );
+
     this.valueToIndex = {};
     let childIndex = 0;
     const children = React.Children.map(childrenProp, child => {
@@ -367,11 +382,13 @@ class Tabs extends React.Component<AllProps, State> {
 
       const childValue = child.props.value || childIndex;
       this.valueToIndex[childValue] = childIndex;
+      const selected = childValue === value;
 
       childIndex += 1;
       return React.cloneElement(child, {
         fullWidth,
-        selected: childValue === value,
+        indicator: selected && !this.state.mounted && indicator,
+        selected,
         onChange,
         textColor,
         value: childValue,
@@ -396,11 +413,7 @@ class Tabs extends React.Component<AllProps, State> {
             onScroll={this.handleTabsScroll}
           >
             <div className={tabItemContainerClassName}>{children}</div>
-            <TabIndicator
-              style={this.state.indicatorStyle}
-              className={indicatorClassName}
-              color={indicatorColor}
-            />
+            {this.state.mounted && indicator}
           </div>
           {conditionalElements.scrollButtonRight}
         </div>
@@ -409,4 +422,4 @@ class Tabs extends React.Component<AllProps, State> {
   }
 }
 
-export default compose(withStyles(styles, { name: 'MuiTabs' }), withWidth())(Tabs);
+export default withStyles(styles, { name: 'MuiTabs' })(Tabs);
