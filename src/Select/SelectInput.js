@@ -53,7 +53,7 @@ export type Props = {
    * @param {object} event The event source of the callback
    * @param {object} child The react element that was selected
    */
-  onChange?: (event: SyntheticMouseEvent<*>, child: Element<*>) => void,
+  onChange?: (event: SyntheticUIEvent<*>, child: Element<*>) => void,
   /**
    * @ignore
    */
@@ -114,7 +114,7 @@ class SelectInput extends React.Component<AllProps, State> {
     });
   };
 
-  handleItemClick = (child: Element<*>) => (event: SyntheticMouseEvent<>) => {
+  handleItemClick = (child: Element<*>) => (event: SyntheticMouseEvent<> & { target: Object }) => {
     if (!this.props.multiple) {
       this.setState({
         open: false,
@@ -122,6 +122,7 @@ class SelectInput extends React.Component<AllProps, State> {
     }
 
     if (this.props.onChange) {
+      const { onChange } = this.props;
       let value;
 
       if (this.props.multiple) {
@@ -137,10 +138,9 @@ class SelectInput extends React.Component<AllProps, State> {
       }
 
       event.persist();
-      // $FlowFixMe
       event.target = { ...event.target, value };
-      // $FlowFixMe
-      this.props.onChange(event, child);
+
+      onChange(event, child);
     }
   };
 
