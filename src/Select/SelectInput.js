@@ -114,7 +114,7 @@ class SelectInput extends React.Component<AllProps, State> {
     });
   };
 
-  handleItemClick = (child: Element<*>) => (event: SyntheticMouseEvent<> & { target?: Object }) => {
+  handleItemClick = (child: Element<*>) => (event: SyntheticMouseEvent<> & { target?: any }) => {
     if (!this.props.multiple) {
       this.setState({
         open: false,
