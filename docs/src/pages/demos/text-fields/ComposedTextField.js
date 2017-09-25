@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import IconButton from 'material-ui/IconButton';
-import Input, { InputLabel, InputAction } from 'material-ui/Input';
+import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
 import { FormControl, FormHelperText } from 'material-ui/Form';
 import DeleteIcon from 'material-ui-icons/Delete';
 
@@ -53,12 +53,14 @@ class ComposedTextField extends React.Component {
         </FormControl>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="name-error">Name</InputLabel>
-          <Input id="name-error" value={this.state.name} onChange={this.handleChange} />
-          <InputAction>
-            <IconButton>
-              <DeleteIcon />
-            </IconButton>
-          </InputAction>
+          <Input id="name-error" value={this.state.name} onChange={this.handleChange}>
+            <InputAdornment position="before">$</InputAdornment>
+            <InputAdornment position="after">
+              <IconButton>
+                <DeleteIcon />
+              </IconButton>
+            </InputAdornment>
+          </Input>
           <FormHelperText>Input as an action</FormHelperText>
         </FormControl>
       </div>

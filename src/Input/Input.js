@@ -1,11 +1,11 @@
 // @flow weak
 
 import React from 'react';
-import type { ComponentType } from 'react';
+import type { Node, ComponentType } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import { isMuiComponent } from '../utils/reactHelpers';
+import { isMuiComponent, isMuiElement } from '../utils/reactHelpers';
 import Textarea from './Textarea';
 
 // Supports determination of isControlled().
@@ -58,6 +58,11 @@ export const styles = (theme: Object) => {
       fontFamily: theme.typography.fontFamily,
       color: theme.palette.input.inputText,
       paddingBottom: 2,
+    },
+    adorned: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'baseline',
     },
     formControl: {
       'label + &': {
@@ -209,6 +214,10 @@ export type Props = {
    * If `true`, the input will be focused during the first mount.
    */
   autoFocus?: boolean,
+  /**
+   * Any `InputAdornment` for this `Input`
+   */
+  children: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -429,6 +438,7 @@ class Input extends React.Component<DefaultProps & Props, State> {
     const {
       autoComplete,
       autoFocus,
+      children: childrenProp,
       classes,
       className: classNameProp,
       defaultValue,
@@ -482,6 +492,16 @@ class Input extends React.Component<DefaultProps & Props, State> {
       hasInputAction = muiFormControl.hasInputAction;
     }
 
+    let beforeAdornments;
+    let afterAdornments;
+    let hasAdornments = false;
+    if (childrenProp) {
+      const children = React.Children.toArray(childrenProp);
+      beforeAdornments = children.filter(child => child.props.position === 'before');
+      afterAdornments = children.filter(child => child.props.position === 'after');
+      hasAdornments = true;
+    }
+
     const className = classNames(
       classes.root,
       {
@@ -494,6 +514,7 @@ class Input extends React.Component<DefaultProps & Props, State> {
         [classes.inputAction]: hasInputAction,
         [classes.multiline]: multiline,
         [classes.underline]: !disableUnderline,
+        [classes.adorned]: hasAdornments,
       },
       classNameProp,
     );
@@ -544,6 +565,7 @@ class Input extends React.Component<DefaultProps & Props, State> {
 
     return (
       <div onBlur={this.handleBlur} onFocus={this.handleFocus} className={className} {...other}>
+        {beforeAdornments}
         <InputComponent
           autoComplete={autoComplete}
           autoFocus={autoFocus}
@@ -563,6 +585,7 @@ class Input extends React.Component<DefaultProps & Props, State> {
           rows={rows}
           {...inputProps}
         />
+        {afterAdornments}
       </div>
     );
   }
@@ -572,4 +595,19 @@ Input.contextTypes = {
   muiFormControl: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiInput' })(Input);
+let InputWrapper = Input;
+if (process.env.NODE_ENV !== 'production') {
+  InputWrapper = props => <Input {...props} />;
+  InputWrapper.PropTypes = {
+    children: (props, propName, componentName) => {
+      const prop = props[propName];
+      const children = React.Children.toArray(prop);
+
+      if (!children.every(child => isMuiElement(child, ['InputAdornment']))) {
+        return new Error(`${componentName} can only accept children of type \`InputAdornment\`.`);
+      }
+    },
+  };
+}
+
+export default withStyles(styles, { name: 'MuiInput' })(InputWrapper);
