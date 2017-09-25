@@ -114,7 +114,7 @@ class SelectInput extends React.Component<AllProps, State> {
     });
   };
 
-  handleItemClick = (child: Element<*>) => (event: SyntheticMouseEvent<> & { target: Object }) => {
+  handleItemClick = (child: Element<*>) => (event: SyntheticMouseEvent<> & { target?: Object }) => {
     if (!this.props.multiple) {
       this.setState({
         open: false,
@@ -124,6 +124,11 @@ class SelectInput extends React.Component<AllProps, State> {
     if (this.props.onChange) {
       const { onChange } = this.props;
       let value;
+      let target;
+
+      if (event.target) {
+        target = event.target;
+      }
 
       if (this.props.multiple) {
         value = Array.isArray(this.props.value) ? [...this.props.value] : [];
@@ -138,7 +143,7 @@ class SelectInput extends React.Component<AllProps, State> {
       }
 
       event.persist();
-      event.target = { ...event.target, value };
+      event.target = { ...target, value };
 
       onChange(event, child);
     }
