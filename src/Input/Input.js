@@ -606,6 +606,8 @@ if (process.env.NODE_ENV !== 'production') {
       if (!children.every(child => isMuiElement(child, ['InputAdornment']))) {
         return new Error(`${componentName} can only accept children of type \`InputAdornment\`.`);
       }
+
+      return null;
     },
   };
 }

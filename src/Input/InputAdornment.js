@@ -5,7 +5,7 @@ import type { Node, ElementType } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
-export const styles = (theme: Object) => ({
+export const styles = () => ({
   root: {},
 });
 
