@@ -53,7 +53,7 @@ export type Props = {
    * @param {object} event The event source of the callback
    * @param {object} child The react element that was selected
    */
-  onChange?: (event: Object, child: Element<*>) => void,
+  onChange?: (event: SyntheticMouseEvent<*>, child: Element<*>) => void,
   /**
    * @ignore
    */
@@ -137,8 +137,9 @@ class SelectInput extends React.Component<AllProps, State> {
       }
 
       event.persist();
+      // $FlowFixMe
       event.target = { ...event.target, value };
-
+      // $FlowFixMe
       this.props.onChange(event, child);
     }
   };
