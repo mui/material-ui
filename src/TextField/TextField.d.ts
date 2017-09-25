@@ -35,6 +35,7 @@ export type TextFieldProps = {
   type?: string;
   value?: string | number;
   margin?: PropTypes.Margin;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 } & FormControlProps;
 
 declare const Input: StyledComponent<TextFieldProps>;
