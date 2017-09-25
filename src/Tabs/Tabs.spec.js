@@ -12,6 +12,18 @@ import TabIndicator from './TabIndicator';
 import Tab from './Tab';
 
 const noop = () => {};
+const fakeTabs = {
+  getBoundingClientRect: () => ({}),
+  children: [
+    {
+      children: [
+        {
+          getBoundingClientRect: () => ({}),
+        },
+      ],
+    },
+  ],
+};
 
 describe('<Tabs />', () => {
   let mount;
@@ -250,7 +262,10 @@ describe('<Tabs />', () => {
 
     it('should response to scroll events', () => {
       const instance = wrapper.instance();
-      instance.tabs = { scrollLeft: 100 };
+      instance.tabs = {
+        scrollLeft: 100,
+        ...fakeTabs,
+      };
       spy(instance, 'updateScrollButtonState');
       const selector = `.${classes.scrollingContainer}.${classes.scrollable}`;
       wrapper.find(selector).simulate('scroll');
@@ -373,6 +388,7 @@ describe('<Tabs />', () => {
           scrollLeft: 0,
           scrollWidth: 90,
           clientWidth: 100,
+          ...fakeTabs,
         };
         instance.updateScrollButtonState();
         assert.strictEqual(wrapper.state().showLeftScroll, false, 'left scroll should be false');
@@ -382,6 +398,7 @@ describe('<Tabs />', () => {
       it('should set only left scroll button state', () => {
         instance.tabs = {
           scrollLeft: 1,
+          ...fakeTabs,
         };
         instance.updateScrollButtonState();
         assert.strictEqual(wrapper.state().showLeftScroll, true, 'left scroll should be true');
@@ -393,6 +410,7 @@ describe('<Tabs />', () => {
           scrollLeft: 0,
           scrollWidth: 110,
           clientWidth: 100,
+          ...fakeTabs,
         };
         instance.updateScrollButtonState();
         assert.strictEqual(wrapper.state().showLeftScroll, false, 'left scroll should be false');
@@ -404,6 +422,7 @@ describe('<Tabs />', () => {
           scrollLeft: 1,
           scrollWidth: 110,
           clientWidth: 100,
+          ...fakeTabs,
         };
         instance.updateScrollButtonState();
         assert.strictEqual(wrapper.state().showLeftScroll, true, 'left scroll should be true');
