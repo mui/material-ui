@@ -1,9 +1,9 @@
 export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export type BreakpointMap = { [key in Breakpoint]: number };
+export type BreakpointValues = { [key in Breakpoint]: number };
 export const keys: Breakpoint[];
 
 export interface BreakpointsOptions {
-  values: BreakpointMap;
+  values: BreakpointValues;
   unit: string;
   step: number;
 }
