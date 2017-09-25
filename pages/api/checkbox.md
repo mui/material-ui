@@ -16,7 +16,7 @@
 | disabledClassName | string |  | The CSS class name of the root element when disabled. |
 | icon | Node |  | The icon to display when the component is unchecked. If a string is provided, it will be used as a font ligature. |
 | indeterminate | boolean | false | If `true`, the component appears indeterminate. |
-| indeterminateIcon | Node | <IndeterminateCheckBoxIcon /> | The icon to display when the component is indeterminate. If a string is provided, it will be used as a font ligature. |
+| indeterminateIcon | Node | &lt;IndeterminateCheckBoxIcon /> | The icon to display when the component is indeterminate. If a string is provided, it will be used as a font ligature. |
 | inputProps | Object |  | Properties applied to the `input` element. |
 | inputRef | Function |  | Use that property to pass a ref callback to the native input component. |
 | name | string |  |  |
