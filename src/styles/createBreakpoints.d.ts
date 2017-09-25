@@ -10,12 +10,12 @@ export interface BreakpointsOptions {
 
 export interface Breakpoints {
   keys: typeof keys;
-  values: number[];
+  values: BreakpointValues;
   up: (key: Breakpoint) => string;
   down: (key: Breakpoint) => string;
   between: (start: Breakpoint, end: Breakpoint) => string;
   only: (key: Breakpoint) => string;
-  getWidth: (key: Breakpoint) => number;
+  width: (key: Breakpoint) => number;
 }
 
 export default function createBreakpoints(

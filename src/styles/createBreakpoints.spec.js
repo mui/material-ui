@@ -47,4 +47,10 @@ describe('createBreakpoints', () => {
       assert.strictEqual(breakpoints.only('xl'), '@media (min-width:1920px)');
     });
   });
+
+  describe('width', () => {
+    it('should work', () => {
+      assert.strictEqual(breakpoints.width('md'), 960);
+    });
+  });
 });
