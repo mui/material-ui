@@ -7,13 +7,11 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| checkbox | bool | false | If `true`, the cell padding will be adjusted to accommodate a checkbox. |
-| children | node |  | The table cell contents. |
-| classes | object |  | Useful to extend the style applied to components. |
-| compact | bool | false | If `true`, compact cell padding will be used to accommodate more content. |
-| component | string | null | The component used for the root node. Either a string to use a DOM element or a component. |
-| disablePadding | bool | false | If `true`, left/right cell padding will be disabled. |
-| numeric | bool | false | If `true`, content will align to the right. |
+| children | Node |  | The table cell contents. |
+| classes | Object |  | Useful to extend the style applied to components. |
+| component | ElementType | null | The component used for the root node. Either a string to use a DOM element or a component. |
+| numeric | boolean | false | If `true`, content will align to the right. |
+| padding | union:&nbsp;'default'<br>&nbsp;'checkbox'<br>&nbsp;'dense'<br>&nbsp;'none'<br> | 'default' | Sets the padding applied to the cell. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
@@ -25,7 +23,7 @@ This property accepts the following keys:
 - `numeric`
 - `head`
 - `padding`
-- `compact`
+- `dense`
 - `checkbox`
 - `footer`
 

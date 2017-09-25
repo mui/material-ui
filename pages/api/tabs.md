@@ -32,6 +32,7 @@ This property accepts the following keys:
 - `fixed`
 - `scrollable`
 - `centered`
+- `buttonAuto`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)
 section for more detail.

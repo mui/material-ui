@@ -25,12 +25,14 @@ Any other properties supplied will be [spread to the root element](/customizatio
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `paper`
-- `anchorLeft`
-- `anchorRight`
-- `anchorTop`
-- `anchorBottom`
 - `docked`
+- `paper`
+- `paperAnchorLeft`
+- `paperAnchorRight`
+- `paperAnchorTop`
+- `paperAnchorBottom`
+- `paperAnchorDockedLeft`
+- `paperAnchorDockedRight`
 - `modal`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)
