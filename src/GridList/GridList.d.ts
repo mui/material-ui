@@ -8,4 +8,6 @@ export interface GridListProps {
   spacing?: number;
 }
 
-export default class GridList extends StyledComponent<GridListProps> {}
+declare const GridList: StyledComponent<GridListProps>;
+
+export default GridList;

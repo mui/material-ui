@@ -21,4 +21,6 @@ export type TooltipProps = React.HTMLAttributes<HTMLDivElement> & {
     | 'top';
 }
 
-export default class Tooltip extends StyledComponent<TooltipProps> {}
+declare const Tooltip: StyledComponent<TooltipProps>;
+
+export default Tooltip;

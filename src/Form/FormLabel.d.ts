@@ -9,4 +9,6 @@ export interface FormLabelProps
   required?: boolean;
 }
 
-export default class FormLabel extends StyledComponent<FormLabelProps> {}
+declare const FormLabel: StyledComponent<FormLabelProps>;
+
+export default FormLabel;

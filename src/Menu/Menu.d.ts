@@ -13,4 +13,6 @@ export type MenuProps = {
 } & Partial<TransitionHandlers> &
   PopoverProps;
 
-export default class Menu extends StyledComponent<MenuProps> {}
+declare const Menu: StyledComponent<MenuProps>;
+
+export default Menu;

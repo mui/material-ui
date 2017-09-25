@@ -7,4 +7,6 @@ export interface TabIndicatorProps
   style: { left: number; width: number };
 }
 
-export default class TabIndicator extends StyledComponent<TabIndicatorProps> {}
+declare const TabIndicator: StyledComponent<TabIndicatorProps>;
+
+export default TabIndicator;

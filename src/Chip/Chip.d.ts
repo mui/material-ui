@@ -8,4 +8,6 @@ export interface ChipProps extends React.HTMLAttributes<HTMLDivElement> {
   onRequestDelete?: React.EventHandler<any>;
 }
 
-export default class Chip extends StyledComponent<ChipProps> {}
+declare const Chip: StyledComponent<ChipProps>;
+
+export default Chip;

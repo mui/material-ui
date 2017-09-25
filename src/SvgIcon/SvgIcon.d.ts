@@ -6,4 +6,6 @@ export interface SvgIconProps extends React.SVGProps<SVGSVGElement> {
   viewBox?: string;
 }
 
-export default class SvgIcon extends StyledComponent<SvgIconProps> {}
+declare const SvgIcon: StyledComponent<SvgIconProps>;
+
+export default SvgIcon;

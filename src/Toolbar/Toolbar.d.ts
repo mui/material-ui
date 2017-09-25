@@ -5,4 +5,6 @@ export interface ToolbarProps extends React.HTMLAttributes<HTMLDivElement> {
   disableGutters?: boolean;
 }
 
-export default class Toolbar extends StyledComponent<ToolbarProps> {}
+declare const Toolbar: StyledComponent<ToolbarProps>;
+
+export default Toolbar;

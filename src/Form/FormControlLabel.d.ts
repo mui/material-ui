@@ -12,6 +12,6 @@ export type FormControlLabelProps = {
   value?: string;
 } & React.LabelHTMLAttributes<HTMLLabelElement>;
 
-export default class FormControlLabel extends StyledComponent<
-  FormControlLabelProps
-> {}
+declare const FormControlLabel: StyledComponent<FormControlLabelProps>;
+
+export default FormControlLabel;

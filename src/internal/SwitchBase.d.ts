@@ -20,7 +20,7 @@ export interface SwitchBaseProps {
   value?: string;
 }
 
-export class SwitchBase extends StyledComponent<SwitchBaseProps> {}
+export type SwitchBase = StyledComponent<SwitchBaseProps>
 
 export interface CreateSwitchBaseOptions {
   defaultIcon?: React.ReactNode;

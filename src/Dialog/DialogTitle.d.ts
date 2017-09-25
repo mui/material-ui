@@ -5,4 +5,6 @@ export interface DialogTitleProps extends React.HTMLAttributes<HTMLDivElement> {
   disableTypography?: boolean;
 }
 
-export default class DialogTitle extends StyledComponent<DialogTitleProps> {}
+declare const DialogTitle: StyledComponent<DialogTitleProps>;
+
+export default DialogTitle;

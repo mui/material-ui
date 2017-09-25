@@ -8,4 +8,6 @@ export interface MenuItemProps extends ListItemProps {
   selected?: boolean;
 }
 
-export default class MenuItem extends StyledComponent<MenuItemProps> {}
+declare const MenuItem: StyledComponent<MenuItemProps>;
+
+export default MenuItem;

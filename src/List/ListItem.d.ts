@@ -12,4 +12,6 @@ export type ListItemProps = {
 } & ButtonBaseProps &
   React.LiHTMLAttributes<HTMLLIElement>;
 
-export default class ListItem extends StyledComponent<ListItemProps> {}
+declare const ListItem: StyledComponent<ListItemProps>;
+
+export default ListItem;

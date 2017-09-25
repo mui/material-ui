@@ -13,4 +13,6 @@ export interface FormControlProps
   component?: React.ReactType;
 }
 
-export default class FormControl extends StyledComponent<FormControlProps> {}
+declare const FormControl: StyledComponent<FormControlProps>;
+
+export default FormControl;

@@ -7,4 +7,6 @@ export interface BackdropProps {
   [prop: string]: any;
 }
 
-export default class Backdrop extends StyledComponent<BackdropProps> {}
+declare const Backdrop: StyledComponent<BackdropProps>;
+
+export default Backdrop;

@@ -12,6 +12,6 @@ export interface MobileStepperProps extends PaperProps {
   type?: 'text' | 'dots' | 'progress';
 }
 
-export default class MobileStepper extends StyledComponent<
-  MobileStepperProps
-> {}
+declare const MobileStepper: StyledComponent<MobileStepperProps>;
+
+export default MobileStepper;

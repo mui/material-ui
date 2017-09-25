@@ -9,4 +9,6 @@ export interface IconButtonProps extends ButtonBaseProps {
   rootRef?: React.Ref<any>;
 }
 
-export default class IconButton extends StyledComponent<IconButtonProps> {}
+declare const IconButton: StyledComponent<IconButtonProps>;
+
+export default IconButton;

@@ -5,4 +5,6 @@ export interface AppBarProps extends PaperProps {
   position?: 'static' | 'fixed' | 'absolute';
 }
 
-export default class AppBar extends StyledComponent<AppBarProps> {}
+declare const AppBar: StyledComponent<AppBarProps>;
+
+export default AppBar;

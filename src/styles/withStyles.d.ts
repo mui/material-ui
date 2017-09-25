@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ClassNameMap, StyledComponentProps } from '..';
+import { ClassNameMap, StyledComponentProps, StyledComponent } from '..';
 import { Theme } from './createMuiTheme';
 
 /**
@@ -32,7 +32,7 @@ export default function withStyles<Names extends string>(
    */
   <P>(
     component: React.StatelessComponent<P & WithStyles<Names>>
-  ): React.ComponentType<P & StyledComponentProps<Names>>;
+  ): StyledComponent<P, Names>;
 
   /**
    * Decorating a class component. This is slightly less type safe than the

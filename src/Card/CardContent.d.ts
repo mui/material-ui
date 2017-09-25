@@ -4,4 +4,6 @@ import { StyledComponent } from '..';
 export interface CardContentProps
   extends React.HTMLAttributes<HTMLDivElement> {}
 
-export default class CardContent extends StyledComponent<CardContentProps> {}
+declare const CardContent: StyledComponent<CardContentProps>;
+
+export default CardContent;

@@ -45,4 +45,6 @@ export type InputProps = {
   >
 >;
 
-export default class Input extends StyledComponent<InputProps> {}
+declare const Input: StyledComponent<InputProps>;
+
+export default Input;

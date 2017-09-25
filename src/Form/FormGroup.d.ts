@@ -6,4 +6,6 @@ export interface FormGroupProps
   row?: boolean;
 }
 
-export default class FormGroup extends StyledComponent<FormGroupProps> {}
+declare const FormGroup: StyledComponent<FormGroupProps>;
+
+export default FormGroup;

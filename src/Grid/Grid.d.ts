@@ -33,4 +33,6 @@ export type GridProps = {
 } & Partial<{ [key in Breakpoint]: boolean | GridSize }>
   & Partial<Omit<React.HTMLAttributes<HTMLElement>, 'hidden'>>;
 
-export default class Grid extends StyledComponent<GridProps> {}
+declare const Grid: StyledComponent<GridProps>;
+
+export default Grid;

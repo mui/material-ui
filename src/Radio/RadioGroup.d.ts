@@ -8,4 +8,6 @@ export type RadioGroupProps = {
   value?: string;
 } & Partial<Omit<FormGroupProps, 'onChange'>>;
 
-export default class RadioGroup extends StyledComponent<RadioGroupProps> {}
+declare const RadioGroup: StyledComponent<RadioGroupProps>;
+
+export default RadioGroup;

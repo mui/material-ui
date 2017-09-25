@@ -7,4 +7,6 @@ export interface GridListTileProps {
   row?: number;
 }
 
-export default class GridListTile extends StyledComponent<GridListTileProps> {}
+declare const GridListTile: StyledComponent<GridListTileProps>;
+
+export default GridListTile;

@@ -8,6 +8,6 @@ export interface ListSubheaderProps
   disableSticky?: boolean;
 }
 
-export default class ListSubheader extends StyledComponent<
-  ListSubheaderProps
-> {}
+declare const ListSubheader: StyledComponent<ListSubheaderProps>;
+
+export default ListSubheader;

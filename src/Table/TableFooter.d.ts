@@ -4,4 +4,6 @@ import { StyledComponent } from '..';
 export interface TableFooterProps
   extends React.HTMLAttributes<HTMLTableSectionElement> {}
 
-export default class TableFooter extends StyledComponent<TableFooterProps> {}
+declare const TableFooter: StyledComponent<TableFooterProps>;
+
+export default TableFooter;

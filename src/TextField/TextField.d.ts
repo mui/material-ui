@@ -37,4 +37,6 @@ export type TextFieldProps = {
   margin?: PropTypes.Margin;
 } & FormControlProps;
 
-export default class Input extends StyledComponent<TextFieldProps> {}
+declare const Input: StyledComponent<TextFieldProps>;
+
+export default Input;

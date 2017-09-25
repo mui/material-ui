@@ -24,4 +24,6 @@ export type SnackbarProps = {
 } & Partial<TransitionHandlers> &
   React.HTMLAttributes<HTMLDivElement>;
 
-export default class Snackbar extends StyledComponent<SnackbarProps> {}
+declare const Snackbar: StyledComponent<SnackbarProps>;
+
+export default Snackbar;

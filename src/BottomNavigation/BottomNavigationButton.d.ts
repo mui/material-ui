@@ -12,6 +12,6 @@ export type BottomNavigationButtonProps = {
   value?: any;
 } & Partial<Omit<ButtonBaseProps, 'onChange'>>;
 
-export default class BottomNavigationButton extends StyledComponent<
-  BottomNavigationButtonProps
-> {}
+declare const BottomNavigationButton: StyledComponent<BottomNavigationButtonProps>;
+
+export default BottomNavigationButton;

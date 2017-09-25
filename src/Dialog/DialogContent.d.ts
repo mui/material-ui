@@ -4,6 +4,6 @@ import { StyledComponent } from '..';
 export interface DialogContentProps
   extends React.HTMLAttributes<HTMLDivElement> {}
 
-export default class DialogContent extends StyledComponent<
-  DialogContentProps
-> {}
+declare const DialogContent: StyledComponent<DialogContentProps>;
+
+export default DialogContent;

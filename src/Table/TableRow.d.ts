@@ -7,4 +7,6 @@ export interface TableRowProps
   selected?: boolean;
 }
 
-export default class TableRow extends StyledComponent<TableRowProps> {}
+declare const TableRow: StyledComponent<TableRowProps>;
+
+export default TableRow;

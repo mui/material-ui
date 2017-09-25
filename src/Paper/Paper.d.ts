@@ -7,4 +7,6 @@ export interface PaperProps extends React.HTMLAttributes<HTMLDivElement> {
   square?: boolean;
 }
 
-export default class Paper extends StyledComponent<PaperProps> {}
+declare const Paper: StyledComponent<PaperProps>;
+
+export default Paper;
