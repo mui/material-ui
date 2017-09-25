@@ -158,7 +158,7 @@ const CardMediaTest = () =>
       title="Shrimp and Chorizo Paella"
       subheader="September 14, 2016"
     />
-    <CardMedia image="src.png">
+    <CardMedia image="src.png" component="div">
       <img src={'image/src.png'} alt="Contemplative Reptile" />
     </CardMedia>
     <CardContent>

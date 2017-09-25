@@ -46,4 +46,26 @@ describe('<CardMedia />', () => {
     );
     assert.strictEqual(wrapper.prop('style').backgroundImage, 'url(/bar.jpg)');
   });
+
+  describe('prop: component', () => {
+    it('should render `img` component when `img` specified', () => {
+      const wrapper = shallow(<CardMedia image="/foo.jpg" component="img" />);
+      assert.isTrue(wrapper.is('img'));
+    });
+
+    it('should have `src` prop when media component specified', () => {
+      const wrapper = shallow(<CardMedia image="/foo.jpg" component="iframe" />);
+      assert.strictEqual(wrapper.prop('src'), '/foo.jpg');
+    });
+
+    it('should not have default inline style when media component specified', () => {
+      const wrapper = shallow(<CardMedia src="/foo.jpg" component="picture" />);
+      assert.strictEqual(wrapper.prop('style'), undefined);
+    });
+
+    it('should not have `src` prop if not media component specified', () => {
+      const wrapper = shallow(<CardMedia image="/foo.jpg" component="table" />);
+      assert.strictEqual(wrapper.prop('src'), undefined);
+    });
+  });
 });
