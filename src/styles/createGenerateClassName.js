@@ -15,16 +15,19 @@ let generatorCounter = 0;
 export default function createGenerateClassName(): generateClassName {
   let ruleCounter = 0;
 
-  if (process.env.NODE_ENV !== 'test' && typeof window !== 'undefined') {
+  if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
     generatorCounter += 1;
 
-    warning(
-      generatorCounter === 1,
-      [
-        'Material-UI: You can only instantiate one class name generator on the client side.',
-        'If you do otherwise, you take the risk to have conflicting class names in production.',
-      ].join('\n'),
-    );
+    if (generatorCounter > 2) {
+      // eslint-disable-next-line no-console
+      console.error(
+        [
+          'Material-UI: we have detected more than needed creation of the class name generator.',
+          'You should only use one class name generator on the client side.',
+          'If you do otherwise, you take the risk to have conflicting class names in production.',
+        ].join('\n'),
+      );
+    }
   }
 
   return (rule: Rule, sheet?: StyleSheet): string => {

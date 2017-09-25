@@ -323,7 +323,7 @@ class Popover extends React.Component<DefaultProps & Props> {
       warning(
         this.props.anchorOrigin.vertical === 'top',
         [
-          'Material-UI: You can change the `anchorOrigin.vertical` value when also ',
+          'Material-UI: you can change the `anchorOrigin.vertical` value when also ',
           'providing the `getContentAnchorEl` property. Pick one.',
         ].join(),
       );

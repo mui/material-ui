@@ -2,6 +2,7 @@
 
 import { assert } from 'chai';
 import createGenerateClassName from './createGenerateClassName';
+import consoleErrorMock from '../../test/utils/consoleErrorMock';
 
 describe('createGenerateClassName', () => {
   describe('counter', () => {
@@ -60,10 +61,12 @@ describe('createGenerateClassName', () => {
       before(() => {
         nodeEnv = env.NODE_ENV;
         env.NODE_ENV = 'production';
+        consoleErrorMock.spy();
       });
 
       after(() => {
         env.NODE_ENV = nodeEnv;
+        consoleErrorMock.reset();
       });
 
       it('should us a short representation', () => {
@@ -72,6 +75,16 @@ describe('createGenerateClassName', () => {
         };
         const generateClassName = createGenerateClassName();
         assert.strictEqual(generateClassName(rule), 'c1');
+      });
+
+      it('should warn', () => {
+        createGenerateClassName();
+        createGenerateClassName();
+        assert.strictEqual(consoleErrorMock.callCount() > 0, true);
+        assert.match(
+          consoleErrorMock.args()[0][0],
+          /Material-UI: we have detected more than needed creation of the/,
+        );
       });
     });
   });
