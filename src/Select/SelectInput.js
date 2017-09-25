@@ -137,7 +137,7 @@ class SelectInput extends React.Component<AllProps, State> {
       }
 
       event.persist();
-      event.target.value = value;
+      event.target = { ...event.target, value };
 
       this.props.onChange(event, child);
     }
