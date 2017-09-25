@@ -8,7 +8,6 @@ import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
 import ScrollbarSize from 'react-scrollbar-size';
 import scroll from 'scroll';
-import pick from 'lodash/pick';
 import withStyles from '../styles/withStyles';
 import TabIndicator from './TabIndicator';
 import TabScrollButton from './TabScrollButton';
@@ -124,11 +123,7 @@ type TabsMeta = {
   scrollLeft: number,
   // ClientRect
   left: number,
-  width: number,
   right: number,
-  top: number,
-  bottom: number,
-  height: number,
 };
 
 /**
@@ -162,12 +157,11 @@ class Tabs extends React.Component<DefaultProps & Props, State> {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.value !== this.props.value) {
-      this.updateIndicatorState(this.props);
-    }
     this.updateScrollButtonState();
     if (this.state.indicatorStyle !== prevState.indicatorStyle) {
       this.scrollSelectedIntoView();
+    } else {
+      this.updateIndicatorState(this.props);
     }
   }
 
@@ -254,17 +248,12 @@ class Tabs extends React.Component<DefaultProps & Props, State> {
   getTabsMeta = (value): { tabsMeta: ?TabsMeta, tabMeta: ?ClientRect } => {
     let tabsMeta;
     if (this.tabs) {
+      const rect = this.tabs.getBoundingClientRect();
       // create a new object with ClientRect class props + scrollLeft
       tabsMeta = {
-        scrollLeft: this.tabs.scrollLeft,
-        ...pick(this.tabs.getBoundingClientRect(), [
-          'left',
-          'width',
-          'right',
-          'top',
-          'bottom',
-          'height',
-        ]),
+        scrollLeft: this.tabs ? this.tabs.scrollLeft : 0,
+        left: rect.left,
+        right: rect.right,
       };
     }
 

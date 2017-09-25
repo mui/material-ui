@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import forOwn from 'lodash/forOwn';
 import { createShallow, getClasses } from '../test-utils';
 import Hidden from '../Hidden';
 import Grid from './Grid';
@@ -93,7 +92,9 @@ describe('<Grid />', () => {
       xlDownHidden: true,
     };
 
-    forOwn(hiddenProps, (value, key) => {
+    Object.keys(hiddenProps).forEach(key => {
+      const value = hiddenProps[key];
+
       it(`should render ${key} with Hidden`, () => {
         const wrapper = shallow(<Grid hidden={{ [key]: value }} />);
         assert.strictEqual(wrapper.type(), Hidden);
