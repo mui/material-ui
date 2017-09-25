@@ -15,7 +15,7 @@ export interface Breakpoints {
   down: (key: Breakpoint) => string;
   between: (start: Breakpoint, end: Breakpoint) => string;
   only: (key: Breakpoint) => string;
-  getWidth: (key: Breakpoint) => number;
+  width: (key: Breakpoint) => number;
 }
 
 export default function createBreakpoints(
