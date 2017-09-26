@@ -11,11 +11,11 @@ export const styles = (theme: Object) => ({
     display: 'flex',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    margin: `${theme.spacing.unit}px 4px`,
+    margin: `${theme.spacing.unit}px ${theme.spacing.unit / 2}px`,
     flex: '0 0 auto',
   },
   action: {
-    margin: '0 4px',
+    margin: `0 ${theme.spacing.unit / 2}px`,
   },
   button: {
     minWidth: 64,
