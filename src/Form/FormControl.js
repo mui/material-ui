@@ -32,13 +32,15 @@ export const styles = (theme: Object) => ({
   },
 });
 
+type Margin = 'none' | 'dense' | 'normal';
+
 type DefaultProps = {
   disabled: boolean,
   classes: Object,
   component: string,
   error: boolean,
   fullWidth: boolean,
-  margin: 'none',
+  margin: Margin,
   required: boolean,
 };
 
@@ -87,7 +89,7 @@ export type Props = {
   /**
    * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
    */
-  margin?: 'none' | 'dense' | 'normal',
+  margin?: Margin,
 };
 
 type State = {
