@@ -7,6 +7,14 @@ export interface DividerProps extends React.HTMLAttributes<HTMLHRElement> {
   light?: boolean;
 }
 
-declare const Divider: StyledComponent<DividerProps>;
+export type DividerClassKey =
+  | 'root'
+  | 'default'
+  | 'inset'
+  | 'light'
+  | 'absolute'
+  ;
+
+declare const Divider: StyledComponent<DividerProps, DividerClassKey>;
 
 export default Divider;
