@@ -1,7 +1,7 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import React from 'react';
-import { FormControlLabel } from 'material-ui/Form';
+import { FormControlLabel, FormGroup } from 'material-ui/Form';
 import Switch from 'material-ui/Switch';
 
 class SwitchLabels extends React.Component {
@@ -12,7 +12,7 @@ class SwitchLabels extends React.Component {
 
   render() {
     return (
-      <div>
+      <FormGroup>
         <FormControlLabel
           control={
             <Switch
@@ -32,7 +32,7 @@ class SwitchLabels extends React.Component {
           label="B"
         />
         <FormControlLabel control={<Switch />} disabled label="C" />
-      </div>
+      </FormGroup>
     );
   }
 }

@@ -4,7 +4,7 @@ components: Input, InputLabel, TextField, FormHelperText, FormControl
 
 # Text Fields
 
-[Text fields](https://material.google.com/components/text-fields.html) allow users to input text and usually appear in forms.
+[Text fields](https://material.io/guidelines/components/text-fields.html) allow users to input text and usually appear in forms.
 Users may enter text, numbers, or mixed-format types of input.
 
 ## TextField
