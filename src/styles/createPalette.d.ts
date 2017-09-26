@@ -1,4 +1,5 @@
 import { Color, Contrast } from '..';
+import commonColors from '../colors/common';
 
 type ShadeText = {
   primary: string;
@@ -41,22 +42,8 @@ export type Shade = {
 export const light: Shade;
 export const dark: Shade;
 
-type CommonColors = {
-  black: string;
-  white: string;
-  transparent: string;
-  fullBlack: string;
-  darkBlack: string;
-  lightBlack: string;
-  minBlack: string;
-  faintBlack: string;
-  fullWhite: string;
-  darkWhite: string;
-  lightWhite: string;
-};
-
 export type Palette = {
-  common: CommonColors;
+  common: typeof commonColors;
   type: Contrast;
   primary: Color;
   secondary: Color;
@@ -74,5 +61,5 @@ export type Palette = {
 };
 
 export default function createPalette(
-  palette?: Partial<Palette>
+  palette: Partial<Palette>
 ): Palette;
