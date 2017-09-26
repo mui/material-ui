@@ -8,7 +8,6 @@ import { CHANNEL } from './themeListener';
 import withTheme from './withTheme';
 
 const Empty = () => <div />;
-Empty.propTypes = {}; // Breaks the referential transparency for testing purposes.
 
 describe('withTheme', () => {
   let shallow;

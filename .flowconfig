@@ -4,6 +4,7 @@
 .*/node_modules/react-scrollbar-size
 .*/node_modules/fbjs/lib/partitionObjectByKey.js
 .*/node_modules/mitt
+.*/node_modules/npmconf/test/fixtures/package.json
 .*/node_modules/react-swipeable-views
 .*/node_modules/eslint-plugin-jsx-a11y
 .*/scripts

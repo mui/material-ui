@@ -15,7 +15,6 @@ import { createShallow, createMount, getClasses } from '../test-utils';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
 
 const Empty = () => <div />;
-Empty.propTypes = {}; // Breaks the referential transparency for testing purposes.
 
 describe('withStyles', () => {
   let shallow;
