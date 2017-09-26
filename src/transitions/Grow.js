@@ -50,10 +50,6 @@ export type Props = {
    */
   rootRef?: Function,
   /**
-   * @ignore
-   */
-  theme?: Object,
-  /**
    * Set to 'auto' to automatically calculate transition time based on height
    */
   transitionDuration?: number | 'auto',
@@ -167,4 +163,4 @@ class Grow extends React.Component<DefaultProps & Props> {
   }
 }
 
-export default withTheme(Grow);
+export default withTheme()(Grow);
