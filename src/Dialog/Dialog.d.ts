@@ -17,6 +17,16 @@ export type DialogProps = {
   transition?: Function | React.ReactElement<any>;
 } & ModalProps;
 
-declare const Dialog: StyledComponent<DialogProps>;
+export type DialogClassKey =
+  | 'root'
+  | 'paper'
+  | 'paperWidthXs'
+  | 'paperWidthSm'
+  | 'paperWidthMd'
+  | 'fullWidth'
+  | 'fullScreen'
+  ;
+
+declare const Dialog: StyledComponent<DialogProps, DialogClassKey>;
 
 export default Dialog;
