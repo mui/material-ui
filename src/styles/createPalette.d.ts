@@ -1,50 +1,77 @@
 import { Color, Contrast } from '..';
 
+type ShadeText = {
+  primary: string;
+  secondary: string;
+  disabled: string;
+  hint: string;
+  icon: string;
+  divider: string;
+  lightDivider: string;
+};
+
+type ShadeInput = {
+  bottomLine: string;
+  helperText: string;
+  labelText: string;
+  inputText: string;
+  disabled: string;
+};
+
+type ShadeAction = {
+  active: string;
+  disabled: string;
+};
+
+type ShadeBackground = {
+  default: string;
+  paper: string;
+  appBar: string;
+  contentFrame: string;
+  status: string;
+};
+
 export type Shade = {
-  text: {
-    primary: string;
-    secondary: string;
-    disabled: string;
-    hint: string;
-    icon: string;
-    divider: string;
-    lightDivider: string;
-  };
-  input: {
-    bottomLine: string;
-    helperText: string;
-    labelText: string;
-    inputText: string;
-    disabled: string;
-  };
-  action: {
-    active: string;
-    disabled: string;
-  };
-  background: {
-    default: string;
-    paper: string;
-    appBar: string;
-    contentFrame: string;
-    status: string;
-  };
+  text: ShadeText;
+  input: ShadeInput;
+  action: ShadeAction;
+  background: ShadeBackground;
 };
 
 export const light: Shade;
 export const dark: Shade;
 
-type PaletteOptions = {
-  primary: Color;
-  secondary: Color;
-  error: Color;
-  type: Contrast;
+type CommonColors = {
+  black: string;
+  white: string;
+  transparent: string;
+  fullBlack: string;
+  darkBlack: string;
+  lightBlack: string;
+  minBlack: string;
+  faintBlack: string;
+  fullWhite: string;
+  darkWhite: string;
+  lightWhite: string;
 };
 
 export type Palette = {
+  common: CommonColors;
+  type: Contrast;
+  primary: Color;
+  secondary: Color;
+  error: Color;
   grey: Color;
+  shades: {
+    dark: Shade;
+    light: Shade;
+  };
+  text: ShadeText;
+  input: ShadeInput;
+  action: ShadeAction;
+  background: ShadeBackground;
   getContrastText: (color: string) => string;
-} & PaletteOptions &
-  Shade;
+};
 
 export default function createPalette(
   palette?: Partial<Palette>
