@@ -31,6 +31,9 @@ function TimePickers(props) {
         InputLabelProps={{
           shrink: true,
         }}
+        inputProps={{
+          step: 300, // 5 min
+        }}
       />
     </form>
   );
