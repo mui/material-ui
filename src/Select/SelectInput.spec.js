@@ -6,7 +6,7 @@ import { spy } from 'sinon';
 import { ReactWrapper } from 'enzyme';
 import keycode from 'keycode';
 import { createShallow, createMount } from '../test-utils';
-import { MenuItem } from '../Menu';
+import Menu, { MenuItem } from '../Menu';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
 import SelectInput from './SelectInput';
 
@@ -17,6 +17,7 @@ describe('<SelectInput />', () => {
     classes: {
       select: 'select',
     },
+    autoWidth: false,
     value: 10,
     native: false,
     multiple: false,
@@ -66,7 +67,7 @@ describe('<SelectInput />', () => {
 
   describe('prop: MenuProps', () => {
     it('should apply additional properties to the Menu component', () => {
-      const wrapper = mount(
+      const wrapper = shallow(
         <SelectInput
           {...props}
           MenuProps={{
@@ -74,7 +75,23 @@ describe('<SelectInput />', () => {
           }}
         />,
       );
-      assert.strictEqual(wrapper.find('Menu').props().transitionDuration, 100);
+      assert.strictEqual(wrapper.find(Menu).props().transitionDuration, 100);
+    });
+
+    it('should be able to override PaperProps minWidth', () => {
+      const wrapper = shallow(
+        <SelectInput
+          {...props}
+          MenuProps={{
+            PaperProps: {
+              style: {
+                minWidth: 12,
+              },
+            },
+          }}
+        />,
+      );
+      assert.strictEqual(wrapper.find(Menu).props().PaperProps.style.minWidth, 12);
     });
   });
 
@@ -187,6 +204,28 @@ describe('<SelectInput />', () => {
       wrapper.find('select').simulate('change', { target: { value: 20 } });
       assert.strictEqual(handleChange.callCount, 1);
       assert.strictEqual(handleChange.args[0][0].target.value, 20);
+    });
+  });
+
+  describe('prop: autoWidth', () => {
+    it('should take the anchor width into account', () => {
+      const wrapper = shallow(<SelectInput {...props} />);
+      wrapper.setState({
+        anchorEl: {
+          clientWidth: 14,
+        },
+      });
+      assert.strictEqual(wrapper.find(Menu).props().PaperProps.style.minWidth, 14);
+    });
+
+    it('should not take the anchor width into account', () => {
+      const wrapper = shallow(<SelectInput {...props} autoWidth />);
+      wrapper.setState({
+        anchorEl: {
+          clientWidth: 14,
+        },
+      });
+      assert.strictEqual(wrapper.find(Menu).props().PaperProps.style.minWidth, undefined);
     });
   });
 
