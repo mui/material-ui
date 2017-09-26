@@ -90,6 +90,20 @@ export const styles = (theme: Object) => ({
   },
 });
 
+type Placement =
+  | 'bottom-end'
+  | 'bottom-start'
+  | 'bottom'
+  | 'left-end'
+  | 'left-start'
+  | 'left'
+  | 'right-end'
+  | 'right-start'
+  | 'right'
+  | 'top-end'
+  | 'top-start'
+  | 'top';
+
 type DefaultProps = {
   classes: Object,
   disableTriggerFocus: boolean,
@@ -97,7 +111,7 @@ type DefaultProps = {
   disableTriggerTouch: boolean,
   enterDelay: number,
   leaveDelay: number,
-  placement: string,
+  placement: Placement,
 };
 
 export type Props = {
@@ -161,34 +175,18 @@ export type Props = {
   /**
    * Tooltip placement
    */
-  placement?:
-    | 'bottom-end'
-    | 'bottom-start'
-    | 'bottom'
-    | 'left-end'
-    | 'left-start'
-    | 'left'
-    | 'right-end'
-    | 'right-start'
-    | 'right'
-    | 'top-end'
-    | 'top-start'
-    | 'top',
+  placement?: Placement,
   /**
    * Properties applied to the `Popper` element.
    */
   PopperProps?: Object,
 };
 
-type AllProps = DefaultProps & Props;
-
 type State = {
   open?: boolean,
 };
 
-class Tooltip extends React.Component<AllProps, State> {
-  props: AllProps;
-
+class Tooltip extends React.Component<DefaultProps & Props, State> {
   static defaultProps = {
     disableTriggerFocus: false,
     disableTriggerHover: false,
@@ -198,7 +196,7 @@ class Tooltip extends React.Component<AllProps, State> {
     placement: 'bottom',
   };
 
-  state: State = {};
+  state = {};
 
   componentWillMount() {
     const { props } = this;
