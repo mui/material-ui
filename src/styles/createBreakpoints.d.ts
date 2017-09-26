@@ -11,13 +11,13 @@ export interface BreakpointsOptions {
 export interface Breakpoints {
   keys: typeof keys;
   values: BreakpointValues;
-  up: (key: Breakpoint) => string;
-  down: (key: Breakpoint) => string;
+  up: (key: Breakpoint | number) => string;
+  down: (key: Breakpoint | number) => string;
   between: (start: Breakpoint, end: Breakpoint) => string;
   only: (key: Breakpoint) => string;
   width: (key: Breakpoint) => number;
 }
 
 export default function createBreakpoints(
-  options?: Partial<BreakpointsOptions>
+  options: Partial<BreakpointsOptions> & Partial<Breakpoints>
 ): Breakpoints;

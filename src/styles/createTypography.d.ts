@@ -24,17 +24,20 @@ export interface FontStyle {
 }
 
 export interface TypographyStyle {
-  color: React.CSSProperties['color'];
+  color?: React.CSSProperties['color'];
   fontFamily: React.CSSProperties['fontFamily'];
   fontSize: React.CSSProperties['fontSize'];
   fontWeight: React.CSSProperties['fontWeight'];
-  letterSpacing: React.CSSProperties['letterSpacing'];
+  letterSpacing?: React.CSSProperties['letterSpacing'];
   lineHeight: React.CSSProperties['lineHeight'];
+  textTransform?: React.CSSProperties['textTransform'];
 }
 
 export type Typography = { [type in Style]: TypographyStyle } & FontStyle;
 
+export type TypographyOptions = Partial<FontStyle> & Partial<Typography>;
+
 export default function createTypography(
   palette: Palette,
-  constants?: FontStyle
+  typography: TypographyOptions | ((palette: Palette) => TypographyOptions)
 ): Typography;
