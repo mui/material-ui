@@ -14,7 +14,7 @@ export type Props = {
    * If true, the width of the popover will automatically be set according to the items inside the
    * menu, otherwise it will be at least the width of the select input.
    */
-  autoWidth?: boolean,
+  autoWidth: boolean,
   /**
    * The option elements to populate the select with.
    * Can be some `MenuItem` when `native` is false and `option` when `native` is true.
@@ -308,7 +308,7 @@ class SelectInput extends React.Component<AllProps, State> {
     }
 
     const minimumMenuWidth =
-      this.state.anchorEl != null && !autoWidth ? this.state.anchorEl.clientWidth : 0;
+      this.state.anchorEl != null && !autoWidth ? this.state.anchorEl.clientWidth : undefined;
 
     return (
       <div className={classes.root}>
