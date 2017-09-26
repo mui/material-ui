@@ -158,7 +158,7 @@
     "react-number-format": "^2.0.4",
     "react-redux": "^5.0.6",
     "react-swipeable-views": "^0.12.8",
-    "react-test-renderer": "^15.6.1",
+    "react-test-renderer": "^16.0.0",
     "react-text-mask": "^5.0.2",
     "recast": "^0.12.6",
     "recursive-readdir-sync": "^1.0.6",
