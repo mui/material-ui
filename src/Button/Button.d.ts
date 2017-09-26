@@ -15,6 +15,23 @@ export interface ButtonProps extends ButtonBaseProps {
   type?: string;
 }
 
-declare const Button: StyledComponent<ButtonProps>;
+export type ButtonClassKey =
+  | 'root'
+  | 'dense'
+  | 'label'
+  | 'flatPrimary'
+  | 'flatAccent'
+  | 'flatContrast'
+  | 'colorInherit'
+  | 'raised'
+  | 'keyboardFocused'
+  | 'raisedPrimary'
+  | 'raisedAccent'
+  | 'raisedContrast'
+  | 'disabled'
+  | 'fab'
+  ;
+
+declare const Button: StyledComponent<ButtonProps, ButtonClassKey>;
 
 export default Button
