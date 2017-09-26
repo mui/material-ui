@@ -4,7 +4,7 @@ components: List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryActio
 
 # Lists
 
-[Lists](https://material.google.com/components/lists.html) present multiple line items vertically as a single continuous element.
+[Lists](https://material.io/guidelines/components/lists.html) present multiple line items vertically as a single continuous element.
 
 Lists are made up of a continuous column of rows. Each row contains a tile. Primary actions fill the tile, and supplemental actions are represented by icons and text.
 
