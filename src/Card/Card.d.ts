@@ -6,6 +6,8 @@ export interface CardProps extends PaperProps {
   raised?: boolean;
 }
 
-declare const Card: StyledComponent<CardProps>;
+export type CardClassKey = never;
+
+declare const Card: StyledComponent<CardProps, CardClassKey>;
 
 export default Card;
