@@ -82,7 +82,7 @@ type InjectedProps = { classes: Object };
 // instead, it returns a new component, with a `classes` property.
 function withStyles(stylesOrCreator: Object, options?: Options = {}) {
   function enhance<Props: HOCProps>(
-    Component: ComponentType<InjectedProps & Props>,
+    Component: ComponentType<{ ...InjectedProps, ...Props }>,
   ): ComponentType<Props> {
     const { withTheme = false, name, ...styleSheetOptions } = options;
     const factory = createEagerFactory(Component);
