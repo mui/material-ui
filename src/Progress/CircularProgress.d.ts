@@ -11,6 +11,17 @@ export interface CircularProgressProps
   value?: number;
 }
 
-declare const CircularProgress: StyledComponent<CircularProgressProps>;
+export type CircularProgressClassKey =
+  | 'root'
+  | 'primaryColor'
+  | 'accentColor'
+  | 'svg'
+  | 'indeterminateSvg'
+  | 'circle'
+  | 'indeterminateCircle'
+  | 'determinateCircle'
+  ;
+
+declare const CircularProgress: StyledComponent<CircularProgressProps, CircularProgressClassKey>;
 
 export default CircularProgress
