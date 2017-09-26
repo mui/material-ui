@@ -8,6 +8,7 @@
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | MenuProps | Object |  | Properties applied to the `Menu` element. |
+| autoWidth | boolean | false | If true, the width of the popover will automatically be set according to the items inside the menu, otherwise it will be at least the width of the select input. |
 | <span style="color: #31a148">children *</span> | ChildrenArray |  | The option elements to populate the select with. Can be some `MenuItem` when `native` is false and `option` when `native` is true. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | input | Element | &lt;Input /> | An `Input` element. |

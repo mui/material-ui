@@ -64,6 +64,11 @@ export const styles = (theme: Object) => ({
 
 export type Props = {
   /**
+   * If true, the width of the popover will automatically be set according to the items inside the
+   * menu, otherwise it will be at least the width of the select input.
+   */
+  autoWidth?: boolean,
+  /**
    * The option elements to populate the select with.
    * Can be some `MenuItem` when `native` is false and `option` when `native` is true.
    */
@@ -102,7 +107,17 @@ export type Props = {
 type AllProps = DefaultProps & Props;
 
 function Select(props: AllProps) {
-  const { children, classes, input, native, multiple, MenuProps, renderValue, ...other } = props;
+  const {
+    autoWidth,
+    children,
+    classes,
+    input,
+    native,
+    multiple,
+    MenuProps,
+    renderValue,
+    ...other
+  } = props;
 
   // Instead of `Element<typeof Input>` to have more flexibility.
   warning(
@@ -120,6 +135,7 @@ function Select(props: AllProps) {
     ...other,
     inputProps: {
       ...input.props.inputProps,
+      autoWidth,
       children,
       classes,
       native,
@@ -131,6 +147,7 @@ function Select(props: AllProps) {
 }
 
 Select.defaultProps = {
+  autoWidth: false,
   input: <Input />,
   native: false,
   multiple: false,
