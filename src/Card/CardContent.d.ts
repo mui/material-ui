@@ -4,6 +4,10 @@ import { StyledComponent } from '..';
 export interface CardContentProps
   extends React.HTMLAttributes<HTMLDivElement> {}
 
-declare const CardContent: StyledComponent<CardContentProps>;
+export type CardContentClassKey =
+  | 'root'
+  ;
+
+declare const CardContent: StyledComponent<CardContentProps, CardContentClassKey>;
 
 export default CardContent;
