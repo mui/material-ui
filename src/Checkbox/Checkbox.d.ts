@@ -4,6 +4,12 @@ import { SwitchBaseProps } from '../internal/SwitchBase';
 
 export interface CheckboxProps extends SwitchBaseProps {}
 
-declare const Checkbox: StyledComponent<CheckboxProps>;
+export type CheckboxClassKey =
+  | 'default'
+  | 'checked'
+  | 'disabled'
+  ;
+
+declare const Checkbox: StyledComponent<CheckboxProps, CheckboxClassKey>;
 
 export default Checkbox;
