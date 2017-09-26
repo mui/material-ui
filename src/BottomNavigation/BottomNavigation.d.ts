@@ -8,6 +8,10 @@ export type BottomNavigationProps = {
   value?: any;
 } & React.HTMLAttributes<HTMLDivElement>;
 
-declare const BottomNavigation: StyledComponent<BottomNavigationProps>;
+export type BottomNavigationClassKey =
+  | 'root'
+  ;
+
+declare const BottomNavigation: StyledComponent<BottomNavigationProps, BottomNavigationClassKey>;
 
 export default BottomNavigation;
