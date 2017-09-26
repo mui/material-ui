@@ -25,7 +25,6 @@ function DateAndTimePickers(props) {
       <TextField
         id="datetime-local"
         label="Next appointment"
-        step="300"
         type="datetime-local"
         defaultValue="2017-05-24T10:30"
         className={classes.textField}
