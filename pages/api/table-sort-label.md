@@ -31,6 +31,10 @@ If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiTableSortLabel`.
 
+## Inheritance
+
+The properties of the [&lt;ButtonBase /&gt;](/api/button-base) component are also available.
+
 ## Demos
 
 - [Tables](/demos/tables)
