@@ -12,6 +12,11 @@ export type ButtonBaseProps = {
 } & React.ButtonHTMLAttributes<HTMLButtonElement> &
   React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
-declare const ButtonBase: StyledComponent<ButtonBaseProps>;
+export type ButtonBaseClassKey =
+  | 'root'
+  | 'disabled'
+  ;
+
+declare const ButtonBase: StyledComponent<ButtonBaseProps, ButtonBaseClassKey>;
 
 export default ButtonBase;
