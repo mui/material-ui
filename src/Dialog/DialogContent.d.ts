@@ -4,6 +4,10 @@ import { StyledComponent } from '..';
 export interface DialogContentProps
   extends React.HTMLAttributes<HTMLDivElement> {}
 
-declare const DialogContent: StyledComponent<DialogContentProps>;
+export type DialogContentClassKey =
+  | 'root'
+  ;
+
+declare const DialogContent: StyledComponent<DialogContentProps, DialogContentClassKey>;
 
 export default DialogContent;
