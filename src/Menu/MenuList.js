@@ -1,4 +1,5 @@
 // @flow
+// @inheritedComponent List
 
 import React from 'react';
 import type { ChildrenArray, Node } from 'react';
