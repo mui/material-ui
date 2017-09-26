@@ -8,6 +8,14 @@ export type CardHeaderProps = {
   title?: React.ReactNode;
 } & Partial<Omit<CardContentProps, 'title'>>;
 
-declare const CardHeader: StyledComponent<CardHeaderProps>;
+export type CardHeaderClassKey =
+  | 'root'
+  | 'avatar'
+  | 'content'
+  | 'title'
+  | 'subheader'
+  ;
+
+declare const CardHeader: StyledComponent<CardHeaderProps, CardHeaderClassKey>;
 
 export default CardHeader;
