@@ -4,7 +4,7 @@ components: CircularProgress, LinearProgress
 
 # Progress
 
-[Progress and activity indicators](https://material.google.com/components/progress-activity.html)
+[Progress and activity indicators](https://material.io/guidelines/components/progress-activity.html)
 are visual indications of an app loading content.
 
 A single visual indicator should be used to represent each type of operation.

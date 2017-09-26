@@ -4,7 +4,7 @@ components: FormControl, FormGroup, FormLabel, FormControlLabel, RadioGroup, Che
 
 # Selection Controls
 
-[Selection controls](https://material.google.com/components/selection-controls.html) allow the user to select options.
+[Selection controls](https://material.io/guidelines/components/selection-controls.html) allow the user to select options.
 
 Three types of selection controls are covered in this guidance:
 
@@ -21,6 +21,10 @@ If you have multiple options appearing in a list, you can preserve space by usin
 If you have a single option, avoid using a checkbox and use an on/off switch instead.
 
 {{demo='pages/demos/selection-controls/Checkboxes.js'}}
+
+`FormGroup` is a helpful wrapper used to group selection controls components that provides an easier API.
+
+{{demo='pages/demos/selection-controls/CheckboxesGroup.js'}}
 
 ## Radio Buttons
 
@@ -42,6 +46,6 @@ On/off switches toggle the state of a single settings option. The option that th
 
 {{demo='pages/demos/selection-controls/Switches.js'}}
 
-`Switch` can also be used with a `label`.
+`Switch` can also be used with a label description thanks to the `FormControlLabel` component.
 {{demo='pages/demos/selection-controls/SwitchLabels.js'}}
 

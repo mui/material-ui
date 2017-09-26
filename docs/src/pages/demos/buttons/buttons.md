@@ -4,7 +4,7 @@ components: Button, IconButton, ButtonBase
 
 # Buttons
 
-[Buttons](https://material.google.com/components/buttons.html) communicate the action that will occur when the user touches them.
+[Buttons](https://material.io/guidelines/components/buttons.html) communicate the action that will occur when the user touches them.
 
 Material buttons trigger an ink reaction on press.
 They may display text, imagery, or both.

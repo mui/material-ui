@@ -17,6 +17,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/selection-controls/Checkboxes'), 'utf8')
 `,
         },
+        'pages/demos/selection-controls/CheckboxesGroup.js': {
+          js: require('docs/src/pages/demos/selection-controls/CheckboxesGroup').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/selection-controls/CheckboxesGroup'), 'utf8')
+`,
+        },
         'pages/demos/selection-controls/RadioButtonsGroup.js': {
           js: require('docs/src/pages/demos/selection-controls/RadioButtonsGroup').default,
           raw: preval`
