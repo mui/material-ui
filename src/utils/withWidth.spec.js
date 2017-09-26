@@ -8,7 +8,6 @@ import withWidth, { isWidthDown, isWidthUp } from './withWidth';
 import createBreakpoints from '../styles/createBreakpoints';
 
 const Empty = () => <div />;
-Empty.propTypes = {}; // Breaks the referencial transparency for testing purposes.
 const EmptyWithWidth = withWidth()(Empty);
 
 const breakpoints = createBreakpoints({});

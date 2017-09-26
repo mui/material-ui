@@ -6,16 +6,13 @@ import { assert } from 'chai';
 import { createShallow } from '../test-utils';
 import HiddenJs from './HiddenJs';
 import type { Breakpoint } from '../styles/createBreakpoints';
-import Typography from '../Typography';
-
-const Foo = () => <div>bar</div>;
 
 describe('<HiddenJs />', () => {
   let shallow;
 
   before(() => {
     shallow = createShallow({
-      untilSelector: 'EventListener',
+      untilSelector: 'HiddenJs',
     });
   });
 
@@ -39,28 +36,12 @@ describe('<HiddenJs />', () => {
         Down: `${prop} is hidden for width: ${width} <= ${breakpoint}`,
         only: `${prop} is hidden for width: ${width} === ${breakpoint}`,
       };
+      const props = { width, [prop]: breakpoint };
 
       it(descriptions[upDownOnly], () => {
-        const props = { width, [prop]: breakpoint };
-
-        // Node
-        let wrapper = shallow(<HiddenJs {...props}>foo</HiddenJs>);
-        assert.isNull(wrapper.type(), 'should render null');
-
-        // Element
-        wrapper = shallow(
+        const wrapper = shallow(
           <HiddenJs {...props}>
-            <Foo />
-          </HiddenJs>,
-        );
-        assert.isNull(wrapper.type(), 'should render null');
-
-        // ChildrenArray
-        wrapper = shallow(
-          <HiddenJs {...props}>
-            <Foo />
-            <Foo />
-            foo
+            <div>foo</div>
           </HiddenJs>,
         );
         assert.isNull(wrapper.type(), 'should render null');
@@ -80,12 +61,10 @@ describe('<HiddenJs />', () => {
         Down: `${prop} is visible for width: ${width} > ${breakpoint}`,
         only: `${prop} is visible for width: ${width} !== ${breakpoint}`,
       };
+      const props = { width, [prop]: breakpoint };
 
       it(descriptions[upDownOnly], () => {
-        const props = { width, [prop]: breakpoint };
-
-        // children
-        let wrapper = shallow(
+        const wrapper = shallow(
           <HiddenJs {...props}>
             <div>foo</div>
           </HiddenJs>,
@@ -93,15 +72,6 @@ describe('<HiddenJs />', () => {
         assert.isNotNull(wrapper.type(), 'should render');
         assert.strictEqual(wrapper.name(), 'div');
         assert.strictEqual(wrapper.first().text(), 'foo', 'should render children');
-
-        // element
-        wrapper = shallow(
-          <HiddenJs {...props}>
-            <Typography>foo</Typography>
-          </HiddenJs>,
-        );
-        assert.isNotNull(wrapper.type(), 'should render');
-        assert.strictEqual(wrapper.name(), 'withStyles(Typography)');
       });
     });
   }
