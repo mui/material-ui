@@ -6,6 +6,17 @@ import { ReactWrapper } from 'enzyme';
 import { createMount } from 'src/test-utils';
 import SelectAndDialog from './fixtures/select/SelectAndDialog';
 
+function getPortalWrapper(wrapper) {
+  const portalWrapper = new ReactWrapper(
+    wrapper
+      .find('Modal')
+      .getNode()
+      .render().props.children,
+  );
+
+  return portalWrapper;
+}
+
 describe('<Select> integration', () => {
   let mount;
 
@@ -18,30 +29,25 @@ describe('<Select> integration', () => {
   });
 
   describe('with Dialog', () => {
-    let wrapper;
-    let portalDialogWrapper;
-
-    before(() => {
-      wrapper = mount(<SelectAndDialog open />);
-      const portalDialog = wrapper.find('Modal').node.mountNode.firstChild;
-      portalDialogWrapper = new ReactWrapper(portalDialog, portalDialog);
-    });
-
     it('should focus the selected item', done => {
-      const selectDisplay = portalDialogWrapper.find('[data-mui-test="SelectDisplay"]');
+      const wrapper = mount(
+        <SelectAndDialog
+          open
+          MenuProps={{
+            onExited: () => {
+              assert.strictEqual(
+                document.activeElement,
+                selectDisplay.getDOMNode(),
+                'should focus back the select input',
+              );
+              done();
+            },
+          }}
+        />,
+      );
+      const portalDialogWrapper = getPortalWrapper(wrapper);
 
-      wrapper.setProps({
-        MenuProps: {
-          onExited: () => {
-            assert.strictEqual(
-              document.activeElement,
-              selectDisplay.getDOMNode(),
-              'should focus back the select input',
-            );
-            done();
-          },
-        },
-      });
+      const selectDisplay = portalDialogWrapper.find('[data-mui-test="SelectDisplay"]');
 
       // Let's open the select component
       selectDisplay.getDOMNode().focus();
@@ -54,8 +60,7 @@ describe('<Select> integration', () => {
         'should focus the selected menu item',
       );
 
-      const portalSelect = portalDialogWrapper.find('Modal').node.mountNode.firstChild;
-      const portalSelectWrapper = new ReactWrapper(portalSelect, portalSelect);
+      const portalSelectWrapper = getPortalWrapper(portalDialogWrapper);
 
       // Now, let's close the select component
       const backdrop = portalSelectWrapper.find('Backdrop');

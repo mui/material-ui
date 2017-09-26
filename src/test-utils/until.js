@@ -1,29 +1,20 @@
 // @flow weak
 
-function shallowRecursively(wrapper, selector, { context }) {
-  if (wrapper.isEmptyRender() || typeof wrapper.node.type === 'string') {
+function shallowRecursively(wrapper, selector, options = {}) {
+  if (wrapper.isEmptyRender() || typeof wrapper.getNode().type === 'string') {
     return wrapper;
   }
 
-  let newContext = context;
-
-  const instance = wrapper.root.instance();
-  if (instance.getChildContext) {
-    newContext = {
-      ...context,
-      ...instance.getChildContext(),
-    };
-  }
-
-  const nextWrapper = wrapper.shallow({ context: newContext });
+  const newContext = options.context;
+  const nextWrapper = wrapper.shallow({ ...options, context: newContext });
 
   if (selector && wrapper.is(selector)) {
     return nextWrapper;
   }
 
-  return shallowRecursively(nextWrapper, selector, { context: newContext });
+  return shallowRecursively(nextWrapper, selector, { ...options, context: newContext });
 }
 
-export default function until(selector, { context } = this.options) {
-  return this.single('until', () => shallowRecursively(this, selector, { context }));
+export default function until(selector, options) {
+  return this.single('until', () => shallowRecursively(this, selector, options));
 }

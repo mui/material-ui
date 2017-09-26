@@ -44,7 +44,7 @@ describe('<HiddenJs />', () => {
             <div>foo</div>
           </HiddenJs>,
         );
-        assert.isNull(wrapper.type(), 'should render null');
+        assert.strictEqual(wrapper.type(), null, 'should render null');
       });
     });
   }

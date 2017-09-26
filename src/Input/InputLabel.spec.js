@@ -17,7 +17,7 @@ describe('<InputLabel />', () => {
   it('should render a FormLabel', () => {
     const wrapper = shallow(<InputLabel>Foo</InputLabel>);
     assert.strictEqual(wrapper.name(), 'withStyles(FormLabel)');
-    assert.strictEqual(wrapper.childAt(0).node, 'Foo');
+    assert.strictEqual(wrapper.childAt(0).text(), 'Foo');
   });
 
   it('should have the root and animated classes by default', () => {
