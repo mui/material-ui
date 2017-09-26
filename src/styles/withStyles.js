@@ -63,13 +63,29 @@ type Options = {
   generateClassName?: Function, // generateClassName - use generic to stop the bleeding.
 };
 
+// optional props introduced by this HOC
+export type HOCProps = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * Use that property to pass a ref callback to the decorated component.
+   */
+  innerRef?: Function,
+};
+
+type InjectedProps = { classes: Object };
+
 // Link a style sheet with a component.
 // It does not modify the component passed to it;
-// instead, it returns a new, with a `classes` property.
+// instead, it returns a new component, with a `classes` property.
 function withStyles(stylesOrCreator: Object, options?: Options = {}) {
-  function enhance<BaseProps: {}>(BaseComponent: ComponentType<BaseProps>) {
+  function enhance<Props: HOCProps>(
+    Component: ComponentType<InjectedProps & Props>,
+  ): ComponentType<Props> {
     const { withTheme = false, name, ...styleSheetOptions } = options;
-    const factory = createEagerFactory(BaseComponent);
+    const factory = createEagerFactory(Component);
     const stylesCreator = getStylesCreator(stylesOrCreator);
     const listenToTheme = stylesCreator.themingEnabled || withTheme || typeof name === 'string';
 
@@ -86,18 +102,7 @@ function withStyles(stylesOrCreator: Object, options?: Options = {}) {
       ].join(' '),
     );
 
-    type StyleProps = {
-      /**
-       * Useful to extend the style applied to components.
-       */
-      classes?: Object,
-      /**
-       * Use that property to pass a ref callback to the decorated component.
-       */
-      innerRef?: Function,
-    };
-
-    class Style extends React.Component<StyleProps & BaseProps> {
+    class Style extends React.Component<Props> {
       static contextTypes = {
         sheetsManager: PropTypes.object,
         ...contextTypes,
@@ -108,9 +113,9 @@ function withStyles(stylesOrCreator: Object, options?: Options = {}) {
       static options: ?Options;
 
       // Exposed for test purposes.
-      static Naked = BaseComponent;
+      static Naked = Component;
 
-      constructor(props: StyleProps & BaseProps, context: Object) {
+      constructor(props: Props, context: Object) {
         super(props, context);
         this.jss = this.context[ns.jss] || jss;
         this.sheetsManager = this.context.sheetsManager || sheetsManager;
@@ -183,7 +188,7 @@ function withStyles(stylesOrCreator: Object, options?: Options = {}) {
           let meta;
 
           if (process.env.NODE_ENV !== 'production') {
-            meta = name || getDisplayName(BaseComponent);
+            meta = name || getDisplayName(Component);
             // Sanitize the string as will be used in development to prefix the generated
             // class name.
             meta = meta.replace(new RegExp(/[!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~]/g), '-');
@@ -252,7 +257,7 @@ function withStyles(stylesOrCreator: Object, options?: Options = {}) {
                 [
                   `Material-UI: the key \`${key}\` ` +
                     `provided to the classes property is not implemented in ${getDisplayName(
-                      BaseComponent,
+                      Component,
                     )}.`,
                   `You can only override one of the following: ${Object.keys(renderedClasses).join(
                     ',',
@@ -265,7 +270,7 @@ function withStyles(stylesOrCreator: Object, options?: Options = {}) {
                 [
                   `Material-UI: the key \`${key}\` ` +
                     `provided to the classes property is not valid for ${getDisplayName(
-                      BaseComponent,
+                      Component,
                     )}.`,
                   `You need to provide a non empty string instead of: ${classesProp[key]}.`,
                 ].join('\n'),
@@ -305,13 +310,13 @@ function withStyles(stylesOrCreator: Object, options?: Options = {}) {
       ...(listenToTheme ? themeListener.contextTypes : {}),
     };
 
-    hoistNonReactStatics(Style, BaseComponent);
+    hoistNonReactStatics(Style, Component);
 
     // Higher specificity
     Style.options = options;
 
     if (process.env.NODE_ENV !== 'production') {
-      Style.displayName = wrapDisplayName(BaseComponent, 'withStyles');
+      Style.displayName = wrapDisplayName(Component, 'withStyles');
     }
 
     return Style;
