@@ -4,6 +4,11 @@ export interface CardActionsProps extends React.HTMLAttributes<HTMLDivElement> {
   disableActionSpacing?: boolean;
 }
 
-declare const CardActions: StyledComponent<CardActionsProps>;
+export type CardActionClassKey =
+  | 'root'
+  | 'actionSpacing'
+  ;
+
+declare const CardActions: StyledComponent<CardActionsProps, CardActionClassKey>;
 
 export default CardActions;
