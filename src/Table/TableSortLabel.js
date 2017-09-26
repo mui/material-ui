@@ -1,4 +1,5 @@
 // @flow
+// @inheritedComponent ButtonBase
 
 import React from 'react';
 import type { Node } from 'react';

@@ -37,6 +37,10 @@ If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
 you need to use the following style sheet name: `MuiTablePagination`.
 
+## Inheritance
+
+The properties of the [&lt;TableRow /&gt;](/api/table-row) component are also available.
+
 ## Demos
 
 - [Tables](/demos/tables)
