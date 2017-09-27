@@ -125,6 +125,7 @@ describe('<RadioGroup />', () => {
       wrapper = shallow(
         <RadioGroup value="">
           <Radio />
+          <Radio />
         </RadioGroup>,
       );
     });

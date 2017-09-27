@@ -11,7 +11,7 @@ import { isMuiElement } from '../utils/reactHelpers';
 
 type DefaultProps = {
   classes: Object,
-  input: Element<typeof Input>,
+  input: Element<any>,
   native: boolean,
   multiple: boolean,
 };
@@ -78,9 +78,9 @@ export type Props = {
    */
   classes?: Object,
   /**
-   * An `Input` element.
+   * An `Input` element; does not have to be a material-ui specific `Input`.
    */
-  input?: Element<typeof Input>,
+  input?: Element<any>,
   /**
    * If `true`, the component will be using a native `select` element.
    */
@@ -132,7 +132,7 @@ function Select(props: DefaultProps & Props) {
     inputComponent: SelectInput,
     ...other,
     inputProps: {
-      ...input.props.inputProps,
+      ...(input ? input.props.inputProps : {}),
       autoWidth,
       children,
       classes,
