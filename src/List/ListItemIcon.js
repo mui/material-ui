@@ -4,8 +4,6 @@ import React from 'react';
 import type { Element } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-// import SvgIcon from '../SvgIcon';
-// import Icon from '../Icon';
 
 export const styles = (theme: Object) => ({
   root: {
@@ -27,7 +25,6 @@ export type Props = {
    * or a `material-ui-icons` SVG icon component.
    */
   children: Element<any>,
-  //  children: Element<typeof Icon> | Element<typeof SvgIcon>,
   /**
    * Useful to extend the style applied to components.
    */

@@ -1,6 +1,7 @@
 // @flow weak
 
-import React, { type Node } from 'react';
+import React from 'react';
+import type { Node } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';

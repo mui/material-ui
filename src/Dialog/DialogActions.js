@@ -1,6 +1,7 @@
 // @flow
 
-import React, { type Node } from 'react';
+import React from 'react';
+import type { Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import '../Button'; // So we don't have any override priority issue.
