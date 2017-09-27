@@ -44,6 +44,7 @@ describe('<Tabs />', () => {
     const wrapper = shallow(
       <Tabs width="md" onChange={noop} value={0}>
         <Tab />
+        <Tab />
       </Tabs>,
     );
     assert.strictEqual(wrapper.name(), 'div');
@@ -54,6 +55,7 @@ describe('<Tabs />', () => {
     it('should render with the user and root classes', () => {
       const wrapper = shallow(
         <Tabs width="md" onChange={noop} value={0} className="woofTabs">
+          <Tab />
           <Tab />
         </Tabs>,
       );
@@ -66,6 +68,7 @@ describe('<Tabs />', () => {
     it('should render with the centered class', () => {
       const wrapper = shallow(
         <Tabs width="md" onChange={noop} value={0} centered>
+          <Tab />
           <Tab />
         </Tabs>,
       );
@@ -246,6 +249,7 @@ describe('<Tabs />', () => {
       wrapper = shallow(
         <Tabs width="md" onChange={noop} value={0} scrollable>
           <Tab />
+          <Tab />
         </Tabs>,
       );
     });
@@ -282,6 +286,7 @@ describe('<Tabs />', () => {
       const mountWrapper = mount(
         <Tabs width="md" onChange={noop} value={0} scrollable>
           <Tab />
+          <Tab />
         </Tabs>,
       );
       assert.strictEqual(mountWrapper.find('ScrollbarSize').length, 1, 'should be one');
@@ -293,6 +298,7 @@ describe('<Tabs />', () => {
     it('should not render with the scrollable class', () => {
       const wrapper = shallow(
         <Tabs width="md" onChange={noop} value={0}>
+          <Tab />
           <Tab />
         </Tabs>,
       );
@@ -318,6 +324,7 @@ describe('<Tabs />', () => {
       const wrapper = shallow(
         <Tabs width="md" onChange={noop} value={0} scrollable scrollButtons="on">
           <Tab />
+          <Tab />
         </Tabs>,
       );
       assert.strictEqual(wrapper.find(TabScrollButton).length, 2, 'should be two');
@@ -327,6 +334,7 @@ describe('<Tabs />', () => {
       const wrapper = shallow(
         <Tabs width="md" onChange={noop} value={0} scrollable scrollButtons="auto">
           <Tab />
+          <Tab />
         </Tabs>,
       );
       assert.strictEqual(wrapper.find(TabScrollButton).length, 2, 'should be two');
@@ -335,6 +343,7 @@ describe('<Tabs />', () => {
     it('should should not render scroll buttons automatically', () => {
       const wrapper = shallow(
         <Tabs width="sm" onChange={noop} value={0} scrollable scrollButtons="auto">
+          <Tab />
           <Tab />
         </Tabs>,
       );
@@ -348,6 +357,7 @@ describe('<Tabs />', () => {
     it('should handle window resize event', () => {
       const wrapper = shallow(
         <Tabs width="md" onChange={noop} value={0} scrollable scrollButtons="on">
+          <Tab />
           <Tab />
         </Tabs>,
       );
@@ -377,6 +387,7 @@ describe('<Tabs />', () => {
       before(() => {
         wrapper = shallow(
           <Tabs width="md" onChange={noop} value={0} scrollable scrollButtons="on">
+            <Tab />
             <Tab />
           </Tabs>,
         );
@@ -444,6 +455,7 @@ describe('<Tabs />', () => {
       wrapper = shallow(
         <Tabs width="md" onChange={noop} value={0} scrollable scrollButtons={'on'}>
           <Tab />
+          <Tab />
         </Tabs>,
       );
       instance = wrapper.instance();
@@ -482,6 +494,7 @@ describe('<Tabs />', () => {
       scrollStub = stub(scroll, 'left');
       const wrapper = shallow(
         <Tabs width="md" onChange={noop} value={0} scrollable>
+          <Tab />
           <Tab />
         </Tabs>,
       );
