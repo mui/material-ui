@@ -7,6 +7,7 @@ import ListItemText from './ListItemText';
 import ListItemSecondaryAction from './ListItemSecondaryAction';
 import ListItem from './ListItem';
 import ListItemAvatar from './ListItemAvatar';
+import Avatar from '../Avatar';
 
 describe('<ListItem />', () => {
   let shallow;
@@ -47,7 +48,9 @@ describe('<ListItem />', () => {
   it('should use dense class when ListItemAvatar is present', () => {
     const wrapper = shallow(
       <ListItem>
-        <ListItemAvatar />
+        <ListItemAvatar>
+          <Avatar />
+        </ListItemAvatar>
       </ListItem>,
       {
         context: {
