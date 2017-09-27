@@ -61,10 +61,7 @@ describe('<Ripple />', () => {
       wrapper = mount(
         <Ripple
           classes={classes}
-          timeout={{
-            exit: 0,
-            enter: 0,
-          }}
+          timeout={{ exit: 0, enter: 0 }}
           in={false}
           rippleX={0}
           rippleY={0}
@@ -75,9 +72,7 @@ describe('<Ripple />', () => {
 
     it('should start the ripple', () => {
       assert.strictEqual(wrapper.state().rippleVisible, false, 'should not be visible');
-      wrapper.setProps({
-        in: true,
-      });
+      wrapper.setProps({ in: true });
       assert.strictEqual(wrapper.state().rippleVisible, true, 'should be visible');
       assert.strictEqual(
         wrapper.childAt(0).hasClass(classes.rippleVisible),
@@ -87,12 +82,8 @@ describe('<Ripple />', () => {
     });
 
     it('should stop the ripple', () => {
-      wrapper.setProps({
-        in: true,
-      });
-      wrapper.setProps({
-        in: false,
-      });
+      wrapper.setProps({ in: true });
+      wrapper.setProps({ in: false });
       assert.strictEqual(wrapper.state().rippleLeaving, true, 'should be leaving');
       assert.strictEqual(
         wrapper.hasClass(classes.wrapperLeaving),
@@ -109,10 +100,7 @@ describe('<Ripple />', () => {
       wrapper = mount(
         <Ripple
           classes={classes}
-          timeout={{
-            enter: 0,
-            exit: 0,
-          }}
+          timeout={{ enter: 0, exit: 0 }}
           in={false}
           rippleX={0}
           rippleY={0}
@@ -136,9 +124,7 @@ describe('<Ripple />', () => {
 
     it('should start the ripple', () => {
       assert.strictEqual(wrapper.state().rippleVisible, false, 'should not be visible');
-      wrapper.setProps({
-        in: true,
-      });
+      wrapper.setProps({ in: true });
       assert.strictEqual(wrapper.state().rippleVisible, true, 'should be visible');
       assert.strictEqual(
         wrapper.hasClass(classes.wrapperPulsating),
@@ -153,9 +139,7 @@ describe('<Ripple />', () => {
     });
 
     it('should stop the ripple', () => {
-      wrapper.setProps({
-        in: false,
-      });
+      wrapper.setProps({ in: false });
       assert.strictEqual(wrapper.state().rippleLeaving, true, 'should be leaving');
       assert.strictEqual(
         wrapper.hasClass(classes.wrapperLeaving),
@@ -175,9 +159,7 @@ describe('<Ripple />', () => {
       wrapper = mount(
         <Ripple
           classes={classes}
-          timeout={{
-            exit: 550,
-          }}
+          timeout={{ exit: 550 }}
           in
           onExited={callbackSpy}
           rippleX={0}
@@ -194,9 +176,7 @@ describe('<Ripple />', () => {
     });
 
     it('handleExit should trigger a timer', () => {
-      wrapper.setProps({
-        in: false,
-      });
+      wrapper.setProps({ in: false });
       clock.tick(549);
       assert.strictEqual(callbackSpy.callCount, 0, 'The timer is not finished yet');
       clock.tick(1);
@@ -204,9 +184,7 @@ describe('<Ripple />', () => {
     });
 
     it('unmount should defuse the handleExit timer', () => {
-      wrapper.setProps({
-        in: false,
-      });
+      wrapper.setProps({ in: false });
       wrapper.unmount();
       clock.tick(550);
       assert.strictEqual(callbackSpy.callCount, 0, 'handleExit callback should not be called');

@@ -89,7 +89,7 @@ export type Props = {
    * @param {object} event The event source of the callback
    * @param {number} value We default to the index of the child
    */
-  onChange?: Function,
+  onChange: Function,
   /**
    * True invokes scrolling properties and allow for horizontally scrolling
    * (or swiping) the tab bar.

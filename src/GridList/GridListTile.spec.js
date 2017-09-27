@@ -12,9 +12,7 @@ describe('<GridListTile />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow({
-      dive: true,
-    });
+    shallow = createShallow({ dive: true });
     mount = createMount();
     classes = getClasses(<GridListTile />);
   });
@@ -77,10 +75,7 @@ describe('<GridListTile />', () => {
       wrapper = mount(
         // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
         <GridListTile.Naked
-          classes={{
-            imgFullWidth: 'imgFullWidth',
-            imgFullHeight: 'imgFullHeight',
-          }}
+          classes={{ imgFullWidth: 'imgFullWidth', imgFullHeight: 'imgFullHeight' }}
         >
           <img alt="test" />
         </GridListTile.Naked>,
@@ -94,14 +89,10 @@ describe('<GridListTile />', () => {
       instance.ensureImageCover();
       instance.fit();
 
-      instance.imgElement = {
-        complete: false,
-      };
+      instance.imgElement = { complete: false };
       instance.fit();
       assert.strictEqual(instance.imgElement instanceof HTMLElement, false);
-      wrapper.setProps({
-        children: <img alt="test2" />,
-      });
+      wrapper.setProps({ children: <img alt="test2" /> });
       assert.strictEqual(instance.imgElement instanceof HTMLElement, true);
     });
 
@@ -110,14 +101,8 @@ describe('<GridListTile />', () => {
         complete: true,
         width: 16,
         height: 9,
-        parentNode: {
-          offsetWidth: 4,
-          offsetHeight: 3,
-        },
-        classList: {
-          remove: spy(),
-          add: spy(),
-        },
+        parentNode: { offsetWidth: 4, offsetHeight: 3 },
+        classList: { remove: spy(), add: spy() },
         removeEventListener: () => {},
       };
 
@@ -133,14 +118,8 @@ describe('<GridListTile />', () => {
         complete: true,
         width: 4,
         height: 3,
-        parentNode: {
-          offsetWidth: 16,
-          offsetHeight: 9,
-        },
-        classList: {
-          remove: spy(),
-          add: spy(),
-        },
+        parentNode: { offsetWidth: 16, offsetHeight: 9 },
+        classList: { remove: spy(), add: spy() },
         removeEventListener: () => {},
       };
 
@@ -170,14 +149,8 @@ describe('<GridListTile />', () => {
         complete: true,
         width: 4,
         height: 3,
-        parentNode: {
-          offsetWidth: 16,
-          offsetHeight: 9,
-        },
-        classList: {
-          remove: spy(),
-          add: spy(),
-        },
+        parentNode: { offsetWidth: 16, offsetHeight: 9 },
+        classList: { remove: spy(), add: spy() },
         removeEventListener: () => {},
       };
       wrapper

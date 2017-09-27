@@ -203,10 +203,7 @@ describe('<MobileStepper />', () => {
   });
 
   it('should calculate the <LinearProgress /> value correctly', () => {
-    const props = {
-      backButton: defaultProps.backButton,
-      nextButton: defaultProps.nextButton,
-    };
+    const props = { backButton: defaultProps.backButton, nextButton: defaultProps.nextButton };
     let wrapper = shallow(<MobileStepper type="progress" steps={3} {...props} />);
     let linearProgressProps = wrapper.find(LinearProgress).props();
     assert.strictEqual(linearProgressProps.value, 0, 'should set <LinearProgress /> value to 0');

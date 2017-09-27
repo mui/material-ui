@@ -61,10 +61,7 @@ describe('<MuiThemeProvider />', () => {
       assert.strictEqual(sheetsRegistry.registry[0].classes.root, 'MuiTouchRipple-root-17');
       assert.deepEqual(
         sheetsRegistry.registry[1].classes,
-        {
-          disabled: 'MuiButtonBase-disabled-16',
-          root: 'MuiButtonBase-root-15',
-        },
+        { disabled: 'MuiButtonBase-disabled-16', root: 'MuiButtonBase-root-15' },
         'the class names should be deterministic',
       );
       assert.strictEqual(sheetsRegistry.registry[2].classes.root, 'MuiButton-root-1');
@@ -87,24 +84,11 @@ describe('<MuiThemeProvider />', () => {
       const { themeSpy: themeSpy2, ThemeSpy: ThemeSpy2 } = getThemeSpy();
       const { themeSpy: themeSpy3, ThemeSpy: ThemeSpy3 } = getThemeSpy();
 
-      const theme1 = createMuiTheme({
-        status: {
-          color: 'orange',
-        },
-      });
+      const theme1 = createMuiTheme({ status: { color: 'orange' } });
 
-      const theme2 = outerTheme => ({
-        ...outerTheme,
-        status: {
-          color: 'green',
-        },
-      });
+      const theme2 = outerTheme => ({ ...outerTheme, status: { color: 'green' } });
 
-      const theme3 = createMuiTheme({
-        status: {
-          color: 'yellow',
-        },
-      });
+      const theme3 = createMuiTheme({ status: { color: 'yellow' } });
 
       const wrapper = mount(
         <MuiThemeProvider theme={theme1}>
@@ -132,13 +116,7 @@ describe('<MuiThemeProvider />', () => {
       assert.strictEqual(themeSpy3.callCount, 1);
       assert.strictEqual(themeSpy3.args[0][0].status.color, 'yellow');
 
-      wrapper.setProps({
-        theme: createMuiTheme({
-          status: {
-            color: 'blue',
-          },
-        }),
-      });
+      wrapper.setProps({ theme: createMuiTheme({ status: { color: 'blue' } }) });
 
       assert.strictEqual(themeSpy1.callCount, 2);
       assert.strictEqual(themeSpy1.args[1][0].status.color, 'blue');

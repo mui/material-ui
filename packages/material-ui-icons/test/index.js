@@ -152,9 +152,7 @@ describe('--svg-dir, --innerPath, --fileSuffix', () => {
       );
       assert.strictEqual(fs.existsSync(actualFilePath), true);
 
-      const actualFileData = fs.readFileSync(actualFilePath, {
-        encoding: 'utf8',
-      });
+      const actualFileData = fs.readFileSync(actualFilePath, { encoding: 'utf8' });
       assert.include(actualFileData, builder.SVG_ICON_ABSOLUTE_REQUIRE);
       done();
     });
@@ -189,9 +187,7 @@ describe('--mui-require', () => {
         assert.strictEqual(fs.lstatSync(tempPath).isDirectory(), true);
         assert.strictEqual(fs.existsSync(actualFilePath), true);
 
-        const actualFileData = fs.readFileSync(actualFilePath, {
-          encoding: 'utf8',
-        });
+        const actualFileData = fs.readFileSync(actualFilePath, { encoding: 'utf8' });
         assert.include(actualFileData, builder.SVG_ICON_ABSOLUTE_REQUIRE);
         done();
       });
@@ -203,9 +199,7 @@ describe('--mui-require', () => {
         assert.strictEqual(fs.lstatSync(tempPath).isDirectory(), true);
         assert.strictEqual(fs.existsSync(actualFilePath), true);
 
-        const actualFileData = fs.readFileSync(actualFilePath, {
-          encoding: 'utf8',
-        });
+        const actualFileData = fs.readFileSync(actualFilePath, { encoding: 'utf8' });
         assert.include(actualFileData, builder.SVG_ICON_ABSOLUTE_REQUIRE);
         done();
       });
@@ -219,9 +213,7 @@ describe('--mui-require', () => {
         assert.strictEqual(fs.lstatSync(tempPath).isDirectory(), true);
         assert.strictEqual(fs.existsSync(actualFilePath), true);
 
-        const actualFileData = fs.readFileSync(actualFilePath, {
-          encoding: 'utf8',
-        });
+        const actualFileData = fs.readFileSync(actualFilePath, { encoding: 'utf8' });
         assert.include(actualFileData, builder.SVG_ICON_RELATIVE_REQUIRE);
         done();
       });
@@ -259,12 +251,8 @@ describe('Template rendering', () => {
       assert.strictEqual(fs.existsSync(expectedFilePath), true);
       assert.strictEqual(fs.existsSync(actualFilePath), true);
 
-      const expected = fs.readFileSync(expectedFilePath, {
-        encoding: 'utf8',
-      });
-      const actual = fs.readFileSync(actualFilePath, {
-        encoding: 'utf8',
-      });
+      const expected = fs.readFileSync(expectedFilePath, { encoding: 'utf8' });
+      const actual = fs.readFileSync(actualFilePath, { encoding: 'utf8' });
 
       assert.include(actual, expected);
       done();

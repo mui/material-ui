@@ -181,9 +181,7 @@ describe('<FormControl />', () => {
 
         it('should be able to use a onFocus property', () => {
           const handleFocus = spy();
-          wrapper.setProps({
-            onFocus: handleFocus,
-          });
+          wrapper.setProps({ onFocus: handleFocus });
           muiFormControlContext.onFocus();
           assert.strictEqual(handleFocus.callCount, 1);
         });
@@ -202,9 +200,7 @@ describe('<FormControl />', () => {
 
         it('should be able to use a onBlur property', () => {
           const handleBlur = spy();
-          wrapper.setProps({
-            onBlur: handleBlur,
-          });
+          wrapper.setProps({ onBlur: handleBlur });
           muiFormControlContext.onFocus();
           muiFormControlContext.onBlur();
           assert.strictEqual(handleBlur.callCount, 1);

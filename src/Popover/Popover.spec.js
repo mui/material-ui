@@ -74,9 +74,7 @@ describe('<Popover />', () => {
             <div />
           </Popover>,
         ).instance();
-        rect = {
-          height: 1,
-        };
+        rect = { height: 1 };
       });
 
       it('should return vertical when vertical is a number', () => {
@@ -114,9 +112,7 @@ describe('<Popover />', () => {
             <div />
           </Popover>,
         ).instance();
-        rect = {
-          width: 1,
-        };
+        rect = { width: 1 };
       });
 
       it('should return horizontal when horizontal is a number', () => {
@@ -624,14 +620,8 @@ describe('<Popover />', () => {
 
   describe('prop: getContentAnchorEl', () => {
     it('should position accordingly', () => {
-      const element = {
-        scrollTop: 5,
-      };
-      const child = {
-        offsetTop: 40,
-        clientHeight: 20,
-        parentNode: element,
-      };
+      const element = { scrollTop: 5 };
+      const child = { offsetTop: 40, clientHeight: 20, parentNode: element };
       const wrapper = shallow(
         <Popover getContentAnchorEl={() => child}>
           <div />

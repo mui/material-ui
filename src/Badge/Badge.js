@@ -50,11 +50,11 @@ type Props = {
   /**
    * The content rendered within the badge.
    */
-  badgeContent?: Node,
+  badgeContent: Node,
   /**
    * The badge will be added relative to this node.
    */
-  children?: Node,
+  children: Node,
   /**
    * Useful to extend the style applied to components.
    */

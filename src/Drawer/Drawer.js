@@ -85,7 +85,6 @@ type DefaultProps = {
   enterTransitionDuration: number,
   leaveTransitionDuration: number,
   open: boolean,
-  theme: Object,
   type: Type,
 };
 
@@ -132,6 +131,10 @@ export type Props = {
    * If `true`, the drawer is open.
    */
   open?: boolean,
+  /**
+   * @igonre
+   */
+  theme: Object,
   /**
    * Properties applied to the `Slide` element.
    */

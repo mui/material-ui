@@ -57,9 +57,7 @@ describe('<Menu> integration', () => {
     });
 
     it('should change focus to the 2nd item when down arrow is pressed', () => {
-      list.simulate('keyDown', {
-        which: keycode('down'),
-      });
+      list.simulate('keyDown', { which: keycode('down') });
 
       const menuEl = document.querySelector('[data-mui-test="Menu"]');
       assert.strictEqual(
@@ -70,9 +68,7 @@ describe('<Menu> integration', () => {
     });
 
     it('should change focus to the 3rd item when down arrow is pressed', () => {
-      list.simulate('keyDown', {
-        which: keycode('down'),
-      });
+      list.simulate('keyDown', { which: keycode('down') });
 
       const menuEl = document.querySelector('[data-mui-test="Menu"]');
       assert.strictEqual(
@@ -83,9 +79,7 @@ describe('<Menu> integration', () => {
     });
 
     it('should keep focus on the 3rd item (last item) when down arrow is pressed', () => {
-      list.simulate('keyDown', {
-        which: keycode('down'),
-      });
+      list.simulate('keyDown', { which: keycode('down') });
 
       const menuEl = document.querySelector('[data-mui-test="Menu"]');
       assert.strictEqual(
@@ -96,9 +90,7 @@ describe('<Menu> integration', () => {
     });
 
     it('should keep focus on the last item when a key with no associated action is pressed', () => {
-      list.simulate('keyDown', {
-        which: keycode('right'),
-      });
+      list.simulate('keyDown', { which: keycode('right') });
 
       const menuEl = document.querySelector('[data-mui-test="Menu"]');
       assert.strictEqual(
@@ -109,9 +101,7 @@ describe('<Menu> integration', () => {
     });
 
     it('should change focus to the 2nd item when up arrow is pressed', () => {
-      list.simulate('keyDown', {
-        which: keycode('up'),
-      });
+      list.simulate('keyDown', { which: keycode('up') });
 
       const menuEl = document.querySelector('[data-mui-test="Menu"]');
       assert.strictEqual(
@@ -219,9 +209,7 @@ describe('<Menu> integration', () => {
         },
       });
       assert.strictEqual(wrapper.state().open, true, 'should start open');
-      list.simulate('keyDown', {
-        which: keycode('tab'),
-      });
+      list.simulate('keyDown', { which: keycode('tab') });
       assert.strictEqual(wrapper.state().open, false, 'should be closed');
     });
 

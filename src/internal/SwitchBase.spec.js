@@ -53,9 +53,7 @@ describe('<SwitchBase />', () => {
 
   before(() => {
     SwitchBase = createSwitch();
-    shallow = createShallow({
-      dive: true,
-    });
+    shallow = createShallow({ dive: true });
     mount = createMount();
     classes = getClasses(<SwitchBase />);
   });
@@ -116,11 +114,7 @@ describe('<SwitchBase />', () => {
   });
 
   it('should pass value, disabled, checked, and name to the input', () => {
-    const props = {
-      name: 'gender',
-      disabled: true,
-      value: 'male',
-    };
+    const props = { name: 'gender', disabled: true, value: 'male' };
 
     const wrapper = shallow(<SwitchBase {...props} />);
     const input = wrapper.find('input');

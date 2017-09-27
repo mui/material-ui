@@ -10,9 +10,7 @@ describe('<TouchRipple />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow({
-      dive: true,
-    });
+    shallow = createShallow({ dive: true });
     classes = getClasses(<TouchRipple />);
   });
 

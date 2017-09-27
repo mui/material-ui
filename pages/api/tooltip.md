@@ -8,7 +8,7 @@
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | PopperProps | Object |  | Properties applied to the `Popper` element. |
-| <span style="color: #31a148">children *</span> | Element |  | Tooltip reference component. |
+| <span style="color: #31a148">children *</span> | union:&nbsp;string<br>&nbsp;Element<any><br> |  | Tooltip reference component. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | disableTriggerFocus | boolean | false | Do not respond to focus events. |
 | disableTriggerHover | boolean | false | Do not respond to hover events. |

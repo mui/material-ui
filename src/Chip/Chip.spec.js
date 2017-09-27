@@ -75,11 +75,9 @@ describe('<Chip />', () => {
 
     it('should apply user value of tabIndex', () => {
       wrapper = shallow(
-        <Chip
-          onClick={() => {}}
-          tabIndex={5} // eslint-disable-line jsx-a11y/tabindex-no-positive
-        >
-          Text Chip
+        // eslint-disable-next-line jsx-a11y/tabindex-no-positive
+        <Chip onClick={() => {}} tabIndex={5}>
+          {'Text Chip'}
         </Chip>,
       );
       assert.strictEqual(wrapper.props().tabIndex, 5);
@@ -170,9 +168,7 @@ describe('<Chip />', () => {
     });
 
     it('should call onKeyDown when a key is pressed', () => {
-      const anyKeydownEvent = {
-        keyCode: keycode('p'),
-      };
+      const anyKeydownEvent = { keyCode: keycode('p') };
       wrapper.find('div').simulate('keydown', anyKeydownEvent);
       assert.strictEqual(onKeyDownSpy.callCount, 1, 'should have called onKeyDown');
       assert(onKeyDownSpy.calledWith(anyKeydownEvent));
@@ -215,10 +211,7 @@ describe('<Chip />', () => {
 
       it('should call onClick when `space` is pressed ', () => {
         const preventDefaultSpy = spy();
-        const spaceKeydownEvent = {
-          preventDefault: preventDefaultSpy,
-          keyCode: keycode('space'),
-        };
+        const spaceKeydownEvent = { preventDefault: preventDefaultSpy, keyCode: keycode('space') };
         wrapper.find('div').simulate('keydown', spaceKeydownEvent);
         assert.strictEqual(preventDefaultSpy.callCount, 1, 'should have stopped event propagation');
         assert.strictEqual(onClickSpy.callCount, 1, 'should have called onClick');
@@ -227,10 +220,7 @@ describe('<Chip />', () => {
 
       it('should call onClick when `enter` is pressed ', () => {
         const preventDefaultSpy = spy();
-        const enterKeydownEvent = {
-          preventDefault: preventDefaultSpy,
-          keyCode: keycode('enter'),
-        };
+        const enterKeydownEvent = { preventDefault: preventDefaultSpy, keyCode: keycode('enter') };
         wrapper.find('div').simulate('keydown', enterKeydownEvent);
         assert.strictEqual(preventDefaultSpy.callCount, 1, 'should have stopped event propagation');
         assert.strictEqual(onClickSpy.callCount, 1, 'should have called onClick');

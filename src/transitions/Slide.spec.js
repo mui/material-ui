@@ -13,9 +13,7 @@ describe('<Slide />', () => {
   let shallow;
 
   before(() => {
-    shallow = createShallow({
-      dive: true,
-    });
+    shallow = createShallow({ dive: true });
   });
 
   it('should render a Transition', () => {
@@ -64,10 +62,7 @@ describe('<Slide />', () => {
         <Slide enterTransitionDuration={enterDuration} leaveTransitionDuration={leaveDuration} />,
       );
       instance = wrapper.instance();
-      element = {
-        getBoundingClientRect: () => ({}),
-        style: {},
-      };
+      element = { getBoundingClientRect: () => ({}), style: {} };
     });
 
     it('should create proper easeOut animation onEntering', () => {

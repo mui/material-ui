@@ -16,9 +16,7 @@ describe('<ButtonBase />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow({
-      dive: true,
-    });
+    shallow = createShallow({ dive: true });
     mount = createMount();
     classes = getClasses(<ButtonBase />);
   });
@@ -393,9 +391,7 @@ describe('<ButtonBase />', () => {
         </ButtonBase.Naked>,
       );
       const instance = wrapper.instance();
-      const eventMock = {
-        persist: spy(),
-      };
+      const eventMock = { persist: spy() };
       instance.handleFocus(eventMock);
       assert.strictEqual(eventMock.persist.callCount, 0);
     });
@@ -444,21 +440,15 @@ describe('<ButtonBase />', () => {
       it('should work', () => {
         // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
         wrapper = mount(<ButtonBase.Naked classes={{}}>Hello</ButtonBase.Naked>);
-        wrapper.setProps({
-          focusRipple: true,
-        });
-        wrapper.setState({
-          keyboardFocused: true,
-        });
+        wrapper.setProps({ focusRipple: true });
+        wrapper.setState({ keyboardFocused: true });
 
         const eventPersistSpy = spy();
         event = { persist: eventPersistSpy, keyCode: keycode('space') };
 
         instance = wrapper.instance();
         instance.keyDown = false;
-        instance.ripple = {
-          stop: spy(),
-        };
+        instance.ripple = { stop: spy() };
         instance.handleKeyDown(event);
         assert.strictEqual(instance.keyDown, true, 'should mark keydown as true');
         assert.strictEqual(event.persist.callCount, 1, 'should call event.persist exactly once');
@@ -476,9 +466,7 @@ describe('<ButtonBase />', () => {
         // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
         wrapper = mount(<ButtonBase.Naked classes={{}}>Hello</ButtonBase.Naked>);
         const onKeyDownSpy = spy();
-        wrapper.setProps({
-          onKeyDown: onKeyDownSpy,
-        });
+        wrapper.setProps({ onKeyDown: onKeyDownSpy });
 
         const eventPersistSpy = spy();
         event = { persist: eventPersistSpy, keyCode: undefined };
@@ -503,10 +491,7 @@ describe('<ButtonBase />', () => {
         // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
         wrapper = mount(<ButtonBase.Naked classes={{}}>Hello</ButtonBase.Naked>);
         const onClickSpy = spy();
-        wrapper.setProps({
-          onClick: onClickSpy,
-          component: 'woofButtonBase',
-        });
+        wrapper.setProps({ onClick: onClickSpy, component: 'woofButtonBase' });
 
         const eventTargetMock = 'woofButtonBase';
         event = {

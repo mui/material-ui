@@ -9,9 +9,9 @@
 |:-----|:-----|:--------|:------------|
 | MenuProps | Object |  | Properties applied to the `Menu` element. |
 | autoWidth | boolean | false | If true, the width of the popover will automatically be set according to the items inside the menu, otherwise it will be at least the width of the select input. |
-| <span style="color: #31a148">children *</span> | ChildrenArray |  | The option elements to populate the select with. Can be some `MenuItem` when `native` is false and `option` when `native` is true. |
+| <span style="color: #31a148">children *</span> | $ReadOnlyArray |  | The option elements to populate the select with. Can be some `MenuItem` when `native` is false and `option` when `native` is true. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| input | Element | &lt;Input /> | An `Input` element. |
+| input | Element | &lt;Input /> | An `Input` element; does not have to be a material-ui specific `Input`. |
 | multiple | boolean | false | If true, `value` must be an array and the menu will support multiple selections. |
 | native | boolean | false | If `true`, the component will be using a native `select` element. |
 | renderValue | Function |  | Render the selected value. It's only useful when the `native` property is not set to `true`. |

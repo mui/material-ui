@@ -2,6 +2,7 @@
 
 import React from 'react';
 import classNames from 'classnames';
+import warning from 'warning';
 import withStyles from '../styles/withStyles';
 
 const transitionDuration = 4; // 400ms
@@ -166,7 +167,7 @@ type Props = {
    * The value of progress, only works in determinate and buffer mode.
    * Value between 0 and 100.
    */
-  value: number,
+  value?: number,
   /**
    * The value of buffer, only works in buffer mode.
    * Value between 0 and 100.
@@ -211,11 +212,26 @@ function LinearProgress(props: DefaultProps & Props) {
   const rootProps = {};
 
   if (mode === 'determinate') {
-    inlineStyles.primary.transform = `scaleX(${value / 100})`;
-    rootProps['aria-valuenow'] = Math.round(value);
+    if (value !== undefined) {
+      inlineStyles.primary.transform = `scaleX(${value / 100})`;
+      rootProps['aria-valuenow'] = Math.round(value);
+    } else {
+      warning(
+        false,
+        'Material-UI: you need to provide a value property ' +
+          'when LinearProgress is in determinate mode.',
+      );
+    }
   } else if (mode === 'buffer') {
-    inlineStyles.primary.transform = `scaleX(${value / 100})`;
-    inlineStyles.secondary.transform = `scaleX(${(valueBuffer || 0) / 100})`;
+    if (value !== undefined) {
+      inlineStyles.primary.transform = `scaleX(${value / 100})`;
+      inlineStyles.secondary.transform = `scaleX(${(valueBuffer || 0) / 100})`;
+    } else {
+      warning(
+        false,
+        'Material-UI: you need to provide a value property when LinearProgress is in buffer mode.',
+      );
+    }
   }
 
   return (
@@ -232,7 +248,6 @@ function LinearProgress(props: DefaultProps & Props) {
 LinearProgress.defaultProps = {
   color: 'primary',
   mode: 'indeterminate',
-  value: 0,
 };
 
 export default withStyles(styles, { name: 'MuiLinearProgress' })(LinearProgress);

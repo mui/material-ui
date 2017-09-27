@@ -16,9 +16,7 @@ describe('<Grid />', () => {
     shallow = node => {
       return shallowInner(node)
         .find('Grid')
-        .shallow({
-          context: shallowInner.context,
-        });
+        .shallow({ context: shallowInner.context });
     };
     classes = getClasses(<Grid />);
   });

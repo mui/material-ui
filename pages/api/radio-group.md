@@ -7,7 +7,7 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | $ReadOnlyArray |  | The content of the component. |
+| children | Node |  | The content of the component. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | name | string |  | The name used to reference the value of the control. |
 | onChange | Function |  | Callback fired when a radio button is selected.<br><br>**Signature:**<br>`function(event: object, value: string) => void`<br>*event:* The event source of the callback<br>*value:* The `value` of the selected radio button |
