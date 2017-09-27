@@ -1,7 +1,6 @@
 // @flow
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import marked from 'marked';
@@ -201,7 +200,17 @@ const styles = theme => ({
   },
 });
 
-function MarkdownElement(props) {
+type DefaultProps = {
+  classes: Object,
+};
+
+type Props = {
+  classes?: Object,
+  className?: string,
+  text: string,
+};
+
+function MarkdownElement(props: DefaultProps & Props) {
   const { classes, className, text, ...other } = props;
 
   /* eslint-disable react/no-danger */
@@ -214,11 +223,5 @@ function MarkdownElement(props) {
   );
   /* eslint-enable */
 }
-
-MarkdownElement.propTypes = {
-  classes: PropTypes.object.isRequired,
-  className: PropTypes.string,
-  text: PropTypes.string.isRequired,
-};
 
 export default withStyles(styles)(MarkdownElement);

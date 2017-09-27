@@ -27,7 +27,20 @@ const styles = {
 const demoRegexp = /^demo='(.*)'$/;
 const SOURCE_CODE_ROOT_URL = 'https://github.com/callemall/material-ui/tree/v1-beta';
 
-function MarkdownDocs(props, context) {
+type DefaultProps = {
+  classes: Object,
+};
+
+type Props = {
+  classes?: Object,
+  demos?: Object,
+  markdown: string,
+  // You can define the direction location of the markdown file.
+  // Otherwise, we try to determine it with an heuristic.
+  sourceLocation?: string,
+};
+
+function MarkdownDocs(props: DefaultProps & Props, context: Object) {
   const { classes, demos, markdown, sourceLocation: sourceLocationProp } = props;
   const contents = getContents(markdown);
   const components = getComponents(markdown);
@@ -76,24 +89,14 @@ function MarkdownDocs(props, context) {
           text={`
 ## API
 
-${components
-            .map(component => `- [&lt;${component} /&gt;](/api/${kebabCase(component)})`)
-            .join('\n')}
+${components.map(component => `- [&lt;${component} /&gt;](/api/${kebabCase(component)})`).
+            join('\n')}
           `}
         />
       ) : null}
     </AppContent>
   );
 }
-
-MarkdownDocs.propTypes = {
-  classes: PropTypes.object.isRequired,
-  demos: PropTypes.object,
-  markdown: PropTypes.string.isRequired,
-  // You can define the direction location of the markdown file.
-  // Otherwise, we try to determine it with an heuristic.
-  sourceLocation: PropTypes.string,
-};
 
 MarkdownDocs.contextTypes = {
   activePage: PropTypes.shape({
