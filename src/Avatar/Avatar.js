@@ -50,7 +50,7 @@ export type Props = {
    *
    * This can be an element, or just a string.
    */
-  children?: Element<*>,
+  children?: string | Element<*>,
   /**
    * @ignore
    * The className of the child element.

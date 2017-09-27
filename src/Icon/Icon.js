@@ -30,9 +30,11 @@ export const styles = (theme: Object) => ({
   },
 });
 
+type Color = 'inherit' | 'accent' | 'action' | 'contrast' | 'disabled' | 'error' | 'primary';
+
 type DefaultProps = {
   classes: Object,
-  color: 'inherit',
+  color: Color,
 };
 
 export type Props = {
@@ -51,7 +53,7 @@ export type Props = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color?: 'inherit' | 'accent' | 'action' | 'contrast' | 'disabled' | 'error' | 'primary',
+  color?: Color,
 };
 
 function Icon(props: DefaultProps & Props) {
