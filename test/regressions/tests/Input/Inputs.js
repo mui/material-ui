@@ -1,7 +1,6 @@
 // @flow weak
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import Input from 'material-ui/Input';
@@ -20,7 +19,11 @@ const styles = {
   },
 };
 
-class Inputs extends Component<$FlowFixMeProps> {
+type DefaultProps = {
+  classes: Object,
+};
+
+class Inputs extends Component<DefaultProps> {
   componentDidMount() {
     this.focusInput.focus();
   }
@@ -50,9 +53,5 @@ class Inputs extends Component<$FlowFixMeProps> {
     );
   }
 }
-
-Inputs.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(Inputs);
