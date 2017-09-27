@@ -78,9 +78,7 @@ describe('<MenuList> integration', () => {
 
     it('should reset the tabIndex to the first item after blur', done => {
       const handleBlur = spy();
-      wrapper.setProps({
-        onBlur: handleBlur,
-      });
+      wrapper.setProps({ onBlur: handleBlur });
 
       if (!document.activeElement) {
         throw new Error('missing active element');

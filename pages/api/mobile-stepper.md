@@ -8,12 +8,12 @@
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | activeStep | number | 0 | Set the active step (zero based index). Defines which dot is highlighted when the type is 'dots'. |
-| <span style="color: #31a148">backButton *</span> | element |  | A back button element. For instance, it can be be a `Button` or a `IconButton`. |
-| classes | object |  | Useful to extend the style applied to components. |
-| <span style="color: #31a148">nextButton *</span> | element |  | A next button element. For instance, it can be be a `Button` or a `IconButton`. |
-| position | enum:&nbsp;'bottom'<br>&nbsp;'top'<br>&nbsp;'static'<br> | 'bottom' | Set the positioning type. |
+| <span style="color: #31a148">backButton *</span> | Element |  | A back button element. For instance, it can be be a `Button` or a `IconButton`. |
+| classes | Object |  | Useful to extend the style applied to components. |
+| <span style="color: #31a148">nextButton *</span> | Element |  | A next button element. For instance, it can be be a `Button` or a `IconButton`. |
+| position | union:&nbsp;'bottom'<br>&nbsp;'top'<br>&nbsp;'static'<br> | 'bottom' | Set the positioning type. |
 | <span style="color: #31a148">steps *</span> | number |  | The total steps. |
-| type | enum:&nbsp;'text'<br>&nbsp;'dots'<br>&nbsp;'progress'<br> | 'dots' | The type of mobile stepper to use. |
+| type | union:&nbsp;'text'<br>&nbsp;'dots'<br>&nbsp;'progress'<br> | 'dots' | The type of mobile stepper to use. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 

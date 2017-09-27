@@ -11,9 +11,7 @@ describe('<HiddenJs />', () => {
   let shallow;
 
   before(() => {
-    shallow = createShallow({
-      untilSelector: 'HiddenJs',
-    });
+    shallow = createShallow({ untilSelector: 'HiddenJs' });
   });
 
   function resolvePropName(upDownOnly, breakpoint) {

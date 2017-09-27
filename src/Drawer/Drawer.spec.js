@@ -246,24 +246,16 @@ describe('<Drawer />', () => {
     });
 
     it('should return the opposing slide direction', () => {
-      wrapper.setProps({
-        anchor: 'left',
-      });
+      wrapper.setProps({ anchor: 'left' });
       assert.strictEqual(wrapper.find(Slide).props().direction, 'right');
 
-      wrapper.setProps({
-        anchor: 'right',
-      });
+      wrapper.setProps({ anchor: 'right' });
       assert.strictEqual(wrapper.find(Slide).props().direction, 'left');
 
-      wrapper.setProps({
-        anchor: 'top',
-      });
+      wrapper.setProps({ anchor: 'top' });
       assert.strictEqual(wrapper.find(Slide).props().direction, 'down');
 
-      wrapper.setProps({
-        anchor: 'bottom',
-      });
+      wrapper.setProps({ anchor: 'bottom' });
       assert.strictEqual(wrapper.find(Slide).props().direction, 'up');
     });
   });
@@ -281,15 +273,11 @@ describe('<Drawer />', () => {
     });
 
     it('should switch left and right anchor when theme is right-to-left', () => {
-      wrapper.setProps({
-        anchor: 'left',
-      });
+      wrapper.setProps({ anchor: 'left' });
       // slide direction for left is right, if left is switched to right, we should get left
       assert.strictEqual(wrapper.find(Slide).props().direction, 'left');
 
-      wrapper.setProps({
-        anchor: 'right',
-      });
+      wrapper.setProps({ anchor: 'right' });
       // slide direction for right is left, if right is switched to left, we should get right
       assert.strictEqual(wrapper.find(Slide).props().direction, 'right');
     });

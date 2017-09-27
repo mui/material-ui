@@ -82,7 +82,7 @@
     "warning": "^3.0.0"
   },
   "devDependencies": {
-    "@types/enzyme": "^2.8.8",
+    "@types/enzyme": "^2.8.9",
     "@types/react": "^16.0.7",
     "app-module-path": "^2.2.0",
     "argos-cli": "^0.0.9",
@@ -147,7 +147,7 @@
     "nprogress": "^0.2.0",
     "nyc": "^11.2.1",
     "phantomjs-prebuilt": "^2.1.15",
-    "prettier": "^1.7.0",
+    "prettier": "1.7.0",
     "prismjs": "^1.8.1",
     "random-words": "0.0.1",
     "raw-loader": "^0.5.1",
@@ -168,7 +168,7 @@
     "rimraf": "^2.6.2",
     "sinon": "^4.0.0",
     "size-limit": "^0.11.4",
-    "typescript": "^2.5.2",
+    "typescript": "^2.5.3",
     "url-loader": "^0.5.9",
     "vrtest": "^0.2.0",
     "webfontloader": "^1.6.28",

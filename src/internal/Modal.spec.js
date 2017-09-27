@@ -351,10 +351,7 @@ describe('<Modal />', () => {
         onEscapeKeyUpStub = stub().returns(true);
         onRequestCloseStub = stub().returns(true);
         topModalStub = stub();
-        wrapper.setProps({
-          onEscapeKeyUp: onEscapeKeyUpStub,
-          onRequestClose: onRequestCloseStub,
-        });
+        wrapper.setProps({ onEscapeKeyUp: onEscapeKeyUpStub, onRequestClose: onRequestCloseStub });
       });
 
       afterEach(() => {

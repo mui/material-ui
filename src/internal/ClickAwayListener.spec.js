@@ -70,11 +70,7 @@ describe('<ClickAwayListener />', () => {
         </ClickAwayListener>,
       );
 
-      const event = new window.Event('mouseup', {
-        view: window,
-        bubbles: true,
-        cancelable: true,
-      });
+      const event = new window.Event('mouseup', { view: window, bubbles: true, cancelable: true });
       window.document.body.dispatchEvent(event);
       assert.strictEqual(handleClickAway.callCount, 0);
       wrapper.unmount();

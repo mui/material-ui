@@ -7,11 +7,11 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | node |  | The content of the component. |
-| classes | object |  | Useful to extend the style applied to components. |
-| color | enum:&nbsp;'default'<br>&nbsp;'primary'<br>&nbsp;'inherit'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |
-| disableSticky | bool | false | If `true`, the List Subheader will not stick to the top during scroll. |
-| inset | bool | false | If `true`, the List Subheader will be indented. |
+| children | Node |  | The content of the component. |
+| classes | Object |  | Useful to extend the style applied to components. |
+| color | union:&nbsp;'default'<br>&nbsp;'primary'<br>&nbsp;'inherit'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |
+| disableSticky | boolean | false | If `true`, the List Subheader will not stick to the top during scroll. |
+| inset | boolean | false | If `true`, the List Subheader will be indented. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 

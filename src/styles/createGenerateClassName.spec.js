@@ -7,9 +7,7 @@ import consoleErrorMock from '../../test/utils/consoleErrorMock';
 describe('createGenerateClassName', () => {
   describe('counter', () => {
     it('should increment a scoped counter', () => {
-      const rule = {
-        key: 'root',
-      };
+      const rule = { key: 'root' };
       const generateClassName1 = createGenerateClassName();
       assert.strictEqual(generateClassName1(rule), 'root-1');
       assert.strictEqual(generateClassName1(rule), 'root-2');
@@ -20,22 +18,14 @@ describe('createGenerateClassName', () => {
 
   describe('formatting', () => {
     it('should take the sheet meta in development if available', () => {
-      const rule = {
-        key: 'root',
-      };
-      const sheet = {
-        options: {
-          meta: 'Button',
-        },
-      };
+      const rule = { key: 'root' };
+      const sheet = { options: { meta: 'Button' } };
       const generateClassName = createGenerateClassName();
       assert.strictEqual(generateClassName(rule, sheet), 'Button-root-1');
     });
 
     it('should use a base 10 representation', () => {
-      const rule = {
-        key: 'root',
-      };
+      const rule = { key: 'root' };
       const generateClassName = createGenerateClassName();
       assert.strictEqual(generateClassName(rule), 'root-1');
       assert.strictEqual(generateClassName(rule), 'root-2');
@@ -70,9 +60,7 @@ describe('createGenerateClassName', () => {
       });
 
       it('should us a short representation', () => {
-        const rule = {
-          key: 'root',
-        };
+        const rule = { key: 'root' };
         const generateClassName = createGenerateClassName();
         assert.strictEqual(generateClassName(rule), 'c1');
       });

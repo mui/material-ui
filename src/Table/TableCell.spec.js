@@ -10,12 +10,7 @@ describe('<TableCell />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow({
-      untilSelector: TableCell,
-      context: {
-        table: { footer: true },
-      },
-    });
+    shallow = createShallow({ untilSelector: TableCell, context: { table: { footer: true } } });
     classes = getClasses(<TableCell />);
   });
 

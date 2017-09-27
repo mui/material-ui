@@ -26,10 +26,7 @@ describe('utils/helpers.js', () => {
 
   describe('contains(obj, pred)', () => {
     it('should check if an object contains the partial object', () => {
-      const obj = {
-        woofHelpers: 'meow',
-        cat: 'dog',
-      };
+      const obj = { woofHelpers: 'meow', cat: 'dog' };
       const pred = { cat: 'dog' };
       const failPred = { cat: 'meow' };
       assert.strictEqual(contains(obj, pred), true);

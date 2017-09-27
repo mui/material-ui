@@ -17,12 +17,8 @@ describe('material-ui-codemod', () => {
     describe('svg-icon-imports', () => {
       it('update svg-icon imports', () => {
         const actual = transform(
-          {
-            source: read('./svg-icon-imports.spec/actual.js'),
-          },
-          {
-            jscodeshift: jscodeshift,
-          },
+          { source: read('./svg-icon-imports.spec/actual.js') },
+          { jscodeshift: jscodeshift },
         );
 
         const expected = read('./svg-icon-imports.spec/expected.js');

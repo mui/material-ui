@@ -24,7 +24,6 @@ type TransitionDuration = number | 'auto';
 
 type DefaultProps = {
   classes: Object,
-  theme: Object,
   transitionDuration: TransitionDuration,
 };
 
@@ -69,12 +68,15 @@ export type Props = {
    * Set to 'auto' to automatically calculate transition time based on height.
    */
   transitionDuration?: TransitionDuration,
+  /**
+   * @ignore
+   */
+  theme: Object,
 };
 
 class Collapse extends React.Component<DefaultProps & Props> {
   static defaultProps = {
     in: false,
-    theme: {},
     transitionDuration: 300,
   };
 

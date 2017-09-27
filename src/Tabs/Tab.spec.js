@@ -80,9 +80,7 @@ describe('<Tab />', () => {
     it('should render with text wrapping', () => {
       const wrapper = shallow(<Tab textColor="inherit" label="foo" />);
       const instance = wrapper.instance();
-      instance.label = {
-        getClientRects: stub().returns({ length: 2 }),
-      };
+      instance.label = { getClientRects: stub().returns({ length: 2 }) };
       instance.checkTextWrap();
       const label = wrapper
         .childAt(0)
@@ -148,11 +146,7 @@ describe('<Tab />', () => {
 
   describe('prop: style', () => {
     it('should be able to override everything', () => {
-      const style = {
-        width: '80%',
-        color: 'red',
-        alignText: 'center',
-      };
+      const style = { width: '80%', color: 'red', alignText: 'center' };
       const wrapper = shallow(<Tab fullWidth textColor="#eee" style={style} />);
       assert.deepEqual(wrapper.props().style, style);
     });

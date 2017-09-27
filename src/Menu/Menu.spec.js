@@ -145,22 +145,16 @@ describe('<Menu />', () => {
       menuListSpy = {};
       menuListSpy.clientHeight = MENU_LIST_HEIGHT;
       menuListSpy.style = {};
-      menuListSpy.firstChild = {
-        focus: menuListFocusSpy,
-      };
+      menuListSpy.firstChild = { focus: menuListFocusSpy };
 
       findDOMNodeStub = stub(ReactDOM, 'findDOMNode').callsFake(arg => {
         if (arg === SELECTED_ITEM_KEY) {
-          return {
-            focus: selectedItemFocusSpy,
-          };
+          return { focus: selectedItemFocusSpy };
         }
         return menuListSpy;
       });
 
-      elementForHandleEnter = {
-        clientHeight: MENU_LIST_HEIGHT,
-      };
+      elementForHandleEnter = { clientHeight: MENU_LIST_HEIGHT };
     });
 
     after(() => {

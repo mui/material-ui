@@ -84,9 +84,7 @@ describe('<Badge />', () => {
   });
 
   it('renders children and overwrite root styles', () => {
-    const style = {
-      backgroundColor: 'red',
-    };
+    const style = { backgroundColor: 'red' };
     const wrapper = shallow(
       <Badge badgeContent={10} style={style}>
         {testChildren}

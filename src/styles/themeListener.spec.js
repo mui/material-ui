@@ -12,12 +12,7 @@ describe('themeListener', () => {
     const initialState = {};
     broadcast.setState(initialState);
 
-    assert.strictEqual(
-      themeListener.initial({
-        [CHANNEL]: broadcast,
-      }),
-      initialState,
-    );
+    assert.strictEqual(themeListener.initial({ [CHANNEL]: broadcast }), initialState);
   });
 
   it('should not complain if the context is not defined', () => {

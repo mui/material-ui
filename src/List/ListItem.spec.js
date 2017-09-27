@@ -85,9 +85,7 @@ describe('<ListItem />', () => {
         'dense should be false by default',
       );
 
-      wrapper.setProps({
-        dense: true,
-      });
+      wrapper.setProps({ dense: true });
       assert.strictEqual(
         wrapper.instance().getChildContext().dense,
         true,

@@ -10,7 +10,6 @@ import type { TransitionCallback } from '../internal/Transition';
 type DefaultProps = {
   enterTransitionDuration: number,
   leaveTransitionDuration: number,
-  theme: Object,
 };
 
 export type Props = {
@@ -54,6 +53,10 @@ export type Props = {
    * Callback fired when the component has exited.
    */
   onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  /**
+   * @ignore
+   */
+  theme: Object,
 };
 
 class Fade extends React.Component<DefaultProps & Props> {

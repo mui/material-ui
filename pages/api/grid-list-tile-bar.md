@@ -7,12 +7,12 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| actionIcon | element |  | An IconButton element to be used as secondary action target (primary action target is the tile itself). |
-| actionPosition | enum:&nbsp;'left'<br>&nbsp;'right'<br> | 'right' | Position of secondary action IconButton. |
-| classes | object |  | Useful to extend the style applied to components. |
-| subtitle | node |  | String or element serving as subtitle (support text). |
-| <span style="color: #31a148">title *</span> | node |  | Title to be displayed on tile. |
-| titlePosition | enum:&nbsp;'top'<br>&nbsp;'bottom'<br> | 'bottom' | Position of the title bar. |
+| actionIcon | Element |  | An IconButton element to be used as secondary action target (primary action target is the tile itself). |
+| actionPosition | union:&nbsp;'left'<br>&nbsp;'right'<br> | 'right' | Position of secondary action IconButton. |
+| classes | Object |  | Useful to extend the style applied to components. |
+| subtitle | union:&nbsp;string<br>&nbsp;Element<any><br> |  | String or element serving as subtitle (support text). |
+| <span style="color: #31a148">title *</span> | union:&nbsp;string<br>&nbsp;Element<any><br> |  | Title to be displayed on tile. |
+| titlePosition | union:&nbsp;'top'<br>&nbsp;'bottom'<br> | 'bottom' | Position of the title bar. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 

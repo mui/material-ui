@@ -219,15 +219,9 @@ describe('<Input />', () => {
         handleDirty = spy();
         handleClean = spy();
         // Mock the input ref
-        wrapper.setProps({
-          onDirty: handleDirty,
-          onClean: handleClean,
-        });
+        wrapper.setProps({ onDirty: handleDirty, onClean: handleClean });
         wrapper.instance().input = { value: '' };
-        setFormControlContext({
-          onDirty: spy(),
-          onClean: spy(),
-        });
+        setFormControlContext({ onDirty: spy(), onClean: spy() });
       });
 
       it('should fire the onDirty muiFormControl and props callback when dirtied', () => {

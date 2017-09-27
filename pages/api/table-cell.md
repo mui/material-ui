@@ -9,7 +9,7 @@
 |:-----|:-----|:--------|:------------|
 | children | Node |  | The table cell contents. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| component | ElementType | null | The component used for the root node. Either a string to use a DOM element or a component. |
+| component | ElementType |  | The component used for the root node. Either a string to use a DOM element or a component. |
 | numeric | boolean | false | If `true`, content will align to the right. |
 | padding | union:&nbsp;'default'<br>&nbsp;'checkbox'<br>&nbsp;'dense'<br>&nbsp;'none'<br> | 'default' | Sets the padding applied to the cell. |
 

@@ -13,9 +13,7 @@ describe('withResponsiveFullScreen', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow({
-      untilSelector: 'Dialog',
-    });
+    shallow = createShallow({ untilSelector: 'Dialog' });
     classes = getClasses(<Dialog />);
   });
 

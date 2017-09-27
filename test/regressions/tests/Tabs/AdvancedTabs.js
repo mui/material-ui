@@ -8,6 +8,8 @@ import Paper from 'material-ui/Paper';
 import Tabs from 'material-ui/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
 
+const noop = () => {};
+
 const styles = (theme: Object) => ({
   root: {
     width: 600,
@@ -24,14 +26,14 @@ function AdvancedTabs(props) {
   return (
     <div className={classes.root}>
       <Paper className={classes.appBar}>
-        <Tabs value={0}>
+        <Tabs onChange={noop} value={0}>
           <Tab label="New Arrivals in the Longest Text of Nonfiction" />
           <Tab label="Item Two" />
           <Tab label="Item Three" />
         </Tabs>
       </Paper>
       <Paper className={classes.appBar}>
-        <Tabs value="two" scrollable scrollButtons="auto">
+        <Tabs onChange={noop} value="two" scrollable scrollButtons="auto">
           <Tab label="Item One" />
           <Tab value="two" label="Item Two" />
           <Tab label="Item Three" />
@@ -42,7 +44,7 @@ function AdvancedTabs(props) {
         </Tabs>
       </Paper>
       <Paper className={classes.root}>
-        <Tabs value={0} scrollable scrollButtons="on" textColor="accent">
+        <Tabs onChange={noop} value={0} scrollable scrollButtons="on" textColor="accent">
           <Tab label="Item One" icon={<Icon>phone</Icon>} />
           <Tab label="Item Two" icon={<Icon>favorite</Icon>} />
           <Tab label="Item Three" icon={<Icon>person_pin</Icon>} />
@@ -53,7 +55,7 @@ function AdvancedTabs(props) {
         </Tabs>
       </Paper>
       <Paper className={classes.appBar}>
-        <Tabs value={0} scrollable scrollButtons="off">
+        <Tabs onChange={noop} value={0} scrollable scrollButtons="off">
           <Tab icon={<Icon>phone</Icon>} />
           <Tab icon={<Icon>favorite</Icon>} />
           <Tab icon={<Icon>person_pin</Icon>} />

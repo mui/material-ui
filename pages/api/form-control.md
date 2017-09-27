@@ -14,7 +14,7 @@ This context is used by the following components:
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | $ReadOnlyArray |  | The contents of the form control. |
+| children | Node |  | The contents of the form control. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | component | ElementType | 'div' | The component used for the root node. Either a string to use a DOM element or a component. |
 | disabled | boolean | false | If `true`, the label, input and helper text should be displayed in a disabled state. |
