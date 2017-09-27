@@ -1,7 +1,7 @@
 /* eslint-disable react/no-multi-comp */
 // @flow
 
-import React from 'react';
+import React, { Children } from 'react';
 import type { Element, Node } from 'react';
 import { findDOMNode } from 'react-dom';
 import warning from 'warning';
@@ -12,14 +12,8 @@ import common from '../colors/common';
 import grey from '../colors/grey';
 import withStyles from '../styles/withStyles';
 
-type TargetChildrenProps = {
-  element: Element<*>,
-};
-
 // Use a class component so we can get a reference.
-class TargetChildren extends React.Component<TargetChildrenProps> {
-  props: TargetChildrenProps;
-
+class TargetChildren extends React.Component<{ element: string | Element<any> }> {
   render() {
     return this.props.element;
   }
@@ -118,7 +112,7 @@ export type Props = {
   /**
    * Tooltip reference component.
    */
-  children: Element<*>,
+  children: string | Element<any>,
   /**
    * Useful to extend the style applied to components.
    */
@@ -223,14 +217,17 @@ class Tooltip extends React.Component<DefaultProps & Props, State> {
   ignoreNonTouchEvents = false;
 
   handleRequestOpen = event => {
-    const childrenProps = this.props.children.props;
+    const { children } = this.props;
+    if (typeof children !== 'string') {
+      const childrenProps = Children.only(children).props;
 
-    if (event.type === 'focus' && childrenProps.onFocus) {
-      childrenProps.onFocus(event);
-    }
+      if (event.type === 'focus' && childrenProps.onFocus) {
+        childrenProps.onFocus(event);
+      }
 
-    if (event.type === 'mouseover' && childrenProps.onMouseOver) {
-      childrenProps.onMouseOver(event);
+      if (event.type === 'mouseover' && childrenProps.onMouseOver) {
+        childrenProps.onMouseOver(event);
+      }
     }
 
     if (this.ignoreNonTouchEvents && event.type !== 'touchstart') {
@@ -258,14 +255,17 @@ class Tooltip extends React.Component<DefaultProps & Props, State> {
   };
 
   handleRequestClose = event => {
-    const childrenProps = this.props.children.props;
+    const { children } = this.props;
+    if (typeof children !== 'string') {
+      const childrenProps = Children.only(children).props;
 
-    if (event.type === 'blur' && childrenProps.onBlur) {
-      childrenProps.onBlur(event);
-    }
+      if (event.type === 'blur' && childrenProps.onBlur) {
+        childrenProps.onBlur(event);
+      }
 
-    if (event.type === 'mouseleave' && childrenProps.onMouseLeave) {
-      childrenProps.onMouseLeave(event);
+      if (event.type === 'mouseleave' && childrenProps.onMouseLeave) {
+        childrenProps.onMouseLeave(event);
+      }
     }
 
     clearTimeout(this.leaveTimer);
@@ -292,10 +292,13 @@ class Tooltip extends React.Component<DefaultProps & Props, State> {
 
   handleTouchStart = event => {
     this.ignoreNonTouchEvents = true;
-    const childrenProps = this.props.children.props;
+    const { children } = this.props;
+    if (typeof children !== 'string') {
+      const childrenProps = Children.only(children).props;
 
-    if (childrenProps.onTouchStart) {
-      childrenProps.onTouchStart(event);
+      if (childrenProps.onTouchStart) {
+        childrenProps.onTouchStart(event);
+      }
     }
 
     clearTimeout(this.touchTimer);
@@ -306,10 +309,13 @@ class Tooltip extends React.Component<DefaultProps & Props, State> {
   };
 
   handleTouchEnd = event => {
-    const childrenProps = this.props.children.props;
+    const { children } = this.props;
+    if (typeof children !== 'string') {
+      const childrenProps = Children.only(children).props;
 
-    if (childrenProps.onTouchEnd) {
-      childrenProps.onTouchEnd(event);
+      if (childrenProps.onTouchEnd) {
+        childrenProps.onTouchEnd(event);
+      }
     }
 
     clearTimeout(this.touchTimer);
@@ -360,7 +366,7 @@ class Tooltip extends React.Component<DefaultProps & Props, State> {
       childrenProps.onBlur = this.handleRequestClose;
     }
 
-    if (childrenProp.props) {
+    if (typeof childrenProp !== 'string' && childrenProp.props) {
       warning(
         !childrenProp.props.title,
         [
@@ -375,7 +381,11 @@ class Tooltip extends React.Component<DefaultProps & Props, State> {
         <Target>
           {({ targetProps }) => (
             <TargetChildren
-              element={React.cloneElement(childrenProp, childrenProps)}
+              element={
+                typeof childrenProp !== 'string'
+                  ? React.cloneElement(childrenProp, childrenProps)
+                  : childrenProp
+              }
               ref={node => {
                 targetProps.ref(findDOMNode(node));
               }}
