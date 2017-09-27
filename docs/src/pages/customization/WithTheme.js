@@ -35,4 +35,4 @@ WithTheme.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withTheme(WithTheme); // Let's get the theme as a property
+export default withTheme()(WithTheme); // Let's get the theme as a property

@@ -150,7 +150,7 @@ const theme = createMuiTheme({
 });
 ```
 
-### `withTheme(Component) => Component`
+### `withTheme()(Component) => Component`
 
 Provide the `theme` object as a property of the input component.
 
@@ -167,5 +167,5 @@ Provide the `theme` object as a property of the input component.
 ```js
 import { withTheme } from 'material-ui/styles'
 
-export default withTheme(MyComponent);
+export default withTheme()(MyComponent);
 ```

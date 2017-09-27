@@ -33,7 +33,7 @@ type DefaultProps = {
 
 type Props = {
   classes?: Object,
-  demos?: Object,
+  demos?: { [key: string]: any },
   markdown: string,
   // You can define the direction location of the markdown file.
   // Otherwise, we try to determine it with an heuristic.
@@ -76,7 +76,7 @@ function MarkdownDocs(props: DefaultProps & Props, context: Object) {
       {contents.map(content => {
         const match = content.match(demoRegexp);
 
-        if (match) {
+        if (match && demos) {
           const name = match[1];
           warning(demos && demos[name], `Missing demo: ${name}.`);
           return <Demo key={content} name={name} js={demos[name].js} raw={demos[name].raw} />;
@@ -89,8 +89,9 @@ function MarkdownDocs(props: DefaultProps & Props, context: Object) {
           text={`
 ## API
 
-${components.map(component => `- [&lt;${component} /&gt;](/api/${kebabCase(component)})`).
-            join('\n')}
+${components
+            .map(component => `- [&lt;${component} /&gt;](/api/${kebabCase(component)})`)
+            .join('\n')}
           `}
         />
       ) : null}
