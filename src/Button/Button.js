@@ -149,7 +149,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type Color = 'default' | 'inherit' | 'primary' | 'accent' | 'contrast'
+type Color = 'default' | 'inherit' | 'primary' | 'accent' | 'contrast';
 
 type DefaultProps = {
   classes: Object,

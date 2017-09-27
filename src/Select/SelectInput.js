@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { ChildrenArray, Element, Node } from 'react';
+import type { Element, Node } from 'react';
 import classNames from 'classnames';
 import keycode from 'keycode';
 import warning from 'warning';
@@ -19,7 +19,7 @@ export type Props = {
    * The option elements to populate the select with.
    * Can be some `MenuItem` when `native` is false and `option` when `native` is true.
    */
-  children: $ReadOnlyArray<ChildrenArray<Node>>,
+  children: Node,
   /**
    * Useful to extend the style applied to components.
    */

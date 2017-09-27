@@ -59,7 +59,8 @@ export type HOCProps = {
 
 type InjectedProps = { width: Breakpoint };
 
-const withWidth = ( // eslint-disable-line prettier/prettier
+const withWidth = (
+  // eslint-disable-line prettier/prettier
   options = {},
 ): HigherOrderComponent<{}, InjectedProps> => (Component: any): any => {
   const {

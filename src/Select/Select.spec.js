@@ -48,7 +48,7 @@ describe('<Select />', () => {
 
     it('should warn if the input is invalid', () => {
       const FakeInput = () => <div />;
-      props.input = <FakeInput />
+      props.input = <FakeInput />;
       shallow(<Select {...props} />);
       assert.match(
         consoleErrorMock.args()[0][0],

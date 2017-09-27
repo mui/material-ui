@@ -6,9 +6,6 @@ import type { Node, Element } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
-import Radio from '../Radio';
-import Switch from '../Switch';
-import Checkbox from '../Checkbox';
 
 export const styles = (theme: Object) => ({
   root: {

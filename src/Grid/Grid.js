@@ -15,7 +15,7 @@ import type { ElementType, Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
-import requirePropFactory from '../utils/requirePropFactory';
+// import requirePropFactory from '../utils/requirePropFactory';
 import Hidden from '../Hidden';
 import type { HiddenProps } from '../Hidden/types';
 

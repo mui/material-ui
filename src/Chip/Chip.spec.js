@@ -1,4 +1,4 @@
-s// @flow
+// @flow
 
 import React from 'react';
 import keycode from 'keycode';
