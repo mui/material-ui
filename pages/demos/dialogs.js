@@ -50,8 +50,8 @@ module.exports = require('fs')
           raw: preval`
 module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/dialogs/FormDialog'), 'utf8')
-`
-        }
+`,
+        },
       }}
     />
   );
