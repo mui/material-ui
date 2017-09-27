@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { ChildrenArray } from 'react';
+import type { Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { cloneChildrenWithClassName } from '../utils/reactHelpers';
@@ -27,7 +27,7 @@ export type Props = {
   /**
    * The content of the component.
    */
-  children?: ChildrenArray<*>,
+  children?: Node,
   /**
    * Useful to extend the style applied to components.
    */
