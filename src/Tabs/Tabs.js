@@ -11,6 +11,7 @@ import scroll from 'scroll';
 import withStyles from '../styles/withStyles';
 import TabIndicator from './TabIndicator';
 import TabScrollButton from './TabScrollButton';
+import type { IndicatorStyle } from './TabIndicator';
 
 export const styles = (theme: Object) => ({
   root: {
@@ -44,6 +45,7 @@ export const styles = (theme: Object) => ({
 
 type DefaultProps = {
   classes: Object,
+  indicatorColor: string,
 };
 
 export type Props = {
@@ -112,7 +114,7 @@ export type Props = {
 };
 
 type State = {
-  indicatorStyle: Object,
+  indicatorStyle: IndicatorStyle,
   scrollerStyle: Object,
   showLeftScroll: boolean,
   showRightScroll: boolean,
@@ -140,7 +142,10 @@ class Tabs extends React.Component<DefaultProps & Props, State> {
   };
 
   state = {
-    indicatorStyle: {},
+    indicatorStyle: {
+      left: 0,
+      width: 0,
+    },
     scrollerStyle: {
       marginBottom: 0,
     },
