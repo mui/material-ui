@@ -58,6 +58,7 @@ type Variant = 'default' | 'primary' | 'accent' | 'button';
 
 type DefaultProps = {
   classes: Object,
+  activeClassName: string,
   variant: Variant,
 };
 
@@ -141,6 +142,7 @@ Link.contextTypes = {
 
 Link.defaultProps = {
   variant: 'default',
+  activeClassName: 'active',
 };
 
 export default withStyles(styles)(Link);
