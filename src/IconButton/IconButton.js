@@ -59,7 +59,7 @@ export const styles = (theme: Object) => ({
  * regarding the available icon options.
  */
 function IconButton(props) {
-  const { children, classes, className, color, disabled, rootRef, ...other } = props;
+  const { children, classes, className, color, disabled, ...other } = props;
 
   return (
     <ButtonBase
@@ -74,7 +74,6 @@ function IconButton(props) {
       centerRipple
       keyboardFocusedClassName={classes.keyboardFocused}
       disabled={disabled}
-      ref={rootRef}
       {...other}
     >
       <span className={classes.label}>
@@ -122,10 +121,6 @@ IconButton.propTypes = {
    * If `true`, the ripple will be disabled.
    */
   disableRipple: PropTypes.bool,
-  /**
-   * Use that property to pass a ref callback to the root component.
-   */
-  rootRef: PropTypes.func,
 };
 
 IconButton.defaultProps = {
