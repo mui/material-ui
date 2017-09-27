@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { Node } from 'react';
+import type { ComponentType, Element, Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -142,7 +142,7 @@ export type Props = {
   /**
    * Transition component.
    */
-  transition?: Node,
+  transition?: ComponentType<*> | Element<*>,
 };
 
 /**

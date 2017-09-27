@@ -11,7 +11,7 @@ import { isMuiElement } from '../utils/reactHelpers';
 
 type DefaultProps = {
   classes: Object,
-  input: Element<*>,
+  input: Element<typeof Input>,
   native: boolean,
   multiple: boolean,
 };
@@ -72,7 +72,7 @@ export type Props = {
    * The option elements to populate the select with.
    * Can be some `MenuItem` when `native` is false and `option` when `native` is true.
    */
-  children: ChildrenArray<*>,
+  children: $ReadOnlyArray<ChildrenArray<*>>,
   /**
    * Useful to extend the style applied to components.
    */
@@ -80,7 +80,7 @@ export type Props = {
   /**
    * An `Input` element.
    */
-  input?: Element<*>,
+  input?: Element<typeof Input>,
   /**
    * If `true`, the component will be using a native `select` element.
    */
@@ -104,9 +104,7 @@ export type Props = {
   value?: Array<string | number> | string | number,
 };
 
-type AllProps = DefaultProps & Props;
-
-function Select(props: AllProps) {
+function Select(props: DefaultProps & Props) {
   const {
     autoWidth,
     children,
