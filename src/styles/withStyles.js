@@ -301,12 +301,6 @@ const withStyles = (
     }
   }
 
-  Style.contextTypes = {
-    sheetsManager: PropTypes.object,
-    ...contextTypes,
-    ...(listenToTheme ? themeListener.contextTypes : {}),
-  };
-
   hoistNonReactStatics(Style, Component);
 
   // Higher specificity
