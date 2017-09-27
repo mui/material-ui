@@ -15,7 +15,7 @@ import type { ElementType, Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
-// import requirePropFactory from '../utils/requirePropFactory';
+import requirePropFactory from '../utils/requirePropFactory';
 import Hidden from '../Hidden';
 import type { HiddenProps } from '../Hidden/types';
 
@@ -303,27 +303,25 @@ Grid.defaultProps = {
 
 // Add a wrapper component to generate some helper messages in the development
 // environment.
-// let GridWrapper = Grid; // eslint-disable-line import/no-mutable-exports
-//
-// FIXME: re-integrate this after the massive flow error fixes - responsible for ~ 500 flow errors.
-// if (process.env.NODE_ENV !== 'production') {
-//  const requireProp = requirePropFactory('Grid');
-//
-//  GridWrapper = (props: any) => <Grid {...props} />;
-//
-//  GridWrapper.propTypes = {
-//    align: requireProp('container'),
-//    direction: requireProp('container'),
-//    justify: requireProp('container'),
-//    lg: requireProp('item'),
-//    md: requireProp('item'),
-//    sm: requireProp('item'),
-//    spacing: requireProp('container'),
-//    wrap: requireProp('container'),
-//    xs: requireProp('item'),
-//  };
-// }
-//
-// export default withStyles(styles, { name: 'MuiGrid' })(GridWrapper);
+let GridWrapper = Grid; // eslint-disable-line import/no-mutable-exports
 
-export default withStyles(styles, { name: 'MuiGrid' })(Grid);
+if (process.env.NODE_ENV !== 'production') {
+  const requireProp = requirePropFactory('Grid');
+
+  GridWrapper = (props: any) => <Grid {...props} />;
+
+  // $FlowFixMe - cannot mix legacy propTypes with current HOC pattern - https://github.com/facebook/flow/issues/4644#issuecomment-332530909
+  GridWrapper.propTypes = {
+    align: requireProp('container'),
+    direction: requireProp('container'),
+    justify: requireProp('container'),
+    lg: requireProp('item'),
+    md: requireProp('item'),
+    sm: requireProp('item'),
+    spacing: requireProp('container'),
+    wrap: requireProp('container'),
+    xs: requireProp('item'),
+  };
+}
+
+export default withStyles(styles, { name: 'MuiGrid' })(GridWrapper);
