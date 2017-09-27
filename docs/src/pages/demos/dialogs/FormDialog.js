@@ -10,7 +10,7 @@ import Dialog, {
   DialogTitle,
 } from 'material-ui/Dialog';
 
-export default class AlertDialog extends React.Component {
+export default class FormDialog extends React.Component {
   state = {
     open: false,
   };
@@ -34,10 +34,17 @@ export default class AlertDialog extends React.Component {
               To subscribe to this website, please enter your email address here. We will send
               updates occationally.
             </DialogContentText>
-            <TextField id="name" label="Email Address" type="email" fullWidth />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Email Address"
+              type="email"
+              fullWidth
+            />
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleRequestClose} color="default">
+            <Button onClick={this.handleRequestClose} color="primary">
               Cancel
             </Button>
             <Button onClick={this.handleRequestClose} color="primary">
