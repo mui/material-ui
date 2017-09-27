@@ -46,10 +46,13 @@ export const styles = (theme: Object) => ({
   },
 });
 
+type Color = 'inherit' | 'primary' | 'accent' | 'default';
+type Position = 'static' | 'fixed' | 'absolute';
+
 type DefaultProps = {
   classes: Object,
-  color: 'primary',
-  position: 'fixed',
+  color: Color,
+  position: Position,
 };
 
 export type Props = {
@@ -68,11 +71,11 @@ export type Props = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color?: 'inherit' | 'primary' | 'accent' | 'default',
+  color?: Color,
   /**
    * The positioning type.
    */
-  position?: 'static' | 'fixed' | 'absolute',
+  position?: Position,
 };
 
 function AppBar(props: DefaultProps & Props) {

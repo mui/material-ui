@@ -135,7 +135,7 @@ describe('<MobileStepper />', () => {
     const props = {
       steps: defaultProps.steps,
       nextButton: defaultProps.nextButton,
-      backButton: <Button disabled />,
+      backButton: <Button disabled>back</Button>,
     };
     const wrapper = shallow(<MobileStepper {...props} />);
     const backButton = wrapper.childAt(0);
@@ -145,7 +145,7 @@ describe('<MobileStepper />', () => {
   it('should render disabled nextButton', () => {
     const props = {
       steps: defaultProps.steps,
-      nextButton: <Button disabled />,
+      nextButton: <Button disabled>back</Button>,
       backButton: defaultProps.backButton,
     };
     const wrapper = shallow(<MobileStepper {...props} />);

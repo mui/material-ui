@@ -47,9 +47,12 @@ export const styles = (theme: Object) => ({
   },
 });
 
+type Direction = 'asc' | 'desc';
+
 type DefaultProps = {
   active: boolean,
-  direction: string,
+  classes: Object,
+  direction: Direction,
 };
 
 export type Props = {
@@ -64,7 +67,7 @@ export type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -72,7 +75,7 @@ export type Props = {
   /**
    * The current sort direction.
    */
-  direction?: 'asc' | 'desc',
+  direction?: Direction,
 };
 
 /**

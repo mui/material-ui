@@ -50,7 +50,7 @@ export type Props = {
    * The icon to display when the component is checked.
    * If a string is provided, it will be used as a font ligature.
    */
-  checkedIcon?: Element<*>,
+  checkedIcon?: string | Element<*>,
   /**
    * Useful to extend the style applied to components.
    */
@@ -88,7 +88,7 @@ export type Props = {
    * The icon to display when the component is indeterminate.
    * If a string is provided, it will be used as a font ligature.
    */
-  indeterminateIcon?: Node,
+  indeterminateIcon?: string | Element<*>,
   /**
    * Properties applied to the `input` element.
    */

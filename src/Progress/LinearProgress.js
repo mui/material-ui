@@ -1,7 +1,6 @@
-// @flow weak
+// @flow
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
@@ -141,7 +140,41 @@ export const styles = (theme: Object) => ({
   },
 });
 
-function LinearProgress(props) {
+type DefaultProps = {
+  classes: Object,
+};
+
+type Props = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * The color of the component. It's using the theme palette when that makes sense.
+   */
+  color?: 'primary' | 'accent',
+  /**
+   * The mode of show your progress, indeterminate
+   * for when there is no value for progress.
+   */
+  mode?: 'determinate' | 'indeterminate' | 'buffer' | 'query',
+  /**
+   * The value of progress, only works in determinate and buffer mode.
+   * Value between 0 and 100.
+   */
+  value: number,
+  /**
+   * The value of buffer, only works in buffer mode.
+   * Value between 0 and 100.
+   */
+  valueBuffer?: number,
+};
+
+function LinearProgress(props: DefaultProps & Props) {
   const { classes, className, color, mode, value, valueBuffer, ...other } = props;
 
   const dashedClass = classNames(classes.dashed, {
@@ -182,7 +215,7 @@ function LinearProgress(props) {
     rootProps['aria-valuenow'] = Math.round(value);
   } else if (mode === 'buffer') {
     inlineStyles.primary.transform = `scaleX(${value / 100})`;
-    inlineStyles.secondary.transform = `scaleX(${valueBuffer / 100})`;
+    inlineStyles.secondary.transform = `scaleX(${(valueBuffer || 0) / 100})`;
   }
 
   return (
@@ -195,36 +228,6 @@ function LinearProgress(props) {
     </div>
   );
 }
-
-LinearProgress.propTypes = {
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * The color of the component. It's using the theme palette when that makes sense.
-   */
-  color: PropTypes.oneOf(['primary', 'accent']),
-  /**
-   * The mode of show your progress, indeterminate
-   * for when there is no value for progress.
-   */
-  mode: PropTypes.oneOf(['determinate', 'indeterminate', 'buffer', 'query']),
-  /**
-   * The value of progress, only works in determinate and buffer mode.
-   * Value between 0 and 100.
-   */
-  value: PropTypes.number,
-  /**
-   * The value of buffer, only works in buffer mode.
-   * Value between 0 and 100.
-   */
-  valueBuffer: PropTypes.number,
-};
 
 LinearProgress.defaultProps = {
   color: 'primary',

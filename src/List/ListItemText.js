@@ -1,6 +1,7 @@
 // @flow weak
 
 import React from 'react';
+import type { Node } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -28,7 +29,34 @@ export const styles = (theme: Object) => ({
   },
 });
 
-function ListItemText(props, context) {
+type DefaultProps = {
+  classes: Object,
+};
+
+type Props = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * If `true`, the children won't be wrapped by a typography component.
+   * For instance, that can be useful to can render an h4 instead of a
+   */
+  disableTypography?: boolean,
+  /**
+   * If `true`, the children will be indented.
+   * This should be used if there is no left avatar or left icon.
+   */
+  inset?: boolean,
+  primary?: Node,
+  secondary?: Node,
+};
+
+function ListItemText(props: DefaultProps & Props, context) {
   const {
     classes,
     className: classNameProp,
@@ -76,29 +104,6 @@ function ListItemText(props, context) {
     </div>
   );
 }
-
-ListItemText.propTypes = {
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * If `true`, the children won't be wrapped by a typography component.
-   * For instance, that can be useful to can render an h4 instead of a
-   */
-  disableTypography: PropTypes.bool,
-  /**
-   * If `true`, the children will be indented.
-   * This should be used if there is no left avatar or left icon.
-   */
-  inset: PropTypes.bool,
-  primary: PropTypes.node,
-  secondary: PropTypes.node,
-};
 
 ListItemText.defaultProps = {
   disableTypography: false,

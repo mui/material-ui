@@ -1,7 +1,7 @@
 // @flow weak
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
@@ -14,7 +14,43 @@ export const styles = (theme: Object) => ({
   },
 });
 
-function BottomNavigation(props) {
+type DefaultProps = {
+  classes: Object,
+  showLabels: boolean,
+};
+
+export type Props = {
+  /**
+   * The content of the component.
+   */
+  children: Node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * Callback fired when the value changes.
+   *
+   * @param {object} event The event source of the callback
+   * @param {any} value We default to the index of the child
+   */
+  onChange?: Function,
+  /**
+   * If `true`, all `BottomNavigationButton`s will show their labels.
+   * By default only the selected `BottomNavigationButton` will show its label.
+   */
+  showLabels?: boolean,
+  /**
+   * The value of the currently selected `BottomNavigationButton`.
+   */
+  value: any,
+};
+
+function BottomNavigation(props: DefaultProps & Props) {
   const {
     children: childrenProp,
     classes,
@@ -43,37 +79,6 @@ function BottomNavigation(props) {
     </div>
   );
 }
-
-BottomNavigation.propTypes = {
-  /**
-   * The content of the component.
-   */
-  children: PropTypes.node.isRequired,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * Callback fired when the value changes.
-   *
-   * @param {object} event The event source of the callback
-   * @param {any} value We default to the index of the child
-   */
-  onChange: PropTypes.func,
-  /**
-   * If `true`, all `BottomNavigationButton`s will show their labels.
-   * By default only the selected `BottomNavigationButton` will show its label.
-   */
-  showLabels: PropTypes.bool,
-  /**
-   * The value of the currently selected `BottomNavigationButton`.
-   */
-  value: PropTypes.any.isRequired,
-};
 
 BottomNavigation.defaultProps = {
   showLabels: false,

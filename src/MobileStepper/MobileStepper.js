@@ -2,7 +2,7 @@
 // @inheritedComponent Paper
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Element } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
@@ -52,7 +52,53 @@ export const styles = (theme: Object) => ({
   },
 });
 
-function MobileStepper(props) {
+type Position = 'bottom' | 'top' | 'static';
+type Type = 'text' | 'dots' | 'progress';
+
+type DefaultProps = {
+  classes: Object,
+  activeStep: number,
+  position: Position,
+  type: Type,
+};
+
+export type Props = {
+  /**
+   * Set the active step (zero based index).
+   * Defines which dot is highlighted when the type is 'dots'.
+   */
+  activeStep?: number,
+  /**
+   * A back button element. For instance, it can be be a `Button` or a `IconButton`.
+   */
+  backButton: Element<any>,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * A next button element. For instance, it can be be a `Button` or a `IconButton`.
+   */
+  nextButton: Element<any>,
+  /**
+   * Set the positioning type.
+   */
+  position?: Position,
+  /**
+   * The total steps.
+   */
+  steps: number,
+  /**
+   * The type of mobile stepper to use.
+   */
+  type?: Type,
+};
+
+function MobileStepper(props: DefaultProps & Props) {
   const {
     activeStep,
     backButton,
@@ -97,42 +143,6 @@ function MobileStepper(props) {
     </Paper>
   );
 }
-
-MobileStepper.propTypes = {
-  /**
-   * Set the active step (zero based index).
-   * Defines which dot is highlighted when the type is 'dots'.
-   */
-  activeStep: PropTypes.number,
-  /**
-   * A back button element. For instance, it can be be a `Button` or a `IconButton`.
-   */
-  backButton: PropTypes.element.isRequired,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * A next button element. For instance, it can be be a `Button` or a `IconButton`.
-   */
-  nextButton: PropTypes.element.isRequired,
-  /**
-   * Set the positioning type.
-   */
-  position: PropTypes.oneOf(['bottom', 'top', 'static']),
-  /**
-   * The total steps.
-   */
-  steps: PropTypes.number.isRequired,
-  /**
-   * The type of mobile stepper to use.
-   */
-  type: PropTypes.oneOf(['text', 'dots', 'progress']),
-};
 
 MobileStepper.defaultProps = {
   activeStep: 0,

@@ -50,7 +50,7 @@ export type Props = {
    *
    * This can be an element, or just a string.
    */
-  children?: Element<*>,
+  children?: string | Element<any>,
   /**
    * @ignore
    * The className of the child element.
@@ -114,7 +114,11 @@ function Avatar(props: DefaultProps & Props) {
   let children = null;
 
   if (childrenProp) {
-    if (childrenClassNameProp && React.isValidElement(childrenProp)) {
+    if (
+      childrenClassNameProp &&
+      typeof childrenProp !== 'string' &&
+      React.isValidElement(childrenProp)
+    ) {
       const childrenClassName = classNames(childrenClassNameProp, childrenProp.props.className);
       children = React.cloneElement(childrenProp, { className: childrenClassName });
     } else {

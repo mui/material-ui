@@ -82,10 +82,6 @@ export type Props = {
    * Callback fired when the component has exited.
    */
   onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
-  /**
-   * @ignore
-   */
-  theme?: Object,
 };
 
 class Slide extends React.Component<DefaultProps & Props> {
@@ -193,4 +189,4 @@ class Slide extends React.Component<DefaultProps & Props> {
   }
 }
 
-export default withTheme(Slide);
+export default withTheme()(Slide);

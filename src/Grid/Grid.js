@@ -310,6 +310,7 @@ if (process.env.NODE_ENV !== 'production') {
 
   GridWrapper = (props: any) => <Grid {...props} />;
 
+  // $FlowFixMe - cannot mix legacy propTypes with current HOC pattern - https://github.com/facebook/flow/issues/4644#issuecomment-332530909
   GridWrapper.propTypes = {
     align: requireProp('container'),
     direction: requireProp('container'),

@@ -190,6 +190,7 @@ describe('<Chip />', () => {
       });
 
       it('should unfocus when a esc key is pressed', () => {
+        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
         const wrapper2 = mount(<Chip.Naked classes={{}}>Text Chip</Chip.Naked>);
         const handleBlur = spy();
         wrapper2.instance().chipRef.blur = handleBlur;

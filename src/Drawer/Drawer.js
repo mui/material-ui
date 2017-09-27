@@ -75,20 +75,25 @@ export const styles = (theme: Object) => ({
   modal: {}, // Just here so people can override the style.
 });
 
+type Anchor = 'left' | 'top' | 'right' | 'bottom';
+type Type = 'permanent' | 'persistent' | 'temporary';
+
 type DefaultProps = {
-  anchor: 'left',
+  anchor: Anchor,
   classes: Object,
   elevation: number,
   enterTransitionDuration: number,
   leaveTransitionDuration: number,
   open: boolean,
+  theme: Object,
+  type: Type,
 };
 
 export type Props = {
   /**
    * Side from which the drawer will appear.
    */
-  anchor?: 'left' | 'top' | 'right' | 'bottom',
+  anchor?: Anchor,
   /**
    * The contents of the drawer.
    */
@@ -132,13 +137,9 @@ export type Props = {
    */
   SlideProps?: Object,
   /**
-   * @ignore
-   */
-  theme: Object,
-  /**
    * The type of drawer.
    */
-  type: 'permanent' | 'persistent' | 'temporary',
+  type: Type,
 };
 
 type State = {

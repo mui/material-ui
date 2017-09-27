@@ -1,7 +1,7 @@
 // @flow weak
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Element } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
@@ -63,7 +63,48 @@ export const styles = (theme: Object) => ({
   },
 });
 
-function GridListTileBar(props) {
+type TitlePosition = 'top' | 'bottom';
+type ActionPosition = 'left' | 'right';
+
+type DefaultProps = {
+  classes: Object,
+  actionPosition: ActionPosition,
+  titlePosition: TitlePosition,
+};
+
+export type Props = {
+  /**
+   * An IconButton element to be used as secondary action target
+   * (primary action target is the tile itself).
+   */
+  actionIcon?: Element<any>,
+  /**
+   * Position of secondary action IconButton.
+   */
+  actionPosition?: ActionPosition,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * String or element serving as subtitle (support text).
+   */
+  subtitle?: string | Element<any>,
+  /**
+   * Title to be displayed on tile.
+   */
+  title: string | Element<any>,
+  /**
+   * Position of the title bar.
+   */
+  titlePosition?: TitlePosition,
+};
+
+function GridListTileBar(props: DefaultProps & Props) {
   const {
     actionIcon,
     actionPosition,
@@ -107,41 +148,9 @@ function GridListTileBar(props) {
   );
 }
 
-GridListTileBar.propTypes = {
-  /**
-   * An IconButton element to be used as secondary action target
-   * (primary action target is the tile itself).
-   */
-  actionIcon: PropTypes.element,
-  /**
-   * Position of secondary action IconButton.
-   */
-  actionPosition: PropTypes.oneOf(['left', 'right']),
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * String or element serving as subtitle (support text).
-   */
-  subtitle: PropTypes.node,
-  /**
-   * Title to be displayed on tile.
-   */
-  title: PropTypes.node.isRequired,
-  /**
-   * Position of the title bar.
-   */
-  titlePosition: PropTypes.oneOf(['top', 'bottom']),
-};
-
 GridListTileBar.defaultProps = {
-  titlePosition: 'bottom',
   actionPosition: 'right',
+  titlePosition: 'bottom',
 };
 
 export default withStyles(styles, { name: 'MuiGridListTileBar' })(GridListTileBar);

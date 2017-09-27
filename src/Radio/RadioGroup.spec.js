@@ -125,6 +125,7 @@ describe('<RadioGroup />', () => {
       wrapper = shallow(
         <RadioGroup value="">
           <Radio />
+          <Radio />
         </RadioGroup>,
       );
     });
@@ -162,6 +163,7 @@ describe('<RadioGroup />', () => {
 
     it('should add a child', () => {
       const wrapper = mount(
+        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
         <RadioGroup.Naked value="" classes={{}}>
           <Radio />
         </RadioGroup.Naked>,
@@ -170,6 +172,7 @@ describe('<RadioGroup />', () => {
     });
 
     it('should keep radios empty', () => {
+      // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
       const wrapper = mount(<RadioGroup.Naked value="" classes={{}} />);
       assert.strictEqual(wrapper.instance().radios.length, 0);
     });

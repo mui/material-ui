@@ -149,16 +149,18 @@ export const styles = (theme: Object) => ({
   },
 });
 
+type Color = 'default' | 'inherit' | 'primary' | 'accent' | 'contrast';
+
 type DefaultProps = {
   classes: Object,
-  color: 'default',
+  color: Color,
   dense: boolean,
   disabled: boolean,
   fab: boolean,
   disableFocusRipple: boolean,
   raised: boolean,
   disableRipple: boolean,
-  type: 'button',
+  type: string,
 };
 
 export type Props = {
@@ -177,7 +179,7 @@ export type Props = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color?: 'default' | 'inherit' | 'primary' | 'accent' | 'contrast',
+  color?: Color,
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.

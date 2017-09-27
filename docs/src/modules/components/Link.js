@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react';
+import type { ElementType, Node } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import NextLink from 'next/link';
@@ -53,7 +54,27 @@ OnClick.propTypes = {
   onCustomClick: PropTypes.func,
 };
 
-function Link(props, context) {
+type Variant = 'default' | 'primary' | 'accent' | 'button';
+
+type DefaultProps = {
+  classes: Object,
+  activeClassName: string,
+  variant: Variant,
+};
+
+type Props = {
+  activeClassName?: string,
+  children: Node,
+  classes?: Object,
+  className?: string,
+  component?: ElementType,
+  href?: string,
+  onClick?: Function,
+  prefetch?: boolean,
+  variant?: Variant,
+};
+
+function Link(props: DefaultProps & Props, context: Object) {
   const {
     activeClassName,
     children: childrenProp,
@@ -113,18 +134,6 @@ function Link(props, context) {
   return <ComponentRoot {...rootProps}>{children}</ComponentRoot>;
 }
 
-Link.propTypes = {
-  activeClassName: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  classes: PropTypes.object.isRequired,
-  className: PropTypes.string,
-  component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  href: PropTypes.string,
-  onClick: PropTypes.func,
-  prefetch: PropTypes.bool,
-  variant: PropTypes.oneOf(['default', 'primary', 'accent', 'button']),
-};
-
 Link.contextTypes = {
   url: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
@@ -133,6 +142,7 @@ Link.contextTypes = {
 
 Link.defaultProps = {
   variant: 'default',
+  activeClassName: 'active',
 };
 
 export default withStyles(styles)(Link);

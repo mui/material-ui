@@ -1,7 +1,7 @@
 // @flow weak
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -42,7 +42,34 @@ export const styles = (theme: Object) => ({
   },
 });
 
-function Badge(props) {
+type DefaultProps = {
+  classes: Object,
+};
+
+type Props = {
+  /**
+   * The content rendered within the badge.
+   */
+  badgeContent?: Node,
+  /**
+   * The badge will be added relative to this node.
+   */
+  children?: Node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * The color of the component. It's using the theme palette when that makes sense.
+   */
+  color?: 'default' | 'primary' | 'accent',
+};
+
+function Badge(props: DefaultProps & Props) {
   const { badgeContent, classes, className: classNameProp, color, children, ...other } = props;
   const className = classNames(classes.root, classNameProp);
   const badgeClassName = classNames(classes.badge, {
@@ -56,29 +83,6 @@ function Badge(props) {
     </div>
   );
 }
-
-Badge.propTypes = {
-  /**
-   * The content rendered within the badge.
-   */
-  badgeContent: PropTypes.node.isRequired,
-  /**
-   * The badge will be added relative to this node.
-   */
-  children: PropTypes.node.isRequired,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * The color of the component. It's using the theme palette when that makes sense.
-   */
-  color: PropTypes.oneOf(['default', 'primary', 'accent']),
-};
 
 Badge.defaultProps = {
   color: 'default',

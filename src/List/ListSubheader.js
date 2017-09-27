@@ -1,7 +1,7 @@
 // @flow weak
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -34,7 +34,38 @@ export const styles = (theme: Object) => ({
   },
 });
 
-function ListSubheader(props) {
+type DefaultProps = {
+  classes: Object,
+};
+
+type Props = {
+  /**
+   * The content of the component.
+   */
+  children?: Node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * The color of the component. It's using the theme palette when that makes sense.
+   */
+  color?: 'default' | 'primary' | 'inherit',
+  /**
+   * If `true`, the List Subheader will not stick to the top during scroll.
+   */
+  disableSticky?: boolean,
+  /**
+   * If `true`, the List Subheader will be indented.
+   */
+  inset?: boolean,
+};
+
+function ListSubheader(props: DefaultProps & Props) {
   const {
     children,
     classes,
@@ -60,33 +91,6 @@ function ListSubheader(props) {
     </div>
   );
 }
-
-ListSubheader.propTypes = {
-  /**
-   * The content of the component.
-   */
-  children: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * The color of the component. It's using the theme palette when that makes sense.
-   */
-  color: PropTypes.oneOf(['default', 'primary', 'inherit']),
-  /**
-   * If `true`, the List Subheader will not stick to the top during scroll.
-   */
-  disableSticky: PropTypes.bool,
-  /**
-   * If `true`, the List Subheader will be indented.
-   */
-  inset: PropTypes.bool,
-};
 
 ListSubheader.defaultProps = {
   color: 'default',

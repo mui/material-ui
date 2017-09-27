@@ -19,7 +19,7 @@ export type Props = {
   /**
    * The DOM element used to set the position of the menu.
    */
-  anchorEl?: Object,
+  anchorEl?: ?HTMLElement,
   /**
    * Menu contents, normally `MenuItem`s.
    */

@@ -162,6 +162,7 @@ describe('<Input />', () => {
       handleClean = spy();
       handleDirty = spy();
       wrapper = mount(
+        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
         <Input.Naked
           classes={{}}
           onDirty={handleDirty}
@@ -302,6 +303,7 @@ describe('<Input />', () => {
     let instance;
 
     before(() => {
+      // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
       wrapper = mount(<Input.Naked classes={classes} />);
       instance = wrapper.instance();
     });

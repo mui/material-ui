@@ -1,7 +1,6 @@
 // @flow weak
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
@@ -15,10 +14,37 @@ export const styles = (theme: Object) => ({
   },
 });
 
+type DefaultProps = {
+  classes: Object,
+};
+
+export type Props = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * Which direction should the button indicate?
+   */
+  direction?: 'left' | 'right',
+  /**
+   * Callback to execute for button press.
+   */
+  onClick?: Function,
+  /**
+   * Should the button be present or just consume space.
+   */
+  visible?: boolean,
+};
+
 /**
  * @ignore - internal component.
  */
-function TabScrollButton(props) {
+function TabScrollButton(props: DefaultProps & Props) {
   const { classes, className: classNameProp, direction, onClick, visible, ...other } = props;
 
   const className = classNames(classes.root, classNameProp);
@@ -33,29 +59,6 @@ function TabScrollButton(props) {
     </ButtonBase>
   );
 }
-
-TabScrollButton.propTypes = {
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * Which direction should the button indicate?
-   */
-  direction: PropTypes.oneOf(['left', 'right']),
-  /**
-   * Callback to execute for button press.
-   */
-  onClick: PropTypes.func,
-  /**
-   * Should the button be present or just consume space.
-   */
-  visible: PropTypes.bool,
-};
 
 TabScrollButton.defaultProps = {
   visible: true,

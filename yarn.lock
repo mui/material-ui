@@ -756,9 +756,9 @@ babel-plugin-check-es2015-constants@^6.22.0:
   dependencies:
     babel-runtime "^6.22.0"
 
-babel-plugin-flow-react-proptypes@5.1.1:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/babel-plugin-flow-react-proptypes/-/babel-plugin-flow-react-proptypes-5.1.1.tgz#d8915c65765c733f4b0030f406ebb67da89646c6"
+babel-plugin-flow-react-proptypes@5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-flow-react-proptypes/-/babel-plugin-flow-react-proptypes-5.2.0.tgz#4fa0a09b53770b5a4f8e617d70ed949fef93bb44"
   dependencies:
     babel-core "^6.25.0"
     babel-template "^6.25.0"
@@ -7134,6 +7134,10 @@ react-event-listener@^0.5.0:
     fbjs "^0.8.14"
     prop-types "^15.5.10"
     warning "^3.0.0"
+
+react-flow-types@^0.2.0-beta.2:
+  version "0.2.0-beta.2"
+  resolved "https://registry.yarnpkg.com/react-flow-types/-/react-flow-types-0.2.0-beta.2.tgz#4f9e07fa60230708d067612750f60c7a9ea42d81"
 
 react-hot-loader@3.0.0-beta.7:
   version "3.0.0-beta.7"

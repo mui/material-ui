@@ -14,6 +14,7 @@ describe('<Select />', () => {
   let mount;
   const props = {
     input: <Input />,
+    children: [<MenuItem value="1">1</MenuItem>, <MenuItem value="2">2</MenuItem>],
   };
 
   before(() => {
@@ -47,7 +48,8 @@ describe('<Select />', () => {
 
     it('should warn if the input is invalid', () => {
       const FakeInput = () => <div />;
-      shallow(<Select input={<FakeInput />} />);
+      props.input = <FakeInput />;
+      shallow(<Select {...props} />);
       assert.match(
         consoleErrorMock.args()[0][0],
         /Material-UI: you have provided an invalid value to the `input` property/,
