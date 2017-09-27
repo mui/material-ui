@@ -6,6 +6,9 @@ import type { Node, Element } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
+import Radio from '../Radio';
+import Switch from '../Switch';
+import Checkbox from '../Checkbox';
 
 export const styles = (theme: Object) => ({
   root: {
@@ -46,7 +49,8 @@ export type Props = {
   /**
    * A control element. For instance, it can be be a `Radio`, a `Switch` or a `Checkbox`.
    */
-  control: Element<*>,
+  control: Element<typeof Radio> | Element<typeof Switch> | Element<typeof Checkbox>,
+  //  control: Element<typeof Radio | typeof Switch | typeof Checkbox>, FIXME: can use?
   /**
    * If `true`, the control will be disabled.
    */

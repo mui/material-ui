@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { Node } from 'react';
+import type { Element, Node } from 'react';
 import withStyles from '../styles/withStyles';
 import createSwitch from '../internal/SwitchBase';
 import IndeterminateCheckBoxIcon from '../svg-icons/IndeterminateCheckBox';
@@ -33,7 +33,7 @@ export type Props = {
    * The icon to display when the component is checked.
    * If a string is provided, it will be used as a font ligature.
    */
-  checkedIcon?: Node,
+  checkedIcon?: string | Element<*>,
   /**
    * Useful to extend the style applied to components.
    */
@@ -71,7 +71,7 @@ export type Props = {
    * The icon to display when the component is indeterminate.
    * If a string is provided, it will be used as a font ligature.
    */
-  indeterminateIcon?: Node,
+  indeterminateIcon?: string | Element<*>,
   /**
    * Properties applied to the `input` element.
    */
