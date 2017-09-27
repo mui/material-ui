@@ -160,6 +160,7 @@ describe('<Tab />', () => {
 
   it('should have a ref on label property', () => {
     const instance = mount(
+      // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
       <Tab.Naked textColor="inherit" label="foo" classes={classes} />,
     ).instance();
     assert.isDefined(instance.label, 'should be defined');

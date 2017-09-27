@@ -24,10 +24,12 @@ describe('<Slide />', () => {
   });
 
   it('enterTransitionDuration prop should have default value from standard durations', () => {
+    // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
     assert.strictEqual(Slide.Naked.defaultProps.enterTransitionDuration, duration.enteringScreen);
   });
 
   it('leaveTransitionDuration prop should have default value from standard durations', () => {
+    // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
     assert.strictEqual(Slide.Naked.defaultProps.leaveTransitionDuration, duration.leavingScreen);
   });
 
@@ -196,6 +198,7 @@ describe('<Slide />', () => {
 
     it('should work when initially hidden', () => {
       const wrapper = mount(
+        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
         <Slide.Naked theme={createMuiTheme()} in={false}>
           <div>Foo</div>
         </Slide.Naked>,

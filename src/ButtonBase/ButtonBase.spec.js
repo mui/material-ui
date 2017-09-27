@@ -312,6 +312,7 @@ describe('<ButtonBase />', () => {
     before(() => {
       clock = useFakeTimers();
       wrapper = mount(
+        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
         <ButtonBase.Naked classes={{}} id="test-button">
           Hello
         </ButtonBase.Naked>,
@@ -386,6 +387,7 @@ describe('<ButtonBase />', () => {
 
     it('when disabled should not persist event', () => {
       const wrapper = mount(
+        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
         <ButtonBase.Naked classes={{}} disabled>
           Hello
         </ButtonBase.Naked>,
@@ -402,6 +404,7 @@ describe('<ButtonBase />', () => {
       const eventMock = 'woofButtonBase';
       const onKeyboardFocusSpy = spy();
       const wrapper = mount(
+        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
         <ButtonBase.Naked classes={{}} component="span" onKeyboardFocus={onKeyboardFocusSpy}>
           Hello
         </ButtonBase.Naked>,
@@ -420,6 +423,7 @@ describe('<ButtonBase />', () => {
         </a>
       );
       const wrapper = mount(
+        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
         <ButtonBase.Naked classes={{}} component={MyLink}>
           Hello
         </ButtonBase.Naked>,
@@ -438,6 +442,7 @@ describe('<ButtonBase />', () => {
 
     describe('avoids multiple keydown presses', () => {
       it('should work', () => {
+        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
         wrapper = mount(<ButtonBase.Naked classes={{}}>Hello</ButtonBase.Naked>);
         wrapper.setProps({
           focusRipple: true,
@@ -468,6 +473,7 @@ describe('<ButtonBase />', () => {
 
     describe('prop: onKeyDown', () => {
       it('should work', () => {
+        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
         wrapper = mount(<ButtonBase.Naked classes={{}}>Hello</ButtonBase.Naked>);
         const onKeyDownSpy = spy();
         wrapper.setProps({
@@ -494,6 +500,7 @@ describe('<ButtonBase />', () => {
 
     describe('Keyboard accessibility for non interactive elements', () => {
       it('should work', () => {
+        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
         wrapper = mount(<ButtonBase.Naked classes={{}}>Hello</ButtonBase.Naked>);
         const onClickSpy = spy();
         wrapper.setProps({

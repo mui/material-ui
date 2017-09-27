@@ -24,6 +24,7 @@ describe('utils/reactHelpers.js', () => {
         [ListItemSecondaryAction, 'ListItemSecondaryAction'],
         [SvgIcon, 'SvgIcon'],
       ].forEach(([Component, muiName]) => {
+        // $FlowFixMe - no idea - rosskevin
         assert.strictEqual(isMuiElement(<Component />, [muiName]), true);
       });
     });

@@ -161,6 +161,7 @@ describe('<SwitchBase />', () => {
 
     beforeEach(() => {
       wrapper = mount(
+        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
         <SwitchBase.Naked
           classes={{}}
           className="test-class"
@@ -199,6 +200,7 @@ describe('<SwitchBase />', () => {
 
     beforeEach(() => {
       wrapper = mount(
+        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
         <SwitchBase.Naked
           classes={{}}
           className="test-class"
@@ -243,6 +245,7 @@ describe('<SwitchBase />', () => {
     before(() => {
       event = 'woofSwitchBase';
       onChangeSpy = spy();
+      // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
       wrapper = mount(<SwitchBase.Naked classes={{}} />);
       wrapper.setProps({ onChange: onChangeSpy });
       instance = wrapper.instance();

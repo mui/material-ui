@@ -65,6 +65,7 @@ describe('<Textarea />', () => {
     let wrapper;
 
     beforeEach(() => {
+      // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
       wrapper = mount(<Textarea.Naked classes={{}} value="f" />);
     });
 

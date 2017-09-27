@@ -135,6 +135,7 @@ describe('<Menu />', () => {
     let findDOMNodeStub;
 
     before(() => {
+      // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
       wrapper = mount(<Menu.Naked classes={classes} />);
       instance = wrapper.instance();
 

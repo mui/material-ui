@@ -75,6 +75,7 @@ describe('<GridListTile />', () => {
 
     beforeEach(() => {
       wrapper = mount(
+        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
         <GridListTile.Naked
           classes={{
             imgFullWidth: 'imgFullWidth',
