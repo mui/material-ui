@@ -49,8 +49,7 @@ export type Props = {
   /**
    * A control element. For instance, it can be be a `Radio`, a `Switch` or a `Checkbox`.
    */
-  //  control: Element<typeof Radio> | Element<typeof Switch> | Element<typeof Checkbox>,
-  control: Element<typeof Radio | typeof Switch | typeof Checkbox>, // FIXME: can use?
+  control: Element<any>,
   /**
    * If `true`, the control will be disabled.
    */
