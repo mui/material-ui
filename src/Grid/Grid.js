@@ -303,24 +303,27 @@ Grid.defaultProps = {
 
 // Add a wrapper component to generate some helper messages in the development
 // environment.
-let GridWrapper = Grid; // eslint-disable-line import/no-mutable-exports
+// let GridWrapper = Grid; // eslint-disable-line import/no-mutable-exports
+//
+// FIXME: re-integrate this after the massive flow error fixes - responsible for ~ 500 flow errors.
+// if (process.env.NODE_ENV !== 'production') {
+//  const requireProp = requirePropFactory('Grid');
+//
+//  GridWrapper = (props: any) => <Grid {...props} />;
+//
+//  GridWrapper.propTypes = {
+//    align: requireProp('container'),
+//    direction: requireProp('container'),
+//    justify: requireProp('container'),
+//    lg: requireProp('item'),
+//    md: requireProp('item'),
+//    sm: requireProp('item'),
+//    spacing: requireProp('container'),
+//    wrap: requireProp('container'),
+//    xs: requireProp('item'),
+//  };
+// }
+//
+// export default withStyles(styles, { name: 'MuiGrid' })(GridWrapper);
 
-if (process.env.NODE_ENV !== 'production') {
-  const requireProp = requirePropFactory('Grid');
-
-  GridWrapper = (props: any) => <Grid {...props} />;
-
-  GridWrapper.propTypes = {
-    align: requireProp('container'),
-    direction: requireProp('container'),
-    justify: requireProp('container'),
-    lg: requireProp('item'),
-    md: requireProp('item'),
-    sm: requireProp('item'),
-    spacing: requireProp('container'),
-    wrap: requireProp('container'),
-    xs: requireProp('item'),
-  };
-}
-
-export default withStyles(styles, { name: 'MuiGrid' })(GridWrapper);
+export default withStyles(styles, { name: 'MuiGrid' })(Grid);
