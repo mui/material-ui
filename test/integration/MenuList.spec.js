@@ -13,7 +13,7 @@ function assertMenuItemTabIndexed(wrapper, tabIndexed) {
 
   items.forEach((item, index) => {
     if (index === tabIndexed) {
-      assert.strictEqual(item.prop('tabIndex'), 0, 'should have the tab index');
+      assert.strictEqual(item.props().tabIndex, 0, 'should have the tab index');
     } else {
       assert.strictEqual(
         item.prop('tabIndex'),
@@ -29,7 +29,7 @@ function assertMenuItemFocused(wrapper, tabIndexed) {
 
   items.forEach((item, index) => {
     if (index === tabIndexed) {
-      assert.strictEqual(item.find('li').get(0), document.activeElement, 'should be focused');
+      assert.strictEqual(item.find('li').getNode(), document.activeElement, 'should be focused');
     }
   });
 }
@@ -64,13 +64,13 @@ describe('<MenuList> integration', () => {
     });
 
     it('should select/focus the first item', () => {
-      wrapper.instance().focus();
+      wrapper.getNode().focus();
       assertMenuItemTabIndexed(wrapper, 0);
       assertMenuItemFocused(wrapper, 0);
     });
 
     it('should focus the second item', () => {
-      wrapper.instance().focus();
+      wrapper.getNode().focus();
       wrapper.simulate('keyDown', { which: keycode('down') });
       assertMenuItemTabIndexed(wrapper, 1);
       assertMenuItemFocused(wrapper, 1);
@@ -89,6 +89,7 @@ describe('<MenuList> integration', () => {
       document.activeElement.blur();
       setTimeout(() => {
         assert.strictEqual(handleBlur.callCount, 1);
+        wrapper.update();
         assertMenuItemTabIndexed(wrapper, 0);
         done();
       }, 60);

@@ -51,17 +51,13 @@ describe('<TabScrollButton />', () => {
 
   describe('prop: direction', () => {
     it('should render with the left icon', () => {
-      const wrapper = mount(<TabScrollButton direction={'left'} visible />);
-      assert.strictEqual(wrapper.childAt(0).is(KeyboardArrowLeft), true, 'should be the left icon');
+      const wrapper = mount(<TabScrollButton direction="left" visible />);
+      assert.strictEqual(wrapper.find(KeyboardArrowLeft).length, 1, 'should be the left icon');
     });
 
     it('should render with the right icon', () => {
-      const wrapper = mount(<TabScrollButton direction={'right'} visible />);
-      assert.strictEqual(
-        wrapper.childAt(0).is(KeyboardArrowRight),
-        true,
-        'should be the right icon',
-      );
+      const wrapper = mount(<TabScrollButton direction="right" visible />);
+      assert.strictEqual(wrapper.find(KeyboardArrowRight).length, 1, 'should be the right icon');
     });
   });
 });

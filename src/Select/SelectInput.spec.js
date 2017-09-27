@@ -10,6 +10,17 @@ import Menu, { MenuItem } from '../Menu';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
 import SelectInput from './SelectInput';
 
+function getPortalWrapper(wrapper) {
+  const portalWrapper = new ReactWrapper(
+    wrapper
+      .find('Modal')
+      .getNode()
+      .render().props.children,
+  );
+
+  return portalWrapper;
+}
+
 describe('<SelectInput />', () => {
   let shallow;
   let mount;
@@ -132,8 +143,7 @@ describe('<SelectInput />', () => {
       it('should call onChange when clicking an item', () => {
         wrapper.find(`.${props.classes.select}`).simulate('click');
         assert.strictEqual(wrapper.state().open, true);
-        const portal = wrapper.find('Modal').node.mountNode.firstChild;
-        const portalWrapper = new ReactWrapper(portal, portal);
+        const portalWrapper = getPortalWrapper(wrapper);
         const menuItem = portalWrapper.find(MenuItem);
         menuItem.at(1).simulate('click');
         assert.strictEqual(wrapper.state().open, false);
@@ -169,8 +179,7 @@ describe('<SelectInput />', () => {
         wrapper.find(`.${props.classes.select}`).simulate('click');
         assert.strictEqual(wrapper.state().open, true);
 
-        const portal = wrapper.find('Modal').node.mountNode.firstChild;
-        const portalWrapper = new ReactWrapper(portal, portal);
+        const portalWrapper = getPortalWrapper(wrapper);
         const backdrop = portalWrapper.find('Backdrop');
 
         backdrop.simulate('click');
@@ -284,8 +293,7 @@ describe('<SelectInput />', () => {
       it('should call onChange when clicking an item', () => {
         wrapper.find(`.${props.classes.select}`).simulate('click');
         assert.strictEqual(wrapper.state().open, true);
-        const portal = wrapper.find('Modal').node.mountNode.firstChild;
-        const portalWrapper = new ReactWrapper(portal, portal);
+        const portalWrapper = getPortalWrapper(wrapper);
         const menuItem = portalWrapper.find(MenuItem);
 
         menuItem.at(1).simulate('click');

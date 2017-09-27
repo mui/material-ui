@@ -84,6 +84,7 @@ describe('<Tab />', () => {
         getClientRects: stub().returns({ length: 2 }),
       };
       instance.checkTextWrap();
+      wrapper.update();
       const label = wrapper
         .childAt(0)
         .childAt(0)
@@ -93,7 +94,7 @@ describe('<Tab />', () => {
         true,
         'should have labelWrapped class',
       );
-      assert.strictEqual(wrapper.state('wrappedText'), true, 'wrappedText state should be true');
+      assert.strictEqual(wrapper.state().wrappedText, true, 'wrappedText state should be true');
     });
   });
 

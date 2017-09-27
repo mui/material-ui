@@ -161,6 +161,7 @@ describe('<Tabs />', () => {
             <Tab />
             <Tab />
           </Tabs>,
+          { disableLifecycleMethods: true },
         );
         assert.strictEqual(
           wrapper2
@@ -169,6 +170,7 @@ describe('<Tabs />', () => {
             .props().indicator,
           false,
         );
+
         assert.strictEqual(
           wrapper2
             .find(Tab)
