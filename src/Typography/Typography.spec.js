@@ -64,12 +64,12 @@ describe('<Typography />', () => {
     });
   });
 
-  Object.entries({
-    primary: 'colorPrimary',
-    secondary: 'colorSecondary',
-    accent: 'colorAccent',
-    inherit: 'colorInherit',
-  }).forEach(([color, className]) => {
+  [
+    ['primary', 'colorPrimary'],
+    ['secondary', 'colorSecondary'],
+    ['accent', 'colorAccent'],
+    ['inherit', 'colorInherit'],
+  ].forEach(([color, className]) => {
     it(`should render ${color} color`, () => {
       const wrapper = shallow(<Typography color={(color: any)}>Hello</Typography>);
       assert.ok(classes[className] !== undefined);
