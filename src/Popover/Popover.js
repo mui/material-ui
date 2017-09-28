@@ -80,6 +80,8 @@ type Origin = {
 
 type DefaultProps = {
   classes: Object,
+  anchorOrigin: Origin,
+  transformOrigin: Origin,
 };
 
 export type Props = {
