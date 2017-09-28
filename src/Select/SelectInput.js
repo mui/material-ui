@@ -91,8 +91,6 @@ type State = {
  * @ignore - internal component.
  */
 class SelectInput extends React.Component<Props, State> {
-  props: AllProps;
-
   static muiName = 'SelectInput';
 
   state = {
