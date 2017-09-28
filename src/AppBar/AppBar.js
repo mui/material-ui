@@ -46,8 +46,8 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type Color = 'inherit' | 'primary' | 'accent' | 'default';
-type Position = 'static' | 'fixed' | 'absolute';
+export type Color = 'inherit' | 'primary' | 'accent' | 'default';
+export type Position = 'static' | 'fixed' | 'absolute';
 
 type DefaultProps = {
   classes: Object,

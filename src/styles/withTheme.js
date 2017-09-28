@@ -19,7 +19,7 @@ function getDefaultTheme() {
   return defaultTheme;
 }
 
-type InjectedProps = { theme: Object };
+export type InjectedProps = { theme: Object };
 
 // Provide the theme object as a property to the input component.
 const withTheme = (): HigherOrderComponent<{}, InjectedProps> => (Component: any): any => {

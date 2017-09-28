@@ -82,8 +82,6 @@ export type Props = {
   value?: string | number | Array<string | number>,
 };
 
-type AllProps = Props;
-
 type State = {
   open: boolean,
   anchorEl: ?HTMLElement,
@@ -92,7 +90,7 @@ type State = {
 /**
  * @ignore - internal component.
  */
-class SelectInput extends React.Component<AllProps, State> {
+class SelectInput extends React.Component<Props, State> {
   props: AllProps;
 
   static muiName = 'SelectInput';

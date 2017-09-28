@@ -73,7 +73,7 @@ export const styles = {
   },
 };
 
-type Origin = {
+export type Origin = {
   horizontal: 'left' | 'center' | 'right' | number,
   vertical: 'top' | 'center' | 'bottom' | number,
 };

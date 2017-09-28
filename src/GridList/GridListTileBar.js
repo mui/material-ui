@@ -63,8 +63,8 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type TitlePosition = 'top' | 'bottom';
-type ActionPosition = 'left' | 'right';
+export type TitlePosition = 'top' | 'bottom';
+export type ActionPosition = 'left' | 'right';
 
 type DefaultProps = {
   classes: Object,

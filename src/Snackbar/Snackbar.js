@@ -75,7 +75,7 @@ export const styles = (theme: Object) => {
   };
 };
 
-type Origin = {
+export type Origin = {
   horizontal?: 'left' | 'center' | 'right' | number,
   vertical?: 'top' | 'center' | 'bottom' | number,
 };

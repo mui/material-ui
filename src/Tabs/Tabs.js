@@ -121,7 +121,7 @@ type State = {
   mounted: boolean,
 };
 
-type TabsMeta = {
+export type TabsMeta = {
   scrollLeft: number,
   // ClientRect
   left: number,

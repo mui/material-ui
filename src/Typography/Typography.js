@@ -59,7 +59,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type Type =
+export type Type =
   | 'display4'
   | 'display3'
   | 'display2'

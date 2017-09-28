@@ -48,7 +48,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type LabelDisplayedRowsArgs = {
+export type LabelDisplayedRowsArgs = {
   from: number,
   to: number,
   count: number,

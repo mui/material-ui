@@ -122,7 +122,7 @@ type State = {
   checked?: boolean,
 };
 
-type Options = {
+export type Options = {
   defaultIcon?: Element<any>,
   defaultCheckedIcon?: Element<any>,
   inputType?: string,

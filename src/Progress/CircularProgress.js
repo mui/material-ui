@@ -69,8 +69,8 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type Color = 'primary' | 'accent';
-type Mode = 'determinate' | 'indeterminate';
+export type Color = 'primary' | 'accent';
+export type Mode = 'determinate' | 'indeterminate';
 
 type DefaultProps = {
   classes: Object,

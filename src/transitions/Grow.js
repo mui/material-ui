@@ -11,7 +11,7 @@ export function getScale(value: number) {
   return `scale(${value}, ${value ** 2})`;
 }
 
-type Duration = number | 'auto';
+export type Duration = number | 'auto';
 
 type DefaultProps = {
   transitionDuration: Duration,

@@ -10,7 +10,7 @@ export type Context = {
   table: Object,
 };
 
-type Padding = 'default' | 'checkbox' | 'dense' | 'none';
+export type Padding = 'default' | 'checkbox' | 'dense' | 'none';
 
 type Default = {
   padding: Padding,

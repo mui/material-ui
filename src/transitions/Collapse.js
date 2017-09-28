@@ -20,7 +20,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type TransitionDuration = number | 'auto';
+export type TransitionDuration = number | 'auto';
 
 type DefaultProps = {
   classes: Object,

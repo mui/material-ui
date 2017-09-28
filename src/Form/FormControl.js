@@ -32,7 +32,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type Margin = 'none' | 'dense' | 'normal';
+export type Margin = 'none' | 'dense' | 'normal';
 
 type DefaultProps = {
   disabled: boolean,
