@@ -19,6 +19,15 @@ export interface TablePaginationProps {
   rowsPerPageOptions?: number[];
 }
 
-declare const TablePagination: StyledComponent<TablePaginationProps>;
+export type TablePaginationClassKey =
+  | 'cell'
+  | 'toolbar'
+  | 'spacer'
+  | 'select'
+  | 'selectRoot'
+  | 'actions'
+  ;
+
+declare const TablePagination: StyledComponent<TablePaginationProps, TablePaginationClassKey>;
 
 export default TablePagination;
