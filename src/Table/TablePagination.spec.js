@@ -261,7 +261,7 @@ describe('<TablePagination />', () => {
       const wrapper = mount(<ExampleTable count={10} />);
       wrapper.setProps({ count: 0 });
       // now, there is one page, which is empty
-      assert.strictEqual(0, page);
+      assert.strictEqual(page, 0);
     });
   });
 });
