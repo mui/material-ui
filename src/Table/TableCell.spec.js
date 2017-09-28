@@ -70,7 +70,7 @@ describe('<TableCell />', () => {
 
   it('should render a th with the head class when in the context of a table head', () => {
     const wrapper = shallow(<TableCell />);
-    wrapper.setContext({ ...wrapper.options.context, table: { head: true } });
+    wrapper.setContext({ table: { head: true } });
     assert.strictEqual(wrapper.name(), 'th');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.head), true, 'should have the head class');
@@ -78,7 +78,7 @@ describe('<TableCell />', () => {
 
   it('should render a th with the footer class when in the context of a table footer', () => {
     const wrapper = shallow(<TableCell />);
-    wrapper.setContext({ ...wrapper.options.context, table: { footer: true } });
+    wrapper.setContext({ table: { footer: true } });
     assert.strictEqual(wrapper.name(), 'td');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.footer), true, 'should have the footer class');
@@ -92,7 +92,7 @@ describe('<TableCell />', () => {
 
   it('should render with the footer class when in the context of a table footer', () => {
     const wrapper = shallow(<TableCell />);
-    wrapper.setContext({ ...wrapper.options.context, table: { footer: true } });
+    wrapper.setContext({ table: { footer: true } });
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.footer), true, 'should have the footer class');
   });

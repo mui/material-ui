@@ -21,13 +21,7 @@ describe('<MenuList />', () => {
 
     it('should render a List', () => {
       assert.strictEqual(wrapper.name(), 'List');
-    });
-
-    it('should spread other props on the list', () => {
       assert.strictEqual(wrapper.props()['data-test'], 'hi');
-    });
-
-    it('should have the user classes', () => {
       assert.strictEqual(wrapper.hasClass('test-class'), true);
     });
   });

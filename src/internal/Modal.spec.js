@@ -32,7 +32,7 @@ describe('<Modal />', () => {
         <p>Hello World</p>
       </Modal>,
     );
-    assert.strictEqual(wrapper.node, null, 'should be null');
+    assert.strictEqual(wrapper.type(), null, 'should be null');
   });
 
   describe('show', () => {
@@ -217,7 +217,7 @@ describe('<Modal />', () => {
 
       it('should render the content into the portal', () => {
         wrapper.setProps({ show: true });
-        const portalLayer = wrapper.find('Portal').node.layer;
+        const portalLayer = wrapper.find('Portal').getNode().layer;
         const container = document.getElementById('container');
         const heading = document.getElementById('heading');
 

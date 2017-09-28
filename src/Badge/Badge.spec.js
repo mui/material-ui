@@ -93,7 +93,7 @@ describe('<Badge />', () => {
 
     assert.strictEqual(wrapper.contains(testChildren), true, 'should contain the children');
     assert.strictEqual(
-      wrapper.node.props.style.backgroundColor,
+      wrapper.props().style.backgroundColor,
       style.backgroundColor,
       'should overwrite badge backgroundColor',
     );
