@@ -10,7 +10,7 @@ export interface DrawerProps extends ModalProps {
   enterTransitionDuration?: number;
   leaveTransitionDuration?: number;
   open?: boolean;
-  SlideProps?: SlideProps & StyledComponentProps<any>;
+  SlideProps?: SlideProps;
   theme?: Theme;
   type?: 'permanent' | 'persistent' | 'temporary';
 }
