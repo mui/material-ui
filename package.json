@@ -147,7 +147,7 @@
     "nprogress": "^0.2.0",
     "nyc": "^11.2.1",
     "phantomjs-prebuilt": "^2.1.15",
-    "prettier": "1.7.0",
+    "prettier": "^1.7.2",
     "prismjs": "^1.8.1",
     "random-words": "0.0.1",
     "raw-loader": "^0.5.1",
