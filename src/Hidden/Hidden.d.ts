@@ -17,8 +17,6 @@ export interface HiddenProps {
   implementation?: 'js' | 'css';
 }
 
-export type HiddenClassKey = never;
-
-declare const Hidden: StyledComponent<HiddenProps, HiddenClassKey>;
+declare const Hidden: React.ComponentType<HiddenProps>;
 
 export default Hidden;
