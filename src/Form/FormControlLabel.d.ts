@@ -12,6 +12,12 @@ export type FormControlLabelProps = {
   value?: string;
 } & React.LabelHTMLAttributes<HTMLLabelElement>;
 
-declare const FormControlLabel: StyledComponent<FormControlLabelProps>;
+export type FormControlLabelClassKey =
+  | 'root'
+  | 'disabled'
+  | 'label'
+  ;
+
+declare const FormControlLabel: StyledComponent<FormControlLabelProps, FormControlLabelClassKey>;
 
 export default FormControlLabel;
