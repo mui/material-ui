@@ -6,6 +6,11 @@ export interface FormGroupProps
   row?: boolean;
 }
 
-declare const FormGroup: StyledComponent<FormGroupProps>;
+export type FormGroupClassKey =
+  | 'root'
+  | 'row'
+  ;
+
+declare const FormGroup: StyledComponent<FormGroupProps, FormGroupClassKey>;
 
 export default FormGroup;
