@@ -214,16 +214,42 @@ describe('<TablePagination />', () => {
       assert.strictEqual(page, 1);
     });
 
-    it('should not display 0 as start number if the table is empty ', () => {
+    it('should display 0 as start number if the table is empty ', () => {
+      const wrapper = mount(
+        <table>
+          <TableFooter>
+            <TablePagination
+              count={0}
+              page={0}
+              rowsPerPage={5}
+              onChangePage={noop}
+              onChangeRowsPerPage={noop}
+            />
+          </TableFooter>
+        </table>,
+      );
+      assert.strictEqual(
+        wrapper
+          .find('withStyles(Typography)')
+          .at(1)
+          .text(),
+        '0-0 of 0',
+      );
+    });
+
+    it('should call onChangePage with 0 if the table becomes empty', () => {
+      let page = 1;
       function ExampleTable(props) {
         // setProps only works on the mounted root element, so wrap the table
         return (
           <table>
             <TableFooter>
               <TablePagination
-                count={0}
-                page={0}
-                onChangePage={noop}
+                page={1}
+                rowsPerPage={5}
+                onChangePage={(event, newPage) => {
+                  page = newPage;
+                }}
                 onChangeRowsPerPage={noop}
                 {...props}
               />
@@ -232,16 +258,10 @@ describe('<TablePagination />', () => {
         );
       }
 
-      const wrapper = mount(<ExampleTable rowsPerPage={5} />);
-      wrapper.setProps({ rowsPerPage: 25 });
+      const wrapper = mount(<ExampleTable count={10} />);
+      wrapper.setProps({ count: 0 });
       // now, there is one page, which is empty
-      assert.strictEqual(
-        wrapper
-          .find('withStyles(Typography)')
-          .at(1)
-          .text(),
-        '0-0 of 0',
-      );
+      assert.strictEqual(0, page);
     });
   });
 });
