@@ -2,6 +2,10 @@ import { StyledComponent } from '..';
 
 export interface ListItemSecondaryActionProps {}
 
-declare const ListItemSecondaryAction: StyledComponent<ListItemSecondaryActionProps>;
+export type ListItemSecondaryActionClassKey =
+  | 'root'
+  ;
+
+declare const ListItemSecondaryAction: StyledComponent<ListItemSecondaryActionProps, ListItemSecondaryActionClassKey>;
 
 export default ListItemSecondaryAction;
