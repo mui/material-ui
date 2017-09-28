@@ -58,7 +58,7 @@ function getStyles(props, context, state) {
     rootWhenShown: {
       top: verticalPosition === 'top' ?
         touchOffsetTop : 36,
-      opacity: 0.9,
+      opacity: tooltip.opacity,
       transform: `translate(0px, ${offset}px)`,
       transition: `${transitions.easeOut('0ms', 'top', '0ms')}, ${
         transitions.easeOut('450ms', 'transform', '0ms')}, ${
