@@ -5,7 +5,7 @@ import { Style, TextStyle } from '../styles/createTypography';
 export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
   align?: PropTypes.Alignment;
   component?: React.ReactType;
-  color?: PropTypes.Color | 'secondary';
+  color?: PropTypes.Color | 'secondary' | 'error';
   gutterBottom?: boolean;
   headlineMapping?: { [type in TextStyle]: string };
   noWrap?: boolean;
