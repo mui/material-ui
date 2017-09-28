@@ -9,6 +9,27 @@ export interface LinearProgressProps
   valueBuffer?: number;
 }
 
-declare const LinearProgress: StyledComponent<LinearProgressProps>;
+export type LinearProgressClassKey =
+  | 'root'
+  | 'primaryColor'
+  | 'primaryColorBar'
+  | 'primaryDashed'
+  | 'accentColor'
+  | 'accentColorBar'
+  | 'accentDashed'
+  | 'bar'
+  | 'dashed'
+  | 'bufferBar2'
+  | 'rootBuffer'
+  | 'rootQuery'
+  | 'indeterminateBar1'
+  | 'indeterminateBar2'
+  | 'determinateBar1'
+  | 'bufferBar1'
+  | 'bufferBar2Primary'
+  | 'bufferBar2Accent'
+  ;
+
+declare const LinearProgress: StyledComponent<LinearProgressProps, LinearProgressClassKey>;
 
 export default LinearProgress;
