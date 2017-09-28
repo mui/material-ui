@@ -56,7 +56,7 @@ export {
   TableHead,
   TableRow,
   TableSortLabel,
-  TablePagination
+  TablePagination,
 } from './Table';
 export { default as Tabs, Tab } from './Tabs';
 export { default as Typography } from './Typography';
