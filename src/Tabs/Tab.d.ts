@@ -18,6 +18,25 @@ export type TabProps = {
   textColor?: string | 'accent' | 'primary' | 'inherit';
 } & Partial<Omit<ButtonBaseProps, 'onChange'>>;
 
-declare const Tab: StyledComponent<TabProps>;
+export type TabClassKey =
+  | 'root'
+  | 'rootLabelIcon'
+  | 'rootAccent'
+  | 'rootAccentSelected'
+  | 'rootAccentDisabled'
+  | 'rootPrimary'
+  | 'rootPrimarySelected'
+  | 'rootPrimaryDisabled'
+  | 'rootInherit'
+  | 'rootInheritSelected'
+  | 'rootInheritDisabled'
+  | 'fullWidth'
+  | 'wrapper'
+  | 'labelContainer'
+  | 'label'
+  | 'labelWrapped'
+  ;
+
+declare const Tab: StyledComponent<TabProps, TabClassKey>;
 
 export default Tab;
