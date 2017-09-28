@@ -9,6 +9,8 @@ export interface FadeProps extends TransitionProps {
   leaveTransitionDuration?: number;
 }
 
-declare const Fade: StyledComponent<FadeProps>;
+export type FadeClassKey = never;
+
+declare const Fade: StyledComponent<FadeProps, FadeClassKey>;
 
 export default Fade;
