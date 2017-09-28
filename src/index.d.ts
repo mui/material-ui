@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export type ClassNameMap<Names extends string = string> = Record<Names, string>;
+export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
 
 /**
  * Component exposed by `material-ui` are usually wrapped
@@ -12,14 +12,14 @@ export type ClassNameMap<Names extends string = string> = Record<Names, string>;
  * - `style`
  * - `innerRef`
  */
-export interface StyledComponentProps<Names extends string = string> {
+export interface StyledComponentProps<ClassKey extends string = string> {
   className?: string;
-  classes?: Partial<ClassNameMap<Names>>;
+  classes?: Partial<ClassNameMap<ClassKey>>;
   style?: Partial<React.CSSProperties>;
   innerRef?: React.Ref<any>;
 }
-export type StyledComponent<P = {}, Names extends string = string> =
-  React.ComponentType<P & StyledComponentProps<Names>>
+export type StyledComponent<P = {}, ClassKey extends string = string> =
+  React.ComponentType<P & StyledComponentProps<ClassKey>>
 
 export type Contrast = 'light' | 'dark' | 'brown';
 export interface Color {
