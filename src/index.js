@@ -53,10 +53,11 @@ export {
   default as Table,
   TableBody,
   TableCell,
+  TableFooter,
   TableHead,
+  TablePagination,
   TableRow,
   TableSortLabel,
-  TablePagination,
 } from './Table';
 export { default as Tabs, Tab } from './Tabs';
 export { default as Typography } from './Typography';
