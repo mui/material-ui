@@ -6,6 +6,8 @@ export type MenuListProps = {
   onKeyDown?: React.ReactEventHandler<React.KeyboardEvent<any>>;
 } & ListProps;
 
-declare const MenuList: StyledComponent<MenuListProps>;
+export type MenuListClassKey = never;
+
+declare const MenuList: StyledComponent<MenuListProps, MenuListClassKey>;
 
 export default MenuList;
