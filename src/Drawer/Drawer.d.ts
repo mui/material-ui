@@ -12,7 +12,7 @@ export interface DrawerProps extends ModalProps {
   open?: boolean;
   SlideProps?: SlideProps & StyledComponentProps<any>;
   theme?: Theme;
-  type: 'permanent' | 'persistent' | 'temporary';
+  type?: 'permanent' | 'persistent' | 'temporary';
 }
 
 declare const Drawer: StyledComponent<DrawerProps>;
