@@ -1,0 +1,26 @@
+{
+  "name": "create-react-app-with-flow",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "jss": "latest",
+    "jss-preset-default": "latest",
+    "material-ui": "next",
+    "prop-types": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-jss": "latest",
+    "react-scripts": "latest",
+    "recompose": "latest"
+  },
+  "devDependencies": {
+    "enzyme": "latest",
+    "flow-bin": "latest"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
