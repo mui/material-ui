@@ -17,6 +17,15 @@ export type TabsProps = {
   width?: string;
 } & Partial<Omit<ButtonBaseProps, 'onChange'>>;
 
-declare const Tabs: StyledComponent<TabsProps>;
+export type TabsClassKey =
+  | 'root'
+  | 'flexContainer'
+  | 'scrollingContainer'
+  | 'fixed'
+  | 'scrollable'
+  | 'centered'
+  ;
+
+declare const Tabs: StyledComponent<TabsProps, TabsClassKey>;
 
 export default Tabs;
