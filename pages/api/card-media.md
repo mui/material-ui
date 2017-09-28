@@ -8,7 +8,9 @@
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | classes | Object |  | Useful to extend the style applied to components. |
-| <span style="color: #31a148">image *</span> | string |  | Image to be displayed as a background image. Note that caller must specify height otherwise the image will not be visible. |
+| component | ElementType | 'div' | Component for rendering image. |
+| image | string |  | Image to be displayed as a background image. Either `image` or `src` prop must be specified. Note that caller must specify height otherwise the image will not be visible. |
+| src | string |  | An alias for `image` property. Available only with media components. Media components: `video`, `audio`, `picture`, `iframe`, `img`. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
@@ -17,6 +19,7 @@ Any other properties supplied will be [spread to the root element](/customizatio
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `root`
+- `rootMedia`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)
 section for more detail.
