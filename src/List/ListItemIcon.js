@@ -24,7 +24,7 @@ export type Props = {
    * The content of the component, normally `Icon`, `SvgIcon`,
    * or a `material-ui-icons` SVG icon component.
    */
-  children: Element<*>,
+  children: Element<any>,
   /**
    * Useful to extend the style applied to components.
    */

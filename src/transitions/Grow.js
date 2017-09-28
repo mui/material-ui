@@ -11,9 +11,10 @@ export function getScale(value: number) {
   return `scale(${value}, ${value ** 2})`;
 }
 
+type Duration = number | 'auto';
+
 type DefaultProps = {
-  theme: Object,
-  transitionDuration: 'auto',
+  transitionDuration: Duration,
 };
 
 export type Props = {
@@ -52,11 +53,11 @@ export type Props = {
   /**
    * @ignore
    */
-  theme?: Object,
+  theme: Object,
   /**
    * Set to 'auto' to automatically calculate transition time based on height
    */
-  transitionDuration?: number | 'auto',
+  transitionDuration?: Duration,
 };
 
 /**
@@ -64,7 +65,6 @@ export type Props = {
  */
 class Grow extends React.Component<DefaultProps & Props> {
   static defaultProps = {
-    theme: {},
     transitionDuration: 'auto',
   };
 
@@ -167,4 +167,4 @@ class Grow extends React.Component<DefaultProps & Props> {
   }
 }
 
-export default withTheme(Grow);
+export default withTheme()(Grow);

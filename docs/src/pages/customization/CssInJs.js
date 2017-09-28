@@ -1,4 +1,4 @@
-// @flow weak
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 import React from 'react';
 import PropTypes from 'prop-types';

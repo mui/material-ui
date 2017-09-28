@@ -85,7 +85,7 @@ export type Props = {
   /**
    * @ignore
    */
-  theme?: Object,
+  theme: Object,
 };
 
 class Slide extends React.Component<DefaultProps & Props> {
@@ -193,4 +193,4 @@ class Slide extends React.Component<DefaultProps & Props> {
   }
 }
 
-export default withTheme(Slide);
+export default withTheme()(Slide);

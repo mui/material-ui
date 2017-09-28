@@ -1,7 +1,6 @@
-// @flow weak
+// @flow
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
@@ -70,7 +69,57 @@ export const styles = (theme: Object) => ({
   },
 });
 
-function CircularProgress(props) {
+type Color = 'primary' | 'accent';
+type Mode = 'determinate' | 'indeterminate';
+
+type DefaultProps = {
+  classes: Object,
+  color: Color,
+  size: number,
+  mode: Mode,
+  value: number,
+  min: number,
+  max: number,
+};
+
+export type Props = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * The color of the component. It's using the theme palette when that makes sense.
+   */
+  color?: Color,
+  /**
+   * The max value of progress in determinate mode.
+   */
+  max?: number,
+  /**
+   * The min value of progress in determinate mode.
+   */
+  min?: number,
+  /**
+   * The mode of show your progress. Indeterminate
+   * for when there is no value for progress.
+   * Determinate for controlled progress value.
+   */
+  mode?: Mode,
+  /**
+   * The size of the circle.
+   */
+  size?: number,
+  /**
+   * The value of progress in determinate mode.
+   */
+  value?: number,
+};
+
+function CircularProgress(props: DefaultProps & Props) {
   const { classes, className, color, size, mode, value, min, max, ...other } = props;
   const radius = size / 2;
   const rootProps = {};
@@ -119,43 +168,6 @@ function CircularProgress(props) {
     </div>
   );
 }
-
-CircularProgress.propTypes = {
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * The color of the component. It's using the theme palette when that makes sense.
-   */
-  color: PropTypes.oneOf(['primary', 'accent']),
-  /**
-   * The max value of progress in determinate mode.
-   */
-  max: PropTypes.number,
-  /**
-   * The min value of progress in determinate mode.
-   */
-  min: PropTypes.number,
-  /**
-   * The mode of show your progress. Indeterminate
-   * for when there is no value for progress.
-   * Determinate for controlled progress value.
-   */
-  mode: PropTypes.oneOf(['determinate', 'indeterminate']),
-  /**
-   * The size of the circle.
-   */
-  size: PropTypes.number,
-  /**
-   * The value of progress in determinate mode.
-  */
-  value: PropTypes.number,
-};
 
 CircularProgress.defaultProps = {
   color: 'primary',

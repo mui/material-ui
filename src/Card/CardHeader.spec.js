@@ -29,18 +29,12 @@ describe('<CardHeader />', () => {
     let extraClasses;
 
     beforeEach(() => {
-      extraClasses = {
-        title: 'foo',
-        subheader: 'bar',
-      };
+      extraClasses = { title: 'foo', subheader: 'bar' };
       wrapper = shallow(
         <CardHeader
           title="Title"
           subheader="Subheader"
-          classes={{
-            title: extraClasses.title,
-            subheader: extraClasses.subheader,
-          }}
+          classes={{ title: extraClasses.title, subheader: extraClasses.subheader }}
         />,
       ).childAt(0);
     });

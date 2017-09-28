@@ -7,7 +7,7 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | $ReadOnlyArray |  | MenuList contents, normally `MenuItem`s. |
+| children | Node |  | MenuList contents, normally `MenuItem`s. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 

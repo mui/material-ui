@@ -17,11 +17,7 @@ describe('<ListItemAvatar />', () => {
       <ListItemAvatar className="foo">
         <Avatar className="bar" />
       </ListItemAvatar>,
-      {
-        context: {
-          dense: true,
-        },
-      },
+      { context: { dense: true } },
     );
   });
 

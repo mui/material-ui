@@ -28,7 +28,7 @@ export type Props = {
   /**
    * The content of the component, normally `Avatar`.
    */
-  children: Element<*>,
+  children: Element<any>,
   /**
    * Useful to extend the style applied to components.
    */

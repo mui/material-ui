@@ -10,10 +10,11 @@ export type Context = {
   table: Object,
 };
 
+type Padding = 'default' | 'checkbox' | 'dense' | 'none';
+
 type Default = {
-  padding: 'default' | 'checkbox' | 'dense' | 'none',
+  padding: Padding,
   numeric: boolean,
-  component: ElementType,
 };
 
 export type Props = {
@@ -41,7 +42,7 @@ export type Props = {
   /**
    * Sets the padding applied to the cell.
    */
-  padding?: 'default' | 'checkbox' | 'dense' | 'none',
+  padding?: Padding,
 };
 
 export const styles = (theme: Object) => ({
@@ -117,7 +118,6 @@ function TableCell(props: Default & Props, context: Context) {
 }
 
 TableCell.defaultProps = {
-  component: null,
   numeric: false,
   padding: 'default',
 };

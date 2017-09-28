@@ -7,6 +7,7 @@ import keycode from 'keycode';
 import withStyles from '../styles/withStyles';
 import CancelIcon from '../svg-icons/Cancel';
 import { emphasize, fade } from '../styles/colorManipulator';
+import Avatar from '../Avatar/Avatar';
 
 export const styles = (theme: Object) => {
   const height = 32;
@@ -91,7 +92,7 @@ export type Props = {
   /**
    * Avatar element.
    */
-  avatar?: Element<*>,
+  avatar?: Element<typeof Avatar>,
   /**
    * Useful to extend the style applied to components.
    */
@@ -103,7 +104,7 @@ export type Props = {
   /**
    * The content of the label.
    */
-  label?: Element<*>,
+  label?: string | Element<*>,
   /**
    * @ignore
    */
@@ -189,6 +190,7 @@ class Chip extends React.Component<DefaultProps & Props> {
 
     let avatar = null;
     if (avatarProp && React.isValidElement(avatarProp)) {
+      // $FlowFixMe - this looks strictly correct, not sure why it errors.
       avatar = React.cloneElement(avatarProp, {
         className: classNames(classes.avatar, avatarProp.props.className),
         childrenClassName: classNames(classes.avatarChildren, avatarProp.props.childrenClassName),

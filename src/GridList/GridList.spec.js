@@ -22,9 +22,7 @@ describe('<GridList />', () => {
   let shallow;
 
   before(() => {
-    shallow = createShallow({
-      dive: true,
-    });
+    shallow = createShallow({ dive: true });
   });
 
   it('should render a ul', () => {
@@ -148,9 +146,7 @@ describe('<GridList />', () => {
   });
 
   it('should render children and overwrite style', () => {
-    const style = {
-      backgroundColor: 'red',
-    };
+    const style = { backgroundColor: 'red' };
     const wrapper = shallow(
       <GridList style={style}>
         {tilesData.map(tile => (

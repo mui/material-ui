@@ -57,6 +57,13 @@ Touching “Cancel” in a confirmation dialog, or pressing Back, cancels the ac
 
 {{demo='pages/demos/dialogs/FullScreenDialog.js'}}
 
+## Form dialogs
+
+Form dialogs allow users to fill out form fields within a dialog.
+For example, if your site prompts for potential subscribers to fill in their email address, they can fill out the email field and touch 'Submit'
+
+{{demo='pages/demos/dialogs/FormDialog.js'}}
+
 ## Responsive full-screen
 
 You may make a `Dialog` responsively full screen the dialog using `withResponsiveFullScreen`. By default, `withResponsiveFullScreen()(Dialog)` responsively full screens *at or below* the `sm` [screen size](/layout/basics).

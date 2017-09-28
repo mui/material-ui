@@ -66,6 +66,7 @@ describe('<Menu />', () => {
 
   it('should pass anchorEl prop to Popover', () => {
     const el = {};
+    // $FlowExpectedError - just a test object
     const wrapper = shallow(<Menu anchorEl={el} />);
     assert.strictEqual(wrapper.props().anchorEl, el, 'should be the same object');
   });
@@ -135,6 +136,7 @@ describe('<Menu />', () => {
     let findDOMNodeStub;
 
     before(() => {
+      // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
       wrapper = mount(<Menu.Naked classes={classes} />);
       instance = wrapper.instance();
 
@@ -143,22 +145,16 @@ describe('<Menu />', () => {
       menuListSpy = {};
       menuListSpy.clientHeight = MENU_LIST_HEIGHT;
       menuListSpy.style = {};
-      menuListSpy.firstChild = {
-        focus: menuListFocusSpy,
-      };
+      menuListSpy.firstChild = { focus: menuListFocusSpy };
 
       findDOMNodeStub = stub(ReactDOM, 'findDOMNode').callsFake(arg => {
         if (arg === SELECTED_ITEM_KEY) {
-          return {
-            focus: selectedItemFocusSpy,
-          };
+          return { focus: selectedItemFocusSpy };
         }
         return menuListSpy;
       });
 
-      elementForHandleEnter = {
-        clientHeight: MENU_LIST_HEIGHT,
-      };
+      elementForHandleEnter = { clientHeight: MENU_LIST_HEIGHT };
     });
 
     after(() => {

@@ -1,7 +1,7 @@
-// @flow weak
+// @flow
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
@@ -15,7 +15,31 @@ export const styles = (theme: Object) => ({
   },
 });
 
-function DialogTitle(props) {
+type DefaultProps = {
+  classes: Object,
+};
+
+type Props = {
+  /**
+   * The content of the component.
+   */
+  children?: Node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * If `true`, the children won't be wrapped by a typography component.
+   * For instance, that can be useful to can render an h4 instead of a
+   */
+  disableTypography?: boolean,
+};
+
+function DialogTitle(props: DefaultProps & Props) {
   const { children, classes, className, disableTypography, ...other } = props;
 
   return (
@@ -24,26 +48,6 @@ function DialogTitle(props) {
     </div>
   );
 }
-
-DialogTitle.propTypes = {
-  /**
-   * The content of the component.
-   */
-  children: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * If `true`, the children won't be wrapped by a typography component.
-   * For instance, that can be useful to can render an h4 instead of a
-   */
-  disableTypography: PropTypes.bool,
-};
 
 DialogTitle.defaultProps = {
   disableTypography: false,

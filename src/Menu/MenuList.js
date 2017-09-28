@@ -2,7 +2,7 @@
 // @inheritedComponent List
 
 import React from 'react';
-import type { ChildrenArray, Node } from 'react';
+import type { Node } from 'react';
 import { findDOMNode } from 'react-dom';
 import keycode from 'keycode';
 import contains from 'dom-helpers/query/contains';
@@ -14,7 +14,7 @@ export type Props = {
   /**
    * MenuList contents, normally `MenuItem`s.
    */
-  children?: $ReadOnlyArray<ChildrenArray<Node>>,
+  children?: Node,
   /**
    * @ignore
    */

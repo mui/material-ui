@@ -2,7 +2,7 @@
 // @inheritedComponent ButtonBase
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
@@ -54,11 +54,47 @@ export const styles = (theme: Object) => ({
   },
 });
 
+type DefaultProps = {
+  classes: Object,
+};
+
+type Props = {
+  /**
+   * The icon element.
+   * If a string is provided, it will be used as an icon font ligature.
+   */
+  children?: Node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * The color of the component. It's using the theme palette when that makes sense.
+   */
+  color?: 'default' | 'inherit' | 'primary' | 'contrast' | 'accent',
+  /**
+   * If `true`, the button will be disabled.
+   */
+  disabled?: boolean,
+  /**
+   * If `true`, the ripple will be disabled.
+   */
+  disableRipple?: boolean,
+  /**
+   * Use that property to pass a ref callback to the root component.
+   */
+  rootRef?: Function,
+};
+
 /**
  * Refer to the [Icons](/style/icons) section of the documentation
  * regarding the available icon options.
  */
-function IconButton(props) {
+function IconButton(props: DefaultProps & Props) {
   const { children, classes, className, color, disabled, rootRef, ...other } = props;
 
   return (
@@ -95,38 +131,6 @@ function IconButton(props) {
     </ButtonBase>
   );
 }
-
-IconButton.propTypes = {
-  /**
-   * The icon element.
-   * If a string is provided, it will be used as an icon font ligature.
-   */
-  children: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * The color of the component. It's using the theme palette when that makes sense.
-   */
-  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'contrast', 'accent']),
-  /**
-   * If `true`, the button will be disabled.
-   */
-  disabled: PropTypes.bool,
-  /**
-   * If `true`, the ripple will be disabled.
-   */
-  disableRipple: PropTypes.bool,
-  /**
-   * Use that property to pass a ref callback to the root component.
-   */
-  rootRef: PropTypes.func,
-};
 
 IconButton.defaultProps = {
   color: 'default',

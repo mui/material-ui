@@ -1,7 +1,7 @@
 // @flow weak
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import type { Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
@@ -15,7 +15,26 @@ export const styles = (theme: Object) => ({
   gutters: theme.mixins.gutters({}),
 });
 
-function Toolbar(props) {
+type DefaultProps = {
+  classes: Object,
+};
+
+type Props = {
+  /**
+   * Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.
+   */
+  children?: Node,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * If `true`, disables gutter padding.
+   */
+  disableGutters?: boolean,
+};
+
+function Toolbar(props: DefaultProps & Props) {
   const { children, classes, className: classNameProp, disableGutters, ...other } = props;
 
   const className = classNames(
@@ -32,25 +51,6 @@ function Toolbar(props) {
     </div>
   );
 }
-
-Toolbar.propTypes = {
-  /**
-   * Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.
-   */
-  children: PropTypes.node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * If `true`, disables gutter padding.
-   */
-  disableGutters: PropTypes.bool,
-};
 
 Toolbar.defaultProps = {
   disableGutters: false,

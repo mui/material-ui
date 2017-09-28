@@ -1,7 +1,6 @@
-// @flow weak
+// @flow
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
@@ -29,7 +28,31 @@ export const styles = (theme: Object) => ({
   },
 });
 
-function Divider(props) {
+type DefaultProps = {
+  classes: Object,
+};
+
+type Props = {
+  absolute?: boolean,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
+  /**
+   * If `true`, the divider will be indented.
+   */
+  inset?: boolean,
+  /**
+   * If `true`, the divider will have a lighter color.
+   */
+  light?: boolean,
+};
+
+function Divider(props: DefaultProps & Props) {
   const { absolute, classes, className: classNameProp, inset, light, ...other } = props;
 
   const className = classNames(
@@ -44,26 +67,6 @@ function Divider(props) {
 
   return <hr className={className} {...other} />;
 }
-
-Divider.propTypes = {
-  absolute: PropTypes.bool,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * If `true`, the divider will be indented.
-   */
-  inset: PropTypes.bool,
-  /**
-   * If `true`, the divider will have a lighter color.
-   */
-  light: PropTypes.bool,
-};
 
 Divider.defaultProps = {
   absolute: false,

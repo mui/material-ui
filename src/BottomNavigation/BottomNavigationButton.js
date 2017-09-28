@@ -72,11 +72,11 @@ export type Props = {
   /**
    * The icon element. If a string is provided, it will be used as a font ligature.
    */
-  icon?: Element<*>,
+  icon?: string | Element<any>,
   /**
    * The label element.
    */
-  label?: Element<*>,
+  label?: string | Element<any>,
   /**
    * @ignore
    */

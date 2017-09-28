@@ -4,6 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
 import LinearProgress from './LinearProgress';
+import consoleErrorMock from '../../test/utils/consoleErrorMock';
 
 describe('<LinearProgress />', () => {
   let shallow;
@@ -82,7 +83,7 @@ describe('<LinearProgress />', () => {
   });
 
   it('should render with determinate classes for the primary color by default', () => {
-    const wrapper = shallow(<LinearProgress mode="determinate" />);
+    const wrapper = shallow(<LinearProgress value={1} mode="determinate" />);
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(
       wrapper.childAt(0).hasClass(classes.primaryColorBar),
@@ -97,7 +98,7 @@ describe('<LinearProgress />', () => {
   });
 
   it('should render with determinate classes for the primary color', () => {
-    const wrapper = shallow(<LinearProgress color="primary" mode="determinate" />);
+    const wrapper = shallow(<LinearProgress color="primary" value={1} mode="determinate" />);
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(
       wrapper.childAt(0).hasClass(classes.primaryColorBar),
@@ -112,7 +113,7 @@ describe('<LinearProgress />', () => {
   });
 
   it('should render with determinate classes for the accent color', () => {
-    const wrapper = shallow(<LinearProgress color="accent" mode="determinate" />);
+    const wrapper = shallow(<LinearProgress color="accent" value={1} mode="determinate" />);
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(
       wrapper.childAt(0).hasClass(classes.accentColorBar),
@@ -138,7 +139,7 @@ describe('<LinearProgress />', () => {
   });
 
   it('should render with buffer classes for the primary color by default', () => {
-    const wrapper = shallow(<LinearProgress mode="buffer" />);
+    const wrapper = shallow(<LinearProgress value={1} mode="buffer" />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(
       wrapper.childAt(0).hasClass(classes.primaryDashed),
@@ -168,7 +169,7 @@ describe('<LinearProgress />', () => {
   });
 
   it('should render with buffer classes for the primary color', () => {
-    const wrapper = shallow(<LinearProgress color="primary" mode="buffer" />);
+    const wrapper = shallow(<LinearProgress value={1} color="primary" mode="buffer" />);
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(
       wrapper.childAt(0).hasClass(classes.primaryDashed),
@@ -198,7 +199,7 @@ describe('<LinearProgress />', () => {
   });
 
   it('should render with buffer classes for the accent color', () => {
-    const wrapper = shallow(<LinearProgress color="accent" mode="buffer" />);
+    const wrapper = shallow(<LinearProgress value={1} color="accent" mode="buffer" />);
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the root class');
     assert.strictEqual(
       wrapper.childAt(0).hasClass(classes.accentDashed),
@@ -270,5 +271,30 @@ describe('<LinearProgress />', () => {
       true,
       'should have the indeterminateBar2 class',
     );
+  });
+
+  describe('prop: value', () => {
+    before(() => {
+      consoleErrorMock.spy();
+    });
+
+    after(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('should warn when not used as expected', () => {
+      shallow(<LinearProgress mode="determinate" value={undefined} />);
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.match(
+        consoleErrorMock.args()[0][0],
+        /Warning: Material-UI: you need to provide a value property/,
+      );
+      shallow(<LinearProgress mode="buffer" value={undefined} />);
+      assert.strictEqual(consoleErrorMock.callCount(), 2);
+      assert.match(
+        consoleErrorMock.args()[1][0],
+        /Warning: Material-UI: you need to provide a value property/,
+      );
+    });
   });
 });

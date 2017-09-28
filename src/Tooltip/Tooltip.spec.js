@@ -111,14 +111,10 @@ describe('<Tooltip />', () => {
     const children = getChildren(wrapper);
     assert.strictEqual(handleRequestOpen.callCount, 0);
     assert.strictEqual(handleRequestClose.callCount, 0);
-    children.simulate('mouseOver', {
-      type: 'mouseover',
-    });
+    children.simulate('mouseOver', { type: 'mouseover' });
     assert.strictEqual(handleRequestOpen.callCount, 1);
     assert.strictEqual(handleRequestClose.callCount, 0);
-    children.simulate('blur', {
-      type: 'blur',
-    });
+    children.simulate('blur', { type: 'blur' });
     assert.strictEqual(handleRequestOpen.callCount, 1);
     assert.strictEqual(handleRequestClose.callCount, 1);
   });
@@ -141,20 +137,10 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
       const children = getChildren(wrapper);
-      children.simulate('touchStart', {
-        type: 'touchstart',
-        persist: () => {},
-      });
-      children.simulate('touchEnd', {
-        type: 'touchend',
-        persist: () => {},
-      });
-      children.simulate('focus', {
-        type: 'focus',
-      });
-      children.simulate('mouseover', {
-        type: 'mouseover',
-      });
+      children.simulate('touchStart', { type: 'touchstart', persist: () => {} });
+      children.simulate('touchEnd', { type: 'touchend', persist: () => {} });
+      children.simulate('focus', { type: 'focus' });
+      children.simulate('mouseover', { type: 'mouseover' });
       assert.strictEqual(wrapper.state().open, false);
     });
 
@@ -165,22 +151,12 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
       const children = getChildren(wrapper);
-      children.simulate('touchStart', {
-        type: 'touchstart',
-        persist: () => {},
-      });
-      children.simulate('focus', {
-        type: 'focus',
-      });
-      children.simulate('mouseover', {
-        type: 'mouseover',
-      });
+      children.simulate('touchStart', { type: 'touchstart', persist: () => {} });
+      children.simulate('focus', { type: 'focus' });
+      children.simulate('mouseover', { type: 'mouseover' });
       clock.tick(1e3);
       assert.strictEqual(wrapper.state().open, true);
-      children.simulate('touchEnd', {
-        type: 'touchend',
-        persist: () => {},
-      });
+      children.simulate('touchEnd', { type: 'touchend', persist: () => {} });
       clock.tick(1500);
       assert.strictEqual(wrapper.state().open, false);
     });
@@ -192,12 +168,7 @@ describe('<Tooltip />', () => {
       const Hack = ({ style, innerRef, ...other }) => <div ref={innerRef} {...other} />;
 
       mount(
-        <Tooltip
-          title="Hello World"
-          PopperProps={{
-            component: Hack,
-          }}
-        >
+        <Tooltip title="Hello World" PopperProps={{ component: Hack }}>
           <button>Hello World</button>
         </Tooltip>,
       );
@@ -222,9 +193,7 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
       const children = getChildren(wrapper);
-      children.simulate('focus', {
-        type: 'focus',
-      });
+      children.simulate('focus', { type: 'focus' });
       assert.strictEqual(wrapper.state().open, false);
       clock.tick(111);
       assert.strictEqual(wrapper.state().open, true);
@@ -237,13 +206,9 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
       const children = getChildren(wrapper);
-      children.simulate('focus', {
-        type: 'focus',
-      });
+      children.simulate('focus', { type: 'focus' });
       assert.strictEqual(wrapper.state().open, true);
-      children.simulate('blur', {
-        type: 'blur',
-      });
+      children.simulate('blur', { type: 'blur' });
       assert.strictEqual(wrapper.state().open, true);
       clock.tick(111);
       assert.strictEqual(wrapper.state().open, false);

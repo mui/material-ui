@@ -9,7 +9,7 @@ Notice that this Component is incompatible with server side rendering.
 |:-----|:-----|:--------|:------------|
 | buttonClassName | string |  | The CSS class name of the scroll button elements. |
 | centered | boolean | false | If `true`, the tabs will be centered. This property is intended for large views. |
-| children | $ReadOnlyArray |  | The content of the component. |
+| children | Node |  | The content of the component. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | fullWidth | boolean | false | If `true`, the tabs will grow to use all the available space. This property is intended for small views. |
 | indicatorClassName | string |  | The CSS class name of the indicator element. |

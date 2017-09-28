@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
+import type { Node } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 
@@ -29,7 +30,15 @@ const styles = (theme: Object) => ({
   },
 });
 
-class TestViewer extends Component<$FlowFixMeProps> {
+type DefaultProps = {
+  classes: Object,
+};
+
+type Props = {
+  children?: Node,
+};
+
+class TestViewer extends Component<DefaultProps & Props> {
   getChildContext() {
     return {
       url: {
@@ -44,11 +53,6 @@ class TestViewer extends Component<$FlowFixMeProps> {
     return <div className={classes.root}>{children}</div>;
   }
 }
-
-TestViewer.propTypes = {
-  children: PropTypes.node,
-  classes: PropTypes.object.isRequired,
-};
 
 TestViewer.childContextTypes = {
   url: PropTypes.object,
