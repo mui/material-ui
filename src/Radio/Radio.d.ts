@@ -19,6 +19,12 @@ export interface RadioProps extends SwitchBaseProps {
   value?: string;
 }
 
-declare const Radio: StyledComponent<RadioProps>;
+export type RadioClassKey =
+  | 'default'
+  | 'checked'
+  | 'disabled'
+  ;
+
+declare const Radio: StyledComponent<RadioProps, RadioClassKey>;
 
 export default Radio;
