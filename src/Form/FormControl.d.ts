@@ -13,6 +13,13 @@ export interface FormControlProps
   component?: React.ReactType;
 }
 
-declare const FormControl: StyledComponent<FormControlProps>;
+export type FormControlClassKey =
+  | 'root'
+  | 'marginNormal'
+  | 'marginDense'
+  | 'fullWidth'
+  ;
+
+declare const FormControl: StyledComponent<FormControlProps, FormControlClassKey>;
 
 export default FormControl;
