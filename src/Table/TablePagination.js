@@ -119,7 +119,7 @@ class TablePagination extends React.Component<DefaultProps & Props> {
   };
 
   componentWillReceiveProps({ count, onChangePage, rowsPerPage }) {
-    const newLastPage = Math.ceil(count / rowsPerPage) - 1;
+    const newLastPage = Math.max(0, Math.ceil(count / rowsPerPage) - 1);
     if (this.props.page > newLastPage) {
       onChangePage(null, newLastPage);
     }
@@ -171,7 +171,7 @@ class TablePagination extends React.Component<DefaultProps & Props> {
             </Select>
             <Typography type="caption">
               {labelDisplayedRows({
-                from: page * rowsPerPage + 1,
+                from: count === 0 ? 0 : page * rowsPerPage + 1,
                 to: Math.min(count, (page + 1) * rowsPerPage),
                 count,
                 page,
