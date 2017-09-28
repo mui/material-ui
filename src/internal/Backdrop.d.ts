@@ -7,6 +7,11 @@ export interface BackdropProps {
   [prop: string]: any;
 }
 
-declare const Backdrop: StyledComponent<BackdropProps>;
+export type BackdropClassKey =
+  | 'root'
+  | 'invisible'
+  ;
+
+declare const Backdrop: StyledComponent<BackdropProps, BackdropClassKey>;
 
 export default Backdrop;
