@@ -2,6 +2,10 @@ import { StyledComponent } from '..';
 
 export interface ListItemIconProps {}
 
-declare const ListItemIcon: StyledComponent<ListItemIconProps>;
+export type ListItemIconClassKey =
+  | 'root'
+  ;
+
+declare const ListItemIcon: StyledComponent<ListItemIconProps, ListItemIconClassKey>;
 
 export default ListItemIcon;
