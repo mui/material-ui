@@ -21,7 +21,7 @@ export type Props = {
   /**
    * A single child content element.
    */
-  children?: Element<*>,
+  children?: Element<any>,
   /**
    * Callback fired before the component is entering
    */

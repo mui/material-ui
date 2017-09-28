@@ -41,7 +41,7 @@ export type Props = {
   /**
    * A single child content element.
    */
-  children?: Element<*>,
+  children?: Element<any>,
   /**
    * Direction the child element will enter from.
    */

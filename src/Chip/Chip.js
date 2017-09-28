@@ -104,7 +104,7 @@ export type Props = {
   /**
    * The content of the label.
    */
-  label?: string | Element<*>,
+  label?: string | Element<any>,
   /**
    * @ignore
    */

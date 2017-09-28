@@ -112,17 +112,17 @@ export type Props = {
   /**
    * The icon element. If a string is provided, it will be used as a font ligature.
    */
-  icon?: string | Element<*>,
+  icon?: string | Element<any>,
   /**
    * @ignore
    * For server side rendering consideration, we let the selected tab
    * render the indicator.
    */
-  indicator?: string | Element<*>,
+  indicator?: string | Element<any>,
   /**
    * The label element.
    */
-  label?: string | Element<*>,
+  label?: string | Element<any>,
   /**
    * @ignore
    */
