@@ -213,5 +213,35 @@ describe('<TablePagination />', () => {
       // now, the third page doesn't exist anymore
       assert.strictEqual(page, 1);
     });
+
+    it('should not display 0 as start number if the table is empty ', () => {
+      function ExampleTable(props) {
+        // setProps only works on the mounted root element, so wrap the table
+        return (
+          <table>
+            <TableFooter>
+              <TablePagination
+                count={0}
+                page={0}
+                onChangePage={noop}
+                onChangeRowsPerPage={noop}
+                {...props}
+              />
+            </TableFooter>
+          </table>
+        );
+      }
+
+      const wrapper = mount(<ExampleTable rowsPerPage={5} />);
+      wrapper.setProps({ rowsPerPage: 25 });
+      // now, there is one page, which is empty
+      assert.strictEqual(
+        wrapper
+          .find('withStyles(Typography)')
+          .at(1)
+          .text(),
+        '0-0 of 0',
+      );
+    });
   });
 });
