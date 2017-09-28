@@ -327,6 +327,7 @@ export default function getMuiTheme(muiTheme, ...more) {
     tooltip: {
       color: white,
       rippleBackgroundColor: grey700,
+      opacity: 0.9,
     },
   }, muiTheme, {
     baseTheme, // To provide backward compatibility.
