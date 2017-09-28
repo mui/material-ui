@@ -19,7 +19,7 @@ export type Props = {
   /**
    * The DOM element used to set the position of the menu.
    */
-  anchorEl?: ?HTMLElement,
+  anchorEl?: ?Object, // match Popover - at least HTMLElement | EventTarget | ?
   /**
    * Menu contents, normally `MenuItem`s.
    */
