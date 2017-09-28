@@ -2,6 +2,7 @@ import * as React from 'react';
 import { StyledComponent, PropTypes, StyledComponentProps } from '..';
 import { FormControlProps, FormHelperTextProps } from '../Form';
 import { InputProps, InputLabelProps } from '../Input';
+import { FormControlClassKey } from '../Form/FormControl'
 
 export type TextFieldProps = {
   autoComplete?: string;
@@ -37,6 +38,10 @@ export type TextFieldProps = {
   margin?: PropTypes.Margin;
 } & FormControlProps;
 
-declare const Input: StyledComponent<TextFieldProps>;
+export type TextFieldClassKey =
+  | FormControlClassKey
+  ;
+
+declare const Input: StyledComponent<TextFieldProps, TextFieldClassKey>;
 
 export default Input;
