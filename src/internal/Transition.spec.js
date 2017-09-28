@@ -170,11 +170,8 @@ describe('<Transition />', () => {
 
       wrapper = wrapper.setProps({
         in: false,
-
         onExit,
-
         onExiting,
-
         onExited() {
           assert.strictEqual(onExit.callCount, 1);
           assert.strictEqual(onExiting.callCount, 1);
@@ -191,17 +188,14 @@ describe('<Transition />', () => {
 
       wrapper = wrapper.setProps({
         in: false,
-
         onExit() {
           count += 1;
           assert.strictEqual(wrapper.state('status'), ENTERED);
         },
-
         onExiting() {
           count += 1;
           assert.strictEqual(wrapper.state('status'), EXITING);
         },
-
         onExited() {
           assert.strictEqual(wrapper.state('status'), EXITED);
           assert.strictEqual(count, 2);
@@ -217,17 +211,14 @@ describe('<Transition />', () => {
 
       wrapper = wrapper.setProps({
         in: false,
-
         onExit(node) {
           count += 1;
           assert.strictEqual(node.className, '');
         },
-
         onExiting(node) {
           count += 1;
           assert.strictEqual(node.className, 'test-exiting');
         },
-
         onExited(node) {
           assert.strictEqual(node.className, 'test-exit');
           assert.strictEqual(count, 2);
@@ -242,9 +233,7 @@ describe('<Transition />', () => {
       state = {};
 
       componentWillMount() {
-        this.setState({
-          in: this.props.initialIn, // eslint-disable-line react/prop-types
-        });
+        this.setState({ in: this.props.initialIn }); // eslint-disable-line react/prop-types
       }
 
       transition = null;
@@ -254,10 +243,7 @@ describe('<Transition />', () => {
       }
 
       render() {
-        const {
-          initialIn, // eslint-disable-line react/prop-types
-          ...other
-        } = this.props;
+        const { initialIn, ...other } = this.props; // eslint-disable-line react/prop-types
 
         return (
           <Transition

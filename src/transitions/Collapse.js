@@ -20,10 +20,11 @@ export const styles = (theme: Object) => ({
   },
 });
 
+export type TransitionDuration = number | 'auto';
+
 type DefaultProps = {
   classes: Object,
-  theme: Object,
-  transitionDuration: number,
+  transitionDuration: TransitionDuration,
 };
 
 export type Props = {
@@ -64,19 +65,18 @@ export type Props = {
    */
   onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
   /**
-   * @ignore
-   */
-  theme?: Object,
-  /**
    * Set to 'auto' to automatically calculate transition time based on height.
    */
-  transitionDuration?: number | string,
+  transitionDuration?: TransitionDuration,
+  /**
+   * @ignore
+   */
+  theme: Object,
 };
 
 class Collapse extends React.Component<DefaultProps & Props> {
   static defaultProps = {
     in: false,
-    theme: {},
     transitionDuration: 300,
   };
 

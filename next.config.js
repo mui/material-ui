@@ -5,7 +5,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { findPages } = require('./docs/src/modules/utils/find');
 
 const ENABLE_STATS = false;
-process.env.MATERIAL_UI_VERSION = pkg.version,
+process.env.MATERIAL_UI_VERSION = pkg.version;
 
 module.exports = {
   webpack: config => {

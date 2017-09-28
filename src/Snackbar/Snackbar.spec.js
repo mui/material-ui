@@ -72,9 +72,7 @@ describe('<Snackbar />', () => {
         />,
       );
 
-      wrapper.setProps({
-        open: true,
-      });
+      wrapper.setProps({ open: true });
       assert.strictEqual(handleRequestClose.callCount, 0);
       clock.tick(autoHideDuration);
       assert.strictEqual(handleRequestClose.callCount, 1);
@@ -93,14 +91,10 @@ describe('<Snackbar />', () => {
         />,
       );
 
-      wrapper.setProps({
-        open: true,
-      });
+      wrapper.setProps({ open: true });
       assert.strictEqual(handleRequestClose.callCount, 0);
       clock.tick(autoHideDuration / 2);
-      wrapper.setProps({
-        autoHideDuration: null,
-      });
+      wrapper.setProps({ autoHideDuration: null });
       clock.tick(autoHideDuration / 2);
       assert.strictEqual(handleRequestClose.callCount, 0);
     });
@@ -165,9 +159,7 @@ describe('<Snackbar />', () => {
 
       assert.strictEqual(handleRequestClose.callCount, 0);
       clock.tick(autoHideDuration / 2);
-      wrapper.setProps({
-        open: false,
-      });
+      wrapper.setProps({ open: false });
       clock.tick(autoHideDuration / 2);
       assert.strictEqual(handleRequestClose.callCount, 0);
     });
@@ -241,9 +233,7 @@ describe('<Snackbar />', () => {
     it('should be able show it after mounted', () => {
       const wrapper = shallow(<Snackbar open={false} message="" />);
       assert.strictEqual(wrapper.type(), null);
-      wrapper.setProps({
-        open: true,
-      });
+      wrapper.setProps({ open: true });
       assert.strictEqual(wrapper.find(Slide).length, 1, 'should use a Slide by default');
     });
   });

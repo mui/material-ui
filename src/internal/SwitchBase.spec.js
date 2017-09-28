@@ -17,7 +17,7 @@ function assertIsChecked(wrapper) {
   );
 
   const input = wrapper.find('input');
-  assert.strictEqual(input.node.checked, true, 'the DOM node should be checked');
+  assert.strictEqual(input.getNode().checked, true, 'the DOM node should be checked');
 
   const label = iconButton.childAt(0);
   const icon = label.childAt(0);
@@ -34,7 +34,7 @@ function assertIsNotChecked(wrapper) {
   );
 
   const input = wrapper.find('input');
-  assert.strictEqual(input.node.checked, false, 'the DOM node should not be checked');
+  assert.strictEqual(input.getNode().checked, false, 'the DOM node should not be checked');
 
   const label = iconButton.childAt(0);
   const icon = label.childAt(0);
@@ -53,9 +53,7 @@ describe('<SwitchBase />', () => {
 
   before(() => {
     SwitchBase = createSwitch();
-    shallow = createShallow({
-      dive: true,
-    });
+    shallow = createShallow({ dive: true });
     mount = createMount();
     classes = getClasses(<SwitchBase />);
   });
@@ -116,11 +114,7 @@ describe('<SwitchBase />', () => {
   });
 
   it('should pass value, disabled, checked, and name to the input', () => {
-    const props = {
-      name: 'gender',
-      disabled: true,
-      value: 'male',
-    };
+    const props = { name: 'gender', disabled: true, value: 'male' };
 
     const wrapper = shallow(<SwitchBase {...props} />);
     const input = wrapper.find('input');
@@ -161,6 +155,7 @@ describe('<SwitchBase />', () => {
 
     beforeEach(() => {
       wrapper = mount(
+        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
         <SwitchBase.Naked
           classes={{}}
           className="test-class"
@@ -176,9 +171,6 @@ describe('<SwitchBase />', () => {
         true,
         'should set instance.isControlled to true',
       );
-    });
-
-    it('should not not be checked', () => {
       assertIsNotChecked(wrapper);
     });
 
@@ -199,6 +191,7 @@ describe('<SwitchBase />', () => {
 
     beforeEach(() => {
       wrapper = mount(
+        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
         <SwitchBase.Naked
           classes={{}}
           className="test-class"
@@ -209,20 +202,26 @@ describe('<SwitchBase />', () => {
 
     it('should recognize an uncontrolled input', () => {
       assert.strictEqual(wrapper.instance().isControlled, false);
-    });
-
-    it('should not not be checked', () => {
       assertIsNotChecked(wrapper);
     });
 
     it('should check the checkbox', () => {
-      wrapper.find('input').node.click();
+      wrapper
+        .find('input')
+        .getNode()
+        .click();
       assertIsChecked(wrapper);
     });
 
     it('should uncheck the checkbox', () => {
-      wrapper.find('input').node.click();
-      wrapper.find('input').node.click();
+      wrapper
+        .find('input')
+        .getNode()
+        .click();
+      wrapper
+        .find('input')
+        .getNode()
+        .click();
       assertIsNotChecked(wrapper);
     });
   });
@@ -243,6 +242,7 @@ describe('<SwitchBase />', () => {
     before(() => {
       event = 'woofSwitchBase';
       onChangeSpy = spy();
+      // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
       wrapper = mount(<SwitchBase.Naked classes={{}} />);
       wrapper.setProps({ onChange: onChangeSpy });
       instance = wrapper.instance();

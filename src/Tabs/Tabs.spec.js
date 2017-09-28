@@ -12,6 +12,18 @@ import TabIndicator from './TabIndicator';
 import Tab from './Tab';
 
 const noop = () => {};
+const fakeTabs = {
+  getBoundingClientRect: () => ({}),
+  children: [
+    {
+      children: [
+        {
+          getBoundingClientRect: () => ({}),
+        },
+      ],
+    },
+  ],
+};
 
 describe('<Tabs />', () => {
   let mount;
@@ -32,6 +44,7 @@ describe('<Tabs />', () => {
     const wrapper = shallow(
       <Tabs width="md" onChange={noop} value={0}>
         <Tab />
+        <Tab />
       </Tabs>,
     );
     assert.strictEqual(wrapper.name(), 'div');
@@ -42,6 +55,7 @@ describe('<Tabs />', () => {
     it('should render with the user and root classes', () => {
       const wrapper = shallow(
         <Tabs width="md" onChange={noop} value={0} className="woofTabs">
+          <Tab />
           <Tab />
         </Tabs>,
       );
@@ -54,6 +68,7 @@ describe('<Tabs />', () => {
     it('should render with the centered class', () => {
       const wrapper = shallow(
         <Tabs width="md" onChange={noop} value={0} centered>
+          <Tab />
           <Tab />
         </Tabs>,
       );
@@ -234,6 +249,7 @@ describe('<Tabs />', () => {
       wrapper = shallow(
         <Tabs width="md" onChange={noop} value={0} scrollable>
           <Tab />
+          <Tab />
         </Tabs>,
       );
     });
@@ -250,7 +266,7 @@ describe('<Tabs />', () => {
 
     it('should response to scroll events', () => {
       const instance = wrapper.instance();
-      instance.tabs = { scrollLeft: 100 };
+      instance.tabs = { scrollLeft: 100, ...fakeTabs };
       spy(instance, 'updateScrollButtonState');
       const selector = `.${classes.scrollingContainer}.${classes.scrollable}`;
       wrapper.find(selector).simulate('scroll');
@@ -267,6 +283,7 @@ describe('<Tabs />', () => {
       const mountWrapper = mount(
         <Tabs width="md" onChange={noop} value={0} scrollable>
           <Tab />
+          <Tab />
         </Tabs>,
       );
       assert.strictEqual(mountWrapper.find('ScrollbarSize').length, 1, 'should be one');
@@ -278,6 +295,7 @@ describe('<Tabs />', () => {
     it('should not render with the scrollable class', () => {
       const wrapper = shallow(
         <Tabs width="md" onChange={noop} value={0}>
+          <Tab />
           <Tab />
         </Tabs>,
       );
@@ -303,6 +321,7 @@ describe('<Tabs />', () => {
       const wrapper = shallow(
         <Tabs width="md" onChange={noop} value={0} scrollable scrollButtons="on">
           <Tab />
+          <Tab />
         </Tabs>,
       );
       assert.strictEqual(wrapper.find(TabScrollButton).length, 2, 'should be two');
@@ -312,6 +331,7 @@ describe('<Tabs />', () => {
       const wrapper = shallow(
         <Tabs width="md" onChange={noop} value={0} scrollable scrollButtons="auto">
           <Tab />
+          <Tab />
         </Tabs>,
       );
       assert.strictEqual(wrapper.find(TabScrollButton).length, 2, 'should be two');
@@ -320,6 +340,7 @@ describe('<Tabs />', () => {
     it('should should not render scroll buttons automatically', () => {
       const wrapper = shallow(
         <Tabs width="sm" onChange={noop} value={0} scrollable scrollButtons="auto">
+          <Tab />
           <Tab />
         </Tabs>,
       );
@@ -333,6 +354,7 @@ describe('<Tabs />', () => {
     it('should handle window resize event', () => {
       const wrapper = shallow(
         <Tabs width="md" onChange={noop} value={0} scrollable scrollButtons="on">
+          <Tab />
           <Tab />
         </Tabs>,
       );
@@ -363,48 +385,35 @@ describe('<Tabs />', () => {
         wrapper = shallow(
           <Tabs width="md" onChange={noop} value={0} scrollable scrollButtons="on">
             <Tab />
+            <Tab />
           </Tabs>,
         );
         instance = wrapper.instance();
       });
 
       it('should set neither left nor right scroll button state', () => {
-        instance.tabs = {
-          scrollLeft: 0,
-          scrollWidth: 90,
-          clientWidth: 100,
-        };
+        instance.tabs = { scrollLeft: 0, scrollWidth: 90, clientWidth: 100, ...fakeTabs };
         instance.updateScrollButtonState();
         assert.strictEqual(wrapper.state().showLeftScroll, false, 'left scroll should be false');
         assert.strictEqual(wrapper.state().showRightScroll, false, 'right scroll should be false');
       });
 
       it('should set only left scroll button state', () => {
-        instance.tabs = {
-          scrollLeft: 1,
-        };
+        instance.tabs = { scrollLeft: 1, ...fakeTabs };
         instance.updateScrollButtonState();
         assert.strictEqual(wrapper.state().showLeftScroll, true, 'left scroll should be true');
         assert.strictEqual(wrapper.state().showRightScroll, false, 'right scroll should be false');
       });
 
       it('should set only right scroll button state', () => {
-        instance.tabs = {
-          scrollLeft: 0,
-          scrollWidth: 110,
-          clientWidth: 100,
-        };
+        instance.tabs = { scrollLeft: 0, scrollWidth: 110, clientWidth: 100, ...fakeTabs };
         instance.updateScrollButtonState();
         assert.strictEqual(wrapper.state().showLeftScroll, false, 'left scroll should be false');
         assert.strictEqual(wrapper.state().showRightScroll, true, 'right scroll should be true');
       });
 
       it('should set both left and right scroll button state', () => {
-        instance.tabs = {
-          scrollLeft: 1,
-          scrollWidth: 110,
-          clientWidth: 100,
-        };
+        instance.tabs = { scrollLeft: 1, scrollWidth: 110, clientWidth: 100, ...fakeTabs };
         instance.updateScrollButtonState();
         assert.strictEqual(wrapper.state().showLeftScroll, true, 'left scroll should be true');
         assert.strictEqual(wrapper.state().showRightScroll, true, 'right scroll should be true');
@@ -416,14 +425,11 @@ describe('<Tabs />', () => {
     let instance;
     let wrapper;
     let scrollSpy;
-    const dimensions = {
-      scrollLeft: 100,
-      clientWidth: 200,
-      scrollWidth: 1000,
-    };
+    const dimensions = { scrollLeft: 100, clientWidth: 200, scrollWidth: 1000 };
     before(() => {
       wrapper = shallow(
         <Tabs width="md" onChange={noop} value={0} scrollable scrollButtons={'on'}>
+          <Tab />
           <Tab />
         </Tabs>,
       );
@@ -463,6 +469,7 @@ describe('<Tabs />', () => {
       scrollStub = stub(scroll, 'left');
       const wrapper = shallow(
         <Tabs width="md" onChange={noop} value={0} scrollable>
+          <Tab />
           <Tab />
         </Tabs>,
       );

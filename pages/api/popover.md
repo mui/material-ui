@@ -9,7 +9,7 @@
 |:-----|:-----|:--------|:------------|
 | PaperProps | Object |  | Properties applied to the `Paper` element. |
 | anchorEl | Object |  | This is the DOM element that will be used to set the position of the popover. |
-| <span style="color: #31a148">anchorOrigin *</span> | signature | {  vertical: 'top',  horizontal: 'left',} | This is the point on the anchor where the popover's `anchorEl` will attach to.<br>Options: vertical: [top, center, bottom]; horizontal: [left, center, right]. |
+| anchorOrigin | signature | {  vertical: 'top',  horizontal: 'left',} | This is the point on the anchor where the popover's `anchorEl` will attach to.<br>Options: vertical: [top, center, bottom]; horizontal: [left, center, right]. |
 | <span style="color: #31a148">children *</span> | Node |  | The content of the component. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | elevation | number | 8 | The elevation of the popover. |
@@ -25,7 +25,7 @@
 | onExiting | TransitionCallback |  | Callback fired when the component is exiting |
 | onRequestClose | Function |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | open | boolean | false | If `true`, the popover is visible. |
-| <span style="color: #31a148">transformOrigin *</span> | signature | {  vertical: 'top',  horizontal: 'left',} | This is the point on the popover which will attach to the anchor's origin.<br>Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)]. |
+| transformOrigin | signature | {  vertical: 'top',  horizontal: 'left',} | This is the point on the popover which will attach to the anchor's origin.<br>Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)]. |
 | transitionDuration | union:&nbsp;number<br>&nbsp;'auto'<br> | 'auto' | Set to 'auto' to automatically calculate transition time based on height |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).

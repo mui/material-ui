@@ -26,9 +26,11 @@ Aside from the above composition trade-off, we enforce the following rules:
 
 ### Spread
 
- Undocumented properties supplied are spread to the root element.
-Let's say you want to disable the ripples on the `MenuItem`.
-You can take advantage of this behavior:
+Undocumented properties supplied are spread to the root element.
+For instance, the `className` property is applied to the root.
+
+Now, let's say you want to disable the ripples on the `MenuItem`.
+You can take advantage of the spread behavior:
 ```jsx
 <MenuItem disableRipple />
 ```
@@ -47,13 +49,16 @@ All the components accept a `classes` property to customize the styles.
 Internal components have:
 - their own `xxxProps` property when users might need to tweak internal render method's components. For instance, we expose a `inputProps` and a `InputProps` properties.
 - their own `xxxClassName` property when `classes` isn't enough.
-- their own flattened properties when they are key to the abstraction. For instance, we expose a `value` property.
-- their own `xxxRef` property when user might need to perform so imperative action.
-For instance, we expose a `inputRef` property.
+- their own flattened properties when they are key to the abstraction.
+  For instance, we expose a `value` property.
+- their own `xxxRef` property when user might need to perform imperative actions.
+  For instance, we expose a `inputRef` property to access the native `input` on the `Input` component.
+  You fill often find a `rootRef` property, this property is applied as a `ref` to the root element of the component
 
 ### Property naming
 
-The name of the boolean properties should be chosen based on the default value. We are following the HTML specification. For instance, the `disabled` attribute on an input element. This choice allows the shorthand notation.
+The name of the boolean properties should be chosen based on the default value. We are following the HTML specification.
+For instance, the `disabled` attribute on an input element. This choice allows the shorthand notation.
 
 ### Controllable components
 

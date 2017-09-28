@@ -8,12 +8,12 @@ regarding the available icon options.
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | node |  | The icon element. If a string is provided, it will be used as an icon font ligature. |
-| classes | object |  | Useful to extend the style applied to components. |
-| color | enum:&nbsp;'default', 'inherit', 'primary', 'contrast', 'accent'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |
-| disableRipple | bool | false | If `true`, the ripple will be disabled. |
-| disabled | bool | false | If `true`, the button will be disabled. |
-| rootRef | function |  | Use that property to pass a ref callback to the root component. |
+| children | Node |  | The icon element. If a string is provided, it will be used as an icon font ligature. |
+| classes | Object |  | Useful to extend the style applied to components. |
+| color | union:&nbsp;'default', 'inherit', 'primary', 'contrast', 'accent'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |
+| disableRipple | boolean | false | If `true`, the ripple will be disabled. |
+| disabled | boolean | false | If `true`, the button will be disabled. |
+| rootRef | Function |  | Use that property to pass a ref callback to the root component. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 

@@ -17,12 +17,8 @@ describe('material-ui-codemod', () => {
     describe('color-imports', () => {
       it('update color module imports', () => {
         const actual = transform(
-          {
-            source: read('./color-imports.spec/actual.js'),
-          },
-          {
-            jscodeshift: jscodeshift,
-          },
+          { source: read('./color-imports.spec/actual.js') },
+          { jscodeshift: jscodeshift },
         );
 
         const expected = read('./color-imports.spec/expected.js');

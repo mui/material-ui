@@ -17,7 +17,8 @@
 | leaveTransitionDuration | number | duration.leavingScreen | Customizes duration of leave animation (ms) |
 | onRequestClose | Function |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | open | boolean | false | If `true`, the drawer is open. |
-| <span style="color: #31a148">type *</span> | union:&nbsp;'permanent'<br>&nbsp;'persistent'<br>&nbsp;'temporary'<br> | 'temporary' | The type of drawer. |
+| <span style="color: #31a148">theme *</span> | Object |  |  |
+| type | union:&nbsp;'permanent'<br>&nbsp;'persistent'<br>&nbsp;'temporary'<br> | 'temporary' | The type of drawer. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
@@ -25,12 +26,14 @@ Any other properties supplied will be [spread to the root element](/customizatio
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `paper`
-- `anchorLeft`
-- `anchorRight`
-- `anchorTop`
-- `anchorBottom`
 - `docked`
+- `paper`
+- `paperAnchorLeft`
+- `paperAnchorRight`
+- `paperAnchorTop`
+- `paperAnchorBottom`
+- `paperAnchorDockedLeft`
+- `paperAnchorDockedRight`
 - `modal`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)

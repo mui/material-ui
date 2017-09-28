@@ -12,7 +12,6 @@ export type SnackbarProps = {
   autoHideDuration?: number;
   resumeHideDuration?: number;
   enterTransitionDuration?: number;
-  key?: number;
   leaveTransitionDuration?: number;
   message?: React.ReactElement<any>;
   onMouseEnter?: React.MouseEventHandler<any>;

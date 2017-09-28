@@ -535,7 +535,7 @@ class Input extends React.Component<DefaultProps & Props, State> {
       }
     }
 
-    return (
+    const renderInput = coercedValue => (
       <div onBlur={this.handleBlur} onFocus={this.handleFocus} className={className} {...other}>
         <InputComponent
           autoComplete={autoComplete}
@@ -546,7 +546,7 @@ class Input extends React.Component<DefaultProps & Props, State> {
           onKeyDown={onKeyDown}
           disabled={disabled}
           required={required ? true : undefined}
-          value={value}
+          value={coercedValue}
           id={id}
           name={name}
           defaultValue={defaultValue}
@@ -558,6 +558,12 @@ class Input extends React.Component<DefaultProps & Props, State> {
         />
       </div>
     );
+
+    // Textarea value coercion
+    if (InputComponent === Textarea) {
+      return renderInput(value ? String(value) : undefined);
+    }
+    return renderInput(value);
   }
 }
 

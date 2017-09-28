@@ -1,5 +1,5 @@
-// flow-typed signature: 30ac0f0790b16588aed9852e737dc9ff
-// flow-typed version: 6344f23a7f/recompose_v0.24.x/flow_>=v0.53.x
+// flow-typed signature: fc6a058d5d46722f03683e37313a8f3e
+// flow-typed version: 2cf075b779/recompose_v0.24.x/flow_>=v0.55.x
 
 /**
  * 1) Types give additional constraint on a language, recompose was written on the untyped language
@@ -65,64 +65,6 @@ declare module "recompose" {
 
   declare type UnaryFn<A, R> = (a: A) => R;
 
-  declare type Compose = (<A, B, C, D, E, F, G, H, I>(
-    hi: UnaryFn<H, I>,
-    gh: UnaryFn<G, H>,
-    fg: UnaryFn<F, G>,
-    ef: UnaryFn<E, F>,
-    de: UnaryFn<D, E>,
-    cd: UnaryFn<C, D>,
-    bc: UnaryFn<B, C>,
-    ab: UnaryFn<A, B>,
-    ...rest: Array<void>
-  ) => UnaryFn<A, I>) &
-    (<A, B, C, D, E, F, G, H>(
-      gh: UnaryFn<G, H>,
-      fg: UnaryFn<F, G>,
-      ef: UnaryFn<E, F>,
-      de: UnaryFn<D, E>,
-      cd: UnaryFn<C, D>,
-      bc: UnaryFn<B, C>,
-      ab: UnaryFn<A, B>,
-      ...rest: Array<void>
-    ) => UnaryFn<A, H>) &
-    (<A, B, C, D, E, F, G>(
-      fg: UnaryFn<F, G>,
-      ef: UnaryFn<E, F>,
-      de: UnaryFn<D, E>,
-      cd: UnaryFn<C, D>,
-      bc: UnaryFn<B, C>,
-      ab: UnaryFn<A, B>,
-      ...rest: Array<void>
-    ) => UnaryFn<A, G>) &
-    (<A, B, C, D, E, F>(
-      ef: UnaryFn<E, F>,
-      de: UnaryFn<D, E>,
-      cd: UnaryFn<C, D>,
-      bc: UnaryFn<B, C>,
-      ab: UnaryFn<A, B>,
-      ...rest: Array<void>
-    ) => UnaryFn<A, F>) &
-    (<A, B, C, D, E>(
-      de: UnaryFn<D, E>,
-      cd: UnaryFn<C, D>,
-      bc: UnaryFn<B, C>,
-      ab: UnaryFn<A, B>,
-      ...rest: Array<void>
-    ) => UnaryFn<A, E>) &
-    (<A, B, C, D>(
-      cd: UnaryFn<C, D>,
-      bc: UnaryFn<B, C>,
-      ab: UnaryFn<A, B>,
-      ...rest: Array<void>
-    ) => UnaryFn<A, D>) &
-    (<A, B, C>(
-      bc: UnaryFn<B, C>,
-      ab: UnaryFn<A, B>,
-      ...rest: Array<void>
-    ) => UnaryFn<A, C>) &
-    (<A, B>(ab: UnaryFn<A, B>, ...rest: Array<void>) => UnaryFn<A, B>);
-
   // -----------------------------------------------------------------
   // Public declarations
   // -----------------------------------------------------------------
@@ -134,7 +76,7 @@ declare module "recompose" {
     Component<Enhanced>
   >;
 
-  declare export var compose: Compose;
+  declare export var compose: $Compose;
 
   // ---------------------------------------------------------------------------
   // ----------------===<<<HOCs with good flow support>>>===--------------------
@@ -167,7 +109,7 @@ declare module "recompose" {
   ): HOC<
     {
       ...$Exact<Enhanced>,
-      ...State,
+      ...$Exact<State>,
       ...$ObjMap<StateHandlers, ExtractStateHandlersCodomain>
     },
     Enhanced

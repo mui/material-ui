@@ -7,9 +7,9 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | node |  | Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`. |
-| classes | object |  | Useful to extend the style applied to components. |
-| disableGutters | bool | false | If `true`, disables gutter padding. |
+| children | Node |  | Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`. |
+| classes | Object |  |  |
+| disableGutters | boolean | false | If `true`, disables gutter padding. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 

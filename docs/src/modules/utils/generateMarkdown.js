@@ -160,7 +160,7 @@ function generateProps(reactAPI) {
       let defaultValue = '';
 
       if (prop.defaultValue) {
-        defaultValue = prop.defaultValue.value.replace(/\n/g, '');
+        defaultValue = prop.defaultValue.value.replace(/\n/g, '').replace(/</g, '&lt;');
       }
 
       if (prop.required) {

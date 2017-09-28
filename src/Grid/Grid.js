@@ -142,7 +142,7 @@ export const styles = (theme: Object) => ({
   }, {}),
 });
 
-type GridSizes = boolean | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+export type GridSizes = boolean | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 type DefaultProps = {
   classes: Object,
@@ -310,6 +310,7 @@ if (process.env.NODE_ENV !== 'production') {
 
   GridWrapper = (props: any) => <Grid {...props} />;
 
+  // $FlowFixMe - cannot mix legacy propTypes with current HOC pattern - https://github.com/facebook/flow/issues/4644#issuecomment-332530909
   GridWrapper.propTypes = {
     align: requireProp('container'),
     direction: requireProp('container'),

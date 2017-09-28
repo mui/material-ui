@@ -11,7 +11,7 @@ import { isMuiElement } from '../utils/reactHelpers';
 
 type DefaultProps = {
   classes: Object,
-  input: Element<*>,
+  input: Element<any>,
   native: boolean,
   multiple: boolean,
 };
@@ -64,18 +64,23 @@ export const styles = (theme: Object) => ({
 
 export type Props = {
   /**
+   * If true, the width of the popover will automatically be set according to the items inside the
+   * menu, otherwise it will be at least the width of the select input.
+   */
+  autoWidth?: boolean,
+  /**
    * The option elements to populate the select with.
    * Can be some `MenuItem` when `native` is false and `option` when `native` is true.
    */
-  children: ChildrenArray<*>,
+  children: $ReadOnlyArray<ChildrenArray<*>>,
   /**
    * Useful to extend the style applied to components.
    */
   classes?: Object,
   /**
-   * An `Input` element.
+   * An `Input` element; does not have to be a material-ui specific `Input`.
    */
-  input?: Element<*>,
+  input?: Element<any>,
   /**
    * If `true`, the component will be using a native `select` element.
    */
@@ -99,10 +104,18 @@ export type Props = {
   value?: Array<string | number> | string | number,
 };
 
-type AllProps = DefaultProps & Props;
-
-function Select(props: AllProps) {
-  const { children, classes, input, native, multiple, MenuProps, renderValue, ...other } = props;
+function Select(props: DefaultProps & Props) {
+  const {
+    autoWidth,
+    children,
+    classes,
+    input,
+    native,
+    multiple,
+    MenuProps,
+    renderValue,
+    ...other
+  } = props;
 
   // Instead of `Element<typeof Input>` to have more flexibility.
   warning(
@@ -119,7 +132,8 @@ function Select(props: AllProps) {
     inputComponent: SelectInput,
     ...other,
     inputProps: {
-      ...input.props.inputProps,
+      ...(input ? input.props.inputProps : {}),
+      autoWidth,
       children,
       classes,
       native,
@@ -131,6 +145,7 @@ function Select(props: AllProps) {
 }
 
 Select.defaultProps = {
+  autoWidth: false,
   input: <Input />,
   native: false,
   multiple: false,

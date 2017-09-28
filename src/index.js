@@ -53,7 +53,9 @@ export {
   default as Table,
   TableBody,
   TableCell,
+  TableFooter,
   TableHead,
+  TablePagination,
   TableRow,
   TableSortLabel,
 } from './Table';

@@ -113,11 +113,7 @@ describe('<TextField />', () => {
 
     describe('prop: InputProps', () => {
       it('should apply additional properties to the Input component', () => {
-        wrapper.setProps({
-          InputProps: {
-            inputClassName: 'fullWidth',
-          },
-        });
+        wrapper.setProps({ InputProps: { inputClassName: 'fullWidth' } });
         assert.strictEqual(wrapper.find(Input).props().inputClassName, 'fullWidth');
       });
     });
@@ -125,37 +121,17 @@ describe('<TextField />', () => {
 
   describe('prop: inputProps', () => {
     it('should apply additional properties to the Input component', () => {
-      const wrapper = mount(
-        <TextField
-          inputProps={{
-            readOnly: true,
-          }}
-        />,
-      );
+      const wrapper = mount(<TextField inputProps={{ readOnly: true }} />);
       assert.strictEqual(wrapper.find('input').props().readOnly, true);
     });
   });
 
   describe('prop: select', () => {
     it('should be able to render a select as expected', () => {
-      const currencies = [
-        {
-          value: 'USD',
-          label: '$',
-        },
-        {
-          value: 'BTC',
-          label: '฿',
-        },
-      ];
+      const currencies = [{ value: 'USD', label: '$' }, { value: 'BTC', label: '฿' }];
 
       const wrapper = shallow(
-        <TextField
-          select
-          SelectProps={{
-            native: true,
-          }}
-        >
+        <TextField select SelectProps={{ native: true }}>
           {currencies.map(option => (
             <option key={option.value} value={option.value}>
               {option.label}

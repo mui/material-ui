@@ -12,20 +12,12 @@ describe('createMuiTheme', () => {
   });
 
   it('should have the custom palette', () => {
-    const muiTheme = createMuiTheme({
-      palette: { primary: deepOrange, secondary: green },
-    });
+    const muiTheme = createMuiTheme({ palette: { primary: deepOrange, secondary: green } });
     assert.strictEqual(muiTheme.palette.primary, deepOrange, 'should have a palette');
   });
 
   it('should allow providing a partial structure', () => {
-    const muiTheme = createMuiTheme({
-      transitions: {
-        duration: {
-          shortest: 150,
-        },
-      },
-    });
+    const muiTheme = createMuiTheme({ transitions: { duration: { shortest: 150 } } });
     assert.notStrictEqual(muiTheme.transitions.duration.shorter, undefined);
   });
 });

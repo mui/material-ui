@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { Node, Element } from 'react';
+import type { ComponentType, Element, Node } from 'react';
 import classNames from 'classnames';
 import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
@@ -75,15 +75,13 @@ export const styles = (theme: Object) => {
   };
 };
 
-type Origin = {
+export type Origin = {
   horizontal?: 'left' | 'center' | 'right' | number,
   vertical?: 'top' | 'center' | 'bottom' | number,
 };
 
 type DefaultProps = {
   anchorOrigin: Origin,
-  autoHideDuration: ?number,
-  resumeHideDuration: ?number,
   classes: Object,
 };
 
@@ -100,7 +98,7 @@ export type Props = {
    * The number of milliseconds to wait before automatically dismissing.
    * This behavior is disabled by default with the `null` value.
    */
-  autoHideDuration?: number,
+  autoHideDuration?: ?number,
   /**
    * The number of milliseconds to wait before dismissing after user interaction.
    * If `autoHideDuration` property isn't specified, it does nothing.
@@ -112,7 +110,7 @@ export type Props = {
    * If you wish the take control over the children of the component you can use that property.
    * When using it, no `SnackbarContent` component will be rendered.
    */
-  children?: Element<*>,
+  children?: Element<any>,
   /**
    * Useful to extend the style applied to components.
    */
@@ -196,7 +194,7 @@ export type Props = {
   /**
    * Object with Transition component, props & create Fn.
    */
-  transition?: Element<*>,
+  transition?: ComponentType<*> | Element<any>,
 };
 
 type State = {
@@ -206,8 +204,6 @@ type State = {
 class Snackbar extends React.Component<DefaultProps & Props, State> {
   static defaultProps = {
     anchorOrigin: { vertical: 'bottom', horizontal: 'center' },
-    autoHideDuration: null,
-    resumeHideDuration: null,
     enterTransitionDuration: duration.enteringScreen,
     leaveTransitionDuration: duration.leavingScreen,
   };
@@ -264,7 +260,7 @@ class Snackbar extends React.Component<DefaultProps & Props, State> {
       }
 
       this.props.onRequestClose(null, 'timeout');
-    }, autoHideDuration || this.props.autoHideDuration);
+    }, autoHideDuration || this.props.autoHideDuration || 0);
   }
 
   handleMouseEnter = (event: SyntheticUIEvent<>) => {
@@ -301,7 +297,7 @@ class Snackbar extends React.Component<DefaultProps & Props, State> {
         this.setAutoHideTimer(this.props.resumeHideDuration);
         return;
       }
-      this.setAutoHideTimer(this.props.autoHideDuration * 0.5);
+      this.setAutoHideTimer((this.props.autoHideDuration || 0) * 0.5);
     }
   };
 
@@ -360,6 +356,7 @@ class Snackbar extends React.Component<DefaultProps & Props, State> {
     if (typeof transitionProp === 'function') {
       transition = React.createElement(transitionProp, transitionProps, transitionContent);
     } else {
+      // $FlowFixMe - rosskevin - figure this out later
       transition = React.cloneElement(
         transitionProp || <Slide direction={vertical === 'top' ? 'down' : 'up'} />,
         transitionProps,

@@ -27,4 +27,4 @@ ThemeDefault.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withTheme(ThemeDefault);
+export default withTheme()(ThemeDefault);

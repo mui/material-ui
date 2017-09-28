@@ -73,13 +73,15 @@ export const styles = {
   },
 };
 
-type Origin = {
+export type Origin = {
   horizontal: 'left' | 'center' | 'right' | number,
   vertical: 'top' | 'center' | 'bottom' | number,
 };
 
 type DefaultProps = {
   classes: Object,
+  anchorOrigin: Origin,
+  transformOrigin: Origin,
 };
 
 export type Props = {
@@ -96,7 +98,7 @@ export type Props = {
    * vertical: [top, center, bottom];
    * horizontal: [left, center, right].
    */
-  anchorOrigin: Origin,
+  anchorOrigin?: Origin,
   /**
    * The content of the component.
    */
@@ -183,7 +185,7 @@ export type Props = {
    * vertical: [top, center, bottom, x(px)];
    * horizontal: [left, center, right, x(px)].
    */
-  transformOrigin: Origin,
+  transformOrigin?: Origin,
   /**
    * Set to 'auto' to automatically calculate transition time based on height
    */
@@ -323,7 +325,7 @@ class Popover extends React.Component<DefaultProps & Props> {
       warning(
         this.props.anchorOrigin.vertical === 'top',
         [
-          'Material-UI: You can change the `anchorOrigin.vertical` value when also ',
+          'Material-UI: you can change the `anchorOrigin.vertical` value when also ',
           'providing the `getContentAnchorEl` property. Pick one.',
         ].join(),
       );

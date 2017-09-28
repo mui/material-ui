@@ -4,7 +4,7 @@ components: Dialog, DialogTitle, DialogContent, DialogActions
 
 # Dialogs
 
-[Dialogs](https://material.google.com/components/dialogs.html) inform users about a specific task and may contain critical information, require decisions, or involve multiple tasks.
+[Dialogs](https://material.io/guidelines/components/dialogs.html) inform users about a specific task and may contain critical information, require decisions, or involve multiple tasks.
 
 Dialogs contain text and UI controls.
 They retain focus until dismissed or a required action has been taken.
@@ -56,6 +56,13 @@ Touching “Cancel” in a confirmation dialog, or pressing Back, cancels the ac
 ## Full-screen dialogs
 
 {{demo='pages/demos/dialogs/FullScreenDialog.js'}}
+
+## Form dialogs
+
+Form dialogs allow users to fill out form fields within a dialog.
+For example, if your site prompts for potential subscribers to fill in their email address, they can fill out the email field and touch 'Submit'
+
+{{demo='pages/demos/dialogs/FormDialog.js'}}
 
 ## Responsive full-screen
 

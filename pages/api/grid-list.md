@@ -7,11 +7,11 @@
 ## Props
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| cellHeight | union:&nbsp;number<br>&nbsp;[object Object]<br> | 180 | Number of px for one cell height. You can set `'auto'` if you want to let the children determine the height. |
-| <span style="color: #31a148">children *</span> | node |  | Grid Tiles that will be in Grid List. |
-| classes | object |  | Useful to extend the style applied to components. |
+| cellHeight | union:&nbsp;number<br>&nbsp;'auto'<br> | 180 | Number of px for one cell height. You can set `'auto'` if you want to let the children determine the height. |
+| <span style="color: #31a148">children *</span> | Node |  | Grid Tiles that will be in Grid List. |
+| classes | Object |  | Useful to extend the style applied to components. |
 | cols | number | 2 | Number of columns. |
-| component | union:&nbsp;string<br>&nbsp;func<br> | 'ul' | The component used for the root node. Either a string to use a DOM element or a component. By default we map the type to a good default headline component. |
+| component | ElementType | 'ul' | The component used for the root node. Either a string to use a DOM element or a component. By default we map the type to a good default headline component. |
 | spacing | number | 4 | Number of px for the spacing between tiles. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).

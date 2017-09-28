@@ -48,6 +48,9 @@ export const styles = (theme: Object) => ({
   colorInherit: {
     color: 'inherit',
   },
+  colorPrimary: {
+    color: theme.palette.primary[500],
+  },
   colorSecondary: {
     color: theme.palette.text.secondary,
   },
@@ -56,7 +59,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type Type =
+export type Type =
   | 'display4'
   | 'display3'
   | 'display2'
@@ -95,7 +98,7 @@ export type Props = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color?: 'inherit' | 'secondary' | 'accent' | 'default',
+  color?: 'inherit' | 'primary' | 'secondary' | 'accent' | 'default',
   /**
    * If `true`, the text will have a bottom margin.
    */

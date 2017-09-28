@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { ChildrenArray, Element, Node } from 'react';
+import type { Element, Node } from 'react';
 import classNames from 'classnames';
 import keycode from 'keycode';
 import warning from 'warning';
@@ -11,10 +11,15 @@ import ArrowDropDownIcon from '../svg-icons/ArrowDropDown';
 
 export type Props = {
   /**
+   * If true, the width of the popover will automatically be set according to the items inside the
+   * menu, otherwise it will be at least the width of the select input.
+   */
+  autoWidth: boolean,
+  /**
    * The option elements to populate the select with.
    * Can be some `MenuItem` when `native` is false and `option` when `native` is true.
    */
-  children: $ReadOnlyArray<ChildrenArray<Node>>,
+  children: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -53,7 +58,7 @@ export type Props = {
    * @param {object} event The event source of the callback
    * @param {object} child The react element that was selected
    */
-  onChange?: (event: Object, child: Element<*>) => void,
+  onChange?: (event: SyntheticUIEvent<*>, child: Element<any>) => void,
   /**
    * @ignore
    */
@@ -77,8 +82,6 @@ export type Props = {
   value?: string | number | Array<string | number>,
 };
 
-type AllProps = Props;
-
 type State = {
   open: boolean,
   anchorEl: ?HTMLElement,
@@ -87,9 +90,7 @@ type State = {
 /**
  * @ignore - internal component.
  */
-class SelectInput extends React.Component<AllProps, State> {
-  props: AllProps;
-
+class SelectInput extends React.Component<Props, State> {
   static muiName = 'SelectInput';
 
   state = {
@@ -114,7 +115,7 @@ class SelectInput extends React.Component<AllProps, State> {
     });
   };
 
-  handleItemClick = (child: Element<*>) => (event: SyntheticMouseEvent<>) => {
+  handleItemClick = (child: Element<any>) => (event: SyntheticMouseEvent<> & { target?: any }) => {
     if (!this.props.multiple) {
       this.setState({
         open: false,
@@ -122,7 +123,13 @@ class SelectInput extends React.Component<AllProps, State> {
     }
 
     if (this.props.onChange) {
+      const { onChange } = this.props;
       let value;
+      let target;
+
+      if (event.target) {
+        target = event.target;
+      }
 
       if (this.props.multiple) {
         value = Array.isArray(this.props.value) ? [...this.props.value] : [];
@@ -136,15 +143,10 @@ class SelectInput extends React.Component<AllProps, State> {
         value = child.props.value;
       }
 
-      this.props.onChange(
-        {
-          ...event,
-          target: {
-            value,
-          },
-        },
-        child,
-      );
+      event.persist();
+      event.target = { ...target, value };
+
+      onChange(event, child);
     }
   };
 
@@ -191,6 +193,7 @@ class SelectInput extends React.Component<AllProps, State> {
 
   render() {
     const {
+      autoWidth,
       children,
       className: classNameProp,
       classes,
@@ -300,6 +303,9 @@ class SelectInput extends React.Component<AllProps, State> {
       display = multiple ? displayMultiple.join(', ') : displaySingle;
     }
 
+    const minimumMenuWidth =
+      this.state.anchorEl != null && !autoWidth ? this.state.anchorEl.clientWidth : undefined;
+
     return (
       <div className={classes.root}>
         <div
@@ -342,6 +348,13 @@ class SelectInput extends React.Component<AllProps, State> {
           MenuListProps={{
             ...MenuProps.MenuListProps,
             role: 'listbox',
+          }}
+          PaperProps={{
+            ...MenuProps.PaperProps,
+            style: {
+              minWidth: minimumMenuWidth,
+              ...(MenuProps.PaperProps != null ? MenuProps.PaperProps.style : null),
+            },
           }}
         >
           {items}

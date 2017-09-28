@@ -7,10 +7,18 @@ import {
   MuiThemeProvider,
   Theme,
   withTheme,
+  StyleRules,
 } from '../../src/styles';
 import Button from '../../src/Button/Button';
-import { StyledComponentProps } from '../../src/index'
+import { StyledComponentProps } from '../../src/index';
 
+// Shared types for examples
+type ComponentClassNames = 'root';
+interface ComponentProps {
+  text: string;
+}
+
+// Example 1
 const styles = ({ palette, spacing }) => ({
   root: {
     padding: spacing.unit,
@@ -19,26 +27,38 @@ const styles = ({ palette, spacing }) => ({
   },
 });
 
-interface StyledComponentClassNames {
-  root: string;
-}
+const StyledExampleOne = withStyles(styles)<
+  ComponentProps
+>(({ classes, text }) => <div className={classes.root}>{text}</div>);
+<StyledExampleOne text="I am styled!" />;
 
-interface NonStyleProps {
-  text: string;
-}
+// Example 2
+const Component: React.SFC<
+  ComponentProps & WithStyles<ComponentClassNames>
+> = ({ classes, text }) => <div className={classes.root}>{text}</div>;
 
-const StyledSFC = withStyles(styles)<NonStyleProps>(
-  ({ classes, text }) => (
-    <div className={classes.root}>
-      {text}
-    </div>
-  )
-);
+const StyledExampleTwo = withStyles(styles)(Component);
+<StyledExampleTwo text="I am styled!" />;
 
-<StyledSFC text="I am styled!" />;
+// Example 3
+const styleRule: StyleRules<ComponentClassNames> = {
+  root: {
+    display: 'flex',
+    alignItems: 'stretch',
+    height: '100vh',
+    width: '100%',
+  },
+};
+
+const ComponentWithChildren: React.SFC<WithStyles<ComponentClassNames>> = ({
+  classes,
+  children,
+}) => <div className={classes.root}>{children}</div>;
+
+const StyledExampleThree = withStyles(styleRule)<{}>(ComponentWithChildren);
+<StyledExampleThree />;
 
 // Also works with a plain object
-
 const stylesAsPojo = {
   root: {
     background: 'hotpink',
@@ -50,7 +70,6 @@ const AnotherStyledSFC = withStyles({
 })(({ classes }) => <div className={classes.root}>Stylish!</div>);
 
 // Overriding styles
-
 const theme = createMuiTheme({
   overrides: {
     MuiButton: {
@@ -78,47 +97,38 @@ const customTheme = createMuiTheme({
 function OverridesTheme() {
   return (
     <MuiThemeProvider theme={theme}>
-      <Button>
-        {'Overrides'}
-      </Button>
+      <Button>{'Overrides'}</Button>
     </MuiThemeProvider>
   );
 }
 
 // withTheme
-
-const ThemedComponent: React.SFC<{ theme: Theme }> = ({ theme }) =>
-  <div>
-    {theme.spacing.unit}
-  </div>;
+const ThemedComponent: React.SFC<{ theme: Theme }> = ({ theme }) => (
+  <div>{theme.spacing.unit}</div>
+);
 const ComponentWithTheme = withTheme(ThemedComponent);
 
 // withStyles + withTheme
 interface AllTheProps {
   theme: Theme;
-  classes: StyledComponentClassNames;
+  classes: { root: string };
 }
 
-const AllTheStyles: React.SFC<AllTheProps> = ({ theme, classes }) =>
-  <div className={classes.root}>
-    {theme.palette.text.primary}
-  </div>;
-
-const AllTheComposition = withTheme(
-  withStyles(styles)(AllTheStyles)
+const AllTheStyles: React.SFC<AllTheProps> = ({ theme, classes }) => (
+  <div className={classes.root}>{theme.palette.text.primary}</div>
 );
 
+const AllTheComposition = withTheme(withStyles(styles)(AllTheStyles));
+
 @withStyles(styles)
-class DecoratedComponent extends React.Component<NonStyleProps & StyledComponentProps<'root'>> {
+class DecoratedComponent extends React.Component<
+  ComponentProps & StyledComponentProps<'root'>
+> {
   render() {
     const { classes, text } = this.props;
-    return (
-      <div className={classes!.root}>
-        {text}
-      </div>
-    );
+    return <div className={classes!.root}>{text}</div>;
   }
 }
 
 // no 'classes' property required at element creation time (#8267)
-<DecoratedComponent text="foo" />
+<DecoratedComponent text="foo" />;

@@ -321,6 +321,7 @@ describe('<Collapse />', () => {
 
     before(() => {
       mount = createMount();
+      // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
       mountInstance = mount(<Collapse.Naked classes={{}} theme={{}} />).instance();
     });
 

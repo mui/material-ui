@@ -162,6 +162,7 @@ describe('<Input />', () => {
       handleClean = spy();
       handleDirty = spy();
       wrapper = mount(
+        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
         <Input.Naked
           classes={{}}
           onDirty={handleDirty}
@@ -218,15 +219,9 @@ describe('<Input />', () => {
         handleDirty = spy();
         handleClean = spy();
         // Mock the input ref
-        wrapper.setProps({
-          onDirty: handleDirty,
-          onClean: handleClean,
-        });
+        wrapper.setProps({ onDirty: handleDirty, onClean: handleClean });
         wrapper.instance().input = { value: '' };
-        setFormControlContext({
-          onDirty: spy(),
-          onClean: spy(),
-        });
+        setFormControlContext({ onDirty: spy(), onClean: spy() });
       });
 
       it('should fire the onDirty muiFormControl and props callback when dirtied', () => {
@@ -302,6 +297,7 @@ describe('<Input />', () => {
     let instance;
 
     before(() => {
+      // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
       wrapper = mount(<Input.Naked classes={classes} />);
       instance = wrapper.instance();
     });

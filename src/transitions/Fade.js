@@ -10,14 +10,13 @@ import type { TransitionCallback } from '../internal/Transition';
 type DefaultProps = {
   enterTransitionDuration: number,
   leaveTransitionDuration: number,
-  theme: Object,
 };
 
 export type Props = {
   /**
    * A single child content element.
    */
-  children?: Element<*>,
+  children?: Element<any>,
   /**
    * If `true`, the component will transition in.
    */
@@ -57,7 +56,7 @@ export type Props = {
   /**
    * @ignore
    */
-  theme?: Object,
+  theme: Object,
 };
 
 class Fade extends React.Component<DefaultProps & Props> {
@@ -130,4 +129,4 @@ class Fade extends React.Component<DefaultProps & Props> {
   }
 }
 
-export default withTheme(Fade);
+export default withTheme()(Fade);

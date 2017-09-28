@@ -6,7 +6,7 @@ import { spy } from 'sinon';
 import { ReactWrapper } from 'enzyme';
 import keycode from 'keycode';
 import { createShallow, createMount } from '../test-utils';
-import { MenuItem } from '../Menu';
+import Menu, { MenuItem } from '../Menu';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
 import SelectInput from './SelectInput';
 
@@ -14,9 +14,8 @@ describe('<SelectInput />', () => {
   let shallow;
   let mount;
   const props = {
-    classes: {
-      select: 'select',
-    },
+    classes: { select: 'select' },
+    autoWidth: false,
     value: 10,
     native: false,
     multiple: false,
@@ -66,15 +65,15 @@ describe('<SelectInput />', () => {
 
   describe('prop: MenuProps', () => {
     it('should apply additional properties to the Menu component', () => {
-      const wrapper = mount(
-        <SelectInput
-          {...props}
-          MenuProps={{
-            transitionDuration: 100,
-          }}
-        />,
+      const wrapper = shallow(<SelectInput {...props} MenuProps={{ transitionDuration: 100 }} />);
+      assert.strictEqual(wrapper.find(Menu).props().transitionDuration, 100);
+    });
+
+    it('should be able to override PaperProps minWidth', () => {
+      const wrapper = shallow(
+        <SelectInput {...props} MenuProps={{ PaperProps: { style: { minWidth: 12 } } }} />,
       );
-      assert.strictEqual(wrapper.find('Menu').props().transitionDuration, 100);
+      assert.strictEqual(wrapper.find(Menu).props().PaperProps.style.minWidth, 12);
     });
   });
 
@@ -101,13 +100,7 @@ describe('<SelectInput />', () => {
       beforeEach(() => {
         handleChange = spy();
         wrapper = mount(
-          <SelectInput
-            {...props}
-            onChange={handleChange}
-            MenuProps={{
-              transitionDuration: 0,
-            }}
-          />,
+          <SelectInput {...props} onChange={handleChange} MenuProps={{ transitionDuration: 0 }} />,
         );
         instance = wrapper.instance();
       });
@@ -126,9 +119,7 @@ describe('<SelectInput />', () => {
 
       it('should ignore onBlur the first time the menu is open', () => {
         const handleBlur = spy();
-        wrapper.setProps({
-          onBlur: handleBlur,
-        });
+        wrapper.setProps({ onBlur: handleBlur });
 
         wrapper.find(`.${props.classes.select}`).simulate('click');
         assert.strictEqual(wrapper.state().open, true);
@@ -190,6 +181,20 @@ describe('<SelectInput />', () => {
     });
   });
 
+  describe('prop: autoWidth', () => {
+    it('should take the anchor width into account', () => {
+      const wrapper = shallow(<SelectInput {...props} />);
+      wrapper.setState({ anchorEl: { clientWidth: 14 } });
+      assert.strictEqual(wrapper.find(Menu).props().PaperProps.style.minWidth, 14);
+    });
+
+    it('should not take the anchor width into account', () => {
+      const wrapper = shallow(<SelectInput {...props} autoWidth />);
+      wrapper.setState({ anchorEl: { clientWidth: 14 } });
+      assert.strictEqual(wrapper.find(Menu).props().PaperProps.style.minWidth, undefined);
+    });
+  });
+
   describe('prop: multiple', () => {
     before(() => {
       consoleErrorMock.spy();
@@ -235,9 +240,7 @@ describe('<SelectInput />', () => {
             multiple
             value={[20, 30]}
             onChange={handleChange}
-            MenuProps={{
-              transitionDuration: 0,
-            }}
+            MenuProps={{ transitionDuration: 0 }}
           />,
         );
       });
@@ -253,9 +256,7 @@ describe('<SelectInput />', () => {
         assert.strictEqual(wrapper.state().open, true);
         assert.strictEqual(handleChange.callCount, 1);
         assert.deepEqual(handleChange.args[0][0].target.value, [30]);
-        wrapper.setProps({
-          value: [30],
-        });
+        wrapper.setProps({ value: [30] });
 
         menuItem.at(0).simulate('click');
         assert.strictEqual(wrapper.state().open, true);
