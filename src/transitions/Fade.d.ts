@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { StyledComponent } from '..';
 import { Theme } from '../styles/createMuiTheme';
-import { TransitionProps } from '../internal/Transition';
+import { TransitionDuration, TransitionProps } from '../internal/Transition';
 
 export interface FadeProps extends TransitionProps {
   theme?: Theme;
-  enterTransitionDuration?: number;
-  leaveTransitionDuration?: number;
+  transitionDuration?: TransitionDuration;
 }
 
 declare const Fade: StyledComponent<FadeProps>;

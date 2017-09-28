@@ -17,7 +17,7 @@ import withStyles from '../styles/withStyles';
 import createModalManager from './modalManager';
 import Backdrop from './Backdrop';
 import Portal from './Portal';
-import type { TransitionCallback } from './Transition';
+import type { TransitionDuration, TransitionCallback } from '../internal/Transition';
 
 // Modals don't open on the server so this won't break concurrency.
 // Could also put this on context.
@@ -58,9 +58,10 @@ export type Props = {
    */
   backdropInvisible?: boolean,
   /**
-   * Duration in ms for the backdrop transition.
+   * The duration for the backdrop transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
    */
-  backdropTransitionDuration?: number,
+  backdropTransitionDuration?: TransitionDuration,
   /**
    * A single child content element.
    */
@@ -325,14 +326,7 @@ class Modal extends React.Component<DefaultProps & Props, State> {
     } = this.props;
 
     return (
-      <Fade
-        in={show}
-        transitionAppear
-        enterTransitionDuration={backdropTransitionDuration}
-        leaveTransitionDuration={backdropTransitionDuration}
-        timeout={backdropTransitionDuration + 20}
-        {...other}
-      >
+      <Fade in={show} transitionAppear transitionDuration={backdropTransitionDuration} {...other}>
         <BackdropComponent
           invisible={backdropInvisible}
           className={backdropClassName}

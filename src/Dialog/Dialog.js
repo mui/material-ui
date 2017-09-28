@@ -9,7 +9,7 @@ import Modal from '../internal/Modal';
 import Fade from '../transitions/Fade';
 import { duration } from '../styles/transitions';
 import Paper from '../Paper';
-import type { TransitionCallback } from '../internal/Transition';
+import type { TransitionDuration, TransitionCallback } from '../internal/Transition';
 
 export const styles = (theme: Object) => ({
   root: {
@@ -79,13 +79,10 @@ export type Props = {
    */
   ignoreEscapeKeyUp?: boolean,
   /**
-   * Duration of the animation when the element is entering.
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
    */
-  enterTransitionDuration?: number, // eslint-disable-line react/sort-prop-types
-  /**
-   * Duration of the animation when the element is leaving.
-   */
-  leaveTransitionDuration?: number,
+  transitionDuration?: TransitionDuration,
   /**
    * Determine the max width of the dialog.
    * The dialog width grows with the size of the screen, this property is useful
@@ -156,8 +153,7 @@ function Dialog(props: DefaultProps & Props) {
     fullScreen,
     ignoreBackdropClick,
     ignoreEscapeKeyUp,
-    enterTransitionDuration,
-    leaveTransitionDuration,
+    transitionDuration,
     maxWidth,
     fullWidth,
     open,
@@ -180,7 +176,7 @@ function Dialog(props: DefaultProps & Props) {
   return (
     <Modal
       className={classNames(classes.root, className)}
-      backdropTransitionDuration={open ? enterTransitionDuration : leaveTransitionDuration}
+      backdropTransitionDuration={transitionDuration}
       ignoreBackdropClick={ignoreBackdropClick}
       ignoreEscapeKeyUp={ignoreEscapeKeyUp}
       onBackdropClick={onBackdropClick}
@@ -195,8 +191,7 @@ function Dialog(props: DefaultProps & Props) {
         {
           in: open,
           transitionAppear: true,
-          enterTransitionDuration,
-          leaveTransitionDuration,
+          transitionDuration,
           onEnter,
           onEntering,
           onEntered,
@@ -227,8 +222,10 @@ Dialog.defaultProps = {
   fullScreen: false,
   ignoreBackdropClick: false,
   ignoreEscapeKeyUp: false,
-  enterTransitionDuration: duration.enteringScreen,
-  leaveTransitionDuration: duration.leavingScreen,
+  transitionDuration: {
+    enter: duration.enteringScreen,
+    exit: duration.leavingScreen,
+  },
   maxWidth: 'sm',
   fullWidth: false,
   open: false,

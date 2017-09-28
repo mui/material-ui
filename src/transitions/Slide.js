@@ -6,7 +6,7 @@ import { findDOMNode } from 'react-dom';
 import Transition from '../internal/Transition';
 import withTheme from '../styles/withTheme';
 import { duration } from '../styles/transitions';
-import type { TransitionCallback } from '../internal/Transition';
+import type { TransitionDuration, TransitionCallback } from '../internal/Transition';
 
 const GUTTER = 24;
 
@@ -32,9 +32,7 @@ function getTranslateValue(props, element: HTMLElement) {
 export type Direction = 'left' | 'right' | 'up' | 'down';
 
 type DefaultProps = {
-  enterTransitionDuration: number,
-  leaveTransitionDuration: number,
-  theme: Object,
+  transitionDuration: TransitionDuration,
 };
 
 export type Props = {
@@ -47,17 +45,9 @@ export type Props = {
    */
   direction?: Direction,
   /**
-   * Duration of the animation when the element is entering.
-   */
-  enterTransitionDuration?: number,
-  /**
    * If `true`, show the component; triggers the enter or exit animation.
    */
   in?: boolean,
-  /**
-   * Duration of the animation when the element is exiting.
-   */
-  leaveTransitionDuration?: number,
   /**
    * Callback fired before the component enters.
    */
@@ -86,14 +76,20 @@ export type Props = {
    * @ignore
    */
   theme: Object,
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   */
+  transitionDuration?: TransitionDuration,
 };
 
 class Slide extends React.Component<DefaultProps & Props> {
   static defaultProps = {
     direction: 'down',
-    enterTransitionDuration: duration.enteringScreen,
-    leaveTransitionDuration: duration.leavingScreen,
-    theme: {},
+    transitionDuration: {
+      enter: duration.enteringScreen,
+      exit: duration.leavingScreen,
+    },
   };
 
   componentDidMount() {
@@ -128,14 +124,16 @@ class Slide extends React.Component<DefaultProps & Props> {
   };
 
   handleEntering = element => {
-    const { transitions } = this.props.theme;
-    element.style.transition = transitions.create('transform', {
-      duration: this.props.enterTransitionDuration,
-      easing: transitions.easing.easeOut,
+    const { theme, transitionDuration } = this.props;
+    element.style.transition = theme.transitions.create('transform', {
+      duration:
+        typeof transitionDuration === 'number' ? transitionDuration : transitionDuration.enter,
+      easing: theme.transitions.easing.easeOut,
     });
-    element.style.webkitTransition = transitions.create('-webkit-transform', {
-      duration: this.props.enterTransitionDuration,
-      easing: transitions.easing.easeOut,
+    element.style.webkitTransition = theme.transitions.create('-webkit-transform', {
+      duration:
+        typeof transitionDuration === 'number' ? transitionDuration : transitionDuration.enter,
+      easing: theme.transitions.easing.easeOut,
     });
     element.style.transform = 'translate3d(0, 0, 0)';
     element.style.webkitTransform = 'translate3d(0, 0, 0)';
@@ -145,14 +143,16 @@ class Slide extends React.Component<DefaultProps & Props> {
   };
 
   handleExit = element => {
-    const { transitions } = this.props.theme;
-    element.style.transition = transitions.create('transform', {
-      duration: this.props.leaveTransitionDuration,
-      easing: transitions.easing.sharp,
+    const { theme, transitionDuration } = this.props;
+    element.style.transition = theme.transitions.create('transform', {
+      duration:
+        typeof transitionDuration === 'number' ? transitionDuration : transitionDuration.exit,
+      easing: theme.transitions.easing.sharp,
     });
-    element.style.webkitTransition = transitions.create('-webkit-transform', {
-      duration: this.props.leaveTransitionDuration,
-      easing: transitions.easing.sharp,
+    element.style.webkitTransition = theme.transitions.create('-webkit-transform', {
+      duration:
+        typeof transitionDuration === 'number' ? transitionDuration : transitionDuration.exit,
+      easing: theme.transitions.easing.sharp,
     });
     const transform = getTranslateValue(this.props, element);
     element.style.transform = transform;
@@ -169,8 +169,7 @@ class Slide extends React.Component<DefaultProps & Props> {
       onEnter,
       onEntering,
       onExit,
-      enterTransitionDuration,
-      leaveTransitionDuration,
+      transitionDuration,
       theme,
       ...other
     } = this.props;
@@ -180,7 +179,7 @@ class Slide extends React.Component<DefaultProps & Props> {
         onEnter={this.handleEnter}
         onEntering={this.handleEntering}
         onExit={this.handleExit}
-        timeout={Math.max(enterTransitionDuration, leaveTransitionDuration) + 10}
+        timeout={transitionDuration}
         transitionAppear
         {...other}
         ref={ref => {

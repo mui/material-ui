@@ -13,6 +13,11 @@ describe('<Grow />', () => {
     shallow = createShallow({ dive: true });
   });
 
+  it('should render a Transition', () => {
+    const wrapper = shallow(<Grow />);
+    assert.strictEqual(wrapper.name(), 'Transition');
+  });
+
   describe('event callbacks', () => {
     it('should fire event callbacks', () => {
       const events = ['onEnter', 'onEntering', 'onEntered', 'onExit', 'onExiting', 'onExited'];
@@ -30,6 +35,37 @@ describe('<Grow />', () => {
         assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
         assert.strictEqual(handlers[n].args[0].length, 1, 'should forward the element');
       });
+    });
+  });
+
+  describe('props: transitionDuration', () => {
+    let wrapper;
+    let instance;
+    let element;
+    const enterDuration = 556;
+    const leaveDuration = 446;
+
+    beforeEach(() => {
+      wrapper = shallow(
+        <Grow
+          transitionDuration={{
+            enter: enterDuration,
+            exit: leaveDuration,
+          }}
+        />,
+      );
+      instance = wrapper.instance();
+      element = { getBoundingClientRect: () => ({}), style: {} };
+    });
+
+    it('should create proper easeOut animation onEnter', () => {
+      instance.handleEnter(element);
+      assert.match(element.style.transition, new RegExp(`${enterDuration}ms`));
+    });
+
+    it('should create proper sharp animation onExit', () => {
+      instance.handleExit(element);
+      assert.match(element.style.transition, new RegExp(`${leaveDuration}ms`));
     });
   });
 
@@ -120,40 +156,25 @@ describe('<Grow />', () => {
     let wrapper;
     let instance;
 
-    before(() => {
+    beforeEach(() => {
       wrapper = shallow(<Grow />);
     });
 
-    describe('transitionDuration is auto', () => {
-      before(() => {
-        wrapper.setProps({ transitionDuration: 'auto' });
-        instance = wrapper.instance();
-      });
-
-      it('should return autoTransitionDuration + 20', () => {
-        const autoTransitionDuration = 10;
-        instance.autoTransitionDuration = autoTransitionDuration;
-        assert.strictEqual(instance.handleRequestTimeout(), autoTransitionDuration + 20);
-      });
-
-      it('should return 20', () => {
-        instance.autoTransitionDuration = undefined;
-        assert.strictEqual(instance.handleRequestTimeout(), 20);
-      });
+    it('should return autoTransitionDuration when transitionDuration is auto', () => {
+      wrapper.setProps({ transitionDuration: 'auto' });
+      instance = wrapper.instance();
+      const autoTransitionDuration = 10;
+      instance.autoTransitionDuration = autoTransitionDuration;
+      assert.strictEqual(instance.handleRequestTimeout(), autoTransitionDuration);
+      instance.autoTransitionDuration = undefined;
+      assert.strictEqual(instance.handleRequestTimeout(), 0);
     });
 
-    describe('transitionDuration is number', () => {
-      let transitionDuration;
-
-      before(() => {
-        transitionDuration = 10;
-        wrapper.setProps({ transitionDuration });
-        instance = wrapper.instance();
-      });
-
-      it('should return props.transitionDuration + 20', () => {
-        assert.strictEqual(instance.handleRequestTimeout(), transitionDuration + 20);
-      });
+    it('should return props.transitionDuration when transitionDuration is number', () => {
+      const transitionDuration = 10;
+      wrapper.setProps({ transitionDuration });
+      instance = wrapper.instance();
+      assert.strictEqual(instance.handleRequestTimeout(), transitionDuration);
     });
   });
 });

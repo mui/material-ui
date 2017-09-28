@@ -13,9 +13,7 @@
 | autoHideDuration | number |  | The number of milliseconds to wait before automatically dismissing. This behavior is disabled by default with the `null` value. |
 | children | Element |  | If you wish the take control over the children of the component you can use that property. When using it, no `SnackbarContent` component will be rendered. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| enterTransitionDuration | number | duration.enteringScreen | Customizes duration of enter animation (ms) |
 | key | any |  | When displaying multiple consecutive Snackbars from a parent rendering a single <Snackbar/>, add the key property to ensure independent treatment of each message. e.g. <Snackbar key={message} />, otherwise, the message may update-in-place and features such as autoHideDuration may be canceled. |
-| leaveTransitionDuration | number | duration.leavingScreen | Customizes duration of leave animation (ms) |
 | message | Node |  | The message to display. |
 | onEnter | TransitionCallback |  | Callback fired before the transition is entering. |
 | onEntered | TransitionCallback |  | Callback fired when the transition has entered. |
@@ -27,6 +25,7 @@
 | <span style="color: #31a148">open *</span> | boolean |  | If true, `Snackbar` is open. |
 | resumeHideDuration | number |  | The number of milliseconds to wait before dismissing after user interaction. If `autoHideDuration` property isn't specified, it does nothing. If `autoHideDuration` property is specified but `resumeHideDuration` isn't, we default to `autoHideDuration / 2` ms. |
 | transition | union:&nbsp;ComponentType<*><br>&nbsp;Element<any><br> |  | Object with Transition component, props & create Fn. |
+| transitionDuration | TransitionDuration | {  enter: duration.enteringScreen,  exit: duration.leavingScreen,} | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 

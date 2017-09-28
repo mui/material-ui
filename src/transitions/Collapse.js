@@ -3,6 +3,7 @@
 import React from 'react';
 import type { Node } from 'react';
 import withStyles from '../styles/withStyles';
+import { duration } from '../styles/transitions';
 import Transition from '../internal/Transition';
 import type { TransitionCallback } from '../internal/Transition';
 
@@ -20,7 +21,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-export type TransitionDuration = number | 'auto';
+export type TransitionDuration = number | { enter?: number, exit?: number } | 'auto';
 
 type DefaultProps = {
   classes: Object,
@@ -65,22 +66,27 @@ export type Props = {
    */
   onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
   /**
-   * Set to 'auto' to automatically calculate transition time based on height.
-   */
-  transitionDuration?: TransitionDuration,
-  /**
    * @ignore
    */
   theme: Object,
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   *
+   * Set to 'auto' to automatically calculate transition time based on height.
+   */
+  transitionDuration?: TransitionDuration,
 };
 
 class Collapse extends React.Component<DefaultProps & Props> {
   static defaultProps = {
     in: false,
-    transitionDuration: 300,
+    transitionDuration: duration.standard,
   };
 
   wrapper = null;
+
+  autoTransitionDuration = undefined;
 
   handleEnter = element => {
     element.style.height = '0px';
@@ -94,12 +100,15 @@ class Collapse extends React.Component<DefaultProps & Props> {
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
 
     if (transitionDuration === 'auto') {
-      const { getAutoHeightDuration } = theme.transitions;
-      element.style.transitionDuration = `${getAutoHeightDuration(wrapperHeight)}ms`;
+      const duration2 = theme.transitions.getAutoHeightDuration(wrapperHeight);
+      element.style.transitionDuration = `${duration2}ms`;
+      this.autoTransitionDuration = duration2;
     } else if (typeof transitionDuration === 'number') {
       element.style.transitionDuration = `${transitionDuration}ms`;
+    } else if (transitionDuration) {
+      element.style.transitionDuration = `${transitionDuration.enter}ms`;
     } else {
-      element.style.transitionDuration = transitionDuration;
+      // The propType will warn in this case.
     }
 
     element.style.height = `${wrapperHeight}px`;
@@ -132,12 +141,15 @@ class Collapse extends React.Component<DefaultProps & Props> {
 
     if (transitionDuration) {
       if (transitionDuration === 'auto') {
-        const { getAutoHeightDuration } = theme.transitions;
-        element.style.transitionDuration = `${getAutoHeightDuration(wrapperHeight)}ms`;
+        const duration2 = theme.transitions.getAutoHeightDuration(wrapperHeight);
+        element.style.transitionDuration = `${duration2}ms`;
+        this.autoTransitionDuration = duration2;
       } else if (typeof transitionDuration === 'number') {
         element.style.transitionDuration = `${transitionDuration}ms`;
+      } else if (transitionDuration) {
+        element.style.transitionDuration = `${transitionDuration.exit}ms`;
       } else {
-        element.style.transitionDuration = transitionDuration;
+        // The propType will warn in this case.
       }
     }
 
@@ -145,6 +157,13 @@ class Collapse extends React.Component<DefaultProps & Props> {
     if (this.props.onExiting) {
       this.props.onExiting(element);
     }
+  };
+
+  handleRequestTimeout = () => {
+    if (this.props.transitionDuration === 'auto') {
+      return this.autoTransitionDuration || 0;
+    }
+    return this.props.transitionDuration;
   };
 
   render() {
@@ -168,6 +187,7 @@ class Collapse extends React.Component<DefaultProps & Props> {
         enteredClassName={classes.entered}
         onExiting={this.handleExiting}
         onExit={this.handleExit}
+        onRequestTimeout={this.handleRequestTimeout}
         {...other}
       >
         <div className={classes.container}>

@@ -68,6 +68,37 @@ describe('<Collapse />', () => {
     });
   });
 
+  describe('props: transitionDuration', () => {
+    let wrapper;
+    let instance;
+    let element;
+    const enterDuration = 556;
+    const leaveDuration = 446;
+
+    beforeEach(() => {
+      wrapper = shallow(
+        <Collapse
+          transitionDuration={{
+            enter: enterDuration,
+            exit: leaveDuration,
+          }}
+        />,
+      );
+      instance = wrapper.instance();
+      element = { getBoundingClientRect: () => ({}), style: {} };
+    });
+
+    it('should create proper easeOut animation onEntering', () => {
+      instance.handleEntering(element);
+      assert.strictEqual(element.style.transitionDuration, `${enterDuration}ms`);
+    });
+
+    it('should create proper sharp animation onExiting', () => {
+      instance.handleExiting(element);
+      assert.strictEqual(element.style.transitionDuration, `${leaveDuration}ms`);
+    });
+  });
+
   describe('transition lifecycle', () => {
     let wrapper;
     let instance;
@@ -157,15 +188,6 @@ describe('<Collapse />', () => {
           instance.handleEntering(element);
 
           assert.strictEqual(element.style.transitionDuration, `${transitionDurationMock}ms`);
-        });
-
-        it('string should set transitionDuration to string', () => {
-          transitionDurationMock = 'woofCollapseStub';
-          wrapper.setProps({ transitionDuration: transitionDurationMock });
-          instance = wrapper.instance();
-          instance.handleEntering(element);
-
-          assert.strictEqual(element.style.transitionDuration, transitionDurationMock);
         });
 
         it('nothing should not set transitionDuration', () => {
@@ -291,15 +313,6 @@ describe('<Collapse />', () => {
           assert.strictEqual(element.style.transitionDuration, `${transitionDurationMock}ms`);
         });
 
-        it('string should set transitionDuration to string', () => {
-          transitionDurationMock = 'woofCollapseStub2';
-          wrapper.setProps({ transitionDuration: transitionDurationMock });
-          instance = wrapper.instance();
-          instance.handleExiting(element);
-
-          assert.strictEqual(element.style.transitionDuration, transitionDurationMock);
-        });
-
         it('nothing should not set transitionDuration', () => {
           const elementBackup = element;
           wrapper.setProps({ transitionDuration: undefined });
@@ -312,6 +325,32 @@ describe('<Collapse />', () => {
           );
         });
       });
+    });
+  });
+
+  describe('handleRequestTimeout()', () => {
+    let wrapper;
+    let instance;
+
+    beforeEach(() => {
+      wrapper = shallow(<Collapse />);
+    });
+
+    it('should return autoTransitionDuration when transitionDuration is auto', () => {
+      wrapper.setProps({ transitionDuration: 'auto' });
+      instance = wrapper.instance();
+      const autoTransitionDuration = 10;
+      instance.autoTransitionDuration = autoTransitionDuration;
+      assert.strictEqual(instance.handleRequestTimeout(), autoTransitionDuration);
+      instance.autoTransitionDuration = undefined;
+      assert.strictEqual(instance.handleRequestTimeout(), 0);
+    });
+
+    it('should return props.transitionDuration when transitionDuration is number', () => {
+      const transitionDuration = 10;
+      wrapper.setProps({ transitionDuration });
+      instance = wrapper.instance();
+      assert.strictEqual(instance.handleRequestTimeout(), transitionDuration);
     });
   });
 
