@@ -29,7 +29,7 @@ function getTranslateValue(props, element: HTMLElement) {
   return `translate3d(0, ${0 - (rect.top + rect.height)}px, 0)`;
 }
 
-type Direction = 'left' | 'right' | 'up' | 'down';
+export type Direction = 'left' | 'right' | 'up' | 'down';
 
 type DefaultProps = {
   enterTransitionDuration: number,
@@ -41,7 +41,7 @@ export type Props = {
   /**
    * A single child content element.
    */
-  children?: Element<*>,
+  children?: Element<any>,
   /**
    * Direction the child element will enter from.
    */

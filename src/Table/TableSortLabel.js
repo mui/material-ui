@@ -47,7 +47,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type Direction = 'asc' | 'desc';
+export type Direction = 'asc' | 'desc';
 
 type DefaultProps = {
   active: boolean,

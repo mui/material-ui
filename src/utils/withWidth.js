@@ -57,7 +57,7 @@ export type HOCProps = {
   width?: Breakpoint,
 };
 
-type InjectedProps = { width: Breakpoint };
+export type InjectedProps = { width: Breakpoint };
 
 const withWidth = (
   // eslint-disable-line prettier/prettier

@@ -75,7 +75,7 @@ export const styles = (theme: Object) => {
   };
 };
 
-type Origin = {
+export type Origin = {
   horizontal?: 'left' | 'center' | 'right' | number,
   vertical?: 'top' | 'center' | 'bottom' | number,
 };
@@ -110,7 +110,7 @@ export type Props = {
    * If you wish the take control over the children of the component you can use that property.
    * When using it, no `SnackbarContent` component will be rendered.
    */
-  children?: Element<*>,
+  children?: Element<any>,
   /**
    * Useful to extend the style applied to components.
    */

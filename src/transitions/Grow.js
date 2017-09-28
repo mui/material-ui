@@ -11,7 +11,7 @@ export function getScale(value: number) {
   return `scale(${value}, ${value ** 2})`;
 }
 
-type Duration = number | 'auto';
+export type Duration = number | 'auto';
 
 type DefaultProps = {
   transitionDuration: Duration,
@@ -21,7 +21,7 @@ export type Props = {
   /**
    * A single child content element.
    */
-  children?: Element<*>,
+  children?: Element<any>,
   /**
    * Callback fired before the component is entering
    */

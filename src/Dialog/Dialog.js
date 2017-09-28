@@ -142,7 +142,7 @@ export type Props = {
   /**
    * Transition component.
    */
-  transition?: ComponentType<*> | Element<*>,
+  transition?: ComponentType<*> | Element<any>,
 };
 
 /**

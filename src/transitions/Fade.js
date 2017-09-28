@@ -16,7 +16,7 @@ export type Props = {
   /**
    * A single child content element.
    */
-  children?: Element<*>,
+  children?: Element<any>,
   /**
    * If `true`, the component will transition in.
    */

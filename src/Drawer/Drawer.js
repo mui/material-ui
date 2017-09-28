@@ -75,8 +75,8 @@ export const styles = (theme: Object) => ({
   modal: {}, // Just here so people can override the style.
 });
 
-type Anchor = 'left' | 'top' | 'right' | 'bottom';
-type Type = 'permanent' | 'persistent' | 'temporary';
+export type Anchor = 'left' | 'top' | 'right' | 'bottom';
+export type Type = 'permanent' | 'persistent' | 'temporary';
 
 type DefaultProps = {
   anchor: Anchor,

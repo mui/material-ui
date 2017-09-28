@@ -30,7 +30,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type Color = 'inherit' | 'accent' | 'action' | 'contrast' | 'disabled' | 'error' | 'primary';
+export type Color = 'inherit' | 'accent' | 'action' | 'contrast' | 'disabled' | 'error' | 'primary';
 
 type DefaultProps = {
   classes: Object,

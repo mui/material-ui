@@ -58,7 +58,7 @@ export type Props = {
    * @param {object} event The event source of the callback
    * @param {object} child The react element that was selected
    */
-  onChange?: (event: SyntheticUIEvent<*>, child: Element<*>) => void,
+  onChange?: (event: SyntheticUIEvent<*>, child: Element<any>) => void,
   /**
    * @ignore
    */
@@ -82,8 +82,6 @@ export type Props = {
   value?: string | number | Array<string | number>,
 };
 
-type AllProps = Props;
-
 type State = {
   open: boolean,
   anchorEl: ?HTMLElement,
@@ -92,9 +90,7 @@ type State = {
 /**
  * @ignore - internal component.
  */
-class SelectInput extends React.Component<AllProps, State> {
-  props: AllProps;
-
+class SelectInput extends React.Component<Props, State> {
   static muiName = 'SelectInput';
 
   state = {
@@ -119,7 +115,7 @@ class SelectInput extends React.Component<AllProps, State> {
     });
   };
 
-  handleItemClick = (child: Element<*>) => (event: SyntheticMouseEvent<> & { target?: any }) => {
+  handleItemClick = (child: Element<any>) => (event: SyntheticMouseEvent<> & { target?: any }) => {
     if (!this.props.multiple) {
       this.setState({
         open: false,

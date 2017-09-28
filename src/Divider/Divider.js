@@ -32,7 +32,7 @@ type DefaultProps = {
   classes: Object,
 };
 
-type Props = {
+export type Props = {
   absolute?: boolean,
   /**
    * Useful to extend the style applied to components.

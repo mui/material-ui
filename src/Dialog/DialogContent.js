@@ -23,7 +23,7 @@ type DefaultProps = {
   classes: Object,
 };
 
-type Props = {
+export type Props = {
   /**
    * The content of the component.
    */

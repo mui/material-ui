@@ -52,8 +52,8 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type Position = 'bottom' | 'top' | 'static';
-type Type = 'text' | 'dots' | 'progress';
+export type Position = 'bottom' | 'top' | 'static';
+export type Type = 'text' | 'dots' | 'progress';
 
 type DefaultProps = {
   classes: Object,

@@ -84,7 +84,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type Placement =
+export type Placement =
   | 'bottom-end'
   | 'bottom-start'
   | 'bottom'

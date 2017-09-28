@@ -10,7 +10,7 @@ type Options = { breakpoint: Breakpoint };
 
 export type HOCProps = {};
 
-type InjectedProps = {
+export type InjectedProps = {
   /**
    * If isWidthDown(options.breakpoint), return true.
    */

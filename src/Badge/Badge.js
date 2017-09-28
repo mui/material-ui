@@ -46,7 +46,7 @@ type DefaultProps = {
   classes: Object,
 };
 
-type Props = {
+export type Props = {
   /**
    * The content rendered within the badge.
    */

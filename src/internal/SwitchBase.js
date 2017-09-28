@@ -50,7 +50,7 @@ export type Props = {
    * The icon to display when the component is checked.
    * If a string is provided, it will be used as a font ligature.
    */
-  checkedIcon?: string | Element<*>,
+  checkedIcon?: string | Element<any>,
   /**
    * Useful to extend the style applied to components.
    */
@@ -88,7 +88,7 @@ export type Props = {
    * The icon to display when the component is indeterminate.
    * If a string is provided, it will be used as a font ligature.
    */
-  indeterminateIcon?: string | Element<*>,
+  indeterminateIcon?: string | Element<any>,
   /**
    * Properties applied to the `input` element.
    */
@@ -122,9 +122,9 @@ type State = {
   checked?: boolean,
 };
 
-type Options = {
-  defaultIcon?: Element<*>,
-  defaultCheckedIcon?: Element<*>,
+export type Options = {
+  defaultIcon?: Element<any>,
+  defaultCheckedIcon?: Element<any>,
   inputType?: string,
 };
 

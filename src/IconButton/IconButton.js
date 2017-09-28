@@ -58,7 +58,7 @@ type DefaultProps = {
   classes: Object,
 };
 
-type Props = {
+export type Props = {
   /**
    * The icon element.
    * If a string is provided, it will be used as an icon font ligature.

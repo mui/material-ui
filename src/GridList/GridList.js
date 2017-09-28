@@ -15,7 +15,7 @@ export const styles = {
   },
 };
 
-type CellHeight = number | 'auto';
+export type CellHeight = number | 'auto';
 
 type DefaultProps = {
   classes: Object,
