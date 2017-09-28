@@ -12,6 +12,17 @@ export interface MobileStepperProps extends PaperProps {
   type?: 'text' | 'dots' | 'progress';
 }
 
-declare const MobileStepper: StyledComponent<MobileStepperProps>;
+export type MobileStepperClassKey =
+  | 'root'
+  | 'positionBottom'
+  | 'positionTop'
+  | 'positionStatic'
+  | 'dots'
+  | 'dot'
+  | 'dotActive'
+  | 'progress'
+  ;
+
+declare const MobileStepper: StyledComponent<MobileStepperProps, MobileStepperClassKey>;
 
 export default MobileStepper;
