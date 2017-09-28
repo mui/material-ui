@@ -18,7 +18,7 @@
 | onRequestClose | Function |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | open | boolean | false | If `true`, the drawer is open. |
 | <span style="color: #31a148">theme *</span> | Object |  |  |
-| <span style="color: #31a148">type *</span> | union:&nbsp;'permanent'<br>&nbsp;'persistent'<br>&nbsp;'temporary'<br> | 'temporary' | The type of drawer. |
+| type | union:&nbsp;'permanent'<br>&nbsp;'persistent'<br>&nbsp;'temporary'<br> | 'temporary' | The type of drawer. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 

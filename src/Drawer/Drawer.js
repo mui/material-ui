@@ -142,7 +142,7 @@ export type Props = {
   /**
    * The type of drawer.
    */
-  type: Type,
+  type?: Type,
 };
 
 type State = {

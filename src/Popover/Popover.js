@@ -80,6 +80,8 @@ type Origin = {
 
 type DefaultProps = {
   classes: Object,
+  anchorOrigin: Origin,
+  transformOrigin: Origin,
 };
 
 export type Props = {
@@ -96,7 +98,7 @@ export type Props = {
    * vertical: [top, center, bottom];
    * horizontal: [left, center, right].
    */
-  anchorOrigin: Origin,
+  anchorOrigin?: Origin,
   /**
    * The content of the component.
    */
@@ -183,7 +185,7 @@ export type Props = {
    * vertical: [top, center, bottom, x(px)];
    * horizontal: [left, center, right, x(px)].
    */
-  transformOrigin: Origin,
+  transformOrigin?: Origin,
   /**
    * Set to 'auto' to automatically calculate transition time based on height
    */
