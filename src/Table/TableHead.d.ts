@@ -4,6 +4,10 @@ import { StyledComponent } from '..';
 export interface TableHeadProps
   extends React.HTMLAttributes<HTMLTableSectionElement> {}
 
-declare const TableHead: StyledComponent<TableHeadProps>;
+export type TableHeadClassKey =
+  | 'root'
+  ;
+
+declare const TableHead: StyledComponent<TableHeadProps, TableHeadClassKey>;
 
 export default TableHead;
