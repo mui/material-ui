@@ -21,6 +21,18 @@ export type TooltipProps = React.HTMLAttributes<HTMLDivElement> & {
     | 'top';
 }
 
-declare const Tooltip: StyledComponent<TooltipProps>;
+export type TooltipClassKey =
+  | 'root'
+  | 'popper'
+  | 'popperClose'
+  | 'tooltip'
+  | 'tooltipLeft'
+  | 'tooltipRight'
+  | 'tooltipTop'
+  | 'tooltipBottom'
+  | 'tooltipOpen'
+  ;
+
+declare const Tooltip: StyledComponent<TooltipProps, TooltipClassKey>;
 
 export default Tooltip;
