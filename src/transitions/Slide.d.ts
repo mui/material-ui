@@ -11,8 +11,6 @@ export interface SlideProps extends TransitionProps {
   leaveTransitionDuration?: number;
 }
 
-export type SlideClassKey = never;
-
-declare const Slide: StyledComponent<SlideProps, SlideClassKey>;
+declare const Slide: React.ComponentType<SlideProps>;
 
 export default Slide;
