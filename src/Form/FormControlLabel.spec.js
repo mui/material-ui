@@ -27,7 +27,7 @@ describe('FormControlLabel', () => {
     const label = wrapper.childAt(1);
     assert.strictEqual(FormControlLabel.displayName, 'withStyles(FormControlLabel)');
     assert.strictEqual(wrapper.name(), 'label');
-    assert.strictEqual(label.childAt(0).node, 'Pizza', 'should be the label text');
+    assert.strictEqual(label.childAt(0).text(), 'Pizza', 'should be the label text');
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should have the "root" class');
   });
 
