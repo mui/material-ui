@@ -6,7 +6,7 @@ import { spy } from 'sinon';
 import { findDOMNode } from 'react-dom';
 import { createShallow, createMount } from '../test-utils';
 import Slide from './Slide';
-import transitions, { easing, duration } from '../styles/transitions';
+import transitions, { easing } from '../styles/transitions';
 import createMuiTheme from '../styles/createMuiTheme';
 
 describe('<Slide />', () => {
@@ -19,16 +19,6 @@ describe('<Slide />', () => {
   it('should render a Transition', () => {
     const wrapper = shallow(<Slide />);
     assert.strictEqual(wrapper.name(), 'Transition');
-  });
-
-  it('enterTransitionDuration prop should have default value from standard durations', () => {
-    // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
-    assert.strictEqual(Slide.Naked.defaultProps.enterTransitionDuration, duration.enteringScreen);
-  });
-
-  it('leaveTransitionDuration prop should have default value from standard durations', () => {
-    // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
-    assert.strictEqual(Slide.Naked.defaultProps.leaveTransitionDuration, duration.leavingScreen);
   });
 
   describe('event callbacks', () => {
@@ -50,16 +40,21 @@ describe('<Slide />', () => {
     });
   });
 
-  describe('transition animation', () => {
+  describe('props: transitionDuration', () => {
     let wrapper;
     let instance;
     let element;
     const enterDuration = 556;
     const leaveDuration = 446;
 
-    before(() => {
+    beforeEach(() => {
       wrapper = shallow(
-        <Slide enterTransitionDuration={enterDuration} leaveTransitionDuration={leaveDuration} />,
+        <Slide
+          transitionDuration={{
+            enter: enterDuration,
+            exit: leaveDuration,
+          }}
+        />,
       );
       instance = wrapper.instance();
       element = { getBoundingClientRect: () => ({}), style: {} };

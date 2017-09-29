@@ -94,7 +94,7 @@ describe('<Snackbar />', () => {
       wrapper.setProps({ open: true });
       assert.strictEqual(handleRequestClose.callCount, 0);
       clock.tick(autoHideDuration / 2);
-      wrapper.setProps({ autoHideDuration: null });
+      wrapper.setProps({ autoHideDuration: undefined });
       clock.tick(autoHideDuration / 2);
       assert.strictEqual(handleRequestClose.callCount, 0);
     });
@@ -136,7 +136,7 @@ describe('<Snackbar />', () => {
           open
           onRequestClose={handleRequestClose}
           message="message"
-          autoHideDuration={null}
+          autoHideDuration={undefined}
         />,
       );
 

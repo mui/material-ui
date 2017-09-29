@@ -465,7 +465,7 @@ describe('<Tabs />', () => {
     let instance;
     let metaStub;
 
-    before(() => {
+    beforeEach(() => {
       scrollStub = stub(scroll, 'left');
       const wrapper = shallow(
         <Tabs width="md" onChange={noop} value={0} scrollable>
@@ -477,7 +477,7 @@ describe('<Tabs />', () => {
       metaStub = stub(instance, 'getTabsMeta');
     });
 
-    after(() => {
+    afterEach(() => {
       scroll.left.restore();
     });
 
@@ -498,7 +498,17 @@ describe('<Tabs />', () => {
       });
 
       instance.scrollSelectedIntoView();
-      assert.strictEqual(scrollStub.args[1][1], 10, 'should scroll to 10 position');
+      assert.strictEqual(scrollStub.args[0][1], 10, 'should scroll to 10 position');
+    });
+
+    it('should support value=false', () => {
+      metaStub.returns({
+        tabsMeta: { left: 0, right: 100, scrollLeft: 0 },
+        tabMeta: undefined,
+      });
+
+      instance.scrollSelectedIntoView();
+      assert.strictEqual(scrollStub.callCount, 0, 'should not scroll');
     });
   });
 });

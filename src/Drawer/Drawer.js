@@ -9,6 +9,7 @@ import Slide from '../transitions/Slide';
 import Paper from '../Paper';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import { duration } from '../styles/transitions';
+import type { TransitionDuration } from '../internal/Transition';
 
 function getSlideDirection(anchor) {
   if (anchor === 'left') {
@@ -82,8 +83,7 @@ type DefaultProps = {
   anchor: Anchor,
   classes: Object,
   elevation: number,
-  enterTransitionDuration: number,
-  leaveTransitionDuration: number,
+  transitionDuration: TransitionDuration,
   open: boolean,
   type: Type,
 };
@@ -106,17 +106,14 @@ export type Props = {
    */
   className?: string,
   /**
-   * Customizes duration of enter animation (ms)
-   */
-  enterTransitionDuration?: number,
-  /**
    * The elevation of the drawer.
    */
   elevation?: number,
   /**
-   * Customizes duration of leave animation (ms)
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
    */
-  leaveTransitionDuration?: number,
+  transitionDuration?: TransitionDuration,
   /**
    * Properties applied to the `Modal` element.
    */
@@ -153,8 +150,10 @@ class Drawer extends React.Component<DefaultProps & Props, State> {
   static defaultProps = {
     anchor: 'left',
     elevation: 16,
-    enterTransitionDuration: duration.enteringScreen,
-    leaveTransitionDuration: duration.leavingScreen,
+    transitionDuration: {
+      enter: duration.enteringScreen,
+      exit: duration.leavingScreen,
+    },
     open: false,
     type: 'temporary', // Mobile first.
   };
@@ -179,8 +178,7 @@ class Drawer extends React.Component<DefaultProps & Props, State> {
       classes,
       className,
       elevation,
-      enterTransitionDuration,
-      leaveTransitionDuration,
+      transitionDuration,
       ModalProps,
       onRequestClose,
       open,
@@ -221,8 +219,7 @@ class Drawer extends React.Component<DefaultProps & Props, State> {
       <Slide
         in={open}
         direction={getSlideDirection(anchor)}
-        enterTransitionDuration={enterTransitionDuration}
-        leaveTransitionDuration={leaveTransitionDuration}
+        transitionDuration={transitionDuration}
         transitionAppear={!this.state.firstMount}
         {...SlideProps}
       >
@@ -241,7 +238,7 @@ class Drawer extends React.Component<DefaultProps & Props, State> {
     // type === temporary
     return (
       <Modal
-        backdropTransitionDuration={open ? enterTransitionDuration : leaveTransitionDuration}
+        backdropTransitionDuration={transitionDuration}
         className={classNames(classes.modal, className)}
         show={open}
         onRequestClose={onRequestClose}

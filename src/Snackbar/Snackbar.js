@@ -10,7 +10,7 @@ import ClickAwayListener from '../internal/ClickAwayListener';
 import { capitalizeFirstLetter, createChainedFunction } from '../utils/helpers';
 import Slide from '../transitions/Slide';
 import SnackbarContent from './SnackbarContent';
-import type { TransitionCallback } from '../internal/Transition';
+import type { TransitionDuration, TransitionCallback } from '../internal/Transition';
 
 export const styles = (theme: Object) => {
   const gutter = theme.spacing.unit * 3;
@@ -120,20 +120,12 @@ export type Props = {
    */
   className?: string,
   /**
-   * Customizes duration of enter animation (ms)
-   */
-  enterTransitionDuration?: number,
-  /**
    * When displaying multiple consecutive Snackbars from a parent rendering a single
    * <Snackbar/>, add the key property to ensure independent treatment of each message.
    * e.g. <Snackbar key={message} />, otherwise, the message may update-in-place and
    * features such as autoHideDuration may be canceled.
    */
   key?: any,
-  /**
-   * Customizes duration of leave animation (ms)
-   */
-  leaveTransitionDuration?: number,
   /**
    * The message to display.
    */
@@ -195,6 +187,11 @@ export type Props = {
    * Object with Transition component, props & create Fn.
    */
   transition?: ComponentType<*> | Element<any>,
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   */
+  transitionDuration?: TransitionDuration,
 };
 
 type State = {
@@ -204,8 +201,10 @@ type State = {
 class Snackbar extends React.Component<DefaultProps & Props, State> {
   static defaultProps = {
     anchorOrigin: { vertical: 'bottom', horizontal: 'center' },
-    enterTransitionDuration: duration.enteringScreen,
-    leaveTransitionDuration: duration.leavingScreen,
+    transitionDuration: {
+      enter: duration.enteringScreen,
+      exit: duration.leavingScreen,
+    },
   };
 
   state = {
@@ -249,13 +248,13 @@ class Snackbar extends React.Component<DefaultProps & Props, State> {
 
   // Timer that controls delay before snackbar auto hides
   setAutoHideTimer(autoHideDuration = null) {
-    if (!this.props.onRequestClose || this.props.autoHideDuration === null) {
+    if (!this.props.onRequestClose || this.props.autoHideDuration === undefined) {
       return;
     }
 
     clearTimeout(this.timerAutoHide);
     this.timerAutoHide = setTimeout(() => {
-      if (!this.props.onRequestClose || this.props.autoHideDuration === null) {
+      if (!this.props.onRequestClose || this.props.autoHideDuration === undefined) {
         return;
       }
 
@@ -292,8 +291,8 @@ class Snackbar extends React.Component<DefaultProps & Props, State> {
   // Restart the timer when the user is no longer interacting with the Snackbar
   // or when the window is shown back.
   handleResume = () => {
-    if (this.props.autoHideDuration !== null) {
-      if (this.props.resumeHideDuration !== null) {
+    if (this.props.autoHideDuration !== undefined) {
+      if (this.props.resumeHideDuration !== undefined) {
         this.setAutoHideTimer(this.props.resumeHideDuration);
         return;
       }
@@ -314,8 +313,7 @@ class Snackbar extends React.Component<DefaultProps & Props, State> {
       children,
       classes,
       className,
-      enterTransitionDuration,
-      leaveTransitionDuration,
+      transitionDuration,
       message,
       onEnter,
       onEntering,
@@ -339,8 +337,7 @@ class Snackbar extends React.Component<DefaultProps & Props, State> {
     const transitionProps = {
       in: open,
       transitionAppear: true,
-      enterTransitionDuration,
-      leaveTransitionDuration,
+      transitionDuration,
       onEnter,
       onEntering,
       onEntered,

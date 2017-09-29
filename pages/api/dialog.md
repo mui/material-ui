@@ -9,12 +9,10 @@ Dialogs are overlaid modal paper based components with a backdrop.
 |:-----|:-----|:--------|:------------|
 | children | Node |  | Dialog children, usually the included sub-components. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| enterTransitionDuration | number | duration.enteringScreen | Duration of the animation when the element is entering. |
 | fullScreen | boolean | false | If `true`, it will be full-screen |
 | fullWidth | boolean | false | If specified, stretches dialog to max width. |
 | ignoreBackdropClick | boolean | false | If `true`, clicking the backdrop will not fire the `onRequestClose` callback. |
 | ignoreEscapeKeyUp | boolean | false | If `true`, hitting escape will not fire the `onRequestClose` callback. |
-| leaveTransitionDuration | number | duration.leavingScreen | Duration of the animation when the element is leaving. |
 | maxWidth | union:&nbsp;'xs'<br>&nbsp;'sm'<br>&nbsp;'md'<br> | 'sm' | Determine the max width of the dialog. The dialog width grows with the size of the screen, this property is useful on the desktop where you might need some coherent different width size across your application. |
 | onBackdropClick | Function |  | Callback fired when the backdrop is clicked. |
 | onEnter | TransitionCallback |  | Callback fired before the dialog enters. |
@@ -27,6 +25,7 @@ Dialogs are overlaid modal paper based components with a backdrop.
 | onRequestClose | Function |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | open | boolean | false | If `true`, the Dialog is open. |
 | transition | union:&nbsp;ComponentType<*><br>&nbsp;Element<any><br> | Fade | Transition component. |
+| transitionDuration | TransitionDuration | {  enter: duration.enteringScreen,  exit: duration.leavingScreen,} | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 

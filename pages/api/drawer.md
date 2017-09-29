@@ -13,11 +13,10 @@
 | <span style="color: #31a148">children *</span> | Node |  | The contents of the drawer. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | elevation | number | 16 | The elevation of the drawer. |
-| enterTransitionDuration | number | duration.enteringScreen | Customizes duration of enter animation (ms) |
-| leaveTransitionDuration | number | duration.leavingScreen | Customizes duration of leave animation (ms) |
 | onRequestClose | Function |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | open | boolean | false | If `true`, the drawer is open. |
 | <span style="color: #31a148">theme *</span> | Object |  |  |
+| transitionDuration | TransitionDuration | {  enter: duration.enteringScreen,  exit: duration.leavingScreen,} | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 | type | union:&nbsp;'permanent'<br>&nbsp;'persistent'<br>&nbsp;'temporary'<br> | 'temporary' | The type of drawer. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).

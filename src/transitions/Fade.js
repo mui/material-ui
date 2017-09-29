@@ -5,11 +5,10 @@ import type { Element } from 'react';
 import Transition from '../internal/Transition';
 import { duration } from '../styles/transitions';
 import withTheme from '../styles/withTheme';
-import type { TransitionCallback } from '../internal/Transition';
+import type { TransitionDuration, TransitionCallback } from '../internal/Transition';
 
 type DefaultProps = {
-  enterTransitionDuration: number,
-  leaveTransitionDuration: number,
+  transitionDuration: TransitionDuration,
 };
 
 export type Props = {
@@ -21,14 +20,6 @@ export type Props = {
    * If `true`, the component will transition in.
    */
   in?: boolean,
-  /**
-   * Duration of the animation when the element is entering.
-   */
-  enterTransitionDuration?: number, // eslint-disable-line react/sort-prop-types
-  /**
-   * Duration of the animation when the element is exiting.
-   */
-  leaveTransitionDuration?: number,
   /**
    * Callback fired before the component enters.
    */
@@ -57,14 +48,20 @@ export type Props = {
    * @ignore
    */
   theme: Object,
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   */
+  transitionDuration?: TransitionDuration,
 };
 
 class Fade extends React.Component<DefaultProps & Props> {
   static defaultProps = {
     in: false,
-    enterTransitionDuration: duration.enteringScreen,
-    leaveTransitionDuration: duration.leavingScreen,
-    theme: {},
+    transitionDuration: {
+      enter: duration.enteringScreen,
+      exit: duration.leavingScreen,
+    },
   };
 
   handleEnter = element => {
@@ -75,12 +72,14 @@ class Fade extends React.Component<DefaultProps & Props> {
   };
 
   handleEntering = element => {
-    const { transitions } = this.props.theme;
-    element.style.transition = transitions.create('opacity', {
-      duration: this.props.enterTransitionDuration,
+    const { theme, transitionDuration } = this.props;
+    element.style.transition = theme.transitions.create('opacity', {
+      duration:
+        typeof transitionDuration === 'number' ? transitionDuration : transitionDuration.enter,
     });
-    element.style.WebkitTransition = transitions.create('opacity', {
-      duration: this.props.enterTransitionDuration,
+    element.style.WebkitTransition = theme.transitions.create('opacity', {
+      duration:
+        typeof transitionDuration === 'number' ? transitionDuration : transitionDuration.enter,
     });
     element.style.opacity = 1;
     if (this.props.onEntering) {
@@ -89,12 +88,14 @@ class Fade extends React.Component<DefaultProps & Props> {
   };
 
   handleExit = element => {
-    const { transitions } = this.props.theme;
-    element.style.transition = transitions.create('opacity', {
-      duration: this.props.leaveTransitionDuration,
+    const { theme, transitionDuration } = this.props;
+    element.style.transition = theme.transitions.create('opacity', {
+      duration:
+        typeof transitionDuration === 'number' ? transitionDuration : transitionDuration.enter,
     });
-    element.style.WebkitTransition = transitions.create('opacity', {
-      duration: this.props.leaveTransitionDuration,
+    element.style.WebkitTransition = theme.transitions.create('opacity', {
+      duration:
+        typeof transitionDuration === 'number' ? transitionDuration : transitionDuration.enter,
     });
     element.style.opacity = 0;
     if (this.props.onExit) {
@@ -105,8 +106,7 @@ class Fade extends React.Component<DefaultProps & Props> {
   render() {
     const {
       children,
-      enterTransitionDuration,
-      leaveTransitionDuration,
+      transitionDuration,
       onEnter,
       onEntering,
       onExit,
@@ -119,7 +119,7 @@ class Fade extends React.Component<DefaultProps & Props> {
         onEnter={this.handleEnter}
         onEntering={this.handleEntering}
         onExit={this.handleExit}
-        timeout={Math.max(enterTransitionDuration, leaveTransitionDuration) + 10}
+        timeout={transitionDuration}
         transitionAppear
         {...other}
       >

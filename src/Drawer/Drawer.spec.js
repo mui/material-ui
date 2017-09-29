@@ -51,57 +51,31 @@ describe('<Drawer />', () => {
       assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the paper class');
     });
 
-    describe('enterTransitionDuration property', () => {
-      const enterDuration = 854;
-      const leaveDuration = 2967;
+    describe('transitionDuration property', () => {
+      const transitionDuration = {
+        enter: 854,
+        exit: 2967,
+      };
 
       it('should be passed to Slide', () => {
         const wrapper = shallow(
-          <Drawer enterTransitionDuration={enterDuration}>
+          <Drawer transitionDuration={transitionDuration}>
             <div />
           </Drawer>,
         );
-        assert.strictEqual(wrapper.find(Slide).prop('enterTransitionDuration'), enterDuration);
+        assert.strictEqual(wrapper.find(Slide).props().transitionDuration, transitionDuration);
       });
 
       it("should be passed to to Modal's backdropTransitionDuration when open=true", () => {
         const wrapper = shallow(
-          <Drawer
-            open
-            enterTransitionDuration={enterDuration}
-            leaveTransitionDuration={leaveDuration}
-          >
+          <Drawer open transitionDuration={transitionDuration}>
             <div />
           </Drawer>,
         );
-        assert.strictEqual(wrapper.find(Modal).prop('backdropTransitionDuration'), enterDuration);
-      });
-    });
-
-    describe('leaveTransitionDuration property', () => {
-      const enterDuration = 6577;
-      const leaveDuration = 1889;
-
-      it('should be passed to Slide', () => {
-        const wrapper = shallow(
-          <Drawer leaveTransitionDuration={leaveDuration}>
-            <div />
-          </Drawer>,
+        assert.strictEqual(
+          wrapper.find(Modal).props().backdropTransitionDuration,
+          transitionDuration,
         );
-        assert.strictEqual(wrapper.find(Slide).props().leaveTransitionDuration, leaveDuration);
-      });
-
-      it("should be passed to to Modal's backdropTransitionDuration when open=false", () => {
-        const wrapper = shallow(
-          <Drawer
-            open={false}
-            enterTransitionDuration={enterDuration}
-            leaveTransitionDuration={leaveDuration}
-          >
-            <div />
-          </Drawer>,
-        );
-        assert.strictEqual(wrapper.find(Modal).props().backdropTransitionDuration, leaveDuration);
       });
     });
 

@@ -11,10 +11,10 @@ export function getScale(value: number) {
   return `scale(${value}, ${value ** 2})`;
 }
 
-export type Duration = number | 'auto';
+export type TransitionDuration = number | { enter?: number, exit?: number } | 'auto';
 
 type DefaultProps = {
-  transitionDuration: Duration,
+  transitionDuration: TransitionDuration,
 };
 
 export type Props = {
@@ -55,9 +55,12 @@ export type Props = {
    */
   theme: Object,
   /**
-   * Set to 'auto' to automatically calculate transition time based on height
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   *
+   * Set to 'auto' to automatically calculate transition time based on height.
    */
-  transitionDuration?: Duration,
+  transitionDuration?: TransitionDuration,
 };
 
 /**
@@ -78,20 +81,26 @@ class Grow extends React.Component<DefaultProps & Props> {
       this.props.onEnter(element);
     }
 
-    let { transitionDuration } = this.props;
-    const { transitions } = this.props.theme;
+    const { theme, transitionDuration } = this.props;
+    let duration = 0;
 
     if (transitionDuration === 'auto') {
-      transitionDuration = transitions.getAutoHeightDuration(element.clientHeight);
-      this.autoTransitionDuration = transitionDuration;
+      duration = theme.transitions.getAutoHeightDuration(element.clientHeight);
+      this.autoTransitionDuration = duration;
+    } else if (typeof transitionDuration === 'number') {
+      duration = transitionDuration;
+    } else if (transitionDuration) {
+      duration = transitionDuration.enter;
+    } else {
+      // The propType will warn in this case.
     }
 
     element.style.transition = [
-      transitions.create('opacity', {
-        duration: transitionDuration,
+      theme.transitions.create('opacity', {
+        duration,
       }),
-      transitions.create('transform', {
-        duration: transitionDuration * 0.666,
+      theme.transitions.create('transform', {
+        duration: duration * 0.666,
       }),
     ].join(',');
   };
@@ -106,21 +115,27 @@ class Grow extends React.Component<DefaultProps & Props> {
   };
 
   handleExit = (element: HTMLElement) => {
-    let { transitionDuration } = this.props;
-    const { transitions } = this.props.theme;
+    const { theme, transitionDuration } = this.props;
+    let duration = 0;
 
     if (transitionDuration === 'auto') {
-      transitionDuration = transitions.getAutoHeightDuration(element.clientHeight);
-      this.autoTransitionDuration = transitionDuration;
+      duration = theme.transitions.getAutoHeightDuration(element.clientHeight);
+      this.autoTransitionDuration = duration;
+    } else if (typeof transitionDuration === 'number') {
+      duration = transitionDuration;
+    } else if (transitionDuration) {
+      duration = transitionDuration.exit;
+    } else {
+      // The propType will warn in this case.
     }
 
     element.style.transition = [
-      transitions.create('opacity', {
-        duration: transitionDuration,
+      theme.transitions.create('opacity', {
+        duration,
       }),
-      transitions.create('transform', {
-        duration: transitionDuration * 0.666,
-        delay: transitionDuration * 0.333,
+      theme.transitions.create('transform', {
+        duration: duration * 0.666,
+        delay: duration * 0.333,
       }),
     ].join(',');
 
@@ -134,9 +149,9 @@ class Grow extends React.Component<DefaultProps & Props> {
 
   handleRequestTimeout = () => {
     if (this.props.transitionDuration === 'auto') {
-      return (this.autoTransitionDuration || 0) + 20;
+      return this.autoTransitionDuration || 0;
     }
-    return this.props.transitionDuration + 20;
+    return this.props.transitionDuration;
   };
 
   render() {

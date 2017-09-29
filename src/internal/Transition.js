@@ -38,9 +38,9 @@ type State = {
   status: 0 | 1 | 2 | 3 | 4,
 };
 
+export type TransitionDuration = number | { enter: number, exit: number };
 export type TransitionCallback = (element: HTMLElement) => void;
-
-export type TransitionRequestTimeout = (element: HTMLElement) => number;
+export type TransitionRequestTimeout = (element: HTMLElement) => TransitionDuration;
 
 export type Props = {
   /**
@@ -106,8 +106,10 @@ export type Props = {
    *
    * By default this is set to a high number (5 seconds) as a failsafe. You should consider
    * setting this to the duration of your animation (or a bit above it).
+   *
+   * You may specify a single timeout for all transitions, or individually with an object.
    */
-  timeout?: number,
+  timeout?: TransitionDuration,
   /**
    * Run the enter animation when the component mounts, if it is initially
    * shown.
@@ -118,6 +120,8 @@ export type Props = {
    */
   unmountOnExit?: boolean,
 };
+
+const defaultTimeout = 5000;
 
 /**
  * @ignore - internal component.
@@ -137,7 +141,7 @@ class Transition extends React.Component<Props, State> {
     in: false,
     unmountOnExit: false,
     transitionAppear: false,
-    timeout: 5000,
+    timeout: defaultTimeout,
   };
 
   state = {
@@ -240,7 +244,7 @@ class Transition extends React.Component<Props, State> {
         this.props.onEntering(element);
       }
 
-      this.onTransitionEnd(element, () => {
+      this.onTransitionEnd(element, 'enter', () => {
         this.safeSetState({ status: ENTERED }, () => {
           if (this.props.onEntered) {
             this.props.onEntered(element);
@@ -264,7 +268,7 @@ class Transition extends React.Component<Props, State> {
           this.props.onExiting(node);
         }
 
-        this.onTransitionEnd(node, () => {
+        this.onTransitionEnd(node, 'exit', () => {
           this.safeSetState({ status: EXITED }, () => {
             if (this.props.onExited) {
               this.props.onExited(node);
@@ -312,7 +316,11 @@ class Transition extends React.Component<Props, State> {
     return this.nextCallback;
   }
 
-  onTransitionEnd(element: HTMLElement, handler: SyntheticUIEventHandler) {
+  onTransitionEnd(
+    element: HTMLElement,
+    eventType: 'enter' | 'exit',
+    handler: SyntheticUIEventHandler,
+  ) {
     this.setNextCallback(handler);
 
     if (element) {
@@ -321,24 +329,35 @@ class Transition extends React.Component<Props, State> {
           this.nextCallback();
         }
       });
-      setTimeout(this.nextCallback, this.getTimeout(element));
+      setTimeout(this.nextCallback, this.getTimeouts(element)[eventType]);
     } else {
       setTimeout(this.nextCallback, 0);
     }
   }
 
-  getTimeout(element: HTMLElement) {
+  getTimeouts(element: HTMLElement) {
     let timeout;
 
     if (this.props.onRequestTimeout && element instanceof HTMLElement) {
       timeout = this.props.onRequestTimeout(element);
     }
 
-    if (typeof timeout !== 'number') {
+    if (timeout === undefined) {
       timeout = this.props.timeout;
     }
 
-    return timeout;
+    let enter;
+    let exit;
+
+    if (typeof timeout === 'number' || !timeout) {
+      enter = timeout;
+      exit = timeout;
+    } else {
+      enter = timeout.enter;
+      exit = timeout.exit;
+    }
+
+    return { enter, exit };
   }
 
   render() {
