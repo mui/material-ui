@@ -69,6 +69,7 @@ describe('<Typography />', () => {
     ['secondary', 'colorSecondary'],
     ['accent', 'colorAccent'],
     ['inherit', 'colorInherit'],
+    ['error', 'colorError'],
   ].forEach(([color, className]) => {
     it(`should render ${color} color`, () => {
       const wrapper = shallow(<Typography color={(color: any)}>Hello</Typography>);

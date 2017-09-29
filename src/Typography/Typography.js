@@ -57,6 +57,9 @@ export const styles = (theme: Object) => ({
   colorAccent: {
     color: theme.palette.secondary.A400,
   },
+  colorError: {
+    color: theme.palette.error.A400,
+  },
 });
 
 export type Type =
@@ -98,7 +101,7 @@ export type Props = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color?: 'inherit' | 'primary' | 'secondary' | 'accent' | 'default',
+  color?: 'inherit' | 'primary' | 'secondary' | 'accent' | 'error' | 'default',
   /**
    * If `true`, the text will have a bottom margin.
    */
