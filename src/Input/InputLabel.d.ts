@@ -11,6 +11,15 @@ export interface InputLabelProps extends FormLabelProps {
   shrink?: boolean;
 }
 
-declare const InputLabel: StyledComponent<InputLabelProps>;
+export type InputLabelClassKey =
+  | 'root'
+  | 'formControl'
+  | 'labelDense'
+  | 'shrink'
+  | 'animated'
+  | 'disabled'
+  ;
+
+declare const InputLabel: StyledComponent<InputLabelProps, InputLabelClassKey>;
 
 export default InputLabel;

@@ -7,6 +7,14 @@ export interface TableRowProps
   selected?: boolean;
 }
 
-declare const TableRow: StyledComponent<TableRowProps>;
+export type TableRowClassKey =
+  | 'root'
+  | 'head'
+  | 'footer'
+  | 'hover'
+  | 'selected'
+  ;
+
+declare const TableRow: StyledComponent<TableRowProps, TableRowClassKey>;
 
 export default TableRow;

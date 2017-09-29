@@ -20,6 +20,11 @@ export type ModalProps = {
 } & Partial<TransitionHandlers> &
   React.HtmlHTMLAttributes<HTMLDivElement>;
 
-declare const Modal: StyledComponent<ModalProps>;
+export type ModalClassKey =
+  | 'root'
+  | 'hidden'
+  ;
+
+declare const Modal: StyledComponent<ModalProps, ModalClassKey>;
 
 export default Modal;

@@ -20,7 +20,15 @@ export interface SwitchBaseProps {
   value?: string;
 }
 
-export type SwitchBase = StyledComponent<SwitchBaseProps>
+export type SwitchBaseClassKey =
+  | 'root'
+  | 'default'
+  | 'checked'
+  | 'disabled'
+  | 'input'
+  ;
+
+export type SwitchBase = StyledComponent<SwitchBaseProps, SwitchBaseClassKey>
 
 export interface CreateSwitchBaseOptions {
   defaultIcon?: React.ReactNode;

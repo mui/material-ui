@@ -18,6 +18,15 @@ export interface SwitchProps extends SwitchBaseProps {
   value?: string;
 }
 
-declare const Switch: StyledComponent<SwitchProps>;
+export type SwitchClassKey =
+  | 'root'
+  | 'bar'
+  | 'icon'
+  | 'default'
+  | 'checked'
+  | 'disabled'
+  ;
+
+declare const Switch: StyledComponent<SwitchProps, SwitchClassKey>;
 
 export default Switch;

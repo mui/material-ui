@@ -8,6 +8,11 @@ export interface CollapseProps extends TransitionProps {
   transitionDuration?: TransitionDuration | 'auto';
 }
 
-declare const Collapse: StyledComponent<CollapseProps>;
+export type CollapseClassKey =
+  | 'container'
+  | 'entered'
+  ;
+
+declare const Collapse: StyledComponent<CollapseProps, CollapseClassKey>;
 
 export default Collapse;

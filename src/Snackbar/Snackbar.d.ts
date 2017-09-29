@@ -22,6 +22,16 @@ export type SnackbarProps = {
 } & Partial<TransitionHandlers> &
   React.HTMLAttributes<HTMLDivElement>;
 
-declare const Snackbar: StyledComponent<SnackbarProps>;
+export type SnackbarClassKey =
+  | 'root'
+  | 'anchorTopCenter'
+  | 'anchorBottomCenter'
+  | 'anchorTopRight'
+  | 'anchorBottomRight'
+  | 'anchorTopLeft'
+  | 'anchorBottomLeft'
+  ;
+
+declare const Snackbar: StyledComponent<SnackbarProps, SnackbarClassKey>;
 
 export default Snackbar;

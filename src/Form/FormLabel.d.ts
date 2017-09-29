@@ -9,6 +9,13 @@ export interface FormLabelProps
   required?: boolean;
 }
 
-declare const FormLabel: StyledComponent<FormLabelProps>;
+export type FormLabelClassKey =
+  | 'root'
+  | 'focused'
+  | 'error'
+  | 'disabled'
+  ;
+
+declare const FormLabel: StyledComponent<FormLabelProps, FormLabelClassKey>;
 
 export default FormLabel;

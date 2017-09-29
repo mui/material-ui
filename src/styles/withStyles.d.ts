@@ -9,30 +9,30 @@ import { Theme } from './createMuiTheme';
    * - the `keys` are the class (names) that will be created
    * - the `values` are objects that represent CSS rules (`React.CSSProperties`).
    */
-export type StyleRules<Names extends string = string> = Record<Names, Partial<React.CSSProperties>>;
+export type StyleRules<ClassKey extends string = string> = Record<ClassKey, Partial<React.CSSProperties>>;
 
-export type StyleRulesCallback<Names extends string = string> = (theme: Theme) => StyleRules<Names>;
+export type StyleRulesCallback<ClassKey extends string = string> = (theme: Theme) => StyleRules<ClassKey>;
 
 export interface WithStylesOptions {
   withTheme?: boolean;
   name?: string;
 }
 
-export type WithStyles<Names extends string = string> = {
-  classes: ClassNameMap<Names>
+export type WithStyles<ClassKey extends string = string> = {
+  classes: ClassNameMap<ClassKey>
   theme?: Theme
 };
 
-export default function withStyles<Names extends string>(
-  style: StyleRules<Names> | StyleRulesCallback<Names>,
+export default function withStyles<ClassKey extends string>(
+  style: StyleRules<ClassKey> | StyleRulesCallback<ClassKey>,
   options?: WithStylesOptions
 ): {
   /**
    * Decorating a stateless functional component.
    */
   <P>(
-    component: React.StatelessComponent<P & WithStyles<Names>>
-  ): StyledComponent<P, Names>;
+    component: React.StatelessComponent<P & WithStyles<ClassKey>>
+  ): StyledComponent<P, ClassKey>;
 
   /**
    * Decorating a class component. This is slightly less type safe than the
@@ -41,7 +41,7 @@ export default function withStyles<Names extends string>(
    * upshot is that one has to use the non-null assertion operator (`!`) when
    * accessing `props.classes`.
    */
-  <P, C extends React.ComponentClass<P & StyledComponentProps<Names>>>(
+  <P, C extends React.ComponentClass<P & StyledComponentProps<ClassKey>>>(
     component: C
   ): C;
 };

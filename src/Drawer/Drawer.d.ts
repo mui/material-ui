@@ -10,11 +10,21 @@ export interface DrawerProps extends ModalProps {
   elevation?: number;
   transitionDuration?: TransitionDuration;
   open?: boolean;
-  SlideProps?: SlideProps & StyledComponentProps<any>;
+  SlideProps?: SlideProps;
   theme?: Theme;
   type?: 'permanent' | 'persistent' | 'temporary';
 }
 
-declare const Drawer: StyledComponent<DrawerProps>;
+export type DrawerClassKey =
+  | 'paper'
+  | 'anchorLeft'
+  | 'anchorRight'
+  | 'anchorTop'
+  | 'anchorBottom'
+  | 'docked'
+  | 'modal'
+  ;
+
+declare const Drawer: StyledComponent<DrawerProps, DrawerClassKey>;
 
 export default Drawer;

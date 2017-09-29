@@ -29,6 +29,10 @@ export type PopoverProps = {
 } & Partial<TransitionHandlers> &
   ModalProps;
 
-declare const Popover: StyledComponent<PopoverProps>;
+export type PopoverClassKey =
+  | 'paper'
+  ;
+
+declare const Popover: StyledComponent<PopoverProps, PopoverClassKey>;
 
 export default Popover;

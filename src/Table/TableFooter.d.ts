@@ -4,6 +4,10 @@ import { StyledComponent } from '..';
 export interface TableFooterProps
   extends React.HTMLAttributes<HTMLTableSectionElement> {}
 
-declare const TableFooter: StyledComponent<TableFooterProps>;
+export type TableFooterClassKey =
+  | 'root'
+  ;
+
+declare const TableFooter: StyledComponent<TableFooterProps, TableFooterClassKey>;
 
 export default TableFooter;

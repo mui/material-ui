@@ -9,6 +9,13 @@ export interface ListProps extends React.HTMLAttributes<HTMLUListElement> {
   subheader?: React.ReactElement<any>;
 }
 
-declare const List: StyledComponent<ListProps>;
+export type ListClassKey =
+  | 'root'
+  | 'padding'
+  | 'dense'
+  | 'subheader'
+  ;
+
+declare const List: StyledComponent<ListProps, ListClassKey>;
 
 export default List;

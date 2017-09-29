@@ -9,6 +9,14 @@ export interface ListItemTextProps
   secondary?: React.ReactNode;
 }
 
-declare const ListItemText: StyledComponent<ListItemTextProps>;
+export type ListItemTextClassKey =
+  | 'root'
+  | 'inset'
+  | 'dense'
+  | 'text'
+  | 'textDense'
+  ;
+
+declare const ListItemText: StyledComponent<ListItemTextProps, ListItemTextClassKey>;
 
 export default ListItemText;

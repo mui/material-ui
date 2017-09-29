@@ -17,6 +17,14 @@ export interface SelectInputProps {
   value?: string | number | Array<string | number>;
 }
 
-declare const SelectInput: StyledComponent<SelectInputProps>;
+export type SelectInputClassKey =
+  | 'root'
+  | 'select'
+  | 'selectMenu'
+  | 'disabled'
+  | 'icon'
+  ;
+
+declare const SelectInput: StyledComponent<SelectInputProps, SelectInputClassKey>;
 
 export default SelectInput;

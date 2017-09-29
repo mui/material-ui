@@ -7,6 +7,13 @@ export interface GridListTileProps {
   row?: number;
 }
 
-declare const GridListTile: StyledComponent<GridListTileProps>;
+export type GridListTileClassKey =
+  | 'root'
+  | 'tile'
+  | 'imgFullHeight'
+  | 'imgFullWidth'
+  ;
+
+declare const GridListTile: StyledComponent<GridListTileProps, GridListTileClassKey>;
 
 export default GridListTile;

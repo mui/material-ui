@@ -13,6 +13,10 @@ export type MenuProps = {
 } & Partial<TransitionHandlers> &
   PopoverProps;
 
-declare const Menu: StyledComponent<MenuProps>;
+export type MenuClassKey =
+  | 'root'
+  ;
+
+declare const Menu: StyledComponent<MenuProps, MenuClassKey>;
 
 export default Menu;

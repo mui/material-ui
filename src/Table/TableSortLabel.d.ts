@@ -7,6 +7,14 @@ export interface TableSortLabelProps extends ButtonBaseProps {
   direction?: 'asc' | 'desc';
 }
 
-declare const TableSortLabel: StyledComponent<TableSortLabelProps>;
+export type TableSortLabelClassKey =
+  | 'root'
+  | 'active'
+  | 'icon'
+  | 'desc'
+  | 'asc'
+  ;
+
+declare const TableSortLabel: StyledComponent<TableSortLabelProps, TableSortLabelClassKey>;
 
 export default TableSortLabel;

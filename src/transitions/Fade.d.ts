@@ -8,6 +8,6 @@ export interface FadeProps extends TransitionProps {
   transitionDuration?: TransitionDuration;
 }
 
-declare const Fade: StyledComponent<FadeProps>;
+declare const Fade: React.ComponentType<FadeProps>;
 
 export default Fade;

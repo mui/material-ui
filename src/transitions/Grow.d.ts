@@ -8,6 +8,6 @@ export interface GrowProps extends TransitionProps {
   transitionDuration?: TransitionDuration | 'auto';
 }
 
-declare const Grow: StyledComponent<GrowProps>;
+declare const Grow: React.ComponentType<GrowProps>;
 
 export default Grow;

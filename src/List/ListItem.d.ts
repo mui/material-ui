@@ -12,6 +12,19 @@ export type ListItemProps = {
 } & ButtonBaseProps &
   React.LiHTMLAttributes<HTMLLIElement>;
 
-declare const ListItem: StyledComponent<ListItemProps>;
+export type ListItemClassKey =
+  | 'root'
+  | 'container'
+  | 'keyboardFocused'
+  | 'default'
+  | 'dense'
+  | 'disabled'
+  | 'divider'
+  | 'gutters'
+  | 'button'
+  | 'secondaryAction'
+  ;
+
+declare const ListItem: StyledComponent<ListItemProps, ListItemClassKey>;
 
 export default ListItem;

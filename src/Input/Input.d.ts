@@ -45,6 +45,24 @@ export type InputProps = {
   >
 >;
 
-declare const Input: StyledComponent<InputProps>;
+export type InputClassKey =
+  | 'root'
+  | 'formControl'
+  | 'inkbar'
+  | 'error'
+  | 'input'
+  | 'inputDense'
+  | 'disabled'
+  | 'focused'
+  | 'underline'
+  | 'multiline'
+  | 'inputDisabled'
+  | 'inputSingleline'
+  | 'inputSearch'
+  | 'inputMultiline'
+  | 'fullWidth'
+  ;
+
+declare const Input: StyledComponent<InputProps, InputClassKey>;
 
 export default Input;

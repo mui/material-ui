@@ -4,6 +4,10 @@ import { StyledComponent } from '..';
 export interface DialogContentTextProps
   extends React.HTMLAttributes<HTMLParagraphElement> {}
 
-declare const DialogContentText: StyledComponent<DialogContentTextProps>;
+export type DialogContentTextClassKey =
+  | 'root'
+  ;
+
+declare const DialogContentText: StyledComponent<DialogContentTextProps, DialogContentTextClassKey>;
 
 export default DialogContentText;

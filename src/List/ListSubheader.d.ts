@@ -8,6 +8,14 @@ export interface ListSubheaderProps
   disableSticky?: boolean;
 }
 
-declare const ListSubheader: StyledComponent<ListSubheaderProps>;
+export type ListSubheaderClassKey =
+  | 'root'
+  | 'colorPrimary'
+  | 'colorInherit'
+  | 'inset'
+  | 'sticky'
+  ;
+
+declare const ListSubheader: StyledComponent<ListSubheaderProps, ListSubheaderClassKey>;
 
 export default ListSubheader;

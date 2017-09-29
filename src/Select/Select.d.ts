@@ -12,6 +12,14 @@ export type SelectProps = {
   value?: Array<string | number> | string | number;
 } & Partial<Omit<InputProps, 'value'>>;
 
-declare const Select: StyledComponent<SelectProps>;
+type SelectClassKey =
+  | 'root'
+  | 'select'
+  | 'selectMenu'
+  | 'disabled'
+  | 'icon'
+  ;
+
+declare const Select: StyledComponent<SelectProps, SelectClassKey>;
 
 export default Select;

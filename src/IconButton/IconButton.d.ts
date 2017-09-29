@@ -9,6 +9,18 @@ export interface IconButtonProps extends ButtonBaseProps {
   rootRef?: React.Ref<any>;
 }
 
-declare const IconButton: StyledComponent<IconButtonProps>;
+export type IconButtonClassKey =
+  | 'root'
+  | 'colorAccent'
+  | 'colorContrast'
+  | 'colorPrimary'
+  | 'colorInherit'
+  | 'disabled'
+  | 'label'
+  | 'icon'
+  | 'keyboardFocused'
+  ;
+
+declare const IconButton: StyledComponent<IconButtonProps, IconButtonClassKey>;
 
 export default IconButton;

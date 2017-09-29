@@ -10,6 +10,6 @@ export interface SlideProps extends TransitionProps {
   transitionDuration?: TransitionDuration;
 }
 
-declare const Slide: StyledComponent<SlideProps>;
+declare const Slide: React.ComponentType<SlideProps>;
 
 export default Slide;

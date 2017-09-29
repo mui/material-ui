@@ -7,6 +7,12 @@ export interface TabIndicatorProps
   style: { left: number; width: number };
 }
 
-declare const TabIndicator: StyledComponent<TabIndicatorProps>;
+export type TabIndicatorClassKey =
+  | 'root'
+  | 'colorAccent'
+  | 'colorPrimary'
+  ;
+
+declare const TabIndicator: StyledComponent<TabIndicatorProps, TabIndicatorClassKey>;
 
 export default TabIndicator;

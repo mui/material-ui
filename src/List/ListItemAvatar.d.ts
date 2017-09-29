@@ -2,6 +2,11 @@ import { StyledComponent } from '..';
 
 export interface ListItemAvatarProps {}
 
-declare const ListItemAvatar: StyledComponent<ListItemAvatarProps>;
+export type ListItemAvatarClassKey =
+  | 'root'
+  | 'icon'
+  ;
+
+declare const ListItemAvatar: StyledComponent<ListItemAvatarProps, ListItemAvatarClassKey>;
 
 export default ListItemAvatar;
