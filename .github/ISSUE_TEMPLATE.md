@@ -29,7 +29,7 @@
     https://codesandbox.io/s/github/callemall/material-ui/tree/v1-beta/examples/create-react-app
 
 
-    If YOU DO NOT take time to provide a codesandbox.io reproduction, SHOULD the community take time to help you? 
+    If YOU DO NOT take time to provide a codesandbox.io reproduction, should the COMMUNITY take time to help you? 
 
 -->
 
