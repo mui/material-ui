@@ -23,8 +23,14 @@
 ## Steps to Reproduce (for bugs)
 <!--- 
     Provide a link to a live example (you can use codesandbox.io) and an unambiguous set of steps to reproduce this bug. 
-    Include code to reproduce, if relevant. This codesandbox.io template _may_ be a good starting point: 
+    Include code to reproduce, if relevant (which it most likely is). 
+
+    This codesandbox.io template _may_ be a good starting point: 
     https://codesandbox.io/s/github/callemall/material-ui/tree/v1-beta/examples/create-react-app
+
+
+    If YOU DO NOT take time to provide a codesandbox.io reproduction, should the COMMUNITY take time to help you? 
+
 -->
 
 1.
