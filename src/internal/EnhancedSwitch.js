@@ -337,7 +337,7 @@ class EnhancedSwitch extends Component {
       onMouseDown: this.handleMouseDown,
       onMouseLeave: this.handleMouseLeave,
       onTouchStart: this.handleTouchStart,
-      onTouchEnd: this.handleTouchEnd
+      onTouchEnd: this.handleTouchEnd,
     } : {};
 
     const inputElement = (
