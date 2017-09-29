@@ -56,8 +56,8 @@
     "postrelease": "yarn docs:deploy && npm publish build --tag next"
   },
   "peerDependencies": {
-    "react": "^15.3.0 || ^16.0.0-beta.5",
-    "react-dom": "^15.3.0 || ^16.0.0-beta.5"
+    "react": "^15.3.0 || ^16.0.0",
+    "react-dom": "^15.3.0 || ^16.0.0"
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
@@ -76,7 +76,7 @@
     "react-jss": "^7.2.0",
     "react-popper": "^0.7.3",
     "react-scrollbar-size": "^2.0.1",
-    "react-transition-group": "^2.2.0",
+    "react-transition-group": "^2.2.1",
     "recompose": "^0.25.1",
     "scroll": "^2.0.1",
     "warning": "^3.0.0"
@@ -111,11 +111,11 @@
     "cross-env": "^5.0.5",
     "doctrine": "^2.0.0",
     "enzyme": "^2.9.1",
-    "eslint": "^4.7.2",
+    "eslint": "^4.8.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-import-resolver-webpack": "^0.8.3",
     "eslint-plugin-babel": "^4.1.2",
-    "eslint-plugin-flowtype": "^2.36.0",
+    "eslint-plugin-flowtype": "^2.37.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-material-ui": "file:packages/eslint-plugin-material-ui",
@@ -167,7 +167,7 @@
     "redux-logger": "^3.0.6",
     "rimraf": "^2.6.2",
     "sinon": "^4.0.0",
-    "size-limit": "^0.11.4",
+    "size-limit": "^0.11.5",
     "typescript": "^2.5.3",
     "url-loader": "^0.5.9",
     "vrtest": "^0.2.0",
