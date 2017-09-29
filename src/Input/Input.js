@@ -146,7 +146,7 @@ export const styles = (theme: Object) => {
         height: 1,
         position: 'absolute',
         right: 0,
-        transition: theme.transitions.create('backgroundColor', {
+        transition: theme.transitions.create('background-color', {
           duration: theme.transitions.duration.shorter,
           easing: theme.transitions.easing.ease,
         }),
