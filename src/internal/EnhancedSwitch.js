@@ -332,6 +332,14 @@ class EnhancedSwitch extends Component {
       showFocusRipple ? focusRipple : null,
     ];
 
+    const touchHandlers = showTouchRipple ? {
+      onMouseUp: this.handleMouseUp,
+      onMouseDown: this.handleMouseDown,
+      onMouseLeave: this.handleMouseLeave,
+      onTouchStart: this.handleTouchStart,
+      onTouchEnd: this.handleTouchEnd,
+    } : {};
+
     const inputElement = (
       <input
         {...other}
@@ -345,11 +353,7 @@ class EnhancedSwitch extends Component {
         onBlur={this.handleBlur}
         onFocus={this.handleFocus}
         onChange={this.handleChange}
-        onMouseUp={showTouchRipple && this.handleMouseUp}
-        onMouseDown={showTouchRipple && this.handleMouseDown}
-        onMouseLeave={showTouchRipple && this.handleMouseLeave}
-        onTouchStart={showTouchRipple && this.handleTouchStart}
-        onTouchEnd={showTouchRipple && this.handleTouchEnd}
+        {...touchHandlers}
       />
     );
 
