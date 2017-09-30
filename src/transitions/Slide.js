@@ -18,11 +18,11 @@ function getTranslateValue(props, element: HTMLElement) {
   const rect = element.getBoundingClientRect();
 
   if (direction === 'left') {
-    return `translate3d(calc(100vw - ${rect.left}px), 0, 0)`;
+    return `translateX(100vw) translateX(-${rect.left}px)`;
   } else if (direction === 'right') {
-    return `translate3d(${0 - (rect.left + rect.width + GUTTER)}px, 0, 0)`;
+    return `translateX(-${rect.left + rect.width + GUTTER}px)`;
   } else if (direction === 'up') {
-    return `translate3d(0, calc(100vh - ${rect.top}px), 0)`;
+    return `translateY(100vh) translateY(-${rect.top}px)`;
   }
 
   // direction === 'down
