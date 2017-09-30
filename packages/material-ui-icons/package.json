@@ -37,8 +37,8 @@
   },
   "peerDependencies": {
     "material-ui": "^1.0.0-beta",
-    "react": "^15.3.0 || ^16.0.0-beta.1",
-    "react-dom": "^15.3.0 || ^16.0.0-beta.1"
+    "react": "^15.3.0 || ^16.0.0",
+    "react-dom": "^15.3.0 || ^16.0.0"
   },
   "dependencies": {
     "recompose": "^0.25.1"
