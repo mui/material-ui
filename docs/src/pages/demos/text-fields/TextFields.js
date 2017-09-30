@@ -203,7 +203,10 @@ class TextFields extends React.Component {
         <TextField
           id="full-width"
           label="Label"
-          InputProps={{ placeholder: 'Placeholder' }}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          placeholder="Placeholder"
           helperText="Full width!"
           fullWidth
           margin="normal"

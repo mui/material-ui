@@ -129,7 +129,7 @@ function InputLabel(props: DefaultProps & Props, context: { muiFormControl: Obje
   );
 
   return (
-    <FormLabel className={className} classes={FormControlClasses} {...other}>
+    <FormLabel data-shrink={shrink} className={className} classes={FormControlClasses} {...other}>
       {children}
     </FormLabel>
   );

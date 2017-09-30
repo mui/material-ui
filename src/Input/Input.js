@@ -38,15 +38,15 @@ export const styles = (theme: Object) => {
   const placeholder = {
     color: 'currentColor',
     opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
-  };
-  const placeholderForm = {
-    opacity: 0,
     transition: theme.transitions.create('opacity', {
       duration: theme.transitions.duration.shorter,
       easing: theme.transitions.easing.ease,
     }),
   };
-  const placeholderFormFocus = {
+  const placeholderHidden = {
+    opacity: 0,
+  };
+  const placeholderVisible = {
     opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
   };
 
@@ -118,15 +118,15 @@ export const styles = (theme: Object) => {
         appearance: 'none',
       },
       // Show and hide the placeholder logic
-      'label + $formControl &': {
-        '&::-webkit-input-placeholder': placeholderForm,
-        '&::-moz-placeholder': placeholderForm, // Firefox 19+
-        '&:-ms-input-placeholder': placeholderForm, // IE 11
-        '&::-ms-input-placeholder': placeholderForm, // Edge
-        '&:focus::-webkit-input-placeholder': placeholderFormFocus,
-        '&:focus::-moz-placeholder': placeholderFormFocus, // Firefox 19+
-        '&:focus:-ms-input-placeholder': placeholderFormFocus, // IE 11
-        '&:focus::-ms-input-placeholder': placeholderFormFocus, // Edge
+      'label[data-shrink=false] + $formControl &': {
+        '&::-webkit-input-placeholder': placeholderHidden,
+        '&::-moz-placeholder': placeholderHidden, // Firefox 19+
+        '&:-ms-input-placeholder': placeholderHidden, // IE 11
+        '&::-ms-input-placeholder': placeholderHidden, // Edge
+        '&:focus::-webkit-input-placeholder': placeholderVisible,
+        '&:focus::-moz-placeholder': placeholderVisible, // Firefox 19+
+        '&:focus:-ms-input-placeholder': placeholderVisible, // IE 11
+        '&:focus::-ms-input-placeholder': placeholderVisible, // Edge
       },
     },
     inputDense: {
