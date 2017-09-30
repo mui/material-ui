@@ -2,6 +2,91 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.13
+###### _Oct 1, 2017_
+
+Big thanks to the 18 contributors who made this release possible.
+
+### Breaking change
+
+- [Table] Introduce padding property (#8362) @eyn
+
+```diff
+-  <TableCell checkbox>
++  <TableCell padding="checkbox">
+```
+
+- [flow] Fix Higher-order Component typing (#8419) @rosskevin
+
+- [Transition] Rich transitionDuration property (#8448) @
+
+```diff
+      <Dialog
+-       enterTransitionDuration={100}
+-       leaveTransitionDuration={100}
++       transitionDuration={100}
+      </Dialog>
+```
+
+```diff
+      <Dialog
+-       enterTransitionDuration={100}
+-       leaveTransitionDuration={200}
++       transitionDuration={{
+          enter: 100,
+          exit: 200,
+        }}
+      </Dialog>
+```
+
+#### Component Fixes / Enhancements
+
+- [Tabs] Fix indicator update issue (#8388) @
+- [Select] Fix popover width and add autoWidth prop (#8307) @leMaik
+- [SelectInput] Fix event forwarding (#8386) @cherniavskii
+- [breakpoints] add back deleted `getWidth` as `width` with a spec (#8387) @rosskevin
+- [styles] More permissive class name generator warning (#8390) @
+- [Table] Add missing components export (#8425) @klauszhang
+- [TablePagination] Fix negative pagination numbers (#8435) @leMaik
+- [Typography] Add primary option to color property (#8440) @eyn
+- [Typography] Add error option to color property (#8446) @samsch
+- [CardMedia] Add `component` property (#8376) @AndriusBil
+- [Input] Fix wrong CSS property (#8469) @
+- [icons] Better interoperability with v0.x (#8473) @
+- [icons] Update peer dependency to react 16 (#8476) @eyn
+
+#### Docs
+
+- [docs] Misspelling on Select demo page (#8384) @kgregory
+- [docs] Select API default value for input prop (#8385) @kgregory
+- [docs] Add FormDialog Example (#8411) @chaseWillden
+- [docs] Typo in next.config.js (#8418) @marcoturi
+- [docs] Fix redirections in Supported Components (#8389) @
+- [docs] Improve selection controls section (#8405) @
+- [docs] Fix Drawer and Popover api docs (#8442) @cherniavskii
+- [core] Update issue template with language about providing a reproduction case (#8466) @rosskevin
+
+#### Core
+
+- [test] Prepare enzyme v3 upgrade (#8429) @
+[core] Update react-transition-group for react@16 (#8468) @
+- [core] Update recompose to 0.25.1 (#8408) @
+- [core] Update sinon to the latest version 🚀 (#8396) @greenkeeper
+- [core] Upgrade prettier (#8428) @
+- [typescript] Document withStyles overloads (#8364) @pelotom
+- [typescript] Make StyledComponent only a type, not a class (#8366) @pelotom
+- [typescript] Update `BreakpointsOptions` in `createBreakpoints` (#8374) @peterprice
+- [typescript] Correct typings of TextField's onChange (#8378) @sebald
+- [typescript] Add missing toolbar property on Mixins interface (#8392) @MSNexploder
+- [typescript] Correct type definition for Theme creation (#8395) @TorstenStueber
+- [typescript] Improve `createShallow` typings (#8415) @sebald
+- [typescript] Re-add tests for `withStyle` use cases (#8399) @sebald
+- [typescript] Remove key prop from Snackbar (#8427) @TorstenStueber
+- [typescript] Fix common colors typings (#8433) @alitaheri
+- [typescript] Per-component class keys (#8375) @pelotom
+- [flow] Post-HOC change bug fixes (#8441) @rosskevin
+- [flow] 0.56.0 (#8450) @rosskevin
+
 ## 1.0.0-beta.12
 ###### _Sep 24, 2017_
 
