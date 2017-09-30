@@ -1,0 +1,36 @@
+[ignore]
+<PROJECT_ROOT>/build/.*
+.*/node_modules/editions
+.*/node_modules/babel-plugin-flow-react-proptypes
+.*/node_modules/babel-plugin-transform-react-remove-prop-types
+.*/node_modules/eslint-plugin-jsx-a11y
+.*/node_modules/graphql
+.*/node_modules/kefir
+.*/node_modules/react-event-listener/src
+
+; Comment this line if you do not use enzyme.
+.*/node_modules/material-ui/test-utils
+
+; flow 55
+; FIXME: we should be flow checking against jss
+.*/node_modules/jss/lib/.*\.js\.flow
+
+[include]
+
+[libs]
+# local/custom libdefs
+./flow
+;./node_modules/jss/flow-typed
+
+[options]
+esproposal.class_static_fields=enable
+esproposal.class_instance_fields=enable
+esproposal.export_star_as=enable
+esproposal.decorators=ignore
+
+unsafe.enable_getters_and_setters=true
+
+module.name_mapper='^flow-example-material-ui\/\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
+
+suppress_type=$FlowFixMe
+suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe

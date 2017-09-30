@@ -84,6 +84,9 @@ const pages = [
       {
         pathname: '/guides/comparison',
       },
+      {
+        pathname: '/guides/flow',
+      },
     ],
   },
   {
