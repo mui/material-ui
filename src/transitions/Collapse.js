@@ -23,7 +23,7 @@ export const styles = (theme: Object) => ({
 
 export type TransitionDuration = number | { enter?: number, exit?: number } | 'auto';
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
   transitionDuration: TransitionDuration,
   theme: Object,
@@ -53,7 +53,7 @@ export type Props = {
   /**
    * Callback fired when the component has entered.
    */
-  onEntered?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  onEntered?: TransitionCallback,
   /**
    * Callback fired before the component is exiting.
    */
@@ -65,7 +65,11 @@ export type Props = {
   /**
    * Callback fired when the component has exited.
    */
-  onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  onExited?: TransitionCallback,
+  /**
+   * @ignore
+   */
+  theme?: Object,
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
@@ -75,7 +79,7 @@ export type Props = {
   transitionDuration?: TransitionDuration,
 };
 
-class Collapse extends React.Component<DefaultProps & Props> {
+class Collapse extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
     in: false,
     transitionDuration: duration.standard,

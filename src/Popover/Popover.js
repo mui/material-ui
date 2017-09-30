@@ -78,9 +78,9 @@ export type Origin = {
   vertical: 'top' | 'center' | 'bottom' | number,
 };
 
-type DefaultProps = {
-  classes: Object,
+type ProvidedProps = {
   anchorOrigin: Origin,
+  classes: Object,
   transformOrigin: Origin,
 };
 
@@ -89,7 +89,7 @@ export type Props = {
    * This is the DOM element that will be used
    * to set the position of the popover.
    */
-  anchorEl?: Object,
+  anchorEl?: ?HTMLElement,
   /**
    * This is the point on the anchor where the popover's
    * `anchorEl` will attach to.
@@ -146,7 +146,7 @@ export type Props = {
   /**
    * Callback fired when the component has entered
    */
-  onEntered?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  onEntered?: TransitionCallback,
   /**
    * Callback fired before the component is exiting
    */
@@ -158,7 +158,7 @@ export type Props = {
   /**
    * Callback fired when the component has exited
    */
-  onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  onExited?: TransitionCallback,
   /**
    * Callback fired when the component requests to be closed.
    *
@@ -192,7 +192,7 @@ export type Props = {
   transitionDuration?: number | 'auto',
 };
 
-class Popover extends React.Component<DefaultProps & Props> {
+class Popover extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
     anchorOrigin: {
       vertical: 'top',

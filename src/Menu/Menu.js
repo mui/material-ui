@@ -11,7 +11,7 @@ import Popover from '../Popover';
 import MenuList from './MenuList';
 import type { TransitionCallback } from '../internal/Transition';
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -19,7 +19,7 @@ export type Props = {
   /**
    * The DOM element used to set the position of the menu.
    */
-  anchorEl?: ?Object, // match Popover - at least HTMLElement | EventTarget | ?
+  anchorEl?: ?HTMLElement, // match Popover
   /**
    * Menu contents, normally `MenuItem`s.
    */
@@ -47,7 +47,7 @@ export type Props = {
   /**
    * Callback fired when the Menu has entered.
    */
-  onEntered?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  onEntered?: TransitionCallback,
   /**
    * Callback fired before the Menu exits.
    */
@@ -59,7 +59,7 @@ export type Props = {
   /**
    * Callback fired when the Menu has exited.
    */
-  onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  onExited?: TransitionCallback,
   /**
    * Callback fired when the component requests to be closed.
    *
@@ -91,7 +91,7 @@ export const styles = {
   },
 };
 
-class Menu extends React.Component<DefaultProps & Props> {
+class Menu extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
     open: false,
     transitionDuration: 'auto',

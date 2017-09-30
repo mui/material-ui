@@ -15,11 +15,15 @@ export const styles = (theme: Object) => ({
   gutters: theme.mixins.gutters({}),
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
 export type Props = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
   /**
    * Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.
    */
@@ -34,7 +38,7 @@ export type Props = {
   disableGutters?: boolean,
 };
 
-function Toolbar(props: DefaultProps & Props) {
+function Toolbar(props: ProvidedProps & Props) {
   const { children, classes, className: classNameProp, disableGutters, ...other } = props;
 
   const className = classNames(

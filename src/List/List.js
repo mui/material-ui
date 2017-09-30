@@ -27,9 +27,9 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
-  component: string,
+type ProvidedProps = {
   classes: Object,
+  component: ElementType,
 };
 
 export type Props = {
@@ -70,7 +70,7 @@ export type Props = {
   subheader?: Node,
 };
 
-class List extends React.Component<DefaultProps & Props> {
+class List extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
     component: 'ul',
     dense: false,

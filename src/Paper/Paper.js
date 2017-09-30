@@ -26,9 +26,9 @@ export const styles = (theme: Object) => {
   };
 };
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
-  component: string,
+  component: ElementType,
   elevation: number,
   square: boolean,
 };
@@ -58,7 +58,7 @@ export type Props = {
   square?: boolean,
 };
 
-function Paper(props: DefaultProps & Props) {
+function Paper(props: ProvidedProps & Props) {
   const {
     classes,
     className: classNameProp,

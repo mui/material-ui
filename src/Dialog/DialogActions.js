@@ -22,7 +22,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -41,7 +41,7 @@ export type Props = {
   className?: string,
 };
 
-function DialogActions(props: DefaultProps & Props) {
+function DialogActions(props: ProvidedProps & Props) {
   const { children, classes, className, ...other } = props;
 
   return (

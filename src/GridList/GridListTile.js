@@ -32,7 +32,7 @@ export const styles = {
   },
 };
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -66,7 +66,7 @@ export type Props = {
   rows?: number,
 };
 
-class GridListTile extends React.Component<DefaultProps & Props> {
+class GridListTile extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
     cols: 1,
     rows: 1,

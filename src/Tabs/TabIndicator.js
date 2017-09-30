@@ -22,13 +22,13 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
-  classes: Object,
-};
-
 export type IndicatorStyle = {
   left: number,
   width: number,
+};
+
+export type ProvidedProps = {
+  classes: Object,
 };
 
 export type Props = {
@@ -55,7 +55,7 @@ export type Props = {
 /**
  * @ignore - internal component.
  */
-function TabIndicator(props: DefaultProps & Props) {
+function TabIndicator(props: ProvidedProps & Props) {
   const { classes, className: classNameProp, color, style: styleProp } = props;
   const colorPredefined = ['primary', 'accent'].indexOf(color) !== -1;
   const className = classNames(

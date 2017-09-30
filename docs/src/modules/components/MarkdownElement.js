@@ -200,17 +200,13 @@ const styles = theme => ({
   },
 });
 
-type DefaultProps = {
-  classes: Object,
-};
-
 type Props = {
-  classes?: Object,
+  classes: Object,
   className?: string,
   text: string,
 };
 
-function MarkdownElement(props: DefaultProps & Props) {
+function MarkdownElement(props: Props) {
   const { classes, className, text, ...other } = props;
 
   /* eslint-disable react/no-danger */

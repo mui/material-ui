@@ -32,9 +32,9 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
-  component: string,
+  component: ElementType,
 };
 
 export type Props = {
@@ -89,7 +89,7 @@ export type Props = {
   srcSet?: string,
 };
 
-function Avatar(props: DefaultProps & Props) {
+function Avatar(props: ProvidedProps & Props) {
   const {
     alt,
     classes,

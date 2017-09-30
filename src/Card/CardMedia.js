@@ -19,7 +19,7 @@ export const styles = {
 
 const mediaComponents = ['video', 'audio', 'picture', 'iframe', 'img'];
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
   component: ElementType,
 };
@@ -55,7 +55,7 @@ export type Props = {
   component?: ElementType,
 };
 
-function CardMedia(props: DefaultProps & Props) {
+function CardMedia(props: ProvidedProps & Props) {
   const { classes, className, image, style, src, component: ComponentProp, ...other } = props;
 
   warning(image || src, 'Material-UI: either `image` or `src` property must be specified.');

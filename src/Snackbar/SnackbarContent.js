@@ -43,7 +43,7 @@ export const styles = (theme: Object) => {
   };
 };
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -66,7 +66,7 @@ export type Props = {
   message: Node,
 };
 
-function SnackbarContent(props: DefaultProps & Props) {
+function SnackbarContent(props: ProvidedProps & Props) {
   const { action, classes, className, message, ...other } = props;
 
   return (

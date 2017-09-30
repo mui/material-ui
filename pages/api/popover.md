@@ -8,7 +8,7 @@
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | PaperProps | Object |  | Properties applied to the `Paper` element. |
-| anchorEl | Object |  | This is the DOM element that will be used to set the position of the popover. |
+| anchorEl | HTMLElement |  | This is the DOM element that will be used to set the position of the popover. |
 | anchorOrigin | signature | {  vertical: 'top',  horizontal: 'left',} | This is the point on the anchor where the popover's `anchorEl` will attach to.<br>Options: vertical: [top, center, bottom]; horizontal: [left, center, right]. |
 | <span style="color: #31a148">children *</span> | Node |  | The content of the component. |
 | classes | Object |  | Useful to extend the style applied to components. |

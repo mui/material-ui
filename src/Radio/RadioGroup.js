@@ -16,7 +16,7 @@ export const styles = {
   },
 };
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -58,7 +58,7 @@ export type Props = {
   value?: string,
 };
 
-class RadioGroup extends React.Component<DefaultProps & Props> {
+class RadioGroup extends React.Component<ProvidedProps & Props> {
   radios: Array<HTMLInputElement> = [];
 
   focus = () => {

@@ -19,7 +19,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -51,7 +51,7 @@ export type Props = {
   viewBox?: string,
 };
 
-function SvgIcon(props: DefaultProps & Props) {
+function SvgIcon(props: ProvidedProps & Props) {
   const { children, classes, className, titleAccess, viewBox, ...other } = props;
 
   return (

@@ -63,7 +63,7 @@ export const styles = (theme: Object) => ({
 
 const SwitchBase = createSwitch();
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -139,7 +139,7 @@ export type Props = {
   value?: string,
 };
 
-function Switch(props: DefaultProps & Props) {
+function Switch(props: ProvidedProps & Props) {
   const { classes, className, ...other } = props;
   const icon = <div className={classes.icon} />;
 

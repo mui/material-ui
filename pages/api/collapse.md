@@ -16,7 +16,6 @@
 | onExit | TransitionCallback |  | Callback fired before the component is exiting. |
 | onExited | TransitionCallback |  | Callback fired when the component has exited. |
 | onExiting | TransitionCallback |  | Callback fired when the component is exiting. |
-| <span style="color: #31a148">theme *</span> | Object |  |  |
 | transitionDuration | union:&nbsp;number<br>&nbsp;{ enter?: number, exit?: number }<br>&nbsp;'auto'<br> | duration.standard | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object.<br>Set to 'auto' to automatically calculate transition time based on height. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).

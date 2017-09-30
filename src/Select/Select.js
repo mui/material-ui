@@ -9,13 +9,6 @@ import withStyles from '../styles/withStyles';
 import Input from '../Input'; // Import to enforce the CSS injection order
 import { isMuiElement } from '../utils/reactHelpers';
 
-type DefaultProps = {
-  classes: Object,
-  input: Element<any>,
-  native: boolean,
-  multiple: boolean,
-};
-
 export const styles = (theme: Object) => ({
   root: {
     position: 'relative',
@@ -62,6 +55,13 @@ export const styles = (theme: Object) => ({
   },
 });
 
+type ProvidedProps = {
+  classes: Object,
+  input: Element<any>,
+  native: boolean,
+  multiple: boolean,
+};
+
 export type Props = {
   /**
    * If true, the width of the popover will automatically be set according to the items inside the
@@ -104,7 +104,7 @@ export type Props = {
   value?: Array<string | number> | string | number,
 };
 
-function Select(props: DefaultProps & Props) {
+function Select(props: ProvidedProps & Props) {
   const {
     autoWidth,
     children,

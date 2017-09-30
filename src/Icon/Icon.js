@@ -32,7 +32,7 @@ export const styles = (theme: Object) => ({
 
 export type Color = 'inherit' | 'accent' | 'action' | 'contrast' | 'disabled' | 'error' | 'primary';
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
   color: Color,
 };
@@ -56,7 +56,7 @@ export type Props = {
   color?: Color,
 };
 
-function Icon(props: DefaultProps & Props) {
+function Icon(props: ProvidedProps & Props) {
   const { children, classes, className: classNameProp, color, ...other } = props;
 
   const className = classNames(

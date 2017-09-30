@@ -15,7 +15,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -39,7 +39,7 @@ export type Props = {
   disableTypography?: boolean,
 };
 
-function DialogTitle(props: DefaultProps & Props) {
+function DialogTitle(props: ProvidedProps & Props) {
   const { children, classes, className, disableTypography, ...other } = props;
 
   return (

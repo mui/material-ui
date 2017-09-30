@@ -27,9 +27,9 @@ export const styles = (theme: Object) => {
   };
 };
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
-  component: string,
+  component: ElementType,
 };
 
 export type Props = {
@@ -68,7 +68,7 @@ export type Props = {
   required?: boolean,
 };
 
-function FormLabel(props: DefaultProps & Props, context: { muiFormControl: Object }) {
+function FormLabel(props: ProvidedProps & Props, context: { muiFormControl: Object }) {
   const {
     children,
     classes,

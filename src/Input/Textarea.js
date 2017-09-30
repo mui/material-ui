@@ -38,7 +38,7 @@ export const styles = {
   },
 };
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -88,7 +88,7 @@ type State = {
 /**
  * @ignore - internal component.
  */
-class Textarea extends React.Component<DefaultProps & Props, State> {
+class Textarea extends React.Component<ProvidedProps & Props, State> {
   shadow: ?HTMLInputElement;
 
   singlelineShadow: ?HTMLInputElement;

@@ -63,8 +63,7 @@ type Options = {
   generateClassName?: Function, // generateClassName - use generic to stop the bleeding.
 };
 
-// optional props introduced by this HOC
-export type HOCProps = {
+export type RequiredProps = {
   /**
    * Useful to extend the style applied to components.
    */
@@ -84,7 +83,7 @@ export type InjectedProps = { classes: Object, theme: Object };
 const withStyles = (
   stylesOrCreator: Object,
   options?: Options = {},
-): HigherOrderComponent<HOCProps, InjectedProps> => (Component: any): any => {
+): HigherOrderComponent<RequiredProps, InjectedProps> => (Component: any): any => {
   const { withTheme = false, name, ...styleSheetOptions } = options;
   const factory = createEagerFactory(Component);
   const stylesCreator = getStylesCreator(stylesOrCreator);
@@ -103,7 +102,7 @@ const withStyles = (
     ].join(' '),
   );
 
-  class Style extends React.Component<HOCProps> {
+  class Style extends React.Component<RequiredProps> {
     static contextTypes = {
       sheetsManager: PropTypes.object,
       ...contextTypes,

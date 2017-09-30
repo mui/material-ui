@@ -25,7 +25,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -51,7 +51,7 @@ export type Props = {
 /**
  * @ignore - internal component.
  */
-function Backdrop(props: DefaultProps & Props) {
+function Backdrop(props: ProvidedProps & Props) {
   const { children, classes, className, invisible, ...other } = props;
 
   const backdropClass = classNames(

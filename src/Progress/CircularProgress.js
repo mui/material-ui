@@ -72,7 +72,7 @@ export const styles = (theme: Object) => ({
 export type Color = 'primary' | 'accent';
 export type Mode = 'determinate' | 'indeterminate';
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
   color: Color,
   size: number,
@@ -119,7 +119,7 @@ export type Props = {
   value?: number,
 };
 
-function CircularProgress(props: DefaultProps & Props) {
+function CircularProgress(props: ProvidedProps & Props) {
   const { classes, className, color, size, mode, value, min, max, ...other } = props;
   const radius = size / 2;
   const rootProps = {};

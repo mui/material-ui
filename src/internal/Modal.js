@@ -38,7 +38,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   backdropComponent: Function,
   classes: Object,
   modalManager: Object,
@@ -111,11 +111,11 @@ export type Props = {
   /**
    * Callback fired when the modal has entered.
    */
-  onEntered?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  onEntered?: TransitionCallback,
   /**
    * Callback fires when the escape key is pressed and the modal is in focus.
    */
-  onEscapeKeyUp?: Function, // eslint-disable-line react/sort-prop-types
+  onEscapeKeyUp?: Function,
   /**
    * Callback fired before the modal is exiting.
    */
@@ -127,7 +127,7 @@ export type Props = {
   /**
    * Callback fired when the modal has exited.
    */
-  onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  onExited?: TransitionCallback,
   /**
    * Callback fired when the component requests to be closed.
    *
@@ -147,7 +147,7 @@ type State = {
 /**
  * @ignore - internal component.
  */
-class Modal extends React.Component<DefaultProps & Props, State> {
+class Modal extends React.Component<ProvidedProps & Props, State> {
   static defaultProps = {
     backdropComponent: Backdrop,
     backdropTransitionDuration: 300,

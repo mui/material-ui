@@ -13,7 +13,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -28,7 +28,7 @@ export type Props = {
   className?: string,
 };
 
-function CardContent(props: DefaultProps & Props) {
+function CardContent(props: ProvidedProps & Props) {
   const { classes, className, ...other } = props;
 
   return <div className={classNames(classes.root, className)} {...other} />;

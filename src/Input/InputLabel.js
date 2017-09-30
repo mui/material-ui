@@ -37,7 +37,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
   disabled: boolean,
   disableAnimation: boolean,
@@ -91,7 +91,7 @@ export type Props = {
   shrink?: boolean,
 };
 
-function InputLabel(props: DefaultProps & Props, context: { muiFormControl: Object }) {
+function InputLabel(props: ProvidedProps & Props, context: { muiFormControl: Object }) {
   const {
     disabled,
     disableAnimation,

@@ -16,7 +16,7 @@ export const styles = {
   },
 };
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -44,7 +44,7 @@ export type Props = {
  * It provides compact row layout.
  * For the `Radio`, you should be using the `RadioGroup` component instead of this one.
  */
-function FormGroup(props: DefaultProps & Props) {
+function FormGroup(props: ProvidedProps & Props) {
   const { classes, className, children, row, ...other } = props;
   const rootClassName = classNames(
     classes.root,

@@ -54,7 +54,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -94,7 +94,7 @@ export type Props = {
  * Refer to the [Icons](/style/icons) section of the documentation
  * regarding the available icon options.
  */
-function IconButton(props: DefaultProps & Props) {
+function IconButton(props: ProvidedProps & Props) {
   const { children, classes, className, color, disabled, rootRef, ...other } = props;
 
   return (

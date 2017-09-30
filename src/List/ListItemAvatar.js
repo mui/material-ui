@@ -20,7 +20,7 @@ export const styles = {
   },
 };
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -42,7 +42,7 @@ export type Props = {
 /**
  * It's a simple wrapper to apply the `dense` mode styles to `Avatar`.
  */
-function ListItemAvatar(props: DefaultProps & Props, context: { dense: boolean }) {
+function ListItemAvatar(props: ProvidedProps & Props, context: { dense: boolean }) {
   if (context.dense === undefined) {
     warning(
       false,

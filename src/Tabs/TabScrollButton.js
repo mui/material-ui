@@ -14,7 +14,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -44,7 +44,7 @@ export type Props = {
 /**
  * @ignore - internal component.
  */
-function TabScrollButton(props: DefaultProps & Props) {
+function TabScrollButton(props: ProvidedProps & Props) {
   const { classes, className: classNameProp, direction, onClick, visible, ...other } = props;
 
   const className = classNames(classes.root, classNameProp);

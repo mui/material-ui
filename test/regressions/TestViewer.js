@@ -30,15 +30,12 @@ const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
-  classes: Object,
-};
-
 type Props = {
+  classes: Object,
   children?: Node,
 };
 
-class TestViewer extends Component<DefaultProps & Props> {
+class TestViewer extends Component<Props> {
   getChildContext() {
     return {
       url: {

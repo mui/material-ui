@@ -151,7 +151,7 @@ export const styles = (theme: Object) => ({
 
 export type Color = 'default' | 'inherit' | 'primary' | 'accent' | 'contrast';
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
   color: Color,
   dense: boolean,
@@ -222,7 +222,7 @@ export type Props = {
   type?: string,
 };
 
-function Button(props: DefaultProps & Props) {
+function Button(props: ProvidedProps & Props) {
   const {
     children,
     classes,

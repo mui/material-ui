@@ -28,7 +28,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
   role: string,
   selected: boolean,
@@ -62,7 +62,7 @@ export type Props = {
   selected?: boolean,
 };
 
-function MenuItem(props: DefaultProps & Props) {
+function MenuItem(props: ProvidedProps & Props) {
   const { classes, className: classNameProp, component, selected, role, ...other } = props;
 
   const className = classNames(

@@ -59,9 +59,9 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
-  component: string,
+  component: ElementType,
 };
 
 export type Props = {
@@ -104,7 +104,7 @@ export type Props = {
   divider?: boolean,
 };
 
-class ListItem extends React.Component<DefaultProps & Props> {
+class ListItem extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
     button: false,
     component: 'li',
