@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { Element } from 'react';
+import type { Element, ComponentType } from 'react';
 import classNames from 'classnames';
 import keycode from 'keycode';
 import withStyles from '../styles/withStyles';
@@ -119,6 +119,15 @@ export type Props = {
    */
   onRequestDelete?: (event: SyntheticEvent<>) => void,
   /**
+   * Component to render instead of the default delete button.
+   * Passed onRequestDelete through as a prop
+   */
+  deleteButton?: ComponentType<{
+    onRequestDelete: (event: SyntheticEvent<>) => void,
+    className: string,
+  }>,
+
+  /**
    * @ignore
    */
   tabIndex?: number | string,
@@ -171,6 +180,7 @@ class Chip extends React.Component<DefaultProps & Props> {
       onKeyDown,
       onRequestDelete,
       tabIndex: tabIndexProp,
+      deleteButton: DeleteButton,
       ...other
     } = this.props;
 
@@ -183,9 +193,15 @@ class Chip extends React.Component<DefaultProps & Props> {
 
     let deleteIcon = null;
     if (onRequestDelete) {
-      deleteIcon = (
-        <CancelIcon className={classes.deleteIcon} onClick={this.handleDeleteIconClick} />
-      );
+      if (DeleteButton) {
+        deleteIcon = (
+          <DeleteButton className={classes.deleteIcon} onRequestDelete={onRequestDelete} />
+        );
+      } else {
+        deleteIcon = (
+          <CancelIcon className={classes.deleteIcon} onClick={this.handleDeleteIconClick} />
+        );
+      }
     }
 
     let avatar = null;
