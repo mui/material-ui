@@ -1,5 +1,21 @@
 ## HEAD
 
+## 0.19.3
+###### _Oct 1, 2017_
+
+Big thanks to the 4 contributors who made this release possible.
+
+##### Component Fixes / Enhancements
+
+- [AutoComplete] Fix important regression (#8306) @oliviertassinari
+- [Button] Move zIndex stacking context from enhanced button to ripple group (#8281) @jgreubel
+- [Tooltip] Allow customize tooltip opacity (#8444) @jgreubel
+- [Switch] Do not bind the touch handlers if we are not showing ripple effects (#8463) @NLincoln
+
+##### Docs
+
+- [docs] Correct typo in ListItem docs (#8301) @apearson
+
 ## 0.19.2
 ###### _Sep 18, 2017_
 
