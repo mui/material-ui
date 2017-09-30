@@ -28,7 +28,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -60,7 +60,7 @@ export type Props = {
   margin?: 'dense',
 };
 
-function FormHelperText(props: DefaultProps & Props, context: { muiFormControl: Object }) {
+function FormHelperText(props: ProvidedProps & Props, context: { muiFormControl: Object }) {
   const {
     children,
     classes,

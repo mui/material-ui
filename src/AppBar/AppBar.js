@@ -49,7 +49,7 @@ export const styles = (theme: Object) => ({
 export type Color = 'inherit' | 'primary' | 'accent' | 'default';
 export type Position = 'static' | 'fixed' | 'absolute';
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
   color: Color,
   position: Position,
@@ -78,7 +78,7 @@ export type Props = {
   position?: Position,
 };
 
-function AppBar(props: DefaultProps & Props) {
+function AppBar(props: ProvidedProps & Props) {
   const { children, classes, className: classNameProp, color, position, ...other } = props;
 
   const className = classNames(

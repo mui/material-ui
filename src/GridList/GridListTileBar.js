@@ -66,9 +66,9 @@ export const styles = (theme: Object) => ({
 export type TitlePosition = 'top' | 'bottom';
 export type ActionPosition = 'left' | 'right';
 
-type DefaultProps = {
-  classes: Object,
+type ProvidedProps = {
   actionPosition: ActionPosition,
+  classes: Object,
   titlePosition: TitlePosition,
 };
 
@@ -104,7 +104,7 @@ export type Props = {
   titlePosition?: TitlePosition,
 };
 
-function GridListTileBar(props: DefaultProps & Props) {
+function GridListTileBar(props: ProvidedProps & Props) {
   const {
     actionIcon,
     actionPosition,

@@ -9,6 +9,10 @@ import Menu from '../Menu/Menu';
 import { isDirty } from '../Input/Input';
 import ArrowDropDownIcon from '../svg-icons/ArrowDropDown';
 
+type ProvidedProps = {
+  classes: Object,
+};
+
 export type Props = {
   /**
    * If true, the width of the popover will automatically be set according to the items inside the
@@ -23,7 +27,7 @@ export type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * The CSS class name of the select element.
    */
@@ -90,7 +94,7 @@ type State = {
 /**
  * @ignore - internal component.
  */
-class SelectInput extends React.Component<Props, State> {
+class SelectInput extends React.Component<ProvidedProps & Props, State> {
   static muiName = 'SelectInput';
 
   state = {

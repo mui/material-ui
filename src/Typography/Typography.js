@@ -75,7 +75,7 @@ export type Type =
   | 'caption'
   | 'button';
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
   headlineMapping: { [key: Type]: string },
   type: Type,
@@ -126,7 +126,7 @@ export type Props = {
   type?: Type,
 };
 
-function Typography(props: DefaultProps & Props) {
+function Typography(props: ProvidedProps & Props) {
   const {
     align,
     classes,

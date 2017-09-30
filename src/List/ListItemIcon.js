@@ -15,7 +15,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -38,7 +38,7 @@ export type Props = {
 /**
  * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
  */
-function ListItemIcon(props: DefaultProps & Props) {
+function ListItemIcon(props: ProvidedProps & Props) {
   const { children, classes, className: classNameProp, ...other } = props;
 
   return React.cloneElement(children, {

@@ -55,9 +55,9 @@ export const styles = (theme: Object) => ({
 export type Position = 'bottom' | 'top' | 'static';
 export type Type = 'text' | 'dots' | 'progress';
 
-type DefaultProps = {
-  classes: Object,
+type ProvidedProps = {
   activeStep: number,
+  classes: Object,
   position: Position,
   type: Type,
 };
@@ -98,7 +98,7 @@ export type Props = {
   type?: Type,
 };
 
-function MobileStepper(props: DefaultProps & Props) {
+function MobileStepper(props: ProvidedProps & Props) {
   const {
     activeStep,
     backButton,

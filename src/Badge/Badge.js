@@ -42,7 +42,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -69,7 +69,7 @@ export type Props = {
   color?: 'default' | 'primary' | 'accent',
 };
 
-function Badge(props: DefaultProps & Props) {
+function Badge(props: ProvidedProps & Props) {
   const { badgeContent, classes, className: classNameProp, color, children, ...other } = props;
   const className = classNames(classes.root, classNameProp);
   const badgeClassName = classNames(classes.badge, {

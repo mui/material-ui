@@ -14,7 +14,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
   showLabels: boolean,
 };
@@ -50,7 +50,7 @@ export type Props = {
   value: any,
 };
 
-function BottomNavigation(props: DefaultProps & Props) {
+function BottomNavigation(props: ProvidedProps & Props) {
   const {
     children: childrenProp,
     classes,

@@ -88,7 +88,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -153,7 +153,7 @@ type State = {
   wrappedText: boolean,
 };
 
-class Tab extends React.Component<DefaultProps & Props, State> {
+class Tab extends React.Component<ProvidedProps & Props, State> {
   static defaultProps = {
     disabled: false,
   };

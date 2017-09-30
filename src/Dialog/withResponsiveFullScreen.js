@@ -8,8 +8,6 @@ import type { Breakpoint } from '../styles/createBreakpoints';
 
 type Options = { breakpoint: Breakpoint };
 
-export type HOCProps = {};
-
 export type InjectedProps = {
   /**
    * If isWidthDown(options.breakpoint), return true.
@@ -24,7 +22,7 @@ export type InjectedProps = {
  */
 const withResponsiveFullScreen = (
   options: Options = { breakpoint: 'sm' },
-): HigherOrderComponent<HOCProps, InjectedProps> => (Component: any): any => {
+): HigherOrderComponent<{}, InjectedProps> => (Component: any): any => {
   const { breakpoint } = options;
 
   const factory = createEagerFactory(Component);

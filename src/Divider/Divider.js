@@ -28,7 +28,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -52,7 +52,7 @@ export type Props = {
   light?: boolean,
 };
 
-function Divider(props: DefaultProps & Props) {
+function Divider(props: ProvidedProps & Props) {
   const { absolute, classes, className: classNameProp, inset, light, ...other } = props;
 
   const className = classNames(

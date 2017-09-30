@@ -43,7 +43,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
   indicatorColor: string,
 };
@@ -131,7 +131,7 @@ export type TabsMeta = {
 /**
  * Notice that this Component is incompatible with server side rendering.
  */
-class Tabs extends React.Component<DefaultProps & Props, State> {
+class Tabs extends React.Component<ProvidedProps & Props, State> {
   static defaultProps = {
     centered: false,
     fullWidth: false,

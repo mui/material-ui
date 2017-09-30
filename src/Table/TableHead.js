@@ -14,9 +14,9 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
-  component: string,
+  component: ElementType,
 };
 
 export type Props = {
@@ -39,7 +39,7 @@ export type Props = {
   component?: ElementType,
 };
 
-class TableHead extends React.Component<DefaultProps & Props> {
+class TableHead extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
     component: 'thead',
   };

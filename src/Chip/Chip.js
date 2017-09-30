@@ -84,7 +84,7 @@ export const styles = (theme: Object) => {
   };
 };
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -127,7 +127,7 @@ export type Props = {
 /**
  * Chips represent complex entities in small blocks, such as a contact.
  */
-class Chip extends React.Component<DefaultProps & Props> {
+class Chip extends React.Component<ProvidedProps & Props> {
   chipRef: ?HTMLElement = null;
 
   handleDeleteIconClick = event => {
@@ -192,7 +192,9 @@ class Chip extends React.Component<DefaultProps & Props> {
     if (avatarProp && React.isValidElement(avatarProp)) {
       // $FlowFixMe - this looks strictly correct, not sure why it errors.
       avatar = React.cloneElement(avatarProp, {
+        // $FlowFixMe - this looks strictly correct, not sure why it errors.
         className: classNames(classes.avatar, avatarProp.props.className),
+        // $FlowFixMe - this looks strictly correct, not sure why it errors.
         childrenClassName: classNames(classes.avatarChildren, avatarProp.props.childrenClassName),
       });
     }

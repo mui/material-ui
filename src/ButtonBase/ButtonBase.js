@@ -34,7 +34,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -146,7 +146,7 @@ type State = {
   keyboardFocused: boolean,
 };
 
-class ButtonBase extends React.Component<DefaultProps & Props, State> {
+class ButtonBase extends React.Component<ProvidedProps & Props, State> {
   static defaultProps = {
     centerRipple: false,
     focusRipple: false,

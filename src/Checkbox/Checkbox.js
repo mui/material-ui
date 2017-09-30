@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { Element, Node } from 'react';
+import type { Node } from 'react';
 import withStyles from '../styles/withStyles';
 import createSwitch from '../internal/SwitchBase';
 import IndeterminateCheckBoxIcon from '../svg-icons/IndeterminateCheckBox';
@@ -20,6 +20,10 @@ export const styles = (theme: Object) => ({
 
 const SwitchBase = createSwitch();
 
+type ProvidedProps = {
+  classes: Object,
+};
+
 export type Props = {
   /**
    * If `true`, the component is checked.
@@ -33,7 +37,7 @@ export type Props = {
    * The icon to display when the component is checked.
    * If a string is provided, it will be used as a font ligature.
    */
-  checkedIcon?: string | Element<any>,
+  checkedIcon?: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -71,7 +75,7 @@ export type Props = {
    * The icon to display when the component is indeterminate.
    * If a string is provided, it will be used as a font ligature.
    */
-  indeterminateIcon?: string | Element<any>,
+  indeterminateIcon?: Node,
   /**
    * Properties applied to the `input` element.
    */
@@ -101,7 +105,7 @@ export type Props = {
   value?: string,
 };
 
-function Checkbox(props: Props) {
+function Checkbox(props: ProvidedProps & Props) {
   const { checkedIcon, icon, indeterminate, indeterminateIcon, ...other } = props;
 
   return (

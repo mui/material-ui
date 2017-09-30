@@ -141,7 +141,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -175,7 +175,7 @@ export type Props = {
   valueBuffer?: number,
 };
 
-function LinearProgress(props: DefaultProps & Props) {
+function LinearProgress(props: ProvidedProps & Props) {
   const { classes, className, color, mode, value, valueBuffer, ...other } = props;
 
   const dashedClass = classNames(classes.dashed, {

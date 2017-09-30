@@ -10,7 +10,7 @@ based on the material table element parent (head, body, etc).
 |:-----|:-----|:--------|:------------|
 | children | Node |  | Should be valid `<tr>` children such as `TableCell`. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| component | string | 'tr' | The component used for the root node. Either a string to use a DOM element or a component. |
+| component | ElementType | 'tr' | The component used for the root node. Either a string to use a DOM element or a component. |
 | hover | boolean | false | If `true`, the table row will shade on hover. |
 | selected | boolean | false | If `true`, the table row will have the selected shading. |
 

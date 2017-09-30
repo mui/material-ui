@@ -18,7 +18,7 @@ export const styles = {
   },
 };
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
   disableActionSpacing: boolean,
 };
@@ -42,7 +42,7 @@ export type Props = {
   disableActionSpacing?: boolean,
 };
 
-function CardActions(props: DefaultProps & Props) {
+function CardActions(props: ProvidedProps & Props) {
   const { disableActionSpacing, children, classes, className, ...other } = props;
 
   return (

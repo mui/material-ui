@@ -26,7 +26,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -80,7 +80,7 @@ export type Props = {
  * Drop in replacement of the `Radio`, `Switch` and `Checkbox` component.
  * Use this component if you want to display an extra label.
  */
-function FormControlLabel(props: DefaultProps & Props) {
+function FormControlLabel(props: ProvidedProps & Props) {
   const {
     checked,
     classes,

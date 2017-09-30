@@ -12,7 +12,8 @@ export type Context = {
 
 export type Padding = 'default' | 'checkbox' | 'dense' | 'none';
 
-type Default = {
+type ProvidedProps = {
+  classes: Object,
   padding: Padding,
   numeric: boolean,
 };
@@ -25,7 +26,7 @@ export type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -79,7 +80,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-function TableCell(props: Default & Props, context: Context) {
+function TableCell(props: ProvidedProps & Props, context: Context) {
   const {
     classes,
     className: classNameProp,

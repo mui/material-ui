@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { Node } from 'react';
+import type { Node, ElementType } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -33,10 +33,11 @@ export type Context = {
   table: Object,
 };
 
-type DefaultProps = {
+type ProvidedProps = {
+  classes: Object,
+  component: ElementType,
   hover: boolean,
   selected: boolean,
-  component: string,
 };
 
 export type Props = {
@@ -47,7 +48,7 @@ export type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -56,7 +57,7 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: string,
+  component?: ElementType,
   /**
    * If `true`, the table row will shade on hover.
    */
@@ -71,7 +72,7 @@ export type Props = {
  * Will automatically set dynamic row height
  * based on the material table element parent (head, body, etc).
  */
-function TableRow(props: DefaultProps & Props, context: Context) {
+function TableRow(props: ProvidedProps & Props, context: Context) {
   const {
     classes,
     className: classNameProp,

@@ -80,7 +80,7 @@ export type Origin = {
   vertical?: 'top' | 'center' | 'bottom' | number,
 };
 
-type DefaultProps = {
+type ProvidedProps = {
   anchorOrigin: Origin,
   classes: Object,
 };
@@ -198,7 +198,7 @@ type State = {
   exited: boolean,
 };
 
-class Snackbar extends React.Component<DefaultProps & Props, State> {
+class Snackbar extends React.Component<ProvidedProps & Props, State> {
   static defaultProps = {
     anchorOrigin: { vertical: 'bottom', horizontal: 'center' },
     transitionDuration: {

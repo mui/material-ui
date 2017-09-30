@@ -82,7 +82,7 @@ export type Props = {
   /**
    * Callback fired after the "enter" classes are applied.
    */
-  onEntered?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  onEntered?: TransitionCallback,
   /**
    * Callback fired before the "exiting" classes are applied.
    */
@@ -94,7 +94,7 @@ export type Props = {
   /**
    * Callback fired after the "exited" classes are applied.
    */
-  onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  onExited?: TransitionCallback,
   /**
    * @ignore
    */

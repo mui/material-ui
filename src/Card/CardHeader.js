@@ -24,7 +24,7 @@ export const styles = (theme: Object) => ({
   subheader: {},
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -51,7 +51,7 @@ export type Props = {
   title?: Node,
 };
 
-function CardHeader(props: DefaultProps & Props) {
+function CardHeader(props: ProvidedProps & Props) {
   const { avatar, classes, className: classNameProp, subheader, title, ...other } = props;
 
   const className = classNames(classes.root, classNameProp);

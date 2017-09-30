@@ -19,11 +19,11 @@ const styles = {
   },
 };
 
-type DefaultProps = {
+type Props = {
   classes: Object,
 };
 
-class Inputs extends Component<DefaultProps> {
+class Inputs extends Component<Props> {
   componentDidMount() {
     this.focusInput.focus();
   }

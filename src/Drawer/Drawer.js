@@ -79,7 +79,7 @@ export const styles = (theme: Object) => ({
 export type Anchor = 'left' | 'top' | 'right' | 'bottom';
 export type Type = 'permanent' | 'persistent' | 'temporary';
 
-type DefaultProps = {
+type ProvidedProps = {
   anchor: Anchor,
   classes: Object,
   elevation: number,
@@ -146,7 +146,7 @@ type State = {
   firstMount: boolean,
 };
 
-class Drawer extends React.Component<DefaultProps & Props, State> {
+class Drawer extends React.Component<ProvidedProps & Props, State> {
   static defaultProps = {
     anchor: 'left',
     elevation: 16,

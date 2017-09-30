@@ -49,7 +49,7 @@ export const styles = (theme: Object) => ({
 
 export type Direction = 'asc' | 'desc';
 
-type DefaultProps = {
+type ProvidedProps = {
   active: boolean,
   classes: Object,
   direction: Direction,
@@ -81,7 +81,7 @@ export type Props = {
 /**
  * A button based label for placing inside `TableCell` for column sorting.
  */
-function TableSortLabel(props: DefaultProps & Props) {
+function TableSortLabel(props: ProvidedProps & Props) {
   const { active, classes, className: classNameProp, children, direction, ...other } = props;
   const className = classNames(
     classes.root,

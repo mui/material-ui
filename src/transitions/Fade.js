@@ -7,8 +7,9 @@ import { duration } from '../styles/transitions';
 import withTheme from '../styles/withTheme';
 import type { TransitionDuration, TransitionCallback } from '../internal/Transition';
 
-type DefaultProps = {
+type ProvidedProps = {
   transitionDuration: TransitionDuration,
+  theme: Object,
 };
 
 export type Props = {
@@ -31,7 +32,7 @@ export type Props = {
   /**
    * Callback fired when the component has entered.
    */
-  onEntered?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  onEntered?: TransitionCallback,
   /**
    * Callback fired before the component exits.
    */
@@ -43,11 +44,11 @@ export type Props = {
   /**
    * Callback fired when the component has exited.
    */
-  onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  onExited?: TransitionCallback,
   /**
    * @ignore
    */
-  theme: Object,
+  theme?: Object,
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
@@ -55,7 +56,7 @@ export type Props = {
   transitionDuration?: TransitionDuration,
 };
 
-class Fade extends React.Component<DefaultProps & Props> {
+class Fade extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
     in: false,
     transitionDuration: {

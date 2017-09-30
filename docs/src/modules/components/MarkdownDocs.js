@@ -27,12 +27,8 @@ const styles = {
 const demoRegexp = /^demo='(.*)'$/;
 const SOURCE_CODE_ROOT_URL = 'https://github.com/callemall/material-ui/tree/v1-beta';
 
-type DefaultProps = {
-  classes: Object,
-};
-
 type Props = {
-  classes?: Object,
+  classes: Object,
   demos?: { [key: string]: any },
   markdown: string,
   // You can define the direction location of the markdown file.
@@ -40,7 +36,7 @@ type Props = {
   sourceLocation?: string,
 };
 
-function MarkdownDocs(props: DefaultProps & Props, context: Object) {
+function MarkdownDocs(props: Props, context: Object) {
   const { classes, demos, markdown, sourceLocation: sourceLocationProp } = props;
   const contents = getContents(markdown);
   const components = getComponents(markdown);

@@ -31,8 +31,9 @@ function getTranslateValue(props, element: HTMLElement) {
 
 export type Direction = 'left' | 'right' | 'up' | 'down';
 
-type DefaultProps = {
+type ProvidedProps = {
   transitionDuration: TransitionDuration,
+  theme: Object,
 };
 
 export type Props = {
@@ -59,7 +60,7 @@ export type Props = {
   /**
    * Callback fired when the component has entered.
    */
-  onEntered?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  onEntered?: TransitionCallback,
   /**
    * Callback fired before the component exits.
    */
@@ -71,11 +72,11 @@ export type Props = {
   /**
    * Callback fired when the component has exited.
    */
-  onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  onExited?: TransitionCallback,
   /**
    * @ignore
    */
-  theme: Object,
+  theme?: Object,
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
@@ -83,7 +84,7 @@ export type Props = {
   transitionDuration?: TransitionDuration,
 };
 
-class Slide extends React.Component<DefaultProps & Props> {
+class Slide extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
     direction: 'down',
     transitionDuration: {

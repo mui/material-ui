@@ -49,7 +49,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -109,11 +109,11 @@ export type Props = {
   /**
    * Callback fired when the dialog has entered.
    */
-  onEntered?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  onEntered?: TransitionCallback,
   /**
    * Callback fires when the escape key is released and the modal is in focus.
    */
-  onEscapeKeyUp?: Function, // eslint-disable-line react/sort-prop-types
+  onEscapeKeyUp?: Function,
   /**
    * Callback fired before the dialog exits.
    */
@@ -125,7 +125,7 @@ export type Props = {
   /**
    * Callback fired when the dialog has exited.
    */
-  onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
+  onExited?: TransitionCallback,
   /**
    * Callback fired when the component requests to be closed.
    *
@@ -145,7 +145,7 @@ export type Props = {
 /**
  * Dialogs are overlaid modal paper based components with a backdrop.
  */
-function Dialog(props: DefaultProps & Props) {
+function Dialog(props: ProvidedProps & Props) {
   const {
     children,
     classes,

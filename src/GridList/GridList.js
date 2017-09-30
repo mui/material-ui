@@ -17,7 +17,7 @@ export const styles = {
 
 export type CellHeight = number | 'auto';
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
   cols: number,
   spacing: number,
@@ -63,7 +63,7 @@ export type Props = {
   style?: Object,
 };
 
-function GridList(props: DefaultProps & Props) {
+function GridList(props: ProvidedProps & Props) {
   const {
     cols,
     spacing,

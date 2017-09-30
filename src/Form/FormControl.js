@@ -34,10 +34,10 @@ export const styles = (theme: Object) => ({
 
 export type Margin = 'none' | 'dense' | 'normal';
 
-type DefaultProps = {
+type ProvidedProps = {
   disabled: boolean,
   classes: Object,
-  component: string,
+  component: ElementType,
   error: boolean,
   fullWidth: boolean,
   margin: Margin,
@@ -107,7 +107,7 @@ type State = {
  *  - Input
  *  - InputLabel
  */
-class FormControl extends React.Component<DefaultProps & Props, State> {
+class FormControl extends React.Component<ProvidedProps & Props, State> {
   static defaultProps = {
     component: 'div',
     disabled: false,

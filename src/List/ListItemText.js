@@ -29,7 +29,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -56,7 +56,7 @@ export type Props = {
   secondary?: Node,
 };
 
-function ListItemText(props: DefaultProps & Props, context) {
+function ListItemText(props: ProvidedProps & Props, context) {
   const {
     classes,
     className: classNameProp,

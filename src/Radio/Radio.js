@@ -31,6 +31,10 @@ Radio.displayName = 'Radio';
 
 export default Radio;
 
+type ProvidedProps = {
+  classes: Object,
+};
+
 export type Props = {
   /**
    * If `true`, the component is checked.
@@ -104,4 +108,5 @@ export type Props = {
 };
 
 // This is here solely to trigger api doc generation
-export const RadioDocs = (props: Props) => <span />; // eslint-disable-line no-unused-vars
+// eslint-disable-next-line no-unused-vars
+export const RadioDocs = (props: ProvidedProps & Props) => <span />;

@@ -56,16 +56,10 @@ OnClick.propTypes = {
 
 type Variant = 'default' | 'primary' | 'accent' | 'button';
 
-type DefaultProps = {
-  classes: Object,
-  activeClassName: string,
-  variant: Variant,
-};
-
 type Props = {
-  activeClassName?: string,
+  activeClassName: string,
   children: Node,
-  classes?: Object,
+  classes: Object,
   className?: string,
   component?: ElementType,
   href?: string,
@@ -74,7 +68,7 @@ type Props = {
   variant?: Variant,
 };
 
-function Link(props: DefaultProps & Props, context: Object) {
+function Link(props: Props, context: Object) {
   const {
     activeClassName,
     children: childrenProp,

@@ -31,7 +31,7 @@ export const styles = {
   disabled: {},
 };
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -50,7 +50,7 @@ export type Props = {
    * The icon to display when the component is checked.
    * If a string is provided, it will be used as a font ligature.
    */
-  checkedIcon?: string | Element<any>,
+  checkedIcon?: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -88,7 +88,7 @@ export type Props = {
    * The icon to display when the component is indeterminate.
    * If a string is provided, it will be used as a font ligature.
    */
-  indeterminateIcon?: string | Element<any>,
+  indeterminateIcon?: Node,
   /**
    * Properties applied to the `input` element.
    */
@@ -123,8 +123,8 @@ type State = {
 };
 
 export type Options = {
-  defaultIcon?: Element<any>,
-  defaultCheckedIcon?: Element<any>,
+  defaultIcon: Element<*>,
+  defaultCheckedIcon: Element<*>,
   inputType?: string,
 };
 
@@ -138,7 +138,7 @@ export default function createSwitch(
   /**
    * @ignore - internal component.
    */
-  class SwitchBase extends React.Component<DefaultProps & Props, State> {
+  class SwitchBase extends React.Component<ProvidedProps & Props, State> {
     static defaultProps = {
       checkedIcon: defaultCheckedIcon,
       disableRipple: false,

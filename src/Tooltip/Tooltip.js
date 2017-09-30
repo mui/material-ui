@@ -98,7 +98,7 @@ export type Placement =
   | 'top-start'
   | 'top';
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
   disableTriggerFocus: boolean,
   disableTriggerHover: boolean,
@@ -180,7 +180,7 @@ type State = {
   open?: boolean,
 };
 
-class Tooltip extends React.Component<DefaultProps & Props, State> {
+class Tooltip extends React.Component<ProvidedProps & Props, State> {
   static defaultProps = {
     disableTriggerFocus: false,
     disableTriggerHover: false,

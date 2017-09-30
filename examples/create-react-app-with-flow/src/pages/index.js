@@ -19,17 +19,19 @@ const styles = {
   },
 };
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
-export type Props = {};
+export type Props = {
+  classes?: Object,
+};
 
 type State = {
   open: boolean,
 };
 
-class Index extends Component<DefaultProps & Props, State> {
+class Index extends Component<ProvidedProps & Props, State> {
   state = {
     open: false,
   };

@@ -56,7 +56,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -99,7 +99,7 @@ export type Props = {
   value?: any,
 };
 
-class BottomNavigationButton extends React.Component<DefaultProps & Props> {
+class BottomNavigationButton extends React.Component<ProvidedProps & Props> {
   handleChange = event => {
     const { onChange, value, onClick } = this.props;
 
@@ -115,7 +115,6 @@ class BottomNavigationButton extends React.Component<DefaultProps & Props> {
   render() {
     const {
       label,
-      // $FlowFixMe - no idea why it cannot find icon.
       icon: iconProp,
       selected,
       classes,
@@ -135,16 +134,17 @@ class BottomNavigationButton extends React.Component<DefaultProps & Props> {
       classNameProp,
     );
 
-    const iconClassName = classNames(
-      classes.icon,
-      React.isValidElement(iconProp) ? iconProp.props.className : null,
-    );
+    let icon = null;
 
-    const icon = React.isValidElement(iconProp) ? (
-      React.cloneElement(iconProp, { className: iconClassName })
-    ) : (
-      <Icon>{iconProp}</Icon>
-    );
+    if (iconProp) {
+      if (React.isValidElement(iconProp) && typeof iconProp !== 'string') {
+        icon = React.cloneElement(iconProp, {
+          className: classNames(classes.icon, iconProp.props.className),
+        });
+      } else {
+        icon = <Icon>{iconProp}</Icon>;
+      }
+    }
 
     const labelClassName = classNames(classes.label, {
       [classes.selectedLabel]: selected,

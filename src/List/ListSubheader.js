@@ -34,7 +34,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -65,7 +65,7 @@ export type Props = {
   inset?: boolean,
 };
 
-function ListSubheader(props: DefaultProps & Props) {
+function ListSubheader(props: ProvidedProps & Props) {
   const {
     children,
     classes,

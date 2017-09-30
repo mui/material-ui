@@ -4,11 +4,15 @@ import React from 'react';
 import classNames from 'classnames';
 import Transition from 'react-transition-group/Transition';
 
+type ProvidedProps = {
+  classes: Object,
+};
+
 export type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  classes: Object,
+  classes?: Object,
   /**
    * @ignore
    */
@@ -36,7 +40,7 @@ type State = { rippleVisible: boolean, rippleLeaving: boolean };
 /**
  * @ignore - internal component.
  */
-class Ripple extends React.Component<Props, State> {
+class Ripple extends React.Component<ProvidedProps & Props, State> {
   static defaultProps = {
     pulsate: false,
   };

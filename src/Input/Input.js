@@ -186,7 +186,7 @@ export const styles = (theme: Object) => {
   };
 };
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
   disableUnderline: boolean,
   fullWidth: boolean,
@@ -326,7 +326,7 @@ type State = {
   focused: boolean,
 };
 
-class Input extends React.Component<DefaultProps & Props, State> {
+class Input extends React.Component<ProvidedProps & Props, State> {
   static muiName = 'Input';
 
   static defaultProps = {

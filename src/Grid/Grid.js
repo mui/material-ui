@@ -144,7 +144,7 @@ export const styles = (theme: Object) => ({
 
 export type GridSizes = boolean | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
   component: ElementType,
 };
@@ -233,7 +233,7 @@ export type Props = {
   xl?: GridSizes,
 };
 
-function Grid(props: DefaultProps & Props) {
+function Grid(props: ProvidedProps & Props) {
   const {
     classes,
     className: classNameProp,

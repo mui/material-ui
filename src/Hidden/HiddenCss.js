@@ -7,15 +7,11 @@ import { capitalizeFirstLetter } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 import type { HiddenProps } from './types';
 
-type DefaultProps = {
-  classes: Object,
-};
-
 export type Props = HiddenProps & {
   /**
    * Useful to extend the style applied to components.
    */
-  classes?: Object,
+  classes: Object,
 };
 
 function generateStyles(theme) {
@@ -43,7 +39,7 @@ const styles = (theme: Object) => generateStyles(theme);
 /**
  * @ignore - internal component.
  */
-function HiddenCss(props: DefaultProps & Props) {
+function HiddenCss(props: Props) {
   const {
     children,
     classes,

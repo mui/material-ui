@@ -88,7 +88,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type DefaultProps = {
+type ProvidedProps = {
   classes: Object,
 };
 
@@ -113,7 +113,7 @@ type State = { nextKey: number, ripples: Array<*> };
 /**
  * @ignore - internal component.
  */
-class TouchRipple extends React.Component<DefaultProps & Props, State> {
+class TouchRipple extends React.Component<ProvidedProps & Props, State> {
   static defaultProps = {
     center: false,
   };

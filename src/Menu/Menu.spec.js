@@ -65,8 +65,7 @@ describe('<Menu />', () => {
   });
 
   it('should pass anchorEl prop to Popover', () => {
-    const el = {};
-    // $FlowExpectedError - just a test object
+    const el = document.createElement('div');
     const wrapper = shallow(<Menu anchorEl={el} />);
     assert.strictEqual(wrapper.props().anchorEl, el, 'should be the same object');
   });

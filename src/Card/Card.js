@@ -4,7 +4,7 @@
 import React from 'react';
 import Paper from '../Paper';
 
-type DefaultProps = {
+type ProvidedProps = {
   raised: boolean,
 };
 
@@ -19,7 +19,7 @@ export type Props = {
   raised?: boolean,
 };
 
-function Card(props: DefaultProps & Props) {
+function Card(props: ProvidedProps & Props) {
   const { raised, ...other } = props;
 
   return <Paper elevation={raised ? 8 : 2} {...other} />;
