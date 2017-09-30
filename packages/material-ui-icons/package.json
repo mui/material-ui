@@ -41,22 +41,22 @@
     "react-dom": "^15.3.0 || ^16.0.0-beta.1"
   },
   "dependencies": {
-    "recompose": "^0.24.0"
+    "recompose": "^0.25.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "chai": "^4.1.2",
     "cross-env": "^5.0.5",
-    "fs-extra": "^4.0.1",
+    "fs-extra": "^4.0.2",
     "glob": "^7.1.2",
     "lodash": "^4.0.0",
     "material-design-icons": "^3.0.0",
     "mkdirp": "^0.5.0",
-    "mocha": "^3.5.0",
+    "mocha": "^3.5.3",
     "mustache": "^2.0.0",
     "recursive-readdir-sync": "^1.0.6",
-    "rimraf": "^2.0.0",
+    "rimraf": "^2.6.2",
     "temp": "^0.8.3",
-    "yargs": "^8.0.2"
+    "yargs": "^9.0.1"
   }
 }
