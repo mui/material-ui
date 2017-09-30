@@ -2,10 +2,12 @@ import React from 'react';
 import pure from 'recompose/pure';
 import SvgIcon from 'material-ui/SvgIcon';
 
+const SvgIconCustom = global.__MUI_SvgIcon__ || SvgIcon;
+
 let VolumeMute = props =>
-  <SvgIcon {...props}>
+  <SvgIconCustom {...props}>
     <path d="M7 9v6h4l5 5V4l-5 5H7z" />
-  </SvgIcon>;
+  </SvgIconCustom>;
 
 VolumeMute = pure(VolumeMute);
 VolumeMute.muiName = 'SvgIcon';
