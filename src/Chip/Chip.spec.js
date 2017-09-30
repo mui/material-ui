@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // @flow
 
 import React from 'react';
@@ -149,6 +150,39 @@ describe('<Chip />', () => {
         1,
         'should have called the stopPropagation handler',
       );
+    });
+  });
+  describe('Custom delete button', () => {
+    let mount;
+    before(() => {
+      mount = createMount();
+    });
+    after(() => {
+      mount.cleanUp();
+    });
+    it('should accept a custom delete button via the deleteButton prop', () => {
+      const DeleteButton = props => {
+        return (
+          <button className={props.className} data-button-id="delete">
+            Delete Button
+          </button>
+        );
+      };
+      const wrapper = mount(<Chip deleteButton={DeleteButton} onRequestDelete={() => {}} />);
+      assert.ok(wrapper.find('[data-button-id="delete"]').exists());
+    });
+    it('The deleteButton component should be passed the className and onRequestDelete prop', () => {
+      const onRequestDelete = spy();
+      const DeleteButton = props => {
+        assert.strictEqual(
+          props.onRequestDelete,
+          onRequestDelete,
+          'onRequestDelete is passed through unchanged',
+        );
+        assert.ok(props.className, 'className is passed down as well');
+        return null;
+      };
+      mount(<Chip deleteButton={DeleteButton} onRequestDelete={onRequestDelete} />);
     });
   });
 

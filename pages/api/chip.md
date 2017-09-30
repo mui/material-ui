@@ -11,7 +11,7 @@ Chips represent complex entities in small blocks, such as a contact.
 | classes | Object |  | Useful to extend the style applied to components. |
 | label | union:&nbsp;string<br>&nbsp;Element<any><br> |  | The content of the label. |
 | onRequestDelete | signature |  | Callback function fired when the delete icon is clicked. If set, the delete icon will be shown. |
-
+| deleteButton | Component | | Component to render instead of the default close button. Receives onRequestDelete as a prop.
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
 ## CSS API
