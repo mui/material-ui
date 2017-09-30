@@ -66,7 +66,7 @@
     "deepmerge": "^1.5.2",
     "dom-helpers": "^3.2.1",
     "hoist-non-react-statics": "^1.2.0",
-    "jss": "^8.1.0",
+    "jss": "^9.0.0",
     "jss-preset-default": "^3.0.0",
     "keycode": "^2.1.9",
     "lodash": "^4.17.4",
