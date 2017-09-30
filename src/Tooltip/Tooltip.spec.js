@@ -26,7 +26,11 @@ describe('<Tooltip />', () => {
   before(() => {
     shallow = createShallow({ dive: true });
     mount = createMount();
-    classes = getClasses(<Tooltip title="Hello World">Hello World</Tooltip>);
+    classes = getClasses(
+      <Tooltip title="Hello World">
+        <span>Hello World</span>
+      </Tooltip>,
+    );
   });
 
   after(() => {
@@ -34,14 +38,18 @@ describe('<Tooltip />', () => {
   });
 
   it('should render a Manager', () => {
-    const wrapper = shallow(<Tooltip title="Hello World">Hello World</Tooltip>);
+    const wrapper = shallow(
+      <Tooltip title="Hello World">
+        <span>Hello World</span>
+      </Tooltip>,
+    );
     assert.strictEqual(wrapper.name(), 'Manager');
   });
 
   it('should render with the user, root and tooltip classes', () => {
     const wrapper = shallow(
       <Tooltip className="woofTooltip" title="Hello World">
-        Hello World
+        <span>Hello World</span>
       </Tooltip>,
     );
     assert.strictEqual(wrapper.hasClass('woofTooltip'), true);
@@ -58,7 +66,7 @@ describe('<Tooltip />', () => {
   it('should have top placement', () => {
     const wrapper = shallow(
       <Tooltip placement="top" title="Hello World">
-        Hello World
+        <span>Hello World</span>
       </Tooltip>,
     );
     assert.strictEqual(wrapper.hasClass(classes.root), true);
