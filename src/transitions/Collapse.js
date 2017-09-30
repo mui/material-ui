@@ -26,6 +26,7 @@ export type TransitionDuration = number | { enter?: number, exit?: number } | 'a
 type DefaultProps = {
   classes: Object,
   transitionDuration: TransitionDuration,
+  theme: Object,
 };
 
 export type Props = {
@@ -65,10 +66,6 @@ export type Props = {
    * Callback fired when the component has exited.
    */
   onExited?: TransitionCallback, // eslint-disable-line react/sort-prop-types
-  /**
-   * @ignore
-   */
-  theme: Object,
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
