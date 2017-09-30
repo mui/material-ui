@@ -256,4 +256,4 @@ class TouchRipple extends React.Component<ProvidedProps & Props, State> {
   }
 }
 
-export default withStyles(styles, { name: 'MuiTouchRipple' })(TouchRipple);
+export default withStyles(styles, { flip: false, name: 'MuiTouchRipple' })(TouchRipple);

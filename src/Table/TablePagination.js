@@ -64,6 +64,7 @@ type ProvidedProps = {
   labelRowsPerPage: string,
   labelDisplayedRows: (paginationInfo: LabelDisplayedRowsArgs) => string,
   rowsPerPageOptions: number[],
+  theme: Object,
 };
 
 export type Props = {
@@ -156,6 +157,7 @@ class TablePagination extends React.Component<ProvidedProps & Props> {
       page,
       rowsPerPage,
       rowsPerPageOptions,
+      theme,
       ...other
     } = this.props;
 
@@ -196,13 +198,13 @@ class TablePagination extends React.Component<ProvidedProps & Props> {
           </Typography>
           <div className={classes.actions}>
             <IconButton onClick={this.handleBackButtonClick} disabled={page === 0}>
-              <KeyboardArrowLeft />
+              {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
             </IconButton>
             <IconButton
               onClick={this.handleNextButtonClick}
               disabled={page >= Math.ceil(count / rowsPerPage) - 1}
             >
-              <KeyboardArrowRight />
+              {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
             </IconButton>
           </div>
         </Toolbar>
@@ -211,4 +213,4 @@ class TablePagination extends React.Component<ProvidedProps & Props> {
   }
 }
 
-export default withStyles(styles, { name: 'MuiTablePagination' })(TablePagination);
+export default withStyles(styles, { withTheme: true, name: 'MuiTablePagination' })(TablePagination);

@@ -84,7 +84,7 @@ function reduceChildRoutes(props, activePage, items, childPage, index) {
 const GITHUB_RELEASE_BASE_URL = 'https://github.com/callemall/material-ui/releases/tag/';
 
 function AppDrawer(props, context) {
-  const { classes, className, disablePermanent, mobileOpen, onRequestClose } = props;
+  const { classes, theme, className, disablePermanent, mobileOpen, onRequestClose } = props;
 
   const drawer = (
     <div className={classes.nav}>
@@ -118,6 +118,7 @@ function AppDrawer(props, context) {
             paper: classNames(classes.paper, 'algolia-drawer'),
           }}
           type="temporary"
+          anchor={theme.direction === 'rtl' ? 'right' : 'left'}
           open={mobileOpen}
           onRequestClose={onRequestClose}
           ModalProps={{
@@ -134,6 +135,7 @@ function AppDrawer(props, context) {
               paper: classes.paper,
             }}
             type="permanent"
+            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
             open
           >
             {drawer}
@@ -150,6 +152,7 @@ AppDrawer.propTypes = {
   disablePermanent: PropTypes.bool.isRequired,
   mobileOpen: PropTypes.bool.isRequired,
   onRequestClose: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
 AppDrawer.contextTypes = {
@@ -157,4 +160,4 @@ AppDrawer.contextTypes = {
   activePage: PropTypes.object,
 };
 
-export default withStyles(styles)(AppDrawer);
+export default withStyles(styles, { withTheme: true })(AppDrawer);

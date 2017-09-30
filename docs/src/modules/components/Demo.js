@@ -30,6 +30,14 @@ const styles = theme => ({
     top: 2,
     right: 7,
   },
+  codeButtonUnflipped: {
+    flip: false,
+    display: 'none',
+    zIndex: 10,
+    position: 'absolute',
+    top: 2,
+    right: 7,
+  },
   code: {
     display: 'none',
     padding: 0,
@@ -42,6 +50,9 @@ const styles = theme => ({
   },
   [theme.breakpoints.up(600)]: {
     codeButton: {
+      display: 'block',
+    },
+    codeButtonUnflipped: {
       display: 'block',
     },
     code: {
@@ -67,18 +78,19 @@ class Demo extends React.Component<any, any> {
 
   render() {
     const { classes, js: DemoComponent, name, raw } = this.props;
+    const { codeOpen } = this.state;
 
     return (
       <div className={classes.root}>
-        <Tooltip
-          title={this.state.codeOpen ? 'Hide the source' : 'Show the source'}
-          placement="top"
-        >
-          <IconButton onClick={this.handleCodeButtonClick} className={classes.codeButton}>
+        <Tooltip title={codeOpen ? 'Hide the source' : 'Show the source'} placement="top">
+          <IconButton
+            onClick={this.handleCodeButtonClick}
+            className={codeOpen ? classes.codeButtonUnflipped : classes.codeButton}
+          >
             <CodeIcon />
           </IconButton>
         </Tooltip>
-        <Collapse in={this.state.codeOpen} unmountOnExit>
+        <Collapse in={codeOpen} unmountOnExit>
           <MarkdownElement className={classes.code} text={`\`\`\`js\n${raw}\n\`\`\``} />
         </Collapse>
         <div className={classes.demo} data-mui-demo={name}>

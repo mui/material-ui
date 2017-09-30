@@ -74,7 +74,7 @@ class ResponsiveDrawer extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, theme } = this.props;
 
     const drawer = (
       <div>
@@ -107,6 +107,7 @@ class ResponsiveDrawer extends React.Component {
           <Hidden mdUp>
             <Drawer
               type="temporary"
+              anchor={theme.direction === 'rtl' ? 'right' : 'left'}
               open={this.state.mobileOpen}
               classes={{
                 paper: classes.drawerPaper,
@@ -143,6 +144,7 @@ class ResponsiveDrawer extends React.Component {
 
 ResponsiveDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ResponsiveDrawer);
+export default withStyles(styles, { withTheme: true })(ResponsiveDrawer);

@@ -15,6 +15,7 @@ const styles = theme => ({
     margin: theme.spacing.unit * 2,
   },
   absolute: {
+    flip: false,
     position: 'absolute',
     bottom: 32,
     right: 32,

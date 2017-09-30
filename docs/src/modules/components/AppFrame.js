@@ -13,6 +13,8 @@ import Toolbar from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 import LightbulbOutline from 'material-ui-icons/LightbulbOutline';
+import FormatTextdirectionLToR from 'material-ui-icons/FormatTextdirectionLToR';
+import FormatTextdirectionRToL from 'material-ui-icons/FormatTextdirectionRToL';
 import Github from 'docs/src/modules/components/GitHub';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
 import AppSearch from 'docs/src/modules/components/AppSearch';
@@ -152,8 +154,12 @@ class AppFrame extends React.Component<any, any> {
     this.props.dispatch({ type: 'TOGGLE_THEME_SHADE' });
   };
 
+  handleToggleDirection = () => {
+    this.props.dispatch({ type: 'TOGGLE_DIRECTION' });
+  };
+
   render() {
-    const { children, classes } = this.props;
+    const { children, classes, rtl } = this.props;
     const title =
       this.context.activePage.title !== false ? pageToTitle(this.context.activePage) : null;
 
@@ -198,6 +204,15 @@ class AppFrame extends React.Component<any, any> {
                 <LightbulbOutline />
               </IconButton>
             </Tooltip>
+            <Tooltip title="Toggle right-to-left/left-to-right" enterDelay={300}>
+              <IconButton
+                color="contrast"
+                aria-label="change direction"
+                onClick={this.handleToggleDirection}
+              >
+                {rtl ? <FormatTextdirectionLToR /> : <FormatTextdirectionRToL />}
+              </IconButton>
+            </Tooltip>
             <IconButton
               component="a"
               title="GitHub"
@@ -224,6 +239,7 @@ AppFrame.propTypes = {
   children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
+  rtl: PropTypes.bool.isRequired,
 };
 
 AppFrame.contextTypes = {

@@ -13,6 +13,7 @@ import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
+import ChevronRightIcon from 'material-ui-icons/ChevronRight';
 import { mailFolderListItems, otherMailFolderListItems } from './tileData';
 
 const drawerWidth = 240;
@@ -107,7 +108,7 @@ class PersistentDrawer extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, theme } = this.props;
 
     return (
       <div className={classes.root}>
@@ -128,6 +129,7 @@ class PersistentDrawer extends React.Component {
             </Toolbar>
           </AppBar>
           <Drawer
+            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
             type="persistent"
             classes={{
               paper: classes.drawerPaper,
@@ -137,7 +139,7 @@ class PersistentDrawer extends React.Component {
             <div className={classes.drawerInner}>
               <div className={classes.drawerHeader}>
                 <IconButton onClick={this.handleDrawerClose}>
-                  <ChevronLeftIcon />
+                  {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                 </IconButton>
               </div>
               <Divider />
@@ -159,6 +161,7 @@ class PersistentDrawer extends React.Component {
 
 PersistentDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(PersistentDrawer);
+export default withStyles(styles, { withTheme: true })(PersistentDrawer);

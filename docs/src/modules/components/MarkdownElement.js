@@ -212,6 +212,7 @@ function MarkdownElement(props: Props) {
   /* eslint-disable react/no-danger */
   return (
     <div
+      dir="ltr"
       className={classNames(classes.root, 'markdown-body', className)}
       dangerouslySetInnerHTML={{ __html: marked(text) }}
       {...other}
@@ -220,4 +221,4 @@ function MarkdownElement(props: Props) {
   /* eslint-enable */
 }
 
-export default withStyles(styles)(MarkdownElement);
+export default withStyles(styles, { flip: false })(MarkdownElement);

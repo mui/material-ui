@@ -3,14 +3,16 @@
 
 import { create } from 'jss';
 import preset from 'jss-preset-default';
+import rtl from 'jss-rtl';
 import { SheetsRegistry } from 'react-jss/lib/jss';
 import { createMuiTheme } from 'material-ui/styles';
 import blue from 'material-ui/colors/blue';
 import pink from 'material-ui/colors/pink';
 import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
 
-export function getTheme(dark) {
+export function getTheme(dark, isRtl) {
   const theme = createMuiTheme({
+    direction: isRtl ? 'rtl' : 'ltr',
     palette: {
       primary: blue,
       secondary: pink,
@@ -21,10 +23,10 @@ export function getTheme(dark) {
   return theme;
 }
 
-const theme = getTheme(false);
+const theme = getTheme(false, false);
 
 // Configure JSS
-const jss = create(preset());
+const jss = create({ plugins: [...preset().plugins, rtl()] });
 jss.options.createGenerateClassName = createGenerateClassName;
 jss.options.insertionPoint = 'insertion-point-jss';
 

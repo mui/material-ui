@@ -14,11 +14,17 @@ if (
   devtools = window.__REDUX_DEVTOOLS_EXTENSION__();
 }
 
-function themeReducer(state = { dark: false }, action) {
+function themeReducer(state = { dark: false, rtl: false }, action) {
   if (action.type === 'TOGGLE_THEME_SHADE') {
     return {
       ...state,
       dark: !state.dark,
+    };
+  }
+  if (action.type === 'TOGGLE_DIRECTION') {
+    return {
+      ...state,
+      rtl: !state.rtl,
     };
   }
   return state;

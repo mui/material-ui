@@ -49,13 +49,17 @@ class AppWrapper extends React.Component<any, any> {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.dark !== this.props.dark) {
-      this.styleContext.theme = getTheme(nextProps.dark);
+    if (nextProps.dark !== this.props.dark || nextProps.rtl !== this.props.rtl) {
+      this.styleContext.theme = getTheme(nextProps.dark, nextProps.rtl);
 
       if (nextProps.dark) {
         setPrismTheme(darkTheme);
       } else {
         setPrismTheme(lightTheme);
+      }
+
+      if (nextProps.rtl !== this.props.rtl && document.body) {
+        document.body.dir = nextProps.rtl ? 'rtl' : 'ltr';
       }
     }
   }
@@ -68,7 +72,7 @@ class AppWrapper extends React.Component<any, any> {
   googleTimer = null;
 
   render() {
-    const { children, sheetsRegistry } = this.props;
+    const { children, rtl, sheetsRegistry } = this.props;
 
     return (
       <JssProvider registry={sheetsRegistry} jss={this.styleContext.jss}>
@@ -76,7 +80,7 @@ class AppWrapper extends React.Component<any, any> {
           theme={this.styleContext.theme}
           sheetsManager={this.styleContext.sheetsManager}
         >
-          <AppFrame>{children}</AppFrame>
+          <AppFrame rtl={rtl}>{children}</AppFrame>
         </MuiThemeProvider>
       </JssProvider>
     );
@@ -86,6 +90,7 @@ class AppWrapper extends React.Component<any, any> {
 AppWrapper.propTypes = {
   children: PropTypes.node.isRequired,
   dark: PropTypes.bool.isRequired,
+  rtl: PropTypes.bool.isRequired,
   sheetsRegistry: PropTypes.object,
 };
 

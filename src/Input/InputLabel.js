@@ -9,7 +9,7 @@ import { FormLabel } from '../Form';
 
 export const styles = (theme: Object) => ({
   root: {
-    transformOrigin: 'top left',
+    transformOrigin: `top ${theme.direction === 'ltr' ? 'left' : 'right'}`,
   },
   formControl: {
     position: 'absolute',
@@ -24,7 +24,7 @@ export const styles = (theme: Object) => ({
   },
   shrink: {
     transform: 'translate(0, 1.5px) scale(0.75)',
-    transformOrigin: 'top left',
+    transformOrigin: `top ${theme.direction === 'ltr' ? 'left' : 'right'}`,
   },
   animated: {
     transition: theme.transitions.create('transform', {

@@ -251,4 +251,4 @@ class Drawer extends React.Component<ProvidedProps & Props, State> {
   }
 }
 
-export default withStyles(styles, { withTheme: true, name: 'MuiDrawer' })(Drawer);
+export default withStyles(styles, { flip: false, withTheme: true, name: 'MuiDrawer' })(Drawer);

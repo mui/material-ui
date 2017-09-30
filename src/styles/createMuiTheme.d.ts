@@ -15,7 +15,7 @@ export interface ThemeOptions {
 }
 
 export type Theme<T = {}> = {
-  direction: 'ltr';
+  direction: 'ltr' | 'rtl';
   palette: Palette;
   typography: Typography;
   mixins: Mixins;

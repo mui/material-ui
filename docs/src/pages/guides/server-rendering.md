@@ -71,6 +71,7 @@ import { SheetsRegistry } from 'react-jss/lib/jss';
 import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
 import preset from 'jss-preset-default';
+// import rtl from 'jss-rtl'; // in-case you're supporting rtl
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
 import { green, red } from 'material-ui/colors';
@@ -90,6 +91,8 @@ function handleRender(req, res) {
 
   // Configure JSS
   const jss = create(preset());
+  // const jss = create({ plugins: [...preset().plugins, rtl()] }); // in-case you're supporting rtl
+
   jss.options.createGenerateClassName = createGenerateClassName;
 
   // Render the component to a string.

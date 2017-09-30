@@ -99,6 +99,21 @@ export type Placement =
   | 'top-start'
   | 'top';
 
+function flipPlacement(placement: Placement): Placement {
+  switch (placement) {
+    case 'bottom-end':
+      return 'bottom-start';
+    case 'bottom-start':
+      return 'bottom-end';
+    case 'top-end':
+      return 'top-start';
+    case 'top-start':
+      return 'top-end';
+    default:
+      return placement;
+  }
+}
+
 type ProvidedProps = {
   classes: Object,
   disableTriggerFocus: boolean,
@@ -107,6 +122,7 @@ type ProvidedProps = {
   enterDelay: number,
   leaveDelay: number,
   placement: Placement,
+  theme: Object,
 };
 
 export type Props = {
@@ -341,12 +357,14 @@ class Tooltip extends React.Component<ProvidedProps & Props, State> {
       open: openProp,
       onRequestClose,
       onRequestOpen,
+      theme,
       title,
-      placement,
+      placement: rawPlacement,
       PopperProps: { PopperClassName, ...PopperOther } = {},
       ...other
     } = this.props;
 
+    const placement = theme.direction === 'rtl' ? flipPlacement(rawPlacement) : rawPlacement;
     const open = this.isControlled ? openProp : this.state.open;
     const childrenProps = {};
 
@@ -417,4 +435,4 @@ class Tooltip extends React.Component<ProvidedProps & Props, State> {
   }
 }
 
-export default withStyles(styles, { name: 'MuiTooltip' })(Tooltip);
+export default withStyles(styles, { name: 'MuiTooltip', withTheme: true })(Tooltip);
