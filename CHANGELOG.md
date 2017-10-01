@@ -33,9 +33,9 @@ Big thanks to the 18 contributors who made this release possible.
 -       enterTransitionDuration={100}
 -       leaveTransitionDuration={200}
 +       transitionDuration={{
-          enter: 100,
-          exit: 200,
-        }}
++         enter: 100,
++         exit: 200,
++       }}
       </Dialog>
 ```
 
