@@ -12,11 +12,9 @@ import { mailFolderListItems, otherMailFolderListItems } from './tileData';
 const styles = {
   list: {
     width: 250,
-    flex: 'initial',
   },
   listFull: {
     width: 'auto',
-    flex: 'initial',
   },
 };
 
@@ -38,18 +36,18 @@ class TemporaryDrawer extends React.Component {
     const classes = this.props.classes;
 
     const sideList = (
-      <div>
-        <List className={classes.list}>{mailFolderListItems}</List>
+      <div className={classes.list}>
+        <List>{mailFolderListItems}</List>
         <Divider />
-        <List className={classes.list}>{otherMailFolderListItems}</List>
+        <List>{otherMailFolderListItems}</List>
       </div>
     );
 
     const fullList = (
-      <div>
-        <List className={classes.listFull}>{mailFolderListItems}</List>
+      <div className={classes.listFull}>
+        <List>{mailFolderListItems}</List>
         <Divider />
-        <List className={classes.listFull}>{otherMailFolderListItems}</List>
+        <List>{otherMailFolderListItems}</List>
       </div>
     );
 

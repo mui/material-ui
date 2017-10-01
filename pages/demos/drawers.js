@@ -38,6 +38,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/drawers/MiniDrawer'), 'utf8')
 `,
         },
+        'pages/demos/drawers/ResponsiveDrawer.js': {
+          js: require('docs/src/pages/demos/drawers/ResponsiveDrawer').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/drawers/ResponsiveDrawer'), 'utf8')
+`,
+        },
       }}
     />
   );

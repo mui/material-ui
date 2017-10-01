@@ -141,10 +141,6 @@ class AppFrame extends React.Component<any, any> {
     mobileOpen: false,
   };
 
-  handleDrawerClose = () => {
-    this.setState({ mobileOpen: false });
-  };
-
   handleDrawerToggle = () => {
     this.setState({ mobileOpen: !this.state.mobileOpen });
   };
@@ -167,7 +163,7 @@ class AppFrame extends React.Component<any, any> {
       disablePermanent = true;
       appBarClassName += ` ${classes.appBarHome}`;
     } else {
-      navIconClassName += ` ${classes.navIconHide}`;
+      navIconClassName = classes.navIconHide;
       appBarClassName += ` ${classes.appBarShift}`;
     }
 
@@ -212,7 +208,7 @@ class AppFrame extends React.Component<any, any> {
         <AppDrawer
           className={classes.drawer}
           disablePermanent={disablePermanent}
-          onRequestClose={this.handleDrawerClose}
+          onRequestClose={this.handleDrawerToggle}
           mobileOpen={this.state.mobileOpen}
         />
         {children}
