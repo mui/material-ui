@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "material-ui-icons-builder",
-  "version": "1.0.0-beta.13",
+  "version": "1.0.0-beta.14",
   "description": "Material Design Svg Icons converted to Material-UI React components.",
   "author": "Material-UI Team",
   "license": "MIT",
