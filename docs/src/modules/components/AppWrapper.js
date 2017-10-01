@@ -4,6 +4,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import JssProvider from 'react-jss/lib/JssProvider';
 import { MuiThemeProvider } from 'material-ui/styles';
 import getContext, { getTheme } from 'docs/src/modules/styles/getContext';
 import AppFrame from 'docs/src/modules/components/AppFrame';
@@ -67,15 +68,17 @@ class AppWrapper extends React.Component<any, any> {
   googleTimer = null;
 
   render() {
-    const { children } = this.props;
+    const { children, sheetsRegistry } = this.props;
 
     return (
-      <MuiThemeProvider
-        theme={this.styleContext.theme}
-        sheetsManager={this.styleContext.sheetsManager}
-      >
-        <AppFrame>{children}</AppFrame>
-      </MuiThemeProvider>
+      <JssProvider registry={sheetsRegistry} jss={this.styleContext.jss}>
+        <MuiThemeProvider
+          theme={this.styleContext.theme}
+          sheetsManager={this.styleContext.sheetsManager}
+        >
+          <AppFrame>{children}</AppFrame>
+        </MuiThemeProvider>
+      </JssProvider>
     );
   }
 }
@@ -83,6 +86,7 @@ class AppWrapper extends React.Component<any, any> {
 AppWrapper.propTypes = {
   children: PropTypes.node.isRequired,
   dark: PropTypes.bool.isRequired,
+  sheetsRegistry: PropTypes.object,
 };
 
 export default connect(state => state.theme)(AppWrapper);

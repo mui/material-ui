@@ -3,7 +3,6 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import CleanCSS from 'clean-css';
-import JssProvider from 'react-jss/lib/JssProvider';
 import getContext from 'docs/src/modules/styles/getContext';
 import config from 'docs/src/config';
 
@@ -101,9 +100,7 @@ MyDocument.getInitialProps = ctx => {
   // Get the context to collected side effects.
   const context = getContext();
   const page = ctx.renderPage(Component => props => (
-    <JssProvider registry={context.sheetsRegistry} jss={context.jss}>
-      <Component {...props} />
-    </JssProvider>
+    <Component sheetsRegistry={context.sheetsRegistry} {...props} />
   ));
 
   let css = context.sheetsRegistry.toString();

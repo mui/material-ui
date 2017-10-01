@@ -186,6 +186,7 @@ function withRoot(BaseComponent) {
 
   type WithRootProps = {
     reduxServerState?: Object,
+    sheetsRegistry?: Object,
     url: Object,
   };
   class WithRoot extends React.Component<WithRootProps> {
@@ -237,10 +238,12 @@ function withRoot(BaseComponent) {
     redux = null;
 
     render() {
+      const { sheetsRegistry, ...other } = this.props;
+
       return (
         <Provider store={this.redux}>
-          <AppWrapper>
-            <PureBaseComponent initialProps={this.props} />
+          <AppWrapper sheetsRegistry={sheetsRegistry}>
+            <PureBaseComponent initialProps={other} />
           </AppWrapper>
         </Provider>
       );
