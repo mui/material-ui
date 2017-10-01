@@ -88,6 +88,11 @@ describe('<Tabs />', () => {
       );
       assert.strictEqual(wrapper.find(Tab).length, 1);
     });
+
+    it('should support empty children', () => {
+      const wrapper = mount(<Tabs width="md" onChange={noop} value={1} />);
+      assert.strictEqual(wrapper.find('EventListener').length, 1);
+    });
   });
 
   describe('prop: value', () => {
