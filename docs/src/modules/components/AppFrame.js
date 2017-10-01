@@ -72,7 +72,9 @@ const styles = theme => ({
         position: 'absolute',
         top: 0,
         height: 2,
-        boxShadow: '#000 1px 0 6px 1px',
+        boxShadow: `${theme.palette.type === 'light'
+          ? theme.palette.common.black
+          : theme.palette.common.white} 1px 0 6px 1px`,
         borderRadius: '100%',
         animation: 'nprogress-pulse 2s ease-out 0s infinite',
       },
