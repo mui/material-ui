@@ -78,7 +78,7 @@ Big thanks to the 18 contributors who made this release possible.
 #### Core
 
 - [test] Prepare enzyme v3 upgrade (#8429) @oliviertassinari
-[core] Update react-transition-group for react@16 (#8468) @oliviertassinari
+- [core] Update react-transition-group for react@16 (#8468) @oliviertassinari
 - [core] Update recompose to 0.25.1 (#8408) @oliviertassinari
 - [core] Update sinon to the latest version 🚀 (#8396) @greenkeeper
 - [core] Upgrade prettier (#8428) @oliviertassinari
