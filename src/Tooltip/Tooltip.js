@@ -13,7 +13,7 @@ import grey from '../colors/grey';
 import withStyles from '../styles/withStyles';
 
 // Use a class component so we can get a reference.
-class TargetChildren extends React.Component<{ element: string | Element<any> }> {
+class TargetChildren extends React.Component<{ element: Element<any> }> {
   render() {
     return this.props.element;
   }
@@ -22,6 +22,7 @@ class TargetChildren extends React.Component<{ element: string | Element<any> }>
 export const styles = (theme: Object) => ({
   root: {
     display: 'inline',
+    flexDirection: 'inherit', // Makes the wrapper more transparent.
   },
   popper: {
     zIndex: theme.zIndex.tooltip,
@@ -112,7 +113,7 @@ export type Props = {
   /**
    * Tooltip reference component.
    */
-  children: string | Element<any>,
+  children: Element<any>,
   /**
    * Useful to extend the style applied to components.
    */

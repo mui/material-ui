@@ -72,13 +72,15 @@ class EnhancedTableHead extends React.Component {
                 numeric={column.numeric}
                 padding={column.disablePadding ? 'none' : 'default'}
               >
-                <TableSortLabel
-                  active={orderBy === column.id}
-                  direction={order}
-                  onClick={this.createSortHandler(column.id)}
-                >
-                  {column.label}
-                </TableSortLabel>
+                <Tooltip title="Sort" placement="bottom-start" enterDelay={300}>
+                  <TableSortLabel
+                    active={orderBy === column.id}
+                    direction={order}
+                    onClick={this.createSortHandler(column.id)}
+                  >
+                    {column.label}
+                  </TableSortLabel>
+                </Tooltip>
               </TableCell>
             );
           }, this)}

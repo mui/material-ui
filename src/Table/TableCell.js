@@ -50,7 +50,6 @@ export const styles = (theme: Object) => ({
   root: {
     borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
     whiteSpace: 'nowrap',
-    overflow: 'hidden',
     textOverflow: 'ellipsis',
     textAlign: 'left',
   },
@@ -61,6 +60,7 @@ export const styles = (theme: Object) => ({
   head: {
     whiteSpace: 'pre',
     fontWeight: theme.typography.fontWeightMedium,
+    position: 'relative', // Workaround for Tooltip positioning issue.
   },
   padding: {
     padding: `0 ${theme.spacing.unit * 7}px 0 ${theme.spacing.unit * 3}px`,
