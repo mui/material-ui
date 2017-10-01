@@ -46,6 +46,8 @@ When expanded, it appears as the standard persistent navigation drawer.
 
 The mini variant is recommended for apps sections that need quick selection access alongside content.
 
+{{demo='pages/demos/drawers/MiniDrawer.js'}}
+
 ## Responsive drawer
 
 The `Hidden` responsive helper component allows showing different types of drawer depending on the screen width.
