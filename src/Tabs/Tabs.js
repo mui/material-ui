@@ -16,6 +16,7 @@ import type { IndicatorStyle } from './TabIndicator';
 export const styles = (theme: Object) => ({
   root: {
     overflow: 'hidden',
+    minHeight: 48,
   },
   flexContainer: {
     display: 'flex',
@@ -264,9 +265,13 @@ class Tabs extends React.Component<ProvidedProps & Props, State> {
 
     let tabMeta;
     if (this.tabs && value !== false) {
-      const tab = this.tabs.children[0].children[this.valueToIndex[value]];
-      warning(tab, `Material-UI: the value provided \`${value}\` is invalid`);
-      tabMeta = tab ? tab.getBoundingClientRect() : null;
+      const children = this.tabs.children[0].children;
+
+      if (children.length > 0) {
+        const tab = children[this.valueToIndex[value]];
+        warning(tab, `Material-UI: the value provided \`${value}\` is invalid`);
+        tabMeta = tab ? tab.getBoundingClientRect() : null;
+      }
     }
     return { tabsMeta, tabMeta };
   };
