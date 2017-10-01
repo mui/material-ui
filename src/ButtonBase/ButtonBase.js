@@ -325,8 +325,7 @@ class ButtonBase extends React.Component<ProvidedProps & Props, State> {
       classes.root,
       {
         [classes.disabled]: disabled,
-        // $FlowFixMe
-        [keyboardFocusedClassName]: keyboardFocusedClassName && this.state.keyboardFocused,
+        [keyboardFocusedClassName || '']: this.state.keyboardFocused,
       },
       classNameProp,
     );
