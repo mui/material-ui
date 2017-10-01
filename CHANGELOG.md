@@ -1062,7 +1062,7 @@ You now have two way to customize absolutely all the CSS injected by Material-UI
 Either the instance level with the `classes` property or the class level with the
 `overrides` theme property.
 
-To [learn more about it](https://material-ui-1dab0.firebaseapp.com/customization/overrides), have a look at the documentation. Also, these options are automatically [documented](http://0.0.0.0:3000/component-api/button#classes).
+To [learn more about it](https://material-ui-next.com/customization/overrides), have a look at the documentation. Also, these options are automatically [documented](http://0.0.0.0:3000/component-api/button#classes).
 
 ### Breaking changes
 
@@ -1496,7 +1496,7 @@ We are now at 93.53%. That's pretty great.
 One year from now, we were struggling with removing all the mixins from the project.
 Now, it's about rewriting all our components.
 We gonna try doing frequent alpha releases to keep some intertie. At least once per week would be good.
-As always, we are keeping the [documentation](https://material-ui-1dab0.firebaseapp.com) up to date.
+As always, we are keeping the [documentation](https://material-ui-next.com) up to date.
 
 #### Component Fixes / Enhancements
 
@@ -1573,7 +1573,7 @@ That wouldn't have been possible without this awesome community.
 **Thank you!**
 
 But this's just the beginning, some [exciting stuff](https://github.com/callemall/material-ui/blob/master/ROADMAP.md) is coming in 2017 :sparkles:.
-You can preview a **very early** version of the `next` branch following [that link](https://material-ui-1dab0.firebaseapp.com).
+You can preview a **very early** version of the `next` branch following [that link](https://material-ui-next.com).
 
 #### Component Fixes / Enhancements
 

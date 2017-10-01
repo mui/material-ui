@@ -7,7 +7,7 @@ The roadmap is a living document, and it is likely that priorities will change, 
 ## Version 1 (published on NPM under the next tag)
 
 Version 1 release is going to be huge ✨.
-We host a temporary [documentation](https://material-ui-1dab0.firebaseapp.com) for the pre-releases.
+We host a temporary [documentation](https://material-ui-next.com) for the pre-releases.
 
 Material-UI was started [3 years ago](https://github.com/callemall/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46).
 The ecosystem has evolved a lot since then, we have also learned a lot.
