@@ -64,7 +64,6 @@ export const dark = {
     paper: grey[800],
     appBar: grey[900],
     contentFrame: grey[900],
-    status: common.black,
   },
 };
 

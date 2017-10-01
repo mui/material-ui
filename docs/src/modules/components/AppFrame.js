@@ -59,7 +59,8 @@ const styles = theme => ({
       pointerEvents: 'none',
       '& .bar': {
         position: 'fixed',
-        background: '#000',
+        background:
+          theme.palette.type === 'light' ? theme.palette.common.black : theme.palette.common.white,
         borderRadius: 1,
         zIndex: theme.zIndex.tooltip,
         top: 0,
