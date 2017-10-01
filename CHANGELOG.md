@@ -18,7 +18,7 @@ Big thanks to the 18 contributors who made this release possible.
 
 - [flow] Fix Higher-order Component typing (#8419) @rosskevin
 
-- [Transition] Rich transitionDuration property (#8448) @
+- [Transition] Rich transitionDuration property (#8448) @oliviertassinari
 
 ```diff
       <Dialog
@@ -41,19 +41,24 @@ Big thanks to the 18 contributors who made this release possible.
 
 #### Component Fixes / Enhancements
 
-- [Tabs] Fix indicator update issue (#8388) @
+- [Tabs] Fix indicator update issue (#8388) @oliviertassinari
+- [Tabs] Support empty children (#8492) @oliviertassinari
 - [Select] Fix popover width and add autoWidth prop (#8307) @leMaik
 - [SelectInput] Fix event forwarding (#8386) @cherniavskii
 - [breakpoints] add back deleted `getWidth` as `width` with a spec (#8387) @rosskevin
-- [styles] More permissive class name generator warning (#8390) @
+- [styles] More permissive class name generator warning (#8390) @oliviertassinari
 - [Table] Add missing components export (#8425) @klauszhang
 - [TablePagination] Fix negative pagination numbers (#8435) @leMaik
 - [Typography] Add primary option to color property (#8440) @eyn
 - [Typography] Add error option to color property (#8446) @samsch
 - [CardMedia] Add `component` property (#8376) @AndriusBil
-- [Input] Fix wrong CSS property (#8469) @
-- [icons] Better interoperability with v0.x (#8473) @
+- [Input] Fix wrong CSS property (#8469) @oliviertassinari
+- [Input] Better placeholder display logic (#8485) @oliviertassinari
+- [icons] Better interoperability with v0.x (#8473) @oliviertassinari
 - [icons] Update peer dependency to react 16 (#8476) @eyn
+- [Slider] Fix IE11 issue (#8486) @patrickml
+- [Chip] Adds option to provide custom delete icon to Chip (#8482) @LinkedList
+- [Tooltip] Fix usage with table head (#8488) @oliviertassinari
 
 #### Docs
 
@@ -61,18 +66,22 @@ Big thanks to the 18 contributors who made this release possible.
 - [docs] Select API default value for input prop (#8385) @kgregory
 - [docs] Add FormDialog Example (#8411) @chaseWillden
 - [docs] Typo in next.config.js (#8418) @marcoturi
-- [docs] Fix redirections in Supported Components (#8389) @
-- [docs] Improve selection controls section (#8405) @
+- [docs] Fix redirections in Supported Components (#8389) @oliviertassinari
+- [docs] Improve selection controls section (#8405) @oliviertassinari
 - [docs] Fix Drawer and Popover api docs (#8442) @cherniavskii
 - [core] Update issue template with language about providing a reproduction case (#8466) @rosskevin
+- [flow] add examples/create-react-app-with-flow (#8449) @rosskevin
+- [docs] Add a Responsive Drawer example (#8494) @oliviertassinari
+- [docs] Move docs to https://material-ui-next.com (#8495) @oliviertassinari
+- [docs] Take insertionPoint option into account (#8497) @oliviertassinari
 
 #### Core
 
-- [test] Prepare enzyme v3 upgrade (#8429) @
-[core] Update react-transition-group for react@16 (#8468) @
-- [core] Update recompose to 0.25.1 (#8408) @
+- [test] Prepare enzyme v3 upgrade (#8429) @oliviertassinari
+[core] Update react-transition-group for react@16 (#8468) @oliviertassinari
+- [core] Update recompose to 0.25.1 (#8408) @oliviertassinari
 - [core] Update sinon to the latest version 🚀 (#8396) @greenkeeper
-- [core] Upgrade prettier (#8428) @
+- [core] Upgrade prettier (#8428) @oliviertassinari
 - [typescript] Document withStyles overloads (#8364) @pelotom
 - [typescript] Make StyledComponent only a type, not a class (#8366) @pelotom
 - [typescript] Update `BreakpointsOptions` in `createBreakpoints` (#8374) @peterprice
@@ -86,6 +95,9 @@ Big thanks to the 18 contributors who made this release possible.
 - [typescript] Per-component class keys (#8375) @pelotom
 - [flow] Post-HOC change bug fixes (#8441) @rosskevin
 - [flow] 0.56.0 (#8450) @rosskevin
+- [flow] Collapse theme is not an external prop (#8470) @rosskevin
+- [flow] Fix HOC RequiredProps vs ProvidedProps (#8477) @oliviertassinari
+- [core] Update jsdom to v11.3.0 (#8491) @oliviertassinari
 
 ## 1.0.0-beta.12
 ###### _Sep 24, 2017_
