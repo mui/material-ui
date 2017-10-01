@@ -31,7 +31,6 @@ const styles = theme => ({
     position: 'absolute',
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
-    order: 1,
   },
   drawerPaper: {
     position: 'relative',
