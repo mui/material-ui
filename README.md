@@ -5,7 +5,7 @@ please use [StackOverflow](http://stackoverflow.com/questions/tagged/material-ui
 instead of Github issues. There is a StackOverflow tag called "material-ui"
 that you can use to tag your questions.
 
-# [Material-UI@v1-beta](https://material-ui-1dab0.firebaseapp.com/)
+# [Material-UI@v1-beta](https://material-ui-next.com/)
 [![npm package](https://img.shields.io/npm/v/material-ui.svg)](https://www.npmjs.org/package/material-ui)
 [![CircleCI](https://img.shields.io/circleci/project/github/callemall/material-ui/v1-beta.svg)](https://circleci.com/gh/callemall/material-ui/tree/v1-beta)
 [![Gitter](https://img.shields.io/badge/gitter-join%20chat-f81a65.svg)](https://gitter.im/callemall/material-ui?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -62,7 +62,7 @@ Are you looking for an example project to get started?
 
 ## Documentation
 
-Check out our [documentation website](https://material-ui-1dab0.firebaseapp.com/).
+Check out our [documentation website](https://material-ui-next.com/).
 
 ## Contributing
 

@@ -48,10 +48,7 @@ class MyDocument extends Document {
             name="twitter:description"
             content="React Components that Implement Google's Material Design."
           />
-          <meta
-            name="twitter:image"
-            content="https://material-ui-1dab0.firebaseapp.com/static/brand.png"
-          />
+          <meta name="twitter:image" content="https://material-ui-next.com/static/brand.png" />
           {/* Facebook */}
           <meta property="og:type" content="website" />
           <meta property="og:title" content="Material-UI" />
@@ -59,10 +56,7 @@ class MyDocument extends Document {
             property="og:description"
             content="React Components that Implement Google's Material Design."
           />
-          <meta
-            property="og:image"
-            content="https://material-ui-1dab0.firebaseapp.com/static/brand.png"
-          />
+          <meta property="og:image" content="https://material-ui-next.com/static/brand.png" />
           <link rel="shortcut icon" href="/static/favicon.ico" />
         </Head>
         <body>
