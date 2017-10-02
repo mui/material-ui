@@ -52,7 +52,7 @@ marked.setOptions({
   renderer,
 });
 
-const anchorLinkStyle = theme => ({
+const anchorLinkStyle = (theme, size) => ({
   '& .anchor-link-style': {
     opacity: 0,
     // To prevent the link to get the focus.
@@ -67,7 +67,7 @@ const anchorLinkStyle = theme => ({
       color: theme.palette.text.secondary,
     },
     '& svg': {
-      width: 20,
+      width: size,
       fill: 'currentColor',
     },
   },
@@ -108,25 +108,25 @@ const styles = theme => ({
       ...theme.typography.display2,
       color: theme.palette.text.secondary,
       margin: '0.7em 0',
-      ...anchorLinkStyle(theme),
+      ...anchorLinkStyle(theme, 22),
     },
     '& h2': {
       ...theme.typography.display1,
       color: theme.palette.text.secondary,
       margin: '1em 0 0.7em',
-      ...anchorLinkStyle(theme),
+      ...anchorLinkStyle(theme, 20),
     },
     '& h3': {
       ...theme.typography.headline,
       color: theme.palette.text.secondary,
       margin: '1em 0 0.7em',
-      ...anchorLinkStyle(theme),
+      ...anchorLinkStyle(theme, 18),
     },
     '& h4': {
       ...theme.typography.title,
       color: theme.palette.text.secondary,
       margin: '1em 0 0.7em',
-      ...anchorLinkStyle(theme),
+      ...anchorLinkStyle(theme, 16),
     },
     '& p, & ul, & ol': {
       lineHeight: 1.6,
