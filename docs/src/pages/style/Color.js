@@ -56,10 +56,15 @@ export const styles = theme => ({
   colorValue: {
     ...theme.typography.caption,
     color: 'inherit',
+    fontWeight: 'inherit',
+  },
+  themeInherit: {
+    ...theme.typography,
+    fontWeight: 500,
   },
 });
 
-function getColorBlock(classes, colorName, colorValue, colorTitle) {
+function getColorBlock(classes, colorNameOriginal, colorName, colorValue, colorTitle) {
   const bgColor = colors[colorName][colorValue];
 
   let fgColor = colors.common.fullBlack;
@@ -69,7 +74,7 @@ function getColorBlock(classes, colorName, colorValue, colorTitle) {
 
   let blockTitle;
   if (colorTitle) {
-    blockTitle = <div className={classes.name}>{colorName}</div>;
+    blockTitle = <div className={classes.name}>{colorNameOriginal}</div>;
   }
 
   let rowStyle = {
@@ -87,7 +92,7 @@ function getColorBlock(classes, colorName, colorValue, colorTitle) {
   }
 
   return (
-    <li style={rowStyle} key={colorValue}>
+    <li style={rowStyle} key={colorValue} className={classes.themeInherit}>
       {blockTitle}
       <div className={classes.colorContainer}>
         <span>{colorValue}</span>
@@ -101,17 +106,17 @@ function getColorGroup(options) {
   const { classes, color, showAltPalette } = options;
   const cssColor = color.replace(' ', '').replace(color.charAt(0), color.charAt(0).toLowerCase());
   let colorsList = [];
-  colorsList = mainPalette.map(mainValue => getColorBlock(classes, cssColor, mainValue));
+  colorsList = mainPalette.map(mainValue => getColorBlock(classes, color, cssColor, mainValue));
 
   if (showAltPalette) {
     altPalette.forEach(altValue => {
-      colorsList.push(getColorBlock(classes, cssColor, altValue));
+      colorsList.push(getColorBlock(classes, color, cssColor, altValue));
     });
   }
 
   return (
     <ul className={classes.colorGroup} key={cssColor}>
-      {getColorBlock(classes, cssColor, 500, true)}
+      {getColorBlock(classes, color, cssColor, 500, true)}
       <div className={classes.blockSpace} />
       {colorsList}
     </ul>
