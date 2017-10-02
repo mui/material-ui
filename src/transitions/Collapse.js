@@ -173,6 +173,7 @@ class Collapse extends React.Component<ProvidedProps & Props> {
       classes,
       onEnter,
       onEntering,
+      onEntered,
       onExit,
       onExiting,
       transitionDuration,
