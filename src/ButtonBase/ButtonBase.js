@@ -21,6 +21,7 @@ export const styles = (theme: Object) => ({
     backgroundColor: 'transparent', // Reset default value
     outline: 'none',
     border: 0,
+    borderRadius: 0,
     cursor: 'pointer',
     userSelect: 'none',
     appearance: 'none',
