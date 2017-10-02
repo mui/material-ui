@@ -1,10 +1,15 @@
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
+---
+filename: /src/Input/InputLabel.js
+---
+
 # InputLabel
 
 
 
 ## Props
+
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | FormControlClasses | Object |  | `classes` property applied to the `FormControl` element. |
@@ -31,8 +36,9 @@ This property accepts the following keys:
 - `animated`
 - `disabled`
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)
-section for more detail.
+Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+and the [implementation of the component](https://github.com/callemall/material-ui/tree/v1-beta/src/Input/InputLabel.js)
+for more detail.
 
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),

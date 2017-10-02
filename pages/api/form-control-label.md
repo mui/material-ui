@@ -1,11 +1,16 @@
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
+---
+filename: /src/Form/FormControlLabel.js
+---
+
 # FormControlLabel
 
 Drop in replacement of the `Radio`, `Switch` and `Checkbox` component.
 Use this component if you want to display an extra label.
 
 ## Props
+
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | checked | union:&nbsp;boolean<br>&nbsp;string<br> |  | If `true`, the component appears selected. |
@@ -28,8 +33,9 @@ This property accepts the following keys:
 - `disabled`
 - `label`
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)
-section for more detail.
+Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+and the [implementation of the component](https://github.com/callemall/material-ui/tree/v1-beta/src/Form/FormControlLabel.js)
+for more detail.
 
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),

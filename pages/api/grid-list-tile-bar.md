@@ -1,10 +1,15 @@
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
+---
+filename: /src/GridList/GridListTileBar.js
+---
+
 # GridListTileBar
 
 
 
 ## Props
+
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | actionIcon | Element |  | An IconButton element to be used as secondary action target (primary action target is the tile itself). |
@@ -32,8 +37,9 @@ This property accepts the following keys:
 - `actionIconPositionLeft`
 - `childImg`
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)
-section for more detail.
+Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+and the [implementation of the component](https://github.com/callemall/material-ui/tree/v1-beta/src/GridList/GridListTileBar.js)
+for more detail.
 
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),

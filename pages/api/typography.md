@@ -1,10 +1,15 @@
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
+---
+filename: /src/Typography/Typography.js
+---
+
 # Typography
 
 
 
 ## Props
+
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | align | union:&nbsp;'inherit', 'left', 'center', 'right', 'justify'<br> | 'inherit' |  |
@@ -49,8 +54,9 @@ This property accepts the following keys:
 - `colorAccent`
 - `colorError`
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)
-section for more detail.
+Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+and the [implementation of the component](https://github.com/callemall/material-ui/tree/v1-beta/src/Typography/Typography.js)
+for more detail.
 
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),

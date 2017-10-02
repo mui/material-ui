@@ -1,10 +1,15 @@
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
+---
+filename: /src/Icon/Icon.js
+---
+
 # Icon
 
 
 
 ## Props
+
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | Node |  | The name of the icon font ligature. |
@@ -25,8 +30,9 @@ This property accepts the following keys:
 - `colorError`
 - `colorPrimary`
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)
-section for more detail.
+Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+and the [implementation of the component](https://github.com/callemall/material-ui/tree/v1-beta/src/Icon/Icon.js)
+for more detail.
 
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),

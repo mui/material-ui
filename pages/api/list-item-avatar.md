@@ -1,10 +1,15 @@
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
+---
+filename: /src/List/ListItemAvatar.js
+---
+
 # ListItemAvatar
 
 It's a simple wrapper to apply the `dense` mode styles to `Avatar`.
 
 ## Props
+
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span style="color: #31a148">children *</span> | Element |  | The content of the component, normally `Avatar`. |
@@ -19,8 +24,9 @@ This property accepts the following keys:
 - `root`
 - `icon`
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)
-section for more detail.
+Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+and the [implementation of the component](https://github.com/callemall/material-ui/tree/v1-beta/src/List/ListItemAvatar.js)
+for more detail.
 
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),

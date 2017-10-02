@@ -1,10 +1,15 @@
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
+---
+filename: /src/MobileStepper/MobileStepper.js
+---
+
 # MobileStepper
 
 
 
 ## Props
+
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | activeStep | number | 0 | Set the active step (zero based index). Defines which dot is highlighted when the type is 'dots'. |
@@ -30,8 +35,9 @@ This property accepts the following keys:
 - `dotActive`
 - `progress`
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)
-section for more detail.
+Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+and the [implementation of the component](https://github.com/callemall/material-ui/tree/v1-beta/src/MobileStepper/MobileStepper.js)
+for more detail.
 
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),

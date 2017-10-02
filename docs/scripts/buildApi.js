@@ -7,7 +7,7 @@ import kebabCase from 'lodash/kebabCase';
 import * as reactDocgen from 'react-docgen';
 import generateMarkdown from '../src/modules/utils/generateMarkdown';
 import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';
-import { getComponents } from '../src/modules/utils/parseMarkdown';
+import { getHeaders } from '../src/modules/utils/parseMarkdown';
 import createMuiTheme from '../../src/styles/createMuiTheme';
 import getStylesCreator from '../../src/styles/getStylesCreator';
 
@@ -25,7 +25,8 @@ function ensureExists(pat, mask, cb) {
   });
 }
 
-const docsApiDirectory = path.resolve(__dirname, '../../pages/api');
+const rootDirectory = path.resolve(__dirname, '../../');
+const docsApiDirectory = path.resolve(rootDirectory, 'pages/api');
 const theme = createMuiTheme();
 
 function buildDocs(options) {
@@ -63,6 +64,8 @@ function buildDocs(options) {
   reactAPI.styles = styles;
   reactAPI.pagesMarkdown = pagesMarkdown;
   reactAPI.src = src;
+  // Relative location in the file system.
+  reactAPI.filename = componentPath.replace(rootDirectory, '');
   let markdown;
   try {
     markdown = generateMarkdown(reactAPI);
@@ -105,7 +108,7 @@ const pagesMarkdown = findPagesMarkdown()
 
     return {
       ...markdown,
-      components: getComponents(markdownSource),
+      components: getHeaders(markdownSource).components,
     };
   })
   .filter(markdown => markdown.components.length > 0);

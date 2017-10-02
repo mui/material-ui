@@ -1,10 +1,15 @@
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
+---
+filename: /src/transitions/Slide.js
+---
+
 # Slide
 
 
 
 ## Props
+
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | Element |  | A single child content element. |
@@ -19,5 +24,4 @@
 | transitionDuration | TransitionDuration | {  enter: duration.enteringScreen,  exit: duration.leavingScreen,} | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
-
 
