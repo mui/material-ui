@@ -150,7 +150,7 @@
     "prettier": "^1.7.3",
     "prismjs": "^1.8.1",
     "random-words": "0.0.1",
-    "raw-loader": "^0.5.1",
+    "raw-loader": "^1.0.0-beta.0",
     "react": "^15.6.2",
     "react-a11y": "^0.3.4",
     "react-autosuggest": "^9.3.2",
