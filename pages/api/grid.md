@@ -1,10 +1,15 @@
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
+---
+filename: /src/Grid/Grid.js
+---
+
 # Grid
 
 
 
 ## Props
+
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | align | union:&nbsp;'flex-start', 'center', 'flex-end', 'stretch', 'baseline'<br> | 'stretch' | Defines the `align-items` style property. It's applied for all screen sizes. |
@@ -62,8 +67,9 @@ This property accepts the following keys:
 - `grid-xs-11`
 - `grid-xs-12`
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)
-section for more detail.
+Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+and the [implementation of the component](https://github.com/callemall/material-ui/tree/v1-beta/src/Grid/Grid.js)
+for more detail.
 
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),

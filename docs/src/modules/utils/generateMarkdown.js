@@ -5,6 +5,12 @@ import recast from 'recast';
 import kebabCase from 'lodash/kebabCase';
 import { pageToTitle } from './helpers';
 
+const SOURCE_CODE_ROOT_URL = 'https://github.com/callemall/material-ui/tree/v1-beta';
+
+function generateHeader(reactAPI) {
+  return ['---', `filename: ${reactAPI.filename}`, '---'].join('\n');
+}
+
 function getDeprecatedInfo(type) {
   const deprecatedPropType = 'deprecated(PropTypes.';
 
@@ -144,6 +150,7 @@ function generateProps(reactAPI) {
   const header = '## Props';
 
   let text = `${header}
+
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|\n`;
 
@@ -186,19 +193,21 @@ function generateProps(reactAPI) {
 
 function generateClasses(reactAPI) {
   return reactAPI.styles.classes.length
-    ? `
-## CSS API
+    ? `## CSS API
 
 You can override all the class names injected by Material-UI thanks to the \`classes\` property.
 This property accepts the following keys:
 ${reactAPI.styles.classes.map(className => `- \`${className}\``).join('\n')}
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)
-section for more detail.
+Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+and the [implementation of the component](${SOURCE_CODE_ROOT_URL}${reactAPI.filename})
+for more detail.
 
 If using the \`overrides\` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),
-you need to use the following style sheet name: \`${reactAPI.styles.name}\`.`
+you need to use the following style sheet name: \`${reactAPI.styles.name}\`.
+
+`
     : '';
 }
 
@@ -213,12 +222,12 @@ function generateInheritance(reactAPI) {
 
   const component = inheritedComponent[1];
 
-  return `
-## Inheritance
+  return `## Inheritance
 
 The properties of the [&lt;${component} /&gt;](/api/${kebabCase(
     component,
   )}) component are also available.
+
 `;
 }
 
@@ -235,23 +244,27 @@ function generateDemos(reactAPI) {
     return '';
   }
 
-  return `
-## Demos
+  return `## Demos
 
 ${pagesMarkdown.map(page => `- [${pageToTitle(page)}](${page.pathname})`).join('\n')}
+
 `;
 }
 
 export default function generateMarkdown(reactAPI: Object) {
-  return (
-    '<!--- This documentation is automatically generated, do not try to edit it. -->\n\n' +
-    `# ${reactAPI.name}\n\n` +
-    `${reactAPI.description}\n\n` +
-    `${generateProps(reactAPI)}\n` +
+  return [
+    '<!--- This documentation is automatically generated, do not try to edit it. -->',
+    '',
+    generateHeader(reactAPI),
+    '',
+    `# ${reactAPI.name}`,
+    '',
+    reactAPI.description,
+    '',
+    generateProps(reactAPI),
     'Any other properties supplied will be ' +
-    '[spread to the root element](/customization/api#spread).\n' +
-    `${generateClasses(reactAPI)}\n` +
-    `${generateInheritance(reactAPI)}` +
-    `${generateDemos(reactAPI)}\n`
-  );
+      '[spread to the root element](/customization/api#spread).',
+    '',
+    `${generateClasses(reactAPI)}${generateInheritance(reactAPI)}${generateDemos(reactAPI)}`,
+  ].join('\n');
 }

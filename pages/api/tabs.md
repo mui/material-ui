@@ -1,10 +1,15 @@
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
+---
+filename: /src/Tabs/Tabs.js
+---
+
 # Tabs
 
 Notice that this Component is incompatible with server side rendering.
 
 ## Props
+
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | buttonClassName | string |  | The CSS class name of the scroll button elements. |
@@ -34,8 +39,9 @@ This property accepts the following keys:
 - `centered`
 - `buttonAuto`
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)
-section for more detail.
+Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+and the [implementation of the component](https://github.com/callemall/material-ui/tree/v1-beta/src/Tabs/Tabs.js)
+for more detail.
 
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),

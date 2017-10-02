@@ -1,10 +1,15 @@
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
+---
+filename: /src/Hidden/Hidden.js
+---
+
 # Hidden
 
 Responsively hides children based on the selected implementation.
 
 ## Props
+
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span style="color: #31a148">children *</span> | Node |  | The content of the component. |
@@ -22,7 +27,6 @@ Responsively hides children based on the selected implementation.
 | xsUp | boolean | false | If true, screens this size and up will be hidden. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
-
 
 ## Demos
 
