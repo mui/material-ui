@@ -3,9 +3,12 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import Textarea from './Textarea';
 import Input, { hasValue, isDirty } from './Input';
+import InputAdornment from './InputAdornment';
+
+const NakedInput = unwrap(Input);
 
 describe('<Input />', () => {
   let shallow;
@@ -13,7 +16,7 @@ describe('<Input />', () => {
   let mount;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    shallow = createShallow({ untilSelector: 'Input' });
     mount = createMount();
     classes = getClasses(<Input />);
   });
@@ -170,12 +173,7 @@ describe('<Input />', () => {
       handleDirty = spy();
       wrapper = mount(
         // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
-        <Input.Naked
-          classes={{}}
-          onDirty={handleDirty}
-          defaultValue="hell"
-          onClean={handleClean}
-        />,
+        <NakedInput classes={{}} onDirty={handleDirty} defaultValue="hell" onClean={handleClean} />,
       );
     });
 
@@ -305,7 +303,7 @@ describe('<Input />', () => {
 
     before(() => {
       // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
-      wrapper = mount(<Input.Naked classes={classes} />);
+      wrapper = mount(<NakedInput classes={classes} />);
       instance = wrapper.instance();
     });
 
@@ -398,6 +396,41 @@ describe('<Input />', () => {
       const wrapper = shallow(<Input inputProps={{ className: 'foo', readOnly: true }} />);
       assert.strictEqual(wrapper.find('input').props().className, 'foo');
       assert.strictEqual(wrapper.find('input').props().readOnly, true);
+    });
+  });
+
+  describe('with `InputAdornment`', () => {
+    it('should render adornment before input', () => {
+      const wrapper = shallow(
+        <Input>
+          <InputAdornment position="start">$</InputAdornment>
+        </Input>,
+      );
+
+      assert.strictEqual(wrapper.childAt(0).name(), 'withStyles(InputAdornment)');
+    });
+    it('should render adornment after input', () => {
+      const wrapper = shallow(
+        <Input>
+          <InputAdornment position="end">$</InputAdornment>
+        </Input>,
+      );
+
+      assert.strictEqual(wrapper.childAt(1).name(), 'withStyles(InputAdornment)');
+    });
+    it('child input should have adorned classes', () => {
+      const wrapper = shallow(
+        <Input>
+          <InputAdornment position="end">$</InputAdornment>
+        </Input>,
+      );
+
+      assert.strictEqual(wrapper.childAt(0).hasClass(classes.inputAdorned), true);
+    });
+    it('child input should have unadorned classes', () => {
+      const wrapper = shallow(<Input />);
+
+      assert.strictEqual(wrapper.childAt(0).hasClass(classes.inputUnadorned), true);
     });
   });
 });

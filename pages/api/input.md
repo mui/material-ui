@@ -14,6 +14,7 @@ filename: /src/Input/Input.js
 |:-----|:-----|:--------|:------------|
 | autoComplete | string |  | This property helps users to fill forms faster, especially on mobile devices. The name can be confusing, it's more like an autofill. You can learn more about it in this article https://developers.google.com/web/updates/2015/06/checkout-faster-with-autofill |
 | autoFocus | boolean |  | If `true`, the input will be focused during the first mount. |
+| <span style="color: #31a148">children *</span> | Node |  | Any `InputAdornment` for this `Input` |
 | className | string |  | The CSS class name of the wrapper element. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | defaultValue | union:&nbsp;string<br>&nbsp;number<br> |  | The default input value, useful when not controlling the component. |
@@ -48,6 +49,8 @@ This property accepts the following keys:
 - `inkbar`
 - `error`
 - `input`
+- `inputUnadorned`
+- `inputAdorned`
 - `inputDense`
 - `disabled`
 - `focused`

@@ -31,6 +31,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/text-fields/TextFieldMargins'), 'utf8')
 `,
         },
+        'pages/demos/text-fields/InputAdornments.js': {
+          js: require('docs/src/pages/demos/text-fields/InputAdornments').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/text-fields/InputAdornments'), 'utf8')
+`,
+        },
         'pages/demos/text-fields/Inputs.js': {
           js: require('docs/src/pages/demos/text-fields/Inputs').default,
           raw: preval`

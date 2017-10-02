@@ -1,11 +1,11 @@
 // @flow weak
 
 import React from 'react';
-import type { ComponentType } from 'react';
+import type { Node, ComponentType } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import { isMuiComponent } from '../utils/reactHelpers';
+import { isMuiComponent, isMuiElement } from '../utils/reactHelpers';
 import Textarea from './Textarea';
 
 // Supports determination of isControlled().
@@ -31,6 +31,21 @@ export function isDirty(obj, SSR = false) {
     obj &&
     ((hasValue(obj.value) && obj.value !== '') ||
       (SSR && hasValue(obj.defaultValue) && obj.defaultValue !== ''))
+  );
+}
+
+// Determine if an Input is adorned
+//
+// Response determines if label is presented above field or as placeholder.
+//
+// @param obj
+// @returns {boolean} False when no adornments.
+//                    True when adorned.
+export function isAdorned(obj) {
+  return (
+    obj &&
+    obj.children &&
+    React.Children.toArray(obj.children).some(child => isMuiElement(child, ['InputAdornment']))
   );
 }
 
@@ -96,12 +111,10 @@ export const styles = (theme: Object) => {
       // slight alteration to spec spacing to match visual spec result
       padding: `${theme.spacing.unit - 1}px 0 ${theme.spacing.unit + 1}px`,
       border: 0,
-      display: 'block',
       boxSizing: 'content-box',
       verticalAlign: 'middle',
       background: 'none',
       margin: 0, // Reset for Safari
-      width: '100%',
       '&::-webkit-input-placeholder': placeholder,
       '&::-moz-placeholder': placeholder, // Firefox 19+
       '&:-ms-input-placeholder': placeholder, // IE 11
@@ -128,6 +141,14 @@ export const styles = (theme: Object) => {
         '&:focus:-ms-input-placeholder': placeholderVisible, // IE 11
         '&:focus::-ms-input-placeholder': placeholderVisible, // Edge
       },
+    },
+    inputUnadorned: {
+      display: 'block',
+      width: '100%',
+    },
+    inputAdorned: {
+      display: 'inline-block',
+      width: 'auto',
     },
     inputDense: {
       paddingTop: theme.spacing.unit / 2,
@@ -207,6 +228,10 @@ export type Props = {
    * If `true`, the input will be focused during the first mount.
    */
   autoFocus?: boolean,
+  /**
+   * Any `InputAdornment` for this `Input`
+   */
+  children: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -427,6 +452,7 @@ class Input extends React.Component<ProvidedProps & Props, State> {
     const {
       autoComplete,
       autoFocus,
+      children: childrenProp,
       classes,
       className: classNameProp,
       defaultValue,
@@ -478,6 +504,28 @@ class Input extends React.Component<ProvidedProps & Props, State> {
       }
     }
 
+    const startAdornments = [];
+    const endAdornments = [];
+    let hasAdornments = false;
+
+    if (childrenProp) {
+      const adornmentChildren = React.Children
+        .toArray(childrenProp)
+        .filter(child => isMuiElement(child, ['InputAdornment']));
+
+      adornmentChildren.forEach(child => {
+        if (child.props.position === 'start') {
+          startAdornments.push(child);
+        } else {
+          endAdornments.push(child);
+        }
+      });
+
+      if (adornmentChildren.length) {
+        hasAdornments = true;
+      }
+    }
+
     const className = classNames(
       classes.root,
       {
@@ -501,6 +549,8 @@ class Input extends React.Component<ProvidedProps & Props, State> {
         [classes.inputSearch]: type === 'search',
         [classes.inputMultiline]: multiline,
         [classes.inputDense]: margin === 'dense',
+        [classes.inputUnadorned]: !hasAdornments,
+        [classes.inputAdorned]: hasAdornments,
       },
       inputPropsClassName,
     );
@@ -539,6 +589,7 @@ class Input extends React.Component<ProvidedProps & Props, State> {
 
     return (
       <div onBlur={this.handleBlur} onFocus={this.handleFocus} className={className} {...other}>
+        {startAdornments}
         <InputComponent
           autoComplete={autoComplete}
           autoFocus={autoFocus}
@@ -558,6 +609,7 @@ class Input extends React.Component<ProvidedProps & Props, State> {
           rows={rows}
           {...inputProps}
         />
+        {endAdornments}
       </div>
     );
   }
@@ -567,4 +619,25 @@ Input.contextTypes = {
   muiFormControl: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiInput' })(Input);
+let InputWrapper = Input;
+if (process.env.NODE_ENV !== 'production') {
+  InputWrapper = props => <Input {...props} />;
+
+  // exposed for testing purposes
+  InputWrapper.Naked = Input;
+  InputWrapper.muiName = 'Input';
+  InputWrapper.PropTypes = {
+    children: (props, propName, componentName) => {
+      const prop = props[propName];
+      const children = React.Children.toArray(prop);
+
+      if (!children.every(child => isMuiElement(child, ['InputAdornment']))) {
+        return new Error(`${componentName} can only accept children of type \`InputAdornment\`.`);
+      }
+
+      return null;
+    },
+  };
+}
+
+export default withStyles(styles, { name: 'MuiInput' })(InputWrapper);
