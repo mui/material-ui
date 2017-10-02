@@ -1,15 +1,10 @@
 // @flow
 
-import type { Node } from 'react';
 import type { Breakpoint } from '../styles/createBreakpoints';
 
 // IMPORTANT: this must be identical to Hidden.js Props.
 // This is here because docgen can't yet import type definitions across files.
 export type HiddenProps = {
-  /**
-   * The content of the component.
-   */
-  children?: Node,
   /**
    * @ignore
    */

@@ -1,11 +1,16 @@
 // @flow
 
+import type { Node } from 'react';
 import warning from 'warning';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import withWidth, { isWidthDown, isWidthUp } from '../utils/withWidth';
 import type { HiddenProps } from './types';
 
 export type Props = HiddenProps & {
+  /**
+   * The content of the component.
+   */
+  children: Node,
   /**
    * @ignore
    * width prop provided by withWidth decorator

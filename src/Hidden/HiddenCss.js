@@ -1,6 +1,7 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import React from 'react';
+import type { Node } from 'react';
 import warning from 'warning';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -8,6 +9,10 @@ import withStyles from '../styles/withStyles';
 import type { HiddenProps } from './types';
 
 export type Props = HiddenProps & {
+  /**
+   * The content of the component.
+   */
+  children: Node,
   /**
    * Useful to extend the style applied to components.
    */

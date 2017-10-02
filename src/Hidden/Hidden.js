@@ -10,7 +10,7 @@ export type Props = {
   /**
    * The content of the component.
    */
-  children?: Node,
+  children: Node,
   /**
    * @ignore
    */
