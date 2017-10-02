@@ -3,8 +3,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Input, { InputLabel } from 'material-ui/Input';
+import IconButton from 'material-ui/IconButton';
+import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
 import { FormControl, FormHelperText } from 'material-ui/Form';
+import DeleteIcon from 'material-ui-icons/Delete';
 
 const styles = theme => ({
   container: {
@@ -48,6 +50,18 @@ class ComposedTextField extends React.Component {
           <InputLabel htmlFor="name-error">Name</InputLabel>
           <Input id="name-error" value={this.state.name} onChange={this.handleChange} />
           <FormHelperText>Error</FormHelperText>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="name-error">Name</InputLabel>
+          <Input id="name-error" value={this.state.name} onChange={this.handleChange}>
+            <InputAdornment position="before">$</InputAdornment>
+            <InputAdornment position="after">
+              <IconButton>
+                <DeleteIcon />
+              </IconButton>
+            </InputAdornment>
+          </Input>
+          <FormHelperText>Input as an action</FormHelperText>
         </FormControl>
       </div>
     );

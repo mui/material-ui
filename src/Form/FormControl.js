@@ -127,8 +127,11 @@ class FormControl extends React.Component<ProvidedProps & Props, State> {
   };
 
   getChildContext() {
-    const { disabled, error, required, margin } = this.props;
+    const { disabled, error, required, margin, children: childrenProp } = this.props;
     const { dirty, focused } = this.state;
+
+    const children = React.Children.toArray(childrenProp);
+    const hasInputAction = children && children.some(value => isMuiElement(value, ['InputAction']));
 
     return {
       muiFormControl: {
@@ -136,6 +139,7 @@ class FormControl extends React.Component<ProvidedProps & Props, State> {
         disabled,
         error,
         focused,
+        hasInputAction,
         margin,
         required,
         onDirty: this.handleDirty,
