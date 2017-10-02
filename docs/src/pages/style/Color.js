@@ -64,7 +64,7 @@ export const styles = theme => ({
   },
 });
 
-function getColorBlock(classes, colorNameOriginal, colorName, colorValue, colorTitle) {
+function getColorBlock(classes, colorName, colorValue, colorTitle) {
   const bgColor = colors[colorName][colorValue];
 
   let fgColor = colors.common.fullBlack;
@@ -74,7 +74,7 @@ function getColorBlock(classes, colorNameOriginal, colorName, colorValue, colorT
 
   let blockTitle;
   if (colorTitle) {
-    blockTitle = <div className={classes.name}>{colorNameOriginal}</div>;
+    blockTitle = <div className={classes.name}>{colorName}</div>;
   }
 
   let rowStyle = {
@@ -106,17 +106,17 @@ function getColorGroup(options) {
   const { classes, color, showAltPalette } = options;
   const cssColor = color.replace(' ', '').replace(color.charAt(0), color.charAt(0).toLowerCase());
   let colorsList = [];
-  colorsList = mainPalette.map(mainValue => getColorBlock(classes, color, cssColor, mainValue));
+  colorsList = mainPalette.map(mainValue => getColorBlock(classes, cssColor, mainValue));
 
   if (showAltPalette) {
     altPalette.forEach(altValue => {
-      colorsList.push(getColorBlock(classes, color, cssColor, altValue));
+      colorsList.push(getColorBlock(classes, cssColor, altValue));
     });
   }
 
   return (
     <ul className={classes.colorGroup} key={cssColor}>
-      {getColorBlock(classes, color, cssColor, 500, true)}
+      {getColorBlock(classes, cssColor, 500, true)}
       <div className={classes.blockSpace} />
       {colorsList}
     </ul>
