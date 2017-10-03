@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { StyledComponent } from '..';
+import { TableCellProps, TableCellClassKey } from './TableCell.d'
 
 interface LabelDisplayedRowsArgs {
   from: number;
@@ -28,6 +29,6 @@ export type TablePaginationClassKey =
   | 'actions'
   ;
 
-declare const TablePagination: StyledComponent<TablePaginationProps, TablePaginationClassKey>;
+declare const TablePagination: StyledComponent<TablePaginationProps & TableCellProps, TablePaginationClassKey & TableCellClassKey>;
 
 export default TablePagination;

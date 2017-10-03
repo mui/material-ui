@@ -13,6 +13,7 @@ A `TableRow` based component for placing inside `TableFooter` for pagination.
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | classes | Object |  | Useful to extend the style applied to components. |
+| component | ElementType | TableCell | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span style="color: #31a148">count *</span> | number |  | The total number of rows. |
 | labelDisplayedRows | signature | ({ from, to, count }) => `${from}-${to} of ${count}` | Useful to customize the displayed rows label. |
 | labelRowsPerPage | Node | 'Rows per page:' | Useful to customize the rows per page label. Invoked with a `{ from, to, count, page }` object. |
@@ -28,9 +29,10 @@ Any other properties supplied will be [spread to the root element](/customizatio
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `cell`
+- `root`
 - `toolbar`
 - `spacer`
+- `caption`
 - `select`
 - `selectRoot`
 - `actions`
@@ -45,7 +47,7 @@ you need to use the following style sheet name: `MuiTablePagination`.
 
 ## Inheritance
 
-The properties of the [&lt;TableRow /&gt;](/api/table-row) component are also available.
+The properties of the [&lt;TableCell /&gt;](/api/table-cell) component are also available.
 
 ## Demos
 

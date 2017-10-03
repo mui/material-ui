@@ -5,6 +5,7 @@ import { assert } from 'chai';
 import { createShallow, createMount } from '../test-utils';
 import TableFooter from './TableFooter';
 import TablePagination from './TablePagination';
+import TableRow from './TableRow';
 
 describe('<TablePagination />', () => {
   const noop = () => {};
@@ -20,7 +21,7 @@ describe('<TablePagination />', () => {
     mount.cleanUp();
   });
 
-  it('should render a TableRow', () => {
+  it('should render a TableCell', () => {
     const wrapper = shallow(
       <TablePagination
         count={1}
@@ -30,7 +31,7 @@ describe('<TablePagination />', () => {
         rowsPerPage={5}
       />,
     );
-    assert.strictEqual(wrapper.name(), 'withStyles(TableRow)');
+    assert.strictEqual(wrapper.name(), 'withStyles(TableCell)');
   });
 
   it('should spread custom props on the root node', () => {
@@ -51,6 +52,37 @@ describe('<TablePagination />', () => {
     );
   });
 
+  describe('prop: component', () => {
+    it('should render a TableCell by default', () => {
+      const wrapper = shallow(
+        <TablePagination
+          count={1}
+          page={0}
+          onChangePage={noop}
+          onChangeRowsPerPage={noop}
+          rowsPerPage={5}
+        />,
+      );
+      assert.strictEqual(wrapper.name(), 'withStyles(TableCell)');
+      assert.notStrictEqual(wrapper.props().colSpan, undefined);
+    });
+
+    it('should be able to use outside of the table', () => {
+      const wrapper = shallow(
+        <TablePagination
+          component="div"
+          count={1}
+          page={0}
+          onChangePage={noop}
+          onChangeRowsPerPage={noop}
+          rowsPerPage={5}
+        />,
+      );
+      assert.strictEqual(wrapper.name(), 'div');
+      assert.strictEqual(wrapper.props().colSpan, undefined);
+    });
+  });
+
   describe('mount', () => {
     it('should use the labelDisplayedRows callback', () => {
       let labelDisplayedRowsCalled = false;
@@ -66,14 +98,16 @@ describe('<TablePagination />', () => {
       const wrapper = mount(
         <table>
           <TableFooter>
-            <TablePagination
-              count={42}
-              page={1}
-              onChangePage={noop}
-              onChangeRowsPerPage={noop}
-              rowsPerPage={5}
-              labelDisplayedRows={labelDisplayedRows}
-            />
+            <TableRow>
+              <TablePagination
+                count={42}
+                page={1}
+                onChangePage={noop}
+                onChangeRowsPerPage={noop}
+                rowsPerPage={5}
+                labelDisplayedRows={labelDisplayedRows}
+              />
+            </TableRow>
           </TableFooter>
         </table>,
       );
@@ -85,14 +119,16 @@ describe('<TablePagination />', () => {
       const wrapper = mount(
         <table>
           <TableFooter>
-            <TablePagination
-              count={1}
-              page={0}
-              onChangePage={noop}
-              onChangeRowsPerPage={noop}
-              rowsPerPage={5}
-              labelRowsPerPage="Zeilen pro Seite:"
-            />
+            <TableRow>
+              <TablePagination
+                count={1}
+                page={0}
+                onChangePage={noop}
+                onChangeRowsPerPage={noop}
+                rowsPerPage={5}
+                labelRowsPerPage="Zeilen pro Seite:"
+              />
+            </TableRow>
           </TableFooter>
         </table>,
       );
@@ -103,13 +139,15 @@ describe('<TablePagination />', () => {
       const wrapper = mount(
         <table>
           <TableFooter>
-            <TablePagination
-              count={6}
-              page={0}
-              onChangePage={noop}
-              onChangeRowsPerPage={noop}
-              rowsPerPage={5}
-            />
+            <TableRow>
+              <TablePagination
+                count={6}
+                page={0}
+                onChangePage={noop}
+                onChangeRowsPerPage={noop}
+                rowsPerPage={5}
+              />
+            </TableRow>
           </TableFooter>
         </table>,
       );
@@ -124,13 +162,15 @@ describe('<TablePagination />', () => {
       const wrapper = mount(
         <table>
           <TableFooter>
-            <TablePagination
-              count={6}
-              page={1}
-              onChangePage={noop}
-              onChangeRowsPerPage={noop}
-              rowsPerPage={5}
-            />
+            <TableRow>
+              <TablePagination
+                count={6}
+                page={1}
+                onChangePage={noop}
+                onChangeRowsPerPage={noop}
+                rowsPerPage={5}
+              />
+            </TableRow>
           </TableFooter>
         </table>,
       );
@@ -146,15 +186,17 @@ describe('<TablePagination />', () => {
       const wrapper = mount(
         <table>
           <TableFooter>
-            <TablePagination
-              count={15}
-              page={page}
-              onChangePage={(event, nextPage) => {
-                page = nextPage;
-              }}
-              onChangeRowsPerPage={noop}
-              rowsPerPage={5}
-            />
+            <TableRow>
+              <TablePagination
+                count={15}
+                page={page}
+                onChangePage={(event, nextPage) => {
+                  page = nextPage;
+                }}
+                onChangeRowsPerPage={noop}
+                rowsPerPage={5}
+              />
+            </TableRow>
           </TableFooter>
         </table>,
       );
@@ -169,15 +211,17 @@ describe('<TablePagination />', () => {
       const wrapper = mount(
         <table>
           <TableFooter>
-            <TablePagination
-              count={15}
-              page={page}
-              onChangePage={(event, nextPage) => {
-                page = nextPage;
-              }}
-              onChangeRowsPerPage={noop}
-              rowsPerPage={5}
-            />
+            <TableRow>
+              <TablePagination
+                count={15}
+                page={page}
+                onChangePage={(event, nextPage) => {
+                  page = nextPage;
+                }}
+                onChangeRowsPerPage={noop}
+                rowsPerPage={5}
+              />
+            </TableRow>
           </TableFooter>
         </table>,
       );
@@ -194,15 +238,17 @@ describe('<TablePagination />', () => {
         return (
           <table>
             <TableFooter>
-              <TablePagination
-                count={11}
-                page={page}
-                onChangePage={(event, nextPage) => {
-                  page = nextPage;
-                }}
-                onChangeRowsPerPage={noop}
-                {...props}
-              />
+              <TableRow>
+                <TablePagination
+                  count={11}
+                  page={page}
+                  onChangePage={(event, nextPage) => {
+                    page = nextPage;
+                  }}
+                  onChangeRowsPerPage={noop}
+                  {...props}
+                />
+              </TableRow>
             </TableFooter>
           </table>
         );
@@ -218,20 +264,22 @@ describe('<TablePagination />', () => {
       const wrapper = mount(
         <table>
           <TableFooter>
-            <TablePagination
-              count={0}
-              page={0}
-              rowsPerPage={5}
-              onChangePage={noop}
-              onChangeRowsPerPage={noop}
-            />
+            <TableRow>
+              <TablePagination
+                count={0}
+                page={0}
+                rowsPerPage={5}
+                onChangePage={noop}
+                onChangeRowsPerPage={noop}
+              />
+            </TableRow>
           </TableFooter>
         </table>,
       );
       assert.strictEqual(
         wrapper
           .find('withStyles(Typography)')
-          .at(1)
+          .at(2)
           .text(),
         '0-0 of 0',
       );
@@ -244,15 +292,17 @@ describe('<TablePagination />', () => {
         return (
           <table>
             <TableFooter>
-              <TablePagination
-                page={1}
-                rowsPerPage={5}
-                onChangePage={(event, newPage) => {
-                  page = newPage;
-                }}
-                onChangeRowsPerPage={noop}
-                {...props}
-              />
+              <TableRow>
+                <TablePagination
+                  page={1}
+                  rowsPerPage={5}
+                  onChangePage={(event, newPage) => {
+                    page = newPage;
+                  }}
+                  onChangeRowsPerPage={noop}
+                  {...props}
+                />
+              </TableRow>
             </TableFooter>
           </table>
         );
