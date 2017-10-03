@@ -233,15 +233,10 @@ describe('<Collapse />', () => {
     });
 
     describe('handleExit()', () => {
-      let element;
-
-      before(() => {
-        element = { style: { height: 'auto' } };
+      it('should set height to the wrapper height', () => {
+        const element = { style: { height: 'auto' } };
         instance.wrapper = { clientHeight: 666 };
         instance.handleExit(element);
-      });
-
-      it('should set height to the wrapper height', () => {
         assert.strictEqual(element.style.height, '666px', 'should have 666px height');
       });
     });
@@ -370,6 +365,23 @@ describe('<Collapse />', () => {
 
     it('instance should have a wrapper property', () => {
       assert.notStrictEqual(mountInstance.wrapper, undefined);
+    });
+  });
+
+  describe('prop: collapsedHeight', () => {
+    const collapsedHeight = '10px';
+
+    it('should work when closed', () => {
+      const wrapper = shallow(<Collapse collapsedHeight={collapsedHeight} />);
+      assert.strictEqual(wrapper.props().style.minHeight, collapsedHeight);
+    });
+
+    it('should be taken into account in handleExiting', () => {
+      const wrapper = shallow(<Collapse collapsedHeight={collapsedHeight} />);
+      const instance = wrapper.instance();
+      const element = { style: { height: 666, transitionDuration: undefined } };
+      instance.handleExiting(element);
+      assert.strictEqual(element.style.height, collapsedHeight, 'should have 0px height');
     });
   });
 });

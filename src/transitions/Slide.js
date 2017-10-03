@@ -182,10 +182,10 @@ class Slide extends React.Component<ProvidedProps & Props> {
         onExit={this.handleExit}
         timeout={transitionDuration}
         transitionAppear
-        {...other}
-        ref={ref => {
-          this.transition = ref;
+        ref={node => {
+          this.transition = node;
         }}
+        {...other}
       >
         {children}
       </Transition>

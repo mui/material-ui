@@ -7,7 +7,6 @@ import IconButton from 'material-ui/IconButton';
 import Collapse from 'material-ui/transitions/Collapse';
 import CodeIcon from 'material-ui-icons/Code';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import NoSSR from 'docs/src/modules/components/NoSSR';
 import Tooltip from 'material-ui/Tooltip';
 
 const styles = theme => ({
@@ -79,10 +78,8 @@ class Demo extends React.Component<any, any> {
             <CodeIcon />
           </IconButton>
         </Tooltip>
-        <Collapse in={this.state.codeOpen}>
-          <NoSSR>
-            <MarkdownElement className={classes.code} text={`\`\`\`js\n${raw}\n\`\`\``} />
-          </NoSSR>
+        <Collapse in={this.state.codeOpen} unmountOnExit>
+          <MarkdownElement className={classes.code} text={`\`\`\`js\n${raw}\n\`\`\``} />
         </Collapse>
         <div className={classes.demo} data-mui-demo={name}>
           <DemoComponent />

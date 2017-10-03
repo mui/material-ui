@@ -25,6 +25,7 @@ export type TransitionDuration = number | { enter?: number, exit?: number } | 'a
 
 type ProvidedProps = {
   classes: Object,
+  collapsedHeight: string,
   transitionDuration: TransitionDuration,
   theme: Object,
 };
@@ -38,6 +39,10 @@ export type Props = {
    * Useful to extend the style applied to components.
    */
   classes?: Object,
+  /**
+   * The height of the container when collapsed.
+   */
+  collapsedHeight?: string,
   /**
    * If `true`, the component will transition in.
    */
@@ -81,16 +86,16 @@ export type Props = {
 
 class Collapse extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
+    collapsedHeight: '0px',
     in: false,
     transitionDuration: duration.standard,
   };
 
   wrapper = null;
-
   autoTransitionDuration = undefined;
 
   handleEnter = element => {
-    element.style.height = '0px';
+    element.style.height = this.props.collapsedHeight;
     if (this.props.onEnter) {
       this.props.onEnter(element);
     }
@@ -154,7 +159,7 @@ class Collapse extends React.Component<ProvidedProps & Props> {
       }
     }
 
-    element.style.height = '0px';
+    element.style.height = this.props.collapsedHeight;
     if (this.props.onExiting) {
       this.props.onExiting(element);
     }
@@ -171,6 +176,7 @@ class Collapse extends React.Component<ProvidedProps & Props> {
     const {
       children,
       classes,
+      collapsedHeight,
       onEnter,
       onEntering,
       onEntered,
@@ -190,6 +196,10 @@ class Collapse extends React.Component<ProvidedProps & Props> {
         onExiting={this.handleExiting}
         onExit={this.handleExit}
         onRequestTimeout={this.handleRequestTimeout}
+        style={{
+          // For supporting server side rendering.
+          minHeight: this.props.collapsedHeight,
+        }}
         {...other}
       >
         <div className={classes.container}>
