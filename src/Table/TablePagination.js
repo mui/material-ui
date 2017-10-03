@@ -136,7 +136,6 @@ class TablePagination extends React.Component<ProvidedProps & Props> {
   render() {
     const {
       classes,
-      className,
       count,
       labelDisplayedRows,
       labelRowsPerPage,
@@ -149,7 +148,7 @@ class TablePagination extends React.Component<ProvidedProps & Props> {
     } = this.props;
 
     return (
-      <TableRow className={className} {...other}>
+      <TableRow {...other}>
         <TableCell
           className={classes.cell}
           colSpan={9001} // col-span over everything
