@@ -142,7 +142,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.4",
     "marked": "^0.3.6",
-    "mocha": "^3.5.3",
+    "mocha": "^4.0.0",
     "next": "^3.2.2",
     "nprogress": "^0.2.0",
     "nyc": "^11.2.1",
