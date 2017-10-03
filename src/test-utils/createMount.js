@@ -4,8 +4,8 @@ import { unmountComponentAtNode } from 'react-dom';
 import { mount as enzymeMount } from 'enzyme';
 
 // Generate an enhanced mount function.
-export default function createMount(options: Object = {}) {
-  const { mount = enzymeMount } = options;
+export default function createMount(options1: Object = {}) {
+  const { mount = enzymeMount, ...other1 } = options1;
 
   const attachTo = window.document.createElement('div');
   attachTo.className = 'app';
@@ -18,6 +18,7 @@ export default function createMount(options: Object = {}) {
   ) {
     return mount(node, {
       attachTo,
+      ...other1,
       ...options2,
     });
   };
