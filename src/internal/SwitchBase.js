@@ -165,20 +165,14 @@ export default function createSwitch(
     isControlled = null;
 
     handleInputChange = event => {
-      let newChecked;
+      const checked = event.target.checked;
 
-      if (this.isControlled) {
-        newChecked = !this.props.checked;
-      } else {
-        newChecked = !this.state.checked;
-        if (this.input && this.input.checked !== newChecked) {
-          this.input.checked = newChecked;
-        }
-        this.setState({ checked: !this.state.checked });
+      if (!this.isControlled) {
+        this.setState({ checked });
       }
 
       if (this.props.onChange) {
-        this.props.onChange(event, newChecked);
+        this.props.onChange(event, checked);
       }
     };
 
