@@ -12,6 +12,7 @@ export const styles = {
     overflowY: 'auto',
     listStyle: 'none',
     padding: 0,
+    WebkitOverflowScrolling: 'touch',
   },
 };
 
