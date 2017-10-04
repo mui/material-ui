@@ -1,25 +1,24 @@
 // @flow
-// @inheritedComponent TableRow
+// @inheritedComponent TableCell
 
 import React from 'react';
-import type { Node } from 'react';
+import type { ElementType, Node } from 'react';
 import withStyles from '../styles/withStyles';
 import IconButton from '../IconButton';
 import Input from '../Input';
 import { MenuItem } from '../Menu';
 import Select from '../Select';
 import TableCell from './TableCell';
-import TableRow from './TableRow';
 import Toolbar from '../Toolbar';
 import Typography from '../Typography';
 import KeyboardArrowLeft from '../svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../svg-icons/KeyboardArrowRight';
 
 export const styles = (theme: Object) => ({
-  cell: {
+  root: {
     // Increase the specificity to override TableCell.
     '&:last-child': {
-      padding: '0',
+      padding: 0,
     },
   },
   toolbar: {
@@ -29,6 +28,9 @@ export const styles = (theme: Object) => ({
   },
   spacer: {
     flex: '1 1 100%',
+  },
+  caption: {
+    flexShrink: 0,
   },
   select: {
     marginLeft: theme.spacing.unit,
@@ -43,6 +45,7 @@ export const styles = (theme: Object) => ({
     marginRight: theme.spacing.unit * 4,
   },
   actions: {
+    flexShrink: 0,
     color: theme.palette.text.secondary,
     marginLeft: theme.spacing.unit * 2.5,
   },
@@ -57,6 +60,7 @@ export type LabelDisplayedRowsArgs = {
 
 type ProvidedProps = {
   classes: Object,
+  component: ElementType,
   labelRowsPerPage: string,
   labelDisplayedRows: (paginationInfo: LabelDisplayedRowsArgs) => string,
   rowsPerPageOptions: number[],
@@ -68,9 +72,14 @@ export type Props = {
    */
   classes?: Object,
   /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component?: ElementType,
+  /**
    * @ignore
    */
-  className?: string,
+  colSpan?: number,
   /**
    * The total number of rows.
    */
@@ -113,6 +122,7 @@ export type Props = {
  */
 class TablePagination extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
+    component: TableCell,
     labelRowsPerPage: 'Rows per page:',
     labelDisplayedRows: ({ from, to, count }) => `${from}-${to} of ${count}`,
     rowsPerPageOptions: [5, 10, 25],
@@ -136,6 +146,8 @@ class TablePagination extends React.Component<ProvidedProps & Props> {
   render() {
     const {
       classes,
+      component: Component,
+      colSpan: colSpanProp,
       count,
       labelDisplayedRows,
       labelRowsPerPage,
@@ -147,15 +159,20 @@ class TablePagination extends React.Component<ProvidedProps & Props> {
       ...other
     } = this.props;
 
+    let colSpan;
+
+    if (Component === TableCell || Component === 'td') {
+      colSpan = colSpanProp || 9001; // col-span over everything
+    }
+
     return (
-      <TableRow {...other}>
-        <TableCell
-          className={classes.cell}
-          colSpan={9001} // col-span over everything
-        >
-          <Toolbar className={classes.toolbar}>
-            <div className={classes.spacer} />
-            <Typography type="caption">{labelRowsPerPage}</Typography>
+      <Component className={classes.root} colSpan={colSpan} {...other}>
+        <Toolbar className={classes.toolbar}>
+          <div className={classes.spacer} />
+          <Typography type="caption" className={classes.caption}>
+            {labelRowsPerPage}
+          </Typography>
+          <Typography component="div" type="caption">
             <Select
               classes={{ root: classes.selectRoot, select: classes.select }}
               input={<Input disableUnderline />}
@@ -168,28 +185,28 @@ class TablePagination extends React.Component<ProvidedProps & Props> {
                 </MenuItem>
               ))}
             </Select>
-            <Typography type="caption">
-              {labelDisplayedRows({
-                from: count === 0 ? 0 : page * rowsPerPage + 1,
-                to: Math.min(count, (page + 1) * rowsPerPage),
-                count,
-                page,
-              })}
-            </Typography>
-            <div className={classes.actions}>
-              <IconButton onClick={this.handleBackButtonClick} disabled={page === 0}>
-                <KeyboardArrowLeft />
-              </IconButton>
-              <IconButton
-                onClick={this.handleNextButtonClick}
-                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-              >
-                <KeyboardArrowRight />
-              </IconButton>
-            </div>
-          </Toolbar>
-        </TableCell>
-      </TableRow>
+          </Typography>
+          <Typography type="caption" className={classes.caption}>
+            {labelDisplayedRows({
+              from: count === 0 ? 0 : page * rowsPerPage + 1,
+              to: Math.min(count, (page + 1) * rowsPerPage),
+              count,
+              page,
+            })}
+          </Typography>
+          <div className={classes.actions}>
+            <IconButton onClick={this.handleBackButtonClick} disabled={page === 0}>
+              <KeyboardArrowLeft />
+            </IconButton>
+            <IconButton
+              onClick={this.handleNextButtonClick}
+              disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+            >
+              <KeyboardArrowRight />
+            </IconButton>
+          </div>
+        </Toolbar>
+      </Component>
     );
   }
 }
