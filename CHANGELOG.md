@@ -2,6 +2,15 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.15
+###### _Oct 4, 2017_
+
+## material-ui-icons
+
+#### Component Fixes / Enhancements
+
+- [typscript] Adjust icon typings to change introduces in #8366 (#8529) @sebald
+
 ## 1.0.0-beta.13
 ###### _Oct 1, 2017_
 
