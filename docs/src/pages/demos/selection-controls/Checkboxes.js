@@ -21,8 +21,8 @@ class Checkboxes extends React.Component {
     checkedG: true,
   };
 
-  handleChange = name => (event, checked) => {
-    this.setState({ [name]: checked });
+  handleChange = name => event => {
+    this.setState({ [name]: event.target.checked });
   };
 
   render() {

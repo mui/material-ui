@@ -240,7 +240,11 @@ describe('<SwitchBase />', () => {
     let onChangeSpy;
 
     before(() => {
-      event = 'woofSwitchBase';
+      event = {
+        target: {
+          checked: false,
+        },
+      };
       onChangeSpy = spy();
       // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
       wrapper = mount(<SwitchBase.Naked classes={{}} />);
@@ -274,10 +278,11 @@ describe('<SwitchBase />', () => {
 
       it('should call onChange once', () => {
         assert.strictEqual(onChangeSpy.callCount, 1);
-      });
-
-      it('should call onChange with event and !props.checked', () => {
-        assert.strictEqual(onChangeSpy.calledWith(event, !checked), true);
+        assert.strictEqual(
+          onChangeSpy.calledWith(event, !checked),
+          true,
+          'call onChange with event and !props.checked',
+        );
       });
     });
 
