@@ -16,6 +16,7 @@ import type { IndicatorStyle } from './TabIndicator';
 export const styles = (theme: Object) => ({
   root: {
     overflow: 'hidden',
+    WebkitOverflowScrolling: 'touch',
     minHeight: 48,
   },
   flexContainer: {
