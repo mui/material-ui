@@ -35,7 +35,7 @@ export const styles = (theme: Object) => ({
     textAlign: 'justify',
   },
   noWrap: {
-    overflow: 'hidden',
+    overflowX: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
   },
