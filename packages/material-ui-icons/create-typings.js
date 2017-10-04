@@ -21,14 +21,14 @@ function normalizeFileName(file) {
   return path.parse(file).name;
 }
 
-function createTypeDefinition(name) {
-  return `import SvgIcon from 'material-ui/SvgIcon';
-export default class ${name} extends SvgIcon {}`;
+function createTypeDefinition() {
+  // eslint-disable-next-line quotes
+  return `export { default } from 'material-ui/SvgIcon';`;
 }
 
 function createIconTyping(file) {
   const name = normalizeFileName(file);
-  return outputFile(path.resolve(TARGET_DIR, `${name}.d.ts`), createTypeDefinition(name), {
+  return outputFile(path.resolve(TARGET_DIR, `${name}.d.ts`), createTypeDefinition(), {
     encoding: 'utf8',
   });
 }
