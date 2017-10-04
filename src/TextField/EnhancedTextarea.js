@@ -153,7 +153,7 @@ class EnhancedTextarea extends Component {
       style,
       hintText, // eslint-disable-line no-unused-vars
       textareaStyle,
-      valueLink, // eslint-disable-line no-unused-vars
+      valueLink,
       ...other
     } = this.props;
 
@@ -162,9 +162,11 @@ class EnhancedTextarea extends Component {
     const rootStyles = Object.assign(styles.root, style);
     const textareaStyles = Object.assign(styles.textarea, textareaStyle);
     const shadowStyles = Object.assign({}, textareaStyles, styles.shadow, shadowStyle);
+    const props = {};
 
     if (this.props.hasOwnProperty('valueLink')) {
-      other.value = this.props.valueLink.value;
+      other.value = valueLink.value;
+      props.valueLink = valueLink;
     }
 
     return (
@@ -178,7 +180,7 @@ class EnhancedTextarea extends Component {
           defaultValue={this.props.defaultValue}
           readOnly={true}
           value={this.props.value}
-          valueLink={this.props.valueLink}
+          {...props}
         />
         <textarea
           {...other}
