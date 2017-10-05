@@ -11,4 +11,5 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
  https://indecision.now.sh/
 
 ### 2. Mantic Transparence
- An Open Data tool showing financial and demographic data for all the towns in France (in french). https://app.mantic.fr/
+ An Open Data tool showing financial and demographic data for all the towns in France (in french)
+ https://app.mantic.fr/
