@@ -127,7 +127,7 @@ const DecoratedComponent = withStyles(styles)(
   class extends React.Component<ComponentProps & WithStyles<'root'>> {
     render() {
       const { classes, text } = this.props;
-      return <div className={classes!.root}>{text}</div>;
+      return <div className={classes.root}>{text}</div>;
     }
   }
 );
