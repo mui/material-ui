@@ -9,3 +9,7 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
 ### 1. Indecision Digest
  A platform meant to bring together professionals and the youth together for career enlightenment
  https://indecision.now.sh/
+
+### 2. Mantic Transparence
+ An Open Data tool showing financial and demographic data for all the towns in France (in french)
+ https://app.mantic.fr/
