@@ -54,7 +54,7 @@ export type Props = {
   /**
    * @ignore
    */
-  defaultValue?: string,
+  defaultValue?: string | number,
   /**
    * @ignore
    */
@@ -78,7 +78,7 @@ export type Props = {
   /**
    * @ignore
    */
-  value?: string,
+  value?: string | number,
 };
 
 type State = {
@@ -95,7 +95,7 @@ class Textarea extends React.Component<ProvidedProps & Props, State> {
 
   input: ?HTMLInputElement;
 
-  value: string;
+  value: string | number;
 
   static defaultProps = {
     rows: 1,
@@ -139,7 +139,7 @@ class Textarea extends React.Component<ProvidedProps & Props, State> {
     if (this.shadow && this.singlelineShadow) {
       // The component is controlled, we need to update the shallow value.
       if (typeof this.props.value !== 'undefined') {
-        this.shadow.value = props.value || '';
+        this.shadow.value = props.value == null ? '' : String(props.value);
       }
 
       const lineHeight = this.singlelineShadow.scrollHeight;

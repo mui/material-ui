@@ -452,6 +452,7 @@ class Input extends React.Component<ProvidedProps & Props, State> {
       rows,
       rowsMax,
       type,
+      // $FlowFixMe
       value,
       ...other
     } = this.props;
@@ -535,7 +536,7 @@ class Input extends React.Component<ProvidedProps & Props, State> {
       }
     }
 
-    const renderInput = coercedValue => (
+    return (
       <div onBlur={this.handleBlur} onFocus={this.handleFocus} className={className} {...other}>
         <InputComponent
           autoComplete={autoComplete}
@@ -546,7 +547,7 @@ class Input extends React.Component<ProvidedProps & Props, State> {
           onKeyDown={onKeyDown}
           disabled={disabled}
           required={required ? true : undefined}
-          value={coercedValue}
+          value={value}
           id={id}
           name={name}
           defaultValue={defaultValue}
@@ -558,12 +559,6 @@ class Input extends React.Component<ProvidedProps & Props, State> {
         />
       </div>
     );
-
-    // Textarea value coercion
-    if (InputComponent === Textarea) {
-      return renderInput(value ? String(value) : undefined);
-    }
-    return renderInput(value);
   }
 }
 

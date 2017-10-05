@@ -43,14 +43,21 @@ describe('<Input />', () => {
     assert.strictEqual(input.props().required, undefined);
   });
 
-  it('should render an <Textarea /> when passed the multiline prop', () => {
-    const wrapper = shallow(<Input multiline />);
-    assert.strictEqual(wrapper.find(Textarea).length, 1);
-  });
+  describe('multiline', () => {
+    it('should render an <Textarea /> when passed the multiline prop', () => {
+      const wrapper = shallow(<Input multiline />);
+      assert.strictEqual(wrapper.find(Textarea).length, 1);
+    });
 
-  it('should render an <textarea /> when passed the multiline and rows props', () => {
-    const wrapper = shallow(<Input multiline rows="4" />);
-    assert.strictEqual(wrapper.find('textarea').length, 1);
+    it('should render an <textarea /> when passed the multiline and rows props', () => {
+      const wrapper = shallow(<Input multiline rows="4" />);
+      assert.strictEqual(wrapper.find('textarea').length, 1);
+    });
+
+    it('should forward the value to the Textarea', () => {
+      const wrapper = shallow(<Input multiline rowsMax="4" value="" />);
+      assert.strictEqual(wrapper.find(Textarea).props().value, '');
+    });
   });
 
   it('should render a disabled <input />', () => {
