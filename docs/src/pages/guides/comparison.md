@@ -89,6 +89,19 @@ That's why we have been investing a lot in the customization capabilities of Mat
 
 The only goal of MDC-Web is to be a Material Design implementation for the web platform. **Nothing more, nothing less**. They will not consider making changes to the components - especially UX changes - that would facilitate additional flexibility at the cost of breaking with the core Material Design system, as that is a non-goal of the project. *[source](https://github.com/callemall/material-ui/issues/6799#issuecomment-299925174)*
 
+### Tests
+
+Both projects invest a lot in tests. As I'm writting this lines, both projects have over 99% test coverage:
+- Material-UI has 1200+ unit tests running on Chrome 49, Firefox 45, Safari 10 and Edge 14.
+- MDC-web has 1200+ unit tests running on all the major browsers.
+
+Still, there is one thing that sets Material-UI apart and it's capital.
+We have [hundreds visual regression tests](https://www.argos-ci.com/callemall/material-ui) when MDC-web doesn't have any.
+With visual regression tests, you don't have to make any tradeoff:
+- You can spend less time making sure every contribution doesn't introduce unexpected regression.
+The **less** time you spend on a single contribution, the **more** contributions you can accept.
+- You can merge new contributions without digging much. Effectively, you are not waiting for users to report regressions. It's **efficient** and **improves the library quality**.
+
 ## Materialize
 
 ![stars](https://img.shields.io/github/stars/Dogfalo/materialize.svg?style=social&label=Star)
