@@ -34,7 +34,7 @@ For more info checkout the [typeface](https://www.npmjs.com/package/typeface-rob
 
 ## Component
 
-{{demo='pages/style/Typography.js'}}
+{{demo='pages/style/Types.js'}}
 
 ## CSS in JS
 

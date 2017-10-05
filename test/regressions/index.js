@@ -35,11 +35,14 @@ const blacklistSuite = [
 
   // Useless
   'docs-', // Home
-  'docs-style',
   'docs-guides',
 ];
 
-const blacklistName = ['tileData'];
+const blacklistName = [
+  'docs-style/Color',
+  'docs-demos-drawers/tileData',
+  'docs-demos-grid-list/tileData',
+];
 
 // Also use some of the demos to avoid code duplication.
 const requireDemos = require.context('docs/src/pages', true, /js$/);
@@ -51,7 +54,7 @@ const demos = requireDemos.keys().reduce((res, path) => {
     .reverse();
   const suite = `docs-${suiteArray.reverse().join('-')}`;
 
-  if (!blacklistSuite.includes(suite) && !blacklistName.includes(name)) {
+  if (!blacklistSuite.includes(suite) && !blacklistName.includes(`${suite}/${name}`)) {
     res.push({
       path,
       suite,
