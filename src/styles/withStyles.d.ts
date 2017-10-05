@@ -26,22 +26,6 @@ export type WithStyles<ClassKey extends string = string> = {
 export default function withStyles<ClassKey extends string>(
   style: StyleRules<ClassKey> | StyleRulesCallback<ClassKey>,
   options?: WithStylesOptions
-): {
-  /**
-   * Decorating a stateless functional component.
-   */
-  <P>(
-    component: React.StatelessComponent<P & WithStyles<ClassKey>>
-  ): StyledComponent<P, ClassKey>;
-
-  /**
-   * Decorating a class component. This is slightly less type safe than the
-   * function decoration case, due to current restrictions on TypeScript
-   * decorators (https://github.com/Microsoft/TypeScript/issues/4881). The
-   * upshot is that one has to use the non-null assertion operator (`!`) when
-   * accessing `props.classes`.
-   */
-  <P, C extends React.ComponentClass<P & StyledComponentProps<ClassKey>>>(
-    component: C
-  ): C;
-};
+): <P>(
+  component: React.ComponentType<P & WithStyles<ClassKey>>
+) => StyledComponent<P, ClassKey>;
