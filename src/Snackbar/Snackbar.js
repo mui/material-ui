@@ -39,10 +39,16 @@ export const styles = (theme: Object) => {
       alignItems: 'center',
     },
     anchorTopCenter: {
-      extend: [top, center],
+      extend: [top],
+      [theme.breakpoints.up('md')]: {
+        extend: [center],
+      },
     },
     anchorBottomCenter: {
-      extend: [bottom, center],
+      extend: [bottom],
+      [theme.breakpoints.up('md')]: {
+        extend: [center],
+      },
     },
     anchorTopRight: {
       extend: [top, right],
