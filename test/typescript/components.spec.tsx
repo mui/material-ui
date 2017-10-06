@@ -53,6 +53,7 @@ import Table, {
 } from '../../src/Table';
 import { withStyles, StyleRulesCallback } from '../../src/styles';
 import { withResponsiveFullScreen, DialogProps } from '../../src/Dialog';
+import { WithStyles } from '../../src/styles/withStyles';
 
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
@@ -717,7 +718,7 @@ const TabsTest = () => {
     },
   });
 
-  class BasicTabs extends React.Component<{ classes: { root: string } }> {
+  class BasicTabs extends React.Component<WithStyles<'root'|'button'>> {
     state = {
       value: 0,
     };
