@@ -44,8 +44,8 @@
     "postpublish": "npm run build && cd build && npm publish"
   },
   "peerDependencies": {
-    "react": "^15.4.0 || ^16.0.0-beta.5",
-    "react-dom": "^15.4.0 || ^16.0.0-beta.5"
+    "react": "^15.4.0 || ^16.0.0",
+    "react-dom": "^15.4.0 || ^16.0.0"
   },
   "dependencies": {
     "babel-runtime": "^6.23.0",
@@ -54,9 +54,9 @@
     "lodash.merge": "^4.6.0",
     "lodash.throttle": "^4.1.1",
     "prop-types": "^15.5.7",
-    "react-transition-group": "^1.1.2",
-    "react-event-listener": "^0.4.5",
-    "recompose": "0.24.0",
+    "react-event-listener": "^0.5.1",
+    "react-transition-group": "^1.2.1",
+    "recompose": "^0.26.0",
     "simple-assign": "^0.1.0",
     "warning": "^3.0.0"
   },
@@ -86,7 +86,6 @@
     "eslint-plugin-babel": "^4.1.1",
     "eslint-plugin-flowtype": "^2.30.4",
     "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-material-ui": "./packages/eslint-plugin-material-ui",
     "eslint-plugin-mocha": "^4.9.0",
     "eslint-plugin-react": "^7.0.0",
     "fs-extra": "^2.1.2",
