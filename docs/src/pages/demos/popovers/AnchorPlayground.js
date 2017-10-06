@@ -52,7 +52,7 @@ class AnchorPlayground extends React.Component {
   button = null;
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
     const {
       open,
       anchorEl,

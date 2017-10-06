@@ -79,7 +79,7 @@ const styles = theme => ({
 });
 
 function Team(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
     <div className={classes.root}>
       {members.map(member => (

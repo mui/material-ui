@@ -46,7 +46,7 @@ class RecipeReviewCard extends React.Component {
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
 
     return (
       <div>

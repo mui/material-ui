@@ -18,7 +18,6 @@ const styles = theme => ({
 class SimpleSnackbar extends React.Component {
   state = {
     open: false,
-    message: null,
   };
 
   handleClick = () => {

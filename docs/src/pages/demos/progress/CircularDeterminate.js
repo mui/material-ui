@@ -12,7 +12,7 @@ const styles = theme => ({
 });
 
 function CircularDeterminate(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
     <div>
       <CircularProgress className={classes.progress} mode="determinate" value={75} />

@@ -28,7 +28,7 @@ const styles = theme => ({
 });
 
 function SimpleCard(props) {
-  const classes = props.classes;
+  const { classes } = props;
   const bull = <span className={classes.bullet}>•</span>;
 
   return (

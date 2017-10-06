@@ -31,7 +31,7 @@ const styles = {
 };
 
 function IconAvatars(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
     <div className={classes.row}>
       <Avatar className={classes.avatar}>

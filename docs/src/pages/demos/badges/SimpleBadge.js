@@ -14,7 +14,7 @@ const styles = theme => ({
 });
 
 function SimpleBadge(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
     <div>
       <Badge className={classes.badge} badgeContent={4} color="primary">

@@ -32,7 +32,7 @@ function handleClick() {
 }
 
 function Chips(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
     <div className={classes.row}>
       <Chip label="Basic Chip" className={classes.chip} />

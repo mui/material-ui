@@ -177,11 +177,11 @@ describe('transitions', () => {
 
     it('should return NaN when passed a negative number', () => {
       const zeroHeightDurationNegativeOne = transitions.getAutoHeightDuration(-1);
-      assert.strictEqual(isNaN(zeroHeightDurationNegativeOne), true);
+      assert.strictEqual(Number.isNaN(zeroHeightDurationNegativeOne), true);
       const zeroHeightDurationSmallNegative = transitions.getAutoHeightDuration(-0.000001);
-      assert.strictEqual(isNaN(zeroHeightDurationSmallNegative), true);
+      assert.strictEqual(Number.isNaN(zeroHeightDurationSmallNegative), true);
       const zeroHeightDurationBigNegative = transitions.getAutoHeightDuration(-100000);
-      assert.strictEqual(isNaN(zeroHeightDurationBigNegative), true);
+      assert.strictEqual(Number.isNaN(zeroHeightDurationBigNegative), true);
     });
 
     it('should return values for pre-calculated positive examples', () => {

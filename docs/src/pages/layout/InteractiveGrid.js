@@ -29,7 +29,6 @@ class InteractiveGrid extends React.Component {
     direction: 'row',
     justify: 'center',
     align: 'center',
-    gutter: '16',
   };
 
   handleChange = key => (event, value) => {
@@ -39,7 +38,7 @@ class InteractiveGrid extends React.Component {
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
     const { align, direction, justify } = this.state;
     return (
       <Grid container className={classes.root}>

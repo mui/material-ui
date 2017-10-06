@@ -16,7 +16,7 @@ const styles = theme => ({
 });
 
 function Inputs(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
     <div className={classes.container}>
       <Input

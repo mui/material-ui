@@ -25,8 +25,8 @@ function TypographyTheme() {
   return (
     <MuiThemeProvider theme={theme}>
       <div>
-        <Typography type="body1">{'body1'}</Typography>
-        <Button>{'Button'}</Button>
+        <Typography type="body1">body1</Typography>
+        <Button>Button</Button>
       </div>
     </MuiThemeProvider>
   );

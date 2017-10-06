@@ -21,7 +21,7 @@ const styles = theme => ({
 });
 
 function PinnedSubheaderList(props) {
-  const classes = props.classes;
+  const { classes } = props;
 
   return (
     <List className={classes.root} subheader>

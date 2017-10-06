@@ -30,7 +30,7 @@ class SimpleSelect extends React.Component {
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
 
     return (
       <form className={classes.container} autoComplete="off">

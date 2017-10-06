@@ -6,7 +6,6 @@ import warning from 'warning';
 import type { HigherOrderComponent } from 'react-flow-types';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import wrapDisplayName from 'recompose/wrapDisplayName';
-import createEagerFactory from 'recompose/createEagerFactory';
 import getDisplayName from 'recompose/getDisplayName';
 import contextTypes from 'react-jss/lib/contextTypes';
 import jss from 'react-jss/lib/jss';
@@ -85,7 +84,6 @@ const withStyles = (
   options?: Options = {},
 ): HigherOrderComponent<RequiredProps, InjectedProps> => (Component: any): any => {
   const { withTheme = false, name, ...styleSheetOptions } = options;
-  const factory = createEagerFactory(Component);
   const stylesCreator = getStylesCreator(stylesOrCreator);
   const listenToTheme = stylesCreator.themingEnabled || withTheme || typeof name === 'string';
 
@@ -291,12 +289,7 @@ const withStyles = (
         more.theme = this.theme;
       }
 
-      return factory({
-        classes,
-        ref: innerRef,
-        ...more,
-        ...other,
-      });
+      return <Component classes={classes} ref={innerRef} {...more} {...other} />;
     }
   }
 

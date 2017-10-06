@@ -13,7 +13,7 @@ const styles = theme => ({
 });
 
 function SvgMaterialIcons(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
     <div>
       <AccessAlarmIcon className={classes.icon} />

@@ -38,7 +38,7 @@ const styles = theme => ({
 });
 
 function MediaControlCard(props) {
-  const classes = props.classes;
+  const { classes } = props;
 
   return (
     <div>

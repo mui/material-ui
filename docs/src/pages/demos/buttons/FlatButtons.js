@@ -18,7 +18,7 @@ function doSomething(event) {
 }
 
 function FlatButtons(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
     <div>
       <Button className={classes.button}>Default</Button>

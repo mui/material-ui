@@ -13,7 +13,7 @@ const styles = {
 };
 
 function LinearIndeterminate(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
     <div className={classes.root}>
       <LinearProgress />

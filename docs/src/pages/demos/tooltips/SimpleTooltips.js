@@ -21,40 +21,30 @@ const styles = theme => ({
   },
 });
 
-class SimpleTooltips extends React.Component {
-  state = {
-    placement: 'bottom',
-  };
-
-  handlePlacementChange = (event, placement) => {
-    this.setState({ placement });
-  };
-
-  render() {
-    const classes = this.props.classes;
-    return (
-      <div>
-        <Tooltip id="tooltip-icon" title="Delete" placement="bottom">
-          <IconButton aria-label="Delete">
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
-        <Tooltip id="tooltip-fab" className={classes.fab} title="Add" placement="bottom">
-          <Button fab color="primary" aria-label="Add">
-            <AddIcon />
-          </Button>
-        </Tooltip>
-        <br />
-        <br />
-        <Typography>{'The fab on the right is absolutly positionned:'}</Typography>
-        <Tooltip placement="bottom" title="Position absolute">
-          <Button fab color="accent" className={this.props.classes.absolute}>
-            <AddIcon />
-          </Button>
-        </Tooltip>
-      </div>
-    );
-  }
+function SimpleTooltips(props) {
+  const { classes } = props;
+  return (
+    <div>
+      <Tooltip id="tooltip-icon" title="Delete" placement="bottom">
+        <IconButton aria-label="Delete">
+          <DeleteIcon />
+        </IconButton>
+      </Tooltip>
+      <Tooltip id="tooltip-fab" className={classes.fab} title="Add" placement="bottom">
+        <Button fab color="primary" aria-label="Add">
+          <AddIcon />
+        </Button>
+      </Tooltip>
+      <br />
+      <br />
+      <Typography>The fab on the right is absolutly positionned:</Typography>
+      <Tooltip placement="bottom" title="Position absolute">
+        <Button fab color="accent" className={this.props.classes.absolute}>
+          <AddIcon />
+        </Button>
+      </Tooltip>
+    </div>
+  );
 }
 
 SimpleTooltips.propTypes = {

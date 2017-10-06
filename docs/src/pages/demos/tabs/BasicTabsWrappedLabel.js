@@ -45,9 +45,9 @@ class BasicTabsWrappedLabel extends React.Component {
             <Tab value="three" label="Item Three" />
           </Tabs>
         </AppBar>
-        {value === 'one' && <TabContainer>{'Item One'}</TabContainer>}
-        {value === 'two' && <TabContainer>{'Item Two'}</TabContainer>}
-        {value === 'three' && <TabContainer>{'Item Three'}</TabContainer>}
+        {value === 'one' && <TabContainer>Item One</TabContainer>}
+        {value === 'two' && <TabContainer>Item Two</TabContainer>}
+        {value === 'three' && <TabContainer>Item Three</TabContainer>}
       </div>
     );
   }

@@ -46,14 +46,14 @@ describe('<TableSortLabel />', () => {
     });
 
     it('when given direction desc should have desc direction class', () => {
-      const wrapper = shallow(<TableSortLabel direction={'desc'} />);
+      const wrapper = shallow(<TableSortLabel direction="desc" />);
       const icon = wrapper.find(`.${classes.icon}`).first();
       assert.strictEqual(icon.hasClass(classes.asc), false);
       assert.strictEqual(icon.hasClass(classes.desc), true);
     });
 
     it('when given direction asc should have asc direction class', () => {
-      const wrapper = shallow(<TableSortLabel direction={'asc'} />);
+      const wrapper = shallow(<TableSortLabel direction="asc" />);
       const icon = wrapper.find(`.${classes.icon}`).first();
       assert.strictEqual(icon.hasClass(classes.asc), true);
       assert.strictEqual(icon.hasClass(classes.desc), false);
