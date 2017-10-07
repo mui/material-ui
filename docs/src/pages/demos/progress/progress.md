@@ -22,7 +22,7 @@ For example, a refresh operation should display either a refresh bar or an activ
 
 ### Interactive Integration
 
-{{demo='pages/demos/progress/CircularFab.js'}}
+{{demo='pages/demos/progress/CircularIntegration.js'}}
 
 ###  Determinate
 
