@@ -15,7 +15,7 @@ const styles = theme => ({
 });
 
 function SimpleAppBar(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
     <div className={classes.root}>
       <AppBar position="static" color="default">

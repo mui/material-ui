@@ -19,7 +19,7 @@ const styles = theme => ({
 });
 
 function AutoGrid(props) {
-  const classes = props.classes;
+  const { classes } = props;
 
   return (
     <div className={classes.root}>

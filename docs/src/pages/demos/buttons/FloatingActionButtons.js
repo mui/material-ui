@@ -14,7 +14,7 @@ const styles = theme => ({
 });
 
 function FloatingActionButtons(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
     <div>
       <Button fab color="primary" aria-label="add" className={classes.button}>

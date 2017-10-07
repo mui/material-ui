@@ -5,7 +5,6 @@ import React from 'react';
 import type { HigherOrderComponent } from 'react-flow-types';
 import EventListener from 'react-event-listener';
 import debounce from 'lodash/debounce';
-import createEagerFactory from 'recompose/createEagerFactory';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import withTheme from '../styles/withTheme';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
@@ -66,8 +65,6 @@ const withWidth = (
   const {
     resizeInterval = 166, // Corresponds to 10 frames at 60 Hz.
   } = options;
-
-  const factory = createEagerFactory(Component);
 
   // `theme` is injected below by withTheme
   class Width extends React.Component<{ theme: Object } & HOCProps, { width: Breakpoint }> {
@@ -143,7 +140,7 @@ const withWidth = (
 
       return (
         <EventListener target="window" onResize={this.handleResize}>
-          {factory(props)}
+          <Component {...props} />
         </EventListener>
       );
     }

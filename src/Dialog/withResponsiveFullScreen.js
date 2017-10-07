@@ -1,7 +1,7 @@
 // @flow
 
+import React from 'react';
 import type { HigherOrderComponent } from 'react-flow-types';
-import createEagerFactory from 'recompose/createEagerFactory';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import withWidth, { isWidthDown } from '../utils/withWidth';
 import type { Breakpoint } from '../styles/createBreakpoints';
@@ -25,13 +25,8 @@ const withResponsiveFullScreen = (
 ): HigherOrderComponent<{}, InjectedProps> => (Component: any): any => {
   const { breakpoint } = options;
 
-  const factory = createEagerFactory(Component);
-
   function ResponsiveFullScreen(props: { width: string }) {
-    return factory({
-      fullScreen: isWidthDown(breakpoint, props.width),
-      ...props,
-    });
+    return <Component fullScreen={isWidthDown(breakpoint, props.width)} {...props} />;
   }
 
   if (process.env.NODE_ENV !== 'production') {

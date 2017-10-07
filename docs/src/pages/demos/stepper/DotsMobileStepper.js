@@ -33,7 +33,7 @@ class DotsMobileStepper extends React.Component {
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
     return (
       <MobileStepper
         type="dots"

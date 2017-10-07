@@ -43,7 +43,7 @@ class TextMobileStepper extends React.Component {
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
     return (
       <div className={classes.root}>
         <Paper square elevation={0} className={classes.header}>

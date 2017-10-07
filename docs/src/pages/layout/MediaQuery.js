@@ -20,7 +20,7 @@ const styles = theme => ({
 });
 
 function MediaQuery(props) {
-  const classes = props.classes;
+  const { classes } = props;
 
   return (
     <div className={classes.root}>

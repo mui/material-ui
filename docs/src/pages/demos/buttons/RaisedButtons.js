@@ -15,7 +15,7 @@ const styles = theme => ({
 });
 
 function RaisedButtons(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
     <div>
       <Button raised className={classes.button}>

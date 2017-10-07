@@ -43,7 +43,7 @@ class AppWrapper extends React.Component<any, any> {
     // Wait for the title to be updated.
     this.googleTimer = setTimeout(() => {
       window.gtag('config', config.google.id, {
-        page_path: location.pathname,
+        page_path: window.location.pathname,
       });
     });
   }

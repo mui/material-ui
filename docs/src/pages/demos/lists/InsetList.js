@@ -15,7 +15,7 @@ const styles = theme => ({
 });
 
 function InsetList(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
     <List className={classes.root}>
       <ListItem button>

@@ -60,7 +60,7 @@ class CircularFab extends React.Component {
 
   render() {
     const { loading, success } = this.state;
-    const classes = this.props.classes;
+    const { classes } = this.props;
     let buttonClass = '';
 
     if (success) {

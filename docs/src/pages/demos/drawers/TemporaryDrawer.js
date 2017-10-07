@@ -33,7 +33,7 @@ class TemporaryDrawer extends React.Component {
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
 
     const sideList = (
       <div className={classes.list}>
@@ -58,12 +58,22 @@ class TemporaryDrawer extends React.Component {
         <Button onClick={this.toggleDrawer('top', true)}>Open Top</Button>
         <Button onClick={this.toggleDrawer('bottom', true)}>Open Bottom</Button>
         <Drawer open={this.state.left} onRequestClose={this.toggleDrawer('left', false)}>
-          <div tabIndex={0} role="button" onClick={this.toggleDrawer('left', false)}>
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={this.toggleDrawer('left', false)}
+            onKeyDown={this.toggleDrawer('left', false)}
+          >
             {sideList}
           </div>
         </Drawer>
         <Drawer anchor="top" open={this.state.top} onRequestClose={this.toggleDrawer('top', false)}>
-          <div tabIndex={0} role="button" onClick={this.toggleDrawer('top', false)}>
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={this.toggleDrawer('top', false)}
+            onKeyDown={this.toggleDrawer('top', false)}
+          >
             {fullList}
           </div>
         </Drawer>
@@ -72,7 +82,12 @@ class TemporaryDrawer extends React.Component {
           open={this.state.bottom}
           onRequestClose={this.toggleDrawer('bottom', false)}
         >
-          <div tabIndex={0} role="button" onClick={this.toggleDrawer('bottom', false)}>
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={this.toggleDrawer('bottom', false)}
+            onKeyDown={this.toggleDrawer('bottom', false)}
+          >
             {fullList}
           </div>
         </Drawer>
@@ -81,7 +96,12 @@ class TemporaryDrawer extends React.Component {
           open={this.state.right}
           onRequestClose={this.toggleDrawer('right', false)}
         >
-          <div tabIndex={0} role="button" onClick={this.toggleDrawer('right', false)}>
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={this.toggleDrawer('right', false)}
+            onKeyDown={this.toggleDrawer('right', false)}
+          >
             {sideList}
           </div>
         </Drawer>

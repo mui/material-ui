@@ -15,7 +15,7 @@ const styles = theme => ({
 });
 
 function IconButtons(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
     <div>
       <IconButton className={classes.button} aria-label="Delete">

@@ -25,7 +25,7 @@ const styles = theme => ({
 });
 
 function ButtonAppBar(props) {
-  const classes = props.classes;
+  const { classes } = props;
   return (
     <div className={classes.root}>
       <AppBar position="static">

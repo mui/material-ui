@@ -29,7 +29,7 @@ const data = [
 ];
 
 function BasicTable(props) {
-  const classes = props.classes;
+  const { classes } = props;
 
   return (
     <Paper className={classes.paper}>

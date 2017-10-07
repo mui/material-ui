@@ -433,7 +433,7 @@ describe('<Tabs />', () => {
     const dimensions = { scrollLeft: 100, clientWidth: 200, scrollWidth: 1000 };
     before(() => {
       wrapper = shallow(
-        <Tabs width="md" onChange={noop} value={0} scrollable scrollButtons={'on'}>
+        <Tabs width="md" onChange={noop} value={0} scrollable scrollButtons="on">
           <Tab />
           <Tab />
         </Tabs>,

@@ -39,7 +39,7 @@ class LinearBuffer extends React.Component {
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
     const { completed, buffer } = this.state;
     return (
       <div className={classes.root}>

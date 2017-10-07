@@ -38,7 +38,7 @@ class CheckboxList extends React.Component {
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
 
     return (
       <div className={classes.root}>

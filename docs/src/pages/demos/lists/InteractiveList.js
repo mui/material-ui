@@ -47,7 +47,7 @@ class InteractiveList extends React.Component {
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
     const { dense, secondary } = this.state;
 
     return (

@@ -28,6 +28,8 @@ module.exports = {
     'linebreak-style': 'off', // Don't play nicely with Windows.
     'arrow-body-style': 'off', // Not our taste?
     'arrow-parens': 'off', // Incompatible with prettier
+    'object-curly-newline': 'off', // Incompatible with prettier
+    'function-paren-newline': 'off', // Incompatible with prettier
     indent: 'off', // Incompatible with prettier
     'space-before-function-paren': 'off', // Incompatible with prettier
     'no-mixed-operators': 'off', // Incompatible with prettier
@@ -46,6 +48,7 @@ module.exports = {
     'no-prototype-builtins': 'off', // airbnb use error
     'object-curly-spacing': 'off', // use babel plugin rule
     'no-restricted-properties': 'off', // To remove once react-docgen support ** operator.
+    'prefer-destructuring': 'off', // To remove once react-docgen support ** operator.
 
     'babel/object-curly-spacing': ['error', 'always'],
 
@@ -88,6 +91,8 @@ module.exports = {
         ],
       },
     ],
+    'react/default-props-match-prop-types': 'off', // Buggy
+    'react/jsx-curly-brace-presence': 'off', // Buggy
 
     'material-ui/docgen-ignore-before-comment': 'error',
 

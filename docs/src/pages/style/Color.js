@@ -124,7 +124,7 @@ function getColorGroup(options) {
 }
 
 function Color(props) {
-  const classes = props.classes;
+  const { classes } = props;
 
   return (
     <div className={classes.root}>

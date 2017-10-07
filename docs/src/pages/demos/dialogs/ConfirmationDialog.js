@@ -120,15 +120,14 @@ const styles = theme => ({
 
 class ConfirmationDialogDemo extends React.Component {
   state = {
-    anchorEl: null,
     open: false,
     value: 'Dione',
   };
 
   button = undefined;
 
-  handleClickListItem = event => {
-    this.setState({ open: true, anchorEl: event.currentTarget });
+  handleClickListItem = () => {
+    this.setState({ open: true });
   };
 
   handleRequestClose = value => {
@@ -136,7 +135,7 @@ class ConfirmationDialogDemo extends React.Component {
   };
 
   render() {
-    const classes = this.props.classes;
+    const { classes } = this.props;
     return (
       <div className={classes.root}>
         <List>
