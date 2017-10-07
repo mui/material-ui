@@ -17,6 +17,9 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     minWidth: 120,
   },
+  selectEmpty: {
+    marginTop: theme.spacing.unit * 2,
+  },
 });
 
 class SimpleSelect extends React.Component {
@@ -64,6 +67,22 @@ class SimpleSelect extends React.Component {
             <MenuItem value={30}>Thirty</MenuItem>
           </Select>
           <FormHelperText>Some important helper text</FormHelperText>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <Select
+            value={this.state.age}
+            onChange={this.handleChange('age')}
+            displayEmpty
+            className={classes.selectEmpty}
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+          <FormHelperText>Without label</FormHelperText>
         </FormControl>
         <FormControl className={classes.formControl} disabled>
           <InputLabel htmlFor="name-disabled">Name</InputLabel>

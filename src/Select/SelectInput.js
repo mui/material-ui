@@ -37,11 +37,17 @@ export type Props = {
    */
   disabled?: boolean,
   /**
+   * If `true`, the select selected item is display even if his value is empty.
+   * You can only use it when the `native` property is `false` (default).
+   */
+  displayEmpty: boolean,
+  /**
    * If `true`, the component will be using a native `select` element.
    */
   native: boolean,
   /**
    * If true, `value` must be an array and the menu will support multiple selections.
+   * You can only use it when the `native` property is `false` (default).
    */
   multiple: boolean,
   /**
@@ -73,7 +79,7 @@ export type Props = {
   readOnly?: boolean,
   /**
    * Render the selected value.
-   * It's only useful when the `native` property is not set to `true`.
+   * You can only use it when the `native` property is `false` (default).
    */
   renderValue?: Function,
   /**
@@ -202,6 +208,7 @@ class SelectInput extends React.Component<ProvidedProps & Props, State> {
       className: classNameProp,
       classes,
       disabled,
+      displayEmpty,
       name,
       native,
       multiple,
@@ -221,6 +228,14 @@ class SelectInput extends React.Component<ProvidedProps & Props, State> {
         multiple === false,
         'Material-UI: you can not use the `native` and `multiple` properties ' +
           'at the same time on a `Select` component.',
+      );
+      warning(
+        !renderValue,
+        'Material-UI: the `renderValue` property is not used by the native implementation.',
+      );
+      warning(
+        !displayEmpty,
+        'Material-UI: the `displayEmpty` property is not used by the native implementation.',
       );
 
       return (
@@ -263,7 +278,7 @@ class SelectInput extends React.Component<ProvidedProps & Props, State> {
     let computeDisplay = false;
 
     // No need to display any value if the field is empty.
-    if (isDirty(this.props)) {
+    if (isDirty(this.props) || displayEmpty) {
       if (renderValue) {
         display = renderValue(value);
       } else {

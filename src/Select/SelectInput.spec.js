@@ -19,6 +19,7 @@ describe('<SelectInput />', () => {
     value: 10,
     native: false,
     multiple: false,
+    displayEmpty: false,
     children: [
       <MenuItem key={1} value={10}>
         Ten
@@ -74,6 +75,19 @@ describe('<SelectInput />', () => {
         <SelectInput {...props} MenuProps={{ PaperProps: { style: { minWidth: 12 } } }} />,
       );
       assert.strictEqual(wrapper.find(Menu).props().PaperProps.style.minWidth, 12);
+    });
+  });
+
+  describe('prop: displayEmpty', () => {
+    it('should display the selected item even if his value is empty', () => {
+      const wrapper = shallow(
+        <SelectInput {...props} value="" displayEmpty>
+          <MenuItem value="">Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </SelectInput>,
+      );
+      assert.strictEqual(wrapper.find(`.${props.classes.select}`).props().children, 'Ten');
     });
   });
 

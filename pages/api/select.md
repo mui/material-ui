@@ -16,10 +16,11 @@ filename: /src/Select/Select.js
 | autoWidth | boolean | false | If true, the width of the popover will automatically be set according to the items inside the menu, otherwise it will be at least the width of the select input. |
 | <span style="color: #31a148">children *</span> | $ReadOnlyArray |  | The option elements to populate the select with. Can be some `MenuItem` when `native` is false and `option` when `native` is true. |
 | classes | Object |  | Useful to extend the style applied to components. |
+| displayEmpty | boolean | false | If `true`, the select selected item is display even if his value is empty. You can only use it when the `native` property is `false` (default). |
 | input | Element | &lt;Input /> | An `Input` element; does not have to be a material-ui specific `Input`. |
-| multiple | boolean | false | If true, `value` must be an array and the menu will support multiple selections. |
+| multiple | boolean | false | If true, `value` must be an array and the menu will support multiple selections. You can only use it when the `native` property is `false` (default). |
 | native | boolean | false | If `true`, the component will be using a native `select` element. |
-| renderValue | Function |  | Render the selected value. It's only useful when the `native` property is not set to `true`. |
+| renderValue | Function |  | Render the selected value. You can only use it when the `native` property is `false` (default). |
 | value | union:&nbsp;Array<string<br>&nbsp;number><br>&nbsp;string<br>&nbsp;number<br> |  | The input value, required for a controlled component. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
