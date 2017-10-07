@@ -13,7 +13,7 @@ export type TableCellProps = {
   padding?: Padding;
   numeric?: boolean;
 } & React.ThHTMLAttributes<HTMLTableHeaderCellElement> &
-React.TdHTMLAttributes<HTMLTableDataCellElement>;
+  React.TdHTMLAttributes<HTMLTableDataCellElement>;
   
 export type Padding =
   | 'default'
