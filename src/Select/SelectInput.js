@@ -37,7 +37,7 @@ export type Props = {
    */
   disabled?: boolean,
   /**
-   * If `true`, the select selected item is display even if his value is empty.
+   * If `true`, the selected item is displayed even if its value is empty.
    * You can only use it when the `native` property is `false` (default).
    */
   displayEmpty: boolean,

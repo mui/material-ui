@@ -79,7 +79,7 @@ describe('<SelectInput />', () => {
   });
 
   describe('prop: displayEmpty', () => {
-    it('should display the selected item even if his value is empty', () => {
+    it('should display the selected item even if its value is empty', () => {
       const wrapper = shallow(
         <SelectInput {...props} value="" displayEmpty>
           <MenuItem value="">Ten</MenuItem>
