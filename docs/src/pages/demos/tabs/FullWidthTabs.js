@@ -10,7 +10,7 @@ import Tabs, { Tab } from 'material-ui/Tabs';
 
 function TabContainer({ children, dir }) {
   return (
-    <div dir={dir} style={{ padding: 20 }}>
+    <div dir={dir} style={{ padding: 8 * 3 }}>
       {children}
     </div>
   );

@@ -15,7 +15,7 @@ import ThumbDown from 'material-ui-icons/ThumbDown';
 import ThumbUp from 'material-ui-icons/ThumbUp';
 
 function TabContainer(props) {
-  return <div style={{ padding: 20 }}>{props.children}</div>;
+  return <div style={{ padding: 8 * 3 }}>{props.children}</div>;
 }
 
 TabContainer.propTypes = {

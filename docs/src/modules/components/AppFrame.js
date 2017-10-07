@@ -1,4 +1,4 @@
-// @flow
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -11,6 +11,7 @@ import Typography from 'material-ui/Typography';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
+import Tooltip from 'material-ui/Tooltip';
 import MenuIcon from 'material-ui-icons/Menu';
 import LightbulbOutline from 'material-ui-icons/LightbulbOutline';
 import FormatTextdirectionLToR from 'material-ui-icons/FormatTextdirectionLToR';
@@ -18,8 +19,8 @@ import FormatTextdirectionRToL from 'material-ui-icons/FormatTextdirectionRToL';
 import Github from 'docs/src/modules/components/GitHub';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
 import AppSearch from 'docs/src/modules/components/AppSearch';
-import Tooltip from 'material-ui/Tooltip';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
+import actionTypes from 'docs/src/modules/redux/actionTypes';
 
 // Disaply a progress bar between route transitions
 NProgress.configure({
@@ -150,16 +151,26 @@ class AppFrame extends React.Component<any, any> {
     this.setState({ mobileOpen: !this.state.mobileOpen });
   };
 
-  handleToggleShade = () => {
-    this.props.dispatch({ type: 'TOGGLE_THEME_SHADE' });
+  handleTogglePaletteType = () => {
+    this.props.dispatch({
+      type: actionTypes.THEME_CHANGE_PALETTE_TYPE,
+      payload: {
+        paletteType: this.props.uiTheme.paletteType === 'light' ? 'dark' : 'light',
+      },
+    });
   };
 
   handleToggleDirection = () => {
-    this.props.dispatch({ type: 'TOGGLE_DIRECTION' });
+    this.props.dispatch({
+      type: actionTypes.THEME_CHANGE_DIRECTION,
+      payload: {
+        direction: this.props.uiTheme.direction === 'ltr' ? 'rtl' : 'ltr',
+      },
+    });
   };
 
   render() {
-    const { children, classes, rtl } = this.props;
+    const { children, classes, uiTheme } = this.props;
     const title =
       this.context.activePage.title !== false ? pageToTitle(this.context.activePage) : null;
 
@@ -199,7 +210,7 @@ class AppFrame extends React.Component<any, any> {
               <IconButton
                 color="contrast"
                 aria-label="change theme"
-                onClick={this.handleToggleShade}
+                onClick={this.handleTogglePaletteType}
               >
                 <LightbulbOutline />
               </IconButton>
@@ -210,7 +221,11 @@ class AppFrame extends React.Component<any, any> {
                 aria-label="change direction"
                 onClick={this.handleToggleDirection}
               >
-                {rtl ? <FormatTextdirectionLToR /> : <FormatTextdirectionRToL />}
+                {uiTheme.direction === 'rtl' ? (
+                  <FormatTextdirectionLToR />
+                ) : (
+                  <FormatTextdirectionRToL />
+                )}
               </IconButton>
             </Tooltip>
             <IconButton
@@ -239,7 +254,7 @@ AppFrame.propTypes = {
   children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
-  rtl: PropTypes.bool.isRequired,
+  uiTheme: PropTypes.object.isRequired,
 };
 
 AppFrame.contextTypes = {
@@ -252,5 +267,7 @@ export default compose(
   withStyles(styles, {
     name: 'AppFrame',
   }),
-  connect(),
+  connect(state => ({
+    uiTheme: state.theme,
+  })),
 )(AppFrame);

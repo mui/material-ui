@@ -34,10 +34,14 @@ class AppWrapper extends React.Component<any, any> {
       jssStyles.parentNode.removeChild(jssStyles);
     }
 
-    if (this.props.dark) {
-      setPrismTheme(darkTheme);
-    } else {
+    if (this.props.uiTheme.paletteType === 'light') {
       setPrismTheme(lightTheme);
+    } else {
+      setPrismTheme(darkTheme);
+    }
+
+    if (document.body) {
+      document.body.dir = this.props.uiTheme.direction;
     }
 
     // Wait for the title to be updated.
@@ -49,17 +53,20 @@ class AppWrapper extends React.Component<any, any> {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.dark !== this.props.dark || nextProps.rtl !== this.props.rtl) {
-      this.styleContext.theme = getTheme(nextProps.dark, nextProps.rtl);
+    if (
+      nextProps.uiTheme.paletteType !== this.props.uiTheme.paletteType ||
+      nextProps.uiTheme.direction !== this.props.uiTheme.direction
+    ) {
+      this.styleContext.theme = getTheme(nextProps.uiTheme);
 
-      if (nextProps.dark) {
-        setPrismTheme(darkTheme);
-      } else {
+      if (nextProps.uiTheme.paletteType === 'light') {
         setPrismTheme(lightTheme);
+      } else {
+        setPrismTheme(darkTheme);
       }
 
-      if (nextProps.rtl !== this.props.rtl && document.body) {
-        document.body.dir = nextProps.rtl ? 'rtl' : 'ltr';
+      if (document.body) {
+        document.body.dir = nextProps.uiTheme.direction;
       }
     }
   }
@@ -72,7 +79,7 @@ class AppWrapper extends React.Component<any, any> {
   googleTimer = null;
 
   render() {
-    const { children, rtl, sheetsRegistry } = this.props;
+    const { children, sheetsRegistry } = this.props;
 
     return (
       <JssProvider registry={sheetsRegistry} jss={this.styleContext.jss}>
@@ -80,7 +87,7 @@ class AppWrapper extends React.Component<any, any> {
           theme={this.styleContext.theme}
           sheetsManager={this.styleContext.sheetsManager}
         >
-          <AppFrame rtl={rtl}>{children}</AppFrame>
+          <AppFrame>{children}</AppFrame>
         </MuiThemeProvider>
       </JssProvider>
     );
@@ -89,9 +96,10 @@ class AppWrapper extends React.Component<any, any> {
 
 AppWrapper.propTypes = {
   children: PropTypes.node.isRequired,
-  dark: PropTypes.bool.isRequired,
-  rtl: PropTypes.bool.isRequired,
   sheetsRegistry: PropTypes.object,
+  uiTheme: PropTypes.object.isRequired,
 };
 
-export default connect(state => state.theme)(AppWrapper);
+export default connect(state => ({
+  uiTheme: state.theme,
+}))(AppWrapper);

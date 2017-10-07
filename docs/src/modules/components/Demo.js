@@ -14,8 +14,8 @@ const styles = theme => ({
     position: 'relative',
     backgroundColor: theme.palette.background.contentFrame,
     marginBottom: 40,
-    marginLeft: -16,
-    marginRight: -16,
+    marginLeft: -theme.spacing.unit * 2,
+    marginRight: -theme.spacing.unit * 2,
   },
   demo: theme.mixins.gutters({
     display: 'flex',
@@ -24,13 +24,6 @@ const styles = theme => ({
     paddingBottom: 20,
   }),
   codeButton: {
-    display: 'none',
-    zIndex: 10,
-    position: 'absolute',
-    top: 2,
-    right: 7,
-  },
-  codeButtonUnflipped: {
     flip: false,
     display: 'none',
     zIndex: 10,
@@ -50,9 +43,6 @@ const styles = theme => ({
   },
   [theme.breakpoints.up(600)]: {
     codeButton: {
-      display: 'block',
-    },
-    codeButtonUnflipped: {
       display: 'block',
     },
     code: {
@@ -83,15 +73,12 @@ class Demo extends React.Component<any, any> {
     return (
       <div className={classes.root}>
         <Tooltip title={codeOpen ? 'Hide the source' : 'Show the source'} placement="top">
-          <IconButton
-            onClick={this.handleCodeButtonClick}
-            className={codeOpen ? classes.codeButtonUnflipped : classes.codeButton}
-          >
+          <IconButton onClick={this.handleCodeButtonClick} className={classes.codeButton}>
             <CodeIcon />
           </IconButton>
         </Tooltip>
         <Collapse in={codeOpen} unmountOnExit>
-          <MarkdownElement className={classes.code} text={`\`\`\`js\n${raw}\n\`\`\``} />
+          <MarkdownElement dir="ltr" className={classes.code} text={`\`\`\`js\n${raw}\n\`\`\``} />
         </Collapse>
         <div className={classes.demo} data-mui-demo={name}>
           <DemoComponent />

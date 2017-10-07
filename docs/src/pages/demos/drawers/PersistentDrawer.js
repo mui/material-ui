@@ -129,7 +129,6 @@ class PersistentDrawer extends React.Component {
             </Toolbar>
           </AppBar>
           <Drawer
-            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
             type="persistent"
             classes={{
               paper: classes.drawerPaper,

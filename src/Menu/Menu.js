@@ -139,7 +139,7 @@ class Menu extends React.Component<ProvidedProps & Props> {
   };
 
   handleEnter = (element: HTMLElement) => {
-    const { theme = {} } = this.props;
+    const { theme } = this.props;
 
     const menuList = findDOMNode(this.menuList);
 
@@ -182,15 +182,7 @@ class Menu extends React.Component<ProvidedProps & Props> {
   };
 
   render() {
-    const {
-      children,
-      classes,
-      className,
-      MenuListProps,
-      onEnter,
-      theme = {},
-      ...other
-    } = this.props;
+    const { children, classes, className, MenuListProps, onEnter, theme, ...other } = this.props;
 
     return (
       <Popover

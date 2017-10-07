@@ -291,7 +291,7 @@ const withStyles = (
       const more = {};
 
       // Provide the theme to the wrapped component.
-      // So we don't have to use the `withTheme()` Higher-order component.
+      // So we don't have to use the `withTheme()` Higher-order Component.
       if (withTheme) {
         more.theme = this.theme;
       }

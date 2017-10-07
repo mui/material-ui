@@ -22,7 +22,7 @@ We use the `withStyles` Higher-order Component. Here's an example:
 
 If you want to prevent a specific rule-set from being affected by the `rtl` transfomation you can add `flip: false` at the begining:
 
-_Use the direction toggle button on the top left corner to see the effect_ 
+*Use the direction toggle button on the top left corner to see the effect*
 
 {{demo='pages/customization/RtlOptOut.js'}}
 
@@ -93,8 +93,8 @@ Use the function signature if you need to have access to the theme. It's provide
 2. `options` (*Object* [optional]):
   - `options.withTheme` (Boolean [optional]): Provide the `theme` object to the component as a property. It's `false` by default.
   - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging.
+    If the value isn't provided, we will try to fallback to the name of the component.
   - `options.flip` (*Boolean* [optional]): When set to false, this sheet will opt-out of `rtl` transformation.
-  If the value isn't provided, we will try to fallback to the name of the component.
   - The other keys are forwarded to the options argument of [jss.createStyleSheet()](http://cssinjs.org/js-api/#create-style-sheet).
 
 #### Returns

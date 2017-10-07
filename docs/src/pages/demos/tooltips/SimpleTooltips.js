@@ -40,7 +40,7 @@ function SimpleTooltips(props) {
       <br />
       <Typography>The fab on the right is absolutly positionned:</Typography>
       <Tooltip placement="bottom" title="Position absolute">
-        <Button fab color="accent" className={this.props.classes.absolute}>
+        <Button fab color="accent" className={props.classes.absolute}>
           <AddIcon />
         </Button>
       </Tooltip>
