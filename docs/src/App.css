@@ -1,0 +1,23 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.menuButton {
+  margin-left: -12;
+  margin-right: 20;
+}
+
+.flex {
+  flex: 1;
+}
+
+main {
+  padding: 10px;
+}
+
+.main-picker {
+  display: flex;
+  justify-content: center;
+}

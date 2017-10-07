@@ -1,0 +1,42 @@
+{
+  "name": "material-ui-pickers",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "peerDependencies": {
+    "react": "^16.0.0",
+    "prop-types": "^15.6.0",
+    "material-ui": "^1.0.0-beta.13"
+  },
+  "dependencies": {
+    "material-ui": "^1.0.0-beta.13",
+    "peer-deps-externals-webpack-plugin": "^1.0.2",
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "webpack": "^3.5.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --watch",
+    "build": "webpack"
+  },
+  "author": {
+    "name": "Your name",
+    "email": "your email"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-eslint": "^8.0.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.5.1",
+    "eslint": "^4.8.0",
+    "eslint-config-airbnb": "^16.0.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0"
+  }
+}
