@@ -31,6 +31,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/customization/DarkTheme'), 'utf8')
 `,
         },
+        'pages/customization/Direction.js': {
+          js: require('docs/src/pages/customization/Direction').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/customization/Direction'), 'utf8')
+`,
+        },
         'pages/customization/ThemeDefault.js': {
           js: require('docs/src/pages/customization/ThemeDefault').default,
           raw: preval`

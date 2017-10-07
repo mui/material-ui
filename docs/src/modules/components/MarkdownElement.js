@@ -61,7 +61,7 @@ const anchorLinkStyle = (theme, size) => ({
   '&:hover .anchor-link-style': {
     display: 'inline-block',
     opacity: 1,
-    paddingLeft: theme.spacing.unit,
+    padding: `0 ${theme.spacing.unit}px`,
     color: theme.palette.text.hint,
     '&:hover': {
       color: theme.palette.text.secondary,
@@ -108,25 +108,25 @@ const styles = theme => ({
       ...theme.typography.display2,
       color: theme.palette.text.secondary,
       margin: '0.7em 0',
-      ...anchorLinkStyle(theme, 22),
+      ...anchorLinkStyle(theme, 20),
     },
     '& h2': {
       ...theme.typography.display1,
       color: theme.palette.text.secondary,
       margin: '1em 0 0.7em',
-      ...anchorLinkStyle(theme, 20),
+      ...anchorLinkStyle(theme, 18),
     },
     '& h3': {
       ...theme.typography.headline,
       color: theme.palette.text.secondary,
       margin: '1em 0 0.7em',
-      ...anchorLinkStyle(theme, 18),
+      ...anchorLinkStyle(theme, 16),
     },
     '& h4': {
       ...theme.typography.title,
       color: theme.palette.text.secondary,
       margin: '1em 0 0.7em',
-      ...anchorLinkStyle(theme, 16),
+      ...anchorLinkStyle(theme, 14),
     },
     '& p, & ul, & ol': {
       lineHeight: 1.6,
@@ -220,4 +220,4 @@ function MarkdownElement(props: Props) {
   /* eslint-enable */
 }
 
-export default withStyles(styles)(MarkdownElement);
+export default withStyles(styles, { flip: false })(MarkdownElement);

@@ -8,7 +8,7 @@ import AppBar from 'material-ui/AppBar';
 import Tabs, { Tab } from 'material-ui/Tabs';
 
 function TabContainer(props) {
-  return <div style={{ padding: 20 }}>{props.children}</div>;
+  return <div style={{ padding: 8 * 3 }}>{props.children}</div>;
 }
 
 TabContainer.propTypes = {

@@ -1,30 +1,32 @@
 // @flow weak
 /* eslint-disable no-underscore-dangle */
 
-import { create } from 'jss';
+import { create, SheetsRegistry } from 'jss';
 import preset from 'jss-preset-default';
-import { SheetsRegistry } from 'react-jss/lib/jss';
+import rtl from 'jss-rtl';
 import { createMuiTheme } from 'material-ui/styles';
 import blue from 'material-ui/colors/blue';
 import pink from 'material-ui/colors/pink';
 import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
 
-export function getTheme(dark) {
-  const theme = createMuiTheme({
+export function getTheme(theme) {
+  return createMuiTheme({
+    direction: theme.direction,
     palette: {
       primary: blue,
       secondary: pink,
-      type: dark ? 'dark' : 'light',
+      type: theme.paletteType,
     },
   });
-
-  return theme;
 }
 
-const theme = getTheme(false);
+const theme = getTheme({
+  direction: 'ltr',
+  paletteType: 'light',
+});
 
 // Configure JSS
-const jss = create(preset());
+const jss = create({ plugins: [...preset().plugins, rtl()] });
 jss.options.createGenerateClassName = createGenerateClassName;
 jss.options.insertionPoint = 'insertion-point-jss';
 

@@ -30,7 +30,7 @@ export type Props = {
   /**
    * Which direction should the button indicate?
    */
-  direction?: 'left' | 'right',
+  direction: 'left' | 'right',
   /**
    * Callback to execute for button press.
    */

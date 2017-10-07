@@ -8,12 +8,17 @@ import hoistNonReactStatics from 'hoist-non-react-statics';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import getDisplayName from 'recompose/getDisplayName';
 import contextTypes from 'react-jss/lib/contextTypes';
-import jss from 'react-jss/lib/jss';
+import { create } from 'jss';
+import preset from 'jss-preset-default';
+import rtl from 'jss-rtl';
 import * as ns from 'react-jss/lib/ns';
 import createMuiTheme from './createMuiTheme';
 import themeListener from './themeListener';
 import createGenerateClassName from './createGenerateClassName';
 import getStylesCreator from './getStylesCreator';
+
+const presets = preset().plugins;
+const jss = create({ plugins: [...presets, rtl()] });
 
 // Use a singleton or the provided one by the context.
 const generateClassName = createGenerateClassName();
@@ -46,6 +51,7 @@ function getDefaultTheme() {
 }
 
 type Options = {
+  flip?: boolean,
   withTheme?: boolean,
   name?: string,
 
@@ -83,7 +89,7 @@ const withStyles = (
   stylesOrCreator: Object,
   options?: Options = {},
 ): HigherOrderComponent<RequiredProps, InjectedProps> => (Component: any): any => {
-  const { withTheme = false, name, ...styleSheetOptions } = options;
+  const { withTheme = false, flip, name, ...styleSheetOptions } = options;
   const stylesCreator = getStylesCreator(stylesOrCreator);
   const listenToTheme = stylesCreator.themingEnabled || withTheme || typeof name === 'string';
 
@@ -192,6 +198,7 @@ const withStyles = (
 
         const sheet = this.jss.createStyleSheet(styles, {
           meta,
+          flip: typeof flip === 'boolean' ? flip : theme.direction === 'rtl',
           link: false,
           ...this.sheetOptions,
           ...stylesCreatorSaved.options,
@@ -284,7 +291,7 @@ const withStyles = (
       const more = {};
 
       // Provide the theme to the wrapped component.
-      // So we don't have to use the `withTheme()` Higher-order component.
+      // So we don't have to use the `withTheme()` Higher-order Component.
       if (withTheme) {
         more.theme = this.theme;
       }

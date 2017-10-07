@@ -14,6 +14,7 @@ export type StyleRules<ClassKey extends string = string> = Record<ClassKey, Part
 export type StyleRulesCallback<ClassKey extends string = string> = (theme: Theme) => StyleRules<ClassKey>;
 
 export interface WithStylesOptions {
+  flip?: boolean;
   withTheme?: boolean;
   name?: string;
 }

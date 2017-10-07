@@ -4,6 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
 import Slide from '../transitions/Slide';
+import createMuiTheme from '../styles/createMuiTheme';
 import Modal from '../internal/Modal';
 import Paper from '../Paper';
 import Drawer from './Drawer';
@@ -238,12 +239,14 @@ describe('<Drawer />', () => {
     let wrapper;
 
     before(() => {
+      const theme = createMuiTheme({
+        direction: 'rtl',
+      });
       wrapper = shallow(
-        <Drawer>
+        <Drawer theme={theme}>
           <div />
         </Drawer>,
       );
-      wrapper.instance().props.theme.dir = 'rtl';
     });
 
     it('should switch left and right anchor when theme is right-to-left', () => {

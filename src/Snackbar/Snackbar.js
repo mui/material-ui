@@ -390,4 +390,4 @@ class Snackbar extends React.Component<ProvidedProps & Props, State> {
   }
 }
 
-export default withStyles(styles, { name: 'MuiSnackbar' })(Snackbar);
+export default withStyles(styles, { flip: false, name: 'MuiSnackbar' })(Snackbar);

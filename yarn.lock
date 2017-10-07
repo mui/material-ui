@@ -760,9 +760,9 @@ babel-plugin-check-es2015-constants@^6.22.0:
   dependencies:
     babel-runtime "^6.22.0"
 
-babel-plugin-flow-react-proptypes@6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-flow-react-proptypes/-/babel-plugin-flow-react-proptypes-6.0.0.tgz#2291eda2a4944a2ed68bcf8984a5f4e7ffcd764e"
+babel-plugin-flow-react-proptypes@6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-flow-react-proptypes/-/babel-plugin-flow-react-proptypes-6.1.0.tgz#28570fedfe80df5981496c66ab4440660ba728b2"
   dependencies:
     babel-core "^6.25.0"
     babel-template "^6.25.0"
@@ -5014,6 +5014,12 @@ jss-props-sort@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/jss-props-sort/-/jss-props-sort-5.0.0.tgz#8839c88433f64e8c1dab1a7068796f19b84f9195"
 
+jss-rtl@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/jss-rtl/-/jss-rtl-0.2.0.tgz#5466e509e8f5daf307149ce70b555dc24c57d0a3"
+  dependencies:
+    rtl-css-js "^1.6.0"
+
 jss-vendor-prefixer@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/jss-vendor-prefixer/-/jss-vendor-prefixer-6.0.0.tgz#be58124f0cbed76e98cc8eb5219dbb260f057d0b"
@@ -6027,6 +6033,10 @@ normalize-path@^2.0.0, normalize-path@^2.0.1:
 normalize-range@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/normalize-range/-/normalize-range-0.1.2.tgz#2d10c06bdfd312ea9777695a4d28439456b75942"
+
+normalize-scroll-left@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/normalize-scroll-left/-/normalize-scroll-left-0.1.0.tgz#917d04b9d80e390797209424f8baa2453daacb90"
 
 normalize-url@^1.4.0:
   version "1.9.1"
@@ -7722,6 +7732,10 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
   dependencies:
     hash-base "^2.0.0"
     inherits "^2.0.1"
+
+rtl-css-js@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/rtl-css-js/-/rtl-css-js-1.6.0.tgz#5cdf7cfb1384e44a068de021cf24d15afbcf51a3"
 
 run-async@^2.2.0:
   version "2.3.0"

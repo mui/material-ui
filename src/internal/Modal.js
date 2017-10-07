@@ -430,4 +430,4 @@ class Modal extends React.Component<ProvidedProps & Props, State> {
   }
 }
 
-export default withStyles(styles, { name: 'MuiModal' })(Modal);
+export default withStyles(styles, { flip: false, name: 'MuiModal' })(Modal);

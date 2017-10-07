@@ -18,6 +18,14 @@ We use the `withStyles` Higher-order Component. Here's an example:
 
 {{demo='pages/customization/CssInJs.js'}}
 
+## Opting out of rtl transformation
+
+If you want to prevent a specific rule-set from being affected by the `rtl` transfomation you can add `flip: false` at the begining:
+
+*Use the direction toggle button on the top left corner to see the effect*
+
+{{demo='pages/customization/RtlOptOut.js'}}
+
 ## JSS
 
 The styling solution of Material-UI is using [JSS](https://github.com/cssinjs/jss) at its core.
@@ -26,6 +34,9 @@ It is about 5KB (minified and gzipped) and is extensible via a [plugins](https:/
 
 If you end up using this styling solution in your codebase, you're going to need to *learn the API*.
 The best place to start is by looking at the features each [plugin](http://cssinjs.org/plugins) is providing. Material-UI is using the [`jss-preset-default`](http://cssinjs.org/jss-preset-default) module. You can always add new plugins if needed with the [`JssProvider` helper](https://github.com/cssinjs/react-jss#custom-setup).
+
+Also, if you wish to build your own instance of `jss` **and** support `rtl` make sure you also include the [jss-rtl](https://github.com/alitaheri/jss-rtl) plugin.
+Visit their [readme](https://github.com/alitaheri/jss-rtl#simple-usage) file to learn how.
 
 ## Sheets registry
 
@@ -82,7 +93,8 @@ Use the function signature if you need to have access to the theme. It's provide
 2. `options` (*Object* [optional]):
   - `options.withTheme` (Boolean [optional]): Provide the `theme` object to the component as a property. It's `false` by default.
   - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging.
-  If the value isn't provided, we will try to fallback to the name of the component.
+    If the value isn't provided, we will try to fallback to the name of the component.
+  - `options.flip` (*Boolean* [optional]): When set to false, this sheet will opt-out of `rtl` transformation.
   - The other keys are forwarded to the options argument of [jss.createStyleSheet()](http://cssinjs.org/js-api/#create-style-sheet).
 
 #### Returns

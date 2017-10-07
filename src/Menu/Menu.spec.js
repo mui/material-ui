@@ -136,7 +136,7 @@ describe('<Menu />', () => {
 
     before(() => {
       // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
-      wrapper = mount(<Menu.Naked classes={classes} />);
+      wrapper = mount(<Menu.Naked theme={{}} classes={classes} />);
       instance = wrapper.instance();
 
       selectedItemFocusSpy = spy();
