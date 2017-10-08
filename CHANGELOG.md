@@ -1,5 +1,23 @@
 ## HEAD
 
+## 0.19.4
+###### _Oct 8, 2017_
+
+This release improve the compatibility with React@16.
+Big thanks to the 2 contributors who made this release possible.
+
+#### Component Fixes / Enhancements
+
+- [TextField] Apply valueLink only if defined via props in EnhancedTextarea (#8530) @santialbo
+
+#### Docs
+
+- [docs] Small fixes (#8594) @oliviertassinari
+
+#### Core
+
+- [core] Upgrade dependencies (#8578) @oliviertassinari
+
 ## 0.19.3
 ###### _Oct 1, 2017_
 
