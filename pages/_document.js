@@ -10,6 +10,8 @@ const cleanCSS = new CleanCSS();
 
 class MyDocument extends Document {
   render() {
+    const { canonical, stylesContext } = this.props;
+
     return (
       <html lang="en" dir="ltr">
         <Head>
@@ -33,7 +35,7 @@ class MyDocument extends Document {
           */}
           <link rel="manifest" href="/static/manifest.json" />
           {/* PWA primary color */}
-          <meta name="theme-color" content={this.props.stylesContext.theme.palette.primary[500]} />
+          <meta name="theme-color" content={stylesContext.theme.palette.primary[500]} />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
@@ -57,6 +59,7 @@ class MyDocument extends Document {
           />
           <meta property="og:image" content="https://material-ui-next.com/static/brand.png" />
           <link rel="shortcut icon" href="/static/favicon.ico" />
+          <link rel="canonical" href={canonical} />
         </Head>
         <body>
           <Main />
@@ -111,6 +114,7 @@ MyDocument.getInitialProps = ctx => {
   return {
     ...page,
     stylesContext: context,
+    canonical: `https://material-ui-next.com${ctx.req.url.replace(/\/$/, '')}/`,
     styles: (
       <style
         id="jss-server-side"
