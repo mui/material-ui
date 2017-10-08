@@ -25,7 +25,7 @@ class App extends Component {
           </Typography>
 
           <div className="main-picker">
-            <DateTimePicker />
+            <DateTimePicker value={new Date()} />
           </div>
         </main>
       </div>

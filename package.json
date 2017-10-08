@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "material-ui": "^1.0.0-beta.13",
+    "moment": "^2.18.1",
     "peer-deps-externals-webpack-plugin": "^1.0.2",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
