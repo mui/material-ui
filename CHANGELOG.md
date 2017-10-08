@@ -2,6 +2,85 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.16
+###### _Oct 8, 2017_
+
+Big thanks to the 18 contributors who made this release possible.
+
+Here are some highlights ✨:
+- Add Right-To-Left support (#8479) @alitaheri
+- Safe TypeScript checking of the `withStyles()` Higher-order Component (#8561) @pelotom and @sebald
+
+### Breaking change
+
+- [TablePagination] Allow using it anywhere (#8525) @leMaik
+
+```diff
+             <TableFooter>
+-              <TablePagination
+-                count={data.length}
+-                rowsPerPage={rowsPerPage}
+-                page={page}
+-                onChangePage={this.handleChangePage}
+-                onChangeRowsPerPage={this.handleChangeRowsPerPage}
+-              />
++              <TableRow>
++                <TablePagination
++                  count={data.length}
++                  rowsPerPage={rowsPerPage}
++                  page={page}
++                  onChangePage={this.handleChangePage}
++                  onChangeRowsPerPage={this.handleChangeRowsPerPage}
++                />
++              </TableRow>
+             </TableFooter>
+```
+
+- [typescript] Fix withStyles typing for class components; remove usage as TS decorator (#8561) @pelotom
+  We drop the TypeScript decorator support.
+
+#### Component Fixes / Enhancements
+
+- [Collapse] Fix handleEntered method (#8499) @tcoughlin3
+- [ButtonBase] Fix borderRadius for Chrome 63 (#8507) @gokulchandra
+- [Collapse] Implement the ability to set the collapsed height through props (#8368) @jackyho112
+- [GridList] Add momentum scrolling (#8538) @JeromeFitz
+- [Tabs] Add momentum scrolling (#8536) @RichardLindhout
+- [SwitchBase] Simplify the implementation (#8540) @oliviertassinari
+- [Typography] Add Vertical Rhythm (#8560) @oliviertassinari
+- [Input] Fix Textarea regression handling (#8557) @oliviertassinari
+- [Snackbar] Fix position regression (#8573) @oliviertassinari
+- [IconButton] Take advantage of the CSS inheritance (#8575) @oliviertassinari
+- [Select] Add a displayEmpty property (#8587) @oliviertassinari
+- [Select] Update description for displayEmpty propepty (#8589) @gmlnchv
+- [style] Add RTL support (#8479) @alitaheri
+- [TableCell] Fix padding TypeScript definition (#8591) @dakisxx
+- [TableCell] Wrong label: 'compact' should be 'dense' (#8596) @dakisxx
+- [Table] Standardize class names (#8593) @oliviertassinari
+- [Hidden] Make the children property required (#8502) @oliviertassinari
+
+#### Docs
+
+- [docs] Fix color palette demo (#8513) @JeromeFitz
+- [docs] Fix copy and paste error in migration guide (#8514) @uwap
+- [docs] Change the Edit this page link in the API (#8511) @oliviertassinari
+- [Example] Pin nextjs example to react 15 (#8521) @eyn
+- [docs] Change tooltip placement for table (baa37dee87c4211b598102d8f54500d4dde28a1e) @oliviertassinari
+- [docs] Add an app to the v1 showcase (#8548) @Xalio08
+- [docs] Add a tests section in the Comparison page (#8555) @oliviertassinari
+- [docs] Remove leftover code from Tooltip example (#8551) @the-noob
+- [Circular] Add interactive integration in the docs (#8586) @oliviertassinari
+- [Hidden] Add docs for initialWidth prop (#8585) @pcardune
+- [docs] Avoid SEO indexes duplication (#8592) @oliviertassinari
+
+#### Core
+
+- [core] Upgrade to mocha@v4 (#8517) @oliviertassinari
+- [core] Upgrade dependencies (#8577) @oliviertassinari
+- [core] Upgrade eslint (#8583) @oliviertassinari
+- [core] Prepare upgrade enzyme v3 (#8595) @oliviertassinari
+- [misc] Fix small issues reported by users (#8524) @oliviertassinari
+
 ## 1.0.0-beta.15
 ###### _Oct 4, 2017_
 
