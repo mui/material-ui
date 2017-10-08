@@ -3,7 +3,7 @@
 ## 0.19.4
 ###### _Oct 8, 2017_
 
-This release improve the compatibility with React@16.
+This release improves the compatibility with React@16.
 Big thanks to the 2 contributors who made this release possible.
 
 #### Component Fixes / Enhancements
