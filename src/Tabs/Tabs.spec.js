@@ -166,6 +166,7 @@ describe('<Tabs />', () => {
             <Tab />
             <Tab />
           </Tabs>,
+          { disableLifecycleMethods: true },
         );
         assert.strictEqual(
           wrapper2

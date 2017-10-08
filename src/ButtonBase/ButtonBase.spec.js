@@ -16,7 +16,7 @@ describe('<ButtonBase />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    shallow = createShallow({ dive: true, disableLifecycleMethods: true });
     mount = createMount();
     classes = getClasses(<ButtonBase />);
   });

@@ -11,21 +11,23 @@ export default function createShallow(options1: Object = {}) {
     node: React$Element<any>,
     options2: Object = {},
   ) {
-    const wrapper = shallow(node, {
+    const options = {
       ...other1,
       ...options2,
       context: {
         ...other1.context,
         ...options2.context,
       },
-    });
+    };
+
+    const wrapper = shallow(node, options);
 
     if (dive) {
       return wrapper.dive();
     }
 
     if (untilSelector) {
-      return until.call(wrapper, untilSelector);
+      return until.call(wrapper, untilSelector, options);
     }
 
     return wrapper;
