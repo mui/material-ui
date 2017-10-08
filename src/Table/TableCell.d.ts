@@ -18,7 +18,7 @@ export type TableCellProps = {
 export type Padding =
   | 'default'
   | 'checkbox'
-  | 'compact'
+  | 'dense'
   | 'none'
   ;
 
