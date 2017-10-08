@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import type { ElementType, Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
+import { capitalizeFirstLetter } from '../utils/helpers';
 
 export type Context = {
   table: Object,
@@ -62,16 +63,16 @@ export const styles = (theme: Object) => ({
     fontWeight: theme.typography.fontWeightMedium,
     position: 'relative', // Workaround for Tooltip positioning issue.
   },
-  padding: {
+  paddingDefault: {
     padding: `0 ${theme.spacing.unit * 7}px 0 ${theme.spacing.unit * 3}px`,
     '&:last-child': {
       paddingRight: theme.spacing.unit * 3,
     },
   },
-  dense: {
+  paddingDense: {
     paddingRight: theme.spacing.unit * 3,
   },
-  checkbox: {
+  paddingCheckbox: {
     paddingLeft: 12,
     paddingRight: 12,
   },
@@ -98,13 +99,14 @@ function TableCell(props: ProvidedProps & Props, context: Context) {
   } else {
     Component = table && table.head ? 'th' : 'td';
   }
+
   const className = classNames(
     classes.root,
     {
       [classes.numeric]: numeric,
-      [classes.dense]: padding === 'dense',
-      [classes.checkbox]: padding === 'checkbox',
-      [classes.padding]: padding !== 'none',
+      [classes[`padding${capitalizeFirstLetter(padding)}`]]:
+        padding !== 'none' && padding !== 'default',
+      [classes.paddingDefault]: padding !== 'none',
       [classes.head]: table && table.head,
       [classes.footer]: table && table.footer,
     },

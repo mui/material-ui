@@ -52,6 +52,10 @@ export type Props = {
    */
   rootRef?: Function,
   /**
+   * @ignore
+   */
+  theme?: Object,
+  /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    *

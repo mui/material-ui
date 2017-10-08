@@ -14,7 +14,7 @@ export type TableCellProps = {
   numeric?: boolean;
 } & React.ThHTMLAttributes<HTMLTableHeaderCellElement> &
   React.TdHTMLAttributes<HTMLTableDataCellElement>;
-  
+
 export type Padding =
   | 'default'
   | 'checkbox'
@@ -26,9 +26,9 @@ export type TableCellClassKey =
   | 'root'
   | 'numeric'
   | 'head'
-  | 'padding'
-  | 'compact'
-  | 'checkbox'
+  | 'paddingDefault'
+  | 'paddingCompact'
+  | 'paddingCheckbox'
   | 'footer'
   ;
 

@@ -72,6 +72,10 @@ export type Props = {
    */
   open?: boolean,
   /**
+   * @ignore
+   */
+  theme?: Object,
+  /**
    * The length of the transition in `ms`, or 'auto'
    */
   transitionDuration?: number | 'auto',

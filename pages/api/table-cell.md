@@ -27,9 +27,9 @@ This property accepts the following keys:
 - `root`
 - `numeric`
 - `head`
-- `padding`
-- `dense`
-- `checkbox`
+- `paddingDefault`
+- `paddingDense`
+- `paddingCheckbox`
 - `footer`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section

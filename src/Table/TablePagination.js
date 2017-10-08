@@ -116,6 +116,10 @@ export type Props = {
    * Customizes the options of the rows per page select field.
    */
   rowsPerPageOptions?: number[],
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 /**
