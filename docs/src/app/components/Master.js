@@ -42,11 +42,23 @@ class Master extends Component {
     });
   }
 
+  componentDidMount() {
+    window.gtag('config', 'UA-106598593-1', {
+      page_path: location.hash.slice(1),
+    });
+  }
+
   componentWillReceiveProps(nextProps, nextContext) {
     const newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
     this.setState({
       muiTheme: newMuiTheme,
     });
+
+    if (this.props.location.pathname !== nextProps.location.pathname) {
+      window.gtag('config', 'UA-106598593-1', {
+        page_path: location.hash.slice(1),
+      });
+    }
   }
 
   getStyles() {
@@ -188,7 +200,7 @@ class Master extends Component {
       <div>
         <Title render="Material-UI" />
         <div style={prepareStyles(styles.v1Spacer)}>
-          <a style={prepareStyles(styles.v1)} href="https://material-ui-1dab0.firebaseapp.com/">
+          <a style={prepareStyles(styles.v1)} href="https://material-ui-next.com/">
             <span>
               Aww yeah, Material-UI v1 is coming!
             </span>
