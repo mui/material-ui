@@ -17,7 +17,7 @@ describe('<Modal />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    shallow = createShallow({ dive: true, disableLifecycleMethods: true });
     classes = getClasses(<Modal />);
     mount = createMount();
   });

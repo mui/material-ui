@@ -35,6 +35,7 @@ describe('<TouchRipple />', () => {
       const wrapper = shallow(<TouchRipple center />);
       const instance = wrapper.instance();
       instance.start();
+      wrapper.update();
       assert.strictEqual(wrapper.childAt(0).props().rippleSize, 1, 'should be odd');
     });
   });

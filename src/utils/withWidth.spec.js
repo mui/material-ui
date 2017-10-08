@@ -18,7 +18,7 @@ describe('withWidth', () => {
   let mount;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    shallow = createShallow({ dive: true, disableLifecycleMethods: true });
     mount = createMount();
   });
 
