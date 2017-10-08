@@ -111,6 +111,10 @@ export type Props = {
    */
   textColor?: 'accent' | 'primary' | 'inherit',
   /**
+   * @ignore
+   */
+  theme?: Object,
+  /**
    * The value of the currently selected `Tab`.
    * If you don't want any selected `Tab`, you can set this property to `false`.
    */

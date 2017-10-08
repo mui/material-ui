@@ -67,7 +67,7 @@ class Demo extends React.Component<any, any> {
   };
 
   render() {
-    const { classes, js: DemoComponent, name, raw } = this.props;
+    const { classes, js: DemoComponent, raw } = this.props;
     const { codeOpen } = this.state;
 
     return (
@@ -80,7 +80,7 @@ class Demo extends React.Component<any, any> {
         <Collapse in={codeOpen} unmountOnExit>
           <MarkdownElement dir="ltr" className={classes.code} text={`\`\`\`js\n${raw}\n\`\`\``} />
         </Collapse>
-        <div className={classes.demo} data-mui-demo={name}>
+        <div className={classes.demo}>
           <DemoComponent />
         </div>
       </div>
@@ -91,7 +91,6 @@ class Demo extends React.Component<any, any> {
 Demo.propTypes = {
   classes: PropTypes.object.isRequired,
   js: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
   raw: PropTypes.string.isRequired,
 };
 

@@ -77,7 +77,7 @@ function MarkdownDocs(props: Props, context: Object) {
         if (match && demos) {
           const name = match[1];
           warning(demos && demos[name], `Missing demo: ${name}.`);
-          return <Demo key={content} name={name} js={demos[name].js} raw={demos[name].raw} />;
+          return <Demo key={content} js={demos[name].js} raw={demos[name].raw} />;
         }
 
         return <MarkdownElement key={content} text={content} />;

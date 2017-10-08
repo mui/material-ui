@@ -191,6 +191,10 @@ export type Props = {
    * Properties applied to the `Popper` element.
    */
   PopperProps?: Object,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 type State = {

@@ -78,6 +78,10 @@ export type Props = {
    * You may specify a single timeout for all transitions, or individually with an object.
    */
   transitionDuration?: TransitionDuration,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 class Slide extends React.Component<ProvidedProps & Props> {
