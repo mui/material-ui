@@ -71,7 +71,8 @@ export type Props = {
    */
   error?: boolean,
   /**
-   * If `true`, the label will take up the full width of its container.
+   * If `true`, the component, as well as its children,
+   * will take up the full width of its container.
    */
   fullWidth?: boolean,
   /**
