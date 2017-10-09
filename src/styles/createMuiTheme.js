@@ -36,9 +36,6 @@ function createMuiTheme(options: Object = {}) {
         zIndex,
       },
       other,
-      {
-        clone: true, // We don't want to mutate the input
-      },
     ),
   };
 }

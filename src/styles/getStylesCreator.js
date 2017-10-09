@@ -16,9 +16,7 @@ function getStylesCreator(stylesOrCreator: Object | (Object => Object)) {
 
     Object.keys(overrides).forEach(key => {
       warning(stylesWithOverrides[key], 'You are trying to overrides a style that do not exist.');
-      stylesWithOverrides[key] = deepmerge(stylesWithOverrides[key], overrides[key], {
-        clone: true, // We don't want to mutate the input
-      });
+      stylesWithOverrides[key] = deepmerge(stylesWithOverrides[key], overrides[key]);
     });
 
     return stylesWithOverrides;
