@@ -5,8 +5,8 @@
   "dependencies": {
     "material-ui": "next",
     "next": "latest",
-    "react": "^15.0.0",
-    "react-dom": "^15.0.0"
+    "react": "latest",
+    "react-dom": "latest"
   },
   "scripts": {
     "dev": "next",
