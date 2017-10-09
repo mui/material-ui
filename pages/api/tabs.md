@@ -16,7 +16,7 @@ Notice that this Component is incompatible with server side rendering.
 | centered | boolean | false | If `true`, the tabs will be centered. This property is intended for large views. |
 | children | Node |  | The content of the component. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| fullWidth | boolean | false | If `true`, the tabs will grow to use all the available space. This property is intended for small views. |
+| fullWidth | boolean | false | If `true`, the tabs will grow to use all the available space. This property is intended for small views, like on mobile. |
 | indicatorClassName | string |  | The CSS class name of the indicator element. |
 | indicatorColor | union:&nbsp;'accent'<br>&nbsp;'primary'<br>&nbsp;string<br> | 'accent' | Determines the color of the indicator. |
 | <span style="color: #31a148">onChange *</span> | Function |  | Callback fired when the value changes.<br><br>**Signature:**<br>`function(event: object, value: number) => void`<br>*event:* The event source of the callback<br>*value:* We default to the index of the child |

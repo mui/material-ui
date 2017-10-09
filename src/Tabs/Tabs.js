@@ -76,7 +76,7 @@ export type Props = {
   className?: string,
   /**
    * If `true`, the tabs will grow to use all the available space.
-   * This property is intended for small views.
+   * This property is intended for small views, like on mobile.
    */
   fullWidth?: boolean,
   /**
