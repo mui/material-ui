@@ -43,7 +43,7 @@ or included as a child for other Material-UI components that use icons.
 
 {{demo='pages/style/SvgIcons.js'}}
 
-Looking for svg icons? There is a lot of project out there.
+Looking for svg icons? There are a lot of projects out there.
 We have found one that provides 2000+ unoffical Material Design Icons: [https://materialdesignicons.com/](https://materialdesignicons.com/).
 
 ### SVG Material icons
