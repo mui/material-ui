@@ -124,6 +124,10 @@ export type Props = {
   /**
    * @ignore
    */
+  onTouchMove?: Function,
+  /**
+   * @ignore
+   */
   onTouchStart?: Function,
   /**
    * @ignore
@@ -250,6 +254,8 @@ class ButtonBase extends React.Component<ProvidedProps & Props, State> {
 
   handleTouchEnd = createRippleHandler(this, 'TouchEnd', 'stop');
 
+  handleTouchMove = createRippleHandler(this, 'TouchEnd', 'stop');
+
   handleBlur = createRippleHandler(this, 'Blur', 'stop', () => {
     this.setState({ keyboardFocused: false });
   });
@@ -315,6 +321,7 @@ class ButtonBase extends React.Component<ProvidedProps & Props, State> {
       onMouseLeave,
       onMouseUp,
       onTouchEnd,
+      onTouchMove,
       onTouchStart,
       rootRef,
       tabIndex,
@@ -362,6 +369,7 @@ class ButtonBase extends React.Component<ProvidedProps & Props, State> {
         onMouseLeave={this.handleMouseLeave}
         onMouseUp={this.handleMouseUp}
         onTouchEnd={this.handleTouchEnd}
+        onTouchMove={this.handleTouchMove}
         onTouchStart={this.handleTouchStart}
         ref={rootRef}
         tabIndex={disabled ? -1 : tabIndex}
