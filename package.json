@@ -71,7 +71,7 @@
     "jss-rtl": "^0.2.0",
     "keycode": "^2.1.9",
     "lodash": "^4.17.4",
-    "normalize-scroll-left": "^0.1.0",
+    "normalize-scroll-left": "^0.1.1",
     "prop-types": "^15.6.0",
     "react-event-listener": "^0.5.1",
     "react-flow-types": "^0.2.0-beta.2",
