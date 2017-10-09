@@ -63,7 +63,7 @@
     "babel-runtime": "^6.26.0",
     "brcast": "^3.0.1",
     "classnames": "^2.2.5",
-    "deepmerge": "^1.5.2",
+    "deepmerge": "^2.0.0",
     "dom-helpers": "^3.2.1",
     "hoist-non-react-statics": "^1.2.0",
     "jss": "^8.1.0",
