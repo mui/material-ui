@@ -110,5 +110,8 @@ export default function createTypography(palette: Object, typography: Object | F
       },
     },
     other,
+    {
+      clone: false, // No need to clone deep
+    },
   );
 }
