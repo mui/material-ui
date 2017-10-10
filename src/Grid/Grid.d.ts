@@ -31,7 +31,7 @@ export type GridProps = {
   justify?: GridJustification;
   wrap?: GridWrap;
 } & Partial<{ [key in Breakpoint]: boolean | GridSize }>
-  & Partial<Omit<React.HTMLAttributes<HTMLElement>, 'hidden'>>;
+  & Omit<React.HTMLAttributes<HTMLElement>, 'hidden'>;
 
 export type GridClassKey =
   | 'typeContainer'

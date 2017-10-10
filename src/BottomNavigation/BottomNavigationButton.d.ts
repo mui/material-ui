@@ -10,7 +10,7 @@ export type BottomNavigationButtonProps = {
   selected?: boolean;
   showLabel?: boolean;
   value?: any;
-} & Partial<Omit<ButtonBaseProps, 'onChange'>>;
+} & Omit<ButtonBaseProps, 'onChange'>;
 
 export type BottomNavigationButtonClassKey =
   | 'root'

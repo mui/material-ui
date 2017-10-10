@@ -6,7 +6,7 @@ export type RadioGroupProps = {
   name?: string;
   onChange?: (event: React.ChangeEvent<{}>, value: string) => void;
   value?: string;
-} & Partial<Omit<FormGroupProps, 'onChange'>>;
+} & Omit<FormGroupProps, 'onChange'>;
 
 export type RadioGroupClassKey =
   | 'root'

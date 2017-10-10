@@ -10,7 +10,7 @@ export type SelectProps = {
   MenuProps?: Object;
   renderValue?: Function;
   value?: Array<string | number> | string | number;
-} & Partial<Omit<InputProps, 'value'>>;
+} & Omit<InputProps, 'value'>;
 
 type SelectClassKey =
   | 'root'
