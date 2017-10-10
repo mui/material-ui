@@ -173,7 +173,7 @@ export type Props = {
    */
   container?: boolean,
   /**
-   * It true, the component will have the flex *item* behavior.
+   * If `true`, the component will have the flex *item* behavior.
    * You should be wrapping *items* with a *container*.
    */
   item?: boolean,
