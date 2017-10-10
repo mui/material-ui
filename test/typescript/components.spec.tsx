@@ -82,10 +82,9 @@ const BadgeTest = () =>
 
 const BottomNavigationTest = () => {
   const value = 123;
-  const handleChange = (e: React.SyntheticEvent<any>) => log(e);
 
   return (
-    <BottomNavigation value={value} onChange={handleChange} showLabels>
+    <BottomNavigation value={value} onChange={e => log(e)} showLabels>
       <BottomNavigationButton label="Recents" icon={<FakeIcon />} />
       <BottomNavigationButton label="Favorites" />
       <BottomNavigationButton label={<span>Nearby</span>} icon={<FakeIcon />} />
