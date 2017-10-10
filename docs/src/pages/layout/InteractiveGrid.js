@@ -28,7 +28,8 @@ class InteractiveGrid extends React.Component {
   state = {
     direction: 'row',
     justify: 'center',
-    align: 'center',
+    alignContent: 'stretch',
+    alignItems: 'center',
   };
 
   handleChange = key => (event, value) => {
@@ -39,14 +40,15 @@ class InteractiveGrid extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { align, direction, justify } = this.state;
+    const { alignContent, alignItems, direction, justify } = this.state;
     return (
       <Grid container className={classes.root}>
         <Grid item xs={12}>
           <Grid
             container
             className={classes.demo}
-            align={align}
+            alignItems={alignItems}
+            alignContent={alignContent}
             direction={direction}
             justify={justify}
           >
@@ -116,8 +118,8 @@ class InteractiveGrid extends React.Component {
                   <RadioGroup
                     name="align"
                     aria-label="align"
-                    value={align}
-                    onChange={this.handleChange('align')}
+                    value={alignItems}
+                    onChange={this.handleChange('alignItems')}
                   >
                     <FormControlLabel value="flex-start" control={<Radio />} label="flex-start" />
                     <FormControlLabel value="center" control={<Radio />} label="center" />
