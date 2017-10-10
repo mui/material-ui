@@ -54,6 +54,7 @@ import Table, {
 import { withStyles, StyleRulesCallback } from '../../src/styles';
 import { withResponsiveFullScreen, DialogProps } from '../../src/Dialog';
 import { WithStyles } from '../../src/styles/withStyles';
+import GridListTile from '../../src/GridList/GridListTile';
 
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
@@ -345,9 +346,9 @@ const GridTest = () =>
 
 const GridListTest = () =>
   <GridList cellHeight={160} cols={3}>
-    <GridList cols={1}>
+    <GridListTile cols={1}>
       <img src="img.png" alt="alt text" />
-    </GridList>,
+    </GridListTile>,
   </GridList>;
 
 const ListTest = () =>
