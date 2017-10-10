@@ -104,6 +104,10 @@ const styles = theme => ({
       fontSize: 14,
       lineHeight: 1.6,
     },
+    '& h1 code, & h2 code, & h3 code, & h4 code': {
+      fontSize: 'inherit',
+      lineHeight: 'inherit',
+    },
     '& h1': {
       ...theme.typography.display2,
       color: theme.palette.text.secondary,
