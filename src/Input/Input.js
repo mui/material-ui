@@ -57,7 +57,6 @@ export const styles = (theme: Object) => {
       position: 'relative',
       fontFamily: theme.typography.fontFamily,
       color: theme.palette.input.inputText,
-      paddingBottom: 2,
     },
     formControl: {
       'label + &': {
@@ -79,6 +78,7 @@ export const styles = (theme: Object) => {
           duration: theme.transitions.duration.shorter,
           easing: theme.transitions.easing.easeOut,
         }),
+        pointerEvent: 'none', // Transparent to the hover style.
       },
       '&$focused:after': {
         transform: 'scaleX(1)',
@@ -94,7 +94,7 @@ export const styles = (theme: Object) => {
       font: 'inherit',
       color: 'currentColor',
       // slight alteration to spec spacing to match visual spec result
-      padding: `${theme.spacing.unit - 1}px 0`,
+      padding: `${theme.spacing.unit - 1}px 0 ${theme.spacing.unit + 1}px`,
       border: 0,
       display: 'block',
       boxSizing: 'content-box',
@@ -150,6 +150,7 @@ export const styles = (theme: Object) => {
           duration: theme.transitions.duration.shorter,
           easing: theme.transitions.easing.ease,
         }),
+        pointerEvent: 'none', // Transparent to the hover style.
       },
       '&:hover:not($disabled):before': {
         backgroundColor: theme.palette.text.primary,
