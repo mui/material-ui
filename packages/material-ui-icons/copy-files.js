@@ -26,35 +26,14 @@ function createPackageFile() {
   })
     .then(data => JSON.parse(data))
     .then(packageData => {
-      const {
-        author,
-        version,
-        description,
-        keywords,
-        repository,
-        license,
-        bugs,
-        homepage,
-        peerDependencies,
-        dependencies,
-      } = packageData;
-
       const minimalPackage = {
+        ...packageData,
         name: 'material-ui-icons',
-        author,
-        version,
-        description,
         main: './index.js',
         module: './index.es.js',
         'jsnext:main': './index.es.js',
         typings: './index.d.ts',
-        keywords,
-        repository,
-        license,
-        bugs,
-        homepage,
-        peerDependencies,
-        dependencies,
+        private: false,
       };
 
       return new Promise(resolve => {

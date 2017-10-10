@@ -1,18 +1,10 @@
 {
-  "private": true,
   "name": "material-ui-icons-builder",
+  "private": true,
+  "author": "Material-UI Team",
   "version": "1.0.0-beta.15",
   "description": "Material Design Svg Icons converted to Material-UI React components.",
-  "author": "Material-UI Team",
-  "license": "MIT",
-  "homepage": "http://material-ui.com/",
-  "bugs": {
-    "url": "https://github.com/callemall/material-ui/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "callemall/material-ui"
-  },
+  "main": "./src/index.js",
   "keywords": [
     "Material",
     "Design",
@@ -21,6 +13,15 @@
     "React",
     "react-component"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/callemall/material-ui.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/callemall/material-ui/issues"
+  },
+  "homepage": "https://github.com/callemall/material-ui/tree/v1-beta/packages/material-ui-icons",
   "scripts": {
     "prebuild": "rimraf build",
     "build:es2015": "cross-env NODE_ENV=production babel ./src --out-dir ./build",
