@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyledComponent, PropTypes, StyledComponentProps } from '..';
+import { StyledComponent, PropTypes, StyledComponentProps, Omit } from '..';
 import { FormControlProps, FormHelperTextProps } from '../Form';
 import { InputProps, InputLabelProps } from '../Input';
 import { FormControlClassKey } from '../Form/FormControl'
@@ -37,7 +37,7 @@ export type TextFieldProps = {
   value?: string | number;
   margin?: PropTypes.Margin;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
-} & FormControlProps;
+} & Omit<FormControlProps, 'onChange'>;
 
 export type TextFieldClassKey =
   | FormControlClassKey
