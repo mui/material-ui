@@ -54,11 +54,9 @@ describe('<Stepper />', () => {
           <div />
         </Stepper>,
       );
+      assert.strictEqual(true, true);
     });
-
-    assert.ok(true);
   });
-
 
   describe('controlling child props', () => {
     it('controls children linearly based on the activeStep prop', () => {
