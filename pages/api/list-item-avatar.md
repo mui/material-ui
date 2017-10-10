@@ -1,8 +1,8 @@
-<!--- This documentation is automatically generated, do not try to edit it. -->
-
 ---
 filename: /src/List/ListItemAvatar.js
 ---
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
 
 # ListItemAvatar
 

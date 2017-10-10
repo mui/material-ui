@@ -1,8 +1,8 @@
-<!--- This documentation is automatically generated, do not try to edit it. -->
-
 ---
 filename: /src/Paper/Paper.js
 ---
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Paper
 

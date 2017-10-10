@@ -1,8 +1,8 @@
-<!--- This documentation is automatically generated, do not try to edit it. -->
-
 ---
 filename: /src/Badge/Badge.js
 ---
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Badge
 
