@@ -47,7 +47,15 @@ describe('<Stepper />', () => {
       assert.ok(wrapper.childAt(3).is('pure(StepConnector)'));
     });
 
-    assert.ok(true);
+    it('should accept invalid child', () => {
+      shallowWithContext(
+        <Stepper>
+          {null}
+          <div />
+        </Stepper>,
+      );
+      assert.strictEqual(true, true);
+    });
   });
 
   describe('controlling child props', () => {
