@@ -22,7 +22,7 @@ export type TextFieldProps = {
   inputProps?: Object;
   InputProps?: InputProps & StyledComponentProps<any>;
   inputRef?: React.Ref<any>;
-  label?: React.ReactElement<any> | string;
+  label?: React.ReactNode;
   labelClassName?: string;
   multiline?: boolean;
   name?: string;
