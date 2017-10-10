@@ -253,9 +253,9 @@ ${pagesMarkdown.map(page => `- [${pageToTitle(page)}](${page.pathname})`).join('
 
 export default function generateMarkdown(reactAPI: Object) {
   return [
-    '<!--- This documentation is automatically generated, do not try to edit it. -->',
-    '',
     generateHeader(reactAPI),
+    '',
+    '<!--- This documentation is automatically generated, do not try to edit it. -->',
     '',
     `# ${reactAPI.name}`,
     '',

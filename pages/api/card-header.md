@@ -1,8 +1,8 @@
-<!--- This documentation is automatically generated, do not try to edit it. -->
-
 ---
 filename: /src/Card/CardHeader.js
 ---
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
 
 # CardHeader
 

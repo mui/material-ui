@@ -1,8 +1,8 @@
-<!--- This documentation is automatically generated, do not try to edit it. -->
-
 ---
 filename: /src/MobileStepper/MobileStepper.js
 ---
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
 
 # MobileStepper
 

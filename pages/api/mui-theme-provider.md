@@ -1,8 +1,8 @@
-<!--- This documentation is automatically generated, do not try to edit it. -->
-
 ---
 filename: /src/styles/MuiThemeProvider.js
 ---
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
 
 # MuiThemeProvider
 
