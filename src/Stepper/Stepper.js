@@ -79,6 +79,9 @@ class Stepper extends Component {
      */
     const numChildren = Children.count(children);
     const steps = Children.map(children, (step, index) => {
+      if (!React.isValidElement(step)) {
+        return null;
+      }
       const controlProps = {index};
 
       if (activeStep === index) {
