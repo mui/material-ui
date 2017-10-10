@@ -346,9 +346,9 @@ const GridTest = () =>
 
 const GridListTest = () =>
   <GridList cellHeight={160} cols={3}>
-    <GridListTest cols={1}>
+    <GridList cols={1}>
       <img src="img.png" alt="alt text" />
-    </GridListTest>,
+    </GridList>,
   </GridList>;
 
 const ListTest = () =>
@@ -430,7 +430,7 @@ const SelectionControlTest = () => {
     checkedF: true,
   };
 
-  const handleChange = name => (
+  const handleChange = (name: string) => (
     event: React.SyntheticEvent<any>,
     checked: boolean
   ) => log({ [name]: checked });
@@ -496,7 +496,7 @@ const SwitchTest = () => {
     checkedB: false,
     checkedE: true,
   };
-  const handleChange = name => (
+  const handleChange = (name: string) => (
     event: React.SyntheticEvent<any>,
     checked: boolean
   ) => log({ [name]: checked });
@@ -642,7 +642,7 @@ const TableTest = () => {
   });
 
   let id = 0;
-  function createData(name, calories, fat, carbs, protein) {
+  function createData(name: string, calories: number, fat: number, carbs: number, protein: number) {
     id += 1;
     return { id, name, calories, fat, carbs, protein };
   }
@@ -655,7 +655,7 @@ const TableTest = () => {
     createData('Gingerbread', 356, 16.0, 49, 3.9),
   ];
 
-  function BasicTable(props) {
+  function BasicTable(props: WithStyles<'paper'>) {
     const classes = props.classes;
 
     return (
@@ -698,16 +698,18 @@ const TableTest = () => {
     );
   }
 
-  return withStyles(styles)(BasicTable);
+  return withStyles(styles)<{}>(BasicTable);
 };
 
 const TabsTest = () => {
-  const TabContainer = props =>
+  const TabContainer: React.SFC = props =>
     <div style={{ padding: 20 }}>
       {props.children}
     </div>;
 
-  const styles = theme => ({
+  type ClassKey = 'root' | 'button'
+
+  const styles: StyleRulesCallback<ClassKey> = theme => ({
     root: {
       flexGrow: 1,
       marginTop: theme.spacing.unit * 3,
@@ -718,12 +720,12 @@ const TabsTest = () => {
     },
   });
 
-  class BasicTabs extends React.Component<WithStyles<'root'|'button'>> {
+  class BasicTabs extends React.Component<WithStyles<ClassKey>> {
     state = {
       value: 0,
     };
 
-    handleChange = (event, value) => {
+    handleChange = (event: React.SyntheticEvent<any>, value: number) => {
       this.setState({ value });
     };
 
@@ -767,7 +769,7 @@ const TextFieldTest = () =>
       id="name"
       label="Name"
       value={'Alice'}
-      onChange={(event: React.SyntheticEvent<any>) =>
+      onChange={event =>
         log({ name: event.currentTarget.value })}
     />
     <TextField

@@ -6,6 +6,7 @@
     "sourceMap": true,
     "jsx": "react",
     "moduleResolution": "node",
+    "noImplicitAny": true,
     "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
     "suppressImplicitAnyIndexErrors": true,

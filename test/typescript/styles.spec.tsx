@@ -11,6 +11,7 @@ import {
 } from '../../src/styles';
 import Button from '../../src/Button/Button';
 import { StyledComponentProps } from '../../src/index';
+import { StyleRulesCallback } from '../../src/styles/withStyles';
 
 // Shared types for examples
 type ComponentClassNames = 'root';
@@ -19,7 +20,7 @@ interface ComponentProps {
 }
 
 // Example 1
-const styles = ({ palette, spacing }) => ({
+const styles: StyleRulesCallback<'root'> = ({ palette, spacing }) => ({
   root: {
     padding: spacing.unit,
     background: palette.background,
