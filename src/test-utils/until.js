@@ -12,7 +12,8 @@ function shallowRecursively(wrapper, selector, { context, ...other }) {
   // enzyme@3
   // const instance = wrapper.root().instance();
   const instance = wrapper.root.instance();
-  if (instance.getChildContext) {
+  // The instance can be null with a stateless functional component and react >= 16.
+  if (instance && instance.getChildContext) {
     newContext = {
       ...context,
       ...instance.getChildContext(),
