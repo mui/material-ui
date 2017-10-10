@@ -3,7 +3,7 @@ import { Omit, StyledComponent, StyledComponentProps } from '..';
 import { HiddenProps } from '../Hidden/Hidden';
 import { Breakpoint } from '../styles/createBreakpoints';
 
-export type GridAlignment = 'flex-start' | 'center' | 'flex-end' | 'stretch';
+export type GridItemsAlignment = 'flex-start' | 'center' | 'flex-end' | 'stretch';
 
 export type GridDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
 
@@ -24,7 +24,7 @@ export type GridProps = {
   component?: React.ReactType;
   container?: boolean;
   item?: boolean;
-  align?: GridAlignment;
+  alignItems?: GridItemsAlignment;
   direction?: GridDirection;
   spacing?: GridSpacing;
   hidden?: HiddenProps & StyledComponentProps<any>;
@@ -40,10 +40,10 @@ export type GridClassKey =
   | 'direction-xs-column-reverse'
   | 'direction-xs-row-reverse'
   | 'wrap-xs-nowrap'
-  | 'align-xs-center'
-  | 'align-xs-flex-start'
-  | 'align-xs-flex-end'
-  | 'align-xs-baseline'
+  | 'align-items-xs-center'
+  | 'align-items-xs-flex-start'
+  | 'align-items-xs-flex-end'
+  | 'align-items-xs-baseline'
   | 'justify-xs-center'
   | 'justify-xs-flex-end'
   | 'justify-xs-space-between'

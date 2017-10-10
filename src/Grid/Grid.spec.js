@@ -67,6 +67,13 @@ describe('<Grid />', () => {
     });
   });
 
+  describe('prop: alignItems', () => {
+    it('should apply the item align class', () => {
+      const wrapper = shallow(<Grid alignItems="center" container />);
+      assert.strictEqual(wrapper.hasClass(classes['align-items-xs-center']), true);
+    });
+  });
+
   describe('prop: other', () => {
     it('should spread the other properties to the root element', () => {
       const handleClick = () => {};
