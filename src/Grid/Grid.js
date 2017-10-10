@@ -122,6 +122,21 @@ export const styles = (theme: Object) => ({
   'align-items-xs-baseline': {
     alignItems: 'baseline',
   },
+  'align-content-xs-center': {
+    alignContent: 'center',
+  },
+  'align-content-xs-flex-start': {
+    alignContent: 'flex-start',
+  },
+  'align-content-xs-flex-end': {
+    alignContent: 'flex-end',
+  },
+  'align-content-xs-space-between': {
+    alignContent: 'space-between',
+  },
+  'align-content-xs-space-around': {
+    alignContent: 'space-around',
+  },
   'justify-xs-center': {
     justifyContent: 'center',
   },
@@ -177,6 +192,17 @@ export type Props = {
    * You should be wrapping *items* with a *container*.
    */
   item?: boolean,
+  /**
+   * Defines the `align-content` style property.
+   * It's applied for all screen sizes.
+   */
+  alignContent?:
+    | 'stretch'
+    | 'center'
+    | 'flex-start'
+    | 'flex-end'
+    | 'space-between'
+    | 'space-around',
   /**
    * Defines the `align-items` style property.
    * It's applied for all screen sizes.
@@ -240,6 +266,7 @@ function Grid(props: ProvidedProps & Props) {
     component: ComponentProp,
     container,
     item,
+    alignContent,
     alignItems,
     direction,
     spacing,
@@ -263,6 +290,8 @@ function Grid(props: ProvidedProps & Props) {
       [classes[`wrap-xs-${String(wrap)}`]]: wrap !== Grid.defaultProps.wrap,
       [classes[`align-items-xs-${String(alignItems)}`]]:
         alignItems !== Grid.defaultProps.alignItems,
+      [classes[`align-content-xs-${String(alignContent)}`]]:
+        alignContent !== Grid.defaultProps.alignContent,
       [classes[`justify-xs-${String(justify)}`]]: justify !== Grid.defaultProps.justify,
       [classes['grid-xs']]: xs === true,
       [classes[`grid-xs-${String(xs)}`]]: xs && xs !== true,
@@ -291,6 +320,7 @@ function Grid(props: ProvidedProps & Props) {
 }
 
 Grid.defaultProps = {
+  alignContent: 'stretch',
   alignItems: 'stretch',
   component: 'div',
   container: false,
@@ -313,6 +343,7 @@ if (process.env.NODE_ENV !== 'production') {
 
   // $FlowFixMe - cannot mix legacy propTypes with current HOC pattern - https://github.com/facebook/flow/issues/4644#issuecomment-332530909
   GridWrapper.propTypes = {
+    alignContent: requireProp('container'),
     alignItems: requireProp('container'),
     direction: requireProp('container'),
     justify: requireProp('container'),

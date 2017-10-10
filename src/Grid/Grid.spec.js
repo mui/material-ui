@@ -68,9 +68,16 @@ describe('<Grid />', () => {
   });
 
   describe('prop: alignItems', () => {
-    it('should apply the item align class', () => {
+    it('should apply the align-item class', () => {
       const wrapper = shallow(<Grid alignItems="center" container />);
       assert.strictEqual(wrapper.hasClass(classes['align-items-xs-center']), true);
+    });
+  });
+
+  describe('prop: alignContent', () => {
+    it('should apply the align-content class', () => {
+      const wrapper = shallow(<Grid alignContent="center" container />);
+      assert.strictEqual(wrapper.hasClass(classes['align-content-xs-center']), true);
     });
   });
 

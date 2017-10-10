@@ -5,6 +5,8 @@ import { Breakpoint } from '../styles/createBreakpoints';
 
 export type GridItemsAlignment = 'flex-start' | 'center' | 'flex-end' | 'stretch';
 
+export type GridContentAlignment = 'stretch' | 'center' | 'flex-start' | 'flex-end' |'space-between' | 'space-around';
+
 export type GridDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
 
 export type GridSpacing = 0 | 8 | 16 | 24 | 40;
@@ -25,6 +27,7 @@ export type GridProps = {
   container?: boolean;
   item?: boolean;
   alignItems?: GridItemsAlignment;
+  alignContent?: GridContentAlignment;
   direction?: GridDirection;
   spacing?: GridSpacing;
   hidden?: HiddenProps & StyledComponentProps<any>;
@@ -44,6 +47,11 @@ export type GridClassKey =
   | 'align-items-xs-flex-start'
   | 'align-items-xs-flex-end'
   | 'align-items-xs-baseline'
+  | 'align-content-xs-center'
+  | 'align-content-xs-flex-start'
+  | 'align-content-xs-flex-end'
+  | 'align-content-xs-space-between'
+  | 'align-content-xs-space-around'
   | 'justify-xs-center'
   | 'justify-xs-flex-end'
   | 'justify-xs-space-between'
