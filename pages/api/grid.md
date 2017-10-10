@@ -19,7 +19,7 @@ filename: /src/Grid/Grid.js
 | container | boolean | false | If `true`, the component will have the flex *container* behavior. You should be wrapping *items* with a *container*. |
 | direction | union:&nbsp;'row'<br>&nbsp;'row-reverse'<br>&nbsp;'column'<br>&nbsp;'column-reverse'<br> | 'row' | Defines the `flex-direction` style property. It is applied for all screen sizes. |
 | hidden | [HiddenProps](/layout/hidden) | undefined | If provided, will wrap with [Hidden](/api/hidden) component and given properties. |
-| item | boolean | false | It true, the component will have the flex *item* behavior. You should be wrapping *items* with a *container*. |
+| item | boolean | false | If `true`, the component will have the flex *item* behavior. You should be wrapping *items* with a *container*. |
 | justify | union:&nbsp;'flex-start', 'center', 'flex-end', 'space-between', 'space-around'<br> | 'flex-start' | Defines the `justify-content` style property. It is applied for all screen sizes. |
 | lg | union:&nbsp;boolean, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br> |  | Defines the number of grids the component is going to use. It's applied for the `lg` breakpoint and wider screens if not overridden. |
 | md | union:&nbsp;boolean, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12<br> |  | Defines the number of grids the component is going to use. It's applied for the `md` breakpoint and wider screens if not overridden. |
