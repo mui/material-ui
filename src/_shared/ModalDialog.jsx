@@ -20,7 +20,7 @@ const ModalDialog = (props) => {
       </DialogContent>
 
       <DialogActions>
-        <Button onClick={props.onRequestClose}> Cancel </Button>
+        <Button color="primary" onClick={props.onRequestClose}> Cancel </Button>
       </DialogActions>
     </Dialog>
   );

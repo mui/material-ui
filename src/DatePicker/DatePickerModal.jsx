@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import DateTextField from '../_shared/DateTextField';
 import ModalDialog from '../_shared/ModalDialog';
 import DatePicker from './DatePicker';
 
-export default class DatePickerModal extends Component {
+export default class DatePickerModal extends PureComponent {
   static propTypes = {
     value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     format: PropTypes.string,
+    onChange: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -16,7 +17,7 @@ export default class DatePickerModal extends Component {
   }
 
   state = {
-    open: false,
+    open: true,
   }
 
   togglePicker = () => {
@@ -24,7 +25,10 @@ export default class DatePickerModal extends Component {
   }
 
   render() {
-    const { value, format, ...other } = this.props;
+    const {
+      value, format, onChange, ...other
+    } = this.props;
+
     return [
       <DateTextField
         value={value}
@@ -37,7 +41,10 @@ export default class DatePickerModal extends Component {
         open={this.state.open}
         onRequestClose={this.togglePicker}
       >
-        <DatePicker />
+        <DatePicker
+          onChange={onChange}
+          value={value}
+        />
       </ModalDialog>,
     ];
   }

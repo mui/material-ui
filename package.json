@@ -6,11 +6,14 @@
   "peerDependencies": {
     "react": "^16.0.0",
     "prop-types": "^15.6.0",
-    "material-ui": "^1.0.0-beta.13"
+    "material-ui": "^1.0.0-beta.13",
+    "classnames": "^2.2.5"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "material-ui": "^1.0.0-beta.13",
     "moment": "^2.18.1",
+    "moment-range": "^3.0.3",
     "peer-deps-externals-webpack-plugin": "^1.0.2",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",

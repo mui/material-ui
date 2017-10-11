@@ -5,7 +5,16 @@ import './App.css';
 
 
 class App extends Component {
+  state = {
+    selectedDate: new Date()
+  }
+
+  handleDateChange = date => {
+    this.setState({ selectedDate: date })
+  }
+
   render() {
+    const { selectedDate } = this.state
     return (
       <div className="root">
          <AppBar position="static">
@@ -25,7 +34,10 @@ class App extends Component {
           </Typography>
 
           <div className="main-picker">
-            <DateTimePicker value={new Date()} />
+            <DateTimePicker 
+              value={selectedDate}
+              onChange={this.handleDateChange} 
+            />
           </div>
         </main>
       </div>
