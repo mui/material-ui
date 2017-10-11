@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
-import { Omit } from '../index';
+import { StyledComponent, Omit } from '..';
 
 export type BottomNavigationProps = {
   children: React.ReactNode;
