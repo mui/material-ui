@@ -14,7 +14,7 @@ export type TransitionHandlers = {
 };
 
 export interface TransitionProps extends Partial<TransitionHandlers> {
-  children?: React.ReactElement<any>;
+  children?: React.ReactNode;
   className?: string;
   enteredClassName?: string;
   enteringClassName?: string;
