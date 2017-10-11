@@ -28,7 +28,6 @@ class InteractiveGrid extends React.Component {
   state = {
     direction: 'row',
     justify: 'center',
-    alignContent: 'stretch',
     alignItems: 'center',
   };
 
@@ -40,7 +39,7 @@ class InteractiveGrid extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { alignContent, alignItems, direction, justify } = this.state;
+    const { alignItems, direction, justify } = this.state;
     return (
       <Grid container className={classes.root}>
         <Grid item xs={12}>
@@ -48,7 +47,6 @@ class InteractiveGrid extends React.Component {
             container
             className={classes.demo}
             alignItems={alignItems}
-            alignContent={alignContent}
             direction={direction}
             justify={justify}
           >
@@ -67,7 +65,7 @@ class InteractiveGrid extends React.Component {
         <Grid item xs={12}>
           <Paper className={classes.control}>
             <Grid container>
-              <Grid item xs={6} sm={3}>
+              <Grid item xs={6} sm={4}>
                 <FormControl component="fieldset">
                   <FormLabel>direction</FormLabel>
                   <RadioGroup
@@ -87,7 +85,7 @@ class InteractiveGrid extends React.Component {
                   </RadioGroup>
                 </FormControl>
               </Grid>
-              <Grid item xs={6} sm={3}>
+              <Grid item xs={6} sm={4}>
                 <FormControl component="fieldset">
                   <FormLabel>justify</FormLabel>
                   <RadioGroup
@@ -112,7 +110,7 @@ class InteractiveGrid extends React.Component {
                   </RadioGroup>
                 </FormControl>
               </Grid>
-              <Grid item xs={6} sm={3}>
+              <Grid item xs={6} sm={4}>
                 <FormControl component="fieldset">
                   <FormLabel>alignItems</FormLabel>
                   <RadioGroup
@@ -126,32 +124,6 @@ class InteractiveGrid extends React.Component {
                     <FormControlLabel value="flex-end" control={<Radio />} label="flex-end" />
                     <FormControlLabel value="stretch" control={<Radio />} label="stretch" />
                     <FormControlLabel value="baseline" control={<Radio />} label="baseline" />
-                  </RadioGroup>
-                </FormControl>
-              </Grid>
-              <Grid item xs={6} sm={3}>
-                <FormControl component="fieldset">
-                  <FormLabel>alignContent</FormLabel>
-                  <RadioGroup
-                    name="alignContent"
-                    aria-label="alignContent"
-                    value={alignContent}
-                    onChange={this.handleChange('alignContent')}
-                  >
-                    <FormControlLabel value="stretch" control={<Radio />} label="stretch" />
-                    <FormControlLabel value="center" control={<Radio />} label="center" />
-                    <FormControlLabel value="flex-start" control={<Radio />} label="flex-start" />
-                    <FormControlLabel value="flex-end" control={<Radio />} label="flex-end" />
-                    <FormControlLabel
-                      value="space-between"
-                      control={<Radio />}
-                      label="space-between"
-                    />
-                    <FormControlLabel
-                      value="space-around"
-                      control={<Radio />}
-                      label="space-around"
-                    />
                   </RadioGroup>
                 </FormControl>
               </Grid>
