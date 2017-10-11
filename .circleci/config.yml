@@ -26,7 +26,7 @@ jobs:
           key: v1-yarn-sha-{{ checksum "yarn.lock" }}
       - run:
           name: Install js dependencies
-          command: yarn install --pure-lockfile
+          command: yarn install --frozen-lockfile
       - save_cache:
           key: v1-yarn-sha-{{ checksum "yarn.lock" }}
           paths:
