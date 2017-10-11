@@ -15,7 +15,7 @@ export type TabsProps = {
   scrollButtons?: 'auto' | 'on' | 'off';
   textColor?: 'accent' | 'primary' | 'inherit' | string;
   width?: string;
-} & Partial<Omit<ButtonBaseProps, 'onChange'>>;
+} & Omit<ButtonBaseProps, 'onChange'>;
 
 export type TabsClassKey =
   | 'root'

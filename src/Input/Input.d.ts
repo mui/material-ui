@@ -38,12 +38,10 @@ export type InputProps = {
   onKeyDown?: React.KeyboardEventHandler<
     HTMLTextAreaElement | HTMLInputElement
   >;
-} & Partial<
-  Omit<
+} & Omit<
     React.HTMLAttributes<HTMLDivElement>,
     'onChange' | 'onKeyUp' | 'onKeyDown'
-  >
->;
+  >;
 
 export type InputClassKey =
   | 'root'

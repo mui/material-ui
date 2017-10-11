@@ -6,7 +6,7 @@ export type CardHeaderProps = {
   avatar?: React.ReactNode;
   subheader?: React.ReactNode;
   title?: React.ReactNode;
-} & Partial<Omit<CardContentProps, 'title'>>;
+} & Omit<CardContentProps, 'title'>;
 
 export type CardHeaderClassKey =
   | 'root'

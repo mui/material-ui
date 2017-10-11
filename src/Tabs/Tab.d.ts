@@ -16,7 +16,7 @@ export type TabProps = {
   selected?: boolean;
   style?: object;
   textColor?: string | 'accent' | 'primary' | 'inherit';
-} & Partial<Omit<ButtonBaseProps, 'onChange'>>;
+} & Omit<ButtonBaseProps, 'onChange'>;
 
 export type TabClassKey =
   | 'root'
