@@ -1,6 +1,7 @@
 // @flow weak
 
 import { shallow as enzymeShallow } from 'enzyme';
+import type { Element } from 'react';
 import until from './until';
 
 // Generate an enhanced shallow function.
@@ -8,7 +9,7 @@ export default function createShallow(options1: Object = {}) {
   const { shallow = enzymeShallow, dive = false, untilSelector = false, ...other1 } = options1;
 
   const shallowWithContext = function shallowWithContext(
-    node: React$Element<any>,
+    node: Element<any>,
     options2: Object = {},
   ) {
     const options = {

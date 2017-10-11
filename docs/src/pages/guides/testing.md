@@ -41,8 +41,9 @@ Please refer to the [API documentation of enzyme](http://airbnb.io/enzyme/docs/a
 
 1. `options` (*Object* [optional])
   - `options.shallow` (*Function* [optional]): The shallow function to enhance, it's using **enzyme by default**.
-  - `options.otherContext` (*Object* [optional]): Context to be passed into the component.
+  - `options.untilSelector` (*String* [optional]): Recursively shallow renders the children until it can find the provided selector. It's usefull to drill down Higher-order Components.
   - `options.dive` (*Boolean* [optional]): Shallow render the one non-DOM child of the current wrapper, and return a wrapper around the result.
+  - The other keys are forwarded to the options argument of `enzyme.shallow()`.
 
 #### Returns
 
@@ -75,6 +76,7 @@ Please refer to the [API documentation of enzyme](http://airbnb.io/enzyme/docs/a
 
 1. `options` (*Object* [optional])
   - `options.mount` (*Function* [optional]): The mount function to enhance, it's using **enzyme by default**.
+  - The other keys are forwarded to the options argument of `enzyme.mount()`.
 
 #### Returns
 
@@ -111,6 +113,7 @@ Please refer to the [API documentation of enzyme](http://airbnb.io/enzyme/docs/a
 
 1. `options` (*Object* [optional])
   - `options.render` (*Function* [optional]): The render function to enhance, it's using **enzyme by default**.
+  - The other keys are forwarded to the options argument of `enzyme.render()`.
 
 #### Returns
 
