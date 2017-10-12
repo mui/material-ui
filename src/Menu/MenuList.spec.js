@@ -9,7 +9,7 @@ describe('<MenuList />', () => {
   let shallow;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    shallow = createShallow({ dive: true, disableLifecycleMethods: true });
   });
 
   describe('list node', () => {

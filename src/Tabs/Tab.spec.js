@@ -82,6 +82,7 @@ describe('<Tab />', () => {
       const instance = wrapper.instance();
       instance.label = { getClientRects: stub().returns({ length: 2 }) };
       instance.checkTextWrap();
+      wrapper.update();
       const label = wrapper
         .childAt(0)
         .childAt(0)

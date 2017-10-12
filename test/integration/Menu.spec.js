@@ -195,10 +195,11 @@ describe('<Menu> integration', () => {
     beforeEach(() => {
       wrapper = mount(<SimpleMenu transitionDuration={0} />);
       wrapper.setState({ open: true });
-      const portal = wrapper.find('Modal').node.mountNode.firstChild;
-      const portalWrapper = new ReactWrapper(portal, portal);
+      const portal = wrapper.find('Portal').props().children;
+      const portalWrapper = new ReactWrapper(portal);
       list = portalWrapper.find('List');
       backdrop = portalWrapper.find('Backdrop');
+      assert.strictEqual(backdrop.length, 1, 'find a backdrop');
     });
 
     it('should close the menu with tab', done => {

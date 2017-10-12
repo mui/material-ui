@@ -106,6 +106,11 @@ Big thanks to the 18 contributors who made this release possible.
 
 - [flow] Fix Higher-order Component typing (#8419) @rosskevin
 
+```diff
+-  withTheme,
++  withTheme(),
+```
+
 - [Transition] Rich transitionDuration property (#8448) @oliviertassinari
 
 ```diff
