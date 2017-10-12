@@ -8,7 +8,7 @@ const CalendarHeader = (props) => {
 
   const selectNextMonth = () => onMonthChange(currentMonth.clone().add(1, 'months'));
   const selectPreviousMonth = () => onMonthChange(currentMonth.clone().subtract(1, 'months'));
-  console.log();
+
   return (
     <div>
       <div className={classes.switchHeader}>

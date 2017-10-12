@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import classnames from 'classnames';
-import { AppBar, Typography, Toolbar, withStyles } from 'material-ui';
+import { Typography, Toolbar, withStyles } from 'material-ui';
 
 import Calendar from './Calendar';
 import YearSelection from './YearSelection';
@@ -16,6 +16,7 @@ class DatePicker extends PureComponent {
     onChange: PropTypes.func.isRequired,
     disableFuture: PropTypes.bool,
     animateYearScrolling: PropTypes.bool,
+    openToYearSelection: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -23,10 +24,11 @@ class DatePicker extends PureComponent {
     maxDate: '2100-01-01',
     disableFuture: false,
     animateYearScrolling: true,
+    openToYearSelection: false,
   }
 
   state = {
-    showYearSelection: false,
+    showYearSelection: this.props.openToYearSelection,
   }
 
   get date() {
@@ -57,29 +59,27 @@ class DatePicker extends PureComponent {
 
     return (
       <div className={classes.container}>
-        <AppBar position="static">
-          <Toolbar className={classes.toolbar}>
-            <Typography
-              type="subheading"
-              onClick={this.openYearSelection}
-              className={classnames(classes.toolbarBtn, {
+        <Toolbar className={classes.toolbar}>
+          <Typography
+            type="subheading"
+            onClick={this.openYearSelection}
+            className={classnames(classes.toolbarBtn, {
                 [classes.toolbarBtnSelected]: showYearSelection,
               })}
-            >
-              { this.date.format('YYYY') }
-            </Typography>
+          >
+            { this.date.format('YYYY') }
+          </Typography>
 
-            <Typography
-              type="display1"
-              onClick={this.openCalendar}
-              className={classnames(classes.toolbarBtn, {
+          <Typography
+            type="display1"
+            onClick={this.openCalendar}
+            className={classnames(classes.toolbarBtn, {
                 [classes.toolbarBtnSelected]: !showYearSelection,
               })}
-            >
-              { this.date.format('ddd, MMM DD') }
-            </Typography>
-          </Toolbar>
-        </AppBar>
+          >
+            { this.date.format('ddd, MMM DD') }
+          </Typography>
+        </Toolbar>
 
         {
           showYearSelection
@@ -114,6 +114,7 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItems: 'flex-start',
     justifyContent: 'center',
+    backgroundColor: theme.palette.primary[500],
     height: 100,
   },
   toolbarBtn: {

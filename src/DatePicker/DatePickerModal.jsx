@@ -14,6 +14,7 @@ export default class DatePickerModal extends PureComponent {
     autoOk: PropTypes.bool,
     disableFuture: PropTypes.bool,
     animateYearScrolling: PropTypes.bool,
+    openToYearSelection: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -55,7 +56,7 @@ export default class DatePickerModal extends PureComponent {
   render() {
     const { date } = this.state;
     const {
-      value, format, autoOk, onChange, disableFuture, animateYearScrolling,
+      value, format, autoOk, onChange, disableFuture, animateYearScrolling, openToYearSelection,
       ...other
     } = this.props;
 
@@ -78,6 +79,7 @@ export default class DatePickerModal extends PureComponent {
             onChange={this.handleChange}
             disableFuture={disableFuture}
             animateYearScrolling={animateYearScrolling}
+            openToYearSelection={openToYearSelection}
           />
         </ModalDialog>
       </span>
