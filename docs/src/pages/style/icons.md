@@ -44,7 +44,8 @@ or included as a child for other Material-UI components that use icons.
 {{demo='pages/style/SvgIcons.js'}}
 
 Looking for SVG icons? There are a lot of projects out there.
-We have found one that provides 2,000+ unofficial Material Design Icons: [https://materialdesignicons.com/](https://materialdesignicons.com/).
+We have found one that provides 2,000+ unofficial Material Design Icons: [https://materialdesignicons.com](https://materialdesignicons.com/).
+You can use the [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) integration project between this raw list of icons and Material-UI.
 
 ### SVG Material icons
 
