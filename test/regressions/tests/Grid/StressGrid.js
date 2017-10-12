@@ -47,7 +47,7 @@ function StressGrid(props) {
             <Paper className={classes.paper}>between</Paper>
           </Grid>
         </Grid>
-        <Grid container item spacing={8} align="stretch" direction="column-reverse">
+        <Grid container item spacing={8} alignItems="stretch" direction="column-reverse">
           <Grid item>
             <Paper className={classes.paper}>reverse</Paper>
           </Grid>

@@ -12,7 +12,8 @@ filename: /src/Grid/Grid.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| align | union:&nbsp;'flex-start', 'center', 'flex-end', 'stretch', 'baseline'<br> | 'stretch' | Defines the `align-items` style property. It's applied for all screen sizes. |
+| alignContent | union:&nbsp;, 'stretch', 'center', 'flex-start', 'flex-end', 'space-between', 'space-around'<br> | 'stretch' | Defines the `align-content` style property. It's applied for all screen sizes. |
+| alignItems | union:&nbsp;'flex-start', 'center', 'flex-end', 'stretch', 'baseline'<br> | 'stretch' | Defines the `align-items` style property. It's applied for all screen sizes. |
 | children | Node |  | The content of the component. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | component | ElementType | 'div' | The component used for the root node. Either a string to use a DOM element or a component. |
@@ -41,10 +42,15 @@ This property accepts the following keys:
 - `direction-xs-column-reverse`
 - `direction-xs-row-reverse`
 - `wrap-xs-nowrap`
-- `align-xs-center`
-- `align-xs-flex-start`
-- `align-xs-flex-end`
-- `align-xs-baseline`
+- `align-items-xs-center`
+- `align-items-xs-flex-start`
+- `align-items-xs-flex-end`
+- `align-items-xs-baseline`
+- `align-content-xs-center`
+- `align-content-xs-flex-start`
+- `align-content-xs-flex-end`
+- `align-content-xs-space-between`
+- `align-content-xs-space-around`
 - `justify-xs-center`
 - `justify-xs-flex-end`
 - `justify-xs-space-between`

@@ -110,17 +110,32 @@ export const styles = (theme: Object) => ({
   'wrap-xs-nowrap': {
     flexWrap: 'nowrap',
   },
-  'align-xs-center': {
+  'align-items-xs-center': {
     alignItems: 'center',
   },
-  'align-xs-flex-start': {
+  'align-items-xs-flex-start': {
     alignItems: 'flex-start',
   },
-  'align-xs-flex-end': {
+  'align-items-xs-flex-end': {
     alignItems: 'flex-end',
   },
-  'align-xs-baseline': {
+  'align-items-xs-baseline': {
     alignItems: 'baseline',
+  },
+  'align-content-xs-center': {
+    alignContent: 'center',
+  },
+  'align-content-xs-flex-start': {
+    alignContent: 'flex-start',
+  },
+  'align-content-xs-flex-end': {
+    alignContent: 'flex-end',
+  },
+  'align-content-xs-space-between': {
+    alignContent: 'space-between',
+  },
+  'align-content-xs-space-around': {
+    alignContent: 'space-around',
   },
   'justify-xs-center': {
     justifyContent: 'center',
@@ -178,10 +193,21 @@ export type Props = {
    */
   item?: boolean,
   /**
+   * Defines the `align-content` style property.
+   * It's applied for all screen sizes.
+   */
+  alignContent?:
+    | 'stretch'
+    | 'center'
+    | 'flex-start'
+    | 'flex-end'
+    | 'space-between'
+    | 'space-around',
+  /**
    * Defines the `align-items` style property.
    * It's applied for all screen sizes.
    */
-  align?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline',
+  alignItems?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline',
   /**
    * Defines the `flex-direction` style property.
    * It is applied for all screen sizes.
@@ -240,7 +266,8 @@ function Grid(props: ProvidedProps & Props) {
     component: ComponentProp,
     container,
     item,
-    align,
+    alignContent,
+    alignItems,
     direction,
     spacing,
     hidden,
@@ -261,7 +288,10 @@ function Grid(props: ProvidedProps & Props) {
       [classes[`spacing-xs-${String(spacing)}`]]: container && spacing !== 0,
       [classes[`direction-xs-${String(direction)}`]]: direction !== Grid.defaultProps.direction,
       [classes[`wrap-xs-${String(wrap)}`]]: wrap !== Grid.defaultProps.wrap,
-      [classes[`align-xs-${String(align)}`]]: align !== Grid.defaultProps.align,
+      [classes[`align-items-xs-${String(alignItems)}`]]:
+        alignItems !== Grid.defaultProps.alignItems,
+      [classes[`align-content-xs-${String(alignContent)}`]]:
+        alignContent !== Grid.defaultProps.alignContent,
       [classes[`justify-xs-${String(justify)}`]]: justify !== Grid.defaultProps.justify,
       [classes['grid-xs']]: xs === true,
       [classes[`grid-xs-${String(xs)}`]]: xs && xs !== true,
@@ -290,7 +320,8 @@ function Grid(props: ProvidedProps & Props) {
 }
 
 Grid.defaultProps = {
-  align: 'stretch',
+  alignContent: 'stretch',
+  alignItems: 'stretch',
   component: 'div',
   container: false,
   direction: 'row',
@@ -312,7 +343,8 @@ if (process.env.NODE_ENV !== 'production') {
 
   // $FlowFixMe - cannot mix legacy propTypes with current HOC pattern - https://github.com/facebook/flow/issues/4644#issuecomment-332530909
   GridWrapper.propTypes = {
-    align: requireProp('container'),
+    alignContent: requireProp('container'),
+    alignItems: requireProp('container'),
     direction: requireProp('container'),
     justify: requireProp('container'),
     lg: requireProp('item'),
