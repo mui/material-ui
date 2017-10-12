@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, IconButton } from 'material-ui';
+
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
 import classnames from 'classnames';
@@ -12,7 +13,7 @@ class Calendar extends PureComponent {
   static propTypes = {
     date: PropTypes.shape({}).isRequired,
     classes: PropTypes.shape({}).isRequired,
-    onDateChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
   }
 
   state = {
@@ -20,7 +21,7 @@ class Calendar extends PureComponent {
   }
 
   onDateSelect = (day) => {
-    this.props.onDateChange(day);
+    this.props.onChange(day);
   }
 
   handleChangeMonth = (newMonth) => {
@@ -88,10 +89,6 @@ const styles = theme => ({
   calendar: {
     marginTop: 10,
   },
-  selected: {
-    color: theme.palette.primary[700],
-    backgroundColor: theme.palette.primary[200],
-  },
   hidden: {
     opacity: 0,
     pointerEvents: 'none',
@@ -99,8 +96,13 @@ const styles = theme => ({
   day: {
     width: 36,
     height: 36,
-    fontSize: 15,
+    fontSize: 14,
     margin: '0 2px',
+    color: theme.palette.text.primary,
+  },
+  selected: {
+    color: theme.palette.primary[700],
+    backgroundColor: theme.palette.primary[200],
   },
   week: {
     display: 'flex',
