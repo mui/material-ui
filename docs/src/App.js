@@ -5,7 +5,16 @@ import './App.css';
 
 
 class App extends Component {
+  state = {
+    selectedDate: new Date()
+  }
+
+  handleDateChange = date => {
+    this.setState({ selectedDate: date })
+  }
+
   render() {
+    const { selectedDate } = this.state
     return (
       <div className="root">
          <AppBar position="static">
@@ -25,7 +34,12 @@ class App extends Component {
           </Typography>
 
           <div className="main-picker">
-            <DateTimePicker />
+            <DateTimePicker 
+              disableFuture
+              value={selectedDate}
+              onChange={this.handleDateChange}
+              animateYearScrolling={false}
+            />
           </div>
         </main>
       </div>
