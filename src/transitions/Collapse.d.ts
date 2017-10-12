@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StyledComponent, Omit } from '..';
 import { Theme } from '../styles/createMuiTheme';
 import { TransitionDuration, TransitionProps } from '../internal/Transition';
 
-export interface CollapseProps extends TransitionProps {
+export interface CollapseProps extends Partial<Omit<TransitionProps, 'children'>> {
+  children?: React.ReactNode;
   theme?: Theme;
   transitionDuration?: TransitionDuration | 'auto';
 }
