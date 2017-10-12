@@ -2,23 +2,30 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { spy } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import { findDOMNode } from 'react-dom';
 import { createShallow, createMount } from '../test-utils';
-import Slide from './Slide';
+import Slide, { setTranslateValue } from './Slide';
 import transitions, { easing } from '../styles/transitions';
 import createMuiTheme from '../styles/createMuiTheme';
 
 describe('<Slide />', () => {
   let shallow;
+  let mount;
 
   before(() => {
     shallow = createShallow({ dive: true });
+    mount = createMount();
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   it('should render a Transition', () => {
     const wrapper = shallow(<Slide />);
-    assert.strictEqual(wrapper.name(), 'Transition');
+    assert.strictEqual(wrapper.name(), 'EventListener');
+    assert.strictEqual(wrapper.childAt(0).name(), 'Transition');
   });
 
   describe('event callbacks', () => {
@@ -30,11 +37,15 @@ describe('<Slide />', () => {
         return result;
       }, {});
 
-      const wrapper = shallow(<Slide {...handlers} />);
+      const wrapper = shallow(<Slide {...handlers} />).childAt(0);
 
       events.forEach(n => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
-        wrapper.simulate(event, { style: {}, getBoundingClientRect: () => ({}) });
+        wrapper.simulate(event, {
+          fakeTransform: 'none',
+          style: {},
+          getBoundingClientRect: () => ({}),
+        });
         assert.strictEqual(handlers[n].callCount, 1, `should have called the ${n} handler`);
       });
     });
@@ -57,7 +68,7 @@ describe('<Slide />', () => {
         />,
       );
       instance = wrapper.instance();
-      element = { getBoundingClientRect: () => ({}), style: {} };
+      element = { fakeTransform: 'none', getBoundingClientRect: () => ({}), style: {} };
     });
 
     it('should create proper easeOut animation onEntering', () => {
@@ -93,6 +104,7 @@ describe('<Slide />', () => {
 
       beforeEach(() => {
         element = {
+          fakeTransform: 'none',
           getBoundingClientRect: () => ({
             width: 500,
             height: 300,
@@ -146,6 +158,7 @@ describe('<Slide />', () => {
 
       before(() => {
         element = {
+          fakeTransform: 'none',
           getBoundingClientRect: () => ({
             width: 500,
             height: 300,
@@ -176,16 +189,6 @@ describe('<Slide />', () => {
   });
 
   describe('mount', () => {
-    let mount;
-
-    before(() => {
-      mount = createMount();
-    });
-
-    after(() => {
-      mount.cleanUp();
-    });
-
     it('should work when initially hidden', () => {
       const wrapper = mount(
         // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
@@ -195,7 +198,61 @@ describe('<Slide />', () => {
       );
       const transition = findDOMNode(wrapper.instance().transition);
       // $FlowFixMe
-      assert.notStrictEqual(transition ? transition.style.transform : undefined, undefined);
+      assert.notStrictEqual(transition.style.transform, undefined);
+    });
+  });
+
+  describe('resize', () => {
+    let clock;
+
+    before(() => {
+      clock = useFakeTimers();
+    });
+
+    after(() => {
+      clock.restore();
+    });
+
+    it('should recompute the correct position', () => {
+      const wrapper = mount(
+        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
+        <Slide.Naked theme={createMuiTheme()} direction="up" in={false}>
+          <div>Foo</div>
+        </Slide.Naked>,
+      );
+      const instance = wrapper.instance();
+      instance.handleResize();
+      clock.tick(166);
+      const transition = findDOMNode(instance.transition);
+      // $FlowFixMe
+      assert.notStrictEqual(transition.style.transform, undefined);
+    });
+
+    it('should take existing transform into account', () => {
+      const props = {
+        direction: 'up',
+      };
+      const element = {
+        fakeTransform: 'transform matrix(1, 0, 0, 1, 0, 420)',
+        getBoundingClientRect: () => ({
+          width: 500,
+          height: 300,
+          left: 300,
+          right: 800,
+          top: 1200,
+          bottom: 1500,
+        }),
+        style: {},
+      };
+      setTranslateValue(props, element);
+      assert.strictEqual(element.style.transform, 'translateY(100vh) translateY(-780px)');
+    });
+
+    it('should do nothing when visible', () => {
+      const wrapper = shallow(<Slide in />);
+      const instance = wrapper.instance();
+      instance.handleResize();
+      clock.tick(166);
     });
   });
 });
