@@ -35,8 +35,10 @@ class App extends Component {
 
           <div className="main-picker">
             <DateTimePicker 
+              disableFuture
               value={selectedDate}
-              onChange={this.handleDateChange} 
+              onChange={this.handleDateChange}
+              animateYearScrolling={false}
             />
           </div>
         </main>

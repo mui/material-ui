@@ -14,12 +14,18 @@ class YearSelection extends PureComponent {
     maxDate: PropTypes.shape({}).isRequired,
     classes: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
+    disableFuture: PropTypes.bool.isRequired,
+    animateYearScrolling: PropTypes.bool.isRequired,
   }
 
   componentDidMount = () => {
-    const currentYear = document.getElementsByClassName(this.props.classes.selectedYear)[0];
-    if (currentYear) {
-      currentYear.scrollIntoView({ behavior: 'smooth' });
+    const { animateYearScrolling } = this.props;
+    const currentYearElement = document.getElementsByClassName(this.props.classes.selectedYear)[0];
+
+    if (currentYearElement) {
+      currentYearElement.scrollIntoView({
+        behavior: animateYearScrolling ? 'smooth' : 'auto',
+      });
     }
   }
 
@@ -32,7 +38,7 @@ class YearSelection extends PureComponent {
 
   render() {
     const {
-      minDate, maxDate, date, classes,
+      minDate, maxDate, date, classes, disableFuture,
     } = this.props;
     const currentYear = date.get('year');
 
@@ -44,6 +50,7 @@ class YearSelection extends PureComponent {
               const yearNumber = year.get('year');
               const className = classnames(classes.yearItem, {
                 [classes.selectedYear]: yearNumber === currentYear,
+                [classes.disabled]: disableFuture && year.isAfter(moment()),
               });
 
               return (
@@ -82,6 +89,10 @@ const styles = theme => ({
     fontSize: 26,
     margin: '10px 0',
     color: theme.palette.primary[500],
+  },
+  disabled: {
+    pointerEvents: 'none',
+    color: theme.palette.text.hint,
   },
 });
 

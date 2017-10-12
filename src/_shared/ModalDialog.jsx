@@ -11,7 +11,9 @@ const styles = {
 };
 
 const ModalDialog = (props) => {
-  const { children, classes, ...other } = props;
+  const {
+    children, classes, onAccept, onDismiss, ...other
+  } = props;
 
   return (
     <Dialog {...other}>
@@ -20,7 +22,8 @@ const ModalDialog = (props) => {
       </DialogContent>
 
       <DialogActions>
-        <Button color="primary" onClick={props.onRequestClose}> Cancel </Button>
+        <Button color="primary" onClick={onAccept}> OK </Button>
+        <Button color="primary" onClick={onDismiss}> Cancel </Button>
       </DialogActions>
     </Dialog>
   );
@@ -28,7 +31,8 @@ const ModalDialog = (props) => {
 
 ModalDialog.propTypes = {
   children: PropTypes.node.isRequired,
-  onRequestClose: PropTypes.func.isRequired,
+  onAccept: PropTypes.func.isRequired,
+  onDismiss: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
 };
 

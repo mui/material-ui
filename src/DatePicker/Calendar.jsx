@@ -14,6 +14,7 @@ class Calendar extends PureComponent {
     date: PropTypes.shape({}).isRequired,
     classes: PropTypes.shape({}).isRequired,
     onChange: PropTypes.func.isRequired,
+    disableFuture: PropTypes.bool.isRequired,
   }
 
   state = {
@@ -42,8 +43,7 @@ class Calendar extends PureComponent {
   }
 
   renderDays = (week) => {
-    const { classes, date } = this.props;
-
+    const { disableFuture, classes, date } = this.props;
     const end = week.clone().endOf('week');
     const currentMonthNumber = this.state.currentMonth.get('month');
 
@@ -52,6 +52,7 @@ class Calendar extends PureComponent {
         const dayClass = classnames(classes.day, {
           [classes.hidden]: day.get('month') !== currentMonthNumber,
           [classes.selected]: day.toString() === date.toString(),
+          [classes.disabled]: disableFuture && day.isAfter(moment()),
         });
 
         return (
@@ -103,6 +104,10 @@ const styles = theme => ({
   selected: {
     color: theme.palette.primary[700],
     backgroundColor: theme.palette.primary[200],
+  },
+  disabled: {
+    pointerEvents: 'none',
+    color: theme.palette.text.hint,
   },
   week: {
     display: 'flex',

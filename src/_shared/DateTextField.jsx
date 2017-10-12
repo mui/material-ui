@@ -7,7 +7,7 @@ export default class DateTextField extends Component {
   static propTypes = {
     value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
     format: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func,
   }
 
   shouldComponentUpdate = nextProps => (

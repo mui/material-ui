@@ -9,17 +9,20 @@ import YearSelection from './YearSelection';
 
 class DatePicker extends PureComponent {
   static propTypes = {
-    value: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]),
+    date: PropTypes.object,
     minDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]),
     maxDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]),
     classes: PropTypes.shape({}).isRequired,
     onChange: PropTypes.func.isRequired,
+    disableFuture: PropTypes.bool,
+    animateYearScrolling: PropTypes.bool,
   }
 
   static defaultProps = {
-    value: undefined,
     minDate: '1900-01-01',
     maxDate: '2100-01-01',
+    disableFuture: false,
+    animateYearScrolling: true,
   }
 
   state = {
@@ -27,7 +30,7 @@ class DatePicker extends PureComponent {
   }
 
   get date() {
-    return moment(this.props.value).startOf('day');
+    return this.props.date.startOf('day');
   }
 
   get minDate() {
@@ -36,10 +39,6 @@ class DatePicker extends PureComponent {
 
   get maxDate() {
     return moment(this.props.maxDate);
-  }
-
-  handleDateChange = (date) => {
-    this.props.onChange(date);
   }
 
   openYearSelection = () => {
@@ -51,7 +50,9 @@ class DatePicker extends PureComponent {
   }
 
   render() {
-    const { classes } = this.props;
+    const {
+      classes, disableFuture, onChange, animateYearScrolling,
+    } = this.props;
     const { showYearSelection } = this.state;
 
     return (
@@ -85,17 +86,19 @@ class DatePicker extends PureComponent {
             ?
               <YearSelection
                 date={this.date}
+                onChange={onChange}
                 minDate={this.minDate}
                 maxDate={this.maxDate}
-                onChange={this.handleDateChange}
+                disableFuture={disableFuture}
+                animateYearScrolling={animateYearScrolling}
               />
             :
               <Calendar
                 date={this.date}
-                onChange={this.handleDateChange}
+                onChange={onChange}
+                disableFuture={disableFuture}
               />
         }
-
       </div>
     );
   }
