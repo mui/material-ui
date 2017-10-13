@@ -28,8 +28,9 @@ const styles = theme => ({
   fabProgress: {
     color: green[500],
     position: 'absolute',
-    top: -2,
-    left: -2,
+    top: -6,
+    left: -6,
+    zIndex: 1,
   },
   buttonProgress: {
     color: green[500],
@@ -85,7 +86,7 @@ class CircularIntegration extends React.Component {
           <Button fab color="primary" className={buttonClassname} onClick={this.handleButtonClick}>
             {success ? <CheckIcon /> : <SaveIcon />}
           </Button>
-          {loading && <CircularProgress size={60} className={classes.fabProgress} />}
+          {loading && <CircularProgress size={68} className={classes.fabProgress} />}
         </div>
         <div className={classes.wrapper}>
           <Button
