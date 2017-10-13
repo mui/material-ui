@@ -11,7 +11,7 @@ const RADIUS = 12;
 export const styles = (theme: Object) => ({
   root: {
     position: 'relative',
-    display: 'inline-block',
+    display: 'inline-flex',
   },
   badge: {
     display: 'flex',
