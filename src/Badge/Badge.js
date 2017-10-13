@@ -31,6 +31,7 @@ export const styles = (theme: Object) => ({
     borderRadius: '50%',
     backgroundColor: theme.palette.color,
     color: theme.palette.textColor,
+    zIndex: 1, // Render the badge on top of potential ripples.
   },
   colorPrimary: {
     backgroundColor: theme.palette.primary[500],
