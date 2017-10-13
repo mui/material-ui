@@ -32,6 +32,9 @@ export const styles = (theme: Object) => ({
   caption: {
     flexShrink: 0,
   },
+  selectRoot: {
+    marginRight: theme.spacing.unit * 4,
+  },
   select: {
     marginLeft: theme.spacing.unit,
     width: 34,
@@ -40,9 +43,6 @@ export const styles = (theme: Object) => ({
     color: theme.palette.text.secondary,
     height: 32,
     lineHeight: '32px',
-  },
-  selectRoot: {
-    marginRight: theme.spacing.unit * 4,
   },
   actions: {
     flexShrink: 0,
@@ -178,20 +178,18 @@ class TablePagination extends React.Component<ProvidedProps & Props> {
           <Typography type="caption" className={classes.caption}>
             {labelRowsPerPage}
           </Typography>
-          <Typography component="div" type="caption">
-            <Select
-              classes={{ root: classes.selectRoot, select: classes.select }}
-              input={<Input disableUnderline />}
-              value={rowsPerPage}
-              onChange={onChangeRowsPerPage}
-            >
-              {rowsPerPageOptions.map(rowsPerPageOption => (
-                <MenuItem key={rowsPerPageOption} value={rowsPerPageOption}>
-                  {rowsPerPageOption}
-                </MenuItem>
-              ))}
-            </Select>
-          </Typography>
+          <Select
+            classes={{ root: classes.selectRoot, select: classes.select }}
+            input={<Input disableUnderline />}
+            value={rowsPerPage}
+            onChange={onChangeRowsPerPage}
+          >
+            {rowsPerPageOptions.map(rowsPerPageOption => (
+              <MenuItem key={rowsPerPageOption} value={rowsPerPageOption}>
+                {rowsPerPageOption}
+              </MenuItem>
+            ))}
+          </Select>
           <Typography type="caption" className={classes.caption}>
             {labelDisplayedRows({
               from: count === 0 ? 0 : page * rowsPerPage + 1,

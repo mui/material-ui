@@ -72,7 +72,11 @@ class EnhancedTableHead extends React.Component {
                 numeric={column.numeric}
                 padding={column.disablePadding ? 'none' : 'default'}
               >
-                <Tooltip title="Sort" placement="bottom-end" enterDelay={300}>
+                <Tooltip
+                  title="Sort"
+                  placement={column.numeric ? 'bottom-end' : 'bottom-start'}
+                  enterDelay={300}
+                >
                   <TableSortLabel
                     active={orderBy === column.id}
                     direction={order}
@@ -162,6 +166,9 @@ const styles = theme => ({
   root: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
+  },
+  table: {
+    width: 800,
   },
   tableWrapper: {
     overflowX: 'auto',
@@ -264,7 +271,7 @@ class EnhancedTable extends React.Component {
       <Paper className={classes.root}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <div className={classes.tableWrapper}>
-          <Table>
+          <Table className={classes.table}>
             <EnhancedTableHead
               numSelected={selected.length}
               order={order}
