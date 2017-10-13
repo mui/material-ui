@@ -27,7 +27,12 @@ export default class AlertDialogSlide extends React.Component {
     return (
       <div>
         <Button onClick={this.handleClickOpen}>Slide in alert dialog</Button>
-        <Dialog open={this.state.open} transition={Slide} onRequestClose={this.handleRequestClose}>
+        <Dialog
+          open={this.state.open}
+          transition={<Slide direction="up" />}
+          keepMounted
+          onRequestClose={this.handleRequestClose}
+        >
           <DialogTitle>{"Use Google's location service?"}</DialogTitle>
           <DialogContent>
             <DialogContentText>
