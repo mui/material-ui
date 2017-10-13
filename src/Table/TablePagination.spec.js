@@ -279,7 +279,7 @@ describe('<TablePagination />', () => {
       assert.strictEqual(
         wrapper
           .find('withStyles(Typography)')
-          .at(2)
+          .at(1)
           .text(),
         '0-0 of 0',
       );

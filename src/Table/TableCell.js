@@ -50,7 +50,6 @@ export type Props = {
 export const styles = (theme: Object) => ({
   root: {
     borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
-    textOverflow: 'ellipsis',
     textAlign: 'left',
   },
   numeric: {
@@ -58,12 +57,12 @@ export const styles = (theme: Object) => ({
     flexDirection: 'row-reverse', // can be dynamically inherited at runtime by contents
   },
   head: {
-    whiteSpace: 'pre',
     fontWeight: theme.typography.fontWeightMedium,
     position: 'relative', // Workaround for Tooltip positioning issue.
   },
   paddingDefault: {
-    padding: `0 ${theme.spacing.unit * 7}px 0 ${theme.spacing.unit * 3}px`,
+    padding: `${theme.spacing.unit / 2}px ${theme.spacing.unit * 7}px ${theme.spacing.unit /
+      2}px ${theme.spacing.unit * 3}px`,
     '&:last-child': {
       paddingRight: theme.spacing.unit * 3,
     },
@@ -72,8 +71,7 @@ export const styles = (theme: Object) => ({
     paddingRight: theme.spacing.unit * 3,
   },
   paddingCheckbox: {
-    paddingLeft: 12,
-    paddingRight: 12,
+    padding: '0 12px',
   },
   footer: {
     borderBottom: 0,
