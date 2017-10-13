@@ -17,6 +17,7 @@ export const styles = {
   icon: {
     width: 20,
     height: 20,
+    fontSize: 20,
   },
 };
 
