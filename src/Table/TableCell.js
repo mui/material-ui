@@ -50,7 +50,6 @@ export type Props = {
 export const styles = (theme: Object) => ({
   root: {
     borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
-    whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
     textAlign: 'left',
   },
