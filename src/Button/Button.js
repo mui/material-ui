@@ -11,11 +11,11 @@ import ButtonBase from '../ButtonBase';
 export const styles = (theme: Object) => ({
   root: {
     ...theme.typography.button,
-    lineHeight: '1em',
+    lineHeight: '1.4em', // Improve readability for multiline button.
     boxSizing: 'border-box',
     minWidth: 88,
     minHeight: 36,
-    padding: `11px ${theme.spacing.unit * 2}px`,
+    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
     borderRadius: 2,
     color: theme.palette.text.primary,
     transition: theme.transitions.create(['background-color', 'box-shadow'], {
@@ -34,7 +34,7 @@ export const styles = (theme: Object) => ({
     },
   },
   dense: {
-    padding: `10px ${theme.spacing.unit}px`,
+    padding: `${theme.spacing.unit - 1}px ${theme.spacing.unit}px`,
     minWidth: 64,
     minHeight: 32,
     fontSize: theme.typography.fontSize - 1,
