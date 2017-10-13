@@ -3,7 +3,7 @@ import { Omit, StyledComponent, StyledComponentProps } from '..';
 import { HiddenProps } from '../Hidden/Hidden';
 import { Breakpoint } from '../styles/createBreakpoints';
 
-export type GridItemsAlignment = 'flex-start' | 'center' | 'flex-end' | 'stretch';
+export type GridItemsAlignment = 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
 
 export type GridContentAlignment = 'stretch' | 'center' | 'flex-start' | 'flex-end' |'space-between' | 'space-around';
 
