@@ -11,7 +11,7 @@ describe('<RadioGroup />', () => {
   let shallow;
 
   before(() => {
-    shallow = createShallow({ dive: true });
+    shallow = createShallow();
   });
 
   it('should render a FormGroup with the radiogroup role', () => {
@@ -163,17 +163,15 @@ describe('<RadioGroup />', () => {
 
     it('should add a child', () => {
       const wrapper = mount(
-        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
-        <RadioGroup.Naked value="" classes={{}}>
+        <RadioGroup value="">
           <Radio />
-        </RadioGroup.Naked>,
+        </RadioGroup>,
       );
       assert.strictEqual(wrapper.instance().radios.length, 1);
     });
 
     it('should keep radios empty', () => {
-      // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
-      const wrapper = mount(<RadioGroup.Naked value="" classes={{}} />);
+      const wrapper = mount(<RadioGroup value="" />);
       assert.strictEqual(wrapper.instance().radios.length, 0);
     });
   });

@@ -33,8 +33,8 @@ This property accepts the following keys:
 - `toolbar`
 - `spacer`
 - `caption`
-- `select`
 - `selectRoot`
+- `select`
 - `actions`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section

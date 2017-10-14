@@ -3,36 +3,14 @@
 
 import React from 'react';
 import type { Node } from 'react';
-import classNames from 'classnames';
-import withStyles from '../styles/withStyles';
 import FormGroup from '../Form/FormGroup';
 import { find } from '../utils/helpers';
-
-export const styles = {
-  root: {
-    flex: '1 1 auto',
-    margin: 0,
-    padding: 0,
-  },
-};
-
-type ProvidedProps = {
-  classes: Object,
-};
 
 export type Props = {
   /**
    * The content of the component.
    */
   children?: Node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
   /**
    * The name used to reference the value of the control.
    */
@@ -58,7 +36,7 @@ export type Props = {
   value?: string,
 };
 
-class RadioGroup extends React.Component<ProvidedProps & Props> {
+class RadioGroup extends React.Component<Props> {
   radios: Array<HTMLInputElement> = [];
 
   focus = () => {
@@ -82,32 +60,19 @@ class RadioGroup extends React.Component<ProvidedProps & Props> {
     focusRadios[0].focus();
   };
 
-  handleRadioChange = (event, checked) => {
+  handleRadioChange = (event: SyntheticInputEvent<*>, checked: boolean) => {
     if (checked && this.props.onChange) {
       this.props.onChange(event, event.target.value);
     }
   };
 
   render() {
-    const {
-      children,
-      classes,
-      className: classNameProp,
-      name,
-      value,
-      onChange,
-      ...other
-    } = this.props;
+    const { children, name, value, onChange, ...other } = this.props;
 
     this.radios = [];
 
     return (
-      <FormGroup
-        className={classNames(classes.root, classNameProp)}
-        data-mui-test="RadioGroup"
-        role="radiogroup"
-        {...other}
-      >
+      <FormGroup data-mui-test="RadioGroup" role="radiogroup" {...other}>
         {React.Children.map(children, (child, index) => {
           if (!React.isValidElement(child)) {
             return null;
@@ -128,4 +93,4 @@ class RadioGroup extends React.Component<ProvidedProps & Props> {
   }
 }
 
-export default withStyles(styles, { name: 'MuiRadioGroup' })(RadioGroup);
+export default RadioGroup;
