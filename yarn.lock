@@ -389,6 +389,10 @@ ast-types@0.9.11:
   version "0.9.11"
   resolved "https://registry.yarnpkg.com/ast-types/-/ast-types-0.9.11.tgz#371177bb59232ff5ceaa1d09ee5cad705b1a5aa9"
 
+ast-types@0.9.12:
+  version "0.9.12"
+  resolved "https://registry.yarnpkg.com/ast-types/-/ast-types-0.9.12.tgz#b136300d67026625ae15326982ca9918e5db73c9"
+
 async-each@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/async-each/-/async-each-1.0.1.tgz#19d386a1d9edc6e7c1c85d388aedbcc56d33602d"
@@ -1159,9 +1163,9 @@ babel-plugin-transform-react-remove-prop-types@0.4.5:
   dependencies:
     babel-traverse "^6.24.1"
 
-babel-plugin-transform-react-remove-prop-types@^0.4.9:
-  version "0.4.9"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-remove-prop-types/-/babel-plugin-transform-react-remove-prop-types-0.4.9.tgz#6805ef83d77bda94ded472ff2f2836bacd6ac44c"
+babel-plugin-transform-react-remove-prop-types@^0.4.10:
+  version "0.4.10"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-remove-prop-types/-/babel-plugin-transform-react-remove-prop-types-0.4.10.tgz#3c7f3a03ad8aa6bb8c00e93fd13a433910444545"
 
 babel-plugin-transform-regenerator@^6.22.0:
   version "6.26.0"
@@ -5032,11 +5036,11 @@ jss-props-sort@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/jss-props-sort/-/jss-props-sort-5.0.0.tgz#8839c88433f64e8c1dab1a7068796f19b84f9195"
 
-jss-rtl@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/jss-rtl/-/jss-rtl-0.2.0.tgz#5466e509e8f5daf307149ce70b555dc24c57d0a3"
+jss-rtl@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/jss-rtl/-/jss-rtl-0.2.1.tgz#06fcde4a9369f8c6f660b700f1c68a5d7742eebb"
   dependencies:
-    rtl-css-js "^1.6.0"
+    rtl-css-js "^1.7.0"
 
 jss-vendor-prefixer@^6.0.0:
   version "6.0.0"
@@ -6052,9 +6056,9 @@ normalize-range@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/normalize-range/-/normalize-range-0.1.2.tgz#2d10c06bdfd312ea9777695a4d28439456b75942"
 
-normalize-scroll-left@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/normalize-scroll-left/-/normalize-scroll-left-0.1.1.tgz#a31d3eb670eea165b171cabc9d9ca6ae645a64c0"
+normalize-scroll-left@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/normalize-scroll-left/-/normalize-scroll-left-0.1.2.tgz#6b79691ba79eb5fb107fa5edfbdc06b55caee2aa"
 
 normalize-url@^1.4.0:
   version "1.9.1"
@@ -7379,6 +7383,16 @@ recast@^0.12.6:
     private "~0.1.5"
     source-map "~0.5.0"
 
+recast@^0.12.7:
+  version "0.12.7"
+  resolved "https://registry.yarnpkg.com/recast/-/recast-0.12.7.tgz#6ec2ba1ae1d163cd12b5c17c3823458b299f3a0b"
+  dependencies:
+    ast-types "0.9.12"
+    core-js "^2.4.1"
+    esprima "~4.0.0"
+    private "~0.1.5"
+    source-map "~0.6.1"
+
 recompose@^0.26.0:
   version "0.26.0"
   resolved "https://registry.yarnpkg.com/recompose/-/recompose-0.26.0.tgz#9babff039cb72ba5bd17366d55d7232fbdfb2d30"
@@ -7751,9 +7765,9 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^2.0.0"
     inherits "^2.0.1"
 
-rtl-css-js@^1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/rtl-css-js/-/rtl-css-js-1.6.0.tgz#5cdf7cfb1384e44a068de021cf24d15afbcf51a3"
+rtl-css-js@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/rtl-css-js/-/rtl-css-js-1.7.0.tgz#0a9b0a5ddcc7181b0b41977264f39647ba705770"
 
 run-async@^2.2.0:
   version "2.3.0"
@@ -8116,6 +8130,10 @@ source-map@^0.4.4:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.4.4.tgz#eba4f5da9c0dc999de68032d8b4f76173652036b"
   dependencies:
     amdefine ">=0.0.4"
+
+source-map@~0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
 
 sourcemapped-stacktrace@^1.1.6:
   version "1.1.7"
@@ -9028,6 +9046,33 @@ webpack@3.3.0:
 webpack@^3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-3.6.0.tgz#a89a929fbee205d35a4fa2cc487be9cbec8898bc"
+  dependencies:
+    acorn "^5.0.0"
+    acorn-dynamic-import "^2.0.0"
+    ajv "^5.1.5"
+    ajv-keywords "^2.0.0"
+    async "^2.1.2"
+    enhanced-resolve "^3.4.0"
+    escope "^3.6.0"
+    interpret "^1.0.0"
+    json-loader "^0.5.4"
+    json5 "^0.5.1"
+    loader-runner "^2.3.0"
+    loader-utils "^1.1.0"
+    memory-fs "~0.4.1"
+    mkdirp "~0.5.0"
+    node-libs-browser "^2.0.0"
+    source-map "^0.5.3"
+    supports-color "^4.2.1"
+    tapable "^0.2.7"
+    uglifyjs-webpack-plugin "^0.4.6"
+    watchpack "^1.4.0"
+    webpack-sources "^1.0.1"
+    yargs "^8.0.2"
+
+webpack@^3.7.1:
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-3.7.1.tgz#6046b5c415ff7df7a0dc54c5b6b86098e8b952da"
   dependencies:
     acorn "^5.0.0"
     acorn-dynamic-import "^2.0.0"
