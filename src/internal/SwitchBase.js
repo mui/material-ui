@@ -164,7 +164,7 @@ export default function createSwitch(
     button = null;
     isControlled = null;
 
-    handleInputChange = event => {
+    handleInputChange = (event: SyntheticInputEvent<*>) => {
       const checked = event.target.checked;
 
       if (!this.isControlled) {
