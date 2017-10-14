@@ -12,6 +12,7 @@ Notice that this Component is incompatible with server side rendering.
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| TabScrollButton | ComponentType | TabScrollButton | The component used to render the scroll buttons. |
 | buttonClassName | string |  | The CSS class name of the scroll button elements. |
 | centered | boolean | false | If `true`, the tabs will be centered. This property is intended for large views. |
 | children | Node |  | The content of the component. |

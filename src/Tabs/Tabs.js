@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { Node } from 'react';
+import type { Node, ComponentType } from 'react';
 import warning from 'warning';
 import classNames from 'classnames';
 import EventListener from 'react-event-listener';
@@ -49,6 +49,7 @@ export const styles = (theme: Object) => ({
 type ProvidedProps = {
   classes: Object,
   indicatorColor: string,
+  TabScrollButton: ComponentType<*>,
   theme: Object,
 };
 
@@ -107,6 +108,10 @@ export type Props = {
    */
   scrollButtons?: 'auto' | 'on' | 'off',
   /**
+   * The component used to render the scroll buttons.
+   */
+  TabScrollButton?: ComponentType<*>,
+  /**
    * Determines the color of the `Tab`.
    */
   textColor?: 'accent' | 'primary' | 'inherit',
@@ -149,6 +154,7 @@ class Tabs extends React.Component<ProvidedProps & Props, State> {
     indicatorColor: 'accent',
     scrollable: false,
     scrollButtons: 'auto',
+    TabScrollButton,
     textColor: 'inherit',
   };
 
@@ -219,7 +225,14 @@ class Tabs extends React.Component<ProvidedProps & Props, State> {
   }, 166);
 
   getConditionalElements = () => {
-    const { classes, buttonClassName, scrollable, scrollButtons, theme } = this.props;
+    const {
+      classes,
+      buttonClassName,
+      scrollable,
+      scrollButtons,
+      TabScrollButton: TabScrollButtonProp,
+      theme,
+    } = this.props;
     const conditionalElements = {};
     conditionalElements.scrollbarSizeListener = scrollable ? (
       <ScrollbarSize
@@ -231,7 +244,7 @@ class Tabs extends React.Component<ProvidedProps & Props, State> {
     const showScrollButtons = scrollable && (scrollButtons === 'auto' || scrollButtons === 'on');
 
     conditionalElements.scrollButtonLeft = showScrollButtons ? (
-      <TabScrollButton
+      <TabScrollButtonProp
         direction={theme.direction === 'rtl' ? 'right' : 'left'}
         onClick={this.handleLeftScrollClick}
         visible={this.state.showLeftScroll}
@@ -245,7 +258,7 @@ class Tabs extends React.Component<ProvidedProps & Props, State> {
     ) : null;
 
     conditionalElements.scrollButtonRight = showScrollButtons ? (
-      <TabScrollButton
+      <TabScrollButtonProp
         direction={theme.direction === 'rtl' ? 'left' : 'right'}
         onClick={this.handleRightScrollClick}
         visible={this.state.showRightScroll}
@@ -384,6 +397,7 @@ class Tabs extends React.Component<ProvidedProps & Props, State> {
       onChange,
       scrollable,
       scrollButtons,
+      TabScrollButton: TabScrollButtonProp,
       textColor,
       theme,
       value,
