@@ -6,6 +6,7 @@ We host some example projects. You can find them in our [GitHub repository](http
 - [Create React App](https://github.com/callemall/material-ui/tree/v1-beta/examples/create-react-app)
 - [Next.js](https://github.com/callemall/material-ui/tree/v1-beta/examples/nextjs)
 - [Create React App with Flow](https://github.com/callemall/material-ui/tree/v1-beta/examples/create-react-app-with-flow)
+- [Create React App with TypeScript](https://github.com/callemall/material-ui/tree/v1-beta/examples/create-react-app-with-typescript)
 
 The source code for this documentation site is also included in the repository.
 This is a slightly more complex project.
