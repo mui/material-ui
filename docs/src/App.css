@@ -17,7 +17,10 @@ main {
   padding: 10px;
 }
 
-.main-picker {
+.picker {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
 }

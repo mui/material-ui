@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import classnames from 'classnames';
 import { Typography, Toolbar, withStyles } from 'material-ui';
+import pickerStyles from '../styles/pickerStyles';
 
 import Calendar from './Calendar';
 import YearSelection from './YearSelection';
+import ToolbarButton from '../_shared/ToolbarButton';
 
 class DatePicker extends PureComponent {
   static propTypes = {
@@ -60,25 +62,19 @@ class DatePicker extends PureComponent {
     return (
       <div className={classes.container}>
         <Toolbar className={classes.toolbar}>
-          <Typography
+          <ToolbarButton
             type="subheading"
             onClick={this.openYearSelection}
-            className={classnames(classes.toolbarBtn, {
-                [classes.toolbarBtnSelected]: showYearSelection,
-              })}
-          >
-            { this.date.format('YYYY') }
-          </Typography>
+            selected={showYearSelection}
+            label={this.date.format('YYYY')}
+          />
 
-          <Typography
+          <ToolbarButton
             type="display1"
             onClick={this.openCalendar}
-            className={classnames(classes.toolbarBtn, {
-                [classes.toolbarBtnSelected]: !showYearSelection,
-              })}
-          >
-            { this.date.format('ddd, MMM DD') }
-          </Typography>
+            selected={!showYearSelection}
+            label={this.date.format('ddd, MMM DD')}
+          />
         </Toolbar>
 
         {
@@ -105,25 +101,7 @@ class DatePicker extends PureComponent {
 }
 
 const styles = theme => ({
-  container: {
-    width: 300,
-    height: 420,
-  },
-  toolbar: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-    backgroundColor: theme.palette.primary[500],
-    height: 100,
-  },
-  toolbarBtn: {
-    cursor: 'pointer',
-    color: theme.palette.common.lightWhite,
-  },
-  toolbarBtnSelected: {
-    color: theme.palette.common.white,
-  },
+  ...pickerStyles(theme),
 });
 
 export default withStyles(styles)(DatePicker);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AppBar, Toolbar, IconButton, Typography } from 'material-ui'
-import DateTimePicker from 'material-ui-pickers'
+import { TimePicker, DatePicker } from 'material-ui-pickers'
 import './App.css';
 
 
@@ -33,8 +33,25 @@ class App extends Component {
             Here you are! Let`s test your pickers
           </Typography>
 
-          <div className="main-picker">
-            <DateTimePicker 
+          <div className="picker">
+            <Typography type="headline" align="center" gutterBottom>
+              Date picker
+            </Typography>
+
+            <DatePicker 
+              disableFuture
+              value={selectedDate}
+              onChange={this.handleDateChange}
+              animateYearScrolling={false}
+            />
+          </div>
+
+          <div className="picker">
+            <Typography type="headline" align="center" gutterBottom>
+              Time picker
+            </Typography>
+
+            <TimePicker 
               disableFuture
               value={selectedDate}
               onChange={this.handleDateChange}
