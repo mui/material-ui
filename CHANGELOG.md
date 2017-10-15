@@ -2,6 +2,76 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.17
+###### _Oct 16, 2017_
+
+Big thanks to the 14 contributors who made this release possible.
+
+This release is mostly about stability.
+We have merged many bug fixes PRs and documentation improvement PRs.
+We garbage collecting all the features we have been adding lately.
+As this garbage collection stabilize, we will be able to add new features, like a stepper, extension panel or date/time pickers. But we are not here yet.
+For instance, we need to upgrade all our dev dependencies to react@16 first.
+
+### Breaking change
+
+- [Grid] Add alignItems & alignContent properties (#8647) @sakulstra
+
+```diff
+-        <Grid container xs={6} align="flex-end">
++        <Grid container xs={6} alignItems="flex-end">
+           <Grid item>
+```
+
+#### Component Fixes / Enhancements
+
+- [ButtonBase] Fix ripple on mobile (#8605) @oliviertassinari
+- [icons] Bump recompose version (#8615) @sakulstra
+- [icons] Change homepage (#8621) @oliviertassinari
+- [withWidth] Export the module in index.js (#8616) @sakulstra
+- [typescript] Fix typings for withTheme (#8627) @DaIgeb
+- [typescript] Change the TextField.label type to the InputLabel.children type (#8630) @DaIgeb
+- [typescript] Fix conflicting types for onChange prop (#8618) @pelotom
+- [typescript] Collapse: Redefine children from Transition (#8655) @DaIgeb
+- [typescript] Add "baseline" to GridItemsAlignment type (#8678) @brentatkins
+- [Badge] Fix vertical alignment inside IconButton (#8677) @AndreiBelokopytov
+- [ListItemAvatar] Fix dense font icon display (#8682) @lawlessnut
+- [TableCell] Better handle long text (#8685) @lunzhang
+- [typing] Chip definition was missing deleteIcon & more (#8696) @cauld
+- [Tabs] Add a TabScrollButton property (#8695) @lawlessnut
+- [CircularProgress] Fix non Chrome rendering (#8687) @oliviertassinari
+- [Badge] Add an example with a IconButton (#8683) @oliviertassinari
+- [Button] Better render multilines button (#8684) @oliviertassinari
+- [Input] Fix hover style on mobile (#8644) @oliviertassinari
+- [Slide] Fix resize issue (#8672) @oliviertassinari
+- [RadioGroup] Remove the injected styles (#8692) @oliviertassinari
+- [Tooltip] Improve typescript definition (#8698) @oliviertassinari
+- [MuiThemeProvider] Add more constraints for everybody sanity (#8701) @oliviertassinari
+
+#### Docs
+
+- [docs] Fix typo in icons.md (#8612) @MazeChaZer
+- [docs] Add link for autosuggest-highlight installation (#8625) @senthuran16
+- [docs] Fix typo in item description (#8632) @bennyn
+- [docs] Add Venuemob to showcase (#8674) @DJAndries
+- [docs] TypeScript example project and guide to withStyles (#8694) @pelotom
+- [Input] Fix grammar in documentation (#8700) @ludwigbacklund
+- [docs] Fix markdown formatting (#8640) @oliviertassinari
+- [examples] Everything is back to normal with next.js (#8611) @oliviertassinari
+- [docs] Improve fullWidth wording (#8610) @oliviertassinari
+- [docs] Make code follow the header font (#8623) @oliviertassinari
+- [docs] Improve SVG icons wordings (#8642) @oliviertassinari
+- [docs] Fix test page (#8650) @oliviertassinari
+
+#### Core
+
+- [core] Fix more warnings with enzyme@3 and react@16 (#8641) @oliviertassinari
+- [core] Prepare upgrade toward enzyme v3 (#8670) @oliviertassinari
+- [core] Safer CI on circle-ci with yarn (#8656) @oliviertassinari
+- [core] Upgrade deepmerge dependency (#8608) @oliviertassinari
+- [core] Fix CSP issue (6172bd0af0c7a0ad66626a9c3d9f5aaa34e1a6f7) @oliviertassinari
+- [core] Add global prettier config (#8624) @oliviertassinari
+
 ## 1.0.0-beta.16
 ###### _Oct 8, 2017_
 
@@ -641,7 +711,7 @@ Big thanks to the 9 contributors who made this release possible.
 
 ### Breaking changes
 
-- [RadioGroup] Rename selectedValue to value (#7832) @
+- [RadioGroup] Rename selectedValue to value (#7832) @oliviertassinari
 
 Push #7741 initiative forward (use `value` and `onChange` as controlling properties)
 
@@ -915,7 +985,7 @@ where we always use `value`/`onChange` for controlled components.
 - [Menu] Fix wrong scroll positioning (#7391) @oliviertassinari
 - [Modal] Fix concurrency issue (#7383) @oliviertassinari
 - [Checkbox] Add indeterminate property (#7390) @oliviertassinari
-- [Snackbar] Handle inactive tabs (#7420) @
+- [Snackbar] Handle inactive tabs (#7420) @oliviertassinari
 
 #### Docs
 
