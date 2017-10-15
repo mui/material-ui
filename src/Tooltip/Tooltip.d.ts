@@ -2,10 +2,16 @@ import * as React from 'react';
 import { StyledComponent } from '..';
 
 export type TooltipProps = React.HTMLAttributes<HTMLDivElement> & {
-  title: React.ReactNode;
+  disableTriggerFocus?: boolean;
+  disableTriggerHover?: boolean;
+  disableTriggerTouch?: boolean;
+  id?: string;
   onRequestClose?: (event: React.ChangeEvent<{}>) => void;
   onRequestOpen?: (event: React.ChangeEvent<{}>) => void;
   open?: boolean;
+  title: React.ReactNode;
+  enterDelay?: number;
+  leaveDelay?: number;
   placement?:
     | 'bottom-end'
     | 'bottom-start'
@@ -19,6 +25,7 @@ export type TooltipProps = React.HTMLAttributes<HTMLDivElement> & {
     | 'top-end'
     | 'top-start'
     | 'top';
+  PopperProps?: object;
 }
 
 export type TooltipClassKey =
