@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StyledComponent } from '..';
 
 export interface GridListTileBarProps {
-  actionIcon?: React.ReactElement<any>;
+  actionIcon?: React.ReactNode;
   actionPosition?: 'left' | 'right';
   subtitle?: React.ReactNode;
   title?: React.ReactNode;

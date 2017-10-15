@@ -5,7 +5,7 @@ import { ButtonBaseProps } from '../ButtonBase';
 export type TabProps = {
   disabled?: boolean;
   fullWidth?: boolean;
-  icon?: React.ReactNode;
+  icon?: string | React.ReactElement<any>;
   value?: any;
   label?: React.ReactNode;
   onChange?: (

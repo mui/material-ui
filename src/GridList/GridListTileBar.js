@@ -1,7 +1,7 @@
 // @flow weak
 
 import React from 'react';
-import type { Element } from 'react';
+import type { Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
@@ -77,7 +77,7 @@ export type Props = {
    * An IconButton element to be used as secondary action target
    * (primary action target is the tile itself).
    */
-  actionIcon?: Element<any>,
+  actionIcon?: Node,
   /**
    * Position of secondary action IconButton.
    */
@@ -93,11 +93,11 @@ export type Props = {
   /**
    * String or element serving as subtitle (support text).
    */
-  subtitle?: string | Element<any>,
+  subtitle?: Node,
   /**
    * Title to be displayed on tile.
    */
-  title: string | Element<any>,
+  title: Node,
   /**
    * Position of the title bar.
    */
