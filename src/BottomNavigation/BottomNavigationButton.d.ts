@@ -3,7 +3,7 @@ import { StyledComponent, Omit } from '..';
 import { ButtonBaseProps } from '../ButtonBase';
 
 export type BottomNavigationButtonProps = {
-  icon?: React.ReactNode;
+  icon?: string | React.ReactElement<any>;
   label?: React.ReactNode;
   onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
   onClick?: React.ReactEventHandler<any>;

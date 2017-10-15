@@ -2,7 +2,7 @@
 // @inheritedComponent ButtonBase
 
 import React from 'react';
-import type { Element } from 'react';
+import type { Node, Element } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
@@ -76,7 +76,7 @@ export type Props = {
   /**
    * The label element.
    */
-  label?: string | Element<any>,
+  label?: Node,
   /**
    * @ignore
    */

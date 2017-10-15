@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { Element } from 'react';
+import type { Element, Node } from 'react';
 import classNames from 'classnames';
 import keycode from 'keycode';
 import withStyles from '../styles/withStyles';
@@ -108,7 +108,7 @@ export type Props = {
   /**
    * The content of the label.
    */
-  label?: string | Element<any>,
+  label?: Node,
   /**
    * @ignore
    */
