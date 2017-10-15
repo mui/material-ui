@@ -334,7 +334,8 @@ Grid.defaultProps = {
 
 // Add a wrapper component to generate some helper messages in the development
 // environment.
-let GridWrapper = Grid; // eslint-disable-line import/no-mutable-exports
+// eslint-disable-next-line import/no-mutable-exports
+let GridWrapper = Grid;
 
 if (process.env.NODE_ENV !== 'production') {
   const requireProp = requirePropFactory('Grid');

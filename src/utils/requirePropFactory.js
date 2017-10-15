@@ -1,7 +1,13 @@
 // @flow weak
 
-const requirePropFactory = componentNameInError => {
-  const requireProp = requiredProp => (props, propName, componentName, location, propFullName) => {
+const requirePropFactory = (componentNameInError: string) => {
+  const requireProp = (requiredProp: string) => (
+    props: Object,
+    propName: string,
+    componentName?: string,
+    location?: string,
+    propFullName?: string,
+  ) => {
     const propFullNameSafe = propFullName || propName;
 
     if (typeof props[propName] !== 'undefined' && !props[requiredProp]) {
