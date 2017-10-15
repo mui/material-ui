@@ -87,6 +87,9 @@ const pages = [
       {
         pathname: '/guides/flow',
       },
+      {
+        pathname: '/guides/typescript',
+      },
     ],
   },
   {
