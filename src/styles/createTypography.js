@@ -13,11 +13,10 @@ export default function createTypography(palette: Object, typography: Object | F
     fontWeightLight = 300,
     fontWeightRegular = 400,
     fontWeightMedium = 500,
+    htmlFontSize = 16, // Assuming browser default, typically `16px`
     ...other
   } =
     typeof typography === 'function' ? typography(palette) : typography;
-
-  const defaultSize = 16; // Assumes the browser default, typically `16px`
 
   return deepmerge(
     {
@@ -27,7 +26,7 @@ export default function createTypography(palette: Object, typography: Object | F
       fontWeightRegular,
       fontWeightMedium,
       display4: {
-        fontSize: `${112 / defaultSize}rem`,
+        fontSize: `${112 / htmlFontSize}rem`,
         fontWeight: fontWeightLight,
         fontFamily,
         letterSpacing: '-.04em',
@@ -36,7 +35,7 @@ export default function createTypography(palette: Object, typography: Object | F
         color: palette.text.secondary,
       },
       display3: {
-        fontSize: `${56 / defaultSize}rem`,
+        fontSize: `${56 / htmlFontSize}rem`,
         fontWeight: fontWeightRegular,
         fontFamily,
         letterSpacing: '-.02em',
@@ -45,7 +44,7 @@ export default function createTypography(palette: Object, typography: Object | F
         color: palette.text.secondary,
       },
       display2: {
-        fontSize: `${45 / defaultSize}rem`,
+        fontSize: `${45 / htmlFontSize}rem`,
         fontWeight: fontWeightRegular,
         fontFamily,
         lineHeight: `${round(48 / 45)}em`,
@@ -53,7 +52,7 @@ export default function createTypography(palette: Object, typography: Object | F
         color: palette.text.secondary,
       },
       display1: {
-        fontSize: `${34 / defaultSize}rem`,
+        fontSize: `${34 / htmlFontSize}rem`,
         fontWeight: fontWeightRegular,
         fontFamily,
         lineHeight: `${round(41 / 34)}em`,
@@ -61,42 +60,42 @@ export default function createTypography(palette: Object, typography: Object | F
         color: palette.text.secondary,
       },
       headline: {
-        fontSize: `${24 / defaultSize}rem`,
+        fontSize: `${24 / htmlFontSize}rem`,
         fontWeight: fontWeightRegular,
         fontFamily,
         lineHeight: `${round(32.5 / 24)}em`,
         color: palette.text.primary,
       },
       title: {
-        fontSize: `${21 / defaultSize}rem`,
+        fontSize: `${21 / htmlFontSize}rem`,
         fontWeight: fontWeightMedium,
         fontFamily,
         lineHeight: `${round(24.5 / 21)}em`,
         color: palette.text.primary,
       },
       subheading: {
-        fontSize: `${16 / defaultSize}rem`,
+        fontSize: `${16 / htmlFontSize}rem`,
         fontWeight: fontWeightRegular,
         fontFamily,
         lineHeight: `${round(24 / 16)}em`,
         color: palette.text.primary,
       },
       body2: {
-        fontSize: `${14 / defaultSize}rem`,
+        fontSize: `${14 / htmlFontSize}rem`,
         fontWeight: fontWeightMedium,
         fontFamily,
         lineHeight: `${round(24 / 14)}em`,
         color: palette.text.primary,
       },
       body1: {
-        fontSize: `${14 / defaultSize}rem`,
+        fontSize: `${14 / htmlFontSize}rem`,
         fontWeight: fontWeightRegular,
         fontFamily,
         lineHeight: `${round(20.5 / 14)}em`,
         color: palette.text.primary,
       },
       caption: {
-        fontSize: `${12 / defaultSize}rem`,
+        fontSize: `${12 / htmlFontSize}rem`,
         fontWeight: fontWeightRegular,
         fontFamily,
         lineHeight: `${round(16.5 / 12)}em`,
