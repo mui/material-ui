@@ -12,7 +12,7 @@ filename: /src/Input/Input.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| autoComplete | string |  | This property helps users to fill forms faster, especially on mobile devices. The name can be confusion, it's more like an autofill. You can learn about it with that article https://developers.google.com/web/updates/2015/06/checkout-faster-with-autofill |
+| autoComplete | string |  | This property helps users to fill forms faster, especially on mobile devices. The name can be confusing, it's more like an autofill. You can learn more about it in this article https://developers.google.com/web/updates/2015/06/checkout-faster-with-autofill |
 | autoFocus | boolean |  | If `true`, the input will be focused during the first mount. |
 | className | string |  | The CSS class name of the wrapper element. |
 | classes | Object |  | Useful to extend the style applied to components. |

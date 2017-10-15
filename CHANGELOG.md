@@ -9,9 +9,9 @@ Big thanks to the 14 contributors who made this release possible.
 
 This release is mostly about stability.
 We have merged many bug fixes PRs and documentation improvement PRs.
-We garbage collecting all the features we have been adding lately.
+We are garbage collecting all the features we have been adding lately.
 As this garbage collection stabilize, we will be able to add new features, like a stepper, extension panel or date/time pickers. But we are not here yet.
-For instance, we need to upgrade all our dev dependencies to react@16 first.
+For instance, we need to upgrade all our dev dependencies to *react@16* first.
 
 ### Breaking change
 
