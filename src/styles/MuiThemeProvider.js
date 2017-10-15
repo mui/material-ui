@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import createBroadcast from 'brcast';
 import themeListener, { CHANNEL } from './themeListener';
+import exactProp from '../utils/exactProp';
 
 class MuiThemeProvider extends React.Component<Object> {
   constructor(props: Object, context: Object) {
@@ -98,4 +99,14 @@ MuiThemeProvider.childContextTypes = {
 
 MuiThemeProvider.contextTypes = themeListener.contextTypes;
 
-export default MuiThemeProvider;
+// Add a wrapper component to generate some helper messages in the development
+// environment.
+// eslint-disable-next-line import/no-mutable-exports
+let MuiThemeProviderWrapper = MuiThemeProvider;
+
+if (process.env.NODE_ENV !== 'production') {
+  MuiThemeProviderWrapper = (props: any) => <MuiThemeProvider {...props} />;
+  MuiThemeProviderWrapper.propTypes = exactProp(MuiThemeProvider.propTypes, 'MuiThemeProvider');
+}
+
+export default MuiThemeProviderWrapper;
