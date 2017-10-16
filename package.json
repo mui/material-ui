@@ -85,7 +85,7 @@
   },
   "devDependencies": {
     "@types/enzyme": "^2.8.11",
-    "@types/react": "16.0.9",
+    "@types/react": "16.0.11",
     "app-module-path": "^2.2.0",
     "argos-cli": "^0.0.9",
     "autosuggest-highlight": "^3.1.0",
