@@ -189,7 +189,7 @@ class ButtonBase extends React.Component<ProvidedProps & Props, State> {
   keyDown = false; // Used to help track keyboard activation keyDown
   button = null;
   keyboardFocusTimeout = null;
-  keyboardFocusCheckTime = 40;
+  keyboardFocusCheckTime = 30;
   keyboardFocusMaxCheckTimes = 5;
 
   handleKeyDown = event => {
@@ -257,6 +257,8 @@ class ButtonBase extends React.Component<ProvidedProps & Props, State> {
   handleTouchMove = createRippleHandler(this, 'TouchEnd', 'stop');
 
   handleBlur = createRippleHandler(this, 'Blur', 'stop', () => {
+    clearTimeout(this.keyboardFocusTimeout);
+    focusKeyPressed(false);
     this.setState({ keyboardFocused: false });
   });
 
@@ -267,7 +269,6 @@ class ButtonBase extends React.Component<ProvidedProps & Props, State> {
 
     if (this.button) {
       event.persist();
-
       const keyboardFocusCallback = this.onKeyboardFocusHandler.bind(this, event);
       detectKeyboardFocus(this, this.button, keyboardFocusCallback);
     }

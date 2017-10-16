@@ -36,7 +36,7 @@ class RadioButtonsGroup extends React.Component {
           <FormLabel component="legend">Gender</FormLabel>
           <RadioGroup
             aria-label="gender"
-            name="gender"
+            name="gender1"
             className={classes.group}
             value={this.state.value}
             onChange={this.handleChange}
@@ -51,7 +51,7 @@ class RadioButtonsGroup extends React.Component {
           <FormLabel component="legend">Gender</FormLabel>
           <RadioGroup
             aria-label="gender"
-            name="gender"
+            name="gender2"
             className={classes.group}
             value={this.state.value}
             onChange={this.handleChange}
