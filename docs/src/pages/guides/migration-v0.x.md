@@ -26,10 +26,22 @@ Curious to learn more about it? You can checkout our [Q&A on with the v1 version
 ### Where should I start in a migration?
 
 1. Start by installing the v1.x version of Material-UI along side the v0.x version.
-[Yarn](https://github.com/yarnpkg/yarn) provides an alias feature to do so:
+[**Yarn**](https://github.com/yarnpkg/yarn) provides an alias feature to do so:
 ```sh
 yarn add material-ui@latest
 yarn add material-ui-next@npm:material-ui@next
+```
+then
+```js
+import FlatButton from 'material-ui/FlatButton'; // v0.x
+import Button from 'material-ui-next/Button'; // v1.x
+```
+If you can't use Yarn, we also provide a separate package for **NPM**.
+However, the package might not be always up to date.
+**It's why we encourage people to use a Yarn alias**.
+```sh
+npm install material-ui@latest
+npm install material-ui-next@latest
 ```
 then
 ```js
@@ -40,6 +52,25 @@ import Button from 'material-ui-next/Button'; // v1.x
 3. After that, you are free to migrate one component instance at the time.
 
 ## Components
+
+### Svg Icon
+
+First, run [the migration helper](https://github.com/callemall/material-ui/tree/v1-beta/packages/material-ui-codemod) on your project.
+
+However, this might not be enough when using the svg icons.
+The `material-ui-icons` package has a dependency on the `masterial-ui/SvgIcon` module.
+The `SvgIcon` component slightly changed between the two versions.
+You might see some missing context errors and wrong colors.
+
+You can fix those issues with the following code.
+Apply it before all the other imports:
+```js
+import SvgIcon from 'material-ui-next/SvgIcon';
+
+// Tells `material-ui-icons` to use `masterial-ui-next/SvgIcon` module
+// instead of `masterial-ui/SvgIcon`.
+global.__MUI_SvgIcon__ = SvgIcon;
+```
 
 ### Flat Button
 
