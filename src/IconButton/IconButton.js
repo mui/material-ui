@@ -8,6 +8,7 @@ import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import Icon from '../Icon';
+import '../SvgIcon'; // Ensure CSS specificity
 import { isMuiElement } from '../utils/reactHelpers';
 
 export const styles = (theme: Object) => ({

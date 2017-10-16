@@ -12,4 +12,6 @@ function GitHub(props: Object) {
   );
 }
 
+GitHub.muiName = 'SvgIcon';
+
 export default GitHub;
