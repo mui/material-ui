@@ -60,7 +60,11 @@ describe('<MuiThemeProvider />', () => {
       assert.strictEqual(sheetsRegistry.registry[0].classes.root, 'MuiTouchRipple-root-17');
       assert.deepEqual(
         sheetsRegistry.registry[1].classes,
-        { disabled: 'MuiButtonBase-disabled-16', root: 'MuiButtonBase-root-15' },
+        {
+          '.MuiButtonBase-root-15::-moz-focus-inner': 'MuiButtonBase-root-15::-moz-focus-inner',
+          disabled: 'MuiButtonBase-disabled-16',
+          root: 'MuiButtonBase-root-15',
+        },
         'the class names should be deterministic',
       );
       assert.strictEqual(sheetsRegistry.registry[2].classes.root, 'MuiButton-root-1');
