@@ -21,6 +21,7 @@ export interface FontStyle {
   fontWeightLight: number | string;
   fontWeightRegular: number | string;
   fontWeightMedium: number | string;
+  htmlFontSize?: number;
 }
 
 export interface TypographyStyle {
