@@ -41,6 +41,9 @@ const pages = [
       {
         pathname: '/getting-started/supported-platforms',
       },
+      {
+        pathname: '/getting-started/frequently-asked-questions',
+      },
     ],
   },
   {
