@@ -28,6 +28,9 @@ export const styles = (theme: Object) => ({
     textDecoration: 'none',
     // So we take precedent over the style of a native <a /> element.
     color: 'inherit',
+    '&::-moz-focus-inner': {
+      borderStyle: 'none', // Remove Firefox dotted outline.
+    },
   },
   disabled: {
     pointerEvents: 'none', // Disable link interactions
