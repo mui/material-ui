@@ -51,6 +51,9 @@ const styles = theme => ({
       WebkitFontSmoothing: 'antialiased', // Antialiasing.
       MozOsxFontSmoothing: 'grayscale', // Antialiasing.
       boxSizing: 'border-box',
+      '@media print': {
+        background: theme.palette.common.white,
+      },
     },
     '*, *:before, *:after': {
       boxSizing: 'inherit',
@@ -121,6 +124,9 @@ const styles = theme => ({
   },
   appBar: {
     transition: theme.transitions.create('width'),
+    '@media print': {
+      position: 'absolute',
+    },
   },
   appBarHome: {
     boxShadow: 'none',
