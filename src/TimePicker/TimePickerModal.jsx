@@ -29,8 +29,8 @@ export default class TimePickerModal extends PureComponent {
     this.setState({ open: !this.state.open });
   }
 
-  handleChange = (date) => {
-    this.setState({ date }, () => {
+  handleChange = (time) => {
+    this.setState({ time }, () => {
       if (this.props.autoOk) {
         this.handleAccept();
       }

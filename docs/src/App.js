@@ -53,7 +53,7 @@ class App extends Component {
 
             <TimePicker 
               disableFuture
-              value={selectedDate}
+              value={new Date().setHours(24)}
               onChange={this.handleDateChange}
               animateYearScrolling={false}
             />

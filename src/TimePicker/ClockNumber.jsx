@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui';
 import * as clockType from '../constants/clock-types';
+import classnames from 'classnames';
 
 const positions = [
   [0, 5],
-  [54.5, 16.6],
+  [55.5, 19.6],
   [94.4, 59.5],
   [109, 114],
   [94.4, 168.5],
@@ -21,7 +22,7 @@ const positions = [
 class ClockNumber extends Component {
   static propTypes = {
     index: PropTypes.number.isRequired,
-    label: PropTypes.string.isRequired,
+    value: PropTypes.number.isRequired,
     type: PropTypes.oneOf(Object.values(clockType)).isRequired,
     classes: PropTypes.object.isRequired,
   }
@@ -42,14 +43,28 @@ class ClockNumber extends Component {
     };
   }
 
+  isSelected = (value, type, index) => {
+    let withoutZero = value === 0 ? 12 : value;
+
+    if (type === clockType.HOURS) {
+      withoutZero %= 12;
+    }
+
+    return withoutZero === index;
+  }
+
   render() {
     const {
-      label, type, index, classes,
+      value, type, index, classes,
     } = this.props;
+
+    const className = classnames(classes.clockNumber, {
+      [classes.selected]: this.isSelected(value, type, index),
+    });
 
     return (
       <div
-        className={classes.clockNumber}
+        className={className}
         style={this.getTransformStyle(index)}
       >
         { this.getLabel(index, type) }
@@ -58,7 +73,7 @@ class ClockNumber extends Component {
   }
 }
 
-const styles = {
+const styles = theme => ({
   clockNumber: {
     width: 32,
     height: 32,
@@ -67,8 +82,12 @@ const styles = {
     display: 'inline-flex',
     justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: '50%',
   },
-};
+  selected: {
+    color: 'white',
+  },
+});
 
 export default withStyles(styles)(ClockNumber);
 

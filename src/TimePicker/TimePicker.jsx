@@ -55,7 +55,10 @@ class TimePicker extends Component {
         {
           isHourViewShown
             ?
-              <HourView date={date} />
+              <HourView
+                date={date}
+                onChange={this.handleChange}
+              />
             :
               'No minutes view specified'
         }

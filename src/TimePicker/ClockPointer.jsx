@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui';
+import classnames from 'classnames';
 import * as clockType from '../constants/clock-types';
 
 class ClockPointer extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     value: PropTypes.number.isRequired,
+    hasSelected: PropTypes.bool.isRequired,
   }
 
   getAngleStyle = () => {
@@ -18,15 +20,23 @@ class ClockPointer extends Component {
     };
   }
 
+  getThumbStyle = () => {
+    const { hasSelected } = this.props;
+
+    return {
+
+    };
+  }
+
   render() {
-    const { classes } = this.props;
+    const { classes, hasSelected } = this.props;
 
     return (
       <div
         className={classes.pointer}
         style={this.getAngleStyle()}
       >
-        <div className={classes.thumb} />
+        <div className={classnames(classes.thumb, { [classes.noPoint]: hasSelected })} />
       </div>
     );
   }
@@ -41,7 +51,6 @@ const styles = theme => ({
     left: 'calc(50% - 1px)',
     bottom: '50%',
     transformOrigin: 'center bottom 0px',
-    transition: 'transform .2s ease-in-out',
   },
   thumb: {
     width: 4,
@@ -49,10 +58,13 @@ const styles = theme => ({
     backgroundColor: theme.palette.common.white,
     borderRadius: '100%',
     position: 'absolute',
-    top: -5,
-    left: -8,
-    border: `7px solid ${theme.palette.primary[500]}`,
+    top: -21,
+    left: -15,
+    border: `14px solid ${theme.palette.primary[500]}`,
     boxSizing: 'content-box',
+  },
+  noPoint: {
+    backgroundColor: theme.palette.primary[500],
   },
 });
 
