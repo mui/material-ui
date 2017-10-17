@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StyledComponent, Omit } from '..';
 
-export type TooltipProps = React.HTMLAttributes<HTMLDivElement> & {
+export type TooltipProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> & {
   disableTriggerFocus?: boolean;
   disableTriggerHover?: boolean;
   disableTriggerTouch?: boolean;

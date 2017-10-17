@@ -37,6 +37,7 @@ import {
   Tabs,
   TextField,
   Toolbar,
+  Tooltip,
   Typography,
   Grid,
   Select,
@@ -809,3 +810,13 @@ const ResponsiveComponentTest = () => {
     breakpoint: 'sm',
   })(Dialog);
 };
+
+const TooltipComponentTest = () =>
+  <div>
+    <Tooltip id="tooltip-top-start" title="Add" placement="top-start">
+      <Button>top-start</Button>
+    </Tooltip>
+    <Tooltip id="tooltip-top-start" title={<strong>Add</strong>} placement="top-start">
+      <Button>top-start</Button>
+    </Tooltip>
+  </div>
