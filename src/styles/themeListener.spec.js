@@ -2,9 +2,7 @@
 
 import { assert } from 'chai';
 import createBroadcast from 'brcast';
-import themeListener from './themeListener';
-
-const CHANNEL = 'material-ui';
+import themeListener, { CHANNEL } from './themeListener';
 
 describe('themeListener', () => {
   it('should be able to get the initial state', () => {

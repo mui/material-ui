@@ -2,7 +2,8 @@
 
 import PropTypes from 'prop-types';
 
-export const CHANNEL = 'material-ui';
+// Same value used by react-jss
+export const CHANNEL = '__THEMING__';
 
 const themeListener = {
   contextTypes: {
