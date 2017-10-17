@@ -38,7 +38,7 @@ export default class AlertDialog extends React.Component {
             <Button onClick={this.handleRequestClose} color="primary">
               Disagree
             </Button>
-            <Button onClick={this.handleRequestClose} color="primary">
+            <Button onClick={this.handleRequestClose} color="primary" autoFocus>
               Agree
             </Button>
           </DialogActions>

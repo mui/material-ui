@@ -75,7 +75,7 @@ class ConfirmationDialog extends React.Component {
         <DialogTitle>Phone Ringtone</DialogTitle>
         <DialogContent>
           <RadioGroup
-            innerRef={node => {
+            ref={node => {
               this.radioGroup = node;
             }}
             aria-label="ringtone"

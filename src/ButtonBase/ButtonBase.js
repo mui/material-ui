@@ -270,11 +270,14 @@ class ButtonBase extends React.Component<ProvidedProps & Props, State> {
       return;
     }
 
-    if (this.button) {
-      event.persist();
-      const keyboardFocusCallback = this.onKeyboardFocusHandler.bind(this, event);
-      detectKeyboardFocus(this, this.button, keyboardFocusCallback);
+    // Fix for https://github.com/facebook/react/issues/7769
+    if (!this.button) {
+      this.button = event.currentTarget;
     }
+
+    event.persist();
+    const keyboardFocusCallback = this.onKeyboardFocusHandler.bind(this, event);
+    detectKeyboardFocus(this, this.button, keyboardFocusCallback);
 
     if (this.props.onFocus) {
       this.props.onFocus(event);
