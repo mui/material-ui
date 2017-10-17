@@ -33,9 +33,9 @@ It's a [high performance](https://github.com/cssinjs/jss/blob/master/docs/perfor
 It is about 5KB (minified and gzipped) and is extensible via a [plugins](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
 
 If you end up using this styling solution in your codebase, you're going to need to *learn the API*.
-The best place to start is by looking at the features each [plugin](http://cssinjs.org/plugins) is providing. Material-UI is using the [`jss-preset-default`](http://cssinjs.org/jss-preset-default) module. You can always add new plugins if needed with the [`JssProvider` helper](https://github.com/cssinjs/react-jss#custom-setup).
+The best place to start is by looking at the features each [plugin](http://cssinjs.org/plugins) is providing. Material-UI is using the [jss-preset-default](http://cssinjs.org/jss-preset-default) module. You can always add new plugins if needed with the [`JssProvider` helper](https://github.com/cssinjs/react-jss#custom-setup).
 
-Also, if you wish to build your own instance of `jss` **and** support `rtl` make sure you also include the [jss-rtl](https://github.com/alitaheri/jss-rtl) plugin.
+Also, if you wish to build your own instance of `jss` **and** support *rtl* make sure you also include the [jss-rtl](https://github.com/alitaheri/jss-rtl) plugin.
 Visit their [readme](https://github.com/alitaheri/jss-rtl#simple-usage) file to learn how.
 
 ## Sheets registry
@@ -70,6 +70,16 @@ They are easy to debug in development and as short as possible in production:
 
 - development: `.MuiAppBar-root-12`
 - production: `.c12`
+
+## Interoperability
+
+### React JSS
+
+The styling solution of Material-UI shares many building blocks with [react-jss](https://github.com/cssinjs/react-jss).
+We went ahead and forked the project in order to handle our unique needs.
+We are examining how to merge the changes and fixes from Material-UI back to react-jss.
+
+{{demo='pages/customization/ReactJss.js'}}
 
 ## API
 

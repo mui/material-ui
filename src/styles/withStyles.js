@@ -191,9 +191,6 @@ const withStyles = (
 
         if (process.env.NODE_ENV !== 'production') {
           meta = name || getDisplayName(Component);
-          // Sanitize the string as will be used in development to prefix the generated
-          // class name.
-          meta = meta.replace(new RegExp(/[!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~]/g), '-');
         }
 
         const sheet = this.jss.createStyleSheet(styles, {
