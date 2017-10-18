@@ -5,7 +5,7 @@ import type { Node, ComponentType } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import { isMuiComponent, isMuiElement } from '../utils/reactHelpers';
+import { isMuiComponent } from '../utils/reactHelpers';
 import Textarea from './Textarea';
 
 // Supports determination of isControlled().
@@ -42,11 +42,7 @@ export function isDirty(obj, SSR = false) {
 // @returns {boolean} False when no adornments.
 //                    True when adorned.
 export function isAdorned(obj) {
-  return (
-    obj &&
-    obj.children &&
-    React.Children.toArray(obj.children).some(child => isMuiElement(child, ['InputAdornment']))
-  );
+  return obj.startAdornment || obj.endAdornment;
 }
 
 export const styles = (theme: Object) => {
@@ -115,6 +111,8 @@ export const styles = (theme: Object) => {
       verticalAlign: 'middle',
       background: 'none',
       margin: 0, // Reset for Safari
+      display: 'block',
+      width: '100%',
       '&::-webkit-input-placeholder': placeholder,
       '&::-moz-placeholder': placeholder, // Firefox 19+
       '&:-ms-input-placeholder': placeholder, // IE 11
@@ -141,10 +139,6 @@ export const styles = (theme: Object) => {
         '&:focus:-ms-input-placeholder': placeholderVisible, // IE 11
         '&:focus::-ms-input-placeholder': placeholderVisible, // Edge
       },
-    },
-    inputUnadorned: {
-      display: 'block',
-      width: '100%',
     },
     inputAdorned: {
       display: 'inline-block',
@@ -229,10 +223,6 @@ export type Props = {
    */
   autoFocus?: boolean,
   /**
-   * Any `InputAdornment` for this `Input`
-   */
-  children: Node,
-  /**
    * Useful to extend the style applied to components.
    */
   classes?: Object,
@@ -252,6 +242,10 @@ export type Props = {
    * If `true`, the input will not have an underline.
    */
   disableUnderline?: boolean,
+  /**
+   * End `InputAdornment` for this component.
+   */
+  endAdornment?: Node,
   /**
    * If `true`, the input will indicate an error. This is normally obtained via context from
    * FormControl.
@@ -338,6 +332,10 @@ export type Props = {
    * Maximum number of rows to display when multiline option is set to true.
    */
   rowsMax?: string | number,
+  /**
+   * Start `InputAdornment` for this component.
+   */
+  startAdornment?: Node,
   /**
    * Type of the input element. It should be a valid HTML5 input type.
    */
@@ -452,12 +450,12 @@ class Input extends React.Component<ProvidedProps & Props, State> {
     const {
       autoComplete,
       autoFocus,
-      children: childrenProp,
       classes,
       className: classNameProp,
       defaultValue,
       disabled: disabledProp,
       disableUnderline,
+      endAdornment,
       error: errorProp,
       fullWidth,
       id,
@@ -478,6 +476,7 @@ class Input extends React.Component<ProvidedProps & Props, State> {
       readOnly,
       rows,
       rowsMax,
+      startAdornment,
       type,
       // $FlowFixMe
       value,
@@ -504,28 +503,6 @@ class Input extends React.Component<ProvidedProps & Props, State> {
       }
     }
 
-    const startAdornments = [];
-    const endAdornments = [];
-    let hasAdornments = false;
-
-    if (childrenProp) {
-      const adornmentChildren = React.Children
-        .toArray(childrenProp)
-        .filter(child => isMuiElement(child, ['InputAdornment']));
-
-      adornmentChildren.forEach(child => {
-        if (child.props.position === 'start') {
-          startAdornments.push(child);
-        } else {
-          endAdornments.push(child);
-        }
-      });
-
-      if (adornmentChildren.length) {
-        hasAdornments = true;
-      }
-    }
-
     const className = classNames(
       classes.root,
       {
@@ -549,8 +526,7 @@ class Input extends React.Component<ProvidedProps & Props, State> {
         [classes.inputSearch]: type === 'search',
         [classes.inputMultiline]: multiline,
         [classes.inputDense]: margin === 'dense',
-        [classes.inputUnadorned]: !hasAdornments,
-        [classes.inputAdorned]: hasAdornments,
+        [classes.inputAdorned]: startAdornment || endAdornment,
       },
       inputPropsClassName,
     );
@@ -589,7 +565,7 @@ class Input extends React.Component<ProvidedProps & Props, State> {
 
     return (
       <div onBlur={this.handleBlur} onFocus={this.handleFocus} className={className} {...other}>
-        {startAdornments}
+        {startAdornment}
         <InputComponent
           autoComplete={autoComplete}
           autoFocus={autoFocus}
@@ -609,7 +585,7 @@ class Input extends React.Component<ProvidedProps & Props, State> {
           rows={rows}
           {...inputProps}
         />
-        {endAdornments}
+        {endAdornment}
       </div>
     );
   }
@@ -619,25 +595,4 @@ Input.contextTypes = {
   muiFormControl: PropTypes.object,
 };
 
-let InputWrapper = Input;
-if (process.env.NODE_ENV !== 'production') {
-  InputWrapper = props => <Input {...props} />;
-
-  // exposed for testing purposes
-  InputWrapper.Naked = Input;
-  InputWrapper.muiName = 'Input';
-  InputWrapper.PropTypes = {
-    children: (props, propName, componentName) => {
-      const prop = props[propName];
-      const children = React.Children.toArray(prop);
-
-      if (!children.every(child => isMuiElement(child, ['InputAdornment']))) {
-        return new Error(`${componentName} can only accept children of type \`InputAdornment\`.`);
-      }
-
-      return null;
-    },
-  };
-}
-
-export default withStyles(styles, { name: 'MuiInput' })(InputWrapper);
+export default withStyles(styles, { name: 'MuiInput' })(Input);

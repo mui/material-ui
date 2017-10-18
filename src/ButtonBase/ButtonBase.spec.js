@@ -4,11 +4,13 @@ import React from 'react';
 import keycode from 'keycode';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createShallow, createMount, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import { focusKeyPressed } from '../utils/keyboardFocus';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
 import TouchRipple from './TouchRipple';
 import ButtonBase from './ButtonBase';
+
+const ButtonBaseNaked = unwrap(ButtonBase);
 
 describe('<ButtonBase />', () => {
   let mount;
@@ -310,10 +312,9 @@ describe('<ButtonBase />', () => {
     before(() => {
       clock = useFakeTimers();
       wrapper = mount(
-        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
-        <ButtonBase.Naked classes={{}} id="test-button">
+        <ButtonBaseNaked classes={{}} id="test-button">
           Hello
-        </ButtonBase.Naked>,
+        </ButtonBaseNaked>,
       );
       instance = wrapper.instance();
       button = document.getElementById('test-button');
@@ -385,10 +386,9 @@ describe('<ButtonBase />', () => {
 
     it('when disabled should not persist event', () => {
       const wrapper = mount(
-        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
-        <ButtonBase.Naked classes={{}} disabled>
+        <ButtonBaseNaked classes={{}} disabled>
           Hello
-        </ButtonBase.Naked>,
+        </ButtonBaseNaked>,
       );
       const instance = wrapper.instance();
       const eventMock = { persist: spy() };
@@ -400,10 +400,9 @@ describe('<ButtonBase />', () => {
       const eventMock = 'woofButtonBase';
       const onKeyboardFocusSpy = spy();
       const wrapper = mount(
-        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
-        <ButtonBase.Naked classes={{}} component="span" onKeyboardFocus={onKeyboardFocusSpy}>
+        <ButtonBaseNaked classes={{}} component="span" onKeyboardFocus={onKeyboardFocusSpy}>
           Hello
-        </ButtonBase.Naked>,
+        </ButtonBaseNaked>,
       );
       const instance = wrapper.instance();
       instance.onKeyboardFocusHandler(eventMock);
@@ -419,10 +418,9 @@ describe('<ButtonBase />', () => {
         </a>
       );
       const wrapper = mount(
-        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
-        <ButtonBase.Naked classes={{}} component={MyLink}>
+        <ButtonBaseNaked classes={{}} component={MyLink}>
           Hello
-        </ButtonBase.Naked>,
+        </ButtonBaseNaked>,
       );
       const instance = wrapper.instance();
       instance.focusKeyPressed = true;
@@ -438,8 +436,7 @@ describe('<ButtonBase />', () => {
 
     describe('avoids multiple keydown presses', () => {
       it('should work', () => {
-        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
-        wrapper = mount(<ButtonBase.Naked classes={{}}>Hello</ButtonBase.Naked>);
+        wrapper = mount(<ButtonBaseNaked classes={{}}>Hello</ButtonBaseNaked>);
         wrapper.setProps({ focusRipple: true });
         wrapper.setState({ keyboardFocused: true });
 
@@ -463,8 +460,7 @@ describe('<ButtonBase />', () => {
 
     describe('prop: onKeyDown', () => {
       it('should work', () => {
-        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
-        wrapper = mount(<ButtonBase.Naked classes={{}}>Hello</ButtonBase.Naked>);
+        wrapper = mount(<ButtonBaseNaked classes={{}}>Hello</ButtonBaseNaked>);
         const onKeyDownSpy = spy();
         wrapper.setProps({ onKeyDown: onKeyDownSpy });
 
@@ -488,8 +484,7 @@ describe('<ButtonBase />', () => {
 
     describe('Keyboard accessibility for non interactive elements', () => {
       it('should work', () => {
-        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
-        wrapper = mount(<ButtonBase.Naked classes={{}}>Hello</ButtonBase.Naked>);
+        wrapper = mount(<ButtonBaseNaked classes={{}}>Hello</ButtonBaseNaked>);
         const onClickSpy = spy();
         wrapper.setProps({ onClick: onClickSpy, component: 'woofButtonBase' });
 

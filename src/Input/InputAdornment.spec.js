@@ -10,7 +10,7 @@ describe('<InputAdornment />', () => {
   let classes;
 
   before(() => {
-    shallow = createShallow({ untilSelector: InputAdornment });
+    shallow = createShallow({ dive: true });
     classes = getClasses(<InputAdornment position="start" />);
   });
 
@@ -36,13 +36,13 @@ describe('<InputAdornment />', () => {
   it('should have the root and start class when position is start', () => {
     const wrapper = shallow(<InputAdornment position="start">Foo</InputAdornment>);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.start), true);
+    assert.strictEqual(wrapper.hasClass(classes.positionStart), true);
   });
 
   it('should have the root and end class when position is end', () => {
     const wrapper = shallow(<InputAdornment position="end">Foo</InputAdornment>);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
-    assert.strictEqual(wrapper.hasClass(classes.end), true);
+    assert.strictEqual(wrapper.hasClass(classes.positionEnd), true);
   });
 
   it('should not wrap text children in a Typography when disableTypography true', () => {

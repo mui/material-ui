@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import createSwitch from './SwitchBase';
 import Icon from '../Icon';
 
@@ -50,9 +50,11 @@ describe('<SwitchBase />', () => {
   let mount;
   let classes;
   let SwitchBase;
+  let SwitchBaseNaked;
 
   before(() => {
     SwitchBase = createSwitch();
+    SwitchBaseNaked = unwrap(SwitchBase);
     shallow = createShallow({ dive: true });
     mount = createMount();
     classes = getClasses(<SwitchBase />);
@@ -155,8 +157,7 @@ describe('<SwitchBase />', () => {
 
     beforeEach(() => {
       wrapper = mount(
-        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
-        <SwitchBase.Naked
+        <SwitchBaseNaked
           classes={{}}
           className="test-class"
           checkedClassName="test-class-checked"
@@ -191,8 +192,7 @@ describe('<SwitchBase />', () => {
 
     beforeEach(() => {
       wrapper = mount(
-        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
-        <SwitchBase.Naked
+        <SwitchBaseNaked
           classes={{}}
           className="test-class"
           checkedClassName="test-class-checked"
@@ -246,8 +246,7 @@ describe('<SwitchBase />', () => {
         },
       };
       onChangeSpy = spy();
-      // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
-      wrapper = mount(<SwitchBase.Naked classes={{}} />);
+      wrapper = mount(<SwitchBaseNaked classes={{}} />);
       wrapper.setProps({ onChange: onChangeSpy });
       instance = wrapper.instance();
     });

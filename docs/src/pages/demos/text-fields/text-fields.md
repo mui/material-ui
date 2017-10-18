@@ -1,5 +1,5 @@
 ---
-components: Input, InputAdornment, InputLabel, TextField, FormHelperText, FormControl
+components: FormControl, FormHelperText, Input, InputAdornment, InputLabel, TextField
 ---
 
 # Text Fields
@@ -32,7 +32,9 @@ other styles to meet the specification.
 {{demo='pages/demos/text-fields/TextFieldMargins.js'}}
 
 ## Input Adornments
-`Input` allows the provision of `InputAdornments` these can be used to add prefixes, suffixes or actions to an input.
+
+`Input` allows the provision of `InputAdornment`.
+These can be used to add a prefix, a suffix or an action to an input.
 
 {{demo='pages/demos/text-fields/InputAdornments.js'}}
 

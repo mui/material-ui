@@ -10,7 +10,7 @@ import Visbility from 'material-ui-icons/Visibility';
 import VisibilityOff from 'material-ui-icons/VisibilityOff';
 
 const styles = theme => ({
-  container: {
+  root: {
     display: 'flex',
     flexWrap: 'wrap',
   },
@@ -24,10 +24,15 @@ class InputAdornments extends React.Component {
     amount: '',
     password: '',
     weight: '',
+    showPassword: false,
   };
 
   handleChange = prop => event => {
     this.setState({ [prop]: event.target.value });
+  };
+
+  handleMouseDownPasssword = event => {
+    event.preventDefault();
   };
 
   handleClickShowPasssword = () => {
@@ -35,21 +40,27 @@ class InputAdornments extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes } = this.props;
 
     return (
-      <div className={classes.container}>
+      <div className={classes.root}>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="amount">Amount</InputLabel>
-          <Input id="amount" value={this.state.amount} onChange={this.handleChange('amount')}>
-            <InputAdornment position="start">$</InputAdornment>
-          </Input>
+          <Input
+            id="amount"
+            value={this.state.amount}
+            onChange={this.handleChange('amount')}
+            startAdornment={<InputAdornment position="start">$</InputAdornment>}
+          />
         </FormControl>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="weight">Weight</InputLabel>
-          <Input id="weight" value={this.state.weight} onChange={this.handleChange('weight')}>
-            <InputAdornment position="end">Kg</InputAdornment>
-          </Input>
+          <Input
+            id="weight"
+            value={this.state.weight}
+            onChange={this.handleChange('weight')}
+            endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
+          />
           <FormHelperText>Some important helper text</FormHelperText>
         </FormControl>
         <FormControl className={classes.formControl}>
@@ -59,13 +70,17 @@ class InputAdornments extends React.Component {
             type={this.state.showPassword ? 'text' : 'password'}
             value={this.state.password}
             onChange={this.handleChange('password')}
-          >
-            <InputAdornment position="end">
-              <IconButton onClick={this.handleClickShowPasssword}>
-                {this.state.showPassword ? <VisibilityOff /> : <Visbility />}
-              </IconButton>
-            </InputAdornment>
-          </Input>
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  onClick={this.handleClickShowPasssword}
+                  onMouseDown={this.handleMouseDownPasssword}
+                >
+                  {this.state.showPassword ? <VisibilityOff /> : <Visbility />}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
         </FormControl>
       </div>
     );

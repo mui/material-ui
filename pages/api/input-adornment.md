@@ -1,3 +1,7 @@
+---
+filename: /src/Input/InputAdornment.js
+---
+
 <!--- This documentation is automatically generated, do not try to edit it. -->
 
 # InputAdornment
@@ -5,6 +9,7 @@
 
 
 ## Props
+
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | Node |  | The content of the component, normally an `IconButton` or string. |
@@ -20,11 +25,12 @@ Any other properties supplied will be [spread to the root element](/customizatio
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `root`
-- `start`
-- `end`
+- `positionStart`
+- `positionEnd`
 
-Have a look at [overriding with classes](/customization/overrides#overriding-with-classes)
-section for more detail.
+Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
+and the [implementation of the component](https://github.com/callemall/material-ui/tree/v1-beta/src/Input/InputAdornment.js)
+for more detail.
 
 If using the `overrides` key of the theme as documented
 [here](/customization/themes#customizing-all-instances-of-a-component-type),

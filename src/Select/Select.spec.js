@@ -29,7 +29,7 @@ describe('<Select />', () => {
 
   it('should render a correct top element', () => {
     const wrapper = shallow(<Select {...props} />);
-    assert.strictEqual(wrapper.name(), 'withStyles(InputWrapper)');
+    assert.strictEqual(wrapper.name(), 'withStyles(Input)');
   });
 
   it('should provide the classes to the inputComponent', () => {

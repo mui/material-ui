@@ -4,10 +4,12 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { findDOMNode } from 'react-dom';
-import { createShallow, createMount } from '../test-utils';
+import { createShallow, createMount, unwrap } from '../test-utils';
 import Slide, { setTranslateValue } from './Slide';
 import transitions, { easing } from '../styles/transitions';
 import createMuiTheme from '../styles/createMuiTheme';
+
+const SlideNaked = unwrap(Slide);
 
 describe('<Slide />', () => {
   let shallow;
@@ -191,10 +193,9 @@ describe('<Slide />', () => {
   describe('mount', () => {
     it('should work when initially hidden', () => {
       const wrapper = mount(
-        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
-        <Slide.Naked theme={createMuiTheme()} in={false}>
+        <SlideNaked theme={createMuiTheme()} in={false}>
           <div>Foo</div>
-        </Slide.Naked>,
+        </SlideNaked>,
       );
       const transition = findDOMNode(wrapper.instance().transition);
       // $FlowFixMe
@@ -215,10 +216,9 @@ describe('<Slide />', () => {
 
     it('should recompute the correct position', () => {
       const wrapper = mount(
-        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
-        <Slide.Naked theme={createMuiTheme()} direction="up" in={false}>
+        <SlideNaked theme={createMuiTheme()} direction="up" in={false}>
           <div>Foo</div>
-        </Slide.Naked>,
+        </SlideNaked>,
       );
       const instance = wrapper.instance();
       instance.handleResize();

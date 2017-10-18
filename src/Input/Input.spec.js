@@ -159,10 +159,8 @@ describe('<Input />', () => {
     });
   });
 
-  /**
-   * Note the initial callback when
-   * uncontrolled only fires for a full mount
-   */
+  // Note the initial callback when
+  // uncontrolled only fires for a full mount
   describe('uncontrolled', () => {
     let wrapper;
     let handleDirty;
@@ -172,7 +170,6 @@ describe('<Input />', () => {
       handleClean = spy();
       handleDirty = spy();
       wrapper = mount(
-        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
         <NakedInput classes={{}} onDirty={handleDirty} defaultValue="hell" onClean={handleClean} />,
       );
     });
@@ -302,7 +299,6 @@ describe('<Input />', () => {
     let instance;
 
     before(() => {
-      // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
       wrapper = mount(<NakedInput classes={classes} />);
       instance = wrapper.instance();
     });
@@ -399,30 +395,24 @@ describe('<Input />', () => {
     });
   });
 
-  describe('with `InputAdornment`', () => {
+  describe('prop: startAdornment, prop: endAdornment', () => {
     it('should render adornment before input', () => {
       const wrapper = shallow(
-        <Input>
-          <InputAdornment position="start">$</InputAdornment>
-        </Input>,
+        <Input startAdornment={<InputAdornment position="start">$</InputAdornment>} />,
       );
 
-      assert.strictEqual(wrapper.childAt(0).name(), 'withStyles(InputAdornment)');
+      assert.strictEqual(wrapper.childAt(0).type(), InputAdornment);
     });
     it('should render adornment after input', () => {
       const wrapper = shallow(
-        <Input>
-          <InputAdornment position="end">$</InputAdornment>
-        </Input>,
+        <Input endAdornment={<InputAdornment position="end">$</InputAdornment>} />,
       );
 
-      assert.strictEqual(wrapper.childAt(1).name(), 'withStyles(InputAdornment)');
+      assert.strictEqual(wrapper.childAt(1).type(), InputAdornment);
     });
     it('child input should have adorned classes', () => {
       const wrapper = shallow(
-        <Input>
-          <InputAdornment position="end">$</InputAdornment>
-        </Input>,
+        <Input endAdornment={<InputAdornment position="end">$</InputAdornment>} />,
       );
 
       assert.strictEqual(wrapper.childAt(0).hasClass(classes.inputAdorned), true);
@@ -430,7 +420,7 @@ describe('<Input />', () => {
     it('child input should have unadorned classes', () => {
       const wrapper = shallow(<Input />);
 
-      assert.strictEqual(wrapper.childAt(0).hasClass(classes.inputUnadorned), true);
+      assert.strictEqual(wrapper.childAt(0).hasClass(classes.inputAdorned), false);
     });
   });
 });

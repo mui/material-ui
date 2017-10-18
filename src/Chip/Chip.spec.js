@@ -5,7 +5,7 @@ import keycode from 'keycode';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import CheckBox from '../svg-icons/CheckBox';
-import { createShallow, createMount, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import Avatar from '../Avatar';
 import Chip from './Chip';
 
@@ -213,8 +213,8 @@ describe('<Chip />', () => {
       });
 
       it('should unfocus when a esc key is pressed', () => {
-        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
-        const wrapper2 = mount(<Chip.Naked classes={{}}>Text Chip</Chip.Naked>);
+        const ChipNaked = unwrap(Chip);
+        const wrapper2 = mount(<ChipNaked classes={{}}>Text Chip</ChipNaked>);
         const handleBlur = spy();
         wrapper2.instance().chipRef.blur = handleBlur;
         wrapper2.find('div').simulate('keydown', {

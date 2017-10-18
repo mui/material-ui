@@ -159,9 +159,6 @@ class FormControl extends React.Component<ProvidedProps & Props, State> {
         if (isMuiElement(child, ['Input', 'Select']) && isDirty(child.props, true)) {
           this.setState({ dirty: true });
         }
-      });
-
-      React.Children.forEach(children, child => {
         if (isMuiElement(child, ['Input']) && isAdorned(child.props)) {
           this.setState({ adorned: true });
         }

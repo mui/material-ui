@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import type { Node, ElementType } from 'react';
@@ -6,22 +6,22 @@ import classNames from 'classnames';
 import Typography from '../Typography';
 import withStyles from '../styles/withStyles';
 
-export const styles = theme => ({
+export const styles = (theme: Object) => ({
   root: {
     display: 'inline-block',
     'label + div > &': {
-      marginTop: -16,
+      marginTop: -theme.spacing.unit * 2,
     },
   },
-  start: {
+  positionStart: {
     marginRight: theme.spacing.unit,
   },
-  end: {
+  positionEnd: {
     marginLeft: theme.spacing.unit,
   },
 });
 
-type Default = {
+type ProvidedProps = {
   classes: Object,
   component: ElementType,
   disableTypography: boolean,
@@ -55,14 +55,14 @@ export type Props = {
   position: 'start' | 'end',
 };
 
-function InputAdornment(props: Default & Props) {
+function InputAdornment(props: ProvidedProps & Props) {
   const {
     children,
     component: Component,
     classes,
     className,
-    position,
     disableTypography,
+    position,
     ...other
   } = props;
 
@@ -71,8 +71,8 @@ function InputAdornment(props: Default & Props) {
       className={classNames(
         classes.root,
         {
-          [classes.start]: position === 'start',
-          [classes.end]: position === 'end',
+          [classes.positionStart]: position === 'start',
+          [classes.positionEnd]: position === 'end',
         },
         className,
       )}
@@ -87,7 +87,6 @@ function InputAdornment(props: Default & Props) {
   );
 }
 
-InputAdornment.muiName = 'InputAdornment';
 InputAdornment.defaultProps = {
   component: 'div',
   disableTypography: false,

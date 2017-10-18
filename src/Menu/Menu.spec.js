@@ -4,7 +4,7 @@ import React from 'react';
 import { spy, stub } from 'sinon';
 import { assert } from 'chai';
 import ReactDOM from 'react-dom';
-import { createShallow, createMount, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import Menu from './Menu';
 
 describe('<Menu />', () => {
@@ -135,8 +135,8 @@ describe('<Menu />', () => {
     let findDOMNodeStub;
 
     before(() => {
-      // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
-      wrapper = mount(<Menu.Naked theme={{}} classes={classes} />);
+      const MenuNaked = unwrap(Menu);
+      wrapper = mount(<MenuNaked theme={{}} classes={classes} />);
       instance = wrapper.instance();
 
       selectedItemFocusSpy = spy();
