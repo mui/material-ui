@@ -10,7 +10,7 @@ module.exports = {
     node: true,
     mocha: true,
   },
-  extends: ['airbnb', 'plugin:import/recommended'],
+  extends: ['plugin:import/recommended', 'airbnb'],
   parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 7,
