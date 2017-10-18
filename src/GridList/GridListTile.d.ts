@@ -4,7 +4,7 @@ import { StyledComponent } from '..';
 export interface GridListTileProps {
   cols?: number;
   component?: React.ReactType;
-  row?: number;
+  rows?: number;
 }
 
 export type GridListTileClassKey =

@@ -347,7 +347,7 @@ const GridTest = () =>
 
 const GridListTest = () =>
   <GridList cellHeight={160} cols={3}>
-    <GridListTile cols={1}>
+    <GridListTile cols={1} rows={4}>
       <img src="img.png" alt="alt text" />
     </GridListTile>,
   </GridList>;
