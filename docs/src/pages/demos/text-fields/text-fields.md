@@ -1,5 +1,5 @@
 ---
-components: Input, InputLabel, TextField, FormHelperText, FormControl
+components: FormControl, FormHelperText, Input, InputAdornment, InputLabel, TextField
 ---
 
 # Text Fields
@@ -31,6 +31,13 @@ other styles to meet the specification.
 
 {{demo='pages/demos/text-fields/TextFieldMargins.js'}}
 
+## Input Adornments
+
+`Input` allows the provision of `InputAdornment`.
+These can be used to add a prefix, a suffix or an action to an input.
+
+{{demo='pages/demos/text-fields/InputAdornments.js'}}
+
 ## Inputs
 
 {{demo='pages/demos/text-fields/Inputs.js'}}
@@ -38,6 +45,6 @@ other styles to meet the specification.
 ## Formatted inputs
 
 We demonstrate how you could be using third-party libraries to [format your input](https://material.io/guidelines/components/text-fields.html#text-fields-input-types).
-Here, we are using [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format).
+Here, we are using [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries.
 
 {{demo='pages/demos/text-fields/FormattedInputs.js'}}

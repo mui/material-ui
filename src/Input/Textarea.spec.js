@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createShallow, createMount } from '../test-utils';
+import { createShallow, createMount, unwrap } from '../test-utils';
 import Textarea from './Textarea';
 
 function assignRefs(wrapper) {
@@ -65,8 +65,8 @@ describe('<Textarea />', () => {
     let wrapper;
 
     beforeEach(() => {
-      // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
-      wrapper = mount(<Textarea.Naked classes={{}} value="f" />);
+      const TextareaNaked = unwrap(Textarea);
+      wrapper = mount(<TextareaNaked classes={{}} value="f" />);
     });
 
     afterEach(() => {

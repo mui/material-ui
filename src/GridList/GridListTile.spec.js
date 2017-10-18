@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createShallow, createMount, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import GridListTile from './GridListTile';
 
 describe('<GridListTile />', () => {
@@ -72,13 +72,13 @@ describe('<GridListTile />', () => {
     let wrapper;
 
     beforeEach(() => {
+      const GridListTileNaked = unwrap(GridListTile);
       wrapper = mount(
-        // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
-        <GridListTile.Naked
+        <GridListTileNaked
           classes={{ imgFullWidth: 'imgFullWidth', imgFullHeight: 'imgFullHeight' }}
         >
           <img alt="test" />
-        </GridListTile.Naked>,
+        </GridListTileNaked>,
       );
       instance = wrapper.instance();
     });

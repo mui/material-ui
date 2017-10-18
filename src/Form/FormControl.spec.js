@@ -73,7 +73,7 @@ describe('<FormControl />', () => {
     });
   });
 
-  describe('should be dirty if has input with value set', () => {
+  describe('input', () => {
     it('should be dirty with a value', () => {
       const wrapper = shallow(
         <FormControl>
@@ -90,6 +90,15 @@ describe('<FormControl />', () => {
         </FormControl>,
       );
       assert.strictEqual(wrapper.state().dirty, true);
+    });
+
+    it('should be adorned with a startAdornment', () => {
+      const wrapper = shallow(
+        <FormControl>
+          <Input startAdornment={<div />} />
+        </FormControl>,
+      );
+      assert.strictEqual(wrapper.state().adorned, true);
     });
   });
 
@@ -119,6 +128,13 @@ describe('<FormControl />', () => {
         wrapper.setState({ focused: true });
         loadChildContext();
         assert.strictEqual(muiFormControlContext.focused, true);
+      });
+
+      it('should have the adorned state from the instance', () => {
+        assert.strictEqual(muiFormControlContext.adorned, false);
+        wrapper.setState({ adorned: true });
+        loadChildContext();
+        assert.strictEqual(muiFormControlContext.adorned, true);
       });
     });
 

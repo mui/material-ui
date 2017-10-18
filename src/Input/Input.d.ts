@@ -8,6 +8,7 @@ export type InputProps = {
   defaultValue?: string | number;
   disabled?: boolean;
   disableUnderline?: boolean;
+  endAdornment?: React.ReactNode;
   error?: boolean;
   fullWidth?: boolean;
   id?: string;
@@ -21,6 +22,7 @@ export type InputProps = {
   placeholder?: string;
   rows?: string | number;
   rowsMax?: string | number;
+  startAdornment?: React.ReactNode;
   type?: string;
   value?: string | number;
   onClean?: () => void;

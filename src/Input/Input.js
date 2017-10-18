@@ -1,7 +1,7 @@
 // @flow weak
 
 import React from 'react';
-import type { ComponentType } from 'react';
+import type { Node, ComponentType } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -32,6 +32,17 @@ export function isDirty(obj, SSR = false) {
     ((hasValue(obj.value) && obj.value !== '') ||
       (SSR && hasValue(obj.defaultValue) && obj.defaultValue !== ''))
   );
+}
+
+// Determine if an Input is adorned
+//
+// Response determines if label is presented above field or as placeholder.
+//
+// @param obj
+// @returns {boolean} False when no adornments.
+//                    True when adorned.
+export function isAdorned(obj) {
+  return obj.startAdornment || obj.endAdornment;
 }
 
 export const styles = (theme: Object) => {
@@ -96,11 +107,11 @@ export const styles = (theme: Object) => {
       // slight alteration to spec spacing to match visual spec result
       padding: `${theme.spacing.unit - 1}px 0 ${theme.spacing.unit + 1}px`,
       border: 0,
-      display: 'block',
       boxSizing: 'content-box',
       verticalAlign: 'middle',
       background: 'none',
       margin: 0, // Reset for Safari
+      display: 'block',
       width: '100%',
       '&::-webkit-input-placeholder': placeholder,
       '&::-moz-placeholder': placeholder, // Firefox 19+
@@ -128,6 +139,10 @@ export const styles = (theme: Object) => {
         '&:focus:-ms-input-placeholder': placeholderVisible, // IE 11
         '&:focus::-ms-input-placeholder': placeholderVisible, // Edge
       },
+    },
+    inputAdorned: {
+      display: 'inline-block',
+      width: 'auto',
     },
     inputDense: {
       paddingTop: theme.spacing.unit / 2,
@@ -228,6 +243,10 @@ export type Props = {
    */
   disableUnderline?: boolean,
   /**
+   * End `InputAdornment` for this component.
+   */
+  endAdornment?: Node,
+  /**
    * If `true`, the input will indicate an error. This is normally obtained via context from
    * FormControl.
    */
@@ -313,6 +332,10 @@ export type Props = {
    * Maximum number of rows to display when multiline option is set to true.
    */
   rowsMax?: string | number,
+  /**
+   * Start `InputAdornment` for this component.
+   */
+  startAdornment?: Node,
   /**
    * Type of the input element. It should be a valid HTML5 input type.
    */
@@ -432,6 +455,7 @@ class Input extends React.Component<ProvidedProps & Props, State> {
       defaultValue,
       disabled: disabledProp,
       disableUnderline,
+      endAdornment,
       error: errorProp,
       fullWidth,
       id,
@@ -452,6 +476,7 @@ class Input extends React.Component<ProvidedProps & Props, State> {
       readOnly,
       rows,
       rowsMax,
+      startAdornment,
       type,
       // $FlowFixMe
       value,
@@ -501,6 +526,7 @@ class Input extends React.Component<ProvidedProps & Props, State> {
         [classes.inputSearch]: type === 'search',
         [classes.inputMultiline]: multiline,
         [classes.inputDense]: margin === 'dense',
+        [classes.inputAdorned]: startAdornment || endAdornment,
       },
       inputPropsClassName,
     );
@@ -539,6 +565,7 @@ class Input extends React.Component<ProvidedProps & Props, State> {
 
     return (
       <div onBlur={this.handleBlur} onFocus={this.handleFocus} className={className} {...other}>
+        {startAdornment}
         <InputComponent
           autoComplete={autoComplete}
           autoFocus={autoFocus}
@@ -558,6 +585,7 @@ class Input extends React.Component<ProvidedProps & Props, State> {
           rows={rows}
           {...inputProps}
         />
+        {endAdornment}
       </div>
     );
   }

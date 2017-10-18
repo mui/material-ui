@@ -3,7 +3,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy, stub } from 'sinon';
-import { createShallow, createMount, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import Tab from './Tab';
 import Icon from '../Icon';
 
@@ -154,9 +154,9 @@ describe('<Tab />', () => {
   });
 
   it('should have a ref on label property', () => {
+    const TabNaked = unwrap(Tab);
     const instance = mount(
-      // $FlowFixMe - HOC is hoisting of static Naked, not sure how to represent that
-      <Tab.Naked textColor="inherit" label="foo" classes={classes} />,
+      <TabNaked textColor="inherit" label="foo" classes={classes} />,
     ).instance();
     assert.isDefined(instance.label, 'should be defined');
   });
