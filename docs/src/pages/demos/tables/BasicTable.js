@@ -13,7 +13,7 @@ const styles = theme => ({
     overflowX: 'auto',
   },
   table: {
-    width: 700,
+    minWidth: 700,
   },
 });
 
