@@ -108,7 +108,7 @@ const withStyles = (
 
   class Style extends React.Component<RequiredProps> {
     static contextTypes = {
-      sheetsManager: PropTypes.object,
+      muiThemeProviderOptions: PropTypes.object,
       ...contextTypes,
       ...(listenToTheme ? themeListener.contextTypes : {}),
     };
@@ -121,8 +121,19 @@ const withStyles = (
 
     constructor(props, context: Object) {
       super(props, context);
+
+      const { muiThemeProviderOptions } = this.context;
+
       this.jss = this.context[ns.jss] || jss;
-      this.sheetsManager = this.context.sheetsManager || sheetsManager;
+
+      if (muiThemeProviderOptions) {
+        if (muiThemeProviderOptions.sheetsManager) {
+          this.sheetsManager = muiThemeProviderOptions.sheetsManager;
+        }
+
+        this.disableStylesGeneration = muiThemeProviderOptions.disableStylesGeneration;
+      }
+
       // Attach the stylesCreator to the instance of the component as in the context
       // of react-hot-loader the hooks can be executed in a different closure context:
       // https://github.com/gaearon/react-hot-loader/blob/master/src/patch.dev.js#L107
@@ -167,6 +178,10 @@ const withStyles = (
     }
 
     attach(theme: Object) {
+      if (this.disableStylesGeneration) {
+        return;
+      }
+
       const stylesCreatorSaved = this.stylesCreatorSaved;
       let sheetManager = this.sheetsManager.get(stylesCreatorSaved);
 
@@ -216,6 +231,10 @@ const withStyles = (
     }
 
     detach(theme: Object) {
+      if (this.disableStylesGeneration) {
+        return;
+      }
+
       const stylesCreatorSaved = this.stylesCreatorSaved;
       const sheetManager = this.sheetsManager.get(stylesCreatorSaved);
       const sheetManagerTheme = sheetManager.get(theme);
@@ -234,7 +253,8 @@ const withStyles = (
 
     unsubscribeId = null;
     jss = null;
-    sheetsManager = null;
+    sheetsManager = sheetsManager;
+    disableStylesGeneration = false;
     stylesCreatorSaved = null;
     theme = null;
     sheetOptions = null;
@@ -244,16 +264,20 @@ const withStyles = (
       const { classes: classesProp, innerRef, ...other } = this.props;
 
       let classes;
-      const sheetManager = this.sheetsManager.get(this.stylesCreatorSaved);
-      const sheetsManagerTheme = sheetManager.get(this.theme);
-      const renderedClasses = sheetsManagerTheme.sheet.classes;
+      let renderedClasses = {};
+
+      if (!this.disableStylesGeneration) {
+        const sheetManager = this.sheetsManager.get(this.stylesCreatorSaved);
+        const sheetsManagerTheme = sheetManager.get(this.theme);
+        renderedClasses = sheetsManagerTheme.sheet.classes;
+      }
 
       if (classesProp) {
         classes = {
           ...renderedClasses,
           ...Object.keys(classesProp).reduce((accumulator, key) => {
             warning(
-              renderedClasses[key],
+              renderedClasses[key] || this.disableStylesGeneration,
               [
                 `Material-UI: the key \`${key}\` ` +
                   `provided to the classes property is not implemented in ${getDisplayName(

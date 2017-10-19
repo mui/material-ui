@@ -6,7 +6,17 @@ import createBroadcast from 'brcast';
 import themeListener, { CHANNEL } from './themeListener';
 import exactProp from '../utils/exactProp';
 
+/**
+ * This component takes a `theme` property.
+ * It makes the `theme` available down the React tree thanks to React context.
+ * This component should preferably be used at **the root of your component tree**.
+ */
 class MuiThemeProvider extends React.Component<Object> {
+  static defaultProps = {
+    disableStylesGeneration: false,
+    sheetsManager: null,
+  };
+
   constructor(props: Object, context: Object) {
     super(props, context);
 
@@ -17,15 +27,12 @@ class MuiThemeProvider extends React.Component<Object> {
   }
 
   getChildContext() {
-    if (this.props.sheetsManager) {
-      return {
-        [CHANNEL]: this.broadcast,
-        sheetsManager: this.props.sheetsManager,
-      };
-    }
-
     return {
       [CHANNEL]: this.broadcast,
+      muiThemeProviderOptions: {
+        sheetsManager: this.props.sheetsManager,
+        disableStylesGeneration: this.props.disableStylesGeneration,
+      },
     };
   }
 
@@ -81,9 +88,18 @@ MuiThemeProvider.propTypes = {
    */
   children: PropTypes.element.isRequired,
   /**
-   * The sheetsManager is used in order to only inject once a style sheet in a page for
-   * a given theme object.
-   * You should provide on the server.
+   * You can disable the generation of the styles with this option.
+   * It can be useful when traversing the React tree outside of the HTML
+   * rendering step on the server.
+   * Let's say you are using react-apollo to extract all
+   * the queries made by the interface server side.
+   * You can significantly speed up the traversal with this property.
+   */
+  disableStylesGeneration: PropTypes.bool,
+  /**
+   * The sheetsManager is used to deduplicate style sheet injection in the page.
+   * It's deduplicating using the (theme, styles) couple.
+   * On the server, you should provide a new instance for each request.
    */
   sheetsManager: PropTypes.object,
   /**
@@ -94,7 +110,7 @@ MuiThemeProvider.propTypes = {
 
 MuiThemeProvider.childContextTypes = {
   ...themeListener.contextTypes,
-  sheetsManager: PropTypes.object,
+  muiThemeProviderOptions: PropTypes.object,
 };
 
 MuiThemeProvider.contextTypes = themeListener.contextTypes;
