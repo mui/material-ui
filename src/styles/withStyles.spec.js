@@ -181,5 +181,24 @@ describe('withStyles', () => {
       assert.strictEqual(sheetsRegistry.registry.length, 1, 'should only attach once');
       assert.deepEqual(sheetsRegistry.registry[0].rules.raw, { root: { padding: 9 } });
     });
+
+    describe('options: disableStylesGeneration', () => {
+      it('should not generate the styles', () => {
+        const styles = { root: { display: 'flex' } };
+        const StyledComponent = withStyles(styles)(Empty);
+
+        const wrapper = mount(
+          <MuiThemeProvider theme={createMuiTheme()} disableStylesGeneration>
+            <JssProvider registry={sheetsRegistry} jss={jss}>
+              <StyledComponent />
+            </JssProvider>
+          </MuiThemeProvider>,
+        );
+        assert.strictEqual(sheetsRegistry.registry.length, 0);
+        assert.deepEqual(wrapper.find(Empty).props().classes, {});
+        wrapper.unmount();
+        assert.strictEqual(sheetsRegistry.registry.length, 0);
+      });
+    });
   });
 });

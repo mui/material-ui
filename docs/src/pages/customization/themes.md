@@ -114,6 +114,8 @@ This component takes a `theme` property.
 It makes the `theme` available down the React tree thanks to React context.
 This component should preferably be used at **the root of your component tree**.
 
+You can see the full properties API in [this dedicated page](/api/mui-theme-provider).
+
 #### Examples
 
 ```jsx
