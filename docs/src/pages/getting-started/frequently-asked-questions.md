@@ -19,3 +19,11 @@ The best solution to date is to write wrapping components for all the Material-U
 The ripple effect is exclusively coming from the `BaseButton` component.
 [You can find the components using the BaseButton following this link](https://github.com/callemall/material-ui/search?utf8=%E2%9C%93&q=%22%2F%2F+%40inheritedComponent+ButtonBase%22).
 Then, all you have to do is to provide the `disableRipple` property.
+
+## When should I use inline-style vs `withStyles()`?
+
+As a rule of thumbs, only use inline-style for dynamic style properties. The CSS alternative provides more advantages. To name some of those pros:
+- auto-prefixing
+- better debug
+- allow media queries
+- allow keyframes
