@@ -8,10 +8,13 @@ import withStyles from '../styles/withStyles';
 
 export const styles = (theme: Object) => ({
   root: {
+    color: 'inherit',
+    display: 'table-row',
     height: 48,
     '&:focus': {
       outline: 'none',
     },
+    verticalAlign: 'middle',
   },
   head: {
     height: 56,
