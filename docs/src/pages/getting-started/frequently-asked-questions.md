@@ -22,8 +22,8 @@ Then, all you have to do is to provide the `disableRipple` property.
 
 ## When should I use inline-style vs `withStyles()`?
 
-As a rule of thumbs, only use inline-style for dynamic style properties. The CSS alternative provides more advantages. To name some of those pros:
+As a rule of thumb, only use inline-style for dynamic style properties. The CSS alternative provides more advantages. To name some of those pros:
 - auto-prefixing
-- better debug
+- better debugging
 - allow media queries
 - allow keyframes
