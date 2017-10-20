@@ -7,7 +7,7 @@ function getStylesCreator(stylesOrCreator: Object | (Object => Object)) {
   function create(theme: Object, name?: string): Object {
     const styles = typeof stylesOrCreator === 'function' ? stylesOrCreator(theme) : stylesOrCreator;
 
-    if (!theme.overrides || !theme.overrides[name]) {
+    if (!theme.overrides || !name || !theme.overrides[name]) {
       return styles;
     }
 
@@ -15,7 +15,14 @@ function getStylesCreator(stylesOrCreator: Object | (Object => Object)) {
     const stylesWithOverrides = { ...styles };
 
     Object.keys(overrides).forEach(key => {
-      warning(stylesWithOverrides[key], 'You are trying to override a style that does not exist.');
+      warning(
+        stylesWithOverrides[key],
+        [
+          'Material-UI: you are trying to override a style that does not exist.',
+          // $FlowFixMe - flow isn't smart enough
+          `Fix the \`${key}\` key of \`theme.overrides.${name}\`.`,
+        ].join('\n'),
+      );
       stylesWithOverrides[key] = deepmerge(stylesWithOverrides[key], overrides[key]);
     });
 
