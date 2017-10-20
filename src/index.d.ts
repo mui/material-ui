@@ -19,7 +19,10 @@ export interface StyledComponentProps<ClassKey extends string = string> {
   innerRef?: React.Ref<any>;
 }
 export type StyledComponent<P = {}, ClassKey extends string = string> =
-  React.ComponentType<P & StyledComponentProps<ClassKey>>
+  React.ComponentType<P & {
+    // Cloning props to prevent external dependency error
+    [k in keyof StyledComponentProps<ClassKey>]: StyledComponentProps<ClassKey>[k]
+  }>
 
 export type Contrast = 'light' | 'dark' | 'brown';
 export interface Color {
