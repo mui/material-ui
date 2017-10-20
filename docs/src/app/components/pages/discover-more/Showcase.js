@@ -90,6 +90,12 @@ const appList = [
     link: 'https://cloudcraft.co/',
   },
   {
+    title: 'Golden Hour Invoice Builder',
+    author: 'Mahesh Kumar J',
+    img: 'images/showcase/gh-invoice-builder.png',
+    link: 'https://invoicebuilder.goldenhour.co',
+  },
+  {
     title: 'It\'s quiz',
     author: 'It\'s quiz',
     img: 'images/showcase/itsquiz.png',
