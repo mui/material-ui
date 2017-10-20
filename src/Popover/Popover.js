@@ -3,7 +3,6 @@
 import React from 'react';
 import type { Node } from 'react';
 import ReactDOM from 'react-dom';
-import classNames from 'classnames';
 import warning from 'warning';
 import contains from 'dom-helpers/query/contains';
 import debounce from 'lodash/debounce';
@@ -107,10 +106,6 @@ export type Props = {
    * Useful to extend the style applied to components.
    */
   classes?: Object,
-  /**
-   * @ignore
-   */
-  className?: string,
   /**
    * The elevation of the popover.
    */
@@ -350,7 +345,6 @@ class Popover extends React.Component<ProvidedProps & Props> {
       anchorOrigin,
       children,
       classes,
-      className,
       elevation,
       enteredClassName,
       enteringClassName,
@@ -394,7 +388,7 @@ class Popover extends React.Component<ProvidedProps & Props> {
         >
           <Paper
             data-mui-test="Popover"
-            className={classNames(classes.paper, className)}
+            className={classes.paper}
             elevation={elevation}
             {...PaperProps}
           >

@@ -219,8 +219,8 @@ describe('<Popover />', () => {
           <div />
         </Popover>,
       );
+      assert.strictEqual(wrapper.hasClass('test-class'), true, 'should have the user class');
       const paper = wrapper.childAt(0).childAt(0);
-      assert.strictEqual(paper.hasClass('test-class'), true, 'should have the user class');
       assert.strictEqual(paper.hasClass(classes.paper), true, 'should have the popover class');
     });
 
