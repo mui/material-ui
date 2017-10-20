@@ -242,7 +242,7 @@ class Menu extends Component {
 
     const filteredChildren = this.getFilteredChildren(this.props.children);
     const focusedItem = filteredChildren[focusIndex];
-    if (focusedItem.props.menuItems && focusedItem.props.menuItems.length > 0) {
+    if (!!focusedItem && focusedItem.props.menuItems && focusedItem.props.menuItems.length > 0) {
       return;
     }
 
