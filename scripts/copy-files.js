@@ -41,7 +41,6 @@ function createPackageFile() {
         name: 'material-ui',
         main: './index.js',
         module: './index.es.js',
-        'jsnext:main': './index.es.js',
         private: false,
       };
 
