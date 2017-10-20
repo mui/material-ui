@@ -111,8 +111,8 @@ function IconButton(props: ProvidedProps & Props) {
       centerRipple
       keyboardFocusedClassName={classes.keyboardFocused}
       disabled={disabled}
-      ref={rootRef}
       {...other}
+      ref={rootRef}
     >
       <span className={classes.label}>
         {typeof children === 'string' ? (

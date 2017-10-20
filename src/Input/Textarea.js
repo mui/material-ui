@@ -230,13 +230,13 @@ class Textarea extends React.Component<ProvidedProps & Props, State> {
           value={value}
         />
         <textarea
-          ref={this.handleRefInput}
           rows={rows}
           className={classnames(classes.textarea, className)}
           defaultValue={defaultValue}
           value={value}
           onChange={this.handleChange}
           {...other}
+          ref={this.handleRefInput}
         />
       </div>
     );

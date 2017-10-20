@@ -106,7 +106,7 @@ class List extends React.Component<ProvidedProps & Props> {
     );
 
     return (
-      <ComponentProp ref={rootRef} className={className} {...other}>
+      <ComponentProp className={className} {...other} ref={rootRef}>
         {subheader}
         {children}
       </ComponentProp>

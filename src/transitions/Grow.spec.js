@@ -2,20 +2,24 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { spy } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import { createShallow } from '../test-utils';
 import Grow, { getScale } from './Grow';
 
 describe('<Grow />', () => {
   let shallow;
+  const props = {
+    in: true,
+    children: <div />,
+  };
 
   before(() => {
     shallow = createShallow({ dive: true });
   });
 
-  it('should render a Transition', () => {
-    const wrapper = shallow(<Grow />);
-    assert.strictEqual(wrapper.name(), 'Transition');
+  it('should render a CSSTransition', () => {
+    const wrapper = shallow(<Grow {...props} />);
+    assert.strictEqual(wrapper.name(), 'CSSTransition');
   });
 
   describe('event callbacks', () => {
@@ -27,7 +31,7 @@ describe('<Grow />', () => {
         return result;
       }, {});
 
-      const wrapper = shallow(<Grow {...handlers} />);
+      const wrapper = shallow(<Grow {...props} {...handlers} />);
 
       events.forEach(n => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
@@ -48,6 +52,7 @@ describe('<Grow />', () => {
     beforeEach(() => {
       wrapper = shallow(
         <Grow
+          {...props}
           transitionDuration={{
             enter: enterDuration,
             exit: leaveDuration,
@@ -59,7 +64,7 @@ describe('<Grow />', () => {
     });
 
     it('should create proper easeOut animation onEnter', () => {
-      instance.handleEnter(element);
+      instance.handleEntering(element);
       assert.match(element.style.transition, new RegExp(`${enterDuration}ms`));
     });
 
@@ -87,7 +92,7 @@ describe('<Grow />', () => {
 
       before(() => {
         handleEnter = spy();
-        wrapper = shallow(<Grow onEnter={handleEnter} />);
+        wrapper = shallow(<Grow {...props} onEnter={handleEnter} />);
         wrapper.instance().handleEnter(element);
       });
 
@@ -97,12 +102,6 @@ describe('<Grow />', () => {
           element.style.transform,
           getScale(0.75),
           'should have the starting scale',
-        );
-        assert.strictEqual(
-          element.style.transition,
-          'opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,' +
-            'transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-          'should apply a transition for transform and opacity',
         );
       });
 
@@ -117,11 +116,17 @@ describe('<Grow />', () => {
 
       before(() => {
         handleEntering = spy();
-        wrapper = shallow(<Grow onEntering={handleEntering} />);
+        wrapper = shallow(<Grow {...props} onEntering={handleEntering} />);
         wrapper.instance().handleEntering(element);
       });
 
       it('should set the inline styles for the entering phase', () => {
+        assert.strictEqual(
+          element.style.transition,
+          'opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,' +
+            'transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+          'should apply a transition for transform and opacity',
+        );
         assert.strictEqual(element.style.opacity, '1', 'should be visible');
         assert.strictEqual(element.style.transform, getScale(1), 'should have the full scale');
       });
@@ -137,7 +142,7 @@ describe('<Grow />', () => {
 
       before(() => {
         handleExit = spy();
-        wrapper = shallow(<Grow onExit={handleExit} />);
+        wrapper = shallow(<Grow {...props} onExit={handleExit} />);
         wrapper.instance().handleExit(element);
       });
 
@@ -152,29 +157,46 @@ describe('<Grow />', () => {
     });
   });
 
-  describe('handleRequestTimeout()', () => {
-    let wrapper;
+  describe('addEndListener()', () => {
     let instance;
+    let clock;
 
-    beforeEach(() => {
-      wrapper = shallow(<Grow />);
+    before(() => {
+      clock = useFakeTimers();
+    });
+
+    after(() => {
+      clock.restore();
     });
 
     it('should return autoTransitionDuration when transitionDuration is auto', () => {
-      wrapper.setProps({ transitionDuration: 'auto' });
+      const wrapper = shallow(<Grow {...props} transitionDuration="auto" />);
       instance = wrapper.instance();
+      const next = spy();
+
       const autoTransitionDuration = 10;
       instance.autoTransitionDuration = autoTransitionDuration;
-      assert.strictEqual(instance.handleRequestTimeout(), autoTransitionDuration);
+      instance.addEndListener(null, next);
+      assert.strictEqual(next.callCount, 0);
+      clock.tick(autoTransitionDuration);
+      assert.strictEqual(next.callCount, 1);
+
       instance.autoTransitionDuration = undefined;
-      assert.strictEqual(instance.handleRequestTimeout(), 0);
+      instance.addEndListener(null, next);
+      assert.strictEqual(next.callCount, 1);
+      clock.tick(0);
+      assert.strictEqual(next.callCount, 2);
     });
 
     it('should return props.transitionDuration when transitionDuration is number', () => {
       const transitionDuration = 10;
-      wrapper.setProps({ transitionDuration });
+      const wrapper = shallow(<Grow {...props} transitionDuration={transitionDuration} />);
       instance = wrapper.instance();
-      assert.strictEqual(instance.handleRequestTimeout(), transitionDuration);
+      const next = spy();
+      instance.addEndListener(null, next);
+      assert.strictEqual(next.callCount, 0);
+      clock.tick(transitionDuration);
+      assert.strictEqual(next.callCount, 1);
     });
   });
 });

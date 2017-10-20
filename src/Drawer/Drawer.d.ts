@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyledComponent, StyledComponentProps } from '..';
 import { ModalProps } from '../internal/Modal';
-import { TransitionDuration } from '../internal/Transition';
+import { TransitionDuration } from '../internal/transition';
 import { SlideProps } from '../transitions/Slide';
 import { Theme } from '../styles/createMuiTheme';
 

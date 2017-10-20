@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyledComponent } from '..';
 import { ModalProps } from '../internal/Modal';
-import { TransitionDuration } from '../internal/Transition';
+import { TransitionDuration } from '../internal/transition';
 
 export type DialogProps = {
   fullScreen?: boolean;

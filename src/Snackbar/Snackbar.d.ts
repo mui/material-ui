@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyledComponent } from '..';
-import { TransitionDuration, TransitionHandlers } from '../internal/Transition';
+import { TransitionDuration, TransitionHandlers } from '../internal/transition';
 export type Origin = {
   horizontal?: 'left' | 'center' | 'right' | number;
   vertical?: 'top' | 'center' | 'bottom' | number;

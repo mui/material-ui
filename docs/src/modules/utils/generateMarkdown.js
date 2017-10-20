@@ -221,12 +221,25 @@ function generateInheritance(reactAPI) {
   }
 
   const component = inheritedComponent[1];
+  let pathname;
+
+  switch (component) {
+    case 'CSSTransition':
+      pathname = 'https://reactcommunity.org/react-transition-group/#CSSTransition';
+      break;
+
+    case 'Transition':
+      pathname = 'https://reactcommunity.org/react-transition-group/#Transition';
+      break;
+
+    default:
+      pathname = `/api/${kebabCase(component)}`;
+      break;
+  }
 
   return `## Inheritance
 
-The properties of the [&lt;${component} /&gt;](/api/${kebabCase(
-    component,
-  )}) component are also available.
+The properties of the [&lt;${component} /&gt;](${pathname}) component are also available.
 
 `;
 }

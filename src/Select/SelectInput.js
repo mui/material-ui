@@ -250,13 +250,13 @@ class SelectInput extends React.Component<ProvidedProps & Props, State> {
             )}
             name={name}
             disabled={disabled}
-            ref={selectRef}
             onBlur={onBlur}
             onChange={onChange}
             onFocus={onFocus}
             value={value}
             readOnly={readOnly}
             {...other}
+            ref={selectRef}
           >
             {children}
           </select>
@@ -350,11 +350,11 @@ class SelectInput extends React.Component<ProvidedProps & Props, State> {
           {display}
         </div>
         <input
-          ref={this.handleSelectRef}
           value={Array.isArray(value) ? value.join(',') : value}
           name={name}
           readOnly={readOnly}
           {...other}
+          ref={this.handleSelectRef}
           type="hidden"
         />
         <ArrowDropDownIcon className={classes.icon} />

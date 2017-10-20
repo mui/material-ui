@@ -17,7 +17,7 @@ import withStyles from '../styles/withStyles';
 import createModalManager from './modalManager';
 import Backdrop from './Backdrop';
 import Portal from './Portal';
-import type { TransitionDuration, TransitionCallback } from '../internal/Transition';
+import type { TransitionDuration, TransitionCallback } from '../internal/transition';
 
 // Modals don't open on the server so this won't break concurrency.
 // Could also put this on context.
@@ -42,6 +42,7 @@ type ProvidedProps = {
   backdropComponent: Function,
   classes: Object,
   modalManager: Object,
+  show: boolean,
 };
 
 export type Props = {
@@ -326,7 +327,7 @@ class Modal extends React.Component<ProvidedProps & Props, State> {
     } = this.props;
 
     return (
-      <Fade in={show} transitionAppear transitionDuration={backdropTransitionDuration} {...other}>
+      <Fade appear in={show} transitionDuration={backdropTransitionDuration} {...other}>
         <BackdropComponent
           invisible={backdropInvisible}
           className={backdropClassName}
@@ -415,10 +416,10 @@ class Modal extends React.Component<ProvidedProps & Props, State> {
           className={classNames(classes.root, className, {
             [classes.hidden]: this.state.exited,
           })}
+          {...other}
           ref={node => {
             this.modal = node;
           }}
-          {...other}
         >
           {!disableBackdrop &&
             (!keepMounted || show || !this.state.exited) &&

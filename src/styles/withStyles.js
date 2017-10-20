@@ -317,7 +317,7 @@ const withStyles = (
         more.theme = this.theme;
       }
 
-      return <Component classes={classes} ref={innerRef} {...more} {...other} />;
+      return <Component classes={classes} {...more} {...other} ref={innerRef} />;
     }
   }
 
