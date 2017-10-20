@@ -1,15 +1,16 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
-import { SwitchBaseProps } from '../internal/SwitchBase';
+import { StandardProps } from '..';
+import { SwitchBaseProps, SwitchBaseClassKey } from '../internal/SwitchBase';
 
-export interface CheckboxProps extends SwitchBaseProps {}
+export interface CheckboxProps extends StandardProps<
+  SwitchBaseProps,
+  CheckboxClassKey
+> {}
 
 export type CheckboxClassKey =
-  | 'default'
-  | 'checked'
-  | 'disabled'
+  | SwitchBaseClassKey
   ;
 
-declare const Checkbox: StyledComponent<CheckboxProps, CheckboxClassKey>;
+declare const Checkbox: React.ComponentType<CheckboxProps>;
 
 export default Checkbox;

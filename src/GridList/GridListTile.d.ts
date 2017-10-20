@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export interface GridListTileProps {
+export interface GridListTileProps extends StandardProps<{}, GridListTileClassKey> {
   cols?: number;
   component?: React.ReactType;
   rows?: number;
@@ -14,6 +14,6 @@ export type GridListTileClassKey =
   | 'imgFullWidth'
   ;
 
-declare const GridListTile: StyledComponent<GridListTileProps, GridListTileClassKey>;
+declare const GridListTile: React.ComponentType<GridListTileProps>;
 
 export default GridListTile;

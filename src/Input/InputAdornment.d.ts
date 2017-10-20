@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export interface InputAdornmentProps {
+export interface InputAdornmentProps extends StandardProps<{}, InputAdornmentClassKey> {
   component?: React.ReactType;
   disableTypography?: boolean;
   position: 'start' | 'end';
@@ -13,6 +13,6 @@ export type InputAdornmentClassKey =
   | 'positionEnd'
   ;
 
-declare const InputAdornment: StyledComponent<InputAdornmentProps, InputAdornmentClassKey>;
+declare const InputAdornment: React.ComponentType<InputAdornmentProps>;
 
 export default InputAdornment;

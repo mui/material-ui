@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export interface SwitchBaseProps {
+export interface SwitchBaseProps extends StandardProps<{}, SwitchBaseClassKey> {
   checked?: boolean | string;
   checkedClassName?: string;
   checkedIcon?: React.ReactNode;
@@ -28,7 +28,7 @@ export type SwitchBaseClassKey =
   | 'input'
   ;
 
-export type SwitchBase = StyledComponent<SwitchBaseProps, SwitchBaseClassKey>
+export type SwitchBase = React.Component<SwitchBaseProps>
 
 export interface CreateSwitchBaseOptions {
   defaultIcon?: React.ReactNode;

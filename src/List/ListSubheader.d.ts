@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export interface ListSubheaderProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+export interface ListSubheaderProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  ListSubheaderClassKey
+> {
   color?: 'default' | 'primary' | 'inherit';
   inset?: boolean;
   disableSticky?: boolean;
@@ -16,6 +18,6 @@ export type ListSubheaderClassKey =
   | 'sticky'
   ;
 
-declare const ListSubheader: StyledComponent<ListSubheaderProps, ListSubheaderClassKey>;
+declare const ListSubheader: React.ComponentType<ListSubheaderProps>;
 
 export default ListSubheader;

@@ -1,13 +1,15 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export interface DialogContentTextProps
-  extends React.HTMLAttributes<HTMLParagraphElement> {}
+export interface DialogContentTextProps extends StandardProps<
+  React.HTMLAttributes<HTMLParagraphElement>,
+  DialogContentTextClassKey
+> {}
 
 export type DialogContentTextClassKey =
   | 'root'
   ;
 
-declare const DialogContentText: StyledComponent<DialogContentTextProps, DialogContentTextClassKey>;
+declare const DialogContentText: React.ComponentType<DialogContentTextProps>;
 
 export default DialogContentText;

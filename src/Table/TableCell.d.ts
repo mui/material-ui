@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
 /**
  * `<TableCell>` will be rendered as an `<th>`or `<td>` depending
@@ -9,11 +9,13 @@ import { StyledComponent } from '..';
  * Since it is not decided via prop, we have create loose typings
  * here.
  */
-export type TableCellProps = {
+export interface TableCellProps extends StandardProps<
+  React.ThHTMLAttributes<HTMLTableHeaderCellElement> & React.TdHTMLAttributes<HTMLTableDataCellElement>,
+  TableCellClassKey
+> {
   padding?: Padding;
   numeric?: boolean;
-} & React.ThHTMLAttributes<HTMLTableHeaderCellElement> &
-  React.TdHTMLAttributes<HTMLTableDataCellElement>;
+}
 
 export type Padding =
   | 'default'
@@ -32,6 +34,6 @@ export type TableCellClassKey =
   | 'footer'
   ;
 
-declare const TableCell: StyledComponent<TableCellProps, TableCellClassKey>;
+declare const TableCell: React.ComponentType<TableCellProps>;
 
 export default TableCell;

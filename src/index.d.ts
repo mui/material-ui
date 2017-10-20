@@ -1,25 +1,19 @@
 import * as React from 'react';
-
-export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
+import { StyledComponentProps } from './styles'
+export { StyledComponentProps }
 
 /**
- * Component exposed by `material-ui` are usually wrapped
- * with the `withStyles` HOC and allow customization via
- * the following props:
- *
- * - `className`
- * - `classes`
- * - `style`
- * - `innerRef`
+ * All standard components exposed by `material-ui` are `StyledComponents` with
+ * certain `classes`, on which one can also set a top-level `className` and inline
+ * `style`.
  */
-export interface StyledComponentProps<ClassKey extends string = string> {
-  className?: string;
-  classes?: Partial<ClassNameMap<ClassKey>>;
-  style?: Partial<React.CSSProperties>;
-  innerRef?: React.Ref<any>;
-}
-export type StyledComponent<P = {}, ClassKey extends string = string> =
-  React.ComponentType<P & StyledComponentProps<ClassKey>>
+export type StandardProps<C, ClassKey extends string, Removals extends keyof C = never> =
+  & Omit<C & { classes: any }, 'classes' | Removals>
+  & StyledComponentProps<ClassKey>
+  & {
+    className?: string;
+    style?: Partial<React.CSSProperties>;
+  }
 
 export type Contrast = 'light' | 'dark' | 'brown';
 export interface Color {
@@ -47,6 +41,7 @@ export interface Color {
 export type Diff<T extends string, U extends string> = ({ [P in T]: P } &
   { [P in U]: never } & { [x: string]: never })[T];
 export type Omit<T, K extends keyof T> = Pick<T, Diff<keyof T, K>>;
+export type Replace<T, S> = Omit<T, keyof S & keyof T> & S
 
 export namespace PropTypes {
   type Alignment = 'inherit' | 'left' | 'center' | 'right' | 'justify';

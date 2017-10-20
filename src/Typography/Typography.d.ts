@@ -1,8 +1,11 @@
 import * as React from 'react';
-import { StyledComponent, PropTypes } from '..';
+import { StandardProps, PropTypes } from '..';
 import { Style, TextStyle } from '../styles/createTypography';
 
-export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
+export interface TypographyProps extends StandardProps<
+  React.HTMLAttributes<HTMLElement>,
+  TypographyClassKey
+> {
   align?: PropTypes.Alignment;
   component?: React.ReactType;
   color?: PropTypes.Color | 'secondary' | 'error';
@@ -38,6 +41,6 @@ export type TypographyClassKey =
   | 'colorAccent'
   ;
 
-declare const Typography: StyledComponent<TypographyProps, TypographyClassKey>;
+declare const Typography: React.ComponentType<TypographyProps>;
 
 export default Typography;

@@ -1,7 +1,10 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export interface PaperProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface PaperProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  PaperClassKey
+> {
   component?: React.ReactType;
   elevation?: number;
   square?: boolean;
@@ -37,6 +40,6 @@ export type PaperClassKey =
   | 'shadow24'
   ;
 
-declare const Paper: StyledComponent<PaperProps, PaperClassKey>;
+declare const Paper: React.ComponentType<PaperProps>;
 
 export default Paper;

@@ -1,8 +1,11 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
-import { SwitchBaseProps } from '../internal/SwitchBase';
+import { StandardProps } from '..';
+import { SwitchBaseProps, SwitchBaseClassKey } from '../internal/SwitchBase';
 
-export interface SwitchProps extends SwitchBaseProps {
+export interface SwitchProps extends StandardProps<
+  SwitchBaseProps,
+  SwitchClassKey
+> {
   checked?: boolean | string;
   checkedClassName?: string;
   checkedIcon?: React.ReactNode;
@@ -19,14 +22,11 @@ export interface SwitchProps extends SwitchBaseProps {
 }
 
 export type SwitchClassKey =
-  | 'root'
+  | SwitchBaseClassKey
   | 'bar'
   | 'icon'
-  | 'default'
-  | 'checked'
-  | 'disabled'
   ;
 
-declare const Switch: StyledComponent<SwitchProps, SwitchClassKey>;
+declare const Switch: React.ComponentType<SwitchProps>;
 
 export default Switch;

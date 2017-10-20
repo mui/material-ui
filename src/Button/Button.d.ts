@@ -1,8 +1,11 @@
 import * as React from 'react';
-import { StyledComponent, PropTypes } from '..';
-import { ButtonBaseProps } from '../ButtonBase';
+import { StandardProps, PropTypes } from '..';
+import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase';
 
-export interface ButtonProps extends ButtonBaseProps {
+export interface ButtonProps extends StandardProps<
+  ButtonBaseProps,
+  ButtonClassKey
+> {
   color?: PropTypes.Color | 'contrast';
   component?: React.ReactType;
   dense?: boolean;
@@ -16,7 +19,7 @@ export interface ButtonProps extends ButtonBaseProps {
 }
 
 export type ButtonClassKey =
-  | 'root'
+  | ButtonBaseClassKey
   | 'dense'
   | 'label'
   | 'flatPrimary'
@@ -28,10 +31,9 @@ export type ButtonClassKey =
   | 'raisedPrimary'
   | 'raisedAccent'
   | 'raisedContrast'
-  | 'disabled'
   | 'fab'
   ;
 
-declare const Button: StyledComponent<ButtonProps, ButtonClassKey>;
+declare const Button: React.ComponentType<ButtonProps>;
 
 export default Button

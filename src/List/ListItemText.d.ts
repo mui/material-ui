@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export interface ListItemTextProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+export interface ListItemTextProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  ListItemTextClassKey
+> {
   disableTypography?: boolean;
   inset?: boolean;
   primary?: React.ReactNode;
@@ -17,6 +19,6 @@ export type ListItemTextClassKey =
   | 'textDense'
   ;
 
-declare const ListItemText: StyledComponent<ListItemTextProps, ListItemTextClassKey>;
+declare const ListItemText: React.ComponentType<ListItemTextProps>;
 
 export default ListItemText;

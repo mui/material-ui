@@ -1,7 +1,10 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps, Replace } from '..';
 
-export type ButtonBaseProps = {
+export interface ButtonBaseProps extends StandardProps<
+  Replace<React.AnchorHTMLAttributes<HTMLAnchorElement>, React.ButtonHTMLAttributes<HTMLButtonElement>>,
+  ButtonBaseClassKey
+> {
   centerRipple?: boolean;
   component?: React.ReactType;
   disableRipple?: boolean;
@@ -9,14 +12,13 @@ export type ButtonBaseProps = {
   keyboardFocusedClassName?: string;
   onKeyboardFocus?: React.FocusEventHandler<any>;
   rootRef?: React.Ref<any>;
-} & React.ButtonHTMLAttributes<HTMLButtonElement> &
-  React.AnchorHTMLAttributes<HTMLAnchorElement>;
+}
 
 export type ButtonBaseClassKey =
   | 'root'
   | 'disabled'
   ;
 
-declare const ButtonBase: StyledComponent<ButtonBaseProps, ButtonBaseClassKey>;
+declare const ButtonBase: React.ComponentType<ButtonBaseProps>;
 
 export default ButtonBase;

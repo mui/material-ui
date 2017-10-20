@@ -1,9 +1,12 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 import { BackdropProps } from './Backdrop';
 import { TransitionDuration, TransitionHandlers } from './Transition';
 
-export type ModalProps = {
+export interface ModalProps extends StandardProps<
+  React.HtmlHTMLAttributes<HTMLDivElement> & Partial<TransitionHandlers>,
+  ModalClassKey
+> {
   backdropClassName?: string;
   backdropComponent?: React.ComponentType<BackdropProps>;
   backdropInvisible?: boolean;
@@ -17,14 +20,13 @@ export type ModalProps = {
   onEscapeKeyUp?: React.ReactEventHandler<{}>;
   onRequestClose?: React.ReactEventHandler<{}>;
   show?: boolean;
-} & Partial<TransitionHandlers> &
-  React.HtmlHTMLAttributes<HTMLDivElement>;
+}
 
 export type ModalClassKey =
   | 'root'
   | 'hidden'
   ;
 
-declare const Modal: StyledComponent<ModalProps, ModalClassKey>;
+declare const Modal: React.ComponentType<ModalProps>;
 
 export default Modal;

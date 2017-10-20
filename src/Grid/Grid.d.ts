@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Omit, StyledComponent, StyledComponentProps } from '..';
+import { StandardProps } from '..';
 import { HiddenProps } from '../Hidden/Hidden';
 import { Breakpoint } from '../styles/createBreakpoints';
 
@@ -22,7 +22,11 @@ export type GridWrap = 'nowrap' | 'wrap' | 'wrap-reverse';
 
 export type GridSize = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
-export type GridProps = {
+export interface GridProps extends StandardProps<
+  React.HTMLAttributes<HTMLElement> & Partial<Record<Breakpoint, boolean | GridSize>>,
+  GridClassKey,
+  'hidden'
+> {
   component?: React.ReactType;
   container?: boolean;
   item?: boolean;
@@ -30,11 +34,10 @@ export type GridProps = {
   alignContent?: GridContentAlignment;
   direction?: GridDirection;
   spacing?: GridSpacing;
-  hidden?: HiddenProps & StyledComponentProps<any>;
+  hidden?: HiddenProps;
   justify?: GridJustification;
   wrap?: GridWrap;
-} & Partial<{ [key in Breakpoint]: boolean | GridSize }>
-  & Omit<React.HTMLAttributes<HTMLElement>, 'hidden'>;
+}
 
 export type GridClassKey =
   | 'typeContainer'
@@ -75,6 +78,6 @@ export type GridClassKey =
   | 'grid-xs-12'
   ;
 
-declare const Grid: StyledComponent<GridProps, GridClassKey>;
+declare const Grid: React.ComponentType<GridProps>;
 
 export default Grid;

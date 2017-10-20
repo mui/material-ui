@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { ClassNameMap, StyledComponentProps, StyledComponent } from '..';
 import { Theme } from './createMuiTheme';
 
 /**
@@ -19,14 +18,21 @@ export interface WithStylesOptions {
   name?: string;
 }
 
-export type WithStyles<ClassKey extends string = string> = {
+export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
+
+export interface WithStyles<ClassKey extends string = string> {
   classes: ClassNameMap<ClassKey>
   theme?: Theme
-};
+}
+
+export interface StyledComponentProps<ClassKey extends string = string> {
+  classes?: Partial<ClassNameMap<ClassKey>>;
+  innerRef?: React.Ref<any>;
+}
 
 export default function withStyles<ClassKey extends string>(
   style: StyleRules<ClassKey> | StyleRulesCallback<ClassKey>,
   options?: WithStylesOptions
 ): <P>(
   component: React.ComponentType<P & WithStyles<ClassKey>>
-) => StyledComponent<P, ClassKey>;
+) => React.ComponentType<P & StyledComponentProps<ClassKey>>;

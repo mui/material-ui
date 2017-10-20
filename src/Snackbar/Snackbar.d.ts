@@ -1,12 +1,15 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 import { TransitionDuration, TransitionHandlers } from '../internal/Transition';
 export type Origin = {
   horizontal?: 'left' | 'center' | 'right' | number;
   vertical?: 'top' | 'center' | 'bottom' | number;
 };
 
-export type SnackbarProps = {
+export interface SnackbarProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement> & Partial<TransitionHandlers>,
+  SnackbarClassKey
+> {
   action?: React.ReactElement<any> | React.ReactElement<any>[];
   anchorOrigin?: Origin;
   autoHideDuration?: number;
@@ -19,8 +22,7 @@ export type SnackbarProps = {
   open: boolean;
   SnackbarContentProps?: Object;
   transition?: React.ReactNode;
-} & Partial<TransitionHandlers> &
-  React.HTMLAttributes<HTMLDivElement>;
+}
 
 export type SnackbarClassKey =
   | 'root'
@@ -32,6 +34,6 @@ export type SnackbarClassKey =
   | 'anchorBottomLeft'
   ;
 
-declare const Snackbar: StyledComponent<SnackbarProps, SnackbarClassKey>;
+declare const Snackbar: React.ComponentType<SnackbarProps>;
 
 export default Snackbar;

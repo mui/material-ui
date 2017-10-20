@@ -1,8 +1,12 @@
 import * as React from 'react';
-import { StyledComponent, Omit } from '..';
-import { ButtonBaseProps } from '../ButtonBase';
+import { StandardProps } from '..';
+import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase/ButtonBase';
 
-export type TabsProps = {
+export interface TabsProps extends StandardProps<
+  ButtonBaseProps,
+  TabsClassKey,
+  'onChange'
+> {
   buttonClassName?: string;
   centered?: boolean;
   children?: React.ReactNode;
@@ -16,10 +20,10 @@ export type TabsProps = {
   TabScrollButton?: React.ReactType,
   textColor?: 'accent' | 'primary' | 'inherit' | string;
   width?: string;
-} & Omit<ButtonBaseProps, 'onChange'>;
+}
 
 export type TabsClassKey =
-  | 'root'
+  | ButtonBaseClassKey
   | 'flexContainer'
   | 'scrollingContainer'
   | 'fixed'
@@ -27,6 +31,6 @@ export type TabsClassKey =
   | 'centered'
   ;
 
-declare const Tabs: StyledComponent<TabsProps, TabsClassKey>;
+declare const Tabs: React.ComponentType<TabsProps>;
 
 export default Tabs;

@@ -1,7 +1,10 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export interface ChipProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ChipProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  ChipClassKey
+> {
   avatar?: React.ReactElement<any>;
   label?: React.ReactNode;
   onKeyDown?: React.EventHandler<React.KeyboardEvent<any>>;
@@ -19,6 +22,6 @@ export type ChipClassKey =
   | 'deleteIcon'
   ;
 
-declare const Chip: StyledComponent<ChipProps, ChipClassKey>;
+declare const Chip: React.ComponentType<ChipProps>;
 
 export default Chip;

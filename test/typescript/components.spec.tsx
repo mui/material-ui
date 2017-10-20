@@ -777,7 +777,7 @@ const TextFieldTest = () =>
       id="name"
       label="Name"
       value={'Alice'}
-      InputProps={{ classes: { foo: 'bar' } }}
+      InputProps={{ classes: { root: 'foo' } }}
     />
   </div>;
 

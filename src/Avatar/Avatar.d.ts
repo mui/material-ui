@@ -1,7 +1,10 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface AvatarProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  AvatarClassKey
+> {
   alt?: string;
   childrenClassName?: string;
   component?: React.ReactType;
@@ -17,6 +20,6 @@ export type AvatarClassKey =
   | 'img'
   ;
 
-declare const Avatar: StyledComponent<AvatarProps, AvatarClassKey>;
+declare const Avatar: React.ComponentType<AvatarProps>;
 
 export default Avatar;

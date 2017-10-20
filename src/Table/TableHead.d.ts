@@ -1,13 +1,15 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export interface TableHeadProps
-  extends React.HTMLAttributes<HTMLTableSectionElement> {}
+export interface TableHeadProps extends StandardProps<
+  React.HTMLAttributes<HTMLTableSectionElement>,
+  TableHeadClassKey
+> {}
 
 export type TableHeadClassKey =
   | 'root'
   ;
 
-declare const TableHead: StyledComponent<TableHeadProps, TableHeadClassKey>;
+declare const TableHead: React.ComponentType<TableHeadProps>;
 
 export default TableHead;

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { StyledComponent } from '../../src';
 import {
   withStyles,
   WithStyles,
@@ -10,7 +9,6 @@ import {
   StyleRules,
 } from '../../src/styles';
 import Button from '../../src/Button/Button';
-import { StyledComponentProps } from '../../src/index';
 import { StyleRulesCallback } from '../../src/styles/withStyles';
 
 // Shared types for examples

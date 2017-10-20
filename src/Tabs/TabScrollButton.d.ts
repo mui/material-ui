@@ -1,16 +1,19 @@
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
+import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase/ButtonBase';
 
-import { ButtonBaseProps } from '../ButtonBase';
-
-export interface TabScrollButtonProps extends ButtonBaseProps {
+export interface TabScrollButtonProps extends StandardProps<
+  ButtonBaseProps,
+  TabScrollButtonClassKey
+> {
   direction?: 'left' | 'right';
   visible?: boolean;
 }
 
 export type TabScrollButtonClassKey =
+  | ButtonBaseClassKey
   | 'root'
   ;
 
-declare const TabScrollButton: StyledComponent<TabScrollButtonProps, TabScrollButtonClassKey>;
+declare const TabScrollButton: React.ComponentType<TabScrollButtonProps>;
 
 export default TabScrollButton;
