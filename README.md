@@ -52,7 +52,7 @@ Here is a list of available props
 
 #### Datepicker
 Prop | Type | Default | Definition
------------- | -------------
+------------ | ------------- | ------------- | -------------
 value | string, number, Date object, Moment object | null | Datepicker value
 format | string | 'MMMM Do' | Moment format string for input
 autoOk | boolean | false | Auto accept date on selection 
