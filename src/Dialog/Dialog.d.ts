@@ -5,7 +5,8 @@ import { TransitionDuration } from '../internal/Transition';
 
 export interface DialogProps extends StandardProps<
   ModalProps,
-  DialogClassKey
+  DialogClassKey,
+  'onBackdropClick' | 'onEscapeKeyUp'
 > {
   fullScreen?: boolean;
   ignoreBackdropClick?: boolean;
@@ -13,6 +14,8 @@ export interface DialogProps extends StandardProps<
   transitionDuration?: TransitionDuration;
   maxWidth?: 'xs' | 'sm' | 'md';
   fullWidth?: boolean;
+  onBackdropClick?: Function;		
+  onEscapeKeyUp?: Function;
   onRequestClose?: React.EventHandler<any>;
   open?: boolean;
   transition?: Function | React.ReactElement<any>;

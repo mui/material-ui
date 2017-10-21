@@ -11,7 +11,8 @@ export interface Origin {
 
 export interface PopoverProps extends StandardProps<
   ModalProps & Partial<TransitionHandlers>,
-  PopoverClassKey
+  PopoverClassKey,
+  'onRequestClose'
 > {
   anchorEl?: Object;
   anchorOrigin?: Origin;
@@ -22,6 +23,7 @@ export interface PopoverProps extends StandardProps<
   exitingClassName?: string;
   getContentAnchorEl?: Function;
   modal?: boolean;
+  onRequestClose?: Function;
   open?: boolean;
   role?: string;
   transformOrigin?: Origin;
