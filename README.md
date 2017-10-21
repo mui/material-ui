@@ -57,8 +57,8 @@ value | string, number, Date object, Moment object | null | Datepicker value
 format | string | 'MMMM Do' | Moment format string for input
 autoOk | boolean | false | Auto accept date on selection 
 disableFuture | boolean | false | Disable future dates
-animateYearScrolling | boolean | false | Will animate year selection (note that will work for browser supports scrollIntoView({ behavior: 'smooth' }))
-openToYearSelection | boolean | Open datepicker from year selection
+animateYearScrolling | boolean | false | Will animate year selection (note that will work for browser supports scrollIntoView api)
+openToYearSelection | boolean | false | Open datepicker from year selection
 
 #### Timepicker
 Prop | Type | Default | Definition
