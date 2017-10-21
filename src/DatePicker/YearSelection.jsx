@@ -56,6 +56,7 @@ class YearSelection extends PureComponent {
               return (
                 <div
                   role="button"
+                  key={year.format('YYYY')}
                   className={className}
                   tabIndex={yearNumber}
                   onClick={() => this.onYearSelect(yearNumber)}

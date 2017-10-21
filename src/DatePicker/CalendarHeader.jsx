@@ -27,7 +27,7 @@ const CalendarHeader = (props) => {
 
       <div className={classes.daysHeader}>
         { moment.weekdaysMin().map(day => (
-          <div className={classes.dayLabel}> { day } </div>
+          <div key={day} className={classes.dayLabel}> { day } </div>
         ))}
       </div>
     </div>
@@ -37,7 +37,7 @@ const CalendarHeader = (props) => {
 CalendarHeader.propTypes = {
   currentMonth: PropTypes.object.isRequired,
   onMonthChange: PropTypes.func.isRequired,
-  classes: PropTypes.object,
+  classes: PropTypes.object.isRequired,
 };
 
 const styles = theme => ({

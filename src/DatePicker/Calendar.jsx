@@ -11,8 +11,8 @@ const moment = extendMoment(Moment);
 
 class Calendar extends PureComponent {
   static propTypes = {
-    date: PropTypes.shape({}).isRequired,
-    classes: PropTypes.shape({}).isRequired,
+    date: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     disableFuture: PropTypes.bool.isRequired,
   }

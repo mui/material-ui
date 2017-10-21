@@ -4,36 +4,33 @@ import moment from 'moment';
 
 import DateTextField from '../_shared/DateTextField';
 import ModalDialog from '../_shared/ModalDialog';
-import DatePicker from './DatePicker';
+import TimePicker from './TimePicker';
 
-export default class DatePickerModal extends PureComponent {
+export default class TimePickerModal extends PureComponent {
   static propTypes = {
     value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     format: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     autoOk: PropTypes.bool,
-    disableFuture: PropTypes.bool,
-    animateYearScrolling: PropTypes.bool,
-    openToYearSelection: PropTypes.bool,
   }
 
   static defaultProps = {
     value: null,
-    format: 'MMMM Do',
+    format: 'hh:mm A',
     autoOk: false,
   }
 
   state = {
-    open: false,
-    date: moment(this.props.value),
+    open: true,
+    time: moment(this.props.value),
   }
 
   togglePicker = () => {
     this.setState({ open: !this.state.open });
   }
 
-  handleChange = (date) => {
-    this.setState({ date }, () => {
+  handleChange = (time) => {
+    this.setState({ time }, () => {
       if (this.props.autoOk) {
         this.handleAccept();
       }
@@ -41,22 +38,22 @@ export default class DatePickerModal extends PureComponent {
   }
 
   handleAccept = () => {
-    this.props.onChange(this.state.date);
+    this.props.onChange(this.state.time);
     this.togglePicker(); // close
   }
 
   handleDismiss = () => {
     this.setState({
-      date: moment(this.props.value),
+      time: moment(this.props.value),
     });
 
     this.togglePicker();
   }
 
   render() {
-    const { date } = this.state;
+    const { time } = this.state;
     const {
-      value, format, autoOk, onChange, disableFuture, animateYearScrolling, openToYearSelection,
+      value, format, autoOk, onChange,
       ...other
     } = this.props;
 
@@ -74,12 +71,9 @@ export default class DatePickerModal extends PureComponent {
           onAccept={this.handleAccept}
           onDismiss={this.handleDismiss}
         >
-          <DatePicker
-            date={date}
+          <TimePicker
+            date={time}
             onChange={this.handleChange}
-            disableFuture={disableFuture}
-            animateYearScrolling={animateYearScrolling}
-            openToYearSelection={openToYearSelection}
           />
         </ModalDialog>
       </span>
