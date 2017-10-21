@@ -21,6 +21,9 @@ export default class DatePickerModal extends PureComponent {
     value: null,
     format: 'MMMM Do',
     autoOk: false,
+    disableFuture: false,
+    animateYearScrolling: false,
+    openToYearSelection: false,
   }
 
   state = {

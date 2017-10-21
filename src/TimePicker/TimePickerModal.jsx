@@ -21,7 +21,7 @@ export default class TimePickerModal extends PureComponent {
   }
 
   state = {
-    open: true,
+    open: false,
     time: moment(this.props.value),
   }
 
