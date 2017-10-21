@@ -16,7 +16,7 @@ export default class TimePickerModal extends PureComponent {
 
   static defaultProps = {
     value: null,
-    format: 'HH:mm A',
+    format: 'hh:mm A',
     autoOk: false,
   }
 

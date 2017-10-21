@@ -15,9 +15,27 @@ class TimePicker extends Component {
 
   state = {
     isHourViewShown: true,
+    meridiemMode: this.props.date.format('a'),
+  }
+
+  setMeridiemMode = mode => () => {
+    this.setState(
+      { meridiemMode: mode },
+      () => this.handleChange(this.props.date),
+    );
   }
 
   handleChange = (time) => {
+    const { meridiemMode } = this.state;
+
+    if (time.format('a') !== meridiemMode) {
+      const hours = meridiemMode === 'am'
+        ? time.hours() - 12
+        : time.hours() + 12;
+
+      time = time.clone().hours(hours);
+    }
+
     this.props.onChange(time);
   }
 
@@ -31,7 +49,7 @@ class TimePicker extends Component {
 
   render() {
     const { classes, date } = this.props;
-    const { isHourViewShown } = this.state;
+    const { isHourViewShown, meridiemMode } = this.state;
 
     return (
       <div className={classes.container}>
@@ -56,6 +74,23 @@ class TimePicker extends Component {
             selected={!isHourViewShown}
             label={date.format('mm')}
           />
+
+          <div className={classes.ampmSelection}>
+            <ToolbarButton
+              className={classes.ampmLabel}
+              selected={meridiemMode === 'am'}
+              type="subheading"
+              label="AM"
+              onClick={this.setMeridiemMode('am')}
+            />
+            <ToolbarButton
+              className={classes.ampmLabel}
+              selected={meridiemMode === 'pm'}
+              type="subheading"
+              label="PM"
+              onClick={this.setMeridiemMode('pm')}
+            />
+          </div>
         </Toolbar>
 
         {
@@ -86,10 +121,18 @@ const styles = (theme) => {
       ...globalStyles.toolbar,
       flexDirection: 'row',
       alignItems: 'center',
+      paddingLeft: 50,
     },
     separator: {
       margin: '0 2px 0 4px',
       cursor: 'default',
+    },
+    ampmSelection: {
+      marginLeft: 20,
+      marginRight: -20,
+    },
+    ampmLabel: {
+      fontSize: 18,
     },
   };
 };
