@@ -2,29 +2,21 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui';
 import classnames from 'classnames';
-import * as clockType from '../constants/clock-types';
 
 class ClockPointer extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     value: PropTypes.number.isRequired,
     hasSelected: PropTypes.bool.isRequired,
+    max: PropTypes.number.isRequired,
   }
 
   getAngleStyle = () => {
-    const { value } = this.props;
-    const angle = (360 / 12) * value;
+    const { value, max } = this.props;
+    const angle = (360 / max) * value;
 
     return {
       transform: `rotateZ(${angle}deg)`,
-    };
-  }
-
-  getThumbStyle = () => {
-    const { hasSelected } = this.props;
-
-    return {
-
     };
   }
 

@@ -6,11 +6,16 @@ import './App.css';
 
 class App extends Component {
   state = {
-    selectedDate: new Date()
+    selectedDate: new Date(),
+    selectedTime: new Date()
   }
 
   handleDateChange = date => {
     this.setState({ selectedDate: date })
+  }
+
+  handleTimeChange = time => {
+    this.setState({ selectedTime: time })
   }
 
   render() {
@@ -51,16 +56,13 @@ class App extends Component {
               Time picker
             </Typography>
 
-            <TimePicker 
-              disableFuture
-              value={new Date().setHours(24)}
-              onChange={this.handleDateChange}
-              animateYearScrolling={false}
+            <TimePicker
+              value={this.state.selectedTime}
+              onChange={this.handleTimeChange}
             />
           </div>
         </main>
       </div>
-     
     );
   }
 }

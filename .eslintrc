@@ -1,4 +1,7 @@
 {
   "extends": "airbnb",
-  "parser": "babel-eslint"
+  "parser": "babel-eslint",
+  "rules": {
+    "react/forbid-prop-types": 0
+  }
 }

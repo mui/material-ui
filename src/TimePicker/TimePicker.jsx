@@ -4,6 +4,7 @@ import { Toolbar, withStyles } from 'material-ui';
 import ToolbarButton from '../_shared/ToolbarButton';
 import pickerStyles from '../styles/pickerStyles';
 import HourView from './HourView';
+import MinutesView from './MinutesView';
 
 class TimePicker extends Component {
   static propTypes = {
@@ -20,8 +21,12 @@ class TimePicker extends Component {
     this.props.onChange(time);
   }
 
-  toggleHourView = () => {
-    this.setState({ isHourViewShown: !this.state.isHourViewShown });
+  openMinutesView = () => {
+    this.setState({ isHourViewShown: false });
+  }
+
+  openHourView = () => {
+    this.setState({ isHourViewShown: true });
   }
 
   render() {
@@ -32,23 +37,24 @@ class TimePicker extends Component {
       <div className={classes.container}>
         <Toolbar className={classes.toolbar}>
           <ToolbarButton
-            type="display2"
-            onClick={this.toggleHourView}
+            type="display3"
+            onClick={this.openHourView}
             selected={isHourViewShown}
             label={date.format('hh')}
           />
 
           <ToolbarButton
-            type="display2"
+            type="display3"
             label=":"
+            selected={false}
             className={classes.separator}
           />
 
           <ToolbarButton
-            type="display2"
-            onClick={this.toggleHourView}
+            type="display3"
+            onClick={this.openMinutesView}
             selected={!isHourViewShown}
-            label={date.format('MM')}
+            label={date.format('mm')}
           />
         </Toolbar>
 
@@ -60,7 +66,10 @@ class TimePicker extends Component {
                 onChange={this.handleChange}
               />
             :
-              'No minutes view specified'
+              <MinutesView
+                date={date}
+                onChange={this.handleChange}
+              />
         }
       </div>
 

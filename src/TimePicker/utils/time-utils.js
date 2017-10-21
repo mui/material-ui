@@ -1,3 +1,5 @@
+import * as clockType from '../../constants/clock-types';
+
 const center = {
   x: 260 / 2,
   y: 260 / 2,
@@ -8,14 +10,14 @@ const basePoint = {
   y: 0,
 };
 
-export const rad2deg = rad => rad * 57.29577951308232;
+const cx = basePoint.x - center.x;
+const cy = basePoint.y - center.y;
 
-export const getHours = (offsetX, offsetY) => {
-  const step = 30;
+const rad2deg = rad => rad * 57.29577951308232;
+
+const getAngleValue = (step, offsetX, offsetY) => {
   const x = offsetX - center.x;
   const y = offsetY - center.y;
-  const cx = basePoint.x - center.x;
-  const cy = basePoint.y - center.y;
 
   const atan = Math.atan2(cx, cy) - Math.atan2(x, y);
 
@@ -23,9 +25,20 @@ export const getHours = (offsetX, offsetY) => {
   deg = Math.round(deg / step) * step;
   deg %= 360;
 
-  let value = Math.floor(deg / step) || 0;
-  value = value || 12;
-  value %= 12;
+  const value = Math.floor(deg / step) || 0;
 
   return value;
 };
+
+export const getHours = (offsetX, offsetY) => {
+  const value = getAngleValue(30, offsetX, offsetY) || 12;
+
+  return value % 12;
+};
+
+export const getMinutes = (offsetX, offsetY, step = 6) => {
+  const value = getAngleValue(step, offsetX, offsetY);
+
+  return value;
+};
+

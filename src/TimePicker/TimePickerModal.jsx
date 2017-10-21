@@ -16,7 +16,7 @@ export default class TimePickerModal extends PureComponent {
 
   static defaultProps = {
     value: null,
-    format: 'MM:HH A',
+    format: 'HH:mm A',
     autoOk: false,
   }
 
@@ -38,13 +38,13 @@ export default class TimePickerModal extends PureComponent {
   }
 
   handleAccept = () => {
-    this.props.onChange(this.state.date);
+    this.props.onChange(this.state.time);
     this.togglePicker(); // close
   }
 
   handleDismiss = () => {
     this.setState({
-      date: moment(this.props.value),
+      time: moment(this.props.value),
     });
 
     this.togglePicker();

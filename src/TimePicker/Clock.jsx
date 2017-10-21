@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui';
 
-import ClockNumber from './ClockNumber';
 import ClockPointer from './ClockPointer';
 import * as clockType from '../constants/clock-types';
-import { getHours } from './utils/time-utils';
+import { getMinutes, getHours } from './utils/time-utils';
 
 class Clock extends Component {
   static propTypes = {
@@ -13,6 +12,7 @@ class Clock extends Component {
     classes: PropTypes.object.isRequired,
     value: PropTypes.number.isRequired,
     onChange: PropTypes.func.isRequired,
+    children: PropTypes.arrayOf(PropTypes.node).isRequired,
   }
 
   setTime(e, finish) {
@@ -20,9 +20,11 @@ class Clock extends Component {
       console.warn('Touch events not supporting');
     }
 
-    const hours = getHours(e.offsetX, e.offsetY);
-    console.log(hours);
-    this.props.onChange(hours, finish);
+    const value = this.props.type === clockType.MINUTES
+      ? getMinutes(e.offsetX, e.offsetY)
+      : getHours(e.offsetX, e.offsetY);
+
+    this.props.onChange(value, finish);
   }
 
   handleUp = (event) => {
@@ -44,11 +46,13 @@ class Clock extends Component {
       return true;
     }
 
-    return false;
+    return value % 5 === 0;
   }
 
   render() {
-    const { classes, type, value } = this.props;
+    const {
+      classes, value, children, type,
+    } = this.props;
 
     return (
       <div className={classes.container}>
@@ -63,20 +67,13 @@ class Clock extends Component {
             onMouseMove={this.handleMove}
           />
 
-          <ClockPointer hasSelected={this.hasSelected()} value={value} />
+          <ClockPointer
+            max={type === clockType.HOURS ? 12 : 60}
+            hasSelected={this.hasSelected()}
+            value={value}
+          />
 
-          <ClockNumber type={type} value={value} index={0} />
-          <ClockNumber type={type} value={value} index={1} />
-          <ClockNumber type={type} value={value} index={2} />
-          <ClockNumber type={type} value={value} index={3} />
-          <ClockNumber type={type} value={value} index={4} />
-          <ClockNumber type={type} value={value} index={5} />
-          <ClockNumber type={type} value={value} index={6} />
-          <ClockNumber type={type} value={value} index={7} />
-          <ClockNumber type={type} value={value} index={8} />
-          <ClockNumber type={type} value={value} index={9} />
-          <ClockNumber type={type} value={value} index={10} />
-          <ClockNumber type={type} value={value} index={11} />
+          { children }
         </div>
       </div>
     );

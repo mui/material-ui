@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
+import classnames from 'classnames';
 import { withStyles } from 'material-ui';
 import * as clockType from '../constants/clock-types';
-import classnames from 'classnames';
 
 const positions = [
   [0, 5],
-  [55.5, 19.6],
+  [55, 19.6],
   [94.4, 59.5],
   [109, 114],
   [94.4, 168.5],
@@ -22,17 +23,9 @@ const positions = [
 class ClockNumber extends Component {
   static propTypes = {
     index: PropTypes.number.isRequired,
-    value: PropTypes.number.isRequired,
-    type: PropTypes.oneOf(Object.values(clockType)).isRequired,
+    label: PropTypes.string.isRequired,
+    selected: PropTypes.bool.isRequired,
     classes: PropTypes.object.isRequired,
-  }
-
-  getLabel = (index, type) => {
-    if (index === 0) {
-      return '12';
-    }
-
-    return index.toString();
   }
 
   getTransformStyle = (index) => {
@@ -43,23 +36,13 @@ class ClockNumber extends Component {
     };
   }
 
-  isSelected = (value, type, index) => {
-    let withoutZero = value === 0 ? 12 : value;
-
-    if (type === clockType.HOURS) {
-      withoutZero %= 12;
-    }
-
-    return withoutZero === index;
-  }
-
   render() {
     const {
-      value, type, index, classes,
+      selected, label, index, classes,
     } = this.props;
 
     const className = classnames(classes.clockNumber, {
-      [classes.selected]: this.isSelected(value, type, index),
+      [classes.selected]: selected,
     });
 
     return (
@@ -67,7 +50,7 @@ class ClockNumber extends Component {
         className={className}
         style={this.getTransformStyle(index)}
       >
-        { this.getLabel(index, type) }
+        { label }
       </div>
     );
   }
