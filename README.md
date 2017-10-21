@@ -6,7 +6,7 @@
 ### Installation
 Available as npm package 
 ```sh
-npm install material-ui-picker -S
+npm install material-ui-pickers -S
 ```
 
 ### Usage 
@@ -62,7 +62,7 @@ openToYearSelection | boolean | Open datepicker from year selection
 
 #### Timepicker
 Prop | Type | Default | Definition
------------- | -------------
+------------ | ------------- | ------------- | -------------
 value | string, number, Date object, Moment object | null | Timepicker value
 format | string | 'MMMM Do' | Moment format string for input
 autoOk | boolean | false | Auto accept time on selection 
