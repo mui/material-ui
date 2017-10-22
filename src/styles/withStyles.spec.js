@@ -13,7 +13,12 @@ import createGenerateClassName from './createGenerateClassName';
 import { createShallow, createMount, getClasses } from '../test-utils';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
 
-const Empty = () => <div />;
+// eslint-disable-next-line react/prefer-stateless-function
+class Empty extends React.Component<{}> {
+  render() {
+    return <div />;
+  }
+}
 
 describe('withStyles', () => {
   let shallow;

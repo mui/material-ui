@@ -73,6 +73,7 @@ describe('<Ripple />', () => {
     it('should start the ripple', () => {
       assert.strictEqual(wrapper.state().rippleVisible, false, 'should not be visible');
       wrapper.setProps({ in: true });
+      wrapper.update();
       assert.strictEqual(wrapper.state().rippleVisible, true, 'should be visible');
       const spanWrapper = wrapper.find('span').first();
       assert.strictEqual(
@@ -85,6 +86,7 @@ describe('<Ripple />', () => {
     it('should stop the ripple', () => {
       wrapper.setProps({ in: true });
       wrapper.setProps({ in: false });
+      wrapper.update();
       assert.strictEqual(wrapper.state().rippleLeaving, true, 'should be leaving');
       const spanWrapper = wrapper.find('span').first();
       assert.strictEqual(
@@ -128,6 +130,7 @@ describe('<Ripple />', () => {
     it('should start the ripple', () => {
       assert.strictEqual(wrapper.state().rippleVisible, false, 'should not be visible');
       wrapper.setProps({ in: true });
+      wrapper.update();
       assert.strictEqual(wrapper.state().rippleVisible, true, 'should be visible');
       const spanWrapper = wrapper.find('span').first();
       assert.strictEqual(
@@ -144,6 +147,7 @@ describe('<Ripple />', () => {
 
     it('should stop the ripple', () => {
       wrapper.setProps({ in: false });
+      wrapper.update();
       assert.strictEqual(wrapper.state().rippleLeaving, true, 'should be leaving');
       const spanWrapper = wrapper.find('span').first();
       assert.strictEqual(

@@ -216,7 +216,7 @@ describe('<Modal />', () => {
 
       it('should render the content into the portal', () => {
         wrapper.setProps({ show: true });
-        const portalLayer = wrapper.find('Portal').getNode().layer;
+        const portalLayer = wrapper.find('Portal').instance().layer;
         const container = document.getElementById('container');
         const heading = document.getElementById('heading');
 

@@ -141,7 +141,11 @@ class TouchRipple extends React.Component<ProvidedProps & Props, State> {
   };
 
   start = (event = {}, options = {}, cb) => {
-    const { pulsate = false, center = this.props.center || options.pulsate } = options;
+    const {
+      pulsate = false,
+      center = this.props.center || options.pulsate,
+      fakeElement = false, // For test purposes
+    } = options;
 
     if (event.type === 'mousedown' && this.ignoringMouseDown) {
       this.ignoringMouseDown = false;
@@ -152,7 +156,7 @@ class TouchRipple extends React.Component<ProvidedProps & Props, State> {
       this.ignoringMouseDown = true;
     }
 
-    const element = ReactDOM.findDOMNode(this);
+    const element = fakeElement ? null : ReactDOM.findDOMNode(this);
     const rect = element
       ? // $FlowFixMe
         element.getBoundingClientRect()

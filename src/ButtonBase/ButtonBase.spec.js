@@ -483,7 +483,7 @@ describe('<ButtonBase />', () => {
       it('should work', () => {
         wrapper = mount(<ButtonBaseNaked classes={{}}>Hello</ButtonBaseNaked>);
         const onClickSpy = spy();
-        wrapper.setProps({ onClick: onClickSpy, component: 'woofButtonBase' });
+        wrapper.setProps({ onClick: onClickSpy, component: 'div' });
 
         const eventTargetMock = 'woofButtonBase';
         event = {

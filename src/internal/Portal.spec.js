@@ -6,7 +6,7 @@ import { assert } from 'chai';
 import { createMount, createRender } from '../test-utils';
 import Portal from './Portal';
 
-const versions = ['latets', 'next'];
+const versions = ['latest', 'next'];
 
 describe('<Portal />', () => {
   let mount;
