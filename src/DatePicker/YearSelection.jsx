@@ -97,4 +97,4 @@ const styles = theme => ({
   },
 });
 
-export default withStyles(styles)(YearSelection);
+export default withStyles(styles, { name: 'MuiPickersYearSelection' })(YearSelection);

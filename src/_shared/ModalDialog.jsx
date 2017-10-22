@@ -36,4 +36,4 @@ ModalDialog.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ModalDialog);
+export default withStyles(styles, { name: 'MuiPickersModal' })(ModalDialog);

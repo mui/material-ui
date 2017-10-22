@@ -104,5 +104,5 @@ const styles = theme => ({
   ...pickerStyles(theme),
 });
 
-export default withStyles(styles)(DatePicker);
+export default withStyles(styles, { name: 'MuiPickersDatePicker' })(DatePicker);
 

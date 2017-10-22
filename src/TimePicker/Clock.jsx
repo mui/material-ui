@@ -103,5 +103,5 @@ const styles = theme => ({
   },
 });
 
-export default withStyles(styles)(Clock);
+export default withStyles(styles, { name: 'MuiPickersClock' })(Clock);
 

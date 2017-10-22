@@ -60,5 +60,5 @@ const styles = theme => ({
   },
 });
 
-export default withStyles(styles)(ClockPointer);
+export default withStyles(styles, { name: 'MuiPickersClockPointer' })(ClockPointer);
 

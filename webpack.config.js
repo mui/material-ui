@@ -6,7 +6,9 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
-    libraryTarget: 'commonjs2', // THIS IS THE MOST IMPORTANT LINE! :mindblow:
+    library: 'material-ui-pickers',
+    libraryTarget: 'umd', // THIS IS THE MOST IMPORTANT LINE! :mindblow:
+    umdNamedDefine: true,
   },
   module: {
     rules: [

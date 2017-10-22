@@ -115,4 +115,4 @@ const styles = theme => ({
   },
 });
 
-export default withStyles(styles)(Calendar);
+export default withStyles(styles, { name: 'MuiPickersCalendar' })(Calendar);

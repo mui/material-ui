@@ -137,4 +137,4 @@ const styles = (theme) => {
   };
 };
 
-export default withStyles(styles)(TimePicker);
+export default withStyles(styles, { name: 'MuiPickersTimePicker' })(TimePicker);

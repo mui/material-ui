@@ -2,29 +2,31 @@
   "name": "material-ui-pickers",
   "version": "0.0.1",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/material-ui-pickers.cjs.js",
+  "module": "dist/material-ui-pickers.es.js",
   "peerDependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "prop-types": "^15.6.0",
-    "material-ui": "^1.0.0-beta.13",
+    "material-ui": "^1.0.0-beta.17",
     "classnames": "^2.2.5"
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "material-ui": "^1.0.0-beta.13",
-    "moment": "^2.18.1",
+    "moment": "^2.19.1",
     "moment-range": "^3.0.3",
     "peer-deps-externals-webpack-plugin": "^1.0.2",
-    "prop-types": "^15.6.0",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
+    "rollup": "^0.50.0",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-commonjs": "^8.2.4",
+    "rollup-plugin-node-resolve": "^3.0.0",
     "webpack": "^3.5.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --watch",
-    "build": "webpack"
+    "start": "rollup --config --watch",
+    "build": "rollup --config",
+    "webpack": "webpack"
   },
   "author": {
     "name": "Your name",
@@ -35,14 +37,18 @@
     "babel-core": "^6.24.1",
     "babel-eslint": "^8.0.1",
     "babel-loader": "^7.0.0",
+    "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.5.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-latest": "^6.24.1",
     "eslint": "^4.8.0",
     "eslint-config-airbnb": "^16.0.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.4.0"
+    "eslint-plugin-react": "^7.4.0",
+    "webpack-bundle-analyzer": "^2.9.0"
   }
 }

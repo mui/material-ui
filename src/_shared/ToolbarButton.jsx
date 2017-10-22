@@ -37,4 +37,4 @@ const styles = theme => ({
   },
 });
 
-export default withStyles(styles)(ToolbarButton);
+export default withStyles(styles, { name: 'MuiPickersToolbarButton' })(ToolbarButton);
