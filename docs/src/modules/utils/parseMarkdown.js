@@ -1,13 +1,14 @@
 // @flow
+const os = require('os');
 
-let platform = window.navigator.platform;
+const platform = os.release();
 let headerRegExp = /---\n([\s\S]*)\n---/;
 let titleRegExp = /# (.*)\n/;
-let headerKeyValueRegExp = /(.*): (.*)/g;
-let emptyRegExp = /^\s*$/;
+const headerKeyValueRegExp = /(.*): (.*)/g;
+const emptyRegExp = /^\s*$/;
 
 // In windows a new line is \r\n
-if (platform == 'Win32') {
+if (platform.indexOf('Windows') !== -1) {
   headerRegExp = /---\r\n([\s\S]*)\r\n---/;
   titleRegExp = /# (.*)\r\n/;
 }
