@@ -222,10 +222,10 @@ class Chip extends React.Component<ProvidedProps & Props> {
         tabIndex={tabIndex}
         onClick={onClick}
         onKeyDown={this.handleKeyDown}
+        {...other}
         ref={node => {
           this.chipRef = node;
         }}
-        {...other}
       >
         {avatar}
         <span className={classes.label}>{label}</span>

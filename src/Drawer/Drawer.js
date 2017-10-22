@@ -9,7 +9,7 @@ import Slide from '../transitions/Slide';
 import Paper from '../Paper';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import { duration } from '../styles/transitions';
-import type { TransitionDuration } from '../internal/Transition';
+import type { TransitionDuration } from '../internal/transition';
 
 function getSlideDirection(anchor) {
   if (anchor === 'left') {
@@ -220,7 +220,7 @@ class Drawer extends React.Component<ProvidedProps & Props, State> {
         in={open}
         direction={getSlideDirection(anchor)}
         transitionDuration={transitionDuration}
-        transitionAppear={!this.state.firstMount}
+        appear={!this.state.firstMount}
         {...SlideProps}
       >
         {drawer}

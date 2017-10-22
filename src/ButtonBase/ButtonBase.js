@@ -378,11 +378,11 @@ class ButtonBase extends React.Component<ProvidedProps & Props, State> {
         onTouchEnd={this.handleTouchEnd}
         onTouchMove={this.handleTouchMove}
         onTouchStart={this.handleTouchStart}
-        ref={rootRef}
         tabIndex={disabled ? -1 : tabIndex}
         className={className}
         {...buttonProps}
         {...other}
+        ref={rootRef}
       >
         {children}
         {this.renderRipple()}

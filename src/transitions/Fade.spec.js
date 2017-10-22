@@ -8,13 +8,17 @@ import Fade from './Fade';
 
 describe('<Fade />', () => {
   let shallow;
+  const props = {
+    in: true,
+    children: <div />,
+  };
 
   before(() => {
     shallow = createShallow({ dive: true });
   });
 
   it('should render a Transition', () => {
-    const wrapper = shallow(<Fade />);
+    const wrapper = shallow(<Fade {...props} />);
     assert.strictEqual(wrapper.name(), 'Transition');
   });
 
@@ -27,7 +31,7 @@ describe('<Fade />', () => {
         return result;
       }, {});
 
-      const wrapper = shallow(<Fade {...handlers} />);
+      const wrapper = shallow(<Fade {...props} {...handlers} />);
 
       events.forEach(n => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
@@ -43,46 +47,31 @@ describe('<Fade />', () => {
     let instance;
 
     before(() => {
-      wrapper = shallow(<Fade />);
+      wrapper = shallow(<Fade {...props} />);
       instance = wrapper.instance();
     });
 
     describe('handleEnter()', () => {
-      let element;
-
-      before(() => {
-        element = { style: { opacity: 1 } };
-        instance.handleEnter(element);
-      });
-
       it('should set element opacity to 0 initially', () => {
-        assert.strictEqual(element.style.opacity, 0, 'should set the opacity to 0');
+        const element = { style: { opacity: 1 } };
+        instance.handleEnter(element);
+        assert.strictEqual(element.style.opacity, '0', 'should set the opacity to 0');
       });
     });
 
     describe('handleEntering()', () => {
-      let element;
-
-      before(() => {
-        element = { style: { opacity: 0 } };
-        instance.handleEntering(element);
-      });
-
       it('should set opacity to 1', () => {
-        assert.strictEqual(element.style.opacity, 1, 'should set the opacity to 1');
+        const element = { style: { opacity: 0 } };
+        instance.handleEntering(element);
+        assert.strictEqual(element.style.opacity, '1', 'should set the opacity to 1');
       });
     });
 
     describe('handleExit()', () => {
-      let element;
-
-      before(() => {
-        element = { style: { opacity: 1 } };
-        instance.handleExit(element);
-      });
-
       it('should set opacity to the 0', () => {
-        assert.strictEqual(element.style.opacity, 0, 'should set the opacity to 0');
+        const element = { style: { opacity: 1 } };
+        instance.handleExit(element);
+        assert.strictEqual(element.style.opacity, '0', 'should set the opacity to 0');
       });
     });
   });

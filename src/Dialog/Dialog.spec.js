@@ -96,9 +96,9 @@ describe('<Dialog />', () => {
   it('should fade down and make the transition appear on first mount', () => {
     const wrapper = shallow(<Dialog />);
     assert.strictEqual(
-      wrapper.find(Fade).prop('transitionAppear'),
+      wrapper.find(Fade).props().appear,
       true,
-      'should pass transitionAppear=true to the Fade',
+      'should pass appear=true to the Fade',
     );
   });
 

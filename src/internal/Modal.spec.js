@@ -451,7 +451,9 @@ describe('<Modal />', () => {
       const handleExited = spy();
       const wrapper = shallow(
         <Modal onExited={handleExited} show>
-          <Fade in />
+          <Fade in>
+            <div />
+          </Fade>
         </Modal>,
       );
       wrapper

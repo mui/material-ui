@@ -48,19 +48,18 @@ export function find(arr: Array<any>, pred: any) {
  * @returns {function|null}
  */
 export function createChainedFunction(...funcs: Array<any>) {
-  return funcs.filter(func => func != null).reduce((acc, func) => {
-    warning(
-      typeof func === 'function',
-      'Material-UI: invalid Argument Type, must only provide functions, undefined, or null.',
-    );
+  return funcs.filter(func => func != null).reduce(
+    (acc, func) => {
+      warning(
+        typeof func === 'function',
+        'Material-UI: invalid Argument Type, must only provide functions, undefined, or null.',
+      );
 
-    if (acc === null) {
-      return func;
-    }
-
-    return function chainedFunction(...args) {
-      acc.apply(this, args);
-      func.apply(this, args);
-    };
-  }, null);
+      return function chainedFunction(...args) {
+        acc.apply(this, args);
+        func.apply(this, args);
+      };
+    },
+    () => {},
+  );
 }

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyledComponent } from '..';
 import { PaperProps } from '../Paper';
-import { TransitionDuration, TransitionHandlers } from '../internal/Transition';
+import { TransitionDuration, TransitionHandlers } from '../internal/transition';
 import { ModalProps } from '../internal/Modal';
 
 export type Origin = {

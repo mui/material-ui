@@ -11,12 +11,15 @@ describe('<Popover />', () => {
   let shallow;
   let mount;
   let classes;
+  const props = {
+    open: false,
+  };
 
   before(() => {
     shallow = createShallow({ dive: true });
     mount = createMount();
     classes = getClasses(
-      <Popover>
+      <Popover {...props}>
         <div />
       </Popover>,
     );
@@ -29,7 +32,7 @@ describe('<Popover />', () => {
   describe('root node', () => {
     it('should render a Modal with an invisible backdrop as the root node', () => {
       const wrapper = shallow(
-        <Popover>
+        <Popover {...props}>
           <div />
         </Popover>,
       );
@@ -40,7 +43,7 @@ describe('<Popover />', () => {
     it('should pass onRequestClose prop to Modal', () => {
       const fn = () => {};
       const wrapper = shallow(
-        <Popover onRequestClose={fn}>
+        <Popover {...props} onRequestClose={fn}>
           <div />
         </Popover>,
       );
@@ -53,7 +56,7 @@ describe('<Popover />', () => {
 
     it('should pass open prop to Modal as `show`', () => {
       const wrapper = shallow(
-        <Popover>
+        <Popover {...props}>
           <div />
         </Popover>,
       );
@@ -70,7 +73,7 @@ describe('<Popover />', () => {
 
       before(() => {
         instance = shallow(
-          <Popover>
+          <Popover {...props}>
             <div />
           </Popover>,
         ).instance();
@@ -108,7 +111,7 @@ describe('<Popover />', () => {
 
       before(() => {
         instance = shallow(
-          <Popover>
+          <Popover {...props}>
             <div />
           </Popover>,
         ).instance();
@@ -144,7 +147,7 @@ describe('<Popover />', () => {
   describe('transition', () => {
     it('should have Transition as the only child of Modal', () => {
       const wrapper = shallow(
-        <Popover>
+        <Popover {...props}>
           <div />
         </Popover>,
       );
@@ -155,7 +158,7 @@ describe('<Popover />', () => {
         'should be withTheme(Popover) Transition',
       );
       assert.strictEqual(
-        wrapper.childAt(0).prop('transitionAppear'),
+        wrapper.childAt(0).props().appear,
         true,
         'should transition on first appearance',
       );
@@ -163,7 +166,7 @@ describe('<Popover />', () => {
 
     it('should set the transition in/out based on the open prop', () => {
       const wrapper = shallow(
-        <Popover>
+        <Popover {...props}>
           <div />
         </Popover>,
       );
@@ -183,7 +186,7 @@ describe('<Popover />', () => {
       }, {});
 
       const wrapper = shallow(
-        <Popover {...handlers}>
+        <Popover {...props} {...handlers}>
           <div />
         </Popover>,
       );
@@ -199,7 +202,7 @@ describe('<Popover />', () => {
   describe('paper', () => {
     it('should have Paper as the only child of Transition', () => {
       const wrapper = shallow(
-        <Popover>
+        <Popover {...props}>
           <div />
         </Popover>,
       );
@@ -215,7 +218,7 @@ describe('<Popover />', () => {
 
     it('should have the paper class and user classes', () => {
       const wrapper = shallow(
-        <Popover className="test-class">
+        <Popover {...props} className="test-class">
           <div />
         </Popover>,
       );
@@ -226,7 +229,7 @@ describe('<Popover />', () => {
 
     it('should have a elevation prop passed down', () => {
       const wrapper = shallow(
-        <Popover>
+        <Popover {...props}>
           <div />
         </Popover>,
       );
@@ -269,7 +272,7 @@ describe('<Popover />', () => {
       before(() => {
         handleEnter = spy();
         wrapper = shallow(
-          <Popover onEnter={handleEnter}>
+          <Popover {...props} onEnter={handleEnter}>
             <div />
           </Popover>,
         );
@@ -315,6 +318,7 @@ describe('<Popover />', () => {
           window.document.body.appendChild(anchorEl);
           wrapper = mount(
             <Popover
+              {...props}
               anchorEl={anchorEl}
               anchorOrigin={anchorOrigin}
               transitionDuration={0}
@@ -421,7 +425,7 @@ describe('<Popover />', () => {
 
     it('should recalculate position if the popover is open', () => {
       const wrapper = shallow(
-        <Popover open transitionDuration={0}>
+        <Popover {...props} open transitionDuration={0}>
           <div />
         </Popover>,
       );
@@ -442,7 +446,7 @@ describe('<Popover />', () => {
 
     it('should not recalculate position if the popover is closed', () => {
       const wrapper = mount(
-        <Popover transitionDuration={0}>
+        <Popover {...props} transitionDuration={0}>
           <div />
         </Popover>,
       );
@@ -467,7 +471,7 @@ describe('<Popover />', () => {
 
     before(() => {
       instance = shallow(
-        <Popover>
+        <Popover {...props}>
           <div />
         </Popover>,
       ).instance();
@@ -623,7 +627,7 @@ describe('<Popover />', () => {
       const element = { scrollTop: 5 };
       const child = { offsetTop: 40, clientHeight: 20, parentNode: element };
       const wrapper = shallow(
-        <Popover getContentAnchorEl={() => child}>
+        <Popover {...props} getContentAnchorEl={() => child}>
           <div />
         </Popover>,
       );
