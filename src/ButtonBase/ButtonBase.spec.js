@@ -6,7 +6,6 @@ import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import { focusKeyPressed } from '../utils/keyboardFocus';
-import consoleErrorMock from '../../test/utils/consoleErrorMock';
 import TouchRipple from './TouchRipple';
 import ButtonBase from './ButtonBase';
 
@@ -376,12 +375,10 @@ describe('<ButtonBase />', () => {
 
     before(() => {
       clock = useFakeTimers();
-      consoleErrorMock.spy();
     });
 
     after(() => {
       clock.restore();
-      consoleErrorMock.reset();
     });
 
     it('when disabled should not persist event', () => {
