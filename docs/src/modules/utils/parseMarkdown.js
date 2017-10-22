@@ -1,7 +1,7 @@
 // @flow
 
-const headerRegExp = /---\n([\s\S]*)\n---/;
-const titleRegExp = /# (.*)\n/;
+const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;
+const titleRegExp = /# (.*)[\r\n]/;
 const headerKeyValueRegExp = /(.*): (.*)/g;
 const emptyRegExp = /^\s*$/;
 

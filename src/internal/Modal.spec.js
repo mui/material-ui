@@ -147,7 +147,7 @@ describe('<Modal />', () => {
     });
 
     it('should pass a transitionDuration prop to the transition component', () => {
-      wrapper.setProps({ backdropTransitionDuration: 200 });
+      wrapper.setProps({ BackdropTransitionDuration: 200 });
       const transition = wrapper.childAt(0).childAt(0);
       assert.strictEqual(transition.props().transitionDuration, 200);
     });
@@ -451,7 +451,9 @@ describe('<Modal />', () => {
       const handleExited = spy();
       const wrapper = shallow(
         <Modal onExited={handleExited} show>
-          <Fade in />
+          <Fade in>
+            <div />
+          </Fade>
         </Modal>,
       );
       wrapper

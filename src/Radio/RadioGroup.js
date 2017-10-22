@@ -82,7 +82,9 @@ class RadioGroup extends React.Component<Props> {
             key: index,
             name,
             inputRef: node => {
-              this.radios.push(node);
+              if (node) {
+                this.radios.push(node);
+              }
             },
             checked: value === child.props.value,
             onChange: this.handleRadioChange,

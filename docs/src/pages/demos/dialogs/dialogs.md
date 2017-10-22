@@ -1,5 +1,5 @@
 ---
-components: Dialog, DialogTitle, DialogContent, DialogActions
+components: Dialog, DialogTitle, DialogContent, DialogActions, Slide
 ---
 
 # Dialogs

@@ -67,27 +67,27 @@ describe('<Drawer />', () => {
         assert.strictEqual(wrapper.find(Slide).props().transitionDuration, transitionDuration);
       });
 
-      it("should be passed to to Modal's backdropTransitionDuration when open=true", () => {
+      it("should be passed to to Modal's BackdropTransitionDuration when open=true", () => {
         const wrapper = shallow(
           <Drawer open transitionDuration={transitionDuration}>
             <div />
           </Drawer>,
         );
         assert.strictEqual(
-          wrapper.find(Modal).props().backdropTransitionDuration,
+          wrapper.find(Modal).props().BackdropTransitionDuration,
           transitionDuration,
         );
       });
     });
 
-    it("should override Modal's backdropTransitionDuration from property when specified", () => {
+    it("should override Modal's BackdropTransitionDuration from property when specified", () => {
       const testDuration = 335;
       const wrapper = shallow(
-        <Drawer backdropTransitionDuration={testDuration}>
+        <Drawer BackdropTransitionDuration={testDuration}>
           <div />
         </Drawer>,
       );
-      assert.strictEqual(wrapper.find(Modal).props().backdropTransitionDuration, testDuration);
+      assert.strictEqual(wrapper.find(Modal).props().BackdropTransitionDuration, testDuration);
     });
 
     it('should set the custom className for Modal when type is temporary', () => {

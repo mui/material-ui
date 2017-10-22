@@ -222,12 +222,6 @@ export default function createSwitch(
         >
           {icon}
           <input
-            ref={node => {
-              this.input = node;
-              if (inputRef) {
-                inputRef(node);
-              }
-            }}
             type={inputType}
             name={name}
             checked={this.isControlled ? checkedProp : undefined}
@@ -237,6 +231,12 @@ export default function createSwitch(
             tabIndex={tabIndex}
             value={value}
             {...inputProps}
+            ref={node => {
+              this.input = node;
+              if (inputRef) {
+                inputRef(node);
+              }
+            }}
           />
         </IconButton>
       );

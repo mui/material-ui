@@ -20,4 +20,47 @@ describe('createMuiTheme', () => {
     const muiTheme = createMuiTheme({ transitions: { duration: { shortest: 150 } } });
     assert.notStrictEqual(muiTheme.transitions.duration.shorter, undefined);
   });
+
+  describe('shadows', () => {
+    it('should provide the default array', () => {
+      const muiTheme = createMuiTheme();
+      assert.strictEqual(
+        muiTheme.shadows[2],
+        '0px 1px 5px 0px rgba(0, 0, 0, 0.2),' +
+          '0px 2px 2px 0px rgba(0, 0, 0, 0.14),0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
+      );
+    });
+
+    it('should override the array as expected', () => {
+      const shadows = [
+        'none',
+        1,
+        1,
+        1,
+        2,
+        3,
+        3,
+        4,
+        5,
+        5,
+        6,
+        6,
+        7,
+        7,
+        7,
+        8,
+        8,
+        8,
+        9,
+        9,
+        10,
+        10,
+        10,
+        11,
+        11,
+      ];
+      const muiTheme = createMuiTheme({ shadows });
+      assert.strictEqual(muiTheme.shadows, shadows);
+    });
+  });
 });

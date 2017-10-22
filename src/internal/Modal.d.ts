@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 import { BackdropProps } from './Backdrop';
-import { TransitionDuration, TransitionHandlers } from './Transition';
+import { TransitionDuration, TransitionHandlers } from './transition';
 
 export interface ModalProps extends StandardProps<
   React.HtmlHTMLAttributes<HTMLDivElement> & Partial<TransitionHandlers>,
   ModalClassKey
 > {
-  backdropClassName?: string;
-  backdropComponent?: React.ComponentType<BackdropProps>;
-  backdropInvisible?: boolean;
-  backdropTransitionDuration?: TransitionDuration;
+  BackdropClassName?: string;
+  BackdropComponent?: React.ComponentType<BackdropProps>;
+  BackdropInvisible?: boolean;
+  BackdropTransitionDuration?: TransitionDuration;
   keepMounted?: boolean;
   disableBackdrop?: boolean;
   ignoreBackdropClick?: boolean;

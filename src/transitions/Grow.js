@@ -1,10 +1,11 @@
 // @flow
+// @inheritedComponent CSSTransition
 
 import React from 'react';
 import type { Element } from 'react';
+import CSSTransition from 'react-transition-group/CSSTransition';
 import withTheme from '../styles/withTheme';
-import Transition from '../internal/Transition';
-import type { TransitionCallback } from '../internal/Transition';
+import type { TransitionCallback, TransitionClasses } from '../internal/transition';
 
 // Only exported for tests.
 export function getScale(value: number) {
@@ -14,43 +15,61 @@ export function getScale(value: number) {
 export type TransitionDuration = number | { enter?: number, exit?: number } | 'auto';
 
 type ProvidedProps = {
+  appear: boolean,
   transitionDuration: TransitionDuration,
   theme: Object,
 };
 
 export type Props = {
   /**
+   * @ignore
+   */
+  appear?: boolean,
+  /**
    * A single child content element.
    */
-  children?: Element<any>,
+  children: Element<any>,
   /**
-   * Callback fired before the component is entering
+   * If `true`, show the component; triggers the enter or exit animation.
+   */
+  in: boolean,
+  /**
+   * @ignore
    */
   onEnter?: TransitionCallback,
   /**
-   * Callback fired when the component is entering
+   * @ignore
    */
   onEntering?: TransitionCallback,
   /**
-   * Callback fired when the component has entered
+   * @ignore
    */
   onEntered?: TransitionCallback,
   /**
-   * Callback fired before the component is exiting
+   * @ignore
    */
   onExit?: TransitionCallback,
   /**
-   * Callback fired when the component is exiting
+   * @ignore
    */
   onExiting?: TransitionCallback,
   /**
-   * Callback fired when the component has exited
+   * @ignore
    */
   onExited?: TransitionCallback,
   /**
    * Use that property to pass a ref callback to the root component.
    */
   rootRef?: Function,
+  /**
+   * @ignore
+   */
+  style?: Object,
+  /**
+   * The animation classNames applied to the component as it enters or exits.
+   * This property is a direct binding to [`CSSTransition.classNames`](https://reactcommunity.org/react-transition-group/#CSSTransition-prop-classNames).
+   */
+  transitionClasses?: TransitionClasses,
   /**
    * @ignore
    */
@@ -65,28 +84,33 @@ export type Props = {
 };
 
 /**
- * Grow transition used by popovers such as Menu.
+ * The Grow transition is used by the Popover component.
+ * It's using [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 class Grow extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
+    appear: true,
     transitionDuration: 'auto',
+    transitionClasses: {},
   };
 
   autoTransitionDuration = undefined;
 
-  handleEnter = (element: HTMLElement) => {
-    element.style.opacity = '0';
-    element.style.transform = getScale(0.75);
+  handleEnter = (node: HTMLElement) => {
+    node.style.opacity = '0';
+    node.style.transform = getScale(0.75);
 
     if (this.props.onEnter) {
-      this.props.onEnter(element);
+      this.props.onEnter(node);
     }
+  };
 
+  handleEntering = (node: HTMLElement) => {
     const { theme, transitionDuration } = this.props;
     let duration = 0;
 
     if (transitionDuration === 'auto') {
-      duration = theme.transitions.getAutoHeightDuration(element.clientHeight);
+      duration = theme.transitions.getAutoHeightDuration(node.clientHeight);
       this.autoTransitionDuration = duration;
     } else if (typeof transitionDuration === 'number') {
       duration = transitionDuration;
@@ -96,7 +120,7 @@ class Grow extends React.Component<ProvidedProps & Props> {
       // The propType will warn in this case.
     }
 
-    element.style.transition = [
+    node.style.transition = [
       theme.transitions.create('opacity', {
         duration,
       }),
@@ -104,23 +128,21 @@ class Grow extends React.Component<ProvidedProps & Props> {
         duration: duration * 0.666,
       }),
     ].join(',');
-  };
 
-  handleEntering = (element: HTMLElement) => {
-    element.style.opacity = '1';
-    element.style.transform = getScale(1);
+    node.style.opacity = '1';
+    node.style.transform = getScale(1);
 
     if (this.props.onEntering) {
-      this.props.onEntering(element);
+      this.props.onEntering(node);
     }
   };
 
-  handleExit = (element: HTMLElement) => {
+  handleExit = (node: HTMLElement) => {
     const { theme, transitionDuration } = this.props;
     let duration = 0;
 
     if (transitionDuration === 'auto') {
-      duration = theme.transitions.getAutoHeightDuration(element.clientHeight);
+      duration = theme.transitions.getAutoHeightDuration(node.clientHeight);
       this.autoTransitionDuration = duration;
     } else if (typeof transitionDuration === 'number') {
       duration = transitionDuration;
@@ -130,7 +152,7 @@ class Grow extends React.Component<ProvidedProps & Props> {
       // The propType will warn in this case.
     }
 
-    element.style.transition = [
+    node.style.transition = [
       theme.transitions.create('opacity', {
         duration,
       }),
@@ -140,45 +162,62 @@ class Grow extends React.Component<ProvidedProps & Props> {
       }),
     ].join(',');
 
-    element.style.opacity = '0';
-    element.style.transform = getScale(0.75);
+    node.style.opacity = '0';
+    node.style.transform = getScale(0.75);
 
     if (this.props.onExit) {
-      this.props.onExit(element);
+      this.props.onExit(node);
     }
   };
 
-  handleRequestTimeout = () => {
+  addEndListener = (node, next: Function) => {
+    let timeout;
+
     if (this.props.transitionDuration === 'auto') {
-      return this.autoTransitionDuration || 0;
+      timeout = this.autoTransitionDuration || 0;
+    } else {
+      timeout = this.props.transitionDuration;
     }
-    return this.props.transitionDuration;
+
+    setTimeout(next, timeout);
   };
 
   render() {
     const {
+      appear,
       children,
-      transitionDuration,
       onEnter,
       onEntering,
       onExit,
       rootRef,
+      style: styleProp,
+      transitionClasses,
+      transitionDuration,
       theme,
       ...other
     } = this.props;
 
+    const style = { ...children.props.style, ...styleProp };
+
+    // For server side rendering.
+    if (!this.props.in || appear) {
+      style.opacity = '0';
+    }
+
     return (
-      <Transition
+      <CSSTransition
+        classNames={transitionClasses}
         onEnter={this.handleEnter}
         onEntering={this.handleEntering}
         onExit={this.handleExit}
-        onRequestTimeout={this.handleRequestTimeout}
-        transitionAppear
+        addEndListener={this.addEndListener}
+        appear={appear}
+        style={style}
         {...other}
         ref={rootRef}
       >
         {children}
-      </Transition>
+      </CSSTransition>
     );
   }
 }

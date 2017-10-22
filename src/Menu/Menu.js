@@ -9,7 +9,7 @@ import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import withStyles from '../styles/withStyles';
 import Popover from '../Popover';
 import MenuList from './MenuList';
-import type { TransitionCallback } from '../internal/Transition';
+import type { TransitionCallback } from '../internal/transition';
 
 type ProvidedProps = {
   classes: Object,
@@ -200,11 +200,11 @@ class Menu extends React.Component<ProvidedProps & Props> {
         <MenuList
           data-mui-test="Menu"
           role="menu"
+          onKeyDown={this.handleListKeyDown}
+          {...MenuListProps}
           ref={node => {
             this.menuList = node;
           }}
-          onKeyDown={this.handleListKeyDown}
-          {...MenuListProps}
         >
           {children}
         </MenuList>

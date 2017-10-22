@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { Element } from 'react';
+import type { Element, ElementType } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import warning from 'warning';
@@ -17,7 +17,7 @@ import withStyles from '../styles/withStyles';
 import createModalManager from './modalManager';
 import Backdrop from './Backdrop';
 import Portal from './Portal';
-import type { TransitionDuration, TransitionCallback } from '../internal/Transition';
+import type { TransitionDuration, TransitionCallback } from '../internal/transition';
 
 // Modals don't open on the server so this won't break concurrency.
 // Could also put this on context.
@@ -39,29 +39,30 @@ export const styles = (theme: Object) => ({
 });
 
 type ProvidedProps = {
-  backdropComponent: Function,
+  BackdropComponent: ElementType,
   classes: Object,
   modalManager: Object,
+  show: boolean,
 };
 
 export type Props = {
   /**
    * The CSS class name of the backdrop element.
    */
-  backdropClassName?: string,
+  BackdropClassName?: string,
   /**
    * Pass a component class to use as the backdrop.
    */
-  backdropComponent?: Function,
+  BackdropComponent?: ElementType,
   /**
    * If `true`, the backdrop is invisible.
    */
-  backdropInvisible?: boolean,
+  BackdropInvisible?: boolean,
   /**
    * The duration for the backdrop transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    */
-  backdropTransitionDuration?: TransitionDuration,
+  BackdropTransitionDuration?: TransitionDuration,
   /**
    * A single child content element.
    */
@@ -149,9 +150,9 @@ type State = {
  */
 class Modal extends React.Component<ProvidedProps & Props, State> {
   static defaultProps = {
-    backdropComponent: Backdrop,
-    backdropTransitionDuration: 300,
-    backdropInvisible: false,
+    BackdropComponent: Backdrop,
+    BackdropTransitionDuration: 300,
+    BackdropInvisible: false,
     keepMounted: false,
     disableBackdrop: false,
     ignoreBackdropClick: false,
@@ -318,18 +319,18 @@ class Modal extends React.Component<ProvidedProps & Props, State> {
 
   renderBackdrop(other: { [key: string]: any } = {}) {
     const {
-      backdropComponent: BackdropComponent,
-      backdropClassName,
-      backdropTransitionDuration,
-      backdropInvisible,
+      BackdropComponent,
+      BackdropClassName,
+      BackdropTransitionDuration,
+      BackdropInvisible,
       show,
     } = this.props;
 
     return (
-      <Fade in={show} transitionAppear transitionDuration={backdropTransitionDuration} {...other}>
+      <Fade appear in={show} transitionDuration={BackdropTransitionDuration} {...other}>
         <BackdropComponent
-          invisible={backdropInvisible}
-          className={backdropClassName}
+          invisible={BackdropInvisible}
+          className={BackdropClassName}
           onClick={this.handleBackdropClick}
         />
       </Fade>
@@ -339,10 +340,10 @@ class Modal extends React.Component<ProvidedProps & Props, State> {
   render() {
     const {
       disableBackdrop,
-      backdropComponent,
-      backdropClassName,
-      backdropTransitionDuration,
-      backdropInvisible,
+      BackdropComponent,
+      BackdropClassName,
+      BackdropTransitionDuration,
+      BackdropInvisible,
       ignoreBackdropClick,
       ignoreEscapeKeyUp,
       children,
@@ -415,10 +416,10 @@ class Modal extends React.Component<ProvidedProps & Props, State> {
           className={classNames(classes.root, className, {
             [classes.hidden]: this.state.exited,
           })}
+          {...other}
           ref={node => {
             this.modal = node;
           }}
-          {...other}
         >
           {!disableBackdrop &&
             (!keepMounted || show || !this.state.exited) &&

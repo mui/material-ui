@@ -9,7 +9,7 @@ import Modal from '../internal/Modal';
 import Fade from '../transitions/Fade';
 import { duration } from '../styles/transitions';
 import Paper from '../Paper';
-import type { TransitionDuration, TransitionCallback } from '../internal/Transition';
+import type { TransitionDuration, TransitionCallback } from '../internal/transition';
 
 export const styles = (theme: Object) => ({
   root: {
@@ -176,7 +176,7 @@ function Dialog(props: ProvidedProps & Props) {
   return (
     <Modal
       className={classNames(classes.root, className)}
-      backdropTransitionDuration={transitionDuration}
+      BackdropTransitionDuration={transitionDuration}
       ignoreBackdropClick={ignoreBackdropClick}
       ignoreEscapeKeyUp={ignoreEscapeKeyUp}
       onBackdropClick={onBackdropClick}
@@ -189,8 +189,8 @@ function Dialog(props: ProvidedProps & Props) {
         /* $FlowFixMe - FIXME See Snackbar for similar create vs clone example */
         transition,
         {
+          appear: true,
           in: open,
-          transitionAppear: true,
           transitionDuration,
           onEnter,
           onEntering,

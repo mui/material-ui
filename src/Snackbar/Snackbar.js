@@ -10,7 +10,7 @@ import ClickAwayListener from '../internal/ClickAwayListener';
 import { capitalizeFirstLetter, createChainedFunction } from '../utils/helpers';
 import Slide from '../transitions/Slide';
 import SnackbarContent from './SnackbarContent';
-import type { TransitionDuration, TransitionCallback } from '../internal/Transition';
+import type { TransitionDuration, TransitionCallback } from '../internal/transition';
 
 export const styles = (theme: Object) => {
   const gutter = theme.spacing.unit * 3;
@@ -342,7 +342,7 @@ class Snackbar extends React.Component<ProvidedProps & Props, State> {
 
     const transitionProps = {
       in: open,
-      transitionAppear: true,
+      appear: true,
       transitionDuration,
       onEnter,
       onEntering,
@@ -361,6 +361,7 @@ class Snackbar extends React.Component<ProvidedProps & Props, State> {
     } else {
       // $FlowFixMe - rosskevin - figure this out later
       transition = React.cloneElement(
+        // $FlowFixMe - flow isn't smart enough to handle this pattern
         transitionProp || <Slide direction={vertical === 'top' ? 'down' : 'up'} />,
         transitionProps,
         transitionContent,

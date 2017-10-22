@@ -226,11 +226,11 @@ function TextField(props: Props) {
   return (
     <FormControl
       fullWidth={fullWidth}
-      ref={rootRef}
       className={className}
       error={error}
       required={required}
       {...other}
+      ref={rootRef}
     >
       {label && (
         <InputLabel htmlFor={id} className={labelClassName} {...InputLabelProps}>

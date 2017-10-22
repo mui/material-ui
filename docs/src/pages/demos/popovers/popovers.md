@@ -1,5 +1,5 @@
 ---
-components: Popover
+components: Grow, Popover
 ---
 
 # Popovers

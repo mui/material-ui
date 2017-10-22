@@ -14,6 +14,10 @@ const SlideNaked = unwrap(Slide);
 describe('<Slide />', () => {
   let shallow;
   let mount;
+  const props = {
+    in: true,
+    children: <div />,
+  };
 
   before(() => {
     shallow = createShallow({ dive: true });
@@ -25,7 +29,7 @@ describe('<Slide />', () => {
   });
 
   it('should render a Transition', () => {
-    const wrapper = shallow(<Slide />);
+    const wrapper = shallow(<Slide {...props} />);
     assert.strictEqual(wrapper.name(), 'EventListener');
     assert.strictEqual(wrapper.childAt(0).name(), 'Transition');
   });
@@ -39,7 +43,7 @@ describe('<Slide />', () => {
         return result;
       }, {});
 
-      const wrapper = shallow(<Slide {...handlers} />).childAt(0);
+      const wrapper = shallow(<Slide {...props} {...handlers} />).childAt(0);
 
       events.forEach(n => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
@@ -63,6 +67,7 @@ describe('<Slide />', () => {
     beforeEach(() => {
       wrapper = shallow(
         <Slide
+          {...props}
           transitionDuration={{
             enter: enterDuration,
             exit: leaveDuration,
@@ -97,7 +102,7 @@ describe('<Slide />', () => {
     let instance;
 
     before(() => {
-      wrapper = shallow(<Slide />);
+      wrapper = shallow(<Slide {...props} />);
       instance = wrapper.instance();
     });
 
@@ -229,9 +234,6 @@ describe('<Slide />', () => {
     });
 
     it('should take existing transform into account', () => {
-      const props = {
-        direction: 'up',
-      };
       const element = {
         fakeTransform: 'transform matrix(1, 0, 0, 1, 0, 420)',
         getBoundingClientRect: () => ({
@@ -244,12 +246,17 @@ describe('<Slide />', () => {
         }),
         style: {},
       };
-      setTranslateValue(props, element);
+      setTranslateValue(
+        {
+          direction: 'up',
+        },
+        element,
+      );
       assert.strictEqual(element.style.transform, 'translateY(100vh) translateY(-780px)');
     });
 
     it('should do nothing when visible', () => {
-      const wrapper = shallow(<Slide in />);
+      const wrapper = shallow(<Slide {...props} />);
       const instance = wrapper.instance();
       instance.handleResize();
       clock.tick(166);
