@@ -1,9 +1,17 @@
 // @flow
+const os = require('os');
 
-const headerRegExp = /---\n([\s\S]*)\n---/;
-const titleRegExp = /# (.*)\n/;
+const platform = os.release();
+let headerRegExp = /---\n([\s\S]*)\n---/;
+let titleRegExp = /# (.*)\n/;
 const headerKeyValueRegExp = /(.*): (.*)/g;
 const emptyRegExp = /^\s*$/;
+
+// In windows a new line is \r\n
+if (platform.indexOf('Windows') !== -1) {
+  headerRegExp = /---\r\n([\s\S]*)\r\n---/;
+  titleRegExp = /# (.*)\r\n/;
+}
 
 export function getHeaders(markdown: string) {
   let header = markdown.match(headerRegExp);
