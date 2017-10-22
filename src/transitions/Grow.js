@@ -197,7 +197,7 @@ class Grow extends React.Component<ProvidedProps & Props> {
       ...other
     } = this.props;
 
-    const style = { ...styleProp };
+    const style = { ...children.props.style, ...styleProp };
 
     // For server side rendering.
     if (!this.props.in || appear) {
