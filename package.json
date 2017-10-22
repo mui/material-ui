@@ -1,9 +1,31 @@
 {
   "name": "material-ui-pickers",
-  "version": "0.0.1",
-  "description": "",
+  "version": "1.0.0-alpha.1",
+  "description": "React components, that implements material design pickers for material-ui v1",
   "main": "dist/material-ui-pickers.cjs.js",
   "module": "dist/material-ui-pickers.es.js",
+  "keywords": [
+    "material-ui",
+    "pickers",
+    "material-ui-pickers",
+    "datepicker",
+    "timepicker",
+    "date-picker",
+    "time-picker",
+    "react",
+    "react-component",
+    "material design"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dmtrKovalenko/material-ui-pickers/issues"
+  },
+  "homepage": "https://material-ui-pic.firebaseapp.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dmtrKovalenko/material-ui-pickers"
+  },
+  "author": "Dmitriy Kovalenko <dmtr.kovalenko@outlook.com>",
   "peerDependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0",

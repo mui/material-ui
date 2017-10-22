@@ -66,6 +66,9 @@ const styles = theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: '50%',
+    color: theme.palette.type === 'light'
+      ? theme.palette.text.primary
+      : theme.palette.text.hint
   },
   selected: {
     color: 'white',

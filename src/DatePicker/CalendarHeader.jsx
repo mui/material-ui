@@ -59,6 +59,9 @@ const styles = theme => ({
     textAlign: 'center',
     color: theme.palette.text.hint,
   },
+  monthName: {
+    color: theme.palette.text.primary,
+  },
 });
 
 export default withStyles(styles)(CalendarHeader, { name: 'MuiPickersCalendarHeader' });

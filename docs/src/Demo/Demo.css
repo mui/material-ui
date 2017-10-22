@@ -4,25 +4,6 @@
   box-sizing: border-box;
 }
 
-.menuButton {
-  margin-left: -12;
-  margin-right: 20;
-}
-
-.app-toolbar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 60px 20px 40px
-}
-
-.github-icon {
-  position: absolute;
-  top: 5px;
-  right: 20px;
-  color: white;
-}
-
 .text-light {
   font-weight: 200 !important;
 }
@@ -32,13 +13,18 @@
 }
 
 main {
-  margin-top: 20px;
-  padding: 10px;
+  margin-top: 55px;
+}
+
+@media(min-width: 600px) {
+  main {
+    margin-top: 64px;
+  }
 }
 
 .material-ui-logo {
   width: 100%;
-  height: 40vh;
+  height: 40vw;
   max-height: 230px
 }
 

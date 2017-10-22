@@ -1,7 +1,7 @@
 # Material-UI picker
 > Components, that implements material design date and time pickers for material-ui v1
 
-## [Click here for demo](https://dmtrkovalenko.github.io/material-ui-pickers/)
+## [Click here for demo](https://material-ui-pic.firebaseapp.com/)
 
 ### Installation
 Available as npm package 
@@ -66,6 +66,12 @@ Prop | Type | Default | Definition
 value | string, number, Date object, Moment object | null | Timepicker value
 format | string | 'MMMM Do' | Moment format string for input
 autoOk | boolean | false | Auto accept time on selection 
+
+### Known Issues
+1. Supporting of touch devices
+2. DateTime picker
+
+That would be added in one of the nearest release :)
 
 ### Contributing
 For information about how to contribute, see the [CONTRIBUTING](https://github.com/dmtrKovalenko/material-ui-pickers/blob/master/CONTRIBUTE.md) file.

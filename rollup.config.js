@@ -13,7 +13,6 @@ export default {
   external: ['react', 'react-dom', 'prop-types', 'material-ui', 'classnames'],
   plugins: [
     resolve({
-
       extensions: ['.js', '.jsx'],
     }),
     babel({
