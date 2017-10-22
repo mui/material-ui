@@ -238,7 +238,7 @@ class Drawer extends React.Component<ProvidedProps & Props, State> {
     // type === temporary
     return (
       <Modal
-        backdropTransitionDuration={transitionDuration}
+        BackdropTransitionDuration={transitionDuration}
         className={classNames(classes.modal, className)}
         show={open}
         onRequestClose={onRequestClose}

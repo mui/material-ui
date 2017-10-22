@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { StyledComponent } from '..';
-import { BackdropProps } from './Backdrop';
 import { TransitionDuration, TransitionHandlers } from './transition';
 
 export type ModalProps = {
-  backdropClassName?: string;
-  backdropComponent?: React.ComponentType<BackdropProps>;
-  backdropInvisible?: boolean;
-  backdropTransitionDuration?: TransitionDuration;
+  BackdropClassName?: string;
+  BackdropComponent?: React.ReactType;
+  BackdropInvisible?: boolean;
+  BackdropTransitionDuration?: TransitionDuration;
   keepMounted?: boolean;
   disableBackdrop?: boolean;
   ignoreBackdropClick?: boolean;

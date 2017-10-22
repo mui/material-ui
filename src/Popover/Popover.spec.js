@@ -37,7 +37,7 @@ describe('<Popover />', () => {
         </Popover>,
       );
       assert.strictEqual(wrapper.name(), 'withStyles(Modal)');
-      assert.strictEqual(wrapper.props().backdropInvisible, true);
+      assert.strictEqual(wrapper.props().BackdropInvisible, true);
     });
 
     it('should pass onRequestClose prop to Modal', () => {
