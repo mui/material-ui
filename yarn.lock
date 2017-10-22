@@ -436,9 +436,9 @@ autoprefixer@^6.3.1:
     postcss "^5.2.16"
     postcss-value-parser "^3.2.3"
 
-autosuggest-highlight@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/autosuggest-highlight/-/autosuggest-highlight-3.1.0.tgz#d5df5115b4840af49f2370a8fb88e5ce9b461ef9"
+autosuggest-highlight@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/autosuggest-highlight/-/autosuggest-highlight-3.1.1.tgz#70bb4f9125fe8a849e85f825f7bb2a1a4806743d"
   dependencies:
     diacritic "0.0.2"
 
@@ -2950,15 +2950,16 @@ entities@^1.1.1, entities@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.1.tgz#6e5c2d0a5621b5dadaecef80b90edfb5cd7772f0"
 
-enzyme-adapter-react-15@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/enzyme-adapter-react-15/-/enzyme-adapter-react-15-1.0.1.tgz#c1a3e5966bf1c7221c40aa0f877850175035406f"
+enzyme-adapter-react-15@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/enzyme-adapter-react-15/-/enzyme-adapter-react-15-1.0.2.tgz#350393ba85670936b8f9179257b1a6510f6aae3c"
   dependencies:
     enzyme-adapter-utils "^1.0.0"
     lodash "^4.17.4"
     object.assign "^4.0.4"
     object.values "^1.0.4"
     prop-types "^15.5.10"
+    react-test-renderer "^15.5.0"
 
 enzyme-adapter-utils@^1.0.0:
   version "1.0.1"
@@ -7236,9 +7237,9 @@ react-number-format@^2.0.4:
   dependencies:
     prop-types "^15.5.8"
 
-react-popper@^0.7.3:
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-0.7.3.tgz#fa2809a80fbe7ec516e9bac01d81bc47a8b5cd3b"
+react-popper@^0.7.4:
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-0.7.4.tgz#8649d539837e7c6f47bc9b24c9cf57a404e199a1"
   dependencies:
     popper.js "^1.12.5"
     prop-types "^15.5.10"
@@ -7297,7 +7298,7 @@ react-swipeable-views@^0.12.8:
     react-swipeable-views-utils "^0.12.8"
     warning "^3.0.0"
 
-react-test-renderer@^15.6.1:
+react-test-renderer@^15.5.0, react-test-renderer@^15.6.1:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-15.6.2.tgz#d0333434fc2c438092696ca770da5ed48037efa8"
   dependencies:
