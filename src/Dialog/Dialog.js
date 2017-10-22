@@ -176,7 +176,7 @@ function Dialog(props: ProvidedProps & Props) {
   return (
     <Modal
       className={classNames(classes.root, className)}
-      backdropTransitionDuration={transitionDuration}
+      BackdropTransitionDuration={transitionDuration}
       ignoreBackdropClick={ignoreBackdropClick}
       ignoreEscapeKeyUp={ignoreEscapeKeyUp}
       onBackdropClick={onBackdropClick}

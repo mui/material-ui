@@ -46,7 +46,7 @@ describe('<Dialog />', () => {
       />,
     );
     assert.strictEqual(wrapper.props().show, true);
-    assert.strictEqual(wrapper.props().backdropTransitionDuration, 100);
+    assert.strictEqual(wrapper.props().BackdropTransitionDuration, 100);
     assert.strictEqual(wrapper.props().onBackdropClick, onBackdropClick);
     assert.strictEqual(wrapper.props().onEscapeKeyUp, onEscapeKeyUp);
     assert.strictEqual(wrapper.props().onRequestClose, onRequestClose);

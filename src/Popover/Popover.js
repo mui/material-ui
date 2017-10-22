@@ -351,7 +351,7 @@ class Popover extends React.Component<ProvidedProps & Props> {
     } = this.props;
 
     return (
-      <Modal show={open} backdropInvisible {...other}>
+      <Modal show={open} BackdropInvisible {...other}>
         <Grow
           appear
           in={open}
