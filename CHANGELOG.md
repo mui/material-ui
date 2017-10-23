@@ -10,6 +10,7 @@ Big thanks to the 14 contributors who made this release possible.
 Here are some highlights ✨:
 - New InputAdornment component (#8504)
 - New [Frequently asked questions](https://github.com/callemall/material-ui/blob/4df547d56448cedf70977d6e2463b38eaf64d1c7/docs/src/pages/getting-started/frequently-asked-questions.md) documentation section
+- We have saved 1 KB gzip by removing our internal react-transition-group fork (#8785)
 - We have made one step further in order to upgrade all our development dependencies to react@16 (#8804)
 
 ### Breaking change
