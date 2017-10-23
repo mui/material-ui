@@ -22,6 +22,7 @@ export interface PopoverProps extends StandardProps<
   exitedClassName?: string;
   exitingClassName?: string;
   getContentAnchorEl?: Function;
+  marginThreshold?: number;
   modal?: boolean;
   onRequestClose?: Function;
   open?: boolean;

@@ -18,6 +18,7 @@ filename: /src/Popover/Popover.js
 | <span style="color: #31a148">children *</span> | Node |  | The content of the component. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | elevation | number | 8 | The elevation of the popover. |
+| marginThreshold | number | 16 | Specifies how close to the edge of the window the popover can appear |
 | onEnter | TransitionCallback |  | Callback fired before the component is entering |
 | onEntered | TransitionCallback |  | Callback fired when the component has entered |
 | onEntering | TransitionCallback |  | Callback fired when the component is entering |

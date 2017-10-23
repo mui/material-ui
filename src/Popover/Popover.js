@@ -81,6 +81,7 @@ type ProvidedProps = {
   anchorOrigin: Origin,
   classes: Object,
   transformOrigin: Origin,
+  marginThreshold: number,
 };
 
 export type Props = {
@@ -114,6 +115,10 @@ export type Props = {
    * @ignore
    */
   getContentAnchorEl?: Function,
+  /**
+   * Specifies how close to the edge of the window the popover can appear
+   */
+  marginThreshold?: number,
   /**
    * Callback fired before the component is entering
    */
@@ -188,6 +193,7 @@ class Popover extends React.Component<ProvidedProps & Props> {
     },
     transitionDuration: 'auto',
     elevation: 8,
+    marginThreshold: 16,
   };
 
   componentWillUnmount = () => {
@@ -219,9 +225,9 @@ class Popover extends React.Component<ProvidedProps & Props> {
     this.setPositioningStyles(element);
   }, 166);
 
-  marginThreshold = 16;
+  getPositioningStyle = element => {
+    const { marginThreshold } = this.props;
 
-  getPositioningStyle(element) {
     // Check if the parent has requested anchoring on an inner content node
     const contentAnchorOffset = this.getContentAnchorOffset(element);
     // Get the offset of of the anchoring element
@@ -241,12 +247,12 @@ class Popover extends React.Component<ProvidedProps & Props> {
     const right = left + elemRect.width;
 
     // Window thresholds taking required margin into account
-    const heightThreshold = window.innerHeight - this.marginThreshold;
-    const widthThreshold = window.innerWidth - this.marginThreshold;
+    const heightThreshold = window.innerHeight - marginThreshold;
+    const widthThreshold = window.innerWidth - marginThreshold;
 
     // Check if the vertical axis needs shifting
-    if (top < this.marginThreshold) {
-      const diff = top - this.marginThreshold;
+    if (top < marginThreshold) {
+      const diff = top - marginThreshold;
       top -= diff;
       transformOrigin.vertical += diff;
     } else if (bottom > heightThreshold) {
@@ -256,8 +262,8 @@ class Popover extends React.Component<ProvidedProps & Props> {
     }
 
     // Check if the horizontal axis needs shifting
-    if (left < this.marginThreshold) {
-      const diff = left - this.marginThreshold;
+    if (left < marginThreshold) {
+      const diff = left - marginThreshold;
       left -= diff;
       transformOrigin.horizontal += diff;
     } else if (right > widthThreshold) {
@@ -271,7 +277,7 @@ class Popover extends React.Component<ProvidedProps & Props> {
       left: `${left}px`,
       transformOrigin: getTransformOriginValue(transformOrigin),
     };
-  }
+  };
 
   handleGetOffsetTop = getOffsetTop;
   handleGetOffsetLeft = getOffsetLeft;
@@ -335,6 +341,7 @@ class Popover extends React.Component<ProvidedProps & Props> {
       classes,
       elevation,
       getContentAnchorEl,
+      marginThreshold,
       onEnter,
       onEntering,
       onEntered,
