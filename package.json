@@ -66,7 +66,7 @@
     "classnames": "^2.2.5",
     "deepmerge": "^2.0.0",
     "dom-helpers": "^3.2.1",
-    "hoist-non-react-statics": "^1.2.0",
+    "hoist-non-react-statics": "^2.3.1",
     "jss": "^8.1.0",
     "jss-preset-default": "^3.0.0",
     "jss-rtl": "^0.2.1",
@@ -85,7 +85,7 @@
     "warning": "^3.0.0"
   },
   "devDependencies": {
-    "@types/enzyme": "^2.8.11",
+    "@types/enzyme": "^3.1.0",
     "@types/react": "16.0.9",
     "app-module-path": "^2.2.0",
     "argos-cli": "^0.0.9",
