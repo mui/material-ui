@@ -146,7 +146,7 @@ export type Props = {
   /**
    * Callback fired when the component requests to be closed.
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback.
    */
   onRequestClose?: Function,
   /**
@@ -176,7 +176,7 @@ export type Props = {
    */
   transitionClasses?: TransitionClasses,
   /**
-   * Set to 'auto' to automatically calculate transition time based on height
+   * Set to 'auto' to automatically calculate transition time based on height.
    */
   transitionDuration?: number | 'auto',
 };
