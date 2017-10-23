@@ -8,7 +8,7 @@ export interface ModalProps extends StandardProps<
   ModalClassKey
 > {
   BackdropClassName?: string;
-  BackdropComponent?: React.ComponentType<BackdropProps>;
+  BackdropComponent?: string | React.ComponentType<BackdropProps>;
   BackdropInvisible?: boolean;
   BackdropTransitionDuration?: TransitionDuration;
   keepMounted?: boolean;
