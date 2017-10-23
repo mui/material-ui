@@ -126,14 +126,12 @@ const withWidth = (
         ...other,
       };
 
-      /**
-       * When rendering the component on the server,
-       * we have no idea about the client browser screen width.
-       * In order to prevent blinks and help the reconciliation of the React tree
-       * we are not rendering the child component.
-       *
-       * An alternative is to use the `initialWidth` property.
-       */
+      // When rendering the component on the server,
+      // we have no idea about the client browser screen width.
+      // In order to prevent blinks and help the reconciliation of the React tree
+      // we are not rendering the child component.
+      //
+      // An alternative is to use the `initialWidth` property.
       if (props.width === undefined) {
         return null;
       }

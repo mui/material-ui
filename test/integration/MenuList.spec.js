@@ -1,4 +1,4 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import keycode from 'keycode';
@@ -29,7 +29,7 @@ function assertMenuItemFocused(wrapper, tabIndexed) {
 
   items.forEach((item, index) => {
     if (index === tabIndexed) {
-      assert.strictEqual(item.find('li').getNode(), document.activeElement, 'should be focused');
+      assert.strictEqual(item.find('li').instance(), document.activeElement, 'should be focused');
     }
   });
 }
@@ -87,6 +87,7 @@ describe('<MenuList> integration', () => {
       document.activeElement.blur();
       setTimeout(() => {
         assert.strictEqual(handleBlur.callCount, 1);
+        wrapper.update();
         assertMenuItemTabIndexed(wrapper, 0);
         done();
       }, 60);

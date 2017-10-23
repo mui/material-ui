@@ -3,7 +3,6 @@
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
-import { ReactWrapper } from 'enzyme';
 import keycode from 'keycode';
 import { createShallow, createMount } from '../test-utils';
 import Menu, { MenuItem } from '../Menu';
@@ -122,10 +121,8 @@ describe('<SelectInput />', () => {
       it('should call onChange when clicking an item', () => {
         wrapper.find(`.${props.classes.select}`).simulate('click');
         assert.strictEqual(wrapper.state().open, true);
-        const portal = wrapper.find('Modal').node.mountNode.firstChild;
-        const portalWrapper = new ReactWrapper(portal, portal);
-        const menuItem = portalWrapper.find(MenuItem);
-        menuItem.at(1).simulate('click');
+        const portalLayer = wrapper.find('Portal').instance().layer;
+        portalLayer.querySelectorAll('li')[1].click();
         assert.strictEqual(wrapper.state().open, false);
         assert.strictEqual(handleChange.callCount, 1);
         assert.strictEqual(handleChange.args[0][0].target.value, 20);
@@ -157,11 +154,9 @@ describe('<SelectInput />', () => {
         wrapper.find(`.${props.classes.select}`).simulate('click');
         assert.strictEqual(wrapper.state().open, true);
 
-        const portal = wrapper.find('Modal').node.mountNode.firstChild;
-        const portalWrapper = new ReactWrapper(portal, portal);
-        const backdrop = portalWrapper.find('Backdrop');
-
-        backdrop.simulate('click');
+        const portalLayer = wrapper.find('Portal').instance().layer;
+        const backdrop = portalLayer.querySelector('[data-mui-test="Backdrop"]');
+        backdrop.click();
         assert.strictEqual(wrapper.state().open, false);
       });
     });
@@ -262,17 +257,15 @@ describe('<SelectInput />', () => {
       it('should call onChange when clicking an item', () => {
         wrapper.find(`.${props.classes.select}`).simulate('click');
         assert.strictEqual(wrapper.state().open, true);
-        const portal = wrapper.find('Modal').node.mountNode.firstChild;
-        const portalWrapper = new ReactWrapper(portal, portal);
-        const menuItem = portalWrapper.find(MenuItem);
+        const portalLayer = wrapper.find('Portal').instance().layer;
 
-        menuItem.at(1).simulate('click');
+        portalLayer.querySelectorAll('li')[1].click();
         assert.strictEqual(wrapper.state().open, true);
         assert.strictEqual(handleChange.callCount, 1);
         assert.deepEqual(handleChange.args[0][0].target.value, [30]);
         wrapper.setProps({ value: [30] });
 
-        menuItem.at(0).simulate('click');
+        portalLayer.querySelectorAll('li')[0].click();
         assert.strictEqual(wrapper.state().open, true);
         assert.strictEqual(handleChange.callCount, 2);
         assert.deepEqual(handleChange.args[1][0].target.value, [30, 10]);

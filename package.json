@@ -113,7 +113,7 @@
     "clean-css": "^4.1.9",
     "cross-env": "^5.1.0",
     "doctrine": "^2.0.0",
-    "enzyme": "^2.9.0",
+    "enzyme": "^3.0.0",
     "enzyme-adapter-react-15": "^1.0.2",
     "eslint": "^4.9.0",
     "eslint-config-airbnb": "^16.1.0",

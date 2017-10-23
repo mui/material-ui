@@ -3,16 +3,24 @@
 import React from 'react';
 import { useFakeTimers } from 'sinon';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import TouchRipple, { DELAY_RIPPLE } from './TouchRipple';
+
+const TouchRippleNaked = unwrap(TouchRipple);
 
 describe('<TouchRipple />', () => {
   let shallow;
+  let mount;
   let classes;
 
   before(() => {
     shallow = createShallow({ dive: true });
+    mount = createMount();
     classes = getClasses(<TouchRipple />);
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   it('should render a <ReactTransitionGroup> component', () => {
@@ -31,14 +39,19 @@ describe('<TouchRipple />', () => {
     it('should should compute the right ripple dimensions', () => {
       const wrapper = shallow(<TouchRipple center />);
       const instance = wrapper.instance();
-      instance.start();
+      instance.start(
+        {},
+        {
+          fakeElement: true,
+        },
+      );
       wrapper.update();
       assert.strictEqual(wrapper.childAt(0).props().rippleSize, 1, 'should be odd');
     });
   });
 
   it('should create individual ripples', () => {
-    const wrapper = shallow(<TouchRipple />);
+    const wrapper = mount(<TouchRippleNaked classes={{}} />);
     const instance = wrapper.instance();
 
     assert.strictEqual(wrapper.state().ripples.length, 0, 'should start with no ripples');
@@ -66,7 +79,13 @@ describe('<TouchRipple />', () => {
     it('should create a ripple', () => {
       const wrapper = shallow(<TouchRipple />);
       const instance = wrapper.instance();
-      instance.pulsate();
+      instance.start(
+        {},
+        {
+          pulsate: true,
+          fakeElement: true,
+        },
+      );
       assert.strictEqual(wrapper.state().ripples.length, 1);
     });
 
@@ -82,7 +101,7 @@ describe('<TouchRipple />', () => {
       const wrapper = shallow(<TouchRipple />);
       const instance = wrapper.instance();
       assert.strictEqual(instance.ignoringMouseDown, false);
-      instance.start({ type: 'touchstart' });
+      instance.start({ type: 'touchstart' }, { fakeElement: true });
       assert.strictEqual(wrapper.state().ripples.length, 1);
       assert.strictEqual(instance.ignoringMouseDown, true);
     });
@@ -92,7 +111,7 @@ describe('<TouchRipple />', () => {
       const instance = wrapper.instance();
       const clientX = 1;
       const clientY = 1;
-      instance.start({ clientX, clientY });
+      instance.start({ clientX, clientY }, { fakeElement: true });
       assert.strictEqual(wrapper.state().ripples.length, 1);
       assert.strictEqual(wrapper.state().ripples[0].props.rippleX, clientX);
       assert.strictEqual(wrapper.state().ripples[0].props.rippleY, clientY);
@@ -115,7 +134,7 @@ describe('<TouchRipple />', () => {
       const instance = wrapper.instance();
 
       assert.strictEqual(wrapper.state().ripples.length, 0);
-      instance.start({ touches: [], clientX: 0, clientY: 0 });
+      instance.start({ touches: [], clientX: 0, clientY: 0 }, { fakeElement: true });
       assert.strictEqual(wrapper.state().ripples.length, 0);
 
       clock.tick(DELAY_RIPPLE);
@@ -131,7 +150,7 @@ describe('<TouchRipple />', () => {
       const instance = wrapper.instance();
 
       assert.strictEqual(wrapper.state().ripples.length, 0);
-      instance.start({ touches: [], clientX: 0, clientY: 0 });
+      instance.start({ touches: [], clientX: 0, clientY: 0 }, { fakeElement: true });
       assert.strictEqual(wrapper.state().ripples.length, 0);
 
       clock.tick(DELAY_RIPPLE / 2);
@@ -148,7 +167,7 @@ describe('<TouchRipple />', () => {
       const instance = wrapper.instance();
 
       assert.strictEqual(wrapper.state().ripples.length, 0);
-      instance.start({ touches: [], clientX: 0, clientY: 0 });
+      instance.start({ touches: [], clientX: 0, clientY: 0 }, { fakeElement: true });
       assert.strictEqual(wrapper.state().ripples.length, 0);
 
       clock.tick(DELAY_RIPPLE / 2);

@@ -1,8 +1,7 @@
-// @flow weak
+// @flow
 
 import React from 'react';
 import { assert } from 'chai';
-import { ReactWrapper } from 'enzyme';
 import { createMount } from 'src/test-utils';
 import SelectAndDialog from './fixtures/select/SelectAndDialog';
 
@@ -18,24 +17,17 @@ describe('<Select> integration', () => {
   });
 
   describe('with Dialog', () => {
-    let wrapper;
-    let portalDialogWrapper;
-
-    before(() => {
-      wrapper = mount(<SelectAndDialog open />);
-      const portalDialog = wrapper.find('Modal').node.mountNode.firstChild;
-      portalDialogWrapper = new ReactWrapper(portalDialog, portalDialog);
-    });
-
     it('should focus the selected item', done => {
-      const selectDisplay = portalDialogWrapper.find('[data-mui-test="SelectDisplay"]');
+      const wrapper = mount(<SelectAndDialog open />);
+      const portalLayer = wrapper.find('Portal').instance().layer;
+      const selectDisplay = portalLayer.querySelector('[data-mui-test="SelectDisplay"]');
 
       wrapper.setProps({
         MenuProps: {
           onExited: () => {
             assert.strictEqual(
               document.activeElement,
-              selectDisplay.getDOMNode(),
+              selectDisplay,
               'should focus back the select input',
             );
             done();
@@ -44,22 +36,22 @@ describe('<Select> integration', () => {
       });
 
       // Let's open the select component
-      selectDisplay.getDOMNode().focus();
-      selectDisplay.simulate('click');
+      selectDisplay.focus();
+      selectDisplay.click();
 
-      const menuEl = document.querySelector('[data-mui-test="Menu"]');
+      const dialogPortalLayer = document.querySelectorAll('[data-mui-test="Modal"]')[1];
+
       assert.strictEqual(
         document.activeElement,
-        menuEl && menuEl.children[1],
+        dialogPortalLayer.querySelectorAll('li')[1],
         'should focus the selected menu item',
       );
 
-      const portalSelect = portalDialogWrapper.find('Modal').node.mountNode.firstChild;
-      const portalSelectWrapper = new ReactWrapper(portalSelect, portalSelect);
-
       // Now, let's close the select component
-      const backdrop = portalSelectWrapper.find('Backdrop');
-      backdrop.simulate('click');
+      const backdrop = dialogPortalLayer.querySelector('[data-mui-test="Backdrop"]');
+      if (backdrop) {
+        backdrop.click();
+      }
     });
   });
 });

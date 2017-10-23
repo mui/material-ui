@@ -1,17 +1,13 @@
 // @flow weak
 
 function shallowRecursively(wrapper, selector, { context, ...other }) {
-  // enzyme@3
-  // if (wrapper.isEmptyRender() || typeof wrapper.getElement().type === 'string') {
-  if (wrapper.isEmptyRender() || typeof wrapper.node.type === 'string') {
+  if (wrapper.isEmptyRender() || typeof wrapper.getElement().type === 'string') {
     return wrapper;
   }
 
   let newContext = context;
 
-  // enzyme@3
-  // const instance = wrapper.root().instance();
-  const instance = wrapper.root.instance();
+  const instance = wrapper.root().instance();
   // The instance can be null with a stateless functional component and react >= 16.
   if (instance && instance.getChildContext) {
     newContext = {

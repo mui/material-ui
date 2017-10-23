@@ -17,7 +17,7 @@ function assertIsChecked(wrapper) {
   );
 
   const input = wrapper.find('input');
-  assert.strictEqual(input.getNode().checked, true, 'the DOM node should be checked');
+  assert.strictEqual(input.instance().checked, true, 'the DOM node should be checked');
 
   const label = iconButton.childAt(0);
   const icon = label.childAt(0);
@@ -34,7 +34,7 @@ function assertIsNotChecked(wrapper) {
   );
 
   const input = wrapper.find('input');
-  assert.strictEqual(input.getNode().checked, false, 'the DOM node should not be checked');
+  assert.strictEqual(input.instance().checked, false, 'the DOM node should not be checked');
 
   const label = iconButton.childAt(0);
   const icon = label.childAt(0);
@@ -208,20 +208,22 @@ describe('<SwitchBase />', () => {
     it('should check the checkbox', () => {
       wrapper
         .find('input')
-        .getNode()
+        .instance()
         .click();
+      wrapper.update();
       assertIsChecked(wrapper);
     });
 
     it('should uncheck the checkbox', () => {
       wrapper
         .find('input')
-        .getNode()
+        .instance()
         .click();
       wrapper
         .find('input')
-        .getNode()
+        .instance()
         .click();
+      wrapper.update();
       assertIsNotChecked(wrapper);
     });
   });
