@@ -116,31 +116,31 @@ export type Props = {
    */
   getContentAnchorEl?: Function,
   /**
-   * Specifies how close to the edge of the window the popover can appear
+   * Specifies how close to the edge of the window the popover can appear.
    */
   marginThreshold?: number,
   /**
-   * Callback fired before the component is entering
+   * Callback fired before the component is entering.
    */
   onEnter?: TransitionCallback,
   /**
-   * Callback fired when the component is entering
+   * Callback fired when the component is entering.
    */
   onEntering?: TransitionCallback,
   /**
-   * Callback fired when the component has entered
+   * Callback fired when the component has entered.
    */
   onEntered?: TransitionCallback,
   /**
-   * Callback fired before the component is exiting
+   * Callback fired before the component is exiting.
    */
   onExit?: TransitionCallback,
   /**
-   * Callback fired when the component is exiting
+   * Callback fired when the component is exiting.
    */
   onExiting?: TransitionCallback,
   /**
-   * Callback fired when the component has exited
+   * Callback fired when the component has exited.
    */
   onExited?: TransitionCallback,
   /**
