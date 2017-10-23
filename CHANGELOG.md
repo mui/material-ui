@@ -2,6 +2,69 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.18
+###### _Oct 24, 2017_
+
+Big thanks to the 14 contributors who made this release possible.
+
+Here are some highlights ✨:
+- New InputAdornment component (#8504)
+- New [Frequently asked questions](https://github.com/callemall/material-ui/blob/4df547d56448cedf70977d6e2463b38eaf64d1c7/docs/src/pages/getting-started/frequently-asked-questions.md) documentation section
+- We have made one step further in order to upgrade all our development dependencies to react@16 (#8804)
+
+### Breaking change
+
+- [Popover] Fix incorrect className API and add mouseover demo (#8774) @oliviertassinari
+
+I have noticed one inconsistency with the `className` property.
+The value should have been applied on the root of the component.
+We enforce this behavior now.
+
+#### Component Fixes / Enhancements
+
+- [createTypography] Add htmlFontSize option (#8699) @kristenmills
+- [Modal] Improve scroll handling (#8715) @oliviertassinari
+- [RadioGroup] Better keyboard focus logic (#8720) @oliviertassinari
+- [ButtonBase] Fix missing keyboard ripple (#8723) @sakulstra
+- [ButtonBase] Remove Firefox dotted outline #8721) @oliviertassinari
+- [Tooltip] Redefine title from base typescript (#8727) @DaIgeb
+- [TypeScript] Fix GridListTitle `rows` property (#8740) @fathyb
+- [InputAdornment] New Component (#8504) @eyn
+- [TableRow] Adjust CSS for components other than <tr> (#8750) @chaitan94
+- [Select] Add missing definition for displayEmpty (#8754) @cauld
+- [Select] Fix autoWidth regression (#8796) @oliviertassinari
+- [ListItem] Disable hover effect on touch devices (#8803) @8enmann
+- [styles] Add performance optimization option (#8757) @oliviertassinari
+- [theme] Support overriding the shadows key (#8795) @oliviertassinari
+
+#### Docs
+
+- [docs] Correct some typos in name 'TypographyTheme' (#8707) @douglasmamilor
+- [docs] Better warning description (#8783) @agatac
+- [docs] Fix the docs support on windows (#8792) @SeasideLee
+- [docs] Correct a typo (occurence -> occurrence) (#8798) @chaitan94
+- [docs] Add more information on the migration path (#8709) @oliviertassinari
+- [docs] Responsive team page (#8714) @oliviertassinari
+- [docs] Better display for print (#8729) @oliviertassinari
+- [docs] Interoperability with react-jss (#8735) @oliviertassinari
+- [docs] Add CII Best Practices (#8736) @oliviertassinari
+- [docs] FAQ disable ripple (#8747) @oliviertassinari
+- [docs] Add FAQ inline-style vs withStyles() (#8758) @oliviertassinari
+- [docs] Add promising pickers lib (#8814) @oliviertassinari
+
+#### Core
+
+- [core] Output ES code in /es (#8772) @NeoLegends
+- [core] Remove erroneous exports from styles/index.d.ts (#8805) @pelotom
+- [typescript] Standard Props (#8781) @pelotom
+- [core] Use react-transition-group (#8785) @oliviertassinari
+- [core] Keep fixing failing tests for react@16 (#8804) @oliviertassinari
+- [core] react-popper allows react 16 (#8800) @oliviertassinari
+- [core] Upgdate some dependencies (#8722) @oliviertassinari
+- [core] Upgrade some dependencies (#8737) @oliviertassinari
+- [core] Upgrade some dependencies (#8777) @oliviertassinari
+- [core] Upgrade some dependencies (#8816) @oliviertassinari
+
 ## 1.0.0-beta.17
 ###### _Oct 16, 2017_
 
