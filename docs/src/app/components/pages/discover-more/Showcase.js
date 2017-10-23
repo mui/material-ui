@@ -173,6 +173,12 @@ const appList = [
     img: 'images/showcase/alarmdj.png',
     link: 'https://alarmdj.com',
   },
+  {
+    title: 'Weekend travel inspiration',
+    author: 'FlyWeekend',
+    img: 'images/showcase/flyweekend.png',
+    link: 'https://flyweekend.co',
+  },
 ];
 
 const Showcase = () => (
