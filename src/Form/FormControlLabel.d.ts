@@ -1,7 +1,11 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export type FormControlLabelProps = {
+export interface FormControlLabelProps extends StandardProps<
+  React.LabelHTMLAttributes<HTMLLabelElement>,
+  FormControlLabelClassKey,
+  'onChange'
+> {
   checked?: boolean | string;
   control: React.ReactElement<any>;
   disabled?: boolean;
@@ -10,7 +14,7 @@ export type FormControlLabelProps = {
   name?: string;
   onChange?: (event: React.ChangeEvent<{}>, checked: boolean) => void;
   value?: string;
-} & React.LabelHTMLAttributes<HTMLLabelElement>;
+}
 
 export type FormControlLabelClassKey =
   | 'root'
@@ -18,6 +22,6 @@ export type FormControlLabelClassKey =
   | 'label'
   ;
 
-declare const FormControlLabel: StyledComponent<FormControlLabelProps, FormControlLabelClassKey>;
+declare const FormControlLabel: React.ComponentType<FormControlLabelProps>;
 
 export default FormControlLabel;

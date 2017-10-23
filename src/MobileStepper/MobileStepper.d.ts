@@ -1,9 +1,12 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
-import { PaperProps } from '../Paper';
+import { StandardProps } from '..';
+import { PaperProps, PaperClassKey } from '../Paper';
 import { ButtonProps } from '../Button';
 
-export interface MobileStepperProps extends PaperProps {
+export interface MobileStepperProps extends StandardProps<
+  PaperProps,
+  MobileStepperClassKey
+> {
   activeStep?: number;
   backButton: React.ReactElement<any>;
   nextButton: React.ReactElement<any>;  
@@ -13,7 +16,7 @@ export interface MobileStepperProps extends PaperProps {
 }
 
 export type MobileStepperClassKey =
-  | 'root'
+  | PaperClassKey
   | 'positionBottom'
   | 'positionTop'
   | 'positionStatic'
@@ -23,6 +26,6 @@ export type MobileStepperClassKey =
   | 'progress'
   ;
 
-declare const MobileStepper: StyledComponent<MobileStepperProps, MobileStepperClassKey>;
+declare const MobileStepper: React.ComponentType<MobileStepperProps>;
 
 export default MobileStepper;

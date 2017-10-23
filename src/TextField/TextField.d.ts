@@ -1,26 +1,30 @@
 import * as React from 'react';
-import { StyledComponent, PropTypes, StyledComponentProps, Omit } from '..';
+import { StandardProps, PropTypes } from '..';
 import { FormControlProps, FormHelperTextProps } from '../Form';
 import { InputProps, InputLabelProps } from '../Input';
 import { FormControlClassKey } from '../Form/FormControl'
 
-export type TextFieldProps = {
+export interface TextFieldProps extends StandardProps<
+  FormControlProps,
+  TextFieldClassKey,
+  'onChange' | 'defaultValue'
+> {
   autoComplete?: string;
   autoFocus?: boolean;
   children?: React.ReactNode;
   defaultValue?: string | number;
   disabled?: boolean;
   error?: boolean;
-  FormHelperTextProps?: FormHelperTextProps & StyledComponentProps<any>;
+  FormHelperTextProps?: FormHelperTextProps;
   fullWidth?: boolean;
   helperText?: React.ReactNode;
   helperTextClassName?: string;
   id?: string;
   inputClassName?: string;
   InputClassName?: string;
-  InputLabelProps?: InputLabelProps & StyledComponentProps<any>;
+  InputLabelProps?: InputLabelProps;
   inputProps?: Object;
-  InputProps?: InputProps & StyledComponentProps<any>;
+  InputProps?: InputProps;
   inputRef?: React.Ref<any>;
   label?: React.ReactNode;
   labelClassName?: string;
@@ -37,12 +41,13 @@ export type TextFieldProps = {
   value?: string | number;
   margin?: PropTypes.Margin;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
-} & Omit<FormControlProps, 'onChange'>;
+}
 
 export type TextFieldClassKey =
   | FormControlClassKey
   ;
 
-declare const Input: StyledComponent<TextFieldProps, TextFieldClassKey>;
+
+declare const Input: React.ComponentType<TextFieldProps>;
 
 export default Input;

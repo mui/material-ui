@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { StyledComponent } from '../../src';
 import Typography, { TypographyProps } from '../../src/Typography/Typography';
 import { withStyles, WithStyles } from '../../src/styles';
 

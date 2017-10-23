@@ -1,16 +1,19 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
-import { ListProps } from '../List';
-import { ListClassKey } from '../List/List'
+import { StandardProps } from '..';
+import { ListProps, ListClassKey } from '../List';
 
-export type MenuListProps = {
+export interface MenuListProps extends StandardProps<
+  ListProps,
+  MenuListClassKey,
+  'onKeyDown'
+> {
   onKeyDown?: React.ReactEventHandler<React.KeyboardEvent<any>>;
-} & ListProps;
+}
 
 export type MenuListClassKey =
   | ListClassKey
   ;
 
-declare const MenuList: StyledComponent<MenuListProps, MenuListClassKey>;
+declare const MenuList: React.ComponentType<MenuListProps>;
 
 export default MenuList;

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export interface SelectInputProps {
+export interface SelectInputProps extends StandardProps<{}, SelectInputClassKey> {
   autoWidth: boolean;
   disabled?: boolean;
   native: boolean;
@@ -25,6 +25,6 @@ export type SelectInputClassKey =
   | 'icon'
   ;
 
-declare const SelectInput: StyledComponent<SelectInputProps, SelectInputClassKey>;
+declare const SelectInput: React.ComponentType<SelectInputProps>;
 
 export default SelectInput;

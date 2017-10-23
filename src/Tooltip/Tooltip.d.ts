@@ -1,7 +1,11 @@
 import * as React from 'react';
-import { StyledComponent, Omit } from '..';
+import { StandardProps } from '..';
 
-export type TooltipProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> & {
+export interface TooltipProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  TooltipClassKey,
+  'title'
+> {
   disableTriggerFocus?: boolean;
   disableTriggerHover?: boolean;
   disableTriggerTouch?: boolean;
@@ -40,6 +44,6 @@ export type TooltipClassKey =
   | 'tooltipOpen'
   ;
 
-declare const Tooltip: StyledComponent<TooltipProps, TooltipClassKey>;
+declare const Tooltip: React.ComponentType<TooltipProps>;
 
 export default Tooltip;

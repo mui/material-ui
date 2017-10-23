@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export interface FormGroupProps
-  extends React.HtmlHTMLAttributes<HTMLDivElement> {
+export interface FormGroupProps extends StandardProps<
+  React.HtmlHTMLAttributes<HTMLDivElement>,
+  FormGroupClassKey
+> {
   row?: boolean;
 }
 
@@ -11,6 +13,6 @@ export type FormGroupClassKey =
   | 'row'
   ;
 
-declare const FormGroup: StyledComponent<FormGroupProps, FormGroupClassKey>;
+declare const FormGroup: React.ComponentType<FormGroupProps>;
 
 export default FormGroup;

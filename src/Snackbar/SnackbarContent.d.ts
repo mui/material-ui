@@ -1,18 +1,22 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 import { PaperProps } from '../Paper';
+import { PaperClassKey } from '../Paper/Paper';
 
-export interface SnackbarContentProps extends PaperProps {
+export interface SnackbarContentProps extends StandardProps<
+  PaperProps,
+  SnackbarContentClasskey
+> {
   action?: React.ReactElement<any>;
   message: React.ReactElement<any> | string;
 }
 
 export type SnackbarContentClasskey =
-  | 'root'
+  | PaperClassKey
   | 'message'
   | 'action'
   ;
 
-declare const SnackbarContent: StyledComponent<SnackbarContentProps, SnackbarContentClasskey>;
+declare const SnackbarContent: React.ComponentType<SnackbarContentProps>;
 
 export default SnackbarContent;

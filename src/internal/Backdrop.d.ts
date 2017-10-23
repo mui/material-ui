@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export interface BackdropProps {
+export interface BackdropProps extends StandardProps<{}, BackdropClassKey> {
   invisible?: boolean;
   onClick?: React.ReactEventHandler<{}>;
   [prop: string]: any;
@@ -12,6 +12,6 @@ export type BackdropClassKey =
   | 'invisible'
   ;
 
-declare const Backdrop: StyledComponent<BackdropProps, BackdropClassKey>;
+declare const Backdrop: React.ComponentType<BackdropProps>;
 
 export default Backdrop;

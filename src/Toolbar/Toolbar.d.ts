@@ -1,7 +1,10 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export interface ToolbarProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ToolbarProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  ToolbarClassKey
+> {
   disableGutters?: boolean;
 }
 
@@ -10,6 +13,6 @@ export type ToolbarClassKey =
   | 'gutters'
   ;
 
-declare const Toolbar: StyledComponent<ToolbarProps, ToolbarClassKey>;
+declare const Toolbar: React.ComponentType<ToolbarProps>;
 
 export default Toolbar;

@@ -1,12 +1,12 @@
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export interface ListItemAvatarProps {}
+export interface ListItemAvatarProps extends StandardProps<{}, ListItemAvatarClassKey> {}
 
 export type ListItemAvatarClassKey =
   | 'root'
   | 'icon'
   ;
 
-declare const ListItemAvatar: StyledComponent<ListItemAvatarProps, ListItemAvatarClassKey>;
+declare const ListItemAvatar: React.ComponentType<ListItemAvatarProps>;
 
 export default ListItemAvatar;

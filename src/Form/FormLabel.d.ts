@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export interface FormLabelProps
-  extends React.LabelHTMLAttributes<HTMLLabelElement> {
+export interface FormLabelProps extends StandardProps<
+  React.LabelHTMLAttributes<HTMLLabelElement>,
+  FormLabelClassKey
+> {
   disabled?: boolean;
   error?: boolean;
   focused?: boolean;
@@ -16,6 +18,6 @@ export type FormLabelClassKey =
   | 'disabled'
   ;
 
-declare const FormLabel: StyledComponent<FormLabelProps, FormLabelClassKey>;
+declare const FormLabel: React.ComponentType<FormLabelProps>;
 
 export default FormLabel;

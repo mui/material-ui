@@ -1,13 +1,16 @@
-import { StyledComponent, PropTypes } from '..';
-import { PaperProps } from '../Paper/Paper';
+import { PropTypes, StandardProps } from '..';
+import { PaperProps, PaperClassKey } from '../Paper/Paper';
 
-export interface AppBarProps extends PaperProps {
+export interface AppBarProps extends StandardProps<
+  PaperProps,
+  AppBarClassKey
+> {
   color?: PropTypes.Color;
   position?: 'static' | 'fixed' | 'absolute';
 }
 
 export type AppBarClassKey =
-  | 'root'
+  | PaperClassKey
   | 'positionFixed'
   | 'positionAbsolute'
   | 'positionStatic'
@@ -16,6 +19,6 @@ export type AppBarClassKey =
   | 'colorAccent'
   ;
 
-declare const AppBar: StyledComponent<AppBarProps, AppBarClassKey>;
+declare const AppBar: React.ComponentType<AppBarProps>;
 
 export default AppBar;

@@ -1,7 +1,10 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export interface DividerProps extends React.HTMLAttributes<HTMLHRElement> {
+export interface DividerProps extends StandardProps<
+  React.HTMLAttributes<HTMLHRElement>,
+  DividerClassKey
+> {
   absolute?: boolean;
   inset?: boolean;
   light?: boolean;
@@ -15,6 +18,6 @@ export type DividerClassKey =
   | 'absolute'
   ;
 
-declare const Divider: StyledComponent<DividerProps, DividerClassKey>;
+declare const Divider: React.ComponentType<DividerProps>;
 
 export default Divider;

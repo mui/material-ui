@@ -1,7 +1,10 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export interface CardMediaProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface CardMediaProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  CardMediaClassKey
+> {
   image?: string;
   src?: string;
   component?: React.ReactType;
@@ -11,6 +14,6 @@ export type CardMediaClassKey =
   | 'root'
   ;
 
-declare const CardMedia: StyledComponent<CardMediaProps, CardMediaClassKey>;
+declare const CardMedia: React.ComponentType<CardMediaProps>;
 
 export default CardMedia;

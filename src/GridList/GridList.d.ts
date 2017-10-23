@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export interface GridListProps {
+export interface GridListProps extends StandardProps<{}, GridListClassKey> {
   cellHeight?: number | 'auto';
   cols?: number;
   component?: React.ReactType;
@@ -12,6 +12,6 @@ export type GridListClassKey =
   | 'root'
   ;
 
-declare const GridList: StyledComponent<GridListProps, GridListClassKey>;
+declare const GridList: React.ComponentType<GridListProps>;
 
 export default GridList;

@@ -1,13 +1,15 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export interface CardContentProps
-  extends React.HTMLAttributes<HTMLDivElement> {}
+export interface CardContentProps extends StandardProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  CardContentClassKey
+> {}
 
 export type CardContentClassKey =
   | 'root'
   ;
 
-declare const CardContent: StyledComponent<CardContentProps, CardContentClassKey>;
+declare const CardContent: React.ComponentType<CardContentProps>;
 
 export default CardContent;

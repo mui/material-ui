@@ -1,8 +1,11 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
-import { FormLabelProps } from '../Form/FormLabel';
+import { StandardProps } from '..';
+import { FormLabelProps, FormLabelClassKey } from '../Form/FormLabel';
 
-export interface InputLabelProps extends FormLabelProps {
+export interface InputLabelProps extends StandardProps<
+  FormLabelProps,
+  InputLabelClassKey
+> {
   disableAnimation?: boolean;
   disabled?: boolean;
   error?: boolean;
@@ -12,14 +15,13 @@ export interface InputLabelProps extends FormLabelProps {
 }
 
 export type InputLabelClassKey =
-  | 'root'
+  | FormLabelClassKey
   | 'formControl'
   | 'labelDense'
   | 'shrink'
   | 'animated'
-  | 'disabled'
   ;
 
-declare const InputLabel: StyledComponent<InputLabelProps, InputLabelClassKey>;
+declare const InputLabel: React.ComponentType<InputLabelProps>;
 
 export default InputLabel;

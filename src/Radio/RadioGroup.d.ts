@@ -1,17 +1,21 @@
 import * as React from 'react';
-import { StyledComponent, Omit } from '..';
-import { FormGroupProps } from '../Form';
+import { StandardProps } from '..';
+import { FormGroupProps, FormGroupClassKey } from '../Form/FormGroup';
 
-export type RadioGroupProps = {
+export interface RadioGroupProps extends StandardProps<
+  FormGroupProps,
+  RadioGroupClassKey,
+  'onChange'
+> {
   name?: string;
   onChange?: (event: React.ChangeEvent<{}>, value: string) => void;
   value?: string;
-} & Omit<FormGroupProps, 'onChange'>;
+}
 
 export type RadioGroupClassKey =
-  | 'root'
+  | FormGroupClassKey
   ;
 
-declare const RadioGroup: StyledComponent<RadioGroupProps, RadioGroupClassKey>;
+declare const RadioGroup: React.ComponentType<RadioGroupProps>;
 
 export default RadioGroup;

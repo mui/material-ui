@@ -1,7 +1,10 @@
 import * as React from 'react';
-import { StyledComponent } from '..';
+import { StandardProps } from '..';
 
-export interface ListProps extends React.HTMLAttributes<HTMLUListElement> {
+export interface ListProps extends StandardProps<
+  React.HTMLAttributes<HTMLUListElement>,
+  ListClassKey
+> {
   component?: React.ReactType;
   dense?: boolean;
   disablePadding?: boolean;
@@ -16,6 +19,6 @@ export type ListClassKey =
   | 'subheader'
   ;
 
-declare const List: StyledComponent<ListProps, ListClassKey>;
+declare const List: React.ComponentType<ListProps>;
 
 export default List;
