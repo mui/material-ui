@@ -47,6 +47,10 @@ export const styles = (theme: Object) => ({
     '&:hover': {
       textDecoration: 'none',
       backgroundColor: theme.palette.text.divider,
+      // Reset on mouse devices
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
       '&$disabled': {
         backgroundColor: 'transparent',
       },
