@@ -143,8 +143,7 @@ Let's take a look at our client file:
 ```jsx
 import React from 'react';
 import { render } from 'react-dom';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import createPalette from 'material-ui/styles/createPalette';
+import { MuiThemeProvider, createMuiTheme, createPalette } from 'material-ui/styles';
 import { green, red } from 'material-ui/colors';
 import App from './App';
 
