@@ -24,7 +24,7 @@ filename: /src/Menu/Menu.js
 | onExiting | TransitionCallback |  | Callback fired when the Menu is exiting. |
 | onRequestClose | Function |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | open | boolean | false | If `true`, the menu is visible. |
-| transitionDuration | union:&nbsp;number<br>&nbsp;'auto'<br> | 'auto' | The length of the transition in `ms`, or 'auto' |
+| transitionDuration | union:&nbsp;number<br>&nbsp;{ enter?: number, exit?: number }<br>&nbsp;'auto'<br> | 'auto' | The length of the transition in `ms`, or 'auto' |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 

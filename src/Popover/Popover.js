@@ -178,7 +178,7 @@ export type Props = {
   /**
    * Set to 'auto' to automatically calculate transition time based on height.
    */
-  transitionDuration?: number | 'auto',
+  transitionDuration?: number | { enter?: number, exit?: number } | 'auto',
 };
 
 class Popover extends React.Component<ProvidedProps & Props> {
@@ -370,7 +370,7 @@ class Popover extends React.Component<ProvidedProps & Props> {
           onExited={onExited}
           role={role}
           transitionClasses={transitionClasses}
-          transitionDuration={transitionDuration}
+          timeout={transitionDuration}
           rootRef={node => {
             this.transitionEl = node;
           }}

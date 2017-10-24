@@ -191,7 +191,7 @@ function Dialog(props: ProvidedProps & Props) {
         {
           appear: true,
           in: open,
-          transitionDuration,
+          timeout: transitionDuration,
           onEnter,
           onEntering,
           onEntered,

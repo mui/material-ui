@@ -10,7 +10,7 @@ export interface CollapseProps extends StandardProps<
 > {
   children?: React.ReactNode;
   theme?: Theme;
-  transitionDuration?: TransitionDuration | 'auto';
+  timeout?: TransitionDuration | 'auto';
 }
 
 export type CollapseClassKey =

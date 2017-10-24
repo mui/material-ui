@@ -64,7 +64,7 @@ describe('<Drawer />', () => {
             <div />
           </Drawer>,
         );
-        assert.strictEqual(wrapper.find(Slide).props().transitionDuration, transitionDuration);
+        assert.strictEqual(wrapper.find(Slide).props().timeout, transitionDuration);
       });
 
       it("should be passed to to Modal's BackdropTransitionDuration when open=true", () => {

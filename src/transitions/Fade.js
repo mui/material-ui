@@ -10,7 +10,7 @@ import type { TransitionDuration, TransitionCallback } from '../internal/transit
 
 type ProvidedProps = {
   appear: boolean,
-  transitionDuration: TransitionDuration,
+  timeout: TransitionDuration,
   theme: Object,
 };
 
@@ -51,7 +51,7 @@ export type Props = {
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    */
-  transitionDuration?: TransitionDuration,
+  timeout?: TransitionDuration,
 };
 
 const reflow = node => node.scrollTop;
@@ -63,7 +63,7 @@ const reflow = node => node.scrollTop;
 class Fade extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
     appear: true,
-    transitionDuration: {
+    timeout: {
       enter: duration.enteringScreen,
       exit: duration.leavingScreen,
     },
@@ -79,15 +79,13 @@ class Fade extends React.Component<ProvidedProps & Props> {
   };
 
   handleEntering = (node: HTMLElement) => {
-    const { theme, transitionDuration } = this.props;
+    const { theme, timeout } = this.props;
     node.style.transition = theme.transitions.create('opacity', {
-      duration:
-        typeof transitionDuration === 'number' ? transitionDuration : transitionDuration.enter,
+      duration: typeof timeout === 'number' ? timeout : timeout.enter,
     });
     // $FlowFixMe - https://github.com/facebook/flow/pull/5161
     node.style.webkitTransition = theme.transitions.create('opacity', {
-      duration:
-        typeof transitionDuration === 'number' ? transitionDuration : transitionDuration.enter,
+      duration: typeof timeout === 'number' ? timeout : timeout.enter,
     });
     node.style.opacity = '1';
 
@@ -97,15 +95,13 @@ class Fade extends React.Component<ProvidedProps & Props> {
   };
 
   handleExit = (node: HTMLElement) => {
-    const { theme, transitionDuration } = this.props;
+    const { theme, timeout } = this.props;
     node.style.transition = theme.transitions.create('opacity', {
-      duration:
-        typeof transitionDuration === 'number' ? transitionDuration : transitionDuration.exit,
+      duration: typeof timeout === 'number' ? timeout : timeout.exit,
     });
     // $FlowFixMe - https://github.com/facebook/flow/pull/5161
     node.style.webkitTransition = theme.transitions.create('opacity', {
-      duration:
-        typeof transitionDuration === 'number' ? transitionDuration : transitionDuration.exit,
+      duration: typeof timeout === 'number' ? timeout : timeout.exit,
     });
     node.style.opacity = '0';
 
@@ -118,7 +114,6 @@ class Fade extends React.Component<ProvidedProps & Props> {
     const {
       appear,
       children,
-      transitionDuration,
       onEnter,
       onEntering,
       onExit,
@@ -141,7 +136,6 @@ class Fade extends React.Component<ProvidedProps & Props> {
         onEnter={this.handleEnter}
         onEntering={this.handleEntering}
         onExit={this.handleExit}
-        timeout={transitionDuration}
         {...other}
       >
         {children}

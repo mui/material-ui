@@ -16,7 +16,7 @@ export type TransitionDuration = number | { enter?: number, exit?: number } | 'a
 
 type ProvidedProps = {
   appear: boolean,
-  transitionDuration: TransitionDuration,
+  timeout: TransitionDuration,
   theme: Object,
 };
 
@@ -80,7 +80,7 @@ export type Props = {
    *
    * Set to 'auto' to automatically calculate transition time based on height.
    */
-  transitionDuration?: TransitionDuration,
+  timeout?: TransitionDuration,
 };
 
 /**
@@ -90,11 +90,11 @@ export type Props = {
 class Grow extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
     appear: true,
-    transitionDuration: 'auto',
+    timeout: 'auto',
     transitionClasses: {},
   };
 
-  autoTransitionDuration = undefined;
+  autoTimeout = undefined;
 
   handleEnter = (node: HTMLElement) => {
     node.style.opacity = '0';
@@ -106,16 +106,16 @@ class Grow extends React.Component<ProvidedProps & Props> {
   };
 
   handleEntering = (node: HTMLElement) => {
-    const { theme, transitionDuration } = this.props;
+    const { theme, timeout } = this.props;
     let duration = 0;
 
-    if (transitionDuration === 'auto') {
+    if (timeout === 'auto') {
       duration = theme.transitions.getAutoHeightDuration(node.clientHeight);
-      this.autoTransitionDuration = duration;
-    } else if (typeof transitionDuration === 'number') {
-      duration = transitionDuration;
-    } else if (transitionDuration) {
-      duration = transitionDuration.enter;
+      this.autoTimeout = duration;
+    } else if (typeof timeout === 'number') {
+      duration = timeout;
+    } else if (timeout) {
+      duration = timeout.enter;
     } else {
       // The propType will warn in this case.
     }
@@ -138,16 +138,16 @@ class Grow extends React.Component<ProvidedProps & Props> {
   };
 
   handleExit = (node: HTMLElement) => {
-    const { theme, transitionDuration } = this.props;
+    const { theme, timeout } = this.props;
     let duration = 0;
 
-    if (transitionDuration === 'auto') {
+    if (timeout === 'auto') {
       duration = theme.transitions.getAutoHeightDuration(node.clientHeight);
-      this.autoTransitionDuration = duration;
-    } else if (typeof transitionDuration === 'number') {
-      duration = transitionDuration;
-    } else if (transitionDuration) {
-      duration = transitionDuration.exit;
+      this.autoTimeout = duration;
+    } else if (typeof timeout === 'number') {
+      duration = timeout;
+    } else if (timeout) {
+      duration = timeout.exit;
     } else {
       // The propType will warn in this case.
     }
@@ -173,10 +173,10 @@ class Grow extends React.Component<ProvidedProps & Props> {
   addEndListener = (node, next: Function) => {
     let timeout;
 
-    if (this.props.transitionDuration === 'auto') {
-      timeout = this.autoTransitionDuration || 0;
+    if (this.props.timeout === 'auto') {
+      timeout = this.autoTimeout || 0;
     } else {
-      timeout = this.props.transitionDuration;
+      timeout = this.props.timeout;
     }
 
     setTimeout(next, timeout);
@@ -192,7 +192,7 @@ class Grow extends React.Component<ProvidedProps & Props> {
       rootRef,
       style: styleProp,
       transitionClasses,
-      transitionDuration,
+      timeout,
       theme,
       ...other
     } = this.props;

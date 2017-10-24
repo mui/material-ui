@@ -219,7 +219,7 @@ class Drawer extends React.Component<ProvidedProps & Props, State> {
       <Slide
         in={open}
         direction={getSlideDirection(anchor)}
-        transitionDuration={transitionDuration}
+        timeout={transitionDuration}
         appear={!this.state.firstMount}
         {...SlideProps}
       >

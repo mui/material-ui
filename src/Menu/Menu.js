@@ -78,7 +78,7 @@ export type Props = {
   /**
    * The length of the transition in `ms`, or 'auto'
    */
-  transitionDuration?: number | 'auto',
+  transitionDuration?: number | { enter?: number, exit?: number } | 'auto',
 };
 
 const rtlOrigin = {

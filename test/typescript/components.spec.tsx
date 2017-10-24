@@ -181,7 +181,7 @@ const CardMediaTest = () =>
         <FakeIcon />
       </IconButton>
     </CardActions>
-    <Collapse in={true} transitionDuration="auto" unmountOnExit>
+    <Collapse in={true} timeout="auto" unmountOnExit>
       <CardContent>
         <Typography paragraph type="body2">
           Method:
