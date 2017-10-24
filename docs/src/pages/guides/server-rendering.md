@@ -143,7 +143,7 @@ Let's take a look at our client file:
 ```jsx
 import React from 'react';
 import { render } from 'react-dom';
-import { MuiThemeProvider, createMuiTheme, createPalette } from 'material-ui/styles';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import { green, red } from 'material-ui/colors';
 import App from './App';
 
@@ -163,11 +163,11 @@ class Main extends React.Component {
 
 // Create a theme instance.
 const theme = createMuiTheme({
-  palette: createPalette({
+  palette: {
     primary: green,
     accent: red,
     type: 'light',
-  }),
+  },
 });
 
 render(
