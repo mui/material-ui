@@ -18,6 +18,8 @@ export interface WithStylesOptions {
   name?: string;
 }
 
+export function style(cssProps: Partial<React.CSSProperties>): Partial<React.CSSProperties>
+
 export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
 
 export interface WithStyles<ClassKey extends string = string> {
