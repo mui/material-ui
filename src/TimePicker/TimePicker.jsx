@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Toolbar, withStyles } from 'material-ui';
+import { withStyles } from 'material-ui';
+import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
 import pickerStyles from '../styles/pickerStyles';
 import HourView from './HourView';
@@ -53,7 +54,7 @@ class TimePicker extends Component {
 
     return (
       <div className={classes.container}>
-        <Toolbar className={classes.toolbar}>
+        <PickerToolbar className={classes.toolbar}>
           <ToolbarButton
             type="display3"
             onClick={this.openHourView}
@@ -91,7 +92,7 @@ class TimePicker extends Component {
               onClick={this.setMeridiemMode('pm')}
             />
           </div>
-        </Toolbar>
+        </PickerToolbar>
 
         {
           isHourViewShown
@@ -112,29 +113,27 @@ class TimePicker extends Component {
   }
 }
 
-const styles = (theme) => {
-  const globalStyles = pickerStyles(theme);
-
-  return {
-    ...globalStyles,
-    toolbar: {
-      ...globalStyles.toolbar,
-      flexDirection: 'row',
-      alignItems: 'center',
-      paddingLeft: 50,
-    },
-    separator: {
-      margin: '0 2px 0 4px',
-      cursor: 'default',
-    },
-    ampmSelection: {
-      marginLeft: 20,
-      marginRight: -20,
-    },
-    ampmLabel: {
-      fontSize: 18,
-    },
-  };
-};
+const styles = theme => ({
+  container: {
+    width: 300,
+    height: 420,
+  },
+  toolbar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingLeft: 50,
+  },
+  separator: {
+    margin: '0 2px 0 4px',
+    cursor: 'default',
+  },
+  ampmSelection: {
+    marginLeft: 20,
+    marginRight: -20,
+  },
+  ampmLabel: {
+    fontSize: 18,
+  },
+});
 
 export default withStyles(styles, { name: 'MuiPickersTimePicker' })(TimePicker);
