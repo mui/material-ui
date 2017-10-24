@@ -1,6 +1,6 @@
 {
   "name": "material-ui-pickers",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.5",
   "description": "React components, that implements material design pickers for material-ui v1",
   "main": "dist/material-ui-pickers.cjs.js",
   "module": "dist/material-ui-pickers.es.js",
@@ -37,13 +37,8 @@
     "classnames": "^2.2.5"
   },
   "dependencies": {
-    "classnames": "^2.2.5",
     "moment": "^2.19.1",
-    "moment-range": "^3.0.3",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "prop-types": "^15.6.0",
-    "material-ui": "^1.0.0-beta.17"
+    "moment-range": "^3.0.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
