@@ -3,6 +3,9 @@
 
 ## [Click here for demo](https://material-ui-pic.firebaseapp.com/)
 
+### Recently updated?
+Changelog available [here](https://github.com/dmtrKovalenko/material-ui-pickers/releases)
+
 ### Installation
 Available as npm package 
 ```sh
@@ -68,10 +71,10 @@ format | string | 'MMMM Do' | Moment format string for input
 autoOk | boolean | false | Auto accept time on selection 
 
 ### Known Issues
-1. Supporting of touch devices
-2. DateTime picker
+1. 24 hour displaying for timepicker (now supporting only am/pm)
+2. DateTime picker (wrapper above date and time)
 
-That would be added in one of the nearest release :)
+They would be added/fixed in one of the nearest release :)
 
 ### Contributing
 For information about how to contribute, see the [CONTRIBUTING](https://github.com/dmtrKovalenko/material-ui-pickers/blob/master/CONTRIBUTE.md) file.
