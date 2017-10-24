@@ -4,12 +4,14 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import scroll from 'scroll';
-import { createShallow, createMount, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
 import Tabs from './Tabs';
 import TabScrollButton from './TabScrollButton';
 import TabIndicator from './TabIndicator';
 import Tab from './Tab';
+
+const TabsNaked = unwrap(Tabs);
 
 const noop = () => {};
 const fakeTabs = {
@@ -206,6 +208,33 @@ describe('<Tabs />', () => {
           false,
         );
         assert.strictEqual(wrapper2.find(TabIndicator).length, 1);
+      });
+
+      it('should update the indicator state no matter what', () => {
+        const wrapper2 = mount(
+          <TabsNaked width="md" onChange={noop} value={1} classes={{}} theme={{}}>
+            <Tab />
+            <Tab />
+          </TabsNaked>,
+        );
+        const instance = wrapper2.instance();
+        stub(instance, 'scrollSelectedIntoView');
+
+        wrapper2.setState({
+          indicatorStyle: {
+            left: 10,
+            width: 40,
+          },
+        });
+        wrapper2.setProps({
+          value: 0,
+        });
+
+        assert.strictEqual(
+          instance.scrollSelectedIntoView.callCount >= 2,
+          true,
+          'should have called scrollSelectedIntoView',
+        );
       });
     });
 
