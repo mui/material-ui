@@ -202,9 +202,7 @@ class Chip extends React.Component<ProvidedProps & Props> {
     if (avatarProp && React.isValidElement(avatarProp)) {
       // $FlowFixMe - this looks strictly correct, not sure why it errors.
       avatar = React.cloneElement(avatarProp, {
-        // $FlowFixMe - this looks strictly correct, not sure why it errors.
         className: classNames(classes.avatar, avatarProp.props.className),
-        // $FlowFixMe - this looks strictly correct, not sure why it errors.
         childrenClassName: classNames(classes.avatarChildren, avatarProp.props.childrenClassName),
       });
     }

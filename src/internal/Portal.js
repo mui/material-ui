@@ -81,7 +81,6 @@ class Portal extends React.Component<Props> {
       // funnels React's hierarchical updates through to a DOM node on an
       // entirely different part of the page.
       const layerElement = React.Children.only(children);
-      // $FlowFixMe
       ReactDOM.unstable_renderSubtreeIntoContainer(this, layerElement, this.getLayer());
     } else {
       this.unrenderLayer();
