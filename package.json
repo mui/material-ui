@@ -1,6 +1,6 @@
 {
   "name": "material-ui-pickers",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "React components, that implements material design pickers for material-ui v1",
   "main": "dist/material-ui-pickers.cjs.js",
   "module": "dist/material-ui-pickers.es.js",
@@ -25,7 +25,10 @@
     "type": "git",
     "url": "https://github.com/dmtrKovalenko/material-ui-pickers"
   },
-  "author": "Dmitriy Kovalenko <dmtr.kovalenko@outlook.com>",
+  "author": {
+    "name": "Your name",
+    "email": "your email"
+  },
   "peerDependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
@@ -37,22 +40,16 @@
     "classnames": "^2.2.5",
     "moment": "^2.19.1",
     "moment-range": "^3.0.3",
-    "peer-deps-externals-webpack-plugin": "^1.0.2",
-    "rollup": "^0.50.0",
-    "rollup-plugin-babel": "^3.0.2",
-    "rollup-plugin-commonjs": "^8.2.4",
-    "rollup-plugin-node-resolve": "^3.0.0",
-    "webpack": "^3.5.1"
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "prop-types": "^15.6.0",
+    "material-ui": "^1.0.0-beta.17"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "rollup --config --watch",
     "build": "rollup --config",
     "webpack": "webpack"
-  },
-  "author": {
-    "name": "Your name",
-    "email": "your email"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -71,6 +68,12 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
-    "webpack-bundle-analyzer": "^2.9.0"
+    "webpack-bundle-analyzer": "^2.9.0",
+    "peer-deps-externals-webpack-plugin": "^1.0.2",
+    "rollup": "^0.50.0",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-commonjs": "^8.2.4",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "webpack": "^3.5.1"
   }
 }

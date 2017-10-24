@@ -1,17 +1,16 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import classnames from 'classnames';
-import { Typography, Toolbar, withStyles } from 'material-ui';
-import pickerStyles from '../styles/pickerStyles';
+import { withStyles } from 'material-ui';
 
 import Calendar from './Calendar';
 import YearSelection from './YearSelection';
+import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
 
 class DatePicker extends PureComponent {
   static propTypes = {
-    date: PropTypes.object,
+    date: PropTypes.object.isRequired,
     minDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]),
     maxDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]),
     classes: PropTypes.shape({}).isRequired,
@@ -61,7 +60,7 @@ class DatePicker extends PureComponent {
 
     return (
       <div className={classes.container}>
-        <Toolbar className={classes.toolbar}>
+        <PickerToolbar>
           <ToolbarButton
             type="subheading"
             onClick={this.openYearSelection}
@@ -75,7 +74,7 @@ class DatePicker extends PureComponent {
             selected={!showYearSelection}
             label={this.date.format('ddd, MMM DD')}
           />
-        </Toolbar>
+        </PickerToolbar>
 
         {
           showYearSelection
@@ -101,7 +100,10 @@ class DatePicker extends PureComponent {
 }
 
 const styles = theme => ({
-  ...pickerStyles(theme),
+  container: {
+    width: 300,
+    height: 420,
+  },
 });
 
 export default withStyles(styles, { name: 'MuiPickersDatePicker' })(DatePicker);

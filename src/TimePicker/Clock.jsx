@@ -15,16 +15,29 @@ class Clock extends Component {
     children: PropTypes.arrayOf(PropTypes.node).isRequired,
   }
 
-  setTime(e, finish) {
-    if (typeof e.offsetX === 'undefined') {
-      console.warn('Touch events not supporting');
+  setTime(e) {
+    let { offsetX, offsetY } = e;
+
+    if (typeof offsetX === 'undefined') {
+      const rect = e.target.getBoundingClientRect();
+
+      offsetX = e.changedTouches[0].clientX - rect.left;
+      offsetY = e.changedTouches[0].clientY - rect.top;
     }
 
     const value = this.props.type === clockType.MINUTES
-      ? getMinutes(e.offsetX, e.offsetY)
-      : getHours(e.offsetX, e.offsetY);
+      ? getMinutes(offsetX, offsetY)
+      : getHours(offsetX, offsetY);
 
-    this.props.onChange(value, finish);
+    this.props.onChange(value);
+  }
+
+  handleTouchMove = (e) => {
+    this.setTime(e);
+  }
+
+  handleTouchEnd = (e) => {
+    this.handleTouchMove(e);
   }
 
   handleUp = (event) => {
@@ -34,9 +47,10 @@ class Clock extends Component {
 
   handleMove = (e) => {
     e.preventDefault();
-    if (e.buttons !== 1) { return; }
-
-    this.setTime(e.nativeEvent, false);
+    // MouseEvent.which is deprecated, but MouseEvent.buttons is not supported in Safari
+    if (e.buttons === 1 || e.nativeEvent.which === 1) {
+      this.setTime(e.nativeEvent, false);
+    }
   };
 
   hasSelected = () => {
