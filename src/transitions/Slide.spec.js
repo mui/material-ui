@@ -57,7 +57,7 @@ describe('<Slide />', () => {
     });
   });
 
-  describe('props: transitionDuration', () => {
+  describe('prop: timeout', () => {
     let wrapper;
     let instance;
     let element;
@@ -68,7 +68,7 @@ describe('<Slide />', () => {
       wrapper = shallow(
         <Slide
           {...props}
-          transitionDuration={{
+          timeout={{
             enter: enterDuration,
             exit: leaveDuration,
           }}

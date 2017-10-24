@@ -4,7 +4,7 @@ import { TransitionDuration, TransitionProps } from '../internal/transition';
 
 export interface GrowProps extends TransitionProps {
   theme?: Theme;
-  transitionDuration?: TransitionDuration | 'auto';
+  timeout?: TransitionDuration | 'auto';
 }
 
 declare const Grow: React.ComponentType<GrowProps>;

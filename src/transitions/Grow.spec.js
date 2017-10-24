@@ -42,7 +42,7 @@ describe('<Grow />', () => {
     });
   });
 
-  describe('props: transitionDuration', () => {
+  describe('prop: timeout', () => {
     let wrapper;
     let instance;
     let element;
@@ -53,7 +53,7 @@ describe('<Grow />', () => {
       wrapper = shallow(
         <Grow
           {...props}
-          transitionDuration={{
+          timeout={{
             enter: enterDuration,
             exit: leaveDuration,
           }}
@@ -169,8 +169,8 @@ describe('<Grow />', () => {
       clock.restore();
     });
 
-    it('should return autoTransitionDuration when transitionDuration is auto', () => {
-      const wrapper = shallow(<Grow {...props} transitionDuration="auto" />);
+    it('should return autoTransitionDuration when timeout is auto', () => {
+      const wrapper = shallow(<Grow {...props} timeout="auto" />);
       instance = wrapper.instance();
       const next = spy();
 
@@ -188,14 +188,14 @@ describe('<Grow />', () => {
       assert.strictEqual(next.callCount, 2);
     });
 
-    it('should return props.transitionDuration when transitionDuration is number', () => {
-      const transitionDuration = 10;
-      const wrapper = shallow(<Grow {...props} transitionDuration={transitionDuration} />);
+    it('should return props.timeout when timeout is number', () => {
+      const timeout = 10;
+      const wrapper = shallow(<Grow {...props} timeout={timeout} />);
       instance = wrapper.instance();
       const next = spy();
       instance.addEndListener(null, next);
       assert.strictEqual(next.callCount, 0);
-      clock.tick(transitionDuration);
+      clock.tick(timeout);
       assert.strictEqual(next.callCount, 1);
     });
   });

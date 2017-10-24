@@ -4,7 +4,7 @@ import { TransitionDuration, TransitionProps } from '../internal/transition';
 
 export interface FadeProps extends TransitionProps {
   theme?: Theme;
-  transitionDuration?: TransitionDuration;
+  timeout?: TransitionDuration;
 }
 
 declare const Fade: React.ComponentType<FadeProps>;

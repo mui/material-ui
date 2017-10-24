@@ -343,7 +343,7 @@ class Snackbar extends React.Component<ProvidedProps & Props, State> {
     const transitionProps = {
       in: open,
       appear: true,
-      transitionDuration,
+      timeout: transitionDuration,
       onEnter,
       onEntering,
       onEntered,

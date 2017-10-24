@@ -67,7 +67,7 @@ export function setTranslateValue(props: Object, node: HTMLElement | Object) {
 export type Direction = 'left' | 'right' | 'up' | 'down';
 
 type ProvidedProps = {
-  transitionDuration: TransitionDuration,
+  timeout: TransitionDuration,
   theme: Object,
 };
 
@@ -116,7 +116,7 @@ export type Props = {
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    */
-  transitionDuration?: TransitionDuration,
+  timeout?: TransitionDuration,
   /**
    * @ignore
    */
@@ -132,7 +132,7 @@ const reflow = node => node.scrollTop;
 class Slide extends React.Component<ProvidedProps & Props, State> {
   static defaultProps = {
     direction: 'down',
-    transitionDuration: {
+    timeout: {
       enter: duration.enteringScreen,
       exit: duration.leavingScreen,
     },
@@ -190,16 +190,14 @@ class Slide extends React.Component<ProvidedProps & Props, State> {
   };
 
   handleEntering = (node: HTMLElement) => {
-    const { theme, transitionDuration } = this.props;
+    const { theme, timeout } = this.props;
     node.style.transition = theme.transitions.create('transform', {
-      duration:
-        typeof transitionDuration === 'number' ? transitionDuration : transitionDuration.enter,
+      duration: typeof timeout === 'number' ? timeout : timeout.enter,
       easing: theme.transitions.easing.easeOut,
     });
     // $FlowFixMe - https://github.com/facebook/flow/pull/5161
     node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
-      duration:
-        typeof transitionDuration === 'number' ? transitionDuration : transitionDuration.enter,
+      duration: typeof timeout === 'number' ? timeout : timeout.enter,
       easing: theme.transitions.easing.easeOut,
     });
     node.style.transform = 'translate3d(0, 0, 0)';
@@ -210,16 +208,14 @@ class Slide extends React.Component<ProvidedProps & Props, State> {
   };
 
   handleExit = (node: HTMLElement) => {
-    const { theme, transitionDuration } = this.props;
+    const { theme, timeout } = this.props;
     node.style.transition = theme.transitions.create('transform', {
-      duration:
-        typeof transitionDuration === 'number' ? transitionDuration : transitionDuration.exit,
+      duration: typeof timeout === 'number' ? timeout : timeout.exit,
       easing: theme.transitions.easing.sharp,
     });
     // $FlowFixMe - https://github.com/facebook/flow/pull/5161
     node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
-      duration:
-        typeof transitionDuration === 'number' ? transitionDuration : transitionDuration.exit,
+      duration: typeof timeout === 'number' ? timeout : timeout.exit,
       easing: theme.transitions.easing.sharp,
     });
     setTranslateValue(this.props, node);
@@ -230,16 +226,7 @@ class Slide extends React.Component<ProvidedProps & Props, State> {
   };
 
   render() {
-    const {
-      children,
-      onEnter,
-      onEntering,
-      onExit,
-      style: styleProp,
-      transitionDuration,
-      theme,
-      ...other
-    } = this.props;
+    const { children, onEnter, onEntering, onExit, style: styleProp, theme, ...other } = this.props;
 
     const style = { ...styleProp };
 
@@ -253,7 +240,6 @@ class Slide extends React.Component<ProvidedProps & Props, State> {
           onEnter={this.handleEnter}
           onEntering={this.handleEntering}
           onExit={this.handleExit}
-          timeout={transitionDuration}
           appear
           style={style}
           {...other}

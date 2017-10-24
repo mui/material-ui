@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import warning from 'warning';
 import withStyles from '../styles/withStyles';
 
-const transitionDuration = 4; // 400ms
+const TRANSITION_DURATION = 4; // 400ms
 
 export const styles = (theme: Object) => ({
   root: {
@@ -54,7 +54,7 @@ export const styles = (theme: Object) => ({
     animation: 'buffer 3s infinite linear',
   },
   bufferBar2: {
-    transition: `transform .${transitionDuration}s linear`,
+    transition: `transform .${TRANSITION_DURATION}s linear`,
   },
   rootBuffer: {
     backgroundColor: 'transparent',
@@ -75,18 +75,18 @@ export const styles = (theme: Object) => ({
   },
   determinateBar1: {
     willChange: 'transform',
-    transition: `transform .${transitionDuration}s linear`,
+    transition: `transform .${TRANSITION_DURATION}s linear`,
   },
   bufferBar1: {
     zIndex: 1,
-    transition: `transform .${transitionDuration}s linear`,
+    transition: `transform .${TRANSITION_DURATION}s linear`,
   },
   bufferBar2Primary: {
-    transition: `transform .${transitionDuration}s linear`,
+    transition: `transform .${TRANSITION_DURATION}s linear`,
     backgroundColor: theme.palette.primary[100],
   },
   bufferBar2Accent: {
-    transition: `transform .${transitionDuration}s linear`,
+    transition: `transform .${TRANSITION_DURATION}s linear`,
     backgroundColor: theme.palette.secondary.A100,
   },
   // Legends:
