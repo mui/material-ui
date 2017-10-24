@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui';
 import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
-import pickerStyles from '../styles/pickerStyles';
 import HourView from './HourView';
 import MinutesView from './MinutesView';
 
