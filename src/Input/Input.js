@@ -64,7 +64,8 @@ export const styles = (theme: Object) => {
   return {
     root: {
       // Mimics the default input display property used by browsers for an input.
-      display: 'inline-block',
+      display: 'inline-flex',
+      alignItems: 'baseline',
       position: 'relative',
       fontFamily: theme.typography.fontFamily,
       color: theme.palette.input.inputText,
@@ -139,10 +140,6 @@ export const styles = (theme: Object) => {
         '&:focus:-ms-input-placeholder': placeholderVisible, // IE 11
         '&:focus::-ms-input-placeholder': placeholderVisible, // Edge
       },
-    },
-    inputAdorned: {
-      display: 'inline-block',
-      width: 'auto',
     },
     inputDense: {
       paddingTop: theme.spacing.unit / 2,
@@ -526,7 +523,6 @@ class Input extends React.Component<ProvidedProps & Props, State> {
         [classes.inputSearch]: type === 'search',
         [classes.inputMultiline]: multiline,
         [classes.inputDense]: margin === 'dense',
-        [classes.inputAdorned]: startAdornment || endAdornment,
       },
       inputPropsClassName,
     );
