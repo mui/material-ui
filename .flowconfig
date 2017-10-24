@@ -38,4 +38,10 @@ suppress_comment= \\(.\\|\n\\)*\\$FlowExpectedError
 suppress_type=$FlowToDo
 
 [lints]
+
 all=error
+sketchy-null-bool=off
+sketchy-null-mixed=off
+sketchy-null-number=off
+sketchy-null-string=off
+untyped-type-import=off
