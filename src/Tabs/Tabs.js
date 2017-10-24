@@ -144,9 +144,6 @@ export type TabsMeta = {
   right: number,
 };
 
-/**
- * Notice that this Component is incompatible with server side rendering.
- */
 class Tabs extends React.Component<ProvidedProps & Props, State> {
   static defaultProps = {
     centered: false,
@@ -180,10 +177,13 @@ class Tabs extends React.Component<ProvidedProps & Props, State> {
 
   componentDidUpdate(prevProps, prevState) {
     this.updateScrollButtonState();
+
+    // The index might have changed at the same time.
+    // We need to check again the right indicator position.
+    this.updateIndicatorState(this.props);
+
     if (this.state.indicatorStyle !== prevState.indicatorStyle) {
       this.scrollSelectedIntoView();
-    } else {
-      this.updateIndicatorState(this.props);
     }
   }
 
@@ -335,8 +335,10 @@ class Tabs extends React.Component<ProvidedProps & Props, State> {
     };
 
     if (
-      indicatorStyle.left !== this.state.indicatorStyle.left ||
-      indicatorStyle.width !== this.state.indicatorStyle.width
+      (indicatorStyle.left !== this.state.indicatorStyle.left ||
+        indicatorStyle.width !== this.state.indicatorStyle.width) &&
+      !Number.isNaN(indicatorStyle.left) &&
+      !Number.isNaN(indicatorStyle.width)
     ) {
       this.setState({ indicatorStyle });
     }

@@ -6,7 +6,7 @@ filename: /src/Tabs/Tabs.js
 
 # Tabs
 
-Notice that this Component is incompatible with server side rendering.
+
 
 ## Props
 
