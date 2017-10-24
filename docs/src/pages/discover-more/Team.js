@@ -85,6 +85,7 @@ const styles = theme => ({
     height: theme.spacing.unit * 10,
     margin: theme.spacing.unit * 2,
     borderRadius: '50%',
+    flexShrink: 0,
     backgroundColor: theme.palette.background.default,
   },
   controls: {

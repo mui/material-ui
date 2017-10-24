@@ -58,13 +58,6 @@ function BasicTable(props) {
               </TableRow>
             );
           })}
-          <TableRow component="a" href="#basic-table">
-            <TableCell>Oreo</TableCell>
-            <TableCell numeric>109</TableCell>
-            <TableCell numeric>7.9</TableCell>
-            <TableCell numeric>5.9</TableCell>
-            <TableCell numeric>2.6</TableCell>
-          </TableRow>
         </TableBody>
       </Table>
     </Paper>
