@@ -261,6 +261,15 @@ class Popover extends React.Component<ProvidedProps & Props> {
       transformOrigin.vertical += diff;
     }
 
+    warning(
+      elemRect.height < heightThreshold || !elemRect.height || !heightThreshold,
+      [
+        'Material-UI: the Popover component is too tall.',
+        `Some part of it can not be seen on the screen (${elemRect.height - heightThreshold}px).`,
+        'Please consider adding a `max-height` to improve the user-experience.',
+      ].join('\n'),
+    );
+
     // Check if the horizontal axis needs shifting
     if (left < marginThreshold) {
       const diff = left - marginThreshold;
