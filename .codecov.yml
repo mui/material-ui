@@ -1,7 +1,3 @@
 codecov:
   branch: next
 comment: false
-
-coverage:
-  ignore:
-    - ".*"
