@@ -63,16 +63,38 @@ describe('<Input />', () => {
     });
   });
 
-  it('should render a disabled <input />', () => {
-    const wrapper = shallow(<Input disabled />);
-    const input = wrapper.find('input');
-    assert.strictEqual(input.name(), 'input');
-    assert.strictEqual(input.hasClass(classes.input), true, 'should have the input class');
-    assert.strictEqual(
-      input.hasClass(classes.inputDisabled),
-      true,
-      'should have the disabled class',
-    );
+  describe('prop: disabled', () => {
+    it('should render a disabled <input />', () => {
+      const wrapper = shallow(<Input disabled />);
+      const input = wrapper.find('input');
+      assert.strictEqual(input.name(), 'input');
+      assert.strictEqual(input.hasClass(classes.input), true, 'should have the input class');
+      assert.strictEqual(
+        input.hasClass(classes.inputDisabled),
+        true,
+        'should have the disabled class',
+      );
+    });
+
+    it('should reset the focused state', () => {
+      const wrapper = shallow(<Input />);
+      const handleBlur = spy();
+      wrapper.setContext({
+        ...wrapper.context(),
+        muiFormControl: {
+          onBlur: handleBlur,
+        },
+      });
+      // We simulate a focused input that is getting disabled.
+      wrapper.setState({
+        focused: true,
+      });
+      wrapper.setProps({
+        disabled: true,
+      });
+      assert.strictEqual(wrapper.state().focused, false);
+      assert.strictEqual(handleBlur.callCount, 1);
+    });
   });
 
   it('should disabled the underline', () => {
