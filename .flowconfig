@@ -19,6 +19,7 @@ flow/interfaces
 
 [options]
 
+include_warnings=true
 esproposal.class_static_fields=enable
 esproposal.class_instance_fields=enable
 module.file_ext=.js
@@ -35,3 +36,12 @@ module.system.node.resolve_dirname=.
 suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe
 suppress_comment= \\(.\\|\n\\)*\\$FlowExpectedError
 suppress_type=$FlowToDo
+
+[lints]
+
+all=error
+sketchy-null-bool=off
+sketchy-null-mixed=off
+sketchy-null-number=off
+sketchy-null-string=off
+untyped-type-import=off
