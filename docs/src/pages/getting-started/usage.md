@@ -4,17 +4,20 @@ Material-UI components work in isolation.
 **They are self-supporting**, they will inject and only inject the style they need to display.
 They don't rely on any global style like [normalize.css](https://github.com/necolas/normalize.css/).
 You can use any of the components as demonstrated in our documentation.
+Please refer to each component's [demo page](/demos/app-bar/) to see how they should be imported.
 
-Here is a quick example to get you started, it's all you need:
+## Quick start
+
+Here is a quick example to get you started, **it's all you need**:
 
 ```jsx
 import React from 'react';
-import { render } from 'react-dom';
+import { render } from 'react-dom';
 import Button from 'material-ui/Button';
 
 function App() {
   return (
-    <Button>
+    <Button raised color="primary">
       Hello World
     </Button>
   );
@@ -23,4 +26,13 @@ function App() {
 render(<App />, document.querySelector('#app'));
 ```
 
-Please refer to each component's [demo page](/demos/app-bar/) to see how they should be imported.
+Yes, it's really all you need to get started as you can see in this live and interactive demo:
+
+{{demo='pages/getting-started/Usage.js'}}
+
+## Next steps
+
+You now have an idea about the basic setup. It's time to learn more about:
+- How to provide [the Material Design font and typography](/style/typography).
+- How to take advantage of our [theming solution](/customization/themes).
+- How to [override](customization/overrides) the look and feel of our components.
