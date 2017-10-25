@@ -17,7 +17,7 @@ export default function createBreakpoints(breakpoints: Object) {
       xl: 1920,
     },
     unit = 'px',
-    step = 1,
+    step = 5,
     ...other
   } = breakpoints;
 

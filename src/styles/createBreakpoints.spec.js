@@ -22,7 +22,7 @@ describe('createBreakpoints', () => {
 
   describe('down', () => {
     it('should work', () => {
-      assert.strictEqual(breakpoints.down('md'), '@media (max-width:959.99px)');
+      assert.strictEqual(breakpoints.down('md'), '@media (max-width:959.95px)');
     });
   });
 
@@ -30,7 +30,7 @@ describe('createBreakpoints', () => {
     it('should work', () => {
       assert.strictEqual(
         breakpoints.between('sm', 'md'),
-        '@media (min-width:600px) and (max-width:1279.99px)',
+        '@media (min-width:600px) and (max-width:1279.95px)',
       );
     });
   });
@@ -39,7 +39,7 @@ describe('createBreakpoints', () => {
     it('should work', () => {
       assert.strictEqual(
         breakpoints.only('md'),
-        '@media (min-width:960px) and (max-width:1279.99px)',
+        '@media (min-width:960px) and (max-width:1279.95px)',
       );
     });
 
