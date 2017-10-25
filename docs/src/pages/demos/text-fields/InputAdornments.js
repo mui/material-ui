@@ -6,7 +6,7 @@ import { withStyles } from 'material-ui/styles';
 import IconButton from 'material-ui/IconButton';
 import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
 import { FormControl, FormHelperText } from 'material-ui/Form';
-import Visbility from 'material-ui-icons/Visibility';
+import Visibility from 'material-ui-icons/Visibility';
 import VisibilityOff from 'material-ui-icons/VisibilityOff';
 
 const styles = theme => ({
@@ -31,7 +31,7 @@ class InputAdornments extends React.Component {
     this.setState({ [prop]: event.target.value });
   };
 
-  handleMouseDownPasssword = event => {
+  handleMouseDownPassword = event => {
     event.preventDefault();
   };
 
@@ -74,9 +74,9 @@ class InputAdornments extends React.Component {
               <InputAdornment position="end">
                 <IconButton
                   onClick={this.handleClickShowPasssword}
-                  onMouseDown={this.handleMouseDownPasssword}
+                  onMouseDown={this.handleMouseDownPassword}
                 >
-                  {this.state.showPassword ? <VisibilityOff /> : <Visbility />}
+                  {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
             }
