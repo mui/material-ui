@@ -373,10 +373,28 @@ class Input extends React.Component<ProvidedProps & Props, State> {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    // The blur won't fire when the disabled state is set on a focused input.
+    // We need to book keep the focused state manually.
+    if (!this.props.disabled && nextProps.disabled) {
+      this.setState({
+        focused: false,
+      });
+    }
+  }
+
   componentWillUpdate(nextProps) {
     if (this.isControlled()) {
       this.checkDirty(nextProps);
     } // else performed in the onChange
+
+    // Book keep the focused state.
+    if (!this.props.disabled && nextProps.disabled) {
+      const { muiFormControl } = this.context;
+      if (muiFormControl && muiFormControl.onBlur) {
+        muiFormControl.onBlur();
+      }
+    }
   }
 
   // Holds the input reference
