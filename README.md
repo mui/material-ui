@@ -77,7 +77,7 @@ autoOk | boolean | false | Auto accept time on selection
 They would be added/fixed in one of the nearest release :)
 
 ### Contributing
-For information about how to contribute, see the [CONTRIBUTING](https://github.com/dmtrKovalenko/material-ui-pickers/blob/master/CONTRIBUTE.md) file.
+For information about how to contribute, see the [CONTRIBUTING](https://github.com/dmtrKovalenko/material-ui-pickers/blob/master/CONTRIBUTING.md) file.
 
 ### LICENSE
 The project is licensed under the terms of [MIT license](https://github.com/dmtrKovalenko/material-ui-pickers/blob/master/LICENSE)
