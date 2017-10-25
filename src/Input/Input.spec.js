@@ -381,6 +381,7 @@ describe('<Input />', () => {
       it(`is false for value ${value}`, () => {
         assert.strictEqual(isDirty({ value }), false);
       });
+
       it(`is false for SSR defaultValue ${value}`, () => {
         assert.strictEqual(isDirty({ defaultValue: value }, true), false);
       });
@@ -403,24 +404,13 @@ describe('<Input />', () => {
 
       assert.strictEqual(wrapper.childAt(0).type(), InputAdornment);
     });
+
     it('should render adornment after input', () => {
       const wrapper = shallow(
         <Input endAdornment={<InputAdornment position="end">$</InputAdornment>} />,
       );
 
       assert.strictEqual(wrapper.childAt(1).type(), InputAdornment);
-    });
-    it('child input should have adorned classes', () => {
-      const wrapper = shallow(
-        <Input endAdornment={<InputAdornment position="end">$</InputAdornment>} />,
-      );
-
-      assert.strictEqual(wrapper.childAt(0).hasClass(classes.inputAdorned), true);
-    });
-    it('child input should have unadorned classes', () => {
-      const wrapper = shallow(<Input />);
-
-      assert.strictEqual(wrapper.childAt(0).hasClass(classes.inputAdorned), false);
     });
   });
 });

@@ -8,7 +8,6 @@ import withStyles from '../styles/withStyles';
 
 export const styles = (theme: Object) => ({
   root: {
-    display: 'inline-block',
     'label + div > &': {
       marginTop: -theme.spacing.unit * 2,
     },

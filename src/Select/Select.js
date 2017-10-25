@@ -12,6 +12,7 @@ import { isMuiElement } from '../utils/reactHelpers';
 export const styles = (theme: Object) => ({
   root: {
     position: 'relative',
+    width: '100%',
   },
   select: {
     '-moz-appearance': 'none', // Remove Firefox custom style
