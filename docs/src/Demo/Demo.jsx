@@ -4,6 +4,7 @@ import { AppBar, Toolbar, IconButton, Typography, withStyles, Button, Tooltip } 
 import { TimePicker, DatePicker } from 'material-ui-pickers'
 import Github from './GithubIcon'
 import './Demo.css';
+import moment from 'moment';
 
 class Demo extends Component {
   static propTypes = {
@@ -90,7 +91,6 @@ class Demo extends Component {
               </Typography>
 
               <DatePicker 
-                disableFuture
                 value={selectedDate}
                 onChange={this.handleDateChange}
                 animateYearScrolling={false}

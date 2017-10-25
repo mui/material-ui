@@ -12,5 +12,10 @@
     "transform-react-jsx",
     "transform-class-properties",
     "external-helpers"
-  ]
+  ],
+  "env": {
+    "test": {
+      "presets": ["es2015"]
+    }
+  } 
 }
