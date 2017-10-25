@@ -256,9 +256,17 @@ class Popover extends React.Component<ProvidedProps & Props> {
       top -= diff;
       transformOrigin.vertical += diff;
     } else if (bottom > heightThreshold) {
-      const diff = bottom - heightThreshold;
-      top -= diff;
-      transformOrigin.vertical += diff;
+      
+      const diff = bottom - heightThreshold;   
+      
+       if (top - _diff < marginThreshold) {
+          transformOrigin.vertical += top - marginThreshold;
+          top = marginThreshold
+        }
+        else {
+          top -= _diff;
+          transformOrigin.vertical += _diff;
+        }
     }
 
     // Check if the horizontal axis needs shifting
