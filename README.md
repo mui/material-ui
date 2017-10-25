@@ -7,12 +7,12 @@
 Changelog available [here](https://github.com/dmtrKovalenko/material-ui-pickers/releases)
 
 ### Installation
-Available as npm package 
+Available as npm package
 ```sh
 npm install material-ui-pickers -S
 ```
 
-### Usage 
+### Usage
 Here is a quick example of how to use this package
 
 ```jsx
@@ -35,15 +35,15 @@ class App extends Component {
 
     return (
       <div>
-        <DatePicker 
+        <DatePicker
           value={selectedDate}
           onChange={this.handleDateChange}
-        />  
+        />
 
-        <TimePicker 
+        <TimePicker
           value={selectedTime}
           onChange={this.handleDateChange}
-        />  
+        />
       </div>
     )
   }
@@ -51,24 +51,26 @@ class App extends Component {
 ```
 
 ### Props documentation
-Here is a list of available props 
+Here is a list of available props
 
 #### Datepicker
 Prop | Type | Default | Definition
 ------------ | ------------- | ------------- | -------------
 value | string, number, Date object, Moment object | null | Datepicker value
 format | string | 'MMMM Do' | Moment format string for input
-autoOk | boolean | false | Auto accept date on selection 
+autoOk | boolean | false | Auto accept date on selection
 disableFuture | boolean | false | Disable future dates
 animateYearScrolling | boolean | false | Will animate year selection (note that will work for browser supports scrollIntoView api)
 openToYearSelection | boolean | false | Open datepicker from year selection
+minDate | string, number, Date object, Moment object | '1900-01-01' | Minimum selectable date
+maxDate | string, number, Date object, Moment object | '2100-01-01' | Maximum selectable date
 
 #### Timepicker
 Prop | Type | Default | Definition
 ------------ | ------------- | ------------- | -------------
 value | string, number, Date object, Moment object | null | Timepicker value
 format | string | 'MMMM Do' | Moment format string for input
-autoOk | boolean | false | Auto accept time on selection 
+autoOk | boolean | false | Auto accept time on selection
 
 ### Known Issues
 1. 24 hour displaying for timepicker (now supporting only am/pm)

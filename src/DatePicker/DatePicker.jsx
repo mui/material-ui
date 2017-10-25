@@ -92,6 +92,8 @@ class DatePicker extends PureComponent {
                 date={this.date}
                 onChange={onChange}
                 disableFuture={disableFuture}
+                minDate={this.minDate}
+                maxDate={this.maxDate}
               />
         }
       </div>

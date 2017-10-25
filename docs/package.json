@@ -9,9 +9,12 @@
     "react-scripts": "1.0.14"
   },
   "scripts": {
-    "start": "PORT=3002 react-scripts start",
+    "start": "cross-env PORT=3002 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "cross-env": "^5.1.0"
   }
 }

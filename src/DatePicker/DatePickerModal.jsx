@@ -8,6 +8,8 @@ import DatePicker from './DatePicker';
 
 export default class DatePickerModal extends PureComponent {
   static propTypes = {
+    minDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]),
+    maxDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]),
     value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     format: PropTypes.string,
     onChange: PropTypes.func.isRequired,
@@ -18,6 +20,8 @@ export default class DatePickerModal extends PureComponent {
   }
 
   static defaultProps = {
+    minDate: '1900-01-01',
+    maxDate: '2100-01-01',
     value: null,
     format: 'MMMM Do',
     autoOk: false,
@@ -59,7 +63,7 @@ export default class DatePickerModal extends PureComponent {
   render() {
     const { date } = this.state;
     const {
-      value, format, autoOk, onChange, disableFuture, animateYearScrolling, openToYearSelection,
+      value, format, autoOk, onChange, disableFuture, animateYearScrolling, openToYearSelection, minDate, maxDate,
       ...other
     } = this.props;
 
@@ -83,6 +87,8 @@ export default class DatePickerModal extends PureComponent {
             disableFuture={disableFuture}
             animateYearScrolling={animateYearScrolling}
             openToYearSelection={openToYearSelection}
+            minDate={minDate}
+            maxDate={maxDate}
           />
         </ModalDialog>
       </span>

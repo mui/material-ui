@@ -12,9 +12,16 @@ const moment = extendMoment(Moment);
 class Calendar extends PureComponent {
   static propTypes = {
     date: PropTypes.object.isRequired,
+    minDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]),
+    maxDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]),
     classes: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     disableFuture: PropTypes.bool.isRequired,
+  }
+
+  static defaultProps = {
+    minDate: '1900-01-01',
+    maxDate: '2100-01-01',
   }
 
   state = {
@@ -43,7 +50,7 @@ class Calendar extends PureComponent {
   }
 
   renderDays = (week) => {
-    const { disableFuture, classes, date } = this.props;
+    const { disableFuture, classes, date, minDate, maxDate } = this.props;
     const end = week.clone().endOf('week');
     const currentMonthNumber = this.state.currentMonth.get('month');
 
@@ -52,7 +59,7 @@ class Calendar extends PureComponent {
         const dayClass = classnames(classes.day, {
           [classes.hidden]: day.get('month') !== currentMonthNumber,
           [classes.selected]: day.toString() === date.toString(),
-          [classes.disabled]: disableFuture && day.isAfter(moment()),
+          [classes.disabled]: disableFuture && day.isAfter(moment()) || minDate && day.isBefore(minDate) || maxDate && day.isAfter(maxDate),
         });
 
         return (
