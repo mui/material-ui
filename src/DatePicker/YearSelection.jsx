@@ -85,7 +85,7 @@ const styles = theme => ({
     justifyContent: 'center',
     cursor: 'pointer',
     outline: 'none',
-    color: theme.palette.text.primary
+    color: theme.palette.text.primary,
   },
   selectedYear: {
     fontSize: 26,

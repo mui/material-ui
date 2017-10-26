@@ -27,6 +27,10 @@ ToolbarButton.propTypes = {
   className: PropTypes.string,
 };
 
+ToolbarButton.defaultProps = {
+  className: '',
+};
+
 const styles = theme => ({
   toolbarBtn: {
     cursor: 'pointer',

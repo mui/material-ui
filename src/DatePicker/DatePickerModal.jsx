@@ -63,7 +63,15 @@ export default class DatePickerModal extends PureComponent {
   render() {
     const { date } = this.state;
     const {
-      value, format, autoOk, onChange, disableFuture, animateYearScrolling, openToYearSelection, minDate, maxDate,
+      value,
+      format,
+      autoOk,
+      minDate,
+      maxDate,
+      onChange,
+      disableFuture,
+      animateYearScrolling,
+      openToYearSelection,
       ...other
     } = this.props;
 

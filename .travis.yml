@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+  - "iojs"
+  - "8"
+
+script: 
+  - npm test && npm lint && npm run build
