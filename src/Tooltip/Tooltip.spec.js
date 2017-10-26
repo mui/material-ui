@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 // @flow
 
 import React from 'react';
@@ -5,9 +6,14 @@ import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { Target, Popper } from 'react-popper';
 import { ShallowWrapper } from 'enzyme';
-import { createShallow, createMount, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import createMuiTheme from '../styles/createMuiTheme';
 import Tooltip from './Tooltip';
+
+const TooltipNaked = unwrap(Tooltip);
+
+// eslint-disable-next-line react/prop-types
+const Hack = ({ style, innerRef, ...other }) => <div ref={innerRef} {...other} />;
 
 function getChildren(wrapper) {
   return new ShallowWrapper(
@@ -44,7 +50,8 @@ describe('<Tooltip />', () => {
         <span>Hello World</span>
       </Tooltip>,
     );
-    assert.strictEqual(wrapper.name(), 'Manager');
+    assert.strictEqual(wrapper.name(), 'EventListener');
+    assert.strictEqual(wrapper.childAt(0).name(), 'Manager');
   });
 
   it('should render with the user, root and tooltip classes', () => {
@@ -53,8 +60,8 @@ describe('<Tooltip />', () => {
         <span>Hello World</span>
       </Tooltip>,
     );
-    assert.strictEqual(wrapper.hasClass('woofTooltip'), true);
-    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.childAt(0).hasClass('woofTooltip'), true);
+    assert.strictEqual(wrapper.childAt(0).hasClass(classes.root), true);
     assert.strictEqual(
       wrapper
         .find(Popper)
@@ -71,7 +78,7 @@ describe('<Tooltip />', () => {
           <span>Hello World</span>
         </Tooltip>,
       );
-      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.childAt(0).hasClass(classes.root), true);
       assert.strictEqual(
         wrapper
           .find(Popper)
@@ -211,9 +218,6 @@ describe('<Tooltip />', () => {
 
   describe('mount', () => {
     it('should mount without any issue', () => {
-      // eslint-disable-next-line react/prop-types
-      const Hack = ({ style, innerRef, ...other }) => <div ref={innerRef} {...other} />;
-
       mount(
         <Tooltip title="Hello World" PopperProps={{ component: Hack }}>
           <button>Hello World</button>
@@ -283,6 +287,32 @@ describe('<Tooltip />', () => {
         children.simulate(type, { type, persist: () => {} });
         assert.strictEqual(handler.callCount, 1);
       });
+    });
+  });
+
+  describe('resize', () => {
+    let clock;
+
+    before(() => {
+      clock = useFakeTimers();
+    });
+
+    after(() => {
+      clock.restore();
+    });
+
+    it('should recompute the correct position', () => {
+      const handleUpdate = spy();
+      const wrapper = mount(
+        <TooltipNaked theme={{}} classes={{}} PopperProps={{ component: Hack }}>
+          <div>Foo</div>
+        </TooltipNaked>,
+      );
+      const instance = wrapper.instance();
+      instance.popper._popper.scheduleUpdate = handleUpdate;
+      instance.handleResize();
+      clock.tick(166);
+      assert.strictEqual(handleUpdate.callCount, 1);
     });
   });
 });
