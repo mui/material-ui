@@ -116,6 +116,7 @@ const styles = () => ({
     height: '100%',
     position: 'absolute',
     pointerEvents: 'auto',
+    outline: 'none',
   },
 });
 
