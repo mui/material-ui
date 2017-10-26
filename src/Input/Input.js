@@ -475,7 +475,7 @@ class Input extends React.Component<ProvidedProps & Props, State> {
       fullWidth,
       id,
       inputComponent,
-      inputProps: { inputPropsClassName, ...inputPropsProp } = {},
+      inputProps: { className: inputPropsClassName, ...inputPropsProp } = {},
       inputRef,
       margin: marginProp,
       multiline,
