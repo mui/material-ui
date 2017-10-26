@@ -471,7 +471,7 @@ class AutoComplete extends Component {
             if (!this.props.filter(searchText, itemText, item)) break;
 
             const itemValue = item[this.props.dataSourceConfig.value];
-            if (itemValue.type && (itemValue.type.muiName === MenuItem.muiName ||
+            if (itemValue && itemValue.type && (itemValue.type.muiName === MenuItem.muiName ||
                itemValue.type.muiName === Divider.muiName)) {
               requestsList.push({
                 text: itemText,
