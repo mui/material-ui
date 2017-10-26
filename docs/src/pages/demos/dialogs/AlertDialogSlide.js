@@ -10,6 +10,10 @@ import Dialog, {
 } from 'material-ui/Dialog';
 import Slide from 'material-ui/transitions/Slide';
 
+function Transition(props) {
+  return <Slide direction="up" {...props} />;
+}
+
 export default class AlertDialogSlide extends React.Component {
   state = {
     open: false,
@@ -29,7 +33,7 @@ export default class AlertDialogSlide extends React.Component {
         <Button onClick={this.handleClickOpen}>Slide in alert dialog</Button>
         <Dialog
           open={this.state.open}
-          transition={<Slide direction="up" />}
+          transition={Transition}
           keepMounted
           onRequestClose={this.handleRequestClose}
         >
