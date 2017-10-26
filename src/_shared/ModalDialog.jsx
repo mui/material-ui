@@ -22,8 +22,8 @@ const ModalDialog = (props) => {
       </DialogContent>
 
       <DialogActions>
-        <Button color="primary" onClick={onAccept}> OK </Button>
         <Button color="primary" onClick={onDismiss}> Cancel </Button>
+        <Button color="primary" onClick={onAccept}> OK </Button>
       </DialogActions>
     </Dialog>
   );
