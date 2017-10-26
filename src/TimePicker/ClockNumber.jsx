@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import classnames from 'classnames';
 import { withStyles } from 'material-ui';
-import * as clockType from '../constants/clock-types';
 
 const positions = [
   [0, 5],
@@ -68,7 +67,7 @@ const styles = theme => ({
     borderRadius: '50%',
     color: theme.palette.type === 'light'
       ? theme.palette.text.primary
-      : theme.palette.text.hint
+      : theme.palette.text.hint,
   },
   selected: {
     color: 'white',

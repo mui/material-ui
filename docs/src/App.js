@@ -25,7 +25,7 @@ export default class App extends Component {
     return ( 
       <div className="root">
         <MuiThemeProvider theme={this.getMuiTheme()}>
-          <Demo toggleThemeType={this.toggleThemeType} />
+          {<Demo toggleThemeType={this.toggleThemeType} />}
         </MuiThemeProvider>
       </div>
     )

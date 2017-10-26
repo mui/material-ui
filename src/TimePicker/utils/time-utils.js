@@ -1,5 +1,3 @@
-import * as clockType from '../../constants/clock-types';
-
 const center = {
   x: 260 / 2,
   y: 260 / 2,

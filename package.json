@@ -33,7 +33,7 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "prop-types": "^15.6.0",
-    "material-ui": "^1.0.0-beta.17",
+    "material-ui": "^1.0.0-beta.18",
     "classnames": "^2.2.5"
   },
   "dependencies": {
@@ -41,15 +41,17 @@
     "moment-range": "^3.0.3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "rollup --config --watch",
-    "build": "rollup --config",
-    "webpack": "webpack"
+    "test": "jest",
+    "start": "cross-env NODE_ENV=development rollup --config --watch",
+    "build": "cross-env NODE_ENV=development rollup --config",
+    "webpack": "webpack",
+    "lint": "eslint ./src/**/*.js*"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-eslint": "^8.0.1",
+    "babel-jest": "^21.2.0",
     "babel-loader": "^7.0.0",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -58,17 +60,32 @@
     "babel-preset-env": "^1.5.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-latest": "^6.24.1",
+    "classnames": "^2.2.5",
+    "cross-env": "^5.1.0",
+    "enzyme": "^3.1.0",
+    "enzyme-adapter-react-16": "^1.0.2",
     "eslint": "^4.8.0",
     "eslint-config-airbnb": "^16.0.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
-    "webpack-bundle-analyzer": "^2.9.0",
+    "jest": "^21.2.1",
+    "material-ui": "^1.0.0-beta.18",
     "peer-deps-externals-webpack-plugin": "^1.0.2",
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "rollup": "^0.50.0",
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-commonjs": "^8.2.4",
+    "rollup-plugin-filesize": "^1.4.2",
     "rollup-plugin-node-resolve": "^3.0.0",
-    "webpack": "^3.5.1"
+    "webpack": "^3.5.1",
+    "webpack-bundle-analyzer": "^2.9.0"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/__tests__/setup.js",
+    "testRegex": "__tests__/.*\\.test\\.js$",
+    "collectCoverage": true
   }
 }

@@ -74,6 +74,8 @@ class Clock extends Component {
           className={classes.clock}
         >
           <div
+            role="menu"
+            tabIndex={-1}
             className={classes.squareMask}
             onTouchMove={this.handleTouchMove}
             onTouchEnd={this.handleTouchEnd}
@@ -94,7 +96,7 @@ class Clock extends Component {
   }
 }
 
-const styles = theme => ({
+const styles = () => ({
   container: {
     display: 'flex',
     justifyContent: 'center',

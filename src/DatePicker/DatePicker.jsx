@@ -101,7 +101,7 @@ class DatePicker extends PureComponent {
   }
 }
 
-const styles = theme => ({
+const styles = () => ({
   container: {
     width: 300,
     height: 420,

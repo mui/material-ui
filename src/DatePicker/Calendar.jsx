@@ -36,6 +36,15 @@ class Calendar extends PureComponent {
     this.setState({ currentMonth: newMonth });
   }
 
+  shouldDisableDate = (day) => {
+    const { disableFuture, minDate, maxDate } = this.props;
+    return (
+      (disableFuture && day.isAfter(moment())) ||
+      (minDate && day.isBefore(minDate)) ||
+      (maxDate && day.isAfter(maxDate))
+    );
+  }
+
   renderWeeks = () => {
     const { currentMonth } = this.state;
     const start = currentMonth.clone().startOf('week');
@@ -50,7 +59,8 @@ class Calendar extends PureComponent {
   }
 
   renderDays = (week) => {
-    const { disableFuture, classes, date, minDate, maxDate } = this.props;
+    const { classes, date } = this.props;
+
     const end = week.clone().endOf('week');
     const currentMonthNumber = this.state.currentMonth.get('month');
 
@@ -59,7 +69,7 @@ class Calendar extends PureComponent {
         const dayClass = classnames(classes.day, {
           [classes.hidden]: day.get('month') !== currentMonthNumber,
           [classes.selected]: day.toString() === date.toString(),
-          [classes.disabled]: disableFuture && day.isAfter(moment()) || minDate && day.isBefore(minDate) || maxDate && day.isAfter(maxDate),
+          [classes.disabled]: this.shouldDisableDate(day),
         });
 
         return (

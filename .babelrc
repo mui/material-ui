@@ -1,16 +1,25 @@
 {
-  "presets": [
-    [
-      "es2015",
-      {
-        "modules": false
-      }
-    ]
-  ],
-  "plugins": [
-    "transform-object-rest-spread",
-    "transform-react-jsx",
-    "transform-class-properties",
-    "external-helpers"
-  ]
+  "env": {
+    "test": {
+      "presets": ["es2015"],
+      "plugins": [
+        "transform-object-rest-spread",
+        "transform-react-jsx",
+        "transform-class-properties"
+      ]
+    },
+    "development": {
+      "presets": [
+        [
+          "es2015", { "modules": false }
+        ]
+      ],
+      "plugins": [
+        "transform-object-rest-spread",
+        "transform-react-jsx",
+        "transform-class-properties",
+        "external-helpers"
+      ]
+    }
+  } 
 }

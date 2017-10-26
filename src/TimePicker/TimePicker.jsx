@@ -112,7 +112,7 @@ class TimePicker extends Component {
   }
 }
 
-const styles = theme => ({
+const styles = () => ({
   container: {
     width: 300,
     height: 420,
