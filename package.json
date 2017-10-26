@@ -1,6 +1,6 @@
 {
   "name": "material-ui-pickers",
-  "version": "1.0.0-alpha.5",
+  "version": "1.0.0-alpha.6",
   "description": "React components, that implements material design pickers for material-ui v1",
   "main": "dist/material-ui-pickers.cjs.js",
   "module": "dist/material-ui-pickers.es.js",
@@ -26,12 +26,12 @@
     "url": "https://github.com/dmtrKovalenko/material-ui-pickers"
   },
   "author": {
-    "name": "Your name",
-    "email": "your email"
+    "name": "Dmitriy Kovalenko",
+    "email": "dmtr.kovalenko@outlook.com"
   },
   "peerDependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
+    "react": "^15.6.2 || ^16.0.0",
+    "react-dom": "^15.6.2 || ^16.0.0",
     "prop-types": "^15.6.0",
     "material-ui": "^1.0.0-beta.18",
     "classnames": "^2.2.5"
