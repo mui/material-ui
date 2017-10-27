@@ -99,6 +99,7 @@ describe('<SelectInput />', () => {
       );
       assert.strictEqual(wrapper.find(`.${props.classes.select}`).props().children, 'Placeholder');
     });
+
     it('should not render the placeholder when value matches a menu item', () => {
       const wrapper = shallow(
         <SelectInput {...props} value={10} placeholder="Placeholder">

@@ -74,7 +74,7 @@ export type Props = {
    */
   onFocus?: Function,
   /**
-   * If set, renders a placeholder when not dirty
+   * The short hint displayed in the input before the user enters a value.
    */
   placeholder?: string,
   /**
