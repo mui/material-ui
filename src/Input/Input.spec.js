@@ -413,8 +413,10 @@ describe('<Input />', () => {
   describe('prop: inputProps', () => {
     it('should apply the props on the input', () => {
       const wrapper = shallow(<Input inputProps={{ className: 'foo', readOnly: true }} />);
-      assert.strictEqual(wrapper.find('input').props().className, 'foo');
-      assert.strictEqual(wrapper.find('input').props().readOnly, true);
+      const input = wrapper.find('input');
+      assert.strictEqual(input.hasClass('foo'), true, 'should have the foo class');
+      assert.strictEqual(input.hasClass(classes.input), true, 'should still have the input class');
+      assert.strictEqual(input.props().readOnly, true, 'should have the readOnly prop');
     });
   });
 
