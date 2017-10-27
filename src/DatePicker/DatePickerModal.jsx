@@ -7,9 +7,24 @@ import DatePicker from './DatePicker';
 
 export default class DatePickerModal extends PureComponent {
   static propTypes = {
-    minDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]),
-    maxDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]),
-    value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    value: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.instanceOf(Date),
+    ]),
+    minDate: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.instanceOf(Date),
+    ]),
+    maxDate: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.instanceOf(Date),
+    ]),
     format: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     autoOk: PropTypes.bool,
@@ -19,23 +34,18 @@ export default class DatePickerModal extends PureComponent {
   }
 
   static defaultProps = {
-    minDate: '1900-01-01',
-    maxDate: '2100-01-01',
-    value: null,
+    value: new Date(),
     format: 'MMMM Do',
     autoOk: false,
-    disableFuture: false,
-    animateYearScrolling: false,
-    openToYearSelection: false,
+    minDate: undefined,
+    maxDate: undefined,
+    disableFuture: undefined,
+    animateYearScrolling: undefined,
+    openToYearSelection: undefined,
   }
 
   state = {
-    open: false,
     date: moment(this.props.value),
-  }
-
-  togglePicker = () => {
-    this.setState({ open: !this.state.open });
   }
 
   handleChange = (date) => {
@@ -48,15 +58,10 @@ export default class DatePickerModal extends PureComponent {
 
   handleAccept = () => {
     this.props.onChange(this.state.date);
-    this.togglePicker(); // close
   }
 
   handleDismiss = () => {
-    this.setState({
-      date: moment(this.props.value),
-    });
-
-    this.togglePicker();
+    this.setState({ date: moment(this.props.value) });
   }
 
   render() {

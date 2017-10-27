@@ -18,13 +18,13 @@ export default class HourView extends PureComponent {
     }
   }
 
-  handleChange = (hours) => {
+  handleChange = (hours, isFinish) => {
     const { meridiemMode } = this.props;
 
     const updatedTime = this.props.date.clone().hour(hours);
     const withMeridiem = convertToMeridiem(updatedTime, meridiemMode);
 
-    this.props.onChange(withMeridiem);
+    this.props.onChange(withMeridiem, isFinish);
   }
 
   render() {

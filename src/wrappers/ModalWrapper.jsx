@@ -5,8 +5,13 @@ import DateTextField from '../_shared/DateTextField';
 
 export default class ModalWrapper extends Component {
   static propTypes = {
+    value: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.instanceOf(Date),
+    ]).isRequired,
     children: PropTypes.node.isRequired,
-    value: PropTypes.string.isRequired,
     format: PropTypes.string.isRequired,
     onAccept: PropTypes.func.isRequired,
     onDismiss: PropTypes.func.isRequired,
@@ -38,7 +43,13 @@ export default class ModalWrapper extends Component {
 
   render() {
     const {
-      value, format, children, dialogContentClassName, ...other
+      value,
+      format,
+      children,
+      dialogContentClassName,
+      onAccept,
+      onDismiss,
+      ...other
     } = this.props;
 
     return (

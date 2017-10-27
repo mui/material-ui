@@ -5,9 +5,14 @@ import { TextField } from 'material-ui';
 
 export default class DateTextField extends Component {
   static propTypes = {
-    value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
+    value: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.instanceOf(Date),
+    ]).isRequired,
     format: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
+    // onChange: PropTypes.func.isRequired,
   }
 
   shouldComponentUpdate = nextProps => (
@@ -26,7 +31,8 @@ export default class DateTextField extends Component {
     const momentValue = moment(value);
 
     if (momentValue.isValid()) {
-      this.props.onChange(momentValue);
+      console.warn('Currently not supported keyboad input');
+      // this.props.onChange(momentValue);
     }
   }
 

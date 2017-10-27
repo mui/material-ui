@@ -8,17 +8,26 @@ import DateTimePicker from './DateTimePicker';
 
 class DateTimePickerModal extends Component {
   static propTypes = {
-    value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    value: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.instanceOf(Date),
+    ]),
     format: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     autoOk: PropTypes.bool,
-    classes: PropTypes.array.isRequired,
+    classes: PropTypes.object.isRequired,
+    autoSubmit: PropTypes.bool,
+    openTo: PropTypes.string,
   }
 
   static defaultProps = {
     value: new Date(),
     format: 'MMMM Do hh:mm a',
     autoOk: false,
+    autoSubmit: undefined,
+    openTo: undefined,
   }
 
   state = {
@@ -34,7 +43,7 @@ class DateTimePickerModal extends Component {
   }
 
   handleChange = (date) => {
-    this.props.onChange(date);
+    this.setState({ date });
   }
 
   render() {
@@ -43,7 +52,9 @@ class DateTimePickerModal extends Component {
       value,
       format,
       autoOk,
+      openTo,
       classes,
+      autoSubmit,
       ...other
     } = this.props;
 
@@ -59,6 +70,7 @@ class DateTimePickerModal extends Component {
       >
         <DateTimePicker
           date={date}
+          autoSubmit={autoSubmit}
           onChange={this.handleChange}
         />
       </ModalWrapper>

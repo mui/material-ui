@@ -11,8 +11,18 @@ import ToolbarButton from '../_shared/ToolbarButton';
 class DatePicker extends PureComponent {
   static propTypes = {
     date: PropTypes.object.isRequired,
-    minDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]),
-    maxDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]),
+    minDate: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.instanceOf(Date),
+    ]),
+    maxDate: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.instanceOf(Date),
+    ]),
     classes: PropTypes.shape({}).isRequired,
     onChange: PropTypes.func.isRequired,
     disableFuture: PropTypes.bool,
@@ -25,7 +35,7 @@ class DatePicker extends PureComponent {
     minDate: '1900-01-01',
     maxDate: '2100-01-01',
     disableFuture: false,
-    animateYearScrolling: true,
+    animateYearScrolling: undefined,
     openToYearSelection: false,
     children: null,
   }

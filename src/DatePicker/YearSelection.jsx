@@ -10,12 +10,26 @@ const moment = extendMoment(Moment);
 class YearSelection extends PureComponent {
   static propTypes = {
     date: PropTypes.shape({}).isRequired,
-    minDate: PropTypes.shape({}).isRequired,
-    maxDate: PropTypes.shape({}).isRequired,
+    minDate: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.instanceOf(Date),
+    ]).isRequired,
+    maxDate: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.instanceOf(Date),
+    ]).isRequired,
     classes: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     disableFuture: PropTypes.bool.isRequired,
-    animateYearScrolling: PropTypes.bool.isRequired,
+    animateYearScrolling: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    animateYearScrolling: false,
   }
 
   componentDidMount = () => {

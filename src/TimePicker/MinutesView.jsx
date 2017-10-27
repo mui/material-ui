@@ -10,9 +10,9 @@ export default class MinutesView extends Component {
     onChange: PropTypes.func.isRequired,
   }
 
-  handleChange = (minutes) => {
+  handleChange = (minutes, isFinish) => {
     const updatedDate = this.props.date.clone().minutes(minutes);
-    this.props.onChange(updatedDate);
+    this.props.onChange(updatedDate, isFinish);
   }
 
   render() {

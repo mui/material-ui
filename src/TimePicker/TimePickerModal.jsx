@@ -3,20 +3,23 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 
 import ModalWrapper from '../wrappers/ModalWrapper';
-import DateTextField from '../_shared/DateTextField';
-import ModalDialog from '../_shared/ModalDialog';
 import TimePicker from './TimePicker';
 
 export default class TimePickerModal extends PureComponent {
   static propTypes = {
-    value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    value: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.instanceOf(Date),
+    ]),
     format: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     autoOk: PropTypes.bool,
   }
 
   static defaultProps = {
-    value: null,
+    value: new Date(),
     format: 'hh:mm A',
     autoOk: false,
   }

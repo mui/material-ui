@@ -16,12 +16,13 @@ class Calendar extends PureComponent {
     maxDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]),
     classes: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
-    disableFuture: PropTypes.bool.isRequired,
+    disableFuture: PropTypes.bool,
   }
 
   static defaultProps = {
     minDate: '1900-01-01',
     maxDate: '2100-01-01',
+    disableFuture: false,
   }
 
   state = {
@@ -29,7 +30,12 @@ class Calendar extends PureComponent {
   }
 
   onDateSelect = (day) => {
-    this.props.onChange(day);
+    const { date } = this.props;
+    const updatedDate = day.clone()
+      .hours(date.hours())
+      .minutes(date.minutes());
+
+    this.props.onChange(updatedDate);
   }
 
   handleChangeMonth = (newMonth) => {
@@ -61,6 +67,7 @@ class Calendar extends PureComponent {
   renderDays = (week) => {
     const { classes, date } = this.props;
 
+    const selectedDate = date.clone().startOf('day').format();
     const end = week.clone().endOf('week');
     const currentMonthNumber = this.state.currentMonth.get('month');
 
@@ -68,7 +75,7 @@ class Calendar extends PureComponent {
       .map((day) => {
         const dayClass = classnames(classes.day, {
           [classes.hidden]: day.get('month') !== currentMonthNumber,
-          [classes.selected]: day.toString() === date.toString(),
+          [classes.selected]: day.format() === selectedDate,
           [classes.disabled]: this.shouldDisableDate(day),
         });
 

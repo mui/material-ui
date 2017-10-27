@@ -115,6 +115,8 @@ class Demo extends Component {
               </Typography>
 
               <DateTimePicker 
+                autoSubmit={false}
+                openTo="hours"
                 value={this.state.selectedDate}
                 onChange={this.handleDateChange}
               />

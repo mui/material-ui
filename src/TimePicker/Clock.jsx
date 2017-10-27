@@ -15,7 +15,7 @@ class Clock extends Component {
     children: PropTypes.arrayOf(PropTypes.node).isRequired,
   }
 
-  setTime(e) {
+  setTime(e, isFinish = false) {
     let { offsetX, offsetY } = e;
 
     if (typeof offsetX === 'undefined') {
@@ -29,7 +29,7 @@ class Clock extends Component {
       ? getMinutes(offsetX, offsetY)
       : getHours(offsetX, offsetY);
 
-    this.props.onChange(value);
+    this.props.onChange(value, isFinish);
   }
 
   handleTouchMove = (e) => {
