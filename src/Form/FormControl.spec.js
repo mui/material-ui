@@ -92,13 +92,22 @@ describe('<FormControl />', () => {
       assert.strictEqual(wrapper.state().dirty, true);
     });
 
+    it('should be adorned with an endAdornment', () => {
+      const wrapper = shallow(
+        <FormControl>
+          <Input endAdornment={<div />} />
+        </FormControl>,
+      );
+      assert.strictEqual(wrapper.state().adornedEnd, true);
+    });
+
     it('should be adorned with a startAdornment', () => {
       const wrapper = shallow(
         <FormControl>
           <Input startAdornment={<div />} />
         </FormControl>,
       );
-      assert.strictEqual(wrapper.state().adorned, true);
+      assert.strictEqual(wrapper.state().adornedStart, true);
     });
   });
 
@@ -130,11 +139,18 @@ describe('<FormControl />', () => {
         assert.strictEqual(muiFormControlContext.focused, true);
       });
 
-      it('should have the adorned state from the instance', () => {
-        assert.strictEqual(muiFormControlContext.adorned, false);
-        wrapper.setState({ adorned: true });
+      it('should have the adornedEnd state from the instance', () => {
+        assert.strictEqual(muiFormControlContext.adornedEnd, false);
+        wrapper.setState({ adornedEnd: true });
         loadChildContext();
-        assert.strictEqual(muiFormControlContext.adorned, true);
+        assert.strictEqual(muiFormControlContext.adornedEnd, true);
+      });
+
+      it('should have the adornedStart state from the instance', () => {
+        assert.strictEqual(muiFormControlContext.adornedStart, false);
+        wrapper.setState({ adornedStart: true });
+        loadChildContext();
+        assert.strictEqual(muiFormControlContext.adornedStart, true);
       });
     });
 
