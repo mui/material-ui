@@ -13,7 +13,7 @@ filename: /src/Progress/CircularProgress.js
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | classes | Object |  | Useful to extend the style applied to components. |
-| color | union:&nbsp;'primary'<br>&nbsp;'accent'<br> | 'primary' | The color of the component. It's using the theme palette when that makes sense. |
+| color | union:&nbsp;'primary'<br>&nbsp;'accent'<br>&nbsp;'inherit'<br> | 'primary' | The color of the component. It's using the theme palette when that makes sense. |
 | max | number | 100 | The max value of progress in determinate mode. |
 | min | number | 0 | The min value of progress in determinate mode. |
 | mode | union:&nbsp;'determinate'<br>&nbsp;'indeterminate'<br> | 'indeterminate' | The mode of show your progress. Indeterminate for when there is no value for progress. Determinate for controlled progress value. |

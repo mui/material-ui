@@ -58,7 +58,7 @@ export const styles = (theme: Object) => ({
   },
 });
 
-export type Color = 'primary' | 'accent';
+export type Color = 'primary' | 'accent' | 'inherit';
 export type Mode = 'determinate' | 'indeterminate';
 
 type ProvidedProps = {
@@ -149,7 +149,11 @@ function CircularProgress(props: ProvidedProps & Props) {
 
   return (
     <div
-      className={classNames(classes.root, classes[`${color}Color`], className)}
+      className={classNames(
+        classes.root,
+        color !== 'inherit' && classes[`${color}Color`],
+        className,
+      )}
       style={{ width: size, height: size, ...style }}
       role="progressbar"
       {...rootProps}
