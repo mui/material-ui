@@ -23,6 +23,10 @@ const styles = {
   },
 };
 
+function Transition(props) {
+  return <Slide direction="up" {...props} />;
+}
+
 class FullScreenDialog extends React.Component {
   state = {
     open: false,
@@ -45,7 +49,7 @@ class FullScreenDialog extends React.Component {
           fullScreen
           open={this.state.open}
           onRequestClose={this.handleRequestClose}
-          transition={<Slide direction="up" />}
+          transition={Transition}
         >
           <AppBar className={classes.appBar}>
             <Toolbar>
