@@ -11,6 +11,7 @@ export interface SelectInputProps extends StandardProps<{}, SelectInputClassKey>
   onBlur?: React.FocusEventHandler<any>;
   onChange?: (event: React.ChangeEvent<{}>, child: React.ReactNode) => void,
   onFocus?: React.FocusEventHandler<any>;
+  placeholder: string,
   readOnly?: boolean;
   renderValue?: Function;
   selectRef?: Function;

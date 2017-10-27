@@ -14,6 +14,7 @@ export interface SelectProps extends StandardProps<
   native?: boolean;
   multiple?: boolean;
   MenuProps?: Object;
+  placeholder?: string;
   renderValue?: Function;
   value?: Array<string | number> | string | number;
 }
