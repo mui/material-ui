@@ -2,8 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
-import DateTextField from '../_shared/DateTextField';
-import ModalDialog from '../_shared/ModalDialog';
+import ModalWrapper from '../wrappers/ModalWrapper';
 import DatePicker from './DatePicker';
 
 export default class DatePickerModal extends PureComponent {
@@ -76,30 +75,24 @@ export default class DatePickerModal extends PureComponent {
     } = this.props;
 
     return (
-      <span>
-        <DateTextField
-          value={value}
-          format={format}
-          onClick={this.togglePicker}
-          {...other}
+      <ModalWrapper
+        value={value}
+        format={format}
+        onAccept={this.handleAccept}
+        onDismiss={this.handleDismiss}
+        date={date}
+        {...other}
+      >
+        <DatePicker
+          date={date}
+          onChange={this.handleChange}
+          disableFuture={disableFuture}
+          animateYearScrolling={animateYearScrolling}
+          openToYearSelection={openToYearSelection}
+          minDate={minDate}
+          maxDate={maxDate}
         />
-
-        <ModalDialog
-          open={this.state.open}
-          onAccept={this.handleAccept}
-          onDismiss={this.handleDismiss}
-        >
-          <DatePicker
-            date={date}
-            onChange={this.handleChange}
-            disableFuture={disableFuture}
-            animateYearScrolling={animateYearScrolling}
-            openToYearSelection={openToYearSelection}
-            minDate={minDate}
-            maxDate={maxDate}
-          />
-        </ModalDialog>
-      </span>
+      </ModalWrapper>
     );
   }
 }

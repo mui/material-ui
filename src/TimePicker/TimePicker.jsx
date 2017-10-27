@@ -11,6 +11,11 @@ class TimePicker extends Component {
     date: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
+    children: PropTypes.node,
+  }
+
+  static defaultProps = {
+    children: null,
   }
 
   state = {
@@ -19,23 +24,10 @@ class TimePicker extends Component {
   }
 
   setMeridiemMode = mode => () => {
-    this.setState(
-      { meridiemMode: mode },
-      () => this.handleChange(this.props.date),
-    );
+    this.setState({ meridiemMode: mode });
   }
 
   handleChange = (time) => {
-    const { meridiemMode } = this.state;
-
-    if (time.format('a') !== meridiemMode) {
-      const hours = meridiemMode === 'am'
-        ? time.hours() - 12
-        : time.hours() + 12;
-
-      time = time.clone().hours(hours);
-    }
-
     this.props.onChange(time);
   }
 
@@ -83,6 +75,7 @@ class TimePicker extends Component {
               label="AM"
               onClick={this.setMeridiemMode('am')}
             />
+
             <ToolbarButton
               className={classes.ampmLabel}
               selected={meridiemMode === 'pm'}
@@ -93,11 +86,14 @@ class TimePicker extends Component {
           </div>
         </PickerToolbar>
 
+        { this.props.children }
+
         {
           isHourViewShown
             ?
               <HourView
                 date={date}
+                meridiemMode={meridiemMode}
                 onChange={this.handleChange}
               />
             :
@@ -113,17 +109,13 @@ class TimePicker extends Component {
 }
 
 const styles = () => ({
-  container: {
-    width: 300,
-    height: 420,
-  },
   toolbar: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: 50,
   },
   separator: {
-    margin: '0 2px 0 4px',
+    margin: '0 4px 0 2px',
     cursor: 'default',
   },
   ampmSelection: {

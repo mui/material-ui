@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
+import ModalWrapper from '../wrappers/ModalWrapper';
 import DateTextField from '../_shared/DateTextField';
 import ModalDialog from '../_shared/ModalDialog';
 import TimePicker from './TimePicker';
@@ -21,12 +22,7 @@ export default class TimePickerModal extends PureComponent {
   }
 
   state = {
-    open: false,
     time: moment(this.props.value),
-  }
-
-  togglePicker = () => {
-    this.setState({ open: !this.state.open });
   }
 
   handleChange = (time) => {
@@ -39,15 +35,10 @@ export default class TimePickerModal extends PureComponent {
 
   handleAccept = () => {
     this.props.onChange(this.state.time);
-    this.togglePicker(); // close
   }
 
   handleDismiss = () => {
-    this.setState({
-      time: moment(this.props.value),
-    });
-
-    this.togglePicker();
+    this.setState({ time: moment(this.props.value) });
   }
 
   render() {
@@ -58,25 +49,19 @@ export default class TimePickerModal extends PureComponent {
     } = this.props;
 
     return (
-      <span>
-        <DateTextField
-          value={value}
-          format={format}
-          onClick={this.togglePicker}
-          {...other}
+      <ModalWrapper
+        value={value}
+        format={format}
+        onAccept={this.handleAccept}
+        onDismiss={this.handleDismiss}
+        date={time}
+        {...other}
+      >
+        <TimePicker
+          date={time}
+          onChange={this.handleChange}
         />
-
-        <ModalDialog
-          open={this.state.open}
-          onAccept={this.handleAccept}
-          onDismiss={this.handleDismiss}
-        >
-          <TimePicker
-            date={time}
-            onChange={this.handleChange}
-          />
-        </ModalDialog>
-      </span>
+      </ModalWrapper>
     );
   }
 }

@@ -18,6 +18,7 @@ class DatePicker extends PureComponent {
     disableFuture: PropTypes.bool,
     animateYearScrolling: PropTypes.bool,
     openToYearSelection: PropTypes.bool,
+    children: PropTypes.node,
   }
 
   static defaultProps = {
@@ -26,6 +27,7 @@ class DatePicker extends PureComponent {
     disableFuture: false,
     animateYearScrolling: true,
     openToYearSelection: false,
+    children: null,
   }
 
   state = {
@@ -76,6 +78,8 @@ class DatePicker extends PureComponent {
           />
         </PickerToolbar>
 
+        { this.props.children }
+
         {
           showYearSelection
             ?
@@ -102,10 +106,7 @@ class DatePicker extends PureComponent {
 }
 
 const styles = () => ({
-  container: {
-    width: 300,
-    height: 420,
-  },
+
 });
 
 export default withStyles(styles, { name: 'MuiPickersDatePicker' })(DatePicker);

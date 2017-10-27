@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { AppBar, Toolbar, IconButton, Typography, withStyles, Button, Tooltip } from 'material-ui'
-import { TimePicker, DatePicker } from 'material-ui-pickers'
+import { TimePicker, DatePicker, DateTimePicker } from 'material-ui-pickers'
 import Github from './GithubIcon'
 import './Demo.css';
 import moment from 'moment';
@@ -104,7 +104,19 @@ class Demo extends Component {
 
               <TimePicker
                 value={this.state.selectedTime}
+                format="HH:mm"
                 onChange={this.handleTimeChange}
+              />
+            </div>
+            
+            <div className="picker">
+              <Typography type="headline" align="center" gutterBottom>
+                Date & Time picker
+              </Typography>
+
+              <DateTimePicker 
+                value={this.state.selectedDate}
+                onChange={this.handleDateChange}
               />
             </div>
           </div>

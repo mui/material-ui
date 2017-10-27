@@ -40,3 +40,15 @@ export const getMinutes = (offsetX, offsetY, step = 6) => {
   return value;
 };
 
+export const convertToMeridiem = (time, meridiem) => {
+  if (time.format('a') !== meridiem) {
+    const hours = meridiem === 'am'
+      ? time.hours() - 12
+      : time.hours() + 12;
+
+    return time.clone().hours(hours);
+  }
+
+  return time;
+};
+

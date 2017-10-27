@@ -47,6 +47,7 @@ class Clock extends Component {
 
   handleMove = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     // MouseEvent.which is deprecated, but MouseEvent.buttons is not supported in Safari
     if (e.buttons === 1 || e.nativeEvent.which === 1) {
       this.setTime(e.nativeEvent, false);
