@@ -123,6 +123,24 @@ class FormControl extends React.Component<ProvidedProps & Props, State> {
     muiFormControl: PropTypes.object.isRequired,
   };
 
+  constructor(props, context) {
+    super(props, context);
+
+    // We need to iterate through the children and find the Input in order
+    // to fully support server side rendering.
+    const { children } = this.props;
+    if (children) {
+      React.Children.forEach(children, child => {
+        if (isMuiElement(child, ['Input', 'Select']) && isDirty(child.props, true)) {
+          this.state.dirty = true;
+        }
+        if (isMuiElement(child, ['Input']) && isAdornedStart(child.props)) {
+          this.state.adornedStart = true;
+        }
+      });
+    }
+  }
+
   state = {
     adornedStart: false,
     dirty: false,
@@ -148,22 +166,6 @@ class FormControl extends React.Component<ProvidedProps & Props, State> {
         onBlur: this.handleBlur,
       },
     };
-  }
-
-  componentWillMount() {
-    // We need to iterate through the children and find the Input in order
-    // to fully support server side rendering.
-    const { children } = this.props;
-    if (children) {
-      React.Children.forEach(children, child => {
-        if (isMuiElement(child, ['Input', 'Select']) && isDirty(child.props, true)) {
-          this.setState({ dirty: true });
-        }
-        if (isMuiElement(child, ['Input']) && isAdornedStart(child.props)) {
-          this.setState({ adornedStart: true });
-        }
-      });
-    }
   }
 
   handleFocus = event => {

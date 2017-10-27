@@ -8,6 +8,7 @@ import { createShallow, createMount } from '../test-utils';
 import Menu, { MenuItem } from '../Menu';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
 import SelectInput from './SelectInput';
+import mockPortal from '../../test/utils/mockPortal';
 
 describe('<SelectInput />', () => {
   let shallow;
@@ -35,10 +36,12 @@ describe('<SelectInput />', () => {
   before(() => {
     shallow = createShallow();
     mount = createMount();
+    mockPortal.init();
   });
 
   after(() => {
     mount.cleanUp();
+    mockPortal.reset();
   });
 
   it('should render a correct top element', () => {
@@ -121,7 +124,10 @@ describe('<SelectInput />', () => {
       it('should call onChange when clicking an item', () => {
         wrapper.find(`.${props.classes.select}`).simulate('click');
         assert.strictEqual(wrapper.state().open, true);
-        const portalLayer = wrapper.find('Portal').instance().layer;
+        const portalLayer = wrapper
+          .find('Portal')
+          .instance()
+          .getLayer();
         portalLayer.querySelectorAll('li')[1].click();
         assert.strictEqual(wrapper.state().open, false);
         assert.strictEqual(handleChange.callCount, 1);
@@ -154,7 +160,10 @@ describe('<SelectInput />', () => {
         wrapper.find(`.${props.classes.select}`).simulate('click');
         assert.strictEqual(wrapper.state().open, true);
 
-        const portalLayer = wrapper.find('Portal').instance().layer;
+        const portalLayer = wrapper
+          .find('Portal')
+          .instance()
+          .getLayer();
         const backdrop = portalLayer.querySelector('[data-mui-test="Backdrop"]');
         backdrop.click();
         assert.strictEqual(wrapper.state().open, false);
@@ -257,7 +266,10 @@ describe('<SelectInput />', () => {
       it('should call onChange when clicking an item', () => {
         wrapper.find(`.${props.classes.select}`).simulate('click');
         assert.strictEqual(wrapper.state().open, true);
-        const portalLayer = wrapper.find('Portal').instance().layer;
+        const portalLayer = wrapper
+          .find('Portal')
+          .instance()
+          .getLayer();
 
         portalLayer.querySelectorAll('li')[1].click();
         assert.strictEqual(wrapper.state().open, true);

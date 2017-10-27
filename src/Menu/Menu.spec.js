@@ -6,6 +6,7 @@ import { assert } from 'chai';
 import ReactDOM from 'react-dom';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import Menu from './Menu';
+import mockPortal from '../../test/utils/mockPortal';
 
 describe('<Menu />', () => {
   let shallow;
@@ -16,10 +17,12 @@ describe('<Menu />', () => {
     shallow = createShallow({ dive: true });
     classes = getClasses(<Menu />);
     mount = createMount();
+    mockPortal.init();
   });
 
   after(() => {
     mount.cleanUp();
+    mockPortal.reset();
   });
 
   it('should render a Popover', () => {

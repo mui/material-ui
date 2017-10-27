@@ -1,5 +1,6 @@
 // @flow weak
 
+import './utils/performance';
 import './utils/init';
 
 const integrationContext = require.context('./integration', true, /\.js$/);

@@ -200,8 +200,6 @@ class Popover extends React.Component<ProvidedProps & Props> {
     this.handleResize.cancel();
   };
 
-  transitionEl = undefined;
-
   setPositioningStyles = (element: HTMLElement) => {
     if (element && element.style) {
       const positioning = this.getPositioningStyle(element);
@@ -211,19 +209,6 @@ class Popover extends React.Component<ProvidedProps & Props> {
       element.style.transformOrigin = positioning.transformOrigin;
     }
   };
-
-  handleEnter = (element: HTMLElement) => {
-    if (this.props.onEnter) {
-      this.props.onEnter(element);
-    }
-
-    this.setPositioningStyles(element);
-  };
-
-  handleResize = debounce(() => {
-    const element: any = ReactDOM.findDOMNode(this.transitionEl);
-    this.setPositioningStyles(element);
-  }, 166);
 
   getPositioningStyle = element => {
     const { marginThreshold } = this.props;
@@ -288,9 +273,6 @@ class Popover extends React.Component<ProvidedProps & Props> {
     };
   };
 
-  handleGetOffsetTop = getOffsetTop;
-  handleGetOffsetLeft = getOffsetLeft;
-
   // Returns the top/left offset of the position
   // to attach to on the anchor element (or body if none is provided)
   getAnchorOffset(contentAnchorOffset) {
@@ -341,6 +323,25 @@ class Popover extends React.Component<ProvidedProps & Props> {
       horizontal: this.handleGetOffsetLeft(elemRect, transformOrigin.horizontal),
     };
   }
+
+  transitionEl = undefined;
+
+  handleGetOffsetTop = getOffsetTop;
+
+  handleGetOffsetLeft = getOffsetLeft;
+
+  handleEnter = (element: HTMLElement) => {
+    if (this.props.onEnter) {
+      this.props.onEnter(element);
+    }
+
+    this.setPositioningStyles(element);
+  };
+
+  handleResize = debounce(() => {
+    const element: any = ReactDOM.findDOMNode(this.transitionEl);
+    this.setPositioningStyles(element);
+  }, 166);
 
   render() {
     const {

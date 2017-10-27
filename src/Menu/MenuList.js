@@ -46,6 +46,10 @@ class MenuList extends React.Component<Props, State> {
     clearTimeout(this.blurTimer);
   }
 
+  setTabIndex(index: number) {
+    this.setState({ currentTabIndex: index });
+  }
+
   list = undefined;
   selectedItem = undefined;
   blurTimer = undefined;
@@ -145,10 +149,6 @@ class MenuList extends React.Component<Props, State> {
     }
 
     return this.setTabIndex(0);
-  }
-
-  setTabIndex(index: number) {
-    this.setState({ currentTabIndex: index });
   }
 
   render() {
