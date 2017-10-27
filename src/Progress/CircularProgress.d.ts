@@ -5,7 +5,7 @@ export interface CircularProgressProps extends StandardProps<
   React.HTMLAttributes<HTMLDivElement>,
   CircularProgressClassKey
 > {
-  color?: 'primary' | 'accent';
+  color?: 'primary' | 'accent' | 'inherit';
   max?: number;
   min?: number;
   mode?: 'determinate' | 'indeterminate';
