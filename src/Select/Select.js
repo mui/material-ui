@@ -109,7 +109,7 @@ export type Props = {
   /**
    * The input value, required for a controlled component.
    */
-  value?: Array<string | number> | string | number,
+  value?: $ReadOnlyArray<string | number> | string | number,
 };
 
 function Select(props: ProvidedProps & Props) {
