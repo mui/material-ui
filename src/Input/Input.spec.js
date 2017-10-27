@@ -127,6 +127,14 @@ describe('<Input />', () => {
   });
 
   describe('controlled', () => {
+    it('should fire the onDirty callback when moving from uncontrolled to controlled', () => {
+      const handleDirty = spy();
+      const wrapper = shallow(<Input value={undefined} onDirty={handleDirty} />);
+      assert.strictEqual(handleDirty.callCount, 0);
+      wrapper.setProps({ value: 'foo' });
+      assert.strictEqual(handleDirty.callCount, 1);
+    });
+
     ['', 0].forEach(value => {
       describe(`${typeof value} value`, () => {
         let wrapper;
@@ -151,11 +159,7 @@ describe('<Input />', () => {
           });
 
           it('should fire the onDirty callback when dirtied', () => {
-            assert.strictEqual(
-              handleDirty.callCount,
-              0,
-              'should not have called the onDirty cb yet',
-            );
+            assert.strictEqual(handleDirty.callCount, 0);
             wrapper.setProps({ value: typeof value === 'number' ? 2 : 'hello' });
             assert.strictEqual(handleDirty.callCount, 1, 'should have called the onDirty cb');
           });

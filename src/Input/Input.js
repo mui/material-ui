@@ -384,7 +384,7 @@ class Input extends React.Component<ProvidedProps & Props, State> {
   }
 
   componentWillUpdate(nextProps) {
-    if (this.isControlled()) {
+    if (this.isControlled(nextProps)) {
       this.checkDirty(nextProps);
     } // else performed in the onChange
 
@@ -436,8 +436,8 @@ class Input extends React.Component<ProvidedProps & Props, State> {
   //
   // @see https://facebook.github.io/react/docs/forms.html#controlled-components
   // @returns {boolean} true if string (including '') or number (including zero)
-  isControlled() {
-    return hasValue(this.props.value);
+  isControlled(props = this.props) {
+    return hasValue(props.value);
   }
 
   checkDirty(obj) {
