@@ -204,12 +204,13 @@ class Modal extends React.Component<ProvidedProps & Props, State> {
     this.mounted = false;
   }
 
+  onDocumentKeyUpListener = null;
+  onFocusListener = null;
+
   mounted = false;
   lastFocus = undefined;
   modal = null;
   mountNode = null;
-  onDocumentKeyUpListener = null;
-  onFocusListener = null;
 
   checkForFocus() {
     if (canUseDom) {

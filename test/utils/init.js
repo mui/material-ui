@@ -1,7 +1,7 @@
 // @flow
 
 import enzyme from 'enzyme/build/index';
-import Adapter from 'enzyme-adapter-react-15';
+import Adapter from 'enzyme-adapter-react-16';
 import consoleError from './consoleError';
 
 consoleError();

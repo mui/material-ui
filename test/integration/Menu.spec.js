@@ -8,6 +8,7 @@ import TestUtils from 'react-dom/test-utils';
 import { createMount } from 'src/test-utils';
 import Popover from 'src/Popover';
 import SimpleMenu from './fixtures/menus/SimpleMenu';
+import mockPortal from '../../test/utils/mockPortal';
 
 function simulateEvent(node, event, mock) {
   const eventFn = TestUtils.Simulate[event];
@@ -22,10 +23,12 @@ describe('<Menu> integration', () => {
 
   before(() => {
     mount = createMount();
+    mockPortal.init();
   });
 
   after(() => {
     mount.cleanUp();
+    mockPortal.reset();
   });
 
   describe('mounted open', () => {
@@ -45,7 +48,10 @@ describe('<Menu> integration', () => {
 
     it('should focus the first item as nothing has been selected', () => {
       wrapper.setState({ open: true });
-      portalLayer = wrapper.find('Portal').instance().layer;
+      portalLayer = wrapper
+        .find('Portal')
+        .instance()
+        .getLayer();
       assert.strictEqual(
         document.activeElement,
         portalLayer.querySelectorAll('li')[0],
@@ -122,7 +128,10 @@ describe('<Menu> integration', () => {
 
     it('should focus the selected item', () => {
       wrapper.setState({ open: true });
-      const portalLayer = wrapper.find('Portal').instance().layer;
+      const portalLayer = wrapper
+        .find('Portal')
+        .instance()
+        .getLayer();
       assert.strictEqual(
         document.activeElement,
         portalLayer.querySelectorAll('li')[2],
@@ -131,7 +140,10 @@ describe('<Menu> integration', () => {
     });
 
     it('should select the 2nd item and close the menu', () => {
-      const portalLayer = wrapper.find('Portal').instance().layer;
+      const portalLayer = wrapper
+        .find('Portal')
+        .instance()
+        .getLayer();
       const item = portalLayer.querySelector('ul').children[1];
       item.click();
       assert.strictEqual(wrapper.state().selectedIndex, 1, 'should be index 1');
@@ -140,7 +152,10 @@ describe('<Menu> integration', () => {
 
     it('should focus the selected item', () => {
       wrapper.setState({ open: true });
-      const portalLayer = wrapper.find('Portal').instance().layer;
+      const portalLayer = wrapper
+        .find('Portal')
+        .instance()
+        .getLayer();
       assert.strictEqual(
         document.activeElement,
         portalLayer.querySelectorAll('li')[1],

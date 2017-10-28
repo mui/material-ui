@@ -1,4 +1,6 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
+/* eslint-disable react/prefer-stateless-function */
+/* eslint-disable react/no-multi-comp */
 
 import React from 'react';
 import MaskedInput from 'react-text-mask';
@@ -17,32 +19,36 @@ const styles = theme => ({
   },
 });
 
-function TextMaskCustom(props) {
-  return (
-    <MaskedInput
-      {...props}
-      mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
-      placeholderChar={'\u2000'}
-      showMask
-    />
-  );
+class TextMaskCustom extends React.Component {
+  render() {
+    return (
+      <MaskedInput
+        {...this.props}
+        mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+        placeholderChar={'\u2000'}
+        showMask
+      />
+    );
+  }
 }
 
-function NumberFormatCustom(props) {
-  return (
-    <NumberFormat
-      {...props}
-      onChange={(event, values) => {
-        props.onChange({
-          target: {
-            value: values.value,
-          },
-        });
-      }}
-      thousandSeparator
-      prefix="$"
-    />
-  );
+class NumberFormatCustom extends React.Component {
+  render() {
+    return (
+      <NumberFormat
+        {...this.props}
+        onValueChange={values => {
+          this.props.onChange({
+            target: {
+              value: values.value,
+            },
+          });
+        }}
+        thousandSeparator
+        prefix="$"
+      />
+    );
+  }
 }
 
 NumberFormatCustom.propTypes = {

@@ -89,14 +89,6 @@ type State = {
  * @ignore - internal component.
  */
 class Textarea extends React.Component<ProvidedProps & Props, State> {
-  shadow: ?HTMLInputElement;
-
-  singlelineShadow: ?HTMLInputElement;
-
-  input: ?HTMLInputElement;
-
-  value: string | number;
-
   static defaultProps = {
     rows: 1,
   };
@@ -130,6 +122,11 @@ class Textarea extends React.Component<ProvidedProps & Props, State> {
   componentWillUnmount() {
     this.handleResize.cancel();
   }
+
+  shadow: ?HTMLInputElement;
+  singlelineShadow: ?HTMLInputElement;
+  input: ?HTMLInputElement;
+  value: string | number;
 
   handleResize = debounce(event => {
     this.syncHeightWithShadow(event);

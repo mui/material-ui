@@ -58,7 +58,10 @@ export type Props = {
 function CardMedia(props: ProvidedProps & Props) {
   const { classes, className, image, style, src, component: ComponentProp, ...other } = props;
 
-  warning(image || src, 'Material-UI: either `image` or `src` property must be specified.');
+  warning(
+    Boolean(image || src),
+    'Material-UI: either `image` or `src` property must be specified.',
+  );
 
   const isMediaComponent = mediaComponents.indexOf(ComponentProp) !== -1;
   const composedStyle =

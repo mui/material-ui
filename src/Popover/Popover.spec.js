@@ -6,6 +6,7 @@ import { spy, stub, useFakeTimers } from 'sinon';
 import css from 'dom-helpers/style';
 import { createShallow, createMount, getClasses } from '../test-utils';
 import Popover from './Popover';
+import mockPortal from '../../test/utils/mockPortal';
 
 describe('<Popover />', () => {
   let shallow;
@@ -23,10 +24,12 @@ describe('<Popover />', () => {
         <div />
       </Popover>,
     );
+    mockPortal.init();
   });
 
   after(() => {
     mount.cleanUp();
+    mockPortal.reset();
   });
 
   describe('root node', () => {
@@ -256,7 +259,7 @@ describe('<Popover />', () => {
   describe('transition lifecycle', () => {
     const element = {
       style: {
-        top: 'auto',
+        offsetTop: 'auto',
         left: 'auto',
         opacity: 1,
         transform: undefined,

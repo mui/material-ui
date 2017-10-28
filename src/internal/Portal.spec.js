@@ -1,16 +1,18 @@
 // @flow
 
 import React from 'react';
+import type { Element } from 'react';
 import ReactDOM from 'react-dom';
 import { assert } from 'chai';
 import { createMount, createRender } from '../test-utils';
 import Portal from './Portal';
 
-const versions = ['latest', 'next'];
+const versions = ['old', 'latest'];
 
 describe('<Portal />', () => {
   let mount;
   let render;
+  const reactDomMock = {};
 
   before(() => {
     mount = createMount();
@@ -24,22 +26,46 @@ describe('<Portal />', () => {
   versions.map(verion => {
     describe(verion, () => {
       before(() => {
-        if (verion === 'next') {
-          // $FlowFixMe
-          ReactDOM.unstable_createPortal = (children, layer) => {
+        // $FlowFixMe
+        reactDomMock.createPortal = ReactDOM.createPortal;
+
+        if (verion === 'latest') {
+          // $FlowExpectedError
+          ReactDOM.createPortal = (children, layer) => {
             const element = document.createElement(children.type);
             element.textContent = children.props.children;
             element.setAttribute('id', children.props.id);
             layer.appendChild(element);
             return null;
           };
+        } else if (verion === 'old') {
+          // $FlowExpectedError
+          ReactDOM.createPortal = null;
+          ReactDOM.unstable_renderSubtreeIntoContainer = (
+            instance,
+            children: Element<*>,
+            layer,
+          ) => {
+            // $FlowFixMe
+            const element = document.createElement(children.type);
+            // $FlowFixMe
+            element.textContent = children.props.children;
+            element.setAttribute('id', children.props.id);
+            layer.appendChild(element);
+            return null;
+          };
+        } else {
+          throw new Error('unsupported');
         }
       });
 
       after(() => {
+        // $FlowExpectedError
+        ReactDOM.createPortal = reactDomMock.createPortal;
+
         if (verion === 'next') {
-          // $FlowFixMe
-          ReactDOM.unstable_createPortal = undefined;
+          // $FlowExpectedError
+          ReactDOM.unstable_renderSubtreeIntoContainer = undefined;
         }
       });
 

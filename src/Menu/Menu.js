@@ -130,6 +130,15 @@ class Menu extends React.Component<ProvidedProps & Props> {
     }
   }
 
+  getContentAnchorEl = () => {
+    if (!this.menuList || !this.menuList.selectedItem) {
+      // $FlowFixMe
+      return findDOMNode(this.menuList).firstChild;
+    }
+
+    return findDOMNode(this.menuList.selectedItem);
+  };
+
   menuList = undefined;
 
   focus = () => {
@@ -178,15 +187,6 @@ class Menu extends React.Component<ProvidedProps & Props> {
         this.props.onRequestClose(event);
       }
     }
-  };
-
-  getContentAnchorEl = () => {
-    if (!this.menuList || !this.menuList.selectedItem) {
-      // $FlowFixMe
-      return findDOMNode(this.menuList).firstChild;
-    }
-
-    return findDOMNode(this.menuList.selectedItem);
   };
 
   render() {

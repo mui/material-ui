@@ -250,8 +250,6 @@ class Snackbar extends React.Component<ProvidedProps & Props, State> {
     clearTimeout(this.timerAutoHide);
   }
 
-  timerAutoHide = null;
-
   // Timer that controls delay before snackbar auto hides
   setAutoHideTimer(autoHideDuration = null) {
     if (!this.props.onRequestClose || this.props.autoHideDuration === undefined) {
@@ -267,6 +265,8 @@ class Snackbar extends React.Component<ProvidedProps & Props, State> {
       this.props.onRequestClose(null, 'timeout');
     }, autoHideDuration || this.props.autoHideDuration || 0);
   }
+
+  timerAutoHide = null;
 
   handleMouseEnter = (event: SyntheticUIEvent<>) => {
     if (this.props.onMouseEnter) {

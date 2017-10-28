@@ -192,38 +192,6 @@ class Tabs extends React.Component<ProvidedProps & Props, State> {
     this.handleTabsScroll.cancel();
   }
 
-  tabs: ?HTMLElement = undefined;
-  valueToIndex: { [key: any]: any } = {};
-
-  handleResize = debounce(() => {
-    this.updateIndicatorState(this.props);
-    this.updateScrollButtonState();
-  }, 166);
-
-  handleLeftScrollClick = () => {
-    if (this.tabs) {
-      this.moveTabsScroll(-this.tabs.clientWidth);
-    }
-  };
-
-  handleRightScrollClick = () => {
-    if (this.tabs) {
-      this.moveTabsScroll(this.tabs.clientWidth);
-    }
-  };
-
-  handleScrollbarSizeChange = ({ scrollbarHeight }) => {
-    this.setState({
-      scrollerStyle: {
-        marginBottom: -scrollbarHeight,
-      },
-    });
-  };
-
-  handleTabsScroll = debounce(() => {
-    this.updateScrollButtonState();
-  }, 166);
-
   getConditionalElements = () => {
     const {
       classes,
@@ -295,12 +263,44 @@ class Tabs extends React.Component<ProvidedProps & Props, State> {
 
       if (children.length > 0) {
         const tab = children[this.valueToIndex[value]];
-        warning(tab, `Material-UI: the value provided \`${value}\` is invalid`);
+        warning(Boolean(tab), `Material-UI: the value provided \`${value}\` is invalid`);
         tabMeta = tab ? tab.getBoundingClientRect() : null;
       }
     }
     return { tabsMeta, tabMeta };
   };
+
+  tabs: ?HTMLElement = undefined;
+  valueToIndex: { [key: any]: any } = {};
+
+  handleResize = debounce(() => {
+    this.updateIndicatorState(this.props);
+    this.updateScrollButtonState();
+  }, 166);
+
+  handleLeftScrollClick = () => {
+    if (this.tabs) {
+      this.moveTabsScroll(-this.tabs.clientWidth);
+    }
+  };
+
+  handleRightScrollClick = () => {
+    if (this.tabs) {
+      this.moveTabsScroll(this.tabs.clientWidth);
+    }
+  };
+
+  handleScrollbarSizeChange = ({ scrollbarHeight }) => {
+    this.setState({
+      scrollerStyle: {
+        marginBottom: -scrollbarHeight,
+      },
+    });
+  };
+
+  handleTabsScroll = debounce(() => {
+    this.updateScrollButtonState();
+  }, 166);
 
   moveTabsScroll = delta => {
     const { theme } = this.props;

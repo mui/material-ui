@@ -195,9 +195,8 @@ function withRoot(BaseComponent) {
     sheetsRegistry?: Object,
     url: Object,
   };
-  class WithRoot extends React.Component<WithRootProps> {
-    props: WithRootProps;
 
+  class WithRoot extends React.Component<WithRootProps> {
     static childContextTypes = {
       url: PropTypes.object,
       pages: PropTypes.array,
@@ -228,8 +227,8 @@ function withRoot(BaseComponent) {
       };
     }
 
-    constructor(props) {
-      super(props);
+    constructor(props, context) {
+      super(props, context);
       this.redux = initRedux(this.props.reduxServerState || {});
     }
 

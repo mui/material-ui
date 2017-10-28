@@ -76,21 +76,6 @@ module.exports = {
     'react/no-find-dom-node': 'off', // I don't know
     'react/no-unused-prop-types': 'off', // Is still buggy
     'react/sort-prop-types': 'error', // airbnb do nothing here.
-    'react/sort-comp': [
-      2,
-      {
-        order: [
-          'type-annotations',
-          'static-methods',
-          'lifecycle',
-          // '/^handle.+$/', // wishlist -- needs above first
-          // '/^(get|set)(?!(InitialState$|DefaultProps$|ChildContext$)).+$/', // wishlist -- needs above first
-          'everything-else',
-          '/^render.+$/',
-          'render',
-        ],
-      },
-    ],
     'react/default-props-match-prop-types': 'off', // Buggy
     'react/jsx-curly-brace-presence': 'off', // Buggy
 
