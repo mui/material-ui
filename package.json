@@ -158,7 +158,7 @@
     "react": "^16.0.0",
     "react-a11y": "^0.3.4",
     "react-autosuggest": "^9.3.2",
-    "react-docgen": "^3.0.0-beta7",
+    "react-docgen": "^3.0.0-beta8",
     "react-dom": "^16.0.0",
     "react-number-format": "^3.0.0-beta3",
     "react-redux": "^5.0.6",
