@@ -13,6 +13,7 @@ filename: /src/Menu/Menu.js
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | MenuListProps | Object |  | Properties applied to the `MenuList` element. |
+| PopoverClasses | Object |  | `classes` property applied to the `Popover` element. |
 | anchorEl | HTMLElement |  | The DOM element used to set the position of the menu. |
 | children | Node |  | Menu contents, normally `MenuItem`s. |
 | classes | Object |  | Useful to extend the style applied to components. |

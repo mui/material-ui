@@ -72,6 +72,10 @@ export type Props = {
    */
   open?: boolean,
   /**
+   * `classes` property applied to the `Popover` element.
+   */
+  PopoverClasses?: Object,
+  /**
    * @ignore
    */
   theme?: Object,
@@ -186,12 +190,22 @@ class Menu extends React.Component<ProvidedProps & Props> {
   };
 
   render() {
-    const { children, classes, className, MenuListProps, onEnter, theme, ...other } = this.props;
+    const {
+      children,
+      classes,
+      className,
+      MenuListProps,
+      onEnter,
+      PopoverClasses,
+      theme,
+      ...other
+    } = this.props;
 
     return (
       <Popover
         getContentAnchorEl={this.getContentAnchorEl}
         className={classNames(classes.root, className)}
+        classes={PopoverClasses}
         onEnter={this.handleEnter}
         anchorOrigin={theme.direction === 'rtl' ? rtlOrigin : ltrOrigin}
         transformOrigin={theme.direction === 'rtl' ? rtlOrigin : ltrOrigin}

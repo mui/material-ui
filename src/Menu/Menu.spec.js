@@ -49,6 +49,13 @@ describe('<Menu />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true, 'should be classes.root');
   });
 
+  describe('prop: PopoverClasses', () => {
+    it('should be able to change the Popover style', () => {
+      const wrapper = shallow(<Menu PopoverClasses={{ foo: 'bar' }} />);
+      assert.strictEqual(wrapper.props().classes.foo, 'bar');
+    });
+  });
+
   it('should pass the instance function `getContentAnchorEl` to Popover', () => {
     const wrapper = shallow(<Menu />);
     assert.strictEqual(
