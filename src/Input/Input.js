@@ -34,15 +34,14 @@ export function isDirty(obj, SSR = false) {
   );
 }
 
-// Determine if an Input is adorned
-//
-// Response determines if label is presented above field or as placeholder.
+// Determine if an Input is adorned on start.
+// It's corresponding to the left with LTR.
 //
 // @param obj
 // @returns {boolean} False when no adornments.
-//                    True when adorned.
-export function isAdorned(obj) {
-  return obj.startAdornment || obj.endAdornment;
+//                    True when adorned at the start.
+export function isAdornedStart(obj) {
+  return obj.startAdornment;
 }
 
 export const styles = (theme: Object) => {
