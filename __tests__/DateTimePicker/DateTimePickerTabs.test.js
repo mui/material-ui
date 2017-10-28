@@ -6,7 +6,10 @@ describe('DateTimePickerTabs', () => {
   let component;
 
   beforeEach(() => {
-    component = shallow(<DateTimePickerTabs classes={{}} />);
+    component = shallow(<DateTimePickerTabs
+      theme={{ palette: { type: 'light' } }}
+      classes={{}}
+    />);
   });
 
   it('Should renders', () => {
