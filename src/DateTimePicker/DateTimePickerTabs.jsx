@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Paper, Tab, Tabs, Icon, withStyles } from 'material-ui';
+import { Paper, Tab, Tabs, Icon, withStyles, withTheme } from 'material-ui';
 import * as viewType from '../constants/date-picker-view';
 
 const viewToTabIndex = (openView) => {
@@ -20,8 +20,11 @@ const tabIndexToView = (tab) => {
 };
 
 export const DateTimePickerTabs = (props) => {
-  const { view, onChange, classes } = props;
+  const {
+    view, onChange, classes, theme,
+  } = props;
 
+  const indicatorColor = theme.palette.type === 'light' ? 'accent' : 'primary';
   const handleChange = (e, value) => {
     if (value !== viewToTabIndex(view)) {
       onChange(tabIndexToView(value));
@@ -35,6 +38,7 @@ export const DateTimePickerTabs = (props) => {
         value={viewToTabIndex(view)}
         onChange={handleChange}
         className={classes.tabs}
+        indicatorColor={indicatorColor}
       >
         <Tab value="date" icon={<Icon> date_range </Icon>} />
         <Tab value="time" icon={<Icon> access_time </Icon>} />
@@ -47,14 +51,16 @@ DateTimePickerTabs.propTypes = {
   view: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
 const styles = theme => ({
   tabs: {
-    backgroundColor: theme.palette.primary[500],
     color: theme.palette.common.white,
+    backgroundColor: theme.palette.type === 'light'
+      ? theme.palette.primary[500]
+      : theme.palette.background.default,
   },
 });
 
-export default withStyles(styles)(DateTimePickerTabs);
-
+export default withTheme()(withStyles(styles, { name: 'MuiPickerDTTabs' })(DateTimePickerTabs));

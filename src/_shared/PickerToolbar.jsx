@@ -31,8 +31,10 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItems: 'flex-start',
     justifyContent: 'center',
-    backgroundColor: theme.palette.primary[500],
     height: 100,
+    backgroundColor: theme.palette.type === 'light'
+      ? theme.palette.primary[500]
+      : theme.palette.background.default,
   },
 });
 
