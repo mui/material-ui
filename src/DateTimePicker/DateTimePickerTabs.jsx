@@ -19,7 +19,7 @@ const tabIndexToView = (tab) => {
   return viewType.HOUR;
 };
 
-const DateTimePickerTabs = (props) => {
+export const DateTimePickerTabs = (props) => {
   const { view, onChange, classes } = props;
 
   const handleChange = (e, value) => {

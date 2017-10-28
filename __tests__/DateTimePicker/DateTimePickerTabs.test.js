@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import DateTimePickerTabs from '../../src/DateTimePicker/DateTimePickerTabs';
+import { DateTimePickerTabs } from '../../src/DateTimePicker/DateTimePickerTabs';
 
 describe('DateTimePickerTabs', () => {
   let component;

@@ -7,7 +7,7 @@ import DomainPropTypes from '../constants/prop-types';
 import ModalWrapper from '../wrappers/ModalWrapper';
 import DateTimePicker from './DateTimePicker';
 
-class DateTimePickerModal extends Component {
+export class DateTimePickerModal extends Component {
   static propTypes = {
     value: DomainPropTypes.date,
     format: PropTypes.string,

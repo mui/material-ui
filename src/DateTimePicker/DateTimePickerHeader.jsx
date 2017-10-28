@@ -5,7 +5,7 @@ import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
 import * as viewType from '../constants/date-picker-view';
 
-const DateTimePickerHeader = (props) => {
+export const DateTimePickerHeader = (props) => {
   const {
     date, classes, openView, meridiemMode, onOpenViewChange, setMeridiemMode,
   } = props;

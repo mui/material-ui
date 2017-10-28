@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { withStyles } from 'material-ui';
 
-const DateTimePickerView = ({
+export const DateTimePickerView = ({
   view, selected, children, classes,
 }) => (
   <div className={classnames({ [classes.hidden]: view !== selected })}>

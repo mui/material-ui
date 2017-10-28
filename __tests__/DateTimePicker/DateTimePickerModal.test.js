@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import DateTimePickerModal from '../../src/DateTimePicker/DateTimePickerModal';
+import { DateTimePickerModal } from '../../src/DateTimePicker/DateTimePickerModal';
 
 describe('DateTimePickerModal', () => {
   let component;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import DateTimePickerHeader from '../../src/DateTimePicker/DateTimePickerHeader';
+import { DateTimePickerHeader } from '../../src/DateTimePicker/DateTimePickerHeader';
 
 describe('DateTimePickerHed', () => {
   let component;

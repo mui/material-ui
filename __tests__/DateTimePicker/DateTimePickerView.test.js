@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import DateTimePickerView from '../../src/DateTimePicker/DateTimePickerView';
+import { DateTimePickerView } from '../../src/DateTimePicker/DateTimePickerView';
 
 describe('DateTimePickerView', () => {
   let component;
