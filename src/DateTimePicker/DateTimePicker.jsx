@@ -22,6 +22,7 @@ export class DateTimePicker extends Component {
     disableFuture: PropTypes.bool,
     minDate: DomainPropTypes.date,
     maxDate: DomainPropTypes.date,
+    showTabs: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -30,6 +31,7 @@ export class DateTimePicker extends Component {
     autoSubmit: true,
     openTo: viewType.DATE,
     disableFuture: false,
+    showTabs: true,
   }
 
   state = {
@@ -63,6 +65,7 @@ export class DateTimePicker extends Component {
       date,
       minDate,
       maxDate,
+      showTabs,
       disableFuture,
     } = this.props;
 
@@ -76,10 +79,13 @@ export class DateTimePicker extends Component {
           onOpenViewChange={this.handleViewChange}
         />
 
-        <DateTimePickerTabs
-          view={openView}
-          onChange={this.handleViewChange}
-        />
+        {
+          showTabs &&
+            <DateTimePickerTabs
+              view={openView}
+              onChange={this.handleViewChange}
+            />
+        }
 
         <View view={viewType.YEAR} selected={openView}>
           <YearSelection

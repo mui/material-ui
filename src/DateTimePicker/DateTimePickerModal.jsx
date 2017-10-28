@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import classnames from 'classnames';
 import { withStyles } from 'material-ui';
 
 import DomainPropTypes from '../constants/prop-types';
@@ -19,6 +20,7 @@ export class DateTimePickerModal extends Component {
     openTo: PropTypes.string,
     minDate: DomainPropTypes.date,
     maxDate: DomainPropTypes.date,
+    showTabs: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -30,6 +32,7 @@ export class DateTimePickerModal extends Component {
     disableFuture: undefined,
     minDate: undefined,
     maxDate: undefined,
+    showTabs: true,
   }
 
   state = {
@@ -67,10 +70,13 @@ export class DateTimePickerModal extends Component {
       classes,
       minDate,
       maxDate,
+      showTabs,
       autoSubmit,
       disableFuture,
       ...other
     } = this.props;
+
+    const dialogClassName = classnames(classes.dialogContent, { [classes.noTabs]: !showTabs });
 
     return (
       <ModalWrapper
@@ -80,7 +86,7 @@ export class DateTimePickerModal extends Component {
         onAccept={this.handleAccept}
         onDismiss={this.handleDismiss}
         date={date}
-        dialogContentClassName={classes.dialogContent}
+        dialogContentClassName={dialogClassName}
         {...other}
       >
         <DateTimePicker
@@ -91,6 +97,7 @@ export class DateTimePickerModal extends Component {
           disableFuture={disableFuture}
           minDate={minDate}
           maxDate={maxDate}
+          showTabs={showTabs}
         />
       </ModalWrapper>
     );
@@ -101,6 +108,9 @@ const styles = {
   dialogContent: {
     height: 470,
     width: 310,
+  },
+  noTabs: {
+    height: 422,
   },
 };
 
