@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { withStyles, IconButton } from 'material-ui';
 
-const CalendarHeader = (props) => {
+export const CalendarHeader = (props) => {
   const { classes, currentMonth, onMonthChange } = props;
 
   const selectNextMonth = () => onMonthChange(currentMonth.clone().add(1, 'months'));

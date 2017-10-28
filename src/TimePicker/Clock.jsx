@@ -6,7 +6,7 @@ import ClockPointer from './ClockPointer';
 import * as clockType from '../constants/clock-types';
 import { getMinutes, getHours } from './utils/time-utils';
 
-class Clock extends Component {
+export class Clock extends Component {
   static propTypes = {
     type: PropTypes.oneOf(Object.values(clockType)).isRequired,
     classes: PropTypes.object.isRequired,

@@ -6,7 +6,7 @@ describe('DateTimePickerView', () => {
   let component;
 
   beforeEach(() => {
-    component = shallow(<DateTimePickerView />);
+    component = shallow(<DateTimePickerView classes={{}} />);
   });
 
   it('Should renders', () => {

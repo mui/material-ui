@@ -9,7 +9,7 @@ import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
 import DomainPropTypes from '../constants/prop-types';
 
-class DatePicker extends PureComponent {
+export class DatePicker extends PureComponent {
   static propTypes = {
     date: PropTypes.object.isRequired,
     minDate: DomainPropTypes.date,

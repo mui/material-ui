@@ -19,7 +19,7 @@ const positions = [
   [-54.5, 19.6],
 ];
 
-class ClockNumber extends Component {
+export class ClockNumber extends Component {
   static propTypes = {
     index: PropTypes.number.isRequired,
     label: PropTypes.string.isRequired,

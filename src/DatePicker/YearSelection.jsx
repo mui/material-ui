@@ -8,7 +8,7 @@ import DomainPropTypes from '../constants/prop-types';
 
 const moment = extendMoment(Moment);
 
-class YearSelection extends PureComponent {
+export class YearSelection extends PureComponent {
   static propTypes = {
     date: PropTypes.shape({}).isRequired,
     minDate: DomainPropTypes.date.isRequired,

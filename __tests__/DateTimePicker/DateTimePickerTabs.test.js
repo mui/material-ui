@@ -6,7 +6,7 @@ describe('DateTimePickerTabs', () => {
   let component;
 
   beforeEach(() => {
-    component = shallow(<DateTimePickerTabs />);
+    component = shallow(<DateTimePickerTabs classes={{}} />);
   });
 
   it('Should renders', () => {

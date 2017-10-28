@@ -1,12 +1,13 @@
 import React from 'react';
+import moment from 'moment';
 import { shallow } from 'enzyme';
-import DatePicker from '../../src/DatePicker/DatePicker';
+import { DatePicker } from '../../src/DatePicker/DatePicker';
 
 describe('DatePicker', () => {
   let component;
 
   beforeEach(() => {
-    component = shallow(<DatePicker />);
+    component = shallow(<DatePicker classes={{}} date={moment('01-01-2017')} />);
   });
 
   it('Should renders', () => {

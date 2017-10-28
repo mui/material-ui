@@ -6,7 +6,7 @@ describe('DateTimePickerModal', () => {
   let component;
 
   beforeEach(() => {
-    component = shallow(<DateTimePickerModal />);
+    component = shallow(<DateTimePickerModal classes={{}} />);
   });
 
   it('Should renders', () => {

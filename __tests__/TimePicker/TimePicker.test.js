@@ -1,12 +1,16 @@
 import React from 'react';
+import moment from 'moment';
 import { shallow } from 'enzyme';
-import TimePicker from '../../src/TimePicker/TimePicker';
+import { TimePicker } from '../../src/TimePicker/TimePicker';
 
 describe('TimePicker', () => {
   let component;
 
   beforeEach(() => {
-    component = shallow(<TimePicker />);
+    component = shallow(<TimePicker
+      classes={{}}
+      date={moment('01-01-2017 12:00')}
+    />);
   });
 
   it('Should renders', () => {

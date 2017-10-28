@@ -13,7 +13,7 @@ import DatetimePickerHeader from './DateTimePickerHeader';
 import DomainPropTypes from '../constants/prop-types';
 import * as viewType from '../constants/date-picker-view';
 
-class DateTimePicker extends Component {
+export class DateTimePicker extends Component {
   static propTypes = {
     date: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,

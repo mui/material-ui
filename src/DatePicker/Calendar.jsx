@@ -10,7 +10,7 @@ import DomainPropTypes from '../constants/prop-types';
 
 const moment = extendMoment(Moment);
 
-class Calendar extends PureComponent {
+export class Calendar extends PureComponent {
   static propTypes = {
     date: PropTypes.object.isRequired,
     minDate: DomainPropTypes.date,
