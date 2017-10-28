@@ -90,7 +90,7 @@ export const styles = (theme: Object) => {
           duration: theme.transitions.duration.shorter,
           easing: theme.transitions.easing.easeOut,
         }),
-        pointerEvent: 'none', // Transparent to the hover style.
+        pointerEvents: 'none', // Transparent to the hover style.
       },
       '&$focused:after': {
         transform: 'scaleX(1)',
@@ -162,7 +162,7 @@ export const styles = (theme: Object) => {
           duration: theme.transitions.duration.shorter,
           easing: theme.transitions.easing.ease,
         }),
-        pointerEvent: 'none', // Transparent to the hover style.
+        pointerEvents: 'none', // Transparent to the hover style.
       },
       '&:hover:not($disabled):before': {
         backgroundColor: theme.palette.text.primary,
