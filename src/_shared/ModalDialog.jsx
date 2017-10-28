@@ -41,4 +41,8 @@ ModalDialog.propTypes = {
   dialogContentClassName: PropTypes.string,
 };
 
+ModalDialog.defaultProps = {
+  dialogContentClassName: '',
+};
+
 export default withStyles(styles, { name: 'MuiPickersModal' })(ModalDialog);
