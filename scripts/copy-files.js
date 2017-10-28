@@ -60,7 +60,13 @@ const files = ['README.md', 'CHANGELOG.md', 'LICENSE'];
 
 Promise.all(files.map(file => copyFile(file)))
   .then(() => createPackageFile())
-  .then(() => copyTypings(path.resolve(__dirname, '../src'), path.resolve(__dirname, '../build')));
+  .then(() => {
+    const from = path.resolve(__dirname, '../src');
+    return Promise.all([
+      copyTypings(from, path.resolve(__dirname, '../build')),
+      copyTypings(from, path.resolve(__dirname, '../build/es')),
+    ]);
+  });
 
 // Copy original implementation files for flow.
 flowCopySource(['src'], 'build', { verbose: true, ignore: '**/*.spec.js' });
