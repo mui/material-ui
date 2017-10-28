@@ -6,14 +6,15 @@ import Moment from 'moment';
 import { extendMoment } from 'moment-range';
 import classnames from 'classnames';
 import CalendarHeader from './CalendarHeader';
+import DomainPropTypes from '../constants/prop-types';
 
 const moment = extendMoment(Moment);
 
 class Calendar extends PureComponent {
   static propTypes = {
     date: PropTypes.object.isRequired,
-    minDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]),
-    maxDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]),
+    minDate: DomainPropTypes.date,
+    maxDate: DomainPropTypes.date,
     classes: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     disableFuture: PropTypes.bool,

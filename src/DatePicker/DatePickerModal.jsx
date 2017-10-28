@@ -4,27 +4,13 @@ import moment from 'moment';
 
 import ModalWrapper from '../wrappers/ModalWrapper';
 import DatePicker from './DatePicker';
+import DomainPropTypes from '../constants/prop-types';
 
 export default class DatePickerModal extends PureComponent {
   static propTypes = {
-    value: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.instanceOf(Date),
-    ]),
-    minDate: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.instanceOf(Date),
-    ]),
-    maxDate: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.instanceOf(Date),
-    ]),
+    value: DomainPropTypes.date,
+    minDate: DomainPropTypes.date,
+    maxDate: DomainPropTypes.date,
     format: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     autoOk: PropTypes.bool,
@@ -52,6 +38,7 @@ export default class DatePickerModal extends PureComponent {
     this.setState({ date }, () => {
       if (this.props.autoOk) {
         this.handleAccept();
+        this.togglePicker();
       }
     });
   }
@@ -62,6 +49,10 @@ export default class DatePickerModal extends PureComponent {
 
   handleDismiss = () => {
     this.setState({ date: moment(this.props.value) });
+  }
+
+  togglePicker = () => {
+    this.wrapper.togglePicker();
   }
 
   render() {
@@ -81,6 +72,7 @@ export default class DatePickerModal extends PureComponent {
 
     return (
       <ModalWrapper
+        ref={(node) => { this.wrapper = node; }}
         value={value}
         format={format}
         onAccept={this.handleAccept}

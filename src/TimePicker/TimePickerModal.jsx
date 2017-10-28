@@ -28,10 +28,11 @@ export default class TimePickerModal extends PureComponent {
     time: moment(this.props.value),
   }
 
-  handleChange = (time) => {
+  handleChange = (time, isFinish) => {
     this.setState({ time }, () => {
-      if (this.props.autoOk) {
+      if (isFinish && this.props.autoOk) {
         this.handleAccept();
+        this.togglePicker();
       }
     });
   }
@@ -44,6 +45,10 @@ export default class TimePickerModal extends PureComponent {
     this.setState({ time: moment(this.props.value) });
   }
 
+  togglePicker = () => {
+    this.wrapper.togglePicker();
+  }
+
   render() {
     const { time } = this.state;
     const {
@@ -53,6 +58,7 @@ export default class TimePickerModal extends PureComponent {
 
     return (
       <ModalWrapper
+        ref={(node) => { this.wrapper = node; }}
         value={value}
         format={format}
         onAccept={this.handleAccept}

@@ -41,6 +41,7 @@ export default class DateTextField extends Component {
 
     return (
       <TextField
+        readOnly
         value={this.getDisplayDate()}
         onChange={this.handleChange}
         {...other}

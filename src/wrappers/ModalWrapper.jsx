@@ -1,16 +1,12 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ModalDialog from '../_shared/ModalDialog';
 import DateTextField from '../_shared/DateTextField';
+import DomainPropTypes from '../constants/prop-types';
 
-export default class ModalWrapper extends Component {
+export default class ModalWrapper extends PureComponent {
   static propTypes = {
-    value: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.instanceOf(Date),
-    ]).isRequired,
+    value: DomainPropTypes.date.isRequired,
     children: PropTypes.node.isRequired,
     format: PropTypes.string.isRequired,
     onAccept: PropTypes.func.isRequired,

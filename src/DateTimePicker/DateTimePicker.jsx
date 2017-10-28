@@ -10,6 +10,7 @@ import MinutesView from '../TimePicker/MinutesView';
 import DateTimePickerTabs from './DateTimePickerTabs';
 import DatetimePickerHeader from './DateTimePickerHeader';
 
+import DomainPropTypes from '../constants/prop-types';
 import * as viewType from '../constants/date-picker-view';
 
 class DateTimePicker extends Component {
@@ -17,10 +18,10 @@ class DateTimePicker extends Component {
     date: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     autoSubmit: PropTypes.bool,
-    openTo: PropTypes.string,
+    openTo: PropTypes.oneOf(Object.values(viewType)),
     disableFuture: PropTypes.bool,
-    minDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]),
-    maxDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]),
+    minDate: DomainPropTypes.date,
+    maxDate: DomainPropTypes.date,
   }
 
   static defaultProps = {
@@ -36,45 +37,24 @@ class DateTimePicker extends Component {
     meridiemMode: this.props.date.format('a'),
   }
 
-  onYearChange = (time) => {
+  onChange = nextView => (time, isFinish = true) => {
     this.handleChange(time);
-    if (this.props.autoSubmit) {
-      this.handleViewChange(viewType.DATE)();
-    }
-  }
 
-  onDateChange = (time) => {
-    this.handleChange(time);
-    if (this.props.autoSubmit) {
-      this.handleViewChange(viewType.HOUR)();
-    }
-  }
-
-  onHourChange = (time, isFinish) => {
-    this.handleChange(time);
     if (isFinish && this.props.autoSubmit) {
-      this.handleViewChange(viewType.MINUTES)();
+      this.handleViewChange(nextView);
     }
-  }
-
-  onMinutesChange = (time, isFinish) => {
-    this.handleChange(time, isFinish);
   }
 
   setMeridiemMode = mode => () => {
     this.setState({ meridiemMode: mode });
   }
 
-  handleViewChange = view => () => {
+  handleViewChange = (view) => {
     this.setState({ openView: view });
   }
 
-  handleChange = (time) => {
-    this.props.onChange(time);
-  }
-
-  handleTabChange = (openView) => {
-    this.setState({ openView });
+  handleChange = (time, isFinish = false) => {
+    this.props.onChange(time, isFinish);
   }
 
   render() {
@@ -98,7 +78,7 @@ class DateTimePicker extends Component {
 
         <DateTimePickerTabs
           view={openView}
-          onChange={this.handleTabChange}
+          onChange={this.handleViewChange}
         />
 
         <View view={viewType.YEAR} selected={openView}>
@@ -106,7 +86,7 @@ class DateTimePicker extends Component {
             date={date}
             minDate={minDate}
             maxDate={maxDate}
-            onChange={this.onYearChange}
+            onChange={this.onChange(viewType.DATE)}
             disableFuture={disableFuture}
           />
         </View>
@@ -116,7 +96,7 @@ class DateTimePicker extends Component {
             date={date}
             minDate={minDate}
             maxDate={maxDate}
-            onChange={this.onDateChange}
+            onChange={this.onChange(viewType.HOUR)}
             disableFuture={disableFuture}
           />
         </View>
@@ -125,14 +105,14 @@ class DateTimePicker extends Component {
           <HourView
             date={date}
             meridiemMode={meridiemMode}
-            onChange={this.onHourChange}
+            onChange={this.onChange(viewType.MINUTES)}
           />
         </View>
 
         <View view={viewType.MINUTES} selected={openView}>
           <MinutesView
             date={date}
-            onChange={this.onMinutesChange}
+            onChange={this.handleChange}
           />
         </View>
       </div>

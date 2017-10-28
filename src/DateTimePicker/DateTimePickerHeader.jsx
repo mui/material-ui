@@ -10,19 +10,21 @@ const DateTimePickerHeader = (props) => {
     date, classes, openView, meridiemMode, onOpenViewChange, setMeridiemMode,
   } = props;
 
+  const changeOpenView = view => () => onOpenViewChange(view);
+
   return (
     <PickerToolbar className={classes.toolbar}>
       <div className={classes.dateHeader}>
         <ToolbarButton
           type="subheading"
-          onClick={onOpenViewChange(viewType.YEAR)}
+          onClick={changeOpenView(viewType.YEAR)}
           selected={openView === viewType.YEAR}
           label={date.format('YYYY')}
         />
 
         <ToolbarButton
           type="display1"
-          onClick={onOpenViewChange(viewType.DATE)}
+          onClick={changeOpenView(viewType.DATE)}
           selected={openView === viewType.DATE}
           label={date.format('MMM DD')}
         />
@@ -31,7 +33,7 @@ const DateTimePickerHeader = (props) => {
       <div className={classes.timeHeader}>
         <ToolbarButton
           type="display2"
-          onClick={onOpenViewChange(viewType.HOUR)}
+          onClick={changeOpenView(viewType.HOUR)}
           selected={openView === viewType.HOUR}
           label={date.format('hh')}
         />
@@ -45,7 +47,7 @@ const DateTimePickerHeader = (props) => {
 
         <ToolbarButton
           type="display2"
-          onClick={onOpenViewChange(viewType.MINUTES)}
+          onClick={changeOpenView(viewType.MINUTES)}
           selected={openView === viewType.MINUTES}
           label={date.format('mm')}
         />

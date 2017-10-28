@@ -90,7 +90,7 @@ class Demo extends Component {
                 Date picker
               </Typography>
 
-              <DatePicker 
+              <DatePicker
                 value={selectedDate}
                 onChange={this.handleDateChange}
                 animateYearScrolling={false}
@@ -102,9 +102,9 @@ class Demo extends Component {
                 Time picker
               </Typography>
 
-              <TimePicker
+              <TimePicker autoOk
                 value={this.state.selectedTime}
-                format="HH:mm"
+                format="hh:mm a"
                 onChange={this.handleTimeChange}
               />
             </div>
@@ -114,9 +114,9 @@ class Demo extends Component {
                 Date & Time picker
               </Typography>
 
-              <DateTimePicker 
-                autoSubmit={false}
-                openTo="hours"
+              <DateTimePicker
+                autoOk
+                autoSubmit
                 value={this.state.selectedDate}
                 onChange={this.handleDateChange}
               />

@@ -3,23 +3,22 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { withStyles } from 'material-ui';
 
+import DomainPropTypes from '../constants/prop-types';
 import ModalWrapper from '../wrappers/ModalWrapper';
 import DateTimePicker from './DateTimePicker';
 
 class DateTimePickerModal extends Component {
   static propTypes = {
-    value: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.instanceOf(Date),
-    ]),
+    value: DomainPropTypes.date,
     format: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     autoOk: PropTypes.bool,
     classes: PropTypes.object.isRequired,
     autoSubmit: PropTypes.bool,
+    disableFuture: PropTypes.bool,
     openTo: PropTypes.string,
+    minDate: DomainPropTypes.date,
+    maxDate: DomainPropTypes.date,
   }
 
   static defaultProps = {
@@ -28,6 +27,9 @@ class DateTimePickerModal extends Component {
     autoOk: false,
     autoSubmit: undefined,
     openTo: undefined,
+    disableFuture: undefined,
+    minDate: undefined,
+    maxDate: undefined,
   }
 
   state = {
@@ -42,8 +44,17 @@ class DateTimePickerModal extends Component {
     this.setState({ date: moment(this.props.value) });
   }
 
-  handleChange = (date) => {
-    this.setState({ date });
+  handleChange = (date, isFinish) => {
+    this.setState({ date }, () => {
+      if (isFinish && this.props.autoOk) {
+        this.handleAccept();
+        this.togglePicker();
+      }
+    });
+  }
+
+  togglePicker = () => {
+    this.wrapper.togglePicker();
   }
 
   render() {
@@ -54,12 +65,16 @@ class DateTimePickerModal extends Component {
       autoOk,
       openTo,
       classes,
+      minDate,
+      maxDate,
       autoSubmit,
+      disableFuture,
       ...other
     } = this.props;
 
     return (
       <ModalWrapper
+        ref={(node) => { this.wrapper = node; }}
         value={value}
         format={format}
         onAccept={this.handleAccept}
@@ -70,8 +85,12 @@ class DateTimePickerModal extends Component {
       >
         <DateTimePicker
           date={date}
+          openTo={openTo}
           autoSubmit={autoSubmit}
           onChange={this.handleChange}
+          disableFuture={disableFuture}
+          minDate={minDate}
+          maxDate={maxDate}
         />
       </ModalWrapper>
     );
@@ -85,5 +104,5 @@ const styles = {
   },
 };
 
-export default withStyles(styles)(DateTimePickerModal);
+export default withStyles(styles, { name: 'MuiPickerDTPickerModal' })(DateTimePickerModal);
 

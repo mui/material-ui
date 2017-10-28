@@ -20,7 +20,9 @@ DateTimePickerView.propTypes = {
 
 const styles = {
   hidden: {
-    display: 'none',
+    pointerEvents: 'none',
+    visibility: 'hidden', // required for saving scrolls state
+    position: 'absolute', // remove relation for layout
   },
 };
 

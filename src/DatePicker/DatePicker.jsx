@@ -7,23 +7,14 @@ import Calendar from './Calendar';
 import YearSelection from './YearSelection';
 import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
+import DomainPropTypes from '../constants/prop-types';
 
 class DatePicker extends PureComponent {
   static propTypes = {
     date: PropTypes.object.isRequired,
-    minDate: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.instanceOf(Date),
-    ]),
-    maxDate: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.instanceOf(Date),
-    ]),
-    classes: PropTypes.shape({}).isRequired,
+    minDate: DomainPropTypes.date,
+    maxDate: DomainPropTypes.date,
+    classes: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     disableFuture: PropTypes.bool,
     animateYearScrolling: PropTypes.bool,
