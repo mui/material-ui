@@ -5,7 +5,7 @@ import type { ElementType, Node } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import { isDirty, isAdornedEnd, isAdornedStart } from '../Input/Input';
+import { isDirty, isAdornedStart } from '../Input/Input';
 import { isMuiElement } from '../utils/reactHelpers';
 
 export const styles = (theme: Object) => ({
@@ -94,7 +94,6 @@ export type Props = {
 };
 
 type State = {
-  adornedEnd: boolean,
   adornedStart: boolean,
   dirty: boolean,
   focused: boolean,
@@ -125,7 +124,6 @@ class FormControl extends React.Component<ProvidedProps & Props, State> {
   };
 
   state = {
-    adornedEnd: false,
     adornedStart: false,
     dirty: false,
     focused: false,
@@ -133,11 +131,10 @@ class FormControl extends React.Component<ProvidedProps & Props, State> {
 
   getChildContext() {
     const { disabled, error, required, margin } = this.props;
-    const { adornedEnd, adornedStart, dirty, focused } = this.state;
+    const { adornedStart, dirty, focused } = this.state;
 
     return {
       muiFormControl: {
-        adornedEnd,
         adornedStart,
         dirty,
         disabled,
@@ -162,12 +159,8 @@ class FormControl extends React.Component<ProvidedProps & Props, State> {
         if (isMuiElement(child, ['Input', 'Select']) && isDirty(child.props, true)) {
           this.setState({ dirty: true });
         }
-        if (isMuiElement(child, ['Input'])) {
-          if (isAdornedEnd(child.props)) {
-            this.setState({ adornedEnd: true });
-          } else if (isAdornedStart(child.props)) {
-            this.setState({ adornedStart: true });
-          }
+        if (isMuiElement(child, ['Input']) && isAdornedStart(child.props)) {
+          this.setState({ adornedStart: true });
         }
       });
     }

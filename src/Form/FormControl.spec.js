@@ -98,7 +98,7 @@ describe('<FormControl />', () => {
           <Input endAdornment={<div />} />
         </FormControl>,
       );
-      assert.strictEqual(wrapper.state().adornedEnd, true);
+      assert.strictEqual(wrapper.state().adornedStart, false);
     });
 
     it('should be adorned with a startAdornment', () => {
@@ -137,13 +137,6 @@ describe('<FormControl />', () => {
         wrapper.setState({ focused: true });
         loadChildContext();
         assert.strictEqual(muiFormControlContext.focused, true);
-      });
-
-      it('should have the adornedEnd state from the instance', () => {
-        assert.strictEqual(muiFormControlContext.adornedEnd, false);
-        wrapper.setState({ adornedEnd: true });
-        loadChildContext();
-        assert.strictEqual(muiFormControlContext.adornedEnd, true);
       });
 
       it('should have the adornedStart state from the instance', () => {

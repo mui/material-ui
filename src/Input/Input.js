@@ -34,16 +34,8 @@ export function isDirty(obj, SSR = false) {
   );
 }
 
-// Determine if an Input is adorned on the right end.
-//
-// @param obj
-// @returns {boolean} False when no adornments.
-//                    True when adorned on the end.
-export function isAdornedEnd(obj) {
-  return obj.endAdornment;
-}
-
-// Determine if an Input is adorned on the left, aka start.
+// Determine if an Input is adorned on start.
+// It's corresponding to the left with LTR.
 //
 // @param obj
 // @returns {boolean} False when no adornments.
