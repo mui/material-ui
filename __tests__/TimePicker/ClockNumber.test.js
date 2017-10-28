@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ClockNumber from '../../src/TimePicker/ClockNumber';
+import { ClockNumber } from '../../src/TimePicker/ClockNumber';
 
 describe('ClockNumber', () => {
   let component;
 
   beforeEach(() => {
-    component = shallow(<ClockNumber />);
+    component = shallow(<ClockNumber classes={{}} index={0} />);
   });
 
   it('Should renders', () => {

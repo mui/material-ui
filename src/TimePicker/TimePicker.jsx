@@ -6,11 +6,16 @@ import ToolbarButton from '../_shared/ToolbarButton';
 import HourView from './HourView';
 import MinutesView from './MinutesView';
 
-class TimePicker extends Component {
+export class TimePicker extends Component {
   static propTypes = {
     date: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
+    children: PropTypes.node,
+  }
+
+  static defaultProps = {
+    children: null,
   }
 
   state = {
@@ -19,21 +24,17 @@ class TimePicker extends Component {
   }
 
   setMeridiemMode = mode => () => {
-    this.setState(
-      { meridiemMode: mode },
-      () => this.handleChange(this.props.date),
-    );
+    this.setState({ meridiemMode: mode });
   }
 
-  handleChange = (time) => {
-    const { meridiemMode } = this.state;
+  handleChange = openMinutes => (time, isFinish) => {
+    if (isFinish) {
+      if (!openMinutes) {
+        this.props.onChange(time, isFinish);
+        return;
+      }
 
-    if (time.format('a') !== meridiemMode) {
-      const hours = meridiemMode === 'am'
-        ? time.hours() - 12
-        : time.hours() + 12;
-
-      time = time.clone().hours(hours);
+      this.openMinutesView();
     }
 
     this.props.onChange(time);
@@ -83,6 +84,7 @@ class TimePicker extends Component {
               label="AM"
               onClick={this.setMeridiemMode('am')}
             />
+
             <ToolbarButton
               className={classes.ampmLabel}
               selected={meridiemMode === 'pm'}
@@ -93,17 +95,20 @@ class TimePicker extends Component {
           </div>
         </PickerToolbar>
 
+        { this.props.children }
+
         {
           isHourViewShown
             ?
               <HourView
                 date={date}
-                onChange={this.handleChange}
+                meridiemMode={meridiemMode}
+                onChange={this.handleChange(true)}
               />
             :
               <MinutesView
                 date={date}
-                onChange={this.handleChange}
+                onChange={this.handleChange(false)}
               />
         }
       </div>
@@ -113,17 +118,13 @@ class TimePicker extends Component {
 }
 
 const styles = () => ({
-  container: {
-    width: 300,
-    height: 420,
-  },
   toolbar: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: 50,
   },
   separator: {
-    margin: '0 2px 0 4px',
+    margin: '0 4px 0 2px',
     cursor: 'default',
   },
   ampmSelection: {

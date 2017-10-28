@@ -6,7 +6,7 @@ import ClockPointer from './ClockPointer';
 import * as clockType from '../constants/clock-types';
 import { getMinutes, getHours } from './utils/time-utils';
 
-class Clock extends Component {
+export class Clock extends Component {
   static propTypes = {
     type: PropTypes.oneOf(Object.values(clockType)).isRequired,
     classes: PropTypes.object.isRequired,
@@ -15,7 +15,7 @@ class Clock extends Component {
     children: PropTypes.arrayOf(PropTypes.node).isRequired,
   }
 
-  setTime(e) {
+  setTime(e, isFinish = false) {
     let { offsetX, offsetY } = e;
 
     if (typeof offsetX === 'undefined') {
@@ -29,7 +29,7 @@ class Clock extends Component {
       ? getMinutes(offsetX, offsetY)
       : getHours(offsetX, offsetY);
 
-    this.props.onChange(value);
+    this.props.onChange(value, isFinish);
   }
 
   handleTouchMove = (e) => {
@@ -47,6 +47,7 @@ class Clock extends Component {
 
   handleMove = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     // MouseEvent.which is deprecated, but MouseEvent.buttons is not supported in Safari
     if (e.buttons === 1 || e.nativeEvent.which === 1) {
       this.setTime(e.nativeEvent, false);
@@ -116,6 +117,7 @@ const styles = () => ({
     height: '100%',
     position: 'absolute',
     pointerEvents: 'auto',
+    outline: 'none',
   },
 });
 

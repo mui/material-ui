@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import { AppBar, Toolbar, IconButton, Typography, withStyles, Button, Tooltip } from 'material-ui'
-import { TimePicker, DatePicker } from 'material-ui-pickers'
+import { TimePicker, DatePicker, DateTimePicker } from 'material-ui-pickers'
 import Github from './GithubIcon'
 import './Demo.css';
 import moment from 'moment';
@@ -37,7 +37,7 @@ class Demo extends Component {
     const { selectedDate } = this.state
 
     return (
-      <main className="main">
+      <main className={classes.main}>
         <AppBar position="fixed" className={classes.noShadow}>
           <Toolbar>
             <IconButton className={classes.menuButton} color="contrast" aria-label="Menu">
@@ -76,21 +76,21 @@ class Demo extends Component {
         </Toolbar>
 
         <div id="content" className={classes.content}>
-          <Typography type="display1" align="center" gutterBottom>
+          <Typography type="display2" align="center" gutterBottom>
             Here you are!
           </Typography>
 
-          <Typography type="headline" align="center" gutterBottom className={classes.example}>
+          <Typography type="display1" className={classes.example}>
             Basic usage
           </Typography>
 
-          <div className="pickers">
+          <div className={classes.pickers}>
             <div className="picker">
               <Typography type="headline" align="center" gutterBottom>
                 Date picker
               </Typography>
 
-              <DatePicker 
+              <DatePicker
                 value={selectedDate}
                 onChange={this.handleDateChange}
                 animateYearScrolling={false}
@@ -102,9 +102,42 @@ class Demo extends Component {
                 Time picker
               </Typography>
 
-              <TimePicker
+              <TimePicker autoOk
                 value={this.state.selectedTime}
+                format="hh:mm a"
                 onChange={this.handleTimeChange}
+              />
+            </div>
+          </div>
+
+          <Typography type="display1" gutterBottom> 
+            Date & Time pickers 
+          </Typography>
+          
+          <div className={classes.pickers}>
+            <div className="picker">
+              <Typography type="headline" align="center" gutterBottom>
+                Default
+              </Typography>
+
+              <DateTimePicker
+                value={this.state.selectedDate}
+                onChange={this.handleDateChange}
+              />
+            </div>
+
+            <div className="picker">
+              <Typography type="headline" align="center" gutterBottom>
+                Custom
+              </Typography>
+
+              <DateTimePicker
+                showTabs={false}
+                autoOk
+                disableFuture
+                autoSubmit={false}
+                value={this.state.selectedDate}
+                onChange={this.handleDateChange}
               />
             </div>
           </div>
@@ -143,10 +176,25 @@ const styles = theme => ({
   example: {
     marginTop: '40px'
   },
+  main: {
+    backgroundColor: theme.palette.background.paper,
+    marginBottom: -50
+  },
+  pickers: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    minHeight: 160,
+    paddingTop: 40,
+    margin: '30px auto 50px',
+    backgroundColor: theme.palette.background.default,
+  },
   content: {
-    paddingTop: '30px',
+    paddingTop: '60px',
     backgroundColor: theme.palette.background.paper,
     minHeight: 'calc(100vh - 63px)',
+    maxWidth: 900,
+    margin: '0 auto',
     '@media(max-width: 600px)': {
       minHeight: 'calc(100vh - 55px)'
     }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui';
 import classnames from 'classnames';
 
-class ClockPointer extends Component {
+export class ClockPointer extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     value: PropTypes.number.isRequired,
