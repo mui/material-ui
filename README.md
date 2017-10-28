@@ -108,7 +108,6 @@ maxDate | date | '2100-01-01' | Maximum selectable date
 
 ### Known Issues
 1. 24 hour displaying for timepicker (now supporting only am/pm)
-2. DateTime picker (wrapper above date and time)
 
 They would be added/fixed in one of the nearest release :)
 
