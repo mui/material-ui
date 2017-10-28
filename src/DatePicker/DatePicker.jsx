@@ -7,25 +7,28 @@ import Calendar from './Calendar';
 import YearSelection from './YearSelection';
 import PickerToolbar from '../_shared/PickerToolbar';
 import ToolbarButton from '../_shared/ToolbarButton';
+import DomainPropTypes from '../constants/prop-types';
 
-class DatePicker extends PureComponent {
+export class DatePicker extends PureComponent {
   static propTypes = {
     date: PropTypes.object.isRequired,
-    minDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]),
-    maxDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]),
-    classes: PropTypes.shape({}).isRequired,
+    minDate: DomainPropTypes.date,
+    maxDate: DomainPropTypes.date,
+    classes: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     disableFuture: PropTypes.bool,
     animateYearScrolling: PropTypes.bool,
     openToYearSelection: PropTypes.bool,
+    children: PropTypes.node,
   }
 
   static defaultProps = {
     minDate: '1900-01-01',
     maxDate: '2100-01-01',
     disableFuture: false,
-    animateYearScrolling: true,
+    animateYearScrolling: undefined,
     openToYearSelection: false,
+    children: null,
   }
 
   state = {
@@ -76,6 +79,8 @@ class DatePicker extends PureComponent {
           />
         </PickerToolbar>
 
+        { this.props.children }
+
         {
           showYearSelection
             ?
@@ -102,10 +107,7 @@ class DatePicker extends PureComponent {
 }
 
 const styles = () => ({
-  container: {
-    width: 300,
-    height: 420,
-  },
+
 });
 
 export default withStyles(styles, { name: 'MuiPickersDatePicker' })(DatePicker);

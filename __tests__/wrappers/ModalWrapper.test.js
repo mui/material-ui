@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Clock } from '../../src/TimePicker/Clock';
+import ModalWrapper from '../../src/wrappers/ModalWrapper';
 
-describe('Clock', () => {
+describe('ModalWrapper', () => {
   let component;
 
   beforeEach(() => {
-    component = shallow(<Clock classes={{}} />);
+    component = shallow(<ModalWrapper value={new Date()} />);
   });
 
   it('Should renders', () => {

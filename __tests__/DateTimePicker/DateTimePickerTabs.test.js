@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Clock } from '../../src/TimePicker/Clock';
+import { DateTimePickerTabs } from '../../src/DateTimePicker/DateTimePickerTabs';
 
-describe('Clock', () => {
+describe('DateTimePickerTabs', () => {
   let component;
 
   beforeEach(() => {
-    component = shallow(<Clock classes={{}} />);
+    component = shallow(<DateTimePickerTabs classes={{}} />);
   });
 
   it('Should renders', () => {

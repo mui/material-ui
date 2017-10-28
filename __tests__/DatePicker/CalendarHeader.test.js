@@ -1,12 +1,13 @@
 import React from 'react';
+import moment from 'moment';
 import { shallow } from 'enzyme';
-import CalendarHeader from '../../src/DatePicker/CalendarHeader';
+import { CalendarHeader } from '../../src/DatePicker/CalendarHeader';
 
 describe('CalendarHeader', () => {
   let component;
 
   beforeEach(() => {
-    component = shallow(<CalendarHeader />);
+    component = shallow(<CalendarHeader classes={{}} currentMonth={moment('01-01-2017')} />);
   });
 
   it('Should renders', () => {

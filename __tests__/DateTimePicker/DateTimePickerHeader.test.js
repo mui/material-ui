@@ -1,15 +1,16 @@
 import React from 'react';
 import moment from 'moment';
 import { shallow } from 'enzyme';
-import { TimePicker } from '../../src/TimePicker/TimePicker';
+import { DateTimePickerHeader } from '../../src/DateTimePicker/DateTimePickerHeader';
 
-describe('TimePicker', () => {
+describe('DateTimePickerHeader', () => {
   let component;
 
   beforeEach(() => {
-    component = shallow(<TimePicker
+    component = shallow(<DateTimePickerHeader
+      setMeridiemMode={() => jest.fn()}
+      date={moment('01-01-2017')}
       classes={{}}
-      date={moment('01-01-2017 12:00')}
     />);
   });
 

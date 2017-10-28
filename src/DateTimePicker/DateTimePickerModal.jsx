@@ -1,46 +1,42 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import classnames from 'classnames';
+import { withStyles } from 'material-ui';
 
-import ModalWrapper from '../wrappers/ModalWrapper';
-import DatePicker from './DatePicker';
 import DomainPropTypes from '../constants/prop-types';
+import ModalWrapper from '../wrappers/ModalWrapper';
+import DateTimePicker from './DateTimePicker';
 
-export default class DatePickerModal extends PureComponent {
+export class DateTimePickerModal extends Component {
   static propTypes = {
     value: DomainPropTypes.date,
-    minDate: DomainPropTypes.date,
-    maxDate: DomainPropTypes.date,
     format: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     autoOk: PropTypes.bool,
+    classes: PropTypes.object.isRequired,
+    autoSubmit: PropTypes.bool,
     disableFuture: PropTypes.bool,
-    animateYearScrolling: PropTypes.bool,
-    openToYearSelection: PropTypes.bool,
+    openTo: PropTypes.string,
+    minDate: DomainPropTypes.date,
+    maxDate: DomainPropTypes.date,
+    showTabs: PropTypes.bool,
   }
 
   static defaultProps = {
     value: new Date(),
-    format: 'MMMM Do',
+    format: 'MMMM Do hh:mm a',
     autoOk: false,
+    autoSubmit: undefined,
+    openTo: undefined,
+    disableFuture: undefined,
     minDate: undefined,
     maxDate: undefined,
-    disableFuture: undefined,
-    animateYearScrolling: undefined,
-    openToYearSelection: undefined,
+    showTabs: true,
   }
 
   state = {
     date: moment(this.props.value),
-  }
-
-  handleChange = (date) => {
-    this.setState({ date }, () => {
-      if (this.props.autoOk) {
-        this.handleAccept();
-        this.togglePicker();
-      }
-    });
   }
 
   handleAccept = () => {
@@ -49,6 +45,15 @@ export default class DatePickerModal extends PureComponent {
 
   handleDismiss = () => {
     this.setState({ date: moment(this.props.value) });
+  }
+
+  handleChange = (date, isFinish) => {
+    this.setState({ date }, () => {
+      if (isFinish && this.props.autoOk) {
+        this.handleAccept();
+        this.togglePicker();
+      }
+    });
   }
 
   togglePicker = () => {
@@ -61,14 +66,17 @@ export default class DatePickerModal extends PureComponent {
       value,
       format,
       autoOk,
+      openTo,
+      classes,
       minDate,
       maxDate,
-      onChange,
+      showTabs,
+      autoSubmit,
       disableFuture,
-      animateYearScrolling,
-      openToYearSelection,
       ...other
     } = this.props;
+
+    const dialogClassName = classnames(classes.dialogContent, { [classes.noTabs]: !showTabs });
 
     return (
       <ModalWrapper
@@ -78,18 +86,33 @@ export default class DatePickerModal extends PureComponent {
         onAccept={this.handleAccept}
         onDismiss={this.handleDismiss}
         date={date}
+        dialogContentClassName={dialogClassName}
         {...other}
       >
-        <DatePicker
+        <DateTimePicker
           date={date}
+          openTo={openTo}
+          autoSubmit={autoSubmit}
           onChange={this.handleChange}
           disableFuture={disableFuture}
-          animateYearScrolling={animateYearScrolling}
-          openToYearSelection={openToYearSelection}
           minDate={minDate}
           maxDate={maxDate}
+          showTabs={showTabs}
         />
       </ModalWrapper>
     );
   }
 }
+
+const styles = {
+  dialogContent: {
+    height: 470,
+    width: 310,
+  },
+  noTabs: {
+    height: 422,
+  },
+};
+
+export default withStyles(styles, { name: 'MuiPickerDTPickerModal' })(DateTimePickerModal);
+

@@ -4,29 +4,27 @@ import Moment from 'moment';
 import classnames from 'classnames';
 import { extendMoment } from 'moment-range';
 import { withStyles } from 'material-ui';
+import DomainPropTypes from '../constants/prop-types';
 
 const moment = extendMoment(Moment);
 
-class YearSelection extends PureComponent {
+export class YearSelection extends PureComponent {
   static propTypes = {
     date: PropTypes.shape({}).isRequired,
-    minDate: PropTypes.shape({}).isRequired,
-    maxDate: PropTypes.shape({}).isRequired,
+    minDate: DomainPropTypes.date.isRequired,
+    maxDate: DomainPropTypes.date.isRequired,
     classes: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     disableFuture: PropTypes.bool.isRequired,
-    animateYearScrolling: PropTypes.bool.isRequired,
+    animateYearScrolling: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    animateYearScrolling: false,
   }
 
   componentDidMount = () => {
-    const { animateYearScrolling } = this.props;
-    const currentYearElement = document.getElementsByClassName(this.props.classes.selectedYear)[0];
-
-    if (currentYearElement) {
-      currentYearElement.scrollIntoView({
-        behavior: animateYearScrolling ? 'smooth' : 'auto',
-      });
-    }
+    this.scrollToCurrentYear();
   }
 
   onYearSelect = (year) => {
@@ -34,6 +32,17 @@ class YearSelection extends PureComponent {
 
     const newDate = date.clone().set('year', year);
     onChange(newDate);
+  }
+
+  scrollToCurrentYear = () => {
+    const { animateYearScrolling, classes } = this.props;
+    const currentYearElement = document.getElementsByClassName(classes.selectedYear)[0];
+
+    if (currentYearElement) {
+      currentYearElement.scrollIntoView({
+        behavior: animateYearScrolling ? 'smooth' : 'auto',
+      });
+    }
   }
 
   render() {

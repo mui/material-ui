@@ -1,12 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import YearSelection from '../../src/DatePicker/YearSelection';
+import moment from 'moment';
+import { YearSelection } from '../../src/DatePicker/YearSelection';
 
 describe('YearSelection', () => {
   let component;
 
   beforeEach(() => {
-    component = shallow(<YearSelection /> );
+    component = shallow(<YearSelection classes={{}} date={moment('01-01-2017')} />);
   });
 
   it('Should renders', () => {

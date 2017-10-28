@@ -32,6 +32,9 @@ main {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  min-height: 160px;
+  padding-top: 40px;
+  margin: 30px auto 50px;
 }
 
 .picker {
