@@ -18,6 +18,10 @@ export const styles = (theme: Object) => ({
   entered: {
     height: 'auto',
   },
+  wrapper: {
+    // Hack to get children with a negative margin to not falsify the height computation.
+    display: 'flex',
+  },
 });
 
 export type TransitionDuration = number | { enter?: number, exit?: number } | 'auto';
@@ -88,8 +92,6 @@ export type Props = {
   timeout?: TransitionDuration,
 };
 
-const reflow = node => node.scrollTop;
-
 class Collapse extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
     appear: false,
@@ -141,9 +143,7 @@ class Collapse extends React.Component<ProvidedProps & Props> {
 
   handleExit = (node: HTMLElement) => {
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
-    reflow(node);
     node.style.height = `${wrapperHeight}px`;
-    reflow(node);
 
     if (this.props.onExit) {
       this.props.onExit(node);
@@ -153,8 +153,6 @@ class Collapse extends React.Component<ProvidedProps & Props> {
   handleExiting = (node: HTMLElement) => {
     const { timeout, theme } = this.props;
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
-
-    reflow(node);
 
     if (timeout === 'auto') {
       const duration2 = theme.transitions.getAutoHeightDuration(wrapperHeight);
@@ -168,11 +166,7 @@ class Collapse extends React.Component<ProvidedProps & Props> {
       // The propType will warn in this case.
     }
 
-    reflow(node);
-
     node.style.height = this.props.collapsedHeight;
-
-    reflow(node);
 
     if (this.props.onExiting) {
       this.props.onExiting(node);
@@ -228,6 +222,7 @@ class Collapse extends React.Component<ProvidedProps & Props> {
               })}
             >
               <div
+                className={classes.wrapper}
                 ref={node => {
                   this.wrapper = node;
                 }}
