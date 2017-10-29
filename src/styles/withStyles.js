@@ -163,10 +163,22 @@ const withStyles = (
         this.attach(this.theme);
 
         // Rerender the component so the underlying component gets the theme update.
+        // By theme update we mean receiving and applying the new class names.
         this.setState({}, () => {
           this.detach(oldTheme);
         });
       });
+    }
+
+    componentWillReceiveProps() {
+      // react-hot-loader specific logic
+      if (this.stylesCreatorSaved === stylesCreator || process.env.NODE_ENV === 'production') {
+        return;
+      }
+
+      this.detach(this.theme);
+      this.stylesCreatorSaved = stylesCreator;
+      this.attach(this.theme);
     }
 
     componentWillUnmount() {
