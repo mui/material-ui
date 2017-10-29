@@ -171,7 +171,7 @@
     "redux-logger": "^3.0.6",
     "rimraf": "^2.6.2",
     "sinon": "^4.0.2",
-    "size-limit": "^0.11.6",
+    "size-limit": "^0.12.0",
     "typescript": "^2.5.3",
     "url-loader": "^0.6.2",
     "vrtest": "^0.2.0",
