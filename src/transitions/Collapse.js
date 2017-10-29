@@ -22,6 +22,9 @@ export const styles = (theme: Object) => ({
     // Hack to get children with a negative margin to not falsify the height computation.
     display: 'flex',
   },
+  wrapperInner: {
+    flexGrow: '1',
+  },
 });
 
 export type TransitionDuration = number | { enter?: number, exit?: number } | 'auto';
@@ -227,7 +230,7 @@ class Collapse extends React.Component<ProvidedProps & Props> {
                   this.wrapper = node;
                 }}
               >
-                {children}
+                <div className={classes.wrapperInner}>{children}</div>
               </div>
             </div>
           );
