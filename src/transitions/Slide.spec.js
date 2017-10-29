@@ -203,8 +203,8 @@ describe('<Slide />', () => {
         </SlideNaked>,
       );
       const transition = findDOMNode(wrapper.instance().transition);
-      // $FlowFixMe
-      assert.notStrictEqual(transition.style.transform, undefined);
+      // $FlowExpectedError
+      assert.strictEqual(transition.style.visibility, 'hidden');
     });
   });
 
