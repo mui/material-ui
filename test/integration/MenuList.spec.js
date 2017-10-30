@@ -71,6 +71,17 @@ describe('<MenuList> integration', () => {
       assertMenuItemFocused(wrapper, 0);
     });
 
+    it('should still have the first item tabIndexed', () => {
+      wrapper.simulate('keyDown', { which: keycode('up') });
+      assertMenuItemTabIndexed(wrapper, 0);
+    });
+
+    it('should still have the first item tabIndexed', () => {
+      wrapper.simulate('keyDown', { which: keycode('down') });
+      wrapper.simulate('keyDown', { which: keycode('up') });
+      assertMenuItemFocused(wrapper, 0);
+    });
+
     it('should focus the second item', () => {
       wrapper.instance().focus();
       wrapper.simulate('keyDown', { which: keycode('down') });
@@ -98,6 +109,9 @@ describe('<MenuList> integration', () => {
     it('should reset the tabIndex to the focused element when calling resetTabIndex', () => {
       wrapper.instance().focus();
       wrapper.simulate('keyDown', { which: keycode('down') });
+      wrapper.instance().setTabIndex(2);
+      wrapper.instance().resetTabIndex();
+
       assertMenuItemTabIndexed(wrapper, 1);
       assertMenuItemFocused(wrapper, 1);
 
