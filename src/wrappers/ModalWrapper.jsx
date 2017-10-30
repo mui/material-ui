@@ -11,7 +11,6 @@ export default class ModalWrapper extends PureComponent {
     format: PropTypes.string.isRequired,
     onAccept: PropTypes.func.isRequired,
     onDismiss: PropTypes.func.isRequired,
-    date: PropTypes.object.isRequired,
     dialogContentClassName: PropTypes.string,
   }
 

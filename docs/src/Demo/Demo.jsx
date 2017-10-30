@@ -51,7 +51,7 @@ class Demo extends Component {
               lightbulb_outline
             </IconButton>
            </Tooltip>
-           
+           g
           <a href="https://github.com/dmtrKovalenko/material-ui-pickers">
             <IconButton> 
               <Github color="white"/> 
