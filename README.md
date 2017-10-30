@@ -85,6 +85,8 @@ animateYearScrolling | boolean | false | Will animate year selection (note that 
 openToYearSelection | boolean | false | Open datepicker from year selection
 minDate | date | '1900-01-01' | Minimum selectable date
 maxDate | date | '2100-01-01' | Maximum selectable date
+onChange | func | required | Callback firing when date accepted
+returnMoment | boolean | true | Will return moment object in onChange
 
 #### Timepicker
 Prop | Type | Default | Definition
@@ -92,6 +94,8 @@ Prop | Type | Default | Definition
 value | date | new Date() | Timepicker value
 format | string | 'MMMM Do' | Moment format string for input
 autoOk | boolean | false | Auto accept time on selection
+onChange | func | required | Callback firing when date accepted
+returnMoment | boolean | true | Will return moment object in onChange
 
 #### DateTimepicker
 Prop | Type | Default | Definition
@@ -105,6 +109,8 @@ openTo | one of 'year', 'date', 'hour', 'minutes' | 'date' | Open to particular 
 animateYearScrolling | boolean | false | Will animate year selection
 minDate | date | '1900-01-01' | Minimum selectable date
 maxDate | date | '2100-01-01' | Maximum selectable date
+onChange | func | required | Callback firing when date accepted
+returnMoment | boolean | true | Will return moment object in onChangeg
 
 ### Known Issues
 1. 24 hour displaying for timepicker (now supporting only am/pm)
