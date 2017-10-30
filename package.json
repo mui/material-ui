@@ -44,6 +44,7 @@
     "test": "jest",
     "start": "cross-env NODE_ENV=development rollup --config --watch",
     "build": "cross-env NODE_ENV=development rollup --config",
+    "prepublish": "npm run test && npm run lint && npm run build",
     "webpack": "webpack",
     "lint": "eslint ./src/**/*.js*",
     "prepublish": "npm run test && npm run lint && npm run build"
