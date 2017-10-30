@@ -154,7 +154,6 @@ class Slide extends React.Component<ProvidedProps & Props, State> {
   }
 
   transition = null;
-  firstRender = false;
 
   handleResize = debounce(() => {
     // Skip configuration where the position is screen size invariant.
