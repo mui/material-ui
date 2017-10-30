@@ -2,6 +2,95 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.19
+###### _Oct 30, 2017_
+
+Big thanks to the 17 contributors who made this release possible.
+
+Here are some highlights ✨:
+- We managed to do it! We have upgraded all the dependencies to react@16 ✨. (#8889)
+We will keep react@15 support for some time in order to help the migration from v0.x to v1.x.
+- We fixed an important bug of `withStyles()` with react-hot-loader.
+Thanks a lot @rrousselGit for the support. (#8897)
+- We have introduced 3 soft breaking changes. (#8830, #8858, #8916)
+- And many more bug fixes and documentation improvement.
+
+### Breaking change
+
+- [transition] Improve interoperability with react-transition-group (#8830) @
+
+```diff
+         <Grow
+-          transitionDuration={{
++          timeout={{
+             enter: enterDuration,
+             exit: leaveDuration,
+           }}
+         />
+```
+
+- [transition] Allow more accurate PropTypes (#8858) @apieceofbart
+
+```diff
+-    <Dialog transition={<Slide direction="left" />} />;
++    const Transition = props => <Slide direction="left" {...props} />
++    <Dialog transition={Transition} />;
+
+-    <Snackbar transition={<Slide direction="left" />} />;
++    const Transition = props => <Slide direction="left" {...props} />
++    <Snackbar transition={Transition} />;
+```
+
+- [RTL] Make Right-to-left optional (#8916) @
+
+`jss-rtl` needs to be installed and added to jss by the users.  We do no longer do it by default.
+
+#### Component Fixes / Enhancements
+
+- [Popover] Add a marginThreshold property (#8815) @eyn
+- [Tabs] Fix consecutive updates (#8831) @
+- [TextField] Support adornment full width (#8835) @
+- [TextField] Fix dirty state update (#8879) @
+- [breakpoints] Increase step to 5, fix media query matching on Safari (#8846) @dangh
+- [Input] Fix disabled state (#8848) @
+- [Input] Fix inputProps overwriting className (#8867) @johnnynia
+- [Input] Ignore underline pointer events (#8885) @johnnynia
+- [Input] Made the labels for adorned elements not shrink on end adornment (#8882) @kf6kjg
+- [Popover] Warn when the height of the Popover is too tall (#8839) @amilagm
+- [Tooltip] Fix resize issue (#8862) @
+- [CircularProgress] Add "inherit" color option (#8871) @dapetcu21
+- [Select] Fix array mutability flow annotation (#8870) @dapetcu21
+- [Dialog] Fix IE11 overflow bug (#8877) @sakulstra
+- [Menu] Add a PopoverClasses property (#8884) @johnnynia
+- [CircularProgress] Add thickness property to .t.ds file (#8888) @jportela
+- [Slider] Shouldn't be visible when in=false (#8894) @
+- [Collapse] Fix height computation (#8895) @
+- [withStyles] Better handle react-hot-loader (#8897) @
+
+#### Docs
+
+- [docs] Fix wrong SSR path location (#8822) @lukePeavey
+- [docs] Fix some issues I have noticed (#8826) @
+- [docs] Fix typos in input adornments example (#8836) @leMaik
+- [docs] Better onboarding experience (#8851) @
+- [docs] Show disabled MenuItem (#8853) @ojathelonius
+- [docs] Fix Typos (#8860) @shtam
+- [docs] Update Popover component readme (#8865) @gregnb
+- [docs] Move the font link of CRA for codesandbox (f068f50187b2cc520d3af1276578d9ed951811b7) @
+- [docs] Show how to change the color of the TextField (#8880) @
+- [docs] Simpler IconMenu example (#8892) @
+- [docs] Temporary fix for SSR issue with Portal (#8907) @
+
+#### Core
+
+- [flow] Add config lint (#8834) @rosskevin
+- [core] Upgrade the dependencies (#8852) @
+- [core] Fix missing typings in /es folder (#8887) @NeoLegends
+- [core] Upgrade to react@16 (#8889) @
+- [core] Upgrade size-limit (#8899) @
+- [Table] Increase test coverage (#8910) @leMaik
+- [test] Increase test coverage (#8908) @
+
 ## 1.0.0-beta.18
 ###### _Oct 24, 2017_
 
