@@ -55,15 +55,6 @@ You can make a theme dark by setting `type` to `dark`.
 
 {{demo='pages/customization/DarkTheme.js'}}
 
-### Right to Left Support
-
-To change the direction of material-ui components you must do 2 things:
-
-1. Make sure `dir="rtl"` is set on **body**, otherwise native components and portals will break.
-2. Set `direction: 'rtl'` on your custom theme.
-
-{{demo='pages/customization/Direction.js'}}
-
 ### The other variables
 
 We have tried to normalize the implementation by adding many more variables: typography, breakpoints, transitions, etc. You can see below what the theme object looks like with the default values.

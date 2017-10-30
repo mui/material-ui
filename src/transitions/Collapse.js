@@ -23,7 +23,7 @@ export const styles = (theme: Object) => ({
     display: 'flex',
   },
   wrapperInner: {
-    flexGrow: '1',
+    width: '100%',
   },
 });
 

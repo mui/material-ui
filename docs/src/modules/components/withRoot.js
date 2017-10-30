@@ -93,6 +93,10 @@ const pages = [
       {
         pathname: '/guides/typescript',
       },
+      {
+        pathname: '/guides/right-to-left',
+        title: 'Right-to-left',
+      },
     ],
   },
   {
