@@ -82,12 +82,14 @@ class AppWrapper extends React.Component<any, any> {
     const { children, sheetsRegistry } = this.props;
 
     return (
+      <JssProvider registry={sheetsRegistry} jss={this.styleContext.jss}>
         <MuiThemeProvider
           theme={this.styleContext.theme}
           sheetsManager={this.styleContext.sheetsManager}
         >
           <AppFrame>{children}</AppFrame>
         </MuiThemeProvider>
+      </JssProvider>
     );
   }
 }
