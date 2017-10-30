@@ -2,32 +2,6 @@
 
 If you're reading this, you're awesome! Thank you for helping us make this project great and being a part of the Material-UI community. Here are a few guidelines that will help you along the way.
 
-## Asking Questions
-
-For how-to questions and other non-issues, please use [StackOverflow](http://stackoverflow.com/questions/tagged/material-ui) or [Gitter](https://gitter.im/callemall/material-ui) chat instead of Github issues. There is a StackOverflow tag called "material-ui" that you can use to tag your questions.
-
-## Opening an Issue
-
-If you think you have found a bug, or have a new feature idea, please start by making sure it hasn't already been [reported or fixed](https://github.com/callemall/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed). You can search through existing issues and PRs to see if someone has reported one similar to yours.
-
-Next, create a new issue that briefly explains the problem, and provides a bit of background as to the circumstances that triggered it, and steps to reproduce it.
-
-For code issues please include:
-- Material-UI version
-- React version
-- Browser version
-- A code example or link to a repo, gist or running site.
-
-For visual or layout problems, images or animated gifs can help explain your issue.
-
-For feature requests please include a link to the relevant section of Material Design spec, or a screenshot.
-
-### Issue Guidelines
-
-- Please begin the title with '[ComponentName]' where appropriate, and use a succint description. "doesn't work" doesn't help others find similar issues.
-- Please don't group multiple topics into one issue, but instead each should be its own issue.
-- And please don't just comment '+1' on an issue. It spams the maintainers and doesn't help move the issue forward.
-
 ## Submitting a Pull Request
 
 Material-UI is a community project, so pull requests are always welcome, but before working on a large change, it is best to open an issue first to discuss it with the maintainers.
@@ -92,3 +66,4 @@ To get a sense of where Material-UI is heading, or for ideas on where you could 
 ## License
 
 By contributing your code to the callemall/material-ui GitHub repository, you agree to license your contribution under the MIT license.
+
