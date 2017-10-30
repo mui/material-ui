@@ -47,6 +47,11 @@ export class DatePicker extends PureComponent {
     return moment(this.props.maxDate);
   }
 
+  handleYearSelect = (date) => {
+    this.props.onChange(date);
+    this.openCalendar();
+  }
+
   openYearSelection = () => {
     this.setState({ showYearSelection: true });
   }
@@ -55,10 +60,6 @@ export class DatePicker extends PureComponent {
     this.setState({ showYearSelection: false });
   }
 
-  onYearSelect = (date) => {
-    this.props.onChange(date);
-    this.openCalendar();
-  }
 
   render() {
     const {
@@ -91,7 +92,7 @@ export class DatePicker extends PureComponent {
             ?
               <YearSelection
                 date={this.date}
-                onChange={this.onYearSelect}
+                onChange={this.handleYearSelect}
                 minDate={this.minDate}
                 maxDate={this.maxDate}
                 disableFuture={disableFuture}
