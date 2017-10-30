@@ -35,4 +35,9 @@ describe('<TableHead />', () => {
     const wrapper = shallow(<TableHead>{children}</TableHead>);
     assert.strictEqual(wrapper.childAt(0).equals(children), true);
   });
+
+  it('should define table.head in the child context', () => {
+    const wrapper = shallow(<TableHead />);
+    assert.strictEqual(wrapper.instance().getChildContext().table.head, true);
+  });
 });
