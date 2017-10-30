@@ -21,6 +21,7 @@ export class DateTimePickerModal extends Component {
     minDate: DomainPropTypes.date,
     maxDate: DomainPropTypes.date,
     showTabs: PropTypes.bool,
+    returnMoment: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -33,6 +34,7 @@ export class DateTimePickerModal extends Component {
     minDate: undefined,
     maxDate: undefined,
     showTabs: true,
+    returnMoment: true,
   }
 
   state = {
@@ -40,7 +42,11 @@ export class DateTimePickerModal extends Component {
   }
 
   handleAccept = () => {
-    this.props.onChange(this.state.date);
+    const dateToReturn = this.props.returnMoment
+      ? this.state.date
+      : this.state.date.toDate();
+
+    this.props.onChange(dateToReturn);
   }
 
   handleDismiss = () => {
@@ -73,6 +79,7 @@ export class DateTimePickerModal extends Component {
       showTabs,
       autoSubmit,
       disableFuture,
+      returnMoment,
       ...other
     } = this.props;
 
@@ -85,7 +92,6 @@ export class DateTimePickerModal extends Component {
         format={format}
         onAccept={this.handleAccept}
         onDismiss={this.handleDismiss}
-        date={date}
         dialogContentClassName={dialogClassName}
         {...other}
       >

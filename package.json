@@ -1,6 +1,6 @@
 {
   "name": "material-ui-pickers",
-  "version": "1.0.0-alpha.7",
+  "version": "1.0.0-alpha.8g",
   "description": "React components, that implements material design pickers for material-ui v1",
   "main": "dist/material-ui-pickers.cjs.js",
   "module": "dist/material-ui-pickers.es.js",

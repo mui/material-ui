@@ -16,12 +16,14 @@ export default class TimePickerModal extends PureComponent {
     format: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     autoOk: PropTypes.bool,
+    returnMoment: PropTypes.bool,
   }
 
   static defaultProps = {
     value: new Date(),
     format: 'hh:mm A',
     autoOk: false,
+    returnMoment: true,
   }
 
   state = {
@@ -38,7 +40,11 @@ export default class TimePickerModal extends PureComponent {
   }
 
   handleAccept = () => {
-    this.props.onChange(this.state.time);
+    const dateToReturn = this.props.returnMoment
+      ? this.state.date
+      : this.state.date.toDate();
+
+    this.props.onChange(dateToReturn);
   }
 
   handleDismiss = () => {
@@ -52,7 +58,7 @@ export default class TimePickerModal extends PureComponent {
   render() {
     const { time } = this.state;
     const {
-      value, format, autoOk, onChange,
+      value, format, autoOk, onChange, returnMoment,
       ...other
     } = this.props;
 
@@ -63,7 +69,6 @@ export default class TimePickerModal extends PureComponent {
         format={format}
         onAccept={this.handleAccept}
         onDismiss={this.handleDismiss}
-        date={time}
         {...other}
       >
         <TimePicker
