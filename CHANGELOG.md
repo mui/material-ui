@@ -8,12 +8,12 @@ Changes. Changes everywhere!
 Big thanks to the 17 contributors who made this release possible.
 
 Here are some highlights ✨:
-- We managed to do it! We have upgraded all the dependencies to react@16 ✨. (#8889)
-We will keep react@15 support for some time in order to help the migration from v0.x to v1.x.
+- We managed to do it! We have upgraded all the dependencies to react@16 🚀. (#8889)
+  We will keep react@15 support for some time in order to help the migration from v0.x to v1.x.
 - We fixed an important bug of `withStyles()` with react-hot-loader.
-Thanks a lot @rrousselGit for the support. (#8897)
+  Thanks a lot @rrousselGit for the support. (#8897)
 - We have introduced 3 soft breaking changes. (#8830, #8858, #8916)
-- And many more bug fixes and documentation improvement.
+- And many more bug fixes and documentation improvements.
 
 ### Breaking change
 
