@@ -11,6 +11,7 @@ const rowsHeight = 24;
 export const styles = {
   root: {
     position: 'relative', // because the shadow has position: 'absolute',
+    width: '100%',
   },
   textarea: {
     width: '100%',
