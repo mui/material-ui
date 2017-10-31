@@ -120,7 +120,7 @@ class MenuList extends React.Component<Props, State> {
   focus() {
     const { currentTabIndex } = this.state;
     const list = findDOMNode(this.list);
-    if (!list || !list.children) {
+    if (!list || !list.children || !list.firstChild) {
       return;
     }
 
