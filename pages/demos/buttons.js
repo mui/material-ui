@@ -38,6 +38,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/buttons/IconButtons'), 'utf8')
 `,
         },
+        'pages/demos/buttons/IconLabelButtons.js': {
+          js: require('docs/src/pages/demos/buttons/IconLabelButtons').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/buttons/IconLabelButtons'), 'utf8')
+`,
+        },
         'pages/demos/buttons/ButtonBases.js': {
           js: require('docs/src/pages/demos/buttons/ButtonBases').default,
           raw: preval`
