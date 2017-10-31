@@ -3,7 +3,7 @@ Demo project for material-ui-picker
 First of all want to thanks for taking your time to contribute 🎉
 There is a little instruction of how to run the demo locally using `npm link`
 
-Just run this command to create and you will be able to run demo.
+Just run this command from root and you will be able to run demo.
 
 ```sh
 npm link && cd docs && npm link material-ui-pickers
