@@ -35,6 +35,10 @@ const BottomNavigation = (props, context) => {
   const styles = getStyles(props, context);
 
   const preparedChildren = Children.map(children, (child, index) => {
+    if (!child) {
+      return null;
+    }
+
     return cloneElement(child, {
       style: Object.assign({}, styles.item, child.props.style),
       selected: index === selectedIndex,
