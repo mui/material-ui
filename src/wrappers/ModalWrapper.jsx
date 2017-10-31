@@ -6,16 +6,19 @@ import DomainPropTypes from '../constants/prop-types';
 
 export default class ModalWrapper extends PureComponent {
   static propTypes = {
-    value: DomainPropTypes.date.isRequired,
+    value: DomainPropTypes.date,
     children: PropTypes.node.isRequired,
     format: PropTypes.string.isRequired,
     onAccept: PropTypes.func.isRequired,
     onDismiss: PropTypes.func.isRequired,
     dialogContentClassName: PropTypes.string,
+    invalidLabel: PropTypes.string,
   }
 
   static defaultProps = {
     dialogContentClassName: '',
+    invalidLabel: undefined,
+    value: new Date(),
   }
 
   state = {
@@ -44,6 +47,7 @@ export default class ModalWrapper extends PureComponent {
       dialogContentClassName,
       onAccept,
       onDismiss,
+      invalidLabel,
       ...other
     } = this.props;
 
@@ -53,6 +57,7 @@ export default class ModalWrapper extends PureComponent {
           value={value}
           format={format}
           onClick={this.togglePicker}
+          invalidLabel={invalidLabel}
           {...other}
         />
 

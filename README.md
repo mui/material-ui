@@ -87,6 +87,7 @@ minDate | date | '1900-01-01' | Minimum selectable date
 maxDate | date | '2100-01-01' | Maximum selectable date
 onChange | func | required | Callback firing when date accepted
 returnMoment | boolean | true | Will return moment object in onChange
+invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed (or null)
 
 #### Timepicker
 Prop | Type | Default | Definition
@@ -96,6 +97,7 @@ format | string | 'MMMM Do' | Moment format string for input
 autoOk | boolean | false | Auto accept time on selection
 onChange | func | required | Callback firing when date accepted
 returnMoment | boolean | true | Will return moment object in onChange
+invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed (or null)
 
 #### DateTimepicker
 Prop | Type | Default | Definition
@@ -111,6 +113,7 @@ minDate | date | '1900-01-01' | Minimum selectable date
 maxDate | date | '2100-01-01' | Maximum selectable date
 onChange | func | required | Callback firing when date accepted
 returnMoment | boolean | true | Will return moment object in onChangeg
+invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed (or null)
 
 ### Known Issues
 1. 24 hour displaying for timepicker (now supporting only am/pm)

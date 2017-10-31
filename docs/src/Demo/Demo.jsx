@@ -13,15 +13,10 @@ class Demo extends Component {
 
   state = {
     selectedDate: new Date(),
-    selectedTime: new Date()
   }
 
   handleDateChange = date => {
     this.setState({ selectedDate: date })
-  }
-
-  handleTimeChange = time => {
-    this.setState({ selectedTime: time })
   }
 
   scrollToContent = () => {
@@ -103,9 +98,8 @@ class Demo extends Component {
               </Typography>
 
               <TimePicker autoOk
-                value={this.state.selectedTime}
-                format="hh:mm a"
-                onChange={this.handleTimeChange}
+                value={this.state.selectedDate}
+                onChange={this.handleDateChange}
               />
             </div>
           </div>
