@@ -1,6 +1,6 @@
 {
   "name": "material-ui-pickers",
-  "version": "1.0.0-alpha.8g",
+  "version": "1.0.0-alpha.8",
   "description": "React components, that implements material design pickers for material-ui v1",
   "main": "dist/material-ui-pickers.cjs.js",
   "module": "dist/material-ui-pickers.es.js",
@@ -45,7 +45,8 @@
     "start": "cross-env NODE_ENV=development rollup --config --watch",
     "build": "cross-env NODE_ENV=development rollup --config",
     "webpack": "webpack",
-    "lint": "eslint ./src/**/*.js*"
+    "lint": "eslint ./src/**/*.js*",
+    "prepublish": "npm run test && npm run lint && npm run build"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
