@@ -30,7 +30,6 @@ export default class DateTextField extends Component {
 
   getDisplayDate = () => {
     const { value, format, invalidLabel } = this.props;
-    console.log(value);
     const date = moment(value);
 
     return date.isValid()
