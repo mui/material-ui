@@ -10,6 +10,18 @@ describe('<BottomNavigation />', () => {
   const muiTheme = getMuiTheme();
   const shallowWithContext = (node) => shallow(node, {context: {muiTheme}});
 
+  it('renders with a null child', () => {
+    const wrapper = shallowWithContext(
+      <BottomNavigation>
+        <BottomNavigationItem />
+        {null}
+        <BottomNavigationItem />
+      </BottomNavigation>
+    );
+
+    assert.strictEqual(wrapper.find(BottomNavigationItem).length, 2);
+  });
+
   describe('prop: selectedIndex', () => {
     it('determines which BottomNavigationItem is selected', () => {
       const wrapper = shallowWithContext(
