@@ -18,22 +18,31 @@ export default class DatePickerModal extends PureComponent {
     animateYearScrolling: PropTypes.bool,
     openToYearSelection: PropTypes.bool,
     returnMoment: PropTypes.bool,
+    invalidLabel: PropTypes.string,
   }
 
   static defaultProps = {
     value: new Date(),
     format: 'MMMM Do',
     autoOk: false,
+    returnMoment: true,
     minDate: undefined,
     maxDate: undefined,
     disableFuture: undefined,
     animateYearScrolling: undefined,
     openToYearSelection: undefined,
-    returnMoment: true,
+    invalidLabel: undefined,
+  }
+
+  /* eslint-disable react/sort-comp */
+  getValidDateOrCurrent = () => {
+    const date = moment(this.props.value);
+
+    return date.isValid() ? date : moment();
   }
 
   state = {
-    date: moment(this.props.value),
+    date: this.getValidDateOrCurrent(),
   }
 
   handleChange = (date) => {
@@ -54,7 +63,7 @@ export default class DatePickerModal extends PureComponent {
   }
 
   handleDismiss = () => {
-    this.setState({ date: moment(this.props.value) });
+    this.setState({ date: this.getValidDateOrCurrent() });
   }
 
   togglePicker = () => {
@@ -74,6 +83,7 @@ export default class DatePickerModal extends PureComponent {
       animateYearScrolling,
       openToYearSelection,
       returnMoment,
+      invalidLabel,
       ...other
     } = this.props;
 
@@ -84,6 +94,7 @@ export default class DatePickerModal extends PureComponent {
         format={format}
         onAccept={this.handleAccept}
         onDismiss={this.handleDismiss}
+        invalidLabel={invalidLabel}
         {...other}
       >
         <DatePicker

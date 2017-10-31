@@ -17,6 +17,7 @@ export default class TimePickerModal extends PureComponent {
     onChange: PropTypes.func.isRequired,
     autoOk: PropTypes.bool,
     returnMoment: PropTypes.bool,
+    invalidLabel: PropTypes.string,
   }
 
   static defaultProps = {
@@ -24,14 +25,22 @@ export default class TimePickerModal extends PureComponent {
     format: 'hh:mm A',
     autoOk: false,
     returnMoment: true,
+    invalidLabel: undefined,
+  }
+
+  /* eslint-disable react/sort-comp */
+  getValidDateOrCurrent = () => {
+    const date = moment(this.props.value);
+
+    return date.isValid() ? date : moment();
   }
 
   state = {
-    time: moment(this.props.value),
+    date: this.getValidDateOrCurrent(),
   }
 
-  handleChange = (time, isFinish) => {
-    this.setState({ time }, () => {
+  handleChange = (date, isFinish) => {
+    this.setState({ date }, () => {
       if (isFinish && this.props.autoOk) {
         this.handleAccept();
         this.togglePicker();
@@ -48,7 +57,7 @@ export default class TimePickerModal extends PureComponent {
   }
 
   handleDismiss = () => {
-    this.setState({ time: moment(this.props.value) });
+    this.setState({ date: this.getValidDateOrCurrent() });
   }
 
   togglePicker = () => {
@@ -56,9 +65,9 @@ export default class TimePickerModal extends PureComponent {
   }
 
   render() {
-    const { time } = this.state;
+    const { date } = this.state;
     const {
-      value, format, autoOk, onChange, returnMoment,
+      value, format, autoOk, onChange, returnMoment, invalidLabel,
       ...other
     } = this.props;
 
@@ -69,10 +78,11 @@ export default class TimePickerModal extends PureComponent {
         format={format}
         onAccept={this.handleAccept}
         onDismiss={this.handleDismiss}
+        invalidLabel={invalidLabel}
         {...other}
       >
         <TimePicker
-          date={time}
+          date={date}
           onChange={this.handleChange}
         />
       </ModalWrapper>
