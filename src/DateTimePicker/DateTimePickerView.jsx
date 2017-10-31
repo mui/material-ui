@@ -23,6 +23,8 @@ const styles = {
     pointerEvents: 'none',
     visibility: 'hidden', // required for saving scrolls state
     position: 'absolute', // remove relation for layout
+    left: '-9999px',
+    top: '-9999px',
   },
 };
 

@@ -4,6 +4,9 @@ import classnames from 'classnames';
 import { Dialog, DialogActions, DialogContent, Button, withStyles } from 'material-ui';
 
 const styles = {
+  dialogRoot: {
+
+  },
   dialog: {
     width: 300,
     height: 420,
@@ -20,7 +23,7 @@ const ModalDialog = (props) => {
   } = props;
 
   return (
-    <Dialog {...other}>
+    <Dialog classes={{ paper: classes.dialogRoot }} {...other}>
       <DialogContent className={classnames(classes.dialog, dialogContentClassName)}>
         { children }
       </DialogContent>
