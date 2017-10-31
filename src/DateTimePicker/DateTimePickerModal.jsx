@@ -22,6 +22,7 @@ export class DateTimePickerModal extends Component {
     maxDate: DomainPropTypes.date,
     showTabs: PropTypes.bool,
     returnMoment: PropTypes.bool,
+    invalidLabel: PropTypes.string,
   }
 
   static defaultProps = {
@@ -35,10 +36,18 @@ export class DateTimePickerModal extends Component {
     maxDate: undefined,
     showTabs: true,
     returnMoment: true,
+    invalidLabel: undefined,
+  }
+
+  /* eslint-disable react/sort-comp */
+  getValidDateOrCurrent = () => {
+    const date = moment(this.props.value);
+
+    return date.isValid() ? date : moment();
   }
 
   state = {
-    date: moment(this.props.value),
+    date: this.getValidDateOrCurrent(),
   }
 
   handleAccept = () => {
@@ -50,7 +59,7 @@ export class DateTimePickerModal extends Component {
   }
 
   handleDismiss = () => {
-    this.setState({ date: moment(this.props.value) });
+    this.setState({ date: this.getValidDateOrCurrent() });
   }
 
   handleChange = (date, isFinish) => {
@@ -80,6 +89,7 @@ export class DateTimePickerModal extends Component {
       autoSubmit,
       disableFuture,
       returnMoment,
+      invalidLabel,
       ...other
     } = this.props;
 
@@ -93,6 +103,7 @@ export class DateTimePickerModal extends Component {
         onAccept={this.handleAccept}
         onDismiss={this.handleDismiss}
         dialogContentClassName={dialogClassName}
+        invalidLabel={invalidLabel}
         {...other}
       >
         <DateTimePicker

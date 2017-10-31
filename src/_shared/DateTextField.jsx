@@ -10,15 +10,17 @@ export default class DateTextField extends Component {
       PropTypes.string,
       PropTypes.number,
       PropTypes.instanceOf(Date),
-    ]).isRequired,
+    ]),
     disabled: PropTypes.bool,
     format: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
-    // onChange: PropTypes.func.isRequired,
+    invalidLabel: PropTypes.string,
   }
 
   static defaultProps = {
     disabled: false,
+    invalidLabel: 'Unknown',
+    value: new Date(),
   }
 
   shouldComponentUpdate = nextProps => (
@@ -27,9 +29,13 @@ export default class DateTextField extends Component {
   )
 
   getDisplayDate = () => {
-    const { value, format } = this.props;
+    const { value, format, invalidLabel } = this.props;
+    console.log(value);
+    const date = moment(value);
 
-    return moment(value).format(format);
+    return date.isValid()
+      ? date.format(format)
+      : invalidLabel;
   }
 
   handleChange = (e) => {
@@ -52,7 +58,7 @@ export default class DateTextField extends Component {
 
   render() {
     const {
-      value, format, disabled, onClick, ...other
+      value, format, disabled, onClick, invalidLabel, ...other
     } = this.props;
 
     return (
