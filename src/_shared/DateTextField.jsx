@@ -11,8 +11,14 @@ export default class DateTextField extends Component {
       PropTypes.number,
       PropTypes.instanceOf(Date),
     ]).isRequired,
+    disabled: PropTypes.bool,
     format: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
     // onChange: PropTypes.func.isRequired,
+  }
+
+  static defaultProps = {
+    disabled: false,
   }
 
   shouldComponentUpdate = nextProps => (
@@ -36,14 +42,26 @@ export default class DateTextField extends Component {
     }
   }
 
+  handleClick = (e) => {
+    const { disabled, onClick } = this.props;
+
+    if (!disabled) {
+      onClick(e);
+    }
+  }
+
   render() {
-    const { value, format, ...other } = this.props;
+    const {
+      value, format, disabled, onClick, ...other
+    } = this.props;
 
     return (
       <TextField
         readOnly
         value={this.getDisplayDate()}
         onChange={this.handleChange}
+        disabled={disabled}
+        onClick={this.handleClick}
         {...other}
       />
     );
