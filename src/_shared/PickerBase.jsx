@@ -28,6 +28,12 @@ export default class PickerBase extends PureComponent {
     date: this.getValidDateOrCurrent(),
   }
 
+  componentDidUpdate = (prevProps) => {
+    if (this.props.value !== prevProps.value) {
+      this.setState({ date: this.getValidDateOrCurrent() });
+    }
+  }
+
   handleAccept = () => {
     const dateToReturn = this.props.returnMoment
       ? this.state.date
