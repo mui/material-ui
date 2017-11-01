@@ -33,6 +33,10 @@ export interface StyledComponentProps<ClassKey extends string = string> {
 export default function withStyles<ClassKey extends string>(
   style: StyleRules<ClassKey> | StyleRulesCallback<ClassKey>,
   options?: WithStylesOptions
-): <P>(
-  component: React.ComponentType<P & WithStyles<ClassKey>>
-) => React.ComponentType<P & StyledComponentProps<ClassKey>>;
+): {
+  <P>(
+    component: React.ComponentType<P & WithStyles<ClassKey>>
+  ): React.ComponentType<P & StyledComponentProps<ClassKey>>
+  
+  _StyleProps: WithStyles<ClassKey>
+};
