@@ -24,6 +24,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/customization/TypographyTheme'), 'utf8')
 `,
         },
+        'pages/customization/FontSizeTheme.js': {
+          js: require('docs/src/pages/customization/FontSizeTheme').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/customization/FontSizeTheme'), 'utf8')
+`,
+        },
         'pages/customization/DarkTheme.js': {
           js: require('docs/src/pages/customization/DarkTheme').default,
           raw: preval`

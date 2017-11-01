@@ -68,6 +68,7 @@ export const styles = (theme: Object) => {
       position: 'relative',
       fontFamily: theme.typography.fontFamily,
       color: theme.palette.input.inputText,
+      fontSize: theme.typography.pxToRem(16),
     },
     formControl: {
       'label + &': {

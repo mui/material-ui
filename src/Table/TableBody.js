@@ -8,7 +8,7 @@ import withStyles from '../styles/withStyles';
 
 export const styles = (theme: Object) => ({
   root: {
-    fontSize: 13,
+    fontSize: theme.typography.pxToRem(13),
     color: theme.palette.text.primary,
   },
 });
