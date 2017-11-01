@@ -33,7 +33,7 @@ Any other properties supplied will be [spread to the root element](/customizatio
 
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
-- `root`
+- `paper`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/callemall/material-ui/tree/v1-beta/src/Menu/Menu.js)
