@@ -6,9 +6,9 @@ import { createShallow, getClasses } from '../test-utils';
 import Paper from '../Paper';
 import type { Breakpoint } from '../styles/createBreakpoints';
 import Dialog from './Dialog';
-import withResponsiveFullScreen from './withResponsiveFullScreen';
+import withMobileDialog from './withMobileDialog';
 
-describe('withResponsiveFullScreen', () => {
+describe('withMobileDialog', () => {
   let shallow;
   let classes;
 
@@ -20,7 +20,7 @@ describe('withResponsiveFullScreen', () => {
   function isFullScreen(breakpoints: Array<Breakpoint>, width: Breakpoint) {
     breakpoints.forEach(breakpoint => {
       it(`is for width: ${width} <= ${breakpoint}`, () => {
-        const ResponsiveDialog = withResponsiveFullScreen({ breakpoint })(Dialog);
+        const ResponsiveDialog = withMobileDialog({ breakpoint })(Dialog);
         const wrapper = shallow(<ResponsiveDialog width={width} />);
         // the fullscreen class on the Paper element
         assert.strictEqual(wrapper.find(Paper).hasClass(classes.fullScreen), true);
@@ -31,7 +31,7 @@ describe('withResponsiveFullScreen', () => {
   function isNotFullScreen(breakpoints: Array<Breakpoint>, width: Breakpoint) {
     breakpoints.forEach(breakpoint => {
       it(`is not for width: ${width} > ${breakpoint}`, () => {
-        const ResponsiveDialog = withResponsiveFullScreen({ breakpoint })(Dialog);
+        const ResponsiveDialog = withMobileDialog({ breakpoint })(Dialog);
         const wrapper = shallow(<ResponsiveDialog width={width} />);
         assert.strictEqual(wrapper.find(Paper).hasClass(classes.fullScreen), false);
       });

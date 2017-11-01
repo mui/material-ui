@@ -53,7 +53,7 @@ import Table, {
   TableRow,
 } from '../../src/Table';
 import { withStyles, StyleRulesCallback } from '../../src/styles';
-import { withResponsiveFullScreen, DialogProps } from '../../src/Dialog';
+import { withMobileDialog, DialogProps } from '../../src/Dialog';
 import { WithStyles } from '../../src/styles/withStyles';
 import GridListTile from '../../src/GridList/GridListTile';
 
@@ -797,7 +797,7 @@ const SelectTest = () => {
 };
 
 const ResponsiveComponentTest = () => {
-  const ResponsiveComponent = withResponsiveFullScreen({
+  const ResponsiveComponent = withMobileDialog({
     breakpoint: 'sm',
   })(({ children, width }) =>
     <div style={{ width }}>
@@ -806,7 +806,7 @@ const ResponsiveComponentTest = () => {
   );
   <ResponsiveComponent />;
 
-  const ResponsiveDialogComponent = withResponsiveFullScreen<DialogProps>({
+  const ResponsiveDialogComponent = withMobileDialog<DialogProps>({
     breakpoint: 'sm',
   })(Dialog);
 };

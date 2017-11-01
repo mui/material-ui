@@ -1,15 +1,17 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import Dialog, {
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
+  withMobileDialog,
 } from 'material-ui/Dialog';
 
-class AlertDialog extends React.Component {
+class ResponsiveDialog extends React.Component {
   state = {
     open: false,
   };
@@ -23,10 +25,16 @@ class AlertDialog extends React.Component {
   };
 
   render() {
+    const { fullScreen } = this.props;
+
     return (
       <div>
-        <Button onClick={this.handleClickOpen}>Open alert dialog</Button>
-        <Dialog open={this.state.open} onRequestClose={this.handleRequestClose}>
+        <Button onClick={this.handleClickOpen}>Open responsive dialog</Button>
+        <Dialog
+          fullScreen={fullScreen}
+          open={this.state.open}
+          onRequestClose={this.handleRequestClose}
+        >
           <DialogTitle>{"Use Google's location service?"}</DialogTitle>
           <DialogContent>
             <DialogContentText>
@@ -48,4 +56,8 @@ class AlertDialog extends React.Component {
   }
 }
 
-export default AlertDialog;
+ResponsiveDialog.propTypes = {
+  fullScreen: PropTypes.bool.isRequired,
+};
+
+export default withMobileDialog()(ResponsiveDialog);
