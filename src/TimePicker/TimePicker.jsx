@@ -37,7 +37,7 @@ export class TimePicker extends Component {
       this.openMinutesView();
     }
 
-    this.props.onChange(time);
+    this.props.onChange(time, false);
   }
 
   openMinutesView = () => {

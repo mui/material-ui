@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+
 import classnames from 'classnames';
 import { withStyles } from 'material-ui';
 
 import DomainPropTypes from '../constants/prop-types';
 import ModalWrapper from '../wrappers/ModalWrapper';
 import DateTimePicker from './DateTimePicker';
+import PickerBase from '../_shared/PickerBase';
 
-export class DateTimePickerModal extends Component {
+export class DateTimePickerWrapper extends PickerBase {
   static propTypes = {
     value: DomainPropTypes.date,
     format: PropTypes.string,
@@ -37,42 +38,6 @@ export class DateTimePickerModal extends Component {
     showTabs: true,
     returnMoment: true,
     invalidLabel: undefined,
-  }
-
-  /* eslint-disable react/sort-comp */
-  getValidDateOrCurrent = () => {
-    const date = moment(this.props.value);
-
-    return date.isValid() ? date : moment();
-  }
-
-  state = {
-    date: this.getValidDateOrCurrent(),
-  }
-
-  handleAccept = () => {
-    const dateToReturn = this.props.returnMoment
-      ? this.state.date
-      : this.state.date.toDate();
-
-    this.props.onChange(dateToReturn);
-  }
-
-  handleDismiss = () => {
-    this.setState({ date: this.getValidDateOrCurrent() });
-  }
-
-  handleChange = (date, isFinish) => {
-    this.setState({ date }, () => {
-      if (isFinish && this.props.autoOk) {
-        this.handleAccept();
-        this.togglePicker();
-      }
-    });
-  }
-
-  togglePicker = () => {
-    this.wrapper.togglePicker();
   }
 
   render() {
@@ -131,5 +96,5 @@ const styles = {
   },
 };
 
-export default withStyles(styles, { name: 'MuiPickerDTPickerModal' })(DateTimePickerModal);
+export default withStyles(styles, { name: 'MuiPickerDTPickerModal' })(DateTimePickerWrapper);
 
