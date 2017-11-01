@@ -4,9 +4,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import JssProvider from 'react-jss/lib/JssProvider';
 import { MuiThemeProvider } from 'material-ui/styles';
 import getContext, { getTheme } from 'docs/src/modules/styles/getContext';
+import JssProvider from 'docs/src/modules/components/JssProvider';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import { lightTheme, darkTheme, setPrismTheme } from 'docs/src/modules/utils/prism';
 import config from 'docs/src/config';
@@ -82,7 +82,11 @@ class AppWrapper extends React.Component<any, any> {
     const { children, sheetsRegistry } = this.props;
 
     return (
-      <JssProvider registry={sheetsRegistry} jss={this.styleContext.jss}>
+      <JssProvider
+        registry={sheetsRegistry}
+        jss={this.styleContext.jss}
+        generateClassName={this.styleContext.generateClassName}
+      >
         <MuiThemeProvider
           theme={this.styleContext.theme}
           sheetsManager={this.styleContext.sheetsManager}

@@ -84,9 +84,9 @@ class MuiThemeProvider extends React.Component<Object> {
 
 MuiThemeProvider.propTypes = {
   /**
-   * You can only provide a single element.
+   * You can only provide a single element with react@15, a node with react@16.
    */
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node.isRequired,
   /**
    * You can disable the generation of the styles with this option.
    * It can be useful when traversing the React tree outside of the HTML

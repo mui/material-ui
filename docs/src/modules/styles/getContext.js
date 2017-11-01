@@ -38,6 +38,7 @@ function createContext() {
     sheetsManager: new Map(),
     // This is needed in order to inject the critical CSS.
     sheetsRegistry: new SheetsRegistry(),
+    generateClassName: jss.options.createGenerateClassName(),
   };
 }
 
