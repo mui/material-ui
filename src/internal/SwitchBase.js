@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { Node, Element } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import IconButton from '../IconButton';
@@ -145,6 +146,10 @@ export default function createSwitch(
       icon: defaultIcon,
     };
 
+    static contextTypes = {
+      muiFormControl: PropTypes.object,
+    };
+
     state = {};
 
     componentWillMount() {
@@ -196,7 +201,6 @@ export default function createSwitch(
       } = this.props;
 
       const { muiFormControl } = this.context;
-
       let disabled = disabledProp;
 
       if (muiFormControl) {

@@ -363,8 +363,8 @@ describe('<SwitchBase />', () => {
 
       it('should honor props', () => {
         assert.strictEqual(wrapper.hasClass(classes.disabled), true);
-        wrapper.setProps({ disabled: true });
-        assert.strictEqual(wrapper.hasClass(classes.disabled), true);
+        wrapper.setProps({ disabled: false });
+        assert.strictEqual(wrapper.hasClass(classes.disabled), false);
       });
     });
   });
