@@ -2,8 +2,9 @@
 
 import React from 'react';
 import type { Node } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import withStyles from '../styles/withStyles';
-import createSwitch from '../internal/SwitchBase';
+import createSwitch, { type Props as SwitchBaseProps } from '../internal/SwitchBase';
 import IndeterminateCheckBoxIcon from '../svg-icons/IndeterminateCheckBox';
 
 export const styles = (theme: Object) => ({
@@ -22,9 +23,17 @@ const SwitchBase = createSwitch();
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
+  indeterminate: boolean,
+  indeterminateIcon: Node,
 };
 
 export type Props = {
+  ...SwitchBaseProps,
+
   /**
    * If `true`, the component is checked.
    */
@@ -70,12 +79,12 @@ export type Props = {
   /**
    * If `true`, the component appears indeterminate.
    */
-  indeterminate?: boolean,
+  indeterminate: boolean,
   /**
    * The icon to display when the component is indeterminate.
    * If a string is provided, it will be used as a font ligature.
    */
-  indeterminateIcon?: Node,
+  indeterminateIcon: Node,
   /**
    * Properties applied to the `input` element.
    */
@@ -122,4 +131,6 @@ Checkbox.defaultProps = {
   indeterminateIcon: <IndeterminateCheckBoxIcon />,
 };
 
-export default withStyles(styles, { name: 'MuiCheckbox' })(Checkbox);
+export default withStyles(styles, { name: 'MuiCheckbox' })(
+  (Checkbox: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

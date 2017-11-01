@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { ElementType } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import warning from 'warning';
 import withStyles from '../styles/withStyles';
@@ -28,6 +29,10 @@ export const styles = (theme: Object) => {
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
   component: ElementType,
   elevation: number,
   square: boolean,
@@ -46,16 +51,16 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: ElementType,
+  component: ElementType,
   /**
    * Shadow depth, corresponds to `dp` in the spec.
    * It's accepting values between 0 and 24 inclusive.
    */
-  elevation?: number,
+  elevation: number,
   /**
    * If `true`, rounded corners are disabled.
    */
-  square?: boolean,
+  square: boolean,
 };
 
 function Paper(props: ProvidedProps & Props) {
@@ -91,4 +96,6 @@ Paper.defaultProps = {
   square: false,
 };
 
-export default withStyles(styles, { name: 'MuiPaper' })(Paper);
+export default withStyles(styles, { name: 'MuiPaper' })(
+  (Paper: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

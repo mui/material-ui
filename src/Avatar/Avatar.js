@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { ElementType, Element } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { emphasize } from '../styles/colorManipulator';
@@ -34,6 +35,10 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
   component: ElementType,
 };
 
@@ -69,7 +74,7 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: ElementType,
+  component: ElementType,
   /**
    * Properties applied to the `img` element when the component
    * is used to display an image.
@@ -148,4 +153,6 @@ Avatar.defaultProps = {
   component: 'div',
 };
 
-export default withStyles(styles, { name: 'MuiAvatar' })(Avatar);
+export default withStyles(styles, { name: 'MuiAvatar' })(
+  (Avatar: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

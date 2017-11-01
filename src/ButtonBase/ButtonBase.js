@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { ElementType, Node } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import { findDOMNode } from 'react-dom';
 import classNames from 'classnames';
 import keycode from 'keycode';
@@ -40,14 +41,27 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
+  centerRipple: boolean,
+  focusRipple: boolean,
+  disableRipple: boolean,
+  tabIndex: number | string,
+  type: string,
 };
 
 export type Props = {
   /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
+  /**
    * If `true`, the ripples will be centered.
    * They won't start at the cursor interaction position.
    */
-  centerRipple?: boolean,
+  centerRipple: boolean,
   /**
    * The content of the component.
    */
@@ -73,12 +87,12 @@ export type Props = {
   /**
    * If `true`, the ripple effect will be disabled.
    */
-  disableRipple?: boolean,
+  disableRipple: boolean,
   /**
    * If `true`, the base button will have a keyboard focus ripple.
    * `disableRipple` must also be `false`.
    */
-  focusRipple?: boolean,
+  focusRipple: boolean,
   /**
    * The CSS class applied while the component is keyboard focused.
    */
@@ -143,7 +157,7 @@ export type Props = {
   /**
    * @ignore
    */
-  tabIndex?: number | string,
+  tabIndex: number | string,
   /**
    * @ignore
    */
@@ -391,4 +405,6 @@ class ButtonBase extends React.Component<ProvidedProps & Props, State> {
   }
 }
 
-export default withStyles(styles, { name: 'MuiButtonBase' })(ButtonBase);
+export default withStyles(styles, { name: 'MuiButtonBase' })(
+  (ButtonBase: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

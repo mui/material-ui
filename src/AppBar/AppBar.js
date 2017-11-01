@@ -3,6 +3,7 @@
 
 import React from 'react';
 import type { Node } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -52,6 +53,10 @@ export type Position = 'static' | 'fixed' | 'absolute';
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
   color: Color,
   position: Position,
 };
@@ -72,11 +77,11 @@ export type Props = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color?: Color,
+  color: Color,
   /**
    * The positioning type.
    */
-  position?: Position,
+  position: Position,
 };
 
 function AppBar(props: ProvidedProps & Props) {
@@ -104,4 +109,6 @@ AppBar.defaultProps = {
   position: 'fixed',
 };
 
-export default withStyles(styles, { name: 'MuiAppBar' })(AppBar);
+export default withStyles(styles, { name: 'MuiAppBar' })(
+  (AppBar: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

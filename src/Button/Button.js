@@ -3,6 +3,7 @@
 
 import React from 'react';
 import type { ElementType, Node } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
@@ -153,6 +154,10 @@ export type Color = 'default' | 'inherit' | 'primary' | 'accent' | 'contrast';
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
   color: Color,
   dense: boolean,
   disabled: boolean,
@@ -164,6 +169,10 @@ type ProvidedProps = {
 };
 
 export type Props = {
+  /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
   /**
    * The content of the button.
    */
@@ -179,7 +188,7 @@ export type Props = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color?: Color,
+  color: Color,
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
@@ -189,24 +198,24 @@ export type Props = {
   /**
    * Uses a smaller minWidth, ideal for things like card actions.
    */
-  dense?: boolean,
+  dense: boolean,
   /**
    * If `true`, the button will be disabled.
    */
-  disabled?: boolean,
+  disabled: boolean,
   /**
    * If `true`, the  keyboard focus ripple will be disabled.
    * `disableRipple` must also be true.
    */
-  disableFocusRipple?: boolean,
+  disableFocusRipple: boolean,
   /**
    * If `true`, the ripple effect will be disabled.
    */
-  disableRipple?: boolean,
+  disableRipple: boolean,
   /**
    * If `true`, will use floating action button styling.
    */
-  fab?: boolean,
+  fab: boolean,
   /**
    * The URL to link to when the button is clicked.
    * If defined, an `a` element will be used as the root node.
@@ -215,11 +224,11 @@ export type Props = {
   /**
    * If `true`, the button will use raised styling.
    */
-  raised?: boolean,
+  raised: boolean,
   /**
    * @ignore
    */
-  type?: string,
+  type: string,
 };
 
 function Button(props: ProvidedProps & Props) {
@@ -279,4 +288,6 @@ Button.defaultProps = {
   type: 'button',
 };
 
-export default withStyles(styles, { name: 'MuiButton' })(Button);
+export default withStyles(styles, { name: 'MuiButton' })(
+  (Button: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

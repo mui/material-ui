@@ -1,5 +1,7 @@
 // @flow
 
+import type { ComponentWithDefaultProps } from 'react-flow-types';
+
 import React from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -30,6 +32,7 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
 };
 
 export type Props = {
@@ -74,4 +77,6 @@ Divider.defaultProps = {
   light: false,
 };
 
-export default withStyles(styles, { name: 'MuiDivider' })(Divider);
+export default withStyles(styles, { name: 'MuiDivider' })(
+  (Divider: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

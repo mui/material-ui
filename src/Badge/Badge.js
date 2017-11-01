@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { Node } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -43,11 +44,22 @@ export const styles = (theme: Object) => ({
   },
 });
 
+type Color = 'default' | 'primary' | 'accent';
+
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
+  color: Color,
 };
 
 export type Props = {
+  /**
+   * Other div props.
+   */
+  [otherProp: string]: any,
   /**
    * The content rendered within the badge.
    */
@@ -67,7 +79,7 @@ export type Props = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color?: 'default' | 'primary' | 'accent',
+  color: Color,
 };
 
 function Badge(props: ProvidedProps & Props) {
@@ -89,4 +101,6 @@ Badge.defaultProps = {
   color: 'default',
 };
 
-export default withStyles(styles, { name: 'MuiBadge' })(Badge);
+export default withStyles(styles, { name: 'MuiBadge' })(
+  (Badge: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

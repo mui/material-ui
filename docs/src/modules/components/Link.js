@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { ElementType, Node } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import NextLink from 'next/link';
@@ -56,10 +57,19 @@ OnClick.propTypes = {
 
 type Variant = 'default' | 'primary' | 'accent' | 'button';
 
+type DefaultProps = {
+  activeClassName: string,
+  variant?: Variant,
+};
+
+type ProvidedProps = {
+  classes: Object,
+  theme: Object,
+};
+
 type Props = {
   activeClassName: string,
   children: Node,
-  classes: Object,
   className?: string,
   component?: ElementType,
   href?: string,
@@ -68,7 +78,7 @@ type Props = {
   variant?: Variant,
 };
 
-function Link(props: Props, context: Object) {
+function Link(props: Props & ProvidedProps, context: Object) {
   const {
     activeClassName,
     children: childrenProp,
@@ -139,4 +149,6 @@ Link.defaultProps = {
   activeClassName: 'active',
 };
 
-export default withStyles(styles)(Link);
+export default withStyles(styles)(
+  (Link: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { Node } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
@@ -17,6 +18,11 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
+  disableGutters?: boolean,
 };
 
 export type Props = {
@@ -60,4 +66,6 @@ Toolbar.defaultProps = {
   disableGutters: false,
 };
 
-export default withStyles(styles, { name: 'MuiToolbar' })(Toolbar);
+export default withStyles(styles, { name: 'MuiToolbar' })(
+  (Toolbar: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

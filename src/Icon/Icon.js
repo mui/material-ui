@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { Node } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -34,6 +35,10 @@ export type Color = 'inherit' | 'accent' | 'action' | 'contrast' | 'disabled' | 
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
   color: Color,
 };
 
@@ -53,7 +58,7 @@ export type Props = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color?: Color,
+  color: Color,
 };
 
 function Icon(props: ProvidedProps & Props) {
@@ -81,4 +86,6 @@ Icon.defaultProps = {
 
 Icon.muiName = 'Icon';
 
-export default withStyles(styles, { name: 'MuiIcon' })(Icon);
+export default withStyles(styles, { name: 'MuiIcon' })(
+  (Icon: ComponentWithDefaultProps<DefaultProps, Props & ProvidedProps>),
+);

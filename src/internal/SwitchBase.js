@@ -33,6 +33,13 @@ export const styles = {
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
+  checkedIcon: Node,
+  disableRipple: boolean,
+  icon: Node,
 };
 
 // NB: If changed, please update Checkbox, Switch and Radio
@@ -50,7 +57,11 @@ export type Props = {
    * The icon to display when the component is checked.
    * If a string is provided, it will be used as a font ligature.
    */
-  checkedIcon?: Node,
+  checkedIcon: Node,
+  /**
+   * @ignore
+   */
+  children: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -74,12 +85,12 @@ export type Props = {
   /**
    * If `true`, the ripple effect will be disabled.
    */
-  disableRipple?: boolean,
+  disableRipple: boolean,
   /**
    * The icon to display when the component is unchecked.
    * If a string is provided, it will be used as a font ligature.
    */
-  icon?: Node,
+  icon: Node,
   /**
    * If `true`, the component appears indeterminate.
    */
@@ -139,7 +150,7 @@ export default function createSwitch(
    * @ignore - internal component.
    */
   class SwitchBase extends React.Component<ProvidedProps & Props, State> {
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
       checkedIcon: defaultCheckedIcon,
       disableRipple: false,
       icon: defaultIcon,

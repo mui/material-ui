@@ -23,18 +23,21 @@ export const styles = (theme: Object) => ({
 export type TransitionDuration = number | { enter?: number, exit?: number } | 'auto';
 
 type ProvidedProps = {
-  appear: boolean,
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
+  appear: boolean,
   collapsedHeight: string,
   timeout: TransitionDuration,
-  theme: Object,
 };
 
 export type Props = {
   /**
    * @ignore
    */
-  appear?: boolean,
+  appear: boolean,
   /**
    * The content node to be collapsed.
    */
@@ -46,7 +49,7 @@ export type Props = {
   /**
    * The height of the container when collapsed.
    */
-  collapsedHeight?: string,
+  collapsedHeight: string,
   /**
    * If `true`, the component will transition in.
    */
@@ -85,13 +88,17 @@ export type Props = {
    *
    * Set to 'auto' to automatically calculate transition time based on height.
    */
-  timeout?: TransitionDuration,
+  timeout: TransitionDuration,
+  /**
+  /* @ignore
+   */
+  unmountOnExit?: boolean,
 };
 
 const reflow = node => node.scrollTop;
 
 class Collapse extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
+  static defaultProps: DefaultProps = {
     appear: false,
     collapsedHeight: '0px',
     timeout: duration.standard,

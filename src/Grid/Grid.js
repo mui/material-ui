@@ -12,6 +12,7 @@
 
 import React from 'react';
 import type { ElementType, Node } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
@@ -159,9 +160,39 @@ export const styles = (theme: Object) => ({
 
 export type GridSizes = boolean | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
+type AlignContent =
+  | 'stretch'
+  | 'center'
+  | 'flex-start'
+  | 'flex-end'
+  | 'space-between'
+  | 'space-around';
+
+type AlignItems = 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
+
+type Direction = 'row' | 'row-reverse' | 'column' | 'column-reverse';
+
+type Justify = 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around';
+
+type Spacing = 0 | 8 | 16 | 24 | 40;
+
+type Wrap = 'nowrap' | 'wrap' | 'wrap-reverse';
+
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
+  alignContent: AlignContent,
+  alignItems: AlignItems,
   component: ElementType,
+  container: boolean,
+  direction: Direction,
+  item: boolean,
+  justify: Justify,
+  spacing: Spacing,
+  wrap: Wrap,
 };
 
 export type Props = {
@@ -181,43 +212,37 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: ElementType,
+  component: ElementType,
   /**
    * If `true`, the component will have the flex *container* behavior.
    * You should be wrapping *items* with a *container*.
    */
-  container?: boolean,
+  container: boolean,
   /**
    * If `true`, the component will have the flex *item* behavior.
    * You should be wrapping *items* with a *container*.
    */
-  item?: boolean,
+  item: boolean,
   /**
    * Defines the `align-content` style property.
    * It's applied for all screen sizes.
    */
-  alignContent?:
-    | 'stretch'
-    | 'center'
-    | 'flex-start'
-    | 'flex-end'
-    | 'space-between'
-    | 'space-around',
+  alignContent: AlignContent,
   /**
    * Defines the `align-items` style property.
    * It's applied for all screen sizes.
    */
-  alignItems?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline',
+  alignItems: AlignItems,
   /**
    * Defines the `flex-direction` style property.
    * It is applied for all screen sizes.
    */
-  direction?: 'row' | 'row-reverse' | 'column' | 'column-reverse',
+  direction: Direction,
   /**
    * Defines the space between the type `item` component.
    * It can only be used on a type `container` component.
    */
-  spacing?: 0 | 8 | 16 | 24 | 40,
+  spacing: Spacing,
   /**
    * If provided, will wrap with [Hidden](/api/hidden) component and given properties.
    */
@@ -226,12 +251,12 @@ export type Props = {
    * Defines the `justify-content` style property.
    * It is applied for all screen sizes.
    */
-  justify?: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around',
+  justify: Justify,
   /**
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.
    */
-  wrap?: 'nowrap' | 'wrap' | 'wrap-reverse',
+  wrap: Wrap,
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for all the screen sizes with the lowest priority.
@@ -342,7 +367,6 @@ if (process.env.NODE_ENV !== 'production') {
 
   GridWrapper = (props: any) => <Grid {...props} />;
 
-  // $FlowFixMe - cannot mix legacy propTypes with current HOC pattern - https://github.com/facebook/flow/issues/4644#issuecomment-332530909
   GridWrapper.propTypes = {
     alignContent: requireProp('container'),
     alignItems: requireProp('container'),
@@ -357,4 +381,6 @@ if (process.env.NODE_ENV !== 'production') {
   };
 }
 
-export default withStyles(styles, { name: 'MuiGrid' })(GridWrapper);
+export default withStyles(styles, { name: 'MuiGrid' })(
+  (GridWrapper: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

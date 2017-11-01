@@ -3,9 +3,10 @@
 
 import React from 'react';
 import type { Node } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import ButtonBase from '../ButtonBase';
+import ButtonBase, { type Props as ButtonBaseProps } from '../ButtonBase';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import Icon from '../Icon';
 import '../SvgIcon'; // Ensure CSS specificity
@@ -55,11 +56,22 @@ export const styles = (theme: Object) => ({
   },
 });
 
+type Color = 'default' | 'inherit' | 'primary' | 'contrast' | 'accent';
+
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
+  color: Color,
+  disabled: boolean,
+  disableRipple: boolean,
 };
 
 export type Props = {
+  ...ButtonBaseProps,
+
   /**
    * The icon element.
    * If a string is provided, it will be used as an icon font ligature.
@@ -76,15 +88,15 @@ export type Props = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color?: 'default' | 'inherit' | 'primary' | 'contrast' | 'accent',
+  color: Color,
   /**
    * If `true`, the button will be disabled.
    */
-  disabled?: boolean,
+  disabled: boolean,
   /**
    * If `true`, the ripple will be disabled.
    */
-  disableRipple?: boolean,
+  disableRipple: boolean,
   /**
    * Use that property to pass a ref callback to the root component.
    */
@@ -139,4 +151,6 @@ IconButton.defaultProps = {
   disableRipple: false,
 };
 
-export default withStyles(styles, { name: 'MuiIconButton' })(IconButton);
+export default withStyles(styles, { name: 'MuiIconButton' })(
+  (IconButton: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

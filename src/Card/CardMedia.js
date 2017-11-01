@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import warning from 'warning';
 import type { ElementType } from 'react';
@@ -21,10 +22,18 @@ const mediaComponents = ['video', 'audio', 'picture', 'iframe', 'img'];
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
   component: ElementType,
 };
 
 export type Props = {
+  /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
   /**
    * Useful to extend the style applied to components.
    */
@@ -52,7 +61,7 @@ export type Props = {
   /**
    * Component for rendering image.
    */
-  component?: ElementType,
+  component: ElementType,
 };
 
 function CardMedia(props: ProvidedProps & Props) {
@@ -85,4 +94,6 @@ CardMedia.defaultProps = {
   component: 'div',
 };
 
-export default withStyles(styles, { name: 'MuiCardMedia' })(CardMedia);
+export default withStyles(styles, { name: 'MuiCardMedia' })(
+  (CardMedia: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);
