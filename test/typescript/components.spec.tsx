@@ -346,8 +346,8 @@ const GridTest = () =>
   </Grid>;
 
 const GridListTest = () =>
-  <GridList cellHeight={160} cols={3}>
-    <GridListTile cols={1} rows={4}>
+  <GridList cellHeight={160} cols={3} onClick={e => log(e)}>
+    <GridListTile cols={1} rows={4} onClick={e => log(e)}>
       <img src="img.png" alt="alt text" />
     </GridListTile>,
   </GridList>;
