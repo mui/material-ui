@@ -70,6 +70,9 @@ class Demo extends Component {
           </Button>
         </Toolbar>
 
+        <Button onClick={() => this.setState({ selectedDate: moment('2015-02-02 12:44') })}>
+         Set state
+        </Button>
         <div id="content" className={classes.content}>
           <Typography type="display2" align="center" gutterBottom>
             Here you are!
@@ -97,7 +100,7 @@ class Demo extends Component {
                 Time picker
               </Typography>
 
-              <TimePicker autoOk
+              <TimePicker
                 value={this.state.selectedDate}
                 onChange={this.handleDateChange}
               />
