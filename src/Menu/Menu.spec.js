@@ -47,9 +47,9 @@ describe('<Menu />', () => {
     });
   });
 
-  it('should pass `classes.root` to the Popover for the className', () => {
+  it('should pass `classes.paper` to the Popover', () => {
     const wrapper = shallow(<Menu />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should be classes.root');
+    assert.strictEqual(wrapper.props().PaperProps.classes.root, classes.paper);
   });
 
   describe('prop: PopoverClasses', () => {

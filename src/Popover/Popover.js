@@ -66,6 +66,11 @@ export const styles = {
     position: 'absolute',
     overflowY: 'auto',
     overflowX: 'hidden',
+    // So we see the popover when it's empty.
+    // It's most likely on issue on userland.
+    minWidth: 16,
+    minHeight: 16,
+    maxHeight: 'calc(100vh - 32px)',
     '&:focus': {
       outline: 'none',
     },
