@@ -15,7 +15,7 @@ export const styles = (theme: Object) => ({
   root: {
     textAlign: 'center',
     flex: '0 0 auto',
-    fontSize: 24,
+    fontSize: theme.typography.pxToRem(24),
     width: theme.spacing.unit * 6,
     height: theme.spacing.unit * 6,
     padding: 0,

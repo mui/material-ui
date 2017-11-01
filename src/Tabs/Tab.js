@@ -75,15 +75,15 @@ export const styles = (theme: Object) => ({
     },
   },
   label: {
-    fontSize: theme.typography.fontSize,
+    fontSize: theme.typography.pxToRem(theme.typography.fontSize),
     whiteSpace: 'normal',
     [theme.breakpoints.up('md')]: {
-      fontSize: theme.typography.fontSize - 1,
+      fontSize: theme.typography.pxToRem(theme.typography.fontSize - 1),
     },
   },
   labelWrapped: {
     [theme.breakpoints.down('md')]: {
-      fontSize: theme.typography.fontSize - 2,
+      fontSize: theme.typography.pxToRem(theme.typography.fontSize - 2),
     },
   },
 });

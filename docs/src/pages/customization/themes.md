@@ -49,6 +49,29 @@ If you want to learn more about color, you can check out [the typography section
 
 {{demo='pages/customization/TypographyTheme.js'}}
 
+#### Font size
+
+Material-UI is using the rem units for the font size.
+The browser html element default font size is `16px`.
+Browsers have an option to change this value.
+The rem units are allowing us to accommodate the users settings.
+This unit choice results in a much better user experiences.
+
+Users change font size settings for all kinds of reasons,
+from strained eyesight to choosing optimum settings for devices that can
+be vastly different in size and viewing distance.
+
+For instance, you might want to change this value when using the [10px simplification](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/).
+```css
+html {
+  font-size: 62.5%; /* 62.5% of 16px = 10px */
+}
+```
+
+*You need to apply the above CSS on the html element of this page to see the below demo render correctly*
+
+{{demo='pages/customization/FontSizeTheme.js'}}
+
 ### Dark/light theme
 
 You can make a theme dark by setting `type` to `dark`.

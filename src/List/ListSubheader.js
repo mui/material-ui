@@ -15,7 +15,7 @@ export const styles = (theme: Object) => ({
     color: theme.palette.text.secondary,
     fontFamily: theme.typography.fontFamily,
     fontWeight: theme.typography.fontWeightMedium,
-    fontSize: theme.typography.fontSize,
+    fontSize: theme.typography.pxToRem(theme.typography.fontSize),
   },
   colorPrimary: {
     color: theme.palette.primary[500],
