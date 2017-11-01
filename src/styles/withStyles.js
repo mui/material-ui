@@ -49,6 +49,8 @@ function getDefaultTheme() {
   return defaultTheme;
 }
 
+export const style = (cssProps: Object) => cssProps;
+
 type Options = {
   flip?: boolean,
   withTheme?: boolean,
