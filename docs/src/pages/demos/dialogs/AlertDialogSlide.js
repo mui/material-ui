@@ -15,7 +15,7 @@ function Transition(props) {
   return <Slide direction="up" {...props} />;
 }
 
-export default class AlertDialogSlide extends React.Component {
+class AlertDialogSlide extends React.Component {
   state = {
     open: false,
   };
@@ -60,3 +60,5 @@ export default class AlertDialogSlide extends React.Component {
     );
   }
 }
+
+export default AlertDialogSlide;

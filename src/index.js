@@ -15,6 +15,7 @@ export {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  withMobileDialog,
 } from './Dialog';
 export { default as Divider } from './Divider';
 export { default as Drawer } from './Drawer';
