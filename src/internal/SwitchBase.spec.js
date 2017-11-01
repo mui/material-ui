@@ -322,4 +322,50 @@ describe('<SwitchBase />', () => {
       });
     });
   });
+
+  describe('with muiFormControl context', () => {
+    let wrapper;
+    let muiFormControl;
+
+    function setFormControlContext(muiFormControlContext) {
+      muiFormControl = muiFormControlContext;
+      wrapper.setContext({ ...wrapper.context(), muiFormControl });
+    }
+
+    beforeEach(() => {
+      wrapper = shallow(<SwitchBase />);
+    });
+
+    describe('enabled', () => {
+      beforeEach(() => {
+        setFormControlContext({});
+      });
+
+      it('should not have the disabled class', () => {
+        assert.strictEqual(wrapper.hasClass(classes.disabled), false);
+      });
+
+      it('should be overridden by props', () => {
+        assert.strictEqual(wrapper.hasClass(classes.disabled), false);
+        wrapper.setProps({ disabled: true });
+        assert.strictEqual(wrapper.hasClass(classes.disabled), true);
+      });
+    });
+
+    describe('disabled', () => {
+      beforeEach(() => {
+        setFormControlContext({ disabled: true });
+      });
+
+      it('should have the disabled class', () => {
+        assert.strictEqual(wrapper.hasClass(classes.disabled), true);
+      });
+
+      it('should honor props', () => {
+        assert.strictEqual(wrapper.hasClass(classes.disabled), true);
+        wrapper.setProps({ disabled: false });
+        assert.strictEqual(wrapper.hasClass(classes.disabled), false);
+      });
+    });
+  });
 });

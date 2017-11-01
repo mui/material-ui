@@ -498,7 +498,6 @@ class Input extends React.Component<ProvidedProps & Props, State> {
     } = this.props;
 
     const { muiFormControl } = this.context;
-
     let disabled = disabledProp;
     let error = errorProp;
     let margin = marginProp;
