@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import TimePickerModal from '../../src/TimePicker/TimePickerModal';
+import { DateTimePickerWrapper } from '../../src/DateTimePicker/DateTimePickerWrapper';
 
-describe('TimePickerModal', () => {
+describe('DateTimePickerWrapper', () => {
   let component;
 
   beforeEach(() => {
-    component = shallow(<TimePickerModal />);
+    component = shallow(<DateTimePickerWrapper classes={{}} />);
   });
 
   it('Should renders', () => {

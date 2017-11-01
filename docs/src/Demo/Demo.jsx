@@ -27,6 +27,10 @@ class Demo extends Component {
     })
   }
 
+  changeOutside = () => {
+    this.setState({ selectedDate: moment('2015-02-02 12:44') })
+  }
+
   render() {
     const { classes } = this.props
     const { selectedDate } = this.state
@@ -70,10 +74,15 @@ class Demo extends Component {
           </Button>
         </Toolbar>
 
+     
         <div id="content" className={classes.content}>
           <Typography type="display2" align="center" gutterBottom>
             Here you are!
           </Typography>
+
+          <Button className={classes.changeOutside} onClick={this.changeOutside}>
+            Change all values
+          </Button>
 
           <Typography type="display1" className={classes.example}>
             Basic usage
@@ -97,7 +106,7 @@ class Demo extends Component {
                 Time picker
               </Typography>
 
-              <TimePicker autoOk
+              <TimePicker
                 value={this.state.selectedDate}
                 onChange={this.handleDateChange}
               />
@@ -189,9 +198,15 @@ const styles = theme => ({
     minHeight: 'calc(100vh - 63px)',
     maxWidth: 900,
     margin: '0 auto',
+    display: 'flex',
+    flexDirection: 'column',
     '@media(max-width: 600px)': {
       minHeight: 'calc(100vh - 55px)'
     }
+  },
+  changeOutside: {
+    maxWidth: 200,
+    margin: '0 auto'
   }
 })
 

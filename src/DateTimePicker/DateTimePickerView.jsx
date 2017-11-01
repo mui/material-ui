@@ -3,13 +3,21 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { withStyles } from 'material-ui';
 
-export const DateTimePickerView = ({
-  view, selected, children, classes,
-}) => (
-  <div className={classnames({ [classes.hidden]: view !== selected })}>
-    { children }
-  </div>
-);
+export const DateTimePickerView = (props) => {
+  const {
+    view, selected, children, classes,
+  } = props;
+
+  if (view !== selected) {
+    return null;
+  }
+
+  return (
+    <div className={classnames({ [classes.hidden]: view !== selected })}>
+      { children }
+    </div>
+  );
+};
 
 DateTimePickerView.propTypes = {
   view: PropTypes.string.isRequired,
@@ -19,13 +27,7 @@ DateTimePickerView.propTypes = {
 };
 
 const styles = {
-  hidden: {
-    pointerEvents: 'none',
-    visibility: 'hidden', // required for saving scrolls state
-    position: 'absolute', // remove relation for layout
-    left: '-9999px',
-    top: '-9999px',
-  },
+
 };
 
 export default withStyles(styles, { name: 'MuiPickerDTPickerView ' })(DateTimePickerView);

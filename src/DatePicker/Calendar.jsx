@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, IconButton } from 'material-ui';
 
@@ -10,7 +10,7 @@ import DomainPropTypes from '../constants/prop-types';
 
 const moment = extendMoment(Moment);
 
-export class Calendar extends PureComponent {
+export class Calendar extends Component {
   static propTypes = {
     date: PropTypes.object.isRequired,
     minDate: DomainPropTypes.date,

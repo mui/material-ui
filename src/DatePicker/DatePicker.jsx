@@ -48,7 +48,7 @@ export class DatePicker extends PureComponent {
   }
 
   handleYearSelect = (date) => {
-    this.props.onChange(date);
+    this.props.onChange(date, false);
     this.openCalendar();
   }
 
