@@ -26,6 +26,8 @@ You can override all the class names injected by Material-UI thanks to the `clas
 This property accepts the following keys:
 - `container`
 - `entered`
+- `wrapper`
+- `wrapperInner`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/callemall/material-ui/tree/v1-beta/src/transitions/Collapse.js)

@@ -18,6 +18,7 @@ filename: /src/Popover/Popover.js
 | <span style="color: #31a148">children *</span> | Node |  | The content of the component. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | elevation | number | 8 | The elevation of the popover. |
+| getContentAnchorEl | Function |  | This function is called in order to retrieve the content anchor element. It's the opposite of the `anchorEl` property. The content anchor element should be an element inside the popover. It's used to correctly scroll and set the position of the popover. The positioning strategy tries to make the content anchor element just above the anchor element. |
 | marginThreshold | number | 16 | Specifies how close to the edge of the window the popover can appear. |
 | onEnter | TransitionCallback |  | Callback fired before the component is entering. |
 | onEntered | TransitionCallback |  | Callback fired when the component has entered. |

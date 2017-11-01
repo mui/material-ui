@@ -117,7 +117,12 @@ export type Props = {
    */
   elevation?: number,
   /**
-   * @ignore
+   * This function is called in order to retrieve the content anchor element.
+   * It's the opposite of the `anchorEl` property.
+   * The content anchor element should be an element inside the popover.
+   * It's used to correctly scroll and set the position of the popover.
+   * The positioning strategy tries to make the content anchor element just above the
+   * anchor element.
    */
   getContentAnchorEl?: Function,
   /**
@@ -254,7 +259,7 @@ class Popover extends React.Component<ProvidedProps & Props> {
     warning(
       elemRect.height < heightThreshold || !elemRect.height || !heightThreshold,
       [
-        'Material-UI: the Popover component is too tall.',
+        'Material-UI: the popover component is too tall.',
         `Some part of it can not be seen on the screen (${elemRect.height - heightThreshold}px).`,
         'Please consider adding a `max-height` to improve the user-experience.',
       ].join('\n'),
@@ -310,8 +315,10 @@ class Popover extends React.Component<ProvidedProps & Props> {
       warning(
         this.props.anchorOrigin.vertical === 'top',
         [
-          'Material-UI: you can not change the `anchorOrigin.vertical` value when also ',
-          'providing the `getContentAnchorEl` property. Pick one.',
+          'Material-UI: you can not change the default `anchorOrigin.vertical` value when also ',
+          'providing the `getContentAnchorEl` property to the popover component.',
+          'Only use one of the two properties',
+          'Set `getContentAnchorEl` to null or left `anchorOrigin.vertical` unchanged',
         ].join(),
       );
     }

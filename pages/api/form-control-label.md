@@ -16,7 +16,7 @@ Use this component if you want to display an extra label.
 | checked | union:&nbsp;boolean<br>&nbsp;string<br> |  | If `true`, the component appears selected. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | <span style="color: #31a148">control *</span> | Element |  | A control element. For instance, it can be be a `Radio`, a `Switch` or a `Checkbox`. |
-| disabled | boolean | false | If `true`, the control will be disabled. |
+| disabled | boolean |  | If `true`, the control will be disabled. |
 | inputRef | Function |  | Use that property to pass a ref callback to the native input component. |
 | <span style="color: #31a148">label *</span> | Node |  | The text to be used in an enclosing label element. |
 | name | string |  |  |
