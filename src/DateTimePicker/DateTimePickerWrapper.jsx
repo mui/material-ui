@@ -94,8 +94,11 @@ export class DateTimePickerWrapper extends PickerBase {
           showTabs={showTabs}
           leftArrowIcon={leftArrowIcon}
           rightArrowIcon={rightArrowIcon}
+<<<<<<< HEAD
           dateRangeIcon={dateRangeIcon}
           timeIcon={timeIcon}
+=======
+>>>>>>> d1a457c... feat: custom icons for calendar nav
         />
       </ModalWrapper>
     );
