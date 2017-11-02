@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { IconButtonProps } from '../../build/IconButton/IconButton'
+import { IconButtonProps } from '../IconButton';
 
 export interface SwitchBaseProps extends StandardProps<
   IconButtonProps,
