@@ -28,8 +28,8 @@ Please create a new branch from an up to date v1-beta on your fork. (Note, urgen
 1. Fork the Material-UI repository on Github
 2. Clone your fork to your local machine `git clone git@github.com:<yourname>/material-ui.git`
 3. Create a branch `git checkout -b my-topic-branch`
-4. Make your changes, lint, then push to to github with `git push --set-upstream origin my-topic-branch`.
-5. Visit github and make your pull request.
+4. Make your changes, lint, then push to to GitHub with `git push --set-upstream origin my-topic-branch`.
+5. Visit GitHub and make your pull request.
 
 If you have an existing local repository, please update it before you start, to minimise the chance of merge conflicts.
 ```js
@@ -42,7 +42,8 @@ yarn
 
 ### Testing the documentation site
 
-The documentation site is built with Material-UI, and contains examples of all the components. To get started:
+The documentation site is built with Material-UI and contains examples of all the components.
+To get started:
 ```js
 yarn
 yarn docs:dev
@@ -53,11 +54,63 @@ Test coverage is limited at present, but where possible, please add tests for an
 
 ### Coding style
 
-Please follow the coding style of the current code base. Material-UI uses eslint, so if possible, enable linting in your editor to get realtime feedback. The linting rules are also run when Webpack recompiles your changes, and can be run manually with `yarn lint`.
+Please follow the coding style of the current code base. Material-UI uses eslint, so if possible, enable linting in your editor to get real-time feedback. The linting rules are also run when Webpack recompiles your changes, and can be run manually with `yarn lint`.
 
 You can also run `yarn prettier` to reformat the code.
 
 Finally, when you submit a pull request, they are run again by Circle CI, but hopefully by then your code is already clean!
+
+## How do I add new a demo in the documentation?
+
+### Let's get started.
+
+It's simple. You just need to **create** a new file and **modify** two files.
+For example, let say you want to add new demos for buttons component, then you have to go through the following steps:
+
+#### 1. Add a new React component file under the related directory.
+
+In this case, I'm gonna add the new file to the following directory:
+```
+docs/src/pages/demos/buttons/
+```
+And let's give it a name: `SuperButtons.js`.
+
+#### 2. Edit the page Markdown file.
+
+The Markdown file is the source for the website documentation. So, whatever you wrote there will be reflected on the website.
+In this case, the file you need to edit is `docs/src/pages/demos/buttons/buttons.md`, and I'm gonna add some description about SuperButtons.
+
+```diff
++ ### Super buttons
++
++ Sometimes, you need a super button to make your app looks **superb**. Yea ...
++
++ {{demo='pages/demos/buttons/SuperButtons.js'}}
+```
+
+#### 3. Edit the Next.js page.
+
+The Next.js page is saved under the following page.
+There is a direct mapping between the filename in the repository and the pathname in the documentation.
+
+```
+pages/demos/buttons.js
+```
+
+Then, you will need to add the following code:
+```diff
++ 'pages/demos/buttons/SuperButtons.js': {
++          js: require('docs/src/pages/demos/buttons/SuperButtons').default,
++          raw: preval`
++ module.exports = require('fs')
++  .readFileSync(require.resolve('docs/src/pages/demos/buttons/SuperButtons'), 'utf8')
++`,
++        },
+```
+
+#### 4. You are done 🎉!
+
+In case you missed something, [we have a real example that can be used as a summary report]((https://github.com/callemall/material-ui/pull/8922/files)).
 
 ## Roadmap
 
@@ -66,4 +119,3 @@ To get a sense of where Material-UI is heading, or for ideas on where you could 
 ## License
 
 By contributing your code to the callemall/material-ui GitHub repository, you agree to license your contribution under the MIT license.
-
