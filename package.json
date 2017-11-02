@@ -85,7 +85,7 @@
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.1",
-    "@types/react": "16.0.9",
+    "@types/react": "16.0.19",
     "app-module-path": "^2.2.0",
     "argos-cli": "^0.0.9",
     "autosuggest-highlight": "^3.1.1",
@@ -178,6 +178,9 @@
     "webfontloader": "^1.6.28",
     "webpack": "^3.8.1",
     "webpack-bundle-analyzer": "^2.9.0"
+  },
+  "resolutions": {
+    "@types/react": "16.0.19"
   },
   "side-effects": false,
   "size-limit": [
