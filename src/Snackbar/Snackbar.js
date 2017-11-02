@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
-import ClickAwayListener from '../internal/ClickAwayListener';
+import ClickAwayListener from '../utils/ClickAwayListener';
 import { capitalizeFirstLetter, createChainedFunction } from '../utils/helpers';
 import Slide from '../transitions/Slide';
 import SnackbarContent from './SnackbarContent';

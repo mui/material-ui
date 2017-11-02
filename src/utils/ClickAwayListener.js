@@ -18,7 +18,7 @@ export type Props = {
 };
 
 /**
- * @ignore - internal component.
+ * Listen for click events that are triggered outside of the component children.
  */
 class ClickAwayListener extends React.Component<Props> {
   componentDidMount() {
