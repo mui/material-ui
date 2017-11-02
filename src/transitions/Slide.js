@@ -143,6 +143,20 @@ class Slide extends React.Component<ProvidedProps & Props, State> {
     firstMount: true,
   };
 
+  componentDidMount() {
+    // state.firstMount handle SSR, once the component is mounted, we need
+    // to propery hide it.
+    if (!this.props.in) {
+      // We need to set initial translate values of transition element
+      // otherwise component will be shown when in=false.
+      const element = findDOMNode(this.transition);
+      if (element instanceof HTMLElement) {
+        element.style.visibility = 'inherit';
+        setTranslateValue(this.props, element);
+      }
+    }
+  }
+
   componentWillReceiveProps() {
     this.setState({
       firstMount: false,

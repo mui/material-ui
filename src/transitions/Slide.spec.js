@@ -204,7 +204,9 @@ describe('<Slide />', () => {
       );
       const transition = findDOMNode(wrapper.instance().transition);
       // $FlowExpectedError
-      assert.strictEqual(transition.style.visibility, 'hidden');
+      assert.strictEqual(transition.style.visibility, 'inherit');
+      // $FlowExpectedError
+      assert.notStrictEqual(transition.style.transform, undefined);
     });
   });
 
@@ -229,7 +231,7 @@ describe('<Slide />', () => {
       instance.handleResize();
       clock.tick(166);
       const transition = findDOMNode(instance.transition);
-      // $FlowFixMe
+      // $FlowExpectedError
       assert.notStrictEqual(transition.style.transform, undefined);
     });
 
