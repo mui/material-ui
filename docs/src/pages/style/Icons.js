@@ -1,6 +1,7 @@
 // @flow weak
 
 import React from 'react';
+import type { ComponentType } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Icon from 'material-ui/Icon';
@@ -14,7 +15,12 @@ const styles = {
   },
 };
 
-function Icons(props) {
+type ProvidedProps = {
+  classes: Object,
+  theme: Object,
+};
+
+function Icons(props: ProvidedProps) {
   return (
     <div className={props.classes.root}>
       <Icon>add_circle</Icon>
@@ -36,4 +42,4 @@ Icons.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Icons);
+export default withStyles(styles)((Icons: ComponentType<ProvidedProps>));

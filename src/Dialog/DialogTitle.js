@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { Node } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
@@ -17,6 +18,11 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
+  disableTypography: boolean,
 };
 
 export type Props = {
@@ -36,7 +42,7 @@ export type Props = {
    * If `true`, the children won't be wrapped by a typography component.
    * For instance, that can be useful to can render an h4 instead of a
    */
-  disableTypography?: boolean,
+  disableTypography: boolean,
 };
 
 function DialogTitle(props: ProvidedProps & Props) {
@@ -53,4 +59,6 @@ DialogTitle.defaultProps = {
   disableTypography: false,
 };
 
-export default withStyles(styles, { name: 'MuiDialogTitle' })(DialogTitle);
+export default withStyles(styles, { name: 'MuiDialogTitle' })(
+  (DialogTitle: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

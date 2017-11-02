@@ -44,13 +44,13 @@ type DefaultProps = {
 
 export type Props = {
   /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
+  /**
    * The name of the icon font ligature.
    */
   children?: Node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
   /**
    * @ignore
    */

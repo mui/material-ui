@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { ComponentType, Element, Node } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -49,8 +50,22 @@ export const styles = (theme: Object) => ({
   },
 });
 
+type MaxWidth = 'xs' | 'sm' | 'md';
+
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
+  fullScreen?: boolean,
+  ignoreBackdropClick?: boolean,
+  ignoreEscapeKeyUp?: boolean,
+  transitionDuration?: TransitionDuration,
+  maxWidth?: MaxWidth,
+  fullWidth?: boolean,
+  open?: boolean,
+  transition?: ComponentType<*> | Element<any>,
 };
 
 export type Props = {
@@ -89,7 +104,7 @@ export type Props = {
    * on the desktop where you might need some coherent different width size across your
    * application.
    */
-  maxWidth?: 'xs' | 'sm' | 'md',
+  maxWidth?: MaxWidth,
   /**
    * If specified, stretches dialog to max width.
    */
@@ -232,4 +247,6 @@ Dialog.defaultProps = {
   transition: Fade,
 };
 
-export default withStyles(styles, { name: 'MuiDialog' })(Dialog);
+export default withStyles(styles, { name: 'MuiDialog' })(
+  (Dialog: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

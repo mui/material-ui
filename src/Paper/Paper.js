@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { ElementType } from 'react';
+import type { ElementType, Node } from 'react';
 import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import warning from 'warning';
@@ -47,6 +47,10 @@ export type Props = {
    * @ignore
    */
   className?: string,
+  /**
+   * @ignore
+   */
+  children?: Node,
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.

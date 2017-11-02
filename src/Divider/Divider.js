@@ -35,6 +35,12 @@ type ProvidedProps = {
   theme: Object,
 };
 
+type DefaultProps = {
+  absolute?: boolean,
+  inset?: boolean,
+  light?: boolean,
+};
+
 export type Props = {
   absolute?: boolean,
   /**

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { Node, ElementType } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -38,6 +39,10 @@ export type Context = {
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
   component: ElementType,
   hover: boolean,
   selected: boolean,
@@ -60,15 +65,15 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: ElementType,
+  component: ElementType,
   /**
    * If `true`, the table row will shade on hover.
    */
-  hover?: boolean,
+  hover: boolean,
   /**
    * If `true`, the table row will have the selected shading.
    */
-  selected?: boolean,
+  selected: boolean,
 };
 
 /**
@@ -115,4 +120,6 @@ TableRow.contextTypes = {
   table: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiTableRow' })(TableRow);
+export default withStyles(styles, { name: 'MuiTableRow' })(
+  (TableRow: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

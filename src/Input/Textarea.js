@@ -40,6 +40,11 @@ export const styles = {
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
+  rows?: string | number,
 };
 
 export type Props = {
@@ -89,15 +94,15 @@ type State = {
  * @ignore - internal component.
  */
 class Textarea extends React.Component<ProvidedProps & Props, State> {
-  shadow: ?HTMLInputElement;
+  shadow: ?HTMLTextAreaElement;
 
-  singlelineShadow: ?HTMLInputElement;
+  singlelineShadow: ?HTMLTextAreaElement;
 
-  input: ?HTMLInputElement;
+  input: ?HTMLTextAreaElement;
 
   value: string | number;
 
-  static defaultProps = {
+  static defaultProps: DefaultProps = {
     rows: 1,
   };
 

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { ElementType, Node } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
@@ -20,6 +21,10 @@ export type CellHeight = number | 'auto';
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
   cols: number,
   spacing: number,
   cellHeight: CellHeight,
@@ -31,7 +36,7 @@ export type Props = {
    * Number of px for one cell height.
    * You can set `'auto'` if you want to let the children determine the height.
    */
-  cellHeight?: CellHeight,
+  cellHeight: CellHeight,
   /**
    * Grid Tiles that will be in Grid List.
    */
@@ -47,17 +52,17 @@ export type Props = {
   /**
    * Number of columns.
    */
-  cols?: number,
+  cols: number,
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    * By default we map the type to a good default headline component.
    */
-  component?: ElementType,
+  component: ElementType,
   /**
    * Number of px for the spacing between tiles.
    */
-  spacing?: number,
+  spacing: number,
   /**
    * @ignore
    */
@@ -109,4 +114,6 @@ GridList.defaultProps = {
   component: 'ul',
 };
 
-export default withStyles(styles, { name: 'MuiGridList' })(GridList);
+export default withStyles(styles, { name: 'MuiGridList' })(
+  (GridList: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

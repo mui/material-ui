@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { Node } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -39,8 +40,12 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
-  disabled: boolean,
-  disableAnimation: boolean,
+  theme: Object,
+};
+
+type DefaultProps = {
+  disabled?: boolean,
+  disableAnimation?: boolean,
 };
 
 export type Props = {
@@ -144,4 +149,6 @@ InputLabel.contextTypes = {
   muiFormControl: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiInputLabel' })(InputLabel);
+export default withStyles(styles, { name: 'MuiInputLabel' })(
+  (InputLabel: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

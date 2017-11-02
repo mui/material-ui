@@ -29,7 +29,7 @@ export const styles = (theme: Object) => {
 
 type ProvidedProps = {
   classes: Object,
-  component: ElementType,
+  theme: Object,
 };
 
 export type Props = {
@@ -73,7 +73,7 @@ function FormLabel(props: ProvidedProps & Props, context: { muiFormControl: Obje
     children,
     classes,
     className: classNameProp,
-    component: Component,
+    component: Component = 'label',
     disabled: disabledProp,
     error: errorProp,
     focused: focusedProp,
@@ -128,10 +128,6 @@ function FormLabel(props: ProvidedProps & Props, context: { muiFormControl: Obje
     </Component>
   );
 }
-
-FormLabel.defaultProps = {
-  component: 'label',
-};
 
 FormLabel.contextTypes = {
   muiFormControl: PropTypes.object,

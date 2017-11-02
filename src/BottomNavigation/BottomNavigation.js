@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { Node } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
@@ -16,6 +17,10 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
   showLabels: boolean,
 };
 
@@ -24,10 +29,6 @@ export type Props = {
    * The content of the component.
    */
   children: Node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
   /**
    * @ignore
    */
@@ -43,7 +44,7 @@ export type Props = {
    * If `true`, all `BottomNavigationButton`s will show their labels.
    * By default only the selected `BottomNavigationButton` will show its label.
    */
-  showLabels?: boolean,
+  showLabels: boolean,
   /**
    * The value of the currently selected `BottomNavigationButton`.
    */
@@ -84,4 +85,6 @@ BottomNavigation.defaultProps = {
   showLabels: false,
 };
 
-export default withStyles(styles, { name: 'MuiBottomNavigation' })(BottomNavigation);
+export default withStyles(styles, { name: 'MuiBottomNavigation' })(
+  (BottomNavigation: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

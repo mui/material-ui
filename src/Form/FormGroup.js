@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { Node } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
@@ -18,6 +19,11 @@ export const styles = {
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
+  row?: boolean,
 };
 
 export type Props = {
@@ -65,4 +71,6 @@ FormGroup.defaultProps = {
   row: false,
 };
 
-export default withStyles(styles, { name: 'MuiFormGroup' })(FormGroup);
+export default withStyles(styles, { name: 'MuiFormGroup' })(
+  (FormGroup: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

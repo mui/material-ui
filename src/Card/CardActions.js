@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { Node } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { cloneChildrenWithClassName } from '../utils/reactHelpers';
@@ -20,6 +21,10 @@ export const styles = {
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
   disableActionSpacing: boolean,
 };
 
@@ -39,7 +44,7 @@ export type Props = {
   /**
    * If `true`, the card actions do not have additional margin.
    */
-  disableActionSpacing?: boolean,
+  disableActionSpacing: boolean,
 };
 
 function CardActions(props: ProvidedProps & Props) {
@@ -58,4 +63,6 @@ CardActions.defaultProps = {
   disableActionSpacing: false,
 };
 
-export default withStyles(styles, { name: 'MuiCardActions' })(CardActions);
+export default withStyles(styles, { name: 'MuiCardActions' })(
+  (CardActions: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

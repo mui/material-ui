@@ -3,6 +3,7 @@
 
 import React from 'react';
 import type { Node, Element } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
@@ -28,6 +29,11 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
+  disabled?: boolean,
 };
 
 export type Props = {
@@ -122,4 +128,6 @@ FormControlLabel.defaultProps = {
   disabled: false,
 };
 
-export default withStyles(styles, { name: 'MuiFormControlLabel' })(FormControlLabel);
+export default withStyles(styles, { name: 'MuiFormControlLabel' })(
+  (FormControlLabel: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

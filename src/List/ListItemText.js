@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { Node } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -31,6 +32,14 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
+  disableTypography: boolean,
+  primary: Node,
+  secondary: Node,
+  inset: boolean,
 };
 
 export type Props = {
@@ -46,14 +55,14 @@ export type Props = {
    * If `true`, the children won't be wrapped by a typography component.
    * For instance, that can be useful to can render an h4 instead of a
    */
-  disableTypography?: boolean,
+  disableTypography: boolean,
   /**
    * If `true`, the children will be indented.
    * This should be used if there is no left avatar or left icon.
    */
-  inset?: boolean,
-  primary?: Node,
-  secondary?: Node,
+  inset: boolean,
+  primary: Node,
+  secondary: Node,
 };
 
 function ListItemText(props: ProvidedProps & Props, context) {
@@ -116,4 +125,6 @@ ListItemText.contextTypes = {
   dense: PropTypes.bool,
 };
 
-export default withStyles(styles, { name: 'MuiListItemText' })(ListItemText);
+export default withStyles(styles, { name: 'MuiListItemText' })(
+  (ListItemText: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

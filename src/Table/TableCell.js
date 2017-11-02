@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import type { ElementType, Node } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -15,6 +16,10 @@ export type Padding = 'default' | 'checkbox' | 'dense' | 'none';
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
   padding: Padding,
   numeric: boolean,
 };
@@ -40,11 +45,11 @@ export type Props = {
   /**
    * If `true`, content will align to the right.
    */
-  numeric?: boolean,
+  numeric: boolean,
   /**
    * Sets the padding applied to the cell.
    */
-  padding?: Padding,
+  padding: Padding,
 };
 
 export const styles = (theme: Object) => ({
@@ -126,4 +131,6 @@ TableCell.contextTypes = {
   table: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { name: 'MuiTableCell' })(TableCell);
+export default withStyles(styles, { name: 'MuiTableCell' })(
+  (TableCell: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { Node, ElementType } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import Typography from '../Typography';
 import withStyles from '../styles/withStyles';
@@ -22,8 +23,12 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
-  component: ElementType,
-  disableTypography: boolean,
+  theme: Object,
+};
+
+type DefaultProps = {
+  component?: ElementType,
+  disableTypography?: boolean,
 };
 
 export type Props = {
@@ -57,7 +62,7 @@ export type Props = {
 function InputAdornment(props: ProvidedProps & Props) {
   const {
     children,
-    component: Component,
+    component: Component = 'div',
     classes,
     className,
     disableTypography,
@@ -91,4 +96,6 @@ InputAdornment.defaultProps = {
   disableTypography: false,
 };
 
-export default withStyles(styles, { name: 'MuiInputAdornment' })(InputAdornment);
+export default withStyles(styles, { name: 'MuiInputAdornment' })(
+  (InputAdornment: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

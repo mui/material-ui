@@ -2,7 +2,7 @@
 // @inheritedComponent ButtonBase
 
 import React from 'react';
-import type { Node, Element } from 'react';
+import type { Node, Element, ElementProps } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
@@ -56,10 +56,6 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type ProvidedProps = {
-  classes: Object,
-};
-
 export type Props = {
   /**
    * Useful to extend the style applied to components.
@@ -97,9 +93,9 @@ export type Props = {
    * You can provide your own value. Otherwise, we fallback to the child position index.
    */
   value?: any,
-};
+} & ElementProps<typeof ButtonBase>;
 
-class BottomNavigationButton extends React.Component<ProvidedProps & Props> {
+class BottomNavigationButton extends React.Component<Props> {
   handleChange = event => {
     const { onChange, value, onClick } = this.props;
 

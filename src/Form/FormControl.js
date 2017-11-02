@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { ElementType, Node } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -35,13 +36,17 @@ export const styles = (theme: Object) => ({
 export type Margin = 'none' | 'dense' | 'normal';
 
 type ProvidedProps = {
-  disabled: boolean,
   classes: Object,
-  component: ElementType,
-  error: boolean,
-  fullWidth: boolean,
-  margin: Margin,
-  required: boolean,
+  theme: Object,
+};
+
+type DefaultProps = {
+  disabled?: boolean,
+  component?: ElementType,
+  error?: boolean,
+  fullWidth?: boolean,
+  margin?: Margin,
+  required?: boolean,
 };
 
 export type Props = {
@@ -201,7 +206,7 @@ class FormControl extends React.Component<ProvidedProps & Props, State> {
       children,
       classes,
       className,
-      component: ComponentProp,
+      component: ComponentProp = 'div',
       disabled,
       error,
       fullWidth,
@@ -230,4 +235,6 @@ class FormControl extends React.Component<ProvidedProps & Props, State> {
   }
 }
 
-export default withStyles(styles, { name: 'MuiFormControl' })(FormControl);
+export default withStyles(styles, { name: 'MuiFormControl' })(
+  (FormControl: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

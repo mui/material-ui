@@ -12,7 +12,7 @@ export type InjectedProps = {
   /**
    * If isWidthDown(options.breakpoint), return true.
    */
-  fullScreen: boolean,
+  fullScreen?: boolean,
 };
 
 /**
