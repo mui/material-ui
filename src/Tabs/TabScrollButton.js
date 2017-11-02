@@ -1,6 +1,7 @@
 // @flow weak
 
 import React from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
@@ -16,6 +17,11 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
+  visible?: boolean,
 };
 
 export type Props = {
@@ -64,4 +70,6 @@ TabScrollButton.defaultProps = {
   visible: true,
 };
 
-export default withStyles(styles, { name: 'MuiTabScrollButton' })(TabScrollButton);
+export default withStyles(styles, { name: 'MuiTabScrollButton' })(
+  (TabScrollButton: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

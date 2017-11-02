@@ -3,6 +3,7 @@
 
 import React from 'react';
 import type { ElementType, Node } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ListItem from '../List/ListItem';
@@ -30,11 +31,19 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
-  role: string,
-  selected: boolean,
+  theme: Object,
+};
+
+type DefaultProps = {
+  role?: string,
+  selected?: boolean,
 };
 
 export type Props = {
+  /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
   /**
    * Menu item contents.
    */
@@ -90,4 +99,6 @@ MenuItem.defaultProps = {
   selected: false,
 };
 
-export default withStyles(styles, { name: 'MuiMenuItem' })(MenuItem);
+export default withStyles(styles, { name: 'MuiMenuItem' })(
+  (MenuItem: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

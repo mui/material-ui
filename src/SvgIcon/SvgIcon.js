@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { Node } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
@@ -21,6 +22,11 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
+  viewBox?: string,
 };
 
 export type Props = {
@@ -74,4 +80,6 @@ SvgIcon.defaultProps = {
 
 SvgIcon.muiName = 'SvgIcon';
 
-export default withStyles(styles, { name: 'MuiSvgIcon' })(SvgIcon);
+export default withStyles(styles, { name: 'MuiSvgIcon' })(
+  (SvgIcon: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

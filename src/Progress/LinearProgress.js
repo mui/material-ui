@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import warning from 'warning';
 import withStyles from '../styles/withStyles';
@@ -141,8 +142,17 @@ export const styles = (theme: Object) => ({
   },
 });
 
+type Color = 'primary' | 'accent';
+type Mode = 'determinate' | 'indeterminate' | 'buffer' | 'query';
+
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
+  color?: Color,
+  mode?: Mode,
 };
 
 export type Props = {
@@ -250,4 +260,6 @@ LinearProgress.defaultProps = {
   mode: 'indeterminate',
 };
 
-export default withStyles(styles, { name: 'MuiLinearProgress' })(LinearProgress);
+export default withStyles(styles, { name: 'MuiLinearProgress' })(
+  (LinearProgress: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

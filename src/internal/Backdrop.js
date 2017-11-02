@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { Node } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
@@ -27,6 +28,11 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
+  invisible?: boolean,
 };
 
 export type Props = {
@@ -73,4 +79,6 @@ Backdrop.defaultProps = {
   invisible: false,
 };
 
-export default withStyles(styles, { name: 'MuiBackdrop' })(Backdrop);
+export default withStyles(styles, { name: 'MuiBackdrop' })(
+  (Backdrop: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

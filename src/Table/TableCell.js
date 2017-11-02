@@ -26,6 +26,10 @@ type DefaultProps = {
 
 export type Props = {
   /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
+  /**
    * The table cell contents.
    */
   children?: Node,

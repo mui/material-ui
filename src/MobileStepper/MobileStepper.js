@@ -3,6 +3,7 @@
 
 import React from 'react';
 import type { Element } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
@@ -56,10 +57,14 @@ export type Position = 'bottom' | 'top' | 'static';
 export type Type = 'text' | 'dots' | 'progress';
 
 type ProvidedProps = {
-  activeStep: number,
   classes: Object,
-  position: Position,
-  type: Type,
+  theme: Object,
+};
+
+type DefaultProps = {
+  activeStep?: number,
+  position?: Position,
+  type?: Type,
 };
 
 export type Props = {
@@ -100,7 +105,7 @@ export type Props = {
 
 function MobileStepper(props: ProvidedProps & Props) {
   const {
-    activeStep,
+    activeStep = 0,
     backButton,
     classes,
     className: classNameProp,
@@ -150,4 +155,6 @@ MobileStepper.defaultProps = {
   type: 'dots',
 };
 
-export default withStyles(styles, { name: 'MuiMobileStepper' })(MobileStepper);
+export default withStyles(styles, { name: 'MuiMobileStepper' })(
+  (MobileStepper: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

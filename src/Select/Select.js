@@ -3,6 +3,7 @@
 
 import React from 'react';
 import type { ChildrenArray, Element } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import warning from 'warning';
 import SelectInput from './SelectInput';
 import withStyles from '../styles/withStyles';
@@ -58,13 +59,21 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
-  displayEmpty: boolean,
-  input: Element<any>,
-  native: boolean,
-  multiple: boolean,
+  theme: Object,
+};
+
+type DefaultProps = {
+  displayEmpty?: boolean,
+  input?: Element<any>,
+  native?: boolean,
+  multiple?: boolean,
 };
 
 export type Props = {
+  /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
   /**
    * If true, the width of the popover will automatically be set according to the items inside the
    * menu, otherwise it will be at least the width of the select input.
@@ -164,4 +173,6 @@ Select.defaultProps = {
 
 Select.muiName = 'Select';
 
-export default withStyles(styles, { name: 'MuiSelect' })(Select);
+export default withStyles(styles, { name: 'MuiSelect' })(
+  (Select: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { Node } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -34,8 +35,17 @@ export const styles = (theme: Object) => ({
   },
 });
 
+type Color = 'default' | 'primary' | 'inherit';
+
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
+  color?: Color,
+  disableSticky?: boolean,
+  inset?: boolean,
 };
 
 export type Props = {
@@ -54,7 +64,7 @@ export type Props = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color?: 'default' | 'primary' | 'inherit',
+  color?: Color,
   /**
    * If `true`, the List Subheader will not stick to the top during scroll.
    */
@@ -100,4 +110,6 @@ ListSubheader.defaultProps = {
 
 ListSubheader.muiName = 'ListSubheader';
 
-export default withStyles(styles, { name: 'MuiListSubheader' })(ListSubheader);
+export default withStyles(styles, { name: 'MuiListSubheader' })(
+  (ListSubheader: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

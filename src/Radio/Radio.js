@@ -1,7 +1,7 @@
 // @flow weak
 
 import React from 'react';
-import type { Node } from 'react';
+import type { ComponentType, Node } from 'react';
 import withStyles from '../styles/withStyles';
 import createSwitch from '../internal/SwitchBase';
 import RadioButtonCheckedIcon from '../svg-icons/RadioButtonChecked';
@@ -33,6 +33,7 @@ export default Radio;
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
 };
 
 export type Props = {
@@ -109,4 +110,4 @@ export type Props = {
 
 // This is here solely to trigger api doc generation
 // eslint-disable-next-line no-unused-vars
-export const RadioDocs = (props: ProvidedProps & Props) => <span />;
+export const RadioDocs: ComponentType<ProvidedProps & Props> = () => <span />;

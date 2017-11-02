@@ -16,6 +16,11 @@ type ProvidedProps = {
   theme: Object,
 };
 
+type DefaultProps = {
+  open?: boolean,
+  transitionDuration?: number | { enter?: number, exit?: number } | 'auto',
+};
+
 export type Props = {
   /**
    * The DOM element used to set the position of the menu.
@@ -107,7 +112,7 @@ export const styles = {
 };
 
 class Menu extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
+  static defaultProps: DefaultProps = {
     open: false,
     transitionDuration: 'auto',
   };

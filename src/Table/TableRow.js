@@ -50,6 +50,10 @@ type DefaultProps = {
 
 export type Props = {
   /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
+  /**
    * Should be valid `<tr>` children such as `TableCell`.
    */
   children?: Node,

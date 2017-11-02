@@ -3,6 +3,7 @@
 
 import React from 'react';
 import type { Node } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
@@ -50,9 +51,13 @@ export const styles = (theme: Object) => ({
 export type Direction = 'asc' | 'desc';
 
 type ProvidedProps = {
-  active: boolean,
   classes: Object,
-  direction: Direction,
+  theme: Object,
+};
+
+type DefaultProps = {
+  active?: boolean,
+  direction?: Direction,
 };
 
 export type Props = {
@@ -108,4 +113,6 @@ TableSortLabel.defaultProps = {
   direction: 'desc',
 };
 
-export default withStyles(styles, { name: 'MuiTableSortLabel' })(TableSortLabel);
+export default withStyles(styles, { name: 'MuiTableSortLabel' })(
+  (TableSortLabel: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

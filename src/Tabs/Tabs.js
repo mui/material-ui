@@ -46,14 +46,30 @@ export const styles = (theme: Object) => ({
   },
 });
 
+type IndicatorColor = 'accent' | 'primary' | string;
+type ScrollButtons = 'auto' | 'on' | 'off';
+type TextColor = 'accent' | 'primary' | 'inherit';
+
 type ProvidedProps = {
   classes: Object,
-  indicatorColor: string,
-  TabScrollButton: ComponentType<*>,
   theme: Object,
 };
 
+type DefaultProps = {
+  centered?: boolean,
+  fullWidth?: boolean,
+  indicatorColor: IndicatorColor,
+  scrollable?: boolean,
+  scrollButtons?: ScrollButtons,
+  textColor?: TextColor,
+  TabScrollButton: ComponentType<*>,
+};
+
 export type Props = {
+  /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
   /**
    * The CSS class name of the scroll button elements.
    */
@@ -87,7 +103,7 @@ export type Props = {
   /**
    * Determines the color of the indicator.
    */
-  indicatorColor?: 'accent' | 'primary' | string,
+  indicatorColor: 'accent' | 'primary' | string,
   /**
    * Callback fired when the value changes.
    *
@@ -106,15 +122,15 @@ export type Props = {
    * `on` will always present them
    * `off` will never present them
    */
-  scrollButtons?: 'auto' | 'on' | 'off',
+  scrollButtons?: ScrollButtons,
   /**
    * The component used to render the scroll buttons.
    */
-  TabScrollButton?: ComponentType<*>,
+  TabScrollButton: ComponentType<*>,
   /**
    * Determines the color of the `Tab`.
    */
-  textColor?: 'accent' | 'primary' | 'inherit',
+  textColor?: TextColor,
   /**
    * @ignore
    */
@@ -145,7 +161,7 @@ export type TabsMeta = {
 };
 
 class Tabs extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps = {
+  static defaultProps: DefaultProps = {
     centered: false,
     fullWidth: false,
     indicatorColor: 'accent',

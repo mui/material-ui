@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
@@ -63,9 +64,13 @@ export type Mode = 'determinate' | 'indeterminate';
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
+};
+
+type DefaultProps = {
   color: Color,
-  size: number,
-  mode: Mode,
+  size?: number,
+  mode?: Mode,
   value: number,
   min: number,
   max: number,
@@ -83,15 +88,15 @@ export type Props = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color?: Color,
+  color: Color,
   /**
    * The max value of progress in determinate mode.
    */
-  max?: number,
+  max: number,
   /**
    * The min value of progress in determinate mode.
    */
-  min?: number,
+  min: number,
   /**
    * The mode of show your progress. Indeterminate
    * for when there is no value for progress.
@@ -113,7 +118,7 @@ export type Props = {
   /**
    * The value of progress in determinate mode.
    */
-  value?: number,
+  value: number,
 };
 
 function CircularProgress(props: ProvidedProps & Props) {
@@ -188,4 +193,6 @@ CircularProgress.defaultProps = {
   max: 100,
 };
 
-export default withStyles(styles, { name: 'MuiCircularProgress' })(CircularProgress);
+export default withStyles(styles, { name: 'MuiCircularProgress' })(
+  (CircularProgress: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);
