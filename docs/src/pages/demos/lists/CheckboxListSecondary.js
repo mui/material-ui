@@ -48,7 +48,7 @@ class CheckboxListSecondary extends React.Component {
               <ListItemText primary={`Line item ${value + 1}`} />
               <ListItemSecondaryAction>
                 <Checkbox
-                  onClick={this.handleToggle(value)}
+                  onChange={this.handleToggle(value)}
                   checked={this.state.checked.indexOf(value) !== -1}
                 />
               </ListItemSecondaryAction>
