@@ -8,7 +8,7 @@ import Grow from 'material-ui/transitions/Grow';
 import Paper from 'material-ui/Paper';
 import { withStyles } from 'material-ui/styles';
 import { Manager, Target, Popper } from 'react-popper';
-import ClickAwayListener from 'material-ui/internal/ClickAwayListener';
+import ClickAwayListener from 'material-ui/utils/ClickAwayListener';
 
 const styles = {
   root: {
