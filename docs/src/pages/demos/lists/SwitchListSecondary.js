@@ -56,7 +56,7 @@ class SwitchListSecondary extends React.Component {
             <ListItemText primary="Wi-Fi" />
             <ListItemSecondaryAction>
               <Switch
-                onClick={this.handleToggle('wifi')}
+                onChange={this.handleToggle('wifi')}
                 checked={this.state.checked.indexOf('wifi') !== -1}
               />
             </ListItemSecondaryAction>
@@ -68,7 +68,7 @@ class SwitchListSecondary extends React.Component {
             <ListItemText primary="Bluetooth" />
             <ListItemSecondaryAction>
               <Switch
-                onClick={this.handleToggle('bluetooth')}
+                onChange={this.handleToggle('bluetooth')}
                 checked={this.state.checked.indexOf('bluetooth') !== -1}
               />
             </ListItemSecondaryAction>
