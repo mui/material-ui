@@ -23,6 +23,8 @@ export class DateTimePicker extends Component {
     minDate: DomainPropTypes.date,
     maxDate: DomainPropTypes.date,
     showTabs: PropTypes.bool,
+    leftArrowIcon: PropTypes.string,
+    rightArrowIcon: PropTypes.string,
   }
 
   static defaultProps = {
@@ -32,6 +34,8 @@ export class DateTimePicker extends Component {
     openTo: viewType.DATE,
     disableFuture: false,
     showTabs: true,
+    leftArrowIcon: undefined,
+    rightArrowIcon: undefined,
   }
 
   state = {
@@ -67,6 +71,8 @@ export class DateTimePicker extends Component {
       maxDate,
       showTabs,
       disableFuture,
+      leftArrowIcon,
+      rightArrowIcon,
     } = this.props;
 
     return (
@@ -104,6 +110,8 @@ export class DateTimePicker extends Component {
             maxDate={maxDate}
             onChange={this.onChange(viewType.HOUR)}
             disableFuture={disableFuture}
+            leftArrowIcon={leftArrowIcon}
+            rightArrowIcon={rightArrowIcon}
           />
         </View>
 
