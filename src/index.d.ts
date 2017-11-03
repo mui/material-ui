@@ -15,7 +15,7 @@ export type StandardProps<C, ClassKey extends string, Removals extends keyof C =
     style?: Partial<React.CSSProperties>;
   }
 
-export type Contrast = 'light' | 'dark' | 'brown';
+export type Contrast = 'light' | 'dark';
 export interface Color {
   50: string;
   100: string;

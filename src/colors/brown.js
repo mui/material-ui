@@ -16,7 +16,7 @@ const brown = {
   A200: '#bcaaa4',
   A400: '#8d6e63',
   A700: '#5d4037',
-  contrastDefaultColor: 'brown',
+  contrastDefaultColor: 'light',
 };
 
 export default brown;
