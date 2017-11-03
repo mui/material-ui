@@ -157,6 +157,10 @@ type DefaultProps = {
 
 export type Props = {
   /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
+  /**
    * Useful to extend the style applied to components.
    */
   classes?: Object,

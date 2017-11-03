@@ -6,6 +6,7 @@
 .*/node_modules/mitt
 .*/node_modules/npmconf/test/fixtures/package.json
 .*/node_modules/react-swipeable-views
+.*/node_modules/react-flow-types/tests
 .*/node_modules/eslint-plugin-jsx-a11y
 .*/node_modules/react-number-format/src
 .*/scripts

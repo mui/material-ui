@@ -51,6 +51,10 @@ type DefaultProps = {
 
 export type Props = {
   /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
+  /**
    * The contents of the form control.
    */
   children?: Node,

@@ -94,6 +94,10 @@ type DefaultProps = {
 
 export type Props = {
   /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
+  /**
    * Side from which the drawer will appear.
    */
   anchor: Anchor,
@@ -144,7 +148,7 @@ export type Props = {
    * The type of drawer.
    */
   type: Type,
-} & ElementProps<typeof Modal>;
+};
 
 type State = {
   firstMount: boolean,

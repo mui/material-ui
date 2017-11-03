@@ -29,10 +29,19 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
-  component: ElementType,
+  theme: Object,
+};
+
+type DefaultProps = {
+  dense?: boolean,
+  disablePaddin?: boolean,
 };
 
 export type Props = {
+  /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
   /**
    * The content of the component.
    */
@@ -71,8 +80,7 @@ export type Props = {
 };
 
 class List extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
-    component: 'ul',
+  static defaultProps: DefaultProps = {
     dense: false,
     disablePadding: false,
   };
@@ -87,7 +95,7 @@ class List extends React.Component<ProvidedProps & Props> {
     const {
       classes,
       className: classNameProp,
-      component: ComponentProp,
+      component: ComponentProp = 'ul',
       disablePadding,
       children,
       dense,

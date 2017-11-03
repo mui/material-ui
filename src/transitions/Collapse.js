@@ -130,7 +130,7 @@ class Collapse extends React.Component<ProvidedProps & Props> {
       this.autoTransitionDuration = duration2;
     } else if (typeof timeout === 'number') {
       node.style.transitionDuration = `${timeout}ms`;
-    } else if (timeout) {
+    } else if (timeout && typeof timeout.enter === 'number') {
       node.style.transitionDuration = `${timeout.enter}ms`;
     } else {
       // The propType will warn in this case.
@@ -170,7 +170,7 @@ class Collapse extends React.Component<ProvidedProps & Props> {
       this.autoTransitionDuration = duration2;
     } else if (typeof timeout === 'number') {
       node.style.transitionDuration = `${timeout}ms`;
-    } else if (timeout) {
+    } else if (timeout && typeof timeout.exit === 'number') {
       node.style.transitionDuration = `${timeout.exit}ms`;
     } else {
       // The propType will warn in this case.
@@ -186,7 +186,7 @@ class Collapse extends React.Component<ProvidedProps & Props> {
   addEndListener = (node, next: Function) => {
     let timeout;
 
-    if (this.props.timeout === 'auto') {
+    if (this.props.timeout === 'auto' || typeof this.props.timeout !== 'number') {
       timeout = this.autoTransitionDuration || 0;
     } else {
       timeout = this.props.timeout;

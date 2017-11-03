@@ -31,6 +31,10 @@ type DefaultProps = {
 
 export type Props = {
   /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
+  /**
    * Elements passed into the SVG Icon.
    */
   children: Node,

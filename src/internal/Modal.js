@@ -51,7 +51,7 @@ type DefaultProps = {
   disableBackdrop?: boolean,
   ignoreBackdropClick?: boolean,
   ignoreEscapeKeyUp?: boolean,
-  modalManager?: Object,
+  modalManager: Object,
   show?: boolean,
 };
 
@@ -106,7 +106,7 @@ export type Props = {
   /**
    * @ignore
    */
-  modalManager?: Object,
+  modalManager: Object,
   /**
    * Callback fires when the backdrop is clicked on.
    */

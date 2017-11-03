@@ -18,6 +18,7 @@ describe('<Grow />', () => {
   });
 
   it('should render a CSSTransition', () => {
+    const x = <Grow {...props} />;
     const wrapper = shallow(<Grow {...props} />);
     assert.strictEqual(wrapper.name(), 'CSSTransition');
   });

@@ -62,7 +62,7 @@ export type Props = {
   /**
    * @ignore
    */
-  children: Node,
+  children?: Node,
   /**
    * Useful to extend the style applied to components.
    */

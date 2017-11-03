@@ -26,14 +26,16 @@ describe('<Portal />', () => {
   versions.map(verion => {
     describe(verion, () => {
       before(() => {
-        // $FlowFixMe
         reactDomMock.createPortal = ReactDOM.createPortal;
 
         if (verion === 'latest') {
           // $FlowExpectedError
           ReactDOM.createPortal = (children, layer) => {
+            // $FlowExpectedError
             const element = document.createElement(children.type);
+            // $FlowExpectedError
             element.textContent = children.props.children;
+            // $FlowExpectedError
             element.setAttribute('id', children.props.id);
             layer.appendChild(element);
             return null;
@@ -41,6 +43,7 @@ describe('<Portal />', () => {
         } else if (verion === 'old') {
           // $FlowExpectedError
           ReactDOM.createPortal = null;
+          // $FlowExpectedError
           ReactDOM.unstable_renderSubtreeIntoContainer = (
             instance,
             children: Element<*>,
@@ -60,7 +63,6 @@ describe('<Portal />', () => {
       });
 
       after(() => {
-        // $FlowExpectedError
         ReactDOM.createPortal = reactDomMock.createPortal;
 
         if (verion === 'next') {

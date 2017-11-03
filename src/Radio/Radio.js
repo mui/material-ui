@@ -19,18 +19,6 @@ export const styles = (theme: Object) => ({
   },
 });
 
-const Radio = withStyles(styles, { name: 'MuiRadio' })(
-  createSwitch({
-    inputType: 'radio',
-    defaultIcon: <RadioButtonUncheckedIcon />,
-    defaultCheckedIcon: <RadioButtonCheckedIcon />,
-  }),
-);
-
-Radio.displayName = 'Radio';
-
-export default Radio;
-
 type ProvidedProps = {
   classes: Object,
   theme: Object,
@@ -52,6 +40,10 @@ export type Props = {
   checkedIcon?: Node,
   /**
    * Useful to extend the style applied to components.
+   */
+  children?: Node,
+  /**
+   * @ignore
    */
   classes?: Object,
   /**
@@ -107,6 +99,18 @@ export type Props = {
    */
   value?: string,
 };
+
+const Switch = createSwitch({
+  inputType: 'radio',
+  defaultIcon: <RadioButtonUncheckedIcon />,
+  defaultCheckedIcon: <RadioButtonCheckedIcon />,
+});
+
+const Radio = withStyles(styles, { name: 'MuiRadio' })(Switch);
+
+Radio.displayName = 'Radio';
+
+export default Radio;
 
 // This is here solely to trigger api doc generation
 // eslint-disable-next-line no-unused-vars

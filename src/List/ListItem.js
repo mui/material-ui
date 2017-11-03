@@ -65,7 +65,15 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
-  component: ElementType,
+  theme: Object,
+};
+
+type DefaultProps = {
+  button?: boolean,
+  dense?: boolean,
+  disabled?: boolean,
+  disableGutters?: boolean,
+  divider?: boolean,
 };
 
 export type Props = {
@@ -109,9 +117,8 @@ export type Props = {
 };
 
 class ListItem extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
+  static defaultProps: DefaultProps = {
     button: false,
-    component: 'li',
     dense: false,
     disabled: false,
     disableGutters: false,
@@ -130,7 +137,7 @@ class ListItem extends React.Component<ProvidedProps & Props> {
       children: childrenProp,
       classes,
       className: classNameProp,
-      component: componentProp,
+      component: componentProp = 'li',
       dense,
       disabled,
       divider,
