@@ -37,6 +37,10 @@ export const styles = (theme: Object) => ({
       color: 'transparent',
       textShadow: '0 0 0 #000',
     },
+    // Remove IE11 arrow
+    '&::-ms-expand': {
+      display: 'none',
+    },
   },
   selectMenu: {
     textOverflow: 'ellipsis',
