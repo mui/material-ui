@@ -11,6 +11,7 @@ const rowsHeight = 24;
 export const styles = {
   root: {
     position: 'relative', // because the shadow has position: 'absolute',
+    width: '100%',
   },
   textarea: {
     width: '100%',
@@ -98,14 +99,6 @@ type State = {
  * @ignore - internal component.
  */
 class Textarea extends React.Component<ProvidedProps & Props, State> {
-  shadow: ?HTMLTextAreaElement;
-
-  singlelineShadow: ?HTMLTextAreaElement;
-
-  input: ?HTMLTextAreaElement;
-
-  value: string | number;
-
   static defaultProps: DefaultProps = {
     rows: 1,
   };
@@ -139,6 +132,11 @@ class Textarea extends React.Component<ProvidedProps & Props, State> {
   componentWillUnmount() {
     this.handleResize.cancel();
   }
+
+  shadow: ?HTMLTextAreaElement;
+  singlelineShadow: ?HTMLTextAreaElement;
+  input: ?HTMLTextAreaElement;
+  value: string | number;
 
   handleResize = debounce(event => {
     this.syncHeightWithShadow(event);

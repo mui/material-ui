@@ -34,15 +34,14 @@ export function isDirty(obj, SSR = false) {
   );
 }
 
-// Determine if an Input is adorned
-//
-// Response determines if label is presented above field or as placeholder.
+// Determine if an Input is adorned on start.
+// It's corresponding to the left with LTR.
 //
 // @param obj
 // @returns {boolean} False when no adornments.
-//                    True when adorned.
-export function isAdorned(obj) {
-  return obj.startAdornment || obj.endAdornment;
+//                    True when adorned at the start.
+export function isAdornedStart(obj) {
+  return obj.startAdornment;
 }
 
 export const styles = (theme: Object) => {
@@ -69,6 +68,7 @@ export const styles = (theme: Object) => {
       position: 'relative',
       fontFamily: theme.typography.fontFamily,
       color: theme.palette.input.inputText,
+      fontSize: theme.typography.pxToRem(16),
     },
     formControl: {
       'label + &': {
@@ -90,7 +90,7 @@ export const styles = (theme: Object) => {
           duration: theme.transitions.duration.shorter,
           easing: theme.transitions.easing.easeOut,
         }),
-        pointerEvent: 'none', // Transparent to the hover style.
+        pointerEvents: 'none', // Transparent to the hover style.
       },
       '&$focused:after': {
         transform: 'scaleX(1)',
@@ -162,7 +162,7 @@ export const styles = (theme: Object) => {
           duration: theme.transitions.duration.shorter,
           easing: theme.transitions.easing.ease,
         }),
-        pointerEvent: 'none', // Transparent to the hover style.
+        pointerEvents: 'none', // Transparent to the hover style.
       },
       '&:hover:not($disabled):before': {
         backgroundColor: theme.palette.text.primary,
@@ -377,10 +377,28 @@ class Input extends React.Component<ProvidedProps & Props, State> {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    // The blur won't fire when the disabled state is set on a focused input.
+    // We need to book keep the focused state manually.
+    if (!this.props.disabled && nextProps.disabled) {
+      this.setState({
+        focused: false,
+      });
+    }
+  }
+
   componentWillUpdate(nextProps) {
-    if (this.isControlled()) {
+    if (this.isControlled(nextProps)) {
       this.checkDirty(nextProps);
     } // else performed in the onChange
+
+    // Book keep the focused state.
+    if (!this.props.disabled && nextProps.disabled) {
+      const { muiFormControl } = this.context;
+      if (muiFormControl && muiFormControl.onBlur) {
+        muiFormControl.onBlur();
+      }
+    }
   }
 
   // Holds the input reference
@@ -422,8 +440,8 @@ class Input extends React.Component<ProvidedProps & Props, State> {
   //
   // @see https://facebook.github.io/react/docs/forms.html#controlled-components
   // @returns {boolean} true if string (including '') or number (including zero)
-  isControlled() {
-    return hasValue(this.props.value);
+  isControlled(props = this.props) {
+    return hasValue(props.value);
   }
 
   checkDirty(obj) {
@@ -461,7 +479,7 @@ class Input extends React.Component<ProvidedProps & Props, State> {
       fullWidth,
       id,
       inputComponent,
-      inputProps: { inputPropsClassName, ...inputPropsProp } = {},
+      inputProps: { className: inputPropsClassName, ...inputPropsProp } = {},
       inputRef,
       margin: marginProp,
       multiline,
@@ -485,7 +503,6 @@ class Input extends React.Component<ProvidedProps & Props, State> {
     } = this.props;
 
     const { muiFormControl } = this.context;
-
     let disabled = disabledProp;
     let error = errorProp;
     let margin = marginProp;

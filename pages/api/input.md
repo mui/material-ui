@@ -50,7 +50,6 @@ This property accepts the following keys:
 - `inkbar`
 - `error`
 - `input`
-- `inputAdorned`
 - `inputDense`
 - `disabled`
 - `focused`

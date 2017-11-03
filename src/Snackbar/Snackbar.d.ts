@@ -22,7 +22,7 @@ export interface SnackbarProps extends StandardProps<
   onRequestClose?: (event: React.SyntheticEvent<any>, reason: string) => void;
   open: boolean;
   SnackbarContentProps?: Object;
-  transition?: React.ReactNode;
+  transition?: React.ReactType;
 }
 
 export type SnackbarClassKey =

@@ -10,15 +10,14 @@ import getDisplayName from 'recompose/getDisplayName';
 import contextTypes from 'react-jss/lib/contextTypes';
 import { create } from 'jss';
 import preset from 'jss-preset-default';
-import rtl from 'jss-rtl';
 import * as ns from 'react-jss/lib/ns';
 import createMuiTheme from './createMuiTheme';
 import themeListener from './themeListener';
 import createGenerateClassName from './createGenerateClassName';
 import getStylesCreator from './getStylesCreator';
 
-const presets = preset().plugins;
-const jss = create({ plugins: [...presets, rtl()] });
+// New JSS instance.
+const jss = create(preset());
 
 // Use a singleton or the provided one by the context.
 const generateClassName = createGenerateClassName();
@@ -163,10 +162,22 @@ const withStyles = (
         this.attach(this.theme);
 
         // Rerender the component so the underlying component gets the theme update.
+        // By theme update we mean receiving and applying the new class names.
         this.setState({}, () => {
           this.detach(oldTheme);
         });
       });
+    }
+
+    componentWillReceiveProps() {
+      // react-hot-loader specific logic
+      if (this.stylesCreatorSaved === stylesCreator || process.env.NODE_ENV === 'production') {
+        return;
+      }
+
+      this.detach(this.theme);
+      this.stylesCreatorSaved = stylesCreator;
+      this.attach(this.theme);
     }
 
     componentWillUnmount() {

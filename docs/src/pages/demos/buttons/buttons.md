@@ -43,6 +43,11 @@ Icons are also appropriate for toggle buttons that allow a single choice to be s
 
 {{demo='pages/demos/buttons/IconButtons.js'}}
 
+### Buttons with icons and label
+Sometimes you might want to have icons for certain button to enhance the UX of the application as humans recognize logos more than plain text. For example, if you have a delete button you can label it with a dustbin icon.
+
+{{demo='pages/demos/buttons/IconLabelButtons.js'}}
+
 ## Complex Buttons
 
 The Flat Buttons, Raised Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`.

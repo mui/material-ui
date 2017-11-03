@@ -48,3 +48,12 @@ We demonstrate how you could be using third-party libraries to [format your inpu
 Here, we are using [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries.
 
 {{demo='pages/demos/text-fields/FormattedInputs.js'}}
+
+## Customized inputs
+
+You have been reading our [overrides documentation page](/customization/overrides)
+but you are not confident jumping in?
+Here is an example of how you can change the main color of an input from "primary" to purple.
+There is no limit.
+
+{{demo='pages/demos/text-fields/CustomizedInputs.js'}}

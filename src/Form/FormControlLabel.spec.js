@@ -10,13 +10,11 @@ describe('FormControlLabel', () => {
   let shallow;
   let mount;
   let classes;
-  let wrapper;
 
   before(() => {
     shallow = createShallow({ dive: true });
     mount = createMount();
     classes = getClasses(<FormControlLabel label="Pizza" control={<div />} />);
-    wrapper = shallow(<FormControlLabel label="Pizza" control={<div />} />);
   });
 
   after(() => {
@@ -24,6 +22,7 @@ describe('FormControlLabel', () => {
   });
 
   it('should render the label text inside an additional element', () => {
+    const wrapper = shallow(<FormControlLabel label="Pizza" control={<div />} />);
     const label = wrapper.childAt(1);
     assert.strictEqual(FormControlLabel.displayName, 'withStyles(FormControlLabel)');
     assert.strictEqual(wrapper.name(), 'label');
@@ -33,30 +32,76 @@ describe('FormControlLabel', () => {
 
   describe('prop: disabled', () => {
     it('should disable everything', () => {
-      const wrapper2 = shallow(<FormControlLabel label="Pizza" disabled control={<div />} />);
+      const wrapper = shallow(<FormControlLabel label="Pizza" disabled control={<div />} />);
       assert.strictEqual(
-        wrapper2.hasClass(classes.disabled),
+        wrapper.hasClass(classes.disabled),
         true,
         'should have the disabled class',
       );
-      assert.strictEqual(wrapper2.find('div').props().disabled, true);
+      assert.strictEqual(wrapper.hasClass(classes.disabled), true);
+      assert.strictEqual(wrapper.find('div').props().disabled, true);
     });
 
-    it('should only disable the label', () => {
-      const wrapper2 = shallow(
-        <FormControlLabel label="Pizza" disabled control={<div disabled={false} />} />,
-      );
+    it('should disable everything', () => {
+      const wrapper = shallow(<FormControlLabel label="Pizza" control={<div disabled />} />);
       assert.strictEqual(
-        wrapper2.hasClass(classes.disabled),
+        wrapper.hasClass(classes.disabled),
         true,
         'should have the disabled class',
       );
-      assert.strictEqual(wrapper2.find('div').props().disabled, false);
+      assert.strictEqual(wrapper.hasClass(classes.disabled), true);
+      assert.strictEqual(wrapper.find('div').props().disabled, true);
     });
   });
 
   it('should mount without issue', () => {
-    const wrapper2 = mount(<FormControlLabel label="Pizza" control={<Checkbox />} />);
-    assert.strictEqual(wrapper2.name(), 'withStyles(FormControlLabel)');
+    const wrapper = mount(<FormControlLabel label="Pizza" control={<Checkbox />} />);
+    assert.strictEqual(wrapper.name(), 'withStyles(FormControlLabel)');
+  });
+
+  describe('with muiFormControl context', () => {
+    let wrapper;
+    let muiFormControl;
+
+    function setFormControlContext(muiFormControlContext) {
+      muiFormControl = muiFormControlContext;
+      wrapper.setContext({ muiFormControl });
+    }
+
+    beforeEach(() => {
+      wrapper = shallow(<FormControlLabel label="Pizza" control={<div />} />);
+    });
+
+    describe('enabled', () => {
+      beforeEach(() => {
+        setFormControlContext({});
+      });
+
+      it('should not have the disabled class', () => {
+        assert.strictEqual(wrapper.hasClass(classes.disabled), false);
+      });
+
+      it('should be overridden by props', () => {
+        assert.strictEqual(wrapper.hasClass(classes.disabled), false);
+        wrapper.setProps({ disabled: true });
+        assert.strictEqual(wrapper.hasClass(classes.disabled), true);
+      });
+    });
+
+    describe('disabled', () => {
+      beforeEach(() => {
+        setFormControlContext({ disabled: true });
+      });
+
+      it('should have the disabled class', () => {
+        assert.strictEqual(wrapper.hasClass(classes.disabled), true);
+      });
+
+      it('should honor props', () => {
+        assert.strictEqual(wrapper.hasClass(classes.disabled), true);
+        wrapper.setProps({ disabled: false });
+        assert.strictEqual(wrapper.hasClass(classes.disabled), false);
+      });
+    });
   });
 });

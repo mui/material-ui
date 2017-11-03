@@ -245,4 +245,16 @@ describe('<Snackbar />', () => {
       assert.strictEqual(wrapper.contains(children), true);
     });
   });
+
+  describe('prop: transition', () => {
+    it('should render a Snackbar with transition', () => {
+      const Transition = props => <div className="cloned-element-class" {...props} />;
+      const wrapper = shallow(<Snackbar open transition={Transition} />);
+      assert.strictEqual(
+        wrapper.find(Transition).length,
+        1,
+        'should include element given in transition',
+      );
+    });
+  });
 });

@@ -1,5 +1,5 @@
-// flow-typed signature: 361bd0345b0567d52419a64283294afc
-// flow-typed version: 6d442f5792/chai_v4.x.x/flow_>=v0.15.0
+// flow-typed signature: 04abbfe10ba62a87d54aa0723604ba3f
+// flow-typed version: dd6d1b6bed/chai_v4.x.x/flow_>=v0.15.0
 
 declare module "chai" {
   declare type ExpectChain<T> = {
@@ -243,7 +243,10 @@ declare module "chai" {
       err?: Class<E> | Error | RegExp | string,
       errorMsgMatcher?: string | RegExp,
       msg?: string
-    ): void
+    ): void,
+
+    static closeTo(actual: number, expected: number, delta: number, msg?: string): void,
+    static approximately(actual: number, expected: number, delta: number, msg?: string): void
   }
 
   declare var config: {

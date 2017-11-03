@@ -48,7 +48,7 @@ describe('<MenuList> integration', () => {
   describe('keyboard controls and tabIndex manipulation', () => {
     let wrapper;
 
-    before(() => {
+    const resetWrapper = () => {
       wrapper = mount(
         <MenuList>
           <MenuItem>Menu Item 1</MenuItem>
@@ -57,7 +57,9 @@ describe('<MenuList> integration', () => {
           <MenuItem>Menu Item 4</MenuItem>
         </MenuList>,
       );
-    });
+    };
+
+    before(resetWrapper);
 
     it('should have the first item tabIndexed', () => {
       assertMenuItemTabIndexed(wrapper, 0);
@@ -66,6 +68,17 @@ describe('<MenuList> integration', () => {
     it('should select/focus the first item', () => {
       wrapper.instance().focus();
       assertMenuItemTabIndexed(wrapper, 0);
+      assertMenuItemFocused(wrapper, 0);
+    });
+
+    it('should still have the first item tabIndexed', () => {
+      wrapper.simulate('keyDown', { which: keycode('up') });
+      assertMenuItemTabIndexed(wrapper, 0);
+    });
+
+    it('should still have the first item tabIndexed', () => {
+      wrapper.simulate('keyDown', { which: keycode('down') });
+      wrapper.simulate('keyDown', { which: keycode('up') });
       assertMenuItemFocused(wrapper, 0);
     });
 
@@ -93,6 +106,18 @@ describe('<MenuList> integration', () => {
       }, 60);
     });
 
+    it('should reset the tabIndex to the focused element when calling resetTabIndex', () => {
+      wrapper.instance().focus();
+      wrapper.simulate('keyDown', { which: keycode('down') });
+      wrapper.instance().setTabIndex(2);
+      wrapper.instance().resetTabIndex();
+
+      assertMenuItemTabIndexed(wrapper, 1);
+      assertMenuItemFocused(wrapper, 1);
+
+      resetWrapper();
+    });
+
     it('should select/focus the first item', () => {
       wrapper.instance().focus();
       assertMenuItemTabIndexed(wrapper, 0);
@@ -110,12 +135,24 @@ describe('<MenuList> integration', () => {
       assertMenuItemTabIndexed(wrapper, 2);
       assertMenuItemFocused(wrapper, 2);
     });
+
+    it('should focus the first item if not focused', () => {
+      resetWrapper();
+      wrapper.simulate('keyDown', { which: keycode('down') });
+      assertMenuItemTabIndexed(wrapper, 0);
+      assertMenuItemFocused(wrapper, 0);
+
+      resetWrapper();
+      wrapper.simulate('keyDown', { which: keycode('up') });
+      assertMenuItemTabIndexed(wrapper, 0);
+      assertMenuItemFocused(wrapper, 0);
+    });
   });
 
   describe('keyboard controls and tabIndex manipulation - preselected item', () => {
     let wrapper;
 
-    before(() => {
+    const resetWrapper = () => {
       wrapper = mount(
         <MenuList>
           <MenuItem>Menu Item 1</MenuItem>
@@ -124,7 +161,9 @@ describe('<MenuList> integration', () => {
           <MenuItem>Menu Item 4</MenuItem>
         </MenuList>,
       );
-    });
+    };
+
+    before(resetWrapper);
 
     it('should have the 2nd item tabIndexed', () => {
       assertMenuItemTabIndexed(wrapper, 1);
@@ -142,5 +181,28 @@ describe('<MenuList> integration', () => {
       assertMenuItemTabIndexed(wrapper, 2);
       assertMenuItemFocused(wrapper, 2);
     });
+
+    it('should focus the preselected item if not focused', () => {
+      resetWrapper();
+      wrapper.simulate('keyDown', { which: keycode('down') });
+      assertMenuItemTabIndexed(wrapper, 1);
+      assertMenuItemFocused(wrapper, 1);
+
+      resetWrapper();
+      wrapper.simulate('keyDown', { which: keycode('up') });
+      assertMenuItemTabIndexed(wrapper, 1);
+      assertMenuItemFocused(wrapper, 1);
+    });
+  });
+
+  it('should not crash and burn when calling focus() on an empty MenuList', () => {
+    const wrapper = mount(<MenuList />);
+    wrapper.instance().focus();
+  });
+
+  it('should not crash and burn when calling focus() on an unmounted MenuList', () => {
+    const wrapper = mount(<MenuList />);
+    delete wrapper.instance().list;
+    wrapper.instance().focus();
   });
 });

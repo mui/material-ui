@@ -8,14 +8,21 @@ import CheckBox from '../svg-icons/CheckBox';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import Avatar from '../Avatar';
 import Chip from './Chip';
+import CancelIcon from '../svg-icons/Cancel';
 
 describe('<Chip />', () => {
   let shallow;
   let classes;
+  let mount;
 
   before(() => {
     shallow = createShallow({ dive: true });
     classes = getClasses(<Chip />);
+    mount = createMount();
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   describe('text only', () => {
@@ -154,19 +161,14 @@ describe('<Chip />', () => {
   });
 
   describe('prop: deleteIcon', () => {
-    let wrapper;
-
-    before(() => {
-      wrapper = shallow(
+    it('should fire the function given in onDeleteRequest', () => {
+      const wrapper = shallow(
         <Chip
           label="Custom delete icon Chip"
           onRequestDelete={() => {}}
           deleteIcon={<CheckBox />}
         />,
       );
-    });
-
-    it('should fire the function given in onDeleteRequest', () => {
       const onRequestDeleteSpy = spy();
       wrapper.setProps({ onRequestDelete: onRequestDeleteSpy });
 
@@ -176,6 +178,11 @@ describe('<Chip />', () => {
         1,
         'should have called the onRequestDelete handler',
       );
+    });
+
+    it('should render a default icon', () => {
+      const wrapper = mount(<Chip label="Custom delete icon Chip" onRequestDelete={() => {}} />);
+      assert.strictEqual(wrapper.find(CancelIcon).length, 1);
     });
   });
 
@@ -202,16 +209,6 @@ describe('<Chip />', () => {
     });
 
     describe('escape', () => {
-      let mount;
-
-      before(() => {
-        mount = createMount();
-      });
-
-      after(() => {
-        mount.cleanUp();
-      });
-
       it('should unfocus when a esc key is pressed', () => {
         const ChipNaked = unwrap(Chip);
         const wrapper2 = mount(<ChipNaked classes={{}}>Text Chip</ChipNaked>);

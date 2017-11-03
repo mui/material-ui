@@ -44,4 +44,9 @@ describe('<Table />', () => {
     const wrapper = shallow(<Table>{children}</Table>);
     assert.strictEqual(wrapper.childAt(0).equals(children), true);
   });
+
+  it('should define table in the child context', () => {
+    const wrapper = shallow(<Table />);
+    assert.deepStrictEqual(wrapper.instance().getChildContext().table, {});
+  });
 });

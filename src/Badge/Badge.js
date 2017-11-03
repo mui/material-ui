@@ -26,7 +26,7 @@ export const styles = (theme: Object) => ({
     right: -RADIUS,
     fontFamily: theme.typography.fontFamily,
     fontWeight: theme.typography.fontWeight,
-    fontSize: RADIUS,
+    fontSize: theme.typography.pxToRem(RADIUS),
     width: RADIUS * 2,
     height: RADIUS * 2,
     borderRadius: '50%',

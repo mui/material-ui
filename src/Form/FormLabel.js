@@ -12,6 +12,7 @@ export const styles = (theme: Object) => {
     root: {
       fontFamily: theme.typography.fontFamily,
       color: theme.palette.input.labelText,
+      fontSize: theme.typography.pxToRem(16),
       lineHeight: 1,
       padding: 0,
     },

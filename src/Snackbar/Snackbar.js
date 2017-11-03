@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
-import ClickAwayListener from '../internal/ClickAwayListener';
+import ClickAwayListener from '../utils/ClickAwayListener';
 import { capitalizeFirstLetter, createChainedFunction } from '../utils/helpers';
 import Slide from '../transitions/Slide';
 import SnackbarContent from './SnackbarContent';
@@ -190,9 +190,9 @@ export type Props = {
    */
   SnackbarContentProps?: Object,
   /**
-   * Object with Transition component, props & create Fn.
+   * Transition component.
    */
-  transition?: ComponentType<*> | Element<any>,
+  transition?: ComponentType<*>,
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
@@ -250,8 +250,6 @@ class Snackbar extends React.Component<ProvidedProps & Props, State> {
     clearTimeout(this.timerAutoHide);
   }
 
-  timerAutoHide = null;
-
   // Timer that controls delay before snackbar auto hides
   setAutoHideTimer(autoHideDuration = null) {
     if (!this.props.onRequestClose || this.props.autoHideDuration === undefined) {
@@ -267,6 +265,8 @@ class Snackbar extends React.Component<ProvidedProps & Props, State> {
       this.props.onRequestClose(null, 'timeout');
     }, autoHideDuration || this.props.autoHideDuration || 0);
   }
+
+  timerAutoHide = null;
 
   handleMouseEnter = (event: SyntheticUIEvent<>) => {
     if (this.props.onMouseEnter) {
@@ -332,7 +332,7 @@ class Snackbar extends React.Component<ProvidedProps & Props, State> {
       onRequestClose,
       open,
       SnackbarContentProps,
-      transition: transitionProp,
+      transition: TransitionProp,
       ...other
     } = this.props;
 
@@ -356,15 +356,13 @@ class Snackbar extends React.Component<ProvidedProps & Props, State> {
     );
 
     let transition;
-    if (typeof transitionProp === 'function') {
-      transition = React.createElement(transitionProp, transitionProps, transitionContent);
+    if (TransitionProp) {
+      transition = <TransitionProp {...transitionProps}>{transitionContent}</TransitionProp>;
     } else {
-      // $FlowFixMe - rosskevin - figure this out later
-      transition = React.cloneElement(
-        // $FlowFixMe - flow isn't smart enough to handle this pattern
-        transitionProp || <Slide direction={vertical === 'top' ? 'down' : 'up'} />,
-        transitionProps,
-        transitionContent,
+      transition = (
+        <Slide direction={vertical === 'top' ? 'down' : 'up'} {...transitionProps}>
+          {transitionContent}
+        </Slide>
       );
     }
 

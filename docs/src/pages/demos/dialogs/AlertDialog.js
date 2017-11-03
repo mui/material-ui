@@ -9,7 +9,7 @@ import Dialog, {
   DialogTitle,
 } from 'material-ui/Dialog';
 
-export default class AlertDialog extends React.Component {
+class AlertDialog extends React.Component {
   state = {
     open: false,
   };
@@ -47,3 +47,5 @@ export default class AlertDialog extends React.Component {
     );
   }
 }
+
+export default AlertDialog;

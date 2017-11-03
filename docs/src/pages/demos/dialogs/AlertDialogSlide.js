@@ -9,8 +9,13 @@ import Dialog, {
   DialogTitle,
 } from 'material-ui/Dialog';
 import Slide from 'material-ui/transitions/Slide';
+import NoSSR from 'docs/src/modules/components/NoSSR'; // Temporary workaround for SSR Portal issue.
 
-export default class AlertDialogSlide extends React.Component {
+function Transition(props) {
+  return <Slide direction="up" {...props} />;
+}
+
+class AlertDialogSlide extends React.Component {
   state = {
     open: false,
   };
@@ -27,29 +32,33 @@ export default class AlertDialogSlide extends React.Component {
     return (
       <div>
         <Button onClick={this.handleClickOpen}>Slide in alert dialog</Button>
-        <Dialog
-          open={this.state.open}
-          transition={<Slide direction="up" />}
-          keepMounted
-          onRequestClose={this.handleRequestClose}
-        >
-          <DialogTitle>{"Use Google's location service?"}</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              Let Google help apps determine location. This means sending anonymous location data to
-              Google, even when no apps are running.
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleRequestClose} color="primary">
-              Disagree
-            </Button>
-            <Button onClick={this.handleRequestClose} color="primary">
-              Agree
-            </Button>
-          </DialogActions>
-        </Dialog>
+        <NoSSR>
+          <Dialog
+            open={this.state.open}
+            transition={Transition}
+            keepMounted
+            onRequestClose={this.handleRequestClose}
+          >
+            <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                Let Google help apps determine location. This means sending anonymous location data
+                to Google, even when no apps are running.
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={this.handleRequestClose} color="primary">
+                Disagree
+              </Button>
+              <Button onClick={this.handleRequestClose} color="primary">
+                Agree
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </NoSSR>
       </div>
     );
   }
 }
+
+export default AlertDialogSlide;

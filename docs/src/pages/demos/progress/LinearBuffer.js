@@ -13,7 +13,6 @@ const styles = {
 };
 
 class LinearBuffer extends React.Component {
-  timer: number;
   state = {
     completed: 0,
     buffer: 10,
@@ -26,6 +25,8 @@ class LinearBuffer extends React.Component {
   componentWillUnmount() {
     clearInterval(this.timer);
   }
+
+  timer: number;
 
   progress = () => {
     const { completed } = this.state;

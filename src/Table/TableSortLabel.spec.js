@@ -2,16 +2,22 @@
 
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses } from '../test-utils';
 import TableSortLabel from './TableSortLabel';
 
 describe('<TableSortLabel />', () => {
   let shallow;
+  let mount;
   let classes;
 
   before(() => {
     shallow = createShallow({ dive: true });
+    mount = createMount();
     classes = getClasses(<TableSortLabel />);
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   it('should render TableSortLabel', () => {
@@ -57,6 +63,12 @@ describe('<TableSortLabel />', () => {
       const icon = wrapper.find(`.${classes.icon}`).first();
       assert.strictEqual(icon.hasClass(classes.asc), true);
       assert.strictEqual(icon.hasClass(classes.desc), false);
+    });
+  });
+
+  describe('mount', () => {
+    it('should mount without error', () => {
+      mount(<TableSortLabel />);
     });
   });
 });

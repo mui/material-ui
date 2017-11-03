@@ -41,6 +41,7 @@ describe('<Collapse />', () => {
     assert.strictEqual(
       child
         .childAt(0)
+        .childAt(0)
         .children()
         .type(),
       'h1',

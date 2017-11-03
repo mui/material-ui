@@ -9,6 +9,6 @@ export * from './DialogContent';
 export { default as DialogContentText } from './DialogContentText';
 export * from './DialogContentText';
 export {
-  default as withResponsiveFullScreen,
-} from './withResponsiveFullScreen';
-export * from './withResponsiveFullScreen';
+  default as withMobileDialog,
+} from './withMobileDialog';
+export * from './withMobileDialog';

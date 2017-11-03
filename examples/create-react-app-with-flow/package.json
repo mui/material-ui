@@ -3,24 +3,22 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "jss": "latest",
-    "jss-preset-default": "latest",
-    "material-ui": "next",
-    "prop-types": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "react-jss": "latest",
-    "react-scripts": "latest",
-    "recompose": "latest"
+    "jss": "^8.1.0",
+    "jss-preset-default": "^3.0.0",
+    "material-ui": "^1.0.0-beta.19",
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-jss": "^7.2.0",
+    "react-scripts": "^1.0.16",
+    "recompose": "^0.26.0"
   },
   "devDependencies": {
-    "enzyme": "latest",
-    "flow-bin": "latest"
+    "flow-bin": "^0.56.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
 }

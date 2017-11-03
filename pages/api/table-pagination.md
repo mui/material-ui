@@ -33,6 +33,7 @@ This property accepts the following keys:
 - `toolbar`
 - `spacer`
 - `caption`
+- `input`
 - `selectRoot`
 - `select`
 - `actions`

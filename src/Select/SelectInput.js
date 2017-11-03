@@ -89,7 +89,7 @@ export type Props = {
   /**
    * The value of the component, required for a controlled component.
    */
-  value?: string | number | Array<string | number>,
+  value?: string | number | $ReadOnlyArray<string | number>,
 };
 
 type State = {

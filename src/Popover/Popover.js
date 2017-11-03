@@ -66,6 +66,11 @@ export const styles = {
     position: 'absolute',
     overflowY: 'auto',
     overflowX: 'hidden',
+    // So we see the popover when it's empty.
+    // It's most likely on issue on userland.
+    minWidth: 16,
+    minHeight: 16,
+    maxHeight: 'calc(100vh - 32px)',
     '&:focus': {
       outline: 'none',
     },
@@ -112,7 +117,12 @@ export type Props = {
    */
   elevation?: number,
   /**
-   * @ignore
+   * This function is called in order to retrieve the content anchor element.
+   * It's the opposite of the `anchorEl` property.
+   * The content anchor element should be an element inside the popover.
+   * It's used to correctly scroll and set the position of the popover.
+   * The positioning strategy tries to make the content anchor element just above the
+   * anchor element.
    */
   getContentAnchorEl?: Function,
   /**
@@ -200,8 +210,6 @@ class Popover extends React.Component<ProvidedProps & Props> {
     this.handleResize.cancel();
   };
 
-  transitionEl = undefined;
-
   setPositioningStyles = (element: HTMLElement) => {
     if (element && element.style) {
       const positioning = this.getPositioningStyle(element);
@@ -211,19 +219,6 @@ class Popover extends React.Component<ProvidedProps & Props> {
       element.style.transformOrigin = positioning.transformOrigin;
     }
   };
-
-  handleEnter = (element: HTMLElement) => {
-    if (this.props.onEnter) {
-      this.props.onEnter(element);
-    }
-
-    this.setPositioningStyles(element);
-  };
-
-  handleResize = debounce(() => {
-    const element: any = ReactDOM.findDOMNode(this.transitionEl);
-    this.setPositioningStyles(element);
-  }, 166);
 
   getPositioningStyle = element => {
     const { marginThreshold } = this.props;
@@ -261,6 +256,15 @@ class Popover extends React.Component<ProvidedProps & Props> {
       transformOrigin.vertical += diff;
     }
 
+    warning(
+      elemRect.height < heightThreshold || !elemRect.height || !heightThreshold,
+      [
+        'Material-UI: the popover component is too tall.',
+        `Some part of it can not be seen on the screen (${elemRect.height - heightThreshold}px).`,
+        'Please consider adding a `max-height` to improve the user-experience.',
+      ].join('\n'),
+    );
+
     // Check if the horizontal axis needs shifting
     if (left < marginThreshold) {
       const diff = left - marginThreshold;
@@ -278,9 +282,6 @@ class Popover extends React.Component<ProvidedProps & Props> {
       transformOrigin: getTransformOriginValue(transformOrigin),
     };
   };
-
-  handleGetOffsetTop = getOffsetTop;
-  handleGetOffsetLeft = getOffsetLeft;
 
   // Returns the top/left offset of the position
   // to attach to on the anchor element (or body if none is provided)
@@ -314,8 +315,10 @@ class Popover extends React.Component<ProvidedProps & Props> {
       warning(
         this.props.anchorOrigin.vertical === 'top',
         [
-          'Material-UI: you can not change the `anchorOrigin.vertical` value when also ',
-          'providing the `getContentAnchorEl` property. Pick one.',
+          'Material-UI: you can not change the default `anchorOrigin.vertical` value when also ',
+          'providing the `getContentAnchorEl` property to the popover component.',
+          'Only use one of the two properties',
+          'Set `getContentAnchorEl` to null or left `anchorOrigin.vertical` unchanged',
         ].join(),
       );
     }
@@ -332,6 +335,25 @@ class Popover extends React.Component<ProvidedProps & Props> {
       horizontal: this.handleGetOffsetLeft(elemRect, transformOrigin.horizontal),
     };
   }
+
+  transitionEl = undefined;
+
+  handleGetOffsetTop = getOffsetTop;
+
+  handleGetOffsetLeft = getOffsetLeft;
+
+  handleEnter = (element: HTMLElement) => {
+    if (this.props.onEnter) {
+      this.props.onEnter(element);
+    }
+
+    this.setPositioningStyles(element);
+  };
+
+  handleResize = debounce(() => {
+    const element: any = ReactDOM.findDOMNode(this.transitionEl);
+    this.setPositioningStyles(element);
+  }, 166);
 
   render() {
     const {

@@ -9,12 +9,14 @@ export { default as ButtonBase } from './ButtonBase';
 export { default as Card, CardActions, CardContent, CardHeader, CardMedia } from './Card';
 export { default as Checkbox } from './Checkbox';
 export { default as Chip } from './Chip';
+export { default as ClickAwayListener } from './utils/ClickAwayListener';
 export {
   default as Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
+  withMobileDialog,
 } from './Dialog';
 export { default as Divider } from './Divider';
 export { default as Drawer } from './Drawer';

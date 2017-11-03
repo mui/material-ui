@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { ComponentType, Element, Node } from 'react';
+import type { ComponentType, Node } from 'react';
 import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -24,6 +24,7 @@ export const styles = (theme: Object) => ({
     flex: '0 1 auto',
     position: 'relative',
     maxHeight: '90vh',
+    overflowY: 'auto', // Fix IE11 issue, to remove at some point.
     '&:focus': {
       outline: 'none',
     },
@@ -65,7 +66,7 @@ type DefaultProps = {
   maxWidth?: MaxWidth,
   fullWidth?: boolean,
   open?: boolean,
-  transition?: ComponentType<*> | Element<any>,
+  transition: ComponentType<*>,
 };
 
 export type Props = {
@@ -154,7 +155,7 @@ export type Props = {
   /**
    * Transition component.
    */
-  transition?: ComponentType<*> | Element<any>,
+  transition: ComponentType<*>,
 };
 
 /**
@@ -181,12 +182,9 @@ function Dialog(props: ProvidedProps & Props) {
     onExiting,
     onExited,
     onRequestClose,
-    transition,
+    transition: TransitionProp,
     ...other
   } = props;
-
-  const createTransitionFn =
-    typeof transition === 'function' ? React.createElement : React.cloneElement;
 
   return (
     <Modal
@@ -200,20 +198,17 @@ function Dialog(props: ProvidedProps & Props) {
       show={open}
       {...other}
     >
-      {createTransitionFn(
-        /* $FlowFixMe - FIXME See Snackbar for similar create vs clone example */
-        transition,
-        {
-          appear: true,
-          in: open,
-          timeout: transitionDuration,
-          onEnter,
-          onEntering,
-          onEntered,
-          onExit,
-          onExiting,
-          onExited,
-        },
+      <TransitionProp
+        appear
+        in={open}
+        timeout={transitionDuration}
+        onEnter={onEnter}
+        onEntering={onEntering}
+        onEntered={onEntered}
+        onExit={onExit}
+        onExiting={onExiting}
+        onExited={onExited}
+      >
         <Paper
           data-mui-test="Dialog"
           elevation={24}
@@ -227,8 +222,8 @@ function Dialog(props: ProvidedProps & Props) {
           )}
         >
           {children}
-        </Paper>,
-      )}
+        </Paper>
+      </TransitionProp>
     </Modal>
   );
 }

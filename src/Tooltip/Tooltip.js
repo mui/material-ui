@@ -1,9 +1,11 @@
-/* eslint-disable react/no-multi-comp */
+/* eslint-disable react/no-multi-comp, no-underscore-dangle */
 // @flow
 
 import React, { Children } from 'react';
 import type { Element, Node } from 'react';
 import { findDOMNode } from 'react-dom';
+import EventListener from 'react-event-listener';
+import debounce from 'lodash/debounce';
 import warning from 'warning';
 import classNames from 'classnames';
 import { Manager, Target, Popper } from 'react-popper';
@@ -35,7 +37,7 @@ export const styles = (theme: Object) => ({
     borderRadius: 2,
     color: common.fullWhite,
     fontFamily: theme.typography.fontFamily,
-    fontSize: 14,
+    fontSize: theme.typography.pxToRem(14),
     minHeight: theme.spacing.unit * 4,
     lineHeight: '32px',
     opacity: 0,
@@ -48,7 +50,7 @@ export const styles = (theme: Object) => ({
       minHeight: 22,
       lineHeight: '22px',
       padding: `0 ${theme.spacing.unit}px`,
-      fontSize: 10,
+      fontSize: theme.typography.pxToRem(10),
     },
   },
   tooltipLeft: {
@@ -229,13 +231,21 @@ class Tooltip extends React.Component<ProvidedProps & Props, State> {
   componentWillUnmount() {
     clearTimeout(this.enterTimer);
     clearTimeout(this.leaveTimer);
+    this.handleResize.cancel();
   }
 
   enterTimer = null;
   leaveTimer = null;
   touchTimer = null;
   isControlled = null;
+  popper = null;
   ignoreNonTouchEvents = false;
+
+  handleResize = debounce(() => {
+    if (this.popper) {
+      this.popper._popper.scheduleUpdate();
+    }
+  }, 166);
 
   handleRequestOpen = event => {
     const { children } = this.props;
@@ -400,41 +410,50 @@ class Tooltip extends React.Component<ProvidedProps & Props, State> {
     }
 
     return (
-      <Manager className={classNames(classes.root, className)} {...other}>
-        <Target>
-          {({ targetProps }) => (
-            <TargetChildren
-              element={
-                typeof childrenProp !== 'string'
-                  ? React.cloneElement(childrenProp, childrenProps)
-                  : childrenProp
-              }
-              ref={node => {
-                targetProps.ref(findDOMNode(node));
-              }}
-            />
-          )}
-        </Target>
-        <Popper
-          placement={placement}
-          eventsEnabled={open}
-          className={classNames(classes.popper, { [classes.popperClose]: !open }, PopperClassName)}
-          {...PopperOther}
-        >
-          <div
-            id={id}
-            role="tooltip"
-            aria-hidden={!open}
-            className={classNames(
-              classes.tooltip,
-              { [classes.tooltipOpen]: open },
-              classes[`tooltip${capitalizeFirstLetter(placement.split('-')[0])}`],
+      <EventListener target="window" onResize={this.handleResize}>
+        <Manager className={classNames(classes.root, className)} {...other}>
+          <Target>
+            {({ targetProps }) => (
+              <TargetChildren
+                element={
+                  typeof childrenProp !== 'string'
+                    ? React.cloneElement(childrenProp, childrenProps)
+                    : childrenProp
+                }
+                ref={node => {
+                  targetProps.ref(findDOMNode(node));
+                }}
+              />
             )}
+          </Target>
+          <Popper
+            placement={placement}
+            eventsEnabled={open}
+            className={classNames(
+              classes.popper,
+              { [classes.popperClose]: !open },
+              PopperClassName,
+            )}
+            {...PopperOther}
+            ref={node => {
+              this.popper = node;
+            }}
           >
-            {title}
-          </div>
-        </Popper>
-      </Manager>
+            <div
+              id={id}
+              role="tooltip"
+              aria-hidden={!open}
+              className={classNames(
+                classes.tooltip,
+                { [classes.tooltipOpen]: open },
+                classes[`tooltip${capitalizeFirstLetter(placement.split('-')[0])}`],
+              )}
+            >
+              {title}
+            </div>
+          </Popper>
+        </Manager>
+      </EventListener>
     );
   }
 }

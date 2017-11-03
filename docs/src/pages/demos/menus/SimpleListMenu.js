@@ -15,6 +15,7 @@ const styles = theme => ({
 });
 
 const options = [
+  'Show some love to Material-UI',
   'Show all notification content',
   'Hide sensitive notification content',
   'Hide all notification content',
@@ -68,6 +69,7 @@ class SimpleListMenu extends React.Component {
           {options.map((option, index) => (
             <MenuItem
               key={option}
+              disabled={index === 0}
               selected={index === this.state.selectedIndex}
               onClick={event => this.handleMenuItemClick(event, index)}
             >

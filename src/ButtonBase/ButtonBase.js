@@ -202,6 +202,15 @@ class ButtonBase extends React.Component<ProvidedProps & Props, State> {
     clearTimeout(this.keyboardFocusTimeout);
   }
 
+  onKeyboardFocusHandler = event => {
+    this.keyDown = false;
+    this.setState({ keyboardFocused: true });
+
+    if (this.props.onKeyboardFocus) {
+      this.props.onKeyboardFocus(event);
+    }
+  };
+
   ripple = null;
   keyDown = false; // Used to help track keyboard activation keyDown
   button = null;
@@ -295,15 +304,6 @@ class ButtonBase extends React.Component<ProvidedProps & Props, State> {
 
     if (this.props.onFocus) {
       this.props.onFocus(event);
-    }
-  };
-
-  onKeyboardFocusHandler = event => {
-    this.keyDown = false;
-    this.setState({ keyboardFocused: true });
-
-    if (this.props.onKeyboardFocus) {
-      this.props.onKeyboardFocus(event);
     }
   };
 

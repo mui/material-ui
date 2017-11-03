@@ -6,6 +6,7 @@ import { assert } from 'chai';
 import ReactDOM from 'react-dom';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import Menu from './Menu';
+import mockPortal from '../../test/utils/mockPortal';
 
 describe('<Menu />', () => {
   let shallow;
@@ -16,10 +17,12 @@ describe('<Menu />', () => {
     shallow = createShallow({ dive: true });
     classes = getClasses(<Menu />);
     mount = createMount();
+    mockPortal.init();
   });
 
   after(() => {
     mount.cleanUp();
+    mockPortal.reset();
   });
 
   it('should render a Popover', () => {
@@ -44,9 +47,16 @@ describe('<Menu />', () => {
     });
   });
 
-  it('should pass `classes.root` to the Popover for the className', () => {
+  it('should pass `classes.paper` to the Popover', () => {
     const wrapper = shallow(<Menu />);
-    assert.strictEqual(wrapper.hasClass(classes.root), true, 'should be classes.root');
+    assert.strictEqual(wrapper.props().PaperProps.classes.root, classes.paper);
+  });
+
+  describe('prop: PopoverClasses', () => {
+    it('should be able to change the Popover style', () => {
+      const wrapper = shallow(<Menu PopoverClasses={{ foo: 'bar' }} />);
+      assert.strictEqual(wrapper.props().classes.foo, 'bar');
+    });
   });
 
   it('should pass the instance function `getContentAnchorEl` to Popover', () => {

@@ -21,7 +21,7 @@ const styles = theme => ({
 });
 
 function MyLink(props) {
-  const { children, classes, className, variant, ...other } = props;
+  const { children, classes, className, variant, sheet, theme, ...other } = props;
 
   return (
     <a
@@ -43,6 +43,8 @@ MyLink.propTypes = {
   children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
+  sheet: PropTypes.object,
+  theme: PropTypes.object,
   variant: PropTypes.oneOf(['primary']),
 };
 

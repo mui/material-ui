@@ -41,6 +41,10 @@ marked.setOptions({
         language = prism.languages.diff;
         break;
 
+      case 'css':
+        language = prism.languages.css;
+        break;
+
       case 'jsx':
       default:
         language = prism.languages.jsx;
@@ -76,6 +80,7 @@ const anchorLinkStyle = (theme, size) => ({
 const styles = theme => ({
   root: {
     fontFamily: theme.typography.fontFamily,
+    fontSize: 16,
     marginTop: theme.spacing.unit * 2,
     marginBottom: theme.spacing.unit * 2,
     padding: `0 ${theme.spacing.unit}px`,

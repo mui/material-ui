@@ -27,23 +27,24 @@ const ITEM_HEIGHT = 48;
 class LongMenu extends React.Component {
   state = {
     anchorEl: null,
-    open: false,
   };
 
   handleClick = event => {
-    this.setState({ open: true, anchorEl: event.currentTarget });
+    this.setState({ anchorEl: event.currentTarget });
   };
 
   handleRequestClose = () => {
-    this.setState({ open: false });
+    this.setState({ anchorEl: null });
   };
 
   render() {
+    const open = Boolean(this.state.anchorEl);
+
     return (
       <div>
         <IconButton
           aria-label="More"
-          aria-owns={this.state.open ? 'long-menu' : null}
+          aria-owns={open ? 'long-menu' : null}
           aria-haspopup="true"
           onClick={this.handleClick}
         >
@@ -52,7 +53,7 @@ class LongMenu extends React.Component {
         <Menu
           id="long-menu"
           anchorEl={this.state.anchorEl}
-          open={this.state.open}
+          open={open}
           onRequestClose={this.handleRequestClose}
           PaperProps={{
             style: {

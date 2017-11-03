@@ -66,4 +66,6 @@ For example, if your site prompts for potential subscribers to fill in their ema
 
 ## Responsive full-screen
 
-You may make a `Dialog` responsively full screen the dialog using `withResponsiveFullScreen`. By default, `withResponsiveFullScreen()(Dialog)` responsively full screens *at or below* the `sm` [screen size](/layout/basics).
+You may make a `Dialog` responsively full screen the dialog using `withMobileDialog`. By default, `withMobileDialog()(Dialog)` responsively full screens *at or below* the `sm` [screen size](/layout/basics).
+
+{{demo='pages/demos/dialogs/ResponsiveDialog.js'}}

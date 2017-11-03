@@ -5,11 +5,14 @@ import { assert } from 'chai';
 import { spy, stub } from 'sinon';
 import keycode from 'keycode';
 import contains from 'dom-helpers/query/contains';
-import { createShallow, createMount, getClasses } from '../test-utils';
+import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
 import consoleErrorMock from '../../test/utils/consoleErrorMock';
+import mockPortal from '../../test/utils/mockPortal';
 import Fade from '../transitions/Fade';
 import Backdrop from './Backdrop';
 import Modal from './Modal';
+
+const ModalNaked = unwrap(Modal);
 
 describe('<Modal />', () => {
   let shallow;
@@ -20,10 +23,12 @@ describe('<Modal />', () => {
     shallow = createShallow({ dive: true, disableLifecycleMethods: true });
     classes = getClasses(<Modal />);
     mount = createMount();
+    mockPortal.init();
   });
 
   after(() => {
     mount.cleanUp();
+    mockPortal.reset();
   });
 
   it('should render null by default', () => {
@@ -39,17 +44,17 @@ describe('<Modal />', () => {
     let wrapper;
 
     before(() => {
-      wrapper = shallow(
-        <Modal show data-my-prop="woofModal">
+      wrapper = mount(
+        <ModalNaked classes={classes} show data-my-prop="woofModal">
           <p>Hello World</p>
-        </Modal>,
+        </ModalNaked>,
       );
     });
 
     it('should render the modal div inside the portal', () => {
-      assert.strictEqual(wrapper.name(), 'Portal', 'should render a portal when shown');
-      const modal = wrapper.childAt(0);
-      assert.strictEqual(modal.is('div'), true, 'should be a div');
+      assert.strictEqual(wrapper.childAt(0).name(), 'Portal', 'should render a portal when shown');
+      const modal = wrapper.childAt(0).childAt(0);
+      assert.strictEqual(modal.type(), 'div');
       assert.strictEqual(modal.hasClass(classes.root), true, 'should have the root class');
     });
 
@@ -216,7 +221,10 @@ describe('<Modal />', () => {
 
       it('should render the content into the portal', () => {
         wrapper.setProps({ show: true });
-        const portalLayer = wrapper.find('Portal').instance().layer;
+        const portalLayer = wrapper
+          .find('Portal')
+          .instance()
+          .getLayer();
         const container = document.getElementById('container');
         const heading = document.getElementById('heading');
 
