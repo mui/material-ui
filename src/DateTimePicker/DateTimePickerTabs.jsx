@@ -21,7 +21,12 @@ const tabIndexToView = (tab) => {
 
 export const DateTimePickerTabs = (props) => {
   const {
-    view, onChange, classes, theme,
+    view,
+    onChange,
+    classes,
+    theme,
+    dateRangeIcon,
+    timeIcon,
   } = props;
 
   const indicatorColor = theme.palette.type === 'light' ? 'accent' : 'primary';
@@ -40,8 +45,8 @@ export const DateTimePickerTabs = (props) => {
         className={classes.tabs}
         indicatorColor={indicatorColor}
       >
-        <Tab value="date" icon={<Icon> date_range </Icon>} />
-        <Tab value="time" icon={<Icon> access_time </Icon>} />
+        <Tab value="date" icon={<Icon> {dateRangeIcon || 'date_range'} </Icon>} />
+        <Tab value="time" icon={<Icon> {timeIcon || 'access_time'} </Icon>} />
       </Tabs>
     </Paper>
   );
@@ -52,6 +57,13 @@ DateTimePickerTabs.propTypes = {
   onChange: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
+  dateRangeIcon: PropTypes.string,
+  timeIcon: PropTypes.string,
+};
+
+DateTimePickerTabs.defaultProps = {
+  dateRangeIcon: undefined,
+  timeIcon: undefined,
 };
 
 const styles = theme => ({

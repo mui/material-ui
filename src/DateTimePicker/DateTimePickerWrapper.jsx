@@ -26,6 +26,8 @@ export class DateTimePickerWrapper extends PickerBase {
     invalidLabel: PropTypes.string,
     leftArrowIcon: PropTypes.string,
     rightArrowIcon: PropTypes.string,
+    dateRangeIcon: PropTypes.string,
+    timeIcon: PropTypes.string,
   }
 
   static defaultProps = {
@@ -42,6 +44,8 @@ export class DateTimePickerWrapper extends PickerBase {
     invalidLabel: undefined,
     leftArrowIcon: undefined,
     rightArrowIcon: undefined,
+    dateRangeIcon: undefined,
+    timeIcon: undefined,
   }
 
   render() {
@@ -61,6 +65,8 @@ export class DateTimePickerWrapper extends PickerBase {
       invalidLabel,
       leftArrowIcon,
       rightArrowIcon,
+      dateRangeIcon,
+      timeIcon,
       ...other
     } = this.props;
 
@@ -88,6 +94,8 @@ export class DateTimePickerWrapper extends PickerBase {
           showTabs={showTabs}
           leftArrowIcon={leftArrowIcon}
           rightArrowIcon={rightArrowIcon}
+          dateRangeIcon={dateRangeIcon}
+          timeIcon={timeIcon}
         />
       </ModalWrapper>
     );

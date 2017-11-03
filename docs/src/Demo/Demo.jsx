@@ -126,6 +126,8 @@ class Demo extends Component {
               <DateTimePicker
                 value={this.state.selectedDate}
                 onChange={this.handleDateChange}
+                timeIcon="add_alarm"
+                dateRangeIcon="snooze"
               />
             </div>
 
