@@ -1,7 +1,7 @@
 # dependencies
 /node_modules
 
-# build 
+# build
 /dist
 
 # logs

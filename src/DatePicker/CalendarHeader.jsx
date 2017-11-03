@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { withStyles, IconButton } from 'material-ui';
+import { withStyles, IconButton, Icon } from 'material-ui';
 
 export const CalendarHeader = (props) => {
   const {
@@ -19,7 +19,7 @@ export const CalendarHeader = (props) => {
     <div>
       <div className={classes.switchHeader}>
         <IconButton onClick={selectPreviousMonth}>
-          { leftArrowIcon }
+          {leftArrowIcon}
         </IconButton>
 
         <div className={classes.monthName}>
@@ -27,7 +27,7 @@ export const CalendarHeader = (props) => {
         </div>
 
         <IconButton onClick={selectNextMonth}>
-          { rightArrowIcon }
+          {rightArrowIcon}
         </IconButton>
       </div>
 
@@ -44,8 +44,8 @@ CalendarHeader.propTypes = {
   currentMonth: PropTypes.object.isRequired,
   onMonthChange: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
-  leftArrowIcon: PropTypes.string,
-  rightArrowIcon: PropTypes.string,
+  leftArrowIcon: PropTypes.node,
+  rightArrowIcon: PropTypes.node,
 };
 
 CalendarHeader.defaultProps = {
