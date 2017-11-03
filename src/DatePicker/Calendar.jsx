@@ -18,12 +18,16 @@ export class Calendar extends Component {
     classes: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     disableFuture: PropTypes.bool,
+    leftArrowIcon: PropTypes.string,
+    rightArrowIcon: PropTypes.string,
   }
 
   static defaultProps = {
     minDate: '1900-01-01',
     maxDate: '2100-01-01',
     disableFuture: false,
+    leftArrowIcon: undefined,
+    rightArrowIcon: undefined,
   }
 
   state = {
@@ -101,6 +105,8 @@ export class Calendar extends Component {
         <CalendarHeader
           currentMonth={currentMonth}
           onMonthChange={this.handleChangeMonth}
+          leftArrowIcon={this.props.leftArrowIcon}
+          rightArrowIcon={this.props.rightArrowIcon}
         />
 
         <div className={classes.calendar}>

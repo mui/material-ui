@@ -24,6 +24,8 @@ export class DateTimePickerWrapper extends PickerBase {
     showTabs: PropTypes.bool,
     returnMoment: PropTypes.bool,
     invalidLabel: PropTypes.string,
+    leftArrowIcon: PropTypes.string,
+    rightArrowIcon: PropTypes.string,
   }
 
   static defaultProps = {
@@ -38,6 +40,8 @@ export class DateTimePickerWrapper extends PickerBase {
     showTabs: true,
     returnMoment: true,
     invalidLabel: undefined,
+    leftArrowIcon: undefined,
+    rightArrowIcon: undefined,
   }
 
   render() {
@@ -55,6 +59,8 @@ export class DateTimePickerWrapper extends PickerBase {
       disableFuture,
       returnMoment,
       invalidLabel,
+      leftArrowIcon,
+      rightArrowIcon,
       ...other
     } = this.props;
 
@@ -80,6 +86,8 @@ export class DateTimePickerWrapper extends PickerBase {
           minDate={minDate}
           maxDate={maxDate}
           showTabs={showTabs}
+          leftArrowIcon={leftArrowIcon}
+          rightArrowIcon={rightArrowIcon}
         />
       </ModalWrapper>
     );

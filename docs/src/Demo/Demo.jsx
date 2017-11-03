@@ -50,10 +50,10 @@ class Demo extends Component {
               lightbulb_outline
             </IconButton>
            </Tooltip>
-           
+
           <a href="https://github.com/dmtrKovalenko/material-ui-pickers">
-            <IconButton> 
-              <Github color="white"/> 
+            <IconButton>
+              <Github color="white"/>
             </IconButton>
           </a>
           </Toolbar>
@@ -61,7 +61,7 @@ class Demo extends Component {
 
         <Toolbar color="primary" className={classes.appToolbar}>
           <img className="material-ui-logo" src="https://material-ui-1dab0.firebaseapp.com/static/images/material-ui-logo.svg" />
-          
+
           <Typography type="display1" color="inherit" className='title text-light' gutterBottom>
             Material-UI Pickers
           </Typography>
@@ -74,7 +74,7 @@ class Demo extends Component {
           </Button>
         </Toolbar>
 
-     
+
         <div id="content" className={classes.content}>
           <Typography type="display2" align="center" gutterBottom>
             Here you are!
@@ -113,10 +113,10 @@ class Demo extends Component {
             </div>
           </div>
 
-          <Typography type="display1" gutterBottom> 
-            Date & Time pickers 
+          <Typography type="display1" gutterBottom>
+            Date & Time pickers
           </Typography>
-          
+
           <div className={classes.pickers}>
             <div className="picker">
               <Typography type="headline" align="center" gutterBottom>
@@ -141,6 +141,8 @@ class Demo extends Component {
                 autoSubmit={false}
                 value={this.state.selectedDate}
                 onChange={this.handleDateChange}
+                leftArrowIcon="arrow_left_bold"
+                rightArrowIcon="arrow_right_bold"
               />
             </div>
           </div>
