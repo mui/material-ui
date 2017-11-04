@@ -61,6 +61,10 @@ type ProvidedProps = {
 
 export type Props = {
   /**
+   * Use that property to pass a ref callback to the native button component.
+   */
+  buttonRef?: Function,
+  /**
    * The icon element.
    * If a string is provided, it will be used as an icon font ligature.
    */
@@ -96,7 +100,7 @@ export type Props = {
  * regarding the available icon options.
  */
 function IconButton(props: ProvidedProps & Props) {
-  const { children, classes, className, color, disabled, rootRef, ...other } = props;
+  const { buttonRef, children, classes, className, color, disabled, rootRef, ...other } = props;
 
   return (
     <ButtonBase
@@ -112,6 +116,7 @@ function IconButton(props: ProvidedProps & Props) {
       keyboardFocusedClassName={classes.keyboardFocused}
       disabled={disabled}
       {...other}
+      rootRef={buttonRef}
       ref={rootRef}
     >
       <span className={classes.label}>
