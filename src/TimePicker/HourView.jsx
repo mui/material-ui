@@ -3,28 +3,18 @@ import PropTypes from 'prop-types';
 import Clock from './Clock';
 import { HOURS } from '../constants/clock-types';
 import ClockNumber from './ClockNumber';
-import { convertToMeridiem } from './utils/time-utils';
+
 
 export default class HourView extends PureComponent {
   static propTypes = {
     date: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
-    meridiemMode: PropTypes.string.isRequired,
-  }
-
-  componentDidUpdate = (prevProps) => {
-    if (this.props.meridiemMode !== prevProps.meridiemMode) {
-      this.handleChange(this.props.date.hours());
-    }
   }
 
   handleChange = (hours, isFinish) => {
-    const { meridiemMode } = this.props;
-
     const updatedTime = this.props.date.clone().hour(hours);
-    const withMeridiem = convertToMeridiem(updatedTime, meridiemMode);
 
-    this.props.onChange(withMeridiem, isFinish);
+    this.props.onChange(updatedTime, isFinish);
   }
 
   render() {
