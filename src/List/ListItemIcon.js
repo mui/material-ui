@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { ComponentType, Element } from 'react';
+import type { Element } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 

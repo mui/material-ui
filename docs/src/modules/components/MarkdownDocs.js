@@ -1,7 +1,6 @@
 // @flow
 
 import React from 'react';
-import type { ComponentType } from 'react';
 import PropTypes from 'prop-types';
 import kebabCase from 'lodash/kebabCase';
 import warning from 'warning';
@@ -42,7 +41,7 @@ type Props = {
   sourceLocation?: string,
 };
 
-function MarkdownDocs(props: Props, context: Object) {
+function MarkdownDocs(props: Props & InjectedProps, context: Object) {
   const { classes, demos, markdown, sourceLocation: sourceLocationProp } = props;
   const contents = getContents(markdown);
   const headers = getHeaders(markdown);

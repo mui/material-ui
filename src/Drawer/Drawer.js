@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { ElementProps, Node } from 'react';
+import type { Node } from 'react';
 import classNames from 'classnames';
 import Modal from '../internal/Modal';
 import withStyles from '../styles/withStyles';
