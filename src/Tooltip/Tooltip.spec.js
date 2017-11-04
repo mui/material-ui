@@ -7,6 +7,7 @@ import { spy, useFakeTimers } from 'sinon';
 import { Target, Popper } from 'react-popper';
 import { ShallowWrapper } from 'enzyme';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
+import consoleErrorMock from '../../test/utils/consoleErrorMock';
 import createMuiTheme from '../styles/createMuiTheme';
 import Tooltip from './Tooltip';
 
@@ -313,6 +314,29 @@ describe('<Tooltip />', () => {
       instance.handleResize();
       clock.tick(166);
       assert.strictEqual(handleUpdate.callCount, 1);
+    });
+  });
+
+  describe('disabled button warning', () => {
+    before(() => {
+      consoleErrorMock.spy();
+    });
+
+    after(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('should raise a warning when we can listen to events', () => {
+      mount(
+        <Tooltip title="Hello World">
+          <button disabled>Hello World</button>
+        </Tooltip>,
+      );
+      assert.strictEqual(consoleErrorMock.callCount(), 1, 'should call console.error');
+      assert.match(
+        consoleErrorMock.args()[0][0],
+        /Material-UI: you are providing a disabled button children to the Tooltip component/,
+      );
     });
   });
 });
