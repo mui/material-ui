@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { Node } from 'react';
+import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
@@ -67,9 +68,13 @@ export type TitlePosition = 'top' | 'bottom';
 export type ActionPosition = 'left' | 'right';
 
 type ProvidedProps = {
-  actionPosition: ActionPosition,
   classes: Object,
-  titlePosition: TitlePosition,
+  theme: Object,
+};
+
+type DefaultProps = {
+  actionPosition?: ActionPosition,
+  titlePosition?: TitlePosition,
 };
 
 export type Props = {
@@ -153,4 +158,6 @@ GridListTileBar.defaultProps = {
   titlePosition: 'bottom',
 };
 
-export default withStyles(styles, { name: 'MuiGridListTileBar' })(GridListTileBar);
+export default withStyles(styles, { name: 'MuiGridListTileBar' })(
+  (GridListTileBar: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+);

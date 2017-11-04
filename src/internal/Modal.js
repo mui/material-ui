@@ -44,7 +44,7 @@ type ProvidedProps = {
 };
 
 type DefaultProps = {
-  BackdropComponent?: ElementType,
+  BackdropComponent: ElementType,
   BackdropTransitionDuration?: TransitionDuration,
   BackdropInvisible?: boolean,
   keepMounted?: boolean,
@@ -52,10 +52,14 @@ type DefaultProps = {
   ignoreBackdropClick?: boolean,
   ignoreEscapeKeyUp?: boolean,
   modalManager: Object,
-  show?: boolean,
+  show: boolean,
 };
 
 export type Props = {
+  /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
   /**
    * The CSS class name of the backdrop element.
    */
@@ -63,7 +67,7 @@ export type Props = {
   /**
    * Pass a component class to use as the backdrop.
    */
-  BackdropComponent?: ElementType,
+  BackdropComponent: ElementType,
   /**
    * If `true`, the backdrop is invisible.
    */
@@ -148,7 +152,7 @@ export type Props = {
   /**
    * If `true`, the Modal is visible.
    */
-  show?: boolean,
+  show: boolean,
 };
 
 type State = {

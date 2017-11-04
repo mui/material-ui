@@ -48,6 +48,4 @@ function ListItemIcon(props: ProvidedProps & Props) {
   });
 }
 
-export default withStyles(styles, { name: 'MuiListItemIcon' })(
-  (ListItemIcon: ComponentType<ProvidedProps & Props>),
-);
+export default withStyles(styles, { name: 'MuiListItemIcon' })(ListItemIcon);

@@ -5,6 +5,7 @@ import warning from 'warning';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import withWidth, { isWidthDown, isWidthUp } from '../utils/withWidth';
 import type { HiddenProps } from './types';
+import type { Breakpoint } from '../styles/createBreakpoints';
 
 export type Props = HiddenProps & {
   /**
@@ -15,7 +16,7 @@ export type Props = HiddenProps & {
    * @ignore
    * width prop provided by withWidth decorator
    */
-  width: string,
+  width: Breakpoint,
 };
 
 /**

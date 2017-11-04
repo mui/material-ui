@@ -19,6 +19,10 @@ type DefaultProps = {
 
 export type Props = {
   /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
+  /**
    * @ignore
    */
   appear: boolean,

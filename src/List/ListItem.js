@@ -78,6 +78,10 @@ type DefaultProps = {
 
 export type Props = {
   /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
+  /**
    * If `true`, the ListItem will be a button.
    */
   button?: boolean,

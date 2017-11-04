@@ -25,7 +25,7 @@ const styleSheet = theme => ({
   },
 });
 
-function AppFooter(props) {
+function AppFooter(props: Object) {
   const { classes } = props;
 
   return (

@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { ComponentType, Element, Node } from 'react';
+import type { Element, Node } from 'react';
 import classNames from 'classnames';
 import keycode from 'keycode';
 import withStyles from '../styles/withStyles';
@@ -133,6 +133,8 @@ export type Props = {
  * Chips represent complex entities in small blocks, such as a contact.
  */
 class Chip extends React.Component<ProvidedProps & Props> {
+  static defaultProps = {};
+
   chipRef: ?HTMLElement = null;
 
   handleDeleteIconClick = event => {
@@ -233,4 +235,4 @@ class Chip extends React.Component<ProvidedProps & Props> {
   }
 }
 
-export default withStyles(styles, { name: 'MuiChip' })((Chip: ComponentType<Props>));
+export default withStyles(styles, { name: 'MuiChip' })(Chip);

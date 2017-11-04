@@ -107,4 +107,4 @@ MarkdownDocs.contextTypes = {
   }).isRequired,
 };
 
-export default withStyles(styles)((MarkdownDocs: ComponentType<InjectedProps & Props>));
+export default withStyles(styles)(MarkdownDocs);

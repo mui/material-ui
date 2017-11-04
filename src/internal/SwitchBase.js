@@ -47,6 +47,10 @@ type DefaultProps = {
 // so that the API documentation is updated.
 export type Props = {
   /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
+  /**
    * If `true`, the component is checked.
    */
   checked?: boolean | string,

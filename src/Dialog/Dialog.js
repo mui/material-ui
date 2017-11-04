@@ -71,6 +71,10 @@ type DefaultProps = {
 
 export type Props = {
   /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
+  /**
    * Dialog children, usually the included sub-components.
    */
   children?: Node,

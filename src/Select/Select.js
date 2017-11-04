@@ -68,7 +68,7 @@ type ProvidedProps = {
 
 type DefaultProps = {
   displayEmpty?: boolean,
-  input?: Element<any>,
+  input: Element<any>,
   native?: boolean,
   multiple?: boolean,
 };
@@ -100,7 +100,7 @@ export type Props = {
   /**
    * An `Input` element; does not have to be a material-ui specific `Input`.
    */
-  input?: Element<any>,
+  input: Element<any>,
   /**
    * `classes` property applied to the `Input` element.
    */

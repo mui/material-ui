@@ -27,6 +27,10 @@ type DefaultProps = {
 
 export type Props = {
   /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
+  /**
    * The content of the component.
    */
   children?: Node,

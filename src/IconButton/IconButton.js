@@ -6,7 +6,7 @@ import type { Node } from 'react';
 import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import ButtonBase, { type Props as ButtonBaseProps } from '../ButtonBase';
+import ButtonBase from '../ButtonBase';
 import { capitalizeFirstLetter } from '../utils/helpers';
 import Icon from '../Icon';
 import '../SvgIcon'; // Ensure CSS specificity
@@ -70,8 +70,10 @@ type DefaultProps = {
 };
 
 export type Props = {
-  ...ButtonBaseProps,
-
+  /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
   /**
    * The icon element.
    * If a string is provided, it will be used as an icon font ligature.

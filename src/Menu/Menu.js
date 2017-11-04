@@ -22,6 +22,10 @@ type DefaultProps = {
 
 export type Props = {
   /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
+  /**
    * The DOM element used to set the position of the menu.
    */
   anchorEl?: ?HTMLElement, // match Popover
