@@ -48,6 +48,7 @@ export default class DateTextField extends Component {
   }
 
   handleClick = (e) => {
+    e.target.blur();
     const { disabled, onClick } = this.props;
 
     if (!disabled) {

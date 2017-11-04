@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Dialog, DialogActions, DialogContent, Button, withStyles } from 'material-ui';
 
+const dialogWidth = 310;
 const styles = {
   dialogRoot: {
-
+    minWidth: dialogWidth,
   },
   dialog: {
-    width: 300,
+    width: dialogWidth,
     height: 420,
 
     '&:first-child': {
