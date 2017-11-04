@@ -141,6 +141,8 @@ class Demo extends Component {
                 autoSubmit={false}
                 value={this.state.selectedDate}
                 onChange={this.handleDateChange}
+                leftArrowIcon="add_alarm"
+                rightArrowIcon="snooze"
               />
             </div>
           </div>
