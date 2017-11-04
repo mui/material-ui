@@ -14,7 +14,6 @@
 ; FIXME: we should be flow checking against jss
 .*/node_modules/jss/lib/.*\.js\.flow
 .*/examples/.*/node_modules/.*
-.*/examples/create-react-app/.*
 
 [libs]
 
@@ -38,7 +37,6 @@ module.system.node.resolve_dirname=.
 
 suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe
 suppress_comment= \\(.\\|\n\\)*\\$FlowExpectedError
-suppress_comment= \\(.\\|\n\\)*\\$FlowExpectError
 suppress_type=$FlowToDo
 
 [lints]
