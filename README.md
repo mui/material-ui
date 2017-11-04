@@ -119,7 +119,7 @@ invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed (or 
 leftArrowIcon | react node, string | 'keyboard_arrow_left'| Left arrow icon
 rightArrowIcon | react node, string | 'keyboard_arrow_right'| Right arrow icon
 dateRangeIcon | react node, string | 'date_range'| Date tab icon 
-timeIcon | react node, string | 'access_time'| Right arrow icon
+timeIcon | react node, string | 'access_time'| Time tab icon
 
 
 ### Known Issues
