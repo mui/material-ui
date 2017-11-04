@@ -20,6 +20,8 @@ export class DatePicker extends PureComponent {
     animateYearScrolling: PropTypes.bool,
     openToYearSelection: PropTypes.bool,
     children: PropTypes.node,
+    leftArrowIcon: PropTypes.string,
+    rightArrowIcon: PropTypes.string,
   }
 
   static defaultProps = {
@@ -29,6 +31,8 @@ export class DatePicker extends PureComponent {
     animateYearScrolling: undefined,
     openToYearSelection: false,
     children: null,
+    leftArrowIcon: undefined,
+    rightArrowIcon: undefined,
   }
 
   state = {
@@ -63,7 +67,12 @@ export class DatePicker extends PureComponent {
 
   render() {
     const {
-      classes, disableFuture, onChange, animateYearScrolling,
+      classes,
+      disableFuture,
+      onChange,
+      animateYearScrolling,
+      leftArrowIcon,
+      rightArrowIcon,
     } = this.props;
     const { showYearSelection } = this.state;
 
@@ -105,6 +114,8 @@ export class DatePicker extends PureComponent {
                 disableFuture={disableFuture}
                 minDate={this.minDate}
                 maxDate={this.maxDate}
+                leftArrowIcon={leftArrowIcon}
+                rightArrowIcon={rightArrowIcon}
               />
         }
       </div>

@@ -88,6 +88,8 @@ maxDate | date | '2100-01-01' | Maximum selectable date
 onChange | func | required | Callback firing when date accepted
 returnMoment | boolean | true | Will return moment object in onChange
 invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed (or null)
+leftArrowIcon | react node, string | 'keyboard_arrow_left'| Left arrow icon
+rightArrowIcon | react node, string | 'keyboard_arrow_right'| Right arrow icon
 
 #### Timepicker
 Prop | Type | Default | Definition
@@ -114,6 +116,11 @@ maxDate | date | '2100-01-01' | Maximum selectable date
 onChange | func | required | Callback firing when date accepted
 returnMoment | boolean | true | Will return moment object in onChangeg
 invalidLabel | string | 'Unknown' | Displayed string if date cant be parsed (or null)
+leftArrowIcon | react node, string | 'keyboard_arrow_left'| Left arrow icon
+rightArrowIcon | react node, string | 'keyboard_arrow_right'| Right arrow icon
+dateRangeIcon | react node, string | 'date_range'| Date tab icon 
+timeIcon | react node, string | 'access_time'| Time tab icon
+
 
 ### Known Issues
 1. 24 hour displaying for timepicker (now supporting only am/pm)

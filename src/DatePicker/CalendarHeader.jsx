@@ -4,7 +4,13 @@ import moment from 'moment';
 import { withStyles, IconButton } from 'material-ui';
 
 export const CalendarHeader = (props) => {
-  const { classes, currentMonth, onMonthChange } = props;
+  const {
+    classes,
+    currentMonth,
+    onMonthChange,
+    leftArrowIcon,
+    rightArrowIcon,
+  } = props;
 
   const selectNextMonth = () => onMonthChange(currentMonth.clone().add(1, 'months'));
   const selectPreviousMonth = () => onMonthChange(currentMonth.clone().subtract(1, 'months'));
@@ -13,7 +19,7 @@ export const CalendarHeader = (props) => {
     <div>
       <div className={classes.switchHeader}>
         <IconButton onClick={selectPreviousMonth}>
-          keyboard_arrow_left
+          { leftArrowIcon }
         </IconButton>
 
         <div className={classes.monthName}>
@@ -21,7 +27,7 @@ export const CalendarHeader = (props) => {
         </div>
 
         <IconButton onClick={selectNextMonth}>
-            keyboard_arrow_right
+          { rightArrowIcon }
         </IconButton>
       </div>
 
@@ -38,6 +44,13 @@ CalendarHeader.propTypes = {
   currentMonth: PropTypes.object.isRequired,
   onMonthChange: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
+  leftArrowIcon: PropTypes.string,
+  rightArrowIcon: PropTypes.string,
+};
+
+CalendarHeader.defaultProps = {
+  leftArrowIcon: 'keyboard_arrow_left',
+  rightArrowIcon: 'keyboard_arrow_right',
 };
 
 const styles = theme => ({

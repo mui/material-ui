@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
-import { AppBar, Toolbar, IconButton, Typography, withStyles, Button, Tooltip } from 'material-ui'
+import { 
+  AppBar, Toolbar, IconButton, Typography, withStyles, Button, Tooltip, Icon, InputAdornment
+} from 'material-ui'
 import { TimePicker, DatePicker, DateTimePicker } from 'material-ui-pickers'
 import Github from './GithubIcon'
 import './Demo.css';
@@ -50,10 +52,10 @@ class Demo extends Component {
               lightbulb_outline
             </IconButton>
            </Tooltip>
-           
+
           <a href="https://github.com/dmtrKovalenko/material-ui-pickers">
-            <IconButton> 
-              <Github color="white"/> 
+            <IconButton>
+              <Github color="white"/>
             </IconButton>
           </a>
           </Toolbar>
@@ -61,7 +63,7 @@ class Demo extends Component {
 
         <Toolbar color="primary" className={classes.appToolbar}>
           <img className="material-ui-logo" src="https://material-ui-1dab0.firebaseapp.com/static/images/material-ui-logo.svg" />
-          
+
           <Typography type="display1" color="inherit" className='title text-light' gutterBottom>
             Material-UI Pickers
           </Typography>
@@ -74,7 +76,7 @@ class Demo extends Component {
           </Button>
         </Toolbar>
 
-     
+
         <div id="content" className={classes.content}>
           <Typography type="display2" align="center" gutterBottom>
             Here you are!
@@ -113,10 +115,10 @@ class Demo extends Component {
             </div>
           </div>
 
-          <Typography type="display1" gutterBottom> 
-            Date & Time pickers 
+          <Typography type="display1" gutterBottom>
+            Date & Time pickers
           </Typography>
-          
+
           <div className={classes.pickers}>
             <div className="picker">
               <Typography type="headline" align="center" gutterBottom>
@@ -135,12 +137,23 @@ class Demo extends Component {
               </Typography>
 
               <DateTimePicker
+                error
+                helperText="Required"
                 showTabs={false}
                 autoOk
                 disableFuture
                 autoSubmit={false}
                 value={this.state.selectedDate}
                 onChange={this.handleDateChange}
+                leftArrowIcon="add_alarm"
+                rightArrowIcon="snooze"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton>  add_alarm  </IconButton>
+                    </InputAdornment>
+                  )
+                }} 
               />
             </div>
           </div>

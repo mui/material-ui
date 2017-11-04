@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Paper, Tab, Tabs, Icon, withStyles, withTheme } from 'material-ui';
+import { Paper, Tab, Tabs, withStyles, withTheme } from 'material-ui';
 import * as viewType from '../constants/date-picker-view';
 
 const viewToTabIndex = (openView) => {
@@ -21,7 +21,12 @@ const tabIndexToView = (tab) => {
 
 export const DateTimePickerTabs = (props) => {
   const {
-    view, onChange, classes, theme,
+    view,
+    onChange,
+    classes,
+    theme,
+    dateRangeIcon,
+    timeIcon,
   } = props;
 
   const indicatorColor = theme.palette.type === 'light' ? 'accent' : 'primary';
@@ -40,8 +45,8 @@ export const DateTimePickerTabs = (props) => {
         className={classes.tabs}
         indicatorColor={indicatorColor}
       >
-        <Tab value="date" icon={<Icon> date_range </Icon>} />
-        <Tab value="time" icon={<Icon> access_time </Icon>} />
+        <Tab value="date" icon={dateRangeIcon} />
+        <Tab value="time" icon={timeIcon} />
       </Tabs>
     </Paper>
   );
@@ -52,6 +57,13 @@ DateTimePickerTabs.propTypes = {
   onChange: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
+  dateRangeIcon: PropTypes.string,
+  timeIcon: PropTypes.string,
+};
+
+DateTimePickerTabs.defaultProps = {
+  dateRangeIcon: 'date_range',
+  timeIcon: 'access_time',
 };
 
 const styles = theme => ({

@@ -19,6 +19,8 @@ export default class DatePickerWrapper extends PickerBase {
     openToYearSelection: PropTypes.bool,
     returnMoment: PropTypes.bool,
     invalidLabel: PropTypes.string,
+    leftArrowIcon: PropTypes.string,
+    rightArrowIcon: PropTypes.string,
   }
 
   static defaultProps = {
@@ -32,6 +34,8 @@ export default class DatePickerWrapper extends PickerBase {
     animateYearScrolling: undefined,
     openToYearSelection: undefined,
     invalidLabel: undefined,
+    leftArrowIcon: undefined,
+    rightArrowIcon: undefined,
   }
 
   render() {
@@ -48,6 +52,8 @@ export default class DatePickerWrapper extends PickerBase {
       openToYearSelection,
       returnMoment,
       invalidLabel,
+      leftArrowIcon,
+      rightArrowIcon,
       ...other
     } = this.props;
 
@@ -69,6 +75,8 @@ export default class DatePickerWrapper extends PickerBase {
           openToYearSelection={openToYearSelection}
           minDate={minDate}
           maxDate={maxDate}
+          leftArrowIcon={leftArrowIcon}
+          rightArrowIcon={rightArrowIcon}
         />
       </ModalWrapper>
     );
