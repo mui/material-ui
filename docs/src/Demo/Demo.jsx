@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
-import { AppBar, Toolbar, IconButton, Typography, withStyles, Button, Tooltip } from 'material-ui'
+import { AppBar, Toolbar, IconButton, Typography, withStyles, Button, Tooltip, Icon } from 'material-ui'
 import { TimePicker, DatePicker, DateTimePicker } from 'material-ui-pickers'
 import Github from './GithubIcon'
 import './Demo.css';
@@ -126,8 +126,6 @@ class Demo extends Component {
               <DateTimePicker
                 value={this.state.selectedDate}
                 onChange={this.handleDateChange}
-                timeIcon="add_alarm"
-                dateRangeIcon="snooze"
               />
             </div>
 
@@ -143,8 +141,6 @@ class Demo extends Component {
                 autoSubmit={false}
                 value={this.state.selectedDate}
                 onChange={this.handleDateChange}
-                leftArrowIcon="arrow_left_bold"
-                rightArrowIcon="arrow_right_bold"
               />
             </div>
           </div>

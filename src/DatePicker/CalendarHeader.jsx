@@ -19,7 +19,7 @@ export const CalendarHeader = (props) => {
     <div>
       <div className={classes.switchHeader}>
         <IconButton onClick={selectPreviousMonth}>
-          {leftArrowIcon || 'keyboard_arrow_left'}
+          { leftArrowIcon }
         </IconButton>
 
         <div className={classes.monthName}>
@@ -27,7 +27,7 @@ export const CalendarHeader = (props) => {
         </div>
 
         <IconButton onClick={selectNextMonth}>
-          {rightArrowIcon || 'keyboard_arrow_right'}
+          { rightArrowIcon }
         </IconButton>
       </div>
 
@@ -49,8 +49,8 @@ CalendarHeader.propTypes = {
 };
 
 CalendarHeader.defaultProps = {
-  leftArrowIcon: undefined,
-  rightArrowIcon: undefined,
+  leftArrowIcon: 'keyboard_arrow_left',
+  rightArrowIcon: 'keyboard_arrow_right',
 };
 
 const styles = theme => ({

@@ -45,8 +45,8 @@ export const DateTimePickerTabs = (props) => {
         className={classes.tabs}
         indicatorColor={indicatorColor}
       >
-        <Tab value="date" icon={<Icon> {dateRangeIcon || 'date_range'} </Icon>} />
-        <Tab value="time" icon={<Icon> {timeIcon || 'access_time'} </Icon>} />
+        <Tab value="date" icon={dateRangeIcon} />
+        <Tab value="time" icon={timeIcon} />
       </Tabs>
     </Paper>
   );
@@ -62,8 +62,8 @@ DateTimePickerTabs.propTypes = {
 };
 
 DateTimePickerTabs.defaultProps = {
-  dateRangeIcon: undefined,
-  timeIcon: undefined,
+  dateRangeIcon: 'date_range',
+  timeIcon: 'access_time',
 };
 
 const styles = theme => ({
