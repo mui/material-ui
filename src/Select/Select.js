@@ -22,7 +22,7 @@ export const styles = (theme: Object) => ({
     // Native select can't be selected either.
     userSelect: 'none',
     padding: `0 ${theme.spacing.unit * 4}px 2px 0`,
-    width: `calc(100% - ${theme.spacing.unit * 4}px)`,
+    width: 'auto',
     minWidth: theme.spacing.unit * 2, // So it doesn't collapse.
     height: `calc(1em + ${theme.spacing.unit * 2 - 2}px)`,
     cursor: 'pointer',
