@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react';
+import type { ComponentType } from 'react';
 import PropTypes from 'prop-types';
 import kebabCase from 'lodash/kebabCase';
 import warning from 'warning';
@@ -26,6 +27,11 @@ const styles = {
 
 const demoRegexp = /^demo='(.*)'$/;
 const SOURCE_CODE_ROOT_URL = 'https://github.com/callemall/material-ui/tree/v1-beta';
+
+type InjectedProps = {
+  classes: Object,
+  theme: Object,
+};
 
 type Props = {
   classes: Object,
@@ -101,4 +107,4 @@ MarkdownDocs.contextTypes = {
   }).isRequired,
 };
 
-export default withStyles(styles)(MarkdownDocs);
+export default withStyles(styles)((MarkdownDocs: ComponentType<InjectedProps & Props>));

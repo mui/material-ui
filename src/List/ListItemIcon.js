@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { Element } from 'react';
+import type { ComponentType, Element } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
@@ -17,6 +17,7 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
 };
 
 export type Props = {
@@ -47,4 +48,6 @@ function ListItemIcon(props: ProvidedProps & Props) {
   });
 }
 
-export default withStyles(styles, { name: 'MuiListItemIcon' })(ListItemIcon);
+export default withStyles(styles, { name: 'MuiListItemIcon' })(
+  (ListItemIcon: ComponentType<ProvidedProps & Props>),
+);

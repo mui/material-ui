@@ -38,6 +38,7 @@ module.system.node.resolve_dirname=.
 
 suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe
 suppress_comment= \\(.\\|\n\\)*\\$FlowExpectedError
+suppress_comment= \\(.\\|\n\\)*\\$FlowExpectError
 suppress_type=$FlowToDo
 
 [lints]

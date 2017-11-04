@@ -371,6 +371,7 @@ if (process.env.NODE_ENV !== 'production') {
 
   GridWrapper = (props: any) => <Grid {...props} />;
 
+  GridWrapper.defaultProps = Grid.defaultProps;
   GridWrapper.propTypes = {
     alignContent: requireProp('container'),
     alignItems: requireProp('container'),

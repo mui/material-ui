@@ -40,6 +40,8 @@ type Props = {
 };
 
 class TestViewer extends Component<ProvidedProps & Props> {
+  static defaultProps = {};
+
   getChildContext() {
     return {
       url: {

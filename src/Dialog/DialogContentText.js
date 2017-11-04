@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { Node } from 'react';
+import type { ComponentType, Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
@@ -15,6 +15,7 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  theme: Object,
 };
 
 export type Props = {
@@ -42,4 +43,6 @@ function DialogContentText(props: ProvidedProps & Props) {
   );
 }
 
-export default withStyles(styles, { name: 'MuiDialogContentText' })(DialogContentText);
+export default withStyles(styles, { name: 'MuiDialogContentText' })(
+  (DialogContentText: ComponentType<ProvidedProps & Props>),
+);
