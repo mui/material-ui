@@ -61,11 +61,11 @@ class App extends Component {
 
         <TimePicker
           value={selectedTime}
-          onChange={this.handleDateChange}
+          onChange={this.handleTimeChange}
         />
 
         <DateTimePicker
-          value={this.state.selectedDateTime}
+          value={selectedDateTime}
           onChange={this.handleDateTimeChange}
         />
       </div>
