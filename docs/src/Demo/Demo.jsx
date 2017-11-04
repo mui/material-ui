@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
-import { AppBar, Toolbar, IconButton, Typography, withStyles, Button, Tooltip, Icon } from 'material-ui'
+import { 
+  AppBar, Toolbar, IconButton, Typography, withStyles, Button, Tooltip, Icon, InputAdornment
+} from 'material-ui'
 import { TimePicker, DatePicker, DateTimePicker } from 'material-ui-pickers'
 import Github from './GithubIcon'
 import './Demo.css';
@@ -135,6 +137,8 @@ class Demo extends Component {
               </Typography>
 
               <DateTimePicker
+                error
+                helperText="Required"
                 showTabs={false}
                 autoOk
                 disableFuture
@@ -143,6 +147,13 @@ class Demo extends Component {
                 onChange={this.handleDateChange}
                 leftArrowIcon="add_alarm"
                 rightArrowIcon="snooze"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton>  add_alarm  </IconButton>
+                    </InputAdornment>
+                  )
+                }} 
               />
             </div>
           </div>
