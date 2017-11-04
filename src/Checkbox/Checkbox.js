@@ -4,7 +4,7 @@ import React from 'react';
 import type { Node } from 'react';
 import type { ComponentWithDefaultProps } from 'react-flow-types';
 import withStyles from '../styles/withStyles';
-import createSwitch, { type Props as SwitchBaseProps } from '../internal/SwitchBase';
+import createSwitch from '../internal/SwitchBase';
 import IndeterminateCheckBoxIcon from '../svg-icons/IndeterminateCheckBox';
 
 export const styles = (theme: Object) => ({
@@ -32,8 +32,10 @@ type DefaultProps = {
 };
 
 export type Props = {
-  ...SwitchBaseProps,
-
+  /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
   /**
    * If `true`, the component is checked.
    */
