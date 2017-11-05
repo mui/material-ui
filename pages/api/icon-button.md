@@ -13,6 +13,7 @@ regarding the available icon options.
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| buttonRef | Function |  | Use that property to pass a ref callback to the native button component. |
 | children | Node |  | The icon element. If a string is provided, it will be used as an icon font ligature. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | color | union:&nbsp;'default', 'inherit', 'primary', 'contrast', 'accent'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |

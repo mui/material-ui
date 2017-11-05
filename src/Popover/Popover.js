@@ -70,6 +70,7 @@ export const styles = {
     // It's most likely on issue on userland.
     minWidth: 16,
     minHeight: 16,
+    maxWidth: 'calc(100vw - 32px)',
     maxHeight: 'calc(100vh - 32px)',
     '&:focus': {
       outline: 'none',
