@@ -2,6 +2,71 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.20
+###### _Nov 5, 2017_
+
+Big thanks to the 12 contributors who made this release possible.
+
+Here are some highlights ✨:
+- We have been addressing a lot of bug fixes and documentation issues during the last month.
+We should soon be able to start porting new components.
+- The test coverage increased by 0.5% thanks to @leMaik effort (#8910, #8911).
+We are very close to 100%.
+- The internal `ClickAwayListener` component was made public (#8967)
+
+### Breaking change
+
+- [style] Improve the font-size situation (#8942) @
+The `Input` and `FormLabel` component do no longer inherit the font-size. You might have to override them explicitly.
+- [Popover] Add a max-height (#8943) @
+```diff
+-Menu.classes.root
++Menu.classes.paper
+```
+- [Dialog] Rename withResponsiveFullScreen (#8951) @
+```diff
+-import { withResponsiveFullScreen } from 'material-ui/Dialog';
++import { withMobileDialog } from 'material-ui/Dialog';
+```
+
+#### Component Fixes / Enhancements
+
+- [MenuList] Increase test coverage and fix an exception in an edge case (#8911) @leMaik
+- [Input] Fix textarea width (#8921) @istarkov
+- [SwitchBase] Inherit `disabled` from FormControl (#8917) @nllarson
+- [Popover] Improve the warning message (#8948) @oliviertassinari
+- [Popover] Add max-width (#8992) @oliviertassinari
+- [InputAdornment] Correct typescript export (#8959) @minajevs
+- [utils] Make ClickAwayListener public (#8967) @oliviertassinari
+- [Slider] Add the logic back (#8972) @oliviertassinari
+- [Select] Remove IE11 arrow (#8976) @oliviertassinari
+- [Select] Menu Items centered in IE 11 (#8982) @lukePeavey
+- [Select] Fix width on Safari (#8985) @oliviertassinari
+- [IconButton] Add buttonRef property (#8986) @oliviertassinari
+- [Grid] Document a limitation (#8987) @oliviertassinari
+- [Tooltip] New warning message (#8988) @oliviertassinari
+
+#### Docs
+
+- [docs] Split support content of CONTRIBUTING.md into SUPPORT.md (#8918) @mbrookes
+- [docs] Add demo for buttons with label and icon (#8922) @wongjiahau
+- [docs] Fix broken link (#8934) @cantsdmr
+- [docs] Fork JssProvider to release the docs (#8929) @oliviertassinari
+- [docs] Add more information around the MenuList component (#8947) @oliviertassinari
+- [docs] Add --save parameter (#8961) @Phoqe
+- [docs] Add guideline for docs/demo contribution (#8953) @wongjiahau
+- [docs] Use onChange instead of onClick for switch-like examples (#8971) @pelotom
+- [docs] Fix flow example (#8968) @oliviertassinari
+- [docs] Use next tag for the npm version badge (#8989) @leMaik
+- [docs] Add a JssProvider and CSS injection order section (#8993) @oliviertassinari
+
+#### Core
+
+- [core] Upgrade some dependencies (#8977) @oliviertassinari
+- [typescript] Add missing base props (#8931) @pelotom
+- [typescript] Add missing base props, continued (#8955) @pelotom
+- [typescript] Upgrade and resolve @types/react to 16.0.19 (#8956) @pelotom
+
 ## 1.0.0-beta.19
 ###### _Oct 30, 2017_
 
