@@ -29,7 +29,7 @@ const SOURCE_CODE_ROOT_URL = 'https://github.com/callemall/material-ui/tree/v1-b
 
 type InjectedProps = {
   classes: Object,
-  theme: Object,
+  theme?: Object,
 };
 
 type Props = {

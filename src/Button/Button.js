@@ -154,7 +154,7 @@ export type Color = 'default' | 'inherit' | 'primary' | 'accent' | 'contrast';
 
 type ProvidedProps = {
   classes: Object,
-  theme: Object,
+  theme?: Object,
 };
 
 type DefaultProps = {

@@ -12,7 +12,7 @@ import type { TransitionCallback } from '../internal/transition';
 
 type ProvidedProps = {
   classes: Object,
-  theme: Object,
+  theme?: Object,
 };
 
 type DefaultProps = {
@@ -205,13 +205,14 @@ class Menu extends React.Component<ProvidedProps & Props> {
       ...other
     } = this.props;
 
+    const themeDirection = theme && theme.direction;
     return (
       <Popover
         getContentAnchorEl={this.getContentAnchorEl}
         classes={PopoverClasses}
         onEnter={this.handleEnter}
-        anchorOrigin={theme.direction === 'rtl' ? rtlOrigin : ltrOrigin}
-        transformOrigin={theme.direction === 'rtl' ? rtlOrigin : ltrOrigin}
+        anchorOrigin={themeDirection === 'rtl' ? rtlOrigin : ltrOrigin}
+        transformOrigin={themeDirection === 'rtl' ? rtlOrigin : ltrOrigin}
         PaperProps={{
           ...PaperProps,
           classes: {

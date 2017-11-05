@@ -81,7 +81,7 @@ export type Type = 'permanent' | 'persistent' | 'temporary';
 
 type ProvidedProps = {
   classes: Object,
-  theme: Object,
+  theme?: Object,
 };
 
 type DefaultProps = {
@@ -139,7 +139,7 @@ export type Props = {
   /**
    * @igonre
    */
-  theme: Object,
+  theme?: Object,
   /**
    * Properties applied to the `Slide` element.
    */
@@ -196,7 +196,7 @@ class Drawer extends React.Component<ProvidedProps & Props, State> {
       ...other
     } = this.props;
 
-    const rtl = theme.direction === 'rtl';
+    const rtl = theme && theme.direction === 'rtl';
     let anchor = anchorProp;
     if (rtl && ['left', 'right'].includes(anchor)) {
       anchor = anchor === 'left' ? 'right' : 'left';

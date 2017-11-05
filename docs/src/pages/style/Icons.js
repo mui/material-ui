@@ -17,7 +17,7 @@ const styles = {
 
 type ProvidedProps = {
   classes: Object,
-  theme: Object,
+  theme?: Object,
 };
 
 function Icons(props: ProvidedProps) {

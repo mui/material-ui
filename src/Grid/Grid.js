@@ -180,11 +180,11 @@ type Wrap = 'nowrap' | 'wrap' | 'wrap-reverse';
 
 type ProvidedProps = {
   classes: Object,
-  theme: Object,
+  theme?: Object,
 };
 
 type DefaultProps = {
-  alignContent: AlignContent,
+  alignContent?: AlignContent,
   alignItems: AlignItems,
   component: ElementType,
   container: boolean,
@@ -231,7 +231,7 @@ export type Props = {
    * Defines the `align-content` style property.
    * It's applied for all screen sizes.
    */
-  alignContent: AlignContent,
+  alignContent?: AlignContent,
   /**
    * Defines the `align-items` style property.
    * It's applied for all screen sizes.
@@ -371,7 +371,6 @@ if (process.env.NODE_ENV !== 'production') {
 
   GridWrapper = (props: any) => <Grid {...props} />;
 
-  GridWrapper.defaultProps = Grid.defaultProps;
   GridWrapper.propTypes = {
     alignContent: requireProp('container'),
     alignItems: requireProp('container'),
@@ -387,5 +386,5 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export default withStyles(styles, { name: 'MuiGrid' })(
-  (GridWrapper: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
+  ((GridWrapper: any): ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
 );

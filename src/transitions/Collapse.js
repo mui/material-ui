@@ -31,7 +31,7 @@ export type TransitionDuration = number | { enter?: number, exit?: number } | 'a
 
 type ProvidedProps = {
   classes: Object,
-  theme: Object,
+  theme?: Object,
 };
 
 type DefaultProps = {
@@ -128,6 +128,10 @@ class Collapse extends React.Component<ProvidedProps & Props> {
     const { timeout, theme } = this.props;
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
 
+    if (!theme) {
+      return;
+    }
+
     if (timeout === 'auto') {
       const duration2 = theme.transitions.getAutoHeightDuration(wrapperHeight);
       node.style.transitionDuration = `${duration2}ms`;
@@ -166,6 +170,10 @@ class Collapse extends React.Component<ProvidedProps & Props> {
 
   handleExiting = (node: HTMLElement) => {
     const { timeout, theme } = this.props;
+    if (!theme) {
+      return;
+    }
+
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
 
     if (timeout === 'auto') {

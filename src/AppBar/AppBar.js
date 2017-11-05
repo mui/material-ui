@@ -53,7 +53,7 @@ export type Position = 'static' | 'fixed' | 'absolute';
 
 type ProvidedProps = {
   classes: Object,
-  theme: Object,
+  theme?: Object,
 };
 
 type DefaultProps = {

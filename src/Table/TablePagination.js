@@ -63,7 +63,7 @@ export type LabelDisplayedRowsArgs = {
 
 type ProvidedProps = {
   classes: Object,
-  theme: Object,
+  theme?: Object,
 };
 
 type DefaultProps = {
@@ -181,6 +181,8 @@ class TablePagination extends React.Component<ProvidedProps & Props> {
       colSpan = colSpanProp || 9001; // col-span over everything
     }
 
+    const themeDirection = theme && theme.direction;
+
     return (
       <Component className={classes.root} colSpan={colSpan} {...other}>
         <Toolbar className={classes.toolbar}>
@@ -213,13 +215,13 @@ class TablePagination extends React.Component<ProvidedProps & Props> {
           </Typography>
           <div className={classes.actions}>
             <IconButton onClick={this.handleBackButtonClick} disabled={page === 0}>
-              {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+              {themeDirection === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
             </IconButton>
             <IconButton
               onClick={this.handleNextButtonClick}
               disabled={page >= Math.ceil(count / rowsPerPage) - 1}
             >
-              {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+              {themeDirection === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
             </IconButton>
           </div>
         </Toolbar>

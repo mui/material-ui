@@ -52,7 +52,7 @@ export type Direction = 'asc' | 'desc';
 
 type ProvidedProps = {
   classes: Object,
-  theme: Object,
+  theme?: Object,
 };
 
 type DefaultProps = {
