@@ -34,14 +34,11 @@ export const styles = (theme: Object) => ({
     flexDirection: 'column',
     height: '100vh',
     flex: '1 0 auto',
+    zIndex: theme.zIndex.navDrawer,
+    WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
+    // temporary style
     position: 'fixed',
     top: 0,
-    zIndex: theme.zIndex.navDrawer,
-    willChange: 'transform',
-    '&:focus': {
-      outline: 'none',
-    },
-    WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
   },
   paperAnchorLeft: {
     left: 0,
@@ -70,8 +67,14 @@ export const styles = (theme: Object) => ({
   paperAnchorDockedLeft: {
     borderRight: `1px solid ${theme.palette.text.divider}`,
   },
+  paperAnchorDockedTop: {
+    borderBottom: `1px solid ${theme.palette.text.divider}`,
+  },
   paperAnchorDockedRight: {
     borderLeft: `1px solid ${theme.palette.text.divider}`,
+  },
+  paperAnchorDockedBottom: {
+    borderTop: `1px solid ${theme.palette.text.divider}`,
   },
   modal: {}, // Just here so people can override the style.
 });
@@ -198,10 +201,13 @@ class Drawer extends React.Component<ProvidedProps & Props, State> {
       <Paper
         elevation={type === 'temporary' ? elevation : 0}
         square
-        className={classNames(classes.paper, {
-          [classes[`paperAnchor${capitalizeFirstLetter(anchor)}`]]: type !== 'permanent',
-          [classes[`paperAnchorDocked${capitalizeFirstLetter(anchor)}`]]: type !== 'temporary',
-        })}
+        className={classNames(
+          classes.paper,
+          classes[`paperAnchor${capitalizeFirstLetter(anchor)}`],
+          {
+            [classes[`paperAnchorDocked${capitalizeFirstLetter(anchor)}`]]: type !== 'temporary',
+          },
+        )}
       >
         {children}
       </Paper>
