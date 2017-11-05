@@ -16,14 +16,14 @@ We are very close to 100%.
 
 ### Breaking change
 
-- [style] Improve the font-size situation (#8942) @
+- [style] Improve the font-size situation (#8942) @oliviertassinari
 The `Input` and `FormLabel` component do no longer inherit the font-size. You might have to override them explicitly.
-- [Popover] Add a max-height (#8943) @
+- [Popover] Add a max-height (#8943) @oliviertassinari
 ```diff
 -Menu.classes.root
 +Menu.classes.paper
 ```
-- [Dialog] Rename withResponsiveFullScreen (#8951) @
+- [Dialog] Rename withResponsiveFullScreen (#8951) @oliviertassinari
 ```diff
 -import { withResponsiveFullScreen } from 'material-ui/Dialog';
 +import { withMobileDialog } from 'material-ui/Dialog';
