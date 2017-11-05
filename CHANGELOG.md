@@ -8,7 +8,7 @@ Changes. Changes everywhere!
 Big thanks to the 12 contributors who made this release possible.
 
 Here are some highlights ✨:
-- We have been addressing a lot of bug fixes and documentation issues during the last month.
+- We have been addressing a lot of bug and documentation issues during the last month.
 We should soon be able to start porting new components.
 - The test coverage increased by 0.5% thanks to @leMaik effort (#8910, #8911).
 We are very close to 100%.
