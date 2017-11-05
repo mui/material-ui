@@ -30,7 +30,7 @@ If you want to prevent a specific rule-set from being affected by the `rtl` tran
 
 The styling solution of Material-UI is using [JSS](https://github.com/cssinjs/jss) at its core.
 It's a [high performance](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JS to CSS compiler which works at runtime and server-side.
-It is about 5KB (minified and gzipped) and is extensible via a [plugins](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
+It is about 5 kB (minified and gzipped) and is extensible via a [plugins](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
 
 If you end up using this styling solution in your codebase, you're going to need to *learn the API*.
 The best place to start is by looking at the features each [plugin](http://cssinjs.org/plugins) is providing. Material-UI is using the [jss-preset-default](http://cssinjs.org/jss-preset-default) module. You can always add new plugins if needed with the [`JssProvider` helper](https://github.com/cssinjs/react-jss#custom-setup).
@@ -71,6 +71,45 @@ They are easy to debug in development and as short as possible in production:
 - development: `.MuiAppBar-root-12`
 - production: `.c12`
 
+## CSS injection order
+
+The CSS injected by Material-UI to style a component has the highest specificity possible as the `<link />` is injected at the bottom of the `<head />`.
+This way, we ensure our components always render correctly.
+
+But, you might also want to override our styles, e.g. with styled-components.
+If you are experiencing a CSS injection order issue, [JSS provides a mechanism to handle this situation](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-dom-insertion-point).
+By adjusting the placement of the `insertionPoint` comment within your HTML body [you can control the order that the CSS rules are applied to your components](http://cssinjs.org/js-api).
+
+```jsx
+<head>
+  <!-- insertion-point-jss -->
+  <title>Material-UI</title>
+</head>
+```
+
+```jsx
+import JssProvider from 'react-jss/lib/JssProvider';
+import { create } from 'jss';
+import preset from 'jss-preset-default';
+import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
+
+const jss = create(preset());
+// Custom Material-UI class name generator for better debug and performance.
+jss.options.createGenerateClassName = createGenerateClassName;
+// We define a custom insertion point JSS will look for injecting the styles in the DOM.
+jss.options.insertionPoint = 'insertion-point-jss';
+
+function App() {
+  return (
+    <JssProvider jss={jss}>
+      ...
+    </JssProvider>
+  );
+}
+
+export default App;
+```
+
 ## Interoperability
 
 ### React JSS
@@ -80,6 +119,36 @@ We went ahead and forked the project in order to handle our unique needs.
 We are examining how to merge the changes and fixes from Material-UI back to react-jss.
 
 {{demo='pages/customization/ReactJss.js'}}
+
+## JssProvider
+
+react-jss exposes a `JssProvider` component to configure JSS for the underlying children components.
+There are different use cases:
+- [Providing a Sheets registry.](/customization/css-in-js#sheets-registry)
+- Providing a JSS instance. You might want to support [Right-to-left](/guides/right-to-left) or fixing [CSS injection order](/customization/css-in-js#css-injection-order) issue.
+Read [the JSS documentation](http://cssinjs.org/js-api) to learn more about the options available.
+Here is an example:
+
+```jsx
+import JssProvider from 'react-jss/lib/JssProvider';
+import { create } from 'jss';
+import preset from 'jss-preset-default';
+import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
+
+const jss = create(preset());
+// Custom Material-UI class name generator for better debug and performance.
+jss.options.createGenerateClassName = createGenerateClassName;
+
+function App() {
+  return (
+    <JssProvider jss={jss}>
+      ...
+    </JssProvider>
+  );
+}
+
+export default App;
+```
 
 ## API
 

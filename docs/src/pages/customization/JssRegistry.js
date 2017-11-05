@@ -36,6 +36,7 @@ class JssRegistry extends React.Component<any, any> {
     }
 
     // Needed as the sheets are removed asynchronously to prevent FOUC.
+    // (flash of unstyled content).
     this.timer = setTimeout(() => {
       if (this.state.length !== sheetsRegistry.registry.length) {
         this.setState({
