@@ -12,7 +12,7 @@ filename: /src/GridList/GridList.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| cellHeight | union:&nbsp;number<br>&nbsp;'auto'<br> | 180 | Number of px for one cell height. You can set `'auto'` if you want to let the children determine the height. |
+| cellHeight | union:&nbsp;number&nbsp;&#124;<br>&nbsp;'auto'<br> | 180 | Number of px for one cell height. You can set `'auto'` if you want to let the children determine the height. |
 | <span style="color: #31a148">children *</span> | Node |  | Grid Tiles that will be in Grid List. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | cols | number | 2 | Number of columns. |
