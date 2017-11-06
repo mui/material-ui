@@ -13,8 +13,10 @@ filename: /src/Popover/Popover.js
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | PaperProps | Object |  | Properties applied to the `Paper` element. |
-| anchorEl | HTMLElement |  | This is the DOM element that will be used to set the position of the popover. |
-| anchorOrigin | signature | {  vertical: 'top',  horizontal: 'left',} | This is the point on the anchor where the popover's `anchorEl` will attach to.<br>Options: vertical: [top, center, bottom]; horizontal: [left, center, right]. |
+| anchorEl | HTMLElement |  | This is the DOM element that may be used to set the position of the popover. |
+| anchorOrigin | signature | {  vertical: 'top',  horizontal: 'left',} | This is the point on the anchor where the popover's `anchorEl` will attach to. This is not used when the anchorReference is 'anchorPosition'.<br>Options: vertical: [top, center, bottom]; horizontal: [left, center, right]. |
+| anchorPosition | signature | {  top: 0,  left: 0,} | This is the position that may be used to set the position of the popover. The coordinates are relative to the application's client area. |
+| anchorReference | union:&nbsp;'anchorEl'&nbsp;&#124;<br>&nbsp;'anchorPosition'<br> | 'anchorEl' |  |
 | <span style="color: #31a148">children *</span> | Node |  | The content of the component. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | elevation | number | 8 | The elevation of the popover. |

@@ -83,6 +83,11 @@ export type Origin = {
   vertical: 'top' | 'center' | 'bottom' | number,
 };
 
+export type Position = {
+  top: number,
+  left: number,
+};
+
 type ProvidedProps = {
   anchorOrigin: Origin,
   classes: Object,
@@ -92,13 +97,26 @@ type ProvidedProps = {
 
 export type Props = {
   /**
-   * This is the DOM element that will be used
+   * This is the DOM element that may be used
    * to set the position of the popover.
    */
   anchorEl?: ?HTMLElement,
   /**
+   * This is the position that may be used
+   * to set the position of the popover.
+   * The coordinates are relative to
+   * the application's client area.
+   */
+  anchorPosition?: Position,
+  /*
+   * This determines which anchor prop to refer to to set
+   * the position of the popover.
+   */
+  anchorReference?: 'anchorEl' | 'anchorPosition',
+  /**
    * This is the point on the anchor where the popover's
-   * `anchorEl` will attach to.
+   * `anchorEl` will attach to. This is not used when the
+   * anchorReference is 'anchorPosition'.
    *
    * Options:
    * vertical: [top, center, bottom];
@@ -194,6 +212,7 @@ export type Props = {
 
 class Popover extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
+    anchorReference: 'anchorEl',
     anchorOrigin: {
       vertical: 'top',
       horizontal: 'left',
@@ -288,7 +307,12 @@ class Popover extends React.Component<ProvidedProps & Props> {
   // to attach to on the anchor element (or body if none is provided)
   getAnchorOffset(contentAnchorOffset) {
     // $FlowFixMe
-    const { anchorEl, anchorOrigin } = this.props;
+    const { anchorEl, anchorOrigin, anchorReference, anchorPosition } = this.props;
+
+    if (anchorReference === 'anchorPosition') {
+      return anchorPosition;
+    }
+
     const anchorElement = anchorEl || document.body;
     const anchorRect = anchorElement.getBoundingClientRect();
     const anchorVertical = contentAnchorOffset === 0 ? anchorOrigin.vertical : 'center';
@@ -301,10 +325,11 @@ class Popover extends React.Component<ProvidedProps & Props> {
 
   // Returns the vertical offset of inner content to anchor the transform on if provided
   getContentAnchorOffset(element) {
+    const { getContentAnchorEl, anchorReference } = this.props;
     let contentAnchorOffset = 0;
 
-    if (this.props.getContentAnchorEl) {
-      const contentAnchorEl = this.props.getContentAnchorEl(element);
+    if (getContentAnchorEl && anchorReference === 'anchorEl') {
+      const contentAnchorEl = getContentAnchorEl(element);
 
       if (contentAnchorEl && contains(element, contentAnchorEl)) {
         const scrollTop = getScrollParent(element, contentAnchorEl);
@@ -359,6 +384,8 @@ class Popover extends React.Component<ProvidedProps & Props> {
   render() {
     const {
       anchorEl,
+      anchorReference,
+      anchorPosition,
       anchorOrigin,
       children,
       classes,
