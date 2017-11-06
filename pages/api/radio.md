@@ -13,12 +13,10 @@ filename: /src/Radio/Radio.js
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | checked | union:&nbsp;boolean&nbsp;&#124;<br>&nbsp;string<br> |  | If `true`, the component is checked. |
-| checkedClassName | string |  | The CSS class name of the root element when checked. |
 | checkedIcon | Node |  | The icon to display when the component is checked. If a string is provided, it will be used as a font ligature. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | disableRipple | boolean |  | If `true`, the ripple effect will be disabled. |
 | disabled | boolean |  | If `true`, the switch will be disabled. |
-| disabledClassName | string |  | The CSS class name of the root element when disabled. |
 | icon | Node |  | The icon to display when the component is unchecked. If a string is provided, it will be used as a font ligature. |
 | inputProps | Object |  | Properties applied to the `input` element. |
 | inputRef | Function |  | Use that property to pass a ref callback to the native input component. |
