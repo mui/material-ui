@@ -201,7 +201,7 @@ class ButtonBase extends React.Component<ProvidedProps & Props, State> {
   keyDown = false; // Used to help track keyboard activation keyDown
   button = null;
   keyboardFocusTimeout = null;
-  keyboardFocusCheckTime = 30;
+  keyboardFocusCheckTime = 50;
   keyboardFocusMaxCheckTimes = 5;
 
   handleKeyDown = event => {
