@@ -15,6 +15,14 @@ describe('internal/modalManager', () => {
     assert.strictEqual(typeof modalManager, 'object');
   });
 
+  it('should add a modal only once', () => {
+    const modal = {};
+    const modalManager2 = createModalManager();
+    const idx = modalManager2.add(modal);
+    assert.strictEqual(modalManager2.add(modal), idx);
+    modalManager2.remove(modal);
+  });
+
   describe('managing modals', () => {
     let modal1;
     let modal2;
