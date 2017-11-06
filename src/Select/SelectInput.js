@@ -345,6 +345,7 @@ class SelectInput extends React.Component<ProvidedProps & Props, State> {
           onKeyDown={this.handleKeyDown}
           onBlur={this.handleBlur}
           onClick={disabled || readOnly ? null : this.handleClick}
+          onMouseDown={disabled || readOnly ? null : this.handleClick}
           onFocus={onFocus}
         >
           {display}
