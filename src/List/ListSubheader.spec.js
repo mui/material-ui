@@ -14,9 +14,9 @@ describe('<ListSubheader />', () => {
     classes = getClasses(<ListSubheader />);
   });
 
-  it('should render a div', () => {
+  it('should render a li', () => {
     const wrapper = shallow(<ListSubheader />);
-    assert.strictEqual(wrapper.name(), 'div');
+    assert.strictEqual(wrapper.name(), 'li');
   });
 
   it('should render with the user and root classes', () => {

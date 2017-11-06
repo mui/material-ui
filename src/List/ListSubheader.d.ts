@@ -5,6 +5,7 @@ export interface ListSubheaderProps extends StandardProps<
   React.HTMLAttributes<HTMLDivElement>,
   ListSubheaderClassKey
 > {
+  component?: React.ReactType;
   color?: 'default' | 'primary' | 'inherit';
   inset?: boolean;
   disableSticky?: boolean;

@@ -3,7 +3,7 @@
 
 import React from 'react';
 import classNames from 'classnames';
-import type { Node } from 'react';
+import type { Node, ElementType } from 'react';
 import Transition from 'react-transition-group/Transition';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
@@ -32,6 +32,7 @@ export type TransitionDuration = number | { enter?: number, exit?: number } | 'a
 type ProvidedProps = {
   appear: boolean,
   classes: Object,
+  component: ElementType,
   collapsedHeight: string,
   timeout: TransitionDuration,
   theme: Object,
@@ -50,6 +51,12 @@ export type Props = {
    * Useful to extend the style applied to components.
    */
   classes?: Object,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   * The default value is a `button`.
+   */
+  component?: ElementType,
   /**
    * The height of the container when collapsed.
    */
@@ -98,6 +105,7 @@ export type Props = {
 class Collapse extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
     appear: false,
+    component: 'div',
     collapsedHeight: '0px',
     timeout: duration.standard,
   };
@@ -193,6 +201,7 @@ class Collapse extends React.Component<ProvidedProps & Props> {
       appear,
       children,
       classes,
+      component: ComponentProp,
       collapsedHeight,
       onEnter,
       onEntering,
@@ -219,7 +228,7 @@ class Collapse extends React.Component<ProvidedProps & Props> {
       >
         {state => {
           return (
-            <div
+            <ComponentProp
               className={classNames(classes.container, {
                 [classes.entered]: state === 'entered',
               })}
@@ -232,7 +241,7 @@ class Collapse extends React.Component<ProvidedProps & Props> {
               >
                 <div className={classes.wrapperInner}>{children}</div>
               </div>
-            </div>
+            </ComponentProp>
           );
         }}
       </Transition>
