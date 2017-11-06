@@ -110,6 +110,7 @@ export default function createTypography(palette: Object, typography: Object | F
         fontSize: pxToRem(fontSize),
         textTransform: 'uppercase',
         fontWeight: fontWeightMedium,
+        lineHeight: "inherit",
         fontFamily,
       },
     },
