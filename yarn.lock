@@ -7722,8 +7722,8 @@ rst-selector-parser@^2.2.2:
     nearley "^2.7.10"
 
 rtl-css-js@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/rtl-css-js/-/rtl-css-js-1.7.0.tgz#0a9b0a5ddcc7181b0b41977264f39647ba705770"
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/rtl-css-js/-/rtl-css-js-1.8.0.tgz#af8ccdf5944bd8d6a2657fcf2e4a4e9adf62361b"
 
 run-async@^2.2.0:
   version "2.3.0"
