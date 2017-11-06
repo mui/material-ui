@@ -16,7 +16,7 @@ filename: /src/Input/InputAdornment.js
 | classes | Object |  | Useful to extend the style applied to components. |
 | component | ElementType | 'div' | The component used for the root node. Either a string to use a DOM element or a component. |
 | disableTypography | boolean | false | If children is a string then disable wrapping in a Typography component. |
-| <span style="color: #31a148">position *</span> | union:&nbsp;'start'<br>&nbsp;'end'<br> |  | The position this adornment should appear relative to the `Input`. |
+| <span style="color: #31a148">position *</span> | union:&nbsp;'start'&nbsp;&#124;<br>&nbsp;'end'<br> |  | The position this adornment should appear relative to the `Input`. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 

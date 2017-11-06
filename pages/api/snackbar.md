@@ -18,7 +18,7 @@ filename: /src/Snackbar/Snackbar.js
 | autoHideDuration | number |  | The number of milliseconds to wait before automatically dismissing. This behavior is disabled by default with the `null` value. |
 | children | Element |  | If you wish the take control over the children of the component you can use that property. When using it, no `SnackbarContent` component will be rendered. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| key | any |  | When displaying multiple consecutive Snackbars from a parent rendering a single <Snackbar/>, add the key property to ensure independent treatment of each message. e.g. <Snackbar key={message} />, otherwise, the message may update-in-place and features such as autoHideDuration may be canceled. |
+| key | any |  | When displaying multiple consecutive Snackbars from a parent rendering a single &lt;Snackbar/>, add the key property to ensure independent treatment of each message. e.g. &lt;Snackbar key={message} />, otherwise, the message may update-in-place and features such as autoHideDuration may be canceled. |
 | message | Node |  | The message to display. |
 | onEnter | TransitionCallback |  | Callback fired before the transition is entering. |
 | onEntered | TransitionCallback |  | Callback fired when the transition has entered. |

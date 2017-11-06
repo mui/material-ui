@@ -26,6 +26,11 @@ function getDeprecatedInfo(type) {
   return false;
 }
 
+function escapeCell(value) {
+  // As the pipe is use for the table structure
+  return value.replace(/</g, '&lt;').replace(/\|/g, '&#124;');
+}
+
 function generatePropDescription(description, type) {
   let deprecated = '';
 
@@ -41,11 +46,10 @@ function generatePropDescription(description, type) {
 
   // Two new lines result in a newline in the table.
   // All other new lines must be eliminated to prevent markdown mayhem.
-  const jsDocText = parsed.description
+  const jsDocText = escapeCell(parsed.description)
     .replace(/\n\n/g, '<br>')
     .replace(/\n/g, ' ')
-    .replace(/\r/g, '')
-    .replace(/\|/g, '&#124;'); // As the pipe is use for the table structure
+    .replace(/\r/g, '');
 
   if (parsed.tags.some(tag => tag.title === 'ignore')) {
     return null;
@@ -94,9 +98,6 @@ function generatePropDescription(description, type) {
 
 function generatePropType(type) {
   switch (type.name) {
-    case 'func':
-      return 'function';
-
     case 'custom': {
       const deprecatedInfo = getDeprecatedInfo(type);
 
@@ -118,9 +119,12 @@ function generatePropType(type) {
       } else {
         values = type.value.map(v => v.value || v.name);
       }
+
+      values = values.map(escapeCell);
+
       // Display one value per line as it's better for visibility.
       if (values.length < 5) {
-        values = values.join('<br>&nbsp;');
+        values = values.join('&nbsp;&#124;<br>&nbsp;');
       } else {
         values = values.join(', ');
       }
@@ -167,7 +171,7 @@ function generateProps(reactAPI) {
       let defaultValue = '';
 
       if (prop.defaultValue) {
-        defaultValue = prop.defaultValue.value.replace(/\n/g, '').replace(/</g, '&lt;');
+        defaultValue = escapeCell(prop.defaultValue.value.replace(/\n/g, ''));
       }
 
       if (prop.required) {

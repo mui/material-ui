@@ -18,7 +18,7 @@ Dialogs are overlaid modal paper based components with a backdrop.
 | fullWidth | boolean | false | If specified, stretches dialog to max width. |
 | ignoreBackdropClick | boolean | false | If `true`, clicking the backdrop will not fire the `onRequestClose` callback. |
 | ignoreEscapeKeyUp | boolean | false | If `true`, hitting escape will not fire the `onRequestClose` callback. |
-| maxWidth | union:&nbsp;'xs'<br>&nbsp;'sm'<br>&nbsp;'md'<br> | 'sm' | Determine the max width of the dialog. The dialog width grows with the size of the screen, this property is useful on the desktop where you might need some coherent different width size across your application. |
+| maxWidth | union:&nbsp;'xs'&nbsp;&#124;<br>&nbsp;'sm'&nbsp;&#124;<br>&nbsp;'md'<br> | 'sm' | Determine the max width of the dialog. The dialog width grows with the size of the screen, this property is useful on the desktop where you might need some coherent different width size across your application. |
 | onBackdropClick | Function |  | Callback fired when the backdrop is clicked. |
 | onEnter | TransitionCallback |  | Callback fired before the dialog enters. |
 | onEntered | TransitionCallback |  | Callback fired when the dialog has entered. |

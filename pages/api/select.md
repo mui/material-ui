@@ -22,7 +22,7 @@ filename: /src/Select/Select.js
 | multiple | boolean | false | If true, `value` must be an array and the menu will support multiple selections. You can only use it when the `native` property is `false` (default). |
 | native | boolean | false | If `true`, the component will be using a native `select` element. |
 | renderValue | Function |  | Render the selected value. You can only use it when the `native` property is `false` (default). |
-| value | union:&nbsp;$ReadOnlyArray<string<br>&nbsp;number><br>&nbsp;string<br>&nbsp;number<br> |  | The input value, required for a controlled component. |
+| value | union:&nbsp;$ReadOnlyArray&lt;string&nbsp;&#124;<br>&nbsp;number>&nbsp;&#124;<br>&nbsp;string&nbsp;&#124;<br>&nbsp;number<br> |  | The input value, required for a controlled component. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 

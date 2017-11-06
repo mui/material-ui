@@ -31,18 +31,18 @@ filename: /src/TextField/TextField.js
 | inputRef | Function |  | Use that property to pass a ref callback to the native input component. |
 | label | Node |  | The label content. |
 | labelClassName | string |  | The CSS class name of the label element. |
-| margin | union:&nbsp;'none'<br>&nbsp;'dense'<br>&nbsp;'normal'<br> |  | If `dense` or `normal`, will adjust vertical spacing of this and contained components. |
+| margin | union:&nbsp;'none'&nbsp;&#124;<br>&nbsp;'dense'&nbsp;&#124;<br>&nbsp;'normal'<br> |  | If `dense` or `normal`, will adjust vertical spacing of this and contained components. |
 | multiline | boolean |  | If `true`, a textarea element will be rendered instead of an input. |
 | name | string |  | Name attribute of the `input` element. |
 | onChange | signature |  | Callback fired when the value is changed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | placeholder | string |  | The short hint displayed in the input before the user enters a value. |
 | required | boolean | false | If `true`, the label is displayed as required. |
 | rootRef | Function |  | Use that property to pass a ref callback to the root component. |
-| rows | union:&nbsp;string<br>&nbsp;number<br> |  | Number of rows to display when multiline option is set to true. |
-| rowsMax | union:&nbsp;string<br>&nbsp;number<br> |  | Maximum number of rows to display when multiline option is set to true. |
+| rows | union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br> |  | Number of rows to display when multiline option is set to true. |
+| rowsMax | union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br> |  | Maximum number of rows to display when multiline option is set to true. |
 | select | boolean | false | Render a `Select` element while passing the `Input` element to `Select` as `input` parameter. If this option is set you must pass the options of the select as children. |
 | type | string |  | Type attribute of the `Input` element. It should be a valid HTML5 input type. |
-| value | union:&nbsp;string<br>&nbsp;number<br> |  | The value of the `Input` element, required for a controlled component. |
+| value | union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br> |  | The value of the `Input` element, required for a controlled component. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 

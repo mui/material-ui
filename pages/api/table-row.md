@@ -13,7 +13,7 @@ based on the material table element parent (head, body, etc).
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| children | Node |  | Should be valid `<tr>` children such as `TableCell`. |
+| children | Node |  | Should be valid `&lt;tr>` children such as `TableCell`. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | component | ElementType | 'tr' | The component used for the root node. Either a string to use a DOM element or a component. |
 | hover | boolean | false | If `true`, the table row will shade on hover. |

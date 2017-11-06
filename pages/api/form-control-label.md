@@ -13,7 +13,7 @@ Use this component if you want to display an extra label.
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| checked | union:&nbsp;boolean<br>&nbsp;string<br> |  | If `true`, the component appears selected. |
+| checked | union:&nbsp;boolean&nbsp;&#124;<br>&nbsp;string<br> |  | If `true`, the component appears selected. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | <span style="color: #31a148">control *</span> | Element |  | A control element. For instance, it can be be a `Radio`, a `Switch` or a `Checkbox`. |
 | disabled | boolean |  | If `true`, the control will be disabled. |
