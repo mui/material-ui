@@ -344,7 +344,6 @@ class SelectInput extends React.Component<ProvidedProps & Props, State> {
           aria-haspopup="true"
           onKeyDown={this.handleKeyDown}
           onBlur={this.handleBlur}
-          onClick={disabled || readOnly ? null : this.handleClick}
           onMouseDown={disabled || readOnly ? null : this.handleClick}
           onFocus={onFocus}
         >
