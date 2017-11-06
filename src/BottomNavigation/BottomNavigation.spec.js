@@ -31,12 +31,11 @@ describe('<BottomNavigation />', () => {
   it('renders with a null child', () => {
     const wrapper = shallow(
       <BottomNavigation showLabels value={0}>
-        <BottomNavigationButton label='One'/>
+        <BottomNavigationButton label="One" />
         {null}
-        <BottomNavigationButton label='Three'/>
-      </BottomNavigation>
+        <BottomNavigationButton label="Three" />
+      </BottomNavigation>,
     );
-
     assert.strictEqual(wrapper.find(BottomNavigationButton).length, 2);
   });
   
