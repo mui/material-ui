@@ -30,7 +30,7 @@ export interface TypographyStyle {
   fontSize: React.CSSProperties['fontSize'];
   fontWeight: React.CSSProperties['fontWeight'];
   letterSpacing?: React.CSSProperties['letterSpacing'];
-  lineHeight: React.CSSProperties['lineHeight'];
+  lineHeight?: React.CSSProperties['lineHeight'];
   textTransform?: React.CSSProperties['textTransform'];
 }
 
