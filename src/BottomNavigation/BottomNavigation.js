@@ -64,7 +64,7 @@ function BottomNavigation(props: ProvidedProps & Props) {
   const className = classNames(classes.root, classNameProp);
 
   const children = React.Children.map(childrenProp, (child, childIndex) => {
-    if(child === null) return null;
+    if ( child === null ) return null;
     const childValue = child.props.value || childIndex;
     return React.cloneElement(child, {
       selected: childValue === value,
