@@ -9,6 +9,10 @@ A `Popover` can be used to display some content on top of another.
 ## Anchor playground
 
 Use the radio buttons to adjust the `anchorOrigin` and `transformOrigin` positions.
+You can also set the `anchorReference` to `anchorPosition` or `anchorEl`.
+When it is `anchorPosition`, the component will, instead of `anchorEl`,
+refer to the `anchorPosition` prop which you can adjust to set
+the position of the popover.
 
 {{demo='pages/demos/popovers/AnchorPlayground.js'}}
 
