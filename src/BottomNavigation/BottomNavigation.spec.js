@@ -27,7 +27,7 @@ describe('<BottomNavigation />', () => {
   after(() => {
     mount.cleanUp();
   });
-  
+
   it('renders with a null child', () => {
     const wrapper = shallow(
       <BottomNavigation showLabels value={0}>
@@ -38,7 +38,7 @@ describe('<BottomNavigation />', () => {
     );
     assert.strictEqual(wrapper.find(BottomNavigationButton).length, 2);
   });
-  
+
   it('should render with the root class', () => {
     const wrapper = shallow(
       <BottomNavigation showLabels value={0}>
