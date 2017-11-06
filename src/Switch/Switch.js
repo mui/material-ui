@@ -73,10 +73,6 @@ export type Props = {
    */
   checked?: boolean | string,
   /**
-   * The CSS class name of the root element when checked.
-   */
-  checkedClassName?: string,
-  /**
    * The icon to display when the component is checked.
    * If a string is provided, it will be used as a font ligature.
    */
@@ -97,10 +93,6 @@ export type Props = {
    * If `true`, the switch will be disabled.
    */
   disabled?: boolean,
-  /**
-   * The CSS class name of the root element when disabled.
-   */
-  disabledClassName?: string,
   /**
    * If `true`, the ripple effect will be disabled.
    */
