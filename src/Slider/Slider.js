@@ -828,7 +828,7 @@ class Slider extends Component {
           onMouseLeave={this.handleMouseLeave}
           onMouseUp={this.handleMouseUp}
           onTouchStart={this.handleTouchStart}
-          onKeyDown={!disabled && this.handleKeyDown}
+          onKeyDown={!disabled ? this.handleKeyDown : undefined}
         >
           <div ref={(node) => this.track = node} style={prepareStyles(styles.track)}>
             <div style={prepareStyles(styles.filled)} />
