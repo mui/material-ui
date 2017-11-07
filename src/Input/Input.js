@@ -170,8 +170,9 @@ export const styles = (theme: Object) => {
       },
       '&$disabled:before': {
         background: 'transparent',
-        backgroundImage: `linear-gradient(to right, ${theme.palette.input
-          .bottomLine} 33%, transparent 0%)`,
+        backgroundImage: `linear-gradient(to right, ${
+          theme.palette.input.bottomLine
+        } 33%, transparent 0%)`,
         backgroundPosition: 'left top',
         backgroundRepeat: 'repeat-x',
         backgroundSize: '5px 1px',

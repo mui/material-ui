@@ -20,8 +20,9 @@ export const styles = (theme: Object) => ({
     backgroundColor: theme.palette.primary[500],
   },
   primaryDashed: {
-    background: `radial-gradient(${theme.palette.primary[100]} 0%, ${theme.palette
-      .primary[100]} 16%, transparent 42%)`,
+    background: `radial-gradient(${theme.palette.primary[100]} 0%, ${
+      theme.palette.primary[100]
+    } 16%, transparent 42%)`,
     backgroundSize: '10px 10px',
     backgroundPosition: '0px -23px',
   },
@@ -32,8 +33,9 @@ export const styles = (theme: Object) => ({
     backgroundColor: theme.palette.secondary.A400,
   },
   accentDashed: {
-    background: `radial-gradient(${theme.palette.secondary.A100} 0%, ${theme.palette.secondary
-      .A100} 16%, transparent 42%)`,
+    background: `radial-gradient(${theme.palette.secondary.A100} 0%, ${
+      theme.palette.secondary.A100
+    } 16%, transparent 42%)`,
     backgroundSize: '10px 10px',
     backgroundPosition: '0px -23px',
   },
