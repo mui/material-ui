@@ -85,6 +85,7 @@ export {
   ListSubheader,
 } from './List';
 export { default as Menu, MenuItem, MenuList } from './Menu';
+export { default as Modal } from './Modal';
 export { default as Paper } from './Paper';
 export { default as Popover } from './Popover';
 export { CircularProgress, LinearProgress } from './Progress';

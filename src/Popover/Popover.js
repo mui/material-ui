@@ -1,4 +1,5 @@
 // @flow
+// @inheritedComponent Modal
 
 import React from 'react';
 import type { Node } from 'react';
@@ -8,7 +9,7 @@ import contains from 'dom-helpers/query/contains';
 import debounce from 'lodash/debounce';
 import EventListener from 'react-event-listener';
 import withStyles from '../styles/withStyles';
-import Modal from '../internal/Modal';
+import Modal from '../Modal';
 import type { TransitionCallback, TransitionClasses } from '../internal/transition';
 import Grow from '../transitions/Grow';
 import Paper from '../Paper';

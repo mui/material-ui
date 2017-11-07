@@ -1,11 +1,12 @@
 // @flow
+// @inheritedComponent Modal
 
 import React from 'react';
 import type { ComponentType, Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
-import Modal from '../internal/Modal';
+import Modal from '../Modal';
 import Fade from '../transitions/Fade';
 import { duration } from '../styles/transitions';
 import Paper from '../Paper';

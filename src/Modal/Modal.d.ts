@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 import { BackdropProps } from './Backdrop';
-import { TransitionDuration, TransitionHandlers } from './transition';
+import { TransitionDuration, TransitionHandlers } from '../internal/transition';
 
 export interface ModalProps extends StandardProps<
   React.HtmlHTMLAttributes<HTMLDivElement> & Partial<TransitionHandlers>,

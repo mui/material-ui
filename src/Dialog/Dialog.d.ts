@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { ModalProps, ModalClassKey } from '../internal/Modal';
+import { ModalProps, ModalClassKey } from '../Modal';
 import { TransitionDuration } from '../internal/transition';
 
 export interface DialogProps extends StandardProps<
