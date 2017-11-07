@@ -6,7 +6,7 @@ export interface GridListTileProps extends StandardProps<
   GridListTileClassKey
 > {
   cols?: number;
-  component?: React.ReactType;
+  component?: string | React.ComponentType<GridListTileProps>;
   rows?: number;
 }
 

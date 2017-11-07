@@ -7,7 +7,7 @@ export interface ButtonProps extends StandardProps<
   ButtonClassKey
 > {
   color?: PropTypes.Color | 'contrast';
-  component?: React.ReactType;
+  component?: string | React.ComponentType<ButtonProps>;
   dense?: boolean;
   disabled?: boolean;
   disableFocusRipple?: boolean;
