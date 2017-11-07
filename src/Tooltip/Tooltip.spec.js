@@ -268,27 +268,22 @@ describe('<Tooltip />', () => {
   });
 
   describe('prop: overrides', () => {
-    [
-      'onTouchStart',
-      'onTouchEnd',
-      'onMouseOver',
-      'onMouseLeave',
-      'onFocus',
-      'onBlur',
-    ].forEach(name => {
-      it(`should be transparent for the ${name} event`, () => {
-        const handler = spy();
-        const wrapper = shallow(
-          <Tooltip title="Hello World">
-            <button {...{ [name]: handler }}>Hello World</button>
-          </Tooltip>,
-        );
-        const children = getChildren(wrapper);
-        const type = name.slice(2).toLowerCase();
-        children.simulate(type, { type, persist: () => {} });
-        assert.strictEqual(handler.callCount, 1);
-      });
-    });
+    ['onTouchStart', 'onTouchEnd', 'onMouseOver', 'onMouseLeave', 'onFocus', 'onBlur'].forEach(
+      name => {
+        it(`should be transparent for the ${name} event`, () => {
+          const handler = spy();
+          const wrapper = shallow(
+            <Tooltip title="Hello World">
+              <button {...{ [name]: handler }}>Hello World</button>
+            </Tooltip>,
+          );
+          const children = getChildren(wrapper);
+          const type = name.slice(2).toLowerCase();
+          children.simulate(type, { type, persist: () => {} });
+          assert.strictEqual(handler.callCount, 1);
+        });
+      },
+    );
   });
 
   describe('resize', () => {
