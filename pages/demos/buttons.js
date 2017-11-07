@@ -45,6 +45,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/buttons/IconLabelButtons'), 'utf8')
 `,
         },
+        'pages/demos/buttons/TransitionFab.js': {
+          js: require('docs/src/pages/demos/buttons/TransitionFab').default,
+          raw: preval`
+ module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/buttons/TransitionFab'), 'utf8')
+`,
+        },
         'pages/demos/buttons/ButtonBases.js': {
           js: require('docs/src/pages/demos/buttons/ButtonBases').default,
           raw: preval`
