@@ -48,6 +48,12 @@ Sometimes you might want to have icons for certain button to enhance the UX of t
 
 {{demo='pages/demos/buttons/IconLabelButtons.js'}}
 
+### TransitionFab Buttons
+
+A FAB that reveals other fabs when clicked, and hides them when clicked again.
+
+{{demo='pages/demos/buttons/TransitionFab.js'}}
+
 ## Complex Buttons
 
 The Flat Buttons, Raised Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`.
