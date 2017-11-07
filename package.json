@@ -93,7 +93,7 @@
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",
     "babel-loader": "^7.1.2",
-    "babel-plugin-flow-react-proptypes": "^8.0.0",
+    "babel-plugin-flow-react-proptypes": "^9.0.0",
     "babel-plugin-istanbul": "^4.1.5",
     "babel-plugin-preval": "^1.6.2",
     "babel-plugin-react-remove-properties": "^0.2.5",
