@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { withStyles, IconButton, Icon } from 'material-ui';
+import { withStyles, IconButton } from 'material-ui';
 
 export const CalendarHeader = (props) => {
   const {
