@@ -16,7 +16,7 @@ import Fade from '../transitions/Fade';
 import withStyles from '../styles/withStyles';
 import createModalManager from './modalManager';
 import Backdrop from './Backdrop';
-import Portal from './Portal';
+import Portal from '../internal/Portal';
 import type { TransitionDuration, TransitionCallback } from '../internal/transition';
 
 // Modals don't open on the server so this won't break concurrency.
@@ -42,7 +42,6 @@ type ProvidedProps = {
   BackdropComponent: ElementType,
   classes: Object,
   modalManager: Object,
-  show: boolean,
 };
 
 export type Props = {
@@ -138,7 +137,7 @@ export type Props = {
   /**
    * If `true`, the Modal is visible.
    */
-  show?: boolean,
+  show: boolean,
 };
 
 type State = {
@@ -146,7 +145,19 @@ type State = {
 };
 
 /**
- * @ignore - internal component.
+ * The modal component provides a solid foundation for creating dialogs,
+ * popovers, or whatever else.
+ * The component renders its `children` node in front of a backdrop component.
+ *
+ * The `Modal` offers a few helpful features over using just a `Portal` component and some styles:
+ * - Manages dialog stacking when one-at-a-time just isn't enough.
+ * - Creates a backdrop, for disabling interaction below the modal.
+ * - It properly manages focus; moving to the modal content,
+ *   and keeping it there until the modal is closed.
+ * - It disables scrolling of the page content while open.
+ * - Adds the appropriate ARIA roles are automatically.
+ *
+ * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
  */
 class Modal extends React.Component<ProvidedProps & Props, State> {
   static defaultProps = {
@@ -158,7 +169,6 @@ class Modal extends React.Component<ProvidedProps & Props, State> {
     ignoreBackdropClick: false,
     ignoreEscapeKeyUp: false,
     modalManager,
-    show: false,
   };
 
   state = {

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { PaperProps } from '../Paper';
 import { TransitionDuration, TransitionHandlers } from '../internal/transition';
-import { ModalProps, ModalClassKey } from '../internal/Modal';
+import { ModalProps, ModalClassKey } from '../Modal';
 
 export interface Origin {
   horizontal: 'left' | 'center' | 'right' | number;

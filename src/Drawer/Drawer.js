@@ -1,9 +1,10 @@
 // @flow
+// @inheritedComponent Modal
 
 import React from 'react';
 import type { Node } from 'react';
 import classNames from 'classnames';
-import Modal from '../internal/Modal';
+import Modal from '../Modal';
 import withStyles from '../styles/withStyles';
 import Slide from '../transitions/Slide';
 import Paper from '../Paper';

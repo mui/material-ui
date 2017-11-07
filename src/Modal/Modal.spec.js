@@ -21,7 +21,7 @@ describe('<Modal />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true, disableLifecycleMethods: true });
-    classes = getClasses(<Modal />);
+    classes = getClasses(<Modal show={false} />);
     mount = createMount();
     mockPortal.init();
   });
@@ -33,7 +33,7 @@ describe('<Modal />', () => {
 
   it('should render null by default', () => {
     const wrapper = shallow(
-      <Modal>
+      <Modal show={false}>
         <p>Hello World</p>
       </Modal>,
     );
@@ -194,7 +194,7 @@ describe('<Modal />', () => {
 
       before(() => {
         wrapper = mount(
-          <Modal id="modal">
+          <Modal show={false} id="modal">
             <div id="container">
               <h1 id="heading">Hello</h1>
             </div>
@@ -336,7 +336,7 @@ describe('<Modal />', () => {
     let instance;
 
     before(() => {
-      wrapper = shallow(<Modal />);
+      wrapper = shallow(<Modal show={false} />);
       instance = wrapper.instance();
     });
 
