@@ -17,7 +17,7 @@ export default class SnackbarExampleTwice extends React.Component {
     clearTimeout(this.timer);
   }
 
-  handleTouchTap = () => {
+  handleClick = () => {
     this.setState({
       open: true,
     });
@@ -39,7 +39,7 @@ export default class SnackbarExampleTwice extends React.Component {
     return (
       <div>
         <RaisedButton
-          onClick={this.handleTouchTap}
+          onClick={this.handleClick}
           label="Add to my calendar two times"
         />
         <Snackbar
