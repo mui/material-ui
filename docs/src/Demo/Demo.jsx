@@ -128,8 +128,8 @@ class Demo extends Component {
               <DateTimePicker
                 value={this.state.selectedDate}
                 onChange={this.handleDateChange}
-                leftArrowIcon={<Icon>add_alarm</Icon>}
-                rightArrowIcon={<Icon>snooze</Icon>}
+                leftArrowIcon={<Icon> keyboard_arrow_left </Icon>}
+                rightArrowIcon={<Icon> keyboard_arrow_right </Icon>}
               />
             </div>
 
