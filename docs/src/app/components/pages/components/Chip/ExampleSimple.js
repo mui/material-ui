@@ -19,7 +19,7 @@ function handleRequestDelete() {
   alert('You clicked the delete button.');
 }
 
-function handleTouchTap() {
+function handleClick() {
   alert('You clicked the Chip.');
 }
 
@@ -43,14 +43,14 @@ export default class ChipExampleSimple extends React.Component {
 
         <Chip
           onRequestDelete={handleRequestDelete}
-          onClick={handleTouchTap}
+          onClick={handleClick}
           style={styles.chip}
         >
           Deletable Text Chip
         </Chip>
 
         <Chip
-          onClick={handleTouchTap}
+          onClick={handleClick}
           style={styles.chip}
         >
           <Avatar src="images/uxceo-128.jpg" />
@@ -59,7 +59,7 @@ export default class ChipExampleSimple extends React.Component {
 
         <Chip
           onRequestDelete={handleRequestDelete}
-          onClick={handleTouchTap}
+          onClick={handleClick}
           style={styles.chip}
         >
           <Avatar src="images/ok-128.jpg" />
@@ -67,7 +67,7 @@ export default class ChipExampleSimple extends React.Component {
         </Chip>
 
         <Chip
-          onClick={handleTouchTap}
+          onClick={handleClick}
           style={styles.chip}
         >
           <Avatar icon={<FontIcon className="material-icons">perm_identity</FontIcon>} />
@@ -76,14 +76,14 @@ export default class ChipExampleSimple extends React.Component {
 
         <Chip
           onRequestDelete={handleRequestDelete}
-          onClick={handleTouchTap}
+          onClick={handleClick}
           style={styles.chip}
         >
           <Avatar color="#444" icon={<SvgIconFace />} />
           SvgIcon Avatar Chip
         </Chip>
 
-        <Chip onClick={handleTouchTap} style={styles.chip}>
+        <Chip onClick={handleClick} style={styles.chip}>
           <Avatar size={32}>A</Avatar>
           Text Avatar Chip
         </Chip>
@@ -91,7 +91,7 @@ export default class ChipExampleSimple extends React.Component {
         <Chip
           backgroundColor={blue300}
           onRequestDelete={handleRequestDelete}
-          onClick={handleTouchTap}
+          onClick={handleClick}
           style={styles.chip}
         >
           <Avatar size={32} color={blue300} backgroundColor={indigo900}>
