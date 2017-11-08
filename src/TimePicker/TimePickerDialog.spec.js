@@ -22,7 +22,7 @@ describe('<TimePickerDialog />', () => {
       />
     );
     wrapper.instance().refs = {clock: {getSelectedTime: stub().returns(Date.now())}};
-    wrapper.instance().handleTouchTapOK();
+    wrapper.instance().handleClickOK();
     expect(onDismissCallback).to.have.property('callCount', 0);
     expect(onAcceptCallback).to.have.property('callCount', 1);
     expect(wrapper.state('open')).to.equal(false);

@@ -52,11 +52,11 @@ class TimePickerDialog extends Component {
     this.dismiss();
   };
 
-  handleTouchTapCancel = () => {
+  handleClickCancel = () => {
     this.dismiss();
   };
 
-  handleTouchTapOK = () => {
+  handleClickOK = () => {
     if (this.props.onAccept) {
       this.props.onAccept(this.refs.clock.getSelectedTime());
     }
@@ -68,7 +68,7 @@ class TimePickerDialog extends Component {
   handleKeyUp = (event) => {
     switch (keycode(event)) {
       case 'enter':
-        this.handleTouchTapOK();
+        this.handleClickOK();
         break;
     }
   };
@@ -105,17 +105,17 @@ class TimePickerDialog extends Component {
         key={0}
         label={cancelLabel}
         primary={true}
-        onClick={this.handleTouchTapCancel}
+        onClick={this.handleClickCancel}
       />,
       <FlatButton
         key={1}
         label={okLabel}
         primary={true}
-        onClick={this.handleTouchTapOK}
+        onClick={this.handleClickOK}
       />,
     ];
 
-    const onClockChangeMinutes = autoOk === true ? this.handleTouchTapOK : undefined;
+    const onClockChangeMinutes = autoOk === true ? this.handleClickOK : undefined;
     const open = this.state.open;
 
     return (
