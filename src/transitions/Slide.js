@@ -163,6 +163,14 @@ class Slide extends React.Component<ProvidedProps & Props, State> {
     });
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.direction !== this.props.direction) {
+      // We need to update the position of the drawer when the direction change and
+      // when it's hidden.
+      this.componentDidMount();
+    }
+  }
+
   componentWillUnmount() {
     this.handleResize.cancel();
   }
@@ -226,8 +234,28 @@ class Slide extends React.Component<ProvidedProps & Props, State> {
     }
   };
 
+  handleExited = (node: HTMLElement) => {
+    // No need for transitions when the component is hidden
+    node.style.transition = '';
+    // $FlowFixMe - https://github.com/facebook/flow/pull/5161
+    node.style.webkitTransition = '';
+
+    if (this.props.onExited) {
+      this.props.onExited(node);
+    }
+  };
+
   render() {
-    const { children, onEnter, onEntering, onExit, style: styleProp, theme, ...other } = this.props;
+    const {
+      children,
+      onEnter,
+      onEntering,
+      onExit,
+      onExited,
+      style: styleProp,
+      theme,
+      ...other
+    } = this.props;
 
     const style = { ...styleProp };
 
@@ -241,6 +269,7 @@ class Slide extends React.Component<ProvidedProps & Props, State> {
           onEnter={this.handleEnter}
           onEntering={this.handleEntering}
           onExit={this.handleExit}
+          onExited={this.handleExited}
           appear
           style={style}
           {...other}
