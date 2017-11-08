@@ -227,7 +227,7 @@ describe('<FormControl />', () => {
           const handleBlur = spy();
           wrapper.setProps({ onBlur: handleBlur });
           muiFormControlContext.onFocus();
-          muiFormControlContext.onBlur();
+          muiFormControlContext.onBlur({});
           assert.strictEqual(handleBlur.callCount, 1);
         });
       });
