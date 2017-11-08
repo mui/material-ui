@@ -13,12 +13,14 @@ export default class ModalWrapper extends PureComponent {
     onDismiss: PropTypes.func.isRequired,
     dialogContentClassName: PropTypes.string,
     invalidLabel: PropTypes.string,
+    labelFunc: PropTypes.func,
   }
 
   static defaultProps = {
     dialogContentClassName: '',
     invalidLabel: undefined,
     value: new Date(),
+    labelFunc: undefined,
   }
 
   state = {
@@ -48,6 +50,7 @@ export default class ModalWrapper extends PureComponent {
       onAccept,
       onDismiss,
       invalidLabel,
+      labelFunc,
       ...other
     } = this.props;
 
@@ -58,6 +61,7 @@ export default class ModalWrapper extends PureComponent {
           format={format}
           onClick={this.togglePicker}
           invalidLabel={invalidLabel}
+          labelFunc={labelFunc}
           {...other}
         />
 

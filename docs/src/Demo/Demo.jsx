@@ -14,11 +14,15 @@ class Demo extends Component {
   }
 
   state = {
-    selectedDate: new Date(),
+    selectedDate: moment(),
   }
 
   handleDateChange = date => {
     this.setState({ selectedDate: date })
+  }
+
+  handleWeekChange = date => {
+    this.setState({ selectedDate: date.clone().startOf('week') })
   }
 
   scrollToContent = () => {
@@ -31,6 +35,63 @@ class Demo extends Component {
 
   changeOutside = () => {
     this.setState({ selectedDate: moment('2015-02-02 12:44') })
+  }
+
+  renderWrappedDefaultDay = (date, selectedDate, dayInCurrentMonth) => {
+    const { classes } = this.props
+
+    const startDate = selectedDate.clone().day(0).startOf('day')
+    const endDate = selectedDate.clone().day(6).endOf('day')
+
+    const dayIsBetween = (
+      date.isSame(startDate) ||
+      date.isSame(endDate) ||
+      (date.isAfter(startDate) && date.isBefore(endDate))
+    )
+
+    const firstDay = date.isSame(startDate, 'day')
+    const lastDay = date.isSame(endDate, 'day')
+
+    const wrapperClassName = [
+      dayIsBetween ? classes.highlight : null,
+      firstDay ? classes.firstHighlight : null,
+      lastDay ? classes.endHighlight : null,
+    ].join(' ')
+
+    const dayClassName = [
+      classes.day,
+      (!dayInCurrentMonth) && classes.nonCurrentMonthDay,
+      (!dayInCurrentMonth && dayIsBetween) && classes.highlightNonCurrentMonthDay,
+    ].join(' ')
+
+    return (
+      <div className={wrapperClassName}>
+        <IconButton className={dayClassName}>
+          <span> { date.format('DD')} </span>
+        </IconButton>
+      </div>
+    )
+  }
+
+  formatWeekSelectLabel = (date, invalidLabel) => {
+    return date && date.isValid()
+      ? `Week of ${date.clone().startOf('week').format('MMM Do')}`
+      : invalidLabel
+  }
+
+  renderCustomDayForDateTime = (date, selectedDate, dayInCurrentMonth, dayComponent) => {
+    const { classes } = this.props
+
+    const dayClassName = [
+      (date.isSame(selectedDate, 'day')) && classes.customDayHighlight,
+    ].join(' ')
+
+    return (
+      <div className={classes.dayWrapper}>
+        {dayComponent}
+        <div className={dayClassName} />
+      </div>
+    )
   }
 
   render() {
@@ -159,6 +220,37 @@ class Demo extends Component {
               />
             </div>
           </div>
+
+          <Typography type="display1" gutterBottom>
+            Custom Day Element
+          </Typography>
+
+          <div className={classes.pickers}>
+            <div className="picker">
+              <Typography type="headline" align="center" gutterBottom>
+                Week picker
+              </Typography>
+
+              <DatePicker
+                value={this.state.selectedDate}
+                onChange={this.handleDateChange}
+                renderDay={this.renderWrappedDefaultDay}
+                labelFunc={this.formatWeekSelectLabel}
+              />
+            </div>
+
+            <div className="picker">
+              <Typography type="headline" align="center" gutterBottom>
+                DateTime picker
+              </Typography>
+
+              <DateTimePicker
+                value={this.state.selectedDate}
+                onChange={this.handleDateChange}
+                renderDay={this.renderCustomDayForDateTime}
+              />
+            </div>
+          </div>
         </div>
       </main>
     );
@@ -206,6 +298,44 @@ const styles = theme => ({
     paddingTop: 40,
     margin: '30px auto 50px',
     backgroundColor: theme.palette.background.default,
+  },
+  dayWrapper: {
+    position: 'relative',
+  },
+  day: {
+    width: 36,
+    height: 36,
+    fontSize: 14,
+    margin: '0 2px',
+    color: theme.palette.text.primary,
+  },
+  customDayHighlight: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: '2px',
+    right: '2px',
+    border: '2px solid #6270bf',
+    borderRadius: '50%',
+  },
+  nonCurrentMonthDay: {
+    color: '#BCBCBC',
+  },
+  highlightNonCurrentMonthDay: {
+    color: '#676767',
+  },
+  highlight: {
+    background: '#9fa8da',
+  },
+  firstHighlight: {
+    extend: 'highlight',
+    borderTopLeftRadius: '50%',
+    borderBottomLeftRadius: '50%',
+  },
+  endHighlight: {
+    extend: 'highlight',
+    borderTopRightRadius: '50%',
+    borderBottomRightRadius: '50%',
   },
   content: {
     paddingTop: '60px',

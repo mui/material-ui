@@ -15,12 +15,14 @@ export default class DateTextField extends Component {
     format: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
     invalidLabel: PropTypes.string,
+    labelFunc: PropTypes.func,
   }
 
   static defaultProps = {
     disabled: false,
     invalidLabel: 'Unknown',
     value: new Date(),
+    labelFunc: undefined,
   }
 
   shouldComponentUpdate = nextProps => (
@@ -29,8 +31,18 @@ export default class DateTextField extends Component {
   )
 
   getDisplayDate = () => {
-    const { value, format, invalidLabel } = this.props;
+    const {
+      value,
+      format,
+      invalidLabel,
+      labelFunc,
+    } = this.props;
+
     const date = moment(value);
+
+    if (labelFunc) {
+      return labelFunc(date, invalidLabel);
+    }
 
     return date.isValid()
       ? date.format(format)
@@ -58,7 +70,7 @@ export default class DateTextField extends Component {
 
   render() {
     const {
-      value, format, disabled, onClick, invalidLabel, ...other
+      value, format, disabled, onClick, invalidLabel, labelFunc, ...other
     } = this.props;
 
     return (
