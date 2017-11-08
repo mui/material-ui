@@ -86,7 +86,7 @@ class Tab extends Component {
     muiTheme: PropTypes.object.isRequired,
   };
 
-  handleTouchTap = (event) => {
+  handleClick = (event) => {
     if (this.props.onClick) {
       this.props.onClick(this.props.value, event, this);
     }
@@ -132,7 +132,7 @@ class Tab extends Component {
         touchRippleColor={rippleColor}
         focusRippleOpacity={rippleOpacity}
         touchRippleOpacity={rippleOpacity}
-        onClick={this.handleTouchTap}
+        onClick={this.handleClick}
       >
         <div style={Object.assign(styles.button, buttonStyle)} >
           {iconElement}
