@@ -112,6 +112,8 @@ export const styles = (theme: Object) => {
       verticalAlign: 'middle',
       background: 'none',
       margin: 0, // Reset for Safari
+      // Remove grey highlight
+      WebkitTapHighlightColor: theme.palette.common.transparent,
       display: 'block',
       width: '100%',
       '&::-webkit-input-placeholder': placeholder,
