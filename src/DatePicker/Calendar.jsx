@@ -18,8 +18,8 @@ export class Calendar extends Component {
     classes: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     disableFuture: PropTypes.bool,
-    leftArrowIcon: PropTypes.string,
-    rightArrowIcon: PropTypes.string,
+    leftArrowIcon: PropTypes.node,
+    rightArrowIcon: PropTypes.node,
   }
 
   static defaultProps = {
@@ -47,12 +47,20 @@ export class Calendar extends Component {
     this.setState({ currentMonth: newMonth });
   }
 
-  shouldDisableDate = (day) => {
-    const { disableFuture, minDate, maxDate } = this.props;
+  validateMinMaxDate = (day) => {
+    const { minDate, maxDate } = this.props;
+    const startOfDay = date => moment(date).startOf('day');
+
     return (
-      (disableFuture && day.isAfter(moment())) ||
-      (minDate && day.isBefore(minDate)) ||
-      (maxDate && day.isAfter(maxDate))
+      (minDate && day.isBefore(startOfDay(minDate))) ||
+      (maxDate && day.isAfter(startOfDay(maxDate)))
+    );
+  }
+
+  shouldDisableDate = (day) => {
+    const { disableFuture } = this.props;
+    return (
+      (disableFuture && day.isAfter(moment())) || this.validateMinMaxDate(day)
     );
   }
 
@@ -119,7 +127,7 @@ export class Calendar extends Component {
 
 const styles = theme => ({
   calendar: {
-    marginTop: 10,
+    marginTop: 5,
   },
   hidden: {
     opacity: 0,

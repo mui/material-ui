@@ -24,10 +24,10 @@ export class DateTimePicker extends Component {
     minDate: DomainPropTypes.date,
     maxDate: DomainPropTypes.date,
     showTabs: PropTypes.bool,
-    leftArrowIcon: PropTypes.string,
-    rightArrowIcon: PropTypes.string,
-    dateRangeIcon: PropTypes.string,
-    timeIcon: PropTypes.string,
+    leftArrowIcon: PropTypes.node,
+    rightArrowIcon: PropTypes.node,
+    dateRangeIcon: PropTypes.node,
+    timeIcon: PropTypes.node,
   }
 
   static defaultProps = {

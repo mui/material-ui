@@ -20,8 +20,8 @@ export class DatePicker extends PureComponent {
     animateYearScrolling: PropTypes.bool,
     openToYearSelection: PropTypes.bool,
     children: PropTypes.node,
-    leftArrowIcon: PropTypes.string,
-    rightArrowIcon: PropTypes.string,
+    leftArrowIcon: PropTypes.node,
+    rightArrowIcon: PropTypes.node,
   }
 
   static defaultProps = {
