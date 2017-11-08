@@ -21,7 +21,6 @@ export default class DatePickerWrapper extends PickerBase {
     invalidLabel: PropTypes.string,
     leftArrowIcon: PropTypes.node,
     rightArrowIcon: PropTypes.node,
-    rightArrowIcon: PropTypes.string,
     renderDay: PropTypes.func,
     labelFunc: PropTypes.func,
   }
