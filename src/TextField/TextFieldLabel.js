@@ -72,9 +72,9 @@ TextFieldLabel.propTypes = {
    */
   muiTheme: PropTypes.object.isRequired,
   /**
-   * Callback function for when the label is selected via a touch tap.
+   * Callback function for when the label is selected via a click.
    *
-   * @param {object} event TouchTap event targeting the text field label.
+   * @param {object} event Click event targeting the text field label.
    */
   onClick: PropTypes.func,
   /**

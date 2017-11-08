@@ -37,6 +37,13 @@ class IconMenu extends Component {
      */
     className: PropTypes.string,
     /**
+     * Sets the delay in milliseconds before closing the
+     * menu when an item is clicked.
+     * If set to 0 then the auto close functionality
+     * will be disabled.
+     */
+    clickCloseDelay: PropTypes.number,
+    /**
      * This is the `IconButton` to render. This button will open the menu.
      */
     iconButtonElement: PropTypes.element.isRequired,
@@ -109,13 +116,6 @@ class IconMenu extends Component {
      * horizontal: [left, middle, right].
      */
     targetOrigin: propTypes.origin,
-    /**
-     * Sets the delay in milliseconds before closing the
-     * menu when an item is clicked.
-     * If set to 0 then the auto close functionality
-     * will be disabled.
-     */
-    clickCloseDelay: PropTypes.number,
     /**
      * If true, the popover will render on top of an invisible
      * layer, which will prevent clicks to the underlying elements.
