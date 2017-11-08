@@ -38,7 +38,7 @@ export default class PopoverExampleConfigurable extends React.Component {
     };
   }
 
-  handleTouchTap = (event) => {
+  handleClick = (event) => {
     // This prevents ghost click.
     event.preventDefault();
     this.setState({
@@ -75,7 +75,7 @@ export default class PopoverExampleConfigurable extends React.Component {
     return (
       <div>
         <RaisedButton
-          onClick={this.handleTouchTap}
+          onClick={this.handleClick}
           label="Click me"
         />
         <h3 style={styles.h3}>Current Settings</h3>
