@@ -54,6 +54,8 @@ Please note that `@next` will only point to pre-releases; to get the latest stab
 
 ### React-Tap-Event-Plugin
 
+(not needed for versions 0.19.0 and higher)
+
 Some components use
 [react-tap-event-plugin](https://github.com/zilverline/react-tap-event-plugin) to
 listen for touch events because onClick is not fast enough

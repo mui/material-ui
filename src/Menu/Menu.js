@@ -90,9 +90,9 @@ class Menu extends Component {
     multiple: PropTypes.bool,
     /**
      * Callback function fired when a menu item with `value` not
-     * equal to the current `value` of the menu is touch-tapped.
+     * equal to the current `value` of the menu is clicked.
      *
-     * @param {object} event TouchTap event targeting the menu item.
+     * @param {object} event Click event targeting the menu item.
      * @param {any}  value If `multiple` is true, the menu's `value`
      * array with either the menu item's `value` added (if
      * it wasn't already selected) or omitted (if it was already selected).
@@ -107,13 +107,13 @@ class Menu extends Component {
      */
     onEscKeyDown: PropTypes.func,
     /**
-     * Callback function fired when a menu item is touch-tapped.
+     * Callback function fired when a menu item is clicked.
      *
-     * @param {object} event TouchTap event targeting the menu item.
+     * @param {object} event Click event targeting the menu item.
      * @param {object} menuItem The menu item.
      * @param {number} index The index of the menu item.
      */
-    onItemTouchTap: PropTypes.func,
+    onItemClick: PropTypes.func,
     /** @ignore */
     onKeyDown: PropTypes.func,
     /**
@@ -165,7 +165,7 @@ class Menu extends Component {
     multiple: false,
     onChange: () => {},
     onEscKeyDown: () => {},
-    onItemTouchTap: () => {},
+    onItemClick: () => {},
     onKeyDown: () => {},
   };
 
@@ -301,7 +301,7 @@ class Menu extends Component {
       Object.assign(extraProps, {
         focusState: focusState,
         onClick: (event) => {
-          this.handleMenuItemTouchTap(event, child, index);
+          this.handleMenuItemClick(event, child, index);
           if (child.props.onClick) child.props.onClick(event);
         },
         ref: isFocused ? 'focusedMenuItem' : null,
@@ -395,7 +395,7 @@ class Menu extends Component {
     return false;
   }
 
-  handleMenuItemTouchTap(event, item, index) {
+  handleMenuItemClick(event, item, index) {
     const children = this.props.children;
     const multiple = this.props.multiple;
     const valueLink = this.getValueLink(this.props);
@@ -421,7 +421,7 @@ class Menu extends Component {
       valueLink.requestChange(event, itemValue);
     }
 
-    this.props.onItemTouchTap(event, item, index);
+    this.props.onItemClick(event, item, index);
   }
 
   incrementKeyboardFocusIndex(event, filteredChildren) {
@@ -525,7 +525,7 @@ class Menu extends Component {
       listStyle,
       maxHeight, // eslint-disable-line no-unused-vars
       multiple, // eslint-disable-line no-unused-vars
-      onItemTouchTap, // eslint-disable-line no-unused-vars
+      onItemClick, // eslint-disable-line no-unused-vars
       onEscKeyDown, // eslint-disable-line no-unused-vars
       onMenuItemFocusChange, // eslint-disable-line no-unused-vars
       selectedMenuItemStyle, // eslint-disable-line no-unused-vars

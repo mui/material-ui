@@ -29,7 +29,7 @@ export const makeSelectable = (MyComponent) => {
 
         return React.cloneElement(child, {
           onClick: (event) => {
-            this.handleItemTouchTap(event, child);
+            this.handleItemClick(event, child);
             if (child.props.onClick) {
               child.props.onClick(event);
             }
@@ -62,7 +62,7 @@ export const makeSelectable = (MyComponent) => {
       return props.value === child.props.value;
     }
 
-    handleItemTouchTap = (event, item) => {
+    handleItemClick = (event, item) => {
       const itemValue = item.props.value;
 
       if (itemValue !== this.props.value) {

@@ -191,7 +191,7 @@ class EnhancedButton extends Component {
   handleKeyDown = (event) => {
     if (!this.props.disabled && !this.props.disableKeyboardFocus) {
       if (keycode(event) === 'enter' && this.state.isKeyboardFocused) {
-        this.handleTouchTap(event);
+        this.handleClick(event);
       }
       if (keycode(event) === 'esc' && this.state.isKeyboardFocused) {
         this.removeKeyboardFocus(event);
@@ -203,7 +203,7 @@ class EnhancedButton extends Component {
   handleKeyUp = (event) => {
     if (!this.props.disabled && !this.props.disableKeyboardFocus) {
       if (keycode(event) === 'space' && this.state.isKeyboardFocused) {
-        this.handleTouchTap(event);
+        this.handleClick(event);
       }
     }
     this.props.onKeyUp(event);
@@ -232,7 +232,7 @@ class EnhancedButton extends Component {
     }
   };
 
-  handleTouchTap = (event) => {
+  handleClick = (event) => {
     this.cancelFocusTimeout();
     if (!this.props.disabled) {
       tabPressed = false;
@@ -316,7 +316,7 @@ class EnhancedButton extends Component {
       onFocus: this.handleFocus,
       onKeyUp: this.handleKeyUp,
       onKeyDown: this.handleKeyDown,
-      onClick: this.handleTouchTap,
+      onClick: this.handleClick,
       tabIndex: disabled || disableKeyboardFocus ? -1 : tabIndex,
     };
 
