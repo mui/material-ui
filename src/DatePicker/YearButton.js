@@ -63,7 +63,7 @@ class YearButton extends Component {
     this.setState({hover: false});
   };
 
-  handleTouchTap = (event) => {
+  handleClick = (event) => {
     if (this.props.onClick) {
       this.props.onClick(event, this.props.year);
     }
@@ -90,7 +90,7 @@ class YearButton extends Component {
         disableTouchRipple={true}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
-        onClick={this.handleTouchTap}
+        onClick={this.handleClick}
         style={styles.root}
       >
         <span style={prepareStyles(styles.label)}>

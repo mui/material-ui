@@ -87,7 +87,7 @@ class DayButton extends Component {
     }
   };
 
-  handleTouchTap = (event) => {
+  handleClick = (event) => {
     if (!this.props.disabled && this.props.onClick) {
       this.props.onClick(event, this.props.date);
     }
@@ -122,7 +122,7 @@ class DayButton extends Component {
         onKeyboardFocus={this.handleKeyboardFocus}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
-        onClick={this.handleTouchTap}
+        onClick={this.handleClick}
         style={styles.root}
       >
         <div style={prepareStyles(styles.buttonState)} />

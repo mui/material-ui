@@ -63,8 +63,8 @@ class DateDisplay extends Component {
     locale: PropTypes.string.isRequired,
     mode: PropTypes.oneOf(['portrait', 'landscape']),
     monthDaySelected: PropTypes.bool,
-    onTouchTapMonthDay: PropTypes.func,
-    onTouchTapYear: PropTypes.func,
+    onClickMonthDay: PropTypes.func,
+    onClickYear: PropTypes.func,
     selectedDate: PropTypes.object.isRequired,
     style: PropTypes.object,
   };
@@ -104,17 +104,17 @@ class DateDisplay extends Component {
     }
   }
 
-  handleTouchTapMonthDay = () => {
-    if (this.props.onTouchTapMonthDay && this.state.selectedYear) {
-      this.props.onTouchTapMonthDay();
+  handleClickMonthDay = () => {
+    if (this.props.onClickMonthDay && this.state.selectedYear) {
+      this.props.onClickMonthDay();
     }
 
     this.setState({selectedYear: false});
   };
 
-  handleTouchTapYear = () => {
-    if (this.props.onTouchTapYear && !this.props.disableYearSelection && !this.state.selectedYear) {
-      this.props.onTouchTapYear();
+  handleClickYear = () => {
+    if (this.props.onClickYear && !this.props.disableYearSelection && !this.state.selectedYear) {
+      this.props.onClickYear();
     }
 
     if (!this.props.disableYearSelection) {
@@ -129,8 +129,8 @@ class DateDisplay extends Component {
       locale,
       mode, // eslint-disable-line no-unused-vars
       monthDaySelected, // eslint-disable-line no-unused-vars
-      onTouchTapMonthDay, // eslint-disable-line no-unused-vars
-      onTouchTapYear, // eslint-disable-line no-unused-vars
+      onClickMonthDay, // eslint-disable-line no-unused-vars
+      onClickYear, // eslint-disable-line no-unused-vars
       selectedDate, // eslint-disable-line no-unused-vars
       style,
       ...other
@@ -152,14 +152,14 @@ class DateDisplay extends Component {
     return (
       <div {...other} style={prepareStyles(styles.root, style)}>
         <SlideInTransitionGroup style={styles.year} direction={this.state.transitionDirection}>
-          <div key={year} style={styles.yearTitle} onClick={this.handleTouchTapYear}>
+          <div key={year} style={styles.yearTitle} onClick={this.handleClickYear}>
             {year}
           </div>
         </SlideInTransitionGroup>
         <SlideInTransitionGroup style={styles.monthDay} direction={this.state.transitionDirection}>
           <div
             key={dateTime}
-            onClick={this.handleTouchTapMonthDay}
+            onClick={this.handleClickMonthDay}
             style={styles.monthDayTitle}
           >
             {dateTime}

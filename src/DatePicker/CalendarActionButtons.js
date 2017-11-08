@@ -7,8 +7,8 @@ class CalendarActionButton extends Component {
     autoOk: PropTypes.bool,
     cancelLabel: PropTypes.node,
     okLabel: PropTypes.node,
-    onTouchTapCancel: PropTypes.func,
-    onTouchTapOk: PropTypes.func,
+    onClickCancel: PropTypes.func,
+    onClickOk: PropTypes.func,
   };
 
   render() {
@@ -36,7 +36,7 @@ class CalendarActionButton extends Component {
       <div style={styles.root} >
         <FlatButton
           label={cancelLabel}
-          onClick={this.props.onTouchTapCancel}
+          onClick={this.props.onClickCancel}
           primary={true}
           style={styles.flatButtons}
         />
@@ -44,7 +44,7 @@ class CalendarActionButton extends Component {
           <FlatButton
             disabled={this.refs.calendar !== undefined && this.refs.calendar.isSelectedDateDisabled()}
             label={okLabel}
-            onClick={this.props.onTouchTapOk}
+            onClick={this.props.onClickOk}
             primary={true}
             style={styles.flatButtons}
           />
