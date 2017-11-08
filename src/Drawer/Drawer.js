@@ -192,7 +192,7 @@ class Drawer extends Component {
     return this;
   }
 
-  handleTouchTapOverlay = (event) => {
+  handleClickOverlay = (event) => {
     event.preventDefault();
     this.close('clickaway');
   };
@@ -394,7 +394,7 @@ class Drawer extends Component {
           className={overlayClassName}
           style={Object.assign(styles.overlay, overlayStyle)}
           transitionEnabled={!this.state.swiping}
-          onClick={this.handleTouchTapOverlay}
+          onClick={this.handleClickOverlay}
         />
       );
     }
