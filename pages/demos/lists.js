@@ -73,6 +73,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/lists/InteractiveList'), 'utf8')
 `,
         },
+        'pages/demos/lists/AnimatedList.js': {
+          js: require('docs/src/pages/demos/lists/AnimatedList').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/lists/AnimatedList'), 'utf8')
+`,
+        },
       }}
     />
   );

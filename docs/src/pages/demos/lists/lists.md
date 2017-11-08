@@ -60,3 +60,7 @@ The switch is the secondary action and a separate target.
 Below is an interactive demo that lets you explore the visual results of the different settings:
 
 {{demo='pages/demos/lists/InteractiveList.js'}}
+
+## Animated List
+Below is an example of a todo list that is animated with React Motion.
+{{demo='pages/demos/lists/AnimatedList.js'}}
