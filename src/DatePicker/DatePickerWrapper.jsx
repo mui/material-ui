@@ -19,8 +19,8 @@ export default class DatePickerWrapper extends PickerBase {
     openToYearSelection: PropTypes.bool,
     returnMoment: PropTypes.bool,
     invalidLabel: PropTypes.string,
-    leftArrowIcon: PropTypes.string,
-    rightArrowIcon: PropTypes.string,
+    leftArrowIcon: PropTypes.node,
+    rightArrowIcon: PropTypes.node,
   }
 
   static defaultProps = {

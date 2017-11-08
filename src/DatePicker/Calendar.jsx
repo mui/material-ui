@@ -18,8 +18,8 @@ export class Calendar extends Component {
     classes: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     disableFuture: PropTypes.bool,
-    leftArrowIcon: PropTypes.string,
-    rightArrowIcon: PropTypes.string,
+    leftArrowIcon: PropTypes.node,
+    rightArrowIcon: PropTypes.node,
   }
 
   static defaultProps = {
@@ -119,7 +119,7 @@ export class Calendar extends Component {
 
 const styles = theme => ({
   calendar: {
-    marginTop: 10,
+    marginTop: 5,
   },
   hidden: {
     opacity: 0,

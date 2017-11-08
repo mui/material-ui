@@ -14,11 +14,16 @@ Available as npm package
 npm install material-ui-pickers -S
 ```
 
-We are using material-ui-icons font to display icons. We are working on additional way to pass icons,but for now its required. Just add this to your html 
+We are using material-ui-icons font to display icons.Just add this to your html 
 ```html
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 ```
-
+If you dont want to use icon font, or you are already use `material-ui-icons` you can pass any icon to the components with the following props 
+* leftArrowIcon - arrow left for datepicker
+* rightArrowIcon - arrow right for datepicker
+* dateRangeIcon - date tab icon for datetimepicker
+* timeIcon - time tab icon for datetimepicker
+ 
 ### Usage
 Here is a quick example of how to use this package
 
@@ -56,11 +61,11 @@ class App extends Component {
 
         <TimePicker
           value={selectedTime}
-          onChange={this.handleDateChange}
+          onChange={this.handleTimeChange}
         />
 
         <DateTimePicker
-          value={this.state.selectedDateTime}
+          value={selectedDateTime}
           onChange={this.handleDateTimeChange}
         />
       </div>
