@@ -231,7 +231,7 @@ class AutoComplete extends Component {
     if (this.props.open !== nextProps.open) {
       this.setState({
         open: nextProps.open,
-        anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField),
+        anchorEl: ReactDOM.findDOMNode(this.searchTextField),
       });
     }
   }
@@ -326,7 +326,7 @@ class AutoComplete extends Component {
         this.setState({
           open: true,
           focusTextField: false,
-          anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField),
+          anchorEl: ReactDOM.findDOMNode(this.searchTextField),
         });
         break;
 
@@ -346,7 +346,7 @@ class AutoComplete extends Component {
 
     const state = {
       open: true,
-      anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField),
+      anchorEl: ReactDOM.findDOMNode(this.searchTextField),
     };
 
     if (this.props.searchText === undefined) {
@@ -376,7 +376,7 @@ class AutoComplete extends Component {
     if (!this.state.open && this.props.openOnFocus) {
       this.setState({
         open: true,
-        anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField),
+        anchorEl: ReactDOM.findDOMNode(this.searchTextField),
       });
     }
 
@@ -390,11 +390,11 @@ class AutoComplete extends Component {
   };
 
   blur() {
-    this.refs.searchTextField.blur();
+    this.searchTextField.blur();
   }
 
   focus() {
-    this.refs.searchTextField.focus();
+    this.searchTextField.focus();
   }
 
   render() {
@@ -506,7 +506,7 @@ class AutoComplete extends Component {
 
     const menu = open && requestsList.length > 0 && (
       <Menu
-        ref="menu"
+        ref={(menu) => this.menu = menu}
         autoWidth={false}
         disableAutoFocus={focusTextField}
         onEscKeyDown={this.handleEscKeyDown}
@@ -524,7 +524,7 @@ class AutoComplete extends Component {
     return (
       <div style={prepareStyles(Object.assign(styles.root, style))} >
         <TextField
-          ref="searchTextField"
+          ref={(input) => this.searchTextField = input}
           autoComplete="off"
           onBlur={this.handleBlur}
           onFocus={this.handleFocus}
