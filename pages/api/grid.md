@@ -42,6 +42,7 @@ This property accepts the following keys:
 - `direction-xs-column-reverse`
 - `direction-xs-row-reverse`
 - `wrap-xs-nowrap`
+- `wrap-xs-wrap-reverse`
 - `align-items-xs-center`
 - `align-items-xs-flex-start`
 - `align-items-xs-flex-end`
