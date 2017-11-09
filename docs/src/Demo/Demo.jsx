@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
-import { 
+import PropTypes from 'prop-types';
+import {
   AppBar, Toolbar, IconButton, Typography, withStyles, Button, Tooltip, Icon, InputAdornment
 } from 'material-ui'
 import { TimePicker, DatePicker, DateTimePicker } from 'material-ui-pickers'
@@ -128,6 +128,8 @@ class Demo extends Component {
               <DateTimePicker
                 value={this.state.selectedDate}
                 onChange={this.handleDateChange}
+                leftArrowIcon={<Icon> keyboard_arrow_left </Icon>}
+                rightArrowIcon={<Icon> keyboard_arrow_right </Icon>}
               />
             </div>
 
@@ -145,15 +147,15 @@ class Demo extends Component {
                 autoSubmit={false}
                 value={this.state.selectedDate}
                 onChange={this.handleDateChange}
-                leftArrowIcon="add_alarm"
-                rightArrowIcon="snooze"
+                leftArrowIcon={<Icon>add_alarm</Icon>}
+                rightArrowIcon={<Icon>snooze</Icon>}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton>  add_alarm  </IconButton>
                     </InputAdornment>
                   )
-                }} 
+                }}
               />
             </div>
           </div>

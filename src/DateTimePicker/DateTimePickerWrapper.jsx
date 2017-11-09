@@ -24,10 +24,10 @@ export class DateTimePickerWrapper extends PickerBase {
     showTabs: PropTypes.bool,
     returnMoment: PropTypes.bool,
     invalidLabel: PropTypes.string,
-    leftArrowIcon: PropTypes.string,
-    rightArrowIcon: PropTypes.string,
-    dateRangeIcon: PropTypes.string,
-    timeIcon: PropTypes.string,
+    leftArrowIcon: PropTypes.node,
+    rightArrowIcon: PropTypes.node,
+    dateRangeIcon: PropTypes.node,
+    timeIcon: PropTypes.node,
   }
 
   static defaultProps = {
