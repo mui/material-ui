@@ -205,11 +205,11 @@ class DatePicker extends Component {
     if (this.state.date !== undefined) {
       this.setState({
         dialogDate: this.getDate(),
-      }, this.refs.dialogWindow.show);
+      }, this.dialogWindow.show);
     } else {
       this.setState({
         dialogDate: new Date(),
-      }, this.refs.dialogWindow.show);
+      }, this.dialogWindow.show);
     }
   }
 
@@ -312,7 +312,7 @@ class DatePicker extends Component {
           {...other}
           onFocus={this.handleFocus}
           onClick={this.handleTouchTap}
-          ref="input"
+          ref={(input) => this.input = input}
           style={textFieldStyle}
           value={this.state.date ? formatDate(this.state.date) : ''}
         />
@@ -333,7 +333,7 @@ class DatePicker extends Component {
           onAccept={this.handleAccept}
           onShow={onShow}
           onDismiss={onDismiss}
-          ref="dialogWindow"
+          ref={(dialogWindow) => this.dialogWindow = dialogWindow}
           shouldDisableDate={shouldDisableDate}
           hideCalendarDate={hideCalendarDate}
           openToYearSelection={openToYearSelection}
