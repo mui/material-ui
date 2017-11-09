@@ -43,13 +43,16 @@ Here is a quick example to get you started, it's all you need:
 ```jsx
 import React from 'react';
 import { render } from 'react-dom';
-import Button from 'material-ui/Button';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
 
 function App() {
   return (
-    <Button>
-      Hello World
-    </Button>
+    <MuiThemeProvider>
+      <RaisedButton label="Primary" primary={true}>
+        Hello World
+      </RaisedButton>
+    </MuiThemeProvider>
   );
 }
 
