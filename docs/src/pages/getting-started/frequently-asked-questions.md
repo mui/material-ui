@@ -28,6 +28,24 @@ As a rule of thumb, only use inline-style for dynamic style properties. The CSS 
 - allow media queries
 - allow keyframes
 
+## How do I combine the `withStyles()` and `withTheme()` HOCs?
+
+There are a number of different options:
+```
+export default withTheme()(withStyles(styles)(Modal));
+```
+```
+export default withStyles(styles, { withTheme: true })(Modal);
+```
+```
+import { compose } from 'recompose';
+
+export default compose(
+  withTheme(),
+  withStyles(styles)
+)(Modal);
+```
+
 ## Material-UI is awesome. How can I support the project?
 
 There are a lot of ways to support us. Improve [the documentation](https://github.com/callemall/material-ui/tree/v1-beta/docs). Help others to get started. [Spread the word](https://twitter.com/MaterialUI). Answer [StackOverflow questions](https://stackoverflow.com/questions/tagged/material-ui).
