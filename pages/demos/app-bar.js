@@ -24,6 +24,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/demos/app-bar/ButtonAppBar'), 'utf8')
 `,
         },
+        'pages/demos/app-bar/MenuAppBar.js': {
+          js: require('docs/src/pages/demos/app-bar/MenuAppBar').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/demos/app-bar/MenuAppBar'), 'utf8')
+`,
+        },
       }}
     />
   );
