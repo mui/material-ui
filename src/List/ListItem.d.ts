@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { StandardProps, Replace } from '..';
+import { StandardProps } from '..';
 import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase';
 
 export interface ListItemProps extends StandardProps<
-  Replace<ButtonBaseProps, React.LiHTMLAttributes<HTMLLIElement>>,
+  ButtonBaseProps & React.LiHTMLAttributes<HTMLLIElement>,
   ListItemClassKey
 > {
   button?: boolean;
-  component?: React.ReactType;
+  component?: string | React.ComponentType<ListItemProps>;
   dense?: boolean;
   disabled?: boolean;
   disableGutters?: boolean;

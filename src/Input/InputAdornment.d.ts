@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '..';
 
 export interface InputAdornmentProps extends StandardProps<{}, InputAdornmentClassKey> {
-  component?: React.ReactType;
+  component?: string | React.ComponentType<InputAdornmentProps>;
   disableTypography?: boolean;
   position: 'start' | 'end';
 }

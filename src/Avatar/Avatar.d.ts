@@ -7,7 +7,7 @@ export interface AvatarProps extends StandardProps<
 > {
   alt?: string;
   childrenClassName?: string;
-  component?: React.ReactType;
+  component?: string | React.ComponentType<AvatarProps>;
   imgProps?: Object;
   sizes?: string;
   src?: string;
