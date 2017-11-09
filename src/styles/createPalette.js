@@ -7,7 +7,7 @@ import pink from '../colors/pink';
 import grey from '../colors/grey';
 import red from '../colors/red';
 import common from '../colors/common';
-import { getContrastRatio } from './colorManipulator';
+import { getLuminance, getContrastRatio } from './colorManipulator';
 
 export const light = {
   text: {
@@ -76,11 +76,21 @@ export const dark = {
   },
 };
 
-function getContrastText(hue) {
-  if (getContrastRatio(hue, common.black) < 7) {
-    return dark.text.primary;
+function getContrastText(color) {
+  const contrastColor = getLuminance(color) <= 0.295 ? dark.text.primary : light.text.primary;
+  const contrastRatio = getContrastRatio(color, contrastColor);
+
+  if (process.env.NODE_ENV !== 'production') {
+    warning(
+      contrastRatio > 3,
+      [
+        `Material-UI: the contrast ratio of ${contrastRatio}:1 for ${contrastColor} on ${color}`,
+        'falls below the WACG recommended absolute minimum contrast ratio of 3:1.',
+        'https://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast',
+      ].join('\n'),
+    );
   }
-  return light.text.primary;
+  return contrastColor;
 }
 
 export default function createPalette(palette: Object) {
@@ -103,6 +113,7 @@ export default function createPalette(palette: Object) {
       action: shades[type].action,
       background: shades[type].background,
       line: shades[type].line,
+      contrastThreshold: 0.295,
       getContrastText,
     },
     other,
