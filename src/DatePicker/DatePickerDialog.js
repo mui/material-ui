@@ -87,8 +87,8 @@ class DatePickerDialog extends Component {
   };
 
   handleTouchTapOk = () => {
-    if (this.props.onAccept && !this.refs.calendar.isSelectedDateDisabled()) {
-      this.props.onAccept(this.refs.calendar.getSelectedDate());
+    if (this.props.onAccept && !this.calendar.isSelectedDateDisabled()) {
+      this.props.onAccept(this.calendar.getSelectedDate());
     }
 
     this.setState({
@@ -147,13 +147,13 @@ class DatePickerDialog extends Component {
     const Container = (container === 'inline' ? Popover : Dialog);
 
     return (
-      <div {...other} ref="root">
+      <div {...other} ref={(root) => this.root = root}>
         <Container
-          anchorEl={this.refs.root} // For Popover
+          anchorEl={this.root} // For Popover
           animation={animation || PopoverAnimationVertical} // For Popover
           bodyStyle={styles.dialogBodyContent}
           contentStyle={styles.dialogContent}
-          ref="dialog"
+          ref={(dialog) => this.dialog = dialog}
           repositionOnUpdate={true}
           open={open}
           onRequestClose={this.handleRequestClose}
@@ -176,7 +176,7 @@ class DatePickerDialog extends Component {
             minDate={minDate}
             mode={mode}
             open={open}
-            ref="calendar"
+            ref={(calendar) => this.calendar = calendar}
             onTouchTapCancel={this.handleTouchTapCancel}
             onTouchTapOk={this.handleTouchTapOk}
             okLabel={okLabel}
