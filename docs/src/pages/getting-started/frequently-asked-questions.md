@@ -31,19 +31,23 @@ As a rule of thumb, only use inline-style for dynamic style properties. The CSS 
 ## How do I combine the `withStyles()` and `withTheme()` HOCs?
 
 There are a number of different options:
-```
-export default withTheme()(withStyles(styles)(Modal));
-```
-```
+
+1. `withTheme` option:
+```js
 export default withStyles(styles, { withTheme: true })(Modal);
 ```
-```
+2. `compose()` helper function:
+```js
 import { compose } from 'recompose';
 
 export default compose(
   withTheme(),
   withStyles(styles)
 )(Modal);
+```
+3. raw function chaining:
+```js
+export default withTheme()(withStyles(styles)(Modal));
 ```
 
 ## Material-UI is awesome. How can I support the project?
