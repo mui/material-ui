@@ -33,8 +33,14 @@ function RaisedButtons(props) {
       <Button raised color="accent" disabled className={classes.button}>
         Disabled
       </Button>
-      <input accept="jpg,jpeg,JPG,JPEG" className={classes.input} id="file" multiple type="file" />
-      <label htmlFor="file">
+      <input
+        accept="image/*"
+        className={classes.input}
+        id="raised-button-file"
+        multiple
+        type="file"
+      />
+      <label htmlFor="raised-button-file">
         <Button raised component="span" className={classes.button}>
           Upload
         </Button>
