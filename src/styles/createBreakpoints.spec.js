@@ -12,7 +12,7 @@ describe('createBreakpoints', () => {
 
   describe('up', () => {
     it('should work for xs', () => {
-      assert.strictEqual(breakpoints.up('xs'), '@media (min-width:0px)');
+      assert.strictEqual(breakpoints.up('xs'), '@media (min-width:1px)');
     });
 
     it('should work for md', () => {
