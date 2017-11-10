@@ -57,6 +57,7 @@ export default class ModalWrapper extends PureComponent {
           value={value}
           format={format}
           onClick={this.togglePicker}
+          onFocus={this.togglePicker}
           invalidLabel={invalidLabel}
           {...other}
         />
