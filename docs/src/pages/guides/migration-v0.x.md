@@ -92,7 +92,7 @@ global.__MUI_SvgIcon__ = SvgIcon;
 +<Button raised />
 ```
 
-### To be continuated…
+### To be continued…
 
 You successfully migrated your app and wish to help the community?
 Please help us! We have an open issue in order to finish this migration guide [#7195](https://github.com/callemall/material-ui/issues/7195). Any pull request is welcomed 😊.
