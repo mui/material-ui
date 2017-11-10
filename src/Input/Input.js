@@ -432,6 +432,8 @@ class Input extends React.Component<ProvidedProps & Props, State> {
     this.input = node;
     if (this.props.inputRef) {
       this.props.inputRef(node);
+    } else if (this.props.inputProps && this.props.inputProps.ref) {
+      this.props.inputProps.ref(node);
     }
   };
 
@@ -551,8 +553,8 @@ class Input extends React.Component<ProvidedProps & Props, State> {
 
     let InputComponent = 'input';
     let inputProps = {
-      ref: this.handleRefInput,
       ...inputPropsProp,
+      ref: this.handleRefInput,
     };
 
     if (inputComponent) {
