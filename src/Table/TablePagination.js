@@ -171,7 +171,7 @@ class TablePagination extends React.Component<ProvidedProps & Props> {
     let colSpan;
 
     if (Component === TableCell || Component === 'td') {
-      colSpan = colSpanProp || 9001; // col-span over everything
+      colSpan = colSpanProp || 1000; // col-span over everything
     }
 
     return (
