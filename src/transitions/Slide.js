@@ -145,15 +145,11 @@ class Slide extends React.Component<ProvidedProps & Props, State> {
 
   componentDidMount() {
     // state.firstMount handle SSR, once the component is mounted, we need
-    // to propery hide it.
+    // to properly hide it.
     if (!this.props.in) {
       // We need to set initial translate values of transition element
       // otherwise component will be shown when in=false.
-      const element = findDOMNode(this.transition);
-      if (element instanceof HTMLElement) {
-        element.style.visibility = 'inherit';
-        setTranslateValue(this.props, element);
-      }
+      this.updatePosition();
     }
   }
 
@@ -164,10 +160,10 @@ class Slide extends React.Component<ProvidedProps & Props, State> {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.direction !== this.props.direction) {
+    if (prevProps.direction !== this.props.direction && !this.props.in) {
       // We need to update the position of the drawer when the direction change and
       // when it's hidden.
-      this.componentDidMount();
+      this.updatePosition();
     }
   }
 
@@ -176,6 +172,14 @@ class Slide extends React.Component<ProvidedProps & Props, State> {
   }
 
   transition = null;
+
+  updatePosition() {
+    const element = findDOMNode(this.transition);
+    if (element instanceof HTMLElement) {
+      element.style.visibility = 'inherit';
+      setTranslateValue(this.props, element);
+    }
+  }
 
   handleResize = debounce(() => {
     // Skip configuration where the position is screen size invariant.

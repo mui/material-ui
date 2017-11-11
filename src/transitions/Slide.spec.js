@@ -97,6 +97,21 @@ describe('<Slide />', () => {
     });
   });
 
+  describe('prop: direction', () => {
+    it('should update the position', () => {
+      const wrapper = mount(<SlideNaked {...props} in={false} direction="left" />);
+      const transition = findDOMNode(wrapper.instance().transition);
+      // $FlowExpectedError
+      const transition1 = transition.style.transform;
+      wrapper.setProps({
+        direction: 'right',
+      });
+      // $FlowExpectedError
+      const transition2 = transition.style.transform;
+      assert.notStrictEqual(transition1, transition2);
+    });
+  });
+
   describe('transition lifecycle', () => {
     let wrapper;
     let instance;
