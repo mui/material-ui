@@ -173,13 +173,13 @@ class Slide extends React.Component<ProvidedProps & Props, State> {
 
   transition = null;
 
-  updatePosition = () => {
+  updatePosition() {
     const element = findDOMNode(this.transition);
     if (element instanceof HTMLElement) {
       element.style.visibility = 'inherit';
       setTranslateValue(this.props, element);
     }
-  };
+  }
 
   handleResize = debounce(() => {
     // Skip configuration where the position is screen size invariant.
