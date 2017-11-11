@@ -1,5 +1,15 @@
 # Minimizing Bundle Size
 
+## Bundle size matter
+
+Material-UI takes the bundle size very seriously.
+We are relying on [size-limit](https://github.com/ai/size-limit) to prevent introducing any regression.
+We monitor the size of the bundle:
+- When importing **all the components**. This lets us spot any [unwanted bundle size increase](https://github.com/callemall/material-ui/tree/v1-beta/.size-limit#L4).
+- When importing **a single component**. This lets us estimate [the overhead of our core dependencies](https://github.com/callemall/material-ui/tree/v1-beta/.size-limit#L8). (styling, theming, etc.: ~20 kB gzipped)
+
+## How to reduce the bundle size?
+
 For convenience, Material-UI exposes its full API on the top-level `material-ui` import.
 This will work fine if you have tree shaking working.
 
@@ -7,7 +17,7 @@ However, in the case where tree shaking is not supported or configured in your b
 
 You have couple of options to overcome this situation:
 
-## Option 1
+### Option 1
 
 You can import directly from `material-ui/` to avoid pulling in unused modules. For instance, instead of:
 
@@ -24,7 +34,7 @@ import TextField from 'material-ui/TextField';
 
 The public API available in this manner is defined as the set of imports available from the top-level `material-ui` module. Anything not available through the top-level `material-ui` module is a **private API**, and is subject to change without notice.
 
-## Option 2
+### Option 2
 
 Another option is to keep using the shortened import like the following, but still have the size of the bundle optimized thanks to a **Babel plugin**:
 
