@@ -8,17 +8,16 @@ import StepPositionIcon from './StepPositionIcon';
 import type { Icon } from './StepButton';
 
 export const styles = (theme: Object) => ({
-  root: {},
+  root: {
+    display: 'block',
+  },
   completed: {
     fill: theme.palette.primary[500],
   },
 });
 
 type ProvidedProps = {
-  active: boolean,
   classes: Object,
-  completed: boolean,
-  icon: Icon,
 };
 
 export type Props = {
@@ -40,20 +39,20 @@ export type Props = {
   icon?: Icon,
 };
 
+/**
+ * @ignore - internal component.
+ */
 function StepIcon(props: ProvidedProps & Props) {
   const { completed, icon, active, classes } = props;
-  const iconType = typeof icon;
 
-  if (iconType === 'number' || iconType === 'string') {
+  if (typeof icon === 'number' || typeof icon === 'string') {
     if (completed) {
       return <CheckCircle className={classNames(classes.root, classes.completed)} />;
     }
-    return <StepPositionIcon position={icon} active={active} />;
+    return <StepPositionIcon className={classes.root} position={icon} active={active} />;
   }
 
   return icon;
 }
-
-StepIcon.muiName = 'StepIcon';
 
 export default withStyles(styles)(StepIcon);

@@ -39,7 +39,7 @@ describe('<StepLabel />', () => {
   describe('label content', () => {
     it('renders the label from children', () => {
       const wrapper = shallow(<StepLabel>Step One</StepLabel>);
-      assert.ok(wrapper.contains('Step One'));
+      assert.strictEqual(wrapper.contains('Step One'), true);
     });
 
     it('renders <StepIcon>', () => {
@@ -77,7 +77,7 @@ describe('<StepLabel />', () => {
         </StepLabel>,
       );
       const stepIcon = wrapper.find(StepIcon);
-      assert.isTrue(stepIcon.props().active, 'should set active');
+      assert.strictEqual(stepIcon.props().active, true, 'should set active');
     });
   });
 
@@ -95,7 +95,7 @@ describe('<StepLabel />', () => {
         </StepLabel>,
       );
       const stepIcon = wrapper.find(StepIcon);
-      assert.isTrue(stepIcon.props().completed, 'should set completed');
+      assert.strictEqual(stepIcon.props().completed, true, 'should set completed');
     });
   });
 
@@ -110,18 +110,20 @@ describe('<StepLabel />', () => {
     });
   });
 
-  describe('prop: iconContainerClassName', () => {
-    it('sets iconContainerClassName', () => {
+  describe('prop: classes', () => {
+    it('should set iconContainer', () => {
       const wrapper = shallow(
-        <StepLabel iconContainerClassName="my-custom-class" icon={1}>
+        <StepLabel classes={{ iconContainer: 'my-custom-class' }} icon={1}>
           Step One
         </StepLabel>,
       );
-      const iconContainerClassName = wrapper
-        .find('span')
-        .at(1)
-        .props().className;
-      assert.include(iconContainerClassName, 'my-custom-class');
+      assert.include(
+        wrapper
+          .find('div')
+          .at(1)
+          .props().className,
+        'my-custom-class',
+      );
     });
   });
 
@@ -132,8 +134,13 @@ describe('<StepLabel />', () => {
           Step One
         </StepLabel>,
       );
-      const optional = wrapper.find(Typography).at(1);
-      assert.isTrue(optional.contains('Optional'));
+      assert.strictEqual(
+        wrapper
+          .find(Typography)
+          .at(1)
+          .contains('Optional'),
+        true,
+      );
     });
   });
 });

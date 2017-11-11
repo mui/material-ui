@@ -67,17 +67,17 @@ describe('<Stepper />', () => {
           <div className="child-2" />
         </Stepper>,
       );
-      assert.ok(wrapper.find('.child-0').props().active);
-      assert.notOk(wrapper.find('.child-1').props().active);
-      assert.notOk(wrapper.find('.child-2').props().active);
-      assert.ok(wrapper.find('.child-1').props().disabled);
-      assert.ok(wrapper.find('.child-2').props().disabled);
+      assert.strictEqual(wrapper.find('.child-0').props().active, true);
+      assert.strictEqual(wrapper.find('.child-1').props().active, false);
+      assert.strictEqual(wrapper.find('.child-2').props().active, false);
+      assert.strictEqual(wrapper.find('.child-1').props().disabled, true);
+      assert.strictEqual(wrapper.find('.child-2').props().disabled, true);
       wrapper.setProps({ activeStep: 1 });
-      assert.ok(wrapper.find('.child-0').props().completed);
-      assert.notOk(wrapper.find('.child-0').props().active);
-      assert.ok(wrapper.find('.child-1').props().active);
-      assert.notOk(wrapper.find('.child-2').props().active);
-      assert.ok(wrapper.find('.child-2').props().disabled);
+      assert.strictEqual(wrapper.find('.child-0').props().completed, true);
+      assert.strictEqual(wrapper.find('.child-0').props().active, false);
+      assert.strictEqual(wrapper.find('.child-1').props().active, true);
+      assert.strictEqual(wrapper.find('.child-2').props().active, false);
+      assert.strictEqual(wrapper.find('.child-2').props().disabled, true);
     });
 
     it('controls children non-linearly based on the activeStep prop', () => {
@@ -88,17 +88,17 @@ describe('<Stepper />', () => {
           <div className="child-2" />
         </Stepper>,
       );
-      assert.ok(wrapper.find('.child-0').props().active);
-      assert.notOk(wrapper.find('.child-1').props().active);
-      assert.notOk(wrapper.find('.child-2').props().active);
+      assert.strictEqual(wrapper.find('.child-0').props().active, true);
+      assert.strictEqual(wrapper.find('.child-1').props().active, false);
+      assert.strictEqual(wrapper.find('.child-2').props().active, false);
       wrapper.setProps({ activeStep: 1 });
-      assert.notOk(wrapper.find('.child-0').props().active);
-      assert.ok(wrapper.find('.child-1').props().active);
-      assert.notOk(wrapper.find('.child-2').props().active);
+      assert.strictEqual(wrapper.find('.child-0').props().active, false);
+      assert.strictEqual(wrapper.find('.child-1').props().active, true);
+      assert.strictEqual(wrapper.find('.child-2').props().active, false);
       wrapper.setProps({ activeStep: 2 });
-      assert.notOk(wrapper.find('.child-0').props().active);
-      assert.notOk(wrapper.find('.child-1').props().active);
-      assert.ok(wrapper.find('.child-2').props().active);
+      assert.strictEqual(wrapper.find('.child-0').props().active, false);
+      assert.strictEqual(wrapper.find('.child-1').props().active, false);
+      assert.strictEqual(wrapper.find('.child-2').props().active, true);
     });
 
     it('passes last down correctly when rendering children containing arrays', () => {

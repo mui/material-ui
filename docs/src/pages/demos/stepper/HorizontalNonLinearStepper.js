@@ -1,9 +1,9 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import { Step, Stepper, StepButton } from 'material-ui/Stepper';
+import Stepper, { Step, StepButton } from 'material-ui/Stepper';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 
@@ -23,7 +23,24 @@ const styles = theme => ({
   },
 });
 
-class HorizontalNonLinearStepper extends Component {
+function getSteps() {
+  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
+}
+
+function getStepContent(step) {
+  switch (step) {
+    case 0:
+      return 'Step 1: Select campaign settings...';
+    case 1:
+      return 'Step 2: What is an ad group anyways?';
+    case 2:
+      return 'Step 3: This is the bit I really care about!';
+    default:
+      return 'Unknown step';
+  }
+}
+
+class HorizontalNonLinearStepper extends React.Component {
   state = {
     activeStep: 0,
     completed: {},
@@ -33,9 +50,9 @@ class HorizontalNonLinearStepper extends Component {
     return Object.keys(this.state.completed).length;
   }
 
-  totalSteps() {
-    return this.getSteps().length;
-  }
+  totalSteps = () => {
+    return getSteps().length;
+  };
 
   isLastStep() {
     return this.state.activeStep === this.totalSteps() - 1;
@@ -51,7 +68,7 @@ class HorizontalNonLinearStepper extends Component {
     if (this.isLastStep() && !this.allStepsCompleted()) {
       // It's the last step, but not all steps have been completed,
       // find the first step that has been completed
-      const steps = this.getSteps();
+      const steps = getSteps();
       activeStep = steps.findIndex((step, i) => !(i in this.state.completed));
     } else {
       activeStep = this.state.activeStep + 1;
@@ -90,37 +107,21 @@ class HorizontalNonLinearStepper extends Component {
     });
   };
 
-  getSteps = () => {
-    return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
-  };
-
-  getStepContent = stepIndex => {
-    switch (stepIndex) {
-      case 0:
-        return 'Step 1: Select campaign settings...';
-      case 1:
-        return 'Step 2: What is an ad group anyways?';
-      case 2:
-        return 'Step 3: This is the bit I really care about!';
-      default:
-        return 'Uknown stepIndex';
-    }
-  };
-
   render() {
     const { classes } = this.props;
-    const steps = this.getSteps();
+    const steps = getSteps();
     const { activeStep } = this.state;
-    let stepKey = 0;
 
     return (
       <div className={classes.root}>
         <Stepper nonLinear activeStep={activeStep}>
-          {steps.map((label, i) => {
-            stepKey += 1;
+          {steps.map((label, index) => {
             return (
-              <Step key={stepKey}>
-                <StepButton onClick={this.handleStep(i)} completed={this.state.completed[i]}>
+              <Step key={label}>
+                <StepButton
+                  onClick={this.handleStep(index)}
+                  completed={this.state.completed[index]}
+                >
                   {label}
                 </StepButton>
               </Step>
@@ -137,9 +138,7 @@ class HorizontalNonLinearStepper extends Component {
             </div>
           ) : (
             <div>
-              <Typography className={classes.instructions}>
-                {this.getStepContent(activeStep)}
-              </Typography>
+              <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
               <div>
                 <Button
                   disabled={activeStep === 0}

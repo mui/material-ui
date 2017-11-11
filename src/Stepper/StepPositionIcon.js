@@ -9,22 +9,19 @@ import type { Icon } from './StepButton';
 export const styles = (theme: Object) => ({
   root: {
     fill: theme.palette.action.disabled,
-    display: 'block',
+  },
+  active: {
+    fill: theme.palette.primary[500],
   },
   text: {
     fill: theme.palette.getContrastText(theme.palette.primary[500]),
     fontSize: theme.typography.caption.fontSize,
     fontFamily: theme.typography.fontFamily,
   },
-  active: {
-    fill: theme.palette.primary[500],
-  },
 });
 
 type ProvidedProps = {
-  active: boolean,
   classes: Object,
-  position: Icon,
 };
 
 export type Props = {
@@ -35,19 +32,29 @@ export type Props = {
   /**
    * Classses for component style customizations.
    */
-  classes: Object,
+  classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
   /**
    * The step position as a number.
    */
   position?: Icon,
 };
 
+/**
+ * @ignore - internal component.
+ */
 function StepPositionIcon(props: ProvidedProps & Props) {
-  const { position, classes, active } = props;
-
-  const className = classNames(classes.root, {
-    [classes.active]: active,
-  });
+  const { position, classes, className: classNameProp, active } = props;
+  const className = classNames(
+    classes.root,
+    {
+      [classes.active]: active,
+    },
+    classNameProp,
+  );
 
   return (
     <SvgIcon className={className}>
@@ -58,7 +65,5 @@ function StepPositionIcon(props: ProvidedProps & Props) {
     </SvgIcon>
   );
 }
-
-StepPositionIcon.muiName = 'StepPositionIcon';
 
 export default withStyles(styles)(StepPositionIcon);

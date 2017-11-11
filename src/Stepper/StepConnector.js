@@ -46,7 +46,7 @@ type ProvidedProps = {
 export type Props = {
   /**
    * @ignore
-   * Set internally by Step when it's supplied with the alternativeLabel prop.
+   * Set internally by Step when it's supplied with the alternativeLabel property.
    */
   alternativeLabel?: boolean,
   /**
@@ -63,6 +63,9 @@ export type Props = {
   orientation?: Orientation,
 };
 
+/**
+ * @ignore - internal component.
+ */
 function StepConnector(props: ProvidedProps & Props) {
   const { alternativeLabel, className: classNameProp, classes, orientation, ...other } = props;
 
@@ -91,7 +94,5 @@ StepConnector.defaultProps = {
   alternativeLabel: false,
   orientation: 'horizontal',
 };
-
-StepConnector.muiName = 'StepConnector';
 
 export default withStyles(styles)(StepConnector);

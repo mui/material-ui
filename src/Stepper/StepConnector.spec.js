@@ -20,9 +20,9 @@ describe('<StepConnector />', () => {
   describe('rendering', () => {
     it('renders a div containing a span', () => {
       const wrapper = shallow(<StepConnector orientation="horizontal" />);
-      assert.ok(wrapper.is('div'));
+      assert.strictEqual(wrapper.type(), 'div');
       const line = wrapper.find('span');
-      assert.ok(line.length);
+      assert.strictEqual(line.length, 1);
     });
 
     it('has the class lineHorizontal when horizontal', () => {

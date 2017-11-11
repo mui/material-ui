@@ -25,7 +25,8 @@ export const styles = (theme: Object) => ({
   disabled: {
     cursor: 'default',
   },
-  iconContainer: {
+  iconContainer: {},
+  iconContainerNoAlternative: {
     paddingRight: theme.spacing.unit,
   },
   alternativeLabelRoot: {
@@ -56,17 +57,21 @@ export type Props = {
   active?: boolean,
   /**
    * @ignore
-   * Set internally by Stepper when it's supplied with the alternativeLabel prop.
+   * Set internally by Stepper when it's supplied with the alternativeLabel property.
    */
   alternativeLabel?: boolean,
   /**
    * In most cases will simply be a string containing a title for the label.
    */
-  children: Node | string,
+  children: Node,
   /**
    * Custom styles for component.
    */
   classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
   /**
    * @ignore
    * Mark the step as completed. Is passed to child components.
@@ -81,10 +86,6 @@ export type Props = {
    * The icon displayed by the step label - if not set will be set by Step component.
    */
   icon?: Icon,
-  /**
-   * Icon container class name
-   */
-  iconContainerClassName?: string,
   /**
    * @ignore
    */
@@ -102,15 +103,15 @@ export type Props = {
 function StepLabel(props: ProvidedProps & Props) {
   const {
     active,
+    children,
+    classes,
+    className: classNameProp,
     completed,
     disabled,
     icon,
-    iconContainerClassName: iconContainerClassNameProp,
     orientation,
     alternativeLabel,
     last,
-    children,
-    classes,
     optional,
     ...other
   } = props;
@@ -119,30 +120,29 @@ function StepLabel(props: ProvidedProps & Props) {
     [classes.disabled]: disabled,
     [classes.completed]: completed,
     [classes.alternativeLabelRoot]: alternativeLabel,
+    classNameProp,
   });
   const labelClassName = classNames({
     [classes.alternativeLabel]: alternativeLabel,
     [classes.completed]: completed,
     [classes.active]: active,
   });
-  const iconContainerClassName = classNames(
-    {
-      [classes.iconContainer]: !alternativeLabel,
-    },
-    iconContainerClassNameProp,
-  );
 
   return (
-    <span className={className} {...other}>
+    <div className={className} {...other}>
       {icon && (
-        <span className={iconContainerClassName}>
+        <div
+          className={classNames(classes.iconContainer, {
+            [classes.iconContainerNoAlternative]: !alternativeLabel,
+          })}
+        >
           <StepIcon
             completed={completed}
             active={active}
             icon={icon}
             alternativeLabel={alternativeLabel}
           />
-        </span>
+        </div>
       )}
       <div>
         <Typography type="body1" className={labelClassName}>
@@ -154,7 +154,7 @@ function StepLabel(props: ProvidedProps & Props) {
           </Typography>
         )}
       </div>
-    </span>
+    </div>
   );
 }
 

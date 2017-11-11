@@ -24,7 +24,7 @@ export const styles = () => ({
     paddingRight: 0,
     background: 'none',
   },
-  alternativeLabelRoot: {
+  alternativeLabel: {
     margin: '0 auto',
   },
 });
@@ -32,15 +32,7 @@ export const styles = () => ({
 export type Icon = Element<any> | string | number;
 
 type ProvidedProps = {
-  active: boolean,
-  alternativeLabel: boolean,
   classes: Object,
-  completed: boolean,
-  disabled: boolean,
-  icon: Icon,
-  last: boolean,
-  optional: boolean,
-  orientation: Orientation,
 };
 
 export type Props = {
@@ -51,7 +43,7 @@ export type Props = {
   active?: boolean,
   /**
    * @ignore
-   * Set internally by Stepper when it's supplied with the alternativeLabel prop.
+   * Set internally by Stepper when it's supplied with the alternativeLabel property.
    */
   alternativeLabel?: boolean,
   /**
@@ -81,10 +73,6 @@ export type Props = {
    */
   icon?: Icon,
   /**
-   * Pass down to the the `StepLabel` prop `iconContainerClassName`.
-   */
-  iconContainerClassName?: string,
-  /**
    * @ignore
    */
   last?: boolean,
@@ -108,8 +96,7 @@ function StepButton(props: ProvidedProps & Props) {
     classes,
     disabled,
     icon,
-    iconContainerClassName,
-    last, // eslint-disable-line no-unused-vars
+    last,
     optional,
     orientation,
     ...other
@@ -118,7 +105,7 @@ function StepButton(props: ProvidedProps & Props) {
   const className = classNames(
     classes.root,
     {
-      [classes.alternativeLabelRoot]: alternativeLabel,
+      [classes.alternativeLabel]: alternativeLabel,
     },
     classNameProp,
   );
@@ -128,7 +115,6 @@ function StepButton(props: ProvidedProps & Props) {
     completed,
     disabled,
     icon,
-    iconContainerClassName,
     optional,
     orientation,
   };
@@ -144,7 +130,5 @@ function StepButton(props: ProvidedProps & Props) {
     </ButtonBase>
   );
 }
-
-StepButton.muiName = 'StepButton';
 
 export default withStyles(styles)(StepButton);

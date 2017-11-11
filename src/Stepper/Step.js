@@ -7,9 +7,7 @@ import withStyles from '../styles/withStyles';
 import type { Orientation } from './Stepper';
 
 export const styles = (theme: Object) => ({
-  root: {
-    flex: '0 0 auto',
-  },
+  root: {},
   horizontal: {
     paddingLeft: theme.spacing.unit,
     paddingRight: theme.spacing.unit,
@@ -28,14 +26,11 @@ export const styles = (theme: Object) => ({
 });
 
 type ProvidedProps = {
-  alternativeLabel: boolean,
+  active: boolean,
+  completed: boolean,
   classes: Object,
-  connector: Element<any>,
   disabled: boolean,
-  index: number,
-  last: boolean,
   optional: boolean,
-  orientation: Orientation,
 };
 
 export type Props = {
@@ -45,7 +40,7 @@ export type Props = {
   active?: boolean,
   /**
    * @ignore
-   * Set internally by Stepper when it's supplied with the alternativeLabel prop.
+   * Set internally by Stepper when it's supplied with the alternativeLabel property.
    */
   alternativeLabel?: boolean,
   /**
@@ -56,6 +51,10 @@ export type Props = {
    * @ignore
    */
   classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: string,
   /**
    * Mark the step as completed. Is passed to child components.
    */
@@ -93,21 +92,27 @@ function Step(props: ProvidedProps & Props) {
   const {
     active,
     alternativeLabel,
+    children,
+    classes,
+    className: classNameProp,
     completed,
     connector,
     disabled,
     index,
     last,
     orientation,
-    children,
-    classes,
     optional,
     ...other
   } = props;
 
-  const className = classNames(classes.root, classes[orientation], {
-    [classes.alternativeLabel]: alternativeLabel,
-  });
+  const className = classNames(
+    classes.root,
+    classes[orientation],
+    {
+      [classes.alternativeLabel]: alternativeLabel,
+    },
+    classNameProp,
+  );
 
   return (
     <div className={className} {...other}>
@@ -138,7 +143,5 @@ Step.defaultProps = {
   disabled: false,
   optional: false,
 };
-
-Step.muiName = 'Step';
 
 export default withStyles(styles)(Step);

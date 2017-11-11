@@ -8,6 +8,7 @@ import SvgIcon from '../SvgIcon';
 describe('<StepPositionIcon />', () => {
   let shallow;
   let mount;
+
   before(() => {
     shallow = createShallow({ dive: true });
     mount = createMount();
@@ -29,7 +30,6 @@ describe('<StepPositionIcon />', () => {
 
   it('contains text "3" when position is "3"', () => {
     const wrapper = shallow(<StepPositionIcon position={3} />);
-    const text = wrapper.find('text');
-    assert.isTrue(text.contains(3));
+    assert.strictEqual(wrapper.find('text').text(), '3');
   });
 });

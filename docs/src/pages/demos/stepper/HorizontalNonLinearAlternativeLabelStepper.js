@@ -1,9 +1,9 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import { Step, Stepper, StepButton } from 'material-ui/Stepper';
+import Stepper, { Step, StepButton } from 'material-ui/Stepper';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 
@@ -26,16 +26,33 @@ const styles = theme => ({
   },
 });
 
-class HorizontalNonLinearAlternativeLabelStepper extends Component {
+function getSteps() {
+  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
+}
+
+function getStepContent(step) {
+  switch (step) {
+    case 0:
+      return 'Step 1: Select campaign settings...';
+    case 1:
+      return 'Step 2: What is an ad group anyways?';
+    case 2:
+      return 'Step 3: This is the bit I really care about!';
+    default:
+      return 'Unknown step';
+  }
+}
+
+class HorizontalNonLinearAlternativeLabelStepper extends React.Component {
   state = {
     activeStep: 0,
     completed: new Set(),
     skipped: new Set(),
   };
 
-  totalSteps() {
-    return this.getSteps().length;
-  }
+  totalSteps = () => {
+    return getSteps().length;
+  };
 
   isStepComplete(step) {
     return this.state.completed.has(step);
@@ -86,7 +103,7 @@ class HorizontalNonLinearAlternativeLabelStepper extends Component {
     if (this.isLastStep() && !this.allStepsCompleted()) {
       // It's the last step, but not all steps have been completed
       // find the first step that has been completed
-      const steps = this.getSteps();
+      const steps = getSteps();
       activeStep = steps.findIndex((step, i) => !this.state.completed.has(i));
     } else {
       activeStep = this.state.activeStep + 1;
@@ -132,45 +149,25 @@ class HorizontalNonLinearAlternativeLabelStepper extends Component {
     });
   };
 
-  getSteps = () => {
-    return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
-  };
-
-  getStepContent = stepIndex => {
-    switch (stepIndex) {
-      case 0:
-        return 'Step 1: Select campaign settings...';
-      case 1:
-        return 'Step 2: What is an ad group anyways?';
-      case 2:
-        return 'Step 3: This is the bit I really care about!';
-      default:
-        return 'Uknown stepIndex';
-    }
-  };
-
   render() {
     const { classes } = this.props;
-    const steps = this.getSteps();
+    const steps = getSteps();
     const { activeStep } = this.state;
-
-    let stepKey = 0;
 
     return (
       <div className={classes.root}>
         <Stepper alternativeLabel nonLinear activeStep={activeStep}>
-          {steps.map((label, step) => {
+          {steps.map((label, index) => {
             const props = {};
-            if (this.isStepOptional(step)) {
+            if (this.isStepOptional(index)) {
               props.optional = true;
             }
-            if (this.isStepSkipped(step)) {
+            if (this.isStepSkipped(index)) {
               props.completed = false;
             }
-            stepKey += 1;
             return (
-              <Step key={stepKey} {...props}>
-                <StepButton onClick={this.handleStep(step)} completed={this.isStepComplete(step)}>
+              <Step key={label} {...props}>
+                <StepButton onClick={this.handleStep(index)} completed={this.isStepComplete(index)}>
                   {label}
                 </StepButton>
               </Step>
@@ -187,9 +184,7 @@ class HorizontalNonLinearAlternativeLabelStepper extends Component {
             </div>
           ) : (
             <div>
-              <Typography className={classes.instructions}>
-                {this.getStepContent(activeStep)}
-              </Typography>
+              <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
               <div>
                 <Button
                   disabled={activeStep === 0}

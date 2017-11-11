@@ -8,7 +8,7 @@ import Collapse from '../transitions/Collapse';
 describe('<StepContent />', () => {
   let shallow;
   let mount;
-  const defaultProps = {
+  const props = {
     orientation: 'vertical',
   };
 
@@ -22,8 +22,8 @@ describe('<StepContent />', () => {
   });
 
   it('renders a div', () => {
-    const wrapper = shallow(<StepContent {...defaultProps}>Here is the content</StepContent>);
-    assert.ok(wrapper.is('div'));
+    const wrapper = shallow(<StepContent {...props}>Here is the content</StepContent>);
+    assert.strictEqual(wrapper.type(), 'div');
   });
 
   it('merges styles and other props into the root node', () => {
@@ -31,7 +31,7 @@ describe('<StepContent />', () => {
       <StepContent
         style={{ paddingRight: 200, color: 'purple', border: '1px solid tomato' }}
         role="Tabpanel"
-        {...defaultProps}
+        {...props}
       >
         Lorem ipsum
       </StepContent>,
@@ -45,14 +45,14 @@ describe('<StepContent />', () => {
 
   it('renders children inside an Collapse component', () => {
     const wrapper = shallow(
-      <StepContent {...defaultProps}>
+      <StepContent {...props}>
         <div className="test-content">This is my content!</div>
       </StepContent>,
     );
     const collapse = wrapper.find(Collapse);
-    assert.ok(collapse.length);
+    assert.strictEqual(collapse.length, 1);
     const content = collapse.find('.test-content');
-    assert.ok(content.length);
+    assert.strictEqual(content.length, 1);
     assert.strictEqual(content.props().children, 'This is my content!');
   });
 });

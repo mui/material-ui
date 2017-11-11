@@ -20,7 +20,7 @@ describe('<StepIcon />', () => {
   });
 
   it('renders <CheckCircle> when completed', () => {
-    const wrapper = shallow(<StepIcon icon={1} completed />);
+    const wrapper = mount(<StepIcon icon={1} completed />);
     const checkCircle = wrapper.find(CheckCircle);
     assert.strictEqual(checkCircle.length, 1, 'should have an <CheckCircle />');
   });
@@ -31,7 +31,7 @@ describe('<StepIcon />', () => {
     assert.strictEqual(checkCircle.length, 1, 'should have an <StepPositionIcon />');
     const props = checkCircle.props();
     assert.strictEqual(props.position, 1, 'should set position');
-    assert.isTrue(props.active, 'should set active');
+    assert.strictEqual(props.active, true, 'should set active');
   });
 
   it('renders the custom icon', () => {

@@ -1,8 +1,8 @@
-<!--- This documentation is automatically generated, do not try to edit it. -->
-
 ---
 filename: /src/Stepper/Step.js
 ---
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Step
 

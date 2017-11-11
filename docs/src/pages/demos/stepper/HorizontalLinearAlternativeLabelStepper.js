@@ -1,9 +1,9 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import { Step, Stepper, StepLabel } from 'material-ui/Stepper';
+import Stepper, { Step, StepLabel } from 'material-ui/Stepper';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 
@@ -20,7 +20,25 @@ const styles = theme => ({
   },
 });
 
-class HorizontalLabelPositionBelowStepper extends Component {
+function getSteps() {
+  return ['Select master blaster campaign settings', 'Create an ad group', 'Create an ad'];
+}
+
+function getStepContent(stepIndex) {
+  switch (stepIndex) {
+    case 0:
+      return 'Select campaign settings...';
+    case 1:
+      return 'What is an ad group anyways?';
+    case 2:
+      return 'This is the bit I really care about!';
+
+    default:
+      return 'Uknown stepIndex';
+  }
+}
+
+class HorizontalLabelPositionBelowStepper extends React.Component {
   state = {
     activeStep: 0,
   };
@@ -45,37 +63,17 @@ class HorizontalLabelPositionBelowStepper extends Component {
     });
   };
 
-  getSteps = () => {
-    return ['Select master blaster campaign settings', 'Create an ad group', 'Create an ad'];
-  };
-
-  getStepContent = stepIndex => {
-    switch (stepIndex) {
-      case 0:
-        return 'Select campaign settings...';
-      case 1:
-        return 'What is an ad group anyways?';
-      case 2:
-        return 'This is the bit I really care about!';
-
-      default:
-        return 'Uknown stepIndex';
-    }
-  };
-
   render() {
     const { classes } = this.props;
-    const steps = this.getSteps();
+    const steps = getSteps();
     const { activeStep } = this.state;
-    let stepKey = 0;
 
     return (
       <div className={classes.root}>
         <Stepper activeStep={activeStep} alternativeLabel>
           {steps.map(label => {
-            stepKey += 1;
             return (
-              <Step key={stepKey}>
+              <Step key={label}>
                 <StepLabel>{label}</StepLabel>
               </Step>
             );
@@ -91,9 +89,7 @@ class HorizontalLabelPositionBelowStepper extends Component {
             </div>
           ) : (
             <div>
-              <Typography className={classes.instructions}>
-                {this.getStepContent(activeStep)}
-              </Typography>
+              <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
               <div>
                 <Button
                   disabled={activeStep === 0}

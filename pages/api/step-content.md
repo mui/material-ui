@@ -1,8 +1,8 @@
-<!--- This documentation is automatically generated, do not try to edit it. -->
-
 ---
 filename: /src/Stepper/StepContent.js
 ---
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
 
 # StepContent
 
@@ -12,9 +12,9 @@ filename: /src/Stepper/StepContent.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span style="color: #31a148">children *</span> | union:&nbsp;ChildrenArray<Element><br>&nbsp;Node<br> |  | Step content |
+| <span style="color: #31a148">children *</span> | Node |  | Step content. |
 | transition | Function | Collapse | Collapse component. |
-| <span style="color: #31a148">transitionDuration *</span> | union:&nbsp;number<br>&nbsp;'auto'<br> | 'auto' | Adjust the duration of the content expand transition. Passed as a prop to the transition component. |
+| <span style="color: #31a148">transitionDuration *</span> | TransitionDuration | 'auto' | Adjust the duration of the content expand transition. Passed as a property to the transition component. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
@@ -24,6 +24,7 @@ You can override all the class names injected by Material-UI thanks to the `clas
 This property accepts the following keys:
 - `root`
 - `last`
+- `transition`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/callemall/material-ui/tree/v1-beta/src/Stepper/StepContent.js)

@@ -1,8 +1,8 @@
-<!--- This documentation is automatically generated, do not try to edit it. -->
-
 ---
 filename: /src/Stepper/StepLabel.js
 ---
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
 
 # StepLabel
 
@@ -12,11 +12,10 @@ filename: /src/Stepper/StepLabel.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span style="color: #31a148">children *</span> | union:&nbsp;Node<br>&nbsp;string<br> |  | In most cases will simply be a string containing a title for the label. |
+| <span style="color: #31a148">children *</span> | Node |  | In most cases will simply be a string containing a title for the label. |
 | classes | Object |  | Custom styles for component. |
 | disabled | boolean | false | Mark the step as disabled, will also disable the button if `StepLabelButton` is a child of `StepLabel`. Is passed to child components. |
 | icon | Icon |  | The icon displayed by the step label - if not set will be set by Step component. |
-| iconContainerClassName | string |  | Icon container class name |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
@@ -31,6 +30,7 @@ This property accepts the following keys:
 - `completed`
 - `disabled`
 - `iconContainer`
+- `iconContainerNoAlternative`
 - `alternativeLabelRoot`
 - `alternativeLabel`
 

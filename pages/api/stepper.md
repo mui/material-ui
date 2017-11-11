@@ -1,8 +1,8 @@
-<!--- This documentation is automatically generated, do not try to edit it. -->
-
 ---
 filename: /src/Stepper/Stepper.js
 ---
+
+<!--- This documentation is automatically generated, do not try to edit it. -->
 
 # Stepper
 
@@ -14,11 +14,11 @@ filename: /src/Stepper/Stepper.js
 |:-----|:-----|:--------|:------------|
 | activeStep | number | 0 | Set the active step (zero based index). |
 | alternativeLabel | boolean | false | If set to 'true' and orientation is horizontal, then the step label will be positioned under the icon. |
-| <span style="color: #31a148">children *</span> | ChildrenArray |  | Two or more `<Step />` components. |
+| <span style="color: #31a148">children *</span> | ChildrenArray |  | Two or more `&lt;Step />` components. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| connector | union:&nbsp;Element<typeof StepConnector><br>&nbsp;Node<br> | &lt;StepConnector /> | A component to be placed between each step. |
-| nonLinear | boolean | false | If set the `Stepper` will not assist in controlling steps for linear flow |
-| orientation | union:&nbsp;'horizontal'<br>&nbsp;'vertical'<br> | 'horizontal' | The stepper orientation (layout flow direction) |
+| connector | union:&nbsp;Element&lt;typeof StepConnector>&nbsp;&#124;<br>&nbsp;Node<br> | &lt;StepConnector /> | A component to be placed between each step. |
+| nonLinear | boolean | false | If set the `Stepper` will not assist in controlling steps for linear flow. |
+| orientation | union:&nbsp;'horizontal'&nbsp;&#124;<br>&nbsp;'vertical'<br> | 'horizontal' | The stepper orientation (layout flow direction). |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 

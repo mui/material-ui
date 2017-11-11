@@ -39,16 +39,6 @@ describe('<StepButton />', () => {
     assert.strictEqual(stepLabel.props().children, 'Step One');
   });
 
-  it('should pass iconContainerClassName to StepLabel', () => {
-    const wrapper = shallow(
-      <StepButton iconContainerClassName="my-icon" {...defaultProps}>
-        StepOne
-      </StepButton>,
-    );
-    const stepLabel = wrapper.find(StepLabel);
-    assert.strictEqual(stepLabel.props().iconContainerClassName, 'my-icon');
-  });
-
   it('should pass props to StepLabel', () => {
     const wrapper = shallow(
       <StepButton active completed disabled label="Step One" {...defaultProps}>

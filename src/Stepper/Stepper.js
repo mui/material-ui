@@ -13,7 +13,6 @@ export const styles = (theme: Object) => ({
   root: {
     display: 'flex',
     padding: theme.spacing.unit * 3,
-    // TODO: Guidelines state 24px, should we use `theme.spacing.unit * 3` or 24px?
   },
   horizontal: {
     flexDirection: 'row',
@@ -62,11 +61,11 @@ export type Props = {
    */
   connector?: Element<typeof StepConnector> | Node,
   /**
-   * If set the `Stepper` will not assist in controlling steps for linear flow
+   * If set the `Stepper` will not assist in controlling steps for linear flow.
    */
   nonLinear?: boolean,
   /**
-   * The stepper orientation (layout flow direction)
+   * The stepper orientation (layout flow direction).
    */
   orientation?: Orientation,
 };
@@ -119,7 +118,7 @@ function Stepper(props: ProvidedProps & Props) {
         React.cloneElement(connector, {
           key: `connect-${index - 1}-to-${index}`, // eslint-disable-line react/no-array-index-key
         }),
-      React.cloneElement(step, Object.assign(controlProps, step.props)),
+      React.cloneElement(step, { ...controlProps, ...step.props }),
     ];
   });
 

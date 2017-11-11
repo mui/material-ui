@@ -1,10 +1,11 @@
 // @flow
 
 import React from 'react';
-import type { Element, ChildrenArray } from 'react';
+import type { Node } from 'react';
 import warning from 'warning';
 import classNames from 'classnames';
 import Collapse from '../transitions/Collapse';
+import type { TransitionDuration } from '../transitions/Collapse';
 import withStyles from '../styles/withStyles';
 import type { Orientation } from './Stepper';
 
@@ -19,17 +20,11 @@ export const styles = (theme: Object) => ({
   last: {
     borderLeft: 'none',
   },
+  transition: {},
 });
 
-export type TransitionDuration = number | 'auto';
-
 type ProvidedProps = {
-  active: boolean,
-  alternativeLabel: boolean,
   classes: Object,
-  last: boolean,
-  optional: boolean,
-  orientation: Orientation,
   transition: Function,
   transitionDuration: TransitionDuration,
 };
@@ -37,18 +32,18 @@ type ProvidedProps = {
 export type Props = {
   /**
    * @ignore
-   * Expands the content
+   * Expands the content.
    */
   active?: boolean,
   /**
    * @ignore
-   * Set internally by Step when it's supplied with the alternativeLabel prop.
+   * Set internally by Step when it's supplied with the alternativeLabel property.
    */
   alternativeLabel?: boolean,
   /**
-   * Step content
+   * Step content.
    */
-  children: ChildrenArray<Element<any>> | Node,
+  children: Node,
   /**
    * @ignore
    */
@@ -67,7 +62,7 @@ export type Props = {
   last?: boolean,
   /**
    * @ignore
-   * Set internally by Step when it's supplied with the optional prop.
+   * Set internally by Step when it's supplied with the optional property.
    */
   optional?: boolean,
   /**
@@ -80,7 +75,7 @@ export type Props = {
   transition?: Function,
   /**
    * Adjust the duration of the content expand transition.
-   * Passed as a prop to the transition component.
+   * Passed as a property to the transition component.
    */
   transitionDuration: TransitionDuration,
 };
@@ -88,26 +83,23 @@ export type Props = {
 function StepContent(props: ProvidedProps & Props) {
   const {
     active,
-    alternativeLabel, // eslint-disable-line no-unused-vars
+    alternativeLabel,
     children,
     className: classNameProp,
     classes,
-    completed, // eslint-disable-line no-unused-vars
+    completed,
     last,
-    transition,
+    transition: Transition,
     transitionDuration,
     orientation,
-    optional, // eslint-disable-line no-unused-vars
+    optional,
     ...other
   } = props;
 
-  if (orientation !== 'vertical') {
-    warning(
-      false,
-      'Material-UI: <StepContent /> is only designed for use with the vertical stepper.',
-    );
-    return null;
-  }
+  warning(
+    orientation === 'vertical',
+    'Material-UI: <StepContent /> is only designed for use with the vertical stepper.',
+  );
 
   const className = classNames(
     classes.root,
@@ -117,15 +109,16 @@ function StepContent(props: ProvidedProps & Props) {
     classNameProp,
   );
 
-  const transitionProps = {
-    in: active,
-    transitionDuration,
-    unmountOnExit: true,
-  };
-
   return (
     <div className={className} {...other}>
-      {React.createElement(transition, transitionProps, children)}
+      <Transition
+        in={active}
+        className={classes.transition}
+        transitionDuration={transitionDuration}
+        unmountOnExit
+      >
+        {children}
+      </Transition>
     </div>
   );
 }
@@ -134,7 +127,5 @@ StepContent.defaultProps = {
   transition: Collapse,
   transitionDuration: 'auto',
 };
-
-StepContent.muiName = 'StepContent';
 
 export default withStyles(styles)(StepContent);
