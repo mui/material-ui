@@ -52,6 +52,10 @@ export type Props = {
    */
   classes?: Object,
   /**
+   * @ignore
+   */
+  className?: String,
+  /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    * The default value is a `button`.
@@ -201,6 +205,7 @@ class Collapse extends React.Component<ProvidedProps & Props> {
       appear,
       children,
       classes,
+      className,
       component: ComponentProp,
       collapsedHeight,
       onEnter,
@@ -229,9 +234,13 @@ class Collapse extends React.Component<ProvidedProps & Props> {
         {state => {
           return (
             <ComponentProp
-              className={classNames(classes.container, {
-                [classes.entered]: state === 'entered',
-              })}
+              className={classNames(
+                classes.container,
+                {
+                  [classes.entered]: state === 'entered',
+                },
+                className,
+              )}
             >
               <div
                 className={classes.wrapper}

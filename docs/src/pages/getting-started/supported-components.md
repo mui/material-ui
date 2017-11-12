@@ -94,8 +94,8 @@ to discuss the approach before submitting a PR.
   - **[Grid](https://material.io/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**
   - [Menu](https://material.io/guidelines/components/subheaders.html#subheaders-list-subheaders)
 - [Steppers](https://material.io/guidelines/components/steppers.html)
-  - [Horizontal](https://material.io/guidelines/components/steppers.html#steppers-types-of-steppers)
-  - [Vertical](https://material.io/guidelines/components/steppers.html#steppers-types-of-steppers)
+  - **[Horizontal](https://material.io/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
+  - **[Vertical](https://material.io/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Mobile steps](https://material.io/guidelines/components/steppers.html#steppers-types-of-steps) ✓**
 - **[Tabs](https://material.io/guidelines/components/tabs.html) ✓**
   - Usage
