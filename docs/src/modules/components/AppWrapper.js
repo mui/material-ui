@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { MuiThemeProvider } from 'material-ui/styles';
 import getContext, { getTheme } from 'docs/src/modules/styles/getContext';
-import JssProvider from 'docs/src/modules/components/JssProvider';
+import JssProvider from 'react-jss/lib/JssProvider';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import { lightTheme, darkTheme, setPrismTheme } from 'docs/src/modules/utils/prism';
 import config from 'docs/src/config';

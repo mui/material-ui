@@ -92,7 +92,6 @@ describe('<MuiThemeProvider />', () => {
       assert.deepEqual(
         sheetsRegistry.registry[1].classes,
         {
-          '.MuiButtonBase-root-15::-moz-focus-inner': 'MuiButtonBase-root-15::-moz-focus-inner',
           disabled: 'MuiButtonBase-disabled-16',
           root: 'MuiButtonBase-root-15',
         },
