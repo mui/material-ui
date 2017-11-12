@@ -21,6 +21,8 @@ export default class DatePickerWrapper extends PickerBase {
     invalidLabel: PropTypes.string,
     leftArrowIcon: PropTypes.node,
     rightArrowIcon: PropTypes.node,
+    renderDay: PropTypes.func,
+    labelFunc: PropTypes.func,
   }
 
   static defaultProps = {
@@ -36,6 +38,8 @@ export default class DatePickerWrapper extends PickerBase {
     invalidLabel: undefined,
     leftArrowIcon: undefined,
     rightArrowIcon: undefined,
+    renderDay: undefined,
+    labelFunc: undefined,
   }
 
   render() {
@@ -54,6 +58,8 @@ export default class DatePickerWrapper extends PickerBase {
       invalidLabel,
       leftArrowIcon,
       rightArrowIcon,
+      renderDay,
+      labelFunc,
       ...other
     } = this.props;
 
@@ -65,6 +71,7 @@ export default class DatePickerWrapper extends PickerBase {
         onAccept={this.handleAccept}
         onDismiss={this.handleDismiss}
         invalidLabel={invalidLabel}
+        labelFunc={labelFunc}
         {...other}
       >
         <DatePicker
@@ -77,6 +84,7 @@ export default class DatePickerWrapper extends PickerBase {
           maxDate={maxDate}
           leftArrowIcon={leftArrowIcon}
           rightArrowIcon={rightArrowIcon}
+          renderDay={renderDay}
         />
       </ModalWrapper>
     );
