@@ -1,24 +1,43 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import withStyles from 'material-ui/styles/withStyles';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Typography, withStyles } from 'material-ui';
 
 class SourcablePanel extends Component {
   static propTypes = {
-    children: PropTypes.node,
+    children: PropTypes.arrayOf(PropTypes.node).isRequired,
     classes: PropTypes.object.isRequired,
+    title: PropTypes.string.isRequired,
+  }
+
+  getSource = () => {
+
   }
 
   render() {
-    const { classes } = this.props;
-    return (
-      <div className={classes.pickers}>
+    const { classes, title } = this.props;
+    return [
+      <Typography
+        key="title"
+        type="display1"
+        className={classes.exampleTitle}
+      >
+        { title }
+      </Typography>,
+
+      <div key="picker" className={classes.pickers}>
         { this.props.children }
-      </div>
-    )
+      </div>,
+    ];
   }
 }
 
 const styles = theme => ({
+  exampleTitle: {
+    marginTop: '40px',
+    '@media(max-width: 600px)': {
+      marginLeft: 5,
+    },
+  },
   pickers: {
     display: 'flex',
     justifyContent: 'center',
@@ -29,6 +48,7 @@ const styles = theme => ({
     margin: '30px auto 50px',
     backgroundColor: theme.palette.background.default,
   },
-})
+});
 
-export default withStyles(styles)(SourcablePanel)
+export default withStyles(styles)(SourcablePanel);
+

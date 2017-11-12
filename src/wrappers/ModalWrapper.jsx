@@ -60,7 +60,7 @@ export default class ModalWrapper extends PureComponent {
           value={value}
           format={format}
           onClick={this.togglePicker}
-          onFocus={this.togglePicker}
+          // onFocus={this.togglePicker} <- Currently not properly works with .blur() on TextField
           invalidLabel={invalidLabel}
           labelFunc={labelFunc}
           {...other}

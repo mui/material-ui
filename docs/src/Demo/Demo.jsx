@@ -69,31 +69,15 @@ class Demo extends Component {
             Here you are!
           </Typography>
 
-          <Button className={classes.changeOutside} onClick={this.changeOutside}>
-            Change all values
-          </Button>
-
-          <Typography type="display1" className={classes.example}>
-            Basic usage
-          </Typography>
-
-          <SourcablePanel>
+          <SourcablePanel title="Basic Usage">
             <BasicUsage />
           </SourcablePanel>
 
-          <Typography type="display1" gutterBottom>
-            Date & Time pickers
-          </Typography>
-
-          <SourcablePanel>
+          <SourcablePanel title="Date & Time pickers">
             <DateTimePickers />
           </SourcablePanel>
 
-          <Typography type="display1" gutterBottom>
-            Custom Day Element
-          </Typography>
-
-          <SourcablePanel>
+          <SourcablePanel title="Custom Day Element">
             <CustomElements />
           </SourcablePanel>
         </div>
@@ -127,9 +111,6 @@ const styles = theme => ({
   },
   getStarted: {
     marginTop: '10px',
-  },
-  example: {
-    marginTop: '40px',
   },
   main: {
     backgroundColor: theme.palette.background.paper,
