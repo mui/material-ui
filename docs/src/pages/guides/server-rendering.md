@@ -1,14 +1,13 @@
 # Server Rendering
 
-The most common use case for server-side rendering is to handle the *initial render* when a user (or search engine crawler) first requests our app.
+The most common use case for server-side rendering is to handle the *initial render* when a user (or search engine crawler) first requests your app.
 When the server receives the request, it renders the required component(s) into an HTML string, and then sends it as a response to the client.
 From that point on, the client takes over rendering duties.
 
 ## Material-UI on the Server
 
-Material-UI was designed from the ground-up with the constraint of rendering on the Server, but it's up to users to makes sure it's correctly integrated.
-We must provide to the page the needed style.
-It's important that we provide the page with the required CSS, otherwise the page will render with just the HTML then wait for the CSS to be injected by the client, causing it to flicker.
+Material-UI was designed from the ground-up with the constraint of rendering on the Server, but it's up to you to make sure it's correctly integrated.
+It's important to provide the page with the required CSS, otherwise the page will render with just the HTML then wait for the CSS to be injected by the client, causing it to flicker.
 To inject the style down to the client, we need to:
 
 1. Create a fresh, new `sheetsRegistry` and `theme` instance on every request.
@@ -135,7 +134,7 @@ function renderFullPage(html, css) {
 
 ### The Client Side
 
-The client side is straightforward. All we need to do is removing the server-side generated CSS.
+The client side is straightforward. All we need to do is remove the server-side generated CSS.
 Let's take a look at our client file:
 
 `client.js`

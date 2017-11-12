@@ -7,7 +7,7 @@ The roadmap is a living document, and it is likely that priorities will change, 
 ## Version 1 (published on NPM under the next tag)
 
 Version 1 release is going to be huge ✨.
-We host a temporary [documentation](https://material-ui-next.com) for the pre-releases.
+We host a temporary [documentation site](https://material-ui-next.com) for the pre-releases.
 
 Material-UI was started [3 years ago](https://github.com/callemall/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46).
 The ecosystem has evolved a lot since then, we have also learned a lot.
@@ -22,8 +22,7 @@ If you are interested in following our progress or if you want to help us reach 
 
 ## Q&A with the v1 version
 
-The `v1-beta` branch has become more mature.
-We think that it's a good time to communicate more on this effort.
+The `v1-beta` branch has become more mature, so we think that it's a good time to communicate more on this effort.
 We have a lot of people opening PRs and getting them closed, this is not a good thing.
 This Q&A tries to answer some of your questions.
 
@@ -50,9 +49,9 @@ We later came up with an **inline-style approach** solving the majority of our i
 But:
 - We had lost around 25% of the performance 🐢.
 Computing the inline-style at each render with no caching isn't really efficient.
-- Some more advanced CSS feature wasn't available, e.g. keyframes, pseudo-elements, pseudo-classes 💅.
-- Media queries aren't available on the server. At least [not yet](http://caniuse.com/#feat=client-hints-dpr-width-viewport).
-- The debugging was really challenging. Browser dev tools aren't tuned for inline-styles.
+- Some more advanced CSS feature weren't available, e.g. keyframes, pseudo-elements, pseudo-classes 💅.
+- Media queries weren't available on the server. At least [not yet](http://caniuse.com/#feat=client-hints-dpr-width-viewport).
+- Debugging was really challenging. Browser dev tools aren't tuned for inline-styles.
 - React v15 has changed the method of injecting styles into the DOM meaning, for example, that prefixing all browsers for `display:flex` is no longer possible 💥.
 
 ### Does JSS solve them?
@@ -65,11 +64,10 @@ Migrating a component to the `v1-beta` branch isn't just a style migration.
 We think that it's our best opportunity to clear the API and improve the implementation of the components.
 @nathanmarks ended up fixing a lot of long standing issues in the process.
 
-Yes, it would much better to discuss an action plan for each of them.
-That would save us quite some time following a wrong path.
+Yes, it would much better to discuss an action plan for each of them that would save us considerable time compared to blindly following a wrong path.
 We should answer the following questions:
 - What will the API look like?
-- What tradeoffs are we going to make?
+- What trade-offs are we going to make?
 - What features will be implemented?
 
 That conversation could start on one of the following [issues](https://github.com/callemall/material-ui/issues?q=is%3Aissue+is%3Aopen+label%3ARefactoring+label%3Anext).
@@ -80,21 +78,20 @@ We have [some open issues](https://github.com/callemall/material-ui/issues?q=is%
 
 ### How do I start migrating components to the `v1-beta` branch?
 
-Once we agree on the migration plan you're gonna have to get your hands dirty.
-That's really up to you. At least, you gonna have to
+Once we agree on the migration plan you're going to have to get your hands dirty.
+That's really up to you. At least, you going to have to:
 - clone the `v1-beta` branch
 - install the npm dependencies
 - play with the documentation site
 - write some documentation
 - write some tests (unit, integration, visual)
 
-### When do we intend to release `v1-beta`?
+### When do we intend to release `v1`?
 
-We don't have an ETA for the release of the `v1-beta` branch,
-however, we are going to try to follow this plan:
+We don't have an ETA for the release of the `v1`, however, we are going to try to follow this plan:
 
-1. We completely address the styling issue before moving from *alpha* to [*beta*](https://github.com/callemall/material-ui/milestone/22).
-2. We publish our first beta releases.
+1. ~~We completely address the styling issue before moving from *alpha* to [*beta*](https://github.com/callemall/material-ui/milestone/22).~~
+2. ~~We publish our first beta releases.~~
 3. We fix the last API inconsistencies (as we can make breaking changes without having to worry much).
 4. We merge the beta branch into master
 5. We publish our first pre-releases, if all goes well, we move to the next step.

@@ -54,7 +54,7 @@ const DecoratedClass = decorate(
 );
 ```
 
-Note that in the class example you didn't need to annotate `<Props>` in the call to `decorate`; type inference took care of everything. One caveat is that if your styled component takes _no_ additional props in addition to `classes`. The natural thing would be to write
+Note that in the class example you didn't need to annotate `<Props>` in the call to `decorate`; type inference took care of everything. One caveat is that if your styled component takes _no_ additional props in addition to `classes`. The natural thing would be to write:
 
 ```jsx
 const DecoratedNoProps = decorate(
