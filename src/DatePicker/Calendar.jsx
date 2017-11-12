@@ -89,12 +89,13 @@ export class Calendar extends Component {
 
     return Array.from(moment.range(week, end).by('day'))
       .map((day) => {
+        // should be applied both for wrapper and button
+        const disabledClass = classnames({ [classes.disabled]: this.shouldDisableDate(day) });
         const dayInCurrentMonth = day.get('month') === currentMonthNumber;
 
-        const dayClass = classnames(classes.day, {
+        const dayClass = classnames(classes.day, disabledClass, {
           [classes.hidden]: !dayInCurrentMonth,
           [classes.selected]: day.format() === formattedSelectedDate,
-          [classes.disabled]: this.shouldDisableDate(day),
         });
 
         let dayComponent = (
@@ -112,6 +113,7 @@ export class Calendar extends Component {
             key={day.toString()}
             onClick={() => dayInCurrentMonth && this.onDateSelect(day)}
             onKeyPress={() => dayInCurrentMonth && this.onDateSelect(day)}
+            className={disabledClass}
             role="presentation"
           >
             {dayComponent}
