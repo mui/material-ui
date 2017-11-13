@@ -2,6 +2,76 @@
 
 Changes. Changes everywhere!
 
+## 1.0.0-beta.21
+###### _Nov 13, 2017_
+
+Big thanks to the 18 contributors who made this release possible.
+
+Here are some highlights ✨:
+- @alexhayes and @vladimirpekez have been working hard on migrating the Stepper component
+to the `v1-beta` branch (#8291). Thank you!
+- @kof Has been working hard on JSS, we have upgraded the dependency to v9 (#9111)
+- And many more bug fixes and documentation improvements.
+
+### Breaking change
+
+- [SwitchBase] Remove legacy properties (#9021) @oliviertassinari
+In the following diff `SwitchBase` can be a `Checkbox` a `Radio` or a `Switch`.
+
+```diff
+-<SwitchBase disabled disabledClassName={disabledClassName} />;
++<SwitchBase disabled classes={{ disabled: disabledClassName }} />;
+```
+
+#### Component Fixes / Enhancements
+
+- [InputLabel] Fix transformOrigin when direction=rtl (#9007) @alitaheri
+- [BottomNavigation] Allow null bottom navigation items (#9011) @ciroja
+- [Button] Include lineHeight in default theme button style (#9018) @mkornblum
+- [Select] Fix native width display (#8998) @oliviertassinari
+- [Modal] Expose the component to the public API (#9038) @oliviertassinari
+- [Drawer] Better support different anchor values (#9000) @oliviertassinari
+- [IconButton] Add missing TypeScript definition (#9016) @oliviertassinari
+- [List] Fix accessibility (#9017) @oliviertassinari
+- [ButtonBase] Restore the original keyboardFocusCheckTime value (#9019) @oliviertassinari
+- [Popover] Implement ability to pass coordinates as anchor (#9004) @jackyho112
+- [TextField] Fix undefined blur event (#9042) @nareshbhatia
+- [Slide] Support dynamic anchor (#9055) @oliviertassinari
+- [Input] Remove grey highlight on iOS (#9057) @oliviertassinari
+- [Grid] Add missing wrap-reverse classname (#9076) @dehli
+- [breakpoint] Fix xs value (#9078) @oliviertassinari
+- [TablePagination] Fix IE11 colSpan issue (#9086) @sakulstra
+- [Menu] Fix MenuList integration demo (#9088)
+- [Snackbar] Treat null properly and add a test for it (#9094) @leMaik
+- [Input] Fix inputProps.ref support (#9095) @oliviertassinari
+- [Slide] Refactor lifecycle logics (#9096) @alitaheri
+- [Stepper] First port of the component (#8291) @alexhayes @vladimirpekez
+- [InputLabel] Add missing FormControlClasses (#9110) @svachmic
+
+#### Docs
+
+- [docs] Fix escape in the API section (#9015) @oliviertassinari
+- [examples] Fix flow example (bdf5b6600fd82d2c5b64896994457001dac72104) @oliviertassinari
+- [examples] Fix missing props for BaseComponent (#9077) @aislanmaia
+- [docs] Add a AppBar/Menu integration example (#9067) @Tevinthuku
+- [docs] Add composed withStyles & withTheme HOCs to the FAQ (#9079) @mbrookes
+- [docs] Add file upload examples with the icon buttons (#9087) @Tevinthuku
+- [docs] Fix word (#9091) @Hissvard
+- [docs] Fix AppSearch horizontal rythm (#9107) @mbrookes
+- [docs] Fix misc typos, grammar and add minor clarifications (#9112) @mbrookes
+
+#### Core
+
+- [typescript] Conform Typography definition with React CSSProperties (#9023) @dewey92
+- [Modal] 100% coverage for modalManager.js (#9022) @oliviertassinari
+- [core] Upgrade dependencies (#9010) @oliviertassinari
+- [core] Upgrade flow-react-proptypes (#9029) @oliviertassinari
+- [typescript] Specify props type for overriding components (#9035) @pelotom
+- [core] Document the overhead of importing a single component (#9099) @oliviertassinari
+- [typescript] Fix screenWidth type and added is WidthDown (#9114) @stunaz
+- [core] Upgrade jss (#9111) @oliviertassinari
+- [core] Upgrade some dependencies (#9121) @oliviertassinari
+
 ## 1.0.0-beta.20
 ###### _Nov 5, 2017_
 
