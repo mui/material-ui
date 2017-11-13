@@ -31,11 +31,14 @@ As a rule of thumb, only use inline-style for dynamic style properties. The CSS 
 
 There are a number of different options:
 
-1. `withTheme` option:
+- `withTheme` option:
+
 ```js
 export default withStyles(styles, { withTheme: true })(Modal);
 ```
-2. `compose()` helper function:
+
+- `compose()` helper function:
+
 ```js
 import { compose } from 'recompose';
 
@@ -44,7 +47,9 @@ export default compose(
   withStyles(styles)
 )(Modal);
 ```
-3. raw function chaining:
+
+- raw function chaining:
+
 ```js
 export default withTheme()(withStyles(styles)(Modal));
 ```
