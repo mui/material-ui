@@ -17,13 +17,11 @@ const styles = theme => ({
   },
   actionsContainer: {
     marginTop: theme.spacing.unit,
+    marginBottom: theme.spacing.unit,
   },
   resetContainer: {
     marginTop: 0,
     padding: theme.spacing.unit * 3, // TODO: See TODO note on Stepper
-  },
-  transition: {
-    paddingBottom: 4,
   },
 });
 
@@ -84,7 +82,7 @@ class VerticalLinearStepper extends React.Component {
             return (
               <Step key={label}>
                 <StepLabel>{label}</StepLabel>
-                <StepContent classes={{ transition: classes.transition }}>
+                <StepContent>
                   <Typography>{getStepContent(index)}</Typography>
                   <div className={classes.actionsContainer}>
                     <div>
