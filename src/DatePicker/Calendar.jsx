@@ -20,6 +20,7 @@ export class Calendar extends Component {
     disableFuture: PropTypes.bool,
     leftArrowIcon: PropTypes.node,
     rightArrowIcon: PropTypes.node,
+    renderDay: PropTypes.func,
   }
 
   static defaultProps = {
@@ -28,6 +29,7 @@ export class Calendar extends Component {
     disableFuture: false,
     leftArrowIcon: undefined,
     rightArrowIcon: undefined,
+    renderDay: undefined,
   }
 
   state = {
@@ -78,28 +80,44 @@ export class Calendar extends Component {
   }
 
   renderDays = (week) => {
-    const { classes, date } = this.props;
+    const { classes, date, renderDay } = this.props;
 
-    const selectedDate = date.clone().startOf('day').format();
+    const selectedDate = date.clone().startOf('day');
+    const formattedSelectedDate = selectedDate.format();
     const end = week.clone().endOf('week');
     const currentMonthNumber = this.state.currentMonth.get('month');
 
     return Array.from(moment.range(week, end).by('day'))
       .map((day) => {
-        const dayClass = classnames(classes.day, {
-          [classes.hidden]: day.get('month') !== currentMonthNumber,
-          [classes.selected]: day.format() === selectedDate,
-          [classes.disabled]: this.shouldDisableDate(day),
+        // should be applied both for wrapper and button
+        const disabledClass = classnames({ [classes.disabled]: this.shouldDisableDate(day) });
+        const dayInCurrentMonth = day.get('month') === currentMonthNumber;
+
+        const dayClass = classnames(classes.day, disabledClass, {
+          [classes.hidden]: !dayInCurrentMonth,
+          [classes.selected]: day.format() === formattedSelectedDate,
         });
 
-        return (
-          <IconButton
-            key={day.toString()}
-            className={dayClass}
-            onClick={() => this.onDateSelect(day)}
-          >
+        let dayComponent = (
+          <IconButton className={dayClass}>
             <span> { day.format('DD')} </span>
           </IconButton>
+        );
+
+        if (renderDay) {
+          dayComponent = renderDay(day, selectedDate, dayInCurrentMonth, dayComponent);
+        }
+
+        return (
+          <div
+            key={day.toString()}
+            onClick={() => dayInCurrentMonth && this.onDateSelect(day)}
+            onKeyPress={() => dayInCurrentMonth && this.onDateSelect(day)}
+            className={disabledClass}
+            role="presentation"
+          >
+            {dayComponent}
+          </div>
         );
       });
   }

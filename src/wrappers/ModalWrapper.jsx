@@ -13,12 +13,14 @@ export default class ModalWrapper extends PureComponent {
     onDismiss: PropTypes.func.isRequired,
     dialogContentClassName: PropTypes.string,
     invalidLabel: PropTypes.string,
+    labelFunc: PropTypes.func,
   }
 
   static defaultProps = {
     dialogContentClassName: '',
     invalidLabel: undefined,
     value: new Date(),
+    labelFunc: undefined,
   }
 
   state = {
@@ -48,6 +50,7 @@ export default class ModalWrapper extends PureComponent {
       onAccept,
       onDismiss,
       invalidLabel,
+      labelFunc,
       ...other
     } = this.props;
 
@@ -57,7 +60,9 @@ export default class ModalWrapper extends PureComponent {
           value={value}
           format={format}
           onClick={this.togglePicker}
+          // onFocus={this.togglePicker} <- Currently not properly works with .blur() on TextField
           invalidLabel={invalidLabel}
+          labelFunc={labelFunc}
           {...other}
         />
 

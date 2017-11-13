@@ -28,6 +28,8 @@ export class DateTimePickerWrapper extends PickerBase {
     rightArrowIcon: PropTypes.node,
     dateRangeIcon: PropTypes.node,
     timeIcon: PropTypes.node,
+    renderDay: PropTypes.func,
+    labelFunc: PropTypes.func,
   }
 
   static defaultProps = {
@@ -46,6 +48,8 @@ export class DateTimePickerWrapper extends PickerBase {
     rightArrowIcon: undefined,
     dateRangeIcon: undefined,
     timeIcon: undefined,
+    renderDay: undefined,
+    labelFunc: undefined,
   }
 
   render() {
@@ -67,6 +71,8 @@ export class DateTimePickerWrapper extends PickerBase {
       rightArrowIcon,
       dateRangeIcon,
       timeIcon,
+      renderDay,
+      labelFunc,
       ...other
     } = this.props;
 
@@ -81,6 +87,7 @@ export class DateTimePickerWrapper extends PickerBase {
         onDismiss={this.handleDismiss}
         dialogContentClassName={dialogClassName}
         invalidLabel={invalidLabel}
+        labelFunc={labelFunc}
         {...other}
       >
         <DateTimePicker
@@ -96,6 +103,7 @@ export class DateTimePickerWrapper extends PickerBase {
           rightArrowIcon={rightArrowIcon}
           dateRangeIcon={dateRangeIcon}
           timeIcon={timeIcon}
+          renderDay={renderDay}
         />
       </ModalWrapper>
     );

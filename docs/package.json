@@ -3,7 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react-scripts": "1.0.14"
+    "marked": "^0.3.6",
+    "prismjs": "^1.8.4",
+    "react-highlight": "^0.10.0",
+    "react-jsx-parser": "^1.1.5",
+    "react-markdown": "^2.5.1",
+    "react-scripts": "1.0.14",
+    "react-syntax-highlighter": "^5.8.0"
   },
   "scripts": {
     "start": "cross-env PORT=3002 react-scripts start",
@@ -12,6 +18,12 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "cross-env": "^5.1.0"
+    "cross-env": "^5.1.0",
+    "eslint": "^4.8.0",
+    "eslint-config-airbnb": "^16.0.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
+    "fs": "0.0.1-security"
   }
 }

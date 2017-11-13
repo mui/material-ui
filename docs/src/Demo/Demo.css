@@ -1,9 +1,3 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
 .text-light {
   font-weight: 200 !important;
 }
@@ -26,15 +20,6 @@ main {
   width: 100%;
   height: 40vw;
   max-height: 230px
-}
-
-.pickers {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  min-height: 160px;
-  padding-top: 40px;
-  margin: 30px auto 50px;
 }
 
 .picker {
