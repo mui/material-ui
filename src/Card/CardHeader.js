@@ -54,14 +54,12 @@ export type Props = {
 function CardHeader(props: ProvidedProps & Props) {
   const { avatar, classes, className: classNameProp, subheader, title, ...other } = props;
 
-  const className = classNames(classes.root, classNameProp);
-
   // Adjustments that depend on the presence of an avatar
   const titleType = avatar ? 'body2' : 'headline';
   const subheaderType = avatar ? 'body2' : 'body1';
 
   return (
-    <CardContent className={className} {...other}>
+    <CardContent className={classNames(classes.root, classNameProp)} {...other}>
       {avatar && <div className={classes.avatar}>{avatar}</div>}
       <div className={classes.content}>
         <Typography type={titleType} component="span" className={classes.title}>
