@@ -1,4 +1,4 @@
-# Examples
+# Example Projects
 
 Are you looking for an example project to get started?
 

@@ -6,14 +6,14 @@ You can use it, but you don't have to. This styling solution is interoperable wi
 
 ## Our styling solution
 
-In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the style of the 
-components, but these approaches have proven to be limited.Finally, we have [moved toward](https://github.com/oliviertassinari/a-journey-toward-better-style) 
+In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the style of the
+components, but these approaches have proven to be limited.Finally, we have [moved toward](https://github.com/oliviertassinari/a-journey-toward-better-style)
 a *CSS-in-JS* solution. It **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.).
 We think that it's the future:
 - [A Unified Styling Language](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
 - [The future of component-based styling](https://medium.freecodecamp.com/css-in-javascript-the-future-of-component-based-styling-70b161a79a32)
 
-So, you may have noticed in the demos how this *CSS-in-JS* looks. We use the [`withStyles`](/customization/css-in-js#api) 
+So, you may have noticed in the demos how this *CSS-in-JS* looks. We use the [`withStyles`](/customization/css-in-js#api)
 higher-order component to inject an array of styles into the DOM as CSS. Here's an example:
 
 {{demo='pages/customization/CssInJs.js'}}
@@ -115,7 +115,7 @@ export default App;
 ### React JSS
 
 Material-UI's styling solution shares many building blocks with [react-jss](https://github.com/cssinjs/react-jss).
-We went ahead and forked the project in order to handle our unique needs, but we're working to merge the changes and 
+We went ahead and forked the project in order to handle our unique needs, but we're working to merge the changes and
 fixes from Material-UI back to react-jss.
 
 {{demo='pages/customization/ReactJss.js'}}

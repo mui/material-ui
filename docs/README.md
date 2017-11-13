@@ -4,12 +4,8 @@ This is the documentation website of Material-UI.
 
 To start the docs site in development mode, from the project root, run:
 
-```
-yarn docs:dev
-```
-or
-```
-npm docs:dev
+```sh
+npm run docs:dev
 ```
 
 ## How can I add a new demo in the documentation?

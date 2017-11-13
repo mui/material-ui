@@ -1,14 +1,14 @@
-# Frequently asked questions
+# Frequently Asked Questions
 
 Stuck on a particular problem? Check some of these common gotchas first.
 
 If you still can't find what you are looking for, you can ask the community in [gitter](https://gitter.im/callemall/material-ui).
-For how-to questions and other non-issues, please use [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) 
+For how-to questions and other non-issues, please use [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui)
 instead of Github issues. There is a StackOverflow tag called `material-ui` that you can use to tag your questions.
 
 ## Why do the fixed positioned elements move when a modal is opened?
 
-We block the scroll as soon as a modal is opened. This prevents interacting with the background when the modal 
+We block the scroll as soon as a modal is opened. This prevents interacting with the background when the modal
 should be the only interactive content, however, removing the scrollbar can make your **fixed positioned elements** move.
 In this situation, you can apply a global `.mui-fixed` class name to tell Material-UI to handle those elements.
 
@@ -51,10 +51,10 @@ export default withTheme()(withStyles(styles)(Modal));
 
 ## Material-UI is awesome. How can I support the project?
 
-There are a lot of ways to support Material-UI: 
-- Improve [the documentation](https://github.com/callemall/material-ui/tree/v1-beta/docs). 
-- Help others to get started. 
-- [Spread the word](https://twitter.com/MaterialUI). 
+There are a lot of ways to support Material-UI:
+- Improve [the documentation](https://github.com/callemall/material-ui/tree/v1-beta/docs).
+- Help others to get started.
+- [Spread the word](https://twitter.com/MaterialUI).
 - Answer [StackOverflow questions](https://stackoverflow.com/questions/tagged/material-ui).
 
 If you use Material-UI in a commercial project and would like to support its continued development by becoming a **Sponsor**,
