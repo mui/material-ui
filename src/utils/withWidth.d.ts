@@ -8,9 +8,15 @@ export interface WithWidthProps {
   width: Breakpoint;
 }
 
+export function isWidthDown(
+  breakpoint: Breakpoint,
+  screenWidth: Breakpoint,
+  inclusive?: boolean
+): boolean;
+
 export function isWidthUp(
   breakpoint: Breakpoint,
-  screenWidth: number,
+  screenWidth: Breakpoint,
   inclusive?: boolean
 ): boolean;
 
