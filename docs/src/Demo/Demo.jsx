@@ -37,7 +37,7 @@ class Demo extends Component {
 
             <Tooltip title="Toggle light/dark theme" enterDelay={300}>
               <IconButton color="contrast" onClick={this.props.toggleThemeType}>
-              lightbulb_outline
+                lightbulb_outline
               </IconButton>
             </Tooltip>
 
@@ -69,15 +69,24 @@ class Demo extends Component {
             Here you are!
           </Typography>
 
-          <SourcablePanel title="Basic Usage">
+          <SourcablePanel
+            title="Basic Usage"
+            sourceFile="BasicUsage.jsx"
+          >
             <BasicUsage />
           </SourcablePanel>
 
-          <SourcablePanel title="Date & Time pickers">
+          <SourcablePanel
+            title="Date & Time pickers"
+            sourceFile="DateTimePickers.jsx"
+          >
             <DateTimePickers />
           </SourcablePanel>
 
-          <SourcablePanel title="Custom Day Element">
+          <SourcablePanel
+            title="Custom Day Element"
+            sourceFile="CustomElements.jsx"
+          >
             <CustomElements />
           </SourcablePanel>
         </div>
@@ -113,12 +122,12 @@ const styles = theme => ({
     marginTop: '10px',
   },
   main: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: theme.palette.background.default,
     marginBottom: -50,
   },
   content: {
-    paddingTop: '60px',
-    backgroundColor: theme.palette.background.paper,
+    paddingTop: '80px',
+    backgroundColor: theme.palette.background.default,
     minHeight: 'calc(100vh - 63px)',
     maxWidth: 900,
     margin: '0 auto',
