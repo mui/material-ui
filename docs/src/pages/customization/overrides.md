@@ -18,9 +18,10 @@ Every component provides a `className` property which is always applied to the r
 
 In this example, we are using the [`withStyles()`](http://localhost:3000/customization/css-in-js#api) higher-order
 component to inject custom styles into the DOM, and to pass the class name to the `OverridesClasseNames` component via
- its `classes` prop. You can choose any other styling solution, or even plain CSS to create the styles, but be sure to 
-consider the [CSS injection order](/css-in-js#css-injection-order), as the CSS injected into the DOMby Material-UI to style a component has the highest specificity possible since the `<link />` is injected at the bottom of the `<head />`
-to ensure the components always render correctly.
+its `classes` prop. You can choose any other styling solution, or even plain CSS to create the styles, but be sure to 
+consider the [CSS injection order](/css-in-js#css-injection-order), as the CSS injected into the DOM
+by Material-UI to style a component has the highest specificity possible since the `<link />` is injected at the bottom 
+of the `<head />` to ensure the components always render correctly.
 
 {{demo='pages/customization/OverridesClassNames.js'}}
 

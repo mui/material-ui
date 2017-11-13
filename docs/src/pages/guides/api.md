@@ -38,11 +38,11 @@ The `disableRipple` property will flow this way: [`MenuItem`](/api/menu-item) > 
 
 ### Native properties
 
-We avoid documenting native properties supported by the DOM like `className`.
+We avoid documenting native properties supported by the DOM like [`className`](/customization/overrides#overriding-with-class-names).
 
 ### Classes
 
-All the components accept a `classes` property to customize the styles.
+All the components accept a [`classes`](/customization/overrides#overriding-with-classes) property to customize the styles.
 
 ### Internal components
 
