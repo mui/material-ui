@@ -8,14 +8,15 @@ Changes. Changes everywhere!
 Big thanks to the 18 contributors who made this release possible.
 
 Here are some highlights ✨:
-- @alexhayes and @vladimirpekez have been working hard on migrating the Stepper component
+- @alexhayes and @vladimirpekez have done an awesome job migrating the Stepper component
 to the `v1-beta` branch (#8291). Thank you!
-- @kof Has been working hard on JSS, we have upgraded the dependency to v9 (#9111)
+- @kof Has been working hard and tightly with us to improve JSS, we have upgraded the dependency to v9 (#9111)
 - And many more bug fixes and documentation improvements.
 
 ### Breaking change
 
 - [SwitchBase] Remove legacy properties (#9021) @oliviertassinari
+
 In the following diff `SwitchBase` can be a `Checkbox` a `Radio` or a `Switch`.
 
 ```diff
