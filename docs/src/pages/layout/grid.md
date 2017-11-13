@@ -4,14 +4,14 @@ components: Grid
 
 # Grid
 
-Material design’s responsive UI is based on a 12-column grid layout.
+Material Design’s responsive UI is based on a 12-column grid layout.
 This grid creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
 
 ## How it works
 
 The grid system is implemented with the `<Grid />` component:
-- It’s using [CSS’s Flexible Box module](https://www.w3.org/TR/css-flexbox-1/) for high flexibility.
-- There is two type of layout: *containers* and *items*.
+- It uses [CSS’s Flexible Box module](https://www.w3.org/TR/css-flexbox-1/) for high flexibility.
+- There are two type of layout: *containers* and *items*.
 - Item widths are set in percentages, so they’re always fluid and sized relative to their parent element.
 - Items have padding to create the spacing between individual items.
 - There are five grid breakpoints: xs, sm, md, lg, and xl.
@@ -30,7 +30,7 @@ Spacing can be 8, 16, 24, or 40dp wide.
 
 {{demo='pages/layout/FullWidthGrid.js'}}
 
-**Centered grids**: use fixed columns and reflow the layout when all columns (plus a defined margin) no longer fit on the screen.
+**Centered grids**: use fixed columns and re-flow the layout when all columns (plus a defined margin) no longer fit on the screen.
 
 {{demo='pages/layout/CenteredGrid.js'}}
 
@@ -52,7 +52,7 @@ That also means you can set the width of one *item* and the others will automati
 There is one limitation with the negative margin we use to implement the spacing between items.
 A horizontal scroll will appear if a negative margin goes beyond the `<body />`.
 There are 3 available workarounds:
-1. Not using the spacing feature and implementing it on userland `spacing={0}`.
+1. Not using the spacing feature and implementing it in user space `spacing={0}`.
 2. Adding a padding on the parent with, at least, the spacing value:
 ```jsx
   <body>

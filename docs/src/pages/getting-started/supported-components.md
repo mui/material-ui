@@ -115,7 +115,7 @@ to discuss the approach before submitting a PR.
   - [Text-area](https://material.io/guidelines/components/text-fields.html#text-fields-field-types)
   - **[Full-width](https://material.io/guidelines/components/text-fields.html#text-fields-multi-line-text-field) ✓**
   - [Character counter](https://material.io/guidelines/components/text-fields.html#text-fields-character-counter)
-  - **[Autocomplete](https://material.io/guidelines/components/text-fields.html#text-fields-auto-complete-text-field) (Can be done with external library such as [react-autosuggest](https://github.com/moroshko/react-autosuggest)) ✓**
+  - **[Autocomplete](https://material.io/guidelines/components/text-fields.html#text-fields-auto-complete-text-field) ([Can be done](/demos/autocomplete) with external library such as [react-autosuggest](https://github.com/moroshko/react-autosuggest)) ✓**
   - [Search filter](https://material.io/guidelines/components/text-fields.html#text-fields-search-filter)
   - [Password](https://material.io/guidelines/components/text-fields.html#text-fields-password-input)
 - **[Toolbars](https://material.io/guidelines/components/toolbars.html) ✓**

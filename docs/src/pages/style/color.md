@@ -12,7 +12,7 @@ A hue/shade is a single color within a palette.
 
 #### Palette
 
-A palette is a collection of hues. By default, Material-UI ships with all palettes from the material design spec built in. Valid palettes include:
+A palette is a collection of hues. By default, Material-UI ships with all palettes from the material design spec built in.
 
 ### Examples
 

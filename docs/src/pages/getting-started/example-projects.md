@@ -1,8 +1,8 @@
-# Examples
+# Example Projects
 
 Are you looking for an example project to get started?
 
-We host some example projects. You can find them in our [GitHub repository](https://github.com/callemall/material-ui) under the [`/examples`](https://github.com/callemall/material-ui/tree/v1-beta/examples) folder:
+We host some example projects which you can find in the [GitHub repository](https://github.com/callemall/material-ui) under the [`/examples`](https://github.com/callemall/material-ui/tree/v1-beta/examples) folder:
 - [Create React App](https://github.com/callemall/material-ui/tree/v1-beta/examples/create-react-app)
 - [Next.js](https://github.com/callemall/material-ui/tree/v1-beta/examples/nextjs)
 - [Create React App with Flow](https://github.com/callemall/material-ui/tree/v1-beta/examples/create-react-app-with-flow)
