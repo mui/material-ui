@@ -78,8 +78,9 @@ export default class DateTextField extends Component {
         readOnly
         value={this.getDisplayDate()}
         onChange={this.handleChange}
-        disabled={disabled}
         onClick={this.handleClick}
+        onFocus={this.handleClick}
+        disabled={disabled}
         {...other}
       />
     );
