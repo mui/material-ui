@@ -20,8 +20,8 @@ export function isWidthUp(
   inclusive?: boolean
 ): boolean;
 
-export default function withWidth<P = {}>(
+export default function withWidth(
   options?: WithWidthOptions
-): (
-  component: React.ComponentType<P>
-) => React.ComponentClass<P & WithWidthProps>;
+): <P>(
+  component: React.ComponentType<P & WithWidthProps>
+) => React.ComponentClass<P & Partial<WithWidthProps>>;
