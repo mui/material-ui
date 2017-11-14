@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '..';
 
 export interface ButtonBaseProps extends StandardProps<
-  React.AnchorHTMLAttributes<HTMLAnchorElement> & React.ButtonHTMLAttributes<HTMLButtonElement>,
+  React.AnchorHTMLAttributes<HTMLElement> & React.ButtonHTMLAttributes<HTMLElement>,
   ButtonBaseClassKey
 > {
   centerRipple?: boolean;
