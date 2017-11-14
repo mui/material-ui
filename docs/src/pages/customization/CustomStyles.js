@@ -12,17 +12,17 @@ const styles = theme => ({
   },
 });
 
-let BusinessCheckbox = props => (
+let CustomCheckbox = props => (
   <Checkbox defaultChecked className={props.classes.danger}>
     {'Danger'}
   </Checkbox>
 );
 
-BusinessCheckbox.propTypes = {
+CustomCheckbox.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-BusinessCheckbox = withStyles(styles)(BusinessCheckbox);
+CustomCheckbox = withStyles(styles)(CustomCheckbox);
 
 const theme = createMuiTheme({
   status: {
@@ -31,12 +31,12 @@ const theme = createMuiTheme({
   },
 });
 
-function BusinessVariables() {
+function CustomStyles() {
   return (
     <MuiThemeProvider theme={theme}>
-      <BusinessCheckbox />
+      <CustomCheckbox />
     </MuiThemeProvider>
   );
 }
 
-export default BusinessVariables;
+export default CustomStyles;

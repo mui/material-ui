@@ -8,6 +8,7 @@
     "moduleResolution": "node",
     "noImplicitAny": true,
     "strictNullChecks": true,
+    "strictFunctionTypes": true,
     "forceConsistentCasingInFileNames": true,
     "suppressImplicitAnyIndexErrors": true,
     "noEmit": true,

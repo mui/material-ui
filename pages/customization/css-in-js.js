@@ -17,13 +17,6 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/customization/CssInJs'), 'utf8')
 `,
         },
-        'pages/customization/RtlOptOut.js': {
-          js: require('docs/src/pages/customization/RtlOptOut').default,
-          raw: preval`
-module.exports = require('fs')
-  .readFileSync(require.resolve('docs/src/pages/customization/RtlOptOut'), 'utf8')
-`,
-        },
         'pages/customization/JssRegistry.js': {
           js: require('docs/src/pages/customization/JssRegistry').default,
           raw: preval`
