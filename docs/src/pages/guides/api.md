@@ -38,22 +38,22 @@ The `disableRipple` property will flow this way: [`MenuItem`](/api/menu-item) > 
 
 ### Native properties
 
-We avoid documenting native properties supported by the DOM like `className`.
+We avoid documenting native properties supported by the DOM like [`className`](/customization/overrides#overriding-with-class-names).
 
 ### Classes
 
-All the components accept a `classes` property to customize the styles.
+All the components accept a [`classes`](/customization/overrides#overriding-with-classes) property to customize the styles.
 
 ### Internal components
 
 Internal components have:
-- their own `xxxProps` property when users might need to tweak internal render method's components. For instance, we expose a `inputProps` and a `InputProps` properties.
-- their own `xxxClassName` property when `classes` isn't enough.
 - their own flattened properties when they are key to the abstraction.
+- their own `xxxProps` property when users might need to tweak internal render method's components. For instance, we expose a `inputProps` and a `InputProps` properties.
   For instance, we expose a `value` property.
 - their own `xxxRef` property when user might need to perform imperative actions.
   For instance, we expose a `inputRef` property to access the native `input` on the `Input` component.
   You fill often find a `rootRef` property, this property is applied as a `ref` to the root element of the component
+- their own `xxxClassName` property when `classes` isn't enough.
 
 ### Property naming
 

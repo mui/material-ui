@@ -3,7 +3,7 @@
 This is definitely one of the most challenging pages in the guide to write, but we do feel it’s important.
 Odds are, you’ve had problems you tried to solve and you’ve used another library to solve them.
 You’re here because you want to know if Material-UI can solve your specific problems better.
-That’s what we hope to answer for you.
+That’s what we hope to answer for you here.
 
 We’d like your help keeping this document up-to-date because the JavaScript world moves fast!
 If you notice an inaccuracy or something that doesn’t seem quite right, please let us know by
@@ -15,7 +15,7 @@ If you notice an inaccuracy or something that doesn’t seem quite right, please
 ![npm](https://img.shields.io/npm/dm/material-ui.svg)
 
 We'll try very hard to avoid bias, although as the core team, we obviously like Material-UI a lot ❤️.
-There are some problems we think it solves better than anything else out there; if we didn’t believe that, we wouldn’t be working on it.
+There are some problems we think it solves better than anything else out there; if we didn’t believe that, we wouldn’t be working on it 😄.
 
 We do want to be fair and accurate though, so where other libraries offer significant advantages we try to list these as well.
 
@@ -39,7 +39,7 @@ and towards the goal of a canonical Material Design implementation for the entir
 ![npm](https://img.shields.io/npm/dm/material-components-web.svg)
 
 We are very happy to see this project supported by Google and its design team.
-It sends a clear signal that the [material design specifiction](https://material.io/guidelines/) is
+It sends a clear signal that the [Material Design specifiction](https://material.io/guidelines/) is
 here to stay, as they continue to invest in it.
 
 ### Frameworks and libraries
@@ -48,12 +48,12 @@ Material-UI focuses exclusively on the React library, although, given that Preac
 we hope to soon support it too. Supporting one framework allows us to do less but do it better.
 
 This comes in different flavors:
-- Having fewer constraints, we can make tradeoffs specific to out target framework.
+- Having fewer constraints, we can make trade-offs specific to out target framework.
 We have fewer edge-cases to take into account.
 - We can spend more time on nailing the React use case.
 
 MDC-web was designed from the ground up to be fully compatible with 3rd party JS frameworks and libraries.
-They provide a [react framework integration example](https://github.com/material-components/material-components-web/tree/master/framework-examples/react) which they used as proof of concept to vet the viability of our architecture model.
+They list 3rd-party framework integration projects in the github [README](https://github.com/material-components/material-components-web/#material-components-for-the-web)
 
 ### Styling solution
 
@@ -64,7 +64,7 @@ This was promising:
 - It allowed us to remove the dependency on the LESS toolchain for our users.
 We removed one important friction in the installation process. (**simpler**)
 - We were able to change the theme at runtime, nest different themes, and have dynamic styles. (**more powerful**)
-- We reduced the loading time by breaking the big monilthic CSS file in order to enable code splitting. (**faster**)
+- We reduced the loading time by breaking the big monolithic CSS file in order to enable code splitting. (**faster**)
 - The style override story became more intuitive, as we were free of CSS specificity issues. (**simpler**)
 
 Eventually, we reached the limitations of inline-styles and moved toward a CSS-in-JS
@@ -83,22 +83,21 @@ Our vision is to provide an elegant implementation of the Material Design guidel
 
 > *[An extract taken from the [vision section](/discover-more/vision/) of the documentation.]*
 
-We want to see business succeeding in taking advantage of Material-UI to ship an awesome UI to their users
-while having it match their brand.
-That's why we have been investing a lot in the customization capabilities of Material-UI.
+We want to see businesses succeeding in taking advantage of Material-UI to ship an awesome UI to their users
+while having it match their brand, so we have invested a lot in the customization capabilities of Material-UI.
 
 The only goal of MDC-Web is to be a Material Design implementation for the web platform. **Nothing more, nothing less**. They will not consider making changes to the components - especially UX changes - that would facilitate additional flexibility at the cost of breaking with the core Material Design system, as that is a non-goal of the project. *[source](https://github.com/callemall/material-ui/issues/6799#issuecomment-299925174)*
 
 ### Tests
 
-Both projects invest a lot in tests. As I'm writting this lines, both projects have over 99% test coverage:
+Both projects invest a lot in tests. At the time of writing, both projects have over 99% test coverage:
 - Material-UI has 1200+ unit tests running on Chrome 49, Firefox 45, Safari 10 and Edge 14.
 - MDC-web has 1200+ unit tests running on all the major browsers.
 
-Still, there is one thing that sets Material-UI apart and it's capital.
-We have [hundreds visual regression tests](https://www.argos-ci.com/callemall/material-ui) when MDC-web doesn't have any.
-With visual regression tests, you don't have to make any tradeoff:
-- You can spend less time making sure every contribution doesn't introduce unexpected regression.
+Still, there is one thing that sets Material-UI apart and it's key:
+We have [hundreds of visual regression tests](https://www.argos-ci.com/callemall/material-ui) when MDC-web doesn't have any.
+With visual regression tests, you don't have to make any trade-off:
+- You can spend less time making sure every contribution doesn't introduce unexpected regressions.
 The **less** time you spend on a single contribution, the **more** contributions you can accept.
 - You can merge new contributions without digging much. Effectively, you are not waiting for users to report regressions. It's **efficient** and **improves the library quality**.
 
@@ -135,4 +134,4 @@ Material-UI has chosen **JSS** while React Toolbox started rewriting their libra
 - JSS is [two times faster](https://github.com/A-gambit/CSS-IN-JS-Benchmarks/blob/master/RESULT.md) to mount components than style-components is, with all the optimization turned on.
 
 This is not to say that Material-UI is opinionated about how users write their styles.
-You can use styled-component if you would like to do so.
+You can use styled-components if you would like to do so.

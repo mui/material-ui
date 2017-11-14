@@ -1,6 +1,6 @@
 # Minimizing Bundle Size
 
-## Bundle size matter
+## Bundle size matters
 
 Material-UI takes the bundle size very seriously.
 We are relying on [size-limit](https://github.com/ai/size-limit) to prevent introducing any regression.

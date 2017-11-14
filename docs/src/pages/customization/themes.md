@@ -5,7 +5,7 @@ It allows you to **customize all design aspects** of your project in order to me
 
 The theme specifies the darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc.
 To promote greater consistency between apps, light and dark themes are available to choose from.
-We are using [jss](https://github.com/cssinjs/jss) under the hood.
+We use [jss](https://github.com/cssinjs/jss) under the hood.
 
 ## Theme provider
 
@@ -31,7 +31,7 @@ We expose the following color intentions:
 - secondary - used to represent secondary interface elements for a user.
 - error - used to represent interface elements that the user should be careful of.
 
-The palette is using the hues prefixed with `A` (`A200`, etc.) for the accent color and the hues unprefixed for the other intentions.
+The palette uses the hues prefixed with `A` (`A200`, etc.) for the accent color and the hues unprefixed for the other intentions.
 If you want to learn more about color, you can check out [the color section](/style/color).
 
 #### Example
@@ -51,15 +51,12 @@ If you want to learn more about color, you can check out [the typography section
 
 #### Font size
 
-Material-UI is using the rem units for the font size.
-The browser html element default font size is `16px`.
-Browsers have an option to change this value.
-The rem units are allowing us to accommodate the users settings.
-This unit choice results in a much better user experiences.
+Material-UI uses `rem` units for the font size.
+The browser html element default font size is `16px`, but browsers have an option to change this value,
+so `rem` units allow us to accommodate the users settings, resulting in a much better user experience.
 
-Users change font size settings for all kinds of reasons,
-from strained eyesight to choosing optimum settings for devices that can
-be vastly different in size and viewing distance.
+Users change font size settings for all kinds of reasons, from poor eyesight to choosing optimum settings
+for devices that can be vastly different in size and viewing distance.
 
 For instance, you might want to change this value when using the [10px simplification](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/).
 ```css
@@ -85,14 +82,14 @@ If you want to learn more, we suggesting having a look at [`material-ui/style/cr
 
 {{demo='pages/customization/ThemeDefault.js'}}
 
-### Business variables
+### Adding custom styles
 
 When using our [styling solution](/customization/css-in-js) with your own components,
 you can also take advantage of the theme.
 It can be convenient to add additional variables to the theme so you can use them everywhere.
 For instance:
 
-{{demo='pages/customization/BusinessVariables.js'}}
+{{demo='pages/customization/CustomStyles.js'}}
 
 ## Customizing all instances of a component type
 
