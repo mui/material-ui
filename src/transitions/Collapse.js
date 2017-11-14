@@ -189,15 +189,9 @@ class Collapse extends React.Component<ProvidedProps & Props> {
   };
 
   addEndListener = (node, next: Function) => {
-    let timeout;
-
     if (this.props.timeout === 'auto') {
-      timeout = this.autoTransitionDuration || 0;
-    } else {
-      timeout = this.props.timeout;
+      setTimeout(next, this.autoTransitionDuration || 0);
     }
-
-    setTimeout(next, timeout);
   };
 
   render() {
@@ -229,6 +223,7 @@ class Collapse extends React.Component<ProvidedProps & Props> {
         onExit={this.handleExit}
         addEndListener={this.addEndListener}
         style={{ minHeight: collapsedHeight, ...style }}
+        timeout={timeout === 'auto' ? null : timeout}
         {...other}
       >
         {state => {
