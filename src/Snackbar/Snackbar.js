@@ -39,43 +39,51 @@ export const styles = (theme: Object) => {
       alignItems: 'center',
     },
     anchorTopCenter: {
-      extend: [top],
+      ...top,
       [theme.breakpoints.up('md')]: {
-        extend: [center],
+        ...center,
       },
     },
     anchorBottomCenter: {
-      extend: [bottom],
+      ...bottom,
       [theme.breakpoints.up('md')]: {
-        extend: [center],
+        ...center,
       },
     },
     anchorTopRight: {
-      extend: [top, right],
+      ...top,
+      ...right,
       [theme.breakpoints.up('md')]: {
         left: 'auto',
-        extend: [topSpace, rightSpace],
+        ...topSpace,
+        ...rightSpace,
       },
     },
     anchorBottomRight: {
-      extend: [bottom, right],
+      ...bottom,
+      ...right,
       [theme.breakpoints.up('md')]: {
         left: 'auto',
-        extend: [bottomSpace, rightSpace],
+        ...bottomSpace,
+        ...rightSpace,
       },
     },
     anchorTopLeft: {
-      extend: [top, left],
+      ...top,
+      ...left,
       [theme.breakpoints.up('md')]: {
         right: 'auto',
-        extend: [topSpace, leftSpace],
+        ...topSpace,
+        ...leftSpace,
       },
     },
     anchorBottomLeft: {
-      extend: [bottom, left],
+      ...bottom,
+      ...left,
       [theme.breakpoints.up('md')]: {
         right: 'auto',
-        extend: [bottomSpace, leftSpace],
+        ...bottomSpace,
+        ...leftSpace,
       },
     },
   };
