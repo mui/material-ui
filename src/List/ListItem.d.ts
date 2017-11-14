@@ -4,7 +4,8 @@ import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase';
 
 export interface ListItemProps extends StandardProps<
   ButtonBaseProps & React.LiHTMLAttributes<HTMLLIElement>,
-  ListItemClassKey
+  ListItemClassKey,
+  'component'
 > {
   button?: boolean;
   component?: string | React.ComponentType<ListItemProps>;
