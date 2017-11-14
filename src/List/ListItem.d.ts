@@ -3,7 +3,7 @@ import { StandardProps } from '..';
 import { ButtonBaseProps, ButtonBaseClassKey } from '../ButtonBase';
 
 export interface ListItemProps extends StandardProps<
-  ButtonBaseProps & React.LiHTMLAttributes<HTMLLIElement>,
+  ButtonBaseProps & React.LiHTMLAttributes<HTMLElement>,
   ListItemClassKey,
   'component'
 > {
