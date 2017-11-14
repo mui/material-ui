@@ -157,7 +157,6 @@
     "random-words": "0.0.1",
     "raw-loader": "^0.5.1",
     "react": "^16.1.1",
-    "react-a11y": "^0.3.4",
     "react-autosuggest": "^9.3.2",
     "react-docgen": "^3.0.0-beta9",
     "react-dom": "^16.1.1",
