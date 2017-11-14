@@ -9,14 +9,11 @@ import Typography from 'material-ui/Typography';
 // 1. We define the styles.
 const styles = theme => ({
   root: {
-    color: 'inherit',
+    color: props => (props.variant === 'primary' ? theme.palette.primary[500] : 'inherit'),
     textDecoration: 'inherit',
     '&:hover': {
       textDecoration: 'underline',
     },
-  },
-  primary: {
-    color: theme.palette.primary[500],
   },
 });
 
@@ -24,16 +21,7 @@ function MyLink(props) {
   const { children, classes, className, variant, sheet, theme, ...other } = props;
 
   return (
-    <a
-      className={classNames(
-        classes.root,
-        {
-          [classes.primary]: variant === 'primary',
-        },
-        className,
-      )}
-      {...other}
-    >
+    <a className={classNames(classes.root, className)} {...other}>
       {children}
     </a>
   );
@@ -45,16 +33,18 @@ MyLink.propTypes = {
   className: PropTypes.string,
   sheet: PropTypes.object,
   theme: PropTypes.object,
-  variant: PropTypes.oneOf(['primary']),
+  variant: PropTypes.oneOf(['primary', 'default']),
 };
 
 // 2. We inject the styles.
 const MyLinkStyled = injectSheet(styles)(MyLink);
 
-export default function CssInJs() {
+export default function ReactJss() {
   return (
     <Typography type="subheading">
-      <MyLinkStyled href="#">MyLink</MyLinkStyled>
+      <MyLinkStyled href="#" variant="default">
+        MyLink
+      </MyLinkStyled>
       {' - '}
       <MyLinkStyled href="#" variant="primary">
         {'primary'}

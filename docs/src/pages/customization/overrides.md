@@ -18,9 +18,9 @@ Every component provides a `className` property which is always applied to the r
 
 In this example, we are using the [`withStyles()`](http://localhost:3000/customization/css-in-js#api) higher-order
 component to inject custom styles into the DOM, and to pass the class name to the `OverridesClasseNames` component via
-its `classes` prop. You can choose any other styling solution, or even plain CSS to create the styles, but be sure to 
+its `classes` prop. You can choose any other styling solution, or even plain CSS to create the styles, but be sure to
 consider the [CSS injection order](/css-in-js#css-injection-order), as the CSS injected into the DOM
-by Material-UI to style a component has the highest specificity possible since the `<link />` is injected at the bottom 
+by Material-UI to style a component has the highest specificity possible since the `<link />` is injected at the bottom
 of the `<head />` to ensure the components always render correctly.
 
 {{demo='pages/customization/OverridesClassNames.js'}}
@@ -28,14 +28,14 @@ of the `<head />` to ensure the components always render correctly.
 ### Overriding with classes
 
 When the `className` property isn't enough, and you need to access deeper elements, you can take advantage of the `classes` property to customize all the CSS injected by Material-UI for a given component.
-The list of  classes for each 
+The list of  classes for each
 component is documented in the **Component API** section.
 For instance, you can have a look at the [Button CSS API](/api/button#css-api).
 Alternatively, you can always look at the [implementation details](https://github.com/callemall/material-ui/blob/v1-beta/src/Button/Button.js).
 
-This example also uses `withStyles()` (see above), but here, `OverridesClasses` is using Button's `classes` prop to 
-provide an array containing the **names of classes to override** (keys), and the **CSS class names to apply** (values). 
-The component's existing classes will continue to be injected, so it is only necessary to provide the specific styles 
+This example also uses `withStyles()` (see above), but here, `OverridesClasses` is using Button's `classes` prop to
+provide an array containing the **names of classes to override** (keys), and the **CSS class names to apply** (values).
+The component's existing classes will continue to be injected, so it is only necessary to provide the specific styles
 you wish to add or override.
 
 Notice that in addition to the button styling, the button label's capitalization has been changed:
@@ -72,6 +72,6 @@ In order to promote consistency and manage the user interface as a whole, Materi
 
 ### Customizing all instances of a component type
 
-When the configuration variables aren't powerful enough, you can take advantage of the `overrides` key of the `theme` 
-to potentially change every single style injected by Material-UI into the DOM. Learn more about it in 
+When the configuration variables aren't powerful enough, you can take advantage of the `overrides` key of the `theme`
+to potentially change every single style injected by Material-UI into the DOM. Learn more about it in
 the [themes](/customization/themes#customizing-all-instances-of-a-component-type)section of the documentation.

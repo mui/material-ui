@@ -50,7 +50,7 @@ export default withTheme()(withStyles(styles)(Modal));
 
 ## Material-UI is awesome. How can I support the project?
 
-There are a lot of ways to support Material-UI: 
+There are a lot of ways to support Material-UI:
 - Improve [the documentation](https://github.com/callemall/material-ui/tree/v1-beta/docs).- Help others to get started.- [Spread the word](https://twitter.com/MaterialUI).- Answer [StackOverflow questions](https://stackoverflow.com/questions/tagged/material-ui).If you use Material-UI in a commercial project and would like to support its continued development by becoming a **Sponsor**,
 or in a side or hobby project and would like to become a backer, you can do so through [OpenCollective](https://opencollective.com/material-ui).
 

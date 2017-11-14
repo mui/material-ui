@@ -6,15 +6,15 @@ You can use it, but you don't have to. This styling solution is interoperable wi
 
 ## Material-UI's styling solution
 
-In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the style of the 
-components, but these approaches have proven to be limited. Most recently, we have [moved toward](https://github.com/oliviertassinari/a-journey-toward-better-style) 
+In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the style of the
+components, but these approaches have proven to be limited. Most recently, we have [moved toward](https://github.com/oliviertassinari/a-journey-toward-better-style)
 a *CSS-in-JS* solution. It **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.).
 We think that it's the future:
 - [A Unified Styling Language](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
 - [The future of component-based styling](https://medium.freecodecamp.com/css-in-javascript-the-future-of-component-based-styling-70b161a79a32)
 
 So, you may have noticed in the demos how this *CSS-in-JS* looks.
-We use the [`withStyles` ](/customization/css-in-js#api) 
+We use the [`withStyles`](#api)
 higher-order component to inject an array of styles into the DOM as CSS, using JSS. Here's an example:
 
 {{demo='pages/customization/CssInJs.js'}}
@@ -23,7 +23,7 @@ higher-order component to inject an array of styles into the DOM as CSS, using J
 
 Material-UI's styling solution uses [JSS](https://github.com/cssinjs/jss) at its core.
 It's a [high performance](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JS to CSS compiler which works at runtime and server-side.
-It is about 5 kB (minified and gzipped) and is extensible via a [plugins](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
+It is about 8 kB (minified and gzipped) and is extensible via a [plugins](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
 
 If you end up using this styling solution in your codebase, you're going to need to *learn the API*.
 The best place to start is by looking at the features that each [plugin](http://cssinjs.org/plugins) provides. Material-UI uses the [jss-preset-default](http://cssinjs.org/jss-preset-default) module. You can always add new plugins if needed with the [`JssProvider`](https://github.com/cssinjs/react-jss#custom-setup) helper.
@@ -71,7 +71,7 @@ This way, we ensure the components always render correctly.
 
 You might, however, also want to override these styles, for example with styled-components.
 If you are experiencing a CSS injection order issue, JSS [provides a mechanism](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-dom-insertion-point) to handle this situation.
-By adjusting the placement of the `insertionPoint` comment within your HTML body you can [control the order](http://cssinjs.org/js-api/?v=v9.3.0#attach-style-sheets-in-a-specific-order) that the CSS rules are applied to your components.
+By adjusting the placement of the `insertionPoint` comment within your HTML body you can [control the order](http://cssinjs.org/js-api/#attach-style-sheets-in-a-specific-order) that the CSS rules are applied to your components.
 
 ```jsx
 <head>
@@ -107,8 +107,21 @@ export default App;
 
 ### React JSS
 
- Material-UI's styling solution shares many building blocks with [react-jss](https://github.com/cssinjs/react-jss).
+Material-UI's styling solution shares many building blocks with [react-jss](https://github.com/cssinjs/react-jss).
 We went ahead and forked the project in order to handle our unique needs, but we're working to merge the changes and fixes from Material-UI back to react-jss.
+
+In the following demo we demonstrate how to use `injectSheet()` and "the styles as a function of the properties" feature:
+
+```js
+const styles = theme => ({
+  root: {
+    color: props => (props.variant === 'primary'
+      ? theme.palette.primary[500]
+      : 'inherit'),
+    textDecoration: 'inherit',
+  },
+});
+```
 
 {{demo='pages/customization/ReactJss.js'}}
 

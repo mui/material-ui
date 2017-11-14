@@ -52,7 +52,7 @@ This comes in different flavors:
 We have fewer edge-cases to take into account.
 - We can spend more time on nailing the React use case.
 
-MDC-web was designed from the ground up to be fully compatible with 3rd party JS frameworks and libraries. 
+MDC-web was designed from the ground up to be fully compatible with 3rd party JS frameworks and libraries.
 They list 3rd-party framework integration projects in the github [README](https://github.com/material-components/material-components-web/#material-components-for-the-web)
 
 ### Styling solution

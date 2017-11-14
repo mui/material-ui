@@ -55,7 +55,7 @@ Material-UI uses `rem` units for the font size.
 The browser html element default font size is `16px`, but browsers have an option to change this value,
 so `rem` units allow us to accommodate the users settings, resulting in a much better user experience.
 
-Users change font size settings for all kinds of reasons, from poor eyesight to choosing optimum settings 
+Users change font size settings for all kinds of reasons, from poor eyesight to choosing optimum settings
 for devices that can be vastly different in size and viewing distance.
 
 For instance, you might want to change this value when using the [10px simplification](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/).
