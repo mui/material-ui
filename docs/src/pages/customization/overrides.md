@@ -1,6 +1,6 @@
 # Overrides
 
-As components evolve in different contexts, Material-UI supports four different types of customization needs going from **the most specific** to **the most generic**:
+As components can be used in different contexts, Material-UI supports four different types of customization requirements going from **the most specific** to **the most generic**:
 
 1. [Specific variation for a one-time situation](#1-specific-variation-for-a-one-time-situation)
 2. [Specific variation of a component](#2-specific-variation-of-a-component) re-used in different contexts
@@ -62,7 +62,7 @@ The best approach is to follow option 1 and then take advantage of the compositi
 
 ## 3. Material Design variations
 
-TheMaterial Design specification documents different variations of certain components, such as how buttons come in different shapes: [flat](https://material.io/guidelines/components/buttons.html#buttons-flat-buttons), [raised](https://material.io/guidelines/components/buttons.html#buttons-raised-buttons), [floating](https://material.io/guidelines/components/buttons-floating-action-button.html) and more.
+The Material Design specification documents different variations of certain components, such as how buttons come in different shapes: [flat](https://material.io/guidelines/components/buttons.html#buttons-flat-buttons), [raised](https://material.io/guidelines/components/buttons.html#buttons-raised-buttons), [floating](https://material.io/guidelines/components/buttons-floating-action-button.html) and more.
 
 Material-UI attempts to implement all of these variations. Please refer to the [Supported Components](/getting-started/supported-components) documentation to find out the current status of all supported Material Design components.
 
