@@ -760,9 +760,9 @@ babel-plugin-check-es2015-constants@^6.22.0:
   dependencies:
     babel-runtime "^6.22.0"
 
-babel-plugin-flow-react-proptypes@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-flow-react-proptypes/-/babel-plugin-flow-react-proptypes-9.0.0.tgz#0ccdd850143ade03fda0c4e6ccb04226e6a646de"
+babel-plugin-flow-react-proptypes@^9.1.0:
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-flow-react-proptypes/-/babel-plugin-flow-react-proptypes-9.1.0.tgz#52f6222a7f2c68e54b7e8b3f1962fc45dec09139"
   dependencies:
     babel-core "^6.25.0"
     babel-template "^6.25.0"
@@ -2865,9 +2865,9 @@ entities@^1.1.1, entities@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.1.tgz#6e5c2d0a5621b5dadaecef80b90edfb5cd7772f0"
 
-enzyme-adapter-react-16@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/enzyme-adapter-react-16/-/enzyme-adapter-react-16-1.0.4.tgz#67f898cc053452f5c786424e395fe0c63a0607fe"
+enzyme-adapter-react-16@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/enzyme-adapter-react-16/-/enzyme-adapter-react-16-1.1.0.tgz#86c5db7c10f0be6ec25d54ca41b59f2abb397cf4"
   dependencies:
     enzyme-adapter-utils "^1.1.0"
     lodash "^4.17.4"
@@ -2884,19 +2884,20 @@ enzyme-adapter-utils@^1.1.0:
     object.assign "^4.0.4"
     prop-types "^15.5.10"
 
-enzyme@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/enzyme/-/enzyme-3.1.1.tgz#c6948dfccd055d75fbd8627ad1c96a024d0e247b"
+enzyme@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/enzyme/-/enzyme-3.2.0.tgz#998bdcda0fc71b8764a0017f7cc692c943f54a7a"
   dependencies:
     cheerio "^1.0.0-rc.2"
     function.prototype.name "^1.0.3"
+    has "^1.0.1"
     is-subset "^0.1.1"
     lodash "^4.17.4"
     object-is "^1.0.1"
     object.assign "^4.0.4"
     object.entries "^1.0.4"
     object.values "^1.0.4"
-    raf "^3.3.2"
+    raf "^3.4.0"
     rst-selector-parser "^2.2.3"
 
 err-code@^0.1.0:
@@ -5020,17 +5021,9 @@ jss-vendor-prefixer@^7.0.0:
   dependencies:
     css-vendor "^0.3.8"
 
-jss@^9.2.0:
-  version "9.2.0"
-  resolved "https://registry.yarnpkg.com/jss/-/jss-9.2.0.tgz#d4990049213a0907d51c0d676f829e9bc8a4f19c"
-  dependencies:
-    is-in-browser "^1.1.3"
-    symbol-observable "^1.0.4"
-    warning "^3.0.0"
-
-jss@^9.3.1:
-  version "9.3.1"
-  resolved "https://registry.yarnpkg.com/jss/-/jss-9.3.1.tgz#7ac535d0eebc9f7287933c6b166c17f829bbab7d"
+jss@^9.3.2, jss@^9.3.3:
+  version "9.3.3"
+  resolved "https://registry.yarnpkg.com/jss/-/jss-9.3.3.tgz#d535ad8c64f6df9aeadb0219d5153c47493ff1c0"
   dependencies:
     is-in-browser "^1.1.3"
     symbol-observable "^1.0.4"
@@ -6153,7 +6146,7 @@ object-keys@^1.0.10, object-keys@^1.0.8:
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-1.0.11.tgz#c54601778ad560f1142ce0e01bcca8b56d13426d"
 
-object.assign@^4.0.3, object.assign@^4.0.4:
+object.assign@^4.0.4:
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/object.assign/-/object.assign-4.0.4.tgz#b1c9cc044ef1b9fe63606fc141abbb32e14730cc"
   dependencies:
@@ -7014,7 +7007,7 @@ querystring@0.2.0, querystring@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/querystring/-/querystring-0.2.0.tgz#b209849203bb25df820da756e747005878521620"
 
-raf@^3.3.2:
+raf@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/raf/-/raf-3.4.0.tgz#a28876881b4bc2ca9117d4138163ddb80f781575"
   dependencies:
@@ -7095,12 +7088,6 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-a11y@^0.3.4:
-  version "0.3.4"
-  resolved "https://registry.yarnpkg.com/react-a11y/-/react-a11y-0.3.4.tgz#f31d6c165f09b47fdcc695b0f1fdae8a71f12a05"
-  dependencies:
-    object.assign "^4.0.3"
-
 react-autosuggest@^9.3.2:
   version "9.3.2"
   resolved "https://registry.yarnpkg.com/react-autosuggest/-/react-autosuggest-9.3.2.tgz#dd8c0fbe9c25aa94afe296180353647f6ecc10a7"
@@ -7174,12 +7161,12 @@ react-hot-loader@3.1.1:
     redbox-react "^1.3.6"
     source-map "^0.6.1"
 
-react-jss@^8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/react-jss/-/react-jss-8.0.0.tgz#568ba0502c58e6adb94263a05f4971406ffee386"
+react-jss@^8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/react-jss/-/react-jss-8.1.0.tgz#7eefe3d121d31d5650118fc4f6b119e388cd43ba"
   dependencies:
     hoist-non-react-statics "^2.3.1"
-    jss "^9.2.0"
+    jss "^9.3.2"
     jss-preset-default "^4.0.1"
     prop-types "^15.6.0"
     theming "^1.2.1"
