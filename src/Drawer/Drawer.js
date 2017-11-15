@@ -40,6 +40,12 @@ export const styles = (theme: Object) => ({
     // temporary style
     position: 'fixed',
     top: 0,
+    // We disable the focus ring for mouse, touch and keyboard users.
+    // At some point, it would be better to keep it for keyboard users.
+    // :focus-ring CSS pseudo-class will help.
+    '&:focus': {
+      outline: 'none',
+    },
   },
   paperAnchorLeft: {
     left: 0,
