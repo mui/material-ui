@@ -9,13 +9,13 @@ export interface StepContentProps extends StandardProps<
 > {
   active?: boolean;
   alternativeLabel?: boolean;
-  children: Node;
+  children: React.ReactNode;
   completed?: boolean;
   last?: boolean;
   optional?: boolean;
   orientation?: Orientation;
   transition?: Function;
-  transitionDuration: TransitionDuration;
+  transitionDuration?: TransitionDuration | 'auto';
 }
 
 export type StepContentClasskey =
