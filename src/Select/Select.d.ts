@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 import { InputProps } from '../Input';
-import { InputClassKey } from '../Input/Input';
+import { MenuProps } from '../Menu';
 
 export interface SelectProps extends StandardProps<
   InputProps,
@@ -11,17 +11,19 @@ export interface SelectProps extends StandardProps<
   autoWidth?: boolean;
   displayEmpty?: boolean;
   input?: React.ReactNode;
+  InputClasses?: InputProps['classes'];
   native?: boolean;
   multiple?: boolean;
-  MenuProps?: Object;
+  MenuProps?: Partial<MenuProps>;
   renderValue?: Function;
   value?: Array<string | number> | string | number;
 }
 
 type SelectClassKey =
-  | InputClassKey
+  | 'root'
   | 'select'
   | 'selectMenu'
+  | 'disabled'
   | 'icon'
   ;
 
