@@ -76,8 +76,10 @@ export type Props = {
   /**
    * Adjust the duration of the content expand transition.
    * Passed as a property to the transition component.
+   *
+   * Set to 'auto' to automatically calculate transition time based on height.
    */
-  transitionDuration: TransitionDuration,
+  transitionDuration?: TransitionDuration,
 };
 
 function StepContent(props: ProvidedProps & Props) {
