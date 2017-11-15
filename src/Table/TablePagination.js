@@ -183,10 +183,14 @@ class TablePagination extends React.Component<ProvidedProps & Props> {
           </Typography>
           <Select
             classes={{ root: classes.selectRoot, select: classes.select }}
-            InputClasses={{
-              root: classes.input,
-            }}
-            input={<Input disableUnderline />}
+            input={
+              <Input
+                classes={{
+                  root: classes.input,
+                }}
+                disableUnderline
+              />
+            }
             value={rowsPerPage}
             onChange={onChangeRowsPerPage}
           >
