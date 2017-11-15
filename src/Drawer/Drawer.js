@@ -40,6 +40,9 @@ export const styles = (theme: Object) => ({
     // temporary style
     position: 'fixed',
     top: 0,
+    '&:focus': {
+      outline: 'none',
+    },
   },
   paperAnchorLeft: {
     left: 0,
