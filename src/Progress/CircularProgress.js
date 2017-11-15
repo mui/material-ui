@@ -192,4 +192,4 @@ CircularProgress.defaultProps = {
   max: 100,
 };
 
-export default withStyles(styles, { name: 'MuiCircularProgress' })(CircularProgress);
+export default withStyles(styles, { name: 'MuiCircularProgress', flip: false })(CircularProgress);
