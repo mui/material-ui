@@ -14,7 +14,7 @@ filename: /src/Stepper/StepContent.js
 |:-----|:-----|:--------|:------------|
 | <span style="color: #31a148">children *</span> | Node |  | Step content. |
 | transition | Function | Collapse | Collapse component. |
-| <span style="color: #31a148">transitionDuration *</span> | TransitionDuration | 'auto' | Adjust the duration of the content expand transition. Passed as a property to the transition component. |
+| transitionDuration | TransitionDuration | 'auto' | Adjust the duration of the content expand transition. Passed as a property to the transition component.<br>Set to 'auto' to automatically calculate transition time based on height. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
