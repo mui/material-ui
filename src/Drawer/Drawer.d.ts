@@ -20,6 +20,7 @@ export interface DrawerProps extends StandardProps<
 
 export type DrawerClassKey =
   | ModalClassKey
+  | 'docked'
   | 'paper'
   | 'paperAnchorLeft'
   | 'paperAnchorRight'
@@ -29,7 +30,6 @@ export type DrawerClassKey =
   | 'paperAnchorDockedTop'
   | 'paperAnchorDockedRight'
   | 'paperAnchorDockedBottom'
-  | 'docked'
   | 'modal'
   ;
 
