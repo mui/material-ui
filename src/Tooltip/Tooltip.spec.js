@@ -16,13 +16,23 @@ const TooltipNaked = unwrap(Tooltip);
 // eslint-disable-next-line react/prop-types
 const Hack = ({ style, innerRef, ...other }) => <div ref={innerRef} {...other} />;
 
-function getChildren(wrapper) {
+function getTargetChildren(wrapper) {
   return new ShallowWrapper(
     wrapper
       .find(Target)
       .props()
       .children({}).props.element,
     wrapper,
+  );
+}
+
+function getPopperChildren(wrapper) {
+  return new ShallowWrapper(
+    wrapper
+      .find(Popper)
+      .props()
+      .children({ popperProps: { style: {} }, restProps: {} }),
+    null,
   );
 }
 
@@ -63,13 +73,9 @@ describe('<Tooltip />', () => {
     );
     assert.strictEqual(wrapper.childAt(0).hasClass('woofTooltip'), true);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.root), true);
-    assert.strictEqual(
-      wrapper
-        .find(Popper)
-        .childAt(0)
-        .hasClass(classes.tooltip),
-      true,
-    );
+
+    const popperChildren = getPopperChildren(wrapper);
+    assert.strictEqual(popperChildren.childAt(0).hasClass(classes.tooltip), true);
   });
 
   describe('prop: placement', () => {
@@ -80,21 +86,10 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
       assert.strictEqual(wrapper.childAt(0).hasClass(classes.root), true);
-      assert.strictEqual(
-        wrapper
-          .find(Popper)
-          .childAt(0)
-          .hasClass(classes.tooltip),
-        true,
-      );
+      const popperChildren = getPopperChildren(wrapper);
+      assert.strictEqual(popperChildren.childAt(0).hasClass(classes.tooltip), true);
       wrapper.childAt(0).simulate('click');
-      assert.strictEqual(
-        wrapper
-          .find(Popper)
-          .childAt(0)
-          .hasClass(classes.tooltipTop),
-        true,
-      );
+      assert.strictEqual(popperChildren.childAt(0).hasClass(classes.tooltipTop), true);
     });
 
     const theme = createMuiTheme({
@@ -140,7 +135,7 @@ describe('<Tooltip />', () => {
         <button>Hello World</button>
       </Tooltip>,
     );
-    const children = getChildren(wrapper);
+    const children = getTargetChildren(wrapper);
     assert.strictEqual(wrapper.state().open, false);
     children.simulate('mouseOver', {});
     assert.strictEqual(wrapper.state().open, true);
@@ -163,7 +158,7 @@ describe('<Tooltip />', () => {
         <button>Hello World</button>
       </Tooltip>,
     );
-    const children = getChildren(wrapper);
+    const children = getTargetChildren(wrapper);
     assert.strictEqual(handleRequestOpen.callCount, 0);
     assert.strictEqual(handleRequestClose.callCount, 0);
     children.simulate('mouseOver', { type: 'mouseover' });
@@ -191,7 +186,7 @@ describe('<Tooltip />', () => {
           <button>Hello World</button>
         </Tooltip>,
       );
-      const children = getChildren(wrapper);
+      const children = getTargetChildren(wrapper);
       children.simulate('touchStart', { type: 'touchstart', persist: () => {} });
       children.simulate('touchEnd', { type: 'touchend', persist: () => {} });
       children.simulate('focus', { type: 'focus' });
@@ -205,7 +200,7 @@ describe('<Tooltip />', () => {
           <button>Hello World</button>
         </Tooltip>,
       );
-      const children = getChildren(wrapper);
+      const children = getTargetChildren(wrapper);
       children.simulate('touchStart', { type: 'touchstart', persist: () => {} });
       children.simulate('focus', { type: 'focus' });
       children.simulate('mouseover', { type: 'mouseover' });
@@ -244,7 +239,7 @@ describe('<Tooltip />', () => {
           <button>Hello World</button>
         </Tooltip>,
       );
-      const children = getChildren(wrapper);
+      const children = getTargetChildren(wrapper);
       children.simulate('focus', { type: 'focus' });
       assert.strictEqual(wrapper.state().open, false);
       clock.tick(111);
@@ -257,7 +252,7 @@ describe('<Tooltip />', () => {
           <button>Hello World</button>
         </Tooltip>,
       );
-      const children = getChildren(wrapper);
+      const children = getTargetChildren(wrapper);
       children.simulate('focus', { type: 'focus' });
       assert.strictEqual(wrapper.state().open, true);
       children.simulate('blur', { type: 'blur' });
@@ -277,7 +272,7 @@ describe('<Tooltip />', () => {
               <button {...{ [name]: handler }}>Hello World</button>
             </Tooltip>,
           );
-          const children = getChildren(wrapper);
+          const children = getTargetChildren(wrapper);
           const type = name.slice(2).toLowerCase();
           children.simulate(type, { type, persist: () => {} });
           assert.strictEqual(handler.callCount, 1);
