@@ -3,7 +3,7 @@ import { Theme } from '../styles/createMuiTheme';
 import { TransitionDuration, TransitionProps } from '../internal/transition';
 
 export interface SlideProps extends TransitionProps {
-  direction?: 'left' | 'right' | 'up' | 'down';
+  direction: 'left' | 'right' | 'up' | 'down';
   theme?: Theme;
   timeout?: TransitionDuration;
 }

@@ -17,6 +17,7 @@ describe('<Slide />', () => {
   const props = {
     in: true,
     children: <div />,
+    direction: 'down',
   };
 
   before(() => {

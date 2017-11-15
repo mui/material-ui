@@ -79,7 +79,7 @@ export type Props = {
   /**
    * Direction the child node will enter from.
    */
-  direction?: Direction,
+  direction: Direction,
   /**
    * If `true`, show the component; triggers the enter or exit animation.
    */
@@ -131,7 +131,6 @@ const reflow = node => node.scrollTop;
 
 class Slide extends React.Component<ProvidedProps & Props, State> {
   static defaultProps = {
-    direction: 'down',
     timeout: {
       enter: duration.enteringScreen,
       exit: duration.leavingScreen,
