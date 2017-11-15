@@ -94,10 +94,6 @@ export type Props = {
    */
   input?: Element<any>,
   /**
-   * `classes` property applied to the `Input` element.
-   */
-  InputClasses?: Object,
-  /**
    * If `true`, the component will be using a native `select` element.
    */
   native?: boolean,
@@ -128,7 +124,6 @@ function Select(props: ProvidedProps & Props) {
     classes,
     displayEmpty,
     input,
-    InputClasses,
     native,
     multiple,
     MenuProps,
@@ -149,7 +144,6 @@ function Select(props: ProvidedProps & Props) {
     // Most of the logic is implemented in `SelectInput`.
     // The `Select` component is a simple API wrapper to expose something better to play with.
     inputComponent: SelectInput,
-    classes: InputClasses,
     ...other,
     inputProps: {
       ...(input ? input.props.inputProps : {}),
