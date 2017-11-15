@@ -12,7 +12,7 @@ export default function createBreakpoints(breakpoints: Object) {
     // The breakpoint **start** at this value.
     // For instance with the first breakpoint xs: [xs, sm[.
     values = {
-      xs: 1,
+      xs: 0,
       sm: 600,
       md: 960,
       lg: 1280,
@@ -24,12 +24,12 @@ export default function createBreakpoints(breakpoints: Object) {
   } = breakpoints;
 
   function up(key) {
-    const value = values[key] || key;
+    const value = typeof values[key] === 'number' ? values[key] : key;
     return `@media (min-width:${value}${unit})`;
   }
 
   function down(key) {
-    const value = values[key] || key;
+    const value = typeof values[key] === 'number' ? values[key] : key;
     return `@media (max-width:${value - step / 100}${unit})`;
   }
 

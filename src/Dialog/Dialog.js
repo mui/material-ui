@@ -30,7 +30,7 @@ export const styles = (theme: Object) => ({
     },
   },
   paperWidthXs: {
-    maxWidth: theme.breakpoints.values.xs,
+    maxWidth: Math.max(theme.breakpoints.values.xs, 360),
   },
   paperWidthSm: {
     maxWidth: theme.breakpoints.values.sm,
