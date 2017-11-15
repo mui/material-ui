@@ -457,18 +457,30 @@ class Tooltip extends React.Component<ProvidedProps & Props, State> {
               this.popper = node;
             }}
           >
-            <div
-              id={id}
-              role="tooltip"
-              aria-hidden={!open}
-              className={classNames(
-                classes.tooltip,
-                { [classes.tooltipOpen]: open },
-                classes[`tooltip${capitalizeFirstLetter(placement.split('-')[0])}`],
-              )}
-            >
-              {title}
-            </div>
+            {({ popperProps, restProps }) => (
+              <div
+                {...popperProps}
+                {...restProps}
+                style={{
+                  ...popperProps.style,
+                  left: popperProps.style.left || 0,
+                  ...restProps.style,
+                }}
+              >
+                <div
+                  id={id}
+                  role="tooltip"
+                  aria-hidden={!open}
+                  className={classNames(
+                    classes.tooltip,
+                    { [classes.tooltipOpen]: open },
+                    classes[`tooltip${capitalizeFirstLetter(placement.split('-')[0])}`],
+                  )}
+                >
+                  {title}
+                </div>
+              </div>
+            )}
           </Popper>
         </Manager>
       </EventListener>
