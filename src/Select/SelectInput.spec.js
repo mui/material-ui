@@ -93,6 +93,26 @@ describe('<SelectInput />', () => {
     });
   });
 
+  describe('prop: placeholder', () => {
+    it('should render the placeholder when not dirty', () => {
+      const wrapper = shallow(
+        <SelectInput {...props} value="" placeholder="Placeholder">
+          <MenuItem value={10}>Ten</MenuItem>
+        </SelectInput>,
+      );
+      assert.strictEqual(wrapper.find(`.${props.classes.select}`).props().children, 'Placeholder');
+    });
+
+    it('should not render the placeholder when value matches a menu item', () => {
+      const wrapper = shallow(
+        <SelectInput {...props} value={10} placeholder="Placeholder">
+          <MenuItem value={10}>Ten</MenuItem>
+        </SelectInput>,
+      );
+      assert.strictEqual(wrapper.find(`.${props.classes.select}`).props().children, 'Ten');
+    });
+  });
+
   describe('prop: renderValue', () => {
     it('should use the property to render the value', () => {
       const renderValue = x => String(-x);

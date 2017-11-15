@@ -74,6 +74,10 @@ export type Props = {
    */
   onFocus?: Function,
   /**
+   * The short hint displayed in the input before the user enters a value.
+   */
+  placeholder?: string,
+  /**
    * @ignore
    */
   readOnly?: boolean,
@@ -216,6 +220,7 @@ class SelectInput extends React.Component<ProvidedProps & Props, State> {
       onBlur,
       onChange,
       onFocus,
+      placeholder,
       readOnly,
       renderValue,
       selectRef,
@@ -284,6 +289,8 @@ class SelectInput extends React.Component<ProvidedProps & Props, State> {
       } else {
         computeDisplay = true;
       }
+    } else if (placeholder) {
+      display = placeholder;
     }
 
     const items = React.Children.map(children, child => {

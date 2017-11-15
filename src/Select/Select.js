@@ -107,6 +107,10 @@ export type Props = {
    */
   MenuProps?: Object,
   /**
+   * The short hint displayed in the input before the user enters a value.
+   */
+  placeholder?: string,
+  /**
    * Render the selected value.
    * You can only use it when the `native` property is `false` (default).
    */
@@ -128,6 +132,7 @@ function Select(props: ProvidedProps & Props) {
     multiple,
     MenuProps,
     renderValue,
+    placeholder,
     ...other
   } = props;
 
@@ -155,6 +160,7 @@ function Select(props: ProvidedProps & Props) {
       multiple,
       MenuProps,
       renderValue,
+      placeholder,
     },
   });
 }
