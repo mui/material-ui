@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StandardProps } from '..';
+import { StandardProps, Omit } from '..';
 import { HiddenProps } from '../Hidden/Hidden';
 import { Breakpoint } from '../styles/createBreakpoints';
 
@@ -27,7 +27,7 @@ export interface GridProps extends StandardProps<
   GridClassKey,
   'hidden'
 > {
-  component?: string | React.ComponentType<GridProps>;
+  component?: string | React.ComponentType<Omit<GridProps, StrippedProps>>;
   container?: boolean;
   item?: boolean;
   alignItems?: GridItemsAlignment;
@@ -82,3 +82,23 @@ export type GridClassKey =
 declare const Grid: React.ComponentType<GridProps>;
 
 export default Grid;
+
+type StrippedProps =
+  | 'classes'
+  | 'className'
+  | 'component'
+  | 'container'
+  | 'item'
+  | 'alignContent'
+  | 'alignItems'
+  | 'direction'
+  | 'spacing'
+  | 'hidden'
+  | 'justify'
+  | 'wrap'
+  | 'xs'
+  | 'sm'
+  | 'md'
+  | 'lg'
+  | 'xl'
+  ;
