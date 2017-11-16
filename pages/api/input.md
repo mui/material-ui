@@ -49,17 +49,17 @@ This property accepts the following keys:
 - `formControl`
 - `inkbar`
 - `error`
-- `input`
-- `inputDense`
 - `disabled`
 - `focused`
 - `underline`
 - `multiline`
+- `fullWidth`
+- `input`
+- `inputDense`
 - `inputDisabled`
 - `inputSingleline`
-- `inputSearch`
 - `inputMultiline`
-- `fullWidth`
+- `inputSearch`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/callemall/material-ui/tree/v1-beta/src/Input/Input.js)
