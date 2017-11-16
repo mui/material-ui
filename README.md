@@ -59,7 +59,7 @@ render(<App />, document.querySelector('#app'));
 ## Examples
 
 Are you looking for an example project to get started?
-[We host some](https://github.com/callemall/material-ui/blob/v1-beta/docs/src/pages/getting-started/examples.md).
+[We host some](https://github.com/callemall/material-ui/blob/v1-beta/docs/src/pages/getting-started/example-projects.md).
 
 ## Documentation
 
