@@ -66,7 +66,7 @@ type ProvidedProps = {
   component: ElementType,
   labelRowsPerPage: string,
   labelDisplayedRows: (paginationInfo: LabelDisplayedRowsArgs) => string,
-  rowsPerPageOptions: number[],
+  rowsPerPageOptions: Array<number>,
   theme: Object,
 };
 
@@ -98,13 +98,16 @@ export type Props = {
    */
   labelRowsPerPage?: Node,
   /**
-   * Callback fired when the page is changed. Invoked with two arguments: the event and the
-   * page to show.
+   * Callback fired when the page is changed.
+   *
+   * @param {object} event The event source of the callback
+   * @param {number} page The page selected
    */
   onChangePage: (event: SyntheticInputEvent<> | null, page: number) => void,
   /**
-   * Callback fired when the number of rows per page is changed. Invoked with two arguments: the
-   * event.
+   * Callback fired when the number of rows per page is changed.
+   *
+   * @param {object} event The event source of the callback
    */
   onChangeRowsPerPage: (event: SyntheticInputEvent<>) => void,
   /**
@@ -118,7 +121,7 @@ export type Props = {
   /**
    * Customizes the options of the rows per page select field.
    */
-  rowsPerPageOptions?: number[],
+  rowsPerPageOptions?: Array<number>,
   /**
    * @ignore
    */
@@ -126,7 +129,7 @@ export type Props = {
 };
 
 /**
- * A `TableRow` based component for placing inside `TableFooter` for pagination.
+ * A `TableCell` based component for placing inside `TableFooter` for pagination.
  */
 class TablePagination extends React.Component<ProvidedProps & Props> {
   static defaultProps = {
@@ -136,7 +139,8 @@ class TablePagination extends React.Component<ProvidedProps & Props> {
     rowsPerPageOptions: [5, 10, 25],
   };
 
-  componentWillReceiveProps({ count, onChangePage, rowsPerPage }) {
+  componentWillReceiveProps(nextProps) {
+    const { count, onChangePage, rowsPerPage } = nextProps;
     const newLastPage = Math.max(0, Math.ceil(count / rowsPerPage) - 1);
     if (this.props.page > newLastPage) {
       onChangePage(null, newLastPage);
