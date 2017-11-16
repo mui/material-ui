@@ -331,7 +331,7 @@ const DrawerTest = () => {
 };
 
 const GridTest = () =>
-  <Grid container>
+  <Grid component={Paper} container>
     <Grid item xs={12}>
       ...
     </Grid>
