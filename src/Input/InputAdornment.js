@@ -10,6 +10,7 @@ export const styles = (theme: Object) => ({
   root: {
     'label + div > &': {
       marginTop: -theme.spacing.unit * 2,
+      height: 26,
     },
   },
   positionStart: {

@@ -102,50 +102,6 @@ export const styles = (theme: Object) => {
         transform: 'scaleX(1)', // error is always underlined in red
       },
     },
-    input: {
-      font: 'inherit',
-      color: 'currentColor',
-      // slight alteration to spec spacing to match visual spec result
-      padding: `${theme.spacing.unit - 1}px 0 ${theme.spacing.unit + 1}px`,
-      border: 0,
-      boxSizing: 'content-box',
-      verticalAlign: 'middle',
-      background: 'none',
-      margin: 0, // Reset for Safari
-      // Remove grey highlight
-      WebkitTapHighlightColor: theme.palette.common.transparent,
-      display: 'block',
-      width: '100%',
-      '&::-webkit-input-placeholder': placeholder,
-      '&::-moz-placeholder': placeholder, // Firefox 19+
-      '&:-ms-input-placeholder': placeholder, // IE 11
-      '&::-ms-input-placeholder': placeholder, // Edge
-      '&:focus': {
-        outline: 0,
-      },
-      // Reset Firefox invalid required input style
-      '&:invalid': {
-        boxShadow: 'none',
-      },
-      '&::-webkit-search-decoration': {
-        // Remove the padding when type=search.
-        appearance: 'none',
-      },
-      // Show and hide the placeholder logic
-      'label[data-shrink=false] + $formControl &': {
-        '&::-webkit-input-placeholder': placeholderHidden,
-        '&::-moz-placeholder': placeholderHidden, // Firefox 19+
-        '&:-ms-input-placeholder': placeholderHidden, // IE 11
-        '&::-ms-input-placeholder': placeholderHidden, // Edge
-        '&:focus::-webkit-input-placeholder': placeholderVisible,
-        '&:focus::-moz-placeholder': placeholderVisible, // Firefox 19+
-        '&:focus:-ms-input-placeholder': placeholderVisible, // IE 11
-        '&:focus::-ms-input-placeholder': placeholderVisible, // Edge
-      },
-    },
-    inputDense: {
-      paddingTop: theme.spacing.unit / 2,
-    },
     disabled: {
       color: theme.palette.text.disabled,
     },
@@ -183,21 +139,64 @@ export const styles = (theme: Object) => {
     multiline: {
       padding: `${theme.spacing.unit - 2}px 0 ${theme.spacing.unit - 1}px`,
     },
+    fullWidth: {
+      width: '100%',
+    },
+    input: {
+      font: 'inherit',
+      color: 'currentColor',
+      padding: `${theme.spacing.unit - 2}px 0 ${theme.spacing.unit - 1}px`,
+      border: 0,
+      boxSizing: 'content-box',
+      verticalAlign: 'middle',
+      background: 'none',
+      margin: 0, // Reset for Safari
+      // Remove grey highlight
+      WebkitTapHighlightColor: theme.palette.common.transparent,
+      display: 'block',
+      width: '100%',
+      '&::-webkit-input-placeholder': placeholder,
+      '&::-moz-placeholder': placeholder, // Firefox 19+
+      '&:-ms-input-placeholder': placeholder, // IE 11
+      '&::-ms-input-placeholder': placeholder, // Edge
+      '&:focus': {
+        outline: 0,
+      },
+      // Reset Firefox invalid required input style
+      '&:invalid': {
+        boxShadow: 'none',
+      },
+      '&::-webkit-search-decoration': {
+        // Remove the padding when type=search.
+        appearance: 'none',
+      },
+      // Show and hide the placeholder logic
+      'label[data-shrink=false] + $formControl &': {
+        '&::-webkit-input-placeholder': placeholderHidden,
+        '&::-moz-placeholder': placeholderHidden, // Firefox 19+
+        '&:-ms-input-placeholder': placeholderHidden, // IE 11
+        '&::-ms-input-placeholder': placeholderHidden, // Edge
+        '&:focus::-webkit-input-placeholder': placeholderVisible,
+        '&:focus::-moz-placeholder': placeholderVisible, // Firefox 19+
+        '&:focus:-ms-input-placeholder': placeholderVisible, // IE 11
+        '&:focus::-ms-input-placeholder': placeholderVisible, // Edge
+      },
+    },
+    inputDense: {
+      paddingTop: theme.spacing.unit / 2 - 1,
+    },
     inputDisabled: {
       opacity: 1, // Reset iOS opacity
     },
     inputSingleline: {
-      height: '1em',
-    },
-    inputSearch: {
-      appearance: 'textfield', // Improve type search style.
+      height: '1.1875em', // Reset (19px)
     },
     inputMultiline: {
       resize: 'none',
       padding: 0,
     },
-    fullWidth: {
-      width: '100%',
+    inputSearch: {
+      appearance: 'textfield', // Improve type search style.
     },
   };
 };
@@ -542,8 +541,8 @@ class Input extends React.Component<ProvidedProps & Props, State> {
       {
         [classes.inputDisabled]: disabled,
         [classes.inputSingleline]: !multiline,
-        [classes.inputSearch]: type === 'search',
         [classes.inputMultiline]: multiline,
+        [classes.inputSearch]: type === 'search',
         [classes.inputDense]: margin === 'dense',
       },
       inputPropsClassName,
