@@ -2,7 +2,6 @@
 
 import React from 'react';
 import type { Node } from 'react';
-import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
@@ -57,28 +56,28 @@ export type Props = {
 /**
  * @ignore - internal component.
  */
-function Backdrop(props: ProvidedProps & Props) {
-  const { children, classes, className, invisible, ...other } = props;
+class Backdrop extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    invisible: false,
+  };
 
-  const backdropClass = classNames(
-    classes.root,
-    {
-      [classes.invisible]: invisible,
-    },
-    className,
-  );
+  render() {
+    const { children, classes, className, invisible, ...other } = this.props;
 
-  return (
-    <div data-mui-test="Backdrop" className={backdropClass} aria-hidden="true" {...other}>
-      {children}
-    </div>
-  );
+    const backdropClass = classNames(
+      classes.root,
+      {
+        [classes.invisible]: invisible,
+      },
+      className,
+    );
+
+    return (
+      <div data-mui-test="Backdrop" className={backdropClass} aria-hidden="true" {...other}>
+        {children}
+      </div>
+    );
+  }
 }
 
-Backdrop.defaultProps = {
-  invisible: false,
-};
-
-export default withStyles(styles, { name: 'MuiBackdrop' })(
-  (Backdrop: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
-);
+export default withStyles(styles, { name: 'MuiBackdrop' })(Backdrop);

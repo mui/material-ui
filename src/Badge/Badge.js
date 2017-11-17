@@ -2,7 +2,6 @@
 
 import React from 'react';
 import type { Node } from 'react';
-import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -82,25 +81,32 @@ export type Props = {
   color: Color,
 };
 
-function Badge(props: ProvidedProps & Props) {
-  const { badgeContent, classes, className: classNameProp, color, children, ...other } = props;
-  const className = classNames(classes.root, classNameProp);
-  const badgeClassName = classNames(classes.badge, {
-    [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
-  });
+class Badge extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    color: 'default',
+  };
 
-  return (
-    <div className={className} {...other}>
-      {children}
-      <span className={badgeClassName}>{badgeContent}</span>
-    </div>
-  );
+  render() {
+    const {
+      badgeContent,
+      classes,
+      className: classNameProp,
+      color,
+      children,
+      ...other
+    } = this.props;
+    const className = classNames(classes.root, classNameProp);
+    const badgeClassName = classNames(classes.badge, {
+      [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
+    });
+
+    return (
+      <div className={className} {...other}>
+        {children}
+        <span className={badgeClassName}>{badgeContent}</span>
+      </div>
+    );
+  }
 }
 
-Badge.defaultProps = {
-  color: 'default',
-};
-
-export default withStyles(styles, { name: 'MuiBadge' })(
-  (Badge: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
-);
+export default withStyles(styles, { name: 'MuiBadge' })(Badge);

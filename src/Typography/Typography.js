@@ -2,7 +2,6 @@
 
 import React from 'react';
 import type { ElementType, Node } from 'react';
-import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -143,59 +142,59 @@ export type Props = {
   type: Type,
 };
 
-function Typography(props: ProvidedProps & Props) {
-  const {
-    align,
-    classes,
-    className: classNameProp,
-    component: componentProp,
-    color,
-    gutterBottom,
-    headlineMapping,
-    noWrap,
-    paragraph,
-    type,
-    ...other
-  } = props;
-
-  const className = classNames(
-    classes.root,
-    classes[type],
-    {
-      [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
-      [classes.noWrap]: noWrap,
-      [classes.gutterBottom]: gutterBottom,
-      [classes.paragraph]: paragraph,
-      [classes[`align${capitalizeFirstLetter(align)}`]]: align !== 'inherit',
+class Typography extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    align: 'inherit',
+    color: 'default',
+    gutterBottom: false,
+    headlineMapping: {
+      display4: 'h1',
+      display3: 'h1',
+      display2: 'h1',
+      display1: 'h1',
+      headline: 'h1',
+      title: 'h2',
+      subheading: 'h3',
+      body2: 'aside',
+      body1: 'p',
     },
-    classNameProp,
-  );
+    noWrap: false,
+    paragraph: false,
+    type: 'body1',
+  };
 
-  const Component = componentProp || (paragraph ? 'p' : headlineMapping[type]) || 'span';
+  render() {
+    const {
+      align,
+      classes,
+      className: classNameProp,
+      component: componentProp,
+      color,
+      gutterBottom,
+      headlineMapping,
+      noWrap,
+      paragraph,
+      type,
+      ...other
+    } = this.props;
 
-  return <Component className={className} {...other} />;
+    const className = classNames(
+      classes.root,
+      classes[type],
+      {
+        [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
+        [classes.noWrap]: noWrap,
+        [classes.gutterBottom]: gutterBottom,
+        [classes.paragraph]: paragraph,
+        [classes[`align${capitalizeFirstLetter(align)}`]]: align !== 'inherit',
+      },
+      classNameProp,
+    );
+
+    const Component = componentProp || (paragraph ? 'p' : headlineMapping[type]) || 'span';
+
+    return <Component className={className} {...other} />;
+  }
 }
 
-Typography.defaultProps = {
-  align: 'inherit',
-  color: 'default',
-  gutterBottom: false,
-  headlineMapping: {
-    display4: 'h1',
-    display3: 'h1',
-    display2: 'h1',
-    display1: 'h1',
-    headline: 'h1',
-    title: 'h2',
-    subheading: 'h3',
-    body2: 'aside',
-    body1: 'p',
-  },
-  noWrap: false,
-  paragraph: false,
-  type: 'body1',
-};
-
-export default withStyles(styles, { name: 'MuiTypography' })(
-  (Typography: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
-);
+export default withStyles(styles, { name: 'MuiTypography' })(Typography);

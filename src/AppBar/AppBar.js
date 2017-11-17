@@ -3,7 +3,6 @@
 
 import React from 'react';
 import type { Node } from 'react';
-import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -84,31 +83,31 @@ export type Props = {
   position: Position,
 };
 
-function AppBar(props: ProvidedProps & Props) {
-  const { children, classes, className: classNameProp, color, position, ...other } = props;
+class AppBar extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    color: 'primary',
+    position: 'fixed',
+  };
 
-  const className = classNames(
-    classes.root,
-    classes[`position${capitalizeFirstLetter(position)}`],
-    {
-      [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'inherit',
-      'mui-fixed': position === 'fixed', // Useful for the Dialog
-    },
-    classNameProp,
-  );
+  render() {
+    const { children, classes, className: classNameProp, color, position, ...other } = this.props;
 
-  return (
-    <Paper square component="header" elevation={4} className={className} {...other}>
-      {children}
-    </Paper>
-  );
+    const className = classNames(
+      classes.root,
+      classes[`position${capitalizeFirstLetter(position)}`],
+      {
+        [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'inherit',
+        'mui-fixed': position === 'fixed', // Useful for the Dialog
+      },
+      classNameProp,
+    );
+
+    return (
+      <Paper square component="header" elevation={4} className={className} {...other}>
+        {children}
+      </Paper>
+    );
+  }
 }
 
-AppBar.defaultProps = {
-  color: 'primary',
-  position: 'fixed',
-};
-
-export default withStyles(styles, { name: 'MuiAppBar' })(
-  (AppBar: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
-);
+export default withStyles(styles, { name: 'MuiAppBar' })(AppBar);

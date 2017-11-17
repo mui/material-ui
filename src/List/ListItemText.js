@@ -2,7 +2,6 @@
 
 import React from 'react';
 import type { Node } from 'react';
-import type { ComponentWithDefaultProps } from 'react-flow-types';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -65,66 +64,66 @@ export type Props = {
   secondary: Node,
 };
 
-function ListItemText(props: ProvidedProps & Props, context) {
-  const {
-    classes,
-    className: classNameProp,
-    disableTypography,
-    primary,
-    secondary,
-    inset,
-    ...other
-  } = props;
-  const { dense } = context;
-  const className = classNames(
-    classes.root,
-    {
-      [classes.dense]: dense,
-      [classes.inset]: inset,
-    },
-    classNameProp,
-  );
+class ListItemText extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    disableTypography: false,
+    primary: false,
+    secondary: false,
+    inset: false,
+  };
 
-  return (
-    <div className={className} {...other}>
-      {primary &&
-        (disableTypography ? (
-          primary
-        ) : (
-          <Typography
-            type="subheading"
-            className={classNames(classes.text, { [classes.textDense]: dense })}
-          >
-            {primary}
-          </Typography>
-        ))}
-      {secondary &&
-        (disableTypography ? (
-          secondary
-        ) : (
-          <Typography
-            color="secondary"
-            type="body1"
-            className={classNames(classes.text, { [classes.textDense]: dense })}
-          >
-            {secondary}
-          </Typography>
-        ))}
-    </div>
-  );
+  static contextTypes = {
+    dense: PropTypes.bool,
+  };
+
+  render() {
+    const {
+      classes,
+      className: classNameProp,
+      disableTypography,
+      primary,
+      secondary,
+      inset,
+      ...other
+    } = this.props;
+    const { dense } = this.context;
+    const className = classNames(
+      classes.root,
+      {
+        [classes.dense]: dense,
+        [classes.inset]: inset,
+      },
+      classNameProp,
+    );
+
+    return (
+      <div className={className} {...other}>
+        {primary &&
+          (disableTypography ? (
+            primary
+          ) : (
+            <Typography
+              type="subheading"
+              className={classNames(classes.text, { [classes.textDense]: dense })}
+            >
+              {primary}
+            </Typography>
+          ))}
+        {secondary &&
+          (disableTypography ? (
+            secondary
+          ) : (
+            <Typography
+              color="secondary"
+              type="body1"
+              className={classNames(classes.text, { [classes.textDense]: dense })}
+            >
+              {secondary}
+            </Typography>
+          ))}
+      </div>
+    );
+  }
 }
 
-ListItemText.defaultProps = {
-  disableTypography: false,
-  primary: false,
-  secondary: false,
-  inset: false,
-};
-
-ListItemText.contextTypes = {
-  dense: PropTypes.bool,
-};
-
-export default withStyles(styles, { name: 'MuiListItemText' })(
-  (ListItemText: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
-);
+export default withStyles(styles, { name: 'MuiListItemText' })(ListItemText);

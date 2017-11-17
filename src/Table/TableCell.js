@@ -3,7 +3,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import type { ElementType, Node } from 'react';
-import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -87,54 +86,56 @@ export const styles = (theme: Object) => ({
   },
 });
 
-function TableCell(props: ProvidedProps & Props, context: Context) {
-  const {
-    classes,
-    className: classNameProp,
-    children,
-    numeric,
-    padding,
-    component,
-    ...other
-  } = props;
+class TableCell extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    numeric: false,
+    padding: 'default',
+  };
 
-  const { table } = context;
-  let Component;
-  if (component) {
-    Component = component;
-  } else {
-    Component = table && table.head ? 'th' : 'td';
+  static contextTypes = {
+    table: PropTypes.object.isRequired,
+  };
+
+  context: Context;
+
+  render() {
+    const {
+      classes,
+      className: classNameProp,
+      children,
+      numeric,
+      padding,
+      component,
+      ...other
+    } = this.props;
+
+    const { table } = this.context;
+    let Component;
+    if (component) {
+      Component = component;
+    } else {
+      Component = table && table.head ? 'th' : 'td';
+    }
+
+    const className = classNames(
+      classes.root,
+      {
+        [classes.numeric]: numeric,
+        [classes[`padding${capitalizeFirstLetter(padding)}`]]:
+          padding !== 'none' && padding !== 'default',
+        [classes.paddingDefault]: padding !== 'none',
+        [classes.head]: table && table.head,
+        [classes.footer]: table && table.footer,
+      },
+      classNameProp,
+    );
+
+    return (
+      <Component className={className} {...other}>
+        {children}
+      </Component>
+    );
   }
-
-  const className = classNames(
-    classes.root,
-    {
-      [classes.numeric]: numeric,
-      [classes[`padding${capitalizeFirstLetter(padding)}`]]:
-        padding !== 'none' && padding !== 'default',
-      [classes.paddingDefault]: padding !== 'none',
-      [classes.head]: table && table.head,
-      [classes.footer]: table && table.footer,
-    },
-    classNameProp,
-  );
-
-  return (
-    <Component className={className} {...other}>
-      {children}
-    </Component>
-  );
 }
 
-TableCell.defaultProps = {
-  numeric: false,
-  padding: 'default',
-};
-
-TableCell.contextTypes = {
-  table: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles, { name: 'MuiTableCell' })(
-  (TableCell: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
-);
+export default withStyles(styles, { name: 'MuiTableCell' })(TableCell);

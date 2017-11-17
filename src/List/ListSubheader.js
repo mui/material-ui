@@ -2,7 +2,6 @@
 
 import React from 'react';
 import type { Node, ElementType } from 'react';
-import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -83,43 +82,43 @@ export type Props = {
   inset?: boolean,
 };
 
-function ListSubheader(props: ProvidedProps & Props) {
-  const {
-    children,
-    classes,
-    className: classNameProp,
-    component: ComponentProp,
-    color,
-    disableSticky,
-    inset,
-    ...other
-  } = props;
-  const className = classNames(
-    classes.root,
-    {
-      [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
-      [classes.inset]: inset,
-      [classes.sticky]: !disableSticky,
-    },
-    classNameProp,
-  );
+class ListSubheader extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    component: 'li',
+    color: 'default',
+    disableSticky: false,
+    inset: false,
+  };
 
-  return (
-    <ComponentProp className={className} {...other}>
-      {children}
-    </ComponentProp>
-  );
+  static muiName = 'ListSubheader';
+
+  render() {
+    const {
+      children,
+      classes,
+      className: classNameProp,
+      component: ComponentProp,
+      color,
+      disableSticky,
+      inset,
+      ...other
+    } = this.props;
+    const className = classNames(
+      classes.root,
+      {
+        [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
+        [classes.inset]: inset,
+        [classes.sticky]: !disableSticky,
+      },
+      classNameProp,
+    );
+
+    return (
+      <ComponentProp className={className} {...other}>
+        {children}
+      </ComponentProp>
+    );
+  }
 }
 
-ListSubheader.defaultProps = {
-  component: 'li',
-  color: 'default',
-  disableSticky: false,
-  inset: false,
-};
-
-ListSubheader.muiName = 'ListSubheader';
-
-export default withStyles(styles, { name: 'MuiListSubheader' })(
-  (ListSubheader: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
-);
+export default withStyles(styles, { name: 'MuiListSubheader' })(ListSubheader);

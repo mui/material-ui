@@ -2,7 +2,6 @@
 
 import React from 'react';
 import type { Node, ElementType } from 'react';
-import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import Typography from '../Typography';
 import withStyles from '../styles/withStyles';
@@ -60,43 +59,43 @@ export type Props = {
   position: 'start' | 'end',
 };
 
-function InputAdornment(props: ProvidedProps & Props) {
-  const {
-    children,
-    component: Component = 'div',
-    classes,
-    className,
-    disableTypography,
-    position,
-    ...other
-  } = props;
+class InputAdornment extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    component: 'div',
+    disableTypography: false,
+  };
 
-  return (
-    <Component
-      className={classNames(
-        classes.root,
-        {
-          [classes.positionStart]: position === 'start',
-          [classes.positionEnd]: position === 'end',
-        },
-        className,
-      )}
-      {...other}
-    >
-      {typeof children === 'string' && !disableTypography ? (
-        <Typography color="secondary">{children}</Typography>
-      ) : (
-        children
-      )}
-    </Component>
-  );
+  render() {
+    const {
+      children,
+      component: Component = 'div',
+      classes,
+      className,
+      disableTypography,
+      position,
+      ...other
+    } = this.props;
+
+    return (
+      <Component
+        className={classNames(
+          classes.root,
+          {
+            [classes.positionStart]: position === 'start',
+            [classes.positionEnd]: position === 'end',
+          },
+          className,
+        )}
+        {...other}
+      >
+        {typeof children === 'string' && !disableTypography ? (
+          <Typography color="secondary">{children}</Typography>
+        ) : (
+          children
+        )}
+      </Component>
+    );
+  }
 }
 
-InputAdornment.defaultProps = {
-  component: 'div',
-  disableTypography: false,
-};
-
-export default withStyles(styles, { name: 'MuiInputAdornment' })(
-  (InputAdornment: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
-);
+export default withStyles(styles, { name: 'MuiInputAdornment' })(InputAdornment);

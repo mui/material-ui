@@ -2,7 +2,6 @@
 
 import React from 'react';
 import type { Node, ElementType } from 'react';
-import type { ComponentWithDefaultProps } from 'react-flow-types';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -84,46 +83,48 @@ export type Props = {
  * Will automatically set dynamic row height
  * based on the material table element parent (head, body, etc).
  */
-function TableRow(props: ProvidedProps & Props, context: Context) {
-  const {
-    classes,
-    className: classNameProp,
-    children,
-    component: Component,
-    hover,
-    selected,
-    ...other
-  } = props;
-  const { table } = context;
+class TableRow extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    hover: false,
+    selected: false,
+    component: 'tr',
+  };
 
-  const className = classNames(
-    classes.root,
-    {
-      [classes.head]: table && table.head,
-      [classes.footer]: table && table.footer,
-      [classes.hover]: table && hover,
-      [classes.selected]: table && selected,
-    },
-    classNameProp,
-  );
+  static contextTypes = {
+    table: PropTypes.object,
+  };
 
-  return (
-    <Component className={className} {...other}>
-      {children}
-    </Component>
-  );
+  context: Context;
+
+  render() {
+    const {
+      classes,
+      className: classNameProp,
+      children,
+      component: Component,
+      hover,
+      selected,
+      ...other
+    } = this.props;
+    const { table } = this.context;
+
+    const className = classNames(
+      classes.root,
+      {
+        [classes.head]: table && table.head,
+        [classes.footer]: table && table.footer,
+        [classes.hover]: table && hover,
+        [classes.selected]: table && selected,
+      },
+      classNameProp,
+    );
+
+    return (
+      <Component className={className} {...other}>
+        {children}
+      </Component>
+    );
+  }
 }
 
-TableRow.defaultProps = {
-  hover: false,
-  selected: false,
-  component: 'tr',
-};
-
-TableRow.contextTypes = {
-  table: PropTypes.object,
-};
-
-export default withStyles(styles, { name: 'MuiTableRow' })(
-  (TableRow: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
-);
+export default withStyles(styles, { name: 'MuiTableRow' })(TableRow);

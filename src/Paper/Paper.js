@@ -2,7 +2,6 @@
 
 import React from 'react';
 import type { ElementType, Node } from 'react';
-import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import warning from 'warning';
 import withStyles from '../styles/withStyles';
@@ -71,39 +70,39 @@ export type Props = {
   square: boolean,
 };
 
-function Paper(props: ProvidedProps & Props) {
-  const {
-    classes,
-    className: classNameProp,
-    component: ComponentProp,
-    square,
-    elevation,
-    ...other
-  } = props;
+class Paper extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    component: 'div',
+    elevation: 2,
+    square: false,
+  };
 
-  warning(
-    elevation >= 0 && elevation < 25,
-    `Material-UI: this elevation \`${elevation}\` is not implemented.`,
-  );
+  render() {
+    const {
+      classes,
+      className: classNameProp,
+      component: ComponentProp,
+      square,
+      elevation,
+      ...other
+    } = this.props;
 
-  const className = classNames(
-    classes.root,
-    classes[`shadow${elevation >= 0 ? elevation : 0}`],
-    {
-      [classes.rounded]: !square,
-    },
-    classNameProp,
-  );
+    warning(
+      elevation >= 0 && elevation < 25,
+      `Material-UI: this elevation \`${elevation}\` is not implemented.`,
+    );
 
-  return <ComponentProp className={className} {...other} />;
+    const className = classNames(
+      classes.root,
+      classes[`shadow${elevation >= 0 ? elevation : 0}`],
+      {
+        [classes.rounded]: !square,
+      },
+      classNameProp,
+    );
+
+    return <ComponentProp className={className} {...other} />;
+  }
 }
 
-Paper.defaultProps = {
-  component: 'div',
-  elevation: 2,
-  square: false,
-};
-
-export default withStyles(styles, { name: 'MuiPaper' })(
-  (Paper: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
-);
+export default withStyles(styles, { name: 'MuiPaper' })(Paper);

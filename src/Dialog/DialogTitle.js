@@ -2,7 +2,6 @@
 
 import React from 'react';
 import type { Node } from 'react';
-import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
@@ -49,20 +48,20 @@ export type Props = {
   disableTypography: boolean,
 };
 
-function DialogTitle(props: ProvidedProps & Props) {
-  const { children, classes, className, disableTypography, ...other } = props;
+class DialogTitle extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    disableTypography: false,
+  };
 
-  return (
-    <div data-mui-test="DialogTitle" className={classNames(classes.root, className)} {...other}>
-      {disableTypography ? children : <Typography type="title">{children}</Typography>}
-    </div>
-  );
+  render() {
+    const { children, classes, className, disableTypography, ...other } = this.props;
+
+    return (
+      <div data-mui-test="DialogTitle" className={classNames(classes.root, className)} {...other}>
+        {disableTypography ? children : <Typography type="title">{children}</Typography>}
+      </div>
+    );
+  }
 }
 
-DialogTitle.defaultProps = {
-  disableTypography: false,
-};
-
-export default withStyles(styles, { name: 'MuiDialogTitle' })(
-  (DialogTitle: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
-);
+export default withStyles(styles, { name: 'MuiDialogTitle' })(DialogTitle);

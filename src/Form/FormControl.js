@@ -2,7 +2,6 @@
 
 import React from 'react';
 import type { ElementType, Node } from 'react';
-import type { ComponentWithDefaultProps } from 'react-flow-types';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -119,7 +118,7 @@ type State = {
  *  - InputLabel
  */
 class FormControl extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps = {
+  static defaultProps: DefaultProps = {
     component: 'div',
     disabled: false,
     error: false,
@@ -244,6 +243,4 @@ class FormControl extends React.Component<ProvidedProps & Props, State> {
   }
 }
 
-export default withStyles(styles, { name: 'MuiFormControl' })(
-  (FormControl: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
-);
+export default withStyles(styles, { name: 'MuiFormControl' })(FormControl);

@@ -3,7 +3,6 @@
 
 import React from 'react';
 import type { ElementType, Node } from 'react';
-import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
@@ -231,63 +230,63 @@ export type Props = {
   type: string,
 };
 
-function Button(props: ProvidedProps & Props) {
-  const {
-    children,
-    classes,
-    className: classNameProp,
-    color,
-    dense,
-    disabled,
-    disableFocusRipple,
-    fab,
-    raised,
-    ...other
-  } = props;
+class Button extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    color: 'default',
+    dense: false,
+    disabled: false,
+    fab: false,
+    disableFocusRipple: false,
+    raised: false,
+    disableRipple: false,
+    type: 'button',
+  };
 
-  const flat = !raised && !fab;
-  const className = classNames(
-    {
-      [classes.root]: true,
-      [classes.raised]: raised || fab,
-      [classes.fab]: fab,
-      [classes.colorInherit]: color === 'inherit',
-      [classes.flatPrimary]: flat && color === 'primary',
-      [classes.flatAccent]: flat && color === 'accent',
-      [classes.flatContrast]: flat && color === 'contrast',
-      [classes.raisedPrimary]: !flat && color === 'primary',
-      [classes.raisedAccent]: !flat && color === 'accent',
-      [classes.raisedContrast]: !flat && color === 'contrast',
-      [classes.dense]: dense,
-      [classes.disabled]: disabled,
-    },
-    classNameProp,
-  );
+  render() {
+    const {
+      children,
+      classes,
+      className: classNameProp,
+      color,
+      dense,
+      disabled,
+      disableFocusRipple,
+      fab,
+      raised,
+      ...other
+    } = this.props;
 
-  return (
-    <ButtonBase
-      className={className}
-      disabled={disabled}
-      focusRipple={!disableFocusRipple}
-      keyboardFocusedClassName={classes.keyboardFocused}
-      {...other}
-    >
-      <span className={classes.label}>{children}</span>
-    </ButtonBase>
-  );
+    const flat = !raised && !fab;
+    const className = classNames(
+      {
+        [classes.root]: true,
+        [classes.raised]: raised || fab,
+        [classes.fab]: fab,
+        [classes.colorInherit]: color === 'inherit',
+        [classes.flatPrimary]: flat && color === 'primary',
+        [classes.flatAccent]: flat && color === 'accent',
+        [classes.flatContrast]: flat && color === 'contrast',
+        [classes.raisedPrimary]: !flat && color === 'primary',
+        [classes.raisedAccent]: !flat && color === 'accent',
+        [classes.raisedContrast]: !flat && color === 'contrast',
+        [classes.dense]: dense,
+        [classes.disabled]: disabled,
+      },
+      classNameProp,
+    );
+
+    return (
+      <ButtonBase
+        className={className}
+        disabled={disabled}
+        focusRipple={!disableFocusRipple}
+        keyboardFocusedClassName={classes.keyboardFocused}
+        {...other}
+      >
+        <span className={classes.label}>{children}</span>
+      </ButtonBase>
+    );
+  }
 }
 
-Button.defaultProps = {
-  color: 'default',
-  dense: false,
-  disabled: false,
-  fab: false,
-  disableFocusRipple: false,
-  raised: false,
-  disableRipple: false,
-  type: 'button',
-};
-
-export default withStyles(styles, { name: 'MuiButton' })(
-  (Button: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
-);
+export default withStyles(styles, { name: 'MuiButton' })(Button);

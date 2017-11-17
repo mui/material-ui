@@ -2,7 +2,6 @@
 
 import React from 'react';
 import type { Node } from 'react';
-import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
@@ -44,28 +43,28 @@ export type Props = {
   disableGutters?: boolean,
 };
 
-function Toolbar(props: ProvidedProps & Props) {
-  const { children, classes, className: classNameProp, disableGutters, ...other } = props;
+class Toolbar extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    disableGutters: false,
+  };
 
-  const className = classNames(
-    classes.root,
-    {
-      [classes.gutters]: !disableGutters,
-    },
-    classNameProp,
-  );
+  render() {
+    const { children, classes, className: classNameProp, disableGutters, ...other } = this.props;
 
-  return (
-    <div className={className} {...other}>
-      {children}
-    </div>
-  );
+    const className = classNames(
+      classes.root,
+      {
+        [classes.gutters]: !disableGutters,
+      },
+      classNameProp,
+    );
+
+    return (
+      <div className={className} {...other}>
+        {children}
+      </div>
+    );
+  }
 }
 
-Toolbar.defaultProps = {
-  disableGutters: false,
-};
-
-export default withStyles(styles, { name: 'MuiToolbar' })(
-  (Toolbar: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
-);
+export default withStyles(styles, { name: 'MuiToolbar' })(Toolbar);

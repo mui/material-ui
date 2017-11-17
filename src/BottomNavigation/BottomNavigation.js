@@ -2,7 +2,6 @@
 
 import React from 'react';
 import type { Node } from 'react';
-import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 
@@ -51,41 +50,41 @@ export type Props = {
   value: any,
 };
 
-function BottomNavigation(props: ProvidedProps & Props) {
-  const {
-    children: childrenProp,
-    classes,
-    className: classNameProp,
-    onChange,
-    showLabels,
-    value,
-    ...other
-  } = props;
+class BottomNavigation extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    showLabels: false,
+  };
 
-  const className = classNames(classes.root, classNameProp);
-
-  const children = React.Children.map(childrenProp, (child, childIndex) => {
-    if (!React.isValidElement(child)) return null;
-    const childValue = child.props.value || childIndex;
-    return React.cloneElement(child, {
-      selected: childValue === value,
-      showLabel: child.props.showLabel !== undefined ? child.props.showLabel : showLabels,
-      value: childValue,
+  render() {
+    const {
+      children: childrenProp,
+      classes,
+      className: classNameProp,
       onChange,
-    });
-  });
+      showLabels,
+      value,
+      ...other
+    } = this.props;
 
-  return (
-    <div className={className} {...other}>
-      {children}
-    </div>
-  );
+    const className = classNames(classes.root, classNameProp);
+
+    const children = React.Children.map(childrenProp, (child, childIndex) => {
+      if (!React.isValidElement(child)) return null;
+      const childValue = child.props.value || childIndex;
+      return React.cloneElement(child, {
+        selected: childValue === value,
+        showLabel: child.props.showLabel !== undefined ? child.props.showLabel : showLabels,
+        value: childValue,
+        onChange,
+      });
+    });
+
+    return (
+      <div className={className} {...other}>
+        {children}
+      </div>
+    );
+  }
 }
 
-BottomNavigation.defaultProps = {
-  showLabels: false,
-};
-
-export default withStyles(styles, { name: 'MuiBottomNavigation' })(
-  (BottomNavigation: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
-);
+export default withStyles(styles, { name: 'MuiBottomNavigation' })(BottomNavigation);

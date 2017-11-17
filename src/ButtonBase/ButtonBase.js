@@ -2,7 +2,6 @@
 
 import React from 'react';
 import type { ElementType, Node } from 'react';
-import type { ComponentWithDefaultProps } from 'react-flow-types';
 import { findDOMNode } from 'react-dom';
 import classNames from 'classnames';
 import keycode from 'keycode';
@@ -169,7 +168,7 @@ type State = {
 };
 
 class ButtonBase extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps = {
+  static defaultProps: DefaultProps = {
     centerRipple: false,
     focusRipple: false,
     disableRipple: false,
@@ -405,6 +404,4 @@ class ButtonBase extends React.Component<ProvidedProps & Props, State> {
   }
 }
 
-export default withStyles(styles, { name: 'MuiButtonBase' })(
-  (ButtonBase: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
-);
+export default withStyles(styles, { name: 'MuiButtonBase' })(ButtonBase);

@@ -2,7 +2,6 @@
 
 import React from 'react';
 import type { Node } from 'react';
-import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
@@ -61,31 +60,31 @@ export type Props = {
   color: Color,
 };
 
-function Icon(props: ProvidedProps & Props) {
-  const { children, classes, className: classNameProp, color, ...other } = props;
+class Icon extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    color: 'inherit',
+  };
 
-  const className = classNames(
-    'material-icons',
-    classes.root,
-    {
-      [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'inherit',
-    },
-    classNameProp,
-  );
+  static muiName = 'Icon';
 
-  return (
-    <span className={className} aria-hidden="true" {...other}>
-      {children}
-    </span>
-  );
+  render() {
+    const { children, classes, className: classNameProp, color, ...other } = this.props;
+
+    const className = classNames(
+      'material-icons',
+      classes.root,
+      {
+        [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'inherit',
+      },
+      classNameProp,
+    );
+
+    return (
+      <span className={className} aria-hidden="true" {...other}>
+        {children}
+      </span>
+    );
+  }
 }
 
-Icon.defaultProps = {
-  color: 'inherit',
-};
-
-Icon.muiName = 'Icon';
-
-export default withStyles(styles, { name: 'MuiIcon' })(
-  (Icon: ComponentWithDefaultProps<DefaultProps, Props & ProvidedProps>),
-);
+export default withStyles(styles, { name: 'MuiIcon' })(Icon);

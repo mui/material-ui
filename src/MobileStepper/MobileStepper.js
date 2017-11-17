@@ -3,7 +3,6 @@
 
 import React from 'react';
 import type { Element } from 'react';
-import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
@@ -103,58 +102,58 @@ export type Props = {
   type?: Type,
 };
 
-function MobileStepper(props: ProvidedProps & Props) {
-  const {
-    activeStep = 0,
-    backButton,
-    classes,
-    className: classNameProp,
-    position,
-    type,
-    nextButton,
-    steps,
-    ...other
-  } = props;
+class MobileStepper extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    activeStep: 0,
+    position: 'bottom',
+    type: 'dots',
+  };
 
-  const className = classNames(
-    classes.root,
-    classes[`position${capitalizeFirstLetter(position)}`],
-    classNameProp,
-  );
+  render() {
+    const {
+      activeStep = 0,
+      backButton,
+      classes,
+      className: classNameProp,
+      position,
+      type,
+      nextButton,
+      steps,
+      ...other
+    } = this.props;
 
-  return (
-    <Paper square elevation={0} className={className} {...other}>
-      {backButton}
-      {type === 'dots' && (
-        <div className={classes.dots}>
-          {[...new Array(steps)].map((_, step) => {
-            const dotClassName = classNames(
-              {
-                [classes.dotActive]: step === activeStep,
-              },
-              classes.dot,
-            );
-            // eslint-disable-next-line react/no-array-index-key
-            return <div key={step} className={dotClassName} />;
-          })}
-        </div>
-      )}
-      {type === 'progress' && (
-        <div className={classes.progress}>
-          <LinearProgress mode="determinate" value={Math.ceil(activeStep / (steps - 1) * 100)} />
-        </div>
-      )}
-      {nextButton}
-    </Paper>
-  );
+    const className = classNames(
+      classes.root,
+      classes[`position${capitalizeFirstLetter(position)}`],
+      classNameProp,
+    );
+
+    return (
+      <Paper square elevation={0} className={className} {...other}>
+        {backButton}
+        {type === 'dots' && (
+          <div className={classes.dots}>
+            {[...new Array(steps)].map((_, step) => {
+              const dotClassName = classNames(
+                {
+                  [classes.dotActive]: step === activeStep,
+                },
+                classes.dot,
+              );
+              // eslint-disable-next-line react/no-array-index-key
+              return <div key={step} className={dotClassName} />;
+            })}
+          </div>
+        )}
+        {type === 'progress' && (
+          <div className={classes.progress}>
+            <LinearProgress mode="determinate" value={Math.ceil(activeStep / (steps - 1) * 100)} />
+          </div>
+        )}
+        {nextButton}
+      </Paper>
+    );
+  }
 }
 
-MobileStepper.defaultProps = {
-  activeStep: 0,
-  position: 'bottom',
-  type: 'dots',
-};
-
-export default withStyles(styles, { name: 'MuiMobileStepper' })(
-  (MobileStepper: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
-);
+export default withStyles(styles, { name: 'MuiMobileStepper' })(MobileStepper);

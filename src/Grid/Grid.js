@@ -12,7 +12,6 @@
 
 import React from 'react';
 import type { ElementType, Node } from 'react';
-import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { keys as breakpointKeys } from '../styles/createBreakpoints';
@@ -291,103 +290,113 @@ export type Props = {
   xl?: GridSizes,
 };
 
-function Grid(props: ProvidedProps & Props) {
-  const {
-    classes,
-    className: classNameProp,
-    component: ComponentProp,
-    container,
-    item,
-    alignContent,
-    alignItems,
-    direction,
-    spacing,
-    hidden,
-    justify,
-    wrap,
-    xs,
-    sm,
-    md,
-    lg,
-    xl,
-    ...other
-  } = props;
+class Grid extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    alignContent: 'stretch',
+    alignItems: 'stretch',
+    component: 'div',
+    container: false,
+    direction: 'row',
+    hidden: undefined,
+    item: false,
+    justify: 'flex-start',
+    spacing: 16,
+    wrap: 'wrap',
+  };
 
-  const className = classNames(
-    {
-      [classes.typeContainer]: container,
-      [classes.typeItem]: item,
-      [classes[`spacing-xs-${String(spacing)}`]]: container && spacing !== 0,
-      [classes[`direction-xs-${String(direction)}`]]: direction !== Grid.defaultProps.direction,
-      [classes[`wrap-xs-${String(wrap)}`]]: wrap !== Grid.defaultProps.wrap,
-      [classes[`align-items-xs-${String(alignItems)}`]]:
-        alignItems !== Grid.defaultProps.alignItems,
-      [classes[`align-content-xs-${String(alignContent)}`]]:
-        alignContent !== Grid.defaultProps.alignContent,
-      [classes[`justify-xs-${String(justify)}`]]: justify !== Grid.defaultProps.justify,
-      [classes['grid-xs']]: xs === true,
-      [classes[`grid-xs-${String(xs)}`]]: xs && xs !== true,
-      [classes['grid-sm']]: sm === true,
-      [classes[`grid-sm-${String(sm)}`]]: sm && sm !== true,
-      [classes['grid-md']]: md === true,
-      [classes[`grid-md-${String(md)}`]]: md && md !== true,
-      [classes['grid-lg']]: lg === true,
-      [classes[`grid-lg-${String(lg)}`]]: lg && lg !== true,
-      [classes['grid-xl']]: xl === true,
-      [classes[`grid-xl-${String(xl)}`]]: xl && xl !== true,
-    },
-    classNameProp,
-  );
-  const gridProps = { className, ...other };
+  render() {
+    const {
+      classes,
+      className: classNameProp,
+      component: ComponentProp,
+      container,
+      item,
+      alignContent,
+      alignItems,
+      direction,
+      spacing,
+      hidden,
+      justify,
+      wrap,
+      xs,
+      sm,
+      md,
+      lg,
+      xl,
+      ...other
+    } = this.props;
 
-  if (hidden) {
-    return (
-      <Hidden {...hidden}>
-        <ComponentProp {...gridProps} />
-      </Hidden>
+    const className = classNames(
+      {
+        [classes.typeContainer]: container,
+        [classes.typeItem]: item,
+        [classes[`spacing-xs-${String(spacing)}`]]: container && spacing !== 0,
+        [classes[`direction-xs-${String(direction)}`]]: direction !== Grid.defaultProps.direction,
+        [classes[`wrap-xs-${String(wrap)}`]]: wrap !== Grid.defaultProps.wrap,
+        [classes[`align-items-xs-${String(alignItems)}`]]:
+          alignItems !== Grid.defaultProps.alignItems,
+        [classes[`align-content-xs-${String(alignContent)}`]]:
+          alignContent !== Grid.defaultProps.alignContent,
+        [classes[`justify-xs-${String(justify)}`]]: justify !== Grid.defaultProps.justify,
+        [classes['grid-xs']]: xs === true,
+        [classes[`grid-xs-${String(xs)}`]]: xs && xs !== true,
+        [classes['grid-sm']]: sm === true,
+        [classes[`grid-sm-${String(sm)}`]]: sm && sm !== true,
+        [classes['grid-md']]: md === true,
+        [classes[`grid-md-${String(md)}`]]: md && md !== true,
+        [classes['grid-lg']]: lg === true,
+        [classes[`grid-lg-${String(lg)}`]]: lg && lg !== true,
+        [classes['grid-xl']]: xl === true,
+        [classes[`grid-xl-${String(xl)}`]]: xl && xl !== true,
+      },
+      classNameProp,
     );
+    const gridProps = { className, ...other };
+
+    if (hidden) {
+      return (
+        <Hidden {...hidden}>
+          <ComponentProp {...gridProps} />
+        </Hidden>
+      );
+    }
+
+    return <ComponentProp {...gridProps} />;
   }
-
-  return <ComponentProp {...gridProps} />;
 }
-
-Grid.defaultProps = {
-  alignContent: 'stretch',
-  alignItems: 'stretch',
-  component: 'div',
-  container: false,
-  direction: 'row',
-  hidden: undefined,
-  item: false,
-  justify: 'flex-start',
-  spacing: 16,
-  wrap: 'wrap',
-};
 
 // Add a wrapper component to generate some helper messages in the development
 // environment.
+/* eslint-disable react/no-multi-comp */
+/* eslint-disable react/prefer-stateless-function */
 // eslint-disable-next-line import/no-mutable-exports
 let GridWrapper = Grid;
 
 if (process.env.NODE_ENV !== 'production') {
   const requireProp = requirePropFactory('Grid');
 
-  GridWrapper = (props: any) => <Grid {...props} />;
+  class GridWrapperClass extends React.Component<ProvidedProps & Props> {
+    static defaultProps: DefaultProps = Grid.defaultProps;
 
-  GridWrapper.propTypes = {
-    alignContent: requireProp('container'),
-    alignItems: requireProp('container'),
-    direction: requireProp('container'),
-    justify: requireProp('container'),
-    lg: requireProp('item'),
-    md: requireProp('item'),
-    sm: requireProp('item'),
-    spacing: requireProp('container'),
-    wrap: requireProp('container'),
-    xs: requireProp('item'),
-  };
+    static propTypes = {
+      alignContent: requireProp('container'),
+      alignItems: requireProp('container'),
+      direction: requireProp('container'),
+      justify: requireProp('container'),
+      lg: requireProp('item'),
+      md: requireProp('item'),
+      sm: requireProp('item'),
+      spacing: requireProp('container'),
+      wrap: requireProp('container'),
+      xs: requireProp('item'),
+    };
+
+    render() {
+      return <Grid {...this.props} />;
+    }
+  }
+
+  GridWrapper = GridWrapperClass;
 }
 
-export default withStyles(styles, { name: 'MuiGrid' })(
-  ((GridWrapper: any): ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
-);
+export default withStyles(styles, { name: 'MuiGrid' })(GridWrapper);

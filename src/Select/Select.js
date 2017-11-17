@@ -3,7 +3,6 @@
 
 import React from 'react';
 import type { ChildrenArray, Element } from 'react';
-import type { ComponentWithDefaultProps } from 'react-flow-types';
 import warning from 'warning';
 import SelectInput from './SelectInput';
 import withStyles from '../styles/withStyles';
@@ -126,58 +125,58 @@ export type Props = {
   value?: $ReadOnlyArray<string | number> | string | number,
 };
 
-function Select(props: ProvidedProps & Props) {
-  const {
-    autoWidth,
-    children,
-    classes,
-    displayEmpty,
-    input,
-    native,
-    multiple,
-    MenuProps,
-    renderValue,
-    ...other
-  } = props;
+class Select extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    autoWidth: false,
+    displayEmpty: false,
+    input: <Input />,
+    native: false,
+    multiple: false,
+  };
 
-  // Instead of `Element<typeof Input>` to have more flexibility.
-  warning(
-    isMuiElement(input, ['Input']),
-    [
-      'Material-UI: you have provided an invalid value to the `input` property.',
-      'We expect an element instance of the `Input` component.',
-    ].join('\n'),
-  );
+  static muiName = 'Select';
 
-  return React.cloneElement(input, {
-    // Most of the logic is implemented in `SelectInput`.
-    // The `Select` component is a simple API wrapper to expose something better to play with.
-    inputComponent: SelectInput,
-    ...other,
-    inputProps: {
-      ...(input ? input.props.inputProps : {}),
+  render() {
+    const {
       autoWidth,
       children,
       classes,
       displayEmpty,
+      input,
       native,
       multiple,
       MenuProps,
       renderValue,
-    },
-  });
+      ...other
+    } = this.props;
+
+    // Instead of `Element<typeof Input>` to have more flexibility.
+    warning(
+      isMuiElement(input, ['Input']),
+      [
+        'Material-UI: you have provided an invalid value to the `input` property.',
+        'We expect an element instance of the `Input` component.',
+      ].join('\n'),
+    );
+
+    return React.cloneElement(input, {
+      // Most of the logic is implemented in `SelectInput`.
+      // The `Select` component is a simple API wrapper to expose something better to play with.
+      inputComponent: SelectInput,
+      ...other,
+      inputProps: {
+        ...(input ? input.props.inputProps : {}),
+        autoWidth,
+        children,
+        classes,
+        displayEmpty,
+        native,
+        multiple,
+        MenuProps,
+        renderValue,
+      },
+    });
+  }
 }
 
-Select.defaultProps = {
-  autoWidth: false,
-  displayEmpty: false,
-  input: <Input />,
-  native: false,
-  multiple: false,
-};
-
-Select.muiName = 'Select';
-
-export default withStyles(styles, { name: 'MuiSelect' })(
-  (Select: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
-);
+export default withStyles(styles, { name: 'MuiSelect' })(Select);

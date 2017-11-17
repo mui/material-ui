@@ -1,7 +1,6 @@
 // @flow
 
 import React from 'react';
-import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import warning from 'warning';
 import type { ElementType } from 'react';
@@ -64,39 +63,47 @@ export type Props = {
   component: ElementType,
 };
 
-function CardMedia(props: ProvidedProps & Props) {
-  const { classes, className, image, style, src, component: ComponentProp, ...other } = props;
+class CardMedia extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    component: 'div',
+  };
 
-  warning(
-    Boolean(image || src),
-    'Material-UI: either `image` or `src` property must be specified.',
-  );
+  render() {
+    const {
+      classes,
+      className,
+      image,
+      style,
+      src,
+      component: ComponentProp,
+      ...other
+    } = this.props;
 
-  const isMediaComponent = mediaComponents.indexOf(ComponentProp) !== -1;
-  const composedStyle =
-    !isMediaComponent && image ? { backgroundImage: `url(${image})`, ...style } : style;
-  const composedClassName = classNames(
-    {
-      [classes.root]: !isMediaComponent,
-      [classes.rootMedia]: isMediaComponent,
-    },
-    className,
-  );
+    warning(
+      Boolean(image || src),
+      'Material-UI: either `image` or `src` property must be specified.',
+    );
 
-  return (
-    <ComponentProp
-      className={composedClassName}
-      style={composedStyle}
-      src={isMediaComponent ? image || src : undefined}
-      {...other}
-    />
-  );
+    const isMediaComponent = mediaComponents.indexOf(ComponentProp) !== -1;
+    const composedStyle =
+      !isMediaComponent && image ? { backgroundImage: `url(${image})`, ...style } : style;
+    const composedClassName = classNames(
+      {
+        [classes.root]: !isMediaComponent,
+        [classes.rootMedia]: isMediaComponent,
+      },
+      className,
+    );
+
+    return (
+      <ComponentProp
+        className={composedClassName}
+        style={composedStyle}
+        src={isMediaComponent ? image || src : undefined}
+        {...other}
+      />
+    );
+  }
 }
 
-CardMedia.defaultProps = {
-  component: 'div',
-};
-
-export default withStyles(styles, { name: 'MuiCardMedia' })(
-  (CardMedia: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
-);
+export default withStyles(styles, { name: 'MuiCardMedia' })(CardMedia);

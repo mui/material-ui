@@ -2,7 +2,6 @@
 
 import React from 'react';
 import type { Node } from 'react';
-import type { ComponentWithDefaultProps } from 'react-flow-types';
 import withStyles from '../styles/withStyles';
 import createSwitch from '../internal/SwitchBase';
 import IndeterminateCheckBoxIcon from '../svg-icons/IndeterminateCheckBox';
@@ -108,23 +107,23 @@ export type Props = {
   value?: string,
 };
 
-function Checkbox(props: ProvidedProps & Props) {
-  const { checkedIcon, icon, indeterminate, indeterminateIcon, ...other } = props;
+class Checkbox extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    indeterminate: false,
+    indeterminateIcon: <IndeterminateCheckBoxIcon />,
+  };
 
-  return (
-    <SwitchBase
-      checkedIcon={indeterminate ? indeterminateIcon : checkedIcon}
-      icon={indeterminate ? indeterminateIcon : icon}
-      {...other}
-    />
-  );
+  render() {
+    const { checkedIcon, icon, indeterminate, indeterminateIcon, ...other } = this.props;
+
+    return (
+      <SwitchBase
+        checkedIcon={indeterminate ? indeterminateIcon : checkedIcon}
+        icon={indeterminate ? indeterminateIcon : icon}
+        {...other}
+      />
+    );
+  }
 }
 
-Checkbox.defaultProps = {
-  indeterminate: false,
-  indeterminateIcon: <IndeterminateCheckBoxIcon />,
-};
-
-export default withStyles(styles, { name: 'MuiCheckbox' })(
-  (Checkbox: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
-);
+export default withStyles(styles, { name: 'MuiCheckbox' })(Checkbox);

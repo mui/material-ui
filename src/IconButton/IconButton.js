@@ -3,7 +3,6 @@
 
 import React from 'react';
 import type { Node } from 'react';
-import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
@@ -113,51 +112,60 @@ export type Props = {
  * Refer to the [Icons](/style/icons) section of the documentation
  * regarding the available icon options.
  */
-function IconButton(props: ProvidedProps & Props) {
-  const { buttonRef, children, classes, className, color, disabled, rootRef, ...other } = props;
+class IconButton extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    color: 'default',
+    disabled: false,
+    disableRipple: false,
+  };
 
-  return (
-    <ButtonBase
-      className={classNames(
-        classes.root,
-        {
-          [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
-          [classes.disabled]: disabled,
-        },
-        className,
-      )}
-      centerRipple
-      keyboardFocusedClassName={classes.keyboardFocused}
-      disabled={disabled}
-      {...other}
-      rootRef={buttonRef}
-      ref={rootRef}
-    >
-      <span className={classes.label}>
-        {typeof children === 'string' ? (
-          <Icon className={classes.icon}>{children}</Icon>
-        ) : (
-          React.Children.map(children, child => {
-            if (isMuiElement(child, ['Icon', 'SvgIcon'])) {
-              return React.cloneElement(child, {
-                className: classNames(classes.icon, child.props.className),
-              });
-            }
+  render() {
+    const {
+      buttonRef,
+      children,
+      classes,
+      className,
+      color,
+      disabled,
+      rootRef,
+      ...other
+    } = this.props;
 
-            return child;
-          })
+    return (
+      <ButtonBase
+        className={classNames(
+          classes.root,
+          {
+            [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
+            [classes.disabled]: disabled,
+          },
+          className,
         )}
-      </span>
-    </ButtonBase>
-  );
+        centerRipple
+        keyboardFocusedClassName={classes.keyboardFocused}
+        disabled={disabled}
+        {...other}
+        rootRef={buttonRef}
+        ref={rootRef}
+      >
+        <span className={classes.label}>
+          {typeof children === 'string' ? (
+            <Icon className={classes.icon}>{children}</Icon>
+          ) : (
+            React.Children.map(children, child => {
+              if (isMuiElement(child, ['Icon', 'SvgIcon'])) {
+                return React.cloneElement(child, {
+                  className: classNames(classes.icon, child.props.className),
+                });
+              }
+
+              return child;
+            })
+          )}
+        </span>
+      </ButtonBase>
+    );
+  }
 }
 
-IconButton.defaultProps = {
-  color: 'default',
-  disabled: false,
-  disableRipple: false,
-};
-
-export default withStyles(styles, { name: 'MuiIconButton' })(
-  (IconButton: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
-);
+export default withStyles(styles, { name: 'MuiIconButton' })(IconButton);
