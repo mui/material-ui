@@ -1,7 +1,6 @@
 // @flow weak
 
 import React from 'react';
-import type { ComponentType } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Icon from 'material-ui/Icon';

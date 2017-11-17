@@ -375,28 +375,21 @@ let GridWrapper = Grid;
 if (process.env.NODE_ENV !== 'production') {
   const requireProp = requirePropFactory('Grid');
 
-  class GridWrapperClass extends React.Component<ProvidedProps & Props> {
-    static defaultProps: DefaultProps = Grid.defaultProps;
+  GridWrapper = (props: any) => <Grid {...props} />;
 
-    static propTypes = {
-      alignContent: requireProp('container'),
-      alignItems: requireProp('container'),
-      direction: requireProp('container'),
-      justify: requireProp('container'),
-      lg: requireProp('item'),
-      md: requireProp('item'),
-      sm: requireProp('item'),
-      spacing: requireProp('container'),
-      wrap: requireProp('container'),
-      xs: requireProp('item'),
-    };
-
-    render() {
-      return <Grid {...this.props} />;
-    }
-  }
-
-  GridWrapper = GridWrapperClass;
+  // $FlowFixMe - cannot mix legacy propTypes with current HOC pattern - https://github.com/facebook/flow/issues/4644#issuecomment-332530909
+  GridWrapper.propTypes = {
+    alignContent: requireProp('container'),
+    alignItems: requireProp('container'),
+    direction: requireProp('container'),
+    justify: requireProp('container'),
+    lg: requireProp('item'),
+    md: requireProp('item'),
+    sm: requireProp('item'),
+    spacing: requireProp('container'),
+    wrap: requireProp('container'),
+    xs: requireProp('item'),
+  };
 }
 
 export default withStyles(styles, { name: 'MuiGrid' })(GridWrapper);
