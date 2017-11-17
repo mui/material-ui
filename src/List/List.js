@@ -33,6 +33,7 @@ type ProvidedProps = {
 };
 
 type DefaultProps = {
+  component: ElementType,
   dense?: boolean,
   disablePaddin?: boolean,
 };
@@ -58,7 +59,7 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: ElementType,
+  component: ElementType,
   /**
    * If `true`, compact vertical padding designed for keyboard and mouse input will be used for
    * the list and list items. The property is available to descendant components as the
@@ -81,6 +82,7 @@ export type Props = {
 
 class List extends React.Component<ProvidedProps & Props> {
   static defaultProps: DefaultProps = {
+    component: 'ul',
     dense: false,
     disablePadding: false,
   };
@@ -95,7 +97,7 @@ class List extends React.Component<ProvidedProps & Props> {
     const {
       classes,
       className: classNameProp,
-      component: ComponentProp = 'ul',
+      component: ComponentProp,
       disablePadding,
       children,
       dense,

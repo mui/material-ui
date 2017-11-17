@@ -41,7 +41,7 @@ export type Props = {
   /**
    * Useful to extend the style applied to components.
    */
-  // classes?: Object,
+  classes?: Object,
   /**
    * @ignore
    */

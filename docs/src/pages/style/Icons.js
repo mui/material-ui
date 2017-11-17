@@ -42,4 +42,4 @@ Icons.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)((Icons: ComponentType<ProvidedProps>));
+export default withStyles(styles)(Icons);

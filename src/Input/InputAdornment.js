@@ -27,7 +27,7 @@ type ProvidedProps = {
 };
 
 type DefaultProps = {
-  component?: ElementType,
+  component: ElementType,
   disableTypography?: boolean,
 };
 
@@ -48,7 +48,7 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: ElementType,
+  component: ElementType,
   /**
    * If children is a string then disable wrapping in a Typography component.
    */
@@ -68,7 +68,7 @@ class InputAdornment extends React.Component<ProvidedProps & Props> {
   render() {
     const {
       children,
-      component: Component = 'div',
+      component: Component,
       classes,
       className,
       disableTypography,

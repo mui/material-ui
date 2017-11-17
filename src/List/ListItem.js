@@ -70,6 +70,7 @@ type ProvidedProps = {
 
 type DefaultProps = {
   button?: boolean,
+  component: ElementType,
   dense?: boolean,
   disabled?: boolean,
   disableGutters?: boolean,
@@ -101,7 +102,7 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: ElementType,
+  component: ElementType,
   /**
    * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
    */
@@ -123,6 +124,7 @@ export type Props = {
 class ListItem extends React.Component<ProvidedProps & Props> {
   static defaultProps: DefaultProps = {
     button: false,
+    component: 'li',
     dense: false,
     disabled: false,
     disableGutters: false,
@@ -141,7 +143,7 @@ class ListItem extends React.Component<ProvidedProps & Props> {
       children: childrenProp,
       classes,
       className: classNameProp,
-      component: componentProp = 'li',
+      component: componentProp,
       dense,
       disabled,
       divider,
