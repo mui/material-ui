@@ -7,7 +7,7 @@ export interface TypographyProps extends StandardProps<
   TypographyClassKey
 > {
   align?: PropTypes.Alignment;
-  component?: React.ReactType;
+  component?: string | React.ComponentType<TypographyProps>;
   color?: PropTypes.Color | 'secondary' | 'error';
   gutterBottom?: boolean;
   headlineMapping?: { [type in TextStyle]: string };

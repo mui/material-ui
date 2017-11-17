@@ -102,16 +102,57 @@ export const styles = (theme: Object) => {
         transform: 'scaleX(1)', // error is always underlined in red
       },
     },
+    disabled: {
+      color: theme.palette.text.disabled,
+    },
+    focused: {},
+    underline: {
+      '&:before': {
+        backgroundColor: theme.palette.input.bottomLine,
+        left: 0,
+        bottom: 0,
+        // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
+        content: '""',
+        height: 1,
+        position: 'absolute',
+        right: 0,
+        transition: theme.transitions.create('background-color', {
+          duration: theme.transitions.duration.shorter,
+          easing: theme.transitions.easing.ease,
+        }),
+        pointerEvents: 'none', // Transparent to the hover style.
+      },
+      '&:hover:not($disabled):before': {
+        backgroundColor: theme.palette.text.primary,
+        height: 2,
+      },
+      '&$disabled:before': {
+        background: 'transparent',
+        backgroundImage: `linear-gradient(to right, ${
+          theme.palette.input.bottomLine
+        } 33%, transparent 0%)`,
+        backgroundPosition: 'left top',
+        backgroundRepeat: 'repeat-x',
+        backgroundSize: '5px 1px',
+      },
+    },
+    multiline: {
+      padding: `${theme.spacing.unit - 2}px 0 ${theme.spacing.unit - 1}px`,
+    },
+    fullWidth: {
+      width: '100%',
+    },
     input: {
       font: 'inherit',
       color: 'currentColor',
-      // slight alteration to spec spacing to match visual spec result
-      padding: `${theme.spacing.unit - 1}px 0 ${theme.spacing.unit + 1}px`,
+      padding: `${theme.spacing.unit - 2}px 0 ${theme.spacing.unit - 1}px`,
       border: 0,
       boxSizing: 'content-box',
       verticalAlign: 'middle',
       background: 'none',
       margin: 0, // Reset for Safari
+      // Remove grey highlight
+      WebkitTapHighlightColor: theme.palette.common.transparent,
       display: 'block',
       width: '100%',
       '&::-webkit-input-placeholder': placeholder,
@@ -142,59 +183,20 @@ export const styles = (theme: Object) => {
       },
     },
     inputDense: {
-      paddingTop: theme.spacing.unit / 2,
-    },
-    disabled: {
-      color: theme.palette.text.disabled,
-    },
-    focused: {},
-    underline: {
-      '&:before': {
-        backgroundColor: theme.palette.input.bottomLine,
-        left: 0,
-        bottom: 0,
-        // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
-        content: '""',
-        height: 1,
-        position: 'absolute',
-        right: 0,
-        transition: theme.transitions.create('background-color', {
-          duration: theme.transitions.duration.shorter,
-          easing: theme.transitions.easing.ease,
-        }),
-        pointerEvents: 'none', // Transparent to the hover style.
-      },
-      '&:hover:not($disabled):before': {
-        backgroundColor: theme.palette.text.primary,
-        height: 2,
-      },
-      '&$disabled:before': {
-        background: 'transparent',
-        backgroundImage: `linear-gradient(to right, ${theme.palette.input
-          .bottomLine} 33%, transparent 0%)`,
-        backgroundPosition: 'left top',
-        backgroundRepeat: 'repeat-x',
-        backgroundSize: '5px 1px',
-      },
-    },
-    multiline: {
-      padding: `${theme.spacing.unit - 2}px 0 ${theme.spacing.unit - 1}px`,
+      paddingTop: theme.spacing.unit / 2 - 1,
     },
     inputDisabled: {
       opacity: 1, // Reset iOS opacity
     },
     inputSingleline: {
-      height: '1em',
-    },
-    inputSearch: {
-      appearance: 'textfield', // Improve type search style.
+      height: '1.1875em', // Reset (19px)
     },
     inputMultiline: {
       resize: 'none',
       padding: 0,
     },
-    fullWidth: {
-      width: '100%',
+    inputSearch: {
+      appearance: 'textfield', // Improve type search style.
     },
   };
 };
@@ -433,6 +435,8 @@ class Input extends React.Component<ProvidedProps & Props, State> {
     this.input = node;
     if (this.props.inputRef) {
       this.props.inputRef(node);
+    } else if (this.props.inputProps && this.props.inputProps.ref) {
+      this.props.inputProps.ref(node);
     }
   };
 
@@ -541,8 +545,8 @@ class Input extends React.Component<ProvidedProps & Props, State> {
       {
         [classes.inputDisabled]: disabled,
         [classes.inputSingleline]: !multiline,
-        [classes.inputSearch]: type === 'search',
         [classes.inputMultiline]: multiline,
+        [classes.inputSearch]: type === 'search',
         [classes.inputDense]: margin === 'dense',
       },
       inputPropsClassName,
@@ -552,8 +556,8 @@ class Input extends React.Component<ProvidedProps & Props, State> {
 
     let InputComponent = 'input';
     let inputProps = {
-      ref: this.handleRefInput,
       ...inputPropsProp,
+      ref: this.handleRefInput,
     };
 
     if (inputComponent) {

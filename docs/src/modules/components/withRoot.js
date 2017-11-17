@@ -33,7 +33,7 @@ const pages = [
         pathname: '/getting-started/usage',
       },
       {
-        pathname: '/getting-started/examples',
+        pathname: '/getting-started/example-projects',
       },
       {
         pathname: '/getting-started/supported-components',
@@ -59,15 +59,15 @@ const pages = [
         pathname: '/customization/css-in-js',
         title: 'CSS in JS',
       },
-      {
-        pathname: '/customization/api',
-        title: 'API',
-      },
     ],
   },
   {
     pathname: '/guides',
     children: [
+      {
+        pathname: '/guides/api',
+        title: 'API',
+      },
       {
         pathname: '/guides/composition',
       },

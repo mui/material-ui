@@ -21,7 +21,7 @@ taking advantage of this knowledge to address long-standing issues. To name some
 - Full [server-side rendering](/guides/server-rendering) support
 - Wide range of [supported browsers](/getting-started/supported-platforms)
 
-Curious to learn more about it? You can checkout our [Q&A on with the v1 version](/discover-more/roadmap#q-amp-a-with-the-v1-version).
+Curious to learn more about it? You can checkout our [Q&A on the v1 version](/discover-more/roadmap#q-amp-a-with-the-v1-version).
 
 ### Where should I start in a migration?
 
@@ -92,7 +92,7 @@ global.__MUI_SvgIcon__ = SvgIcon;
 +<Button raised />
 ```
 
-### To be continuated…
+### To be continued…
 
 You successfully migrated your app and wish to help the community?
 Please help us! We have an open issue in order to finish this migration guide [#7195](https://github.com/callemall/material-ui/issues/7195). Any pull request is welcomed 😊.

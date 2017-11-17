@@ -6,6 +6,7 @@ export interface IconButtonProps extends StandardProps<
   ButtonBaseProps,
   IconButtonClassKey
 > {
+  buttonRef?: React.Ref<any>;
   color?: PropTypes.Color | 'contrast';
   disabled?: boolean;
   disableRipple?: boolean;

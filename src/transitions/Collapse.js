@@ -3,7 +3,7 @@
 
 import React from 'react';
 import classNames from 'classnames';
-import type { Node } from 'react';
+import type { Node, ElementType } from 'react';
 import Transition from 'react-transition-group/Transition';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
@@ -36,6 +36,7 @@ type ProvidedProps = {
 
 type DefaultProps = {
   appear: boolean,
+  component: ElementType,
   collapsedHeight: string,
   timeout: TransitionDuration,
 };
@@ -57,6 +58,16 @@ export type Props = {
    * Useful to extend the style applied to components.
    */
   classes?: Object,
+  /**
+   * @ignore
+   */
+  className?: String,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   * The default value is a `button`.
+   */
+  component: ElementType,
   /**
    * The height of the container when collapsed.
    */
@@ -109,6 +120,7 @@ export type Props = {
 class Collapse extends React.Component<ProvidedProps & Props> {
   static defaultProps: DefaultProps = {
     appear: false,
+    component: 'div',
     collapsedHeight: '0px',
     timeout: duration.standard,
   };
@@ -196,15 +208,9 @@ class Collapse extends React.Component<ProvidedProps & Props> {
   };
 
   addEndListener = (node, next: Function) => {
-    let timeout;
-
-    if (this.props.timeout === 'auto' || typeof this.props.timeout !== 'number') {
-      timeout = this.autoTransitionDuration || 0;
-    } else {
-      timeout = this.props.timeout;
+    if (this.props.timeout === 'auto') {
+      setTimeout(next, this.autoTransitionDuration || 0);
     }
-
-    setTimeout(next, timeout);
   };
 
   render() {
@@ -212,6 +218,8 @@ class Collapse extends React.Component<ProvidedProps & Props> {
       appear,
       children,
       classes,
+      className,
+      component: ComponentProp,
       collapsedHeight,
       onEnter,
       onEntering,
@@ -234,14 +242,19 @@ class Collapse extends React.Component<ProvidedProps & Props> {
         onExit={this.handleExit}
         addEndListener={this.addEndListener}
         style={{ minHeight: collapsedHeight, ...style }}
+        timeout={timeout === 'auto' ? null : timeout}
         {...other}
       >
         {state => {
           return (
-            <div
-              className={classNames(classes.container, {
-                [classes.entered]: state === 'entered',
-              })}
+            <ComponentProp
+              className={classNames(
+                classes.container,
+                {
+                  [classes.entered]: state === 'entered',
+                },
+                className,
+              )}
             >
               <div
                 className={classes.wrapper}
@@ -251,7 +264,7 @@ class Collapse extends React.Component<ProvidedProps & Props> {
               >
                 <div className={classes.wrapperInner}>{children}</div>
               </div>
-            </div>
+            </ComponentProp>
           );
         }}
       </Transition>

@@ -111,6 +111,9 @@ export const styles = (theme: Object) => ({
   'wrap-xs-nowrap': {
     flexWrap: 'nowrap',
   },
+  'wrap-xs-wrap-reverse': {
+    flexWrap: 'wrap-reverse',
+  },
   'align-items-xs-center': {
     alignItems: 'center',
   },

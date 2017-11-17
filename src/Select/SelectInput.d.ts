@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { StandardProps } from '..';
+import { MenuProps } from '../Menu';
 
 export interface SelectInputProps extends StandardProps<{}, SelectInputClassKey> {
   autoWidth: boolean;
   disabled?: boolean;
   native: boolean;
   multiple: boolean;
-  MenuProps?: Object;
+  MenuProps?: Partial<MenuProps>;
   name?: string;
   onBlur?: React.FocusEventHandler<any>;
   onChange?: (event: React.ChangeEvent<{}>, child: React.ReactNode) => void,

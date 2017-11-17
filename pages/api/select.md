@@ -12,7 +12,6 @@ filename: /src/Select/Select.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| InputClasses | Object |  | `classes` property applied to the `Input` element. |
 | MenuProps | Object |  | Properties applied to the `Menu` element. |
 | autoWidth | boolean | false | If true, the width of the popover will automatically be set according to the items inside the menu, otherwise it will be at least the width of the select input. |
 | <span style="color: #31a148">children *</span> | $ReadOnlyArray |  | The option elements to populate the select with. Can be some `MenuItem` when `native` is false and `option` when `native` is true. |
@@ -22,7 +21,7 @@ filename: /src/Select/Select.js
 | multiple | boolean | false | If true, `value` must be an array and the menu will support multiple selections. You can only use it when the `native` property is `false` (default). |
 | native | boolean | false | If `true`, the component will be using a native `select` element. |
 | renderValue | Function |  | Render the selected value. You can only use it when the `native` property is `false` (default). |
-| value | union:&nbsp;$ReadOnlyArray<string<br>&nbsp;number><br>&nbsp;string<br>&nbsp;number<br> |  | The input value, required for a controlled component. |
+| value | union:&nbsp;$ReadOnlyArray&lt;string&nbsp;&#124;<br>&nbsp;number>&nbsp;&#124;<br>&nbsp;string&nbsp;&#124;<br>&nbsp;number<br> |  | The input value, required for a controlled component. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 

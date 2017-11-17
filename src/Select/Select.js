@@ -23,7 +23,7 @@ export const styles = (theme: Object) => ({
     // Native select can't be selected either.
     userSelect: 'none',
     padding: `0 ${theme.spacing.unit * 4}px 2px 0`,
-    width: 'auto',
+    width: `calc(100% - ${theme.spacing.unit * 4}px)`,
     minWidth: theme.spacing.unit * 2, // So it doesn't collapse.
     height: `calc(1em + ${theme.spacing.unit * 2 - 2}px)`,
     cursor: 'pointer',
@@ -44,6 +44,7 @@ export const styles = (theme: Object) => ({
     },
   },
   selectMenu: {
+    width: 'auto', // Fix Safari textOverflow
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
@@ -102,10 +103,6 @@ export type Props = {
    */
   input: Element<any>,
   /**
-   * `classes` property applied to the `Input` element.
-   */
-  InputClasses?: Object,
-  /**
    * If `true`, the component will be using a native `select` element.
    */
   native?: boolean,
@@ -136,7 +133,6 @@ function Select(props: ProvidedProps & Props) {
     classes,
     displayEmpty,
     input,
-    InputClasses,
     native,
     multiple,
     MenuProps,
@@ -157,7 +153,6 @@ function Select(props: ProvidedProps & Props) {
     // Most of the logic is implemented in `SelectInput`.
     // The `Select` component is a simple API wrapper to expose something better to play with.
     inputComponent: SelectInput,
-    classes: InputClasses,
     ...other,
     inputProps: {
       ...(input ? input.props.inputProps : {}),

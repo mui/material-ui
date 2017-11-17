@@ -156,8 +156,8 @@ export type Props = {
    */
   disableTriggerTouch?: boolean,
   /**
-   * The relationship between the tooltip and the wrapper componnet is not clear from the DOM.
-   * By providind this property, we can use aria-describedby to solve the accessibility issue.
+   * The relationship between the tooltip and the wrapper component is not clear from the DOM.
+   * By providing this property, we can use aria-describedby to solve the accessibility issue.
    */
   id?: string,
   /**
@@ -461,18 +461,30 @@ class Tooltip extends React.Component<ProvidedProps & Props, State> {
               this.popper = node;
             }}
           >
-            <div
-              id={id}
-              role="tooltip"
-              aria-hidden={!open}
-              className={classNames(
-                classes.tooltip,
-                { [classes.tooltipOpen]: open },
-                classes[`tooltip${capitalizeFirstLetter(placement.split('-')[0])}`],
-              )}
-            >
-              {title}
-            </div>
+            {({ popperProps, restProps }) => (
+              <div
+                {...popperProps}
+                {...restProps}
+                style={{
+                  ...popperProps.style,
+                  left: popperProps.style.left || 0,
+                  ...restProps.style,
+                }}
+              >
+                <div
+                  id={id}
+                  role="tooltip"
+                  aria-hidden={!open}
+                  className={classNames(
+                    classes.tooltip,
+                    { [classes.tooltipOpen]: open },
+                    classes[`tooltip${capitalizeFirstLetter(placement.split('-')[0])}`],
+                  )}
+                >
+                  {title}
+                </div>
+              </div>
+            )}
           </Popper>
         </Manager>
       </EventListener>

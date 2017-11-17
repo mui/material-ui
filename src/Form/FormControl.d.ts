@@ -12,7 +12,7 @@ export interface FormControlProps extends StandardProps<
   onBlur?: React.EventHandler<any>;
   onFocus?: React.EventHandler<any>;
   required?: boolean;
-  component?: React.ReactType;
+  component?: string | React.ComponentType<FormControlProps>;
 }
 
 export type FormControlClassKey =

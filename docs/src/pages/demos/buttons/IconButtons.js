@@ -7,10 +7,14 @@ import Icon from 'material-ui/Icon';
 import IconButton from 'material-ui/IconButton';
 import DeleteIcon from 'material-ui-icons/Delete';
 import AddShoppingCartIcon from 'material-ui-icons/AddShoppingCart';
+import PhotoCamera from 'material-ui-icons/PhotoCamera';
 
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
   },
 });
 
@@ -33,6 +37,12 @@ function IconButtons(props) {
       <IconButton color="primary" className={classes.button} aria-label="Add to shopping cart">
         <AddShoppingCartIcon />
       </IconButton>
+      <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
+      <label htmlFor="icon-button-file">
+        <IconButton color="primary" className={classes.button} component="span">
+          <PhotoCamera />
+        </IconButton>
+      </label>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { assert } from 'chai';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import createModalManager from './modalManager';
 
-describe('internal/modalManager', () => {
+describe('modalManager', () => {
   let modalManager;
 
   before(() => {
@@ -13,6 +13,14 @@ describe('internal/modalManager', () => {
 
   it('should be an object', () => {
     assert.strictEqual(typeof modalManager, 'object');
+  });
+
+  it('should add a modal only once', () => {
+    const modal = {};
+    const modalManager2 = createModalManager();
+    const idx = modalManager2.add(modal);
+    assert.strictEqual(modalManager2.add(modal), idx);
+    modalManager2.remove(modal);
   });
 
   describe('managing modals', () => {

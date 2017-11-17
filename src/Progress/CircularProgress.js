@@ -197,6 +197,6 @@ CircularProgress.defaultProps = {
   max: 100,
 };
 
-export default withStyles(styles, { name: 'MuiCircularProgress' })(
+export default withStyles(styles, { name: 'MuiCircularProgress', flip: false })(
   (CircularProgress: ComponentWithDefaultProps<DefaultProps, ProvidedProps & Props>),
 );

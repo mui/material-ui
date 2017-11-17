@@ -7,13 +7,13 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
 ## The list
 
 ### 1. Indecision Digest
- A platform meant to bring together professionals and the youth together for career enlightenment
+ A platform meant to bring professionals and youth together for career enlightenment.
  https://indecision.now.sh/
 
 ### 2. Mantic Transparence
- An Open Data tool showing financial and demographic data for all the towns in France (in french)
+ An Open Data tool showing financial and demographic data for all the towns in France (in French).
  https://app.mantic.fr/
 
 ### 3. Venuemob
- A platform for individuals and businesses to find and book the perfect venue for any event
+ A platform for individuals and businesses to find and book the perfect venue for any event.
  https://venuemob.com.au/

@@ -17,6 +17,13 @@ module.exports = require('fs')
   .readFileSync(require.resolve('docs/src/pages/guides/Direction'), 'utf8')
 `,
         },
+        'pages/guides/RtlOptOut.js': {
+          js: require('docs/src/pages/guides/RtlOptOut').default,
+          raw: preval`
+module.exports = require('fs')
+  .readFileSync(require.resolve('docs/src/pages/guides/RtlOptOut'), 'utf8')
+`,
+        },
       }}
     />
   );

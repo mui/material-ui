@@ -5,7 +5,7 @@ import { assert } from 'chai';
 import { createShallow, getClasses } from '../test-utils';
 import Slide from '../transitions/Slide';
 import createMuiTheme from '../styles/createMuiTheme';
-import Modal from '../internal/Modal';
+import Modal from '../Modal';
 import Paper from '../Paper';
 import Drawer from './Drawer';
 

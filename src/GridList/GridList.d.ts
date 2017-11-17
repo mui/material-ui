@@ -7,7 +7,7 @@ export interface GridListProps extends StandardProps<
 > {
   cellHeight?: number | 'auto';
   cols?: number;
-  component?: React.ReactType;
+  component?: string | React.ComponentType<GridListProps>;
   spacing?: number;
 }
 

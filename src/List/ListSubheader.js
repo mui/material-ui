@@ -1,7 +1,7 @@
 // @flow weak
 
 import React from 'react';
-import type { Node } from 'react';
+import type { Node, ElementType } from 'react';
 import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
@@ -11,6 +11,7 @@ export const styles = (theme: Object) => ({
   root: {
     boxSizing: 'border-box',
     lineHeight: '48px',
+    listStyle: 'none',
     paddingLeft: theme.spacing.unit * 2,
     paddingRight: theme.spacing.unit * 2,
     color: theme.palette.text.secondary,
@@ -44,6 +45,7 @@ type ProvidedProps = {
 
 type DefaultProps = {
   color?: Color,
+  component: ElementType,
   disableSticky?: boolean,
   inset?: boolean,
 };
@@ -61,6 +63,12 @@ export type Props = {
    * @ignore
    */
   className?: string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   * The default value is a `button`.
+   */
+  component: ElementType,
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
@@ -80,6 +88,7 @@ function ListSubheader(props: ProvidedProps & Props) {
     children,
     classes,
     className: classNameProp,
+    component: ComponentProp,
     color,
     disableSticky,
     inset,
@@ -96,13 +105,14 @@ function ListSubheader(props: ProvidedProps & Props) {
   );
 
   return (
-    <div className={className} {...other}>
+    <ComponentProp className={className} {...other}>
       {children}
-    </div>
+    </ComponentProp>
   );
 }
 
 ListSubheader.defaultProps = {
+  component: 'li',
   color: 'default',
   disableSticky: false,
   inset: false,

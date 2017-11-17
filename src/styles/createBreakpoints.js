@@ -9,8 +9,10 @@ export const keys = ['xs', 'sm', 'md', 'lg', 'xl'];
 // Keep in mind that @media is inclusive by the CSS specification.
 export default function createBreakpoints(breakpoints: Object) {
   const {
+    // The breakpoint **start** at this value.
+    // For instance with the first breakpoint xs: [xs, sm[.
     values = {
-      xs: 360,
+      xs: 0,
       sm: 600,
       md: 960,
       lg: 1280,
@@ -22,18 +24,12 @@ export default function createBreakpoints(breakpoints: Object) {
   } = breakpoints;
 
   function up(key) {
-    let value;
-    // min-width of xs starts at 0
-    if (key === 'xs') {
-      value = 0;
-    } else {
-      value = values[key] || key;
-    }
+    const value = typeof values[key] === 'number' ? values[key] : key;
     return `@media (min-width:${value}${unit})`;
   }
 
   function down(key) {
-    const value = values[key] || key;
+    const value = typeof values[key] === 'number' ? values[key] : key;
     return `@media (max-width:${value - step / 100}${unit})`;
   }
 

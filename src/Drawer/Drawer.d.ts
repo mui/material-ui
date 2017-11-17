@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { ModalProps, ModalClassKey } from '../internal/Modal';
+import { ModalProps, ModalClassKey } from '../Modal';
 import { TransitionDuration } from '../internal/transition';
 import { SlideProps } from '../transitions/Slide';
 import { Theme } from '../styles/createMuiTheme';
@@ -20,12 +20,16 @@ export interface DrawerProps extends StandardProps<
 
 export type DrawerClassKey =
   | ModalClassKey
-  | 'paper'
-  | 'anchorLeft'
-  | 'anchorRight'
-  | 'anchorTop'
-  | 'anchorBottom'
   | 'docked'
+  | 'paper'
+  | 'paperAnchorLeft'
+  | 'paperAnchorRight'
+  | 'paperAnchorTop'
+  | 'paperAnchorBottom'
+  | 'paperAnchorDockedLeft'
+  | 'paperAnchorDockedTop'
+  | 'paperAnchorDockedRight'
+  | 'paperAnchorDockedBottom'
   | 'modal'
   ;
 

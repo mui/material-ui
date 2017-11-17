@@ -64,6 +64,11 @@ function buildDocs(options) {
   reactAPI.styles = styles;
   reactAPI.pagesMarkdown = pagesMarkdown;
   reactAPI.src = src;
+
+  // if (reactAPI.name !== 'TablePagination') {
+  //   return;
+  // }
+
   // Relative location in the file system.
   reactAPI.filename = componentPath.replace(rootDirectory, '');
   let markdown;

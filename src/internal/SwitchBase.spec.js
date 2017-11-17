@@ -134,7 +134,7 @@ describe('<SwitchBase />', () => {
 
   it('should apply the custom disabled className when disabled', () => {
     const disabledClassName = 'foo';
-    const wrapperA = shallow(<SwitchBase disabled disabledClassName={disabledClassName} />);
+    const wrapperA = shallow(<SwitchBase disabled classes={{ disabled: disabledClassName }} />);
 
     assert.strictEqual(
       wrapperA.hasClass(disabledClassName),
@@ -158,9 +158,10 @@ describe('<SwitchBase />', () => {
     beforeEach(() => {
       wrapper = mount(
         <SwitchBaseNaked
-          classes={{}}
+          classes={{
+            checked: 'test-class-checked',
+          }}
           className="test-class"
-          checkedClassName="test-class-checked"
           checked={false}
         />,
       );
@@ -193,9 +194,10 @@ describe('<SwitchBase />', () => {
     beforeEach(() => {
       wrapper = mount(
         <SwitchBaseNaked
-          classes={{}}
+          classes={{
+            checked: 'test-class-checked',
+          }}
           className="test-class"
-          checkedClassName="test-class-checked"
         />,
       );
     });

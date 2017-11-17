@@ -10,6 +10,7 @@ import {
 } from '../../src/styles';
 import Button from '../../src/Button/Button';
 import { StyleRulesCallback } from '../../src/styles/withStyles';
+import { Contrast } from '../../src/index';
 
 // Shared types for examples
 type ComponentClassNames = 'root';
@@ -89,7 +90,7 @@ const theme = createMuiTheme({
 
 const customTheme = createMuiTheme({
   palette: {
-    type: 'dark',
+    type: 'dark' as Contrast,
   },
 });
 
@@ -113,11 +114,9 @@ interface AllTheProps {
   classes: { root: string };
 }
 
-const AllTheStyles: React.SFC<AllTheProps> = ({ theme, classes }) => (
+const AllTheComposition = withTheme()(withStyles(styles)(({ theme, classes }) => (
   <div className={classes.root}>{theme.palette.text.primary}</div>
-);
-
-const AllTheComposition = withTheme()(withStyles(styles)(AllTheStyles));
+)));
 
 // Can't use withStyles effectively as a decorator in TypeScript
 // due to https://github.com/Microsoft/TypeScript/issues/4881

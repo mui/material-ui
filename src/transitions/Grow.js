@@ -179,15 +179,9 @@ class Grow extends React.Component<ProvidedProps & Props> {
   };
 
   addEndListener = (node, next: Function) => {
-    let timeout;
-
-    if (this.props.timeout === 'auto' || typeof this.props.timeout !== 'number') {
-      timeout = this.autoTimeout || 0;
-    } else {
-      timeout = this.props.timeout;
+    if (this.props.timeout === 'auto') {
+      setTimeout(next, this.autoTimeout || 0);
     }
-
-    setTimeout(next, timeout);
   };
 
   render() {
@@ -221,6 +215,7 @@ class Grow extends React.Component<ProvidedProps & Props> {
         addEndListener={this.addEndListener}
         appear={appear}
         style={style}
+        timeout={timeout === 'auto' ? null : timeout}
         {...other}
         ref={rootRef}
       >

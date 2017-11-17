@@ -13,3 +13,7 @@ The [App bar](https://material.io/guidelines/layout/structure.html#structure-app
 ## App bar with buttons
 
 {{demo='pages/demos/app-bar/ButtonAppBar.js'}}
+
+## App bar with menu
+
+{{demo='pages/demos/app-bar/MenuAppBar.js'}}

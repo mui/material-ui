@@ -5,7 +5,7 @@ export interface PaperProps extends StandardProps<
   React.HTMLAttributes<HTMLDivElement>,
   PaperClassKey
 > {
-  component?: React.ReactType;
+  component?: string | React.ComponentType<PaperProps>;
   elevation?: number;
   square?: boolean;
 }

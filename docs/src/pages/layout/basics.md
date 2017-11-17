@@ -1,6 +1,6 @@
 # Responsive UI
 
-[Responsive layouts](https://material.io/guidelines/layout/responsive-ui.html) in material design adapt to any possible screen size.
+[Responsive layouts](https://material.io/guidelines/layout/responsive-ui.html) in Material Design adapt to any possible screen size.
 
 ## Breakpoints
 

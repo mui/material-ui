@@ -1,9 +1,9 @@
 # Usage
 
 Material-UI components work in isolation.
-**They are self-supporting**, they will inject and only inject the style they need to display.
-They don't rely on any global style like [normalize.css](https://github.com/necolas/normalize.css/).
-You can use any of the components as demonstrated in our documentation.
+**They are self-supporting**, they will inject, and only inject, the styles they need to display.
+They don't rely on any global styles like [normalize.css](https://github.com/necolas/normalize.css/).
+You can use any of the components as demonstrated in the documentation.
 Please refer to each component's [demo page](/demos/app-bar/) to see how they should be imported.
 
 ## Quick start
@@ -32,7 +32,7 @@ Yes, it's really all you need to get started as you can see in this live and int
 
 ## Next steps
 
-You now have an idea about the basic setup. It's time to learn more about:
+Now that you have an idea about the basic setup, it's time to learn more about:
 - How to provide [the Material Design font and typography](/style/typography).
-- How to take advantage of our [theming solution](/customization/themes).
-- How to [override](customization/overrides) the look and feel of our components.
+- How to take advantage of the [theming solution](/customization/themes).
+- How to [override](customization/overrides) the look and feel of the components.

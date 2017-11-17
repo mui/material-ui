@@ -9,6 +9,8 @@ export interface CollapseProps extends StandardProps<
   'children'
 > {
   children?: React.ReactNode;
+  collapsedHeight?: string;
+  component?: string | React.ComponentType<CollapseProps>;
   theme?: Theme;
   timeout?: TransitionDuration | 'auto';
 }

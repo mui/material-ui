@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { TableCellProps, TableCellClassKey } from './TableCell.d'
 
-interface LabelDisplayedRowsArgs {
+export interface LabelDisplayedRowsArgs {
   from: number;
   to: number;
   count: number;
@@ -14,8 +14,8 @@ export interface TablePaginationProps extends StandardProps<
   TablePaginationClassKey
 > {
   count: number;
-  labelDisplayedRows?: (paginationInfo: LabelDisplayedRowsArgs) => Node;
-  labelRowsPerPage?: Node;
+  labelDisplayedRows?: (paginationInfo: LabelDisplayedRowsArgs) => React.ReactNode;
+  labelRowsPerPage?: React.ReactNode;
   onChangePage: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
   onChangeRowsPerPage: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
   page: number;

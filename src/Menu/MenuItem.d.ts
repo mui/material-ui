@@ -6,7 +6,7 @@ export interface MenuItemProps extends StandardProps<
   ListItemProps,
   MenuItemClassKey
 > {
-  component?: React.ReactType;
+  component?: string | React.ComponentType<MenuItemProps>;
   role?: string;
   selected?: boolean;
 }

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import Button from 'material-ui/Button';
 import { MenuItem, MenuList } from 'material-ui/Menu';
 import Grow from 'material-ui/transitions/Grow';
@@ -13,6 +14,9 @@ import ClickAwayListener from 'material-ui/utils/ClickAwayListener';
 const styles = {
   root: {
     display: 'flex',
+  },
+  popperClose: {
+    pointerEvents: 'none',
   },
 };
 
@@ -52,7 +56,11 @@ class MenuListComposition extends React.Component {
               Open Menu
             </Button>
           </Target>
-          <Popper placement="bottom-start" eventsEnabled={open}>
+          <Popper
+            placement="bottom-start"
+            eventsEnabled={open}
+            className={classNames({ [classes.popperClose]: !open })}
+          >
             <ClickAwayListener onClickAway={this.handleRequestClose}>
               <Grow in={open} id="menu-list" style={{ transformOrigin: '0 0 0' }}>
                 <Paper>

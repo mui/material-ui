@@ -55,13 +55,15 @@ class NestedList extends React.Component {
           <ListItemText inset primary="Inbox" />
           {this.state.open ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
-        <Collapse in={this.state.open} transitionDuration="auto" unmountOnExit>
-          <ListItem button className={classes.nested}>
-            <ListItemIcon>
-              <StarBorder />
-            </ListItemIcon>
-            <ListItemText inset primary="Starred" />
-          </ListItem>
+        <Collapse component="li" in={this.state.open} transitionDuration="auto" unmountOnExit>
+          <List disablePadding>
+            <ListItem button className={classes.nested}>
+              <ListItemIcon>
+                <StarBorder />
+              </ListItemIcon>
+              <ListItemText inset primary="Starred" />
+            </ListItem>
+          </List>
         </Collapse>
       </List>
     );

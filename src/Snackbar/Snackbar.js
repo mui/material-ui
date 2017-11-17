@@ -39,43 +39,51 @@ export const styles = (theme: Object) => {
       alignItems: 'center',
     },
     anchorTopCenter: {
-      extend: [top],
+      ...top,
       [theme.breakpoints.up('md')]: {
-        extend: [center],
+        ...center,
       },
     },
     anchorBottomCenter: {
-      extend: [bottom],
+      ...bottom,
       [theme.breakpoints.up('md')]: {
-        extend: [center],
+        ...center,
       },
     },
     anchorTopRight: {
-      extend: [top, right],
+      ...top,
+      ...right,
       [theme.breakpoints.up('md')]: {
         left: 'auto',
-        extend: [topSpace, rightSpace],
+        ...topSpace,
+        ...rightSpace,
       },
     },
     anchorBottomRight: {
-      extend: [bottom, right],
+      ...bottom,
+      ...right,
       [theme.breakpoints.up('md')]: {
         left: 'auto',
-        extend: [bottomSpace, rightSpace],
+        ...bottomSpace,
+        ...rightSpace,
       },
     },
     anchorTopLeft: {
-      extend: [top, left],
+      ...top,
+      ...left,
       [theme.breakpoints.up('md')]: {
         right: 'auto',
-        extend: [topSpace, leftSpace],
+        ...topSpace,
+        ...leftSpace,
       },
     },
     anchorBottomLeft: {
-      extend: [bottom, left],
+      ...bottom,
+      ...left,
       [theme.breakpoints.up('md')]: {
         right: 'auto',
-        extend: [bottomSpace, leftSpace],
+        ...bottomSpace,
+        ...leftSpace,
       },
     },
   };
@@ -257,13 +265,13 @@ class Snackbar extends React.Component<ProvidedProps & Props, State> {
 
   // Timer that controls delay before snackbar auto hides
   setAutoHideTimer(autoHideDuration = null) {
-    if (!this.props.onRequestClose || this.props.autoHideDuration === undefined) {
+    if (!this.props.onRequestClose || this.props.autoHideDuration == null) {
       return;
     }
 
     clearTimeout(this.timerAutoHide);
     this.timerAutoHide = setTimeout(() => {
-      if (!this.props.onRequestClose || this.props.autoHideDuration === undefined) {
+      if (!this.props.onRequestClose || this.props.autoHideDuration == null) {
         return;
       }
 
@@ -302,7 +310,7 @@ class Snackbar extends React.Component<ProvidedProps & Props, State> {
   // Restart the timer when the user is no longer interacting with the Snackbar
   // or when the window is shown back.
   handleResume = () => {
-    if (this.props.autoHideDuration !== undefined) {
+    if (this.props.autoHideDuration != null) {
       if (this.props.resumeHideDuration !== undefined) {
         this.setAutoHideTimer(this.props.resumeHideDuration);
         return;

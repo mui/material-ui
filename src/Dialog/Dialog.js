@@ -1,4 +1,5 @@
 // @flow
+// @inheritedComponent Modal
 
 import React from 'react';
 import type { ComponentType, Node } from 'react';
@@ -6,7 +7,7 @@ import type { ComponentWithDefaultProps } from 'react-flow-types';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
-import Modal from '../internal/Modal';
+import Modal from '../Modal';
 import Fade from '../transitions/Fade';
 import { duration } from '../styles/transitions';
 import Paper from '../Paper';
@@ -30,7 +31,7 @@ export const styles = (theme: Object) => ({
     },
   },
   paperWidthXs: {
-    maxWidth: theme.breakpoints.values.xs,
+    maxWidth: Math.max(theme.breakpoints.values.xs, 360),
   },
   paperWidthSm: {
     maxWidth: theme.breakpoints.values.sm,

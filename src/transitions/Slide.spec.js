@@ -17,6 +17,7 @@ describe('<Slide />', () => {
   const props = {
     in: true,
     children: <div />,
+    direction: 'down',
   };
 
   before(() => {
@@ -94,6 +95,21 @@ describe('<Slide />', () => {
         easing: easing.sharp,
       });
       assert.strictEqual(element.style.transition, animation);
+    });
+  });
+
+  describe('prop: direction', () => {
+    it('should update the position', () => {
+      const wrapper = mount(<SlideNaked {...props} in={false} direction="left" />);
+      const transition = findDOMNode(wrapper.instance().transition);
+      // $FlowExpectedError
+      const transition1 = transition.style.transform;
+      wrapper.setProps({
+        direction: 'right',
+      });
+      // $FlowExpectedError
+      const transition2 = transition.style.transform;
+      assert.notStrictEqual(transition1, transition2);
     });
   });
 

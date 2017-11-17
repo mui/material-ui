@@ -5,7 +5,7 @@ export interface ListProps extends StandardProps<
   React.HTMLAttributes<HTMLUListElement>,
   ListClassKey
 > {
-  component?: React.ReactType;
+  component?: string | React.ComponentType<ListProps>;
   dense?: boolean;
   disablePadding?: boolean;
   rootRef?: React.Ref<any>;

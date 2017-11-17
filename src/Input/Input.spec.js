@@ -422,6 +422,12 @@ describe('<Input />', () => {
       assert.strictEqual(input.hasClass(classes.input), true, 'should still have the input class');
       assert.strictEqual(input.props().readOnly, true, 'should have the readOnly prop');
     });
+
+    it('should be able to get a ref', () => {
+      const handleRef = spy();
+      mount(<Input inputProps={{ ref: handleRef }} />);
+      assert.strictEqual(handleRef.callCount, 1);
+    });
   });
 
   describe('prop: startAdornment, prop: endAdornment', () => {

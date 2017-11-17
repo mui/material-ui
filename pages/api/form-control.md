@@ -25,7 +25,7 @@ This context is used by the following components:
 | disabled | boolean | false | If `true`, the label, input and helper text should be displayed in a disabled state. |
 | error | boolean | false | If `true`, the label should be displayed in an error state. |
 | fullWidth | boolean | false | If `true`, the component, as well as its children, will take up the full width of its container. |
-| margin | union:&nbsp;'none'<br>&nbsp;'dense'<br>&nbsp;'normal'<br> | 'none' | If `dense` or `normal`, will adjust vertical spacing of this and contained components. |
+| margin | union:&nbsp;'none'&nbsp;&#124;<br>&nbsp;'dense'&nbsp;&#124;<br>&nbsp;'normal'<br> | 'none' | If `dense` or `normal`, will adjust vertical spacing of this and contained components. |
 | required | boolean | false | If `true`, the label will indicate that the input is required. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).

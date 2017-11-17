@@ -18,9 +18,9 @@ export type Style = TextStyle | 'button';
 export interface FontStyle {
   fontFamily: React.CSSProperties['fontFamily'];
   fontSize: React.CSSProperties['fontSize'];
-  fontWeightLight: number | string;
-  fontWeightRegular: number | string;
-  fontWeightMedium: number | string;
+  fontWeightLight: React.CSSProperties['fontWeight'];
+  fontWeightRegular: React.CSSProperties['fontWeight'];
+  fontWeightMedium: React.CSSProperties['fontWeight'];
   htmlFontSize?: number;
 }
 
@@ -30,7 +30,7 @@ export interface TypographyStyle {
   fontSize: React.CSSProperties['fontSize'];
   fontWeight: React.CSSProperties['fontWeight'];
   letterSpacing?: React.CSSProperties['letterSpacing'];
-  lineHeight: React.CSSProperties['lineHeight'];
+  lineHeight?: React.CSSProperties['lineHeight'];
   textTransform?: React.CSSProperties['textTransform'];
 }
 

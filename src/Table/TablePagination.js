@@ -70,7 +70,7 @@ type DefaultProps = {
   component: ElementType,
   labelRowsPerPage: Node,
   labelDisplayedRows: (paginationInfo: LabelDisplayedRowsArgs) => Node,
-  rowsPerPageOptions?: number[],
+  rowsPerPageOptions: number[],
 };
 
 export type Props = {
@@ -105,13 +105,16 @@ export type Props = {
    */
   labelRowsPerPage?: Node,
   /**
-   * Callback fired when the page is changed. Invoked with two arguments: the event and the
-   * page to show.
+   * Callback fired when the page is changed.
+   *
+   * @param {object} event The event source of the callback
+   * @param {number} page The page selected
    */
   onChangePage: (event: SyntheticInputEvent<> | null, page: number) => void,
   /**
-   * Callback fired when the number of rows per page is changed. Invoked with two arguments: the
-   * event.
+   * Callback fired when the number of rows per page is changed.
+   *
+   * @param {object} event The event source of the callback
    */
   onChangeRowsPerPage: (event: SyntheticInputEvent<>) => void,
   /**
@@ -133,7 +136,7 @@ export type Props = {
 };
 
 /**
- * A `TableRow` based component for placing inside `TableFooter` for pagination.
+ * A `TableCell` based component for placing inside `TableFooter` for pagination.
  */
 class TablePagination extends React.Component<ProvidedProps & Props> {
   static defaultProps: DefaultProps = {
@@ -143,7 +146,8 @@ class TablePagination extends React.Component<ProvidedProps & Props> {
     rowsPerPageOptions: [5, 10, 25],
   };
 
-  componentWillReceiveProps({ count, onChangePage, rowsPerPage }) {
+  componentWillReceiveProps(nextProps) {
+    const { count, onChangePage, rowsPerPage } = nextProps;
     const newLastPage = Math.max(0, Math.ceil(count / rowsPerPage) - 1);
     if (this.props.page > newLastPage) {
       onChangePage(null, newLastPage);
@@ -178,7 +182,7 @@ class TablePagination extends React.Component<ProvidedProps & Props> {
     let colSpan;
 
     if (Component === TableCell || Component === 'td') {
-      colSpan = colSpanProp || 9001; // col-span over everything
+      colSpan = colSpanProp || 1000; // col-span over everything
     }
 
     const themeDirection = theme && theme.direction;
@@ -192,10 +196,14 @@ class TablePagination extends React.Component<ProvidedProps & Props> {
           </Typography>
           <Select
             classes={{ root: classes.selectRoot, select: classes.select }}
-            InputClasses={{
-              root: classes.input,
-            }}
-            input={<Input disableUnderline />}
+            input={
+              <Input
+                classes={{
+                  root: classes.input,
+                }}
+                disableUnderline
+              />
+            }
             value={rowsPerPage}
             onChange={onChangeRowsPerPage}
           >
