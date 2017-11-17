@@ -32,12 +32,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  component: ElementType,
-  dense?: boolean,
-  disablePaddin?: boolean,
-};
-
 export type Props = {
   /**
    * Other base element props.
@@ -65,11 +59,11 @@ export type Props = {
    * the list and list items. The property is available to descendant components as the
    * `dense` context.
    */
-  dense?: boolean,
+  dense: boolean,
   /**
    * If `true`, vertical padding will be removed from the list.
    */
-  disablePadding?: boolean,
+  disablePadding: boolean,
   /**
    * Use that property to pass a ref callback to the root component.
    */
@@ -81,8 +75,8 @@ export type Props = {
 };
 
 class List extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
-    component: 'ul',
+  static defaultProps = {
+    component: ('ul': ElementType),
     dense: false,
     disablePadding: false,
   };

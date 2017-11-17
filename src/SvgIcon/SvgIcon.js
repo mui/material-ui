@@ -24,10 +24,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  viewBox?: string,
-};
-
 export type Props = {
   /**
    * Other base element props.
@@ -57,11 +53,11 @@ export type Props = {
    * this means that the coordinates inside the svg will go from the top left corner (0,0)
    * to bottom right (50,20) and each unit will be worth 10px.
    */
-  viewBox?: string,
+  viewBox: string,
 };
 
 class SvgIcon extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     viewBox: '0 0 24 24',
   };
 

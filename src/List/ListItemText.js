@@ -34,13 +34,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  disableTypography: boolean,
-  primary: Node,
-  secondary: Node,
-  inset: boolean,
-};
-
 export type Props = {
   /**
    * Useful to extend the style applied to components.
@@ -65,7 +58,7 @@ export type Props = {
 };
 
 class ListItemText extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     disableTypography: false,
     primary: false,
     secondary: false,

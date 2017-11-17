@@ -18,12 +18,6 @@ type ProvidedProps = {
   theme: Object,
 };
 
-type DefaultProps = {
-  appear?: boolean,
-  timeout: TransitionDuration,
-  transitionClasses?: TransitionClasses,
-};
-
 export type Props = {
   /**
    * Other base element props.
@@ -32,7 +26,7 @@ export type Props = {
   /**
    * @ignore
    */
-  appear?: boolean,
+  appear: boolean,
   /**
    * A single child content element.
    */
@@ -77,7 +71,7 @@ export type Props = {
    * The animation classNames applied to the component as it enters or exits.
    * This property is a direct binding to [`CSSTransition.classNames`](https://reactcommunity.org/react-transition-group/#CSSTransition-prop-classNames).
    */
-  transitionClasses?: TransitionClasses,
+  transitionClasses: TransitionClasses,
   /**
    * @ignore
    */
@@ -96,9 +90,9 @@ export type Props = {
  * It's using [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 class Grow extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     appear: true,
-    timeout: 'auto',
+    timeout: ('auto': TransitionDuration),
     transitionClasses: {},
   };
 

@@ -4,7 +4,7 @@ import React from 'react';
 import type { Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
-import createSwitch from '../internal/SwitchBase';
+import SwitchBase from '../internal/SwitchBase';
 
 export const styles = (theme: Object) => ({
   root: {
@@ -60,8 +60,6 @@ export const styles = (theme: Object) => ({
     },
   },
 });
-
-const SwitchBase = createSwitch();
 
 type ProvidedProps = {
   classes: Object,

@@ -19,10 +19,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  visible?: boolean,
-};
-
 export type Props = {
   /**
    * Useful to extend the style applied to components.
@@ -50,7 +46,7 @@ export type Props = {
  * @ignore - internal component.
  */
 class TabScrollButton extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     visible: true,
   };
 

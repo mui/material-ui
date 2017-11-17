@@ -23,13 +23,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  cols: number,
-  spacing: number,
-  cellHeight: CellHeight,
-  component: ElementType,
-};
-
 export type Props = {
   /**
    * Number of px for one cell height.
@@ -69,7 +62,7 @@ export type Props = {
 };
 
 class GridList extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     cols: 2,
     spacing: 4,
     cellHeight: 180,

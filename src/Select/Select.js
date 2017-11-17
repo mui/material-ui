@@ -66,13 +66,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  displayEmpty?: boolean,
-  input: Element<any>,
-  native?: boolean,
-  multiple?: boolean,
-};
-
 export type Props = {
   /**
    * Other base element props.
@@ -82,7 +75,7 @@ export type Props = {
    * If true, the width of the popover will automatically be set according to the items inside the
    * menu, otherwise it will be at least the width of the select input.
    */
-  autoWidth?: boolean,
+  autoWidth: boolean,
   /**
    * The option elements to populate the select with.
    * Can be some `MenuItem` when `native` is false and `option` when `native` is true.
@@ -96,7 +89,7 @@ export type Props = {
    * If `true`, the selected item is displayed even if its value is empty.
    * You can only use it when the `native` property is `false` (default).
    */
-  displayEmpty?: boolean,
+  displayEmpty: boolean,
   /**
    * An `Input` element; does not have to be a material-ui specific `Input`.
    */
@@ -104,12 +97,12 @@ export type Props = {
   /**
    * If `true`, the component will be using a native `select` element.
    */
-  native?: boolean,
+  native: boolean,
   /**
    * If true, `value` must be an array and the menu will support multiple selections.
    * You can only use it when the `native` property is `false` (default).
    */
-  multiple?: boolean,
+  multiple: boolean,
   /**
    * Properties applied to the `Menu` element.
    */
@@ -126,7 +119,7 @@ export type Props = {
 };
 
 class Select extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     autoWidth: false,
     displayEmpty: false,
     input: <Input />,

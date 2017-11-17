@@ -21,10 +21,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  row?: boolean,
-};
-
 export type Props = {
   /**
    * Other base element props.
@@ -45,7 +41,7 @@ export type Props = {
   /**
    * Display group of elements in a compact row.
    */
-  row?: boolean,
+  row: boolean,
 };
 
 /**
@@ -54,7 +50,7 @@ export type Props = {
  * For the `Radio`, you should be using the `RadioGroup` component instead of this one.
  */
 class FormGroup extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     row: false,
   };
 

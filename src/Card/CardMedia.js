@@ -24,10 +24,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  component: ElementType,
-};
-
 export type Props = {
   /**
    * Other base element props.
@@ -64,8 +60,8 @@ export type Props = {
 };
 
 class CardMedia extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
-    component: 'div',
+  static defaultProps = {
+    component: ('div': ElementType),
   };
 
   render() {

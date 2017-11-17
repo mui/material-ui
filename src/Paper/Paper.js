@@ -31,12 +31,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  component: ElementType,
-  elevation: number,
-  square: boolean,
-};
-
 export type Props = {
   /**
    * Other base element props.
@@ -71,8 +65,8 @@ export type Props = {
 };
 
 class Paper extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
-    component: 'div',
+  static defaultProps = {
+    component: ('div': ElementType),
     elevation: 2,
     square: false,
   };

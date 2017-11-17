@@ -41,12 +41,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  component: ElementType,
-  hover: boolean,
-  selected: boolean,
-};
-
 export type Props = {
   /**
    * Other base element props.
@@ -84,10 +78,10 @@ export type Props = {
  * based on the material table element parent (head, body, etc).
  */
 class TableRow extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     hover: false,
     selected: false,
-    component: 'tr',
+    component: ('tr': ElementType),
   };
 
   static contextTypes = {

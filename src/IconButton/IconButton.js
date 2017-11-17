@@ -62,12 +62,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  color: Color,
-  disabled: boolean,
-  disableRipple: boolean,
-};
-
 export type Props = {
   /**
    * Other base element props.
@@ -113,7 +107,7 @@ export type Props = {
  * regarding the available icon options.
  */
 class IconButton extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     color: 'default',
     disabled: false,
     disableRipple: false,

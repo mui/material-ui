@@ -12,11 +12,6 @@ type ProvidedProps = {
   theme: Object,
 };
 
-type DefaultProps = {
-  appear: boolean,
-  timeout: TransitionDuration,
-};
-
 export type Props = {
   /**
    * Other base element props.
@@ -68,12 +63,12 @@ const reflow = node => node.scrollTop;
  * It's using [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 class Fade extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     appear: true,
-    timeout: {
+    timeout: ({
       enter: duration.enteringScreen,
       exit: duration.leavingScreen,
-    },
+    }: TransitionDuration),
   };
 
   handleEnter = (node: HTMLElement) => {

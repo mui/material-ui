@@ -71,11 +71,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  actionPosition?: ActionPosition,
-  titlePosition?: TitlePosition,
-};
-
 export type Props = {
   /**
    * An IconButton element to be used as secondary action target
@@ -109,7 +104,7 @@ export type Props = {
 };
 
 class GridListTileBar extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     actionPosition: 'right',
     titlePosition: 'bottom',
   };

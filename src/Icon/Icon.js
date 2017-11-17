@@ -37,10 +37,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  color: Color,
-};
-
 export type Props = {
   /**
    * Other base element props.
@@ -61,7 +57,7 @@ export type Props = {
 };
 
 class Icon extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     color: 'inherit',
   };
 

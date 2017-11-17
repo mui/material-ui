@@ -43,14 +43,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  centerRipple: boolean,
-  focusRipple: boolean,
-  disableRipple: boolean,
-  tabIndex: number | string,
-  type: string,
-};
-
 export type Props = {
   /**
    * Other base element props.
@@ -168,7 +160,7 @@ type State = {
 };
 
 class ButtonBase extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     centerRipple: false,
     focusRipple: false,
     disableRipple: false,

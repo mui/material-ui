@@ -20,10 +20,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  disableGutters?: boolean,
-};
-
 export type Props = {
   /**
    * Useful to extend the style applied to components.
@@ -44,7 +40,7 @@ export type Props = {
 };
 
 class Toolbar extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     disableGutters: false,
   };
 

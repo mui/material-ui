@@ -18,10 +18,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  component?: ElementType,
-};
-
 export type Props = {
   /**
    * The content of the component, normally `TableRow`.
@@ -39,12 +35,12 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: ElementType,
+  component: ElementType,
 };
 
 class TableBody extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
-    component: 'tbody',
+  static defaultProps = {
+    component: ('tbody': ElementType),
   };
 
   getChildContext() {

@@ -33,10 +33,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  component: ElementType,
-};
-
 export type Props = {
   /**
    * The content of the component.
@@ -78,8 +74,8 @@ class FormLabel extends React.Component<ProvidedProps & Props> {
     muiFormControl: PropTypes.object,
   };
 
-  static defaultProps: DefaultProps = {
-    component: 'label',
+  static defaultProps = {
+    component: ('label': ElementType),
   };
 
   context: { muiFormControl: Object };

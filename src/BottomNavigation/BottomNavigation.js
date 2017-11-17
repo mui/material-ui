@@ -19,10 +19,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  showLabels: boolean,
-};
-
 export type Props = {
   /**
    * The content of the component.
@@ -51,7 +47,7 @@ export type Props = {
 };
 
 class BottomNavigation extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     showLabels: false,
   };
 

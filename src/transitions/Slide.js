@@ -70,11 +70,6 @@ type ProvidedProps = {
   theme: Object,
 };
 
-type DefaultProps = {
-  direction?: Direction,
-  timeout: TransitionDuration,
-};
-
 export type Props = {
   /**
    * Other Transition element props.
@@ -138,11 +133,11 @@ type State = {
 const reflow = node => node.scrollTop;
 
 class Slide extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps: DefaultProps = {
-    timeout: {
+  static defaultProps = {
+    timeout: ({
       enter: duration.enteringScreen,
       exit: duration.leavingScreen,
-    },
+    }: TransitionDuration),
   };
 
   state = {

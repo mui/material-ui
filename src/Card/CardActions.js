@@ -23,10 +23,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  disableActionSpacing: boolean,
-};
-
 export type Props = {
   /**
    * The content of the component.
@@ -47,7 +43,7 @@ export type Props = {
 };
 
 class CardActions extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     disableActionSpacing: false,
   };
 

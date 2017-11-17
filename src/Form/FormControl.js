@@ -39,15 +39,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  disabled?: boolean,
-  component?: ElementType,
-  error?: boolean,
-  fullWidth?: boolean,
-  margin?: Margin,
-  required?: boolean,
-};
-
 export type Props = {
   /**
    * Other base element props.
@@ -69,20 +60,24 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: ElementType,
+  component: ElementType,
   /**
    * If `true`, the label, input and helper text should be displayed in a disabled state.
    */
-  disabled?: boolean,
+  disabled: boolean,
   /**
    * If `true`, the label should be displayed in an error state.
    */
-  error?: boolean,
+  error: boolean,
   /**
    * If `true`, the component, as well as its children,
    * will take up the full width of its container.
    */
-  fullWidth?: boolean,
+  fullWidth: boolean,
+  /**
+   * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
+   */
+  margin: Margin,
   /**
    * @ignore
    */
@@ -94,11 +89,7 @@ export type Props = {
   /**
    * If `true`, the label will indicate that the input is required.
    */
-  required?: boolean,
-  /**
-   * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
-   */
-  margin?: Margin,
+  required: boolean,
 };
 
 type State = {
@@ -118,8 +109,8 @@ type State = {
  *  - InputLabel
  */
 class FormControl extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps: DefaultProps = {
-    component: 'div',
+  static defaultProps = {
+    component: ('div': ElementType),
     disabled: false,
     error: false,
     fullWidth: false,

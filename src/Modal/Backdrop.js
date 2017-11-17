@@ -30,10 +30,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  invisible?: boolean,
-};
-
 export type Props = {
   /**
    * Can be used, for instance, to render a letter inside the avatar.
@@ -50,14 +46,14 @@ export type Props = {
   /**
    * If `true`, the backdrop is invisible.
    */
-  invisible?: boolean,
+  invisible: boolean,
 };
 
 /**
  * @ignore - internal component.
  */
 class Backdrop extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     invisible: false,
   };
 

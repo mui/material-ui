@@ -55,16 +55,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  centered?: boolean,
-  fullWidth?: boolean,
-  indicatorColor: IndicatorColor,
-  scrollable?: boolean,
-  scrollButtons?: ScrollButtons,
-  textColor?: TextColor,
-  TabScrollButton: ComponentType<*>,
-};
-
 export type Props = {
   /**
    * Other base element props.
@@ -78,7 +68,7 @@ export type Props = {
    * If `true`, the tabs will be centered.
    * This property is intended for large views.
    */
-  centered?: boolean,
+  centered: boolean,
   /**
    * The content of the component.
    */
@@ -95,7 +85,7 @@ export type Props = {
    * If `true`, the tabs will grow to use all the available space.
    * This property is intended for small views, like on mobile.
    */
-  fullWidth?: boolean,
+  fullWidth: boolean,
   /**
    * The CSS class name of the indicator element.
    */
@@ -103,7 +93,7 @@ export type Props = {
   /**
    * Determines the color of the indicator.
    */
-  indicatorColor: 'accent' | 'primary' | string,
+  indicatorColor: IndicatorColor,
   /**
    * Callback fired when the value changes.
    *
@@ -115,14 +105,14 @@ export type Props = {
    * True invokes scrolling properties and allow for horizontally scrolling
    * (or swiping) the tab bar.
    */
-  scrollable?: boolean,
+  scrollable: boolean,
   /**
    * Determine behavior of scroll buttons when tabs are set to scroll
    * `auto` will only present them on medium and larger viewports
    * `on` will always present them
    * `off` will never present them
    */
-  scrollButtons?: ScrollButtons,
+  scrollButtons: ScrollButtons,
   /**
    * The component used to render the scroll buttons.
    */
@@ -130,7 +120,7 @@ export type Props = {
   /**
    * Determines the color of the `Tab`.
    */
-  textColor?: TextColor,
+  textColor: TextColor,
   /**
    * @ignore
    */
@@ -161,7 +151,7 @@ export type TabsMeta = {
 };
 
 class Tabs extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     centered: false,
     fullWidth: false,
     indicatorColor: 'accent',

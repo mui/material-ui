@@ -156,17 +156,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  color: Color,
-  dense: boolean,
-  disabled: boolean,
-  fab: boolean,
-  disableFocusRipple: boolean,
-  raised: boolean,
-  disableRipple: boolean,
-  type: string,
-};
-
 export type Props = {
   /**
    * Other base element props.
@@ -231,7 +220,7 @@ export type Props = {
 };
 
 class Button extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     color: 'default',
     dense: false,
     disabled: false,

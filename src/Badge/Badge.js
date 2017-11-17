@@ -50,10 +50,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  color: Color,
-};
-
 export type Props = {
   /**
    * Other div props.
@@ -82,7 +78,7 @@ export type Props = {
 };
 
 class Badge extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     color: 'default',
   };
 

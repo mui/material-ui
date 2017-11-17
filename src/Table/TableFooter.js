@@ -18,10 +18,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  component: ElementType,
-};
-
 export type Props = {
   /**
    * The content of the component, normally `TableRow`.
@@ -43,8 +39,8 @@ export type Props = {
 };
 
 class TableFooter extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
-    component: 'tfoot',
+  static defaultProps = {
+    component: ('tfoot': ElementType),
   };
 
   getChildContext() {

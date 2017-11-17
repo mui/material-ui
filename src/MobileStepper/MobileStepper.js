@@ -60,12 +60,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  activeStep?: number,
-  position?: Position,
-  type?: Type,
-};
-
 export type Props = {
   /**
    * Set the active step (zero based index).
@@ -103,7 +97,7 @@ export type Props = {
 };
 
 class MobileStepper extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     activeStep: 0,
     position: 'bottom',
     type: 'dots',

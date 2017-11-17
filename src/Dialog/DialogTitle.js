@@ -20,10 +20,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  disableTypography: boolean,
-};
-
 export type Props = {
   /**
    * Other base element props.
@@ -49,7 +45,7 @@ export type Props = {
 };
 
 class DialogTitle extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     disableTypography: false,
   };
 

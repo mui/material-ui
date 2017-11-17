@@ -34,13 +34,6 @@ type ProvidedProps = {
   theme?: Object,
 };
 
-type DefaultProps = {
-  appear: boolean,
-  component: ElementType,
-  collapsedHeight: string,
-  timeout: TransitionDuration,
-};
-
 export type Props = {
   /**
    * Other base element props.
@@ -118,11 +111,11 @@ export type Props = {
 };
 
 class Collapse extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     appear: false,
-    component: 'div',
+    component: ('div': ElementType),
     collapsedHeight: '0px',
-    timeout: duration.standard,
+    timeout: (duration.standard: TransitionDuration),
   };
 
   wrapper = null;
