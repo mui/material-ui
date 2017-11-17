@@ -133,7 +133,9 @@ function FormControlLabel(props: ProvidedProps & Props, context: Context) {
         value: control.props.value || value,
         inputRef: control.props.inputRef || inputRef,
       })}
-      <Typography className={classes.label}>{label}</Typography>
+      <Typography component="span" className={classes.label}>
+        {label}
+      </Typography>
     </label>
   );
 }
