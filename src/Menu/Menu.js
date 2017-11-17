@@ -12,10 +12,19 @@ import type { TransitionCallback } from '../internal/transition';
 
 type ProvidedProps = {
   classes: Object,
-  theme: Object,
+  theme?: Object,
+};
+
+type DefaultProps = {
+  open?: boolean,
+  transitionDuration?: number | { enter?: number, exit?: number } | 'auto',
 };
 
 export type Props = {
+  /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
   /**
    * The DOM element used to set the position of the menu.
    */
@@ -106,7 +115,7 @@ export const styles = {
 };
 
 class Menu extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
+  static defaultProps: DefaultProps = {
     open: false,
     transitionDuration: 'auto',
   };
@@ -196,13 +205,14 @@ class Menu extends React.Component<ProvidedProps & Props> {
       ...other
     } = this.props;
 
+    const themeDirection = theme && theme.direction;
     return (
       <Popover
         getContentAnchorEl={this.getContentAnchorEl}
         classes={PopoverClasses}
         onEnter={this.handleEnter}
-        anchorOrigin={theme.direction === 'rtl' ? rtlOrigin : ltrOrigin}
-        transformOrigin={theme.direction === 'rtl' ? rtlOrigin : ltrOrigin}
+        anchorOrigin={themeDirection === 'rtl' ? rtlOrigin : ltrOrigin}
+        transformOrigin={themeDirection === 'rtl' ? rtlOrigin : ltrOrigin}
         PaperProps={{
           ...PaperProps,
           classes: {

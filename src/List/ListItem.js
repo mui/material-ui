@@ -65,10 +65,23 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  theme?: Object,
+};
+
+type DefaultProps = {
+  button?: boolean,
   component: ElementType,
+  dense?: boolean,
+  disabled?: boolean,
+  disableGutters?: boolean,
+  divider?: boolean,
 };
 
 export type Props = {
+  /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
   /**
    * If `true`, the ListItem will be a button.
    */
@@ -89,7 +102,7 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: ElementType,
+  component: ElementType,
   /**
    * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
    */
@@ -109,7 +122,7 @@ export type Props = {
 };
 
 class ListItem extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
+  static defaultProps: DefaultProps = {
     button: false,
     component: 'li',
     dense: false,

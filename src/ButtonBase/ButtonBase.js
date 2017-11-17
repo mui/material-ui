@@ -40,14 +40,27 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  theme?: Object,
+};
+
+type DefaultProps = {
+  centerRipple: boolean,
+  focusRipple: boolean,
+  disableRipple: boolean,
+  tabIndex: number | string,
+  type: string,
 };
 
 export type Props = {
   /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
+  /**
    * If `true`, the ripples will be centered.
    * They won't start at the cursor interaction position.
    */
-  centerRipple?: boolean,
+  centerRipple: boolean,
   /**
    * The content of the component.
    */
@@ -73,12 +86,12 @@ export type Props = {
   /**
    * If `true`, the ripple effect will be disabled.
    */
-  disableRipple?: boolean,
+  disableRipple: boolean,
   /**
    * If `true`, the base button will have a keyboard focus ripple.
    * `disableRipple` must also be `false`.
    */
-  focusRipple?: boolean,
+  focusRipple: boolean,
   /**
    * The CSS class applied while the component is keyboard focused.
    */
@@ -143,7 +156,7 @@ export type Props = {
   /**
    * @ignore
    */
-  tabIndex?: number | string,
+  tabIndex: number | string,
   /**
    * @ignore
    */
@@ -155,7 +168,7 @@ type State = {
 };
 
 class ButtonBase extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps = {
+  static defaultProps: DefaultProps = {
     centerRipple: false,
     focusRipple: false,
     disableRipple: false,

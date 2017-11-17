@@ -95,7 +95,7 @@ export type RequiredProps = {
 };
 
 // Note, theme is conditionally injected, but flow is static analysis so we need to include it.
-export type InjectedProps = { classes: Object, theme: Object };
+export type InjectedProps = { classes: Object, theme?: Object };
 
 // Link a style sheet with a component.
 // It does not modify the component passed to it;

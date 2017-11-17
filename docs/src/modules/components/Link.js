@@ -1,4 +1,5 @@
 // @flow
+/* eslint-disable react/no-multi-comp */
 
 import React from 'react';
 import type { ElementType, Node } from 'react';
@@ -56,10 +57,19 @@ OnClick.propTypes = {
 
 type Variant = 'default' | 'primary' | 'accent' | 'button';
 
+type DefaultProps = {
+  activeClassName: string,
+  variant?: Variant,
+};
+
+type ProvidedProps = {
+  classes: Object,
+  theme?: Object,
+};
+
 type Props = {
   activeClassName: string,
   children: Node,
-  classes: Object,
   className?: string,
   component?: ElementType,
   href?: string,
@@ -68,75 +78,77 @@ type Props = {
   variant?: Variant,
 };
 
-function Link(props: Props, context: Object) {
-  const {
-    activeClassName,
-    children: childrenProp,
-    component: ComponentProp,
-    classes,
-    className: classNameProp,
-    variant,
-    href,
-    onClick,
-    prefetch,
-    ...other
-  } = props;
+class Link extends React.Component<Props & ProvidedProps> {
+  static defaultProps: DefaultProps = {
+    variant: 'default',
+    activeClassName: 'active',
+  };
 
-  let ComponentRoot;
-  const className = classNames(
-    classes.root,
-    classes[`variant${capitalizeFirstLetter(variant)}`],
-    classNameProp,
-  );
-  let rootProps;
-  let children = childrenProp;
+  static contextTypes = {
+    url: PropTypes.shape({
+      pathname: PropTypes.string.isRequired,
+    }).isRequired,
+  };
 
-  if (ComponentProp) {
-    ComponentRoot = ComponentProp;
-    rootProps = {
-      ...other,
-      className,
-    };
-  } else if (href) {
-    ComponentRoot = NextLink;
-    rootProps = {
+  render() {
+    const {
+      activeClassName,
+      children: childrenProp,
+      component: ComponentProp,
+      classes,
+      className: classNameProp,
+      variant,
       href,
+      onClick,
       prefetch,
-      passHref: true,
-    };
-    const active = context.url.pathname === href;
-    children = (
-      <OnClick
-        component="a"
-        className={classNames(className, {
-          [activeClassName]: active && activeClassName,
-        })}
-        onCustomClick={onClick}
-        {...other}
-      >
-        {children}
-      </OnClick>
+      ...other
+    } = this.props;
+
+    let ComponentRoot;
+    const className = classNames(
+      classes.root,
+      classes[`variant${capitalizeFirstLetter(variant)}`],
+      classNameProp,
     );
-  } else {
-    ComponentRoot = 'a';
-    rootProps = {
-      ...other,
-      className,
-    };
+    let rootProps;
+    let children = childrenProp;
+
+    if (ComponentProp) {
+      ComponentRoot = ComponentProp;
+      rootProps = {
+        ...other,
+        className,
+      };
+    } else if (href) {
+      ComponentRoot = NextLink;
+      rootProps = {
+        href,
+        prefetch,
+        passHref: true,
+      };
+      const active = this.context.url.pathname === href;
+      children = (
+        <OnClick
+          component="a"
+          className={classNames(className, {
+            [activeClassName]: active && activeClassName,
+          })}
+          onCustomClick={onClick}
+          {...other}
+        >
+          {children}
+        </OnClick>
+      );
+    } else {
+      ComponentRoot = 'a';
+      rootProps = {
+        ...other,
+        className,
+      };
+    }
+
+    return <ComponentRoot {...rootProps}>{children}</ComponentRoot>;
   }
-
-  return <ComponentRoot {...rootProps}>{children}</ComponentRoot>;
 }
-
-Link.contextTypes = {
-  url: PropTypes.shape({
-    pathname: PropTypes.string.isRequired,
-  }).isRequired,
-};
-
-Link.defaultProps = {
-  variant: 'default',
-  activeClassName: 'active',
-};
 
 export default withStyles(styles)(Link);

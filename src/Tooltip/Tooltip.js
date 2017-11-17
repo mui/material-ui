@@ -118,13 +118,16 @@ function flipPlacement(placement: Placement): Placement {
 
 type ProvidedProps = {
   classes: Object,
-  disableTriggerFocus: boolean,
-  disableTriggerHover: boolean,
-  disableTriggerTouch: boolean,
+  theme?: Object,
+};
+
+type DefaultProps = {
+  disableTriggerFocus?: boolean,
+  disableTriggerHover?: boolean,
+  disableTriggerTouch?: boolean,
   enterDelay: number,
-  leaveDelay: number,
+  leaveDelay?: number,
   placement: Placement,
-  theme: Object,
 };
 
 export type Props = {
@@ -180,7 +183,7 @@ export type Props = {
   /**
    * The number of milliseconds to wait before showing the tooltip.
    */
-  enterDelay?: number,
+  enterDelay: number,
   /**
    * The number of milliseconds to wait before hidding the tooltip.
    */
@@ -188,7 +191,7 @@ export type Props = {
   /**
    * Tooltip placement
    */
-  placement?: Placement,
+  placement: Placement,
   /**
    * Properties applied to the `Popper` element.
    */
@@ -204,7 +207,7 @@ type State = {
 };
 
 class Tooltip extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps = {
+  static defaultProps: DefaultProps = {
     disableTriggerFocus: false,
     disableTriggerHover: false,
     disableTriggerTouch: false,
@@ -395,7 +398,8 @@ class Tooltip extends React.Component<ProvidedProps & Props, State> {
       ...other
     } = this.props;
 
-    const placement = theme.direction === 'rtl' ? flipPlacement(rawPlacement) : rawPlacement;
+    const themeDirection = theme && theme.direction;
+    const placement = themeDirection === 'rtl' ? flipPlacement(rawPlacement) : rawPlacement;
     const open = this.isControlled ? openProp : this.state.open;
     const childrenProps = {};
 

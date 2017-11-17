@@ -75,14 +75,30 @@ export type Type =
   | 'caption'
   | 'button';
 
-type ProvidedProps = {
-  classes: Object,
+type Align = 'inherit' | 'left' | 'center' | 'right' | 'justify';
+type Color = 'inherit' | 'primary' | 'secondary' | 'accent' | 'error' | 'default';
+
+type DefaultProps = {
+  align: Align,
+  color: Color,
+  gutterBottom: boolean,
   headlineMapping: { [key: Type]: string },
+  noWrap: boolean,
+  paragraph: boolean,
   type: Type,
 };
 
+type ProvidedProps = {
+  classes: Object,
+  theme?: Object,
+};
+
 export type Props = {
-  align?: 'inherit' | 'left' | 'center' | 'right' | 'justify',
+  /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
+  align: Align,
   children?: Node,
   /**
    * Useful to extend the style applied to components.
@@ -101,82 +117,84 @@ export type Props = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color?: 'inherit' | 'primary' | 'secondary' | 'accent' | 'error' | 'default',
+  color: Color,
   /**
    * If `true`, the text will have a bottom margin.
    */
-  gutterBottom?: boolean,
+  gutterBottom: boolean,
   /**
    * We are empirically mapping the type property to a range of different DOM element type.
    * For instance, h1 to h6. If you wish to change that mapping, you can provide your own.
    * Alternatively, you can use the `component` property.
    */
-  headlineMapping?: { [key: Type]: string },
+  headlineMapping: { [key: Type]: string },
   /**
    * If `true`, the text will not wrap, but instead will truncate with an ellipsis.
    */
-  noWrap?: boolean,
+  noWrap: boolean,
   /**
    * If `true`, the text will have a bottom margin.
    */
-  paragraph?: boolean,
+  paragraph: boolean,
   /**
    * Applies the theme typography styles.
    */
-  type?: Type,
+  type: Type,
 };
 
-function Typography(props: ProvidedProps & Props) {
-  const {
-    align,
-    classes,
-    className: classNameProp,
-    component: componentProp,
-    color,
-    gutterBottom,
-    headlineMapping,
-    noWrap,
-    paragraph,
-    type,
-    ...other
-  } = props;
-
-  const className = classNames(
-    classes.root,
-    classes[type],
-    {
-      [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
-      [classes.noWrap]: noWrap,
-      [classes.gutterBottom]: gutterBottom,
-      [classes.paragraph]: paragraph,
-      [classes[`align${capitalizeFirstLetter(align)}`]]: align !== 'inherit',
+class Typography extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    align: 'inherit',
+    color: 'default',
+    gutterBottom: false,
+    headlineMapping: {
+      display4: 'h1',
+      display3: 'h1',
+      display2: 'h1',
+      display1: 'h1',
+      headline: 'h1',
+      title: 'h2',
+      subheading: 'h3',
+      body2: 'aside',
+      body1: 'p',
     },
-    classNameProp,
-  );
+    noWrap: false,
+    paragraph: false,
+    type: 'body1',
+  };
 
-  const Component = componentProp || (paragraph ? 'p' : headlineMapping[type]) || 'span';
+  render() {
+    const {
+      align,
+      classes,
+      className: classNameProp,
+      component: componentProp,
+      color,
+      gutterBottom,
+      headlineMapping,
+      noWrap,
+      paragraph,
+      type,
+      ...other
+    } = this.props;
 
-  return <Component className={className} {...other} />;
+    const className = classNames(
+      classes.root,
+      classes[type],
+      {
+        [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
+        [classes.noWrap]: noWrap,
+        [classes.gutterBottom]: gutterBottom,
+        [classes.paragraph]: paragraph,
+        [classes[`align${capitalizeFirstLetter(align)}`]]: align !== 'inherit',
+      },
+      classNameProp,
+    );
+
+    const Component = componentProp || (paragraph ? 'p' : headlineMapping[type]) || 'span';
+
+    return <Component className={className} {...other} />;
+  }
 }
-
-Typography.defaultProps = {
-  align: 'inherit',
-  color: 'default',
-  gutterBottom: false,
-  headlineMapping: {
-    display4: 'h1',
-    display3: 'h1',
-    display2: 'h1',
-    display1: 'h1',
-    headline: 'h1',
-    title: 'h2',
-    subheading: 'h3',
-    body2: 'aside',
-    body1: 'p',
-  },
-  noWrap: false,
-  paragraph: false,
-  type: 'body1',
-};
 
 export default withStyles(styles, { name: 'MuiTypography' })(Typography);

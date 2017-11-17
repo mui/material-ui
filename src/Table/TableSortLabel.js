@@ -50,9 +50,13 @@ export const styles = (theme: Object) => ({
 export type Direction = 'asc' | 'desc';
 
 type ProvidedProps = {
-  active: boolean,
   classes: Object,
-  direction: Direction,
+  theme?: Object,
+};
+
+type DefaultProps = {
+  active?: boolean,
+  direction?: Direction,
 };
 
 export type Props = {
@@ -81,31 +85,33 @@ export type Props = {
 /**
  * A button based label for placing inside `TableCell` for column sorting.
  */
-function TableSortLabel(props: ProvidedProps & Props) {
-  const { active, classes, className: classNameProp, children, direction, ...other } = props;
-  const className = classNames(
-    classes.root,
-    {
-      [classes.active]: active,
-    },
-    classNameProp,
-  );
+class TableSortLabel extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    active: false,
+    direction: 'desc',
+  };
 
-  const iconClassName = classNames(classes.icon, {
-    [classes[direction]]: !!direction,
-  });
+  render() {
+    const { active, classes, className: classNameProp, children, direction, ...other } = this.props;
+    const className = classNames(
+      classes.root,
+      {
+        [classes.active]: active,
+      },
+      classNameProp,
+    );
 
-  return (
-    <ButtonBase className={className} component="span" disableRipple {...other}>
-      {children}
-      <ArrowDownwardIcon className={iconClassName} />
-    </ButtonBase>
-  );
+    const iconClassName = classNames(classes.icon, {
+      [classes[direction]]: !!direction,
+    });
+
+    return (
+      <ButtonBase className={className} component="span" disableRipple {...other}>
+        {children}
+        <ArrowDownwardIcon className={iconClassName} />
+      </ButtonBase>
+    );
+  }
 }
-
-TableSortLabel.defaultProps = {
-  active: false,
-  direction: 'desc',
-};
 
 export default withStyles(styles, { name: 'MuiTableSortLabel' })(TableSortLabel);

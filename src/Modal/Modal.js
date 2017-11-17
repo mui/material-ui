@@ -39,12 +39,26 @@ export const styles = (theme: Object) => ({
 });
 
 type ProvidedProps = {
-  BackdropComponent: ElementType,
   classes: Object,
+  theme?: Object,
+};
+
+type DefaultProps = {
+  BackdropComponent: ElementType,
+  BackdropTransitionDuration?: TransitionDuration,
+  BackdropInvisible?: boolean,
+  keepMounted?: boolean,
+  disableBackdrop?: boolean,
+  ignoreBackdropClick?: boolean,
+  ignoreEscapeKeyUp?: boolean,
   modalManager: Object,
 };
 
 export type Props = {
+  /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
   /**
    * The CSS class name of the backdrop element.
    */
@@ -52,7 +66,7 @@ export type Props = {
   /**
    * Pass a component class to use as the backdrop.
    */
-  BackdropComponent?: ElementType,
+  BackdropComponent: ElementType,
   /**
    * If `true`, the backdrop is invisible.
    */
@@ -95,7 +109,7 @@ export type Props = {
   /**
    * @ignore
    */
-  modalManager?: Object,
+  modalManager: Object,
   /**
    * Callback fires when the backdrop is clicked on.
    */
@@ -160,7 +174,7 @@ type State = {
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
  */
 class Modal extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps = {
+  static defaultProps: DefaultProps = {
     BackdropComponent: Backdrop,
     BackdropTransitionDuration: 300,
     BackdropInvisible: false,

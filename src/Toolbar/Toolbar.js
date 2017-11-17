@@ -17,6 +17,11 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  theme?: Object,
+};
+
+type DefaultProps = {
+  disableGutters?: boolean,
 };
 
 export type Props = {
@@ -38,26 +43,28 @@ export type Props = {
   disableGutters?: boolean,
 };
 
-function Toolbar(props: ProvidedProps & Props) {
-  const { children, classes, className: classNameProp, disableGutters, ...other } = props;
+class Toolbar extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    disableGutters: false,
+  };
 
-  const className = classNames(
-    classes.root,
-    {
-      [classes.gutters]: !disableGutters,
-    },
-    classNameProp,
-  );
+  render() {
+    const { children, classes, className: classNameProp, disableGutters, ...other } = this.props;
 
-  return (
-    <div className={className} {...other}>
-      {children}
-    </div>
-  );
+    const className = classNames(
+      classes.root,
+      {
+        [classes.gutters]: !disableGutters,
+      },
+      classNameProp,
+    );
+
+    return (
+      <div className={className} {...other}>
+        {children}
+      </div>
+    );
+  }
 }
-
-Toolbar.defaultProps = {
-  disableGutters: false,
-};
 
 export default withStyles(styles, { name: 'MuiToolbar' })(Toolbar);

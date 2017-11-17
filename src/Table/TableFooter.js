@@ -15,6 +15,10 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  theme?: Object,
+};
+
+type DefaultProps = {
   component: ElementType,
 };
 
@@ -35,11 +39,11 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: ElementType,
+  component: ElementType,
 };
 
 class TableFooter extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
+  static defaultProps: DefaultProps = {
     component: 'tfoot',
   };
 

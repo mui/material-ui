@@ -31,6 +31,14 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  theme?: Object,
+};
+
+type DefaultProps = {
+  disableTypography: boolean,
+  primary: Node,
+  secondary: Node,
+  inset: boolean,
 };
 
 export type Props = {
@@ -46,74 +54,76 @@ export type Props = {
    * If `true`, the children won't be wrapped by a typography component.
    * For instance, that can be useful to can render an h4 instead of a
    */
-  disableTypography?: boolean,
+  disableTypography: boolean,
   /**
    * If `true`, the children will be indented.
    * This should be used if there is no left avatar or left icon.
    */
-  inset?: boolean,
-  primary?: Node,
-  secondary?: Node,
+  inset: boolean,
+  primary: Node,
+  secondary: Node,
 };
 
-function ListItemText(props: ProvidedProps & Props, context) {
-  const {
-    classes,
-    className: classNameProp,
-    disableTypography,
-    primary,
-    secondary,
-    inset,
-    ...other
-  } = props;
-  const { dense } = context;
-  const className = classNames(
-    classes.root,
-    {
-      [classes.dense]: dense,
-      [classes.inset]: inset,
-    },
-    classNameProp,
-  );
+class ListItemText extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    disableTypography: false,
+    primary: false,
+    secondary: false,
+    inset: false,
+  };
 
-  return (
-    <div className={className} {...other}>
-      {primary &&
-        (disableTypography ? (
-          primary
-        ) : (
-          <Typography
-            type="subheading"
-            className={classNames(classes.text, { [classes.textDense]: dense })}
-          >
-            {primary}
-          </Typography>
-        ))}
-      {secondary &&
-        (disableTypography ? (
-          secondary
-        ) : (
-          <Typography
-            color="secondary"
-            type="body1"
-            className={classNames(classes.text, { [classes.textDense]: dense })}
-          >
-            {secondary}
-          </Typography>
-        ))}
-    </div>
-  );
+  static contextTypes = {
+    dense: PropTypes.bool,
+  };
+
+  render() {
+    const {
+      classes,
+      className: classNameProp,
+      disableTypography,
+      primary,
+      secondary,
+      inset,
+      ...other
+    } = this.props;
+    const { dense } = this.context;
+    const className = classNames(
+      classes.root,
+      {
+        [classes.dense]: dense,
+        [classes.inset]: inset,
+      },
+      classNameProp,
+    );
+
+    return (
+      <div className={className} {...other}>
+        {primary &&
+          (disableTypography ? (
+            primary
+          ) : (
+            <Typography
+              type="subheading"
+              className={classNames(classes.text, { [classes.textDense]: dense })}
+            >
+              {primary}
+            </Typography>
+          ))}
+        {secondary &&
+          (disableTypography ? (
+            secondary
+          ) : (
+            <Typography
+              color="secondary"
+              type="body1"
+              className={classNames(classes.text, { [classes.textDense]: dense })}
+            >
+              {secondary}
+            </Typography>
+          ))}
+      </div>
+    );
+  }
 }
-
-ListItemText.defaultProps = {
-  disableTypography: false,
-  primary: false,
-  secondary: false,
-  inset: false,
-};
-
-ListItemText.contextTypes = {
-  dense: PropTypes.bool,
-};
 
 export default withStyles(styles, { name: 'MuiListItemText' })(ListItemText);

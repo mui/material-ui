@@ -9,16 +9,23 @@ import withTheme from '../styles/withTheme';
 import type { TransitionDuration, TransitionCallback } from '../internal/transition';
 
 type ProvidedProps = {
+  theme: Object,
+};
+
+type DefaultProps = {
   appear: boolean,
   timeout: TransitionDuration,
-  theme: Object,
 };
 
 export type Props = {
   /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
+  /**
    * @ignore
    */
-  appear?: boolean,
+  appear: boolean,
   /**
    * A single child content element.
    */
@@ -51,7 +58,7 @@ export type Props = {
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    */
-  timeout?: TransitionDuration,
+  timeout: TransitionDuration,
 };
 
 const reflow = node => node.scrollTop;
@@ -61,7 +68,7 @@ const reflow = node => node.scrollTop;
  * It's using [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 class Fade extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
+  static defaultProps: DefaultProps = {
     appear: true,
     timeout: {
       enter: duration.enteringScreen,

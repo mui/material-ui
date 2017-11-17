@@ -58,9 +58,14 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  theme?: Object,
 };
 
 export type Props = {
+  /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
   /**
    * Useful to extend the style applied to components.
    */
@@ -100,6 +105,8 @@ export type Props = {
 };
 
 class BottomNavigationButton extends React.Component<ProvidedProps & Props> {
+  static defaultProps = {};
+
   handleChange = event => {
     const { onChange, value, onClick } = this.props;
 

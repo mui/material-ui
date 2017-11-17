@@ -21,9 +21,18 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  theme?: Object,
+};
+
+type DefaultProps = {
+  viewBox?: string,
 };
 
 export type Props = {
+  /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
   /**
    * Elements passed into the SVG Icon.
    */
@@ -51,27 +60,29 @@ export type Props = {
   viewBox?: string,
 };
 
-function SvgIcon(props: ProvidedProps & Props) {
-  const { children, classes, className, titleAccess, viewBox, ...other } = props;
+class SvgIcon extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    viewBox: '0 0 24 24',
+  };
 
-  return (
-    <svg
-      className={classNames(classes.root, className)}
-      focusable="false"
-      viewBox={viewBox}
-      aria-hidden={titleAccess ? 'false' : 'true'}
-      {...other}
-    >
-      {titleAccess ? <title>{titleAccess}</title> : null}
-      {children}
-    </svg>
-  );
+  static muiName = 'SvgIcon';
+
+  render() {
+    const { children, classes, className, titleAccess, viewBox, ...other } = this.props;
+
+    return (
+      <svg
+        className={classNames(classes.root, className)}
+        focusable="false"
+        viewBox={viewBox}
+        aria-hidden={titleAccess ? 'false' : 'true'}
+        {...other}
+      >
+        {titleAccess ? <title>{titleAccess}</title> : null}
+        {children}
+      </svg>
+    );
+  }
 }
-
-SvgIcon.defaultProps = {
-  viewBox: '0 0 24 24',
-};
-
-SvgIcon.muiName = 'SvgIcon';
 
 export default withStyles(styles, { name: 'MuiSvgIcon' })(SvgIcon);

@@ -16,6 +16,11 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  theme?: Object,
+};
+
+type DefaultProps = {
+  visible?: boolean,
 };
 
 export type Props = {
@@ -44,24 +49,26 @@ export type Props = {
 /**
  * @ignore - internal component.
  */
-function TabScrollButton(props: ProvidedProps & Props) {
-  const { classes, className: classNameProp, direction, onClick, visible, ...other } = props;
+class TabScrollButton extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    visible: true,
+  };
 
-  const className = classNames(classes.root, classNameProp);
+  render() {
+    const { classes, className: classNameProp, direction, onClick, visible, ...other } = this.props;
 
-  if (!visible) {
-    return <div className={className} />;
+    const className = classNames(classes.root, classNameProp);
+
+    if (!visible) {
+      return <div className={className} />;
+    }
+
+    return (
+      <ButtonBase className={className} onClick={onClick} tabIndex={-1} {...other}>
+        {direction === 'left' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+      </ButtonBase>
+    );
   }
-
-  return (
-    <ButtonBase className={className} onClick={onClick} tabIndex={-1} {...other}>
-      {direction === 'left' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-    </ButtonBase>
-  );
 }
-
-TabScrollButton.defaultProps = {
-  visible: true,
-};
 
 export default withStyles(styles, { name: 'MuiTabScrollButton' })(TabScrollButton);
