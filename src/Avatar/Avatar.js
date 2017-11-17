@@ -29,6 +29,7 @@ export const styles = (theme: Object) => ({
     maxWidth: '100%',
     width: '100%',
     height: 'auto',
+    textAlign: 'center',
   },
 });
 
