@@ -17,6 +17,12 @@ export const styles = (theme: Object) => ({
     flex: '0 0 auto',
     marginRight: theme.spacing.unit * 2,
   },
+  action: {
+    flex: '0 0 auto',
+    alignSelf: 'flex-start',
+    marginTop: theme.spacing.unit * -1,
+    marginRight: theme.spacing.unit * -2,
+  },
   content: {
     flex: '1 1 auto',
   },
@@ -33,6 +39,10 @@ export type Props = {
    * The Avatar for the Card Header.
    */
   avatar?: Node,
+  /**
+   * The action to display in the card header.
+   */
+  action?: Node,
   /**
    * Useful to extend the style applied to components.
    */
@@ -52,7 +62,7 @@ export type Props = {
 };
 
 function CardHeader(props: ProvidedProps & Props) {
-  const { avatar, classes, className: classNameProp, subheader, title, ...other } = props;
+  const { avatar, action, classes, className: classNameProp, subheader, title, ...other } = props;
 
   // Adjustments that depend on the presence of an avatar
   const titleType = avatar ? 'body2' : 'headline';
@@ -74,6 +84,7 @@ function CardHeader(props: ProvidedProps & Props) {
           {subheader}
         </Typography>
       </div>
+      {action && <div className={classes.action}>{action}</div>}
     </CardContent>
   );
 }
