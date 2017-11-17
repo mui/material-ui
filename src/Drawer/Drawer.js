@@ -139,7 +139,7 @@ export type Props = {
    */
   open?: boolean,
   /**
-   * @igonre
+   * @ignore
    */
   theme: Object,
   /**
