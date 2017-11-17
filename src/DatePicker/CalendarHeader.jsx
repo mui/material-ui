@@ -14,6 +14,7 @@ export const CalendarHeader = (props) => {
 
   const selectNextMonth = () => onMonthChange(currentMonth.clone().add(1, 'months'));
   const selectPreviousMonth = () => onMonthChange(currentMonth.clone().subtract(1, 'months'));
+  const weekdays = [0, 1, 2, 3, 4, 5, 6].map(dayOfWeek => moment().weekday(dayOfWeek).format('dd'));
 
   return (
     <div>
@@ -32,7 +33,7 @@ export const CalendarHeader = (props) => {
       </div>
 
       <div className={classes.daysHeader}>
-        { moment.weekdaysMin().map(day => (
+        { weekdays.map(day => (
           <div key={day} className={classes.dayLabel}> { day } </div>
         ))}
       </div>
