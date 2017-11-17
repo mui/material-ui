@@ -57,7 +57,8 @@ export type Props = {
 
 export const styles = (theme: Object) => ({
   root: {
-    borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
+    // Same value as theme.palette.text.lightDivider without the transparency.
+    borderBottom: `1px solid ${theme.palette.type === 'light' ? '#ededed' : '#505050'}`,
     textAlign: 'left',
   },
   numeric: {
