@@ -399,7 +399,7 @@ class Tooltip extends React.Component<ProvidedProps & Props, State> {
     } = this.props;
 
     const themeDirection = theme && theme.direction;
-    const placement = themeDirection ? flipPlacement(rawPlacement) : rawPlacement;
+    const placement = themeDirection === 'rtl' ? flipPlacement(rawPlacement) : rawPlacement;
     const open = this.isControlled ? openProp : this.state.open;
     const childrenProps = {};
 
