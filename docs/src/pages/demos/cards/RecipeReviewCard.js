@@ -13,6 +13,7 @@ import red from 'material-ui/colors/red';
 import FavoriteIcon from 'material-ui-icons/Favorite';
 import ShareIcon from 'material-ui-icons/Share';
 import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
+import MoreVertIcon from 'material-ui-icons/MoreVert';
 
 const styles = theme => ({
   card: {
@@ -56,6 +57,11 @@ class RecipeReviewCard extends React.Component {
               <Avatar aria-label="Recipe" className={classes.avatar}>
                 R
               </Avatar>
+            }
+            action={
+              <IconButton>
+                <MoreVertIcon />
+              </IconButton>
             }
             title="Shrimp and Chorizo Paella"
             subheader="September 14, 2016"
