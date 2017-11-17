@@ -133,7 +133,7 @@ export type Props = {
 
 function Switch(props: ProvidedProps & Props) {
   const { classes, className, ...other } = props;
-  const icon = <div className={classes.icon} />;
+  const icon = <span className={classes.icon} />;
 
   return (
     <div className={classNames(classes.root, className)}>
@@ -147,7 +147,7 @@ function Switch(props: ProvidedProps & Props) {
         checkedIcon={icon}
         {...other}
       />
-      <div className={classes.bar} />
+      <span className={classes.bar} />
     </div>
   );
 }
