@@ -182,13 +182,10 @@ class Collapse extends React.Component<ProvidedProps & Props> {
 
   handleExiting = (node: HTMLElement) => {
     const { timeout, theme } = this.props;
-    if (!theme) {
-      return;
-    }
-
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
 
     if (timeout === 'auto') {
+      // $FlowFixMe - theme is confirmed non-null here
       const duration2 = theme.transitions.getAutoHeightDuration(wrapperHeight);
       node.style.transitionDuration = `${duration2}ms`;
       this.autoTransitionDuration = duration2;
