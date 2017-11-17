@@ -33,6 +33,10 @@ describe('createBreakpoints', () => {
         '@media (min-width:600px) and (max-width:1279.95px)',
       );
     });
+
+    it('on xl should call up', () => {
+      assert.strictEqual(breakpoints.between('lg', 'xl'), '@media (min-width:1280px)');
+    });
   });
 
   describe('only', () => {
