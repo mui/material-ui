@@ -18,18 +18,10 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
-  theme?: Object,
-};
-
-type DefaultProps = {
   component: ElementType,
 };
 
 export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
   /**
    * The content of the table, normally `TableHeader` and `TableBody`.
    */
@@ -46,11 +38,11 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: ElementType,
+  component?: ElementType,
 };
 
 class Table extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     component: 'table',
   };
 

@@ -20,10 +20,6 @@ export type CellHeight = number | 'auto';
 
 type ProvidedProps = {
   classes: Object,
-  theme?: Object,
-};
-
-type DefaultProps = {
   cols: number,
   spacing: number,
   cellHeight: CellHeight,
@@ -35,7 +31,7 @@ export type Props = {
    * Number of px for one cell height.
    * You can set `'auto'` if you want to let the children determine the height.
    */
-  cellHeight: CellHeight,
+  cellHeight?: CellHeight,
   /**
    * Grid Tiles that will be in Grid List.
    */
@@ -51,68 +47,66 @@ export type Props = {
   /**
    * Number of columns.
    */
-  cols: number,
+  cols?: number,
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    * By default we map the type to a good default headline component.
    */
-  component: ElementType,
+  component?: ElementType,
   /**
    * Number of px for the spacing between tiles.
    */
-  spacing: number,
+  spacing?: number,
   /**
    * @ignore
    */
   style?: Object,
 };
 
-class GridList extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
-    cols: 2,
-    spacing: 4,
-    cellHeight: 180,
-    component: 'ul',
-  };
+function GridList(props: ProvidedProps & Props) {
+  const {
+    cols,
+    spacing,
+    cellHeight,
+    children,
+    classes,
+    className: classNameProp,
+    component: ComponentProp,
+    style,
+    ...other
+  } = props;
 
-  render() {
-    const {
-      cols,
-      spacing,
-      cellHeight,
-      children,
-      classes,
-      className: classNameProp,
-      component: ComponentProp,
-      style,
-      ...other
-    } = this.props;
+  return (
+    <ComponentProp
+      className={classNames(classes.root, classNameProp)}
+      style={{ margin: -spacing / 2, ...style }}
+      {...other}
+    >
+      {React.Children.map(children, currentChild => {
+        const childCols = currentChild.props.cols || 1;
+        const childRows = currentChild.props.rows || 1;
 
-    return (
-      <ComponentProp
-        className={classNames(classes.root, classNameProp)}
-        style={{ margin: -spacing / 2, ...style }}
-        {...other}
-      >
-        {React.Children.map(children, currentChild => {
-          const childCols = currentChild.props.cols || 1;
-          const childRows = currentChild.props.rows || 1;
-
-          return React.cloneElement(currentChild, {
-            style: Object.assign(
-              {
-                width: `${100 / cols * childCols}%`,
-                height: cellHeight === 'auto' ? 'auto' : cellHeight * childRows + spacing,
-                padding: spacing / 2,
-              },
-              currentChild.props.style,
-            ),
-          });
-        })}
-      </ComponentProp>
-    );
-  }
+        return React.cloneElement(currentChild, {
+          style: Object.assign(
+            {
+              width: `${100 / cols * childCols}%`,
+              height: cellHeight === 'auto' ? 'auto' : cellHeight * childRows + spacing,
+              padding: spacing / 2,
+            },
+            currentChild.props.style,
+          ),
+        });
+      })}
+    </ComponentProp>
+  );
 }
+
+GridList.defaultProps = {
+  cols: 2,
+  spacing: 4,
+  cellHeight: 180,
+  component: 'ul',
+};
 
 export default withStyles(styles, { name: 'MuiGridList' })(GridList);

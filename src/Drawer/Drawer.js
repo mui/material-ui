@@ -90,12 +90,8 @@ export type Anchor = 'left' | 'top' | 'right' | 'bottom';
 export type Type = 'permanent' | 'persistent' | 'temporary';
 
 type ProvidedProps = {
-  classes: Object,
-  theme?: Object,
-};
-
-type DefaultProps = {
   anchor: Anchor,
+  classes: Object,
   elevation: number,
   transitionDuration: TransitionDuration,
   open: boolean,
@@ -104,13 +100,9 @@ type DefaultProps = {
 
 export type Props = {
   /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
-  /**
    * Side from which the drawer will appear.
    */
-  anchor: Anchor,
+  anchor?: Anchor,
   /**
    * The contents of the drawer.
    */
@@ -126,12 +118,12 @@ export type Props = {
   /**
    * The elevation of the drawer.
    */
-  elevation: number,
+  elevation?: number,
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    */
-  transitionDuration: TransitionDuration,
+  transitionDuration?: TransitionDuration,
   /**
    * Properties applied to the `Modal` element.
    */
@@ -145,11 +137,11 @@ export type Props = {
   /**
    * If `true`, the drawer is open.
    */
-  open: boolean,
+  open?: boolean,
   /**
    * @ignore
    */
-  theme?: Object,
+  theme: Object,
   /**
    * Properties applied to the `Slide` element.
    */
@@ -157,7 +149,7 @@ export type Props = {
   /**
    * The type of drawer.
    */
-  type: Type,
+  type?: Type,
 };
 
 type State = {
@@ -165,7 +157,7 @@ type State = {
 };
 
 class Drawer extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     anchor: 'left',
     elevation: 16,
     transitionDuration: {
@@ -206,7 +198,7 @@ class Drawer extends React.Component<ProvidedProps & Props, State> {
       ...other
     } = this.props;
 
-    const rtl = theme && theme.direction === 'rtl';
+    const rtl = theme.direction === 'rtl';
     let anchor = anchorProp;
     if (rtl && ['left', 'right'].includes(anchor)) {
       anchor = anchor === 'left' ? 'right' : 'left';

@@ -27,11 +27,6 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
-  theme?: Object,
-};
-
-type DefaultProps = {
-  invisible?: boolean,
 };
 
 export type Props = {
@@ -56,28 +51,26 @@ export type Props = {
 /**
  * @ignore - internal component.
  */
-class Backdrop extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
-    invisible: false,
-  };
+function Backdrop(props: ProvidedProps & Props) {
+  const { children, classes, className, invisible, ...other } = props;
 
-  render() {
-    const { children, classes, className, invisible, ...other } = this.props;
+  const backdropClass = classNames(
+    classes.root,
+    {
+      [classes.invisible]: invisible,
+    },
+    className,
+  );
 
-    const backdropClass = classNames(
-      classes.root,
-      {
-        [classes.invisible]: invisible,
-      },
-      className,
-    );
-
-    return (
-      <div data-mui-test="Backdrop" className={backdropClass} aria-hidden="true" {...other}>
-        {children}
-      </div>
-    );
-  }
+  return (
+    <div data-mui-test="Backdrop" className={backdropClass} aria-hidden="true" {...other}>
+      {children}
+    </div>
+  );
 }
+
+Backdrop.defaultProps = {
+  invisible: false,
+};
 
 export default withStyles(styles, { name: 'MuiBackdrop' })(Backdrop);

@@ -43,22 +43,11 @@ export const styles = (theme: Object) => ({
   },
 });
 
-type Color = 'default' | 'primary' | 'accent';
-
 type ProvidedProps = {
   classes: Object,
-  theme?: Object,
-};
-
-type DefaultProps = {
-  color: Color,
 };
 
 export type Props = {
-  /**
-   * Other div props.
-   */
-  [otherProp: string]: any,
   /**
    * The content rendered within the badge.
    */
@@ -78,35 +67,26 @@ export type Props = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color: Color,
+  color?: 'default' | 'primary' | 'accent',
 };
 
-class Badge extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
-    color: 'default',
-  };
+function Badge(props: ProvidedProps & Props) {
+  const { badgeContent, classes, className: classNameProp, color, children, ...other } = props;
+  const className = classNames(classes.root, classNameProp);
+  const badgeClassName = classNames(classes.badge, {
+    [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
+  });
 
-  render() {
-    const {
-      badgeContent,
-      classes,
-      className: classNameProp,
-      color,
-      children,
-      ...other
-    } = this.props;
-    const className = classNames(classes.root, classNameProp);
-    const badgeClassName = classNames(classes.badge, {
-      [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
-    });
-
-    return (
-      <div className={className} {...other}>
-        {children}
-        <span className={badgeClassName}>{badgeContent}</span>
-      </div>
-    );
-  }
+  return (
+    <div className={className} {...other}>
+      {children}
+      <span className={badgeClassName}>{badgeContent}</span>
+    </div>
+  );
 }
+
+Badge.defaultProps = {
+  color: 'default',
+};
 
 export default withStyles(styles, { name: 'MuiBadge' })(Badge);

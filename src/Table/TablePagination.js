@@ -63,21 +63,14 @@ export type LabelDisplayedRowsArgs = {
 
 type ProvidedProps = {
   classes: Object,
-  theme?: Object,
-};
-
-type DefaultProps = {
   component: ElementType,
-  labelRowsPerPage: Node,
-  labelDisplayedRows: (paginationInfo: LabelDisplayedRowsArgs) => Node,
-  rowsPerPageOptions: number[],
+  labelRowsPerPage: string,
+  labelDisplayedRows: (paginationInfo: LabelDisplayedRowsArgs) => string,
+  rowsPerPageOptions: Array<number>,
+  theme: Object,
 };
 
 export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
   /**
    * Useful to extend the style applied to components.
    */
@@ -86,7 +79,7 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: ElementType,
+  component?: ElementType,
   /**
    * @ignore
    */
@@ -98,7 +91,7 @@ export type Props = {
   /**
    * Useful to customize the displayed rows label.
    */
-  labelDisplayedRows: (paginationInfo: LabelDisplayedRowsArgs) => Node,
+  labelDisplayedRows?: (paginationInfo: LabelDisplayedRowsArgs) => Node,
   /**
    * Useful to customize the rows per page label. Invoked with a `{ from, to, count, page }`
    * object.
@@ -128,7 +121,7 @@ export type Props = {
   /**
    * Customizes the options of the rows per page select field.
    */
-  rowsPerPageOptions: number[],
+  rowsPerPageOptions?: Array<number>,
   /**
    * @ignore
    */
@@ -139,7 +132,7 @@ export type Props = {
  * A `TableCell` based component for placing inside `TableFooter` for pagination.
  */
 class TablePagination extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     component: TableCell,
     labelRowsPerPage: 'Rows per page:',
     labelDisplayedRows: ({ from, to, count }) => `${from}-${to} of ${count}`,
@@ -185,8 +178,6 @@ class TablePagination extends React.Component<ProvidedProps & Props> {
       colSpan = colSpanProp || 1000; // col-span over everything
     }
 
-    const themeDirection = theme && theme.direction;
-
     return (
       <Component className={classes.root} colSpan={colSpan} {...other}>
         <Toolbar className={classes.toolbar}>
@@ -223,13 +214,13 @@ class TablePagination extends React.Component<ProvidedProps & Props> {
           </Typography>
           <div className={classes.actions}>
             <IconButton onClick={this.handleBackButtonClick} disabled={page === 0}>
-              {themeDirection === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+              {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
             </IconButton>
             <IconButton
               onClick={this.handleNextButtonClick}
               disabled={page >= Math.ceil(count / rowsPerPage) - 1}
             >
-              {themeDirection === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+              {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
             </IconButton>
           </div>
         </Toolbar>

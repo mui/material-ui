@@ -1,7 +1,6 @@
 // @flow
 
 import React from 'react';
-import type { Node } from 'react';
 import type { HigherOrderComponent } from 'react-flow-types';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import withWidth, { isWidthDown } from '../utils/withWidth';
@@ -13,7 +12,7 @@ export type InjectedProps = {
   /**
    * If isWidthDown(options.breakpoint), return true.
    */
-  fullScreen?: boolean,
+  fullScreen: boolean,
 };
 
 /**
@@ -26,7 +25,7 @@ const withMobileDialog = (
 ): HigherOrderComponent<{}, InjectedProps> => (Component: any): any => {
   const { breakpoint } = options;
 
-  function WithMobileDialog(props: { width: Breakpoint }): Node {
+  function WithMobileDialog(props: { width: string }) {
     return <Component fullScreen={isWidthDown(breakpoint, props.width)} {...props} />;
   }
 

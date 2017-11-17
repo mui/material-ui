@@ -35,18 +35,10 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
-  theme?: Object,
-};
-
-type DefaultProps = {
   component: ElementType,
 };
 
 export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
   /**
    * Used in combination with `src` or `srcSet` to
    * provide an alt attribute for the rendered `img` element.
@@ -78,7 +70,7 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: ElementType,
+  component?: ElementType,
   /**
    * Properties applied to the `img` element when the component
    * is used to display an image.
@@ -98,65 +90,63 @@ export type Props = {
   srcSet?: string,
 };
 
-class Avatar extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
-    component: 'div',
-  };
+function Avatar(props: ProvidedProps & Props) {
+  const {
+    alt,
+    classes,
+    className: classNameProp,
+    children: childrenProp,
+    childrenClassName: childrenClassNameProp,
+    component: ComponentProp,
+    imgProps,
+    sizes,
+    src,
+    srcSet,
+    ...other
+  } = props;
 
-  render() {
-    const {
-      alt,
-      classes,
-      className: classNameProp,
-      children: childrenProp,
-      childrenClassName: childrenClassNameProp,
-      component: ComponentProp,
-      imgProps,
-      sizes,
-      src,
-      srcSet,
-      ...other
-    } = this.props;
+  const className = classNames(
+    classes.root,
+    {
+      [classes.colorDefault]: childrenProp && !src && !srcSet,
+    },
+    classNameProp,
+  );
+  let children = null;
 
-    const className = classNames(
-      classes.root,
-      {
-        [classes.colorDefault]: childrenProp && !src && !srcSet,
-      },
-      classNameProp,
-    );
-    let children = null;
-
-    if (childrenProp) {
-      if (
-        childrenClassNameProp &&
-        typeof childrenProp !== 'string' &&
-        React.isValidElement(childrenProp)
-      ) {
-        const childrenClassName = classNames(childrenClassNameProp, childrenProp.props.className);
-        children = React.cloneElement(childrenProp, { className: childrenClassName });
-      } else {
-        children = childrenProp;
-      }
-    } else if (src || srcSet) {
-      children = (
-        <img
-          alt={alt}
-          src={src}
-          srcSet={srcSet}
-          sizes={sizes}
-          className={classes.img}
-          {...imgProps}
-        />
-      );
+  if (childrenProp) {
+    if (
+      childrenClassNameProp &&
+      typeof childrenProp !== 'string' &&
+      React.isValidElement(childrenProp)
+    ) {
+      const childrenClassName = classNames(childrenClassNameProp, childrenProp.props.className);
+      children = React.cloneElement(childrenProp, { className: childrenClassName });
+    } else {
+      children = childrenProp;
     }
-
-    return (
-      <ComponentProp className={className} {...other}>
-        {children}
-      </ComponentProp>
+  } else if (src || srcSet) {
+    children = (
+      <img
+        alt={alt}
+        src={src}
+        srcSet={srcSet}
+        sizes={sizes}
+        className={classes.img}
+        {...imgProps}
+      />
     );
   }
+
+  return (
+    <ComponentProp className={className} {...other}>
+      {children}
+    </ComponentProp>
+  );
 }
+
+Avatar.defaultProps = {
+  component: 'div',
+};
 
 export default withStyles(styles, { name: 'MuiAvatar' })(Avatar);

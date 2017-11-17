@@ -27,11 +27,6 @@ const styles = {
 const demoRegexp = /^demo='(.*)'$/;
 const SOURCE_CODE_ROOT_URL = 'https://github.com/callemall/material-ui/tree/v1-beta';
 
-type InjectedProps = {
-  classes: Object,
-  theme?: Object,
-};
-
 type Props = {
   classes: Object,
   demos?: { [key: string]: any },
@@ -41,7 +36,7 @@ type Props = {
   sourceLocation?: string,
 };
 
-function MarkdownDocs(props: Props & InjectedProps, context: Object) {
+function MarkdownDocs(props: Props, context: Object) {
   const { classes, demos, markdown, sourceLocation: sourceLocationProp } = props;
   const contents = getContents(markdown);
   const headers = getHeaders(markdown);

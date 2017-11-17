@@ -38,20 +38,12 @@ export type Context = {
 
 type ProvidedProps = {
   classes: Object,
-  theme?: Object,
-};
-
-type DefaultProps = {
   component: ElementType,
   hover: boolean,
   selected: boolean,
 };
 
 export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
   /**
    * Should be valid `<tr>` children such as `TableCell`.
    */
@@ -68,63 +60,59 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: ElementType,
+  component?: ElementType,
   /**
    * If `true`, the table row will shade on hover.
    */
-  hover: boolean,
+  hover?: boolean,
   /**
    * If `true`, the table row will have the selected shading.
    */
-  selected: boolean,
+  selected?: boolean,
 };
 
 /**
  * Will automatically set dynamic row height
  * based on the material table element parent (head, body, etc).
  */
-class TableRow extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
-    hover: false,
-    selected: false,
-    component: 'tr',
-  };
+function TableRow(props: ProvidedProps & Props, context: Context) {
+  const {
+    classes,
+    className: classNameProp,
+    children,
+    component: Component,
+    hover,
+    selected,
+    ...other
+  } = props;
+  const { table } = context;
 
-  static contextTypes = {
-    table: PropTypes.object,
-  };
+  const className = classNames(
+    classes.root,
+    {
+      [classes.head]: table && table.head,
+      [classes.footer]: table && table.footer,
+      [classes.hover]: table && hover,
+      [classes.selected]: table && selected,
+    },
+    classNameProp,
+  );
 
-  context: Context;
-
-  render() {
-    const {
-      classes,
-      className: classNameProp,
-      children,
-      component: Component,
-      hover,
-      selected,
-      ...other
-    } = this.props;
-    const { table } = this.context;
-
-    const className = classNames(
-      classes.root,
-      {
-        [classes.head]: table && table.head,
-        [classes.footer]: table && table.footer,
-        [classes.hover]: table && hover,
-        [classes.selected]: table && selected,
-      },
-      classNameProp,
-    );
-
-    return (
-      <Component className={className} {...other}>
-        {children}
-      </Component>
-    );
-  }
+  return (
+    <Component className={className} {...other}>
+      {children}
+    </Component>
+  );
 }
+
+TableRow.defaultProps = {
+  hover: false,
+  selected: false,
+  component: 'tr',
+};
+
+TableRow.contextTypes = {
+  table: PropTypes.object,
+};
 
 export default withStyles(styles, { name: 'MuiTableRow' })(TableRow);

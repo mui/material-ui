@@ -15,20 +15,12 @@ export function getScale(value: number) {
 export type TransitionDuration = number | { enter?: number, exit?: number } | 'auto';
 
 type ProvidedProps = {
+  appear: boolean,
+  timeout: TransitionDuration,
   theme: Object,
 };
 
-type DefaultProps = {
-  appear?: boolean,
-  timeout: TransitionDuration,
-  transitionClasses?: TransitionClasses,
-};
-
 export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
   /**
    * @ignore
    */
@@ -88,7 +80,7 @@ export type Props = {
    *
    * Set to 'auto' to automatically calculate transition time based on height.
    */
-  timeout: TransitionDuration,
+  timeout?: TransitionDuration,
 };
 
 /**
@@ -96,7 +88,7 @@ export type Props = {
  * It's using [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 class Grow extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     appear: true,
     timeout: 'auto',
     transitionClasses: {},
@@ -122,7 +114,7 @@ class Grow extends React.Component<ProvidedProps & Props> {
       this.autoTimeout = duration;
     } else if (typeof timeout === 'number') {
       duration = timeout;
-    } else if (timeout && typeof timeout.enter === 'number') {
+    } else if (timeout) {
       duration = timeout.enter;
     } else {
       // The propType will warn in this case.
@@ -154,7 +146,7 @@ class Grow extends React.Component<ProvidedProps & Props> {
       this.autoTimeout = duration;
     } else if (typeof timeout === 'number') {
       duration = timeout;
-    } else if (timeout && typeof timeout.exit === 'number') {
+    } else if (timeout) {
       duration = timeout.exit;
     } else {
       // The propType will warn in this case.

@@ -44,7 +44,7 @@ const styles = theme => ({
   },
 });
 
-class AppDrawerNavItem extends React.Component<Object, Object> {
+class AppDrawerNavItem extends React.Component<any, any> {
   static defaultProps = {
     openImmediately: false,
   };
@@ -95,7 +95,7 @@ class AppDrawerNavItem extends React.Component<Object, Object> {
         >
           {title}
         </Button>
-        <Collapse in={this.state.open} timeout="auto" unmountOnExit>
+        <Collapse in={this.state.open} transitionDuration="auto" unmountOnExit>
           {children}
         </Collapse>
       </ListItem>

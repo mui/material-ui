@@ -19,7 +19,7 @@ const styles = theme => ({
   },
 });
 
-function AppContent(props: Object) {
+function AppContent(props) {
   const { className, classes, children } = props;
 
   return <div className={classNames(classes.content, className)}>{children}</div>;

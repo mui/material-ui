@@ -22,19 +22,9 @@ const SwitchBase = createSwitch();
 
 type ProvidedProps = {
   classes: Object,
-  theme?: Object,
-};
-
-type DefaultProps = {
-  indeterminate: boolean,
-  indeterminateIcon: Node,
 };
 
 export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
   /**
    * If `true`, the component is checked.
    */
@@ -72,12 +62,12 @@ export type Props = {
   /**
    * If `true`, the component appears indeterminate.
    */
-  indeterminate: boolean,
+  indeterminate?: boolean,
   /**
    * The icon to display when the component is indeterminate.
    * If a string is provided, it will be used as a font ligature.
    */
-  indeterminateIcon: Node,
+  indeterminateIcon?: Node,
   /**
    * Properties applied to the `input` element.
    */
@@ -107,23 +97,21 @@ export type Props = {
   value?: string,
 };
 
-class Checkbox extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
-    indeterminate: false,
-    indeterminateIcon: <IndeterminateCheckBoxIcon />,
-  };
+function Checkbox(props: ProvidedProps & Props) {
+  const { checkedIcon, icon, indeterminate, indeterminateIcon, ...other } = props;
 
-  render() {
-    const { checkedIcon, icon, indeterminate, indeterminateIcon, ...other } = this.props;
-
-    return (
-      <SwitchBase
-        checkedIcon={indeterminate ? indeterminateIcon : checkedIcon}
-        icon={indeterminate ? indeterminateIcon : icon}
-        {...other}
-      />
-    );
-  }
+  return (
+    <SwitchBase
+      checkedIcon={indeterminate ? indeterminateIcon : checkedIcon}
+      icon={indeterminate ? indeterminateIcon : icon}
+      {...other}
+    />
+  );
 }
+
+Checkbox.defaultProps = {
+  indeterminate: false,
+  indeterminateIcon: <IndeterminateCheckBoxIcon />,
+};
 
 export default withStyles(styles, { name: 'MuiCheckbox' })(Checkbox);

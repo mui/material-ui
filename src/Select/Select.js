@@ -63,21 +63,13 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
-  theme?: Object,
-};
-
-type DefaultProps = {
-  displayEmpty?: boolean,
+  displayEmpty: boolean,
   input: Element<any>,
-  native?: boolean,
-  multiple?: boolean,
+  native: boolean,
+  multiple: boolean,
 };
 
 export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
   /**
    * If true, the width of the popover will automatically be set according to the items inside the
    * menu, otherwise it will be at least the width of the select input.
@@ -100,7 +92,7 @@ export type Props = {
   /**
    * An `Input` element; does not have to be a material-ui specific `Input`.
    */
-  input: Element<any>,
+  input?: Element<any>,
   /**
    * If `true`, the component will be using a native `select` element.
    */
@@ -125,58 +117,56 @@ export type Props = {
   value?: $ReadOnlyArray<string | number> | string | number,
 };
 
-class Select extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
-    autoWidth: false,
-    displayEmpty: false,
-    input: <Input />,
-    native: false,
-    multiple: false,
-  };
+function Select(props: ProvidedProps & Props) {
+  const {
+    autoWidth,
+    children,
+    classes,
+    displayEmpty,
+    input,
+    native,
+    multiple,
+    MenuProps,
+    renderValue,
+    ...other
+  } = props;
 
-  static muiName = 'Select';
+  // Instead of `Element<typeof Input>` to have more flexibility.
+  warning(
+    isMuiElement(input, ['Input']),
+    [
+      'Material-UI: you have provided an invalid value to the `input` property.',
+      'We expect an element instance of the `Input` component.',
+    ].join('\n'),
+  );
 
-  render() {
-    const {
+  return React.cloneElement(input, {
+    // Most of the logic is implemented in `SelectInput`.
+    // The `Select` component is a simple API wrapper to expose something better to play with.
+    inputComponent: SelectInput,
+    ...other,
+    inputProps: {
+      ...(input ? input.props.inputProps : {}),
       autoWidth,
       children,
       classes,
       displayEmpty,
-      input,
       native,
       multiple,
       MenuProps,
       renderValue,
-      ...other
-    } = this.props;
-
-    // Instead of `Element<typeof Input>` to have more flexibility.
-    warning(
-      isMuiElement(input, ['Input']),
-      [
-        'Material-UI: you have provided an invalid value to the `input` property.',
-        'We expect an element instance of the `Input` component.',
-      ].join('\n'),
-    );
-
-    return React.cloneElement(input, {
-      // Most of the logic is implemented in `SelectInput`.
-      // The `Select` component is a simple API wrapper to expose something better to play with.
-      inputComponent: SelectInput,
-      ...other,
-      inputProps: {
-        ...(input ? input.props.inputProps : {}),
-        autoWidth,
-        children,
-        classes,
-        displayEmpty,
-        native,
-        multiple,
-        MenuProps,
-        renderValue,
-      },
-    });
-  }
+    },
+  });
 }
+
+Select.defaultProps = {
+  autoWidth: false,
+  displayEmpty: false,
+  input: <Input />,
+  native: false,
+  multiple: false,
+};
+
+Select.muiName = 'Select';
 
 export default withStyles(styles, { name: 'MuiSelect' })(Select);

@@ -15,11 +15,7 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
-  theme?: Object,
-};
-
-type DefaultProps = {
-  component?: ElementType,
+  component: ElementType,
 };
 
 export type Props = {
@@ -43,7 +39,7 @@ export type Props = {
 };
 
 class TableBody extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     component: 'tbody',
   };
 
@@ -61,7 +57,7 @@ class TableBody extends React.Component<ProvidedProps & Props> {
       classes,
       className: classNameProp,
       children,
-      component: ComponentProp = 'tbody',
+      component: ComponentProp,
       ...other
     } = this.props;
     const className = classNames(classes.root, classNameProp);

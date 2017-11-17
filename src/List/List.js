@@ -29,20 +29,10 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
-  theme?: Object,
-};
-
-type DefaultProps = {
   component: ElementType,
-  dense?: boolean,
-  disablePaddin?: boolean,
 };
 
 export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
   /**
    * The content of the component.
    */
@@ -59,7 +49,7 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: ElementType,
+  component?: ElementType,
   /**
    * If `true`, compact vertical padding designed for keyboard and mouse input will be used for
    * the list and list items. The property is available to descendant components as the
@@ -81,7 +71,7 @@ export type Props = {
 };
 
 class List extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     component: 'ul',
     dense: false,
     disablePadding: false,

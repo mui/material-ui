@@ -21,7 +21,7 @@ const styles = theme => ({
   },
 });
 
-let AppWrapper = (props: Object) => props.children;
+let AppWrapper = props => props.children;
 
 AppWrapper = withStyles(styles)(AppWrapper);
 

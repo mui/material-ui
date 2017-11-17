@@ -52,10 +52,6 @@ export type Position = 'static' | 'fixed' | 'absolute';
 
 type ProvidedProps = {
   classes: Object,
-  theme?: Object,
-};
-
-type DefaultProps = {
   color: Color,
   position: Position,
 };
@@ -76,38 +72,36 @@ export type Props = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color: Color,
+  color?: Color,
   /**
    * The positioning type.
    */
-  position: Position,
+  position?: Position,
 };
 
-class AppBar extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
-    color: 'primary',
-    position: 'fixed',
-  };
+function AppBar(props: ProvidedProps & Props) {
+  const { children, classes, className: classNameProp, color, position, ...other } = props;
 
-  render() {
-    const { children, classes, className: classNameProp, color, position, ...other } = this.props;
+  const className = classNames(
+    classes.root,
+    classes[`position${capitalizeFirstLetter(position)}`],
+    {
+      [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'inherit',
+      'mui-fixed': position === 'fixed', // Useful for the Dialog
+    },
+    classNameProp,
+  );
 
-    const className = classNames(
-      classes.root,
-      classes[`position${capitalizeFirstLetter(position)}`],
-      {
-        [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'inherit',
-        'mui-fixed': position === 'fixed', // Useful for the Dialog
-      },
-      classNameProp,
-    );
-
-    return (
-      <Paper square component="header" elevation={4} className={className} {...other}>
-        {children}
-      </Paper>
-    );
-  }
+  return (
+    <Paper square component="header" elevation={4} className={className} {...other}>
+      {children}
+    </Paper>
+  );
 }
+
+AppBar.defaultProps = {
+  color: 'primary',
+  position: 'fixed',
+};
 
 export default withStyles(styles, { name: 'MuiAppBar' })(AppBar);

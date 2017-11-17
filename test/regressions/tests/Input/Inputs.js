@@ -21,7 +21,6 @@ const styles = {
 
 type Props = {
   classes: Object,
-  theme?: Object,
 };
 
 class Inputs extends Component<Props> {

@@ -30,26 +30,19 @@ export const styles = (theme: Object) => ({
 export type TransitionDuration = number | { enter?: number, exit?: number } | 'auto';
 
 type ProvidedProps = {
-  classes: Object,
-  theme?: Object,
-};
-
-type DefaultProps = {
   appear: boolean,
+  classes: Object,
   component: ElementType,
   collapsedHeight: string,
   timeout: TransitionDuration,
+  theme: Object,
 };
 
 export type Props = {
   /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
-  /**
    * @ignore
    */
-  appear: boolean,
+  appear?: boolean,
   /**
    * The content node to be collapsed.
    */
@@ -67,11 +60,11 @@ export type Props = {
    * Either a string to use a DOM element or a component.
    * The default value is a `button`.
    */
-  component: ElementType,
+  component?: ElementType,
   /**
    * The height of the container when collapsed.
    */
-  collapsedHeight: string,
+  collapsedHeight?: string,
   /**
    * If `true`, the component will transition in.
    */
@@ -110,15 +103,11 @@ export type Props = {
    *
    * Set to 'auto' to automatically calculate transition time based on height.
    */
-  timeout: TransitionDuration,
-  /**
-  /* @ignore
-   */
-  unmountOnExit?: boolean,
+  timeout?: TransitionDuration,
 };
 
 class Collapse extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     appear: false,
     component: 'div',
     collapsedHeight: '0px',
@@ -141,13 +130,12 @@ class Collapse extends React.Component<ProvidedProps & Props> {
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
 
     if (timeout === 'auto') {
-      // $FlowIgnore - theme is confirmed non-null here
       const duration2 = theme.transitions.getAutoHeightDuration(wrapperHeight);
       node.style.transitionDuration = `${duration2}ms`;
       this.autoTransitionDuration = duration2;
     } else if (typeof timeout === 'number') {
       node.style.transitionDuration = `${timeout}ms`;
-    } else if (timeout && typeof timeout.enter === 'number') {
+    } else if (timeout) {
       node.style.transitionDuration = `${timeout.enter}ms`;
     } else {
       // The propType will warn in this case.
@@ -182,13 +170,12 @@ class Collapse extends React.Component<ProvidedProps & Props> {
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
 
     if (timeout === 'auto') {
-      // $FlowIgnore - theme is confirmed non-null here
       const duration2 = theme.transitions.getAutoHeightDuration(wrapperHeight);
       node.style.transitionDuration = `${duration2}ms`;
       this.autoTransitionDuration = duration2;
     } else if (typeof timeout === 'number') {
       node.style.transitionDuration = `${timeout}ms`;
-    } else if (timeout && typeof timeout.exit === 'number') {
+    } else if (timeout) {
       node.style.transitionDuration = `${timeout.exit}ms`;
     } else {
       // The propType will warn in this case.

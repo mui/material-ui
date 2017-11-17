@@ -30,19 +30,11 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
-  theme?: Object,
-};
-
-type DefaultProps = {
-  role?: string,
-  selected?: boolean,
+  role: string,
+  selected: boolean,
 };
 
 export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
   /**
    * Menu item contents.
    */
@@ -70,34 +62,32 @@ export type Props = {
   selected?: boolean,
 };
 
-class MenuItem extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
-    role: 'menuitem',
-    selected: false,
-  };
+function MenuItem(props: ProvidedProps & Props) {
+  const { classes, className: classNameProp, component, selected, role, ...other } = props;
 
-  render() {
-    const { classes, className: classNameProp, component, selected, role, ...other } = this.props;
+  const className = classNames(
+    classes.root,
+    {
+      [classes.selected]: selected,
+    },
+    classNameProp,
+  );
 
-    const className = classNames(
-      classes.root,
-      {
-        [classes.selected]: selected,
-      },
-      classNameProp,
-    );
-
-    return (
-      <ListItem
-        button
-        role={role}
-        tabIndex={-1}
-        className={className}
-        component={component}
-        {...other}
-      />
-    );
-  }
+  return (
+    <ListItem
+      button
+      role={role}
+      tabIndex={-1}
+      className={className}
+      component={component}
+      {...other}
+    />
+  );
 }
+
+MenuItem.defaultProps = {
+  role: 'menuitem',
+  selected: false,
+};
 
 export default withStyles(styles, { name: 'MuiMenuItem' })(MenuItem);

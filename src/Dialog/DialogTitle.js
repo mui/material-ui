@@ -17,18 +17,9 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
-  theme?: Object,
-};
-
-type DefaultProps = {
-  disableTypography: boolean,
 };
 
 export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
   /**
    * The content of the component.
    */
@@ -45,23 +36,21 @@ export type Props = {
    * If `true`, the children won't be wrapped by a typography component.
    * For instance, that can be useful to can render an h4 instead of a
    */
-  disableTypography: boolean,
+  disableTypography?: boolean,
 };
 
-class DialogTitle extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
-    disableTypography: false,
-  };
+function DialogTitle(props: ProvidedProps & Props) {
+  const { children, classes, className, disableTypography, ...other } = props;
 
-  render() {
-    const { children, classes, className, disableTypography, ...other } = this.props;
-
-    return (
-      <div data-mui-test="DialogTitle" className={classNames(classes.root, className)} {...other}>
-        {disableTypography ? children : <Typography type="title">{children}</Typography>}
-      </div>
-    );
-  }
+  return (
+    <div data-mui-test="DialogTitle" className={classNames(classes.root, className)} {...other}>
+      {disableTypography ? children : <Typography type="title">{children}</Typography>}
+    </div>
+  );
 }
+
+DialogTitle.defaultProps = {
+  disableTypography: false,
+};
 
 export default withStyles(styles, { name: 'MuiDialogTitle' })(DialogTitle);

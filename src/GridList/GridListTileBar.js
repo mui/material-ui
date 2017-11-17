@@ -67,13 +67,9 @@ export type TitlePosition = 'top' | 'bottom';
 export type ActionPosition = 'left' | 'right';
 
 type ProvidedProps = {
+  actionPosition: ActionPosition,
   classes: Object,
-  theme?: Object,
-};
-
-type DefaultProps = {
-  actionPosition?: ActionPosition,
-  titlePosition?: TitlePosition,
+  titlePosition: TitlePosition,
 };
 
 export type Props = {
@@ -108,55 +104,53 @@ export type Props = {
   titlePosition?: TitlePosition,
 };
 
-class GridListTileBar extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
-    actionPosition: 'right',
-    titlePosition: 'bottom',
-  };
+function GridListTileBar(props: ProvidedProps & Props) {
+  const {
+    actionIcon,
+    actionPosition,
+    classes,
+    className: classNameProp,
+    subtitle,
+    title,
+    titlePosition,
+    ...other
+  } = props;
 
-  render() {
-    const {
-      actionIcon,
-      actionPosition,
-      classes,
-      className: classNameProp,
-      subtitle,
-      title,
-      titlePosition,
-      ...other
-    } = this.props;
+  const actionPos = actionIcon && actionPosition;
+  const className = classNames(
+    classes.root,
+    {
+      [classes.rootBottom]: titlePosition === 'bottom',
+      [classes.rootTop]: titlePosition === 'top',
+      [classes.rootWithSubtitle]: subtitle,
+    },
+    classNameProp,
+  );
 
-    const actionPos = actionIcon && actionPosition;
-    const className = classNames(
-      classes.root,
-      {
-        [classes.rootBottom]: titlePosition === 'bottom',
-        [classes.rootTop]: titlePosition === 'top',
-        [classes.rootWithSubtitle]: subtitle,
-      },
-      classNameProp,
-    );
+  // Remove the margin between the title / subtitle wrapper, and the Action Icon
+  const titleWrapClassName = classNames(classes.titleWrap, {
+    [classes.titleWrapActionLeft]: actionPos === 'left',
+    [classes.titleWrapActionRight]: actionPos === 'right',
+  });
 
-    // Remove the margin between the title / subtitle wrapper, and the Action Icon
-    const titleWrapClassName = classNames(classes.titleWrap, {
-      [classes.titleWrapActionLeft]: actionPos === 'left',
-      [classes.titleWrapActionRight]: actionPos === 'right',
-    });
-
-    return (
-      <div className={className} {...other}>
-        <div className={titleWrapClassName}>
-          <div className={classes.title}>{title}</div>
-          {subtitle ? <div className={classes.subtitle}>{subtitle}</div> : null}
-        </div>
-        {actionIcon ? (
-          <div className={classNames({ [classes.actionIconPositionLeft]: actionPos === 'left' })}>
-            {actionIcon}
-          </div>
-        ) : null}
+  return (
+    <div className={className} {...other}>
+      <div className={titleWrapClassName}>
+        <div className={classes.title}>{title}</div>
+        {subtitle ? <div className={classes.subtitle}>{subtitle}</div> : null}
       </div>
-    );
-  }
+      {actionIcon ? (
+        <div className={classNames({ [classes.actionIconPositionLeft]: actionPos === 'left' })}>
+          {actionIcon}
+        </div>
+      ) : null}
+    </div>
+  );
 }
+
+GridListTileBar.defaultProps = {
+  actionPosition: 'right',
+  titlePosition: 'bottom',
+};
 
 export default withStyles(styles, { name: 'MuiGridListTileBar' })(GridListTileBar);

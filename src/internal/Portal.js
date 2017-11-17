@@ -98,9 +98,7 @@ class Portal extends React.Component<Props> {
     // Can't be rendered server-side.
     if (canUseDom) {
       if (open) {
-        const layer = this.getLayer();
-        // $FlowIgnore layer is non-null
-        return ReactDOM.createPortal(children, layer);
+        return ReactDOM.createPortal(children, this.getLayer());
       }
 
       this.unrenderLayer();

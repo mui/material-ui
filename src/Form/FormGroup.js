@@ -18,18 +18,9 @@ export const styles = {
 
 type ProvidedProps = {
   classes: Object,
-  theme?: Object,
-};
-
-type DefaultProps = {
-  row?: boolean,
 };
 
 export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
   /**
    * The content of the component.
    */
@@ -53,27 +44,25 @@ export type Props = {
  * It provides compact row layout.
  * For the `Radio`, you should be using the `RadioGroup` component instead of this one.
  */
-class FormGroup extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
-    row: false,
-  };
+function FormGroup(props: ProvidedProps & Props) {
+  const { classes, className, children, row, ...other } = props;
+  const rootClassName = classNames(
+    classes.root,
+    {
+      [classes.row]: row,
+    },
+    className,
+  );
 
-  render() {
-    const { classes, className, children, row, ...other } = this.props;
-    const rootClassName = classNames(
-      classes.root,
-      {
-        [classes.row]: row,
-      },
-      className,
-    );
-
-    return (
-      <div className={rootClassName} {...other}>
-        {children}
-      </div>
-    );
-  }
+  return (
+    <div className={rootClassName} {...other}>
+      {children}
+    </div>
+  );
 }
+
+FormGroup.defaultProps = {
+  row: false,
+};
 
 export default withStyles(styles, { name: 'MuiFormGroup' })(FormGroup);

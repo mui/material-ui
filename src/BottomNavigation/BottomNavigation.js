@@ -16,10 +16,6 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
-  theme?: Object,
-};
-
-type DefaultProps = {
   showLabels: boolean,
 };
 
@@ -28,6 +24,10 @@ export type Props = {
    * The content of the component.
    */
   children: Node,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
   /**
    * @ignore
    */
@@ -43,48 +43,46 @@ export type Props = {
    * If `true`, all `BottomNavigationButton`s will show their labels.
    * By default only the selected `BottomNavigationButton` will show its label.
    */
-  showLabels: boolean,
+  showLabels?: boolean,
   /**
    * The value of the currently selected `BottomNavigationButton`.
    */
   value: any,
 };
 
-class BottomNavigation extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
-    showLabels: false,
-  };
+function BottomNavigation(props: ProvidedProps & Props) {
+  const {
+    children: childrenProp,
+    classes,
+    className: classNameProp,
+    onChange,
+    showLabels,
+    value,
+    ...other
+  } = props;
 
-  render() {
-    const {
-      children: childrenProp,
-      classes,
-      className: classNameProp,
+  const className = classNames(classes.root, classNameProp);
+
+  const children = React.Children.map(childrenProp, (child, childIndex) => {
+    if (!React.isValidElement(child)) return null;
+    const childValue = child.props.value || childIndex;
+    return React.cloneElement(child, {
+      selected: childValue === value,
+      showLabel: child.props.showLabel !== undefined ? child.props.showLabel : showLabels,
+      value: childValue,
       onChange,
-      showLabels,
-      value,
-      ...other
-    } = this.props;
-
-    const className = classNames(classes.root, classNameProp);
-
-    const children = React.Children.map(childrenProp, (child, childIndex) => {
-      if (!React.isValidElement(child)) return null;
-      const childValue = child.props.value || childIndex;
-      return React.cloneElement(child, {
-        selected: childValue === value,
-        showLabel: child.props.showLabel !== undefined ? child.props.showLabel : showLabels,
-        value: childValue,
-        onChange,
-      });
     });
+  });
 
-    return (
-      <div className={className} {...other}>
-        {children}
-      </div>
-    );
-  }
+  return (
+    <div className={className} {...other}>
+      {children}
+    </div>
+  );
 }
+
+BottomNavigation.defaultProps = {
+  showLabels: false,
+};
 
 export default withStyles(styles, { name: 'MuiBottomNavigation' })(BottomNavigation);

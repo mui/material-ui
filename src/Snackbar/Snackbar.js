@@ -95,13 +95,8 @@ export type Origin = {
 };
 
 type ProvidedProps = {
-  classes: Object,
-  theme?: Object,
-};
-
-type DefaultProps = {
   anchorOrigin: Origin,
-  transitionDuration: TransitionDuration,
+  classes: Object,
 };
 
 export type Props = {
@@ -112,7 +107,7 @@ export type Props = {
   /**
    * The anchor of the `Snackbar`.
    */
-  anchorOrigin: Origin,
+  anchorOrigin?: Origin,
   /**
    * The number of milliseconds to wait before automatically dismissing.
    * This behavior is disabled by default with the `null` value.
@@ -210,7 +205,7 @@ export type Props = {
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    */
-  transitionDuration: TransitionDuration,
+  transitionDuration?: TransitionDuration,
 };
 
 type State = {
@@ -218,7 +213,7 @@ type State = {
 };
 
 class Snackbar extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     anchorOrigin: { vertical: 'bottom', horizontal: 'center' },
     transitionDuration: {
       enter: duration.enteringScreen,

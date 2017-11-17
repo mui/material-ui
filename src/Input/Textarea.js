@@ -41,18 +41,9 @@ export const styles = {
 
 type ProvidedProps = {
   classes: Object,
-  theme?: Object,
-};
-
-type DefaultProps = {
-  rows?: string | number,
 };
 
 export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
   /**
    * Useful to extend the style applied to components.
    */
@@ -99,7 +90,7 @@ type State = {
  * @ignore - internal component.
  */
 class Textarea extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     rows: 1,
   };
 
@@ -133,9 +124,9 @@ class Textarea extends React.Component<ProvidedProps & Props, State> {
     this.handleResize.cancel();
   }
 
-  shadow: ?HTMLTextAreaElement;
-  singlelineShadow: ?HTMLTextAreaElement;
-  input: ?HTMLTextAreaElement;
+  shadow: ?HTMLInputElement;
+  singlelineShadow: ?HTMLInputElement;
+  input: ?HTMLInputElement;
   value: string | number;
 
   handleResize = debounce(event => {

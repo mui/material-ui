@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import type { ElementType, Node } from 'react';
+import type { ElementType } from 'react';
 import classNames from 'classnames';
 import warning from 'warning';
 import withStyles from '../styles/withStyles';
@@ -28,20 +28,12 @@ export const styles = (theme: Object) => {
 
 type ProvidedProps = {
   classes: Object,
-  theme?: Object,
-};
-
-type DefaultProps = {
   component: ElementType,
   elevation: number,
   square: boolean,
 };
 
 export type Props = {
-  /**
-   * Other base element props.
-   */
-  [otherProp: string]: any,
   /**
    * Useful to extend the style applied to components.
    */
@@ -51,58 +43,52 @@ export type Props = {
    */
   className?: string,
   /**
-   * @ignore
-   */
-  children?: Node,
-  /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: ElementType,
+  component?: ElementType,
   /**
    * Shadow depth, corresponds to `dp` in the spec.
    * It's accepting values between 0 and 24 inclusive.
    */
-  elevation: number,
+  elevation?: number,
   /**
    * If `true`, rounded corners are disabled.
    */
-  square: boolean,
+  square?: boolean,
 };
 
-class Paper extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
-    component: 'div',
-    elevation: 2,
-    square: false,
-  };
+function Paper(props: ProvidedProps & Props) {
+  const {
+    classes,
+    className: classNameProp,
+    component: ComponentProp,
+    square,
+    elevation,
+    ...other
+  } = props;
 
-  render() {
-    const {
-      classes,
-      className: classNameProp,
-      component: ComponentProp,
-      square,
-      elevation,
-      ...other
-    } = this.props;
+  warning(
+    elevation >= 0 && elevation < 25,
+    `Material-UI: this elevation \`${elevation}\` is not implemented.`,
+  );
 
-    warning(
-      elevation >= 0 && elevation < 25,
-      `Material-UI: this elevation \`${elevation}\` is not implemented.`,
-    );
+  const className = classNames(
+    classes.root,
+    classes[`shadow${elevation >= 0 ? elevation : 0}`],
+    {
+      [classes.rounded]: !square,
+    },
+    classNameProp,
+  );
 
-    const className = classNames(
-      classes.root,
-      classes[`shadow${elevation >= 0 ? elevation : 0}`],
-      {
-        [classes.rounded]: !square,
-      },
-      classNameProp,
-    );
-
-    return <ComponentProp className={className} {...other} />;
-  }
+  return <ComponentProp className={className} {...other} />;
 }
+
+Paper.defaultProps = {
+  component: 'div',
+  elevation: 2,
+  square: false,
+};
 
 export default withStyles(styles, { name: 'MuiPaper' })(Paper);

@@ -83,7 +83,7 @@ function reduceChildRoutes(props, activePage, items, childPage, index) {
 
 const GITHUB_RELEASE_BASE_URL = 'https://github.com/callemall/material-ui/releases/tag/';
 
-function AppDrawer(props: Object, context: Object) {
+function AppDrawer(props, context) {
   const { classes, className, disablePermanent, mobileOpen, onRequestClose } = props;
 
   const drawer = (
