@@ -140,11 +140,8 @@ class Collapse extends React.Component<ProvidedProps & Props> {
     const { timeout, theme } = this.props;
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
 
-    if (!theme) {
-      return;
-    }
-
     if (timeout === 'auto') {
+      // $FlowIgnore - theme is confirmed non-null here
       const duration2 = theme.transitions.getAutoHeightDuration(wrapperHeight);
       node.style.transitionDuration = `${duration2}ms`;
       this.autoTransitionDuration = duration2;
@@ -185,7 +182,7 @@ class Collapse extends React.Component<ProvidedProps & Props> {
     const wrapperHeight = this.wrapper ? this.wrapper.clientHeight : 0;
 
     if (timeout === 'auto') {
-      // $FlowFixMe - theme is confirmed non-null here
+      // $FlowIgnore - theme is confirmed non-null here
       const duration2 = theme.transitions.getAutoHeightDuration(wrapperHeight);
       node.style.transitionDuration = `${duration2}ms`;
       this.autoTransitionDuration = duration2;
