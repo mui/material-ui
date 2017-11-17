@@ -34,18 +34,22 @@ export type Color = 'inherit' | 'accent' | 'action' | 'contrast' | 'disabled' | 
 
 type ProvidedProps = {
   classes: Object,
+  theme?: Object,
+};
+
+type DefaultProps = {
   color: Color,
 };
 
 export type Props = {
   /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
+  /**
    * The name of the icon font ligature.
    */
   children?: Node,
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes?: Object,
   /**
    * @ignore
    */
@@ -53,32 +57,34 @@ export type Props = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color?: Color,
+  color: Color,
 };
 
-function Icon(props: ProvidedProps & Props) {
-  const { children, classes, className: classNameProp, color, ...other } = props;
+class Icon extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    color: 'inherit',
+  };
 
-  const className = classNames(
-    'material-icons',
-    classes.root,
-    {
-      [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'inherit',
-    },
-    classNameProp,
-  );
+  static muiName = 'Icon';
 
-  return (
-    <span className={className} aria-hidden="true" {...other}>
-      {children}
-    </span>
-  );
+  render() {
+    const { children, classes, className: classNameProp, color, ...other } = this.props;
+
+    const className = classNames(
+      'material-icons',
+      classes.root,
+      {
+        [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'inherit',
+      },
+      classNameProp,
+    );
+
+    return (
+      <span className={className} aria-hidden="true" {...other}>
+        {children}
+      </span>
+    );
+  }
 }
-
-Icon.defaultProps = {
-  color: 'inherit',
-};
-
-Icon.muiName = 'Icon';
 
 export default withStyles(styles, { name: 'MuiIcon' })(Icon);

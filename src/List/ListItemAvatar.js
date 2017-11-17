@@ -23,6 +23,7 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  theme?: Object,
 };
 
 export type Props = {

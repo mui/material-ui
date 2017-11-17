@@ -35,9 +35,18 @@ export const styles = (theme: Object) => ({
   },
 });
 
+type Color = 'default' | 'primary' | 'inherit';
+
 type ProvidedProps = {
   classes: Object,
+  theme?: Object,
+};
+
+type DefaultProps = {
+  color?: Color,
   component: ElementType,
+  disableSticky?: boolean,
+  inset?: boolean,
 };
 
 export type Props = {
@@ -58,11 +67,11 @@ export type Props = {
    * Either a string to use a DOM element or a component.
    * The default value is a `button`.
    */
-  component?: ElementType,
+  component: ElementType,
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color?: 'default' | 'primary' | 'inherit',
+  color?: Color,
   /**
    * If `true`, the List Subheader will not stick to the top during scroll.
    */
@@ -73,41 +82,43 @@ export type Props = {
   inset?: boolean,
 };
 
-function ListSubheader(props: ProvidedProps & Props) {
-  const {
-    children,
-    classes,
-    className: classNameProp,
-    component: ComponentProp,
-    color,
-    disableSticky,
-    inset,
-    ...other
-  } = props;
-  const className = classNames(
-    classes.root,
-    {
-      [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
-      [classes.inset]: inset,
-      [classes.sticky]: !disableSticky,
-    },
-    classNameProp,
-  );
+class ListSubheader extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    component: 'li',
+    color: 'default',
+    disableSticky: false,
+    inset: false,
+  };
 
-  return (
-    <ComponentProp className={className} {...other}>
-      {children}
-    </ComponentProp>
-  );
+  static muiName = 'ListSubheader';
+
+  render() {
+    const {
+      children,
+      classes,
+      className: classNameProp,
+      component: ComponentProp,
+      color,
+      disableSticky,
+      inset,
+      ...other
+    } = this.props;
+    const className = classNames(
+      classes.root,
+      {
+        [classes[`color${capitalizeFirstLetter(color)}`]]: color !== 'default',
+        [classes.inset]: inset,
+        [classes.sticky]: !disableSticky,
+      },
+      classNameProp,
+    );
+
+    return (
+      <ComponentProp className={className} {...other}>
+        {children}
+      </ComponentProp>
+    );
+  }
 }
-
-ListSubheader.defaultProps = {
-  component: 'li',
-  color: 'default',
-  disableSticky: false,
-  inset: false,
-};
-
-ListSubheader.muiName = 'ListSubheader';
 
 export default withStyles(styles, { name: 'MuiListSubheader' })(ListSubheader);

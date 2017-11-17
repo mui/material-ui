@@ -23,8 +23,12 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  theme?: Object,
+};
+
+type DefaultProps = {
   component: ElementType,
-  disableTypography: boolean,
+  disableTypography?: boolean,
 };
 
 export type Props = {
@@ -44,7 +48,7 @@ export type Props = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component?: ElementType,
+  component: ElementType,
   /**
    * If children is a string then disable wrapping in a Typography component.
    */
@@ -55,41 +59,43 @@ export type Props = {
   position: 'start' | 'end',
 };
 
-function InputAdornment(props: ProvidedProps & Props) {
-  const {
-    children,
-    component: Component,
-    classes,
-    className,
-    disableTypography,
-    position,
-    ...other
-  } = props;
+class InputAdornment extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    component: 'div',
+    disableTypography: false,
+  };
 
-  return (
-    <Component
-      className={classNames(
-        classes.root,
-        {
-          [classes.positionStart]: position === 'start',
-          [classes.positionEnd]: position === 'end',
-        },
-        className,
-      )}
-      {...other}
-    >
-      {typeof children === 'string' && !disableTypography ? (
-        <Typography color="secondary">{children}</Typography>
-      ) : (
-        children
-      )}
-    </Component>
-  );
+  render() {
+    const {
+      children,
+      component: Component,
+      classes,
+      className,
+      disableTypography,
+      position,
+      ...other
+    } = this.props;
+
+    return (
+      <Component
+        className={classNames(
+          classes.root,
+          {
+            [classes.positionStart]: position === 'start',
+            [classes.positionEnd]: position === 'end',
+          },
+          className,
+        )}
+        {...other}
+      >
+        {typeof children === 'string' && !disableTypography ? (
+          <Typography color="secondary">{children}</Typography>
+        ) : (
+          children
+        )}
+      </Component>
+    );
+  }
 }
-
-InputAdornment.defaultProps = {
-  component: 'div',
-  disableTypography: false,
-};
 
 export default withStyles(styles, { name: 'MuiInputAdornment' })(InputAdornment);

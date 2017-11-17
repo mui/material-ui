@@ -63,9 +63,13 @@ export type Mode = 'determinate' | 'indeterminate';
 
 type ProvidedProps = {
   classes: Object,
+  theme?: Object,
+};
+
+type DefaultProps = {
   color: Color,
-  size: number,
-  mode: Mode,
+  size?: number,
+  mode?: Mode,
   value: number,
   min: number,
   max: number,
@@ -83,15 +87,15 @@ export type Props = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color?: Color,
+  color: Color,
   /**
    * The max value of progress in determinate mode.
    */
-  max?: number,
+  max: number,
   /**
    * The min value of progress in determinate mode.
    */
-  min?: number,
+  min: number,
   /**
    * The mode of show your progress. Indeterminate
    * for when there is no value for progress.
@@ -113,83 +117,85 @@ export type Props = {
   /**
    * The value of progress in determinate mode.
    */
-  value?: number,
+  value: number,
 };
 
-function CircularProgress(props: ProvidedProps & Props) {
-  const {
-    classes,
-    className,
-    color,
-    size,
-    style,
-    thickness,
-    mode,
-    value,
-    min,
-    max,
-    ...other
-  } = props;
+class CircularProgress extends React.Component<ProvidedProps & Props> {
+  static defaultProps: DefaultProps = {
+    color: 'primary',
+    size: 40,
+    thickness: 3.6,
+    mode: 'indeterminate',
+    value: 0,
+    min: 0,
+    max: 100,
+  };
 
-  const rootProps = {};
+  render() {
+    const {
+      classes,
+      className,
+      color,
+      size,
+      style,
+      thickness,
+      mode,
+      value,
+      min,
+      max,
+      ...other
+    } = this.props;
 
-  const circleStyle = {};
-  if (mode === 'determinate') {
-    const relVal = getRelativeValue(value, min, max) * 100;
-    const circumference = 2 * Math.PI * (SIZE / 2 - 5);
+    const rootProps = {};
 
-    circleStyle.strokeDashoffset = `${Math.round((100 - relVal) / 100 * circumference * 1000) /
-      1000}px`;
-    circleStyle.strokeDasharray = Math.round(circumference * 1000) / 1000;
+    const circleStyle = {};
+    if (mode === 'determinate') {
+      const relVal = getRelativeValue(value, min, max) * 100;
+      const circumference = 2 * Math.PI * (SIZE / 2 - 5);
 
-    rootProps['aria-valuenow'] = value;
-    rootProps['aria-valuemin'] = min;
-    rootProps['aria-valuemax'] = max;
-  }
+      circleStyle.strokeDashoffset = `${Math.round((100 - relVal) / 100 * circumference * 1000) /
+        1000}px`;
+      circleStyle.strokeDasharray = Math.round(circumference * 1000) / 1000;
 
-  return (
-    <div
-      className={classNames(
-        classes.root,
-        color !== 'inherit' && classes[`${color}Color`],
-        className,
-      )}
-      style={{ width: size, height: size, ...style }}
-      role="progressbar"
-      {...rootProps}
-      {...other}
-    >
-      <svg
-        className={classNames({
-          [classes.svgIndeterminate]: mode === 'indeterminate',
-          [classes.svgDeterminate]: mode === 'determinate',
-        })}
-        viewBox={`0 0 ${SIZE} ${SIZE}`}
+      rootProps['aria-valuenow'] = value;
+      rootProps['aria-valuemin'] = min;
+      rootProps['aria-valuemax'] = max;
+    }
+
+    return (
+      <div
+        className={classNames(
+          classes.root,
+          color !== 'inherit' && classes[`${color}Color`],
+          className,
+        )}
+        style={{ width: size, height: size, ...style }}
+        role="progressbar"
+        {...rootProps}
+        {...other}
       >
-        <circle
-          className={classNames(classes.circle, {
-            [classes.circleIndeterminate]: mode === 'indeterminate',
+        <svg
+          className={classNames({
+            [classes.svgIndeterminate]: mode === 'indeterminate',
+            [classes.svgDeterminate]: mode === 'determinate',
           })}
-          style={circleStyle}
-          cx={SIZE / 2}
-          cy={SIZE / 2}
-          r={SIZE / 2 - 5}
-          fill="none"
-          strokeWidth={thickness}
-        />
-      </svg>
-    </div>
-  );
+          viewBox={`0 0 ${SIZE} ${SIZE}`}
+        >
+          <circle
+            className={classNames(classes.circle, {
+              [classes.circleIndeterminate]: mode === 'indeterminate',
+            })}
+            style={circleStyle}
+            cx={SIZE / 2}
+            cy={SIZE / 2}
+            r={SIZE / 2 - 5}
+            fill="none"
+            strokeWidth={thickness}
+          />
+        </svg>
+      </div>
+    );
+  }
 }
-
-CircularProgress.defaultProps = {
-  color: 'primary',
-  size: 40,
-  thickness: 3.6,
-  mode: 'indeterminate',
-  value: 0,
-  min: 0,
-  max: 100,
-};
 
 export default withStyles(styles, { name: 'MuiCircularProgress', flip: false })(CircularProgress);

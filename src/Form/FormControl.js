@@ -35,16 +35,24 @@ export const styles = (theme: Object) => ({
 export type Margin = 'none' | 'dense' | 'normal';
 
 type ProvidedProps = {
-  disabled: boolean,
   classes: Object,
-  component: ElementType,
-  error: boolean,
-  fullWidth: boolean,
-  margin: Margin,
-  required: boolean,
+  theme?: Object,
+};
+
+type DefaultProps = {
+  disabled?: boolean,
+  component?: ElementType,
+  error?: boolean,
+  fullWidth?: boolean,
+  margin?: Margin,
+  required?: boolean,
 };
 
 export type Props = {
+  /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
   /**
    * The contents of the form control.
    */
@@ -110,7 +118,7 @@ type State = {
  *  - InputLabel
  */
 class FormControl extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps = {
+  static defaultProps: DefaultProps = {
     component: 'div',
     disabled: false,
     error: false,
@@ -206,7 +214,7 @@ class FormControl extends React.Component<ProvidedProps & Props, State> {
       children,
       classes,
       className,
-      component: ComponentProp,
+      component: ComponentProp = 'div',
       disabled,
       error,
       fullWidth,
