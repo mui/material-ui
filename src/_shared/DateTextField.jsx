@@ -59,7 +59,7 @@ export default class DateTextField extends Component {
     }
   }
 
-  handleClick = (e) => {
+  handleFocus = (e) => {
     e.target.blur();
     const { disabled, onClick } = this.props;
 
@@ -78,8 +78,8 @@ export default class DateTextField extends Component {
         readOnly
         value={this.getDisplayDate()}
         onChange={this.handleChange}
-        onClick={this.handleClick}
-        onFocus={this.handleClick}
+        onFocus={this.handleFocus}
+        onBlur={e => e.preventDefault() && e.stopPropagation()}
         disabled={disabled}
         {...other}
       />
