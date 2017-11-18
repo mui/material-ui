@@ -238,7 +238,7 @@ function TextField(props: Props) {
         </InputLabel>
       )}
       {select ? (
-        <Select input={InputComponent} {...SelectProps}>
+        <Select value={value} input={InputComponent} {...SelectProps}>
           {children}
         </Select>
       ) : (
