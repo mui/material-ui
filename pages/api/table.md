@@ -17,7 +17,7 @@ filename: /src/Table/Table.js
 | <span style="color: #31a148">component *</span> | ElementType | 'table' | The component used for the root node. Either a string to use a DOM element or a component. |
 | theme | Object |  |  |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 

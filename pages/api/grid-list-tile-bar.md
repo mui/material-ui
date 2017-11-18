@@ -20,7 +20,7 @@ filename: /src/GridList/GridListTileBar.js
 | <span style="color: #31a148">title *</span> | Node |  | Title to be displayed on tile. |
 | titlePosition | union:&nbsp;'top'&nbsp;&#124;<br>&nbsp;'bottom'<br> | 'bottom' | Position of the title bar. |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 

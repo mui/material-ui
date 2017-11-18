@@ -17,7 +17,7 @@ filename: /src/Card/CardActions.js
 | <span style="color: #31a148">disableActionSpacing *</span> | boolean | false | If `true`, the card actions do not have additional margin. |
 | theme | Object |  |  |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 

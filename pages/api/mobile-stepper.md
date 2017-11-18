@@ -21,7 +21,7 @@ filename: /src/MobileStepper/MobileStepper.js
 | theme | Object |  |  |
 | type | union:&nbsp;'text'&nbsp;&#124;<br>&nbsp;'dots'&nbsp;&#124;<br>&nbsp;'progress'<br> | 'dots' | The type of mobile stepper to use. |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 

@@ -24,7 +24,7 @@ Use this component if you want to display an extra label.
 | theme | Object |  |  |
 | value | string |  | The value of the component. |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 

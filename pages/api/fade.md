@@ -17,7 +17,7 @@ It's using [react-transition-group](https://github.com/reactjs/react-transition-
 | <span style="color: #31a148">in *</span> | boolean |  | If `true`, the component will transition in. |
 | <span style="color: #31a148">timeout *</span> | TransitionDuration | {  enter: duration.enteringScreen,  exit: duration.leavingScreen,} | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## Inheritance
 

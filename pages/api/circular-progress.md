@@ -22,7 +22,7 @@ filename: /src/Progress/CircularProgress.js
 | thickness | number | 3.6 | The thickness of the circle. |
 | <span style="color: #31a148">value *</span> | number | 0 | The value of progress in determinate mode. |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 

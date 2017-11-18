@@ -22,7 +22,7 @@ filename: /src/Avatar/Avatar.js
 | srcSet | string |  | The `srcSet` attribute for the `img` element. |
 | theme | Object |  |  |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 

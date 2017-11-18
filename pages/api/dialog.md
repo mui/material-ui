@@ -33,7 +33,7 @@ Dialogs are overlaid modal paper based components with a backdrop.
 | <span style="color: #31a148">transition *</span> | ComponentType | Fade | Transition component. |
 | transitionDuration | TransitionDuration | {  enter: duration.enteringScreen,  exit: duration.leavingScreen,} | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 

@@ -20,7 +20,7 @@ filename: /src/Stepper/Stepper.js
 | nonLinear | boolean | false | If set the `Stepper` will not assist in controlling steps for linear flow. |
 | orientation | union:&nbsp;'horizontal'&nbsp;&#124;<br>&nbsp;'vertical'<br> | 'horizontal' | The stepper orientation (layout flow direction). |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 

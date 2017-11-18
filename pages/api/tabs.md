@@ -26,7 +26,7 @@ filename: /src/Tabs/Tabs.js
 | textColor | union:&nbsp;'accent'&nbsp;&#124;<br>&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'inherit'<br> | 'inherit' | Determines the color of the `Tab`. |
 | <span style="color: #31a148">value *</span> | any |  | The value of the currently selected `Tab`. If you don't want any selected `Tab`, you can set this property to `false`. |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 

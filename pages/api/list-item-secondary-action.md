@@ -15,7 +15,7 @@ filename: /src/List/ListItemSecondaryAction.js
 | children | Node |  | The content of the component, normally an `IconButton` or selection control. |
 | classes | Object |  | Useful to extend the style applied to components. |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 

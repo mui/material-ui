@@ -15,5 +15,5 @@ Listen for click events that are triggered outside of the component children.
 | <span style="color: #31a148">children *</span> | Node |  |  |
 | <span style="color: #31a148">onClickAway *</span> | signature |  |  |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
