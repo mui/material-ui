@@ -104,7 +104,7 @@ export type Props = {
    */
   timeout: TransitionDuration,
   /**
-  /* @ignore
+   * @ignore
    */
   unmountOnExit?: boolean,
 };
