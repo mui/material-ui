@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Collapse from 'material-ui/transitions/Collapse';
 import { Typography, IconButton, withStyles } from 'material-ui';
-import MarkdownElement from '../components/MarkdownElement';
+import Code from '../components/Code';
 
 class SourcablePanel extends PureComponent {
   static propTypes = {
@@ -21,7 +21,7 @@ class SourcablePanel extends PureComponent {
     const webpackRawLoader = require.context('!raw-loader!../Examples', false, /\.jsx$/);
     const file = webpackRawLoader(`./${this.props.sourceFile}`);
 
-    return `\`\`\`js\n${file}\n\`\`\``;
+    return file
   }
 
   toggleSource = () => {
@@ -42,7 +42,7 @@ class SourcablePanel extends PureComponent {
       </Typography>,
 
       <Collapse key="code" in={sourceExpanded}>
-        <MarkdownElement className={classes.source} text={this.getSource()} />
+        <Code className={classes.source} text={this.getSource()} />
       </Collapse>,
 
       <div key="picker" className={classes.pickers}>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import { IconButton, Typography, withStyles } from 'material-ui';
 import { DateTimePicker, DatePicker } from 'material-ui-pickers';
 
@@ -51,7 +50,7 @@ class CustomElements extends Component {
   }
 
   state = {
-    selectedDate: moment(),
+    selectedDate: new Date(),
   }
 
   handleDateChange = (date) => {

@@ -13,6 +13,7 @@ class Demo extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     toggleThemeType: PropTypes.func.isRequired,
+    toggleFrench: PropTypes.func.isRequired,
   }
 
   scrollToContent = () => {
@@ -24,7 +25,7 @@ class Demo extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, toggleThemeType, toggleFrench } = this.props;
     return (
       <main className={classes.main}>
         <AppBar position="fixed" className={classes.noShadow}>
@@ -35,8 +36,14 @@ class Demo extends Component {
 
             <div className={classes.flex} />
 
+            <Tooltip title="Toggle English/French moment locale" enterDelay={300}>
+              <IconButton color="contrast" onClick={toggleFrench}>
+                language
+              </IconButton>
+            </Tooltip>
+
             <Tooltip title="Toggle light/dark theme" enterDelay={300}>
-              <IconButton color="contrast" onClick={this.props.toggleThemeType}>
+              <IconButton color="contrast" onClick={toggleThemeType}>
                 lightbulb_outline
               </IconButton>
             </Tooltip>
