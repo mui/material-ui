@@ -42,6 +42,7 @@ export default {
         'node_modules/prop-types',
         'node_modules/classnames',
         'node_modules/material-ui',
+        'node_modules/moment',
       ],
       namedExports: {
         'node_modules/moment-range/dist/moment-range.js': ['extendMoment'],

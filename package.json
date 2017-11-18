@@ -34,11 +34,11 @@
     "react-dom": "^15.6.2 || ^16.0.0",
     "prop-types": "^15.6.0",
     "material-ui": "^1.0.0-beta.18",
-    "classnames": "^2.2.5"
+    "classnames": "^2.2.5",
+    "moment": "^2.19.2"
   },
   "dependencies": {
     "babel-helpers": "^6.24.1",
-    "moment": "^2.19.2",
     "moment-range": "^3.0.3"
   },
   "scripts": {

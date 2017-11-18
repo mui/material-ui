@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import moment from 'moment';
 import { DateTimePicker } from 'material-ui-pickers';
 import { IconButton, Typography, Icon, InputAdornment } from 'material-ui';
 
 export default class BasicUsage extends Component {
   state = {
-    selectedDate: moment(),
+    selectedDate: new Date(),
   }
 
   handleDateChange = (date) => {
