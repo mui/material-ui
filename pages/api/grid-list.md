@@ -20,7 +20,7 @@ filename: /src/GridList/GridList.js
 | <span style="color: #31a148">spacing *</span> | number | 4 | Number of px for the spacing between tiles. |
 | theme | Object |  |  |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 

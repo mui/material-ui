@@ -19,7 +19,7 @@ filename: /src/BottomNavigation/BottomNavigation.js
 | theme | Object |  |  |
 | <span style="color: #31a148">value *</span> | any |  | The value of the currently selected `BottomNavigationButton`. |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 

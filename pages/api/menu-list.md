@@ -14,7 +14,7 @@ filename: /src/Menu/MenuList.js
 |:-----|:-----|:--------|:------------|
 | children | Node |  | MenuList contents, normally `MenuItem`s. |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## Inheritance
 

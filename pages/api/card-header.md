@@ -18,7 +18,7 @@ filename: /src/Card/CardHeader.js
 | subheader | Node |  | The content of the component. |
 | title | Node |  | The content of the Card Title. |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 

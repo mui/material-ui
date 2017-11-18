@@ -24,7 +24,7 @@ filename: /src/Typography/Typography.js
 | theme | Object |  |  |
 | <span style="color: #31a148">type *</span> | union:&nbsp;, 'display4', 'display3', 'display2', 'display1', 'headline', 'title', 'subheading', 'body2', 'body1', 'caption', 'button'<br> | 'body1' | Applies the theme typography styles. |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 

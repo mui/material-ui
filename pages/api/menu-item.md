@@ -18,7 +18,7 @@ filename: /src/Menu/MenuItem.js
 | selected | boolean | false | Use to apply selected styling. |
 | theme | Object |  |  |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 

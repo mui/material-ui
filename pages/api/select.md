@@ -24,7 +24,7 @@ filename: /src/Select/Select.js
 | theme | Object |  |  |
 | value | union:&nbsp;$ReadOnlyArray&lt;string&nbsp;&#124;<br>&nbsp;number>&nbsp;&#124;<br>&nbsp;string&nbsp;&#124;<br>&nbsp;number<br> |  | The input value, required for a controlled component. |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 

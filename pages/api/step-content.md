@@ -16,7 +16,7 @@ filename: /src/Stepper/StepContent.js
 | transition | Function | Collapse | Collapse component. |
 | transitionDuration | TransitionDuration | 'auto' | Adjust the duration of the content expand transition. Passed as a property to the transition component.<br>Set to 'auto' to automatically calculate transition time based on height. |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 

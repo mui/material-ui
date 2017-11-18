@@ -21,7 +21,7 @@ filename: /src/List/ListItem.js
 | divider | boolean | false | If `true`, a 1px light border is added to the bottom of the list item. |
 | theme | Object |  |  |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 

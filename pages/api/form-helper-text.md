@@ -19,7 +19,7 @@ filename: /src/Form/FormHelperText.js
 | margin | literal |  | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
 | theme | Object |  |  |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 

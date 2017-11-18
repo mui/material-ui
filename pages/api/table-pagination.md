@@ -23,7 +23,7 @@ A `TableCell` based component for placing inside `TableFooter` for pagination.
 | <span style="color: #31a148">rowsPerPage *</span> | number |  | The number of rows per page. |
 | <span style="color: #31a148">rowsPerPageOptions *</span> | unknown | [5, 10, 25] | Customizes the options of the rows per page select field. If less than two options are available, no select field will be displayed. |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 

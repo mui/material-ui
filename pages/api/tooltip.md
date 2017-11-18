@@ -27,7 +27,7 @@ filename: /src/Tooltip/Tooltip.js
 | <span style="color: #31a148">placement *</span> | union:&nbsp;, 'bottom-end', 'bottom-start', 'bottom', 'left-end', 'left-start', 'left', 'right-end', 'right-start', 'right', 'top-end', 'top-start', 'top'<br> | 'bottom' | Tooltip placement |
 | <span style="color: #31a148">title *</span> | Node |  | Tooltip title. |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 

@@ -44,7 +44,7 @@ filename: /src/TextField/TextField.js
 | type | string |  | Type attribute of the `Input` element. It should be a valid HTML5 input type. |
 | value | union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br> |  | The value of the `Input` element, required for a controlled component. |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## Inheritance
 

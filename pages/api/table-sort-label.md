@@ -18,7 +18,7 @@ A button based label for placing inside `TableCell` for column sorting.
 | direction | union:&nbsp;'asc'&nbsp;&#124;<br>&nbsp;'desc'<br> | 'desc' | The current sort direction. |
 | theme | Object |  |  |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 

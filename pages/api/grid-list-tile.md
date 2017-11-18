@@ -18,7 +18,7 @@ filename: /src/GridList/GridListTile.js
 | component | ElementType | 'li' | The component used for the root node. Either a string to use a DOM element or a component. |
 | rows | number | 1 | Height of the tile in number of grid cells. |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 

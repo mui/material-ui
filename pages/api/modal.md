@@ -46,7 +46,7 @@ This component shares many concepts with [react-overlays](https://react-bootstra
 | <span style="color: #31a148">show *</span> | boolean |  | If `true`, the Modal is visible. |
 | theme | Object |  |  |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 

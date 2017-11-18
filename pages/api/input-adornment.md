@@ -19,7 +19,7 @@ filename: /src/Input/InputAdornment.js
 | <span style="color: #31a148">position *</span> | union:&nbsp;'start'&nbsp;&#124;<br>&nbsp;'end'<br> |  | The position this adornment should appear relative to the `Input`. |
 | theme | Object |  |  |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 
