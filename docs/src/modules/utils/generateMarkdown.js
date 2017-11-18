@@ -171,10 +171,7 @@ function generateProps(reactAPI) {
       let defaultValue = '';
 
       if (prop.defaultValue) {
-        defaultValue = prop.defaultValue.value;
-        // remove any flow type casts
-        defaultValue = defaultValue.includes(':') ? defaultValue.split(':')[0] : defaultValue;
-        defaultValue = escapeCell(defaultValue.replace(/\n/g, ''));
+        defaultValue = escapeCell(prop.defaultValue.value.replace(/\n/g, ''));
       }
 
       if (prop.required) {
