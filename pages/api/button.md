@@ -14,15 +14,16 @@ filename: /src/Button/Button.js
 |:-----|:-----|:--------|:------------|
 | <span style="color: #31a148">children *</span> | Node |  | The content of the button. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| color | union:&nbsp;'default', 'inherit', 'primary', 'accent', 'contrast'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |
+| <span style="color: #31a148">color *</span> | union:&nbsp;'default', 'inherit', 'primary', 'accent', 'contrast'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |
 | component | ElementType |  | The component used for the root node. Either a string to use a DOM element or a component. The default value is a `button`. |
-| dense | boolean | false | Uses a smaller minWidth, ideal for things like card actions. |
-| disableFocusRipple | boolean | false | If `true`, the  keyboard focus ripple will be disabled. `disableRipple` must also be true. |
-| disableRipple | boolean | false | If `true`, the ripple effect will be disabled. |
-| disabled | boolean | false | If `true`, the button will be disabled. |
-| fab | boolean | false | If `true`, will use floating action button styling. |
+| <span style="color: #31a148">dense *</span> | boolean | false | Uses a smaller minWidth, ideal for things like card actions. |
+| <span style="color: #31a148">disableFocusRipple *</span> | boolean | false | If `true`, the  keyboard focus ripple will be disabled. `disableRipple` must also be true. |
+| <span style="color: #31a148">disableRipple *</span> | boolean | false | If `true`, the ripple effect will be disabled. |
+| <span style="color: #31a148">disabled *</span> | boolean | false | If `true`, the button will be disabled. |
+| <span style="color: #31a148">fab *</span> | boolean | false | If `true`, will use floating action button styling. |
 | href | string |  | The URL to link to when the button is clicked. If defined, an `a` element will be used as the root node. |
-| raised | boolean | false | If `true`, the button will use raised styling. |
+| <span style="color: #31a148">raised *</span> | boolean | false | If `true`, the button will use raised styling. |
+| theme | Object |  |  |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 

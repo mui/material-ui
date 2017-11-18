@@ -14,7 +14,8 @@ filename: /src/Dialog/DialogTitle.js
 |:-----|:-----|:--------|:------------|
 | children | Node |  | The content of the component. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| disableTypography | boolean | false | If `true`, the children won't be wrapped by a typography component. For instance, that can be useful to can render an h4 instead of a |
+| <span style="color: #31a148">disableTypography *</span> | boolean | false | If `true`, the children won't be wrapped by a typography component. For instance, that can be useful to can render an h4 instead of a |
+| theme | Object |  |  |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 

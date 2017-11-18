@@ -14,11 +14,12 @@ filename: /src/Form/FormLabel.js
 |:-----|:-----|:--------|:------------|
 | children | Node |  | The content of the component. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| component | ElementType | 'label' | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span style="color: #31a148">component *</span> | ElementType | 'label' | The component used for the root node. Either a string to use a DOM element or a component. |
 | disabled | boolean |  | If `true`, the label should be displayed in a disabled state. |
 | error | boolean |  | If `true`, the label should be displayed in an error state. |
 | focused | boolean |  | If `true`, the input of this label is focused (used by `FormGroup` components). |
 | required | boolean |  | If `true`, the label will indicate that the input is required. |
+| theme | Object |  |  |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 

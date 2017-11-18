@@ -16,10 +16,11 @@ regarding the available icon options.
 | buttonRef | Function |  | Use that property to pass a ref callback to the native button component. |
 | children | Node |  | The icon element. If a string is provided, it will be used as an icon font ligature. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| color | union:&nbsp;'default', 'inherit', 'primary', 'contrast', 'accent'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |
-| disableRipple | boolean | false | If `true`, the ripple will be disabled. |
-| disabled | boolean | false | If `true`, the button will be disabled. |
+| <span style="color: #31a148">color *</span> | union:&nbsp;'default', 'inherit', 'primary', 'contrast', 'accent'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |
+| <span style="color: #31a148">disableRipple *</span> | boolean | false | If `true`, the ripple will be disabled. |
+| <span style="color: #31a148">disabled *</span> | boolean | false | If `true`, the button will be disabled. |
 | rootRef | Function |  | Use that property to pass a ref callback to the root component. |
+| theme | Object |  |  |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 

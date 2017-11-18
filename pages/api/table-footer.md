@@ -14,7 +14,8 @@ filename: /src/Table/TableFooter.js
 |:-----|:-----|:--------|:------------|
 | children | Node |  | The content of the component, normally `TableRow`. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| component | ElementType | 'tfoot' | The component used for the root node. Either a string to use a DOM element or a component. |
+| <span style="color: #31a148">component *</span> | ElementType | 'tfoot' | The component used for the root node. Either a string to use a DOM element or a component. |
+| theme | Object |  |  |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 

@@ -14,6 +14,7 @@ filename: /src/Dialog/DialogContentText.js
 |:-----|:-----|:--------|:------------|
 | children | Node |  | The content of the component. |
 | classes | Object |  | Useful to extend the style applied to components. |
+| theme | Object |  |  |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 

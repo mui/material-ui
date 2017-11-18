@@ -17,6 +17,7 @@ filename: /src/Form/FormHelperText.js
 | disabled | boolean |  | If `true`, the helper text should be displayed in a disabled state. |
 | error | boolean |  | If `true`, helper text should be displayed in an error state. |
 | margin | literal |  | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
+| theme | Object |  |  |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 

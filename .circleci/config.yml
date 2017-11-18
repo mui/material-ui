@@ -74,6 +74,9 @@ jobs:
       - run:
           name: Can we generate the api of the docs?
           command: yarn docs:api
+      - run:
+          name: Should not have any git not staged
+          command: git diff --exit-code
   test_browser:
     <<: *defaults
     steps:
