@@ -315,7 +315,6 @@ describe('<TablePagination />', () => {
     });
 
     it('should hide the rows per page selector if there are less than two options', () => {
-      let page = 1;
       const wrapper = mount(
         <table>
           <TableFooter>

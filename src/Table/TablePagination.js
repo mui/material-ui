@@ -126,7 +126,8 @@ export type Props = {
    */
   rowsPerPage: number,
   /**
-   * Customizes the options of the rows per page select field. If less than two options are available, no select field will be displayed.
+   * Customizes the options of the rows per page select field. If less than two options are
+   * available, no select field will be displayed.
    */
   rowsPerPageOptions: number[],
   /**
