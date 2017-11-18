@@ -5,7 +5,7 @@ import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-diff';
 import 'prismjs/components/prism-jsx';
 
-/* eslint-disable import/no-webpack-loader-syntax */
+/* eslint-disable import/no-webpack-loader-syntax  */
 import lightTheme from '!raw-loader!prismjs/themes/prism.css';
 import darkTheme from '!raw-loader!prismjs/themes/prism-okaidia.css';
 /* eslint-enable import/no-webpack-loader-syntax  */
@@ -19,7 +19,6 @@ if (document.head) {
 }
 
 export function setPrismTheme(theme) {
-  console.log(theme);
   styleNode.textContent = theme === 'light'
     ? lightTheme
     : darkTheme;

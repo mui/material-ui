@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui';
+
 import Demo from './Demo/Demo';
 import { setPrismTheme } from './utils/prism';
-
 
 export default class App extends Component {
   state = {
@@ -30,7 +30,10 @@ export default class App extends Component {
     return (
       <div className="root">
         <MuiThemeProvider theme={this.getMuiTheme()}>
-          {<Demo toggleThemeType={this.toggleThemeType} />}
+          <Demo
+            toggleThemeType={this.toggleThemeType}
+            toggleFrench={this.props.toggleFrench}
+          />
         </MuiThemeProvider>
       </div>
     );
