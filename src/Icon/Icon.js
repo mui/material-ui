@@ -54,6 +54,10 @@ export type Props = {
    */
   className?: string,
   /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
   color: Color,

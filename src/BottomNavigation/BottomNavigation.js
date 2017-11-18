@@ -32,6 +32,10 @@ export type Props = {
    */
   className?: string,
   /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
    * Callback fired when the value changes.
    *
    * @param {object} event The event source of the callback
