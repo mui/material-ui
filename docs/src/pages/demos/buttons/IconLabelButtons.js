@@ -30,28 +30,28 @@ function IconLabelButtons(props) {
       <div>
         <Button className={classes.button} raised color="accent">
           Delete
-          <Delete className={props.classes.rightIcon} />
+          <Delete className={classes.rightIcon} />
         </Button>
         <Button className={classes.button} raised color="primary">
           Send
-          <Send className={props.classes.rightIcon} />
+          <Send className={classes.rightIcon} />
         </Button>
         <Button className={classes.button} raised color="default">
           Upload
-          <FileUpload className={props.classes.rightIcon} />
+          <FileUpload className={classes.rightIcon} />
         </Button>
       </div>
       <div>
         <Button className={classes.button} raised color="contrast">
-          <Done className={props.classes.leftIcon} />
+          <Done className={classes.leftIcon} />
           Done
         </Button>
         <Button className={classes.button} raised disabled color="accent">
-          <KeyboardVoice className={props.classes.leftIcon} />
+          <KeyboardVoice className={classes.leftIcon} />
           Talk
         </Button>
         <Button className={classes.button} raised dense>
-          <Save className={props.classes.leftIcon} />
+          <Save className={classes.leftIcon} />
           Save
         </Button>
       </div>
