@@ -319,7 +319,14 @@ describe('<TablePagination />', () => {
         <table>
           <TableFooter>
             <TableRow>
-              <TablePagination rowsPerPage={5} rowsPerPageOptions={[5]} />
+              <TablePagination
+                page={0}
+                rowsPerPage={5}
+                rowsPerPageOptions={[5]}
+                onChangePage={noop}
+                onChangeRowsPerPage={noop}
+                count={10}
+              />
             </TableRow>
           </TableFooter>
         </table>,
