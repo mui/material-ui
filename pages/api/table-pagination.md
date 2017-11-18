@@ -21,7 +21,7 @@ A `TableCell` based component for placing inside `TableFooter` for pagination.
 | <span style="color: #31a148">onChangeRowsPerPage *</span> | signature |  | Callback fired when the number of rows per page is changed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | <span style="color: #31a148">page *</span> | number |  | The zero-based index of the current page. |
 | <span style="color: #31a148">rowsPerPage *</span> | number |  | The number of rows per page. |
-| <span style="color: #31a148">rowsPerPageOptions *</span> | unknown | [5, 10, 25] | Customizes the options of the rows per page select field. |
+| <span style="color: #31a148">rowsPerPageOptions *</span> | unknown | [5, 10, 25] | Customizes the options of the rows per page select field. If less than two options are available, no select field will be displayed. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
