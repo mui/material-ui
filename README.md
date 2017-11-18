@@ -42,14 +42,21 @@ Here is a quick example to get you started, it's all you need:
 
 ```jsx
 import React from 'react';
-import { render } from 'react-dom';
-import Button from 'material-ui/Button';
+import { render } from 'react-dom';
+import RaisedButton from 'material-ui/RaisedButton';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider.js'
+import getMuiTheme from 'material-ui/styles/getMuiTheme.js'
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme.js'
+
+var theme = lightBaseTheme;
 
 function App() {
   return (
-    <Button>
-      Hello World
-    </Button>
+    <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
+      <RaisedButton>
+        Hello World
+      </RaisedButton>
+    </MuiThemeProvider>
   );
 }
 
