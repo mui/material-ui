@@ -36,13 +36,13 @@ type ProvidedProps = {
 
 export type Props = {
   /**
-   * The Avatar for the Card Header.
-   */
-  avatar?: Node,
-  /**
    * The action to display in the card header.
    */
   action?: Node,
+  /**
+   * The Avatar for the Card Header.
+   */
+  avatar?: Node,
   /**
    * Useful to extend the style applied to components.
    */

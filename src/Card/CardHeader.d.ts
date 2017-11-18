@@ -7,8 +7,8 @@ export interface CardHeaderProps extends StandardProps<
   CardHeaderClassKey,
   'title'
 > {
-  avatar?: React.ReactNode;
   action?: React.ReactNode;
+  avatar?: React.ReactNode;
   subheader?: React.ReactNode;
   title?: React.ReactNode;
 }
