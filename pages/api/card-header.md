@@ -12,8 +12,8 @@ filename: /src/Card/CardHeader.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| avatar | Node |  | The Avatar for the Card Header. |
 | action | Node |  | The action to display in the card header. |
+| avatar | Node |  | The Avatar for the Card Header. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | subheader | Node |  | The content of the component. |
 | title | Node |  | The content of the Card Title. |
@@ -26,6 +26,7 @@ You can override all the class names injected by Material-UI thanks to the `clas
 This property accepts the following keys:
 - `root`
 - `avatar`
+- `action`
 - `content`
 - `title`
 - `subheader`
