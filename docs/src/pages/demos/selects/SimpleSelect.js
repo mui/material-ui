@@ -28,8 +28,8 @@ class SimpleSelect extends React.Component {
     name: 'hai',
   };
 
-  handleChange = name => event => {
-    this.setState({ [name]: event.target.value });
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   render() {
@@ -41,8 +41,8 @@ class SimpleSelect extends React.Component {
           <InputLabel htmlFor="age-simple">Age</InputLabel>
           <Select
             value={this.state.age}
-            onChange={this.handleChange('age')}
-            input={<Input id="age-simple" />}
+            onChange={this.handleChange}
+            input={<Input name="age" id="age-simple" />}
           >
             <MenuItem value="">
               <em>None</em>
@@ -56,8 +56,8 @@ class SimpleSelect extends React.Component {
           <InputLabel htmlFor="age-helper">Age</InputLabel>
           <Select
             value={this.state.age}
-            onChange={this.handleChange('age')}
-            input={<Input id="age-helper" />}
+            onChange={this.handleChange}
+            input={<Input name="age" id="age-helper" />}
           >
             <MenuItem value="">
               <em>None</em>
@@ -71,8 +71,9 @@ class SimpleSelect extends React.Component {
         <FormControl className={classes.formControl}>
           <Select
             value={this.state.age}
-            onChange={this.handleChange('age')}
+            onChange={this.handleChange}
             displayEmpty
+            name="age"
             className={classes.selectEmpty}
           >
             <MenuItem value="">
@@ -88,8 +89,8 @@ class SimpleSelect extends React.Component {
           <InputLabel htmlFor="name-disabled">Name</InputLabel>
           <Select
             value={this.state.name}
-            onChange={this.handleChange('name')}
-            input={<Input id="name-disabled" />}
+            onChange={this.handleChange}
+            input={<Input name="name" id="name-disabled" />}
           >
             <MenuItem value="">
               <em>None</em>
@@ -104,7 +105,8 @@ class SimpleSelect extends React.Component {
           <InputLabel htmlFor="name-error">Name</InputLabel>
           <Select
             value={this.state.name}
-            onChange={this.handleChange('name')}
+            onChange={this.handleChange}
+            name="name"
             renderValue={value => `⚠️  - ${value}`}
             input={<Input id="name-error" />}
           >
@@ -126,8 +128,8 @@ class SimpleSelect extends React.Component {
           <InputLabel htmlFor="name-readonly">Name</InputLabel>
           <Select
             value={this.state.name}
-            onChange={this.handleChange('name')}
-            input={<Input id="name-readonly" readOnly />}
+            onChange={this.handleChange}
+            input={<Input name="name" id="name-readonly" readOnly />}
           >
             <MenuItem value="">
               <em>None</em>
@@ -142,8 +144,8 @@ class SimpleSelect extends React.Component {
           <InputLabel htmlFor="age-simple">Age</InputLabel>
           <Select
             value={this.state.age}
-            onChange={this.handleChange('age')}
-            input={<Input id="age-simple" />}
+            onChange={this.handleChange}
+            input={<Input name="age" id="age-simple" />}
             autoWidth
           >
             <MenuItem value="">
