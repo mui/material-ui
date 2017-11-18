@@ -49,7 +49,11 @@ export class Clock extends Component {
     e.preventDefault();
     e.stopPropagation();
     // MouseEvent.which is deprecated, but MouseEvent.buttons is not supported in Safari
-    if (e.buttons === 1 || e.nativeEvent.which === 1) {
+    const isButtonPressed = typeof e.buttons === 'undefined'
+      ? e.nativeEvent.which === 1
+      : e.buttons === 1;
+
+    if (isButtonPressed) {
       this.setTime(e.nativeEvent, false);
     }
   };
