@@ -16,6 +16,7 @@ filename: /src/GridList/GridListTileBar.js
 | actionPosition | union:&nbsp;'left'&nbsp;&#124;<br>&nbsp;'right'<br> | 'right' | Position of secondary action IconButton. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | subtitle | Node |  | String or element serving as subtitle (support text). |
+| theme | Object |  |  |
 | <span style="color: #31a148">title *</span> | Node |  | Title to be displayed on tile. |
 | titlePosition | union:&nbsp;'top'&nbsp;&#124;<br>&nbsp;'bottom'<br> | 'bottom' | Position of the title bar. |
 

@@ -12,12 +12,13 @@ filename: /src/GridList/GridList.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| cellHeight | union:&nbsp;number&nbsp;&#124;<br>&nbsp;'auto'<br> | 180 | Number of px for one cell height. You can set `'auto'` if you want to let the children determine the height. |
+| <span style="color: #31a148">cellHeight *</span> | union:&nbsp;number&nbsp;&#124;<br>&nbsp;'auto'<br> | 180 | Number of px for one cell height. You can set `'auto'` if you want to let the children determine the height. |
 | <span style="color: #31a148">children *</span> | Node |  | Grid Tiles that will be in Grid List. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| cols | number | 2 | Number of columns. |
-| component | ElementType | 'ul' | The component used for the root node. Either a string to use a DOM element or a component. By default we map the type to a good default headline component. |
-| spacing | number | 4 | Number of px for the spacing between tiles. |
+| <span style="color: #31a148">cols *</span> | number | 2 | Number of columns. |
+| <span style="color: #31a148">component *</span> | ElementType | 'ul' | The component used for the root node. Either a string to use a DOM element or a component. By default we map the type to a good default headline component. |
+| <span style="color: #31a148">spacing *</span> | number | 4 | Number of px for the spacing between tiles. |
+| theme | Object |  |  |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 

@@ -15,9 +15,10 @@ filename: /src/List/ListSubheader.js
 | children | Node |  | The content of the component. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | color | union:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'inherit'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |
-| component | ElementType | 'li' | The component used for the root node. Either a string to use a DOM element or a component. The default value is a `button`. |
+| <span style="color: #31a148">component *</span> | ElementType | 'li' | The component used for the root node. Either a string to use a DOM element or a component. The default value is a `button`. |
 | disableSticky | boolean | false | If `true`, the List Subheader will not stick to the top during scroll. |
 | inset | boolean | false | If `true`, the List Subheader will be indented. |
+| theme | Object |  |  |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 

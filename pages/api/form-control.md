@@ -27,6 +27,7 @@ This context is used by the following components:
 | fullWidth | boolean | false | If `true`, the component, as well as its children, will take up the full width of its container. |
 | margin | union:&nbsp;'none'&nbsp;&#124;<br>&nbsp;'dense'&nbsp;&#124;<br>&nbsp;'normal'<br> | 'none' | If `dense` or `normal`, will adjust vertical spacing of this and contained components. |
 | required | boolean | false | If `true`, the label will indicate that the input is required. |
+| theme | Object |  |  |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 

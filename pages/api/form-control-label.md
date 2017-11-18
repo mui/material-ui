@@ -21,6 +21,7 @@ Use this component if you want to display an extra label.
 | <span style="color: #31a148">label *</span> | Node |  | The text to be used in an enclosing label element. |
 | name | string |  |  |
 | onChange | Function |  | Callback fired when the state is changed.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* The event source of the callback<br>*checked:* The `checked` value of the switch |
+| theme | Object |  |  |
 | value | string |  | The value of the component. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).

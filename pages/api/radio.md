@@ -14,7 +14,7 @@ filename: /src/Radio/Radio.js
 |:-----|:-----|:--------|:------------|
 | checked | union:&nbsp;boolean&nbsp;&#124;<br>&nbsp;string<br> |  | If `true`, the component is checked. |
 | checkedIcon | Node |  | The icon to display when the component is checked. If a string is provided, it will be used as a font ligature. |
-| classes | Object |  | Useful to extend the style applied to components. |
+| children | Node |  | Useful to extend the style applied to components. |
 | disableRipple | boolean |  | If `true`, the ripple effect will be disabled. |
 | disabled | boolean |  | If `true`, the switch will be disabled. |
 | icon | Node |  | The icon to display when the component is unchecked. If a string is provided, it will be used as a font ligature. |
@@ -22,6 +22,7 @@ filename: /src/Radio/Radio.js
 | inputRef | Function |  | Use that property to pass a ref callback to the native input component. |
 | name | string |  |  |
 | onChange | Function |  | Callback fired when the state is changed.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* The event source of the callback<br>*checked:* The `checked` value of the switch |
+| theme | Object |  |  |
 | value | string |  | The value of the component. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
