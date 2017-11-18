@@ -39,6 +39,9 @@ type Color = 'default' | 'primary' | 'inherit';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 

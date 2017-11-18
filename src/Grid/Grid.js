@@ -182,6 +182,9 @@ type Wrap = 'nowrap' | 'wrap' | 'wrap-reverse';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 

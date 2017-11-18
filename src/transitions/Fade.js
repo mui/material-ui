@@ -9,6 +9,9 @@ import withTheme from '../styles/withTheme';
 import type { TransitionDuration, TransitionCallback } from '../internal/transition';
 
 type ProvidedProps = {
+  /**
+   * @ignore
+   */
   theme: Object,
 };
 
@@ -41,10 +44,6 @@ export type Props = {
    * @ignore
    */
   onExit?: TransitionCallback,
-  /**
-   * @ignore
-   */
-  theme?: Object,
   /**
    * @ignore
    */

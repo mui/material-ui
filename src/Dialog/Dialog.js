@@ -55,6 +55,9 @@ type MaxWidth = 'xs' | 'sm' | 'md';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 

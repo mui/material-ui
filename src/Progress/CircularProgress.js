@@ -63,6 +63,9 @@ export type Mode = 'determinate' | 'indeterminate';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 

@@ -31,6 +31,9 @@ export type TransitionDuration = number | { enter?: number, exit?: number } | 'a
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 
@@ -93,10 +96,6 @@ export type Props = {
    * @ignore
    */
   style?: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.

@@ -67,6 +67,9 @@ export function setTranslateValue(props: Object, node: HTMLElement | Object) {
 export type Direction = 'left' | 'right' | 'up' | 'down';
 
 type ProvidedProps = {
+  /**
+   * @ignore
+   */
   theme: Object,
 };
 
@@ -120,10 +123,6 @@ export type Props = {
    * You may specify a single timeout for all transitions, or individually with an object.
    */
   timeout: TransitionDuration,
-  /**
-   * @ignore
-   */
-  theme?: Object,
 };
 
 type State = {

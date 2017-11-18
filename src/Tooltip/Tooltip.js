@@ -118,6 +118,9 @@ function flipPlacement(placement: Placement): Placement {
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 
@@ -187,10 +190,6 @@ export type Props = {
    * Properties applied to the `Popper` element.
    */
   PopperProps?: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
 };
 
 type State = {

@@ -68,6 +68,9 @@ export type ActionPosition = 'left' | 'right';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 

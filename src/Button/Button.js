@@ -153,6 +153,9 @@ export type Color = 'default' | 'inherit' | 'primary' | 'accent' | 'contrast';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 

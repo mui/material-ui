@@ -47,6 +47,9 @@ type Color = 'default' | 'primary' | 'accent';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 

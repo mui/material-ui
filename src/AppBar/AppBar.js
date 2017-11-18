@@ -52,6 +52,9 @@ export type Position = 'static' | 'fixed' | 'absolute';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 

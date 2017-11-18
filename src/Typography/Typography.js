@@ -80,6 +80,9 @@ type Color = 'inherit' | 'primary' | 'secondary' | 'accent' | 'error' | 'default
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 

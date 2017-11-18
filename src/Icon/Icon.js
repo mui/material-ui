@@ -34,6 +34,9 @@ export type Color = 'inherit' | 'accent' | 'action' | 'contrast' | 'disabled' | 
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 

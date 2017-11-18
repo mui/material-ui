@@ -91,6 +91,9 @@ export type Type = 'permanent' | 'persistent' | 'temporary';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 
@@ -138,10 +141,6 @@ export type Props = {
    * If `true`, the drawer is open.
    */
   open: boolean,
-  /**
-   * @ignore
-   */
-  theme?: Object,
   /**
    * Properties applied to the `Slide` element.
    */

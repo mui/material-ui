@@ -21,6 +21,9 @@ const mediaComponents = ['video', 'audio', 'picture', 'iframe', 'img'];
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 

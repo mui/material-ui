@@ -36,6 +36,9 @@ export type Margin = 'none' | 'dense' | 'normal';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 

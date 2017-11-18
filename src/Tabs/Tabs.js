@@ -52,6 +52,9 @@ type TextColor = 'accent' | 'primary' | 'inherit';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 
@@ -121,10 +124,6 @@ export type Props = {
    * Determines the color of the `Tab`.
    */
   textColor: TextColor,
-  /**
-   * @ignore
-   */
-  theme?: Object,
   /**
    * The value of the currently selected `Tab`.
    * If you don't want any selected `Tab`, you can set this property to `false`.

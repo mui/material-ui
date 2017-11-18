@@ -15,6 +15,9 @@ export function getScale(value: number) {
 export type TransitionDuration = number | { enter?: number, exit?: number } | 'auto';
 
 type ProvidedProps = {
+  /**
+   * @ignore
+   */
   theme: Object,
 };
 
@@ -72,10 +75,6 @@ export type Props = {
    * This property is a direct binding to [`CSSTransition.classNames`](https://reactcommunity.org/react-transition-group/#CSSTransition-prop-classNames).
    */
   transitionClasses: TransitionClasses,
-  /**
-   * @ignore
-   */
-  theme?: Object,
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.

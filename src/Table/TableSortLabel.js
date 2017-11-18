@@ -51,6 +51,9 @@ export type Direction = 'asc' | 'desc';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 

@@ -20,6 +20,9 @@ export type CellHeight = number | 'auto';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 

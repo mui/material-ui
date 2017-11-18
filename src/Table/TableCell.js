@@ -15,6 +15,9 @@ export type Padding = 'default' | 'checkbox' | 'dense' | 'none';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 

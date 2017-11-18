@@ -12,6 +12,9 @@ import type { TransitionCallback } from '../internal/transition';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 
@@ -80,10 +83,6 @@ export type Props = {
    * `classes` property applied to the `Popover` element.
    */
   PopoverClasses?: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
   /**
    * The length of the transition in `ms`, or 'auto'
    */

@@ -148,6 +148,9 @@ type Mode = 'determinate' | 'indeterminate' | 'buffer' | 'query';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 
