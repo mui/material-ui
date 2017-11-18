@@ -36,7 +36,7 @@ function GlamorousButton() {
 export default GlamorousButton:
 ```
 
-[![Edit Glamoroused Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/n3jmn72wrm)
+[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/n3jmn72wrm)
 
 **Note:** Both Glamor and JSS inject their styles at the bottom of the `<head />`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js#css-injection-order) as we do in the demo.
 
@@ -83,6 +83,44 @@ function GlamorButton() {
 export default GlamorButton;
 ```
 
-[![Edit Glamor Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/ov5l1j2j8z)
+[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/ov5l1j2j8z)
 
 **Note:** Both Glamor and JSS inject their styles at the bottom of the `<head />`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js#css-injection-order) as we do in the demo.
+
+## Styled Components
+
+![stars](https://img.shields.io/github/stars/styled-components/styled-components.svg?style=social&label=Star)
+![npm](https://img.shields.io/npm/dm/styled-components.svg?)
+
+The `styled()` method works perfectly on all of our components.
+
+```jsx
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import Button from 'material-ui/Button';
+
+const StyledButton = styled(Button)`
+  background-color: grey;
+  color: pink;
+  width: 240px;
+`;
+
+function StyledComponentsButton() {
+  return (
+    <div>
+      <Button color="accent" raised>
+        Material-UI
+      </Button>
+      <StyledButton color="accent" raised>
+        Styled Components
+      </StyledButton>
+    </div>
+  );
+}
+
+export default StyledComponentsButton;
+```
+
+[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/mzwqkk1p7j)
+
+**Note:** Both styled-components and JSS inject their styles at the bottom of the `<head />`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/customization/css-in-js#css-injection-order) as we do in the demo.
