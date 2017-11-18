@@ -34,7 +34,7 @@ export default class BasicUsage extends Component {
         </Typography>
 
         <TimePicker
-          value={this.state.selectedDate}
+          value={selectedDate}
           onChange={this.handleDateChange}
         />
       </div>,

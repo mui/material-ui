@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
+import prism from '../../utils/prism'
 
 const anchorLinkStyle = (theme, size) => ({
   '& .anchor-link-style': {
@@ -29,6 +30,7 @@ const styles = theme => ({
     color: theme.palette.text.primary,
     margin: 0,
     backgroundColor: theme.palette.background.paper,
+    padding: 10,
 
     '& .anchor-link': {
       marginTop: -theme.spacing.unit * 12, // Offset for the anchor.
@@ -158,12 +160,12 @@ const Code = (props) => {
     classes, className, text, ...other
   } = props;
 
+  const hightlightedCode = prism.highlight(text, prism.languages.jsx)
+
   return (
     <div className={classes.root}>
       <pre>
-        <code className="language-jsx">
-          {text}
-        </code>
+        <code dangerouslySetInnerHTML={{ __html: hightlightedCode }} />
       </pre>
     </div>
   );
