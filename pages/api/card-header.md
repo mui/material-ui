@@ -13,6 +13,7 @@ filename: /src/Card/CardHeader.js
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | avatar | Node |  | The Avatar for the Card Header. |
+| action | Node |  | The action to display in the card header. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | subheader | Node |  | The content of the component. |
 | title | Node |  | The content of the Card Title. |
