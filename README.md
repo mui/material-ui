@@ -13,11 +13,16 @@ Available as npm package
 ```sh
 npm install material-ui-pickers -S
 ```
+We have moment in the peer dependencies, so if you are not using moment
+```sh
+npm install moment -S
+```
 
-We are using material-ui-icons font to display icons.Just add this to your html 
+We are using material-ui-icons font to display icons. Just add this to your html 
 ```html
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 ```
+
 If you dont want to use icon font, or you are already use `material-ui-icons` you can pass any icon to the components with the following props 
 * leftArrowIcon - arrow left for datepicker
 * rightArrowIcon - arrow right for datepicker
