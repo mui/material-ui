@@ -12,11 +12,11 @@ import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 
 const styles = theme => ({
   root: {
-    marginTop: theme.spacing.unit * 4,
+    marginTop: theme.spacing.unit * 3,
     width: '100%',
   },
-  title: {
-    fontSize: 15,
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular,
   },
 });
@@ -27,7 +27,18 @@ function SimpleExpansionPanel(props) {
     <div className={classes.root}>
       <ExpansionPanel>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography className={classes.title}>Expansion Panel Title</Typography>
+          <Typography className={classes.heading}>Expansion Panel 1</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            sit amet blandit leo lobortis eget.
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      <ExpansionPanel>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography className={classes.heading}>Expansion Panel 2</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
@@ -38,7 +49,7 @@ function SimpleExpansionPanel(props) {
       </ExpansionPanel>
       <ExpansionPanel disabled>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography>Disabled Expansion Panel</Typography>
+          <Typography className={classes.heading}>Disabled Expansion Panel</Typography>
         </ExpansionPanelSummary>
       </ExpansionPanel>
     </div>

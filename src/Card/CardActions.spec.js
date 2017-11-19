@@ -20,7 +20,7 @@ describe('<CardActions />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
-  it('should pass the actionSpacing class to children', () => {
+  it('should pass the action class to children', () => {
     const child3 = false;
     const wrapper = shallow(
       <CardActions>
@@ -30,11 +30,11 @@ describe('<CardActions />', () => {
       </CardActions>,
     );
 
-    assert.strictEqual(wrapper.find('#child1').hasClass(classes.actionSpacing), true);
-    assert.strictEqual(wrapper.find('#child2').hasClass(classes.actionSpacing), true);
+    assert.strictEqual(wrapper.find('#child1').hasClass(classes.action), true);
+    assert.strictEqual(wrapper.find('#child2').hasClass(classes.action), true);
   });
 
-  it('should not pass the actionSpacing class to children', () => {
+  it('should not pass the action class to children', () => {
     const wrapper = shallow(
       <CardActions disableActionSpacing>
         <div id="child1" />
@@ -42,7 +42,7 @@ describe('<CardActions />', () => {
       </CardActions>,
     );
 
-    assert.strictEqual(wrapper.find('#child1').hasClass(classes.actionSpacing), false);
-    assert.strictEqual(wrapper.find('#child2').hasClass(classes.actionSpacing), false);
+    assert.strictEqual(wrapper.find('#child1').hasClass(classes.action), false);
+    assert.strictEqual(wrapper.find('#child2').hasClass(classes.action), false);
   });
 });

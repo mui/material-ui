@@ -22,7 +22,7 @@ describe('<ExpansionPanelActions />', () => {
   it('should spread custom props on the root node', () => {
     const wrapper = shallow(<ExpansionPanelActions data-my-prop="woofExpansionPanelActions" />);
     assert.strictEqual(
-      wrapper.prop('data-my-prop'),
+      wrapper.props()['data-my-prop'],
       'woofExpansionPanelActions',
       'custom prop should be woofExpansionPanelActions',
     );
@@ -40,17 +40,14 @@ describe('<ExpansionPanelActions />', () => {
         <button className="woofExpansionPanelActions">Hello</button>
       </ExpansionPanelActions>,
     );
-    const container = wrapper.childAt(0);
-    assert.strictEqual(container.hasClass(classes.action), true, 'should have the action wrapper');
-    assert.strictEqual(container.is('div'), true, 'should be a div');
-    const button = container.childAt(0);
-    assert.strictEqual(button.is('button'), true, 'should be a button');
+    const button = wrapper.childAt(0);
+    assert.strictEqual(button.hasClass(classes.action), true, 'should have the action wrapper');
+    assert.strictEqual(button.type(), 'button');
     assert.strictEqual(
       button.hasClass('woofExpansionPanelActions'),
       true,
       'should have the user class',
     );
-    assert.strictEqual(button.hasClass(classes.button), true, 'should have the button class');
   });
 
   it('should render a valid children', () => {
@@ -61,11 +58,8 @@ describe('<ExpansionPanelActions />', () => {
       </ExpansionPanelActions>,
     );
 
-    const container = wrapper.childAt(0);
-    assert.strictEqual(container.hasClass(classes.action), true, 'should have the action wrapper');
-    assert.strictEqual(container.is('div'), true, 'should be a div');
-    const button = container.childAt(0);
-    assert.strictEqual(container.children().length, 1, 'should have only one element');
-    assert.strictEqual(button.is('button'), true, 'should be a button');
+    const button = wrapper.childAt(0);
+    assert.strictEqual(button.hasClass(classes.action), true, 'should have the action wrapper');
+    assert.strictEqual(button.type(), 'button');
   });
 });

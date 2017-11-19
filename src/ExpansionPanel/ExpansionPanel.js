@@ -14,10 +14,10 @@ export const styles = (theme: Object) => {
     duration: theme.transitions.duration.shortest,
     easing: theme.transitions.easing.ease,
   };
+
   return {
     root: {
       position: 'relative',
-      boxShadow: theme.shadows[1],
       margin: 0,
       transition: theme.transitions.create(['margin'], transition),
       '&:before': {
@@ -42,30 +42,26 @@ export const styles = (theme: Object) => {
         borderBottomLeftRadius: 2,
         borderBottomRightRadius: 2,
       },
-      '&$expanded': {
-        margin: `${theme.spacing.unit * 2}px 0`,
-        '&:first-child': {
-          marginTop: 0,
-        },
-        '&:last-child': {
-          marginBottom: 0,
-        },
-        '&:before': {
-          opacity: 0,
-        },
-      },
       '&$expanded + &': {
         '&:before': {
           display: 'none',
         },
       },
-      '&$disabled': {
-        backgroundColor: theme.palette.grey[200],
+    },
+    expanded: {
+      margin: `${theme.spacing.unit * 2}px 0`,
+      '&:first-child': {
+        marginTop: 0,
+      },
+      '&:last-child': {
+        marginBottom: 0,
+      },
+      '&:before': {
+        opacity: 0,
       },
     },
-    expanded: {},
     disabled: {
-      color: theme.palette.action.disabled,
+      backgroundColor: theme.palette.text.divider,
     },
   };
 };
@@ -74,6 +70,10 @@ type ProvidedProps = {
   classes: Object,
   defaultExpanded: boolean,
   disabled: boolean,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 export type Props = {
@@ -82,7 +82,7 @@ export type Props = {
    */
   children?: Node,
   /**
-   * Allows to [extend the style](#css-api) applied to the component.
+   * Useful to extend the style applied to components.
    */
   classes?: Object,
   /**
@@ -92,7 +92,7 @@ export type Props = {
   /**
    * Properties applied to the `Collapse` element.
    */
-  collapseProps?: Object,
+  CollapseProps?: Object,
   /**
    * If `true`, expands the panel by default.
    */
@@ -100,16 +100,17 @@ export type Props = {
   /**
    * If `true`, the panel will be displayed in a disabled state.
    */
-  disabled?: boolean,
+  disabled: boolean,
   /**
    * If `true`, expands the panel, otherwise collapse it.
    * Setting this prop enables control over the panel.
    */
   expanded?: boolean,
   /**
-   * Callback fired on every expand/collapse state change.
+   * Callback fired when the expand/collapse state is changed.
    *
    * @param {object} event The event source of the callback
+   * @param {boolean} expanded The `expanded` state of the panel
    */
   onChange?: Function,
 };
@@ -120,7 +121,6 @@ type State = {
 
 class ExpansionPanel extends React.Component<ProvidedProps & Props, State> {
   static defaultProps = {
-    classes: {},
     defaultExpanded: false,
     disabled: false,
   };
@@ -147,17 +147,16 @@ class ExpansionPanel extends React.Component<ProvidedProps & Props, State> {
 
   isControlled = null;
 
-  handleChange = () => {
-    const { disabled, onChange } = this.props;
-    if (disabled) {
-      return;
-    }
-    const expand = !this.state.expanded;
+  handleChange = event => {
+    const { onChange } = this.props;
+    const expanded = !this.state.expanded;
+
     if (onChange) {
-      onChange(this, expand);
+      onChange(event, expanded);
     }
+
     if (!this.isControlled) {
-      this.setState({ expanded: expand });
+      this.setState({ expanded });
     }
   };
 
@@ -166,17 +165,18 @@ class ExpansionPanel extends React.Component<ProvidedProps & Props, State> {
       children: childrenProp,
       classes,
       className: classNameProp,
-      collapseProps,
+      CollapseProps,
       defaultExpanded,
       disabled,
-      expanded,
+      expanded: expandedProp,
       ...other
     } = this.props;
+    const { expanded } = this.state;
 
     const className = classNames(
+      classes.root,
       {
-        [classes.root]: true,
-        [classes.expanded]: this.state.expanded,
+        [classes.expanded]: expanded,
         [classes.disabled]: disabled,
       },
       classNameProp,
@@ -185,21 +185,26 @@ class ExpansionPanel extends React.Component<ProvidedProps & Props, State> {
     let summary = null;
 
     const children = React.Children.map(childrenProp, child => {
+      if (!React.isValidElement(child)) {
+        return null;
+      }
+
       if (isMuiElement(child, ['ExpansionPanelSummary'])) {
         summary = React.cloneElement(child, {
           disabled,
-          expanded: this.state.expanded,
+          expanded,
           onChange: this.handleChange,
         });
         return null;
       }
+
       return child;
     });
 
     return (
-      <Paper className={className} elevation={0} square {...other}>
+      <Paper className={className} elevation={1} square {...other}>
         {summary}
-        <Collapse in={this.state.expanded} transitionDuration="auto" {...collapseProps}>
+        <Collapse in={expanded} transitionDuration="auto" {...CollapseProps}>
           {children}
         </Collapse>
       </Paper>

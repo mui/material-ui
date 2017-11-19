@@ -12,13 +12,13 @@ filename: /src/ExpansionPanel/ExpansionPanel.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| CollapseProps | Object |  | Properties applied to the `Collapse` element. |
 | children | Node |  | The content of the expansion panel. |
-| classes | Object | {} | Allows to [extend the style](#css-api) applied to the component. |
-| collapseProps | Object |  | Properties applied to the `Collapse` element. |
+| classes | Object |  | Useful to extend the style applied to components. |
 | defaultExpanded | boolean | false | If `true`, expands the panel by default. |
 | disabled | boolean | false | If `true`, the panel will be displayed in a disabled state. |
 | expanded | boolean |  | If `true`, expands the panel, otherwise collapse it. Setting this prop enables control over the panel. |
-| onChange | Function |  | Callback fired on every expand/collapse state change.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
+| onChange | Function |  | Callback fired when the expand/collapse state is changed.<br><br>**Signature:**<br>`function(event: object, expanded: boolean) => void`<br>*event:* The event source of the callback<br>*expanded:* The `expanded` state of the panel |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

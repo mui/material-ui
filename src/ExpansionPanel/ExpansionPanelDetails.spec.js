@@ -28,6 +28,6 @@ describe('<ExpansionPanelDetails />', () => {
       </ExpansionPanelDetails>,
     );
     const container = wrapper.childAt(0);
-    assert.strictEqual(container.is('div'), true, 'should be a div');
+    assert.strictEqual(container.type(), 'div');
   });
 });

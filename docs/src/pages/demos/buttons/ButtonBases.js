@@ -8,7 +8,7 @@ import Typography from 'material-ui/Typography';
 
 const styles = theme => ({
   root: {
-    marginTop: theme.spacing.unit * 4,
+    marginTop: theme.spacing.unit * 3,
     display: 'flex',
     flexWrap: 'wrap',
     minWidth: 300,

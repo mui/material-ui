@@ -15,6 +15,10 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 export type Props = {
@@ -23,7 +27,7 @@ export type Props = {
    */
   children?: Node,
   /**
-   * Allows to [extend the style](#css-api) applied to the component.
+   * Useful to extend the style applied to components.
    */
   classes?: Object,
   /**

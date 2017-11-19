@@ -49,18 +49,20 @@ function DialogActions(props: ProvidedProps & Props) {
   const { children, classes, className, ...other } = props;
 
   return (
-    <div data-mui-test="DialogActions" className={classNames(classes.root, className)} {...other}>
-      {React.Children.map(
-        children,
-        button =>
-          React.isValidElement(button) && (
-            <div className={classes.action}>
-              {React.cloneElement(button, {
-                className: classNames(classes.button, button.props.className),
-              })}
-            </div>
-          ),
-      )}
+    <div className={classNames(classes.root, className)} {...other}>
+      {React.Children.map(children, child => {
+        if (!React.isValidElement(child)) {
+          return null;
+        }
+
+        return (
+          <div className={classes.action}>
+            {React.cloneElement(child, {
+              className: classNames(classes.button, child.props.className),
+            })}
+          </div>
+        );
+      })}
     </div>
   );
 }

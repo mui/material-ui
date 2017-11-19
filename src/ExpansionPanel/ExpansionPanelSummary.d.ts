@@ -6,17 +6,21 @@ export interface ExpansionPanelSummaryProps extends StandardProps<
   ButtonBaseProps,
   ExpansionPanelSummaryClassKey
 > {
-  disabled?: boolean,
-  expanded?: boolean,
-  expandIcon?: React.ReactNode,
-  onChange?: React.ReactEventHandler<{}>,
+  disabled?: boolean;
+  expanded?: boolean;
+  expandIcon?: React.ReactNode;
+  onChange?: React.ReactEventHandler<{}>;
 }
 
 export type ExpansionPanelSummaryClassKey =
   | ButtonBaseClassKey
-  | 'items'
-  | 'action'
-  | 'button'
+  | 'expanded'
+  | 'focused'
+  | 'disabled'
+  | 'content'
+  | 'contentExpanded'
+  | 'expandIcon'
+  | 'expandIconExpanded'
   ;
 
 declare const ExpansionPanelSummary: React.ComponentType<ExpansionPanelSummaryProps>;

@@ -10,7 +10,7 @@ export interface CardActionsProps extends StandardProps<
 
 export type CardActionClassKey =
   | 'root'
-  | 'actionSpacing'
+  | 'action'
   ;
 
 declare const CardActions: React.ComponentType<CardActionsProps>;

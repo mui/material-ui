@@ -13,9 +13,9 @@ filename: /src/ExpansionPanel/ExpansionPanelSummary.js
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | Node |  | The content of the expansion panel summary. |
-| classes | Object | {} | Allows to [extend the style](#css-api) applied to components. |
+| classes | Object | {} | Useful to extend the style applied to components. |
 | disabled | boolean | false | If `true`, the summary will be displayed in a disabled state. |
-| expandIcon | Node | null | The icon to display as the expand indicator. |
+| expandIcon | Node |  | The icon to display as the expand indicator. |
 | expanded | boolean |  | If `true`, expands the summary, otherwise collapse it. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
@@ -25,12 +25,13 @@ Any other properties supplied will be [spread to the root element](/guides/api#s
 You can override all the class names injected by Material-UI thanks to the `classes` property.
 This property accepts the following keys:
 - `root`
-- `items`
-- `action`
-- `button`
 - `expanded`
 - `focused`
 - `disabled`
+- `content`
+- `contentExpanded`
+- `expandIcon`
+- `expandIconExpanded`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/callemall/material-ui/tree/v1-beta/src/ExpansionPanel/ExpansionPanelSummary.js)

@@ -70,7 +70,7 @@ const members = [
 
 const styles = theme => ({
   root: {
-    marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing.unit * 3,
   },
   card: {
     display: 'flex',

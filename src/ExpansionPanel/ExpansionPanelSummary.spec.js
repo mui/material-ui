@@ -19,6 +19,10 @@ describe('<ExpansionPanelSummary />', () => {
     classes = getClasses(<ExpansionPanelSummary />);
   });
 
+  after(() => {
+    mount.cleanUp();
+  });
+
   it('should render a ButtonBase', () => {
     const wrapper = shallow(<ExpansionPanelSummary />);
     assert.strictEqual(wrapper.name(), 'withStyles(ButtonBase)');
@@ -30,10 +34,10 @@ describe('<ExpansionPanelSummary />', () => {
     assert.strictEqual(wrapper.hasClass('woofExpansionPanelSummary'), true);
   });
 
-  it('should render with the items', () => {
+  it('should render with the content', () => {
     const wrapper = shallow(<ExpansionPanelSummary />);
     const itemsWrap = wrapper.childAt(0);
-    assert.strictEqual(itemsWrap.hasClass(classes.items), true);
+    assert.strictEqual(itemsWrap.hasClass(classes.content), true);
   });
 
   it('when disabled should have disabled class', () => {
@@ -46,10 +50,10 @@ describe('<ExpansionPanelSummary />', () => {
     assert.strictEqual(wrapper.hasClass(classes.expanded), true);
   });
 
-  it('should render with the expand icon and have the action class', () => {
+  it('should render with the expand icon and have the expandIcon class', () => {
     const wrapper = shallow(<ExpansionPanelSummary expandIcon={<div>Icon</div>} />);
     const iconWrap = wrapper.childAt(1);
-    assert.strictEqual(iconWrap.hasClass(classes.action), true);
+    assert.strictEqual(iconWrap.hasClass(classes.expandIcon), true);
   });
 
   it('handleFocus() should set focused state', () => {
@@ -67,21 +71,32 @@ describe('<ExpansionPanelSummary />', () => {
     assert.strictEqual(wrapper.state().focused, false);
   });
 
-  it('handleChange() should propagate call to onChange prop', () => {
-    const eventMock = 'woofExpansionPanelSummary';
-    const onChangeSpy = spy();
-    const wrapper = mount(<ExpansionPanelSummaryNaked classes={{}} onChange={onChangeSpy} />);
-    wrapper.instance().handleChange(eventMock);
-    assert.strictEqual(onChangeSpy.callCount, 1);
-    assert.strictEqual(onChangeSpy.calledWith(eventMock), true);
+  describe('prop: onChange', () => {
+    it('should propagate call to onChange prop', () => {
+      const eventMock = 'woofExpansionPanelSummary';
+      const handleChange = spy();
+      const wrapper = mount(<ExpansionPanelSummaryNaked classes={{}} onChange={handleChange} />);
+      wrapper.instance().handleChange(eventMock);
+      assert.strictEqual(handleChange.callCount, 1);
+      assert.strictEqual(handleChange.calledWith(eventMock), true);
+    });
+
+    it('should not propagate call to onChange prop', () => {
+      const eventMock = 'woofExpansionPanelSummary';
+      const handleChange = spy();
+      const wrapper = mount(<ExpansionPanelSummaryNaked classes={{}} onChange={handleChange} />);
+      wrapper.setProps({ onChange: undefined });
+      wrapper.instance().handleChange(eventMock);
+      assert.strictEqual(handleChange.callCount, 0);
+    });
   });
 
-  it('handleChange() should not propagate call to onChange prop', () => {
-    const eventMock = 'woofExpansionPanelSummary';
-    const onChangeSpy = spy();
-    const wrapper = mount(<ExpansionPanelSummaryNaked classes={{}} onChange={onChangeSpy} />);
-    wrapper.setProps({ onChange: undefined });
-    wrapper.instance().handleChange(eventMock);
-    assert.strictEqual(onChangeSpy.callCount, 0);
+  describe('prop: click', () => {
+    it('should trigger onClick', () => {
+      const handleClick = spy();
+      const wrapper = shallow(<ExpansionPanelSummary onClick={handleClick} />);
+      wrapper.simulate('click');
+      assert.strictEqual(handleClick.callCount, 1);
+    });
   });
 });

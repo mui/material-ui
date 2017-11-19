@@ -10,7 +10,6 @@ import ExpansionPanel, {
   ExpansionPanelActions,
 } from 'material-ui/ExpansionPanel';
 import Typography from 'material-ui/Typography';
-import TextField from 'material-ui/TextField';
 import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 import Chip from 'material-ui/Chip';
 import Button from 'material-ui/Button';
@@ -18,14 +17,14 @@ import Divider from 'material-ui/Divider';
 
 const styles = theme => ({
   root: {
-    marginTop: theme.spacing.unit * 4,
+    marginTop: theme.spacing.unit * 3,
     width: '100%',
   },
-  header: {
-    fontSize: 15,
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
   },
-  secondary: {
-    fontSize: 15,
+  secondaryHeading: {
+    fontSize: theme.typography.pxToRem(15),
     color: theme.palette.text.secondary,
   },
   icon: {
@@ -59,27 +58,20 @@ function DetailedExpansionPanel(props) {
       <ExpansionPanel defaultExpanded>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <div className={classes.column}>
-            <Typography className={classes.header} gutterBottom>
-              Location
-            </Typography>
-            <Typography default type="caption">
-              Optional
-            </Typography>
+            <Typography className={classes.heading}>Location</Typography>
           </div>
           <div className={classes.column}>
-            <Typography className={classes.secondary}>Select trip destination</Typography>
+            <Typography className={classes.secondaryHeading}>Select trip destination</Typography>
           </div>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.details}>
-          <div className={classes.column}>
-            <TextField label="Name" placeholder="Enter the name" />
-          </div>
+          <div className={classes.column} />
           <div className={classes.column}>
             <Chip label="Barbados" className={classes.chip} onRequestDelete={() => {}} />
           </div>
           <div className={classNames(classes.column, classes.helper)}>
             <Typography type="caption">
-              Enter your destination of choice<br />
+              Select your destination of choice<br />
               <a href="#sub-labels-and-columns" className={classes.link}>
                 Learn more
               </a>
@@ -88,8 +80,10 @@ function DetailedExpansionPanel(props) {
         </ExpansionPanelDetails>
         <Divider />
         <ExpansionPanelActions>
-          <Button>Cancel</Button>
-          <Button color="primary">Save</Button>
+          <Button dense>Cancel</Button>
+          <Button dense color="primary">
+            Save
+          </Button>
         </ExpansionPanelActions>
       </ExpansionPanel>
     </div>

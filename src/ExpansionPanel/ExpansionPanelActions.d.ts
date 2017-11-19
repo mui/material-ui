@@ -9,7 +9,6 @@ export interface ExpansionPanelActionsProps extends StandardProps<
 export type ExpansionPanelActionsClassKey =
   | 'root'
   | 'action'
-  | 'button'
   ;
 
 declare const ExpansionPanelActions: React.ComponentType<ExpansionPanelActionsProps>;

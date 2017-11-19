@@ -13,7 +13,7 @@ export const styles = {
     alignItems: 'center',
     padding: '2px 4px',
   },
-  actionSpacing: {
+  action: {
     margin: '0 4px',
   },
 };
@@ -55,9 +55,7 @@ class CardActions extends React.Component<ProvidedProps & Props> {
 
     return (
       <div className={classNames(classes.root, className)} {...other}>
-        {disableActionSpacing
-          ? children
-          : cloneChildrenWithClassName(children, classes.actionSpacing)}
+        {disableActionSpacing ? children : cloneChildrenWithClassName(children, classes.action)}
       </div>
     );
   }

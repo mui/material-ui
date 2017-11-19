@@ -25,7 +25,7 @@ describe('<ExpansionPanel />', () => {
   it('should render and have isControlled set to false', () => {
     const wrapper = shallow(<ExpansionPanel />);
     assert.strictEqual(wrapper.name(), 'withStyles(Paper)');
-    assert.strictEqual(wrapper.props().elevation, 0);
+    assert.strictEqual(wrapper.props().elevation, 1);
     assert.strictEqual(wrapper.props().square, true);
     assert.strictEqual(wrapper.instance().isControlled, false);
 
@@ -74,53 +74,53 @@ describe('<ExpansionPanel />', () => {
   });
 
   it('should call onChange when clicking the summary element', () => {
+    const handleChange = spy();
     const wrapper = mount(
-      <ExpansionPanel onChange={spy()}>
+      <ExpansionPanel onChange={handleChange}>
         <ExpansionPanelSummary />
       </ExpansionPanel>,
     );
     assert.strictEqual(wrapper.name(), 'withStyles(ExpansionPanel)');
     wrapper.find(ExpansionPanelSummary).simulate('click');
-    assert.strictEqual(wrapper.props().onChange.callCount, 1, 'it should forward the onChange');
+    assert.strictEqual(handleChange.callCount, 1, 'it should forward the onChange');
   });
 
   it('when controlled should call the onChange', () => {
-    const onChangeSpy = spy();
+    const handleChange = spy();
     const wrapper = mount(
-      <ExpansionPanel onChange={onChangeSpy} expanded>
+      <ExpansionPanel onChange={handleChange} expanded>
         <ExpansionPanelSummary />
       </ExpansionPanel>,
     );
     wrapper.find(ExpansionPanelSummary).simulate('click');
-    assert.strictEqual(onChangeSpy.callCount, 1, 'it should forward the onChange');
+    assert.strictEqual(handleChange.callCount, 1, 'it should forward the onChange');
   });
 
   it('when undefined onChange and controlled should not call the onChange', () => {
-    const onChangeSpy = spy();
+    const handleChange = spy();
     const wrapper = mount(
-      <ExpansionPanel onChange={onChangeSpy} expanded>
+      <ExpansionPanel onChange={handleChange} expanded>
         <ExpansionPanelSummary />
       </ExpansionPanel>,
     );
     wrapper.setProps({ onChange: undefined });
     wrapper.find(ExpansionPanelSummary).simulate('click');
-    assert.strictEqual(onChangeSpy.callCount, 0);
-  });
-
-  it('when disabled should not call the onChange', () => {
-    const onChangeSpy = spy();
-    const wrapper = mount(
-      <ExpansionPanel onChange={onChangeSpy} disabled>
-        <ExpansionPanelSummary />
-      </ExpansionPanel>,
-    );
-    assert.strictEqual(wrapper.props().disabled, true);
-    wrapper.find(ExpansionPanelSummary).simulate('click');
-    assert.strictEqual(onChangeSpy.callCount, 0);
+    assert.strictEqual(handleChange.callCount, 0);
   });
 
   it('when disabled should have the disabled class', () => {
     const wrapper = shallow(<ExpansionPanel disabled />);
     assert.strictEqual(wrapper.hasClass(classes.disabled), true, 'should have the disabled class');
+  });
+
+  describe('prop: children', () => {
+    it('should accept an empty child', () => {
+      shallow(
+        <ExpansionPanel>
+          <ExpansionPanelSummary />
+          {null}
+        </ExpansionPanel>,
+      );
+    });
   });
 });

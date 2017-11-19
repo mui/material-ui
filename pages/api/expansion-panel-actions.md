@@ -13,7 +13,7 @@ filename: /src/ExpansionPanel/ExpansionPanelActions.js
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | Node |  | The content of the component. |
-| classes | Object |  | Allows to [extend the style](#css-api) applied to the component. |
+| classes | Object |  | Useful to extend the style applied to components. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
@@ -23,7 +23,6 @@ You can override all the class names injected by Material-UI thanks to the `clas
 This property accepts the following keys:
 - `root`
 - `action`
-- `button`
 
 Have a look at [overriding with classes](/customization/overrides#overriding-with-classes) section
 and the [implementation of the component](https://github.com/callemall/material-ui/tree/v1-beta/src/ExpansionPanel/ExpansionPanelActions.js)

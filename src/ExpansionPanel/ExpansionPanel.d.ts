@@ -7,16 +7,17 @@ export interface ExpansionPanelProps extends StandardProps<
   PaperProps,
   ExpansionPanelClassKey
 > {
-  collapseProps?: React.ComponentType<CollapseProps>,
-  defaultExpanded?: boolean,
-  disabled?: boolean,
-  expanded?: boolean,
-  onChange?:  React.ReactEventHandler<{}>,
+  CollapseProps?: React.ComponentType<CollapseProps>;
+  defaultExpanded?: boolean;
+  disabled?: boolean;
+  expanded?: boolean;
+  onChange?:  React.ReactEventHandler<{}>;
 }
 
 export type ExpansionPanelClassKey =
   | PaperClassKey
   | 'disabled'
+  | 'expanded'
 ;
 
 declare const ExpansionPanel: React.ComponentType<ExpansionPanelProps>;

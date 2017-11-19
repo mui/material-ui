@@ -13,7 +13,7 @@ filename: /src/ExpansionPanel/ExpansionPanelDetails.js
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | children | Node |  | The content of the expansion panel details. |
-| classes | Object |  | Allows to [extend the style](#css-api) applied to the component. |
+| classes | Object |  | Useful to extend the style applied to components. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

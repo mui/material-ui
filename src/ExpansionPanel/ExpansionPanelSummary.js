@@ -13,68 +13,55 @@ export const styles = (theme: Object) => {
     duration: theme.transitions.duration.shortest,
     easing: theme.transitions.easing.ease,
   };
-  const expandButtonSize = 44;
   return {
     root: {
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      minHeight: 48,
+      minHeight: theme.spacing.unit * 6,
       transition: theme.transitions.create(['min-height', 'background-color'], transition),
-      padding: `0 ${theme.spacing.unit * 3}px`,
+      padding: `0 ${theme.spacing.unit}px 0 ${theme.spacing.unit * 3}px`,
       position: 'relative',
       '&:hover:not($disabled)': {
         cursor: 'pointer',
       },
-      '&$focused': {
-        backgroundColor: theme.palette.grey[300],
-      },
-      '&$expanded': {
-        minHeight: 64,
-      },
-      '&$disabled': {
-        opacity: 0.38,
-      },
     },
-    items: {
+    expanded: {
+      minHeight: 64,
+    },
+    focused: {
+      backgroundColor: theme.palette.grey[300],
+    },
+    disabled: {
+      opacity: 0.38,
+      color: theme.palette.action.disabled,
+    },
+    content: {
       display: 'flex',
       flexGrow: 1,
-      alignItems: 'center',
-      margin: '12px 0',
       transition: theme.transitions.create(['margin'], transition),
-      '& > :last-child': {
-        paddingRight: theme.spacing.unit * 3,
-      },
-      '&$expanded': {
-        margin: '20px 0',
-      },
+      margin: `12px ${theme.spacing.unit}px 12px 0`,
     },
-    action: {
-      position: 'absolute',
-      top: '50%',
-      transform: 'translateY(-50%)',
-      right: theme.spacing.unit,
+    contentExpanded: {
+      margin: `20px ${theme.spacing.unit}px 20px 0`,
     },
-    button: {
-      width: expandButtonSize,
-      height: expandButtonSize,
+    expandIcon: {
       color: theme.palette.text.icon,
       transform: 'rotate(0deg)',
       transition: theme.transitions.create('transform', transition),
-      '&$expanded': {
-        transform: 'rotate(180deg)',
-      },
     },
-    expanded: {},
-    focused: {},
-    disabled: {
-      color: theme.palette.action.disabled,
+    expandIconExpanded: {
+      transform: 'rotate(180deg)',
     },
   };
 };
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 export type Props = {
@@ -83,7 +70,7 @@ export type Props = {
    */
   children?: Node,
   /**
-   * Allows to [extend the style](#css-api) applied to components.
+   * Useful to extend the style applied to components.
    */
   classes?: Object,
   /**
@@ -93,7 +80,7 @@ export type Props = {
   /**
    * If `true`, the summary will be displayed in a disabled state.
    */
-  disabled?: boolean,
+  disabled: boolean,
   /**
    * If `true`, expands the summary, otherwise collapse it.
    */
@@ -106,6 +93,10 @@ export type Props = {
    * @ignore
    */
   onChange?: Function,
+  /**
+   * @ignore
+   */
+  onClick?: Function,
 };
 
 type State = {
@@ -118,7 +109,6 @@ class ExpansionPanelSummary extends React.Component<ProvidedProps & Props, State
   static defaultProps = {
     classes: {},
     disabled: false,
-    expandIcon: null,
   };
 
   state = {
@@ -138,9 +128,12 @@ class ExpansionPanelSummary extends React.Component<ProvidedProps & Props, State
   };
 
   handleChange = event => {
-    const { onChange } = this.props;
+    const { onChange, onClick } = this.props;
     if (onChange) {
       onChange(event);
+    }
+    if (onClick) {
+      onClick(event);
     }
   };
 
@@ -172,28 +165,26 @@ class ExpansionPanelSummary extends React.Component<ProvidedProps & Props, State
           },
           className,
         )}
+        {...other}
         onKeyboardFocus={this.handleFocus}
         onBlur={this.handleBlur}
         onClick={this.handleChange}
-        {...other}
       >
-        <div className={classNames(classes.items, { [classes.expanded]: expanded })}>
+        <div className={classNames(classes.content, { [classes.contentExpanded]: expanded })}>
           {children}
         </div>
         {expandIcon && (
-          <div className={classes.action}>
-            <IconButton
-              disabled={disabled}
-              className={classNames(classes.button, {
-                [classes.expanded]: expanded,
-              })}
-              component="div"
-              tabIndex="-1"
-              onClick={this.handleChange}
-            >
-              {expandIcon}
-            </IconButton>
-          </div>
+          <IconButton
+            disabled={disabled}
+            className={classNames(classes.expandIcon, {
+              [classes.expandIconExpanded]: expanded,
+            })}
+            component="div"
+            tabIndex="-1"
+            onClick={this.handleChange}
+          >
+            {expandIcon}
+          </IconButton>
         )}
       </ButtonBase>
     );

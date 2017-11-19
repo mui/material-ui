@@ -12,15 +12,16 @@ import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 
 const styles = theme => ({
   root: {
-    marginTop: theme.spacing.unit * 4,
+    marginTop: theme.spacing.unit * 3,
     width: '100%',
   },
-  label: {
-    fontSize: 15,
-    flexBasis: '33.3%',
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    flexBasis: '33.33%',
+    flexShrink: 0,
   },
-  subLabel: {
-    fontSize: 15,
+  secondaryHeading: {
+    fontSize: theme.typography.pxToRem(15),
     color: theme.palette.text.secondary,
   },
 });
@@ -30,24 +31,22 @@ class ControlledExpansionPanels extends Component {
     expanded: null,
   };
 
-  handleChange = (panel, expand) => {
+  handleChange = panel => (event, expanded) => {
     this.setState({
-      expanded: expand ? panel.props.id : false,
+      expanded: expanded ? panel : false,
     });
   };
 
   render() {
     const { classes } = this.props;
+    const { expanded } = this.state;
+
     return (
       <div className={classes.root}>
-        <ExpansionPanel
-          id="panel1"
-          expanded={this.state.expanded === 'panel1'}
-          onChange={this.handleChange}
-        >
+        <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography className={classes.label}>General settings</Typography>
-            <Typography className={classes.subLabel}>I am an expansion panel</Typography>
+            <Typography className={classes.heading}>General settings</Typography>
+            <Typography className={classes.secondaryHeading}>I am an expansion panel</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Typography>
@@ -56,14 +55,12 @@ class ControlledExpansionPanels extends Component {
             </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
-        <ExpansionPanel
-          id="panel2"
-          expanded={this.state.expanded === 'panel2'}
-          onChange={this.handleChange}
-        >
+        <ExpansionPanel expanded={expanded === 'panel2'} onChange={this.handleChange('panel2')}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography className={classes.label}>Users</Typography>
-            <Typography className={classes.subLabel}>You are currently not an owner</Typography>
+            <Typography className={classes.heading}>Users</Typography>
+            <Typography className={classes.secondaryHeading}>
+              You are currently not an owner
+            </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Typography>
@@ -72,14 +69,10 @@ class ControlledExpansionPanels extends Component {
             </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
-        <ExpansionPanel
-          id="panel3"
-          expanded={this.state.expanded === 'panel3'}
-          onChange={this.handleChange}
-        >
+        <ExpansionPanel expanded={expanded === 'panel3'} onChange={this.handleChange('panel3')}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography className={classes.label}>Advanced settings</Typography>
-            <Typography className={classes.subLabel}>
+            <Typography className={classes.heading}>Advanced settings</Typography>
+            <Typography className={classes.secondaryHeading}>
               Filtering has been entirely disabled for whole web server
             </Typography>
           </ExpansionPanelSummary>
