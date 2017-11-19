@@ -136,7 +136,8 @@ rightArrowIcon | react node, string | 'keyboard_arrow_right'| Right arrow icon
 dateRangeIcon | react node, string | 'date_range'| Date tab icon 
 timeIcon | react node, string | 'access_time'| Time tab icon
 
-
+### Migrate to date-fns?
+If you are interested of using moment or date-fns as the peer of this project, please mention that in [this issue](https://github.com/dmtrKovalenko/material-ui-pickers/issues/61), we need to know which libriry if more useful to be in the peer dependencies of this project. Thank you.
 ### Known Issues
 1. 24 hour displaying for timepicker (now supporting only am/pm)
 
