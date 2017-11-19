@@ -62,7 +62,7 @@ export const styles = (theme: Object) => ({
     borderBottom: `1px solid 
     ${
       theme.palette.type === 'light'
-        ? lighten(fade(theme.palette.text.lightDivider, 1), 0.93)
+        ? lighten(fade(theme.palette.text.lightDivider, 1), 0.925)
         : darken(fade(theme.palette.text.lightDivider, 1), 0.685)
     }`,
     textAlign: 'left',
