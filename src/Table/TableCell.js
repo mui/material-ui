@@ -6,6 +6,7 @@ import type { ElementType, Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
+import { darken, fade, lighten } from '../styles/colorManipulator';
 
 export type Context = {
   table: Object,
@@ -58,7 +59,12 @@ export type Props = {
 export const styles = (theme: Object) => ({
   root: {
     // Same value as theme.palette.text.lightDivider without the transparency.
-    borderBottom: `1px solid ${theme.palette.type === 'light' ? '#ededed' : '#505050'}`,
+    borderBottom: `1px solid 
+    ${
+      theme.palette.type === 'light'
+        ? lighten(fade(theme.palette.text.lightDivider, 1), 0.925)
+        : darken(fade(theme.palette.text.lightDivider, 1), 0.685)
+    }`,
     textAlign: 'left',
   },
   numeric: {
