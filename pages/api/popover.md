@@ -30,7 +30,6 @@ filename: /src/Popover/Popover.js
 | onExiting | TransitionCallback |  | Callback fired when the component is exiting. |
 | onRequestClose | Function |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. |
 | <span style="color: #31a148">open *</span> | boolean |  | If `true`, the popover is visible. |
-| theme | Object |  |  |
 | transformOrigin | signature | {  vertical: 'top',  horizontal: 'left',} | This is the point on the popover which will attach to the anchor's origin.<br>Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)]. |
 | transitionClasses | TransitionClasses |  | The animation classNames applied to the component as it enters or exits. This property is a direct binding to [`CSSTransition.classNames`](https://reactcommunity.org/react-transition-group/#CSSTransition-prop-classNames). |
 | transitionDuration | union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }&nbsp;&#124;<br>&nbsp;'auto'<br> | 'auto' | Set to 'auto' to automatically calculate transition time based on height. |
