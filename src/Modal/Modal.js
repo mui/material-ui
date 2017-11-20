@@ -89,6 +89,10 @@ export type Props = {
    */
   className?: string,
   /**
+   * The document to inject the portal into.
+   */
+  document?: HTMLDocument,
+  /**
    * Always keep the children in the DOM.
    * This property can be useful in SEO situation or
    * when you want to maximize the responsiveness of the Modal.
@@ -374,6 +378,7 @@ class Modal extends React.Component<ProvidedProps & Props, State> {
       children,
       classes,
       className,
+      document,
       keepMounted,
       modalManager: modalManagerProp,
       onBackdropClick,
@@ -432,6 +437,7 @@ class Modal extends React.Component<ProvidedProps & Props, State> {
     return (
       <Portal
         open
+        document={document}
         ref={node => {
           this.mountNode = node ? node.getLayer() : null;
         }}

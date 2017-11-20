@@ -13,6 +13,7 @@ export interface ModalProps extends StandardProps<
   BackdropTransitionDuration?: TransitionDuration;
   keepMounted?: boolean;
   disableBackdrop?: boolean;
+  document?: HTMLDocument;
   ignoreBackdropClick?: boolean;
   ignoreEscapeKeyUp?: boolean;
   modalManager?: Object;

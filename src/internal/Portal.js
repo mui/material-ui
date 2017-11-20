@@ -11,6 +11,10 @@ export type Props = {
    */
   children?: Node,
   /**
+   * The document to inject the portal into.
+   */
+  document?: HTMLDocument,
+  /**
    * If `true` the children will be mounted into the DOM.
    */
   open?: boolean,
@@ -42,12 +46,17 @@ class Portal extends React.Component<Props> {
     this.unrenderLayer();
   }
 
+  getDocument() {
+    return this.props.document || document;
+  }
+
   getLayer() {
     if (!this.layer) {
-      this.layer = document.createElement('div');
+      const doc = this.getDocument();
+      this.layer = doc.createElement('div');
       this.layer.setAttribute('data-mui-portal', 'true');
-      if (document.body && this.layer) {
-        document.body.appendChild(this.layer);
+      if (doc.body && this.layer) {
+        doc.body.appendChild(this.layer);
       }
     }
 
@@ -66,8 +75,10 @@ class Portal extends React.Component<Props> {
       ReactDOM.unmountComponentAtNode(this.layer);
     }
 
-    if (document.body) {
-      document.body.removeChild(this.layer);
+    const doc = this.getDocument();
+
+    if (doc.body) {
+      doc.body.removeChild(this.layer);
     }
     this.layer = null;
   }
