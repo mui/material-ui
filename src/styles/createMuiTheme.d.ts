@@ -13,7 +13,7 @@ export interface ThemeOptions {
   mixins?: Partial<Mixins>;
   palette?: Partial<Palette>;
   typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
-  shadows?: Partial<Shadows>;
+  shadows?: Shadows;
   transitions?: Partial<Transitions>;
   spacing?: Partial<Spacing>;
   zIndex?: Partial<ZIndex>;
