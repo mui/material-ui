@@ -34,6 +34,10 @@ export const styles = {
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
+  theme?: Object,
 };
 
 export type Props = {

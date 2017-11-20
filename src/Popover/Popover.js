@@ -90,13 +90,24 @@ export type Position = {
 };
 
 type ProvidedProps = {
-  anchorOrigin: Origin,
   classes: Object,
+  /**
+   * @ignore
+   */
+  theme?: Object,
+};
+
+type DefaultProps = {
+  anchorOrigin: Origin,
   transformOrigin: Origin,
   marginThreshold: number,
 };
 
 export type Props = {
+  /**
+   * Other base element props.
+   */
+  [otherProp: string]: any,
   /**
    * This is the DOM element that may be used
    * to set the position of the popover.
@@ -123,7 +134,7 @@ export type Props = {
    * vertical: [top, center, bottom];
    * horizontal: [left, center, right].
    */
-  anchorOrigin?: Origin,
+  anchorOrigin: Origin,
   /**
    * The content of the component.
    */
@@ -148,7 +159,7 @@ export type Props = {
   /**
    * Specifies how close to the edge of the window the popover can appear.
    */
-  marginThreshold?: number,
+  marginThreshold: number,
   /**
    * Callback fired before the component is entering.
    */
@@ -199,7 +210,7 @@ export type Props = {
    * vertical: [top, center, bottom, x(px)];
    * horizontal: [left, center, right, x(px)].
    */
-  transformOrigin?: Origin,
+  transformOrigin: Origin,
   /**
    * The animation classNames applied to the component as it enters or exits.
    * This property is a direct binding to [`CSSTransition.classNames`](https://reactcommunity.org/react-transition-group/#CSSTransition-prop-classNames).
@@ -212,7 +223,7 @@ export type Props = {
 };
 
 class Popover extends React.Component<ProvidedProps & Props> {
-  static defaultProps = {
+  static defaultProps: DefaultProps = {
     anchorReference: 'anchorEl',
     anchorOrigin: {
       vertical: 'top',

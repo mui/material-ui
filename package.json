@@ -75,7 +75,7 @@
     "normalize-scroll-left": "^0.1.2",
     "prop-types": "^15.6.0",
     "react-event-listener": "^0.5.1",
-    "react-flow-types": "0.2.0-beta.5",
+    "react-flow-types": "^0.2.0-beta.6",
     "react-jss": "^8.1.0",
     "react-popper": "^0.7.4",
     "react-scrollbar-size": "^2.0.2",
