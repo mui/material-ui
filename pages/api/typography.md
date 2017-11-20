@@ -12,17 +12,16 @@ filename: /src/Typography/Typography.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span style="color: #31a148">align *</span> | union:&nbsp;'inherit', 'left', 'center', 'right', 'justify'<br> | 'inherit' |  |
+| align | union:&nbsp;'inherit', 'left', 'center', 'right', 'justify'<br> | 'inherit' |  |
 | children | Node |  |  |
 | classes | Object |  | Useful to extend the style applied to components. |
-| <span style="color: #31a148">color *</span> | union:&nbsp;'inherit', 'primary', 'secondary', 'accent', 'error', 'default'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |
+| color | union:&nbsp;'inherit', 'primary', 'secondary', 'accent', 'error', 'default'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |
 | component | ElementType |  | The component used for the root node. Either a string to use a DOM element or a component. By default we map the type to a good default headline component. |
-| <span style="color: #31a148">gutterBottom *</span> | boolean | false | If `true`, the text will have a bottom margin. |
-| <span style="color: #31a148">headlineMapping *</span> | signature | {  display4: 'h1',  display3: 'h1',  display2: 'h1',  display1: 'h1',  headline: 'h1',  title: 'h2',  subheading: 'h3',  body2: 'aside',  body1: 'p',} | We are empirically mapping the type property to a range of different DOM element type. For instance, h1 to h6. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` property. |
-| <span style="color: #31a148">noWrap *</span> | boolean | false | If `true`, the text will not wrap, but instead will truncate with an ellipsis. |
-| <span style="color: #31a148">paragraph *</span> | boolean | false | If `true`, the text will have a bottom margin. |
-| theme | Object |  |  |
-| <span style="color: #31a148">type *</span> | union:&nbsp;, 'display4', 'display3', 'display2', 'display1', 'headline', 'title', 'subheading', 'body2', 'body1', 'caption', 'button'<br> | 'body1' | Applies the theme typography styles. |
+| gutterBottom | boolean | false | If `true`, the text will have a bottom margin. |
+| headlineMapping | signature | {  display4: 'h1',  display3: 'h1',  display2: 'h1',  display1: 'h1',  headline: 'h1',  title: 'h2',  subheading: 'h3',  body2: 'aside',  body1: 'p',} | We are empirically mapping the type property to a range of different DOM element type. For instance, h1 to h6. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` property. |
+| noWrap | boolean | false | If `true`, the text will not wrap, but instead will truncate with an ellipsis. |
+| paragraph | boolean | false | If `true`, the text will have a bottom margin. |
+| type | union:&nbsp;, 'display4', 'display3', 'display2', 'display1', 'headline', 'title', 'subheading', 'body2', 'body1', 'caption', 'button'<br> | 'body1' | Applies the theme typography styles. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

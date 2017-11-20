@@ -36,7 +36,6 @@ filename: /src/Input/Input.js
 | rows | union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br> |  | Number of rows to display when multiline option is set to true. |
 | rowsMax | union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br> |  | Maximum number of rows to display when multiline option is set to true. |
 | startAdornment | Node |  | Start `InputAdornment` for this component. |
-| theme | Object |  |  |
 | type | string | 'text' | Type of the input element. It should be a valid HTML5 input type. |
 | value | union:&nbsp;string&nbsp;&#124;<br>&nbsp;number&nbsp;&#124;<br>&nbsp;Array&lt;string&nbsp;&#124;<br>&nbsp;number><br> |  | The input value, required for a controlled component. |
 

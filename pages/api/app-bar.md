@@ -14,9 +14,8 @@ filename: /src/AppBar/AppBar.js
 |:-----|:-----|:--------|:------------|
 | children | Node |  | The content of the component. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| <span style="color: #31a148">color *</span> | union:&nbsp;'inherit'&nbsp;&#124;<br>&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'accent'&nbsp;&#124;<br>&nbsp;'default'<br> | 'primary' | The color of the component. It's using the theme palette when that makes sense. |
-| <span style="color: #31a148">position *</span> | union:&nbsp;'static'&nbsp;&#124;<br>&nbsp;'fixed'&nbsp;&#124;<br>&nbsp;'absolute'<br> | 'fixed' | The positioning type. |
-| theme | Object |  |  |
+| color | union:&nbsp;'inherit'&nbsp;&#124;<br>&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'accent'&nbsp;&#124;<br>&nbsp;'default'<br> | 'primary' | The color of the component. It's using the theme palette when that makes sense. |
+| position | union:&nbsp;'static'&nbsp;&#124;<br>&nbsp;'fixed'&nbsp;&#124;<br>&nbsp;'absolute'<br> | 'fixed' | The positioning type. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

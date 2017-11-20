@@ -13,11 +13,10 @@ filename: /src/List/ListItemText.js
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | classes | Object |  | Useful to extend the style applied to components. |
-| <span style="color: #31a148">disableTypography *</span> | boolean | false | If `true`, the children won't be wrapped by a typography component. For instance, that can be useful to can render an h4 instead of a |
-| <span style="color: #31a148">inset *</span> | boolean | false | If `true`, the children will be indented. This should be used if there is no left avatar or left icon. |
-| <span style="color: #31a148">primary *</span> | Node | false |  |
-| <span style="color: #31a148">secondary *</span> | Node | false |  |
-| theme | Object |  |  |
+| disableTypography | boolean | false | If `true`, the children won't be wrapped by a typography component. For instance, that can be useful to can render an h4 instead of a |
+| inset | boolean | false | If `true`, the children will be indented. This should be used if there is no left avatar or left icon. |
+| primary | Node | false |  |
+| secondary | Node | false |  |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

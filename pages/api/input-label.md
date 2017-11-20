@@ -22,7 +22,6 @@ filename: /src/Input/InputLabel.js
 | margin | literal |  | If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. |
 | required | boolean |  | if `true`, the label will indicate that the input is required. |
 | shrink | boolean |  | If `true`, the label is shrunk. |
-| theme | Object |  |  |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
