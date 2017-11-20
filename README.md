@@ -147,6 +147,7 @@ moment.locale('fr')
 
 ### Migrate to date-fns?
 If you are interested of using moment or date-fns as the peer of this project, please mention that in [this issue](https://github.com/dmtrKovalenko/material-ui-pickers/issues/61), we need to know which libriry if more useful to be in the peer dependencies of this project. Thank you.
+
 ### Known Issues
 1. 24 hour displaying for timepicker (now supporting only am/pm)
 
