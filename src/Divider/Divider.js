@@ -30,17 +30,14 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 
-type DefaultProps = {
-  absolute?: boolean,
-  inset?: boolean,
-  light?: boolean,
-};
-
 export type Props = {
-  absolute?: boolean,
+  absolute: boolean,
   /**
    * Useful to extend the style applied to components.
    */
@@ -52,15 +49,15 @@ export type Props = {
   /**
    * If `true`, the divider will be indented.
    */
-  inset?: boolean,
+  inset: boolean,
   /**
    * If `true`, the divider will have a lighter color.
    */
-  light?: boolean,
+  light: boolean,
 };
 
 class Divider extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     absolute: false,
     inset: false,
     light: false,

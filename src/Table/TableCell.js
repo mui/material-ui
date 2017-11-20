@@ -16,12 +16,10 @@ export type Padding = 'default' | 'checkbox' | 'dense' | 'none';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  padding: Padding,
-  numeric: boolean,
 };
 
 export type Props = {
@@ -95,7 +93,7 @@ export const styles = (theme: Object) => ({
 });
 
 class TableCell extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     numeric: false,
     padding: 'default',
   };

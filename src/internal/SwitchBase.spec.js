@@ -4,7 +4,7 @@ import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 import { createShallow, createMount, getClasses, unwrap } from '../test-utils';
-import createSwitch from './SwitchBase';
+import SwitchBase from './SwitchBase';
 import Icon from '../Icon';
 
 function assertIsChecked(wrapper) {
@@ -49,11 +49,9 @@ describe('<SwitchBase />', () => {
   let shallow;
   let mount;
   let classes;
-  let SwitchBase;
   let SwitchBaseNaked;
 
   before(() => {
-    SwitchBase = createSwitch();
     SwitchBaseNaked = unwrap(SwitchBase);
     shallow = createShallow({ dive: true });
     mount = createMount();

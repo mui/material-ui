@@ -30,11 +30,10 @@ export const styles = (theme: Object) => {
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  component: ElementType,
 };
 
 export type Props = {
@@ -78,8 +77,8 @@ class FormLabel extends React.Component<ProvidedProps & Props> {
     muiFormControl: PropTypes.object,
   };
 
-  static defaultProps: DefaultProps = {
-    component: 'label',
+  static defaultProps = {
+    component: ('label': ElementType),
   };
 
   context: { muiFormControl: Object };

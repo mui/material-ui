@@ -16,7 +16,6 @@ A button based label for placing inside `TableCell` for column sorting.
 | children | Node |  | Label contents, the arrow will be appended automatically. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | direction | union:&nbsp;'asc'&nbsp;&#124;<br>&nbsp;'desc'<br> | 'desc' | The current sort direction. |
-| theme | Object |  |  |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

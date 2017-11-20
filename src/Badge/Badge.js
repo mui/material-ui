@@ -47,11 +47,10 @@ type Color = 'default' | 'primary' | 'accent';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  color: Color,
 };
 
 export type Props = {
@@ -82,7 +81,7 @@ export type Props = {
 };
 
 class Badge extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     color: 'default',
   };
 

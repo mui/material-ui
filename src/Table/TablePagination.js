@@ -63,15 +63,13 @@ export type LabelDisplayedRowsArgs = {
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 
-type DefaultProps = {
-  component: ElementType,
-  labelRowsPerPage: Node,
-  labelDisplayedRows: (paginationInfo: LabelDisplayedRowsArgs) => Node,
-  rowsPerPageOptions: number[],
-};
+type LabelDisplayedRows = (paginationInfo: LabelDisplayedRowsArgs) => Node;
 
 export type Props = {
   /**
@@ -98,12 +96,12 @@ export type Props = {
   /**
    * Useful to customize the displayed rows label.
    */
-  labelDisplayedRows: (paginationInfo: LabelDisplayedRowsArgs) => Node,
+  labelDisplayedRows: LabelDisplayedRows,
   /**
    * Useful to customize the rows per page label. Invoked with a `{ from, to, count, page }`
    * object.
    */
-  labelRowsPerPage?: Node,
+  labelRowsPerPage: Node,
   /**
    * Callback fired when the page is changed.
    *
@@ -129,21 +127,17 @@ export type Props = {
    * Customizes the options of the rows per page select field. If less than two options are
    * available, no select field will be displayed.
    */
-  rowsPerPageOptions: number[],
-  /**
-   * @ignore
-   */
-  theme?: Object,
+  rowsPerPageOptions: Array<number>,
 };
 
 /**
  * A `TableCell` based component for placing inside `TableFooter` for pagination.
  */
 class TablePagination extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
-    component: TableCell,
-    labelRowsPerPage: 'Rows per page:',
-    labelDisplayedRows: ({ from, to, count }) => `${from}-${to} of ${count}`,
+  static defaultProps = {
+    component: (TableCell: ElementType),
+    labelRowsPerPage: ('Rows per page:': Node),
+    labelDisplayedRows: (({ from, to, count }) => `${from}-${to} of ${count}`: LabelDisplayedRows),
     rowsPerPageOptions: [5, 10, 25],
   };
 

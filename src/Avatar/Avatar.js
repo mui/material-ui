@@ -35,11 +35,10 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  component: ElementType,
 };
 
 export type Props = {
@@ -99,8 +98,8 @@ export type Props = {
 };
 
 class Avatar extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
-    component: 'div',
+  static defaultProps = {
+    component: ('div': ElementType),
   };
 
   render() {

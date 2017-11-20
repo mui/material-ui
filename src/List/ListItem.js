@@ -65,16 +65,10 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  button?: boolean,
-  component: ElementType,
-  dense?: boolean,
-  disabled?: boolean,
-  disableGutters?: boolean,
-  divider?: boolean,
 };
 
 export type Props = {
@@ -85,7 +79,7 @@ export type Props = {
   /**
    * If `true`, the ListItem will be a button.
    */
-  button?: boolean,
+  button: boolean,
   /**
    * The content of the component.
    */
@@ -106,25 +100,25 @@ export type Props = {
   /**
    * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
    */
-  dense?: boolean,
+  dense: boolean,
   /**
    * @ignore
    */
-  disabled?: boolean,
+  disabled: boolean,
   /**
    * If `true`, the left and right padding is removed.
    */
-  disableGutters?: boolean,
+  disableGutters: boolean,
   /**
    * If `true`, a 1px light border is added to the bottom of the list item.
    */
-  divider?: boolean,
+  divider: boolean,
 };
 
 class ListItem extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     button: false,
-    component: 'li',
+    component: ('li': ElementType),
     dense: false,
     disabled: false,
     disableGutters: false,

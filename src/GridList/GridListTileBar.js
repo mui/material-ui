@@ -68,12 +68,10 @@ export type ActionPosition = 'left' | 'right';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  actionPosition?: ActionPosition,
-  titlePosition?: TitlePosition,
 };
 
 export type Props = {
@@ -109,7 +107,7 @@ export type Props = {
 };
 
 class GridListTileBar extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     actionPosition: 'right',
     titlePosition: 'bottom',
   };

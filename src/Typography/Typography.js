@@ -78,18 +78,11 @@ export type Type =
 type Align = 'inherit' | 'left' | 'center' | 'right' | 'justify';
 type Color = 'inherit' | 'primary' | 'secondary' | 'accent' | 'error' | 'default';
 
-type DefaultProps = {
-  align: Align,
-  color: Color,
-  gutterBottom: boolean,
-  headlineMapping: { [key: Type]: string },
-  noWrap: boolean,
-  paragraph: boolean,
-  type: Type,
-};
-
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 
@@ -143,7 +136,7 @@ export type Props = {
 };
 
 class Typography extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     align: 'inherit',
     color: 'default',
     gutterBottom: false,

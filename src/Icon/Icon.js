@@ -34,11 +34,10 @@ export type Color = 'inherit' | 'accent' | 'action' | 'contrast' | 'disabled' | 
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  color: Color,
 };
 
 export type Props = {
@@ -55,13 +54,17 @@ export type Props = {
    */
   className?: string,
   /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
+  /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
   color: Color,
 };
 
 class Icon extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     color: 'inherit',
   };
 

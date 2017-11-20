@@ -5,6 +5,7 @@ import { assert } from 'chai';
 import { getClasses, createMount } from '../test-utils';
 import Radio from './Radio';
 import RadioButtonCheckedIcon from '../svg-icons/RadioButtonChecked';
+import RadioButtonUncheckedIcon from '../svg-icons/RadioButtonUnchecked';
 
 describe('<Radio />', () => {
   let classes;
@@ -29,7 +30,14 @@ describe('<Radio />', () => {
 
   describe('default Radio export', () => {
     it('should be a SwitchBase with the displayName set for debugging', () => {
-      assert.strictEqual(Radio.displayName, 'Radio');
+      assert.strictEqual(Radio.displayName, 'withStyles(Radio)');
+    });
+  });
+
+  describe('prop: unchecked', () => {
+    it('should render an unchecked icon', () => {
+      const wrapper = mount(<Radio />);
+      assert.strictEqual(wrapper.find(RadioButtonUncheckedIcon).length, 1);
     });
   });
 

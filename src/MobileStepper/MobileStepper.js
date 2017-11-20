@@ -57,13 +57,10 @@ export type Type = 'text' | 'dots' | 'progress';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  activeStep?: number,
-  position?: Position,
-  type?: Type,
 };
 
 export type Props = {
@@ -103,7 +100,7 @@ export type Props = {
 };
 
 class MobileStepper extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     activeStep: 0,
     position: 'bottom',
     type: 'dots',

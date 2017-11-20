@@ -41,12 +41,13 @@ export const styles = {
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 
-type DefaultProps = {
-  rows?: string | number,
-};
+type Rows = string | number;
 
 export type Props = {
   /**
@@ -76,7 +77,7 @@ export type Props = {
   /**
    * Number of rows to display when multiline option is set to true.
    */
-  rows?: string | number,
+  rows: Rows,
   /**
    * Maximum number of rows to display when multiline option is set to true.
    */
@@ -99,8 +100,8 @@ type State = {
  * @ignore - internal component.
  */
 class Textarea extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps: DefaultProps = {
-    rows: 1,
+  static defaultProps = {
+    rows: (1: Rows),
   };
 
   state = {

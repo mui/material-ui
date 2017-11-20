@@ -91,15 +91,10 @@ export type Type = 'permanent' | 'persistent' | 'temporary';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  anchor: Anchor,
-  elevation: number,
-  transitionDuration: TransitionDuration,
-  open: boolean,
-  type: Type,
 };
 
 export type Props = {
@@ -147,10 +142,6 @@ export type Props = {
    */
   open: boolean,
   /**
-   * @ignore
-   */
-  theme?: Object,
-  /**
    * Properties applied to the `Slide` element.
    */
   SlideProps?: Object,
@@ -165,13 +156,13 @@ type State = {
 };
 
 class Drawer extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     anchor: 'left',
     elevation: 16,
-    transitionDuration: {
+    transitionDuration: ({
       enter: duration.enteringScreen,
       exit: duration.leavingScreen,
-    },
+    }: TransitionDuration),
     open: false,
     type: 'temporary', // Mobile first.
   };

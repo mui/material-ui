@@ -96,12 +96,10 @@ export type Origin = {
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  anchorOrigin: Origin,
-  transitionDuration: TransitionDuration,
 };
 
 export type Props = {
@@ -218,12 +216,12 @@ type State = {
 };
 
 class Snackbar extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps: DefaultProps = {
-    anchorOrigin: { vertical: 'bottom', horizontal: 'center' },
-    transitionDuration: {
+  static defaultProps = {
+    anchorOrigin: ({ vertical: 'bottom', horizontal: 'center' }: Origin),
+    transitionDuration: ({
       enter: duration.enteringScreen,
       exit: duration.leavingScreen,
-    },
+    }: TransitionDuration),
   };
 
   state = {

@@ -15,11 +15,10 @@ filename: /src/List/ListItem.js
 | button | boolean | false | If `true`, the ListItem will be a button. |
 | children | Node |  | The content of the component. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| <span style="color: #31a148">component *</span> | ElementType | 'li' | The component used for the root node. Either a string to use a DOM element or a component. |
+| component | ElementType | 'li' | The component used for the root node. Either a string to use a DOM element or a component. |
 | dense | boolean | false | If `true`, compact vertical padding designed for keyboard and mouse input will be used. |
 | disableGutters | boolean | false | If `true`, the left and right padding is removed. |
 | divider | boolean | false | If `true`, a 1px light border is added to the bottom of the list item. |
-| theme | Object |  |  |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

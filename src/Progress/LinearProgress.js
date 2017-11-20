@@ -148,12 +148,10 @@ type Mode = 'determinate' | 'indeterminate' | 'buffer' | 'query';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  color?: Color,
-  mode?: Mode,
 };
 
 export type Props = {
@@ -172,12 +170,12 @@ export type Props = {
   /**
    * The color of the component. It's using the theme palette when that makes sense.
    */
-  color?: 'primary' | 'accent',
+  color: Color,
   /**
    * The mode of show your progress, indeterminate
    * for when there is no value for progress.
    */
-  mode?: 'determinate' | 'indeterminate' | 'buffer' | 'query',
+  mode: Mode,
   /**
    * The value of progress, only works in determinate and buffer mode.
    * Value between 0 and 100.
@@ -191,7 +189,7 @@ export type Props = {
 };
 
 class LinearProgress extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     color: 'primary',
     mode: 'indeterminate',
   };

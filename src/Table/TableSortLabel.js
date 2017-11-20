@@ -51,19 +51,17 @@ export type Direction = 'asc' | 'desc';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  active?: boolean,
-  direction?: Direction,
 };
 
 export type Props = {
   /**
    * If `true`, the label will have the active styling (should be true for the sorted column).
    */
-  active?: boolean,
+  active: boolean,
   /**
    * Label contents, the arrow will be appended automatically.
    */
@@ -79,14 +77,14 @@ export type Props = {
   /**
    * The current sort direction.
    */
-  direction?: Direction,
+  direction: Direction,
 };
 
 /**
  * A button based label for placing inside `TableCell` for column sorting.
  */
 class TableSortLabel extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     active: false,
     direction: 'desc',
   };

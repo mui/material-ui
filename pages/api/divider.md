@@ -16,7 +16,6 @@ filename: /src/Divider/Divider.js
 | classes | Object |  | Useful to extend the style applied to components. |
 | inset | boolean | false | If `true`, the divider will be indented. |
 | light | boolean | false | If `true`, the divider will have a lighter color. |
-| theme | Object |  |  |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

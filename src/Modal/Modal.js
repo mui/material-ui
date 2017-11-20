@@ -40,18 +40,10 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  BackdropComponent: ElementType,
-  BackdropTransitionDuration?: TransitionDuration,
-  BackdropInvisible?: boolean,
-  keepMounted?: boolean,
-  disableBackdrop?: boolean,
-  ignoreBackdropClick?: boolean,
-  ignoreEscapeKeyUp?: boolean,
-  modalManager: Object,
 };
 
 export type Props = {
@@ -70,12 +62,12 @@ export type Props = {
   /**
    * If `true`, the backdrop is invisible.
    */
-  BackdropInvisible?: boolean,
+  BackdropInvisible: boolean,
   /**
    * The duration for the backdrop transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    */
-  BackdropTransitionDuration?: TransitionDuration,
+  BackdropTransitionDuration: TransitionDuration,
   /**
    * A single child content element.
    */
@@ -93,19 +85,19 @@ export type Props = {
    * This property can be useful in SEO situation or
    * when you want to maximize the responsiveness of the Modal.
    */
-  keepMounted?: boolean,
+  keepMounted: boolean,
   /**
    * If `true`, the backdrop is disabled.
    */
-  disableBackdrop?: boolean,
+  disableBackdrop: boolean,
   /**
    * If `true`, clicking the backdrop will not fire the `onRequestClose` callback.
    */
-  ignoreBackdropClick?: boolean,
+  ignoreBackdropClick: boolean,
   /**
    * If `true`, hitting escape will not fire the `onRequestClose` callback.
    */
-  ignoreEscapeKeyUp?: boolean,
+  ignoreEscapeKeyUp: boolean,
   /**
    * @ignore
    */
@@ -174,9 +166,9 @@ type State = {
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
  */
 class Modal extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps: DefaultProps = {
-    BackdropComponent: Backdrop,
-    BackdropTransitionDuration: 300,
+  static defaultProps = {
+    BackdropComponent: (Backdrop: ElementType),
+    BackdropTransitionDuration: (300: TransitionDuration),
     BackdropInvisible: false,
     keepMounted: false,
     disableBackdrop: false,

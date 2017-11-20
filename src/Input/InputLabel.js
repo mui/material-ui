@@ -39,12 +39,10 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  disabled?: boolean,
-  disableAnimation?: boolean,
 };
 
 export type Props = {
@@ -67,11 +65,11 @@ export type Props = {
   /**
    * If `true`, the transition animation is disabled.
    */
-  disableAnimation?: boolean,
+  disableAnimation: boolean,
   /**
    * If `true`, apply disabled class.
    */
-  disabled?: boolean,
+  disabled: boolean,
   /**
    * If `true`, the label will be displayed in an error state.
    */
@@ -100,7 +98,7 @@ export type Props = {
 };
 
 class InputLabel extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     disabled: false,
     disableAnimation: false,
   };

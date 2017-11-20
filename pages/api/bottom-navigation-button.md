@@ -16,7 +16,6 @@ filename: /src/BottomNavigation/BottomNavigationButton.js
 | icon | union:&nbsp;string&nbsp;&#124;<br>&nbsp;Element&lt;any><br> |  | The icon element. If a string is provided, it will be used as a font ligature. |
 | label | Node |  | The label element. |
 | showLabel | boolean |  | If `true`, the BottomNavigationButton will show its label. |
-| theme | Object |  |  |
 | value | any |  | You can provide your own value. Otherwise, we fallback to the child position index. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).

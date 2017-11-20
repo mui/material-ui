@@ -16,11 +16,10 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  showLabels: boolean,
 };
 
 export type Props = {
@@ -32,6 +31,10 @@ export type Props = {
    * @ignore
    */
   className?: string,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
   /**
    * Callback fired when the value changes.
    *
@@ -51,7 +54,7 @@ export type Props = {
 };
 
 class BottomNavigation extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     showLabels: false,
   };
 

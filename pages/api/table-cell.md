@@ -15,9 +15,8 @@ filename: /src/Table/TableCell.js
 | children | Node |  | The table cell contents. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | component | ElementType |  | The component used for the root node. Either a string to use a DOM element or a component. |
-| <span style="color: #31a148">numeric *</span> | boolean | false | If `true`, content will align to the right. |
-| <span style="color: #31a148">padding *</span> | union:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'checkbox'&nbsp;&#124;<br>&nbsp;'dense'&nbsp;&#124;<br>&nbsp;'none'<br> | 'default' | Sets the padding applied to the cell. |
-| theme | Object |  |  |
+| numeric | boolean | false | If `true`, content will align to the right. |
+| padding | union:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'checkbox'&nbsp;&#124;<br>&nbsp;'dense'&nbsp;&#124;<br>&nbsp;'none'<br> | 'default' | Sets the padding applied to the cell. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

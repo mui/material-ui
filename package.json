@@ -158,7 +158,7 @@
     "raw-loader": "^0.5.1",
     "react": "^16.1.1",
     "react-autosuggest": "^9.3.2",
-    "react-docgen": "^3.0.0-beta9",
+    "@rosskevin/react-docgen": "^3.0.0-beta9",
     "react-dom": "^16.1.1",
     "react-number-format": "^3.0.2",
     "react-redux": "^5.0.6",

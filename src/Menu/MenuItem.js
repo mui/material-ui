@@ -30,12 +30,10 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  role?: string,
-  selected?: boolean,
 };
 
 export type Props = {
@@ -63,15 +61,15 @@ export type Props = {
   /**
    * @ignore
    */
-  role?: string,
+  role: string,
   /**
    * Use to apply selected styling.
    */
-  selected?: boolean,
+  selected: boolean,
 };
 
 class MenuItem extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     role: 'menuitem',
     selected: false,
   };

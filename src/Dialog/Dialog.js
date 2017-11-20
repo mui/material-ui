@@ -55,18 +55,10 @@ type MaxWidth = 'xs' | 'sm' | 'md';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  fullScreen?: boolean,
-  ignoreBackdropClick?: boolean,
-  ignoreEscapeKeyUp?: boolean,
-  transitionDuration?: TransitionDuration,
-  maxWidth?: MaxWidth,
-  fullWidth?: boolean,
-  open?: boolean,
-  transition: ComponentType<*>,
 };
 
 export type Props = {
@@ -89,31 +81,31 @@ export type Props = {
   /**
    * If `true`, it will be full-screen
    */
-  fullScreen?: boolean,
+  fullScreen: boolean,
   /**
    * If `true`, clicking the backdrop will not fire the `onRequestClose` callback.
    */
-  ignoreBackdropClick?: boolean,
+  ignoreBackdropClick: boolean,
   /**
    * If `true`, hitting escape will not fire the `onRequestClose` callback.
    */
-  ignoreEscapeKeyUp?: boolean,
+  ignoreEscapeKeyUp: boolean,
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    */
-  transitionDuration?: TransitionDuration,
+  transitionDuration: TransitionDuration,
   /**
    * Determine the max width of the dialog.
    * The dialog width grows with the size of the screen, this property is useful
    * on the desktop where you might need some coherent different width size across your
    * application.
    */
-  maxWidth?: MaxWidth,
+  maxWidth: MaxWidth,
   /**
    * If specified, stretches dialog to max width.
    */
-  fullWidth?: boolean,
+  fullWidth: boolean,
   /**
    * Callback fired when the backdrop is clicked.
    */
@@ -155,7 +147,7 @@ export type Props = {
   /**
    * If `true`, the Dialog is open.
    */
-  open?: boolean,
+  open: boolean,
   /**
    * Transition component.
    */
@@ -166,14 +158,14 @@ export type Props = {
  * Dialogs are overlaid modal paper based components with a backdrop.
  */
 class Dialog extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     fullScreen: false,
     ignoreBackdropClick: false,
     ignoreEscapeKeyUp: false,
-    transitionDuration: {
+    transitionDuration: ({
       enter: duration.enteringScreen,
       exit: duration.leavingScreen,
-    },
+    }: TransitionDuration),
     maxWidth: 'sm',
     fullWidth: false,
     open: false,

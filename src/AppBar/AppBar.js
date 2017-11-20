@@ -52,12 +52,10 @@ export type Position = 'static' | 'fixed' | 'absolute';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  color: Color,
-  position: Position,
 };
 
 export type Props = {
@@ -84,7 +82,7 @@ export type Props = {
 };
 
 class AppBar extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     color: 'primary',
     position: 'fixed',
   };
