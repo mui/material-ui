@@ -25,11 +25,12 @@ export interface TablePaginationProps extends StandardProps<
 
 export type TablePaginationClassKey =
   | TableCellClassKey
-  | 'cell'
   | 'toolbar'
   | 'spacer'
-  | 'select'
+  | 'caption'
+  | 'input'
   | 'selectRoot'
+  | 'select'
   | 'actions'
   ;
 
