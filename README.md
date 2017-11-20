@@ -136,8 +136,18 @@ rightArrowIcon | react node, string | 'keyboard_arrow_right'| Right arrow icon
 dateRangeIcon | react node, string | 'date_range'| Date tab icon 
 timeIcon | react node, string | 'access_time'| Time tab icon
 
+### l10n
+For l10n texts we're currently relying on moment which is stateful. To change the locale you have to import your langauge specific files an change the locale manually via `moment.locale(language)`.
+```
+import moment from 'moment'
+import 'moment/locale/fr';
+ 
+moment.locale('fr')
+```
+
 ### Migrate to date-fns?
 If you are interested of using moment or date-fns as the peer of this project, please mention that in [this issue](https://github.com/dmtrKovalenko/material-ui-pickers/issues/61), we need to know which libriry if more useful to be in the peer dependencies of this project. Thank you.
+
 ### Known Issues
 1. 24 hour displaying for timepicker (now supporting only am/pm)
 

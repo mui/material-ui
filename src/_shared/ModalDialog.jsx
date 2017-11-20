@@ -18,24 +18,40 @@ const styles = {
   },
 };
 
-const ModalDialog = (props) => {
-  const {
-    children, classes, onAccept, onDismiss, dialogContentClassName, ...other
-  } = props;
+const ModalDialog = ({
+  children,
+  classes,
+  onAccept,
+  onDismiss,
+  okLabel,
+  cancelLabel,
+  dialogContentClassName,
+  ...other
+}) => (
+  <Dialog classes={{ paper: classes.dialogRoot }} {...other}>
+    <DialogContent className={classnames(classes.dialog, dialogContentClassName)}>
+      { children }
+    </DialogContent>
 
-  return (
-    <Dialog classes={{ paper: classes.dialogRoot }} {...other}>
-      <DialogContent className={classnames(classes.dialog, dialogContentClassName)}>
-        { children }
-      </DialogContent>
+    <DialogActions>
+      <Button
+        color="primary"
+        onClick={onDismiss}
+        tabIndex={-1}
+      >
+        { cancelLabel }
+      </Button>
 
-      <DialogActions>
-        <Button color="primary" onClick={onDismiss} tabIndex={-1}> Cancel </Button>
-        <Button color="primary" onClick={onAccept}> OK </Button>
-      </DialogActions>
-    </Dialog>
-  );
-};
+      <Button
+        color="primary"
+        onClick={onAccept}
+      >
+        { okLabel }
+      </Button>
+    </DialogActions>
+  </Dialog>
+);
+
 
 ModalDialog.propTypes = {
   children: PropTypes.node.isRequired,
@@ -43,10 +59,14 @@ ModalDialog.propTypes = {
   onDismiss: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   dialogContentClassName: PropTypes.string,
+  okLabel: PropTypes.string,
+  cancelLabel: PropTypes.string,
 };
 
 ModalDialog.defaultProps = {
   dialogContentClassName: '',
+  okLabel: 'OK',
+  cancelLabel: 'Cancel',
 };
 
 export default withStyles(styles, { name: 'MuiPickersModal' })(ModalDialog);

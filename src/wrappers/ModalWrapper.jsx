@@ -14,6 +14,8 @@ export default class ModalWrapper extends PureComponent {
     dialogContentClassName: PropTypes.string,
     invalidLabel: PropTypes.string,
     labelFunc: PropTypes.func,
+    okLabel: PropTypes.string,
+    cancelLabel: PropTypes.string,
   }
 
   static defaultProps = {
@@ -21,6 +23,8 @@ export default class ModalWrapper extends PureComponent {
     invalidLabel: undefined,
     value: new Date(),
     labelFunc: undefined,
+    okLabel: undefined,
+    cancelLabel: undefined,
   }
 
   state = {
@@ -51,6 +55,8 @@ export default class ModalWrapper extends PureComponent {
       onDismiss,
       invalidLabel,
       labelFunc,
+      okLabel,
+      cancelLabel,
       ...other
     } = this.props;
 
@@ -71,6 +77,8 @@ export default class ModalWrapper extends PureComponent {
           onAccept={this.handleAccept}
           onDismiss={this.handleDismiss}
           dialogContentClassName={dialogContentClassName}
+          okLabel={okLabel}
+          cancelLabel={cancelLabel}
         >
           { children }
         </ModalDialog>

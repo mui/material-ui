@@ -21,7 +21,7 @@ class SourcablePanel extends PureComponent {
     const webpackRawLoader = require.context('!raw-loader!../Examples', false, /\.jsx$/);
     const file = webpackRawLoader(`./${this.props.sourceFile}`);
 
-    return file
+    return file;
   }
 
   toggleSource = () => {
