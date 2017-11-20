@@ -10,10 +10,12 @@ const styles = theme => ({
   root: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
-    //overflowX: 'auto',
   },
   table: {
     minWidth: 700,
+  },
+  cell: {
+    whiteSpace: 'nowrap',
   },
 });
 
@@ -39,17 +41,37 @@ function ResponsiveTable(props) {
       <Table className={classes.table} responsive>
         <TableHead>
           <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell numeric>Calories</TableCell>
-            <TableCell numeric>Fat (g)</TableCell>
-            <TableCell numeric>Carbs (g)</TableCell>
-            <TableCell numeric>Protein (g)</TableCell>
-            <TableCell numeric>Fat (g)</TableCell>
-            <TableCell numeric>Carbs (g)</TableCell>
-            <TableCell numeric>Protein (g)</TableCell>
-            <TableCell numeric>Fat (g)</TableCell>
-            <TableCell numeric>Carbs (g)</TableCell>
-            <TableCell numeric>Protein (g)</TableCell>
+            <TableCell className={classes.cell}>Dessert (100g serving)</TableCell>
+            <TableCell className={classes.cell} numeric>
+              Calories
+            </TableCell>
+            <TableCell className={classes.cell} numeric>
+              Fat (g)
+            </TableCell>
+            <TableCell className={classes.cell} numeric>
+              Carbs (g)
+            </TableCell>
+            <TableCell className={classes.cell} numeric>
+              Protein (g)
+            </TableCell>
+            <TableCell className={classes.cell} numeric>
+              Fat (g)
+            </TableCell>
+            <TableCell className={classes.cell} numeric>
+              Carbs (g)
+            </TableCell>
+            <TableCell className={classes.cell} numeric>
+              Protein (g)
+            </TableCell>
+            <TableCell className={classes.cell} numeric>
+              Fat (g)
+            </TableCell>
+            <TableCell className={classes.cell} numeric>
+              Carbs (g)
+            </TableCell>
+            <TableCell className={classes.cell} numeric>
+              Protein (g)
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
