@@ -102,7 +102,7 @@ In our `vrtest` config this is set as the default, although it can be overridden
 testUrl: process.env.DOCKER_TEST_URL || 'http://10.200.10.1:3090',
 ```
 
-To update baseline images, run `npm run test:regressions`
+To update baseline images or record them for time first time, run `npm run test:regressions:record`
 
 ## Writing Tests
 
