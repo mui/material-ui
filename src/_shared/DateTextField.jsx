@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, {g PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { TextField } from 'material-ui';
 
-export default class DateTextField extends Component {
+export default class DateTextField extends PureComponent {
   static propTypes = {
     value: PropTypes.oneOfType([
       PropTypes.object,
@@ -24,11 +24,6 @@ export default class DateTextField extends Component {
     value: new Date(),
     labelFunc: undefined,
   }
-
-  shouldComponentUpdate = nextProps => (
-    this.props.value !== nextProps.value ||
-    this.props.format !== nextProps.format
-  )
 
   getDisplayDate = () => {
     const {
