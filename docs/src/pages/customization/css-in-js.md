@@ -14,8 +14,8 @@ We think that it's the future:
 - [The future of component-based styling](https://medium.freecodecamp.com/css-in-javascript-the-future-of-component-based-styling-70b161a79a32)
 
 So, you may have noticed in the demos how this *CSS-in-JS* looks.
-We use the [`withStyles`](#api)
-higher-order component to inject an array of styles into the DOM as CSS, using JSS. Here's an example:
+We use the higher-order component created by [`withStyles`](#api)
+to inject an array of styles into the DOM as CSS, using JSS. Here's an example:
 
 {{demo='pages/customization/CssInJs.js'}}
 
