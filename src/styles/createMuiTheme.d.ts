@@ -6,12 +6,15 @@ import { Spacing } from './spacing';
 import { Transitions } from './transitions';
 import { Typography, TypographyOptions } from './createTypography';
 import { ZIndex } from './zIndex';
+import { StyleRules } from './withStyles'
 
 export interface ThemeOptions {
   breakpoints?: Partial<BreakpointsOptions> & Partial<Breakpoints>;
   mixins?: Partial<Mixins>;
   palette?: Partial<Palette>;
   typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
+  shadows?: Shadows;
+  [propName: string]: Object;
 }
 
 export type Theme<T = {}> = {
@@ -25,7 +28,7 @@ export type Theme<T = {}> = {
   spacing: Spacing;
   zIndex: ZIndex;
   overrides?: {
-    [name: string]: {}
+    [name: string]: StyleRules
   };
 } & T;
 
