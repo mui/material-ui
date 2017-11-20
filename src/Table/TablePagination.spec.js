@@ -313,5 +313,27 @@ describe('<TablePagination />', () => {
       // now, there is one page, which is empty
       assert.strictEqual(page, 0);
     });
+
+    it('should hide the rows per page selector if there are less than two options', () => {
+      const wrapper = mount(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                page={0}
+                rowsPerPage={5}
+                rowsPerPageOptions={[5]}
+                onChangePage={noop}
+                onChangeRowsPerPage={noop}
+                count={10}
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+
+      assert.strictEqual(wrapper.text().indexOf('Rows per page'), -1);
+      assert.strictEqual(wrapper.find('withStyles(Select)').length, 0);
+    });
   });
 });

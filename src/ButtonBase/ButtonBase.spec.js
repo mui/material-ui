@@ -360,6 +360,18 @@ describe('<ButtonBase />', () => {
       );
       assert.strictEqual(wrapper.find('button').props().disabled, true);
     });
+
+    it('should reset the focused state', () => {
+      const wrapper = shallow(<ButtonBase>Hello</ButtonBase>);
+      // We simulate a keyboardFocused button that is getting disabled.
+      wrapper.setState({
+        keyboardFocused: true,
+      });
+      wrapper.setProps({
+        disabled: true,
+      });
+      assert.strictEqual(wrapper.state().keyboardFocused, false);
+    });
   });
 
   describe('prop: component', () => {

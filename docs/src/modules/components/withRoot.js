@@ -97,6 +97,10 @@ const pages = [
         pathname: '/guides/right-to-left',
         title: 'Right-to-left',
       },
+      {
+        pathname: '/guides/interoperability',
+        title: 'Interoperability',
+      },
     ],
   },
   {

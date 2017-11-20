@@ -17,7 +17,7 @@ filename: /src/Stepper/StepLabel.js
 | disabled | boolean | false | Mark the step as disabled, will also disable the button if `StepLabelButton` is a child of `StepLabel`. Is passed to child components. |
 | icon | Icon |  | The icon displayed by the step label - if not set will be set by Step component. |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 

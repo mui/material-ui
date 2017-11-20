@@ -257,6 +257,7 @@ describe('<SelectInput />', () => {
             {...props}
             multiple
             value={[20, 30]}
+            name="age"
             onChange={handleChange}
             MenuProps={{ transitionDuration: 0 }}
           />,
@@ -275,6 +276,7 @@ describe('<SelectInput />', () => {
         assert.strictEqual(wrapper.state().open, true);
         assert.strictEqual(handleChange.callCount, 1);
         assert.deepEqual(handleChange.args[0][0].target.value, [30]);
+        assert.deepEqual(handleChange.args[0][0].target.name, 'age');
         wrapper.setProps({ value: [30] });
 
         portalLayer.querySelectorAll('li')[0].click();

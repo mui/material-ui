@@ -19,5 +19,5 @@ This component should preferably be used at **the root of your component tree**.
 | sheetsManager | object | null | The sheetsManager is used to deduplicate style sheet injection in the page. It's deduplicating using the (theme, styles) couple. On the server, you should provide a new instance for each request. |
 | <span style="color: #31a148">theme *</span> | union:&nbsp;object&nbsp;&#124;<br>&nbsp;func<br> |  | A theme object. |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

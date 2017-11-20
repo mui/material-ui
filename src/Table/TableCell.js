@@ -6,6 +6,7 @@ import type { ElementType, Node } from 'react';
 import classNames from 'classnames';
 import withStyles from '../styles/withStyles';
 import { capitalizeFirstLetter } from '../utils/helpers';
+import { darken, fade, lighten } from '../styles/colorManipulator';
 
 export type Context = {
   table: Object,
@@ -55,7 +56,14 @@ export type Props = {
 
 export const styles = (theme: Object) => ({
   root: {
-    borderBottom: `1px solid ${theme.palette.text.lightDivider}`,
+    // Workaround for a rendering bug with spanned columns in Chrome 62.0.
+    // Removes the alpha (sets it to 1), and lightens or darkens the theme color.
+    borderBottom: `1px solid 
+    ${
+      theme.palette.type === 'light'
+        ? lighten(fade(theme.palette.text.lightDivider, 1), 0.925)
+        : darken(fade(theme.palette.text.lightDivider, 1), 0.685)
+    }`,
     textAlign: 'left',
   },
   numeric: {

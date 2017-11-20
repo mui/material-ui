@@ -17,8 +17,9 @@ For the `Radio`, you should be using the `RadioGroup` component instead of this 
 | children | Node |  | The content of the component. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | row | boolean | false | Display group of elements in a compact row. |
+| theme | Object |  |  |
 
-Any other properties supplied will be [spread to the root element](/customization/api#spread).
+Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
 ## CSS API
 

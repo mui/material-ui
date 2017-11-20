@@ -11,7 +11,7 @@ import AppFrame from 'docs/src/modules/components/AppFrame';
 import { lightTheme, darkTheme, setPrismTheme } from 'docs/src/modules/utils/prism';
 import config from 'docs/src/config';
 
-// Injected the insertion-point-jss after docssearch
+// Inject the insertion-point-jss after docssearch
 if (process.browser && !global.__INSERTION_POINT__) {
   global.__INSERTION_POINT__ = true;
   const styleNode = document.createComment('insertion-point-jss');
