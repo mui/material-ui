@@ -20,7 +20,7 @@ filename: /src/Drawer/Drawer.js
 | elevation | number | 16 | The elevation of the drawer. |
 | onRequestClose | Function |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | open | boolean | false | If `true`, the drawer is open. |
-| transitionDuration | TransitionDuration | {  enter: duration.enteringScreen,  exit: duration.leavingScreen,} | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
+| transitionDuration | TransitionDuration | {  enter: duration.enteringScreen,  exit: duration.leavingScreen} | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 | type | union:&nbsp;'permanent'&nbsp;&#124;<br>&nbsp;'persistent'&nbsp;&#124;<br>&nbsp;'temporary'<br> | 'temporary' | The type of drawer. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).

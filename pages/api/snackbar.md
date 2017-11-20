@@ -14,7 +14,7 @@ filename: /src/Snackbar/Snackbar.js
 |:-----|:-----|:--------|:------------|
 | SnackbarContentProps | Object |  | Properties applied to the `SnackbarContent` element. |
 | action | Node |  | The action to display. |
-| anchorOrigin | signature | { vertical: 'bottom', horizontal: 'center' } | The anchor of the `Snackbar`. |
+| anchorOrigin | signature | {  vertical: 'bottom',  horizontal: 'center'} | The anchor of the `Snackbar`. |
 | autoHideDuration | number |  | The number of milliseconds to wait before automatically dismissing. This behavior is disabled by default with the `null` value. |
 | children | Element |  | If you wish the take control over the children of the component you can use that property. When using it, no `SnackbarContent` component will be rendered. |
 | classes | Object |  | Useful to extend the style applied to components. |
@@ -30,7 +30,7 @@ filename: /src/Snackbar/Snackbar.js
 | <span style="color: #31a148">open *</span> | boolean |  | If true, `Snackbar` is open. |
 | resumeHideDuration | number |  | The number of milliseconds to wait before dismissing after user interaction. If `autoHideDuration` property isn't specified, it does nothing. If `autoHideDuration` property is specified but `resumeHideDuration` isn't, we default to `autoHideDuration / 2` ms. |
 | transition | ComponentType |  | Transition component. |
-| transitionDuration | TransitionDuration | {  enter: duration.enteringScreen,  exit: duration.leavingScreen,} | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
+| transitionDuration | TransitionDuration | {  enter: duration.enteringScreen,  exit: duration.leavingScreen} | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 
 Any other properties supplied will be [spread to the root element](/customization/api#spread).
 
