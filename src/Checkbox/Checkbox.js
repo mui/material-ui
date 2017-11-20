@@ -3,7 +3,7 @@
 import React from 'react';
 import type { Node } from 'react';
 import withStyles from '../styles/withStyles';
-import createSwitch from '../internal/SwitchBase';
+import SwitchBase from '../internal/SwitchBase';
 import IndeterminateCheckBoxIcon from '../svg-icons/IndeterminateCheckBox';
 
 export const styles = (theme: Object) => ({
@@ -18,16 +18,12 @@ export const styles = (theme: Object) => ({
   },
 });
 
-const SwitchBase = createSwitch();
-
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  indeterminate: boolean,
-  indeterminateIcon: Node,
 };
 
 export type Props = {
@@ -108,9 +104,9 @@ export type Props = {
 };
 
 class Checkbox extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     indeterminate: false,
-    indeterminateIcon: <IndeterminateCheckBoxIcon />,
+    indeterminateIcon: (<IndeterminateCheckBoxIcon />: Node),
   };
 
   render() {

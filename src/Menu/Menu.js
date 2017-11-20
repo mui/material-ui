@@ -12,13 +12,13 @@ import type { TransitionCallback } from '../internal/transition';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 
-type DefaultProps = {
-  open?: boolean,
-  transitionDuration?: number | { enter?: number, exit?: number } | 'auto',
-};
+type TransitionDuration = number | { enter?: number, exit?: number } | 'auto';
 
 export type Props = {
   /**
@@ -74,7 +74,7 @@ export type Props = {
   /**
    * If `true`, the menu is visible.
    */
-  open?: boolean,
+  open: boolean,
   /**
    * @ignore
    */
@@ -84,13 +84,9 @@ export type Props = {
    */
   PopoverClasses?: Object,
   /**
-   * @ignore
-   */
-  theme?: Object,
-  /**
    * The length of the transition in `ms`, or 'auto'
    */
-  transitionDuration?: number | { enter?: number, exit?: number } | 'auto',
+  transitionDuration: TransitionDuration,
 };
 
 const rtlOrigin = {
@@ -115,9 +111,9 @@ export const styles = {
 };
 
 class Menu extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     open: false,
-    transitionDuration: 'auto',
+    transitionDuration: ('auto': TransitionDuration),
   };
 
   componentDidMount() {

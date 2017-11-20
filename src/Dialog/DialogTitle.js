@@ -17,11 +17,10 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  disableTypography: boolean,
 };
 
 export type Props = {
@@ -49,7 +48,7 @@ export type Props = {
 };
 
 class DialogTitle extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     disableTypography: false,
   };
 

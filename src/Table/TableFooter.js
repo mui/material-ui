@@ -15,11 +15,10 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  component: ElementType,
 };
 
 export type Props = {
@@ -43,8 +42,8 @@ export type Props = {
 };
 
 class TableFooter extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
-    component: 'tfoot',
+  static defaultProps = {
+    component: ('tfoot': ElementType),
   };
 
   getChildContext() {

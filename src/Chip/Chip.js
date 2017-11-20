@@ -86,6 +86,9 @@ export const styles = (theme: Object) => {
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 
@@ -102,6 +105,10 @@ export type Props = {
    * @ignore
    */
   className?: string,
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes?: Object,
   /**
    * Custom delete icon. Will be shown only if `onRequestDelete` is set.
    */

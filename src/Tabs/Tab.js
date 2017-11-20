@@ -90,11 +90,10 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  disabled?: boolean,
 };
 
 export type Props = {
@@ -109,7 +108,7 @@ export type Props = {
   /**
    * If `true`, the tab will be disabled.
    */
-  disabled?: boolean,
+  disabled: boolean,
   /**
    * @ignore
    */
@@ -159,7 +158,7 @@ type State = {
 };
 
 class Tab extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     disabled: false,
   };
 

@@ -21,11 +21,10 @@ const mediaComponents = ['video', 'audio', 'picture', 'iframe', 'img'];
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  component: ElementType,
 };
 
 export type Props = {
@@ -64,8 +63,8 @@ export type Props = {
 };
 
 class CardMedia extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
-    component: 'div',
+  static defaultProps = {
+    component: ('div': ElementType),
   };
 
   render() {

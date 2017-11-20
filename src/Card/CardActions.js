@@ -20,11 +20,10 @@ export const styles = {
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  disableActionSpacing: boolean,
 };
 
 export type Props = {
@@ -47,7 +46,7 @@ export type Props = {
 };
 
 class CardActions extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     disableActionSpacing: false,
   };
 

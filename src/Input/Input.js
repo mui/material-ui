@@ -203,14 +203,10 @@ export const styles = (theme: Object) => {
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  disableUnderline?: boolean,
-  fullWidth?: boolean,
-  multiline?: boolean,
-  type?: string,
 };
 
 export type Props = {
@@ -356,7 +352,7 @@ type State = {
 class Input extends React.Component<ProvidedProps & Props, State> {
   static muiName = 'Input';
 
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     disableUnderline: false,
     fullWidth: false,
     multiline: false,

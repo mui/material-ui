@@ -3,7 +3,7 @@
 import React from 'react';
 import type { Node } from 'react';
 import withStyles from '../styles/withStyles';
-import createSwitch from '../internal/SwitchBase';
+import SwitchBase from '../internal/SwitchBase';
 import RadioButtonCheckedIcon from '../svg-icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '../svg-icons/RadioButtonUnchecked';
 
@@ -21,6 +21,9 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
 };
 
@@ -35,11 +38,11 @@ export type Props = {
    */
   checkedIcon?: Node,
   /**
-   * Useful to extend the style applied to components.
+   * @ignore
    */
   children?: Node,
   /**
-   * @ignore
+   * Useful to extend the style applied to components.
    */
   classes?: Object,
   /**
@@ -92,18 +95,16 @@ export type Props = {
   value?: string,
 };
 
-const Switch = createSwitch({
-  inputType: 'radio',
-  defaultIcon: <RadioButtonUncheckedIcon />,
-  defaultCheckedIcon: <RadioButtonCheckedIcon />,
-});
-
-const Radio = withStyles(styles, { name: 'MuiRadio' })(Switch);
+// eslint-disable-next-line no-unused-vars
+const Radio = (props: ProvidedProps & Props) => (
+  <SwitchBase
+    inputType="radio"
+    icon={<RadioButtonUncheckedIcon />}
+    checkedIcon={<RadioButtonCheckedIcon />}
+    {...props}
+  />
+);
 
 Radio.displayName = 'Radio';
 
-export default Radio;
-
-// This is here solely to trigger api doc generation
-// eslint-disable-next-line no-unused-vars
-export const RadioDocs = (props: ProvidedProps & Props) => <span />;
+export default withStyles(styles, { name: 'MuiRadio' })(Radio);

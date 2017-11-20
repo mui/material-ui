@@ -118,16 +118,10 @@ function flipPlacement(placement: Placement): Placement {
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  disableTriggerFocus?: boolean,
-  disableTriggerHover?: boolean,
-  disableTriggerTouch?: boolean,
-  enterDelay: number,
-  leaveDelay?: number,
-  placement: Placement,
 };
 
 export type Props = {
@@ -146,15 +140,15 @@ export type Props = {
   /**
    * Do not respond to focus events.
    */
-  disableTriggerFocus?: boolean,
+  disableTriggerFocus: boolean,
   /**
    * Do not respond to hover events.
    */
-  disableTriggerHover?: boolean,
+  disableTriggerHover: boolean,
   /**
    * Do not respond to long press touch events.
    */
-  disableTriggerTouch?: boolean,
+  disableTriggerTouch: boolean,
   /**
    * The relationship between the tooltip and the wrapper component is not clear from the DOM.
    * By providing this property, we can use aria-describedby to solve the accessibility issue.
@@ -187,7 +181,7 @@ export type Props = {
   /**
    * The number of milliseconds to wait before hidding the tooltip.
    */
-  leaveDelay?: number,
+  leaveDelay: number,
   /**
    * Tooltip placement
    */
@@ -196,10 +190,6 @@ export type Props = {
    * Properties applied to the `Popper` element.
    */
   PopperProps?: Object,
-  /**
-   * @ignore
-   */
-  theme?: Object,
 };
 
 type State = {
@@ -207,7 +197,7 @@ type State = {
 };
 
 class Tooltip extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     disableTriggerFocus: false,
     disableTriggerHover: false,
     disableTriggerTouch: false,

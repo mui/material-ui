@@ -16,11 +16,10 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  visible?: boolean,
 };
 
 export type Props = {
@@ -50,7 +49,7 @@ export type Props = {
  * @ignore - internal component.
  */
 class TabScrollButton extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     visible: true,
   };
 

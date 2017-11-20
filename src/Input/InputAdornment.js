@@ -23,12 +23,10 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  component: ElementType,
-  disableTypography?: boolean,
 };
 
 export type Props = {
@@ -52,7 +50,7 @@ export type Props = {
   /**
    * If children is a string then disable wrapping in a Typography component.
    */
-  disableTypography?: boolean,
+  disableTypography: boolean,
   /**
    * The position this adornment should appear relative to the `Input`.
    */
@@ -60,8 +58,8 @@ export type Props = {
 };
 
 class InputAdornment extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
-    component: 'div',
+  static defaultProps = {
+    component: ('div': ElementType),
     disableTypography: false,
   };
 

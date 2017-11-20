@@ -25,7 +25,7 @@ This component shares many concepts with [react-overlays](https://react-bootstra
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | BackdropClassName | string |  | The CSS class name of the backdrop element. |
-| <span style="color: #31a148">BackdropComponent *</span> | ElementType | Backdrop | Pass a component class to use as the backdrop. |
+| BackdropComponent | ElementType | Backdrop | Pass a component class to use as the backdrop. |
 | BackdropInvisible | boolean | false | If `true`, the backdrop is invisible. |
 | BackdropTransitionDuration | TransitionDuration | 300 | The duration for the backdrop transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 | children | Element |  | A single child content element. |
@@ -44,7 +44,6 @@ This component shares many concepts with [react-overlays](https://react-bootstra
 | onExiting | TransitionCallback |  | Callback fired when the modal is exiting. |
 | onRequestClose | Function |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | <span style="color: #31a148">show *</span> | boolean |  | If `true`, the Modal is visible. |
-| theme | Object |  |  |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

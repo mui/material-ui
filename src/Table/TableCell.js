@@ -16,12 +16,10 @@ export type Padding = 'default' | 'checkbox' | 'dense' | 'none';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  padding: Padding,
-  numeric: boolean,
 };
 
 export type Props = {
@@ -58,7 +56,8 @@ export type Props = {
 
 export const styles = (theme: Object) => ({
   root: {
-    // Same value as theme.palette.text.lightDivider without the transparency.
+    // Workaround for a rendering bug with spanned columns in Chrome 62.0.
+    // Removes the alpha (sets it to 1), and lightens or darkens the theme color.
     borderBottom: `1px solid 
     ${
       theme.palette.type === 'light'
@@ -94,7 +93,7 @@ export const styles = (theme: Object) => ({
 });
 
 class TableCell extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     numeric: false,
     padding: 'default',
   };

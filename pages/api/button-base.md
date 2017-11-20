@@ -12,17 +12,16 @@ filename: /src/ButtonBase/ButtonBase.js
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span style="color: #31a148">centerRipple *</span> | boolean | false | If `true`, the ripples will be centered. They won't start at the cursor interaction position. |
+| centerRipple | boolean | false | If `true`, the ripples will be centered. They won't start at the cursor interaction position. |
 | children | Node |  | The content of the component. |
 | classes | Object |  | Useful to extend the style applied to components. |
 | component | ElementType |  | The component used for the root node. Either a string to use a DOM element or a component. The default value is a `button`. |
-| <span style="color: #31a148">disableRipple *</span> | boolean | false | If `true`, the ripple effect will be disabled. |
+| disableRipple | boolean | false | If `true`, the ripple effect will be disabled. |
 | disabled | boolean |  | If `true`, the base button will be disabled. |
-| <span style="color: #31a148">focusRipple *</span> | boolean | false | If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`. |
+| focusRipple | boolean | false | If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`. |
 | keyboardFocusedClassName | string |  | The CSS class applied while the component is keyboard focused. |
 | onKeyboardFocus | signature |  | Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too. |
 | rootRef | Function |  | Use that property to pass a ref callback to the root component. |
-| theme | Object |  |  |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

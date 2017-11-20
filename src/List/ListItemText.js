@@ -31,14 +31,10 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  disableTypography: boolean,
-  primary: Node,
-  secondary: Node,
-  inset: boolean,
 };
 
 export type Props = {
@@ -65,7 +61,7 @@ export type Props = {
 };
 
 class ListItemText extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     disableTypography: false,
     primary: false,
     secondary: false,

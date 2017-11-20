@@ -67,12 +67,10 @@ export function setTranslateValue(props: Object, node: HTMLElement | Object) {
 export type Direction = 'left' | 'right' | 'up' | 'down';
 
 type ProvidedProps = {
+  /**
+   * @ignore
+   */
   theme: Object,
-};
-
-type DefaultProps = {
-  direction?: Direction,
-  timeout: TransitionDuration,
 };
 
 export type Props = {
@@ -125,10 +123,6 @@ export type Props = {
    * You may specify a single timeout for all transitions, or individually with an object.
    */
   timeout: TransitionDuration,
-  /**
-   * @ignore
-   */
-  theme?: Object,
 };
 
 type State = {
@@ -138,11 +132,11 @@ type State = {
 const reflow = node => node.scrollTop;
 
 class Slide extends React.Component<ProvidedProps & Props, State> {
-  static defaultProps: DefaultProps = {
-    timeout: {
+  static defaultProps = {
+    timeout: ({
       enter: duration.enteringScreen,
       exit: duration.leavingScreen,
-    },
+    }: TransitionDuration),
   };
 
   state = {

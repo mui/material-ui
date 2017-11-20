@@ -27,11 +27,10 @@ export const styles = (theme: Object) => ({
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  invisible?: boolean,
 };
 
 export type Props = {
@@ -50,14 +49,14 @@ export type Props = {
   /**
    * If `true`, the backdrop is invisible.
    */
-  invisible?: boolean,
+  invisible: boolean,
 };
 
 /**
  * @ignore - internal component.
  */
 class Backdrop extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     invisible: false,
   };
 

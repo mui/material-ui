@@ -39,14 +39,10 @@ type Color = 'default' | 'primary' | 'inherit';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  color?: Color,
-  component: ElementType,
-  disableSticky?: boolean,
-  inset?: boolean,
 };
 
 export type Props = {
@@ -83,7 +79,7 @@ export type Props = {
 };
 
 class ListSubheader extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     component: 'li',
     color: 'default',
     disableSticky: false,

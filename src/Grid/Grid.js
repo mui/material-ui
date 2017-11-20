@@ -182,19 +182,10 @@ type Wrap = 'nowrap' | 'wrap' | 'wrap-reverse';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  alignContent?: AlignContent,
-  alignItems: AlignItems,
-  component: ElementType,
-  container: boolean,
-  direction: Direction,
-  item: boolean,
-  justify: Justify,
-  spacing: Spacing,
-  wrap: Wrap,
 };
 
 export type Props = {
@@ -233,7 +224,7 @@ export type Props = {
    * Defines the `align-content` style property.
    * It's applied for all screen sizes.
    */
-  alignContent?: AlignContent,
+  alignContent: AlignContent,
   /**
    * Defines the `align-items` style property.
    * It's applied for all screen sizes.
@@ -291,13 +282,12 @@ export type Props = {
 };
 
 class Grid extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     alignContent: 'stretch',
     alignItems: 'stretch',
-    component: 'div',
+    component: ('div': ElementType),
     container: false,
     direction: 'row',
-    hidden: undefined,
     item: false,
     justify: 'flex-start',
     spacing: 16,

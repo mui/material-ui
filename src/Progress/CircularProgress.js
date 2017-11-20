@@ -63,16 +63,10 @@ export type Mode = 'determinate' | 'indeterminate';
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  color: Color,
-  size?: number,
-  mode?: Mode,
-  value: number,
-  min: number,
-  max: number,
 };
 
 export type Props = {
@@ -101,11 +95,11 @@ export type Props = {
    * for when there is no value for progress.
    * Determinate for controlled progress value.
    */
-  mode?: Mode,
+  mode: Mode,
   /**
    * The size of the circle.
    */
-  size?: number,
+  size: number,
   /**
    * @ignore
    */
@@ -113,7 +107,7 @@ export type Props = {
   /**
    * The thickness of the circle.
    */
-  thickness?: number,
+  thickness: number,
   /**
    * The value of progress in determinate mode.
    */
@@ -121,7 +115,7 @@ export type Props = {
 };
 
 class CircularProgress extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     color: 'primary',
     size: 40,
     thickness: 3.6,

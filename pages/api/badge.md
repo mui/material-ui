@@ -15,8 +15,7 @@ filename: /src/Badge/Badge.js
 | <span style="color: #31a148">badgeContent *</span> | Node |  | The content rendered within the badge. |
 | <span style="color: #31a148">children *</span> | Node |  | The badge will be added relative to this node. |
 | classes | Object |  | Useful to extend the style applied to components. |
-| <span style="color: #31a148">color *</span> | union:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'accent'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |
-| theme | Object |  |  |
+| color | union:&nbsp;'default'&nbsp;&#124;<br>&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'accent'<br> | 'default' | The color of the component. It's using the theme palette when that makes sense. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 

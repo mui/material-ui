@@ -31,14 +31,10 @@ export type TransitionDuration = number | { enter?: number, exit?: number } | 'a
 
 type ProvidedProps = {
   classes: Object,
+  /**
+   * @ignore
+   */
   theme?: Object,
-};
-
-type DefaultProps = {
-  appear: boolean,
-  component: ElementType,
-  collapsedHeight: string,
-  timeout: TransitionDuration,
 };
 
 export type Props = {
@@ -101,10 +97,6 @@ export type Props = {
    */
   style?: Object,
   /**
-   * @ignore
-   */
-  theme?: Object,
-  /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    *
@@ -112,17 +104,17 @@ export type Props = {
    */
   timeout: TransitionDuration,
   /**
-  /* @ignore
+   * @ignore
    */
   unmountOnExit?: boolean,
 };
 
 class Collapse extends React.Component<ProvidedProps & Props> {
-  static defaultProps: DefaultProps = {
+  static defaultProps = {
     appear: false,
-    component: 'div',
+    component: ('div': ElementType),
     collapsedHeight: '0px',
-    timeout: duration.standard,
+    timeout: (duration.standard: TransitionDuration),
   };
 
   wrapper = null;

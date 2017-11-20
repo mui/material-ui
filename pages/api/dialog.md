@@ -29,9 +29,8 @@ Dialogs are overlaid modal paper based components with a backdrop.
 | onExiting | TransitionCallback |  | Callback fired when the dialog is exiting. |
 | onRequestClose | Function |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback |
 | open | boolean | false | If `true`, the Dialog is open. |
-| theme | Object |  |  |
-| <span style="color: #31a148">transition *</span> | ComponentType | Fade | Transition component. |
-| transitionDuration | TransitionDuration | {  enter: duration.enteringScreen,  exit: duration.leavingScreen,} | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
+| transition | ComponentType | Fade | Transition component. |
+| transitionDuration | TransitionDuration | {  enter: duration.enteringScreen,  exit: duration.leavingScreen} | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 
 Any other properties supplied will be [spread to the root element](/guides/api#spread).
 
