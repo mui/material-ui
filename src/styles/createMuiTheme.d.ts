@@ -13,8 +13,11 @@ export interface ThemeOptions {
   mixins?: Partial<Mixins>;
   palette?: Partial<Palette>;
   typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
-  shadows?: Shadows;
-  [propName: string]: Object;
+  shadows?: Partial<Shadows>;
+  transitions?: Partial<Transitions>;
+  spacing?: Partial<Spacing>;
+  zIndex?: Partial<ZIndex>;
+  overrides?: { [name: string]: StyleRules };
 }
 
 export type Theme<T = {}> = {
@@ -27,9 +30,7 @@ export type Theme<T = {}> = {
   transitions: Transitions;
   spacing: Spacing;
   zIndex: ZIndex;
-  overrides?: {
-    [name: string]: StyleRules
-  };
+  overrides?: { [name: string]: StyleRules; };
 } & T;
 
 export default function createMuiTheme<T = {}>(
